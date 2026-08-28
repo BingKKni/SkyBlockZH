@@ -1,0 +1,40 @@
+{
+  "source": "SkyZH runtime capture (2026-08-27, Mining GUI session)",
+  "fetched_at": "2026-08-27",
+  "verified_ingame": true,
+  "gui_context": "空岛菜单打开后的 Pets 菜单；仅收录通用宠物菜单状态与操作。",
+  "lines": [
+    {
+      "id": "pet_category",
+      "context": "宠物所属类别状态",
+      "raw": "§8%1$s Pet",
+      "text": "%1$s Pet",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "宠物类别名，保持服务器原文",
+          "type": "category_name",
+          "example": "Mining"
+        }
+      ],
+      "gloss": "类别名本身不在这条记录里翻译:它是占位符捕到的值,译名走 _shared/Terms.json,查不到就保持英文。**译文里不要手写空格**——中英之间那个空格由引擎在接缝处按两边的字符自动补(见 text/TranslationEntry.Seam):值还是英文时渲染成「Fishing 宠物」,词表里有译名时渲染成「钓鱼宠物」。手写空格的话后一种会变成「钓鱼 宠物」,两个汉字中间夹一个空格,而中文里没有这种写法。",
+      "translate": true,
+      "zh": "%1$s宠物"
+    },
+    {
+      "id": "progress_to_level",
+      "ref": "_shared/Menu_Common.json#menu_progress_to_level",
+      "context": "宠物升级进度"
+    },
+    {
+      "id": "right_click_add_pet",
+      "context": "将宠物加入宠物菜单的操作提示",
+      "raw": "§eRight-click to add this pet to your pet menu!",
+      "text": "Right-click to add this pet to your pet menu!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "右键点击将此宠物加入你的宠物菜单!"
+    }
+  ]
+}

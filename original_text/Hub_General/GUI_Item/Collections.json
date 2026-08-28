@@ -1,0 +1,161 @@
+{
+  "source": "SkyZH runtime capture (2026-08-26, Mining GUI session)",
+  "fetched_at": "2026-08-26",
+  "verified_ingame": true,
+  "gui_context": "空岛菜单打开后的 Collections 菜单；仅收录通用入口、状态与说明。",
+  "lines": [
+    {
+      "id": "collection_category",
+      "context": "按类别进入收藏品的入口",
+      "raw": "§a%1$s Collections",
+      "text": "%1$s Collections",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "收藏品类别名，保持服务器原文",
+          "type": "category_name",
+          "example": "Farming"
+        }
+      ],
+      "gloss": "类别名本身不在这条记录里翻译:它是占位符捕到的值,译名走 _shared/Terms.json,查不到就保持英文。**译文里不要手写空格**——中英之间那个空格由引擎在接缝处按两边的字符自动补(见 text/TranslationEntry.Seam):值还是英文时渲染成「Fishing 宠物」,词表里有译名时渲染成「钓鱼宠物」。手写空格的话后一种会变成「钓鱼 宠物」,两个汉字中间夹一个空格,而中文里没有这种写法。",
+      "translate": true,
+      "zh": "%1$s收藏品"
+    },
+    {
+      "id": "view_collection_category",
+      "context": "收藏品类别入口说明",
+      "raw": "§7View your §a%1$s Collections§7!",
+      "text": "View your %1$s Collections!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "收藏品类别名(Farming / Mining 这类技能名)",
+          "type": "category_name",
+          "example": "Farming"
+        }
+      ],
+      "gloss": "类别名本身不在这条记录里翻译:它是占位符捕到的值,译名走 _shared/Terms.json,查不到就保持英文。**译文里不要手写空格**——中英之间那个空格由引擎在接缝处按两边的字符自动补(见 text/TranslationEntry.Seam):值还是英文时渲染成「Fishing 宠物」,词表里有译名时渲染成「钓鱼宠物」。手写空格的话后一种会变成「钓鱼 宠物」,两个汉字中间夹一个空格,而中文里没有这种写法。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "View your ",
+          "zh": "查看你的"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s Collections",
+          "zh": "%1$s收藏品"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "boss_collections_desc_1",
+      "context": "Boss Collections 入口说明首行；英文说明被菜单宽度拆成三行",
+      "raw": "§7View your progress and claim",
+      "text": "View your progress and claim",
+      "placeholders": [],
+      "gloss": "完整句为 View your progress and claim rewards you have obtained from defeating SkyBlock bosses!",
+      "translate": true,
+      "zh": "查看你的进度，并领取击败 SkyBlock 首领获得的奖励!"
+    },
+    {
+      "id": "boss_collections_desc_2",
+      "context": "接上一行",
+      "raw": "§7rewards you have obtained from",
+      "text": "rewards you have obtained from",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "boss_collections_desc_3",
+      "context": "接上一行",
+      "raw": "§7defeating SkyBlock bosses!",
+      "text": "defeating SkyBlock bosses!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "boss_collections_unlocked",
+      "context": "Boss Collections 解锁进度",
+      "raw": "§7Boss Collections Unlocked: §e%1$s§6%",
+      "text": "Boss Collections Unlocked: %1$s%",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "解锁百分比",
+          "type": "percentage",
+          "example": "87.5"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Boss Collections Unlocked: ",
+          "zh": "首领收藏品解锁: "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§6",
+          "text": "%",
+          "zh": "%"
+        }
+      ]
+    },
+    {
+      "id": "show_collection_rankings",
+      "context": "收藏品排行榜入口",
+      "raw": "§aShow Collection Rankings",
+      "text": "Show Collection Rankings",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "显示收藏品排行榜"
+    },
+    {
+      "id": "collection_rankings_desc_1",
+      "context": "收藏品排行榜入口说明首行",
+      "raw": "§7Show the rankings display for your",
+      "text": "Show the rankings display for your",
+      "placeholders": [],
+      "gloss": "完整句为 Show the rankings display for your Collections.",
+      "translate": true,
+      "zh": "显示你的收藏品排行榜。"
+    },
+    {
+      "id": "collection_rankings_desc_2",
+      "context": "接上一行",
+      "raw": "§7Collections.",
+      "text": "Collections.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "click_to_show",
+      "ref": "_shared/Menu_Common.json#menu_click_to_show",
+      "context": "显示收藏品内容的点击提示"
+    }
+  ]
+}

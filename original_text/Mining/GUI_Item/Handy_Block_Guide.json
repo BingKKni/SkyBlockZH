@@ -1,0 +1,925 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Fragilis/UI (方块速查手册主界面 + 四个子菜单的逐格 name + lore,带颜色码)",
+  "fetched_at": "2026-08-19",
+  "verified_ingame": false,
+  "gui_context": "矮人村庄 NPC Fragilis 提供的“方块速查手册”(也可用 /hbg 打开):主界面四个分类,点进去是各类方块的开采等级和硬度。",
+  "source_note": "方块名按 GLOSSARY 的规则处理:原版 Minecraft 方块用官方中文译名(Cobblestone → 圆石),SkyBlock 自造方块按通用词翻译(Hard Stone → 硬石),宝石种类名保留英文(Ruby Gemstone → Ruby 宝石)。☘ / ▚ / ✧ 是属性图标字符,数据里写通用符号,渲染时会换回服务器字体的字形(见 text/Glyphs.java)。",
+  "lines": [
+    {
+      "id": "hbg_main_name",
+      "context": "主界面中间那本书的物品名",
+      "text": "Handy Block Guide",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "方块速查手册"
+    },
+    {
+      "id": "hbg_main_desc",
+      "context": "主界面书的 Lore:开头说明",
+      "text": "View a list of important mineable blocks:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "查看重要可挖方块的清单:"
+    },
+    {
+      "id": "hbg_main_entry_ores",
+      "context": "主界面书的 Lore:分类条目",
+      "raw": "§8 - §6Ores",
+      "text": "- Ores",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "- 矿石",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§6",
+          "text": "Ores",
+          "zh": "矿石"
+        }
+      ]
+    },
+    {
+      "id": "hbg_main_entry_blocks",
+      "context": "主界面书的 Lore:分类条目",
+      "raw": "§8 - §9Blocks",
+      "text": "- Blocks",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "- 方块",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§9",
+          "text": "Blocks",
+          "zh": "方块"
+        }
+      ]
+    },
+    {
+      "id": "hbg_main_entry_dwarven_metals",
+      "context": "主界面书的 Lore:分类条目",
+      "raw": "§8 - §aDwarven Metals",
+      "text": "- Dwarven Metals",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "- 矮人金属",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§a",
+          "text": "Dwarven Metals",
+          "zh": "矮人金属"
+        }
+      ]
+    },
+    {
+      "id": "hbg_main_entry_gemstones",
+      "context": "主界面书的 Lore:分类条目",
+      "raw": "§8 - §dGemstones",
+      "text": "- Gemstones",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "- 宝石",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§d",
+          "text": "Gemstones",
+          "zh": "宝石"
+        }
+      ]
+    },
+    {
+      "id": "hbg_category_ores_name",
+      "context": "分类格子的物品名:矿石",
+      "raw": "§6Ores",
+      "text": "Ores",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "矿石"
+    },
+    {
+      "id": "hbg_category_blocks_name",
+      "context": "分类格子的物品名:方块",
+      "raw": "§9Blocks",
+      "text": "Blocks",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "方块"
+    },
+    {
+      "id": "hbg_category_dwarven_metals_name",
+      "context": "分类格子的物品名:矮人金属",
+      "raw": "§aDwarven Metals",
+      "text": "Dwarven Metals",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "矮人金属"
+    },
+    {
+      "id": "hbg_category_gemstones_name",
+      "context": "分类格子的物品名:宝石",
+      "raw": "§dGemstones",
+      "text": "Gemstones",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "宝石"
+    },
+    {
+      "id": "hbg_classification_label",
+      "context": "分类格子 Lore 的第一行(分类标签)",
+      "text": "Block Classification",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "方块分类"
+    },
+    {
+      "id": "hbg_affected_by",
+      "context": "分类格子 Lore:这一类方块吃哪些属性",
+      "text": "These blocks are affected by:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这类方块受以下属性影响:"
+    },
+    {
+      "id": "hbg_affect_ore_fortune",
+      "context": "属性条目:矿石时运",
+      "raw": "§8 - §6☘ Ore Fortune",
+      "text": "- ☘ Ore Fortune",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "- ☘ 矿石时运",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§6",
+          "text": "☘ Ore Fortune",
+          "zh": "☘ 矿石时运"
+        }
+      ]
+    },
+    {
+      "id": "hbg_affect_block_fortune",
+      "context": "属性条目:方块时运",
+      "raw": "§8 - §6☘ Block Fortune",
+      "text": "- ☘ Block Fortune",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "- ☘ 方块时运",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§6",
+          "text": "☘ Block Fortune",
+          "zh": "☘ 方块时运"
+        }
+      ]
+    },
+    {
+      "id": "hbg_affect_dwarven_metal_fortune",
+      "context": "属性条目:矮人金属时运",
+      "raw": "§8 - §6☘ Dwarven Metal Fortune",
+      "text": "- ☘ Dwarven Metal Fortune",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "- ☘ 矮人金属时运",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§6",
+          "text": "☘ Dwarven Metal Fortune",
+          "zh": "☘ 矮人金属时运"
+        }
+      ]
+    },
+    {
+      "id": "hbg_affect_gemstone_fortune",
+      "context": "属性条目:宝石时运",
+      "raw": "§8 - §6☘ Gemstone Fortune",
+      "text": "- ☘ Gemstone Fortune",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "- ☘ 宝石时运",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§6",
+          "text": "☘ Gemstone Fortune",
+          "zh": "☘ 宝石时运"
+        }
+      ]
+    },
+    {
+      "id": "hbg_affect_mining_fortune",
+      "context": "属性条目:挖掘时运",
+      "raw": "§8 - §6☘ Mining Fortune",
+      "text": "- ☘ Mining Fortune",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "- ☘ 挖掘时运",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§6",
+          "text": "☘ Mining Fortune",
+          "zh": "☘ 挖掘时运"
+        }
+      ]
+    },
+    {
+      "id": "hbg_affect_mining_spread",
+      "context": "属性条目:挖掘扩散",
+      "raw": "§8 - §e▚ Mining Spread",
+      "text": "- ▚ Mining Spread",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "- ▚ 挖掘扩散",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§e",
+          "text": "▚ Mining Spread",
+          "zh": "▚ 挖掘扩散"
+        }
+      ]
+    },
+    {
+      "id": "hbg_affect_gemstone_spread",
+      "context": "属性条目:宝石扩散",
+      "raw": "§8 - §e▚ Gemstone Spread",
+      "text": "- ▚ Gemstone Spread",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "- ▚ 宝石扩散",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§e",
+          "text": "▚ Gemstone Spread",
+          "zh": "▚ 宝石扩散"
+        }
+      ]
+    },
+    {
+      "id": "hbg_affect_pristine",
+      "context": "属性条目:纯净",
+      "raw": "§8 - §5✧ Pristine",
+      "text": "- ✧ Pristine",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "- ✧ 纯净",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§5",
+          "text": "✧ Pristine",
+          "zh": "✧ 纯净"
+        }
+      ]
+    },
+    {
+      "id": "hbg_click_to_view",
+      "context": "分类格子 Lore:点击提示",
+      "text": "Click to view!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击查看!"
+    },
+    {
+      "id": "hbg_type_ore",
+      "context": "方块格子 Lore 的类型标签:矿石",
+      "raw": "§8Ore",
+      "text": "Ore",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "矿石"
+    },
+    {
+      "id": "hbg_type_block",
+      "context": "方块格子 Lore 的类型标签:方块",
+      "raw": "§8Block",
+      "text": "Block",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "方块"
+    },
+    {
+      "id": "hbg_type_dwarven_metal",
+      "context": "方块格子 Lore 的类型标签:矮人金属",
+      "raw": "§8Dwarven Metal",
+      "text": "Dwarven Metal",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "矮人金属"
+    },
+    {
+      "id": "hbg_type_gemstone",
+      "context": "方块格子 Lore 的类型标签:宝石",
+      "raw": "§8Gemstone",
+      "text": "Gemstone",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "宝石"
+    },
+    {
+      "id": "hbg_properties_label",
+      "context": "方块格子 Lore:属性小标题",
+      "text": "Properties",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "属性"
+    },
+    {
+      "id": "hbg_breaking_power",
+      "context": "方块格子 Lore:需要的开采等级",
+      "raw": "§7 Breaking Power: §2%s",
+      "text": "Breaking Power: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "开采等级",
+          "type": "number",
+          "example": "4"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "开采等级: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Breaking Power: ",
+          "zh": "开采等级: "
+        },
+        {
+          "color": "§2",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "hbg_block_strength",
+      "context": "方块格子 Lore:方块硬度",
+      "raw": "§7 Block Strength: §e%s",
+      "text": "Block Strength: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "方块硬度",
+          "type": "number",
+          "example": "2,000"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "方块硬度: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Block Strength: ",
+          "zh": "方块硬度: "
+        },
+        {
+          "color": "§e",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "hbg_block_coal_ore",
+      "context": "方块格子的物品名",
+      "raw": "§6Coal Ore",
+      "text": "Coal Ore",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "煤矿石"
+    },
+    {
+      "id": "hbg_block_iron_ore",
+      "context": "方块格子的物品名",
+      "raw": "§6Iron Ore",
+      "text": "Iron Ore",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "铁矿石"
+    },
+    {
+      "id": "hbg_block_gold_ore",
+      "context": "方块格子的物品名",
+      "raw": "§6Gold Ore",
+      "text": "Gold Ore",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "金矿石"
+    },
+    {
+      "id": "hbg_block_lapis_lazuli_ore",
+      "context": "方块格子的物品名",
+      "raw": "§6Lapis Lazuli Ore",
+      "text": "Lapis Lazuli Ore",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "青金石矿石"
+    },
+    {
+      "id": "hbg_block_redstone_ore",
+      "context": "方块格子的物品名",
+      "raw": "§6Redstone Ore",
+      "text": "Redstone Ore",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "红石矿石"
+    },
+    {
+      "id": "hbg_block_emerald_ore",
+      "context": "方块格子的物品名",
+      "raw": "§6Emerald Ore",
+      "text": "Emerald Ore",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "绿宝石矿石"
+    },
+    {
+      "id": "hbg_block_diamond_ore",
+      "context": "方块格子的物品名",
+      "raw": "§6Diamond Ore",
+      "text": "Diamond Ore",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "钻石矿石"
+    },
+    {
+      "id": "hbg_block_nether_quartz_ore",
+      "context": "方块格子的物品名",
+      "raw": "§6Nether Quartz Ore",
+      "text": "Nether Quartz Ore",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "下界石英矿石"
+    },
+    {
+      "id": "hbg_block_sulphur_ore",
+      "context": "方块格子的物品名",
+      "raw": "§6Sulphur Ore",
+      "text": "Sulphur Ore",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "硫磺矿石"
+    },
+    {
+      "id": "hbg_block_pure_coal",
+      "context": "方块格子的物品名",
+      "raw": "§6Pure Coal",
+      "text": "Pure Coal",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "纯净煤"
+    },
+    {
+      "id": "hbg_block_pure_iron",
+      "context": "方块格子的物品名",
+      "raw": "§6Pure Iron",
+      "text": "Pure Iron",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "纯净铁"
+    },
+    {
+      "id": "hbg_block_pure_gold",
+      "context": "方块格子的物品名",
+      "raw": "§6Pure Gold",
+      "text": "Pure Gold",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "纯净金"
+    },
+    {
+      "id": "hbg_block_pure_lapis",
+      "context": "方块格子的物品名",
+      "raw": "§6Pure Lapis",
+      "text": "Pure Lapis",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "纯净青金石"
+    },
+    {
+      "id": "hbg_block_pure_redstone",
+      "context": "方块格子的物品名",
+      "raw": "§6Pure Redstone",
+      "text": "Pure Redstone",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "纯净红石"
+    },
+    {
+      "id": "hbg_block_pure_emerald",
+      "context": "方块格子的物品名",
+      "raw": "§6Pure Emerald",
+      "text": "Pure Emerald",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "纯净绿宝石"
+    },
+    {
+      "id": "hbg_block_pure_diamond",
+      "context": "方块格子的物品名",
+      "raw": "§6Pure Diamond",
+      "text": "Pure Diamond",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "纯净钻石"
+    },
+    {
+      "id": "hbg_block_pure_quartz",
+      "context": "方块格子的物品名",
+      "raw": "§6Pure Quartz",
+      "text": "Pure Quartz",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "纯净石英"
+    },
+    {
+      "id": "hbg_block_cobblestone",
+      "context": "方块格子的物品名",
+      "raw": "§9Cobblestone",
+      "text": "Cobblestone",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "圆石"
+    },
+    {
+      "id": "hbg_block_stone",
+      "context": "方块格子的物品名",
+      "raw": "§9Stone",
+      "text": "Stone",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "石头"
+    },
+    {
+      "id": "hbg_block_sand",
+      "context": "方块格子的物品名",
+      "raw": "§9Sand",
+      "text": "Sand",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "沙子"
+    },
+    {
+      "id": "hbg_block_gravel",
+      "context": "方块格子的物品名",
+      "raw": "§9Gravel",
+      "text": "Gravel",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "沙砾"
+    },
+    {
+      "id": "hbg_block_ice",
+      "context": "方块格子的物品名",
+      "raw": "§9Ice",
+      "text": "Ice",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "冰"
+    },
+    {
+      "id": "hbg_block_end_stone",
+      "context": "方块格子的物品名",
+      "raw": "§9End Stone",
+      "text": "End Stone",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "末地石"
+    },
+    {
+      "id": "hbg_block_obsidian",
+      "context": "方块格子的物品名",
+      "raw": "§9Obsidian",
+      "text": "Obsidian",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "黑曜石"
+    },
+    {
+      "id": "hbg_block_netherrack",
+      "context": "方块格子的物品名",
+      "raw": "§9Netherrack",
+      "text": "Netherrack",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "下界岩"
+    },
+    {
+      "id": "hbg_block_glowstone",
+      "context": "方块格子的物品名",
+      "raw": "§9Glowstone",
+      "text": "Glowstone",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "荧石"
+    },
+    {
+      "id": "hbg_block_red_sand",
+      "context": "方块格子的物品名",
+      "raw": "§9Red Sand",
+      "text": "Red Sand",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "红沙"
+    },
+    {
+      "id": "hbg_block_mycelium",
+      "context": "方块格子的物品名",
+      "raw": "§9Mycelium",
+      "text": "Mycelium",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "菌丝"
+    },
+    {
+      "id": "hbg_block_hard_stone",
+      "context": "方块格子的物品名",
+      "raw": "§9Hard Stone",
+      "text": "Hard Stone",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "硬石"
+    },
+    {
+      "id": "hbg_block_mithril_ore",
+      "context": "方块格子的物品名",
+      "raw": "§aMithril Ore",
+      "text": "Mithril Ore",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "秘银矿石"
+    },
+    {
+      "id": "hbg_block_titanium_ore",
+      "context": "方块格子的物品名",
+      "raw": "§aTitanium Ore",
+      "text": "Titanium Ore",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "钛矿石"
+    },
+    {
+      "id": "hbg_block_umber",
+      "context": "方块格子的物品名",
+      "raw": "§aUmber",
+      "text": "Umber",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "褐铁矿"
+    },
+    {
+      "id": "hbg_block_tungsten",
+      "context": "方块格子的物品名",
+      "raw": "§aTungsten",
+      "text": "Tungsten",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "钨"
+    },
+    {
+      "id": "hbg_block_glacite",
+      "context": "方块格子的物品名",
+      "raw": "§aGlacite",
+      "text": "Glacite",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "极冰"
+    },
+    {
+      "id": "hbg_block_ruby_gemstone",
+      "context": "宝石方块格子的物品名(宝石种类名保留英文)",
+      "raw": "§dRuby Gemstone",
+      "text": "Ruby Gemstone",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Ruby 宝石"
+    },
+    {
+      "id": "hbg_block_amber_gemstone",
+      "context": "宝石方块格子的物品名(宝石种类名保留英文)",
+      "raw": "§dAmber Gemstone",
+      "text": "Amber Gemstone",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Amber 宝石"
+    },
+    {
+      "id": "hbg_block_sapphire_gemstone",
+      "context": "宝石方块格子的物品名(宝石种类名保留英文)",
+      "raw": "§dSapphire Gemstone",
+      "text": "Sapphire Gemstone",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Sapphire 宝石"
+    },
+    {
+      "id": "hbg_block_jade_gemstone",
+      "context": "宝石方块格子的物品名(宝石种类名保留英文)",
+      "raw": "§dJade Gemstone",
+      "text": "Jade Gemstone",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Jade 宝石"
+    },
+    {
+      "id": "hbg_block_amethyst_gemstone",
+      "context": "宝石方块格子的物品名(宝石种类名保留英文)",
+      "raw": "§dAmethyst Gemstone",
+      "text": "Amethyst Gemstone",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Amethyst 宝石"
+    },
+    {
+      "id": "hbg_block_opal_gemstone",
+      "context": "宝石方块格子的物品名(宝石种类名保留英文)",
+      "raw": "§dOpal Gemstone",
+      "text": "Opal Gemstone",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Opal 宝石"
+    },
+    {
+      "id": "hbg_block_topaz_gemstone",
+      "context": "宝石方块格子的物品名(宝石种类名保留英文)",
+      "raw": "§dTopaz Gemstone",
+      "text": "Topaz Gemstone",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Topaz 宝石"
+    },
+    {
+      "id": "hbg_block_jasper_gemstone",
+      "context": "宝石方块格子的物品名(宝石种类名保留英文)",
+      "raw": "§dJasper Gemstone",
+      "text": "Jasper Gemstone",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Jasper 宝石"
+    },
+    {
+      "id": "hbg_block_onyx_gemstone",
+      "context": "宝石方块格子的物品名(宝石种类名保留英文)",
+      "raw": "§dOnyx Gemstone",
+      "text": "Onyx Gemstone",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Onyx 宝石"
+    },
+    {
+      "id": "hbg_block_aquamarine_gemstone",
+      "context": "宝石方块格子的物品名(宝石种类名保留英文)",
+      "raw": "§dAquamarine Gemstone",
+      "text": "Aquamarine Gemstone",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Aquamarine 宝石"
+    },
+    {
+      "id": "hbg_block_citrine_gemstone",
+      "context": "宝石方块格子的物品名(宝石种类名保留英文)",
+      "raw": "§dCitrine Gemstone",
+      "text": "Citrine Gemstone",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Citrine 宝石"
+    },
+    {
+      "id": "hbg_block_peridot_gemstone",
+      "context": "宝石方块格子的物品名(宝石种类名保留英文)",
+      "raw": "§dPeridot Gemstone",
+      "text": "Peridot Gemstone",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Peridot 宝石"
+    }
+  ]
+}

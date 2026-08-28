@@ -1,0 +1,136 @@
+{
+  "source": "runtime capture (SkyZH) 2026-08-20 实测会话",
+  "fetched_at": "2026-08-20",
+  "verified_ingame": true,
+  "gui_context": "兔兔狩猎(Hoppity's Hunt)活动里巧克力工厂的提示。和挖矿无关,只是实测时人在矿区。",
+  "todo": [
+    "兔子的职位阶梯(Worker / Manager / Director / Executive ...)还没采全,目前只见到 Manager 和 Director 两级,译名先记在 _shared/Terms.json。"
+  ],
+  "messages": [
+    {
+      "id": "choco_time_tower",
+      "context": "巧克力工厂的时光塔生效,产量临时提高",
+      "raw": "§d§lTIME TOWER! §7Your §6Chocolate Factory §7production has increased by §6+1.1x §7for §a1h§7!",
+      "text": "TIME TOWER! Your Chocolate Factory production has increased by +%1$sx for %2$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "倍率",
+          "type": "number",
+          "example": "1.1"
+        },
+        {
+          "token": "%2$s",
+          "desc": "持续时间",
+          "type": "time",
+          "example": "1h"
+        }
+      ],
+      "gloss": "按 GLOSSARY.md 的「Nx 倍率」条目,+1.1x 是“提高 1.1 倍”而不是“提高到 1.1 倍”。",
+      "translate": true,
+      "zh": "时光塔! 你的巧克力工厂产量提高了 %1$s 倍,持续 %2$s!",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "TIME TOWER! ",
+          "zh": "时光塔! "
+        },
+        {
+          "color": "§7",
+          "text": "Your ",
+          "zh": "你的"
+        },
+        {
+          "color": "§6",
+          "text": "Chocolate Factory ",
+          "zh": "巧克力工厂"
+        },
+        {
+          "color": "§7",
+          "text": "production has increased by ",
+          "zh": "产量提高了 "
+        },
+        {
+          "color": "§6",
+          "text": "+%1$sx ",
+          "zh": "%1$s 倍"
+        },
+        {
+          "color": "§7",
+          "text": "for ",
+          "zh": ",持续 "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "choco_not_enough",
+      "context": "巧克力不够买这个升级",
+      "text": "You don't have enough Chocolate!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的巧克力不够!"
+    },
+    {
+      "id": "choco_rabbit_promoted",
+      "context": "兔子员工升级",
+      "raw": "§5Rabbit %1$s §7has been promoted to [%2$s] §5%3$s§7!",
+      "text": "Rabbit %1$s has been promoted to [%2$s] %3$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "兔子的名字,保留英文",
+          "type": "npc_name",
+          "example": "Uncle"
+        },
+        {
+          "token": "%2$s",
+          "desc": "新的等级数",
+          "type": "number",
+          "example": "171"
+        },
+        {
+          "token": "%3$s",
+          "desc": "新的职位名,译名走 _shared/Terms.json",
+          "type": "raw",
+          "example": "Manager"
+        }
+      ],
+      "gloss": "兔子名和新职级都是紫的,中间那句是灰的。分段只决定颜色边界,颜色渲染时从屏幕上当场读,所以 color 字段只是给人看的记号。",
+      "translate": true,
+      "zh": "兔子 %1$s 升职为 [%2$s] %3$s!",
+      "segments": [
+        {
+          "color": "§5",
+          "text": "Rabbit %1$s ",
+          "zh": "兔子 %1$s "
+        },
+        {
+          "color": "§7",
+          "text": "has been promoted to [%2$s] ",
+          "zh": "升职为 [%2$s] "
+        },
+        {
+          "color": "§5",
+          "text": "%3$s",
+          "zh": "%3$s"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    }
+  ]
+}

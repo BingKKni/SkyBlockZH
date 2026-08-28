@@ -1,0 +1,534 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Gwendolyn/UI (逐格 name + lore,带颜色码)",
+  "fetched_at": "2026-08-19",
+  "verified_ingame": false,
+  "gui_context": "和矮人村庄的 Gwendolyn 对话后打开的界面:买 6 小时的水晶残核通行证。",
+  "lines": [
+    {
+      "id": "gwendolyn_join_name",
+      "context": "购买通行证的按钮名",
+      "raw": "§3Join the Crystal Hollows",
+      "text": "Join the Crystal Hollows",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "前往水晶残核"
+    },
+    {
+      "id": "gwendolyn_join_desc_1",
+      "context": "按钮 Lore:通行证给什么(第一行)",
+      "text": "This pass grants you access to the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这张通行证让你可以进入"
+    },
+    {
+      "id": "gwendolyn_join_desc_2",
+      "context": "按钮 Lore:通行证给什么(第二行)",
+      "raw": "§2Crystal Hollows§7 for §6%s hours§7.",
+      "text": "Crystal Hollows for %s hours.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "通行证时长(小时)",
+          "type": "number",
+          "example": "6"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "水晶残核,有效期 %s 小时。",
+      "segments": [
+        {
+          "color": "§2",
+          "text": "Crystal Hollows",
+          "zh": "水晶残核"
+        },
+        {
+          "color": "§7",
+          "text": " for ",
+          "zh": ","
+        },
+        {
+          "color": "§6",
+          "text": "%s hours",
+          "zh": "有效期 %s 小时"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "gwendolyn_join_desc_3",
+      "context": "按钮 Lore:通行证有效期内可以随时往返(第一行)",
+      "text": "As long as the pass is active, you can",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "通行证有效期内,你可以随时"
+    },
+    {
+      "id": "gwendolyn_join_desc_4",
+      "context": "按钮 Lore:随时往返(第二行)",
+      "raw": "§7travel back and forth using the §bMinecart",
+      "text": "travel back and forth using the Minecart",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "用空岛菜单里的矿车往返。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "travel back and forth using the ",
+          "zh": "用"
+        },
+        {
+          "color": "§b",
+          "text": "Minecart",
+          "zh": "矿车"
+        }
+      ]
+    },
+    {
+      "id": "gwendolyn_join_desc_5",
+      "context": "按钮 Lore:随时往返(第三行)",
+      "raw": "§7in your §aSkyBlock Menu§7.",
+      "text": "in your SkyBlock Menu.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "(在 SkyBlock 菜单里)往返。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "in your ",
+          "zh": "(在"
+        },
+        {
+          "color": "§a",
+          "text": "SkyBlock Menu",
+          "zh": "SkyBlock 菜单"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "里)往返。"
+        }
+      ]
+    },
+    {
+      "id": "gwendolyn_cost_label",
+      "ref": "_shared/Menu_Common.json#menu_cost_label",
+      "context": "按钮 Lore:花费小标题"
+    },
+    {
+      "id": "gwendolyn_cost_coins",
+      "context": "按钮 Lore:价格数值",
+      "raw": "§6%s Coins",
+      "text": "%s Coins",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "价格",
+          "type": "coins",
+          "example": "10,000"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%s 硬币"
+    },
+    {
+      "id": "gwendolyn_click_purchase",
+      "context": "按钮 Lore:点击购买提示",
+      "text": "Click to purchase!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击购买!"
+    },
+    {
+      "id": "gwendolyn_info_name",
+      "context": "介绍格子的物品名",
+      "raw": "§3Crystal Hollows Info",
+      "text": "Crystal Hollows Info",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "水晶残核简介"
+    },
+    {
+      "id": "gwendolyn_info_1",
+      "context": "简介 Lore:第 1 行",
+      "raw": "§7The §3Crystal Hollows §7is a",
+      "text": "The Crystal Hollows is a",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "水晶残核是一片",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "The ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§3",
+          "text": "Crystal Hollows ",
+          "zh": "水晶残核"
+        },
+        {
+          "color": "§7",
+          "text": "is a",
+          "zh": "是一片"
+        }
+      ]
+    },
+    {
+      "id": "gwendolyn_info_2",
+      "context": "简介 Lore:第 2 行",
+      "text": "huge random underground area",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "巨大的随机地下区域,"
+    },
+    {
+      "id": "gwendolyn_info_3",
+      "context": "简介 Lore:第 3 行",
+      "text": "that hosts many different",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "里面有各种各样的"
+    },
+    {
+      "id": "gwendolyn_info_4",
+      "context": "简介 Lore:第 4 行(矿石、宝石、生物群系)",
+      "raw": "§6ores§7, §dgems§7, §abiomes§7,",
+      "text": "ores, gems, biomes,",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "矿石、宝石、生物群系",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "ores",
+          "zh": "矿石"
+        },
+        {
+          "color": "§7",
+          "text": ", ",
+          "zh": "、"
+        },
+        {
+          "color": "§d",
+          "text": "gems",
+          "zh": "宝石"
+        },
+        {
+          "color": "§7",
+          "text": ", ",
+          "zh": "、"
+        },
+        {
+          "color": "§a",
+          "text": "biomes",
+          "zh": "生物群系"
+        },
+        {
+          "color": "§7",
+          "text": ",",
+          "zh": ""
+        }
+      ]
+    },
+    {
+      "id": "gwendolyn_info_5",
+      "context": "简介 Lore:第 5 行",
+      "raw": "§7and §ccreatures§7.",
+      "text": "and creatures.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "和各种生物。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "和"
+        },
+        {
+          "color": "§c",
+          "text": "creatures",
+          "zh": "各种生物"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "gwendolyn_info_6",
+      "context": "简介 Lore:宝石说明第 1 行",
+      "raw": "§dGemstones §7are brightly",
+      "text": "Gemstones are brightly",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "宝石是",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "Gemstones ",
+          "zh": "宝石"
+        },
+        {
+          "color": "§7",
+          "text": "are brightly",
+          "zh": "是"
+        }
+      ]
+    },
+    {
+      "id": "gwendolyn_info_7",
+      "context": "简介 Lore:宝石说明第 2 行",
+      "text": "colored shards embedded in the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "嵌在大多数"
+    },
+    {
+      "id": "gwendolyn_info_8",
+      "context": "简介 Lore:宝石说明第 3 行",
+      "raw": "§7walls of most §8tunnels§7. You",
+      "text": "walls of most tunnels. You",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "洞壁上的鲜艳晶簇。你会在",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "walls of most ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§8",
+          "text": "tunnels",
+          "zh": "洞壁"
+        },
+        {
+          "color": "§7",
+          "text": ". You",
+          "zh": "上看到鲜艳的晶簇。你会在"
+        }
+      ]
+    },
+    {
+      "id": "gwendolyn_info_9",
+      "context": "简介 Lore:宝石说明第 4 行",
+      "text": "will find different types of",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "不同的生物群系里,挖到不同种类的"
+    },
+    {
+      "id": "gwendolyn_info_10",
+      "context": "简介 Lore:宝石说明第 5 行",
+      "raw": "§dGemstones §7in different",
+      "text": "Gemstones in different",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "宝石——",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "Gemstones ",
+          "zh": "宝石"
+        },
+        {
+          "color": "§7",
+          "text": "in different",
+          "zh": "——"
+        }
+      ]
+    },
+    {
+      "id": "gwendolyn_info_11",
+      "context": "简介 Lore:宝石说明第 6 行",
+      "raw": "§abiomes §7except for §cRuby",
+      "text": "biomes except for Ruby",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "只有 Ruby",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "biomes ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§7",
+          "text": "except for ",
+          "zh": "只有"
+        },
+        {
+          "color": "§c",
+          "text": "Ruby",
+          "zh": "Ruby"
+        }
+      ]
+    },
+    {
+      "id": "gwendolyn_info_12",
+      "context": "简介 Lore:宝石说明第 7 行",
+      "text": "that appears to be found",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "是个例外,它似乎"
+    },
+    {
+      "id": "gwendolyn_info_13",
+      "context": "简介 Lore:宝石说明第 8 行",
+      "text": "everywhere.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "到处都能挖到。"
+    },
+    {
+      "id": "gwendolyn_info_14",
+      "context": "简介 Lore:结构说明第 1 行",
+      "raw": "§7On your §aadventures §7you",
+      "text": "On your adventures you",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "探险途中,你",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "On your ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§a",
+          "text": "adventures ",
+          "zh": "探险"
+        },
+        {
+          "color": "§7",
+          "text": "you",
+          "zh": "途中,你"
+        }
+      ]
+    },
+    {
+      "id": "gwendolyn_info_15",
+      "context": "简介 Lore:结构说明第 2 行",
+      "text": "will find many structures. Some",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "会遇到很多建筑,有的"
+    },
+    {
+      "id": "gwendolyn_info_16",
+      "context": "简介 Lore:结构说明第 3 行",
+      "text": "abandoned, some not. Structures",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "已经荒废,有的还有人。这类建筑里"
+    },
+    {
+      "id": "gwendolyn_info_17",
+      "context": "简介 Lore:结构说明第 4 行",
+      "raw": "§7such as these can contain §5epic",
+      "text": "such as these can contain epic",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "可能藏着史诗",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "such as these can contain ",
+          "zh": "可能藏着"
+        },
+        {
+          "color": "§5",
+          "text": "epic",
+          "zh": "史诗"
+        }
+      ]
+    },
+    {
+      "id": "gwendolyn_info_18",
+      "context": "简介 Lore:结构说明第 5 行",
+      "raw": "§5loot §7or §cdangerous foes §7so",
+      "text": "loot or dangerous foes so",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "战利品,也可能有危险的敌人,所以",
+      "segments": [
+        {
+          "color": "§5",
+          "text": "loot ",
+          "zh": "战利品"
+        },
+        {
+          "color": "§7",
+          "text": "or ",
+          "zh": ",也可能有"
+        },
+        {
+          "color": "§c",
+          "text": "dangerous foes ",
+          "zh": "危险的敌人"
+        },
+        {
+          "color": "§7",
+          "text": "so",
+          "zh": ",所以"
+        }
+      ]
+    },
+    {
+      "id": "gwendolyn_info_19",
+      "context": "简介 Lore:结构说明第 6 行",
+      "text": "always be on the look out.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "一定要时刻留心。"
+    },
+    {
+      "id": "gwendolyn_info_20",
+      "context": "简介 Lore:结尾祝福",
+      "text": "Good luck!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "祝你好运!"
+    }
+  ]
+}

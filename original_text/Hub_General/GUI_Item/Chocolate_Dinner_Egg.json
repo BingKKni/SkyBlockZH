@@ -1,0 +1,112 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Hoppity%27s_Hunt + runtime capture (SkyZH) 2026-08-24",
+  "fetched_at": "2026-08-24",
+  "verified_ingame": true,
+  "gameplay": "Hub_General",
+  "surface": "GUI_Item",
+  "name": "Chocolate_Dinner_Egg",
+  "gui_context": "Hoppity 的寻兔行动中晚餐时段的巧克力蛋；重复兔子会按当前每秒巧克力结算巧克力。",
+  "lines": [
+    {
+      "id": "dinner_egg_duplicate_rabbit",
+      "context": "晚餐蛋开出已经收集过的兔子时的物品名",
+      "raw": "§f%1$s §7§lDUPLICATE",
+      "text": "%1$s DUPLICATE",
+      "placeholders": [
+        { "token": "%1$s", "desc": "兔子专名，保留英文", "type": "npc_name", "example": "Cuddles" }
+      ],
+      "gloss": "Cuddles、Smokey 等兔子专名保留英文。",
+      "translate": true,
+      "zh": "%1$s (重复)",
+      "segments": [
+        { "color": "§f", "text": "%1$s ", "zh": "%1$s " },
+        { "color": "§7§l", "text": "DUPLICATE", "zh": "(重复)" }
+      ]
+    },
+    {
+      "id": "dinner_egg_duplicate_bonus",
+      "context": "重复兔子的固定工厂增益说明首行；完整句跨三行",
+      "raw": "§7Grants §6+1 Chocolate §7and §6%1$sx",
+      "text": "Grants +1 Chocolate and %1$sx",
+      "placeholders": [
+        { "token": "%1$s", "desc": "每秒巧克力倍率", "type": "number", "example": "0.002" }
+      ],
+      "gloss": "+1 是每秒巧克力基础产量，0.002x 是巧克力产量倍率；两项都是兔子为工厂提供的永久产量加成。",
+      "translate": true,
+      "zh": "使你的巧克力工厂每秒巧克力基础产量 +1，并使巧克力产量倍率 +%1$s 倍。",
+      "segments": [
+        { "color": "§7", "text": "Grants ", "zh": "使你的巧克力工厂每秒巧克力基础产量 " },
+        { "color": "§6", "text": "+1 Chocolate ", "zh": "+1" },
+        { "color": "§7", "text": "and ", "zh": "，并使巧克力产量倍率 " },
+        { "color": "§6", "text": "%1$sx", "zh": "+%1$s 倍。" }
+      ]
+    },
+    {
+      "id": "dinner_egg_duplicate_bonus_continuation_1",
+      "context": "重复兔子增益说明第二行，接上一行",
+      "raw": "§6Chocolate §7per second to your",
+      "text": "Chocolate per second to your",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "dinner_egg_duplicate_bonus_continuation_2",
+      "context": "重复兔子增益说明第三行，接上两行",
+      "raw": "§6Chocolate Factory§7.",
+      "text": "Chocolate Factory.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "dinner_egg_already_found",
+      "context": "提示这只兔子已经收集过；奖励数值在下一行",
+      "raw": "§7You have already found §f%1$s§7, so",
+      "text": "You have already found %1$s, so",
+      "placeholders": [
+        { "token": "%1$s", "desc": "兔子专名，保留英文", "type": "npc_name", "example": "Cuddles" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你已经找到过 %1$s，因此",
+      "segments": [
+        { "color": "§7", "text": "You have already found ", "zh": "你已经找到过 " },
+        { "color": "§f", "text": "%1$s", "zh": "%1$s" },
+        { "color": "§7", "text": ", so", "zh": "，因此" }
+      ]
+    },
+    {
+      "id": "dinner_egg_received_chocolate",
+      "context": "重复兔子按当前每秒巧克力结算的奖励行",
+      "raw": "§7you received §6%1$s Chocolate§7!",
+      "text": "you received %1$s Chocolate!",
+      "placeholders": [
+        { "token": "%1$s", "desc": "本次获得的巧克力数量", "type": "number", "example": "5,031,355" }
+      ],
+      "gloss": "奖励随账号当前每秒巧克力变化。",
+      "translate": true,
+      "zh": "你获得了 %1$s 巧克力!",
+      "segments": [
+        { "color": "§7", "text": "you received ", "zh": "你获得了 " },
+        { "color": "§6", "text": "%1$s Chocolate", "zh": "%1$s 巧克力" },
+        { "color": "§7", "text": "!", "zh": "!" }
+      ]
+    },
+    {
+      "id": "dinner_egg_common_rabbit",
+      "context": "晚餐蛋开出的普通兔子稀有度行",
+      "raw": "§f§lCOMMON RABBIT",
+      "text": "COMMON RABBIT",
+      "placeholders": [],
+      "gloss": "稀有度译名引用全项目共享词表。",
+      "rarity_ref": "_shared/Rarity.json#rarity_common",
+      "translate": true,
+      "zh": "普通兔子"
+    }
+  ]
+}

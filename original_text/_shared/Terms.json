@@ -1,0 +1,2205 @@
+{
+  "purpose": "占位符捕获到的**值**的译名表。和其他文件不一样:这里的每一条不是某一行文本的译文,而是一个会被服务器塞进 %s 里的词。引擎在渲染时对这些值查表(见 text/TermTable.java),查到就换成中文,查不到就原样保留英文——所以往这张表里加词只会让更多东西变中文,不会让任何已经正确的东西变错。",
+  "why": "委托板上的任务名是 '%s Mithril'(区域名 + 材料),记录本身翻好了('%s秘银'),但 %s 捕到的 'Royal Mines' 是服务器塞进来的,过去只能原样贴回去,屏幕上就成了 'Royal Mines钛'——半个名字一种语言。这类词一条能修好它出现的所有地方(委托物品、计分板、NPC 台词、Tab 行),所以做成表,而不是给每个取值各写一条记录(那正是 README 第 4 节禁止的值枚举,而且 Hypixel 新加一个区域就会漏)。",
+  "applies_to_types": [
+    "location_name",
+    "mob_name",
+    "category_name",
+    "raw"
+  ],
+  "types_note": "只对这几种 placeholders[].type 生效。**故意**不含 item_name / npc_name / player_name:那三种正是需求里写死'保留英文'的位置(NPC 人名、物品自造专名),在那里翻错的代价——给别人的武器编一个中文名——远大于一个地名留着英文的代价。新增 type 前先想清楚这一点。category_name 是菜单入口名/功能分类名(Bags、Other Crystals、Recipe Book、Settings 的前半截),形状规则走 Capture.NAME 而不是 raw 的宽松短语——见下面 category_name_note。",
+  "category_name_note": "为什么菜单分类名要单独一种 type 而不是继续用 raw:这类记录的模板全是「一个词 + 一个占位符」('Your %s'、'%s Settings'、'%s Pet'、'Bazaar ➜ %s')。raw 的形状规则允许最多 8 个词的任意短语,于是 'Your %s' 在 2026-08-27 的实测里把 GUI 上任何以 Your 开头的 Lore 整句都吃了下来('Your withers will travel to and'、'Your first daily commission on each' 等四句),而它的译文是裸 '%s',结果把 Your 删掉、剩下半句英文原样画出来。category_name 走 Capture.NAME(最多 5 个词、两端必须大写或数字开头),半句话进不来,真正的入口名照旧通过。",
+  "matching_note": "整值精确匹配,不做词根/部分替换。把 'Amber Gemstone' 里的 Amber 换掉而留下 Gemstone,需要表知道两半在中文里怎么拼接,拼错了就正是本表要消灭的中英混排。两半都该翻译的复合词,单独给它一条完整的词条。 匹配不分大小写:BossBar 把活动名喊成 “GONE WITH THE WIND”,计分板写成 “Gone with the Wind”,委托完成广播把任务名喊成 “CORPSE LOOTER”,中文没有大小写之分,一条词条同时管这几种写法。",
+  "term_types_note": "单条词可选 types 数组进一步限定用途。例如 Farm 只有作为 location_name 时才译为“农场”,作为普通 raw 值时保持英文,避免短词在别的语境误译。未写 types 的旧词仍按 applies_to_types 全局生效。",
+  "spacing_note": "查不到的值保持英文,引擎会在英文和汉字之间自动补一个空格(TranslationEntry.Seam),所以 'Amber Gemstone Collector' 渲染成 'Amber 宝石收集员' 而不是 'Amber宝石收集员'。译者不需要、也不应该为此在 zh 里手动加空格。",
+  "terms": [
+    {
+      "en": "Collections",
+      "zh": "收藏品",
+      "note": "空岛菜单与集市分类中动态出现的功能名"
+    },
+    {
+      "en": "Recipes",
+      "zh": "配方",
+      "note": "空岛菜单动态功能名"
+    },
+    {
+      "en": "Bags",
+      "zh": "收纳袋",
+      "note": "空岛菜单动态功能名"
+    },
+    {
+      "en": "Skills",
+      "zh": "技能",
+      "note": "空岛菜单动态功能名"
+    },
+    {
+      "en": "Pets",
+      "zh": "宠物",
+      "note": "空岛菜单动态功能名"
+    },
+    {
+      "en": "Dwarven Mines",
+      "zh": "矮人矿山",
+      "note": "玩法主区域名"
+    },
+    {
+      "en": "Dwarven Village",
+      "zh": "矮人村庄"
+    },
+    {
+      "en": "Dwarven Tavern",
+      "zh": "矮人酒馆",
+      "note": "村庄内的酒馆,Bomin 在此唱歌"
+    },
+    {
+      "en": "Cliffside Veins",
+      "zh": "崖壁矿脉",
+      "note": "矮人矿山产秘银/钛的崖壁区,顶部小洞里有陨星教团"
+    },
+    {
+      "en": "Lava Springs",
+      "zh": "熔岩泉",
+      "note": "顺着落进矿山的岩浆瀑布爬上去到达的岩浆水道区"
+    },
+    {
+      "en": "Rampart's Quarry",
+      "zh": "壁垒采石场",
+      "note": "矮人矿山的交通枢纽采石场,会刷陨星和哥布林突袭"
+    },
+    {
+      "en": "Royal Mines",
+      "zh": "皇家矿区",
+      "note": "位于皇家宫殿下方,含纯秘银矿脉"
+    },
+    {
+      "en": "Upper Mines",
+      "zh": "上层矿区",
+      "note": "位于矮人村庄上方"
+    },
+    {
+      "en": "Abandoned Quarry",
+      "zh": "废弃采石场"
+    },
+    {
+      "en": "Aristocrat Passage",
+      "zh": "贵族通道"
+    },
+    {
+      "en": "Barracks of Heroes",
+      "zh": "英雄兵营"
+    },
+    {
+      "en": "Far Reserve",
+      "zh": "远方矿藏"
+    },
+    {
+      "en": "Forge Basin",
+      "zh": "熔炉盆地"
+    },
+    {
+      "en": "Goblin Burrows",
+      "zh": "哥布林地穴"
+    },
+    {
+      "en": "Grand Library",
+      "zh": "大图书馆",
+      "note": "Tal Ker / Dalbrek 所在地"
+    },
+    {
+      "en": "Great Ice Wall",
+      "zh": "巨型冰墙"
+    },
+    {
+      "en": "Hanging Court",
+      "zh": "悬廷",
+      "note": "见 GLOSSARY.md 同名条目"
+    },
+    {
+      "en": "Ironman's Guild",
+      "zh": "铁人公会"
+    },
+    {
+      "en": "Palace Bridge",
+      "zh": "宫殿桥"
+    },
+    {
+      "en": "Royal Palace",
+      "zh": "皇家宫殿"
+    },
+    {
+      "en": "Royal Quarters",
+      "zh": "皇家寝宫"
+    },
+    {
+      "en": "The Forge",
+      "zh": "熔炉"
+    },
+    {
+      "en": "The Lift",
+      "zh": "升降梯"
+    },
+    {
+      "en": "The Mist",
+      "zh": "迷雾"
+    },
+    {
+      "en": "Lapis Quarry",
+      "zh": "青金石采石场",
+      "note": "深层洞窟地点,见 GLOSSARY.md"
+    },
+    {
+      "en": "Crystal Hollows",
+      "zh": "水晶残核",
+      "note": "见 GLOSSARY.md 同名条目"
+    },
+    {
+      "en": "Crystal Nucleus",
+      "zh": "水晶核心",
+      "note": "残核正中央的交水晶平台,和玩法名 Crystal Hollows 是两回事,别混"
+    },
+    {
+      "en": "Mithril Deposits",
+      "zh": "秘银矿床",
+      "note": "水晶残核四大随机区之一,Boss Corleone 在此"
+    },
+    {
+      "en": "Goblin Holdout",
+      "zh": "哥布林据点",
+      "note": "水晶残核四大随机区之一"
+    },
+    {
+      "en": "Precursor Remnants",
+      "zh": "先驱遗迹",
+      "note": "水晶残核四大随机区之一,机关傀儡与 Professor Robot 所在"
+    },
+    {
+      "en": "Jungle",
+      "zh": "丛林",
+      "note": "水晶残核四大随机区之一"
+    },
+    {
+      "en": "Magma Fields",
+      "zh": "岩浆原野",
+      "note": "残核 Y=64 以下的整片区域,会持续升温"
+    },
+    {
+      "en": "Jungle Temple",
+      "zh": "丛林神庙"
+    },
+    {
+      "en": "Lost Precursor City",
+      "zh": "失落先驱之城"
+    },
+    {
+      "en": "Goblin Queen's Den",
+      "zh": "哥布林女王巢穴"
+    },
+    {
+      "en": "Fairy Grotto",
+      "zh": "仙女洞窟",
+      "note": "Fairy 沿用 Fairy Soul → 仙女之魂 的既定译法"
+    },
+    {
+      "en": "Mithril",
+      "zh": "秘银"
+    },
+    {
+      "en": "Titanium",
+      "zh": "钛",
+      "note": "不是'钛金',见 GLOSSARY.md"
+    },
+    {
+      "en": "Glacite",
+      "zh": "极冰"
+    },
+    {
+      "en": "Tungsten",
+      "zh": "钨"
+    },
+    {
+      "en": "Umber",
+      "zh": "褐铁矿"
+    },
+    {
+      "en": "Hard Stone",
+      "zh": "硬石"
+    },
+    {
+      "en": "Suspicious Scrap",
+      "zh": "可疑残料"
+    },
+    {
+      "en": "Khazad-dûm",
+      "zh": "凯萨督姆",
+      "note": "水晶残核内 Topaz 水晶所在地。托尔金《魔戒》里矮人王国摩瑞亚的矮人语原名,沿用中文版通行音译"
+    },
+    {
+      "en": "Mines of Divan",
+      "zh": "Divan 矿场",
+      "note": "Divan 是不翻译的专有人名(见 Bulvar.json),只翻周围的通用词"
+    },
+    {
+      "en": "Divan's Gateway",
+      "zh": "Divan 之门",
+      "note": "连接崖壁矿脉和巨型冰墙的桥,Bednom 宝藏支线里说的那座桥"
+    },
+    {
+      "en": "Spider's Den",
+      "zh": "蜘蛛巢穴",
+      "note": "Hub 岛地名,Pat 的台词里提到"
+    },
+    {
+      "en": "Gold Mine",
+      "zh": "金矿"
+    },
+    {
+      "en": "Deep Caverns",
+      "zh": "深层洞穴"
+    },
+    {
+      "en": "Mining District",
+      "zh": "挖矿区"
+    },
+    {
+      "en": "Mining Speed Boost",
+      "zh": "挖掘速度爆发",
+      "note": "山心主动技能名,和 GUI_Item/Heart_of_the_Mountain_Perks.json 保持一致"
+    },
+    {
+      "en": "Pickobulus",
+      "zh": "碎石飞弹",
+      "note": "山心主动技能名"
+    },
+    {
+      "en": "Maniac Miner",
+      "zh": "疯狂矿工",
+      "note": "山心主动技能名"
+    },
+    {
+      "en": "Vein Seeker",
+      "zh": "矿脉探寻",
+      "note": "山心主动技能名"
+    },
+    {
+      "en": "Anomalous Desire",
+      "zh": "异象渴求",
+      "note": "山心主动技能名(天赋树里显示为 Tunnel Vision 的技能)"
+    },
+    {
+      "en": "Gemstone Infusion",
+      "zh": "宝石灌注",
+      "note": "山心主动技能名"
+    },
+    {
+      "en": "Mineshaft Mayhem",
+      "zh": "矿井狂乱",
+      "note": "山心天赋名"
+    },
+    {
+      "en": "Sky Mall",
+      "zh": "空中集市",
+      "note": "山心天赋名"
+    },
+    {
+      "en": "Gone with the Wind",
+      "zh": "随风而逝",
+      "note": "被动挖矿活动名,《飘》的书名梗"
+    },
+    {
+      "en": "Better Together",
+      "zh": "众志成城",
+      "note": "被动挖矿活动名,同区域玩家越多加成越高"
+    },
+    {
+      "en": "2x Powder",
+      "zh": "双倍粉末",
+      "note": "被动挖矿活动名"
+    },
+    {
+      "en": "Goblin Raid",
+      "zh": "哥布林突袭",
+      "note": "主动挖矿活动名,见 GLOSSARY.md"
+    },
+    {
+      "en": "Mithril Gourmand",
+      "zh": "秘银老饕",
+      "note": "主动挖矿活动名,给 Don Expresso 喂美味秘银"
+    },
+    {
+      "en": "Raffle",
+      "zh": "抽奖箱",
+      "note": "主动挖矿活动名"
+    },
+    {
+      "en": "Mineshaft Explorer",
+      "zh": "矿井探索者",
+      "note": "委托任务名,和 GUI_Item/Commissions.json 保持一致"
+    },
+    {
+      "en": "Corpse Looter",
+      "zh": "尸体搜刮者",
+      "note": "委托任务名"
+    },
+    {
+      "en": "Chest Looter",
+      "zh": "宝箱搜刮者",
+      "note": "委托任务名"
+    },
+    {
+      "en": "Maniac Slayer",
+      "zh": "狂人猎手",
+      "note": "委托任务名"
+    },
+    {
+      "en": "Goblin Slayer",
+      "zh": "哥布林猎手",
+      "note": "委托任务名"
+    },
+    {
+      "en": "Goblin Raid Slayer",
+      "zh": "哥布林突袭猎手",
+      "note": "委托任务名"
+    },
+    {
+      "en": "Elusive Goblin Slayer",
+      "zh": "隐匿哥布林猎手",
+      "note": "委托任务名"
+    },
+    {
+      "en": "Glacite Walker Slayer",
+      "zh": "极冰行者猎手",
+      "note": "委托任务名"
+    },
+    {
+      "en": "Automaton Slayer",
+      "zh": "机关傀儡猎手",
+      "note": "委托任务名"
+    },
+    {
+      "en": "Sludge Slayer",
+      "zh": "软泥怪猎手",
+      "note": "委托任务名"
+    },
+    {
+      "en": "Team Treasurite Member Slayer",
+      "zh": "寻宝小队成员猎手",
+      "note": "委托任务名"
+    },
+    {
+      "en": "Yog Slayer",
+      "zh": "Yog 猎手",
+      "note": "委托任务名,Yog 是专有怪物名保留英文"
+    },
+    {
+      "en": "Thyst Slayer",
+      "zh": "Thyst 猎手",
+      "note": "委托任务名,Thyst 是专有怪物名保留英文"
+    },
+    {
+      "en": "Boss Corleone Slayer",
+      "zh": "Boss Corleone 猎手",
+      "note": "委托任务名,Boss Corleone 是专有 Boss 名保留英文"
+    },
+    {
+      "en": "Treasure Hoarder Puncher",
+      "zh": "藏宝贼拳击手",
+      "note": "委托任务名"
+    },
+    {
+      "en": "Star Sentry Puncher",
+      "zh": "星辰哨兵拳击手",
+      "note": "委托任务名"
+    },
+    {
+      "en": "Mithril Miner",
+      "zh": "秘银矿工",
+      "note": "委托任务名"
+    },
+    {
+      "en": "Titanium Miner",
+      "zh": "钛矿工",
+      "note": "委托任务名"
+    },
+    {
+      "en": "Hard Stone Miner",
+      "zh": "硬石矿工",
+      "note": "委托任务名"
+    },
+    {
+      "en": "Scrap Collector",
+      "zh": "残料收集员",
+      "note": "委托任务名"
+    },
+    {
+      "en": "2x Mithril Powder Collector",
+      "zh": "2倍秘银粉末收集员",
+      "note": "委托任务名"
+    },
+    {
+      "en": "Lucky Raffle",
+      "zh": "幸运抽奖箱",
+      "note": "委托任务名"
+    },
+    {
+      "en": "Glacite Tunnels",
+      "zh": "极冰隧道"
+    },
+    {
+      "en": "Glacite Mineshafts",
+      "zh": "极冰矿井"
+    },
+    {
+      "en": "Glacite Mineshaft",
+      "zh": "极冰矿井"
+    },
+    {
+      "en": "Dwarven Base Camp",
+      "zh": "矮人营地"
+    },
+    {
+      "en": "Great Glacite Lake",
+      "zh": "极冰大湖"
+    },
+    {
+      "en": "Fossil Research Center",
+      "zh": "化石研究中心"
+    },
+    {
+      "en": "The Mines of Divan",
+      "zh": "Divan 矿场",
+      "note": "Divan 是不翻译的专有人名"
+    },
+    {
+      "en": "Amber Gemstone Collector",
+      "zh": "Amber 宝石收集员",
+      "note": "委托任务名,宝石种类名按既定原则保留英文"
+    },
+    {
+      "en": "Amber Crystal Hunter",
+      "zh": "Amber 水晶猎人",
+      "note": "委托任务名"
+    },
+    {
+      "en": "Amethyst Gemstone Collector",
+      "zh": "Amethyst 宝石收集员",
+      "note": "委托任务名,宝石种类名按既定原则保留英文"
+    },
+    {
+      "en": "Amethyst Crystal Hunter",
+      "zh": "Amethyst 水晶猎人",
+      "note": "委托任务名"
+    },
+    {
+      "en": "Jade Gemstone Collector",
+      "zh": "Jade 宝石收集员",
+      "note": "委托任务名,宝石种类名按既定原则保留英文"
+    },
+    {
+      "en": "Jade Crystal Hunter",
+      "zh": "Jade 水晶猎人",
+      "note": "委托任务名"
+    },
+    {
+      "en": "Ruby Gemstone Collector",
+      "zh": "Ruby 宝石收集员",
+      "note": "委托任务名,宝石种类名按既定原则保留英文"
+    },
+    {
+      "en": "Ruby Crystal Hunter",
+      "zh": "Ruby 水晶猎人",
+      "note": "委托任务名"
+    },
+    {
+      "en": "Sapphire Gemstone Collector",
+      "zh": "Sapphire 宝石收集员",
+      "note": "委托任务名,宝石种类名按既定原则保留英文"
+    },
+    {
+      "en": "Sapphire Crystal Hunter",
+      "zh": "Sapphire 水晶猎人",
+      "note": "委托任务名"
+    },
+    {
+      "en": "Topaz Gemstone Collector",
+      "zh": "Topaz 宝石收集员",
+      "note": "委托任务名,宝石种类名按既定原则保留英文"
+    },
+    {
+      "en": "Topaz Crystal Hunter",
+      "zh": "Topaz 水晶猎人",
+      "note": "委托任务名"
+    },
+    {
+      "en": "Aquamarine Gemstone Collector",
+      "zh": "Aquamarine 宝石收集员",
+      "note": "委托任务名,宝石种类名按既定原则保留英文"
+    },
+    {
+      "en": "Aquamarine Crystal Hunter",
+      "zh": "Aquamarine 水晶猎人",
+      "note": "委托任务名"
+    },
+    {
+      "en": "Citrine Gemstone Collector",
+      "zh": "Citrine 宝石收集员",
+      "note": "委托任务名,宝石种类名按既定原则保留英文"
+    },
+    {
+      "en": "Citrine Crystal Hunter",
+      "zh": "Citrine 水晶猎人",
+      "note": "委托任务名"
+    },
+    {
+      "en": "Onyx Gemstone Collector",
+      "zh": "Onyx 宝石收集员",
+      "note": "委托任务名,宝石种类名按既定原则保留英文"
+    },
+    {
+      "en": "Onyx Crystal Hunter",
+      "zh": "Onyx 水晶猎人",
+      "note": "委托任务名"
+    },
+    {
+      "en": "Peridot Gemstone Collector",
+      "zh": "Peridot 宝石收集员",
+      "note": "委托任务名,宝石种类名按既定原则保留英文"
+    },
+    {
+      "en": "Peridot Crystal Hunter",
+      "zh": "Peridot 水晶猎人",
+      "note": "委托任务名"
+    },
+    {
+      "en": "Opal Gemstone Collector",
+      "zh": "Opal 宝石收集员",
+      "note": "委托任务名,宝石种类名按既定原则保留英文"
+    },
+    {
+      "en": "Opal Crystal Hunter",
+      "zh": "Opal 水晶猎人",
+      "note": "委托任务名"
+    },
+    {
+      "en": "Glacite Collector",
+      "zh": "极冰收集员",
+      "note": "委托任务名"
+    },
+    {
+      "en": "Tungsten Collector",
+      "zh": "钨收集员",
+      "note": "委托任务名"
+    },
+    {
+      "en": "Umber Collector",
+      "zh": "褐铁矿收集员",
+      "note": "委托任务名"
+    },
+    {
+      "en": "Aquamarine Collector",
+      "zh": "Aquamarine 收集员",
+      "note": "委托任务名"
+    },
+    {
+      "en": "Citrine Collector",
+      "zh": "Citrine 收集员",
+      "note": "委托任务名"
+    },
+    {
+      "en": "Onyx Collector",
+      "zh": "Onyx 收集员",
+      "note": "委托任务名"
+    },
+    {
+      "en": "Peridot Collector",
+      "zh": "Peridot 收集员",
+      "note": "委托任务名"
+    },
+    {
+      "en": "Cliffside Veins Mithril",
+      "zh": "崖壁矿脉 - 秘银",
+      "note": "委托任务名:在该区域挖秘银"
+    },
+    {
+      "en": "Cliffside Veins Titanium",
+      "zh": "崖壁矿脉 - 钛",
+      "note": "委托任务名:在该区域挖钛"
+    },
+    {
+      "en": "Lava Springs Mithril",
+      "zh": "熔岩泉 - 秘银",
+      "note": "委托任务名:在该区域挖秘银"
+    },
+    {
+      "en": "Lava Springs Titanium",
+      "zh": "熔岩泉 - 钛",
+      "note": "委托任务名:在该区域挖钛"
+    },
+    {
+      "en": "Rampart's Quarry Mithril",
+      "zh": "壁垒采石场 - 秘银",
+      "note": "委托任务名:在该区域挖秘银"
+    },
+    {
+      "en": "Rampart's Quarry Titanium",
+      "zh": "壁垒采石场 - 钛",
+      "note": "委托任务名:在该区域挖钛"
+    },
+    {
+      "en": "Royal Mines Mithril",
+      "zh": "皇家矿区 - 秘银",
+      "note": "委托任务名:在该区域挖秘银"
+    },
+    {
+      "en": "Royal Mines Titanium",
+      "zh": "皇家矿区 - 钛",
+      "note": "委托任务名:在该区域挖钛"
+    },
+    {
+      "en": "Upper Mines Mithril",
+      "zh": "上层矿区 - 秘银",
+      "note": "委托任务名:在该区域挖秘银"
+    },
+    {
+      "en": "Upper Mines Titanium",
+      "zh": "上层矿区 - 钛",
+      "note": "委托任务名:在该区域挖钛"
+    },
+    {
+      "en": "First Event",
+      "zh": "首次活动",
+      "note": "委托任务名(新手简化版),Tab 列表里会以「First Event: DONE」的形式出现"
+    },
+    {
+      "en": "Mines Slayer",
+      "zh": "矿山猎手",
+      "note": "委托任务名(新手简化版),Tab 列表里会以「Mines Slayer: DONE」的形式出现"
+    },
+    {
+      "en": "Rough",
+      "zh": "粗糙",
+      "note": "宝石品质词,见 GLOSSARY.md"
+    },
+    {
+      "en": "Flawed",
+      "zh": "有瑕",
+      "note": "宝石品质词"
+    },
+    {
+      "en": "Fine",
+      "zh": "精细",
+      "note": "宝石品质词"
+    },
+    {
+      "en": "Flawless",
+      "zh": "无瑕",
+      "note": "宝石品质词"
+    },
+    {
+      "en": "Perfect",
+      "zh": "完美",
+      "note": "宝石品质词"
+    },
+    {
+      "en": "Lapis",
+      "zh": "青金石",
+      "note": "矿井尸体类型名(原版材料名,按 GLOSSARY 规则翻译)"
+    },
+    {
+      "en": "Enchanted Mithril",
+      "zh": "附魔秘银",
+      "note": "压缩天赋产物"
+    },
+    {
+      "en": "Enchanted Glacite",
+      "zh": "附魔极冰",
+      "note": "压缩天赋产物"
+    },
+    {
+      "en": "Enchanted Tungsten",
+      "zh": "附魔钨",
+      "note": "压缩天赋产物"
+    },
+    {
+      "en": "Enchanted Hard Stone",
+      "zh": "附魔硬石",
+      "note": "压缩天赋产物"
+    },
+    {
+      "en": "Enchanted Titanium",
+      "zh": "附魔钛",
+      "note": "压缩天赋产物"
+    },
+    {
+      "en": "Vanguard",
+      "zh": "先锋",
+      "note": "矿井尸体类型名"
+    },
+    {
+      "en": "Tunnel Vision",
+      "zh": "隧道视野",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Blockhead",
+      "zh": "石头脑袋",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Core of the Mountain",
+      "zh": "山之核心",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Crystalline",
+      "zh": "结晶",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Daily Grind",
+      "zh": "日常磨砺",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Daily Powder",
+      "zh": "每日粉末",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Dead Man's Chest",
+      "zh": "亡者的宝箱",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Eager Adventurer",
+      "zh": "热忱冒险家",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Efficient Miner",
+      "zh": "高效矿工",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Fortunate Mineman",
+      "zh": "幸运矿工",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Front Loaded",
+      "zh": "前置奖励",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Gem Lover",
+      "zh": "宝石爱好者",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Gifts from the Departed",
+      "zh": "亡者的馈赠",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Great Explorer",
+      "zh": "伟大探险家",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Keep It Cool",
+      "zh": "保持冷静",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Lonesome Miner",
+      "zh": "孤独矿工",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Luck of the Cave",
+      "zh": "洞穴幸运",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Metal Head",
+      "zh": "嗜金者",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Miner's Blessing",
+      "zh": "矿工的祝福",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Mining Fortune",
+      "zh": "挖掘时运",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Mining Master",
+      "zh": "挖矿大师",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Mining Speed",
+      "zh": "挖掘速度",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Mole",
+      "zh": "鼹鼠",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "No Stone Unturned",
+      "zh": "掘地三尺",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Old-School",
+      "zh": "老派",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Powder Buff",
+      "zh": "粉末增益",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Precision Mining",
+      "zh": "精准挖矿",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Professional",
+      "zh": "专业人士",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Quick Forge",
+      "zh": "疾速锻造",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Rags to Riches",
+      "zh": "点石成金",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Seasoned Mineman",
+      "zh": "老练矿工",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Sheer Force",
+      "zh": "蛮力",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Speedy Mineman",
+      "zh": "急速矿工",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Steady Hand",
+      "zh": "稳健之手",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Strong Arm",
+      "zh": "壮臂",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Subterranean Fisher",
+      "zh": "地底渔夫",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Surveyor",
+      "zh": "勘测员",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Titanium Insanium",
+      "zh": "疯钛",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Vanguard Seeker",
+      "zh": "Vanguard 探寻者",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "Warm Heart",
+      "zh": "温暖之心",
+      "note": "山心天赋名。天赋 Lore 的“Requires %s”会把前置天赋名整段塞进占位符"
+    },
+    {
+      "en": "None",
+      "zh": "无",
+      "note": "服务器还不知道玩家在哪时,侧边栏所在地那一行写的就是这个"
+    },
+    {
+      "en": "Gates to the Mines",
+      "zh": "矿区之门",
+      "note": "矮人营地通往矮人矿山的关口"
+    },
+    {
+      "en": "Mineshaft",
+      "zh": "矿井",
+      "note": "极冰矿井实例内部,Tab 列表 Area: 那一行写的是这个"
+    },
+    {
+      "en": "Kuudra Basic Tier Completion",
+      "zh": "通关 Kuudra 基础难度",
+      "note": "宝石镶嵌指南里列到绯红岛装备时的解锁条件"
+    },
+    {
+      "en": "Kuudra Hot Tier Completion",
+      "zh": "通关 Kuudra 灼热难度"
+    },
+    {
+      "en": "Kuudra Burning Tier Completion",
+      "zh": "通关 Kuudra 燃烧难度"
+    },
+    {
+      "en": "Kuudra Fiery Tier Completion",
+      "zh": "通关 Kuudra 炽焰难度"
+    },
+    {
+      "en": "Kuudra Infernal Tier Completion",
+      "zh": "通关 Kuudra 炼狱难度"
+    },
+    {
+      "en": "Novice Trophy Fisher",
+      "zh": "新手锦标渔夫",
+      "note": "锦标钓鱼(Trophy Fishing)的段位,宝石指南里作为鱼竿的解锁条件出现"
+    },
+    {
+      "en": "Adept Trophy Fisher",
+      "zh": "熟练锦标渔夫"
+    },
+    {
+      "en": "Expert Trophy Fisher",
+      "zh": "专家锦标渔夫"
+    },
+    {
+      "en": "Master Trophy Fisher",
+      "zh": "大师锦标渔夫"
+    },
+    {
+      "en": "HOTM Progression",
+      "zh": "山心进度",
+      "note": "动作栏经验提示里的经验来源,HOTM 缩写按既定译法用“山心”"
+    },
+    {
+      "en": "Manager",
+      "zh": "经理",
+      "note": "巧克力工厂里兔子员工的职位"
+    },
+    {
+      "en": "Director",
+      "zh": "总监",
+      "note": "巧克力工厂里兔子员工的职位"
+    },
+    {
+      "en": "Bro",
+      "zh": "兄弟",
+      "types": [
+        "mob_name"
+      ],
+      "note": "巧克力工厂兔子员工的亲属称谓"
+    },
+    {
+      "en": "Cousin",
+      "zh": "表亲",
+      "types": [
+        "mob_name"
+      ],
+      "note": "巧克力工厂兔子员工的亲属称谓"
+    },
+    {
+      "en": "Sis",
+      "zh": "姐妹",
+      "types": [
+        "mob_name"
+      ],
+      "note": "巧克力工厂兔子员工的亲属称谓"
+    },
+    {
+      "en": "Daddy",
+      "zh": "爸爸",
+      "types": [
+        "mob_name"
+      ],
+      "note": "巧克力工厂兔子员工的亲属称谓"
+    },
+    {
+      "en": "Granny",
+      "zh": "奶奶",
+      "types": [
+        "mob_name"
+      ],
+      "note": "巧克力工厂兔子员工的亲属称谓"
+    },
+    {
+      "en": "Uncle",
+      "zh": "叔叔",
+      "types": [
+        "mob_name"
+      ],
+      "note": "巧克力工厂兔子员工的亲属称谓"
+    },
+    {
+      "en": "Dog",
+      "zh": "狗狗",
+      "types": [
+        "mob_name"
+      ],
+      "note": "巧克力工厂兔子员工的亲属称谓"
+    },
+    {
+      "en": "Oddities",
+      "zh": "珍奇",
+      "note": "集市分类名"
+    },
+    {
+      "en": "Glacite Golem",
+      "zh": "极冰石魔",
+      "note": "极冰矿井里的怪物,也是同名宠物。按怪物名规则:通用词组成的翻译"
+    },
+    {
+      "en": "Hub",
+      "zh": "大厅",
+      "note": "Hub 岛本身,快速传送菜单和 Tab 列表 Area: 那一行写的就是这个"
+    },
+    {
+      "en": "Village",
+      "zh": "村庄",
+      "note": "Hub 岛中心的村庄,商人和拍卖行都在这里"
+    },
+    {
+      "en": "Forest",
+      "zh": "森林",
+      "note": "Hub 岛村庄西侧的林地"
+    },
+    {
+      "en": "Combat Settlement",
+      "zh": "战斗聚落",
+      "note": "Hub 岛的战斗区聚落"
+    },
+    {
+      "en": "Bazaar Alley",
+      "zh": "集市巷",
+      "note": "Hub 岛集市所在的小巷"
+    },
+    {
+      "en": "Auction House",
+      "zh": "拍卖行",
+      "note": "Hub 岛的拍卖行,也是玩法功能名"
+    },
+    {
+      "en": "Bank",
+      "zh": "银行",
+      "note": "Hub 岛的银行,也是玩法功能名"
+    },
+    {
+      "en": "Colosseum",
+      "zh": "斗兽场",
+      "note": "Hub 岛的竞技场"
+    },
+    {
+      "en": "Graveyard",
+      "zh": "墓地",
+      "note": "Hub 岛的墓地,僵尸刷新点"
+    },
+    {
+      "en": "Ruins",
+      "zh": "遗迹",
+      "note": "Hub 岛的遗迹"
+    },
+    {
+      "en": "Coal Mine",
+      "zh": "煤矿",
+      "note": "Hub 岛的新手煤矿"
+    },
+    {
+      "en": "Wilderness",
+      "zh": "荒野",
+      "note": "Hub 岛外围的荒野"
+    },
+    {
+      "en": "Community Center",
+      "zh": "社区中心",
+      "note": "Hub 岛的社区中心"
+    },
+    {
+      "en": "Your Island",
+      "zh": "你的岛屿",
+      "note": "玩家自己的私人岛屿,侧边栏这么写"
+    },
+    {
+      "en": "Private Island",
+      "zh": "私人岛屿",
+      "note": "同一个地方在别处的写法,见 GLOSSARY.md 物品 Lore 词汇表"
+    },
+    {
+      "en": "Museum",
+      "zh": "博物馆",
+      "note": "博物馆。侧边栏实际显示的是「某人's Museum」,主人是玩家名、每个人都不一样,所以表里只写通名,由引擎剥掉所有格再查这一条(见 text/Possessive.java)"
+    },
+    {
+      "en": "Island",
+      "zh": "岛屿",
+      "note": "同上,给「某人's Island」用的通名"
+    },
+    {
+      "en": "The Park",
+      "zh": "公园",
+      "note": "Hub 岛北侧的公园"
+    },
+    {
+      "en": "Birch Park",
+      "zh": "白桦公园",
+      "note": "公园里的白桦林区"
+    },
+    {
+      "en": "Farm",
+      "zh": "农场",
+      "types": [
+        "location_name"
+      ]
+    },
+    {
+      "en": "Foraging Camp",
+      "zh": "伐木营地",
+      "types": [
+        "location_name"
+      ]
+    },
+    {
+      "en": "Mountain",
+      "zh": "山顶",
+      "types": [
+        "location_name"
+      ]
+    },
+    {
+      "en": "Pet Care",
+      "zh": "宠物护理所",
+      "types": [
+        "location_name"
+      ]
+    },
+    {
+      "en": "Thaumaturgist",
+      "zh": "秘术师",
+      "types": [
+        "location_name"
+      ]
+    },
+    {
+      "en": "Security Hall",
+      "zh": "安全大厅",
+      "types": [
+        "location_name"
+      ]
+    },
+    {
+      "en": "Election Room",
+      "zh": "选举室",
+      "types": [
+        "location_name"
+      ]
+    },
+    {
+      "en": "Flower House",
+      "zh": "花屋",
+      "types": [
+        "location_name"
+      ]
+    },
+    {
+      "en": "Rabbit House",
+      "zh": "兔屋",
+      "types": [
+        "location_name"
+      ]
+    },
+    {
+      "en": "Artist's Abode",
+      "zh": "艺术家居所",
+      "types": [
+        "location_name"
+      ]
+    },
+    {
+      "en": "Fishing Outpost",
+      "zh": "钓鱼前哨",
+      "types": [
+        "location_name"
+      ]
+    },
+    {
+      "en": "Farmhouse",
+      "zh": "农舍",
+      "types": [
+        "location_name"
+      ]
+    },
+    {
+      "en": "Blacksmith",
+      "zh": "铁匠铺",
+      "types": [
+        "location_name"
+      ]
+    },
+    {
+      "en": "Trade Center",
+      "zh": "交易中心",
+      "types": [
+        "location_name"
+      ]
+    },
+    {
+      "en": "Library",
+      "zh": "图书馆",
+      "types": [
+        "location_name"
+      ]
+    },
+    {
+      "en": "Tavern",
+      "zh": "酒馆",
+      "types": [
+        "location_name"
+      ]
+    },
+    {
+      "en": "Shen's Auction",
+      "zh": "Shen 的拍卖会",
+      "types": [
+        "location_name"
+      ]
+    },
+    {
+      "en": "Abiphones & Co.",
+      "zh": "Abiphone 公司",
+      "types": [
+        "location_name"
+      ]
+    },
+    {
+      "en": "DONE",
+      "zh": "已完成",
+      "note": "委托进度行的数值:这一项已经做完"
+    },
+    {
+      "en": "LOOTED",
+      "zh": "已搜刮",
+      "note": "冰封尸体行的数值"
+    },
+    {
+      "en": "NOT LOOTED",
+      "zh": "未搜刮",
+      "note": "冰封尸体行的数值"
+    },
+    {
+      "en": "✔ Found",
+      "zh": "✔ 已找到",
+      "note": "水晶残核的水晶状态行:这块水晶已经找到"
+    },
+    {
+      "en": "✖ Not Found",
+      "zh": "✖ 未找到",
+      "note": "水晶残核的水晶状态行:还没找到"
+    },
+    {
+      "en": "✖ Not Placed",
+      "zh": "✖ 未放置",
+      "note": "水晶残核的水晶状态行:找到了但还没放进核心"
+    },
+    {
+      "en": "MAX",
+      "zh": "满级",
+      "note": "技能/天赋行的数值:已经到顶"
+    },
+    {
+      "en": "MAX LEVEL",
+      "zh": "满级",
+      "note": "同上,写全了的那一种"
+    },
+    {
+      "en": "ACTIVE",
+      "zh": "生效中",
+      "note": "Tab 列表里增益/活动行的数值"
+    },
+    {
+      "en": "Available",
+      "zh": "可用",
+      "note": "Tab 列表里的状态值。这一轮没实测到出现位置,先用不依赖语境的译法"
+    },
+    {
+      "en": "Essence Shop",
+      "zh": "精华商店",
+      "note": "动作栏空岛经验提示里的经验来源"
+    },
+    {
+      "en": "Training Pets",
+      "zh": "宠物训练",
+      "note": "时光加速提示里的加速对象"
+    },
+    {
+      "en": "Chocolate Factory",
+      "zh": "巧克力工厂",
+      "note": "时光加速提示里的加速对象,也是 Hub 的限时玩法名"
+    },
+    {
+      "en": "Minions",
+      "zh": "小人",
+      "note": "时光加速提示里的加速对象"
+    },
+    {
+      "en": "Special Items",
+      "zh": "特殊物品",
+      "note": "博物馆的展区名"
+    },
+    {
+      "en": "Carnival",
+      "zh": "嘉年华",
+      "note": "Hub 的限时活动名,计分板和 Tab 列表都会显示"
+    },
+    {
+      "en": "Harvest Feast",
+      "zh": "丰收盛宴",
+      "note": "Hub 的限时活动名"
+    },
+    {
+      "en": "Ghoul",
+      "zh": "食尸鬼",
+      "note": "宠物训练 Tab 行中的宠物种类名"
+    },
+    {
+      "en": "God Potion",
+      "zh": "神药",
+      "note": "全属性增益药水,Tab 列表页脚会显示剩余时间"
+    },
+    {
+      "en": "Fire Sales",
+      "zh": "限时特卖",
+      "note": "Tab 列表里的点券商店限时特卖小节"
+    },
+    {
+      "en": "Election",
+      "zh": "选举",
+      "note": "Tab 列表里的市长选举小节"
+    },
+    {
+      "en": "Coop",
+      "zh": "合作",
+      "note": "Tab 列表里的合作档案成员小节"
+    },
+    {
+      "en": "Guests",
+      "zh": "访客",
+      "note": "Tab 列表里的访客小节"
+    },
+    {
+      "en": "Pet Training",
+      "zh": "宠物训练",
+      "note": "Tab 列表里的宠物训练小节"
+    },
+    {
+      "en": "Fossil Essence",
+      "zh": "化石精华",
+      "note": "精华种类名"
+    },
+    {
+      "en": "Gold Essence",
+      "zh": "黄金精华",
+      "note": "精华种类名"
+    },
+    {
+      "en": "Diamond Essence",
+      "zh": "钻石精华",
+      "note": "精华种类名"
+    },
+    {
+      "en": "Ice Essence",
+      "zh": "冰霜精华",
+      "note": "精华种类名"
+    },
+    {
+      "en": "Wither Essence",
+      "zh": "凋零精华",
+      "note": "精华种类名"
+    },
+    {
+      "en": "Spider Essence",
+      "zh": "蜘蛛精华",
+      "note": "精华种类名"
+    },
+    {
+      "en": "Undead Essence",
+      "zh": "亡灵精华",
+      "note": "精华种类名"
+    },
+    {
+      "en": "Dragon Essence",
+      "zh": "巨龙精华",
+      "note": "精华种类名"
+    },
+    {
+      "en": "Crimson Essence",
+      "zh": "绯红精华",
+      "note": "精华种类名"
+    },
+    {
+      "en": "Tusk Fossil",
+      "zh": "象牙化石",
+      "note": "化石挖掘机的化石种类名"
+    },
+    {
+      "en": "Spine Fossil",
+      "zh": "脊椎化石",
+      "note": "化石挖掘机的化石种类名"
+    },
+    {
+      "en": "Clubbed Fossil",
+      "zh": "棒状化石",
+      "note": "化石挖掘机的化石种类名"
+    },
+    {
+      "en": "Footprint Fossil",
+      "zh": "脚印化石",
+      "note": "化石挖掘机的化石种类名"
+    },
+    {
+      "en": "Webbed Fossil",
+      "zh": "蹼状化石",
+      "note": "化石挖掘机的化石种类名"
+    },
+    {
+      "en": "Ugly Fossil",
+      "zh": "丑陋化石",
+      "note": "化石挖掘机的化石种类名"
+    },
+    {
+      "en": "Helix Fossil",
+      "zh": "螺旋化石",
+      "note": "化石挖掘机的化石种类名,和 GUI_Item/Helix_Fossil.json 一致"
+    },
+    {
+      "en": "Claw Fossil",
+      "zh": "爪化石",
+      "note": "化石挖掘机的化石种类名,和 GUI_Item/Claw_Fossil.json 一致"
+    },
+    {
+      "en": "Glacite Jewel",
+      "zh": "极冰宝珠",
+      "note": "极冰矿井掉落的材料。Jewel 避开“宝石”以免和 Gemstone 撞名"
+    },
+    {
+      "en": "Instant Buy",
+      "zh": "立即购买",
+      "note": "集市的买入方式"
+    },
+    {
+      "en": "Instant Sell",
+      "zh": "立刻卖出",
+      "note": "集市的卖出方式,和 Economy/ChatMessage/Bazaar.json 一致"
+    },
+    {
+      "en": "Sell Offer",
+      "zh": "挂单出售",
+      "note": "集市的卖出方式"
+    },
+    {
+      "en": "Buy Order",
+      "zh": "挂单收购",
+      "note": "集市的买入方式"
+    },
+    {
+      "en": "Essence",
+      "zh": "精华",
+      "note": "集市分类名"
+    },
+    {
+      "en": "Fossils",
+      "zh": "化石",
+      "note": "集市分类名"
+    },
+    {
+      "en": "Golden Goblin",
+      "zh": "黄金哥布林",
+      "note": "怪物名,按 GLOSSARY.md「怪物名:和物品名同一套规则」条目翻译"
+    },
+    {
+      "en": "Diamond Goblin",
+      "zh": "钻石哥布林",
+      "note": "怪物名,按 GLOSSARY.md「怪物名:和物品名同一套规则」条目翻译"
+    },
+    {
+      "en": "Goblin",
+      "zh": "哥布林",
+      "note": "怪物名,按 GLOSSARY.md「怪物名:和物品名同一套规则」条目翻译"
+    },
+    {
+      "en": "Glacite Walker",
+      "zh": "极冰行者",
+      "note": "怪物名,按 GLOSSARY.md「怪物名:和物品名同一套规则」条目翻译"
+    },
+    {
+      "en": "Treasure Hoarder",
+      "zh": "藏宝贼",
+      "note": "怪物名,按 GLOSSARY.md「怪物名:和物品名同一套规则」条目翻译"
+    },
+    {
+      "en": "Star Sentry",
+      "zh": "星辰哨兵",
+      "note": "怪物名,按 GLOSSARY.md「怪物名:和物品名同一套规则」条目翻译"
+    },
+    {
+      "en": "Automaton",
+      "zh": "机关傀儡",
+      "note": "怪物名,按 GLOSSARY.md「怪物名:和物品名同一套规则」条目翻译"
+    },
+    {
+      "en": "Sludge",
+      "zh": "软泥怪",
+      "note": "怪物名,按 GLOSSARY.md「怪物名:和物品名同一套规则」条目翻译"
+    },
+    {
+      "en": "Grubber",
+      "zh": "掘虫",
+      "note": "怪物名,按 GLOSSARY.md「怪物名:和物品名同一套规则」条目翻译"
+    },
+    {
+      "en": "Mithril Grubber",
+      "zh": "秘银掘虫",
+      "note": "怪物名,按 GLOSSARY.md「怪物名:和物品名同一套规则」条目翻译"
+    },
+    {
+      "en": "Ghost",
+      "zh": "幽灵",
+      "note": "怪物名,按 GLOSSARY.md「怪物名:和物品名同一套规则」条目翻译"
+    },
+    {
+      "en": "Glacite Maniacs",
+      "zh": "极冰狂人",
+      "note": "极冰矿井里那四种怪的统称。和委托任务名 Maniac Slayer→狂人猎手 用同一个“狂人”"
+    },
+    {
+      "en": "Glacite Maniac",
+      "zh": "极冰狂人",
+      "note": "同上,单数写法"
+    },
+    {
+      "en": "Glacite Bowman",
+      "zh": "极冰弓手",
+      "note": "极冰狂人之一,远程射箭"
+    },
+    {
+      "en": "Glacite Caver",
+      "zh": "极冰穴居者",
+      "note": "极冰狂人之一,近战"
+    },
+    {
+      "en": "Glacite Mage",
+      "zh": "极冰法师",
+      "note": "极冰狂人之一,远程法术"
+    },
+    {
+      "en": "Glacite Mutt",
+      "zh": "极冰野狗",
+      "note": "极冰狂人之一,四个里唯一的动物类,冲上来近战"
+    },
+    {
+      "en": "Lapis Corpse",
+      "zh": "青金石尸体",
+      "note": "极冰矿井里的冰封尸体,免钥匙可开"
+    },
+    {
+      "en": "Umber Corpse",
+      "zh": "褐铁尸体",
+      "note": "冰封尸体,需要 Umber Key。材料本身译“褐铁矿”,但复合成尸体类型时去掉“矿”字才读得通"
+    },
+    {
+      "en": "Tungsten Corpse",
+      "zh": "钨尸体",
+      "note": "冰封尸体,需要 Tungsten Key"
+    },
+    {
+      "en": "Vanguard Corpse",
+      "zh": "Vanguard 尸体",
+      "note": "冰封尸体,只在 Fairy Mineshaft 出现。Vanguard 按既有决定保留英文"
+    },
+    {
+      "en": "Snow",
+      "zh": "雪",
+      "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
+    },
+    {
+      "en": "Cobblestone",
+      "zh": "圆石",
+      "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
+    },
+    {
+      "en": "Coal",
+      "zh": "煤炭",
+      "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
+    },
+    {
+      "en": "Iron",
+      "zh": "铁",
+      "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
+    },
+    {
+      "en": "Gold",
+      "zh": "黄金",
+      "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
+    },
+    {
+      "en": "Diamond",
+      "zh": "钻石",
+      "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
+    },
+    {
+      "en": "Emerald",
+      "zh": "绿宝石",
+      "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
+    },
+    {
+      "en": "Redstone",
+      "zh": "红石",
+      "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
+    },
+    {
+      "en": "Obsidian",
+      "zh": "黑曜石",
+      "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
+    },
+    {
+      "en": "IMMUNE",
+      "zh": "免疫",
+      "note": "计分板炙热值的字面取值:免疫时不显示数字"
+    },
+    {
+      "en": "Ghoul",
+      "zh": "食尸鬼",
+      "note": "宠物/怪物名"
+    },
+    {
+      "en": "Enderman",
+      "zh": "末影人",
+      "types": [
+        "mob_name"
+      ],
+      "note": "原版怪物及同名宠物"
+    },
+    {
+      "en": "Knifethrower",
+      "zh": "飞刀手",
+      "note": "怪物名(死亡广播里出现)"
+    },
+    {
+      "en": "Executive",
+      "zh": "高管",
+      "note": "巧克力工厂的兔子职级"
+    },
+    {
+      "en": "Ambassador",
+      "zh": "大使",
+      "note": "增益曲奇的声望等级"
+    },
+    {
+      "en": "Statesperson",
+      "zh": "政治家",
+      "note": "增益曲奇的声望等级"
+    },
+    {
+      "en": "Mining",
+      "zh": "挖矿",
+      "note": "集市分类名/技能名"
+    },
+    {
+      "en": "Gemstone",
+      "zh": "宝石",
+      "note": "粉末/材料种类名"
+    },
+    {
+      "en": "Traveling Zoo",
+      "zh": "巡回动物园",
+      "note": "限时活动名。菜单格子那一份在 _shared/Event_Names.json,两边译名必须一致"
+    },
+    {
+      "en": "Spooky Festival",
+      "zh": "惊魂节",
+      "note": "限时活动名。菜单格子那一份在 _shared/Event_Names.json,两边译名必须一致"
+    },
+    {
+      "en": "Season of Jerry",
+      "zh": "Jerry 季",
+      "note": "限时活动名。菜单格子那一份在 _shared/Event_Names.json,两边译名必须一致"
+    },
+    {
+      "en": "New Year Celebration",
+      "zh": "新年庆典",
+      "note": "限时活动名。菜单格子那一份在 _shared/Event_Names.json,两边译名必须一致"
+    },
+    {
+      "en": "Hoppity's Hunt",
+      "zh": "Hoppity 的寻兔行动",
+      "note": "限时活动名。菜单格子那一份在 _shared/Event_Names.json,两边译名必须一致"
+    },
+    {
+      "en": "Mayor Election",
+      "zh": "市长选举",
+      "note": "限时活动名。菜单格子那一份在 _shared/Event_Names.json,两边译名必须一致"
+    },
+    {
+      "en": "Election Booth Opens",
+      "zh": "投票站开放",
+      "note": "限时活动名。菜单格子那一份在 _shared/Event_Names.json,两边译名必须一致"
+    },
+    {
+      "en": "Jacob's Farming Contest",
+      "zh": "Jacob 的农业竞赛",
+      "note": "限时活动名。菜单格子那一份在 _shared/Event_Names.json,两边译名必须一致"
+    },
+    {
+      "en": "Dark Auction",
+      "zh": "暗黑拍卖会",
+      "note": "限时活动名。菜单格子那一份在 _shared/Event_Names.json,两边译名必须一致"
+    },
+    {
+      "en": "Winter Island",
+      "zh": "寒冬岛",
+      "note": "限时活动名。菜单格子那一份在 _shared/Event_Names.json,两边译名必须一致"
+    },
+    {
+      "en": "Jerry's Workshop",
+      "zh": "Jerry 的工坊",
+      "note": "限时活动名。菜单格子那一份在 _shared/Event_Names.json,两边译名必须一致"
+    },
+    {
+      "en": "Defend Jerry's Workshop",
+      "zh": "保卫 Jerry 的工坊",
+      "note": "限时活动名。菜单格子那一份在 _shared/Event_Names.json,两边译名必须一致"
+    },
+    {
+      "en": "Fishing Festival",
+      "zh": "钓鱼节",
+      "note": "限时活动名。菜单格子那一份在 _shared/Event_Names.json,两边译名必须一致"
+    },
+    {
+      "en": "Mining Fiesta",
+      "zh": "挖矿狂欢节",
+      "note": "限时活动名。菜单格子那一份在 _shared/Event_Names.json,两边译名必须一致"
+    },
+    {
+      "en": "Mythological Ritual",
+      "zh": "神话仪式",
+      "note": "限时活动名。菜单格子那一份在 _shared/Event_Names.json,两边译名必须一致"
+    },
+    {
+      "en": "Bingo",
+      "zh": "宾果",
+      "note": "限时活动名。菜单格子那一份在 _shared/Event_Names.json,两边译名必须一致"
+    },
+    {
+      "en": "Fire Sale",
+      "zh": "限时特卖",
+      "note": "限时活动名。菜单格子那一份在 _shared/Event_Names.json,两边译名必须一致"
+    },
+    {
+      "en": "Party Time!",
+      "zh": "派对时间!",
+      "note": "限时活动名。菜单格子那一份在 _shared/Event_Names.json,两边译名必须一致"
+    },
+    {
+      "en": "Year of the Pig",
+      "zh": "猪年",
+      "note": "限时活动名。菜单格子那一份在 _shared/Event_Names.json,两边译名必须一致"
+    },
+    {
+      "en": "Year of the Seal",
+      "zh": "海豹年",
+      "note": "限时活动名。菜单格子那一份在 _shared/Event_Names.json,两边译名必须一致"
+    },
+    {
+      "en": "Year of the Witch",
+      "zh": "女巫年",
+      "note": "限时活动名。菜单格子那一份在 _shared/Event_Names.json,两边译名必须一致"
+    },
+    {
+      "en": "The Great Spook",
+      "zh": "大惊吓",
+      "note": "限时活动名。菜单格子那一份在 _shared/Event_Names.json,两边译名必须一致"
+    },
+    {
+      "en": "Stonk Exchange",
+      "zh": "股票交易所",
+      "note": "限时活动名。菜单格子那一份在 _shared/Event_Names.json,两边译名必须一致"
+    },
+    {
+      "en": "Udel's Abiphone Keynote",
+      "zh": "Udel 的 Abiphone 发布会",
+      "note": "限时活动名。菜单格子那一份在 _shared/Event_Names.json,两边译名必须一致"
+    },
+    {
+      "en": "Event Rewards",
+      "zh": "活动奖励",
+      "note": "限时活动名。菜单格子那一份在 _shared/Event_Names.json,两边译名必须一致"
+    },
+    {
+      "en": "Glowstone",
+      "zh": "荧石",
+      "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
+    },
+    {
+      "en": "Gravel",
+      "zh": "砂砾",
+      "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
+    },
+    {
+      "en": "Sand",
+      "zh": "沙子",
+      "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
+    },
+    {
+      "en": "Red Sand",
+      "zh": "红沙",
+      "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
+    },
+    {
+      "en": "Mycelium",
+      "zh": "菌丝",
+      "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
+    },
+    {
+      "en": "Clay",
+      "zh": "黏土",
+      "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
+    },
+    {
+      "en": "Ice",
+      "zh": "冰",
+      "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
+    },
+    {
+      "en": "Quartz",
+      "zh": "石英",
+      "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
+    },
+    {
+      "en": "End Stone",
+      "zh": "末地石",
+      "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
+    },
+    {
+      "en": "Wheat",
+      "zh": "小麦",
+      "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
+    },
+    {
+      "en": "Melon",
+      "zh": "西瓜",
+      "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
+    },
+    {
+      "en": "Pumpkin",
+      "zh": "南瓜",
+      "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
+    },
+    {
+      "en": "Carrot",
+      "zh": "胡萝卜",
+      "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
+    },
+    {
+      "en": "Potato",
+      "zh": "马铃薯",
+      "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
+    },
+    {
+      "en": "Mushroom",
+      "zh": "蘑菇",
+      "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
+    },
+    {
+      "en": "Cactus",
+      "zh": "仙人掌",
+      "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
+    },
+    {
+      "en": "Cocoa Beans",
+      "zh": "可可豆",
+      "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
+    },
+    {
+      "en": "Sugar Cane",
+      "zh": "甘蔗",
+      "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
+    },
+    {
+      "en": "Nether Wart",
+      "zh": "下界疙瘤",
+      "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
+    },
+    {
+      "en": "Flower",
+      "zh": "花",
+      "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
+    },
+    {
+      "en": "Sunflower",
+      "zh": "向日葵",
+      "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
+    },
+    {
+      "en": "Lily Pad",
+      "zh": "睡莲叶",
+      "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
+    },
+    {
+      "en": "Fishing",
+      "zh": "钓鱼",
+      "note": "小人种类名。这一种收的是钓上来的东西,不是某种材料,所以用玩法名"
+    },
+    {
+      "en": "Zombie",
+      "zh": "僵尸",
+      "note": "小人种类名,取自原版 Minecraft 的生物名,用官方中文译名"
+    },
+    {
+      "en": "Skeleton",
+      "zh": "骷髅",
+      "note": "小人种类名,取自原版 Minecraft 的生物名,用官方中文译名"
+    },
+    {
+      "en": "Creeper",
+      "zh": "苦力怕",
+      "note": "小人种类名,取自原版 Minecraft 的生物名,用官方中文译名"
+    },
+    {
+      "en": "Spider",
+      "zh": "蜘蛛",
+      "note": "小人种类名,取自原版 Minecraft 的生物名,用官方中文译名"
+    },
+    {
+      "en": "Cave Spider",
+      "zh": "洞穴蜘蛛",
+      "note": "小人种类名,取自原版 Minecraft 的生物名,用官方中文译名"
+    },
+    {
+      "en": "Blaze",
+      "zh": "烈焰人",
+      "note": "小人种类名,取自原版 Minecraft 的生物名,用官方中文译名"
+    },
+    {
+      "en": "Magma Cube",
+      "zh": "岩浆怪",
+      "note": "小人种类名,取自原版 Minecraft 的生物名,用官方中文译名"
+    },
+    {
+      "en": "Ghast",
+      "zh": "恶魂",
+      "note": "小人种类名,取自原版 Minecraft 的生物名,用官方中文译名"
+    },
+    {
+      "en": "Slime",
+      "zh": "史莱姆",
+      "note": "小人种类名,取自原版 Minecraft 的生物名,用官方中文译名"
+    },
+    {
+      "en": "Cow",
+      "zh": "牛",
+      "note": "小人种类名,取自原版 Minecraft 的生物名,用官方中文译名"
+    },
+    {
+      "en": "Pig",
+      "zh": "猪",
+      "note": "小人种类名,取自原版 Minecraft 的生物名,用官方中文译名"
+    },
+    {
+      "en": "Chicken",
+      "zh": "鸡",
+      "note": "小人种类名,取自原版 Minecraft 的生物名,用官方中文译名"
+    },
+    {
+      "en": "Sheep",
+      "zh": "羊",
+      "note": "小人种类名,取自原版 Minecraft 的生物名,用官方中文译名"
+    },
+    {
+      "en": "Rabbit",
+      "zh": "兔子",
+      "note": "小人种类名,取自原版 Minecraft 的生物名,用官方中文译名"
+    },
+    {
+      "en": "Oak",
+      "zh": "橡木",
+      "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
+    },
+    {
+      "en": "Spruce",
+      "zh": "云杉",
+      "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
+    },
+    {
+      "en": "Birch",
+      "zh": "白桦",
+      "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
+    },
+    {
+      "en": "Dark Oak",
+      "zh": "深色橡木",
+      "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
+    },
+    {
+      "en": "Acacia",
+      "zh": "金合欢",
+      "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
+    },
+    {
+      "en": "Revenant",
+      "zh": "亡魂",
+      "note": "小人种类名。词源是空岛的首领名,但这个词英语里本来就有,按 GLOSSARY.md §6 的判断标准照常翻译(Revenant Horror,僵尸首领)"
+    },
+    {
+      "en": "Tarantula",
+      "zh": "狼蛛",
+      "note": "小人种类名。词源是空岛的首领名,但这个词英语里本来就有,按 GLOSSARY.md §6 的判断标准照常翻译(Tarantula Broodfather,蜘蛛首领)"
+    },
+    {
+      "en": "Vampire",
+      "zh": "吸血鬼",
+      "note": "小人种类名。词源是空岛的首领名,但这个词英语里本来就有,按 GLOSSARY.md §6 的判断标准照常翻译(裂隙的吸血鬼,收 Hemovibe)"
+    },
+    {
+      "en": "Inferno",
+      "zh": "炽焰",
+      "note": "小人种类名。词源是空岛的首领名,但这个词英语里本来就有,按 GLOSSARY.md §6 的判断标准照常翻译(Inferno Demonlord,烈焰人首领)"
+    },
+    {
+      "en": "Bazaar",
+      "zh": "集市",
+      "types": ["category_name"],
+      "note": "菜单分类名,补的是 'Bazaar Settings' 这类 '%1$s Settings' 记录里被捕到的前半截(2026-08-27 实测渲染成「Bazaar 设置」)。**限定 category_name**:GLOSSARY.md 有一个把自己改名叫 Bazaar 的 NPC 角色(台词里明说这不是真名),那处按专有绰号保留英文,不能被这条词误翻。"
+    },
+    {
+      "en": "Reset",
+      "zh": "重置",
+      "types": ["category_name"],
+      "note": "菜单分类名,补的是拍卖行/集市设置界面里的 'Reset Settings'(2026-08-27 实测渲染成「Reset 设置」)。限定 category_name,免得这个短词在别处的普通 raw 值里误替换。"
+    },
+    {
+      "en": "Recipe Book",
+      "zh": "配方书",
+      "types": ["category_name"],
+      "note": "空岛菜单里的功能名,'%1$s Unlocked: %2$s%' 记录捕到的前半截(2026-08-27 实测渲染成「Recipe Book 解锁: 100%」)。已查社区 wiki(Recipe Book):它是空岛菜单的一个入口,里面列出非原版物品的合成配方,所以译「配方书」而不是「食谱」。和已有词条 Recipes(配方)是一处功能的两种写法。"
+    },
+    {
+      "en": "Other Crystals",
+      "zh": "其他水晶",
+      "types": ["category_name"],
+      "note": "山之心界面里的入口名 'Your Other Crystals'(2026-08-27 实测)。指水晶残核那几颗主水晶之外的其余水晶,和已有词条 Crystal Nucleus(水晶核心)是同一界面里的两处。"
+    },
+    {
+      "en": "Combat",
+      "zh": "战斗",
+      "types": ["category_name"],
+      "note": "宠物类别名,'%1$s Pet' 记录捕到的前半截(2026-08-27 实测渲染成「Combat 宠物」)。译法和动作栏经验条 hud_skill_xp_combat 的「战斗」、已有词条 Combat Settlement(战斗聚落)一致。限定 category_name:Combat 作为普通 raw 值出现的地方(如属性名)不该被这条动到。"
+    },
+    {
+      "en": "Farming",
+      "zh": "农业",
+      "types": ["category_name"],
+      "note": "宠物类别名,同 Combat(2026-08-27 实测渲染成「Farming 宠物」)。译法和 hud_skill_xp_farming 的「农业」一致,不用「农场」——那是地名 Farm 的译法。"
+    },
+    {
+      "en": "Enchanting",
+      "zh": "附魔",
+      "types": ["category_name"],
+      "note": "宠物类别名,和 Combat / Farming 同一处模板('%1$s Pet');2026-08-27 的采集在 observed 里同时见到 Combat 和 Enchanting 两个取值,一并补上。"
+    },
+    {
+      "en": "Black Cat",
+      "zh": "黑猫",
+      "types": ["mob_name"],
+      "note": "宠物名,'Selected pet: %s' 记录捕到的值(2026-08-27 实测保持英文)。已查社区 wiki(Black Cat Pet):万圣节活动里 Fear Mongerer 卖的战斗宠物,提升速度上限/魔法寻宝/宠物幸运。名字是通用词组成的普通名词,按 GLOSSARY.md「怪物名和物品名同一套规则」照常翻译,和 Enderman(末影人)、Glacite Golem(极冰石魔)一致。"
+    },
+    {
+      "en": "Phoenix",
+      "zh": "凤凰",
+      "types": ["mob_name"],
+      "note": "宠物名,同 Black Cat(2026-08-27 实测)。已查社区 wiki(Phoenix Pet):公共岛屿上任意怪物极低概率掉落的战斗宠物。Phoenix 是英语里本来就有的神话生物名,不是空岛自造专名,按 GLOSSARY.md §6 的判断标准照常翻译。"
+    },
+    {
+      "en": "Foraging",
+      "zh": "伐木",
+      "types": ["category_name"],
+      "note": "技能名,补齐同一组分类名。译法和动作栏经验条 hud_skill_xp_foraging 一致。这一组词(技能名)会作为宠物类别、收藏品类别、小人种类、配方分类反复出现,原先只收了 Fishing / Mining 两个,同一个界面里就会出现「钓鱼宠物」和「Foraging 宠物」并排的中英混排。"
+    },
+    {
+      "en": "Alchemy",
+      "zh": "炼药",
+      "types": ["category_name"],
+      "note": "技能名,同 Foraging。译法和 hud_skill_xp_alchemy 一致。"
+    },
+    {
+      "en": "Taming",
+      "zh": "驯养",
+      "types": ["category_name"],
+      "note": "技能名,同 Foraging。译法和 hud_skill_xp_taming 一致。"
+    },
+    {
+      "en": "Carpentry",
+      "zh": "木工",
+      "types": ["category_name"],
+      "note": "技能名,同 Foraging。译法和 hud_skill_xp_carpentry 一致。"
+    },
+    {
+      "en": "Social",
+      "zh": "社交",
+      "types": ["category_name"],
+      "note": "技能名,同 Foraging。译法和 hud_skill_xp_social 一致。"
+    },
+    {
+      "en": "Hunting",
+      "zh": "狩猎",
+      "types": ["category_name"],
+      "note": "技能名,同 Foraging。译法和 hud_skill_xp_hunting 一致。"
+    },
+    {
+      "en": "Gaia Construct",
+      "zh": "盖亚构造体",
+      "types": ["mob_name"],
+      "note": "怪物名。已查社区 wiki(hypixelskyblock.minecraft.wiki/wiki/Gaia_Construct):神话仪式(Mythological Ritual)期间用狮鹫铲挖狮鹫地穴挖出来的神话生物,实体是铁傀儡,会用闪电轰击地面、每 6 次命中才能受伤一次。"
+    },
+    {
+      "en": "Cliffside",
+      "zh": "崖壁",
+      "types": ["location_name"],
+      "note": "地名 Cliffside Veins(崖壁矿脉)的前半截。**这是 matching_note 那条「不收半个名字」规则的唯一例外**,原因是这半截并非出现在同一行里:秘银美食家横幅太长时服务器会把地名折到下一条聊天消息,2026-08-27 实测发的是 '...from the Cliffside' / 'Veins. Bring 200...'。两条消息分别到达,没有记录能同时看到两半。两个半截都有译名,所以跨行读到的是「产自崖壁」+「矿脉的美味秘银」,和英文跨行读成 Cliffside Veins 一模一样——规则禁的是一半翻一半不翻拼出的中英混排,不是这种。限定 location_name,并且整条 'Cliffside Veins' 的词条仍然在表里,没折行时照旧整值命中。"
+    },
+    {
+      "en": "Veins",
+      "zh": "矿脉",
+      "types": ["location_name"],
+      "note": "地名 Cliffside Veins 的后半截,理由见上面的 Cliffside 词条。「矿脉」在挖矿语境里单独出现也是这个词的正确译法,所以即使别处有 location_name 占位符捕到 Veins,译出来也是对的。"
+    },
+    {
+      "en": "Empyrean Gaia Construct",
+      "zh": "天穹盖亚构造体",
+      "types": ["mob_name"],
+      "note": "2026-08-27 在社区中心的死亡广播里实际出现的取值。Empyrean 是**神话生物的稀有度档位前缀**,不是名字的一部分——已查 wiki 的怪物档位表核实,同一只怪按玩家狮鹫宠物的稀有度分档,前缀依次是 Stalwart(稀有)/ Venerable(史诗)/ Exalted(传说)/ Empyrean(神话),Empyrean 是最高档(盖亚构造体的这一档是 325 级、350 万生命)。译名取「天穹」:Empyrean 本义是至高天,和 Exalted(崇高)、Venerable(尊古)、Stalwart(刚毅)一起构成一条递进的档位阶梯。词表是**整值精确匹配**,所以每个「档位前缀 + 怪物名」的组合要单独写一条(见 matching_note:只换掉前缀会拼出中英混排的半个名字)。这里只补了实测见到的这一条,其余组合等在游戏里真见到再按同一套前缀译名补,不要预先枚举。"
+    }
+  ],
+  "todo": [
+    "宝石种类名(Amber / Amethyst / Jade / Ruby / Sapphire / Topaz / Aquamarine / Citrine / Onyx / Peridot)按既定原则保持英文,**不要**往表里加。它们和汉字之间的空格由引擎自动处理。",
+    "自造怪物名(Thyst / Yog / Zog / Boss Corleone)按 GLOSSARY.md 保留英文,**不要**往表里加;通用词组成的怪物名已经收进来了。"
+  ]
+}

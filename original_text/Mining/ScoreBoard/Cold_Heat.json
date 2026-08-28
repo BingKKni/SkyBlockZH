@@ -1,0 +1,75 @@
+{
+  "source": "https://raw.githubusercontent.com/hannibal002/SkyHanni-REPO/main/constants/regexesModern.json",
+  "fetched_at": "2026-08-18",
+  "verified_ingame": false,
+  "source_note": "数据来自开源客户端 Mod SkyHanni 的 SkyHanni-REPO 仓库 constants/regexesModern.json (用于解析游戏内文本的正则表达式常量),已去除正则语法/颜色码还原成干净模板文本, 可信度高于 Wiki 摘要,但未逐条在游戏内截图核对,verified_ingame 仍为 false。",
+  "gui_context": "冰原(Glacite)相关的“寒冷(Cold)”与“炙热(Heat)”状态计分板显示行。",
+  "lines": [
+    {
+      "id": "mining_sb_cold",
+      "context": "寒冷值计分板行,数值可以为负数",
+      "text": "Cold: %s❄",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "寒冷数值,可以是负数",
+          "type": "number",
+          "example": "-5"
+        }
+      ],
+      "gloss": "❄ 是数值的一部分,和数值同色;整行记一条的话它会被刷成标签的颜色,屏幕上一个白色的雪花配蓝色的数字。图标自己一段,颜色就跟着它在屏幕上的位置走。分段只决定颜色边界,颜色渲染时从屏幕上当场读(见 text/StyledText),所以 color 字段只是给人看的记号,写得保守一点也不影响画面。",
+      "translate": true,
+      "zh": "寒冷: %s❄",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Cold: ",
+          "zh": "寒冷: "
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§b",
+          "text": "❄",
+          "zh": "❄"
+        }
+      ]
+    },
+    {
+      "id": "mining_sb_heat",
+      "context": "炙热值计分板行",
+      "text": "Heat: %s♨",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "炙热数值,或字面量 'IMMUNE'(表示免疫)",
+          "type": "raw",
+          "example": "IMMUNE"
+        }
+      ],
+      "gloss": "同 mining_sb_cold:♨ 和数值同色,各自一段。数值可能是数字,也可能是字面量 'IMMUNE'(译“免疫”,走 _shared/Terms.json)。",
+      "translate": true,
+      "zh": "炙热: %s♨",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Heat: ",
+          "zh": "炙热: "
+        },
+        {
+          "color": "§c",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§c",
+          "text": "♨",
+          "zh": "♨"
+        }
+      ]
+    }
+  ]
+}

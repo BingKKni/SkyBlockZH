@@ -1,0 +1,2298 @@
+{
+  "source": "runtime capture (SkyZH) 2026-08-20 实测会话",
+  "fetched_at": "2026-08-20",
+  "verified_ingame": true,
+  "gui_context": "计分板侧边栏上和玩法无关、每个岛屿都会出现的几行:日期、时钟、硬币、点券。玩法相关的行在各玩法自己的 ScoreBoard/ 目录下。",
+  "todo": [
+    "侧边栏还有两行没有记录,因为它们里面没有可翻译的词:现实日期 + 服务器号那一行(`08/20/26 m98H`)、以及最后一行的 `www.hypixel.net`。这是有意不收,不是漏采。"
+  ],
+  "lines": [
+    {
+      "id": "sb_date_early_spring_st",
+      "context": "侧边栏第二行的空岛日期:立春那个月的第 N 天。英文序数后缀 st 决定是哪一天,中文统一写“N 日”",
+      "text": "Early Spring %sst",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "空岛一年十二个月,每季按 Early / (无前缀) / Late 分三段。中文用二十四节气里对应的那一个:季首取四立(立春/立夏/立秋/立冬)、季中取二分二至(春分/夏至/秋分/冬至)、季末取该季最后一个节气(谷雨/大暑/霜降/大寒)。英文四种序数后缀各写一条记录,因为 %s 只能捕数字、捕不到后缀本身;四条的译文完全相同,中文没有序数后缀。中文写成「节气 N 日」,数字两边各留一个空格——挨着写(“夏至20日”)在计分板上挤成一团。",
+      "translate": true,
+      "zh": "立春 %s 日"
+    },
+    {
+      "id": "sb_date_early_spring_nd",
+      "context": "侧边栏第二行的空岛日期:立春那个月的第 N 天。英文序数后缀 nd 决定是哪一天,中文统一写“N 日”",
+      "text": "Early Spring %snd",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "立春 %s 日"
+    },
+    {
+      "id": "sb_date_early_spring_rd",
+      "context": "侧边栏第二行的空岛日期:立春那个月的第 N 天。英文序数后缀 rd 决定是哪一天,中文统一写“N 日”",
+      "text": "Early Spring %srd",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "立春 %s 日"
+    },
+    {
+      "id": "sb_date_early_spring_th",
+      "context": "侧边栏第二行的空岛日期:立春那个月的第 N 天。英文序数后缀 th 决定是哪一天,中文统一写“N 日”",
+      "text": "Early Spring %sth",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "立春 %s 日"
+    },
+    {
+      "id": "sb_date_spring_st",
+      "context": "侧边栏第二行的空岛日期:春分那个月的第 N 天。英文序数后缀 st 决定是哪一天,中文统一写“N 日”",
+      "text": "Spring %sst",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "春分 %s 日"
+    },
+    {
+      "id": "sb_date_spring_nd",
+      "context": "侧边栏第二行的空岛日期:春分那个月的第 N 天。英文序数后缀 nd 决定是哪一天,中文统一写“N 日”",
+      "text": "Spring %snd",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "春分 %s 日"
+    },
+    {
+      "id": "sb_date_spring_rd",
+      "context": "侧边栏第二行的空岛日期:春分那个月的第 N 天。英文序数后缀 rd 决定是哪一天,中文统一写“N 日”",
+      "text": "Spring %srd",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "春分 %s 日"
+    },
+    {
+      "id": "sb_date_spring_th",
+      "context": "侧边栏第二行的空岛日期:春分那个月的第 N 天。英文序数后缀 th 决定是哪一天,中文统一写“N 日”",
+      "text": "Spring %sth",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "春分 %s 日"
+    },
+    {
+      "id": "sb_date_late_spring_st",
+      "context": "侧边栏第二行的空岛日期:谷雨那个月的第 N 天。英文序数后缀 st 决定是哪一天,中文统一写“N 日”",
+      "text": "Late Spring %sst",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "谷雨 %s 日"
+    },
+    {
+      "id": "sb_date_late_spring_nd",
+      "context": "侧边栏第二行的空岛日期:谷雨那个月的第 N 天。英文序数后缀 nd 决定是哪一天,中文统一写“N 日”",
+      "text": "Late Spring %snd",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "谷雨 %s 日"
+    },
+    {
+      "id": "sb_date_late_spring_rd",
+      "context": "侧边栏第二行的空岛日期:谷雨那个月的第 N 天。英文序数后缀 rd 决定是哪一天,中文统一写“N 日”",
+      "text": "Late Spring %srd",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "谷雨 %s 日"
+    },
+    {
+      "id": "sb_date_late_spring_th",
+      "context": "侧边栏第二行的空岛日期:谷雨那个月的第 N 天。英文序数后缀 th 决定是哪一天,中文统一写“N 日”",
+      "text": "Late Spring %sth",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "谷雨 %s 日"
+    },
+    {
+      "id": "sb_date_early_summer_st",
+      "context": "侧边栏第二行的空岛日期:立夏那个月的第 N 天。英文序数后缀 st 决定是哪一天,中文统一写“N 日”",
+      "text": "Early Summer %sst",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "立夏 %s 日"
+    },
+    {
+      "id": "sb_date_early_summer_nd",
+      "context": "侧边栏第二行的空岛日期:立夏那个月的第 N 天。英文序数后缀 nd 决定是哪一天,中文统一写“N 日”",
+      "text": "Early Summer %snd",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "立夏 %s 日"
+    },
+    {
+      "id": "sb_date_early_summer_rd",
+      "context": "侧边栏第二行的空岛日期:立夏那个月的第 N 天。英文序数后缀 rd 决定是哪一天,中文统一写“N 日”",
+      "text": "Early Summer %srd",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "立夏 %s 日"
+    },
+    {
+      "id": "sb_date_early_summer_th",
+      "context": "侧边栏第二行的空岛日期:立夏那个月的第 N 天。英文序数后缀 th 决定是哪一天,中文统一写“N 日”",
+      "text": "Early Summer %sth",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "立夏 %s 日"
+    },
+    {
+      "id": "sb_date_summer_st",
+      "context": "侧边栏第二行的空岛日期:夏至那个月的第 N 天。英文序数后缀 st 决定是哪一天,中文统一写“N 日”",
+      "text": "Summer %sst",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "夏至 %s 日"
+    },
+    {
+      "id": "sb_date_summer_nd",
+      "context": "侧边栏第二行的空岛日期:夏至那个月的第 N 天。英文序数后缀 nd 决定是哪一天,中文统一写“N 日”",
+      "text": "Summer %snd",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "夏至 %s 日"
+    },
+    {
+      "id": "sb_date_summer_rd",
+      "context": "侧边栏第二行的空岛日期:夏至那个月的第 N 天。英文序数后缀 rd 决定是哪一天,中文统一写“N 日”",
+      "text": "Summer %srd",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "夏至 %s 日"
+    },
+    {
+      "id": "sb_date_summer_th",
+      "context": "侧边栏第二行的空岛日期:夏至那个月的第 N 天。英文序数后缀 th 决定是哪一天,中文统一写“N 日”",
+      "text": "Summer %sth",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "夏至 %s 日"
+    },
+    {
+      "id": "sb_date_late_summer_st",
+      "context": "侧边栏第二行的空岛日期:大暑那个月的第 N 天。英文序数后缀 st 决定是哪一天,中文统一写“N 日”",
+      "text": "Late Summer %sst",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "大暑 %s 日"
+    },
+    {
+      "id": "sb_date_late_summer_nd",
+      "context": "侧边栏第二行的空岛日期:大暑那个月的第 N 天。英文序数后缀 nd 决定是哪一天,中文统一写“N 日”",
+      "text": "Late Summer %snd",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "大暑 %s 日"
+    },
+    {
+      "id": "sb_date_late_summer_rd",
+      "context": "侧边栏第二行的空岛日期:大暑那个月的第 N 天。英文序数后缀 rd 决定是哪一天,中文统一写“N 日”",
+      "text": "Late Summer %srd",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "大暑 %s 日"
+    },
+    {
+      "id": "sb_date_late_summer_th",
+      "context": "侧边栏第二行的空岛日期:大暑那个月的第 N 天。英文序数后缀 th 决定是哪一天,中文统一写“N 日”",
+      "text": "Late Summer %sth",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "大暑 %s 日"
+    },
+    {
+      "id": "sb_date_early_autumn_st",
+      "context": "侧边栏第二行的空岛日期:立秋那个月的第 N 天。英文序数后缀 st 决定是哪一天,中文统一写“N 日”",
+      "text": "Early Autumn %sst",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "立秋 %s 日"
+    },
+    {
+      "id": "sb_date_early_autumn_nd",
+      "context": "侧边栏第二行的空岛日期:立秋那个月的第 N 天。英文序数后缀 nd 决定是哪一天,中文统一写“N 日”",
+      "text": "Early Autumn %snd",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "立秋 %s 日"
+    },
+    {
+      "id": "sb_date_early_autumn_rd",
+      "context": "侧边栏第二行的空岛日期:立秋那个月的第 N 天。英文序数后缀 rd 决定是哪一天,中文统一写“N 日”",
+      "text": "Early Autumn %srd",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "立秋 %s 日"
+    },
+    {
+      "id": "sb_date_early_autumn_th",
+      "context": "侧边栏第二行的空岛日期:立秋那个月的第 N 天。英文序数后缀 th 决定是哪一天,中文统一写“N 日”",
+      "text": "Early Autumn %sth",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "立秋 %s 日"
+    },
+    {
+      "id": "sb_date_autumn_st",
+      "context": "侧边栏第二行的空岛日期:秋分那个月的第 N 天。英文序数后缀 st 决定是哪一天,中文统一写“N 日”",
+      "text": "Autumn %sst",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "秋分 %s 日"
+    },
+    {
+      "id": "sb_date_autumn_nd",
+      "context": "侧边栏第二行的空岛日期:秋分那个月的第 N 天。英文序数后缀 nd 决定是哪一天,中文统一写“N 日”",
+      "text": "Autumn %snd",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "秋分 %s 日"
+    },
+    {
+      "id": "sb_date_autumn_rd",
+      "context": "侧边栏第二行的空岛日期:秋分那个月的第 N 天。英文序数后缀 rd 决定是哪一天,中文统一写“N 日”",
+      "text": "Autumn %srd",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "秋分 %s 日"
+    },
+    {
+      "id": "sb_date_autumn_th",
+      "context": "侧边栏第二行的空岛日期:秋分那个月的第 N 天。英文序数后缀 th 决定是哪一天,中文统一写“N 日”",
+      "text": "Autumn %sth",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "秋分 %s 日"
+    },
+    {
+      "id": "sb_date_late_autumn_st",
+      "context": "侧边栏第二行的空岛日期:霜降那个月的第 N 天。英文序数后缀 st 决定是哪一天,中文统一写“N 日”",
+      "text": "Late Autumn %sst",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "霜降 %s 日"
+    },
+    {
+      "id": "sb_date_late_autumn_nd",
+      "context": "侧边栏第二行的空岛日期:霜降那个月的第 N 天。英文序数后缀 nd 决定是哪一天,中文统一写“N 日”",
+      "text": "Late Autumn %snd",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "霜降 %s 日"
+    },
+    {
+      "id": "sb_date_late_autumn_rd",
+      "context": "侧边栏第二行的空岛日期:霜降那个月的第 N 天。英文序数后缀 rd 决定是哪一天,中文统一写“N 日”",
+      "text": "Late Autumn %srd",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "霜降 %s 日"
+    },
+    {
+      "id": "sb_date_late_autumn_th",
+      "context": "侧边栏第二行的空岛日期:霜降那个月的第 N 天。英文序数后缀 th 决定是哪一天,中文统一写“N 日”",
+      "text": "Late Autumn %sth",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "霜降 %s 日"
+    },
+    {
+      "id": "sb_date_early_winter_st",
+      "context": "侧边栏第二行的空岛日期:立冬那个月的第 N 天。英文序数后缀 st 决定是哪一天,中文统一写“N 日”",
+      "text": "Early Winter %sst",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "立冬 %s 日"
+    },
+    {
+      "id": "sb_date_early_winter_nd",
+      "context": "侧边栏第二行的空岛日期:立冬那个月的第 N 天。英文序数后缀 nd 决定是哪一天,中文统一写“N 日”",
+      "text": "Early Winter %snd",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "立冬 %s 日"
+    },
+    {
+      "id": "sb_date_early_winter_rd",
+      "context": "侧边栏第二行的空岛日期:立冬那个月的第 N 天。英文序数后缀 rd 决定是哪一天,中文统一写“N 日”",
+      "text": "Early Winter %srd",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "立冬 %s 日"
+    },
+    {
+      "id": "sb_date_early_winter_th",
+      "context": "侧边栏第二行的空岛日期:立冬那个月的第 N 天。英文序数后缀 th 决定是哪一天,中文统一写“N 日”",
+      "text": "Early Winter %sth",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "立冬 %s 日"
+    },
+    {
+      "id": "sb_date_winter_st",
+      "context": "侧边栏第二行的空岛日期:冬至那个月的第 N 天。英文序数后缀 st 决定是哪一天,中文统一写“N 日”",
+      "text": "Winter %sst",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "冬至 %s 日"
+    },
+    {
+      "id": "sb_date_winter_nd",
+      "context": "侧边栏第二行的空岛日期:冬至那个月的第 N 天。英文序数后缀 nd 决定是哪一天,中文统一写“N 日”",
+      "text": "Winter %snd",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "冬至 %s 日"
+    },
+    {
+      "id": "sb_date_winter_rd",
+      "context": "侧边栏第二行的空岛日期:冬至那个月的第 N 天。英文序数后缀 rd 决定是哪一天,中文统一写“N 日”",
+      "text": "Winter %srd",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "冬至 %s 日"
+    },
+    {
+      "id": "sb_date_winter_th",
+      "context": "侧边栏第二行的空岛日期:冬至那个月的第 N 天。英文序数后缀 th 决定是哪一天,中文统一写“N 日”",
+      "text": "Winter %sth",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "冬至 %s 日"
+    },
+    {
+      "id": "sb_date_late_winter_st",
+      "context": "侧边栏第二行的空岛日期:大寒那个月的第 N 天。英文序数后缀 st 决定是哪一天,中文统一写“N 日”",
+      "text": "Late Winter %sst",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "大寒 %s 日"
+    },
+    {
+      "id": "sb_date_late_winter_nd",
+      "context": "侧边栏第二行的空岛日期:大寒那个月的第 N 天。英文序数后缀 nd 决定是哪一天,中文统一写“N 日”",
+      "text": "Late Winter %snd",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "大寒 %s 日"
+    },
+    {
+      "id": "sb_date_late_winter_rd",
+      "context": "侧边栏第二行的空岛日期:大寒那个月的第 N 天。英文序数后缀 rd 决定是哪一天,中文统一写“N 日”",
+      "text": "Late Winter %srd",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "大寒 %s 日"
+    },
+    {
+      "id": "sb_date_late_winter_th",
+      "context": "侧边栏第二行的空岛日期:大寒那个月的第 N 天。英文序数后缀 th 决定是哪一天,中文统一写“N 日”",
+      "text": "Late Winter %sth",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛月里的第几天(1-31)",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "大寒 %s 日"
+    },
+    {
+      "id": "sb_clock_1_am",
+      "context": "侧边栏的空岛时钟,AM 1 点那一格(后面跟着白天/夜晚图标)",
+      "text": "1:%1$sam %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        },
+        {
+          "token": "%2$s",
+          "desc": "白天 ☀ / 夜晚 ☽ 图标,占位符会连它自己的颜色一起搬过去",
+          "type": "raw",
+          "example": "☀"
+        }
+      ],
+      "gloss": "空岛时钟走 12 小时制,中文照着走 12 小时制,但把 AM/PM 换成中文的时段词:凌晨(12am-5am)/上午(6am-11am)/中午(12pm)/下午(1pm-5pm)/晚上(6pm-11pm)。英文 12 小时制在 12 点那一格有歧义(12:30am 是半夜),中文的时段词各自只对应一段,没有这个问题,读起来也比 24 小时制自然。引擎是查表不是算术,换算做不到运行时,所以小时和时段写死在模板里、一小时一条记录;分钟和白天/夜晚图标仍是占位符。",
+      "translate": true,
+      "zh": "凌晨 1:%1$s %2$s"
+    },
+    {
+      "id": "sb_clock_1_am_plain",
+      "context": "侧边栏的空岛时钟,AM 1 点那一格(矿井里不带图标的写法)",
+      "text": "1:%1$sam",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "凌晨 1:%1$s"
+    },
+    {
+      "id": "sb_clock_1_pm",
+      "context": "侧边栏的空岛时钟,PM 1 点那一格(后面跟着白天/夜晚图标)",
+      "text": "1:%1$spm %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        },
+        {
+          "token": "%2$s",
+          "desc": "白天 ☀ / 夜晚 ☽ 图标,占位符会连它自己的颜色一起搬过去",
+          "type": "raw",
+          "example": "☀"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "下午 1:%1$s %2$s"
+    },
+    {
+      "id": "sb_clock_1_pm_plain",
+      "context": "侧边栏的空岛时钟,PM 1 点那一格(矿井里不带图标的写法)",
+      "text": "1:%1$spm",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "下午 1:%1$s"
+    },
+    {
+      "id": "sb_clock_2_am",
+      "context": "侧边栏的空岛时钟,AM 2 点那一格(后面跟着白天/夜晚图标)",
+      "text": "2:%1$sam %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        },
+        {
+          "token": "%2$s",
+          "desc": "白天 ☀ / 夜晚 ☽ 图标,占位符会连它自己的颜色一起搬过去",
+          "type": "raw",
+          "example": "☀"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "凌晨 2:%1$s %2$s"
+    },
+    {
+      "id": "sb_clock_2_am_plain",
+      "context": "侧边栏的空岛时钟,AM 2 点那一格(矿井里不带图标的写法)",
+      "text": "2:%1$sam",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "凌晨 2:%1$s"
+    },
+    {
+      "id": "sb_clock_2_pm",
+      "context": "侧边栏的空岛时钟,PM 2 点那一格(后面跟着白天/夜晚图标)",
+      "text": "2:%1$spm %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        },
+        {
+          "token": "%2$s",
+          "desc": "白天 ☀ / 夜晚 ☽ 图标,占位符会连它自己的颜色一起搬过去",
+          "type": "raw",
+          "example": "☀"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "下午 2:%1$s %2$s"
+    },
+    {
+      "id": "sb_clock_2_pm_plain",
+      "context": "侧边栏的空岛时钟,PM 2 点那一格(矿井里不带图标的写法)",
+      "text": "2:%1$spm",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "下午 2:%1$s"
+    },
+    {
+      "id": "sb_clock_3_am",
+      "context": "侧边栏的空岛时钟,AM 3 点那一格(后面跟着白天/夜晚图标)",
+      "text": "3:%1$sam %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        },
+        {
+          "token": "%2$s",
+          "desc": "白天 ☀ / 夜晚 ☽ 图标,占位符会连它自己的颜色一起搬过去",
+          "type": "raw",
+          "example": "☀"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "凌晨 3:%1$s %2$s"
+    },
+    {
+      "id": "sb_clock_3_am_plain",
+      "context": "侧边栏的空岛时钟,AM 3 点那一格(矿井里不带图标的写法)",
+      "text": "3:%1$sam",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "凌晨 3:%1$s"
+    },
+    {
+      "id": "sb_clock_3_pm",
+      "context": "侧边栏的空岛时钟,PM 3 点那一格(后面跟着白天/夜晚图标)",
+      "text": "3:%1$spm %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        },
+        {
+          "token": "%2$s",
+          "desc": "白天 ☀ / 夜晚 ☽ 图标,占位符会连它自己的颜色一起搬过去",
+          "type": "raw",
+          "example": "☀"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "下午 3:%1$s %2$s"
+    },
+    {
+      "id": "sb_clock_3_pm_plain",
+      "context": "侧边栏的空岛时钟,PM 3 点那一格(矿井里不带图标的写法)",
+      "text": "3:%1$spm",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "下午 3:%1$s"
+    },
+    {
+      "id": "sb_clock_4_am",
+      "context": "侧边栏的空岛时钟,AM 4 点那一格(后面跟着白天/夜晚图标)",
+      "text": "4:%1$sam %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        },
+        {
+          "token": "%2$s",
+          "desc": "白天 ☀ / 夜晚 ☽ 图标,占位符会连它自己的颜色一起搬过去",
+          "type": "raw",
+          "example": "☀"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "凌晨 4:%1$s %2$s"
+    },
+    {
+      "id": "sb_clock_4_am_plain",
+      "context": "侧边栏的空岛时钟,AM 4 点那一格(矿井里不带图标的写法)",
+      "text": "4:%1$sam",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "凌晨 4:%1$s"
+    },
+    {
+      "id": "sb_clock_4_pm",
+      "context": "侧边栏的空岛时钟,PM 4 点那一格(后面跟着白天/夜晚图标)",
+      "text": "4:%1$spm %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        },
+        {
+          "token": "%2$s",
+          "desc": "白天 ☀ / 夜晚 ☽ 图标,占位符会连它自己的颜色一起搬过去",
+          "type": "raw",
+          "example": "☀"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "下午 4:%1$s %2$s"
+    },
+    {
+      "id": "sb_clock_4_pm_plain",
+      "context": "侧边栏的空岛时钟,PM 4 点那一格(矿井里不带图标的写法)",
+      "text": "4:%1$spm",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "下午 4:%1$s"
+    },
+    {
+      "id": "sb_clock_5_am",
+      "context": "侧边栏的空岛时钟,AM 5 点那一格(后面跟着白天/夜晚图标)",
+      "text": "5:%1$sam %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        },
+        {
+          "token": "%2$s",
+          "desc": "白天 ☀ / 夜晚 ☽ 图标,占位符会连它自己的颜色一起搬过去",
+          "type": "raw",
+          "example": "☀"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "凌晨 5:%1$s %2$s"
+    },
+    {
+      "id": "sb_clock_5_am_plain",
+      "context": "侧边栏的空岛时钟,AM 5 点那一格(矿井里不带图标的写法)",
+      "text": "5:%1$sam",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "凌晨 5:%1$s"
+    },
+    {
+      "id": "sb_clock_5_pm",
+      "context": "侧边栏的空岛时钟,PM 5 点那一格(后面跟着白天/夜晚图标)",
+      "text": "5:%1$spm %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        },
+        {
+          "token": "%2$s",
+          "desc": "白天 ☀ / 夜晚 ☽ 图标,占位符会连它自己的颜色一起搬过去",
+          "type": "raw",
+          "example": "☀"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "下午 5:%1$s %2$s"
+    },
+    {
+      "id": "sb_clock_5_pm_plain",
+      "context": "侧边栏的空岛时钟,PM 5 点那一格(矿井里不带图标的写法)",
+      "text": "5:%1$spm",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "下午 5:%1$s"
+    },
+    {
+      "id": "sb_clock_6_am",
+      "context": "侧边栏的空岛时钟,AM 6 点那一格(后面跟着白天/夜晚图标)",
+      "text": "6:%1$sam %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        },
+        {
+          "token": "%2$s",
+          "desc": "白天 ☀ / 夜晚 ☽ 图标,占位符会连它自己的颜色一起搬过去",
+          "type": "raw",
+          "example": "☀"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "上午 6:%1$s %2$s"
+    },
+    {
+      "id": "sb_clock_6_am_plain",
+      "context": "侧边栏的空岛时钟,AM 6 点那一格(矿井里不带图标的写法)",
+      "text": "6:%1$sam",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "上午 6:%1$s"
+    },
+    {
+      "id": "sb_clock_6_pm",
+      "context": "侧边栏的空岛时钟,PM 6 点那一格(后面跟着白天/夜晚图标)",
+      "text": "6:%1$spm %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        },
+        {
+          "token": "%2$s",
+          "desc": "白天 ☀ / 夜晚 ☽ 图标,占位符会连它自己的颜色一起搬过去",
+          "type": "raw",
+          "example": "☀"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "晚上 6:%1$s %2$s"
+    },
+    {
+      "id": "sb_clock_6_pm_plain",
+      "context": "侧边栏的空岛时钟,PM 6 点那一格(矿井里不带图标的写法)",
+      "text": "6:%1$spm",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "晚上 6:%1$s"
+    },
+    {
+      "id": "sb_clock_7_am",
+      "context": "侧边栏的空岛时钟,AM 7 点那一格(后面跟着白天/夜晚图标)",
+      "text": "7:%1$sam %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        },
+        {
+          "token": "%2$s",
+          "desc": "白天 ☀ / 夜晚 ☽ 图标,占位符会连它自己的颜色一起搬过去",
+          "type": "raw",
+          "example": "☀"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "上午 7:%1$s %2$s"
+    },
+    {
+      "id": "sb_clock_7_am_plain",
+      "context": "侧边栏的空岛时钟,AM 7 点那一格(矿井里不带图标的写法)",
+      "text": "7:%1$sam",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "上午 7:%1$s"
+    },
+    {
+      "id": "sb_clock_7_pm",
+      "context": "侧边栏的空岛时钟,PM 7 点那一格(后面跟着白天/夜晚图标)",
+      "text": "7:%1$spm %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        },
+        {
+          "token": "%2$s",
+          "desc": "白天 ☀ / 夜晚 ☽ 图标,占位符会连它自己的颜色一起搬过去",
+          "type": "raw",
+          "example": "☀"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "晚上 7:%1$s %2$s"
+    },
+    {
+      "id": "sb_clock_7_pm_plain",
+      "context": "侧边栏的空岛时钟,PM 7 点那一格(矿井里不带图标的写法)",
+      "text": "7:%1$spm",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "晚上 7:%1$s"
+    },
+    {
+      "id": "sb_clock_8_am",
+      "context": "侧边栏的空岛时钟,AM 8 点那一格(后面跟着白天/夜晚图标)",
+      "text": "8:%1$sam %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        },
+        {
+          "token": "%2$s",
+          "desc": "白天 ☀ / 夜晚 ☽ 图标,占位符会连它自己的颜色一起搬过去",
+          "type": "raw",
+          "example": "☀"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "上午 8:%1$s %2$s"
+    },
+    {
+      "id": "sb_clock_8_am_plain",
+      "context": "侧边栏的空岛时钟,AM 8 点那一格(矿井里不带图标的写法)",
+      "text": "8:%1$sam",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "上午 8:%1$s"
+    },
+    {
+      "id": "sb_clock_8_pm",
+      "context": "侧边栏的空岛时钟,PM 8 点那一格(后面跟着白天/夜晚图标)",
+      "text": "8:%1$spm %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        },
+        {
+          "token": "%2$s",
+          "desc": "白天 ☀ / 夜晚 ☽ 图标,占位符会连它自己的颜色一起搬过去",
+          "type": "raw",
+          "example": "☀"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "晚上 8:%1$s %2$s"
+    },
+    {
+      "id": "sb_clock_8_pm_plain",
+      "context": "侧边栏的空岛时钟,PM 8 点那一格(矿井里不带图标的写法)",
+      "text": "8:%1$spm",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "晚上 8:%1$s"
+    },
+    {
+      "id": "sb_clock_9_am",
+      "context": "侧边栏的空岛时钟,AM 9 点那一格(后面跟着白天/夜晚图标)",
+      "text": "9:%1$sam %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        },
+        {
+          "token": "%2$s",
+          "desc": "白天 ☀ / 夜晚 ☽ 图标,占位符会连它自己的颜色一起搬过去",
+          "type": "raw",
+          "example": "☀"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "上午 9:%1$s %2$s"
+    },
+    {
+      "id": "sb_clock_9_am_plain",
+      "context": "侧边栏的空岛时钟,AM 9 点那一格(矿井里不带图标的写法)",
+      "text": "9:%1$sam",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "上午 9:%1$s"
+    },
+    {
+      "id": "sb_clock_9_pm",
+      "context": "侧边栏的空岛时钟,PM 9 点那一格(后面跟着白天/夜晚图标)",
+      "text": "9:%1$spm %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        },
+        {
+          "token": "%2$s",
+          "desc": "白天 ☀ / 夜晚 ☽ 图标,占位符会连它自己的颜色一起搬过去",
+          "type": "raw",
+          "example": "☀"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "晚上 9:%1$s %2$s"
+    },
+    {
+      "id": "sb_clock_9_pm_plain",
+      "context": "侧边栏的空岛时钟,PM 9 点那一格(矿井里不带图标的写法)",
+      "text": "9:%1$spm",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "晚上 9:%1$s"
+    },
+    {
+      "id": "sb_clock_10_am",
+      "context": "侧边栏的空岛时钟,AM 10 点那一格(后面跟着白天/夜晚图标)",
+      "text": "10:%1$sam %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        },
+        {
+          "token": "%2$s",
+          "desc": "白天 ☀ / 夜晚 ☽ 图标,占位符会连它自己的颜色一起搬过去",
+          "type": "raw",
+          "example": "☀"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "上午 10:%1$s %2$s"
+    },
+    {
+      "id": "sb_clock_10_am_plain",
+      "context": "侧边栏的空岛时钟,AM 10 点那一格(矿井里不带图标的写法)",
+      "text": "10:%1$sam",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "上午 10:%1$s"
+    },
+    {
+      "id": "sb_clock_10_pm",
+      "context": "侧边栏的空岛时钟,PM 10 点那一格(后面跟着白天/夜晚图标)",
+      "text": "10:%1$spm %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        },
+        {
+          "token": "%2$s",
+          "desc": "白天 ☀ / 夜晚 ☽ 图标,占位符会连它自己的颜色一起搬过去",
+          "type": "raw",
+          "example": "☀"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "晚上 10:%1$s %2$s"
+    },
+    {
+      "id": "sb_clock_10_pm_plain",
+      "context": "侧边栏的空岛时钟,PM 10 点那一格(矿井里不带图标的写法)",
+      "text": "10:%1$spm",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "晚上 10:%1$s"
+    },
+    {
+      "id": "sb_clock_11_am",
+      "context": "侧边栏的空岛时钟,AM 11 点那一格(后面跟着白天/夜晚图标)",
+      "text": "11:%1$sam %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        },
+        {
+          "token": "%2$s",
+          "desc": "白天 ☀ / 夜晚 ☽ 图标,占位符会连它自己的颜色一起搬过去",
+          "type": "raw",
+          "example": "☀"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "上午 11:%1$s %2$s"
+    },
+    {
+      "id": "sb_clock_11_am_plain",
+      "context": "侧边栏的空岛时钟,AM 11 点那一格(矿井里不带图标的写法)",
+      "text": "11:%1$sam",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "上午 11:%1$s"
+    },
+    {
+      "id": "sb_clock_11_pm",
+      "context": "侧边栏的空岛时钟,PM 11 点那一格(后面跟着白天/夜晚图标)",
+      "text": "11:%1$spm %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        },
+        {
+          "token": "%2$s",
+          "desc": "白天 ☀ / 夜晚 ☽ 图标,占位符会连它自己的颜色一起搬过去",
+          "type": "raw",
+          "example": "☀"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "晚上 11:%1$s %2$s"
+    },
+    {
+      "id": "sb_clock_11_pm_plain",
+      "context": "侧边栏的空岛时钟,PM 11 点那一格(矿井里不带图标的写法)",
+      "text": "11:%1$spm",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "晚上 11:%1$s"
+    },
+    {
+      "id": "sb_clock_12_am",
+      "context": "侧边栏的空岛时钟,AM 12 点那一格(后面跟着白天/夜晚图标)",
+      "text": "12:%1$sam %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        },
+        {
+          "token": "%2$s",
+          "desc": "白天 ☀ / 夜晚 ☽ 图标,占位符会连它自己的颜色一起搬过去",
+          "type": "raw",
+          "example": "☀"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "凌晨 12:%1$s %2$s"
+    },
+    {
+      "id": "sb_clock_12_am_plain",
+      "context": "侧边栏的空岛时钟,AM 12 点那一格(矿井里不带图标的写法)",
+      "text": "12:%1$sam",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "凌晨 12:%1$s"
+    },
+    {
+      "id": "sb_clock_12_pm",
+      "context": "侧边栏的空岛时钟,PM 12 点那一格(后面跟着白天/夜晚图标)",
+      "text": "12:%1$spm %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        },
+        {
+          "token": "%2$s",
+          "desc": "白天 ☀ / 夜晚 ☽ 图标,占位符会连它自己的颜色一起搬过去",
+          "type": "raw",
+          "example": "☀"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "中午 12:%1$s %2$s"
+    },
+    {
+      "id": "sb_clock_12_pm_plain",
+      "context": "侧边栏的空岛时钟,PM 12 点那一格(矿井里不带图标的写法)",
+      "text": "12:%1$spm",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟,服务器按十分钟一跳",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "中午 12:%1$s"
+    },
+    {
+      "id": "sb_purse",
+      "context": "侧边栏:玩家身上的硬币数",
+      "text": "Purse: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "硬币数量,服务器自带千分位",
+          "type": "number",
+          "example": "7,825,468"
+        }
+      ],
+      "gloss": "Purse 指随身携带的硬币,和存在银行(Bank)里的分开。中文不另造“钱包”一词,直接叫“硬币”——玩家看这一行要的就是身上有多少钱,和 Coins 用同一个词不会混,银行那一行有自己的“银行”标签。",
+      "translate": true,
+      "zh": "硬币: %s"
+    },
+    {
+      "id": "sb_purse_gain",
+      "context": "侧边栏:硬币数刚变动时,后面临时挂一个增减量",
+      "text": "Purse: %1$s (+%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "硬币数量",
+          "type": "number",
+          "example": "7,825,473"
+        },
+        {
+          "token": "%2$s",
+          "desc": "刚刚增加的数量",
+          "type": "number",
+          "example": "5"
+        }
+      ],
+      "gloss": "括号和加号跟着增减量走,不跟着“Purse:”走:整行记一条的话它们会被刷成标签的白色,屏幕上就成了白色的“(+”配金色的数字。每个部分各成一段,谁是什么颜色由服务器当场决定。分段只决定颜色边界,颜色渲染时从屏幕上当场读(见 text/StyledText),所以 color 字段只是给人看的记号,写得保守一点也不影响画面。",
+      "translate": true,
+      "zh": "硬币: %1$s (+%2$s)",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Purse: ",
+          "zh": "硬币: "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§6",
+          "text": " (+",
+          "zh": " (+"
+        },
+        {
+          "color": "§6",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§6",
+          "text": ")",
+          "zh": ")"
+        }
+      ]
+    },
+    {
+      "id": "sb_bits",
+      "context": "侧边栏:点券(Bits)余额,SkyBlock 的第二货币,用来在点券商店兑换东西",
+      "text": "Bits: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "点券数量",
+          "type": "number",
+          "example": "53,998"
+        }
+      ],
+      "gloss": "Bits 译“点券”,和 Coins→硬币分开。见 GLOSSARY.md「货币名」条目。",
+      "translate": true,
+      "zh": "点券: %s"
+    },
+    {
+      "id": "sb_bits_gain",
+      "context": "侧边栏:点券余额刚增加时显示增量",
+      "text": "Bits: %1$s (+%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前点券",
+          "type": "number",
+          "example": "54,513"
+        },
+        {
+          "token": "%2$s",
+          "desc": "刚增加的点券",
+          "type": "number",
+          "example": "515"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "点券: %1$s (+%2$s)",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Bits: ",
+          "zh": "点券: "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§3",
+          "text": "(+%2$s)",
+          "zh": "(+%2$s)"
+        }
+      ]
+    },
+    {
+      "id": "sb_piggy",
+      "context": "侧边栏:猪猪存钱罐中的硬币余额",
+      "text": "Piggy: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "硬币数量",
+          "type": "number",
+          "example": "2,771,718"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "猪猪存钱罐: %s"
+    },
+    {
+      "id": "sb_piggy_gain",
+      "context": "侧边栏:猪猪存钱罐余额刚增加时显示增量",
+      "text": "Piggy: %1$s (+%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前硬币数量",
+          "type": "number",
+          "example": "2,771,723"
+        },
+        {
+          "token": "%2$s",
+          "desc": "刚增加的数量",
+          "type": "number",
+          "example": "5"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "猪猪存钱罐: %1$s (+%2$s)",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Piggy: ",
+          "zh": "猪猪存钱罐: "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§e",
+          "text": "(+%2$s)",
+          "zh": "(+%2$s)"
+        }
+      ]
+    },
+    {
+      "id": "sb_election_waiting_for",
+      "context": "选举室计分板三行提示的第一行",
+      "text": "Waiting for",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "等待"
+    },
+    {
+      "id": "sb_election_your_vote",
+      "context": "选举室计分板三行提示的第二行",
+      "text": "your vote...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的投票……"
+    },
+    {
+      "id": "sb_election_year_votes",
+      "context": "选举室计分板的空岛年份投票标题",
+      "text": "Year %s Votes",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛年份",
+          "type": "number",
+          "example": "510"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "第%s年票数"
+    },
+    {
+      "id": "sb_objective_give_rose_red_dye_to_marco",
+      "context": "Marco 染料任务在侧边栏显示的目标正文",
+      "text": "Give Rose Red Dye to Marco",
+      "placeholders": [],
+      "gloss": "Marco 是 NPC 名,保留英文。",
+      "translate": true,
+      "zh": "把玫瑰红染料交给 Marco"
+    },
+    {
+      "id": "sb_event_carnival",
+      "context": "嘉年华活动期间,侧边栏上的活动名 + 剩余时间那一行",
+      "raw": "§eCarnival§f %s",
+      "text": "Carnival %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "剩余时间",
+          "type": "raw",
+          "example": "82:31:34"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "嘉年华 %s",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Carnival ",
+          "zh": "嘉年华 "
+        },
+        {
+          "color": "§f",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "sb_carnival_score",
+      "context": "嘉年华小游戏侧边栏的当前得分",
+      "raw": "§fScore: §e%s",
+      "text": "Score: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前得分",
+          "type": "number",
+          "example": "0"
+        }
+      ],
+      "gloss": "Score 沿用嘉年华 NPC 台词中的“得分”。",
+      "translate": true,
+      "zh": "得分: %s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Score: ",
+          "zh": "得分: "
+        },
+        {
+          "color": "§e",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "sb_carnival_score_bonus",
+      "context": "嘉年华小游戏侧边栏的当前得分及刚获得的加分",
+      "raw": "§fScore: §e%1$s §6(%2$s)",
+      "text": "Score: %1$s (%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前得分",
+          "type": "number",
+          "example": "200"
+        },
+        {
+          "token": "%2$s",
+          "desc": "刚获得的加分,原文自带正号",
+          "type": "number",
+          "example": "+200"
+        }
+      ],
+      "gloss": "第二个数值在服务器原文中自带正号。",
+      "translate": true,
+      "zh": "得分: %1$s (%2$s)",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Score: ",
+          "zh": "得分: "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§6",
+          "text": "(%2$s)",
+          "zh": "(%2$s)"
+        }
+      ]
+    },
+    {
+      "id": "sb_carnival_time_left_minutes",
+      "context": "嘉年华小游戏侧边栏的剩余时间,一分钟及以上",
+      "raw": "§fTime Left: §a%1$sm %2$ss",
+      "text": "Time Left: %1$sm %2$ss",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "剩余分钟数",
+          "type": "number",
+          "example": "1"
+        },
+        {
+          "token": "%2$s",
+          "desc": "剩余秒数",
+          "type": "number",
+          "example": "39"
+        }
+      ],
+      "gloss": "m 和 s 分别是分钟、秒的缩写。",
+      "translate": true,
+      "zh": "剩余时间: %1$s 分 %2$s 秒",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Time Left: ",
+          "zh": "剩余时间: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$sm %2$ss",
+          "zh": "%1$s 分 %2$s 秒"
+        }
+      ]
+    },
+    {
+      "id": "sb_carnival_time_left_seconds",
+      "context": "嘉年华小游戏侧边栏的剩余时间,不足一分钟",
+      "raw": "§fTime Left: §e%ss",
+      "text": "Time Left: %ss",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "剩余秒数",
+          "type": "number",
+          "example": "59"
+        }
+      ],
+      "gloss": "s 是秒的缩写。",
+      "translate": true,
+      "zh": "剩余时间: %s 秒",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Time Left: ",
+          "zh": "剩余时间: "
+        },
+        {
+          "color": "§e",
+          "text": "%ss",
+          "zh": "%s 秒"
+        }
+      ]
+    },
+    {
+      "id": "sb_carnival_catch_streak",
+      "context": "钓鱼大赛侧边栏的连续钓鱼次数",
+      "raw": "§fCatch Streak: §a%s",
+      "text": "Catch Streak: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前连续钓上鱼的次数",
+          "type": "number",
+          "example": "0"
+        }
+      ],
+      "gloss": "和动作栏 STREAK 是同一套连续钓鱼机制。",
+      "translate": true,
+      "zh": "连钓: %s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Catch Streak: ",
+          "zh": "连钓: "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "sb_carnival_kills",
+      "context": "僵尸射击侧边栏的击杀数",
+      "raw": "§fKills: §a%s",
+      "text": "Kills: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前击杀数",
+          "type": "number",
+          "example": "0"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "击杀数: %s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Kills: ",
+          "zh": "击杀数: "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "sb_carnival_fruits",
+      "context": "水果挖掘侧边栏的已收集水果数和目标数",
+      "raw": "§fFruits: §a%1$s/%2$s",
+      "text": "Fruits: %1$s/%2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "已收集水果数",
+          "type": "number",
+          "example": "0"
+        },
+        {
+          "token": "%2$s",
+          "desc": "目标水果数",
+          "type": "number",
+          "example": "15"
+        }
+      ],
+      "gloss": "把斜线两边分别建成 number,不使用可吞入任意文本的 raw。",
+      "translate": true,
+      "zh": "水果: %1$s/%2$s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Fruits: ",
+          "zh": "水果: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s/%2$s",
+          "zh": "%1$s/%2$s"
+        }
+      ]
+    },
+    {
+      "id": "sb_carnival_catch_a_fish",
+      "context": "嘉年华小游戏侧边栏标题",
+      "raw": "§3§lCatch a Fish",
+      "text": "Catch a Fish",
+      "placeholders": [],
+      "gloss": "沿用现有统一译名。",
+      "translate": true,
+      "zh": "钓鱼大赛"
+    },
+    {
+      "id": "sb_carnival_zombie_shootout",
+      "context": "嘉年华小游戏侧边栏标题",
+      "raw": "§c§lZombie Shootout",
+      "text": "Zombie Shootout",
+      "placeholders": [],
+      "gloss": "沿用现有统一译名。",
+      "translate": true,
+      "zh": "僵尸射击"
+    },
+    {
+      "id": "sb_carnival_fruit_digging",
+      "context": "嘉年华小游戏侧边栏标题",
+      "raw": "§6§lFruit Digging",
+      "text": "Fruit Digging",
+      "placeholders": [],
+      "gloss": "沿用现有统一译名。",
+      "translate": true,
+      "zh": "水果挖掘"
+    },
+    {
+      "id": "sb_objective_rose_red_count",
+      "context": "Marco 染料任务在侧边栏显示的玫瑰红数量",
+      "raw": "§f Rose Red §8x%s",
+      "text": " Rose Red x%s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "所需玫瑰红数量",
+          "type": "number",
+          "example": "5"
+        }
+      ],
+      "gloss": "Rose Red 沿用任务目标中的“玫瑰红”。",
+      "translate": true,
+      "zh": " 玫瑰红 x%s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": " Rose Red ",
+          "zh": " 玫瑰红 "
+        },
+        {
+          "color": "§8",
+          "text": "x%s",
+          "zh": "x%s"
+        }
+      ]
+    },
+    {
+      "id": "sb_kernels",
+      "context": "侧边栏显示的 Kernels 数量",
+      "raw": "§fKernels: §e%s",
+      "text": "Kernels: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "Kernels 数量",
+          "type": "number",
+          "example": "0"
+        }
+      ],
+      "gloss": "Kernel 指活动中收集的谷粒。",
+      "translate": true,
+      "zh": "谷粒: %s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Kernels: ",
+          "zh": "谷粒: "
+        },
+        {
+          "color": "§e",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "sb_gems",
+      "context": "社区中心侧边栏显示的 SkyBlock Gems 余额",
+      "raw": "§fGems: §a%s",
+      "text": "Gems: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "SkyBlock Gems 余额",
+          "type": "number",
+          "example": "221"
+        }
+      ],
+      "gloss": "Gems 是 SkyBlock 的付费货币,全项目一律保留英文不翻译(与 Hypixel 官方中文语料一致);和挖矿的 Gemstone→宝石是两个词,译成“宝石”会和宝石粉末那几行撞名。",
+      "translate": true,
+      "zh": "Gems: %s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Gems: ",
+          "zh": "Gems: "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "sb_server_closing",
+      "context": "服务器计划重启前最后一分钟,侧边栏末行的倒计时",
+      "raw": "§cServer closing: §c%s",
+      "text": "Server closing: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "倒计时(分:秒),后面通常还紧跟着这一行本来就有的服务器号",
+          "type": "raw",
+          "example": "00:59 m110"
+        }
+      ],
+      "gloss": "这一行占的是侧边栏平时写现实日期加服务器号的那一格(`08/20/26 m98H`,那一格里没有词,故意没记录),重启倒计时开始后前半段被换成了这句话,服务器号还留在后面。所以占位符一次捕走整个尾巴——倒计时和服务器号都是原样搬过去的值,各自带着自己的颜色,不用为“有没有服务器号”写两条模板。Hypixel 说的 server 是玩家当前所在的那个房间(实例)而不是整个服务器,译作「房间」,和 Misc/Server_Reboot.json 的标题、Common_System.json 的聊天预告用词一致——同一次重启玩家会在四个地方看到它。",
+      "translate": true,
+      "zh": "房间即将关闭: %s"
+    }
+  ]
+}

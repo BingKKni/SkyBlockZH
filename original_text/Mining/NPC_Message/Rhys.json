@@ -1,0 +1,612 @@
+{
+  "npc": "Rhys",
+  "location": "Obsidian Sanctuary (31.5, 12, 14.5) 与 Dwarven Village (-38, 200, -119) 均有出现",
+  "note": "矮人矿山入场引导 NPC,负责在玩家达到条件前把关、达到条件后带玩家传送进矮人矿山并给予山之心。",
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Rhys",
+  "fetched_at": "2026-08-18",
+  "verified_ingame": false,
+  "messages": [
+    {
+      "id": "rhys_so_you_want_to_visit",
+      "context": "",
+      "raw": "§fSo you want to visit the §2Dwarven Mines§f?",
+      "text": "So you want to visit the Dwarven Mines?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "So you want to visit the ",
+          "zh": "你想去"
+        },
+        {
+          "color": "§2",
+          "text": "Dwarven Mines",
+          "zh": "矮人矿山"
+        },
+        {
+          "color": "§f",
+          "text": "?",
+          "zh": "?"
+        }
+      ]
+    },
+    {
+      "id": "rhys_you_must_prove_yourself_worthy",
+      "context": "",
+      "raw": "§fYou must prove yourself worthy of §5Heart of the Mountain§f...",
+      "text": "You must prove yourself worthy of Heart of the Mountain...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "You must prove yourself worthy of ",
+          "zh": "你得先证明自己配得上"
+        },
+        {
+          "color": "§5",
+          "text": "Heart of the Mountain",
+          "zh": "山峦之心"
+        },
+        {
+          "color": "§f",
+          "text": "...",
+          "zh": "才行……"
+        }
+      ]
+    },
+    {
+      "id": "rhys_you_are_no_match_for",
+      "context": "",
+      "raw": "§fYou are no match for the Dwarves of the Deeper Caverns.",
+      "text": "You are no match for the Dwarves of the Deeper Caverns.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你还不是深层洞穴那些矮人的对手。"
+    },
+    {
+      "id": "rhys_come_back_when_you_are",
+      "context": "",
+      "raw": "§fCome back when you are Mining Level XII!",
+      "text": "Come back when you are Mining Level XII!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "等你挖矿等级到 12 级再回来吧!"
+    },
+    {
+      "id": "rhys_you_must_bring_me_some",
+      "context": "",
+      "raw": "§fYou must bring me some valuable materials that peak my interest.",
+      "text": "You must bring me some valuable materials that peak my interest.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你得给我带些能让我提得起兴趣的贵重材料来。"
+    },
+    {
+      "id": "rhys_i_would_like_a_total",
+      "context": "",
+      "raw": "§fI would like a total of 15 items. Any from this list will do:",
+      "text": "I would like a total of 15 items. Any from this list will do:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "我总共要 15 件物品。下面这张单子里的任意几件都行:"
+    },
+    {
+      "id": "rhys_enchanted_redstone_dust",
+      "context": "",
+      "raw": "§8- §aEnchanted Redstone Dust",
+      "text": "- Enchanted Redstone Dust",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§a",
+          "text": "Enchanted Redstone Dust",
+          "zh": "附魔红石粉"
+        }
+      ]
+    },
+    {
+      "id": "rhys_enchanted_iron_ingot",
+      "context": "",
+      "raw": "§8- §aEnchanted Iron Ingot",
+      "text": "- Enchanted Iron Ingot",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§a",
+          "text": "Enchanted Iron Ingot",
+          "zh": "附魔铁锭"
+        }
+      ]
+    },
+    {
+      "id": "rhys_enchanted_coal",
+      "context": "",
+      "raw": "§8- §aEnchanted Coal",
+      "text": "- Enchanted Coal",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§a",
+          "text": "Enchanted Coal",
+          "zh": "附魔煤炭"
+        }
+      ]
+    },
+    {
+      "id": "rhys_enchanted_emerald",
+      "context": "",
+      "raw": "§8- §aEnchanted Emerald",
+      "text": "- Enchanted Emerald",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§a",
+          "text": "Enchanted Emerald",
+          "zh": "附魔绿宝石"
+        }
+      ]
+    },
+    {
+      "id": "rhys_enchanted_lapis_lazuli",
+      "context": "",
+      "raw": "§8- §aEnchanted Lapis Lazuli",
+      "text": "- Enchanted Lapis Lazuli",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§a",
+          "text": "Enchanted Lapis Lazuli",
+          "zh": "附魔青金石"
+        }
+      ]
+    },
+    {
+      "id": "rhys_enchanted_diamond",
+      "context": "",
+      "raw": "§8- §aEnchanted Diamond",
+      "text": "- Enchanted Diamond",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§a",
+          "text": "Enchanted Diamond",
+          "zh": "附魔钻石"
+        }
+      ]
+    },
+    {
+      "id": "rhys_enchanted_gold_ingot",
+      "context": "",
+      "raw": "§8- §aEnchanted Gold Ingot",
+      "text": "- Enchanted Gold Ingot",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§a",
+          "text": "Enchanted Gold Ingot",
+          "zh": "附魔金锭"
+        }
+      ]
+    },
+    {
+      "id": "rhys_that_s_not_an_item",
+      "context": "",
+      "raw": "§fThat's not an item I'm looking for!",
+      "text": "That's not an item I'm looking for!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这不是我要的东西!"
+    },
+    {
+      "id": "rhys_i_would_like_a_total_2",
+      "context": "",
+      "raw": "§fI would like a total of 15 items. Any from the list will do:",
+      "text": "I would like a total of 15 items. Any from the list will do:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "我总共要 15 件物品。那张单子里的任意几件都行:"
+    },
+    {
+      "id": "rhys_thank_you_for_the_items",
+      "context": "",
+      "raw": "§fThank you for the items!",
+      "text": "Thank you for the items!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "谢谢你带来的这些东西!"
+    },
+    {
+      "id": "rhys_perhaps_you_are_someone_we",
+      "context": "",
+      "raw": "§fPerhaps you are someone we can get along with after all.",
+      "text": "Perhaps you are someone we can get along with after all.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "看来你也许是个能相处得来的人。"
+    },
+    {
+      "id": "rhys_i_ll_get_your_heart",
+      "context": "",
+      "raw": "§fI'll get your §5Heart of the Mountain§f. It's time for a visit!",
+      "text": "I'll get your Heart of the Mountain. It's time for a visit!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "I'll get your ",
+          "zh": "我这就把你的"
+        },
+        {
+          "color": "§5",
+          "text": "Heart of the Mountain",
+          "zh": "山峦之心"
+        },
+        {
+          "color": "§f",
+          "text": ". It's time for a visit!",
+          "zh": "取来。是时候去看看了!"
+        }
+      ]
+    },
+    {
+      "id": "rhys_let_s_go_together_now",
+      "context": "",
+      "raw": "§fLet's go together now. For future trips, remember the §bLift Operator§f.",
+      "text": "Let's go together now. For future trips, remember the Lift Operator.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Let's go together now. For future trips, remember the ",
+          "zh": "我们现在就一起出发。以后要再去,记得找"
+        },
+        {
+          "color": "§b",
+          "text": "Lift Operator",
+          "zh": "升降梯管理员"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "rhys_now_that_you_have_your",
+      "context": "",
+      "raw": "§fNow that you have your §5Heart of the Mountain§r, you have access to all of the deeper areas of the mines!",
+      "text": "Now that you have your Heart of the Mountain, you have access to all of the deeper areas of the mines!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Now that you have your ",
+          "zh": "现在你有了"
+        },
+        {
+          "color": "§5",
+          "text": "Heart of the Mountain",
+          "zh": "山峦之心"
+        },
+        {
+          "color": "§r",
+          "text": ", you have access to all of the deeper areas of the mines!",
+          "zh": ",矿山更深处的区域都对你开放了!"
+        }
+      ]
+    },
+    {
+      "id": "rhys_you_can_access_the_heart",
+      "context": "",
+      "raw": "§fYou can access the §5Heart of the Mountain §rfrom the Mining Skill menu, and unlock loads of powerful upgrades as you continue your journey!",
+      "text": "You can access the Heart of the Mountain from the Mining Skill menu, and unlock loads of powerful upgrades as you continue your journey!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "You can access the ",
+          "zh": "你可以从挖矿技能菜单里打开"
+        },
+        {
+          "color": "§5",
+          "text": "Heart of the Mountain ",
+          "zh": "山峦之心"
+        },
+        {
+          "color": "§r",
+          "text": "from the Mining Skill menu, and unlock loads of powerful upgrades as you continue your journey!",
+          "zh": ",随着旅程推进解锁大量强力升级!"
+        }
+      ]
+    },
+    {
+      "id": "rhys_we_dwarves_inhabit_this_area",
+      "context": "",
+      "raw": "§fWe Dwarves inhabit this area. We love it! It is rich in Mithril and even some Titanium.",
+      "text": "We Dwarves inhabit this area. We love it! It is rich in Mithril and even some Titanium.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "我们矮人就住在这一带。我们爱这儿! 这里秘银储量丰富,甚至还有一些钛。"
+    },
+    {
+      "id": "rhys_you_will_need_a_good",
+      "context": "",
+      "raw": "§fYou will need a good pickaxe to mine ores here. For Mithril, at least something with a §aBreaking Power §rof 4. §5Bubu §rjust down the street could help you with that!",
+      "text": "You will need a good pickaxe to mine ores here. For Mithril, at least something with a Breaking Power of 4. Bubu just down the street could help you with that!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "You will need a good pickaxe to mine ores here. For Mithril, at least something with a ",
+          "zh": "要在这儿挖矿石,你得有把好镐子。想挖秘银,至少也得有"
+        },
+        {
+          "color": "§a",
+          "text": "Breaking Power ",
+          "zh": "开采等级"
+        },
+        {
+          "color": "§r",
+          "text": "of 4. ",
+          "zh": " 4 级的家伙。街那头的"
+        },
+        {
+          "color": "§5",
+          "text": "Bubu ",
+          "zh": "Bubu"
+        },
+        {
+          "color": "§r",
+          "text": "just down the street could help you with that!",
+          "zh": "就能帮你弄到!"
+        }
+      ]
+    },
+    {
+      "id": "rhys_if_you_re_looking_for",
+      "context": "",
+      "raw": "§fIf you're looking for better hardware, maybe try checking out the §6Forge§r. You could also visit the §bRoyal Palace §rto talk to the §6§lKing §rabout certain tasks!",
+      "text": "If you're looking for better hardware, maybe try checking out the Forge. You could also visit the Royal Palace to talk to the King about certain tasks!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "If you're looking for better hardware, maybe try checking out the ",
+          "zh": "想要更趁手的装备,不妨去"
+        },
+        {
+          "color": "§6",
+          "text": "Forge",
+          "zh": "熔炉"
+        },
+        {
+          "color": "§r",
+          "text": ". You could also visit the ",
+          "zh": "看看。你也可以去"
+        },
+        {
+          "color": "§b",
+          "text": "Royal Palace ",
+          "zh": "皇家宫殿"
+        },
+        {
+          "color": "§r",
+          "text": "to talk to the ",
+          "zh": "找"
+        },
+        {
+          "color": "§6§l",
+          "text": "King ",
+          "zh": "国王"
+        },
+        {
+          "color": "§r",
+          "text": "about certain tasks!",
+          "zh": "聊聊某些任务!"
+        }
+      ]
+    },
+    {
+      "id": "rhys_enjoy_our_little_slice_of",
+      "context": "",
+      "raw": "§fEnjoy our little slice of mining heaven!",
+      "text": "Enjoy our little slice of mining heaven!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "好好享受我们这一小片挖矿天堂吧!"
+    },
+    {
+      "id": "rhys_i_found_an_unexplored_cave",
+      "context": "",
+      "raw": "§fI found an unexplored cave while mining for titanium. But it's too dark to see in there, even for me! Can you spare any glowing pumpkins?",
+      "text": "I found an unexplored cave while mining for titanium. But it's too dark to see in there, even for me! Can you spare any glowing pumpkins?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "我挖钛矿的时候发现了一个没人探过的洞穴。可里面太黑了,连我都看不清! 你能匀我几个发光的南瓜吗?"
+    },
+    {
+      "id": "rhys_thank_you_discovery_awaits",
+      "context": "",
+      "raw": "§fThank you! Discovery awaits.",
+      "text": "Thank you! Discovery awaits.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "谢谢你! 新发现在等着我们呢。"
+    },
+    {
+      "id": "rhys_well_then_i_will_even",
+      "context": "",
+      "raw": "§fWell then, I will even mine in total darkness if I must!",
+      "text": "Well then, I will even mine in total darkness if I must!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "那好吧,就算全黑我也照样挖!"
+    },
+    {
+      "id": "rhys_i_had_a_sunburn_once",
+      "context": "",
+      "raw": "§fI had a sunburn once, I have stayed down there ever since.",
+      "text": "I had a sunburn once, I have stayed down there ever since.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "我晒伤过一次,从那以后就一直待在下面了。"
+    },
+    {
+      "id": "rhys_you_can_ask_the_lift",
+      "context": "",
+      "raw": "§fYou can ask the §bLift Operator §ffor a ride to the §2Dwarven Mines§f!",
+      "text": "You can ask the Lift Operator for a ride to the Dwarven Mines!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "You can ask the ",
+          "zh": "你可以找"
+        },
+        {
+          "color": "§b",
+          "text": "Lift Operator ",
+          "zh": "升降梯管理员"
+        },
+        {
+          "color": "§f",
+          "text": "for a ride to the ",
+          "zh": "捎你去"
+        },
+        {
+          "color": "§2",
+          "text": "Dwarven Mines",
+          "zh": "矮人矿山"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "rhys_before_giving_ores",
+      "context": "达到等级要求后,要求上交强化矿物材料",
+      "text": "So you want to visit the Dwarven Mines? You must prove yourself worthy... I would like a total of %s items. Any from this list will do: %s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "需要总数",
+          "type": "number",
+          "example": "15"
+        },
+        {
+          "token": "%2$s",
+          "desc": "可接受的物品清单(以逗号分隔的物品名列表,均为专有名词,不翻译)",
+          "type": "raw",
+          "example": "Enchanted Redstone Dust, Enchanted Iron Ingot, Enchanted Coal, Enchanted Emerald, Enchanted Lapis Lazuli, Enchanted Diamond, Enchanted Gold Ingot"
+        }
+      ],
+      "gloss": "原句前半和 rhys_before_level_12 开头重复(“So you want to visit...you must prove yourself worthy”),是否为同一句台词的不同截断版本需要后续核实;物品清单里的 'Enchanted XXX' 系列是强化材料专有名词。",
+      "translate": true,
+      "zh": "你想去矮人矿山?你得先证明自己配得上才行……我需要总共%1$s件物品。以下清单中的任意几件都可以: %2$s"
+    }
+  ],
+  "todo": [
+    "'在矮人矿山内第一次互动时关于镐和 Forge 升级的引导对话'以及'关于晒伤的随机闲聊、指路 Lift Operator 的随机闲聊'只有转述,没有逐字原文,未采集进 messages,需要后续补全。"
+  ]
+}

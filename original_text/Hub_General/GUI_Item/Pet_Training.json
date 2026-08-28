@@ -1,0 +1,417 @@
+{
+  "source": "SkyZH runtime capture (2026-08-24); official Wiki context: https://wiki.hypixel.net/Fann (verified through an archived official page because the live Wiki now redirects)",
+  "fetched_at": "2026-08-24",
+  "verified_ingame": true,
+  "gui_context": "Hub 宠物护理所中由 Fann 提供的宠物训练界面。官方 Wiki 确认 Fann 可花费硬币让宠物随时间升级，并可通过喂 Hootie 解锁额外训练槽位。",
+  "excluded": [
+    "155,927.5 damage to nearby enemies.（玩家背包物品 Lore 污染）"
+  ],
+  "lines": [
+    {
+      "id": "training_slot",
+      "context": "训练槽位名称；统一覆盖 #1、#2、#3，颜色由游戏原文保留",
+      "raw": "§8Training Slot #%1$s",
+      "text": "Training Slot #%1$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "训练槽位编号", "type": "number", "example": "1" }
+      ],
+      "gloss": "槽位编号固定为数值模板，不按采集时状态拆成多条。",
+      "translate": true,
+      "zh": "训练槽位 #%1$s"
+    },
+    {
+      "id": "ongoing_session_free",
+      "context": "第一训练槽位当前进行中的免费训练档位",
+      "raw": "§7Ongoing Session: §fFree",
+      "text": "Ongoing Session: Free",
+      "placeholders": [],
+      "gloss": "Free 是训练档位名称，此处译“免费”。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§7", "text": "Ongoing Session: ", "zh": "进行中的训练: " },
+        { "color": "§f", "text": "Free", "zh": "免费" }
+      ]
+    },
+    {
+      "id": "option_reach_level_100",
+      "context": "当前训练的结束条件",
+      "raw": "§7Option: §eReach Level 100",
+      "text": "Option: Reach Level 100",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§7", "text": "Option: ", "zh": "训练目标: " },
+        { "color": "§e", "text": "Reach Level 100", "zh": "升至 100 级" }
+      ]
+    },
+    {
+      "id": "session_ends",
+      "context": "训练结束倒计时；天、小时、分钟和秒都会变化",
+      "raw": "§7Ends: §a%1$sd %2$sh %3$sm %4$ss",
+      "text": "Ends: %1$sd %2$sh %3$sm %4$ss",
+      "placeholders": [
+        { "token": "%1$s", "desc": "剩余天数", "type": "number", "example": "20" },
+        { "token": "%2$s", "desc": "剩余小时数", "type": "number", "example": "18" },
+        { "token": "%3$s", "desc": "剩余分钟数", "type": "number", "example": "35" },
+        { "token": "%4$s", "desc": "剩余秒数", "type": "number", "example": "30" }
+      ],
+      "gloss": "采集时只有秒发生变化，但整个倒计时均为动态值。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§7", "text": "Ends: ", "zh": "结束倒计时: " },
+        { "color": "§a", "text": "%1$sd %2$sh %3$sm %4$ss", "zh": "%1$s 天 %2$s 小时 %3$s 分 %4$s 秒" }
+      ]
+    },
+    {
+      "id": "exp_earned",
+      "context": "本次训练已获得经验、占目标经验的比例及目标总经验",
+      "raw": "§7EXP Earned: §b%1$s §8(%2$s% of %3$s)",
+      "text": "EXP Earned: %1$s (%2$s% of %3$s)",
+      "placeholders": [
+        { "token": "%1$s", "desc": "已获得经验", "type": "number", "example": "29,726.2" },
+        { "token": "%2$s", "desc": "已完成百分比", "type": "number", "example": "3.3" },
+        { "token": "%3$s", "desc": "达到目标所需的总经验", "type": "number", "example": "902.3k" }
+      ],
+      "gloss": "三个数值都会随宠物和训练进度变化。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§7", "text": "EXP Earned: ", "zh": "已获经验: " },
+        { "color": "§b", "text": "%1$s ", "zh": "%1$s " },
+        { "color": "§8", "text": "(%2$s% of %3$s)", "zh": "(占 %3$s 的 %2$s%)" }
+      ]
+    },
+    {
+      "id": "click_to_cancel",
+      "context": "取消当前训练的操作提示",
+      "raw": "§eClick to cancel!",
+      "text": "Click to cancel!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击取消!"
+    },
+    {
+      "id": "unlock_slot_by_feeding_hootie",
+      "context": "锁定训练槽位的解锁说明首行",
+      "raw": "§7Unlock this slot by feeding §6Hootie",
+      "text": "Unlock this slot by feeding Hootie",
+      "placeholders": [],
+      "gloss": "Hootie 是 NPC 名，保留英文。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§7", "text": "Unlock this slot by feeding ", "zh": "喂给" },
+        { "color": "§6", "text": "Hootie", "zh": "Hootie 以下物品即可解锁此槽位:" }
+      ]
+    },
+    {
+      "id": "great_carrot_candy_progress",
+      "context": "解锁第二槽位所需的高级胡萝卜糖及当前喂食进度",
+      "raw": "§9Great Carrot Candy§7! (%1$s/5)",
+      "text": "Great Carrot Candy! (%1$s/5)",
+      "placeholders": [
+        { "token": "%1$s", "desc": "已经喂给 Hootie 的高级胡萝卜糖数量", "type": "number", "example": "0" }
+      ],
+      "gloss": "普通词组成的物品名，按现有规则翻译。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§9", "text": "Great Carrot Candy", "zh": "高级胡萝卜糖" },
+        { "color": "§7", "text": "! (%1$s/5)", "zh": "! (%1$s/5)" }
+      ]
+    },
+    {
+      "id": "ultimate_carrot_candy",
+      "context": "解锁第三槽位所需的物品",
+      "raw": "§6Ultimate Carrot Candy§7!",
+      "text": "Ultimate Carrot Candy!",
+      "placeholders": [],
+      "gloss": "普通词组成的物品名，按现有规则翻译。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§6", "text": "Ultimate Carrot Candy", "zh": "终极胡萝卜糖" },
+        { "color": "§7", "text": "!", "zh": "!" }
+      ]
+    },
+    {
+      "id": "taming_pet",
+      "context": "训练界面中的宠物技能类别标签",
+      "raw": "§8Taming Pet",
+      "text": "Taming Pet",
+      "placeholders": [],
+      "gloss": "Taming 在这里是宠物对应的驯养技能类别。",
+      "translate": true,
+      "zh": "驯养类宠物"
+    },
+    {
+      "id": "training_refunds",
+      "context": "训练中的宠物提供的折扣效果名称",
+      "raw": "§6Training Refunds",
+      "text": "Training Refunds",
+      "placeholders": [],
+      "gloss": "功能性效果名，翻译。",
+      "translate": true,
+      "zh": "训练返利"
+    },
+    {
+      "id": "training_refunds_description_1",
+      "context": "训练返还效果说明首行",
+      "raw": "§7The more coins you spend on Fann's",
+      "text": "The more coins you spend on Fann's",
+      "placeholders": [],
+      "gloss": "Fann 是 NPC 名，保留英文；Coins 沿用“硬币”。",
+      "translate": true,
+      "zh": "在 Fann 的训练服务上花费的硬币越多,"
+    },
+    {
+      "id": "training_refunds_description_2",
+      "context": "接上一行",
+      "raw": "§7Sessions, the less coins they will",
+      "text": "Sessions, the less coins they will",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "今后的训练费用减免就越多,"
+    },
+    {
+      "id": "training_refunds_description_3",
+      "context": "训练返还效果说明尾行；最高折扣保持深灰色",
+      "raw": "§7cost in the future. §8(Max 5% off).",
+      "text": "cost in the future. (Max 5% off).",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§7", "text": "cost in the future. ", "zh": "最高可享 " },
+        { "color": "§8", "text": "(Max 5% off).", "zh": "5% 折扣。" }
+      ]
+    },
+    {
+      "id": "next_discount_milestone",
+      "context": "训练返还的下一个折扣里程碑",
+      "raw": "§7Next Milestone: §6%1$s% off",
+      "text": "Next Milestone: %1$s% off",
+      "placeholders": [
+        { "token": "%1$s", "desc": "下一个里程碑的折扣百分比", "type": "number", "example": "2" }
+      ],
+      "gloss": "折扣会随累计花费跨越里程碑而变化。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§7", "text": "Next Milestone: ", "zh": "下一里程碑: " },
+        { "color": "§6", "text": "%1$s% off", "zh": "%1$s% 折扣" }
+      ]
+    },
+    {
+      "id": "efficient_trainer",
+      "context": "训练中的宠物提供的训练增益名称",
+      "raw": "§6Efficient Trainer",
+      "text": "Efficient Trainer",
+      "placeholders": [],
+      "gloss": "功能性效果名，翻译。",
+      "translate": true,
+      "zh": "高效训练师"
+    },
+    {
+      "id": "efficient_trainer_description_1",
+      "context": "高效训练师效果说明，英文拆成三行；完整译文写在首行",
+      "raw": "§7Makes training sessions at Fann",
+      "text": "Makes training sessions at Fann",
+      "placeholders": [],
+      "gloss": "Fann 是 NPC 名，保留英文。",
+      "translate": true,
+      "zh": "加入训练后,使 Fann 提供的训练效果更高。"
+    },
+    {
+      "id": "efficient_trainer_description_2",
+      "context": "接上一行",
+      "raw": "§7more efficient when added into a",
+      "text": "more efficient when added into a",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "efficient_trainer_description_3",
+      "context": "接上一行",
+      "raw": "§7session.",
+      "text": "session.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "increased_exp",
+      "context": "高效训练师在当前宠物等级下提供的经验加成",
+      "raw": "§7Increased EXP: §b+%1$s% EXP",
+      "text": "Increased EXP: +%1$s% EXP",
+      "placeholders": [
+        { "token": "%1$s", "desc": "训练经验加成百分比", "type": "number", "example": "10" }
+      ],
+      "gloss": "官方 Wiki 说明该加成随宠物等级变化，最高为 10%。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§7", "text": "Increased EXP: ", "zh": "经验加成: " },
+        { "color": "§b", "text": "+%1$s% EXP", "zh": "+%1$s% 经验" }
+      ]
+    },
+    {
+      "id": "fast_learner",
+      "context": "训练中的宠物提供的被动效果名称",
+      "raw": "§6Fast Learner",
+      "text": "Fast Learner",
+      "placeholders": [],
+      "gloss": "功能性效果名，翻译。",
+      "translate": true,
+      "zh": "快速学习者"
+    },
+    {
+      "id": "passively_grants_taming_wisdom",
+      "context": "快速学习者在当前宠物等级下提供的驯养智慧",
+      "raw": "§7Passively grants §3+%1$s☯ Taming Wisdom§7.",
+      "text": "Passively grants +%1$s☯ Taming Wisdom.",
+      "placeholders": [
+        { "token": "%1$s", "desc": "驯养智慧加成", "type": "number", "example": "5" }
+      ],
+      "gloss": "Taming Wisdom 按指定译名处理；数值可能随宠物等级变化。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§7", "text": "Passively grants ", "zh": "被动获得 " },
+        { "color": "§3", "text": "+%1$s☯ Taming Wisdom", "zh": "+%1$s☯ 驯养智慧" },
+        { "color": "§7", "text": ".", "zh": "。" }
+      ]
+    },
+    {
+      "id": "pet_perks_active_when_not_summoned",
+      "context": "说明训练宠物未召唤时效果依然生效，英文拆成两行",
+      "raw": "§8This pet's perks are active even",
+      "text": "This pet's perks are active even",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "即使未召唤这只宠物,它的增益也会生效!"
+    },
+    {
+      "id": "when_pet_not_summoned",
+      "context": "接上一行",
+      "raw": "§8when the pet is not summoned!",
+      "text": "when the pet is not summoned!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "preview_level_100",
+      "context": "当前宠物增益按 100 级预览的提示",
+      "raw": "§cThis is a preview of Lvl 100.",
+      "text": "This is a preview of Lvl 100.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这是 100 级时的预览。"
+    },
+    {
+      "id": "new_pets_lowest_level",
+      "context": "宠物选择排序提示",
+      "raw": "§cNew pets are lowest level!",
+      "text": "New pets are lowest level!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "新宠物的等级最低!"
+    },
+    {
+      "id": "extra_free_training",
+      "context": "免费训练随驯养等级提升的效果名称",
+      "raw": "§aExtra Free Training",
+      "text": "Extra Free Training",
+      "placeholders": [],
+      "gloss": "功能性效果名，翻译。",
+      "translate": true,
+      "zh": "免费训练强化"
+    },
+    {
+      "id": "extra_free_training_description_1",
+      "context": "额外免费训练效果说明首行",
+      "raw": "§7Fann's Free Training session gets",
+      "text": "Fann's Free Training session gets",
+      "placeholders": [],
+      "gloss": "Fann 是 NPC 名，保留英文。",
+      "translate": true,
+      "zh": "Fann 的免费训练效果会随"
+    },
+    {
+      "id": "extra_free_training_description_2",
+      "context": "接上一行",
+      "raw": "§7increasingly better the higher the",
+      "text": "increasingly better the higher the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "顾客的"
+    },
+    {
+      "id": "extra_free_training_description_3",
+      "context": "效果说明尾行；驯养等级保持绿色",
+      "raw": "§aTaming Level§7 of her customers.",
+      "text": "Taming Level of her customers.",
+      "placeholders": [],
+      "gloss": "Taming Level 指玩家的驯养技能等级。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§a", "text": "Taming Level", "zh": "驯养等级" },
+        { "color": "§7", "text": " of her customers.", "zh": "提高而增强。" }
+      ]
+    },
+    {
+      "id": "taming_level",
+      "context": "玩家当前驯养等级及该等级带来的每日免费训练经验增量",
+      "raw": "§7Taming Level: §a%1$s §8(+%2$s EXP)",
+      "text": "Taming Level: %1$s (+%2$s EXP)",
+      "placeholders": [
+        { "token": "%1$s", "desc": "当前驯养等级", "type": "number", "example": "52" },
+        { "token": "%2$s", "desc": "当前驯养等级带来的每日免费训练经验增量", "type": "number", "example": "22,000" }
+      ],
+      "gloss": "括号中的 +EXP 是当前驯养等级为免费训练增加的每日经验，不是升级驯养所需经验。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§7", "text": "Taming Level: ", "zh": "驯养等级: " },
+        { "color": "§a", "text": "%1$s ", "zh": "%1$s " },
+        { "color": "§8", "text": "(+%2$s EXP)", "zh": "(每日免费训练 +%2$s 经验)" }
+      ]
+    },
+    {
+      "id": "free_training_exp_per_day",
+      "context": "免费训练每天提供的经验；数值随驯养等级变化",
+      "raw": "§7Free Training: §b%1$s EXP/day",
+      "text": "Free Training: %1$s EXP/day",
+      "placeholders": [
+        { "token": "%1$s", "desc": "免费训练每天提供的经验", "type": "number", "example": "42,000" }
+      ],
+      "gloss": "官方 Wiki 确认免费档经验随驯养等级缩放。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§7", "text": "Free Training: ", "zh": "免费训练: " },
+        { "color": "§b", "text": "%1$s EXP/day", "zh": "%1$s 经验/天" }
+      ]
+    }
+  ]
+}

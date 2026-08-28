@@ -1,0 +1,194 @@
+{
+  "source": "玩家实测客户端日志 + SkyZH 运行时采集(2026-08-22)",
+  "fetched_at": "2026-08-22",
+  "verified_ingame": true,
+  "gui_context": "银行(Banker / 个人金库)存取款和利息结算的聊天提示。界面标题在 Economy/GUI_Title/Bank.json。",
+  "messages": [
+    {
+      "id": "bank_depositing",
+      "context": "点了存款、还在处理时的提示",
+      "text": "Depositing coins...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "正在存入硬币……"
+    },
+    {
+      "id": "bank_deposited",
+      "context": "存款成功,后半句报账户余额",
+      "raw": "§aDeposited §6%1$s coins§a! There's now §6%2$s coins §ain the account!",
+      "text": "Deposited %1$s coins! There's now %2$s coins in the account!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "存入的数量",
+          "type": "number",
+          "example": "1.9M"
+        },
+        {
+          "token": "%2$s",
+          "desc": "存完之后账户里的余额",
+          "type": "number",
+          "example": "3.1M"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "已存入 %1$s 硬币! 账户里现在有 %2$s 硬币!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Deposited ",
+          "zh": "已存入 "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s coins",
+          "zh": "%1$s 硬币"
+        },
+        {
+          "color": "§a",
+          "text": "! There's now ",
+          "zh": "! 账户里现在有 "
+        },
+        {
+          "color": "§6",
+          "text": "%2$s coins ",
+          "zh": "%2$s 硬币"
+        },
+        {
+          "color": "§a",
+          "text": "in the account!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "bank_withdrawing",
+      "context": "点了取款、还在处理时的提示",
+      "text": "Withdrawing coins...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "正在取出硬币……"
+    },
+    {
+      "id": "bank_withdrew",
+      "context": "取款成功,后半句报账户余额",
+      "raw": "§aWithdrew §6%1$s coins§a! There's now §6%2$s coins §aleft in the account!",
+      "text": "Withdrew %1$s coins! There's now %2$s coins left in the account!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "取出的数量",
+          "type": "number",
+          "example": "3.1M"
+        },
+        {
+          "token": "%2$s",
+          "desc": "取完之后账户里的余额",
+          "type": "number",
+          "example": "0"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "已取出 %1$s 硬币! 账户里还剩 %2$s 硬币!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Withdrew ",
+          "zh": "已取出 "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s coins",
+          "zh": "%1$s 硬币"
+        },
+        {
+          "color": "§a",
+          "text": "! There's now ",
+          "zh": "! 账户里还剩 "
+        },
+        {
+          "color": "§6",
+          "text": "%2$s coins ",
+          "zh": "%2$s 硬币"
+        },
+        {
+          "color": "§a",
+          "text": "left in the account!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "bank_interest_personal",
+      "context": "个人账户结算利息",
+      "raw": "§aYou have just received §6%s coins §aas interest in your personal bank account!",
+      "text": "You have just received %s coins as interest in your personal bank account!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "这次结算的利息",
+          "type": "number",
+          "example": "43,304"
+        }
+      ],
+      "gloss": "个人 / 合作两种账户各写一条,不写成 \"your %s bank account\" 加词表:词表是整值匹配的,personal / co-op 这种小写形容词进了全局词表会到处生效。这正是 README 第 4 节说的\"拆的是标签本身\"。",
+      "translate": true,
+      "zh": "你的个人银行账户刚刚结算了 %s 硬币利息!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "You have just received ",
+          "zh": "你的个人银行账户刚刚结算了 "
+        },
+        {
+          "color": "§6",
+          "text": "%s coins ",
+          "zh": "%s 硬币"
+        },
+        {
+          "color": "§a",
+          "text": "as interest in your personal bank account!",
+          "zh": "利息!"
+        }
+      ]
+    },
+    {
+      "id": "bank_interest_coop",
+      "context": "合作账户结算利息",
+      "raw": "§aYou have just received §6%s coins §aas interest in your co-op bank account!",
+      "text": "You have just received %s coins as interest in your co-op bank account!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "这次结算的利息",
+          "type": "number",
+          "example": "64,026"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的合作银行账户刚刚结算了 %s 硬币利息!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "You have just received ",
+          "zh": "你的合作银行账户刚刚结算了 "
+        },
+        {
+          "color": "§6",
+          "text": "%s coins ",
+          "zh": "%s 硬币"
+        },
+        {
+          "color": "§a",
+          "text": "as interest in your co-op bank account!",
+          "zh": "利息!"
+        }
+      ]
+    }
+  ]
+}

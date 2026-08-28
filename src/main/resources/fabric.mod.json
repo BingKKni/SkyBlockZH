@@ -1,0 +1,45 @@
+{
+	"schemaVersion": 1,
+	"id": "skyzh",
+	"version": "${version}",
+	"name": "SkyZH",
+	"description": "由小布丁制作的 Hypixel SkyBlock 本地中文翻译 Mod。该 Mod 的核心是把游戏内的英文文本翻译成中文，并且在翻译的同时不干扰其他辅助 Mod 运行（如 SkyHanni、SkyBlocker 等）。SkyBlock 的英文句子用词并不难，但部分母语是中文的玩家（尤其是新玩家）仍然希望能在游戏内看到中文文案，故我制作了这个 Mod。\n该 Mod 的受众是新玩家，以及希望能在 SkyBlock 内看到中文翻译的玩家。它旨在让中文玩家无需手动理解或翻译游戏内出现的文本，从而更快地上手对应玩法。",
+	"authors": [
+		{
+			"name": "BingKKni (小布丁)",
+			"contact": {
+				"homepage": "https://github.com/BingKKni"
+			}
+		}
+	],
+	"contact": {
+		"homepage": "https://github.com/BingKKni/SkyBlockZH",
+		"issues": "https://github.com/BingKKni/SkyBlockZH/issues",
+		"sources": "https://github.com/BingKKni/SkyBlockZH"
+	},
+	"license": "MIT",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"io.github.bingkkni.skyzh.SkyZH"
+		],
+		"modmenu": [
+			"io.github.bingkkni.skyzh.compat.ModMenuIntegration"
+		]
+	},
+	"mixins": [
+		{
+			"config": "skyzh.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.19.3",
+		"minecraft": "~26.2",
+		"java": ">=25"
+	},
+	"suggests": {
+		"modmenu": "*",
+		"hypixel-mod-api": "*"
+	}
+}

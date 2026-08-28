@@ -1,0 +1,291 @@
+{
+  "source": "SkyZH runtime capture (2026-08-24); official Wiki context: https://wiki.hypixel.net/Mine_Merchant (verified through an archived official page because the live Wiki now redirects)",
+  "fetched_at": "2026-08-24",
+  "verified_ingame": true,
+  "gui_context": "Hub 挖矿商店。官方 Wiki 将 Mine Merchant 记为 Hub 内售卖矿物、锭、装备和重铸石等物品的商人。",
+  "shared_scope_note": "库存、右键交易、出售物品及收纳袋首尾说明已由本渲染面的 Fishing_Merchant.json 唯一收录；此处不复制，避免同模板 rival。",
+  "excluded": [
+    "Fishing_Merchant.json 已唯一收录的跨商店通用行",
+    "Glacite x64、Sell Price、Withered Giant's Sword、伤害行和 Ascension Rope（玩家背包/出售槽回显污染）"
+  ],
+  "lines": [
+    {
+      "id": "coal_x2",
+      "context": "商店物品名；采集器曾误聚合 Coal/Gravel/Stone",
+      "raw": "§fCoal §8x2",
+      "text": "Coal x2",
+      "placeholders": [],
+      "gloss": "原版 Minecraft 物品名采用官方中文译名。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§f", "text": "Coal ", "zh": "煤炭 " },
+        { "color": "§8", "text": "x2", "zh": "x2" }
+      ]
+    },
+    {
+      "id": "gravel_x2",
+      "context": "商店物品名",
+      "raw": "§fGravel §8x2",
+      "text": "Gravel x2",
+      "placeholders": [],
+      "gloss": "原版 Minecraft 物品名采用官方中文译名。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§f", "text": "Gravel ", "zh": "沙砾 " },
+        { "color": "§8", "text": "x2", "zh": "x2" }
+      ]
+    },
+    {
+      "id": "stone_x2",
+      "context": "商店物品名",
+      "raw": "§fStone §8x2",
+      "text": "Stone x2",
+      "placeholders": [],
+      "gloss": "原版 Minecraft 物品名采用官方中文译名。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§f", "text": "Stone ", "zh": "石头 " },
+        { "color": "§8", "text": "x2", "zh": "x2" }
+      ]
+    },
+    {
+      "id": "minion_fuel",
+      "context": "煤炭等燃料物品的类型标签",
+      "raw": "§8Minion Fuel",
+      "text": "Minion Fuel",
+      "placeholders": [],
+      "gloss": "Minion 沿用项目译名“小人”。",
+      "translate": true,
+      "zh": "小人燃料"
+    },
+    {
+      "id": "minion_fuel_description_start",
+      "context": "小人燃料效果说明首行",
+      "raw": "§7Increases the speed of",
+      "text": "Increases the speed of",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "使你的小人工作速度"
+    },
+    {
+      "id": "minion_fuel_description_middle",
+      "context": "接上一行；百分比保持绿色",
+      "raw": "§7your minion by §a5%§7 for 30",
+      "text": "your minion by 5% for 30",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§7", "text": "your minion by ", "zh": "提高 " },
+        { "color": "§a", "text": "5%", "zh": "5%" },
+        { "color": "§7", "text": " for 30", "zh": ",持续 30" }
+      ]
+    },
+    {
+      "id": "minutes",
+      "context": "小人燃料效果说明尾行",
+      "raw": "§7minutes!",
+      "text": "minutes!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "分钟!"
+    },
+    {
+      "id": "common_ore",
+      "context": "普通稀有度与物品类型复合行；采集器曾误聚合 ORE/SACK",
+      "raw": "§f§lCOMMON ORE",
+      "text": "COMMON ORE",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "普通矿物",
+      "rarity_ref": "_shared/Rarity.json#rarity_common"
+    },
+    {
+      "id": "iron_ingot_stack",
+      "context": "商店中的铁锭，数量动态匹配",
+      "raw": "§fIron Ingot §8x%1$s",
+      "text": "Iron Ingot x%1$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "物品数量", "type": "number", "example": "4" }
+      ],
+      "gloss": "采用 Minecraft 官方中文译名。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§f", "text": "Iron Ingot ", "zh": "铁锭 " },
+        { "color": "§8", "text": "x%1$s", "zh": "x%1$s" }
+      ]
+    },
+    {
+      "id": "gold_ingot_stack",
+      "context": "商店中的金锭，数量动态匹配",
+      "raw": "§fGold Ingot §8x%1$s",
+      "text": "Gold Ingot x%1$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "物品数量", "type": "number", "example": "3" }
+      ],
+      "gloss": "采用 Minecraft 官方中文译名 Gold Ingot = 金锭，不沿用小人种类 Gold = 黄金。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§f", "text": "Gold Ingot ", "zh": "金锭 " },
+        { "color": "§8", "text": "x%1$s", "zh": "x%1$s" }
+      ]
+    },
+    {
+      "id": "ability_mining_speed_boost",
+      "context": "商店镐子的主动技能标题",
+      "raw": "§6Ability: Mining Speed Boost  §e§lRIGHT CLICK",
+      "text": "Ability: Mining Speed Boost  RIGHT CLICK",
+      "placeholders": [],
+      "gloss": "Mining Speed Boost 沿用既定技能译名“挖掘速度爆发”。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§6", "text": "Ability: Mining Speed Boost  ", "zh": "技能: 挖掘速度爆发  " },
+        { "color": "§e§l", "text": "RIGHT CLICK", "zh": "右键点击" }
+      ]
+    },
+    {
+      "id": "grants_250_percent_mining_speed_for",
+      "context": "挖掘速度爆发效果说明首行；持续时间在下一行由游戏显示",
+      "raw": "§7Grants §6+250%  Mining Speed §7for",
+      "text": "Grants +250%  Mining Speed for",
+      "placeholders": [],
+      "gloss": "Mining Speed 是属性词条，译“挖掘速度”。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§7", "text": "Grants ", "zh": "获得 " },
+        { "color": "§6", "text": "+250%  Mining Speed ", "zh": "+250%  挖掘速度" },
+        { "color": "§7", "text": "for", "zh": ",持续" }
+      ]
+    },
+    {
+      "id": "torch_x32",
+      "context": "商店物品名",
+      "raw": "§fTorch §8x32",
+      "text": "Torch x32",
+      "placeholders": [],
+      "gloss": "采用 Minecraft 官方中文译名。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§f", "text": "Torch ", "zh": "火把 " },
+        { "color": "§8", "text": "x32", "zh": "x32" }
+      ]
+    },
+    {
+      "id": "black_diamond",
+      "context": "商店中的重铸石物品名",
+      "raw": "§9Black Diamond",
+      "text": "Black Diamond",
+      "placeholders": [],
+      "gloss": "普通词组成的物品名，按现有规则翻译。",
+      "translate": true,
+      "zh": "黑钻石"
+    },
+    {
+      "id": "applies_fruitful_reforge",
+      "context": "黑钻石说明首行；下一行是共享 continuation“combined with a mining tool.”",
+      "raw": "§7Applies the §9Fruitful §7reforge when",
+      "text": "Applies the Fruitful reforge when",
+      "placeholders": [],
+      "gloss": "Fruitful 是重铸名，按通用词规则翻译。完整句意为与挖矿工具结合时获得该重铸。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§7", "text": "Applies the ", "zh": "与挖矿工具结合时,获得" },
+        { "color": "§9", "text": "Fruitful ", "zh": "「丰饶」" },
+        { "color": "§7", "text": "reforge when", "zh": "重铸。" }
+      ]
+    },
+    {
+      "id": "fruitful_legendary",
+      "context": "丰饶重铸在传说品质下的效果小标题",
+      "raw": "§9Fruitful §7(§6Legendary§7):",
+      "text": "Fruitful (Legendary):",
+      "placeholders": [],
+      "gloss": "Legendary 沿用共享稀有度译名。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§9", "text": "Fruitful ", "zh": "丰饶 " },
+        { "color": "§7", "text": "(", "zh": "(" },
+        { "color": "§6", "text": "Legendary", "zh": "传说" },
+        { "color": "§7", "text": "):", "zh": "):" }
+      ]
+    },
+    {
+      "id": "fruitful_bonus",
+      "context": "丰饶重铸的额外效果名称",
+      "raw": "§9Fruitful Bonus",
+      "text": "Fruitful Bonus",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "丰饶加成"
+    },
+    {
+      "id": "fruitful_defense_on_mining_islands",
+      "context": "丰饶加成效果首行；为符合中文语序重排颜色段",
+      "raw": "§7Grants §a+50 Defense §7while on §bMining",
+      "text": "Grants +50 Defense while on Mining",
+      "placeholders": [],
+      "gloss": "Mining Islands 是玩法区域类别，不是单个岛名。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§7", "text": "Grants ", "zh": "获得 ", "order": 2 },
+        { "color": "§a", "text": "+50 Defense ", "zh": "+50 防御力", "order": 3 },
+        { "color": "§7", "text": "while on ", "zh": "在", "order": 0 },
+        { "color": "§b", "text": "Mining", "zh": "挖矿岛屿时,", "order": 1 }
+      ]
+    },
+    {
+      "id": "mining_islands_suffix",
+      "context": "接上一行；Islands 的含义已并入上一行蓝色片段",
+      "raw": "§bIslands§7.",
+      "text": "Islands.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§b", "text": "Islands", "zh": "", "omit": true },
+        { "color": "§7", "text": ".", "zh": "。" }
+      ]
+    },
+    {
+      "id": "beginner_mining_sack",
+      "context": "商店物品名",
+      "raw": "§fBeginner Mining Sack",
+      "text": "Beginner Mining Sack",
+      "placeholders": [],
+      "gloss": "Sack 按指定译名“收纳袋”处理。",
+      "translate": true,
+      "zh": "初级挖矿收纳袋"
+    },
+    {
+      "id": "mining_items_go_directly",
+      "context": "初级挖矿收纳袋说明中间一行；首尾通用行由 Fishing_Merchant.json 唯一收录",
+      "raw": "§6Mining§7! Items you pickup go directly",
+      "text": "Mining! Items you pickup go directly",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§6", "text": "Mining", "zh": "挖矿" },
+        { "color": "§7", "text": "! Items you pickup go directly", "zh": "中获得的物品! 捡到的物品会直接" }
+      ]
+    }
+  ]
+}

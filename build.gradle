@@ -1,0 +1,627 @@
+plugins {
+	id 'net.fabricmc.fabric-loom' version "${loom_version}"
+}
+
+base {
+	archivesName = project.archives_base_name
+}
+
+version = project.version
+group = project.group
+
+repositories {
+	maven {
+		name = 'Terraformers'
+		url = 'https://maven.terraformersmc.com/releases/'
+	}
+
+	maven {
+		name = 'Hypixel'
+		url = 'https://repo.hypixel.net/repository/Hypixel/'
+	}
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+	// Mod Menu is an optional integration: we compile against its API but never require it at
+	// runtime (see the "suggests" block in fabric.mod.json). Since 26.2 ships unobfuscated there
+	// is no remapping step any more, so mods are ordinary dependencies — no modCompileOnly.
+	compileOnly "com.terraformersmc:modmenu:${project.modmenu_version}"
+
+	// Hypixel's own Mod API, on the same terms as Mod Menu: compiled against, never bundled. The
+	// protocol and the networking are the hypixel-mod-api mod's job — anyone running SkyHanni or
+	// SkyBlocker already has it — and all this mod does is subscribe to the location event and read
+	// two strings off it (see compat/HypixelApi). Without that mod present nothing here loads and
+	// the sidebar reading carries on as before.
+	compileOnly "net.hypixel:mod-api:${project.hypixel_mod_api_version}"
+
+	// No Fabric API. Every hook this mod needs is a mixin into a vanilla render path, and the
+	// fewer runtime dependencies a SkyBlock client carries, the fewer ways it can collide with
+	// SkyHanni / SkyBlocker in someone's modpack.
+}
+
+// The translation corpus is authored in original_text/ as one file per menu, with a `context` and a
+// `gloss` on almost every record explaining what the line is and why it is worded the way it is.
+// Those notes are the reason a wrong translation can be argued about instead of just re-guessed, so
+// they are not going anywhere — but they are addressed to people, and the mod never reads them.
+//
+// So the corpus is authored verbatim and *shipped minified*: this task copies it through a filter
+// that drops the keys TranslationLoader/TermTable/SkyBlockName never look at and prints what remains
+// without indentation. One source of truth is preserved (there is no second corpus to edit, and the
+// `id` in a log message still names a record in the file a translator opened), while a player
+// downloads roughly a third of the bytes. See MinifyCorpus below for the field-by-field reasoning,
+// and `./gradlew corpusSize` for what it saves.
+def minifiedCorpus = layout.buildDirectory.dir('minified-corpus')
+
+tasks.register('minifyCorpus', MinifyCorpus) {
+	group = 'build'
+	description = 'Strips translator-only fields from the corpus for packaging.'
+
+	source = rootProject.file('original_text')
+	destination = minifiedCorpus
+}
+
+processResources {
+	dependsOn 'minifyCorpus'
+
+	def version = project.version
+	inputs.property "version", version
+
+	filesMatching("fabric.mod.json") {
+		expand("version": version) {
+			escapeBackslash = true
+		}
+	}
+
+	from(minifiedCorpus) {
+		into 'assets/skyzh/original_text'
+		include '**/*.json'
+	}
+}
+
+/**
+ * Rewrites the corpus with only the fields the mod reads.
+ *
+ * Which fields those are is not a guess: TranslationLoader#compile reads `id`, `ref`, `translate`,
+ * `text`, `zh`, `segments[].text/.zh/.omit/.order`, `placeholders[].token/.type`, `continuation` and
+ * `layout`; TermTable#from reads `applies_to_types` and `terms[].en/.zh/.types`; SkyBlockName#from
+ * reads `full`, `short` and `compound_stoplist`. Everything else in a corpus file is written for
+ * whoever edits it next — `context` and `gloss` (the two biggest, on nearly every record), `raw`
+ * (the line with its colour codes, kept so a record can be compared against what the server sent),
+ * `placeholders[].desc/.example`, `segments[].color` (a note about where the colour boundary is; the
+ * real colour is read off the screen at render time), and the per-file `source`/`fetched_at`/`note`
+ * prose.
+ *
+ * Records are dropped as well as trimmed, but only ones the loader itself throws away: `translate:
+ * false` (a proper noun deliberately left in English) and records with no Chinese anywhere that are
+ * not `continuation` markers. TranslationEntry#compile returns null for both, so they occupy bytes
+ * in the jar and heap during startup to be discarded. A record another file points `ref` at is kept
+ * regardless of how it looks on its own, since the pointer has to land somewhere.
+ *
+ * Verified by `./gradlew checkMinifiedCorpus`, which compiles both the authored and the minified
+ * corpus and fails unless the two indexes contain the same records.
+ */
+abstract class MinifyCorpus extends DefaultTask {
+	@InputDirectory
+	abstract DirectoryProperty getSource()
+
+	@OutputDirectory
+	abstract DirectoryProperty getDestination()
+
+	/** Per-record keys the runtime reads. Anything else on a record is a note to a translator. */
+	private static final Set<String> RECORD_KEYS = [
+		'id', 'ref', 'translate', 'text', 'zh', 'segments', 'placeholders', 'continuation', 'layout',
+	] as Set
+
+	/** `color` is deliberately absent: it documents the boundary, the drawn colour comes off the screen. */
+	private static final Set<String> SEGMENT_KEYS = ['text', 'zh', 'omit', 'order'] as Set
+
+	/** `desc` and `example` explain the value to a person; only the token and its kind reach Capture. */
+	private static final Set<String> PLACEHOLDER_KEYS = ['token', 'type'] as Set
+
+	/** Top-level members of the two dictionary files, which are not lists of records. */
+	private static final Set<String> DICTIONARY_KEYS = [
+		'full', 'short', 'compound_stoplist',      // _shared/SkyBlock_Name.json
+		'applies_to_types', 'terms',               // _shared/Terms.json
+	] as Set
+
+	/** Per-term keys in _shared/Terms.json; `note` is the translator's reasoning. */
+	private static final Set<String> TERM_KEYS = ['en', 'zh', 'types'] as Set
+
+	@TaskAction
+	void minify() {
+		def slurper = new groovy.json.JsonSlurper()
+		def root = source.get().asFile
+		def out = destination.get().asFile
+
+		out.deleteDir()
+		out.mkdirs()
+
+		// Two passes: the first learns which records are pointed at from elsewhere, so the second can
+		// drop an unused record without breaking a `ref` that resolves through it.
+		def documents = [:]
+
+		root.eachFileRecurse { file ->
+			if (file.isFile() && file.name.endsWith('.json')) {
+				def relative = root.toPath().relativize(file.toPath()).toString().replace('\\', '/')
+				documents[relative] = slurper.parse(file, 'UTF-8')
+			}
+		}
+
+		def referenced = [] as Set
+
+		documents.each { relative, document ->
+			MinifyCorpus.eachRecord(document) { record ->
+				if (record.ref instanceof String) {
+					referenced << record.ref
+				}
+			}
+		}
+
+		int keptRecords = 0
+		int droppedRecords = 0
+		long before = 0
+		long after = 0
+
+		documents.each { relative, document ->
+			def trimmed = [:]
+
+			document.each { key, value ->
+				// Checked before the list branch below: `terms` is a list, but of dictionary entries
+				// with no `id`, so the record walk would skip every one of them and write the file out
+				// empty — which silently turns off every value translation in the mod.
+				if (DICTIONARY_KEYS.contains(key)) {
+					trimmed[key] = key == 'terms' ? MinifyCorpus.trimTerms(value) : value
+				} else if (value instanceof List) {
+					def records = []
+
+					value.each { element ->
+						if (!(element instanceof Map) || !element.containsKey('id')) {
+							// A list of plain strings (a `todo`, an `aka`) is prose; drop it. The loader
+							// only ever looks at list elements that carry an id.
+							return
+						}
+
+						if (MinifyCorpus.drops(element, relative, documents, referenced)) {
+							droppedRecords++
+							return
+						}
+
+						records << MinifyCorpus.trimRecord(element)
+						keptRecords++
+					}
+
+					if (!records.isEmpty()) {
+						trimmed[key] = records
+					}
+				} else if (value instanceof Map && value.containsKey('id')) {
+					// A lone `name` object: an item's own name, which the loader reads as a record.
+					if (MinifyCorpus.drops(value, relative, documents, referenced)) {
+						droppedRecords++
+					} else {
+						trimmed[key] = MinifyCorpus.trimRecord(value)
+						keptRecords++
+					}
+				}
+			}
+
+			def target = new File(out, relative)
+			target.parentFile.mkdirs()
+
+			def text = new StringBuilder()
+			MinifyCorpus.write(trimmed, text)
+			target.setText(text.toString(), 'UTF-8')
+
+			before += new File(root, relative).length()
+			after += target.length()
+		}
+
+		logger.lifecycle(
+			'语料已精简: {} 个文件, 保留记录 {} 条, 丢弃 {} 条（translate:false 或整条无译文，引擎本来也会丢）, {} KiB -> {} KiB ({}%)',
+			documents.size(), keptRecords, droppedRecords, before.intdiv(1024), after.intdiv(1024),
+			before == 0 ? 0 : Math.round(100.0d * after / before) as int
+		)
+	}
+
+	/**
+	 * Compact JSON, with every character that does not have to be escaped written as itself.
+	 *
+	 * Groovy's own JsonOutput escapes anything outside ASCII, which turns each Chinese character from
+	 * three UTF-8 bytes into a six-byte {@code \\uXXXX} and would hand back most of what the trimming
+	 * saves — on a corpus that is nearly all Chinese, that is the difference between a third of the
+	 * original size and two thirds of it. Only what RFC 8259 requires is escaped: the quote, the
+	 * backslash, and the C0 controls.
+	 */
+	static void write(Object value, StringBuilder out) {
+		if (value == null) {
+			out.append('null')
+		} else if (value instanceof Map) {
+			out.append('{')
+			boolean first = true
+
+			value.each { key, member ->
+				if (!first) {
+					out.append(',')
+				}
+
+				first = false
+				writeString(key as String, out)
+				out.append(':')
+				write(member, out)
+			}
+
+			out.append('}')
+		} else if (value instanceof List) {
+			out.append('[')
+
+			value.eachWithIndex { member, index ->
+				if (index > 0) {
+					out.append(',')
+				}
+
+				write(member, out)
+			}
+
+			out.append(']')
+		} else if (value instanceof Boolean || value instanceof Number) {
+			out.append(value.toString())
+		} else {
+			writeString(value as String, out)
+		}
+	}
+
+	private static void writeString(String value, StringBuilder out) {
+		out.append('"')
+
+		for (int i = 0; i < value.length(); i++) {
+			char c = value.charAt(i)
+
+			switch (c) {
+				case '"' -> out.append('\\"')
+				case '\\' -> out.append('\\\\')
+				case '\n' -> out.append('\\n')
+				case '\r' -> out.append('\\r')
+				case '\t' -> out.append('\\t')
+				case '\b' -> out.append('\\b')
+				case '\f' -> out.append('\\f')
+				default -> {
+					if (c < 0x20) {
+						out.append(String.format('\\u%04x', (int) c))
+					} else {
+						// Everything else, including §, CJK and the private-use glyphs of Hypixel's
+						// icon font, goes out as itself in UTF-8.
+						out.append(c)
+					}
+				}
+			}
+		}
+
+		out.append('"')
+	}
+
+	/** Walks every record of a document the way TranslationLoader#records does. */
+	static void eachRecord(Object document, Closure action) {
+		document.each { key, value ->
+			if (value instanceof List) {
+				value.each { element ->
+					if (element instanceof Map && element.containsKey('id')) {
+						action(element)
+					}
+				}
+			} else if (value instanceof Map && value.containsKey('id')) {
+				action(value)
+			}
+		}
+	}
+
+	/**
+	 * Whether the loader would throw this record away, in which case shipping it only costs bytes.
+	 *
+	 * Mirrors TranslationEntry#compile's two refusals — nothing translated and not a continuation, or
+	 * `translate: false` — applied to the record a `ref` resolves to, since that is the data the
+	 * loader compiles.
+	 */
+	static boolean drops(Map record, String relative, Map documents, Set referenced) {
+		if (referenced.contains(relative + '#' + record.id)) {
+			return false
+		}
+
+		def source = MinifyCorpus.resolve(record, documents)
+
+		if (source.translate == false) {
+			return true
+		}
+
+		if (source.continuation == true) {
+			return false
+		}
+
+		if (source.segments instanceof List && !source.segments.isEmpty()) {
+			return source.segments.every { segment -> !(segment.zh) }
+		}
+
+		return !(source.zh)
+	}
+
+	/** Follows a `ref` to the shared library; a record without one is already itself. */
+	static Map resolve(Map record, Map documents) {
+		if (!(record.ref instanceof String)) {
+			return record
+		}
+
+		def parts = (record.ref as String).split('#', 2)
+
+		if (parts.length != 2) {
+			return record
+		}
+
+		def document = documents[parts[0]]
+
+		if (document == null) {
+			return record
+		}
+
+		Map found = null
+
+		MinifyCorpus.eachRecord(document) { candidate ->
+			if (found == null && candidate.id == parts[1]) {
+				found = candidate
+			}
+		}
+
+		return found ?: record
+	}
+
+	static Map trimRecord(Map record) {
+		def trimmed = [:]
+
+		record.each { key, value ->
+			if (!RECORD_KEYS.contains(key)) {
+				return
+			}
+
+			if (key == 'segments' && value instanceof List) {
+				trimmed[key] = value.collect { segment -> segment.subMap(SEGMENT_KEYS.intersect(segment.keySet())) }
+			} else if (key == 'placeholders' && value instanceof List) {
+				def placeholders = value.collect { placeholder ->
+					placeholder.subMap(PLACEHOLDER_KEYS.intersect(placeholder.keySet()))
+				}
+
+				// An empty `placeholders: []` says "this line has no values in it", which is the
+				// absence of the key as far as the loader is concerned.
+				if (!placeholders.isEmpty()) {
+					trimmed[key] = placeholders
+				}
+			} else {
+				trimmed[key] = value
+			}
+		}
+
+		return trimmed
+	}
+
+	static List trimTerms(Object terms) {
+		if (!(terms instanceof List)) {
+			return []
+		}
+
+		return terms.collect { term -> term.subMap(TERM_KEYS.intersect(term.keySet())) }
+	}
+}
+
+// A source set of its own rather than src/test, because this is not a JUnit suite and should not
+// make the `test` task claim it has tests. It compiles against the mod and runs as a plain main().
+sourceSets {
+	harness {
+		compileClasspath += sourceSets.main.compileClasspath + sourceSets.main.output
+		runtimeClasspath += sourceSets.main.runtimeClasspath + sourceSets.main.output
+	}
+}
+
+dependencies {
+	// The harness runs the mod's own classes with no game and no mod list around them, so anything
+	// they merely mention has to be loadable — the shipped jar still never carries this.
+	harnessRuntimeOnly "net.hypixel:mod-api:${project.hypixel_mod_api_version}"
+}
+
+// The corpus is the part of this project that keeps changing, and nothing about a wrong translation
+// shows up at compile time. This runs the real matching engine over the real files and fails on any
+// line that comes out wrong — a second's work, against launching the game to squint at a tooltip.
+// Anything that measures pixels (wrapping, centring) needs a loaded font and is not covered here.
+tasks.register('checkTranslations', JavaExec) {
+	group = 'verification'
+	description = 'Matches the original_text corpus against the translation engine.'
+
+	classpath = sourceSets.harness.runtimeClasspath
+	mainClass = 'io.github.bingkkni.skyzh.TranslationHarness'
+	args rootProject.file('original_text').absolutePath
+	defaultCharacterEncoding = 'UTF-8'
+	// Java 18 onwards picks System.out's charset from stdout.encoding, not from file.encoding
+	// which defaultCharacterEncoding sets. Left alone it takes the native console codepage, and
+	// every Chinese character in the report — including both halves of an "expected X got Y" —
+	// reaches the terminal as a replacement character.
+	jvmArgs '-Dstdout.encoding=UTF-8', '-Dstderr.encoding=UTF-8'
+
+	// Minecraft's logging config writes to <working dir>/logs, and logs/ is where a player's own
+	// client log gets dropped for auditLog to read. Running a check must not rotate their evidence.
+	workingDir = layout.buildDirectory.dir('harness').get().asFile
+	doFirst { workingDir.mkdirs() }
+
+	inputs.dir rootProject.file('original_text')
+}
+
+// Same engine, pointed at a client log instead of at the corpus: it prints the chat lines a real
+// session produced that no record answers for. Collection has already happened by then — Minecraft
+// logs what it receives — so nothing about this ships in the mod.
+tasks.register('auditLog', JavaExec) {
+	group = 'verification'
+	description = 'Reports chat lines from a Minecraft log that the corpus does not cover.'
+
+	classpath = sourceSets.harness.runtimeClasspath
+	mainClass = 'io.github.bingkkni.skyzh.LogAudit'
+	args = [
+		rootProject.file('original_text').absolutePath,
+		rootProject.file(project.findProperty('log') ?: 'logs').absolutePath,
+	]
+	defaultCharacterEncoding = 'UTF-8'
+	// Java 18 onwards picks System.out's charset from stdout.encoding, not from file.encoding
+	// which defaultCharacterEncoding sets. Left alone it takes the native console codepage, and
+	// every Chinese character in the report — including both halves of an "expected X got Y" —
+	// reaches the terminal as a replacement character.
+	jvmArgs '-Dstdout.encoding=UTF-8', '-Dstderr.encoding=UTF-8'
+
+	// Same reason as above, and more pressing here: this task exists to read logs/.
+	workingDir = layout.buildDirectory.dir('harness').get().asFile
+	doFirst { workingDir.mkdirs() }
+}
+
+// The capture in capture/ decides what is worth writing down, which two lines are the same sentence
+// and which characters of one are values. Every one of those decisions ends up in a file somebody
+// reads days later, so they are exercised here against strings taken verbatim from a client log.
+tasks.register('checkCapture', JavaExec) {
+	group = 'verification'
+	description = 'Runs the runtime capture over recorded SkyBlock text.'
+
+	classpath = sourceSets.harness.runtimeClasspath
+	mainClass = 'io.github.bingkkni.skyzh.CaptureHarness'
+	args rootProject.file('original_text').absolutePath
+	defaultCharacterEncoding = 'UTF-8'
+	// Java 18 onwards picks System.out's charset from stdout.encoding, not from file.encoding
+	// which defaultCharacterEncoding sets. Left alone it takes the native console codepage, and
+	// every Chinese character in the report — including both halves of an "expected X got Y" —
+	// reaches the terminal as a replacement character.
+	jvmArgs '-Dstdout.encoding=UTF-8', '-Dstderr.encoding=UTF-8'
+
+	// Same reason as checkTranslations: logs/ holds a player's own client log, not this task's.
+	workingDir = layout.buildDirectory.dir('harness').get().asFile
+	doFirst { workingDir.mkdirs() }
+
+	inputs.dir rootProject.file('original_text')
+}
+
+// The other half of captureUntranslated: it writes down what the corpus could not answer for, this
+// reads those files back and prints what each line draws as now. checkTranslations only knows what
+// the corpus says about itself; a segment in the wrong order or a term nobody added is invisible
+// there and obvious here.
+tasks.register('replayCapture', JavaExec) {
+	group = 'verification'
+	description = 'Redraws captured SkyBlock lines through the current corpus.'
+
+	classpath = sourceSets.harness.runtimeClasspath
+	mainClass = 'io.github.bingkkni.skyzh.CaptureReplay'
+	args rootProject.file('original_text').absolutePath,
+		rootProject.file(project.findProperty('capture') ?: 'logs/skyzh-capture').absolutePath
+	defaultCharacterEncoding = 'UTF-8'
+	// Java 18 onwards picks System.out's charset from stdout.encoding, not from file.encoding
+	// which defaultCharacterEncoding sets. Left alone it takes the native console codepage, and
+	// every Chinese character in the report — including both halves of an "expected X got Y" —
+	// reaches the terminal as a replacement character.
+	jvmArgs '-Dstdout.encoding=UTF-8', '-Dstderr.encoding=UTF-8'
+
+	// Same reason as checkTranslations: logs/ holds a player's own client log, not this task's.
+	workingDir = layout.buildDirectory.dir('harness').get().asFile
+	doFirst { workingDir.mkdirs() }
+}
+
+// The minifier's whole premise is a list of fields the engine does not read. That list is checked
+// against the engine rather than trusted: both corpora are compiled and the indexes compared. A
+// mistake here would not break the build — it would ship a jar that silently stops translating some
+// lines — so this runs as part of `check`.
+tasks.register('checkMinifiedCorpus', JavaExec) {
+	group = 'verification'
+	description = 'Compares the compiled index of the authored corpus against the minified one.'
+
+	dependsOn 'minifyCorpus'
+
+	classpath = sourceSets.harness.runtimeClasspath
+	mainClass = 'io.github.bingkkni.skyzh.MinifiedCorpusCheck'
+	args rootProject.file('original_text').absolutePath,
+		minifiedCorpus.get().asFile.absolutePath
+	defaultCharacterEncoding = 'UTF-8'
+	jvmArgs '-Dstdout.encoding=UTF-8', '-Dstderr.encoding=UTF-8'
+
+	workingDir = layout.buildDirectory.dir('harness').get().asFile
+	doFirst { workingDir.mkdirs() }
+
+	inputs.dir rootProject.file('original_text')
+}
+
+// What the trimming actually buys, for when somebody wonders whether it is worth the task.
+tasks.register('corpusSize') {
+	group = 'help'
+	description = 'Reports the authored and shipped size of the translation corpus.'
+
+	dependsOn 'minifyCorpus'
+
+	doLast {
+		def measure = { File dir ->
+			long bytes = 0
+			int files = 0
+			dir.eachFileRecurse { file ->
+				if (file.isFile() && file.name.endsWith('.json')) {
+					bytes += file.length()
+					files++
+				}
+			}
+			[bytes, files]
+		}
+
+		def (authoredBytes, authoredFiles) = measure(rootProject.file('original_text'))
+		def (shippedBytes, shippedFiles) = measure(minifiedCorpus.get().asFile)
+
+		logger.lifecycle('语料 (original_text/): {} 个文件, {} KiB', authoredFiles, authoredBytes.intdiv(1024))
+		logger.lifecycle('打包进 jar 的精简版:   {} 个文件, {} KiB', shippedFiles, shippedBytes.intdiv(1024))
+		logger.lifecycle('省下 {} KiB（{}%）', (authoredBytes - shippedBytes).intdiv(1024),
+			100 - (Math.round(100.0d * shippedBytes / authoredBytes) as int))
+	}
+}
+
+tasks.named('check') {
+	dependsOn 'checkTranslations', 'checkCapture', 'checkMinifiedCorpus'
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 25
+	it.options.encoding = 'UTF-8'
+}
+
+java {
+	withSourcesJar()
+
+	sourceCompatibility = JavaVersion.VERSION_25
+	targetCompatibility = JavaVersion.VERSION_25
+}
+
+jar {
+	def projectName = project.name
+	inputs.property "projectName", projectName
+
+	from("LICENSE") {
+		rename { "${it}_$projectName" }
+	}
+}
+
+// Scratch probe: prints what one live line renders as, and whether its record flattens the colours.
+// Not part of `check` — a working tool for deciding where a segments array has to be split. Reads
+// its lines from a file (`<surface>\t<legacy text>`), because § codes and private-use glyphs do not
+// survive being typed on a command line.
+tasks.register('probe', JavaExec) {
+	group = 'verification'
+	description = 'Redraws one hand-written SkyBlock line through the current corpus.'
+
+	classpath = sourceSets.harness.runtimeClasspath
+	mainClass = 'io.github.bingkkni.skyzh.Probe'
+	defaultCharacterEncoding = 'UTF-8'
+	// Java 18 onwards picks System.out's charset from stdout.encoding, not from file.encoding
+	// which defaultCharacterEncoding sets. Left alone it takes the native console codepage, and
+	// every Chinese character in the report — including both halves of an "expected X got Y" —
+	// reaches the terminal as a replacement character.
+	jvmArgs '-Dstdout.encoding=UTF-8', '-Dstderr.encoding=UTF-8'
+	workingDir = layout.buildDirectory.dir('harness').get().asFile
+	doFirst { workingDir.mkdirs() }
+
+	args rootProject.file('original_text').absolutePath,
+		rootProject.file(project.findProperty('lines') ?: 'build/probe.txt').absolutePath
+}

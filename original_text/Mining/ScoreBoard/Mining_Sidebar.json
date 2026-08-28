@@ -1,0 +1,441 @@
+{
+  "source": "https://raw.githubusercontent.com/hannibal002/SkyHanni-REPO/main/constants/regexesModern.json",
+  "fetched_at": "2026-08-18",
+  "verified_ingame": false,
+  "source_note": "数据来自开源客户端 Mod SkyHanni 的 SkyHanni-REPO 仓库 constants/regexesModern.json (用于解析游戏内文本的正则表达式常量),已去除正则语法/颜色码还原成干净模板文本, 可信度高于 Wiki 摘要,但未逐条在游戏内截图核对,verified_ingame 仍为 false。",
+  "gui_context": "SkyHanni 自定义计分板(侧边栏)Mining 分类下的各行文本,对应游戏原生计分板在不同挖矿场景下显示的内容。",
+  "lines": [
+    {
+      "id": "mining_sb_event_bonus",
+      "context": "某挖矿活动的加成数值行(具体活动名未确认)",
+      "text": "Event Bonus: +%s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "加成数值",
+          "type": "number",
+          "example": "5"
+        }
+      ],
+      "gloss": "活动名称待核实,先记录数值行结构。",
+      "translate": true,
+      "zh": "活动加成: +%s"
+    },
+    {
+      "id": "mining_sb_fossil_dust",
+      "context": "化石粉尘数量显示行(化石挖掘机关相关)",
+      "text": "Fossil Dust: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "化石粉尘数量,原正则末尾还有未知附加内容(.*)",
+          "type": "raw",
+          "example": "1,234"
+        }
+      ],
+      "gloss": "原正则末尾 .* 部分内容不确定,需要在游戏内核实是否有额外后缀文字。",
+      "translate": true,
+      "zh": "化石粉尘: %s"
+    },
+    {
+      "id": "mining_sb_kill_goblins_hint",
+      "context": "计分板上的提示行,提示玩家去击杀哥布林",
+      "text": "Kill goblins!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "击杀哥布林!"
+    },
+    {
+      "id": "mining_sb_mineshaft_not_started",
+      "context": "矿井(Mineshaft)事件计分板状态:未开始",
+      "text": "Not started",
+      "placeholders": [],
+      "gloss": "原正则末尾有 .* 通配,可能有额外说明文字,需核实。",
+      "translate": true,
+      "zh": "尚未开始"
+    },
+    {
+      "id": "mining_sb_event_name",
+      "context": "当前挖矿活动名称显示行",
+      "text": "Event: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "活动名称,加粗显示",
+          "type": "raw",
+          "example": "Goblin Raid"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "活动: %s"
+    },
+    {
+      "id": "mining_sb_event_zone",
+      "context": "当前挖矿活动所在区域显示行",
+      "text": "Zone: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "区域/地点名称,专有名词不翻译",
+          "type": "location_name",
+          "example": "Mines of Divan"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "区域: %s"
+    },
+    {
+      "id": "mining_sb_tasty_mithril_remaining",
+      "context": "秘银老饕活动:还需要多少美味秘银",
+      "text": "Remaining: %s Tasty Mithril",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "还差多少份",
+          "type": "number",
+          "example": "37"
+        }
+      ],
+      "gloss": "占位符可能是 '<数字> Tasty Mithril' 或者字面量 'FULL'(译作“已满”)两种形式,翻译时需要分别处理。",
+      "translate": true,
+      "zh": "剩余: %s份美味秘银",
+      "raw": "§7Remaining: §a%s Tasty Mithril",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Remaining: ",
+          "zh": "剩余: "
+        },
+        {
+          "color": "§a",
+          "text": "%s Tasty Mithril",
+          "zh": "%s份美味秘银"
+        }
+      ]
+    },
+    {
+      "id": "mining_sb_give_mithril_to_don",
+      "context": "提示玩家把“美味秘银”交给 Don",
+      "text": "Give Tasty Mithril to Don!",
+      "placeholders": [],
+      "gloss": "已核实:Don 就是 NPC Don Expresso(挖矿事件 Mithril Gourmand 里要求玩家喂食“美味秘银”的 NPC,见 NPC_Message/Don_Expresso.json),是他名字的简称,专有名词不翻译。",
+      "translate": true,
+      "zh": "把美味秘银交给 Don!"
+    },
+    {
+      "id": "mining_sb_your_tasty_mithril",
+      "context": "玩家当前持有的“美味秘银”数量",
+      "text": "Your Tasty Mithril: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "持有数量,原正则末尾还有未知附加内容",
+          "type": "raw",
+          "example": "3"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的美味秘银数: %s"
+    },
+    {
+      "id": "mining_sb_nearby_players",
+      "context": "附近玩家数量显示行",
+      "text": "Nearby Players: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数字,或字面量 'N/A',结尾可能附加 'MAX'",
+          "type": "raw",
+          "example": "4 MAX"
+        }
+      ],
+      "gloss": "值可能是数字、'N/A'(保留不翻),并可能带 'MAX' 后缀(译作“满”),三种情况需要分别处理。",
+      "translate": true,
+      "zh": "附近玩家数: %s"
+    },
+    {
+      "id": "mining_sb_powder_mithril",
+      "context": "侧边栏「Powder:」小节下的秘银粉末存量行",
+      "raw": "§2᠅ §fMithril: §2%s",
+      "text": "᠅ Mithril: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "粉末存量,服务器自带千分位",
+          "type": "number",
+          "example": "3,661,900"
+        }
+      ],
+      "gloss": "行里没有 Powder 这个词——小节标题那一行才有,每一行只写材料名。所以译文要把“粉末”补进来,否则中文读起来像是在数秘银矿石。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§2",
+          "text": "᠅ ",
+          "zh": "᠅ "
+        },
+        {
+          "color": "§f",
+          "text": "Mithril: ",
+          "zh": "秘银粉末: "
+        },
+        {
+          "color": "§2",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "mining_sb_powder_gemstone",
+      "context": "侧边栏「Powder:」小节下的宝石粉末存量行",
+      "raw": "§d᠅ §fGemstone: §d%s",
+      "text": "᠅ Gemstone: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "粉末存量,服务器自带千分位",
+          "type": "number",
+          "example": "3,661,900"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "᠅ ",
+          "zh": "᠅ "
+        },
+        {
+          "color": "§f",
+          "text": "Gemstone: ",
+          "zh": "宝石粉末: "
+        },
+        {
+          "color": "§d",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "mining_sb_powder_glacite",
+      "context": "侧边栏「Powder:」小节下的极冰粉末存量行",
+      "raw": "§b᠅ §fGlacite: §b%s",
+      "text": "᠅ Glacite: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "粉末存量,服务器自带千分位",
+          "type": "number",
+          "example": "3,661,900"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "᠅ ",
+          "zh": "᠅ "
+        },
+        {
+          "color": "§f",
+          "text": "Glacite: ",
+          "zh": "极冰粉末: "
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "mining_sb_raffle_pool",
+      "context": "抽奖箱(Raffle)奖池数值",
+      "text": "Pool: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "奖池数值",
+          "type": "number",
+          "example": "500"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "奖池: %s"
+    },
+    {
+      "id": "mining_sb_raffle_tickets",
+      "context": "抽奖箱(Raffle)当前持有的票券数量及中奖概率",
+      "text": "Tickets: %1$s (%2$s%%)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "持有票券数量",
+          "type": "number",
+          "example": "10"
+        },
+        {
+          "token": "%2$s",
+          "desc": "中奖概率百分数",
+          "type": "percentage",
+          "example": "2.5"
+        }
+      ],
+      "gloss": "数量和后面的中奖概率是两个颜色,标签又是第三个。分段只决定颜色边界,颜色渲染时从屏幕上当场读(见 text/StyledText),所以 color 字段只是给人看的记号,写得保守一点也不影响画面。",
+      "translate": true,
+      "zh": "票券: %1$s (%2$s%%)",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Tickets: ",
+          "zh": "票券: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " (%2$s%%)",
+          "zh": " (%2$s%%)"
+        }
+      ]
+    },
+    {
+      "id": "mining_sb_raffle_hint_1",
+      "context": "抽奖活动提示语第一行(和下两行是同一句话拆成三行显示)",
+      "text": "Find tickets on the",
+      "placeholders": [],
+      "gloss": "侧边栏这三行是一句话,但 continuation 只在物品 Lore 那一面实现(见 text/TooltipTranslator),计分板上尾行不会被删掉。所以中文按原文的断行位置也断成三行,不用 continuation。",
+      "translate": true,
+      "zh": "在地面上找到票券,"
+    },
+    {
+      "id": "mining_sb_raffle_hint_2",
+      "context": "抽奖活动提示语第二行",
+      "text": "ground and bring them",
+      "placeholders": [],
+      "gloss": "见 mining_sb_raffle_hint_1。",
+      "translate": true,
+      "zh": "把它们送到"
+    },
+    {
+      "id": "mining_sb_raffle_hint_3",
+      "context": "抽奖活动提示语第三行",
+      "text": "to the raffle box",
+      "placeholders": [],
+      "gloss": "见 mining_sb_raffle_hint_1。",
+      "translate": true,
+      "zh": "抽奖箱里"
+    },
+    {
+      "id": "mining_sb_remaining_goblins",
+      "context": "哥布林突袭(Goblin Raid)剩余哥布林数量",
+      "text": "Remaining: %s goblin(s)",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "剩余哥布林数量",
+          "type": "number",
+          "example": "3"
+        }
+      ],
+      "gloss": "英文原文单复数 goblin/goblins 随数量变化,中文没有单复数变化,翻译时不需要处理这个问题,但代码侧正则要能同时匹配两种拼写。",
+      "translate": true,
+      "zh": "剩余: %s只哥布林"
+    },
+    {
+      "id": "mining_sb_wind_compass_header",
+      "context": "“风向罗盘”(Wind Compass)计分板小节标题,同时是一个专有道具名",
+      "text": "Wind Compass",
+      "placeholders": [],
+      "gloss": "Wind Compass 是雨林迷雾活动相关的专有道具名,若按物品名规则应不翻译;但它同时也用作计分板小节标题,是否翻译需要和物品名翻译规则保持一致,建议不翻译。",
+      "translate": true,
+      "zh": "风向罗盘"
+    },
+    {
+      "id": "mining_sb_your_kills",
+      "context": "玩家当前击杀数(可能是哥布林或矿井怪物计数)",
+      "text": "Your kills: %s ☠ (+%s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "击杀数",
+          "type": "number",
+          "example": "12"
+        },
+        {
+          "token": "%2$s",
+          "desc": "额外加成击杀数,可选出现",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "第二个加成数值为可选项,不一定出现。",
+      "translate": true,
+      "zh": "击杀数: %s ☠ (+%s)"
+    },
+    {
+      "id": "mining_sb_zone",
+      "context": "侧边栏顶部的所在区域行(⏣ 后面是地名)",
+      "raw": "§7⏣ §7%s",
+      "text": "⏣ %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前所在区域名",
+          "type": "location_name",
+          "example": "Dwarven Mines"
+        }
+      ],
+      "gloss": "地名译名走 _shared/Terms.json;⏣ 在游戏里是服务器字体的字形,数据里写通用符号即可(见 text/Glyphs.java)。",
+      "translate": true,
+      "zh": "⏣ %s"
+    },
+    {
+      "id": "mining_sb_tasty_mithril_full",
+      "context": "秘银老饕活动:已经收满了",
+      "raw": "§7Remaining: §aFULL",
+      "text": "Remaining: FULL",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "剩余: 已收满",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Remaining: ",
+          "zh": "剩余: "
+        },
+        {
+          "color": "§a",
+          "text": "FULL",
+          "zh": "已收满"
+        }
+      ]
+    },
+    {
+      "id": "mining_sb_mineshaft_not_started_ellipsis",
+      "context": "极冰矿井实例还没开始时,侧边栏进度那一行(带省略号的写法,实测就是这一种)",
+      "raw": "§7§lNot started...",
+      "text": "Not started...",
+      "placeholders": [],
+      "gloss": "和 mining_sb_mineshaft_not_started 是同一件事的两种写法,引擎会选字面文本更多的这条。",
+      "translate": true,
+      "zh": "尚未开始…"
+    }
+  ]
+}

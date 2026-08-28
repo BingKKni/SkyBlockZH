@@ -1,0 +1,24 @@
+{
+  "source": "https://raw.githubusercontent.com/hannibal002/SkyHanni-REPO/main/constants/regexesModern.json",
+  "fetched_at": "2026-08-18",
+  "verified_ingame": false,
+  "source_note": "数据来自开源客户端 Mod SkyHanni 的 SkyHanni-REPO 仓库 constants/regexesModern.json (用于解析游戏内文本的正则表达式常量),已去除正则语法/颜色码还原成干净模板文本, 可信度高于 Wiki 摘要,但未逐条在游戏内截图核对,verified_ingame 仍为 false。",
+  "messages": [
+    {
+      "id": "mining_chat_commission_complete",
+      "context": "完成一项委托后的聊天提示",
+      "text": "%s Commission Complete! Visit the King to claim your rewards!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "委托名称。服务器这里发的是委托名本身(和委托板上那一行同一个字符串,广播时可能全大写),译名整值走 _shared/Terms.json 查表——包括「地名 + 矿石名」那两种带 ' - ' 分隔符的任务名,所以这条模板本身不需要管分隔符。",
+          "type": "raw",
+          "example": "Royal Mines Mithril"
+        }
+      ],
+      "gloss": "commissions 统一译“委托”,见 GLOSSARY.md;King 指矮人矿山轮换国王 NPC,见 NPC_Message/King.json。",
+      "translate": true,
+      "zh": "%s委托完成! 去找国王领取奖励吧!"
+    }
+  ]
+}

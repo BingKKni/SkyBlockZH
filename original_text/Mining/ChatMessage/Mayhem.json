@@ -1,0 +1,284 @@
+{
+  "source": "玩家实测客户端日志(logs/,2026-08-19)+ https://github.com/hannibal002/SkyHanni 的 HotmApi.kt 常量",
+  "fetched_at": "2026-08-19",
+  "verified_ingame": true,
+  "source_note": "这几条整行都带 “MAYHEM! ” 前缀,原先只记了后半句,游戏里永远匹配不上(引擎只对 NPC 台词剥离说话人前缀,不会剥这种全大写标签)。属性名前面的图标字符也补上了——服务器发的是私用区字形,数据里写通用符号,对得上,见 text/Glyphs.java。",
+  "gui_context": "“矿井狂乱”(Mineshaft Mayhem)天赋随机触发效果时的聊天提示。",
+  "messages": [
+    {
+      "id": "mayhem_trigger",
+      "context": "矿井狂乱触发时的通用前缀(具体效果见下面各条)",
+      "text": "MAYHEM! %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "本次触发的具体效果描述",
+          "type": "raw",
+          "example": "MINESHAFT MODIFIERS"
+        }
+      ],
+      "gloss": "兜底记录:下面几条写全了整句,匹配时会优先用它们(字面文本更多者胜)。",
+      "translate": true,
+      "zh": "矿井狂乱! %s"
+    },
+    {
+      "id": "mayhem_ability_cooldown",
+      "context": "矿井狂乱:缩短镐子技能冷却",
+      "text": "MAYHEM! Your Pickaxe Ability cooldown was reduced from your Mineshaft Mayhem perk!",
+      "placeholders": [],
+      "gloss": "中文把「矿井狂乱」天赋提到句子中间、把增益名放到后面,和英文语序不同,所以用 segments[].order 指定各段渲染到第几位。分段只决定颜色边界,颜色渲染时从屏幕上当场读,所以 color 字段只是给人看的记号。",
+      "translate": true,
+      "zh": "矿井狂乱! 你的「矿井狂乱」天赋缩短了镐子技能的冷却时间!",
+      "raw": "§d§lMAYHEM! §r§7Your §bPickaxe Ability §7cooldown was reduced from your §dMineshaft Mayhem §7perk!",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "MAYHEM! ",
+          "zh": "矿井狂乱! ",
+          "order": 0
+        },
+        {
+          "color": "§7",
+          "text": "Your ",
+          "zh": "你的",
+          "order": 1
+        },
+        {
+          "color": "§b",
+          "text": "Pickaxe Ability ",
+          "zh": "镐子技能",
+          "order": 4
+        },
+        {
+          "color": "§7",
+          "text": "cooldown was reduced from your ",
+          "zh": "天赋缩短了",
+          "order": 3
+        },
+        {
+          "color": "§d",
+          "text": "Mineshaft Mayhem ",
+          "zh": "「矿井狂乱」",
+          "order": 2
+        },
+        {
+          "color": "§7",
+          "text": "perk!",
+          "zh": "的冷却时间!",
+          "order": 5
+        }
+      ]
+    },
+    {
+      "id": "mayhem_cold_resistance",
+      "context": "矿井狂乱:获得抗寒增益",
+      "text": "MAYHEM! You received a ❄ Cold Resistance buff from your Mineshaft Mayhem perk!",
+      "placeholders": [],
+      "gloss": "中文把「矿井狂乱」天赋提到句子中间、把增益名放到后面,和英文语序不同,所以用 segments[].order 指定各段渲染到第几位。分段只决定颜色边界,颜色渲染时从屏幕上当场读,所以 color 字段只是给人看的记号。",
+      "translate": true,
+      "zh": "矿井狂乱! 你的「矿井狂乱」天赋给了你 ❄ 抗寒增益!",
+      "raw": "§d§lMAYHEM! §r§7You received a §b❄ Cold Resistance §7buff from your §dMineshaft Mayhem §7perk!",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "MAYHEM! ",
+          "zh": "矿井狂乱! ",
+          "order": 0
+        },
+        {
+          "color": "§7",
+          "text": "You received a ",
+          "zh": "你的",
+          "order": 1
+        },
+        {
+          "color": "§b",
+          "text": "❄ Cold Resistance ",
+          "zh": "❄ 抗寒",
+          "order": 4
+        },
+        {
+          "color": "§7",
+          "text": "buff from your ",
+          "zh": "天赋给了你 ",
+          "order": 3
+        },
+        {
+          "color": "§d",
+          "text": "Mineshaft Mayhem ",
+          "zh": "「矿井狂乱」",
+          "order": 2
+        },
+        {
+          "color": "§7",
+          "text": "perk!",
+          "zh": "增益!",
+          "order": 5
+        }
+      ]
+    },
+    {
+      "id": "mayhem_mining_fortune",
+      "context": "矿井狂乱:获得挖掘时运增益",
+      "text": "MAYHEM! You received a ☘ Mining Fortune buff from your Mineshaft Mayhem perk!",
+      "placeholders": [],
+      "gloss": "中文把「矿井狂乱」天赋提到句子中间、把增益名放到后面,和英文语序不同,所以用 segments[].order 指定各段渲染到第几位。分段只决定颜色边界,颜色渲染时从屏幕上当场读,所以 color 字段只是给人看的记号。",
+      "translate": true,
+      "zh": "矿井狂乱! 你的「矿井狂乱」天赋给了你 ☘ 挖掘时运增益!",
+      "raw": "§d§lMAYHEM! §r§7You received a §b☘ Mining Fortune §7buff from your §dMineshaft Mayhem §7perk!",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "MAYHEM! ",
+          "zh": "矿井狂乱! ",
+          "order": 0
+        },
+        {
+          "color": "§7",
+          "text": "You received a ",
+          "zh": "你的",
+          "order": 1
+        },
+        {
+          "color": "§b",
+          "text": "☘ Mining Fortune ",
+          "zh": "☘ 挖掘时运",
+          "order": 4
+        },
+        {
+          "color": "§7",
+          "text": "buff from your ",
+          "zh": "天赋给了你 ",
+          "order": 3
+        },
+        {
+          "color": "§d",
+          "text": "Mineshaft Mayhem ",
+          "zh": "「矿井狂乱」",
+          "order": 2
+        },
+        {
+          "color": "§7",
+          "text": "perk!",
+          "zh": "增益!",
+          "order": 5
+        }
+      ]
+    },
+    {
+      "id": "mayhem_mining_speed",
+      "context": "矿井狂乱:获得挖掘速度增益",
+      "text": "MAYHEM! You received a ⸕ Mining Speed buff from your Mineshaft Mayhem perk!",
+      "placeholders": [],
+      "gloss": "中文把「矿井狂乱」天赋提到句子中间、把增益名放到后面,和英文语序不同,所以用 segments[].order 指定各段渲染到第几位。分段只决定颜色边界,颜色渲染时从屏幕上当场读,所以 color 字段只是给人看的记号。",
+      "translate": true,
+      "zh": "矿井狂乱! 你的「矿井狂乱」天赋给了你 ⸕ 挖掘速度增益!",
+      "raw": "§d§lMAYHEM! §r§7You received a §b⸕ Mining Speed §7buff from your §dMineshaft Mayhem §7perk!",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "MAYHEM! ",
+          "zh": "矿井狂乱! ",
+          "order": 0
+        },
+        {
+          "color": "§7",
+          "text": "You received a ",
+          "zh": "你的",
+          "order": 1
+        },
+        {
+          "color": "§b",
+          "text": "⸕ Mining Speed ",
+          "zh": "⸕ 挖掘速度",
+          "order": 4
+        },
+        {
+          "color": "§7",
+          "text": "buff from your ",
+          "zh": "天赋给了你 ",
+          "order": 3
+        },
+        {
+          "color": "§d",
+          "text": "Mineshaft Mayhem ",
+          "zh": "「矿井狂乱」",
+          "order": 2
+        },
+        {
+          "color": "§7",
+          "text": "perk!",
+          "zh": "增益!",
+          "order": 5
+        }
+      ]
+    },
+    {
+      "id": "mayhem_scrap_chance",
+      "context": "矿井狂乱:提升可疑残料掉率",
+      "text": "MAYHEM! Your Suspicious Scrap chance was buffed by your Mineshaft Mayhem perk!",
+      "placeholders": [],
+      "gloss": "中文把「矿井狂乱」天赋提到句子中间、把增益名放到后面,和英文语序不同,所以用 segments[].order 指定各段渲染到第几位。分段只决定颜色边界,颜色渲染时从屏幕上当场读,所以 color 字段只是给人看的记号。",
+      "translate": true,
+      "zh": "矿井狂乱! 你的「矿井狂乱」天赋提升了可疑残料的掉落概率!",
+      "raw": "§d§lMAYHEM! §r§7Your §9Suspicious Scrap §7chance was buffed by your §dMineshaft Mayhem §7perk!",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "MAYHEM! ",
+          "zh": "矿井狂乱! ",
+          "order": 0
+        },
+        {
+          "color": "§7",
+          "text": "Your ",
+          "zh": "你的",
+          "order": 1
+        },
+        {
+          "color": "§9",
+          "text": "Suspicious Scrap ",
+          "zh": "可疑残料",
+          "order": 4
+        },
+        {
+          "color": "§7",
+          "text": "chance was buffed by your ",
+          "zh": "天赋提升了",
+          "order": 3
+        },
+        {
+          "color": "§d",
+          "text": "Mineshaft Mayhem ",
+          "zh": "「矿井狂乱」",
+          "order": 2
+        },
+        {
+          "color": "§7",
+          "text": "perk!",
+          "zh": "的掉落概率!",
+          "order": 5
+        }
+      ]
+    },
+    {
+      "id": "mineshaft_modifiers_header",
+      "context": "进入矿井时列出本次矿井修正的标题行",
+      "text": "MINESHAFT MODIFIERS!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "本次矿井修正!",
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "hotm_reset_confirm",
+      "context": "重置山心后的确认消息(实测原文以 “You have reset” 开头,SkyHanni 常量里的写法已过时)",
+      "text": "You have reset your Heart of the Mountain! Your Perks and Abilities have been reset.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你已重置山峦之心! 天赋和技能都已重置。"
+    }
+  ]
+}

@@ -1,0 +1,471 @@
+{
+  "purpose": "SkyBlock 每个菜单都长一样的那几格:返回按钮、翻页按钮、点击提示、所需材料标题。按 original_text/README.md §5.6,这类跨菜单重复的行只在这里写一份,各菜单文件遇到时用 ref 引用,不要各抄一遍。",
+  "source": "runtime capture (SkyZH) 2026-08-20 实测会话",
+  "fetched_at": "2026-08-20",
+  "verified_ingame": true,
+  "todo": [
+    "“Click to %s!” 这一类点击提示是按动词逐条写的,不是模板 + 词表:动词决定了整句中文怎么说,而词表只会替换一个词。实测见过 trade / sell / open 三种,其余几条是补的常见写法,遇到没收录的动词会保持英文,照着加一条即可。"
+  ],
+  "lines": [
+    {
+      "id": "menu_go_back",
+      "context": "几乎每个菜单左下角的返回按钮",
+      "text": "Go Back",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "返回"
+    },
+    {
+      "id": "menu_to_skyblock_menu",
+      "context": "返回按钮下面那一行,说明返回到哪里",
+      "text": "To SkyBlock Menu",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "返回 SkyBlock 菜单"
+    },
+    {
+      "id": "menu_to_gemstone_grinder",
+      "context": "同上,返回宝石研磨机",
+      "text": "To Gemstone Grinder",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "返回宝石研磨机"
+    },
+    {
+      "id": "menu_to_handy_block_guide",
+      "context": "同上,返回方块速查手册",
+      "text": "To Handy Block Guide",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "返回方块速查手册"
+    },
+    {
+      "id": "menu_to_select_process_slot",
+      "context": "同上,返回某个熔炼槽的工序选择页",
+      "text": "To Select Process (Slot #%s)",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "第几号熔炼槽",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "返回「选择工序(%s 号槽)」"
+    },
+    {
+      "id": "menu_next_page_arrow",
+      "context": "翻页按钮:下一页",
+      "text": "Next Page →",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "下一页 →"
+    },
+    {
+      "id": "menu_previous_page_arrow",
+      "context": "翻页按钮:上一页",
+      "text": "← Previous Page",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "← 上一页"
+    },
+    {
+      "id": "menu_first_page",
+      "context": "翻页按钮:跳到第一页",
+      "text": "« First Page",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "« 第一页"
+    },
+    {
+      "id": "menu_last_page",
+      "context": "翻页按钮:跳到最后一页",
+      "text": "Last Page »",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "最后一页 »"
+    },
+    {
+      "id": "menu_next_page",
+      "context": "翻页按钮上的物品名(不带箭头的写法)",
+      "text": "Next Page",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "下一页"
+    },
+    {
+      "id": "menu_previous_page",
+      "context": "同上",
+      "text": "Previous Page",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "上一页"
+    },
+    {
+      "id": "menu_page_number",
+      "context": "翻页按钮下面写着目标页码的那一行",
+      "text": "Page %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "页码",
+          "type": "number",
+          "example": "5"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "第 %s 页"
+    },
+    {
+      "id": "menu_loading",
+      "context": "菜单内容还没发过来时占位的那一格",
+      "text": "Loading...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "加载中……"
+    },
+    {
+      "id": "menu_click_to_trade",
+      "context": "可以点开交易的格子",
+      "text": "Click to trade!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击交易!"
+    },
+    {
+      "id": "menu_click_to_sell",
+      "context": "可以点了卖出的格子",
+      "text": "Click to sell!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击出售!"
+    },
+    {
+      "id": "menu_click_to_open",
+      "context": "可以点开的格子",
+      "text": "Click to open!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击打开!"
+    },
+    {
+      "id": "menu_click_to_view",
+      "context": "可以点开查看详情的格子",
+      "text": "Click to view!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击查看!"
+    },
+    {
+      "id": "menu_click_to_claim",
+      "context": "可以点了领取的格子",
+      "text": "Click to claim!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击领取!"
+    },
+    {
+      "id": "menu_click_to_select",
+      "context": "可以点了选中的格子",
+      "text": "Click to select!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击选择!"
+    },
+    {
+      "id": "menu_click_to_craft",
+      "context": "可以点了合成的格子",
+      "text": "Click to craft!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击合成!"
+    },
+    {
+      "id": "menu_click_to_upgrade",
+      "context": "可以点了升级的格子",
+      "text": "Click to upgrade!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击升级!"
+    },
+    {
+      "id": "menu_click_to_show",
+      "context": "可以点开展示内容的格子",
+      "text": "Click to show!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击显示!"
+    },
+    {
+      "id": "menu_click_to_search",
+      "context": "可以点开搜索的格子",
+      "text": "Click to search!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击搜索!"
+    },
+    {
+      "id": "menu_click_to_view_rewards",
+      "context": "可以点开查看奖励的格子",
+      "text": "Click to view rewards!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击查看奖励!"
+    },
+    {
+      "id": "menu_click_to_disable",
+      "context": "已启用选项的关闭提示",
+      "text": "Click to disable!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击禁用!"
+    },
+    {
+      "id": "menu_left_click_to_open",
+      "context": "左键打开入口的提示",
+      "text": "Left-click to open!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "左键点击打开!"
+    },
+    {
+      "id": "menu_right_click_to_change_icon",
+      "context": "右键更换图标的提示",
+      "text": "Right-click to change icon!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "右键点击更换图标!"
+    },
+    {
+      "id": "menu_right_click_to_remove",
+      "context": "右键移除内容的提示",
+      "text": "Right-click to remove!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "右键点击移除!"
+    },
+    {
+      "id": "menu_locked_page",
+      "context": "尚未开放的菜单页",
+      "text": "Locked Page",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "未解锁页面"
+    },
+    {
+      "id": "menu_progress_to_level",
+      "context": "升级进度状态",
+      "text": "Progress to Level %1$s: %2$s",
+      "placeholders": [
+        {"token": "%1$s", "desc": "目标等级", "type": "number", "example": "2"},
+        {"token": "%2$s", "desc": "升级进度百分比", "type": "percentage", "example": "0%"}
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Progress to Level %1$s: ", "zh": "升至 %1$s 级的进度: "},
+        {"color": "§e", "text": "%2$s", "zh": "%2$s"}
+      ]
+    },
+    {
+      "id": "menu_right_click_class_ability",
+      "context": "职业技能物品的提示行",
+      "text": "Right-click to use your class ability!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "右键使用你的职业技能!"
+    },
+    {
+      "id": "menu_items_required",
+      "context": "合成界面里列出所需材料的小标题",
+      "text": "Items Required",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "所需材料"
+    },
+    {
+      "id": "menu_cost_label",
+      "context": "菜单格子 Lore 里「要付出什么」那一节的小标题,下面跟着货币和/或需要交出的物品",
+      "text": "Cost",
+      "placeholders": [],
+      "gloss": "译“花费”不译“价格”:这一节下面列的不一定是钱,商店里不少东西是「低级物品 + 货币」一起换,「价格」只说得通其中一种,「花费」两种都涵盖。见 GLOSSARY.md「货币名」条目附近。",
+      "translate": true,
+      "zh": "花费"
+    },
+    {
+      "id": "menu_duration",
+      "context": "限时增益/道具的持续时间行",
+      "text": "Duration: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "持续时间",
+          "type": "time",
+          "example": "20h"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "持续时间: %s"
+    },
+    {
+      "id": "menu_available_gemstone_slots",
+      "context": "宝石镶嵌界面里列出这件物品有哪些槽位的小标题",
+      "text": "Available Gemstone Slots",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "可用宝石槽"
+    },
+    {
+      "id": "gemstone_guide_intro_1",
+      "context": "宝石镶嵌指南每一页顶上的固定说明段落(整段的首行,译文写在这里)",
+      "text": "Many items can have Gemstones",
+      "placeholders": [],
+      "gloss": "英文因为宽度被拆成了几行,中文按 original_text/README.md 的规定合成一句写在首行,尾行标 continuation,渲染时整行删掉并按中文宽度重新折行。",
+      "translate": true,
+      "zh": "很多物品都可以镶嵌宝石。宝石会按种类给这件物品加上对应的属性。"
+    },
+    {
+      "id": "gemstone_guide_intro_2",
+      "context": "宝石镶嵌指南每一页顶上的固定说明段落(同一句话被排版拆出来的尾行)",
+      "text": "applied to them. Gemstones increase",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "gemstone_guide_intro_3",
+      "context": "宝石镶嵌指南每一页顶上的固定说明段落(同一句话被排版拆出来的尾行)",
+      "text": "the stats of an item based on the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "gemstone_guide_intro_4",
+      "context": "宝石镶嵌指南每一页顶上的固定说明段落(同一句话被排版拆出来的尾行)",
+      "text": "type of Gemstone used.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "gemstone_guide_quality_1",
+      "context": "宝石镶嵌指南每一页顶上的固定说明段落(整段的首行,译文写在这里)",
+      "text": "There are several qualities of",
+      "placeholders": [],
+      "gloss": "英文因为宽度被拆成了几行,中文按 original_text/README.md 的规定合成一句写在首行,尾行标 continuation,渲染时整行删掉并按中文宽度重新折行。",
+      "translate": true,
+      "zh": "宝石分好几个品质档位,从「粗糙」一路到「完美」。品质越高,加的属性越多!"
+    },
+    {
+      "id": "gemstone_guide_quality_2",
+      "context": "宝石镶嵌指南每一页顶上的固定说明段落(同一句话被排版拆出来的尾行)",
+      "text": "Gemstones, ranging from Rough to",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "gemstone_guide_quality_3",
+      "context": "宝石镶嵌指南每一页顶上的固定说明段落(同一句话被排版拆出来的尾行)",
+      "text": "Perfect. The higher the quality, the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "gemstone_guide_quality_4",
+      "context": "宝石镶嵌指南每一页顶上的固定说明段落(同一句话被排版拆出来的尾行)",
+      "text": "better the stat!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "gemstone_guide_purpose_1",
+      "context": "宝石镶嵌指南每一页顶上的固定说明段落(整段的首行,译文写在这里)",
+      "text": "This guide shows the items that can",
+      "placeholders": [],
+      "gloss": "英文因为宽度被拆成了几行,中文按 original_text/README.md 的规定合成一句写在首行,尾行标 continuation,渲染时整行删掉并按中文宽度重新折行。",
+      "translate": true,
+      "zh": "本指南列出了所有可以镶嵌宝石的物品。"
+    },
+    {
+      "id": "gemstone_guide_purpose_2",
+      "context": "宝石镶嵌指南每一页顶上的固定说明段落(同一句话被排版拆出来的尾行)",
+      "text": "have Gemstones applied to them.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "menu_to_collections",
+      "context": "从收藏品点进去的子菜单里,返回按钮上写的去处",
+      "raw": "§7To Collections",
+      "text": "To Collections",
+      "placeholders": [],
+      "gloss": "必须写成整行记录,不能指望模板。实测这一行本来被 Hub_General/GUI_Item/Collections.json#collection_category(`%1$s Collections`)吃掉了,`%1$s` 捕到了 To,屏幕上是「To 收藏品」——比不翻译更糟。整行记录走精确哈希表,永远优先于带占位符的模板(见 text/TranslationIndex.lookup),所以补一条就够了,不用去改那个模板;那个模板本身没写错,只是「一个大写词 + Collections」的形状和这一行撞了。Bazaar 那条通用的 `To %1$s` 也帮不上忙:它的去处是商品名、按设计保留英文,而菜单名要翻译,一条模板管不了两种。",
+      "translate": true,
+      "zh": "返回收藏品"
+    },
+    {
+      "id": "menu_to_settings",
+      "context": "从设置点进去的子菜单里,返回按钮上写的去处",
+      "raw": "§7To Settings",
+      "text": "To Settings",
+      "placeholders": [],
+      "gloss": "同 menu_to_collections,被 `%1$s Settings` 吃成了「To 设置」。",
+      "translate": true,
+      "zh": "返回设置"
+    }
+  ]
+}

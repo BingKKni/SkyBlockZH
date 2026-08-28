@@ -1,0 +1,434 @@
+{
+  "source": "玩家实测客户端日志 + 运行时采集(logs/skyzh-capture,2026-08-21)",
+  "fetched_at": "2026-08-21",
+  "verified_ingame": true,
+  "gui_context": "Tab 列表里和岛屿无关的几个小节:市长选举、活动、合作成员、宠物训练",
+  "lines": [
+    {
+      "id": "tab_row_event",
+      "context": "当前限时活动那一行的标签",
+      "text": "Event:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "活动:"
+    },
+    {
+      "id": "tab_row_starts_in",
+      "context": "活动还有多久开始",
+      "text": "Starts in:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "距开始:"
+    },
+    {
+      "id": "tab_row_ends_in",
+      "context": "活动还有多久结束",
+      "text": "Ends In:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "距结束:"
+    },
+    {
+      "id": "tab_row_fire_sales",
+      "context": "限时特卖小节标题及当前商品数量",
+      "raw": "§c§lFire Sales: §f(%s)",
+      "text": "Fire Sales: (%s)",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前特卖商品数量",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "限时特卖: (%s)",
+      "segments": [
+        {
+          "color": "§c§l",
+          "text": "Fire Sales: ",
+          "zh": "限时特卖: "
+        },
+        {
+          "color": "§f",
+          "text": "(%s)",
+          "zh": "(%s)"
+        }
+      ]
+    },
+    {
+      "id": "tab_row_election_time",
+      "context": "距离市长选举结束或刷新还剩多久",
+      "raw": "§e§lElection: §b%s",
+      "text": "Election: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "剩余时间,单位由服务器按长短换,整段交给 duration 换算",
+          "type": "duration",
+          "example": "2d"
+        }
+      ],
+      "gloss": "单位字母不能写死在模板里。以前这一条写的是 `%sh`,剩下一天以上时服务器发的是 `2d`,于是整行匹配不上、一直是英文。`type: duration` 一条管 `2d` / `40h` / `2h 14m` 全部写法,中文单位由 text/Capture.java 换算,同一套也用在宠物训练那一行上。",
+      "translate": true,
+      "zh": "选举: %s",
+      "segments": [
+        {
+          "color": "§e§l",
+          "text": "Election: ",
+          "zh": "选举: "
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "tab_row_pet_training",
+      "context": "私人岛 Tab 列表中的宠物训练小节标题",
+      "text": "Pet Training:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "宠物训练:"
+    },
+    {
+      "id": "tab_row_minions_count",
+      "context": "私人岛 Tab 列表中的已放置小人数与槽位上限",
+      "raw": "§b§lMinions: §f%1$s§7/§r%2$s",
+      "text": "Minions: %1$s/%2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "已放置数量",
+          "type": "number",
+          "example": "19"
+        },
+        {
+          "token": "%2$s",
+          "desc": "槽位上限",
+          "type": "number",
+          "example": "19"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "小人: %1$s/%2$s",
+      "segments": [
+        {
+          "color": "§b§l",
+          "text": "Minions: ",
+          "zh": "小人: "
+        },
+        {
+          "color": "§f",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "/",
+          "zh": "/"
+        },
+        {
+          "color": "§r",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ]
+    },
+    {
+      "id": "tab_row_coop",
+      "context": "合作档案成员小节的标题",
+      "text": "Coop (%s)",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "成员数",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "合作 (%s)",
+      "raw": "§b§lCoop §f(%s)",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "Coop ",
+          "zh": "合作 "
+        },
+        {
+          "color": "§f",
+          "text": "(%s)",
+          "zh": "(%s)"
+        }
+      ]
+    },
+    {
+      "id": "tab_row_guests",
+      "context": "访客小节的标题",
+      "text": "Guests (%s)",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "访客数",
+          "type": "number",
+          "example": "0"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "访客 (%s)",
+      "raw": "§5§lGuests §f(%s)",
+      "segments": [
+        {
+          "color": "§5",
+          "text": "Guests ",
+          "zh": "访客 "
+        },
+        {
+          "color": "§f",
+          "text": "(%s)",
+          "zh": "(%s)"
+        }
+      ]
+    },
+    {
+      "id": "tab_row_member_offline",
+      "context": "合作成员离线多久",
+      "raw": "§a%1$s §7(Offline %2$s)",
+      "text": "%1$s (Offline %2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "成员的玩家名,保留原样",
+          "type": "player_name",
+          "example": "Lumekar"
+        },
+        {
+          "token": "%2$s",
+          "desc": "离线时长",
+          "type": "duration",
+          "example": "35d+"
+        }
+      ],
+      "gloss": "名字和括号之间的空格写死在译文里:引擎只在拉丁字母和汉字相邻时自动补空格,括号不算汉字。",
+      "translate": true,
+      "zh": "%1$s (离线 %2$s)",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "(Offline %2$s)",
+          "zh": "(离线 %2$s)"
+        }
+      ]
+    },
+    {
+      "id": "tab_row_pet_training_entry",
+      "context": "宠物训练小节里的一行:第几只、等级、宠物名、剩余时间",
+      "text": "%1$s: [Lvl %2$s] %3$s %4$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "序号",
+          "type": "number",
+          "example": "1"
+        },
+        {
+          "token": "%2$s",
+          "desc": "宠物等级",
+          "type": "number",
+          "example": "99"
+        },
+        {
+          "token": "%3$s",
+          "desc": "宠物名,查不到词表就保留英文",
+          "type": "raw",
+          "example": "Ghoul"
+        },
+        {
+          "token": "%4$s",
+          "desc": "剩余时间",
+          "type": "duration",
+          "example": "23d"
+        }
+      ],
+      "gloss": "和 Tab_Widget_Enum.json 的 tab_row_pet_entry(“[Lvl %1$s] %2$s”)是同一套写法,这条多了序号和剩余时间,是宠物训练小节专用的整行。",
+      "translate": true,
+      "zh": "%1$s: [%2$s 级] %3$s %4$s",
+      "raw": " %1$s: §7[Lvl %2$s] §5%3$s §b%4$s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "%1$s: ",
+          "zh": "%1$s: "
+        },
+        {
+          "color": "§7",
+          "text": "[Lvl %2$s] ",
+          "zh": "[%2$s 级] "
+        },
+        {
+          "color": "§5",
+          "text": "%3$s ",
+          "zh": "%3$s "
+        },
+        {
+          "color": "§b",
+          "text": "%4$s",
+          "zh": "%4$s"
+        }
+      ]
+    },
+    {
+      "id": "tab_row_minion_active",
+      "context": "Tab 列表小人小节里的一行:几个、什么小人、几级、状态是运行中",
+      "raw": " %1$sx %2$s %3$s §7[§aACTIVE§7]",
+      "text": "%1$sx %2$s %3$s [ACTIVE]",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "同种同级的小人个数",
+          "type": "number",
+          "example": "18"
+        },
+        {
+          "token": "%2$s",
+          "desc": "小人种类,译名走 _shared/Terms.json,查不到就保持英文",
+          "type": "raw",
+          "example": "Snow"
+        },
+        {
+          "token": "%3$s",
+          "desc": "小人等级(罗马数字)",
+          "type": "tier",
+          "example": "XII"
+        }
+      ],
+      "gloss": "等级那一位必须写成 type: tier。两个相邻的 raw 占位符会在第一个空格处切开,“Hard Stone XII”会被切成“Hard”+“Stone XII”,渲染出来是乱的——说清楚后一半是罗马数字,前一半才知道该停在哪(见 text/Capture 的 TIER)。这一条是实测采到的。个数沿用原文的 `18x` 写法而不是译成“18 个”:这一列里紧跟着的是小人种类和等级,`x` 是玩家在游戏里到处都见得到的计数写法,比量词更短也更容易和后面的等级区分开。",
+      "translate": true,
+      "zh": "%1$sx %2$s小人 %3$s [运行中]",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "%1$sx %2$s %3$s ",
+          "zh": "%1$sx %2$s小人 %3$s "
+        },
+        {
+          "color": "§7",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§a",
+          "text": "ACTIVE",
+          "zh": "运行中"
+        },
+        {
+          "color": "§7",
+          "text": "]",
+          "zh": "]"
+        }
+      ]
+    },
+    {
+      "id": "tab_row_minion_full",
+      "context": "Tab 列表小人小节里的一行:几个、什么小人、几级、状态是已满",
+      "raw": " %1$sx %2$s %3$s §7[§cFULL§7]",
+      "text": "%1$sx %2$s %3$s [FULL]",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "同种同级的小人个数",
+          "type": "number",
+          "example": "18"
+        },
+        {
+          "token": "%2$s",
+          "desc": "小人种类,译名走 _shared/Terms.json,查不到就保持英文",
+          "type": "raw",
+          "example": "Snow"
+        },
+        {
+          "token": "%3$s",
+          "desc": "小人等级(罗马数字)",
+          "type": "tier",
+          "example": "XII"
+        }
+      ],
+      "gloss": "等级那一位必须写成 type: tier。两个相邻的 raw 占位符会在第一个空格处切开,“Hard Stone XII”会被切成“Hard”+“Stone XII”,渲染出来是乱的——说清楚后一半是罗马数字,前一半才知道该停在哪(见 text/Capture 的 TIER)。这一条没实测到,按同一结构写的;颜色码只是记录用,引擎渲染时读的是服务器当场发的颜色。",
+      "translate": true,
+      "zh": "%1$sx %2$s小人 %3$s [已满]",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "%1$sx %2$s %3$s ",
+          "zh": "%1$sx %2$s小人 %3$s "
+        },
+        {
+          "color": "§7",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§c",
+          "text": "FULL",
+          "zh": "已满"
+        },
+        {
+          "color": "§7",
+          "text": "]",
+          "zh": "]"
+        }
+      ]
+    },
+    {
+      "id": "tab_footer_ender_chest_pages",
+      "context": "Tab 页脚中的账号升级剩余时间:末影箱页数",
+      "raw": "§eEnder Chest Pages %1$s §f%2$s Days",
+      "text": "Ender Chest Pages %1$s %2$s Days",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "升级等级,罗马数字",
+          "type": "tier",
+          "example": "III"
+        },
+        {
+          "token": "%2$s",
+          "desc": "剩余天数",
+          "type": "number",
+          "example": "4"
+        }
+      ],
+      "gloss": "Ender Chest 沿用《我的世界》官方译名“末影箱”。",
+      "translate": true,
+      "zh": "末影箱页数 %1$s %2$s 天",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Ender Chest Pages %1$s ",
+          "zh": "末影箱页数 %1$s "
+        },
+        {
+          "color": "§f",
+          "text": "%2$s Days",
+          "zh": "%2$s 天"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,439 @@
+{
+  "source": "运行时采集(logs/skyzh-capture,2026-08-27)+ https://hypixelskyblock.minecraft.wiki/w/The_Forge/UI",
+  "fetched_at": "2026-08-27",
+  "verified_ingame": true,
+  "gui_context": "熔炉盆地(Forge Basin)那座熔炉的界面。主菜单是七个熔炼槽加一本配方书,点进去是「选择工序」的九个大类。界面标题已经在 Mining/GUI_Title/The_Forge.json 里翻好了(熔炉 / 选择工序),这里是格子里的名字和 Lore。",
+  "lines": [
+    {
+      "id": "forge_slot",
+      "context": "主菜单里每一个熔炼槽的格子名",
+      "raw": "§aSlot #%s",
+      "text": "Slot #%s",
+      "placeholders": [
+        {"token": "%s", "desc": "槽位编号,1 到 7", "type": "number", "example": "3"}
+      ],
+      "gloss": "写法和界面标题 forge_select_process_slot(「选择工序(3 号槽)」)保持一致。",
+      "translate": true,
+      "zh": "%s 号槽"
+    },
+    {
+      "id": "forge_slot_desc_1",
+      "context": "空槽的说明,英文因排版拆成两行,合并成一句翻译",
+      "raw": "§7View and start forge processes",
+      "text": "View and start forge processes",
+      "placeholders": [],
+      "gloss": "forge processes 就是熔炉里那些熔炼流程,和界面标题里的「工序」用同一个词。断行位置按实测采集写,不按 wiki:wiki 的 `The Forge/UI` 子页把这段记成三行(`View and start forge` / `processes using the` / `materials that you have.`),游戏里实际是两行。照 wiki 写的话首行就匹配不上,整段一直是英文。",
+      "translate": true,
+      "zh": "在这里查看并开始熔炼工序,用的是你自己身上的材料。"
+    },
+    {
+      "id": "forge_slot_desc_2",
+      "context": "接上一行",
+      "raw": "§7using the materials that you have.",
+      "text": "using the materials that you have.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "forge_click_select_process",
+      "context": "空槽底部的操作提示",
+      "raw": "§eClick to select a process!",
+      "text": "Click to select a process!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击选择工序!"
+    },
+    {
+      "id": "forge_currently_making",
+      "context": "槽位正在工作时,格子 Lore 的第一行:在熔炼什么",
+      "raw": "§7Currently making: §6%s",
+      "text": "Currently making: %s",
+      "placeholders": [
+        {"token": "%s", "desc": "正在熔炼的产物名,专有物品名保留英文", "type": "item_name", "example": "Perfect Onyx Gemstone"}
+      ],
+      "gloss": "产物名走 item_name,按需求保留英文——集市和拍卖行是按英文名搜的。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Currently making: ", "zh": "正在熔炼: "},
+        {"color": "§6", "text": "%s", "zh": "%s"}
+      ]
+    },
+    {
+      "id": "forge_time_remaining",
+      "context": "槽位正在工作时的剩余时间",
+      "raw": "§7Time Remaining: §a%s",
+      "text": "Time Remaining: %s",
+      "placeholders": [
+        {"token": "%s", "desc": "剩余时间,单位写法随长短变,整段交给 duration 换算", "type": "duration", "example": "1h 42m 44s"}
+      ],
+      "gloss": "实测这一行有 `1h 43m` 和 `1h 42m 44s` 两种写法,单位字母不能写死在模板里,整段交给 duration 一条管全部。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Time Remaining: ", "zh": "剩余时间: "},
+        {"color": "§a", "text": "%s", "zh": "%s"}
+      ]
+    },
+    {
+      "id": "forge_claim_all",
+      "context": "主菜单的一键领取按钮",
+      "raw": "§aClaim All",
+      "text": "Claim All",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "全部领取"
+    },
+    {
+      "id": "forge_claim_all_desc_1",
+      "context": "一键领取的说明,英文拆成两行,合并成一句",
+      "raw": "§7Claims all of your items that have",
+      "text": "Claims all of your items that have",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "领取所有已经熔炼完成的物品。"
+    },
+    {
+      "id": "forge_claim_all_desc_2",
+      "context": "接上一行",
+      "raw": "§7finished forging.",
+      "text": "finished forging.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "forge_nothing_to_claim",
+      "context": "没有已完成的物品时,一键领取按钮上的提示",
+      "raw": "§cNothing to claim!",
+      "text": "Nothing to claim!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "没有可领取的物品!"
+    },
+    {
+      "id": "forge_recipes",
+      "context": "主菜单右下角那本配方书的格子名",
+      "raw": "§6Forge Recipes",
+      "text": "Forge Recipes",
+      "placeholders": [],
+      "gloss": "实测这一行本来被 Hub_General/GUI_Item/Recipe_Book.json#recipe_category(`%1$s Recipes`)应答,`%1$s` 捕到 Forge 之后保持英文,屏幕上是「Forge 配方」。整行记录走精确哈希表,永远优先于模板,补一条即可。",
+      "translate": true,
+      "zh": "熔炉配方"
+    },
+    {
+      "id": "forge_recipes_desc_1",
+      "context": "配方书的说明,英文拆成两行,合并成一句",
+      "raw": "§7View all §6Forge Recipes §7and their",
+      "text": "View all Forge Recipes and their",
+      "placeholders": [],
+      "gloss": "这一行自己有三段颜色,所以合并后的整句要按段拆开写,不能只填顶层 zh——只填一整行的话译文会被整段刷成第一段的灰色,金色的「熔炉配方」就没了(启动日志会点名这条记录压平了颜色)。下一行是排版拆出来的尾巴,标 continuation 删掉。",
+      "translate": true,
+      "zh": "查看全部熔炉配方,以及各自的解锁条件。",
+      "segments": [
+        {"color": "§7", "text": "View all ", "zh": "查看全部"},
+        {"color": "§6", "text": "Forge Recipes ", "zh": "熔炉配方"},
+        {"color": "§7", "text": "and their", "zh": ",以及各自的解锁条件。"}
+      ]
+    },
+    {
+      "id": "forge_recipes_desc_2",
+      "context": "接上一行",
+      "raw": "§7requirements to unlock.",
+      "text": "requirements to unlock.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "forge_process_refining",
+      "context": "「选择工序」里的大类:精炼",
+      "raw": "§aRefining",
+      "text": "Refining",
+      "placeholders": [],
+      "gloss": "把矿石炼成更值钱的矿石(Refined Mithril 之类),译「精炼」;和下面的 Forging(炼成零件)分开。",
+      "translate": true,
+      "zh": "精炼"
+    },
+    {
+      "id": "forge_process_refining_desc_1",
+      "context": "精炼的说明,英文拆成两行",
+      "raw": "§7Refine your ores into more valuable",
+      "text": "Refine your ores into more valuable",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "把你的矿石精炼成更值钱的矿石。"
+    },
+    {
+      "id": "forge_process_refining_desc_2",
+      "context": "接上一行",
+      "raw": "§7ores.",
+      "text": "ores.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "forge_process_forging",
+      "context": "「选择工序」里的大类:锻造",
+      "raw": "§aForging",
+      "text": "Forging",
+      "placeholders": [],
+      "gloss": "把矿石炼成装备用的零件,译「锻造」。",
+      "translate": true,
+      "zh": "锻造"
+    },
+    {
+      "id": "forge_process_forging_desc_1",
+      "context": "锻造的说明,英文拆成两行,合并成一句",
+      "raw": "§7Refine your ores into parts used in",
+      "text": "Refine your ores into parts used in",
+      "placeholders": [],
+      "gloss": "wiki 的 `The Forge/UI` 子页把第二行抄成了 `lots of year`,那是抄漏——用户 2026-08-27 实测确认是 `lots of gear`。这一句合并成一行翻译,句中的「精炼」沿用 Refining 那一类的用词。",
+      "translate": true,
+      "zh": "把你的矿石精炼成各种装备要用的零件。"
+    },
+    {
+      "id": "forge_process_forging_desc_2",
+      "context": "接上一行",
+      "raw": "§7lots of gear.",
+      "text": "lots of gear.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "forge_process_tools",
+      "context": "「选择工序」里的大类:工具",
+      "raw": "§aTools",
+      "text": "Tools",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "工具"
+    },
+    {
+      "id": "forge_process_tools_desc",
+      "context": "工具类的说明,单独一行",
+      "raw": "§7Forge your ore into various tools.",
+      "text": "Forge your ore into various tools.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "把你的矿石锻造成各种工具。"
+    },
+    {
+      "id": "forge_process_gear",
+      "context": "「选择工序」里的大类:装备",
+      "raw": "§aGear",
+      "text": "Gear",
+      "placeholders": [],
+      "gloss": "这一类里既有饰品也有护甲和装备件,用统称「装备」。",
+      "translate": true,
+      "zh": "装备"
+    },
+    {
+      "id": "forge_process_gear_desc_1",
+      "context": "装备类的说明,英文拆成两行",
+      "raw": "§7Forge helpful accessories, armor",
+      "text": "Forge helpful accessories, armor",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "锻造实用的饰品、护甲和装备件。"
+    },
+    {
+      "id": "forge_process_gear_desc_2",
+      "context": "接上一行",
+      "raw": "§7pieces, and equipment pieces.",
+      "text": "pieces, and equipment pieces.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "forge_process_reforge_stones",
+      "context": "「选择工序」里的大类:重铸石",
+      "raw": "§aReforge Stones",
+      "text": "Reforge Stones",
+      "placeholders": [],
+      "gloss": "和 Mining/GUI_Title/Reforge.json 里的同名标题译法一致;那一条在 GUI_Title 面上,这一条在物品名面上,两个面互不通用,各要一条。",
+      "translate": true,
+      "zh": "重铸石"
+    },
+    {
+      "id": "forge_process_reforge_stones_desc_1",
+      "context": "重铸石类的说明,英文拆成两行",
+      "raw": "§7Forge new reforges for your mining",
+      "text": "Forge new reforges for your mining",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "为你的挖矿工具锻造新的重铸属性。"
+    },
+    {
+      "id": "forge_process_reforge_stones_desc_2",
+      "context": "接上一行",
+      "raw": "§7tools.",
+      "text": "tools.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "forge_process_drill_parts",
+      "context": "「选择工序」里的大类:钻头配件",
+      "raw": "§aDrill Parts",
+      "text": "Drill Parts",
+      "placeholders": [],
+      "gloss": "和 Mining/GUI_Title/Drill_Parts_Installation.json 的译名一致,理由同 forge_process_reforge_stones。",
+      "translate": true,
+      "zh": "钻头配件"
+    },
+    {
+      "id": "forge_process_drill_parts_desc_1",
+      "context": "钻头配件类的说明,英文拆成两行",
+      "raw": "§7Forge your ore into improvements",
+      "text": "Forge your ore into improvements",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "把你的矿石锻造成钻头的强化配件。"
+    },
+    {
+      "id": "forge_process_drill_parts_desc_2",
+      "context": "接上一行",
+      "raw": "§7for your Drill.",
+      "text": "for your Drill.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "forge_process_perfect_gemstones",
+      "context": "「选择工序」里的大类:完美宝石",
+      "raw": "§aPerfect Gemstones",
+      "text": "Perfect Gemstones",
+      "placeholders": [],
+      "gloss": "和 Mining/GUI_Title/Gemstone_Grinder.json 的译名一致,理由同 forge_process_reforge_stones。",
+      "translate": true,
+      "zh": "完美宝石"
+    },
+    {
+      "id": "forge_process_perfect_gemstones_desc_1",
+      "context": "完美宝石类的说明,英文拆成两行",
+      "raw": "§7Refine your Gemstones into their",
+      "text": "Refine your Gemstones into their",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "把你的宝石精炼到最纯的形态。"
+    },
+    {
+      "id": "forge_process_perfect_gemstones_desc_2",
+      "context": "接上一行",
+      "raw": "§7purest form.",
+      "text": "purest form.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "forge_process_pets",
+      "context": "「选择工序」里的大类:宠物",
+      "raw": "§aPets",
+      "text": "Pets",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "宠物"
+    },
+    {
+      "id": "forge_process_pets_desc",
+      "context": "宠物类的说明。原文那个省略号和问号是 Hypixel 自己在开玩笑——熔炉居然能锻造宠物",
+      "raw": "§7Forge... Pets? and Pet Items.",
+      "text": "Forge... Pets? and Pet Items.",
+      "placeholders": [],
+      "gloss": "省略号和问号照原样保留,那是原文的语气(「锻造……宠物?」),不是排版噪音;抹平了就成了一句平铺直叙的说明,和别的大类没区别了。",
+      "translate": true,
+      "zh": "锻造……宠物? 以及宠物道具。"
+    },
+    {
+      "id": "forge_process_other",
+      "context": "「选择工序」里的大类:其他",
+      "raw": "§aOther",
+      "text": "Other",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "其他"
+    },
+    {
+      "id": "forge_process_other_desc",
+      "context": "其他类的说明,单独一行",
+      "raw": "§7Forge other miscellaneous items.",
+      "text": "Forge other miscellaneous items.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "锻造其他零碎物品。"
+    },
+    {
+      "id": "forge_search",
+      "context": "「选择工序」底部的搜索格",
+      "raw": "§aSearch",
+      "text": "Search",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "搜索"
+    },
+    {
+      "id": "forge_search_desc",
+      "context": "搜索格的说明",
+      "raw": "§7Search all recipes by name!",
+      "text": "Search all recipes by name!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "按名字搜索全部配方!"
+    },
+    {
+      "id": "forge_click_to_browse",
+      "context": "每个大类底部的操作提示",
+      "raw": "§eClick to browse!",
+      "text": "Click to browse!",
+      "placeholders": [],
+      "gloss": "browse 是「翻一翻看看有什么」,不是「浏览器」那个意思。",
+      "translate": true,
+      "zh": "点击浏览!"
+    }
+  ],
+  "todo": [
+    "配方书格子里的解锁进度条(`§f——————————————————————————— §e0§6/§e116`)没有收录:整行只有分隔线和数字,没有词,按既有做法不收。上面那一行 `Recipe Book Unlocked: %s` 已经由 Hub_General/GUI_Item/SkyBlock_Menu.json#skyblock_menu_dynamic_unlocked 应答。"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "npc": "Sloth",
+  "source": "玩家实测客户端日志(logs/latest.log,2026-08-27,16:36:51 与 17:05:05 两次触发)",
+  "fetched_at": "2026-08-27",
+  "verified_ingame": true,
+  "gui_context": "大厅里的账号安全提示。说话人写作 `[SECURITY] Sloth`,不是别的 NPC 那种 `[NPC] 名字`——这个前缀和玩家发言的形状一模一样(方括号标签 + 一个词的名字 + 冒号),所以以前既没被翻译也没被采集进来:capture/ChatShape 把它判成了某个玩家的聊天。两边的前缀表现在都补上了这一条,见 text/LineShape 的 SPEAKER_TAGS。",
+  "todo": [
+    "这个 NPC 在 hypixelskyblock.minecraft.wiki 上没有条目(`Sloth` 跳转到宠物页,`Summer Sloth` 跳转到 Salesman),因为它是 Hypixel 全网的安全提示角色而不是 SkyBlock 玩法的一部分。两句台词是逐字从客户端日志抄的,可信;但这个角色还有没有别的台词、会不会随活动换词,没有把握。"
+  ],
+  "messages": [
+    {
+      "id": "sloth_account_at_risk",
+      "context": "第一句:提醒玩家哪些行为会危及账号安全",
+      "raw": "Downloading suspicious mods or visiting untrusted discord servers can put your account at risk. It is up to you to keep your account secure!",
+      "text": "Downloading suspicious mods or visiting untrusted discord servers can put your account at risk. It is up to you to keep your account secure!",
+      "placeholders": [],
+      "gloss": "discord servers 指 Discord 上的服务器(聊天群),不是 Minecraft 服务器,所以译作「Discord 群」而不是「Discord 服务器」——后者在这句话里会被读成「去别的 Minecraft 服务器有风险」,意思全反了。Discord 是产品名,保留原文。It is up to you 是「这件事得你自己负责」,不是「随你便」。",
+      "translate": true,
+      "zh": "下载来路不明的 Mod、进不可信的 Discord 群，都可能让你的账号出问题。账号安不安全，得靠你自己把关!"
+    },
+    {
+      "id": "sloth_support_articles",
+      "context": "第二句:接着给出两篇帮助文档的链接",
+      "raw": "Here are some helpful support articles that will help you keep your account more secure and avoid losing valuable progress or items.",
+      "text": "Here are some helpful support articles that will help you keep your account more secure and avoid losing valuable progress or items.",
+      "placeholders": [],
+      "gloss": "support articles 是 Hypixel 官网帮助中心的文章,译作「帮助文档」;下面两条链接行(common_security_support_article_*)的译名和这里保持一致。",
+      "translate": true,
+      "zh": "下面这几篇帮助文档能教你把账号护得更牢，别让辛苦攒下的进度和物品打了水漂。"
+    }
+  ]
+}

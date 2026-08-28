@@ -1,0 +1,177 @@
+{
+  "gui": "Bazaar",
+  "source": "runtime capture (SkyZH) 2026-08-20 实测会话",
+  "fetched_at": "2026-08-20",
+  "verified_ingame": true,
+  "gui_context": "集市界面标题。",
+  "titles": [
+    {
+      "id": "gui_title_bazaar_category",
+      "context": "集市按分类浏览时的标题,箭头后面是分类名",
+      "text": "Bazaar ➜ %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "集市分类名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Oddities"
+        }
+      ],
+      "gloss": "分类名不写死在模板里:集市分类有十来个,写死就成了 README 第 4 节禁止的值枚举。",
+      "translate": true,
+      "zh": "集市 ➜ %s"
+    },
+    {
+      "id": "gui_title_bazaar_essence",
+      "context": "集市「精华」分类下的子页标题",
+      "text": "Essence ➜ %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "精华种类名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Fossil Essence"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "精华 ➜ %s"
+    },
+    {
+      "id": "gui_title_bazaar_fossils",
+      "context": "集市「化石」分类下的子页标题",
+      "text": "Fossils ➜ %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "化石种类名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Tusk Fossil"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "化石 ➜ %s"
+    },
+    {
+      "id": "gui_title_bazaar_glacite_tunnels",
+      "context": "集市「极冰隧道」分类下的子页标题",
+      "text": "Glacite Tunnels ➜ %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "商品名。物品名保留英文,所以用词表不生效的 item_name;服务器还会把标题截到 31 个字符",
+          "type": "item_name",
+          "example": "Suspicious Scrap"
+        }
+      ],
+      "gloss": "实测里服务器把标题截到了 31 个字符(“Glacite Tunnels ➜ Suspicious Sc”),截断后的半个词查不到词表,占位符原样保留英文即可,不要为截断另写一条。",
+      "translate": true,
+      "zh": "极冰隧道 ➜ %s"
+    },
+    {
+      "id": "gui_title_bazaar_instant_buy",
+      "context": "集市某个商品的「立即购买」页标题",
+      "text": "%s ➜ Instant Buy",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "商品名。物品名保留英文,所以用词表不生效的 item_name",
+          "type": "item_name",
+          "example": "Fossil Essence"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%s ➜ 立即购买"
+    },
+    {
+      "id": "gui_title_bazaar_sell_offer",
+      "context": "集市某个商品的「挂单出售」页标题",
+      "text": "%s ➜ Sell Offer",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "商品名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Tusk Fossil"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%s ➜ 挂单出售"
+    },
+    {
+      "id": "gui_title_bazaar_confirm_instant_buy",
+      "context": "集市立即购买的二次确认界面",
+      "text": "Confirm Instant Buy",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "确认立即购买"
+    },
+    {
+      "id": "gui_title_bazaar_confirm_sell_offer",
+      "context": "集市挂单出售的二次确认界面",
+      "text": "Confirm Sell Offer",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "确认挂单出售"
+    },
+    {
+      "id": "gui_title_bazaar_ask_price",
+      "context": "集市挂单出售时填价格的界面",
+      "text": "At what price are you selling?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你打算卖多少钱?"
+    },
+    {
+      "id": "gui_title_bazaar_confirm_buy_order",
+      "context": "集市购买订单的二次确认界面",
+      "text": "Confirm Buy Order",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "确认购买订单"
+    },
+    {
+      "id": "gui_title_bazaar_order_options",
+      "context": "集市订单的操作选项界面",
+      "text": "Order options",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "订单选项"
+    },
+    {
+      "id": "gui_title_bazaar_how_many_do_you_want",
+      "context": "创建购买订单时选择数量的界面",
+      "text": "How many do you want?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你想要多少?"
+    },
+    {
+      "id": "gui_title_bazaar_how_much_do_you_want_to_pay",
+      "context": "创建购买订单时选择单价的界面",
+      "text": "How much do you want to pay?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你想出价多少?"
+    },
+    {
+      "id": "gui_title_bazaar_coop_orders",
+      "context": "合作社共享的集市订单列表",
+      "text": "Co-op Bazaar Orders",
+      "placeholders": [],
+      "gloss": "co-op 指合作社。",
+      "translate": true,
+      "zh": "合作社集市订单"
+    }
+  ]
+}

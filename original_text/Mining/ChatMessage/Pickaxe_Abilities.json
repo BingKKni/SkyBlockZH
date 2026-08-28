@@ -1,0 +1,120 @@
+{
+  "source": "玩家实测客户端日志(logs/latest.log,2026-08-19)+ https://github.com/hannibal002/SkyHanni 的 ChatFilter.kt / MiningApi.kt 常量(取颜色码)",
+  "fetched_at": "2026-08-19",
+  "verified_ingame": true,
+  "source_note": "这一组消息对所有镐子技能通用(Mining Speed Boost / Pickobulus / Maniac Miner ...),技能名由服务器填进来,译名走 _shared/Terms.json。原先只有 Pickobulus 一个技能有记录,而且是整行一个颜色,游戏里技能名是金色、句子是绿色,译文会被整段刷成绿色——这次按颜色分段重写。",
+  "messages": [
+    {
+      "id": "pickaxe_ability_used",
+      "context": "使用任意镐子技能时的提示",
+      "raw": "§aYou used your §r§6%s §r§aPickaxe Ability!",
+      "text": "You used your %s Pickaxe Ability!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "技能名(山心天赋树里的主动技能)",
+          "type": "raw",
+          "example": "Pickobulus"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你使用了「%s」镐子技能!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "You used your ",
+          "zh": "你使用了"
+        },
+        {
+          "color": "§6",
+          "text": "%s ",
+          "zh": "「%s」"
+        },
+        {
+          "color": "§a",
+          "text": "Pickaxe Ability!",
+          "zh": "镐子技能!"
+        }
+      ]
+    },
+    {
+      "id": "pickaxe_ability_expired",
+      "context": "镐子技能的持续效果结束时的提示",
+      "raw": "§cYour %s has expired!",
+      "text": "Your %s has expired!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "技能名",
+          "type": "raw",
+          "example": "Mining Speed Boost"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的「%s」已结束!"
+    },
+    {
+      "id": "pickaxe_ability_available",
+      "context": "镐子技能冷却结束、可以再次使用时的提示",
+      "raw": "§a§r§6%s §r§ais now available!",
+      "text": "%s is now available!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "技能名",
+          "type": "raw",
+          "example": "Mining Speed Boost"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "「%s」冷却完毕,可以再次使用了!",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "%s ",
+          "zh": "「%s」"
+        },
+        {
+          "color": "§a",
+          "text": "is now available!",
+          "zh": "冷却完毕,可以再次使用了!"
+        }
+      ]
+    },
+    {
+      "id": "pickaxe_ability_cooldown",
+      "context": "镐子技能还在冷却中时右键触发的提示",
+      "text": "Your Pickaxe ability is on cooldown for %ss.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "剩余冷却秒数",
+          "type": "number",
+          "example": "108"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "镐子技能冷却中,还需 %s 秒。"
+    },
+    {
+      "id": "ability_cooldown_generic",
+      "context": "技能冷却中的通用提示(不限镐子技能)",
+      "text": "This ability is on cooldown for %ss.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "剩余冷却秒数",
+          "type": "number",
+          "example": "5"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "该技能冷却中,还需 %s 秒。"
+    }
+  ]
+}

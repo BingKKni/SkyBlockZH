@@ -1,0 +1,314 @@
+{
+  "source": "SkyZH runtime capture (2026-08-26, Mining GUI session)",
+  "fetched_at": "2026-08-26",
+  "verified_ingame": true,
+  "gui_context": "空岛菜单打开后的 Settings 菜单；仅收录通用设置入口、开关状态与说明。",
+  "lines": [
+    {
+      "id": "settings_category",
+      "context": "设置类别入口",
+      "raw": "§a%1$s Settings",
+      "text": "%1$s Settings",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "设置类别名，保持服务器原文",
+          "type": "category_name",
+          "example": "Personal"
+        }
+      ],
+      "gloss": "类别名本身不在这条记录里翻译:它是占位符捕到的值,译名走 _shared/Terms.json,查不到就保持英文。**译文里不要手写空格**——中英之间那个空格由引擎在接缝处按两边的字符自动补(见 text/TranslationEntry.Seam):值还是英文时渲染成「Fishing 宠物」,词表里有译名时渲染成「钓鱼宠物」。手写空格的话后一种会变成「钓鱼 宠物」,两个汉字中间夹一个空格,而中文里没有这种写法。",
+      "translate": true,
+      "zh": "%1$s设置"
+    },
+    {
+      "id": "includes",
+      "context": "设置类别包含内容的标签",
+      "raw": "§7Includes:",
+      "text": "Includes:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "包括:"
+    },
+    {
+      "id": "double_tap_to_drop",
+      "context": "已启用的双击丢弃开关",
+      "raw": "§a✔ §7Double Tap to Drop",
+      "text": "✔ Double Tap to Drop",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "✔ ",
+          "zh": "✔ "
+        },
+        {
+          "color": "§7",
+          "text": "Double Tap to Drop",
+          "zh": "双击丢弃"
+        }
+      ]
+    },
+    {
+      "id": "profile_viewer",
+      "context": "已启用的档案查看器开关",
+      "raw": "§a✔ §7Profile Viewer",
+      "text": "✔ Profile Viewer",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "✔ ",
+          "zh": "✔ "
+        },
+        {
+          "color": "§7",
+          "text": "Profile Viewer",
+          "zh": "档案查看器"
+        }
+      ]
+    },
+    {
+      "id": "player_trading",
+      "context": "已启用的玩家交易开关",
+      "raw": "§a✔ §7Player Trading",
+      "text": "✔ Player Trading",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "✔ ",
+          "zh": "✔ "
+        },
+        {
+          "color": "§7",
+          "text": "Player Trading",
+          "zh": "玩家交易"
+        }
+      ]
+    },
+    {
+      "id": "inventory_full_notifications",
+      "context": "已启用的背包已满通知开关",
+      "raw": "§a✔ §7Inventory Full Notifications",
+      "text": "✔ Inventory Full Notifications",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "✔ ",
+          "zh": "✔ "
+        },
+        {
+          "color": "§7",
+          "text": "Inventory Full Notifications",
+          "zh": "背包已满通知"
+        }
+      ]
+    },
+    {
+      "id": "user_interface_settings",
+      "context": "用户界面设置入口",
+      "raw": "§aUser Interface Settings",
+      "text": "User Interface Settings",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "用户界面设置"
+    },
+    {
+      "id": "user_interface_settings_desc_1",
+      "context": "用户界面设置入口说明首行",
+      "raw": "§7Tweak how information is displayed to",
+      "text": "Tweak how information is displayed to",
+      "placeholders": [],
+      "gloss": "完整句为 Tweak how information is displayed to you.",
+      "translate": true,
+      "zh": "调整向你显示信息的方式。"
+    },
+    {
+      "id": "user_interface_settings_desc_2",
+      "context": "接上一行",
+      "raw": "§7you.",
+      "text": "you.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "player_list_info",
+      "context": "已启用的玩家列表信息开关",
+      "raw": "§a✔ §7Player List Info",
+      "text": "✔ Player List Info",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "✔ ",
+          "zh": "✔ "
+        },
+        {
+          "color": "§7",
+          "text": "Player List Info",
+          "zh": "玩家列表信息"
+        }
+      ]
+    },
+    {
+      "id": "skill_numerals",
+      "context": "已启用的技能数字显示开关",
+      "raw": "§a✔ §7Skill Numerals",
+      "text": "✔ Skill Numerals",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "✔ ",
+          "zh": "✔ "
+        },
+        {
+          "color": "§7",
+          "text": "Skill Numerals",
+          "zh": "技能数字"
+        }
+      ]
+    },
+    {
+      "id": "sound_settings_desc_1",
+      "context": "声音设置入口说明首行",
+      "raw": "§7Edit details about music and sounds",
+      "text": "Edit details about music and sounds",
+      "placeholders": [],
+      "gloss": "完整句为 Edit details about music and sounds that you hear.",
+      "translate": true,
+      "zh": "调整你听到的音乐和音效细节。"
+    },
+    {
+      "id": "sound_settings_desc_2",
+      "context": "接上一行",
+      "raw": "§7that you hear.",
+      "text": "that you hear.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "play_music",
+      "context": "已关闭的播放音乐开关",
+      "raw": "§c✖ §7Play Music",
+      "text": "✖ Play Music",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "✖ ",
+          "zh": "✖ "
+        },
+        {
+          "color": "§7",
+          "text": "Play Music",
+          "zh": "播放音乐"
+        }
+      ]
+    },
+    {
+      "id": "api_settings_desc_1",
+      "context": "API 设置说明首行；英文说明被菜单宽度拆成三行",
+      "raw": "§7The Hypixel API lets apps and",
+      "text": "The Hypixel API lets apps and",
+      "placeholders": [],
+      "gloss": "Hypixel API 为专有服务名，保留英文。完整句为 The Hypixel API lets apps and websites display your player info and games progress.",
+      "translate": true,
+      "zh": "Hypixel API 可让应用和网站显示你的玩家信息及游戏进度。"
+    },
+    {
+      "id": "api_settings_desc_2",
+      "context": "接上一行",
+      "raw": "§7websites display your player info",
+      "text": "websites display your player info",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "api_settings_desc_3",
+      "context": "接上一行",
+      "raw": "§7and games progress.",
+      "text": "and games progress.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "api_current_profile_only",
+      "context": "API 设置的作用范围提示",
+      "raw": "§bAPI settings apply to your current profile only!",
+      "text": "API settings apply to your current profile only!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "API 设置仅应用于当前档案!"
+    },
+    {
+      "id": "tablist_widgets",
+      "context": "Tablist Widget 设置入口",
+      "raw": "§aTablist Widgets",
+      "text": "Tablist Widgets",
+      "placeholders": [],
+      "gloss": "Tablist Widget 为界面功能名，保留英文。",
+      "translate": true,
+      "zh": "Tablist Widget"
+    },
+    {
+      "id": "tablist_widgets_desc_1",
+      "context": "Tablist Widget 设置入口说明首行",
+      "raw": "§7View and manage Tablist Widget",
+      "text": "View and manage Tablist Widget",
+      "placeholders": [],
+      "gloss": "完整句为 View and manage Tablist Widget settings.",
+      "translate": true,
+      "zh": "查看并管理 Tablist Widget 设置。"
+    },
+    {
+      "id": "tablist_widgets_desc_2",
+      "context": "接上一行",
+      "raw": "§7settings.",
+      "text": "settings.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    }
+  ]
+}

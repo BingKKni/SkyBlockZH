@@ -1,0 +1,178 @@
+{
+  "source": "runtime capture (SkyZH) 2026-08-24 实测会话",
+  "fetched_at": "2026-08-24",
+  "verified_ingame": true,
+  "gui_context": "限时特卖(Fire Sale)开始时发送的可点击聊天公告,点击后传送到 Elizabeth。商品名和库存会随每次特卖变化。",
+  "messages": [
+    {
+      "id": "fire_sale_banner",
+      "context": "限时特卖公告标题;两侧的 A 会以乱码效果显示",
+      "raw": "§6§l§kA§r §c§lFIRE SALE §6§l§kA",
+      "text": "A FIRE SALE A",
+      "placeholders": [],
+      "gloss": "Fire Sale 沿用项目既定译名“限时特卖”;两侧字符只用于乱码装饰。",
+      "translate": true,
+      "zh": "A 限时特卖 A",
+      "segments": [
+        {
+          "color": "§6§l§k",
+          "text": "A",
+          "zh": "A"
+        },
+        {
+          "color": "§r",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§c§l",
+          "text": "FIRE SALE ",
+          "zh": "限时特卖 "
+        },
+        {
+          "color": "§6§l§k",
+          "text": "A",
+          "zh": "A"
+        }
+      ]
+    },
+    {
+      "id": "fire_sale_limited_item",
+      "context": "标题下方说明本次正在限时出售一件商品",
+      "raw": "§c♨ §eSelling an item for a limited time!",
+      "text": "♨ Selling an item for a limited time!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "♨ 正在限时出售一件商品!",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "♨ ",
+          "zh": "♨ "
+        },
+        {
+          "color": "§e",
+          "text": "Selling an item for a limited time!",
+          "zh": "正在限时出售一件商品!"
+        }
+      ]
+    },
+    {
+      "id": "fire_sale_item_stock",
+      "context": "限时特卖公告中的商品名和剩余库存",
+      "raw": "§c   ♨ §6%1$s §e(§a%2$s left§e)",
+      "text": "   ♨ %1$s (%2$s left)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "本次特卖的商品名,保留英文",
+          "type": "item_name",
+          "example": "Shelled Ammonite Skin"
+        },
+        {
+          "token": "%2$s",
+          "desc": "剩余库存,服务器自带千分位",
+          "type": "number",
+          "example": "2,175"
+        }
+      ],
+      "gloss": "商品名每次活动都会变化,用严格 item_name 占位符,不把整行做成宽 raw 模板。",
+      "translate": true,
+      "zh": "   ♨ %1$s (剩余 %2$s)",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "   ♨ ",
+          "zh": "   ♨ "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§e",
+          "text": "(",
+          "zh": "(剩余 "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s left",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§e",
+          "text": ")",
+          "zh": ")"
+        }
+      ]
+    },
+    {
+      "id": "fire_sale_warp_deadline",
+      "context": "公告末行:提示在倒计时结束前传送到 Elizabeth 抢购",
+      "raw": "§c♨ §a§l[WARP] §eTo §dElizabeth§e in the next §c%1$sd %2$sh %3$sm §eto grab yours!",
+      "text": "♨ [WARP] To Elizabeth in the next %1$sd %2$sh %3$sm to grab yours!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "剩余天数",
+          "type": "number",
+          "example": "2"
+        },
+        {
+          "token": "%2$s",
+          "desc": "剩余小时数",
+          "type": "number",
+          "example": "19"
+        },
+        {
+          "token": "%3$s",
+          "desc": "剩余分钟数",
+          "type": "number",
+          "example": "29"
+        }
+      ],
+      "gloss": "Elizabeth 是 NPC 人名,保留英文;倒计时拆成三个数字占位符,避免 raw 捕获任意句子。",
+      "translate": true,
+      "zh": "♨ [传送] 前往 Elizabeth,请在接下来的 %1$s 天 %2$s 小时 %3$s 分钟内抢购!",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "♨ ",
+          "zh": "♨ "
+        },
+        {
+          "color": "§a§l",
+          "text": "[WARP] ",
+          "zh": "[传送] "
+        },
+        {
+          "color": "§e",
+          "text": "To ",
+          "zh": "前往 "
+        },
+        {
+          "color": "§d",
+          "text": "Elizabeth",
+          "zh": "Elizabeth"
+        },
+        {
+          "color": "§e",
+          "text": " in the next ",
+          "zh": ",请在接下来的 "
+        },
+        {
+          "color": "§c",
+          "text": "%1$sd %2$sh %3$sm ",
+          "zh": "%1$s 天 %2$s 小时 %3$s 分钟"
+        },
+        {
+          "color": "§e",
+          "text": "to grab yours!",
+          "zh": "内抢购!"
+        }
+      ]
+    }
+  ]
+}

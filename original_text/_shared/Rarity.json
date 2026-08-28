@@ -1,0 +1,84 @@
+{
+  "purpose": "全项目共享的稀有度词表。几乎每个物品 Lore 最后一行都是 '<稀有度> <物品类型>' 的形式(如 'RARE DRILL'、'EPIC HELMET'),两部分是分开的独立词,不要在这里拼成完整行——物品类型标签(DRILL/HELMET/ACCESSORY/...)因为多样且和物品强相关,继续留在各物品自己的文件里,只有稀有度词本身抽到这里共享。",
+  "note": "所有玩法分类共用同一份稀有度词表,不要在别的分类下另建一份。",
+  "verified_ingame": false,
+  "source_note": "稀有度词本身是 SkyBlock 全局固定常量,来自多个已采集物品文件(NEU-REPO 来源)的观察归纳,顺序按游戏内由低到高排列。",
+  "entries": [
+    {
+      "id": "rarity_common",
+      "raw": "§f§lCOMMON",
+      "text": "COMMON",
+      "translate": true,
+      "zh": "普通"
+    },
+    {
+      "id": "rarity_uncommon",
+      "raw": "§a§lUNCOMMON",
+      "text": "UNCOMMON",
+      "translate": true,
+      "zh": "罕见"
+    },
+    {
+      "id": "rarity_rare",
+      "raw": "§9§lRARE",
+      "text": "RARE",
+      "translate": true,
+      "zh": "稀有"
+    },
+    {
+      "id": "rarity_epic",
+      "raw": "§5§lEPIC",
+      "text": "EPIC",
+      "translate": true,
+      "zh": "史诗"
+    },
+    {
+      "id": "rarity_legendary",
+      "raw": "§6§lLEGENDARY",
+      "text": "LEGENDARY",
+      "translate": true,
+      "zh": "传说"
+    },
+    {
+      "id": "rarity_mythic",
+      "raw": "§d§lMYTHIC",
+      "text": "MYTHIC",
+      "translate": true,
+      "zh": "神话"
+    },
+    {
+      "id": "rarity_divine",
+      "raw": "§b§lDIVINE",
+      "text": "DIVINE",
+      "translate": true,
+      "zh": "神圣",
+      "gloss": "待核实是否实际存在于当前游戏版本,先按已知稀有度体系记录。"
+    },
+    {
+      "id": "rarity_special",
+      "raw": "§c§lSPECIAL",
+      "text": "SPECIAL",
+      "translate": true,
+      "zh": "特殊"
+    },
+    {
+      "id": "rarity_very_special",
+      "raw": "§c§lVERY SPECIAL",
+      "text": "VERY SPECIAL",
+      "translate": true,
+      "zh": "超级特殊"
+    },
+    {
+      "id": "rarity_admin",
+      "raw": "§4§lADMIN",
+      "text": "ADMIN",
+      "translate": true,
+      "zh": "管理员",
+      "gloss": "极少数管理员/活动限定物品使用,待核实是否需要收录。"
+    }
+  ],
+  "format_note": "实际游戏 Lore 里稀有度词永远带 §l(粗体)代码,格式是 '<颜色码>§l<稀有度>' 或与物品类型标签拼在一起变成 '<颜色码>§l<稀有度> <类型>'(如 '§9§lRARE DRILL')。本表 raw 字段已包含 §l。当稀有度词单独成行(没有类型后缀,如饰品/配件类物品)时可以直接 ref 本表;和类型标签拼在一起时,按 README 5.6 末尾 todo 的约定,物品文件里保留完整行,额外加 'rarity_ref' 字段指向本表对应 id。",
+  "todo": [
+    "本表由 Mining 采集过程中顺手归纳,尚未逐一在游戏内核实每个稀有度的确切颜色码,后续任一分类遇到稀有度词时应引用本表而不是新建,若发现颜色码有误请直接修正本表。"
+  ]
+}

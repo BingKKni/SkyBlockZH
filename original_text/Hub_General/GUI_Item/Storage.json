@@ -1,0 +1,65 @@
+{
+  "source": "SkyZH runtime capture (2026-08-27, Mining GUI session)",
+  "fetched_at": "2026-08-27",
+  "verified_ingame": true,
+  "gui_context": "空岛菜单打开后的 Storage 菜单；仅收录通用仓储入口、状态与说明。",
+  "lines": [
+    {"id": "ender_chest", "context": "末影箱入口", "raw": "§aEnder Chest", "text": "Ender Chest", "placeholders": [], "gloss": "Minecraft 通用容器名。", "translate": true, "zh": "末影箱"},
+    {
+      "id": "ender_chest_desc_1",
+      "context": "末影箱入口说明首行",
+      "raw": "§7Store global items you can access",
+      "text": "Store global items you can access",
+      "placeholders": [],
+      "gloss": "完整句为 Store global items you can access anywhere in your ender chest.",
+      "translate": true,
+      "zh": "在末影箱中存放可随时取用的全局物品。"
+    },
+    {"id": "ender_chest_desc_2", "context": "接上一行", "raw": "§7anywhere in your ender chest.", "text": "anywhere in your ender chest.", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
+    {"id": "ender_chest_page", "context": "末影箱分页入口", "raw": "§aEnder Chest Page %1$s", "text": "Ender Chest Page %1$s", "placeholders": [{"token": "%1$s", "desc": "页码", "type": "number", "example": "1"}], "gloss": "", "translate": true, "zh": "末影箱第 %1$s 页"},
+    {"id": "left_click_open", "ref": "_shared/Menu_Common.json#menu_left_click_to_open", "context": "打开仓储页的操作提示"},
+    {"id": "right_click_change_icon", "ref": "_shared/Menu_Common.json#menu_right_click_to_change_icon", "context": "更换仓储页图标的操作提示"},
+    {"id": "locked_page", "ref": "_shared/Menu_Common.json#menu_locked_page", "context": "未开放的仓储页"},
+    {
+      "id": "backpack_storage_desc_1",
+      "context": "背包槽位说明首行；英文说明被菜单宽度拆成三行",
+      "raw": "§7Place backpack items in these slots",
+      "text": "Place backpack items in these slots",
+      "placeholders": [],
+      "gloss": "完整句为 Place backpack items in these slots to use them as additional storage that can be accessed anywhere.",
+      "translate": true,
+      "zh": "将收纳背包放入这些槽位，作为可随时取用的额外存储空间。"
+    },
+    {"id": "backpack_storage_desc_2", "context": "接上一行", "raw": "§7to use them as additional storage", "text": "to use them as additional storage", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
+    {"id": "backpack_storage_desc_3", "context": "接上一行", "raw": "§7that can be accessed anywhere.", "text": "that can be accessed anywhere.", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
+    {"id": "backpack_slot", "context": "已放置收纳背包的槽位", "raw": "§6Backpack Slot %1$s", "text": "Backpack Slot %1$s", "placeholders": [{"token": "%1$s", "desc": "槽位编号", "type": "number", "example": "1"}], "gloss": "", "translate": true, "zh": "收纳背包槽位 %1$s"},
+    {
+      "id": "backpack_capacity",
+      "context": "收纳背包容量状态",
+      "raw": "§7This backpack has §a%1$s§7 slots.",
+      "text": "This backpack has %1$s slots.",
+      "placeholders": [{"token": "%1$s", "desc": "背包槽位数", "type": "number", "example": "45"}],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "This backpack has ", "zh": "此收纳背包有 "},
+        {"color": "§a", "text": "%1$s", "zh": "%1$s"},
+        {"color": "§7", "text": " slots.", "zh": " 个槽位。"}
+      ]
+    },
+    {"id": "right_click_remove", "ref": "_shared/Menu_Common.json#menu_right_click_to_remove", "context": "移除收纳背包的操作提示"},
+    {"id": "empty_backpack_slot", "context": "空的收纳背包槽位", "raw": "§eEmpty Backpack Slot %1$s", "text": "Empty Backpack Slot %1$s", "placeholders": [{"token": "%1$s", "desc": "槽位编号", "type": "number", "example": "4"}], "gloss": "", "translate": true, "zh": "空收纳背包槽位 %1$s"},
+    {
+      "id": "place_backpack_desc_1",
+      "context": "放入收纳背包的操作提示首行",
+      "raw": "§eLeft-click a backpack item on this",
+      "text": "Left-click a backpack item on this",
+      "placeholders": [],
+      "gloss": "完整句为 Left-click a backpack item on this slot to place it!",
+      "translate": true,
+      "zh": "左键点击此槽位中的收纳背包以放入!"
+    },
+    {"id": "place_backpack_desc_2", "context": "接上一行", "raw": "§eslot to place it!", "text": "slot to place it!", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""}
+  ]
+}

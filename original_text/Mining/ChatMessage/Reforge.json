@@ -1,0 +1,70 @@
+{
+  "source": "https://raw.githubusercontent.com/hannibal002/SkyHanni-REPO/main/constants/regexesModern.json",
+  "fetched_at": "2026-08-18",
+  "verified_ingame": false,
+  "source_note": "数据来自开源客户端 Mod SkyHanni 的 SkyHanni-REPO 仓库 constants/regexesModern.json (用于解析游戏内文本的正则表达式常量),已去除正则语法/颜色码还原成干净模板文本, 可信度高于 Wiki 摘要,但未逐条在游戏内截图核对,verified_ingame 仍为 false。",
+  "messages": [
+    {
+      "id": "reforge_fail_cooldown",
+      "context": "重铸冷却中时的失败提示(两种随机文案之一)",
+      "text": "Wait a moment before reforging again!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "请稍等片刻再重铸!"
+    },
+    {
+      "id": "reforge_fail_cooldown_2",
+      "context": "重铸冷却中时的失败提示(两种随机文案之二)",
+      "text": "Whoa! Slow down there!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "哇! 慢一点!"
+    },
+    {
+      "id": "reforge_success_reforge",
+      "context": "重铸成功提示(赋予重铸词条)",
+      "text": "You reforged your %s into a(n) %s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "原物品名称,专有名词不翻译",
+          "type": "item_name",
+          "example": "Diamond Pickaxe"
+        },
+        {
+          "token": "%2$s",
+          "desc": "重铸后的完整物品名称(含重铸词前缀)",
+          "type": "item_name",
+          "example": "Stellar Diamond Pickaxe"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你把 %1$s 重铸成了 %2$s!"
+    },
+    {
+      "id": "reforge_success_apply",
+      "context": "重铸成功提示(使用重铸材料/重铸石)",
+      "text": "You applied a(n) %s to your %s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "使用的重铸材料/重铸石名称",
+          "type": "item_name",
+          "example": "Titanic Reforge Stone"
+        },
+        {
+          "token": "%2$s",
+          "desc": "被重铸的物品名称",
+          "type": "item_name",
+          "example": "Mithril Drill SX-R226"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你把 %1$s 用在了 %2$s 上!"
+    }
+  ]
+}

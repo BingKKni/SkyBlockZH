@@ -1,0 +1,104 @@
+{
+  "source": "runtime capture (SkyZH) 2026-08-20 实测会话",
+  "fetched_at": "2026-08-20",
+  "verified_ingame": true,
+  "gui_context": "连杀(Kill Combo)机制的提示。属于战斗玩法,但在任何刷怪的地方都会出现,本轮是在矮人矿山打哥布林时采到的。",
+  "messages": [
+    {
+      "id": "kill_combo_reached",
+      "context": "连杀数达到某个档位时的动作栏/聊天提示,后半句是这一档给的加成",
+      "raw": "§a§l+%1$s Kill Combo §b+3% ✯ Magic Find",
+      "text": "+%1$s Kill Combo +%2$s%% ✯ Magic Find",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前连杀数",
+          "type": "number",
+          "example": "5"
+        },
+        {
+          "token": "%2$s",
+          "desc": "这一档给的魔法寻宝加成",
+          "type": "number",
+          "example": "3"
+        }
+      ],
+      "gloss": "Magic Find 已确定译“魔法寻宝”,见 GLOSSARY.md 的物品 Lore 词汇表。",
+      "translate": true,
+      "zh": "+%1$s 连杀 +%2$s%% ✯ 魔法寻宝",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "+%1$s Kill Combo ",
+          "zh": "+%1$s 连杀"
+        },
+        {
+          "color": "§b",
+          "text": "+%2$s%% ✯ Magic Find",
+          "zh": " +%2$s%% ✯ 魔法寻宝"
+        }
+      ]
+    },
+    {
+      "id": "kill_combo_reached_coins",
+      "context": "同上,这一档给的是每次击杀额外硬币",
+      "raw": "§a§l+10 Kill Combo §8+§610 §7coins per kill",
+      "text": "+%1$s Kill Combo +%2$s coins per kill",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前连杀数",
+          "type": "number",
+          "example": "10"
+        },
+        {
+          "token": "%2$s",
+          "desc": "每次击杀额外获得的硬币",
+          "type": "number",
+          "example": "10"
+        }
+      ],
+      "gloss": "英文“coins per kill”在句尾,中文把“每次击杀”提到了数值前面。",
+      "translate": true,
+      "zh": "+%1$s 连杀 每次击杀 +%2$s 硬币",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "+%1$s Kill Combo ",
+          "zh": "+%1$s 连杀"
+        },
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": " 每次击杀 +"
+        },
+        {
+          "color": "§6",
+          "text": "%2$s ",
+          "zh": "%2$s "
+        },
+        {
+          "color": "§7",
+          "text": "coins per kill",
+          "zh": "硬币"
+        }
+      ]
+    },
+    {
+      "id": "kill_combo_expired",
+      "context": "连杀中断",
+      "text": "Your Kill Combo has expired! You reached a %s Kill Combo!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "本次达到的最高连杀数",
+          "type": "number",
+          "example": "15"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的连杀中断了! 本次最高连杀 %s。"
+    }
+  ]
+}

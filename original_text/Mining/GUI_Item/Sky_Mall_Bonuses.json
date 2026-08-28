@@ -1,0 +1,180 @@
+{
+  "source": "https://raw.githubusercontent.com/hannibal002/SkyHanni-REPO/main/constants/regexesModern.json",
+  "fetched_at": "2026-08-18",
+  "verified_ingame": false,
+  "source_note": "数据来自开源客户端 Mod SkyHanni 的 SkyHanni-REPO 仓库 constants/regexesModern.json (用于解析游戏内文本的正则表达式常量),已去除正则语法/颜色码还原成干净模板文本, 可信度高于 Wiki 摘要,但未逐条在游戏内截图核对,verified_ingame 仍为 false。",
+  "gui_context": "“天空商城”(Sky Mall)天赋每天随机生效一种加成,同一句文案会同时出现在:天赋物品的 Lore 描述里,以及生效时的聊天提示里,文字完全一致,采集阶段只记一份,不重复建两条。",
+  "bonuses": [
+    {
+      "id": "skymall_ability_cooldown",
+      "context": "当日加成:镐子技能冷却缩短",
+      "text": "-20% Pickaxe Ability cooldowns.",
+      "placeholders": [],
+      "gloss": "原文把数值放在最前面,分段是按原文顺序渲染的,中文照样把数值提前——这也是游戏 UI 里常见的写法。",
+      "translate": true,
+      "zh": "-20% 镐子技能冷却时间。",
+      "raw": "§a-20%§7 Pickaxe Ability cooldowns.",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "-20%",
+          "zh": "-20%"
+        },
+        {
+          "color": "§7",
+          "text": " Pickaxe Ability cooldowns.",
+          "zh": " 镐子技能冷却时间。"
+        }
+      ]
+    },
+    {
+      "id": "skymall_extra_powder",
+      "context": "当日加成:额外粉末产出",
+      "text": "Gain +15% more Powder while mining.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "挖矿时多获得 +15% 的粉末。",
+      "raw": "§7Gain §a+15% §7more Powder while mining.",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "挖矿时"
+        },
+        {
+          "color": "§a",
+          "text": "+15% ",
+          "zh": "多获得 +15% "
+        },
+        {
+          "color": "§7",
+          "text": "more Powder while mining.",
+          "zh": "的粉末。"
+        }
+      ]
+    },
+    {
+      "id": "skymall_goblin_chance",
+      "context": "当日加成:哥布林刷新概率提升",
+      "text": "10x chance to find Golden and",
+      "placeholders": [],
+      "gloss": "原文在 “Golden and” 处被排版断成两行,第二行 “Diamond Goblins.” 是同一句话的尾巴,按 README「跨行整句的标记 continuation」处理:整句译文写在这一行,尾行标 continuation。倍率按 GLOSSARY.md 译“提升 9 倍”。",
+      "translate": true,
+      "zh": "发现黄金哥布林和钻石哥布林的概率提升 9 倍。",
+      "raw": "§a10x §7chance to find Golden and",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "10x ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§7",
+          "text": "chance to find Golden and",
+          "zh": "发现黄金哥布林和钻石哥布林的概率提升 9 倍。"
+        }
+      ]
+    },
+    {
+      "id": "skymall_mining_fortune",
+      "context": "当日加成:挖掘时运",
+      "text": "Gain +50☘ Mining Fortune.",
+      "placeholders": [],
+      "gloss": "同 skymall_mining_speed。",
+      "translate": true,
+      "zh": "获得 +50☘ 挖掘时运。",
+      "raw": "§7Gain §6+50☘ Mining Fortune§7.",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "获得 "
+        },
+        {
+          "color": "§6",
+          "text": "+50☘ Mining Fortune",
+          "zh": "+50☘ 挖掘时运"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "skymall_mining_speed",
+      "context": "当日加成:挖掘速度",
+      "text": "Gain +100⸕ Mining Speed.",
+      "placeholders": [],
+      "gloss": "⸕ 是挖掘速度的图标字符,数字和图标之间没有空格(服务器发的就是 “+100⸕”)。2026-08-21 按实测补上,此前少了这个图标,整条永远匹配不上。",
+      "translate": true,
+      "zh": "获得 +100⸕ 挖掘速度。",
+      "raw": "§7Gain §6+100⸕ Mining Speed§7.",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "获得 "
+        },
+        {
+          "color": "§6",
+          "text": "+100⸕ Mining Speed",
+          "zh": "+100⸕ 挖掘速度"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "skymall_titanium",
+      "context": "当日加成:钛矿掉落倍率",
+      "text": "Gain 5x Titanium drops.",
+      "placeholders": [],
+      "gloss": "“5x drops” 按 GLOSSARY.md「Nx 倍率加成」条目译“提升 4 倍”,不是“提升至 5 倍”。前两段在中文里没有对应的字(意思挪到最后一段),所以标 omit;材料名单独一段是为了保住服务器给它的蓝色。",
+      "translate": true,
+      "zh": "钛掉落量提升 4 倍。",
+      "raw": "§7Gain §a5x §9Titanium §7drops.",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§a",
+          "text": "5x ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§9",
+          "text": "Titanium ",
+          "zh": "钛"
+        },
+        {
+          "color": "§7",
+          "text": "drops.",
+          "zh": "掉落量提升 4 倍。"
+        }
+      ]
+    },
+    {
+      "id": "skymall_goblin_chance_tail",
+      "context": "上一行那句话被排版断开的尾巴",
+      "raw": "    §7Diamond Goblins.",
+      "text": "Diamond Goblins.",
+      "placeholders": [],
+      "gloss": "见 skymall_goblin_chance。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    }
+  ]
+}

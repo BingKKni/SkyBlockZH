@@ -1,0 +1,941 @@
+{
+  "source": "runtime capture (SkyZH) 2026-08-20 实测会话",
+  "fetched_at": "2026-08-20",
+  "verified_ingame": true,
+  "gui_context": "集市(Bazaar)的成交提示。集市在矮人矿山也有入口,但属于经济系统。",
+  "messages": [
+    {
+      "id": "bazaar_instant_sell",
+      "context": "点了立刻卖出之后的进度提示",
+      "raw": "§6[Bazaar] §7Executing instant sell...",
+      "text": "[Bazaar] Executing instant sell...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "[集市] 正在立刻卖出……",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "[Bazaar] ",
+          "zh": "[集市] "
+        },
+        {
+          "color": "§7",
+          "text": "Executing instant sell...",
+          "zh": "正在立刻卖出……"
+        }
+      ]
+    },
+    {
+      "id": "bazaar_no_buyers",
+      "context": "这件物品当前没有人挂收购单",
+      "raw": "§6[Bazaar] §cCouldn't find any buyers for Hard Stone!",
+      "text": "[Bazaar] Couldn't find any buyers for %s!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "物品名,保留英文",
+          "type": "item_name",
+          "example": "Hard Stone"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "[集市] 没有找到 %s 的买家!",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "[Bazaar] ",
+          "zh": "[集市] "
+        },
+        {
+          "color": "§c",
+          "text": "Couldn't find any buyers for %s!",
+          "zh": "没有找到 %s 的买家!"
+        }
+      ]
+    },
+    {
+      "id": "bazaar_sold",
+      "context": "卖出成功的结算行",
+      "raw": "§6[Bazaar] §7Sold §a114§7x §fMithril §7for §6638.4 coins§7!",
+      "text": "[Bazaar] Sold %1$sx %2$s for %3$s coins!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "数量",
+          "type": "number",
+          "example": "114"
+        },
+        {
+          "token": "%2$s",
+          "desc": "物品名,集市按英文名搜索,保留英文",
+          "type": "item_name",
+          "example": "Mithril"
+        },
+        {
+          "token": "%3$s",
+          "desc": "收入的硬币数",
+          "type": "number",
+          "example": "638.4"
+        }
+      ],
+      "gloss": "物品名保留英文是有意的:集市搜索框认的就是英文名,见 README 的 showOriginal 说明。",
+      "translate": true,
+      "zh": "[集市] 卖出 %1$s 个 %2$s,收入 %3$s 硬币!",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "[Bazaar] ",
+          "zh": "[集市] "
+        },
+        {
+          "color": "§7",
+          "text": "Sold ",
+          "zh": "卖出 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "x ",
+          "zh": " 个 "
+        },
+        {
+          "color": "§f",
+          "text": "%2$s ",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": "for ",
+          "zh": ",收入 "
+        },
+        {
+          "color": "§6",
+          "text": "%3$s coins",
+          "zh": "%3$s 硬币"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "bazaar_instant_buy",
+      "context": "集市立即购买正在成交",
+      "raw": "§6[Bazaar] §7Executing instant buy...",
+      "text": "[Bazaar] Executing instant buy...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "[集市] 正在立刻买入……",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "[Bazaar] ",
+          "zh": "[集市] "
+        },
+        {
+          "color": "§7",
+          "text": "Executing instant buy...",
+          "zh": "正在立刻买入……"
+        }
+      ]
+    },
+    {
+      "id": "bazaar_escrow",
+      "context": "集市挂单时把货款/货物先托管起来",
+      "raw": "§6[Bazaar] §7Putting goods in escrow...",
+      "text": "[Bazaar] Putting goods in escrow...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "[集市] 正在托管货物……",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "[Bazaar] ",
+          "zh": "[集市] "
+        },
+        {
+          "color": "§7",
+          "text": "Putting goods in escrow...",
+          "zh": "正在托管货物……"
+        }
+      ]
+    },
+    {
+      "id": "bazaar_submitting_sell_offer",
+      "context": "集市正在提交卖单",
+      "raw": "§6[Bazaar] §7Submitting sell offer...",
+      "text": "[Bazaar] Submitting sell offer...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "[集市] 正在提交卖单……",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "[Bazaar] ",
+          "zh": "[集市] "
+        },
+        {
+          "color": "§7",
+          "text": "Submitting sell offer...",
+          "zh": "正在提交卖单……"
+        }
+      ]
+    },
+    {
+      "id": "bazaar_bought",
+      "context": "集市立即购买成交",
+      "raw": "§6[Bazaar] §7Bought §a%1$s§7x §d%2$s §7for §6%3$s coins§7!",
+      "text": "[Bazaar] Bought %1$sx %2$s for %3$s coins!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "数量",
+          "type": "number",
+          "example": "1,000"
+        },
+        {
+          "token": "%2$s",
+          "desc": "商品名。按需求物品名保留英文(集市就是按英文名搜的),所以用词表不生效的 item_name",
+          "type": "item_name",
+          "example": "Fossil Essence"
+        },
+        {
+          "token": "%3$s",
+          "desc": "花掉的硬币数",
+          "type": "number",
+          "example": "2,024,500"
+        }
+      ],
+      "gloss": "和已有的 bazaar_sold 是同一句式的买入版本,量词照它写“个”。",
+      "translate": true,
+      "zh": "[集市] 买入 %1$s 个%2$s,花费 %3$s 硬币!",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "[Bazaar] ",
+          "zh": "[集市] "
+        },
+        {
+          "color": "§7",
+          "text": "Bought ",
+          "zh": "买入 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "x ",
+          "zh": " 个"
+        },
+        {
+          "color": "§d",
+          "text": "%2$s ",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": "for ",
+          "zh": ",花费 "
+        },
+        {
+          "color": "§6",
+          "text": "%3$s coins",
+          "zh": "%3$s 硬币"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "bazaar_sell_offer_setup",
+      "context": "集市卖单挂出去了",
+      "raw": "§6[Bazaar] §eSell Offer Setup! §a%1$s§7x §6%2$s §7for §6%3$s coins§7.",
+      "text": "[Bazaar] Sell Offer Setup! %1$sx %2$s for %3$s coins.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "数量",
+          "type": "number",
+          "example": "3"
+        },
+        {
+          "token": "%2$s",
+          "desc": "商品名。按需求物品名保留英文(集市就是按英文名搜的),所以用词表不生效的 item_name",
+          "type": "item_name",
+          "example": "Tusk Fossil"
+        },
+        {
+          "token": "%3$s",
+          "desc": "挂单总价",
+          "type": "number",
+          "example": "683,695"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "[集市] 卖单已挂出! %1$s 个%2$s,总价 %3$s 硬币。",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "[Bazaar] ",
+          "zh": "[集市] "
+        },
+        {
+          "color": "§e",
+          "text": "Sell Offer Setup! ",
+          "zh": "卖单已挂出! "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "x ",
+          "zh": " 个"
+        },
+        {
+          "color": "§6",
+          "text": "%2$s ",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": "for ",
+          "zh": ",总价 "
+        },
+        {
+          "color": "§6",
+          "text": "%3$s coins",
+          "zh": "%3$s 硬币"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "bazaar_sell_offer_filled",
+      "context": "挂出去的卖单被吃掉了",
+      "raw": "§6[Bazaar] §eYour §6Sell Offer §efor §a%1$s§7x §9%2$s §ewas filled!",
+      "text": "[Bazaar] Your Sell Offer for %1$sx %2$s was filled!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "数量",
+          "type": "number",
+          "example": "14"
+        },
+        {
+          "token": "%2$s",
+          "desc": "商品名。按需求物品名保留英文(集市就是按英文名搜的),所以用词表不生效的 item_name",
+          "type": "item_name",
+          "example": "Suspicious Scrap"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "[集市] 你挂的 %1$s 个%2$s卖单已成交!",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "[Bazaar] ",
+          "zh": "[集市] "
+        },
+        {
+          "color": "§e",
+          "text": "Your ",
+          "zh": "你挂的 "
+        },
+        {
+          "color": "§6",
+          "text": "Sell Offer ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§e",
+          "text": "for ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "x ",
+          "zh": " 个"
+        },
+        {
+          "color": "§9",
+          "text": "%2$s ",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§e",
+          "text": "was filled!",
+          "zh": "卖单已成交!"
+        }
+      ]
+    },
+    {
+      "id": "bazaar_submitting_buy_order",
+      "context": "点了下单之后、订单还没挂上去时的提示",
+      "raw": "§6[Bazaar] §7Submitting buy order...",
+      "text": "[Bazaar] Submitting buy order...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "[集市] 正在提交买单……",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "[Bazaar] ",
+          "zh": "[集市] "
+        },
+        {
+          "color": "§7",
+          "text": "Submitting buy order...",
+          "zh": "正在提交买单……"
+        }
+      ]
+    },
+    {
+      "id": "bazaar_buy_order_setup",
+      "context": "集市买单挂出去了",
+      "raw": "§6[Bazaar] §eBuy Order Setup! §a%1$s§7x §5%2$s §7for §6%3$s coins§7.",
+      "text": "[Bazaar] Buy Order Setup! %1$sx %2$s for %3$s coins.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "数量",
+          "type": "number",
+          "example": "2"
+        },
+        {
+          "token": "%2$s",
+          "desc": "商品名。物品名保留英文,所以用词表不生效的 item_name",
+          "type": "item_name",
+          "example": "Umber Key"
+        },
+        {
+          "token": "%3$s",
+          "desc": "挂单总价",
+          "type": "number",
+          "example": "5,344,751"
+        }
+      ],
+      "gloss": "和 bazaar_sell_offer_setup 是同一句式的买入版本。",
+      "translate": true,
+      "zh": "[集市] 买单已挂出! %1$s 个%2$s,总价 %3$s 硬币。",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "[Bazaar] ",
+          "zh": "[集市] "
+        },
+        {
+          "color": "§e",
+          "text": "Buy Order Setup! ",
+          "zh": "买单已挂出! "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "x ",
+          "zh": " 个"
+        },
+        {
+          "color": "§5",
+          "text": "%2$s ",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": "for ",
+          "zh": ",总价 "
+        },
+        {
+          "color": "§6",
+          "text": "%3$s coins",
+          "zh": "%3$s 硬币"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "bazaar_buy_order_filled",
+      "context": "挂出去的买单成交了",
+      "raw": "§6[Bazaar] §eYour §aBuy Order §efor §a%1$s§7x §5%2$s §ewas filled!",
+      "text": "[Bazaar] Your Buy Order for %1$sx %2$s was filled!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "数量",
+          "type": "number",
+          "example": "2"
+        },
+        {
+          "token": "%2$s",
+          "desc": "商品名,保留英文",
+          "type": "item_name",
+          "example": "Tungsten Key"
+        }
+      ],
+      "gloss": "和 bazaar_sell_offer_filled 是同一句式的买入版本。",
+      "translate": true,
+      "zh": "[集市] 你挂的 %1$s 个%2$s买单已成交!",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "[Bazaar] ",
+          "zh": "[集市] "
+        },
+        {
+          "color": "§e",
+          "text": "Your ",
+          "zh": "你挂的 "
+        },
+        {
+          "color": "§a",
+          "text": "Buy Order ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§e",
+          "text": "for ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "x ",
+          "zh": " 个"
+        },
+        {
+          "color": "§5",
+          "text": "%2$s ",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§e",
+          "text": "was filled!",
+          "zh": "买单已成交!"
+        }
+      ]
+    },
+    {
+      "id": "bazaar_claiming_order",
+      "context": "点了领取之后、订单还没结算完时的提示(只有一单)",
+      "raw": "§6[Bazaar] §7Claiming order...",
+      "text": "[Bazaar] Claiming order...",
+      "placeholders": [],
+      "gloss": "单复数各写一条:这条没有占位符,走的是精确查表,引擎的\"复数 s 可选\"只对带占位符的记录生效。",
+      "translate": true,
+      "zh": "[集市] 正在领取订单……",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "[Bazaar] ",
+          "zh": "[集市] "
+        },
+        {
+          "color": "§7",
+          "text": "Claiming order...",
+          "zh": "正在领取订单……"
+        }
+      ]
+    },
+    {
+      "id": "bazaar_claiming_orders",
+      "context": "同上,一次领取多单",
+      "raw": "§6[Bazaar] §7Claiming orders...",
+      "text": "[Bazaar] Claiming orders...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "[集市] 正在领取订单……",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "[Bazaar] ",
+          "zh": "[集市] "
+        },
+        {
+          "color": "§7",
+          "text": "Claiming orders...",
+          "zh": "正在领取订单……"
+        }
+      ]
+    },
+    {
+      "id": "bazaar_cancelling_order",
+      "context": "点了撤单之后、还没撤完时的提示",
+      "raw": "§6[Bazaar] §7Cancelling order...",
+      "text": "[Bazaar] Cancelling order...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "[集市] 正在撤单……",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "[Bazaar] ",
+          "zh": "[集市] "
+        },
+        {
+          "color": "§7",
+          "text": "Cancelling order...",
+          "zh": "正在撤单……"
+        }
+      ]
+    },
+    {
+      "id": "bazaar_cancelling_orders",
+      "context": "同上,一次撤多单",
+      "raw": "§6[Bazaar] §7Cancelling orders...",
+      "text": "[Bazaar] Cancelling orders...",
+      "placeholders": [],
+      "gloss": "实测只见过单数那一条,复数按同一形状补上;见错了也只是这一行不翻译,不会翻错。",
+      "translate": true,
+      "zh": "[集市] 正在撤单……",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "[Bazaar] ",
+          "zh": "[集市] "
+        },
+        {
+          "color": "§7",
+          "text": "Cancelling orders...",
+          "zh": "正在撤单……"
+        }
+      ]
+    },
+    {
+      "id": "bazaar_buy_order_cancelled",
+      "context": "撤掉买单,硬币退回",
+      "raw": "§6[Bazaar] §cCancelled! §7Refunded §6%1$s coins §7from cancelling Buy Order!",
+      "text": "[Bazaar] Cancelled! Refunded %1$s coins from cancelling Buy Order!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "退回的硬币数",
+          "type": "number",
+          "example": "5,265,917"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "[集市] 已撤单! 买单退回 %1$s 硬币!",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "[Bazaar] ",
+          "zh": "[集市] "
+        },
+        {
+          "color": "§c",
+          "text": "Cancelled! ",
+          "zh": "已撤单! "
+        },
+        {
+          "color": "§7",
+          "text": "Refunded ",
+          "zh": "买单退回 "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s coins ",
+          "zh": "%1$s 硬币"
+        },
+        {
+          "color": "§7",
+          "text": "from cancelling Buy Order!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "bazaar_sell_offer_cancelled",
+      "context": "撤掉卖单,商品退回",
+      "raw": "§6[Bazaar] §cCancelled! §7Refunded §a%1$s§7x §6%2$s §7from cancelling Sell Offer!",
+      "text": "[Bazaar] Cancelled! Refunded %1$sx %2$s from cancelling Sell Offer!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "数量",
+          "type": "number",
+          "example": "1"
+        },
+        {
+          "token": "%2$s",
+          "desc": "商品名,保留英文",
+          "type": "item_name",
+          "example": "Ugly Fossil"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "[集市] 已撤单! 卖单退回 %1$s 个%2$s!",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "[Bazaar] ",
+          "zh": "[集市] "
+        },
+        {
+          "color": "§c",
+          "text": "Cancelled! ",
+          "zh": "已撤单! "
+        },
+        {
+          "color": "§7",
+          "text": "Refunded ",
+          "zh": "卖单退回 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "x ",
+          "zh": " 个"
+        },
+        {
+          "color": "§6",
+          "text": "%2$s ",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": "from cancelling Sell Offer!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "bazaar_buy_order_claimed",
+      "context": "领取已成交的买单,东西进背包",
+      "raw": "§6[Bazaar] §7Claimed §a%1$s§7x §5%2$s §7worth §6%3$s coins §7bought for §6%4$s §7each!",
+      "text": "[Bazaar] Claimed %1$sx %2$s worth %3$s coins bought for %4$s each!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "数量",
+          "type": "number",
+          "example": "2"
+        },
+        {
+          "token": "%2$s",
+          "desc": "商品名,保留英文",
+          "type": "item_name",
+          "example": "Tungsten Key"
+        },
+        {
+          "token": "%3$s",
+          "desc": "总价值",
+          "type": "number",
+          "example": "4,959,223"
+        },
+        {
+          "token": "%4$s",
+          "desc": "成交单价",
+          "type": "number",
+          "example": "2,479,612"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "[集市] 已领取 %1$s 个%2$s,总价值 %3$s 硬币,成交单价 %4$s。",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "[Bazaar] ",
+          "zh": "[集市] "
+        },
+        {
+          "color": "§7",
+          "text": "Claimed ",
+          "zh": "已领取 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "x ",
+          "zh": " 个"
+        },
+        {
+          "color": "§5",
+          "text": "%2$s ",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": "worth ",
+          "zh": ",总价值 "
+        },
+        {
+          "color": "§6",
+          "text": "%3$s coins ",
+          "zh": "%3$s 硬币"
+        },
+        {
+          "color": "§7",
+          "text": "bought for ",
+          "zh": ",成交单价 "
+        },
+        {
+          "color": "§6",
+          "text": "%4$s ",
+          "zh": "%4$s"
+        },
+        {
+          "color": "§7",
+          "text": "each!",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "bazaar_sell_offer_claimed",
+      "context": "领取已成交的卖单,硬币到账",
+      "raw": "§6[Bazaar] §7Claimed §6%1$s coins §7from selling §a%2$s§7x §6%3$s §7at §6%4$s §7each!",
+      "text": "[Bazaar] Claimed %1$s coins from selling %2$sx %3$s at %4$s each!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "到账硬币数",
+          "type": "number",
+          "example": "683,695"
+        },
+        {
+          "token": "%2$s",
+          "desc": "数量",
+          "type": "number",
+          "example": "3"
+        },
+        {
+          "token": "%3$s",
+          "desc": "商品名,保留英文",
+          "type": "item_name",
+          "example": "Tusk Fossil"
+        },
+        {
+          "token": "%4$s",
+          "desc": "成交单价",
+          "type": "number",
+          "example": "230,200"
+        }
+      ],
+      "gloss": "中文先说卖了什么、再说到账多少,和英文正好相反,所以用 segments[].order 换位。每一段的颜色和占位符跟着自己的词一起走。",
+      "translate": true,
+      "zh": "[集市] 卖出 %2$s 个%3$s,已到账 %1$s 硬币,单价 %4$s。",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "[Bazaar] ",
+          "zh": "[集市] ",
+          "order": 0
+        },
+        {
+          "color": "§7",
+          "text": "Claimed ",
+          "zh": ",已到账 ",
+          "order": 5
+        },
+        {
+          "color": "§6",
+          "text": "%1$s coins ",
+          "zh": "%1$s 硬币",
+          "order": 6
+        },
+        {
+          "color": "§7",
+          "text": "from selling ",
+          "zh": "卖出 ",
+          "order": 1
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s",
+          "order": 2
+        },
+        {
+          "color": "§7",
+          "text": "x ",
+          "zh": " 个",
+          "order": 3
+        },
+        {
+          "color": "§6",
+          "text": "%3$s ",
+          "zh": "%3$s",
+          "order": 4
+        },
+        {
+          "color": "§7",
+          "text": "at ",
+          "zh": ",单价 ",
+          "order": 7
+        },
+        {
+          "color": "§6",
+          "text": "%4$s ",
+          "zh": "%4$s",
+          "order": 8
+        },
+        {
+          "color": "§7",
+          "text": "each!",
+          "zh": "。",
+          "order": 9
+        }
+      ]
+    }
+  ]
+}

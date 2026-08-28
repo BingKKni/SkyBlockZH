@@ -1,0 +1,106 @@
+{
+  "source": "SkyZH runtime capture (2026-08-26, Mining GUI session)",
+  "fetched_at": "2026-08-26",
+  "verified_ingame": true,
+  "gui_context": "空岛菜单打开后的 Your Bags 菜单；不收录专有物品名，仅保留通用说明与状态。",
+  "lines": [
+    {
+      "id": "sack_contains_sacks",
+      "context": "收纳袋说明",
+      "raw": "§7A sack which contains other sacks.",
+      "text": "A sack which contains other sacks.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "可容纳其他收纳袋的收纳袋。"
+    },
+    {
+      "id": "bag_category",
+      "context": "按类别打开的收纳袋入口",
+      "raw": "§a%1$s Bag",
+      "text": "%1$s Bag",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "收纳袋类别名，保持服务器原文",
+          "type": "category_name",
+          "example": "Fishing"
+        }
+      ],
+      "gloss": "类别名本身不在这条记录里翻译:它是占位符捕到的值,译名走 _shared/Terms.json,查不到就保持英文。**译文里不要手写空格**——中英之间那个空格由引擎在接缝处按两边的字符自动补(见 text/TranslationEntry.Seam):值还是英文时渲染成「Fishing 宠物」,词表里有译名时渲染成「钓鱼宠物」。手写空格的话后一种会变成「钓鱼 宠物」,两个汉字中间夹一个空格,而中文里没有这种写法。",
+      "translate": true,
+      "zh": "%1$s收纳袋"
+    },
+    {
+      "id": "evolving_items_bag_desc_1",
+      "context": "随时间成长物品的收纳袋说明首行",
+      "raw": "§7A bag which holds items that evolve",
+      "text": "A bag which holds items that evolve",
+      "placeholders": [],
+      "gloss": "完整句为 A bag which holds items that evolve over time. Time flows twice as fast in here!",
+      "translate": true,
+      "zh": "用于存放会随时间成长的物品。这里的时间流逝速度加倍!"
+    },
+    {
+      "id": "evolving_items_bag_desc_2",
+      "context": "接上一行",
+      "raw": "§7over time. Time flows twice as fast in",
+      "text": "over time. Time flows twice as fast in",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "evolving_items_bag_desc_3",
+      "context": "接上一行",
+      "raw": "§7here!",
+      "text": "here!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "selected_power",
+      "context": "当前选择的力量状态；力量名保持服务器原文",
+      "raw": "§7Selected Power: §a%1$s",
+      "text": "Selected Power: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前力量名，保持服务器原文",
+          "type": "raw",
+          "example": "Frozen"
+        }
+      ],
+      "gloss": "力量名属于游戏专有名称，不在此翻译。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Selected Power: ",
+          "zh": "已选力量: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ]
+    },
+    {
+      "id": "tuning",
+      "context": "力量调校标签",
+      "raw": "§7Tuning:",
+      "text": "Tuning:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "调校:"
+    }
+  ]
+}

@@ -1,0 +1,2080 @@
+{
+  "npc": "Dalir",
+  "location": "Cliffside Veins, Dwarven Mines (-44.5, 192, 47.5),教团聚会点约在 (-45, 193, 45),洞口约在 (-26, 198, 40)",
+  "note": "“陨落之星教团”(Cult of the Fallen Star)剧情线的主要互动 NPC。完整剧情横跨 6 次例会,三名成员 Dalir / Brarnas / Thondin 的台词全部记录在教团页面上,已按说话人拆分到各自文件(见 Brarnas.json / Thondin.json)。贯穿全线的几个梗:打碎的盘子、丢猫、过夜聚会、“门多还是轮子多”、以及最后推导出“我们活在模拟里”并以点披萨收场——翻译时要保持这几条线索前后呼应。",
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Cult_of_the_Fallen_Star + https://hypixelskyblock.minecraft.wiki/w/Dalir",
+  "fetched_at": "2026-08-19",
+  "verified_ingame": false,
+  "messages": [
+    {
+      "id": "dalir_wow_there_you_found_us",
+      "context": "",
+      "raw": "§fWow there, you found us!",
+      "text": "Wow there, you found us!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "哇哦,你找到我们了!"
+    },
+    {
+      "id": "dalir_are_you_trying_to_stop",
+      "context": "",
+      "raw": "§fAre you trying to stop us from doing our suspicious activities?",
+      "text": "Are you trying to stop us from doing our suspicious activities?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你是想阻止我们进行「可疑活动」吗?"
+    },
+    {
+      "id": "dalir_we_are_the_cult_of",
+      "context": "",
+      "raw": "§fWe are the §dCult of the Fallen Star§f, we mean no harm.",
+      "text": "We are the Cult of the Fallen Star, we mean no harm.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "We are the ",
+          "zh": "我们是"
+        },
+        {
+          "color": "§d",
+          "text": "Cult of the Fallen Star",
+          "zh": "陨落之星教团"
+        },
+        {
+          "color": "§f",
+          "text": ", we mean no harm.",
+          "zh": ",我们没有恶意。"
+        }
+      ]
+    },
+    {
+      "id": "dalir_to_be_honest_we_just",
+      "context": "",
+      "raw": "§fTo be honest, we just want to look cool.",
+      "text": "To be honest, we just want to look cool.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "老实说,我们只是想显得酷一点。"
+    },
+    {
+      "id": "dalir_wanna_join_us",
+      "context": "",
+      "raw": "§fWanna join us?",
+      "text": "Wanna join us?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "想加入我们吗?"
+    },
+    {
+      "id": "dalir_nice_well_take_this",
+      "context": "",
+      "raw": "§fNice! Well, take this.",
+      "text": "Nice! Well, take this.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "很好! 来,拿着这个。"
+    },
+    {
+      "id": "dalir_it_s_one_of_our",
+      "context": "",
+      "raw": "§fIt's one of our §dFallen Star Helmets§f.",
+      "text": "It's one of our Fallen Star Helmets.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "It's one of our ",
+          "zh": "这是我们的"
+        },
+        {
+          "color": "§d",
+          "text": "Fallen Star Helmets",
+          "zh": "陨落之星头盔"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "之一。"
+        }
+      ]
+    },
+    {
+      "id": "dalir_wear_it_in_our_next",
+      "context": "",
+      "raw": "§fWear it in our next meetings!",
+      "text": "Wear it in our next meetings!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "下次例会记得戴上它!"
+    },
+    {
+      "id": "dalir_rude",
+      "context": "",
+      "raw": "§fRude.",
+      "text": "Rude.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "真没礼貌。"
+    },
+    {
+      "id": "dalir_eager_to_join_our_cult",
+      "context": "",
+      "raw": "§fEager to join our cult I see?",
+      "text": "Eager to join our cult I see?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "看来你很想加入我们的教团?"
+    },
+    {
+      "id": "dalir_come_back_to_our_next",
+      "context": "",
+      "raw": "§fCome back to our next meeting in §6seven days§f while wearing the §dFallen Star Helmet§f we gave you.",
+      "text": "Come back to our next meeting in seven days while wearing the Fallen Star Helmet we gave you.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Come back to our next meeting in ",
+          "zh": "过"
+        },
+        {
+          "color": "§6",
+          "text": "seven days",
+          "zh": "七天"
+        },
+        {
+          "color": "§f",
+          "text": " while wearing the ",
+          "zh": "后,戴上我们给你的"
+        },
+        {
+          "color": "§d",
+          "text": "Fallen Star Helmet",
+          "zh": "陨落之星头盔"
+        },
+        {
+          "color": "§f",
+          "text": " we gave you.",
+          "zh": ",再来参加下一次例会。"
+        }
+      ]
+    },
+    {
+      "id": "dalir_hey_s_glad_you_came",
+      "context": "",
+      "raw": "§fHey, §b%s§f! Glad you came to our cult meeting!",
+      "text": "Hey, %s! Glad you came to our cult meeting!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "",
+          "type": "raw",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Hey, ",
+          "zh": "嘿,"
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§f",
+          "text": "! Glad you came to our cult meeting!",
+          "zh": "! 很高兴你来参加教团例会!"
+        }
+      ]
+    },
+    {
+      "id": "dalir_long_live_the_fallen_star",
+      "context": "",
+      "raw": "§fLong live the §dFallen Star§f!!!!",
+      "text": "Long live the Fallen Star!!!!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Long live the ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§d",
+          "text": "Fallen Star",
+          "zh": "陨落之星"
+        },
+        {
+          "color": "§f",
+          "text": "!!!!",
+          "zh": "万岁!!!!"
+        }
+      ]
+    },
+    {
+      "id": "dalir_here_have_some_of_these",
+      "context": "",
+      "raw": "§fHere, have some of these cool looking stars we found.",
+      "text": "Here, have some of these cool looking stars we found.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "来,这些我们捡到的星星挺好看的,拿一点去。"
+    },
+    {
+      "id": "dalir_wait",
+      "context": "",
+      "raw": "§fWait...",
+      "text": "Wait...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "等等……"
+    },
+    {
+      "id": "dalir_where_s_the_fallen_star",
+      "context": "",
+      "raw": "§fWhere's the §dFallen Star Helmet§f we gave you?",
+      "text": "Where's the Fallen Star Helmet we gave you?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Where's the ",
+          "zh": "我们给你的"
+        },
+        {
+          "color": "§d",
+          "text": "Fallen Star Helmet",
+          "zh": "陨落之星头盔"
+        },
+        {
+          "color": "§f",
+          "text": " we gave you?",
+          "zh": "呢?"
+        }
+      ]
+    },
+    {
+      "id": "dalir_you_need_it_to_join",
+      "context": "",
+      "raw": "§fYou need it to join us!",
+      "text": "You need it to join us!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你得戴着它才能加入我们!"
+    },
+    {
+      "id": "dalir_come_back_next_time_wearing",
+      "context": "",
+      "raw": "§fCome back next time wearing our matching hat.",
+      "text": "Come back next time wearing our matching hat.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "下次戴上我们的同款帽子再来。"
+    },
+    {
+      "id": "dalir_hi_again_s",
+      "context": "",
+      "raw": "§fHi again, §b%s§f.",
+      "text": "Hi again, %s.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "",
+          "type": "raw",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Hi again, ",
+          "zh": "又见面了,"
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "dalir_we_ll_share_some_of",
+      "context": "",
+      "raw": "§fWe'll share some of our cool stars with you.",
+      "text": "We'll share some of our cool stars with you.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "我们会分你一些捡到的好看星星。"
+    },
+    {
+      "id": "dalir_wanna_get_pizza_after_this",
+      "context": "",
+      "raw": "§fWanna get pizza after this cult meeting?",
+      "text": "Wanna get pizza after this cult meeting?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这场教团例会结束后要不要一起去吃披萨?"
+    },
+    {
+      "id": "dalir_we_meet_here_every_seven",
+      "context": "",
+      "raw": "§fWe meet here every §6seven days§f at midnight. That's when the star is the brightest, after all.",
+      "text": "We meet here every seven days at midnight. That's when the star is the brightest, after all.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "We meet here every ",
+          "zh": "我们每"
+        },
+        {
+          "color": "§6",
+          "text": "seven days",
+          "zh": "七天"
+        },
+        {
+          "color": "§f",
+          "text": " at midnight. That's when the star is the brightest, after all.",
+          "zh": "在午夜于此聚会。毕竟那时候星星最亮。"
+        }
+      ]
+    },
+    {
+      "id": "dalir_we_hope_you_love_the",
+      "context": "",
+      "raw": "§fWe hope you love the §dFallen Star§d as much as we do.",
+      "text": "We hope you love the Fallen Star as much as we do.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "We hope you love the ",
+          "zh": "希望你也和我们一样喜欢"
+        },
+        {
+          "color": "§d",
+          "text": "Fallen Star",
+          "zh": "陨落之星"
+        },
+        {
+          "color": "§d",
+          "text": " as much as we do.",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "dalir_great_to_have_you_here",
+      "context": "",
+      "raw": "§fGreat to have you here, §b%s§f.",
+      "text": "Great to have you here, %s.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "",
+          "type": "raw",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Great to have you here, ",
+          "zh": "你能来真是太好了,"
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "dalir_i_wonder_why_the_star",
+      "context": "",
+      "raw": "§fI wonder why the star is purple.",
+      "text": "I wonder why the star is purple.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "我一直好奇那颗星星为什么是紫色的。"
+    },
+    {
+      "id": "dalir_hey_nice_helmet",
+      "context": "",
+      "raw": "§fHey, nice helmet.",
+      "text": "Hey, nice helmet.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "嘿,头盔不错。"
+    },
+    {
+      "id": "dalir_we_all_look_pretty_cool",
+      "context": "",
+      "raw": "§fWe all look pretty cool.",
+      "text": "We all look pretty cool.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "咱们几个看着都挺酷的。"
+    },
+    {
+      "id": "dalir_i_m_not_just_gonna",
+      "context": "",
+      "raw": "§b✆ §f§fI'm not just gonna give my contact out to anybody...",
+      "text": "✆ I'm not just gonna give my contact out to anybody...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": ""
+        },
+        {
+          "color": "§f§f",
+          "text": "I'm not just gonna give my contact out to anybody...",
+          "zh": "我可不会随便把联系方式给人……"
+        }
+      ]
+    },
+    {
+      "id": "dalir_huh_are_you_a_member",
+      "context": "",
+      "raw": "§b✆ §f§fHuh? Are you a member of, y'know, our §othing§f?",
+      "text": "✆ Huh? Are you a member of, y'know, our thing?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": ""
+        },
+        {
+          "color": "§f§f",
+          "text": "Huh? Are you a member of, y'know, our ",
+          "zh": "嗯?你是我们那个……你懂的,那个组织的成员吗?"
+        },
+        {
+          "color": "§o",
+          "text": "thing",
+          "zh": "那个"
+        },
+        {
+          "color": "§f",
+          "text": "?",
+          "zh": ""
+        }
+      ]
+    },
+    {
+      "id": "dalir_where_s_your_fallen_star",
+      "context": "",
+      "raw": "§b✆ §f§fWhere's your §9Fallen Star Helmet§f? Put it on!",
+      "text": "✆ Where's your Fallen Star Helmet? Put it on!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": ""
+        },
+        {
+          "color": "§f§f",
+          "text": "Where's your ",
+          "zh": "你的"
+        },
+        {
+          "color": "§9",
+          "text": "Fallen Star Helmet",
+          "zh": "陨落之星头盔"
+        },
+        {
+          "color": "§f",
+          "text": "? Put it on!",
+          "zh": "呢?快戴上!"
+        }
+      ]
+    },
+    {
+      "id": "dalir_you_want_my_abiphone_contact",
+      "context": "",
+      "raw": "§b✆§f You want my §3Abiphone Contact§f? Respectfully, we don't see you at our meetings very often.",
+      "text": "✆ You want my Abiphone Contact? Respectfully, we don't see you at our meetings very often.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": ""
+        },
+        {
+          "color": "§f",
+          "text": " You want my ",
+          "zh": "你想要我的"
+        },
+        {
+          "color": "§3",
+          "text": "Abiphone Contact",
+          "zh": "Abiphone 联系人"
+        },
+        {
+          "color": "§f",
+          "text": "? Respectfully, we don't see you at our meetings very often.",
+          "zh": "?恕我直言,我们例会上不太常见到你。"
+        }
+      ]
+    },
+    {
+      "id": "dalir_here_s_the_deal",
+      "context": "",
+      "raw": "§b✆§f Here's the deal.",
+      "text": "✆ Here's the deal.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": ""
+        },
+        {
+          "color": "§f",
+          "text": " Here's the deal.",
+          "zh": "这样吧。"
+        }
+      ]
+    },
+    {
+      "id": "dalir_attend_3_meetings_of_the",
+      "context": "",
+      "raw": "§b✆§f Attend §63§f meetings of the §5Cult of the Fallen Star§f, and you can have my contact.",
+      "text": "✆ Attend 3 meetings of the Cult of the Fallen Star, and you can have my contact.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": ""
+        },
+        {
+          "color": "§f",
+          "text": " Attend ",
+          "zh": "参加"
+        },
+        {
+          "color": "§6",
+          "text": "3",
+          "zh": "3"
+        },
+        {
+          "color": "§f",
+          "text": " meetings of the ",
+          "zh": "次"
+        },
+        {
+          "color": "§5",
+          "text": "Cult of the Fallen Star",
+          "zh": "陨落之星教团"
+        },
+        {
+          "color": "§f",
+          "text": ", and you can have my contact.",
+          "zh": "的例会,我就把联系方式给你。"
+        }
+      ]
+    },
+    {
+      "id": "dalir_confirm_your_attendance_at_a",
+      "context": "",
+      "raw": "§b✆§f Confirm your attendance at a meeting by speaking to me with your §1Fallen Star Helmet§f equipped.",
+      "text": "✆ Confirm your attendance at a meeting by speaking to me with your Fallen Star Helmet equipped.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": ""
+        },
+        {
+          "color": "§f",
+          "text": " Confirm your attendance at a meeting by speaking to me with your ",
+          "zh": "参加例会时戴着你的"
+        },
+        {
+          "color": "§1",
+          "text": "Fallen Star Helmet",
+          "zh": "陨落之星头盔"
+        },
+        {
+          "color": "§f",
+          "text": " equipped.",
+          "zh": "来找我说话,就算确认出席。"
+        }
+      ]
+    },
+    {
+      "id": "dalir_before_i_give_you_my",
+      "context": "",
+      "raw": "§b✆§f Before I give you my §3Abiphone Contact§f, do you think you could grab us a §aPowder Pie§f to split?",
+      "text": "✆ Before I give you my Abiphone Contact, do you think you could grab us a Powder Pie to split?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": ""
+        },
+        {
+          "color": "§f",
+          "text": " Before I give you my ",
+          "zh": "在我把"
+        },
+        {
+          "color": "§3",
+          "text": "Abiphone Contact",
+          "zh": "Abiphone 联系人"
+        },
+        {
+          "color": "§f",
+          "text": ", do you think you could grab us a ",
+          "zh": "给你之前,你能不能帮我们弄块"
+        },
+        {
+          "color": "§a",
+          "text": "Powder Pie",
+          "zh": "粉末派"
+        },
+        {
+          "color": "§f",
+          "text": " to split?",
+          "zh": "来分着吃?"
+        }
+      ]
+    },
+    {
+      "id": "dalir_someone_in_the_dwarven_mines",
+      "context": "",
+      "raw": "§b✆§f Someone in the §2Dwarven Mines§f sells them, though I can't remember who.",
+      "text": "✆ Someone in the Dwarven Mines sells them, though I can't remember who.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": ""
+        },
+        {
+          "color": "§f",
+          "text": " Someone in the ",
+          "zh": "有人在"
+        },
+        {
+          "color": "§2",
+          "text": "Dwarven Mines",
+          "zh": "矮人矿山"
+        },
+        {
+          "color": "§f",
+          "text": " sells them, though I can't remember who.",
+          "zh": "里卖,不过我记不清是谁了。"
+        }
+      ]
+    },
+    {
+      "id": "dalir_consider_it_your_punishment_for",
+      "context": "",
+      "raw": "§b✆§f Consider it your punishment for being late.",
+      "text": "✆ Consider it your punishment for being late.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": ""
+        },
+        {
+          "color": "§f",
+          "text": " Consider it your punishment for being late.",
+          "zh": "就当是罚你迟到吧。"
+        }
+      ]
+    },
+    {
+      "id": "dalir_thank_you_so_very_much",
+      "context": "",
+      "raw": "§b✆§f Thank you so very much, §b%s§f.",
+      "text": "✆ Thank you so very much, %s.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "",
+          "type": "raw",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": ""
+        },
+        {
+          "color": "§f",
+          "text": " Thank you so very much, ",
+          "zh": "太感谢你了,"
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "dalir_now_we_can_wind_down",
+      "context": "",
+      "raw": "§b✆§f Now we can wind down from our very serious meeting with some very serious food!",
+      "text": "✆ Now we can wind down from our very serious meeting with some very serious food!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": ""
+        },
+        {
+          "color": "§f",
+          "text": " Now we can wind down from our very serious meeting with some very serious food!",
+          "zh": "这下我们就能靠一顿非常严肃的美食,从非常严肃的例会里放松放松了!"
+        }
+      ]
+    },
+    {
+      "id": "dalir_here_is_my_abiphone_contact",
+      "context": "",
+      "raw": "§b✆§f Here is my §3Abiphone Contact§f. Give me a call if you ever want to know when our next meeting is.",
+      "text": "✆ Here is my Abiphone Contact. Give me a call if you ever want to know when our next meeting is.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": ""
+        },
+        {
+          "color": "§f",
+          "text": " Here is my ",
+          "zh": "这是我的"
+        },
+        {
+          "color": "§3",
+          "text": "Abiphone Contact",
+          "zh": "Abiphone 联系人"
+        },
+        {
+          "color": "§f",
+          "text": ". Give me a call if you ever want to know when our next meeting is.",
+          "zh": "。想知道下次例会什么时候,随时给我打电话。"
+        }
+      ]
+    },
+    {
+      "id": "dalir_line",
+      "context": "",
+      "raw": "§b✆§f ...",
+      "text": "✆ ...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": ""
+        },
+        {
+          "color": "§f",
+          "text": " ...",
+          "zh": " ……"
+        }
+      ]
+    },
+    {
+      "id": "dalir_wait_2",
+      "context": "",
+      "raw": "§b✆§f Wait.",
+      "text": "✆ Wait.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": ""
+        },
+        {
+          "color": "§f",
+          "text": " Wait.",
+          "zh": " 等等。"
+        }
+      ]
+    },
+    {
+      "id": "dalir_where_s_your_abiphone_i",
+      "context": "",
+      "raw": "§b✆§f Where's your §3Abiphone§f? I can't add you as a contact if you don't even have one!",
+      "text": "✆ Where's your Abiphone? I can't add you as a contact if you don't even have one!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": ""
+        },
+        {
+          "color": "§f",
+          "text": " Where's your ",
+          "zh": "你的"
+        },
+        {
+          "color": "§3",
+          "text": "Abiphone",
+          "zh": "Abiphone"
+        },
+        {
+          "color": "§f",
+          "text": "? I can't add you as a contact if you don't even have one!",
+          "zh": "呢?你连一台都没有,我怎么把你加成联系人!"
+        }
+      ]
+    },
+    {
+      "id": "dalir_come_back_once_you_ve",
+      "context": "",
+      "raw": "§b✆§f Come back once you've found it!",
+      "text": "✆ Come back once you've found it!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": ""
+        },
+        {
+          "color": "§f",
+          "text": " Come back once you've found it!",
+          "zh": "等你弄到了再回来找我!"
+        }
+      ]
+    },
+    {
+      "id": "dalir_ah_s_nice_to_see",
+      "context": "",
+      "raw": "§fAh, §b%s§f! Nice to see you at our cult meeting!",
+      "text": "Ah, %s! Nice to see you at our cult meeting!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "",
+          "type": "raw",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Ah, ",
+          "zh": "啊,"
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§f",
+          "text": "! Nice to see you at our cult meeting!",
+          "zh": "! 很高兴在教团例会上见到你!"
+        }
+      ]
+    },
+    {
+      "id": "dalir_you_ve_now_attended_1",
+      "context": "",
+      "raw": "§fYou've now attended §61§f meeting of the §5Cult of the Fallen Star§f! As a reward, here's some §9Starfall§f!",
+      "text": "You've now attended 1 meeting of the Cult of the Fallen Star! As a reward, here's some Starfall!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "You've now attended ",
+          "zh": "你已经参加了"
+        },
+        {
+          "color": "§6",
+          "text": "1",
+          "zh": "1"
+        },
+        {
+          "color": "§f",
+          "text": " meeting of the ",
+          "zh": "次"
+        },
+        {
+          "color": "§5",
+          "text": "Cult of the Fallen Star",
+          "zh": "陨落之星教团"
+        },
+        {
+          "color": "§f",
+          "text": "! As a reward, here's some ",
+          "zh": "的例会! 作为奖励,这些"
+        },
+        {
+          "color": "§9",
+          "text": "Starfall",
+          "zh": "陨星"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "给你!"
+        }
+      ]
+    },
+    {
+      "id": "dalir_attend_two_more_and_i",
+      "context": "",
+      "raw": "§fAttend two more and I'll give you my §3Abiphone Contact§f.",
+      "text": "Attend two more and I'll give you my Abiphone Contact.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Attend two more and I'll give you my ",
+          "zh": "再参加两次,我就把我的"
+        },
+        {
+          "color": "§3",
+          "text": "Abiphone Contact",
+          "zh": "Abiphone 联系人"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "给你。"
+        }
+      ]
+    },
+    {
+      "id": "dalir_now_time_for_the_meeting",
+      "context": "",
+      "raw": "§fNow, time for the meeting to begin!",
+      "text": "Now, time for the meeting to begin!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "好了,例会正式开始!"
+    },
+    {
+      "id": "dalir_alright_where_did_we_finish",
+      "context": "",
+      "raw": "§fAlright, where did we finish off last time?",
+      "text": "Alright, where did we finish off last time?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "那么,我们上次说到哪儿了?"
+    },
+    {
+      "id": "dalir_right_the_master_plan_thondin",
+      "context": "",
+      "raw": "§fRight, the master plan. §5Thondin§f, care to update us?",
+      "text": "Right, the master plan. Thondin, care to update us?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Right, the master plan. ",
+          "zh": "对了,那个宏伟计划。"
+        },
+        {
+          "color": "§5",
+          "text": "Thondin",
+          "zh": "Thondin"
+        },
+        {
+          "color": "§f",
+          "text": ", care to update us?",
+          "zh": ",你来给大家讲讲进展?"
+        }
+      ]
+    },
+    {
+      "id": "dalir_break_anything_it_wasn_t",
+      "context": "",
+      "raw": "§fBreak anything? It wasn't me, it was §5Brarnas§f! And, honestly, who stores plates like that anyways?",
+      "text": "Break anything? It wasn't me, it was Brarnas! And, honestly, who stores plates like that anyways?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Break anything? It wasn't me, it was ",
+          "zh": "打碎东西?那可不是我,是"
+        },
+        {
+          "color": "§5",
+          "text": "Brarnas",
+          "zh": "Brarnas"
+        },
+        {
+          "color": "§f",
+          "text": "! And, honestly, who stores plates like that anyways?",
+          "zh": "! 而且说真的,谁会那样摆盘子啊?"
+        }
+      ]
+    },
+    {
+      "id": "dalir_they_re_just_asking_to",
+      "context": "",
+      "raw": "§fThey're just asking to be knocked over. Why not just put them in a drawer, out of the way?",
+      "text": "They're just asking to be knocked over. Why not just put them in a drawer, out of the way?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "那不就是等着被碰倒吗。干嘛不收进抽屉里放好?"
+    },
+    {
+      "id": "dalir_you_don_t_need_to",
+      "context": "",
+      "raw": "§fYou don't need to display them. Everyone has plates, they're nothing special.",
+      "text": "You don't need to display them. Everyone has plates, they're nothing special.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "又不用摆出来展示。谁家没有盘子,又不是什么稀罕东西。"
+    },
+    {
+      "id": "dalir_and_i_didn_t_but",
+      "context": "",
+      "raw": "§fAnd I didn't! But §5Brarnas§f told me about it.",
+      "text": "And I didn't! But Brarnas told me about it.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "And I didn't! But ",
+          "zh": "我确实没看见! 不过是"
+        },
+        {
+          "color": "§5",
+          "text": "Brarnas",
+          "zh": "Brarnas"
+        },
+        {
+          "color": "§f",
+          "text": " told me about it.",
+          "zh": "跟我说的。"
+        }
+      ]
+    },
+    {
+      "id": "dalir_anyways",
+      "context": "",
+      "raw": "§fAnyways!",
+      "text": "Anyways!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "总之!"
+    },
+    {
+      "id": "dalir_my_wife_said_i_m",
+      "context": "",
+      "raw": "§fMy wife said I'm free to come to the sleepover if I do the dishes first.",
+      "text": "My wife said I'm free to come to the sleepover if I do the dishes first.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "我老婆说了,只要我先把碗洗了,就可以去过夜。"
+    },
+    {
+      "id": "dalir_yeah_it_doesn_t_really",
+      "context": "",
+      "raw": "§fYeah, it doesn't really align with our cult's theme. How about the fourteenth instead?",
+      "text": "Yeah, it doesn't really align with our cult's theme. How about the fourteenth instead?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "是啊,那个日子和我们教团的主题不太搭。改成十四号怎么样?"
+    },
+    {
+      "id": "dalir_well_you_should_probably_make",
+      "context": "",
+      "raw": "§fWell, you should probably make yourself available.",
+      "text": "Well, you should probably make yourself available.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "那你最好还是把时间腾出来。"
+    },
+    {
+      "id": "dalir_alright_next_point_of_interest",
+      "context": "",
+      "raw": "§fAlright, next point of interest...",
+      "text": "Alright, next point of interest...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "好,下一项议题……"
+    },
+    {
+      "id": "dalir_again",
+      "context": "",
+      "raw": "§fAgain?",
+      "text": "Again?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "又来?"
+    },
+    {
+      "id": "dalir_alright_i_guess_we_can",
+      "context": "",
+      "raw": "§fAlright, I guess we can end the meeting there. Same time next week!",
+      "text": "Alright, I guess we can end the meeting there. Same time next week!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "行吧,今天的例会就到这儿。下周同一时间见!"
+    },
+    {
+      "id": "dalir_you_ve_now_attended_2",
+      "context": "",
+      "raw": "§fYou've now attended §62§f meetings of the §5Cult of the Fallen Star§f! As a reward, here's some §9Starfall§f!",
+      "text": "You've now attended 2 meetings of the Cult of the Fallen Star! As a reward, here's some Starfall!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "You've now attended ",
+          "zh": "你已经参加了"
+        },
+        {
+          "color": "§6",
+          "text": "2",
+          "zh": "2"
+        },
+        {
+          "color": "§f",
+          "text": " meetings of the ",
+          "zh": "次"
+        },
+        {
+          "color": "§5",
+          "text": "Cult of the Fallen Star",
+          "zh": "陨落之星教团"
+        },
+        {
+          "color": "§f",
+          "text": "! As a reward, here's some ",
+          "zh": "的例会! 作为奖励,这些"
+        },
+        {
+          "color": "§9",
+          "text": "Starfall",
+          "zh": "陨星"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "给你!"
+        }
+      ]
+    },
+    {
+      "id": "dalir_attend_one_more_and_i",
+      "context": "",
+      "raw": "§fAttend one more and I'll give you my §3Abiphone Contact§f.",
+      "text": "Attend one more and I'll give you my Abiphone Contact.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Attend one more and I'll give you my ",
+          "zh": "再参加一次,我就把我的"
+        },
+        {
+          "color": "§3",
+          "text": "Abiphone Contact",
+          "zh": "Abiphone 联系人"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "给你。"
+        }
+      ]
+    },
+    {
+      "id": "dalir_what_is_it",
+      "context": "",
+      "raw": "§fWhat is it?",
+      "text": "What is it?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "怎么了?"
+    },
+    {
+      "id": "dalir_why",
+      "context": "",
+      "raw": "§fWhy?",
+      "text": "Why?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "为什么?"
+    },
+    {
+      "id": "dalir_we_were_hungry",
+      "context": "",
+      "raw": "§fWe were hungry.",
+      "text": "We were hungry.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "我们当时饿了嘛。"
+    },
+    {
+      "id": "dalir_you_re_not_helping",
+      "context": "",
+      "raw": "§fYou're not helping.",
+      "text": "You're not helping.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你这话可帮不上忙。"
+    },
+    {
+      "id": "dalir_two",
+      "context": "",
+      "raw": "§fTWO?",
+      "text": "TWO?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "两个?"
+    },
+    {
+      "id": "dalir_okay_okay_i_get_it",
+      "context": "",
+      "raw": "§fOkay, okay, I get it. The next sleepover can be at my house. I'll make it up to you guys.",
+      "text": "Okay, okay, I get it. The next sleepover can be at my house. I'll make it up to you guys.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "好啦好啦,我懂了。下次过夜就在我家办,我补偿你们。"
+    },
+    {
+      "id": "dalir_yes_of_course_now_can",
+      "context": "",
+      "raw": "§fYes, of course! Now, can we move on with the meeting?",
+      "text": "Yes, of course! Now, can we move on with the meeting?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "是是,当然。那我们可以继续开会了吗?"
+    },
+    {
+      "id": "dalir_cat_again",
+      "context": "",
+      "raw": "§fCat again?",
+      "text": "Cat again?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "猫又跑了?"
+    },
+    {
+      "id": "dalir_well_i_guess_we_will",
+      "context": "",
+      "raw": "§fWell, I guess we will have to suspend today's meeting... Until next week, everyone!",
+      "text": "Well, I guess we will have to suspend today's meeting... Until next week, everyone!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "那今天的例会看来只能先散了……各位,下周见!"
+    },
+    {
+      "id": "dalir_you_ve_now_attended_meetings",
+      "context": "",
+      "raw": "§fYou've now attended §6#§f meetings of the §5Cult of the Fallen Star§f! As a reward, here's some §9Starfall§f!",
+      "text": "You've now attended # meetings of the Cult of the Fallen Star! As a reward, here's some Starfall!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "You've now attended ",
+          "zh": "你已经参加了"
+        },
+        {
+          "color": "§6",
+          "text": "#",
+          "zh": "#"
+        },
+        {
+          "color": "§f",
+          "text": " meetings of the ",
+          "zh": "次"
+        },
+        {
+          "color": "§5",
+          "text": "Cult of the Fallen Star",
+          "zh": "陨落之星教团"
+        },
+        {
+          "color": "§f",
+          "text": "! As a reward, here's some ",
+          "zh": "的例会! 作为奖励,这些"
+        },
+        {
+          "color": "§9",
+          "text": "Starfall",
+          "zh": "陨星"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "给你!"
+        }
+      ]
+    },
+    {
+      "id": "dalir_anyways_this_meeting_s_been",
+      "context": "",
+      "raw": "§fAnyways... This meeting's been running long, and we're starving.",
+      "text": "Anyways... This meeting's been running long, and we're starving.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "总之……这次会开得太久了,我们都快饿死了。"
+    },
+    {
+      "id": "dalir_you_ve_now_attended_4",
+      "context": "",
+      "raw": "§fYou’ve now attended §64§f meetings of the §5Cult of the Fallen Star§f! As a reward, here's some §9Starfall§f!",
+      "text": "You’ve now attended 4 meetings of the Cult of the Fallen Star! As a reward, here's some Starfall!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "You’ve now attended ",
+          "zh": "你已经参加了"
+        },
+        {
+          "color": "§6",
+          "text": "4",
+          "zh": "4"
+        },
+        {
+          "color": "§f",
+          "text": " meetings of the ",
+          "zh": "次"
+        },
+        {
+          "color": "§5",
+          "text": "Cult of the Fallen Star",
+          "zh": "陨落之星教团"
+        },
+        {
+          "color": "§f",
+          "text": "! As a reward, here's some ",
+          "zh": "的例会! 作为奖励,这些"
+        },
+        {
+          "color": "§9",
+          "text": "Starfall",
+          "zh": "陨星"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "给你!"
+        }
+      ]
+    },
+    {
+      "id": "dalir_what_is_it_thondin",
+      "context": "",
+      "raw": "§fWhat is it, §5Thondin§f?",
+      "text": "What is it, Thondin?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "What is it, ",
+          "zh": "怎么了,"
+        },
+        {
+          "color": "§5",
+          "text": "Thondin",
+          "zh": "Thondin"
+        },
+        {
+          "color": "§f",
+          "text": "?",
+          "zh": "?"
+        }
+      ]
+    },
+    {
+      "id": "dalir_and_guards_though_they_serve",
+      "context": "",
+      "raw": "§fAnd guards, though they serve a similar purpose, are not doors, I suppose.",
+      "text": "And guards, though they serve a similar purpose, are not doors, I suppose.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "而卫兵嘛,虽然作用差不多,但终究不是门,我想是这样。"
+    },
+    {
+      "id": "dalir_yup_i_sleep_in_one",
+      "context": "",
+      "raw": "§fYup, I sleep in one.",
+      "text": "Yup, I sleep in one.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "对啊,我就睡在矿车里。"
+    },
+    {
+      "id": "dalir_you_know_now_that_i",
+      "context": "",
+      "raw": "§fYou know, now that I think of it, everything is really blocky around here. And everywhere.",
+      "text": "You know, now that I think of it, everything is really blocky around here. And everywhere.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你别说,我现在一想,这附近什么东西都是方的。全世界都是。"
+    },
+    {
+      "id": "dalir_don_t_be_silly",
+      "context": "",
+      "raw": "§fDon't be silly.",
+      "text": "Don't be silly.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "别胡说八道了。"
+    },
+    {
+      "id": "dalir_come_let_s_go_and",
+      "context": "",
+      "raw": "§fCome, let's go and check out those minecarts. Meeting adjourned!",
+      "text": "Come, let's go and check out those minecarts. Meeting adjourned!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "走,我们去看看那些矿车。散会!"
+    },
+    {
+      "id": "dalir_you_ve_now_attended_5",
+      "context": "",
+      "raw": "§fYou’ve now attended §65§f meetings of the §5Cult of the Fallen Star§f! As a reward, here's some §9Starfall§f!",
+      "text": "You’ve now attended 5 meetings of the Cult of the Fallen Star! As a reward, here's some Starfall!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "You’ve now attended ",
+          "zh": "你已经参加了"
+        },
+        {
+          "color": "§6",
+          "text": "5",
+          "zh": "5"
+        },
+        {
+          "color": "§f",
+          "text": " meetings of the ",
+          "zh": "次"
+        },
+        {
+          "color": "§5",
+          "text": "Cult of the Fallen Star",
+          "zh": "陨落之星教团"
+        },
+        {
+          "color": "§f",
+          "text": "! As a reward, here's some ",
+          "zh": "的例会! 作为奖励,这些"
+        },
+        {
+          "color": "§9",
+          "text": "Starfall",
+          "zh": "陨星"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "给你!"
+        }
+      ]
+    },
+    {
+      "id": "dalir_well_guys_i_m_still",
+      "context": "",
+      "raw": "§fWell, guys, I'm still a bit shook from our recent series of discoveries.",
+      "text": "Well, guys, I'm still a bit shook from our recent series of discoveries.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "各位,我到现在还没从我们最近这一连串发现里缓过来。"
+    },
+    {
+      "id": "dalir_i_suppose_we_should_recap",
+      "context": "",
+      "raw": "§fI suppose we should recap them, just for the agenda. §5Brarnas§f, if you would...",
+      "text": "I suppose we should recap them, just for the agenda. Brarnas, if you would...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "I suppose we should recap them, just for the agenda. ",
+          "zh": "为了走个流程,我们还是复述一遍吧。"
+        },
+        {
+          "color": "§5",
+          "text": "Brarnas",
+          "zh": "Brarnas"
+        },
+        {
+          "color": "§f",
+          "text": ", if you would...",
+          "zh": ",麻烦你……"
+        }
+      ]
+    },
+    {
+      "id": "dalir_and_the_puzzler_always_has",
+      "context": "",
+      "raw": "§fAnd the §dPuzzler§f always has a stupid puzzle to solve!",
+      "text": "And the Puzzler always has a stupid puzzle to solve!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "And the ",
+          "zh": "而且"
+        },
+        {
+          "color": "§d",
+          "text": "Puzzler",
+          "zh": "Puzzler"
+        },
+        {
+          "color": "§f",
+          "text": " always has a stupid puzzle to solve!",
+          "zh": "永远都有一道蠢谜题等着人解!"
+        }
+      ]
+    },
+    {
+      "id": "dalir_huh",
+      "context": "",
+      "raw": "§fHUH?",
+      "text": "HUH?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "啊?"
+    },
+    {
+      "id": "dalir_i_can_t_deal_with",
+      "context": "",
+      "raw": "§fI can't deal with this right now, I need some time to process it all.",
+      "text": "I can't deal with this right now, I need some time to process it all.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "我现在实在承受不了这个,我需要点时间消化一下。"
+    },
+    {
+      "id": "dalir_meeting_adjourned",
+      "context": "",
+      "raw": "§fMeeting adjourned!",
+      "text": "Meeting adjourned!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "散会!"
+    },
+    {
+      "id": "dalir_you_ve_now_attended_6",
+      "context": "",
+      "raw": "§fYou’ve now attended §66§f meetings of the §5Cult of the Fallen Star§f! As a reward, here's some §9Starfall§f!",
+      "text": "You’ve now attended 6 meetings of the Cult of the Fallen Star! As a reward, here's some Starfall!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "You’ve now attended ",
+          "zh": "你已经参加了"
+        },
+        {
+          "color": "§6",
+          "text": "6",
+          "zh": "6"
+        },
+        {
+          "color": "§f",
+          "text": " meetings of the ",
+          "zh": "次"
+        },
+        {
+          "color": "§5",
+          "text": "Cult of the Fallen Star",
+          "zh": "陨落之星教团"
+        },
+        {
+          "color": "§f",
+          "text": "! As a reward, here's some ",
+          "zh": "的例会! 作为奖励,这些"
+        },
+        {
+          "color": "§9",
+          "text": "Starfall",
+          "zh": "陨星"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "给你!"
+        }
+      ]
+    },
+    {
+      "id": "dalir_i_don_t_know_about",
+      "context": "",
+      "raw": "§fI don't know about you guys, but I'm still coming to terms with our recent findings...",
+      "text": "I don't know about you guys, but I'm still coming to terms with our recent findings...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "不知道你们怎么样,反正我还在慢慢接受我们最近的发现……"
+    },
+    {
+      "id": "dalir_what_was_never_alive_may",
+      "context": "",
+      "raw": "§fWhat was never alive may never die, §5Thondin§f.",
+      "text": "What was never alive may never die, Thondin.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "What was never alive may never die, ",
+          "zh": "从未活过的东西,也就无所谓死去,"
+        },
+        {
+          "color": "§5",
+          "text": "Thondin",
+          "zh": "Thondin"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "dalir_but_we_are_conscious_brarnas",
+      "context": "",
+      "raw": "§fBut we are conscious, §5Brarnas§f, are we not? Surely we exist in some capacity.",
+      "text": "But we are conscious, Brarnas, are we not? Surely we exist in some capacity.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "But we are conscious, ",
+          "zh": "可我们是有意识的啊,"
+        },
+        {
+          "color": "§5",
+          "text": "Brarnas",
+          "zh": "Brarnas"
+        },
+        {
+          "color": "§f",
+          "text": ", are we not? Surely we exist in some capacity.",
+          "zh": ",不是吗?我们总归是以某种方式存在着的。"
+        }
+      ]
+    },
+    {
+      "id": "dalir_or_perhaps_we_are_real",
+      "context": "",
+      "raw": "§fOr perhaps we are real, but are stuck within the §kX§rsimulation§kX§r?",
+      "text": "Or perhaps we are real, but are stuck within the XsimulationX?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Or perhaps we are real, but are stuck within the ",
+          "zh": "又或者我们是真实的,只是被困在"
+        },
+        {
+          "color": "§k",
+          "text": "X",
+          "zh": "X"
+        },
+        {
+          "color": "§r",
+          "text": "simulation",
+          "zh": "模拟"
+        },
+        {
+          "color": "§k",
+          "text": "X",
+          "zh": "X"
+        },
+        {
+          "color": "§r",
+          "text": "?",
+          "zh": "里?"
+        }
+      ]
+    },
+    {
+      "id": "dalir_this_is_all_too_much",
+      "context": "",
+      "raw": "§fThis is all too much for me to comprehend. I liked things better before.",
+      "text": "This is all too much for me to comprehend. I liked things better before.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这些我实在想不明白。我还是喜欢以前那样。"
+    },
+    {
+      "id": "dalir_let_s_do_it",
+      "context": "",
+      "raw": "§fLet's do it.",
+      "text": "Let's do it.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "那就这么办。"
+    },
+    {
+      "id": "dalir_alright_let_me_call_them",
+      "context": "",
+      "raw": "§fAlright, let me call them.",
+      "text": "Alright, let me call them.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "行,我这就打电话。"
+    },
+    {
+      "id": "dalir_hello_can_i_have_a",
+      "context": "",
+      "raw": "§fHello, can I have a pizza please.",
+      "text": "Hello, can I have a pizza please.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "喂,我要一份披萨。"
+    },
+    {
+      "id": "dalir_hmm_give_me_a_second",
+      "context": "",
+      "raw": "§fHmm, give me a second, I'll ask my friends.",
+      "text": "Hmm, give me a second, I'll ask my friends.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "嗯,稍等一下,我问问我朋友。"
+    },
+    {
+      "id": "dalir_guys_red_pizza_or_blue",
+      "context": "",
+      "raw": "§fGuys, §cred pizza§f or §9blue pizza§f?",
+      "text": "Guys, red pizza or blue pizza?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Guys, ",
+          "zh": "各位,"
+        },
+        {
+          "color": "§c",
+          "text": "red pizza",
+          "zh": "红披萨"
+        },
+        {
+          "color": "§f",
+          "text": " or ",
+          "zh": "还是"
+        },
+        {
+          "color": "§9",
+          "text": "blue pizza",
+          "zh": "蓝披萨"
+        },
+        {
+          "color": "§f",
+          "text": "?",
+          "zh": "?"
+        }
+      ]
+    },
+    {
+      "id": "dalir_i_don_t_think_so",
+      "context": "",
+      "raw": "§fI don't think so. Let's get it.",
+      "text": "I don't think so. Let's get it.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "应该没有吧。就点它了。"
+    },
+    {
+      "id": "dalir_hey_one_blue_pizza_please",
+      "context": "",
+      "raw": "§fHey! One §9blue pizza§f, please. Yup, thanks, we'll come over now, bye!",
+      "text": "Hey! One blue pizza, please. Yup, thanks, we'll come over now, bye!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Hey! One ",
+          "zh": "喂! 来一份"
+        },
+        {
+          "color": "§9",
+          "text": "blue pizza",
+          "zh": "蓝披萨"
+        },
+        {
+          "color": "§f",
+          "text": ", please. Yup, thanks, we'll come over now, bye!",
+          "zh": ",谢谢。嗯,好的,我们这就过去,再见!"
+        }
+      ]
+    },
+    {
+      "id": "dalir_alright_guys_let_s_go",
+      "context": "",
+      "raw": "§fAlright guys, let's go grab our pizza! And no more talk of all of this §kX§rsimulation§kX§r stuff, it scares me!",
+      "text": "Alright guys, let's go grab our pizza! And no more talk of all of this XsimulationX stuff, it scares me!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Alright guys, let's go grab our pizza! And no more talk of all of this ",
+          "zh": "好了各位,我们去取披萨吧! 还有别再聊这些"
+        },
+        {
+          "color": "§k",
+          "text": "X",
+          "zh": "X"
+        },
+        {
+          "color": "§r",
+          "text": "simulation",
+          "zh": "模拟"
+        },
+        {
+          "color": "§k",
+          "text": "X",
+          "zh": "X"
+        },
+        {
+          "color": "§r",
+          "text": " stuff, it scares me!",
+          "zh": "的事了,吓得我慌!"
+        }
+      ]
+    }
+  ],
+  "todo": [
+    "Abiphone 联系人流程里交出 'Powder Pie' 的物品名保持英文(自造物品专名),已在 dalir_before_i_give_you_my 里按此处理。"
+  ]
+}

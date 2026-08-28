@@ -1,0 +1,1484 @@
+{
+  "source": "玩家实测客户端日志(logs/,2026-08-19)+ https://github.com/hannibal002/SkyHanni 的 MiningApi.kt / regexesModern.json(取颜色码)",
+  "fetched_at": "2026-08-19",
+  "verified_ingame": true,
+  "source_note": "数据来自开源客户端 Mod SkyHanni 的 SkyHanni-REPO 仓库 constants/regexesModern.json (用于解析游戏内文本的正则表达式常量),已去除正则语法/颜色码还原成干净模板文本, 可信度高于 Wiki 摘要,但未逐条在游戏内截图核对,verified_ingame 仍为 false。",
+  "messages": [
+    {
+      "id": "mineshaft_resourceful_save",
+      "context": "“资源利用”(Resourceful)天赋生效,矿井钥匙未被消耗时的提示",
+      "text": "LUCKY! Your Resourceful perk saved your key from being consumed!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "好运! 「资源利用」天赋帮你省下了这把钥匙!"
+    },
+    {
+      "id": "mineshaft_corpse_loot_header",
+      "context": "打开矿井尸体战利品时的标题行",
+      "text": "%s CORPSE LOOT!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "尸体类型(材质决定,如 Lapis / Umber / Tungsten / Vanguard)",
+          "type": "raw",
+          "example": "LAPIS"
+        }
+      ],
+      "gloss": "尸体类型词(LAPIS / UMBER / TUNGSTEN / VANGUARD)由服务器塞进来,自带颜色,译名走 _shared/Terms.json。",
+      "translate": true,
+      "zh": "%s尸体战利品!",
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "mineshaft_loot_item_line",
+      "context": "矿井尸体战利品结算列表里的单条物品行(缩进显示)",
+      "text": "    %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "物品名称,专有物品名不翻译",
+          "type": "item_name",
+          "example": "Enchanted Coal"
+        }
+      ],
+      "gloss": "和 ChatMessage/Fossil_Excavator.json 里的 mining_chat_fossil_loot_item_line 是同一套“缩进+物品名”结算行模板,不同场景各自采集一条即可,不需要合并成跨文件共享条目(采集阶段保持每个来源场景独立记录,去重整理留给翻译/代码阶段)。",
+      "translate": false,
+      "zh": ""
+    },
+    {
+      "id": "mineshaft_goblin_gold_spawn",
+      "context": "普通哥布林(金色)刷新提示",
+      "text": "A Golden Goblin has spawned!",
+      "placeholders": [],
+      "gloss": "怪物名自带颜色,和句子其余部分分开。分段只决定颜色边界,颜色渲染时从屏幕上当场读,所以 color 字段只是给人看的记号。",
+      "translate": true,
+      "zh": "一只黄金哥布林刷新了!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "A ",
+          "zh": "一只"
+        },
+        {
+          "color": "§6",
+          "text": "Golden Goblin",
+          "zh": "黄金哥布林"
+        },
+        {
+          "color": "§e",
+          "text": " has spawned!",
+          "zh": "刷新了!"
+        }
+      ]
+    },
+    {
+      "id": "mineshaft_goblin_diamond_spawn",
+      "context": "稀有哥布林(钻石)刷新提示",
+      "text": "A Diamond Goblin has spawned!",
+      "placeholders": [],
+      "gloss": "怪物名自带颜色,和句子其余部分分开。分段只决定颜色边界,颜色渲染时从屏幕上当场读,所以 color 字段只是给人看的记号。",
+      "translate": true,
+      "zh": "一只钻石哥布林刷新了!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "A ",
+          "zh": "一只"
+        },
+        {
+          "color": "§6",
+          "text": "Diamond Goblin",
+          "zh": "钻石哥布林"
+        },
+        {
+          "color": "§e",
+          "text": " has spawned!",
+          "zh": "刷新了!"
+        }
+      ]
+    },
+    {
+      "id": "glacite_mineshaft_portal_found",
+      "context": "发现极冰矿井传送门时的提示",
+      "text": "WOW! You found a Glacite Mineshaft portal! (%s)",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "本档案累计发现的矿井传送门数",
+          "type": "number",
+          "example": "1674"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "哇哦! 你发现了一个极冰矿井传送门! (%s)",
+      "raw": "§5§lWOW! §r§aYou found a §r§bGlacite Mineshaft §r§aportal! §e(%s)",
+      "segments": [
+        {
+          "color": "§5",
+          "text": "WOW! ",
+          "zh": "哇哦! "
+        },
+        {
+          "color": "§a",
+          "text": "You found a ",
+          "zh": "你发现了一个"
+        },
+        {
+          "color": "§b",
+          "text": "Glacite Mineshaft ",
+          "zh": "极冰矿井"
+        },
+        {
+          "color": "§a",
+          "text": "portal! ",
+          "zh": "传送门! "
+        },
+        {
+          "color": "§e",
+          "text": "(%s)",
+          "zh": "(%s)"
+        }
+      ]
+    },
+    {
+      "id": "mining_scrap_found",
+      "context": "在极冰矿井挖到可疑残料时的提示(整行有三段颜色)",
+      "text": "EXCAVATOR! You found a Suspicious Scrap!",
+      "placeholders": [],
+      "gloss": "已查证(wiki.hypixel.net/Suspicious_Scrap):这就是游戏内固定原文,“EXCAVATOR!”是和 LUCKY!/MAYHEM!/WOW! 同类的场景感叹词,不是指“化石挖掘机”(Fossil Excavator 是另一个不同机制,可疑残料只是之后会被用在那台机器上),翻译时不直译成“挖掘机”,改用同类感叹语气避免和 Fossil Excavator 混淆。",
+      "translate": true,
+      "zh": "挖掘! 你找到了一份可疑残料!",
+      "raw": "§6§lEXCAVATOR! §r§fYou found a §r§9Suspicious Scrap§r§f!",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "EXCAVATOR! ",
+          "zh": "挖掘! "
+        },
+        {
+          "color": "§f",
+          "text": "You found a ",
+          "zh": "你找到了一份"
+        },
+        {
+          "color": "§9",
+          "text": "Suspicious Scrap",
+          "zh": "可疑残料"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "mineshaft_portal_spawned",
+      "context": "附近刷新出矿井传送门的提示",
+      "raw": "§5§lMINESHAFT! §r§dA Mineshaft portal spawned nearby!",
+      "text": "MINESHAFT! A Mineshaft portal spawned nearby!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "矿井! 附近出现了一个矿井传送门!",
+      "segments": [
+        {
+          "color": "§5",
+          "text": "MINESHAFT! ",
+          "zh": "矿井! "
+        },
+        {
+          "color": "§d",
+          "text": "A Mineshaft portal spawned nearby!",
+          "zh": "附近出现了一个矿井传送门!"
+        }
+      ]
+    },
+    {
+      "id": "mineshaft_sending",
+      "context": "正在传送进矿井",
+      "text": "Sending to Mineshaft...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "正在传送到矿井……"
+    },
+    {
+      "id": "mineshaft_caved_in",
+      "context": "矿井入口塌方,别人进不来了",
+      "text": "The mineshaft entrance has caved in... it doesn't look like anyone else will be able to get in here.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "矿井入口塌了……看样子别人是进不来了。"
+    },
+    {
+      "id": "mineshaft_leave_bonus",
+      "context": "死之前离开矿井拿到的极冰粉末补偿",
+      "raw": "§6§lBYE! §r§fYou got a §r§b+%s Glacite Powder §r§fbonus for leaving a Mineshaft before you died!",
+      "text": "BYE! You got a +%s Glacite Powder bonus for leaving a Mineshaft before you died!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "奖励的极冰粉末数量",
+          "type": "number",
+          "example": "3,840"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "再见! 你在阵亡前离开矿井,获得了 +%s 极冰粉末奖励!",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "BYE! ",
+          "zh": "再见! "
+        },
+        {
+          "color": "§f",
+          "text": "You got a ",
+          "zh": "你在阵亡前离开矿井,获得了"
+        },
+        {
+          "color": "§b",
+          "text": "+%s Glacite Powder ",
+          "zh": " +%s 极冰粉末"
+        },
+        {
+          "color": "§f",
+          "text": "bonus for leaving a Mineshaft before you died!",
+          "zh": "奖励!"
+        }
+      ]
+    },
+    {
+      "id": "mineshaft_mines_modifier_one",
+      "context": "矿井「地雷」修正:附近埋了 1 颗炸弹",
+      "text": "MINES! There is 1 bomb hidden nearby.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "地雷! 附近埋着 1 颗炸弹。",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "MINES! ",
+          "zh": "地雷! "
+        },
+        {
+          "color": "§7",
+          "text": "There is 1 bomb hidden nearby.",
+          "zh": "附近埋着 1 颗炸弹。"
+        }
+      ]
+    },
+    {
+      "id": "mineshaft_mines_modifier_many",
+      "context": "矿井「地雷」修正:附近埋了多颗炸弹",
+      "text": "MINES! There are %s bombs hidden nearby.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "炸弹数量",
+          "type": "number",
+          "example": "3"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "地雷! 附近埋着 %s 颗炸弹。",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "MINES! ",
+          "zh": "地雷! "
+        },
+        {
+          "color": "§7",
+          "text": "There are %s bombs hidden nearby.",
+          "zh": "附近埋着 %s 颗炸弹。"
+        }
+      ]
+    },
+    {
+      "id": "mining_compact_found",
+      "context": "「压缩」天赋把一堆矿压成附魔物品时的提示",
+      "raw": "§b§lCOMPACT! §r§fYou found an §r§a%s§r§f!",
+      "text": "COMPACT! You found an %s!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "压缩出来的附魔物品名",
+          "type": "item_name",
+          "example": "Enchanted Mithril"
+        }
+      ],
+      "gloss": "原文固定用 an(Enchanted 开头),中文不需要区分 a/an。",
+      "translate": true,
+      "zh": "压缩! 你获得了一份%s!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "COMPACT! ",
+          "zh": "压缩! "
+        },
+        {
+          "color": "§f",
+          "text": "You found an ",
+          "zh": "你获得了一份"
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "mining_pristine_found",
+      "context": "「纯净」天赋额外掉落宝石时的提示",
+      "raw": "§d§lPRISTINE! §r§fYou found §r§a%1$s %2$s %3$s Gemstone §r§8x%4$s§r§f!",
+      "text": "PRISTINE! You found %1$s %2$s %3$s Gemstone x%4$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "宝石种类的图标字符(服务器字体私用区字形)",
+          "type": "raw",
+          "example": "❤"
+        },
+        {
+          "token": "%2$s",
+          "desc": "宝石品质",
+          "type": "raw",
+          "example": "Flawed"
+        },
+        {
+          "token": "%3$s",
+          "desc": "宝石种类名。type 必须是词表不生效的类型(见 _shared/Terms.json 的 applies_to_types):宝石种类名按 GLOSSARY.md「水晶/宝石种类名」条目一律保留英文,写成 raw 会让词表去翻它。",
+          "type": "item_name",
+          "example": "Ruby"
+        },
+        {
+          "token": "%4$s",
+          "desc": "数量",
+          "type": "number",
+          "example": "19"
+        }
+      ],
+      "gloss": "品质词 Rough/Flawed/Fine/Flawless 的译名走 _shared/Terms.json,种类名保持英文。",
+      "translate": true,
+      "zh": "纯净! 你额外挖到了 %1$s %2$s %3$s 宝石 x%4$s!",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "PRISTINE! ",
+          "zh": "纯净! "
+        },
+        {
+          "color": "§f",
+          "text": "You found ",
+          "zh": "你额外挖到了 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s %2$s %3$s Gemstone ",
+          "zh": "%1$s %2$s %3$s 宝石"
+        },
+        {
+          "color": "§8",
+          "text": "x%4$s",
+          "zh": " x%4$s"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "mining_mineshaft_portal_found_plain",
+      "context": "发现极冰矿井传送门(不带括号计数的写法)",
+      "raw": "§5§lWOW! §aYou found a §bGlacite Mineshaft §aportal!",
+      "text": "WOW! You found a Glacite Mineshaft portal!",
+      "placeholders": [],
+      "gloss": "和 mining_mineshaft_portal_found 同一件事,那条末尾带 (%s) 计数,这条没有。",
+      "translate": true,
+      "zh": "哇哦! 你发现了一个极冰矿井传送门!",
+      "segments": [
+        {
+          "color": "§5",
+          "text": "WOW! ",
+          "zh": "哇哦! "
+        },
+        {
+          "color": "§a",
+          "text": "You found a ",
+          "zh": "你发现了一个"
+        },
+        {
+          "color": "§b",
+          "text": "Glacite Mineshaft ",
+          "zh": "极冰矿井"
+        },
+        {
+          "color": "§a",
+          "text": "portal!",
+          "zh": "传送门!"
+        }
+      ]
+    },
+    {
+      "id": "mining_mineshaft_entered",
+      "context": "有人进入极冰矿井时的全服广播",
+      "raw": "§b[MVP§9+§b] inkkni§f §eentered §aGlacite Mineshafts§e!",
+      "text": "%s entered Glacite Mineshafts!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "玩家的称号+名字,保留原样",
+          "type": "raw",
+          "example": "[MVP+] inkkni"
+        }
+      ],
+      "gloss": "地名自带颜色,玩家名那一段的颜色跟着他的称号走。分段只决定颜色边界,颜色渲染时从屏幕上当场读,所以 color 字段只是给人看的记号。",
+      "translate": true,
+      "zh": "%s 进入了极冰矿井!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§e",
+          "text": " entered ",
+          "zh": " 进入了"
+        },
+        {
+          "color": "§a",
+          "text": "Glacite Mineshafts",
+          "zh": "极冰矿井"
+        },
+        {
+          "color": "§e",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "mining_loot_chest_collected",
+      "context": "开启矿井战利品箱时的结算标题行",
+      "raw": "  §5§lLOOT CHEST COLLECTED ",
+      "text": "LOOT CHEST COLLECTED",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "战利品箱已开启"
+    },
+    {
+      "id": "mining_loot_gemstone_line",
+      "context": "战利品结算清单里的宝石那一行(缩进显示)",
+      "raw": "    §a %1$s Peridot Gemstone §8x%2$s",
+      "text": "%1$s %2$s %3$s Gemstone x%4$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "宝石种类的图标字符(服务器字体私用区字形)",
+          "type": "raw",
+          "example": "✧"
+        },
+        {
+          "token": "%2$s",
+          "desc": "宝石品质,译名走 _shared/Terms.json",
+          "type": "raw",
+          "example": "Flawed"
+        },
+        {
+          "token": "%3$s",
+          "desc": "宝石种类名,按 GLOSSARY.md 保留英文,所以用词表不生效的 item_name",
+          "type": "item_name",
+          "example": "Peridot"
+        },
+        {
+          "token": "%4$s",
+          "desc": "数量",
+          "type": "number",
+          "example": "40"
+        }
+      ],
+      "gloss": "数量那一半是深灰的,宝石名是宝石自己的颜色;整行记一条的话译文会被整段刷成宝石的颜色。分段只决定颜色边界,颜色渲染时从屏幕上当场读,所以 color 字段只是给人看的记号。",
+      "translate": true,
+      "zh": "%1$s %2$s %3$s 宝石 x%4$s",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "%1$s %2$s %3$s Gemstone ",
+          "zh": "%1$s %2$s %3$s 宝石 "
+        },
+        {
+          "color": "§8",
+          "text": "x%4$s",
+          "zh": "x%4$s"
+        }
+      ]
+    },
+    {
+      "id": "mining_loot_mithril_powder",
+      "context": "战利品清单里的秘银粉末行",
+      "text": "Mithril Powder x%s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "5,779"
+        }
+      ],
+      "gloss": "数量那一半是深灰的,物品名是它自己的颜色——和本文件里 mining_loot_essence_* 那一组同一个形状。分段只决定颜色边界,颜色渲染时从屏幕上当场读,所以 color 字段只是给人看的记号。",
+      "translate": true,
+      "zh": "秘银粉末 x%s",
+      "raw": "§bMithril Powder §8x%s",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "Mithril Powder ",
+          "zh": "秘银粉末 "
+        },
+        {
+          "color": "§8",
+          "text": "x%s",
+          "zh": "x%s"
+        }
+      ]
+    },
+    {
+      "id": "mining_loot_gemstone_powder",
+      "context": "战利品清单里的宝石粉末行",
+      "text": "Gemstone Powder x%s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "194"
+        }
+      ],
+      "gloss": "数量那一半是深灰的,物品名是它自己的颜色——和本文件里 mining_loot_essence_* 那一组同一个形状。分段只决定颜色边界,颜色渲染时从屏幕上当场读,所以 color 字段只是给人看的记号。",
+      "translate": true,
+      "zh": "宝石粉末 x%s",
+      "raw": "§bGemstone Powder §8x%s",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "Gemstone Powder ",
+          "zh": "宝石粉末 "
+        },
+        {
+          "color": "§8",
+          "text": "x%s",
+          "zh": "x%s"
+        }
+      ]
+    },
+    {
+      "id": "mining_loot_glacite_powder",
+      "context": "战利品清单里的极冰粉末行",
+      "text": "Glacite Powder x%s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "5,779"
+        }
+      ],
+      "gloss": "数量那一半是深灰的,物品名是它自己的颜色——和本文件里 mining_loot_essence_* 那一组同一个形状。分段只决定颜色边界,颜色渲染时从屏幕上当场读,所以 color 字段只是给人看的记号。",
+      "translate": true,
+      "zh": "极冰粉末 x%s",
+      "raw": "§bGlacite Powder §8x%s",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "Glacite Powder ",
+          "zh": "极冰粉末 "
+        },
+        {
+          "color": "§8",
+          "text": "x%s",
+          "zh": "x%s"
+        }
+      ]
+    },
+    {
+      "id": "mining_loot_enchanted_material",
+      "context": "战利品清单里的附魔材料行",
+      "text": "Enchanted %1$s x%2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "材料名,译名走 _shared/Terms.json,查不到就保持英文",
+          "type": "raw",
+          "example": "Umber"
+        },
+        {
+          "token": "%2$s",
+          "desc": "数量",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "Enchanted 前缀按原版译“附魔”,见 GLOSSARY.md。数量那一半是深灰的,和物品名分开。分段只决定颜色边界,颜色渲染时从屏幕上当场读,所以 color 字段只是给人看的记号。",
+      "translate": true,
+      "zh": "附魔%1$s x%2$s",
+      "raw": "§9Enchanted %1$s §8x%2$s",
+      "segments": [
+        {
+          "color": "§9",
+          "text": "Enchanted %1$s ",
+          "zh": "附魔%1$s "
+        },
+        {
+          "color": "§8",
+          "text": "x%2$s",
+          "zh": "x%2$s"
+        }
+      ]
+    },
+    {
+      "id": "mining_loot_suspicious_scrap",
+      "context": "战利品清单里的可疑残料行",
+      "text": "Suspicious Scrap",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "可疑残料"
+    },
+    {
+      "id": "mining_loot_essence_diamond",
+      "context": "战利品清单里的钻石精华行",
+      "text": "Diamond Essence",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "钻石精华"
+    },
+    {
+      "id": "mining_loot_essence_gold",
+      "context": "战利品清单里的黄金精华行",
+      "text": "Gold Essence",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "黄金精华"
+    },
+    {
+      "id": "mining_loot_essence_ice",
+      "context": "战利品清单里的冰霜精华行",
+      "text": "Ice Essence",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "冰霜精华"
+    },
+    {
+      "id": "mining_loot_essence_wither",
+      "context": "战利品清单里的凋零精华行",
+      "text": "Wither Essence",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "凋零精华"
+    },
+    {
+      "id": "mining_loot_essence_spider",
+      "context": "战利品清单里的蜘蛛精华行",
+      "text": "Spider Essence",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "蜘蛛精华"
+    },
+    {
+      "id": "mining_loot_essence_undead",
+      "context": "战利品清单里的亡灵精华行",
+      "text": "Undead Essence",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "亡灵精华"
+    },
+    {
+      "id": "mining_loot_essence_dragon",
+      "context": "战利品清单里的巨龙精华行",
+      "text": "Dragon Essence",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "巨龙精华"
+    },
+    {
+      "id": "mining_loot_essence_crimson",
+      "context": "战利品清单里的绯红精华行",
+      "text": "Crimson Essence",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "绯红精华"
+    },
+    {
+      "id": "mining_loot_rewards_header",
+      "context": "尸体/战利品箱结算清单上方的小标题(全大写写法)",
+      "raw": "  REWARDS",
+      "text": "REWARDS",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "奖励"
+    },
+    {
+      "id": "mining_loot_gemstone_line_plain",
+      "context": "战利品结算清单里的宝石那一行,数量为 1 时不带 xN",
+      "text": "%1$s %2$s %3$s Gemstone",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "宝石种类的图标字符(服务器字体私用区字形)",
+          "type": "raw",
+          "example": "✧"
+        },
+        {
+          "token": "%2$s",
+          "desc": "宝石品质,译名走 _shared/Terms.json",
+          "type": "raw",
+          "example": "Fine"
+        },
+        {
+          "token": "%3$s",
+          "desc": "宝石种类名,按 GLOSSARY.md 保留英文,所以用词表不生效的 item_name",
+          "type": "item_name",
+          "example": "Peridot"
+        }
+      ],
+      "gloss": "和 mining_loot_gemstone_line 是同一行的两种写法,那条末尾带 x%s 数量,这条没有。",
+      "translate": true,
+      "zh": "%1$s %2$s %3$s 宝石"
+    },
+    {
+      "id": "mining_loot_essence_fossil",
+      "context": "战利品清单里的化石精华行",
+      "text": "Fossil Essence",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "化石精华"
+    },
+    {
+      "id": "mining_loot_treasure_chest_not_yours",
+      "context": "别人先发现的战利品箱,自己开不了",
+      "text": "You did not discover this treasure chest.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这个宝箱不是你发现的。"
+    },
+    {
+      "id": "mining_loot_too_close_to_entrance",
+      "context": "在矿井入口附近挖矿被拒绝",
+      "text": "You cannot mine this close to an entrance!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "离入口太近了,这里不能挖!"
+    },
+    {
+      "id": "mining_loot_essence_fossil_count",
+      "context": "战利品清单里的化石精华行,带数量",
+      "text": "Fossil Essence x%s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "化石精华 x%s",
+      "raw": "§dFossil Essence §8x%s",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "Fossil Essence ",
+          "zh": "化石精华 "
+        },
+        {
+          "color": "§8",
+          "text": "x%s",
+          "zh": "x%s"
+        }
+      ]
+    },
+    {
+      "id": "mining_loot_essence_fossil_gain",
+      "context": "化石挖掘结算里的化石精华行,写成 +N 的那一种",
+      "text": "+%s Fossil Essence",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s 化石精华",
+      "raw": "§7+§6%s Fossil Essence",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§6",
+          "text": "%s Fossil Essence",
+          "zh": "%s 化石精华"
+        }
+      ]
+    },
+    {
+      "id": "mining_loot_essence_gold_count",
+      "context": "战利品清单里的黄金精华行,带数量",
+      "text": "Gold Essence x%s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "黄金精华 x%s",
+      "raw": "§dGold Essence §8x%s",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "Gold Essence ",
+          "zh": "黄金精华 "
+        },
+        {
+          "color": "§8",
+          "text": "x%s",
+          "zh": "x%s"
+        }
+      ]
+    },
+    {
+      "id": "mining_loot_essence_gold_gain",
+      "context": "化石挖掘结算里的黄金精华行,写成 +N 的那一种",
+      "text": "+%s Gold Essence",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s 黄金精华",
+      "raw": "§7+§6%s Gold Essence",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§6",
+          "text": "%s Gold Essence",
+          "zh": "%s 黄金精华"
+        }
+      ]
+    },
+    {
+      "id": "mining_loot_essence_diamond_count",
+      "context": "战利品清单里的钻石精华行,带数量",
+      "text": "Diamond Essence x%s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "钻石精华 x%s",
+      "raw": "§dDiamond Essence §8x%s",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "Diamond Essence ",
+          "zh": "钻石精华 "
+        },
+        {
+          "color": "§8",
+          "text": "x%s",
+          "zh": "x%s"
+        }
+      ]
+    },
+    {
+      "id": "mining_loot_essence_diamond_gain",
+      "context": "化石挖掘结算里的钻石精华行,写成 +N 的那一种",
+      "text": "+%s Diamond Essence",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s 钻石精华",
+      "raw": "§7+§6%s Diamond Essence",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§6",
+          "text": "%s Diamond Essence",
+          "zh": "%s 钻石精华"
+        }
+      ]
+    },
+    {
+      "id": "mining_loot_essence_ice_count",
+      "context": "战利品清单里的冰霜精华行,带数量",
+      "text": "Ice Essence x%s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "冰霜精华 x%s",
+      "raw": "§dIce Essence §8x%s",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "Ice Essence ",
+          "zh": "冰霜精华 "
+        },
+        {
+          "color": "§8",
+          "text": "x%s",
+          "zh": "x%s"
+        }
+      ]
+    },
+    {
+      "id": "mining_loot_essence_ice_gain",
+      "context": "化石挖掘结算里的冰霜精华行,写成 +N 的那一种",
+      "text": "+%s Ice Essence",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s 冰霜精华",
+      "raw": "§7+§6%s Ice Essence",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§6",
+          "text": "%s Ice Essence",
+          "zh": "%s 冰霜精华"
+        }
+      ]
+    },
+    {
+      "id": "mining_loot_essence_wither_count",
+      "context": "战利品清单里的凋零精华行,带数量",
+      "text": "Wither Essence x%s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "凋零精华 x%s",
+      "raw": "§dWither Essence §8x%s",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "Wither Essence ",
+          "zh": "凋零精华 "
+        },
+        {
+          "color": "§8",
+          "text": "x%s",
+          "zh": "x%s"
+        }
+      ]
+    },
+    {
+      "id": "mining_loot_essence_wither_gain",
+      "context": "化石挖掘结算里的凋零精华行,写成 +N 的那一种",
+      "text": "+%s Wither Essence",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s 凋零精华",
+      "raw": "§7+§6%s Wither Essence",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§6",
+          "text": "%s Wither Essence",
+          "zh": "%s 凋零精华"
+        }
+      ]
+    },
+    {
+      "id": "mining_loot_essence_spider_count",
+      "context": "战利品清单里的蜘蛛精华行,带数量",
+      "text": "Spider Essence x%s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "蜘蛛精华 x%s",
+      "raw": "§dSpider Essence §8x%s",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "Spider Essence ",
+          "zh": "蜘蛛精华 "
+        },
+        {
+          "color": "§8",
+          "text": "x%s",
+          "zh": "x%s"
+        }
+      ]
+    },
+    {
+      "id": "mining_loot_essence_spider_gain",
+      "context": "化石挖掘结算里的蜘蛛精华行,写成 +N 的那一种",
+      "text": "+%s Spider Essence",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s 蜘蛛精华",
+      "raw": "§7+§6%s Spider Essence",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§6",
+          "text": "%s Spider Essence",
+          "zh": "%s 蜘蛛精华"
+        }
+      ]
+    },
+    {
+      "id": "mining_loot_essence_undead_count",
+      "context": "战利品清单里的亡灵精华行,带数量",
+      "text": "Undead Essence x%s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "亡灵精华 x%s",
+      "raw": "§dUndead Essence §8x%s",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "Undead Essence ",
+          "zh": "亡灵精华 "
+        },
+        {
+          "color": "§8",
+          "text": "x%s",
+          "zh": "x%s"
+        }
+      ]
+    },
+    {
+      "id": "mining_loot_essence_undead_gain",
+      "context": "化石挖掘结算里的亡灵精华行,写成 +N 的那一种",
+      "text": "+%s Undead Essence",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s 亡灵精华",
+      "raw": "§7+§6%s Undead Essence",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§6",
+          "text": "%s Undead Essence",
+          "zh": "%s 亡灵精华"
+        }
+      ]
+    },
+    {
+      "id": "mining_loot_essence_dragon_count",
+      "context": "战利品清单里的巨龙精华行,带数量",
+      "text": "Dragon Essence x%s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "巨龙精华 x%s",
+      "raw": "§dDragon Essence §8x%s",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "Dragon Essence ",
+          "zh": "巨龙精华 "
+        },
+        {
+          "color": "§8",
+          "text": "x%s",
+          "zh": "x%s"
+        }
+      ]
+    },
+    {
+      "id": "mining_loot_essence_dragon_gain",
+      "context": "化石挖掘结算里的巨龙精华行,写成 +N 的那一种",
+      "text": "+%s Dragon Essence",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s 巨龙精华",
+      "raw": "§7+§6%s Dragon Essence",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§6",
+          "text": "%s Dragon Essence",
+          "zh": "%s 巨龙精华"
+        }
+      ]
+    },
+    {
+      "id": "mining_loot_essence_crimson_count",
+      "context": "战利品清单里的绯红精华行,带数量",
+      "text": "Crimson Essence x%s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "绯红精华 x%s",
+      "raw": "§dCrimson Essence §8x%s",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "Crimson Essence ",
+          "zh": "绯红精华 "
+        },
+        {
+          "color": "§8",
+          "text": "x%s",
+          "zh": "x%s"
+        }
+      ]
+    },
+    {
+      "id": "mining_loot_essence_crimson_gain",
+      "context": "化石挖掘结算里的绯红精华行,写成 +N 的那一种",
+      "text": "+%s Crimson Essence",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s 绯红精华",
+      "raw": "§7+§6%s Crimson Essence",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§6",
+          "text": "%s Crimson Essence",
+          "zh": "%s 绯红精华"
+        }
+      ]
+    },
+    {
+      "id": "mining_loot_fossil_tusk",
+      "context": "化石挖掘结算清单里的象牙化石行",
+      "text": "Tusk Fossil",
+      "placeholders": [],
+      "gloss": "化石名由通用词组成,按 GLOSSARY.md 的物品名规则翻译,和 GUI_Item 下同名物品保持一致。",
+      "translate": true,
+      "zh": "象牙化石"
+    },
+    {
+      "id": "mining_loot_fossil_spine",
+      "context": "化石挖掘结算清单里的脊椎化石行",
+      "text": "Spine Fossil",
+      "placeholders": [],
+      "gloss": "化石名由通用词组成,按 GLOSSARY.md 的物品名规则翻译,和 GUI_Item 下同名物品保持一致。",
+      "translate": true,
+      "zh": "脊椎化石"
+    },
+    {
+      "id": "mining_loot_fossil_ugly",
+      "context": "化石挖掘结算清单里的丑陋化石行",
+      "text": "Ugly Fossil",
+      "placeholders": [],
+      "gloss": "化石名由通用词组成,按 GLOSSARY.md 的物品名规则翻译,和 GUI_Item 下同名物品保持一致。",
+      "translate": true,
+      "zh": "丑陋化石"
+    },
+    {
+      "id": "mining_loot_fossil_helix",
+      "context": "化石挖掘结算清单里的螺旋化石行",
+      "text": "Helix Fossil",
+      "placeholders": [],
+      "gloss": "化石名由通用词组成,按 GLOSSARY.md 的物品名规则翻译,和 GUI_Item 下同名物品保持一致。",
+      "translate": true,
+      "zh": "螺旋化石"
+    },
+    {
+      "id": "mining_loot_fossil_claw",
+      "context": "化石挖掘结算清单里的爪化石行",
+      "text": "Claw Fossil",
+      "placeholders": [],
+      "gloss": "化石名由通用词组成,按 GLOSSARY.md 的物品名规则翻译,和 GUI_Item 下同名物品保持一致。",
+      "translate": true,
+      "zh": "爪化石"
+    },
+    {
+      "id": "mining_loot_enchanted_material_plain",
+      "context": "战利品清单里的附魔材料行,数量为 1 时不带 xN",
+      "text": "Enchanted %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "材料名,译名走 _shared/Terms.json,查不到就保持英文",
+          "type": "raw",
+          "example": "Umber"
+        }
+      ],
+      "gloss": "和 mining_loot_enchanted_material 是同一行的两种写法,那条末尾带 x%s。",
+      "translate": true,
+      "zh": "附魔%s"
+    },
+    {
+      "id": "mining_loot_glacite_jewel",
+      "context": "战利品清单里的极冰宝珠行",
+      "text": "Glacite Jewel x%s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "极冰宝珠 x%s",
+      "raw": "§9Glacite Jewel §8x%s",
+      "segments": [
+        {
+          "color": "§9",
+          "text": "Glacite Jewel ",
+          "zh": "极冰宝珠 "
+        },
+        {
+          "color": "§8",
+          "text": "x%s",
+          "zh": "x%s"
+        }
+      ]
+    },
+    {
+      "id": "mining_loot_glacite_jewel_plain",
+      "context": "同上,数量为 1 时不带 xN",
+      "text": "Glacite Jewel",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "极冰宝珠"
+    },
+    {
+      "id": "mineshaft_already_leaving",
+      "context": "已经点过离开矿井、又点了一次",
+      "raw": "§cYou're already on your way out!",
+      "text": "You're already on your way out!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你已经在往外走了!"
+    },
+    {
+      "id": "mineshaft_more_corpses",
+      "context": "矿井「更多」词缀:额外刷出冰封尸体",
+      "raw": "§a§lMORE! §7You have spawned §a%s §7additional §bFrozen Corpse§7!",
+      "text": "MORE! You have spawned %s additional Frozen Corpse!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "额外刷出的数量",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "更多! 你又刷出了 %s 具冰封尸体!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "MORE! ",
+          "zh": "更多! "
+        },
+        {
+          "color": "§7",
+          "text": "You have spawned ",
+          "zh": "你又刷出了 "
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": "additional ",
+          "zh": " 具"
+        },
+        {
+          "color": "§b",
+          "text": "Frozen Corpse",
+          "zh": "冰封尸体"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    }
+  ],
+  "todo": []
+}

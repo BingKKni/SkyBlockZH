@@ -1,0 +1,174 @@
+{
+  "item_id": "GOBLIN_OMELETTE_BLUE_CHEESE",
+  "source": "https://github.com/NotEnoughUpdates/NotEnoughUpdates-REPO/blob/master/items/GOBLIN_OMELETTE_BLUE_CHEESE.json",
+  "fetched_at": "2026-08-19",
+  "verified_ingame": false,
+  "name": {
+    "id": "blue_cheese_goblin_omelette_name",
+    "context": "物品名称",
+    "raw": "§9Blue Cheese Goblin Omelette",
+    "text": "Blue Cheese Goblin Omelette",
+    "placeholders": [],
+    "gloss": "",
+    "translate": true,
+    "zh": "蓝纹奶酪哥布林煎蛋卷"
+  },
+  "lore": [
+    {
+      "id": "blue_cheese_goblin_omelette_drill_part",
+      "ref": "_shared/Item_Lore.json#item_drill_part",
+      "context": ""
+    },
+    {
+      "id": "blue_cheese_goblin_omelette_blank",
+      "context": "空行",
+      "raw": "",
+      "text": "",
+      "placeholders": [],
+      "gloss": "",
+      "translate": false,
+      "zh": ""
+    },
+    {
+      "id": "blue_cheese_goblin_omelette_adds_s_level_to_all",
+      "context": "实测第一行会延伸到 unlocked Heart of，下一行从 the Mountain perks. 接续",
+      "raw": "§7Adds §a%s Level §7to all of your unlocked §5Heart of",
+      "text": "Adds %s Level to all of your unlocked Heart of",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "四段颜色在中文里要换位置,所以每一段都写了 order:绿色那段是等级数值、紫色那段是天赋树名,两个高亮在英文里一前一后,中文里正好相反(「为所有已解锁的**山峦之心**天赋各提升 **+1 级**」)。以前紫色那段的 zh 是空的,而空 zh 在本项目里表示「这段还没翻译,保持英文」,于是屏幕上是一句中文后面缀着一个英文 Heart of——句号也在错的地方。整句的句号跟着最后画出来的那一段走。",
+      "translate": true,
+      "zh": "为所有已解锁的山峦之心天赋各提升 %s 级。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Adds ",
+          "zh": "为所有已解锁的",
+          "order": 0
+        },
+        {
+          "color": "§a",
+          "text": "%s Level ",
+          "zh": "%s 级。",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "to all of your unlocked ",
+          "zh": "天赋各提升 ",
+          "order": 2
+        },
+        {
+          "color": "§5",
+          "text": "Heart of",
+          "zh": "山峦之心",
+          "order": 1
+        }
+      ]
+    },
+    {
+      "id": "blue_cheese_goblin_omelette_unlocked_heart_of_the_mountain",
+      "context": "",
+      "raw": "§5the Mountain §7perks.",
+      "text": "the Mountain perks.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§5",
+          "text": "the Mountain ",
+          "zh": ""
+        },
+        {
+          "color": "§7",
+          "text": "perks.",
+          "zh": ""
+        }
+      ],
+      "continuation": true
+    },
+    {
+      "id": "blue_cheese_goblin_omelette_part_name",
+      "context": "该配件安装在钻头后，钻头 Lore 中显示的配件名",
+      "raw": "§aBlue Cheese Goblin Omelette Part",
+      "text": "Blue Cheese Goblin Omelette Part",
+      "placeholders": [],
+      "gloss": "与物品名 Blue Cheese Goblin Omelette 保持一致，Part 译作配件。",
+      "translate": true,
+      "zh": "蓝纹奶酪哥布林煎蛋卷配件"
+    },
+    {
+      "id": "blue_cheese_goblin_omelette_grants_mining_speed",
+      "ref": "_shared/Item_Lore.json#item_grants_s_percent_mining_speed_for",
+      "context": "钻头技能 Mining Speed Boost 的动态加成首行"
+    },
+    {
+      "id": "blue_cheese_goblin_omelette_blank_2",
+      "context": "空行",
+      "raw": "",
+      "text": "",
+      "placeholders": [],
+      "gloss": "",
+      "translate": false,
+      "zh": ""
+    },
+    {
+      "id": "blue_cheese_goblin_omelette_put_this_item_in_the",
+      "ref": "_shared/Item_Lore.json#item_put_this_item_in_the_3",
+      "context": ""
+    },
+    {
+      "id": "blue_cheese_goblin_omelette_slot_of_a_drill_at",
+      "ref": "_shared/Item_Lore.json#item_slot_of_a_drill_at",
+      "context": ""
+    },
+    {
+      "id": "blue_cheese_goblin_omelette_blank_3",
+      "context": "空行",
+      "raw": "",
+      "text": "",
+      "placeholders": [],
+      "gloss": "",
+      "translate": false,
+      "zh": ""
+    },
+    {
+      "id": "blue_cheese_goblin_omelette_may_cause_illness",
+      "context": "",
+      "raw": "§7§oMay cause illness",
+      "text": "May cause illness",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "可能引起不适"
+    },
+    {
+      "id": "blue_cheese_goblin_omelette_blank_4",
+      "context": "空行",
+      "raw": "",
+      "text": "",
+      "placeholders": [],
+      "gloss": "",
+      "translate": false,
+      "zh": ""
+    },
+    {
+      "id": "blue_cheese_goblin_omelette_requires_heart_of_the_mountain",
+      "ref": "_shared/Item_Lore.json#item_requires_heart_of_the_mountain",
+      "context": ""
+    },
+    {
+      "id": "blue_cheese_goblin_omelette_rare",
+      "ref": "_shared/Item_Lore.json#item_rare",
+      "context": ""
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "source": "https://raw.githubusercontent.com/hannibal002/SkyHanni-REPO/main/constants/regexesModern.json",
+  "fetched_at": "2026-08-18",
+  "verified_ingame": false,
+  "source_note": "数据来自开源客户端 Mod SkyHanni 的 SkyHanni-REPO 仓库 constants/regexesModern.json (用于解析游戏内文本的正则表达式常量),已去除正则语法/颜色码还原成干净模板文本, 可信度高于 Wiki 摘要,但未逐条在游戏内截图核对,verified_ingame 仍为 false。",
+  "messages": [
+    {
+      "id": "mining_chat_crystal_found_progress",
+      "context": "水晶残核(Crystal Nucleus)拼图进度提示",
+      "text": "✦ CRYSTAL FOUND (%s/5)",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "已找到的水晶碎片数量",
+          "type": "number",
+          "example": "3"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "✦ 发现水晶 (%s/5)"
+    },
+    {
+      "id": "mining_chat_crystal_placed",
+      "context": "玩家放置某种水晶碎片时的提示",
+      "text": "You placed the %s!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "水晶碎片名称,如 Topaz Crystal,专有名词不翻译该部分",
+          "type": "item_name",
+          "example": "Topaz Crystal"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你放置了 %s!"
+    },
+    {
+      "id": "mining_chat_metaldetector_found",
+      "context": "金属探测器找到战利品时的提示",
+      "text": "You found %s with your Metal Detector!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "找到的战利品描述",
+          "type": "item_name",
+          "example": "a Treasurite"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的金属探测器找到了 %s!"
+    },
+    {
+      "id": "mining_chat_goblin_guard_exit_1",
+      "context": "离开哥布林王守卫区域时的提示语(两种随机文案之一)",
+      "text": "Whew! That was a close one, better get out of here...",
+      "placeholders": [],
+      "gloss": "已查证(hypixelskyblock.minecraft.wiki/w/Goblin_Queen%27s_Den 及 Hypixel 论坛):这两条是同一机制的配套消息——玩家用 Goblin Egg 从 King Yolkar(“Goblin King”)换取临时的“国王气味”(King's Scent)效果,借此气味潜入 Goblin Queen's Den 而不被守卫发现;领取 Amber Crystal 或碰到水会让气味消失,消失时触发这两条随机提示之一。",
+      "translate": true,
+      "zh": "呼~刚才真是好险,还是赶紧离开这里吧……"
+    },
+    {
+      "id": "mining_chat_goblin_guard_exit_2",
+      "context": "离开哥布林王守卫区域时的提示语(两种随机文案之二)",
+      "text": "The Goblin King's foul stench has dissipated!",
+      "placeholders": [],
+      "gloss": "已查证,机制同 mining_chat_goblin_guard_exit_1。Goblin King 是哥布林 NPC King Yolkar 的头衔(不是他的本名),按 GLOSSARY.md “Drill Mechanic” 头衔翻译先例应翻译;为和矮人矿山的 King(译“国王”,见 NPC_Message/King.json)区分,译作“哥布林王”。",
+      "translate": true,
+      "zh": "「哥布林王」的臭味已经散去了!"
+    },
+    {
+      "id": "mining_chat_bal_obtained",
+      "context": "玩家获得宠物“Bal”时的全服广播",
+      "text": "%s has obtained [Lvl 1] %s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "获得宠物的玩家名,不翻译",
+          "type": "player_name",
+          "example": "Notch"
+        },
+        {
+          "token": "%2$s",
+          "desc": "宠物专有名称 'Bal',不翻译",
+          "type": "item_name",
+          "example": "Bal"
+        }
+      ],
+      "gloss": "Bal 是水晶残核专属宠物的专有名称,不翻译;此为标准的“全服玩家获得稀有宠物”广播模板,和其他宠物获得广播共享同一套格式,不需要每个宠物单独建条目。",
+      "translate": true,
+      "zh": "%1$s 获得了 [1 级] %2$s!"
+    }
+  ]
+}

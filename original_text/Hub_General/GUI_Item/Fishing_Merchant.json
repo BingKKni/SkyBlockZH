@@ -1,0 +1,627 @@
+{
+  "source": "SkyZH runtime capture (2026-08-24); official Wiki context: https://wiki.hypixel.net/Fishing_Outpost and https://wiki.hypixel.net/Fishing_Merchant (verified through archived official pages because the live Wiki now redirects)",
+  "fetched_at": "2026-08-24",
+  "verified_ingame": true,
+  "gui_context": "钓鱼前哨的 Fishing Merchant 商店。官方 Wiki 确认该商人在钓鱼前哨售卖入门钓鱼装备。",
+  "shared_scope_note": "库存、右键交易、出售物品及收纳袋首尾说明也出现在 Mine Merchant；GUI_Item 全局匹配只保留这一份，避免同模板 rival。",
+  "excluded": [
+    "Glacite x2 及其后的 Sell Price、Withered Giant's Sword、伤害行和 Ascension Rope（玩家背包/出售槽回显污染）"
+  ],
+  "lines": [
+    {
+      "id": "angler_helmet",
+      "context": "商店中的垂钓者护甲物品名；采集器曾误聚合为 Angler %s",
+      "raw": "§fAngler Helmet",
+      "text": "Angler Helmet",
+      "placeholders": [],
+      "gloss": "普通词组成的物品名，按现有物品命名规则翻译。",
+      "translate": true,
+      "zh": "垂钓者头盔"
+    },
+    {
+      "id": "angler_chestplate",
+      "context": "商店中的垂钓者护甲物品名",
+      "raw": "§fAngler Chestplate",
+      "text": "Angler Chestplate",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "垂钓者胸甲"
+    },
+    {
+      "id": "angler_leggings",
+      "context": "商店中的垂钓者护甲物品名",
+      "raw": "§fAngler Leggings",
+      "text": "Angler Leggings",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "垂钓者护腿"
+    },
+    {
+      "id": "angler_boots",
+      "context": "商店中的垂钓者护甲物品名",
+      "raw": "§fAngler Boots",
+      "text": "Angler Boots",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "垂钓者靴子"
+    },
+    {
+      "id": "angler_necklace",
+      "context": "商店中的垂钓者装备物品名",
+      "raw": "§fAngler Necklace",
+      "text": "Angler Necklace",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "垂钓者项链"
+    },
+    {
+      "id": "angler_cloak",
+      "context": "商店中的垂钓者装备物品名",
+      "raw": "§fAngler Cloak",
+      "text": "Angler Cloak",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "垂钓者披风"
+    },
+    {
+      "id": "angler_bracelet",
+      "context": "商店中的垂钓者装备物品名",
+      "raw": "§fAngler Bracelet",
+      "text": "Angler Bracelet",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "垂钓者手链"
+    },
+    {
+      "id": "angler_belt",
+      "context": "商店中的垂钓者装备物品名",
+      "raw": "§fAngler Belt",
+      "text": "Angler Belt",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "垂钓者腰带"
+    },
+    {
+      "id": "sea_creature_chance",
+      "context": "垂钓者装备和鱼竿的海洋生物几率属性行",
+      "raw": "§7Sea Creature Chance: §3+%1$s%",
+      "text": "Sea Creature Chance: +%1$s%",
+      "placeholders": [
+        { "token": "%1$s", "desc": "海洋生物几率加成", "type": "number", "example": "1" }
+      ],
+      "gloss": "Sea Creature Chance 按指定译名处理。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§7", "text": "Sea Creature Chance: ", "zh": "海洋生物几率: " },
+        { "color": "§3", "text": "+%1$s%", "zh": "+%1$s%" }
+      ]
+    },
+    {
+      "id": "tiered_bonus_depth_champion",
+      "context": "垂钓者套装的八件阶段加成及当前已穿件数",
+      "raw": "§8Tiered Bonus: Depth Champion (%1$s/8)",
+      "text": "Tiered Bonus: Depth Champion (%1$s/8)",
+      "placeholders": [
+        { "token": "%1$s", "desc": "当前已穿戴的垂钓者套装件数", "type": "number", "example": "0" }
+      ],
+      "gloss": "Tiered Bonus 沿用既定译名“阶段加成”；Depth Champion 是套装效果名，按功能性命名翻译。",
+      "translate": true,
+      "zh": "阶段加成: 深海斗士 (%1$s/8)"
+    },
+    {
+      "id": "tiered_bonus_deepness_within",
+      "context": "垂钓者护甲四件阶段加成及当前已穿件数",
+      "raw": "§8Tiered Bonus: Deepness Within (%1$s/4)",
+      "text": "Tiered Bonus: Deepness Within (%1$s/4)",
+      "placeholders": [
+        { "token": "%1$s", "desc": "当前已穿戴的垂钓者护甲件数", "type": "number", "example": "0" }
+      ],
+      "gloss": "Deepness Within 是套装效果名，按功能性命名翻译。",
+      "translate": true,
+      "zh": "阶段加成: 深海之境 (%1$s/4)"
+    },
+    {
+      "id": "reduces_damage_from_sea_creatures",
+      "context": "深海斗士效果说明首行；海洋生物跨两行保持蓝色",
+      "raw": "§7Reduces the damage taken from §3Sea",
+      "text": "Reduces the damage taken from Sea",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§7", "text": "Reduces the damage taken from ", "zh": "使你受到的" },
+        { "color": "§3", "text": "Sea", "zh": "海洋" }
+      ]
+    },
+    {
+      "id": "creatures_by_3_percent",
+      "context": "接上一行",
+      "raw": "§3Creatures §7by §a3%§7.",
+      "text": "Creatures by 3%.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§3", "text": "Creatures ", "zh": "生物" },
+        { "color": "§7", "text": "by ", "zh": "伤害降低 " },
+        { "color": "§a", "text": "3%", "zh": "3%" },
+        { "color": "§7", "text": ".", "zh": "。" }
+      ]
+    },
+    {
+      "id": "gain_6_health_per_fishing_level",
+      "context": "深海之境效果说明",
+      "raw": "§7Gain §c6❤ §7per Fishing level.",
+      "text": "Gain 6❤ per Fishing level.",
+      "placeholders": [],
+      "gloss": "Fishing level 指钓鱼技能等级。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§7", "text": "Gain ", "zh": "每级钓鱼技能获得 " },
+        { "color": "§c", "text": "6❤ ", "zh": "6❤" },
+        { "color": "§7", "text": "per Fishing level.", "zh": "。" }
+      ]
+    },
+    {
+      "id": "fishing_level_xvii",
+      "context": "深海之境效果的钓鱼等级要求",
+      "raw": "§7Fishing: §eLevel XVII",
+      "text": "Fishing: Level XVII",
+      "placeholders": [],
+      "gloss": "技能等级使用“钓鱼等级”的说法。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§7", "text": "Fishing: ", "zh": "钓鱼: " },
+        { "color": "§e", "text": "Level XVII", "zh": "17 级" }
+      ]
+    },
+    {
+      "id": "common_helmet",
+      "context": "普通稀有度与物品类型复合行",
+      "raw": "§f§lCOMMON HELMET",
+      "text": "COMMON HELMET",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "普通头盔",
+      "rarity_ref": "_shared/Rarity.json#rarity_common"
+    },
+    {
+      "id": "common_chestplate",
+      "context": "普通稀有度与物品类型复合行",
+      "raw": "§f§lCOMMON CHESTPLATE",
+      "text": "COMMON CHESTPLATE",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "普通胸甲",
+      "rarity_ref": "_shared/Rarity.json#rarity_common"
+    },
+    {
+      "id": "common_leggings",
+      "context": "普通稀有度与物品类型复合行",
+      "raw": "§f§lCOMMON LEGGINGS",
+      "text": "COMMON LEGGINGS",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "普通护腿",
+      "rarity_ref": "_shared/Rarity.json#rarity_common"
+    },
+    {
+      "id": "common_boots",
+      "context": "普通稀有度与物品类型复合行",
+      "raw": "§f§lCOMMON BOOTS",
+      "text": "COMMON BOOTS",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "普通靴子",
+      "rarity_ref": "_shared/Rarity.json#rarity_common"
+    },
+    {
+      "id": "common_necklace",
+      "context": "普通稀有度与物品类型复合行",
+      "raw": "§f§lCOMMON NECKLACE",
+      "text": "COMMON NECKLACE",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "普通项链",
+      "rarity_ref": "_shared/Rarity.json#rarity_common"
+    },
+    {
+      "id": "common_cloak",
+      "context": "普通稀有度与物品类型复合行",
+      "raw": "§f§lCOMMON CLOAK",
+      "text": "COMMON CLOAK",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "普通披风",
+      "rarity_ref": "_shared/Rarity.json#rarity_common"
+    },
+    {
+      "id": "common_bracelet",
+      "context": "普通稀有度与物品类型复合行",
+      "raw": "§f§lCOMMON BRACELET",
+      "text": "COMMON BRACELET",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "普通手链",
+      "rarity_ref": "_shared/Rarity.json#rarity_common"
+    },
+    {
+      "id": "common_belt",
+      "context": "普通稀有度与物品类型复合行",
+      "raw": "§f§lCOMMON BELT",
+      "text": "COMMON BELT",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "普通腰带",
+      "rarity_ref": "_shared/Rarity.json#rarity_common"
+    },
+    {
+      "id": "common_bait",
+      "context": "普通稀有度与物品类型复合行",
+      "raw": "§f§lCOMMON BAIT",
+      "text": "COMMON BAIT",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "普通鱼饵",
+      "rarity_ref": "_shared/Rarity.json#rarity_common"
+    },
+    {
+      "id": "common_sack",
+      "context": "普通稀有度与物品类型复合行",
+      "raw": "§f§lCOMMON SACK",
+      "text": "COMMON SACK",
+      "placeholders": [],
+      "gloss": "Sack 按指定译名处理。",
+      "translate": true,
+      "zh": "普通收纳袋",
+      "rarity_ref": "_shared/Rarity.json#rarity_common"
+    },
+    {
+      "id": "diamond_sword",
+      "context": "商店物品名；原版 Minecraft 物品",
+      "raw": "§aDiamond Sword",
+      "text": "Diamond Sword",
+      "placeholders": [],
+      "gloss": "采用 Minecraft 官方中文译名。",
+      "translate": true,
+      "zh": "钻石剑"
+    },
+    {
+      "id": "impaling_iii",
+      "context": "钻石剑上的附魔名称与等级",
+      "raw": "§9Impaling III",
+      "text": "Impaling III",
+      "placeholders": [],
+      "gloss": "附魔名属于功能性命名，翻译；罗马数字等级保留。",
+      "translate": true,
+      "zh": "穿刺 III"
+    },
+    {
+      "id": "impaling_description_start",
+      "context": "穿刺附魔效果说明首行；水生类别图标保持蓝色",
+      "raw": "§7Increases damage dealt to §9",
+      "text": "Increases damage dealt to ",
+      "placeholders": [],
+      "gloss": "私用区字形是 Aquatic 水生类别图标，原样保留。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§7", "text": "Increases damage dealt to ", "zh": "对" },
+        { "color": "§9", "text": "", "zh": "" }
+      ]
+    },
+    {
+      "id": "aquatic_mobs_by_15_percent",
+      "context": "接上一行",
+      "raw": "§9Aquatic§7 mobs by §a15%§7.",
+      "text": "Aquatic mobs by 15%.",
+      "placeholders": [],
+      "gloss": "Aquatic 是水生怪物类别。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§9", "text": "Aquatic", "zh": "水生" },
+        { "color": "§7", "text": " mobs by ", "zh": "怪物造成的伤害提高 " },
+        { "color": "§a", "text": "15%", "zh": "15%" },
+        { "color": "§7", "text": ".", "zh": "。" }
+      ]
+    },
+    {
+      "id": "uncommon_sword",
+      "context": "罕见稀有度与物品类型复合行",
+      "raw": "§a§lUNCOMMON SWORD",
+      "text": "UNCOMMON SWORD",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "罕见剑",
+      "rarity_ref": "_shared/Rarity.json#rarity_uncommon"
+    },
+    {
+      "id": "fishing_rod",
+      "context": "商店物品名；原版 Minecraft 物品",
+      "raw": "§fFishing Rod",
+      "text": "Fishing Rod",
+      "placeholders": [],
+      "gloss": "采用 Minecraft 官方中文译名。",
+      "translate": true,
+      "zh": "钓鱼竿"
+    },
+    {
+      "id": "fishing_speed",
+      "context": "鱼竿和垂钓者装备的钓鱼速度属性行",
+      "raw": "§7Fishing Speed: §b+%1$s",
+      "text": "Fishing Speed: +%1$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "钓鱼速度加成", "type": "number", "example": "5" }
+      ],
+      "gloss": "Fishing Speed 按指定译名处理。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§7", "text": "Fishing Speed: ", "zh": "钓鱼速度: " },
+        { "color": "§b", "text": "+%1$s", "zh": "+%1$s" }
+      ]
+    },
+    {
+      "id": "hook_none",
+      "context": "鱼竿配件槽：未安装鱼钩",
+      "raw": "§9ථ Hook §8§lNONE",
+      "text": "ථ Hook NONE",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§9", "text": "ථ Hook ", "zh": "ථ 鱼钩 " },
+        { "color": "§8§l", "text": "NONE", "zh": "无" }
+      ]
+    },
+    {
+      "id": "line_none",
+      "context": "鱼竿配件槽：未安装鱼线",
+      "raw": "§9ꨃ Line §8§lNONE",
+      "text": "ꨃ Line NONE",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§9", "text": "ꨃ Line ", "zh": "ꨃ 鱼线 " },
+        { "color": "§8§l", "text": "NONE", "zh": "无" }
+      ]
+    },
+    {
+      "id": "sinker_none",
+      "context": "鱼竿配件槽：未安装铅坠",
+      "raw": "§9࿉ Sinker §8§lNONE",
+      "text": "࿉ Sinker NONE",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§9", "text": "࿉ Sinker ", "zh": "࿉ 铅坠 " },
+        { "color": "§8§l", "text": "NONE", "zh": "无" }
+      ]
+    },
+    {
+      "id": "talk_to_roddy_in_backwater_bayou",
+      "context": "鱼竿配件安装提示首行；Roddy 是 NPC 人名，死水沼泽是地名",
+      "raw": "§7Talk to §2Roddy §7in the §2Backwater",
+      "text": "Talk to Roddy in the Backwater",
+      "placeholders": [],
+      "gloss": "为符合中文语序，颜色段按 order 重排；Roddy 保留英文。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§7", "text": "Talk to ", "zh": "请前往", "order": 0 },
+        { "color": "§2", "text": "Roddy ", "zh": "Roddy,", "order": 3 },
+        { "color": "§7", "text": "in the ", "zh": "找 ", "order": 2 },
+        { "color": "§2", "text": "Backwater", "zh": "死水沼泽", "order": 1 }
+      ]
+    },
+    {
+      "id": "bayou_apply_parts",
+      "context": "接上一行；Bayou 的含义已并入上一行完整地名",
+      "raw": "§2Bayou §7to apply parts to this rod.",
+      "text": "Bayou to apply parts to this rod.",
+      "placeholders": [],
+      "gloss": "上一行已将跨行地名 Backwater Bayou 合并为“死水沼泽”。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§2", "text": "Bayou ", "zh": "", "omit": true },
+        { "color": "§7", "text": "to apply parts to this rod.", "zh": "给这根鱼竿安装配件。" }
+      ]
+    },
+    {
+      "id": "common_fishing_rod",
+      "context": "普通稀有度与物品类型复合行",
+      "raw": "§f§lCOMMON FISHING ROD",
+      "text": "COMMON FISHING ROD",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "普通钓鱼竿",
+      "rarity_ref": "_shared/Rarity.json#rarity_common"
+    },
+    {
+      "id": "minnow_bait",
+      "context": "商店物品名",
+      "raw": "§fMinnow Bait",
+      "text": "Minnow Bait",
+      "placeholders": [],
+      "gloss": "普通词组成的物品名；Minnow 在此指作为鱼饵的小鱼。",
+      "translate": true,
+      "zh": "小鱼饵"
+    },
+    {
+      "id": "fishing_bait",
+      "context": "物品 Lore 的鱼饵类型标签",
+      "raw": "§8Fishing Bait",
+      "text": "Fishing Bait",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "鱼饵"
+    },
+    {
+      "id": "consumes_on_cast",
+      "context": "说明鱼饵会在抛竿时消耗",
+      "raw": "§8Consumes on Cast",
+      "text": "Consumes on Cast",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "抛竿时消耗"
+    },
+    {
+      "id": "grants_25_fishing_speed",
+      "context": "小鱼饵的属性效果",
+      "raw": "§7Grants §b+25 Fishing Speed§7.",
+      "text": "Grants +25 Fishing Speed.",
+      "placeholders": [],
+      "gloss": "Fishing Speed 按指定译名处理。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§7", "text": "Grants ", "zh": "获得 " },
+        { "color": "§b", "text": "+25 Fishing Speed", "zh": "+25 钓鱼速度" },
+        { "color": "§7", "text": ".", "zh": "。" }
+      ]
+    },
+    {
+      "id": "stock_remaining",
+      "context": "NPC 商店限购库存的剩余数量；Fishing Merchant 与 Mine Merchant 共用",
+      "raw": "§6%1$s §7remaining",
+      "text": "%1$s remaining",
+      "placeholders": [
+        { "token": "%1$s", "desc": "当前剩余库存", "type": "number", "example": "640" }
+      ],
+      "gloss": "库存会随购买变化，不能写死为 640。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§6", "text": "%1$s ", "zh": "%1$s", "order": 1 },
+        { "color": "§7", "text": "remaining", "zh": "剩余 ", "order": 0 }
+      ]
+    },
+    {
+      "id": "right_click_for_more_trading_options",
+      "context": "NPC 商店的右键更多交易提示；Fishing Merchant 与 Mine Merchant 共用",
+      "raw": "§eRight-click for more trading options!",
+      "text": "Right-click for more trading options!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "右键查看更多交易选项!"
+    },
+    {
+      "id": "raw_cod",
+      "context": "商店物品名；原版 Minecraft 物品",
+      "raw": "§fRaw Cod",
+      "text": "Raw Cod",
+      "placeholders": [],
+      "gloss": "采用 Minecraft 官方中文译名。",
+      "translate": true,
+      "zh": "生鳕鱼"
+    },
+    {
+      "id": "beginner_fishing_sack",
+      "context": "商店物品名",
+      "raw": "§fBeginner Fishing Sack",
+      "text": "Beginner Fishing Sack",
+      "placeholders": [],
+      "gloss": "Sack 按指定译名“收纳袋”处理。",
+      "translate": true,
+      "zh": "初级钓鱼收纳袋"
+    },
+    {
+      "id": "sack_holds_various_items_obtained_from",
+      "context": "初级钓鱼/挖矿收纳袋共用说明首行",
+      "raw": "§7Holds various items obtained from",
+      "text": "Holds various items obtained from",
+      "placeholders": [],
+      "gloss": "下一行按收纳袋种类高亮 Fishing 或 Mining。",
+      "translate": true,
+      "zh": "收纳各种从"
+    },
+    {
+      "id": "fishing_items_go_directly",
+      "context": "初级钓鱼收纳袋说明中间一行；Fishing 保持青色",
+      "raw": "§bFishing§7! Items you pickup go directly",
+      "text": "Fishing! Items you pickup go directly",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        { "color": "§b", "text": "Fishing", "zh": "钓鱼" },
+        { "color": "§7", "text": "! Items you pickup go directly", "zh": "中获得的物品! 捡到的物品会直接" }
+      ]
+    },
+    {
+      "id": "into_your_sacks",
+      "context": "初级钓鱼/挖矿收纳袋共用说明尾行",
+      "raw": "§7into your sacks.",
+      "text": "into your sacks.",
+      "placeholders": [],
+      "gloss": "Sack 按指定译名处理。",
+      "translate": true,
+      "zh": "进入你的收纳袋。"
+    },
+    {
+      "id": "sell_item",
+      "context": "NPC 商店中的出售物品按钮；Fishing Merchant 与 Mine Merchant 共用",
+      "raw": "§aSell Item",
+      "text": "Sell Item",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "出售物品"
+    },
+    {
+      "id": "click_inventory_items_to_sell",
+      "context": "出售物品按钮说明，英文拆成两行；完整译文写在首行",
+      "raw": "§7Click items in your inventory to sell",
+      "text": "Click items in your inventory to sell",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击物品栏中的物品,即可将其出售给这家商店!"
+    },
+    {
+      "id": "them_to_this_shop",
+      "context": "接上一行",
+      "raw": "§7them to this Shop!",
+      "text": "them to this Shop!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    }
+  ]
+}

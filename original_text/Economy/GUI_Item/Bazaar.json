@@ -1,0 +1,449 @@
+{
+  "source": "runtime capture (SkyZH) 2026-08-26 至 2026-08-27 实测 Bazaar 会话",
+  "fetched_at": "2026-08-27",
+  "verified_ingame": true,
+  "gui_context": "Bazaar 的购买订单、出售报价、订单管理和合作社订单菜单。商品名由服务器实时填入，均保留英文。",
+  "lines": [
+    {
+      "id": "bazaar_buy_order",
+      "context": "购买订单确认页的物品名",
+      "raw": "§aBuy Order",
+      "text": "Buy Order",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "购买订单"
+    },
+    {
+      "id": "bazaar_create_buy_order",
+      "context": "商品详情页用于进入购买订单流程的按钮",
+      "raw": "§aCreate Buy Order",
+      "text": "Create Buy Order",
+      "placeholders": [],
+      "gloss": "与 Buy Order / Confirm Buy Order 使用同一套购买订单术语。",
+      "translate": true,
+      "zh": "创建购买订单"
+    },
+    {
+      "id": "bazaar_sell_offer",
+      "context": "出售报价流程中的物品名",
+      "raw": "§6Sell Offer",
+      "text": "Sell Offer",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "出售报价"
+    },
+    {
+      "id": "bazaar_buy_order_setup",
+      "context": "选择购买订单数量或价格时的说明标题",
+      "raw": "§8Buy Order Setup",
+      "text": "Buy Order Setup",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "购买订单设置"
+    },
+    {
+      "id": "bazaar_sell_offer_setup",
+      "context": "选择出售报价价格时的说明标题",
+      "raw": "§8Sell Offer Setup",
+      "text": "Sell Offer Setup",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "出售报价设置"
+    },
+    {
+      "id": "bazaar_price_per_unit",
+      "context": "订单确认页和合作社订单列表中的单价",
+      "raw": "§7Price per unit: §6%1$s coins",
+      "text": "Price per unit: %1$s coins",
+      "placeholders": [
+        { "token": "%1$s", "desc": "每件商品的实时价格", "type": "number", "example": "2,545,446.1" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "单价: %1$s 硬币",
+      "segments": [
+        { "color": "§7", "text": "Price per unit: ", "zh": "单价: " },
+        { "color": "§6", "text": "%1$s coins", "zh": "%1$s 硬币" }
+      ]
+    },
+    {
+      "id": "bazaar_amount",
+      "context": "购买订单数量选择页的当前数量",
+      "raw": "§7Amount: §a%1$s§7x",
+      "text": "Amount: %1$sx",
+      "placeholders": [
+        { "token": "%1$s", "desc": "选择的商品数量", "type": "number", "example": "64" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "数量: %1$s个",
+      "segments": [
+        { "color": "§7", "text": "Amount: ", "zh": "数量: " },
+        { "color": "§a", "text": "%1$s", "zh": "%1$s" },
+        { "color": "§7", "text": "x", "zh": "个" }
+      ]
+    },
+    {
+      "id": "bazaar_ordering",
+      "context": "购买订单定价页的订购数量",
+      "raw": "§7Ordering: §a%1$s§7x",
+      "text": "Ordering: %1$sx",
+      "placeholders": [
+        { "token": "%1$s", "desc": "订购的商品数量", "type": "number", "example": "3" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "订购: %1$s个",
+      "segments": [
+        { "color": "§7", "text": "Ordering: ", "zh": "订购: " },
+        { "color": "§a", "text": "%1$s", "zh": "%1$s" },
+        { "color": "§7", "text": "x", "zh": "个" }
+      ]
+    },
+    {
+      "id": "bazaar_selling",
+      "context": "出售报价定价页的出售数量",
+      "raw": "§7Selling: §a%1$s§7x",
+      "text": "Selling: %1$sx",
+      "placeholders": [
+        { "token": "%1$s", "desc": "出售的商品数量", "type": "number", "example": "84" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "出售: %1$s个",
+      "segments": [
+        { "color": "§7", "text": "Selling: ", "zh": "出售: " },
+        { "color": "§a", "text": "%1$s", "zh": "%1$s" },
+        { "color": "§7", "text": "x", "zh": "个" }
+      ]
+    },
+    {
+      "id": "bazaar_order_item",
+      "context": "购买订单确认页的商品与数量",
+      "raw": "§7Order: §a%1$s§7x §5%2$s",
+      "text": "Order: %1$sx %2$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "订单商品数量", "type": "number", "example": "3" },
+        { "token": "%2$s", "desc": "商品专名，保留英文", "type": "item_name", "example": "Umber Key" }
+      ],
+      "gloss": "商品专名不翻译。",
+      "translate": true,
+      "zh": "订单: %1$s个%2$s",
+      "segments": [
+        { "color": "§7", "text": "Order: ", "zh": "订单: " },
+        { "color": "§a", "text": "%1$s", "zh": "%1$s" },
+        { "color": "§7", "text": "x ", "zh": "个" },
+        { "color": "§5", "text": "%2$s", "zh": "%2$s" }
+      ]
+    },
+    {
+      "id": "bazaar_unit_price",
+      "context": "购买订单和出售报价定价页的单价",
+      "raw": "§7Unit price: §6%1$s coins",
+      "text": "Unit price: %1$s coins",
+      "placeholders": [
+        { "token": "%1$s", "desc": "每件商品的实时价格", "type": "number", "example": "10,499,999.9" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "单价: %1$s 硬币",
+      "segments": [
+        { "color": "§7", "text": "Unit price: ", "zh": "单价: " },
+        { "color": "§6", "text": "%1$s coins", "zh": "%1$s 硬币" }
+      ]
+    },
+    {
+      "id": "bazaar_total_price",
+      "context": "购买订单确认页的总价",
+      "raw": "§7Total price: §6%1$s coins",
+      "text": "Total price: %1$s coins",
+      "placeholders": [
+        { "token": "%1$s", "desc": "订单总金额", "type": "number", "example": "7,636,338" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "总价: %1$s 硬币",
+      "segments": [
+        { "color": "§7", "text": "Total price: ", "zh": "总价: " },
+        { "color": "§6", "text": "%1$s coins", "zh": "%1$s 硬币" }
+      ]
+    },
+    {
+      "id": "bazaar_total",
+      "context": "购买订单和出售报价定价页的总金额",
+      "raw": "§7Total: §6%1$s coins",
+      "text": "Total: %1$s coins",
+      "placeholders": [
+        { "token": "%1$s", "desc": "订单总金额", "type": "number", "example": "10,395,000" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "总计: %1$s 硬币",
+      "segments": [
+        { "color": "§7", "text": "Total: ", "zh": "总计: " },
+        { "color": "§6", "text": "%1$s coins", "zh": "%1$s 硬币" }
+      ]
+    },
+    {
+      "id": "bazaar_you_earn",
+      "context": "即时出售确认页和集市商品页的预计收益",
+      "raw": "§7You earn: §6%1$s coins",
+      "text": "You earn: %1$s coins",
+      "placeholders": [
+        { "token": "%1$s", "desc": "预计获得的硬币数", "type": "number", "example": "1,925,808" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你将获得: %1$s 硬币",
+      "segments": [
+        { "color": "§7", "text": "You earn: ", "zh": "你将获得: " },
+        { "color": "§6", "text": "%1$s coins", "zh": "%1$s 硬币" }
+      ]
+    },
+    {
+      "id": "bazaar_orders_shared_by_coop",
+      "context": "购买订单与出售报价确认页的合作社提示",
+      "raw": "§bOrders are shared by co-op!",
+      "text": "Orders are shared by co-op!",
+      "placeholders": [],
+      "gloss": "co-op 指合作社。",
+      "translate": true,
+      "zh": "订单由合作社共享!"
+    },
+    {
+      "id": "bazaar_click_to_submit_order",
+      "context": "订单确认页的提交提示",
+      "raw": "§eClick to submit order!",
+      "text": "Click to submit order!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击提交订单!"
+    },
+    {
+      "id": "bazaar_to_pricing_selection",
+      "context": "订单确认页返回定价选择的提示",
+      "raw": "§7To pricing selection.",
+      "text": "To pricing selection.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "返回价格选择。"
+    },
+    {
+      "id": "bazaar_click_to_proceed",
+      "context": "数量和价格选择页的继续操作提示",
+      "raw": "§eClick to proceed!",
+      "text": "Click to proceed!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击继续!"
+    },
+    {
+      "id": "bazaar_click_to_edit_filter",
+      "context": "集市搜索结果页修改筛选条件的操作提示",
+      "raw": "§eClick to edit filter!",
+      "text": "Click to edit filter!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击编辑筛选条件!"
+    },
+    {
+      "id": "bazaar_query",
+      "context": "集市搜索结果页显示的搜索词",
+      "raw": "§7Query: §a%1$s",
+      "text": "Query: %1$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "搜索的商品专名，保留英文", "type": "item_name", "example": "Tungsten Key" }
+      ],
+      "gloss": "商品专名不翻译。",
+      "translate": true,
+      "zh": "搜索: %1$s",
+      "segments": [
+        { "color": "§7", "text": "Query: ", "zh": "搜索: " },
+        { "color": "§a", "text": "%1$s", "zh": "%1$s" }
+      ]
+    },
+    {
+      "id": "bazaar_to_item",
+      "context": "Bazaar 子菜单返回当前商品页的提示",
+      "raw": "§7To %1$s",
+      "text": "To %1$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "商品专名，保留英文", "type": "item_name", "example": "Suspicious Scrap" }
+      ],
+      "gloss": "商品专名不翻译。",
+      "translate": true,
+      "zh": "返回%1$s"
+    },
+    {
+      "id": "bazaar_buy_price",
+      "context": "集市商品和搜索结果页的买入价",
+      "raw": "§7Buy price: §6%1$s coins",
+      "text": "Buy price: %1$s coins",
+      "placeholders": [
+        { "token": "%1$s", "desc": "实时买入价格", "type": "number", "example": "2,599,221" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "买入价: %1$s 硬币",
+      "segments": [
+        { "color": "§7", "text": "Buy price: ", "zh": "买入价: " },
+        { "color": "§6", "text": "%1$s coins", "zh": "%1$s 硬币" }
+      ]
+    },
+    {
+      "id": "bazaar_sell_price",
+      "context": "集市商品和搜索结果页的卖出价",
+      "raw": "§7Sell price: §6%1$s coins",
+      "text": "Sell price: %1$s coins",
+      "placeholders": [
+        { "token": "%1$s", "desc": "实时卖出价格", "type": "number", "example": "2,460,007" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "卖出价: %1$s 硬币",
+      "segments": [
+        { "color": "§7", "text": "Sell price: ", "zh": "卖出价: " },
+        { "color": "§6", "text": "%1$s coins", "zh": "%1$s 硬币" }
+      ]
+    },
+    {
+      "id": "bazaar_same_as_top_order",
+      "context": "购买订单定价页采用最高订单价格的选项",
+      "raw": "§6Same as Top Order",
+      "text": "Same as Top Order",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "与最高订单相同"
+    },
+    {
+      "id": "bazaar_same_as_best_offer",
+      "context": "出售报价定价页采用最低报价的选项",
+      "raw": "§6Same as Best Offer",
+      "text": "Same as Best Offer",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "与最佳报价相同"
+    },
+    {
+      "id": "bazaar_custom_price",
+      "context": "购买订单和出售报价定价页的自定义价格选项",
+      "raw": "§6Custom Price",
+      "text": "Custom Price",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "自定义价格"
+    },
+    {
+      "id": "bazaar_top_order_increment",
+      "context": "购买订单定价页略高于最高订单的选项",
+      "raw": "§6Top Order +0.1",
+      "text": "Top Order +0.1",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "最高订单 +0.1"
+    },
+    {
+      "id": "bazaar_best_offer_decrement",
+      "context": "出售报价定价页略低于最佳报价的选项",
+      "raw": "§6Best Offer -0.1",
+      "text": "Best Offer -0.1",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "最佳报价 -0.1"
+    },
+    {
+      "id": "bazaar_spread_percent",
+      "context": "订单定价页按买卖价差计算的快捷价格选项",
+      "raw": "§6%1$s% of Spread",
+      "text": "%1$s% of Spread",
+      "placeholders": [
+        { "token": "%1$s", "desc": "价差百分比", "type": "number", "example": "5" }
+      ],
+      "gloss": "Spread 指买入价与卖出价之间的价差。",
+      "translate": true,
+      "zh": "价差的 %1$s%"
+    },
+    {
+      "id": "bazaar_spread",
+      "context": "订单定价页显示的买卖价差计算",
+      "raw": "§7Spread = §6%1$s §7- §6%2$s §7= §6%3$s coins",
+      "text": "Spread = %1$s - %2$s = %3$s coins",
+      "placeholders": [
+        { "token": "%1$s", "desc": "较高价格", "type": "number", "example": "10,499,999.9" },
+        { "token": "%2$s", "desc": "较低价格", "type": "number", "example": "9,942,045.2" },
+        { "token": "%3$s", "desc": "计算出的价差", "type": "number", "example": "557,954.7" }
+      ],
+      "gloss": "Spread 指买入价与卖出价之间的价差。",
+      "translate": true,
+      "zh": "价差 = %1$s - %2$s = %3$s 硬币",
+      "segments": [
+        { "color": "§7", "text": "Spread = ", "zh": "价差 = " },
+        { "color": "§6", "text": "%1$s ", "zh": "%1$s " },
+        { "color": "§7", "text": "- ", "zh": "- " },
+        { "color": "§6", "text": "%2$s ", "zh": "%2$s " },
+        { "color": "§7", "text": "= ", "zh": "= " },
+        { "color": "§6", "text": "%3$s coins", "zh": "%3$s 硬币" }
+      ]
+    },
+    {
+      "id": "bazaar_click_to_view_options",
+      "context": "合作社集市订单列表打开订单操作的提示",
+      "raw": "§eClick to view options!",
+      "text": "Click to view options!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击查看选项!"
+    },
+    {
+      "id": "bazaar_cancel_order",
+      "context": "订单操作菜单的取消订单选项",
+      "raw": "§cCancel Order",
+      "text": "Cancel Order",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "取消订单"
+    },
+    {
+      "id": "bazaar_refund_items",
+      "context": "取消出售订单时返还商品数量的提示",
+      "raw": "§7You will be refunded §a%1$s§7x items.",
+      "text": "You will be refunded %1$sx items.",
+      "placeholders": [
+        { "token": "%1$s", "desc": "返还的商品数量", "type": "number", "example": "75" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你将获得 %1$s 个商品的退款。",
+      "segments": [
+        { "color": "§7", "text": "You will be refunded ", "zh": "你将获得 " },
+        { "color": "§a", "text": "%1$s", "zh": "%1$s" },
+        { "color": "§7", "text": "x items.", "zh": " 个商品的退款。" }
+      ]
+    },
+    {
+      "id": "bazaar_to_coop_orders",
+      "context": "订单操作菜单返回合作社集市订单的提示",
+      "raw": "§7To Co-op Bazaar Orders",
+      "text": "To Co-op Bazaar Orders",
+      "placeholders": [],
+      "gloss": "co-op 指合作社。",
+      "translate": true,
+      "zh": "前往合作社集市订单"
+    }
+  ]
+}

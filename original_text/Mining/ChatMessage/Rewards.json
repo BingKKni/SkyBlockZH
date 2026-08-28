@@ -1,0 +1,355 @@
+{
+  "source": "https://raw.githubusercontent.com/hannibal002/SkyHanni-REPO/main/constants/regexesModern.json",
+  "fetched_at": "2026-08-18",
+  "verified_ingame": false,
+  "source_note": "数据来自开源客户端 Mod SkyHanni 的 SkyHanni-REPO 仓库 constants/regexesModern.json (用于解析游戏内文本的正则表达式常量),已去除正则语法/颜色码还原成干净模板文本, 可信度高于 Wiki 摘要,但未逐条在游戏内截图核对,verified_ingame 仍为 false。",
+  "messages": [
+    {
+      "id": "mining_king_talisman_received",
+      "context": "首次和全部 7 位轮换国王对话后获得“国王护身符”的提示",
+      "text": "You have received a King Talisman!",
+      "placeholders": [],
+      "gloss": "King Talisman 是道具专有名称,是否翻译需要和物品名翻译规则统一,建议整句可译但道具名部分按规则处理。King 见 NPC_Message/King.json。",
+      "translate": true,
+      "zh": "你获得了一件国王护符!"
+    },
+    {
+      "id": "mining_dark_monolith_reward",
+      "context": "黑暗方碑(Dark Monolith)机制奖励结算提示,结构较复杂,硬币和粉末两个奖励段都是可选的",
+      "text": "MONOLITH! You %s and were rewarded %s Coins and %s Mithril Powder!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "中间描述片段(原正则里是 .* 通配,具体文案未确认)",
+          "type": "raw",
+          "example": "survived the ritual"
+        },
+        {
+          "token": "%2$s",
+          "desc": "获得硬币数量,可选出现",
+          "type": "number",
+          "example": "500"
+        },
+        {
+          "token": "%3$s",
+          "desc": "获得秘银粉末数量,可选出现",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "原始正则结构显示硬币和粉末奖励段都是可选(可能只给其中一种,也可能都不给),且中间有一段 .* 通配的描述文字未确认具体内容,需要游戏内核实完整句子结构后再定稿翻译模板,不要直接按这里拼出的示意句子翻译。已和用户确认(2026-08-18):暂不翻译此条,保持整行英文。原因——第一个占位符(中间描述片段)的具体取值没有确认,如果贸然翻译外层句子、又不知道这个占位符实际会填入什么英文文案,渲染出来会是“中文句子中间嵌一段没翻译的英文”,这种中英混排比整行保持英文更糟,所以宁可不翻。**候选译文模板(仅供以后占位符取值确认后参考,不是定稿)**:“你%s并获得了%s硬币和%s秘银粉末!”——%1$s 中间描述片段留待确认后再决定怎么处理(直接翻还是保留英文),%2$s/%3$s 分别对应硬币和秘银粉末数量。",
+      "translate": true,
+      "zh": ""
+    },
+    {
+      "id": "mining_bought_item",
+      "context": "在商人处买东西成功的提示",
+      "text": "You bought %s!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "买到的物品名",
+          "type": "item_name",
+          "example": "Suspicious Scrap"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你买下了%s!"
+    },
+    {
+      "id": "mining_not_enough_powder_gemstone",
+      "context": "宝石粉末不够",
+      "text": "You don't have enough Gemstone Powder!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的宝石粉末不够!"
+    },
+    {
+      "id": "mining_not_enough_powder_glacite",
+      "context": "极冰粉末不够",
+      "text": "You don't have enough Glacite Powder!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的极冰粉末不够!"
+    },
+    {
+      "id": "mining_not_enough_powder_mithril",
+      "context": "秘银粉末不够",
+      "text": "You don't have enough Mithril Powder!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的秘银粉末不够!"
+    },
+    {
+      "id": "mining_not_enough_fossil_essence",
+      "context": "化石精华不够",
+      "text": "You don't have enough Fossil Essence!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的化石精华不够!"
+    },
+    {
+      "id": "mining_credited_header",
+      "context": "奖励发放到档案时的标题行",
+      "text": "The following has been credited to your profile:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "以下奖励已发放到你的档案:"
+    },
+    {
+      "id": "mining_credited_token",
+      "context": "奖励发放清单:山心代币",
+      "text": "- %s Token of the Mountain",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "25"
+        }
+      ],
+      "gloss": "和山心界面里的返还清单用同一种写法(“- 1,000极冰粉末”,数字和汉字之间不加空格)。",
+      "translate": true,
+      "zh": "- %s山心代币"
+    },
+    {
+      "id": "mining_credited_mithril_powder",
+      "context": "奖励发放清单:秘银粉末",
+      "text": "- %s Mithril Powder",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "11,061,843"
+        }
+      ],
+      "gloss": "和山心界面里的返还清单用同一种写法(“- 1,000极冰粉末”,数字和汉字之间不加空格)。",
+      "translate": true,
+      "zh": "- %s秘银粉末"
+    },
+    {
+      "id": "mining_credited_gemstone_powder",
+      "context": "奖励发放清单:宝石粉末",
+      "text": "- %s Gemstone Powder",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "20,536,134"
+        }
+      ],
+      "gloss": "和山心界面里的返还清单用同一种写法(“- 1,000极冰粉末”,数字和汉字之间不加空格)。",
+      "translate": true,
+      "zh": "- %s宝石粉末"
+    },
+    {
+      "id": "mining_credited_glacite_powder",
+      "context": "奖励发放清单:极冰粉末",
+      "text": "- %s Glacite Powder",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "14,785,499"
+        }
+      ],
+      "gloss": "和山心界面里的返还清单用同一种写法(“- 1,000极冰粉末”,数字和汉字之间不加空格)。",
+      "translate": true,
+      "zh": "- %s极冰粉末"
+    },
+    {
+      "id": "mining_wisp_removed",
+      "context": "换了新的鬼火部署物,旧的被移除",
+      "text": "Your previous Will-o'-wisp was removed!",
+      "placeholders": [],
+      "gloss": "物品名自带颜色。分段只决定颜色边界,颜色渲染时从屏幕上当场读,所以 color 字段只是给人看的记号。",
+      "translate": true,
+      "zh": "你之前放下的鬼火已被移除!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Your previous ",
+          "zh": "你之前放下的"
+        },
+        {
+          "color": "§5",
+          "text": "Will-o'-wisp",
+          "zh": "鬼火"
+        },
+        {
+          "color": "§7",
+          "text": " was removed!",
+          "zh": "已被移除!"
+        }
+      ]
+    },
+    {
+      "id": "mining_wisp_despawned",
+      "context": "鬼火部署物到期消失",
+      "text": "Your Will-o'-wisp despawned.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的鬼火消失了。"
+    },
+    {
+      "id": "mining_grinder_wrong_item",
+      "context": "往宝石研磨机里放了不能镶嵌宝石的物品",
+      "text": "Only items that can have Gemstones applied to them can be put in the Grinder!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "只有能镶嵌宝石的物品才能放进研磨机!"
+    },
+    {
+      "id": "mining_powder_from_mob",
+      "context": "打死会掉粉末的怪之后的提示",
+      "raw": "§aYou received §2%1$s ᠅ Mithril Powder §afrom killing a §6§l%2$s§a!",
+      "text": "You received %1$s ᠅ Mithril Powder from killing a %2$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "获得的秘银粉末数量",
+          "type": "number",
+          "example": "750"
+        },
+        {
+          "token": "%2$s",
+          "desc": "被击杀的怪物名,译名走 _shared/Terms.json",
+          "type": "mob_name",
+          "example": "Golden Goblin"
+        }
+      ],
+      "gloss": "᠅ 是秘银粉末的图标字符,见 text/Glyphs.java。中文把「击杀谁」提到最前面,英文把它放在句尾,所以按 segments[].order 指定各段渲染到第几位:说话顺序变了,每一段的颜色和占位符还跟着自己的词走。",
+      "translate": true,
+      "zh": "你通过击杀%2$s获得了 %1$s ᠅ 秘银粉末!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "You received ",
+          "zh": "你通过击杀",
+          "order": 0
+        },
+        {
+          "color": "§2",
+          "text": "%1$s ᠅ Mithril Powder ",
+          "zh": "%1$s ᠅ 秘银粉末",
+          "order": 3
+        },
+        {
+          "color": "§a",
+          "text": "from killing a ",
+          "zh": "获得了 ",
+          "order": 2
+        },
+        {
+          "color": "§6",
+          "text": "%2$s",
+          "zh": "%2$s",
+          "order": 1
+        },
+        {
+          "color": "§a",
+          "text": "!",
+          "zh": "!",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "mining_goblin_reward_header",
+      "context": "打死金/钻哥布林之后,奖励清单的标题行",
+      "raw": "§aYou received rewards for killing a §b§l%s§a:",
+      "text": "You received rewards for killing a %s:",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "被击杀的哥布林名(全大写),译名走 _shared/Terms.json,查表不分大小写",
+          "type": "mob_name",
+          "example": "DIAMOND GOBLIN"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "击杀%s的奖励:",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "You received rewards for killing a ",
+          "zh": "击杀"
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§a",
+          "text": ":",
+          "zh": "的奖励:"
+        }
+      ]
+    },
+    {
+      "id": "mining_goblin_reward_powder",
+      "context": "哥布林奖励清单里的粉末那一行(缩进显示)",
+      "raw": "§7+§2%1$s ᠅ %2$s Powder",
+      "text": "+%1$s ᠅ %2$s Powder",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "数量",
+          "type": "number",
+          "example": "1,500"
+        },
+        {
+          "token": "%2$s",
+          "desc": "粉末种类名,译名走 _shared/Terms.json",
+          "type": "raw",
+          "example": "Mithril"
+        }
+      ],
+      "gloss": "᠅ 是粉末的图标字符,见 text/Glyphs.java。加号是灰的,数量和粉末名是粉末自己的颜色。",
+      "translate": true,
+      "zh": "+%1$s ᠅ %2$s粉末",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§2",
+          "text": "%1$s ᠅ %2$s Powder",
+          "zh": "%1$s ᠅ %2$s粉末"
+        }
+      ]
+    },
+    {
+      "id": "mining_goblin_reward_bonus_drop",
+      "context": "哥布林奖励清单里的额外掉落那一行",
+      "raw": "§7+%s bonus drop!",
+      "text": "+%s bonus drop!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "额外掉落份数",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s 份额外掉落!"
+    }
+  ]
+}

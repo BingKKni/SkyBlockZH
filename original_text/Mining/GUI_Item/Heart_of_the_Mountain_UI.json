@@ -1,0 +1,395 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Heart_of_the_Mountain/UI (逐格 name + lore,带颜色码) + https://raw.githubusercontent.com/hannibal002/SkyHanni-REPO/main/constants/regexesModern.json",
+  "fetched_at": "2026-08-19",
+  "verified_ingame": false,
+  "source_note": "数据来自开源客户端 Mod SkyHanni 的 SkyHanni-REPO 仓库 constants/regexesModern.json (用于解析游戏内文本的正则表达式常量),已去除正则语法/颜色码还原成干净模板文本, 可信度高于 Wiki 摘要,但未逐条在游戏内截图核对,verified_ingame 仍为 false。",
+  "gui_context": "山之心(Heart of the Mountain)科技树 GUI 界面内的各类按钮/标签/统计行文本。",
+  "lines": [
+    {
+      "id": "hotm_gemstone_powder_reward",
+      "context": "山之心界面奖励显示的宝石粉末",
+      "raw": "§dGemstone§7: §a+%s §dGemstone Powder",
+      "text": "Gemstone: +%s Gemstone Powder",
+      "placeholders": [
+        {"token": "%s", "desc": "获得的宝石粉末数量", "type": "number", "example": "5,000"}
+      ],
+      "gloss": "按实测颜色切分，避免名称、数值和粉末名被压成同一种颜色。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§d", "text": "Gemstone", "zh": "宝石"},
+        {"color": "§7", "text": ": ", "zh": ": "},
+        {"color": "§a", "text": "+%s ", "zh": "+%s "},
+        {"color": "§d", "text": "Gemstone Powder", "zh": "宝石粉末"}
+      ]
+    },
+    {
+      "id": "hotm_title",
+      "context": "GUI 标题/物品名称:山之心",
+      "text": "Heart of the Mountain",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "山峦之心"
+    },
+    {
+      "id": "hotm_reset_button",
+      "context": "重置山之心的按钮文本",
+      "text": "Reset Heart of the Mountain",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "重置山峦之心"
+    },
+    {
+      "id": "hotm_token_amount",
+      "context": "持有的“山心代币”数量显示",
+      "text": "Token of the Mountain: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "代币数量",
+          "type": "number",
+          "example": "5"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "山心代币: %s"
+    },
+    {
+      "id": "hotm_reset_cost_token",
+      "context": "重置山心的返还清单:代币那一行",
+      "text": "- %s Token of the Mountain",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "所需代币数量",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "“- ”是深灰色,数量和代币名是紫色;原来整行只记了一个颜色,译文会被整段刷成深灰。",
+      "translate": true,
+      "zh": "- %s山心代币",
+      "raw": "  §8- §5%s Token of the Mountain",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§5",
+          "text": "%s Token of the Mountain",
+          "zh": "%s山心代币"
+        }
+      ]
+    },
+    {
+      "id": "hotm_perk_cost_label",
+      "ref": "_shared/Menu_Common.json#menu_cost_label",
+      "context": "天赋树里,单个天赋的花费小标题"
+    },
+    {
+      "id": "hotm_perk_disabled_tag",
+      "context": "天赋当前处于“已禁用”状态的标签",
+      "text": "DISABLED",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "已禁用"
+    },
+    {
+      "id": "hotm_perk_click_to_select",
+      "context": "天赋可选择时的提示文案",
+      "text": "Click to select!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击选择!"
+    },
+    {
+      "id": "hotm_perk_enabled_tag",
+      "context": "天赋当前处于“已启用”状态的标签",
+      "text": "ENABLED",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "已启用"
+    },
+    {
+      "id": "hotm_perk_selected_tag",
+      "context": "天赋当前处于“已选中”状态的标签",
+      "text": "SELECTED",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "已选中"
+    },
+    {
+      "id": "hotm_perk_level",
+      "context": "天赋当前等级显示",
+      "text": "Level %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "等级数值",
+          "type": "number",
+          "example": "3"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "等级 %s"
+    },
+    {
+      "id": "hotm_perk_click_to_unlock",
+      "context": "天赋尚未解锁,可点击解锁时的提示",
+      "text": "Click to unlock!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击解锁!"
+    },
+    {
+      "id": "hotm_mithril_powder_amount",
+      "context": "持有的秘银粉末数量(山之心界面内)",
+      "text": "Mithril Powder: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "1,234"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "秘银粉末: %s"
+    },
+    {
+      "id": "hotm_glacite_powder_amount",
+      "context": "持有的极冰粉末数量(山之心界面内)",
+      "text": "Glacite Powder: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "1,234"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "极冰粉末: %s"
+    },
+    {
+      "id": "hotm_gemstone_powder_amount",
+      "context": "持有的宝石粉末数量(山之心界面内)",
+      "text": "Gemstone Powder: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "1,234"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "宝石粉末: %s"
+    },
+    {
+      "id": "hotm_mithril_reset_cost",
+      "ref": "_shared/Item_Lore.json#item_powder_line_mithril",
+      "context": "重置山心的返还清单:秘银粉末那一行"
+    },
+    {
+      "id": "hotm_glacite_reset_cost",
+      "ref": "_shared/Item_Lore.json#item_powder_line_glacite",
+      "context": "重置山心的返还清单:极冰粉末那一行"
+    },
+    {
+      "id": "hotm_glacite_powder_overlay",
+      "context": "背包内极冰粉末图标上叠加显示的数量文字(非 Lore,是物品图标角标)",
+      "text": "Glacite Powder x%s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "1,234"
+        }
+      ],
+      "gloss": "数量那一半是深灰的,和粉末名分开。分段只决定颜色边界,颜色渲染时从屏幕上当场读,所以 color 字段只是给人看的记号。",
+      "translate": true,
+      "zh": "极冰粉末 x%s",
+      "raw": "§bGlacite Powder §8x%s",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "Glacite Powder ",
+          "zh": "极冰粉末 "
+        },
+        {
+          "color": "§8",
+          "text": "x%s",
+          "zh": "x%s"
+        }
+      ]
+    },
+    {
+      "id": "hotm_gemstone_reset_cost",
+      "ref": "_shared/Item_Lore.json#item_powder_line_gemstone",
+      "context": "重置山心的返还清单:宝石粉末那一行"
+    },
+    {
+      "id": "hotm_reset_desc_1",
+      "context": "重置按钮 Lore:第一行",
+      "text": "Resets the Perks and Abilities of",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "重置"
+    },
+    {
+      "id": "hotm_reset_desc_2",
+      "context": "重置按钮 Lore:第二行(接上一行)",
+      "raw": "§7your §5Heart of the Mountain§7, locking",
+      "text": "your Heart of the Mountain, locking",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "山峦之心的天赋与技能,重新把它们锁上",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "your ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§5",
+          "text": "Heart of the Mountain",
+          "zh": "山峦之心"
+        },
+        {
+          "color": "§7",
+          "text": ", locking",
+          "zh": "的天赋与技能,重新把它们锁上"
+        }
+      ]
+    },
+    {
+      "id": "hotm_reset_desc_3",
+      "context": "重置按钮 Lore:第三行(接上一行)",
+      "text": "them and resetting their levels.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "并清空等级。"
+    },
+    {
+      "id": "hotm_reset_reimbursed",
+      "context": "重置按钮 Lore:返还清单的标题行",
+      "text": "You will be reimbursed with:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你将获得以下返还:"
+    },
+    {
+      "id": "hotm_reset_keep_1",
+      "context": "重置按钮 Lore:说明哪些东西不会被重置(第一行)",
+      "raw": "§7You will §akeep §7any Tiers and §cCore of",
+      "text": "You will keep any Tiers and Core of",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你将保留已解锁的层级和",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You will ",
+          "zh": "你将"
+        },
+        {
+          "color": "§a",
+          "text": "keep ",
+          "zh": "保留"
+        },
+        {
+          "color": "§7",
+          "text": "any Tiers and ",
+          "zh": "已解锁的层级和"
+        },
+        {
+          "color": "§c",
+          "text": "Core of",
+          "zh": "",
+          "omit": true
+        }
+      ]
+    },
+    {
+      "id": "hotm_reset_keep_2",
+      "context": "重置按钮 Lore:说明哪些东西不会被重置(第二行)",
+      "raw": "§cthe Mountain §7that you have unlocked.",
+      "text": "the Mountain that you have unlocked.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "「山之核」。",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "the Mountain ",
+          "zh": "「山之核」"
+        },
+        {
+          "color": "§7",
+          "text": "that you have unlocked.",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "hotm_reset_warning_1",
+      "context": "重置按钮 Lore:红色警告第一行",
+      "text": "WARNING: This is permanent.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "警告:此操作不可撤销。"
+    },
+    {
+      "id": "hotm_reset_warning_2",
+      "context": "重置按钮 Lore:红色警告第二行",
+      "text": "You can not go back after",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "一旦重置山峦之心,"
+    },
+    {
+      "id": "hotm_reset_warning_3",
+      "context": "重置按钮 Lore:红色警告第三行",
+      "text": "resetting your Heart of the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "就再也回不去了!"
+    },
+    {
+      "id": "hotm_reset_warning_4",
+      "context": "重置按钮 Lore:红色警告第四行(英文因排版折行,中文已在上一行说完)",
+      "text": "Mountain!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    }
+  ]
+}

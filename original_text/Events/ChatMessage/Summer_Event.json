@@ -1,0 +1,75 @@
+{
+  "source": "runtime capture (SkyZH) 2026-08-20 实测会话",
+  "fetched_at": "2026-08-20",
+  "verified_ingame": true,
+  "gui_context": "夏日活动(Summer Event)的进服提醒。和挖矿无关,只是每次进服都刷。",
+  "messages": [
+    {
+      "id": "summer_rewards_unclaimed",
+      "context": "夏日活动期间每次进服的提醒:奖励还没领",
+      "text": "You haven't claimed your Summer Rewards yet!",
+      "placeholders": [],
+      "gloss": "活动名自带颜色。分段只决定颜色边界,颜色渲染时从屏幕上当场读,所以 color 字段只是给人看的记号。",
+      "translate": true,
+      "zh": "你还没领取夏日活动奖励!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "You haven't claimed your ",
+          "zh": "你还没领取"
+        },
+        {
+          "color": "§6",
+          "text": "Summer Rewards ",
+          "zh": "夏日活动奖励"
+        },
+        {
+          "color": "§e",
+          "text": "yet!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "summer_talk_to_sloth",
+      "context": "上一句的下一行,说明去哪领",
+      "text": "Talk to the Summer Sloth in the Hub!",
+      "placeholders": [],
+      "gloss": "中文把地点提到 NPC 前面,和英文语序相反,用 segments[].order 换位。分段只决定颜色边界,颜色渲染时从屏幕上当场读,所以 color 字段只是给人看的记号。",
+      "translate": true,
+      "zh": "去主城找「夏日树懒」领取吧!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Talk to the ",
+          "zh": "去",
+          "order": 0
+        },
+        {
+          "color": "§6",
+          "text": "Summer Sloth ",
+          "zh": "「夏日树懒」",
+          "order": 3
+        },
+        {
+          "color": "§e",
+          "text": "in the ",
+          "zh": "找",
+          "order": 2
+        },
+        {
+          "color": "§b",
+          "text": "Hub",
+          "zh": "主城",
+          "order": 1
+        },
+        {
+          "color": "§e",
+          "text": "!",
+          "zh": "领取吧!",
+          "order": 4
+        }
+      ]
+    }
+  ]
+}

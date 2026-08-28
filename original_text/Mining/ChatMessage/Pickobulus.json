@@ -1,0 +1,80 @@
+{
+  "source": "https://github.com/hannibal002/SkyHanni 的 MiningApi.kt(带颜色码的原文常量)+ 玩家实测客户端日志",
+  "fetched_at": "2026-08-19",
+  "verified_ingame": true,
+  "source_note": "原来三条都是整行一个颜色,游戏里 “Pickobulus” 是单独一段颜色(§a/§6),译文会被整段刷成同一色。现按 raw 的颜色边界分段。“使用了技能”那条已并入 ChatMessage/Pickaxe_Abilities.json 的通用模板(所有镐子技能共用一句),这里不再单独记一条。",
+  "gui_context": "“碎石飞弹”(Pickobulus)镐子技能使用效果提示。",
+  "messages": [
+    {
+      "id": "pickobulus_end_success",
+      "context": "碎石飞弹效果结束,摧毁方块数量结算",
+      "raw": "§7Your §r§aPickobulus §r§7destroyed §r§e%s §r§7blocks!",
+      "text": "Your Pickobulus destroyed %s blocks!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "摧毁的方块数量",
+          "type": "number",
+          "example": "102"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的「碎石飞弹」摧毁了 %s 个方块!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Your ",
+          "zh": "你的"
+        },
+        {
+          "color": "§a",
+          "text": "Pickobulus ",
+          "zh": "「碎石飞弹」"
+        },
+        {
+          "color": "§7",
+          "text": "destroyed ",
+          "zh": "摧毁了"
+        },
+        {
+          "color": "§e",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": "blocks!",
+          "zh": "个方块!"
+        }
+      ]
+    },
+    {
+      "id": "pickobulus_end_fail",
+      "context": "碎石飞弹一个方块都没砸到时的提示",
+      "raw": "§7Your §r§aPickobulus §r§7didn't destroy any blocks!",
+      "text": "Your Pickobulus didn't destroy any blocks!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的「碎石飞弹」一个方块都没砸到!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Your ",
+          "zh": "你的"
+        },
+        {
+          "color": "§a",
+          "text": "Pickobulus ",
+          "zh": "「碎石飞弹」"
+        },
+        {
+          "color": "§7",
+          "text": "didn't destroy any blocks!",
+          "zh": "一个方块都没砸到!"
+        }
+      ]
+    }
+  ]
+}

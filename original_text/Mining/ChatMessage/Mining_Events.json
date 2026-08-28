@@ -1,0 +1,1200 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Gone_with_the_Wind|Better_Together|Mithril_Gourmand|Goblin_Raid (逐字 Game Message 段,带颜色码)+ 玩家实测客户端日志(logs/,2026-08-19)",
+  "fetched_at": "2026-08-19",
+  "verified_ingame": true,
+  "source_note": "活动播报由三部分组成:预告行(⚑)、开始/结束横幅(居中,带活动名和一句说明)、活动期间的即时提示。活动名本身不写进模板,由服务器塞进 %s,译名统一走 _shared/Terms.json,这样 BossBar / 计分板 / 聊天三处只有一份译名。",
+  "messages": [
+    {
+      "id": "mining_chat_event_started",
+      "context": "挖矿活动开始时的聊天广播(服务器用空格凑的居中横幅)",
+      "text": "%s STARTED!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "活动名称,游戏内显示为全大写",
+          "type": "raw",
+          "example": "GOBLIN RAID"
+        }
+      ],
+      "gloss": "游戏内活动名以全大写显示,翻译成中文后不需要保留大写这一形式,大小写是显示样式问题,交给代码处理。",
+      "translate": true,
+      "zh": "「%s」开始了!",
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "mining_chat_event_ended",
+      "context": "挖矿活动结束时的聊天广播(服务器用空格凑的居中横幅)",
+      "text": "%s ENDED!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "活动名称",
+          "type": "raw",
+          "example": "GOBLIN RAID"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "「%s」结束了!",
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "mining_event_announce",
+      "context": "活动开始前 20 秒的预告行",
+      "raw": "§9⚑ §eThe §9%1$s §eevent starts in §a%2$s §eseconds!",
+      "text": "⚑ The %1$s event starts in %2$s seconds!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "活动名",
+          "type": "raw",
+          "example": "Gone with the Wind"
+        },
+        {
+          "token": "%2$s",
+          "desc": "倒计时秒数",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "⚑ 旗帜符号的颜色跟着活动走(风=蓝、哥布林突袭=红),引擎按实际颜色渲染,不用管数据里写的是哪个色号。",
+      "translate": true,
+      "zh": "⚑ 「%1$s」活动将在 %2$s 秒后开始!",
+      "segments": [
+        {
+          "color": "§9",
+          "text": "⚑ ",
+          "zh": "⚑ "
+        },
+        {
+          "color": "§e",
+          "text": "The ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§9",
+          "text": "%1$s ",
+          "zh": "「%1$s」"
+        },
+        {
+          "color": "§e",
+          "text": "event starts in ",
+          "zh": "活动将在 "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s ",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§e",
+          "text": "seconds!",
+          "zh": " 秒后开始!"
+        }
+      ]
+    },
+    {
+      "id": "mining_event_announce_passive",
+      "context": "预告行第二句:活动全图生效",
+      "raw": "§eThis is a passive event! §bIt's happening everywhere in the §b%s!",
+      "text": "This is a passive event! It's happening everywhere in the %s!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "活动生效的区域名",
+          "type": "location_name",
+          "example": "Dwarven Mines"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "这个活动在整个%s都会生效!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "This is a passive event! ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§b",
+          "text": "It's happening everywhere in the %s!",
+          "zh": "这个活动在整个%s都会生效!"
+        }
+      ]
+    },
+    {
+      "id": "mining_event_announce_teleport",
+      "context": "预告行第二句:主动活动,可点击传送",
+      "raw": "§aClick here §eto teleport to §b%s §eand prepare!",
+      "text": "Click here to teleport to %s and prepare!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "负责传送的 NPC 名",
+          "type": "npc_name",
+          "example": "Garry"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "点这里传送到 %s 身边做准备!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Click here ",
+          "zh": "点这里"
+        },
+        {
+          "color": "§e",
+          "text": "to teleport to ",
+          "zh": "传送到 "
+        },
+        {
+          "color": "§b",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§e",
+          "text": "and prepare!",
+          "zh": " 身边做准备!"
+        }
+      ]
+    },
+    {
+      "id": "mining_event_banner_passive",
+      "context": "开始/结束横幅第二行:活动类型标签(被动)",
+      "text": "Passive Active Event",
+      "placeholders": [],
+      "gloss": "原文 “Passive Active Event” 是 Hypixel 自己的笔误式写法(被动 + 进行中)。中文只写“挖矿活动”:“被动挖矿活动”把两个修饰语堆在一起,中文读着别扭;横幅上一行已经报出活动名,而“这是被动的”这一信息由预告行“这是被动活动!”和 BossBar 的“被动活动 %s”承担,横幅这一行不必重复。因此这里刻意不译 Passive,和 Mining/BossBar/Mining_Events.json 里保留“被动活动”的两条不冲突——那是另一个英文串。",
+      "translate": true,
+      "zh": "挖矿活动",
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "mining_event_banner_active",
+      "context": "开始/结束横幅第二行:活动类型标签(主动)",
+      "text": "Active Mining Event",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "主动挖矿活动",
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "mining_event_banner_mining_event",
+      "context": "开始/结束横幅第二行:活动类型标签(哥布林突袭用的写法)",
+      "text": "Mining Event",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "挖矿活动",
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "mining_event_not_participated",
+      "context": "活动结束时你没参与的提示",
+      "text": "You didn't participate...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你没有参与这次活动……",
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "mining_event_wind_start_1",
+      "context": "随风而逝开始横幅正文第一行",
+      "text": "The cavern is windy today! Mining in the direction of the wind",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "今天洞里风很大! 顺着风向挖矿",
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "mining_event_wind_start_2",
+      "context": "随风而逝开始横幅正文第二行(接上一行)",
+      "raw": "§fwill give §6+%s⸕ Mining Speed§f.",
+      "text": "will give +%s⸕ Mining Speed.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "挖掘速度加成数值",
+          "type": "number",
+          "example": "600"
+        }
+      ],
+      "gloss": "⸕ 是挖掘速度的图标字符,游戏内是服务器字体的私用区字形,引擎会自动对上(见 text/Glyphs.java),数据里写通用符号即可。",
+      "translate": true,
+      "zh": "可以获得 +%s⸕ 挖掘速度。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "will give ",
+          "zh": "可以获得 "
+        },
+        {
+          "color": "§6",
+          "text": "+%s⸕ Mining Speed",
+          "zh": "+%s⸕ 挖掘速度"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "mining_event_wind_changed",
+      "context": "活动期间风向改变时的提示",
+      "text": "The wind has changed direction!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "风向变了!"
+    },
+    {
+      "id": "mining_event_wind_end",
+      "context": "随风而逝结束横幅正文",
+      "text": "The wind has died down leading to normal mining speeds.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "风停了,挖掘速度恢复正常。",
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "mining_event_double_powder_start",
+      "context": "双倍粉末开始横幅正文",
+      "text": "Everybody gets twice as much powder of all types!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "所有人获得的各类粉末翻倍!",
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "mining_event_double_powder_end_1",
+      "context": "双倍粉末结束横幅正文第一行",
+      "text": "Powder amount is back to normal, but there will be another",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "粉末产量恢复正常,不过很快还会有",
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "mining_event_double_powder_end_2",
+      "context": "双倍粉末结束横幅正文第二行(接上一行)",
+      "text": "event soon!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "下一场活动!",
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "mining_event_better_together_start_1",
+      "context": "众志成城开始横幅正文第一行",
+      "text": "The Better Together festival is underway! While this event is",
+      "placeholders": [],
+      "gloss": "原文这里的 festival 是小写(和 flavour_2 那条一致),2026-08-21 按玩家日志订正——此前写成大写 Festival，整条永远匹配不上。",
+      "translate": true,
+      "zh": "「众志成城」庆典开始了! 活动期间,",
+      "layout": "center_chat_banner",
+      "raw": "§fThe §dBetter Together §ffestival is underway! While this event is",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "The ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§d",
+          "text": "Better Together ",
+          "zh": "「众志成城」"
+        },
+        {
+          "color": "§f",
+          "text": "festival is underway! While this event is",
+          "zh": "庆典开始了! 活动期间,"
+        }
+      ]
+    },
+    {
+      "id": "mining_event_better_together_start_2",
+      "context": "众志成城开始横幅正文第二行",
+      "raw": "§factive, gain §6+%1$s⸕ Mining Speed §fand §6+%2$s☘ Mining Fortune",
+      "text": "active, gain +%1$s⸕ Mining Speed and +%2$s☘ Mining Fortune",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "挖掘速度加成",
+          "type": "number",
+          "example": "250"
+        },
+        {
+          "token": "%2$s",
+          "desc": "挖掘时运加成",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "⸕ / ☘ 是挖掘速度、挖掘时运的图标字符,见 text/Glyphs.java。2026-08-21 按玩家日志订正:服务器发的是 “+250⸕”,数字和图标之间没有空格,此前多写了一个空格,整条永远匹配不上。",
+      "translate": true,
+      "zh": "每多一名同区域玩家就 +%1$s⸕ 挖掘速度、+%2$s☘ 挖掘时运",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "active, gain ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§6",
+          "text": "+%1$s⸕ Mining Speed ",
+          "zh": "每多一名同区域玩家就 +%1$s⸕ 挖掘速度、"
+        },
+        {
+          "color": "§f",
+          "text": "and ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§6",
+          "text": "+%2$s☘ Mining Fortune",
+          "zh": "+%2$s☘ 挖掘时运"
+        }
+      ],
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "mining_event_better_together_start_3",
+      "context": "众志成城开始横幅正文第三行",
+      "raw": "§ffor each player in the same zone as you! §7(Max 5 players)",
+      "text": "for each player in the same zone as you! (Max 5 players)",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "(最多计 5 名玩家)",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "for each player in the same zone as you! ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§7",
+          "text": "(Max 5 players)",
+          "zh": "(最多计 5 名玩家)"
+        }
+      ],
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "mining_event_better_together_flavour_1",
+      "context": "众志成城开始后的斜体气氛行",
+      "text": "You can hear cooperative chattering coming from town...",
+      "placeholders": [],
+      "gloss": "句末是三个半角句点，不是省略号 …（2026-08-21 按玩家日志订正）。",
+      "translate": true,
+      "zh": "你听见镇上传来热络的攀谈声……",
+      "raw": "§7§oYou can hear cooperative chattering coming from town..."
+    },
+    {
+      "id": "mining_event_better_together_flavour_2",
+      "context": "众志成城开始后的斜体气氛行(时长)",
+      "text": "The Better Together festival is active for 20 minutes!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "「众志成城」庆典将持续 20 分钟!"
+    },
+    {
+      "id": "mining_event_better_together_end_1",
+      "context": "众志成城结束横幅正文第一行",
+      "text": "The festival has ended, but the Dwarven cooperative spirit",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "庆典结束了,但矮人的协作精神",
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "mining_event_better_together_end_2",
+      "context": "众志成城结束横幅正文第二行",
+      "text": "never dies.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "永远不会消失。",
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "mining_fallen_star_crashed",
+      "context": "陨落之星坠落到某个区域的广播",
+      "text": "✯ A Fallen Star has crashed at %s! Nearby ore and Powder drops are amplified!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "坠落区域名",
+          "type": "location_name",
+          "example": "Rampart's Quarry"
+        }
+      ],
+      "gloss": "地名自带颜色,前面的 ✯ 通常还带粗体。分段只决定颜色边界,颜色渲染时从屏幕上当场读,所以 color 字段只是给人看的记号。",
+      "translate": true,
+      "zh": "✯ 一颗陨落之星坠落在了%s! 附近的矿石和粉末掉落都会增加!",
+      "segments": [
+        {
+          "color": "§5§l",
+          "text": "✯ ",
+          "zh": "✯ "
+        },
+        {
+          "color": "§e",
+          "text": "A ",
+          "zh": "一颗"
+        },
+        {
+          "color": "§5",
+          "text": "Fallen Star ",
+          "zh": "陨落之星"
+        },
+        {
+          "color": "§e",
+          "text": "has crashed at ",
+          "zh": "坠落在了"
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§e",
+          "text": "! Nearby ore and Powder drops are amplified!",
+          "zh": "! 附近的矿石和粉末掉落都会增加!"
+        }
+      ]
+    },
+    {
+      "id": "mining_powder_ghast_attracted",
+      "context": "粉末恶魂被镐声引来的广播",
+      "text": "The sound of pickaxes clashing against the rock has attracted the attention of the POWDER GHAST!",
+      "placeholders": [],
+      "gloss": "怪名是喊出来的,自带高亮颜色。分段只决定颜色边界,颜色渲染时从屏幕上当场读,所以 color 字段只是给人看的记号。",
+      "translate": true,
+      "zh": "镐子凿石的动静把粉末恶魂引来了!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "The sound of pickaxes clashing against the rock has attracted the attention of the ",
+          "zh": "镐子凿石的动静把"
+        },
+        {
+          "color": "§c",
+          "text": "POWDER GHAST",
+          "zh": "粉末恶魂"
+        },
+        {
+          "color": "§e",
+          "text": "!",
+          "zh": "引来了!"
+        }
+      ]
+    },
+    {
+      "id": "mining_powder_ghast_find",
+      "context": "提示去哪找粉末恶魂",
+      "text": "Find the Powder Ghast near the %s!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "粉末恶魂出现的区域名",
+          "type": "location_name",
+          "example": "Forge Basin"
+        }
+      ],
+      "gloss": "中文把地点放在最前面、怪名放在最后,和英文正好反过来,所以用 segments[].order 指定各段渲染到第几位。分段只决定颜色边界,颜色渲染时从屏幕上当场读,所以 color 字段只是给人看的记号。",
+      "translate": true,
+      "zh": "去%s附近找那只粉末恶魂!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Find the ",
+          "zh": "去",
+          "order": 0
+        },
+        {
+          "color": "§c",
+          "text": "Powder Ghast",
+          "zh": "粉末恶魂",
+          "order": 3
+        },
+        {
+          "color": "§e",
+          "text": " near the ",
+          "zh": "附近找那只",
+          "order": 2
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s",
+          "order": 1
+        },
+        {
+          "color": "§e",
+          "text": "!",
+          "zh": "!",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "mining_stats_widget_disabled",
+      "context": "进入矿井后属性小部件被关闭的提示",
+      "text": "The Stats Widget is now DISABLED when in the Mineshaft.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "进入矿井后,属性小部件已关闭。"
+    },
+    {
+      "id": "mining_stats_widget_enabled",
+      "context": "进入矿井后属性小部件被开启的提示",
+      "text": "The Stats Widget is now ENABLED when in the Mineshaft.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "进入矿井后,属性小部件已开启。"
+    },
+    {
+      "id": "mining_event_go_to",
+      "context": "活动横幅正文:去哪参加(可以找 Garry 传送)",
+      "raw": "§fGo to §b%s §7(or talk to Garry)",
+      "text": "Go to %s (or talk to Garry)",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "活动地点",
+          "type": "location_name",
+          "example": "Cliffside Veins"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "前往%s(也可以找 Garry 传送)",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Go to ",
+          "zh": "前往"
+        },
+        {
+          "color": "§b",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": "(or talk to Garry)",
+          "zh": "(也可以找 Garry 传送)"
+        }
+      ],
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "mining_event_rewards_header",
+      "context": "活动结算横幅:奖励清单标题",
+      "text": "Rewards",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "奖励",
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "mining_event_reward_mining_exp",
+      "context": "活动结算:挖矿经验奖励",
+      "text": "+%s Mining Experience",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "经验数量",
+          "type": "number",
+          "example": "25,000"
+        }
+      ],
+      "gloss": "活动结算清单:加号是深灰的,奖励本身是它自己的颜色。分段只决定颜色边界,颜色渲染时从屏幕上当场读,所以 color 字段只是给人看的记号。",
+      "translate": true,
+      "zh": "+%s 挖矿经验",
+      "layout": "center_chat_banner",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§b",
+          "text": "%s Mining Experience",
+          "zh": "%s 挖矿经验"
+        }
+      ]
+    },
+    {
+      "id": "mining_event_reward_mithril_powder",
+      "context": "活动结算:秘银粉末奖励",
+      "text": "+%s Mithril Powder",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "粉末数量",
+          "type": "number",
+          "example": "57,840"
+        }
+      ],
+      "gloss": "活动结算清单:加号是深灰的,奖励本身是它自己的颜色。分段只决定颜色边界,颜色渲染时从屏幕上当场读,所以 color 字段只是给人看的记号。",
+      "translate": true,
+      "zh": "+%s 秘银粉末",
+      "layout": "center_chat_banner",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§b",
+          "text": "%s Mithril Powder",
+          "zh": "%s 秘银粉末"
+        }
+      ]
+    },
+    {
+      "id": "mining_event_reward_gemstone_powder",
+      "context": "活动结算:宝石粉末奖励",
+      "text": "+%s Gemstone Powder",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "粉末数量",
+          "type": "number",
+          "example": "12,000"
+        }
+      ],
+      "gloss": "活动结算清单:加号是深灰的,奖励本身是它自己的颜色。分段只决定颜色边界,颜色渲染时从屏幕上当场读,所以 color 字段只是给人看的记号。",
+      "translate": true,
+      "zh": "+%s 宝石粉末",
+      "layout": "center_chat_banner",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§b",
+          "text": "%s Gemstone Powder",
+          "zh": "%s 宝石粉末"
+        }
+      ]
+    },
+    {
+      "id": "mining_event_reward_glacite_powder",
+      "context": "活动结算:极冰粉末奖励",
+      "text": "+%s Glacite Powder",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "粉末数量",
+          "type": "number",
+          "example": "2,930"
+        }
+      ],
+      "gloss": "活动结算清单:加号是深灰的,奖励本身是它自己的颜色。分段只决定颜色边界,颜色渲染时从屏幕上当场读,所以 color 字段只是给人看的记号。",
+      "translate": true,
+      "zh": "+%s 极冰粉末",
+      "layout": "center_chat_banner",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§b",
+          "text": "%s Glacite Powder",
+          "zh": "%s 极冰粉末"
+        }
+      ]
+    },
+    {
+      "id": "mining_event_reward_exp_boost",
+      "context": "活动结算:挖矿经验加成奖励",
+      "text": "+Mining Exp Boost",
+      "placeholders": [],
+      "gloss": "活动结算清单:加号是深灰的,奖励本身是它自己的颜色。分段只决定颜色边界,颜色渲染时从屏幕上当场读,所以 color 字段只是给人看的记号。",
+      "translate": true,
+      "zh": "+挖矿经验加成",
+      "layout": "center_chat_banner",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§b",
+          "text": "Mining Exp Boost",
+          "zh": "挖矿经验加成"
+        }
+      ]
+    },
+    {
+      "id": "mining_event_reward_dwarven_treasure",
+      "context": "活动结算:矮人宝藏奖励",
+      "text": "+Dwarven Treasure",
+      "placeholders": [],
+      "gloss": "活动结算清单:加号是深灰的,奖励本身是它自己的颜色。分段只决定颜色边界,颜色渲染时从屏幕上当场读,所以 color 字段只是给人看的记号。",
+      "translate": true,
+      "zh": "+矮人宝藏",
+      "layout": "center_chat_banner",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§b",
+          "text": "Dwarven Treasure",
+          "zh": "矮人宝藏"
+        }
+      ]
+    },
+    {
+      "id": "mining_raffle_intro_1",
+      "context": "抽奖箱活动开场公告第一行(整段三行,服务器用前导空格凑居中)",
+      "raw": "§f              Bring §6tickets §ffrom the ground to the box!",
+      "text": "Bring tickets from the ground to the box!",
+      "placeholders": [],
+      "gloss": "英文的“from the ground”在中文里挪到了句首,所以第一段和第三段的译文不是逐段对齐的。",
+      "translate": true,
+      "zh": "把地上的票券捡起来投进抽奖箱!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Bring ",
+          "zh": "把地上的"
+        },
+        {
+          "color": "§6",
+          "text": "tickets ",
+          "zh": "票券"
+        },
+        {
+          "color": "§f",
+          "text": "from the ground to the box!",
+          "zh": "捡起来投进抽奖箱!"
+        }
+      ]
+    },
+    {
+      "id": "mining_raffle_intro_2",
+      "context": "抽奖箱开场公告第二行",
+      "raw": "§f                3 §elucky §fplayers win §6exclusive §frewards!",
+      "text": "3 lucky players win exclusive rewards!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "3 名幸运玩家可以拿到专属奖励!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "3 ",
+          "zh": "3 名"
+        },
+        {
+          "color": "§e",
+          "text": "lucky ",
+          "zh": "幸运"
+        },
+        {
+          "color": "§f",
+          "text": "players win ",
+          "zh": "玩家可以拿到"
+        },
+        {
+          "color": "§6",
+          "text": "exclusive ",
+          "zh": "专属"
+        },
+        {
+          "color": "§f",
+          "text": "rewards!",
+          "zh": "奖励!"
+        }
+      ]
+    },
+    {
+      "id": "mining_raffle_intro_3",
+      "context": "抽奖箱开场公告第三行",
+      "raw": "§f            More tickets = more §echances §f& more §6rewards§f!",
+      "text": "More tickets = more chances & more rewards!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "票券越多 = 中奖机会越多、奖励也越多!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "More tickets = more ",
+          "zh": "票券越多 = "
+        },
+        {
+          "color": "§e",
+          "text": "chances ",
+          "zh": "中奖机会越多"
+        },
+        {
+          "color": "§f",
+          "text": "& more ",
+          "zh": "、奖励也"
+        },
+        {
+          "color": "§6",
+          "text": "rewards",
+          "zh": "越多"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "mining_raffle_registered",
+      "context": "把票券投进抽奖箱后的确认提示",
+      "raw": "§eYou registered §a%s tickets §ein the raffle event!",
+      "text": "You registered %s tickets in the raffle event!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "投入的票券数",
+          "type": "number",
+          "example": "227"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你在抽奖箱活动里投了 %s 张票券!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "You registered ",
+          "zh": "你在抽奖箱活动里投了 "
+        },
+        {
+          "color": "§a",
+          "text": "%s tickets ",
+          "zh": "%s 张票券"
+        },
+        {
+          "color": "§e",
+          "text": "in the raffle event!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "mining_raffle_closing",
+      "context": "抽奖箱即将截止的倒计时公告",
+      "raw": "§c§lRAFFLE CLOSING! §7in %s seconds",
+      "text": "RAFFLE CLOSING! in %s seconds",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "剩余秒数",
+          "type": "number",
+          "example": "10"
+        }
+      ],
+      "gloss": "Raffle 已确定译“抽奖箱”,见 GLOSSARY.md。",
+      "translate": true,
+      "zh": "抽奖箱即将截止! 还有 %s 秒",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "RAFFLE CLOSING! ",
+          "zh": "抽奖箱即将截止! "
+        },
+        {
+          "color": "§7",
+          "text": "in %s seconds",
+          "zh": "还有 %s 秒"
+        }
+      ]
+    },
+    {
+      "id": "mining_raffle_winners_header",
+      "context": "开奖结算横幅的标题行",
+      "text": "Lucky Winners",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "幸运得主",
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "mining_raffle_pooled",
+      "context": "开奖结算:全服这一轮一共投了多少票",
+      "raw": "§f            §a§lNICE! §fPlayers pooled a total of §61,691 §ftickets!",
+      "text": "NICE! Players pooled a total of %s tickets!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "全服票券总数",
+          "type": "number",
+          "example": "1,691"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "不错! 大家一共投了 %s 张票券!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "NICE! ",
+          "zh": "不错! "
+        },
+        {
+          "color": "§f",
+          "text": "Players pooled a total of ",
+          "zh": "大家一共投了 "
+        },
+        {
+          "color": "§6",
+          "text": "%s ",
+          "zh": "%s "
+        },
+        {
+          "color": "§f",
+          "text": "tickets!",
+          "zh": "张票券!"
+        }
+      ],
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "mining_raffle_personal",
+      "context": "开奖结算:你自己投了多少票",
+      "raw": "§f             §a§lCOOL! §fYou personally collected §a258 §ftickets!",
+      "text": "COOL! You personally collected %s tickets!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "个人票券数",
+          "type": "number",
+          "example": "258"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "厉害! 你个人收集了 %s 张票券!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "COOL! ",
+          "zh": "厉害! "
+        },
+        {
+          "color": "§f",
+          "text": "You personally collected ",
+          "zh": "你个人收集了 "
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s "
+        },
+        {
+          "color": "§f",
+          "text": "tickets!",
+          "zh": "张票券!"
+        }
+      ],
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "mining_raffle_reward_mining_speed",
+      "context": "开奖结算奖励清单:挖掘速度奖励",
+      "raw": "§8+§6%s Mining Speed",
+      "text": "+%s Mining Speed",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "挖掘速度奖励数值",
+          "type": "number",
+          "example": "100"
+        }
+      ],
+      "gloss": "抽奖结算奖励:加号保持深灰，挖掘属性和图标保持金色。",
+      "translate": true,
+      "zh": "+%s 挖掘速度",
+      "layout": "center_chat_banner",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§6",
+          "text": "%s Mining Speed",
+          "zh": "%s 挖掘速度"
+        }
+      ]
+    },
+    {
+      "id": "mining_raffle_reward_mining_fortune",
+      "context": "开奖结算奖励清单:挖掘时运奖励",
+      "raw": "§8+§6%s Mining Fortune",
+      "text": "+%s Mining Fortune",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "挖掘时运奖励数值",
+          "type": "number",
+          "example": "25"
+        }
+      ],
+      "gloss": "抽奖结算奖励:加号保持深灰，挖掘属性和图标保持金色。",
+      "translate": true,
+      "zh": "+%s 挖掘时运",
+      "layout": "center_chat_banner",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§6",
+          "text": "%s Mining Fortune",
+          "zh": "%s 挖掘时运"
+        }
+      ]
+    },
+    {
+      "id": "mining_raffle_reward_bits",
+      "context": "开奖结算奖励清单:点券奖励",
+      "raw": "§8+§b%s Bits",
+      "text": "+%s Bits",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "点券数量",
+          "type": "number",
+          "example": "500"
+        }
+      ],
+      "gloss": "Bits 统一译为点券;加号保持深灰，奖励数值及货币名保持青色。",
+      "translate": true,
+      "zh": "+%s 点券",
+      "layout": "center_chat_banner",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§b",
+          "text": "%s Bits",
+          "zh": "%s 点券"
+        }
+      ]
+    },
+    {
+      "id": "mining_raffle_reward_book",
+      "context": "开奖结算奖励清单里的附魔书那一行",
+      "raw": "§f                    §8+§fEnchanted Book (§d§lFlowstate I§f)",
+      "text": "+Enchanted Book (%s)",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "附魔名和等级,保留英文",
+          "type": "item_name",
+          "example": "Flowstate I"
+        }
+      ],
+      "gloss": "附魔名自带颜色(还带粗体),括号和书名是白的,加号是深灰的。分段只决定颜色边界,颜色渲染时从屏幕上当场读,所以 color 字段只是给人看的记号。",
+      "translate": true,
+      "zh": "+附魔书(%s)",
+      "layout": "center_chat_banner",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§f",
+          "text": "Enchanted Book (",
+          "zh": "附魔书("
+        },
+        {
+          "color": "§d",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§f",
+          "text": ")",
+          "zh": ")"
+        }
+      ]
+    },
+    {
+      "id": "mining_raffle_ended",
+      "context": "抽奖箱截止后的结束横幅",
+      "raw": "§c§lRAFFLE ENDED!",
+      "text": "RAFFLE ENDED!",
+      "placeholders": [],
+      "gloss": "抽奖箱已结束，随后进入开奖阶段。",
+      "translate": true,
+      "zh": "抽奖箱结束了!",
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "mining_raffle_warp_too_late",
+      "context": "抽奖箱结束后尝试传送的错误提示",
+      "raw": "§cIt's too late to warp to the raffle!",
+      "text": "It's too late to warp to the raffle!",
+      "placeholders": [],
+      "gloss": "Raffle 译为抽奖箱。",
+      "translate": true,
+      "zh": "现在已经来不及传送到抽奖箱了!"
+    },
+    {
+      "id": "mining_royal_pigeon_no_king",
+      "context": "在国王不在的地方用皇家信鸽",
+      "text": "The Royal Pigeon can't find the King from here.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "皇家信鸽在这儿找不到国王。"
+    }
+  ]
+}

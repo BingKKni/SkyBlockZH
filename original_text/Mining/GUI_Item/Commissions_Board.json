@@ -1,0 +1,524 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Emissaries/UI (逐格 name + lore,带颜色码) + 运行时采集(logs/skyzh-capture,2026-08-22)",
+  "fetched_at": "2026-08-22",
+  "verified_ingame": true,
+  "gui_context": "国王/使节打开的“委托”界面。每个委托是一本书与笔,Lore 依次是:说明、委托名、委托要求、奖励、进度条。",
+  "source_note": "委托名那一行由服务器把任务名塞进来,译名走 GUI_Item/Commissions.json 里的任务名记录;这个文件只负责书与笔本身的固定文字(名称、说明、奖励标题、进度标题)。",
+  "lines": [
+    {
+      "id": "commission_item_name",
+      "context": "委托格子的物品名(第几个委托)",
+      "raw": "§6Commission #%s",
+      "text": "Commission #%s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "委托槽位序号",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "委托 #%s"
+    },
+    {
+      "id": "commission_desc_1",
+      "context": "委托说明第一行",
+      "text": "Commissions are tasks given directly",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "委托是国王直接发布的任务,"
+    },
+    {
+      "id": "commission_desc_2",
+      "context": "委托说明第二行",
+      "text": "by the king which give bountiful",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "完成后能拿到丰厚奖励。"
+    },
+    {
+      "id": "commission_desc_3",
+      "context": "委托说明第三行(英文因排版折行,中文已在上两行说完)",
+      "text": "rewards.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "commission_rewards_header",
+      "context": "奖励清单的小标题",
+      "text": "Rewards",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "奖励"
+    },
+    {
+      "id": "commission_reward_mithril_powder",
+      "ref": "_shared/Item_Lore.json#item_powder_line_mithril",
+      "context": "委托奖励清单:秘银粉末那一行"
+    },
+    {
+      "id": "commission_reward_gemstone_powder",
+      "ref": "_shared/Item_Lore.json#item_powder_line_gemstone",
+      "context": "委托奖励清单:宝石粉末那一行"
+    },
+    {
+      "id": "commission_reward_mining_exp",
+      "context": "奖励行:挖矿经验",
+      "raw": "§7- §3+%s Mining Exp",
+      "text": "- +%s Mining Exp",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "奖励数量",
+          "type": "number",
+          "example": "5,000"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "- +%s挖矿经验",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§3",
+          "text": "+%s Mining Exp",
+          "zh": "+%s挖矿经验"
+        }
+      ]
+    },
+    {
+      "id": "commission_progress_header",
+      "context": "进度条的小标题",
+      "text": "Progress",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "进度"
+    },
+    {
+      "id": "commission_click_to_claim_rewards",
+      "context": "委托完成后领取奖励的点击提示",
+      "text": "Click to claim rewards!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击领取奖励!"
+    },
+    {
+      "id": "commission_item_name_new",
+      "context": "新刷出的第几个委托,NEW 是状态标签",
+      "raw": "§6Commission #%s §a§lNEW",
+      "text": "Commission #%s NEW",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "委托槽位序号",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "新委托 #%s",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Commission #%s ",
+          "zh": "委托 #%s "
+        },
+        {
+          "color": "§a§l",
+          "text": "NEW",
+          "zh": "新"
+        }
+      ]
+    },
+    {
+      "id": "commission_collect_material",
+      "context": "极冰隧道委托要求:收集指定数量的材料",
+      "text": "Collect %1$s %2$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "要求数量",
+          "type": "number",
+          "example": "1,500"
+        },
+        {
+          "token": "%2$s",
+          "desc": "材料名,译名走 _shared/Terms.json",
+          "type": "raw",
+          "example": "Umber"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "收集 %1$s 个%2$s。"
+    },
+    {
+      "id": "commission_collect_gemstones",
+      "context": "水晶残核委托要求:收集指定种类与数量的宝石",
+      "text": "Collect %1$s %2$s Gemstones.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "要求数量",
+          "type": "number",
+          "example": "1,500"
+        },
+        {
+          "token": "%2$s",
+          "desc": "宝石种类名,按项目约定保留英文",
+          "type": "item_name",
+          "example": "Onyx"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "收集 %1$s 个%2$s宝石。",
+      "segments": [
+        {"color": "§7", "text": "Collect ", "zh": "收集 "},
+        {"color": "§a", "text": "%1$s ", "zh": "%1$s 个"},
+        {"color": "§9", "text": "%2$s Gemstones", "zh": "%2$s宝石"},
+        {"color": "§7", "text": ".", "zh": "。"}
+      ]
+    },
+    {
+      "id": "commission_loot_frozen_corpses",
+      "context": "极冰隧道委托要求:搜刮冰封尸体",
+      "text": "Loot %s Frozen Corpses.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "要求数量",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "搜刮 %s 具冰封尸体。"
+    },
+    {
+      "id": "commission_enter_mineshaft",
+      "context": "极冰隧道委托要求:进入极冰矿井",
+      "text": "Enter %s Mineshaft.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "要求次数",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "进入 %s 次矿井。"
+    },
+    {
+      "id": "commission_obtain_suspicious_scrap",
+      "context": "极冰隧道委托要求:获得可疑残料",
+      "raw": "§7Obtain §a%s §9Suspicious Scrap§7.",
+      "text": "Obtain %s Suspicious Scrap.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "要求数量",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "获得 %s 个可疑残料。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Obtain ",
+          "zh": "获得 "
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s 个"
+        },
+        {
+          "color": "§9",
+          "text": "Suspicious Scrap",
+          "zh": "可疑残料"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "commission_area_dwarven_mines",
+      "context": "委托菜单中的矮人矿山分类",
+      "text": "Dwarven Mines",
+      "placeholders": [],
+      "gloss": "前方的选中箭头和缩进由引擎作为列表结构保留。",
+      "translate": true,
+      "zh": "矮人矿山"
+    },
+    {
+      "id": "commission_area_crystal_hollows",
+      "context": "委托菜单中的水晶残核分类",
+      "text": "Crystal Hollows",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "水晶残核"
+    },
+    {
+      "id": "commission_area_glacite_tunnels",
+      "context": "委托菜单中的极冰隧道分类",
+      "text": "Glacite Tunnels",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "极冰隧道"
+    },
+    {
+      "id": "commission_switch_type_name",
+      "context": "切换委托类型的按钮名",
+      "text": "Switch Type",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "切换类型"
+    },
+    {
+      "id": "commission_switch_type_current",
+      "context": "切换按钮 Lore:当前正在看哪一类",
+      "text": "Currently viewing:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "当前查看:"
+    },
+    {
+      "id": "commission_switch_type_click",
+      "context": "切换按钮 Lore:点击提示",
+      "text": "Click to toggle!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击切换!"
+    },
+    {
+      "id": "commission_milestones_name",
+      "context": "委托里程碑按钮名",
+      "text": "Commission Milestones",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "委托里程碑"
+    },
+    {
+      "id": "commission_milestones_desc_1",
+      "context": "里程碑按钮 Lore 第一行",
+      "text": "View milestone progress and rewards!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "查看里程碑进度和奖励!"
+    },
+    {
+      "id": "commission_milestones_click",
+      "context": "里程碑按钮 Lore:点击提示",
+      "text": "Click to view!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击查看!"
+    },
+    {
+      "id": "commission_milestones_locked_1",
+      "context": "还没完成过委托时里程碑的提示第一行",
+      "text": "Complete your first commission",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "先完成第一个委托,才能查看里程碑!"
+    },
+    {
+      "id": "commission_milestones_locked_2",
+      "context": "还没完成过委托时里程碑的提示第二行(英文因排版折行)",
+      "text": "to view milestones!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "commission_milestone_reward_name",
+      "context": "里程碑格子的物品名",
+      "text": "Milestone %s Rewards",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "里程碑罗马数字序号",
+          "type": "raw",
+          "example": "III"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "里程碑 %s 奖励"
+    },
+    {
+      "id": "commission_milestone_progress",
+      "context": "里程碑格子 Lore:进度百分比",
+      "raw": "§7Progress: §e%s§6%%",
+      "text": "Progress: %s%%",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "完成百分比",
+          "type": "number",
+          "example": "40"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "进度: %s%%",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Progress: ",
+          "zh": "进度: "
+        },
+        {
+          "color": "§e",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§6",
+          "text": "%%",
+          "zh": "%%"
+        }
+      ]
+    },
+    {
+      "id": "commission_milestone_rewards_header",
+      "context": "里程碑格子 Lore:奖励清单标题",
+      "text": "Rewards:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "奖励:"
+    },
+    {
+      "id": "commission_milestone_reward_slot",
+      "context": "里程碑奖励:增加一个委托槽位",
+      "raw": "§8+§a%s Commission Slot",
+      "text": "+%s Commission Slot",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "增加的槽位数",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s 个委托槽位",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%s Commission Slot",
+          "zh": "%s 个委托槽位"
+        }
+      ]
+    },
+    {
+      "id": "commission_milestone_reward_mining_exp",
+      "context": "里程碑奖励:挖矿经验",
+      "raw": "§8+§3%s §7Mining Experience",
+      "text": "+%s Mining Experience",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "经验数量",
+          "type": "number",
+          "example": "100,000"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s 挖矿经验",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§3",
+          "text": "%s ",
+          "zh": "%s "
+        },
+        {
+          "color": "§7",
+          "text": "Mining Experience",
+          "zh": "挖矿经验"
+        }
+      ]
+    },
+    {
+      "id": "commission_milestone_reward_skyblock_xp",
+      "context": "里程碑奖励:SkyBlock 经验",
+      "raw": "§8+§b%s SkyBlock XP",
+      "text": "+%s SkyBlock XP",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "经验数量",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "“SkyBlock XP” 里的 SkyBlock 由 translateSkyBlockName 开关统一处理,这里译文里写“空岛”即可。",
+      "translate": true,
+      "zh": "+%s 空岛经验",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§b",
+          "text": "%s SkyBlock XP",
+          "zh": "%s 空岛经验"
+        }
+      ]
+    }
+  ],
+  "todo": [
+    "委托 Lore 里的 “[description]”(每种委托各自的要求描述,如“在皇家矿区挖 X 个秘银”)wiki 的 UI 子页只写了占位记号,逐条原文还没采到。任务名那一行已经能翻(见 GUI_Item/Commissions.json),要求描述那一行仍是英文。"
+  ]
+}

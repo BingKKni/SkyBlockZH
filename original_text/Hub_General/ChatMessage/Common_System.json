@@ -1,0 +1,1078 @@
+{
+  "source": "玩家实测客户端日志(logs/,2026-08-19)",
+  "fetched_at": "2026-08-19",
+  "verified_ingame": true,
+  "gui_context": "不属于任何单一玩法的通用系统提示:背包满、菜单点太快、传送中等等。矿区里刷得最多的几条英文其实都在这里,所以先把这一小批做了。",
+  "source_note": "本项目目前只做 Mining 分类,这个文件是例外:这些提示在挖矿过程中反复出现,但它们并不属于 Mining 玩法,放进 Mining/ 会让以后做别的玩法时重复采集。Hub_General 分类目前**只有这一个文件**,不代表该分类已经开工,见 TODO.md。",
+  "messages": [
+    {
+      "id": "common_inventory_full",
+      "context": "背包满了",
+      "text": "Your inventory is full!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的背包满了!"
+    },
+    {
+      "id": "common_blocks_in_the_way",
+      "context": "放置部署物时被方块挡住",
+      "text": "There are blocks in the way!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "有方块挡路!"
+    },
+    {
+      "id": "common_menu_throttled",
+      "context": "菜单点得太快被限流",
+      "text": "This menu has been throttled! Please slow down...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "菜单操作太频繁了,慢一点……"
+    },
+    {
+      "id": "common_already_purchased",
+      "context": "重复购买",
+      "text": "You have already purchased this!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你已经买过这个了!"
+    },
+    {
+      "id": "common_already_unlocked",
+      "context": "重复解锁",
+      "text": "You have already unlocked this!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你已经解锁过这个了!"
+    },
+    {
+      "id": "common_double_tap_drop",
+      "context": "丢弃贵重物品需要连按两次丢弃键",
+      "text": "You must double tap the drop button to drop this item!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "要丢掉这件物品,得连按两次丢弃键!"
+    },
+    {
+      "id": "common_cannot_do_that_here",
+      "context": "在当前房间/区域不能这么做",
+      "text": "You cannot do that in this room!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "在这个房间里不能这么做!"
+    },
+    {
+      "id": "common_cant_use_item_here",
+      "context": "当前位置不能用这件物品",
+      "text": "You can't use this item here!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这件物品不能在这里使用!"
+    },
+    {
+      "id": "common_wait_before_doing",
+      "context": "操作太频繁",
+      "text": "Please wait a bit before doing this!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "稍等一会儿再操作吧!"
+    },
+    {
+      "id": "common_warping",
+      "context": "正在传送",
+      "text": "Warping...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "正在传送……"
+    },
+    {
+      "id": "common_queuing",
+      "context": "正在排队进服务器",
+      "text": "Queuing... (Attempt %1$s/%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "第几次尝试",
+          "type": "number",
+          "example": "1"
+        },
+        {
+          "token": "%2$s",
+          "desc": "总尝试次数",
+          "type": "number",
+          "example": "3"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "正在排队……(第 %1$s/%2$s 次尝试)"
+    },
+    {
+      "id": "common_fast_travel_locked",
+      "context": "快速传送点未解锁",
+      "text": "You haven't unlocked this fast travel destination!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你还没解锁这个快速传送点!"
+    },
+    {
+      "id": "common_storage_hint",
+      "context": "背包满时提示去仓库",
+      "text": "Inventory full? Don't forget to check out your Storage inside the SkyBlock Menu!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "背包满了?别忘了 SkyBlock 菜单里还有仓库!"
+    },
+    {
+      "id": "common_stash_picked_items",
+      "context": "取回暂存的物品",
+      "text": "You picked up all items from your item stash!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你取回了物品暂存区里的所有东西!"
+    },
+    {
+      "id": "common_stash_picked_materials",
+      "context": "取回暂存的材料",
+      "text": "You picked up %s items from your material stash!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "取回的数量",
+          "type": "number",
+          "example": "1554"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你从材料暂存区取回了 %s 件东西!"
+    },
+    {
+      "id": "common_stash_from",
+      "context": "暂存区取回的具体物品",
+      "text": "From stash: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "物品名",
+          "type": "item_name",
+          "example": "Hard Stone"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "暂存区取回: %s"
+    },
+    {
+      "id": "common_welcome",
+      "context": "进入 SkyBlock 时的欢迎语",
+      "text": "Welcome to Hypixel SkyBlock!",
+      "placeholders": [],
+      "gloss": "服务器名自带颜色。SkyBlock 这个词由代码按配置项替换(见 text/SkyBlockName),译文里照写即可。分段只决定颜色边界,颜色渲染时从屏幕上当场读,所以 color 字段只是给人看的记号。",
+      "translate": true,
+      "zh": "欢迎来到 Hypixel SkyBlock!",
+      "raw": "§aWelcome to §6Hypixel SkyBlock§a!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Welcome to ",
+          "zh": "欢迎来到 "
+        },
+        {
+          "color": "§6",
+          "text": "Hypixel SkyBlock",
+          "zh": "Hypixel SkyBlock"
+        },
+        {
+          "color": "§a",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "common_playing_on_profile",
+      "context": "当前所在档案",
+      "raw": "§aYou are playing on profile: §e%s",
+      "text": "You are playing on profile: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "档案名(玩家自己起的,保留原样)。type 用 player_name 是为了让 _shared/Terms.json 不生效。",
+          "type": "player_name",
+          "example": "Papaya"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "当前档案: %s",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "You are playing on profile: ",
+          "zh": "当前档案: "
+        },
+        {
+          "color": "§e",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "common_playing_on_profile_coop",
+      "context": "当前所在档案(合作档案)",
+      "raw": "§aYou are playing on profile: §e%s§b (Co-op)",
+      "text": "You are playing on profile: %s (Co-op)",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "档案名(玩家自己起的,保留原样)。type 用 player_name 是为了让 _shared/Terms.json 不生效。",
+          "type": "player_name",
+          "example": "Papaya"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "当前档案: %s(合作)",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "You are playing on profile: ",
+          "zh": "当前档案: "
+        },
+        {
+          "color": "§e",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§b",
+          "text": " (Co-op)",
+          "zh": "(合作)"
+        }
+      ]
+    },
+    {
+      "id": "common_profile_id",
+      "context": "档案 ID",
+      "text": "Profile ID: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "档案 UUID",
+          "type": "raw",
+          "example": "84179952-eb94-4ba6-b78a-63da2301ee25"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "档案 ID: %s"
+    },
+    {
+      "id": "common_latest_update",
+      "context": "进服时的版本公告,整行可点开更新日志",
+      "raw": "§eLatest update: §bSkyBlock v0.27 §e§lCLICK",
+      "text": "Latest update: SkyBlock v%s CLICK",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "版本号。必须是 number:raw 那一类拒绝任何带句号的值,而版本号里就有句号",
+          "type": "number",
+          "example": "0.27"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "最新更新: SkyBlock v%s 点击查看",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Latest update: ",
+          "zh": "最新更新: "
+        },
+        {
+          "color": "§b",
+          "text": "SkyBlock v%s ",
+          "zh": "SkyBlock v%s "
+        },
+        {
+          "color": "§e",
+          "text": "CLICK",
+          "zh": "点击查看"
+        }
+      ]
+    },
+    {
+      "id": "common_guild_exp_earned",
+      "context": "在线一段时间后结算的公会经验和活动经验",
+      "raw": "§aYou earned §2%1$s GEXP §a+ §e%2$s Event EXP §afrom playing SkyBlock!",
+      "text": "You earned %1$s GEXP + %2$s Event EXP from playing SkyBlock!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "公会经验",
+          "type": "number",
+          "example": "140"
+        },
+        {
+          "token": "%2$s",
+          "desc": "活动经验",
+          "type": "number",
+          "example": "420"
+        }
+      ],
+      "gloss": "GEXP = Guild EXP,公会经验。英文把“from playing SkyBlock”放在句尾,中文提到了句首,并且写成“通过游玩……获得了”而不是“在……里获得了”——后者容易被读成“公会/活动是空岛生存里的一个玩法”。",
+      "translate": true,
+      "zh": "你通过游玩 SkyBlock 获得了 %1$s 公会经验 + %2$s 活动经验!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "You earned ",
+          "zh": "你通过游玩 SkyBlock 获得了 "
+        },
+        {
+          "color": "§2",
+          "text": "%1$s GEXP ",
+          "zh": "%1$s 公会经验"
+        },
+        {
+          "color": "§a",
+          "text": "+ ",
+          "zh": " + "
+        },
+        {
+          "color": "§e",
+          "text": "%2$s Event EXP ",
+          "zh": "%2$s 活动经验"
+        },
+        {
+          "color": "§a",
+          "text": "from playing SkyBlock!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "common_nothing_to_claim",
+      "context": "点了领取但没有可领的东西",
+      "text": "You don't have anything to claim!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你没有可以领取的东西!"
+    },
+    {
+      "id": "common_sacks_gained",
+      "context": "收纳袋自动收进物品后的合并提示",
+      "raw": "§6[Sacks] §#55FF55+%1$s§#FFFF55 items§#FFFF55.§#555555 (Last %2$ss.)",
+      "text": "[Sacks] +%1$s items. (Last %2$ss.)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "这段时间收进袋子的物品总数",
+          "type": "number",
+          "example": "3,598"
+        },
+        {
+          "token": "%2$s",
+          "desc": "统计的时间窗口秒数",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "拆到每个占位符各自一段:实测里这一行的括号部分和里面的秒数不是同一个颜色,合成一段的话译文会被整段刷成括号的颜色。分段只决定颜色边界,颜色渲染时从屏幕上当场读,所以 color 字段只是给人看的记号。",
+      "translate": true,
+      "zh": "[收纳袋] +%1$s 件物品。(最近 %2$s 秒)",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "[Sacks] ",
+          "zh": "[收纳袋] "
+        },
+        {
+          "color": "§a",
+          "text": "+%1$s",
+          "zh": "+%1$s"
+        },
+        {
+          "color": "§e",
+          "text": " items.",
+          "zh": " 件物品。"
+        },
+        {
+          "color": "§8",
+          "text": " (Last ",
+          "zh": "(最近 "
+        },
+        {
+          "color": "§8",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§8",
+          "text": "s.)",
+          "zh": " 秒)"
+        }
+      ]
+    },
+    {
+      "id": "common_death_by_mob",
+      "context": "任何玩家被怪物杀死时的全区广播",
+      "raw": "§c☠ §b%1$s§7 was killed by %2$s.",
+      "text": "☠ %1$s was killed by %2$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "死者的玩家名,保留原样",
+          "type": "player_name",
+          "example": "Privern"
+        },
+        {
+          "token": "%2$s",
+          "desc": "凶手的怪物名,译名走 _shared/Terms.json",
+          "type": "mob_name",
+          "example": "Glacite Walker"
+        }
+      ],
+      "gloss": "名字那一段的颜色跟玩家的等级称号走(MVP+ 是青色,无称号是灰色),所以按颜色分段但不写死颜色——分段只决定边界,颜色由服务器当场给。玩家名和“被”之间的空格写死在译文里:引擎的自动补空格规则不把数字当拉丁字母(“剩余: 3只哥布林”才是对的),而玩家名可以以数字结尾。",
+      "translate": true,
+      "zh": "☠ %1$s 被%2$s杀死了。",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "☠ ",
+          "zh": "☠ "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " was killed by %2$s.",
+          "zh": " 被%2$s杀死了。"
+        }
+      ]
+    },
+    {
+      "id": "common_death_frozen",
+      "context": "任何玩家被冻死时的全区广播",
+      "raw": "§c☠ §b%s§7 froze to death.",
+      "text": "☠ %s froze to death.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "死者的玩家名,保留原样",
+          "type": "player_name",
+          "example": "ANamaRitz"
+        }
+      ],
+      "gloss": "和 Mining/ChatMessage/Cold_Heat_Events.json 里“你被冻死了”是同一件事的第三人称写法。",
+      "translate": true,
+      "zh": "☠ %s 被冻死了。",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "☠ ",
+          "zh": "☠ "
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": " froze to death.",
+          "zh": " 被冻死了。"
+        }
+      ]
+    },
+    {
+      "id": "common_warping_home",
+      "context": "回自己岛屿时的传送提示",
+      "text": "Warping you to your SkyBlock island...",
+      "placeholders": [],
+      "gloss": "原文的 “SkyBlock island” 就是“你自己的岛”的意思,中文照直写会变成“空岛岛屿”,所以这里不保留 SkyBlock 一词(它由 translateSkyBlockName 控制,见 GLOSSARY.md)。",
+      "translate": true,
+      "zh": "正在把你传送回你的私人岛屿……"
+    },
+    {
+      "id": "common_warp_cooldown",
+      "context": "传送太频繁,服务器拒绝",
+      "raw": "§cCouldn't warp you! Try again later. §7(%s)",
+      "text": "Couldn't warp you! Try again later. (%s)",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "服务器给的原因代码,保留原样",
+          "type": "raw",
+          "example": "PLAYER_TRANSFER_COOLDOWN"
+        }
+      ],
+      "gloss": "括号里是给客服/开发看的机器码,不翻译。",
+      "translate": true,
+      "zh": "传送失败! 稍后再试。(%s)",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "Couldn't warp you! Try again later. ",
+          "zh": "传送失败! 稍后再试。"
+        },
+        {
+          "color": "§7",
+          "text": "(%s)",
+          "zh": "(%s)"
+        }
+      ]
+    },
+    {
+      "id": "common_unknown_destination",
+      "context": "快速传送去了一个不存在的目的地",
+      "text": "Unknown destination! Check the Fast Travel menu to view options!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "没有这个目的地! 打开快速传送菜单看看能去哪儿!"
+    },
+    {
+      "id": "common_slot_occupied",
+      "context": "往功能槽里放东西,但槽里已经有合适的物品了",
+      "text": "You already have a valid item in the slot!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这个槽位里已经放着一件能用的物品了!"
+    },
+    {
+      "id": "common_unlocked_something",
+      "context": "解锁了某个附魔/强化时的提示",
+      "raw": "§aYou unlocked §e%s§a!",
+      "text": "You unlocked %s!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "解锁的附魔/强化名,按物品自造专名保留英文",
+          "type": "item_name",
+          "example": "Sleight Of Hand I"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你解锁了%s!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "You unlocked ",
+          "zh": "你解锁了"
+        },
+        {
+          "color": "§e",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§a",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "common_disable_in_settings",
+      "context": "某些提示的下方附带的关闭说明",
+      "raw": "§cYou can disable this in the §fSettings§c in your §aSkyBlock Menu§c!",
+      "text": "You can disable this in the Settings in your SkyBlock Menu!",
+      "placeholders": [],
+      "gloss": "中英语序不同:英文先说 Settings 再说在哪个菜单里,中文反过来,所以 Settings 那一段挪到了最后一段里,中间两段标 omit。",
+      "translate": true,
+      "zh": "可以在 SkyBlock 菜单的「设置」里关掉这个提示!",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "You can disable this in the ",
+          "zh": "可以在"
+        },
+        {
+          "color": "§f",
+          "text": "Settings",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§c",
+          "text": " in your ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§a",
+          "text": "SkyBlock Menu",
+          "zh": "SkyBlock 菜单"
+        },
+        {
+          "color": "§c",
+          "text": "!",
+          "zh": "的「设置」里关掉这个提示!"
+        }
+      ]
+    },
+    {
+      "id": "common_time_warp",
+      "context": "用附魔时光钟加速某样东西之后的提示",
+      "raw": "§6§lTIME WARP! §aYou have successfully warped time for your %s!",
+      "text": "TIME WARP! You have successfully warped time for your %s!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "被加速的对象,译名走 _shared/Terms.json",
+          "type": "raw",
+          "example": "Chocolate Factory"
+        }
+      ],
+      "gloss": "TIME WARP! 是 GLOSSARY.md「全大写的消息前缀」那一类的标签,照样翻译。",
+      "translate": true,
+      "zh": "时光加速! 你成功加速了%s的时间!",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "TIME WARP! ",
+          "zh": "时光加速! "
+        },
+        {
+          "color": "§a",
+          "text": "You have successfully warped time for your %s!",
+          "zh": "你成功加速了%s的时间!"
+        }
+      ]
+    },
+    {
+      "id": "common_museum_donated",
+      "context": "把物品捐进博物馆之后的提示",
+      "raw": "§aYou donated your §c%1$s §ato the §d%2$s §asection of the Museum!",
+      "text": "You donated your %1$s to the %2$s section of the Museum!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "捐出去的物品名,自造专名保留英文",
+          "type": "item_name",
+          "example": "Fossil the Fish"
+        },
+        {
+          "token": "%2$s",
+          "desc": "博物馆展区名,译名走 _shared/Terms.json",
+          "type": "raw",
+          "example": "Special Items"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你把%1$s捐给了博物馆的%2$s展区!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "You donated your ",
+          "zh": "你把"
+        },
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§a",
+          "text": "to the ",
+          "zh": "捐给了博物馆的"
+        },
+        {
+          "color": "§d",
+          "text": "%2$s ",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§a",
+          "text": "section of the Museum!",
+          "zh": "展区!"
+        }
+      ]
+    },
+    {
+      "id": "common_event_rewards_claimed_1",
+      "context": "在别的服务器已经领过本次活动奖励(两行里的第一行)",
+      "text": "You already claimed rewards for this event on another",
+      "placeholders": [],
+      "gloss": "这两行是服务器用空格凑居中的一句话。聊天里的 continuation 用不了——那是给物品 Lore 数组用的(见 text/TooltipTranslator),两条聊天消息各自独立到达,引擎没有“上一条翻译过了”这个上下文。因此仍按原文断成两条独立消息;两条中文顺序拼接后为完整指定译文。",
+      "translate": true,
+      "zh": "你已经在另一个房间领过",
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "common_event_rewards_claimed_2",
+      "context": "同上,英文因排版断到第二行",
+      "text": "server!",
+      "placeholders": [],
+      "gloss": "上一行的后半句,见 common_event_rewards_claimed_1 的 gloss。",
+      "translate": true,
+      "zh": "这次活动的奖励了！",
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "common_inventory_no_room",
+      "context": "背包满了做不了事",
+      "raw": "§cYou don't have room in your inventory!",
+      "text": "You don't have room in your inventory!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的背包放不下了!"
+    },
+    {
+      "id": "common_missing_materials",
+      "context": "合成/兑换缺材料",
+      "raw": "§cYou don't have the required materials!",
+      "text": "You don't have the required materials!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你没有所需的材料!"
+    },
+    {
+      "id": "common_cannot_drop_yet",
+      "context": "刚进服还不能丢东西",
+      "raw": "§cYou cannot drop items yet!",
+      "text": "You cannot drop items yet!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "现在还不能丢弃物品!"
+    },
+    {
+      "id": "common_nothing_to_pick_up",
+      "context": "按了拾取键但地上没东西",
+      "raw": "§cThere was nothing to pick up!",
+      "text": "There was nothing to pick up!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "没有可以拾取的东西!"
+    },
+    {
+      "id": "common_command_disabled_here",
+      "context": "这个岛/这个模式下不允许用某条指令",
+      "raw": "§cThis command is disabled here!",
+      "text": "This command is disabled here!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这个指令在这里不能用!"
+    },
+    {
+      "id": "common_command_cooldown",
+      "context": "刚进服、指令还在冷却",
+      "raw": "§cYou may only use this command after %ss on the server!",
+      "text": "You may only use this command after %ss on the server!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "还要等的秒数",
+          "type": "number",
+          "example": "4"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "进服 %s 秒后才能使用这个指令!"
+    },
+    {
+      "id": "common_sacks_gained_and_lost",
+      "context": "收纳袋同时收进和取出时的合并提示",
+      "raw": "§6[Sacks] §#55FF55+%1$s§#FFFF55 items§#FFFF55, §#FF5555-%2$s§#FFFF55 items§#FFFF55.§#555555 (Last %3$ss.)",
+      "text": "[Sacks] +%1$s items, -%2$s items. (Last %3$ss.)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "收进袋子的物品数",
+          "type": "number",
+          "example": "2,001"
+        },
+        {
+          "token": "%2$s",
+          "desc": "从袋子里取出的物品数",
+          "type": "number",
+          "example": "75,234"
+        },
+        {
+          "token": "%3$s",
+          "desc": "统计的时间窗口秒数",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "和 common_sacks_gained 是同一条提示的三种写法之一(只进 / 只出 / 一进一出),各写一条。",
+      "translate": true,
+      "zh": "[收纳袋] +%1$s 件、-%2$s 件物品。(最近 %3$s 秒)",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "[Sacks] ",
+          "zh": "[收纳袋] "
+        },
+        {
+          "color": "§a",
+          "text": "+%1$s",
+          "zh": "+%1$s"
+        },
+        {
+          "color": "§e",
+          "text": " items,",
+          "zh": " 件、"
+        },
+        {
+          "color": "§c",
+          "text": " -%2$s",
+          "zh": "-%2$s"
+        },
+        {
+          "color": "§e",
+          "text": " items.",
+          "zh": " 件物品。"
+        },
+        {
+          "color": "§8",
+          "text": " (Last ",
+          "zh": "(最近 "
+        },
+        {
+          "color": "§8",
+          "text": "%3$s",
+          "zh": "%3$s"
+        },
+        {
+          "color": "§8",
+          "text": "s.)",
+          "zh": " 秒)"
+        }
+      ]
+    },
+    {
+      "id": "common_sacks_lost",
+      "context": "收纳袋只往外取时的合并提示",
+      "raw": "§6[Sacks] §#FF5555-%1$s§#FFFF55 items§#FFFF55.§#555555 (Last %2$ss.)",
+      "text": "[Sacks] -%1$s items. (Last %2$ss.)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "从袋子里取出的物品数",
+          "type": "number",
+          "example": "23,121"
+        },
+        {
+          "token": "%2$s",
+          "desc": "统计的时间窗口秒数",
+          "type": "number",
+          "example": "5"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "[收纳袋] -%1$s 件物品。(最近 %2$s 秒)",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "[Sacks] ",
+          "zh": "[收纳袋] "
+        },
+        {
+          "color": "§c",
+          "text": "-%1$s",
+          "zh": "-%1$s"
+        },
+        {
+          "color": "§e",
+          "text": " items.",
+          "zh": " 件物品。"
+        },
+        {
+          "color": "§8",
+          "text": " (Last ",
+          "zh": "(最近 "
+        },
+        {
+          "color": "§8",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§8",
+          "text": "s.)",
+          "zh": " 秒)"
+        }
+      ]
+    },
+    {
+      "id": "common_allowance",
+      "context": "个人银行账户的定期补贴到账",
+      "raw": "§6§lALLOWANCE! §eYou earned §6%s coins§e!",
+      "text": "ALLOWANCE! You earned %s coins!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "本次获得的硬币数,服务器自带千分位",
+          "type": "number",
+          "example": "50,000"
+        }
+      ],
+      "gloss": "Coins 统一译“硬币”;ALLOWANCE 是银行账户按周期发放的补贴。",
+      "translate": true,
+      "zh": "补贴! 你获得了 %s 硬币!",
+      "segments": [
+        {
+          "color": "§6§l",
+          "text": "ALLOWANCE! ",
+          "zh": "补贴! "
+        },
+        {
+          "color": "§e",
+          "text": "You earned ",
+          "zh": "你获得了 "
+        },
+        {
+          "color": "§6",
+          "text": "%s coins",
+          "zh": "%s 硬币"
+        },
+        {
+          "color": "§e",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "common_carnival_ticket_claimed",
+      "context": "领取每日嘉年华门票后的提示",
+      "raw": "§aYou claimed Carnival Ticket §8x25§a!",
+      "text": "You claimed Carnival Ticket x25!",
+      "placeholders": [],
+      "gloss": "Carnival Ticket 沿用物品名译法“嘉年华门票”。本条奖励数量固定为 25。",
+      "translate": true,
+      "zh": "你领取了嘉年华门票 x25!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "You claimed Carnival Ticket ",
+          "zh": "你领取了嘉年华门票 "
+        },
+        {
+          "color": "§8",
+          "text": "x25",
+          "zh": "x25"
+        },
+        {
+          "color": "§a",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "common_pet_training_session_ended",
+      "context": "玩家提前结束宠物训练会话后的进度和经验结算",
+      "raw": "§aYou have ended your training session at %1$s% and earned a total of §f%2$s EXP§a.",
+      "text": "You have ended your training session at %1$s% and earned a total of %2$s EXP.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "结束训练时的完成进度百分比",
+          "type": "number",
+          "example": "91.6"
+        },
+        {
+          "token": "%2$s",
+          "desc": "本次训练总共获得的宠物经验",
+          "type": "number",
+          "example": "9,822,491.9"
+        }
+      ],
+      "gloss": "两个动态值都只接收数值;EXP 沿用宠物训练界面的“经验”。",
+      "translate": true,
+      "zh": "你在训练进度达到 %1$s% 时结束了训练，本次共获得 %2$s 经验。",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "You have ended your training session at %1$s% and earned a total of ",
+          "zh": "你在训练进度达到 %1$s% 时结束了训练，本次共获得 "
+        },
+        {
+          "color": "§f",
+          "text": "%2$s EXP",
+          "zh": "%2$s 经验"
+        },
+        {
+          "color": "§a",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "common_server_restart_soon",
+      "context": "服务器计划重启前几分钟发的聊天预告,后半段是重启原因",
+      "raw": "§c[Important] §eThis server will restart soon: §bScheduled Reboot",
+      "text": "[Important] This server will restart soon: Scheduled Reboot",
+      "placeholders": [],
+      "gloss": "Important 是 Hypixel 全网通告的前缀标签,和玩法无关,译作「重要」。Scheduled Reboot 指计划内的例行重启(区别于故障重启),和标题/副标题、侧边栏那几条用同一个译名——同一次重启玩家会在四个地方看到它,译名不一致会看起来像四件事。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§c", "text": "[Important] ", "zh": "[重要] "},
+        {"color": "§e", "text": "This server will restart soon: ", "zh": "本房间即将重启: "},
+        {"color": "§b", "text": "Scheduled Reboot", "zh": "例行重启"}
+      ]
+    },
+    {
+      "id": "common_security_support_article_general",
+      "context": "Sloth 的账号安全提示后面跟的第一条链接:通用版帮助文档",
+      "raw": "§eGeneral Security Support Article §b§lCLICK HERE",
+      "text": "General Security Support Article CLICK HERE",
+      "placeholders": [],
+      "gloss": "和下面那条只差 General / SkyBlock 一个词,但那个词的中文不一样(通用 / 空岛),而且两条都没有占位符、走精确哈希表,所以各写一条。这不是第 4 节禁止的“值枚举”——那条禁止的是同一个标签的每个取值各存一份机械重复的译文。CLICK HERE 沿用全项目对可点击聊天链接的译法「点击查看」(见 common_latest_update)。台词本身见 NPC_Message/Sloth.json。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§e", "text": "General Security Support Article ", "zh": "通用账号安全帮助文档 "},
+        {"color": "§b§l", "text": "CLICK HERE", "zh": "点击查看"}
+      ]
+    },
+    {
+      "id": "common_security_support_article_skyblock",
+      "context": "同上,第二条链接是 SkyBlock 专版",
+      "raw": "§eSkyBlock Security Support Article §b§lCLICK HERE",
+      "text": "SkyBlock Security Support Article CLICK HERE",
+      "placeholders": [],
+      "gloss": "见上一条。译文里的 SkyBlock 照写,后面紧跟汉字时由 text/SkyBlockName 自动缩写成「空岛」并收掉多出来的空格。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§e", "text": "SkyBlock Security Support Article ", "zh": "SkyBlock 账号安全帮助文档 "},
+        {"color": "§b§l", "text": "CLICK HERE", "zh": "点击查看"}
+      ]
+    }
+  ]
+}

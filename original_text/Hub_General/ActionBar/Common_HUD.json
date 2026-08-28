@@ -1,0 +1,599 @@
+{
+  "source": "runtime capture (SkyZH) 2026-08-20 实测会话",
+  "fetched_at": "2026-08-20",
+  "verified_ingame": true,
+  "gui_context": "SkyBlock 的动作栏不是一句话,是一排部件:血量、所在地、法力、防御、以及临时顶上来的经验提示,部件之间隔五个空格。引擎按这个宽间隔把它切开逐个查表(见 text/LineShape.widgets),所以这里的每条记录只对应其中一个部件,不要写整行。本文件放和玩法无关的部件;钻头燃料、寒冷值这类挖矿专有的在 Mining/ActionBar/ 下。",
+  "todo": [
+    "血量 `2,610/2,235❤`、法力 `469/469✎`、防御 `1,130❈` 这几个部件里一个词都没有,只有数字和图标,没有记录也就不需要翻译。这是有意不收。"
+  ],
+  "lines": [
+    {
+      "id": "hud_area",
+      "context": "动作栏最左边之后的所在地部件,和侧边栏 ⏣ 那一行是同一个地名",
+      "text": "⏣ %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "所在地名,译名走 _shared/Terms.json",
+          "type": "location_name",
+          "example": "Dwarven Base Camp"
+        }
+      ],
+      "gloss": "整个部件只有一个符号和一个地名,符号算它自己的词(见 original_text/README.md)。",
+      "translate": true,
+      "zh": "⏣ %s"
+    },
+    {
+      "id": "hud_skill_xp_farming",
+      "context": "获得农业经验时,动作栏上短暂顶掉原有部件的经验提示",
+      "text": "+%1$s Farming (%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "这一次获得的经验值",
+          "type": "number",
+          "example": "112"
+        },
+        {
+          "token": "%2$s",
+          "desc": "括号里的进度:未满级时是“当前/升级所需”,满级后是百分比",
+          "type": "raw",
+          "example": "138,556,517/0"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 农业 (%2$s)"
+    },
+    {
+      "id": "hud_skill_xp_mining",
+      "context": "获得挖矿经验时,动作栏上短暂顶掉原有部件的经验提示",
+      "text": "+%1$s Mining (%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "这一次获得的经验值",
+          "type": "number",
+          "example": "112"
+        },
+        {
+          "token": "%2$s",
+          "desc": "括号里的进度:未满级时是“当前/升级所需”,满级后是百分比",
+          "type": "raw",
+          "example": "138,556,517/0"
+        }
+      ],
+      "gloss": "与其他 Mining 经验提示统一使用“挖矿”。",
+      "translate": true,
+      "zh": "+%1$s 挖矿 (%2$s)"
+    },
+    {
+      "id": "hud_skill_xp_combat",
+      "context": "获得战斗经验时,动作栏上短暂顶掉原有部件的经验提示",
+      "text": "+%1$s Combat (%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "这一次获得的经验值",
+          "type": "number",
+          "example": "112"
+        },
+        {
+          "token": "%2$s",
+          "desc": "括号里的进度:未满级时是“当前/升级所需”,满级后是百分比",
+          "type": "raw",
+          "example": "138,556,517/0"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 战斗 (%2$s)"
+    },
+    {
+      "id": "hud_skill_xp_foraging",
+      "context": "获得伐木经验时,动作栏上短暂顶掉原有部件的经验提示",
+      "text": "+%1$s Foraging (%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "这一次获得的经验值",
+          "type": "number",
+          "example": "112"
+        },
+        {
+          "token": "%2$s",
+          "desc": "括号里的进度:未满级时是“当前/升级所需”,满级后是百分比",
+          "type": "raw",
+          "example": "138,556,517/0"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 伐木 (%2$s)"
+    },
+    {
+      "id": "hud_skill_xp_fishing",
+      "context": "获得钓鱼经验时,动作栏上短暂顶掉原有部件的经验提示",
+      "text": "+%1$s Fishing (%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "这一次获得的经验值",
+          "type": "number",
+          "example": "112"
+        },
+        {
+          "token": "%2$s",
+          "desc": "括号里的进度:未满级时是“当前/升级所需”,满级后是百分比",
+          "type": "raw",
+          "example": "138,556,517/0"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 钓鱼 (%2$s)"
+    },
+    {
+      "id": "hud_skill_xp_enchanting",
+      "context": "获得附魔经验时,动作栏上短暂顶掉原有部件的经验提示",
+      "text": "+%1$s Enchanting (%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "这一次获得的经验值",
+          "type": "number",
+          "example": "112"
+        },
+        {
+          "token": "%2$s",
+          "desc": "括号里的进度:未满级时是“当前/升级所需”,满级后是百分比",
+          "type": "raw",
+          "example": "138,556,517/0"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 附魔 (%2$s)"
+    },
+    {
+      "id": "hud_skill_xp_alchemy",
+      "context": "获得炼药经验时,动作栏上短暂顶掉原有部件的经验提示",
+      "text": "+%1$s Alchemy (%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "这一次获得的经验值",
+          "type": "number",
+          "example": "112"
+        },
+        {
+          "token": "%2$s",
+          "desc": "括号里的进度:未满级时是“当前/升级所需”,满级后是百分比",
+          "type": "raw",
+          "example": "138,556,517/0"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 炼药 (%2$s)"
+    },
+    {
+      "id": "hud_skill_xp_taming",
+      "context": "获得驯养经验时,动作栏上短暂顶掉原有部件的经验提示",
+      "text": "+%1$s Taming (%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "这一次获得的经验值",
+          "type": "number",
+          "example": "112"
+        },
+        {
+          "token": "%2$s",
+          "desc": "括号里的进度:未满级时是“当前/升级所需”,满级后是百分比",
+          "type": "raw",
+          "example": "138,556,517/0"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 驯养 (%2$s)"
+    },
+    {
+      "id": "hud_skill_xp_carpentry",
+      "context": "获得木工经验时,动作栏上短暂顶掉原有部件的经验提示",
+      "text": "+%1$s Carpentry (%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "这一次获得的经验值",
+          "type": "number",
+          "example": "112"
+        },
+        {
+          "token": "%2$s",
+          "desc": "括号里的进度:未满级时是“当前/升级所需”,满级后是百分比",
+          "type": "raw",
+          "example": "138,556,517/0"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 木工 (%2$s)"
+    },
+    {
+      "id": "hud_skill_xp_runecrafting",
+      "context": "获得符文经验时,动作栏上短暂顶掉原有部件的经验提示",
+      "text": "+%1$s Runecrafting (%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "这一次获得的经验值",
+          "type": "number",
+          "example": "112"
+        },
+        {
+          "token": "%2$s",
+          "desc": "括号里的进度:未满级时是“当前/升级所需”,满级后是百分比",
+          "type": "raw",
+          "example": "138,556,517/0"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 符文制作 (%2$s)"
+    },
+    {
+      "id": "hud_skill_xp_social",
+      "context": "获得社交经验时,动作栏上短暂顶掉原有部件的经验提示",
+      "text": "+%1$s Social (%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "这一次获得的经验值",
+          "type": "number",
+          "example": "112"
+        },
+        {
+          "token": "%2$s",
+          "desc": "括号里的进度:未满级时是“当前/升级所需”,满级后是百分比",
+          "type": "raw",
+          "example": "138,556,517/0"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 社交 (%2$s)"
+    },
+    {
+      "id": "hud_skill_xp_hunting",
+      "context": "获得狩猎经验时,动作栏上短暂顶掉原有部件的经验提示",
+      "text": "+%1$s Hunting (%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "这一次获得的经验值",
+          "type": "number",
+          "example": "112"
+        },
+        {
+          "token": "%2$s",
+          "desc": "括号里的进度:未满级时是“当前/升级所需”,满级后是百分比",
+          "type": "raw",
+          "example": "138,556,517/0"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 狩猎 (%2$s)"
+    },
+    {
+      "id": "hud_essence_wither",
+      "context": "获得凋零精华时的动作栏提示",
+      "text": "+%s Wither Essence",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "获得数量",
+          "type": "number",
+          "example": "6"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s 凋零精华"
+    },
+    {
+      "id": "hud_essence_spider",
+      "context": "获得蜘蛛精华时的动作栏提示",
+      "text": "+%s Spider Essence",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "获得数量",
+          "type": "number",
+          "example": "6"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s 蜘蛛精华"
+    },
+    {
+      "id": "hud_essence_undead",
+      "context": "获得亡灵精华时的动作栏提示",
+      "text": "+%s Undead Essence",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "获得数量",
+          "type": "number",
+          "example": "6"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s 亡灵精华"
+    },
+    {
+      "id": "hud_essence_dragon",
+      "context": "获得巨龙精华时的动作栏提示",
+      "text": "+%s Dragon Essence",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "获得数量",
+          "type": "number",
+          "example": "6"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s 巨龙精华"
+    },
+    {
+      "id": "hud_essence_gold",
+      "context": "获得黄金精华时的动作栏提示",
+      "text": "+%s Gold Essence",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "获得数量",
+          "type": "number",
+          "example": "6"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s 黄金精华"
+    },
+    {
+      "id": "hud_essence_diamond",
+      "context": "获得钻石精华时的动作栏提示",
+      "text": "+%s Diamond Essence",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "获得数量",
+          "type": "number",
+          "example": "6"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s 钻石精华"
+    },
+    {
+      "id": "hud_essence_ice",
+      "context": "获得冰霜精华时的动作栏提示",
+      "text": "+%s Ice Essence",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "获得数量",
+          "type": "number",
+          "example": "6"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s 冰霜精华"
+    },
+    {
+      "id": "hud_essence_crimson",
+      "context": "获得绯红精华时的动作栏提示",
+      "text": "+%s Crimson Essence",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "获得数量",
+          "type": "number",
+          "example": "6"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s 绯红精华"
+    },
+    {
+      "id": "hud_essence_fossil",
+      "context": "获得化石精华时的动作栏提示",
+      "text": "+%s Fossil Essence",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "获得数量",
+          "type": "number",
+          "example": "6"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s 化石精华"
+    },
+    {
+      "id": "hud_skyblock_xp_progress",
+      "context": "获得空岛等级经验时的动作栏提示,括号里先说这次经验的来源,再说距离下一级的进度",
+      "text": "+%1$s SkyBlock XP (%2$s) (%3$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "获得的经验值",
+          "type": "number",
+          "example": "1"
+        },
+        {
+          "token": "%2$s",
+          "desc": "经验来源,译名走 _shared/Terms.json",
+          "type": "raw",
+          "example": "HOTM Progression"
+        },
+        {
+          "token": "%3$s",
+          "desc": "距离下一级的进度",
+          "type": "raw",
+          "example": "36/100"
+        }
+      ],
+      "gloss": "SkyBlock 这个词照写英文,渲染时由 translateSkyBlockName 决定换不换,见 GLOSSARY.md。",
+      "translate": true,
+      "zh": "+%1$s SkyBlock 经验 (%2$s) (%3$s)",
+      "raw": "§b+%1$s SkyBlock XP §7(%2$s)§b (%3$s)",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "+%1$s SkyBlock XP ",
+          "zh": "+%1$s SkyBlock 经验 "
+        },
+        {
+          "color": "§7",
+          "text": "(%2$s)",
+          "zh": "(%2$s)"
+        },
+        {
+          "color": "§b",
+          "text": " (%3$s)",
+          "zh": " (%3$s)"
+        }
+      ]
+    },
+    {
+      "id": "hud_skyblock_xp",
+      "context": "同上,没有来源说明的写法",
+      "text": "+%1$s SkyBlock XP (%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "获得的经验值",
+          "type": "number",
+          "example": "1"
+        },
+        {
+          "token": "%2$s",
+          "desc": "距离下一级的进度",
+          "type": "raw",
+          "example": "36/100"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s SkyBlock 经验 (%2$s)"
+    },
+    {
+      "id": "hud_bits_from_cookie_buff",
+      "context": "增益曲奇定期发放点券时的动作栏提示",
+      "raw": "§b+%s Bits from Cookie Buff!",
+      "text": "+%s Bits from Cookie Buff!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "本次获得的点券",
+          "type": "number",
+          "example": "515"
+        }
+      ],
+      "gloss": "Bits 统一译“点券”;Cookie Buff 沿用 Tab 页脚中的“曲奇增益”。",
+      "translate": true,
+      "zh": "+%s 点券(来自曲奇增益)!"
+    },
+    {
+      "id": "hud_carnival_catch_streak",
+      "context": "嘉年华钓鱼大赛连续钓上鱼时的动作栏提示",
+      "raw": "§3§lSTREAK! §b%1$sx §7(+%2$s pts)",
+      "text": "STREAK! %1$sx (+%2$s pts)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前连续钓鱼倍率",
+          "type": "number",
+          "example": "2"
+        },
+        {
+          "token": "%2$s",
+          "desc": "本次连续钓鱼增加的分数",
+          "type": "number",
+          "example": "10"
+        }
+      ],
+      "gloss": "Streak 在钓鱼大赛中指连续钓上鱼;pts 是 points 的缩写。",
+      "translate": true,
+      "zh": "连钓! %1$sx (+%2$s 分)",
+      "segments": [
+        {
+          "color": "§3§l",
+          "text": "STREAK! ",
+          "zh": "连钓! "
+        },
+        {
+          "color": "§b",
+          "text": "%1$sx ",
+          "zh": "%1$sx "
+        },
+        {
+          "color": "§7",
+          "text": "(+%2$s pts)",
+          "zh": "(+%2$s 分)"
+        }
+      ]
+    },
+    {
+      "id": "hud_carnival_catch_streak_reset",
+      "context": "嘉年华钓鱼大赛连续钓鱼中断时的动作栏提示",
+      "raw": "§c§lSTREAK RESET!",
+      "text": "STREAK RESET!",
+      "placeholders": [],
+      "gloss": "和 hud_carnival_catch_streak 的 Streak 是同一机制。",
+      "translate": true,
+      "zh": "连钓重置!"
+    },
+    {
+      "id": "hud_carnival_double_points",
+      "context": "嘉年华小游戏触发双倍得分时的动作栏提示",
+      "raw": "§6§lDOUBLE POINTS! §e+%s",
+      "text": "DOUBLE POINTS! +%s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "本次获得的分数",
+          "type": "number",
+          "example": "430"
+        }
+      ],
+      "gloss": "Points 沿用嘉年华小游戏中的“得分”。",
+      "translate": true,
+      "zh": "双倍得分! +%s",
+      "segments": [
+        {
+          "color": "§6§l",
+          "text": "DOUBLE POINTS! ",
+          "zh": "双倍得分! "
+        },
+        {
+          "color": "§e",
+          "text": "+%s",
+          "zh": "+%s"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "source": "玩家实测截图(2026-08-22)",
+  "fetched_at": "2026-08-22",
+  "verified_ingame": true,
+  "gui_context": "NPC 头顶的浮空文字。这是世界里的实体名字,不是 HUD,所以自成一个渲染面(Surface.HOLOGRAM,见 mixin/EntityRendererMixin):同一个词在这里和在聊天里意思不一样——头顶上的 CLICK 是给玩家的操作提示,聊天里的 CLICK 是句子的一部分。",
+  "todo": [
+    "这个渲染面没有运行时采集:头顶文字来自实体元数据包,不走 captureUntranslated 挂的那几个包,而且怪物血条(“Glacite Walker 1.2M❤”)每帧都在变、采下来全是噪音。所以这个目录里的每一条都得进游戏照着屏幕抄,不能从 wiki 或 NEU 推。",
+    "NPC 名字里属于**职务**而不是人名的那些(Blacksmith、Lift Operator、Station Master、Drill Mechanic 这类),按用户 2026-08-22 的决定可以翻译,归到各玩法自己的 Hologram/ 目录下(如 Mining/Hologram/)。人名(Bubu、Fragilis、Gwendolyn……)照旧保留英文。本轮只做了 CLICK,职务名等实测确认过每个牌子上的确切写法再补。",
+    "玩家名不会走到这个面上来:引擎按实体类型把玩家的名牌排除掉了(见 EntityRendererMixin),否则一个叫 Blacksmith 的玩家会被翻成“铁匠”。"
+  ],
+  "lines": [
+    {
+      "id": "hologram_click",
+      "context": "可交互 NPC 头顶那一行黄色加粗的操作提示",
+      "raw": "§e§lCLICK",
+      "text": "CLICK",
+      "placeholders": [],
+      "gloss": "SkyBlock 里和 NPC 交互一律是右键,英文只写 CLICK 是因为它不区分左右键;中文写“右键点击”把动作说全,新玩家不用猜。",
+      "translate": true,
+      "zh": "右键点击"
+    }
+  ]
+}

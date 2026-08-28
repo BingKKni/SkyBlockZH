@@ -1,0 +1,167 @@
+{
+  "source": "SkyZH runtime capture (2026-08-26, Mining GUI session)",
+  "fetched_at": "2026-08-26",
+  "verified_ingame": true,
+  "gui_context": "空岛菜单打开后的 SkyBlock Leveling 菜单；仅收录通用入口、状态与说明。",
+  "lines": [
+    {"id": "level_ranking", "context": "SkyBlock 等级排行榜入口", "raw": "§aYour SkyBlock Level Ranking", "text": "Your SkyBlock Level Ranking", "placeholders": [], "gloss": "", "translate": true, "zh": "你的 SkyBlock 等级排名"},
+    {"id": "classic_mode", "context": "排行榜模式标签", "raw": "§8Classic Mode", "text": "Classic Mode", "placeholders": [], "gloss": "", "translate": true, "zh": "经典模式"},
+    {
+      "id": "your_level",
+      "context": "当前等级状态",
+      "raw": "§7Your level: §2%1$s",
+      "text": "Your level: %1$s",
+      "placeholders": [{"token": "%1$s", "desc": "当前等级", "type": "number", "example": "185"}],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Your level: ", "zh": "你的等级: "},
+        {"color": "§2", "text": "%1$s", "zh": "%1$s"}
+      ]
+    },
+    {
+      "id": "available_xp",
+      "context": "当前拥有的经验状态",
+      "raw": "§7You have: §b%1$s XP",
+      "text": "You have: %1$s XP",
+      "placeholders": [{"token": "%1$s", "desc": "当前经验", "type": "number", "example": "18,521"}],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "You have: ", "zh": "你拥有: "},
+        {"color": "§b", "text": "%1$s XP", "zh": "%1$s 经验"}
+      ]
+    },
+    {
+      "id": "total_xp_tasks_desc_1",
+      "context": "总 SkyBlock XP 任务完成度说明首行",
+      "raw": "§7You have completed §3%1$s§7 of the",
+      "text": "You have completed %1$s of the",
+      "placeholders": [{"token": "%1$s", "desc": "完成比例", "type": "percentage", "example": "31.9%"}],
+      "gloss": "完整句为 You have completed %1$s of the total SkyBlock XP Tasks.",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "You have completed ", "zh": "你已完成全部 SkyBlock XP 任务的 "},
+        {"color": "§3", "text": "%1$s", "zh": "%1$s"},
+        {"color": "§7", "text": " of the", "zh": "。"}
+      ]
+    },
+    {"id": "total_xp_tasks_desc_2", "context": "接上一行", "raw": "§7total SkyBlock XP Tasks.", "text": "total SkyBlock XP Tasks.", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
+    {
+      "id": "ranking_requirement_desc_1",
+      "context": "排行榜解锁条件说明首行",
+      "raw": "§7Ranking information requires",
+      "text": "Ranking information requires",
+      "placeholders": [],
+      "gloss": "完整句为 Ranking information requires SkyBlock Level 10 or higher.",
+      "translate": true,
+      "zh": "排行榜信息需要 SkyBlock 等级达到 10 级或更高。"
+    },
+    {"id": "ranking_requirement_desc_2", "context": "接上一行", "raw": "§7SkyBlock Level 10 or higher.", "text": "SkyBlock Level 10 or higher.", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
+    {
+      "id": "ranking_refresh_desc_1",
+      "context": "排行榜刷新提示首行",
+      "raw": "§8Level rankings may take time to",
+      "text": "Level rankings may take time to",
+      "placeholders": [],
+      "gloss": "完整句为 Level rankings may take time to refresh.",
+      "translate": true,
+      "zh": "等级排行榜可能需要一些时间刷新。"
+    },
+    {"id": "ranking_refresh_desc_2", "context": "接上一行", "raw": "§8refresh.", "text": "refresh.", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
+    {
+      "id": "ways_to_level_up",
+      "context": "升级途径入口",
+      "raw": "§aWays to Level Up",
+      "text": "Ways to Level Up",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "升级途径"
+    },
+    {
+      "id": "ways_to_level_up_desc_1",
+      "context": "升级途径入口说明首行",
+      "raw": "§7Learn more about the different ways",
+      "text": "Learn more about the different ways",
+      "placeholders": [],
+      "gloss": "完整句为 Learn more about the different ways to earn SkyBlock XP.",
+      "translate": true,
+      "zh": "了解获得 SkyBlock XP 的各种方式。"
+    },
+    {"id": "ways_to_level_up_desc_2", "context": "接上一行", "raw": "§7to earn SkyBlock XP.", "text": "to earn SkyBlock XP.", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
+    {"id": "click_to_view_rewards", "ref": "_shared/Menu_Common.json#menu_click_to_view_rewards", "context": "查看等级奖励的点击提示"},
+    {"id": "reward", "context": "奖励标签", "raw": "§7Reward:", "text": "Reward:", "placeholders": [], "gloss": "", "translate": true, "zh": "奖励:"},
+    {"id": "progress_to_level_up", "context": "升级进度标签", "raw": "§7Progress to Level Up:", "text": "Progress to Level Up:", "placeholders": [], "gloss": "", "translate": true, "zh": "升级进度:"},
+    {
+      "id": "leveling_rewards",
+      "context": "等级奖励入口",
+      "raw": "§aLeveling Rewards",
+      "text": "Leveling Rewards",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "等级奖励"
+    },
+    {
+      "id": "leveling_rewards_desc_1",
+      "context": "等级奖励入口说明首行",
+      "raw": "§7View all the rewards you can unlock",
+      "text": "View all the rewards you can unlock",
+      "placeholders": [],
+      "gloss": "完整句为 View all the rewards you can unlock by leveling up your SkyBlock Level.",
+      "translate": true,
+      "zh": "查看提升 SkyBlock 等级后可解锁的全部奖励。"
+    },
+    {"id": "leveling_rewards_desc_2", "context": "接上一行", "raw": "§7by leveling up your SkyBlock Level.", "text": "by leveling up your SkyBlock Level.", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
+    {
+      "id": "progress_to_max",
+      "context": "达到最高等级的进度",
+      "raw": "§7Progress to Max: §3%1$s",
+      "text": "Progress to Max: %1$s",
+      "placeholders": [{"token": "%1$s", "desc": "进度百分比", "type": "percentage", "example": "64.8%"}],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Progress to Max: ", "zh": "升至最高级的进度: "},
+        {"color": "§3", "text": "%1$s", "zh": "%1$s"}
+      ]
+    },
+    {"id": "click_to_disable", "ref": "_shared/Menu_Common.json#menu_click_to_disable", "context": "关闭等级聊天显示的点击提示"},
+    {
+      "id": "global_ranking",
+      "context": "全球排名状态",
+      "raw": "§7Global Ranking: §8#§a%1$s",
+      "text": "Global Ranking: #%1$s",
+      "placeholders": [{"token": "%1$s", "desc": "全球排名", "type": "number", "example": "246,232"}],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Global Ranking: ", "zh": "全球排名: "},
+        {"color": "§8", "text": "#", "zh": "#"},
+        {"color": "§a", "text": "%1$s", "zh": "%1$s"}
+      ]
+    },
+    {
+      "id": "top_percent_desc_1",
+      "context": "排名百分位说明首行",
+      "raw": "§8You are in the top §e%1$s§8 of",
+      "text": "You are in the top %1$s of",
+      "placeholders": [{"token": "%1$s", "desc": "排名百分比", "type": "percentage", "example": "1.63%"}],
+      "gloss": "后续玩家总数是独立动态行，不能标 continuation，否则该值会被删除。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§8", "text": "You are in the top ", "zh": "你的排名位于前 "},
+        {"color": "§e", "text": "%1$s", "zh": "%1$s"},
+        {"color": "§8", "text": " of", "zh": "。"}
+      ]
+    },
+    {"id": "top_percent_desc_2", "context": "排名百分位说明的玩家总数", "raw": "§8%1$s Classic players!", "text": "%1$s Classic players!", "placeholders": [{"token": "%1$s", "desc": "经典模式玩家总数", "type": "number", "example": "15,066,713"}], "gloss": "该行数值独立变化，不能作为上一行 continuation。", "translate": true, "zh": "共 %1$s 名经典模式玩家!"}
+  ]
+}

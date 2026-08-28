@@ -1,0 +1,552 @@
+{
+  "purpose": "附魔名。物品 Lore 里的附魔行长这样:`§9Critical V, Experience III, First Strike IV`——一行里几个附魔,逗号隔开,哪几个取决于这件物品身上有什么。这种行没法写记录(一次会话就见到 65 种不同的组合),所以引擎按逗号切开、每一段各查一次表(见 text/LineShape.enchantments),这里存的就是一段。",
+  "scope": "这一批只翻**原版 Minecraft 就有的附魔**,用官方中文译名;空岛专属的附魔按用户 2026-08-27 的决定暂时只翻 Ice Cold(抗寒)。没有记录的附魔保持英文,同一行里翻了的和没翻的各按各的显示——这一面上一行就是一排互不相干的东西,和 Tab 列表的「标签: 数值」一样。",
+  "source": "运行时采集(logs/skyzh-capture,2026-08-27)+ https://hypixelskyblock.minecraft.wiki/w/Enchantments",
+  "fetched_at": "2026-08-27",
+  "verified_ingame": true,
+  "level_note": "等级一律写成 `%s` 并声明 type: tier(罗马数字)。写成 raw 会让相邻的词被切错(见 text/Capture 的 TIER),而且 tier 正好也是引擎判断「这一行是不是附魔列表」的依据。",
+  "lines": [
+    {
+      "id": "ench_aqua_affinity",
+      "context": "原版附魔:水下速掘",
+      "raw": "§9Aqua Affinity %s",
+      "text": "Aqua Affinity %s",
+      "placeholders": [{"token": "%s", "desc": "附魔等级(罗马数字)", "type": "tier", "example": "I"}],
+      "gloss": "原版附魔,用官方中文译名「水下速掘」。",
+      "translate": true,
+      "zh": "水下速掘 %s"
+    },
+    {
+      "id": "ench_aqua_affinity_desc_1",
+      "context": "水下速掘的说明,英文因排版拆成两行,合并成一句",
+      "raw": "§7Increases your underwater mining",
+      "text": "Increases your underwater mining",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "提高你在水下的挖掘速度。"
+    },
+    {
+      "id": "ench_aqua_affinity_desc_2",
+      "context": "接上一行",
+      "raw": "§7rate.",
+      "text": "rate.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "ench_bane_of_arthropods",
+      "context": "原版附魔:节肢杀手",
+      "raw": "§9Bane of Arthropods %s",
+      "text": "Bane of Arthropods %s",
+      "placeholders": [{"token": "%s", "desc": "附魔等级(罗马数字)", "type": "tier", "example": "VII"}],
+      "gloss": "原版附魔,官方中文译名「节肢杀手」。空岛里它对 Arthropod 类怪物加伤,和原版一个意思。",
+      "translate": true,
+      "zh": "节肢杀手 %s"
+    },
+    {
+      "id": "ench_blast_protection",
+      "context": "原版附魔:爆炸保护",
+      "raw": "§9Blast Protection %s",
+      "text": "Blast Protection %s",
+      "placeholders": [{"token": "%s", "desc": "附魔等级(罗马数字)", "type": "tier", "example": "VII"}],
+      "gloss": "原版附魔,官方中文译名「爆炸保护」。",
+      "translate": true,
+      "zh": "爆炸保护 %s"
+    },
+    {
+      "id": "ench_defence_against_desc_1",
+      "context": "「提供 N 点防御力,用于抵抗XX」这句话的第一行。爆炸保护和弹射物保护共用它,区别只在下一行",
+      "raw": "§7Grants §a+%s ❈ Defense §7against",
+      "text": "Grants +%s ❈ Defense against",
+      "placeholders": [{"token": "%s", "desc": "提供的防御力", "type": "number", "example": "210"}],
+      "gloss": "**不能合并成一句**。爆炸保护和弹射物保护的第一行逐字相同(`Grants +N ❈ Defense against`),只有第二行分别是 explosions. 和 projectiles.。要是把整句译文塞进第一行、第二行标 continuation,那么弹射物保护也会显示成「用于抵抗爆炸」——两条同模板的记录里只有一条会生效(checkNoRivalRecords 拦的正是这个)。所以第一行只翻到「用于抵抗」为止,抵抗什么留给第二行各自的记录。❈ 是防御力属性的图标。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Grants ", "zh": "提供 "},
+        {"color": "§a", "text": "+%s ❈ Defense ", "zh": "+%s ❈ 防御力"},
+        {"color": "§7", "text": "against", "zh": ",用于抵抗"}
+      ]
+    },
+    {
+      "id": "ench_blast_protection_desc_2",
+      "context": "爆炸保护说明的第二行,承接 ench_defence_against_desc_1",
+      "raw": "§7explosions.",
+      "text": "explosions.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "爆炸。"
+    },
+    {
+      "id": "ench_depth_strider",
+      "context": "原版附魔:深海探索者",
+      "raw": "§9Depth Strider %s",
+      "text": "Depth Strider %s",
+      "placeholders": [{"token": "%s", "desc": "附魔等级(罗马数字)", "type": "tier", "example": "III"}],
+      "gloss": "原版附魔,官方中文译名「深海探索者」。",
+      "translate": true,
+      "zh": "深海探索者 %s"
+    },
+    {
+      "id": "ench_depth_strider_desc_1",
+      "context": "深海探索者的说明,英文拆成两行。数值落在第二行,所以两行各自翻译、不合并",
+      "raw": "§7Reduces how much you are slowed in",
+      "text": "Reduces how much you are slowed in",
+      "placeholders": [],
+      "gloss": "这一句不能用 continuation 合并:百分比在下一行,合并会把数值一起删掉。两行各写各的译文,连起来读通顺就行——`continuation` 只用于「英文因排版被迫断开、中文不需要在同一位置断开」的那一种,见 original_text/README.md。",
+      "translate": true,
+      "zh": "在水中移动时受到的减速"
+    },
+    {
+      "id": "ench_depth_strider_desc_2",
+      "context": "接上一行,这一行带百分比",
+      "raw": "§7the water by §a%s%§7.",
+      "text": "the water by %s%.",
+      "placeholders": [{"token": "%s", "desc": "减速削减的百分比", "type": "number", "example": "100"}],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "the water by ", "zh": "降低 "},
+        {"color": "§a", "text": "%s%", "zh": "%s%"},
+        {"color": "§7", "text": ".", "zh": "。"}
+      ]
+    },
+    {
+      "id": "ench_efficiency",
+      "context": "原版附魔:效率",
+      "raw": "§9Efficiency %s",
+      "text": "Efficiency %s",
+      "placeholders": [{"token": "%s", "desc": "附魔等级(罗马数字)", "type": "tier", "example": "X"}],
+      "gloss": "原版附魔,官方中文译名「效率」。空岛里它最高到 X,比原版的 V 高,但是同一个附魔。注意不要和挖掘速度(Mining Speed)那条属性混——效率是附魔,挖掘速度是它加的属性。",
+      "translate": true,
+      "zh": "效率 %s"
+    },
+    {
+      "id": "ench_feather_falling",
+      "context": "原版附魔:摔落缓冲",
+      "raw": "§9Feather Falling %s",
+      "text": "Feather Falling %s",
+      "placeholders": [{"token": "%s", "desc": "附魔等级(罗马数字)", "type": "tier", "example": "X"}],
+      "gloss": "原版附魔,官方中文译名「摔落缓冲」。",
+      "translate": true,
+      "zh": "摔落缓冲 %s"
+    },
+    {
+      "id": "ench_fire_aspect",
+      "context": "原版附魔:火焰附加",
+      "raw": "§9Fire Aspect %s",
+      "text": "Fire Aspect %s",
+      "placeholders": [{"token": "%s", "desc": "附魔等级(罗马数字)", "type": "tier", "example": "II"}],
+      "gloss": "原版附魔,官方中文译名「火焰附加」。",
+      "translate": true,
+      "zh": "火焰附加 %s"
+    },
+    {
+      "id": "ench_fire_protection",
+      "context": "原版附魔:火焰保护",
+      "raw": "§9Fire Protection %s",
+      "text": "Fire Protection %s",
+      "placeholders": [{"token": "%s", "desc": "附魔等级(罗马数字)", "type": "tier", "example": "VII"}],
+      "gloss": "原版附魔,官方中文译名「火焰保护」。",
+      "translate": true,
+      "zh": "火焰保护 %s"
+    },
+    {
+      "id": "ench_fire_protection_desc_1",
+      "context": "火焰保护的说明,英文拆成两行,合并成一句",
+      "raw": "§7Grants §f+%s❂ True Defense §7against",
+      "text": "Grants +%s❂ True Defense against",
+      "placeholders": [{"token": "%s", "desc": "提供的真实防御", "type": "number", "example": "12"}],
+      "gloss": "空岛的火焰保护给的是真实防御(❂)而不是原版那种减伤,数值随等级变。和 ench_defence_against_desc_1 同一个道理:第一行只翻到「用于抵抗」,抵抗什么留给第二行——这一行的模板将来很可能被别的「True Defense against ...」附魔共用,现在就分开写比回头再拆便宜。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Grants ", "zh": "提供 "},
+        {"color": "§f", "text": "+%s❂ True Defense ", "zh": "+%s❂ 真实防御"},
+        {"color": "§7", "text": "against", "zh": ",用于抵抗"}
+      ]
+    },
+    {
+      "id": "ench_fire_protection_desc_2",
+      "context": "火焰保护说明的第二行。同一句话也是抗火药水说明的第二行(「Receive 10% reduced damage from」/「fire and lava.」),两处共用这一条",
+      "raw": "§cfire §7and §clava§7.",
+      "text": "fire and lava.",
+      "placeholders": [],
+      "gloss": "分段是为了另一处:火焰保护的这一行整行是灰的,抗火药水那一行把 fire 和 lava 两个词标成了红色(`§cfire §7and §clava§7.`)。只记一整行的话,药水那边的译文会被整段刷成灰色,红色高亮就没了(启动日志会点名这条记录压平了颜色)。分段之后两处都对:每一段的颜色是渲染时从屏幕上那一行现读的,所以整行灰的那一处四段都读到灰色。",
+      "translate": true,
+      "zh": "火焰和岩浆。",
+      "segments": [
+        {"color": "§c", "text": "fire ", "zh": "火焰"},
+        {"color": "§7", "text": "and ", "zh": "和"},
+        {"color": "§c", "text": "lava", "zh": "岩浆"},
+        {"color": "§7", "text": ".", "zh": "。"}
+      ]
+    },
+    {
+      "id": "ench_flame",
+      "context": "原版附魔:火矢",
+      "raw": "§9Flame %s",
+      "text": "Flame %s",
+      "placeholders": [{"token": "%s", "desc": "附魔等级(罗马数字)", "type": "tier", "example": "II"}],
+      "gloss": "原版附魔,官方中文译名「火矢」(弓专用),不是「火焰」。",
+      "translate": true,
+      "zh": "火矢 %s"
+    },
+    {
+      "id": "ench_fortune",
+      "context": "原版附魔:时运",
+      "raw": "§9Fortune %s",
+      "text": "Fortune %s",
+      "placeholders": [{"token": "%s", "desc": "附魔等级(罗马数字)", "type": "tier", "example": "IV"}],
+      "gloss": "原版附魔,官方中文译名「时运」。全项目的 Fortune 一律译时运,见 GLOSSARY.md 的 Fortune 条目(以前有过译「幸运」的,已统一)。",
+      "translate": true,
+      "zh": "时运 %s"
+    },
+    {
+      "id": "ench_fortune_desc_1",
+      "context": "时运的说明,英文拆成三行,合并成一句",
+      "raw": "§7Grants §6+%s☘ Mining Fortune§7, which",
+      "text": "Grants +%s☘ Mining Fortune, which",
+      "placeholders": [{"token": "%s", "desc": "提供的挖掘时运", "type": "number", "example": "30"}],
+      "gloss": "空岛的时运给的是挖掘时运(☘)这条属性,不是原版那种直接多掉。数值在第一行,后两行可以合并删掉。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Grants ", "zh": "提供 "},
+        {"color": "§6", "text": "+%s☘ Mining Fortune", "zh": "+%s☘ 挖掘时运"},
+        {"color": "§7", "text": ", which", "zh": ",提高一次挖出多份掉落物的概率。"}
+      ]
+    },
+    {
+      "id": "ench_fortune_desc_2",
+      "context": "接上一行",
+      "raw": "§7increases your chance for multiple",
+      "text": "increases your chance for multiple",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "ench_fortune_desc_3",
+      "context": "接上一行",
+      "raw": "§7drops.",
+      "text": "drops.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "ench_impaling",
+      "context": "原版附魔:穿刺",
+      "raw": "§9Impaling %s",
+      "text": "Impaling %s",
+      "placeholders": [{"token": "%s", "desc": "附魔等级(罗马数字)", "type": "tier", "example": "III"}],
+      "gloss": "原版附魔,官方中文译名「穿刺」(三叉戟专用,空岛把它放到了弓和剑上)。不要和 Piercing(穿透)混,那是弩的附魔,两个都在同一行里出现过。",
+      "translate": true,
+      "zh": "穿刺 %s"
+    },
+    {
+      "id": "ench_looting",
+      "context": "原版附魔:抢夺",
+      "raw": "§9Looting %s",
+      "text": "Looting %s",
+      "placeholders": [{"token": "%s", "desc": "附魔等级(罗马数字)", "type": "tier", "example": "V"}],
+      "gloss": "原版附魔,官方中文译名「抢夺」。",
+      "translate": true,
+      "zh": "抢夺 %s"
+    },
+    {
+      "id": "ench_looting_desc_1",
+      "context": "抢夺的说明,英文拆成两行。百分比在第二行,所以两行各自翻译、不合并",
+      "raw": "§7Increases the chance of a Monster",
+      "text": "Increases the chance of a Monster",
+      "placeholders": [],
+      "gloss": "同 ench_depth_strider_desc_1:数值在下一行,合并会把它删掉。",
+      "translate": true,
+      "zh": "怪物掉落物品的概率"
+    },
+    {
+      "id": "ench_looting_desc_2",
+      "context": "接上一行,这一行带百分比",
+      "raw": "§7dropping an item by §a%s%§7.",
+      "text": "dropping an item by %s%.",
+      "placeholders": [{"token": "%s", "desc": "概率提升的百分比", "type": "number", "example": "45"}],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "dropping an item by ", "zh": "提高 "},
+        {"color": "§a", "text": "%s%", "zh": "%s%"},
+        {"color": "§7", "text": ".", "zh": "。"}
+      ]
+    },
+    {
+      "id": "ench_mending",
+      "context": "原版附魔:经验修补",
+      "raw": "§9Mending %s",
+      "text": "Mending %s",
+      "placeholders": [{"token": "%s", "desc": "附魔等级(罗马数字)", "type": "tier", "example": "I"}],
+      "gloss": "原版附魔,官方中文译名「经验修补」。空岛另有一条叫 Mending 的**属性**(☄,回复生命的那个),那是别的东西,在 GLOSSARY.md 的属性表里;这一条是附魔。",
+      "translate": true,
+      "zh": "经验修补 %s"
+    },
+    {
+      "id": "ench_piercing",
+      "context": "原版附魔:穿透",
+      "raw": "§9Piercing %s",
+      "text": "Piercing %s",
+      "placeholders": [{"token": "%s", "desc": "附魔等级(罗马数字)", "type": "tier", "example": "I"}],
+      "gloss": "原版附魔,官方中文译名「穿透」。见 ench_impaling 的 gloss,两个词容易混。",
+      "translate": true,
+      "zh": "穿透 %s"
+    },
+    {
+      "id": "ench_power",
+      "context": "原版附魔:力量",
+      "raw": "§9Power %s",
+      "text": "Power %s",
+      "placeholders": [{"token": "%s", "desc": "附魔等级(罗马数字)", "type": "tier", "example": "V"}],
+      "gloss": "原版附魔,官方中文译名「力量」(弓的伤害加成)。空岛另有一条叫 Strength 的属性也译「力量」,两者在同一件弓的 Lore 里都会出现——原版译名不改,靠附魔行是蓝色、属性行带图标来区分。",
+      "translate": true,
+      "zh": "力量 %s"
+    },
+    {
+      "id": "ench_projectile_protection",
+      "context": "原版附魔:弹射物保护",
+      "raw": "§9Projectile Protection %s",
+      "text": "Projectile Protection %s",
+      "placeholders": [{"token": "%s", "desc": "附魔等级(罗马数字)", "type": "tier", "example": "VII"}],
+      "gloss": "原版附魔,官方中文译名「弹射物保护」。",
+      "translate": true,
+      "zh": "弹射物保护 %s"
+    },
+    {
+      "id": "ench_projectile_protection_desc_2",
+      "context": "弹射物保护说明的第二行,第一行和爆炸保护共用 ench_defence_against_desc_1",
+      "raw": "§7projectiles.",
+      "text": "projectiles.",
+      "placeholders": [],
+      "gloss": "见 ench_defence_against_desc_1 的 gloss:第一行两个附魔逐字相同,所以抵抗什么写在这里。",
+      "translate": true,
+      "zh": "弹射物。"
+    },
+    {
+      "id": "ench_protection",
+      "context": "原版附魔:保护",
+      "raw": "§9Protection %s",
+      "text": "Protection %s",
+      "placeholders": [{"token": "%s", "desc": "附魔等级(罗马数字)", "type": "tier", "example": "VII"}],
+      "gloss": "原版附魔,官方中文译名「保护」。空岛专属的 True Protection 暂不翻译(按本文件 scope),两条不会互相顶掉——`Protection %s` 和 `True Protection %s` 是不同的模板,而且后者更长、字面文本更多。",
+      "translate": true,
+      "zh": "保护 %s"
+    },
+    {
+      "id": "ench_protection_desc",
+      "context": "保护的说明,只有一行",
+      "raw": "§7Grants §a+%s ❈ Defense§7.",
+      "text": "Grants +%s ❈ Defense.",
+      "placeholders": [{"token": "%s", "desc": "提供的防御力", "type": "number", "example": "20"}],
+      "gloss": "和 ench_defence_against_desc_1 只差句末:这一条以句号收尾(整句就一行),那一条以 against 收尾(后面还有一行说抵抗什么)。两个模板不同,不冲突。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Grants ", "zh": "提供 "},
+        {"color": "§a", "text": "+%s ❈ Defense", "zh": "+%s ❈ 防御力"},
+        {"color": "§7", "text": ".", "zh": "。"}
+      ]
+    },
+    {
+      "id": "ench_punch",
+      "context": "原版附魔:冲击",
+      "raw": "§9Punch %s",
+      "text": "Punch %s",
+      "placeholders": [{"token": "%s", "desc": "附魔等级(罗马数字)", "type": "tier", "example": "II"}],
+      "gloss": "原版附魔,官方中文译名「冲击」(弓的击退)。",
+      "translate": true,
+      "zh": "冲击 %s"
+    },
+    {
+      "id": "ench_punch_desc_1",
+      "context": "冲击的说明,英文拆成两行,合并成一句",
+      "raw": "§7Increases arrow knockback by §a%s",
+      "text": "Increases arrow knockback by %s",
+      "placeholders": [{"token": "%s", "desc": "增加的击退格数", "type": "number", "example": "6"}],
+      "gloss": "数值在第一行,下一行只有单位 blocks.,可以合并。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Increases arrow knockback by ", "zh": "箭矢的击退距离增加 "},
+        {"color": "§a", "text": "%s", "zh": "%s 格。"}
+      ]
+    },
+    {
+      "id": "ench_punch_desc_2",
+      "context": "接上一行",
+      "raw": "§7blocks.",
+      "text": "blocks.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "ench_respiration",
+      "context": "原版附魔:水下呼吸",
+      "raw": "§9Respiration %s",
+      "text": "Respiration %s",
+      "placeholders": [{"token": "%s", "desc": "附魔等级(罗马数字)", "type": "tier", "example": "III"}],
+      "gloss": "原版附魔,官方中文译名「水下呼吸」。空岛给它挂了一条同名属性(见 ench_respiration_desc_1),属性名沿用同一个译名。",
+      "translate": true,
+      "zh": "水下呼吸 %s"
+    },
+    {
+      "id": "ench_respiration_desc_1",
+      "context": "水下呼吸的说明,英文因排版拆成三行,合并成一句",
+      "raw": "§7Grants §3+%s⚗ Respiration§7, which",
+      "text": "Grants +%s⚗ Respiration, which",
+      "placeholders": [{"token": "%s", "desc": "加成数值", "type": "number", "example": "45"}],
+      "gloss": "这一行有三段颜色,合并整句之后按段拆开写,免得译文被刷成第一段的灰色。⚗ 是水下呼吸属性的图标,原样保留。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Grants ", "zh": "提供 "},
+        {"color": "§3", "text": "+%s⚗ Respiration", "zh": "+%s⚗ 水下呼吸"},
+        {"color": "§7", "text": ", which", "zh": ",延长你能在水下停留的时间。"}
+      ]
+    },
+    {
+      "id": "ench_respiration_desc_2",
+      "context": "接上一行",
+      "raw": "§7increases the amount of time you",
+      "text": "increases the amount of time you",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "ench_respiration_desc_3",
+      "context": "接上一行",
+      "raw": "§7can stay under water.",
+      "text": "can stay under water.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "ench_sharpness",
+      "context": "原版附魔:锋利",
+      "raw": "§9Sharpness %s",
+      "text": "Sharpness %s",
+      "placeholders": [{"token": "%s", "desc": "附魔等级(罗马数字)", "type": "tier", "example": "VI"}],
+      "gloss": "原版附魔,官方中文译名「锋利」。",
+      "translate": true,
+      "zh": "锋利 %s"
+    },
+    {
+      "id": "ench_silk_touch",
+      "context": "原版附魔:精准采集",
+      "raw": "§9Silk Touch %s",
+      "text": "Silk Touch %s",
+      "placeholders": [{"token": "%s", "desc": "附魔等级(罗马数字)", "type": "tier", "example": "I"}],
+      "gloss": "原版附魔,官方中文译名「精准采集」,不是字面的「丝质触感」。",
+      "translate": true,
+      "zh": "精准采集 %s"
+    },
+    {
+      "id": "ench_silk_touch_desc_1",
+      "context": "精准采集的说明,英文拆成两行,合并成一句",
+      "raw": "§7Allows you to collect normally",
+      "text": "Allows you to collect normally",
+      "placeholders": [],
+      "gloss": "整句里没有数值,而且只有一种颜色,合并最省事。",
+      "translate": true,
+      "zh": "让你能采集到平时拿不到的方块掉落物。"
+    },
+    {
+      "id": "ench_silk_touch_desc_2",
+      "context": "接上一行",
+      "raw": "§7unobtainable block drops.",
+      "text": "unobtainable block drops.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "ench_smite",
+      "context": "原版附魔:亡灵杀手",
+      "raw": "§9Smite %s",
+      "text": "Smite %s",
+      "placeholders": [{"token": "%s", "desc": "附魔等级(罗马数字)", "type": "tier", "example": "VII"}],
+      "gloss": "原版附魔,官方中文译名「亡灵杀手」。",
+      "translate": true,
+      "zh": "亡灵杀手 %s"
+    },
+    {
+      "id": "ench_thorns",
+      "context": "原版附魔:荆棘",
+      "raw": "§9Thorns %s",
+      "text": "Thorns %s",
+      "placeholders": [{"token": "%s", "desc": "附魔等级(罗马数字)", "type": "tier", "example": "III"}],
+      "gloss": "原版附魔,官方中文译名「荆棘」。",
+      "translate": true,
+      "zh": "荆棘 %s"
+    },
+    {
+      "id": "ench_unbreaking",
+      "context": "原版附魔:耐久",
+      "raw": "§9Unbreaking %s",
+      "text": "Unbreaking %s",
+      "placeholders": [{"token": "%s", "desc": "附魔等级(罗马数字)", "type": "tier", "example": "III"}],
+      "gloss": "原版附魔,官方中文译名「耐久」。",
+      "translate": true,
+      "zh": "耐久 %s"
+    },
+    {
+      "id": "ench_ice_cold",
+      "context": "空岛专属附魔:抗寒。护甲用,每件每级提供 1 点抗寒属性",
+      "raw": "§9Ice Cold %s",
+      "text": "Ice Cold %s",
+      "placeholders": [{"token": "%s", "desc": "附魔等级(罗马数字),I 到 V", "type": "tier", "example": "V"}],
+      "gloss": "已查证(hypixelskyblock.minecraft.wiki/w/Ice_Cold):护甲附魔,每件护甲每一级提供 +1 抗寒(❄ Cold Resistance),来源是极冰矿井里的冰封尸体(Frozen Corpses),也能在集市买。译名按用户 2026-08-27 的决定取「抗寒」,和它提供的那条属性同名——附魔加的就是这条属性,同名反而好懂,而且 GLOSSARY.md 里 Cold Resistance 早就定的是「抗寒」。这是本文件里唯一一条空岛专属附魔。",
+      "translate": true,
+      "zh": "抗寒 %s"
+    },
+    {
+      "id": "ench_ice_cold_desc",
+      "context": "抗寒的说明,只有一行",
+      "raw": "§7Grants §b+%s❄ Cold Resistance§7.",
+      "text": "Grants +%s❄ Cold Resistance.",
+      "placeholders": [{"token": "%s", "desc": "提供的抗寒点数,等于附魔等级", "type": "number", "example": "5"}],
+      "gloss": "❄ 是抗寒属性的图标(服务器实际发的是私用区码点 U+E006,引擎会双向折算,见 text/Glyphs.java),译文里原样保留。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Grants ", "zh": "提供 "},
+        {"color": "§b", "text": "+%s❄ Cold Resistance", "zh": "+%s❄ 抗寒"},
+        {"color": "§7", "text": ".", "zh": "。"}
+      ]
+    }
+  ],
+  "todo": [
+    "还有几条原版附魔的说明没收:Fire Aspect(`Ignites your enemies for §a4s§7, dealing` / `§a9% §7of your damage per second.`)、Feather Falling(三行,数值分散在第二三行)、Thorns(采集里那一行被归并成了 `Grants a §a%1$s% §7chance %2$s %3$s §a%4$s`,四个占位符,拿不准哪个是什么)、以及 Bane of Arthropods / Impaling / Smite 那一族——它们的第一行都是 `Increases damage dealt to §<色><怪物类别图标>`,第二行才是类别名加百分比,而怪物类别名(Arthropod / Aquatic / Undead)本身还没定译名,那是 Combat 玩法的事。附魔**名**都已经翻好了,缺的只是说明段落。",
+    "附魔指南(Enchantment Guide,六页)里每个附魔的完整词条还没做。那个菜单里每一格是「附魔名 + 说明 + 可应用部位 + 获取途径 + 解锁条件」,但这一轮的采集把格子名归并成了 `%1$s X` 这种模板(同一位置见过 Absorb / Champion / Cultivating 三种取值),名字和说明的对应关系在采集文件里丢了,照采集搬会把说明配错附魔。要么下一轮实测一格一格对,要么从 NotEnoughUpdates-REPO 里按物品 ID 取(tools/neu_lore.py 已经能做)。",
+    "空岛专属附魔(Critical / Cubism / Ender Slayer / First Strike / Scavenger / Snipe / Telekinesis 等五十来条)按用户 2026-08-27 的决定暂不翻译,保持英文。同一行里混着原版和专属附魔时,翻了的显示中文、没翻的保持英文(见本文件 scope),这是有意的。"
+  ]
+}

@@ -1,0 +1,353 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Mithril_Gourmand (Game Message 段) + 玩家实测客户端日志(logs/,2026-08-19)",
+  "fetched_at": "2026-08-19",
+  "verified_ingame": true,
+  "gui_context": "“秘银老饕”(Mithril Gourmand)活动:去指定矿区挖美味秘银,交给矮人村庄的 Don Expresso。",
+  "source_note": "开始横幅里的产地名会被服务器**折行折断**(实测:第一行结尾是 “from the Cliffside”,第二行开头是 “Veins.”),所以这两行各自留了一个占位符去接那半个地名,地名保持英文——半个名字翻不了,也不能靠猜把它拼回去。",
+  "messages": [
+    {
+      "id": "gourmand_start_1",
+      "context": "开始横幅正文第一行:Don 想要哪个矿区的美味秘银(地名太长时服务器会把它折到下一行,后半截在 gourmand_start_2)",
+      "raw": "§fDon Expresso wants some §aTasty Mithril§f from the §b%s",
+      "text": "Don Expresso wants some Tasty Mithril from the %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "产地名,或者它的前半截(整行放不下时服务器会把地名折到下一行)",
+          "type": "location_name",
+          "example": "Cliffside"
+        }
+      ],
+      "gloss": "类型是 location_name 而不是 raw:捕到的是地名(或地名的前半截),按名字的形状规则限制比按短语宽松地放行整句话安全。2026-08-27 实测这条横幅确实被折断了——服务器发的是 '...from the Cliffside' / 'Veins. Bring 200...',地名 Cliffside Veins 横跨两条聊天消息。两条消息是分别到达的,没有哪一条记录能同时看到两半,所以这里**例外地**给两个半截各收了一条词条(_shared/Terms.json 的 Cliffside / Veins,都限定 location_name)。这不违反 matching_note 禁止的半名替换:那条禁的是「一半翻了一半没翻」拼出中英混排,而这里两半都有译名,读者跨行读到的是「产自崖壁」+「矿脉的美味秘银」,和英文原文跨行读成 Cliffside Veins 完全一样。地名没被折断时 %s 捕到的是完整的 'Cliffside Veins',词表里本来就有整条,照旧命中。",
+      "translate": true,
+      "zh": "Don Expresso 想要一些产自%s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Don Expresso wants some ",
+          "zh": "Don Expresso 想要一些产自"
+        },
+        {
+          "color": "§a",
+          "text": "Tasty Mithril",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§f",
+          "text": " from the ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ],
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "gourmand_start_2",
+      "context": "开始横幅正文第二行:接上一行被折断的地名后半截,说明要交多少、交到哪",
+      "raw": "§b%1$s§f. Bring §c%2$s§a Tasty Mithril§f to him at the §b%3$s§f!",
+      "text": "%1$s. Bring %2$s Tasty Mithril to him at the %3$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "上一行地名的后半截",
+          "type": "location_name",
+          "example": "Veins"
+        },
+        {
+          "token": "%2$s",
+          "desc": "需要上交的数量",
+          "type": "number",
+          "example": "200"
+        },
+        {
+          "token": "%3$s",
+          "desc": "上交地点",
+          "type": "location_name",
+          "example": "Dwarven Village"
+        }
+      ],
+      "gloss": "%1$s 是上一行(gourmand_start_1)那个被折断的地名的后半截,理由和词条来源都写在那一条的 gloss 里。类型同样从 raw 改成 location_name。",
+      "translate": true,
+      "zh": "%1$s的美味秘银,带 %2$s 份到%3$s交给他!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§f",
+          "text": ". Bring ",
+          "zh": "的美味秘银,带 "
+        },
+        {
+          "color": "§c",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§a",
+          "text": " Tasty Mithril",
+          "zh": " 份"
+        },
+        {
+          "color": "§f",
+          "text": " to him at the ",
+          "zh": "到"
+        },
+        {
+          "color": "§b",
+          "text": "%3$s",
+          "zh": "%3$s"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "交给他!"
+        }
+      ],
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "gourmand_start_bonus",
+      "context": "开始横幅正文:个人上交 10 份就有额外奖励",
+      "raw": "§fBring §c%s §fpersonally and you'll receive §6extra rewards§f.",
+      "text": "Bring %s personally and you'll receive extra rewards.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "个人奖励门槛数量",
+          "type": "number",
+          "example": "10"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "个人交满 %s 份还能拿到额外奖励。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Bring ",
+          "zh": "个人交满 "
+        },
+        {
+          "color": "§c",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§f",
+          "text": "personally and you'll receive ",
+          "zh": " 份还能拿到"
+        },
+        {
+          "color": "§6",
+          "text": "extra rewards",
+          "zh": "额外奖励"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "gourmand_don_leaving_minute",
+      "context": "Don 还有 1 分钟就离开的催促",
+      "text": "Don Expresso is leaving in 1 minute! Make sure to feed him everything you have before he leaves!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Don Expresso 还有 1 分钟就走了! 趁他还在,把手上的都喂给他吧!"
+    },
+    {
+      "id": "gourmand_don_leaving_seconds",
+      "context": "Don 还有 20 秒就离开的催促(带传送按钮)",
+      "raw": "§eDon Expresso is leaving in 20 seconds! Make sure to feed him everything you have before he leaves! §b§l[Teleport to Don Expresso]",
+      "text": "Don Expresso is leaving in 20 seconds! Make sure to feed him everything you have before he leaves! [Teleport to Don Expresso]",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Don Expresso 还有 20 秒就走了! 趁他还在,把手上的都喂给他吧! [传送到 Don Expresso]",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Don Expresso is leaving in 20 seconds! Make sure to feed him everything you have before he leaves! ",
+          "zh": "Don Expresso 还有 20 秒就走了! 趁他还在,把手上的都喂给他吧! "
+        },
+        {
+          "color": "§b",
+          "text": "[Teleport to Don Expresso]",
+          "zh": "[传送到 Don Expresso]"
+        }
+      ]
+    },
+    {
+      "id": "gourmand_fed",
+      "context": "上交美味秘银后的提示",
+      "text": "You fed %s Tasty Mithril to Don Expresso!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "本次上交的数量",
+          "type": "number",
+          "example": "124"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你喂给 Don Expresso %s 份美味秘银!"
+    },
+    {
+      "id": "gourmand_bonus",
+      "context": "个人上交达标时的奖励提示",
+      "text": "BONUS! You gave Don Expresso %1$s/%2$s Mithril!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "你上交的总数",
+          "type": "number",
+          "example": "202"
+        },
+        {
+          "token": "%2$s",
+          "desc": "个人奖励门槛",
+          "type": "number",
+          "example": "10"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "奖励! 你一共给 Don Expresso 送了 %1$s/%2$s 份秘银!",
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "gourmand_enough",
+      "context": "全服上交量达标,Don 吃饱了",
+      "text": "Don Expresso has eaten enough Mithril. Good job!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Don Expresso 吃饱了,干得漂亮!",
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "gourmand_start_line_1",
+      "context": "秘银老饕开始横幅第一行(实测的断行位置:地名在这一行末尾)",
+      "raw": "§fDon Expresso wants some §aTasty Mithril §ffrom the §b%s§f.",
+      "text": "Don Expresso wants some Tasty Mithril from the %s.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "产地名,译名走 _shared/Terms.json",
+          "type": "location_name",
+          "example": "Upper Mines"
+        }
+      ],
+      "gloss": "已有的 gourmand_start_1/2 是 wiki 上的断行位置(地名断到了第二行开头),实测服务器是在句号处断行,两种都留着,互不冲突。",
+      "translate": true,
+      "zh": "Don Expresso 想要一些产自%s的美味秘银。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Don Expresso wants some ",
+          "zh": "Don Expresso 想要一些产自"
+        },
+        {
+          "color": "§a",
+          "text": "Tasty Mithril ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§f",
+          "text": "from the ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "的美味秘银。"
+        }
+      ]
+    },
+    {
+      "id": "gourmand_start_line_2",
+      "context": "秘银老饕开始横幅第二行(实测断行)",
+      "raw": "§fBring §c%1$s §aTasty Mithril §fto him at the §b%2$s§f!",
+      "text": "Bring %1$s Tasty Mithril to him at the %2$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "需要的数量",
+          "type": "number",
+          "example": "200"
+        },
+        {
+          "token": "%2$s",
+          "desc": "交货地点,译名走 _shared/Terms.json",
+          "type": "location_name",
+          "example": "Dwarven Village"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "带 %1$s 份美味秘银到%2$s交给他!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Bring ",
+          "zh": "带 "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§a",
+          "text": "Tasty Mithril ",
+          "zh": "份美味秘银"
+        },
+        {
+          "color": "§f",
+          "text": "to him at the ",
+          "zh": "到"
+        },
+        {
+          "color": "§b",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "交给他!"
+        }
+      ]
+    },
+    {
+      "id": "gourmand_too_late",
+      "context": "秘银老饕活动的传送窗口已经过了",
+      "text": "It's too late to teleport to Garry!",
+      "placeholders": [],
+      "gloss": "Garry 是活动开始前守在传送点的 NPC 人名,保留英文。",
+      "translate": true,
+      "zh": "来不及传送到 Garry 那边了!"
+    }
+  ]
+}

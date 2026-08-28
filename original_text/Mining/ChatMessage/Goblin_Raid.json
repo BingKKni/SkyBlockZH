@@ -1,0 +1,213 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Goblin_Raid (Game Message 段) + 玩家实测客户端日志(logs/,2026-08-19)",
+  "fetched_at": "2026-08-19",
+  "verified_ingame": true,
+  "gui_context": "“哥布林突袭”(Goblin Raid)活动:全服在限定时间内清光哥布林。",
+  "messages": [
+    {
+      "id": "goblin_raid_start_1",
+      "context": "开始横幅正文:清光多少只才算赢",
+      "raw": "§fKill all §c%s §fgoblins to §awin§f!",
+      "text": "Kill all %s goblins to win!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "本次需要清理的哥布林总数",
+          "type": "number",
+          "example": "500"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "击杀全部 %s 只哥布林即可获胜!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Kill all ",
+          "zh": "击杀全部 "
+        },
+        {
+          "color": "§c",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§f",
+          "text": "goblins to ",
+          "zh": " 只哥布林即可"
+        },
+        {
+          "color": "§a",
+          "text": "win",
+          "zh": "获胜"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ],
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "goblin_raid_start_2",
+      "context": "开始横幅正文:个人击杀达标另有奖励",
+      "raw": "§fEarn §6%1$s §fby slaying at least §c%2$s §fyourself!",
+      "text": "Earn %1$s by slaying at least %2$s yourself!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "奖励说明词",
+          "type": "raw",
+          "example": "extra rewards"
+        },
+        {
+          "token": "%2$s",
+          "desc": "个人击杀门槛",
+          "type": "number",
+          "example": "25"
+        }
+      ],
+      "gloss": "英文把“额外奖励”放在句子中间(Earn extra rewards by ...),中文放在句尾,所以前两段标 omit,奖励说明词并进最后一段。",
+      "translate": true,
+      "zh": "参与并击杀至少 %2$s 只哥布林可以获得%1$s!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Earn ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§6",
+          "text": "%1$s ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§f",
+          "text": "by slaying at least ",
+          "zh": "参与并击杀至少 "
+        },
+        {
+          "color": "§c",
+          "text": "%2$s ",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§f",
+          "text": "yourself!",
+          "zh": " 只哥布林可以获得额外奖励!"
+        }
+      ],
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "goblin_raid_personal_progress",
+      "context": "个人击杀进度提示",
+      "text": "You killed %1$s/%2$s goblins required for the personal bonus!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "已击杀数",
+          "type": "number",
+          "example": "3"
+        },
+        {
+          "token": "%2$s",
+          "desc": "个人奖励门槛",
+          "type": "number",
+          "example": "25"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "个人奖励进度:你已击杀 %1$s/%2$s 只哥布林!",
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "goblin_raid_fail_1",
+      "context": "失败横幅第一行:全服没能在时限内清光",
+      "text": "OOF! Players weren't able to push back the goblin invasion",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "可惜! 大家没能在",
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "goblin_raid_fail_2",
+      "context": "失败横幅第二行(接上一行的时限)",
+      "text": "within %s minutes!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "活动时限(分钟)",
+          "type": "number",
+          "example": "5"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%s 分钟内挡下这波哥布林!",
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "goblin_raid_superprotectron_melee",
+      "context": "打哥布林时被附近的 Superprotectron 挡住",
+      "raw": "§eA nearby §bSuperprotectron§e is defending this goblin!",
+      "text": "A nearby Superprotectron is defending this goblin!",
+      "placeholders": [],
+      "gloss": "Superprotectron 是自造怪物名,按现行口径保留英文(见 TODO.md 怪物名待办)。",
+      "translate": true,
+      "zh": "附近有 Superprotectron 正在保护这只哥布林!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "A nearby ",
+          "zh": "附近有 "
+        },
+        {
+          "color": "§b",
+          "text": "Superprotectron",
+          "zh": "Superprotectron"
+        },
+        {
+          "color": "§e",
+          "text": " is defending this goblin!",
+          "zh": " 正在保护这只哥布林!"
+        }
+      ]
+    },
+    {
+      "id": "goblin_raid_superprotectron_ability",
+      "context": "技能伤害被附近的 Superprotectron 免疫",
+      "raw": "§eA nearby §bSuperprotectron§e defends this goblin against ability damage!",
+      "text": "A nearby Superprotectron defends this goblin against ability damage!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "附近的 Superprotectron 让这只哥布林免疫技能伤害!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "A nearby ",
+          "zh": "附近的 "
+        },
+        {
+          "color": "§b",
+          "text": "Superprotectron",
+          "zh": "Superprotectron"
+        },
+        {
+          "color": "§e",
+          "text": " defends this goblin against ability damage!",
+          "zh": " 让这只哥布林免疫技能伤害!"
+        }
+      ]
+    }
+  ],
+  "todo": [
+    "“抽奖箱”(Raffle)活动的开始/结束横幅逐字原文还没采到:wiki 的 Game Message 段是 {{More Info Needed}},实测日志里这次也没触发。计分板那几行(Pool / Tickets / 找票提示)已经在 ScoreBoard/Mining_Sidebar.json 里。"
+  ]
+}

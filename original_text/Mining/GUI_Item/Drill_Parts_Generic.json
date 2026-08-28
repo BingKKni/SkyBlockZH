@@ -1,0 +1,46 @@
+{
+  "source": "https://raw.githubusercontent.com/hannibal002/SkyHanni-REPO/main/constants/regexesModern.json",
+  "fetched_at": "2026-08-18",
+  "verified_ingame": false,
+  "source_note": "数据来自开源客户端 Mod SkyHanni 的 SkyHanni-REPO 仓库 constants/regexesModern.json (用于解析游戏内文本的正则表达式常量),已去除正则语法/颜色码还原成干净模板文本, 可信度高于 Wiki 摘要,但未逐条在游戏内截图核对,verified_ingame 仍为 false。",
+  "gui_context": "各类钻头燃料箱/升级模块配件的通用能力描述行模板(适用于多个具体配件物品,不为每个配件单独建条目)。",
+  "lines": [
+    {
+      "id": "drill_part_gemstone_powder_bonus",
+      "context": "配件能力描述第一行(和下一行是同一句话的换行,原始捕获里第二行未包含在正则中,需要核实完整句子)",
+      "text": "Grants +%s%% Gemstone Powder, and",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "宝石粉末加成百分比",
+          "type": "percentage",
+          "example": "20"
+        }
+      ],
+      "gloss": "原正则只捕获到这一行,句子在 'and' 后被截断,后续内容(大概率是另一个加成效果)需要游戏内核实补全。已尝试用 WebSearch/WebFetch 查证完整句子(搜了 Gemstone Gauntlet 等疑似相关配件页面),未能找到逐字完整原文,暂不翻译,保持整行英文,避免中英混排。",
+      "translate": true,
+      "zh": ""
+    },
+    {
+      "id": "drill_part_all_powder_bonus",
+      "context": "配件能力描述:全来源粉末加成",
+      "text": "Earn +%s%% Powder from all sources.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "加成百分比",
+          "type": "percentage",
+          "example": "10"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "从所有来源额外获得 +%s%% 粉末。",
+      "segments": [
+        {"color": "§7", "text": "Earn ", "zh": "从所有来源额外获得 "},
+        {"color": "§9", "text": "+%s%% Powder ", "zh": "+%s%% 粉末"},
+        {"color": "§7", "text": "from all sources.", "zh": "。"}
+      ]
+    }
+  ]
+}

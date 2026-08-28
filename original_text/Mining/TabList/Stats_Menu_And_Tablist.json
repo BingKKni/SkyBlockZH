@@ -1,0 +1,66 @@
+{
+  "source": "https://raw.githubusercontent.com/hannibal002/SkyHanni-REPO/main/constants/regexesModern.json",
+  "fetched_at": "2026-08-18",
+  "verified_ingame": false,
+  "source_note": "数据来自开源客户端 Mod SkyHanni 的 SkyHanni-REPO 仓库 constants/regexesModern.json (用于解析游戏内文本的正则表达式常量),已去除正则语法/颜色码还原成干净模板文本, 可信度高于 Wiki 摘要,但未逐条在游戏内截图核对,verified_ingame 仍为 false。",
+  "gui_context": "以下属性标签会在两种界面出现:/stats 菜单('标签 数值',无冒号)和 Tab 列表侧栏('标签: 数值',带冒号)。两种界面格式不同但标签词本身相同,翻译只需要翻一次标签词,代码侧正则分别处理两种格式。",
+  "labels": [
+    {
+      "id": "mining_stat_dwarven_metal_fortune",
+      "context": "属性标签:矮人金属时运(挖矿相关的额外金属类掉落加成)",
+      "text": "Dwarven Metal Fortune",
+      "placeholders": [],
+      "gloss": "同属 Fortune 词条家族,译名需要和 GLOSSARY.md 里的 Fortune 条目保持一致。",
+      "translate": true,
+      "zh": "矮人金属时运"
+    },
+    {
+      "id": "mining_stat_hearts",
+      "context": "属性标签:生命值(通用属性,非挖矿专属,但在挖矿相关界面同样出现)",
+      "text": "Hearts",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "生命值"
+    },
+    {
+      "id": "mining_stat_mining_fortune",
+      "context": "属性标签:挖掘时运",
+      "text": "Mining Fortune",
+      "placeholders": [],
+      "gloss": "见 GLOSSARY.md 的 Fortune 条目。",
+      "translate": true,
+      "zh": "挖掘时运"
+    },
+    {
+      "id": "mining_stat_mining_speed",
+      "context": "属性标签:挖掘速度",
+      "text": "Mining Speed",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "挖掘速度"
+    },
+    {
+      "id": "mining_stat_mining_spread",
+      "context": "属性标签:挖掘扩散(影响挖矿范围/连锁挖掘的属性)",
+      "text": "Mining Spread",
+      "placeholders": [],
+      "gloss": "已查证(hypixelskyblock.minecraft.wiki/w/Mining_Spread):挖到方块/矿石/矮人金属时,有一定概率连带挖开相邻的方块;数值≤100 时表示百分比概率,>100 时前几位表示保底连带挖开的方块数,其余表示额外概率。译名沿用“挖矿X”系列命名习惯(挖掘速度/挖掘时运/挖掘智慧),具体机制说明见本条 gloss,供后续写 Lore 详细说明时参考。",
+      "translate": true,
+      "zh": "挖掘扩散"
+    },
+    {
+      "id": "mining_stat_mining_wisdom",
+      "context": "属性标签:挖掘智慧(提升挖矿经验获取效率),Tab 列表格式带 ☯ 符号前缀",
+      "text": "Mining Wisdom",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "挖掘智慧"
+    }
+  ],
+  "todo": [
+    "本文件同时覆盖 /stats 菜单和 Tab 列表侧栏两种界面格式(见 gui_context 字段),/stats 菜单实际渲染面是容器 GUI(GUI_Item 范畴)还是独立面板尚未确认,后续接线时需要一并核实,可能需要拆成两条不同 Surface 的记录。"
+  ]
+}

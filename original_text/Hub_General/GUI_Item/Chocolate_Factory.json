@@ -1,0 +1,2010 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Chocolate_Factory + runtime capture (SkyZH) 2026-08-24",
+  "fetched_at": "2026-08-24",
+  "verified_ingame": true,
+  "gameplay": "Hub_General",
+  "surface": "GUI_Item",
+  "name": "Chocolate_Factory",
+  "gui_context": "常驻巧克力工厂小游戏：点击生产巧克力、雇用并晋升兔子员工、升级建筑、转生并查看里程碑和排名。",
+  "capture_coverage": "覆盖本次采集的全部 128 条稳定文本；采集器误合并的标签、职级和单位已拆为安全模板。",
+  "lines": [
+    {
+      "id": "factory_chocolate_amount",
+      "context": "工厂主按钮的巧克力总量，也覆盖 Lore 中同字面的巧克力花费",
+      "text": "%1$s Chocolate",
+      "placeholders": [
+        { "token": "%1$s", "desc": "账号巧克力数量或巧克力花费", "type": "number", "example": "2,185,179,050" }
+      ],
+      "gloss": "同一 GUI_Item 渲染面里该字面既有双色物品名也有单色 Lore；不能建立两个同模板异色记录，因此使用平面模板并保留服务器当前行的样式。",
+      "translate": true,
+      "zh": "%1$s 巧克力"
+    },
+    {
+      "id": "factory_chocolate_intro_1",
+      "context": "主巧克力按钮的趣味说明第一行；完整句跨三行",
+      "raw": "§6Chocolate§7, of course, is not a valid",
+      "text": "Chocolate, of course, is not a valid",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "巧克力当然算不上合格的营养来源，不过这并不妨碍它成为超棒的东西。",
+      "segments": [
+        { "color": "§6", "text": "Chocolate", "zh": "巧克力" },
+        { "color": "§7", "text": ", of course, is not a valid", "zh": "当然算不上合格的营养来源，不过这并不妨碍它成为超棒的东西。" }
+      ]
+    },
+    {
+      "id": "factory_chocolate_intro_2",
+      "context": "主巧克力按钮趣味说明第二行，接上一行",
+      "raw": "§7source of §anutrition§7. This, however,",
+      "text": "source of nutrition. This, however,",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "factory_chocolate_intro_3",
+      "context": "主巧克力按钮趣味说明第三行，接上两行",
+      "raw": "§7does not stop it from being §dawesome§7.",
+      "text": "does not stop it from being awesome.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "factory_chocolate_production",
+      "context": "巧克力产量小标题或物品名",
+      "raw": "§7Chocolate Production",
+      "text": "Chocolate Production",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "巧克力产量"
+    },
+    {
+      "id": "factory_production_per_second",
+      "context": "产量摘要中的每秒数值",
+      "raw": "§6%1$s §8per second",
+      "text": "%1$s per second",
+      "placeholders": [
+        { "token": "%1$s", "desc": "当前每秒巧克力数值", "type": "number", "example": "18,017.74" }
+      ],
+      "gloss": "Chocolate per second 统一译为“每秒巧克力”。",
+      "translate": true,
+      "zh": "每秒 %1$s",
+      "segments": [
+        { "color": "§6", "text": "%1$s ", "zh": "%1$s", "order": 1 },
+        { "color": "§8", "text": "per second", "zh": "每秒 ", "order": 0 }
+      ]
+    },
+    {
+      "id": "factory_all_time_chocolate",
+      "context": "账号历史累计巧克力",
+      "raw": "§7All-time Chocolate: §6%1$s",
+      "text": "All-time Chocolate: %1$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "账号历史累计巧克力", "type": "number", "example": "91,397,679,758" }
+      ],
+      "gloss": "从采集器过宽的标签占位符中拆出。",
+      "translate": true,
+      "zh": "历史累计巧克力: %1$s",
+      "segments": [
+        { "color": "§7", "text": "All-time Chocolate: ", "zh": "历史累计巧克力: " },
+        { "color": "§6", "text": "%1$s", "zh": "%1$s" }
+      ]
+    },
+    {
+      "id": "factory_max_chocolate",
+      "context": "当前工厂等级允许持有的巧克力上限",
+      "raw": "§7Max Chocolate: §6%1$s",
+      "text": "Max Chocolate: %1$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "巧克力容量上限", "type": "number", "example": "60B" }
+      ],
+      "gloss": "从采集器过宽的标签占位符中拆出。",
+      "translate": true,
+      "zh": "巧克力上限: %1$s",
+      "segments": [
+        { "color": "§7", "text": "Max Chocolate: ", "zh": "巧克力上限: " },
+        { "color": "§6", "text": "%1$s", "zh": "%1$s" }
+      ]
+    },
+    {
+      "id": "factory_click_meaning_of_life",
+      "context": "点击主巧克力按钮的玩笑提示",
+      "raw": "§eClick to uncover the meaning of life!",
+      "text": "Click to uncover the meaning of life!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击揭开生命的意义!"
+    },
+    {
+      "id": "factory_tier",
+      "context": "巧克力工厂等级物品名",
+      "raw": "§6Chocolate Factory %1$s",
+      "text": "Chocolate Factory %1$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "工厂罗马数字等级", "type": "tier", "example": "VI" }
+      ],
+      "gloss": "tier 类型只接受罗马数字，不会误吞 Milestones 或 Ranking。",
+      "translate": true,
+      "zh": "巧克力工厂 %1$s"
+    },
+    {
+      "id": "factory_milestones_name",
+      "context": "巧克力工厂里程碑入口物品名",
+      "raw": "§6Chocolate Factory Milestones",
+      "text": "Chocolate Factory Milestones",
+      "placeholders": [],
+      "gloss": "从采集器误并入工厂等级的位置拆出。",
+      "translate": true,
+      "zh": "巧克力工厂里程碑"
+    },
+    {
+      "id": "factory_ranking_name",
+      "context": "巧克力工厂排名入口物品名",
+      "raw": "§6Chocolate Factory Ranking",
+      "text": "Chocolate Factory Ranking",
+      "placeholders": [],
+      "gloss": "从采集器误并入工厂等级的位置拆出。",
+      "translate": true,
+      "zh": "巧克力工厂排名"
+    },
+    {
+      "id": "factory_production_multiplier",
+      "context": "工厂等级总览中的巧克力产量倍率",
+      "raw": "§7Chocolate Production Multiplier: §6%1$sx",
+      "text": "Chocolate Production Multiplier: %1$sx",
+      "placeholders": [
+        { "token": "%1$s", "desc": "巧克力产量倍率", "type": "number", "example": "2.5" }
+      ],
+      "gloss": "倍率随工厂等级变化。",
+      "translate": true,
+      "zh": "巧克力产量倍率: %1$s 倍",
+      "segments": [
+        { "color": "§7", "text": "Chocolate Production Multiplier: ", "zh": "巧克力产量倍率: " },
+        { "color": "§6", "text": "%1$sx", "zh": "%1$s 倍" }
+      ]
+    },
+    {
+      "id": "factory_max_rabbit_rarity_common",
+      "context": "工厂等级允许出现的最高兔子稀有度为普通",
+      "raw": "§7Max Rabbit Rarity: §f§lCOMMON",
+      "text": "Max Rabbit Rarity: COMMON",
+      "placeholders": [],
+      "gloss": "稀有度占位符不会查询共享词表，因此按有限枚举建立安全模板。",
+      "rarity_ref": "_shared/Rarity.json#rarity_common",
+      "translate": true,
+      "zh": "兔子最高稀有度: 普通",
+      "segments": [
+        { "color": "§7", "text": "Max Rabbit Rarity: ", "zh": "兔子最高稀有度: " },
+        { "color": "§f§l", "text": "COMMON", "zh": "普通" }
+      ]
+    },
+    {
+      "id": "factory_max_rabbit_rarity_uncommon",
+      "context": "工厂等级允许出现的最高兔子稀有度为罕见",
+      "raw": "§7Max Rabbit Rarity: §a§lUNCOMMON",
+      "text": "Max Rabbit Rarity: UNCOMMON",
+      "placeholders": [],
+      "gloss": "",
+      "rarity_ref": "_shared/Rarity.json#rarity_uncommon",
+      "translate": true,
+      "zh": "兔子最高稀有度: 罕见",
+      "segments": [
+        { "color": "§7", "text": "Max Rabbit Rarity: ", "zh": "兔子最高稀有度: " },
+        { "color": "§a§l", "text": "UNCOMMON", "zh": "罕见" }
+      ]
+    },
+    {
+      "id": "factory_max_rabbit_rarity_rare",
+      "context": "工厂等级允许出现的最高兔子稀有度为稀有",
+      "raw": "§7Max Rabbit Rarity: §9§lRARE",
+      "text": "Max Rabbit Rarity: RARE",
+      "placeholders": [],
+      "gloss": "",
+      "rarity_ref": "_shared/Rarity.json#rarity_rare",
+      "translate": true,
+      "zh": "兔子最高稀有度: 稀有",
+      "segments": [
+        { "color": "§7", "text": "Max Rabbit Rarity: ", "zh": "兔子最高稀有度: " },
+        { "color": "§9§l", "text": "RARE", "zh": "稀有" }
+      ]
+    },
+    {
+      "id": "factory_max_rabbit_rarity_epic",
+      "context": "工厂等级允许出现的最高兔子稀有度为史诗",
+      "raw": "§7Max Rabbit Rarity: §5§lEPIC",
+      "text": "Max Rabbit Rarity: EPIC",
+      "placeholders": [],
+      "gloss": "",
+      "rarity_ref": "_shared/Rarity.json#rarity_epic",
+      "translate": true,
+      "zh": "兔子最高稀有度: 史诗",
+      "segments": [
+        { "color": "§7", "text": "Max Rabbit Rarity: ", "zh": "兔子最高稀有度: " },
+        { "color": "§5§l", "text": "EPIC", "zh": "史诗" }
+      ]
+    },
+    {
+      "id": "factory_max_rabbit_rarity_legendary",
+      "context": "工厂等级允许出现的最高兔子稀有度为传说",
+      "raw": "§7Max Rabbit Rarity: §6§lLEGENDARY",
+      "text": "Max Rabbit Rarity: LEGENDARY",
+      "placeholders": [],
+      "gloss": "",
+      "rarity_ref": "_shared/Rarity.json#rarity_legendary",
+      "translate": true,
+      "zh": "兔子最高稀有度: 传说",
+      "segments": [
+        { "color": "§7", "text": "Max Rabbit Rarity: ", "zh": "兔子最高稀有度: " },
+        { "color": "§6§l", "text": "LEGENDARY", "zh": "传说" }
+      ]
+    },
+    {
+      "id": "factory_max_rabbit_rarity_mythic",
+      "context": "工厂等级允许出现的最高兔子稀有度为神话",
+      "raw": "§7Max Rabbit Rarity: §d§lMYTHIC",
+      "text": "Max Rabbit Rarity: MYTHIC",
+      "placeholders": [],
+      "gloss": "",
+      "rarity_ref": "_shared/Rarity.json#rarity_mythic",
+      "translate": true,
+      "zh": "兔子最高稀有度: 神话",
+      "segments": [
+        { "color": "§7", "text": "Max Rabbit Rarity: ", "zh": "兔子最高稀有度: " },
+        { "color": "§d§l", "text": "MYTHIC", "zh": "神话" }
+      ]
+    },
+    {
+      "id": "factory_max_rabbit_rarity_divine",
+      "context": "工厂等级允许出现的最高兔子稀有度为神圣",
+      "raw": "§7Max Rabbit Rarity: §b§lDIVINE",
+      "text": "Max Rabbit Rarity: DIVINE",
+      "placeholders": [],
+      "gloss": "本次实测采集到的值。",
+      "rarity_ref": "_shared/Rarity.json#rarity_divine",
+      "translate": true,
+      "zh": "兔子最高稀有度: 神圣",
+      "segments": [
+        { "color": "§7", "text": "Max Rabbit Rarity: ", "zh": "兔子最高稀有度: " },
+        { "color": "§b§l", "text": "DIVINE", "zh": "神圣" }
+      ]
+    },
+    {
+      "id": "factory_max_employee_board_member",
+      "context": "工厂等级允许员工达到的最高职级",
+      "raw": "§7Max Employee: [%1$s] §bBoard Member",
+      "text": "Max Employee: [%1$s] Board Member",
+      "placeholders": [
+        { "token": "%1$s", "desc": "最高员工等级", "type": "number", "example": "220" }
+      ],
+      "gloss": "Board Member 是员工职级。",
+      "translate": true,
+      "zh": "员工最高职级: [%1$s] 董事会成员",
+      "segments": [
+        { "color": "§7", "text": "Max Employee: [%1$s] ", "zh": "员工最高职级: [%1$s] " },
+        { "color": "§b", "text": "Board Member", "zh": "董事会成员" }
+      ]
+    },
+    {
+      "id": "factory_max_hitman_slots",
+      "context": "工厂等级允许购买的兔子猎手槽位上限",
+      "raw": "§7Max §cRabbit Hitman §7Slots: §6%1$s",
+      "text": "Max Rabbit Hitman Slots: %1$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "兔子猎手槽位上限", "type": "number", "example": "28" }
+      ],
+      "gloss": "Rabbit Hitman 是代找错过彩蛋的兔子猎手。",
+      "translate": true,
+      "zh": "兔子猎手槽位上限: %1$s",
+      "segments": [
+        { "color": "§7", "text": "Max ", "zh": "" , "omit": true },
+        { "color": "§c", "text": "Rabbit Hitman ", "zh": "兔子猎手" },
+        { "color": "§7", "text": "Slots: ", "zh": "槽位上限: " },
+        { "color": "§6", "text": "%1$s", "zh": "%1$s" }
+      ]
+    },
+    {
+      "id": "factory_chocolate_this_prestige",
+      "context": "本次转生周期内生产的巧克力",
+      "raw": "§7Chocolate this Prestige: §6%1$s",
+      "text": "Chocolate this Prestige: %1$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "本次转生累计巧克力", "type": "number", "example": "22,624,736,995" }
+      ],
+      "gloss": "Prestige 结合重置进度换取永久增益的玩法语境译为“转生”。",
+      "translate": true,
+      "zh": "本次转生巧克力: %1$s",
+      "segments": [
+        { "color": "§7", "text": "Chocolate this Prestige: ", "zh": "本次转生巧克力: " },
+        { "color": "§6", "text": "%1$s", "zh": "%1$s" }
+      ]
+    },
+    {
+      "id": "factory_max_prestige_reached",
+      "context": "已达到最高转生等级的提示",
+      "raw": "§aYou have reached max prestige!",
+      "text": "You have reached max prestige!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你已达到最高转生级别!"
+    },
+    {
+      "id": "factory_employee_board_member_name",
+      "context": "董事会成员职级兔子员工的物品名",
+      "raw": "§bRabbit %1$s§8 - §7[%2$s] §bBoard Member",
+      "text": "Rabbit %1$s - [%2$s] Board Member",
+      "placeholders": [
+        { "token": "%1$s", "desc": "兔子员工的亲属称谓(Bro/Sis/Uncle…)，不是人名；译名走 _shared/Terms.json", "type": "mob_name", "example": "Bro" },
+        { "token": "%2$s", "desc": "员工等级", "type": "number", "example": "220" }
+      ],
+      "gloss": "兔子名和等级均为账号数据；职级固定翻译。",
+      "translate": true,
+      "zh": "兔子%1$s - [%2$s] 董事会成员",
+      "segments": [
+        { "color": "§b", "text": "Rabbit %1$s", "zh": "兔子%1$s" },
+        { "color": "§8", "text": " - ", "zh": " - " },
+        { "color": "§7", "text": "[%2$s] ", "zh": "[%2$s] " },
+        { "color": "§b", "text": "Board Member", "zh": "董事会成员" }
+      ]
+    },
+    {
+      "id": "factory_employee_ambition_tagline",
+      "context": "Rabbit Bro 的斜体趣味短句",
+      "raw": "§8§oAmbition on two feet!",
+      "text": "Ambition on two feet!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "行走的野心!"
+    },
+    {
+      "id": "factory_board_member_desc_1",
+      "context": "董事会成员员工说明第一行",
+      "raw": "§bRabbit %1$s §7is a §bBoard Member§7. They",
+      "text": "Rabbit %1$s is a Board Member. They",
+      "placeholders": [
+        { "token": "%1$s", "desc": "兔子员工的亲属称谓(Bro/Sis/Uncle…)，不是人名；译名走 _shared/Terms.json", "type": "mob_name", "example": "Bro" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "兔子%1$s是一名董事会成员。它",
+      "segments": [
+        { "color": "§b", "text": "Rabbit %1$s ", "zh": "兔子%1$s" },
+        { "color": "§7", "text": "is a ", "zh": "是一名" },
+        { "color": "§b", "text": "Board Member", "zh": "董事会成员" },
+        { "color": "§7", "text": ". They", "zh": "。它" }
+      ]
+    },
+    {
+      "id": "factory_board_member_desc_2",
+      "context": "董事会成员员工说明第二行",
+      "raw": "§7are on the Board of Rabbits and",
+      "text": "are on the Board of Rabbits and",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "位列兔子董事会，并且"
+    },
+    {
+      "id": "factory_employee_produces_per_second",
+      "context": "兔子员工说明中的每秒巧克力产量",
+      "raw": "§7produce §6+%1$s Chocolate §7per second!",
+      "text": "produce +%1$s Chocolate per second!",
+      "placeholders": [
+        { "token": "%1$s", "desc": "员工每秒巧克力产量", "type": "number", "example": "220" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "每秒产出 +%1$s 巧克力!",
+      "segments": [
+        { "color": "§7", "text": "produce ", "zh": "每秒产出 " },
+        { "color": "§6", "text": "+%1$s Chocolate ", "zh": "+%1$s 巧克力" },
+        { "color": "§7", "text": "per second!", "zh": "!" }
+      ]
+    },
+    {
+      "id": "factory_board_member_maxed_1",
+      "context": "董事会成员达到最高职级的说明第一行；完整句跨两行",
+      "raw": "§bRabbit %1$s §ahas climbed as far as the",
+      "text": "Rabbit %1$s has climbed as far as the",
+      "placeholders": [
+        { "token": "%1$s", "desc": "兔子员工的亲属称谓(Bro/Sis/Uncle…)，不是人名；译名走 _shared/Terms.json", "type": "mob_name", "example": "Bro" }
+      ],
+      "gloss": "corporate ladder 指公司职级阶梯。",
+      "translate": true,
+      "zh": "兔子%1$s已达到员工最高职级!",
+      "segments": [
+        { "color": "§b", "text": "Rabbit %1$s ", "zh": "兔子%1$s" },
+        { "color": "§a", "text": "has climbed as far as the", "zh": "已达到员工最高职级!" }
+      ]
+    },
+    {
+      "id": "factory_board_member_maxed_2",
+      "context": "董事会成员最高职级说明第二行，接上一行",
+      "raw": "§acorporate ladder will allow!",
+      "text": "corporate ladder will allow!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "factory_employee_executive_name",
+      "context": "高管职级兔子员工的物品名",
+      "raw": "§dRabbit %1$s§8 - §7[%2$s] §dExecutive",
+      "text": "Rabbit %1$s - [%2$s] Executive",
+      "placeholders": [
+        { "token": "%1$s", "desc": "兔子员工的亲属称谓(Bro/Sis/Uncle…)，不是人名；译名走 _shared/Terms.json", "type": "mob_name", "example": "Cousin" },
+        { "token": "%2$s", "desc": "员工等级", "type": "number", "example": "204" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "兔子%1$s - [%2$s] 高管",
+      "segments": [
+        { "color": "§d", "text": "Rabbit %1$s", "zh": "兔子%1$s" },
+        { "color": "§8", "text": " - ", "zh": " - " },
+        { "color": "§7", "text": "[%2$s] ", "zh": "[%2$s] " },
+        { "color": "§d", "text": "Executive", "zh": "高管" }
+      ]
+    },
+    {
+      "id": "factory_employee_laid_back_tagline",
+      "context": "Rabbit Cousin 的斜体趣味短句",
+      "raw": "§8§oLaid-back legend!",
+      "text": "Laid-back legend!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "悠闲的传奇!"
+    },
+    {
+      "id": "factory_executive_desc_1",
+      "context": "高管员工说明第一行；第二行是英文折行尾部",
+      "raw": "§dRabbit %1$s §7is an §dExecutive§7. They",
+      "text": "Rabbit %1$s is an Executive. They",
+      "placeholders": [
+        { "token": "%1$s", "desc": "兔子员工的亲属称谓(Bro/Sis/Uncle…)，不是人名；译名走 _shared/Terms.json", "type": "mob_name", "example": "Cousin" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "兔子%1$s是一名高管，是个大人物，并且",
+      "segments": [
+        { "color": "§d", "text": "Rabbit %1$s ", "zh": "兔子%1$s" },
+        { "color": "§7", "text": "is an ", "zh": "是一名" },
+        { "color": "§d", "text": "Executive", "zh": "高管" },
+        { "color": "§7", "text": ". They", "zh": "，是个大人物，并且" }
+      ]
+    },
+    {
+      "id": "factory_director_desc_short_1",
+      "context": "总监员工短版说明第一行；名称来自采集器合并模板的另一种职级",
+      "raw": "§6Rabbit %1$s §7is a §6Director§7. They",
+      "text": "Rabbit %1$s is a Director. They",
+      "placeholders": [
+        { "token": "%1$s", "desc": "兔子员工的亲属称谓(Bro/Sis/Uncle…)，不是人名；译名走 _shared/Terms.json", "type": "mob_name", "example": "Granny" }
+      ],
+      "gloss": "Director 按共享职级词表统一译为“总监”。",
+      "translate": true,
+      "zh": "兔子%1$s是一名总监，负责管理所有兔子:",
+      "segments": [
+        { "color": "§6", "text": "Rabbit %1$s ", "zh": "兔子%1$s" },
+        { "color": "§7", "text": "is a ", "zh": "是一名" },
+        { "color": "§6", "text": "Director", "zh": "总监" },
+        { "color": "§7", "text": ". They", "zh": "，负责管理所有兔子:" }
+      ]
+    },
+    {
+      "id": "factory_executive_desc_2",
+      "context": "高管员工说明第二行，接高管说明第一行",
+      "raw": "§7are kind of a big deal, and produce",
+      "text": "are kind of a big deal, and produce",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "factory_employee_bonus_per_second",
+      "context": "员工说明末行的每秒巧克力加成",
+      "raw": "§6+%1$s Chocolate §7per second!",
+      "text": "+%1$s Chocolate per second!",
+      "placeholders": [
+        { "token": "%1$s", "desc": "员工每秒巧克力加成", "type": "number", "example": "408" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "每秒产出 +%1$s 巧克力!",
+      "segments": [
+        { "color": "§6", "text": "+%1$s Chocolate ", "zh": "每秒产出 +%1$s 巧克力" },
+        { "color": "§7", "text": "per second!", "zh": "!" }
+      ]
+    },
+    {
+      "id": "factory_promote_to_executive",
+      "context": "晋升员工为高管的预览行",
+      "raw": "§a§lPROMOTE §8➜ §7[%1$s] §dExecutive",
+      "text": "PROMOTE ➜ [%1$s] Executive",
+      "placeholders": [
+        { "token": "%1$s", "desc": "晋升后的员工等级", "type": "number", "example": "205" }
+      ],
+      "gloss": "职级固定在模板中翻译，避免 raw 占位符吞掉任意短语。",
+      "translate": true,
+      "zh": "晋升 ➜ [%1$s] 高管",
+      "segments": [
+        { "color": "§a§l", "text": "PROMOTE ", "zh": "晋升 " },
+        { "color": "§8", "text": "➜ ", "zh": "➜ " },
+        { "color": "§7", "text": "[%1$s] ", "zh": "[%1$s] " },
+        { "color": "§d", "text": "Executive", "zh": "高管" }
+      ]
+    },
+    {
+      "id": "factory_promote_to_director",
+      "context": "晋升员工为总监的预览行",
+      "raw": "§a§lPROMOTE §8➜ §7[%1$s] §6Director",
+      "text": "PROMOTE ➜ [%1$s] Director",
+      "placeholders": [
+        { "token": "%1$s", "desc": "晋升后的员工等级", "type": "number", "example": "189" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "晋升 ➜ [%1$s] 总监",
+      "segments": [
+        { "color": "§a§l", "text": "PROMOTE ", "zh": "晋升 " },
+        { "color": "§8", "text": "➜ ", "zh": "➜ " },
+        { "color": "§7", "text": "[%1$s] ", "zh": "[%1$s] " },
+        { "color": "§6", "text": "Director", "zh": "总监" }
+      ]
+    },
+    {
+      "id": "factory_promote_to_manager",
+      "context": "晋升员工为经理的预览行",
+      "raw": "§a§lPROMOTE §8➜ §7[%1$s] §5Manager",
+      "text": "PROMOTE ➜ [%1$s] Manager",
+      "placeholders": [
+        { "token": "%1$s", "desc": "晋升后的员工等级", "type": "number", "example": "174" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "晋升 ➜ [%1$s] 经理",
+      "segments": [
+        { "color": "§a§l", "text": "PROMOTE ", "zh": "晋升 " },
+        { "color": "§8", "text": "➜ ", "zh": "➜ " },
+        { "color": "§7", "text": "[%1$s] ", "zh": "[%1$s] " },
+        { "color": "§5", "text": "Manager", "zh": "经理" }
+      ]
+    },
+    {
+      "id": "factory_upgrade_gain_per_second",
+      "context": "晋升或建筑升级预览中的每秒巧克力增量",
+      "raw": "  §6+%1$s Chocolate §8per second",
+      "text": "  +%1$s Chocolate per second",
+      "placeholders": [
+        { "token": "%1$s", "desc": "每秒巧克力增量或倍率，单位由服务器值携带", "type": "number", "example": "410" }
+      ],
+      "gloss": "按单位拆开采集器的 second/click raw 槽。",
+      "translate": true,
+      "zh": "  每秒 +%1$s 巧克力",
+      "segments": [
+        { "color": "", "text": "  ", "zh": "  " },
+        { "color": "§6", "text": "+%1$s Chocolate ", "zh": "每秒 +%1$s 巧克力" },
+        { "color": "§8", "text": "per second", "zh": "" , "omit": true }
+      ]
+    },
+    {
+      "id": "factory_upgrade_gain_per_click",
+      "context": "晋升或建筑升级预览中的每次点击巧克力增量",
+      "raw": "  §6+%1$s Chocolate §8per click",
+      "text": "  +%1$s Chocolate per click",
+      "placeholders": [
+        { "token": "%1$s", "desc": "每次点击巧克力增量或倍率，单位由服务器值携带", "type": "number", "example": "5" }
+      ],
+      "gloss": "按单位拆开采集器的 second/click raw 槽。",
+      "translate": true,
+      "zh": "  每次点击 +%1$s 巧克力",
+      "segments": [
+        { "color": "", "text": "  ", "zh": "  " },
+        { "color": "§6", "text": "+%1$s Chocolate ", "zh": "每次点击 +%1$s 巧克力" },
+        { "color": "§8", "text": "per click", "zh": "" , "omit": true }
+      ]
+    },
+    {
+      "id": "factory_click_to_promote",
+      "context": "员工晋升按钮的普通点击提示",
+      "raw": "§eClick to promote!",
+      "text": "Click to promote!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击晋升!"
+    },
+    {
+      "id": "factory_shift_click_promote_10",
+      "context": "员工一次晋升十级的操作提示",
+      "raw": "§eShift-Click to promote 10 times!",
+      "text": "Shift-Click to promote 10 times!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Shift + 点击晋升 10 次!"
+    },
+    {
+      "id": "factory_employee_director_name",
+      "context": "总监职级兔子员工的物品名",
+      "raw": "§6Rabbit %1$s§8 - §7[%2$s] §6Director",
+      "text": "Rabbit %1$s - [%2$s] Director",
+      "placeholders": [
+        { "token": "%1$s", "desc": "兔子员工的亲属称谓(Bro/Sis/Uncle…)，不是人名；译名走 _shared/Terms.json", "type": "mob_name", "example": "Sis" },
+        { "token": "%2$s", "desc": "员工等级", "type": "number", "example": "188" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "兔子%1$s - [%2$s] 总监",
+      "segments": [
+        { "color": "§6", "text": "Rabbit %1$s", "zh": "兔子%1$s" },
+        { "color": "§8", "text": " - ", "zh": " - " },
+        { "color": "§7", "text": "[%2$s] ", "zh": "[%2$s] " },
+        { "color": "§6", "text": "Director", "zh": "总监" }
+      ]
+    },
+    {
+      "id": "factory_employee_rebel_tagline",
+      "context": "Rabbit Sis 的斜体趣味短句",
+      "raw": "§8§oRebel with a cause!",
+      "text": "Rebel with a cause!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "有理想的叛逆者!"
+    },
+    {
+      "id": "factory_director_desc_1",
+      "context": "总监员工说明第一行",
+      "raw": "§6Rabbit %1$s §7is a §6Director§7. They are",
+      "text": "Rabbit %1$s is a Director. They are",
+      "placeholders": [
+        { "token": "%1$s", "desc": "兔子员工的亲属称谓(Bro/Sis/Uncle…)，不是人名；译名走 _shared/Terms.json", "type": "mob_name", "example": "Sis" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "兔子%1$s是一名总监，负责管理所有兔子:",
+      "segments": [
+        { "color": "§6", "text": "Rabbit %1$s ", "zh": "兔子%1$s" },
+        { "color": "§7", "text": "is a ", "zh": "是一名" },
+        { "color": "§6", "text": "Director", "zh": "总监" },
+        { "color": "§7", "text": ". They are", "zh": "，负责管理所有兔子:" }
+      ]
+    },
+    {
+      "id": "factory_manager_desc_1",
+      "context": "经理员工说明第一行；采集器曾把末尾 are/now 合并为 raw 槽",
+      "raw": "§5Rabbit %1$s §7is a §5Manager§7. They now",
+      "text": "Rabbit %1$s is a Manager. They now",
+      "placeholders": [
+        { "token": "%1$s", "desc": "兔子员工的亲属称谓(Bro/Sis/Uncle…)，不是人名；译名走 _shared/Terms.json", "type": "mob_name", "example": "Uncle" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "兔子%1$s是一名经理，管理着一支兔子团队:",
+      "segments": [
+        { "color": "§5", "text": "Rabbit %1$s ", "zh": "兔子%1$s" },
+        { "color": "§7", "text": "is a ", "zh": "是一名" },
+        { "color": "§5", "text": "Manager", "zh": "经理" },
+        { "color": "§7", "text": ". They now", "zh": "，管理着一支兔子团队:" }
+      ]
+    },
+    {
+      "id": "factory_director_desc_2",
+      "context": "总监员工长版说明第二行，含上一行已翻译的重复语义",
+      "raw": "§7now in charge of all the rabbits that",
+      "text": "now in charge of all the rabbits that",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "factory_employee_cfo_tagline",
+      "context": "Rabbit Daddy 的斜体趣味短句",
+      "raw": "§8§oCFO with nerves of steel!",
+      "text": "CFO with nerves of steel!",
+      "placeholders": [],
+      "gloss": "CFO 是首席财务官。",
+      "translate": true,
+      "zh": "有钢铁意志的首席财务官!"
+    },
+    {
+      "id": "factory_employee_storyteller_tagline",
+      "context": "Rabbit Granny 的斜体趣味短句",
+      "raw": "§8§oStoryteller supreme!",
+      "text": "Storyteller supreme!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "故事大王!"
+    },
+    {
+      "id": "factory_director_desc_short_2",
+      "context": "总监员工短版说明第二行，含第一行已翻译的重复语义",
+      "raw": "§7are now in charge of all the rabbits",
+      "text": "are now in charge of all the rabbits",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "factory_director_team_production",
+      "context": "总监所管理兔子团队的每秒巧克力产量行",
+      "raw": "§7that produce §6+%1$s Chocolate §7per",
+      "text": "that produce +%1$s Chocolate per",
+      "placeholders": [
+        { "token": "%1$s", "desc": "团队每秒巧克力产量", "type": "number", "example": "885" }
+      ],
+      "gloss": "末尾 second 在下一行，译文已在本行补全。",
+      "translate": true,
+      "zh": "这些兔子每秒产出 +%1$s 巧克力!",
+      "segments": [
+        { "color": "§7", "text": "that produce ", "zh": "这些兔子每秒产出 " },
+        { "color": "§6", "text": "+%1$s Chocolate ", "zh": "+%1$s 巧克力" },
+        { "color": "§7", "text": "per", "zh": "!" }
+      ]
+    },
+    {
+      "id": "factory_production_second_continuation",
+      "context": "员工团队产量说明的折行尾部",
+      "raw": "§7second!",
+      "text": "second!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "factory_employee_manager_name",
+      "context": "经理职级兔子员工的物品名",
+      "raw": "§5Rabbit %1$s§8 - §7[%2$s] §5Manager",
+      "text": "Rabbit %1$s - [%2$s] Manager",
+      "placeholders": [
+        { "token": "%1$s", "desc": "兔子员工的亲属称谓(Bro/Sis/Uncle…)，不是人名；译名走 _shared/Terms.json", "type": "mob_name", "example": "Uncle" },
+        { "token": "%2$s", "desc": "员工等级", "type": "number", "example": "173" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "兔子%1$s - [%2$s] 经理",
+      "segments": [
+        { "color": "§5", "text": "Rabbit %1$s", "zh": "兔子%1$s" },
+        { "color": "§8", "text": " - ", "zh": " - " },
+        { "color": "§7", "text": "[%2$s] ", "zh": "[%2$s] " },
+        { "color": "§5", "text": "Manager", "zh": "经理" }
+      ]
+    },
+    {
+      "id": "factory_employee_highlight_reel_tagline",
+      "context": "Rabbit Uncle 的斜体趣味短句",
+      "raw": "§8§oStuck in a highlight reel!",
+      "text": "Stuck in a highlight reel!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "困在高光集锦里了!"
+    },
+    {
+      "id": "factory_manager_desc_2",
+      "context": "经理员工说明第二行，含第一行已翻译的重复语义",
+      "raw": "§7manage a team of rabbits that",
+      "text": "manage a team of rabbits that",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "factory_team_production",
+      "context": "经理所管理兔子团队的每秒巧克力产量行",
+      "raw": "§7produce §6+%1$s Chocolate §7per",
+      "text": "produce +%1$s Chocolate per",
+      "placeholders": [
+        { "token": "%1$s", "desc": "团队每秒巧克力产量", "type": "number", "example": "1,038" }
+      ],
+      "gloss": "末尾 second 在下一行，译文已在本行补全。",
+      "translate": true,
+      "zh": "每秒产出 +%1$s 巧克力!",
+      "segments": [
+        { "color": "§7", "text": "produce ", "zh": "每秒产出 " },
+        { "color": "§6", "text": "+%1$s Chocolate ", "zh": "+%1$s 巧克力" },
+        { "color": "§7", "text": "per", "zh": "!" }
+      ]
+    },
+    {
+      "id": "factory_employee_making_tagline",
+      "context": "Rabbit Dog 的斜体趣味短句",
+      "raw": "§8§oMaking chocolate, not eating it!",
+      "text": "Making chocolate, not eating it!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "做巧克力，不是吃巧克力!"
+    },
+    {
+      "id": "factory_rabbit_barn_tier",
+      "context": "兔舍建筑物品名",
+      "raw": "§aRabbit Barn %1$s",
+      "text": "Rabbit Barn %1$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "兔舍罗马数字等级", "type": "tier", "example": "XCI" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "兔舍 %1$s"
+    },
+    {
+      "id": "factory_rabbit_barn_desc_1",
+      "context": "兔舍容量说明第一行；完整句跨两行",
+      "raw": "§7Your §aRabbit Barn §7can only hold so",
+      "text": "Your Rabbit Barn can only hold so",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的兔舍只能容纳一定数量的巧克力兔子。",
+      "segments": [
+        { "color": "§7", "text": "Your ", "zh": "你的" },
+        { "color": "§a", "text": "Rabbit Barn ", "zh": "兔舍" },
+        { "color": "§7", "text": "can only hold so", "zh": "只能容纳一定数量的巧克力兔子。" }
+      ]
+    },
+    {
+      "id": "factory_rabbit_barn_desc_2",
+      "context": "兔舍容量说明第二行，接上一行",
+      "raw": "§7many §aChocolate Rabbits§7.",
+      "text": "many Chocolate Rabbits.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "factory_rabbit_barn_warning_1",
+      "context": "兔舍超容量警告第一行；完整句跨三行",
+      "raw": "§7If you try collecting more unique",
+      "text": "If you try collecting more unique",
+      "placeholders": [],
+      "gloss": "crushed 是工厂界面的黑色幽默。",
+      "translate": true,
+      "zh": "如果你收集的独特兔子超过兔舍容量，多出来的兔子会被压扁。"
+    },
+    {
+      "id": "factory_rabbit_barn_warning_2",
+      "context": "兔舍超容量警告第二行，接上一行",
+      "raw": "§7rabbits than your barn can hold,",
+      "text": "rabbits than your barn can hold,",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "factory_rabbit_barn_warning_3",
+      "context": "兔舍超容量警告第三行，接上两行",
+      "raw": "§7they will be §ccrushed§7.",
+      "text": "they will be crushed.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "factory_rabbit_barn_capacity",
+      "context": "当前兔子收藏数和兔舍容量",
+      "raw": "§7Your Barn: §a%1$s§7/§a%2$s Rabbits",
+      "text": "Your Barn: %1$s/%2$s Rabbits",
+      "placeholders": [
+        { "token": "%1$s", "desc": "当前独特兔子数", "type": "number", "example": "144" },
+        { "token": "%2$s", "desc": "兔舍容量", "type": "number", "example": "200" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的兔舍: %1$s/%2$s 只兔子",
+      "segments": [
+        { "color": "§7", "text": "Your Barn: ", "zh": "你的兔舍: " },
+        { "color": "§a", "text": "%1$s", "zh": "%1$s" },
+        { "color": "§7", "text": "/", "zh": "/" },
+        { "color": "§a", "text": "%2$s Rabbits", "zh": "%2$s 只兔子" }
+      ]
+    },
+    {
+      "id": "factory_upgrade_rabbit_barn",
+      "context": "兔舍升级预览",
+      "raw": "§a§lUPGRADE §8➜ §aRabbit Barn %1$s",
+      "text": "UPGRADE ➜ Rabbit Barn %1$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "升级后的兔舍罗马数字等级", "type": "tier", "example": "XCII" }
+      ],
+      "gloss": "从采集器的 Barn/Shrine raw 槽拆出。",
+      "translate": true,
+      "zh": "升级 ➜ 兔舍 %1$s",
+      "segments": [
+        { "color": "§a§l", "text": "UPGRADE ", "zh": "升级 " },
+        { "color": "§8", "text": "➜ ", "zh": "➜ " },
+        { "color": "§a", "text": "Rabbit Barn %1$s", "zh": "兔舍 %1$s" }
+      ]
+    },
+    {
+      "id": "factory_upgrade_rabbit_shrine",
+      "context": "兔子圣坛升级预览",
+      "raw": "§a§lUPGRADE §8➜ §dRabbit Shrine %1$s",
+      "text": "UPGRADE ➜ Rabbit Shrine %1$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "升级后的兔子圣坛罗马数字等级", "type": "tier", "example": "I" }
+      ],
+      "gloss": "从采集器的 Barn/Shrine raw 槽拆出。",
+      "translate": true,
+      "zh": "升级 ➜ 兔子圣坛 %1$s",
+      "segments": [
+        { "color": "§a§l", "text": "UPGRADE ", "zh": "升级 " },
+        { "color": "§8", "text": "➜ ", "zh": "➜ " },
+        { "color": "§d", "text": "Rabbit Shrine %1$s", "zh": "兔子圣坛 %1$s" }
+      ]
+    },
+    {
+      "id": "factory_capacity_gain",
+      "context": "兔舍升级增加的容量",
+      "raw": "  §a+%1$s Capacity",
+      "text": "  +%1$s Capacity",
+      "placeholders": [
+        { "token": "%1$s", "desc": "增加的兔舍容量", "type": "number", "example": "2" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "  +%1$s 容量",
+      "segments": [
+        { "color": "", "text": "  ", "zh": "  " },
+        { "color": "§a", "text": "+%1$s Capacity", "zh": "+%1$s 容量" }
+      ]
+    },
+    {
+      "id": "factory_hand_baked_tier",
+      "context": "手工烘焙巧克力建筑物品名",
+      "raw": "§dHand-Baked Chocolate %1$s",
+      "text": "Hand-Baked Chocolate %1$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "建筑罗马数字等级", "type": "tier", "example": "IV" }
+      ],
+      "gloss": "该升级提高每次点击获得的巧克力。",
+      "translate": true,
+      "zh": "手工烘焙巧克力 %1$s"
+    },
+    {
+      "id": "factory_hand_baked_desc_1",
+      "context": "手工烘焙巧克力说明第一行；完整段落跨六行",
+      "raw": "§7A good boss can get down in the",
+      "text": "A good boss can get down in the",
+      "placeholders": [],
+      "gloss": "get down in the trenches 指老板亲自到一线干活。",
+      "translate": true,
+      "zh": "好老板也会亲自到一线帮助员工。投入一些巧克力，就能提高每次点击产出的巧克力数量!"
+    },
+    {
+      "id": "factory_hand_baked_desc_2",
+      "context": "手工烘焙巧克力说明第二行，接上一行",
+      "raw": "§7trenches and help out their",
+      "text": "trenches and help out their",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "factory_hand_baked_desc_3",
+      "context": "手工烘焙巧克力说明第三行，接上文",
+      "raw": "§7workforce. In exchange for some",
+      "text": "workforce. In exchange for some",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "factory_hand_baked_desc_4",
+      "context": "手工烘焙巧克力说明第四行，接上文",
+      "raw": "§6Chocolate§7, you can increase the",
+      "text": "Chocolate, you can increase the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "factory_hand_baked_desc_5",
+      "context": "手工烘焙巧克力说明第五行，接上文",
+      "raw": "§7amount of §6Chocolate §7that you",
+      "text": "amount of Chocolate that you",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "factory_hand_baked_desc_6",
+      "context": "手工烘焙巧克力说明第六行，接上文",
+      "raw": "§7produce each time you click!",
+      "text": "produce each time you click!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "factory_chocolate_per_click",
+      "context": "当前每次点击获得的巧克力",
+      "raw": "§7Chocolate Per Click: §6+%1$s Chocolate",
+      "text": "Chocolate Per Click: +%1$s Chocolate",
+      "placeholders": [
+        { "token": "%1$s", "desc": "每次点击获得的巧克力", "type": "number", "example": "4" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "每次点击巧克力: +%1$s 巧克力",
+      "segments": [
+        { "color": "§7", "text": "Chocolate Per Click: ", "zh": "每次点击巧克力: " },
+        { "color": "§6", "text": "+%1$s Chocolate", "zh": "+%1$s 巧克力" }
+      ]
+    },
+    {
+      "id": "factory_upgrade_hand_baked",
+      "context": "手工烘焙巧克力升级预览",
+      "raw": "§a§lUPGRADE §8➜ §dHand-Baked Chocolate %1$s",
+      "text": "UPGRADE ➜ Hand-Baked Chocolate %1$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "升级后的罗马数字等级", "type": "tier", "example": "V" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "升级 ➜ 手工烘焙巧克力 %1$s",
+      "segments": [
+        { "color": "§a§l", "text": "UPGRADE ", "zh": "升级 " },
+        { "color": "§8", "text": "➜ ", "zh": "➜ " },
+        { "color": "§d", "text": "Hand-Baked Chocolate %1$s", "zh": "手工烘焙巧克力 %1$s" }
+      ]
+    },
+    {
+      "id": "factory_time_tower_tier",
+      "context": "时光塔建筑物品名",
+      "raw": "§dTime Tower %1$s",
+      "text": "Time Tower %1$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "时光塔罗马数字等级", "type": "tier", "example": "XI" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "时光塔 %1$s"
+    },
+    {
+      "id": "factory_time_tower_desc_1",
+      "context": "时光塔说明第一行",
+      "raw": "§7When active, this ancient building",
+      "text": "When active, this ancient building",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "启用后，这座古老建筑"
+    },
+    {
+      "id": "factory_time_tower_desc_2",
+      "context": "时光塔说明第二行",
+      "raw": "§7increases the production of your",
+      "text": "increases the production of your",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "会将你的"
+    },
+    {
+      "id": "factory_time_tower_desc_3",
+      "context": "时光塔说明第三行，含动态倍率和时长",
+      "raw": "§6Chocolate Factory §7by §6+%1$sx §7for §a%2$sh§7.",
+      "text": "Chocolate Factory by +%1$sx for %2$sh.",
+      "placeholders": [
+        { "token": "%1$s", "desc": "时光塔提高的产量倍率", "type": "number", "example": "1.1" },
+        { "token": "%2$s", "desc": "时光塔持续小时数", "type": "number", "example": "1" }
+      ],
+      "gloss": "+1.1x 按玩法语义译为“提高 1.1 倍”，不是“提高到 1.1 倍”。",
+      "translate": true,
+      "zh": "巧克力工厂产量提高 %1$s 倍，持续 %2$s 小时。",
+      "segments": [
+        { "color": "§6", "text": "Chocolate Factory ", "zh": "巧克力工厂" },
+        { "color": "§7", "text": "by ", "zh": "产量提高 " },
+        { "color": "§6", "text": "+%1$sx ", "zh": "%1$s 倍" },
+        { "color": "§7", "text": "for ", "zh": "，持续 " },
+        { "color": "§a", "text": "%2$sh", "zh": "%2$s 小时" },
+        { "color": "§7", "text": ".", "zh": "。" }
+      ]
+    },
+    {
+      "id": "factory_time_tower_inactive",
+      "context": "时光塔未启用状态",
+      "raw": "§7Status: §c§lINACTIVE",
+      "text": "Status: INACTIVE",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "状态: 未启用",
+      "segments": [
+        { "color": "§7", "text": "Status: ", "zh": "状态: " },
+        { "color": "§c§l", "text": "INACTIVE", "zh": "未启用" }
+      ]
+    },
+    {
+      "id": "factory_time_tower_charges",
+      "context": "时光塔当前充能次数和上限",
+      "raw": "§7Charges: §a%1$s/%2$s",
+      "text": "Charges: %1$s/%2$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "当前充能次数", "type": "number", "example": "3" },
+        { "token": "%2$s", "desc": "充能次数上限", "type": "number", "example": "3" }
+      ],
+      "gloss": "将采集到的 3/3 整体 raw 拆成两个数值。",
+      "translate": true,
+      "zh": "充能次数: %1$s/%2$s",
+      "segments": [
+        { "color": "§7", "text": "Charges: ", "zh": "充能次数: " },
+        { "color": "§a", "text": "%1$s/%2$s", "zh": "%1$s/%2$s" }
+      ]
+    },
+    {
+      "id": "factory_upgrade_time_tower",
+      "context": "时光塔升级预览",
+      "raw": "§a§lUPGRADE §8➜ §dTime Tower %1$s",
+      "text": "UPGRADE ➜ Time Tower %1$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "升级后的时光塔罗马数字等级", "type": "tier", "example": "XII" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "升级 ➜ 时光塔 %1$s",
+      "segments": [
+        { "color": "§a§l", "text": "UPGRADE ", "zh": "升级 " },
+        { "color": "§8", "text": "➜ ", "zh": "➜ " },
+        { "color": "§d", "text": "Time Tower %1$s", "zh": "时光塔 %1$s" }
+      ]
+    },
+    {
+      "id": "factory_left_click_upgrade",
+      "context": "建筑左键升级提示",
+      "raw": "§eLeft-click to upgrade!",
+      "text": "Left-click to upgrade!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "左键点击升级!"
+    },
+    {
+      "id": "factory_right_click_activate",
+      "context": "时光塔右键启用提示",
+      "raw": "§dRight-click to activate!",
+      "text": "Right-click to activate!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "右键点击启用!"
+    },
+    {
+      "id": "factory_rabbit_shrine_name",
+      "context": "兔子圣坛物品名",
+      "raw": "§dRabbit Shrine",
+      "text": "Rabbit Shrine",
+      "placeholders": [],
+      "gloss": "从采集器误合并的 Shrine/Hitman raw 槽拆出。",
+      "translate": true,
+      "zh": "兔子圣坛"
+    },
+    {
+      "id": "factory_rabbit_hitman_name",
+      "context": "兔子猎手物品名",
+      "raw": "§cRabbit Hitman",
+      "text": "Rabbit Hitman",
+      "placeholders": [],
+      "gloss": "从采集器误合并的 Shrine/Hitman raw 槽拆出。",
+      "translate": true,
+      "zh": "兔子猎手"
+    },
+    {
+      "id": "factory_rabbit_shrine_desc_1",
+      "context": "兔子圣坛说明第一行；完整句跨三行",
+      "raw": "§7The §dRabbit Shrine §7increases the",
+      "text": "The Rabbit Shrine increases the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "兔子圣坛会提高 Hoppity 的寻兔行动期间发现更高稀有度巧克力兔子的概率。",
+      "segments": [
+        { "color": "§7", "text": "The ", "zh": "" , "omit": true },
+        { "color": "§d", "text": "Rabbit Shrine ", "zh": "兔子圣坛" },
+        { "color": "§7", "text": "increases the", "zh": "会提高 Hoppity 的寻兔行动期间发现更高稀有度巧克力兔子的概率。" }
+      ]
+    },
+    {
+      "id": "factory_rabbit_shrine_desc_2",
+      "context": "兔子圣坛说明第二行，接上一行",
+      "raw": "§dodds §7of finding §aChocolate Rabbits §7of",
+      "text": "odds of finding Chocolate Rabbits of",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "factory_rabbit_shrine_desc_3",
+      "context": "兔子圣坛说明第三行，接上两行",
+      "raw": "§7higher rarity during §dHoppity's Hunt§7.",
+      "text": "higher rarity during Hoppity's Hunt.",
+      "placeholders": [],
+      "gloss": "Hoppity's Hunt 沿用共享活动名“ Hoppity 的寻兔行动”。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "factory_rabbit_shrine_chance_gain",
+      "context": "兔子圣坛升级增加的高稀有度发现概率",
+      "raw": "  §a+%1$s% §7chance",
+      "text": "  +%1$s% chance",
+      "placeholders": [
+        { "token": "%1$s", "desc": "增加的概率百分比", "type": "number", "example": "2" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "  +%1$s% 概率",
+      "segments": [
+        { "color": "", "text": "  ", "zh": "  " },
+        { "color": "§a", "text": "+%1$s% ", "zh": "+%1$s% " },
+        { "color": "§7", "text": "chance", "zh": "概率" }
+      ]
+    },
+    {
+      "id": "factory_coach_jackrabbit_tier",
+      "context": "Coach Jackrabbit 建筑物品名；Jackrabbit 是角色专名保留英文，Coach 是头衔按 README §5.5 翻译",
+      "raw": "§dCoach Jackrabbit %1$s",
+      "text": "Coach Jackrabbit %1$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "Coach Jackrabbit 罗马数字等级", "type": "tier", "example": "XVIII" }
+      ],
+      "gloss": "Jackrabbit 是这个角色的自造专名，保留英文；Coach 是头衔，按 NPC 头衔一律翻译的原则译“教练”，写成中文习惯的“姓+头衔”语序。",
+      "translate": true,
+      "zh": "Jackrabbit 教练 %1$s"
+    },
+    {
+      "id": "factory_coach_tagline",
+      "context": "Coach Jackrabbit 的斜体趣味短句",
+      "raw": "§8§oPep talk pro!",
+      "text": "Pep talk pro!",
+      "placeholders": [],
+      "gloss": "pep talk 指鼓舞士气的讲话。",
+      "translate": true,
+      "zh": "打气专家!"
+    },
+    {
+      "id": "factory_coach_desc_1",
+      "context": "Coach Jackrabbit 说明第一行",
+      "raw": "§dCoach Jackrabbit §7is a motivational",
+      "text": "Coach Jackrabbit is a motivational",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Jackrabbit 教练是一位励志演说家，",
+      "segments": [
+        { "color": "§d", "text": "Coach Jackrabbit ", "zh": "Jackrabbit 教练" },
+        { "color": "§7", "text": "is a motivational", "zh": "是一位励志演说家，" }
+      ]
+    },
+    {
+      "id": "factory_coach_desc_2",
+      "context": "Coach Jackrabbit 说明第二行",
+      "raw": "§7speaker that is helping you reach",
+      "text": "speaker that is helping you reach",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "通过提供以下加成，帮助你"
+    },
+    {
+      "id": "factory_coach_desc_3",
+      "context": "Coach Jackrabbit 说明第三行",
+      "raw": "§7your full potential by granting",
+      "text": "your full potential by granting",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "发挥全部潜力:"
+    },
+    {
+      "id": "factory_upgrade_coach_jackrabbit",
+      "context": "Coach Jackrabbit 升级预览",
+      "raw": "§a§lUPGRADE §8➜ §dCoach Jackrabbit %1$s",
+      "text": "UPGRADE ➜ Coach Jackrabbit %1$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "升级后的罗马数字等级", "type": "tier", "example": "XIX" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "升级 ➜ Jackrabbit 教练 %1$s",
+      "segments": [
+        { "color": "§a§l", "text": "UPGRADE ", "zh": "升级 " },
+        { "color": "§8", "text": "➜ ", "zh": "➜ " },
+        { "color": "§d", "text": "Coach Jackrabbit %1$s", "zh": "Jackrabbit 教练 %1$s" }
+      ]
+    },
+    {
+      "id": "factory_chocolate_per_second_full",
+      "context": "巧克力产量详情中的每秒巧克力总值",
+      "raw": "§6%1$s Chocolate §8per second",
+      "text": "%1$s Chocolate per second",
+      "placeholders": [
+        { "token": "%1$s", "desc": "当前每秒巧克力总值或加成", "type": "number", "example": "18,017.74" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "每秒 %1$s 巧克力",
+      "segments": [
+        { "color": "§6", "text": "%1$s Chocolate ", "zh": "%1$s 巧克力", "order": 1 },
+        { "color": "§8", "text": "per second", "zh": "每秒 ", "order": 0 }
+      ]
+    },
+    {
+      "id": "factory_base_chocolate_per_second",
+      "context": "未应用倍率前的基础每秒巧克力",
+      "raw": "§7Base Chocolate: §6%1$s §8per second",
+      "text": "Base Chocolate: %1$s per second",
+      "placeholders": [
+        { "token": "%1$s", "desc": "基础每秒巧克力", "type": "number", "example": "5,401" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "基础每秒巧克力: %1$s",
+      "segments": [
+        { "color": "§7", "text": "Base Chocolate: ", "zh": "基础每秒巧克力: " },
+        { "color": "§6", "text": "%1$s ", "zh": "%1$s" },
+        { "color": "§8", "text": "per second", "zh": "" , "omit": true }
+      ]
+    },
+    {
+      "id": "factory_hoppity_collection_bonus",
+      "context": "Hoppity 收藏提供的产量或倍率加成",
+      "raw": "  §6+%1$s §8(Hoppity's Collection)",
+      "text": "  +%1$s (Hoppity's Collection)",
+      "placeholders": [
+        { "token": "%1$s", "desc": "收藏加成数值，倍率单位由服务器附在值中", "type": "number", "example": "318" }
+      ],
+      "gloss": "number 类型可安全接收 318 或 0.406x，不使用宽泛 raw。",
+      "translate": true,
+      "zh": "  +%1$s (Hoppity 的收藏)",
+      "segments": [
+        { "color": "", "text": "  ", "zh": "  " },
+        { "color": "§6", "text": "+%1$s ", "zh": "+%1$s " },
+        { "color": "§8", "text": "(Hoppity's Collection)", "zh": "(Hoppity 的收藏)" }
+      ]
+    },
+    {
+      "id": "factory_prestige_realm_bonus",
+      "context": "转生巧克力领域提供的基础产量加成",
+      "raw": "  §6+%1$s §8(§6Prestige Chocolate Realm§8)",
+      "text": "  +%1$s (Prestige Chocolate Realm)",
+      "placeholders": [
+        { "token": "%1$s", "desc": "转生领域产量加成", "type": "number", "example": "50" }
+      ],
+      "gloss": "Prestige 译为“转生”。",
+      "translate": true,
+      "zh": "  +%1$s (转生巧克力领域)",
+      "segments": [
+        { "color": "", "text": "  ", "zh": "  " },
+        { "color": "§6", "text": "+%1$s ", "zh": "+%1$s " },
+        { "color": "§8", "text": "(", "zh": "(" },
+        { "color": "§6", "text": "Prestige Chocolate Realm", "zh": "转生巧克力领域" },
+        { "color": "§8", "text": ")", "zh": ")" }
+      ]
+    },
+    {
+      "id": "factory_rabbit_employee_bonus",
+      "context": "兔子员工合计提供的基础产量加成",
+      "raw": "  §6+%1$s §8(Rabbit Employees)",
+      "text": "  +%1$s (Rabbit Employees)",
+      "placeholders": [
+        { "token": "%1$s", "desc": "兔子员工合计产量", "type": "number", "example": "5,033" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "  +%1$s (兔子员工)",
+      "segments": [
+        { "color": "", "text": "  ", "zh": "  " },
+        { "color": "§6", "text": "+%1$s ", "zh": "+%1$s " },
+        { "color": "§8", "text": "(Rabbit Employees)", "zh": "(兔子员工)" }
+      ]
+    },
+    {
+      "id": "factory_total_multiplier",
+      "context": "所有巧克力产量倍率合计",
+      "raw": "§7Total Multiplier: §6%1$sx",
+      "text": "Total Multiplier: %1$sx",
+      "placeholders": [
+        { "token": "%1$s", "desc": "总产量倍率", "type": "number", "example": "3.336" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "总倍率: %1$s 倍",
+      "segments": [
+        { "color": "§7", "text": "Total Multiplier: ", "zh": "总倍率: " },
+        { "color": "§6", "text": "%1$sx", "zh": "%1$s 倍" }
+      ]
+    },
+    {
+      "id": "factory_base_multiplier",
+      "context": "基础巧克力产量倍率",
+      "raw": "  §6+%1$sx §8(Base Multiplier)",
+      "text": "  +%1$sx (Base Multiplier)",
+      "placeholders": [
+        { "token": "%1$s", "desc": "基础倍率", "type": "number", "example": "1" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "  +%1$s 倍 (基础倍率)",
+      "segments": [
+        { "color": "", "text": "  ", "zh": "  " },
+        { "color": "§6", "text": "+%1$sx ", "zh": "+%1$s 倍 " },
+        { "color": "§8", "text": "(Base Multiplier)", "zh": "(基础倍率)" }
+      ]
+    },
+    {
+      "id": "factory_tier_multiplier_bonus",
+      "context": "当前巧克力工厂等级提供的倍率",
+      "raw": "  §6+%1$sx §8(Chocolate Factory %2$s)",
+      "text": "  +%1$sx (Chocolate Factory %2$s)",
+      "placeholders": [
+        { "token": "%1$s", "desc": "工厂等级提供的倍率", "type": "number", "example": "1.5" },
+        { "token": "%2$s", "desc": "当前工厂罗马数字等级", "type": "tier", "example": "VI" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "  +%1$s 倍 (巧克力工厂 %2$s)",
+      "segments": [
+        { "color": "", "text": "  ", "zh": "  " },
+        { "color": "§6", "text": "+%1$sx ", "zh": "+%1$s 倍 " },
+        { "color": "§8", "text": "(Chocolate Factory %2$s)", "zh": "(巧克力工厂 %2$s)" }
+      ]
+    },
+    {
+      "id": "factory_cookie_buff_multiplier",
+      "context": "Cookie Buff 提供的巧克力产量倍率",
+      "raw": "  §6+%1$sx §8(§dCookie Buff§8)",
+      "text": "  +%1$sx (Cookie Buff)",
+      "placeholders": [
+        { "token": "%1$s", "desc": "Cookie Buff 倍率", "type": "number", "example": "0.25" }
+      ],
+      "gloss": "Cookie Buff 是增益机制名，译为“曲奇增益”。",
+      "translate": true,
+      "zh": "  +%1$s 倍 (曲奇增益)",
+      "segments": [
+        { "color": "", "text": "  ", "zh": "  " },
+        { "color": "§6", "text": "+%1$sx ", "zh": "+%1$s 倍 " },
+        { "color": "§8", "text": "(", "zh": "(" },
+        { "color": "§d", "text": "Cookie Buff", "zh": "曲奇增益" },
+        { "color": "§8", "text": ")", "zh": ")" }
+      ]
+    },
+    {
+      "id": "factory_coach_multiplier",
+      "context": "Coach Jackrabbit 提供的巧克力产量倍率",
+      "raw": "  §6+%1$sx §8(Coach Jackrabbit)",
+      "text": "  +%1$sx (Coach Jackrabbit)",
+      "placeholders": [
+        { "token": "%1$s", "desc": "Coach Jackrabbit 倍率", "type": "number", "example": "0.18" }
+      ],
+      "gloss": "Jackrabbit 保留英文，Coach 译“教练”，和工厂里其他 Coach Jackrabbit 行一致。",
+      "translate": true,
+      "zh": "  +%1$s 倍 (Jackrabbit 教练)",
+      "segments": [
+        { "color": "", "text": "  ", "zh": "  " },
+        { "color": "§6", "text": "+%1$sx ", "zh": "+%1$s 倍 " },
+        { "color": "§8", "text": "(Coach Jackrabbit)", "zh": "(Jackrabbit 教练)" }
+      ]
+    },
+    {
+      "id": "factory_chocolate_shop_name",
+      "context": "巧克力商店入口物品名",
+      "raw": "§6Chocolate Shop",
+      "text": "Chocolate Shop",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "巧克力商店"
+    },
+    {
+      "id": "factory_chocolate_shop_desc_1",
+      "context": "巧克力商店说明第一行；完整句跨三行",
+      "raw": "§7Spend your §6Chocolate §7on the world's",
+      "text": "Spend your Chocolate on the world's",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "在巧克力商店花费巧克力，购买世界上最美味的甜点。",
+      "segments": [
+        { "color": "§7", "text": "Spend your ", "zh": "在" },
+        { "color": "§6", "text": "Chocolate ", "zh": "巧克力商店" },
+        { "color": "§7", "text": "on the world's", "zh": "花费巧克力，购买世界上最美味的甜点。" }
+      ]
+    },
+    {
+      "id": "factory_chocolate_shop_desc_2",
+      "context": "巧克力商店说明第二行，接上一行",
+      "raw": "§7most delectable treats in the",
+      "text": "most delectable treats in the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "factory_chocolate_shop_desc_3",
+      "context": "巧克力商店说明第三行，接上两行",
+      "raw": "§6Chocolate Shop§7.",
+      "text": "Chocolate Shop.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "factory_to_calendar_events",
+      "context": "返回日历与活动菜单的去向提示",
+      "raw": "§7To Calendar and Events",
+      "text": "To Calendar and Events",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "返回日历与活动"
+    },
+    {
+      "id": "factory_hoppity_collection_name",
+      "context": "Hoppity 兔子收藏入口物品名",
+      "raw": "§aHoppity's Collection",
+      "text": "Hoppity's Collection",
+      "placeholders": [],
+      "gloss": "Hoppity 是 NPC 人名，保留英文。",
+      "translate": true,
+      "zh": "Hoppity 的收藏"
+    },
+    {
+      "id": "factory_hoppity_collection_desc_1",
+      "context": "Hoppity 收藏说明第一行；完整句跨三行",
+      "raw": "§7Help §aHoppity §7find all of his §aChocolate",
+      "text": "Help Hoppity find all of his Chocolate",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "在 Hoppity 的寻兔行动期间，帮助 Hoppity 找到他的所有巧克力兔子!",
+      "segments": [
+        { "color": "§7", "text": "Help ", "zh": "在 Hoppity 的寻兔行动期间，帮助 " },
+        { "color": "§a", "text": "Hoppity ", "zh": "Hoppity " },
+        { "color": "§7", "text": "find all of his ", "zh": "找到他的所有" },
+        { "color": "§a", "text": "Chocolate", "zh": "巧克力兔子!" }
+      ]
+    },
+    {
+      "id": "factory_hoppity_collection_desc_2",
+      "context": "Hoppity 收藏说明第二行，接上一行",
+      "raw": "§aRabbits §7during the §dHoppity's Hunt",
+      "text": "Rabbits during the Hoppity's Hunt",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "factory_hoppity_collection_desc_3",
+      "context": "Hoppity 收藏说明第三行，接上两行",
+      "raw": "§7event!",
+      "text": "event!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "factory_collection_production_desc_1",
+      "context": "独特兔子提高工厂产量的说明第一行；完整句跨三行",
+      "raw": "§7The more unique §aChocolate Rabbits",
+      "text": "The more unique Chocolate Rabbits",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "找到的独特巧克力兔子越多，你的巧克力工厂产量就越高!",
+      "segments": [
+        { "color": "§7", "text": "The more unique ", "zh": "找到的独特" },
+        { "color": "§a", "text": "Chocolate Rabbits", "zh": "巧克力兔子越多，你的巧克力工厂产量就越高!" }
+      ]
+    },
+    {
+      "id": "factory_collection_production_desc_2",
+      "context": "独特兔子提高工厂产量的说明第二行，接上一行",
+      "raw": "§7that you find, the more your",
+      "text": "that you find, the more your",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "factory_collection_production_desc_3",
+      "context": "独特兔子提高工厂产量的说明第三行，接上两行",
+      "raw": "§6Chocolate Factory §7will produce!",
+      "text": "Chocolate Factory will produce!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "factory_duplicate_bonus_desc_1",
+      "context": "重复兔子额外巧克力机制说明第一行",
+      "raw": "§7Finding duplicate Rabbits grants",
+      "text": "Finding duplicate Rabbits grants",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "发现重复兔子时，每次重复都会提供"
+    },
+    {
+      "id": "factory_duplicate_bonus_desc_2",
+      "context": "重复兔子额外巧克力机制说明第二行",
+      "raw": "§a+%1$s% §7extra §6Chocolate §7per duplicate,",
+      "text": "+%1$s% extra Chocolate per duplicate,",
+      "placeholders": [
+        { "token": "%1$s", "desc": "每只重复兔子的额外巧克力百分比", "type": "number", "example": "10" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s% 额外巧克力，",
+      "segments": [
+        { "color": "§a", "text": "+%1$s% ", "zh": "+%1$s% " },
+        { "color": "§7", "text": "extra ", "zh": "额外" },
+        { "color": "§6", "text": "Chocolate ", "zh": "巧克力" },
+        { "color": "§7", "text": "per duplicate,", "zh": "，" }
+      ]
+    },
+    {
+      "id": "factory_duplicate_bonus_cap",
+      "context": "重复兔子额外巧克力加成上限",
+      "raw": "§7up to §a+%1$s%§7!",
+      "text": "up to +%1$s%!",
+      "placeholders": [
+        { "token": "%1$s", "desc": "额外巧克力加成上限", "type": "number", "example": "100" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "最多 +%1$s%!",
+      "segments": [
+        { "color": "§7", "text": "up to ", "zh": "最多 " },
+        { "color": "§a", "text": "+%1$s%", "zh": "+%1$s%" },
+        { "color": "§7", "text": "!", "zh": "!" }
+      ]
+    },
+    {
+      "id": "factory_rabbits_found_percentage",
+      "context": "已发现独特兔子的收藏百分比",
+      "raw": "§7Rabbits Found: §e%1$s§6%",
+      "text": "Rabbits Found: %1$s%",
+      "placeholders": [
+        { "token": "%1$s", "desc": "已发现兔子百分比", "type": "number", "example": "27.9" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "已发现兔子: %1$s%",
+      "segments": [
+        { "color": "§7", "text": "Rabbits Found: ", "zh": "已发现兔子: " },
+        { "color": "§e", "text": "%1$s", "zh": "%1$s" },
+        { "color": "§6", "text": "%", "zh": "%" }
+      ]
+    },
+    {
+      "id": "factory_total_production_boosts",
+      "context": "兔子收藏提供的巧克力产量加成小标题",
+      "raw": "§7Total Chocolate Production Boosts",
+      "text": "Total Chocolate Production Boosts",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "巧克力产量总加成"
+    },
+    {
+      "id": "factory_collection_chocolate_multiplier",
+      "context": "兔子收藏提供的巧克力倍率",
+      "raw": "§6+%1$sx Chocolate Multiplier",
+      "text": "+%1$sx Chocolate Multiplier",
+      "placeholders": [
+        { "token": "%1$s", "desc": "收藏提供的巧克力倍率", "type": "number", "example": "0.406" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "巧克力倍率: +%1$s 倍"
+    },
+    {
+      "id": "factory_hitman_desc_1",
+      "context": "兔子猎手说明第一行；完整句跨三行",
+      "raw": "§7Hire this private rabbit to hunt eggs",
+      "text": "Hire this private rabbit to hunt eggs",
+      "placeholders": [],
+      "gloss": "private 在此指受私人雇用，不是军衔“列兵”。",
+      "translate": true,
+      "zh": "雇用这只私人兔子替你寻找彩蛋，它会收集你错过的彩蛋!"
+    },
+    {
+      "id": "factory_hitman_desc_2",
+      "context": "兔子猎手说明第二行，接上一行",
+      "raw": "§7for you, they will collect eggs you",
+      "text": "for you, they will collect eggs you",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "factory_hitman_desc_3",
+      "context": "兔子猎手说明第三行，接上两行",
+      "raw": "§7missed!",
+      "text": "missed!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "factory_hitman_available_eggs",
+      "context": "当前可由兔子猎手寻找的错过彩蛋数",
+      "raw": "§7Available eggs: §a%1$s",
+      "text": "Available eggs: %1$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "可寻找的彩蛋数量", "type": "number", "example": "6" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "待搜寻彩蛋: %1$s",
+      "segments": [
+        { "color": "§7", "text": "Available eggs: ", "zh": "待搜寻彩蛋: " },
+        { "color": "§a", "text": "%1$s", "zh": "%1$s" }
+      ]
+    },
+    {
+      "id": "factory_hitman_purchased_slots",
+      "context": "已购买和可购买的兔子猎手槽位",
+      "raw": "§7Purchased slots: §e%1$s§7/§a%2$s",
+      "text": "Purchased slots: %1$s/%2$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "已购买槽位数", "type": "number", "example": "6" },
+        { "token": "%2$s", "desc": "槽位上限", "type": "number", "example": "28" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "已购买槽位: %1$s/%2$s",
+      "segments": [
+        { "color": "§7", "text": "Purchased slots: ", "zh": "已购买槽位: " },
+        { "color": "§e", "text": "%1$s", "zh": "%1$s" },
+        { "color": "§7", "text": "/", "zh": "/" },
+        { "color": "§a", "text": "%2$s", "zh": "%2$s" }
+      ]
+    },
+    {
+      "id": "factory_milestone_desc_1",
+      "context": "巧克力里程碑说明第一行；完整句跨三行",
+      "raw": "§7Unlock special §aChocolate Rabbits §7by",
+      "text": "Unlock special Chocolate Rabbits by",
+      "placeholders": [],
+      "gloss": "all-time Chocolate 指账号历史累计巧克力。",
+      "translate": true,
+      "zh": "达到历史累计巧克力里程碑，解锁特殊巧克力兔子!",
+      "segments": [
+        { "color": "§7", "text": "Unlock special ", "zh": "达到历史累计巧克力里程碑，解锁特殊" },
+        { "color": "§a", "text": "Chocolate Rabbits ", "zh": "巧克力兔子" },
+        { "color": "§7", "text": "by", "zh": "!" }
+      ]
+    },
+    {
+      "id": "factory_milestone_desc_2",
+      "context": "巧克力里程碑说明第二行，接上一行",
+      "raw": "§7reaching all-time §6Chocolate",
+      "text": "reaching all-time Chocolate",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "factory_milestone_desc_3",
+      "context": "巧克力里程碑说明第三行，接上两行",
+      "raw": "§7milestones!",
+      "text": "milestones!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "factory_crit_damage",
+      "context": "巧克力工厂物品 Lore 中的暴击伤害属性行",
+      "raw": "§7Crit Damage: §9+%1$s% §8(+%2$s%)",
+      "text": "Crit Damage: +%1$s% (+%2$s%)",
+      "placeholders": [
+        { "token": "%1$s", "desc": "基础暴击伤害加成", "type": "number", "example": "50" },
+        { "token": "%2$s", "desc": "计入其他来源后的附加显示值", "type": "number", "example": "194.5" }
+      ],
+      "gloss": "Crit Damage 沿用物品 Lore 固定译名“暴击伤害”。",
+      "translate": true,
+      "zh": "暴击伤害: +%1$s% (+%2$s%)",
+      "segments": [
+        { "color": "§7", "text": "Crit Damage: ", "zh": "暴击伤害: " },
+        { "color": "§9", "text": "+%1$s% ", "zh": "+%1$s% " },
+        { "color": "§8", "text": "(+%2$s%)", "zh": "(+%2$s%)" }
+      ]
+    },
+    {
+      "id": "factory_all_time_rank_1",
+      "context": "账号历史累计巧克力排名第一行；第二行只是 Chocolate 断行",
+      "raw": "§7You are §8#§b%1$s §7in all-time",
+      "text": "You are #%1$s in all-time",
+      "placeholders": [
+        { "token": "%1$s", "desc": "账号历史累计巧克力排名", "type": "number", "example": "284,357" }
+      ],
+      "gloss": "排名严格模板化。",
+      "translate": true,
+      "zh": "你的巧克力历史总量排名为 #%1$s。",
+      "segments": [
+        { "color": "§7", "text": "You are ", "zh": "你的巧克力历史总量排名为 " },
+        { "color": "§8", "text": "#", "zh": "#" },
+        { "color": "§b", "text": "%1$s ", "zh": "%1$s" },
+        { "color": "§7", "text": "in all-time", "zh": "。" }
+      ]
+    },
+    {
+      "id": "factory_all_time_rank_2",
+      "context": "账号历史累计巧克力排名第二行，接上一行",
+      "raw": "§7Chocolate.",
+      "text": "Chocolate.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "factory_top_player_percentage",
+      "context": "账号位于全体玩家前百分之多少",
+      "raw": "§8You are in the top §e%1$s%§8 of players!",
+      "text": "You are in the top %1$s% of players!",
+      "placeholders": [
+        { "token": "%1$s", "desc": "账号排名百分比", "type": "number", "example": "2.48" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的排名位于所有玩家的前 %1$s%!",
+      "segments": [
+        { "color": "§8", "text": "You are in the top ", "zh": "你的排名位于所有玩家的前 " },
+        { "color": "§e", "text": "%1$s%", "zh": "%1$s%" },
+        { "color": "§8", "text": " of players!", "zh": "!" }
+      ]
+    },
+    {
+      "id": "factory_time_tower_active_hms",
+      "context": "时光塔刚启用时的状态和剩余时分秒",
+      "raw": "§7Status: §a§lACTIVE §f%1$sh%2$sm%3$ss",
+      "text": "Status: ACTIVE %1$sh%2$sm%3$ss",
+      "placeholders": [
+        { "token": "%1$s", "desc": "剩余小时", "type": "number", "example": "1" },
+        { "token": "%2$s", "desc": "剩余分钟", "type": "number", "example": "00" },
+        { "token": "%3$s", "desc": "剩余秒数", "type": "number", "example": "00" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "状态: 生效中 %1$s小时 %2$s分 %3$s秒",
+      "segments": [
+        { "color": "§7", "text": "Status: ", "zh": "状态: " },
+        { "color": "§a§l", "text": "ACTIVE ", "zh": "生效中 " },
+        { "color": "§f", "text": "%1$sh%2$sm%3$ss", "zh": "%1$s小时 %2$s分 %3$s秒" }
+      ]
+    },
+    {
+      "id": "factory_time_tower_active_ms",
+      "context": "时光塔不足一小时时的状态和剩余分秒",
+      "raw": "§7Status: §a§lACTIVE §f%1$sm%2$ss",
+      "text": "Status: ACTIVE %1$sm%2$ss",
+      "placeholders": [
+        { "token": "%1$s", "desc": "剩余分钟", "type": "number", "example": "59" },
+        { "token": "%2$s", "desc": "剩余秒数", "type": "number", "example": "59" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "状态: 生效中 %1$s分 %2$s秒",
+      "segments": [
+        { "color": "§7", "text": "Status: ", "zh": "状态: " },
+        { "color": "§a§l", "text": "ACTIVE ", "zh": "生效中 " },
+        { "color": "§f", "text": "%1$sm%2$ss", "zh": "%1$s分 %2$s秒" }
+      ]
+    },
+    {
+      "id": "factory_time_tower_next_charge",
+      "context": "时光塔下一次恢复充能的倒计时",
+      "raw": "§7Next Charge: §a%1$sh%2$sm%3$ss",
+      "text": "Next Charge: %1$sh%2$sm%3$ss",
+      "placeholders": [
+        { "token": "%1$s", "desc": "剩余小时", "type": "number", "example": "7" },
+        { "token": "%2$s", "desc": "剩余分钟", "type": "number", "example": "59" },
+        { "token": "%3$s", "desc": "剩余秒数", "type": "number", "example": "59" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "下次充能: %1$s小时 %2$s分 %3$s秒",
+      "segments": [
+        { "color": "§7", "text": "Next Charge: ", "zh": "下次充能: " },
+        { "color": "§a", "text": "%1$sh%2$sm%3$ss", "zh": "%1$s小时 %2$s分 %3$s秒" }
+      ]
+    },
+    {
+      "id": "factory_time_tower_active_notice",
+      "context": "时光塔当前正在生效的提示",
+      "raw": "§dThe Time Tower is active!",
+      "text": "The Time Tower is active!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "时光塔正在生效!"
+    },
+    {
+      "id": "factory_time_tower_multiplier",
+      "context": "生效中的时光塔提供的巧克力产量倍率",
+      "raw": "  §6+%1$sx §8(§dTime Tower§8)",
+      "text": "  +%1$sx (Time Tower)",
+      "placeholders": [
+        { "token": "%1$s", "desc": "时光塔当前产量倍率", "type": "number", "example": "1.1" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "  +%1$s 倍 (时光塔)",
+      "segments": [
+        { "color": "", "text": "  ", "zh": "  " },
+        { "color": "§6", "text": "+%1$sx ", "zh": "+%1$s 倍 " },
+        { "color": "§8", "text": "(", "zh": "(" },
+        { "color": "§d", "text": "Time Tower", "zh": "时光塔" },
+        { "color": "§8", "text": ")", "zh": ")" }
+      ]
+    }
+  ]
+}

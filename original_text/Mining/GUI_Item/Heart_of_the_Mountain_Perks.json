@@ -1,0 +1,423 @@
+{
+  "source": "https://raw.githubusercontent.com/hannibal002/SkyHanni-REPO/main/constants/regexesModern.json",
+  "fetched_at": "2026-08-18",
+  "verified_ingame": false,
+  "source_note": "数据来自开源客户端 Mod SkyHanni 的 SkyHanni-REPO 仓库 constants/regexesModern.json (用于解析游戏内文本的正则表达式常量),已去除正则语法/颜色码还原成干净模板文本, 可信度高于 Wiki 摘要,但未逐条在游戏内截图核对,verified_ingame 仍为 false。",
+  "translate_open_question": "已按 GLOSSARY.md “山之心天赋名(HotM Perk Names)”条目的既定原则解决(功能性命名一律翻译),本文件全部 translate:true 维持不变。已用 WebFetch 查证 hypixelskyblock.minecraft.wiki 的山之心页面确认大部分天赋的实际效果后翻译;少数几个(Blockhead/Old-School/Strong Arm/Surveyor)查不到效果说明、英文名本身的双关也可能指向完全不同的方向,先跳过未翻译,留给用户核实后再定;另有几个(Efficient Miner/Quick Forge/Mining Master/Speedy Mineman/Gem Lover/Lonesome Miner)wiki摘要出现过自相矛盾(不同天赋被总结出相同的数值描述,疑似摘要工具把相邻条目搞混了),这几个是按英文名字面意思翻的、没有可靠机制确认,已在对应条目 gloss 里标注。",
+  "perks": [
+    {
+      "id": "hotm_perk_name_anomalousdesire",
+      "context": "山之心天赋名称",
+      "text": "Tunnel Vision",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "隧道视野"
+    },
+    {
+      "id": "hotm_perk_name_blockhead",
+      "context": "山之心天赋名称",
+      "text": "Blockhead",
+      "placeholders": [],
+      "gloss": "直接 curl 拉取 wiki 原始 wikitext(Heart of the Mountain/List/HotM 6 Perks 子页)核实,此天赋提供 Block Fortune(方块时运)加成(+5-105)。英文 blockhead 本义为“笨蛋/榆木脑袋”,又与 block(方块)双关,译“石头脑袋”兼顾两层意思。来源: hypixelskyblock.minecraft.wiki 对应子页原始 wikitext。",
+      "translate": true,
+      "zh": "石头脑袋"
+    },
+    {
+      "id": "hotm_perk_name_coreofthemountain",
+      "context": "山之心天赋名称",
+      "text": "Core of the Mountain",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "山之核心"
+    },
+    {
+      "id": "hotm_perk_name_crystalline",
+      "context": "山之心天赋名称",
+      "text": "Crystalline",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "结晶"
+    },
+    {
+      "id": "hotm_perk_name_dailygrind",
+      "context": "山之心天赋名称",
+      "text": "Daily Grind",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "日常磨砺"
+    },
+    {
+      "id": "hotm_perk_name_dailypowder",
+      "context": "山之心天赋名称",
+      "text": "Daily Powder",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "每日粉末"
+    },
+    {
+      "id": "hotm_perk_name_deadmanschest",
+      "context": "山之心天赋名称",
+      "text": "Dead Man's Chest",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "亡者的宝箱"
+    },
+    {
+      "id": "hotm_perk_name_eageradventurer",
+      "context": "山之心天赋名称",
+      "text": "Eager Adventurer",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "热忱冒险家"
+    },
+    {
+      "id": "hotm_perk_name_efficientminer",
+      "context": "山之心天赋名称",
+      "text": "Efficient Miner",
+      "placeholders": [],
+      "gloss": "Wiki Heart_of_the_Mountain/List/HotM_3_Perks 子页确认此天赋提供 Mining Spread(挖掘扩散)加成(+3-303),按英文名字面意思译“高效矿工”,与实际效果不冲突。来源: hypixelskyblock.minecraft.wiki 对应子页。",
+      "translate": true,
+      "zh": "高效矿工"
+    },
+    {
+      "id": "hotm_perk_name_fortunatemineman",
+      "context": "山之心天赋名称",
+      "text": "Fortunate Mineman",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "幸运矿工"
+    },
+    {
+      "id": "hotm_perk_name_frontloaded",
+      "context": "山之心天赋名称",
+      "text": "Front Loaded",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "前置奖励"
+    },
+    {
+      "id": "hotm_perk_name_gemlover",
+      "context": "山之心天赋名称",
+      "text": "Gem Lover",
+      "placeholders": [],
+      "gloss": "Wiki Heart_of_the_Mountain/List/HotM_4_Perks 子页确认此天赋提供宝石时运加成(+24-104 Gemstone Fortune),按英文名字面意思译“宝石爱好者”,与实际效果不冲突。来源: hypixelskyblock.minecraft.wiki 对应子页。",
+      "translate": true,
+      "zh": "宝石爱好者"
+    },
+    {
+      "id": "hotm_perk_name_gemstoneinfusion",
+      "context": "山之心天赋名称",
+      "text": "Gemstone Infusion",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "宝石灌注"
+    },
+    {
+      "id": "hotm_perk_name_giftsfromthedeparted",
+      "context": "山之心天赋名称",
+      "text": "Gifts from the Departed",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "亡者的馈赠"
+    },
+    {
+      "id": "hotm_perk_name_greatexplorer",
+      "context": "山之心天赋名称",
+      "text": "Great Explorer",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "伟大探险家"
+    },
+    {
+      "id": "hotm_perk_name_keepitcool",
+      "context": "山之心天赋名称",
+      "text": "Keep It Cool",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "保持冷静"
+    },
+    {
+      "id": "hotm_perk_name_lonesomeminer",
+      "context": "山之心天赋名称",
+      "text": "Lonesome Miner",
+      "placeholders": [],
+      "gloss": "直接 curl 拉取 wiki 原始 wikitext(Heart of the Mountain/List/HotM 6 Perks 子页)核实,此天赋效果是在矿业岛屿(Mining Islands)上提升力量、暴击率、暴击伤害、防御力和生命值(+5-27.5%),此前 AI 摘要工具反复把这条效果和别的天赋(如 Efficient Miner 的 Mining Spread)张冠李戴,现已用原始 wikitext 澄清。译名“孤独矿工”按字面翻,和效果(单人在外时靠自身属性硬抗)不冲突。来源: hypixelskyblock.minecraft.wiki 对应子页原始 wikitext。",
+      "translate": true,
+      "zh": "孤独矿工"
+    },
+    {
+      "id": "hotm_perk_name_luckofthecave",
+      "context": "山之心天赋名称",
+      "text": "Luck of the Cave",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "洞穴幸运"
+    },
+    {
+      "id": "hotm_perk_name_maniacminer",
+      "context": "山之心天赋名称",
+      "text": "Maniac Miner",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "疯狂矿工"
+    },
+    {
+      "id": "hotm_perk_name_metalhead",
+      "context": "山之心天赋名称",
+      "text": "Metal Head",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "嗜金者"
+    },
+    {
+      "id": "hotm_perk_name_minersblessing",
+      "context": "山之心天赋名称",
+      "text": "Miner's Blessing",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "矿工的祝福"
+    },
+    {
+      "id": "hotm_perk_name_mineshaftmayhem",
+      "context": "山之心天赋名称",
+      "text": "Mineshaft Mayhem",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "矿井狂乱"
+    },
+    {
+      "id": "hotm_perk_name_miningfortune",
+      "context": "山之心天赋名称",
+      "text": "Mining Fortune",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "挖掘时运"
+    },
+    {
+      "id": "hotm_perk_name_miningmaster",
+      "context": "山之心天赋名称",
+      "text": "Mining Master",
+      "placeholders": [],
+      "gloss": "多次 wiki 摘要对此天赋效果描述互相矛盾(一次说是挖宝石时增加挖掘速度,另一次子页顺序错位说是授予 Pristine),机制仍未可靠确认,按英文名字面意思译“挖矿大师”,不保证和实际效果精确对应。",
+      "translate": true,
+      "zh": "挖矿大师"
+    },
+    {
+      "id": "hotm_perk_name_miningspeed",
+      "context": "山之心天赋名称",
+      "text": "Mining Speed",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "挖掘速度"
+    },
+    {
+      "id": "hotm_perk_name_miningspeedboost",
+      "context": "山之心天赋名称",
+      "text": "Mining Speed Boost",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "挖掘速度爆发"
+    },
+    {
+      "id": "hotm_perk_name_mole",
+      "context": "山之心天赋名称",
+      "text": "Mole",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "鼹鼠"
+    },
+    {
+      "id": "hotm_perk_name_nostoneunturned",
+      "context": "山之心天赋名称",
+      "text": "No Stone Unturned",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "掘地三尺"
+    },
+    {
+      "id": "hotm_perk_name_oldschool",
+      "context": "山之心天赋名称",
+      "text": "Old-School",
+      "placeholders": [],
+      "gloss": "Wiki Heart_of_the_Mountain/List/HotM_4_Perks 子页确认此天赋提供 Ore Fortune(原矿时运)加成(+5-105),与新出的方块/宝石时运等新机制相对,“老派”呼应其字面“传统”之意。来源: hypixelskyblock.minecraft.wiki 对应子页。",
+      "translate": true,
+      "zh": "老派"
+    },
+    {
+      "id": "hotm_perk_name_pickobulus",
+      "context": "山之心天赋名称",
+      "text": "Pickobulus",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "碎石飞弹"
+    },
+    {
+      "id": "hotm_perk_name_powderbuff",
+      "context": "山之心天赋名称",
+      "text": "Powder Buff",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "粉末增益"
+    },
+    {
+      "id": "hotm_perk_name_precisionmining",
+      "context": "山之心天赋名称",
+      "text": "Precision Mining",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "精准挖矿"
+    },
+    {
+      "id": "hotm_perk_name_professional",
+      "context": "山之心天赋名称",
+      "text": "Professional",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "专业人士"
+    },
+    {
+      "id": "hotm_perk_name_quickforge",
+      "context": "山之心天赋名称",
+      "text": "Quick Forge",
+      "placeholders": [],
+      "gloss": "Wiki Heart_of_the_Mountain/List/HotM_3_Perks 子页确认此天赋缩短锻造(Forge)所需时间(10.5-30%),与译名“疾速锻造”直接对应。来源: hypixelskyblock.minecraft.wiki 对应子页。",
+      "translate": true,
+      "zh": "疾速锻造"
+    },
+    {
+      "id": "hotm_perk_name_ragstoriches",
+      "context": "山之心天赋名称",
+      "text": "Rags to Riches",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点石成金"
+    },
+    {
+      "id": "hotm_perk_name_seasonedmineman",
+      "context": "山之心天赋名称",
+      "text": "Seasoned Mineman",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "老练矿工"
+    },
+    {
+      "id": "hotm_perk_name_sheerforce",
+      "context": "山之心天赋名称",
+      "text": "Sheer Force",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "蛮力"
+    },
+    {
+      "id": "hotm_perk_name_skymall",
+      "context": "山之心天赋名称",
+      "text": "Sky Mall",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "空中集市"
+    },
+    {
+      "id": "hotm_perk_name_speedymineman",
+      "context": "山之心天赋名称",
+      "text": "Speedy Mineman",
+      "placeholders": [],
+      "gloss": "Wiki Heart_of_the_Mountain/List/HotM_6_Perks 子页确认此天赋提供挖掘速度加成(+40-2,040 Mining Speed),按英文名字面意思译“急速矿工”,与实际效果不冲突。来源: hypixelskyblock.minecraft.wiki 对应子页。",
+      "translate": true,
+      "zh": "急速矿工"
+    },
+    {
+      "id": "hotm_perk_name_steadyhand",
+      "context": "山之心天赋名称",
+      "text": "Steady Hand",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "稳健之手"
+    },
+    {
+      "id": "hotm_perk_name_strongarm",
+      "context": "山之心天赋名称",
+      "text": "Strong Arm",
+      "placeholders": [],
+      "gloss": "直接 curl 拉取 wiki 原始 wikitext(Heart of the Mountain/List/HotM 8 Perks 子页)核实,此天赋主效果是挖 Tungsten(钨矿)或 Umber(赭石)时提升挖掘速度; Bugs 小节额外记录了一个未修复的 bug,使其对 Pure Ores 也生效。来源: hypixelskyblock.minecraft.wiki 对应子页原始 wikitext + Bugs 小节。",
+      "translate": true,
+      "zh": "壮臂"
+    },
+    {
+      "id": "hotm_perk_name_subterraneanfisher",
+      "context": "山之心天赋名称",
+      "text": "Subterranean Fisher",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "地底渔夫"
+    },
+    {
+      "id": "hotm_perk_name_surveyor",
+      "context": "山之心天赋名称",
+      "text": "Surveyor",
+      "placeholders": [],
+      "gloss": "直接 curl 拉取 wiki 原始 wikitext(Heart of the Mountain/List/HotM 8 Perks 子页)核实,此天赋提升在 Glacite Tunnels 挖矿时找到 Glacite Mineshafts 的概率(+0.75-15.75%),“勘测员”踏勘寻矿的形象与效果高度吻合。来源: hypixelskyblock.minecraft.wiki 对应子页原始 wikitext。",
+      "translate": true,
+      "zh": "勘测员"
+    },
+    {
+      "id": "hotm_perk_name_titaniuminsanium",
+      "context": "山之心天赋名称",
+      "text": "Titanium Insanium",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "疯钛"
+    },
+    {
+      "id": "hotm_perk_name_vanguardseeker",
+      "context": "山之心天赋名称",
+      "text": "Vanguard Seeker",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Vanguard 探寻者"
+    },
+    {
+      "id": "hotm_perk_name_warmheart",
+      "context": "山之心天赋名称",
+      "text": "Warm Heart",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "温暖之心"
+    }
+  ]
+}

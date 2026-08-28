@@ -1,0 +1,1022 @@
+{
+  "gui": "增益曲奇菜单(Booster Cookie / /cookie)",
+  "source": "SkyZH runtime capture (2026-08-26 01:41–01:46, Your Island);结构与遗漏行对照 https://hypixelskyblock.minecraft.wiki/w/Booster_Cookie 与 https://hypixelskyblock.minecraft.wiki/w/Booster_Cookie/UI",
+  "fetched_at": "2026-08-26",
+  "verified_ingame": true,
+  "gui_context": "SkyBlock 菜单里的「Booster Cookie」格子(也可用 /cookie)打开的菜单。左半边三格是点券、增益曲奇购买格、声望等级;中间一排是曲奇增益解锁的快捷入口(海克斯 / 附魔台 / 铁砧 / 药水开关 / 拍卖行 / 集市);右下角是 SkyBlock Gems。增益曲奇本身在 Elizabeth 的社区商店卖 325 Gems,吃下后获得 4 天的曲奇增益,期间才能积累点券。",
+  "shared_scope_note": "以下几行本菜单里也有,但语料里已经有人管了,这里不再写第二条(同一渲染面上模板重复会让构建失败):物品名 Booster Cookie → GUI_Item/SkyBlock_Menu.json#skyblock_menu_booster_cookie;购买格里的 Duration: 4d → _shared/Menu_Common.json#menu_duration;返回箭头 To SkyBlock Menu → _shared/Menu_Common.json#menu_to_skyblock_menu;漏斗格的 Sell Item → GUI_Item/Fishing_Merchant.json;点券余额那一族里的 Bits Available: <数字> 单值写法 → GUI_Item/SkyBlock_Menu.json#skyblock_menu_bits_available(本文件只补服务器现在发的 <当前>/<上限> 分数写法)。",
+  "excluded": [
+    "Glacite x%s、Sell Price、Withered Giant's Sword ✪✪✪✪✪ x1、155,927.5 damage to nearby enemies.、Ascension Rope x64(玩家背包回显污染,不属于本菜单;和 Fishing_Merchant.json / Mine_Merchant.json 的处理一致)",
+    "Wiki 的 UI 子页还列着 §8/hex、§8/et、§8/av、§8/ah、§8/bz 这五行指令小标题、六个快捷入口末尾的「Click to check it out!」、以及 SkyBlock Gems 格的「You have: N Gems」。2026-08-26 的实测采集里这几个格子每一行都采到了、唯独没有这几行,判定为 Hypixel 已经删掉的旧文案,不写记录。"
+  ],
+  "lines": [
+    {
+      "id": "bits_name",
+      "context": "菜单左上角「点券」那一格的物品名",
+      "raw": "§bBits",
+      "text": "Bits",
+      "placeholders": [],
+      "gloss": "Bits 按 GLOSSARY.md「货币名」条目统一译「点券」,不写「点数」。这一行运行时采集抓不到:采集器的 PLAYER_ENTRY 过滤会把「只有一个纯字母词」的整行当成玩家名丢掉(见 capture/Classifier.java),所以是照 Wiki 的 UI 子页补的。",
+      "translate": true,
+      "zh": "点券"
+    },
+    {
+      "id": "bits_earned_from_cookies_1",
+      "context": "点券格第一段说明,英文排版拆成三行,合成一句翻译",
+      "raw": "§7Bits are earned from booster",
+      "text": "Bits are earned from booster",
+      "placeholders": [],
+      "gloss": "整句是 “Bits are earned from booster cookies and spent in the community shop for unique items.”;community shop 就是 Elizabeth 在大厅开的社区商店。",
+      "translate": true,
+      "zh": "点券由增益曲奇产出,可以在社区商店里兑换独特的物品。"
+    },
+    {
+      "id": "bits_earned_from_cookies_2",
+      "context": "接上一行",
+      "raw": "§7cookies and spent in the community",
+      "text": "cookies and spent in the community",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "bits_earned_from_cookies_3",
+      "context": "接上一行",
+      "raw": "§7shop for unique items.",
+      "text": "shop for unique items.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {"id": "bits_blank_1", "context": "点券格 Lore 的空行", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "bits_purse",
+      "context": "点券格:身上现有的点券数",
+      "raw": "§7Bits Purse: §b%s",
+      "text": "Bits Purse: %s",
+      "placeholders": [{"token": "%s", "desc": "当前持有的点券数", "type": "number", "example": "56,058"}],
+      "gloss": "Purse 按 GLOSSARY.md「货币名」条目不另造「钱包」一词,直接说「余额」。",
+      "translate": true,
+      "zh": "点券余额: %s",
+      "segments": [
+        {"color": "§7", "text": "Bits Purse: ", "zh": "点券余额: "},
+        {"color": "§b", "text": "%s", "zh": "%s"}
+      ]
+    },
+    {"id": "bits_blank_2", "context": "点券格 Lore 的空行", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "bits_available_fraction",
+      "context": "点券格:这一轮曲奇还能产出多少点券 / 上限是多少",
+      "raw": "§7Bits Available: §b%1$s/%2$s",
+      "text": "Bits Available: %1$s/%2$s",
+      "placeholders": [
+        {"token": "%1$s", "desc": "已经攒出、还没领的点券", "type": "number", "example": "7,828"},
+        {"token": "%2$s", "desc": "手上这些曲奇总共能产出的点券", "type": "number", "example": "217,536"}
+      ],
+      "gloss": "SkyBlock 主菜单里同名的那一行只有一个数字(GUI_Item/SkyBlock_Menu.json#skyblock_menu_bits_available),两条模板不一样、各管一种写法。Wiki 的 UI 子页把分母画成 §3,实测采集合并出来的 raw 只有 §7/§b 两段,这里按实测写;将来如果 colour/ 采集堆报这一行掉色,就把 “/%2$s” 拆成 §3 一段。",
+      "translate": true,
+      "zh": "可获得点券: %1$s/%2$s",
+      "segments": [
+        {"color": "§7", "text": "Bits Available: ", "zh": "可获得点券: "},
+        {"color": "§b", "text": "%1$s/%2$s", "zh": "%1$s/%2$s"}
+      ]
+    },
+    {
+      "id": "bits_eligible_to_farm_1",
+      "context": "点券格:紧跟在可获得点券下面的深灰小字注解,英文拆成两行",
+      "raw": "§8Eligible to farm while you have",
+      "text": "Eligible to farm while you have",
+      "placeholders": [],
+      "gloss": "整句是 “Eligible to farm while you have the cookie buff.”;这里的 cookie buff 就是曲奇增益(Cookie Buff),不是曲奇本身。",
+      "translate": true,
+      "zh": "只有在曲奇增益生效期间才能累积点券。"
+    },
+    {
+      "id": "bits_eligible_to_farm_2",
+      "context": "接上一行",
+      "raw": "§8the cookie buff.",
+      "text": "the cookie buff.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {"id": "bits_blank_3", "context": "点券格 Lore 的空行", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "bits_multiplier",
+      "context": "点券倍率,点券格和声望等级格里各出现一次,同一条记录管两处",
+      "raw": "§7Bits Multiplier: §b%s",
+      "text": "Bits Multiplier: %s",
+      "placeholders": [{"token": "%s", "desc": "声望等级 + 博物馆里程碑给的点券倍率", "type": "number", "example": "2.06x"}],
+      "gloss": "Wiki 的 UI 子页在这一行后面还写着 §7(§e等级名§7) 的括号尾巴,实测采集能把它和 Bits Purse / Bits Available 合并成同一个词数的模板,说明括号已经没有了,这里按实测写。",
+      "translate": true,
+      "zh": "点券倍率: %s",
+      "segments": [
+        {"color": "§7", "text": "Bits Multiplier: ", "zh": "点券倍率: "},
+        {"color": "§b", "text": "%s", "zh": "%s"}
+      ]
+    },
+    {
+      "id": "bits_per_cookie_available",
+      "context": "点券格:按当前倍率算,每吃一块曲奇能产出多少点券",
+      "raw": "§7Per §6Cookie§7: §b+%s bits §7available",
+      "text": "Per Cookie: +%s bits available",
+      "placeholders": [{"token": "%s", "desc": "单块曲奇能产出的点券数,随声望等级和博物馆里程碑变化", "type": "number", "example": "9,888"}],
+      "gloss": "中文把 available(可获得)提到数字前面才通顺,所以每一段都写了 order。",
+      "translate": true,
+      "zh": "每块曲奇: 可获得 +%s 点券",
+      "segments": [
+        {"color": "§7", "text": "Per ", "zh": "每块", "order": 0},
+        {"color": "§6", "text": "Cookie", "zh": "曲奇", "order": 1},
+        {"color": "§7", "text": ": ", "zh": ": ", "order": 2},
+        {"color": "§b", "text": "+%s bits ", "zh": "+%s 点券", "order": 4},
+        {"color": "§7", "text": "available", "zh": "可获得 ", "order": 3}
+      ]
+    },
+    {"id": "bits_blank_4", "context": "点券格 Lore 的空行", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "bits_fame_multiplier_note_1",
+      "context": "点券格结尾的深灰小字,英文拆成三行",
+      "raw": "§8Your Fame Rank's bit multiplier",
+      "text": "Your Fame Rank's bit multiplier",
+      "placeholders": [],
+      "gloss": "整句是 “Your Fame Rank's bit multiplier applies on the bits from every cookie you've ever eaten!”。Fame Rank 是社区商店那条声望阶梯(New Player→Settler→…→Paragon),和 Hypixel 花钱买的 Rank 不是一回事,按 README.md 5.5「玩法体系名一律翻译」译作「声望等级」。所有格 Fame Rank's 这里是写死在原文里的,不经过 text/Possessive.java(那条规则只拆占位符捕到的值)。",
+      "translate": true,
+      "zh": "你的声望等级带来的点券倍率,对你吃过的每一块曲奇产出的点券都生效!"
+    },
+    {
+      "id": "bits_fame_multiplier_note_2",
+      "context": "接上一行",
+      "raw": "§8applies on the bits from every",
+      "text": "applies on the bits from every",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "bits_fame_multiplier_note_3",
+      "context": "接上一行",
+      "raw": "§8cookie you've ever eaten!",
+      "text": "cookie you've ever eaten!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+
+    {
+      "id": "cookie_acquire_1",
+      "context": "增益曲奇购买格的第一段说明,英文拆成两行",
+      "raw": "§7Acquire Booster Cookies from the",
+      "text": "Acquire Booster Cookies from the",
+      "placeholders": [],
+      "gloss": "整句是 “Acquire Booster Cookies from the Community Center in the Hub.”。复数 Booster Cookies 和单数译名相同,不另写一条(引擎会自动把词尾的 s 变成可选)。注意:下一行的 §b「Community Center」和 §a「Hub」两处高亮色在合并成一条整句之后会丢,整句统一渲染成 §7——高亮落在被合并掉的尾行上,merge 和保色只能二选一。",
+      "translate": true,
+      "zh": "在大厅的社区中心获取增益曲奇。"
+    },
+    {
+      "id": "cookie_acquire_2",
+      "context": "接上一行",
+      "raw": "§bCommunity Center §7in the §aHub§7.",
+      "text": "Community Center in the Hub.",
+      "placeholders": [],
+      "gloss": "Community Center → 社区中心、Hub → 大厅,都取自 _shared/Terms.json。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {"id": "cookie_blank_1", "context": "增益曲奇格 Lore 的空行", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "cookie_buff_heading",
+      "context": "增益曲奇格里「曲奇增益」小节的标题,下面是一串 ‣ 加成条目",
+      "raw": "§dCookie Buff:",
+      "text": "Cookie Buff:",
+      "placeholders": [],
+      "gloss": "Cookie Buff 是曲奇给的那组加成,统一译「曲奇增益」(见 TabList/Tab_Header_Footer.json#tab_cookie_buff),不要写成「增益曲奇」。",
+      "translate": true,
+      "zh": "曲奇增益:"
+    },
+    {
+      "id": "cookie_buff_gain_bits",
+      "context": "曲奇增益条目:能获得点券",
+      "raw": "§8‣ §7Ability to gain §bBits§7!",
+      "text": "‣ Ability to gain Bits!",
+      "placeholders": [],
+      "gloss": "行首 ‣ 有自己的 §8 颜色,所以照抄进记录里由整行匹配管,不走 LineShape 剥项目符号那条路。",
+      "translate": true,
+      "zh": "‣ 可以获得点券!",
+      "segments": [
+        {"color": "§8", "text": "‣ ", "zh": "‣ "},
+        {"color": "§7", "text": "Ability to gain ", "zh": "可以获得"},
+        {"color": "§b", "text": "Bits", "zh": "点券"},
+        {"color": "§7", "text": "!", "zh": "!"}
+      ]
+    },
+    {
+      "id": "cookie_buff_wisdom",
+      "context": "曲奇增益条目:全部智慧属性 +25",
+      "raw": "§8‣ §3+25☯ §7on all §3Wisdom §7stats",
+      "text": "‣ +25☯ on all Wisdom stats",
+      "placeholders": [],
+      "gloss": "☯ 是 Wisdom 的属性图标,按 README.md「属性图标写通用符号」原样保留。Wisdom → 智慧(和 GLOSSARY.md 的 Mining Wisdom → 挖掘智慧一致)。",
+      "translate": true,
+      "zh": "‣ +25☯ 全部智慧属性",
+      "segments": [
+        {"color": "§8", "text": "‣ ", "zh": "‣ "},
+        {"color": "§3", "text": "+25☯ ", "zh": "+25☯ "},
+        {"color": "§7", "text": "on all ", "zh": "全部"},
+        {"color": "§3", "text": "Wisdom ", "zh": "智慧"},
+        {"color": "§7", "text": "stats", "zh": "属性"}
+      ]
+    },
+    {
+      "id": "cookie_buff_magic_find",
+      "context": "曲奇增益条目:魔法寻宝 +15",
+      "raw": "§8‣ §b+15✯ §7Magic Find",
+      "text": "‣ +15✯ Magic Find",
+      "placeholders": [],
+      "gloss": "服务器实际发的是私用区码点 U+E01A(采集文件的 raw_escaped 里能看到),按 README.md 的规定这里写通用符号 ✯,引擎匹配前会折算。Magic Find → 魔法寻宝(GLOSSARY.md)。",
+      "translate": true,
+      "zh": "‣ +15✯ 魔法寻宝",
+      "segments": [
+        {"color": "§8", "text": "‣ ", "zh": "‣ "},
+        {"color": "§b", "text": "+15✯ ", "zh": "+15✯ "},
+        {"color": "§7", "text": "Magic Find", "zh": "魔法寻宝"}
+      ]
+    },
+    {
+      "id": "cookie_buff_keep_coins",
+      "context": "曲奇增益条目:死亡不掉硬币",
+      "raw": "§8‣ §7Keep §6coins §7on death",
+      "text": "‣ Keep coins on death",
+      "placeholders": [],
+      "gloss": "coins → 硬币(GLOSSARY.md「货币名」条目,不是「金币」)。中文要把「死亡时」提到最前面,所以每段都写了 order。",
+      "translate": true,
+      "zh": "‣ 死亡时不掉落硬币",
+      "segments": [
+        {"color": "§8", "text": "‣ ", "zh": "‣ ", "order": 0},
+        {"color": "§7", "text": "Keep ", "zh": "不掉落", "order": 2},
+        {"color": "§6", "text": "coins ", "zh": "硬币", "order": 3},
+        {"color": "§7", "text": "on death", "zh": "死亡时", "order": 1}
+      ]
+    },
+    {
+      "id": "cookie_buff_permafly",
+      "context": "曲奇增益条目:私人岛屿和花园里可以一直飞",
+      "raw": "§8‣ §ePermafly §7on private islands and gardens",
+      "text": "‣ Permafly on private islands and gardens",
+      "placeholders": [],
+      "gloss": "Permafly 是 Hypixel 自造的功能名(permanent fly),按「功能性命名一律翻译」译作「永久飞行」。garden 指空岛的花园(Garden)。",
+      "translate": true,
+      "zh": "‣ 在私人岛屿和花园里永久飞行",
+      "segments": [
+        {"color": "§8", "text": "‣ ", "zh": "‣ ", "order": 0},
+        {"color": "§e", "text": "Permafly ", "zh": "永久飞行", "order": 2},
+        {"color": "§7", "text": "on private islands and gardens", "zh": "在私人岛屿和花园里", "order": 1}
+      ]
+    },
+    {
+      "id": "cookie_buff_quick_access_1",
+      "context": "曲奇增益条目:一批菜单可以用指令直接打开,英文拆成两行",
+      "raw": "§8‣ §7Quick access to some menus using their",
+      "text": "‣ Quick access to some menus using their",
+      "placeholders": [],
+      "gloss": "整句是 “Quick access to some menus using their respective commands:”,下面接四行指令清单。",
+      "translate": true,
+      "zh": "‣ 用对应的指令快速打开部分菜单:",
+      "segments": [
+        {"color": "§8", "text": "‣ ", "zh": "‣ "},
+        {"color": "§7", "text": "Quick access to some menus using their", "zh": "用对应的指令快速打开部分菜单:"}
+      ]
+    },
+    {
+      "id": "cookie_buff_quick_access_2",
+      "context": "接上一行",
+      "raw": "§7respective commands:",
+      "text": "respective commands:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "cookie_commands_line_1",
+      "context": "指令清单第一行,行首两个空格是缩进,照抄不动",
+      "raw": "  §6/ah§7, §6/bazaar§7, §a/bank§7, §6/accessorybag§7,",
+      "text": "  /ah, /bazaar, /bank, /accessorybag,",
+      "placeholders": [],
+      "gloss": "整行只有指令名和逗号,没有可翻译的词,按 README.md 第 6 节采集下来但标 translate:false,表示「看过了,故意不翻」。",
+      "translate": false,
+      "zh": ""
+    },
+    {
+      "id": "cookie_commands_line_2",
+      "context": "指令清单第二行",
+      "raw": "  §b/fishingbag§7, §d/timepocket§7, §f/anvil§7, §d/hex§7,",
+      "text": "  /fishingbag, /timepocket, /anvil, /hex,",
+      "placeholders": [],
+      "gloss": "同上,纯指令行不翻译。",
+      "translate": false,
+      "zh": ""
+    },
+    {
+      "id": "cookie_commands_line_3",
+      "context": "指令清单第三行",
+      "raw": "  §b/etable§7, §d/potionbag§7, §d/rngmeter§7, §d/pity§7,",
+      "text": "  /etable, /potionbag, /rngmeter, /pity,",
+      "placeholders": [],
+      "gloss": "同上,纯指令行不翻译。",
+      "translate": false,
+      "zh": ""
+    },
+    {
+      "id": "cookie_commands_line_4",
+      "context": "指令清单最后一行,只有 and 一个词要翻",
+      "raw": "  §7and §e/quiver",
+      "text": "  and /quiver",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "  和 /quiver",
+      "segments": [
+        {"color": "", "text": "  ", "zh": "  "},
+        {"color": "§7", "text": "and ", "zh": "和 "},
+        {"color": "§e", "text": "/quiver", "zh": "/quiver"}
+      ]
+    },
+    {
+      "id": "cookie_buff_sell_to_menus",
+      "context": "曲奇增益条目:可以直接把物品卖进交易/曲奇菜单",
+      "raw": "§8‣ §7Sell items directly to the trades and cookie menu",
+      "text": "‣ Sell items directly to the trades and cookie menu",
+      "placeholders": [],
+      "gloss": "the trades and cookie menu 指的是商人交易菜单和这个曲奇菜单本身(菜单里那个漏斗格)。",
+      "translate": true,
+      "zh": "‣ 直接在交易菜单和曲奇菜单里出售物品",
+      "segments": [
+        {"color": "§8", "text": "‣ ", "zh": "‣ "},
+        {"color": "§7", "text": "Sell items directly to the trades and cookie menu", "zh": "直接在交易菜单和曲奇菜单里出售物品"}
+      ]
+    },
+    {
+      "id": "cookie_buff_afk_immunity",
+      "context": "曲奇增益条目:在自己的岛屿和花园挂机不会被踢",
+      "raw": "§8‣ §7AFK §aimmunity §7on your island and garden",
+      "text": "‣ AFK immunity on your island and garden",
+      "placeholders": [],
+      "gloss": "AFK immunity 指的是不会因为长时间挂机被踢下线,不是「免疫伤害」。",
+      "translate": true,
+      "zh": "‣ 在你的岛屿和花园里挂机免踢",
+      "segments": [
+        {"color": "§8", "text": "‣ ", "zh": "‣ ", "order": 0},
+        {"color": "§7", "text": "AFK ", "zh": "挂机", "order": 2},
+        {"color": "§a", "text": "immunity ", "zh": "免踢", "order": 3},
+        {"color": "§7", "text": "on your island and garden", "zh": "在你的岛屿和花园里", "order": 1}
+      ]
+    },
+    {
+      "id": "cookie_buff_toggle_potions",
+      "context": "曲奇增益条目:可以单独开关某个药水效果",
+      "raw": "§8‣ §7Toggle specific §dpotion effects",
+      "text": "‣ Toggle specific potion effects",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "‣ 开关特定的药水效果",
+      "segments": [
+        {"color": "§8", "text": "‣ ", "zh": "‣ "},
+        {"color": "§7", "text": "Toggle specific ", "zh": "开关特定的"},
+        {"color": "§d", "text": "potion effects", "zh": "药水效果"}
+      ]
+    },
+    {
+      "id": "cookie_buff_show_items",
+      "context": "曲奇增益条目:用 /show 把物品发到聊天里",
+      "raw": "§8‣ §7Link your items in chat using §e/show",
+      "text": "‣ Link your items in chat using /show",
+      "placeholders": [],
+      "gloss": "指令名 /show 保留原样。",
+      "translate": true,
+      "zh": "‣ 在聊天里展示你的物品,使用 /show",
+      "segments": [
+        {"color": "§8", "text": "‣ ", "zh": "‣ "},
+        {"color": "§7", "text": "Link your items in chat using ", "zh": "在聊天里展示你的物品,使用 "},
+        {"color": "§e", "text": "/show", "zh": "/show"}
+      ]
+    },
+    {
+      "id": "cookie_buff_instasell_stash",
+      "context": "曲奇增益条目:材料储备可以一键卖给集市",
+      "raw": "§8‣ §7Insta-sell your Material stash to the §6Bazaar",
+      "text": "‣ Insta-sell your Material stash to the Bazaar",
+      "placeholders": [],
+      "gloss": "Bazaar → 集市(和 Economy/ChatMessage/Bazaar.json 一致)。Material stash 是背包里那堆自动收进「材料」栏的东西。",
+      "translate": true,
+      "zh": "‣ 把材料储备一键卖给集市",
+      "segments": [
+        {"color": "§8", "text": "‣ ", "zh": "‣ "},
+        {"color": "§7", "text": "Insta-sell your Material stash to the ", "zh": "把材料储备一键卖给"},
+        {"color": "§6", "text": "Bazaar", "zh": "集市"}
+      ]
+    },
+    {
+      "id": "cookie_buff_chocolate_factory",
+      "context": "曲奇增益条目:巧克力工厂产量加成",
+      "raw": "§8‣ §7Increases §6Chocolate Factory §7production by §6+0.25x",
+      "text": "‣ Increases Chocolate Factory production by +0.25x",
+      "placeholders": [],
+      "gloss": "Chocolate Factory → 巧克力工厂(_shared/Event_Names.json)。+0.25x 是加法倍率,和 GUI_Item/Chocolate_Factory.json 里的「+%s 倍」写法保持一致。Increases 那一段的意思跑到后面去了,标 omit。",
+      "translate": true,
+      "zh": "‣ 巧克力工厂产量提升 +0.25 倍",
+      "segments": [
+        {"color": "§8", "text": "‣ ", "zh": "‣ "},
+        {"color": "§7", "text": "Increases ", "zh": "", "omit": true},
+        {"color": "§6", "text": "Chocolate Factory ", "zh": "巧克力工厂"},
+        {"color": "§7", "text": "production by ", "zh": "产量提升 "},
+        {"color": "§6", "text": "+0.25x", "zh": "+0.25 倍"}
+      ]
+    },
+    {
+      "id": "cookie_buff_mixins",
+      "context": "曲奇增益条目:Mixins 可以直接在背包里用掉",
+      "raw": "§8‣ §7Allows consuming §9Mixins §7directly from your inventory",
+      "text": "‣ Allows consuming Mixins directly from your inventory",
+      "placeholders": [],
+      "gloss": "Mixins 是物品自造专名(神药的附加成分),保留英文;末段的意思并进了第二段,标 omit。",
+      "translate": true,
+      "zh": "‣ 可以直接在背包里使用 Mixins",
+      "segments": [
+        {"color": "§8", "text": "‣ ", "zh": "‣ "},
+        {"color": "§7", "text": "Allows consuming ", "zh": "可以直接在背包里使用 "},
+        {"color": "§9", "text": "Mixins ", "zh": "Mixins"},
+        {"color": "§7", "text": "directly from your inventory", "zh": "", "omit": true}
+      ]
+    },
+    {
+      "id": "cookie_buff_abiphone_call",
+      "context": "曲奇增益条目:用 /call 打 Abiphone 电话",
+      "raw": "§8‣ §7Call §3Abiphone Contacts §7with §b/call",
+      "text": "‣ Call Abiphone Contacts with /call",
+      "placeholders": [],
+      "gloss": "Abiphone 是自造品牌名,按 GLOSSARY.md 原样保留;Contacts 是通讯录里的联系人。",
+      "translate": true,
+      "zh": "‣ 呼叫 Abiphone 联系人,使用 /call",
+      "segments": [
+        {"color": "§8", "text": "‣ ", "zh": "‣ "},
+        {"color": "§7", "text": "Call ", "zh": "呼叫 "},
+        {"color": "§3", "text": "Abiphone Contacts ", "zh": "Abiphone 联系人"},
+        {"color": "§7", "text": "with ", "zh": ",使用 "},
+        {"color": "§b", "text": "/call", "zh": "/call"}
+      ]
+    },
+    {"id": "cookie_blank_2", "context": "增益曲奇格 Lore 的空行(下面是 Duration: 4d,由 _shared/Menu_Common.json#menu_duration 管)", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "cookie_farm_bits_note_1",
+      "context": "增益曲奇格结尾的深灰小字,英文拆成三行",
+      "raw": "§8Farm bits from playing with the",
+      "text": "Farm bits from playing with the",
+      "placeholders": [],
+      "gloss": "整句是 “Farm bits from playing with the Cookie Buff active and completing specific tasks.”。",
+      "translate": true,
+      "zh": "在曲奇增益生效期间游玩、并完成特定任务,即可累积点券。"
+    },
+    {
+      "id": "cookie_farm_bits_note_2",
+      "context": "接上一行",
+      "raw": "§8Cookie Buff active and completing",
+      "text": "Cookie Buff active and completing",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "cookie_farm_bits_note_3",
+      "context": "接上一行",
+      "raw": "§8specific tasks.",
+      "text": "specific tasks.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {"id": "cookie_blank_3", "context": "增益曲奇格 Lore 的空行", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "cookie_cannot_afford",
+      "context": "增益曲奇格:Gems 不够时的红色提示",
+      "raw": "§cYou cannot afford this!",
+      "text": "You cannot afford this!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你买不起这个!"
+    },
+    {
+      "id": "cookie_click_store_info",
+      "context": "增益曲奇格最后一行的点击提示,点了会给出官方商店的说明",
+      "raw": "§eClick to get store info!",
+      "text": "Click to get store info!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击获取商店信息!"
+    },
+
+    {
+      "id": "fame_rank_name",
+      "context": "菜单里「声望等级」那一格的物品名",
+      "raw": "§eFame Rank",
+      "text": "Fame Rank",
+      "placeholders": [],
+      "gloss": "Fame Rank 是社区商店的声望阶梯(New Player → Settler → … → Paragon,共 24 级),靠给城市项目捐献和在社区商店消费 Bits/Gems 升级,决定点券倍率。它和「不翻译的 Rank」(Hypixel 付费购买的 VIP/MVP 等级)不是一回事,按 README.md 5.5「玩法体系名一律翻译」译作「声望等级」。",
+      "translate": true,
+      "zh": "声望等级"
+    },
+    {
+      "id": "fame_earn_fame_1",
+      "context": "声望等级格第一段说明,英文拆成三行",
+      "raw": "§7Earn fame by §6contributing to city",
+      "text": "Earn fame by contributing to city",
+      "placeholders": [],
+      "gloss": "整句是 “Earn fame by contributing to city projects and spending Bits & Gems with Elizabeth.”。Elizabeth 是社区商店的 NPC,人名保留英文;Gems 按项目决定保留英文。中文要把「获得声望」放到句尾,所以两段写了 order(§6 那段仍然是被高亮的主干)。",
+      "translate": true,
+      "zh": "为城市项目做贡献、在 Elizabeth 处消费点券和 Gems,都能获得声望。",
+      "segments": [
+        {"color": "§7", "text": "Earn fame by ", "zh": ",都能获得声望。", "order": 1},
+        {"color": "§6", "text": "contributing to city", "zh": "为城市项目做贡献、在 Elizabeth 处消费点券和 Gems", "order": 0}
+      ]
+    },
+    {
+      "id": "fame_earn_fame_2",
+      "context": "接上一行",
+      "raw": "§6projects §7and spending §bBits §7& §aGems",
+      "text": "projects and spending Bits & Gems",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "fame_earn_fame_3",
+      "context": "接上一行",
+      "raw": "§7with Elizabeth.",
+      "text": "with Elizabeth.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {"id": "fame_blank_1", "context": "声望等级格 Lore 的空行", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "fame_your_rank",
+      "context": "声望等级格:玩家当前的声望等级名",
+      "raw": "§7Your rank: §e%s",
+      "text": "Your rank: %s",
+      "placeholders": [{"token": "%s", "desc": "当前声望等级名(New Player / Settler / … / Ambassador / Paragon)", "type": "raw", "example": "Ambassador"}],
+      "gloss": "这里的 rank 指的是声望等级,不是 Hypixel 付费 Rank。等级名本身是占位符捕到的值,写成 type: raw 才能走 _shared/Terms.json 查中文;词表里还没有这 24 个名字,查不到就保持英文,中英之间的空格由引擎自动补。",
+      "translate": true,
+      "zh": "当前声望等级: %s",
+      "segments": [
+        {"color": "§7", "text": "Your rank: ", "zh": "当前声望等级: "},
+        {"color": "§e", "text": "%s", "zh": "%s"}
+      ]
+    },
+    {
+      "id": "fame_election_votes",
+      "context": "声望等级格:当前声望等级在市长选举里能投几票",
+      "raw": "§7Election Votes: §a%s",
+      "text": "Election Votes: %s",
+      "placeholders": [{"token": "%s", "desc": "该声望等级的选举票数", "type": "number", "example": "50"}],
+      "gloss": "指的是市长选举(Mayor Election)里这个账号一次能投多少票。",
+      "translate": true,
+      "zh": "选举票数: %s",
+      "segments": [
+        {"color": "§7", "text": "Election Votes: ", "zh": "选举票数: "},
+        {"color": "§a", "text": "%s", "zh": "%s"}
+      ]
+    },
+    {
+      "id": "fame_election_yearly_1",
+      "context": "声望等级格:选举频率的深灰小字,英文拆成两行",
+      "raw": "§8The election is run every SkyBlock",
+      "text": "The election is run every SkyBlock",
+      "placeholders": [],
+      "gloss": "整句是 “The election is run every SkyBlock year.”;SkyBlock 这个词照写英文,渲染时由 translateSkyBlockName 决定。",
+      "translate": true,
+      "zh": "选举每个 SkyBlock 年举办一次。"
+    },
+    {
+      "id": "fame_election_yearly_2",
+      "context": "接上一行",
+      "raw": "§8year.",
+      "text": "year.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {"id": "fame_blank_2", "context": "声望等级格 Lore 的空行", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "fame_your_total",
+      "context": "声望等级格:累计获得的声望值",
+      "raw": "§7Your total: §e%s Fame",
+      "text": "Your total: %s Fame",
+      "placeholders": [{"token": "%s", "desc": "累计声望值", "type": "number", "example": "13,868,050"}],
+      "gloss": "这里的 Fame 是声望这个数值本身(不是等级名)。",
+      "translate": true,
+      "zh": "累计: %s 声望",
+      "segments": [
+        {"color": "§7", "text": "Your total: ", "zh": "累计: "},
+        {"color": "§e", "text": "%s Fame", "zh": "%s 声望"}
+      ]
+    },
+    {"id": "fame_blank_3", "context": "声望等级格 Lore 的空行", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "fame_next_rank",
+      "context": "声望等级格:下一级的名字,下面跟一条纯符号进度条(没有词,不写记录)",
+      "raw": "§7Next rank: §b%s",
+      "text": "Next rank: %s",
+      "placeholders": [{"token": "%s", "desc": "下一个声望等级名", "type": "raw", "example": "Statesperson"}],
+      "gloss": "和 fame_your_rank 同理,等级名走 _shared/Terms.json。",
+      "translate": true,
+      "zh": "下一等级: %s",
+      "segments": [
+        {"color": "§7", "text": "Next rank: ", "zh": "下一等级: "},
+        {"color": "§b", "text": "%s", "zh": "%s"}
+      ]
+    },
+    {"id": "fame_blank_4", "context": "声望等级格 Lore 的空行(上面是进度条那一行)", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "fame_rate_note_1",
+      "context": "声望等级格结尾的深灰小字:声望的换算率,英文拆成三行",
+      "raw": "§8You earn 1 fame per bit and",
+      "text": "You earn 1 fame per bit and",
+      "placeholders": [],
+      "gloss": "整句是 “You earn 1 fame per bit and 200 per gem spent in the community shop.”;两个数字是固定机制值,不做占位符。",
+      "translate": true,
+      "zh": "在社区商店里每消费 1 点券可得 1 声望,每消费 1 Gem 可得 200 声望。"
+    },
+    {
+      "id": "fame_rate_note_2",
+      "context": "接上一行",
+      "raw": "§8200 per gem spent in the",
+      "text": "200 per gem spent in the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "fame_rate_note_3",
+      "context": "接上一行",
+      "raw": "§8community shop.",
+      "text": "community shop.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+
+    {
+      "id": "hex_name",
+      "context": "曲奇增益快捷入口:海克斯那一格的物品名",
+      "raw": "§dThe Hex",
+      "text": "The Hex",
+      "placeholders": [],
+      "gloss": "The Hex 是大厅博物馆 Hexatorum 房间里的重铸功能站,不是人名;译名沿用 Mining/GUI_Title/Reforge.json 已经定下的音译「海克斯」。",
+      "translate": true,
+      "zh": "海克斯"
+    },
+    {"id": "hex_blank_1", "context": "海克斯格 Lore 的空行", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "hex_access_anywhere",
+      "context": "海克斯格:在哪都能打开的说明,英文拆成两行",
+      "raw": "§7Access §dThe Hex §7from anywhere in",
+      "text": "Access The Hex from anywhere in",
+      "placeholders": [],
+      "gloss": "整句是 “Access The Hex from anywhere in SkyBlock!”,尾行 SkyBlock! 由 access_skyblock_suffix 一条统管(铁砧、集市两格也接同一行)。中文要把地点状语放句首,所以三段都写了 order。",
+      "translate": true,
+      "zh": "在 SkyBlock 的任何地方打开海克斯!",
+      "segments": [
+        {"color": "§7", "text": "Access ", "zh": "打开", "order": 1},
+        {"color": "§d", "text": "The Hex ", "zh": "海克斯!", "order": 2},
+        {"color": "§7", "text": "from anywhere in", "zh": "在 SkyBlock 的任何地方", "order": 0}
+      ]
+    },
+    {
+      "id": "access_skyblock_suffix",
+      "context": "海克斯 / 铁砧 / 集市三格「Access … from anywhere in」的共同尾行",
+      "raw": "§7SkyBlock!",
+      "text": "SkyBlock!",
+      "placeholders": [],
+      "gloss": "三条首行各自带完整译文,这一行统一作为尾巴删掉。同一渲染面上只能有这一条 “SkyBlock!”。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {"id": "hex_blank_2", "context": "海克斯格 Lore 的空行", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "hex_requires_museum_milestone",
+      "context": "海克斯格底部的红色解锁条件行",
+      "raw": "§cRequires Museum Milestone 8",
+      "text": "Requires Museum Milestone 8",
+      "placeholders": [],
+      "gloss": "GLOSSARY.md 的「The Hex」条目已核实:海克斯需要博物馆里程碑 8 才能使用,采集顺序也正好落在海克斯格和附魔台格之间。里程碑数字是固定机制值,不做占位符;译法沿用 Hub_General/NPC_Message/Damia.json 的「博物馆里程碑」。",
+      "translate": true,
+      "zh": "需要博物馆里程碑 8"
+    },
+
+    {
+      "id": "etable_name",
+      "context": "曲奇增益快捷入口:附魔台那一格的物品名",
+      "raw": "§6Enchantment Table",
+      "text": "Enchantment Table",
+      "placeholders": [],
+      "gloss": "用《我的世界》官方中文译名「附魔台」。",
+      "translate": true,
+      "zh": "附魔台"
+    },
+    {"id": "etable_blank_1", "context": "附魔台格 Lore 的空行", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "etable_access_anywhere",
+      "context": "附魔台格:在哪都能开的说明,英文拆成两行",
+      "raw": "§7Access an Enchantment Table from",
+      "text": "Access an Enchantment Table from",
+      "placeholders": [],
+      "gloss": "整句是 “Access an Enchantment Table from anywhere in SkyBlock!”,尾行由 access_anywhere_in_skyblock_suffix 统管(拍卖行格接同一行)。这一行整行都是 §7,不分段。",
+      "translate": true,
+      "zh": "在 SkyBlock 的任何地方使用附魔台!"
+    },
+    {
+      "id": "access_anywhere_in_skyblock_suffix",
+      "context": "附魔台 / 拍卖行两格「Access … from」的共同尾行",
+      "raw": "§7anywhere in SkyBlock!",
+      "text": "anywhere in SkyBlock!",
+      "placeholders": [],
+      "gloss": "和 access_skyblock_suffix 是两行不同的原文(这一行多了 anywhere in),各自一条记录,不会互相顶掉。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {"id": "etable_blank_2", "context": "附魔台格 Lore 的空行", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "etable_remembers_bookshelf_power_1",
+      "context": "附魔台格:便携台会沿用你见过的最高书架强度,英文拆成两行",
+      "raw": "§7This portable table remembers the",
+      "text": "This portable table remembers the",
+      "placeholders": [],
+      "gloss": "整句是 “This portable table remembers the highest bookshelf power you've seen!”。注意:尾行上 §d 高亮的 “bookshelf power” 在合并后会丢色,整句渲染成 §7。",
+      "translate": true,
+      "zh": "这张便携附魔台会记住你见过的最高书架强度!"
+    },
+    {
+      "id": "etable_remembers_bookshelf_power_2",
+      "context": "接上一行",
+      "raw": "§7highest §dbookshelf power §7you've seen!",
+      "text": "highest bookshelf power you've seen!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+
+    {
+      "id": "anvil_name",
+      "context": "曲奇增益快捷入口:铁砧那一格的物品名",
+      "raw": "§6Anvil",
+      "text": "Anvil",
+      "placeholders": [],
+      "gloss": "Anvil → 铁砧,和 _shared/Item_Lore.json 的 “Combinable in Anvil → 可在铁砧中合并” 一致。这一行运行时采集抓不到(单个纯字母词会被 Classifier 的玩家名过滤丢掉),照 Wiki 的 UI 子页补。",
+      "translate": true,
+      "zh": "铁砧"
+    },
+    {"id": "anvil_blank_1", "context": "铁砧格 Lore 的空行", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "anvil_access_anywhere",
+      "context": "铁砧格:在哪都能开的说明,尾行接 access_skyblock_suffix",
+      "raw": "§7Access an Anvil from anywhere in",
+      "text": "Access an Anvil from anywhere in",
+      "placeholders": [],
+      "gloss": "运行时采集把海克斯 / 铁砧 / 集市三格的这一行合并成了一个 “Access %1$s %2$s from anywhere in” 模板(两个 raw 占位符挨在一起,正是 README.md 警告的那种会切错的写法),这里按三条各自的原文拆开写。Wiki 的 UI 子页显示只有海克斯那一格中间有 §d 高亮,铁砧和集市两格整行都是 §7,所以这两条不写 segments。",
+      "translate": true,
+      "zh": "在 SkyBlock 的任何地方使用铁砧!"
+    },
+
+    {
+      "id": "potions_toggle_name",
+      "context": "曲奇增益快捷入口:药水效果开关那一格的物品名",
+      "raw": "§aToggle Potion Effects",
+      "text": "Toggle Potion Effects",
+      "placeholders": [],
+      "gloss": "这一格点开的菜单标题也叫 “(1/2) Toggle Potion Effects”;等那个菜单单独建文件时,这一行和下面两行应当按 README.md 5.6 抽进 _shared/ 用 ref 引用,不要在两个文件里各写一份(同一渲染面上模板重复会让构建失败)。",
+      "translate": true,
+      "zh": "开关药水效果"
+    },
+    {
+      "id": "potions_toggle_desc_1",
+      "context": "药水开关格的说明,英文拆成两行",
+      "raw": "§7Choose which of your potion effects",
+      "text": "Choose which of your potion effects",
+      "placeholders": [],
+      "gloss": "整句是 “Choose which of your potion effects are applied to you.”。同样属于将来要抽进 _shared/ 的共享行。",
+      "translate": true,
+      "zh": "选择让哪些药水效果作用在你身上。"
+    },
+    {
+      "id": "potions_toggle_desc_2",
+      "context": "接上一行",
+      "raw": "§7are applied to you.",
+      "text": "are applied to you.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+
+    {
+      "id": "auction_house_name",
+      "context": "曲奇增益快捷入口:拍卖行那一格的物品名",
+      "raw": "§6Auction House",
+      "text": "Auction House",
+      "placeholders": [],
+      "gloss": "Auction House → 拍卖行,取自 _shared/Terms.json。",
+      "translate": true,
+      "zh": "拍卖行"
+    },
+    {"id": "auction_house_blank_1", "context": "拍卖行格 Lore 的空行", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "auction_house_access_anywhere",
+      "context": "拍卖行格:在哪都能开的说明,尾行接 access_anywhere_in_skyblock_suffix",
+      "raw": "§7Access the Auction House menu from",
+      "text": "Access the Auction House menu from",
+      "placeholders": [],
+      "gloss": "整行都是 §7,不分段。",
+      "translate": true,
+      "zh": "在 SkyBlock 的任何地方打开拍卖行菜单!"
+    },
+
+    {
+      "id": "bazaar_name",
+      "context": "曲奇增益快捷入口:集市那一格的物品名",
+      "raw": "§6Bazaar",
+      "text": "Bazaar",
+      "placeholders": [],
+      "gloss": "Bazaar → 集市(和 Economy/ChatMessage/Bazaar.json 一致;GLOSSARY.md 里保留英文的那个 Bazaar 说的是 Tal Ker 台词里改名叫 Bazaar 的 NPC,不是这里的交易系统)。这一行运行时采集抓不到,照 Wiki 的 UI 子页补。",
+      "translate": true,
+      "zh": "集市"
+    },
+    {"id": "bazaar_blank_1", "context": "集市格 Lore 的空行", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "bazaar_access_anywhere",
+      "context": "集市格:在哪都能开的说明,尾行接 access_skyblock_suffix",
+      "raw": "§7Access the Bazaar from anywhere in",
+      "text": "Access the Bazaar from anywhere in",
+      "placeholders": [],
+      "gloss": "整行都是 §7,不分段;拆开的理由见 anvil_access_anywhere。",
+      "translate": true,
+      "zh": "在 SkyBlock 的任何地方打开集市!"
+    },
+
+    {
+      "id": "gems_name",
+      "context": "菜单右下角「SkyBlock Gems」那一格的物品名",
+      "raw": "§aSkyBlock Gems",
+      "text": "SkyBlock Gems",
+      "placeholders": [],
+      "gloss": "Gems 按项目决定保留英文不翻译,整行原样留着即可,所以标 translate:false(README.md 第 6 节:不翻译的内容也要采集下来)。",
+      "translate": false,
+      "zh": ""
+    },
+    {
+      "id": "gems_use_to_purchase",
+      "context": "SkyBlock Gems 格:下面接一串能买到什么的清单",
+      "raw": "§7Use SkyBlock Gems to purchase:",
+      "text": "Use SkyBlock Gems to purchase:",
+      "placeholders": [],
+      "gloss": "SkyBlock 照写英文交给 translateSkyBlockName;Gems 保留英文,中英之间的空格要自己写。",
+      "translate": true,
+      "zh": "使用 SkyBlock Gems 购买:"
+    },
+    {
+      "id": "gems_list_booster_cookies",
+      "context": "SkyBlock Gems 清单项:增益曲奇",
+      "raw": "§7 - §6Booster Cookies",
+      "text": " - Booster Cookies",
+      "placeholders": [],
+      "gloss": "复数照译单数,不另写一条。",
+      "translate": true,
+      "zh": " - 增益曲奇",
+      "segments": [
+        {"color": "§7", "text": " - ", "zh": " - "},
+        {"color": "§6", "text": "Booster Cookies", "zh": "增益曲奇"}
+      ]
+    },
+    {
+      "id": "gems_list_fire_sales",
+      "context": "SkyBlock Gems 清单项:限时特卖",
+      "raw": "§7 - §cFire Sales",
+      "text": " - Fire Sales",
+      "placeholders": [],
+      "gloss": "Fire Sale → 限时特卖,取自 _shared/Event_Names.json#event_fire_sale。",
+      "translate": true,
+      "zh": " - 限时特卖",
+      "segments": [
+        {"color": "§7", "text": " - ", "zh": " - "},
+        {"color": "§c", "text": "Fire Sales", "zh": "限时特卖"}
+      ]
+    },
+    {
+      "id": "gems_list_taylors_cosmetics",
+      "context": "SkyBlock Gems 清单项:Taylor 卖的装饰品",
+      "raw": "§7 - §bTaylor's Cosmetics",
+      "text": " - Taylor's Cosmetics",
+      "placeholders": [],
+      "gloss": "Taylor 是 NPC 人名,保留英文;Cosmetics 指纯外观类道具。",
+      "translate": true,
+      "zh": " - Taylor 的装饰品",
+      "segments": [
+        {"color": "§7", "text": " - ", "zh": " - "},
+        {"color": "§b", "text": "Taylor's Cosmetics", "zh": "Taylor 的装饰品"}
+      ]
+    },
+    {
+      "id": "gems_list_skymart_skins",
+      "context": "SkyBlock Gems 清单项:花园里 SkyMart 卖的谷仓/温室外观",
+      "raw": "§7 - §aSkyMart Barn & Greenhouse Skins",
+      "text": " - SkyMart Barn & Greenhouse Skins",
+      "placeholders": [],
+      "gloss": "SkyMart 是花园(Garden)里的商店自造名,保留英文;Barn/Greenhouse 是花园里的两种建筑,Skins 是它们的外观皮肤。未在游戏内核对过这两种建筑的既有译名,若日后 Garden 分类定了别的说法以那边为准。",
+      "translate": true,
+      "zh": " - SkyMart 谷仓与温室外观",
+      "segments": [
+        {"color": "§7", "text": " - ", "zh": " - "},
+        {"color": "§a", "text": "SkyMart Barn & Greenhouse Skins", "zh": "SkyMart 谷仓与温室外观"}
+      ]
+    },
+    {
+      "id": "gems_list_account_profile_upgrades",
+      "context": "SkyBlock Gems 清单项:账号和存档层面的升级",
+      "raw": "§7 - §dAccount & Profile Upgrades",
+      "text": " - Account & Profile Upgrades",
+      "placeholders": [],
+      "gloss": "Profile 指 SkyBlock 的存档(一个账号有多个 Profile);项目里还没有统一决定过 Profile 的译名,这里先用「存档」。",
+      "translate": true,
+      "zh": " - 账号与存档升级",
+      "segments": [
+        {"color": "§7", "text": " - ", "zh": " - "},
+        {"color": "§d", "text": "Account & Profile Upgrades", "zh": "账号与存档升级"}
+      ]
+    },
+    {"id": "gems_blank_1", "context": "SkyBlock Gems 格 Lore 的空行", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "gems_webstore_1",
+      "context": "SkyBlock Gems 格结尾的深灰小字,英文拆成两行",
+      "raw": "§8Gems can be purchased from our",
+      "text": "Gems can be purchased from our",
+      "placeholders": [],
+      "gloss": "整句是 “Gems can be purchased from our webstore at store.hypixel.net!”。Gems 和网址都保留原样;注意尾行上 §b 高亮的网址在合并后会丢色,整句渲染成 §8。",
+      "translate": true,
+      "zh": "Gems 可以在我们的网上商店 store.hypixel.net 购买!"
+    },
+    {
+      "id": "gems_webstore_2",
+      "context": "接上一行",
+      "raw": "§8webstore at §bstore.hypixel.net§8!",
+      "text": "webstore at store.hypixel.net!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {"id": "gems_blank_2", "context": "SkyBlock Gems 格 Lore 的空行", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "gems_click_to_get_link",
+      "context": "SkyBlock Gems 格最后一行的点击提示,点了会把网店链接发到聊天里",
+      "raw": "§eClick to get link!",
+      "text": "Click to get link!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击获取链接!"
+    }
+  ]
+}

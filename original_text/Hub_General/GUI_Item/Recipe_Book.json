@@ -1,0 +1,218 @@
+{
+  "source": "SkyZH runtime capture (2026-08-27, Mining GUI session)",
+  "fetched_at": "2026-08-27",
+  "verified_ingame": true,
+  "gui_context": "空岛菜单打开后的 Recipe Book 菜单；仅收录通用入口、状态与说明。",
+  "lines": [
+    {
+      "id": "recipe_category",
+      "context": "按类别进入配方的入口",
+      "raw": "§a%1$s Recipes",
+      "text": "%1$s Recipes",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "配方类别名，保持服务器原文",
+          "type": "category_name",
+          "example": "Farming"
+        }
+      ],
+      "gloss": "类别名本身不在这条记录里翻译:它是占位符捕到的值,译名走 _shared/Terms.json,查不到就保持英文。**译文里不要手写空格**——中英之间那个空格由引擎在接缝处按两边的字符自动补(见 text/TranslationEntry.Seam):值还是英文时渲染成「Fishing 宠物」,词表里有译名时渲染成「钓鱼宠物」。手写空格的话后一种会变成「钓鱼 宠物」,两个汉字中间夹一个空格,而中文里没有这种写法。",
+      "translate": true,
+      "zh": "%1$s配方"
+    },
+    {
+      "id": "view_category_recipes_desc_1",
+      "context": "配方类别入口说明首行",
+      "raw": "§7View all of the §a%1$s Recipes §7that",
+      "text": "View all of the %1$s Recipes that",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "配方类别名，保持服务器原文",
+          "type": "raw",
+          "example": "Farming"
+        }
+      ],
+      "gloss": "完整句为 View all of the %1$s Recipes that you've unlocked!",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "View all of the ",
+          "zh": "查看已解锁的全部 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s Recipes ",
+          "zh": "%1$s配方"
+        },
+        {
+          "color": "§7",
+          "text": "that",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "view_category_recipes_desc_2",
+      "context": "接上一行",
+      "raw": "§7you've unlocked!",
+      "text": "you've unlocked!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "view_category_recipes",
+      "context": "较短的配方类别入口说明",
+      "raw": "§7View all of the §a%1$s Recipes",
+      "text": "View all of the %1$s Recipes",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "配方类别名，保持服务器原文",
+          "type": "raw",
+          "example": "Enchanting"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "View all of the ",
+          "zh": "查看全部 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s Recipes",
+          "zh": "%1$s配方"
+        }
+      ]
+    },
+    {
+      "id": "trades_desc_1",
+      "context": "交易入口说明首行；英文说明被菜单宽度拆成四行",
+      "raw": "§7View your available trades. These",
+      "text": "View your available trades. These",
+      "placeholders": [],
+      "gloss": "完整句为 View your available trades. These trades are always available and accessible through the SkyBlock Menu.",
+      "translate": true,
+      "zh": "查看可用交易。这些交易始终可通过 SkyBlock 菜单使用。"
+    },
+    {
+      "id": "trades_desc_2",
+      "context": "接上一行",
+      "raw": "§7trades are always available and",
+      "text": "trades are always available and",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "trades_desc_3",
+      "context": "接上一行",
+      "raw": "§7accessible through the SkyBlock",
+      "text": "accessible through the SkyBlock",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "trades_desc_4",
+      "context": "接上一行",
+      "raw": "§7Menu.",
+      "text": "Menu.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "trades_unlocked",
+      "context": "交易解锁进度",
+      "raw": "§7Trades Unlocked: §e%1$s",
+      "text": "Trades Unlocked: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "解锁百分比",
+          "type": "percentage",
+          "example": "87%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Trades Unlocked: ",
+          "zh": "交易解锁: "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ]
+    },
+    {
+      "id": "recipe_command",
+      "context": "配方搜索命令格式",
+      "raw": "§8/recipe <query>",
+      "text": "/recipe <query>",
+      "placeholders": [],
+      "gloss": "命令与参数占位符保持英文。",
+      "translate": true,
+      "zh": "/recipe <查询内容>"
+    },
+    {
+      "id": "recipe_search_desc_1",
+      "context": "搜索入口说明首行；英文说明被菜单宽度拆成三行",
+      "raw": "§7Search all recipes in SkyBlock. May",
+      "text": "Search all recipes in SkyBlock. May",
+      "placeholders": [],
+      "gloss": "完整句为 Search all recipes in SkyBlock. May include recipes which aren't in the recipe book.",
+      "translate": true,
+      "zh": "搜索 SkyBlock 中的全部配方，可能包含配方书中未收录的配方。"
+    },
+    {
+      "id": "recipe_search_desc_2",
+      "context": "接上一行",
+      "raw": "§7include recipes which aren't in the",
+      "text": "include recipes which aren't in the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "recipe_search_desc_3",
+      "context": "接上一行",
+      "raw": "§7recipe book.",
+      "text": "recipe book.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "click_to_search",
+      "ref": "_shared/Menu_Common.json#menu_click_to_search",
+      "context": "搜索入口的点击提示"
+    }
+  ]
+}

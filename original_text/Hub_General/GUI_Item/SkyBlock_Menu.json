@@ -1,0 +1,1261 @@
+{
+  "item_id": "SKYBLOCK_MENU",
+  "source": "https://hypixelskyblock.minecraft.wiki/w/SkyBlock_Menu + SkyZH 运行时采集(2026-08-24 实测会话)",
+  "fetched_at": "2026-08-24",
+  "verified_ingame": true,
+  "gui_context": "物品栏最后一格那本「空岛菜单」,每个玩家从进服第一秒起就带着,是全游戏被点开次数最多的一件东西。",
+  "name": {
+    "id": "skyblock_menu_name",
+    "context": "物品名。后面那个 (Click) 是操作提示,灰色",
+    "raw": "§aSkyBlock Menu §7(Click)",
+    "text": "SkyBlock Menu (Click)",
+    "placeholders": [],
+    "gloss": "SkyBlock 这个词由代码按配置项替换(见 text/SkyBlockName),译文里照写即可——后面跟着汉字会自动缩写成\"空岛菜单\"。(Click) 是灰的,和名字分成两段;和 NPC 头顶的 CLICK 一样译\"右键点击\"——这本菜单就是右键打开的,英文只写 Click 是因为它不分左右键。",
+    "translate": true,
+    "zh": "SkyBlock 菜单 (右键点击)",
+    "segments": [
+      {
+        "color": "§a",
+        "text": "SkyBlock Menu ",
+        "zh": "SkyBlock 菜单 "
+      },
+      {
+        "color": "§7",
+        "text": "(Click)",
+        "zh": "(右键点击)"
+      }
+    ]
+  },
+  "lore": [
+    {
+      "id": "skyblock_menu_lore_1",
+      "context": "Lore 第一行(整句话被排版拆成了三行)",
+      "raw": "§7View all of your SkyBlock progress,",
+      "text": "View all of your SkyBlock progress,",
+      "placeholders": [],
+      "gloss": "英文这一句被排版拆成三行,中文整句写在首行、后两行标 continuation(见 README「跨行整句」)。\"在 SkyBlock 里\"里的\"里\"在 compound_stoplist 上,所以这里会用全称\"空岛生存\"而不是简称。Collections 译\"收藏品\"、Recipe 译\"配方\",和 GUI_Title/Common_Menus.json 保持一致。",
+      "translate": true,
+      "zh": "查看你在 SkyBlock 里的全部进度,包括技能、收藏品、配方等等!"
+    },
+    {
+      "id": "skyblock_menu_lore_2",
+      "context": "Lore 第二行(接上一行)",
+      "raw": "§7including your Skills, Collections,",
+      "text": "including your Skills, Collections,",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "skyblock_menu_lore_3",
+      "context": "Lore 第三行(接上一行)",
+      "raw": "§7Recipes, and more!",
+      "text": "Recipes, and more!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "skyblock_menu_blank",
+      "context": "空行",
+      "text": "",
+      "placeholders": [],
+      "gloss": "",
+      "translate": false,
+      "zh": ""
+    },
+    {
+      "id": "skyblock_menu_click_to_open",
+      "ref": "_shared/Menu_Common.json#menu_click_to_open",
+      "context": "Lore 末行的点击提示"
+    }
+  ],
+  "menu_lines": [
+    {
+      "id": "skyblock_menu_stats_equipment",
+      "context": "主菜单里的属性与装备入口",
+      "raw": "§aStats & Equipment",
+      "text": "Stats & Equipment",
+      "placeholders": [],
+      "gloss": "沿用 GUI_Title/Common_Menus.json 的译名。",
+      "translate": true,
+      "zh": "属性与装备"
+    },
+    {
+      "id": "skyblock_menu_stats_desc_1",
+      "context": "属性与装备入口说明,英文分两行",
+      "raw": "§7View your equipment, stats,",
+      "text": "View your equipment, stats,",
+      "placeholders": [],
+      "gloss": "完整句为 View your equipment, stats, achievements, and more!",
+      "translate": true,
+      "zh": "查看你的装备、属性、成就等内容!"
+    },
+    {
+      "id": "skyblock_menu_stats_desc_2",
+      "context": "接上一行",
+      "raw": "§7achievements, and more!",
+      "text": "achievements, and more!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skyblock_menu_stat_speed",
+      "context": "属性与装备入口的属性摘要,速度数值随玩家变化",
+      "raw": " §f Speed %s",
+      "text": "  Speed %s",
+      "placeholders": [{"token": "%s", "desc": "速度", "type": "number", "example": "277"}],
+      "gloss": "保留服务器字体的速度图标。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "", "text": " ", "zh": " "},
+        {"color": "§f", "text": " Speed %s", "zh": " 速度 %s"}
+      ]
+    },
+    {
+      "id": "skyblock_menu_stat_strength",
+      "context": "属性摘要,力量数值随玩家变化",
+      "raw": " §c Strength §f%s",
+      "text": "  Strength %s",
+      "placeholders": [{"token": "%s", "desc": "力量", "type": "number", "example": "220.75"}],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "", "text": " ", "zh": " "},
+        {"color": "§c", "text": " Strength ", "zh": " 力量 "},
+        {"color": "§f", "text": "%s", "zh": "%s"}
+      ]
+    },
+    {
+      "id": "skyblock_menu_stat_defense",
+      "context": "属性摘要,防御力数值随玩家变化",
+      "raw": " §a Defense §f%s",
+      "text": "  Defense %s",
+      "placeholders": [{"token": "%s", "desc": "防御力", "type": "number", "example": "1,139.12"}],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "", "text": " ", "zh": " "},
+        {"color": "§a", "text": " Defense ", "zh": " 防御力 "},
+        {"color": "§f", "text": "%s", "zh": "%s"}
+      ]
+    },
+    {
+      "id": "skyblock_menu_stat_crit_damage",
+      "context": "属性摘要,暴击伤害随玩家变化",
+      "raw": " §9 Crit Damage §f%s%",
+      "text": "  Crit Damage %s%",
+      "placeholders": [{"token": "%s", "desc": "暴击伤害百分比", "type": "number", "example": "166"}],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "", "text": " ", "zh": " "},
+        {"color": "§9", "text": " Crit Damage ", "zh": " 暴击伤害 "},
+        {"color": "§f", "text": "%s%", "zh": "%s%"}
+      ]
+    },
+    {
+      "id": "skyblock_menu_stat_crit_chance",
+      "context": "属性摘要,暴击率随玩家变化",
+      "raw": " §9 Crit Chance §f%s%",
+      "text": "  Crit Chance %s%",
+      "placeholders": [{"token": "%s", "desc": "暴击率百分比", "type": "number", "example": "73"}],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "", "text": " ", "zh": " "},
+        {"color": "§9", "text": " Crit Chance ", "zh": " 暴击率 "},
+        {"color": "§f", "text": "%s%", "zh": "%s%"}
+      ]
+    },
+    {
+      "id": "skyblock_menu_stat_health",
+      "context": "属性摘要,生命值随玩家变化",
+      "raw": " §c Health §f%s",
+      "text": "  Health %s",
+      "placeholders": [{"token": "%s", "desc": "生命值", "type": "number", "example": "2,236"}],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "", "text": " ", "zh": " "},
+        {"color": "§c", "text": " Health ", "zh": " 生命值 "},
+        {"color": "§f", "text": "%s", "zh": "%s"}
+      ]
+    },
+    {
+      "id": "skyblock_menu_stat_intelligence",
+      "context": "属性摘要,智力随玩家变化",
+      "raw": " §b Intelligence §f%s",
+      "text": "  Intelligence %s",
+      "placeholders": [{"token": "%s", "desc": "智力", "type": "number", "example": "259"}],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "", "text": " ", "zh": " "},
+        {"color": "§b", "text": " Intelligence ", "zh": " 智力 "},
+        {"color": "§f", "text": "%s", "zh": "%s"}
+      ]
+    },
+    {
+      "id": "skyblock_menu_and_more",
+      "context": "属性摘要末行",
+      "raw": " §8and more...",
+      "text": " and more...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": " 以及更多……"
+    },
+    {
+      "id": "skyblock_menu_your_dynamic_section",
+      "context": "空岛菜单中由功能名动态组成的入口标题(Your Bags / Your Skills / Your Other Crystals),值走受控词表",
+      "raw": "§aYour %s",
+      "text": "Your %s",
+      "placeholders": [{"token": "%s", "desc": "功能分类名(Bags / Skills / Other Crystals 这类菜单入口名)", "type": "category_name", "example": "Bags"}],
+      "gloss": "**类型必须是 category_name,不能是 raw。** 这条模板只有 'Your ' 一个词加一个占位符,而 raw 的形状规则允许最多 8 个词的任意短语,于是它把 GUI 上任何以 Your 开头的 Lore 整句都吃了下来:2026-08-27 实测中 'Your first daily commission on each'、'Your withers will travel to and'、'Your freezing aura slows enemy'、'Your Suspicious Scrap will be' 四句全都匹配到这一条,而本条译文是裸 '%s',于是 Your 被删掉、剩下半句英文原样画出来——不是没翻译,是把原文改坏了。category_name 走 Capture.NAME 的形状规则(最多 5 个词、两端必须大写或数字开头),上面四句因为以小写词开头、或中间夹着 will/on 而被挡掉,Bags / Skills / Other Crystals 这些真正的入口名照旧通过。译文用裸 '%s' 而不是 '你的%s':中文菜单入口不说「你的收藏品」。",
+      "translate": true,
+      "zh": "%s"
+    },
+    {
+      "id": "skyblock_menu_dynamic_unlocked",
+      "context": "收藏品、配方等入口共用的解锁比例",
+      "raw": "§7%s Unlocked: §e%s§6%",
+      "text": "%1$s Unlocked: %2$s%",
+      "placeholders": [
+        {"token": "%1$s", "desc": "功能分类名", "type": "category_name", "example": "Collections"},
+        {"token": "%2$s", "desc": "解锁百分比", "type": "number", "example": "74.4"}
+      ],
+      "gloss": "分类名由 Terms.json 统一，数值保持动态。",
+      "translate": true,
+      "zh": "%1$s解锁: %2$s%",
+      "segments": [
+        {"color": "§7", "text": "%1$s Unlocked: ", "zh": "%1$s解锁: "},
+        {"color": "§e", "text": "%2$s", "zh": "%2$s"},
+        {"color": "§6", "text": "%", "zh": "%"}
+      ]
+    },
+    {
+      "id": "skyblock_menu_also_accessible_via",
+      "context": "主菜单入口 Lore 末尾的斜杠命令提示,无句号版本",
+      "raw": "§8Also accessible via /%s",
+      "text": "Also accessible via /%s",
+      "placeholders": [{"token": "%s", "desc": "可直接打开该功能的命令名", "type": "player_name", "example": "stats"}],
+      "gloss": "命令保持英文；player_name 只用于获得不查共享词表的严格单词捕获。",
+      "translate": true,
+      "zh": "也可通过 /%s 打开"
+    },
+    {
+      "id": "skyblock_menu_also_accessible_via_period",
+      "context": "主菜单入口 Lore 末尾的斜杠命令提示,带句号版本",
+      "raw": "§8Also accessible via /%s.",
+      "text": "Also accessible via /%s.",
+      "placeholders": [{"token": "%s", "desc": "可直接打开该功能的命令名", "type": "player_name", "example": "skills"}],
+      "gloss": "命令保持英文；player_name 只用于获得不查共享词表的严格单词捕获。",
+      "translate": true,
+      "zh": "也可通过 /%s 打开。"
+    },
+    {
+      "id": "skyblock_menu_your_skills",
+      "context": "技能入口物品名",
+      "raw": "§aYour Skills",
+      "text": "Your Skills",
+      "placeholders": [],
+      "gloss": "不使用 Your %s 宽模板,避免把未翻译的分类名直接嵌进中文。菜单入口名统一不带「你的」,和同菜单的「收纳袋」保持一致。",
+      "translate": true,
+      "zh": "技能"
+    },
+    {
+      "id": "skyblock_menu_skills_desc",
+      "context": "技能入口说明",
+      "raw": "§7View your Skill progression and",
+      "text": "View your Skill progression and",
+      "placeholders": [],
+      "gloss": "完整句的下一行固定为 rewards.，再下一行才是动态技能平均等级。",
+      "translate": true,
+      "zh": "查看你的技能进度和奖励。"
+    },
+    {
+      "id": "skyblock_menu_skills_desc_rewards",
+      "context": "技能入口说明的折行尾部",
+      "raw": "§7rewards.",
+      "text": "rewards.",
+      "placeholders": [],
+      "gloss": "接上一行的 View your Skill progression and。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skyblock_menu_skill_average",
+      "context": "玩家的技能平均等级,装饰类技能不计入",
+      "raw": "§6%s Skill Avg. §8(non-cosmetic)",
+      "text": "%s Skill Avg. (non-cosmetic)",
+      "placeholders": [{"token": "%s", "desc": "技能平均等级", "type": "number", "example": "30.4"}],
+      "gloss": "中文的等级读数要带量词,所以译文里补一个「级」。首段末尾那个空格是分隔两段用的,不能删:数字和「(」都不触发 Seam 自动补空格(见 TranslationEntry.Seam,只在汉字与拉丁字母之间补),这一行的每个空格都由译文自己写死,写成「%s 级 」正好渲染成「技能平均等级: 30.4 级 (不含装饰类)」。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§6", "text": "%s Skill Avg. ", "zh": "技能平均等级: %s 级 "},
+        {"color": "§8", "text": "(non-cosmetic)", "zh": "(不含装饰类)"}
+      ]
+    },
+    {
+      "id": "skyblock_menu_heart_of_the_mountain",
+      "context": "山峦之心入口物品名",
+      "raw": "§5Heart of the Mountain",
+      "text": "Heart of the Mountain",
+      "placeholders": [],
+      "gloss": "矿区中空岛菜单新增的山峦之心入口。",
+      "translate": true,
+      "zh": "山峦之心"
+    },
+    {
+      "id": "skyblock_menu_heart_of_the_mountain_desc_1",
+      "context": "山峦之心入口说明第一段,英文分三行",
+      "raw": "§7Your §5Heart of the Mountain §7contains",
+      "text": "Your Heart of the Mountain contains",
+      "placeholders": [],
+      "gloss": "完整句为 Your Heart of the Mountain contains your progression for the deeper layers of the Deep Caverns!",
+      "translate": true,
+      "zh": "你的山峦之心记录着你在深层洞穴中的进度!",
+      "segments": [
+        {"color": "§7", "text": "Your ", "zh": "你的"},
+        {"color": "§5", "text": "Heart of the Mountain ", "zh": "山峦之心"},
+        {"color": "§7", "text": "contains", "zh": "记录着你在深层洞穴中的进度!"}
+      ]
+    },
+    {
+      "id": "skyblock_menu_heart_of_the_mountain_desc_2",
+      "context": "接上一行",
+      "raw": "§7your progression for the deeper",
+      "text": "your progression for the deeper",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skyblock_menu_heart_of_the_mountain_desc_3",
+      "context": "接上一行",
+      "raw": "§7layers of the §bDeep Caverns§7!",
+      "text": "layers of the Deep Caverns!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "layers of the ", "zh": ""},
+        {"color": "§b", "text": "Deep Caverns", "zh": ""},
+        {"color": "§7", "text": "!", "zh": ""}
+      ]
+    },
+    {
+      "id": "skyblock_menu_heart_of_the_mountain_blank",
+      "context": "山峦之心入口说明分段空行",
+      "text": "",
+      "placeholders": [],
+      "gloss": "",
+      "translate": false,
+      "zh": ""
+    },
+    {
+      "id": "skyblock_menu_heart_of_the_mountain_tiers_1",
+      "context": "山峦之心入口说明第二段,英文分三行",
+      "raw": "§7Unlock Tiers by completing",
+      "text": "Unlock Tiers by completing",
+      "placeholders": [],
+      "gloss": "完整句为 Unlock Tiers by completing Commissions and upgrade perks using Powder.",
+      "translate": true,
+      "zh": "完成委托并使用粉末强化天赋,即可解锁更多阶级。"
+    },
+    {
+      "id": "skyblock_menu_heart_of_the_mountain_tiers_2",
+      "context": "接上一行",
+      "raw": "§aCommissions §7and upgrade perks",
+      "text": "Commissions and upgrade perks",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "",
+      "segments": [
+        {"color": "§a", "text": "Commissions ", "zh": ""},
+        {"color": "§7", "text": "and upgrade perks", "zh": ""}
+      ]
+    },
+    {
+      "id": "skyblock_menu_heart_of_the_mountain_tiers_3",
+      "context": "接上一行",
+      "raw": "§7using §2Powder§7.",
+      "text": "using Powder.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "using ", "zh": ""},
+        {"color": "§2", "text": "Powder", "zh": ""},
+        {"color": "§7", "text": ".", "zh": ""}
+      ]
+    },
+    {
+      "id": "skyblock_menu_heart_of_the_mountain_click",
+      "ref": "_shared/Menu_Common.json#menu_click_to_view",
+      "context": "山峦之心入口的点击提示"
+    },
+    {
+      "id": "skyblock_menu_collections",
+      "context": "收藏品入口物品名",
+      "text": "Collections",
+      "placeholders": [],
+      "gloss": "沿用通用菜单标题译名。",
+      "translate": true,
+      "zh": "收藏品"
+    },
+    {
+      "id": "skyblock_menu_collections_desc_1",
+      "context": "收藏品入口说明,英文分四行",
+      "raw": "§7View all of the items available in",
+      "text": "View all of the items available in",
+      "placeholders": [],
+      "gloss": "完整句说明收集物品会解锁奖励。",
+      "translate": true,
+      "zh": "查看 SkyBlock 中的所有收藏品。收集更多物品,一路解锁奖励并成为 SkyBlock 大师!"
+    },
+    {"id": "skyblock_menu_collections_desc_2", "context": "接上一行", "raw": "§7SkyBlock. Collect more of an item to", "text": "SkyBlock. Collect more of an item to", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
+    {"id": "skyblock_menu_collections_desc_3", "context": "接上一行", "raw": "§7unlock rewards on your way to", "text": "unlock rewards on your way to", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
+    {"id": "skyblock_menu_collections_desc_4", "context": "接上一行", "raw": "§7becoming a master of SkyBlock!", "text": "becoming a master of SkyBlock!", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
+    {
+      "id": "skyblock_menu_collections_unlocked",
+      "context": "收藏品解锁比例",
+      "raw": "§7Collections Unlocked: §e%s§6%",
+      "text": "Collections Unlocked: %s%",
+      "placeholders": [{"token": "%s", "desc": "收藏品解锁百分比", "type": "number", "example": "74.4"}],
+      "gloss": "和配方解锁比例分开写,避免动态标签造成半中半英。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Collections Unlocked: ", "zh": "收藏品解锁: "},
+        {"color": "§e", "text": "%s", "zh": "%s"},
+        {"color": "§6", "text": "%", "zh": "%"}
+      ]
+    },
+    {
+      "id": "skyblock_menu_recipe_book",
+      "context": "配方书入口物品名",
+      "raw": "§aRecipe Book",
+      "text": "Recipe Book",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "配方书"
+    },
+    {
+      "id": "skyblock_menu_recipe_book_desc_1",
+      "context": "配方书入口说明,英文分四行",
+      "raw": "§7Through your adventure, you will",
+      "text": "Through your adventure, you will",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "冒险途中,你会解锁各种特殊物品的配方! 你可以在这里查看这些物品的合成方法。"
+    },
+    {"id": "skyblock_menu_recipe_book_desc_2", "context": "接上一行", "raw": "§7unlock recipes for all kinds of", "text": "unlock recipes for all kinds of", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
+    {"id": "skyblock_menu_recipe_book_desc_3", "context": "接上一行", "raw": "§7special items! You can view how to", "text": "special items! You can view how to", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
+    {"id": "skyblock_menu_recipe_book_desc_4", "context": "接上一行", "raw": "§7craft these items here.", "text": "craft these items here.", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
+    {
+      "id": "skyblock_menu_recipes_unlocked",
+      "context": "配方解锁比例",
+      "raw": "§7Recipes Unlocked: §e%s§6%",
+      "text": "Recipes Unlocked: %s%",
+      "placeholders": [{"token": "%s", "desc": "配方解锁百分比", "type": "number", "example": "62.3"}],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Recipes Unlocked: ", "zh": "配方解锁: "},
+        {"color": "§e", "text": "%s", "zh": "%s"},
+        {"color": "§6", "text": "%", "zh": "%"}
+      ]
+    },
+    {
+      "id": "skyblock_menu_leveling",
+      "context": "SkyBlock 等级入口物品名",
+      "raw": "§aSkyBlock Leveling",
+      "text": "SkyBlock Leveling",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "SkyBlock 等级"
+    },
+    {
+      "id": "skyblock_menu_current_level",
+      "context": "玩家当前 SkyBlock 等级",
+      "raw": "§7Your SkyBlock Level: §8[§2%s§8]",
+      "text": "Your SkyBlock Level: [%s]",
+      "placeholders": [{"token": "%s", "desc": "当前 SkyBlock 等级", "type": "number", "example": "184"}],
+      "gloss": "等级与颜色随玩家变化。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Your SkyBlock Level: ", "zh": "你的 SkyBlock 等级: "},
+        {"color": "§8", "text": "[", "zh": "["},
+        {"color": "§2", "text": "%s", "zh": "%s"},
+        {"color": "§8", "text": "]", "zh": "]"}
+      ]
+    },
+    {
+      "id": "skyblock_menu_leveling_desc_1",
+      "context": "SkyBlock 等级入口说明,英文分四行",
+      "raw": "§7Determine how far you've",
+      "text": "Determine how far you've",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "了解你在 SkyBlock 中的进度,并通过完成独特任务获得奖励。"
+    },
+    {"id": "skyblock_menu_leveling_desc_2", "context": "接上一行", "raw": "§7progressed in SkyBlock and earn", "text": "progressed in SkyBlock and earn", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
+    {"id": "skyblock_menu_leveling_desc_3", "context": "接上一行", "raw": "§7rewards from completing unique", "text": "rewards from completing unique", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
+    {"id": "skyblock_menu_leveling_desc_4", "context": "接上一行", "raw": "§7tasks.", "text": "tasks.", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
+    {
+      "id": "skyblock_menu_progress_to_level",
+      "context": "距离下一 SkyBlock 等级的进度标题",
+      "raw": "§7Progress to Level %s:",
+      "text": "Progress to Level %s:",
+      "placeholders": [{"token": "%s", "desc": "下一级", "type": "number", "example": "185"}],
+      "gloss": "",
+      "translate": true,
+      "zh": "升至 %s 级的进度:"
+    },
+    {
+      "id": "skyblock_menu_level_xp_progress",
+      "context": "SkyBlock 等级经验进度条右侧的数值;行首由服务器用删除线空格绘制进度条,匹配时会作为排版前缀剥离",
+      "text": "%1$s/%2$s XP",
+      "placeholders": [
+        {"token": "%1$s", "desc": "当前经验", "type": "number", "example": "99"},
+        {"token": "%2$s", "desc": "升级所需经验", "type": "number", "example": "100"}
+      ],
+      "gloss": "只模板化可见数值,不把进度条长度写死。",
+      "translate": true,
+      "zh": "%1$s/%2$s 经验",
+      "segments": [
+        {"color": "§b", "text": "%1$s", "zh": "%1$s"},
+        {"color": "§3", "text": "/", "zh": "/"},
+        {"color": "§b", "text": "%2$s XP", "zh": "%2$s 经验"}
+      ]
+    },
+    {
+      "id": "skyblock_menu_quests_chapters",
+      "context": "任务与章节入口物品名",
+      "raw": "§aQuests & Chapters",
+      "text": "Quests & Chapters",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "任务与章节"
+    },
+    {
+      "id": "skyblock_menu_chapters_desc_1",
+      "context": "章节说明第一段,英文分两行",
+      "raw": "§7Each island has its own series of",
+      "text": "Each island has its own series of",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "每座岛屿都有一系列章节等你完成!"
+    },
+    {
+      "id": "skyblock_menu_chapters_desc_2",
+      "context": "接上一行",
+      "raw": "§bChapters §7for you to complete!",
+      "text": "Chapters for you to complete!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skyblock_menu_chapter_rewards_desc_1",
+      "context": "章节奖励说明,英文分三行",
+      "raw": "§7Complete tasks within a Chapter to",
+      "text": "Complete tasks within a Chapter to",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "完成章节内的任务可获得小奖励,完成整个章节则能获得大奖励!"
+    },
+    {"id": "skyblock_menu_chapter_rewards_desc_2", "context": "接上一行", "raw": "§7earn small §6rewards§7, or complete", "text": "earn small rewards, or complete", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
+    {"id": "skyblock_menu_chapter_rewards_desc_3", "context": "接上一行", "raw": "§7entire Chapters to earn big ones!", "text": "entire Chapters to earn big ones!", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
+    {
+      "id": "skyblock_menu_quests_desc_1",
+      "context": "任务说明,英文分三行",
+      "raw": "§7Some islands also have §aQuests §7for",
+      "text": "Some islands also have Quests for",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "部分岛屿还有任务等你完成! 有些物品只能通过任务获得。",
+      "segments": [
+        {"color": "§7", "text": "Some islands also have ", "zh": "部分岛屿还有"},
+        {"color": "§a", "text": "Quests ", "zh": "任务"},
+        {"color": "§7", "text": "for", "zh": "等你完成! 有些物品只能通过任务获得。"}
+      ]
+    },
+    {"id": "skyblock_menu_quests_desc_2", "context": "接上一行", "raw": "§7you to complete! Some items can only", "text": "you to complete! Some items can only", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
+    {"id": "skyblock_menu_quests_desc_3", "context": "接上一行", "raw": "§7be obtained through Quests.", "text": "be obtained through Quests.", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
+    {
+      "id": "skyblock_menu_calendar_events",
+      "context": "日历与活动入口物品名",
+      "raw": "§aCalendar and Events",
+      "text": "Calendar and Events",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "日历与活动"
+    },
+    {
+      "id": "skyblock_menu_calendar_desc_1",
+      "context": "日历与活动入口说明,英文分两行",
+      "raw": "§7View the SkyBlock Calendar, upcoming",
+      "text": "View the SkyBlock Calendar, upcoming",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "查看 SkyBlock 日历、近期活动和活动奖励!"
+    },
+    {"id": "skyblock_menu_calendar_desc_2", "context": "接上一行", "raw": "§7events, and event rewards!", "text": "events, and event rewards!", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
+    {
+      "id": "skyblock_menu_date_early_spring",
+      "context": "当前 SkyBlock 日期:立春",
+      "text": "Date: %1$s Early Spring %2$s",
+      "placeholders": [{"token": "%1$s", "desc": "当月日期", "type": "ordinal", "example": "20th"}, {"token": "%2$s", "desc": "SkyBlock 年份", "type": "number", "example": "510"}],
+      "gloss": "十二个月逐条写明节气,避免把季节名作为 raw 值留下英文。",
+      "translate": true,
+      "zh": "日期: 第 %2$s 年 · 立春 %1$s 日",
+      "segments": [
+        {"color": "§7", "text": "Date: ", "zh": "日期: 第 "},
+        {"color": "§a", "text": "%1$s Early Spring %2$s", "zh": "%2$s 年 · 立春 %1$s 日"}
+      ]
+    },
+    {"id": "skyblock_menu_date_spring", "context": "当前 SkyBlock 日期:春分", "text": "Date: %1$s Spring %2$s", "placeholders": [{"token": "%1$s", "desc": "当月日期", "type": "ordinal", "example": "1st"}, {"token": "%2$s", "desc": "SkyBlock 年份", "type": "number", "example": "510"}], "gloss": "年份不使用序数。", "translate": true, "zh": "日期: 第 %2$s 年 · 春分 %1$s 日", "segments": [{"color": "§7", "text": "Date: ", "zh": "日期: 第 "}, {"color": "§a", "text": "%1$s Spring %2$s", "zh": "%2$s 年 · 春分 %1$s 日"}]},
+    {"id": "skyblock_menu_date_late_spring", "context": "当前 SkyBlock 日期:谷雨", "text": "Date: %1$s Late Spring %2$s", "placeholders": [{"token": "%1$s", "desc": "当月日期", "type": "ordinal", "example": "1st"}, {"token": "%2$s", "desc": "SkyBlock 年份", "type": "number", "example": "510"}], "gloss": "", "translate": true, "zh": "日期: 第 %2$s 年 · 谷雨 %1$s 日", "segments": [{"color": "§7", "text": "Date: ", "zh": "日期: 第 "}, {"color": "§a", "text": "%1$s Late Spring %2$s", "zh": "%2$s 年 · 谷雨 %1$s 日"}]},
+    {"id": "skyblock_menu_date_early_summer", "context": "当前 SkyBlock 日期:立夏", "text": "Date: %1$s Early Summer %2$s", "placeholders": [{"token": "%1$s", "desc": "当月日期", "type": "ordinal", "example": "1st"}, {"token": "%2$s", "desc": "SkyBlock 年份", "type": "number", "example": "510"}], "gloss": "", "translate": true, "zh": "日期: 第 %2$s 年 · 立夏 %1$s 日", "segments": [{"color": "§7", "text": "Date: ", "zh": "日期: 第 "}, {"color": "§a", "text": "%1$s Early Summer %2$s", "zh": "%2$s 年 · 立夏 %1$s 日"}]},
+    {"id": "skyblock_menu_date_summer", "context": "当前 SkyBlock 日期:夏至", "text": "Date: %1$s Summer %2$s", "placeholders": [{"token": "%1$s", "desc": "当月日期", "type": "ordinal", "example": "1st"}, {"token": "%2$s", "desc": "SkyBlock 年份", "type": "number", "example": "510"}], "gloss": "", "translate": true, "zh": "日期: 第 %2$s 年 · 夏至 %1$s 日", "segments": [{"color": "§7", "text": "Date: ", "zh": "日期: 第 "}, {"color": "§a", "text": "%1$s Summer %2$s", "zh": "%2$s 年 · 夏至 %1$s 日"}]},
+    {"id": "skyblock_menu_date_late_summer", "context": "当前 SkyBlock 日期:大暑", "text": "Date: %1$s Late Summer %2$s", "placeholders": [{"token": "%1$s", "desc": "当月日期", "type": "ordinal", "example": "1st"}, {"token": "%2$s", "desc": "SkyBlock 年份", "type": "number", "example": "510"}], "gloss": "", "translate": true, "zh": "日期: 第 %2$s 年 · 大暑 %1$s 日", "segments": [{"color": "§7", "text": "Date: ", "zh": "日期: 第 "}, {"color": "§a", "text": "%1$s Late Summer %2$s", "zh": "%2$s 年 · 大暑 %1$s 日"}]},
+    {"id": "skyblock_menu_date_early_autumn", "context": "当前 SkyBlock 日期:立秋", "text": "Date: %1$s Early Autumn %2$s", "placeholders": [{"token": "%1$s", "desc": "当月日期", "type": "ordinal", "example": "1st"}, {"token": "%2$s", "desc": "SkyBlock 年份", "type": "number", "example": "510"}], "gloss": "", "translate": true, "zh": "日期: 第 %2$s 年 · 立秋 %1$s 日", "segments": [{"color": "§7", "text": "Date: ", "zh": "日期: 第 "}, {"color": "§a", "text": "%1$s Early Autumn %2$s", "zh": "%2$s 年 · 立秋 %1$s 日"}]},
+    {"id": "skyblock_menu_date_autumn", "context": "当前 SkyBlock 日期:秋分", "text": "Date: %1$s Autumn %2$s", "placeholders": [{"token": "%1$s", "desc": "当月日期", "type": "ordinal", "example": "1st"}, {"token": "%2$s", "desc": "SkyBlock 年份", "type": "number", "example": "510"}], "gloss": "", "translate": true, "zh": "日期: 第 %2$s 年 · 秋分 %1$s 日", "segments": [{"color": "§7", "text": "Date: ", "zh": "日期: 第 "}, {"color": "§a", "text": "%1$s Autumn %2$s", "zh": "%2$s 年 · 秋分 %1$s 日"}]},
+    {"id": "skyblock_menu_date_late_autumn", "context": "当前 SkyBlock 日期:霜降", "text": "Date: %1$s Late Autumn %2$s", "placeholders": [{"token": "%1$s", "desc": "当月日期", "type": "ordinal", "example": "1st"}, {"token": "%2$s", "desc": "SkyBlock 年份", "type": "number", "example": "510"}], "gloss": "", "translate": true, "zh": "日期: 第 %2$s 年 · 霜降 %1$s 日", "segments": [{"color": "§7", "text": "Date: ", "zh": "日期: 第 "}, {"color": "§a", "text": "%1$s Late Autumn %2$s", "zh": "%2$s 年 · 霜降 %1$s 日"}]},
+    {"id": "skyblock_menu_date_early_winter", "context": "当前 SkyBlock 日期:立冬", "text": "Date: %1$s Early Winter %2$s", "placeholders": [{"token": "%1$s", "desc": "当月日期", "type": "ordinal", "example": "1st"}, {"token": "%2$s", "desc": "SkyBlock 年份", "type": "number", "example": "510"}], "gloss": "", "translate": true, "zh": "日期: 第 %2$s 年 · 立冬 %1$s 日", "segments": [{"color": "§7", "text": "Date: ", "zh": "日期: 第 "}, {"color": "§a", "text": "%1$s Early Winter %2$s", "zh": "%2$s 年 · 立冬 %1$s 日"}]},
+    {"id": "skyblock_menu_date_winter", "context": "当前 SkyBlock 日期:冬至", "text": "Date: %1$s Winter %2$s", "placeholders": [{"token": "%1$s", "desc": "当月日期", "type": "ordinal", "example": "1st"}, {"token": "%2$s", "desc": "SkyBlock 年份", "type": "number", "example": "510"}], "gloss": "", "translate": true, "zh": "日期: 第 %2$s 年 · 冬至 %1$s 日", "segments": [{"color": "§7", "text": "Date: ", "zh": "日期: 第 "}, {"color": "§a", "text": "%1$s Winter %2$s", "zh": "%2$s 年 · 冬至 %1$s 日"}]},
+    {"id": "skyblock_menu_date_late_winter", "context": "当前 SkyBlock 日期:大寒", "text": "Date: %1$s Late Winter %2$s", "placeholders": [{"token": "%1$s", "desc": "当月日期", "type": "ordinal", "example": "1st"}, {"token": "%2$s", "desc": "SkyBlock 年份", "type": "number", "example": "510"}], "gloss": "", "translate": true, "zh": "日期: 第 %2$s 年 · 大寒 %1$s 日", "segments": [{"color": "§7", "text": "Date: ", "zh": "日期: 第 "}, {"color": "§a", "text": "%1$s Late Winter %2$s", "zh": "%2$s 年 · 大寒 %1$s 日"}]},
+    {
+      "id": "skyblock_menu_active_events",
+      "context": "日历入口当前活动列表标题",
+      "raw": "§7Active Events:",
+      "text": "Active Events:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "进行中的活动:"
+    },
+    {
+      "id": "skyblock_menu_jacobs_contest_minutes_seconds",
+      "context": "当前活动列表中的 Jacob 农业竞赛及剩余分秒",
+      "raw": "§eJacob's Farming Contest %1$sm %2$ss",
+      "text": "Jacob's Farming Contest %1$sm %2$ss",
+      "placeholders": [{"token": "%1$s", "desc": "剩余分钟", "type": "number", "example": "12"}, {"token": "%2$s", "desc": "剩余秒数", "type": "number", "example": "24"}],
+      "gloss": "活动名写死，避免活动名和时间全由占位符组成的模板误匹配其他 Lore。",
+      "translate": true,
+      "zh": "Jacob 的农业竞赛 %1$s分 %2$s秒"
+    },
+    {
+      "id": "skyblock_menu_carnival_ordinal_days",
+      "context": "当前活动列表中的嘉年华届数及剩余天数",
+      "raw": "§e%1$s Carnival %2$sd",
+      "text": "%1$s Carnival %2$sd",
+      "placeholders": [{"token": "%1$s", "desc": "嘉年华届数", "type": "ordinal", "example": "19th"}, {"token": "%2$s", "desc": "剩余天数", "type": "number", "example": "1"}],
+      "gloss": "固定为当前 capture 中的 Carnival，不捕获任意活动名。",
+      "translate": true,
+      "zh": "第%1$s届嘉年华 %2$s天"
+    },
+    {
+      "id": "skyblock_menu_active_carnival",
+      "context": "日历入口中当前进行的嘉年华",
+      "raw": "§7Active Event: §e%1$s Carnival",
+      "text": "Active Event: %1$s Carnival",
+      "placeholders": [{"token": "%1$s", "desc": "嘉年华届数", "type": "ordinal", "example": "19th"}],
+      "gloss": "固定活动名和标签，仅将届数模板化。",
+      "translate": true,
+      "zh": "进行中的活动: 第%1$s届嘉年华",
+      "segments": [
+        {"color": "§7", "text": "Active Event: ", "zh": "进行中的活动: "},
+        {"color": "§e", "text": "%1$s Carnival", "zh": "第%1$s届嘉年华"}
+      ]
+    },
+    {
+      "id": "skyblock_menu_active_event_ends_dhms",
+      "context": "当前活动的结束倒计时",
+      "raw": "§7Ends in: §e%1$sd %2$sh %3$sm %4$ss",
+      "text": "Ends in: %1$sd %2$sh %3$sm %4$ss",
+      "placeholders": [{"token": "%1$s", "desc": "剩余天数", "type": "number", "example": "1"}, {"token": "%2$s", "desc": "剩余小时", "type": "number", "example": "16"}, {"token": "%3$s", "desc": "剩余分钟", "type": "number", "example": "22"}, {"token": "%4$s", "desc": "剩余秒数", "type": "number", "example": "14"}],
+      "gloss": "倒计时各单位单独模板化。",
+      "translate": true,
+      "zh": "距结束: %1$s天 %2$s小时 %3$s分 %4$s秒",
+      "segments": [
+        {"color": "§7", "text": "Ends in: ", "zh": "距结束: "},
+        {"color": "§e", "text": "%1$sd %2$sh %3$sm %4$ss", "zh": "%1$s天 %2$s小时 %3$s分 %4$s秒"}
+      ]
+    },
+    {
+      "id": "skyblock_menu_next_election_over",
+      "context": "下一活动为本届选举结束",
+      "raw": "§7Next Event: §b%s Election Over!",
+      "text": "Next Event: %s Election Over!",
+      "placeholders": [{"token": "%s", "desc": "选举届数", "type": "ordinal", "example": "422nd"}],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Next Event: ", "zh": "下一活动: "},
+        {"color": "§b", "text": "%s Election Over!", "zh": "第 %s 届选举结束!"}
+      ]
+    },
+    {
+      "id": "skyblock_menu_starting_in_hms",
+      "context": "下一活动开始倒计时,时分秒均动态",
+      "raw": "§7Starting in: §e%1$sh %2$sm %3$ss",
+      "text": "Starting in: %1$sh %2$sm %3$ss",
+      "placeholders": [{"token": "%1$s", "desc": "小时", "type": "number", "example": "22"}, {"token": "%2$s", "desc": "分钟", "type": "number", "example": "43"}, {"token": "%3$s", "desc": "秒", "type": "number", "example": "46"}],
+      "gloss": "不写死采集时的小时和分钟。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Starting in: ", "zh": "距开始: "},
+        {"color": "§e", "text": "%1$sh %2$sm %3$ss", "zh": "%1$s小时 %2$s分 %3$s秒"}
+      ]
+    },
+    {
+      "id": "skyblock_menu_harvest_feast_dhms",
+      "context": "日历入口当前显示的 Harvest Feast 届数及倒计时",
+      "raw": "§e%1$s Harvest Feast %2$sd %3$sh %4$sm %5$ss",
+      "text": "%1$s Harvest Feast %2$sd %3$sh %4$sm %5$ss",
+      "placeholders": [
+        {"token": "%1$s", "desc": "活动届数", "type": "ordinal", "example": "24th"},
+        {"token": "%2$s", "desc": "剩余天数", "type": "number", "example": "1"},
+        {"token": "%3$s", "desc": "剩余小时", "type": "number", "example": "8"},
+        {"token": "%4$s", "desc": "剩余分钟", "type": "number", "example": "25"},
+        {"token": "%5$s", "desc": "剩余秒数", "type": "number", "example": "14"}
+      ],
+      "gloss": "Harvest Feast 是限时活动名，按项目原则翻译。倒计时有时省略值为零的最高单位，另有 hms 变体。",
+      "translate": true,
+      "zh": "第%1$s届丰收宴 %2$s天 %3$s小时 %4$s分 %5$s秒"
+    },
+    {
+      "id": "skyblock_menu_harvest_feast_hms",
+      "context": "Harvest Feast 倒计时无天数的变体",
+      "raw": "§e%1$s Harvest Feast %2$sh %3$sm %4$ss",
+      "text": "%1$s Harvest Feast %2$sh %3$sm %4$ss",
+      "placeholders": [
+        {"token": "%1$s", "desc": "活动届数", "type": "ordinal", "example": "24th"},
+        {"token": "%2$s", "desc": "剩余小时", "type": "number", "example": "8"},
+        {"token": "%3$s", "desc": "剩余分钟", "type": "number", "example": "25"},
+        {"token": "%4$s", "desc": "剩余秒数", "type": "number", "example": "14"}
+      ],
+      "gloss": "同 skyblock_menu_harvest_feast_dhms。",
+      "translate": true,
+      "zh": "第%1$s届丰收宴 %2$s小时 %3$s分 %4$s秒"
+    },
+    {
+      "id": "skyblock_menu_year_of_the_seal_days",
+      "context": "Year of the Seal 活动及剩余天数",
+      "raw": "§eYear of the Seal %sd",
+      "text": "Year of the Seal %sd",
+      "placeholders": [{"token": "%s", "desc": "剩余天数", "type": "number", "example": "1"}],
+      "gloss": "Seal 指海豹，活动名按限时活动原则翻译。",
+      "translate": true,
+      "zh": "海豹之年 %s天"
+    },
+    {
+      "id": "skyblock_menu_next_traveling_zoo",
+      "context": "下一活动为 Traveling Zoo",
+      "raw": "§7Next Event: §eTraveling Zoo",
+      "text": "Next Event: Traveling Zoo",
+      "placeholders": [],
+      "gloss": "Traveling Zoo 是活动名，译作巡回动物园。",
+      "translate": true,
+      "zh": "下一活动: 巡回动物园",
+      "segments": [
+        {"color": "§7", "text": "Next Event: ", "zh": "下一活动: "},
+        {"color": "§e", "text": "Traveling Zoo", "zh": "巡回动物园"}
+      ]
+    },
+    {
+      "id": "skyblock_menu_next_season_of_jerry",
+      "context": "下一活动为 Jerry 季",
+      "raw": "§7Next Event: §c%s Season of Jerry",
+      "text": "Next Event: %s Season of Jerry",
+      "placeholders": [{"token": "%s", "desc": "Jerry 季届数", "type": "ordinal", "example": "477th"}],
+      "gloss": "固定活动名，仅将届数模板化。",
+      "translate": true,
+      "zh": "下一活动: 第%s届 Jerry 季",
+      "segments": [
+        {"color": "§7", "text": "Next Event: ", "zh": "下一活动: "},
+        {"color": "§c", "text": "%s Season of Jerry", "zh": "第%s届 Jerry 季"}
+      ]
+    },
+    {
+      "id": "skyblock_menu_last_interest",
+      "context": "个人银行入口上次结息的时间与金额",
+      "raw": "§7Last %1$s Interest: §6%2$s coins",
+      "text": "Last %1$s Interest: %2$s coins",
+      "placeholders": [
+        {"token": "%1$s", "desc": "结息周期", "type": "duration", "example": "31d"},
+        {"token": "%2$s", "desc": "结息金额", "type": "number", "example": "42,702.7"}
+      ],
+      "gloss": "周期缩写由引擎按时长换算成中文单位。",
+      "translate": true,
+      "zh": "上次结息(%1$s): %2$s 硬币",
+      "segments": [
+        {"color": "§7", "text": "Last %1$s Interest: ", "zh": "上次结息(%1$s): "},
+        {"color": "§6", "text": "%2$s coins", "zh": "%2$s 硬币"}
+      ]
+    },
+    {
+      "id": "skyblock_menu_storage",
+      "context": "全局仓库入口物品名",
+      "text": "Storage",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "仓库"
+    },
+    {
+      "id": "skyblock_menu_storage_desc_1",
+      "context": "仓库入口说明,英文分三行",
+      "raw": "§7Store global items that you want to",
+      "text": "Store global items that you want to",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "在这里存放可随时随地取用的物品。"
+    },
+    {"id": "skyblock_menu_storage_desc_2", "context": "接上一行", "raw": "§7access at any time from anywhere", "text": "access at any time from anywhere", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
+    {"id": "skyblock_menu_storage_desc_3", "context": "接上一行", "raw": "§7here.", "text": "here.", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
+    {
+      "id": "skyblock_menu_your_bags",
+      "context": "收纳袋入口物品名",
+      "raw": "§aYour Bags",
+      "text": "Your Bags",
+      "placeholders": [],
+      "gloss": "Bag 沿用收纳袋译名。菜单入口名不带「你的」:整本菜单里的东西本来就都是这个玩家自己的,英文的 Your 在中文里是废字,和旁边的「仓库」「宠物」「档案管理」并排时更明显。",
+      "translate": true,
+      "zh": "收纳袋"
+    },
+    {
+      "id": "skyblock_menu_bags_desc_1",
+      "context": "收纳袋入口说明,英文分两行",
+      "raw": "§7Different bags allow you to store",
+      "text": "Different bags allow you to store",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "不同的收纳袋可以存放各种物品!"
+    },
+    {"id": "skyblock_menu_bags_desc_2", "context": "接上一行", "raw": "§7many different items inside!", "text": "many different items inside!", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
+    {
+      "id": "skyblock_menu_pets",
+      "context": "宠物入口物品名",
+      "text": "Pets",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "宠物"
+    },
+    {
+      "id": "skyblock_menu_pets_manage",
+      "context": "宠物入口第一段说明",
+      "raw": "§7View and manage all of your Pets.",
+      "text": "View and manage all of your Pets.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "查看并管理你的所有宠物。"
+    },
+    {
+      "id": "skyblock_menu_pets_level_desc_1",
+      "context": "宠物升级说明,英文分两行",
+      "raw": "§7Level up your pets faster by gaining",
+      "text": "Level up your pets faster by gaining",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "通过获取宠物偏爱技能的经验,让宠物更快升级!"
+    },
+    {"id": "skyblock_menu_pets_level_desc_2", "context": "接上一行", "raw": "§7XP in their favorite skill!", "text": "XP in their favorite skill!", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
+    {
+      "id": "skyblock_menu_selected_pet",
+      "context": "当前选中的宠物；通用词组成的宠物名可查共享词表",
+      "raw": "§7Selected pet: §6%s",
+      "text": "Selected pet: %s",
+      "placeholders": [{"token": "%s", "desc": "宠物名；已收录的原版怪物名称走共享词表", "type": "mob_name", "example": "Glacite Golem"}],
+      "gloss": "mob_name 会精确查询 _shared/Terms.json，因此 Glacite Golem、Enderman 可译为“极冰石魔”“末影人”；未收录的自造专名仍保持英文。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Selected pet: ", "zh": "已选宠物: "},
+        {"color": "§6", "text": "%s", "zh": "%s"}
+      ]
+    },
+    {
+      "id": "skyblock_menu_pet_max_level",
+      "context": "当前宠物已经满级",
+      "raw": "§b§lMAX LEVEL",
+      "text": "MAX LEVEL",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "满级"
+    },
+    {
+      "id": "skyblock_menu_pet_xp",
+      "context": "当前宠物累计经验",
+      "raw": "§8▸ %s XP",
+      "text": "▸ %s XP",
+      "placeholders": [{"token": "%s", "desc": "宠物经验", "type": "number", "example": "219,061,517"}],
+      "gloss": "",
+      "translate": true,
+      "zh": "▸ %s 经验"
+    },
+    {
+      "id": "skyblock_menu_crafting_table",
+      "context": "随身合成台入口物品名",
+      "raw": "§aCrafting Table",
+      "text": "Crafting Table",
+      "placeholders": [],
+      "gloss": "采用 Minecraft 官方译名。",
+      "translate": true,
+      "zh": "工作台"
+    },
+    {
+      "id": "skyblock_menu_crafting_table_desc",
+      "context": "随身合成台说明",
+      "raw": "§7Opens the crafting grid.",
+      "text": "Opens the crafting grid.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "打开合成栏。"
+    },
+    {
+      "id": "skyblock_menu_loadouts",
+      "context": "预设栏入口物品名。这是屏幕上真正出现的那一个——菜单里这一格就写 Loadouts,点进去的箱子标题是 (1/3) Loadouts,格子里每一份预设叫 Loadout 1 / Loadout 2",
+      "text": "Loadouts",
+      "placeholders": [],
+      "gloss": "Loadouts 统一译「预设栏」:一格「预设栏」里装着若干份「预设」,和同菜单的「仓库」「收纳袋」一样是收纳类入口的命名。不译「装备预设」是因为预设里除了护甲装备还包含山峦之心/森林之心等其他设置,Lore 自己也说 with other settings。同一渲染面(Surface.ITEM)上没有第二条模板写作 Loadouts,不触发同模板冲突检查。",
+      "translate": true,
+      "zh": "预设栏"
+    },
+    {
+      "id": "skyblock_menu_equipment_loadouts",
+      "context": "预设栏入口物品名的长写法。本次核对没有在任何截图/运行时采集里见到这一串,保留是为了万一别的界面(或旧版本)仍在用它时不至于漏翻,不是屏幕上的主用名",
+      "text": "Equipment Loadouts",
+      "placeholders": [],
+      "gloss": "和上一条同一个词,译名共用「预设栏」词干,只是前面多一个限定语,避免 Loadouts 在语料里出现两种不同译法。若日后确认这一串在游戏里根本不存在,可以整条删掉。",
+      "translate": true,
+      "zh": "装备预设栏"
+    },
+    {
+      "id": "skyblock_menu_loadouts_desc_1",
+      "context": "预设栏说明,英文分三行",
+      "raw": "§7View and edit preset armor and",
+      "text": "View and edit preset armor and",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "查看和编辑预设的护甲、装备及其他设置,方便切换不同活动。"
+    },
+    {"id": "skyblock_menu_loadouts_desc_2", "context": "接上一行", "raw": "§7equipment sets with other settings to", "text": "equipment sets with other settings to", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
+    {"id": "skyblock_menu_loadouts_desc_3", "context": "接上一行", "raw": "§7make switching activities easy.", "text": "make switching activities easy.", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
+    {
+      "id": "skyblock_menu_personal_bank",
+      "context": "个人银行入口物品名",
+      "raw": "§aPersonal Bank",
+      "text": "Personal Bank",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "个人银行"
+    },
+    {
+      "id": "skyblock_menu_personal_bank_desc",
+      "context": "个人银行入口说明",
+      "raw": "§7Contact your Banker from anywhere.",
+      "text": "Contact your Banker from anywhere.",
+      "placeholders": [],
+      "gloss": "Banker 是服务职位。",
+      "translate": true,
+      "zh": "随时随地联系你的银行职员。"
+    },
+    {
+      "id": "skyblock_menu_bank_no_cooldown",
+      "context": "个人银行没有使用冷却",
+      "raw": "§6No cooldown!",
+      "text": "No cooldown!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "无冷却时间!"
+    },
+    {
+      "id": "skyblock_menu_interest_in_hours",
+      "context": "距离下次银行利息结算的小时数",
+      "raw": "§7Interest in: §b%s Hours",
+      "text": "Interest in: %s Hours",
+      "placeholders": [{"token": "%s", "desc": "剩余小时", "type": "number", "example": "24"}],
+      "gloss": "不写死 24 小时。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Interest in: ", "zh": "距利息结算: "},
+        {"color": "§b", "text": "%s Hours", "zh": "%s小时"}
+      ]
+    },
+    {
+      "id": "skyblock_menu_solo_projection",
+      "context": "个人档案预计获得的银行利息与利率",
+      "raw": "§7Solo Projection: §6%1$s coins §b(%2$s%)",
+      "text": "Solo Projection: %1$s coins (%2$s%)",
+      "placeholders": [{"token": "%1$s", "desc": "预计利息金额", "type": "coins", "example": "43,155.3"}, {"token": "%2$s", "desc": "当前利率", "type": "percentage", "example": "2.084"}],
+      "gloss": "金额和利率都随档案变化。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Solo Projection: ", "zh": "个人预计利息: "},
+        {"color": "§6", "text": "%1$s coins ", "zh": "%1$s 硬币 "},
+        {"color": "§b", "text": "(%2$s%)", "zh": "(%2$s%)"}
+      ]
+    },
+    {
+      "id": "skyblock_menu_last_solo_interest",
+      "context": "个人档案上次获得的银行利息",
+      "raw": "§7Last Solo Interest: §6%s coins",
+      "text": "Last Solo Interest: %s coins",
+      "placeholders": [{"token": "%s", "desc": "上次利息金额", "type": "coins", "example": "42,703"}],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Last Solo Interest: ", "zh": "上次个人利息: "},
+        {"color": "§6", "text": "%s coins", "zh": "%s 硬币"}
+      ]
+    },
+    {
+      "id": "skyblock_menu_last_coop_interest",
+      "context": "合作档案上次获得的银行利息",
+      "raw": "§7Last Co-op Interest: §6%s coins",
+      "text": "Last Co-op Interest: %s coins",
+      "placeholders": [{"token": "%s", "desc": "上次合作档案利息金额", "type": "coins", "example": "64,026"}],
+      "gloss": "固定 Co-op 标签，避免用 raw 捕获 Solo/Co-op。",
+      "translate": true,
+      "zh": "上次合作档案利息: %s 硬币",
+      "segments": [
+        {"color": "§7", "text": "Last Co-op Interest: ", "zh": "上次合作档案利息: "},
+        {"color": "§6", "text": "%s coins", "zh": "%s 硬币"}
+      ]
+    },
+    {
+      "id": "skyblock_menu_fast_travel",
+      "context": "快速传送入口物品名",
+      "raw": "§bFast Travel",
+      "text": "Fast Travel",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "快速传送"
+    },
+    {
+      "id": "skyblock_menu_fast_travel_desc_1",
+      "context": "快速传送说明,英文分两行",
+      "raw": "§7Teleport to islands you've already",
+      "text": "Teleport to islands you've already",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "传送到你已经去过的岛屿。"
+    },
+    {"id": "skyblock_menu_fast_travel_desc_2", "context": "接上一行", "raw": "§7visited.", "text": "visited.", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
+    {
+      "id": "skyblock_menu_click_pick_location",
+      "context": "快速传送入口点击提示",
+      "raw": "§eClick to pick location!",
+      "text": "Click to pick location!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击选择地点!"
+    },
+    {
+      "id": "skyblock_menu_profile_management",
+      "context": "档案管理入口物品名",
+      "raw": "§aProfile Management",
+      "text": "Profile Management",
+      "placeholders": [],
+      "gloss": "Profile 在此是不同存档档案。",
+      "translate": true,
+      "zh": "档案管理"
+    },
+    {
+      "id": "skyblock_menu_profiles_desc_1",
+      "context": "档案管理第一段说明,英文分两行",
+      "raw": "§7You can have multiple SkyBlock",
+      "text": "You can have multiple SkyBlock",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你可以同时拥有多个 SkyBlock 档案。"
+    },
+    {"id": "skyblock_menu_profiles_desc_2", "context": "接上一行", "raw": "§7profiles at the same time.", "text": "profiles at the same time.", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
+    {
+      "id": "skyblock_menu_profile_contents_1",
+      "context": "各档案独立内容说明,英文分两行",
+      "raw": "§7Each profile has its own island,",
+      "text": "Each profile has its own island,",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "每个档案都有独立的岛屿、物品栏、任务日志等内容……"
+    },
+    {"id": "skyblock_menu_profile_contents_2", "context": "接上一行", "raw": "§7inventory, quest log...", "text": "inventory, quest log...", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
+    {
+      "id": "skyblock_menu_profile_count",
+      "context": "当前档案数与档案上限",
+      "raw": "§7Profiles: §e%1$s§6/§e%2$s",
+      "text": "Profiles: %1$s/%2$s",
+      "placeholders": [{"token": "%1$s", "desc": "已有档案数", "type": "number", "example": "1"}, {"token": "%2$s", "desc": "档案上限", "type": "number", "example": "4"}],
+      "gloss": "两项都随账号状态变化。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Profiles: ", "zh": "档案: "},
+        {"color": "§e", "text": "%1$s", "zh": "%1$s"},
+        {"color": "§6", "text": "/", "zh": "/"},
+        {"color": "§e", "text": "%2$s", "zh": "%2$s"}
+      ]
+    },
+    {
+      "id": "skyblock_menu_coopadd_hint",
+      "context": "合作档案邀请命令提示",
+      "raw": "§bPlay with friends using /coopadd <name>!",
+      "text": "Play with friends using /coopadd <name>!",
+      "placeholders": [],
+      "gloss": "命令和参数占位写法保持英文。",
+      "translate": true,
+      "zh": "使用 /coopadd <name> 与好友一起游玩!"
+    },
+    {
+      "id": "skyblock_menu_settings",
+      "context": "SkyBlock 设置入口物品名",
+      "text": "SkyBlock Settings",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "SkyBlock 设置"
+    },
+    {
+      "id": "skyblock_menu_settings_desc",
+      "context": "SkyBlock 设置入口说明",
+      "raw": "§7View and edit your SkyBlock settings.",
+      "text": "View and edit your SkyBlock settings.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "查看并修改你的 SkyBlock 设置。"
+    },
+    {
+      "id": "skyblock_menu_booster_cookie",
+      "context": "增益曲奇入口物品名",
+      "raw": "§6Booster Cookie",
+      "text": "Booster Cookie",
+      "placeholders": [],
+      "gloss": "沿用 Tab_Header_Footer.json 的既有译名。",
+      "translate": true,
+      "zh": "增益曲奇"
+    },
+    {
+      "id": "skyblock_menu_booster_cookie_desc_1",
+      "context": "增益曲奇获取说明,英文分两行",
+      "raw": "§7Obtain the §dCookie Buff §7from Booster",
+      "text": "Obtain the Cookie Buff from Booster",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "在大厅的社区商店购买增益曲奇,即可获得曲奇增益。",
+      "segments": [
+        {"color": "§7", "text": "Obtain the ", "zh": "在大厅的社区商店购买增益曲奇,即可获得"},
+        {"color": "§d", "text": "Cookie Buff ", "zh": "曲奇增益"},
+        {"color": "§7", "text": "from Booster", "zh": "。"}
+      ]
+    },
+    {"id": "skyblock_menu_booster_cookie_desc_2", "context": "接上一行", "raw": "§7Cookies in the hub's Community Shop.", "text": "Cookies in the hub's Community Shop.", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
+    {
+      "id": "skyblock_menu_cookie_status_inactive",
+      "context": "当前没有生效的曲奇增益",
+      "raw": "§7Status: §cNot active!",
+      "text": "Status: Not active!",
+      "placeholders": [],
+      "gloss": "当前 capture 中稳定的固定状态。",
+      "translate": true,
+      "zh": "状态: 未生效!",
+      "segments": [
+        {"color": "§7", "text": "Status: ", "zh": "状态: "},
+        {"color": "§c", "text": "Not active!", "zh": "未生效!"}
+      ]
+    },
+    {
+      "id": "skyblock_menu_cookie_duration",
+      "context": "当前曲奇增益剩余时长,天时分秒全部动态",
+      "raw": "§7Duration: §a%1$sd %2$sh %3$sm %4$ss",
+      "text": "Duration: %1$sd %2$sh %3$sm %4$ss",
+      "placeholders": [{"token": "%1$s", "desc": "天", "type": "number", "example": "3"}, {"token": "%2$s", "desc": "小时", "type": "number", "example": "6"}, {"token": "%3$s", "desc": "分钟", "type": "number", "example": "12"}, {"token": "%4$s", "desc": "秒", "type": "number", "example": "28"}],
+      "gloss": "不写死采集时的日期和时刻。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Duration: ", "zh": "持续时间: "},
+        {"color": "§a", "text": "%1$sd %2$sh %3$sm %4$ss", "zh": "%1$s天 %2$s小时 %3$s分 %4$s秒"}
+      ]
+    },
+    {
+      "id": "skyblock_menu_bits_available",
+      "context": "当前可获得的点券",
+      "raw": "§7Bits Available: §b%s",
+      "text": "Bits Available: %s",
+      "placeholders": [{"token": "%s", "desc": "可获得点券", "type": "number", "example": "8,343"}],
+      "gloss": "Bits 按 GLOSSARY.md「货币名」条目统一译「点券」。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Bits Available: ", "zh": "可获得点券: "},
+        {"color": "§b", "text": "%s", "zh": "%s"}
+      ]
+    }
+  ]
+}

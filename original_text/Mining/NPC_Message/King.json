@@ -1,0 +1,99 @@
+{
+  "npc": "King",
+  "location": "Royal Palace, Dwarven Mines",
+  "note": "King 是轮换制 NPC 角色,由 7 位不同名字的角色轮流担任(Brammor, Emkam, Redros, Erren, Thormyr, Emmor, Grandan),每 20 分钟轮换一次。这些具体名字属于专有名词,不翻译,仅作为占位符示例值出现。",
+  "aliases": [
+    "Brammor",
+    "Emkam",
+    "Redros",
+    "Erren",
+    "Thormyr",
+    "Emmor",
+    "Grandan"
+  ],
+  "source": "https://hypixelskyblock.minecraft.wiki/w/King",
+  "fetched_at": "2026-08-18",
+  "verified_ingame": false,
+  "messages": [
+    {
+      "id": "king_greet_current_1",
+      "context": "玩家与当前在位的国王第一次对话时的问候语,第一句",
+      "text": "Hello Adventurer!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你好,冒险者!",
+      "raw": "§fHello Adventurer!"
+    },
+    {
+      "id": "king_greet_current_2",
+      "context": "问候语第二句,自我介绍所在地",
+      "text": "I see you've found yourself in my cavernous kingdom.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "看来你发现了我这洞穴王国。",
+      "raw": "§fI see you've found yourself in my cavernous kingdom."
+    },
+    {
+      "id": "king_commission_intro",
+      "context": "问候语第三句,介绍委托系统的奖励机制",
+      "text": "All work here is rewarded, complete commissions and I will bestow you with riches!",
+      "placeholders": [],
+      "gloss": "commissions 指 SkyBlock 矮人矿山的“委托”任务系统,是专有玩法名词,不要翻成“佣金”。见 GLOSSARY.md。",
+      "translate": true,
+      "zh": "这里的劳动都有回报,完成委托,我将赐予你财富!",
+      "raw": "§fAll work here is rewarded, complete commissions and I will bestow you with riches!"
+    },
+    {
+      "id": "king_ask_for_king",
+      "context": "玩家与非当前在位的国王(即等待轮换的其他 6 位)对话时,第一句",
+      "text": "Are you looking for the King?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你在找国王吗?",
+      "raw": "§fAre you looking for the King?"
+    },
+    {
+      "id": "king_not_current_1",
+      "context": "非当前国王的自我介绍,第二句",
+      "text": "I'm not the King at the moment, I am but his humble servant.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "我现在不是国王,只是他卑微的仆从。",
+      "raw": "§fI'm not the King at the moment, I am but his humble servant."
+    },
+    {
+      "id": "king_today_is",
+      "context": "告知玩家今天当值的国王是谁,名字为专有名词",
+      "text": "Today the King is %s.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前在位国王的名字,专有名词不翻译",
+          "type": "npc_name",
+          "example": "Brammor"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "今天当值的国王是 %s。",
+      "raw": "§fToday the King is %s."
+    },
+    {
+      "id": "king_hes_here",
+      "context": "指出当前国王所在位置(桌子旁)",
+      "text": "He's right here at this table!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "他就在这张桌子旁!",
+      "raw": "§fHe's right here at this table!"
+    }
+  ],
+  "todo": [
+    "本文件仅采集了 Wiki 摘要给出的核心问候/引导对话,King 是否还有其他分支对话(如完成一定数量委托后的特殊台词)未在 Wiki 摘要中出现,需要后续用 SkyHanni/实测核对补全。"
+  ]
+}

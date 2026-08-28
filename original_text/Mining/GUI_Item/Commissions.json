@@ -1,0 +1,339 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Commissions (task-name list) + https://raw.githubusercontent.com/hannibal002/SkyHanni-REPO/main/constants/regexesModern.json (board UI lines)",
+  "fetched_at": "2026-08-18",
+  "verified_ingame": false,
+  "source_note": "'%s Collector' 之前标记为未核实的“收集员”标签,现已核实:它是委托板上的一种**委托任务类型名**(和 Mineshaft Explorer / Corpse Looter / Goblin Slayer 等并列),不是 NPC 头衔,含义是“收集 N 个某材料”类型的委托。按 GLOSSARY.md 中“山之心天赋名/限时活动名”条目确立的原则(功能性命名一律翻译),这类委托任务名同样翻译。 2026-08-18 补充:整份任务类型名清单已用 curl 直接拉取 hypixelskyblock.minecraft.wiki/w/Commissions 原始 wikitext 逐条核实(而不是让 WebFetch 的摘要模型读长页面,那样容易漏看/串行,见项目 memory “术语修正按全项目重命名处理”)。",
+  "lines": [
+    {
+      "id": "mining_commission_completed_tag",
+      "context": "已完成委托的状态标签",
+      "text": "COMPLETED",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "已完成"
+    },
+    {
+      "id": "mining_commission_reward_glacite",
+      "ref": "_shared/Item_Lore.json#item_powder_line_glacite",
+      "context": "委托奖励清单:极冰粉末那一行"
+    },
+    {
+      "id": "mining_commission_task_collector_material",
+      "context": "委托任务类型名:收集指定材料(矮人矿山/冰河隧道通用),已核实是任务类型名不是 NPC 头衔",
+      "text": "%s Collector",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "冰河隧道内随机抽取的材料名,真实候选是 Aquamarine / Citrine / Glacite / Onyx / Peridot / Tungsten / Umber 七种(已用 wiki 原始 wikitext 核实)。材料名本身已在项目里有译名(如 Glacite→极冰,Tungsten→钨,Umber→褐铁矿),但这里是单个 %s 原样捕获,受当前模板架构限制无法只替换材料前缀,材料名部分运行时会保持英文。",
+          "type": "raw",
+          "example": "Glacite"
+        }
+      ],
+      "gloss": "任务类型名,功能性命名,按统一原则翻译。已知变体材料名至少有 Glacite、Scrap(见 mining_commission_task_scrap_collector,是否算同一个模板的特例还是独立任务名待核实)以及各种宝石类型(见 mining_commission_task_gemstone_collector)。",
+      "translate": true,
+      "zh": "%s收集员"
+    },
+    {
+      "id": "mining_commission_task_2x_mithril_powder_collector",
+      "context": "委托任务类型名(矮人矿山):双倍秘银粉末收集,固定名称无占位符",
+      "text": "2x Mithril Powder Collector",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "2倍秘银粉末收集员"
+    },
+    {
+      "id": "mining_commission_task_scrap_collector",
+      "context": "委托任务类型名(冰河隧道):收集可疑废料(Suspicious Scrap)",
+      "text": "Scrap Collector",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "残料收集员"
+    },
+    {
+      "id": "mining_commission_task_gemstone_collector",
+      "context": "委托任务类型名(水晶残核):收集指定种类的宝石",
+      "text": "%s Gemstone Collector",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "水晶残核内随机抽取的宝石种类,真实候选是 Amber / Amethyst / Jade / Ruby / Sapphire / Topaz 六种(已用 wiki 原始 wikitext 核实)。宝石种类名已在项目里有既定译名,但同样受单个 %s 原样捕获的模板架构限制,运行时材料名部分会保持英文。 type 用 item_name 而不是 raw:item_name 不在 _shared/Terms.json 的 applies_to_types 里,词表不会去翻它,采集也就不会一直把这一行报成“中英混杂缺词条”。",
+          "type": "item_name",
+          "example": "Ruby"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%s宝石收集员"
+    },
+    {
+      "id": "mining_commission_task_glacite_walker_slayer",
+      "context": "委托任务类型名(矮人矿山):击杀 Glacite Walker 怪物",
+      "text": "Glacite Walker Slayer",
+      "placeholders": [],
+      "gloss": "已核实(同上 wiki 源):Glacite Walker 是矮人矿山的怪物类型名(不是专有角色名),“极冰”是 Glacite 现译名,故译“极冰行者猎手”。",
+      "translate": true,
+      "zh": "极冰行者猎手"
+    },
+    {
+      "id": "mining_commission_task_goblin_slayer",
+      "context": "委托任务类型名(矮人矿山/水晶残核通用):击杀哥布林",
+      "text": "Goblin Slayer",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "哥布林猎手"
+    },
+    {
+      "id": "mining_commission_task_mithril_miner",
+      "context": "委托任务类型名(矮人矿山):挖秘银矿石",
+      "text": "Mithril Miner",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "秘银矿工"
+    },
+    {
+      "id": "mining_commission_task_area_mithril",
+      "context": "委托任务类型名(矮人矿山):在指定区域挖秘银矿石",
+      "text": "%s Mithril",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "矮人矿山内随机抽取的具体区域名,真实候选是 Cliffside Veins / Lava Springs / Rampart's Quarry / Royal Mines / Upper Mines 这五个(此前 example 写的 'Mithril Deposits' 是错的,已用 hypixelskyblock.minecraft.wiki/w/Commissions 原始 wikitext 核实更正)。地名需要翻译(见 README 5.5),译名走 _shared/Terms.json 的 location_name 查表(Royal Mines → 皇家矿区),这条模板只负责后半截的材料名。",
+          "type": "location_name",
+          "example": "Cliffside Veins"
+        }
+      ],
+      "gloss": "这是整份委托名单里仅有的两种「地名 + 矿石名」直接并列的任务名(另一条是 %s Titanium),中间没有任何中心词。两个名词一挨上就成了「皇家矿区秘银」,读者分不出哪里是地名、哪里是矿石,所以译文用一个带空格的连字符隔开:「皇家矿区 - 秘银」。其余委托名都有「矿工/收集员/猎手/拳击手」之类的中心词收尾,读得通,不加分隔符。",
+      "translate": true,
+      "zh": "%s - 秘银"
+    },
+    {
+      "id": "mining_commission_task_titanium_miner",
+      "context": "委托任务类型名(矮人矿山):挖钛矿石",
+      "text": "Titanium Miner",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "钛矿工"
+    },
+    {
+      "id": "mining_commission_task_area_titanium",
+      "context": "委托任务类型名(矮人矿山):在指定区域挖钛矿石",
+      "text": "%s Titanium",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "矮人矿山内随机抽取的具体区域名,真实候选是 Cliffside Veins / Lava Springs / Rampart's Quarry / Royal Mines / Upper Mines 这五个(此前 example 写的 'Mithril Deposits' 是错的,已用 hypixelskyblock.minecraft.wiki/w/Commissions 原始 wikitext 核实更正)。地名需要翻译(见 README 5.5),译名走 _shared/Terms.json 的 location_name 查表(Royal Mines → 皇家矿区),这条模板只负责后半截的材料名。",
+          "type": "location_name",
+          "example": "Cliffside Veins"
+        }
+      ],
+      "gloss": "和 %s Mithril 同一种形状:「地名 + 矿石名」直接并列,没有中心词,所以译文用带空格的连字符隔开(「皇家矿区 - 钛」)。Titanium 按 GLOSSARY.md 译「钛」,不是「钛金」。",
+      "translate": true,
+      "zh": "%s - 钛"
+    },
+    {
+      "id": "mining_commission_task_first_event",
+      "context": "委托任务类型名(矮人矿山,新手前几个委托的简化版):参与任意一场挖矿活动(被动活动也算)",
+      "text": "First Event",
+      "placeholders": [],
+      "gloss": "wiki 的 Commissions#Starter 表里列的四个新手委托之一(2026-08-26 用原始 wikitext 核实)。这里的 Event 指挖矿限时活动,不是「第一次事件」。",
+      "translate": true,
+      "zh": "首次活动"
+    },
+    {
+      "id": "mining_commission_task_mines_slayer",
+      "context": "委托任务类型名(矮人矿山,新手前几个委托的简化版):在矿山里击杀 50 只生物",
+      "text": "Mines Slayer",
+      "placeholders": [],
+      "gloss": "wiki 的 Commissions#Starter 表里列的四个新手委托之一(2026-08-26 用原始 wikitext 核实)。the Mines 指矮人矿山本身,不是某个具体子区域;Slayer 按既有委托名统一译「猎手」。",
+      "translate": true,
+      "zh": "矿山猎手"
+    },
+    {
+      "id": "mining_commission_task_treasure_hoarder_puncher",
+      "context": "委托任务类型名(矮人矿山):击打 Treasure Hoarder 类怪物",
+      "text": "Treasure Hoarder Puncher",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "藏宝贼拳击手"
+    },
+    {
+      "id": "mining_commission_task_goblin_raid",
+      "context": "委托任务类型名(矮人矿山):参与哥布林突袭活动。注意和限时活动本身的名字 'Goblin Raid'(见 GLOSSARY.md,用户已确认要翻译但具体译法未定)是同一个词,译名必须联动保持一致",
+      "text": "Goblin Raid",
+      "placeholders": [],
+      "gloss": "见 GLOSSARY.md “山之心天赋名/限时活动名”条目,Goblin Raid 的译法用户尚未最终拍板具体措辞,只确认了方向是翻译。",
+      "translate": true,
+      "zh": "哥布林突袭"
+    },
+    {
+      "id": "mining_commission_task_goblin_raid_slayer",
+      "context": "委托任务类型名(矮人矿山):哥布林突袭活动中击杀哥布林",
+      "text": "Goblin Raid Slayer",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "哥布林突袭猎手"
+    },
+    {
+      "id": "mining_commission_task_elusive_goblin_slayer",
+      "context": "委托任务类型名(矮人矿山):击杀“难以捉摸的哥布林”特殊怪",
+      "text": "Elusive Goblin Slayer",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "隐匿哥布林猎手"
+    },
+    {
+      "id": "mining_commission_task_raffle",
+      "context": "委托任务类型名(矮人矿山):参与抽奖箱活动",
+      "text": "Raffle",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "抽奖箱"
+    },
+    {
+      "id": "mining_commission_task_lucky_raffle",
+      "context": "委托任务类型名(矮人矿山):抽奖箱活动的“幸运”变体",
+      "text": "Lucky Raffle",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "幸运抽奖箱"
+    },
+    {
+      "id": "mining_commission_task_star_sentry_puncher",
+      "context": "委托任务类型名(矮人矿山):击打 Star Sentry 类目标",
+      "text": "Star Sentry Puncher",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "星辰哨兵拳击手"
+    },
+    {
+      "id": "mining_commission_task_automaton_slayer",
+      "context": "委托任务类型名(水晶残核):击杀机关傀儡(Automaton)",
+      "text": "Automaton Slayer",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "机关傀儡猎手"
+    },
+    {
+      "id": "mining_commission_task_sludge_slayer",
+      "context": "委托任务类型名(水晶残核):击杀软泥怪(Sludge)",
+      "text": "Sludge Slayer",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "软泥怪猎手"
+    },
+    {
+      "id": "mining_commission_task_team_treasurite_slayer",
+      "context": "委托任务类型名(水晶残核):击杀“寻宝小队”(Team Treasurite)成员怪",
+      "text": "Team Treasurite Member Slayer",
+      "placeholders": [],
+      "gloss": "已核实(curl 拉取 hypixelskyblock.minecraft.wiki/w/Commissions 原始 wikitext):Team Treasurite Member 是水晶残核 Mithril Deposits 区域的怪物类型名,“寻宝小队”是既定译名方向,译“寻宝小队成员猎手”。",
+      "translate": true,
+      "zh": "寻宝小队成员猎手"
+    },
+    {
+      "id": "mining_commission_task_yog_slayer",
+      "context": "委托任务类型名(水晶残核):击杀 Yog(专有怪物名)",
+      "text": "Yog Slayer",
+      "placeholders": [],
+      "gloss": "已核实(同上 wiki 源):Yog 是水晶残核 Magma Fields 区域的专有怪物名,保留英文。",
+      "translate": true,
+      "zh": "Yog 猎手"
+    },
+    {
+      "id": "mining_commission_task_chest_looter",
+      "context": "委托任务类型名(水晶残核):搜刮宝箱",
+      "text": "Chest Looter",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "宝箱搜刮者"
+    },
+    {
+      "id": "mining_commission_task_thyst_slayer",
+      "context": "委托任务类型名(水晶残核):击杀 Thyst(专有怪物名,疑似紫晶相关精英怪)",
+      "text": "Thyst Slayer",
+      "placeholders": [],
+      "gloss": "已核实(同上 wiki 源):Thyst 是水晶残核 Jungle 区域的专有怪物名,和 Amethyst(紫水晶)无直接构词关系,保留英文。",
+      "translate": true,
+      "zh": "Thyst 猎手"
+    },
+    {
+      "id": "mining_commission_task_hard_stone_miner",
+      "context": "委托任务类型名(水晶残核):挖掘硬石(Hard Stone)",
+      "text": "Hard Stone Miner",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "硬石矿工"
+    },
+    {
+      "id": "mining_commission_task_gemstone_crystal_hunter",
+      "context": "委托任务类型名(水晶残核):寻找指定宝石对应的水晶",
+      "text": "%s Crystal Hunter",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "水晶残核内随机抽取的宝石水晶种类,真实候选是 Amber / Amethyst / Jade / Sapphire / Topaz 五种(不含 Ruby,已用 wiki 原始 wikitext 核实)。同样受单个 %s 原样捕获的模板架构限制,运行时材料名部分会保持英文。",
+          "type": "raw",
+          "example": "Jade"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%s水晶猎人"
+    },
+    {
+      "id": "mining_commission_task_boss_corleone_slayer",
+      "context": "委托任务类型名(水晶残核):击杀 Boss Corleone(专有 Boss 名)",
+      "text": "Boss Corleone Slayer",
+      "placeholders": [],
+      "gloss": "已核实(同上 wiki 源):Boss Corleone 是水晶残核 Mithril Deposits 区域的专有 Boss 怪物名(《教父》角色 Corleone 的玩梗),连“Boss”一起作为固定显示名保留英文,只翻译“Slayer”。",
+      "translate": true,
+      "zh": "Boss Corleone 猎手"
+    },
+    {
+      "id": "mining_commission_task_mineshaft_explorer",
+      "context": "委托任务类型名(冰河隧道):探索矿井(Mineshaft)",
+      "text": "Mineshaft Explorer",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "矿井探索者"
+    },
+    {
+      "id": "mining_commission_task_corpse_looter",
+      "context": "委托任务类型名(冰河隧道):搜刮尸体(Corpse)战利品",
+      "text": "Corpse Looter",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "尸体搜刮者"
+    },
+    {
+      "id": "mining_commission_task_maniac_slayer",
+      "context": "委托任务类型名(冰河隧道):击杀 Maniac(专有怪物名,疑似冰原精英怪)",
+      "text": "Maniac Slayer",
+      "placeholders": [],
+      "gloss": "已核实(同上 wiki 源):wiki 原文是分段链接 [[Glacite Maniacs|Maniacs]],说明 “Maniac” 不是专有名词而是怪物全名 “Glacite Maniac”(极冰狂人)的通用名词简称,和 Glacite Walker 同类,应翻译而非保留英文。此前 gloss 猜测“疑似专有名词,不翻译”是错的,已更正。",
+      "translate": true,
+      "zh": "狂人猎手"
+    }
+  ],
+  "todo": [
+    "'%s Collector' 通用模板和 'Scrap Collector' '2x Mithril Powder Collector' 这几个固定名之间的显示格式差异(冒号/破折号等)仍未在游戏内截图核对,verified_ingame 保持 false。"
+  ]
+}

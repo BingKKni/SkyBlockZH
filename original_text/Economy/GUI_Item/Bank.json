@@ -1,0 +1,120 @@
+{
+  "source": "运行时采集(logs/skyzh-capture,2026-08-27):Hub_General / Economy 两处的 Bank、Personal Bank Account、Co-op Bank Account、SkyBlock Menu 四个菜单",
+  "fetched_at": "2026-08-27",
+  "verified_ingame": true,
+  "gui_context": "银行菜单里的结息小节。同一句话在个人账户、合作账户、以及空岛菜单的银行入口上都出现,记一份即可——引擎按渲染面查表,不看文件在哪个玩法目录下。",
+  "lines": [
+    {
+      "id": "bank_interest_in",
+      "context": "距离下一次结息还有多久,银行菜单里最常看的一行",
+      "raw": "§7Interest in: §b%s",
+      "text": "Interest in: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "倒计时,单位写法随剩余时间长短变,整段交给 duration 换算",
+          "type": "duration",
+          "example": "02h 24m 56s"
+        }
+      ],
+      "gloss": "服务器这一行有四种写法:`10h`、`1h 57m`、`02h 24m 56s`、`04m 48s`。单位字母不能写进模板,否则只有其中一种能匹配上;`type: duration` 一条全管,中文单位由 text/Capture.java 换算成「02小时24分56秒」。",
+      "translate": true,
+      "zh": "距结息: %s",
+      "segments": [
+        {"color": "§7", "text": "Interest in: ", "zh": "距结息: "},
+        {"color": "§b", "text": "%s", "zh": "%s"}
+      ]
+    },
+    {
+      "id": "bank_until_interest_hours",
+      "context": "同一件事的另一种写法,剩余一小时以上时用整点小时数",
+      "raw": "§7Until interest: §b%s Hours",
+      "text": "Until interest: %s Hours",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "剩余小时数",
+          "type": "number",
+          "example": "10"
+        }
+      ],
+      "gloss": "和 bank_until_interest 是同一行的两种写法,不冲突:引擎选模板里字面文本最多的那条,`Hours` 是这一条自己的词。单复数不用另写,`1 Hour` 也能匹配。",
+      "translate": true,
+      "zh": "距结息: %s 小时",
+      "segments": [
+        {"color": "§7", "text": "Until interest: ", "zh": "距结息: "},
+        {"color": "§b", "text": "%s Hours", "zh": "%s 小时"}
+      ]
+    },
+    {
+      "id": "bank_until_interest",
+      "context": "同上,不足一小时时换成 `4m 48s` 这种紧凑倒计时",
+      "raw": "§7Until interest: §b%s",
+      "text": "Until interest: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "紧凑倒计时,整段交给 duration 换算",
+          "type": "duration",
+          "example": "4m 48s"
+        }
+      ],
+      "gloss": "见 bank_until_interest_hours 的 gloss。",
+      "translate": true,
+      "zh": "距结息: %s",
+      "segments": [
+        {"color": "§7", "text": "Until interest: ", "zh": "距结息: "},
+        {"color": "§b", "text": "%s", "zh": "%s"}
+      ]
+    },
+    {
+      "id": "bank_last_interest_coins",
+      "context": "上一次结息实际到账多少",
+      "raw": "§7Last interest: §b%s coins",
+      "text": "Last interest: %s coins",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "结息金额",
+          "type": "number",
+          "example": "43,613"
+        }
+      ],
+      "gloss": "空岛菜单银行入口上那一行写法不同(`Last 31d Interest:`,带结息周期),已有 Hub_General/GUI_Item/SkyBlock_Menu.json#skyblock_menu_last_interest 单独管。",
+      "translate": true,
+      "zh": "上次结息: %s 硬币",
+      "segments": [
+        {"color": "§7", "text": "Last interest: ", "zh": "上次结息: "},
+        {"color": "§b", "text": "%s coins", "zh": "%s 硬币"}
+      ]
+    },
+    {
+      "id": "bank_projected_coins",
+      "context": "按当前余额预估下一次能结出多少息,括号里是实际适用的利率",
+      "raw": "§7Projected: §6%1$s coins §b(%2$s%)",
+      "text": "Projected: %1$s coins (%2$s%)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "预估结息金额",
+          "type": "number",
+          "example": "44,075.1"
+        },
+        {
+          "token": "%2$s",
+          "desc": "综合利率百分比",
+          "type": "number",
+          "example": "2.042"
+        }
+      ],
+      "gloss": "Projected 这里是「预计能拿到」而不是「计划」,译作预估。",
+      "translate": true,
+      "zh": "预估: %1$s 硬币 (%2$s%)",
+      "segments": [
+        {"color": "§7", "text": "Projected: ", "zh": "预估: "},
+        {"color": "§6", "text": "%1$s coins ", "zh": "%1$s 硬币 "},
+        {"color": "§b", "text": "(%2$s%)", "zh": "(%2$s%)"}
+      ]
+    }
+  ]
+}

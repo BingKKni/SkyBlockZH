@@ -1,0 +1,352 @@
+{
+  "gui": "SkyBlock 通用菜单",
+  "source": "runtime capture (SkyZH) 2026-08-20 实测会话",
+  "fetched_at": "2026-08-20",
+  "verified_ingame": true,
+  "gui_context": "和玩法无关、在哪个岛屿都能打开的界面标题。挖矿实测会话里这些标题是在矮人矿山采到的,但它们不属于挖矿玩法,按 original_text/README.md 第 1 节归到 Hub_General。",
+  "titles": [
+    {
+      "id": "gui_title_skyblock_menu",
+      "context": "按下 SkyBlock 菜单物品(默认在快捷栏最右)打开的主菜单",
+      "text": "SkyBlock Menu",
+      "placeholders": [],
+      "gloss": "SkyBlock 这个词照写英文,渲染时由 translateSkyBlockName 换成“空岛菜单”,见 GLOSSARY.md。",
+      "translate": true,
+      "zh": "SkyBlock 菜单"
+    },
+    {
+      "id": "gui_title_skyblock_leveling",
+      "context": "主菜单里的空岛等级页,列出各类升级任务和已获得的等级奖励",
+      "text": "SkyBlock Leveling",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "SkyBlock 等级"
+    },
+    {
+      "id": "gui_title_your_bags",
+      "context": "主菜单里的收纳袋总览,进去再选具体某个袋子",
+      "text": "Your Bags",
+      "placeholders": [],
+      "gloss": "Bag/Sack 都是“装同一类东西的自动收纳容器”,项目里 Sack 译“收纳袋”,这里的 Bags 沿用。菜单入口名(SkyBlock_Menu.json 的 skyblock_menu_bags)已去掉“你的”,箱子标题跟着一起去掉,否则同一个界面点进去前后两个名字对不上。",
+      "translate": true,
+      "zh": "收纳袋"
+    },
+    {
+      "id": "gui_title_ender_chest",
+      "context": "末影箱,按已解锁的页数分页",
+      "text": "Ender Chest (%1$s/%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前第几页",
+          "type": "number",
+          "example": "2"
+        },
+        {
+          "token": "%2$s",
+          "desc": "已解锁的总页数",
+          "type": "number",
+          "example": "4"
+        }
+      ],
+      "gloss": "Ender Chest 用《我的世界》官方中文译名“末影箱”。",
+      "translate": true,
+      "zh": "末影箱(%1$s/%2$s)"
+    },
+    {
+      "id": "gui_title_jumbo_backpack",
+      "context": "超大背包(Jumbo Backpack)物品打开的界面,按背包栏位编号",
+      "text": "Jumbo Backpack (Slot #%s)",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "这个背包放在收纳栏的第几格",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "超大背包(%s 号槽)"
+    },
+    {
+      "id": "gui_title_recipe_book",
+      "context": "配方书:按分类浏览所有已解锁的合成配方",
+      "text": "Recipe Book",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "配方书"
+    },
+    {
+      "id": "gui_title_craft_item",
+      "context": "合成界面本身(3x3 合成格 + 结果格)",
+      "text": "Craft Item",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "合成物品"
+    },
+    {
+      "id": "gui_title_quests_chapters",
+      "context": "主菜单里的任务线总览,按章节分组",
+      "text": "Quests & Chapters",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "任务与章节"
+    },
+    {
+      "id": "gui_title_calendar_and_events",
+      "context": "日历页:当前空岛年月日,以及正在进行/即将开始的限时活动",
+      "text": "Calendar and Events",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "日历与活动"
+    },
+    {
+      "id": "gui_title_armor_sets",
+      "context": "衣柜(Wardrobe),分页存放整套护甲",
+      "text": "(%1$s/%2$s) Armor Sets",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前第几页",
+          "type": "number",
+          "example": "1"
+        },
+        {
+          "token": "%2$s",
+          "desc": "总页数",
+          "type": "number",
+          "example": "3"
+        }
+      ],
+      "gloss": "英文把页码放在最前面,中文按习惯放到名字后面。",
+      "translate": true,
+      "zh": "护甲套装(%1$s/%2$s)"
+    },
+    {
+      "id": "gui_title_crafted_minions",
+      "context": "空岛菜单 → 收藏品 → 已制作的小人,分三页列出全部 61 种小人",
+      "text": "(%1$s/%2$s) Crafted Minions",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前第几页",
+          "type": "number",
+          "example": "1"
+        },
+        {
+          "token": "%2$s",
+          "desc": "总页数",
+          "type": "number",
+          "example": "3"
+        }
+      ],
+      "gloss": "页码位置同 gui_title_armor_sets。Crafted 是「制作过的」而不是「可制作的」——这个菜单记的是玩家历史上做过哪些小人、哪些档位,做过的每一种独特小人都会给私人岛屿加一个小人槽位,所以译作「已制作的小人」而不是「小人图鉴」。",
+      "translate": true,
+      "zh": "已制作的小人(%1$s/%2$s)"
+    },
+    {
+      "id": "gui_title_are_you_sure",
+      "context": "二次确认弹窗的标题(卖东西、重置数据等操作前)",
+      "text": "Are you sure?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "确定吗?"
+    },
+    {
+      "id": "gui_title_creating_instance",
+      "context": "进入独立副本(极冰矿井、地牢等)时,服务器一边建实例一边挂着的等待界面",
+      "text": "Creating instance....",
+      "placeholders": [],
+      "gloss": "原文末尾是四个点,不是三个,照抄没有意义,中文用一个省略号。",
+      "translate": true,
+      "zh": "创建副本……"
+    },
+    {
+      "id": "gui_title_accessory_bag",
+      "context": "饰品袋,标题里带当前页码",
+      "text": "Accessory Bag (%1$s/%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前页",
+          "type": "number",
+          "example": "1"
+        },
+        {
+          "token": "%2$s",
+          "desc": "总页数",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "Accessory Bag 的译名见 GLOSSARY.md「Reforge / Soulbound / Accessory Power / Accessory Bag」条目。",
+      "translate": true,
+      "zh": "饰品袋(%1$s/%2$s)"
+    },
+    {
+      "id": "gui_title_potion_bag",
+      "context": "药水袋",
+      "text": "Potion Bag",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "药水袋"
+    },
+    {
+      "id": "gui_title_fishing_bag",
+      "context": "钓鱼袋",
+      "text": "Fishing Bag",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "钓鱼袋"
+    },
+    {
+      "id": "gui_title_sack_of_sacks",
+      "context": "装所有收纳袋的那个袋子",
+      "text": "Sack of Sacks",
+      "placeholders": [],
+      "gloss": "英文本身就是“袋子的袋子”这个玩笑,中文保留同一个结构;Sack 统一译“收纳袋”。",
+      "translate": true,
+      "zh": "收纳袋之袋"
+    },
+    {
+      "id": "gui_title_collections",
+      "context": "收藏品总览",
+      "text": "Collections",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "收藏品"
+    },
+    {
+      "id": "gui_title_mining_collections",
+      "context": "挖矿分类下的收藏品",
+      "text": "Mining Collections",
+      "placeholders": [],
+      "gloss": "Collection 统一译“收藏品”(见 GLOSSARY.md 物品 Lore 词汇表的 Collection Item)。",
+      "translate": true,
+      "zh": "挖矿收藏品"
+    },
+    {
+      "id": "gui_title_your_museum",
+      "context": "玩家自己的博物馆",
+      "text": "Your Museum",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的博物馆"
+    },
+    {
+      "id": "gui_title_confirm_donation",
+      "context": "把物品捐进博物馆前的二次确认",
+      "text": "Confirm Donation",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "确认捐赠"
+    },
+    {
+      "id": "gui_title_stats_equipment",
+      "context": "属性与装备总览(Tab 键旁边那个菜单)",
+      "text": "Stats & Equipment",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "属性与装备"
+    },
+    {
+      "id": "gui_title_stats_breakdown",
+      "context": "单条属性的来源明细",
+      "text": "Your Stats Breakdown",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "属性明细"
+    },
+    {
+      "id": "gui_title_player_profile",
+      "context": "查看别人的档案界面,名字以 s 结尾时英文只加一个撇号",
+      "text": "%s' Profile",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "玩家名,保留原样",
+          "type": "player_name",
+          "example": "Pinchotos"
+        }
+      ],
+      "gloss": "和下面那条是同一个界面的两种写法:英文所有格对以 s 结尾的名字只加撇号。中文没有这个区别,两条译文一样。",
+      "translate": true,
+      "zh": "%s 的档案"
+    },
+    {
+      "id": "gui_title_player_profile_s",
+      "context": "同上,名字不以 s 结尾时的写法",
+      "text": "%s's Profile",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "玩家名,保留原样",
+          "type": "player_name",
+          "example": "inkkni"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%s 的档案"
+    },
+    {
+      "id": "gui_title_pet_training",
+      "context": "宠物护理所的宠物训练菜单",
+      "text": "Pet Training",
+      "placeholders": [],
+      "gloss": "沿用 Tab 列表小节的既有译名。",
+      "translate": true,
+      "zh": "宠物训练"
+    },
+    {
+      "id": "gui_title_mine_merchant",
+      "context": "Hub 挖矿区的 Mine Merchant 商店",
+      "text": "Mine Merchant",
+      "placeholders": [],
+      "gloss": "这是职务型名称,按 GLOSSARY.md 规则翻译。",
+      "translate": true,
+      "zh": "挖矿商人"
+    },
+    {
+      "id": "gui_title_fishing_stats",
+      "context": "钓鱼前哨的钓鱼属性菜单",
+      "text": "Fishing Stats",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "钓鱼属性"
+    },
+    {
+      "id": "gui_title_fishing_merchant",
+      "context": "钓鱼前哨的 Fishing Merchant 商店",
+      "text": "Fishing Merchant",
+      "placeholders": [],
+      "gloss": "这是职务型名称,按 GLOSSARY.md 规则翻译。",
+      "translate": true,
+      "zh": "钓鱼商人"
+    },
+    {
+      "id": "gui_title_chocolate_dinner_egg",
+      "context": "找到 Hoppity 狩猎活动的晚餐蛋后打开的菜单",
+      "text": "Chocolate Dinner Egg",
+      "placeholders": [],
+      "gloss": "Hoppity's Hunt 的四种定时彩蛋之一。",
+      "translate": true,
+      "zh": "巧克力晚餐蛋"
+    }
+  ]
+}

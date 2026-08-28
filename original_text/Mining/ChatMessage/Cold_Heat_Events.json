@@ -1,0 +1,187 @@
+{
+  "source": "玩家实测客户端日志(logs/,2026-08-19)+ https://github.com/hannibal002/SkyHanni 的 MiningApi.kt",
+  "fetched_at": "2026-08-19",
+  "verified_ingame": true,
+  "source_note": "数据来自开源客户端 Mod SkyHanni 的 SkyHanni-REPO 仓库 constants/regexesModern.json (用于解析游戏内文本的正则表达式常量),已去除正则语法/颜色码还原成干净模板文本, 可信度高于 Wiki 摘要,但未逐条在游戏内截图核对,verified_ingame 仍为 false。",
+  "messages": [
+    {
+      "id": "mining_chat_cold_reset_campfire",
+      "context": "玩家使用篝火驱寒后的聊天提示",
+      "text": "The warmth of the campfire reduced your ❄ Cold to %s!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "降到的寒冷值",
+          "type": "number",
+          "example": "0"
+        }
+      ],
+      "gloss": "❄ 是抗寒/寒冷的图标字符,游戏内是服务器字体的私用区字形,数据里写通用符号即可(见 text/Glyphs.java)。",
+      "translate": true,
+      "zh": "篝火的暖意把你的 ❄ 寒冷值降到了 %s!",
+      "raw": "§6The warmth of the campfire reduced your §r§b❄ Cold §r§6to §r§a%s§r§6!",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "The warmth of the campfire reduced your ",
+          "zh": "篝火的暖意把你的"
+        },
+        {
+          "color": "§b",
+          "text": "❄ Cold ",
+          "zh": " ❄ 寒冷值"
+        },
+        {
+          "color": "§6",
+          "text": "to ",
+          "zh": "降到了"
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": " %s"
+        },
+        {
+          "color": "§6",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "mining_chat_cold_freeze_death",
+      "context": "玩家被冻死时的聊天提示",
+      "text": "☠ You froze to death.",
+      "placeholders": [],
+      "gloss": "按颜色分段:实测这一行是 §c ☠ §7You froze to death.,骷髅是红色、句子是灰色,记成一整行的话整句会被刷成骷髅的红色。分段只决定颜色边界,颜色渲染时从屏幕上当场读,所以 color 字段只是给人看的记号。和 Hub_General/ChatMessage/Common_System.json 的 common_death_by_mob 同一处理。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "☠ ",
+          "zh": "☠ "
+        },
+        {
+          "color": "§7",
+          "text": "You froze to death.",
+          "zh": "你被冻死了。"
+        }
+      ]
+    },
+    {
+      "id": "mining_chat_cold_stage_1",
+      "context": "寒冷值升高的第一阶段提示",
+      "text": "BRRR! It's getting colder in here...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "好冷! 这里越来越冷了……",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "BRRR! ",
+          "zh": "好冷! "
+        },
+        {
+          "color": "§7",
+          "text": "It's getting colder in here...",
+          "zh": "这里越来越冷了……"
+        }
+      ]
+    },
+    {
+      "id": "mining_chat_cold_stage_2",
+      "context": "寒冷值升高的第二阶段提示",
+      "text": "BRRR! It's getting really cold in here! But you've got to keep moving...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "好冷! 这里冷得厉害了! 但你必须继续走下去……",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "BRRR! ",
+          "zh": "好冷! "
+        },
+        {
+          "color": "§7",
+          "text": "It's getting really cold in here! But you've got to keep moving...",
+          "zh": "这里冷得厉害了! 但你必须继续走下去……"
+        }
+      ]
+    },
+    {
+      "id": "mining_chat_cold_stage_3",
+      "context": "寒冷值升高的第三阶段提示",
+      "text": "BRRR! It's so cold that you can barely feel your fingers. Moving is getting difficult...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "好冷! 冷得你几乎感觉不到手指,连挪动都开始吃力了……",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "BRRR! ",
+          "zh": "好冷! "
+        },
+        {
+          "color": "§7",
+          "text": "It's so cold that you can barely feel your fingers. Moving is getting difficult...",
+          "zh": "冷得你几乎感觉不到手指,连挪动都开始吃力了……"
+        }
+      ]
+    },
+    {
+      "id": "mining_chat_cold_stage_4",
+      "context": "寒冷值升高的第四阶段提示",
+      "text": "BRRR! You're freezing! All you can think about is getting out of here to a warm campfire...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "好冷! 你快冻僵了! 满脑子只想赶紧回到篝火旁烤火……",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "BRRR! ",
+          "zh": "好冷! "
+        },
+        {
+          "color": "§7",
+          "text": "You're freezing! All you can think about is getting out of here to a warm campfire...",
+          "zh": "你快冻僵了! 满脑子只想赶紧回到篝火旁烤火……"
+        }
+      ]
+    },
+    {
+      "id": "mining_chat_cold_stage_5",
+      "context": "寒冷值升高的第五阶段提示(再不走就要冻死了)",
+      "text": "BRRR! Your movement slows to a crawl as the cold threatens to take over. Time to get out of here...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "好冷! 寒意快要把你吞没,你已经只能一步一挪了,该离开这儿了……",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "BRRR! ",
+          "zh": "好冷! "
+        },
+        {
+          "color": "§7",
+          "text": "Your movement slows to a crawl as the cold threatens to take over. Time to get out of here...",
+          "zh": "寒意快要把你吞没,你已经只能一步一挪了,该离开这儿了……"
+        }
+      ]
+    },
+    {
+      "id": "mining_chat_cold_death_flavour",
+      "context": "被冻死之后的斜体气氛行",
+      "text": "Maybe next time you'll find a way to escape the cold...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "也许下次你能找到躲开严寒的办法……"
+    }
+  ]
+}

@@ -1,0 +1,229 @@
+{
+  "source": "运行时采集(logs/skyzh-capture,2026-08-27)+ https://hypixelskyblock.minecraft.wiki/w/Crafted_Minions/UI",
+  "fetched_at": "2026-08-27",
+  "verified_ingame": true,
+  "gui_context": "空岛菜单 → 收藏品 → 已制作的小人。三页,一格一种小人,格子里列出每一档是否已制作过。种类名只写一条带占位符的模板,具体材料名走 _shared/Terms.json——同一张表也在 Tab 列表的小人小节用,写成 61 条记录等于把词表抄第二份。",
+  "lines": [
+    {
+      "id": "crafted_minion_name",
+      "context": "格子上的小人名,如 Obsidian Minion",
+      "raw": "§e%s Minion",
+      "text": "%s Minion",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "小人种类(材料名或生物名),译名走 _shared/Terms.json,查不到就保持英文",
+          "type": "category_name",
+          "example": "Obsidian"
+        }
+      ],
+      "gloss": "不会误吃 `Wheat Minion Skin`、`Flower Minion Recipes` 这类行:记录要匹配整个范围,模板以 Minion 收尾,后面还有词就匹配不上。`Crafted Minions` 那一格也不受影响——引擎只把**已经以 s 结尾**的字面词的 s 变成可选,不会给 Minion 补一个。",
+      "translate": true,
+      "zh": "%s小人"
+    },
+    {
+      "id": "crafted_minion_name_tiered",
+      "context": "带档位的小人名,出现在背包、配方书、集市里",
+      "raw": "§e%1$s Minion %2$s",
+      "text": "%1$s Minion %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "小人种类,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Inferno"
+        },
+        {
+          "token": "%2$s",
+          "desc": "档位(罗马数字)",
+          "type": "tier",
+          "example": "XI"
+        }
+      ],
+      "gloss": "档位必须写成 type: tier,不能用 raw。写 raw 的话 `Gingerbread Man Minion Skin` 会被吃进来(`%2$s` 捕到 Skin),而罗马数字只认得 IVXLCDM,Skin / Recipes 都进不来。种类名是两个词的(`Cave Spider Minion XI`)也照样切得对,因为后一半说清楚了形状。",
+      "translate": true,
+      "zh": "%1$s小人 %2$s"
+    },
+    {
+      "id": "crafted_minion_tier_done",
+      "context": "已经制作过的档位,前面一个绿色对勾",
+      "raw": "§a✔ Tier %s",
+      "text": "✔ Tier %s",
+      "placeholders": [
+        {"token": "%s", "desc": "档位(罗马数字)", "type": "tier", "example": "IV"}
+      ],
+      "gloss": "Tier 在这个菜单里是小人的档位(I 到 XII),不是稀有度,所以译「档」而不是「级」——小人界面自己另有「等级」的说法(Minion Slots),两个词分开才不会混。",
+      "translate": true,
+      "zh": "✔ 第 %s 档"
+    },
+    {
+      "id": "crafted_minion_tier_missing",
+      "context": "还没制作过的档位,前面一个红色叉",
+      "raw": "§c✖ Tier %s",
+      "text": "✖ Tier %s",
+      "placeholders": [
+        {"token": "%s", "desc": "档位(罗马数字)", "type": "tier", "example": "XII"}
+      ],
+      "gloss": "见 crafted_minion_tier_done。",
+      "translate": true,
+      "zh": "✖ 第 %s 档"
+    },
+    {
+      "id": "crafted_minion_not_crafted",
+      "context": "一种小人一档都没做过时,格子 Lore 的说明",
+      "raw": "§7You haven't crafted this minion.",
+      "text": "You haven't crafted this minion.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你还没有制作过这种小人。"
+    },
+    {
+      "id": "crafted_minion_click_recipes",
+      "context": "格子底部的操作提示",
+      "raw": "§eClick to view recipes!",
+      "text": "Click to view recipes!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击查看配方!"
+    },
+    {
+      "id": "crafted_minions_info_purpose_1",
+      "context": "菜单右下角说明格的第一段:这个菜单是干什么的。英文因排版拆成三行,合并成一句翻译",
+      "raw": "§7This menu shows all of the unique",
+      "text": "This menu shows all of the unique",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这里列出你到目前为止制作过的所有独特小人。"
+    },
+    {
+      "id": "crafted_minions_info_purpose_2",
+      "context": "接上一行",
+      "raw": "§7minions that you have crafted so",
+      "text": "minions that you have crafted so",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "crafted_minions_info_purpose_3",
+      "context": "接上一行",
+      "raw": "§7far.",
+      "text": "far.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "crafted_minions_info_slots_1",
+      "context": "第二段:制作没做过的小人可以提升私人岛屿的小人上限。英文拆成六行,合并成一句",
+      "raw": "§7Craft minions §ayou have never",
+      "text": "Craft minions you have never",
+      "placeholders": [],
+      "gloss": "整段合并之后颜色只剩首段那一种,这是 continuation 的既有代价(英文的高亮落在被删掉的行上,没法搬到合并后的中文里)。「never crafted before」的强调在中文里靠「从没做过的」这个说法本身表达。",
+      "translate": true,
+      "zh": "制作你从没做过的小人,可以提升私人岛屿的小人上限! 在大厅的社区商店里还能再解锁 5 个额外槽位。"
+    },
+    {
+      "id": "crafted_minions_info_slots_2",
+      "context": "接上一行",
+      "raw": "§acrafted before §7to increase the",
+      "text": "crafted before to increase the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "crafted_minions_info_slots_3",
+      "context": "接上一行",
+      "raw": "§7minions limit on your Private",
+      "text": "minions limit on your Private",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "crafted_minions_info_slots_4",
+      "context": "接上一行",
+      "raw": "§7Island! You can also unlock 5 bonus",
+      "text": "Island! You can also unlock 5 bonus",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "crafted_minions_info_slots_5",
+      "context": "接上一行",
+      "raw": "§7slots via the §bCommunity Shop §7in",
+      "text": "slots via the Community Shop in",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "crafted_minions_info_slots_6",
+      "context": "接上一行",
+      "raw": "§7the Hub!",
+      "text": "the Hub!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "crafted_minions_info_limit",
+      "context": "第三段:当前的小人上限",
+      "raw": "§7Minions limit: §e%s",
+      "text": "Minions limit: %s",
+      "placeholders": [
+        {"token": "%s", "desc": "当前小人上限", "type": "number", "example": "5"}
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Minions limit: ", "zh": "小人上限: "},
+        {"color": "§e", "text": "%s", "zh": "%s"}
+      ]
+    },
+    {
+      "id": "crafted_minions_info_next_slot",
+      "context": "第五段:距离下一个槽位还差几种独特小人的进度",
+      "raw": "§7Next minion slot: (§e%1$s§7/§a%2$s§7)",
+      "text": "Next minion slot: (%1$s/%2$s)",
+      "placeholders": [
+        {"token": "%1$s", "desc": "已完成的进度", "type": "number", "example": "0"},
+        {"token": "%2$s", "desc": "解锁下一个槽位需要的数量", "type": "number", "example": "5"}
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Next minion slot: (", "zh": "下一个小人槽位: ("},
+        {"color": "§e", "text": "%1$s", "zh": "%1$s"},
+        {"color": "§7", "text": "/", "zh": "/"},
+        {"color": "§a", "text": "%2$s", "zh": "%2$s"},
+        {"color": "§7", "text": ")", "zh": ")"}
+      ]
+    }
+  ],
+  "todo": [
+    "说明格(crafted_minions_info_*)那几条来自 wiki 的 `Crafted Minions/UI` 子页,**存疑,进游戏核实之后再当准**。理由不是「没实测」而已:2026-08-27 那一轮玩家把三页都打开过,采集把这个菜单的格子记下来了(小人名、档位行、点击提示、连返回按钮的 `To Collections` 都在),**唯独这个说明格一行都没有**。采集读的是容器内容包里每一格的 name/lore,不需要玩家把鼠标停上去,所以「没 hover 到」解释不了;跨菜单去重也解释不了——那样别处会有一条带 `also_seen` 的记录指回来,全库搜不到。剩下的解释就是这一格在游戏里不叫 `Information`、或者压根不是 wiki 画的那个样子(用户也反馈说菜单入口是 player_head,没看到 wiki 写的红石火把,那一页的底行本来就和实际对不上)。这几条用了 continuation,首行匹配不上时尾行保持英文,所以现在最坏情况是这一段不翻译、不会半中半英;核实的办法是下次开着采集打开这个菜单,看 `skyzh-capture/untranslated/Hub_General/GUI_Item/` 里这一格到底写的是什么。",
+    "第四段「Craft 5 more unique minions to unlock your 6th slot.」没有收录:句子里嵌了一个序数(6th),而它跟着玩家当前的槽位数变,`type: ordinal` 能管;但这一段在 wiki 上的断行(`&7Craft &b5 &7more &aunique` / `&a&7minions to unlock your &b6th` / `&b&7slot.`)中间夹了两个空颜色码,拆出来的三行各自都不是完整短语,拿不准实际发出来是不是这样,等实测。"
+  ]
+}

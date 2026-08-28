@@ -1,0 +1,199 @@
+{
+  "purpose": "四个属性名的各种写法。属性行到处都是——/stats 菜单、装备与属性面板、物品 Lore、宠物增益、技能奖励——每一处的排版都不一样,但属性名只有一个,所以按 §5.6 抽到这里,不在各菜单文件里各抄一遍。",
+  "source": "运行时采集(logs/skyzh-capture,2026-08-27);图标码点与 wiki 的 Infobox/Stat 核对过(hypixelskyblock.minecraft.wiki/w/Swing_Range 等)",
+  "fetched_at": "2026-08-27",
+  "verified_ingame": true,
+  "icon_note": "属性图标按 original_text/README.md 的规定写通用符号:❂ 是 U+E027(真实防御)、⚔ 是 U+E001(攻击速度)、๑ 是 U+E002(技能伤害),折算表在 text/Glyphs.java。挥击范围是例外——它的码点 U+E024 是 Hypixel 换成字形字体之后才加的属性,从来没有对应的通用符号,所以只能原样写码点。这不违反规定:折算表里没有它,服务器和语料两边写的是同一个字符,照样匹配得上(见 Glyphs 的类注释)。",
+  "lines": [
+    {
+      "id": "stat_true_defense_menu",
+      "context": "/stats 菜单、装备与属性面板、属性明细里的真实防御那一行:图标 + 属性名 + 数值",
+      "raw": "§f❂ True Defense %s",
+      "text": "❂ True Defense %s",
+      "placeholders": [
+        {"token": "%s", "desc": "当前属性值", "type": "number", "example": "72.97"}
+      ],
+      "gloss": "整行一个颜色,不需要 segments——真实防御的属性色本来就是白色,服务器没必要在数值前换色。译名见 GLOSSARY.md 的属性词汇表。",
+      "translate": true,
+      "zh": "❂ 真实防御 %s"
+    },
+    {
+      "id": "stat_true_defense_bonus",
+      "context": "物品 Lore 里的真实防御行,括号里是重铸/星级带来的额外加成",
+      "raw": "§7True Defense: §f%1$s §8(%2$s)",
+      "text": "True Defense: %1$s (%2$s)",
+      "placeholders": [
+        {"token": "%1$s", "desc": "基础值", "type": "number", "example": "+6.5"},
+        {"token": "%2$s", "desc": "括号里的额外加成", "type": "number", "example": "+6.5"}
+      ],
+      "gloss": "不带括号的写法由 _shared/Item_Lore.json#item_true_defense_s 管,两条模板不同不冲突。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "True Defense: ", "zh": "真实防御: "},
+        {"color": "§f", "text": "%1$s ", "zh": "%1$s "},
+        {"color": "§8", "text": "(%2$s)", "zh": "(%2$s)"}
+      ]
+    },
+    {
+      "id": "stat_attack_speed_menu",
+      "context": "/stats 菜单、装备与属性面板、属性明细里的攻击速度那一行",
+      "raw": "§e⚔ Attack Speed §f%s",
+      "text": "⚔ Attack Speed %s",
+      "placeholders": [
+        {"token": "%s", "desc": "当前属性值,菜单里带 %、明细里不带", "type": "number", "example": "0%"}
+      ],
+      "gloss": "已查证(hypixelskyblock.minecraft.wiki/w/Attack_Speed):这条属性提高的是每秒能砍几刀(封顶 100),不是伤害本身,所以译作攻击速度而不是攻速加成。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§e", "text": "⚔ Attack Speed ", "zh": "⚔ 攻击速度 "},
+        {"color": "§f", "text": "%s", "zh": "%s"}
+      ]
+    },
+    {
+      "id": "stat_attack_speed",
+      "context": "物品 Lore 里的攻击速度行,只有一个数值",
+      "raw": "§7Attack Speed: §e%s",
+      "text": "Attack Speed: %s",
+      "placeholders": [
+        {"token": "%s", "desc": "数值", "type": "number", "example": "+15%"}
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Attack Speed: ", "zh": "攻击速度: "},
+        {"color": "§e", "text": "%s", "zh": "%s"}
+      ]
+    },
+    {
+      "id": "stat_attack_speed_bonus",
+      "context": "同上,后面多一段括号加成",
+      "raw": "§7Attack Speed: §e%1$s §9(%2$s)",
+      "text": "Attack Speed: %1$s (%2$s)",
+      "placeholders": [
+        {"token": "%1$s", "desc": "基础值", "type": "number", "example": "+3%"},
+        {"token": "%2$s", "desc": "括号里的额外加成", "type": "number", "example": "+3%"}
+      ],
+      "gloss": "括号的段数不同就是不同的模板,一段一条记录。这不是第 4 节禁止的“值枚举”——枚举的是排版结构,不是数值。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Attack Speed: ", "zh": "攻击速度: "},
+        {"color": "§e", "text": "%1$s ", "zh": "%1$s "},
+        {"color": "§9", "text": "(%2$s)", "zh": "(%2$s)"}
+      ]
+    },
+    {
+      "id": "stat_attack_speed_bonus_two",
+      "context": "同上,两段括号加成",
+      "raw": "§7Attack Speed: §e%1$s §9(%2$s) §8(%3$s)",
+      "text": "Attack Speed: %1$s (%2$s) (%3$s)",
+      "placeholders": [
+        {"token": "%1$s", "desc": "基础值", "type": "number", "example": "+3%"},
+        {"token": "%2$s", "desc": "第一段括号加成", "type": "number", "example": "+3%"},
+        {"token": "%3$s", "desc": "第二段括号加成", "type": "number", "example": "+3.12%"}
+      ],
+      "gloss": "见 stat_attack_speed_bonus 的 gloss。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Attack Speed: ", "zh": "攻击速度: "},
+        {"color": "§e", "text": "%1$s ", "zh": "%1$s "},
+        {"color": "§9", "text": "(%2$s) ", "zh": "(%2$s) "},
+        {"color": "§8", "text": "(%3$s)", "zh": "(%3$s)"}
+      ]
+    },
+    {
+      "id": "stat_attack_speed_gain",
+      "context": "饰品/宠物增益里“加多少攻击速度”的写法,图标紧跟在数值后面",
+      "raw": "§e+%s⚔ Attack Speed",
+      "text": "+%s⚔ Attack Speed",
+      "placeholders": [
+        {"token": "%s", "desc": "加成数值", "type": "number", "example": "20"}
+      ],
+      "gloss": "图标和数值之间没有空格,是服务器的写法,原样保留。",
+      "translate": true,
+      "zh": "+%s⚔ 攻击速度"
+    },
+    {
+      "id": "stat_swing_range_menu",
+      "context": "/stats 菜单、装备与属性面板里的挥击范围那一行",
+      "raw": "§e Swing Range §f%s",
+      "text": " Swing Range %s",
+      "placeholders": [
+        {"token": "%s", "desc": "当前属性值,单位是格", "type": "number", "example": "3"}
+      ],
+      "gloss": "已查证(hypixelskyblock.minecraft.wiki/w/Swing_Range):这条属性是近战武器能打到多远,数值就是格数,基础 3 格、上限 15 格。译作挥击范围而不是攻击距离——它只影响剑和长剑挥出去的判定范围,和弓、法杖那类远程无关。图标码点见文件顶部 icon_note。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§e", "text": " Swing Range ", "zh": " 挥击范围 "},
+        {"color": "§f", "text": "%s", "zh": "%s"}
+      ]
+    },
+    {
+      "id": "stat_swing_range_bonus",
+      "context": "物品 Lore 里的挥击范围行,括号里是重铸/星级带来的额外加成",
+      "raw": "§7Swing Range: §e%1$s §8(%2$s)",
+      "text": "Swing Range: %1$s (%2$s)",
+      "placeholders": [
+        {"token": "%1$s", "desc": "基础值", "type": "number", "example": "+1"},
+        {"token": "%2$s", "desc": "括号里的额外加成", "type": "number", "example": "+1.04"}
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Swing Range: ", "zh": "挥击范围: "},
+        {"color": "§e", "text": "%1$s ", "zh": "%1$s "},
+        {"color": "§8", "text": "(%2$s)", "zh": "(%2$s)"}
+      ]
+    },
+    {
+      "id": "stat_swing_range_cap",
+      "context": "属性上限提示,长剑类武器的 Lore 里会写挥击范围最高能到多少",
+      "raw": "§7Stat Cap: §e%s Swing Range",
+      "text": "Stat Cap: %s Swing Range",
+      "placeholders": [
+        {"token": "%s", "desc": "上限数值", "type": "number", "example": "15"}
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Stat Cap: ", "zh": "属性上限: "},
+        {"color": "§e", "text": "%s Swing Range", "zh": "%s 挥击范围"}
+      ]
+    },
+    {
+      "id": "stat_ability_damage_menu",
+      "context": "/stats 菜单、装备与属性面板里的技能伤害那一行",
+      "raw": "§c๑ Ability Damage §f%s",
+      "text": "๑ Ability Damage %s",
+      "placeholders": [
+        {"token": "%s", "desc": "当前属性值", "type": "number", "example": "25.5%"}
+      ],
+      "gloss": "已查证(hypixelskyblock.minecraft.wiki/w/Ability_Damage):指的是技能(Ability)造成的伤害加成,不是武器普攻,所以译作技能伤害。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§c", "text": "๑ Ability Damage ", "zh": "๑ 技能伤害 "},
+        {"color": "§f", "text": "%s", "zh": "%s"}
+      ]
+    },
+    {
+      "id": "stat_ability_damage_gain",
+      "context": "饰品/附魔增益里“加多少技能伤害”的写法",
+      "raw": "§c+%s๑ Ability Damage",
+      "text": "+%s๑ Ability Damage",
+      "placeholders": [
+        {"token": "%s", "desc": "加成数值", "type": "number", "example": "3"}
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s๑ 技能伤害"
+    }
+  ]
+}

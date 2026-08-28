@@ -1,0 +1,249 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Keepers_of_Divan",
+  "fetched_at": "2026-08-18",
+  "verified_ingame": false,
+  "source_note": "已核实修正:早前版本把这个文件和 Professor Robot(位于 Precursor Remnants,涉及 Automaton Parts/机器人组件)的对话混在一起,是 SkyHanni-REPO 正则数据分类错误导致的。Professor Robot 的对话已拆分到 Mining/NPC_Message/Professor_Robot.json。本文件现在只保留真正的 Keepers of Divan(水晶残核-神圣秘境宝藏寻宝拼图机制)对话,来自社区 Wiki 逐句摘录。",
+  "npc": "Keeper of ___",
+  "aliases": [
+    "Keeper of Lapis",
+    "Keeper of Gold",
+    "Keeper of Diamond",
+    "Keeper of Emerald"
+  ],
+  "note": "4 位守护者 NPC(Keeper of Lapis / Keeper of Gold / Keeper of Diamond / Keeper of Emerald),出现在 Mines of Divan 的“翻找碎片”宝藏寻宝拼图机制里,分别对应 Scavenged Emerald Hammer / Scavenged Diamond Axe / Scavenged Lapis Sword / Scavenged Golden Hammer 四种寻回道具,集齐后获得 Jade Crystal(玉石水晶)。四人对话内容是同一套通用模板,只是称号/对应材料不同,因此合并成一个文件。称号里的材料名(Lapis/Gold/Diamond/Emerald)都是原版 Minecraft 材料名,按物品名规则要翻译(青金石/黄金/钻石/绿宝石),'Keeper of' 译作「守护者」,四人保持统一。",
+  "messages": [
+    {
+      "id": "keeper_of_take_this_metal_detector_to",
+      "context": "",
+      "raw": "§fTake this §cMetal Detector§f to scavenge the ground for lost items!",
+      "text": "Take this Metal Detector to scavenge the ground for lost items!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Take this ",
+          "zh": "拿上这个"
+        },
+        {
+          "color": "§c",
+          "text": "Metal Detector",
+          "zh": "金属探测器"
+        },
+        {
+          "color": "§f",
+          "text": " to scavenge the ground for lost items!",
+          "zh": ",在地里翻找遗失的物件吧!"
+        }
+      ]
+    },
+    {
+      "id": "keeper_of_return_the_items_to_their",
+      "context": "",
+      "raw": "§fReturn the items to their rightful owners to gain a reward!",
+      "text": "Return the items to their rightful owners to gain a reward!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "把物件还给它们真正的主人,就能获得奖励!"
+    },
+    {
+      "id": "keeper_of_talk_to_me_when_you",
+      "context": "",
+      "raw": "§fTalk to me when you have found a §cScavenged %s§f.",
+      "text": "Talk to me when you have found a Scavenged %s.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "",
+          "type": "raw",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Talk to me when you have found a ",
+          "zh": "找到"
+        },
+        {
+          "color": "§c",
+          "text": "Scavenged %s",
+          "zh": "翻找到的 %s"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "之后再来找我。"
+        }
+      ]
+    },
+    {
+      "id": "keeper_return_new_item",
+      "context": "玩家首次交回某个“翻找碎片”道具时的反应",
+      "text": "Excellent! You have returned the Scavenged %s to it's rightful place!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "交回的道具类型(如 Hammer/Axe/Sword),专有名词不翻译",
+          "type": "item_name",
+          "example": "Golden Hammer"
+        }
+      ],
+      "gloss": "原文 \"it's rightful place\" 疑似游戏文本本身的拼写瑕疵(应为 its),raw 未拿到确切颜色码版本,先按 Wiki 摘录的原样拼写记录,不要在采集阶段自行改成 its。",
+      "translate": true,
+      "zh": "太好了! 你把翻找到的 %s 放回了它原本的位置!",
+      "raw": "§fExcellent! You have returned the §cScavenged %s §fto it's rightful place!"
+    },
+    {
+      "id": "keeper_return_hint_1",
+      "context": "交回单个道具后的后续提示(集齐前)",
+      "text": "Use your Metal Detector to find the remaining items!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "用你的金属探测器,找到剩下的道具吧!",
+      "raw": "§fUse your §cMetal Detector§f to find the remaining items!"
+    },
+    {
+      "id": "keeper_return_duplicate",
+      "context": "玩家试图重复交回同一个已经交过的道具类型时的反应",
+      "text": "You have already restored this Dwarf's Scavenged %s!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "重复交回的道具类型",
+          "type": "item_name",
+          "example": "Golden Hammer"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你已经帮这位矮人找回过 %s 了!",
+      "raw": "§fYou have already restored this Dwarf's §cScavenged %s§f!"
+    },
+    {
+      "id": "keeper_return_hint_2",
+      "context": "重复交回提示后的后续引导语(和 keeper_return_hint_1 内容相近但用词略有不同,两条都按 Wiki 摘录原样保留,不要合并成一条)",
+      "text": "Use your Metal Detector to find the rest of the items!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "用你的金属探测器,把剩下的道具都找齐吧!",
+      "raw": "§fUse your §cMetal Detector§f to find the rest of the items!"
+    },
+    {
+      "id": "keeper_all_collected",
+      "context": "集齐全部“翻找碎片”道具后的反应,解锁 Jade Crystal",
+      "text": "You found all of the items! Behold... the Jade Crystal!",
+      "placeholders": [],
+      "gloss": "Jade Crystal 里的材料名 Jade 保持英文不翻译,但 Crystal 统一翻译成'水晶'(和 Sapphire Crystal 等同类词处理原则一致)。",
+      "translate": true,
+      "zh": "你找到了所有的道具! 看啊……Jade 水晶!",
+      "raw": "§fYou found all of the items! Behold... the §aJade Crystal§f!"
+    },
+    {
+      "id": "keeper_of_you_haven_t_placed_the",
+      "context": "",
+      "raw": "§fYou haven't placed the §aJade Crystal §fyet!",
+      "text": "You haven't placed the Jade Crystal yet!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "You haven't placed the ",
+          "zh": "你还没把"
+        },
+        {
+          "color": "§a",
+          "text": "Jade Crystal ",
+          "zh": "Jade 水晶 "
+        },
+        {
+          "color": "§f",
+          "text": "yet!",
+          "zh": "放上去呢!"
+        }
+      ]
+    },
+    {
+      "id": "keeper_of_go_to_the_crystal_nucleus",
+      "context": "",
+      "raw": "§fGo to the §5Crystal Nucleus §fto place it!",
+      "text": "Go to the Crystal Nucleus to place it!",
+      "placeholders": [],
+      "gloss": "Professor Robot 说的是同一句(只有空格落在哪个颜色段里不同,空格没有颜色、屏幕上一样),所以那边用 ref 引用这一条。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Go to the ",
+          "zh": "去"
+        },
+        {
+          "color": "§5",
+          "text": "Crystal Nucleus ",
+          "zh": "水晶核心"
+        },
+        {
+          "color": "§f",
+          "text": "to place it!",
+          "zh": "把它放上去吧!"
+        }
+      ]
+    },
+    {
+      "id": "keeper_of_you_have_already_placed_the",
+      "context": "",
+      "raw": "§fYou have already placed the §aJade Crystal§f!",
+      "text": "You have already placed the Jade Crystal!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "You have already placed the ",
+          "zh": "你已经把"
+        },
+        {
+          "color": "§a",
+          "text": "Jade Crystal",
+          "zh": "Jade 水晶"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "放上去了!"
+        }
+      ]
+    },
+    {
+      "id": "keeper_of_come_back_when_you_need",
+      "context": "",
+      "raw": "§fCome back when you need to collect it again!",
+      "text": "Come back when you need to collect it again!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "等你需要再领一次的时候再回来吧!"
+    }
+  ],
+  "todo": [
+    "Wiki 摘录未给出玩家交出完全错误物品(既不是任何一种 Scavenged 道具也不是重复)时的专属反应,是否存在这种反应尚未确认。"
+  ],
+  "aka": [
+    "Keeper of"
+  ],
+  "aka_note": "游戏里四位守护者的说话人标签都是 \"Keeper of <材料名>\",材料名是变量;剥掉变量后剩下的 \"Keeper of\" 就是采集工具认得的说话人名。"
+}

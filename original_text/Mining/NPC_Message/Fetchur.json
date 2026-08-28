@@ -1,0 +1,145 @@
+{
+  "npc": "Fetchur",
+  "location": "Dwarven Mines (84, 224, -118)",
+  "note": "每日随机物品收集任务 NPC。台词故意使用全小写、口语化、无标点的“网络用语”风格,这是角色设定本身,采集/翻译时要保留这种随性语气,不要“规范化”成标准书面语。该 NPC 请求的物品可能跨越多个技能类目而不仅限于 Mining,严格说更接近通用型 NPC,暂按主要出没地点归入 Mining,Hub_General 阶段如需交叉引用可参考本文件。",
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Fetchur",
+  "fetched_at": "2026-08-18",
+  "verified_ingame": false,
+  "messages": [
+    {
+      "id": "fetchur_daily_1",
+      "context": "每日第一次互动,第一句",
+      "text": "hi i need your help maybe",
+      "placeholders": [],
+      "translate": true,
+      "zh": "嗨 可能需要你帮个忙",
+      "raw": "§fhi i need your help maybe"
+    },
+    {
+      "id": "fetchur_daily_2",
+      "context": "每日第一次互动,第二句,说不记得东西的名字",
+      "text": "im looking for some stuff, dont remember the name tbh",
+      "placeholders": [],
+      "gloss": "'tbh' = to be honest 的缩写,翻译时可以用中文口语缩略语气对应(如“说真的”),不需要展开成完整书面语。",
+      "translate": true,
+      "zh": "我在找点东西 说真的不记得叫什么了",
+      "raw": "§fim looking for some stuff, dont remember the name tbh"
+    },
+    {
+      "id": "fetchur_missing_item",
+      "context": "玩家还没交物品时再次对话",
+      "text": "you didnt find my things yet?",
+      "placeholders": [],
+      "translate": true,
+      "zh": "还没找到我要的东西吗?",
+      "raw": "§fyou didnt find my things yet?"
+    },
+    {
+      "id": "fetchur_wrong_item_1",
+      "context": "玩家给错物品,第一句",
+      "text": "i didnt ask for this bro",
+      "placeholders": [],
+      "translate": true,
+      "zh": "老哥 我要的不是这个",
+      "raw": "§fi didnt ask for this bro"
+    },
+    {
+      "id": "fetchur_wrong_item_2",
+      "context": "给错物品,第二句,抱怨",
+      "text": "why you giving me something completely different",
+      "placeholders": [],
+      "translate": true,
+      "zh": "你怎么给我完全不一样的东西",
+      "raw": "§fwhy you giving me something completely different"
+    },
+    {
+      "id": "fetchur_wrong_item_3",
+      "context": "给错物品,第三句,感叹",
+      "text": "people these days lol...",
+      "placeholders": [],
+      "translate": true,
+      "zh": "现在的人啊 哈哈……",
+      "raw": "§fpeople these days lol..."
+    },
+    {
+      "id": "fetchur_wrong_amount",
+      "context": "数量不对但物品对",
+      "text": "um yea youre close",
+      "placeholders": [],
+      "gloss": "紧跟着这句后面还会重复一次线索和数量提示(同 fetchur_daily_3/4),此条只采集这句独有的开场吐槽,提示部分不重复采集。",
+      "translate": true,
+      "zh": "嗯 你挺接近了",
+      "raw": "§fum yea youre close"
+    },
+    {
+      "id": "fetchur_but_wrong_amount",
+      "context": "",
+      "raw": "§fbut wrong amount??",
+      "text": "but wrong amount??",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "但是数量不对??"
+    },
+    {
+      "id": "fetchur_correct_1",
+      "context": "正确完成交付,第一句致谢",
+      "text": "thanks thats probably what i needed",
+      "placeholders": [],
+      "translate": true,
+      "zh": "谢啦 应该就是这个了",
+      "raw": "§fthanks thats probably what i needed"
+    },
+    {
+      "id": "fetchur_correct_2",
+      "context": "正确完成交付,第二句,给予奖励",
+      "text": "take some gifts!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "拿点礼物去吧!",
+      "raw": "§ftake some gifts!"
+    },
+    {
+      "id": "fetchur_already_done",
+      "context": "当天已完成后再互动",
+      "text": "come back another time, maybe tmrw",
+      "placeholders": [],
+      "gloss": "'tmrw' = tomorrow 的缩写,口语风格保留。",
+      "translate": true,
+      "zh": "改天再来吧 也许明天",
+      "raw": "§fcome back another time, maybe tmrw"
+    },
+    {
+      "id": "fetchur_daily_3",
+      "context": "给出物品提示(具体提示内容按当天请求物品变化)",
+      "text": "its/theyre %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "物品线索描述文本,随每日请求物品变化",
+          "type": "raw",
+          "example": "the shiny rock kind"
+        }
+      ],
+      "gloss": "'its/theyre' 是 Wiki 用来表示“单数/复数视物品而定”的写法,不是原文真实同时出现的两个词,采集时需要注意这是文档标注符号而非游戏原文,翻译/生成代码时要按实际语法选择单复数。",
+      "translate": true,
+      "zh": "就是%s"
+    },
+    {
+      "id": "fetchur_daily_4",
+      "context": "给出需求数量",
+      "text": "i need %s pls",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "需求数量",
+          "type": "number",
+          "example": "64"
+        }
+      ],
+      "gloss": "'pls' = please 的缩写,口语风格。",
+      "translate": true,
+      "zh": "要%s个 拜托了"
+    }
+  ]
+}

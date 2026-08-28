@@ -1,0 +1,691 @@
+{
+  "source": "https://raw.githubusercontent.com/hannibal002/SkyHanni-REPO/main/constants/regexesModern.json",
+  "fetched_at": "2026-08-18",
+  "verified_ingame": true,
+  "source_note": "数据来自开源客户端 Mod SkyHanni 的 SkyHanni-REPO 仓库 constants/regexesModern.json (用于解析游戏内文本的正则表达式常量),已去除正则语法/颜色码还原成干净模板文本, 可信度高于 Wiki 摘要,但未逐条在游戏内截图核对,verified_ingame 仍为 false。",
+  "gui_context": "Tab 列表(按 Tab 键弹出的玩家列表)侧边挖矿相关小节的标题标签。",
+  "labels": [
+    {
+      "id": "mining_tab_commissions",
+      "context": "Tab 列表小节标题:委托",
+      "text": "Commissions:",
+      "placeholders": [],
+      "gloss": "commissions 见 GLOSSARY.md,统一译“委托”。",
+      "translate": true,
+      "zh": "委托:"
+    },
+    {
+      "id": "mining_tab_crystals",
+      "context": "Tab 列表小节标题:水晶(水晶残核相关进度)",
+      "text": "Crystals:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "水晶:"
+    },
+    {
+      "id": "mining_tab_forges",
+      "context": "Tab 列表小节标题:锻造炉(进行中的锻造任务)",
+      "text": "Forges:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "锻造炉:"
+    },
+    {
+      "id": "mining_tab_frozen_corpses",
+      "context": "Tab 列表小节标题:冰封尸体(极冰矿井机制)",
+      "text": "Frozen Corpses:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "冰封尸体:"
+    },
+    {
+      "id": "mining_tab_pickaxe_ability",
+      "context": "Tab 列表小节标题:镐子技能(冷却时间显示)",
+      "text": "Pickaxe Ability:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "镐子技能:"
+    },
+    {
+      "id": "mining_tab_powders",
+      "context": "Tab 列表小节标题:粉末",
+      "text": "Powders:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "粉末:"
+    },
+    {
+      "id": "mining_tab_private_island_crystals",
+      "context": "私人岛屿上的水晶数量小节(和上面的 Crystals: 标签同词但带数值)",
+      "text": "Crystals: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "水晶数量",
+          "type": "number",
+          "example": "3"
+        }
+      ],
+      "gloss": "和 mining_tab_crystals 是同一个词在不同场景的两种显示格式(不带数值/带数值),翻译保持一致即可。",
+      "translate": true,
+      "zh": "水晶: %s"
+    },
+    {
+      "id": "tab_header_stats",
+      "context": "Tab 列表小节标题:属性一览",
+      "text": "Stats:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "属性:"
+    },
+    {
+      "id": "tab_header_skills",
+      "context": "Tab 列表小节标题:技能等级一览",
+      "text": "Skills:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "技能:"
+    },
+    {
+      "id": "tab_header_bestiary",
+      "context": "Tab 列表小节标题:图鉴进度",
+      "text": "Bestiary:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "图鉴:"
+    },
+    {
+      "id": "tab_header_pet",
+      "context": "Tab 列表小节标题:当前出战的宠物",
+      "text": "Pet:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "宠物:"
+    },
+    {
+      "id": "tab_header_daily_quests",
+      "context": "Tab 列表小节标题:每日任务",
+      "text": "Daily Quests:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "每日任务:"
+    },
+    {
+      "id": "tab_header_pity",
+      "context": "Tab 列表小节标题:保底计数(离下一次必出还差多少)",
+      "text": "Pity:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "保底:"
+    },
+    {
+      "id": "tab_header_profile",
+      "context": "Tab 列表:当前档案名(档案名保留英文)",
+      "text": "Profile:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "档案:"
+    },
+    {
+      "id": "tab_header_area",
+      "context": "Tab 列表:所在岛屿",
+      "text": "Area:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "区域:"
+    },
+    {
+      "id": "tab_header_dungeon",
+      "context": "Tab 列表:所在地牢",
+      "text": "Dungeon:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "地牢:"
+    },
+    {
+      "id": "tab_players_count",
+      "context": "Tab 列表玩家名单上方的人数标题",
+      "raw": "         §a§lPlayers §f(%1$s)",
+      "text": "Players (%s)",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前服务器人数",
+          "type": "number",
+          "example": "24"
+        }
+      ],
+      "gloss": "小节标题是绿的加粗,后面的人数是白的。分段只决定颜色边界,颜色渲染时从屏幕上当场读,所以 color 字段只是给人看的记号。",
+      "translate": true,
+      "zh": "玩家 (%s)",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Players ",
+          "zh": "玩家 "
+        },
+        {
+          "color": "§f",
+          "text": "(%s)",
+          "zh": "(%s)"
+        }
+      ]
+    },
+    {
+      "id": "tab_widget_info",
+      "context": "Tab 列表第二栏的栏目标题,底下跟着 Area / Server / Gems / Bank / Profile 那一组行",
+      "text": "Info",
+      "placeholders": [],
+      "gloss": "SkyHanni-REPO 的 regexes.tab.widgetcomponent.enum.info 是 '\\s*(?:Info)',在 TabWidget 枚举里紧跟在 PLAYER_LIST(Players (N))后面、AREA(Area: ...)前面,源码注释写着“This line holds no information, only here because every widget must be present”——它是个纯栏目标题,后面不跟数值,所以不走「标签: 数值」那条路,整行就是这一个词。**不要按居中处理**:居中重算只适用于 GUI_Title/ 整个分类(容器标题区宽度是引擎常量)和带 layout: center_chat_banner 的聊天横幅(假设默认聊天框宽度)。Tab 列表两者都不是——它的栏宽由客户端按最长的那一条玩家名动态算,根本没有可以对齐的固定目标宽度。行首那几个空格和 tab_players_count 的一样,属于「照抄原文」的缩进,由 text/LineShape 剥掉后原样贴回 head,不写进 text。颜色/精确空格数未实测,按 tab_players_count 的同构写法记录,故不填 raw;整行单色,不需要 segments。",
+      "translate": true,
+      "zh": "信息"
+    },
+    {
+      "id": "tab_slot_empty",
+      "context": "委托/任务槽位列表里空着的那一格",
+      "raw": " %1$s) §7EMPTY",
+      "text": "%s) EMPTY",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "第几个槽位",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "序号和状态词不是同一个颜色。分段只决定颜色边界,颜色渲染时从屏幕上当场读,所以 color 字段只是给人看的记号。",
+      "translate": true,
+      "zh": "%s) 空闲",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "%s) ",
+          "zh": "%s) "
+        },
+        {
+          "color": "§7",
+          "text": "EMPTY",
+          "zh": "空闲"
+        }
+      ]
+    },
+    {
+      "id": "tab_row_server",
+      "context": "Tab 列表:当前服务器编号",
+      "text": "Server:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "服务器:"
+    },
+    {
+      "id": "tab_row_gems",
+      "context": "Tab 列表:Gems(充值货币)余额",
+      "text": "Gems:",
+      "placeholders": [],
+      "gloss": "这里的 Gems 是 Hypixel 的充值货币,不是挖矿的 Gemstone(宝石粉末/矿物)。**Gems 保留英文不翻译**,和 Rank / Boosters 同属一条全局规则:Hypixel 官方中文语料不翻译这三个词。此前译作“宝石”,和下面 tab_row_gemstone(Gemstone: → 宝石:)在同一个渲染面上渲染成一模一样的“宝石:”——两行只差在一个是充值货币、一个是挖矿粉末,玩家分不出来。收进来并保持英文是为了标明“这里故意不翻译”,不是漏了(同 tab_row_fetchur)。",
+      "translate": true,
+      "zh": "Gems:"
+    },
+    {
+      "id": "tab_row_bank",
+      "context": "Tab 列表:银行余额 / 上限",
+      "text": "Bank:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "银行:"
+    },
+    {
+      "id": "tab_row_interest",
+      "context": "Tab 列表:距离下一次银行利息结算还有多久",
+      "text": "Interest:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "利息:"
+    },
+    {
+      "id": "tab_row_fairy_souls",
+      "context": "Tab 列表:仙女之魂收集进度",
+      "text": "Fairy Souls:",
+      "placeholders": [],
+      "gloss": "Fairy Soul 已确定译“仙女之魂”,见 GLOSSARY.md。",
+      "translate": true,
+      "zh": "仙女之魂:"
+    },
+    {
+      "id": "tab_row_puzzler",
+      "context": "Tab 列表:解谜 NPC Puzzler 的每日谜题状态",
+      "text": "Puzzler:",
+      "placeholders": [],
+      "gloss": "Puzzler 是矮人矿山出谜题的 NPC,职务型名字,按 GLOSSARY.md 翻译。",
+      "translate": true,
+      "zh": "谜题人:"
+    },
+    {
+      "id": "tab_row_fetchur",
+      "context": "Tab 列表:Fetchur 的每日索取还有多久刷新",
+      "text": "Fetchur:",
+      "placeholders": [],
+      "gloss": "Fetchur 是人名,保留英文。收进来是为了标明“这里故意不翻译”,不是漏了。",
+      "translate": true,
+      "zh": "Fetchur:"
+    },
+    {
+      "id": "tab_row_sb_level",
+      "context": "Tab 列表:空岛等级和距离下一级的经验",
+      "text": "SB Level",
+      "placeholders": [],
+      "gloss": "SB 是 SkyBlock 的缩写。这里直接写“空岛等级”,不走 translateSkyBlockName——那个开关认的是完整的 SkyBlock 一词,认不出缩写。",
+      "translate": true,
+      "zh": "空岛等级"
+    },
+    {
+      "id": "tab_row_glacite_mineshafts",
+      "context": "Tab 列表:今天还能进几次极冰矿井",
+      "text": "Glacite Mineshafts:",
+      "placeholders": [],
+      "gloss": "地名自带颜色,冒号跟着行的底色。分段只决定颜色边界,颜色渲染时从屏幕上当场读,所以 color 字段只是给人看的记号。",
+      "translate": true,
+      "zh": "极冰矿井:",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "Glacite Mineshafts",
+          "zh": "极冰矿井"
+        },
+        {
+          "color": "§f",
+          "text": ":",
+          "zh": ":"
+        }
+      ]
+    },
+    {
+      "id": "tab_row_scrap",
+      "context": "Tab 列表:可疑残料持有数",
+      "text": "Scrap:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "残料:"
+    },
+    {
+      "id": "tab_row_glacite",
+      "context": "Tab 列表:极冰粉末持有数",
+      "text": "Glacite:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "极冰:"
+    },
+    {
+      "id": "tab_row_mithril",
+      "context": "Tab 列表:秘银粉末持有数",
+      "text": "Mithril:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "秘银:"
+    },
+    {
+      "id": "tab_row_gemstone",
+      "context": "Tab 列表:宝石粉末持有数",
+      "text": "Gemstone:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "宝石:"
+    },
+    {
+      "id": "tab_row_cold_resistance",
+      "context": "Tab 列表属性行:抗寒",
+      "text": "Cold Resistance:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "抗寒:"
+    },
+    {
+      "id": "tab_row_gemstone_spread",
+      "context": "Tab 列表属性行:宝石扩散",
+      "text": "Gemstone Spread:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "宝石扩散:"
+    },
+    {
+      "id": "tab_row_pristine",
+      "context": "Tab 列表属性行:纯净",
+      "text": "Pristine:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "纯净:"
+    },
+    {
+      "id": "tab_row_mining_speed_boost",
+      "context": "Tab 列表:挖掘速度爆发技能的冷却状态",
+      "text": "Mining Speed Boost:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "挖掘速度爆发:"
+    },
+    {
+      "id": "tab_row_max_level",
+      "context": "Tab 列表:宠物已经满级",
+      "text": "MAX LEVEL",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "满级"
+    },
+    {
+      "id": "tab_row_pet_entry",
+      "context": "Tab 列表:出战宠物那一行",
+      "raw": " §7[Lvl 100] §6Glacite Golem",
+      "text": "[Lvl %1$s] %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "宠物等级",
+          "type": "number",
+          "example": "100"
+        },
+        {
+          "token": "%2$s",
+          "desc": "宠物名,译名走 _shared/Terms.json,查不到保持英文",
+          "type": "raw",
+          "example": "Glacite Golem"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "[%1$s 级] %2$s"
+    },
+    {
+      "id": "tab_row_frozen_corpse_lapis",
+      "context": "Tab 列表冰封尸体小节:青金石尸体那一行的标签",
+      "text": "Lapis",
+      "placeholders": [],
+      "gloss": "这一小节里的每一行只写材料名,「尸体」两个字在小节标题上。这几行的译名和材料本身的译名不完全一样:Umber 作为材料译“褐铁矿”,但“褐铁矿”后面接“尸体”读不通(一具矿?),所以这一面上写“褐铁”。值那一半(LOOTED / NOT LOOTED)走 _shared/Terms.json。",
+      "translate": true,
+      "zh": "青金石"
+    },
+    {
+      "id": "tab_row_frozen_corpse_umber",
+      "context": "Tab 列表冰封尸体小节:褐铁尸体那一行的标签",
+      "text": "Umber",
+      "placeholders": [],
+      "gloss": "见 tab_row_frozen_corpse_lapis 的 gloss:这一面上写的是尸体类型,不是材料本身的译名。",
+      "translate": true,
+      "zh": "褐铁"
+    },
+    {
+      "id": "tab_row_frozen_corpse_tungsten",
+      "context": "Tab 列表冰封尸体小节:钨尸体那一行的标签",
+      "text": "Tungsten",
+      "placeholders": [],
+      "gloss": "见 tab_row_frozen_corpse_lapis 的 gloss:这一面上写的是尸体类型,不是材料本身的译名。",
+      "translate": true,
+      "zh": "钨"
+    },
+    {
+      "id": "tab_row_skill_farming",
+      "context": "Tab 列表技能小节:农业等级那一行,标签本身带等级数",
+      "text": "Farming %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前等级",
+          "type": "number",
+          "example": "60"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "农业 %s 级"
+    },
+    {
+      "id": "tab_row_skill_mining",
+      "context": "Tab 列表技能小节:挖矿等级那一行,标签本身带等级数",
+      "text": "Mining %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前等级",
+          "type": "number",
+          "example": "60"
+        }
+      ],
+      "gloss": "技能名用“挖矿”这一套(等级的说法),属性词条前缀才是“挖矿X”,见 GLOSSARY.md。",
+      "translate": true,
+      "zh": "挖矿 %s 级"
+    },
+    {
+      "id": "tab_row_skill_combat",
+      "context": "Tab 列表技能小节:战斗等级那一行,标签本身带等级数",
+      "text": "Combat %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前等级",
+          "type": "number",
+          "example": "60"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "战斗 %s 级"
+    },
+    {
+      "id": "tab_row_skill_foraging",
+      "context": "Tab 列表技能小节:伐木等级那一行,标签本身带等级数",
+      "text": "Foraging %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前等级",
+          "type": "number",
+          "example": "60"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "伐木 %s 级"
+    },
+    {
+      "id": "tab_row_skill_fishing",
+      "context": "Tab 列表技能小节:钓鱼等级那一行,标签本身带等级数",
+      "text": "Fishing %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前等级",
+          "type": "number",
+          "example": "60"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "钓鱼 %s 级"
+    },
+    {
+      "id": "tab_row_skill_enchanting",
+      "context": "Tab 列表技能小节:附魔等级那一行,标签本身带等级数",
+      "text": "Enchanting %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前等级",
+          "type": "number",
+          "example": "60"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "附魔 %s 级"
+    },
+    {
+      "id": "tab_row_skill_alchemy",
+      "context": "Tab 列表技能小节:炼药等级那一行,标签本身带等级数",
+      "text": "Alchemy %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前等级",
+          "type": "number",
+          "example": "60"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "炼药 %s 级"
+    },
+    {
+      "id": "tab_row_skill_taming",
+      "context": "Tab 列表技能小节:驯养等级那一行,标签本身带等级数",
+      "text": "Taming %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前等级",
+          "type": "number",
+          "example": "60"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "驯养 %s 级"
+    },
+    {
+      "id": "tab_row_skill_carpentry",
+      "context": "Tab 列表技能小节:木工等级那一行,标签本身带等级数",
+      "text": "Carpentry %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前等级",
+          "type": "number",
+          "example": "60"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "木工 %s 级"
+    },
+    {
+      "id": "tab_row_skill_runecrafting",
+      "context": "Tab 列表技能小节:符文等级那一行,标签本身带等级数",
+      "text": "Runecrafting %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前等级",
+          "type": "number",
+          "example": "60"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "符文 %s 级"
+    },
+    {
+      "id": "tab_row_skill_social",
+      "context": "Tab 列表技能小节:社交等级那一行,标签本身带等级数",
+      "text": "Social %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前等级",
+          "type": "number",
+          "example": "60"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "社交 %s 级"
+    },
+    {
+      "id": "tab_row_skill_hunting",
+      "context": "Tab 列表技能小节:狩猎等级那一行,标签本身带等级数",
+      "text": "Hunting %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前等级",
+          "type": "number",
+          "example": "60"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "狩猎 %s 级"
+    },
+    {
+      "id": "tab_row_forge_gemstone_slot",
+      "context": "锻造炉小节里正在打磨宝石的那一行:第几号槽位 + 图标 + 品质 + 种类",
+      "text": "%1$s) %2$s %3$s %4$s Gemstone",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "槽位序号",
+          "type": "number",
+          "example": "1"
+        },
+        {
+          "token": "%2$s",
+          "desc": "宝石种类的图标字符(服务器字体私用区字形)",
+          "type": "raw",
+          "example": "⸕"
+        },
+        {
+          "token": "%3$s",
+          "desc": "宝石品质,译名走 _shared/Terms.json",
+          "type": "raw",
+          "example": "Perfect"
+        },
+        {
+          "token": "%4$s",
+          "desc": "宝石种类名,按 GLOSSARY.md 保留英文,所以用词表不生效的 item_name",
+          "type": "item_name",
+          "example": "Amber"
+        }
+      ],
+      "gloss": "冒号后面的剩余时间(4h / 1h 58m)里没有词,不需要记录。",
+      "translate": true,
+      "zh": "%1$s) %2$s %3$s %4$s 宝石",
+      "raw": " %1$s) §6%2$s %3$s %4$s Gemstone",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "%1$s) ",
+          "zh": "%1$s) "
+        },
+        {
+          "color": "§6",
+          "text": "%2$s %3$s %4$s Gemstone",
+          "zh": "%2$s %3$s %4$s 宝石"
+        }
+      ]
+    }
+  ],
+  "rows_note": "本文件原本只放挖矿相关的小节标题;2026-08-20 实测后把 Tab 列表上其余成行的标签一并收进来了,其中不少(属性、技能、银行、档案)其实是通用的,等 Hub_General 正式开工时再搬。"
+}

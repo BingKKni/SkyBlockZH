@@ -1,0 +1,651 @@
+{
+  "npc": "Geo",
+  "location": "Dwarven Mines, near Dwarven Village (87.5, 199, -115.5)",
+  "note": "宝石镶嵌(Gemstone)系统入口 NPC。",
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Geo",
+  "fetched_at": "2026-08-18",
+  "verified_ingame": false,
+  "messages": [
+    {
+      "id": "geo_intro_1",
+      "context": "第一次互动,介绍宝石系统",
+      "text": "Gemstones have magical properties and can be applied to some special items.",
+      "placeholders": [],
+      "gloss": "Gemstone 是专有玩法名词“宝石”。",
+      "translate": true,
+      "zh": "宝石拥有神奇的属性,可以镶嵌到一些特殊物品上。",
+      "raw": "§aGemstones§f have magical properties and can be applied to some special items.",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Gemstones",
+          "zh": "宝石"
+        },
+        {
+          "color": "§f",
+          "text": " have magical properties and can be applied to some special items.",
+          "zh": "拥有神奇的属性,可以镶嵌到一些特殊物品上。"
+        }
+      ]
+    },
+    {
+      "id": "geo_intro_2",
+      "context": "介绍宝石种类数量",
+      "text": "There are 12 different Gemstones, all of them having their own unique properties!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "一共有12种不同的宝石,每一种都有各自独特的属性!",
+      "raw": "§fThere are §a12§f different Gemstones, all of them having their own unique properties!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "There are ",
+          "zh": "一共有 "
+        },
+        {
+          "color": "§a",
+          "text": "12",
+          "zh": "12"
+        },
+        {
+          "color": "§f",
+          "text": " different Gemstones, all of them having their own unique properties!",
+          "zh": " 种不同的宝石,每一种都有各自独特的属性!"
+        }
+      ]
+    },
+    {
+      "id": "geo_intro_3",
+      "context": "举例说明不同宝石的效果",
+      "text": "For example, adding Ruby to armor will increase its ❤ Health, while Jasper increases ❁ Strength.",
+      "placeholders": [],
+      "gloss": "Ruby / Jasper 是具体宝石种类名,按 GLOSSARY.md「XX Crystal」条目确立的原则保持英文不翻译(此前这里译成了“红宝石”“碧玉”,已订正);❤/❁ 是游戏内属性图标符号,原样保留。英文和汉字之间的空格由引擎在片段接缝处自动补,写死在 zh 里的要自己写上。",
+      "translate": true,
+      "zh": "举个例子,给盔甲镶上 Ruby 会提升它的 ❤ 生命值,而 Jasper 则会提升 ❁ 力量。",
+      "raw": "§fFor example, adding §cRuby§f to armor will increase its §c❤ Health§f, while §dJasper§f increases §c❁ Strength§f.",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "For example, adding ",
+          "zh": "举个例子,给盔甲镶上"
+        },
+        {
+          "color": "§c",
+          "text": "Ruby",
+          "zh": "Ruby"
+        },
+        {
+          "color": "§f",
+          "text": " to armor will increase its ",
+          "zh": "会提升它的"
+        },
+        {
+          "color": "§c",
+          "text": "❤ Health",
+          "zh": "❤ 生命值"
+        },
+        {
+          "color": "§f",
+          "text": ", while ",
+          "zh": ",而"
+        },
+        {
+          "color": "§d",
+          "text": "Jasper",
+          "zh": "Jasper"
+        },
+        {
+          "color": "§f",
+          "text": " increases ",
+          "zh": "则会提升"
+        },
+        {
+          "color": "§c",
+          "text": "❁ Strength",
+          "zh": "❁ 力量"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "geo_intro_4",
+      "context": "说明宝石纯度影响效果强度",
+      "text": "The more pure the Gemstone - the stronger the effect!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "宝石纯度越高,效果就越强!",
+      "raw": "§fThe more pure the Gemstone - the stronger the effect!"
+    },
+    {
+      "id": "geo_intro_5",
+      "context": "说明并非所有物品都能镶嵌宝石,且可随时取出",
+      "text": "Only some items can have Gemstones applied, and you can remove them any time.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "只有部分物品可以镶嵌宝石,而且你可以随时取出它们。",
+      "raw": "§fOnly some items can have Gemstones applied, and you can remove them any time."
+    },
+    {
+      "id": "geo_intro_6",
+      "context": "引导使用旁边的宝石研磨机",
+      "text": "Use the Gemstone Grinder next to me to apply Gemstones to items!",
+      "placeholders": [],
+      "gloss": "Gemstone Grinder 是专有设施名(宝石研磨机)。",
+      "translate": true,
+      "zh": "用我旁边的宝石研磨机把宝石镶到物品上吧!",
+      "raw": "§fUse the §dGemstone Grinder§f next to me to apply Gemstones to items!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Use the ",
+          "zh": "用我旁边的"
+        },
+        {
+          "color": "§d",
+          "text": "Gemstone Grinder",
+          "zh": "宝石研磨机"
+        },
+        {
+          "color": "§f",
+          "text": " next to me to apply Gemstones to items!",
+          "zh": "把宝石镶到物品上吧!"
+        }
+      ]
+    },
+    {
+      "id": "geo_repeat_quality_types",
+      "context": "后续互动台词,介绍宝石品质等级(粗糙/有瑕/精细)",
+      "text": "There are several qualities of Gemstone, including Rough, Flawed, and Fine.",
+      "placeholders": [],
+      "gloss": "Rough/Flawed/Fine 是宝石品质等级专有词,后续还有 Perfect,建议统一收录到术语表。",
+      "translate": true,
+      "zh": "宝石有好几种品质,包括粗糙、有瑕和精细。",
+      "raw": "§fThere are several qualities of Gemstone, including Rough, §aFlawed§f, and §9Fine§f.",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "There are several qualities of Gemstone, including Rough, ",
+          "zh": "宝石分好几种品质,包括粗糙、"
+        },
+        {
+          "color": "§a",
+          "text": "Flawed",
+          "zh": "有瑕"
+        },
+        {
+          "color": "§f",
+          "text": ", and ",
+          "zh": "和"
+        },
+        {
+          "color": "§9",
+          "text": "Fine",
+          "zh": "精细"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "geo_repeat_quality_perfect",
+      "context": "介绍最高品质 Perfect 的效果",
+      "text": "The highest quality of Gemstone - Perfect - will increase your stats the most!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "宝石的最高品质——完美——能带来最大的属性加成!",
+      "raw": "§fThe highest quality of Gemstone - §6Perfect§f - will increase your stats the most!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "The highest quality of Gemstone - ",
+          "zh": "宝石品质里最高的一档——"
+        },
+        {
+          "color": "§6",
+          "text": "Perfect",
+          "zh": "完美"
+        },
+        {
+          "color": "§f",
+          "text": " - will increase your stats the most!",
+          "zh": "——提升的属性也最多!"
+        }
+      ]
+    },
+    {
+      "id": "geo_repeat_not_all_items",
+      "context": "重复说明并非所有物品都能镶嵌",
+      "text": "Not all items can have Gemstones applied to them.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "并不是所有物品都能镶嵌宝石。",
+      "raw": "§fNot all items can have Gemstones applied to them."
+    },
+    {
+      "id": "geo_repeat_check_menu",
+      "context": "引导查看宝石研磨机菜单确认适配物品",
+      "text": "Check out the Gemstone Grinder menu to check which items work with it!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "去看看宝石研磨机的菜单,确认哪些物品可以使用它吧!",
+      "raw": "§fCheck out the §dGemstone Grinder§f menu to check which items work with it!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Check out the ",
+          "zh": "打开"
+        },
+        {
+          "color": "§d",
+          "text": "Gemstone Grinder",
+          "zh": "宝石研磨机"
+        },
+        {
+          "color": "§f",
+          "text": " menu to check which items work with it!",
+          "zh": "的菜单,就能看到哪些物品可以镶嵌!"
+        }
+      ]
+    },
+    {
+      "id": "geo_sure_i_can_give_you",
+      "context": "",
+      "raw": "§b✆§f Sure I can give you my contact, but first let's play a little game!",
+      "text": "✆ Sure I can give you my contact, but first let's play a little game!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": ""
+        },
+        {
+          "color": "§f",
+          "text": " Sure I can give you my contact, but first let's play a little game!",
+          "zh": " 联系方式当然可以给你,不过我们先玩个小游戏!"
+        }
+      ]
+    },
+    {
+      "id": "geo_you_have_to_give_me",
+      "context": "",
+      "raw": "§b✆§f You have to give me Flawless gemstones in the right order.",
+      "text": "✆ You have to give me Flawless gemstones in the right order.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": ""
+        },
+        {
+          "color": "§f",
+          "text": " You have to give me Flawless gemstones in the right order.",
+          "zh": " 你得按正确的顺序把无瑕宝石交给我。"
+        }
+      ]
+    },
+    {
+      "id": "geo_and_keep_in_mind_there",
+      "context": "",
+      "raw": "§b✆§f And keep in mind, there's no Jasper nor Opal in here!",
+      "text": "✆ And keep in mind, there's no Jasper nor Opal in here!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": ""
+        },
+        {
+          "color": "§f",
+          "text": " And keep in mind, there's no Jasper nor Opal in here!",
+          "zh": " 还有一点要记住,这局里没有 Jasper 也没有 Opal!"
+        }
+      ]
+    },
+    {
+      "id": "geo_that_s_not_the_correct",
+      "context": "",
+      "raw": "§b✆§f That's not the correct gemstone!",
+      "text": "✆ That's not the correct gemstone!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": ""
+        },
+        {
+          "color": "§f",
+          "text": " That's not the correct gemstone!",
+          "zh": " 这颗宝石不对!"
+        }
+      ]
+    },
+    {
+      "id": "geo_you_picked_the_wrong_gemstone",
+      "context": "",
+      "raw": "§b✆§c You picked the wrong gemstone in our game!",
+      "text": "✆ You picked the wrong gemstone in our game!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": ""
+        },
+        {
+          "color": "§c",
+          "text": " You picked the wrong gemstone in our game!",
+          "zh": " 你在游戏里挑错宝石了!"
+        }
+      ]
+    },
+    {
+      "id": "geo_now_you_re_on_a",
+      "context": "",
+      "raw": "§b✆§c Now you're on a 20 seconds timeout as",
+      "text": "✆ Now you're on a 20 seconds timeout as",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": ""
+        },
+        {
+          "color": "§c",
+          "text": " Now you're on a 20 seconds timeout as",
+          "zh": " 现在罚你 20 秒不能继续,因为"
+        }
+      ]
+    },
+    {
+      "id": "geo_yep_flawless_ruby_gemstone",
+      "context": "",
+      "raw": "§b✆§f Yep, §c❤ Flawless Ruby Gemstone§f!",
+      "text": "✆ Yep, ❤ Flawless Ruby Gemstone!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": ""
+        },
+        {
+          "color": "§f",
+          "text": " Yep, ",
+          "zh": " 没错,"
+        },
+        {
+          "color": "§c",
+          "text": "❤ Flawless Ruby Gemstone",
+          "zh": "❤ 无瑕 Ruby 宝石"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "geo_yep_flawless_amber_gemstone",
+      "context": "",
+      "raw": "§b✆§f Yep, §6⸕ Flawless Amber Gemstone§f!",
+      "text": "✆ Yep, ⸕ Flawless Amber Gemstone!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": ""
+        },
+        {
+          "color": "§f",
+          "text": " Yep, ",
+          "zh": " 没错,"
+        },
+        {
+          "color": "§6",
+          "text": "⸕ Flawless Amber Gemstone",
+          "zh": "⸕ 无瑕 Amber 宝石"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "geo_yep_flawless_topaz_gemstone",
+      "context": "",
+      "raw": "§b✆§f Yep, §e✧ Flawless Topaz Gemstone§f!",
+      "text": "✆ Yep, ✧ Flawless Topaz Gemstone!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": ""
+        },
+        {
+          "color": "§f",
+          "text": " Yep, ",
+          "zh": " 没错,"
+        },
+        {
+          "color": "§e",
+          "text": "✧ Flawless Topaz Gemstone",
+          "zh": "✧ 无瑕 Topaz 宝石"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "geo_yep_flawless_jade_gemstone",
+      "context": "",
+      "raw": "§b✆§f Yep, §a☘ Flawless Jade Gemstone§f!",
+      "text": "✆ Yep, ☘ Flawless Jade Gemstone!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": ""
+        },
+        {
+          "color": "§f",
+          "text": " Yep, ",
+          "zh": " 没错,"
+        },
+        {
+          "color": "§a",
+          "text": "☘ Flawless Jade Gemstone",
+          "zh": "☘ 无瑕 Jade 宝石"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "geo_yep_flawless_sapphire_gemstone",
+      "context": "",
+      "raw": "§b✆§f Yep, §b✎ Flawless Sapphire Gemstone§f!",
+      "text": "✆ Yep, ✎ Flawless Sapphire Gemstone!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": ""
+        },
+        {
+          "color": "§f",
+          "text": " Yep, ",
+          "zh": " 没错,"
+        },
+        {
+          "color": "§b",
+          "text": "✎ Flawless Sapphire Gemstone",
+          "zh": "✎ 无瑕 Sapphire 宝石"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "geo_yep_flawless_amethyst_gemstone",
+      "context": "",
+      "raw": "§b✆§f Yep, §5❈ Flawless Amethyst Gemstone§f!",
+      "text": "✆ Yep, ❈ Flawless Amethyst Gemstone!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": ""
+        },
+        {
+          "color": "§f",
+          "text": " Yep, ",
+          "zh": " 没错,"
+        },
+        {
+          "color": "§5",
+          "text": "❈ Flawless Amethyst Gemstone",
+          "zh": "❈ 无瑕 Amethyst 宝石"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "geo_that_s_it",
+      "context": "",
+      "raw": "§b✆§f That's it!",
+      "text": "✆ That's it!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": ""
+        },
+        {
+          "color": "§f",
+          "text": " That's it!",
+          "zh": " 就是这样!"
+        }
+      ]
+    },
+    {
+      "id": "geo_all_gemstones_of_the_rainbow",
+      "context": "",
+      "raw": "§b✆§f All gemstones of the rainbow!",
+      "text": "✆ All gemstones of the rainbow!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": ""
+        },
+        {
+          "color": "§f",
+          "text": " All gemstones of the rainbow!",
+          "zh": " 彩虹的每一色宝石都齐了!"
+        }
+      ]
+    },
+    {
+      "id": "geo_superb",
+      "context": "",
+      "raw": "§b✆§f Superb!",
+      "text": "✆ Superb!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": ""
+        },
+        {
+          "color": "§f",
+          "text": " Superb!",
+          "zh": " 妙极了!"
+        }
+      ]
+    }
+  ],
+  "todo": [
+    "Abiphone 联系人小游戏(六种完美宝石排序)的具体逐字提示文本未采集,只确认了玩法存在。"
+  ]
+}

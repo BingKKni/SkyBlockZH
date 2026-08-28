@@ -1,0 +1,552 @@
+{
+  "source": "玩家实测客户端日志 + 运行时采集(logs/skyzh-capture,2026-08-21)",
+  "fetched_at": "2026-08-21",
+  "verified_ingame": true,
+  "gui_context": "Tab 列表最上面的一行和最下面那一块,由 Hypixel 主服发出,不属于任何玩法",
+  "lines": [
+    {
+      "id": "tab_playing_on",
+      "context": "Tab 列表页眉",
+      "raw": "§bYou are playing on §e§lMC.HYPIXEL.NET",
+      "text": "You are playing on MC.HYPIXEL.NET",
+      "placeholders": [],
+      "gloss": "地址写死在模板里而不是当占位符:占位符不收带句点的值(那是句末标点的判断,见 text/Capture.java),而这一行的地址本来就是固定的。",
+      "translate": true,
+      "zh": "你正在游玩 MC.HYPIXEL.NET",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "You are playing on ",
+          "zh": "你正在游玩 "
+        },
+        {
+          "color": "§e",
+          "text": "MC.HYPIXEL.NET",
+          "zh": "MC.HYPIXEL.NET"
+        }
+      ]
+    },
+    {
+      "id": "tab_store_promo",
+      "context": "Tab 列表页脚的商店推广行",
+      "raw": "§aRanks, Boosters & MORE! §c§lSTORE.HYPIXEL.NET",
+      "text": "Ranks, Boosters & MORE! STORE.HYPIXEL.NET",
+      "placeholders": [],
+      "gloss": "同上,地址固定,写死在模板里。**Ranks 和 Boosters 保留英文不翻译**(和 Gems 同属一条全局规则:Hypixel 官方中文语料不翻译这三个词),此前译作“会员等级、加成道具”。剩下的 & MORE! 照常翻成中文,英文词和汉字之间的空格必须自己写——引擎只对占位符捕获值自动补缝隙空格(TranslationEntry.Seam),写死在 zh 里的英文它不会去动。",
+      "translate": true,
+      "zh": "Ranks、Boosters 等更多内容! STORE.HYPIXEL.NET",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Ranks, Boosters & MORE! ",
+          "zh": "Ranks、Boosters 等更多内容! "
+        },
+        {
+          "color": "§c",
+          "text": "STORE.HYPIXEL.NET",
+          "zh": "STORE.HYPIXEL.NET"
+        }
+      ]
+    },
+    {
+      "id": "tab_upgrades",
+      "context": "Tab 页脚“账号/档案升级”小节的标题,底下跟着 Ender Chest Pages III 4 Days 这类还在计时的升级行",
+      "text": "Upgrades",
+      "placeholders": [],
+      "gloss": "来源:SkyHanni-REPO 的 regexes.misc.compacttablist.upgrades-header,原文就是不带冒号的一个词 Upgrades,和同一块页脚里的 Active Effects / Cookie Buff / Dungeon Buffs / Active Power Ups 是并列的小节标题。指的是 Account & Profile Upgrades(末影箱页数、小人槽位这类账号升级),不是山之心天赋那种“升级”。底下那几行已经在 Hub_Widgets.json 的 tab_footer_ender_chest_pages 里。颜色和行首空格数未实测,按同一块页脚里其余标题的写法记录,故不填 raw。",
+      "translate": true,
+      "zh": "升级"
+    },
+    {
+      "id": "tab_active_effects",
+      "context": "Tab 页脚里“生效中的效果”小节标题",
+      "text": "Active Effects",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "生效中的效果"
+    },
+    {
+      "id": "tab_no_effects_1",
+      "context": "一个效果都没有时的提示(第一行)",
+      "text": "No effects active. Drink Potions or splash them on the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "当前没有生效的效果。喝下药水,或者把它们砸在"
+    },
+    {
+      "id": "tab_no_effects_2",
+      "context": "同上,英文因排版断到第二行",
+      "text": "ground to buff yourself!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "地上,就能获得增益!"
+    },
+    {
+      "id": "tab_god_potion",
+      "context": "神药生效中的提示,剩余时间还有一小时以上时用整点小时数",
+      "raw": "§7You have a §c%1$s §7active! §d%2$s hours",
+      "text": "You have a %1$s active! %2$s hours",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "药水名,译名走 _shared/Terms.json",
+          "type": "raw",
+          "example": "God Potion"
+        },
+        {
+          "token": "%2$s",
+          "desc": "剩余小时数",
+          "type": "number",
+          "example": "14"
+        }
+      ],
+      "gloss": "同一句话服务器有三种写法,按剩余时间长短换:小时数、分钟数、以及不足十分钟时的 `5m 59s`。三条记录并存不冲突——引擎选模板里字面文本最多的那条(见 original_text/README.md),`hours`/`minutes` 那两条各有自己的词,紧凑写法那条一个词都没有,只有前两条都匹配不上时才轮到它。单复数不用另写(`1 hour` 也能匹配),引擎编译时把复数词尾的 s 变成可选。",
+      "translate": true,
+      "zh": "%1$s生效中! 剩余 %2$s 小时",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You have a ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "active! ",
+          "zh": "生效中! 剩余 "
+        },
+        {
+          "color": "§d",
+          "text": "%2$s hours",
+          "zh": "%2$s 小时"
+        }
+      ]
+    },
+    {
+      "id": "tab_god_potion_minutes",
+      "context": "同上,剩余时间不足一小时时改用分钟数",
+      "raw": "§7You have a §c%1$s §7active! §d%2$s minutes",
+      "text": "You have a %1$s active! %2$s minutes",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "药水名,译名走 _shared/Terms.json",
+          "type": "raw",
+          "example": "God Potion"
+        },
+        {
+          "token": "%2$s",
+          "desc": "剩余分钟数",
+          "type": "number",
+          "example": "32"
+        }
+      ],
+      "gloss": "见 tab_god_potion 的 gloss。",
+      "translate": true,
+      "zh": "%1$s生效中! 剩余 %2$s 分钟",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You have a ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "active! ",
+          "zh": "生效中! 剩余 "
+        },
+        {
+          "color": "§d",
+          "text": "%2$s minutes",
+          "zh": "%2$s 分钟"
+        }
+      ]
+    },
+    {
+      "id": "tab_god_potion_countdown",
+      "context": "同上,剩余不到十分钟时换成 `5m 59s` 这种紧凑倒计时,单位字母由引擎按 duration 换算成中文",
+      "raw": "§7You have a §c%1$s §7active! §d%2$s",
+      "text": "You have a %1$s active! %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "药水名,译名走 _shared/Terms.json",
+          "type": "raw",
+          "example": "God Potion"
+        },
+        {
+          "token": "%2$s",
+          "desc": "紧凑倒计时,整段交给 duration 换算",
+          "type": "duration",
+          "example": "5m 59s"
+        }
+      ],
+      "gloss": "见 tab_god_potion 的 gloss。这一条不能写成两个占位符各接一个单位字母(`%2$sm %3$ss`)——最后一分钟服务器只发 `59s`,那种模板就又匹配不上了;整段交给 duration 一条管全部写法。",
+      "translate": true,
+      "zh": "%1$s生效中! 剩余 %2$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You have a ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "active! ",
+          "zh": "生效中! 剩余 "
+        },
+        {
+          "color": "§d",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ]
+    },
+    {
+      "id": "tab_effects_hint",
+      "context": "让玩家去看具体效果的提示",
+      "raw": "§7Use \"§6%s§7\" to see the effects!",
+      "text": "Use \"%s\" to see the effects!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "命令本身,保留原样",
+          "type": "raw",
+          "example": "/effects"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "输入 \"%s\" 可以看到具体效果!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Use \"",
+          "zh": "输入 \""
+        },
+        {
+          "color": "§6",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": "\" to see the effects!",
+          "zh": "\" 可以看到具体效果!"
+        }
+      ]
+    },
+    {
+      "id": "tab_have_active_effect_one",
+      "context": "Tab 页脚:身上恰好有 1 个效果时的提示(2026-08-27 实测)",
+      "raw": "§7You have §e1 §7active effect. Use \"§6/effects§7\" to see it!",
+      "text": "You have %1$s active effect. Use \"%2$s\" to see it!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "生效中的效果数量",
+          "type": "number",
+          "example": "1"
+        },
+        {
+          "token": "%2$s",
+          "desc": "命令本身,保留原样",
+          "type": "raw",
+          "example": "/effects"
+        }
+      ],
+      "gloss": "和 tab_have_active_effects_many 是同一句的单复数两种写法,必须各写一条:引擎会自动把 effect/effects 末尾的 s 变成可选(见 README「单复数」一节),但 it/them 是两个不同的词,自动规则管不到。这一条是实测到的那一种(1 个效果 → it);另一条按英语语法补,还没在游戏里见到,见该条 context。中文没有单复数,两条译文除了「个」前面的数字之外完全一样。按颜色分段:数量和命令是服务器高亮的两处,其余是灰色。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You have ",
+          "zh": "你身上有 "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "active effect. Use \"",
+          "zh": " 个生效中的效果。输入 \""
+        },
+        {
+          "color": "§6",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": "\" to see it!",
+          "zh": "\" 可以查看!"
+        }
+      ]
+    },
+    {
+      "id": "tab_have_active_effects_many",
+      "context": "Tab 页脚:身上有 2 个以上效果时的提示。**尚未在游戏里实测到**——实测只采到了 1 个效果的那一种(tab_have_active_effect_one),这一条是按英语语法补的(effects…them)。若发现 Hypixel 实际用词不同,以实测为准改这一条。",
+      "raw": "§7You have §e3 §7active effects. Use \"§6/effects§7\" to see them!",
+      "text": "You have %1$s active effects. Use \"%2$s\" to see them!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "生效中的效果数量",
+          "type": "number",
+          "example": "3"
+        },
+        {
+          "token": "%2$s",
+          "desc": "命令本身,保留原样",
+          "type": "raw",
+          "example": "/effects"
+        }
+      ],
+      "gloss": "见 tab_have_active_effect_one 的 gloss:it/them 的差别让这一句必须写两条。译文和那一条完全一致——中文不区分单复数,「个生效中的效果」两种数量都通。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You have ",
+          "zh": "你身上有 "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "active effects. Use \"",
+          "zh": " 个生效中的效果。输入 \""
+        },
+        {
+          "color": "§6",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": "\" to see them!",
+          "zh": "\" 可以查看!"
+        }
+      ]
+    },
+    {
+      "id": "tab_effect_haste",
+      "context": "Tab 页脚“生效中的效果”小节里列出的效果名:急迫(2026-08-27 实测为 Haste III)",
+      "raw": "§eHaste III",
+      "text": "Haste %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "效果等级,罗马数字",
+          "type": "tier",
+          "example": "III"
+        }
+      ],
+      "gloss": "Haste 是原版 Minecraft 的效果,官方简体中文译名是「急迫」,直接沿用——玩家在原版里见过这个词。已查社区 wiki(Haste Potion / Mining Speed):在空岛里 Haste 提供挖掘速度,急迫护符给永久 Haste III,神药给 Haste IV,所以等级是 I 到 VIII 都可能出现,写成 tier 占位符而不是给每一级各写一条。等级用 tier 而不是 raw:罗马数字的形状规则能让占位符停在正确的位置(见 README「占位符能捕到什么是受限的」)。",
+      "translate": true,
+      "zh": "急迫 %s"
+    },
+    {
+      "id": "tab_cookie_buff",
+      "context": "Tab 页脚里“曲奇增益”小节标题",
+      "text": "Cookie Buff",
+      "placeholders": [],
+      "gloss": "Booster Cookie(增益曲奇)带来的一组永续加成。",
+      "translate": true,
+      "zh": "曲奇增益"
+    },
+    {
+      "id": "tab_duration_days_hours",
+      "context": "增益剩余时间:一天多",
+      "text": "1 day, %s hours",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "剩余小时数",
+          "type": "number",
+          "example": "13"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "1 天 %s 小时"
+    },
+    {
+      "id": "tab_duration_days_hours_many",
+      "context": "同上,不止一天",
+      "text": "%1$s days, %2$s hours",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "剩余天数",
+          "type": "number",
+          "example": "2"
+        },
+        {
+          "token": "%2$s",
+          "desc": "剩余小时数",
+          "type": "number",
+          "example": "13"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s 天 %2$s 小时"
+    },
+    {
+      "id": "tab_buff_minion_slots",
+      "context": "曲奇增益条目:小人槽位",
+      "raw": "§eMinion Slots %1$s §f%2$s Days",
+      "text": "Minion Slots %1$s %2$s Days",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "等级罗马数字,保留原样;写成 tier 引擎才知道这里不是要查词表的词",
+          "type": "tier",
+          "example": "V"
+        },
+        {
+          "token": "%2$s",
+          "desc": "剩余天数",
+          "type": "number",
+          "example": "9"
+        }
+      ],
+      "gloss": "Minion 按 GLOSSARY.md 译“小人”。",
+      "translate": true,
+      "zh": "小人槽位 %1$s %2$s 天",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Minion Slots %1$s ",
+          "zh": "小人槽位 %1$s "
+        },
+        {
+          "color": "§f",
+          "text": "%2$s Days",
+          "zh": "%2$s 天"
+        }
+      ]
+    },
+    {
+      "id": "tab_buff_magic_find",
+      "context": "曲奇增益条目:魔法寻宝",
+      "raw": "§eMagic Find %1$s §f%2$s Hours",
+      "text": "Magic Find %1$s %2$s Hours",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "等级罗马数字,保留原样;写成 tier 引擎才知道这里不是要查词表的词",
+          "type": "tier",
+          "example": "V"
+        },
+        {
+          "token": "%2$s",
+          "desc": "剩余小时数",
+          "type": "number",
+          "example": "32"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "魔法寻宝 %1$s %2$s 小时",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Magic Find %1$s ",
+          "zh": "魔法寻宝 %1$s "
+        },
+        {
+          "color": "§f",
+          "text": "%2$s Hours",
+          "zh": "%2$s 小时"
+        }
+      ]
+    },
+    {
+      "id": "tab_duration_hours",
+      "context": "Tab 页脚中只显示小时的剩余时间,复数形式",
+      "raw": "§f%1$s Hours",
+      "text": "%1$s Hours",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "剩余小时数",
+          "type": "number",
+          "example": "9"
+        }
+      ],
+      "gloss": "匹配器会将复数词末尾的 s 设为可选，因此同一条也精确匹配 1 Hour。",
+      "translate": true,
+      "zh": "%1$s 小时"
+    },
+    {
+      "id": "tab_ender_chest_pages_iii_hours",
+      "context": "Tab 页脚的末影箱页数 III 升级剩余时间,复数形式",
+      "raw": "§eEnder Chest Pages III §f%1$s Hours",
+      "text": "Ender Chest Pages III %1$s Hours",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "剩余小时数",
+          "type": "number",
+          "example": "46"
+        }
+      ],
+      "gloss": "运行时采集确认的账号升级倒计时行。",
+      "translate": true,
+      "zh": "末影箱页数 III %1$s 小时",
+      "segments": [
+        {"color": "§e", "text": "Ender Chest Pages III ", "zh": "末影箱页数 III "},
+        {"color": "§f", "text": "%1$s Hours", "zh": "%1$s 小时"}
+      ]
+    },
+    {
+      "id": "tab_cookie_not_active_1",
+      "context": "曲奇增益未激活时的两行提示第一行;中文在下一行接着说",
+      "raw": "§7Not active! Obtain booster cookies from the community",
+      "text": "Not active! Obtain booster cookies from the community",
+      "placeholders": [],
+      "gloss": "Tab 行逐行独立到达,不能使用仅对物品 Lore 生效的 continuation 字段,因此中文按原有两行分别续写。",
+      "translate": true,
+      "zh": "未激活! 请从社区商店获取增益曲奇,"
+    },
+    {
+      "id": "tab_cookie_not_active_2",
+      "context": "接上一行的曲奇增益未激活提示",
+      "raw": "§7shop in the hub.",
+      "text": "shop in the hub.",
+      "placeholders": [],
+      "gloss": "接 tab_cookie_not_active_1。Hub 沿用地名译法“主城”。",
+      "translate": true,
+      "zh": "该商店位于主城。"
+    }
+  ]
+}

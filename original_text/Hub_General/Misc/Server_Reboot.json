@@ -1,0 +1,41 @@
+{
+  "source": "运行时采集(logs/skyzh-capture,2026-08-27):Mining/Misc/Title.json、Mining/Misc/Subtitle.json",
+  "fetched_at": "2026-08-27",
+  "verified_ingame": true,
+  "gui_context": "服务器计划重启前几分钟,屏幕正中弹出的大标题和副标题。这是 Hypixel 全网的提示,不属于哪个玩法,所以归 Hub_General——采集当时人在矮人矿区,落在了 Mining 目录下,那只是采集地点。",
+  "lines": [
+    {
+      "id": "reboot_title",
+      "context": "重启提示的大标题",
+      "raw": "§e§lSERVER REBOOT!",
+      "text": "SERVER REBOOT!",
+      "placeholders": [],
+      "gloss": "全大写是 Hypixel 给标题加的强调,中文没有大小写,靠标题本身的字号和颜色就够了,不另加符号。",
+      "translate": true,
+      "zh": "房间即将重启!"
+    },
+    {
+      "id": "reboot_subtitle",
+      "context": "重启提示的副标题:重启原因 + 倒计时",
+      "raw": "§aScheduled Reboot §7(in §e%s§7)",
+      "text": "Scheduled Reboot (in %s)",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "倒计时,分:秒",
+          "type": "raw",
+          "example": "1:00"
+        }
+      ],
+      "gloss": "Scheduled Reboot 是 Hypixel 给这次重启写的原因(计划内的例行重启,区别于故障重启),不是活动名。倒计时写成 `1:00` 这种带冒号的形式,不是 duration 认得的 `1m 0s`,所以按 raw 原样搬过去——冒号计时中文一样看得懂。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§a", "text": "Scheduled Reboot ", "zh": "例行重启 "},
+        {"color": "§7", "text": "(in ", "zh": "(剩余 "},
+        {"color": "§e", "text": "%s", "zh": "%s"},
+        {"color": "§7", "text": ")", "zh": ")"}
+      ]
+    }
+  ]
+}

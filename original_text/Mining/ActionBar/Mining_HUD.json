@@ -1,0 +1,56 @@
+{
+  "source": "runtime capture (SkyZH) 2026-08-20 实测会话",
+  "fetched_at": "2026-08-20",
+  "verified_ingame": true,
+  "gui_context": "动作栏上挖矿专有的部件。切分规则和通用部件一样,见 Hub_General/ActionBar/Common_HUD.json。",
+  "lines": [
+    {
+      "id": "mining_hud_drill_fuel",
+      "context": "手里拿着钻头时,动作栏上常驻的燃料余量部件",
+      "text": "%sk Drill Fuel",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "燃料余量,写法是“当前/上限”,上限那一半的单位 k 在句子里",
+          "type": "raw",
+          "example": "65,321/100"
+        }
+      ],
+      "gloss": "原文是 `65,321/100k Drill Fuel`——k 是上限的单位,黏在数字后面,所以留在译文里。",
+      "translate": true,
+      "zh": "%sk 钻头燃料"
+    },
+    {
+      "id": "mining_hud_cold_gain",
+      "context": "极冰矿井/极冰隧道里寒冷值变化时的动作栏提示(寒冷值上升)",
+      "text": "+%s ❄ Cold",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "这一次变动的点券",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s ❄ 寒冷"
+    },
+    {
+      "id": "mining_hud_cold_loss",
+      "context": "同上,靠近热源后寒冷值下降",
+      "text": "-%s ❄ Cold",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "这一次变动的点券",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "-%s ❄ 寒冷"
+    }
+  ]
+}

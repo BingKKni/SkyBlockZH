@@ -1,0 +1,3275 @@
+{
+  "purpose": "跨物品重复出现的 Lore 行。同一句话在几十件物品上一字不差地出现(如 'This item can be reforged!' 出现在 32 件上),按 README §5.6 抽到这里翻一次,物品文件用 ref 引用,不要各抄一份。",
+  "source": "https://github.com/NotEnoughUpdates/NotEnoughUpdates-REPO (items/*.json 的 lore 数组,带颜色码的精确原文)",
+  "fetched_at": "2026-08-19",
+  "verified_ingame": false,
+  "lines": [
+    {
+      "id": "item_s_max_fuel_capacity",
+      "context": "第3行:装上后钻头的燃料上限",
+      "raw": "§2%s Max Fuel Capacity",
+      "text": "%s Max Fuel Capacity",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "最大燃料容量数值",
+          "type": "number",
+          "example": "+5,000"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "最大燃料容量: %s"
+    },
+    {
+      "id": "item_fuel_when_mining",
+      "context": "",
+      "raw": "§2Fuel §7when mining.",
+      "text": "Fuel when mining.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§2",
+          "text": "Fuel ",
+          "zh": ""
+        },
+        {
+          "color": "§7",
+          "text": "when mining.",
+          "zh": ""
+        }
+      ],
+      "continuation": true
+    },
+    {
+      "id": "item_requires_heart_of_the_mountain",
+      "context": "需要一定山峦之心(Heart of the Mountain)等级才能使用的装备提示行",
+      "raw": "§4❣ §cRequires §5Heart of the Mountain Tier %s§c.",
+      "text": "❣ Requires Heart of the Mountain Tier %s.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "要求的山峦之心等级",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "Heart of the Mountain 已确定译名“山峦之心”(简称“山心”),见 GLOSSARY.md。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§4",
+          "text": "❣ ",
+          "zh": "❣ "
+        },
+        {
+          "color": "§c",
+          "text": "Requires ",
+          "zh": "需要"
+        },
+        {
+          "color": "§5",
+          "text": "Heart of the Mountain Tier %s",
+          "zh": "山峦之心%s级"
+        },
+        {
+          "color": "§c",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "item_requires_mining_skill_s",
+      "context": "",
+      "raw": "§4❣ §cRequires §aMining Skill %s§c.",
+      "text": "❣ Requires Mining Skill %s.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§4",
+          "text": "❣ ",
+          "zh": "❣ "
+        },
+        {
+          "color": "§c",
+          "text": "Requires ",
+          "zh": "需要"
+        },
+        {
+          "color": "§a",
+          "text": "Mining Skill %s",
+          "zh": "挖矿技能%s级"
+        },
+        {
+          "color": "§c",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "item_epic",
+      "context": "",
+      "raw": "§5§lEPIC",
+      "text": "EPIC",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "史诗"
+    },
+    {
+      "id": "item_epic_accessory",
+      "context": "",
+      "raw": "§5§lEPIC ACCESSORY",
+      "text": "EPIC ACCESSORY",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "史诗饰品"
+    },
+    {
+      "id": "item_epic_boots",
+      "context": "第10行:稀有度+装备类型标签",
+      "raw": "§5§lEPIC BOOTS",
+      "text": "EPIC BOOTS",
+      "placeholders": [],
+      "gloss": "BOOTS 是护甲部位标签。",
+      "translate": true,
+      "zh": "史诗靴子"
+    },
+    {
+      "id": "item_epic_chestplate",
+      "context": "第10行:稀有度+装备类型标签",
+      "raw": "§5§lEPIC CHESTPLATE",
+      "text": "EPIC CHESTPLATE",
+      "placeholders": [],
+      "gloss": "CHESTPLATE 是护甲部位标签。",
+      "translate": true,
+      "zh": "史诗胸甲"
+    },
+    {
+      "id": "item_epic_drill",
+      "context": "第26行:稀有度+类型",
+      "raw": "§5§lEPIC DRILL",
+      "text": "EPIC DRILL",
+      "placeholders": [],
+      "gloss": "稀有度共享词表,见 GLOSSARY.md。",
+      "translate": true,
+      "zh": "史诗钻头"
+    },
+    {
+      "id": "item_epic_dwarven_metal",
+      "context": "",
+      "raw": "§5§lEPIC DWARVEN METAL",
+      "text": "EPIC DWARVEN METAL",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "史诗矮人金属"
+    },
+    {
+      "id": "item_epic_helmet",
+      "context": "第10行:稀有度+装备类型标签",
+      "raw": "§5§lEPIC HELMET",
+      "text": "EPIC HELMET",
+      "placeholders": [],
+      "gloss": "稀有度部分见 rarity_ref;HELMET/CHESTPLATE/LEGGINGS/BOOTS 是护甲部位标签,建议共享。",
+      "translate": true,
+      "zh": "史诗头盔"
+    },
+    {
+      "id": "item_epic_leggings",
+      "context": "第10行:稀有度+装备类型标签",
+      "raw": "§5§lEPIC LEGGINGS",
+      "text": "EPIC LEGGINGS",
+      "placeholders": [],
+      "gloss": "LEGGINGS 是护甲部位标签。",
+      "translate": true,
+      "zh": "史诗护腿"
+    },
+    {
+      "id": "item_epic_pickaxe",
+      "context": "",
+      "raw": "§5§lEPIC PICKAXE",
+      "text": "EPIC PICKAXE",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "史诗镐"
+    },
+    {
+      "id": "item_epic_reforge_stone",
+      "context": "",
+      "raw": "§5§lEPIC REFORGE STONE",
+      "text": "EPIC REFORGE STONE",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "史诗重铸石"
+    },
+    {
+      "id": "item_s_piece_set_bonus_mist",
+      "context": "",
+      "raw": "§6%s-Piece Set Bonus: Mist Aura",
+      "text": "%s-Piece Set Bonus: Mist Aura",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%s件套加成: 迷雾光环"
+    },
+    {
+      "id": "item_s_mining_speed",
+      "context": "",
+      "raw": "§6%s Mining Speed",
+      "text": "%s Mining Speed",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "挖掘速度: %s"
+    },
+    {
+      "id": "item_s_mining_speed_when_mining",
+      "context": "",
+      "raw": "§6%s Mining Speed §7when mining",
+      "text": "%s Mining Speed when mining",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "⸕ 写通用符号即可,渲染时会换回服务器字体里的图标(见 text/Glyphs.java)。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "%s Mining Speed ",
+          "zh": "%s⸕ 挖掘速度(挖掘"
+        },
+        {
+          "color": "§7",
+          "text": "when mining",
+          "zh": "",
+          "omit": true
+        }
+      ]
+    },
+    {
+      "id": "item_s_mining_fortune",
+      "context": "",
+      "raw": "§6%s Mining Fortune",
+      "text": "%s Mining Fortune",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "挖掘时运: %s"
+    },
+    {
+      "id": "item_ability_deploy_right_click",
+      "context": "",
+      "raw": "§6Ability: Deploy  §e§lRIGHT CLICK",
+      "text": "Ability: Deploy  RIGHT CLICK",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Ability: Deploy  ",
+          "zh": "能力: 部署  "
+        },
+        {
+          "color": "§e§l",
+          "text": "RIGHT CLICK",
+          "zh": "右键点击"
+        }
+      ]
+    },
+    {
+      "id": "item_excavator_alongside_a_suspicious",
+      "context": "",
+      "raw": "§6Excavator §7alongside a §9Suspicious",
+      "text": "Excavator alongside a Suspicious",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Excavator ",
+          "zh": ""
+        },
+        {
+          "color": "§7",
+          "text": "alongside a ",
+          "zh": ""
+        },
+        {
+          "color": "§9",
+          "text": "Suspicious",
+          "zh": ""
+        }
+      ],
+      "continuation": true
+    },
+    {
+      "id": "item_full_set_bonus_expert_miner",
+      "context": "",
+      "raw": "§6Full Set Bonus: Expert Miner §7(%s/%s)",
+      "text": "Full Set Bonus: Expert Miner (%s/%s)",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        },
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Full Set Bonus: Expert Miner ",
+          "zh": "全套加成: 专家矿工 "
+        },
+        {
+          "color": "§7",
+          "text": "(%s/%s)",
+          "zh": "(%s/%s)"
+        }
+      ]
+    },
+    {
+      "id": "item_full_set_bonus_smart_miner",
+      "context": "",
+      "raw": "§6Full Set Bonus: Smart Miner §7(%s/%s)",
+      "text": "Full Set Bonus: Smart Miner (%s/%s)",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        },
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Full Set Bonus: Smart Miner ",
+          "zh": "全套加成: 机敏矿工 "
+        },
+        {
+          "color": "§7",
+          "text": "(%s/%s)",
+          "zh": "(%s/%s)"
+        }
+      ]
+    },
+    {
+      "id": "item_legendary",
+      "context": "",
+      "raw": "§6§lLEGENDARY",
+      "text": "LEGENDARY",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "传说"
+    },
+    {
+      "id": "item_legendary_accessory",
+      "context": "",
+      "raw": "§6§lLEGENDARY ACCESSORY",
+      "text": "LEGENDARY ACCESSORY",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "传说饰品"
+    },
+    {
+      "id": "item_legendary_boots",
+      "context": "",
+      "raw": "§6§lLEGENDARY BOOTS",
+      "text": "LEGENDARY BOOTS",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "传说靴子"
+    },
+    {
+      "id": "item_legendary_chestplate",
+      "context": "",
+      "raw": "§6§lLEGENDARY CHESTPLATE",
+      "text": "LEGENDARY CHESTPLATE",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "传说胸甲"
+    },
+    {
+      "id": "item_legendary_helmet",
+      "context": "",
+      "raw": "§6§lLEGENDARY HELMET",
+      "text": "LEGENDARY HELMET",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "传说头盔"
+    },
+    {
+      "id": "item_legendary_leggings",
+      "context": "",
+      "raw": "§6§lLEGENDARY LEGGINGS",
+      "text": "LEGENDARY LEGGINGS",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "传说护腿"
+    },
+    {
+      "id": "item_a_key_component_needed_by",
+      "context": "",
+      "raw": "§7A key component needed by the",
+      "text": "A key component needed by the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "修复失落先驱之城里那台初代机关傀儡时,教授需要的关键部件!"
+    },
+    {
+      "id": "item_accessory_power_s",
+      "context": "",
+      "raw": "§7Accessory Power: §6%s",
+      "text": "Accessory Power: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Accessory Power: ",
+          "zh": "饰品之力: "
+        },
+        {
+          "color": "§6",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "item_adds_s_fuel_to_a",
+      "context": "",
+      "raw": "§7Adds §2%s Fuel §7to a refuelable",
+      "text": "Adds %s Fuel to a refuelable",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Adds ",
+          "zh": "为可加注燃料的机器补充 "
+        },
+        {
+          "color": "§2",
+          "text": "%s Fuel ",
+          "zh": "%s 燃料"
+        },
+        {
+          "color": "§7",
+          "text": "to a refuelable",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "item_affects_all_players_inside_a",
+      "context": "",
+      "raw": "§7Affects all players inside a §bGlacite",
+      "text": "Affects all players inside a Glacite",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Affects all players inside a ",
+          "zh": "对同一座"
+        },
+        {
+          "color": "§b",
+          "text": "Glacite",
+          "zh": "极冰矿井内的所有玩家生效,不受距离限制。"
+        }
+      ]
+    },
+    {
+      "id": "item_applies_a_passive_upgrade_with",
+      "context": "钻头类物品:升级模块说明句第一行,和 part_installed_suffix 是同一句('Applies a passive upgrade with part installed.')",
+      "raw": "§7Applies a passive upgrade with part",
+      "text": "Applies a passive upgrade with part",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "装上配件后提供一项被动升级。"
+    },
+    {
+      "id": "item_apply_drill_parts_to_this",
+      "context": "钻头类物品:提示玩家去哪里安装配件,整句的首行(尾行是 item_talking_to_a_drill_mechanic,已标 continuation)",
+      "raw": "§7Apply Drill Parts to this Drill by",
+      "text": "Apply Drill Parts to this Drill by",
+      "placeholders": [],
+      "gloss": "原文 'Apply Drill Parts to this Drill by talking to a Drill Mechanic!' 是被排版拆成两行的一整句,整句译文写在这一行,尾行 item_talking_to_a_drill_mechanic 标 continuation 由引擎删除。曾经两行各自都有译文,屏幕上就成了「寻找「钻头技师」将可用的配件安装到这个钻头上!」下面再跟一句「「钻头技师」聊聊吧!」,同一件事说了两遍。'Drill Mechanic' 译名按 GLOSSARY.md 定为'钻头技师'。句末用半角 ! 跟随语料惯例。",
+      "translate": true,
+      "zh": "找「钻头技师」为这个钻头安装配件!"
+    },
+    {
+      "id": "item_block_fortune_s",
+      "context": "",
+      "raw": "§7Block Fortune: §6%s",
+      "text": "Block Fortune: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Block Fortune: ",
+          "zh": "方块时运: "
+        },
+        {
+          "color": "§6",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "item_can_be_placed_in_the",
+      "context": "",
+      "raw": "§7Can be placed in the §6Fossil",
+      "text": "Can be placed in the Fossil",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Can be placed in the ",
+          "zh": "把它和可疑残料一起放进"
+        },
+        {
+          "color": "§6",
+          "text": "Fossil",
+          "zh": "化石挖掘机,即可开始挖掘。"
+        }
+      ]
+    },
+    {
+      "id": "item_charges_s",
+      "context": "",
+      "raw": "§7Charges: §e%s",
+      "text": "Charges: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Charges: ",
+          "zh": "挖掘次数: "
+        },
+        {
+          "color": "§e",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "item_converts_your_intelligence_into",
+      "context": "",
+      "raw": "§7Converts your Intelligence into",
+      "text": "Converts your Intelligence into",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "将你的智力转化为"
+    },
+    {
+      "id": "item_damage_s",
+      "context": "",
+      "raw": "§7Damage: §c%s",
+      "text": "Damage: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Damage: ",
+          "zh": "伤害: "
+        },
+        {
+          "color": "§c",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "item_defense_s",
+      "context": "",
+      "raw": "§7Defense: §a%s",
+      "text": "Defense: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Defense: ",
+          "zh": "防御力: "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "item_drill_engine_not_installed",
+      "context": "",
+      "raw": "§7Drill Engine: §cNot Installed",
+      "text": "Drill Engine: Not Installed",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Drill Engine: ",
+          "zh": "钻头引擎: "
+        },
+        {
+          "color": "§c",
+          "text": "Not Installed",
+          "zh": "未安装"
+        }
+      ]
+    },
+    {
+      "id": "item_fuel_tank_not_installed",
+      "context": "",
+      "raw": "§7Fuel Tank: §cNot Installed",
+      "text": "Fuel Tank: Not Installed",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Fuel Tank: ",
+          "zh": "燃料箱: "
+        },
+        {
+          "color": "§c",
+          "text": "Not Installed",
+          "zh": "未安装"
+        }
+      ]
+    },
+    {
+      "id": "item_fuel_s_sk",
+      "context": "",
+      "raw": "§7Fuel: §2%s§8/%sk",
+      "text": "Fuel: %s/%sk",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        },
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Fuel: ",
+          "zh": "燃料: "
+        },
+        {
+          "color": "§2",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§8",
+          "text": "/%sk",
+          "zh": "/%sk"
+        }
+      ]
+    },
+    {
+      "id": "item_gemstone_fortune_s",
+      "context": "",
+      "raw": "§7Gemstone Fortune: §6%s",
+      "text": "Gemstone Fortune: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gemstone Fortune: ",
+          "zh": "宝石时运: "
+        },
+        {
+          "color": "§6",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "item_gemstones_slots",
+      "context": "装备/工具 Lore 里列出宝石镶嵌槽的那一行,方括号里是每个槽位的图标",
+      "raw": "§7Gemstones: §8[§7❥§8]",
+      "text": "Gemstones: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "整串槽位标记,如 [❥] [❥];图标是服务器字体的私用区字形,原样保留",
+          "type": "raw",
+          "example": "[❥] [❥]"
+        }
+      ],
+      "gloss": "槽位数量和图标每件装备都不一样,以前是把见过的每种组合各写一条(共 10 条,散在 _shared 和六个物品文件里),没见过的组合就整行不翻译。槽位串本身没有可翻译的词,整串当占位符捕获即可,一条管所有装备。",
+      "translate": true,
+      "zh": "宝石槽: %s"
+    },
+    {
+      "id": "item_gemstones_empty",
+      "context": "同上,这件装备一个槽位都没有解锁时,冒号后面是空的",
+      "raw": "§7Gemstones:",
+      "text": "Gemstones:",
+      "placeholders": [],
+      "gloss": "没有占位符,走精确匹配,所以必须和上面那条分开写。",
+      "translate": true,
+      "zh": "宝石槽:"
+    },
+    {
+      "id": "item_grants_a_s_chance_to",
+      "context": "",
+      "raw": "§7Grants a §a%s §7chance to not consume",
+      "text": "Grants a %s chance to not consume",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants a ",
+          "zh": "挖矿时有 "
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s "
+        },
+        {
+          "color": "§7",
+          "text": "chance to not consume",
+          "zh": "的几率不消耗燃料。"
+        }
+      ]
+    },
+    {
+      "id": "item_grants_s_mithril_powder",
+      "context": "",
+      "raw": "§7Grants §2%s Mithril Powder§7.",
+      "text": "Grants %s Mithril Powder.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "额外获得 "
+        },
+        {
+          "color": "§2",
+          "text": "%s Mithril Powder",
+          "zh": "%s 秘银粉末"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "item_grants_s_mining_speed_per",
+      "context": "",
+      "raw": "§7Grants §6%s Mining Speed §7per Mining",
+      "text": "Grants %s Mining Speed per Mining",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "每解锁 1 级挖矿技能,提供 "
+        },
+        {
+          "color": "§6",
+          "text": "%s Mining Speed ",
+          "zh": "%s 挖掘速度"
+        },
+        {
+          "color": "§7",
+          "text": "per Mining",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "item_grants_s_mining_fortune_when",
+      "context": "",
+      "raw": "§7Grants §6%s Mining Fortune §7when",
+      "text": "Grants %s Mining Fortune when",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "额外获得 "
+        },
+        {
+          "color": "§6",
+          "text": "%s Mining Fortune ",
+          "zh": "%s 挖掘时运"
+        },
+        {
+          "color": "§7",
+          "text": "when",
+          "zh": ",生效条件:"
+        }
+      ]
+    },
+    {
+      "id": "item_grants_s_gemstone_powder_and",
+      "context": "",
+      "raw": "§7Grants §d%s Gemstone Powder§7, and",
+      "text": "Grants %s Gemstone Powder, and",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "额外获得 "
+        },
+        {
+          "color": "§d",
+          "text": "%s Gemstone Powder",
+          "zh": "%s 宝石粉末"
+        },
+        {
+          "color": "§7",
+          "text": ", and",
+          "zh": ",以及"
+        }
+      ]
+    },
+    {
+      "id": "item_grants_s_mining_spread_on",
+      "context": "",
+      "raw": "§7Grants §e%s Mining Spread §7on §6Ores",
+      "text": "Grants %s Mining Spread on Ores",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "额外获得 "
+        },
+        {
+          "color": "§e",
+          "text": "%s Mining Spread ",
+          "zh": "%s 挖掘扩散"
+        },
+        {
+          "color": "§7",
+          "text": "on ",
+          "zh": ",对"
+        },
+        {
+          "color": "§6",
+          "text": "Ores",
+          "zh": "矿石和方块生效。"
+        }
+      ]
+    },
+    {
+      "id": "item_health_s",
+      "context": "",
+      "raw": "§7Health: §c%s",
+      "text": "Health: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Health: ",
+          "zh": "生命值: "
+        },
+        {
+          "color": "§c",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "item_heat_resistance_s",
+      "context": "护甲、装备与宠物的抗热属性行",
+      "raw": "§7Heat Resistance: §c%s",
+      "text": "Heat Resistance: %s",
+      "placeholders": [{"token": "%s", "desc": "抗热属性值及附加值", "type": "raw", "example": "+10"}],
+      "gloss": "数值及括号附加值会随物品变化。",
+      "translate": true,
+      "zh": "抗热: %s",
+      "segments": [
+        {"color": "§7", "text": "Heat Resistance: ", "zh": "抗热: "},
+        {"color": "§c", "text": "%s", "zh": "%s"}
+      ]
+    },
+    {
+      "id": "item_gear_score_s",
+      "context": "装备与武器 Lore 顶部的装备评分行,括号里是满级评分",
+      "raw": "§7Gear Score: §d%1$s §8(%2$s)",
+      "text": "Gear Score: %1$s (%2$s)",
+      "placeholders": [
+        {"token": "%1$s", "desc": "当前评分", "type": "number", "example": "367"},
+        {"token": "%2$s", "desc": "括号内的参考评分", "type": "number", "example": "1286"}
+      ],
+      "gloss": "两个数值都随物品变化。",
+      "translate": true,
+      "zh": "装备评分: %1$s (%2$s)",
+      "segments": [
+        {"color": "§7", "text": "Gear Score: ", "zh": "装备评分: "},
+        {"color": "§d", "text": "%1$s ", "zh": "%1$s "},
+        {"color": "§8", "text": "(%2$s)", "zh": "(%2$s)"}
+      ]
+    },
+    {
+      "id": "item_this_item_can_be_reclaimed",
+      "context": "可用 /reclaim 取回的物品提示,英文分三行",
+      "raw": "§cThis item can be reclaimed! Use",
+      "text": "This item can be reclaimed! Use",
+      "placeholders": [],
+      "gloss": "整句为 This item can be reclaimed! Use /reclaim to take back what's rightfully yours!。命令保持英文。",
+      "translate": true,
+      "zh": "该物品可以取回! 使用 /reclaim 即可拿回属于你的东西!"
+    },
+    {
+      "id": "item_reclaim_to_take_back_whats",
+      "context": "接上一行",
+      "raw": "§e/reclaim §cto take back what's",
+      "text": "/reclaim to take back what's",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "",
+      "segments": [
+        {"color": "§e", "text": "/reclaim ", "zh": ""},
+        {"color": "§c", "text": "to take back what's", "zh": ""}
+      ]
+    },
+    {
+      "id": "item_rightfully_yours",
+      "context": "接上一行",
+      "raw": "§crightfully yours!",
+      "text": "rightfully yours!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "item_hides_the_wearer_in_a",
+      "context": "",
+      "raw": "§7Hides the wearer in a guise of mist,",
+      "text": "Hides the wearer in a guise of mist,",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "以迷雾伪装穿戴者,"
+    },
+    {
+      "id": "item_increases_fuel_capacity_with_part",
+      "context": "钻头类物品:燃料箱说明句第一行,和 part_installed_suffix 是同一句('Increases fuel capacity with part installed.')",
+      "raw": "§7Increases fuel capacity with part",
+      "text": "Increases fuel capacity with part",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "装上配件后增加燃料容量。"
+    },
+    {
+      "id": "item_increases_mining_speed_with_part",
+      "context": "钻头类物品:引擎说明句第一行,和 part_installed_suffix 是同一句('Increases ⸕ Mining Speed with part installed.')。⸕ 是挖掘速度图标,译文里要照写,见 text/Glyphs.java。",
+      "raw": "§7Increases §6⸕ Mining Speed §7with part",
+      "text": "Increases ⸕ Mining Speed with part",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increases ",
+          "zh": "装上配件后提升 "
+        },
+        {
+          "color": "§6",
+          "text": "⸕ Mining Speed ",
+          "zh": "⸕ 挖掘速度"
+        },
+        {
+          "color": "§7",
+          "text": "with part",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "item_grants_s_mining_speed_and_s",
+      "context": "宠物物品/钻头配件 Lore:同时给挖掘速度和挖掘时运的那一行(下一行接“Mining Fortune.”)",
+      "raw": "§7Grants §6%1$s⸕ Mining Speed§7 and §6%2$s☘",
+      "text": "Grants %1$s⸕ Mining Speed and %2$s☘",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "挖掘速度加成值",
+          "type": "number",
+          "example": "+25"
+        },
+        {
+          "token": "%2$s",
+          "desc": "挖掘时运加成值",
+          "type": "number",
+          "example": "+10"
+        }
+      ],
+      "gloss": "两件物品(Bejeweled Collar / Starfall Seasoning)发的这一行只差一个空格落在哪个颜色段里,空格没有颜色、屏幕上一模一样,所以只留一条,另一处用 ref 引用。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "额外获得 "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s⸕ Mining Speed",
+          "zh": "%1$s ⸕ 挖掘速度"
+        },
+        {
+          "color": "§7",
+          "text": " and ",
+          "zh": "和 "
+        },
+        {
+          "color": "§6",
+          "text": "%2$s☘",
+          "zh": "%2$s ☘"
+        }
+      ]
+    },
+    {
+      "id": "item_powder_line_mithril",
+      "context": "菜单里「花费 / 返还 / 奖励」清单上的粉末那一行(委托板、山之心重置都用这一条)",
+      "raw": "§8- §2%s Mithril Powder",
+      "text": "- %s Mithril Powder",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "5,000"
+        }
+      ],
+      "gloss": "必须分段:项目符号“- ”是灰的,粉末名和数量是粉末自己的颜色,整行记一条的话译文会被整段刷成灰的。分段只决定边界,颜色渲染时从屏幕上当场读,所以委托板(§7 的项目符号)和山之心(§8 的)共用这一条没问题。",
+      "translate": true,
+      "zh": "- %s秘银粉末",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§2",
+          "text": "%s Mithril Powder",
+          "zh": "%s秘银粉末"
+        }
+      ]
+    },
+    {
+      "id": "item_powder_line_glacite",
+      "context": "菜单里「花费 / 返还 / 奖励」清单上的粉末那一行(委托板、山之心重置都用这一条)",
+      "raw": "§8- §b%s Glacite Powder",
+      "text": "- %s Glacite Powder",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "5,000"
+        }
+      ],
+      "gloss": "必须分段:项目符号“- ”是灰的,粉末名和数量是粉末自己的颜色,整行记一条的话译文会被整段刷成灰的。分段只决定边界,颜色渲染时从屏幕上当场读,所以委托板(§7 的项目符号)和山之心(§8 的)共用这一条没问题。",
+      "translate": true,
+      "zh": "- %s极冰粉末",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§b",
+          "text": "%s Glacite Powder",
+          "zh": "%s极冰粉末"
+        }
+      ]
+    },
+    {
+      "id": "item_powder_line_gemstone",
+      "context": "菜单里「花费 / 返还 / 奖励」清单上的粉末那一行(委托板、山之心重置都用这一条)",
+      "raw": "§8- §d%s Gemstone Powder",
+      "text": "- %s Gemstone Powder",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "5,000"
+        }
+      ],
+      "gloss": "必须分段:项目符号“- ”是灰的,粉末名和数量是粉末自己的颜色,整行记一条的话译文会被整段刷成灰的。分段只决定边界,颜色渲染时从屏幕上当场读,所以委托板(§7 的项目符号)和山之心(§8 的)共用这一条没问题。",
+      "translate": true,
+      "zh": "- %s宝石粉末",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§d",
+          "text": "%s Gemstone Powder",
+          "zh": "%s宝石粉末"
+        }
+      ]
+    },
+    {
+      "id": "item_intelligence_s",
+      "context": "",
+      "raw": "§7Intelligence: §b%s",
+      "text": "Intelligence: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Intelligence: ",
+          "zh": "智力: "
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "item_jungle_temple",
+      "context": "",
+      "raw": "§7Jungle Temple.",
+      "text": "Jungle Temple.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "item_magic_find_s",
+      "context": "",
+      "raw": "§7Magic Find: §b%s",
+      "text": "Magic Find: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Magic Find: ",
+          "zh": "魔法寻宝: "
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "item_mining_fortune_s",
+      "context": "",
+      "raw": "§7Mining Fortune: §6%s",
+      "text": "Mining Fortune: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "基础值及各来源的附加值",
+          "type": "raw",
+          "example": "+340 [+5] (+20) (+50)"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Mining Fortune: ",
+          "zh": "挖掘时运: "
+        },
+        {
+          "color": "§6",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "item_grants_s_percent_mining_speed_for",
+      "context": "Blue Cheese Goblin Omelette Part 的动态挖掘速度加成首行",
+      "raw": "§7Grants §6%s  Mining Speed §7for",
+      "text": "Grants %s  Mining Speed for",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "挖掘速度加成百分比",
+          "type": "percentage",
+          "example": "+300%"
+        }
+      ],
+      "gloss": "数值随物品状态变化，不写死 +300%；图标由 Glyphs 恢复成服务器实际字形。",
+      "translate": true,
+      "zh": "提供 %s  挖掘速度",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§6",
+          "text": "%s  Mining Speed ",
+          "zh": "%s  挖掘速度"
+        },
+        {
+          "color": "§7",
+          "text": "for",
+          "zh": "，持续"
+        }
+      ]
+    },
+    {
+      "id": "item_mining_speed_s_mining_speed",
+      "context": "",
+      "raw": "§7Mining Speed. §6%s Mining Speed §7for",
+      "text": "Mining Speed. %s Mining Speed for",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Mining Speed. ",
+          "zh": "挖掘速度。提供 "
+        },
+        {
+          "color": "§6",
+          "text": "%s Mining Speed ",
+          "zh": "%s 挖掘速度"
+        },
+        {
+          "color": "§7",
+          "text": "for",
+          "zh": ","
+        }
+      ]
+    },
+    {
+      "id": "item_mining_speed_s",
+      "context": "",
+      "raw": "§7Mining Speed: §6%s",
+      "text": "Mining Speed: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "基础值及各来源的附加值",
+          "type": "raw",
+          "example": "+3,135 [+500] [+50] (+75) (+100)"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Mining Speed: ",
+          "zh": "挖掘速度: "
+        },
+        {
+          "color": "§6",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "item_mining_wisdom_s",
+      "context": "",
+      "raw": "§7Mining Wisdom: §3%s",
+      "text": "Mining Wisdom: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Mining Wisdom: ",
+          "zh": "挖掘智慧: "
+        },
+        {
+          "color": "§3",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "item_place_an_orb_for_sm",
+      "context": "",
+      "raw": "§7Place an orb for §a%sm §7buffing up to §b%s",
+      "text": "Place an orb for %sm buffing up to %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        },
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Place an orb for ",
+          "zh": "放置一颗光球,持续 "
+        },
+        {
+          "color": "§a",
+          "text": "%sm ",
+          "zh": "%s 分钟"
+        },
+        {
+          "color": "§7",
+          "text": "buffing up to ",
+          "zh": ",最多为 "
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s 名"
+        }
+      ]
+    },
+    {
+      "id": "item_pristine_s",
+      "context": "钻头 Lore 的纯净属性;数值可能附带方括号或圆括号加成",
+      "raw": "§7Pristine: §5%s",
+      "text": "Pristine: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "基础值及各来源的方括号或圆括号加成",
+          "type": "raw",
+          "example": "+2.5 [+0.5] (+1.0)"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Pristine: ",
+          "zh": "纯净: "
+        },
+        {
+          "color": "§5",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "item_professor_to_repair_automaton_prime",
+      "context": "",
+      "raw": "§7Professor to repair §bAutomaton Prime",
+      "text": "Professor to repair Automaton Prime",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Professor to repair ",
+          "zh": ""
+        },
+        {
+          "color": "§b",
+          "text": "Automaton Prime",
+          "zh": ""
+        }
+      ],
+      "continuation": true
+    },
+    {
+      "id": "item_put_this_item_in_the",
+      "context": "第6行:使用提示第一行",
+      "raw": "§7Put this item in the §6Drill Engine §7slot",
+      "text": "Put this item in the Drill Engine slot",
+      "placeholders": [],
+      "gloss": "原文 'Put this item in the [部件槽名] slot of a Drill at a Drill Mechanic!' 逻辑是'在 Drill Mechanic 那里,把这个装进钻头的 XX 槽位',而不是'装进槽位'和'去安装'两个动作各说一遍——上一版译文把地点状语单独拆成第二句'去「钻头技师」那里安装!',结果读起来像重复了两次'安装'这个动作,已按用户反馈改成'去「钻头技师」那里,把这个装进钻头的 XX 槽位!'这种地点在前、动作在后的单句结构,消掉重复感。仍用 continuation 让客户端按宽度动态换行,理由不变。'Drill Mechanic' 译名按 GLOSSARY.md 定为'钻头技师'。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Put this item in the ",
+          "zh": "去「钻头技师」那里,把这个装进钻头的"
+        },
+        {
+          "color": "§6",
+          "text": "Drill Engine ",
+          "zh": "引擎"
+        },
+        {
+          "color": "§7",
+          "text": "slot",
+          "zh": "槽位!"
+        }
+      ]
+    },
+    {
+      "id": "item_put_this_item_in_the_2",
+      "context": "第6行:使用提示第一行",
+      "raw": "§7Put this item in the §6Fuel Tank §7slot of",
+      "text": "Put this item in the Fuel Tank slot of",
+      "placeholders": [],
+      "gloss": "原文 'Put this item in the [部件槽名] slot of a Drill at a Drill Mechanic!' 逻辑是'在 Drill Mechanic 那里,把这个装进钻头的 XX 槽位',而不是'装进槽位'和'去安装'两个动作各说一遍——上一版译文把地点状语单独拆成第二句'去「钻头技师」那里安装!',结果读起来像重复了两次'安装'这个动作,已按用户反馈改成'去「钻头技师」那里,把这个装进钻头的 XX 槽位!'这种地点在前、动作在后的单句结构,消掉重复感。仍用 continuation 让客户端按宽度动态换行,理由不变。'Drill Mechanic' 译名按 GLOSSARY.md 定为'钻头技师'。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Put this item in the ",
+          "zh": "去「钻头技师」那里,把这个装进钻头的"
+        },
+        {
+          "color": "§6",
+          "text": "Fuel Tank ",
+          "zh": "燃料箱"
+        },
+        {
+          "color": "§7",
+          "text": "slot of",
+          "zh": "槽位!"
+        }
+      ]
+    },
+    {
+      "id": "item_put_this_item_in_the_3",
+      "context": "",
+      "raw": "§7Put this item in the §6Upgrade Module",
+      "text": "Put this item in the Upgrade Module",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Put this item in the ",
+          "zh": "去「钻头技师」那里,把这个装进钻头的"
+        },
+        {
+          "color": "§6",
+          "text": "Upgrade Module",
+          "zh": "升级模块槽位!"
+        }
+      ]
+    },
+    {
+      "id": "item_skill_level_unlocked",
+      "context": "",
+      "raw": "§7Skill level unlocked.",
+      "text": "Skill level unlocked.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "item_speed_s",
+      "context": "",
+      "raw": "§7Speed: §f%s",
+      "text": "Speed: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Speed: ",
+          "zh": "速度: "
+        },
+        {
+          "color": "§f",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "item_strength_s",
+      "context": "",
+      "raw": "§7Strength: §c%s",
+      "text": "Strength: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Strength: ",
+          "zh": "力量: "
+        },
+        {
+          "color": "§c",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "item_true_defense_s",
+      "context": "",
+      "raw": "§7True Defense: §f%s",
+      "text": "True Defense: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "True Defense: ",
+          "zh": "真实防御: "
+        },
+        {
+          "color": "§f",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "item_upgrade_module_not_installed",
+      "context": "",
+      "raw": "§7Upgrade Module: §cNot Installed",
+      "text": "Upgrade Module: Not Installed",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Upgrade Module: ",
+          "zh": "升级模块: "
+        },
+        {
+          "color": "§c",
+          "text": "Not Installed",
+          "zh": "未安装"
+        }
+      ]
+    },
+    {
+      "id": "item_a_drill_at_a_drill",
+      "context": "第7行:使用提示第二行,与上一行同句,提到 'Drill Mechanic'",
+      "raw": "§7a Drill at a §2Drill Mechanic§7!",
+      "text": "a Drill at a Drill Mechanic!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "a Drill at a ",
+          "zh": ""
+        },
+        {
+          "color": "§2",
+          "text": "Drill Mechanic",
+          "zh": ""
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": ""
+        }
+      ],
+      "continuation": true
+    },
+    {
+      "id": "item_and_blocks",
+      "context": "第7行:套装加成效果说明第二行,与上一行同句",
+      "raw": "§7and §9Blocks§7.",
+      "text": "and Blocks.",
+      "placeholders": [],
+      "gloss": "与 set_bonus_desc_1 是同一句英文换行拆分。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": ""
+        },
+        {
+          "color": "§9",
+          "text": "Blocks",
+          "zh": ""
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": ""
+        }
+      ],
+      "continuation": true
+    },
+    {
+      "id": "item_any_time",
+      "context": "",
+      "raw": "§7any time!",
+      "text": "any time!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "item_combined_with_a_mining_tool",
+      "context": "",
+      "raw": "§7combined with a mining tool.",
+      "text": "combined with a mining tool.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "item_combined_with_armor",
+      "context": "",
+      "raw": "§7combined with armor.",
+      "text": "combined with armor.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "item_every_s_intelligence_removed",
+      "context": "",
+      "raw": "§7every §b%s Intelligence §7removed.",
+      "text": "every %s Intelligence removed.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "every ",
+          "zh": "每移除 "
+        },
+        {
+          "color": "§b",
+          "text": "%s Intelligence ",
+          "zh": "%s 智力"
+        },
+        {
+          "color": "§7",
+          "text": "removed.",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "item_in_the_lost_precursor_city",
+      "context": "",
+      "raw": "§7in the §bLost Precursor City§7!",
+      "text": "in the Lost Precursor City!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "in the ",
+          "zh": ""
+        },
+        {
+          "color": "§b",
+          "text": "Lost Precursor City",
+          "zh": ""
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": ""
+        }
+      ],
+      "continuation": true
+    },
+    {
+      "id": "item_installed",
+      "context": "钻头配件说明句(燃料箱/引擎/升级模块共用)的第二行,原句结构是 '<配件作用一句话，跨两行> installed.',第二行固定都是这一行",
+      "raw": "§7installed.",
+      "text": "installed.",
+      "placeholders": [],
+      "gloss": "和对应的第一行(见 drill_fuel_tank_desc_1 / drill_engine_desc_1 / drill_upgrade_module_desc_1,均在本文件中)是同一句英文的换行拆分,翻译时要把两行当整句处理,再按中文断行习惯重新排布,不要逐行直译。",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "item_machine",
+      "context": "",
+      "raw": "§7machine.",
+      "text": "machine.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "item_mining_titanium_ore",
+      "context": "",
+      "raw": "§7mining §fTitanium Ore§7.",
+      "text": "mining Titanium Ore.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "mining ",
+          "zh": "挖掘"
+        },
+        {
+          "color": "§f",
+          "text": "Titanium Ore",
+          "zh": "钛矿石"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "item_multiplying_damage_from_ghosts_by",
+      "context": "",
+      "raw": "§7multiplying damage from ghosts by",
+      "text": "multiplying damage from ghosts by",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "将幽灵造成的伤害乘以"
+    },
+    {
+      "id": "item_of_a_drill_at_a",
+      "context": "第7行:使用提示第二行,与上一行同句,提到 'Drill Mechanic'",
+      "raw": "§7of a Drill at a §2Drill Mechanic§7!",
+      "text": "of a Drill at a Drill Mechanic!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "of a Drill at a ",
+          "zh": ""
+        },
+        {
+          "color": "§2",
+          "text": "Drill Mechanic",
+          "zh": ""
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": ""
+        }
+      ],
+      "continuation": true
+    },
+    {
+      "id": "item_one_pet_item_but_you",
+      "context": "",
+      "raw": "§7one §aPet Item§7, but you can §eswap §7it at",
+      "text": "one Pet Item, but you can swap it at",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "one ",
+          "zh": ""
+        },
+        {
+          "color": "§a",
+          "text": "Pet Item",
+          "zh": ""
+        },
+        {
+          "color": "§7",
+          "text": ", but you can ",
+          "zh": ""
+        },
+        {
+          "color": "§e",
+          "text": "swap ",
+          "zh": ""
+        },
+        {
+          "color": "§7",
+          "text": "it at",
+          "zh": ""
+        }
+      ],
+      "continuation": true
+    },
+    {
+      "id": "item_players_within_s_blocks",
+      "context": "",
+      "raw": "§7players within §a%s §7blocks.",
+      "text": "players within %s blocks.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "players within ",
+          "zh": "半径 "
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": "blocks.",
+          "zh": " 格内的玩家提供增益。"
+        }
+      ]
+    },
+    {
+      "id": "item_powerful_ways_a_pet_can",
+      "context": "",
+      "raw": "§7powerful ways! A pet can only hold",
+      "text": "powerful ways! A pet can only hold",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "item_process",
+      "context": "",
+      "raw": "§7process!",
+      "text": "process!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "item_slot_of_a_drill_at",
+      "context": "",
+      "raw": "§7slot of a Drill at a §2Drill Mechanic§7!",
+      "text": "slot of a Drill at a Drill Mechanic!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "slot of a Drill at a ",
+          "zh": ""
+        },
+        {
+          "color": "§2",
+          "text": "Drill Mechanic",
+          "zh": ""
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": ""
+        }
+      ],
+      "continuation": true
+    },
+    {
+      "id": "item_talking_to_a_drill_mechanic",
+      "context": "钻头类物品:整句的尾行,首行是 item_apply_drill_parts_to_this",
+      "raw": "§7talking to a §2Drill Mechanic§7!",
+      "text": "talking to a Drill Mechanic!",
+      "placeholders": [],
+      "gloss": "这一行是 'Apply Drill Parts to this Drill by talking to a Drill Mechanic!' 被排版拆开的后半句,不是独立的一句话。按 README「跨行整句的标记 continuation」标 continuation 并留空 zh:首行已翻译时引擎删掉这一行,首行未翻译时它原样保留成英文。曾经这里写着独立译文「「钻头技师」聊聊吧!」,和首行的完整译文叠在一起,同一件事在屏幕上说了两遍。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "talking to a ",
+          "zh": ""
+        },
+        {
+          "color": "§2",
+          "text": "Drill Mechanic",
+          "zh": ""
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": ""
+        }
+      ],
+      "continuation": true
+    },
+    {
+      "id": "item_the_dwarven_mines",
+      "context": "",
+      "raw": "§7the §2Dwarven Mines§7.",
+      "text": "the Dwarven Mines.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "the ",
+          "zh": ""
+        },
+        {
+          "color": "§2",
+          "text": "Dwarven Mines",
+          "zh": ""
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": ""
+        }
+      ],
+      "continuation": true
+    },
+    {
+      "id": "item_what_came_first_the_goblin",
+      "context": "",
+      "raw": "§7§oWhat came first the goblin or the",
+      "text": "What came first the goblin or the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "先有哥布林还是先有蛋?"
+    },
+    {
+      "id": "item_egg",
+      "context": "",
+      "raw": "§7§oegg?",
+      "text": "egg?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "item_breaking_power_s",
+      "context": "第1行:破坏力等级(全钻头系列最高档)",
+      "raw": "§8Breaking Power %s",
+      "text": "Breaking Power %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "开采等级 %s"
+    },
+    {
+      "id": "item_brewing_ingredient",
+      "context": "",
+      "raw": "§8Brewing Ingredient",
+      "text": "Brewing Ingredient",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "酿造原料"
+    },
+    {
+      "id": "item_collection_item",
+      "context": "",
+      "raw": "§8Collection Item",
+      "text": "Collection Item",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "收藏品物品"
+    },
+    {
+      "id": "item_combinable_in_anvil",
+      "context": "",
+      "raw": "§8Combinable in Anvil",
+      "text": "Combinable in Anvil",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "可在铁砧中合并"
+    },
+    {
+      "id": "item_consumed_on_use",
+      "context": "",
+      "raw": "§8Consumed on use",
+      "text": "Consumed on use",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "使用后消耗"
+    },
+    {
+      "id": "item_cooldown_ss",
+      "context": "",
+      "raw": "§8Cooldown: §a%ss",
+      "text": "Cooldown: %ss",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "Cooldown: ",
+          "zh": "冷却时间: "
+        },
+        {
+          "color": "§a",
+          "text": "%ss",
+          "zh": "%s 秒"
+        }
+      ]
+    },
+    {
+      "id": "item_bonus_treasure_s",
+      "context": "凿子的额外宝藏倍率，数值会随凿子和宝石变化",
+      "raw": "§7Bonus Treasure: §a%s",
+      "text": "Bonus Treasure: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "宝藏加成百分比",
+          "type": "percentage",
+          "example": "+300%"
+        }
+      ],
+      "gloss": "Bonus 修饰 Treasure，译作‘宝藏加成’，不是固定的 300%。",
+      "translate": true,
+      "zh": "宝藏加成: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Bonus Treasure: ",
+          "zh": "宝藏加成: "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "item_costs_s_of_max_mana",
+      "context": "",
+      "raw": "§8Costs %s of max mana.",
+      "text": "Costs %s of max mana.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "法力消耗: %s"
+    },
+    {
+      "id": "item_mana_cost_s_percent",
+      "context": "法力消耗以最大法力值百分比显示的 Lore 属性行",
+      "raw": "§8Mana Cost: §b%s%%",
+      "text": "Mana Cost: %s%%",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "最大法力值消耗百分比",
+          "type": "percentage",
+          "example": "50"
+        }
+      ],
+      "gloss": "百分号是模板固定文本，不属于数值变量。",
+      "translate": true,
+      "zh": "法力消耗: %s%%",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "Mana Cost: ",
+          "zh": "法力消耗: "
+        },
+        {
+          "color": "§b",
+          "text": "%s%%",
+          "zh": "%s%%"
+        }
+      ]
+    },
+    {
+      "id": "item_mana_cost_s_of_max",
+      "context": "法力消耗占最大法力值的比例",
+      "raw": "§8Mana Cost: §b%s of max",
+      "text": "Mana Cost: %s of max",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "最大法力值消耗比例，含百分号",
+          "type": "percentage",
+          "example": "50%"
+        }
+      ],
+      "gloss": "与只显示固定百分数的 Mana Cost: %s%% 是服务器当前并存的两种写法。",
+      "translate": true,
+      "zh": "法力消耗: 最大法力值的 %s",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "Mana Cost: ",
+          "zh": "法力消耗: "
+        },
+        {
+          "color": "§b",
+          "text": "%s of max",
+          "zh": "最大法力值的 %s"
+        }
+      ]
+    },
+    {
+      "id": "item_drill_part",
+      "context": "钻头配件类物品(燃料箱/引擎/升级模块)Lore 第一行的类别标签",
+      "raw": "§8Drill Part",
+      "text": "Drill Part",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "钻头配件"
+    },
+    {
+      "id": "item_machine_fuel",
+      "context": "",
+      "raw": "§8Machine Fuel",
+      "text": "Machine Fuel",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "机器燃料"
+    },
+    {
+      "id": "item_mining_deployable",
+      "context": "",
+      "raw": "§8Mining Deployable",
+      "text": "Mining Deployable",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "挖矿部署物"
+    },
+    {
+      "id": "item_only_one_deployable_buff_applies",
+      "context": "",
+      "raw": "§8Only one deployable buff applies.",
+      "text": "Only one deployable buff applies.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "同时只有一个部署物增益生效。"
+    },
+    {
+      "id": "item_reforge_stone",
+      "context": "",
+      "raw": "§8Reforge Stone",
+      "text": "Reforge Stone",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "重铸石"
+    },
+    {
+      "id": "item_the_pet_must_be_visible",
+      "context": "",
+      "raw": "§8The pet must be visible to apply the item!",
+      "text": "The pet must be visible to apply the item!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "必须先把宠物召唤出来才能使用这件道具!"
+    },
+    {
+      "id": "item_this_item_can_be_reforged",
+      "context": "几乎所有可重铸装备 Lore 末尾的通用提示行",
+      "raw": "§8This item can be reforged!",
+      "text": "This item can be reforged!",
+      "placeholders": [],
+      "gloss": "reforge 是 SkyBlock 专有玩法名词“重铸”。",
+      "translate": true,
+      "zh": "该物品可以重铸!"
+    },
+    {
+      "id": "item_tiered_bonus_glossy_mineralworks_s",
+      "context": "",
+      "raw": "§8Tiered Bonus: Glossy Mineralworks (%s/%s)",
+      "text": "Tiered Bonus: Glossy Mineralworks (%s/%s)",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        },
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "阶段加成: 光泽矿物工坊 (%s/%s)"
+    },
+    {
+      "id": "item_tiered_bonus_mineralworks_s_s",
+      "context": "第5行:套装加成标题行,括号内是已穿戴件数/总件数",
+      "raw": "§8Tiered Bonus: Mineralworks (%s/%s)",
+      "text": "Tiered Bonus: Mineralworks (%s/%s)",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        },
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "同 Mineral_Helmet.json 的 set_bonus_title 说明。",
+      "translate": true,
+      "zh": "阶段加成: 矿物工坊 (%s/%s)"
+    },
+    {
+      "id": "item_works_while_in_accessory_bag",
+      "context": "几乎所有饰品类物品 Lore 里提示该饰品在饰品袋内生效的通用行",
+      "raw": "§8Works while in Accessory Bag!",
+      "text": "Works while in Accessory Bag!",
+      "placeholders": [],
+      "gloss": "Accessory Bag(饰品袋)是全局饰品系统专有名词。",
+      "translate": true,
+      "zh": "放入饰品袋中依然生效!"
+    },
+    {
+      "id": "item_co_op_soulbound",
+      "context": "灵魂绑定物品的标记行——合作档案变体,目前在 Fallen Star Helmet / Royal Compass / Royal Pigeon 上观察到",
+      "raw": "§8§l* §8Co-op Soulbound §8§l*",
+      "text": "* Co-op Soulbound *",
+      "placeholders": [],
+      "gloss": "已查证(hypixelskyblock.minecraft.wiki/w/Soulbound):Co-op Soulbound 绑定的是整个合作档案,不是某一个玩家——可以给合作队友、可以放进(合作共用的)私人岛屿箱子,只是不能上拍卖行/集市,也不能交易给合作档案以外的人;普通的 Soulbound 才是连岛上箱子都不让放。旧译“组队灵魂绑定”有两处问题:Co-op 在本项目里统一译“合作”(见 Economy/GUI_Title/Bank.json、Hub_General/TabList/Hub_Widgets.json、Hub_General/ChatMessage/Common_System.json),“组队”是另一个概念;而且没说清绑定的是档案而不是人。现译“合作模式 - 灵魂绑定”,中间的空格连字符把“合作模式”读成绑定的范围限定,而不是“绑定给某位合作者”。“Soulbound”本身在两个变体里都译“灵魂绑定”,不存在一词两译。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8§l",
+          "text": "* ",
+          "zh": "* "
+        },
+        {
+          "color": "§8",
+          "text": "Co-op Soulbound ",
+          "zh": "合作模式 - 灵魂绑定 "
+        },
+        {
+          "color": "§8§l",
+          "text": "*",
+          "zh": "*"
+        }
+      ]
+    },
+    {
+      "id": "item_soulbound",
+      "context": "灵魂绑定物品的标记行——首字母大写变体,目前在饰品类物品(如 King Talisman)观察到",
+      "raw": "§8§l* §8Soulbound §8§l*",
+      "text": "* Soulbound *",
+      "placeholders": [],
+      "gloss": "同 soulbound_marker_allcaps,是同一机制的另一种大小写/颜色呈现,原因未核实。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8§l",
+          "text": "* ",
+          "zh": "* "
+        },
+        {
+          "color": "§8",
+          "text": "Soulbound ",
+          "zh": "灵魂绑定 "
+        },
+        {
+          "color": "§8§l",
+          "text": "*",
+          "zh": "*"
+        }
+      ]
+    },
+    {
+      "id": "item_why_are_we_still_here",
+      "context": "",
+      "raw": "§8§oWhy are we still here? Just to",
+      "text": "Why are we still here? Just to",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "我们为什么还在这儿?只是为了受苦吗?"
+    },
+    {
+      "id": "item_suffer",
+      "context": "",
+      "raw": "§8§osuffer?",
+      "text": "suffer?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "item_scrap_to_begin_the_excavation",
+      "context": "",
+      "raw": "§9Scrap §7to begin the excavation",
+      "text": "Scrap to begin the excavation",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§9",
+          "text": "Scrap ",
+          "zh": ""
+        },
+        {
+          "color": "§7",
+          "text": "to begin the excavation",
+          "zh": ""
+        }
+      ],
+      "continuation": true
+    },
+    {
+      "id": "item_rare",
+      "context": "",
+      "raw": "§9§lRARE",
+      "text": "RARE",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "稀有"
+    },
+    {
+      "id": "item_rare_accessory",
+      "context": "",
+      "raw": "§9§lRARE ACCESSORY",
+      "text": "RARE ACCESSORY",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "稀有饰品"
+    },
+    {
+      "id": "item_rare_boots",
+      "context": "",
+      "raw": "§9§lRARE BOOTS",
+      "text": "RARE BOOTS",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "稀有靴子"
+    },
+    {
+      "id": "item_rare_drill",
+      "context": "第28行:稀有度+物品类型标签,全大写",
+      "raw": "§9§lRARE DRILL",
+      "text": "RARE DRILL",
+      "placeholders": [],
+      "gloss": "'RARE' 是稀有度专有词(和其他稀有度词条:COMMON/UNCOMMON/RARE/EPIC/LEGENDARY/MYTHIC 等共享,建议做成共享稀有度词表而不是每个物品重复翻译),'DRILL' 是物品类型标签。",
+      "translate": true,
+      "zh": "稀有钻头"
+    },
+    {
+      "id": "item_rare_dwarven_metal",
+      "context": "",
+      "raw": "§9§lRARE DWARVEN METAL",
+      "text": "RARE DWARVEN METAL",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "稀有矮人金属"
+    },
+    {
+      "id": "item_rare_helmet",
+      "context": "",
+      "raw": "§9§lRARE HELMET",
+      "text": "RARE HELMET",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "稀有头盔"
+    },
+    {
+      "id": "item_rare_pickaxe",
+      "context": "",
+      "raw": "§9§lRARE PICKAXE",
+      "text": "RARE PICKAXE",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "稀有镐"
+    },
+    {
+      "id": "item_rare_reforge_stone",
+      "context": "",
+      "raw": "§9§lRARE REFORGE STONE",
+      "text": "RARE REFORGE STONE",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "稀有重铸石"
+    },
+    {
+      "id": "item_s_pickaxe_ability_cooldown",
+      "context": "",
+      "raw": "§a%s Pickaxe Ability Cooldown",
+      "text": "%s Pickaxe Ability Cooldown",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "镐子技能冷却时间: %s"
+    },
+    {
+      "id": "item_pet_items_can_boost_pets",
+      "context": "",
+      "raw": "§aPet Items §7can boost pets in many",
+      "text": "Pet Items can boost pets in many",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Pet Items ",
+          "zh": "宠物道具"
+        },
+        {
+          "color": "§7",
+          "text": "can boost pets in many",
+          "zh": "能以多种强力的方式强化宠物。一只宠物同时只能携带一件宠物道具,但你随时可以更换。"
+        }
+      ]
+    },
+    {
+      "id": "item_uncommon",
+      "context": "",
+      "raw": "§a§lUNCOMMON",
+      "text": "UNCOMMON",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "罕见"
+    },
+    {
+      "id": "item_uncommon_accessory",
+      "context": "",
+      "raw": "§a§lUNCOMMON ACCESSORY",
+      "text": "UNCOMMON ACCESSORY",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "罕见饰品"
+    },
+    {
+      "id": "item_uncommon_pickaxe",
+      "context": "",
+      "raw": "§a§lUNCOMMON PICKAXE",
+      "text": "UNCOMMON PICKAXE",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "罕见镐"
+    },
+    {
+      "id": "item_mineshaft_regardless_of_distance",
+      "context": "",
+      "raw": "§bMineshaft§7, regardless of distance.",
+      "text": "Mineshaft, regardless of distance.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "Mineshaft",
+          "zh": ""
+        },
+        {
+          "color": "§7",
+          "text": ", regardless of distance.",
+          "zh": ""
+        }
+      ],
+      "continuation": true
+    },
+    {
+      "id": "item_sx",
+      "context": "",
+      "raw": "§c%sx§7.",
+      "text": "%sx.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": ""
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "%sx",
+          "zh": "%s 倍"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "item_special",
+      "context": "",
+      "raw": "§c§lSPECIAL",
+      "text": "SPECIAL",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "特殊"
+    },
+    {
+      "id": "item_gemstones_4",
+      "context": "",
+      "raw": "§dGemstones§7.",
+      "text": "Gemstones.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "Gemstones",
+          "zh": "宝石"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "时)。"
+        }
+      ]
+    },
+    {
+      "id": "item_right_click_on_your_summoned",
+      "context": "",
+      "raw": "§eRight-click on your summoned pet to",
+      "text": "Right-click on your summoned pet to",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "右键点击已召唤的宠物,把这件道具给它!"
+    },
+    {
+      "id": "item_right_click_to_consume",
+      "context": "",
+      "raw": "§eRight-click to consume!",
+      "text": "Right-click to consume!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "右键点击使用!"
+    },
+    {
+      "id": "item_right_click_to_view_recipes",
+      "context": "",
+      "raw": "§eRight-click to view recipes!",
+      "text": "Right-click to view recipes!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "右键点击查看配方!"
+    },
+    {
+      "id": "item_give_it_this_item",
+      "context": "",
+      "raw": "§egive it this item!",
+      "text": "give it this item!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "item_common",
+      "context": "",
+      "raw": "§f§lCOMMON",
+      "text": "COMMON",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "普通"
+    },
+    {
+      "id": "item_common_dwarven_metal",
+      "context": "",
+      "raw": "§f§lCOMMON DWARVEN METAL",
+      "text": "COMMON DWARVEN METAL",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "普通矮人金属"
+    },
+    {
+      "id": "item_common_pickaxe",
+      "context": "",
+      "raw": "§f§lCOMMON PICKAXE",
+      "text": "COMMON PICKAXE",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "普通镐"
+    },
+    {
+      "id": "click_to_reforge",
+      "context": "重铸站 GUI 内,可重铸物品上的额外提示行",
+      "raw": "§eClick to reforge!",
+      "text": "Click to reforge!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击重铸!"
+    },
+    {
+      "id": "requires_generic",
+      "context": "通用使用限制条件行(非山峦之心等级的其他类型限制,如主线任务完成度、其他技能等级等)。山峦之心等级限制请用 hotm_tier_requirement,不要用这条。",
+      "raw": "§4❣ §cRequires %s§c.",
+      "text": "❣ Requires %s.",
+      "segments": [
+        {
+          "color": "§4",
+          "text": "❣ ",
+          "zh": "❣ "
+        },
+        {
+          "color": "§c",
+          "text": "Requires %s",
+          "zh": "需要%s"
+        },
+        {
+          "color": "§c",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "具体条件描述(专有名词部分不翻译,句子部分翻译)",
+          "type": "raw",
+          "example": "The Catacombs Floor III Completion"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": ""
+    },
+    {
+      "id": "soulbound_marker_allcaps",
+      "context": "灵魂绑定物品(不可交易/出售)的标记行——全大写变体,目前在护甲类物品(如 Adaptive Boots)观察到",
+      "raw": "§8§l* §5§lSOULBOUND §8§l*",
+      "text": "* SOULBOUND *",
+      "segments": [
+        {
+          "color": "§8§l",
+          "text": "* ",
+          "zh": "* "
+        },
+        {
+          "color": "§5§l",
+          "text": "SOULBOUND ",
+          "zh": "灵魂绑定 "
+        },
+        {
+          "color": "§8§l",
+          "text": "*",
+          "zh": "*"
+        }
+      ],
+      "placeholders": [],
+      "gloss": "Soulbound(灵魂绑定)是全局玩法机制专有词,表示该物品绑定角色不可交易。目前观察到两种大小写/颜色变体(见 soulbound_marker_titlecase),原因未核实(可能是不同物品模板版本或不同稀有度导致),两个变体都先保留,不要合并成一个。",
+      "translate": true,
+      "zh": ""
+    },
+    {
+      "id": "accessory_power",
+      "context": "几乎所有饰品(Accessory)类物品 Lore 开头的能力值加成行",
+      "raw": "§7Accessory Power: §6+%s",
+      "text": "Accessory Power: +%s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Accessory Power: ",
+          "zh": "饰品能力: "
+        },
+        {
+          "color": "§6",
+          "text": "+%s",
+          "zh": "+%s"
+        }
+      ],
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": "3"
+        }
+      ],
+      "gloss": "Accessory Power(饰品能力)是全局饰品系统专有词条。",
+      "translate": true,
+      "zh": ""
+    },
+    {
+      "id": "drill_fuel_tank_status",
+      "context": "钻头类物品:燃料箱配件槽当前状态行",
+      "raw": "§7Fuel Tank: §c%s",
+      "text": "Fuel Tank: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Fuel Tank: ",
+          "zh": "燃料箱: "
+        },
+        {
+          "color": "§c",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ],
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "未安装时为 'Not Installed';已安装时为配件名(专有名词)",
+          "type": "raw",
+          "example": "Not Installed"
+        }
+      ],
+      "gloss": "%s 为 'Not Installed' 时需要翻译;为具体配件名时是专有名词不翻译,两种情况分开处理。",
+      "translate": true,
+      "zh": ""
+    },
+    {
+      "id": "drill_engine_status",
+      "context": "钻头类物品:钻头引擎配件槽当前状态行",
+      "raw": "§7Drill Engine: §c%s",
+      "text": "Drill Engine: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Drill Engine: ",
+          "zh": "钻头引擎: "
+        },
+        {
+          "color": "§c",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ],
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "同 drill_fuel_tank_status",
+          "type": "raw",
+          "example": "Not Installed"
+        }
+      ],
+      "gloss": "同 drill_fuel_tank_status 的占位符处理方式。",
+      "translate": true,
+      "zh": ""
+    },
+    {
+      "id": "drill_upgrade_module_status",
+      "context": "钻头类物品:升级模块配件槽当前状态行",
+      "raw": "§7Upgrade Module: §c%s",
+      "text": "Upgrade Module: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Upgrade Module: ",
+          "zh": "升级模块: "
+        },
+        {
+          "color": "§c",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ],
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "同 drill_fuel_tank_status",
+          "type": "raw",
+          "example": "Not Installed"
+        }
+      ],
+      "gloss": "同 drill_fuel_tank_status 的占位符处理方式。",
+      "translate": true,
+      "zh": ""
+    },
+    {
+      "id": "drill_fuel_status",
+      "context": "钻头类物品:当前燃料/燃料上限显示行",
+      "raw": "§7Fuel: §2%s§8/%s",
+      "text": "Fuel: %s/%s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Fuel: ",
+          "zh": "燃料: "
+        },
+        {
+          "color": "§2",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§8",
+          "text": "/%s",
+          "zh": "/%s"
+        }
+      ],
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前剩余燃料数值",
+          "type": "number",
+          "example": "3,000"
+        },
+        {
+          "token": "%2$s",
+          "desc": "燃料上限(带单位缩写 k=千)",
+          "type": "raw",
+          "example": "3k"
+        }
+      ],
+      "gloss": "两个数值都会变化,按两个独立占位符处理。",
+      "translate": true,
+      "zh": ""
+    }
+  ],
+  "merged_note": "原 _shared/Item_Boilerplate.json 已并入本文件并删除。两个共享库同时存在时,同一句话会有两条记录,引擎按文件名排序注册、先到先得,维护起来看不出哪条在生效。Boilerplate 里那几条**更通用的模板**(如 'Fuel Tank: %s',对应装了配件之后的状态)一并保留了下来:它们和 NEU 快照里的具体状态行('Fuel Tank: Not Installed')并存是对的,引擎按模板里字面文本的多少择优,具体行赢在空槽时,通用模板兜住装了配件之后的情况。"
+}

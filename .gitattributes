@@ -1,0 +1,29 @@
+# Line endings are normalised to LF in the repository regardless of what the committing machine
+# uses. Without this, a clone made on Windows (where core.autocrlf defaults to true) stores CRLF,
+# and two things break for anyone else:
+#
+#   * gradlew is a shell script. With CRLF endings Linux and macOS fail it with
+#     "bad interpreter: /bin/sh^M" — the wrapper the README tells people to run does not run.
+#   * every corpus file would show as entirely rewritten in a diff the first time it was touched
+#     on the other kind of machine, which buries the one translation that actually changed.
+*               text=auto eol=lf
+
+# Scripts that are executed rather than read: LF is not a preference here, it is a requirement.
+gradlew         text eol=lf
+*.sh            text eol=lf
+
+# The Windows batch wrapper is the one file that genuinely needs CRLF — cmd.exe mis-parses a
+# multi-line .bat with LF endings.
+gradlew.bat     text eol=crlf
+
+# The corpus and the documents describing it are UTF-8 Chinese. Declared as text so they are always
+# diffed rather than guessed at as binary. Deliberately *not* `working-tree-encoding`: that attribute
+# is for a working tree in some other encoding (UTF-16, Shift-JIS) and would make git re-encode files
+# that are already UTF-8.
+*.json          text eol=lf
+*.md            text eol=lf
+
+# Binaries, so git neither converts endings nor tries to merge them.
+*.jar           binary
+*.png           binary
+*.ogg           binary

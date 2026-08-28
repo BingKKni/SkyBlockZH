@@ -1,0 +1,341 @@
+{
+  "purpose": "SkyBlock 各种限时活动的名字。按 GLOSSARY.md §5.5「天赋名/技能名/限时活动名一律翻译」,活动名不当专有名词处理。放在 _shared/ 是因为同一个活动名会出现在日历菜单、活动菜单、计分板、Tab 列表、BossBar 好几个地方。",
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Events + https://hypixelskyblock.minecraft.wiki/w/Calendar_and_Events/UI",
+  "fetched_at": "2026-08-22",
+  "verified_ingame": false,
+  "gui_context": "「日历与活动」菜单里每个格子的物品名。带届数的那几条名字长成 「88th Election Booth Opens」,所以模板前面有一个 ordinal 占位符。",
+  "todo": [
+    "本文件里带届数(ordinal)的六条来自 wiki 的 Calendar and Events/UI 子页,是逐格抄的,可信度高;不带届数的那些是从 Events 页的活动表来的,**游戏里格子上的确切写法(有没有届数前缀、颜色码)还没实测**,verified_ingame 因此是 false。进游戏打开日历对一眼就能定。",
+    "`Starlyn Contest`(Galatea 的每日竞赛,由 Agatha 主持)故意留空:Starlyn 是地名还是人名没查实,猜错了比不翻更糟。等 Foraging/Galatea 阶段一起定。",
+    "活动名同时写进了 _shared/Terms.json——那张表管的是占位符捕到的值(计分板的 `Mining Event: %s`、BossBar 喊的活动名),本文件管的是菜单格子的物品名,两条路引擎不通用。两边译名必须一致,checkTranslations 里的 checkEventNamesAgree 会拦住写歪的。"
+  ],
+  "entries": [
+    {
+      "id": "event_spooky_festival_nth",
+      "context": "日历与活动菜单:惊魂节那一格的物品名,前面带届数",
+      "raw": "§6%s Spooky Festival",
+      "text": "%s Spooky Festival",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "这是第几届。英文写成 27th / 1st / 88th,type: ordinal 会在渲染时把后面两个字母去掉,中文的\"第 N 届\"把序数写在数字外面",
+          "type": "ordinal",
+          "example": "27th"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "第 %s 届惊魂节"
+    },
+    {
+      "id": "event_season_of_jerry_nth",
+      "context": "日历与活动菜单:Jerry 季那一格的物品名,前面带届数",
+      "raw": "§c%s Season of Jerry",
+      "text": "%s Season of Jerry",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "这是第几届。英文写成 27th / 1st / 88th,type: ordinal 会在渲染时把后面两个字母去掉,中文的\"第 N 届\"把序数写在数字外面",
+          "type": "ordinal",
+          "example": "27th"
+        }
+      ],
+      "gloss": "届数和后面的英文名之间要留一个空格:引擎的自动补空格只发生在片段接缝上,这里\"届\"和名字写在同一段译文里,空格得自己写。见 memory「中文译文里占位符的空格规则」。",
+      "translate": true,
+      "zh": "第 %s 届 Jerry 季"
+    },
+    {
+      "id": "event_new_year_celebration_nth",
+      "context": "日历与活动菜单:新年庆典那一格的物品名,前面带届数",
+      "raw": "§d%s New Year Celebration",
+      "text": "%s New Year Celebration",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "这是第几届。英文写成 27th / 1st / 88th,type: ordinal 会在渲染时把后面两个字母去掉,中文的\"第 N 届\"把序数写在数字外面",
+          "type": "ordinal",
+          "example": "27th"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "第 %s 届新年庆典"
+    },
+    {
+      "id": "event_hoppitys_hunt_nth",
+      "context": "日历与活动菜单:Hoppity 的寻兔行动那一格的物品名,前面带届数",
+      "raw": "§d%s Hoppity's Hunt",
+      "text": "%s Hoppity's Hunt",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "这是第几届。英文写成 27th / 1st / 88th,type: ordinal 会在渲染时把后面两个字母去掉,中文的\"第 N 届\"把序数写在数字外面",
+          "type": "ordinal",
+          "example": "27th"
+        }
+      ],
+      "gloss": "届数和后面的英文名之间要留一个空格:引擎的自动补空格只发生在片段接缝上,这里\"届\"和名字写在同一段译文里,空格得自己写。见 memory「中文译文里占位符的空格规则」。",
+      "translate": true,
+      "zh": "第 %s 届 Hoppity 的寻兔行动"
+    },
+    {
+      "id": "event_election_booth_opens_nth",
+      "context": "日历与活动菜单:投票站开放那一格的物品名,前面带届数",
+      "raw": "§b%s Election Booth Opens",
+      "text": "%s Election Booth Opens",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "这是第几届。英文写成 27th / 1st / 88th,type: ordinal 会在渲染时把后面两个字母去掉,中文的\"第 N 届\"把序数写在数字外面",
+          "type": "ordinal",
+          "example": "27th"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "第 %s 届投票站开放"
+    },
+    {
+      "id": "event_election_over_nth",
+      "context": "日历与活动菜单:选举结束那一格的物品名",
+      "raw": "§b%s Election Over!",
+      "text": "%s Election Over!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "这是第几届。英文写成 27th / 1st / 88th,type: ordinal 会在渲染时把后面两个字母去掉,中文的\"第 N 届\"把序数写在数字外面",
+          "type": "ordinal",
+          "example": "27th"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "第 %s 届选举结束!"
+    },
+    {
+      "id": "event_traveling_zoo",
+      "context": "日历与活动菜单:巡回动物园那一格",
+      "text": "Traveling Zoo",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "巡回动物园"
+    },
+    {
+      "id": "event_rewards",
+      "context": "日历与活动菜单:领取活动奖励的那一格",
+      "text": "Event Rewards",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "活动奖励"
+    },
+    {
+      "id": "event_calendar",
+      "context": "日历与活动菜单:打开完整日历的那一格",
+      "text": "Calendar",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "日历"
+    },
+    {
+      "id": "event_chocolate_factory",
+      "context": "日历与活动菜单:巧克力工厂入口那一格",
+      "text": "Chocolate Factory",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "巧克力工厂"
+    },
+    {
+      "id": "event_mayor_election",
+      "context": "活动名:市长选举",
+      "text": "Mayor Election",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "市长选举"
+    },
+    {
+      "id": "event_harvest_feast",
+      "context": "活动名:丰收盛宴",
+      "text": "Harvest Feast",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "丰收盛宴"
+    },
+    {
+      "id": "event_jacobs_farming_contest",
+      "context": "活动名:Jacob 的农业竞赛",
+      "text": "Jacob's Farming Contest",
+      "placeholders": [],
+      "gloss": "Jacob 是 NPC 人名,按需求保留英文;Contest 译\"竞赛\"。",
+      "translate": true,
+      "zh": "Jacob 的农业竞赛"
+    },
+    {
+      "id": "event_dark_auction",
+      "context": "活动名:暗黑拍卖会",
+      "text": "Dark Auction",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "暗黑拍卖会"
+    },
+    {
+      "id": "event_winter_island",
+      "context": "活动名:寒冬岛",
+      "text": "Winter Island",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "寒冬岛"
+    },
+    {
+      "id": "event_jerrys_workshop",
+      "context": "活动名:Jerry 的工坊",
+      "text": "Jerry's Workshop",
+      "placeholders": [],
+      "gloss": "Jerry 是 NPC 人名,保留英文。",
+      "translate": true,
+      "zh": "Jerry 的工坊"
+    },
+    {
+      "id": "event_defend_jerrys_workshop",
+      "context": "活动名:保卫 Jerry 的工坊",
+      "text": "Defend Jerry's Workshop",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "保卫 Jerry 的工坊"
+    },
+    {
+      "id": "event_fishing_festival",
+      "context": "活动名:钓鱼节",
+      "text": "Fishing Festival",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "钓鱼节"
+    },
+    {
+      "id": "event_mining_fiesta",
+      "context": "活动名:挖矿狂欢节",
+      "text": "Mining Fiesta",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "挖矿狂欢节"
+    },
+    {
+      "id": "event_mythological_ritual",
+      "context": "活动名:神话仪式",
+      "text": "Mythological Ritual",
+      "placeholders": [],
+      "gloss": "Diana 市长任期内的活动。",
+      "translate": true,
+      "zh": "神话仪式"
+    },
+    {
+      "id": "event_carnival",
+      "context": "活动名:嘉年华",
+      "text": "Carnival",
+      "placeholders": [],
+      "gloss": "Foxy 市长任期内的活动,计分板上早就在用这个译名。",
+      "translate": true,
+      "zh": "嘉年华"
+    },
+    {
+      "id": "event_bingo",
+      "context": "活动名:宾果",
+      "text": "Bingo",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "宾果"
+    },
+    {
+      "id": "event_fire_sale",
+      "context": "活动名:限时特卖",
+      "text": "Fire Sale",
+      "placeholders": [],
+      "gloss": "Tab 列表里的复数写法 Fire Sales 已在词表里。",
+      "translate": true,
+      "zh": "限时特卖"
+    },
+    {
+      "id": "event_party_time",
+      "context": "活动名:派对时间!",
+      "text": "Party Time!",
+      "placeholders": [],
+      "gloss": "现实日历里的周年庆活动。",
+      "translate": true,
+      "zh": "派对时间!"
+    },
+    {
+      "id": "event_year_of_the_pig",
+      "context": "活动名:猪年",
+      "text": "Year of the Pig",
+      "placeholders": [],
+      "gloss": "十二年轮转的生肖年活动。",
+      "translate": true,
+      "zh": "猪年"
+    },
+    {
+      "id": "event_year_of_the_seal",
+      "context": "活动名:海豹年",
+      "text": "Year of the Seal",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "海豹年"
+    },
+    {
+      "id": "event_year_of_the_witch",
+      "context": "活动名:女巫年",
+      "text": "Year of the Witch",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "女巫年"
+    },
+    {
+      "id": "event_the_great_spook",
+      "context": "活动名:大惊吓",
+      "text": "The Great Spook",
+      "placeholders": [],
+      "gloss": "现实里十月的活动,围绕「恐惧」属性做任务。",
+      "translate": true,
+      "zh": "大惊吓"
+    },
+    {
+      "id": "event_stonk_exchange",
+      "context": "活动名:股票交易所",
+      "text": "Stonk Exchange",
+      "placeholders": [],
+      "gloss": "Diaz 市长任期内的活动。Stonk 是 stock 的网络梗写法,中文没有对应的梗,按本义译。",
+      "translate": true,
+      "zh": "股票交易所"
+    },
+    {
+      "id": "event_udels_abiphone_keynote",
+      "context": "活动名:Udel 的 Abiphone 发布会",
+      "text": "Udel's Abiphone Keynote",
+      "placeholders": [],
+      "gloss": "Udel 是 NPC 人名、Abiphone 是物品自造名,两个都保留英文。",
+      "translate": true,
+      "zh": "Udel 的 Abiphone 发布会"
+    },
+    {
+      "id": "event_starlyn_contest",
+      "context": "Galatea 的每日竞赛活动名",
+      "text": "Starlyn Contest",
+      "placeholders": [],
+      "gloss": "Starlyn 是地名还是人名没查实,先不翻。见本文件 todo。",
+      "translate": true,
+      "zh": ""
+    }
+  ]
+}

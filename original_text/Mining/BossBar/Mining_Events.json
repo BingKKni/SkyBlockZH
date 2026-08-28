@@ -1,0 +1,98 @@
+{
+  "source": "https://raw.githubusercontent.com/hannibal002/SkyHanni-REPO/main/constants/regexesModern.json + 玩家实测客户端日志(logs/,2026-08-19)",
+  "fetched_at": "2026-08-19",
+  "verified_ingame": false,
+  "source_note": "数据来自开源客户端 Mod SkyHanni 的 SkyHanni-REPO 仓库 constants/regexesModern.json (用于解析游戏内文本的正则表达式常量),已去除正则语法/颜色码还原成干净模板文本, 可信度高于 Wiki 摘要,但未逐条在游戏内截图核对,verified_ingame 仍为 false。 2026-08-19:活动名以前会原样留成英文(BossBar 里是全大写的 GONE WITH THE WIND),现在译名走 _shared/Terms.json 且查表不分大小写,BossBar / 计分板 / 聊天三处共用一份译名。",
+  "gui_context": "挖矿活动(Mining Fiesta)进行时,屏幕上方 BossBar 显示的活动状态。",
+  "bars": [
+    {
+      "id": "mining_bossbar_event_active",
+      "context": "“主动型”挖矿活动(需要前往指定区域参与)进行中的 BossBar 文本",
+      "text": "EVENT %s ACTIVE IN %s for %s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "活动名称",
+          "type": "raw",
+          "example": "Goblin Raid"
+        },
+        {
+          "token": "%2$s",
+          "desc": "活动区域/地点",
+          "type": "location_name",
+          "example": "Mines of Divan"
+        },
+        {
+          "token": "%3$s",
+          "desc": "剩余时间",
+          "type": "raw",
+          "example": "5m"
+        }
+      ],
+      "gloss": "已知主动型活动:Goblin Raid, Mithril Gourmand, Raffle。",
+      "translate": true,
+      "zh": "「%1$s」活动正在 %2$s 举行,剩余 %3$s"
+    },
+    {
+      "id": "mining_bossbar_event_passive",
+      "context": "全图生效活动进行中的 BossBar 文本",
+      "text": "PASSIVE EVENT %s RUNNING FOR %s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "活动名称",
+          "type": "raw",
+          "example": "Better Together"
+        },
+        {
+          "token": "%2$s",
+          "desc": "剩余时间",
+          "type": "raw",
+          "example": "5m"
+        }
+      ],
+      "gloss": "已知全图生效活动:Better Together, 2x Powder, Gone with the Wind。BossBar 只保留“活动”，不直译 passive。",
+      "translate": true,
+      "zh": "活动「%1$s」进行中,剩余 %2$s"
+    },
+    {
+      "id": "mining_bossbar_event_passive_name_only",
+      "context": "BossBar 只显示活动名而不显示剩余时间的实测写法",
+      "raw": "§e§lPASSIVE EVENT §b§l%s",
+      "text": "PASSIVE EVENT %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "活动名称,译名走 _shared/Terms.json",
+          "type": "raw",
+          "example": "2X POWDER"
+        }
+      ],
+      "gloss": "2026-08-22 实测连续出现 2X POWDER 与 GONE WITH THE WIND,均没有旧记录所要求的 RUNNING FOR 时长。",
+      "translate": true,
+      "zh": "活动 %s",
+      "segments": [
+        {
+          "color": "§e§l",
+          "text": "PASSIVE EVENT ",
+          "zh": "活动 "
+        },
+        {
+          "color": "§b§l",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "mining_bossbar_raffle_rolling",
+      "context": "抽奖箱截止后、开奖前的 BossBar",
+      "raw": "§6§lRAFFLE IS ROLLING!!!",
+      "text": "RAFFLE IS ROLLING!!!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "抽奖箱开奖中!!!"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "source": "https://raw.githubusercontent.com/hannibal002/SkyHanni-REPO/main/constants/regexesModern.json",
+  "fetched_at": "2026-08-18",
+  "verified_ingame": false,
+  "source_note": "数据来自开源客户端 Mod SkyHanni 的 SkyHanni-REPO 仓库 constants/regexesModern.json (用于解析游戏内文本的正则表达式常量),已去除正则语法/颜色码还原成干净模板文本, 可信度高于 Wiki 摘要,但未逐条在游戏内截图核对,verified_ingame 仍为 false。",
+  "gui_context": "Tab 列表挖矿活动(Mining Fiesta 系列事件)小节显示的活动名称与倒计时。",
+  "lines": [
+    {
+      "id": "mining_event_widget_ends_in",
+      "context": "活动剩余时间显示",
+      "text": "Ends in: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "剩余时间,格式如 12m 或 1h 30m",
+          "type": "raw",
+          "example": "12m"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "剩余: %s"
+    },
+    {
+      "id": "mining_event_widget_name",
+      "context": "当前挖矿活动名称显示",
+      "text": "Mining Event: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "活动名称,专有活动名",
+          "type": "raw",
+          "example": "Goblin Raid"
+        }
+      ],
+      "gloss": "已知活动名称包括:Better Together, 2x Powder, Goblin Raid, Gone with the Wind, Mithril Gourmand, Raffle。已决定(见 GLOSSARY.md “山之心天赋名/限时活动名”条目):这类功能性活动名统一翻译,不当专有名词处理;Goblin Raid 的具体译法尚未最终拍板,其余活动名译法留给翻译阶段决定。",
+      "translate": true,
+      "zh": "挖矿活动: %s"
+    },
+    {
+      "id": "mining_event_widget_not_announced",
+      "context": "尚未公布下一个挖矿活动时的占位显示",
+      "text": "Mining Event: Not announced",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "挖矿活动: 尚未公布"
+    }
+  ]
+}
