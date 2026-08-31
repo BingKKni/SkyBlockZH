@@ -1,0 +1,18 @@
+{
+  "source": "SkyZH runtime capture (2026-08-31, Your Island)",
+  "fetched_at": "2026-08-31",
+  "verified_ingame": true,
+  "gui_context": "屏幕正中弹出的副标题(title/subtitle 那一层),不属于聊天也不属于菜单。捡不下东西、背包塞满这类当场提示走这里。",
+  "lines": [
+    {
+      "id": "subtitle_inventory_full",
+      "context": "背包塞满、掉落物捡不进来时弹出的红色副标题",
+      "raw": "§cInventory full!",
+      "text": "Inventory full!",
+      "placeholders": [],
+      "gloss": "同文件系里 Hub_General/ChatMessage/Common_System.json 有两条相近的:common_inventory_full(`Your inventory is full!`,聊天里的整句)和 common_storage_hint(`Inventory full? Don't forget...`,提示去仓库看看)。这一条是屏幕正中央一闪而过的副标题,两三个字要能一眼看完,所以译「背包已满!」而不是照抄聊天那句的「你的背包满了!」。**不能**和那两条合成一条:三处是三个不同的英文字符串、三个不同的渲染面,记录按渲染面隔离(见 text/Surface.java)。",
+      "translate": true,
+      "zh": "背包已满!"
+    }
+  ]
+}

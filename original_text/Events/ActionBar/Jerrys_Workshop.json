@@ -1,0 +1,72 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Jerry%27s_Workshop + runtime capture (SkyZH) 2026-08-29 实测会话",
+  "fetched_at": "2026-08-29",
+  "verified_ingame": true,
+  "gui_context": "「保卫 Jerry 的工坊」小游戏里,坐上雪炮之后动作栏显示的开火提示和装填倒计时。雪炮是散布在工坊里的固定炮位,骑上去朝进攻的岩浆怪开火。",
+  "source_note": "同时出现的另一半提示是 `SHIFT to DISMOUNT`,写在 Hub_General/ActionBar/Common_HUD.json。采集曾把 `RIGHT-CLICK to FIRE` 和 `2.2s to FIRE` 归并成同一个 raw 占位符模板,但两个值语义不同:前者是操作提示,后者是尚不可开炮的倒计时。实测 observed 里从 2.2s 逐步降到 0.1s,因此拆成写死的鼠标右键提示和只接受 duration 的冷却模板;不能把倒计时译成「按 2.2s 开炮」。",
+  "lines": [
+    {
+      "id": "hud_right_click_to_fire",
+      "context": "雪炮装填完成时的开火操作提示",
+      "raw": "§e§lRIGHT-CLICK §fto §6§lFIRE",
+      "text": "RIGHT-CLICK to FIRE",
+      "placeholders": [],
+      "gloss": "RIGHT-CLICK 是本次实测固定出现的操作文字,不是服务器发来的玩家键位名,所以不做占位符。中文用常见输入设备称呼「鼠标右键」。FIRE 作「开炮」而不是泛指的「开火」,因为玩家操作的是雪炮。",
+      "translate": true,
+      "zh": "按鼠标右键开炮",
+      "segments": [
+        {
+          "color": "§e§l",
+          "text": "RIGHT-CLICK ",
+          "zh": "按鼠标右键"
+        },
+        {
+          "color": "§f",
+          "text": "to ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§6§l",
+          "text": "FIRE",
+          "zh": "开炮"
+        }
+      ]
+    },
+    {
+      "id": "hud_fire_cooldown",
+      "context": "雪炮重新装填期间的开火倒计时",
+      "raw": "§e§l2.2s §fto §6§lFIRE",
+      "text": "%s to FIRE",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "重新开炮前的剩余秒数,实测为 2.2s、2.1s……0.1s",
+          "type": "duration",
+          "example": "2.2s"
+        }
+      ],
+      "gloss": "duration 会把 2.2s 渲染为「2.2秒」,同时拒绝 RIGHT-CLICK 这类按键文字。原文仍写 FIRE,但倒计时阶段动作尚不可执行,中文按界面含义作「%s后可开炮」。",
+      "translate": true,
+      "zh": "%s后可开炮",
+      "segments": [
+        {
+          "color": "§e§l",
+          "text": "%s ",
+          "zh": "%s后"
+        },
+        {
+          "color": "§f",
+          "text": "to ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§6§l",
+          "text": "FIRE",
+          "zh": "可开炮"
+        }
+      ]
+    }
+  ]
+}

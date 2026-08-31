@@ -68,11 +68,13 @@ public final class TranslationHarness {
 		checkNoRecordIsShadowed(index, files);
 		checkNoRivalRecords(files);
 		checkNoDuplicateIds(files);
+		checkPhrasePlaceholdersHaveExamples(files);
 
 		// ---- a segments array has to be a faithful split of the record's own text ----
 		checkSegmentsSpellTheText(files);
 		checkNoHalfTranslatedSegments(files);
 		checkSegmentOrderIsAPermutation(files);
+		checkOrderedSegmentsSpellTheTranslation(files);
 		checkBangSpacing(files);
 
 		// ---- the two places an event's name is written have to agree ----
@@ -96,6 +98,10 @@ public final class TranslationHarness {
 		check("稀有度 + 类型标签", "§9§lRARE DRILL", Surface.ITEM, "§9§l稀有钻头");
 		check("整行单色", "§8This item can be reforged!", Surface.ITEM, "§8该物品可以重铸!");
 		check("跨行句首行", "§7Increases fuel capacity with part", Surface.ITEM, "§7装上配件后增加燃料容量。");
+		check("Compact 效果首行合并完整句",
+			"§7Gain §3+1☯ Mining Wisdom §7and a §a0.25%", Surface.ITEM,
+			"§7获得 §3+1☯ 挖掘智慧§7,并有 §a0.25% 的概率额外掉落附魔物品。");
+		check("宾果蓝染料颜色尾行不含 to", "§7to §1#002FA7§7!", Surface.ITEM, "§1#002FA7§7!");
 		check("山峦之心限制行", "§4❣ §cRequires §5Heart of the Mountain Tier 2§c.", Surface.ITEM,
 			"§4❣ §c需要§5山峦之心2级§c。");
 		// NEU gives the exact empty-slot line, so it is a record of its own rather than a value caught
@@ -121,6 +127,19 @@ public final class TranslationHarness {
 			Surface.SCOREBOARD, false);
 		checkColourLoss("词句本身中途变色才算颜色丢失", "This item can be reforged!",
 			"§8This item can be §creforged!", Surface.ITEM, true);
+
+		// Hypixel splits a line on a tooltip as readily as on a colour: the sacks message sends
+		// " items" and the "." after it as two runs of the same yellow, the first of which carries
+		// the "Added items:" hover. Judged by whole-Style equality that reads as a colour change
+		// inside one fragment, and the capture then files a record whose segments are already right
+		// into the colour pile — with advice to split them again at a boundary that has no colour on
+		// either side of it. Only what is drawn counts as a colour.
+		checkColourLossComponent("同色但只有一半带悬浮提示,不算颜色丢失", "This item can be reforged!",
+			Component.empty()
+				.append(Component.literal("This item can be ")
+					.setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY).withInsertion("hover")))
+				.append(Component.literal("reforged!").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY))),
+			Surface.ITEM, false);
 
 		// ---- placeholders carry proper nouns through untouched ----
 		check("NPC 台词占位符", "Today the King is Brammor.", Surface.CHAT, "今天当值的国王是 Brammor。");
@@ -223,6 +242,29 @@ public final class TranslationHarness {
 		checkWidgets("单条动作栏消息不受切分影响", "§cPICK IT UP!", "§c捡起来!");
 		// A record that spells the whole padded line out still wins over the shape.
 		checkWidgets("整行有记录时不切开", "   §cPICK IT UP!   ", "   §c捡起来!   ");
+
+		// ---- exact live event strings whose decoration or value shape changes the match ----
+		check("新年庆典横幅保留完整装饰",
+			"§b§k§lA§r §e§lEvent§r: §aNew Year's Celebration! §r§b§k§lA", Surface.CHAT,
+			"§b§l§kA §e§l活动: §a新年庆典! §b§l§kA");
+		check("新年庆典村庄行带装饰前缀",
+			"§b§k§lA§r §aEveryone is having a party in the §bVillage§a!", Surface.CHAT,
+			"§b§l§kA §a大家都在§b村庄§a里开派对!");
+		check("新年庆典点击提示保留完整装饰",
+			"§b§k§lA§r §e§lCLICK HERE §eto get your §c§lSPECIAL §enew year cake!", Surface.CHAT,
+			"§b§l§kA §e§l点击这里§e领取你的§c§l特殊§e新年蛋糕!");
+		check("新年庆典倒计时单数 day", "§aThe §dNew Year's Celebration §aevent is starting in §b1 §aday!",
+			Surface.CHAT, "§d新年庆典§a活动将在 §b1§a 天后开始!");
+		check("新年庆典倒计时复数 days", "§aThe §dNew Year's Celebration §aevent is starting in §b2§a days!",
+			Surface.CHAT, "§d新年庆典§a活动将在 §b2§a 天后开始!");
+		check("雪炮装填完成显示鼠标右键", "§e§lRIGHT-CLICK §fto §6§lFIRE", Surface.ACTION_BAR,
+			"§e§l按鼠标右键§6§l开炮");
+		check("雪炮装填中显示倒计时", "§e§l2.2s §fto §6§lFIRE", Surface.ACTION_BAR,
+			"§e§l2.2秒后§6§l可开炮");
+		check("极冰隧道保底宝石数量不是装备槽", "§7Gemstones: §e8-10", Surface.ITEM,
+			"§7宝石: §e8-10");
+		check("极冰隧道保底标题", "Glacite Tunnels Pity", Surface.GUI_TITLE, "极冰隧道保底进度");
+		check("保底总览标题", "Pity", Surface.GUI_TITLE, "保底进度");
 
 		// ---- the rows that are on screen every frame, from the 2026-08-20 session ----
 		// The day number gets air on both sides. Written together — 立秋20日 — the three glyphs and the
@@ -402,6 +444,9 @@ public final class TranslationHarness {
 		TranslationEntry tail = index.lookup(Surface.ITEM, "installed.");
 		report("续行被识别为 continuation", tail != null && tail.continuation(),
 			tail == null ? "未匹配到 installed." : "continuation=" + tail.continuation());
+		TranslationEntry compactTail = index.lookup(Surface.ITEM, "chance to drop an enchanted item.");
+		report("Compact 英文尾行被识别为 continuation", compactTail != null && compactTail.continuation(),
+			compactTail == null ? "未匹配到 Compact 尾行" : "continuation=" + compactTail.continuation());
 
 		// ---- the server's icon font, and the symbols the corpus is written with ----
 		// SkyBlock sends private-use codepoints where the wiki (and older NEU dumps) wrote ❤ ☘ ⸕.
@@ -510,6 +555,10 @@ public final class TranslationHarness {
 		check("时长缩写按单位换算", "§7Duration: §a1h30m", Surface.ITEM, "§7持续时间: §a1小时30分");
 		checkRow("Tab 宠物训练剩余时间", " 1: §7[Lvl 99] §5Ghoul §b22d", " 1: §7[99 级] §5食尸鬼 §b22天");
 		check("Tab 小时复数", "§f9 Hours", Surface.TABLIST, "§f9 小时");
+		check("Tab 不足一小时", "§fLess than an hour", Surface.TABLIST, "§f不足 1 小时");
+		check("Tab 活动小时倒计时不加后", "Starts In: §e3h", Surface.TABLIST, "距开始: §e3 小时");
+		check("Tab 活动分钟倒计时不加后", "Starts In: §e26m", Surface.TABLIST, "距开始: §e26 分钟");
+		check("宾果活动倒计时不加后", "§7Event Starts: §a43h", Surface.ITEM, "§7距活动开始: §a43 小时");
 		check("Tab 只剩一小时", "§f1 Hour", Surface.TABLIST, "§f1 小时");
 		check("Tab 曲奇增益小节", "Cookie Buff", Surface.TABLIST, "曲奇增益");
 		check("Tab 魔法寻宝剩余小时", "§eMagic Find V §f7 Hours", Surface.TABLIST, "§e魔法寻宝 V §f7 小时");
@@ -628,16 +677,103 @@ public final class TranslationHarness {
 		check("右键使用不是食用", "§eRight-click to consume!", Surface.ITEM, "§e右键点击使用!");
 		check("活动预告不说被动活动", "§eThis is a passive event! §bIt's happening everywhere in the §bDwarven Mines!",
 			Surface.CHAT, "§b这个活动在整个矮人矿山都会生效!");
+		check("秘银老饕折行版本的数量与量词同色",
+			"§bVeins§f. Bring §c200§a Tasty Mithril§f to him at the §bDwarven Village§f!", Surface.CHAT,
+			"§b矿脉§f的美味秘银,带 §c200 份§f到§b矮人村庄§f交给他!");
+		check("秘银老饕完整地名版本的数量与量词同色",
+			"§fBring §c200 §aTasty Mithril §fto him at the §bDwarven Village§f!", Surface.CHAT,
+			"§f带 §c200 份§a美味秘银§f到§b矮人村庄§f交给他!");
+		check("连杀硬币提示的语序与颜色",
+			"§a§l+10 Kill Combo §8+§610 §7coins per kill", Surface.CHAT,
+			"§a§l+10 连杀§7 每次击杀§8 +§610 §7硬币");
+		checkLayout(files, "Mining/ChatMessage/Mining_Events.json", "mining_raffle_intro_1", "center_chat_banner");
+		checkLayout(files, "Mining/ChatMessage/Mining_Events.json", "mining_raffle_intro_2", "center_chat_banner");
+		checkLayout(files, "Mining/ChatMessage/Mining_Events.json", "mining_raffle_intro_3", "center_chat_banner");
 		check("BossBar 带时长的活动", "PASSIVE EVENT 2X POWDER RUNNING FOR 5m", Surface.BOSS_BAR,
 			"活动「双倍粉末」进行中,剩余 5m");
 		check("集市创建购买订单", "§aCreate Buy Order", Surface.ITEM, "§a创建购买订单");
+		check("集市领取出售报价的成交总额", " §7worth §614.5k coins §7by §b[MVP§9+§b] inkkni",
+			Surface.ITEM, "§7 共 §614.5k 硬币,§7由 §b[MVP§9+§b] inkkni 操作");
 		check("集市确认购买订单标题", "Confirm Buy Order", Surface.GUI_TITLE, "确认购买订单");
+		// The ampersand is a word inside a name, and a category whose own name has one used to fall
+		// through the template and leave the whole title in English. Both halves are checked: the name
+		// is accepted between two words, and still refused at either end, where it is not a name.
+		check("分类名里的 & 不挡匹配", "Bazaar ➜ Woods & Fishes", Surface.GUI_TITLE, "集市 ➜ 木材与鱼类");
+		checkNoMatch("& 结尾的残句不算分类名", "Bazaar ➜ Woods &", Surface.GUI_TITLE);
+		check("设置页标题按类别名走词表", "Personal Settings", Surface.GUI_TITLE, "个人设置");
+		check("查不到的类别名保持英文并补接缝空格", "API Settings", Surface.GUI_TITLE, "API 设置");
+		// Same meal, two English names, two Chinese ones — see gui_title_chocolate_dinner_egg.
+		check("Dinner 蛋和 Supper 蛋不同名", "Chocolate Supper Egg", Surface.GUI_TITLE, "巧克力晚膳蛋");
+		// A setting row is a state mark and a name. The mark must not be swallowed into a capture:
+		// "%1$s Collections" out of the collections menu used to match this and render "✔ API:收藏品",
+		// because the whole line is offered before the mark is stepped over and ✔ passed for the start
+		// of a name. Both marks are checked, since each is a different colour on a different row state.
+		// The garden broadcasts carry a rank alongside the name, which player_name refuses, so the
+		// placeholder is raw. Both forms are checked: with a rank and without one.
+		check("花园广播带称号", "§b[MVP§9+§b] inkkni §cenabled Garden Plot Holograms!", Surface.CHAT,
+			"§b[MVP§9+§b] inkkni §c开启了花园的地块悬浮字!");
+		check("花园广播不带称号", "§7Steve123 §cdisabled Garden Plot Holograms!", Surface.CHAT,
+			"§7Steve123 §c关闭了花园的地块悬浮字!");
+		check("花园来访广播的取值走词表", "§b[MVP§9+§b] inkkni §aenabled Garden Visits: §2Guild§a!",
+			Surface.CHAT, "§b[MVP§9+§b] inkkni §a开启了花园的「来访: §2公会§a」!");
+		// A setting's confirmation line: four records carry the state, the term table carries the name.
+		// Both numbers are checked because the server picks the verb from the name's own plurality and
+		// Chinese does not mark it, so the pair has to come out identical.
+		check("开关确认行(单数)", "§cAdvanced Supercraft is now enabled!", Surface.CHAT, "§c高级超级合成已开启!");
+		check("开关确认行(复数同译)", "§cRare Drop Sounds are now enabled!", Surface.CHAT, "§c稀有掉落音效已开启!");
+		check("开关确认行(关掉)", "§cFishing Timer is now disabled!", Surface.CHAT, "§c钓鱼计时已关闭!");
+		// This name is not a name-shaped value — "breaking" and "ungrown" are lowercase words in the
+		// middle of it — which is why the placeholder is typed raw rather than category_name.
+		check("开关名中间夹小写词也能捕到", "§cConfirm breaking ungrown Mutations are now enabled!",
+			Surface.CHAT, "§c打断未成熟变异作物前先确认已开启!");
+		// The colours differ between the two menus and each keeps its own: the main menu draws the name
+		// grey behind the mark, the sub-menu draws it green-and-yellow, and the record's segments do not
+		// repaint a row the server sent differently.
+		check("勾号不算类别名的一部分", "§a✔ §7API: Collections", Surface.ITEM, "§a✔ §7API: 收藏品");
+		check("叉号同理", "§c✖ §7API: Collections", Surface.ITEM, "§c✖ §7API: 收藏品");
+		check("子菜单里同一行没有记号", "§aAPI: §eCollections", Surface.ITEM, "§aAPI: §e收藏品");
 		check("化石物品名", "§6Tusk Fossil", Surface.ITEM, "§6象牙化石");
 		check("化石物品名(另一种)", "§6Clubbed Fossil", Surface.ITEM, "§6棒状化石");
 		checkTooltipName("化石名带英文对照", "§6Tusk Fossil", "§6象牙化石（Tusk Fossil）", true);
 		// The date reads as Chinese does: the year first, then the solar term and the day.
 		check("空岛菜单日期语序", "§7Date: §a10th Autumn 510", Surface.ITEM,
 			"§7日期: 第 §a510 年 · 秋分 10 日");
+
+		// ---- the 2026-08-31 session: an item's stat line once it has a reforge on it ----
+		// The bonus brackets are the normal case, not the exception — an item with nothing on it is a
+		// freshly crafted one. These placeholders were typed `number`, which stops at the first value,
+		// so every real item's stat lines missed their record. The brackets keep the colours the
+		// server sent them in because a placeholder's value is copied across verbatim.
+		check("属性行带一个加成括号", "§7Damage: §c+285 §9(+165)", Surface.ITEM, "§7伤害: §c+285 §9(+165)");
+		check("属性行带四个加成括号", "§7Strength: §c+261 §e(+30) §9(+199) §d(+32) §8(+1,119.69)",
+			Surface.ITEM, "§7力量: §c+261 §e(+30) §9(+199) §d(+32) §8(+1,119.69)");
+		check("属性行没有加成括号时照旧", "§7Intelligence: §b+110", Surface.ITEM, "§7智力: §b+110");
+
+		// ---- the 2026-08-31 session: one template per upgrade *line*, not per upgrade *name* ----
+		// Sixteen account/profile upgrades share four line shapes. Spelling a name into each shape is
+		// what left the menu Chinese for whichever upgrade the capturing player happened to be running.
+		check("升级状态行的升级名走词表", "§7Profile: §aGuests Limit I §7(§e47 Hours§7)", Surface.ITEM,
+			"§7存档: §a访客上限 I §7(§e47 小时§7)");
+		check("同一行换一个升级名照样翻", "§7Account: §dHeart of the Mountain I §7(§e5 Days§7)",
+			Surface.ITEM, "§7账号: §d山峦之心 I §7(§e5 天§7)");
+		check("账号升级不可与合作成员叠加", "§7Does NOT impact co-op partners.", Surface.ITEM,
+			"§7不可与合作成员叠加。");
+		check("升级历史的时间走 time 占位符", "§82m ago §binkkni §eclaimed §aMinion Slots V", Surface.ITEM,
+			"§82分前 §binkkni §e领取了§a小人槽位 V");
+		check("刚发生的升级历史写 now", "§8now §binkkni §estarted §aGuests Limit I", Surface.ITEM,
+			"§8刚刚 §binkkni §e开始升级§a访客上限 I");
+		check("Tab 页脚的升级行", "§eGuests Limit I §f47 Hours", Surface.TABLIST, "§e访客上限 I §f47 小时");
+		check("开始升级的聊天广播", "§eYou started the §aGuests Limit I §eupgrade!", Surface.CHAT,
+			"§e你开始了§a访客上限 I§e 升级!");
+		// Written singular, the template only ever matched the tier that happened to give one slot.
+		check("每级槽位数是复数写法", "§7Each tier: §a+2 slots", Surface.ITEM, "§7每级: §a+2 个槽位");
+		check("同一条也管单数", "§7Each tier: §a+1 slot", Surface.ITEM, "§7每级: §a+1 个槽位");
+
+		// ---- the 2026-08-31 session: the month in the Bingo menus ----
+		// Two paths, one译名: the title's month is a placeholder value out of Terms.json, the item
+		// subtitle is a whole line out of _shared/Months.json. Both have to say 2026 年 9 月.
+		check("宾果菜单标题的月份", "Bingo - September 2026", Surface.GUI_TITLE, "宾果 - 2026 年 9 月");
+		check("宾果格子副标题的月份", "§8September 2026", Surface.ITEM, "§82026 年 9 月");
 
 		// ---- the English kept beside the Chinese, which is what the Bazaar is searched by ----
 		report("物品名带上英文对照(颜色码不进括号)",
@@ -890,13 +1026,98 @@ public final class TranslationHarness {
 
 			if (found == null) {
 				shadowed.add(sample[3] + "#" + sample[2] + " 没有任何记录应答");
-			} else if (!acceptable.contains(found.id())) {
+			} else if (!acceptable.contains(found.id()) && !spellsOutTheSample(found, sample[4])) {
 				shadowed.add(sample[3] + "#" + sample[2] + " 被 " + found.sourceFile() + "#" + found.id() + " 顶掉");
 			}
 		}
 
 		report("语料自查:每条已翻译记录都能应答自己(" + samples.size() + " 条)", shadowed.isEmpty(),
 			String.join("; ", shadowed.subList(0, Math.min(shadowed.size(), 8))));
+	}
+
+	/**
+	 * Whether the record that won spells the sample out letter for letter, with no placeholder of its
+	 * own — the specific record beating the general one, which is the corpus doing what it meant to.
+	 *
+	 * <p>This became worth saying once {@link #sampleValue} started feeding a record's real
+	 * {@code example} instead of {@code 1}. {@code "Fuel Tank: %s"} has {@code example: "Not Installed"}
+	 * and is filled in as {@code "Fuel Tank: Not Installed"} — which
+	 * {@code Divan's_Drill.json#divan_s_drill_fuel_tank_not_installed} writes out as literal text,
+	 * deliberately: an uninstalled part is translated, an installed part's name is a proper noun, and
+	 * the gloss on the shared record says so ("两种情况分开处理"). The exact record has to win there, and
+	 * the general one is not shadowed by it — every other value still reaches the general record.
+	 *
+	 * <p>The template is checked for a placeholder rather than just compared for equality, so this
+	 * cannot excuse a genuine rival: two templates that both hold a {@code %s} and fit each other's
+	 * text are the case {@link #checkNoRivalRecords} exists for and are still reported here.
+	 */
+	private static boolean spellsOutTheSample(TranslationEntry found, String sample) {
+		return found.template().indexOf('%') < 0 && found.template().equals(sample);
+	}
+
+	/**
+	 * Every placeholder the engine cannot bound by its {@code type} has an {@code example} to be
+	 * bounded by instead.
+	 *
+	 * <p>A {@code type} of {@code raw} — or no {@code placeholders} entry at all — compiles to
+	 * {@link Capture#PHRASE}, which accepts any value that is not a whole sentence. That is loose
+	 * enough for a record to answer for a line it knows nothing about: {@code "Gemstones: %s"}, written
+	 * about the sockets on a drill, matched the Glacite Tunnels pity row {@code "Gemstone: 8-10"} and
+	 * drew it as 宝石槽, while the fully-Chinese result told the capture there was nothing to report.
+	 * {@link io.github.bingkkni.skyzh.text.ValueShape} closes that by holding the value to the kind of
+	 * thing the record's own {@code example} is.
+	 *
+	 * <p>Which only works while the examples are there. They are, today — every one of the corpus's
+	 * {@code raw} placeholders carries one — and a record added tomorrow without one would compile to
+	 * the old unbounded {@code PHRASE} and reopen the hole for exactly one line, silently, in the one
+	 * failure mode the capture cannot see. So the precondition is a build failure rather than a habit.
+	 */
+	private static void checkPhrasePlaceholdersHaveExamples(Map<String, JsonObject> files) {
+		List<String> unbounded = new ArrayList<>();
+
+		for (String relative : new TreeSet<>(files.keySet())) {
+			if (surfaceOf(relative) == null) {
+				continue;
+			}
+
+			for (JsonObject record : recordsOf(files.get(relative))) {
+				if (record.has("ref") || !record.has("placeholders")
+					|| !record.get("placeholders").isJsonArray()) {
+					continue;
+				}
+
+				// Only records that become an entry. A `translate: false` proper noun and a template
+				// that is nothing but its placeholder are both discarded by TranslationEntry#compile,
+				// so neither can match anything and neither has a value to be bounded — demanding an
+				// example there would be asking a translator to document a line the engine never reads.
+				if (falsey(record, "translate") || !hasChinese(record)) {
+					continue;
+				}
+
+				JsonArray declared = record.getAsJsonArray("placeholders");
+
+				for (int i = 0; i < declared.size(); i++) {
+					if (!declared.get(i).isJsonObject()) {
+						continue;
+					}
+
+					JsonObject placeholder = declared.get(i).getAsJsonObject();
+
+					if (Capture.of(text(placeholder, "type")) != Capture.PHRASE) {
+						continue;
+					}
+
+					if (text(placeholder, "example").isEmpty()) {
+						unbounded.add(relative + "#" + id(record) + " 的 "
+							+ (text(placeholder, "token").isEmpty() ? "%s" : text(placeholder, "token"))
+							+ " 是 raw 类型却没写 example,占位符将不受种类约束");
+					}
+				}
+			}
+		}
+
+		report("raw 占位符都有 example 可供约束(" + unbounded.size() + " 处缺失)", unbounded.isEmpty(),
+			String.join("\n      ", unbounded));
 	}
 
 	/**
@@ -1004,7 +1225,7 @@ public final class TranslationHarness {
 		for (JsonElement element : source.getAsJsonArray("segments")) {
 			JsonObject segment = element.getAsJsonObject();
 			shape.append(text(segment, "text")).append('\u0000')
-				.append(falsey(segment, "omit") ? text(segment, "zh") : "(omit)").append('\u0000')
+				.append(truthy(segment, "omit") ? "(omit)" : text(segment, "zh")).append('\u0000')
 				.append(segment.has("order") ? segment.get("order").getAsInt() : -1).append('\u0001');
 		}
 
@@ -1233,6 +1454,73 @@ public final class TranslationHarness {
 		report("segments[].order 是一个完整排列", broken.isEmpty(), String.join("\n      ", broken));
 	}
 
+	/**
+	 * Reading the segments in the order they will be drawn spells the record's own {@code zh}.
+	 *
+	 * <p>A complete permutation is not the same thing as the right permutation. {@code order} can be a
+	 * flawless 0..n-1 and still put the words in an order nobody meant: Bingo_Card.json's
+	 * {@code bingo_goal_wear_lapis_armor} drew 青金石套装穿戴的 4 件部件。 while its {@code zh} read
+	 * 穿戴青金石套装的 4 件部件。, and {@code bingo_goal_kill_endermen} drew 在 8 10 只末影人秒内击杀
+	 * and lost its full stop on the way (2026-08-30). Both passed every check there was, because the
+	 * flat {@code zh} — the one a translator reads back to see whether the sentence is right — was
+	 * never compared against what the segments actually build.
+	 *
+	 * <p>Only records that write {@code zh} and {@code order} together are compared. An empty
+	 * {@code zh} beside a filled {@code segments} array is the ordinary way to say "the segments are
+	 * the translation", and a record whose Chinese follows the English order needs no {@code order} at
+	 * all, so neither is a disagreement.
+	 */
+	private static void checkOrderedSegmentsSpellTheTranslation(Map<String, JsonObject> files) {
+		List<String> broken = new ArrayList<>();
+
+		for (String relative : new TreeSet<>(files.keySet())) {
+			for (JsonObject record : recordsOf(files.get(relative))) {
+				JsonObject source = resolveRef(record, files);
+
+				if (!source.has("segments") || !source.get("segments").isJsonArray()) {
+					continue;
+				}
+
+				String zh = text(source, "zh");
+
+				if (zh.isEmpty()) {
+					continue;
+				}
+
+				List<JsonObject> segments = new ArrayList<>();
+
+				for (JsonElement element : source.getAsJsonArray("segments")) {
+					segments.add(element.getAsJsonObject());
+				}
+
+				if (segments.isEmpty() || !segments.stream().allMatch(s -> s.has("order"))) {
+					continue;
+				}
+
+				segments.sort((left, right) -> Integer.compare(
+					left.get("order").getAsInt(), right.get("order").getAsInt()
+				));
+
+				StringBuilder drawn = new StringBuilder();
+
+				for (JsonObject segment : segments) {
+					if (truthy(segment, "omit")) {
+						continue;
+					}
+
+					drawn.append(text(segment, "zh"));
+				}
+
+				if (!drawn.toString().equals(zh)) {
+					broken.add(relative + '#' + id(record) + " 按 order 画出来是 [" + drawn
+						+ "]，但 zh 写的是 [" + zh + ']');
+				}
+			}
+		}
+
+		report("按 order 排好的 segments 拼出来就是 zh", broken.isEmpty(), String.join("\n      ", broken));
+	}
+
 	/** A half-width exclamation mark followed by more text has exactly one separating space. */
 	private static void checkBangSpacing(Map<String, JsonObject> files) {
 		List<String> broken = new ArrayList<>();
@@ -1261,7 +1549,7 @@ public final class TranslationHarness {
 					StringBuilder joined = new StringBuilder();
 
 					for (JsonObject segment : segments) {
-						if (falsey(segment, "omit")) {
+						if (truthy(segment, "omit")) {
 							continue;
 						}
 
@@ -1336,19 +1624,38 @@ public final class TranslationHarness {
 	 * record holding one looked to this check like a record nothing answers for — a failure in the
 	 * checker reported as a failure in the corpus, which is the worst way for a check to be wrong.
 	 * An ordinal is spelled {@code 27th} and refuses a bare digit for the same reason.
+	 *
+	 * <p>The record's own {@code example} comes first, for that reason taken one step further: a
+	 * {@code raw} placeholder is now bound to the kind of value its example is
+	 * ({@link io.github.bingkkni.skyzh.text.ValueShape}), so feeding {@code 1} to a record whose
+	 * example is {@code "[❥] [❥]"} would make the record refuse its own text and report a corpus that
+	 * is perfectly correct as broken. The example is what the corpus says belongs there, so it is what
+	 * this check puts there.
 	 */
 	private static String sampleValue(JsonObject source, int index) {
 		String type = "";
+		String example = "";
 
 		if (source.has("placeholders") && source.get("placeholders").isJsonArray()) {
 			JsonArray declared = source.getAsJsonArray("placeholders");
 
 			if (index >= 1 && index <= declared.size()) {
-				type = text(declared.get(index - 1).getAsJsonObject(), "type");
+				JsonObject placeholder = declared.get(index - 1).getAsJsonObject();
+				type = text(placeholder, "type");
+				example = text(placeholder, "example");
 			}
 		}
 
-		return switch (Capture.of(type)) {
+		Capture capture = Capture.of(type);
+
+		// Only for the kind that has no shape of its own. A NUMBER whose example reads "1,234" is
+		// still matched by "1", and taking the example there would test the corpus's prose rather
+		// than the engine's rule.
+		if (capture == Capture.PHRASE && !example.isEmpty() && capture.accepts(example)) {
+			return example;
+		}
+
+		return switch (capture) {
 			case TIER -> "XII";
 			case ORDINAL -> "27th";
 			default -> "1";
@@ -1465,6 +1772,21 @@ public final class TranslationHarness {
 		return object.has(key) && object.get(key).isJsonPrimitive() && !object.get(key).getAsBoolean();
 	}
 
+	/**
+	 * The opposite default from {@link #falsey}: the flag is off unless the record says otherwise.
+	 *
+	 * <p>{@code translate} is on unless a record turns it off, so asking about it wants {@code falsey}.
+	 * {@code omit} is the other way round — a segment is drawn unless it says {@code "omit": true} —
+	 * and reading it with {@code falsey} inverts the answer: every ordinary segment looks omitted and
+	 * every omitted one looks ordinary. That is how {@code 感叹号后的正文都有空格} came to rebuild a
+	 * line out of the <em>English</em> of the segment the Chinese drops, and fail a record that renders
+	 * correctly in game (Bingo_Card.json#bingo_card_community_diagonal_hint_1, 2026-08-30). The engine
+	 * itself has always read the flag the right way round, see {@code TranslationLoader} line 262.
+	 */
+	private static boolean truthy(JsonObject object, String key) {
+		return object.has(key) && object.get(key).isJsonPrimitive() && object.get(key).getAsBoolean();
+	}
+
 	private static String text(JsonObject object, String key) {
 		return object.has(key) && object.get(key).isJsonPrimitive() ? object.get(key).getAsString() : "";
 	}
@@ -1559,6 +1881,13 @@ public final class TranslationHarness {
 	 * @param coloured the same line as the game draws it
 	 */
 	private static void checkColourLoss(String name, String plain, String coloured, Surface surface, boolean expected) {
+		checkColourLossComponent(name, plain, Component.literal(coloured), surface, expected);
+	}
+
+	/** The same, for a line whose runs carry more than a colour — a hover, a click, an insertion. */
+	private static void checkColourLossComponent(
+		String name, String plain, Component coloured, Surface surface, boolean expected
+	) {
 		TranslationEntry entry = Translator.index().lookup(surface, plain);
 
 		if (entry == null) {
@@ -1566,12 +1895,32 @@ public final class TranslationHarness {
 			return;
 		}
 
-		StyledText styled = StyledText.of(Component.literal(coloured));
+		StyledText styled = StyledText.of(coloured);
 		Matcher match = entry.match(styled.plain());
 		boolean actual = match != null && entry.losesColour(styled, match);
 
 		report(name, match != null && actual == expected,
 			"匹配=" + (match != null) + " 期望颜色丢失=" + expected + " 实际=" + actual);
+	}
+
+	private static void checkLayout(
+		Map<String, JsonObject> files, String file, String id, String expected
+	) {
+		JsonObject source = files.get(file);
+		JsonObject found = null;
+
+		if (source != null) {
+			for (JsonObject record : recordsOf(source)) {
+				if (id.equals(text(record, "id"))) {
+					found = record;
+					break;
+				}
+			}
+		}
+
+		String actual = found == null ? "" : text(found, "layout");
+		report("居中布局标记 " + id, expected.equals(actual),
+			found == null ? "未找到记录" : "期望 [" + expected + "] 实际 [" + actual + "]");
 	}
 
 	private static void checkNoMatch(String name, String input, Surface surface) {

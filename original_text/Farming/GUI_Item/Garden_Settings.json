@@ -1,0 +1,116 @@
+{
+  "source": "SkyZH runtime capture (2026-08-29, Garden settings session)",
+  "fetched_at": "2026-08-29",
+  "verified_ingame": true,
+  "gui_context": "花园设置菜单(Garden Settings)里的格子。只在私人岛屿和花园里能打开,所以归 Farming;文件按采集面放在 GUI_Item——加载时只有 GUI_Item 这一层决定它答哪个面,玩法目录是给人看的。",
+  "source_note": [
+    "三条 Visits 行是一条记录加词表:服务器发的是 “§aVisits: §b<谁>”,冒号后那一截是取值,收进 _shared/Terms.json 而不是给每个取值各写一条记录。",
+    "描述行的完整说明取自维基 Settings 页(hypixelskyblock.minecraft.wiki/w/Settings,2026-08-29 查证)。"
+  ],
+  "lines": [
+    {
+      "id": "garden_visits_category",
+      "context": "花园设置里控制谁能来访的三个开关行",
+      "raw": "§aVisits: §b%1$s",
+      "text": "Visits: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "允许来访的人群，译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Anyone"
+        }
+      ],
+      "gloss": "实测三个取值:Anyone / Friends / Guild,各是一行独立开关(维基 Settings 页也只列了这三条)。取值定 category_name 而不是 raw:它们都是单个通用词,raw 的形状规则会让它们在别处的宽松取值里被误换——见 Terms.json 的 category_name_note。冒号后的空格不写进译文,由引擎在接缝处补(见 text/TranslationEntry.Seam)。",
+      "translate": true,
+      "zh": "来访: %1$s",
+      "segments": [
+        { "color": "§a", "text": "Visits: ", "zh": "来访: " },
+        { "color": "§b", "text": "%1$s", "zh": "%1$s" }
+      ]
+    },
+    {
+      "id": "garden_visits_anyone_desc_1",
+      "context": "「来访: 任何人」那一行的说明,分两行画",
+      "raw": "§7Allow anyone to /visit your island. If",
+      "text": "Allow anyone to /visit your island. If",
+      "placeholders": [],
+      "gloss": "英文因排版断成两行,中文并成一句写在首行,尾行按 README 的规定标 continuation。/visit 是指令,原样保留。",
+      "translate": true,
+      "zh": "允许任何人 /visit 你的岛屿。关掉之后你仍然可以用 /invite 邀请他们。"
+    },
+    {
+      "id": "garden_visits_anyone_desc_2",
+      "context": "承接上一行的尾巴",
+      "raw": "§7disabled, you may still /invite them.",
+      "text": "disabled, you may still /invite them.",
+      "placeholders": [],
+      "gloss": "整句已在 garden_visits_anyone_desc_1 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "garden_visits_friends_desc",
+      "context": "「来访: 好友」那一行的说明",
+      "raw": "§7Allow friends to /visit your island.",
+      "text": "Allow friends to /visit your island.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "允许好友 /visit 你的岛屿。"
+    },
+    {
+      "id": "garden_visits_guild_desc_1",
+      "context": "「来访: 公会」那一行的说明,分两行画",
+      "raw": "§7Allow guild members to /visit your",
+      "text": "Allow guild members to /visit your",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "允许公会成员 /visit 你的岛屿。"
+    },
+    {
+      "id": "garden_visits_guild_desc_2",
+      "context": "承接上一行的尾巴",
+      "raw": "§7island.",
+      "text": "island.",
+      "placeholders": [],
+      "gloss": "整句已在 garden_visits_guild_desc_1 里译完。这一行的英文只有一个词,别的文件里也可能出现同样的一行——它答的是 ITEM 面上任何一行只有 “island.” 的文本,而在这一面上那只有这一处。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "garden_plot_holograms_desc_1",
+      "context": "「地块悬浮字」那一行的说明,分两行画",
+      "raw": "§7Disable the holograms at the gates",
+      "text": "Disable the holograms at the gates",
+      "placeholders": [],
+      "gloss": "开关名那一份在 Hub_General/GUI_Item/Settings.json#plot_holograms(地块悬浮字)。原文说的是「关掉」,因为这一行描述的是点下去会发生什么,不是开关当前的状态。",
+      "translate": true,
+      "zh": "关掉花园各块地之间那些门上的悬浮字。"
+    },
+    {
+      "id": "garden_plot_holograms_desc_2",
+      "context": "承接上一行的尾巴",
+      "raw": "§7between garden plots.",
+      "text": "between garden plots.",
+      "placeholders": [],
+      "gloss": "整句已在 garden_plot_holograms_desc_1 里译完。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "garden_applies_to_coop",
+      "context": "花园设置对合作伙伴同样生效的提醒",
+      "raw": "§bApplies to all co-op partners!",
+      "text": "Applies to all co-op partners!",
+      "placeholders": [],
+      "gloss": "Co-op 按 GLOSSARY.md 统一译「合作」。",
+      "translate": true,
+      "zh": "对所有合作伙伴同样生效!"
+    }
+  ]
+}

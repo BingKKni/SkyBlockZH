@@ -7,8 +7,10 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.AtomicMoveNotSupportedException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import net.fabricmc.loader.api.FabricLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -73,9 +75,10 @@ public final class SkyZHConfig {
 	/**
 	 * Where capture writes, relative to the game directory.
 	 *
-	 * <p>Two directories are made under it: {@code untranslated/} for lines nothing answered for, and
-	 * {@code mixed/} for lines a record answered for and still left half English. Inside each, the
-	 * layout is {@code original_text/}'s own — gameplay, then surface, then name.
+	 * <p>Three directories are made under it: {@code untranslated/} for lines nothing answered for,
+	 * {@code mixed/} for lines a record answered for and still left half English, and {@code colour/}
+	 * for translated lines whose source changed colour at boundaries the record flattened. Inside each,
+	 * the layout is {@code original_text/}'s own — gameplay, then surface, then name.
 	 */
 	public String captureDirectory = "skyzh-capture";
 
@@ -137,19 +140,20 @@ public final class SkyZHConfig {
 		return generation;
 	}
 
-	public void save() {
-		generation++;
-
-		if (FILE == null) {
-			return;
-		}
-
+	/**
+	 * Saves a user-facing change and reports write failures to the caller.
+	 *
+	 * <p>The generation advances only after the file has been written. Runtime caches use it as their
+	 * invalidation signal, so a failed write must not make this session and the next one disagree about
+	 * which settings are current.
+	 */
+	public void saveChecked() throws IOException {
 		JsonObject help = new JsonObject();
 		help.addProperty("enabled", "是否启用 Mod 功能。关闭将不翻译任何文本。");
 		help.addProperty("translateSkyBlockName", "是否翻译 SkyBlock 玩法名。翻译后的文本为「空岛生存」。");
 		help.addProperty("showOriginal", "启用翻译对比：在容器标题和物品名上额外标识英文，如「收藏品（Collections）」「秘银镐（Mithril Pickaxe）」。集市和拍卖行是按英文名搜索的，关掉之后就搜不到自己手里的物品了。");
 		help.addProperty("captureUntranslated", "【给翻译者用，普通玩家请保持关闭】把游戏里还没翻译、以及翻译了但仍中英混杂的文本写到硬盘上，供补全语料用。只采集服务器发来的原文，不会采集其他 Mod 的文本，也不会改变游戏里显示的任何内容。打开它时，如果装了 hypixel-mod-api，会向服务器订阅一次位置事件（用来判断采到的文本属于哪个玩法）——这是本 Mod 唯一一处往外发包的地方，关掉就不发。");
-		help.addProperty("captureDirectory", "采集输出目录，相对于游戏目录。里面按 untranslated/ 与 mixed/ 分两堆，各自再按玩法/来源/名字分目录，和 original_text/ 的结构一致。");
+		help.addProperty("captureDirectory", "采集输出目录，相对于游戏目录。里面按 untranslated/、mixed/ 与 colour/ 分三类，各自再按玩法/来源/名字分目录，和 original_text/ 的结构一致。");
 		help.addProperty("captureServer", "只在这个服务器上采集（按域名后缀匹配）。留空表示不检查服务器地址，只靠计分板判断是不是在 SkyBlock —— 用代理连服的时候才需要留空。");
 
 		JsonObject json = new JsonObject();
@@ -161,13 +165,37 @@ public final class SkyZHConfig {
 		json.addProperty("captureDirectory", this.captureDirectory);
 		json.addProperty("captureServer", this.captureServer);
 
-		try {
+		if (FILE != null) {
 			Files.createDirectories(FILE.getParent());
+			Path temporary = FILE.resolveSibling(FILE.getFileName() + ".tmp");
 
-			try (Writer writer = Files.newBufferedWriter(FILE, StandardCharsets.UTF_8)) {
+			try (Writer writer = Files.newBufferedWriter(temporary, StandardCharsets.UTF_8)) {
 				new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(json, writer);
 			}
+
+			try {
+				Files.move(temporary, FILE, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING);
+			} catch (AtomicMoveNotSupportedException e) {
+				Files.move(temporary, FILE, StandardCopyOption.REPLACE_EXISTING);
+			}
+		}
+
+		generation++;
+	}
+
+	/**
+	 * Saves without player-facing feedback, as required by the Mod Menu close path.
+	 *
+	 * <p>The screen has already changed this object by the time it closes. If persistence fails, those
+	 * values still govern the current session, so caches must be invalidated even though the next launch
+	 * will fall back to the old file. Chat commands use {@link #saveChecked()} directly and roll their
+	 * value back instead, which is why that method advances the generation only after a successful write.
+	 */
+	public void save() {
+		try {
+			saveChecked();
 		} catch (IOException e) {
+			generation++;
 			LOGGER.warn("写入 {} 失败，本次修改不会被记住：{}", FILE, e.toString());
 		}
 	}

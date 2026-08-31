@@ -2,7 +2,7 @@
   "source": "运行时采集(logs/skyzh-capture,2026-08-23)",
   "fetched_at": "2026-08-23",
   "verified_ingame": true,
-  "gui_context": "Hub 内持续显示在屏幕上方的目标提示。",
+  "gui_context": "持续显示在屏幕上方的目标提示。这一条此前写的是「Hub 内」,2026-08-29 订正:温室那个目标是在丛林和水晶洞穴采到的,目标提示跟着任务走、不跟着岛屿走,所以这个文件放在 Hub_General 是按「不属于任何单一玩法」归的,不是按「只在 Hub 出现」归的。",
   "bars": [
     {
       "id": "hub_objective_give_rose_red_dye_to_marco",
@@ -23,6 +23,28 @@
           "color": "§e",
           "text": "Give Rose Red Dye to Marco",
           "zh": "把玫瑰红染料交给 Marco"
+        }
+      ]
+    },
+    {
+      "id": "hub_objective_spread_a_mutation_in_the_greenhouse",
+      "context": "温室任务的当前目标(2026-08-29 实测于丛林、水晶洞穴)",
+      "raw": "§fObjective: §eSpread a mutation in the Greenhouse",
+      "text": "Objective: Spread a mutation in the Greenhouse",
+      "placeholders": [],
+      "gloss": "Sam 的温室新手任务「Rooting for You」里的一步,砸掉一株 Dustgrain 就算完成(已查社区 wiki 的 Mutations / Greenhouse 页)。Spread 用游戏自己的说法「扩散」:温室机制里这一步官方叫 Spreading Conditions,不是「传播」也不是「蔓延」。Mutation 作「变异作物」——单说「变异」在中文里是个状态而不是个能被扩散的东西。Greenhouse 沿用已有译名「温室」(见 Hub_General/GUI_Item/Booster_Cookie.json)。侧边栏上同一个目标只显示正文,见 Hub_General/ScoreBoard/Common_Sidebar.json 的 sb_objective_spread_a_mutation,两条译文要对得上。",
+      "translate": true,
+      "zh": "目标: 在温室里扩散一株变异作物",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Objective: ",
+          "zh": "目标: "
+        },
+        {
+          "color": "§e",
+          "text": "Spread a mutation in the Greenhouse",
+          "zh": "在温室里扩散一株变异作物"
         }
       ]
     }

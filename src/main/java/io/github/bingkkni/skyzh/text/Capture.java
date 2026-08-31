@@ -80,8 +80,16 @@ public enum Capture {
 	 */
 	PHRASE("[^\\n]{1,64}?");
 
-	/** Lowercase words that belong inside a name rather than marking the start of a sentence. */
-	private static final Set<String> CONNECTIVES = Set.of("of", "the", "and", "in", "on", "at", "to", "for", "a");
+	/**
+	 * Lowercase words that belong inside a name rather than marking the start of a sentence.
+	 *
+	 * <p>{@code &} is on the list for the same reason {@code and} is, and stands for it: Hypixel
+	 * names several of its own menus that way — the Bazaar's "Woods &amp; Fishes" category, the
+	 * Forge's "Essence &amp; Salvage". Without it {@code Bazaar ➜ %s} refused the category outright
+	 * and the whole title stayed English. It is only ever allowed between two words, never at either
+	 * end, so a fragment beginning or ending on the ampersand is still not a name.
+	 */
+	private static final Set<String> CONNECTIVES = Set.of("of", "the", "and", "in", "on", "at", "to", "for", "a", "&");
 
 	private final String regex;
 
@@ -163,6 +171,11 @@ public enum Capture {
 			// readings of the clock rather than one duration, so the gap between two translated units
 			// closes up. Anything else between them is not a gap and is kept: a value that is not a
 			// duration at all comes back exactly as it arrived.
+			//
+			// The number and its unit are run together for the same reason, which is the one place
+			// this mod departs from "a space between a digit and a Chinese word": 02小时24分56秒 is a
+			// clock reading, and spacing it out makes four readings of one. checkTranslations pins
+			// both halves of that down — see 多段时长中间不留空格.
 			if (!(cursor > 0 && !between.isEmpty() && between.isBlank())) {
 				translated.append(between);
 			}
@@ -264,8 +277,29 @@ public enum Capture {
 		return true;
 	}
 
+	/**
+	 * Whether a word could open or close a name.
+	 *
+	 * <p>The {@code > 0x7F} clause is there for the words this project is full of — accented names
+	 * like Déjeuner, and Chinese, which has no case at all. It is deliberately generous, and a list
+	 * marker is the one thing it is too generous about: a bullet is above {@code 0x7F} as well, so
+	 * {@code ✔ API:} read as a two-word name. That is not a hypothetical. The Settings menu draws
+	 * every row as a mark and a name, and with the tick allowed inside a capture the template
+	 * {@code %1$s Collections} matched "✔ API: Collections" and beat the record that spells that row
+	 * out in full — the whole line is tried before the mark is stepped over, on purpose, so that a
+	 * record may always override a shape. The tick became part of a "category name", and the row
+	 * rendered as "✔ API:收藏品" out of the collections menu instead of "✔ API: 收藏品".
+	 *
+	 * <p>So a mark is refused here rather than in {@link LineShape}, which is right to keep offering
+	 * the unpeeled line: the mark says where the row sits in a list, and no name has ever begun on
+	 * one.
+	 */
 	private static boolean startsName(String word) {
 		char first = word.charAt(0);
+
+		if (LineShape.isBullet(first)) {
+			return false;
+		}
 
 		return Character.isUpperCase(first) || Character.isDigit(first) || first > 0x7F;
 	}

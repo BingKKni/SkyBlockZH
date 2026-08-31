@@ -58,29 +58,39 @@
           "example": "10"
         }
       ],
-      "gloss": "英文“coins per kill”在句尾,中文把“每次击杀”提到了数值前面。",
+      "gloss": "英文“coins per kill”在句尾,中文把“每次击杀”提到了数值前面。per kill 属于原文最后的灰色片段,不能塞进只含分隔加号的深灰色片段;将同色的 coins / per kill 拆开并用 order 调整语序,才能同时保留文字和颜色。",
       "translate": true,
       "zh": "+%1$s 连杀 每次击杀 +%2$s 硬币",
       "segments": [
         {
           "color": "§a",
           "text": "+%1$s Kill Combo ",
-          "zh": "+%1$s 连杀"
+          "zh": "+%1$s 连杀",
+          "order": 0
         },
         {
           "color": "§8",
           "text": "+",
-          "zh": " 每次击杀 +"
+          "zh": " +",
+          "order": 2
         },
         {
           "color": "§6",
           "text": "%2$s ",
-          "zh": "%2$s "
+          "zh": "%2$s ",
+          "order": 3
         },
         {
           "color": "§7",
-          "text": "coins per kill",
-          "zh": "硬币"
+          "text": "coins ",
+          "zh": "硬币",
+          "order": 4
+        },
+        {
+          "color": "§7",
+          "text": "per kill",
+          "zh": " 每次击杀",
+          "order": 1
         }
       ]
     },
@@ -98,7 +108,7 @@
       ],
       "gloss": "",
       "translate": true,
-      "zh": "你的连杀中断了! 本次最高连杀 %s。"
+      "zh": "连杀中断! 本次最高连杀数为 %s。"
     }
   ]
 }

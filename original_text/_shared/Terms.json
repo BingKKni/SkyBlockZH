@@ -1416,6 +1416,14 @@
       "note": "精华种类名"
     },
     {
+      "en": "Fossil",
+      "zh": "化石",
+      "types": [
+        "category_name"
+      ],
+      "note": "Bazaar 精华分类的取值。已查证 hysb.wiki/w/Essence(2026-08-29)确有 Fossil Essence;限定 category_name,只用于「%1$s Essence」这类分类名,避免把其他语境里的 Fossil 误换。"
+    },
+    {
       "en": "Gold Essence",
       "zh": "黄金精华",
       "note": "精华种类名"
@@ -1436,6 +1444,14 @@
       "note": "精华种类名"
     },
     {
+      "en": "Wither",
+      "zh": "凋零",
+      "types": [
+        "category_name"
+      ],
+      "note": "Bazaar 精华分类的取值。已查证 hysb.wiki/w/Essence(2026-08-29)确有 Wither Essence;限定 category_name,只用于「%1$s Essence」这类分类名。"
+    },
+    {
       "en": "Spider Essence",
       "zh": "蜘蛛精华",
       "note": "精华种类名"
@@ -1446,14 +1462,38 @@
       "note": "精华种类名"
     },
     {
+      "en": "Undead",
+      "zh": "亡灵",
+      "types": [
+        "category_name"
+      ],
+      "note": "Bazaar 精华分类的取值。已查证 hysb.wiki/w/Essence(2026-08-29)确有 Undead Essence;限定 category_name,只用于「%1$s Essence」这类分类名。"
+    },
+    {
       "en": "Dragon Essence",
       "zh": "巨龙精华",
       "note": "精华种类名"
     },
     {
+      "en": "Dragon",
+      "zh": "巨龙",
+      "types": [
+        "category_name"
+      ],
+      "note": "Bazaar 精华分类的取值。已查证 hysb.wiki/w/Essence(2026-08-29)确有 Dragon Essence;限定 category_name,只用于「%1$s Essence」这类分类名。"
+    },
+    {
       "en": "Crimson Essence",
       "zh": "绯红精华",
       "note": "精华种类名"
+    },
+    {
+      "en": "Crimson",
+      "zh": "绯红",
+      "types": [
+        "category_name"
+      ],
+      "note": "Bazaar 精华分类的取值。已查证 hysb.wiki/w/Essence(2026-08-29)确有 Crimson Essence;限定 category_name,只用于「%1$s Essence」这类分类名。"
     },
     {
       "en": "Tusk Fossil",
@@ -1594,6 +1634,16 @@
       "en": "Glacite Maniac",
       "zh": "极冰狂人",
       "note": "同上,单数写法"
+    },
+    {
+      "en": "Frozen Steve",
+      "zh": "冰冻 Steve",
+      "note": "Jerry 工坊(冬季活动)的海洋生物,钓上来的。Frozen 是普通词作「冰冻」,Steve 是人名保留英文,按 GLOSSARY.md 逐段处理;英文和汉字之间的空格由引擎补(TranslationEntry.Seam),表里不写"
+    },
+    {
+      "en": "Yeti",
+      "zh": "雪怪",
+      "note": "Jerry 工坊(冬季活动)的稀有海洋生物。取「雪怪」而不是「雪人」:Snowman(雪傀儡)已经占了「雪人」,同一个活动里两个都会出现。同一批里的 Grinch / Reindrake / Frosty 按本文件 todo 不进表(自造词或专有角色名,保留英文)"
     },
     {
       "en": "Glacite Bowman",
@@ -1760,7 +1810,7 @@
     },
     {
       "en": "Election Booth Opens",
-      "zh": "投票站开放",
+      "zh": "选举开放",
       "note": "限时活动名。菜单格子那一份在 _shared/Event_Names.json,两边译名必须一致"
     },
     {
@@ -2086,120 +2136,982 @@
     {
       "en": "Bazaar",
       "zh": "集市",
-      "types": ["category_name"],
+      "types": [
+        "category_name"
+      ],
       "note": "菜单分类名,补的是 'Bazaar Settings' 这类 '%1$s Settings' 记录里被捕到的前半截(2026-08-27 实测渲染成「Bazaar 设置」)。**限定 category_name**:GLOSSARY.md 有一个把自己改名叫 Bazaar 的 NPC 角色(台词里明说这不是真名),那处按专有绰号保留英文,不能被这条词误翻。"
     },
     {
       "en": "Reset",
       "zh": "重置",
-      "types": ["category_name"],
+      "types": [
+        "category_name"
+      ],
       "note": "菜单分类名,补的是拍卖行/集市设置界面里的 'Reset Settings'(2026-08-27 实测渲染成「Reset 设置」)。限定 category_name,免得这个短词在别处的普通 raw 值里误替换。"
     },
     {
       "en": "Recipe Book",
       "zh": "配方书",
-      "types": ["category_name"],
+      "types": [
+        "category_name"
+      ],
       "note": "空岛菜单里的功能名,'%1$s Unlocked: %2$s%' 记录捕到的前半截(2026-08-27 实测渲染成「Recipe Book 解锁: 100%」)。已查社区 wiki(Recipe Book):它是空岛菜单的一个入口,里面列出非原版物品的合成配方,所以译「配方书」而不是「食谱」。和已有词条 Recipes(配方)是一处功能的两种写法。"
     },
     {
       "en": "Other Crystals",
       "zh": "其他水晶",
-      "types": ["category_name"],
+      "types": [
+        "category_name"
+      ],
       "note": "山之心界面里的入口名 'Your Other Crystals'(2026-08-27 实测)。指水晶残核那几颗主水晶之外的其余水晶,和已有词条 Crystal Nucleus(水晶核心)是同一界面里的两处。"
     },
     {
       "en": "Combat",
       "zh": "战斗",
-      "types": ["category_name"],
+      "types": [
+        "category_name"
+      ],
       "note": "宠物类别名,'%1$s Pet' 记录捕到的前半截(2026-08-27 实测渲染成「Combat 宠物」)。译法和动作栏经验条 hud_skill_xp_combat 的「战斗」、已有词条 Combat Settlement(战斗聚落)一致。限定 category_name:Combat 作为普通 raw 值出现的地方(如属性名)不该被这条动到。"
     },
     {
       "en": "Farming",
       "zh": "农业",
-      "types": ["category_name"],
+      "types": [
+        "category_name"
+      ],
       "note": "宠物类别名,同 Combat(2026-08-27 实测渲染成「Farming 宠物」)。译法和 hud_skill_xp_farming 的「农业」一致,不用「农场」——那是地名 Farm 的译法。"
     },
     {
       "en": "Enchanting",
       "zh": "附魔",
-      "types": ["category_name"],
+      "types": [
+        "category_name"
+      ],
       "note": "宠物类别名,和 Combat / Farming 同一处模板('%1$s Pet');2026-08-27 的采集在 observed 里同时见到 Combat 和 Enchanting 两个取值,一并补上。"
     },
     {
       "en": "Black Cat",
       "zh": "黑猫",
-      "types": ["mob_name"],
+      "types": [
+        "mob_name"
+      ],
       "note": "宠物名,'Selected pet: %s' 记录捕到的值(2026-08-27 实测保持英文)。已查社区 wiki(Black Cat Pet):万圣节活动里 Fear Mongerer 卖的战斗宠物,提升速度上限/魔法寻宝/宠物幸运。名字是通用词组成的普通名词,按 GLOSSARY.md「怪物名和物品名同一套规则」照常翻译,和 Enderman(末影人)、Glacite Golem(极冰石魔)一致。"
     },
     {
       "en": "Phoenix",
       "zh": "凤凰",
-      "types": ["mob_name"],
+      "types": [
+        "mob_name"
+      ],
       "note": "宠物名,同 Black Cat(2026-08-27 实测)。已查社区 wiki(Phoenix Pet):公共岛屿上任意怪物极低概率掉落的战斗宠物。Phoenix 是英语里本来就有的神话生物名,不是空岛自造专名,按 GLOSSARY.md §6 的判断标准照常翻译。"
     },
     {
       "en": "Foraging",
       "zh": "伐木",
-      "types": ["category_name"],
+      "types": [
+        "category_name"
+      ],
       "note": "技能名,补齐同一组分类名。译法和动作栏经验条 hud_skill_xp_foraging 一致。这一组词(技能名)会作为宠物类别、收藏品类别、小人种类、配方分类反复出现,原先只收了 Fishing / Mining 两个,同一个界面里就会出现「钓鱼宠物」和「Foraging 宠物」并排的中英混排。"
     },
     {
       "en": "Alchemy",
       "zh": "炼药",
-      "types": ["category_name"],
+      "types": [
+        "category_name"
+      ],
       "note": "技能名,同 Foraging。译法和 hud_skill_xp_alchemy 一致。"
     },
     {
       "en": "Taming",
       "zh": "驯养",
-      "types": ["category_name"],
+      "types": [
+        "category_name"
+      ],
       "note": "技能名,同 Foraging。译法和 hud_skill_xp_taming 一致。"
     },
     {
       "en": "Carpentry",
       "zh": "木工",
-      "types": ["category_name"],
+      "types": [
+        "category_name"
+      ],
       "note": "技能名,同 Foraging。译法和 hud_skill_xp_carpentry 一致。"
     },
     {
       "en": "Social",
       "zh": "社交",
-      "types": ["category_name"],
+      "types": [
+        "category_name"
+      ],
       "note": "技能名,同 Foraging。译法和 hud_skill_xp_social 一致。"
     },
     {
       "en": "Hunting",
       "zh": "狩猎",
-      "types": ["category_name"],
+      "types": [
+        "category_name"
+      ],
       "note": "技能名,同 Foraging。译法和 hud_skill_xp_hunting 一致。"
     },
     {
       "en": "Gaia Construct",
       "zh": "盖亚构造体",
-      "types": ["mob_name"],
+      "types": [
+        "mob_name"
+      ],
       "note": "怪物名。已查社区 wiki(hypixelskyblock.minecraft.wiki/wiki/Gaia_Construct):神话仪式(Mythological Ritual)期间用狮鹫铲挖狮鹫地穴挖出来的神话生物,实体是铁傀儡,会用闪电轰击地面、每 6 次命中才能受伤一次。"
     },
     {
       "en": "Cliffside",
       "zh": "崖壁",
-      "types": ["location_name"],
+      "types": [
+        "location_name"
+      ],
       "note": "地名 Cliffside Veins(崖壁矿脉)的前半截。**这是 matching_note 那条「不收半个名字」规则的唯一例外**,原因是这半截并非出现在同一行里:秘银美食家横幅太长时服务器会把地名折到下一条聊天消息,2026-08-27 实测发的是 '...from the Cliffside' / 'Veins. Bring 200...'。两条消息分别到达,没有记录能同时看到两半。两个半截都有译名,所以跨行读到的是「产自崖壁」+「矿脉的美味秘银」,和英文跨行读成 Cliffside Veins 一模一样——规则禁的是一半翻一半不翻拼出的中英混排,不是这种。限定 location_name,并且整条 'Cliffside Veins' 的词条仍然在表里,没折行时照旧整值命中。"
     },
     {
       "en": "Veins",
       "zh": "矿脉",
-      "types": ["location_name"],
+      "types": [
+        "location_name"
+      ],
       "note": "地名 Cliffside Veins 的后半截,理由见上面的 Cliffside 词条。「矿脉」在挖矿语境里单独出现也是这个词的正确译法,所以即使别处有 location_name 占位符捕到 Veins,译出来也是对的。"
     },
     {
       "en": "Empyrean Gaia Construct",
       "zh": "天穹盖亚构造体",
-      "types": ["mob_name"],
+      "types": [
+        "mob_name"
+      ],
       "note": "2026-08-27 在社区中心的死亡广播里实际出现的取值。Empyrean 是**神话生物的稀有度档位前缀**,不是名字的一部分——已查 wiki 的怪物档位表核实,同一只怪按玩家狮鹫宠物的稀有度分档,前缀依次是 Stalwart(稀有)/ Venerable(史诗)/ Exalted(传说)/ Empyrean(神话),Empyrean 是最高档(盖亚构造体的这一档是 325 级、350 万生命)。译名取「天穹」:Empyrean 本义是至高天,和 Exalted(崇高)、Venerable(尊古)、Stalwart(刚毅)一起构成一条递进的档位阶梯。词表是**整值精确匹配**,所以每个「档位前缀 + 怪物名」的组合要单独写一条(见 matching_note:只换掉前缀会拼出中英混排的半个名字)。这里只补了实测见到的这一条,其余组合等在游戏里真见到再按同一套前缀译名补,不要预先枚举。"
+    },
+    {
+      "en": "Glacial Cave",
+      "zh": "冰川洞穴",
+      "types": [
+        "location_name"
+      ],
+      "note": "Jerry 工坊(寒冬岛)的子地点,在里面挖冰、找冰层里埋的宝箱。已查证(hypixelskyblock.minecraft.wiki/w/Jerry's_Workshop,2026-08-29)。Glacial 是普通词作「冰川」,和挖矿玩法里自造的 Glacite→极冰是两个词,别混:极冰隧道在矮人矿井,这里是寒冬岛。"
+    },
+    {
+      "en": "Mount Jerry",
+      "zh": "Jerry 山",
+      "types": [
+        "location_name"
+      ],
+      "note": "Jerry 工坊的子地点,Jerry 季期间会喷发,涌出岩浆怪。按 GLOSSARY.md「带专有人名的地名:只翻通用词」,Jerry 是人名保留,Mount 作「山」。"
+    },
+    {
+      "en": "Jerry Pond",
+      "zh": "Jerry 池塘",
+      "types": [
+        "location_name"
+      ],
+      "note": "Jerry 工坊的子地点,可采冰、可钓寒冬海洋生物。同 Mount Jerry,只翻通用词。"
+    },
+    {
+      "en": "Sunken Jerry Pond",
+      "zh": "沉没的 Jerry 池塘",
+      "types": [
+        "location_name"
+      ],
+      "note": "Jerry 工坊的子地点,和 Jerry Pond 是两处,词表整值精确匹配所以各写一条。"
+    },
+    {
+      "en": "Reflective Pond",
+      "zh": "倒影池塘",
+      "types": [
+        "location_name"
+      ],
+      "note": "Jerry 工坊的子地点,可采冰、钓鱼,NPC Frozen Alex 在这里。Reflective 取水面倒映之意作「倒影」。"
+    },
+    {
+      "en": "Hot Springs",
+      "zh": "温泉",
+      "types": [
+        "location_name"
+      ],
+      "note": "Jerry 工坊的子地点,钓寒冬海洋生物的地方。原文复数,中文不体现数。"
+    },
+    {
+      "en": "Einary's Emporium",
+      "zh": "Einary 的商行",
+      "types": [
+        "location_name"
+      ],
+      "note": "Jerry 工坊里用北极星换东西的商店,同时也是一个子地点名(计分板地名行和动作栏都会出现)。译名与 Events/GUI_Title/Jerrys_Workshop.json 的菜单标题必须一致,那边已记明 Emporium 作「商行」而不是「商店」的理由(比 Shop 大一号,本项目 Brynmor's Shop 作「Brynmor 的商店」)。"
+    },
+    {
+      "en": "Gary's Shack",
+      "zh": "Gary 的小屋",
+      "types": [
+        "location_name"
+      ],
+      "note": "Jerry 工坊的子地点,NPC Gary 在这里。Shack 作「小屋」。"
+    },
+    {
+      "en": "Terry's Shack",
+      "zh": "Terry 的小屋",
+      "types": [
+        "location_name"
+      ],
+      "note": "Jerry 工坊的子地点,NPC Terry 在这里卖钓竿重铸石。"
+    },
+    {
+      "en": "Sherry's Showroom",
+      "zh": "Sherry 的展厅",
+      "types": [
+        "location_name"
+      ],
+      "note": "Jerry 工坊的子地点,NPC Sherry 在这里卖寒冬主题物品。Showroom 作「展厅」。"
+    },
+    {
+      "en": "Wizard Tower",
+      "zh": "巫师塔",
+      "types": [
+        "location_name"
+      ],
+      "note": "地名,通用词组成,按 README.md 5.5 翻译。已查证(hypixelskyblock.minecraft.wiki/w/Wizard_Tower,2026-08-29):中心岛屿的子地点,同时是进入裂隙维度的入口,裂隙里同名的那一处用的是同一个英文名——一条词条同时管住中心和裂隙两边(2026-08-29 采集里动作栏和计分板都出现过)。"
+    },
+    {
+      "en": "Taylor's Shop",
+      "zh": "Taylor 的商店",
+      "types": [
+        "location_name"
+      ],
+      "note": "村庄里的子地点,已查证(hypixelskyblock.minecraft.wiki/w/Taylor's_Shop,2026-08-29)它是 Location 而不只是一个商店界面。按 GLOSSARY.md「带专有人名的地名:只翻通用词」,Taylor 是 NPC 人名保留,Shop 作「商店」——和表里 Gary's Shack=Gary 的小屋、Einary's Emporium=Einary 的商行、Jerry's Workshop=Jerry 的工坊 同一套写法。"
+    },
+    {
+      "en": "Settings",
+      "zh": "设置",
+      "note": "菜单入口/功能分类名。集市按分类浏览的标题 “Bazaar ➜ %s” 会把它当分类名塞进来(2026-08-29 实测),译出来才不会是「集市 ➜ Settings」。不限定 types:这个词在任何分类名或宽松取值的位置都该作「设置」。"
+    },
+    {
+      "en": "Personal",
+      "zh": "个人",
+      "types": [
+        "category_name"
+      ],
+      "note": "设置菜单的类别名,配 Hub_General/GUI_Item/Settings.json#settings_category 的 “%1$s Settings” 渲染成「个人设置」。已查证(hypixelskyblock.minecraft.wiki/w/Settings,2026-08-29)确有 Personal Settings 这一档。限定 category_name:单看 Personal 是个通用形容词,放开会在别处的宽松取值里误译(同 term_types_note 举的 Farm)。"
+    },
+    {
+      "en": "Comms",
+      "zh": "通讯",
+      "types": [
+        "category_name"
+      ],
+      "note": "设置类别名,Communications 的缩写,管的是组队邀请、好友申请这类联络开关。已查证 wiki 的 Settings 页有 Comms Settings 一档。缩写在中文里没有对应缩写,按全称译作「通讯」。限定 category_name,理由同 Personal。"
+    },
+    {
+      "en": "Sounds",
+      "zh": "声音",
+      "types": [
+        "category_name"
+      ],
+      "note": "设置类别名,已查证 wiki 的 Settings 页作 “Edit details about music and sounds that you hear.”。原文复数,中文不体现数。限定 category_name,理由同 Personal。**这一档译「声音」而组里的开关译「音效」,是故意的**:这一档同时管音乐和音效(维基原文就是 music and sounds),而 Hub_General/GUI_Item/Settings.json 里的 menu_sounds / rare_drop_sounds / ability_cooldown_sounds / ferocity_sounds 各自只管一种提示音。别为了「统一」把哪一边改成另一边——把这一档改成「音效设置」会漏掉音乐,把开关改成「声音」会和这一档撞名。"
+    },
+    {
+      "en": "Chat",
+      "zh": "聊天",
+      "types": [
+        "category_name"
+      ],
+      "note": "设置类别名,已查证 wiki 的 Settings 页有 Chat Settings 一档。限定 category_name 在这条上尤其必要:Chat 是个到处都在用的短词,放开到 raw 会在聊天频道名、指令说明一类位置误译。"
+    },
+    {
+      "en": "Garden",
+      "zh": "花园",
+      "types": [
+        "category_name"
+      ],
+      "note": "设置类别名(只在私人岛屿和花园里出现的那一档,已查证 wiki 的 Settings 页给它标了 Zone|The Garden)。「花园」是本项目既有译法,见 GLOSSARY.md 的 Garden Visitor(花园访客)和 Booster_Cookie.json 的「在私人岛屿和花园里永久飞行」。只限定 category_name:这个值作设置类别时是光秃秃的 Garden,地名那一侧服务器发的是另一个取值 “The Garden”,而那一行已经由 Farming/ScoreBoard/Garden_Sidebar.json 按字面量收掉了(花园的所在地行地名不会变),所以这里不需要放开到 location_name。"
+    },
+    {
+      "en": "Woods & Fishes",
+      "zh": "木材与鱼类",
+      "types": [
+        "category_name"
+      ],
+      "note": "集市五个大类之一,已查证 hypixelskyblock.minecraft.wiki/w/Bazaar(2026-08-29);同一个词的格子名那一份在 Economy/GUI_Item/Bazaar.json#bazaar_category_woods_fishes,两边译名必须一致。& 按中文习惯写成「与」,跟 Common_Menus.json 的 Quests & Chapters→任务与章节 同一套写法。这一条能被匹配上,靠的是 Capture.java 把 & 收进 CONNECTIVES:在这之前 `Bazaar ➜ %s` 拒收带 & 的分类名,整个标题都留在英文。"
+    },
+    {
+      "en": "User Interface",
+      "zh": "用户界面",
+      "types": [
+        "category_name"
+      ],
+      "note": "设置类别名(“User Interface Settings”)。限定 category_name:这是个通用词组,放开到 raw 会在物品 Lore 的句子里误译。"
+    },
+    {
+      "en": "API: Collections",
+      "zh": "API: 收藏品",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#api_collections,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "API: Inventory",
+      "zh": "API: 背包",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#api_inventory,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "API: Museum",
+      "zh": "API: 博物馆",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#api_museum,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "API: Personal Bank and Vault",
+      "zh": "API: 个人银行与保险库",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#api_personal_bank_and_vault,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "API: Skills",
+      "zh": "API: 技能",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#api_skills,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "Ability Chat",
+      "zh": "技能伤害提示",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#ability_chat,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "Ability Cooldown Chat",
+      "zh": "技能冷却提示",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#ability_cooldown_chat,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "Ability Cooldown Sounds",
+      "zh": "技能冷却音效",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#ability_cooldown_sounds,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "Advanced Supercraft",
+      "zh": "高级超级合成",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#advanced_supercraft,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "Auto-Recombobulator Chat",
+      "zh": "自动重组器提示",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#auto_recombobulator_chat,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "Bid Notifications",
+      "zh": "出价通知",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#bid_notifications,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "Co-op Invites",
+      "zh": "合作邀请",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#coop_invites,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "Co-op Travel Notifications",
+      "zh": "合作成员传送通知",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#coop_travel_notifications,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "Compact Chat",
+      "zh": "压缩提示",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#compact_chat,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "Confirm breaking ungrown Mutations",
+      "zh": "打断未成熟变异作物前先确认",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#confirm_breaking_ungrown_mutations,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "Death Messages",
+      "zh": "死亡消息",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#death_messages,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "Double Tap to Drop",
+      "zh": "双击丢弃",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#double_tap_to_drop,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "Dynamic Slayer Sidebar",
+      "zh": "动态猎杀任务侧边栏",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#dynamic_slayer_sidebar,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "Ferocity Sounds",
+      "zh": "凶猛音效",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#ferocity_sounds,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "Fill Notifications",
+      "zh": "订单成交通知",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#fill_notifications,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "Fire Sale Notifications",
+      "zh": "限时特卖通知",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#fire_sale_notifications,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "Fishing Sound",
+      "zh": "钓鱼音效",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#fishing_sound,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "Fishing Status Holograms",
+      "zh": "钓鱼状态悬浮字",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#fishing_status_holograms,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "Fishing Timer",
+      "zh": "钓鱼计时",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#fishing_timer,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "Guesting Invites",
+      "zh": "访客邀请",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#guesting_invites,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "Guesting Notifications",
+      "zh": "访客动态通知",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#guesting_notifications,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "Inventory Full Notifications",
+      "zh": "背包已满通知",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#inventory_full_notifications,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "Menu Sounds",
+      "zh": "菜单音效",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#menu_sounds,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "Outbid Notifications",
+      "zh": "被盖价通知",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#outbid_notifications,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "Pickup Arrows with Full Quiver",
+      "zh": "箭袋已满时仍拾取箭",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#pickup_arrows_with_full_quiver,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "Player List Info",
+      "zh": "玩家列表信息",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#player_list_info,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "Player Trading",
+      "zh": "玩家交易",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#player_trading,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "Pristine Chat",
+      "zh": "纯净提示",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#pristine_chat,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "Profile Viewer",
+      "zh": "查看档案",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#profile_viewer,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "Rare Drop Sounds",
+      "zh": "稀有掉落音效",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#rare_drop_sounds,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "Sack Notifications",
+      "zh": "收纳袋通知",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#sack_notifications,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "Sea Creature Chat",
+      "zh": "海洋生物提示",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#sea_creature_chat,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "Skill Numerals",
+      "zh": "技能数字",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#skill_numerals,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "SkyBlock Levels in Chat",
+      "zh": "聊天栏显示 SkyBlock 等级",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#skyblock_levels_in_chat,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "Zones in Action Bar",
+      "zh": "动作栏显示区域名",
+      "types": [
+        "raw"
+      ],
+      "note": "设置菜单的开关名。菜单格子那一份在 Hub_General/GUI_Item/Settings.json#zones_in_action_bar,两边译名必须一致(跑 python gradle/check_toggle_terms.py 检查)。限定 raw:这个值只出现在 Hub_General/ChatMessage/Settings_Toggles.json 的「%1$s is/are now enabled/disabled!」那四条模板里,不会像通用短词那样在别处的句子里被误换。"
+    },
+    {
+      "en": "Anyone",
+      "zh": "任何人",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园设置「Visits: %1$s」的取值之一,记录在 Farming/GUI_Item/Garden_Settings.json#garden_visits_category。限定 category_name:单看 Anyone 是个通用代词,放开到 raw 会在别处的句子里被误换。"
+    },
+    {
+      "en": "Friends",
+      "zh": "好友",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园设置「Visits: %1$s」的取值之一。限定 category_name 同 Anyone;作菜单入口名时译「好友」也是对的,所以这一条即便在别的 category_name 模板里被用上也不会错。"
+    },
+    {
+      "en": "Guild",
+      "zh": "公会",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园设置「Visits: %1$s」的取值之一。「公会」是既有译法,见本表的 Ironman's Guild → 铁人公会 和 Hub_General/ChatMessage/Common_System.json 的 GEXP → 公会经验。"
+    },
+    {
+      "en": "Pristine",
+      "zh": "纯净",
+      "types": [
+        "raw"
+      ],
+      "note": "挖矿天赋名。已有译法见 GLOSSARY.md 的属性表(Pristine → 纯净)和 Mining/ChatMessage/Mineshaft_Loot.json 的 PRISTINE! → 纯净!。限定 raw:目前只被 Hub_General/GUI_Item/Settings.json#mining_message_chat_desc 用到。"
+    },
+    {
+      "en": "Compact",
+      "zh": "压缩",
+      "types": [
+        "raw"
+      ],
+      "note": "挖矿天赋名。已有译法见 GLOSSARY.md(COMPACT! → 压缩!)和 Mining/ChatMessage/Mineshaft_Loot.json。限定 raw 同 Pristine。"
+    },
+    {
+      "en": "Bingo Account",
+      "zh": "宾果账户",
+      "types": [
+        "category_name"
+      ],
+      "note": "宾果活动总览里「Your Bingo Account」那一行的取值。该行由 Hub_General/GUI_Item/SkyBlock_Menu.json#skyblock_menu_your_dynamic_section(`Your %s`)应答,不加这一条屏幕上就是「你的 Bingo Account」。"
+    },
+    {
+      "en": "Community",
+      "zh": "社区",
+      "types": [
+        "category_name"
+      ],
+      "note": "宾果卡目标格子的分类副标题 `%s Goal` 的取值之一,配 Hub_General/GUI_Item/Bingo_Card.json#bingo_card_goal_type 渲染成「社区目标」。另一个取值 Personal 已在表内(「个人」)。限定 category_name:Community 是个通用词,放开会在别处的宽松取值里误译。"
+    },
+    {
+      "en": "Lapis Lazuli",
+      "zh": "青金石",
+      "note": "原版 Minecraft 材料名,用官方中文译名。宾果卡的「Lapis Lazuli Collector」格子和 Mining/GUI_Item/Commissions.json#mining_commission_task_collector_material(`%s Collector`)都会把它塞进占位符,不加这一条屏幕上就是「Lapis Lazuli收集员」。"
+    },
+    {
+      "en": "Oak Log",
+      "zh": "橡木原木",
+      "note": "原版 Minecraft 材料名,同 Lapis Lazuli,同样出现在宾果卡的收集员格子里。"
+    },
+    {
+      "en": "Medium Storage",
+      "zh": "中型存储箱",
+      "types": [
+        "raw"
+      ],
+      "note": "宾果开局赠送的 5 个小人存储箱。已查证 hysb.wiki/w/Minion_Storage(2026-08-30):Small/Medium/Large/X-Large/XX-Large 是同一家族的箱子,放在小人旁边扩容(维基写明它们不是 Minion Upgrades),Medium 加 9 格;Large 在 Bits_Shop_-_Upgrade_Components.json 的 craft_with_minion_large_storage 里已作「大型存储箱」,这里沿用同一构词(那是另一条记录的译名,不是本词条的同义指向,所以不写成 .json#id 指针形式——check_toggle_terms.py 会把指针当作「两边必须逐字一致」来校验)。限定 raw:只被 Hub_General/GUI_Item/Bingo_Event.json#bingo_qol_start_with_storage 用到。整名入表而不是拆成 Medium / Storage 两条,拆开词表查不到整名,屏幕上会是半中半英。"
+    },
+    {
+      "en": "Compactor",
+      "zh": "压缩器",
+      "types": [
+        "raw"
+      ],
+      "note": "宾果等级 III/IV 赠送的 Personal Compactor 4000/5000 的品类词。限定 raw:只被 Hub_General/GUI_Item/Bingo_Event.json#bingo_qol_start_with_personal 用到。"
+    },
+    {
+      "en": "Deletor",
+      "zh": "删除器",
+      "types": [
+        "raw"
+      ],
+      "note": "宾果等级 IV 赠送的 Personal Deletor 4000 的品类词,同 Compactor。"
+    },
+    {
+      "en": "Agricultural Revolution",
+      "zh": "农业革命",
+      "types": [
+        "raw"
+      ],
+      "note": "2026 年 9 月宾果卡的社区目标名,出现在「Progress to %s %s」的进度行里。目标名每期一换,新一期的名字往这里加,不要改模板。"
+    },
+    {
+      "en": "A Hard Day's Work",
+      "zh": "辛勤劳作",
+      "types": [
+        "raw"
+      ],
+      "note": "同上,2026 年 9 月宾果卡的社区目标名。"
+    },
+    {
+      "en": "Bait",
+      "zh": "鱼饵",
+      "types": [
+        "raw"
+      ],
+      "note": "宾果卡社区目标名,也是钓鱼玩法里挂在鱼竿上的饵。**语料里这个词本来就有两种写法**:Hub_General/GUI_Item/Fishing_Merchant.json 写「鱼饵」(Fishing Bait、COMMON BAIT → 普通鱼饵、Minnow Bait → 小鱼饵),而 Farming/TabList/Tab_List.json 的 no_bait_none 那条写「诱饵」。这里取占多数的「鱼饵」,但那处分歧还没统一,GLOSSARY.md 的 Chum / Bait 一节记着这件事,改之前先看一眼。另外别和 Chum 混:Chum 是另一种物品(击杀海洋生物掉的材料),译「碎鱼饵」,见 Hub_General/GUI_Item/Bingo_Card.json 的 bingo_goal_deposit_chum 那条。该目标格子本身还没在游戏里见到,只在「Progress to X I」那一行里出现过。(这两处都是**反例**,故意和本词条不一致,所以只写文件名加记录名、不写「井号加记录 id」那种指针形式——gradle/check_toggle_terms.py 会把指针当成「两边必须一致」来校验,写成指针就会误报。)"
+    },
+    {
+      "en": "January",
+      "zh": "1 月",
+      "types": [
+        "category_name"
+      ],
+      "note": "公历月份名,出现在宾果活动的菜单标题、返回箭头和格子副标题里(“Bingo - September 2026”)。现实日期不是空岛季节,不套用 GLOSSARY.md 的节气译法;中文按「2026 年 9 月」的语序写,所以译文只给月份、年份由记录自己排在前面。限定 category_name:月份名只在那几条菜单记录的占位符上出现,而 May / March 这类词作为宽松的 raw 值在别处撞车的代价太大。同一份月份表在 _shared/Months.json 里还有一份**整行**记录(格子副标题「September 2026」整行只有月份年份,做成占位符就没有自己的词、会被引擎拒掉),改这里时那边要一起改。"
+    },
+    {
+      "en": "February",
+      "zh": "2 月",
+      "types": [
+        "category_name"
+      ],
+      "note": "公历月份名,出现在宾果活动的菜单标题、返回箭头和格子副标题里(“Bingo - September 2026”)。现实日期不是空岛季节,不套用 GLOSSARY.md 的节气译法;中文按「2026 年 9 月」的语序写,所以译文只给月份、年份由记录自己排在前面。限定 category_name:月份名只在那几条菜单记录的占位符上出现,而 May / March 这类词作为宽松的 raw 值在别处撞车的代价太大。同一份月份表在 _shared/Months.json 里还有一份**整行**记录(格子副标题「September 2026」整行只有月份年份,做成占位符就没有自己的词、会被引擎拒掉),改这里时那边要一起改。"
+    },
+    {
+      "en": "March",
+      "zh": "3 月",
+      "types": [
+        "category_name"
+      ],
+      "note": "公历月份名,出现在宾果活动的菜单标题、返回箭头和格子副标题里(“Bingo - September 2026”)。现实日期不是空岛季节,不套用 GLOSSARY.md 的节气译法;中文按「2026 年 9 月」的语序写,所以译文只给月份、年份由记录自己排在前面。限定 category_name:月份名只在那几条菜单记录的占位符上出现,而 May / March 这类词作为宽松的 raw 值在别处撞车的代价太大。同一份月份表在 _shared/Months.json 里还有一份**整行**记录(格子副标题「September 2026」整行只有月份年份,做成占位符就没有自己的词、会被引擎拒掉),改这里时那边要一起改。"
+    },
+    {
+      "en": "April",
+      "zh": "4 月",
+      "types": [
+        "category_name"
+      ],
+      "note": "公历月份名,出现在宾果活动的菜单标题、返回箭头和格子副标题里(“Bingo - September 2026”)。现实日期不是空岛季节,不套用 GLOSSARY.md 的节气译法;中文按「2026 年 9 月」的语序写,所以译文只给月份、年份由记录自己排在前面。限定 category_name:月份名只在那几条菜单记录的占位符上出现,而 May / March 这类词作为宽松的 raw 值在别处撞车的代价太大。同一份月份表在 _shared/Months.json 里还有一份**整行**记录(格子副标题「September 2026」整行只有月份年份,做成占位符就没有自己的词、会被引擎拒掉),改这里时那边要一起改。"
+    },
+    {
+      "en": "May",
+      "zh": "5 月",
+      "types": [
+        "category_name"
+      ],
+      "note": "公历月份名,出现在宾果活动的菜单标题、返回箭头和格子副标题里(“Bingo - September 2026”)。现实日期不是空岛季节,不套用 GLOSSARY.md 的节气译法;中文按「2026 年 9 月」的语序写,所以译文只给月份、年份由记录自己排在前面。限定 category_name:月份名只在那几条菜单记录的占位符上出现,而 May / March 这类词作为宽松的 raw 值在别处撞车的代价太大。同一份月份表在 _shared/Months.json 里还有一份**整行**记录(格子副标题「September 2026」整行只有月份年份,做成占位符就没有自己的词、会被引擎拒掉),改这里时那边要一起改。"
+    },
+    {
+      "en": "June",
+      "zh": "6 月",
+      "types": [
+        "category_name"
+      ],
+      "note": "公历月份名,出现在宾果活动的菜单标题、返回箭头和格子副标题里(“Bingo - September 2026”)。现实日期不是空岛季节,不套用 GLOSSARY.md 的节气译法;中文按「2026 年 9 月」的语序写,所以译文只给月份、年份由记录自己排在前面。限定 category_name:月份名只在那几条菜单记录的占位符上出现,而 May / March 这类词作为宽松的 raw 值在别处撞车的代价太大。同一份月份表在 _shared/Months.json 里还有一份**整行**记录(格子副标题「September 2026」整行只有月份年份,做成占位符就没有自己的词、会被引擎拒掉),改这里时那边要一起改。"
+    },
+    {
+      "en": "July",
+      "zh": "7 月",
+      "types": [
+        "category_name"
+      ],
+      "note": "公历月份名,出现在宾果活动的菜单标题、返回箭头和格子副标题里(“Bingo - September 2026”)。现实日期不是空岛季节,不套用 GLOSSARY.md 的节气译法;中文按「2026 年 9 月」的语序写,所以译文只给月份、年份由记录自己排在前面。限定 category_name:月份名只在那几条菜单记录的占位符上出现,而 May / March 这类词作为宽松的 raw 值在别处撞车的代价太大。同一份月份表在 _shared/Months.json 里还有一份**整行**记录(格子副标题「September 2026」整行只有月份年份,做成占位符就没有自己的词、会被引擎拒掉),改这里时那边要一起改。"
+    },
+    {
+      "en": "August",
+      "zh": "8 月",
+      "types": [
+        "category_name"
+      ],
+      "note": "公历月份名,出现在宾果活动的菜单标题、返回箭头和格子副标题里(“Bingo - September 2026”)。现实日期不是空岛季节,不套用 GLOSSARY.md 的节气译法;中文按「2026 年 9 月」的语序写,所以译文只给月份、年份由记录自己排在前面。限定 category_name:月份名只在那几条菜单记录的占位符上出现,而 May / March 这类词作为宽松的 raw 值在别处撞车的代价太大。同一份月份表在 _shared/Months.json 里还有一份**整行**记录(格子副标题「September 2026」整行只有月份年份,做成占位符就没有自己的词、会被引擎拒掉),改这里时那边要一起改。"
+    },
+    {
+      "en": "September",
+      "zh": "9 月",
+      "types": [
+        "category_name"
+      ],
+      "note": "公历月份名,出现在宾果活动的菜单标题、返回箭头和格子副标题里(“Bingo - September 2026”)。现实日期不是空岛季节,不套用 GLOSSARY.md 的节气译法;中文按「2026 年 9 月」的语序写,所以译文只给月份、年份由记录自己排在前面。限定 category_name:月份名只在那几条菜单记录的占位符上出现,而 May / March 这类词作为宽松的 raw 值在别处撞车的代价太大。同一份月份表在 _shared/Months.json 里还有一份**整行**记录(格子副标题「September 2026」整行只有月份年份,做成占位符就没有自己的词、会被引擎拒掉),改这里时那边要一起改。"
+    },
+    {
+      "en": "October",
+      "zh": "10 月",
+      "types": [
+        "category_name"
+      ],
+      "note": "公历月份名,出现在宾果活动的菜单标题、返回箭头和格子副标题里(“Bingo - September 2026”)。现实日期不是空岛季节,不套用 GLOSSARY.md 的节气译法;中文按「2026 年 9 月」的语序写,所以译文只给月份、年份由记录自己排在前面。限定 category_name:月份名只在那几条菜单记录的占位符上出现,而 May / March 这类词作为宽松的 raw 值在别处撞车的代价太大。同一份月份表在 _shared/Months.json 里还有一份**整行**记录(格子副标题「September 2026」整行只有月份年份,做成占位符就没有自己的词、会被引擎拒掉),改这里时那边要一起改。"
+    },
+    {
+      "en": "November",
+      "zh": "11 月",
+      "types": [
+        "category_name"
+      ],
+      "note": "公历月份名,出现在宾果活动的菜单标题、返回箭头和格子副标题里(“Bingo - September 2026”)。现实日期不是空岛季节,不套用 GLOSSARY.md 的节气译法;中文按「2026 年 9 月」的语序写,所以译文只给月份、年份由记录自己排在前面。限定 category_name:月份名只在那几条菜单记录的占位符上出现,而 May / March 这类词作为宽松的 raw 值在别处撞车的代价太大。同一份月份表在 _shared/Months.json 里还有一份**整行**记录(格子副标题「September 2026」整行只有月份年份,做成占位符就没有自己的词、会被引擎拒掉),改这里时那边要一起改。"
+    },
+    {
+      "en": "December",
+      "zh": "12 月",
+      "types": [
+        "category_name"
+      ],
+      "note": "公历月份名,出现在宾果活动的菜单标题、返回箭头和格子副标题里(“Bingo - September 2026”)。现实日期不是空岛季节,不套用 GLOSSARY.md 的节气译法;中文按「2026 年 9 月」的语序写,所以译文只给月份、年份由记录自己排在前面。限定 category_name:月份名只在那几条菜单记录的占位符上出现,而 May / March 这类词作为宽松的 raw 值在别处撞车的代价太大。同一份月份表在 _shared/Months.json 里还有一份**整行**记录(格子副标题「September 2026」整行只有月份年份,做成占位符就没有自己的词、会被引擎拒掉),改这里时那边要一起改。"
+    },
+    {
+      "en": "Island Size",
+      "zh": "岛屿大小",
+      "types": [
+        "category_name"
+      ],
+      "note": "社区中心「账号与存档升级」的升级名。这一族名字会被服务器塞进四类模板里——根菜单的状态行、升级历史行、Tab 页脚的倒计时行、开始/领取升级的聊天提示——过去每处都把名字写死在模板里(Minion Slots 一条、Ender Chest Pages 一条、Heart of the Mountain 一条…),于是换一个升级名就掉回英文,而且同一个名字在不同文件里译得还不一样(末影箱「页面」/「页数」)。改成占位符 + 本表之后,一个名字只写一处。限定 category_name:这些位置的占位符都按 Capture.NAME 的形状收着,半句话进不来。"
+    },
+    {
+      "en": "Minion Slots",
+      "zh": "小人槽位",
+      "types": [
+        "category_name"
+      ],
+      "note": "社区中心「账号与存档升级」的升级名。这一族名字会被服务器塞进四类模板里——根菜单的状态行、升级历史行、Tab 页脚的倒计时行、开始/领取升级的聊天提示——过去每处都把名字写死在模板里(Minion Slots 一条、Ender Chest Pages 一条、Heart of the Mountain 一条…),于是换一个升级名就掉回英文,而且同一个名字在不同文件里译得还不一样(末影箱「页面」/「页数」)。改成占位符 + 本表之后,一个名字只写一处。限定 category_name:这些位置的占位符都按 Capture.NAME 的形状收着,半句话进不来。"
+    },
+    {
+      "en": "Guests Limit",
+      "zh": "访客上限",
+      "types": [
+        "category_name"
+      ],
+      "note": "社区中心「账号与存档升级」的升级名。这一族名字会被服务器塞进四类模板里——根菜单的状态行、升级历史行、Tab 页脚的倒计时行、开始/领取升级的聊天提示——过去每处都把名字写死在模板里(Minion Slots 一条、Ender Chest Pages 一条、Heart of the Mountain 一条…),于是换一个升级名就掉回英文,而且同一个名字在不同文件里译得还不一样(末影箱「页面」/「页数」)。改成占位符 + 本表之后,一个名字只写一处。限定 category_name:这些位置的占位符都按 Capture.NAME 的形状收着,半句话进不来。"
+    },
+    {
+      "en": "Co-op Slots",
+      "zh": "合作槽位",
+      "types": [
+        "category_name"
+      ],
+      "note": "社区中心「账号与存档升级」的升级名。这一族名字会被服务器塞进四类模板里——根菜单的状态行、升级历史行、Tab 页脚的倒计时行、开始/领取升级的聊天提示——过去每处都把名字写死在模板里(Minion Slots 一条、Ender Chest Pages 一条、Heart of the Mountain 一条…),于是换一个升级名就掉回英文,而且同一个名字在不同文件里译得还不一样(末影箱「页面」/「页数」)。改成占位符 + 本表之后,一个名字只写一处。限定 category_name:这些位置的占位符都按 Capture.NAME 的形状收着,半句话进不来。"
+    },
+    {
+      "en": "Coins Allowance",
+      "zh": "硬币津贴",
+      "types": [
+        "category_name"
+      ],
+      "note": "社区中心「账号与存档升级」的升级名。这一族名字会被服务器塞进四类模板里——根菜单的状态行、升级历史行、Tab 页脚的倒计时行、开始/领取升级的聊天提示——过去每处都把名字写死在模板里(Minion Slots 一条、Ender Chest Pages 一条、Heart of the Mountain 一条…),于是换一个升级名就掉回英文,而且同一个名字在不同文件里译得还不一样(末影箱「页面」/「页数」)。改成占位符 + 本表之后,一个名字只写一处。限定 category_name:这些位置的占位符都按 Capture.NAME 的形状收着,半句话进不来。"
+    },
+    {
+      "en": "Armor Wardrobe Slots",
+      "zh": "护甲衣橱槽位",
+      "types": [
+        "category_name"
+      ],
+      "note": "社区中心「账号与存档升级」的升级名。这一族名字会被服务器塞进四类模板里——根菜单的状态行、升级历史行、Tab 页脚的倒计时行、开始/领取升级的聊天提示——过去每处都把名字写死在模板里(Minion Slots 一条、Ender Chest Pages 一条、Heart of the Mountain 一条…),于是换一个升级名就掉回英文,而且同一个名字在不同文件里译得还不一样(末影箱「页面」/「页数」)。改成占位符 + 本表之后,一个名字只写一处。限定 category_name:这些位置的占位符都按 Capture.NAME 的形状收着,半句话进不来。"
+    },
+    {
+      "en": "Equipment Wardrobe Slots",
+      "zh": "装备衣橱槽位",
+      "types": [
+        "category_name"
+      ],
+      "note": "社区中心「账号与存档升级」的升级名。这一族名字会被服务器塞进四类模板里——根菜单的状态行、升级历史行、Tab 页脚的倒计时行、开始/领取升级的聊天提示——过去每处都把名字写死在模板里(Minion Slots 一条、Ender Chest Pages 一条、Heart of the Mountain 一条…),于是换一个升级名就掉回英文,而且同一个名字在不同文件里译得还不一样(末影箱「页面」/「页数」)。改成占位符 + 本表之后,一个名字只写一处。限定 category_name:这些位置的占位符都按 Capture.NAME 的形状收着,半句话进不来。"
+    },
+    {
+      "en": "Loadout Slots",
+      "zh": "预设槽位",
+      "types": [
+        "category_name"
+      ],
+      "note": "社区中心「账号与存档升级」的升级名。这一族名字会被服务器塞进四类模板里——根菜单的状态行、升级历史行、Tab 页脚的倒计时行、开始/领取升级的聊天提示——过去每处都把名字写死在模板里(Minion Slots 一条、Ender Chest Pages 一条、Heart of the Mountain 一条…),于是换一个升级名就掉回英文,而且同一个名字在不同文件里译得还不一样(末影箱「页面」/「页数」)。改成占位符 + 本表之后,一个名字只写一处。限定 category_name:这些位置的占位符都按 Capture.NAME 的形状收着,半句话进不来。Loadout 沿用 GLOSSARY.md 的「预设」。"
+    },
+    {
+      "en": "Heart of the Mountain",
+      "zh": "山峦之心",
+      "types": [
+        "category_name"
+      ],
+      "note": "社区中心「账号与存档升级」的升级名。这一族名字会被服务器塞进四类模板里——根菜单的状态行、升级历史行、Tab 页脚的倒计时行、开始/领取升级的聊天提示——过去每处都把名字写死在模板里(Minion Slots 一条、Ender Chest Pages 一条、Heart of the Mountain 一条…),于是换一个升级名就掉回英文,而且同一个名字在不同文件里译得还不一样(末影箱「页面」/「页数」)。改成占位符 + 本表之后,一个名字只写一处。限定 category_name:这些位置的占位符都按 Capture.NAME 的形状收着,半句话进不来。"
+    },
+    {
+      "en": "Heart of the Forest",
+      "zh": "森林之心",
+      "types": [
+        "category_name"
+      ],
+      "note": "社区中心「账号与存档升级」的升级名。这一族名字会被服务器塞进四类模板里——根菜单的状态行、升级历史行、Tab 页脚的倒计时行、开始/领取升级的聊天提示——过去每处都把名字写死在模板里(Minion Slots 一条、Ender Chest Pages 一条、Heart of the Mountain 一条…),于是换一个升级名就掉回英文,而且同一个名字在不同文件里译得还不一样(末影箱「页面」/「页数」)。改成占位符 + 本表之后,一个名字只写一处。限定 category_name:这些位置的占位符都按 Capture.NAME 的形状收着,半句话进不来。"
+    },
+    {
+      "en": "Ender Chest Pages",
+      "zh": "末影箱页面",
+      "types": [
+        "category_name"
+      ],
+      "note": "社区中心「账号与存档升级」的升级名。这一族名字会被服务器塞进四类模板里——根菜单的状态行、升级历史行、Tab 页脚的倒计时行、开始/领取升级的聊天提示——过去每处都把名字写死在模板里(Minion Slots 一条、Ender Chest Pages 一条、Heart of the Mountain 一条…),于是换一个升级名就掉回英文,而且同一个名字在不同文件里译得还不一样(末影箱「页面」/「页数」)。改成占位符 + 本表之后,一个名字只写一处。限定 category_name:这些位置的占位符都按 Capture.NAME 的形状收着,半句话进不来。统一为「页面」:此前 Community_Shop_Upgrades.json 写「页面」、Tab_Header_Footer.json 和 ChatMessage/Community_Shop.json 写「页数」,同一个升级在三处两种叫法。"
+    },
+    {
+      "en": "Accessory Bag",
+      "zh": "饰品袋",
+      "types": [
+        "category_name"
+      ],
+      "note": "社区中心「账号与存档升级」的升级名。这一族名字会被服务器塞进四类模板里——根菜单的状态行、升级历史行、Tab 页脚的倒计时行、开始/领取升级的聊天提示——过去每处都把名字写死在模板里(Minion Slots 一条、Ender Chest Pages 一条、Heart of the Mountain 一条…),于是换一个升级名就掉回英文,而且同一个名字在不同文件里译得还不一样(末影箱「页面」/「页数」)。改成占位符 + 本表之后,一个名字只写一处。限定 category_name:这些位置的占位符都按 Capture.NAME 的形状收着,半句话进不来。"
+    },
+    {
+      "en": "Sack of Sacks",
+      "zh": "收纳袋中袋",
+      "types": [
+        "category_name"
+      ],
+      "note": "社区中心「账号与存档升级」的升级名。这一族名字会被服务器塞进四类模板里——根菜单的状态行、升级历史行、Tab 页脚的倒计时行、开始/领取升级的聊天提示——过去每处都把名字写死在模板里(Minion Slots 一条、Ender Chest Pages 一条、Heart of the Mountain 一条…),于是换一个升级名就掉回英文,而且同一个名字在不同文件里译得还不一样(末影箱「页面」/「页数」)。改成占位符 + 本表之后,一个名字只写一处。限定 category_name:这些位置的占位符都按 Capture.NAME 的形状收着,半句话进不来。"
+    },
+    {
+      "en": "Magic Find",
+      "zh": "魔法寻宝",
+      "types": [
+        "category_name"
+      ],
+      "note": "社区中心「账号与存档升级」的升级名。这一族名字会被服务器塞进四类模板里——根菜单的状态行、升级历史行、Tab 页脚的倒计时行、开始/领取升级的聊天提示——过去每处都把名字写死在模板里(Minion Slots 一条、Ender Chest Pages 一条、Heart of the Mountain 一条…),于是换一个升级名就掉回英文,而且同一个名字在不同文件里译得还不一样(末影箱「页面」/「页数」)。改成占位符 + 本表之后,一个名字只写一处。限定 category_name:这些位置的占位符都按 Capture.NAME 的形状收着,半句话进不来。和 GLOSSARY.md 属性表、_shared/Stats.json 的属性名一致。"
+    },
+    {
+      "en": "Bazaar Flipper",
+      "zh": "集市倒卖",
+      "types": [
+        "category_name"
+      ],
+      "note": "社区中心「账号与存档升级」的升级名。这一族名字会被服务器塞进四类模板里——根菜单的状态行、升级历史行、Tab 页脚的倒计时行、开始/领取升级的聊天提示——过去每处都把名字写死在模板里(Minion Slots 一条、Ender Chest Pages 一条、Heart of the Mountain 一条…),于是换一个升级名就掉回英文,而且同一个名字在不同文件里译得还不一样(末影箱「页面」/「页数」)。改成占位符 + 本表之后,一个名字只写一处。限定 category_name:这些位置的占位符都按 Capture.NAME 的形状收着,半句话进不来。"
+    },
+    {
+      "en": "Garden Farming Fortune",
+      "zh": "花园农业时运",
+      "types": [
+        "category_name"
+      ],
+      "note": "社区中心「账号与存档升级」的升级名。这一族名字会被服务器塞进四类模板里——根菜单的状态行、升级历史行、Tab 页脚的倒计时行、开始/领取升级的聊天提示——过去每处都把名字写死在模板里(Minion Slots 一条、Ender Chest Pages 一条、Heart of the Mountain 一条…),于是换一个升级名就掉回英文,而且同一个名字在不同文件里译得还不一样(末影箱「页面」/「页数」)。改成占位符 + 本表之后,一个名字只写一处。限定 category_name:这些位置的占位符都按 Capture.NAME 的形状收着,半句话进不来。"
+    },
+    {
+      "en": "Skilled",
+      "zh": "技艺精湛",
+      "types": [
+        "raw"
+      ],
+      "note": "2026 年 9 月宾果卡的社区目标名,只出现在宾果卡的「Progress to X I」那一行里。已查证 hypixelskyblock.minecraft.wiki/w/Bingo/Events/2026(2026-08-31)第 58 期卡面:它的达成条件是「Gain 750M Taming experience」(V 档),即靠练技能拿经验,所以译「技艺精湛」而不是照字面的「熟练」。同一批社区目标名里 Scavenger **故意不加**——那是空岛专属附魔名,按 2026-08-27 的决定整族保持英文(见 _shared/Enchantments.json 的 scope),加词条会让玩家剑上的 Scavenger V 也跟着变中文。"
     }
   ],
   "todo": [
     "宝石种类名(Amber / Amethyst / Jade / Ruby / Sapphire / Topaz / Aquamarine / Citrine / Onyx / Peridot)按既定原则保持英文,**不要**往表里加。它们和汉字之间的空格由引擎自动处理。",
-    "自造怪物名(Thyst / Yog / Zog / Boss Corleone)按 GLOSSARY.md 保留英文,**不要**往表里加;通用词组成的怪物名已经收进来了。"
+    "自造怪物名(Thyst / Yog / Zog / Boss Corleone)按 GLOSSARY.md 保留英文,**不要**往表里加;通用词组成的怪物名已经收进来了。",
+    "设置类别名 API(“API Settings”)**故意**不加词条:这个缩写在中文技术语境里就是原样念原样写,没有通行中文译名,硬译成「接口设置」反而不如原文好认。查不到的值保持英文,引擎会在接缝处自动补空格(见 spacing_note),渲染出来是「API 设置」,已经是想要的样子。"
   ]
 }

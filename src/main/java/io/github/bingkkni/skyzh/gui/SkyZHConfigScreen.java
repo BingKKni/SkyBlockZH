@@ -1,6 +1,7 @@
 package io.github.bingkkni.skyzh.gui;
 
 import io.github.bingkkni.skyzh.SkyZHConfig;
+import io.github.bingkkni.skyzh.platform.ClientGui;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.CycleButton;
@@ -101,6 +102,7 @@ public class SkyZHConfigScreen extends Screen {
 		// Writing on close rather than on every click: the file is the source of truth for players
 		// without Mod Menu, and one save per visit keeps it from being rewritten mid-decision.
 		this.config.save();
-		this.minecraft.gui.setScreen(this.parent);
+		// Which object owns the screen stack moved in 26.2; see platform/ClientGui.
+		ClientGui.setScreen(this.minecraft, this.parent);
 	}
 }

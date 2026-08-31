@@ -1,0 +1,28 @@
+{
+  "gui": "Pity",
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Pity_and_RNG_Meters + runtime capture (SkyZH) 2026-08-29 实测会话",
+  "fetched_at": "2026-08-29",
+  "verified_ingame": true,
+  "gui_context": "/pity 打开的保底总览界面,以及从里面点进去的各地点子页面的标题。界面内容见 Mining/GUI_Item/Pity.json 和 Mining/GUI_Item/Glacite_Tunnels_Pity.json。",
+  "source_note": "归到 Mining 是因为这一轮实测是在矮人矿山采到的,但 /pity 本身和玩法无关(七个格子横跨挖矿/钓鱼/农业/活动)。按 README 第 1 节本该进 Hub_General,不过界面主体 Pity.json / Glacite_Tunnels_Pity.json 已经在 Mining 下,标题跟着内容放在一起更好找;哪天 Hub_General 那边也采到了再合并。",
+  "titles": [
+    {
+      "id": "gui_title_pity",
+      "context": "保底总览界面标题",
+      "text": "Pity",
+      "placeholders": [],
+      "gloss": "按 GLOSSARY.md 已确定的译名作「保底进度」。原文只有 Pity 一个词,中文补上「进度」二字才成词——单说「保底」在中文里是形容词性的,做不了界面标题。",
+      "translate": true,
+      "zh": "保底进度"
+    },
+    {
+      "id": "gui_title_glacite_tunnels_pity",
+      "context": "从保底总览点进极冰隧道那一格后的子页面标题",
+      "text": "Glacite Tunnels Pity",
+      "placeholders": [],
+      "gloss": "和 Mining/GUI_Item/Pity.json#pity_glacite_tunnels_name 那一格的名字同字同译,两处必须一致——点进去之前是格子名,点进去之后是标题,玩家看到的是同一个词。",
+      "translate": true,
+      "zh": "极冰隧道保底进度"
+    }
+  ]
+}

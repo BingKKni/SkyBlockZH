@@ -48,7 +48,7 @@ public final class LogAudit {
 	 * message. Skipped rather than reported: they are Chinese, they came from here, and letting them
 	 * turn up as "SkyBlock text nobody has translated" would be this tool marking its own homework.
 	 */
-	private static final Pattern OWN_MESSAGE = Pattern.compile("^(?:§.)*" + Pattern.quote(CaptureAnnouncer.PREFIX) + ".*");
+	private static final Pattern OWN_MESSAGE = Pattern.compile("^(?:§.)*" + Pattern.quote(Feedback.PREFIX) + ".*");
 
 	/** Lines that are somebody talking, not the game: a rank tag, a level bracket, a guild prefix. */
 	private static final Pattern PLAYER = Pattern.compile(

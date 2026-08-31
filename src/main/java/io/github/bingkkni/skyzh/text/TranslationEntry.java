@@ -56,6 +56,11 @@ public final class TranslationEntry {
 	private final Map<Integer, Capture> captures;
 	/** The declared {@code placeholders[].type} of each argument, for {@link TermTable}. */
 	private final Map<Integer, String> argTypes;
+	/**
+	 * The character families of each group's declared {@code example}, so a value cannot swallow a
+	 * value of another kind. Absent for groups whose record wrote no example. @see ValueShape
+	 */
+	private final Map<Integer, Integer> shapes;
 	private final boolean continuation;
 	private final String layout;
 	private final int specificity;
@@ -65,7 +70,7 @@ public final class TranslationEntry {
 	private TranslationEntry(
 		String id, String sourceFile, Pattern pattern, List<Fragment> fragments, List<Fragment> rendered,
 		int[] argGroups, Map<Integer, Capture> captures, Map<Integer, String> argTypes,
-		boolean continuation, String layout, int specificity, String template
+		Map<Integer, Integer> shapes, boolean continuation, String layout, int specificity, String template
 	) {
 		this.id = id;
 		this.sourceFile = sourceFile;
@@ -75,6 +80,7 @@ public final class TranslationEntry {
 		this.argGroups = argGroups;
 		this.captures = captures;
 		this.argTypes = argTypes;
+		this.shapes = shapes;
 		this.continuation = continuation;
 		this.layout = layout;
 		this.specificity = specificity;
@@ -112,18 +118,24 @@ public final class TranslationEntry {
 	 *                 English". See {@link #reorder}
 	 * @param argTypes the {@code placeholders[].type} of each argument, keyed by its number, deciding
 	 *                 both what that placeholder may capture and whether {@link TermTable} applies to it
+	 * @param argExamples the {@code placeholders[].example} of each argument, keyed the same way, which
+	 *                 bounds the placeholder to the kind of value the corpus said sits there. See
+	 *                 {@link ValueShape} for the sentence this stopped being drawn wrongly
 	 */
 	public static TranslationEntry compile(
 		String id, String sourceFile, List<String> sources, List<String> targets, boolean continuation,
-		String layout, Map<Integer, String> argTypes
+		String layout, Map<Integer, String> argTypes, Map<Integer, String> argExamples
 	) {
-		return compile(id, sourceFile, sources, targets, List.of(), continuation, layout, argTypes);
+		return compile(
+			id, sourceFile, sources, targets, List.of(), continuation, layout, argTypes, argExamples
+		);
 	}
 
-	/** @see #compile(String, String, List, List, boolean, String, Map) */
+	/** @see #compile(String, String, List, List, boolean, String, Map, Map) */
 	public static TranslationEntry compile(
 		String id, String sourceFile, List<String> sources, List<String> targets, List<Integer> order,
-		boolean continuation, String layout, Map<Integer, String> argTypes
+		boolean continuation, String layout, Map<Integer, String> argTypes,
+		Map<Integer, String> argExamples
 	) {
 		if (sources.isEmpty() || sources.size() != targets.size()) {
 			return null;
@@ -170,6 +182,7 @@ public final class TranslationEntry {
 		int[] argGroups = new int[64];
 		Map<Integer, Capture> captures = new HashMap<>();
 		Map<Integer, String> typeByGroup = new HashMap<>();
+		Map<Integer, Integer> shapeByGroup = new HashMap<>();
 		int group = 0;
 
 		for (int i = 0; i < sources.size(); i++) {
@@ -196,6 +209,24 @@ public final class TranslationEntry {
 					Capture capture = Capture.of(type);
 					captures.put(group, capture);
 					typeByGroup.put(group, type);
+
+					// Only where the type has left the question open. NUMBER, TIER, PLAYER and the rest
+					// already say what they hold in their own regex, and an example that disagreed with
+					// one of those would be a corpus mistake rather than a bound worth enforcing.
+					//
+					// And only when the example is a value this placeholder would itself accept. Some
+					// examples are written to show a translator the whole of what the server can send —
+					// Rhys lists all seven Enchanted materials he takes — which is past what PHRASE
+					// allows and so was never matchable anyway. Binding to one of those would leave the
+					// record refusing every line including its own, which is worse than not binding: the
+					// point of this is to stop a record answering too widely, not to stop it answering.
+					String example = argExamples.get(arg.index());
+
+					if (capture == Capture.PHRASE && example != null && !example.isEmpty()
+						&& capture.accepts(example)) {
+						shapeByGroup.put(group, ValueShape.of(example));
+					}
+
 					regex.append('(').append(capture.regex()).append(')');
 				}
 			}
@@ -222,7 +253,7 @@ public final class TranslationEntry {
 		return new TranslationEntry(
 			id, sourceFile, Pattern.compile(regex.toString(), Pattern.DOTALL), List.copyOf(fragments),
 			reorder(fragments, order), argGroups, Map.copyOf(captures), Map.copyOf(typeByGroup),
-			continuation, layout, literals, String.join("", sources)
+			Map.copyOf(shapeByGroup), continuation, layout, literals, String.join("", sources)
 		);
 	}
 
@@ -343,16 +374,13 @@ public final class TranslationEntry {
 	}
 
 	/**
-	 * Whether this character makes a template about some particular line rather than about a shape.
+	 * Whether this character makes a template about some particular sentence.
 	 *
 	 * <p>A letter obviously does. So does a symbol: the sidebar's zone row is {@code "⏣ %s"} and
 	 * nothing else on that surface begins with ⏣, which makes the mark every bit as identifying as a
 	 * word — and there is no word to be had, since the whole row is the place name. What must not
 	 * qualify is ASCII punctuation and spacing, because {@code "%s: %s"} is a shape that fits every
 	 * labelled row on a surface and would answer for all of them.
-	 */
-	/**
-	 * Whether this character makes a template about some particular sentence.
 	 *
 	 * <p>Public because the runtime capture asks the same question before it generalises two lines
 	 * into one template: a merge that leaves nothing but placeholders and ASCII punctuation produces
@@ -453,6 +481,22 @@ public final class TranslationEntry {
 			int group = capture.getKey();
 
 			if (match.start(group) >= 0 && !capture.getValue().accepts(match.group(group))) {
+				return false;
+			}
+		}
+
+		for (Map.Entry<Integer, Integer> shape : this.shapes.entrySet()) {
+			int group = shape.getKey();
+
+			if (match.start(group) < 0) {
+				continue;
+			}
+
+			String value = match.group(group);
+
+			// An empty value is Hypixel drawing an unset part or a zero-length prefix, which Capture
+			// already allows for; there is no kind to disagree with.
+			if (!value.isEmpty() && !ValueShape.agrees(shape.getValue(), ValueShape.of(value))) {
 				return false;
 			}
 		}
@@ -766,23 +810,42 @@ public final class TranslationEntry {
 
 			int start = match.start(fragment.group());
 			int end = match.end(fragment.group());
-			Style words = null;
+			String words = null;
 
 			for (int i = start; i < end; i++) {
 				if (!coloursWords(source, fragment, match, i)) {
 					continue;
 				}
 
-				Style style = source.styleAt(i);
+				String look = look(source.styleAt(i));
 
 				if (words == null) {
-					words = style;
-				} else if (!style.equals(words)) {
+					words = look;
+				} else if (!look.equals(words)) {
 					return true;
 				}
 			}
 		}
 
 		return false;
+	}
+
+	/**
+	 * Everything about a {@link Style} that is visible on screen, and nothing else.
+	 *
+	 * <p>{@code Style#equals} also compares the hover and click events, and Hypixel splits a line on
+	 * those as readily as on a colour: the sacks message sends {@code " items"} and the {@code "."}
+	 * after it as two runs of the same yellow, differing only in that the first carries the "Added
+	 * items:" tooltip. Judged by whole-style equality that reads as a colour change inside one
+	 * fragment, so a record with correct {@code segments} was reported as having flattened its
+	 * colours — and the repair the capture file suggests is to split the segments again at a boundary
+	 * that has no colour on either side of it. Nothing here draws hover text, so nothing here should
+	 * count it as a colour.
+	 */
+	private static String look(Style style) {
+		return style.getColor() + "/" + style.getFont()
+			+ (style.isBold() ? "b" : "") + (style.isItalic() ? "i" : "")
+			+ (style.isUnderlined() ? "u" : "") + (style.isStrikethrough() ? "s" : "")
+			+ (style.isObfuscated() ? "o" : "");
 	}
 }

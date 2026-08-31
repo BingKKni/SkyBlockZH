@@ -606,9 +606,9 @@
       "placeholders": [
         {
           "token": "%s",
-          "desc": "数值",
-          "type": "number",
-          "example": ""
+          "desc": "数值。写成 raw 而不是 number:装备带上重铸/附魔/星级之后这一行是「基础值 + 若干个加成括号」(§7Damage: §c+285 §9(+165)),number 只吃得下第一个数,整行就匹配不上。括号里各自的颜色由引擎照抄服务器原样(StyledText#slice),不需要分段。",
+          "type": "raw",
+          "example": "+30"
         }
       ],
       "gloss": "",
@@ -689,6 +689,17 @@
       "zh": "将你的智力转化为"
     },
     {
+      "id": "item_the_crystal_hollows_tail",
+      "context": "「……in the Crystal Hollows.」这句话被排版拆开之后的尾行,首行在各自的物品文件里",
+      "raw": "§7the §5Crystal Hollows§7.",
+      "text": "the Crystal Hollows.",
+      "placeholders": [],
+      "gloss": "三件东西的 Lore 都以这半句结尾(Jaderald 的产地说明、Wishing Compass 的用途说明、宾果卡上 Divan's Chance 的达成条件),而且三处都只需要「把这一行删掉、让首行的完整中文重新折行」这一个行为,所以按 README §5.6 抽到共享库、三处用 ref 引用。原先 Jaderald 和 Wishing_Compass 各写了一条:两条模板一模一样、分段却不同,是 README「同一渲染面上不要写两条模板一模一样的记录」点名的情况,只是因为两条都是 continuation、都不画东西才没出事。颜色不用管:continuation 的行整行删除,不存在画成什么颜色的问题。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
       "id": "item_damage_s",
       "context": "",
       "raw": "§7Damage: §c%s",
@@ -696,9 +707,9 @@
       "placeholders": [
         {
           "token": "%s",
-          "desc": "数值",
-          "type": "number",
-          "example": ""
+          "desc": "数值。写成 raw 而不是 number:装备带上重铸/附魔/星级之后这一行是「基础值 + 若干个加成括号」(§7Damage: §c+285 §9(+165)),number 只吃得下第一个数,整行就匹配不上。括号里各自的颜色由引擎照抄服务器原样(StyledText#slice),不需要分段。",
+          "type": "raw",
+          "example": "+285 (+165)"
         }
       ],
       "gloss": "",
@@ -725,9 +736,9 @@
       "placeholders": [
         {
           "token": "%s",
-          "desc": "数值",
-          "type": "number",
-          "example": ""
+          "desc": "数值。写成 raw 而不是 number:装备带上重铸/附魔/星级之后这一行是「基础值 + 若干个加成括号」(§7Damage: §c+285 §9(+165)),number 只吃得下第一个数,整行就匹配不上。括号里各自的颜色由引擎照抄服务器原样(StyledText#slice),不需要分段。",
+          "type": "raw",
+          "example": "+120 (+30)"
         }
       ],
       "gloss": "",
@@ -838,9 +849,9 @@
       "placeholders": [
         {
           "token": "%s",
-          "desc": "数值",
-          "type": "number",
-          "example": ""
+          "desc": "数值。写成 raw 而不是 number:装备带上重铸/附魔/星级之后这一行是「基础值 + 若干个加成括号」(§7Damage: §c+285 §9(+165)),number 只吃得下第一个数,整行就匹配不上。括号里各自的颜色由引擎照抄服务器原样(StyledText#slice),不需要分段。",
+          "type": "raw",
+          "example": "+20 (+10)"
         }
       ],
       "gloss": "",
@@ -1103,9 +1114,9 @@
       "placeholders": [
         {
           "token": "%s",
-          "desc": "数值",
-          "type": "number",
-          "example": ""
+          "desc": "数值。写成 raw 而不是 number:装备带上重铸/附魔/星级之后这一行是「基础值 + 若干个加成括号」(§7Damage: §c+285 §9(+165)),number 只吃得下第一个数,整行就匹配不上。括号里各自的颜色由引擎照抄服务器原样(StyledText#slice),不需要分段。",
+          "type": "raw",
+          "example": "+100 (+40)"
         }
       ],
       "gloss": "",
@@ -1379,9 +1390,9 @@
       "placeholders": [
         {
           "token": "%s",
-          "desc": "数值",
-          "type": "number",
-          "example": ""
+          "desc": "数值。写成 raw 而不是 number:装备带上重铸/附魔/星级之后这一行是「基础值 + 若干个加成括号」(§7Damage: §c+285 §9(+165)),number 只吃得下第一个数,整行就匹配不上。括号里各自的颜色由引擎照抄服务器原样(StyledText#slice),不需要分段。",
+          "type": "raw",
+          "example": "+110 (+100) (+10)"
         }
       ],
       "gloss": "",
@@ -1419,9 +1430,9 @@
       "placeholders": [
         {
           "token": "%s",
-          "desc": "数值",
-          "type": "number",
-          "example": ""
+          "desc": "数值。写成 raw 而不是 number:装备带上重铸/附魔/星级之后这一行是「基础值 + 若干个加成括号」(§7Damage: §c+285 §9(+165)),number 只吃得下第一个数,整行就匹配不上。括号里各自的颜色由引擎照抄服务器原样(StyledText#slice),不需要分段。",
+          "type": "raw",
+          "example": "+5"
         }
       ],
       "gloss": "",
@@ -1574,9 +1585,9 @@
       "placeholders": [
         {
           "token": "%s",
-          "desc": "数值",
-          "type": "number",
-          "example": ""
+          "desc": "数值。写成 raw 而不是 number:装备带上重铸/附魔/星级之后这一行是「基础值 + 若干个加成括号」(§7Damage: §c+285 §9(+165)),number 只吃得下第一个数,整行就匹配不上。括号里各自的颜色由引擎照抄服务器原样(StyledText#slice),不需要分段。",
+          "type": "raw",
+          "example": "+10"
         }
       ],
       "gloss": "",
@@ -1787,9 +1798,9 @@
       "placeholders": [
         {
           "token": "%s",
-          "desc": "数值",
-          "type": "number",
-          "example": ""
+          "desc": "数值。写成 raw 而不是 number:装备带上重铸/附魔/星级之后这一行是「基础值 + 若干个加成括号」(§7Damage: §c+285 §9(+165)),number 只吃得下第一个数,整行就匹配不上。括号里各自的颜色由引擎照抄服务器原样(StyledText#slice),不需要分段。",
+          "type": "raw",
+          "example": "+5"
         }
       ],
       "gloss": "",
@@ -1816,9 +1827,9 @@
       "placeholders": [
         {
           "token": "%s",
-          "desc": "数值",
-          "type": "number",
-          "example": ""
+          "desc": "数值。写成 raw 而不是 number:装备带上重铸/附魔/星级之后这一行是「基础值 + 若干个加成括号」(§7Damage: §c+285 §9(+165)),number 只吃得下第一个数,整行就匹配不上。括号里各自的颜色由引擎照抄服务器原样(StyledText#slice),不需要分段。",
+          "type": "raw",
+          "example": "+265 (+165)"
         }
       ],
       "gloss": "",
@@ -1845,9 +1856,9 @@
       "placeholders": [
         {
           "token": "%s",
-          "desc": "数值",
-          "type": "number",
-          "example": ""
+          "desc": "数值。写成 raw 而不是 number:装备带上重铸/附魔/星级之后这一行是「基础值 + 若干个加成括号」(§7Damage: §c+285 §9(+165)),number 只吃得下第一个数,整行就匹配不上。括号里各自的颜色由引擎照抄服务器原样(StyledText#slice),不需要分段。",
+          "type": "raw",
+          "example": "+3"
         }
       ],
       "gloss": "",
@@ -3262,11 +3273,11 @@
         {
           "token": "%2$s",
           "desc": "燃料上限(带单位缩写 k=千)",
-          "type": "raw",
+          "type": "number",
           "example": "3k"
         }
       ],
-      "gloss": "两个数值都会变化,按两个独立占位符处理。",
+      "gloss": "两个数值都会变化,按两个独立占位符处理。上限那个曾写成 raw,但 3k 是个量而不是一段文字:Capture.NUMBER 的正则本就收数字后面跟一到两个字母,写成 number 才是它真正的类型,也才不会被当成需要查词表的词。",
       "translate": true,
       "zh": ""
     }

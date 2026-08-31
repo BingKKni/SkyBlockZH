@@ -118,6 +118,17 @@ public final class Unplaced {
 		return this.held.size();
 	}
 
+	/**
+	 * Throws away everything held without filing any of it.
+	 *
+	 * <p>The one caller is {@code /skyzh clear}, which is a request to forget this session — so unlike
+	 * {@link #drain} these lines are not worth keeping. Filing them would write records back into files
+	 * that were just deleted.
+	 */
+	public void clear() {
+		this.held.clear();
+	}
+
 	/** Files the oldest held lines as unknown until the queue is back within its ceiling. */
 	private void overflow(List<CaptureStore.Sighting> ready) {
 		while (this.held.size() > this.max) {

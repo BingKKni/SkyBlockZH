@@ -33,91 +33,43 @@
     },
     {
       "id": "double_tap_to_drop",
-      "context": "已启用的双击丢弃开关",
-      "raw": "§a✔ §7Double Tap to Drop",
-      "text": "✔ Double Tap to Drop",
+      "context": "双击丢弃开关",
+      "raw": "§7Double Tap to Drop",
+      "text": "Double Tap to Drop",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "行首的 ✔/✖ 不写进 text:这一行开着关着说的都是同一件事,变的只有那个记号——开是绿色 ✔,关是红色 ✖。引擎会跨过行首的一个记号再查一次(见 text/LineShape.java 的 BULLETS),所以一条记录就答两种状态,记号连着它自己的颜色留在原地不动。反过来把记号抄进 text 就得为每个开关写两条,还得凭空补一条没实测到的状态。",
       "translate": true,
-      "zh": "",
-      "segments": [
-        {
-          "color": "§a",
-          "text": "✔ ",
-          "zh": "✔ "
-        },
-        {
-          "color": "§7",
-          "text": "Double Tap to Drop",
-          "zh": "双击丢弃"
-        }
-      ]
+      "zh": "双击丢弃"
     },
     {
       "id": "profile_viewer",
-      "context": "已启用的档案查看器开关",
-      "raw": "§a✔ §7Profile Viewer",
-      "text": "✔ Profile Viewer",
+      "context": "查看档案开关",
+      "raw": "§7Profile Viewer",
+      "text": "Profile Viewer",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
       "translate": true,
-      "zh": "",
-      "segments": [
-        {
-          "color": "§a",
-          "text": "✔ ",
-          "zh": "✔ "
-        },
-        {
-          "color": "§7",
-          "text": "Profile Viewer",
-          "zh": "档案查看器"
-        }
-      ]
+      "zh": "查看档案"
     },
     {
       "id": "player_trading",
-      "context": "已启用的玩家交易开关",
-      "raw": "§a✔ §7Player Trading",
-      "text": "✔ Player Trading",
+      "context": "玩家交易开关",
+      "raw": "§7Player Trading",
+      "text": "Player Trading",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
       "translate": true,
-      "zh": "",
-      "segments": [
-        {
-          "color": "§a",
-          "text": "✔ ",
-          "zh": "✔ "
-        },
-        {
-          "color": "§7",
-          "text": "Player Trading",
-          "zh": "玩家交易"
-        }
-      ]
+      "zh": "玩家交易"
     },
     {
       "id": "inventory_full_notifications",
-      "context": "已启用的背包已满通知开关",
-      "raw": "§a✔ §7Inventory Full Notifications",
-      "text": "✔ Inventory Full Notifications",
+      "context": "背包已满通知开关",
+      "raw": "§7Inventory Full Notifications",
+      "text": "Inventory Full Notifications",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
       "translate": true,
-      "zh": "",
-      "segments": [
-        {
-          "color": "§a",
-          "text": "✔ ",
-          "zh": "✔ "
-        },
-        {
-          "color": "§7",
-          "text": "Inventory Full Notifications",
-          "zh": "背包已满通知"
-        }
-      ]
+      "zh": "背包已满通知"
     },
     {
       "id": "user_interface_settings",
@@ -152,47 +104,23 @@
     },
     {
       "id": "player_list_info",
-      "context": "已启用的玩家列表信息开关",
-      "raw": "§a✔ §7Player List Info",
-      "text": "✔ Player List Info",
+      "context": "玩家列表信息开关",
+      "raw": "§7Player List Info",
+      "text": "Player List Info",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
       "translate": true,
-      "zh": "",
-      "segments": [
-        {
-          "color": "§a",
-          "text": "✔ ",
-          "zh": "✔ "
-        },
-        {
-          "color": "§7",
-          "text": "Player List Info",
-          "zh": "玩家列表信息"
-        }
-      ]
+      "zh": "玩家列表信息"
     },
     {
       "id": "skill_numerals",
-      "context": "已启用的技能数字显示开关",
-      "raw": "§a✔ §7Skill Numerals",
-      "text": "✔ Skill Numerals",
+      "context": "技能数字显示开关",
+      "raw": "§7Skill Numerals",
+      "text": "Skill Numerals",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
       "translate": true,
-      "zh": "",
-      "segments": [
-        {
-          "color": "§a",
-          "text": "✔ ",
-          "zh": "✔ "
-        },
-        {
-          "color": "§7",
-          "text": "Skill Numerals",
-          "zh": "技能数字"
-        }
-      ]
+      "zh": "技能数字"
     },
     {
       "id": "sound_settings_desc_1",
@@ -217,25 +145,13 @@
     },
     {
       "id": "play_music",
-      "context": "已关闭的播放音乐开关",
-      "raw": "§c✖ §7Play Music",
-      "text": "✖ Play Music",
+      "context": "播放音乐开关",
+      "raw": "§7Play Music",
+      "text": "Play Music",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
       "translate": true,
-      "zh": "",
-      "segments": [
-        {
-          "color": "§c",
-          "text": "✖ ",
-          "zh": "✖ "
-        },
-        {
-          "color": "§7",
-          "text": "Play Music",
-          "zh": "播放音乐"
-        }
-      ]
+      "zh": "播放音乐"
     },
     {
       "id": "api_settings_desc_1",
@@ -245,7 +161,7 @@
       "placeholders": [],
       "gloss": "Hypixel API 为专有服务名，保留英文。完整句为 The Hypixel API lets apps and websites display your player info and games progress.",
       "translate": true,
-      "zh": "Hypixel API 可让应用和网站显示你的玩家信息及游戏进度。"
+      "zh": "我们的 Hypixel API 可让第三方项目查询并显示你的信息及游戏进度。"
     },
     {
       "id": "api_settings_desc_2",
@@ -306,6 +222,1514 @@
       "text": "settings.",
       "placeholders": [],
       "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "ability_chat",
+      "context": "技能伤害聊天提示开关",
+      "raw": "§7Ability Chat",
+      "text": "Ability Chat",
+      "placeholders": [],
+      "gloss": "维基说明是 View the message from ability damage dealt (certain items only):刷的是技能打出的伤害数字,不是技能名,所以译「技能伤害提示」而不是笼统的「技能聊天」。Ability 按 GLOSSARY.md「镐子技能」那一节统一作「技能」。行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
+      "translate": true,
+      "zh": "技能伤害提示"
+    },
+    {
+      "id": "ability_cooldown_chat",
+      "context": "技能冷却聊天提示开关",
+      "raw": "§7Ability Cooldown Chat",
+      "text": "Ability Cooldown Chat",
+      "placeholders": [],
+      "gloss": "和 ability_cooldown_sounds 是两个独立开关,一个刷字一个响声,译名靠「提示 / 音效」区分。行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
+      "translate": true,
+      "zh": "技能冷却提示"
+    },
+    {
+      "id": "ability_cooldown_sounds",
+      "context": "技能冷却音效开关",
+      "raw": "§7Ability Cooldown Sounds",
+      "text": "Ability Cooldown Sounds",
+      "placeholders": [],
+      "gloss": "维基说明 Hear the sound effect when an Ability is on cooldown:冷却还没转好时误按会响一声。行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
+      "translate": true,
+      "zh": "技能冷却音效"
+    },
+    {
+      "id": "advanced_supercraft",
+      "context": "超级合成高级模式开关",
+      "raw": "§7Advanced Supercraft",
+      "text": "Advanced Supercraft",
+      "placeholders": [],
+      "gloss": "Supercraft 是 2024-02-22 更新加入的合成功能,一次把材料链一路合到顶(已查证 hypixelskyblock.minecraft.wiki 的 Changelog/2024/February 22)。项目里此前没出现过这个词,「超级合成」为首次出现的暂定译名,后续遇到同名要沿用。维基说明 Show extra information on Supercraft for veteran crafters,对应游戏内自称的 advanced mode,所以 Advanced 译「高级」而不是「进阶」。行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
+      "translate": true,
+      "zh": "高级超级合成"
+    },
+    {
+      "id": "auto_recombobulator_chat",
+      "context": "自动重组器触发的聊天提示开关",
+      "raw": "§7Auto-Recombobulator Chat",
+      "text": "Auto-Recombobulator Chat",
+      "placeholders": [],
+      "gloss": "Recombobulator 是空岛自造词(提升物品稀有度的道具),按 GLOSSARY.md 对 Pickobulus 的处理方向——自造词照意思译、不保留英文——作「重组器」。首次出现,暂定。行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
+      "translate": true,
+      "zh": "自动重组器提示"
+    },
+    {
+      "id": "bid_notifications",
+      "context": "拍卖行有人出价时的通知开关",
+      "raw": "§7Bid Notifications",
+      "text": "Bid Notifications",
+      "placeholders": [],
+      "gloss": "维基说明 Receive a message when someone bids on one of your auctions:是别人对你的拍卖出价。和 outbid_notifications(你被人盖价)是两个开关,译名靠「出价 / 被盖价」区分。行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
+      "translate": true,
+      "zh": "出价通知"
+    },
+    {
+      "id": "compact_chat",
+      "context": "挖矿压缩触发的聊天提示开关",
+      "raw": "§7Compact Chat",
+      "text": "Compact Chat",
+      "placeholders": [],
+      "gloss": "COMPACT! 那一行已按 Mining/ChatMessage/Mineshaft_Loot.json 译「压缩!」,这里沿用同一个词。行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
+      "translate": true,
+      "zh": "压缩提示"
+    },
+    {
+      "id": "confirm_breaking_ungrown_mutations",
+      "context": "打断未成熟变异作物的二次确认开关",
+      "raw": "§7Confirm breaking ungrown Mutations",
+      "text": "Confirm breaking ungrown Mutations",
+      "placeholders": [],
+      "gloss": "原文的 Confirm 是动词、breaking 是它的宾语,维基说明 Open a confirm menu when attempting tobreak mutation crops that are not fully grown yet 把这一点说死了:开着的时候会弹确认菜单。mutation crops 按 Hub_General/BossBar/Objectives.json 的 Spread a mutation → 扩散一株变异作物沿用「变异作物」。行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
+      "translate": true,
+      "zh": "打断未成熟变异作物前先确认"
+    },
+    {
+      "id": "coop_invites",
+      "context": "合作档案邀请开关",
+      "raw": "§7Co-op Invites",
+      "text": "Co-op Invites",
+      "placeholders": [],
+      "gloss": "Co-op 按 GLOSSARY.md 第 355 行「在本项目统一译合作」,和 Economy/GUI_Title/Bank.json 的Co-op Bank Account → 合作银行账户 一致。行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
+      "translate": true,
+      "zh": "合作邀请"
+    },
+    {
+      "id": "coop_travel_notifications",
+      "context": "合作成员传送去向的通知开关",
+      "raw": "§7Co-op Travel Notifications",
+      "text": "Co-op Travel Notifications",
+      "placeholders": [],
+      "gloss": "维基说明 When playing co-op, receive notifications on all your partners' travels:说的是同档案伙伴在岛屿之间走动,不是「旅行」。行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
+      "translate": true,
+      "zh": "合作成员传送通知"
+    },
+    {
+      "id": "death_messages",
+      "context": "他人死亡消息开关",
+      "raw": "§7Death Messages",
+      "text": "Death Messages",
+      "placeholders": [],
+      "gloss": "维基说明 Show death messages when other players die:关掉的是别人的死亡广播。行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
+      "translate": true,
+      "zh": "死亡消息"
+    },
+    {
+      "id": "dynamic_slayer_sidebar",
+      "context": "猎杀任务期间的动态侧边栏开关",
+      "raw": "§7Dynamic Slayer Sidebar",
+      "text": "Dynamic Slayer Sidebar",
+      "placeholders": [],
+      "gloss": "维基说明 View the required number of kills based on recent mob kills in the sidebar during aslayer quest:打猎杀任务时侧边栏临时换成击杀数进度行。Slayer 在本项目此前只以 `<X> Slayer` 委托名出现过(_shared/Terms.json 的 Goblin Slayer → 哥布林猎手等十二条),那是「猎杀某种怪的委托」;这里说的是找 Maddox 接的独立任务系统(已查证 hypixelskyblock.minecraft.wiki/w/Slayer,2026-08-29),沿用同一个「猎」字作「猎杀任务」,首次出现,暂定。行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
+      "translate": true,
+      "zh": "动态猎杀任务侧边栏"
+    },
+    {
+      "id": "ferocity_sounds",
+      "context": "凶猛触发音效开关",
+      "raw": "§7Ferocity Sounds",
+      "text": "Ferocity Sounds",
+      "placeholders": [],
+      "gloss": "Ferocity 是伤害属性,每点给 1% 概率多打一次(已查证 hypixelskyblock.minecraft.wiki/w/Ferocity,2026-08-29),维基说明Hear the sound effect when Ferocity procs。项目里此前没有这个属性的译名(_shared/Item_Lore.json 的属性行只有 Strength/Intelligence/Speed/Defense,且都还没译),「凶猛」为首次出现的暂定译名。行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
+      "translate": true,
+      "zh": "凶猛音效"
+    },
+    {
+      "id": "fill_notifications",
+      "context": "集市订单成交通知开关",
+      "raw": "§7Fill Notifications",
+      "text": "Fill Notifications",
+      "placeholders": [],
+      "gloss": "维基说明 Receive a message when one of your order gets filled in the Bazaar:指集市挂的买卖单被吃掉。fill 是交易术语「成交」,不译「填满」。行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
+      "translate": true,
+      "zh": "订单成交通知"
+    },
+    {
+      "id": "fire_sale_notifications",
+      "context": "限时特卖通知开关",
+      "raw": "§7Fire Sale Notifications",
+      "text": "Fire Sale Notifications",
+      "placeholders": [],
+      "gloss": "Fire Sale 已有译名「限时特卖」,见 _shared/Event_Names.json 和Hub_General/ChatMessage/Fire_Sale.json。行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
+      "translate": true,
+      "zh": "限时特卖通知"
+    },
+    {
+      "id": "fishing_sound",
+      "context": "上鱼音效开关",
+      "raw": "§7Fishing Sound",
+      "text": "Fishing Sound",
+      "placeholders": [],
+      "gloss": "维基说明 When enabled, a distinct sound will play when a fish reaches the bobber:鱼咬钩那一声。原文单数,中文不体现数。行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
+      "translate": true,
+      "zh": "钓鱼音效"
+    },
+    {
+      "id": "fishing_status_holograms",
+      "context": "浮标上方钓鱼状态悬浮字开关",
+      "raw": "§7Fishing Status Holograms",
+      "text": "Fishing Status Holograms",
+      "placeholders": [],
+      "gloss": "维基说明 holograms will give a visual aid when fishing。Hologram 在本项目是采集面之一(见 README.md 的目录表和 Hub_General/Hologram/),但此前没有出现在译文里,「悬浮字」为首次出现的暂定译名,和 fishing_timer 那一条说的是同一处显示。行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
+      "translate": true,
+      "zh": "钓鱼状态悬浮字"
+    },
+    {
+      "id": "fishing_timer",
+      "context": "浮标上方倒计时开关",
+      "raw": "§7Fishing Timer",
+      "text": "Fishing Timer",
+      "placeholders": [],
+      "gloss": "维基说明这一条依赖 Fishing Overlay 一起开,开着时浮标上方倒数到可以收竿。实测采到的是关着的样子(红色 ✖),记号不进 text,所以同一条也答开着的样子。行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
+      "translate": true,
+      "zh": "钓鱼计时"
+    },
+    {
+      "id": "guesting_invites",
+      "context": "他人请求来你岛上作客的邀请开关",
+      "raw": "§7Guesting Invites",
+      "text": "Guesting Invites",
+      "placeholders": [],
+      "gloss": "维基说明 Receive guesting invitations from other players。guesting 指别人来你岛上,不是你出门,所以是「访客邀请」而不是「作客邀请」。Visitor/访客 的用法见 GLOSSARY.md第 656 行 Garden Visitor 一节。行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
+      "translate": true,
+      "zh": "访客邀请"
+    },
+    {
+      "id": "guesting_notifications",
+      "context": "岛上访客动态的通知开关",
+      "raw": "§7Guesting Notifications",
+      "text": "Guesting Notifications",
+      "placeholders": [],
+      "gloss": "维基说明 Receive messages about players guesting on your island:是访客上下岛的动静,和 guesting_invites(邀请本身)分开。行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
+      "translate": true,
+      "zh": "访客动态通知"
+    },
+    {
+      "id": "menu_sounds",
+      "context": "菜单音效开关",
+      "raw": "§7Menu Sounds",
+      "text": "Menu Sounds",
+      "placeholders": [],
+      "gloss": "维基说明 Play sound effects when opening menus。行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
+      "translate": true,
+      "zh": "菜单音效"
+    },
+    {
+      "id": "outbid_notifications",
+      "context": "拍卖被人盖过价时的通知开关",
+      "raw": "§7Outbid Notifications",
+      "text": "Outbid Notifications",
+      "placeholders": [],
+      "gloss": "维基说明 Receive a message when you get outbid on an auction:是你的出价被别人盖过。和 bid_notifications 互为一对。行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
+      "translate": true,
+      "zh": "被盖价通知"
+    },
+    {
+      "id": "pickup_arrows_with_full_quiver",
+      "context": "箭袋满后是否继续拾取箭的开关",
+      "raw": "§7Pickup Arrows with Full Quiver",
+      "text": "Pickup Arrows with Full Quiver",
+      "placeholders": [],
+      "gloss": "维基说明 Pickup arrows when your quiver is full。原文的 with 是条件而不是并列,所以按语义顺成「箭袋已满时仍拾取箭」,不按英文语序写成「拾取箭矢配满箭袋」。Quiver 首次出现,按原版中文「箭袋」。行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
+      "translate": true,
+      "zh": "箭袋已满时仍拾取箭"
+    },
+    {
+      "id": "pristine_chat",
+      "context": "挖矿纯净触发的聊天提示开关",
+      "raw": "§7Pristine Chat",
+      "text": "Pristine Chat",
+      "placeholders": [],
+      "gloss": "PRISTINE! 那一行已按 Mining/ChatMessage/Mineshaft_Loot.json 译「纯净!」,属性名也见 GLOSSARY.md 第 374 行 Pristine → 纯净,这里沿用。行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
+      "translate": true,
+      "zh": "纯净提示"
+    },
+    {
+      "id": "rare_drop_sounds",
+      "context": "稀有掉落音效开关",
+      "raw": "§7Rare Drop Sounds",
+      "text": "Rare Drop Sounds",
+      "placeholders": [],
+      "gloss": "维基说明 Play a jingle when you receive a rare drop from a monster。行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
+      "translate": true,
+      "zh": "稀有掉落音效"
+    },
+    {
+      "id": "sack_notifications",
+      "context": "收纳袋进出物的通知开关",
+      "raw": "§7Sack Notifications",
+      "text": "Sack Notifications",
+      "placeholders": [],
+      "gloss": "维基说明 items added to and removed from your Sacks will be displayed in chat。Sack 按 GLOSSARY.md 第 395 行「收纳袋 SACK」。行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
+      "translate": true,
+      "zh": "收纳袋通知"
+    },
+    {
+      "id": "sea_creature_chat",
+      "context": "钓上海洋生物的聊天提示开关",
+      "raw": "§7Sea Creature Chat",
+      "text": "Sea Creature Chat",
+      "placeholders": [],
+      "gloss": "Sea Creature 已有译名「海洋生物」,见 Hub_General/GUI_Item/Fishing_Stats.json。行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
+      "translate": true,
+      "zh": "海洋生物提示"
+    },
+    {
+      "id": "skyblock_levels_in_chat",
+      "context": "聊天栏里他人等级与徽记的显示开关",
+      "raw": "§7SkyBlock Levels in Chat",
+      "text": "SkyBlock Levels in Chat",
+      "placeholders": [],
+      "gloss": "维基说明 View other players' SkyBlock Level and their selected emblem in their chat messages:是别人发言时名字前面那个等级牌。zh 里照 Common_Menus.json 的 SkyBlock Menu 写成「SkyBlock 等级」,不要自己换成「空岛」——玩法名换不换由配置项 translateSkyBlockName 决定(见 text/Translator.skyBlockName),这一步跑在译文做完之后:开着的时候这一行渲染成「聊天栏显示空岛等级」,关掉就是「聊天栏显示 SkyBlock 等级」。在 zh 里直接写死「空岛」会让这个开关对这一行失效。行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
+      "translate": true,
+      "zh": "聊天栏显示 SkyBlock 等级"
+    },
+    {
+      "id": "zones_in_action_bar",
+      "context": "进入区域时在动作栏显示区域名的开关",
+      "raw": "§7Zones in Action Bar",
+      "text": "Zones in Action Bar",
+      "placeholders": [],
+      "gloss": "维基说明 Whether zone names should be displayed in the Action Bar upon entering。Action Bar 按 README.md 第 27 行对这个采集面的称呼作「动作栏」。行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
+      "translate": true,
+      "zh": "动作栏显示区域名"
+    },
+    {
+      "id": "plot_holograms",
+      "context": "花园地块之间的悬浮字开关",
+      "raw": "§7Plot Holograms",
+      "text": "Plot Holograms",
+      "placeholders": [],
+      "gloss": "维基说明(Garden Settings 那一页)Disable the holograms at the gates between garden plots:是花园里各块地交界处门上那些字。Plot 首次出现,按花园按块划分的实际形态作「地块」;hologram 和 fishing_status_holograms 同一个词,统一作「悬浮字」。行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
+      "translate": true,
+      "zh": "地块悬浮字"
+    },
+    {
+      "id": "api_skills",
+      "context": "第三方查询技能数据的开关",
+      "raw": "§aAPI: §eSkills",
+      "text": "API: Skills",
+      "placeholders": [],
+      "gloss": "API 保留英文(GLOSSARY.md 未收此词,但 api_current_profile_only 一条已按保留英文处理)。冒号后是被开放的那一类数据,Skills 按 Hub_General/GUI_Item/Settings.json 的Skill Numerals → 技能数字 沿用「技能」。行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
+      "translate": true,
+      "zh": "API: 技能",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "API: ",
+          "zh": "API: "
+        },
+        {
+          "color": "§e",
+          "text": "Skills",
+          "zh": "技能"
+        }
+      ]
+    },
+    {
+      "id": "api_collections",
+      "context": "第三方查询收藏品进度的开关",
+      "raw": "§aAPI: §eCollections",
+      "text": "API: Collections",
+      "placeholders": [],
+      "gloss": "Collections 按 Hub_General/GUI_Title/Common_Menus.json 的 Collections → 收藏品。行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
+      "translate": true,
+      "zh": "API: 收藏品",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "API: ",
+          "zh": "API: "
+        },
+        {
+          "color": "§e",
+          "text": "Collections",
+          "zh": "收藏品"
+        }
+      ]
+    },
+    {
+      "id": "api_inventory",
+      "context": "第三方查询背包、收纳背包与末影箱的开关",
+      "raw": "§aAPI: §eInventory",
+      "text": "API: Inventory",
+      "placeholders": [],
+      "gloss": "维基说明 Allow other players to view your inventory, backpacks and ender chest:一个开关管三处,格子名只写了打头那一个,中文照原文也只写「背包」。inventory 按 Hub_General/ChatMessage/Common_System.json 的 Your inventory is full! → 你的背包满了!统一作「背包」。行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
+      "translate": true,
+      "zh": "API: 背包",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "API: ",
+          "zh": "API: "
+        },
+        {
+          "color": "§e",
+          "text": "Inventory",
+          "zh": "背包"
+        }
+      ]
+    },
+    {
+      "id": "api_personal_bank_and_vault",
+      "context": "第三方查询个人银行与保险库的开关",
+      "raw": "§aAPI: §ePersonal Bank and Vault",
+      "text": "API: Personal Bank and Vault",
+      "placeholders": [],
+      "gloss": "游戏实际发的是 Personal Bank and Vault(维基那一页写的是 Personal Bank Vault,以游戏内为准)。Personal Bank 按 Economy/GUI_Title/Bank.json 的 Personal Bank Account → 个人银行账户;Vault 项目里首次出现,暂定「保险库」。行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
+      "translate": true,
+      "zh": "API: 个人银行与保险库",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "API: ",
+          "zh": "API: "
+        },
+        {
+          "color": "§e",
+          "text": "Personal Bank and Vault",
+          "zh": "个人银行与保险库"
+        }
+      ]
+    },
+    {
+      "id": "api_museum",
+      "context": "第三方查询博物馆藏品的开关",
+      "raw": "§aAPI: §eMuseum",
+      "text": "API: Museum",
+      "placeholders": [],
+      "gloss": "Museum 已有译名「博物馆」,见 _shared/Terms.json 和 Hub_General/GUI_Title/Common_Menus.json。行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
+      "translate": true,
+      "zh": "API: 博物馆",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "API: ",
+          "zh": "API: "
+        },
+        {
+          "color": "§e",
+          "text": "Museum",
+          "zh": "博物馆"
+        }
+      ]
+    },
+    {
+      "id": "settings_personal_desc",
+      "context": "主设置菜单里「个人设置」入口的说明",
+      "raw": "§7General settings related to your",
+      "text": "General settings related to your",
+      "placeholders": [],
+      "gloss": "「个人设置」那一格的说明。说明取自维基 Settings 页(hypixelskyblock.minecraft.wiki/w/Settings,2026-08-29 查证)。",
+      "translate": true,
+      "zh": "与你的游戏体验有关的通用设置。"
+    },
+    {
+      "id": "settings_personal_desc_2",
+      "context": "承接 settings_personal_desc 的尾巴",
+      "raw": "§7experience.",
+      "text": "experience.",
+      "placeholders": [],
+      "gloss": "整句已在 settings_personal_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "settings_comms_desc",
+      "context": "主设置菜单里「通信设置」入口的说明",
+      "raw": "§7Tweak notifications and invites you",
+      "text": "Tweak notifications and invites you",
+      "placeholders": [],
+      "gloss": "「通信设置」那一格的说明。采集把这一行的尾巴和 settings_chat_feedback_desc 的尾巴并成了「get from %1$s %2$s.」一条模板(观察到的取值是 other players 和 certain items),其实是两句不同的话,所以两边各写字面量。说明取自维基 Settings 页(hypixelskyblock.minecraft.wiki/w/Settings,2026-08-29 查证)。",
+      "translate": true,
+      "zh": "调整你从其他玩家那里收到的通知和邀请。"
+    },
+    {
+      "id": "settings_comms_desc_2",
+      "context": "承接 settings_comms_desc 的尾巴",
+      "raw": "§7get from other players.",
+      "text": "get from other players.",
+      "placeholders": [],
+      "gloss": "整句已在 settings_comms_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "settings_chat_feedback_desc",
+      "context": "主设置菜单里「聊天反馈」入口的说明",
+      "raw": "§7Tweak chat feedback messages you",
+      "text": "Tweak chat feedback messages you",
+      "placeholders": [],
+      "gloss": "「聊天反馈」那一格的说明。和 settings_comms_desc 的尾巴长得像但不是同一句,理由见那一条。",
+      "translate": true,
+      "zh": "调整某些物品给你的聊天反馈消息。"
+    },
+    {
+      "id": "settings_chat_feedback_desc_2",
+      "context": "承接 settings_chat_feedback_desc 的尾巴",
+      "raw": "§7get from certain items.",
+      "text": "get from certain items.",
+      "placeholders": [],
+      "gloss": "整句已在 settings_chat_feedback_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "settings_fishing_desc",
+      "context": "主设置菜单里「钓鱼设置」入口的说明",
+      "raw": "§7Tweak settings related to fishing.",
+      "text": "Tweak settings related to fishing.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "调整与钓鱼有关的设置。"
+    },
+    {
+      "id": "settings_api_desc",
+      "context": "主设置菜单里「API 设置」入口的说明",
+      "raw": "§7Edit settings regarding third-party",
+      "text": "Edit settings regarding third-party",
+      "placeholders": [],
+      "gloss": "zh 里写「SkyBlock」而不是「空岛」:玩法名换不换由配置项 translateSkyBlockName 决定,那一步跑在译文做完之后(见 text/Translator.skyBlockName)。",
+      "translate": true,
+      "zh": "调整第三方访问你 SkyBlock 档案的相关设置。"
+    },
+    {
+      "id": "settings_api_desc_2",
+      "context": "承接 settings_api_desc 的尾巴",
+      "raw": "§7access to your SkyBlock profile.",
+      "text": "access to your SkyBlock profile.",
+      "placeholders": [],
+      "gloss": "整句已在 settings_api_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "settings_scope_desc",
+      "context": "「花园设置」和「岛屿设置」两格共用的说明头",
+      "raw": "§7Edit SkyBlock settings regarding",
+      "text": "Edit SkyBlock settings regarding",
+      "placeholders": [],
+      "gloss": "这一行是「花园设置」和「岛屿设置」两格共用的头:采集里它后面跟的下一行,在花园那一份是「your Garden.」,在岛屿那一份是「your island.」。ITEM 面上一条记录只能有一个译文,所以这里**不能**把整句塞进头、让尾巴标 continuation——那样岛屿设置那一格会显示成「……范围是你的花园。」。头只翻到两句共有的部分为止,各自是什么留给下面两条尾巴。同一个道理见 _shared/Enchantments.json#ench_defence_against_desc_1,以及本文件的 api_allow_view_head。zh 里写「SkyBlock」不写「空岛」:换名由配置项 translateSkyBlockName 在译完之后做(见 text/Translator.skyBlockName)。",
+      "translate": true,
+      "zh": "调整 SkyBlock 设置,范围是"
+    },
+    {
+      "id": "settings_scope_desc_garden",
+      "context": "接在 settings_scope_desc 后面，说明这一格管的是花园",
+      "raw": "§7your Garden.",
+      "text": "your Garden.",
+      "placeholders": [],
+      "gloss": "不标 continuation:头是两格共用的,只翻到「范围是」为止,这一行得自己把话说完。花园那一侧的开关行在 Farming/GUI_Item/Garden_Settings.json。",
+      "translate": true,
+      "zh": "你的花园。"
+    },
+    {
+      "id": "settings_scope_desc_island",
+      "context": "接在 settings_scope_desc 后面，说明这一格管的是岛屿",
+      "raw": "§7your island.",
+      "text": "your island.",
+      "placeholders": [],
+      "gloss": "和 settings_scope_desc_garden 是同一个头的另一条尾巴——头在花园那一格后面跟的是 “your Garden.”，在岛屿这一格后面跟的是这一行。理由见 settings_scope_desc。",
+      "translate": true,
+      "zh": "你的岛屿。"
+    },
+    {
+      "id": "settings_garden_shared_note",
+      "context": "花园设置由合作伙伴共用的提醒",
+      "raw": "§7Garden settings are shared with",
+      "text": "Garden settings are shared with",
+      "placeholders": [],
+      "gloss": "青色的提醒行,不是某一个开关的说明。同一个意思在花园设置菜单里写作Farming/GUI_Item/Garden_Settings.json#garden_applies_to_coop(「对所有合作伙伴同样生效!」),两句英文不同所以各写一条。",
+      "translate": true,
+      "zh": "花园设置由你和合作伙伴共用!"
+    },
+    {
+      "id": "settings_garden_shared_note_2",
+      "context": "承接 settings_garden_shared_note 的尾巴",
+      "raw": "§7your co-op partners!",
+      "text": "your co-op partners!",
+      "placeholders": [],
+      "gloss": "整句已在 settings_garden_shared_note 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "settings_island_management_desc",
+      "context": "主设置菜单里「岛屿管理」入口的说明",
+      "raw": "§7View and manage island settings!",
+      "text": "View and manage island settings!",
+      "placeholders": [],
+      "gloss": "「岛屿管理」那一格的说明,开关名那一份在同文件的 island_management。",
+      "translate": true,
+      "zh": "查看并管理岛屿设置!"
+    },
+    {
+      "id": "double_tap_to_drop_desc",
+      "context": "「双击丢弃」那一行的说明",
+      "raw": "§7Double tap the drop button to drop",
+      "text": "Double tap the drop button to drop",
+      "placeholders": [],
+      "gloss": "开关名那一份在同文件的 double_tap_to_drop(双击丢弃)。原文说的是这个开关开着时的行为。",
+      "translate": true,
+      "zh": "连按两次丢弃键才会丢出某些物品。"
+    },
+    {
+      "id": "double_tap_to_drop_desc_2",
+      "context": "承接 double_tap_to_drop_desc 的尾巴",
+      "raw": "§7certain items.",
+      "text": "certain items.",
+      "placeholders": [],
+      "gloss": "整句已在 double_tap_to_drop_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "profile_viewer_desc",
+      "context": "「查看档案」那一行的说明",
+      "raw": "§7View player profiles on right-click.",
+      "text": "View player profiles on right-click.",
+      "placeholders": [],
+      "gloss": "开关名那一份在同文件的 profile_viewer(查看档案)。",
+      "translate": true,
+      "zh": "右键点击玩家即可查看其档案。"
+    },
+    {
+      "id": "player_trading_desc",
+      "context": "「玩家交易」那一行的说明",
+      "raw": "§7Receive trade requests from other",
+      "text": "Receive trade requests from other",
+      "placeholders": [],
+      "gloss": "开关名那一份在同文件的 player_trading(玩家交易)。这一行的尾巴只有 “players.” 一个词,同一面上别的说明也可能以它收尾——尾巴一律是 continuation(整行删掉),所以哪一条应答都一样。",
+      "translate": true,
+      "zh": "接收其他玩家发来的交易请求。"
+    },
+    {
+      "id": "player_trading_desc_2",
+      "context": "承接 player_trading_desc / coop_invites_desc 的尾巴",
+      "raw": "§7players.",
+      "text": "players.",
+      "placeholders": [],
+      "gloss": "「玩家交易」和「合作邀请」两条说明的尾巴都是这一个词,所以只留一条记录:索引按 text 存字面记录、遇到重复保留先到的那一条(见 text/TranslationIndex.add 的 putIfAbsent),第二条永远轮不到。尾巴本身不带译文,只表示「这一行是上面那句话的后半截,整行删掉」,所以由哪一句的尾巴来应答都一样。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "inventory_full_notifications_desc",
+      "context": "「背包已满通知」那一行的说明",
+      "raw": "§7Get a notification when your",
+      "text": "Get a notification when your",
+      "placeholders": [],
+      "gloss": "开关名那一份在同文件的 inventory_full_notifications(背包已满通知)。",
+      "translate": true,
+      "zh": "背包装满时通知你。"
+    },
+    {
+      "id": "inventory_full_notifications_desc_2",
+      "context": "承接 inventory_full_notifications_desc 的尾巴",
+      "raw": "§7inventory is full.",
+      "text": "inventory is full.",
+      "placeholders": [],
+      "gloss": "整句已在 inventory_full_notifications_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "pickup_arrows_with_full_quiver_desc",
+      "context": "「箭袋已满时仍拾取箭」那一行的说明",
+      "raw": "§7Pickup arrows when your quiver is",
+      "text": "Pickup arrows when your quiver is",
+      "placeholders": [],
+      "gloss": "开关名那一份在同文件的 pickup_arrows_with_full_quiver。",
+      "translate": true,
+      "zh": "箭袋装满之后仍然拾取地上的箭。"
+    },
+    {
+      "id": "pickup_arrows_with_full_quiver_desc_2",
+      "context": "承接 pickup_arrows_with_full_quiver_desc 的尾巴",
+      "raw": "§7full.",
+      "text": "full.",
+      "placeholders": [],
+      "gloss": "整句已在 pickup_arrows_with_full_quiver_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "confirm_breaking_ungrown_mutations_desc",
+      "context": "「打断未成熟变异作物前先确认」那一行的说明",
+      "raw": "§7Open a confirm menu when attempting",
+      "text": "Open a confirm menu when attempting",
+      "placeholders": [],
+      "gloss": "三行一句。开关名那一份在同文件的 confirm_breaking_ungrown_mutations。mutation crops 按 Hub_General/BossBar/Objectives.json 的 Spread a mutation → 扩散一株变异作物沿用「变异作物」。",
+      "translate": true,
+      "zh": "当你要打断还没完全长成的变异作物时,先弹出一个确认菜单。"
+    },
+    {
+      "id": "confirm_breaking_ungrown_mutations_desc_2",
+      "context": "承接 confirm_breaking_ungrown_mutations_desc 的尾巴",
+      "raw": "§7to break mutation crops that are not",
+      "text": "to break mutation crops that are not",
+      "placeholders": [],
+      "gloss": "整句已在 confirm_breaking_ungrown_mutations_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "confirm_breaking_ungrown_mutations_desc_3",
+      "context": "承接 confirm_breaking_ungrown_mutations_desc 的尾巴",
+      "raw": "§7fully grown yet.",
+      "text": "fully grown yet.",
+      "placeholders": [],
+      "gloss": "整句已在 confirm_breaking_ungrown_mutations_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "death_messages_desc",
+      "context": "「死亡消息」那一行的说明",
+      "raw": "§7Show death messages when other",
+      "text": "Show death messages when other",
+      "placeholders": [],
+      "gloss": "开关名那一份在同文件的 death_messages(死亡消息)。关掉的是别人的死亡广播,不是自己的。",
+      "translate": true,
+      "zh": "其他玩家死亡时显示死亡消息。"
+    },
+    {
+      "id": "death_messages_desc_2",
+      "context": "承接 death_messages_desc 的尾巴",
+      "raw": "§7players die.",
+      "text": "players die.",
+      "placeholders": [],
+      "gloss": "整句已在 death_messages_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "guesting_invites_desc",
+      "context": "「访客邀请」那一行的说明",
+      "raw": "§7Receive guesting invitations from",
+      "text": "Receive guesting invitations from",
+      "placeholders": [],
+      "gloss": "开关名那一份在同文件的 guesting_invites(访客邀请)。开关名那一侧站在「我的岛上来人」这个角度,所以叫「访客邀请」;这一行原文是 receive ... from other players,站在「别人请我过去」的角度,所以说「作客邀请」。两处不是同一件事的两种译法,而是同一个开关的两头。",
+      "translate": true,
+      "zh": "接收其他玩家发来的作客邀请。"
+    },
+    {
+      "id": "guesting_invites_desc_2",
+      "context": "承接 guesting_invites_desc 的尾巴",
+      "raw": "§7other players.",
+      "text": "other players.",
+      "placeholders": [],
+      "gloss": "整句已在 guesting_invites_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "coop_invites_desc",
+      "context": "「合作邀请」那一行的说明",
+      "raw": "§7Receive co-op invitations from other",
+      "text": "Receive co-op invitations from other",
+      "placeholders": [],
+      "gloss": "开关名那一份在同文件的 coop_invites(合作邀请)。",
+      "translate": true,
+      "zh": "接收其他玩家发来的合作邀请。"
+    },
+    {
+      "id": "bid_notifications_desc",
+      "context": "「出价通知」那一行的说明",
+      "raw": "§7Receive a message when someone",
+      "text": "Receive a message when someone",
+      "placeholders": [],
+      "gloss": "开关名那一份在同文件的 bid_notifications(出价通知)。",
+      "translate": true,
+      "zh": "有人对你的拍卖品出价时通知你。"
+    },
+    {
+      "id": "bid_notifications_desc_2",
+      "context": "承接 bid_notifications_desc 的尾巴",
+      "raw": "§7bids on one of your auctions.",
+      "text": "bids on one of your auctions.",
+      "placeholders": [],
+      "gloss": "整句已在 bid_notifications_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "outbid_notifications_desc",
+      "context": "「被盖价通知」那一行的说明",
+      "raw": "§7Receive a message when you get",
+      "text": "Receive a message when you get",
+      "placeholders": [],
+      "gloss": "开关名那一份在同文件的 outbid_notifications(被盖价通知)。",
+      "translate": true,
+      "zh": "你在拍卖里被人盖过价时通知你。"
+    },
+    {
+      "id": "outbid_notifications_desc_2",
+      "context": "承接 outbid_notifications_desc 的尾巴",
+      "raw": "§7outbid on an auction.",
+      "text": "outbid on an auction.",
+      "placeholders": [],
+      "gloss": "整句已在 outbid_notifications_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "fill_notifications_desc",
+      "context": "「订单成交通知」那一行的说明",
+      "raw": "§7Receive a message when one of your",
+      "text": "Receive a message when one of your",
+      "placeholders": [],
+      "gloss": "开关名那一份在同文件的 fill_notifications(订单成交通知)。Bazaar 已有译名「集市」。",
+      "translate": true,
+      "zh": "你在集市挂的订单成交时通知你。"
+    },
+    {
+      "id": "fill_notifications_desc_2",
+      "context": "承接 fill_notifications_desc 的尾巴",
+      "raw": "§7orders gets filled in the Bazaar.",
+      "text": "orders gets filled in the Bazaar.",
+      "placeholders": [],
+      "gloss": "整句已在 fill_notifications_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "guesting_notifications_desc",
+      "context": "「访客动态通知」那一行的说明",
+      "raw": "§7Receive messages about players",
+      "text": "Receive messages about players",
+      "placeholders": [],
+      "gloss": "开关名那一份在同文件的 guesting_notifications(访客动态通知)。",
+      "translate": true,
+      "zh": "有玩家在你岛上作客时给你消息。"
+    },
+    {
+      "id": "guesting_notifications_desc_2",
+      "context": "承接 guesting_notifications_desc 的尾巴",
+      "raw": "§7guesting on your island.",
+      "text": "guesting on your island.",
+      "placeholders": [],
+      "gloss": "整句已在 guesting_notifications_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "coop_travel_notifications_desc",
+      "context": "「合作成员传送通知」那一行的说明",
+      "raw": "§7When playing co-op, receive",
+      "text": "When playing co-op, receive",
+      "placeholders": [],
+      "gloss": "三行一句。开关名那一份在同文件的 coop_travel_notifications(合作成员传送通知)。travels 指伙伴在岛屿之间走动,不是「旅行」。",
+      "translate": true,
+      "zh": "玩合作档案时,伙伴每次换岛都通知你。"
+    },
+    {
+      "id": "coop_travel_notifications_desc_2",
+      "context": "承接 coop_travel_notifications_desc 的尾巴",
+      "raw": "§7notifications on all your partners'",
+      "text": "notifications on all your partners'",
+      "placeholders": [],
+      "gloss": "整句已在 coop_travel_notifications_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "coop_travel_notifications_desc_3",
+      "context": "承接 coop_travel_notifications_desc 的尾巴",
+      "raw": "§7travels.",
+      "text": "travels.",
+      "placeholders": [],
+      "gloss": "整句已在 coop_travel_notifications_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "ability_chat_desc",
+      "context": "「技能伤害提示」那一行的说明",
+      "raw": "§7View the message from ability damage",
+      "text": "View the message from ability damage",
+      "placeholders": [],
+      "gloss": "开关名那一份在同文件的 ability_chat(技能伤害提示)。说明取自维基 Settings 页(hypixelskyblock.minecraft.wiki/w/Settings,2026-08-29 查证)。",
+      "translate": true,
+      "zh": "显示技能打出伤害时的提示(仅部分物品有)。"
+    },
+    {
+      "id": "ability_chat_desc_2",
+      "context": "承接 ability_chat_desc 的尾巴",
+      "raw": "§7dealt (certain items only).",
+      "text": "dealt (certain items only).",
+      "placeholders": [],
+      "gloss": "整句已在 ability_chat_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "ability_cooldown_chat_desc",
+      "context": "「技能冷却提示」那一行的说明",
+      "raw": "§7View the message from ability",
+      "text": "View the message from ability",
+      "placeholders": [],
+      "gloss": "开关名那一份在同文件的 ability_cooldown_chat(技能冷却提示)。",
+      "translate": true,
+      "zh": "显示技能冷却的提示。"
+    },
+    {
+      "id": "ability_cooldown_chat_desc_2",
+      "context": "承接 ability_cooldown_chat_desc 的尾巴",
+      "raw": "§7cooldowns.",
+      "text": "cooldowns.",
+      "placeholders": [],
+      "gloss": "整句已在 ability_cooldown_chat_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "auto_recombobulator_chat_desc",
+      "context": "「自动重组器提示」那一行的说明",
+      "raw": "§7Receive chat messages when your",
+      "text": "Receive chat messages when your",
+      "placeholders": [],
+      "gloss": "开关名那一份在同文件的 auto_recombobulator_chat(自动重组器提示)。注意开关名里写作 Auto-Recombobulator(大写 R),这一行写作 Auto-recombobulator(小写 r)——服务器自己两处不一致,中文都作「自动重组器」。",
+      "translate": true,
+      "zh": "自动重组器触发时在聊天栏给你消息。"
+    },
+    {
+      "id": "auto_recombobulator_chat_desc_2",
+      "context": "承接 auto_recombobulator_chat_desc 的尾巴",
+      "raw": "§7Auto-recombobulator triggers.",
+      "text": "Auto-recombobulator triggers.",
+      "placeholders": [],
+      "gloss": "整句已在 auto_recombobulator_chat_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "sack_notifications_desc",
+      "context": "「收纳袋通知」那一行的说明",
+      "raw": "§7When enabled, items added to and",
+      "text": "When enabled, items added to and",
+      "placeholders": [],
+      "gloss": "三行一句。开关名那一份在同文件的 sack_notifications(收纳袋通知)。",
+      "translate": true,
+      "zh": "开启后,收纳袋里进出的物品都会显示在聊天栏。"
+    },
+    {
+      "id": "sack_notifications_desc_2",
+      "context": "承接 sack_notifications_desc 的尾巴",
+      "raw": "§7removed from your Sacks will be",
+      "text": "removed from your Sacks will be",
+      "placeholders": [],
+      "gloss": "整句已在 sack_notifications_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "sack_notifications_desc_3",
+      "context": "承接 sack_notifications_desc 的尾巴",
+      "raw": "§7displayed in chat.",
+      "text": "displayed in chat.",
+      "placeholders": [],
+      "gloss": "整句已在 sack_notifications_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "fire_sale_notifications_desc",
+      "context": "「限时特卖通知」那一行的说明",
+      "raw": "§7When enabled, you will occasionally",
+      "text": "When enabled, you will occasionally",
+      "placeholders": [],
+      "gloss": "三行一句。开关名那一份在同文件的 fire_sale_notifications(限时特卖通知)。Hub 已有译名「主城」;Fire Sale 见 _shared/Event_Names.json。",
+      "translate": true,
+      "zh": "开启后,你在主城之外也会偶尔收到限时特卖正在进行的通知。"
+    },
+    {
+      "id": "fire_sale_notifications_desc_2",
+      "context": "承接 fire_sale_notifications_desc 的尾巴",
+      "raw": "§7be notified of active Fire Sales",
+      "text": "be notified of active Fire Sales",
+      "placeholders": [],
+      "gloss": "整句已在 fire_sale_notifications_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "fire_sale_notifications_desc_3",
+      "context": "承接 fire_sale_notifications_desc 的尾巴",
+      "raw": "§7outside of the Hub.",
+      "text": "outside of the Hub.",
+      "placeholders": [],
+      "gloss": "整句已在 fire_sale_notifications_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "sea_creature_chat_desc",
+      "context": "「海洋生物提示」那一行的说明",
+      "raw": "§7View the message from catching Sea",
+      "text": "View the message from catching Sea",
+      "placeholders": [],
+      "gloss": "开关名那一份在同文件的 sea_creature_chat(海洋生物提示)。英文在 Sea / Creatures 之间断行,是同一个词组被排版切开的。",
+      "translate": true,
+      "zh": "显示钓上海洋生物时的提示。"
+    },
+    {
+      "id": "sea_creature_chat_desc_2",
+      "context": "承接 sea_creature_chat_desc 的尾巴",
+      "raw": "§7Creatures.",
+      "text": "Creatures.",
+      "placeholders": [],
+      "gloss": "整句已在 sea_creature_chat_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "fishing_status_holograms_desc",
+      "context": "「钓鱼状态悬浮字」那一行的说明",
+      "raw": "§7When enabled, holograms will give a",
+      "text": "When enabled, holograms will give a",
+      "placeholders": [],
+      "gloss": "开关名那一份在同文件的 fishing_status_holograms(钓鱼状态悬浮字)。",
+      "translate": true,
+      "zh": "开启后,钓鱼时会有悬浮字给你提示。"
+    },
+    {
+      "id": "fishing_status_holograms_desc_2",
+      "context": "承接 fishing_status_holograms_desc 的尾巴",
+      "raw": "§7visual aid when fishing.",
+      "text": "visual aid when fishing.",
+      "placeholders": [],
+      "gloss": "整句已在 fishing_status_holograms_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "fishing_timer_desc",
+      "context": "「钓鱼计时」那一行的说明",
+      "raw": "§7When this and the \"Fishing Overlay\"",
+      "text": "When this and the \"Fishing Overlay\"",
+      "placeholders": [],
+      "gloss": "四行一句,是这一批里最长的。开关名那一份在同文件的 fishing_timer(钓鱼计时)。Fishing Overlay 保留英文并加引号:它是另一个开关的名字,而那个开关本轮没有采到,现在替它编一个中文名会和将来采到时的译名打架。",
+      "translate": true,
+      "zh": "本项与「Fishing Overlay」同时开启时,浮标上方会倒数到可以收竿为止。"
+    },
+    {
+      "id": "fishing_timer_desc_2",
+      "context": "承接 fishing_timer_desc 的尾巴",
+      "raw": "§7is enabled, the overlay will count",
+      "text": "is enabled, the overlay will count",
+      "placeholders": [],
+      "gloss": "整句已在 fishing_timer_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "fishing_timer_desc_3",
+      "context": "承接 fishing_timer_desc 的尾巴",
+      "raw": "§7down the time above the bobber until",
+      "text": "down the time above the bobber until",
+      "placeholders": [],
+      "gloss": "整句已在 fishing_timer_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "fishing_timer_desc_4",
+      "context": "承接 fishing_timer_desc 的尾巴",
+      "raw": "§7a fish can be caught.",
+      "text": "a fish can be caught.",
+      "placeholders": [],
+      "gloss": "整句已在 fishing_timer_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "fishing_sound_desc",
+      "context": "「钓鱼音效」那一行的说明",
+      "raw": "§7When enabled, a distinct sound will",
+      "text": "When enabled, a distinct sound will",
+      "placeholders": [],
+      "gloss": "开关名那一份在同文件的 fishing_sound(钓鱼音效)。",
+      "translate": true,
+      "zh": "开启后,鱼游到浮标时会响一声特别的音效。"
+    },
+    {
+      "id": "fishing_sound_desc_2",
+      "context": "承接 fishing_sound_desc 的尾巴",
+      "raw": "§7play when a fish reaches the bobber.",
+      "text": "play when a fish reaches the bobber.",
+      "placeholders": [],
+      "gloss": "整句已在 fishing_sound_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "play_music_desc",
+      "context": "「播放音乐」那一行的说明",
+      "raw": "§7Play music when you enter zones or",
+      "text": "Play music when you enter zones or",
+      "placeholders": [],
+      "gloss": "开关名那一份在同文件的 play_music(播放音乐)。",
+      "translate": true,
+      "zh": "进入区域或遇到其他情形时播放音乐。"
+    },
+    {
+      "id": "play_music_desc_2",
+      "context": "承接 play_music_desc 的尾巴",
+      "raw": "§7other circumstances.",
+      "text": "other circumstances.",
+      "placeholders": [],
+      "gloss": "整句已在 play_music_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "ability_cooldown_sounds_desc",
+      "context": "「技能冷却音效」那一行的说明",
+      "raw": "§7Hear the sound effect when an",
+      "text": "Hear the sound effect when an",
+      "placeholders": [],
+      "gloss": "开关名那一份在同文件的 ability_cooldown_sounds(技能冷却音效)。采集把这一行的头和 ferocity_sounds_desc 的头并成了「Hear the sound effect when %1$s」一条模板(观察到的取值是 an 和 Ferocity)——一个是冠词一个是属性名,其实是两句不同的话,所以两边各写字面量。",
+      "translate": true,
+      "zh": "技能处于冷却中时听到提示音。"
+    },
+    {
+      "id": "ability_cooldown_sounds_desc_2",
+      "context": "承接 ability_cooldown_sounds_desc 的尾巴",
+      "raw": "§7Ability is on cooldown.",
+      "text": "Ability is on cooldown.",
+      "placeholders": [],
+      "gloss": "整句已在 ability_cooldown_sounds_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "rare_drop_sounds_desc",
+      "context": "「稀有掉落音效」那一行的说明",
+      "raw": "§7Play a jingle when you receive a",
+      "text": "Play a jingle when you receive a",
+      "placeholders": [],
+      "gloss": "开关名那一份在同文件的 rare_drop_sounds(稀有掉落音效)。",
+      "translate": true,
+      "zh": "从怪物身上拿到稀有掉落时播放一小段提示音。"
+    },
+    {
+      "id": "rare_drop_sounds_desc_2",
+      "context": "承接 rare_drop_sounds_desc 的尾巴",
+      "raw": "§7rare drop from a monster.",
+      "text": "rare drop from a monster.",
+      "placeholders": [],
+      "gloss": "整句已在 rare_drop_sounds_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "menu_sounds_desc",
+      "context": "「菜单音效」那一行的说明",
+      "raw": "§7Play sound effects when opening",
+      "text": "Play sound effects when opening",
+      "placeholders": [],
+      "gloss": "开关名那一份在同文件的 menu_sounds(菜单音效)。",
+      "translate": true,
+      "zh": "打开菜单时播放音效。"
+    },
+    {
+      "id": "menu_sounds_desc_2",
+      "context": "承接 menu_sounds_desc 的尾巴",
+      "raw": "§7menus.",
+      "text": "menus.",
+      "placeholders": [],
+      "gloss": "整句已在 menu_sounds_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "ferocity_sounds_desc",
+      "context": "「凶猛音效」那一行的说明",
+      "raw": "§7Hear the sound effect when Ferocity",
+      "text": "Hear the sound effect when Ferocity",
+      "placeholders": [],
+      "gloss": "开关名那一份在同文件的 ferocity_sounds(凶猛音效)。proc 是「触发」,指凶猛让这一击多打了一次;和 ability_cooldown_sounds_desc 的头长得像但不是同一句,理由见那一条。",
+      "translate": true,
+      "zh": "凶猛触发时听到提示音。"
+    },
+    {
+      "id": "ferocity_sounds_desc_2",
+      "context": "承接 ferocity_sounds_desc 的尾巴",
+      "raw": "§7procs.",
+      "text": "procs.",
+      "placeholders": [],
+      "gloss": "整句已在 ferocity_sounds_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "player_list_info_desc",
+      "context": "「玩家列表信息」那一行的说明",
+      "raw": "§7View extra information in the player",
+      "text": "View extra information in the player",
+      "placeholders": [],
+      "gloss": "开关名那一份在同文件的 player_list_info(玩家列表信息)。",
+      "translate": true,
+      "zh": "在玩家列表里显示额外信息。"
+    },
+    {
+      "id": "player_list_info_desc_2",
+      "context": "承接 player_list_info_desc 的尾巴",
+      "raw": "§7list.",
+      "text": "list.",
+      "placeholders": [],
+      "gloss": "整句已在 player_list_info_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skill_numerals_desc",
+      "context": "「技能数字」那一行的说明",
+      "raw": "§7Use Roman Numerals for skill levels.",
+      "text": "Use Roman Numerals for skill levels.",
+      "placeholders": [],
+      "gloss": "开关名那一份在同文件的 skill_numerals(技能数字)。两行英文本是两句话(第一行有句号),但第二行只是第一行的举例,中文并成一句更顺,所以仍按 continuation 处理。罗马数字本身不译。",
+      "translate": true,
+      "zh": "技能等级用罗马数字表示,例如 I、II、IV……"
+    },
+    {
+      "id": "skill_numerals_desc_2",
+      "context": "承接 skill_numerals_desc 的尾巴",
+      "raw": "§7For example I, II, IV...",
+      "text": "For example I, II, IV...",
+      "placeholders": [],
+      "gloss": "整句已在 skill_numerals_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "dynamic_slayer_sidebar_desc",
+      "context": "「动态猎杀任务侧边栏」那一行的说明",
+      "raw": "§7View the required number of kills",
+      "text": "View the required number of kills",
+      "placeholders": [],
+      "gloss": "三行一句。开关名那一份在同文件的 dynamic_slayer_sidebar(动态猎杀任务侧边栏)。",
+      "translate": true,
+      "zh": "做猎杀任务时,侧边栏按你最近的击杀情况显示还需要杀多少只。"
+    },
+    {
+      "id": "dynamic_slayer_sidebar_desc_2",
+      "context": "承接 dynamic_slayer_sidebar_desc 的尾巴",
+      "raw": "§7based on recent mob kills in the",
+      "text": "based on recent mob kills in the",
+      "placeholders": [],
+      "gloss": "整句已在 dynamic_slayer_sidebar_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "dynamic_slayer_sidebar_desc_3",
+      "context": "承接 dynamic_slayer_sidebar_desc 的尾巴",
+      "raw": "§7sidebar during a slayer quest.",
+      "text": "sidebar during a slayer quest.",
+      "placeholders": [],
+      "gloss": "整句已在 dynamic_slayer_sidebar_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skyblock_levels_in_chat_desc",
+      "context": "「聊天栏显示 SkyBlock 等级」那一行的说明",
+      "raw": "§7View other players' SkyBlock Level",
+      "text": "View other players' SkyBlock Level",
+      "placeholders": [],
+      "gloss": "三行一句。开关名那一份在同文件的 skyblock_levels_in_chat。zh 里写「SkyBlock」不写「空岛」,理由同那一条:换名由配置项 translateSkyBlockName 在译完之后做。emblem 是等级牌旁边那个符号,首次出现,暂定「徽记」。",
+      "translate": true,
+      "zh": "在其他玩家的聊天消息里显示他们的 SkyBlock 等级和所选徽记。"
+    },
+    {
+      "id": "skyblock_levels_in_chat_desc_2",
+      "context": "承接 skyblock_levels_in_chat_desc 的尾巴",
+      "raw": "§7and their selected emblem in their",
+      "text": "and their selected emblem in their",
+      "placeholders": [],
+      "gloss": "整句已在 skyblock_levels_in_chat_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skyblock_levels_in_chat_desc_3",
+      "context": "承接 skyblock_levels_in_chat_desc 的尾巴",
+      "raw": "§7chat messages.",
+      "text": "chat messages.",
+      "placeholders": [],
+      "gloss": "整句已在 skyblock_levels_in_chat_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "zones_in_action_bar_desc",
+      "context": "「动作栏显示区域名」那一行的说明",
+      "raw": "§7Whether zone names should be",
+      "text": "Whether zone names should be",
+      "placeholders": [],
+      "gloss": "三行一句。开关名那一份在同文件的 zones_in_action_bar(动作栏显示区域名)。Action Bar 按 README.md 对这个采集面的称呼作「动作栏」。",
+      "translate": true,
+      "zh": "进入某个区域时,是否在动作栏显示这个区域的名字。"
+    },
+    {
+      "id": "zones_in_action_bar_desc_2",
+      "context": "承接 zones_in_action_bar_desc 的尾巴",
+      "raw": "§7displayed in the Action Bar upon",
+      "text": "displayed in the Action Bar upon",
+      "placeholders": [],
+      "gloss": "整句已在 zones_in_action_bar_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "zones_in_action_bar_desc_3",
+      "context": "承接 zones_in_action_bar_desc 的尾巴",
+      "raw": "§7entering.",
+      "text": "entering.",
+      "placeholders": [],
+      "gloss": "整句已在 zones_in_action_bar_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "advanced_supercraft_desc",
+      "context": "「高级超级合成」那一行的说明",
+      "raw": "§7Show extra information on",
+      "text": "Show extra information on",
+      "placeholders": [],
+      "gloss": "开关名那一份在同文件的 advanced_supercraft(高级超级合成)。",
+      "translate": true,
+      "zh": "为老练的合成者在超级合成界面显示额外信息。"
+    },
+    {
+      "id": "advanced_supercraft_desc_2",
+      "context": "承接 advanced_supercraft_desc 的尾巴",
+      "raw": "§7Supercraft for veteran crafters.",
+      "text": "Supercraft for veteran crafters.",
+      "placeholders": [],
+      "gloss": "整句已在 advanced_supercraft_desc 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "api_allow_view_head",
+      "context": "五条 API 开关说明共用的头",
+      "raw": "§7Allow other players to view your",
+      "text": "Allow other players to view your",
+      "placeholders": [],
+      "gloss": "这一行是五条 API 说明共用的头(技能/收藏品/背包/银行/博物馆),ITEM 面上只能有一条记录应答它,所以它的译文必须是五条尾巴都能接下去的那半句——不能像别处那样把整句塞进头、让尾巴都标 continuation,五条各说各的尾巴删不得。道理同 _shared/Enchantments.json#ench_defence_against_desc_1。「通过第三方应用」写在头里而不是留给尾巴:五条尾巴的英文都以 on third-party applications 收尾,是共用的部分;而中文的介词短语在动词前面,搁到尾巴里会逼出「查看你的技能，在第三方应用上」这种译法。",
+      "translate": true,
+      "zh": "允许其他玩家通过第三方应用查看你的"
+    },
+    {
+      "id": "api_desc_skills",
+      "context": "「API: 技能」说明的后半句",
+      "raw": "§7skills on third-party applications.",
+      "text": "skills on third-party applications.",
+      "placeholders": [],
+      "gloss": "接在 api_allow_view_head 后面,只说被开放的是哪一类数据。开关名那一份在同文件的 api_skills(API: 技能)。",
+      "translate": true,
+      "zh": "技能。"
+    },
+    {
+      "id": "api_desc_collections",
+      "context": "「API: 收藏品」说明的后半句",
+      "raw": "§7collections progress on third-party",
+      "text": "collections progress on third-party",
+      "placeholders": [],
+      "gloss": "接在 api_allow_view_head 后面,只说被开放的是哪一类数据。开关名那一份在同文件的 api_collections(API: 收藏品)。这半句本身又被排版切成两行,所以 applications. 那一行标 continuation。",
+      "translate": true,
+      "zh": "收藏品进度。"
+    },
+    {
+      "id": "api_desc_collections_2",
+      "context": "承接 api_desc_collections 的尾巴",
+      "raw": "§7applications.",
+      "text": "applications.",
+      "placeholders": [],
+      "gloss": "整句已在 api_desc_collections 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "api_desc_inventory",
+      "context": "「API: 背包」说明的后半句",
+      "raw": "§7inventory, backpacks and ender",
+      "text": "inventory, backpacks and ender",
+      "placeholders": [],
+      "gloss": "接在 api_allow_view_head 后面,只说被开放的是哪一类数据。开关名那一份在同文件的 api_inventory(API: 背包)。格子名只写了打头的 inventory,说明行才列全三样。backpacks 按 Hub_General/GUI_Item/Storage.json 作「收纳背包」,ender chest 按同文件的 ender_chest 作「末影箱」——英文在 ender / chest 之间断行,是一个词被切开的。",
+      "translate": true,
+      "zh": "背包、收纳背包和末影箱。"
+    },
+    {
+      "id": "api_desc_inventory_2",
+      "context": "承接 api_desc_inventory 的尾巴",
+      "raw": "§7chest on third-party applications.",
+      "text": "chest on third-party applications.",
+      "placeholders": [],
+      "gloss": "整句已在 api_desc_inventory 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "api_desc_bank_vault",
+      "context": "「API: 个人银行与保险库」说明的后半句",
+      "raw": "§7personal bank and personal vault on",
+      "text": "personal bank and personal vault on",
+      "placeholders": [],
+      "gloss": "接在 api_allow_view_head 后面,只说被开放的是哪一类数据。开关名那一份在同文件的 api_personal_bank_and_vault(API: 个人银行与保险库)。格子名用「与」连接、这一行用「和」,是因为格子名要短;两处指的是同一对东西。",
+      "translate": true,
+      "zh": "个人银行和个人保险库。"
+    },
+    {
+      "id": "api_desc_bank_vault_2",
+      "context": "承接 api_desc_bank_vault 的尾巴",
+      "raw": "§7third-party applications.",
+      "text": "third-party applications.",
+      "placeholders": [],
+      "gloss": "整句已在 api_desc_bank_vault 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "api_desc_museum",
+      "context": "「API: 博物馆」说明的后半句",
+      "raw": "§7museum on third-party applications.",
+      "text": "museum on third-party applications.",
+      "placeholders": [],
+      "gloss": "接在 api_allow_view_head 后面,只说被开放的是哪一类数据。开关名那一份在同文件的 api_museum(API: 博物馆)。",
+      "translate": true,
+      "zh": "博物馆。"
+    },
+    {
+      "id": "mining_message_chat_desc",
+      "context": "「纯净提示」和「压缩提示」两行共用的说明",
+      "raw": "§7View the %1$s message when mining.",
+      "text": "View the %1$s message when mining.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "挖矿触发的那种提示的名字，译名走 _shared/Terms.json",
+          "type": "raw",
+          "example": "Pristine"
+        }
+      ],
+      "gloss": "采集观察到的取值只有 Pristine 和 Compact 两个(见 _capture.observed),对应同文件的 pristine_chat(纯净提示)和 compact_chat(压缩提示)两行——两行共用这一句说明,只差中间一个词,所以做成模板而不是两条字面记录。这和同一批里 get from %1$s %2$s.、Hear the sound effect when %1$s 那两条不一样:那两条采集观察到的取值分别是 other players / certain items 和 an / Ferocity,是两句不同的话被并到了一起,所以那两处各写字面量。占位符定 raw:取值是天赋名,项目里没有专给天赋名的 type,而这条模板的字面部分够长,不会误吃别的行。",
+      "translate": true,
+      "zh": "显示挖矿时的%1$s提示。"
+    },
+    {
+      "id": "settings_island_shared_note",
+      "context": "岛屿设置由合作伙伴共用的提醒",
+      "raw": "§7Island settings are shared with your",
+      "text": "Island settings are shared with your",
+      "placeholders": [],
+      "gloss": "青色提醒行。花园那一格的同类提醒是 settings_garden_shared_note,两句英文断行的位置不同(那一句断在 shared with 之后,这一句断在 with your 之后),所以是两组不同的字面量,各写各的。",
+      "translate": true,
+      "zh": "岛屿设置由你和合作伙伴共用!"
+    },
+    {
+      "id": "settings_island_shared_note_2",
+      "context": "承接 settings_island_shared_note 的尾巴",
+      "raw": "§7co-op partners!",
+      "text": "co-op partners!",
+      "placeholders": [],
+      "gloss": "整句已在 settings_island_shared_note 里译完,这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "settings_warp_to_edit",
+      "context": "不在岛上时无法修改设置的提示",
+      "raw": "§7Warp to your island or Garden to",
+      "text": "Warp to your island or Garden to",
+      "placeholders": [],
+      "gloss": "红色的提示:不在岛上或花园里时改不了这些设置。同一句话在聊天栏也会出现一次(整句不断行),那一条在 Hub_General/ChatMessage/Settings_Toggles.json#settings_warp_to_edit_chat,两处译文相同。",
+      "translate": true,
+      "zh": "传送回你的岛屿或花园才能修改!"
+    },
+    {
+      "id": "settings_warp_to_edit_2",
+      "context": "承接 settings_warp_to_edit 的尾巴",
+      "raw": "§7edit!",
+      "text": "edit!",
+      "placeholders": [],
+      "gloss": "整句已在 settings_warp_to_edit 里译完,这一行只作标记。",
       "translate": true,
       "continuation": true,
       "zh": ""

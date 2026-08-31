@@ -1,46 +1,18 @@
+// For the lifecycle task names — `check`, `build`, `clean` — with nothing to compile behind them.
 plugins {
-	id 'net.fabricmc.fabric-loom' version "${loom_version}"
+	id 'base'
 }
 
-base {
-	archivesName = project.archives_base_name
-}
+// The root project compiles nothing and carries no Minecraft.
+//
+// Everything here is about the corpus in original_text/, which is the same bytes whichever Minecraft
+// the mod is being built for. The two things that do differ per version — which Minecraft to compile
+// against and which three classes to compile — live in fabric-26.1/ and fabric-26.2/, both of which
+// share this project's src/main and add one small source tree of their own. See gradle/target.gradle
+// for what a target does, and settings.gradle for why there are two of them and not four.
 
 version = project.version
 group = project.group
-
-repositories {
-	maven {
-		name = 'Terraformers'
-		url = 'https://maven.terraformersmc.com/releases/'
-	}
-
-	maven {
-		name = 'Hypixel'
-		url = 'https://repo.hypixel.net/repository/Hypixel/'
-	}
-}
-
-dependencies {
-	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
-
-	// Mod Menu is an optional integration: we compile against its API but never require it at
-	// runtime (see the "suggests" block in fabric.mod.json). Since 26.2 ships unobfuscated there
-	// is no remapping step any more, so mods are ordinary dependencies — no modCompileOnly.
-	compileOnly "com.terraformersmc:modmenu:${project.modmenu_version}"
-
-	// Hypixel's own Mod API, on the same terms as Mod Menu: compiled against, never bundled. The
-	// protocol and the networking are the hypixel-mod-api mod's job — anyone running SkyHanni or
-	// SkyBlocker already has it — and all this mod does is subscribe to the location event and read
-	// two strings off it (see compat/HypixelApi). Without that mod present nothing here loads and
-	// the sidebar reading carries on as before.
-	compileOnly "net.hypixel:mod-api:${project.hypixel_mod_api_version}"
-
-	// No Fabric API. Every hook this mod needs is a mixin into a vanilla render path, and the
-	// fewer runtime dependencies a SkyBlock client carries, the fewer ways it can collide with
-	// SkyHanni / SkyBlocker in someone's modpack.
-}
 
 // The translation corpus is authored in original_text/ as one file per menu, with a `context` and a
 // `gloss` on almost every record explaining what the line is and why it is worded the way it is.
@@ -53,6 +25,8 @@ dependencies {
 // `id` in a log message still names a record in the file a translator opened), while a player
 // downloads roughly a third of the bytes. See MinifyCorpus below for the field-by-field reasoning,
 // and `./gradlew corpusSize` for what it saves.
+// Built once here and packaged by both targets, rather than minified twice: the trimming depends on
+// what the engine reads, and the engine is the shared source tree.
 def minifiedCorpus = layout.buildDirectory.dir('minified-corpus')
 
 tasks.register('minifyCorpus', MinifyCorpus) {
@@ -63,34 +37,16 @@ tasks.register('minifyCorpus', MinifyCorpus) {
 	destination = minifiedCorpus
 }
 
-processResources {
-	dependsOn 'minifyCorpus'
-
-	def version = project.version
-	inputs.property "version", version
-
-	filesMatching("fabric.mod.json") {
-		expand("version": version) {
-			escapeBackslash = true
-		}
-	}
-
-	from(minifiedCorpus) {
-		into 'assets/skyzh/original_text'
-		include '**/*.json'
-	}
-}
-
 /**
  * Rewrites the corpus with only the fields the mod reads.
  *
  * Which fields those are is not a guess: TranslationLoader#compile reads `id`, `ref`, `translate`,
- * `text`, `zh`, `segments[].text/.zh/.omit/.order`, `placeholders[].token/.type`, `continuation` and
- * `layout`; TermTable#from reads `applies_to_types` and `terms[].en/.zh/.types`; SkyBlockName#from
- * reads `full`, `short` and `compound_stoplist`. Everything else in a corpus file is written for
- * whoever edits it next — `context` and `gloss` (the two biggest, on nearly every record), `raw`
- * (the line with its colour codes, kept so a record can be compared against what the server sent),
- * `placeholders[].desc/.example`, `segments[].color` (a note about where the colour boundary is; the
+ * `text`, `zh`, `segments[].text/.zh/.omit/.order`, `placeholders[].token/.type/.example`,
+ * `continuation` and `layout`; TermTable#from reads `applies_to_types` and `terms[].en/.zh/.types`;
+ * SkyBlockName#from reads `full`, `short` and `compound_stoplist`. Everything else in a corpus file is
+ * written for whoever edits it next — `context` and `gloss` (the two biggest, on nearly every record),
+ * `raw` (the line with its colour codes, kept so a record can be compared against what the server
+ * sent), `placeholders[].desc`, `segments[].color` (a note about where the colour boundary is; the
  * real colour is read off the screen at render time), and the per-file `source`/`fetched_at`/`note`
  * prose.
  *
@@ -118,8 +74,12 @@ abstract class MinifyCorpus extends DefaultTask {
 	/** `color` is deliberately absent: it documents the boundary, the drawn colour comes off the screen. */
 	private static final Set<String> SEGMENT_KEYS = ['text', 'zh', 'omit', 'order'] as Set
 
-	/** `desc` and `example` explain the value to a person; only the token and its kind reach Capture. */
-	private static final Set<String> PLACEHOLDER_KEYS = ['token', 'type'] as Set
+	/**
+	 * `desc` explains the value to a person. `token`, `type` and `example` all reach the engine:
+	 * `example` bounds the placeholder to the kind of value it holds, so stripping it would ship a jar
+	 * that matches lines the source tree refuses — see text/ValueShape.java.
+	 */
+	private static final Set<String> PLACEHOLDER_KEYS = ['token', 'type', 'example'] as Set
 
 	/** Top-level members of the two dictionary files, which are not lists of records. */
 	private static final Set<String> DICTIONARY_KEYS = [
@@ -411,143 +371,6 @@ abstract class MinifyCorpus extends DefaultTask {
 	}
 }
 
-// A source set of its own rather than src/test, because this is not a JUnit suite and should not
-// make the `test` task claim it has tests. It compiles against the mod and runs as a plain main().
-sourceSets {
-	harness {
-		compileClasspath += sourceSets.main.compileClasspath + sourceSets.main.output
-		runtimeClasspath += sourceSets.main.runtimeClasspath + sourceSets.main.output
-	}
-}
-
-dependencies {
-	// The harness runs the mod's own classes with no game and no mod list around them, so anything
-	// they merely mention has to be loadable — the shipped jar still never carries this.
-	harnessRuntimeOnly "net.hypixel:mod-api:${project.hypixel_mod_api_version}"
-}
-
-// The corpus is the part of this project that keeps changing, and nothing about a wrong translation
-// shows up at compile time. This runs the real matching engine over the real files and fails on any
-// line that comes out wrong — a second's work, against launching the game to squint at a tooltip.
-// Anything that measures pixels (wrapping, centring) needs a loaded font and is not covered here.
-tasks.register('checkTranslations', JavaExec) {
-	group = 'verification'
-	description = 'Matches the original_text corpus against the translation engine.'
-
-	classpath = sourceSets.harness.runtimeClasspath
-	mainClass = 'io.github.bingkkni.skyzh.TranslationHarness'
-	args rootProject.file('original_text').absolutePath
-	defaultCharacterEncoding = 'UTF-8'
-	// Java 18 onwards picks System.out's charset from stdout.encoding, not from file.encoding
-	// which defaultCharacterEncoding sets. Left alone it takes the native console codepage, and
-	// every Chinese character in the report — including both halves of an "expected X got Y" —
-	// reaches the terminal as a replacement character.
-	jvmArgs '-Dstdout.encoding=UTF-8', '-Dstderr.encoding=UTF-8'
-
-	// Minecraft's logging config writes to <working dir>/logs, and logs/ is where a player's own
-	// client log gets dropped for auditLog to read. Running a check must not rotate their evidence.
-	workingDir = layout.buildDirectory.dir('harness').get().asFile
-	doFirst { workingDir.mkdirs() }
-
-	inputs.dir rootProject.file('original_text')
-}
-
-// Same engine, pointed at a client log instead of at the corpus: it prints the chat lines a real
-// session produced that no record answers for. Collection has already happened by then — Minecraft
-// logs what it receives — so nothing about this ships in the mod.
-tasks.register('auditLog', JavaExec) {
-	group = 'verification'
-	description = 'Reports chat lines from a Minecraft log that the corpus does not cover.'
-
-	classpath = sourceSets.harness.runtimeClasspath
-	mainClass = 'io.github.bingkkni.skyzh.LogAudit'
-	args = [
-		rootProject.file('original_text').absolutePath,
-		rootProject.file(project.findProperty('log') ?: 'logs').absolutePath,
-	]
-	defaultCharacterEncoding = 'UTF-8'
-	// Java 18 onwards picks System.out's charset from stdout.encoding, not from file.encoding
-	// which defaultCharacterEncoding sets. Left alone it takes the native console codepage, and
-	// every Chinese character in the report — including both halves of an "expected X got Y" —
-	// reaches the terminal as a replacement character.
-	jvmArgs '-Dstdout.encoding=UTF-8', '-Dstderr.encoding=UTF-8'
-
-	// Same reason as above, and more pressing here: this task exists to read logs/.
-	workingDir = layout.buildDirectory.dir('harness').get().asFile
-	doFirst { workingDir.mkdirs() }
-}
-
-// The capture in capture/ decides what is worth writing down, which two lines are the same sentence
-// and which characters of one are values. Every one of those decisions ends up in a file somebody
-// reads days later, so they are exercised here against strings taken verbatim from a client log.
-tasks.register('checkCapture', JavaExec) {
-	group = 'verification'
-	description = 'Runs the runtime capture over recorded SkyBlock text.'
-
-	classpath = sourceSets.harness.runtimeClasspath
-	mainClass = 'io.github.bingkkni.skyzh.CaptureHarness'
-	args rootProject.file('original_text').absolutePath
-	defaultCharacterEncoding = 'UTF-8'
-	// Java 18 onwards picks System.out's charset from stdout.encoding, not from file.encoding
-	// which defaultCharacterEncoding sets. Left alone it takes the native console codepage, and
-	// every Chinese character in the report — including both halves of an "expected X got Y" —
-	// reaches the terminal as a replacement character.
-	jvmArgs '-Dstdout.encoding=UTF-8', '-Dstderr.encoding=UTF-8'
-
-	// Same reason as checkTranslations: logs/ holds a player's own client log, not this task's.
-	workingDir = layout.buildDirectory.dir('harness').get().asFile
-	doFirst { workingDir.mkdirs() }
-
-	inputs.dir rootProject.file('original_text')
-}
-
-// The other half of captureUntranslated: it writes down what the corpus could not answer for, this
-// reads those files back and prints what each line draws as now. checkTranslations only knows what
-// the corpus says about itself; a segment in the wrong order or a term nobody added is invisible
-// there and obvious here.
-tasks.register('replayCapture', JavaExec) {
-	group = 'verification'
-	description = 'Redraws captured SkyBlock lines through the current corpus.'
-
-	classpath = sourceSets.harness.runtimeClasspath
-	mainClass = 'io.github.bingkkni.skyzh.CaptureReplay'
-	args rootProject.file('original_text').absolutePath,
-		rootProject.file(project.findProperty('capture') ?: 'logs/skyzh-capture').absolutePath
-	defaultCharacterEncoding = 'UTF-8'
-	// Java 18 onwards picks System.out's charset from stdout.encoding, not from file.encoding
-	// which defaultCharacterEncoding sets. Left alone it takes the native console codepage, and
-	// every Chinese character in the report — including both halves of an "expected X got Y" —
-	// reaches the terminal as a replacement character.
-	jvmArgs '-Dstdout.encoding=UTF-8', '-Dstderr.encoding=UTF-8'
-
-	// Same reason as checkTranslations: logs/ holds a player's own client log, not this task's.
-	workingDir = layout.buildDirectory.dir('harness').get().asFile
-	doFirst { workingDir.mkdirs() }
-}
-
-// The minifier's whole premise is a list of fields the engine does not read. That list is checked
-// against the engine rather than trusted: both corpora are compiled and the indexes compared. A
-// mistake here would not break the build — it would ship a jar that silently stops translating some
-// lines — so this runs as part of `check`.
-tasks.register('checkMinifiedCorpus', JavaExec) {
-	group = 'verification'
-	description = 'Compares the compiled index of the authored corpus against the minified one.'
-
-	dependsOn 'minifyCorpus'
-
-	classpath = sourceSets.harness.runtimeClasspath
-	mainClass = 'io.github.bingkkni.skyzh.MinifiedCorpusCheck'
-	args rootProject.file('original_text').absolutePath,
-		minifiedCorpus.get().asFile.absolutePath
-	defaultCharacterEncoding = 'UTF-8'
-	jvmArgs '-Dstdout.encoding=UTF-8', '-Dstderr.encoding=UTF-8'
-
-	workingDir = layout.buildDirectory.dir('harness').get().asFile
-	doFirst { workingDir.mkdirs() }
-
-	inputs.dir rootProject.file('original_text')
-}
-
 // What the trimming actually buys, for when somebody wonders whether it is worth the task.
 tasks.register('corpusSize') {
 	group = 'help'
@@ -578,50 +401,64 @@ tasks.register('corpusSize') {
 	}
 }
 
+// A name that is both a menu row and a value inside a sentence lives in two places — a record and a
+// term — and nothing else in the build notices when the two drift apart. Python rather than Java
+// because it reads the corpus as data and has no business being on the mod's classpath.
+tasks.register('checkTermRecords', Exec) {
+	group = 'verification'
+	description = 'Checks that a term and the record it cross-references give the same translation.'
+
+	commandLine 'python', rootProject.file('gradle/check_toggle_terms.py').absolutePath
+	workingDir rootProject.projectDir
+}
+
+// `check` here is the corpus-level check. Running it from the root also runs each target's own
+// `check` — Gradle matches the task name across every project — which is what puts the translation,
+// capture and command harnesses on both Minecraft versions rather than only the newest.
 tasks.named('check') {
-	dependsOn 'checkTranslations', 'checkCapture', 'checkMinifiedCorpus'
+	dependsOn 'checkTermRecords'
 }
 
-tasks.withType(JavaCompile).configureEach {
-	it.options.release = 25
-	it.options.encoding = 'UTF-8'
-}
-
-java {
-	withSourcesJar()
-
-	sourceCompatibility = JavaVersion.VERSION_25
-	targetCompatibility = JavaVersion.VERSION_25
-}
-
-jar {
-	def projectName = project.name
-	inputs.property "projectName", projectName
-
-	from("LICENSE") {
-		rename { "${it}_$projectName" }
+// Every jar the build can produce, in one directory, named for the Minecraft it is for. Two files:
+// installing the wrong one is the one mistake a multi-version mod invites, and `+mc26.1` in the file
+// name is the cheapest possible guard against it.
+//
+// The jars arrive through a configuration rather than by reaching into each target for its `jar` task:
+// a task in another project has not been registered yet while this one is being configured, and
+// resolving a dependency at execution time is both correct and one less ordering rule to remember.
+configurations {
+	targetJars {
+		canBeConsumed = false
+		canBeResolved = true
 	}
 }
 
-// Scratch probe: prints what one live line renders as, and whether its record flattens the colours.
-// Not part of `check` — a working tool for deciding where a segments array has to be split. Reads
-// its lines from a file (`<surface>\t<legacy text>`), because § codes and private-use glyphs do not
-// survive being typed on a command line.
-tasks.register('probe', JavaExec) {
-	group = 'verification'
-	description = 'Redraws one hand-written SkyBlock line through the current corpus.'
+dependencies {
+	subprojects.each { target ->
+		targetJars project(path: target.path, configuration: 'distJar')
+	}
+}
 
-	classpath = sourceSets.harness.runtimeClasspath
-	mainClass = 'io.github.bingkkni.skyzh.Probe'
-	defaultCharacterEncoding = 'UTF-8'
-	// Java 18 onwards picks System.out's charset from stdout.encoding, not from file.encoding
-	// which defaultCharacterEncoding sets. Left alone it takes the native console codepage, and
-	// every Chinese character in the report — including both halves of an "expected X got Y" —
-	// reaches the terminal as a replacement character.
-	jvmArgs '-Dstdout.encoding=UTF-8', '-Dstderr.encoding=UTF-8'
-	workingDir = layout.buildDirectory.dir('harness').get().asFile
-	doFirst { workingDir.mkdirs() }
+tasks.register('dist', Sync) {
+	group = 'build'
+	description = 'Collects each target jar into build/dist, after checking both.'
 
-	args rootProject.file('original_text').absolutePath,
-		rootProject.file(project.findProperty('lines') ?: 'build/probe.txt').absolutePath
+	// Sync removes files left by an older version. A plain Copy would leave two apparently valid jars
+	// in the advertised distribution directory after a version bump, inviting somebody to install the
+	// stale one. This directory is owned by this task, so keep it exactly equal to the current pair.
+
+	// Resolving the configuration builds each jar but not each target's `check`, and a jar somebody is
+	// about to install is the last one that should skip its Mixin target resolution. Named by path so
+	// no task in another project is looked up while this one is being configured.
+	dependsOn tasks.named('check')
+	subprojects.each { target -> dependsOn "${target.path}:check" }
+
+	from configurations.targetJars
+	into layout.buildDirectory.dir('dist')
+
+	doLast {
+		destinationDir.eachFile { file ->
+			logger.lifecycle('可分发 jar: {} ({} KiB)', file.name, file.length().intdiv(1024))
+		}
+	}
 }

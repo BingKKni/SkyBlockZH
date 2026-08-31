@@ -1,0 +1,341 @@
+{
+  "source": "runtime capture (SkyZH), Bits Shop - Sacks",
+  "fetched_at": "2026-08-30",
+  "verified_ingame": true,
+  "gameplay": "Hub_General",
+  "surface": "GUI_Item",
+  "name": "Bits_Shop_-_Sacks",
+  "lines": [
+    {
+      "id": "pocket_sackinasack",
+      "context": "点券商店收纳袋分类中的袖珍扩容物品名称",
+      "raw": "§cPocket Sack-in-a-Sack",
+      "text": "Pocket Sack-in-a-Sack",
+      "placeholders": [],
+      "gloss": "Sack 统一译作“收纳袋”；Sack-in-a-Sack 是把小袋缝进另一只收纳袋的双关名称，译名保留“套袋”的趣味。",
+      "translate": true,
+      "zh": "袖珍收纳袋套袋"
+    },
+    {
+      "id": "combine_this_item_in_an_anvil_with_any",
+      "context": "袖珍收纳袋套袋的扩容说明首行，完整译文写在此行",
+      "raw": "§7Combine this item in an anvil with any",
+      "text": "Combine this item in an anvil with any",
+      "placeholders": [],
+      "gloss": "英文说明被排版拆成三行；容量增加量是原始容量的 200%，不是增加到原来的 200%。",
+      "translate": true,
+      "zh": "在铁砧中将此物品与任意收纳袋合并，可在其原始容量的基础上增加 200%。"
+    },
+    {
+      "id": "sack_to_increase_its_capacity_by",
+      "context": "接上一行的排版续行",
+      "raw": "§7sack to increase its capacity by",
+      "text": "sack to increase its capacity by",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "200_its_original_capacity",
+      "context": "接扩容说明首行的排版续行，保留服务器的红色强调边界",
+      "raw": "§c+200% §7its §coriginal §7capacity.",
+      "text": "+200% its original capacity.",
+      "placeholders": [],
+      "gloss": "完整译文已合并到 combine_this_item_in_an_anvil_with_any。",
+      "translate": true,
+      "continuation": true,
+      "zh": "",
+      "segments": [
+        { "color": "§c", "text": "+200% ", "zh": "" },
+        { "color": "§7", "text": "its ", "zh": "" },
+        { "color": "§c", "text": "original ", "zh": "" },
+        { "color": "§7", "text": "capacity.", "zh": "" }
+      ]
+    },
+    {
+      "id": "this_item_can_be_combined_with_a_sack",
+      "context": "袖珍收纳袋套袋的可重复应用说明首行",
+      "raw": "§7This item can be combined with a sack",
+      "text": "This item can be combined with a sack",
+      "placeholders": [],
+      "gloss": "英文分成两行，中文合并后由运行时重新折行。",
+      "translate": true,
+      "zh": "此物品最多可以与同一个收纳袋合并三次!"
+    },
+    {
+      "id": "up_to_three_times",
+      "context": "接上一行的排版续行",
+      "raw": "§7up to three times!",
+      "text": "up to three times!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "its_a_pocket_sack_to_be_stitched",
+      "context": "袖珍收纳袋套袋的风味文本首行",
+      "raw": "§8It's a pocket sack, to be stitched",
+      "text": "It's a pocket sack, to be stitched",
+      "placeholders": [],
+      "gloss": "Sack 统一译作“收纳袋”；英文分成两行。",
+      "translate": true,
+      "zh": "这是一个袖珍收纳袋，可以缝进另一个收纳袋里!"
+    },
+    {
+      "id": "inside_another_sack",
+      "context": "接上一行的排版续行",
+      "raw": "§8inside another sack!",
+      "text": "inside another sack!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "sacks_bits_price",
+      "ref": "_shared/Menu_Common.json#menu_bits_price",
+      "context": "点券商店收纳袋分类中的商品价格行"
+    },
+    {
+      "id": "dungeon_sack",
+      "context": "点券商店中的地牢收纳袋名称",
+      "raw": "§6Dungeon Sack",
+      "text": "Dungeon Sack",
+      "placeholders": [],
+      "gloss": "采集器曾把 Dungeon、Rune、Flower、Dwarven 合并成 `%1$s Sack`，会直接留下英文分类值，因此按有限商品拆成字面记录；Sack 统一译作“收纳袋”。",
+      "translate": true,
+      "zh": "地牢收纳袋"
+    },
+    {
+      "id": "rune_sack",
+      "context": "点券商店中的符文收纳袋名称",
+      "raw": "§6Rune Sack",
+      "text": "Rune Sack",
+      "placeholders": [],
+      "gloss": "由采集器的宽模板拆出；Sack 统一译作“收纳袋”。",
+      "translate": true,
+      "zh": "符文收纳袋"
+    },
+    {
+      "id": "flower_sack",
+      "context": "点券商店中的花卉收纳袋名称",
+      "raw": "§6Flower Sack",
+      "text": "Flower Sack",
+      "placeholders": [],
+      "gloss": "由采集器的宽模板拆出；Sack 统一译作“收纳袋”。",
+      "translate": true,
+      "zh": "花卉收纳袋"
+    },
+    {
+      "id": "dwarven_sack",
+      "context": "点券商店中的矮人收纳袋名称",
+      "raw": "§6Dwarven Sack",
+      "text": "Dwarven Sack",
+      "placeholders": [],
+      "gloss": "由采集器的宽模板拆出；Sack 统一译作“收纳袋”。",
+      "translate": true,
+      "zh": "矮人收纳袋"
+    },
+    {
+      "id": "holds_items_commonly_found_in_the_capitalized",
+      "context": "地牢收纳袋说明首行，地点名称在下一行",
+      "raw": "§7Holds items commonly found in §cThe",
+      "text": "Holds items commonly found in The",
+      "placeholders": [],
+      "gloss": "采集器把相邻行首的 The/the 错当动态值；这里只是 The Catacombs 的冠词，中文省略，地点保留到下一行的红色片段。",
+      "translate": true,
+      "zh": "收纳常见于",
+      "segments": [
+        { "color": "§7", "text": "Holds items commonly found in ", "zh": "收纳常见于" },
+        { "color": "§c", "text": "The", "zh": "", "omit": true }
+      ]
+    },
+    {
+      "id": "holds_items_commonly_found_in_the",
+      "context": "矮人收纳袋和水晶残核收纳袋的说明首行，地点名称在下一行",
+      "raw": "§7Holds items commonly found in §cthe",
+      "text": "Holds items commonly found in the",
+      "placeholders": [],
+      "gloss": "采集器把相邻的 The/the 合并成动态值；中文不保留冠词，下一行分别写明地点。",
+      "translate": true,
+      "zh": "收纳常见于",
+      "segments": [
+        { "color": "§7", "text": "Holds items commonly found in ", "zh": "收纳常见于" },
+        { "color": "§c", "text": "the", "zh": "", "omit": true }
+      ]
+    },
+    {
+      "id": "catacombs_items_you_pickup_go",
+       "context": "地牢收纳袋说明中高亮地点并开始说明自动收纳",
+      "raw": "§cCatacombs§7! Items you pickup go",
+      "text": "Catacombs! Items you pickup go",
+      "placeholders": [],
+      "gloss": "Catacombs 是地牢玩法中的地下墓穴；下一行只是同一句的排版续行。",
+      "translate": true,
+      "zh": "地下墓穴的物品! 捡到的物品会直接进入你的收纳袋。",
+      "segments": [
+        { "color": "§c", "text": "Catacombs", "zh": "地下墓穴" },
+        { "color": "§7", "text": "! Items you pickup go", "zh": "的物品! 捡到的物品会直接进入你的收纳袋。" }
+      ]
+    },
+    {
+      "id": "directly_into_your_sacks",
+      "context": "地牢、矮人及水晶残核收纳袋自动收纳说明的排版续行",
+      "raw": "§7directly into your sacks.",
+      "text": "directly into your sacks.",
+      "placeholders": [],
+      "gloss": "完整译文写在各自上一行；Sacks 统一译作“收纳袋”。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "legendary_sack",
+      "context": "这些收纳袋 Lore 末尾的稀有度与物品类型标签",
+      "raw": "§6§lLEGENDARY SACK",
+      "text": "LEGENDARY SACK",
+      "placeholders": [],
+      "gloss": "LEGENDARY 沿用稀有度“传说”，SACK 统一译作“收纳袋”。",
+      "translate": true,
+      "zh": "传说收纳袋"
+    },
+    {
+      "id": "holds_most_commonly_dropped_runes",
+      "context": "符文收纳袋说明首行",
+      "raw": "§7Holds most commonly dropped §5Runes",
+      "text": "Holds most commonly dropped Runes",
+      "placeholders": [],
+      "gloss": "Runes 指物品外观系统中的符文。",
+      "translate": true,
+      "zh": "收纳最常掉落的符文",
+      "segments": [
+        { "color": "§7", "text": "Holds most commonly dropped ", "zh": "收纳最常掉落的" },
+        { "color": "§5", "text": "Runes", "zh": "符文" }
+      ]
+    },
+    {
+      "id": "and_their_tiers_items_you_pickup_go",
+      "context": "符文收纳袋说明第二行，承接符文等级并开始自动收纳说明",
+      "raw": "§7and their tiers! Items you pickup go",
+      "text": "and their tiers! Items you pickup go",
+      "placeholders": [],
+      "gloss": "tier 指每种符文的等级；下一行只是自动收纳句的排版续行。",
+      "translate": true,
+      "zh": "及其各个等级! 捡到的物品会直接进入你的收纳袋。"
+    },
+    {
+      "id": "directly_into_your_sacks_no_period",
+      "context": "符文收纳袋自动收纳说明的排版续行",
+      "raw": "§7directly into your sacks",
+      "text": "directly into your sacks",
+      "placeholders": [],
+      "gloss": "完整译文写在上一行。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "capacity_64_of_each_rune_tier",
+      "context": "符文收纳袋的容量说明",
+      "raw": "§7Capacity: §e64 of each rune tier",
+      "text": "Capacity: 64 of each rune tier",
+      "placeholders": [],
+      "gloss": "每一种符文的每一个等级都能分别存放 64 个。",
+      "translate": true,
+      "zh": "容量: 每种符文的每个等级 64 个",
+      "segments": [
+        { "color": "§7", "text": "Capacity: ", "zh": "容量: " },
+        { "color": "§e", "text": "64 of each rune tier", "zh": "每种符文的每个等级 64 个" }
+      ]
+    },
+    {
+      "id": "sacks_sum_their_capacity",
+      "context": "符文收纳袋的容量叠加提示",
+      "raw": "§8Sacks sum their capacity.",
+      "text": "Sacks sum their capacity.",
+      "placeholders": [],
+      "gloss": "表示拥有多个同类收纳袋时容量相加。",
+      "translate": true,
+      "zh": "多个收纳袋的容量可以叠加。"
+    },
+    {
+      "id": "holds_most_commonly_found_flowers",
+      "context": "花卉收纳袋的内容说明",
+      "raw": "§7Holds most commonly found §dFlowers§7!",
+      "text": "Holds most commonly found Flowers!",
+      "placeholders": [],
+      "gloss": "Flowers 指可采集的各类花卉。",
+      "translate": true,
+      "zh": "收纳最常见的花卉!",
+      "segments": [
+        { "color": "§7", "text": "Holds most commonly found ", "zh": "收纳最常见的" },
+        { "color": "§d", "text": "Flowers", "zh": "花卉" },
+        { "color": "§7", "text": "!", "zh": "!" }
+      ]
+    },
+    {
+      "id": "items_you_pickup_go_directly_into",
+      "context": "花卉收纳袋的自动收纳说明首行",
+      "raw": "§7Items you pickup go directly into",
+      "text": "Items you pickup go directly into",
+      "placeholders": [],
+      "gloss": "英文分成两行，中文合并后由运行时重新折行。",
+      "translate": true,
+      "zh": "捡到的物品会直接进入你的收纳袋。"
+    },
+    {
+      "id": "your_sacks",
+      "context": "接上一行的排版续行",
+      "raw": "§7your sacks.",
+      "text": "your sacks.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "dwarven_mines_items_you_pickup_go",
+      "context": "矮人收纳袋说明中高亮矮人矿山并开始自动收纳说明",
+      "raw": "§2Dwarven Mines§7! Items you pickup go",
+      "text": "Dwarven Mines! Items you pickup go",
+      "placeholders": [],
+      "gloss": "采集器把 Dwarven Mines 与 Crystal Hollows 拆成两个相邻 raw 占位符，既会切错边界又会留下英文地点，因此拆成字面记录。",
+      "translate": true,
+      "zh": "矮人矿山的物品! 捡到的物品会直接进入你的收纳袋。",
+      "segments": [
+        { "color": "§2", "text": "Dwarven Mines", "zh": "矮人矿山" },
+        { "color": "§7", "text": "! Items you pickup go", "zh": "的物品! 捡到的物品会直接进入你的收纳袋。" }
+      ]
+    },
+    {
+      "id": "crystal_hollows_items_you_pickup_go",
+      "context": "水晶残核收纳袋说明中高亮水晶残核并开始自动收纳说明",
+      "raw": "§2Crystal Hollows§7! Items you pickup go",
+      "text": "Crystal Hollows! Items you pickup go",
+      "placeholders": [],
+      "gloss": "Crystal Hollows 沿用项目既定译名“水晶残核”；由采集器的相邻 raw 宽模板拆出。",
+      "translate": true,
+      "zh": "水晶残核的物品! 捡到的物品会直接进入你的收纳袋。",
+      "segments": [
+        { "color": "§2", "text": "Crystal Hollows", "zh": "水晶残核" },
+        { "color": "§7", "text": "! Items you pickup go", "zh": "的物品! 捡到的物品会直接进入你的收纳袋。" }
+      ]
+    },
+    {
+      "id": "crystal_hollows_sack",
+      "context": "点券商店中的水晶残核收纳袋名称",
+      "raw": "§5Crystal Hollows Sack",
+      "text": "Crystal Hollows Sack",
+      "placeholders": [],
+      "gloss": "Crystal Hollows 沿用“水晶残核”，Sack 统一译作“收纳袋”。",
+      "translate": true,
+      "zh": "水晶残核收纳袋"
+    }
+  ]
+}

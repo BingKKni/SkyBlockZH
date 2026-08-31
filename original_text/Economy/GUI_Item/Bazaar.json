@@ -2,7 +2,24 @@
   "source": "runtime capture (SkyZH) 2026-08-26 至 2026-08-27 实测 Bazaar 会话",
   "fetched_at": "2026-08-27",
   "verified_ingame": true,
-  "gui_context": "Bazaar 的购买订单、出售报价、订单管理和合作社订单菜单。商品名由服务器实时填入，均保留英文。",
+  "gui_context": "Bazaar 的分类浏览器、购买订单、出售报价、订单管理、成交历史和一键出售菜单。商品名由服务器实时填入，均保留英文。",
+  "source_note": [
+    "① 2026-08-29 这一批记录来自实测采集 Mining/GUI_Item/Bazaar_Oddities.json(178 条)。采集目录在 Mining/ 下只是因为当时人在矿区,集市不属于任何单一玩法,记录按玩法归到 Economy/,和 Hub_General/ScoreBoard/Common_Sidebar.json 里 New Year Event 那两行的处理同理。",
+    "② 分类结构已查证 hypixelskyblock.minecraft.wiki/w/Bazaar(2026-08-29):集市分 Farming、Mining、Combat、Woods & Fishes、Oddities 五个大类;点大类看到该类下的商品类型或商品分组,再点一次看到该类型下的各种具体商品;槽位有限,所以一部分商品被塞进同一个伞形类目里。",
+    "③ 商品浏览器里 “▶ 商品名” 那批行(实测约 90 条,如 ▶ Frozen Scute、▶ Hyper Catalyst、▶ Moby-Duck: Collector's Edition)一律不写记录:▶ 后面是商品专名,按项目规则保留英文,没有记录时这些行原样渲染,正是想要的结果。也特意没有写 “▶ %1$s” 这种通吃记录——那会让这批行在采集里被判成「已匹配」而从未翻译清单里消失,等于把证据擦掉(见 memory 的 skyzh-false-match-erases-evidence)。只有代表「一组商品」而不是某一件商品的组名才写记录。"
+  ],
+  "excluded": [
+    "▶ Spooky、▶ Winter、▶ Feast、▶ Mythological、▶ Jerry Boxes、▶ Hoppity's Hunt、▶ Diaz:这几行是活动/系列名当商品分组用,_shared/Terms.json 里已有的是完整活动名(Spooky Festival=惊魂节、Harvest Feast=丰收盛宴、Winter Island=寒冬岛),集市这里是掐头去尾的简称,对不上哪一个;查证清楚是哪个活动之前不写记录。",
+    "▶ Foraging Boosters:GLOSSARY.md「Rank / Boosters / Gems —— 一律保留英文」是全项目硬性规则,Booster/Boosters 不译。这一组名整体因此留英文。",
+    "▶ Pet Candies、▶ Griffin Upgrade Stones、▶ Minion Storage、▶ Compactors、▶ Coupons、▶ Minerals、▶ %1$s Essence 等:是组名而不是商品专名,已结合 hysb.wiki 的用户页面和实际采集补入本文件;▶ Book Modifiers 的页面目前没有正文,只有这一条分类名,暂不凭空猜译。"
+  ],
+  "todo": [
+    "采集里 “ §7%1$s §6%2$s coins §7by …” 的 %1$s 只见过 for 一个值,却被判成了占位符,说明同一位置还出现过别的词。这里按实测写成字面 for(bazaar_history_for_coins_by);要是服务器还会发别的介词,那一行会照原样留在英文里并重新出现在未翻译采集中,届时补记录。",
+    "成交历史只采到 Instant Buy / Instant Sell / Multi-sell / Created·Cancelled·Claimed Sell Offer 六种动作,以及 now 形式里的 Created 一种。Buy Order 一侧的 Created / Cancelled / Claimed,和其余动作的 now 形式,都没采到,不凭推测写。",
+    "带宝石图标的历史行(如 “1x \\ue00c Perfect Aquamarine Gemstone”)用不上 item_name 占位符:私有区图标不是名字的起始字符,NAME 捕获会拒掉,这些行会留在英文。要覆盖得单独写带图标的字面记录。",
+    "采集里 “§5▶ §7Wither %1$s” 是 2 个值(count=82=2×41),已确认其中一个是 Wither Scrolls;另一个 §5 的 Wither 开头组名还没查到是哪个。",
+    "▶ Book Modifiers 的用户页面(hysb.wiki/w/Book_Modifiers)目前没有正文,当前日志也只采到分类名,暂不猜译;等拿到该组的商品列表或新的实测上下文后再决定。"
+  ],
   "lines": [
     {
       "id": "bazaar_buy_order",
@@ -444,6 +461,796 @@
       "gloss": "co-op 指合作社。",
       "translate": true,
       "zh": "前往合作社集市订单"
+    },
+    {
+      "id": "bazaar_1_product",
+      "context": "分类浏览器里某个商品类目只有一种商品时的行数提示",
+      "raw": "§81 product",
+      "text": "1 product",
+      "placeholders": [],
+      "gloss": "product 在集市里指「一种可交易的商品」,量词用「种」而不是「个」:这一行数的是类目下有几种不同商品,不是有几件货。和下面的 bazaar_products 是单复数一对,单数这条没有占位符、走精确查表,不会被复数那条的 product[sS]? 抢走。",
+      "translate": true,
+      "zh": "1 种商品"
+    },
+    {
+      "id": "bazaar_products",
+      "context": "分类浏览器里某个商品类目含多种商品时的行数提示",
+      "raw": "§8%1$s products",
+      "text": "%1$s products",
+      "placeholders": [
+        { "token": "%1$s", "desc": "该类目下的商品种数", "type": "number", "example": "5" }
+      ],
+      "gloss": "量词同 bazaar_1_product 取「种」。",
+      "translate": true,
+      "zh": "%1$s 种商品"
+    },
+    {
+      "id": "bazaar_data_is_loading",
+      "context": "集市价格还没从服务器取回时格子上的占位提示",
+      "raw": "§8Data is loading...",
+      "text": "Data is loading...",
+      "placeholders": [],
+      "gloss": "省略号保留半角三点,和原文一致。",
+      "translate": true,
+      "zh": "数据加载中..."
+    },
+    {
+      "id": "bazaar_click_to_view_product",
+      "context": "分类浏览器里某种商品格子底部的点击提示",
+      "raw": "§eClick to view product!",
+      "text": "Click to view product!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击查看商品!"
+    },
+    {
+      "id": "bazaar_currently_viewing",
+      "context": "分类浏览器里当前已选中的那一格的状态提示",
+      "raw": "§aCurrently viewing!",
+      "text": "Currently viewing!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "正在查看!"
+    },
+    {
+      "id": "bazaar_find_products_by_name",
+      "context": "集市搜索格的说明行",
+      "raw": "§7Find products by name!",
+      "text": "Find products by name!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "按名称搜索商品!"
+    },
+    {
+      "id": "bazaar_manage_orders",
+      "context": "集市主菜单里进入订单管理的格子名",
+      "raw": "§aManage Orders",
+      "text": "Manage Orders",
+      "placeholders": [],
+      "gloss": "和已有的 bazaar_to_coop_orders 用同一套「订单」措辞。",
+      "translate": true,
+      "zh": "管理订单"
+    },
+    {
+      "id": "bazaar_history",
+      "context": "集市主菜单里进入成交历史的格子名",
+      "raw": "§aBazaar History",
+      "text": "Bazaar History",
+      "placeholders": [],
+      "gloss": "Bazaar 按 _shared/Terms.json 作「集市」。History 这里是自己的成交流水,作「历史记录」比「历史」更像一份可翻阅的清单。",
+      "translate": true,
+      "zh": "集市历史记录"
+    },
+    {
+      "id": "bazaar_click_to_manage",
+      "context": "订单管理菜单里单条订单底部的点击提示",
+      "raw": "§eClick to manage!",
+      "text": "Click to manage!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击管理!"
+    },
+    {
+      "id": "bazaar_orders_count",
+      "context": "订单管理格子上显示当前挂了几笔订单",
+      "raw": "§7Orders: §e%1$s",
+      "text": "Orders: %1$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "当前挂着的订单笔数", "type": "number", "example": "7" }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "订单: %1$s",
+      "segments": [
+        { "color": "§7", "text": "Orders: ", "zh": "订单: " },
+        { "color": "§e", "text": "%1$s", "zh": "%1$s" }
+      ]
+    },
+    {
+      "id": "bazaar_coins_to_claim",
+      "context": "订单管理格子上提示有已成交的钱可以领",
+      "raw": "§eYou have §6%1$s coins §eto claim!",
+      "text": "You have %1$s coins to claim!",
+      "placeholders": [
+        { "token": "%1$s", "desc": "可领取的硬币数", "type": "number", "example": "747,256" }
+      ],
+      "gloss": "coins 按本文件既有记录作「硬币」。",
+      "translate": true,
+      "zh": "你有 %1$s 硬币可领取!",
+      "segments": [
+        { "color": "§e", "text": "You have ", "zh": "你有 " },
+        { "color": "§6", "text": "%1$s coins ", "zh": "%1$s 硬币" },
+        { "color": "§e", "text": "to claim!", "zh": "可领取!" }
+      ]
+    },
+    {
+      "id": "bazaar_view_and_edit_settings",
+      "context": "集市设置格子的说明行",
+      "raw": "§7View and edit your Bazaar settings.",
+      "text": "View and edit your Bazaar settings.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "查看并修改你的集市设置。"
+    },
+    {
+      "id": "bazaar_shards_desc_1",
+      "context": "Oddities 分类里 Shards 类目的说明,英文排版拆成两行,合成一句翻译",
+      "raw": "§7Shards can be syphoned to increase",
+      "text": "Shards can be syphoned to increase",
+      "placeholders": [],
+      "gloss": "整句是 “Shards can be syphoned to increase the levels of your Attributes.”。已查证 hypixelskyblock.minecraft.wiki/w/Attributes(2026-08-29):Attribute(属性)是靠 Hunting 拿到的被动能力,每个属性对应一种 Attribute Shard(属性碎片),碎片自动进 Hunting Box,可以融合成别的碎片,也可以 syphon 进对应属性、注入次数越多属性等级越高,上限 10 级。syphon 直译「虹吸」在中文里不像游戏动作,按机制译作「注入」。",
+      "translate": true,
+      "zh": "碎片可以注入,用来提升你的属性等级。"
+    },
+    {
+      "id": "bazaar_shards_desc_2",
+      "context": "接上一行",
+      "raw": "§7the levels of your Attributes.",
+      "text": "the levels of your Attributes.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "bazaar_reforge_stones_desc_1",
+      "context": "Oddities 分类里重铸石类目的说明,英文排版拆成三行,合成一句翻译",
+      "raw": "§7Powerful stones which allow you to",
+      "text": "Powerful stones which allow you to",
+      "placeholders": [],
+      "gloss": "整句是 “Powerful stones which allow you to modify items with reforges not found at the Blacksmith.”。Reforge 按 GLOSSARY.md 作「重铸」,Blacksmith 按 _shared/Terms.json 作「铁匠铺」。",
+      "translate": true,
+      "zh": "强力的石头可以给物品加上铁匠铺没有的重铸词条。"
+    },
+    {
+      "id": "bazaar_reforge_stones_desc_2",
+      "context": "接上一行",
+      "raw": "§7modify items with reforges not found",
+      "text": "modify items with reforges not found",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "bazaar_reforge_stones_desc_3",
+      "context": "接上一行",
+      "raw": "§7at the Blacksmith.",
+      "text": "at the Blacksmith.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "bazaar_power_stones_desc_1",
+      "context": "Oddities 分类里 Power Stones 类目的说明,英文排版拆成两行,合成一句翻译",
+      "raw": "§7Unique items that allow you to learn",
+      "text": "Unique items that allow you to learn",
+      "placeholders": [],
+      "gloss": "整句是 “Unique items that allow you to learn Powers at the Thaumaturgist.”。Thaumaturgist 按 _shared/Terms.json 作「秘术师」。Power 这里是饰品袋的「能力」体系(拿能力石去秘术师那里解锁,再按饰品能力数值放大加成),按 King_Talisman.json 已定的 Accessory Power=饰品能力 取「能力」,不用「力量」。",
+      "translate": true,
+      "zh": "独特的物品,可以在秘术师那里学习能力。"
+    },
+    {
+      "id": "bazaar_power_stones_desc_2",
+      "context": "接上一行",
+      "raw": "§7Powers at the Thaumaturgist.",
+      "text": "Powers at the Thaumaturgist.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "bazaar_sell_inventory_desc_1",
+      "context": "「立即出售背包」格子的说明,英文排版拆成三行,合成一句翻译",
+      "raw": "§7Instantly sell any items in your",
+      "text": "Instantly sell any items in your",
+      "placeholders": [],
+      "gloss": "整句是 “Instantly sell any items in your inventory that can be sold on the Bazaar.”。",
+      "translate": true,
+      "zh": "立即卖出你背包里所有能在集市上出售的物品。"
+    },
+    {
+      "id": "bazaar_sell_inventory_desc_2",
+      "context": "接上一行",
+      "raw": "§7inventory that can be sold on the",
+      "text": "inventory that can be sold on the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "bazaar_sell_inventory_desc_3",
+      "context": "接上一行",
+      "raw": "§7Bazaar.",
+      "text": "Bazaar.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "bazaar_sell_sacks_desc_1",
+      "context": "「立即出售收纳袋」格子的说明,英文排版拆成两行,合成一句翻译",
+      "raw": "§7Instantly sell everything in your",
+      "text": "Instantly sell everything in your",
+      "placeholders": [],
+      "gloss": "整句是 “Instantly sell everything in your sacks on the Bazaar.”。Sacks 按 Hub_General/ChatMessage/Common_System.json 的 [Sacks]=[收纳袋] 统一作「收纳袋」。",
+      "translate": true,
+      "zh": "立即在集市上卖出你收纳袋里的全部东西。"
+    },
+    {
+      "id": "bazaar_sell_sacks_desc_2",
+      "context": "接上一行",
+      "raw": "§7sacks on the Bazaar.",
+      "text": "sacks on the Bazaar.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "bazaar_sell_inventory_now",
+      "context": "「立即出售背包」格子的物品名",
+      "raw": "§aSell Inventory Now",
+      "text": "Sell Inventory Now",
+      "placeholders": [],
+      "gloss": "服务器实际只发 Sell Inventory Now / Sell Sacks Now 两种,采集时被归成了 “Sell %1$s Now”。这里写成两条字面记录而不是一条占位符记录:Inventory 和 Sacks 都得翻译,而占位符的值只在 _shared/Terms.json 里有条目才会换语言,把 “Inventory”「Sacks」这种通用词放进全局词表会在别处乱匹配。同一处理见 Events/TabList/Jerrys_Workshop.json 的暴风雪两条记录。",
+      "translate": true,
+      "zh": "立即出售背包物品"
+    },
+    {
+      "id": "bazaar_sell_sacks_now",
+      "context": "「立即出售收纳袋」格子的物品名",
+      "raw": "§aSell Sacks Now",
+      "text": "Sell Sacks Now",
+      "placeholders": [],
+      "gloss": "见 bazaar_sell_inventory_now 的说明。",
+      "translate": true,
+      "zh": "立即出售收纳袋物品"
+    },
+    {
+      "id": "bazaar_some_items_cant_be_sold",
+      "context": "一键出售时提示背包里有卖不掉的东西",
+      "raw": "§cSome items can't be sold!",
+      "text": "Some items can't be sold!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "部分物品无法出售!"
+    },
+    {
+      "id": "bazaar_not_enough_orders",
+      "context": "一键出售时某种商品因为没人接单而卖不掉的原因说明",
+      "raw": "§7(Not enough orders)",
+      "text": "(Not enough orders)",
+      "placeholders": [],
+      "gloss": "orders 指买家挂的购买订单,数量不够吃下你要卖的货。括号保留半角,和原文一致。",
+      "translate": true,
+      "zh": "(购买订单不足)"
+    },
+    {
+      "id": "bazaar_nothing_to_sell",
+      "context": "一键出售时背包/收纳袋里根本没有可卖物品",
+      "raw": "§cYou don't have anything to sell!",
+      "text": "You don't have anything to sell!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你没有可以出售的东西!"
+    },
+    {
+      "id": "bazaar_no_items_matched_to_buyers",
+      "context": "一键出售时所有货都没匹配到买家",
+      "raw": "§cNo items could be matched to buyers!",
+      "text": "No items could be matched to buyers!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "没有物品能匹配到相应的买家!"
+    },
+    {
+      "id": "bazaar_category_woods_fishes",
+      "context": "集市首页五个大分类之一的格子名",
+      "raw": "§6Woods & Fishes",
+      "text": "Woods & Fishes",
+      "placeholders": [],
+      "gloss": "已查证 hypixelskyblock.minecraft.wiki/w/Bazaar(2026-08-29):集市分五个大类 Farming、Mining、Combat、Woods & Fishes、Oddities。这一类装木材和鱼获,& 按中文习惯写成「与」。",
+      "translate": true,
+      "zh": "木材与鱼类"
+    },
+    {
+      "id": "bazaar_category_exp_bottles",
+      "context": "Oddities 分类里 EXP Bottles 类目的格子名",
+      "raw": "§dEXP Bottles",
+      "text": "EXP Bottles",
+      "placeholders": [],
+      "gloss": "已查证 wiki 的 Bazaar 导航框:这一伞形类目下是 Experience Bottle / Grand / Titanic / Colossal Experience Bottle 四种。EXP 是 Experience 的缩写,中文没有对应缩写,直接作「经验瓶」。",
+      "translate": true,
+      "zh": "经验瓶"
+    },
+    {
+      "id": "bazaar_category_power_stones",
+      "context": "Oddities 分类里 Power Stones 类目的格子名",
+      "raw": "§dPower Stones",
+      "text": "Power Stones",
+      "placeholders": [],
+      "gloss": "Power 取「能力」的理由见 bazaar_power_stones_desc_1。",
+      "translate": true,
+      "zh": "能力石"
+    },
+    {
+      "id": "bazaar_category_cross_dimensional",
+      "context": "Oddities 分类里 Cross-Dimensional 类目的格子名",
+      "raw": "§dCross-Dimensional",
+      "text": "Cross-Dimensional",
+      "placeholders": [],
+      "gloss": "已查证 wiki 的 Bazaar 导航框:这一类装跨维度用的东西(如 Extremely Real Shuriken 之类的异界物件)。Cross-Dimensional 是描述性通用词,按 README.md 5.5 翻译。",
+      "translate": true,
+      "zh": "跨维度"
+    },
+    {
+      "id": "bazaar_category_upgrade_fragments",
+      "context": "Oddities 分类里 Upgrade Fragments 类目的格子名",
+      "raw": "§dUpgrade Fragments",
+      "text": "Upgrade Fragments",
+      "placeholders": [],
+      "gloss": "已查证 wiki 的 Bazaar 导航框:这一类装升级 Boss 装备用的碎片(Bonzo Fragment 等)。",
+      "translate": true,
+      "zh": "升级碎片"
+    },
+    {
+      "id": "bazaar_category_pet_upgrades",
+      "context": "Oddities 分类里 Pet Upgrades 类目的格子名",
+      "raw": "§dPet Upgrades",
+      "text": "Pet Upgrades",
+      "placeholders": [],
+      "gloss": "采集时 Pet Upgrades 和 Minion Upgrades 被归成了一条 “§d%1$s Upgrades”(count=88=2×44)。已查证 wiki 的 Bazaar 导航框,§d 这一档只有这两个伞形类目,所以拆成两条字面记录:Pet 和 Minion 都要翻译,理由同 bazaar_sell_inventory_now。Pets 按 _shared/Terms.json 作「宠物」。",
+      "translate": true,
+      "zh": "宠物升级"
+    },
+    {
+      "id": "bazaar_category_minion_upgrades",
+      "context": "Oddities 分类里 Minion Upgrades 类目的格子名",
+      "raw": "§dMinion Upgrades",
+      "text": "Minion Upgrades",
+      "placeholders": [],
+      "gloss": "Minions 按 _shared/Terms.json 作「小人」。见 bazaar_category_pet_upgrades 的说明。",
+      "translate": true,
+      "zh": "小人升级"
+    },
+    {
+      "id": "bazaar_category_stock_of_stonks",
+      "context": "Oddities 分类里 Stock of Stonks 类目的格子名",
+      "raw": "§dStock of Stonks",
+      "text": "Stock of Stonks",
+      "placeholders": [],
+      "gloss": "Stonks 是英文股票梗(stocks 的故意拼错),这一格就是同名物品 Stock of Stonks 本身,按物品名规则保留英文。梗和拼写错误都译不出来,硬翻反而丢信息。",
+      "translate": false,
+      "zh": ""
+    },
+    {
+      "id": "bazaar_history_instant_buy",
+      "context": "集市历史记录里一条「立即购买」的首行",
+      "raw": "§8%1$s ago §aInstant Buy §7of §a%2$s§7x %3$s",
+      "text": "%1$s ago Instant Buy of %2$sx %3$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "距现在多久", "type": "duration", "example": "7h" },
+        { "token": "%2$s", "desc": "成交数量", "type": "number", "example": "1" },
+        { "token": "%3$s", "desc": "商品专名，保留英文", "type": "item_name", "example": "Helix Fossil" }
+      ],
+      "gloss": "Instant Buy 是直接吃掉别人挂的出售报价、立即成交,和挂着等成交的 Buy Order(购买订单)相对,所以译「立即购买」而不是「即时买入」。时间用 duration 占位符,引擎会把 7h 渲染成 7小时(见 Capture.java 的单位表)。数量与商品的写法跟 bazaar_order_item 一致:%2$s个%3$s,英文商品名前的空格由引擎的 Seam 补。采集时把商品名按空格拆成了 %3$s %4$s 两个占位符,这里合成一个 item_name。",
+      "translate": true,
+      "zh": "%1$s前 立即购买 %2$s个%3$s",
+      "segments": [
+        { "color": "§8", "text": "%1$s ago ", "zh": "%1$s前 " },
+        { "color": "§a", "text": "Instant Buy ", "zh": "立即购买 " },
+        { "color": "§7", "text": "of ", "zh": "", "omit": true },
+        { "color": "§a", "text": "%2$s", "zh": "%2$s" },
+        { "color": "§7", "text": "x ", "zh": "个" },
+        { "color": "§7", "text": "%3$s", "zh": "%3$s" }
+      ]
+    },
+    {
+      "id": "bazaar_history_instant_sell",
+      "context": "集市历史记录里一条「立即出售」的首行",
+      "raw": "§8%1$s ago §6Instant Sell §7of §a%2$s§7x %3$s",
+      "text": "%1$s ago Instant Sell of %2$sx %3$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "距现在多久", "type": "duration", "example": "20h" },
+        { "token": "%2$s", "desc": "成交数量", "type": "number", "example": "113" },
+        { "token": "%3$s", "desc": "商品专名，保留英文", "type": "item_name", "example": "Mithril" }
+      ],
+      "gloss": "和 bazaar_history_instant_buy 成对:Instant Sell 直接吃掉别人挂的购买订单,译「立即出售」。",
+      "translate": true,
+      "zh": "%1$s前 立即出售 %2$s个%3$s",
+      "segments": [
+        { "color": "§8", "text": "%1$s ago ", "zh": "%1$s前 " },
+        { "color": "§6", "text": "Instant Sell ", "zh": "立即出售 " },
+        { "color": "§7", "text": "of ", "zh": "", "omit": true },
+        { "color": "§a", "text": "%2$s", "zh": "%2$s" },
+        { "color": "§7", "text": "x ", "zh": "个" },
+        { "color": "§7", "text": "%3$s", "zh": "%3$s" }
+      ]
+    },
+    {
+      "id": "bazaar_history_multi_sell",
+      "context": "集市历史记录里一条「批量出售」的行",
+      "raw": "§8%1$s ago §6Multi-sell §7for §6%2$s coins",
+      "text": "%1$s ago Multi-sell for %2$s coins",
+      "placeholders": [
+        { "token": "%1$s", "desc": "距现在多久", "type": "duration", "example": "20h" },
+        { "token": "%2$s", "desc": "这一笔总共卖了多少硬币", "type": "number", "example": "723" }
+      ],
+      "gloss": "Multi-sell 是「立即出售背包/收纳袋」一次把多种商品一起卖掉,历史里只记总额、不记逐项,所以这条没有商品名。coins 按本文件既有记录作「硬币」。",
+      "translate": true,
+      "zh": "%1$s前 批量出售 共 %2$s 硬币",
+      "segments": [
+        { "color": "§8", "text": "%1$s ago ", "zh": "%1$s前 " },
+        { "color": "§6", "text": "Multi-sell ", "zh": "批量出售 " },
+        { "color": "§7", "text": "for ", "zh": "共 " },
+        { "color": "§6", "text": "%2$s coins", "zh": "%2$s 硬币" }
+      ]
+    },
+    {
+      "id": "bazaar_history_created_sell_offer",
+      "context": "集市历史记录里一条「挂出出售报价」的首行",
+      "raw": "§8%1$s ago §7Created §6Sell Offer §7for §a%2$s§7x %3$s",
+      "text": "%1$s ago Created Sell Offer for %2$sx %3$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "距现在多久", "type": "duration", "example": "18h" },
+        { "token": "%2$s", "desc": "挂单数量", "type": "number", "example": "1" },
+        { "token": "%3$s", "desc": "商品专名，保留英文", "type": "item_name", "example": "Flowstate I" }
+      ],
+      "gloss": "Sell Offer 按本文件 bazaar_sell_offer 作「出售报价」。三种生命周期动作(Created / Cancelled / Claimed)各写一条:英文里 Created 后面接 for、Cancelled 和 Claimed 后面接 of,连接词不同,本来就是三个不同模板;而且 Sell Offer 的颜色也不同(Created/Claimed 是 §6,Cancelled 是 §c)。过去式在中文里靠「了」体现。",
+      "translate": true,
+      "zh": "%1$s前 挂出了出售报价 %2$s个%3$s",
+      "segments": [
+        { "color": "§8", "text": "%1$s ago ", "zh": "%1$s前 " },
+        { "color": "§7", "text": "Created ", "zh": "挂出了" },
+        { "color": "§6", "text": "Sell Offer ", "zh": "出售报价 " },
+        { "color": "§7", "text": "for ", "zh": "", "omit": true },
+        { "color": "§a", "text": "%2$s", "zh": "%2$s" },
+        { "color": "§7", "text": "x ", "zh": "个" },
+        { "color": "§7", "text": "%3$s", "zh": "%3$s" }
+      ]
+    },
+    {
+      "id": "bazaar_history_cancelled_sell_offer",
+      "context": "集市历史记录里一条「撤掉出售报价」的首行",
+      "raw": "§8%1$s ago §7Cancelled §cSell Offer §7of §a%2$s§7x %3$s",
+      "text": "%1$s ago Cancelled Sell Offer of %2$sx %3$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "距现在多久", "type": "duration", "example": "19h" },
+        { "token": "%2$s", "desc": "撤回的数量", "type": "number", "example": "75" },
+        { "token": "%3$s", "desc": "商品专名，保留英文", "type": "item_name", "example": "Suspicious Scrap" }
+      ],
+      "gloss": "见 bazaar_history_created_sell_offer 的说明。Cancelled 按本文件 bazaar_cancel_order 的「取消」措辞。",
+      "translate": true,
+      "zh": "%1$s前 取消了出售报价 %2$s个%3$s",
+      "segments": [
+        { "color": "§8", "text": "%1$s ago ", "zh": "%1$s前 " },
+        { "color": "§7", "text": "Cancelled ", "zh": "取消了" },
+        { "color": "§c", "text": "Sell Offer ", "zh": "出售报价 " },
+        { "color": "§7", "text": "of ", "zh": "", "omit": true },
+        { "color": "§a", "text": "%2$s", "zh": "%2$s" },
+        { "color": "§7", "text": "x ", "zh": "个" },
+        { "color": "§7", "text": "%3$s", "zh": "%3$s" }
+      ]
+    },
+    {
+      "id": "bazaar_history_claimed_sell_offer",
+      "context": "集市历史记录里一条「领取出售报价成交款」的首行",
+      "raw": "§8%1$s ago §7Claimed §6Sell Offer §7of §a%2$s§7x %3$s",
+      "text": "%1$s ago Claimed Sell Offer of %2$sx %3$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "距现在多久", "type": "duration", "example": "5s" },
+        { "token": "%2$s", "desc": "成交并领取的数量", "type": "number", "example": "4" },
+        { "token": "%3$s", "desc": "商品专名，保留英文", "type": "item_name", "example": "Paleontologist I" }
+      ],
+      "gloss": "见 bazaar_history_created_sell_offer 的说明。Claimed 指报价成交后把货款收进背包,译「领取了」。",
+      "translate": true,
+      "zh": "%1$s前 领取了出售报价 %2$s个%3$s",
+      "segments": [
+        { "color": "§8", "text": "%1$s ago ", "zh": "%1$s前 " },
+        { "color": "§7", "text": "Claimed ", "zh": "领取了" },
+        { "color": "§6", "text": "Sell Offer ", "zh": "出售报价 " },
+        { "color": "§7", "text": "of ", "zh": "", "omit": true },
+        { "color": "§a", "text": "%2$s", "zh": "%2$s" },
+        { "color": "§7", "text": "x ", "zh": "个" },
+        { "color": "§7", "text": "%3$s", "zh": "%3$s" }
+      ]
+    },
+    {
+      "id": "bazaar_history_now_created_sell_offer",
+      "context": "集市历史记录里刚刚挂出的出售报价,时间显示为 now 而不是「N 单位 ago」",
+      "raw": "§8now §7Created §6Sell Offer §7for §a%1$s§7x %2$s",
+      "text": "now Created Sell Offer for %1$sx %2$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "挂单数量", "type": "number", "example": "1" },
+        { "token": "%2$s", "desc": "商品专名，保留英文", "type": "item_name", "example": "Blue Goblin Egg" }
+      ],
+      "gloss": "刚发生的记录里时间那一栏是单词 now,没有 ago,duration 占位符只吃数字,所以必须单独一条。实测只采到 Created 这一种 now 形式,别的动作的 now 形式见文件末 todo。",
+      "translate": true,
+      "zh": "刚刚 挂出了出售报价 %1$s个%2$s",
+      "segments": [
+        { "color": "§8", "text": "now ", "zh": "刚刚 " },
+        { "color": "§7", "text": "Created ", "zh": "挂出了" },
+        { "color": "§6", "text": "Sell Offer ", "zh": "出售报价 " },
+        { "color": "§7", "text": "for ", "zh": "", "omit": true },
+        { "color": "§a", "text": "%1$s", "zh": "%1$s" },
+        { "color": "§7", "text": "x ", "zh": "个" },
+        { "color": "§7", "text": "%2$s", "zh": "%2$s" }
+      ]
+    },
+    {
+      "id": "bazaar_history_for_coins_by",
+      "context": "集市历史记录里紧跟在成交动作下面的第二行:成交总额和操作人",
+      "raw": " §7for §6%1$s coins §7by §b[MVP§9+§b] inkkni",
+      "text": " for %1$s coins by %2$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "这一笔的成交总额", "type": "number", "example": "40.7k" },
+        { "token": "%2$s", "desc": "玩家的称号+名字，保留原样", "type": "raw", "example": "[MVP+] inkkni" }
+      ],
+      "gloss": "行首那个空格是服务器自己缩进的,照抄。玩家称号+名字合成一个 raw 占位符,写法同 Mining/ChatMessage/Mineshaft_Loot.json 的 mining_mineshaft_entered:称号里带方括号和颜色码,player_name 那种严格捕获吃不下。by 指这一笔是合作社里哪个成员做的(订单由合作社共享),所以译「由 … 操作」而不是「被 … 」。",
+      "translate": true,
+      "zh": " 共 %1$s 硬币,由 %2$s 操作",
+      "segments": [
+        { "color": "§7", "text": " for ", "zh": " 共 " },
+        { "color": "§6", "text": "%1$s coins ", "zh": "%1$s 硬币," },
+        { "color": "§7", "text": "by ", "zh": "由 " },
+        { "color": "§b", "text": "%2$s", "zh": "%2$s 操作" }
+      ]
+    },
+    {
+      "id": "bazaar_history_worth_coins_by",
+      "context": "集市历史记录里紧跟在领取出售报价下面的第二行:成交总额和操作人",
+      "raw": " §7worth §6%1$s coins §7by §b[MVP§9+§b] inkkni",
+      "text": " worth %1$s coins by %2$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "这一笔出售报价的成交总额", "type": "number", "example": "14.5k" },
+        { "token": "%2$s", "desc": "玩家的称号+名字，保留原样", "type": "raw", "example": "[MVP+] inkkni" }
+      ],
+      "gloss": "领取出售报价时服务器用 worth,其他成交动作的第二行用 for。两种原文分别保留记录;by 的合作社操作人语义与 bazaar_history_for_coins_by 相同。",
+      "translate": true,
+      "zh": " 共 %1$s 硬币,由 %2$s 操作",
+      "segments": [
+        { "color": "§7", "text": " worth ", "zh": " 共 " },
+        { "color": "§6", "text": "%1$s coins ", "zh": "%1$s 硬币," },
+        { "color": "§7", "text": "by ", "zh": "由 " },
+        { "color": "§b", "text": "%2$s", "zh": "%2$s 操作" }
+      ]
+    },
+    {
+      "id": "bazaar_history_at_coins_each_by",
+      "context": "集市历史记录里挂单那一条的第二行:单价、总额和操作人",
+      "raw": " §7at §6%1$s coins §7each §8(total %2$s) §7by §b[MVP§9+§b] inkkni",
+      "text": " at %1$s coins each (total %2$s) by %3$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "每一个的单价", "type": "number", "example": "1,493.2" },
+        { "token": "%2$s", "desc": "这一笔的总额", "type": "number", "example": "1.5k" },
+        { "token": "%3$s", "desc": "玩家的称号+名字，保留原样", "type": "raw", "example": "[MVP+] inkkni" }
+      ],
+      "gloss": "单价按本文件 bazaar_price_per_unit 作「单价」。括号保留半角,和原文一致。玩家名和 by 的处理见 bazaar_history_for_coins_by。",
+      "translate": true,
+      "zh": " 单价 %1$s 硬币(共计 %2$s),由 %3$s 操作",
+      "segments": [
+        { "color": "§7", "text": " at ", "zh": " 单价 " },
+        { "color": "§6", "text": "%1$s coins ", "zh": "%1$s 硬币" },
+        { "color": "§7", "text": "each ", "zh": "", "omit": true },
+        { "color": "§8", "text": "(total %2$s) ", "zh": "(共计 %2$s)," },
+        { "color": "§7", "text": "by ", "zh": "由 " },
+        { "color": "§b", "text": "%3$s", "zh": "%3$s 操作" }
+      ]
+    },
+    {
+      "id": "bazaar_history_by",
+      "context": "集市历史记录里撤单那一条的第二行:只写操作人,没有金额",
+      "raw": " §7by §b[MVP§9+§b] inkkni",
+      "text": " by %1$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "玩家的称号+名字，保留原样", "type": "raw", "example": "[MVP+] inkkni" }
+      ],
+      "gloss": "撤单没有成交额,所以第二行只剩操作人。处理见 bazaar_history_for_coins_by。",
+      "translate": true,
+      "zh": " 由 %1$s 操作",
+      "segments": [
+        { "color": "§7", "text": " by ", "zh": " 由 " },
+        { "color": "§b", "text": "%1$s", "zh": "%1$s 操作" }
+      ]
+    },
+    {
+      "id": "bazaar_order_row_for_coins",
+      "context": "订单管理列表里单条订单的数量、商品和金额",
+      "raw": " §a%1$s§7x §9%2$s §7for §6%3$s coins",
+      "text": " %1$sx %2$s for %3$s coins",
+      "placeholders": [
+        { "token": "%1$s", "desc": "这一笔的数量", "type": "number", "example": "13,010" },
+        { "token": "%2$s", "desc": "商品专名，保留英文", "type": "item_name", "example": "Titanium" },
+        { "token": "%3$s", "desc": "这一笔的总额", "type": "number", "example": "1,748,544" }
+      ],
+      "gloss": "行首空格是服务器缩进,照抄。数量与商品的写法同 bazaar_order_item。",
+      "translate": true,
+      "zh": " %1$s个%2$s 共 %3$s 硬币",
+      "segments": [
+        { "color": "§a", "text": " %1$s", "zh": " %1$s" },
+        { "color": "§7", "text": "x ", "zh": "个" },
+        { "color": "§9", "text": "%2$s ", "zh": "%2$s " },
+        { "color": "§7", "text": "for ", "zh": "共 " },
+        { "color": "§6", "text": "%3$s coins", "zh": "%3$s 硬币" }
+      ]
+    },
+    {
+      "id": "bazaar_group_item_upgrades",
+      "context": "商品浏览器里「物品升级」这一组的行",
+      "raw": "§6▶ §7Item Upgrades",
+      "text": "Item Upgrades",
+      "placeholders": [],
+      "gloss": "▶ 是浏览器里「这一格是一组商品、点进去还有下一层」的记号,不写进 text——引擎会把行首符号剥掉再查一次(见 README.md「行首的项目符号会被剥掉再查一次」)。原先连符号一起记成一整行,而服务器给符号和组名发的是两种颜色(§6 的 ▶ + §7 的组名),整行只能取最前面那个颜色,于是组名被刷成了金色;剥掉符号之后记录只管组名那一段,符号连着它自己的颜色原样留在行首。这一组名是描述性通用词,不是某一件商品的专名,按 README.md 5.5 翻译。",
+      "translate": true,
+      "zh": "物品升级"
+    },
+    {
+      "id": "bazaar_group_normal_enchantments",
+      "context": "商品浏览器里「普通附魔」这一组的行",
+      "raw": "§6▶ §7Normal Enchantments",
+      "text": "Normal Enchantments",
+      "placeholders": [],
+      "gloss": "采集时 Normal Enchantments 和 Ultimate Enchantments 被归成了一条 “§6▶ §7%1$s Enchantments”(count=82=2×41)。已查证 hypixelskyblock.minecraft.wiki/w/Bazaar 的导航框(2026-08-29),§6 这一档只有这两组,所以拆成两条字面记录:Normal 和 Ultimate 都要翻译,而把这种通用形容词放进全局词表会在别处乱匹配。Enchanting 按 _shared/Terms.json 作「附魔」;Normal 要译出来,否则和下一条的「终极附魔」失去对照,读的人看不出这一组是普通档。行首 ▶ 不写进 text,理由见 bazaar_group_item_upgrades。",
+      "translate": true,
+      "zh": "普通附魔"
+    },
+    {
+      "id": "bazaar_group_ultimate_enchantments",
+      "context": "商品浏览器里「终极附魔」这一组的行",
+      "raw": "§6▶ §7Ultimate Enchantments",
+      "text": "Ultimate Enchantments",
+      "placeholders": [],
+      "gloss": "Ultimate Enchantment 是附魔里单独一档、一件装备只能上一个的最高级附魔,中文社区通行译名「终极附魔」。拆条的来由和行首 ▶ 的处理见 bazaar_group_normal_enchantments 与 bazaar_group_item_upgrades。",
+      "translate": true,
+      "zh": "终极附魔"
+    },
+    {
+      "id": "bazaar_group_wither_scrolls",
+      "context": "商品浏览器里「凋零卷轴」这一组的行",
+      "raw": "§5▶ §7Wither Scrolls",
+      "text": "Wither Scrolls",
+      "placeholders": [],
+      "gloss": "已查证 wiki 的 Bazaar 导航框(2026-08-29)确有 Wither Scrolls 这一组。Wither 按 _shared/Terms.json 的 Wither Essence=凋零精华 作「凋零」。采集时这条被归成了 “§5▶ §7Wither %1$s”(count=82=2×41),另一个 Wither 开头的 §5 组名实测没采到,见文件末 todo。行首 ▶ 不写进 text,理由见 bazaar_group_item_upgrades。",
+      "translate": true,
+      "zh": "凋零卷轴"
+    },
+    {
+      "id": "bazaar_group_master_stars",
+      "context": "商品浏览器里「大师之星」这一组的行",
+      "raw": "§5▶ §7Master Stars",
+      "text": "Master Stars",
+      "placeholders": [],
+      "gloss": "Master Star 是给地牢装备加星的材料,共五阶。这里是一组的组名(复数)而不是某一件的专名,按通用词翻译作「大师之星」;Master 在 _shared/Terms.json 里已有「大师」的用法(如 Master Trophy Fisher=大师锦标渔夫)。行首 ▶ 不写进 text,理由见 bazaar_group_item_upgrades。",
+      "translate": true,
+      "zh": "大师之星"
+    },
+    {
+      "id": "bazaar_group_experience_bottle",
+      "context": "商品浏览器里「经验瓶」这一组的行",
+      "raw": "§f▶ §7Experience Bottle",
+      "text": "Experience Bottle",
+      "placeholders": [],
+      "gloss": "和上层类目 bazaar_category_exp_bottles(经验瓶)同一套措辞。同组里 Grand / Titanic / Colossal 三种带前缀的瓶子是具体商品专名,按物品名规则保留英文,不写记录。行首 ▶ 不写进 text,理由见 bazaar_group_item_upgrades;这一条的符号是 §f,和上面几条不同色,正好说明为什么不能把符号连着颜色一起塞进记录。",
+      "translate": true,
+      "zh": "经验瓶"
+    },
+    {
+      "id": "bazaar_group_essence",
+      "context": "商品浏览器里「精华」分类下按种类分组的行",
+      "raw": "§7▶ %1$s Essence",
+      "text": "%1$s Essence",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "精华种类名,译名走 _shared/Terms.json;当前实测有 Wither、Spider、Undead、Dragon、Gold、Diamond、Ice、Crimson、Forest、Fossil、Safari",
+          "type": "category_name",
+          "example": "Wither"
+        }
+      ],
+      "gloss": "已查证 hysb.wiki/w/Essence(2026-08-29):Essence 是可用于升级物品、也可在精华商店消费的货币,页面列出 Wither、Undead、Crimson、Spider、Dragon、Gold、Diamond、Ice、Forest、Fossil、Safari 等种类。采集里这条是「▶ + 种类 + Essence」的商品分组,不是玩家背包里的具体物品;行首 ▶ 不写进 text,符号颜色由原始行保留。Wither、Undead、Dragon、Crimson、Fossil 的前缀译名限定在 category_name,Spider、Gold、Diamond、Ice、Forest 使用已有词条,Safari 暂无项目内确立的中文名而保留英文。",
+      "translate": true,
+      "zh": "%1$s精华"
+    },
+    {
+      "id": "bazaar_group_pet_candies",
+      "context": "Oddities 分类里宠物糖果商品组的行",
+      "raw": "§d▶ §7Pet Candies",
+      "text": "Pet Candies",
+      "placeholders": [],
+      "gloss": "已查证 hysb.wiki/w/Pet_Candy(2026-08-29):Pet Candy 是给宠物提供经验的宠物食物,这里是商品组名而不是某一种糖果的专名。",
+      "translate": true,
+      "zh": "宠物糖果"
+    },
+    {
+      "id": "bazaar_group_griffin_upgrade_stones",
+      "context": "Oddities 分类里狮鹫升级石商品组的行",
+      "raw": "§d▶ §7Griffin Upgrade Stones",
+      "text": "Griffin Upgrade Stones",
+      "placeholders": [],
+      "gloss": "已查证 hysb.wiki/w/Griffin_Upgrade_Stone(2026-08-29):Griffin Upgrade Stones 用于在 Kat 处提升 Griffin Pet 的稀有度;Griffin 沿项目已有译法「狮鹫」。这是商品组名,不是某个稀有度的具体物品名。",
+      "translate": true,
+      "zh": "狮鹫升级石"
+    },
+    {
+      "id": "bazaar_group_minion_storage",
+      "context": "Oddities 分类里小人存储商品组的行",
+      "raw": "§9▶ §7Minion Storage",
+      "text": "Minion Storage",
+      "placeholders": [],
+      "gloss": "已查证 hysb.wiki/w/Minion_Storage(2026-08-30):Small/Medium/Large/X-Large/XX-Large Storage 是给小人扩容的箱子,**放在小人旁边**,维基原文写明「They are not Minion Upgrades」——不是放进升级槽位的 Minion Upgrades(此处更正 2026-08-29 那次查证的说法)。Minion 沿项目既有译法「小人」。",
+      "translate": true,
+      "zh": "小人存储"
+    },
+    {
+      "id": "bazaar_group_compactors",
+      "context": "Oddities 分类里压缩器商品组的行",
+      "raw": "§9▶ §7Compactors",
+      "text": "Compactors",
+      "placeholders": [],
+      "gloss": "已查证 hysb.wiki/w/Compactor(2026-08-29):Compactor 是小人升级物品,会把小人产出的资源压成方块形式。项目已有 Compactor →「压缩器」的译法,这里沿用复数不变的中文写法。",
+      "translate": true,
+      "zh": "压缩器"
+    },
+    {
+      "id": "bazaar_group_minerals",
+      "context": "Oddities 分类里矿物商品组的行",
+      "raw": "§9▶ §7Minerals",
+      "text": "Minerals",
+      "placeholders": [],
+      "gloss": "hysb.wiki/w/Minerals(2026-08-29)目前没有正文;结合 Bazaar 的实际分类位置和项目已有 Mineral Boots →「矿物靴」,这里是描述性商品组名,译作「矿物」而不是把它当作某件商品专名。",
+      "translate": true,
+      "zh": "矿物"
+    },
+    {
+      "id": "bazaar_group_coupons",
+      "context": "Oddities 分类里优惠券商品组的行",
+      "raw": "§a▶ §7Coupons",
+      "text": "Coupons",
+      "placeholders": [],
+      "gloss": "hysb.wiki/w/Coupons(2026-08-29)目前没有正文;这里是 Bazaar 中的描述性商品组名,按普通英文词译作「优惠券」,不替任何具体优惠券命名。",
+      "translate": true,
+      "zh": "优惠券"
     }
   ]
 }

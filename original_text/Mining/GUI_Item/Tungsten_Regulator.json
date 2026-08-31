@@ -42,7 +42,7 @@
         {
           "color": "§7",
           "text": "Decreases your ",
-          "zh": "每消耗一定燃料,就降低你的 "
+          "zh": "降低你的 "
         },
         {
           "color": "§c",
@@ -63,19 +63,20 @@
     },
     {
       "id": "tungsten_regulator_by_s_for_every_s",
-      "context": "",
+      "context": "承接上一行,给出降低的点数和消耗速率",
       "raw": "§7by §a%s §7for every §2%s Fuel §7used.",
       "text": "by %s for every %s Fuel used.",
+      "gloss": "这一句英文跨两行,两行各有高亮(炎热红、寒冷青、点数绿、燃料深绿),所以按行分摊译文而不是 continuation 合并。原先上一行开头写「每消耗一定燃料,就降低你的…」、本行又写「所需燃料为 %s」,同一个燃料量说了两遍,而且第一遍还是含糊的「一定」——英文只说了一遍。现在上一行只说降低什么,速率作为括注留在本行末尾:「降低你的 ♨ 炎热值 或 ❄ 寒冷值 %s 点(每消耗 %s 燃料)。」中文用括注表示速率比把条件从句提到句首更短,也不用跨行调 order。",
       "placeholders": [
         {
           "token": "%s",
-          "desc": "数值",
+          "desc": "每次降低的炎热/寒冷点数",
           "type": "number",
           "example": ""
         },
         {
           "token": "%s",
-          "desc": "数值",
+          "desc": "触发一次降低所需消耗的燃料量",
           "type": "number",
           "example": ""
         }
@@ -98,17 +99,17 @@
         {
           "color": "§7",
           "text": "for every ",
-          "zh": "点,所需燃料为 "
+          "zh": "点(每消耗 "
         },
         {
           "color": "§2",
           "text": "%s Fuel ",
-          "zh": "%s"
+          "zh": "%s 燃料"
         },
         {
           "color": "§7",
           "text": "used.",
-          "zh": "。"
+          "zh": ")。"
         }
       ]
     },

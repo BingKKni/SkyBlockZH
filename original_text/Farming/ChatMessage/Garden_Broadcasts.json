@@ -1,0 +1,113 @@
+{
+  "source": "SkyZH runtime capture (2026-08-29, Garden settings session)",
+  "fetched_at": "2026-08-29",
+  "verified_ingame": true,
+  "gui_context": "在花园里改设置时，聊天栏对岛上所有人播的一行：谁改了哪个开关。",
+  "source_note": [
+    "采集把玩家名连称号一起写进了字面量（“[MVP+] inkkni ...”），因为那一轮只有一个人在改设置。这里改成 player_name 占位符——照 Economy/GUI_Item/Bazaar.json 里几条挂单记录的写法，example 也连称号一起给。",
+    "状态词写成字面量而不是占位符：这里的 enabled / disabled 是谓语动词（“某人开启了……”），跟 Hub_General/ChatMessage/Settings_Toggles.json 里作表语的那一组（“……已开启”）中文说法不同，所以两处各写各的。",
+    "颜色只记观察到的那一种：采集把开、关两种状态并进了同一条记录，所以 Visits 那一条只见过 enabled 的 §a，地块悬浮字那一条只见过 disabled 的 §c。segments 里的 color 字段引擎不读（见 text/TranslationLoader.compile，只取 text/zh/omit/order），分段只定边界，颜色由服务器当场给，所以两种状态各自的颜色都不会被这份数据写死。"
+  ],
+  "lines": [
+    {
+      "id": "garden_broadcast_plot_holograms_enabled",
+      "context": "有人打开了花园地块悬浮字，播给岛上所有人",
+      "raw": "§b%1$s §cenabled Garden Plot Holograms!",
+      "text": "%1$s enabled Garden Plot Holograms!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "改设置的玩家，连称号一起保留原样。定 raw 而不是 player_name：称号带方括号和加号（“[MVP+] inkkni”），player_name 那种严格捕获只认 Minecraft 的十六种字名字符，吃不下称号——写法同 Economy/GUI_Item/Bazaar.json#bazaar_history_for_coins_by。",
+          "type": "raw",
+          "example": "[MVP+] inkkni"
+        }
+      ],
+      "gloss": "开关名那一份在 Hub_General/GUI_Item/Settings.json#plot_holograms（地块悬浮字），花园设置菜单里的说明行在 Farming/GUI_Item/Garden_Settings.json#garden_plot_holograms_desc_1。玩家名和“开启”之间的空格写死在译文里，理由同 Hub_General/ChatMessage/Common_System.json#common_death_by_mob：引擎自动补空格时不把数字当拉丁字母，而玩家名可以以数字结尾。",
+      "translate": true,
+      "zh": "%1$s 开启了花园的地块悬浮字!",
+      "segments": [
+        { "color": "§b", "text": "%1$s ", "zh": "%1$s " },
+        { "color": "§c", "text": "enabled Garden Plot Holograms!", "zh": "开启了花园的地块悬浮字!" }
+      ]
+    },
+    {
+      "id": "garden_broadcast_plot_holograms_disabled",
+      "context": "有人关掉了花园地块悬浮字，播给岛上所有人",
+      "raw": "§b%1$s §cdisabled Garden Plot Holograms!",
+      "text": "%1$s disabled Garden Plot Holograms!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "改设置的玩家，连称号一起保留原样。定 raw 而不是 player_name：称号带方括号和加号（“[MVP+] inkkni”），player_name 那种严格捕获只认 Minecraft 的十六种字名字符，吃不下称号——写法同 Economy/GUI_Item/Bazaar.json#bazaar_history_for_coins_by。",
+          "type": "raw",
+          "example": "[MVP+] inkkni"
+        }
+      ],
+      "gloss": "和 garden_broadcast_plot_holograms_enabled 成对，只有动词一个字之差。",
+      "translate": true,
+      "zh": "%1$s 关闭了花园的地块悬浮字!",
+      "segments": [
+        { "color": "§b", "text": "%1$s ", "zh": "%1$s " },
+        { "color": "§c", "text": "disabled Garden Plot Holograms!", "zh": "关闭了花园的地块悬浮字!" }
+      ]
+    },
+    {
+      "id": "garden_broadcast_visits_enabled",
+      "context": "有人放开了某一类人来访花园，播给岛上所有人",
+      "raw": "§b%1$s §aenabled Garden Visits: §2%2$s§a!",
+      "text": "%1$s enabled Garden Visits: %2$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "改设置的玩家，连称号一起保留原样。定 raw 而不是 player_name：称号带方括号和加号（“[MVP+] inkkni”），player_name 那种严格捕获只认 Minecraft 的十六种字名字符，吃不下称号——写法同 Economy/GUI_Item/Bazaar.json#bazaar_history_for_coins_by。",
+          "type": "raw",
+          "example": "[MVP+] inkkni"
+        },
+        {
+          "token": "%2$s",
+          "desc": "被放开的那一类人，译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Guild"
+        }
+      ],
+      "gloss": "实测三个取值 Anyone / Friends / Guild，都已收进 _shared/Terms.json（限定 category_name）；设置菜单里同一组开关在 Farming/GUI_Item/Garden_Settings.json#garden_visits_category，两边都译“来访”。译文把开关名整个引起来（「来访: 公会」），不然“开启了花园来访公会”读不出哪几个字是开关的名字。",
+      "translate": true,
+      "zh": "%1$s 开启了花园的「来访: %2$s」!",
+      "segments": [
+        { "color": "§b", "text": "%1$s ", "zh": "%1$s " },
+        { "color": "§a", "text": "enabled Garden Visits: ", "zh": "开启了花园的「来访: " },
+        { "color": "§2", "text": "%2$s", "zh": "%2$s" },
+        { "color": "§a", "text": "!", "zh": "」!" }
+      ]
+    },
+    {
+      "id": "garden_broadcast_visits_disabled",
+      "context": "有人关掉了某一类人来访花园，播给岛上所有人",
+      "raw": "§b%1$s §adisabled Garden Visits: §2%2$s§a!",
+      "text": "%1$s disabled Garden Visits: %2$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "改设置的玩家，连称号一起保留原样。定 raw 而不是 player_name：称号带方括号和加号（“[MVP+] inkkni”），player_name 那种严格捕获只认 Minecraft 的十六种字名字符，吃不下称号——写法同 Economy/GUI_Item/Bazaar.json#bazaar_history_for_coins_by。",
+          "type": "raw",
+          "example": "[MVP+] inkkni"
+        },
+        {
+          "token": "%2$s",
+          "desc": "被关掉的那一类人，译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Anyone"
+        }
+      ],
+      "gloss": "和 garden_broadcast_visits_enabled 成对。",
+      "translate": true,
+      "zh": "%1$s 关闭了花园的「来访: %2$s」!",
+      "segments": [
+        { "color": "§b", "text": "%1$s ", "zh": "%1$s " },
+        { "color": "§a", "text": "disabled Garden Visits: ", "zh": "关闭了花园的「来访: " },
+        { "color": "§2", "text": "%2$s", "zh": "%2$s" },
+        { "color": "§a", "text": "!", "zh": "」!" }
+      ]
+    }
+  ]
+}

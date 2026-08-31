@@ -166,12 +166,37 @@
     },
     {
       "id": "gui_title_bazaar_coop_orders",
-      "context": "合作社共享的集市订单列表",
+      "context": "合作档案共享的集市订单列表",
       "text": "Co-op Bazaar Orders",
       "placeholders": [],
-      "gloss": "co-op 指合作社。",
+      "gloss": "Co-op 按 GLOSSARY.md 的统一用词作「合作」,与 Economy/GUI_Title/Auction_House.json 的 Co-op Auction House→「合作拍卖行」一致。这里说的是合作档案成员共用的集市订单,不是名为「合作社」的组织。",
       "translate": true,
-      "zh": "合作社集市订单"
+      "zh": "集市订单 - 合作模式"
+    },
+    {
+      "id": "gui_title_bazaar_item",
+      "context": "集市里点开某一件具体商品后的页面标题,箭头后面带引号的是商品名",
+      "text": "Bazaar ➜ \"%s\"",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "商品名,译名走 _shared/Terms.json",
+          "type": "item_name",
+          "example": "Clubbed Fossil"
+        }
+      ],
+      "gloss": "和同文件的 gui_title_bazaar_category(`Bazaar ➜ %s`,不带引号)是两个界面:那一条箭头后面是分类名(Oddities 之类),这一条箭头后面是带引号的单件商品名。引号是原文自己打的,分类页没有,所以两条记录靠引号区分,不会互相抢。",
+      "translate": true,
+      "zh": "集市 ➜ \"%s\""
+    },
+    {
+      "id": "gui_title_instasell_ignore_list",
+      "context": "集市「立即出售」的排除名单页标题,名单里的商品不会被一键出售带走",
+      "text": "Instasell Ignore List",
+      "placeholders": [],
+      "gloss": "已查证 hypixelskyblock.minecraft.wiki/w/Bazaar(2026-08-29):2023-08-22 加进来的功能,wiki 的更新日志里叫 Instasell Blocklist,作用是「防止某些商品被一键出售带走」。游戏里发的是 Ignore List,按实际发出的词译「忽略名单」而不是照 wiki 的 Blocklist 译「黑名单」。Instasell 是 Instant Sell 的缩写,同文件 Economy/GUI_Item/Bazaar.json 里 Instant Sell 一律作「立即出售」,这里跟着走。",
+      "translate": true,
+      "zh": "立即出售忽略名单"
     }
   ]
 }

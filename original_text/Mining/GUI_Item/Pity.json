@@ -1,0 +1,271 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Pity_and_RNG_Meters (Types of Pity 一节) + runtime capture (SkyZH) 2026-08-29 实测会话",
+  "fetched_at": "2026-08-29",
+  "verified_ingame": true,
+  "gui_context": "/pity 打开的保底总览界面。每一格是一个地点或活动,格子的 Lore 列出这个地点下面挂着哪几项保底进度。原文取自游戏内实截,机制按维基 Pity and RNG Meters 的 Types of Pity 一节核对。",
+  "source_note": "四处需要留底的判断。① 七个格子的名字里有五个带 Pity 后缀(The Garden / Glacite Tunnels / Hoppity's Hunt / Moonglade Marsh / Torrhus Canyon),另外两个(Crimson Isle / Lotus Atoll)没有——这是原文自己的不一致,照原文译,不替服务器补齐。② 清单每一行都按字面量写死,不做成「- %s Chocolate Rabbits」那样的模板,和 Glacite_Tunnels_Pity.json 方块清单同一个理由:采集把这几行推断成了占位符(observed 里 MYTHIC/DIVINE、Fish/Frogs、Swamp/Mob/Tree/Fish),但每个取值要的中文词都不一样,模板套出来会是「- MYTHIC 巧克力兔」这种中英混杂;而且 raw 占位符会顺手把别处无关的行一起收进来(见 text/ValueShape.java 那次事故)。③ Spaceman / Overclocker 3000 / 四条 xx the Fish 都是专有名词(花园访客、花园物品、四条玩梗鱼名),暂无既定译名,按 GLOSSARY.md 保留英文并标 translate:false——留个记录说明是主动决定不翻,不是漏了。④ Moonglade Marsh / Lotus Atoll / Torrhus Canyon 三个地名首次出现,均为暂定译名,见各条 gloss。",
+  "names": [
+    {
+      "id": "pity_crimson_isle_name",
+      "context": "格子名:绯红岛的保底进度",
+      "raw": "§cCrimson Isle",
+      "text": "Crimson Isle",
+      "placeholders": [],
+      "gloss": "沿用 GLOSSARY.md 已记的暂定译名「绯红岛」。这一格没有 Pity 后缀,是原文自己的不一致。",
+      "translate": true,
+      "zh": "绯红岛"
+    },
+    {
+      "id": "pity_the_garden_name",
+      "context": "格子名:花园的保底进度",
+      "raw": "§aThe Garden Pity",
+      "text": "The Garden Pity",
+      "placeholders": [],
+      "gloss": "Garden 按 GLOSSARY.md 作「花园」,Pity 按同一份词表作「保底进度」。英文定冠词在中文里没有对应的字,不译。",
+      "translate": true,
+      "zh": "花园保底进度"
+    },
+    {
+      "id": "pity_glacite_tunnels_name",
+      "context": "格子名:极冰隧道的保底进度",
+      "raw": "§bGlacite Tunnels Pity",
+      "text": "Glacite Tunnels Pity",
+      "placeholders": [],
+      "gloss": "Glacite Tunnels 按 Terms.json 作「极冰隧道」。点开这一格就是 Glacite_Tunnels_Pity.json 那个界面。",
+      "translate": true,
+      "zh": "极冰隧道保底进度"
+    },
+    {
+      "id": "pity_hoppitys_hunt_name",
+      "context": "格子名:Hoppity 的寻兔行动的保底进度",
+      "raw": "§dHoppity's Hunt Pity",
+      "text": "Hoppity's Hunt Pity",
+      "placeholders": [],
+      "gloss": "Hoppity's Hunt 按 Terms.json 已有译名作「Hoppity 的寻兔行动」,Hoppity 是人名保留英文。",
+      "translate": true,
+      "zh": "Hoppity 的寻兔行动保底进度"
+    },
+    {
+      "id": "pity_moonglade_marsh_name",
+      "context": "格子名:月光沼泽的保底进度",
+      "raw": "§2Moonglade Marsh Pity",
+      "text": "Moonglade Marsh Pity",
+      "placeholders": [],
+      "gloss": "暂定译名。已查证(hypixelskyblock.minecraft.wiki/w/Moonglade_Marsh,2026-08-29):Galatea 的第一座岛,采集/狩猎/钓鱼向,岛上是无花果树和红树林,靠 Tree Gifts 推进。Moonglade 是 moon+glade(林间空地)的合成词,两个词都有实义所以可译;沼泽本身已经含了林地的意思,直译「月光林间空地沼泽」太长,取「月光沼泽」。",
+      "translate": true,
+      "zh": "月光沼泽保底进度"
+    },
+    {
+      "id": "pity_lotus_atoll_name",
+      "context": "格子名:莲花环礁的保底进度",
+      "raw": "§3Lotus Atoll",
+      "text": "Lotus Atoll",
+      "placeholders": [],
+      "gloss": "暂定译名。已查证(hypixelskyblock.minecraft.wiki/w/Lotus_Atoll,2026-08-29):钓鱼向地点,从 Ship Navigator 去的第二座岛,需要 Fishing X。Lotus=莲花、Atoll=环礁,两个词都是实义词,直译即可。这一格也没有 Pity 后缀。",
+      "translate": true,
+      "zh": "莲花环礁"
+    },
+    {
+      "id": "pity_torrhus_canyon_name",
+      "context": "格子名:Torrhus 峡谷的保底进度",
+      "raw": "§6Torrhus Canyon Pity",
+      "text": "Torrhus Canyon Pity",
+      "placeholders": [],
+      "gloss": "暂定译名。已查证(hypixelskyblock.minecraft.wiki/w/Torrhus_Canyon,2026-08-29):Galatea 的第二座岛,采集向,从月光沼泽解锁 Heart of the Forest IV 后进入。Torrhus 是自造专有名词、没有实义可译,按 GLOSSARY.md 人名/自造名保留英文的规矩留着,只译 Canyon——和「Hoppity 的寻兔行动」同一个处理方式。",
+      "translate": true,
+      "zh": "Torrhus 峡谷保底进度"
+    }
+  ],
+  "lore": [
+    {
+      "id": "pity_contains_the_following_pity_counters",
+      "context": "每个格子 Lore 的第一行,后面紧跟这一格挂着的保底项清单",
+      "raw": "§7Contains the following pity counters:",
+      "text": "Contains the following pity counters:",
+      "placeholders": [],
+      "gloss": "pity counter 按 GLOSSARY.md 统一作「保底进度」。原文是复数 counters,说的是「这一格底下挂着好几项」,中文用量词「几项」把这层意思说出来,比「包含以下保底进度:」清楚。",
+      "translate": true,
+      "zh": "包含以下几项保底进度:"
+    },
+    {
+      "id": "pity_trophy_fish",
+      "context": "清单项:绯红岛的锦标鱼保底",
+      "raw": "§8- §6Trophy Fish",
+      "text": "- Trophy Fish",
+      "placeholders": [],
+      "gloss": "Trophy 按 Terms.json 的 Novice/Adept/Expert/Master Trophy Fisher(锦标渔夫)作「锦标」。机制:同一种锦标鱼钓满 100 / 600 条,下一条必定是 GOLD / DIAMOND 品阶。",
+      "translate": true,
+      "zh": "- 锦标鱼",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§6",
+          "text": "Trophy Fish",
+          "zh": "锦标鱼"
+        }
+      ]
+    },
+    {
+      "id": "pity_trophy_frogs",
+      "context": "清单项:莲花环礁的锦标蛙保底",
+      "raw": "§8- §6Trophy Frogs",
+      "text": "- Trophy Frogs",
+      "placeholders": [],
+      "gloss": "和上一行同一个机制,换成青蛙:钓满 100 / 600 只,下一只必定 GOLD / DIAMOND;Exploding Frog 和 Puddle Jumper 这两种只要一半。原文这里是复数,上一行是单数,照原文译——中文两边都不带数,看不出差别,但记录得对得上原文才匹配得上。",
+      "translate": true,
+      "zh": "- 锦标蛙",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§6",
+          "text": "Trophy Frogs",
+          "zh": "锦标蛙"
+        }
+      ]
+    },
+    {
+      "id": "pity_glacite_mineshafts",
+      "context": "清单项:极冰隧道的极冰矿井保底",
+      "raw": "§8- §bGlacite Mineshafts",
+      "text": "- Glacite Mineshafts",
+      "placeholders": [],
+      "gloss": "Glacite Mineshafts 按 Terms.json 作「极冰矿井」。这一行原先匹配不上:语料里只有 Glacite_Tunnels_Pity.json#glacite_pity_name 的「Glacite Mineshafts」(物品名,没有 §8- 前缀),采集因此报了 near_miss。清单行和物品名是两条记录,前缀不一样。",
+      "translate": true,
+      "zh": "- 极冰矿井",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§b",
+          "text": "Glacite Mineshafts",
+          "zh": "极冰矿井"
+        }
+      ]
+    },
+    {
+      "id": "pity_mythic_chocolate_rabbits",
+      "context": "清单项:Hoppity 的寻兔行动,神话巧克力兔保底",
+      "raw": "§8- §d§lMYTHIC §aChocolate Rabbits",
+      "text": "- MYTHIC Chocolate Rabbits",
+      "placeholders": [],
+      "gloss": "MYTHIC 按 _shared/Rarity.json 作「神话」。「巧克力兔」为暂定译名(Terms.json 只收了 Chocolate Factory→巧克力工厂),是个透明的合成词,直译即可。机制:开满 500 个巧克力蛋,下一个必出一只没见过的神话兔。稀有度词在原文里带 §l 粗体,单独一段。",
+      "translate": true,
+      "zh": "- 神话巧克力兔",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§d§l",
+          "text": "MYTHIC ",
+          "zh": "神话"
+        },
+        {
+          "color": "§a",
+          "text": "Chocolate Rabbits",
+          "zh": "巧克力兔"
+        }
+      ]
+    },
+    {
+      "id": "pity_divine_chocolate_rabbits",
+      "context": "清单项:Hoppity 的寻兔行动,神圣巧克力兔保底",
+      "raw": "§8- §d§lDIVINE §aChocolate Rabbits",
+      "text": "- DIVINE Chocolate Rabbits",
+      "placeholders": [],
+      "gloss": "同上,阈值是 2,500 个巧克力蛋。DIVINE 按 _shared/Rarity.json 作「神圣」。注意原文这里的颜色码仍是 §d(品红),和 Rarity.json 里 DIVINE 的 §b 不一样——这一格的清单是按格子配色排的,不是按稀有度配色,照实截写。",
+      "translate": true,
+      "zh": "- 神圣巧克力兔",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§d§l",
+          "text": "DIVINE ",
+          "zh": "神圣"
+        },
+        {
+          "color": "§a",
+          "text": "Chocolate Rabbits",
+          "zh": "巧克力兔"
+        }
+      ]
+    },
+    {
+      "id": "pity_spaceman",
+      "context": "清单项:花园的 Spaceman 访客保底",
+      "raw": "§8- §cSpaceman",
+      "text": "- Spaceman",
+      "placeholders": [],
+      "gloss": "Spaceman 是花园访客(Garden Visitor)里的一个稀有访客名,专有名词,暂无既定译名,按 GLOSSARY.md 保留英文。机制:来满 3,000 个访客,下一个必定是他。标 translate:false 是主动决定不翻并留个记录,不是漏填——哪天访客名整批定了译名,这一条要一起改。",
+      "translate": false,
+      "zh": ""
+    },
+    {
+      "id": "pity_overclocker_3000",
+      "context": "清单项:花园的 Overclocker 3000 保底",
+      "raw": "§8- §6Overclocker 3000",
+      "text": "- Overclocker 3000",
+      "placeholders": [],
+      "gloss": "Overclocker 3000 是花园的一件物品名,专有名词,暂无既定译名,保留英文。机制:访客、Jacob 农业竞赛、作物、温室、害虫五种活动各自累计一个计数,游戏里只显示百分比。",
+      "translate": false,
+      "zh": ""
+    },
+    {
+      "id": "pity_tree_the_fish",
+      "context": "清单项:月光沼泽,Tree the Fish 保底",
+      "raw": "§8- §cTree the Fish",
+      "text": "- Tree the Fish",
+      "placeholders": [],
+      "gloss": "「xx the Fish」是四条玩梗鱼的物品名(Tree / Mob / Swamp the Fish 在月光沼泽,Fish the Fish 在 Torrhus 峡谷),整个是专有名词,暂无既定译名,保留英文。机制:攒满 1,000 份 Tree Gifts,下一次必出这条鱼。",
+      "translate": false,
+      "zh": ""
+    },
+    {
+      "id": "pity_mob_the_fish",
+      "context": "清单项:月光沼泽,Mob the Fish 保底",
+      "raw": "§8- §cMob the Fish",
+      "text": "- Mob the Fish",
+      "placeholders": [],
+      "gloss": "同上,阈值是 2,500 次击杀生物。",
+      "translate": false,
+      "zh": ""
+    },
+    {
+      "id": "pity_swamp_the_fish",
+      "context": "清单项:月光沼泽,Swamp the Fish 保底",
+      "raw": "§8- §cSwamp the Fish",
+      "text": "- Swamp the Fish",
+      "placeholders": [],
+      "gloss": "同上,阈值是 2,500 次宝藏。",
+      "translate": false,
+      "zh": ""
+    },
+    {
+      "id": "pity_fish_the_fish",
+      "context": "清单项:Torrhus 峡谷,Fish the Fish 保底",
+      "raw": "§8- §cFish the Fish",
+      "text": "- Fish the Fish",
+      "placeholders": [],
+      "gloss": "同上,阈值是 2,500 次宝藏。这一条挂在 Torrhus 峡谷那一格下面,不在月光沼泽。",
+      "translate": false,
+      "zh": ""
+    }
+  ]
+}

@@ -1257,5 +1257,135 @@
         {"color": "§b", "text": "%s", "zh": "%s"}
       ]
     }
+  ],
+  "garden_source_note": "2026-08-29 花园 TabList 会话中同一件 SkyBlock Menu 物品的花园专属 Lore。已查阅 hysb.wiki/w/The_Garden、hysb.wiki/w/Visitors、hysb.wiki/w/Pests、hysb.wiki/w/Jacob%27s_Farming_Contests;动态装备 Lore 不属于这些记录。",
+  "garden_lines": [
+    {
+      "id": "skyblock_menu_garden_desk",
+      "context": "花园入口说明的首行,后面三行是同一句 Lore 的续行",
+      "raw": "§7Access the Garden's Desk to",
+      "text": "Access the Garden's Desk to",
+      "placeholders": [],
+      "gloss": "The Garden 页面和 Copper 页面都将 The Desk 作为花园管理入口;这里译为「花园管理台」,不是原版工作台物品。整句跨四行,译文集中写在首行。",
+      "translate": true,
+      "zh": "打开花园管理台,即可自定义地块、购买物品,并解锁独特的农业进度!"
+    },
+    {
+      "id": "skyblock_menu_garden_desk_2",
+      "context": "接在 skyblock_menu_garden_desk 后面的续行",
+      "raw": "§7customize your plot, purchase items",
+      "text": "customize your plot, purchase items",
+      "placeholders": [],
+      "gloss": "整句已写在 skyblock_menu_garden_desk。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skyblock_menu_garden_desk_3",
+      "context": "接在 skyblock_menu_garden_desk 后面的续行",
+      "raw": "§7and unlock unique farming",
+      "text": "and unlock unique farming",
+      "placeholders": [],
+      "gloss": "整句已写在 skyblock_menu_garden_desk。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skyblock_menu_garden_desk_4",
+      "context": "接在 skyblock_menu_garden_desk 后面的续行",
+      "raw": "§7progression.",
+      "text": "progression.",
+      "placeholders": [],
+      "gloss": "整句已写在 skyblock_menu_garden_desk。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skyblock_menu_garden_progress",
+      "context": "花园等级入口的等级进度百分比",
+      "raw": "§7Progress to Level §a%1$s: §e%2$s%",
+      "text": "Progress to Level %1$s: %2$s%",
+      "placeholders": [
+        { "token": "%1$s", "desc": "目标花园等级,罗马数字", "type": "tier", "example": "IX" },
+        { "token": "%2$s", "desc": "当前等级百分比进度", "type": "number", "example": "70.3" }
+      ],
+      "gloss": "The Garden 页面确认花园等级使用罗马数字;这里的百分比是动态值,不能把 IX 或 70.3 写死。",
+      "translate": true,
+      "zh": "升至 %1$s 级的进度: %2$s%",
+      "segments": [
+        { "color": "§7", "text": "Progress to Level ", "zh": "升至 " },
+        { "color": "§a", "text": "%1$s: ", "zh": "%1$s 级的进度: " },
+        { "color": "§e", "text": "%2$s%", "zh": "%2$s%" }
+      ]
+    },
+    {
+      "id": "skyblock_menu_garden_queued_visitors",
+      "context": "花园入口说明里的排队访客数量",
+      "raw": "§7Queued visitors: §b%1$s",
+      "text": "Queued visitors: %1$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "正在排队的访客数量", "type": "number", "example": "5" }
+      ],
+      "gloss": "Visitors 页面确认花园最多同时容纳 5 名访客,额外访客会排队。",
+      "translate": true,
+      "zh": "排队访客: %1$s",
+      "segments": [
+        { "color": "§7", "text": "Queued visitors: ", "zh": "排队访客: " },
+        { "color": "§b", "text": "%1$s", "zh": "%1$s" }
+      ]
+    },
+    {
+      "id": "skyblock_menu_garden_pests",
+      "context": "花园入口说明里的害虫数量和害虫图标",
+      "raw": "§7Pests: §2%1$s \uE019",
+      "text": "Pests: %1$s \uE019",
+      "placeholders": [
+        { "token": "%1$s", "desc": "当前害虫数量", "type": "number", "example": "8" }
+      ],
+      "gloss": "Pests 页面确认害虫会在 The Garden 中生成;末尾私用区字形是服务器的害虫图标,原样保留。",
+      "translate": true,
+      "zh": "害虫: %1$s \uE019",
+      "segments": [
+        { "color": "§7", "text": "Pests: ", "zh": "害虫: " },
+        { "color": "§2", "text": "%1$s \uE019", "zh": "%1$s \uE019" }
+      ]
+    },
+    {
+      "id": "skyblock_menu_garden_active_event",
+      "context": "花园入口说明里的当前 Hoppity 活动",
+      "raw": "§7Active Event: §d%1$s Hoppity's Hunt",
+      "text": "Active Event: %1$s Hoppity's Hunt",
+      "placeholders": [
+        { "token": "%1$s", "desc": "活动届数,带 st/nd/rd/th 后缀", "type": "ordinal", "example": "166th" }
+      ],
+      "gloss": "Jacob's Farming Contests 页面不是这项活动的来源;这里的实际活动名是 Hoppity's Hunt,届数按 ordinal 处理,译名沿用 _shared/Event_Names.json 的「Hoppity 的寻兔行动」。",
+      "translate": true,
+      "zh": "进行中的活动: 第 %1$s 届 Hoppity 的寻兔行动",
+      "segments": [
+        { "color": "§7", "text": "Active Event: ", "zh": "进行中的活动: " },
+        { "color": "§d", "text": "%1$s Hoppity's Hunt", "zh": "第 %1$s 届 Hoppity 的寻兔行动" }
+      ]
+    },
+    {
+      "id": "skyblock_menu_garden_ends_in",
+      "context": "花园入口说明里的当前活动结束倒计时",
+      "raw": "§7Ends in: §e%1$sh %2$sm %3$ss",
+      "text": "Ends in: %1$sh %2$sm %3$ss",
+      "placeholders": [
+        { "token": "%1$s", "desc": "剩余小时数", "type": "number", "example": "18" },
+        { "token": "%2$s", "desc": "剩余分钟数", "type": "number", "example": "6" },
+        { "token": "%3$s", "desc": "剩余秒数", "type": "number", "example": "48" }
+      ],
+      "gloss": "Ends in 是活动倒计时;三段单位分别独立捕获,不把整段写成 duration,避免覆盖其他没有小时或只有分秒的写法。",
+      "translate": true,
+      "zh": "距结束: %1$s小时 %2$s分 %3$s秒",
+      "segments": [
+        { "color": "§7", "text": "Ends in: ", "zh": "距结束: " },
+        { "color": "§e", "text": "%1$sh %2$sm %3$ss", "zh": "%1$s小时 %2$s分 %3$s秒" }
+      ]
+    }
   ]
 }

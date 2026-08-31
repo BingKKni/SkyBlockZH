@@ -1,0 +1,39 @@
+{
+  "gui": "宾果活动相关界面标题",
+  "source": "SkyZH runtime capture (2026-08-30, Village); https://hypixelskyblock.minecraft.wiki/w/Bingo",
+  "fetched_at": "2026-08-30",
+  "verified_ingame": true,
+  "gui_context": "宾果活动的三个箱子界面标题:活动总览、宾果卡、宾果商店。活动总览的标题带当期月份和年份,每月一换,所以做成占位符。",
+  "titles": [
+    {
+      "id": "gui_title_bingo_event",
+      "context": "从村庄 Bingo NPC 打开的活动总览界面,标题带当期月份年份",
+      "text": "Bingo - %1$s %2$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "当期活动的公历月份名。译名在 _shared/Terms.json,写成「9 月」这种只有月份的形式,年份由本条模板排在它前面", "type": "category_name", "example": "September" },
+        { "token": "%2$s", "desc": "当期活动的公历年份", "type": "number", "example": "2026" }
+      ],
+      "gloss": "Bingo 沿用 _shared/Event_Names.json 与 Terms.json 的既定译名「宾果」。月份**要翻**:2026-08-31 的实测采集把这一行报进了 mixed 堆(中英混杂),屏幕上是「宾果 - September 2026」。公历月份有通行中文写法,不属于保留英文的专有名词——侧边栏那一行现实日期(`08/30/26 m9CQ`)之所以不收,是因为它整行只有数字和服务器号,没有词可翻,不是「现实日期一律不翻」。中文按「2026 年 9 月」的语序写,所以两个占位符在译文里换了位置(%2$s 在前),这正是 README 第 4 节要求用带编号占位符的原因。月份名的 type 从 raw 收紧成 category_name:词表里的 May / March 这类词在宽松的 raw 位置上撞车的代价太大,而月份名本身是单个大写词,走 Capture.NAME 照旧通过。",
+      "translate": true,
+      "zh": "宾果 - %2$s 年 %1$s"
+    },
+    {
+      "id": "gui_title_bingo_card",
+      "context": "活动总览里点「Bingo Card」进入的 5×5 目标卡界面",
+      "text": "Bingo Card",
+      "placeholders": [],
+      "gloss": "已查证(hypixelskyblock.minecraft.wiki/w/Bingo):这是一张 5×5 共 25 格的目标卡,20 个个人目标 + 5 个社区目标。Card 译「卡」而不是「卡片/卡牌」,和宾果游戏本身的叫法一致。",
+      "translate": true,
+      "zh": "宾果卡"
+    },
+    {
+      "id": "gui_title_bingo_shop",
+      "context": "活动总览里点「Bingo Shop」进入的宾果点数商店界面",
+      "text": "Bingo Shop",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "宾果商店"
+    }
+  ]
+}

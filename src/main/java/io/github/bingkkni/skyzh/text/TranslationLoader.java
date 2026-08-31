@@ -241,8 +241,9 @@ public final class TranslationLoader {
 		JsonObject source = resolve(record, byReference);
 
 		if (source.has("translate") && !source.get("translate").getAsBoolean()) {
-			// Proper nouns and blank lore lines are collected precisely so the code knows they were
-			// looked at and left alone. Nothing to compile.
+			// Authoring metadata for a line deliberately left in English. It is intentionally absent from
+			// the runtime index (and from the minified jar); this documents the decision but is not a broad
+			// passthrough matcher and does not suppress untranslated capture.
 			return null;
 		}
 
@@ -274,7 +275,7 @@ public final class TranslationLoader {
 		return TranslationEntry.compile(
 			id, relative, sources, targets, permutation(order, id, relative),
 			source.has("continuation") && source.get("continuation").getAsBoolean(),
-			string(source, "layout"), argTypes(source)
+			string(source, "layout"), argField(source, "type"), argField(source, "example")
 		);
 	}
 
@@ -311,19 +312,24 @@ public final class TranslationLoader {
 	}
 
 	/**
-	 * The {@code type} of each of a record's placeholders, keyed by the argument number the template
-	 * refers to it as.
+	 * One field of each of a record's placeholders, keyed by the argument number the template refers
+	 * to it as — {@code type}, which bounds what the placeholder may capture, or {@code example},
+	 * which bounds it to the kind of value the corpus said sits there.
 	 *
 	 * <p>A {@code token} of {@code "%2$s"} says its own number. A bare {@code "%s"} does not, so it
 	 * takes the next one — which matches how the template itself numbers them, and how a translator
 	 * reading the file top to bottom would pair the array up with the sentence.
+	 *
+	 * <p>The numbering has to be walked identically for both fields, which is why one method reads
+	 * either: an {@code example} paired with the wrong argument is worse than no example at all, since
+	 * it would bind a placeholder to the kind of some other placeholder's value.
 	 */
-	private static Map<Integer, String> argTypes(JsonObject source) {
+	private static Map<Integer, String> argField(JsonObject source, String field) {
 		if (!source.has("placeholders") || !source.get("placeholders").isJsonArray()) {
 			return Map.of();
 		}
 
-		Map<Integer, String> types = new HashMap<>();
+		Map<Integer, String> values = new HashMap<>();
 		int next = 1;
 
 		for (JsonElement element : source.getAsJsonArray("placeholders")) {
@@ -335,10 +341,10 @@ public final class TranslationLoader {
 			Matcher numbered = NUMBERED_TOKEN.matcher(string(placeholder, "token"));
 			int index = numbered.find() ? Integer.parseInt(numbered.group(1)) : next++;
 
-			types.putIfAbsent(index, string(placeholder, "type"));
+			values.putIfAbsent(index, string(placeholder, field));
 		}
 
-		return types;
+		return values;
 	}
 
 	/** The English of a record with its fragments joined back together — the key the index buckets on. */

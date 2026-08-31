@@ -61,8 +61,7 @@ Hypixel 官方 Wiki(wiki.hypixel.net)已于 **2026 年 7 月正式关闭**
       物品           跳转  物品名(带颜色码)          Lore,"/" 是换行,"//" 是空行
 ```
 
-也就是说 **箱子标题、格子里的物品名、完整 Lore、颜色码全都有**,格式还是机器可读的
-(`tools/` 里可以直接按上面的分隔规则解析)。已经据此补齐的:委托板(`Emissaries/UI`)、
+也就是说 **箱子标题、格子里的物品名、完整 Lore、颜色码全都有**,格式还是机器可读的。已经据此补齐的:委托板(`Emissaries/UI`)、
 Gwendolyn 的水晶残核通行证(`Gwendolyn/UI`)、方块速查手册主界面和四个子菜单(`Fragilis/UI`)。
 还没做但同样有子页的:`Heart of the Mountain/UI`(整棵天赋树的 Lore)、`Fossil Excavator/UI`、
 `The Forge/UI`、`Blacksmith/UI`、`Mining Merchant/UI`、`Lift Operator/UI`、
@@ -120,29 +119,3 @@ Mod 里因此有一个默认关闭的开关 `captureUntranslated`(`config/skyzh.
 SkyHanni / SkyBlocker 的界面文字,事后再也分不出来——**错的是位置,不是过滤规则**。
 
 用法和注意事项见 `../docs/TECHNICAL_zh-CN.md` 的「运行时采集」一节;自检跑 `./gradlew checkCapture`。
-
-## 采集管线(2026-08-19 建立,`tools/`)
-
-之前的采集是"让抓取工具读 wiki 页面再人工誊抄",漏得很厉害而且看不出来:Rhys 的 30 句一句
-没采到,Don Expresso 的 26 句只采到 1 句,Dalir 的 102 句被压成了 4 条(还每条把三四句并成
-一句,那种记录在游戏里**永远匹配不上**,因为 Hypixel 一次只发一行)。症状在游戏里都长一个样
-——NPC 说英文——所以没人能分辨"没采到"和"没翻译"。
-
-现在有四个脚本,都不做判断,只做无损搬运:
-
-| 脚本 | 做什么 |
-|---|---|
-| `tools/fetch_wiki.py` | 走 MediaWiki API 批量拉**原始 wikitext**(一次 50 页)并落盘缓存。API 是开放的,不需要无头浏览器,也不存在摘要模型截断的问题 |
-| `tools/speaker_index.py` | 把**整个缓存**按说话人分组,报出"这个 NPC 有多少句、语料里缺多少句";`--write` 直接生成该 NPC 的语料骨架 |
-| `tools/merge_dialogue.py` | 把 wiki 的完整台词并进已有的 NPC 文件:文本一致的记录连 id 和译文一起保留,缺的补空记录,把好几句并成一条的旧记录挪进 `superseded` 等人工拆分 |
-| `tools/neu_lore.py` | 从 NotEnoughUpdates-REPO 的 checkout 里读物品的精确 `name` + `lore`(带颜色码),并统计去重后的 Lore 句型 |
-| `tools/cap.py` | 翻 `logs/skyzh-capture/` 的采集结果:`grep <正则> [路径片段]` 按原文搜(连 `raw`、`segments`、`observed`、`near_miss` 一起打出来)、`show <文件>` 逐条看一个文件、`files` 列出各文件采到多少条。采集一轮下来是 549 个文件、上万条记录,靠 `grep` 命令看 JSON 只会看到大括号 |
-
-**关键一条:按说话人分组,不要按页面分组。** wiki 页面是围绕"地点/机制"组织的,不是围绕
-"谁在说话":Cult of the Fallen Star 那一页装着 Dalir / Thondin / Brarnas 三个人的 188 句台词
-而这一页本身不是任何一个 NPC;Odawa 的台词有一部分躺在 Wishing Compass 页面上。按页面采集
-必然漏,按说话人全局扫描才能说得出"这个 NPC 的台词全在这儿了"。
-
-wiki 的 `{{Dialogue|...}}` 模板里存的是 **Hypixel 自己的字符串,颜色码原样保留**
-(`&e[NPC] &bTicket Master&f: Hop on in!`),这正好就是本项目 `raw` 字段要的东西,
-比任何渲染后的页面或转述都准。

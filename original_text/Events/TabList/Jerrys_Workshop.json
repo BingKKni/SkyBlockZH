@@ -1,0 +1,308 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Jerry%27s_Workshop + https://hypixelskyblock.minecraft.wiki/w/Season_of_Jerry + runtime capture (SkyZH) 2026-08-29 实测会话",
+  "fetched_at": "2026-08-29",
+  "verified_ingame": true,
+  "gui_context": "Jerry 工坊(Season of Jerry 冬季活动)期间 Tab 列表多出来的几块:冬季五种怪的图鉴行、暴风雪与关岛倒计时、北极星余额,以及「保卫 Jerry 的工坊」进行中的强化道具小节。",
+  "source_note": "三处需要留底的判断。① 图鉴行按 Mining/TabList/Glacite_Mineshaft_Widget.json 的先例只写标签(`Frozen Steve %s`),冒号后面的图鉴进度由引擎的 translateRow 单独处理,记录里不要带冒号和进度——已用 replayCapture 实测确认 ` Glacite Bowman 15§f: §b3/5` → ` 极冰弓手 15§f: §b3/5`。行首那个空格是服务器的缩进,translateRow 原样搬回,记录里也不写。② Grinch / Reindrake / Frosty 三个名字保留英文,按 GLOSSARY.md「怪物名:和物品名同一套规则」——都是自造词或专有角色名(Frosty 同时是本活动的 NPC,见 Events/NPC_Message/Frosty.json)。三条 translate:false 记录只在作者语料中保存「已经判断过、结论是不翻」的依据;加载器和精简任务会跳过它们,它们不是运行时的放行规则,也不能保证采集不再报告这些行。按 _shared/Terms.json 的 todo,自造怪物名不进词表。③ 暴风雪倒计时按 Hub_General/ScoreBoard/Common_Sidebar.json 的 sb_carnival_time_left_* 那一对写成两条 number 模板,不用 duration:duration 的正则连 `5m 4s` 一起收(见 text/Capture.java 的 DURATION);单条 duration 会覆盖两段式原文,属于宽模板遮挡精确记录的问题。",
+  "todo": [
+    "`Island closes in: 2h` 这一行社区 wiki 上查不到成文说明(Jerry's Workshop 页只说活动持续整个 Late Winter),`2h` 是实测当场的值。译文按字面写「距关岛」,若实际还有 `1h 30m` 这类两段式写法,需要照 tab_blizzard_minutes 再补一条。",
+    "图鉴小节实测只采到 Frozen Steve / Yeti / Reindrake / Frosty / Grinch 五种,wiki 的 Winter Island 页还列了别的冬季海洋生物(Nutcracker、Yeti 之外的稀有种),等采到再补。"
+  ],
+  "lines": [
+    {
+      "id": "tab_bestiary_frozen_steve",
+      "context": "Tab 列表图鉴小节里 Frozen Steve 那一行的标签(冒号后面是图鉴进度)",
+      "raw": " Frozen Steve %s",
+      "text": "Frozen Steve %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "图鉴等级",
+          "type": "number",
+          "example": "0"
+        }
+      ],
+      "gloss": "冬季海洋生物,钓上来的。Frozen 是普通词作「冰冻」,Steve 是人名保留英文,按 GLOSSARY.md「怪物名:和物品名同一套规则」逐段处理。英文词和汉字之间的空格由引擎自动补(TranslationEntry.Seam),这里 zh 写死了英文,所以空格要自己写。",
+      "translate": true,
+      "zh": "冰冻 Steve %s"
+    },
+    {
+      "id": "tab_bestiary_yeti",
+      "context": "Tab 列表图鉴小节里雪怪那一行的标签(冒号后面是图鉴进度)",
+      "raw": " Yeti %s",
+      "text": "Yeti %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "图鉴等级",
+          "type": "number",
+          "example": "0"
+        }
+      ],
+      "gloss": "冬季稀有海洋生物。Yeti 是英语里本来就有的普通词(喜马拉雅雪人),按怪物名规则翻译。取「雪怪」而不是「雪人」:Snowman(雪傀儡)已经占了「雪人」,同一个活动里两个都会出现。译名同时写进 _shared/Terms.json,聊天里的击杀播报共用同一条。",
+      "translate": true,
+      "zh": "雪怪 %s"
+    },
+    {
+      "id": "tab_bestiary_reindrake",
+      "context": "Tab 列表图鉴小节里 Reindrake 那一行的标签(冒号后面是图鉴进度)",
+      "raw": " Reindrake %s",
+      "text": "Reindrake %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "图鉴等级",
+          "type": "number",
+          "example": "0"
+        }
+      ],
+      "gloss": "冬季最稀有的海洋生物。Reindrake 是 reindeer + drake 拼出来的自造词,英语里没有这个词,按 GLOSSARY.md「怪物名」条保留英文;硬译成「驯鹿龙」是自己造词,不做。按 _shared/Terms.json 的 todo,自造怪物名不进词表。",
+      "translate": false,
+      "zh": ""
+    },
+    {
+      "id": "tab_bestiary_frosty",
+      "context": "Tab 列表图鉴小节里 Frosty 那一行的标签(冒号后面是图鉴进度)",
+      "raw": " Frosty %s",
+      "text": "Frosty %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "图鉴等级",
+          "type": "number",
+          "example": "0"
+        }
+      ],
+      "gloss": "专有角色名(取自英文儿歌里的雪人 Frosty the Snowman),保留英文。同一个活动里他还是个会说话的 NPC,见 Events/NPC_Message/Frosty.json——两处必须一致。",
+      "translate": false,
+      "zh": ""
+    },
+    {
+      "id": "tab_bestiary_grinch",
+      "context": "Tab 列表图鉴小节里 Grinch 那一行的标签(冒号后面是图鉴进度)",
+      "raw": " Grinch %s",
+      "text": "Grinch %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "图鉴等级",
+          "type": "number",
+          "example": "0"
+        }
+      ],
+      "gloss": "专有角色名(苏斯博士《圣诞怪杰》里偷圣诞节的那个角色),保留英文。中文引进版译作「格林奇」,但这是 Hypixel 借来的角色名不是它自造的怪,按人名规则不翻。",
+      "translate": false,
+      "zh": ""
+    },
+    {
+      "id": "tab_blizzard_seconds",
+      "context": "Tab 列表上暴风雪的倒计时,不足一分钟",
+      "raw": " Blizzard: §b%ss",
+      "text": "Blizzard: %ss",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "剩余秒数",
+          "type": "number",
+          "example": "58"
+        }
+      ],
+      "gloss": "Blizzard 是普通词作「暴风雪」。Winter Island 上周期性刮起的暴风雪,期间视野受阻。s 是秒的缩写,中文补出单位。写成 number 而不是让占位符吞掉整段时间:理由见本文件 source_note ③。",
+      "translate": true,
+      "zh": "暴风雪: %s 秒",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Blizzard: ",
+          "zh": "暴风雪: "
+        },
+        {
+          "color": "§b",
+          "text": "%ss",
+          "zh": "%s 秒"
+        }
+      ]
+    },
+    {
+      "id": "tab_blizzard_minutes",
+      "context": "同上,一分钟及以上的写法",
+      "raw": " Blizzard: §b%1$sm %2$ss",
+      "text": "Blizzard: %1$sm %2$ss",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "剩余分钟数",
+          "type": "number",
+          "example": "5"
+        },
+        {
+          "token": "%2$s",
+          "desc": "剩余秒数",
+          "type": "number",
+          "example": "4"
+        }
+      ],
+      "gloss": "和 tab_blizzard_seconds 是同一行的两种形态,写法照 Common_Sidebar.json 的 sb_carnival_time_left_minutes / _seconds 那一对。",
+      "translate": true,
+      "zh": "暴风雪: %1$s 分 %2$s 秒",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Blizzard: ",
+          "zh": "暴风雪: "
+        },
+        {
+          "color": "§b",
+          "text": "%1$sm %2$ss",
+          "zh": "%1$s 分 %2$s 秒"
+        }
+      ]
+    },
+    {
+      "id": "tab_island_closes_in",
+      "context": "Tab 列表上距 Jerry 工坊这座岛关闭的倒计时",
+      "raw": " Island closes in: §b%s",
+      "text": "Island closes in: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "距关岛的剩余时间,整段原样搬过去",
+          "type": "duration",
+          "example": "2h"
+        }
+      ],
+      "gloss": "Jerry 工坊只在 Late Winter 开放,过了就关掉,这一行说还剩多久。中文照 Common_Sidebar.json 的「距开始: 」(Event Start)那个格式作「距关岛: 」,不写成「岛屿将在…后关闭」——侧边栏和 Tab 一格就那么宽。这一条用 duration 而不是 number 加字面单位:实测只见到 `2h` 一种,单位可能是 h 也可能是 m,交给 duration 一条管全部写法(同 Tab_Header_Footer.json 的 tab_god_potion_countdown)。见 todo。",
+      "translate": true,
+      "zh": "距关岛: %s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Island closes in: ",
+          "zh": "距关岛: "
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "tab_north_stars",
+      "context": "Tab 列表上的北极星余额,Jerry 工坊的活动货币",
+      "raw": " North Stars: §d%s",
+      "text": "North Stars: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "北极星数量",
+          "type": "number",
+          "example": "167"
+        }
+      ],
+      "gloss": "和 Events/ScoreBoard/Jerrys_Workshop.json 的 sb_north_stars 是同一个数字在两个界面上各显示一次,译名必须一致(北极星);记录不能共用——引擎按 Surface 分开查表,ScoreBoard 的记录答不了 TabList 的行。",
+      "translate": true,
+      "zh": "北极星: %s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "North Stars: ",
+          "zh": "北极星: "
+        },
+        {
+          "color": "§d",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "tab_active_power_ups",
+      "context": "Tab 页脚里「生效中的强化道具」小节标题,和 Active Effects / Cookie Buff 那几个标题并列",
+      "raw": "§6§lActive Power Ups",
+      "text": "Active Power Ups",
+      "placeholders": [],
+      "gloss": "Power Up 指「保卫 Jerry 的工坊」小游戏里打怪掉出来、捡起来限时生效的强化道具(追踪雪球 / 双倍 / 强臂,各 80 秒,见社区 wiki 的 Jerry's Workshop 页)。译「强化道具」而不是「能量提升」:玩家捡的是地上的实物。Active 沿用同一块页脚里 Active Effects→「生效中的效果」的译法,见 Hub_General/TabList/Tab_Header_Footer.json 的 tab_active_effects。",
+      "translate": true,
+      "zh": "生效中的强化道具"
+    },
+    {
+      "id": "tab_no_power_ups_1",
+      "context": "一个强化道具都没有时的提示(第一行)",
+      "raw": "§7No Power Ups active. Find them during the attack to help",
+      "text": "No Power Ups active. Find them during the attack to help",
+      "placeholders": [],
+      "gloss": "Tab 行逐行独立到达,不能用只对物品 Lore 生效的 continuation 字段,所以中文按原文的两行分别续写(同 Tab_Header_Footer.json 的 tab_cookie_not_active_1 / _2)。写法也照 tab_no_effects_1 那一对:第一行末尾不点句号,句子在下一行说完。",
+      "translate": true,
+      "zh": "当前没有生效的强化道具。在岩浆怪进攻时找到它们,"
+    },
+    {
+      "id": "tab_no_power_ups_2",
+      "context": "同上,英文因排版断到第二行",
+      "raw": "§7defend Jerry's Workshop!",
+      "text": "defend Jerry's Workshop!",
+      "placeholders": [],
+      "gloss": "接 tab_no_power_ups_1。Jerry's Workshop 按 GLOSSARY.md「带专有人名的地名:只翻通用词」作「Jerry 的工坊」,和 Events/GUI_Title/Jerrys_Workshop.json 的菜单标题一致。行尾的感叹号后面没有字,按 GLOSSARY.md 的感叹号规则不加空格。",
+      "translate": true,
+      "zh": "帮忙保卫 Jerry 的工坊!"
+    },
+    {
+      "id": "tab_power_up_homing_snowballs",
+      "context": "生效中的强化道具:追踪雪球,后面是剩余时间",
+      "raw": "§aHoming Snowballs §f%s",
+      "text": "Homing Snowballs %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "剩余时间(分:秒)",
+          "type": "raw",
+          "example": "1:19"
+        }
+      ],
+      "gloss": "捡到后扔出的雪球会自己追着岩浆怪飞。Homing 是普通词,导弹那个「追踪/自导」的意思,作「追踪雪球」。占位符用 raw 而不是 duration:这里的剩余时间写成 m:ss,冒号不在 duration 的正则里(见 text/Capture.java 的 DURATION),同 Events/ScoreBoard/Jerrys_Workshop.json 的 sb_event_start。原文是复数,中文不体现数。",
+      "translate": true,
+      "zh": "追踪雪球 %s",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Homing Snowballs ",
+          "zh": "追踪雪球 "
+        },
+        {
+          "color": "§f",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "tab_power_up_strongarm",
+      "context": "生效中的强化道具:强臂,后面是剩余时间",
+      "raw": "§cStrongarm §f%s",
+      "text": "Strongarm %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "剩余时间(分:秒)",
+          "type": "raw",
+          "example": "1:19"
+        }
+      ],
+      "gloss": "捡到后雪球扔得更远、砸得更重。Strongarm 是英语里本来就有的词(强臂、蛮力),按普通词翻译。占位符用 raw 的理由同 tab_power_up_homing_snowballs。同一组里还有个 Double Up(wiki 记为双倍伤害),实测没采到,等采到再补。",
+      "translate": true,
+      "zh": "强臂 %s",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "Strongarm ",
+          "zh": "强臂 "
+        },
+        {
+          "color": "§f",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    }
+  ]
+}

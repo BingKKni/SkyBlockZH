@@ -421,76 +421,6 @@
       "zh": "%1$s 天 %2$s 小时"
     },
     {
-      "id": "tab_buff_minion_slots",
-      "context": "曲奇增益条目:小人槽位",
-      "raw": "§eMinion Slots %1$s §f%2$s Days",
-      "text": "Minion Slots %1$s %2$s Days",
-      "placeholders": [
-        {
-          "token": "%1$s",
-          "desc": "等级罗马数字,保留原样;写成 tier 引擎才知道这里不是要查词表的词",
-          "type": "tier",
-          "example": "V"
-        },
-        {
-          "token": "%2$s",
-          "desc": "剩余天数",
-          "type": "number",
-          "example": "9"
-        }
-      ],
-      "gloss": "Minion 按 GLOSSARY.md 译“小人”。",
-      "translate": true,
-      "zh": "小人槽位 %1$s %2$s 天",
-      "segments": [
-        {
-          "color": "§e",
-          "text": "Minion Slots %1$s ",
-          "zh": "小人槽位 %1$s "
-        },
-        {
-          "color": "§f",
-          "text": "%2$s Days",
-          "zh": "%2$s 天"
-        }
-      ]
-    },
-    {
-      "id": "tab_buff_magic_find",
-      "context": "曲奇增益条目:魔法寻宝",
-      "raw": "§eMagic Find %1$s §f%2$s Hours",
-      "text": "Magic Find %1$s %2$s Hours",
-      "placeholders": [
-        {
-          "token": "%1$s",
-          "desc": "等级罗马数字,保留原样;写成 tier 引擎才知道这里不是要查词表的词",
-          "type": "tier",
-          "example": "V"
-        },
-        {
-          "token": "%2$s",
-          "desc": "剩余小时数",
-          "type": "number",
-          "example": "32"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "魔法寻宝 %1$s %2$s 小时",
-      "segments": [
-        {
-          "color": "§e",
-          "text": "Magic Find %1$s ",
-          "zh": "魔法寻宝 %1$s "
-        },
-        {
-          "color": "§f",
-          "text": "%2$s Hours",
-          "zh": "%2$s 小时"
-        }
-      ]
-    },
-    {
       "id": "tab_duration_hours",
       "context": "Tab 页脚中只显示小时的剩余时间,复数形式",
       "raw": "§f%1$s Hours",
@@ -508,25 +438,137 @@
       "zh": "%1$s 小时"
     },
     {
-      "id": "tab_ender_chest_pages_iii_hours",
-      "context": "Tab 页脚的末影箱页数 III 升级剩余时间,复数形式",
-      "raw": "§eEnder Chest Pages III §f%1$s Hours",
-      "text": "Ender Chest Pages III %1$s Hours",
+      "id": "tab_upgrade_row_days",
+      "context": "Tab 页脚「升级」小节里正在进行的账号/存档升级及剩余时间(以天计)",
+      "raw": "§eMinion Slots I §f9 Days",
+      "text": "%1$s %2$s %3$s Days",
       "placeholders": [
         {
           "token": "%1$s",
-          "desc": "剩余小时数",
+          "desc": "升级名。译名在 _shared/Terms.json,一个名字只写一处",
+          "type": "category_name",
+          "example": "Minion Slots"
+        },
+        {
+          "token": "%2$s",
+          "desc": "升级等级罗马数字;写成 tier 引擎才知道这里不是要查词表的词",
+          "type": "tier",
+          "example": "I"
+        },
+        {
+          "token": "%3$s",
+          "desc": "剩余天数",
           "type": "number",
-          "example": "46"
+          "example": "9"
         }
       ],
-      "gloss": "运行时采集确认的账号升级倒计时行。",
+      "gloss": "升级名做成占位符 + _shared/Terms.json:这一行对社区中心的十六种账号/存档升级共用一套写法,而语料原先是「升级名 × 时间单位」各写一条(小人槽位 天/小时/分钟、末影箱页面 小时/分钟、魔法寻宝 小时、山峦之心 天),2026-08-31 实测采到的 `Guests Limit I 47 Hours` 正好不在里面。三条按时间单位分(Days / Hours / Minutes 是三个英文词,中文的天/小时/分钟也是三个词,一条管不了)。type 用 category_name:它走 Capture.NAME 的形状规则,后面紧跟的 tier 又把名字右边界钉死,所以「Heart of the Mountain I」这种中间夹小写词的名字也能整段捕到。",
       "translate": true,
-      "zh": "末影箱页数 III %1$s 小时",
+      "zh": "%1$s %2$s %3$s 天",
       "segments": [
-        {"color": "§e", "text": "Ender Chest Pages III ", "zh": "末影箱页数 III "},
-        {"color": "§f", "text": "%1$s Hours", "zh": "%1$s 小时"}
+        {
+          "color": "§e",
+          "text": "%1$s %2$s ",
+          "zh": "%1$s %2$s "
+        },
+        {
+          "color": "§f",
+          "text": "%3$s Days",
+          "zh": "%3$s 天"
+        }
       ]
+    },
+    {
+      "id": "tab_upgrade_row_hours",
+      "context": "Tab 页脚「升级」小节里正在进行的账号/存档升级及剩余时间(以小时计)",
+      "raw": "§eGuests Limit I §f47 Hours",
+      "text": "%1$s %2$s %3$s Hours",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "升级名。译名在 _shared/Terms.json,一个名字只写一处",
+          "type": "category_name",
+          "example": "Guests Limit"
+        },
+        {
+          "token": "%2$s",
+          "desc": "升级等级罗马数字;写成 tier 引擎才知道这里不是要查词表的词",
+          "type": "tier",
+          "example": "I"
+        },
+        {
+          "token": "%3$s",
+          "desc": "剩余小时数",
+          "type": "number",
+          "example": "47"
+        }
+      ],
+      "gloss": "升级名做成占位符 + _shared/Terms.json:这一行对社区中心的十六种账号/存档升级共用一套写法,而语料原先是「升级名 × 时间单位」各写一条(小人槽位 天/小时/分钟、末影箱页面 小时/分钟、魔法寻宝 小时、山峦之心 天),2026-08-31 实测采到的 `Guests Limit I 47 Hours` 正好不在里面。三条按时间单位分(Days / Hours / Minutes 是三个英文词,中文的天/小时/分钟也是三个词,一条管不了)。type 用 category_name:它走 Capture.NAME 的形状规则,后面紧跟的 tier 又把名字右边界钉死,所以「Heart of the Mountain I」这种中间夹小写词的名字也能整段捕到。",
+      "translate": true,
+      "zh": "%1$s %2$s %3$s 小时",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "%1$s %2$s ",
+          "zh": "%1$s %2$s "
+        },
+        {
+          "color": "§f",
+          "text": "%3$s Hours",
+          "zh": "%3$s 小时"
+        }
+      ]
+    },
+    {
+      "id": "tab_upgrade_row_minutes",
+      "context": "Tab 页脚「升级」小节里正在进行的账号/存档升级及剩余时间(以分钟计)",
+      "raw": "§eEnder Chest Pages I §f38 Minutes",
+      "text": "%1$s %2$s %3$s Minutes",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "升级名。译名在 _shared/Terms.json,一个名字只写一处",
+          "type": "category_name",
+          "example": "Ender Chest Pages"
+        },
+        {
+          "token": "%2$s",
+          "desc": "升级等级罗马数字;写成 tier 引擎才知道这里不是要查词表的词",
+          "type": "tier",
+          "example": "I"
+        },
+        {
+          "token": "%3$s",
+          "desc": "剩余分钟数",
+          "type": "number",
+          "example": "38"
+        }
+      ],
+      "gloss": "升级名做成占位符 + _shared/Terms.json:这一行对社区中心的十六种账号/存档升级共用一套写法,而语料原先是「升级名 × 时间单位」各写一条(小人槽位 天/小时/分钟、末影箱页面 小时/分钟、魔法寻宝 小时、山峦之心 天),2026-08-31 实测采到的 `Guests Limit I 47 Hours` 正好不在里面。三条按时间单位分(Days / Hours / Minutes 是三个英文词,中文的天/小时/分钟也是三个词,一条管不了)。type 用 category_name:它走 Capture.NAME 的形状规则,后面紧跟的 tier 又把名字右边界钉死,所以「Heart of the Mountain I」这种中间夹小写词的名字也能整段捕到。",
+      "translate": true,
+      "zh": "%1$s %2$s %3$s 分钟",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "%1$s %2$s ",
+          "zh": "%1$s %2$s "
+        },
+        {
+          "color": "§f",
+          "text": "%3$s Minutes",
+          "zh": "%3$s 分钟"
+        }
+      ]
+    },
+    {
+      "id": "tab_less_than_an_hour",
+      "context": "Tab 页脚里剩余时间不足一小时时,整行只写这一句",
+      "raw": "§fLess than an hour",
+      "text": "Less than an hour",
+      "placeholders": [],
+      "gloss": "2026-08-31 实测采到,和同一块页脚里的 tab_duration_hours(`%1$s Hours`)、tab_duration_days_hours 是同一位置的几种写法:剩不到一小时时服务器不报数字,直接写这句话。",
+      "translate": true,
+      "zh": "不足 1 小时"
     },
     {
       "id": "tab_cookie_not_active_1",
@@ -536,7 +578,7 @@
       "placeholders": [],
       "gloss": "Tab 行逐行独立到达,不能使用仅对物品 Lore 生效的 continuation 字段,因此中文按原有两行分别续写。",
       "translate": true,
-      "zh": "未激活! 请从社区商店获取增益曲奇,"
+      "zh": "未激活"
     },
     {
       "id": "tab_cookie_not_active_2",
@@ -544,9 +586,9 @@
       "raw": "§7shop in the hub.",
       "text": "shop in the hub.",
       "placeholders": [],
-      "gloss": "接 tab_cookie_not_active_1。Hub 沿用地名译法“主城”。",
+      "gloss": "接 tab_cookie_not_active_1。",
       "translate": true,
-      "zh": "该商店位于主城。"
+      "zh": ""
     }
   ]
 }

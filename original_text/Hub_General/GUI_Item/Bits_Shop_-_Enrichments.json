@@ -1,0 +1,478 @@
+{
+  "source": "runtime capture (SkyZH), Bits Shop - Enrichments",
+  "fetched_at": "2026-08-30",
+  "verified_ingame": true,
+  "gameplay": "Hub_General",
+  "surface": "GUI_Item",
+  "name": "Bits_Shop_-_Enrichments",
+  "lines": [
+    {
+      "id": "speed_enrichment",
+      "context": "点券商店中的速度精炼物品名称",
+      "raw": "§cSpeed Enrichment",
+      "text": "Speed Enrichment",
+      "placeholders": [],
+      "gloss": "采集器曾用 `%1$s Enrichment` 合并六种属性，会留下英文属性名；属性译名沿用 Stats，Enrichment 统一暂定为“精炼”。",
+      "translate": true,
+      "zh": "速度精炼"
+    },
+    {
+      "id": "intelligence_enrichment",
+      "context": "点券商店中的智力精炼物品名称",
+      "raw": "§cIntelligence Enrichment",
+      "text": "Intelligence Enrichment",
+      "placeholders": [],
+      "gloss": "由采集器的宽模板拆出；属性译名沿用 Stats。",
+      "translate": true,
+      "zh": "智力精炼"
+    },
+    {
+      "id": "defense_enrichment",
+      "context": "点券商店中的防御力精炼物品名称",
+      "raw": "§cDefense Enrichment",
+      "text": "Defense Enrichment",
+      "placeholders": [],
+      "gloss": "由采集器的宽模板拆出；Defense 沿用 Stats 的“防御力”。",
+      "translate": true,
+      "zh": "防御力精炼"
+    },
+    {
+      "id": "ferocity_enrichment",
+      "context": "点券商店中的凶猛精炼物品名称",
+      "raw": "§cFerocity Enrichment",
+      "text": "Ferocity Enrichment",
+      "placeholders": [],
+      "gloss": "Ferocity 沿用 Settings.json 已采用的暂定译名“凶猛”；由采集器的宽模板拆出。",
+      "translate": true,
+      "zh": "凶猛精炼"
+    },
+    {
+      "id": "enriches_an_accessory_with_the",
+      "context": "所有属性精炼物品共用的效果说明首行，具体属性和数值在下一行",
+      "raw": "§7Enriches an accessory with the",
+      "text": "Enriches an accessory with the",
+      "placeholders": [],
+      "gloss": "不能把整句合并到此行，因为下一行承载不同属性、数值和颜色；本行只翻译共同句头。",
+      "translate": true,
+      "zh": "为饰品赋予"
+    },
+    {
+      "id": "power_of_1_speed_when_applied_to",
+      "context": "速度精炼的属性数值与适用稀有度说明",
+      "raw": "§7power of §f+1 Speed §7when applied to",
+      "text": "power of +1 Speed when applied to",
+      "placeholders": [],
+      "gloss": "属性图标 U+E022 原样保留；后续稀有度行是排版续行，完整译文并入灰色尾段。",
+      "translate": true,
+      "zh": "+1 速度的精炼效果，仅可用于传说或神话饰品。",
+      "segments": [
+        { "color": "§7", "text": "power of ", "zh": "", "omit": true },
+        { "color": "§f", "text": "+1 Speed ", "zh": "+1 速度" },
+        { "color": "§7", "text": "when applied to", "zh": "的精炼效果，仅可用于传说或神话饰品。" }
+      ]
+    },
+    {
+      "id": "a_legendary_or_mythic_accessory",
+      "context": "精炼适用稀有度说明的排版续行",
+      "raw": "§7a §6Legendary §7or §dMythic §7accessory.",
+      "text": "a Legendary or Mythic accessory.",
+      "placeholders": [],
+      "gloss": "完整译文已写入上一条属性数值行。",
+      "translate": true,
+      "continuation": true,
+      "zh": "",
+      "segments": [
+        { "color": "§7", "text": "a ", "zh": "" },
+        { "color": "§6", "text": "Legendary ", "zh": "" },
+        { "color": "§7", "text": "or ", "zh": "" },
+        { "color": "§d", "text": "Mythic ", "zh": "" },
+        { "color": "§7", "text": "accessory.", "zh": "" }
+      ]
+    },
+    {
+      "id": "only_one_enrichment_can_be_applied",
+      "context": "所有精炼物品共用的单件饰品限制说明首行",
+      "raw": "§7Only §7§lONE §7enrichment can be applied",
+      "text": "Only ONE enrichment can be applied",
+      "placeholders": [],
+      "gloss": "ONE 的粗体强调保留；英文分成两行，中文合并。",
+      "translate": true,
+      "zh": "每件饰品只能应用一种精炼。",
+      "segments": [
+        { "color": "§7", "text": "Only ", "zh": "每件饰品只能应用" },
+        { "color": "§7§l", "text": "ONE ", "zh": "一种" },
+        { "color": "§7", "text": "enrichment can be applied", "zh": "精炼。" }
+      ]
+    },
+    {
+      "id": "to_a_given_accessory",
+      "context": "接单件饰品限制说明首行的排版续行",
+      "raw": "§7to a given accessory.",
+      "text": "to a given accessory.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "enrichments_bits_price",
+      "ref": "_shared/Menu_Common.json#menu_bits_price",
+      "context": "点券商店精炼分类中的商品价格行"
+    },
+    {
+      "id": "power_of_2_intelligence_when",
+      "context": "智力精炼的属性数值与适用稀有度说明",
+      "raw": "§7power of §b+2 Intelligence §7when",
+      "text": "power of +2 Intelligence when",
+      "placeholders": [],
+      "gloss": "Intelligence 沿用“智力”；后两行合并到本行译文。",
+      "translate": true,
+      "zh": "+2 智力的精炼效果，仅可用于传说或神话饰品。",
+      "segments": [
+        { "color": "§7", "text": "power of ", "zh": "", "omit": true },
+        { "color": "§b", "text": "+2 Intelligence ", "zh": "+2 智力" },
+        { "color": "§7", "text": "when", "zh": "的精炼效果，仅可用于传说或神话饰品。" }
+      ]
+    },
+    {
+      "id": "applied_to_a_legendary_or_mythic",
+      "context": "智力、暴击、魔法寻宝、凶猛及攻击速度精炼的适用稀有度排版续行",
+      "raw": "§7applied to a §6Legendary §7or §dMythic",
+      "text": "applied to a Legendary or Mythic",
+      "placeholders": [],
+      "gloss": "完整译文已写入各属性数值行。",
+      "translate": true,
+      "continuation": true,
+      "zh": "",
+      "segments": [
+        { "color": "§7", "text": "applied to a ", "zh": "" },
+        { "color": "§6", "text": "Legendary ", "zh": "" },
+        { "color": "§7", "text": "or ", "zh": "" },
+        { "color": "§d", "text": "Mythic", "zh": "" }
+      ]
+    },
+    {
+      "id": "accessory",
+      "context": "接适用稀有度说明的排版续行",
+      "raw": "§7accessory.",
+      "text": "accessory.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "critical_damage_enrichment",
+      "context": "点券商店中的暴击伤害精炼物品名称",
+      "raw": "§cCritical Damage Enrichment",
+      "text": "Critical Damage Enrichment",
+      "placeholders": [],
+      "gloss": "采集器曾把 Damage/Chance 作为动态值；两种属性都必须沿用 Stats 译名，因此拆成字面记录。",
+      "translate": true,
+      "zh": "暴击伤害精炼"
+    },
+    {
+      "id": "power_of_1_crit_damage_when",
+      "context": "暴击伤害精炼的属性数值与适用稀有度说明",
+      "raw": "§7power of §9+1 Crit Damage §7when",
+      "text": "power of +1 Crit Damage when",
+      "placeholders": [],
+      "gloss": "Crit Damage 沿用“暴击伤害”；后两行是排版续行。",
+      "translate": true,
+      "zh": "+1 暴击伤害的精炼效果，仅可用于传说或神话饰品。",
+      "segments": [
+        { "color": "§7", "text": "power of ", "zh": "", "omit": true },
+        { "color": "§9", "text": "+1 Crit Damage ", "zh": "+1 暴击伤害" },
+        { "color": "§7", "text": "when", "zh": "的精炼效果，仅可用于传说或神话饰品。" }
+      ]
+    },
+    {
+      "id": "critical_chance_enrichment",
+      "context": "点券商店中的暴击率精炼物品名称",
+      "raw": "§cCritical Chance Enrichment",
+      "text": "Critical Chance Enrichment",
+      "placeholders": [],
+      "gloss": "Critical Chance 沿用 SkyBlock_Menu.json 的“暴击率”；由宽模板拆出。",
+      "translate": true,
+      "zh": "暴击率精炼"
+    },
+    {
+      "id": "power_of_1_crit_chance_when",
+      "context": "暴击率精炼的属性数值与适用稀有度说明",
+      "raw": "§7power of §9+1 Crit Chance §7when",
+      "text": "power of +1 Crit Chance when",
+      "placeholders": [],
+      "gloss": "Crit Chance 沿用“暴击率”；后两行是排版续行。",
+      "translate": true,
+      "zh": "+1 暴击率的精炼效果，仅可用于传说或神话饰品。",
+      "segments": [
+        { "color": "§7", "text": "power of ", "zh": "", "omit": true },
+        { "color": "§9", "text": "+1 Crit Chance ", "zh": "+1 暴击率" },
+        { "color": "§7", "text": "when", "zh": "的精炼效果，仅可用于传说或神话饰品。" }
+      ]
+    },
+    {
+      "id": "strength_enrichment",
+      "context": "点券商店中的力量精炼物品名称",
+      "raw": "§cStrength Enrichment",
+      "text": "Strength Enrichment",
+      "placeholders": [],
+      "gloss": "由采集器的宽模板拆出；属性译名沿用 Stats。",
+      "translate": true,
+      "zh": "力量精炼"
+    },
+    {
+      "id": "power_of_1_strength_when_applied",
+      "context": "力量精炼的属性数值与适用稀有度说明",
+      "raw": "§7power of §c+1 Strength §7when applied",
+      "text": "power of +1 Strength when applied",
+      "placeholders": [],
+      "gloss": "Strength 沿用“力量”；下一行是排版续行。",
+      "translate": true,
+      "zh": "+1 力量的精炼效果，仅可用于传说或神话饰品。",
+      "segments": [
+        { "color": "§7", "text": "power of ", "zh": "", "omit": true },
+        { "color": "§c", "text": "+1 Strength ", "zh": "+1 力量" },
+        { "color": "§7", "text": "when applied", "zh": "的精炼效果，仅可用于传说或神话饰品。" }
+      ]
+    },
+    {
+      "id": "to_a_legendary_or_mythic_accessory",
+      "context": "力量与防御力精炼的适用稀有度排版续行",
+      "raw": "§7to a §6Legendary §7or §dMythic §7accessory.",
+      "text": "to a Legendary or Mythic accessory.",
+      "placeholders": [],
+      "gloss": "完整译文已写入上一条属性数值行。",
+      "translate": true,
+      "continuation": true,
+      "zh": "",
+      "segments": [
+        { "color": "§7", "text": "to a ", "zh": "" },
+        { "color": "§6", "text": "Legendary ", "zh": "" },
+        { "color": "§7", "text": "or ", "zh": "" },
+        { "color": "§d", "text": "Mythic ", "zh": "" },
+        { "color": "§7", "text": "accessory.", "zh": "" }
+      ]
+    },
+    {
+      "id": "power_of_1_defense_when_applied",
+      "context": "防御力精炼的属性数值与适用稀有度说明",
+      "raw": "§7power of §a+1 Defense §7when applied",
+      "text": "power of +1 Defense when applied",
+      "placeholders": [],
+      "gloss": "Defense 沿用“防御力”；下一行是排版续行。",
+      "translate": true,
+      "zh": "+1 防御力的精炼效果，仅可用于传说或神话饰品。",
+      "segments": [
+        { "color": "§7", "text": "power of ", "zh": "", "omit": true },
+        { "color": "§a", "text": "+1 Defense ", "zh": "+1 防御力" },
+        { "color": "§7", "text": "when applied", "zh": "的精炼效果，仅可用于传说或神话饰品。" }
+      ]
+    },
+    {
+      "id": "health_enrichment",
+      "context": "点券商店中的生命值精炼物品名称",
+      "raw": "§cHealth Enrichment",
+      "text": "Health Enrichment",
+      "placeholders": [],
+      "gloss": "由采集器的宽模板拆出；Health 沿用 Stats 的“生命值”。",
+      "translate": true,
+      "zh": "生命值精炼"
+    },
+    {
+      "id": "power_of_3_health_when_applied_to",
+      "context": "生命值精炼的属性数值与适用稀有度说明",
+      "raw": "§7power of §c+3 Health §7when applied to",
+      "text": "power of +3 Health when applied to",
+      "placeholders": [],
+      "gloss": "Health 沿用“生命值”；下一行是排版续行。",
+      "translate": true,
+      "zh": "+3 生命值的精炼效果，仅可用于传说或神话饰品。",
+      "segments": [
+        { "color": "§7", "text": "power of ", "zh": "", "omit": true },
+        { "color": "§c", "text": "+3 Health ", "zh": "+3 生命值" },
+        { "color": "§7", "text": "when applied to", "zh": "的精炼效果，仅可用于传说或神话饰品。" }
+      ]
+    },
+    {
+      "id": "magic_find_enrichment",
+      "context": "点券商店中的魔法寻宝精炼物品名称",
+      "raw": "§cMagic Find Enrichment",
+      "text": "Magic Find Enrichment",
+      "placeholders": [],
+      "gloss": "Magic Find 沿用项目既定译名“魔法寻宝”。",
+      "translate": true,
+      "zh": "魔法寻宝精炼"
+    },
+    {
+      "id": "power_of_05_magic_find_when",
+      "context": "魔法寻宝精炼的属性数值与适用稀有度说明",
+      "raw": "§7power of §b+0.5 Magic Find §7when",
+      "text": "power of +0.5 Magic Find when",
+      "placeholders": [],
+      "gloss": "Magic Find 沿用“魔法寻宝”；后两行是排版续行。",
+      "translate": true,
+      "zh": "+0.5 魔法寻宝的精炼效果，仅可用于传说或神话饰品。",
+      "segments": [
+        { "color": "§7", "text": "power of ", "zh": "", "omit": true },
+        { "color": "§b", "text": "+0.5 Magic Find ", "zh": "+0.5 魔法寻宝" },
+        { "color": "§7", "text": "when", "zh": "的精炼效果，仅可用于传说或神话饰品。" }
+      ]
+    },
+    {
+      "id": "sea_creature_chance_enrichment",
+      "context": "点券商店中的海洋生物几率精炼物品名称",
+      "raw": "§cSea Creature Chance Enrichment",
+      "text": "Sea Creature Chance Enrichment",
+      "placeholders": [],
+      "gloss": "Sea Creature Chance 沿用 Fishing_Stats.json 的“海洋生物几率”。",
+      "translate": true,
+      "zh": "海洋生物几率精炼"
+    },
+    {
+      "id": "power_of_03_ferocity_when",
+      "context": "凶猛精炼的属性数值与适用稀有度说明",
+      "raw": "§7power of §c+0.3 Ferocity §7when",
+      "text": "power of +0.3 Ferocity when",
+      "placeholders": [],
+      "gloss": "Ferocity 沿用 Settings.json 的暂定译名“凶猛”；后两行是排版续行。",
+      "translate": true,
+      "zh": "+0.3 凶猛的精炼效果，仅可用于传说或神话饰品。",
+      "segments": [
+        { "color": "§7", "text": "power of ", "zh": "", "omit": true },
+        { "color": "§c", "text": "+0.3 Ferocity ", "zh": "+0.3 凶猛" },
+        { "color": "§7", "text": "when", "zh": "的精炼效果，仅可用于传说或神话饰品。" }
+      ]
+    },
+    {
+      "id": "attack_speed_enrichment",
+      "context": "点券商店中的攻击速度精炼物品名称",
+      "raw": "§cAttack Speed Enrichment",
+      "text": "Attack Speed Enrichment",
+      "placeholders": [],
+      "gloss": "Attack Speed 沿用 Stats 的“攻击速度”。",
+      "translate": true,
+      "zh": "攻击速度精炼"
+    },
+    {
+      "id": "power_of_03_sea_creature",
+      "context": "海洋生物几率精炼的属性数值与适用稀有度说明首行",
+      "raw": "§7power of §3+0.3 Sea Creature",
+      "text": "power of +0.3 Sea Creature",
+      "placeholders": [],
+      "gloss": "采集器按显示宽度把属性名 Sea Creature Chance 拆到了两行；完整属性名和适用条件合并到本行。",
+      "translate": true,
+      "zh": "+0.3 海洋生物几率的精炼效果，仅可用于传说或神话饰品。",
+      "segments": [
+        { "color": "§7", "text": "power of ", "zh": "", "omit": true },
+        { "color": "§3", "text": "+0.3 Sea Creature", "zh": "+0.3 海洋生物几率的精炼效果，仅可用于传说或神话饰品。" }
+      ]
+    },
+    {
+      "id": "chance_when_applied_to_a_legendary",
+      "context": "海洋生物几率精炼说明的排版续行",
+      "raw": "§3Chance §7when applied to a §6Legendary",
+      "text": "Chance when applied to a Legendary",
+      "placeholders": [],
+      "gloss": "Chance 是上一行属性名的末词，不是独立分类值；完整译文已并入上一行。",
+      "translate": true,
+      "continuation": true,
+      "zh": "",
+      "segments": [
+        { "color": "§3", "text": "Chance ", "zh": "" },
+        { "color": "§7", "text": "when applied to a ", "zh": "" },
+        { "color": "§6", "text": "Legendary", "zh": "" }
+      ]
+    },
+    {
+      "id": "or_mythic_accessory",
+      "context": "接海洋生物几率精炼适用条件的排版续行",
+      "raw": "§7or §dMythic §7accessory.",
+      "text": "or Mythic accessory.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "",
+      "segments": [
+        { "color": "§7", "text": "or ", "zh": "" },
+        { "color": "§d", "text": "Mythic ", "zh": "" },
+        { "color": "§7", "text": "accessory.", "zh": "" }
+      ]
+    },
+    {
+      "id": "power_of_05_attack_speed_when",
+      "context": "攻击速度精炼的属性数值与适用稀有度说明",
+      "raw": "§7power of §e+0.5 Attack Speed §7when",
+      "text": "power of +0.5 Attack Speed when",
+      "placeholders": [],
+      "gloss": "Attack Speed 沿用“攻击速度”；后两行是排版续行。",
+      "translate": true,
+      "zh": "+0.5 攻击速度的精炼效果，仅可用于传说或神话饰品。",
+      "segments": [
+        { "color": "§7", "text": "power of ", "zh": "", "omit": true },
+        { "color": "§e", "text": "+0.5 Attack Speed ", "zh": "+0.5 攻击速度" },
+        { "color": "§7", "text": "when", "zh": "的精炼效果，仅可用于传说或神话饰品。" }
+      ]
+    },
+    {
+      "id": "accessory_enrichment_swapper",
+      "context": "点券商店中的饰品精炼转换器名称",
+      "raw": "§cAccessory Enrichment Swapper",
+      "text": "Accessory Enrichment Swapper",
+      "placeholders": [],
+      "gloss": "该物品把饰品袋中已经精炼的饰品统一切换为另一种精炼。",
+      "translate": true,
+      "zh": "饰品精炼转换器"
+    },
+    {
+      "id": "swaps_all_enriched_accessories_in",
+      "context": "饰品精炼转换器的功能说明首行",
+      "raw": "§7Swaps all §9enriched §7accessories in",
+      "text": "Swaps all enriched accessories in",
+      "placeholders": [],
+      "gloss": "英文分成三行，中文合并后由运行时重新折行。",
+      "translate": true,
+      "zh": "将饰品袋中所有已精炼饰品切换为另一种精炼。",
+      "segments": [
+        { "color": "§7", "text": "Swaps all ", "zh": "将饰品袋中所有" },
+        { "color": "§9", "text": "enriched ", "zh": "已精炼" },
+        { "color": "§7", "text": "accessories in", "zh": "饰品切换为另一种精炼。" }
+      ]
+    },
+    {
+      "id": "your_accessory_bag_to_another",
+      "context": "接饰品精炼转换器功能说明首行的排版续行",
+      "raw": "§7your accessory bag to another",
+      "text": "your accessory bag to another",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "enrichment",
+      "context": "接饰品精炼转换器功能说明首行的排版续行",
+      "raw": "§7enrichment.",
+      "text": "enrichment.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "rightclick_to_open_menu",
+      "context": "饰品精炼转换器的右键操作提示",
+      "raw": "§eRight-click to open menu!",
+      "text": "Right-click to open menu!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "右键点击打开菜单!"
+    }
+  ]
+}

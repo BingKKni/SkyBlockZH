@@ -60,11 +60,14 @@ public final class CaptureHarness {
 		verdicts();
 		names();
 		layout();
+		clearing();
+		writeRetries();
 		announcements();
 		zones(areas);
 		unplaced();
 		widgets();
 		shared();
+		finishPendingWrites();
 
 		System.out.println();
 		System.out.printf("通过 %d / 失败 %d%n", passed, failed);
@@ -314,7 +317,7 @@ public final class CaptureHarness {
 
 		TranslationEntry half = TranslationEntry.compile(
 			"half", "test.json", List.of("Grants ", "Mithril Powder"), List.of("额外获得 ", ""),
-			false, "", Map.of()
+			false, "", Map.of(), Map.of()
 		);
 
 		StyledText line = styled("§7Grants §2Mithril Powder");
@@ -330,7 +333,7 @@ public final class CaptureHarness {
 		// "Royal Mines钛" case, which is a missing line in Terms.json rather than a missing record.
 		TranslationEntry commission = TranslationEntry.compile(
 			"commission", "test.json", List.of("%s Mithril"), List.of("%s钛"),
-			false, "", Map.of(1, "location_name")
+			false, "", Map.of(1, "location_name"), Map.of()
 		);
 
 		StyledText known = styled("Royal Mines Mithril");
@@ -435,6 +438,106 @@ public final class CaptureHarness {
 		}
 	}
 
+	private static void clearing() throws Exception {
+		Path root = Files.createTempDirectory("skyzh-clear-harness");
+		Path untranslated = root.resolve("untranslated/Mining/ChatMessage/One.json");
+		Path mixed = root.resolve("mixed/Mining/GUI_Item/Two.json");
+		Path colour = root.resolve("colour/Mining/GUI_Item/Three.json");
+		Path keep = root.resolve("untranslated/notes.txt");
+		Path outside = root.resolve("elsewhere/four.json");
+
+		for (Path file : List.of(untranslated, mixed, colour, keep, outside)) {
+			Files.createDirectories(file.getParent());
+			Files.writeString(file, "{}", StandardCharsets.UTF_8);
+		}
+
+		CaptureWriter.Meta pending = new CaptureWriter.Meta(
+			Classifier.Bucket.UNTRANSLATED, "Mining", CaptureSurface.CHAT_MESSAGE, "Server_Messages"
+		);
+		CaptureAnnouncer.record(pending, pending.path(root), "Dwarven Mines", 1_000_000L);
+
+		check("clear 只计算三个分类里的 JSON", CaptureStore.clear(root), 3);
+		check("clear 同时丢弃指向已删文件的待发提示",
+			CaptureAnnouncer.due(1_010_000L).size(), 0);
+		check("未翻译分类的 JSON 被删", Files.exists(untranslated), false);
+		check("混杂分类的 JSON 被删", Files.exists(mixed), false);
+		check("颜色分类的 JSON 被删", Files.exists(colour), false);
+		check("分类里的未知文件保留", Files.exists(keep), true);
+		check("三个分类以外的 JSON 保留", Files.exists(outside), true);
+		check("未知文件让所在目录保留", Files.isDirectory(keep.getParent()), true);
+
+		Path broken = Files.createTempDirectory("skyzh-clear-broken-harness");
+		Files.writeString(broken.resolve("mixed"), "not a directory", StandardCharsets.UTF_8);
+		Path later = broken.resolve("colour/Mining/GUI_Item/Later.json");
+		Files.createDirectories(later.getParent());
+		Files.writeString(later, "{}", StandardCharsets.UTF_8);
+
+		boolean failedClear = false;
+
+		try {
+			CaptureStore.clear(broken);
+		} catch (java.io.IOException expected) {
+			failedClear = true;
+		}
+
+		check("分类路径不是目录时 clear 报错", failedClear, true);
+		check("一个分类报错后仍尝试后面的分类", Files.exists(later), false);
+		check("报错的未知文件不被误删", Files.exists(broken.resolve("mixed")), true);
+
+		Path epochRoot = Files.createTempDirectory("skyzh-clear-epoch-harness");
+		CaptureStore.root(epochRoot);
+		java.lang.reflect.Field epochField = CaptureStore.class.getDeclaredField("epoch");
+		epochField.setAccessible(true);
+		long staleEpoch = epochField.getLong(null);
+		CaptureStore.clear(epochRoot);
+
+		CaptureStore.Sighting stale = new CaptureStore.Sighting(
+			CaptureSurface.CHAT_MESSAGE, "stale-clear-key",
+			styled("§7A stale clear harness line nobody translated"), "Mining", "Dwarven Mines",
+			"Server_Messages", "", System.currentTimeMillis()
+		);
+		java.lang.reflect.Method accept = CaptureStore.class.getDeclaredMethod(
+			"accept", CaptureStore.Sighting.class, long.class
+		);
+		accept.setAccessible(true);
+		accept.invoke(null, stale, staleEpoch);
+		CaptureStore.flush();
+
+		Path staleFile = epochRoot.resolve("untranslated/Mining/ChatMessage/Server_Messages.json");
+		check("clear 前已经出队的旧文本不能复活", Files.exists(staleFile), false);
+
+		CaptureStore.accept(stale);
+		CaptureStore.flush();
+		check("clear 后的新文本仍能采集", Files.exists(staleFile), true);
+		CaptureStore.clear(epochRoot);
+
+		delete(root);
+		delete(broken);
+		delete(epochRoot);
+	}
+
+	private static void writeRetries() throws Exception {
+		Path blocked = Files.createTempFile("skyzh-write-blocked-harness", ".tmp");
+		Path recovered = Files.createTempDirectory("skyzh-write-retry-harness");
+		CaptureStore.root(blocked);
+
+		CaptureStore.accept(new CaptureStore.Sighting(
+			CaptureSurface.CHAT_MESSAGE, "retry-write-key",
+			styled("§7A retry write harness line nobody translated"), "Mining", "Dwarven Mines",
+			"Server_Messages", "", System.currentTimeMillis()
+		));
+		CaptureStore.flush();
+
+		CaptureStore.root(recovered);
+		CaptureStore.flush();
+		Path file = recovered.resolve("untranslated/Mining/ChatMessage/Server_Messages.json");
+		check("一次写入失败后 dirty 记录会在下次 flush 重试", Files.exists(file), true);
+
+		CaptureStore.clear(recovered);
+		Files.deleteIfExists(blocked);
+		delete(recovered);
+	}
+
 	// ---- what the player is told, and when ----
 
 	/**
@@ -495,7 +598,7 @@ public final class CaptureHarness {
 
 		// Minecraft logs client-generated chat too, and auditLog reads that log. The prefix is what
 		// keeps this mod's own announcements from coming back as untranslated SkyBlock text.
-		check("提示消息带得住的前缀", single.getFirst().getString().startsWith(CaptureAnnouncer.PREFIX), true);
+		check("提示消息带得住的前缀", single.getFirst().getString().startsWith(Feedback.PREFIX), true);
 
 		// The message links to a file written on a slower timer, so the write has to happen first or
 		// clicking the link the moment it appears opens nothing.
@@ -769,6 +872,25 @@ public final class CaptureHarness {
 		check("换了玩法就各归各的",
 			Files.exists(root.resolve("untranslated/Foraging/GUI_Item/Bank.json")), true);
 
+		CaptureStore.clear(root);
+		delete(root);
+	}
+
+	/** A finish barrier writes sightings that are still waiting in the worker queue. */
+	private static void finishPendingWrites() throws Exception {
+		Path root = Files.createTempDirectory("skyzh-capture-finish");
+		CaptureStore.start(root);
+		CaptureStore.offer(new CaptureStore.Sighting(
+			CaptureSurface.CHAT_MESSAGE, "finish-pending-key",
+			styled("§7A queued finish harness line nobody translated"), "Mining", "Dwarven Mines",
+			"Server_Messages", "", System.currentTimeMillis()
+		));
+
+		CaptureStore.finishPending();
+		Path file = root.resolve("untranslated/Mining/ChatMessage/Server_Messages.json");
+		check("关闭采集前会等队列里的文本真正落盘", Files.exists(file), true);
+
+		CaptureStore.clear(root);
 		delete(root);
 	}
 

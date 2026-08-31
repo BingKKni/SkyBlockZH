@@ -23,6 +23,35 @@
       "zh": "距开始:"
     },
     {
+      "id": "tab_row_starts_in_hours",
+      "context": "活动倒计时的小时变体,标签和数值在同一行(2026-08-30 实测宾果活动开始前的主城 Tab 列表)",
+      "raw": " Starts In: §e21h",
+      "text": "Starts In: %1$sh",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "距活动开始的小时数",
+          "type": "number",
+          "example": "21"
+        }
+      ],
+      "gloss": "和上面的 tab_row_starts_in 不是同一行:那条只有标签(小写 in、没有数值),本条大写 In 且带小时数。h 是 hours 的缩写,中文补出单位。倒计时标签统一写作「距开始」,数值后不再加「后」。行首空格是 Tab 列表缩进。",
+      "translate": true,
+      "zh": "距开始: %1$s 小时",
+      "segments": [
+        {
+          "color": "",
+          "text": "Starts In: ",
+          "zh": "距开始: "
+        },
+        {
+          "color": "§e",
+          "text": "%1$sh",
+          "zh": "%1$s 小时"
+        }
+      ]
+    },
+    {
       "id": "tab_row_ends_in",
       "context": "活动还有多久结束",
       "text": "Ends In:",
@@ -237,6 +266,23 @@
       ]
     },
     {
+      "id": "tab_row_other_players",
+      "context": "Tab 列表玩家名单被截断时的末行:本区域还有多少个没列出来的玩家(2026-08-29 实测于丛林)",
+      "raw": "§7and %s other players...",
+      "text": "and %s other players...",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "没列出来的玩家人数",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "英文的 and 起的是「名单还没完」的作用,中文用「还有」接上前面那串名字,不译作「和」。原文是复数,中文用量词「名」不体现数。末尾三个点照原文留着(英文半角连写,不换成中文省略号——这一行是名单的续行标记,不是句子里的省略)。",
+      "translate": true,
+      "zh": "以及 %s 名其他玩家..."
+    },
+    {
       "id": "tab_row_pet_training_entry",
       "context": "宠物训练小节里的一行:第几只、等级、宠物名、剩余时间",
       "text": "%1$s: [Lvl %2$s] %3$s %4$s",
@@ -396,37 +442,143 @@
       ]
     },
     {
-      "id": "tab_footer_ender_chest_pages",
-      "context": "Tab 页脚中的账号升级剩余时间:末影箱页数",
-      "raw": "§eEnder Chest Pages %1$s §f%2$s Days",
-      "text": "Ender Chest Pages %1$s %2$s Days",
+      "id": "tab_footer_days",
+      "context": "Tab 页脚单独显示的剩余天数",
+      "raw": "§f%s day",
+      "text": "%s days",
       "placeholders": [
         {
-          "token": "%1$s",
-          "desc": "升级等级,罗马数字",
-          "type": "tier",
-          "example": "III"
-        },
-        {
-          "token": "%2$s",
+          "token": "%s",
           "desc": "剩余天数",
           "type": "number",
-          "example": "4"
+          "example": "1"
         }
       ],
-      "gloss": "Ender Chest 沿用《我的世界》官方译名“末影箱”。",
+      "gloss": "字面写复数 days:引擎只把模板里复数词尾的 s 编成可选(见 text/TranslationEntry.eitherNumber),反过来不成立,所以写单数的模板碰上 `2 days` 就匹配不上。",
       "translate": true,
-      "zh": "末影箱页数 %1$s %2$s 天",
+      "zh": "%s 天"
+    },
+    {
+      "id": "tab_row_current_minister",
+      "context": "Tab 列表市长选举小节中的现任部长",
+      "raw": " §fMinister: §a%s",
+      "text": " Minister: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "现任部长的 NPC 名字",
+          "type": "npc_name",
+          "example": "Aatrox"
+        }
+      ],
+      "gloss": "NPC 名保留英文;行首空格是 Tab 列表的缩进。",
+      "translate": true,
+      "zh": " 部长: %s",
       "segments": [
         {
-          "color": "§e",
-          "text": "Ender Chest Pages %1$s ",
-          "zh": "末影箱页数 %1$s "
+          "color": "",
+          "text": " ",
+          "zh": " "
         },
         {
           "color": "§f",
-          "text": "%2$s Days",
-          "zh": "%2$s 天"
+          "text": "Minister: ",
+          "zh": "部长: "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "tab_row_current_mayor",
+      "context": "Tab 列表市长选举小节中的现任市长",
+      "raw": " §fMayor: §a%s",
+      "text": " Mayor: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "现任市长的 NPC 名字",
+          "type": "npc_name",
+          "example": "Paul"
+        }
+      ],
+      "gloss": "NPC 名保留英文;行首空格是 Tab 列表的缩进。",
+      "translate": true,
+      "zh": " 市长: %s",
+      "segments": [
+        {
+          "color": "",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§f",
+          "text": "Mayor: ",
+          "zh": "市长: "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "tab_row_election_over",
+      "context": "Tab 列表市长选举小节显示本届选举已经结束",
+      "raw": "§e§lElection: §cOver!",
+      "text": "Election: Over!",
+      "placeholders": [],
+      "gloss": "与 tab_row_election_time 是同一位置的结束状态;本条是精确字面记录,会优先于计时模板。",
+      "translate": true,
+      "zh": "选举: 已结束!",
+      "segments": [
+        {
+          "color": "§e§l",
+          "text": "Election: ",
+          "zh": "选举: "
+        },
+        {
+          "color": "§c",
+          "text": "Over!",
+          "zh": "已结束!"
+        }
+      ]
+    },
+    {
+      "id": "tab_row_skyblock_year",
+      "context": "Tab 列表市长选举小节中的当前 SkyBlock 年份",
+      "raw": " §fYear: §d%s",
+      "text": " Year: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前 SkyBlock 年份",
+          "type": "number",
+          "example": "511"
+        }
+      ],
+      "gloss": "年份动态匹配,不能写死实测时的 511;行首空格是 Tab 列表的缩进。",
+      "translate": true,
+      "zh": " 年份: %s",
+      "segments": [
+        {
+          "color": "",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§f",
+          "text": "Year: ",
+          "zh": "年份: "
+        },
+        {
+          "color": "§d",
+          "text": "%s",
+          "zh": "%s"
         }
       ]
     }

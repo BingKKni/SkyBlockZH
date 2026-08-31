@@ -1,0 +1,292 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/New_Year_Celebration + https://hypixel-skyblock.fandom.com/wiki/New_Year_Cake + runtime capture (SkyZH) 2026-08-29 实测会话",
+  "fetched_at": "2026-08-29",
+  "verified_ingame": true,
+  "gui_context": "新年庆典活动的聊天播报。活动在每个空岛年的大寒 29-31 日(即一年的最后三天)举行,实际持续一小时,地点在大厅的村庄;找面包师白拿一块当年的新年蛋糕,再点他一次可以花 250,000 硬币买新年蛋糕袋。",
+  "source_note": "四处需要留底的判断。① 倒计时实测采到复数「§b2§a days!」,维基记的是单数「§b1 §aday!」,两种写法的空格落在不同颜色段里。语义和中文相同,所以只保留 days 模板:引擎会把数字模板附近词尾的复数 s 当作可选,同一条可以应答 day 与 days;重复写单数记录反而会和复数记录互相遮挡。② 维基只记了 1 day,实测还证明有 2 days;更多天数以及是否有小时/分钟档两个维基都查不到,只在 todo 里保留待采项,不编造原文。③「CLICK HERE」「You claimed a」「New Year Event!」计分板这三条两个维基都没有系统收录,译文依据实测原文。④ §kA 是原文的随机字符装饰,必须连同其实际颜色码顺序原样记录;少一个字符整条就匹配不上。",
+  "lines": [
+    {
+      "id": "new_year_event_starting_in_days",
+      "context": "活动开始前的倒计时播报(单数 day 的那一行也由这一条应答)",
+      "raw": "§aThe §dNew Year's Celebration §aevent is starting in §b2§a days!",
+      "text": "The New Year's Celebration event is starting in %s days!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "距活动开始还剩几天,复数形态(2 天及以上)",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "活动名按 _shared/Event_Names.json 作「新年庆典」(那边收的是不带所有格的 New Year Celebration,这里原文带所有格 New Year's Celebration,是同一个活动的两种拼法,译名相同)。英文定冠词 The 在中文里没有对应的字,标 omit。中文语序把「活动」提到活动名后面、时间状语放到动词前,所以「event is starting in」这一段的译文是「活动将在」,天数后面接「天后开始!」。只剩一天时原文改用单数(维基记的是 §b1 §aday!),不需要再写一条记录:引擎本来就把词尾的复数 s 当可选(text/Capture 的 eitherNumber),这一条 days! 直接答得下 day!,多写一条反而会和这一条互相顶掉(checkTranslations 的语料自查会报出来)。代价是单数那一行数字后面的空格落在青色段末尾而不是绿色段开头,颜色边界差一个字符,中文两种情况都是「%s 天后开始!」,看不出差别。",
+      "translate": true,
+      "zh": "新年庆典活动将在 %s 天后开始!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "The ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§d",
+          "text": "New Year's Celebration ",
+          "zh": "新年庆典"
+        },
+        {
+          "color": "§a",
+          "text": "event is starting in ",
+          "zh": "活动将在 "
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§a",
+          "text": " days!",
+          "zh": " 天后开始!"
+        }
+      ]
+    },
+    {
+      "id": "new_year_event_banner",
+      "context": "活动开始的横幅播报,三行里的第一行",
+      "raw": "§b§k§lA§r §e§lEvent§r: §aNew Year's Celebration! §r§b§k§lA",
+      "text": "A Event: New Year's Celebration! A",
+      "placeholders": [],
+      "gloss": "两头的 §kA 是 §k(随机字符)效果下的装饰字形,在屏幕上是一直跳变的乱码方块,不是字母 A,原样保留。Event 作「活动」,和 _shared/Event_Names.json 一族一致。",
+      "translate": true,
+      "zh": "A 活动: 新年庆典! A",
+      "segments": [
+        {
+          "color": "§b§k§l",
+          "text": "A",
+          "zh": "A"
+        },
+        {
+          "color": "§r",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§e§l",
+          "text": "Event",
+          "zh": "活动"
+        },
+        {
+          "color": "§r",
+          "text": ": ",
+          "zh": ": "
+        },
+        {
+          "color": "§a",
+          "text": "New Year's Celebration! ",
+          "zh": "新年庆典! "
+        },
+        {
+          "color": "§r§b§k§l",
+          "text": "A",
+          "zh": "A"
+        }
+      ]
+    },
+    {
+      "id": "new_year_everyone_is_having_a_party",
+      "context": "活动开始播报的第二行",
+      "raw": "§b§k§lA§r §aEveryone is having a party in the §bVillage§a!",
+      "text": "A Everyone is having a party in the Village!",
+      "placeholders": [],
+      "gloss": "2026-08-29 实测完整原文。开头的 §kA 是同组播报的随机字符装饰,不是句子内容,但它是匹配所需的实际字符,必须保留。Village 按 _shared/Terms.json 作「村庄」,定冠词不译。",
+      "translate": true,
+      "zh": "A 大家都在村庄里开派对!",
+      "segments": [
+        {
+          "color": "§b§k§l",
+          "text": "A",
+          "zh": "A"
+        },
+        {
+          "color": "§r",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§a",
+          "text": "Everyone is having a party in the ",
+          "zh": "大家都在"
+        },
+        {
+          "color": "§b",
+          "text": "Village",
+          "zh": "村庄"
+        },
+        {
+          "color": "§a",
+          "text": "!",
+          "zh": "里开派对!"
+        }
+      ]
+    },
+    {
+      "id": "new_year_go_there_and_talk_to_the_baker",
+      "context": "活动开始播报的第三行",
+      "raw": "§aGo there and talk to the §bBaker §ato get your §dNew Year's Cake§a!",
+      "text": "Go there and talk to the Baker to get your New Year's Cake!",
+      "placeholders": [],
+      "gloss": "来自维基,本次实测没采到。Baker 是职务型名字,按 GLOSSARY.md 翻译,作「面包师」。中文把「去那里」并进「快去」,英文的 your 不说出来更自然。注意原文这里是带所有格的 New Year's Cake,而物品名本身是不带所有格的 New Year Cake(见 Events/GUI_Item/New_Year_Cake.json),译名统一作「新年蛋糕」。",
+      "translate": true,
+      "zh": "快去找面包师领你的新年蛋糕!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Go there and talk to the ",
+          "zh": "快去找"
+        },
+        {
+          "color": "§b",
+          "text": "Baker ",
+          "zh": "面包师"
+        },
+        {
+          "color": "§a",
+          "text": "to get your ",
+          "zh": "领你的"
+        },
+        {
+          "color": "§d",
+          "text": "New Year's Cake",
+          "zh": "新年蛋糕"
+        },
+        {
+          "color": "§a",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "new_year_click_here_to_get_your_cake",
+      "context": "可点击的领取提示,点了会打开领奖界面",
+      "raw": "§b§k§lA§r §e§lCLICK HERE §eto get your §c§lSPECIAL §enew year cake!",
+      "text": "A CLICK HERE to get your SPECIAL new year cake!",
+      "placeholders": [],
+      "gloss": "两个维基都没收这一条,译文完全依据实测原文。点开的就是 Hub_General/GUI_Title/Common_Menus.json#gui_title_claim_reward 那个领奖界面。SPECIAL 是蛋糕的稀有度,按 _shared/Rarity.json 作「特殊」,原文带 §l 粗体单独一段。原文这里把 new year cake 写成了小写,前两行是大写的 New Year's Cake——原文自己不一致,中文都作「新年蛋糕」。实测采到的原文末尾有一个尾随空格,记录里不留:采集侧已经把它切掉了,写进来反而匹配不上。开头的 §kA 同上,是装饰乱码。",
+      "translate": true,
+      "zh": "A 点击这里领取你的特殊新年蛋糕!",
+      "segments": [
+        {
+          "color": "§b§k§l",
+          "text": "A",
+          "zh": "A"
+        },
+        {
+          "color": "§r",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§e§l",
+          "text": "CLICK HERE ",
+          "zh": "点击这里"
+        },
+        {
+          "color": "§e",
+          "text": "to get your ",
+          "zh": "领取你的"
+        },
+        {
+          "color": "§c§l",
+          "text": "SPECIAL ",
+          "zh": "特殊"
+        },
+        {
+          "color": "§e",
+          "text": "new year cake!",
+          "zh": "新年蛋糕!"
+        }
+      ]
+    },
+    {
+      "id": "new_year_you_claimed_a_cake",
+      "context": "领取成功后的确认播报",
+      "raw": "§aYou claimed a §cNew Year Cake§a!",
+      "text": "You claimed a New Year Cake!",
+      "placeholders": [],
+      "gloss": "两个维基都没收这一条,译文依据实测原文。蛋糕名的 §c 红色和它 SPECIAL 稀有度的配色一致。中文用量词「一块」——蛋糕在汉语里论块,不论个。",
+      "translate": true,
+      "zh": "你领取了一块新年蛋糕!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "You claimed a ",
+          "zh": "你领取了一块"
+        },
+        {
+          "color": "§c",
+          "text": "New Year Cake",
+          "zh": "新年蛋糕"
+        },
+        {
+          "color": "§a",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "new_year_happy_new_year_to_everyone",
+      "context": "活动结束时的播报",
+      "raw": "§b§l§kA §eHappy New Year to Everyone! §b§l§kA",
+      "text": "A Happy New Year to Everyone! A",
+      "placeholders": [],
+      "gloss": "来自维基,本次实测没采到(活动结束时人不在大厅就收不到)。中文用现成的祝福语「祝大家新年快乐!」,不直译「向所有人致以新年快乐」。",
+      "translate": true,
+      "zh": "A 祝大家新年快乐! A",
+      "segments": [
+        {
+          "color": "§b§l§k",
+          "text": "A",
+          "zh": "A"
+        },
+        {
+          "color": "§e",
+          "text": " Happy New Year to Everyone! ",
+          "zh": " 祝大家新年快乐! "
+        },
+        {
+          "color": "§b§l§k",
+          "text": "A",
+          "zh": "A"
+        }
+      ]
+    },
+    {
+      "id": "new_year_baker_has_appeared_on_your_island",
+      "context": "Stranded(孤岛)模式下活动开始的播报:面包师直接来玩家自己的岛",
+      "raw": "§dBaker §ehas appeared on your island!",
+      "text": "Baker has appeared on your island!",
+      "placeholders": [],
+      "gloss": "来自维基,本次实测没采到(实测不是 Stranded 模式)。Stranded 模式下玩家去不了大厅,所以面包师改为出现在自己岛上。Baker 同上作「面包师」。",
+      "translate": true,
+      "zh": "面包师出现在你的岛上了!",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "Baker ",
+          "zh": "面包师"
+        },
+        {
+          "color": "§e",
+          "text": "has appeared on your island!",
+          "zh": "出现在你的岛上了!"
+        }
+      ]
+    }
+  ],
+  "todo": [
+    "倒计时的完整档位没查清。实测采到 2 days、维基只记了 1 day,当前同一条 days 模板已验证能应答这两种单复数写法。3 days 及以上、以及是否有小时/分钟档,两个维基都查不到;下次活动前留意聊天栏,只有采到语义或句式不同的实际原文时才新增记录,不要按数字逐档复制模板。",
+    "新年蛋糕袋(New Year Cake Bag)的完整 Lore 两个维基都只有转述、没有逐行原文,面包师商店界面里那一格也还没实测采到。见 Events/GUI_Item/New_Year_Cake.json 的 todo。"
+  ]
+}

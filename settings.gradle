@@ -7,6 +7,24 @@ pluginManagement {
 		mavenCentral()
 		gradlePluginPortal()
 	}
+
+	// Declared once here so the two target projects can ask for the plugin by name alone. They must
+	// be on the same Loom, since they share a source tree and a corpus and differ only in which
+	// Minecraft they compile against.
+	plugins {
+		id 'net.fabricmc.fabric-loom' version "${loom_version}"
+	}
 }
 
 rootProject.name = 'skyzh'
+
+// One project per Minecraft API generation, not per patch release.
+//
+// 26.2 moved the HUD out of `Gui` into a `Hud` of its own, renamed the entity type constants and took
+// `setScreen` off `Minecraft` — three changes that a Mixin target and two call sites have to be
+// written against one way or the other, so there is no single jar that boots on both. Within 26.1
+// itself there is nothing to split: every class this mod touches is byte-identical across 26.1, 26.1.1
+// and 26.1.2, so one 26.1.x jar serves all three and its Minecraft dependency is the range that says
+// so. `checkMixinTargets` is what keeps that claim honest — see gradle/target.gradle.
+include 'fabric-26.1'
+include 'fabric-26.2'

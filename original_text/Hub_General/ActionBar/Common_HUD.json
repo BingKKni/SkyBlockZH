@@ -517,6 +517,34 @@
       "zh": "+%s 点券(来自曲奇增益)!"
     },
     {
+      "id": "hud_shift_to_dismount",
+      "context": "骑着东西时动作栏顶上来的下坐骑提示(2026-08-29 实测于 Jerry 工坊的雪炮上)",
+      "raw": "§e§lSHIFT §fto §e§lDISMOUNT",
+      "text": "SHIFT to DISMOUNT",
+      "placeholders": [],
+      "gloss": "实测采在 Jerry 工坊的雪炮上,但这句话里一个跟雪炮有关的词都没有——凡是能骑的东西都用它,所以放在通用文件里。SHIFT 是键名,保留英文大写(玩家要在键盘上找这个键);中文按「按 X 键做 Y」的语序重排,不照英文的「SHIFT 来下坐骑」直译。开炮那半句在 Events/ActionBar/Jerrys_Workshop.json,两句在屏幕上是同时出现的一对。",
+      "translate": true,
+      "zh": "按 SHIFT 下坐骑",
+      "segments": [
+        {
+          "color": "§e§l",
+          "text": "SHIFT ",
+          "zh": "按 SHIFT "
+        },
+        {
+          "color": "§f",
+          "text": "to ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§e§l",
+          "text": "DISMOUNT",
+          "zh": "下坐骑"
+        }
+      ]
+    },
+    {
       "id": "hud_carnival_catch_streak",
       "context": "嘉年华钓鱼大赛连续钓上鱼时的动作栏提示",
       "raw": "§3§lSTREAK! §b%1$sx §7(+%2$s pts)",

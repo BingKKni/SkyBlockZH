@@ -1,0 +1,317 @@
+// One Minecraft target: everything a fabric-26.x project is, apart from which numbers it uses.
+//
+// Applied by fabric-26.1/build.gradle and fabric-26.2/build.gradle, each of which sets `ext.mcVersion`,
+// `ext.mcRange`, `ext.modMenuVersion`, `ext.versionSourceDir` and `ext.artifactTag` first and adds
+// nothing else. Keeping the whole of it here rather than in the two files is the point: a target that
+// could drift from its sibling in how it packages the corpus, or in which Java release it compiles
+// for, would be a second jar nobody had actually checked.
+
+// Loom itself is applied by the target's own build.gradle: a `plugins {}` block is the only thing that
+// resolves a version out of settings.gradle's pluginManagement, and it is not allowed in a script
+// applied with `apply from:`.
+
+def mcVersion = project.ext.mcVersion
+def mcRange = project.ext.mcRange
+def modMenuVersion = project.ext.modMenuVersion
+def versionSourceDir = project.ext.versionSourceDir
+def artifactTag = project.ext.artifactTag
+
+base {
+	archivesName = rootProject.archives_base_name
+}
+
+// `SkyBlockZH-0.2.0-Beta-26.1.jar` is the file a player installs. The Minecraft tag is deliberately
+// the target generation rather than the exact patch used for compilation, so a build against 26.1.2
+// still produces the same 26.1 artifact.
+def archiveVersion = rootProject.version.toString().replaceFirst(/-beta(?:\.\d+)?$/, "-Beta-${artifactTag}")
+if (archiveVersion == rootProject.version.toString()) {
+	archiveVersion = "${rootProject.version}-Beta-${artifactTag}"
+}
+version = archiveVersion
+group = rootProject.group
+
+repositories {
+	maven {
+		name = 'Terraformers'
+		url = 'https://maven.terraformersmc.com/releases/'
+	}
+
+	maven {
+		name = 'Hypixel'
+		url = 'https://repo.hypixel.net/repository/Hypixel/'
+	}
+}
+
+// The shared tree plus this target's own. Three classes and one Mixin config are all that is in the
+// second one — see the package note in src/mc26_1/java/.../platform/ClientGui.java for what makes a
+// class belong there rather than in src/main.
+sourceSets {
+	main {
+		java.srcDirs = [rootProject.file('src/main/java'), rootProject.file("src/${versionSourceDir}/java")]
+		resources.srcDirs = [
+			rootProject.file('src/main/resources'),
+			rootProject.file("src/${versionSourceDir}/resources"),
+		]
+	}
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${mcVersion}"
+	implementation "net.fabricmc:fabric-loader:${rootProject.loader_version}"
+
+	// Mod Menu is an optional integration: we compile against its API but never require it at
+	// runtime (see the "suggests" block in fabric.mod.json). Since 26.x ships unobfuscated there
+	// is no remapping step any more, so mods are ordinary dependencies — no modCompileOnly. The
+	// version is per-target because Mod Menu is itself built against one Minecraft; see
+	// gradle.properties.
+	compileOnly "com.terraformersmc:modmenu:${modMenuVersion}"
+
+	// Hypixel's own Mod API, on the same terms as Mod Menu: compiled against, never bundled. The
+	// protocol and the networking are the hypixel-mod-api mod's job — anyone running SkyHanni or
+	// SkyBlocker already has it — and all this mod does is subscribe to the location event and read
+	// two strings off it (see compat/HypixelApi). Without that mod present nothing here loads and
+	// the sidebar reading carries on as before.
+	compileOnly "net.hypixel:mod-api:${rootProject.hypixel_mod_api_version}"
+
+	// No Fabric API. Every hook this mod needs is a mixin into a vanilla render path, and the
+	// fewer runtime dependencies a SkyBlock client carries, the fewer ways it can collide with
+	// SkyHanni / SkyBlocker in someone's modpack.
+}
+
+processResources {
+	dependsOn rootProject.tasks.named('minifyCorpus')
+
+	// Keep Fabric metadata on the normal SemVer version while using the human-facing archive name
+	// above. The filename identifies the target; the Minecraft dependency range below enforces it.
+	def modVersion = "${rootProject.version}+mc${artifactTag}"
+	inputs.property 'version', modVersion
+	inputs.property 'minecraftRange', mcRange
+
+	filesMatching('fabric.mod.json') {
+		// `minecraft_range` rather than a literal, so the one file that says which Minecraft this jar
+		// is for says it from the same place the compile classpath was chosen.
+		expand('version': modVersion, 'minecraft_range': mcRange, 'loader_range': rootProject.loader_version) {
+			escapeBackslash = true
+		}
+	}
+
+	from(rootProject.layout.buildDirectory.dir('minified-corpus')) {
+		into 'assets/skyzh/original_text'
+		include '**/*.json'
+	}
+}
+
+// A source set of its own rather than src/test, because this is not a JUnit suite and should not
+// make the `test` task claim it has tests. It compiles against the mod and runs as a plain main().
+//
+// It lives in every target, not just the newest, and runs there: the engine is shared source compiled
+// against two different Minecrafts, and "the corpus still matches on 26.1" is a claim worth having
+// checked rather than reasoned about.
+sourceSets {
+	harness {
+		java.srcDirs = [rootProject.file('src/harness/java')]
+		compileClasspath += sourceSets.main.compileClasspath + sourceSets.main.output
+		runtimeClasspath += sourceSets.main.runtimeClasspath + sourceSets.main.output
+	}
+}
+
+dependencies {
+	// The harness runs the mod's own classes with no game and no mod list around them, so anything
+	// they merely mention has to be loadable — the shipped jar still never carries this.
+	harnessRuntimeOnly "net.hypixel:mod-api:${rootProject.hypixel_mod_api_version}"
+}
+
+/**
+ * A harness entry point, wired the same way every time.
+ *
+ * The two jvmArgs are the reason this is a helper rather than five task blocks: Java 18 onwards picks
+ * System.out's charset from stdout.encoding, not from file.encoding which defaultCharacterEncoding
+ * sets. Left alone it takes the native console codepage, and every Chinese character in the report —
+ * including both halves of an "expected X got Y" — reaches the terminal as a replacement character.
+ *
+ * The working directory is build/harness for a different reason. Minecraft's logging config writes to
+ * <working dir>/logs, and logs/ is where a player's own client log gets dropped for auditLog to read.
+ * Running a check must not rotate their evidence.
+ */
+def harnessTask(String name, String mainClassName, String taskDescription, Closure extra = null) {
+	tasks.register(name, JavaExec) {
+		group = 'verification'
+		description = taskDescription
+
+		classpath = sourceSets.harness.runtimeClasspath
+		mainClass = mainClassName
+		defaultCharacterEncoding = 'UTF-8'
+		jvmArgs '-Dstdout.encoding=UTF-8', '-Dstderr.encoding=UTF-8'
+
+		workingDir = layout.buildDirectory.dir('harness').get().asFile
+		doFirst { workingDir.mkdirs() }
+
+		if (extra != null) {
+			extra.delegate = delegate
+			extra()
+		}
+	}
+}
+
+// The corpus is the part of this project that keeps changing, and nothing about a wrong translation
+// shows up at compile time. This runs the real matching engine over the real files and fails on any
+// line that comes out wrong — a second's work, against launching the game to squint at a tooltip.
+// Anything that measures pixels (wrapping, centring) needs a loaded font and is not covered here.
+harnessTask('checkTranslations', 'io.github.bingkkni.skyzh.TranslationHarness',
+	'Matches the original_text corpus against the translation engine.') {
+	args rootProject.file('original_text').absolutePath
+	inputs.dir rootProject.file('original_text')
+}
+
+// The capture in capture/ decides what is worth writing down, which two lines are the same sentence
+// and which characters of one are values. Every one of those decisions ends up in a file somebody
+// reads days later, so they are exercised here against strings taken verbatim from a client log.
+harnessTask('checkCapture', 'io.github.bingkkni.skyzh.CaptureHarness',
+	'Runs the runtime capture over recorded SkyBlock text.') {
+	args rootProject.file('original_text').absolutePath
+	inputs.dir rootProject.file('original_text')
+}
+
+harnessTask('checkCommands', 'io.github.bingkkni.skyzh.CommandHarness',
+	'Checks SkyZH client-command parsing and exact help text.')
+
+// The minifier's whole premise is a list of fields the engine does not read. That list is checked
+// against the engine rather than trusted: both corpora are compiled and the indexes compared. A
+// mistake here would not break the build — it would ship a jar that silently stops translating some
+// lines — so this runs as part of `check`.
+harnessTask('checkMinifiedCorpus', 'io.github.bingkkni.skyzh.MinifiedCorpusCheck',
+	'Compares the compiled index of the authored corpus against the minified one.') {
+	dependsOn rootProject.tasks.named('minifyCorpus')
+
+	args rootProject.file('original_text').absolutePath,
+		rootProject.layout.buildDirectory.dir('minified-corpus').get().asFile.absolutePath
+	inputs.dir rootProject.file('original_text')
+}
+
+// The three working tools below are registered in one target only, the one its build.gradle marks
+// `primary`.
+//
+// Not an arbitrary choice: each of them prints a report about the *corpus* — what a log contains that
+// no record covers, what a captured line draws as, what one hand-written line draws as. None of that
+// is a question about a Minecraft version, and `./gradlew probe` matching two projects would print the
+// same report twice and read as though the two disagreed about something. The checks above are the
+// opposite case and deliberately do run in both: "the corpus still matches on 26.1" is exactly a
+// question about a Minecraft version.
+if (project.ext.has('primary') && project.ext.primary) {
+	// Same engine, pointed at a client log instead of at the corpus: it prints the chat lines a real
+	// session produced that no record answers for. Collection has already happened by then — Minecraft
+	// logs what it receives — so nothing about this ships in the mod.
+	harnessTask('auditLog', 'io.github.bingkkni.skyzh.LogAudit',
+		'Reports chat lines from a Minecraft log that the corpus does not cover.') {
+		args rootProject.file('original_text').absolutePath,
+			rootProject.file(project.findProperty('log') ?: 'logs').absolutePath
+	}
+
+	// The other half of captureUntranslated: it writes down what the corpus could not answer for, this
+	// reads those files back and prints what each line draws as now. checkTranslations only knows what
+	// the corpus says about itself; a segment in the wrong order or a term nobody added is invisible
+	// there and obvious here.
+	harnessTask('replayCapture', 'io.github.bingkkni.skyzh.CaptureReplay',
+		'Redraws captured SkyBlock lines through the current corpus.') {
+		args rootProject.file('original_text').absolutePath,
+			rootProject.file(project.findProperty('capture') ?: 'logs/skyzh-capture').absolutePath
+	}
+
+	// Scratch probe: prints what one live line renders as, and whether its record flattens the colours.
+	// Not part of `check` — a working tool for deciding where a segments array has to be split. Reads
+	// its lines from a file (`<surface>\t<legacy text>`), because § codes and private-use glyphs do not
+	// survive being typed on a command line.
+	harnessTask('probe', 'io.github.bingkkni.skyzh.Probe',
+		'Redraws one hand-written SkyBlock line through the current corpus.') {
+		args rootProject.file('original_text').absolutePath,
+			rootProject.file(project.findProperty('lines') ?: 'build/probe.txt').absolutePath
+	}
+}
+
+// The one check that a second Minecraft version makes indispensable.
+//
+// Every injector in this mod is `require = 0`, so a target that stopped matching does not fail the
+// build or the boot — it costs one surface its translation, silently, forever. Compiling proves the
+// mod's source agrees with itself and says nothing about whether the injection points still exist.
+// This reads the annotations back out of the compiled mixins and looks every one of them up in the
+// Minecraft that is actually on the compile classpath. See gradle/check_mixin_targets.py.
+def mixinClasspathFile = layout.buildDirectory.file('mixin-check-classpath.txt')
+
+def writeMixinClasspath = tasks.register('writeMixinCheckClasspath') {
+	description = 'Records the compile classpath for checkMixinTargets.'
+
+	// Loom keeps the Minecraft jar in its dedicated `minecraftNamedCompile` configuration rather than
+	// exposing it as a normal Java dependency. The Java compiler sees it through compileClasspath, but
+	// the file list used by javap must include it explicitly or every vanilla target looks absent even
+	// though compilation succeeded.
+	def classpath = (sourceSets.main.compileClasspath.files + configurations.minecraftNamedCompile.files) as Set
+	def output = mixinClasspathFile
+
+	inputs.files classpath
+	outputs.file output
+
+	doLast {
+		// A file rather than a command line: the compile classpath is Minecraft plus every library it
+		// carries, which on Windows is comfortably past the command-length limit.
+		output.get().asFile.parentFile.mkdirs()
+		output.get().asFile.setText(classpath.collect { it.absolutePath }.join('\n'), 'UTF-8')
+	}
+}
+
+tasks.register('checkMixinTargets', Exec) {
+	group = 'verification'
+	description = 'Resolves every Mixin target against the Minecraft this target compiles against.'
+
+	dependsOn tasks.named('classes'), writeMixinClasspath
+
+	commandLine 'python', rootProject.file('gradle/check_mixin_targets.py').absolutePath,
+		rootProject.file('src/main/resources/skyzh.mixins.json').absolutePath,
+		sourceSets.main.output.classesDirs.singleFile.absolutePath,
+		mixinClasspathFile.get().asFile.absolutePath
+	workingDir rootProject.projectDir
+
+	// Python decides stdout's encoding from the console codepage, which on a Chinese Windows install
+	// is not UTF-8 — and every line this prints is Chinese.
+	environment 'PYTHONIOENCODING', 'utf-8'
+}
+
+tasks.named('check') {
+	dependsOn 'checkTranslations', 'checkCapture', 'checkCommands', 'checkMinifiedCorpus',
+		'checkMixinTargets'
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 25
+	it.options.encoding = 'UTF-8'
+}
+
+java {
+	withSourcesJar()
+
+	sourceCompatibility = JavaVersion.VERSION_25
+	targetCompatibility = JavaVersion.VERSION_25
+}
+
+jar {
+	def projectName = rootProject.name
+	inputs.property 'projectName', projectName
+
+	from(rootProject.file('LICENSE')) {
+		rename { "${it}_$projectName" }
+	}
+}
+
+// What the root project's `dist` collects: the finished, installable jar. Offered as a configuration
+// so the root does not have to name a Loom task that does not exist while it is being configured.
+configurations {
+	distJar {
+		canBeConsumed = true
+		canBeResolved = false
+	}
+}
+
+artifacts {
+	// `jar`, not `remapJar`: 26.x ships unobfuscated, so Loom has no mappings to remap through and
+	// registers no such task. The jar `jar` produces is the installable one.
+	distJar tasks.named('jar')
+}

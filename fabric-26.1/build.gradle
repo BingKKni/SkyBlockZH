@@ -1,0 +1,27 @@
+// Minecraft 26.1.x.
+//
+// The generation where the HUD is still `Gui`, the entity type constants are still on `EntityType`,
+// and `setScreen` is still on `Minecraft`. Four places in the mod care; they live in src/mc26_1/.
+//
+// Compiled against 26.1 and declared for `>=26.1 <26.2`, because every class this mod touches is
+// byte-identical across 26.1, 26.1.1 and 26.1.2. To check that against a later patch rather than take
+// it on faith:
+//
+//     ./gradlew :fabric-26.1:build -Pmc26_1_version=26.1.2
+//
+// which recompiles this tree against that Minecraft and re-runs `checkMixinTargets` against it.
+
+plugins {
+	// Version comes from settings.gradle's pluginManagement, so both targets are on the same Loom.
+	id 'net.fabricmc.fabric-loom'
+}
+
+ext {
+	mcVersion = rootProject.mc26_1_version
+	mcRange = rootProject.mc26_1_range
+	modMenuVersion = rootProject.modmenu_26_1_version
+	versionSourceDir = 'mc26_1'
+	artifactTag = '26.1'
+}
+
+apply from: rootProject.file('gradle/target.gradle')

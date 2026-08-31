@@ -7,7 +7,8 @@
 
 [中文技术文档](TECHNICAL_zh-CN.md) · [English](TECHNICAL.md)
 
-A Chinese translation layer for Hypixel SkyBlock. Minecraft 26.2 / Fabric, client only.
+A Chinese translation layer for Hypixel SkyBlock. Minecraft 26.1.x and 26.2 / Fabric, client only —
+one jar per Minecraft, from one source tree. See [Building](#building).
 
 SkyBlock has no official Chinese, so Chinese-speaking players either work through the English or
 watch friends bounce off a screenshot they can't read. This mod replaces the text on screen so that
@@ -24,7 +25,7 @@ Translation happens **at the moment text is drawn**, and nothing else changes:
 | Chat history `allMessages`, clipboard copies | Original English |
 | `Screen#getTitle()` | Original English |
 | `BossEvent#getName()` | Original English |
-| `Hud`'s `overlayMessageString` / `title` / `subtitle` | Original English |
+| The HUD's `overlayMessageString` / `title` / `subtitle` | Original English |
 | `Objective#getDisplayName()` and the `Scoreboard`'s entries | Original English |
 
 Every mod that parses chat does so in the packet handler or through Fabric's chat events, both of
@@ -264,6 +265,12 @@ The startup log can say *that* a record does this and can never say *where* the 
 capture file can, and writes out the `segments` array split at the server's own boundaries, ready to
 paste into the record it names.
 
+Only what is *drawn* counts as a colour here. Hypixel splits a line on a tooltip as readily as on a
+colour — the sacks message sends `" items"` and the `"."` after it as two runs of the same yellow,
+the first carrying an "Added items:" hover — and judging that by whole-`Style` equality filed a
+record whose `segments` were already correct into this pile, advising a split at a boundary with no
+colour on either side of it. So the comparison is over colour, font and the five format flags.
+
 The gameplay comes from where the player was standing, through `assets/skyzh/capture/areas.json`; an
 area nobody has classified lands in `_Unknown_Gameplay`, which is fixed by adding a line to that file
 rather than by changing code.
@@ -373,11 +380,63 @@ of output.
 ## Building
 
 ```bash
-./gradlew build
+./gradlew dist     # both jars into build/dist, after running every check on both
+./gradlew build    # the same jars, into each target's own build/libs
 ```
 
-Minecraft 26.2 ships unobfuscated, so there is no mapping layer and mods are ordinary dependencies.
-Requires JDK 25.
+Requires JDK 25. Minecraft 26.x ships unobfuscated, so there is no mapping layer, mods are ordinary
+dependencies, and Loom has no `remapJar` step — `jar` produces the installable file.
+
+### Two Minecraft versions, one source tree
+
+| | jar | Minecraft it declares | Mod Menu compiled against |
+|---|---|---|---|
+| `fabric-26.1/` | `SkyBlockZH-<version>-Beta-26.1.jar` | `>=26.1 <26.2` | 18.0.0 |
+| `fabric-26.2/` | `SkyBlockZH-<version>-Beta-26.2.jar` | `>=26.2 <26.3` | 20.0.1 |
+
+Both targets compile `src/main/` — the engine, the corpus loader, the capture, nine of the twelve
+mixins — and add one small tree of their own, `src/mc26_1/` or `src/mc26_2/`. Everything about a
+target other than its version numbers lives in `gradle/target.gradle`, so the two cannot drift in how
+they package the corpus or which Java release they compile for.
+
+Only four things differ between the two Minecrafts, and each one is a file in the version tree:
+
+| What moved | 26.1.x | 26.2 |
+|---|---|---|
+| The class that draws the HUD | `Gui` | `Hud`, split out of `Gui` |
+| The player entity type constant | `EntityType.PLAYER` | `EntityTypes.PLAYER` |
+| `SubmitNodeCollector#submitNameTag` | takes a trailing `double` | does not |
+| Who owns the chat box and the screen stack | `Gui#getChat`, `Minecraft#setScreen` | `Gui.hud#getChat`, `Gui#setScreen` |
+
+The last row is `platform/ClientGui`, one copy per target with the same signature. The first three are
+`mixin/HudMixin`, `mixin/HudScoreboardMixin` and `mixin/EntityRendererMixin` — the annotations only;
+what they do when they fire is shared code in `hook/`, written once.
+
+One jar covers all of 26.1, 26.1.1 and 26.1.2: every class this mod touches is byte-identical across
+the three. Both ranges are closed at the top on purpose. Installing a jar on the Minecraft it was not
+built for would not crash — it would leave the HUD, the sidebar and every hologram silently English,
+because every injector here is `require = 0` — so the range is what stops Fabric from loading it at
+all.
+
+### Checking that the injectors still apply
+
+```bash
+./gradlew checkMixinTargets     # part of `check`, run for both targets
+```
+
+This is the check `require = 0` makes necessary. It reads the annotations back out of the *compiled*
+mixins — the real `@Mixin` value, the real `method` list, the real `At.target` — and resolves every one
+of them against the Minecraft actually on that target's compile classpath, including `@Shadow` members,
+which are not `require = 0` and crash at apply time rather than failing quietly. Compiling proves the
+mod's source agrees with itself and proves nothing at all about whether the injection points still
+exist. See `gradle/check_mixin_targets.py`.
+
+To check the shipped classes against a Minecraft the build is not currently pointed at — which is how
+`>=26.1 <26.2` was established rather than assumed:
+
+```bash
+./gradlew :fabric-26.1:build -Pmc26_1_version=26.1.2   # compile the 26.1 tree against a later patch
+```
 
 ## Author
 

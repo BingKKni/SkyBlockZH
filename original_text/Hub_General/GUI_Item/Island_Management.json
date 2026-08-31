@@ -1,0 +1,280 @@
+{
+  "source": "SkyZH runtime capture (2026-08-29, Hub + Garden settings session)",
+  "fetched_at": "2026-08-29",
+  "verified_ingame": true,
+  "gui_context": "设置菜单里「岛屿管理」那一格点进去的菜单：改岛屿的类别标签、名字、访客权限组，以及访客管理。",
+  "source_note": [
+    "三行入口既写了模板「Island %1$s」，也各写了一条字面记录。字面记录会赢（索引先查字面表，见 text/TranslationIndex.lookup），模板留作后路：Hypixel 以后加第四行时，模板至少能把 Island 翻出来，值留英文，而不是整行都是英文。",
+    "值没有收进 _shared/Terms.json：Category / Name / Ranks 都是光秃秃的通用词，进了共用词表会在别的 category_name 位置乱译。",
+    "「Ranks」在这里翻译，不走 GLOSSARY.md「Rank 一律保留英文」那一条：那一条限定的是 Hypixel 付费身份等级（原文写明「只有单独表示 Hypixel 付费身份等级的 Rank / Ranks 保留英文」），而这里是岛主自己建、发给访客的权限档位，和 Fame Rank → 声望等级 属于同一类。",
+    "说明行的语义已对照维基 Settings 页（hypixelskyblock.minecraft.wiki/w/Settings，2026-08-29 查证）。"
+  ],
+  "lines": [
+    {
+      "id": "island_management_entry",
+      "context": "岛屿管理菜单里三行入口共用的模板",
+      "raw": "§aIsland %1$s",
+      "text": "Island %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "这一行管的是哪一项，实测只有 Category / Name / Ranks 三种",
+          "type": "category_name",
+          "example": "Category"
+        }
+      ],
+      "gloss": "留作后路的模板，三种实测取值各有自己的字面记录（island_category / island_name / island_ranks），字面记录优先。取值不进 _shared/Terms.json，理由见文件的 source_note。",
+      "translate": true,
+      "zh": "岛屿%1$s"
+    },
+    {
+      "id": "island_category",
+      "context": "给岛屿挂类别标签的入口",
+      "raw": "§aIsland Category",
+      "text": "Island Category",
+      "placeholders": [],
+      "gloss": "维基说明 choosing category tags to describe your island：标签是给别人搜岛用的。",
+      "translate": true,
+      "zh": "岛屿类别"
+    },
+    {
+      "id": "island_category_desc_1",
+      "context": "「岛屿类别」那一行的说明，分四行画",
+      "raw": "§7Islands can be visited by players, if",
+      "text": "Islands can be visited by players, if",
+      "placeholders": [],
+      "gloss": "四行一句。原文两句话：前半说岛屿可以被参观，后半说挂标签方便别人找到你。中文并成一段写在首行。",
+      "translate": true,
+      "zh": "只要你愿意,别人就能来参观你的岛屿! 给岛屿挂上类别标签,方便他们找到你。"
+    },
+    {
+      "id": "island_category_desc_2",
+      "context": "承接 island_category_desc_1 的尾巴",
+      "raw": "§7you let them! Help them find you by",
+      "text": "you let them! Help them find you by",
+      "placeholders": [],
+      "gloss": "整句已在 island_category_desc_1 里译完，这一行只作标记。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "island_category_desc_3",
+      "context": "承接 island_category_desc_1 的尾巴",
+      "raw": "§7choosing category tags to describe",
+      "text": "choosing category tags to describe",
+      "placeholders": [],
+      "gloss": "整句已在 island_category_desc_1 里译完。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "island_name",
+      "context": "给岛屿改名的入口",
+      "raw": "§aIsland Name",
+      "text": "Island Name",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "岛屿名称"
+    },
+    {
+      "id": "island_name_desc_1",
+      "context": "「岛屿名称」那一行的说明，分两行画",
+      "raw": "§7Choose a custom name for your",
+      "text": "Choose a custom name for your",
+      "placeholders": [],
+      "gloss": "维基那一页把这句话写成 “by using the command!.”，多了一个句点，游戏内没有——以游戏内为准。",
+      "translate": true,
+      "zh": "用指令给你的岛屿起一个自定义名字!"
+    },
+    {
+      "id": "island_name_desc_2",
+      "context": "承接 island_name_desc_1 的尾巴",
+      "raw": "§7island by using the command!",
+      "text": "island by using the command!",
+      "placeholders": [],
+      "gloss": "整句已在 island_name_desc_1 里译完。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "island_name_color_codes",
+      "context": "岛屿名可以用颜色码的提示",
+      "raw": "§8You can use color codes such as &6.",
+      "text": "You can use color codes such as &6.",
+      "placeholders": [],
+      "gloss": "句末的 &6 是给玩家照着敲的颜色码字面量，原样保留——它不是占位符，服务器每次发的都是这个。",
+      "translate": true,
+      "zh": "你可以使用 &6 这样的颜色码。"
+    },
+    {
+      "id": "island_name_warning_1",
+      "context": "岛屿名不当会被处罚的警告，分两行画",
+      "raw": "§cWarning §f- inappropriate names are",
+      "text": "Warning - inappropriate names are",
+      "placeholders": [],
+      "gloss": "「警告」两字是红的、后半截是白的，所以按颜色分段。",
+      "translate": true,
+      "zh": "警告 - 起不当名字会被处罚!",
+      "segments": [
+        { "color": "§c", "text": "Warning", "zh": "警告" },
+        { "color": "§f", "text": " - inappropriate names are", "zh": " - 起不当名字会被处罚!" }
+      ]
+    },
+    {
+      "id": "island_name_warning_2",
+      "context": "承接 island_name_warning_1 的尾巴",
+      "raw": "§fpunishable!",
+      "text": "punishable!",
+      "placeholders": [],
+      "gloss": "整句已在 island_name_warning_1 里译完。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "island_ranks",
+      "context": "建立并管理访客权限组的入口",
+      "raw": "§aIsland Ranks",
+      "text": "Island Ranks",
+      "placeholders": [],
+      "gloss": "维基说明 Create and manage ranks for players visiting your island：是岛主自己建的访客档位，用来分配权限，所以译「权限组」而不是「等级」。这里翻译 Ranks 不违反 GLOSSARY.md 的硬性规则，理由见文件的 source_note。",
+      "translate": true,
+      "zh": "岛屿权限组"
+    },
+    {
+      "id": "island_ranks_desc_1",
+      "context": "「岛屿权限组」那一行的说明，分两行画",
+      "raw": "§7Create and manage ranks for",
+      "text": "Create and manage ranks for",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "为来你岛上的玩家建立并管理权限组。"
+    },
+    {
+      "id": "island_ranks_desc_2",
+      "context": "承接 island_ranks_desc_1 的尾巴",
+      "raw": "§7players visiting your island.",
+      "text": "players visiting your island.",
+      "placeholders": [],
+      "gloss": "整句已在 island_ranks_desc_1 里译完。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "island_not_unlocked",
+      "context": "这一项还没解锁",
+      "raw": "§cNot Unlocked",
+      "text": "Not Unlocked",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "未解锁"
+    },
+    {
+      "id": "island_warp_to_edit",
+      "context": "不在自己岛上时改不了这一项的提示",
+      "raw": "§cWarp to your island to edit!",
+      "text": "Warp to your island to edit!",
+      "placeholders": [],
+      "gloss": "设置菜单里还有一条更长的同类提示（Hub_General/GUI_Item/Settings.json#settings_warp_to_edit，那一条把花园也算进去），两条英文不同，各写一条。",
+      "translate": true,
+      "zh": "传送回你的岛屿才能修改!"
+    },
+    {
+      "id": "island_owner_name",
+      "context": "岛屿的默认名字：主人的名字加上「的岛屿」",
+      "raw": "§b%1$s's Island",
+      "text": "%1$s's Island",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "岛主，连称号一起保留原样",
+          "type": "raw",
+          "example": "[MVP+] inkkni"
+        }
+      ],
+      "gloss": "采集把玩家名连称号写进了字面量（“[MVP+] inkkni's Island”），因为那一轮只有一个人。定 raw 而不是 player_name：称号带方括号和加号，player_name 只认 Minecraft 的十六种字名字符，吃不下——同 Economy/GUI_Item/Bazaar.json#bazaar_history_for_coins_by。所有格的 's 由引擎按 text/Possessive 处理，译文里不写。",
+      "translate": true,
+      "zh": "%1$s 的岛屿"
+    },
+    {
+      "id": "island_tags_none",
+      "context": "岛屿还没挂任何类别标签",
+      "raw": "§7Tags: §8None",
+      "text": "Tags: None",
+      "placeholders": [],
+      "gloss": "「无」是 None 在这一类「标签: 取值」行里的译法。两段颜色不同（标题灰、取值深灰），所以按颜色分段。",
+      "translate": true,
+      "zh": "标签: 无",
+      "segments": [
+        { "color": "§7", "text": "Tags: ", "zh": "标签: " },
+        { "color": "§8", "text": "None", "zh": "无" }
+      ]
+    },
+    {
+      "id": "guests_management",
+      "context": "管理岛上访客的入口",
+      "raw": "§aGuests Management",
+      "text": "Guests Management",
+      "placeholders": [],
+      "gloss": "维基说明 Manage players guesting on your island。",
+      "translate": true,
+      "zh": "访客管理"
+    },
+    {
+      "id": "guests_management_desc_1",
+      "context": "「访客管理」那一行的说明，分两行画",
+      "raw": "§7Manage players guesting on your",
+      "text": "Manage players guesting on your",
+      "placeholders": [],
+      "gloss": "尾巴是 “island.” 一个词，已由 Farming/GUI_Item/Garden_Settings.json#garden_visits_guild_desc_2 收下——那一条也是 continuation（整行删掉），所以由谁应答都一样。",
+      "translate": true,
+      "zh": "管理在你岛上作客的玩家。"
+    },
+    {
+      "id": "island_guests_count",
+      "context": "当前访客人数",
+      "raw": "§a✌ §7Guests: §a0§7/5",
+      "text": "✌ Guests: %1$s/%2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前访客人数",
+          "type": "number",
+          "example": "0"
+        },
+        {
+          "token": "%2$s",
+          "desc": "访客上限",
+          "type": "number",
+          "example": "5"
+        }
+      ],
+      "gloss": "行首的 ✌ 是这一行自带的图标，不是列表记号，所以写进 text（对比设置菜单那些 ✔/✖，那些是状态记号，不写）。三段颜色：图标绿、标题灰、当前人数绿、斜杠和上限灰。",
+      "translate": true,
+      "zh": "✌ 访客: %1$s/%2$s",
+      "segments": [
+        { "color": "§a", "text": "✌ ", "zh": "✌ " },
+        { "color": "§7", "text": "Guests: ", "zh": "访客: " },
+        { "color": "§a", "text": "%1$s", "zh": "%1$s" },
+        { "color": "§7", "text": "/%2$s", "zh": "/%2$s" }
+      ]
+    },
+    {
+      "id": "island_not_on_your_island",
+      "context": "不在自己岛上时的提示",
+      "raw": "§cYou are not on your island!",
+      "text": "You are not on your island!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你现在不在自己的岛上!"
+    }
+  ]
+}

@@ -96,6 +96,40 @@
       "zh": "正在传送……"
     },
     {
+      "id": "common_warped_to_location",
+      "context": "在同一地点的内部传送点之间传送成功",
+      "raw": "§dWarped to §b%s§d!",
+      "text": "Warped to %s!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "传送目的地,如 Security Hall 或 Community Center,译名走 _shared/Terms.json",
+          "type": "location_name",
+          "example": "Security Hall"
+        }
+      ],
+      "gloss": "采集器把两个单词误拆成两个 raw 占位符;地点应作为一个 location_name 捕获,避免单词被错误切分。",
+      "translate": true,
+      "zh": "已传送到%s!",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "Warped to ",
+          "zh": "已传送到"
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§d",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
       "id": "common_queuing",
       "context": "正在排队进服务器",
       "text": "Queuing... (Attempt %1$s/%2$s)",
@@ -1073,6 +1107,111 @@
         {"color": "§e", "text": "SkyBlock Security Support Article ", "zh": "SkyBlock 账号安全帮助文档 "},
         {"color": "§b§l", "text": "CLICK HERE", "zh": "点击查看"}
       ]
+    },
+    {
+      "id": "common_material_stash_amount",
+      "context": "材料暂存区的定时提醒:一共存了多少个材料。三行一组的第一行",
+      "raw": "§f               §7You have §316,753 §7materials stashed away!",
+      "text": "You have %s materials stashed away!",
+      "placeholders": [
+        {"token": "%s", "desc": "暂存区里材料的总个数", "type": "number", "example": "16,753"}
+      ],
+      "gloss": "已查证(wiki 的 Material Stash 页):背包塞不下的可堆叠物品会按类型自动进材料暂存区,暂存区容量无上限,提醒每分钟播一次,用 /pickupstash 取回。stash 译「暂存区」:它不是仓库(不能长期放),而是「没地方放先替你收着」。行首空格是服务器凑居中用的,按 README 的规定丢弃不写进 text,改用 layout 标记让引擎按中文宽度重算。原文的复数 materials 不用另写单数一条,带占位符的记录引擎会把词尾的 s 编成可选。",
+      "translate": true,
+      "zh": "你有 %s 个材料被暂存了!",
+      "segments": [
+        {"color": "§7", "text": "You have ", "zh": "你有 "},
+        {"color": "§3", "text": "%s ", "zh": "%s "},
+        {"color": "§7", "text": "materials stashed away!", "zh": "个材料被暂存了!"}
+      ],
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "common_material_stash_types",
+      "context": "同上,第二行:这些材料分属多少个种类",
+      "raw": "§f              §8(This totals 5 types of materials stashed!)",
+      "text": "(This totals %s types of materials stashed!)",
+      "placeholders": [
+        {"token": "%s", "desc": "暂存材料的种类数", "type": "number", "example": "5"}
+      ],
+      "gloss": "整行同一个颜色,不用分段。括号照抄英文半角括号:原文的括号本身是这条附注的视觉标记,换成中文全角括号会和上一行的对齐宽度打架。",
+      "translate": true,
+      "zh": "(共 %s 种材料被暂存!)",
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "common_material_stash_click",
+      "context": "同上,第三行:可点击取回的按钮行",
+      "raw": "§f                §3§l>>> CLICK HERE§b to pick them up! §3§l<<<",
+      "text": ">>> CLICK HERE to pick them up! <<<",
+      "placeholders": [],
+      "gloss": "CLICK HERE 在别处译「点击查看」(见 common_latest_update),但这一行点下去是**把材料取回背包**不是查看,所以译「点击这里」加上后半句的「取回材料」,把动作说准。两端的 >>> <<< 是对称装饰符号,照抄,也正是 README 认定「聊天横幅」的那个视觉特征。三段颜色都保留,没有 omit。",
+      "translate": true,
+      "zh": ">>> 点击这里 取回材料! <<<",
+      "segments": [
+        {"color": "§3§l", "text": ">>> CLICK HERE", "zh": ">>> 点击这里"},
+        {"color": "§b", "text": " to pick them up! ", "zh": " 取回材料! "},
+        {"color": "§3§l", "text": "<<<", "zh": "<<<"}
+      ],
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "common_material_stash_remaining",
+      "context": "从材料暂存区取回一部分之后,服务器报还剩多少。点这一行会再开一次 /viewstash material",
+      "raw": "§eYou still have §a%1$s materials §etotalling §b%2$s §etypes of materials in there!",
+      "text": "You still have %1$s materials totalling %2$s types of materials in there!",
+      "placeholders": [
+        {"token": "%1$s", "desc": "暂存区里还剩的材料总件数", "type": "number", "example": "15,153"},
+        {"token": "%2$s", "desc": "还剩多少种材料", "type": "number", "example": "5"}
+      ],
+      "gloss": "「暂存区」沿用同文件 common_stash_picked_materials / common_material_stash_amount 的既定说法。in there 指的就是暂存区,中文把它挑明,不直译成「在那里面」。五段颜色照原文分:服务器给两个数字各上了一种高亮色,合成一段会把整句刷成第一段的黄色。",
+      "translate": true,
+      "zh": "你的材料暂存区里还有 %1$s 个材料,共 %2$s 种!",
+      "segments": [
+        {"color": "§e", "text": "You still have ", "zh": "你的材料暂存区里还有 "},
+        {"color": "§a", "text": "%1$s materials ", "zh": "%1$s 个材料"},
+        {"color": "§e", "text": "totalling ", "zh": ",共 "},
+        {"color": "§b", "text": "%2$s ", "zh": "%2$s "},
+        {"color": "§e", "text": "types of materials in there!", "zh": "种!"}
+      ]
+    },
+    {
+      "id": "common_sending_to_server",
+      "context": "切换服务器(换房间 / 回岛)时的等待提示",
+      "raw": "§7Sending to server mini35AN...",
+      "text": "Sending to server %s...",
+      "placeholders": [
+        {"token": "%s", "desc": "目标房间号。Hypixel 的 mini 服编号,不是可翻译的词", "type": "raw", "example": "mini35AN"}
+      ],
+      "gloss": "和同文件的 common_warping_home(Warping you to your SkyBlock island...)是同一类切服提示。房间号原样保留:它是服务器实例的编号,和玩家名一样没有中文。三个点是服务器原文,中文改用省略号,写法同 Community_Shop.json 的两条。",
+      "translate": true,
+      "zh": "正在发送到服务器 %s……"
+    },
+    {
+      "id": "common_booster_cookie_expires_in",
+      "context": "增益曲奇快到期时,最后一分钟每隔几秒喊一次的倒计时",
+      "raw": "§cBooster Cookie expires in §e60s",
+      "text": "Booster Cookie expires in %ss",
+      "placeholders": [
+        {"token": "%s", "desc": "剩余秒数。实测见过 60/10/5/4/3/2/1", "type": "number", "example": "60"}
+      ],
+      "gloss": "Booster Cookie 按 GLOSSARY.md 译「增益曲奇」(道具名;它给的加成叫「曲奇增益」,商店卖的网络加成 Boosters 不翻译,三个别混)。末尾的 s 是 seconds 的缩写,中文补出「秒」。",
+      "translate": true,
+      "zh": "增益曲奇将在 %s 秒后过期",
+      "segments": [
+        {"color": "§c", "text": "Booster Cookie expires in ", "zh": "增益曲奇将在 "},
+        {"color": "§e", "text": "%ss", "zh": "%s 秒后过期"}
+      ]
+    },
+    {
+      "id": "common_booster_cookie_expired",
+      "context": "增益曲奇效果结束",
+      "raw": "§cBooster Cookie has expired!",
+      "text": "Booster Cookie has expired!",
+      "placeholders": [],
+      "gloss": "承接上一条的倒计时。",
+      "translate": true,
+      "zh": "增益曲奇已过期!"
     }
   ]
 }

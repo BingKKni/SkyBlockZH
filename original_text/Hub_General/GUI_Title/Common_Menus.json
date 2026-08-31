@@ -344,9 +344,137 @@
       "context": "找到 Hoppity 狩猎活动的晚餐蛋后打开的菜单",
       "text": "Chocolate Dinner Egg",
       "placeholders": [],
-      "gloss": "Hoppity's Hunt 的四种定时彩蛋之一。",
+      "gloss": "Hoppity's Hunt 的定时彩蛋之一。已查证 hypixelskyblock.minecraft.wiki/w/Chocolate_Eggs(2026-08-29):共六种,按三顿饭两两成对——Breakfast/Brunch(早)、Lunch/Déjeuner(午)、Dinner/Supper(晚),同一对是同一顿饭的两个叫法,连图标都共用一张。所以译名也按对走:一对里的两条用不同的中文词,但都落在同一顿饭上,见同文件的 gui_title_chocolate_supper_egg。",
       "translate": true,
       "zh": "巧克力晚餐蛋"
+    },
+    {
+      "id": "gui_title_chocolate_supper_egg",
+      "context": "找到 Hoppity 狩猎活动的 Supper 蛋后打开的菜单",
+      "text": "Chocolate Supper Egg",
+      "placeholders": [],
+      "gloss": "和 Dinner 蛋是同一顿饭的两个英文叫法(理由见 gui_title_chocolate_dinner_egg),所以中文也得两个词分开:Dinner 作「晚餐」,Supper 作「晚膳」。两条不能都译「晚餐蛋」——玩家在活动里要分辨今天刷的是哪一种,译重了就看不出区别。",
+      "translate": true,
+      "zh": "巧克力晚膳蛋"
+    },
+    {
+      "id": "gui_title_chocolate_dejeuner_egg",
+      "context": "找到 Hoppity 狩猎活动的 Déjeuner 蛋后打开的菜单",
+      "text": "Chocolate Déjeuner Egg",
+      "placeholders": [],
+      "gloss": "Déjeuner 是法语的「午餐」,和 Lunch 蛋是同一顿饭的两个叫法(理由见 gui_title_chocolate_dinner_egg)。Lunch 留给「午餐」,这一条作「午宴」——法语词在英文原文里本身就带一点讲究的意思,「午宴」既是午饭又比「午餐」正式,正好对上。id 里不写 é:采集器给出的 chocolate_djeuner_egg 是把重音字母整个删掉的结果,不能用。",
+      "translate": true,
+      "zh": "巧克力午宴蛋"
+    },
+    {
+      "id": "gui_title_equipment_sets",
+      "context": "装备套装页,括号里是第几页/共几页",
+      "text": "(%1$s/%2$s) Equipment Sets",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前页码",
+          "type": "number",
+          "example": "1"
+        },
+        {
+          "token": "%2$s",
+          "desc": "总页数",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "页码搬到词组后面,和同一文件里 gui_title_armor_sets(护甲套装)、gui_title_crafted_minions 一致——中文里「(1/2) 装备套装」读着像编号,「装备套装(1/2)」才是页码。Equipment 是四件饰品栏装备(项链/斗篷/腰带/手套)的统称,和 Armor(护甲)是两套东西,译名要分开。",
+      "translate": true,
+      "zh": "装备套装(%1$s/%2$s)"
+    },
+    {
+      "id": "gui_title_claim_reward",
+      "context": "领奖界面,点一下把奖励收进背包",
+      "text": "Claim Reward",
+      "placeholders": [],
+      "gloss": "这一轮实测里是新年蛋糕的领取界面(Events/ChatMessage/New_Year_Celebration.json 那条 CLICK HERE 点开的就是它),但界面本身是通用的领奖框,不属于任何玩法。",
+      "translate": true,
+      "zh": "领取奖励"
+    },
+    {
+      "id": "gui_title_confirm_purchase",
+      "context": "购买前的确认框",
+      "text": "Confirm Purchase",
+      "placeholders": [],
+      "gloss": "和 Economy/GUI_Title/Bazaar.json 里 Confirm Instant Buy / Confirm Sell Offer 同一族,统一作「确认+动作」。",
+      "translate": true,
+      "zh": "确认购买"
+    },
+    {
+      "id": "gui_title_confirm_rewards",
+      "context": "领奖前的确认框,原文是复数",
+      "text": "Confirm Rewards",
+      "placeholders": [],
+      "gloss": "复数在中文里不体现,「确认奖励」即可。",
+      "translate": true,
+      "zh": "确认奖励"
+    },
+    {
+      "id": "gui_title_couldnt_find_players",
+      "context": "按名字搜玩家没搜到时弹出的界面标题",
+      "text": "Couldn't find players!",
+      "placeholders": [],
+      "gloss": "原文是复数 players,中文不体现数;感叹号照原文留着。",
+      "translate": true,
+      "zh": "找不到玩家!"
+    },
+    {
+      "id": "gui_title_bestiary_milestones",
+      "context": "生物图鉴的里程碑页",
+      "text": "Bestiary Milestones",
+      "placeholders": [],
+      "gloss": "Bestiary 是按怪物种类记击杀数的图鉴,作「生物图鉴」;Milestone 是达到某个击杀数给奖励的节点,作「里程碑」。",
+      "translate": true,
+      "zh": "生物图鉴里程碑"
+    },
+    {
+      "id": "gui_title_hunting_box",
+      "context": "狩猎箱界面",
+      "text": "Hunting Box",
+      "placeholders": [],
+      "gloss": "Hunting 是 Galatea 那批岛引入的技能,狩猎箱是收纳其掉落物的容器,和收纳袋(Your Bags)那一族是并列的东西。",
+      "translate": true,
+      "zh": "狩猎箱"
+    },
+    {
+      "id": "gui_title_community_shop",
+      "context": "社区商店,用铜币换公共增益的地方",
+      "text": "Community Shop",
+      "placeholders": [],
+      "gloss": "Hub 里用 Copper 买全服共享升级的商店。",
+      "translate": true,
+      "zh": "社区商店"
+    },
+    {
+      "id": "gui_title_settings_category",
+      "context": "SkyBlock 设置菜单里某一档设置页的标题,前面是类别名",
+      "text": "%s Settings",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "设置类别名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Personal"
+        }
+      ],
+      "gloss": "类别名不写死:一次采集就见到 Personal、Comms、Sounds、Chat、Garden、Fishing、User Interface、API 八档,写死就成了 README 第 4 节禁止的值枚举,而且每加一档设置都得改语料。这一条和 Hub_General/GUI_Item/Settings.json#settings_category(格子那一份,`%1$s设置`)是同一批类别名的两个渲染面,译法保持一致。类别名和「设置」之间不写空格,接缝空格由引擎补(见 Terms.json 的 spacing_note),所以 API 这种查不到词条、保持英文的值渲染出来是「API 设置」。",
+      "translate": true,
+      "zh": "%s设置"
+    },
+    {
+      "id": "gui_title_island_management",
+      "context": "私人岛屿管理菜单的标题",
+      "text": "Island Management",
+      "placeholders": [],
+      "gloss": "私人岛屿的管理界面(改岛屿设置、请人上岛这类)。Island 按 Terms.json 的通名作「岛屿」。",
+      "translate": true,
+      "zh": "岛屿管理"
     }
   ]
 }

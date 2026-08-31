@@ -1,0 +1,591 @@
+{
+  "source": "runtime capture (SkyZH), Bits Shop - Stacking Enchants",
+  "fetched_at": "2026-08-30",
+  "verified_ingame": true,
+  "gameplay": "Hub_General",
+  "surface": "GUI_Item",
+  "name": "Bits_Shop_-_Stacking_Enchants",
+  "lines": [
+    {
+      "id": "enchanted_book",
+      "context": "叠加附魔商品共用的物品名称",
+      "raw": "§fEnchanted Book",
+      "text": "Enchanted Book",
+      "placeholders": [],
+      "gloss": "原版 Minecraft 物品名，使用官方译名“附魔书”。",
+      "translate": true,
+      "zh": "附魔书"
+    },
+    {
+      "id": "expertise_i",
+      "context": "附魔书 Lore 中的 Expertise I 名称",
+      "raw": "§9Expertise I",
+      "text": "Expertise I",
+      "placeholders": [],
+      "gloss": "采集器曾把七个附魔名合并为 `%1$s I`。仓库没有 Expertise 的可靠既有译名，按要求保留英文名称。",
+      "translate": true,
+      "zh": "Expertise I"
+    },
+    {
+      "id": "compact_i",
+      "context": "附魔书 Lore 中的 Compact I 名称",
+      "raw": "§9Compact I",
+      "text": "Compact I",
+      "placeholders": [],
+      "gloss": "Compact 沿用 GLOSSARY.md 与 _shared/Terms.json 的既定译名“压缩”。",
+      "translate": true,
+      "zh": "压缩 I"
+    },
+    {
+      "id": "cultivating_i",
+      "context": "附魔书 Lore 中的 Cultivating I 名称",
+      "raw": "§9Cultivating I",
+      "text": "Cultivating I",
+      "placeholders": [],
+      "gloss": "仓库没有 Cultivating 的可靠既有译名，保留英文名称。",
+      "translate": true,
+      "zh": "Cultivating I"
+    },
+    {
+      "id": "absorb_i",
+      "context": "附魔书 Lore 中的 Absorb I 名称",
+      "raw": "§9Absorb I",
+      "text": "Absorb I",
+      "placeholders": [],
+      "gloss": "仓库没有 Absorb 的可靠既有译名，保留英文名称。",
+      "translate": true,
+      "zh": "Absorb I"
+    },
+    {
+      "id": "champion_i",
+      "context": "附魔书 Lore 中的 Champion I 名称",
+      "raw": "§9Champion I",
+      "text": "Champion I",
+      "placeholders": [],
+      "gloss": "仓库没有 Champion 的可靠既有译名，保留英文名称。",
+      "translate": true,
+      "zh": "Champion I"
+    },
+    {
+      "id": "hecatomb_i",
+      "context": "附魔书 Lore 中的 Hecatomb I 名称",
+      "raw": "§9Hecatomb I",
+      "text": "Hecatomb I",
+      "placeholders": [],
+      "gloss": "Hecatomb 是空岛自造附魔名，仓库没有可靠既有译名，保留英文名称。",
+      "translate": true,
+      "zh": "Hecatomb I"
+    },
+    {
+      "id": "toxophilite_i",
+      "context": "附魔书 Lore 中的 Toxophilite I 名称",
+      "raw": "§9Toxophilite I",
+      "text": "Toxophilite I",
+      "placeholders": [],
+      "gloss": "仓库没有 Toxophilite 的可靠既有译名，保留英文名称。",
+      "translate": true,
+      "zh": "Toxophilite I"
+    },
+    {
+      "id": "grants_06_sea_creature_chance",
+      "context": "Expertise I 的海洋生物几率加成说明",
+      "raw": "§7Grants §3+0.6 Sea Creature Chance",
+      "text": "Grants +0.6 Sea Creature Chance",
+      "placeholders": [],
+      "gloss": "Sea Creature Chance 沿用 Fishing_Stats.json 的“海洋生物几率”。",
+      "translate": true,
+      "zh": "提供 +0.6 海洋生物几率",
+      "segments": [
+        { "color": "§7", "text": "Grants ", "zh": "提供 " },
+        { "color": "§3", "text": "+0.6 Sea Creature Chance", "zh": "+0.6 海洋生物几率" }
+      ]
+    },
+    {
+      "id": "and_2_fishing_wisdom_when_killing",
+      "context": "Expertise I 的钓鱼智慧加成及生效对象",
+      "raw": "§7and §3+2☯ Fishing Wisdom §7when killing",
+      "text": "and +2☯ Fishing Wisdom when killing",
+      "placeholders": [],
+      "gloss": "社区 Wiki 的 Expertise 页面确认该加成在击杀海洋生物时生效。",
+      "translate": true,
+      "zh": "以及 +2☯ 钓鱼智慧,对海洋生物生效。",
+      "segments": [
+        { "color": "§7", "text": "and ", "zh": "以及 " },
+        { "color": "§3", "text": "+2☯ Fishing Wisdom ", "zh": "+2☯ 钓鱼智慧" },
+        { "color": "§7", "text": "when killing", "zh": ",对海洋生物生效。" }
+      ]
+    },
+    {
+      "id": "50_kills_to_tier_up",
+      "context": "叠加附魔累计 50 次击杀后的升级提示",
+      "raw": "§850 kills to tier up!",
+      "text": "50 kills to tier up!",
+      "placeholders": [],
+      "gloss": "采集器曾把数量和分类词分别设为相邻占位符；kills 必须翻译，因此按有限条件拆成字面记录。",
+      "translate": true,
+      "zh": "累计 50 次击杀后自动升到下一级附魔!"
+    },
+    {
+      "id": "100_blocks_to_tier_up",
+      "context": "叠加附魔挖掘 100 个方块后的升级提示",
+      "raw": "§8100 blocks to tier up!",
+      "text": "100 blocks to tier up!",
+      "placeholders": [],
+      "gloss": "由采集器的相邻占位符宽模板拆出。",
+      "translate": true,
+      "zh": "挖掘 100 个方块后自动升到下一级附魔!"
+    },
+    {
+      "id": "1k_crops_to_tier_up",
+      "context": "叠加附魔收获 1k 个农作物后的升级提示",
+      "raw": "§81k crops to tier up!",
+      "text": "1k crops to tier up!",
+      "placeholders": [],
+      "gloss": "由采集器的相邻占位符宽模板拆出。",
+      "translate": true,
+      "zh": "收获 1k 个农作物后自动升到下一级附魔!"
+    },
+    {
+      "id": "1k_logs_to_tier_up",
+      "context": "叠加附魔砍伐 1k 个原木后的升级提示",
+      "raw": "§81k logs to tier up!",
+      "text": "1k logs to tier up!",
+      "placeholders": [],
+      "gloss": "由采集器的相邻占位符宽模板拆出。",
+      "translate": true,
+      "zh": "砍伐 1k 个原木后自动升到下一级附魔!"
+    },
+    {
+      "id": "applicable_on_fishing_rod",
+      "context": "Expertise I 的适用物品类型",
+      "raw": "§7Applicable on: §9Fishing Rod",
+      "text": "Applicable on: Fishing Rod",
+      "placeholders": [],
+      "gloss": "采集器曾把四种双词物品类型拆成两个相邻 raw 占位符；分类值需要翻译，因此拆成字面记录。",
+      "translate": true,
+      "zh": "适用于: 钓鱼竿",
+      "segments": [
+        { "color": "§7", "text": "Applicable on: ", "zh": "适用于: " },
+        { "color": "§9", "text": "Fishing Rod", "zh": "钓鱼竿" }
+      ]
+    },
+    {
+      "id": "applicable_on_mining_tools",
+      "context": "Compact I 的适用物品类型",
+      "raw": "§7Applicable on: §9Mining Tools",
+      "text": "Applicable on: Mining Tools",
+      "placeholders": [],
+      "gloss": "由采集器的相邻 raw 宽模板拆出。",
+      "translate": true,
+      "zh": "适用于: 挖矿工具",
+      "segments": [
+        { "color": "§7", "text": "Applicable on: ", "zh": "适用于: " },
+        { "color": "§9", "text": "Mining Tools", "zh": "挖矿工具" }
+      ]
+    },
+    {
+      "id": "applicable_on_farming_tool",
+      "context": "Cultivating I 的适用物品类型",
+      "raw": "§7Applicable on: §9Farming Tool",
+      "text": "Applicable on: Farming Tool",
+      "placeholders": [],
+      "gloss": "由采集器的相邻 raw 宽模板拆出。",
+      "translate": true,
+      "zh": "适用于: 农业工具",
+      "segments": [
+        { "color": "§7", "text": "Applicable on: ", "zh": "适用于: " },
+        { "color": "§9", "text": "Farming Tool", "zh": "农业工具" }
+      ]
+    },
+    {
+      "id": "applicable_on_melee_weapon",
+      "context": "Champion I 的适用物品类型",
+      "raw": "§7Applicable on: §9Melee Weapon",
+      "text": "Applicable on: Melee Weapon",
+      "placeholders": [],
+      "gloss": "由采集器的相邻 raw 宽模板拆出。",
+      "translate": true,
+      "zh": "适用于: 近战武器",
+      "segments": [
+        { "color": "§7", "text": "Applicable on: ", "zh": "适用于: " },
+        { "color": "§9", "text": "Melee Weapon", "zh": "近战武器" }
+      ]
+    },
+    {
+      "id": "apply_cost_exp_levels",
+      "context": "叠加附魔书的铁砧应用经验等级花费",
+      "raw": "§7Apply Cost: §3%1$s Exp Levels",
+      "text": "Apply Cost: %1$s Exp Levels",
+      "placeholders": [
+        { "token": "%1$s", "desc": "应用该附魔所需的经验等级", "type": "number", "example": "25" }
+      ],
+      "gloss": "采集观察到 25 与 10 两种数值；仅数值动态，分类词 Exp Levels 固定并翻译。",
+      "translate": true,
+      "zh": "应用花费: %1$s 经验等级",
+      "segments": [
+        { "color": "§7", "text": "Apply Cost: ", "zh": "应用花费: " },
+        { "color": "§3", "text": "%1$s Exp Levels", "zh": "%1$s 经验等级" }
+      ]
+    },
+    {
+      "id": "expertise_cannot_be_combined",
+      "context": "Expertise 附魔书不可互相合并的提示",
+      "raw": "§e▲ §7Expertise cannot be combined!",
+      "text": "▲ Expertise cannot be combined!",
+      "placeholders": [],
+      "gloss": "附魔名保留英文，但句子其余部分翻译；由采集器的动态附魔名模板拆出。",
+      "translate": true,
+      "zh": "▲ Expertise 附魔无法通过铁砧合并附魔书来升到下一级!",
+      "segments": [
+        { "color": "§e", "text": "▲ ", "zh": "▲ " },
+        { "color": "§7", "text": "Expertise cannot be combined!", "zh": "Expertise 附魔无法通过铁砧合并附魔书来升到下一级!" }
+      ]
+    },
+    {
+      "id": "compact_cannot_be_combined",
+      "context": "Compact 附魔书不可互相合并的提示",
+      "raw": "§e▲ §7Compact cannot be combined!",
+      "text": "▲ Compact cannot be combined!",
+      "placeholders": [],
+      "gloss": "Compact 沿用既定译名“压缩”；由动态附魔名模板拆出。",
+      "translate": true,
+      "zh": "▲ 压缩附魔无法通过铁砧合并附魔书来升到下一级!",
+      "segments": [
+        { "color": "§e", "text": "▲ ", "zh": "▲ " },
+        { "color": "§7", "text": "Compact cannot be combined!", "zh": "压缩附魔无法通过铁砧合并附魔书来升到下一级!" }
+      ]
+    },
+    {
+      "id": "cultivating_cannot_be_combined",
+      "context": "Cultivating 附魔书不可互相合并的提示",
+      "raw": "§e▲ §7Cultivating cannot be combined!",
+      "text": "▲ Cultivating cannot be combined!",
+      "placeholders": [],
+      "gloss": "附魔名保留英文，但句子其余部分翻译。",
+      "translate": true,
+      "zh": "▲ Cultivating 附魔无法通过铁砧合并附魔书来升到下一级!",
+      "segments": [
+        { "color": "§e", "text": "▲ ", "zh": "▲ " },
+        { "color": "§7", "text": "Cultivating cannot be combined!", "zh": "Cultivating 附魔无法通过铁砧合并附魔书来升到下一级!" }
+      ]
+    },
+    {
+      "id": "absorb_cannot_be_combined",
+      "context": "Absorb 附魔书不可互相合并的提示",
+      "raw": "§e▲ §7Absorb cannot be combined!",
+      "text": "▲ Absorb cannot be combined!",
+      "placeholders": [],
+      "gloss": "附魔名保留英文，但句子其余部分翻译。",
+      "translate": true,
+      "zh": "▲ Absorb 附魔无法通过铁砧合并附魔书来升到下一级!",
+      "segments": [
+        { "color": "§e", "text": "▲ ", "zh": "▲ " },
+        { "color": "§7", "text": "Absorb cannot be combined!", "zh": "Absorb 附魔无法通过铁砧合并附魔书来升到下一级!" }
+      ]
+    },
+    {
+      "id": "champion_cannot_be_combined",
+      "context": "Champion 附魔书不可互相合并的提示",
+      "raw": "§e▲ §7Champion cannot be combined!",
+      "text": "▲ Champion cannot be combined!",
+      "placeholders": [],
+      "gloss": "附魔名保留英文，但句子其余部分翻译。",
+      "translate": true,
+      "zh": "▲ Champion 附魔无法通过铁砧合并附魔书来升到下一级!",
+      "segments": [
+        { "color": "§e", "text": "▲ ", "zh": "▲ " },
+        { "color": "§7", "text": "Champion cannot be combined!", "zh": "Champion 附魔无法通过铁砧合并附魔书来升到下一级!" }
+      ]
+    },
+    {
+      "id": "hecatomb_cannot_be_combined",
+      "context": "Hecatomb 附魔书不可互相合并的提示",
+      "raw": "§e▲ §7Hecatomb cannot be combined!",
+      "text": "▲ Hecatomb cannot be combined!",
+      "placeholders": [],
+      "gloss": "附魔名保留英文，但句子其余部分翻译。",
+      "translate": true,
+      "zh": "▲ Hecatomb 附魔无法通过铁砧合并附魔书来升到下一级!",
+      "segments": [
+        { "color": "§e", "text": "▲ ", "zh": "▲ " },
+        { "color": "§7", "text": "Hecatomb cannot be combined!", "zh": "Hecatomb 附魔无法通过铁砧合并附魔书来升到下一级!" }
+      ]
+    },
+    {
+      "id": "toxophilite_cannot_be_combined",
+      "context": "Toxophilite 附魔书不可互相合并的提示",
+      "raw": "§e▲ §7Toxophilite cannot be combined!",
+      "text": "▲ Toxophilite cannot be combined!",
+      "placeholders": [],
+      "gloss": "附魔名保留英文，但句子其余部分翻译。",
+      "translate": true,
+      "zh": "▲ Toxophilite 附魔无法通过铁砧合并附魔书来升到下一级!",
+      "segments": [
+        { "color": "§e", "text": "▲ ", "zh": "▲ " },
+        { "color": "§7", "text": "Toxophilite cannot be combined!", "zh": "Toxophilite 附魔无法通过铁砧合并附魔书来升到下一级!" }
+      ]
+    },
+    {
+      "id": "stacking_enchants_bits_price",
+      "ref": "_shared/Menu_Common.json#menu_bits_price",
+      "context": "点券商店叠加附魔分类中的商品价格行"
+    },
+    {
+      "id": "gain_1_mining_wisdom_and_a_025",
+      "context": "Compact I 的挖掘智慧与附魔物品掉落概率",
+      "raw": "§7Gain §3+1☯ Mining Wisdom §7and a §a0.25%",
+      "text": "Gain +1☯ Mining Wisdom and a 0.25%",
+      "placeholders": [],
+      "gloss": "社区 Wiki 的 Compact 页面确认该概率用于额外掉落对应的附魔物品。完整英文被排版拆成两行,中文在本行合并成完整句。",
+      "translate": true,
+      "zh": "获得 +1☯ 挖掘智慧,并有 0.25% 的概率额外掉落附魔物品。",
+      "segments": [
+        { "color": "§7", "text": "Gain ", "zh": "获得 " },
+        { "color": "§3", "text": "+1☯ Mining Wisdom ", "zh": "+1☯ 挖掘智慧" },
+        { "color": "§7", "text": "and a ", "zh": ",并有 " },
+        { "color": "§a", "text": "0.25%", "zh": "0.25% 的概率额外掉落附魔物品。" }
+      ]
+    },
+    {
+      "id": "compact_chance_to_drop_an_enchanted_item",
+      "context": "接上一行,Compact I 效果说明被排版拆出的尾行",
+      "raw": "§7chance to drop an enchanted item.",
+      "text": "chance to drop an enchanted item.",
+      "placeholders": [],
+      "gloss": "完整译文已合并到上一行,本行作为 continuation 删除,避免中文后重复显示英文尾句。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "gain_1_farming_wisdom_and_2",
+      "context": "Cultivating I 的农业智慧及农业时运加成",
+      "raw": "§7Gain §3+1☯ Farming Wisdom §7and §6+2",
+      "text": "Gain +1☯ Farming Wisdom and +2",
+      "placeholders": [],
+      "gloss": "社区 Wiki 的 Cultivating 页面确认第二项属性为 Farming Fortune；Farming 按项目既定术语译作“农业”。",
+      "translate": true,
+      "zh": "获得 +1☯ 农业智慧和 +2 农业时运。",
+      "segments": [
+        { "color": "§7", "text": "Gain ", "zh": "获得 " },
+        { "color": "§3", "text": "+1☯ Farming Wisdom ", "zh": "+1☯ 农业智慧" },
+        { "color": "§7", "text": "and ", "zh": "和 " },
+        { "color": "§6", "text": "+2", "zh": "+2 农业时运。" }
+      ]
+    },
+    {
+      "id": "grants_1_foraging_wisdom_and",
+      "context": "Absorb I 的伐木智慧加成说明首行",
+      "raw": "§7Grants §3+1☯ Foraging Wisdom §7and",
+      "text": "Grants +1☯ Foraging Wisdom and",
+      "placeholders": [],
+      "gloss": "Foraging 按项目既定术语译作“伐木”；下一行保留伐木时运的金色高亮，因此不合并删除。",
+      "translate": true,
+      "zh": "提供 +1☯ 伐木智慧和",
+      "segments": [
+        { "color": "§7", "text": "Grants ", "zh": "提供 " },
+        { "color": "§3", "text": "+1☯ Foraging Wisdom ", "zh": "+1☯ 伐木智慧" },
+        { "color": "§7", "text": "and", "zh": "和" }
+      ]
+    },
+    {
+      "id": "2_foraging_fortune",
+      "context": "Absorb I 的伐木时运加成说明续行",
+      "raw": "§6+2 Foraging Fortune§7.",
+      "text": "+2 Foraging Fortune.",
+      "placeholders": [],
+      "gloss": "Fortune 家族统一译作“时运”，Foraging Fortune 译作“伐木时运”。",
+      "translate": true,
+      "zh": "+2 伐木时运。",
+      "segments": [
+        { "color": "§6", "text": "+2 Foraging Fortune", "zh": "+2 伐木时运" },
+        { "color": "§7", "text": ".", "zh": "。" }
+      ]
+    },
+    {
+      "id": "applicable_on_axe",
+      "context": "Absorb I 的适用物品类型",
+      "raw": "§7Applicable on: §9Axe",
+      "text": "Applicable on: Axe",
+      "placeholders": [],
+      "gloss": "采集器曾用动态值合并 Axe、Helmet、Bow；这些有限分类都需要翻译，因此拆成字面记录。",
+      "translate": true,
+      "zh": "适用于: 斧",
+      "segments": [
+        { "color": "§7", "text": "Applicable on: ", "zh": "适用于: " },
+        { "color": "§9", "text": "Axe", "zh": "斧" }
+      ]
+    },
+    {
+      "id": "applicable_on_helmet",
+      "context": "Hecatomb I 的适用物品类型",
+      "raw": "§7Applicable on: §9Helmet",
+      "text": "Applicable on: Helmet",
+      "placeholders": [],
+      "gloss": "由采集器的动态分类模板拆出。",
+      "translate": true,
+      "zh": "适用于: 头盔",
+      "segments": [
+        { "color": "§7", "text": "Applicable on: ", "zh": "适用于: " },
+        { "color": "§9", "text": "Helmet", "zh": "头盔" }
+      ]
+    },
+    {
+      "id": "applicable_on_bow",
+      "context": "Toxophilite I 的适用物品类型",
+      "raw": "§7Applicable on: §9Bow",
+      "text": "Applicable on: Bow",
+      "placeholders": [],
+      "gloss": "由采集器的动态分类模板拆出。",
+      "translate": true,
+      "zh": "适用于: 弓",
+      "segments": [
+        { "color": "§7", "text": "Applicable on: ", "zh": "适用于: " },
+        { "color": "§9", "text": "Bow", "zh": "弓" }
+      ]
+    },
+    {
+      "id": "gain_3_extra_combat_xp_the_2nd_hit",
+      "context": "Champion I 的战斗经验与连续攻击效果说明首行",
+      "raw": "§7Gain §a3% §7extra Combat XP. The 2nd hit",
+      "text": "Gain 3% extra Combat XP. The 2nd hit",
+      "placeholders": [],
+      "gloss": "后续行承载不同颜色的硬币和经验数值，不能用 continuation 合并，否则会丢失高亮。",
+      "translate": true,
+      "zh": "获得 3% 额外战斗经验。对同一只怪物的第 2 次攻击",
+      "segments": [
+        { "color": "§7", "text": "Gain ", "zh": "获得 " },
+        { "color": "§a", "text": "3% ", "zh": "3% " },
+        { "color": "§7", "text": "extra Combat XP. The 2nd hit", "zh": "额外战斗经验。对同一只怪物的第 2 次攻击" }
+      ]
+    },
+    {
+      "id": "on_a_mob_grants_14_coins_7_exp",
+      "context": "Champion I 连续攻击奖励说明续行，完整翻译到经验球",
+      "raw": "§7on a mob grants §6+1.4 coins §7& §3+7 §7exp",
+      "text": "on a mob grants +1.4 coins & +7 exp",
+      "placeholders": [],
+      "gloss": "coins 统一译作“硬币”；下一行只有 orbs.，合并到本行并标 continuation。",
+      "translate": true,
+      "zh": "会提供 +1.4 硬币和 +7 经验球。",
+      "segments": [
+        { "color": "§7", "text": "on a mob grants ", "zh": "会提供 " },
+        { "color": "§6", "text": "+1.4 coins ", "zh": "+1.4 硬币" },
+        { "color": "§7", "text": "& ", "zh": "和 " },
+        { "color": "§3", "text": "+7 ", "zh": "+7 " },
+        { "color": "§7", "text": "exp", "zh": "经验球。" }
+      ]
+    },
+    {
+      "id": "orbs",
+      "context": "接 Champion I 经验球说明的排版续行",
+      "raw": "§7orbs.",
+      "text": "orbs.",
+      "placeholders": [],
+      "gloss": "完整译文已并入上一行。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "50k_combat_xp_to_tier_up",
+      "context": "叠加附魔累计获得 50k 战斗经验后的升级提示",
+      "raw": "§850k Combat XP to tier up!",
+      "text": "50k Combat XP to tier up!",
+      "placeholders": [],
+      "gloss": "采集器曾把此行与 `2 S+ runs` 合并为三个相邻 raw 占位符；动态分类值会中英混杂，因此恢复字面记录。",
+      "translate": true,
+      "zh": "获得 50k 战斗经验后升级!"
+    },
+    {
+      "id": "2_s_plus_runs_to_tier_up",
+      "context": "Hecatomb 累计完成 2 次 S+ 评分地牢后的升级提示",
+      "raw": "§82 S+ runs to tier up!",
+      "text": "2 S+ runs to tier up!",
+      "placeholders": [],
+      "gloss": "S+ 是地牢评分，保留原样；修复采集器相邻 raw 模板把 S+ 截成 S 的错误。",
+      "translate": true,
+      "zh": "完成 2 次 S+ 评分通关后升级!"
+    },
+    {
+      "id": "gain_028_catacombs_xp_056_class_xp",
+      "context": "Hecatomb I 的地下墓穴经验与职业经验加成说明首行",
+      "raw": "§7Gain §a+0.28% §cCatacombs §7XP & §a+0.56% §3Class §7XP,",
+      "text": "Gain +0.28% Catacombs XP & +0.56% Class XP,",
+      "placeholders": [],
+      "gloss": "下一行的 S+ 保留青色粗体，因此两行分别翻译，不使用 continuation。",
+      "translate": true,
+      "zh": "获得 +0.28% 地下墓穴经验和 +0.56% 职业经验，",
+      "segments": [
+        { "color": "§7", "text": "Gain ", "zh": "获得 " },
+        { "color": "§a", "text": "+0.28% ", "zh": "+0.28% " },
+        { "color": "§c", "text": "Catacombs ", "zh": "地下墓穴" },
+        { "color": "§7", "text": "XP & ", "zh": "经验和 " },
+        { "color": "§a", "text": "+0.56% ", "zh": "+0.56% " },
+        { "color": "§3", "text": "Class ", "zh": "职业" },
+        { "color": "§7", "text": "XP,", "zh": "经验，" }
+      ]
+    },
+    {
+      "id": "doubled_on_s_runs",
+      "context": "Hecatomb I 在 S+ 评分通关时经验加成翻倍的说明续行",
+      "raw": "§7doubled on §b§lS+ §7runs.",
+      "text": "doubled on S+ runs.",
+      "placeholders": [],
+      "gloss": "S+ 是地牢评分，保留原样及粗体。",
+      "translate": true,
+      "zh": "在 S+ 评分通关时翻倍。",
+      "segments": [
+        { "color": "§7", "text": "doubled on ", "zh": "在 " },
+        { "color": "§b§l", "text": "S+ ", "zh": "S+ " },
+        { "color": "§7", "text": "runs.", "zh": "评分通关时翻倍。" }
+      ]
+    },
+    {
+      "id": "grants_26_per_10_catacombs_levels",
+      "context": "Hecatomb I 按地下墓穴等级提供生命值的说明",
+      "raw": "§7Grants §c+2.6 §7per 10 §cCatacombs §7levels.",
+      "text": "Grants +2.6 per 10 Catacombs levels.",
+      "placeholders": [],
+      "gloss": "U+E010 是生命值图标；Catacombs 译作“地下墓穴”。",
+      "translate": true,
+      "zh": "提供 +2.6 生命值，每 10 级地下墓穴等级生效一次。",
+      "segments": [
+        { "color": "§7", "text": "Grants ", "zh": "提供 " },
+        { "color": "§c", "text": "+2.6 ", "zh": "+2.6 生命值" },
+        { "color": "§7", "text": "per 10 ", "zh": "，每 10 级" },
+        { "color": "§c", "text": "Catacombs ", "zh": "地下墓穴" },
+        { "color": "§7", "text": "levels.", "zh": "等级生效一次。" }
+      ]
+    },
+    {
+      "id": "gain_3_extra_combat_xp_grants",
+      "context": "Toxophilite I 的战斗经验与暴击率加成说明首行",
+      "raw": "§7Gain §a3% §7extra Combat XP. Grants",
+      "text": "Gain 3% extra Combat XP. Grants",
+      "placeholders": [],
+      "gloss": "下一行承载蓝色暴击率数值，因此两行分别翻译以保留颜色。",
+      "translate": true,
+      "zh": "获得 3% 额外战斗经验，并提供",
+      "segments": [
+        { "color": "§7", "text": "Gain ", "zh": "获得 " },
+        { "color": "§a", "text": "3% ", "zh": "3% " },
+        { "color": "§7", "text": "extra Combat XP. Grants", "zh": "额外战斗经验，并提供" }
+      ]
+    },
+    {
+      "id": "37_crit_chance",
+      "context": "Toxophilite I 的暴击率加成说明续行",
+      "raw": "§9+3.7 Crit Chance§7.",
+      "text": "+3.7 Crit Chance.",
+      "placeholders": [],
+      "gloss": "Crit Chance 沿用 SkyBlock_Menu.json 的“暴击率”。",
+      "translate": true,
+      "zh": "+3.7 暴击率。",
+      "segments": [
+        { "color": "§9", "text": "+3.7 Crit Chance", "zh": "+3.7 暴击率" },
+        { "color": "§7", "text": ".", "zh": "。" }
+      ]
+    }
+  ]
+}

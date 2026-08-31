@@ -1,0 +1,240 @@
+{
+  "source": "runtime capture (SkyZH) 2026-08-29 实测会话",
+  "fetched_at": "2026-08-29",
+  "verified_ingame": true,
+  "gui_context": "Jerry 工坊(Season of Jerry 冬季活动)期间侧边栏多出来的几行:北极星余额、活动开始倒计时,以及「保卫 Jerry 的工坊」小游戏进行中的波次、剩余岩浆怪、自己的伤害与排名。",
+  "source_note": "两处需要留底的判断。① 采集把「Your Total Damage」和「Your Cube Damage」归并成了 `Your %1$s Damage: %2$s` 一个模板(observed 里 Total / Cube 两种取值),这里拆成两条字面量:两个词要的中文不一样(总伤害 / 对岩浆怪的伤害),模板套出来会是「你的 Total 伤害」这种中英混杂;而 raw 占位符还会顺手把别处无关的 `Your X Damage` 收进来(同 text/ValueShape.java 那次事故的成因)。② 侧边栏的现实日期加房间号那一行(`08/28/26 m119CB`)和末行的 `www.hypixel.net` 故意不收——里面没有可翻译的词,同 Hub_General/ScoreBoard/Common_Sidebar.json 的 todo 已经写明的理由。",
+  "lines": [
+    {
+      "id": "sb_north_stars",
+      "context": "侧边栏上的北极星余额,Jerry 工坊的活动货币",
+      "raw": "§fNorth Stars: §d167",
+      "text": "North Stars: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "北极星数量",
+          "type": "number",
+          "example": "167"
+        }
+      ],
+      "gloss": "North Star 就是北极星(Polaris),是个普通词而不是自造专有名词,按 Bits→点券、Purse→硬币 的做法翻译(_shared/Terms.json 里 Gems 保留英文是因为它同时是充值货币的商品名,不是同类情形)。原文是复数,中文不体现数。用它在 Einary 的商行买东西,见 Events/GUI_Title/Jerrys_Workshop.json。首次出现,暂定译名。",
+      "translate": true,
+      "zh": "北极星: %s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "North Stars: ",
+          "zh": "北极星: "
+        },
+        {
+          "color": "§d",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "sb_event_start",
+      "context": "活动开始前的倒计时",
+      "raw": "§fEvent Start: §a%1$s",
+      "text": "Event Start: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "距活动开始的倒计时(分:秒)",
+          "type": "raw",
+          "example": "6:39"
+        }
+      ],
+      "gloss": "原文是名词短语 Event Start,中文侧边栏这一格讲的是「还有多久开始」,所以作「距开始」——和 Hub_General/GUI_Item/SkyBlock_Menu.json 的「距结束: 」(Ends in:)成对。占位符用 raw 而不是 time:倒计时写成 m:ss,冒号不在 duration 的正则里(见 text/Capture 的 DURATION)。这一行未必只属于 Jerry 工坊,别的活动开始前大概也是这一行,等采到别的活动再决定是否移去 Hub_General/ScoreBoard/Common_Sidebar.json。",
+      "translate": true,
+      "zh": "距开始: %s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Event Start: ",
+          "zh": "距开始: "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "sb_wave",
+      "context": "保卫 Jerry 的工坊:当前第几波",
+      "raw": "§cWave 1",
+      "text": "Wave %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "波次序号",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "中文用「第 N 波」,量词不能省——单说「波 1」不成话。实测只采到第 1 波,但波次显然会往上涨,所以写成模板而不是字面量。",
+      "translate": true,
+      "zh": "第 %s 波"
+    },
+    {
+      "id": "sb_magma_cubes_left",
+      "context": "保卫 Jerry 的工坊:这一波还剩多少岩浆怪",
+      "raw": "§fMagma Cubes Left: §c%1$s",
+      "text": "Magma Cubes Left: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "剩余岩浆怪数量",
+          "type": "number",
+          "example": "10"
+        }
+      ],
+      "gloss": "Magma Cube 按 _shared/Terms.json 作「岩浆怪」(原版怪物的官方中文译名)。原文是复数,中文不体现数。Left 作「剩余」,放到前面当定语。",
+      "translate": true,
+      "zh": "剩余岩浆怪: %s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Magma Cubes Left: ",
+          "zh": "剩余岩浆怪: "
+        },
+        {
+          "color": "§c",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "sb_your_total_damage",
+      "context": "保卫 Jerry 的工坊:自己打出的总伤害",
+      "raw": "§fYour Total Damage: §c%1$s",
+      "text": "Your Total Damage: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "累计伤害",
+          "type": "number",
+          "example": "0"
+        }
+      ],
+      "gloss": "英文的 Your 在侧边栏里不说出来更像中文客户端的写法(同 Your Bags→收纳袋),但这一行和下面的排名行是拿来跟别人比的,留着「我的」比全省掉更清楚。",
+      "translate": true,
+      "zh": "我的总伤害: %s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Your Total Damage: ",
+          "zh": "我的总伤害: "
+        },
+        {
+          "color": "§c",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "sb_your_total_damage_rank",
+      "context": "同上,后面还跟着自己在本场的排名",
+      "raw": "§fYour Total Damage: §c%1$s §e(#%2$s)",
+      "text": "Your Total Damage: %1$s (#%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "累计伤害",
+          "type": "number",
+          "example": "1"
+        },
+        {
+          "token": "%2$s",
+          "desc": "本场伤害排名",
+          "type": "number",
+          "example": "4"
+        }
+      ],
+      "gloss": "和上一条是同一行的两种形态:排名要等打出伤害之后才出现,所以两条都要,不能只写带排名的那一条(同 Common_Sidebar.json 里 Purse: %s 与 Purse: %1$s (+%2$s) 的处理)。井号照原文留着,中文玩家看得懂 (#4) 是第 4 名。",
+      "translate": true,
+      "zh": "我的总伤害: %1$s (#%2$s)",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Your Total Damage: ",
+          "zh": "我的总伤害: "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§e",
+          "text": "(#%2$s)",
+          "zh": "(#%2$s)"
+        }
+      ]
+    },
+    {
+      "id": "sb_your_cube_damage",
+      "context": "保卫 Jerry 的工坊:自己对岩浆怪打出的伤害",
+      "raw": "§fYour Cube Damage: §c%1$s",
+      "text": "Your Cube Damage: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "对岩浆怪造成的伤害",
+          "type": "number",
+          "example": "0"
+        }
+      ],
+      "gloss": "Cube 这里是上一行 Magma Cube 的简称,不是「立方体」。中文不跟着简写成「怪伤害」——那读不出是对谁的伤害,写全成「对岩浆怪的伤害」。和 sb_your_total_damage 是采集归并出来的同一个模板,拆成两条的理由见本文件 source_note。",
+      "translate": true,
+      "zh": "我对岩浆怪的伤害: %s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Your Cube Damage: ",
+          "zh": "我对岩浆怪的伤害: "
+        },
+        {
+          "color": "§c",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "sb_next_wave",
+      "context": "保卫 Jerry 的工坊:距下一波还有多久",
+      "raw": "§fNext Wave: §a%1$s",
+      "text": "Next Wave: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "距下一波的倒计时(分:秒)",
+          "type": "raw",
+          "example": "6:30"
+        }
+      ],
+      "gloss": "占位符用 raw 的理由同 sb_event_start。中文补出量词「波」,和 sb_wave 的「第 N 波」用同一个字。",
+      "translate": true,
+      "zh": "下一波: %s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Next Wave: ",
+          "zh": "下一波: "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    }
+  ]
+}

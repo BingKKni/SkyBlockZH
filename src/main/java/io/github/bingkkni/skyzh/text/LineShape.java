@@ -106,8 +106,18 @@ public final class LineShape {
 	 * attribute's icon, which the corpus writes down and the translation keeps. Getting that wrong
 	 * loses the icon off every stat line in the game, so the list only ever holds marks somebody has
 	 * seen used this way.
+	 *
+	 * <p>{@code ✔} and {@code ✖} are on the list for the settings menu, where every row is one
+	 * toggle and the mark is the state: green tick when it is on, red cross when it is off. The row
+	 * says the same thing either way — "Death Messages" — so stepping over the mark lets one record
+	 * answer for both states and leaves each mark in the colour that is carrying the meaning.
 	 */
-	private static final String BULLETS = "▶▸➤➜■◆•⦾⁍⚑";
+	private static final String BULLETS = "▶▸➤➜■◆•⦾⁍⚑✔✖";
+
+	/** Whether this character is one of those marks. Used by {@link Capture} to refuse it as a name. */
+	static boolean isBullet(char c) {
+		return BULLETS.indexOf(c) >= 0;
+	}
 
 	/**
 	 * Where the text starts once a leading bullet is stepped over, or {@code start} when there is

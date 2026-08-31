@@ -1,5 +1,7 @@
 package io.github.bingkkni.skyzh.capture;
 
+import io.github.bingkkni.skyzh.Feedback;
+import io.github.bingkkni.skyzh.platform.ClientGui;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.EnumMap;
@@ -9,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.network.chat.ClickEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.HoverEvent;
@@ -36,17 +37,6 @@ import net.minecraft.network.chat.Style;
  * feature could have fed on itself is closed by where the hooks are rather than by a special case.
  */
 public final class CaptureAnnouncer {
-	/**
-	 * What every announcement opens with.
-	 *
-	 * <p>A constant because two things have to agree about it. Minecraft writes every chat message to
-	 * {@code logs/latest.log}, client-generated ones included, and {@code auditLog} reads that file
-	 * looking for lines the corpus does not cover — so without a mark it can recognise, this mod's own
-	 * announcements would come back as untranslated SkyBlock text. The runtime capture is immune for a
-	 * different reason: it reads packets, and this message never was one.
-	 */
-	public static final String PREFIX = "[SkyZH] ";
-
 	/** How long a group has to stop growing before it is announced. */
 	private static final long QUIET_MS = 1000L;
 
@@ -91,6 +81,7 @@ public final class CaptureAnnouncer {
 	}
 
 	private static final Map<Group, Pending> PENDING = new LinkedHashMap<>();
+	private static long generation;
 
 	private CaptureAnnouncer() {
 	}
@@ -116,6 +107,22 @@ public final class CaptureAnnouncer {
 	}
 
 	/**
+	 * Drops the batches that have not been sent yet.
+	 *
+	 * <p>Called by {@code /skyzh clear} before the files go. A pending announcement carries a clickable
+	 * link to a file that is about to be deleted, and telling somebody about a capture that no longer
+	 * exists is worse than saying nothing.
+	 */
+	public static synchronized void clear() {
+		generation++;
+		PENDING.clear();
+	}
+
+	/** One detached batch and the clear generation under which it was detached. */
+	private record Ready(long generation, List<Component> messages) {
+	}
+
+	/**
 	 * Sends whatever has gone quiet. Called from the capture worker on every poll.
 	 *
 	 * <p>{@code beforeSend} runs only when there is something to send, and exists for one reason: the
@@ -124,14 +131,17 @@ public final class CaptureAnnouncer {
 	 * precisely because there is something new to write.
 	 */
 	public static void tick(Runnable beforeSend) {
-		List<Component> messages = due(System.currentTimeMillis());
+		Ready ready = takeDue(System.currentTimeMillis());
 
-		if (messages.isEmpty()) {
+		if (ready.messages().isEmpty() || !current(ready.generation())) {
 			return;
 		}
 
 		beforeSend.run();
-		send(messages);
+
+		if (current(ready.generation())) {
+			send(ready.messages(), ready.generation());
+		}
 	}
 
 	/**
@@ -141,7 +151,11 @@ public final class CaptureAnnouncer {
 	 * to draw it — the interesting part is which captures ended up in one message and what that
 	 * message says, neither of which needs a chat box.
 	 */
-	public static synchronized List<Component> due(long now) {
+	public static List<Component> due(long now) {
+		return takeDue(now).messages();
+	}
+
+	private static synchronized Ready takeDue(long now) {
 		Iterator<Map.Entry<Group, Pending>> groups = PENDING.entrySet().iterator();
 		List<Component> messages = new ArrayList<>();
 
@@ -155,7 +169,11 @@ public final class CaptureAnnouncer {
 			}
 		}
 
-		return messages;
+		return new Ready(generation, messages);
+	}
+
+	private static synchronized boolean current(long expected) {
+		return generation == expected;
 	}
 
 	/**
@@ -166,7 +184,7 @@ public final class CaptureAnnouncer {
 	 * the server variant: this line did not come from Hypixel and should not be filed as though it
 	 * had, which matters for anything reading the chat log afterwards.
 	 */
-	private static void send(List<Component> messages) {
+	private static void send(List<Component> messages, long expectedGeneration) {
 		Minecraft minecraft = Minecraft.getInstance();
 
 		if (minecraft == null) {
@@ -174,14 +192,12 @@ public final class CaptureAnnouncer {
 		}
 
 		minecraft.execute(() -> {
-			Gui gui = minecraft.gui;
-
-			if (gui == null) {
+			if (!current(expectedGeneration)) {
 				return;
 			}
 
 			for (Component message : messages) {
-				gui.hud.getChat().addClientSystemMessage(message);
+				ClientGui.chat(minecraft, message);
 			}
 		});
 	}
@@ -196,7 +212,7 @@ public final class CaptureAnnouncer {
 	 */
 	private static Component message(Group group, Pending pending) {
 		MutableComponent message = Component.empty()
-			.append(Component.literal(PREFIX).withStyle(ChatFormatting.AQUA))
+			.append(Component.literal(Feedback.PREFIX).withStyle(ChatFormatting.AQUA))
 			.append(Component.literal("采集 "))
 			.append(Component.literal(String.valueOf(pending.total())).withStyle(ChatFormatting.WHITE))
 			.append(Component.literal(" 条 · "))

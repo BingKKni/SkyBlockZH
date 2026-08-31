@@ -6,7 +6,8 @@
 
 [中文](TECHNICAL_zh-CN.md) · [English technical documentation](TECHNICAL.md)
 
-Hypixel SkyBlock 中文翻译 Mod。Minecraft 26.2 / Fabric，仅客户端。
+Hypixel SkyBlock 中文翻译 Mod。Minecraft 26.1.x 与 26.2 / Fabric，仅客户端——一套源码，
+每个 Minecraft 一个 jar，见[构建](#构建)。
 
 SkyBlock 没有官方中文，中文玩家要么花时间啃英文，要么截图分享给朋友时对方看一眼就划走。这个 Mod
 把游戏里的文本换成中文，目标是让没玩过的人也愿意读下去，让新手不用先学词汇才能上手。
@@ -240,6 +241,11 @@ skyzh-capture/
 启动日志只能说「这条记录压平了颜色」，永远说不出**颜色是在哪儿换的**；采集文件说得出来，
 它会按服务器实际发的颜色边界把 `segments` 数组切好写进去，指名道姓地告诉你抄进哪条记录。
 
+这里只认**画得出来**的那部分样式。Hypixel 会为了挂一个悬浮提示而把一行切开，切法和换颜色时一样——
+收纳袋那条消息里 `" items"` 和后面的 `"."` 是同一种黄色的两段，区别只在前一段带着「Added items:」的悬浮框——
+按整个 `Style` 相等去判断，就会把一条 `segments` 本来就正确的记录推进这一堆，
+还建议你在一个两边颜色相同的位置再切一刀。所以比较只看颜色、字体和五个格式开关。
+
 玩法从"采集当时人在哪"推断，对照表在 `assets/skyzh/capture/areas.json`，
 认不出来就落进 `_Unknown_Gameplay`，补一条到那个文件即可，不用改代码。
 
@@ -331,10 +337,62 @@ skyzh-capture/
 ## 构建
 
 ```bash
-./gradlew build
+./gradlew dist     # 两个 jar 都产出到 build/dist，产出前两个版本的检查都会跑一遍
+./gradlew build    # 同样两个 jar，各自留在自己的 build/libs 里
 ```
 
-Minecraft 26.2 不再混淆，因此没有映射层，Mod 之间是普通依赖关系。需要 JDK 25。
+需要 JDK 25。Minecraft 26.x 不再混淆，因此没有映射层，Mod 之间是普通依赖关系，
+Loom 也不再有 `remapJar` 这一步——`jar` 出来的就是能装的那个文件。
+
+### 两个 Minecraft 版本，一套源码
+
+| | jar | 声明的 Minecraft | 编译时用的 Mod Menu |
+|---|---|---|---|
+| `fabric-26.1/` | `SkyBlockZH-<版本>-Beta-26.1.jar` | `>=26.1 <26.2` | 18.0.0 |
+| `fabric-26.2/` | `SkyBlockZH-<版本>-Beta-26.2.jar` | `>=26.2 <26.3` | 20.0.1 |
+
+两个目标都编译 `src/main/`——引擎、语料加载、采集，以及十二个 Mixin 里的九个——
+再各自加上一小棵自己的树：`src/mc26_1/` 或 `src/mc26_2/`。除了版本号本身，
+一个目标的其他部分全部写在 `gradle/target.gradle` 里，所以两边不可能在"语料怎么打包"
+或"编译到哪个 Java 版本"上悄悄走岔。
+
+两个 Minecraft 之间只有四处不同，每一处都是版本树里的一个文件：
+
+| 动了什么 | 26.1.x | 26.2 |
+|---|---|---|
+| 画 HUD 的类 | `Gui` | 从 `Gui` 里拆出来的 `Hud` |
+| 玩家实体类型常量 | `EntityType.PLAYER` | `EntityTypes.PLAYER` |
+| `SubmitNodeCollector#submitNameTag` | 末尾多一个 `double` | 没有 |
+| 谁持有聊天框和屏幕栈 | `Gui#getChat`、`Minecraft#setScreen` | `Gui.hud#getChat`、`Gui#setScreen` |
+
+最后一行是 `platform/ClientGui`，每个目标一份，方法签名相同。前三行是 `mixin/HudMixin`、
+`mixin/HudScoreboardMixin` 和 `mixin/EntityRendererMixin`——**只有注解**；
+它们被触发之后做什么，是 `hook/` 里的共享代码，只写一遍。
+
+一个 jar 覆盖 26.1、26.1.1、26.1.2 全部三个版本：这个 Mod 碰到的每一个类，
+在三个版本里的字节码完全一致。两个版本范围的上界都是故意封死的。
+把 jar 装到不是为它编译的那个 Minecraft 上并不会崩——因为这里每个注入点都是 `require = 0`，
+结果会是 HUD、侧边栏和所有头顶浮空字**悄无声息地全是英文**——
+所以那个上界的作用，是让 Fabric 根本不去加载它。
+
+### 怎么确认注入点还在
+
+```bash
+./gradlew checkMixinTargets     # 是 `check` 的一部分，两个目标都会跑
+```
+
+这是 `require = 0` 让人不得不做的检查。它把**编译产物**里的注解读回来——真正的 `@Mixin` 值、
+真正的 `method` 列表、真正的 `At.target`——然后逐个去那个目标编译时用的 Minecraft 里查，
+`@Shadow` 成员也查：那些不是 `require = 0`，对不上是在应用 Mixin 时直接崩，而不是安静地失效。
+能编译只能证明这个 Mod 的源码自己跟自己一致，完全不能证明注入点还在。
+见 `gradle/check_mixin_targets.py`。
+
+想拿现有产物去对一个当前没在编译的 Minecraft——`>=26.1 <26.2` 这个范围就是这么定下来的，
+不是猜的：
+
+```bash
+./gradlew :fabric-26.1:build -Pmc26_1_version=26.1.2   # 用后面的补丁版本重新编译 26.1 这棵树
+```
 
 ## 作者
 

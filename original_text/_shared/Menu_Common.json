@@ -287,15 +287,33 @@
       "context": "升级进度状态",
       "text": "Progress to Level %1$s: %2$s",
       "placeholders": [
-        {"token": "%1$s", "desc": "目标等级", "type": "number", "example": "2"},
-        {"token": "%2$s", "desc": "升级进度百分比", "type": "percentage", "example": "0%"}
+        {
+          "token": "%1$s",
+          "desc": "目标等级",
+          "type": "number",
+          "example": "2"
+        },
+        {
+          "token": "%2$s",
+          "desc": "升级进度百分比",
+          "type": "percentage",
+          "example": "0%"
+        }
       ],
       "gloss": "",
       "translate": true,
       "zh": "",
       "segments": [
-        {"color": "§7", "text": "Progress to Level %1$s: ", "zh": "升至 %1$s 级的进度: "},
-        {"color": "§e", "text": "%2$s", "zh": "%2$s"}
+        {
+          "color": "§7",
+          "text": "Progress to Level %1$s: ",
+          "zh": "升至 %1$s 级的进度: "
+        },
+        {
+          "color": "§e",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
       ]
     },
     {
@@ -466,6 +484,113 @@
       "gloss": "同 menu_to_collections,被 `%1$s Settings` 吃成了「To 设置」。",
       "translate": true,
       "zh": "返回设置"
+    },
+    {
+      "id": "menu_click_to_enable",
+      "context": "打开某个开关的提示",
+      "raw": "§eClick to enable!",
+      "text": "Click to enable!",
+      "placeholders": [],
+      "gloss": "配同文件的 menu_click_to_disable(点击禁用!)。采集里这一行有两种颜色(§7 和 §e),文本一样所以一条记录都答,颜色由服务器当场给。",
+      "translate": true,
+      "zh": "点击启用!"
+    },
+    {
+      "id": "menu_click_to_edit",
+      "context": "进入编辑界面的提示",
+      "raw": "§eClick to edit!",
+      "text": "Click to edit!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击编辑!"
+    },
+    {
+      "id": "menu_click_to_confirm",
+      "context": "二次确认菜单里的提示",
+      "raw": "§eClick to confirm!",
+      "text": "Click to confirm!",
+      "placeholders": [],
+      "gloss": "见于 Economy/GUI_Item/Are_you_sure.json 那一面。",
+      "translate": true,
+      "zh": "点击确认!"
+    },
+    {
+      "id": "menu_click_to_equip",
+      "context": "穿上装备的提示",
+      "raw": "§eClick to equip!",
+      "text": "Click to equip!",
+      "placeholders": [],
+      "gloss": "配 Mining/GUI_Item/Dwarven_Handwarmers.json 的 Right-click to equip! → 右键点击装备!,同一个动词。",
+      "translate": true,
+      "zh": "点击装备!"
+    },
+    {
+      "id": "menu_click_to_toggle_view",
+      "context": "在两种显示方式之间来回切的提示",
+      "raw": "§eClick to toggle view!",
+      "text": "Click to toggle view!",
+      "placeholders": [],
+      "gloss": "见于集市的显示设置。toggle 这里是在两种视图之间来回切,不是开关某个功能,所以译「切换」。",
+      "translate": true,
+      "zh": "点击切换视图!"
+    },
+    {
+      "id": "menu_click_to_view_products",
+      "context": "进入某个集市分类的提示",
+      "raw": "§eClick to view products!",
+      "text": "Click to view products!",
+      "placeholders": [],
+      "gloss": "product 按 Economy/GUI_Item/Bazaar.json 的 Click to view product! → 点击查看商品! 作「商品」。英文这一条是复数(整个分类),中文不体现数,和那一条译文相同——两条英文不同所以各写一条记录。",
+      "translate": true,
+      "zh": "点击查看商品!"
+    },
+    {
+      "id": "menu_right_click_to_open",
+      "context": "右键打开容器的提示",
+      "raw": "§eRight-click to open!",
+      "text": "Right-click to open!",
+      "placeholders": [],
+      "gloss": "Mining/GUI_Item/Large_Enchanted_Mining_Sack.json 里已有一条 “Right Click to open!”(中间是空格、Click 大写),译文相同。服务器两种写法都在用,两条英文不同所以各写一条记录,不能靠一条互相顶。",
+      "translate": true,
+      "zh": "右键点击打开!"
+    },
+    {
+      "id": "menu_left_click_to_remove_from_ignore",
+      "context": "把商品移出集市忽略名单的提示",
+      "raw": "§eLeft-Click to remove from ignore!",
+      "text": "Left-Click to remove from ignore!",
+      "placeholders": [],
+      "gloss": "「忽略名单」沿用 Economy/GUI_Title/Bazaar.json#gui_title_instasell_ignore_list(立即出售忽略名单)。注意这一行的 Left-Click 是大写 C,而同文件 menu_left_click_to_open 那一条是小写——两条英文不同,各写一条。",
+      "translate": true,
+      "zh": "左键点击移出忽略名单!"
+    },
+    {
+      "id": "menu_right_click_to_open_product",
+      "context": "在忽略名单里打开某个商品的提示",
+      "raw": "§eRight-Click to open product!",
+      "text": "Right-Click to open product!",
+      "placeholders": [],
+      "gloss": "同一面上和 menu_left_click_to_remove_from_ignore 成对出现,一个移出名单一个查看商品。",
+      "translate": true,
+      "zh": "右键点击打开商品!"
+    },
+    {
+      "id": "menu_bits_price",
+      "context": "社区中心点券商店各分类中的商品价格行",
+      "raw": "§b%s Bits",
+      "text": "%s Bits",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "商品的点券价格",
+          "type": "number",
+          "example": "1,500"
+        }
+      ],
+      "gloss": "Bits 按 GLOSSARY.md 的统一决定译作「点券」。该价格行在社区商店及所有点券商店分类中共用。",
+      "translate": true,
+      "zh": "%s 点券"
     }
   ]
 }

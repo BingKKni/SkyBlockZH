@@ -48,6 +48,23 @@
 
 5. 部分名词被翻译，而在其他地方却看到该名词的原文（常见于地名，这个是因为其他部分玩法还未开始翻译工作导致显示出了原文）；
 
+**支持的版本 / 该下哪个 jar:**
+
+加载器是 Fabric，仅客户端，需要 Java 25。按你的 Minecraft 版本下对应的那一个：
+
+| 你的 Minecraft | 下载 | 说明 |
+| :---: | :---: | --- |
+| 26.1、26.1.1、26.1.2 | `SkyBlockZH-<版本>-Beta-26.1.jar` | 一个 jar 通吃这三个小版本 |
+| 26.2 | `SkyBlockZH-<版本>-Beta-26.2.jar` | |
+
+文件名末尾的 `Beta-26.1` / `Beta-26.2` 就是它给哪个 Minecraft 用的，装好后在 Mod 列表里也能看到。
+26.2 改动了游戏内部画 HUD 和头顶浮空字的那几个类，所以这两个 jar 不能互换。
+装错了 Fabric 会直接告诉你版本不匹配、不会加载——这是故意的，因为如果让它硬装上去，
+结果会是 HUD、侧边栏和头顶浮空字**一声不响地全是英文**，比报错难查得多。
+
+Mod Menu 和 Hypixel Mod API 都是可选的：装了就能在 Mod 设置里开关翻译，
+不装也能用（改 `config/skyzh.json` 后重启）。
+
 **开发者文档:**
 
 想了解翻译引擎是怎么实现的（渲染面、Mixin、语料格式、换行与居中的像素测量），见 [docs/TECHNICAL_zh-CN.md](docs/TECHNICAL_zh-CN.md)（中文） / [docs/TECHNICAL.md](docs/TECHNICAL.md)（English）。

@@ -1,0 +1,118 @@
+{
+  "source": "runtime capture (SkyZH) 2026-08-30 与 2026-08-31 + https://hypixelskyblock.minecraft.wiki/w/Account_%26_Profile_Upgrades",
+  "fetched_at": "2026-08-31",
+  "verified_ingame": true,
+  "gui_context": "社区中心领取已完成的账号升级、以及开始下一项账号/存档升级时的聊天提示。",
+  "messages": [
+    {
+      "id": "community_shop_claiming_upgrade",
+      "context": "正在领取已完成的账号升级",
+      "raw": "§7Claiming upgrade...",
+      "text": "Claiming upgrade...",
+      "placeholders": [],
+      "gloss": "三个点是服务器原文,中文改用省略号。",
+      "translate": true,
+      "zh": "正在领取升级……"
+    },
+    {
+      "id": "community_shop_claimed_upgrade",
+      "context": "领取一项升级完成的广播",
+      "raw": "§eYou claimed the §aEnder Chest Pages III §eupgrade!",
+      "text": "You claimed the %1$s %2$s upgrade!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "升级名。译名在 _shared/Terms.json,一个名字只写一处",
+          "type": "category_name",
+          "example": "Ender Chest Pages"
+        },
+        {
+          "token": "%2$s",
+          "desc": "升级等级",
+          "type": "tier",
+          "example": "III"
+        }
+      ],
+      "gloss": "升级名做成占位符 + _shared/Terms.json:原先写死成 Ender Chest Pages(而且那处译作「页数」、菜单里同一个升级译作「页面」),换一项升级这句话就掉回英文。type 用 category_name 而不是 raw——它走 Capture.NAME 的形状规则,后面紧跟的 tier 又把名字右边界钉死,所以「Heart of the Mountain I」这种中间夹小写词的名字也能整段捕到。",
+      "translate": true,
+      "zh": "你领取了%1$s %2$s 升级!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "You claimed the ",
+          "zh": "你领取了"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s %2$s ",
+          "zh": "%1$s %2$s"
+        },
+        {
+          "color": "§e",
+          "text": "upgrade!",
+          "zh": " 升级!"
+        }
+      ]
+    },
+    {
+      "id": "community_shop_starting_account_upgrade",
+      "context": "正在开始一项账号升级",
+      "raw": "§7Starting account upgrade...",
+      "text": "Starting account upgrade...",
+      "placeholders": [],
+      "gloss": "三个点是服务器原文,中文改用省略号。",
+      "translate": true,
+      "zh": "正在开始账号升级……"
+    },
+    {
+      "id": "community_shop_starting_profile_upgrade",
+      "context": "正在开始一项存档升级。和上一条是同一套流程的两半:账号升级说 account,存档升级说 profile",
+      "raw": "§7Starting profile upgrade...",
+      "text": "Starting profile upgrade...",
+      "placeholders": [],
+      "gloss": "2026-08-31 实测新采到。profile 沿用项目里的「存档」,写法和 community_shop_starting_account_upgrade 配对。",
+      "translate": true,
+      "zh": "正在开始存档升级……"
+    },
+    {
+      "id": "community_shop_started_upgrade",
+      "context": "开始一项升级的广播",
+      "raw": "§eYou started the §aGuests Limit I §eupgrade!",
+      "text": "You started the %1$s %2$s upgrade!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "升级名。译名在 _shared/Terms.json,一个名字只写一处",
+          "type": "category_name",
+          "example": "Guests Limit"
+        },
+        {
+          "token": "%2$s",
+          "desc": "升级等级",
+          "type": "tier",
+          "example": "I"
+        }
+      ],
+      "gloss": "理由同 community_shop_claimed_upgrade。原先写死成 Heart of the Mountain,于是 2026-08-31 实测开的那项 `You started the Guests Limit I upgrade!` 整句是英文。",
+      "translate": true,
+      "zh": "你开始了%1$s %2$s 升级!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "You started the ",
+          "zh": "你开始了"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s %2$s ",
+          "zh": "%1$s %2$s"
+        },
+        {
+          "color": "§e",
+          "text": "upgrade!",
+          "zh": " 升级!"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,321 @@
+{
+  "source": "SkyZH runtime capture (2026-08-29, Garden TabList session); https://hysb.wiki/w/The_Garden; https://hysb.wiki/w/Pests; https://hysb.wiki/w/Composter; https://hysb.wiki/w/Copper; https://hysb.wiki/w/Sowdust",
+  "fetched_at": "2026-08-29",
+  "verified_ingame": true,
+  "gui_context": "花园里的 Tab 列表小节,包含堆肥器、害虫陷阱、访客和当前作物等状态。",
+  "source_note": [
+    "这是花园 TabList 的稳定标签和数值格式,不是某个玩家背包里的物品 Lore。数字、等级和计时器用占位符收录,避免只覆盖本次看到的数值。",
+    "Repellent、Spray 和 Sowdust 的当前中文名没有在项目中确立,不强行翻译专名;通用的 None 会由现有词表在 TabList 的值部分译成「无」。",
+    "Jacob's Contest 沿用 _shared/Terms.json 和 SkyBlock 菜单已有的「Jacob 的农业竞赛」,Compost/Composter、Pests、Copper 的语义分别以对应用户页面为准。"
+  ],
+  "excluded": [
+    "Sowdust: hysb.wiki/w/Sowdust 确认它是花园货币,但当前项目没有确立中文专名,因此保留英文。",
+    "Fear Mongerer: NPC 显示名,按项目人名/NPC 专名规则保留英文。",
+    "Plots: 1, 2, 4:地块编号列表会随玩家解锁情况变化,且本次采集的每个编号带独立颜色,在确认可安全泛化的分段方案前不写固定译文。"
+  ],
+  "lines": [
+    {
+      "id": "sugar_cane",
+      "context": "花园 TabList 当前作物行",
+      "raw": " §e○ §fSugar Cane",
+      "text": "○ Sugar Cane",
+      "placeholders": [],
+      "gloss": "Sugar Cane 使用 Minecraft 官方中文译名「甘蔗」,行首圆点是当前作物标记。",
+      "translate": true,
+      "zh": "○ 甘蔗",
+      "segments": [
+        { "color": "§e", "text": "○ ", "zh": "○ " },
+        { "color": "§f", "text": "Sugar Cane", "zh": "甘蔗" }
+      ]
+    },
+    {
+      "id": "organic_matter",
+      "context": "花园 TabList 堆肥器的有机物数量",
+      "raw": " Organic Matter: §e%1$s",
+      "text": "Organic Matter: %1$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "当前有机物数量", "type": "number", "example": "674" }
+      ],
+      "gloss": "Composter 页面确认 Organic Matter 是制作 Compost 的资源,这里是数量而不是物品名。",
+      "translate": true,
+      "zh": "有机物: %1$s",
+      "segments": [
+        { "color": "", "text": "Organic Matter: ", "zh": "有机物: " },
+        { "color": "§e", "text": "%1$s", "zh": "%1$s" }
+      ]
+    },
+    {
+      "id": "no_bait_none",
+      "context": "花园 TabList 中没有配置诱饵的状态",
+      "raw": " §fNo Bait: §7None",
+      "text": "No Bait: None",
+      "placeholders": [],
+      "gloss": "Bait 页面确认 Bait 是钓鱼时提供额外效果的物品;此行表达当前没有诱饵,中文去掉英文标签和数值之间的重复感,译成「诱饵: 无」。",
+      "translate": true,
+      "zh": "诱饵: 无",
+      "segments": [
+        { "color": "§f", "text": "No Bait: ", "zh": "诱饵: " },
+        { "color": "§7", "text": "None", "zh": "无" }
+      ]
+    },
+    {
+      "id": "fuel",
+      "context": "花园 TabList 堆肥器的燃料数量",
+      "raw": " Fuel: §9%1$s",
+      "text": "Fuel: %1$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "燃料数量,可能带 k 等缩写", "type": "raw", "example": "26k" }
+      ],
+      "gloss": "Composter 页面称其为 Machine Fuel;这里的具体值会使用 k 等显示缩写,所以按 raw 保留服务器给出的数值写法。",
+      "translate": true,
+      "zh": "燃料: %1$s",
+      "segments": [
+        { "color": "", "text": "Fuel: ", "zh": "燃料: " },
+        { "color": "§9", "text": "%1$s", "zh": "%1$s" }
+      ]
+    },
+    {
+      "id": "time_left_inactive",
+      "context": "花园 TabList 中没有正在运行的堆肥器计时",
+      "raw": " Time Left: §cINACTIVE",
+      "text": "Time Left: INACTIVE",
+      "placeholders": [],
+      "gloss": "INACTIVE 表示当前没有进行中的计时,不是玩家或物品名称。",
+      "translate": true,
+      "zh": "剩余时间: 未激活",
+      "segments": [
+        { "color": "", "text": "Time Left: ", "zh": "剩余时间: " },
+        { "color": "§c", "text": "INACTIVE", "zh": "未激活" }
+      ]
+    },
+    {
+      "id": "garden_level",
+      "context": "花园 TabList 的等级和百分比进度",
+      "raw": " Garden Level: §a%1$s §3(%2$s%)",
+      "text": "Garden Level: %1$s (%2$s%)",
+      "placeholders": [
+        { "token": "%1$s", "desc": "花园等级,罗马数字", "type": "tier", "example": "VIII" },
+        { "token": "%2$s", "desc": "当前等级百分比进度", "type": "number", "example": "70.3" }
+      ],
+      "gloss": "The Garden 页面确认花园有独立等级并从 I 开始;等级保留罗马数字,百分比原样保留。",
+      "translate": true,
+      "zh": "花园等级: %1$s (%2$s%)",
+      "segments": [
+        { "color": "", "text": "Garden Level: ", "zh": "花园等级: " },
+        { "color": "§a", "text": "%1$s ", "zh": "%1$s " },
+        { "color": "§3", "text": "(%2$s%)", "zh": "(%2$s%)" }
+      ]
+    },
+    {
+      "id": "next_visitor_queue_full",
+      "context": "花园 TabList 中访客队列已满",
+      "raw": " Next Visitor: §c§lQueue Full!",
+      "text": "Next Visitor: Queue Full!",
+      "placeholders": [],
+      "gloss": "Garden Visitors 页面确认花园最多同时容纳 5 名访客,第 6 名会进入队列;Queue Full 是队列已满的状态。",
+      "translate": true,
+      "zh": "下一位访客: 队列已满!",
+      "segments": [
+        { "color": "", "text": "Next Visitor: ", "zh": "下一位访客: " },
+        { "color": "§c§l", "text": "Queue Full!", "zh": "队列已满!" }
+      ]
+    },
+    {
+      "id": "composter",
+      "context": "花园 TabList 堆肥器小节标题",
+      "raw": "§b§lComposter:",
+      "text": "Composter:",
+      "placeholders": [],
+      "gloss": "Composter 页面确认它是花园内制作 Compost 的系统。",
+      "translate": true,
+      "zh": "堆肥器:"
+    },
+    {
+      "id": "full_traps_none",
+      "context": "花园 TabList 中已装满的害虫陷阱状态",
+      "raw": " §fFull Traps: §7None",
+      "text": "Full Traps: None",
+      "placeholders": [],
+      "gloss": "Pest Trap 页面确认陷阱用于捕捉花园害虫;此行表示目前没有装满的陷阱。",
+      "translate": true,
+      "zh": "满载陷阱: 无",
+      "segments": [
+        { "color": "§f", "text": "Full Traps: ", "zh": "满载陷阱: " },
+        { "color": "§7", "text": "None", "zh": "无" }
+      ]
+    },
+    {
+      "id": "starts_in",
+      "context": "花园 TabList 中下一次访客或事件的分钟倒计时",
+      "raw": " Starts In: §e%1$sm",
+      "text": "Starts In: %1$sm",
+      "placeholders": [
+        { "token": "%1$s", "desc": "剩余分钟数", "type": "number", "example": "26" }
+      ],
+      "gloss": "Starts In 是倒计时标签,m 是 minutes 的缩写,中文补出单位。倒计时标签统一写作「距开始」,数值后不加「后」。",
+      "translate": true,
+      "zh": "距开始: %1$s 分钟",
+      "segments": [
+        { "color": "", "text": "Starts In: ", "zh": "距开始: " },
+        { "color": "§e", "text": "%1$sm", "zh": "%1$s 分钟" }
+      ]
+    },
+    {
+      "id": "pest_traps",
+      "context": "花园 TabList 中害虫陷阱已放置数量和上限",
+      "raw": "§4§lPest Traps: §f%1$s/%2$s",
+      "text": "Pest Traps: %1$s/%2$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "已放置的陷阱数量", "type": "number", "example": "0" },
+        { "token": "%2$s", "desc": "陷阱数量上限", "type": "number", "example": "3" }
+      ],
+      "gloss": "Pest Trap 页面确认最多可以同时放置 3 个 Pest Trap,因此两侧都是数量。",
+      "translate": true,
+      "zh": "害虫陷阱: %1$s/%2$s",
+      "segments": [
+        { "color": "§4§l", "text": "Pest Traps: ", "zh": "害虫陷阱: " },
+        { "color": "§f", "text": "%1$s/%2$s", "zh": "%1$s/%2$s" }
+      ]
+    },
+    {
+      "id": "cooldown_max_pests",
+      "context": "花园 TabList 中害虫数量达到上限时的冷却状态",
+      "raw": " Cooldown: §c§lMAX PESTS",
+      "text": "Cooldown: MAX PESTS",
+      "placeholders": [],
+      "gloss": "Pests 页面确认 Pests 是花园中会生成的害虫;MAX PESTS 表示当前已达到害虫上限。",
+      "translate": true,
+      "zh": "冷却: 害虫已达上限",
+      "segments": [
+        { "color": "", "text": "Cooldown: ", "zh": "冷却: " },
+        { "color": "§c§l", "text": "MAX PESTS", "zh": "害虫已达上限" }
+      ]
+    },
+    {
+      "id": "pests",
+      "context": "花园 TabList 害虫小节标题",
+      "raw": "§4§lPests:",
+      "text": "Pests:",
+      "placeholders": [],
+      "gloss": "Pests 页面确认它们是会在 The Garden 中生成的生物。",
+      "translate": true,
+      "zh": "害虫:"
+    },
+    {
+      "id": "stored_compost",
+      "context": "花园 TabList 堆肥器已存堆肥数量",
+      "raw": " Stored Compost: §2%1$s",
+      "text": "Stored Compost: %1$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "已存储的 Compost 数量", "type": "number", "example": "0" }
+      ],
+      "gloss": "Compost 页面确认 Compost 是花园中用于解锁地块等用途的物品,这里是数量。",
+      "translate": true,
+      "zh": "已储存堆肥: %1$s",
+      "segments": [
+        { "color": "", "text": "Stored Compost: ", "zh": "已储存堆肥: " },
+        { "color": "§2", "text": "%1$s", "zh": "%1$s" }
+      ]
+    },
+    {
+      "id": "sunflower",
+      "context": "花园 TabList 当前作物行",
+      "raw": " §e○ §fSunflower",
+      "text": "○ Sunflower",
+      "placeholders": [],
+      "gloss": "Sunflower 使用 Minecraft 官方中文译名「向日葵」,行首圆点是当前作物标记。",
+      "translate": true,
+      "zh": "○ 向日葵",
+      "segments": [
+        { "color": "§e", "text": "○ ", "zh": "○ " },
+        { "color": "§f", "text": "Sunflower", "zh": "向日葵" }
+      ]
+    },
+    {
+      "id": "moonflower",
+      "context": "花园 TabList 当前作物行",
+      "raw": " §e○ §fMoonflower",
+      "text": "○ Moonflower",
+      "placeholders": [],
+      "gloss": "Moonflower 是花园新增作物名,对应项目当前采用的译名「月光花」,行首圆点是当前作物标记。",
+      "translate": true,
+      "zh": "○ 月光花",
+      "segments": [
+        { "color": "§e", "text": "○ ", "zh": "○ " },
+        { "color": "§f", "text": "Moonflower", "zh": "月光花" }
+      ]
+    },
+    {
+      "id": "bonus_inactive",
+      "context": "花园 TabList 中没有激活加成的状态",
+      "raw": " Bonus: §c§lINACTIVE ",
+      "text": "Bonus: INACTIVE",
+      "placeholders": [],
+      "gloss": "INACTIVE 表示当前没有激活加成;行尾空格是服务器布局的一部分,保留不动。",
+      "translate": true,
+      "zh": "加成: 未激活 ",
+      "segments": [
+        { "color": "", "text": "Bonus: ", "zh": "加成: " },
+        { "color": "§c§l", "text": "INACTIVE", "zh": "未激活" }
+      ]
+    },
+    {
+      "id": "jacobs_contest",
+      "context": "花园 TabList 的 Jacob 活动小节标题",
+      "raw": "§e§lJacob's Contest:",
+      "text": "Jacob's Contest:",
+      "placeholders": [],
+      "gloss": "hysb.wiki/w/Jacob%27s_Farming_Contests(2026-08-29)确认这是定期进行的农作物收集活动;项目已有完整名称「Jacob 的农业竞赛」。",
+      "translate": true,
+      "zh": "Jacob 的农业竞赛:"
+    },
+    {
+      "id": "copper",
+      "context": "花园 TabList 的 Copper 货币余额",
+      "raw": " Copper: §c%1$s",
+      "text": "Copper: %1$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "Copper 余额", "type": "number", "example": "737" }
+      ],
+      "gloss": "hysb.wiki/w/Copper(2026-08-29)确认 Copper 是花园货币,中文采用「铜」以对应已有项目用法。",
+      "translate": true,
+      "zh": "铜: %1$s",
+      "segments": [
+        { "color": "", "text": "Copper: ", "zh": "铜: " },
+        { "color": "§c", "text": "%1$s", "zh": "%1$s" }
+      ]
+    },
+    {
+      "id": "visitors",
+      "context": "花园 TabList 的当前访客数量",
+      "raw": "§b§lVisitors: §f(%1$s)",
+      "text": "Visitors: (%1$s)",
+      "placeholders": [
+        { "token": "%1$s", "desc": "当前花园访客数量", "type": "number", "example": "5" }
+      ],
+      "gloss": "Garden Visitors 页面确认最多同时有 5 名访客,括号和数量格式按服务器原样保留。",
+      "translate": true,
+      "zh": "访客: (%1$s)",
+      "segments": [
+        { "color": "§b§l", "text": "Visitors: ", "zh": "访客: " },
+        { "color": "§f", "text": "(%1$s)", "zh": "(%1$s)" }
+      ]
+    },
+    {
+      "id": "alive",
+      "context": "花园 TabList 的当前存活害虫数量",
+      "raw": " Alive: §4%1$s",
+      "text": "Alive: %1$s",
+      "placeholders": [
+        { "token": "%1$s", "desc": "当前存活害虫数量", "type": "number", "example": "8" }
+      ],
+      "gloss": "Pests 页面确认花园会生成害虫,这里的数字与害虫小节的 Alive 状态对应。",
+      "translate": true,
+      "zh": "存活: %1$s",
+      "segments": [
+        { "color": "", "text": "Alive: ", "zh": "存活: " },
+        { "color": "§4", "text": "%1$s", "zh": "%1$s" }
+      ]
+    }
+  ]
+}

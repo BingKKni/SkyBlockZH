@@ -1,0 +1,375 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Glacite_Mineshafts (Pity 一节与 Block Qualities 表)",
+  "fetched_at": "2026-08-28",
+  "verified_ingame": true,
+  "gui_context": "极冰隧道的保底进度物品:说明在极冰隧道里挖够 2,000 点方块价值必定刷出一座极冰矿井,并逐行列出各种方块各算多少点。原文取自游戏内实截。",
+  "source_note": "三处需要留底的判断。① 「Gemstones: 8-10」说的是宝石矿石方块的价值,维基 Block Qualities 表写明 Ruby/Sapphire/Jade/Amber/Amethyst/Topaz 算 8,Aquamarine/Peridot/Citrine/Onyx 算 10,所以写成一个区间——它跟装备上的宝石槽没有关系。这一行原先被 _shared/Item_Lore.json#item_gemstones_slots 误答成「宝石槽: 8-10」,而且因为答出来是全中文、颜色也没丢,采集三个分类都不收它,这一行就整条从采集里消失了(见 text/ValueShape.java);ValueShape 拦住那次误答之后,这一行才第一次出现在采集里,也才看出本条记录自己把 Gemstones 写成了单数。② 原文第一句说「挖 2,000 个方块」并不准确,维基说的是 2,000 点价值、按方块品质递减,硬石算 0 点;但紧接着那句「部分方块计入的保底进度高于其他方块」就是原文自己给的补充,所以照原文直译,不替服务器改写。这一句英文横跨三行,中文语序整个反过来(地点状语在英文里落到第三行、在中文里必须提到句首),2026-08-29 从「按行分摊译文」改成 continuation 整句合并:原先逐行直译出来的「一座极冰矿井必定会在 / 挖掘 2,000 个方块后生成于 / 极冰隧道」是把英文语序照搬进中文,读着不通。③ 原文对同一个数用了三个词(pity / value / pity counter),中文统一作「保底进度」,比原文更一致。方块名沿用 Handy_Block_Guide.json 的既有译名。",
+  "name": {
+    "id": "glacite_pity_name",
+    "context": "物品名称",
+    "raw": "§bGlacite Mineshafts",
+    "text": "Glacite Mineshafts",
+    "placeholders": [],
+    "gloss": "",
+    "translate": true,
+    "zh": "极冰矿井"
+  },
+  "lore": [
+    {
+      "id": "glacite_pity_a_glacite_mineshaft_is_guaranteed_to",
+      "context": "机制说明第一句的第一行",
+      "raw": "§7A §bGlacite Mineshaft §7is guaranteed to",
+      "text": "A Glacite Mineshaft is guaranteed to",
+      "placeholders": [],
+      "gloss": "这句横跨三行,中文语序和英文整个反过来:英文把主语「一座极冰矿井」放在最前、地点状语「在极冰隧道」丢到第三行,中文必须先说地点和条件再说结果。跨行没法用 order 调,所以按 continuation 把整句合并到本行,后两行作尾行。代价是第二行 2,000 的绿色和第三行「极冰隧道」的青色变灰(同第 11 条的取舍),换来的是句子读得通;青色高亮保留在真正的中心词「极冰矿井」上。",
+      "translate": true,
+      "zh": "在极冰隧道内挖掘 2,000 个方块后,必定会生成一座极冰矿井。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "A ",
+          "zh": "在极冰隧道内挖掘 2,000 个方块后,必定会生成一座"
+        },
+        {
+          "color": "§b",
+          "text": "Glacite Mineshaft ",
+          "zh": "极冰矿井"
+        },
+        {
+          "color": "§7",
+          "text": "is guaranteed to",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "glacite_pity_spawn_after_mining_2000_blocks_in",
+      "context": "机制说明第一句的第二行",
+      "raw": "§7spawn after mining §a2,000 §7blocks in",
+      "text": "spawn after mining 2,000 blocks in",
+      "placeholders": [],
+      "gloss": "2,000 是固定的保底上限,不是会变的数,所以写成字面量。本行是上一条整句的中段,译文已并进上一条,这里按 continuation 处理。",
+      "translate": true,
+      "continuation": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "spawn after mining ",
+          "zh": ""
+        },
+        {
+          "color": "§a",
+          "text": "2,000 ",
+          "zh": ""
+        },
+        {
+          "color": "§7",
+          "text": "blocks in",
+          "zh": ""
+        }
+      ]
+    },
+    {
+      "id": "glacite_pity_the_glacite_tunnels_some_blocks",
+      "context": "机制说明第一句的第三行,后半句起头",
+      "raw": "§7the §bGlacite Tunnels§7. Some blocks",
+      "text": "the Glacite Tunnels. Some blocks",
+      "placeholders": [],
+      "gloss": "这一行同时是上一句的尾巴和下一句的开头。上一句(「在极冰隧道内挖掘…」)的译文已经整句并进本组第一条,所以前两段——包括「极冰隧道」——在中文里没有对应的字,标 omit;第三段起头的第二句改为在本行写完整句,下一行作 continuation。",
+      "translate": true,
+      "zh": "部分方块计入的保底进度高于其他方块:",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "the ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§b",
+          "text": "Glacite Tunnels",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§7",
+          "text": ". Some blocks",
+          "zh": "部分方块计入的保底进度高于其他方块:"
+        }
+      ]
+    },
+    {
+      "id": "glacite_pity_count_more_towards_pity_than_others",
+      "context": "机制说明第二句的下半行,后面紧跟方块价值清单",
+      "raw": "§7count more towards pity than others:",
+      "text": "count more towards pity than others:",
+      "placeholders": [],
+      "gloss": "pity 统一译作「保底进度」,与下文的 value / pity counter 用同一个词。本行是上一条第二句的尾巴,译文已并进上一条,这里按 continuation 处理。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "glacite_pity_mithril_ore_2",
+      "context": "方块价值清单:秘银矿石",
+      "raw": "§7Mithril Ore: §e2",
+      "text": "Mithril Ore: 2",
+      "placeholders": [],
+      "gloss": "清单六行都按字面量写,不做成「%s Ore: %s」那样的模板:每种方块的点数是定值而不是变量,而一个 raw 占位符会把「Coal Ore: 5」之类无关的行一起收进来。数值哪天被官方调整,这一行就不再应答、重新出现在采集里,正好是想要的提醒。",
+      "translate": true,
+      "zh": "秘银矿石: 2",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Mithril Ore: ",
+          "zh": "秘银矿石: "
+        },
+        {
+          "color": "§e",
+          "text": "2",
+          "zh": "2"
+        }
+      ]
+    },
+    {
+      "id": "glacite_pity_umber_4",
+      "context": "方块价值清单:褐铁矿",
+      "raw": "§7Umber: §e4",
+      "text": "Umber: 4",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "褐铁矿: 4",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Umber: ",
+          "zh": "褐铁矿: "
+        },
+        {
+          "color": "§e",
+          "text": "4",
+          "zh": "4"
+        }
+      ]
+    },
+    {
+      "id": "glacite_pity_tungsten_4",
+      "context": "方块价值清单:钨",
+      "raw": "§7Tungsten: §e4",
+      "text": "Tungsten: 4",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "钨: 4",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Tungsten: ",
+          "zh": "钨: "
+        },
+        {
+          "color": "§e",
+          "text": "4",
+          "zh": "4"
+        }
+      ]
+    },
+    {
+      "id": "glacite_pity_glacite_4",
+      "context": "方块价值清单:极冰",
+      "raw": "§7Glacite: §e4",
+      "text": "Glacite: 4",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "极冰: 4",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Glacite: ",
+          "zh": "极冰: "
+        },
+        {
+          "color": "§e",
+          "text": "4",
+          "zh": "4"
+        }
+      ]
+    },
+    {
+      "id": "glacite_pity_gemstone_8_10",
+      "context": "方块价值清单:宝石矿石,按种类 8 或 10 点",
+      "raw": "§7Gemstones: §e8-10",
+      "text": "Gemstones: 8-10",
+      "placeholders": [],
+      "gloss": "「宝石」而不是「宝石槽」——说的是宝石矿石方块值多少保底进度,与装备镶孔无关。区间来自维基 Block Qualities 表:Ruby/Sapphire/Jade/Amber/Amethyst/Topaz 算 8,Aquamarine/Peridot/Citrine/Onyx 算 10。宝石种类名按 Terms.json 保留英文,但这一行原文没有点出种类,所以不涉及。原文是复数 Gemstones,这一条一度写成单数 Gemstone(清单里其余六行都是单数,顺手写顺了),于是永远匹配不上、整行留英文;判断哪个是对的只能靠采集,维基的 Block Qualities 表是表格不是原句,给不出单复数。",
+      "translate": true,
+      "zh": "宝石: 8-10",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gemstones: ",
+          "zh": "宝石: "
+        },
+        {
+          "color": "§e",
+          "text": "8-10",
+          "zh": "8-10"
+        }
+      ]
+    },
+    {
+      "id": "glacite_pity_titanium_ore_8",
+      "context": "方块价值清单:钛矿石",
+      "raw": "§7Titanium Ore: §e8",
+      "text": "Titanium Ore: 8",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "钛矿石: 8",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Titanium Ore: ",
+          "zh": "钛矿石: "
+        },
+        {
+          "color": "§e",
+          "text": "8",
+          "zh": "8"
+        }
+      ]
+    },
+    {
+      "id": "glacite_pity_blank",
+      "context": "空行",
+      "raw": "",
+      "text": "",
+      "placeholders": [],
+      "gloss": "",
+      "translate": false,
+      "zh": ""
+    },
+    {
+      "id": "glacite_pity_if_you_havent_spawned_a_mineshaft",
+      "context": "保底兜底说明,横跨三行",
+      "raw": "§7If you haven't spawned a Mineshaft",
+      "text": "If you haven't spawned a Mineshaft",
+      "placeholders": [],
+      "gloss": "这三行的中文语序整个反过来:条件从句(到 2,000 点)在中文里必须提到主句前面,而它在英文里落在第二行。跨行没法用 order 调,所以这一句按 continuation 合并,代价是第二行 2,000 的绿色高亮变灰——同一个 2,000 在上文第二行仍是绿色的,损失很小,比把中文拆成「如果仍未生成矿井,直到...」那种别扭句子好。",
+      "translate": true,
+      "zh": "若保底进度达到 2,000 点时仍未生成矿井,则必定会生成一座。"
+    },
+    {
+      "id": "glacite_pity_by_the_time_you_reach_2000_value_it",
+      "context": "承接上一行",
+      "raw": "§7by the time you reach §a2,000 §7value, it",
+      "text": "by the time you reach 2,000 value, it",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "by the time you reach ",
+          "zh": ""
+        },
+        {
+          "color": "§a",
+          "text": "2,000 ",
+          "zh": ""
+        },
+        {
+          "color": "§7",
+          "text": "value, it",
+          "zh": ""
+        }
+      ],
+      "continuation": true
+    },
+    {
+      "id": "glacite_pity_is_guaranteed_to_spawn",
+      "context": "承接上一行",
+      "raw": "§7is guaranteed to spawn.",
+      "text": "is guaranteed to spawn.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "glacite_pity_spawning_a_glacite_mineshaft_will_set",
+      "context": "深灰的补充说明,横跨两行",
+      "raw": "§8Spawning a Glacite Mineshaft will set",
+      "text": "Spawning a Glacite Mineshaft will set",
+      "placeholders": [],
+      "gloss": "两行同为深灰,合并不损失任何高亮。",
+      "translate": true,
+      "zh": "生成一座极冰矿井后,保底进度会归零。"
+    },
+    {
+      "id": "glacite_pity_your_pity_counter_back_to_0",
+      "context": "承接上一行",
+      "raw": "§8your pity counter back to 0.",
+      "text": "your pity counter back to 0.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "glacite_pity_blank_2",
+      "context": "空行",
+      "raw": "",
+      "text": "",
+      "placeholders": [],
+      "gloss": "",
+      "translate": false,
+      "zh": ""
+    },
+    {
+      "id": "glacite_pity_progress",
+      "context": "当前保底进度",
+      "raw": "§7Progress: §e%s§7/§a2,000",
+      "text": "Progress: %s/2,000",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前已累计的保底进度点数",
+          "type": "number",
+          "example": "743"
+        }
+      ],
+      "gloss": "只有前一个数会变,2,000 是固定上限,写成字面量既准确也让这条记录更具体。原文的 Progress 这里就是进度条读数,不重复「保底」二字。",
+      "translate": true,
+      "zh": "进度: %s/2,000",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Progress: ",
+          "zh": "进度: "
+        },
+        {
+          "color": "§e",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": "/",
+          "zh": "/"
+        },
+        {
+          "color": "§a",
+          "text": "2,000",
+          "zh": "2,000"
+        }
+      ]
+    }
+  ]
+}

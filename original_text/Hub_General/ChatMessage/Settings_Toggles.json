@@ -1,0 +1,91 @@
+{
+  "source": "SkyZH runtime capture (2026-08-29, Hub + Garden settings session)",
+  "fetched_at": "2026-08-29",
+  "verified_ingame": true,
+  "gui_context": "在设置菜单里点开关时聊天栏回的确认行。同一句话的两半都是变的:前半是开关名,后半是 enabled/disabled,所以这里只写状态那一半的字面量,开关名走 _shared/Terms.json。",
+  "source_note": [
+    "为什么不是一条开关一条记录:那样要写 39 × 2 = 78 条,正是 README 第 4 节禁止的值枚举,而且 Hypixel 每加一个设置项就漏一条。",
+    "为什么状态词写死在模板里而不是也做成占位符:enabled / disabled 是封闭的两个取值,而且它们在中文里不是一个词而是句子的一部分(「已开启」跟在名字后面)。写死之后 %1$s 只剩开关名一件事,词表也不必收 enabled 这种到处都有的通用词。",
+    "is / are 两种写法都收:服务器按开关名自己的单复数选谓语(Death Messages are、Advanced Supercraft is),中文不体现数,所以四条记录里成对的两条译文完全相同。"
+  ],
+  "lines": [
+    {
+      "id": "setting_is_now_enabled",
+      "context": "单数开关被打开的确认行",
+      "raw": "§c%1$s is now enabled!",
+      "text": "%1$s is now enabled!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "token_note": "开关名，译名走 _shared/Terms.json",
+          "type": "raw",
+          "example": "Advanced Supercraft"
+        }
+      ],
+      "gloss": "「已开启」沿用 Mining/ChatMessage/Mining_Events.json 的 The Stats Widget is now ENABLED → 已开启。占位符定 raw 而不是 category_name:开关名里有 Confirm breaking ungrown Mutations 这种中间夹小写词的,过不了 Capture.NAME 的形状规则(名字不许在非连接词的小写词上断);而这条模板的字面尾巴「is now enabled!」本身就足够窄,不会像 Your %s 那样吃掉整句 Lore。",
+      "translate": true,
+      "zh": "%1$s已开启!"
+    },
+    {
+      "id": "setting_are_now_enabled",
+      "context": "复数开关被打开的确认行",
+      "raw": "§c%1$s are now enabled!",
+      "text": "%1$s are now enabled!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "token_note": "开关名，译名走 _shared/Terms.json",
+          "type": "raw",
+          "example": "Death Messages"
+        }
+      ],
+      "gloss": "和 setting_is_now_enabled 同一句话,服务器按开关名的单复数选谓语,中文不体现数,所以两条译文一模一样。",
+      "translate": true,
+      "zh": "%1$s已开启!"
+    },
+    {
+      "id": "setting_is_now_disabled",
+      "context": "单数开关被关掉的确认行",
+      "raw": "§c%1$s is now disabled!",
+      "text": "%1$s is now disabled!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "token_note": "开关名，译名走 _shared/Terms.json",
+          "type": "raw",
+          "example": "Fishing Timer"
+        }
+      ],
+      "gloss": "「已关闭」沿用 Mining/ChatMessage/Mining_Events.json 的 is now DISABLED → 已关闭。",
+      "translate": true,
+      "zh": "%1$s已关闭!"
+    },
+    {
+      "id": "setting_are_now_disabled",
+      "context": "复数开关被关掉的确认行",
+      "raw": "§c%1$s are now disabled!",
+      "text": "%1$s are now disabled!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "token_note": "开关名，译名走 _shared/Terms.json",
+          "type": "raw",
+          "example": "Rare Drop Sounds"
+        }
+      ],
+      "gloss": "和 setting_is_now_disabled 同一句话,单复数之别在中文里不体现。",
+      "translate": true,
+      "zh": "%1$s已关闭!"
+    },
+    {
+      "id": "settings_warp_to_edit_chat",
+      "context": "不在岛上或花园里时改设置，聊天栏回的这一行",
+      "raw": "§cWarp to your island or Garden to edit!",
+      "text": "Warp to your island or Garden to edit!",
+      "placeholders": [],
+      "gloss": "菜单里同一句话被排版切成两行,那一份在 Hub_General/GUI_Item/Settings.json#settings_warp_to_edit,两处译文相同。两条记录不能省成一条:它们在不同的采集面上(ITEM 和 CHAT),而索引是按面分开的。",
+      "translate": true,
+      "zh": "传送回你的岛屿或花园才能修改!"
+    }
+  ]
+}

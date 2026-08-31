@@ -18,6 +18,7 @@ classes/
 .settings/
 .vscode/
 .opencode/
+.playwright-mcp/
 bin/
 .classpath
 .project
@@ -39,10 +40,14 @@ replay_*.log
 *.hprof
 *.jfr
 
-# local scratch 
+# local scratch
 # Probe input for `./gradlew probe`, written by hand to redraw one line at a time.
 probe.txt
+
+# local translation/research helpers; build-time checks live under gradle/ instead
+/tools/
 .claude/RESUME.md
 
 # others
 todo/
+AGENTS.md

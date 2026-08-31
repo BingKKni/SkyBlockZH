@@ -1,0 +1,33 @@
+{
+  "source": "runtime capture (SkyZH) 2026-08-29 实测会话（花园）",
+  "fetched_at": "2026-08-29",
+  "verified_ingame": true,
+  "gui_context": "花园里的侧边栏。花园的所在地一行和别处不一样:别的岛屿写 `⏣ 地名`,花园用的是 Hypixel 自造字体里的私用区字形 \\uE067 当地点图标,后面还挂一个活着的害虫计数。",
+  "source_note": "所在地那一行的尾巴(`§4§l\\uE07F§7 x8`)是害虫计数,靠两条独立证据认定:① 字形前的颜色 §4 和同一次采集的 Tab_List 里 `§4§lPests:` 一节同色;② 计数 x8 和那一节的 `Alive: 8` 数字对得上。\\uE07F 是害虫图标,\\uE067 是地点图标,两个都是私用区字形,原样保留不动。只采到有害虫时的样子;害虫为 0 时这一行长什么样没实测,不预先补一条(害虫清空后大概是没有尾巴的,但没看见就不写)。",
+  "lines": [
+    {
+      "id": "garden_sb_area_pests",
+      "context": "花园侧边栏的所在地一行,地名后面挂着活着的害虫数",
+      "raw": "§c §7 §cThe Garden §4§l§7 x%1$s",
+      "text": "  The Garden  x%1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "活着的害虫数量",
+          "type": "number",
+          "example": "8"
+        }
+      ],
+      "gloss": "地名写死成字面量而不做成 `%s` 模板:这一行只在花园里出现,地名不会变,做成模板反倒会把别的岛屿那条 `⏣ %s` 的活抢过来。私用区字形 \\uE067 / \\uE07F 和 x 都照抄,它们不是词。The Garden 作「花园」,和 _shared/Terms.json 的 Garden、GLOSSARY.md 的 Garden Visitor(花园访客)一致;原文的 The 是英文冠词,中文不体现。",
+      "translate": true,
+      "zh": "  花园  x%1$s",
+      "segments": [
+        { "color": "§c", "text": " ", "zh": " " },
+        { "color": "§7", "text": " ", "zh": " " },
+        { "color": "§c", "text": "The Garden ", "zh": "花园 " },
+        { "color": "§4", "text": "", "zh": "" },
+        { "color": "§7", "text": " x%1$s", "zh": " x%1$s" }
+      ]
+    }
+  ]
+}

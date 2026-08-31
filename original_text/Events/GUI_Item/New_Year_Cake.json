@@ -1,0 +1,68 @@
+{
+  "source": "runtime capture (SkyZH) 2026-08-29 实测会话(领奖界面与末影箱) + https://hypixelskyblock.minecraft.wiki/w/New_Year_Cake + https://hypixel-skyblock.fandom.com/wiki/New_Year_Cake",
+  "fetched_at": "2026-08-29",
+  "verified_ingame": true,
+  "gui_context": "新年蛋糕是新年庆典的年度纪念品:每位玩家每年可从面包师处领取一块,名字里的年号是即将结束的空岛年。社区维基记载的玩法用途是存入新年蛋糕袋,袋中每个不重复年份提供 +1 ❤ 生命;物品为 SPECIAL,可交易、可上拍,并有博物馆条目。两个维基都没有支持它能否食用的明确说明,这里不作推断。",
+  "source_note": "四处需要留底的判断。① 说明句的原文两个维基记的都不对:Fandom 的物品页写作『celebration for the 510 SkyBlock year!』,两个维基的面包师界面页都写作『celebration for the year 510 SkyBlock year!』(year 出现两次的病句)。实测采到的是第三种、也是唯一正确的一种——『celebration for the 510th SkyBlock year!』,序数 510th。以实测为准,维基两种写法都不采。② 年号在物品名里是光秃秃的数字(Year 510),在说明句里是序数(510th),两处占位符类型不同(number / ordinal),不能互相照抄;序数的英文后缀由引擎自动去掉(24th→24,见 text/Capture 的 ORDINAL),所以中文写「第 %s 年」就够了。③ 说明句横跨三行,中文按前两行分摊、第三行做 continuation,理由见下面 gloss。④ 两个社区维基都只说明领取、交易和蛋糕袋等机制,没有明确说明物品能否食用;不把资料没有说的事写成绝对结论。",
+  "name": {
+    "id": "new_year_cake_name",
+    "context": "物品名,括号里是即将结束的那个空岛年的年号",
+    "raw": "§cNew Year Cake (Year 510)",
+    "text": "New Year Cake (Year %s)",
+    "placeholders": [
+      {
+        "token": "%s",
+        "desc": "空岛年年号,光秃秃的数字,不带序数后缀",
+        "type": "number",
+        "example": "510"
+      }
+    ],
+    "gloss": "维基已查证(2026-08-29):名字里的年号是**即将结束**的那一年,不是即将到来的那一年;这个年号是 2022-05-11 才加进物品名的,之前发的蛋糕没有。中文用「第 %s 年」,和 Hub_General/GUI_Item/SkyBlock_Menu.json 的日期行(第 %s 年 · 立春)一致。括号用半角还是全角:原文是半角,这里跟着原文,和同项目其他带括号的物品名(如末影箱 (%1$s/%2$s))一致。",
+    "translate": true,
+    "zh": "新年蛋糕(第 %s 年)"
+  },
+  "lore": [
+    {
+      "id": "new_year_cake_given_to_every_player_as_a",
+      "context": "说明句的第一行,整句横跨三行",
+      "raw": "§7Given to every player as a",
+      "text": "Given to every player as a",
+      "placeholders": [],
+      "gloss": "三行同为灰色,合并不损失高亮。但整句不能全塞进这一条:序数占位符在第二行的原文里,一条记录只能捕获自己那一行的值。所以中文按前两行分摊——这一行收「送给每一位玩家,以庆祝」,第二行收「第 %s 个 SkyBlock 年!」,第三行的 year! 已经被第二行的译文吃掉,做 continuation。",
+      "translate": true,
+      "zh": "送给每一位玩家,以庆祝"
+    },
+    {
+      "id": "new_year_cake_celebration_for_the_nth_skyblock",
+      "context": "说明句的第二行,序数年号在这一行",
+      "raw": "§7celebration for the 510th SkyBlock",
+      "text": "celebration for the %s SkyBlock",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "空岛年年号的序数写法",
+          "type": "ordinal",
+          "example": "510th"
+        }
+      ],
+      "gloss": "承接上一行的「以庆祝」,这一行把「第 N 个 SkyBlock 年!」说完,连原文第三行的 year! 一起。SkyBlock 在译文里照写原词,渲染时由代码按配置项 translateSkyBlockName 决定换不换成「空岛」(见 _shared/SkyBlock_Name.json);这里它后面紧跟汉字「年」,会走简称,渲染成「第 510 个空岛年!」。同一处理见 Hub_General/ChatMessage 里「选举每个 SkyBlock 年举办一次。」那一条。",
+      "translate": true,
+      "zh": "第 %s 个 SkyBlock 年!"
+    },
+    {
+      "id": "new_year_cake_year",
+      "context": "承接上一行,原文句子的最后一个词落在第三行",
+      "raw": "§7year!",
+      "text": "year!",
+      "placeholders": [],
+      "gloss": "中文语序里「年」跟在年号后面,已经在上一条的译文里了,所以这一行不再出字,按 continuation 处理。留着独立译文会让「年!」在屏幕上多画一行。",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    }
+  ],
+  "todo": [
+    "新年蛋糕袋(New Year Cake Bag)尚无可用的逐行原文:社区维基只转述它在面包师商店售价 250,000 硬币、稀有度 UNCOMMON、容量 54,且每个不重复年份的蛋糕提供 +1 ❤ 生命(同年份不重复计数,饰品袋中多个蛋糕袋也只算第一个)。因为缺少完整 Lore 和商店格子的实测原文,这些信息只作上下文,不据此编写记录;下次活动时应打开面包师商店采集该物品。",
+    "面包师的第三句台词存在版本差异:旧版(Fandom)是『I've recently added a New Year Cake Bag to my inventory. Sadly, it's not free! Click me again to open my shop!』,现版(minecraft.wiki)是『Wondering where to store your cakes? You can buy a New Year Cake Bag from me. Click me again to open my shop!』,而且冒号位置从 Baker: §f 变成 Baker§f:。2026-08-29 实测只捕获前两句(见 Events/NPC_Message/Baker.json),没有证据判定服务器当前发送哪种第三句,等实测后再补。"
+  ]
+}

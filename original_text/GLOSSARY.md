@@ -24,7 +24,7 @@
 - **属性词条与物品 Lore**（10 条）：Fortune、Block Fortune / Mining Fortune、Breaking Power、Mining Spread、Tiered Bonus / Mineralworks、Reforge / Soulbound / Accessory Power / Accessory Bag、Soulbound 标记行的三种变体、物品 Lore 里的固定词汇表、Titanium、Fuel
 - **Mining 玩法专有词**（14 条）：Commission、Collector、冰河隧道矿物材料名、冰封尸体的类型名、宝石品质等级、宝石品质第五档 Flawless、HOTM Exp、山之心天赋名 / 限时活动名、Token of the Mountain、挖矿限时活动名、镐子技能名、Drill Mechanic、方块速查手册里的方块名、极冰狂人
 - **Mining 地名与 NPC**（8 条）：Crystal Hollows、Hanging Court、Lapis Quarry、Dwarven Mine Co.、Don、Bal、Keeper of ___ / Professor Robot、"Keeper of ___" 里的材料名改为翻译
-- **跨玩法机制**（4 条）：限时活动名、Garden Visitor、Fairy Soul、Loadouts / Loadout
+- **跨玩法机制**（9 条）：公历月份名、账号与存档升级名、限时活动名、Garden Visitor、Fairy Soul、Loadouts / Loadout、Bingo、Chum / Bait、Pity / pity counter
 - **剧情线与彩蛋**（3 条）：陨落之星教团剧情线固定译名、Tal Ker 独白里的地名 / 世界观词汇、Tal Ker 独白里的其他一次性梗 / 彩蛋
 - **语料库建设记录**（1 条）：共享片段库 `_shared/` 建设情况
 
@@ -640,6 +640,42 @@ BossBar 里是全大写(`GONE WITH THE WIND`)、计分板小部件里是正常�
 
 ## 跨玩法机制
 
+### 公历月份名 —— 要翻,写成「2026 年 9 月」
+
+- 出现场景: 宾果活动的三处菜单文字(箱子标题 `Bingo - September 2026`、宾果卡/宾果商店左下角的
+  返回箭头、活动格子的灰色副标题 `September 2026`)。以后任何带真实年月的活动名同理。
+- **月份要翻译**。2026-08-30 一度决定保留英文,理由是「现实日期一律不翻」,那是把两件事弄混了:
+  侧边栏那行 `08/30/26 m9CQ` 之所以不收,是因为它整行只有数字和服务器号、**没有词**;
+  `September` 是一个有通行中文写法的英文单词,留着就是中英混杂,2026-08-31 的实测采集也确实
+  把它报进了 mixed 堆。
+- **语序**: 中文写「2026 年 9 月」,年份在前。所以带月份的模板必须用带编号的占位符
+  (`%1$s` 月 / `%2$s` 年),在 `zh` 里把两个换位。
+- **译名只写月份**(`September` → 「9 月」),年份由记录自己排在前面。译名写在两个地方,
+  **改一边必须改另一边**:
+  - `_shared/Terms.json` —— 管占位符捕到的值(菜单标题、返回箭头)。限定 `category_name`,
+    不给 `raw`:`May` / `March` 这类词在宽松的 raw 位置上撞车的代价太大。
+  - `_shared/Months.json` —— 管**整行**只有月份年份的那种行。那一行做不成模板(去掉占位符后
+    一个字母都不剩,引擎会拒),所以按月份拆成十二条,是 README 第 4 节允许的「拆标签」。
+
+### 账号与存档升级名(Account & Profile Upgrades)—— 一律走词表,不写进模板
+
+- 出现场景: 社区中心 Elizabeth 的升级菜单。同一批名字(Minion Slots、Guests Limit、
+  Island Size、Ender Chest Pages、Heart of the Mountain……共 16 种)会被服务器塞进
+  **四类**模板:根菜单的状态行(`Profile: %s %s (%s Hours)`)、升级历史行
+  (`%s ago %s started %s %s`)、Tab 页脚的倒计时行、开始/领取升级的聊天广播。
+- **规则**: 升级名一律做成 `category_name` 占位符,译名只写在 `_shared/Terms.json` 一处。
+  2026-08-31 之前是每处把某一个名字写死进模板(状态行写死 Minion Slots、聊天写死
+  Ender Chest Pages、确认页写死 Heart of the Mountain、Tab 页脚写死五个),后果有两个:
+  换一种升级整行掉回英文;以及同一个升级在不同文件里译得不一样
+  (`Ender Chest Pages` 在菜单里是「末影箱页面」、在 Tab 和聊天里是「末影箱页数」,现统一为**页面**)。
+- **为什么用 `category_name` 而不是 `raw`**: 名字后面紧跟等级罗马数字,`tier` 把右边界钉死;
+  `category_name` 走 `Capture.NAME`(最多 5 个词、两端大写或数字开头),
+  「Heart of the Mountain I」这种中间夹小写词的名字照样整段捕到,而半句 Lore 进不来。
+- 升级历史行里的「多久以前」用 `type: time`:引擎会把 `2m` / `4h` / `23d` 换成中文
+  (见 `text/Capture.java` 的 `DURATION`),一条模板管所有单位。时长照项目既定写法**不加空格**
+  (`2分前`、`35天`),这是全项目唯一不遵守「数字后面留空格」的地方,`checkTranslations` 的
+  「多段时长中间不留空格」把它钉住了。
+
 ### 限时活动名 —— 一律翻译,写两个地方
 
 - 出现场景: 「日历与活动」菜单的格子、计分板、Tab 列表、BossBar、活动开始/结束的聊天横幅。
@@ -684,6 +720,69 @@ BossBar 里是全大写(`GONE WITH THE WIND`)、计分板小部件里是正常�
 - `Equipment Loadouts` **查无实据**:语料、运行时采集、Wiki 全文检索(`insource:"Equipment Loadouts"`,
   0 命中)都没有。`SkyBlock_Menu.json` 暂留一条译作「装备预设栏」兜底,确认不存在即可整条删掉。
 - 已知未翻译: 箱子标题 `(1/3) Loadouts` 和格子名 `Loadout %1$s` 目前全无记录,整个预设界面还是英文。
+
+### Bingo(宾果活动)—— 已确定译名
+
+- 出现场景: 村庄 Bingo NPC 的三个菜单(`Hub_General/GUI_Item/Bingo_Event.json`、
+  `Bingo_Card.json`、`Bingo_Shop.json`)与对应箱子标题(`Hub_General/GUI_Title/Bingo.json`)。
+- **已确定译名**(按上面「限时活动名一律翻译」处理,`Bingo` → **宾果**已在
+  `_shared/Event_Names.json` 与 `_shared/Terms.json` 两边写过,新增的都沿用它):
+
+  | 原文 | 译名 | 说明 |
+  |---|---|---|
+  | `Bingo Card` | 宾果卡 | 五乘五的目标卡面 |
+  | `Bingo Shop` | 宾果商店 | 花宾果点数的商店 |
+  | `Bingo Points` | 宾果点数 | **不叫「点券」**,那是 Bits;宾果点数只在宾果商店里花 |
+  | `Bingo Rank` | 宾果等级 | 共 I–IV 四级,前缀符号 `Ⓑ`(U+24B7)照抄 |
+  | `Personal Goal` / `Community Goal` | 个人目标 / 社区目标 | 分类词走 `Terms.json` 的 `category_name` |
+  | `Bingo Talisman` / `Ring` / `Artifact` / `Relic` | 宾果护符 / 戒指 / 神器 / 遗物 | 四级饰品链,沿用钛护符一族的既定译法 |
+  | `Bingo Display` / `Collection Display` | 宾果展示牌 / 收藏品展示牌 | 可放置的装饰品 |
+  | `Book of Stats` | 统计之书 | 这里的 Stats 是「统计数据」(计数器),**不是**力量/时运那种属性,所以不译「属性之书」 |
+  | `Spring Boots` | 弹簧靴 | Spring 是「弹簧」不是「春天」:技能靠潜行蓄力弹跳 |
+  | `Ditto Skull` / `Ditto Skin` | 仿制头颅 / 仿制皮肤 | `Ditto` 沿用点券商店 `Ditto Blob` → 仿制黏团 |
+  | `Grappling Hook` | 抓钩 | 全由通用词组成,宾果等级 II 的赠品,语料首次出现 |
+  | `Alixer` | 原样 | Hypixel 自造的 NPC/装置名,不译 |
+
+- **卡面上的目标名每月一换**,不是固定语料,按当期卡面收。2026 年 9 月(第 58 期)的
+  两个词值得记下来,以后再遇到直接套用:
+  - `XX Collector`(收藏品类个人目标名)→ **XX 收集员**,沿用委托任务名那一条的既定译名。
+    **不要**译「收藏家」——那个词已经给了 `Pet Hoarder` →「宠物收藏家」,两个英文词各留各的译名。
+  - `Skilled`(社区目标名,条件是练技能拿经验)→ **技艺精湛**。词表里限定 `raw`。
+
+- **不要做成 `Bingo %s` 模板**。采集器两次都把这一族推断成了那个模板,但 `Bingo` 后面
+  跟的词各有各的译名(卡 / 商店 / 点数 / 等级 / 护符 / 活动),一个模板套下来必出中英混排;
+  而且 raw 型占位符会把别处任何以 Bingo 开头的半句话吃进来(同第 4 节的 `Your %s` 事故)。
+  一律写死成字面记录。
+- `Scavenger` 作为宾果社区目标名出现时**保持英文**:它同时是空岛专属附魔名,
+  按用户 2026-08-27 的决定那一族不翻译(见 `_shared/Enchantments.json` 的 scope)。
+  给它加词表条目会让这个名字在附魔语境里也变中文,两边就对不上了。
+
+### Chum / Bait —— 两种不同的物品,不能都叫「鱼饵」
+
+- 出现场景: `Hub_General/GUI_Item/Bingo_Card.json#bingo_goal_deposit_chum`(宾果卡目标)、
+  `_shared/Terms.json` 的 `Bait` 词条、`Hub_General/GUI_Item/Fishing_Merchant.json`。
+- **已查证**(hypixelskyblock.minecraft.wiki/w/Chum,2026-08-30):`Chum` 是在放好的
+  Chum Bucket 旁击杀海洋生物掉落的材料,拿去存进桶里换硬币和钓鱼经验,还能合成满桶;
+  `Bait` 是挂在鱼竿上、提高钓鱼效果的另一类物品。两者机制不同,不是同一件东西。
+- **已确定译名**: `Chum` → **碎鱼饵**,`Chum Bucket` → **碎鱼饵桶**,`Bait` → **鱼饵**。
+  两个都译「鱼饵」会让宾果卡上那一格读成「向鱼饵桶中存入鱼饵」,看不出存的是什么。
+- **未统一的遗留**: `Bait` 在语料里有两种写法——`Fishing_Merchant.json` 用「鱼饵」
+  (`Fishing Bait`、`COMMON BAIT` → 普通鱼饵、`Minnow Bait` → 小鱼饵),
+  而 `Farming/TabList/Tab_List.json#no_bait_none` 用「诱饵」。词表取了占多数的「鱼饵」,
+  但那一处还没改,做 Farming 玩法时一并收拾。
+
+### Pity / pity counter —— 已确定译名
+
+- 出现场景: `Mining/GUI_Item/Glacite_Tunnels_Pity.json`(极冰隧道保底进度物品)。同一机制还用在
+  RNG 计量表和巧克力工厂,后续遇到直接套用,不用重新讨论。
+- **已查证**(hypixelskyblock.minecraft.wiki/w/Glacite_Mineshafts,2026-08-28):计数从 2,000 开始,
+  按所挖方块的 Block Quality 递减,到 0 时下一个方块必定刷出极冰矿井;但 Tab 列表和保底菜单里
+  显示的是反过来的读数(从 0 涨到 2,000)。硬石算 0 点,所以"挖 2,000 个方块"这个说法只是原文
+  自己的粗略讲法。
+- **已确定译名**: `pity` / `pity counter` / 同一处语境里的 `value` 一律作 **保底进度**。
+  原文对同一个数用了三个词,中文统一成一个,比原文更一致;`Progress:` 那一行是进度条读数,
+  只作"进度",不重复"保底"二字。
+- 不用"吉兆":`Auspicious` 已经占了这个词(见本文件重铸前缀一节)。
 
 ## 剧情线与彩蛋
 

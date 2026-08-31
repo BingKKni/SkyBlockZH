@@ -1,0 +1,53 @@
+{
+  "gui": "Auction House",
+  "source": "runtime capture (SkyZH) 2026-08-29 实测会话",
+  "fetched_at": "2026-08-29",
+  "verified_ingame": true,
+  "gui_context": "拍卖行的几个界面标题:按关键词搜索后的结果页、单件拍卖品的详情页、合作岛共用的拍卖行、自己出过价的列表。",
+  "source_note": "两处需要留底的判断。① 搜索结果的标题里,引号内是玩家自己敲的搜索词,做成占位符;example 写成 LT-522 而不是 LT,是因为 example 的字符族会绑定这个占位符能接什么(见 text/ValueShape.java)——实测见过的词里既有纯字母(LT / TX / god p / sx-)也有字母带数字(LT-522),写一个同时含两者的例子才不会把另一半挡在外面。② 标题被截断的那一种没有收:实测采到过 `Auctions: \"Spicy Goblin Omelett`(31 个字符,末尾的引号被容器标题长度上限吃掉了)。没给它单独写记录,是因为「Auctions: \"%s」这种不带收尾引号的模板会把正常的 `Auctions: \"LT\"` 也一起收进来(占位符吃掉 `LT\"`),两条记录抢同一行、谁先谁后都对不上。宁可让被截断的标题保持英文,也不要一个可能答错的记录——同 GLOSSARY.md 的取舍原则。",
+  "titles": [
+    {
+      "id": "gui_title_auctions_search",
+      "context": "拍卖行按关键词搜索后的结果页,引号里是玩家敲进去的搜索词",
+      "text": "Auctions: \"%s\"",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "玩家自己输入的搜索词,原样保留不翻译",
+          "type": "raw",
+          "example": "LT-522"
+        }
+      ],
+      "gloss": "Auction House 按 Hub_General/GUI_Item/Booster_Cookie.json 的既有译名作「拍卖行」,这里原文是复数 Auctions(指搜出来的一堆拍卖),中文不体现数。搜索词是玩家自己敲的,不能翻,连引号一起照抄。",
+      "translate": true,
+      "zh": "拍卖行: \"%s\""
+    },
+    {
+      "id": "gui_title_bin_auction_view",
+      "context": "点开一件一口价拍卖品后的详情页",
+      "text": "BIN Auction View",
+      "placeholders": [],
+      "gloss": "BIN 是 Buy It Now 的缩写,指不参与竞价、直接按标价买走的那种挂单,中文拍卖场景的固定说法是「一口价」。View 是详情页,不是动词「查看」——这一面上是这件物品的价格、卖家和倒计时,所以作「详情」。首次出现,暂定译名。",
+      "translate": true,
+      "zh": "一口价拍卖详情"
+    },
+    {
+      "id": "gui_title_coop_auction_house",
+      "context": "合作岛共用的拍卖行界面",
+      "text": "Co-op Auction House",
+      "placeholders": [],
+      "gloss": "Co-op 按 GLOSSARY.md 的统一用词作「合作」。与 Economy/GUI_Title/Bazaar.json#gui_title_bazaar_coop_orders 的「合作集市订单」保持一致。",
+      "translate": true,
+      "zh": "拍卖行 - 合作模式"
+    },
+    {
+      "id": "gui_title_your_bids",
+      "context": "自己出过价的拍卖列表",
+      "text": "Your Bids",
+      "placeholders": [],
+      "gloss": "Your 在界面标题里按本项目习惯不译成「你的」而是省掉或用「我的」,和同类的 Your Bags(收纳袋)一样;这一面是玩家自己出的价,用「我的出价」比「你的出价」更像中文客户端的说法。",
+      "translate": true,
+      "zh": "我的出价"
+    }
+  ]
+}

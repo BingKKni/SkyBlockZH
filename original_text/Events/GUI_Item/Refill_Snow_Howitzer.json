@@ -1,0 +1,50 @@
+{
+  "source": "runtime capture (SkyZH) 2026-08-29 实测会话",
+  "fetched_at": "2026-08-29",
+  "verified_ingame": true,
+  "gui_context": "给雪榴弹炮补弹药的界面里那一格:格子名、两行说明、点击提示。",
+  "source_note": "两个维基都没有 Snow Howitzer 条目,译名的依据是这一界面自己的 Lore(说明它拿雪球当弹药),见 Events/GUI_Title/Jerrys_Workshop.json#gui_title_refill_snow_howitzer 的 gloss。说明句被服务器折成了两行,合并成一句译在头一条上,尾巴那条按 continuation 处理——不这么做整句会画两遍。",
+  "name": {
+    "id": "refill_snow_howitzer_name",
+    "context": "格子名,和界面标题同字",
+    "raw": "§aRefill Snow Howitzer",
+    "text": "Refill Snow Howitzer",
+    "placeholders": [],
+    "gloss": "和 Events/GUI_Title/Jerrys_Workshop.json#gui_title_refill_snow_howitzer 同字同译——玩家看到的是同一个词,一个在标题栏一个在格子上。",
+    "translate": true,
+    "zh": "装填雪榴弹炮"
+  },
+  "lore": [
+    {
+      "id": "refill_snow_howitzer_refill_your_snow_howitzer_with",
+      "context": "说明句的第一行,整句横跨两行",
+      "raw": "§7Refill your Snow Howitzer with",
+      "text": "Refill your Snow Howitzer with",
+      "placeholders": [],
+      "gloss": "两行同为灰色,合并不损失任何高亮,所以整句译在这一条上。英文的 your 在中文里不说出来更自然:界面上就这一把炮,「你的」是多余的。",
+      "translate": true,
+      "zh": "用雪球给雪榴弹炮装填弹药。"
+    },
+    {
+      "id": "refill_snow_howitzer_snowballs",
+      "context": "承接上一行,句子的宾语落在第二行",
+      "raw": "§7Snowballs.",
+      "text": "Snowballs.",
+      "placeholders": [],
+      "gloss": "中文语序把宾语提到了动词前面(「用雪球给…装填」),所以这一行没有自己的译文,按 continuation 交给上一条。留着独立译文会让整句画两遍。",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "refill_snow_howitzer_click_to_refill",
+      "context": "点击提示",
+      "raw": "§eClick to refill!",
+      "text": "Click to refill!",
+      "placeholders": [],
+      "gloss": "和 Mining/GUI_Item/Heart_of_the_Mountain_UI.json 的 Click to select!(点击选择!)/ Click to unlock!(点击解锁!)同一族,统一作「点击+动作!」。refill 沿用上文的「装填」。",
+      "translate": true,
+      "zh": "点击装填!"
+    }
+  ]
+}

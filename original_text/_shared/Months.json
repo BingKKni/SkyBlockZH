@@ -1,0 +1,22 @@
+{
+  "purpose": "整行只有「月份 + 年份」的那种行。宾果活动的格子副标题就是这么一行(`§8September 2026`),而它没法做成一条带占位符的模板——去掉两个占位符之后一个字母都不剩,引擎会拒绝这种模板并在启动日志里告警(见 original_text/README.md 第 4 节)。所以按月份拆成十二条:README 允许的正是这种「拆标签」,月份是有限的十二个、每个都有自己的译名,不是被禁止的「把同一个标签的每个取值各存一条」。",
+  "source": "SkyZH runtime capture (2026-08-31, Community Center / Village)",
+  "fetched_at": "2026-08-31",
+  "verified_ingame": true,
+  "surface_note": "`_shared/` 整个目录映射到 ITEM 渲染面(见 text/Surface.java),所以这些记录只对物品名和 Lore 生效。菜单标题那一侧(`Bingo - September 2026`)是另一个渲染面,由 Hub_General/GUI_Title/Bingo.json#gui_title_bingo_event 用占位符 + _shared/Terms.json 处理。",
+  "agreement_note": "月份译名在本文件和 _shared/Terms.json 各有一份:这里是整行记录,那里是占位符捕获值的词表,引擎两条路不通用(同 GLOSSARY.md 记的 Event_Names / Terms 双写)。**改一边必须改另一边**,写法也要一致——都只写月份(「9 月」),年份由记录自己排在前面。",
+  "lines": [
+    {"id":"month_january","context":"物品副标题里的「月份 年份」整行","raw":"§8January %1$s","text":"January %1$s","placeholders":[{"token":"%1$s","desc":"公历年份","type":"number","example":"2026"}],"gloss":"中文按「2026 年 1 月」的语序,年份排到月份前面。","translate":true,"zh":"%1$s 年 1 月"},
+    {"id":"month_february","context":"同上","raw":"§8February %1$s","text":"February %1$s","placeholders":[{"token":"%1$s","desc":"公历年份","type":"number","example":"2026"}],"gloss":"","translate":true,"zh":"%1$s 年 2 月"},
+    {"id":"month_march","context":"同上","raw":"§8March %1$s","text":"March %1$s","placeholders":[{"token":"%1$s","desc":"公历年份","type":"number","example":"2026"}],"gloss":"","translate":true,"zh":"%1$s 年 3 月"},
+    {"id":"month_april","context":"同上","raw":"§8April %1$s","text":"April %1$s","placeholders":[{"token":"%1$s","desc":"公历年份","type":"number","example":"2026"}],"gloss":"","translate":true,"zh":"%1$s 年 4 月"},
+    {"id":"month_may","context":"同上","raw":"§8May %1$s","text":"May %1$s","placeholders":[{"token":"%1$s","desc":"公历年份","type":"number","example":"2026"}],"gloss":"这一条比别的十一条危险:May 也是英语的情态动词。模板里 May 后面必须紧跟一个数字才算数(number 占位符),而「may 2026」这种写法在 Lore 里不存在,所以照收。","translate":true,"zh":"%1$s 年 5 月"},
+    {"id":"month_june","context":"同上","raw":"§8June %1$s","text":"June %1$s","placeholders":[{"token":"%1$s","desc":"公历年份","type":"number","example":"2026"}],"gloss":"","translate":true,"zh":"%1$s 年 6 月"},
+    {"id":"month_july","context":"同上","raw":"§8July %1$s","text":"July %1$s","placeholders":[{"token":"%1$s","desc":"公历年份","type":"number","example":"2026"}],"gloss":"","translate":true,"zh":"%1$s 年 7 月"},
+    {"id":"month_august","context":"同上","raw":"§8August %1$s","text":"August %1$s","placeholders":[{"token":"%1$s","desc":"公历年份","type":"number","example":"2026"}],"gloss":"","translate":true,"zh":"%1$s 年 8 月"},
+    {"id":"month_september","context":"同上。实测采到的就是这一条(2026 年 9 月那期宾果)","raw":"§8September %1$s","text":"September %1$s","placeholders":[{"token":"%1$s","desc":"公历年份","type":"number","example":"2026"}],"gloss":"","translate":true,"zh":"%1$s 年 9 月"},
+    {"id":"month_october","context":"同上","raw":"§8October %1$s","text":"October %1$s","placeholders":[{"token":"%1$s","desc":"公历年份","type":"number","example":"2026"}],"gloss":"","translate":true,"zh":"%1$s 年 10 月"},
+    {"id":"month_november","context":"同上","raw":"§8November %1$s","text":"November %1$s","placeholders":[{"token":"%1$s","desc":"公历年份","type":"number","example":"2026"}],"gloss":"","translate":true,"zh":"%1$s 年 11 月"},
+    {"id":"month_december","context":"同上","raw":"§8December %1$s","text":"December %1$s","placeholders":[{"token":"%1$s","desc":"公历年份","type":"number","example":"2026"}],"gloss":"","translate":true,"zh":"%1$s 年 12 月"}
+  ]
+}

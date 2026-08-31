@@ -1,0 +1,95 @@
+{
+  "gui": "点券商店 - 染料分类",
+  "source": "runtime capture (SkyZH) 2026-08-30; https://hypixelskyblock.minecraft.wiki/w/Pure_White_Dye; https://hypixelskyblock.minecraft.wiki/w/Pure_Black_Dye",
+  "fetched_at": "2026-08-30",
+  "verified_ingame": true,
+  "lines": [
+    {
+      "id": "changes_the_color_of_an_armor_piece",
+      "context": "纯白染料与纯黑染料共用的效果说明首行，实际颜色值由下一行显示",
+      "raw": "§7Changes the color of an armor piece",
+      "text": "Changes the color of an armor piece",
+      "placeholders": [],
+      "gloss": "armor piece 指可染色的单件盔甲；具体十六进制颜色值在下一行。",
+      "translate": true,
+      "zh": "将一件盔甲的颜色更改为"
+    },
+    {
+      "id": "to_000000",
+      "context": "承接上一行，显示纯黑染料的十六进制颜色值",
+      "raw": "§7to §8#000000§7!",
+      "text": "to #000000!",
+      "placeholders": [],
+      "gloss": "纯黑染料的颜色值固定为 000000。黑白值分别写精确记录，避免 raw 占位符的形状约束拒绝 FFFFFF。",
+      "translate": true,
+      "zh": "#000000!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "to ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§8",
+          "text": "#000000",
+          "zh": "#000000"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "to_ffffff",
+      "context": "承接上一行，显示纯白染料的十六进制颜色值",
+      "raw": "§7to §8#FFFFFF§7!",
+      "text": "to #FFFFFF!",
+      "placeholders": [],
+      "gloss": "纯白染料的颜色值固定为 FFFFFF。",
+      "translate": true,
+      "zh": "#FFFFFF!",
+      "segments": [
+        {"color": "§7", "text": "to ", "zh": "", "omit": true},
+        {"color": "§8", "text": "#FFFFFF", "zh": "#FFFFFF"},
+        {"color": "§7", "text": "!", "zh": "!"}
+      ]
+    },
+    {
+      "id": "epic_dye",
+      "context": "纯白染料与纯黑染料 Lore 末尾的稀有度及物品类型行",
+      "raw": "§5§lEPIC DYE",
+      "text": "EPIC DYE",
+      "placeholders": [],
+      "gloss": "EPIC 是稀有度，沿用共享稀有度译名“史诗”；DYE 是物品类型。",
+      "translate": true,
+      "zh": "史诗染料"
+    },
+    {
+      "id": "250000_bits",
+      "ref": "_shared/Menu_Common.json#menu_bits_price",
+      "context": "纯白染料与纯黑染料共用的点券价格行"
+    },
+    {
+      "id": "pure_white_dye",
+      "context": "染料分类中的纯白染料商品名",
+      "raw": "§fPure White Dye",
+      "text": "Pure White Dye",
+      "placeholders": [],
+      "gloss": "通用颜色名与物品类型均翻译；该染料对应 #FFFFFF。",
+      "translate": true,
+      "zh": "纯白染料"
+    },
+    {
+      "id": "pure_black_dye",
+      "context": "染料分类中的纯黑染料商品名；采集虽漏掉物品名，但同一菜单实测到了 #000000 颜色值",
+      "text": "Pure Black Dye",
+      "placeholders": [],
+      "gloss": "通用颜色名与物品类型均翻译；该染料对应 #000000。日志未保留此物品名的原始颜色码，因此不臆造 raw。",
+      "translate": true,
+      "zh": "纯黑染料"
+    }
+  ]
+}

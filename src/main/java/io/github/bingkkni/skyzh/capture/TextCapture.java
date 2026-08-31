@@ -4,6 +4,7 @@ import io.github.bingkkni.skyzh.SkyZHConfig;
 import io.github.bingkkni.skyzh.compat.HypixelApi;
 import io.github.bingkkni.skyzh.text.LineShape;
 import io.github.bingkkni.skyzh.text.StyledText;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
@@ -397,6 +398,43 @@ public final class TextCapture {
 		return configured.isEmpty() ? base.resolve("skyzh-capture") : base.resolve(configured);
 	}
 
+	/**
+	 * Writes out whatever the worker is holding, now rather than on its own timer.
+	 *
+	 * <p>For the moment the switch is turned off from chat: after that the switch is closed, so the
+	 * next line to arrive returns at {@link #ready} and nothing would ever flush what was already
+	 * collected.
+	 */
+	public static void flush() {
+		if (started) {
+			CaptureStore.finishPending();
+		}
+	}
+
+	/**
+	 * Forgets every captured line, in memory and on disk.
+	 *
+	 * <p>Order is the substance of this method. The client-thread buffers go first so nothing held back
+	 * is handed to the worker on the way past. The store then advances its queue generation and clears
+	 * pending announcements under the same monitor used to accept lines; that atomic step prevents a
+	 * worker which was already processing a line from recreating either state between two separate
+	 * clears. The seen set in particular <em>has</em> to be cleared: it is what makes a second sighting of a
+	 * line cost nothing, and leaving it behind would mean the menu whose capture was just discarded
+	 * produces nothing at all when it is opened again — the lines would all be recognised as already seen.
+	 *
+	 * <p>{@code started} is deliberately left alone. The worker thread is still wanted; this clears
+	 * what it has collected, not the fact that it is running.
+	 */
+	public static void clear() throws IOException {
+		HELD.clear();
+		SEEN.clear();
+
+		// The directory rather than the store's own root, so files left by an earlier session can be
+		// cleared in one where capture has not started and never set it.
+		int deleted = CaptureStore.clear(directory());
+		LOGGER.info("SkyZH 采集记录已清空，删除文件 {} 个。", deleted);
+	}
+
 	/** Called when the connection ends: write out what is held and forget the session. */
 	public static void disconnected() {
 		// Drained before the context is forgotten, so the last lines of a session are still filed
@@ -411,7 +449,7 @@ public final class TextCapture {
 			return;
 		}
 
-		CaptureStore.flush();
+		CaptureStore.finishPending();
 		SEEN.clear();
 		LOGGER.info("SkyZH 采集本次会话结果：{}", CaptureStore.summary());
 	}
