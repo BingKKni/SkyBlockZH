@@ -391,8 +391,8 @@ dependencies, and Loom has no `remapJar` step — `jar` produces the installable
 
 | | jar | Minecraft it declares | Mod Menu compiled against |
 |---|---|---|---|
-| `fabric-26.1/` | `SkyBlockZH-<version>-Beta-26.1.jar` | `>=26.1 <26.2` | 18.0.0 |
-| `fabric-26.2/` | `SkyBlockZH-<version>-Beta-26.2.jar` | `>=26.2 <26.3` | 20.0.1 |
+| `fabric-26.1/` | `SkyBlockZH-<version>-Beta-Fabric-26.1.jar` | `>=26.1 <26.2` | 18.0.0 |
+| `fabric-26.2/` | `SkyBlockZH-<version>-Beta-Fabric-26.2.jar` | `>=26.2 <26.3` | 20.0.1 |
 
 Both targets compile `src/main/` — the engine, the corpus loader, the capture, nine of the twelve
 mixins — and add one small tree of their own, `src/mc26_1/` or `src/mc26_2/`. Everything about a

@@ -20,12 +20,12 @@ base {
 	archivesName = rootProject.archives_base_name
 }
 
-// `SkyBlockZH-0.2.0-Beta-26.1.jar` is the file a player installs. The Minecraft tag is deliberately
+// `SkyBlockZH-0.3.0-Beta-Fabric-26.1.jar` is the file a player installs. The Minecraft tag is deliberately
 // the target generation rather than the exact patch used for compilation, so a build against 26.1.2
 // still produces the same 26.1 artifact.
-def archiveVersion = rootProject.version.toString().replaceFirst(/-beta(?:\.\d+)?$/, "-Beta-${artifactTag}")
+def archiveVersion = rootProject.version.toString().replaceFirst(/-beta(?:\.\d+)?$/, "-Beta-Fabric-${artifactTag}")
 if (archiveVersion == rootProject.version.toString()) {
-	archiveVersion = "${rootProject.version}-Beta-${artifactTag}"
+	archiveVersion = "${rootProject.version}-Beta-Fabric-${artifactTag}"
 }
 version = archiveVersion
 group = rootProject.group

@@ -348,8 +348,8 @@ Loom 也不再有 `remapJar` 这一步——`jar` 出来的就是能装的那个
 
 | | jar | 声明的 Minecraft | 编译时用的 Mod Menu |
 |---|---|---|---|
-| `fabric-26.1/` | `SkyBlockZH-<版本>-Beta-26.1.jar` | `>=26.1 <26.2` | 18.0.0 |
-| `fabric-26.2/` | `SkyBlockZH-<版本>-Beta-26.2.jar` | `>=26.2 <26.3` | 20.0.1 |
+| `fabric-26.1/` | `SkyBlockZH-<版本>-Beta-Fabric-26.1.jar` | `>=26.1 <26.2` | 18.0.0 |
+| `fabric-26.2/` | `SkyBlockZH-<版本>-Beta-Fabric-26.2.jar` | `>=26.2 <26.3` | 20.0.1 |
 
 两个目标都编译 `src/main/`——引擎、语料加载、采集，以及十二个 Mixin 里的九个——
 再各自加上一小棵自己的树：`src/mc26_1/` 或 `src/mc26_2/`。除了版本号本身，
