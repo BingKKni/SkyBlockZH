@@ -61,6 +61,10 @@ SkyBlock 玩法非常庞大，且每一次的游戏更新都可能会更改游�
 
 文件名末尾的 `Beta-Fabric-26.1` / `Beta-Fabric-26.2` 表示 Fabric 加载器及对应的 Minecraft 版本。
 
+## 许可证
+
+本项目采用 [GNU 通用公共许可证第 3 版（GPL-3.0-only）](LICENSE) 授权。完整许可证条款见 [LICENSE](LICENSE)。
+
 ## 技术文档
 
 想了解翻译引擎是怎么实现的（渲染面、Mixin、语料格式、换行与居中的像素测量），见 [docs/TECHNICAL_zh-CN.md](docs/TECHNICAL_zh-CN.md)（中文） / [docs/TECHNICAL.md](docs/TECHNICAL.md)（English）。
