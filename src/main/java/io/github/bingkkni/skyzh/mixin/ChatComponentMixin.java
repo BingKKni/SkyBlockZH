@@ -1,5 +1,6 @@
 package io.github.bingkkni.skyzh.mixin;
 
+import io.github.bingkkni.skyzh.HypixelServer;
 import io.github.bingkkni.skyzh.text.Translator;
 import java.util.List;
 import net.minecraft.client.gui.Font;
@@ -43,6 +44,10 @@ public abstract class ChatComponentMixin {
 		require = 0
 	)
 	private List<FormattedCharSequence> skyzh$translateBeforeSplit(GuiMessage message, Font font, int width) {
+		if (!HypixelServer.canTranslate()) {
+			return message.splitLines(font, width);
+		}
+
 		Component translated = Translator.translateChatBlock(message.content(), font, width);
 
 		// A throwaway message so vanilla's own indent, tag and wrapping rules still apply. The one

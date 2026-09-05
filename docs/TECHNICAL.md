@@ -33,6 +33,14 @@ which run *before* this mod's hooks, so SkyHanni and SkyBlocker keep seeing exac
 sent. That is the design goal, not a side effect: a translation mod that broke SkyHanni would be a
 worse deal for most SkyBlock players than reading English.
 
+Every runtime translation entry checks `HypixelServer.canTranslate()` before caches, term-table
+fallbacks, wrapping or centring: a live multiplayer connection and a `hypixel.net` host or subdomain
+are required, independently of capture. Other servers, singleplayer and the main menu keep vanilla
+text and coordinates. Entering/leaving Hypixel also rebuilds wrapped chat to remove stale translations.
+The pure corpus engine and `locate` stay server-independent for offline checks and capture classification.
+Custom proxy domains and direct IPs cannot be confirmed as Hypixel and are intentionally not enabled;
+a server brand or a SKYBLOCK scoreboard alone is not accepted as proof.
+
 Every hook is `require = 0`. If a Minecraft update moves a method, or another mod claims the same
 instruction first, the result is "this surface stops being translated", not "the modpack won't boot".
 The startup log prints how many records loaded per surface, which is how you tell "not translated
@@ -117,8 +125,31 @@ Mod Menu is a soft dependency. Without it, edit `config/skyzh.json`, which docum
 |---|---|---|
 | `enabled` | on | Master switch |
 | `translateSkyBlockName` | on | Render "SkyBlock" as 空岛生存. Compounds use the short form and get their spacing fixed: `你的 SkyBlock 等级` → `你的空岛等级`; standalone occurrences keep the full name. See below for where the substitution is allowed to happen |
-| `showOriginal` | on | Keep the English beside the Chinese, as 收藏品（Collections）. Applies to container titles, item names, and to names that appear inside chat NPC lines or item lore (象牙化石（Tusk Fossil）). Hold **X** to show every surface in English temporarily — capture is not turned off |
+| `showOriginal` | on | Keep the English beside the Chinese, as 收藏品（Collections）. Applies to container titles, item names, and to names that appear inside chat NPC lines or item lore (象牙化石（Tusk Fossil）). Hold **Show original text (default X)** to show every surface in English temporarily — capture is not turned off. Rebind or unbind to NONE in vanilla Controls |
 | `captureUntranslated` | **off** | A switch for whoever is filling the corpus in. It writes files to your disk; leave it off to play. See below |
+| `captureNotifications` | on | Report newly captured untranslated text, colour errors and mixed-language text in chat. Turning reports off does not stop file writes |
+| `autoClearCapture` | **off** | Clear the previous captures once per client launch, whether or not capture is enabled or a server is joined. Reconnecting never clears files |
+
+The two capture sub-options share the row below the capture master: notifications on the left,
+startup clearing on the right. Old configs missing these keys use the defaults above. Startup clearing
+runs once in Fabric's client initializer, before the main menu, through the exact `TextCapture.clear()`
+path used by `/skyzh clear`: in-memory state, queued work and JSON files in the three capture buckets
+are cleared; unrelated files remain. Failures are logged without preventing startup.
+
+The hold key is a vanilla `KeyMapping`, appended by `OptionsMixin` at the start of `Options.load`
+(idempotently), before the first read of `options.txt`. Vanilla owns persistence, conflicts, reset and
+NONE, with no Fabric API dependency. Gameplay keys are released while containers are open, so
+`HoldOriginal` polls the mapping's **currently assigned** key, not a hard-coded X. Keyboard and mouse
+buttons work; scancode-only keys are observed through vanilla keyboard events. Chat/sign editing,
+a focused text box and an unfocused window suppress the hold.
+
+```bash
+./gradlew checkClientSettings  # both targets: config migration, vanilla mappings, server boundary
+```
+
+In-game checks still needed: rebind/unbind and verify persistence after a restart; hold/release while
+hovering item lore; check the left/right settings layout; restart to the main menu to verify startup
+clearing, then disconnect/rejoin within that launch to verify the files remain.
 
 ### Where "SkyBlock" is swapped, and where it is not
 
@@ -224,8 +255,11 @@ There is deliberately **no filter by name**. `[Bazaar]` and `[Sacks]` are Hypixe
 a blocklist of mod-shaped tags would throw away real SkyBlock text to catch something that cannot
 arrive anyway.
 
-Two more guards: the server address has to match `captureServer` (`hypixel.net` by default, empty to
-skip the check), and the sidebar's title has to say SKYBLOCK. Neither satisfied, nothing is kept.
+Two more guards: the live connection must be **Hypixel**, and the sidebar's title has to say SKYBLOCK.
+Both are required. The legacy `captureServer` setting can further restrict domains within Hypixel
+(e.g. alpha); empty skips only that extra filter and cannot bypass the Hypixel boundary. Every capture
+entry checks the live connection rather than trusting the previous tick after a server switch.
+Disconnect cleanup runs even if capture was switched off mid-session; it never deletes files.
 
 ### The one thing that is sent
 
@@ -292,8 +326,9 @@ placeholders and writing the Chinese.
 
 ### It says so in chat
 
-Part of the same switch, with no separate option. Captures are grouped **by the file they are written
-to** and announced one second after the last one arrives:
+Controlled by the capture-notifications sub-option, on by default. Turning it off drops pending
+reports without stopping file writes; turning it back on does not replay reports from the silent period.
+Captures are grouped **by the file they are written to** and announced one second after the last one arrives:
 
 ```
 [SkyZH] 采集 43 条 · Mining / GUI_Item / Commissions  在 Dwarven Mines
@@ -394,7 +429,7 @@ dependencies, and Loom has no `remapJar` step — `jar` produces the installable
 | `fabric-26.1/` | `SkyBlockZH-<version>-Beta-Fabric-26.1.jar` | `>=26.1 <26.2` | 18.0.0 |
 | `fabric-26.2/` | `SkyBlockZH-<version>-Beta-Fabric-26.2.jar` | `>=26.2 <26.3` | 20.0.1 |
 
-Both targets compile `src/main/` — the engine, the corpus loader, the capture, nine of the twelve
+Both targets compile `src/main/` — the engine, the corpus loader, the capture, eleven of the fourteen
 mixins — and add one small tree of their own, `src/mc26_1/` or `src/mc26_2/`. Everything about a
 target other than its version numbers lives in `gradle/target.gradle`, so the two cannot drift in how
 they package the corpus or which Java release they compile for.

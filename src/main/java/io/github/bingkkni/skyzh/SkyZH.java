@@ -1,6 +1,8 @@
 package io.github.bingkkni.skyzh;
 
+import io.github.bingkkni.skyzh.capture.TextCapture;
 import io.github.bingkkni.skyzh.compat.HypixelApi;
+import java.io.IOException;
 import io.github.bingkkni.skyzh.text.Surface;
 import io.github.bingkkni.skyzh.text.TranslationIndex;
 import io.github.bingkkni.skyzh.text.Translator;
@@ -34,6 +36,17 @@ public final class SkyZH implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		SkyZHConfig config = SkyZHConfig.get();
+
+		// Fabric invokes this once per client launch, before the main menu and independently of
+		// joining any server. Do not put this on the connection/tick path: reconnecting is not a restart.
+		if (config.autoClearCapture) {
+			try {
+				TextCapture.clear(); // Exactly the same memory + disk reset as /skyzh clear.
+			} catch (IOException | RuntimeException e) {
+				LOGGER.warn("SkyZH 启动时自动清空采集文本失败：{}", e.toString());
+			}
+		}
+
 		Translator.reload();
 
 		TranslationIndex index = Translator.index();

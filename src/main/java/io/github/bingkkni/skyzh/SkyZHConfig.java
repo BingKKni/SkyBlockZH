@@ -72,6 +72,12 @@ public final class SkyZHConfig {
 	 */
 	public boolean captureUntranslated = false;
 
+	/** Whether new captures are reported in chat. Read by the capture worker as well as the client. */
+	public volatile boolean captureNotifications = true;
+
+	/** Clear the previous capture once on client startup, even if capture itself is off. */
+	public boolean autoClearCapture = false;
+
 	/**
 	 * Where capture writes, relative to the game directory.
 	 *
@@ -83,12 +89,8 @@ public final class SkyZHConfig {
 	public String captureDirectory = "skyzh-capture";
 
 	/**
-	 * The only server capture is allowed to run on, matched on the end of the address.
-	 *
-	 * <p>A guard rather than a preference. Capture produces data meant to end up in a SkyBlock corpus,
-	 * and text collected on some other server would look exactly like SkyBlock text once it was in the
-	 * file — there would be no way to find it again. Emptying this turns the check off, which is a
-	 * reasonable thing to do behind a proxy and an unreasonable thing to do otherwise.
+	 * An optional additional domain restriction inside Hypixel (for example alpha.hypixel.net).
+	 * Empty skips only this extra filter; it cannot bypass the shared Hypixel server boundary.
 	 */
 	public String captureServer = "hypixel.net";
 
@@ -114,16 +116,25 @@ public final class SkyZHConfig {
 
 		try (Reader reader = Files.newBufferedReader(FILE, StandardCharsets.UTF_8)) {
 			JsonObject json = JsonParser.parseReader(reader).getAsJsonObject();
-			config.enabled = bool(json, "enabled", true);
-			config.translateSkyBlockName = bool(json, "translateSkyBlockName", true);
-			config.showOriginal = bool(json, "showOriginal", true);
-			config.captureUntranslated = bool(json, "captureUntranslated", false);
-			config.captureDirectory = string(json, "captureDirectory", "skyzh-capture");
-			config.captureServer = string(json, "captureServer", "hypixel.net");
+			config = fromJson(json);
 		} catch (Exception e) {
 			LOGGER.warn("读取 {} 失败，本次使用默认设置：{}", FILE, e.toString());
 		}
 
+		return config;
+	}
+
+	/** Missing keys in an older config retain their defaults. Also used by the config round-trip check. */
+	static SkyZHConfig fromJson(JsonObject json) {
+		SkyZHConfig config = new SkyZHConfig();
+		config.enabled = bool(json, "enabled", true);
+		config.translateSkyBlockName = bool(json, "translateSkyBlockName", true);
+		config.showOriginal = bool(json, "showOriginal", true);
+		config.captureUntranslated = bool(json, "captureUntranslated", false);
+		config.captureNotifications = bool(json, "captureNotifications", true);
+		config.autoClearCapture = bool(json, "autoClearCapture", false);
+		config.captureDirectory = string(json, "captureDirectory", "skyzh-capture");
+		config.captureServer = string(json, "captureServer", "hypixel.net");
 		return config;
 	}
 
@@ -159,22 +170,7 @@ public final class SkyZHConfig {
 	 * which settings are current.
 	 */
 	public void saveChecked() throws IOException {
-		JsonObject help = new JsonObject();
-		help.addProperty("enabled", "是否启用 Mod 功能。关闭将不翻译任何文本。");
-		help.addProperty("translateSkyBlockName", "是否翻译 SkyBlock 玩法名。翻译后的文本为「空岛生存」。");
-		help.addProperty("showOriginal", "启用翻译对比：在容器标题、物品名、以及聊天/Lore 里出现的已译物品名后面加括号英文，如「收藏品（Collections）」「象牙化石（Tusk Fossil）」「钻石精华（Diamond Essence）」。集市和拍卖行是按英文名搜索的，关掉之后就搜不到自己手里的物品了。按住 X 可以临时显示全部原文，松开恢复；那一键不关采集。");
-		help.addProperty("captureUntranslated", "【给翻译者用，普通玩家请保持关闭】把游戏里还没翻译、以及翻译了但仍中英混杂的文本写到硬盘上，供补全语料用。只采集服务器发来的原文，不会采集其他 Mod 的文本，也不会改变游戏里显示的任何内容。打开它时，如果装了 hypixel-mod-api，会向服务器订阅一次位置事件（用来判断采到的文本属于哪个玩法）——这是本 Mod 唯一一处往外发包的地方，关掉就不发。");
-		help.addProperty("captureDirectory", "采集输出目录，相对于游戏目录。里面按 untranslated/、mixed/ 与 colour/ 分三类，各自再按玩法/来源/名字分目录，和 original_text/ 的结构一致。");
-		help.addProperty("captureServer", "只在这个服务器上采集（按域名后缀匹配）。留空表示不检查服务器地址，只靠计分板判断是不是在 SkyBlock —— 用代理连服的时候才需要留空。");
-
-		JsonObject json = new JsonObject();
-		json.add("_说明", help);
-		json.addProperty("enabled", this.enabled);
-		json.addProperty("translateSkyBlockName", this.translateSkyBlockName);
-		json.addProperty("showOriginal", this.showOriginal);
-		json.addProperty("captureUntranslated", this.captureUntranslated);
-		json.addProperty("captureDirectory", this.captureDirectory);
-		json.addProperty("captureServer", this.captureServer);
+		JsonObject json = toJson();
 
 		if (FILE != null) {
 			Files.createDirectories(FILE.getParent());
@@ -192,6 +188,30 @@ public final class SkyZHConfig {
 		}
 
 		generation++;
+	}
+
+	JsonObject toJson() {
+		JsonObject help = new JsonObject();
+		help.addProperty("enabled", "是否启用 Mod 功能。关闭将不翻译任何文本。");
+		help.addProperty("translateSkyBlockName", "是否翻译 SkyBlock 玩法名。翻译后的文本为「空岛生存」。");
+		help.addProperty("showOriginal", "启用翻译对比：在容器标题、物品名、以及聊天/Lore 里出现的已译物品名后面加括号英文，如「收藏品（Collections）」「象牙化石（Tusk Fossil）」「钻石精华（Diamond Essence）」。集市和拍卖行是按英文名搜索的，关掉之后就搜不到自己手里的物品了。按住「临时显示原文」键（默认 X）可以临时显示全部原文，松开恢复；可在原版控制设置里改键或设为 NONE 禁用，那一键不关采集。");
+		help.addProperty("captureUntranslated", "【给翻译者用，普通玩家请保持关闭】把游戏里还没翻译、以及翻译了但仍中英混杂的文本写到硬盘上，供补全语料用。只采集服务器发来的原文，不会采集其他 Mod 的文本，也不会改变游戏里显示的任何内容。打开它时，如果装了 hypixel-mod-api，会向服务器订阅一次位置事件（用来判断采到的文本属于哪个玩法）——这是本 Mod 唯一一处往外发包的地方，关掉就不发。");
+		help.addProperty("captureNotifications", "采集到未翻译文本、颜色错误、中英混杂文本时，是否在聊天栏里输出报告");
+		help.addProperty("autoClearCapture", "每次启动游戏时，是否自动清空上一轮已采集的文本。启动时执行一次，与采集总开关和是否进入 Hypixel 无关；断线重连不清空。");
+		help.addProperty("captureDirectory", "采集输出目录，相对于游戏目录。里面按 untranslated/、mixed/ 与 colour/ 分三类，各自再按玩法/来源/名字分目录，和 original_text/ 的结构一致。");
+		help.addProperty("captureServer", "在 Hypixel 范围内额外限制采集的域名（可指定 alpha.hypixel.net）。留空只取消这层额外限制，不会允许采集其他服务器或单人世界；仍须通过 Hypixel 地址和 SkyBlock 计分板检查。");
+
+		JsonObject json = new JsonObject();
+		json.add("_说明", help);
+		json.addProperty("enabled", this.enabled);
+		json.addProperty("translateSkyBlockName", this.translateSkyBlockName);
+		json.addProperty("showOriginal", this.showOriginal);
+		json.addProperty("captureUntranslated", this.captureUntranslated);
+		json.addProperty("captureNotifications", this.captureNotifications);
+		json.addProperty("autoClearCapture", this.autoClearCapture);
+		json.addProperty("captureDirectory", this.captureDirectory);
+		json.addProperty("captureServer", this.captureServer);
+		return json;
 	}
 
 	/**

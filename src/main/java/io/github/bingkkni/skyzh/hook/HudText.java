@@ -1,5 +1,6 @@
 package io.github.bingkkni.skyzh.hook;
 
+import io.github.bingkkni.skyzh.HypixelServer;
 import io.github.bingkkni.skyzh.text.Surface;
 import io.github.bingkkni.skyzh.text.Translator;
 import net.minecraft.client.gui.Font;
@@ -38,28 +39,35 @@ public final class HudText {
 	public static void actionBar(
 		GuiGraphicsExtractor graphics, Font font, Component text, int x, int y, int width, int color
 	) {
-		draw(graphics, font, Translator.translateWidgets(text, Surface.ACTION_BAR), x, y, width, color);
+		draw(graphics, font, text, Surface.ACTION_BAR, x, y, width, color);
 	}
 
 	/** The big centred title and the subtitle under it — both calls in vanilla's title method. */
 	public static void title(
 		GuiGraphicsExtractor graphics, Font font, Component text, int x, int y, int width, int color
 	) {
-		draw(graphics, font, Translator.translateLine(text, Surface.MISC), x, y, width, color);
+		draw(graphics, font, text, Surface.MISC, x, y, width, color);
 	}
 
 	/** The item name that appears above the hotbar on selecting a slot. */
 	public static void selectedItemName(
 		GuiGraphicsExtractor graphics, Font font, Component text, int x, int y, int width, int color
 	) {
-		draw(graphics, font, Translator.translateLine(text, Surface.ITEM), x, y, width, color);
+		draw(graphics, font, text, Surface.ITEM, x, y, width, color);
 	}
 
 	private static void draw(
-		GuiGraphicsExtractor graphics, Font font, Component text, int x, int y, int width, int color
+		GuiGraphicsExtractor graphics, Font font, Component text, Surface surface, int x, int y, int width, int color
 	) {
-		int translatedWidth = font.width(text);
+		if (!HypixelServer.canTranslate()) {
+			graphics.textWithBackdrop(font, text, x, y, width, color);
+			return;
+		}
+
+		Component translated = surface == Surface.ACTION_BAR
+			? Translator.translateWidgets(text, surface) : Translator.translateLine(text, surface);
+		int translatedWidth = font.width(translated);
 		// x was left-of-centre by half the old width; keep the same midpoint for the new one.
-		graphics.textWithBackdrop(font, text, x + (width - translatedWidth) / 2, y, translatedWidth, color);
+		graphics.textWithBackdrop(font, translated, x + (width - translatedWidth) / 2, y, translatedWidth, color);
 	}
 }

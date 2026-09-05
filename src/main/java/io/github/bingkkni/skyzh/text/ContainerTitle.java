@@ -1,5 +1,6 @@
 package io.github.bingkkni.skyzh.text;
 
+import io.github.bingkkni.skyzh.HypixelServer;
 import io.github.bingkkni.skyzh.SkyZHConfig;
 import net.minecraft.client.gui.Font;
 import net.minecraft.network.chat.Component;
@@ -36,6 +37,10 @@ public final class ContainerTitle {
 	}
 
 	public static Rendered of(Font font, Component title, int available) {
+		if (!HypixelServer.canTranslate()) {
+			return new Rendered(title, false);
+		}
+
 		SkyZHConfig config = SkyZHConfig.get();
 		String key = title.getString() + ' ' + available + ' ' + SkyZHConfig.generation();
 

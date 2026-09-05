@@ -376,7 +376,7 @@ public final class TextCapture {
 	 * every message would be counted twice. Hooking at {@code HEAD} is still right: it is the earliest
 	 * point at which the packet exists and no mod has looked at it.
 	 */
-	private static boolean ready() {
+	public static boolean ready() {
 		if (!Minecraft.getInstance().isSameThread() || !CaptureContext.active()) {
 			return false;
 		}

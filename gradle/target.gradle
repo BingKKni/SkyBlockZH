@@ -175,6 +175,9 @@ harnessTask('checkCapture', 'io.github.bingkkni.skyzh.CaptureHarness',
 harnessTask('checkCommands', 'io.github.bingkkni.skyzh.CommandHarness',
 	'Checks SkyZH client-command parsing and exact help text.')
 
+harnessTask('checkClientSettings', 'io.github.bingkkni.skyzh.ClientSettingsHarness',
+	'Checks config migration, vanilla key mappings and the Hypixel-only runtime boundary.')
+
 // The minifier's whole premise is a list of fields the engine does not read. That list is checked
 // against the engine rather than trusted: both corpora are compiled and the indexes compared. A
 // mistake here would not break the build — it would ship a jar that silently stops translating some
@@ -276,7 +279,7 @@ tasks.register('checkMixinTargets', Exec) {
 }
 
 tasks.named('check') {
-	dependsOn 'checkTranslations', 'checkCapture', 'checkCommands', 'checkMinifiedCorpus',
+	dependsOn 'checkTranslations', 'checkCapture', 'checkCommands', 'checkClientSettings', 'checkMinifiedCorpus',
 		'checkMixinTargets'
 }
 

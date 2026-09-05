@@ -63,6 +63,7 @@ public final class CaptureHarness {
 		clearing();
 		writeRetries();
 		announcements();
+		quietCapture();
 		zones(areas);
 		unplaced();
 		widgets();
@@ -626,6 +627,40 @@ public final class CaptureHarness {
 		boolean[] again = { false };
 		CaptureAnnouncer.tick(() -> again[0] = true);
 		check("没东西可发时不白落盘", again[0], false);
+	}
+
+	/** Turning reports off must not turn capture off, nor replay old reports on re-enable. */
+	private static void quietCapture() throws Exception {
+		SkyZHConfig config = SkyZHConfig.get();
+		boolean previous = config.captureNotifications;
+		Path root = Files.createTempDirectory("skyzh-quiet-capture-harness");
+		long now = 1_000_000L;
+
+		try {
+			CaptureStore.clear(root);
+			CaptureStore.root(root);
+			config.captureNotifications = true;
+			announce(root, Classifier.Bucket.UNTRANSLATED, "Mining", CaptureSurface.GUI_ITEM, "Quiet", 1, now);
+			config.captureNotifications = false;
+			check("关闭提示丢弃已积累的报告", CaptureAnnouncer.due(now + 2000).size(), 0);
+
+			for (Classifier.Bucket bucket : Classifier.Bucket.values()) {
+				announce(root, bucket, "Mining", CaptureSurface.GUI_ITEM, "Quiet", 1, now);
+			}
+			check("未翻译/混杂/颜色三类报告都可关闭", CaptureAnnouncer.due(now + 3000).size(), 0);
+			accept(root, CaptureSurface.CHAT_MESSAGE, "Mining", "Quiet", "A quiet harness line nobody translated", now);
+			CaptureStore.flush();
+			check("关闭提示仍然采集并写文件", Files.exists(root.resolve("untranslated/Mining/ChatMessage/Quiet.json")), true);
+
+			config.captureNotifications = true;
+			check("重开提示不补发静默期间的报告", CaptureAnnouncer.due(now + 9000).size(), 0);
+			announce(root, Classifier.Bucket.COLOUR, "Mining", CaptureSurface.GUI_ITEM, "Quiet", 1, now + 10000);
+			check("重新开启后报告新的采集", CaptureAnnouncer.due(now + 12000).size(), 1);
+		} finally {
+			config.captureNotifications = previous;
+			CaptureStore.clear(root);
+			delete(root);
+		}
 	}
 
 	/** The path behind the first clickable piece of a message, or an empty string if there is none. */

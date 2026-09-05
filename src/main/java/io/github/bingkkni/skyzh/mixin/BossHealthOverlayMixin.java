@@ -1,5 +1,6 @@
 package io.github.bingkkni.skyzh.mixin;
 
+import io.github.bingkkni.skyzh.HypixelServer;
 import io.github.bingkkni.skyzh.text.Surface;
 import io.github.bingkkni.skyzh.text.TextLayout;
 import io.github.bingkkni.skyzh.text.Translator;
@@ -32,6 +33,11 @@ public abstract class BossHealthOverlayMixin {
 	private void skyzh$translateBossBarName(
 		GuiGraphicsExtractor graphics, Font font, Component name, int x, int y, int color
 	) {
+		if (!HypixelServer.canTranslate()) {
+			graphics.text(font, name, x, y, color);
+			return;
+		}
+
 		Component translated = Translator.translateLine(name, Surface.BOSS_BAR);
 		graphics.text(font, translated, TextLayout.centeredX(font, translated, graphics.guiWidth()), y, color);
 	}

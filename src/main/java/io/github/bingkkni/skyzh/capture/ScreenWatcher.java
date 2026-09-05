@@ -1,5 +1,6 @@
 package io.github.bingkkni.skyzh.capture;
 
+import io.github.bingkkni.skyzh.HypixelServer;
 import io.github.bingkkni.skyzh.SkyZHConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -42,25 +43,25 @@ public final class ScreenWatcher {
 	private ScreenWatcher() {
 	}
 
-	/** Called from the client tick. Does nothing at all while the switch is off. */
+	/** Called from the client tick. Session teardown must run even when capture was switched off. */
 	public static void tick() {
+		Minecraft minecraft = Minecraft.getInstance();
+		ClientLevel level = minecraft.level;
+
+		if (level == null || !HypixelServer.isConnected()) {
+			if (connected) {
+				connected = false;
+				TextCapture.disconnected();
+			}
+
+			return;
+		}
+
 		if (!SkyZHConfig.get().captureUntranslated) {
 			// Except finish what was started. Switching capture off in Mod Menu mid-session must not
 			// strand the lines that are waiting for the sidebar to name the area: nothing new is taken,
 			// but what is already held is filed under the last place that was known.
 			TextCapture.tick();
-
-			return;
-		}
-
-		Minecraft minecraft = Minecraft.getInstance();
-		ClientLevel level = minecraft.level;
-
-		if (level == null) {
-			if (connected) {
-				connected = false;
-				TextCapture.disconnected();
-			}
 
 			return;
 		}

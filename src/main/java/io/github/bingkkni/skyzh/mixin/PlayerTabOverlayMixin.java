@@ -1,5 +1,6 @@
 package io.github.bingkkni.skyzh.mixin;
 
+import io.github.bingkkni.skyzh.HypixelServer;
 import io.github.bingkkni.skyzh.text.Surface;
 import io.github.bingkkni.skyzh.text.Translator;
 import java.util.List;
@@ -48,7 +49,8 @@ public abstract class PlayerTabOverlayMixin {
 		require = 0
 	)
 	private Component skyzh$translateRow(PlayerTabOverlay overlay, PlayerInfo info) {
-		return Translator.translateRow(overlay.getNameForDisplay(info), Surface.TABLIST);
+		Component source = overlay.getNameForDisplay(info);
+		return HypixelServer.canTranslate() ? Translator.translateRow(source, Surface.TABLIST) : source;
 	}
 
 	/**
@@ -65,7 +67,7 @@ public abstract class PlayerTabOverlayMixin {
 		require = 0
 	)
 	private List<FormattedCharSequence> skyzh$translateHeaderAndFooter(Font font, FormattedText text, int width) {
-		if (text instanceof Component component) {
+		if (HypixelServer.canTranslate() && text instanceof Component component) {
 			return font.split(Translator.translateBlock(component, Surface.TABLIST), width);
 		}
 

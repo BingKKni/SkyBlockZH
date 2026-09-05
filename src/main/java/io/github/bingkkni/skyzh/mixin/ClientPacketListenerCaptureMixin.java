@@ -60,6 +60,10 @@ public abstract class ClientPacketListenerCaptureMixin {
 	 */
 	@Inject(method = "handleOpenScreen", at = @At("HEAD"), require = 0)
 	private void skyzh$captureOpenScreen(ClientboundOpenScreenPacket packet, CallbackInfo info) {
+		if (!TextCapture.ready()) {
+			return;
+		}
+
 		CaptureContext.openScreen(packet.getContainerId(), packet.getTitle());
 		TextCapture.containerTitle(packet.getTitle());
 	}
@@ -73,6 +77,10 @@ public abstract class ClientPacketListenerCaptureMixin {
 	 */
 	@Inject(method = "handleContainerContent", at = @At("HEAD"), require = 0)
 	private void skyzh$captureContainerContent(ClientboundContainerSetContentPacket packet, CallbackInfo info) {
+		if (!TextCapture.ready()) {
+			return;
+		}
+
 		List<ItemStack> items = packet.items();
 		CaptureContext.contents(packet.containerId(), items.size());
 

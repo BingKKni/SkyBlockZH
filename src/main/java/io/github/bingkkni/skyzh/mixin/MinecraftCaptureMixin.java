@@ -1,6 +1,7 @@
 package io.github.bingkkni.skyzh.mixin;
 
 import io.github.bingkkni.skyzh.HoldOriginal;
+import io.github.bingkkni.skyzh.HypixelServer;
 import io.github.bingkkni.skyzh.capture.ScreenWatcher;
 import net.minecraft.client.Minecraft;
 import org.spongepowered.asm.mixin.Mixin;
@@ -23,7 +24,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class MinecraftCaptureMixin {
 	@Inject(method = "tick", at = @At("TAIL"), require = 0)
 	private void skyzh$captureTick(CallbackInfo info) {
-		HoldOriginal.poll((Minecraft) (Object) this);
+		Minecraft minecraft = (Minecraft) (Object) this;
+		HypixelServer.tick(minecraft);
+		HoldOriginal.poll(minecraft);
 		ScreenWatcher.tick();
 	}
 }

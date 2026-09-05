@@ -1,5 +1,6 @@
 package io.github.bingkkni.skyzh.hook;
 
+import io.github.bingkkni.skyzh.HypixelServer;
 import io.github.bingkkni.skyzh.text.Surface;
 import io.github.bingkkni.skyzh.text.Translator;
 import net.minecraft.network.chat.Component;
@@ -37,7 +38,8 @@ public final class SidebarText {
 
 	/** The heading, which on Hypixel is the animated SKYBLOCK banner. */
 	public static Component title(Objective objective) {
-		return Translator.translateLine(objective.getDisplayName(), Surface.SCOREBOARD);
+		Component source = objective.getDisplayName();
+		return HypixelServer.canTranslate() ? Translator.translateLine(source, Surface.SCOREBOARD) : source;
 	}
 
 	/**
@@ -47,6 +49,7 @@ public final class SidebarText {
 	 * point at which a whole line exists to be matched against.
 	 */
 	public static MutableComponent row(Team team, Component name) {
-		return Translator.translate(PlayerTeam.formatNameForTeam(team, name), Surface.SCOREBOARD).padded();
+		MutableComponent source = PlayerTeam.formatNameForTeam(team, name);
+		return HypixelServer.canTranslate() ? Translator.translate(source, Surface.SCOREBOARD).padded() : source;
 	}
 }

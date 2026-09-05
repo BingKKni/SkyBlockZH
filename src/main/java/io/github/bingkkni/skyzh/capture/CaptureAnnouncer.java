@@ -1,6 +1,8 @@
 package io.github.bingkkni.skyzh.capture;
 
 import io.github.bingkkni.skyzh.Feedback;
+import io.github.bingkkni.skyzh.HypixelServer;
+import io.github.bingkkni.skyzh.SkyZHConfig;
 import io.github.bingkkni.skyzh.platform.ClientGui;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -96,6 +98,11 @@ public final class CaptureAnnouncer {
 
 	/** The same with the clock supplied, so the batching can be exercised without waiting for it. */
 	public static synchronized void record(CaptureWriter.Meta meta, Path file, String area, long now) {
+		if (!SkyZHConfig.get().captureNotifications) {
+			clear();
+			return;
+		}
+
 		Pending pending = PENDING.computeIfAbsent(
 			new Group(meta.gameplay(), where(meta.gameplay(), area), meta.surface(), meta.name()),
 			group -> new Pending(now)
@@ -156,6 +163,11 @@ public final class CaptureAnnouncer {
 	}
 
 	private static synchronized Ready takeDue(long now) {
+		if (!SkyZHConfig.get().captureNotifications) {
+			clear();
+			return new Ready(generation, List.of());
+		}
+
 		Iterator<Map.Entry<Group, Pending>> groups = PENDING.entrySet().iterator();
 		List<Component> messages = new ArrayList<>();
 
@@ -173,7 +185,7 @@ public final class CaptureAnnouncer {
 	}
 
 	private static synchronized boolean current(long expected) {
-		return generation == expected;
+		return generation == expected && SkyZHConfig.get().captureNotifications;
 	}
 
 	/**
@@ -192,7 +204,7 @@ public final class CaptureAnnouncer {
 		}
 
 		minecraft.execute(() -> {
-			if (!current(expectedGeneration)) {
+			if (!current(expectedGeneration) || !HypixelServer.isConnected()) {
 				return;
 			}
 

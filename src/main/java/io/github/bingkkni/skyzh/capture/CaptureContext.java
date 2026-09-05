@@ -1,9 +1,9 @@
 package io.github.bingkkni.skyzh.capture;
 
+import io.github.bingkkni.skyzh.HypixelServer;
 import io.github.bingkkni.skyzh.SkyZHConfig;
 import io.github.bingkkni.skyzh.compat.HypixelApi;
 import io.github.bingkkni.skyzh.text.StyledText;
-import java.util.Locale;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -94,7 +94,8 @@ public final class CaptureContext {
 	 * warping to a lobby empties the sidebar.
 	 */
 	public static boolean active() {
-		return SkyZHConfig.get().captureUntranslated && onSkyBlock;
+		return SkyZHConfig.get().captureUntranslated && onSkyBlock
+			&& isExpectedServer(Minecraft.getInstance());
 	}
 
 	/** The zone the sidebar last reported, or an empty string when it has not said. */
@@ -385,38 +386,17 @@ public final class CaptureContext {
 	}
 
 	/**
-	 * Whether the address the player typed matches the one capture is allowed on.
-	 *
-	 * <p>Matched on the suffix so {@code mc.hypixel.net} and {@code alpha.hypixel.net} both pass, and
-	 * left configurable because a player behind a proxy connects to an address of their own choosing —
-	 * emptying the setting turns this guard off and leaves the sidebar as the only check, which is a
-	 * decision for whoever is running the proxy, not for this mod to make on their behalf.
+	 * The mandatory Hypixel boundary, followed by the legacy config's optional extra restriction.
+	 * Emptying captureServer must never admit a different server or a singleplayer SKYBLOCK sidebar.
 	 */
 	private static boolean isExpectedServer(Minecraft minecraft) {
-		String expected = SkyZHConfig.get().captureServer.trim().toLowerCase(Locale.ROOT);
-
-		if (expected.isEmpty()) {
-			return true;
-		}
-
-		if (minecraft.hasSingleplayerServer()) {
+		if (!HypixelServer.isConnected()) {
 			return false;
 		}
 
+		String expected = SkyZHConfig.get().captureServer.trim();
 		ServerData server = minecraft.getCurrentServer();
-
-		if (server == null || server.ip == null) {
-			return false;
-		}
-
-		String host = server.ip.toLowerCase(Locale.ROOT);
-		int port = host.indexOf(':');
-
-		if (port >= 0) {
-			host = host.substring(0, port);
-		}
-
-		return host.equals(expected) || host.endsWith('.' + expected);
+		return expected.isEmpty() || (server != null && HypixelServer.matchesAddress(server.ip, expected));
 	}
 
 	/**

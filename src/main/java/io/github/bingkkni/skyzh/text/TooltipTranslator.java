@@ -1,6 +1,6 @@
 package io.github.bingkkni.skyzh.text;
 
-import io.github.bingkkni.skyzh.HoldOriginal;
+import io.github.bingkkni.skyzh.HypixelServer;
 import io.github.bingkkni.skyzh.SkyZHConfig;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -105,7 +105,7 @@ public final class TooltipTranslator {
 	public static List<Component> translate(Font font, List<Component> lines) {
 		SkyZHConfig config = SkyZHConfig.get();
 
-		if (!config.enabled || HoldOriginal.active() || lines.isEmpty()) {
+		if (!HypixelServer.canTranslate() || lines.isEmpty()) {
 			return lines;
 		}
 

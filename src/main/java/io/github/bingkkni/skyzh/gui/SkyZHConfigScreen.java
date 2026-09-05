@@ -1,6 +1,7 @@
 package io.github.bingkkni.skyzh.gui;
 
 import io.github.bingkkni.skyzh.SkyZHConfig;
+import io.github.bingkkni.skyzh.capture.CaptureAnnouncer;
 import io.github.bingkkni.skyzh.platform.ClientGui;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
@@ -18,8 +19,8 @@ import net.minecraft.util.ARGB;
  * <p>Laid out on an explicit {@link GridLayout} rather than the options list vanilla screens use,
  * because the rows are what carry the meaning here: the master switch owns the top row because
  * nothing under it does anything while it is off, the two switches that only change how an already
- * translated line reads share the row beneath it, and the capture switch owns the bottom row on its
- * own. An options list packs widgets in the order they were handed to it and would break that
+ * translated line reads share the row beneath it, and the capture switch owns a full row with its
+ * two sub-options on the row immediately below. An options list packs widgets in the order they were handed to it and would break that
  * grouping the moment an option is added, so the grid is addressed by coordinate instead. The two
  * half-width cells add up to the full-width one, spacing included, so every row ends flush.
  *
@@ -62,6 +63,20 @@ public class SkyZHConfigScreen extends Screen {
 			toggle("captureUntranslated", WIDE_WIDTH, this.config.captureUntranslated,
 				value -> this.config.captureUntranslated = value),
 			2, 0, 1, 2
+		);
+
+		grid.addChild(
+			toggle("captureNotifications", SMALL_WIDTH, this.config.captureNotifications, value -> {
+				this.config.captureNotifications = value;
+				// Also invalidate messages already queued to the client thread, even on a quick off/on.
+				CaptureAnnouncer.clear();
+			}),
+			3, 0
+		);
+		grid.addChild(
+			toggle("autoClearCapture", SMALL_WIDTH, this.config.autoClearCapture,
+				value -> this.config.autoClearCapture = value),
+			3, 1
 		);
 
 		grid.arrangeElements();

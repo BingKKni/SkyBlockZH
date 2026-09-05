@@ -1,5 +1,6 @@
 package io.github.bingkkni.skyzh.hook;
 
+import io.github.bingkkni.skyzh.HypixelServer;
 import io.github.bingkkni.skyzh.text.Surface;
 import io.github.bingkkni.skyzh.text.Translator;
 import net.minecraft.network.chat.Component;
@@ -45,6 +46,7 @@ public final class NameTag {
 	 *                      and not text to translate
 	 */
 	public static Component translate(Component nameTag, boolean playerNameTag) {
-		return playerNameTag ? nameTag : Translator.translateLine(nameTag, Surface.HOLOGRAM);
+		return playerNameTag || !HypixelServer.canTranslate()
+			? nameTag : Translator.translateLine(nameTag, Surface.HOLOGRAM);
 	}
 }
