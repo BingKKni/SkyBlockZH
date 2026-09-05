@@ -1,0 +1,440 @@
+{
+  "source": "SkyZH runtime capture (Dungeon Hub, 2026-09-03)",
+  "fetched_at": "2026-09-03",
+  "verified_ingame": true,
+  "source_note": "空岛菜单 → 技能 → Dungeoneering 菜单（也可从 Mort 处进入），以及从它进入的「精华合成」菜单顶部说明。精华合成菜单里其余行与 Salvage_Items.json（Ophelia 回收站）完全相同，引擎按整行匹配，两处共用那边的记录。",
+  "items": [
+    {
+      "id": "dungeoneering_catacombs_level",
+      "context": "空岛菜单 → 技能 → 地牢技能菜单：地牢格的物品名（地牢等级）",
+      "raw": "§cThe Catacombs %1$s",
+      "text": "The Catacombs %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前地牢等级",
+          "type": "number",
+          "example": "29"
+        }
+      ],
+      "gloss": "The Catacombs 沿用 _shared/Terms.json 的既定译名「地牢」。",
+      "translate": true,
+      "zh": "地牢 %1$s 级"
+    },
+    {
+      "id": "dungeoneering_catacombs_desc_1",
+      "context": "地牢格说明，英文四行一句；尾行 rewards! 走 Hub_General/GUI_Item/Calendar_and_Events.json 里已有的 continuation",
+      "raw": "§7Complete this dungeon to",
+      "text": "Complete this dungeon to",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "通关此地牢以证明你的精通，赚取经验并解锁新奖励!"
+    },
+    {
+      "id": "dungeoneering_catacombs_desc_2",
+      "context": "接上一行",
+      "raw": "§7demonstrate your mastery, earning",
+      "text": "demonstrate your mastery, earning",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "dungeoneering_catacombs_desc_3",
+      "context": "接上一行",
+      "raw": "§7experience and unlocking new",
+      "text": "experience and unlocking new",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "dungeoneering_progress_to_mastery",
+      "context": "地牢格：升至下一精通等级的进度",
+      "raw": "§7Progress to Mastery %1$s: §e%2$s%",
+      "text": "Progress to Mastery %1$s: %2$s%",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "目标精通等级",
+          "type": "number",
+          "example": "30"
+        },
+        {
+          "token": "%2$s",
+          "desc": "进度百分比",
+          "type": "number",
+          "example": "40.6"
+        }
+      ],
+      "gloss": "Catacombs Mastery 即地牢等级的正式称呼（Catacombs_Rewards 菜单每一格叫 Catacombs Mastery N），译「精通」。",
+      "translate": true,
+      "zh": "升至精通 %1$s 级的进度: %2$s%",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Progress to Mastery %1$s: ",
+          "zh": "升至精通 %1$s 级的进度: "
+        },
+        {
+          "color": "§e",
+          "text": "%2$s%",
+          "zh": "%2$s%"
+        }
+      ]
+    },
+    {
+      "id": "dungeoneering_current_mastery_reward",
+      "context": "地牢格：当前精通等级带来的加成小标题",
+      "raw": "§7Current Mastery Reward:",
+      "text": "Current Mastery Reward:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "当前精通奖励:"
+    },
+    {
+      "id": "dungeoneering_stat_boost_1",
+      "context": "当前精通奖励说明首行，英文两行一句",
+      "raw": "§7Your Dungeon Items' stats are",
+      "text": "Your Dungeon Items' stats are",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "在地牢中，你的地牢物品属性"
+    },
+    {
+      "id": "dungeoneering_stat_boost_2",
+      "context": "接上一行：加成数值。尾行 Catacombs. 走 Class_Perks/其他文件的记录",
+      "raw": "§7increased by §c275%§7 while in §cThe",
+      "text": "increased by %1$s while in The",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "加成百分比",
+          "type": "number",
+          "example": "275%"
+        }
+      ],
+      "gloss": "尾行 §cCatacombs§7. 在 Catacombs_Gate.json 有 near-miss（Catacombs!），本文件另写一条 dungeoneering_catacombs_tail。",
+      "translate": true,
+      "continuation": true,
+      "zh": "提升 %1$s。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "increased by ",
+          "zh": "提升 "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " while in ",
+          "zh": "。"
+        },
+        {
+          "color": "§c",
+          "text": "The",
+          "zh": "",
+          "omit": true
+        }
+      ]
+    },
+    {
+      "id": "dungeoneering_catacombs_tail",
+      "context": "接上一行（地牢名尾巴，独立成行）",
+      "raw": "§cCatacombs§7.",
+      "text": "Catacombs.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "Catacombs",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "",
+          "omit": true
+        }
+      ]
+    },
+    {
+      "id": "dungeoneering_not_coming_soon",
+      "context": "地牢菜单里占位格的物品名（Hypixel 玩笑：不会很快推出）",
+      "raw": "§cNot Coming Soon",
+      "text": "Not Coming Soon",
+      "placeholders": [],
+      "gloss": "是官方的玩笑话（Coming Soon 的反面），不是「即将推出」。",
+      "translate": true,
+      "zh": "暂不推出"
+    },
+    {
+      "id": "dungeoneering_class_desc_1",
+      "context": "职业格灰色斜体说明，英文两行一句",
+      "raw": "§8§oUse this class in dungeons to level it",
+      "text": "Use this class in dungeons to level it",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "在地牢中使用该职业即可提升其等级!"
+    },
+    {
+      "id": "dungeoneering_class_desc_2",
+      "context": "接上一行",
+      "raw": "§8§oup!",
+      "text": "up!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "dungeoneering_essence_desc_1",
+      "context": "「你的精华」入口说明，英文三行一句",
+      "raw": "§7Collect Essence in Dungeons which",
+      "text": "Collect Essence in Dungeons which",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "在地牢中收集精华，可用于升级装备、购买天赋和升级!"
+    },
+    {
+      "id": "dungeoneering_essence_desc_2",
+      "context": "接上一行",
+      "raw": "§7can be used to upgrade gear and",
+      "text": "can be used to upgrade gear and",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "dungeoneering_essence_desc_3",
+      "context": "接上一行",
+      "raw": "§7purchase perks and upgrades!",
+      "text": "purchase perks and upgrades!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "dungeoneering_your_essence_entry",
+      "context": "「你的精华」入口格物品名",
+      "raw": "§aYour Essence",
+      "text": "Your Essence",
+      "placeholders": [],
+      "gloss": "2026-09-03 实测这一格被 Economy/GUI_Item/Bazaar.json#bazaar_group_essence 的「%1$s Essence」模板吃掉，Your 被当成精华种类留在英文。本条字面更多，优先。",
+      "translate": true,
+      "zh": "你的精华"
+    },
+    {
+      "id": "essence_crafting_desc_1",
+      "context": "精华合成菜单顶部说明 A，英文两行一句",
+      "raw": "§7Upgrade regular items to §bDungeon",
+      "text": "Upgrade regular items to Dungeon",
+      "placeholders": [],
+      "gloss": "跨行 order：尾行粉色 Essence 挪到句首「消耗精华」，地牢物品仍用首行的 §b。",
+      "translate": true,
+      "zh": "消耗精华将普通物品升级为地牢物品!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Upgrade regular items to ",
+          "zh": "将普通物品升级为",
+          "order": 2
+        },
+        {
+          "color": "§b",
+          "text": "Dungeon",
+          "zh": "地牢",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "id": "essence_crafting_desc_1_tail",
+      "context": "接上一行",
+      "raw": "§bItems §7using §dEssence§7!",
+      "text": "Items using Essence!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "Items ",
+          "zh": "物品",
+          "order": 4
+        },
+        {
+          "color": "§7",
+          "text": "using ",
+          "zh": "消耗",
+          "order": 0
+        },
+        {
+          "color": "§d",
+          "text": "Essence",
+          "zh": "精华",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!",
+          "order": 5
+        }
+      ],
+      "continuation": true
+    },
+    {
+      "id": "essence_crafting_desc_2",
+      "context": "精华合成菜单顶部说明 B，英文两行一句",
+      "raw": "§7Upgrade items using materials and",
+      "text": "Upgrade items using materials and",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "使用材料和精华升级物品，提升其属性!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Upgrade items using materials and",
+          "zh": "使用材料和",
+          "order": 0
+        }
+      ]
+    },
+    {
+      "id": "essence_crafting_desc_2_tail",
+      "context": "接上一行",
+      "raw": "§dEssence §7to improve their stats!",
+      "text": "Essence to improve their stats!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "Essence ",
+          "zh": "精华",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "to improve their stats!",
+          "zh": "升级物品，提升其属性!",
+          "order": 2
+        }
+      ]
+    },
+    {
+      "id": "dungeoneering_class_healer_level",
+      "context": "地牢技能菜单里职业格的物品名：职业名 + 等级",
+      "raw": "§aHealer %1$s",
+      "text": "Healer %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "该职业当前等级",
+          "type": "number",
+          "example": "26"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "治疗师 %1$s 级"
+    },
+    {
+      "id": "dungeoneering_class_mage_level",
+      "context": "地牢技能菜单里职业格的物品名：职业名 + 等级",
+      "raw": "§aMage %1$s",
+      "text": "Mage %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "该职业当前等级",
+          "type": "number",
+          "example": "26"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "法师 %1$s 级"
+    },
+    {
+      "id": "dungeoneering_class_berserk_level",
+      "context": "地牢技能菜单里职业格的物品名：职业名 + 等级",
+      "raw": "§aBerserk %1$s",
+      "text": "Berserk %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "该职业当前等级",
+          "type": "number",
+          "example": "26"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "狂战士 %1$s 级"
+    },
+    {
+      "id": "dungeoneering_class_archer_level",
+      "context": "地牢技能菜单里职业格的物品名：职业名 + 等级",
+      "raw": "§aArcher %1$s",
+      "text": "Archer %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "该职业当前等级",
+          "type": "number",
+          "example": "26"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "弓箭手 %1$s 级"
+    },
+    {
+      "id": "dungeoneering_class_tank_level",
+      "context": "地牢技能菜单里职业格的物品名：职业名 + 等级",
+      "raw": "§aTank %1$s",
+      "text": "Tank %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "该职业当前等级",
+          "type": "number",
+          "example": "26"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "坦克 %1$s 级"
+    }
+  ]
+}

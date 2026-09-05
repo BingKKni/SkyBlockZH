@@ -1,0 +1,797 @@
+{
+  "source": "SkyZH runtime capture 2026-09-03 (Dungeon Hub 会话,技能菜单 → 钓鱼)",
+  "fetched_at": "2026-09-03",
+  "verified_ingame": true,
+  "gui_context": "技能菜单 → 钓鱼 → Sea Creature Guide(海洋生物指南)及其各分区页(Bayou / Lotus / Moonglade Marsh / Torrhus Canyon / Crimson Isle / Hotspot / Shark / Special / Spooky / Winter Sea Creatures)。生物族群标签见 Combat/GUI_Item/Mob_Families.json。",
+  "lines": [
+    {
+      "id": "scg_region_basic",
+      "context": "指南里基础分区格子的物品名",
+      "raw": "§aBasic Sea Creatures",
+      "text": "Basic Sea Creatures",
+      "placeholders": [],
+      "gloss": "分区名写死。引擎会把复数 s 收成可选项,模板「%s Sea Creatures」会顶掉技能菜单钓鱼奖励的「%s Sea Creature」(单数)。",
+      "translate": true,
+      "zh": "基础海洋生物"
+    },
+    {
+      "id": "scg_region_bayou",
+      "context": "指南里河湾分区格子的物品名",
+      "raw": "§aBayou Sea Creatures",
+      "text": "Bayou Sea Creatures",
+      "placeholders": [],
+      "gloss": "分区短名 Bayou 沿用 Terms.json「河湾」,全称 Backwater Bayou 才是死水沼泽。",
+      "translate": true,
+      "zh": "河湾海洋生物"
+    },
+    {
+      "id": "scg_region_lotus",
+      "context": "指南里莲花分区格子的物品名",
+      "raw": "§aLotus Sea Creatures",
+      "text": "Lotus Sea Creatures",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "莲花海洋生物"
+    },
+    {
+      "id": "scg_region_winter",
+      "context": "指南里寒冬分区格子的物品名",
+      "raw": "§aWinter Sea Creatures",
+      "text": "Winter Sea Creatures",
+      "placeholders": [],
+      "gloss": "Winter 沿用 Terms.json「寒冬」,不用节气「冬至」。",
+      "translate": true,
+      "zh": "寒冬海洋生物"
+    },
+    {
+      "id": "scg_region_spooky",
+      "context": "指南里惊魂分区格子的物品名",
+      "raw": "§aSpooky Sea Creatures",
+      "text": "Spooky Sea Creatures",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "惊魂海洋生物"
+    },
+    {
+      "id": "scg_region_shark",
+      "context": "指南里鲨鱼分区格子的物品名",
+      "raw": "§aShark Sea Creatures",
+      "text": "Shark Sea Creatures",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "鲨鱼海洋生物"
+    },
+    {
+      "id": "scg_region_hotspot",
+      "context": "指南里热点分区格子的物品名",
+      "raw": "§aHotspot Sea Creatures",
+      "text": "Hotspot Sea Creatures",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "热点海洋生物"
+    },
+    {
+      "id": "scg_region_special",
+      "context": "指南里特殊分区格子的物品名",
+      "raw": "§aSpecial Sea Creatures",
+      "text": "Special Sea Creatures",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "特殊海洋生物"
+    },
+    {
+      "id": "scg_region_moonglade",
+      "context": "指南里月光沼泽分区格子的物品名",
+      "raw": "§aMoonglade Marsh Sea Creatures",
+      "text": "Moonglade Marsh Sea Creatures",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "月光沼泽海洋生物"
+    },
+    {
+      "id": "scg_region_torrhus",
+      "context": "指南里 Torrhus 峡谷分区格子的物品名",
+      "raw": "§aTorrhus Canyon Sea Creatures",
+      "text": "Torrhus Canyon Sea Creatures",
+      "placeholders": [],
+      "gloss": "Torrhus 是自造专名不译。",
+      "translate": true,
+      "zh": "Torrhus 峡谷海洋生物"
+    },
+    {
+      "id": "scg_region_crimson",
+      "context": "指南里绯红岛分区格子的物品名",
+      "raw": "§aCrimson Isle Sea Creatures",
+      "text": "Crimson Isle Sea Creatures",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "绯红岛海洋生物"
+    },
+    {
+      "id": "scg_view_all",
+      "context": "各分区说明的首行;尾行因分区不同,译文写在各自的尾行上",
+      "raw": "§7View all of the Sea Creatures that",
+      "text": "View all of the Sea Creatures that",
+      "placeholders": [],
+      "gloss": "首行在所有分区页都一样,尾行说的是「在哪里能钓到」——所以首行只译「查看所有」,尾行各自带完整的后半句。",
+      "translate": true,
+      "zh": "查看所有"
+    },
+    {
+      "id": "scg_hub_1",
+      "context": "接上一行(基础分区)",
+      "raw": "§7can be caught in the §aHub§7 and on",
+      "text": "can be caught in the Hub and on",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "能在大厅及其他大多数非钓鱼岛屿钓到的海洋生物。"
+    },
+    {
+      "id": "scg_hub_2",
+      "context": "接上一行",
+      "raw": "§7most other non-fishing islands.",
+      "text": "most other non-fishing islands.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "scg_bayou_1",
+      "context": "接上一行(河湾分区)",
+      "raw": "§7can be caught in the §2Backwater",
+      "text": "can be caught in the Backwater",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "能在死水沼泽钓到的海洋生物。"
+    },
+    {
+      "id": "scg_bayou_2",
+      "context": "接上一行",
+      "raw": "§2Bayou§7.",
+      "text": "Bayou.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "scg_moonglade_1",
+      "context": "接上一行(月光沼泽分区)",
+      "raw": "§7can be caught on the §2Moonglade",
+      "text": "can be caught on the Moonglade",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "能在月光沼泽钓到的海洋生物。"
+    },
+    {
+      "id": "scg_moonglade_2",
+      "context": "接上一行",
+      "raw": "§2Marsh§7.",
+      "text": "Marsh.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "scg_spooky_1",
+      "context": "接上一行(惊魂分区)",
+      "raw": "§7can be caught during the §6Spooky",
+      "text": "can be caught during the Spooky",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "能在惊魂节期间钓到的海洋生物。"
+    },
+    {
+      "id": "scg_fishing_festival_1",
+      "context": "接上一行(鲨鱼分区)",
+      "raw": "§7can be caught during the §bFishing",
+      "text": "can be caught during the Fishing",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "能在钓鱼节期间钓到的海洋生物。"
+    },
+    {
+      "id": "scg_festival_2",
+      "context": "接上一行",
+      "raw": "§6Festival§7.",
+      "text": "Festival.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "scg_lotus",
+      "context": "接上一行(莲花分区)",
+      "raw": "§7can be caught on §3Lotus Atoll§7.",
+      "text": "can be caught on Lotus Atoll.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "能在莲花环礁钓到的海洋生物。"
+    },
+    {
+      "id": "scg_torrhus",
+      "context": "接上一行(Torrhus 峡谷分区)",
+      "raw": "§7can be caught on §6Torrhus Canyon§7.",
+      "text": "can be caught on Torrhus Canyon.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "能在 Torrhus 峡谷钓到的海洋生物。"
+    },
+    {
+      "id": "scg_workshop",
+      "context": "接上一行(寒冬分区)",
+      "raw": "§7can be caught on §cJerry's Workshop§7.",
+      "text": "can be caught on Jerry's Workshop.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "能在 Jerry 的工坊钓到的海洋生物。"
+    },
+    {
+      "id": "scg_hotspot",
+      "context": "接上一行(热点分区)",
+      "raw": "§7can be caught in §dFishing Hotspots§7.",
+      "text": "can be caught in Fishing Hotspots.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "能在钓鱼热点钓到的海洋生物。"
+    },
+    {
+      "id": "scg_crimson",
+      "context": "接上一行(绯红岛分区)",
+      "raw": "§7can be caught on the §cCrimson Isle§7.",
+      "text": "can be caught on the Crimson Isle.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "能在绯红岛钓到的海洋生物。"
+    },
+    {
+      "id": "scg_special_1",
+      "context": "接上一行(特殊分区)",
+      "raw": "§7can only be caught under certain",
+      "text": "can only be caught under certain",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "只能在特定条件下钓到的海洋生物。"
+    },
+    {
+      "id": "scg_special_2",
+      "context": "接上一行",
+      "raw": "§7special conditions.",
+      "text": "special conditions.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "scg_find_by_name",
+      "context": "搜索格说明",
+      "raw": "§7Find Sea Creatures by name!",
+      "text": "Find Sea Creatures by name!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "按名称查找海洋生物!"
+    },
+    {
+      "id": "scg_entry",
+      "context": "分区页生物格物品名:等级 + 名字 + 稀有度",
+      "raw": "§7[Lvl %1$s] %2$s (§f§l%3$s§7)",
+      "text": "[Lvl %1$s] %2$s (%3$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "生物等级",
+          "type": "number",
+          "example": "8"
+        },
+        {
+          "token": "%2$s",
+          "desc": "海洋生物名;通用词组成的按 GLOSSARY 怪物名规则译(词表),谐音梗名保留英文",
+          "type": "mob_name",
+          "example": "Trash Gobbler"
+        },
+        {
+          "token": "%3$s",
+          "desc": "稀有度,译名走 Terms.json(不分大小写)",
+          "type": "category_name",
+          "example": "COMMON"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "[Lvl %1$s] %2$s (",
+          "zh": "[%1$s 级] %2$s ("
+        },
+        {
+          "color": "§f§l",
+          "text": "%3$s",
+          "zh": "%3$s"
+        },
+        {
+          "color": "§7",
+          "text": ")",
+          "zh": ")"
+        }
+      ],
+      "zh": "[%1$s 级] %2$s (%3$s)"
+    },
+    {
+      "id": "scg_entry_unknown",
+      "context": "未解锁的生物格:名字和等级打码",
+      "raw": "§7[Lvl §7§k?§7] §7§k?????§7 (§6§l%1$s§7)",
+      "text": "[Lvl ?] ????? (%1$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "稀有度",
+          "type": "category_name",
+          "example": "LEGENDARY"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "[Lvl ",
+          "zh": "["
+        },
+        {
+          "color": "§7§k",
+          "text": "?",
+          "zh": "?"
+        },
+        {
+          "color": "§7",
+          "text": "] ",
+          "zh": " 级] "
+        },
+        {
+          "color": "§7§k",
+          "text": "?????",
+          "zh": "?????"
+        },
+        {
+          "color": "§7",
+          "text": " (",
+          "zh": " ("
+        },
+        {
+          "color": "§6§l",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": ")",
+          "zh": ")"
+        }
+      ],
+      "zh": "[? 级] ????? (%1$s)"
+    },
+    {
+      "id": "scg_fishing_skill",
+      "context": "所需钓鱼等级",
+      "raw": "§7Fishing Skill: §a%1$s",
+      "text": "Fishing Skill: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "等级",
+          "type": "number",
+          "example": "5"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Fishing Skill: ",
+          "zh": "钓鱼技能: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ],
+      "zh": "钓鱼技能: %1$s"
+    },
+    {
+      "id": "scg_spawn_chance",
+      "context": "生成概率与权重",
+      "raw": "§7Spawn Chance: §a%1$s% §8(%2$s Weight)",
+      "text": "Spawn Chance: %1$s% (%2$s Weight)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "概率",
+          "type": "percentage",
+          "example": "50"
+        },
+        {
+          "token": "%2$s",
+          "desc": "权重",
+          "type": "number",
+          "example": "5000"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Spawn Chance: ",
+          "zh": "生成概率: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s% ",
+          "zh": "%1$s% "
+        },
+        {
+          "color": "§8",
+          "text": "(%2$s Weight)",
+          "zh": "(权重 %2$s)"
+        }
+      ],
+      "zh": "生成概率: %1$s% (权重 %2$s)"
+    },
+    {
+      "id": "scg_spawn_weight",
+      "context": "生成权重",
+      "raw": "§7Spawn Weight: §a%1$s",
+      "text": "Spawn Weight: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "权重",
+          "type": "number",
+          "example": "385"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Spawn Weight: ",
+          "zh": "生成权重: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ],
+      "zh": "生成权重: %1$s"
+    },
+    {
+      "id": "scg_spawn_chance_only",
+      "context": "生成概率(不带权重)",
+      "raw": "§7Spawn Chance: §a%1$s",
+      "text": "Spawn Chance: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "概率",
+          "type": "percentage",
+          "example": "5%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Spawn Chance: ",
+          "zh": "生成概率: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ],
+      "zh": "生成概率: %1$s"
+    },
+    {
+      "id": "scg_categories",
+      "context": "条件小标题",
+      "raw": "§7Categories:",
+      "text": "Categories:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "类别:"
+    },
+    {
+      "id": "scg_liquid",
+      "context": "条件:液体",
+      "raw": "§7- Liquid: §b%1$s",
+      "text": "- Liquid: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Water / Lava,译名走 Terms.json",
+          "type": "raw",
+          "example": "Water"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "- Liquid: ",
+          "zh": "- 液体: "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ],
+      "zh": "- 液体: %1$s"
+    },
+    {
+      "id": "scg_island",
+      "context": "条件:岛屿",
+      "raw": "§7- Island: §2%1$s",
+      "text": "- Island: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "岛屿/分区名",
+          "type": "location_name",
+          "example": "Bayou"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "- Island: ",
+          "zh": "- 岛屿: "
+        },
+        {
+          "color": "§2",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ],
+      "zh": "- 岛屿: %1$s"
+    },
+    {
+      "id": "scg_special",
+      "context": "条件:特殊",
+      "raw": "§7- Special: §d%1$s",
+      "text": "- Special: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Hotspot / Shark / Spooky",
+          "type": "raw",
+          "example": "Hotspot"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "- Special: ",
+          "zh": "- 特殊: "
+        },
+        {
+          "color": "§d",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ],
+      "zh": "- 特殊: %1$s"
+    },
+    {
+      "id": "scg_special_requirements",
+      "context": "特殊要求小标题",
+      "raw": "§7Special Requirements:",
+      "text": "Special Requirements:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "特殊要求:"
+    },
+    {
+      "id": "scg_trophy_fisher",
+      "context": "特殊要求:锦标渔夫称号",
+      "raw": "§7- §c%1$s Trophy Fisher",
+      "text": "- %1$s Trophy Fisher",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Novice / Adept 等称号档",
+          "type": "raw",
+          "example": "Novice"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s Trophy Fisher",
+          "zh": "%1$s锦标渔夫"
+        }
+      ],
+      "zh": "- %1$s锦标渔夫"
+    },
+    {
+      "id": "scg_click_bestiary",
+      "context": "点击提示",
+      "raw": "§eClick to view Bestiary!",
+      "text": "Click to view Bestiary!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击查看生物图鉴!"
+    },
+    {
+      "id": "scg_kill_once",
+      "context": "未解锁提示",
+      "raw": "§cKill at least once to unlock more info!",
+      "text": "Kill at least once to unlock more info!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "至少击杀一次以解锁更多信息!"
+    },
+    {
+      "id": "scg_no_double_hook",
+      "context": "生物限制",
+      "raw": "§cCannot be Double Hooked",
+      "text": "Cannot be Double Hooked",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "无法被双钩钓起"
+    },
+    {
+      "id": "scg_sort_level_req",
+      "context": "排序选项(选中时前面带 ▶)",
+      "raw": "§7Fishing Level Requirement",
+      "text": "Fishing Level Requirement",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "钓鱼等级要求"
+    },
+    {
+      "id": "scg_sort_mob_level",
+      "context": "排序选项",
+      "raw": "§7Mob Level",
+      "text": "Mob Level",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "生物等级"
+    },
+    {
+      "id": "scg_sort_killed_most",
+      "context": "排序选项",
+      "raw": "§7Killed Most",
+      "text": "Killed Most",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "击杀最多"
+    },
+    {
+      "id": "scg_sort_lowest_rarity",
+      "context": "排序选项",
+      "raw": "§7Lowest Rarity",
+      "text": "Lowest Rarity",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "最低稀有度"
+    },
+    {
+      "id": "scg_sort_highest_rarity",
+      "context": "排序选项",
+      "raw": "§7Highest Rarity",
+      "text": "Highest Rarity",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "最高稀有度"
+    },
+    {
+      "id": "scg_filter",
+      "context": "筛选格物品名",
+      "raw": "§aFilter",
+      "text": "Filter",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "筛选"
+    },
+    {
+      "id": "scg_filter_none",
+      "context": "筛选选项",
+      "raw": "§7None",
+      "text": "None",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "无"
+    },
+    {
+      "id": "scg_filter_has_req",
+      "context": "筛选选项",
+      "raw": "§7Has Level Requirement",
+      "text": "Has Level Requirement",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "有等级要求"
+    },
+    {
+      "id": "scg_filter_never_killed",
+      "context": "筛选选项",
+      "raw": "§7Has Never Killed",
+      "text": "Has Never Killed",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "从未击杀"
+    }
+  ]
+}

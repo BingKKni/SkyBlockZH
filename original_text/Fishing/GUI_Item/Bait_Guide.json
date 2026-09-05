@@ -1,0 +1,981 @@
+{
+  "source": "SkyZH runtime capture 2026-09-03 (Dungeon Hub 会话,技能菜单 → 钓鱼)",
+  "fetched_at": "2026-09-03",
+  "verified_ingame": true,
+  "gui_context": "技能菜单 → 钓鱼 → Bait Guide(鱼饵指南):各种鱼饵的效果、来源与指南说明。跨行且句式因鱼饵而异的效果句(如「Grants +25 Fishing Speed and a / +15% chance to catch Spooky Sea / Creatures during the Spooky Festival.」)本轮只采到一半,没有把握的没有翻,留待下次采集。Moby / Rosemary / Junker Joel 是鱼饵专名,保留英文。",
+  "lines": [
+    {
+      "id": "bait_minnow",
+      "context": "小鱼饵物品名",
+      "raw": "§fMinnow Bait",
+      "text": "Minnow Bait",
+      "placeholders": [],
+      "gloss": "GLOSSARY 写死 Minnow Bait → 小鱼饵,不能走「%s鱼饵」否则变成小鱼鱼饵。",
+      "translate": true,
+      "zh": "小鱼饵"
+    },
+    {
+      "id": "bait_kind",
+      "context": "鱼饵格物品名(Spooky / Fish / Worm / Whale Bait 等)",
+      "raw": "§f%1$s Bait",
+      "text": "%1$s Bait",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "鱼饵种类,译名走 Terms.json",
+          "type": "category_name",
+          "example": "Fish"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s鱼饵"
+    },
+    {
+      "id": "bait_rarity",
+      "context": "鱼饵稀有度行",
+      "raw": "§a§l%1$s BAIT",
+      "text": "%1$s BAIT",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "稀有度",
+          "type": "category_name",
+          "example": "UNCOMMON"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s鱼饵"
+    },
+    {
+      "id": "bait_glowy_chum",
+      "context": "鱼饵物品名",
+      "raw": "§aGlowy Chum Bait",
+      "text": "Glowy Chum Bait",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "发光碎鱼饵"
+    },
+    {
+      "id": "bait_guide_item",
+      "context": "指南说明格物品名",
+      "raw": "§6Bait Guide",
+      "text": "Bait Guide",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "鱼饵指南"
+    },
+    {
+      "id": "bait_source",
+      "context": "来源小标题",
+      "raw": "§7Source:",
+      "text": "Source:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "来源:"
+    },
+    {
+      "id": "bait_sources",
+      "context": "来源小标题(复数)",
+      "raw": "§7Sources:",
+      "text": "Sources:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "来源:"
+    },
+    {
+      "id": "bait_source_collection",
+      "context": "来源:某收藏品等级",
+      "raw": "§a%1$s Collection %2$s",
+      "text": "%1$s Collection %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "收藏品名,译名走 Terms.json",
+          "type": "category_name",
+          "example": "Pumpkin"
+        },
+        {
+          "token": "%2$s",
+          "desc": "等级",
+          "type": "tier",
+          "example": "IV"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s收藏品 %2$s"
+    },
+    {
+      "id": "bait_source_generow",
+      "context": "来源:Generow 的礼物里程碑",
+      "raw": "§6Generow's Gift Milestones",
+      "text": "Generow's Gift Milestones",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Generow 的礼物里程碑"
+    },
+    {
+      "id": "bait_speed",
+      "context": "效果:钓鱼速度",
+      "raw": "§7Grants §b+%1$s Fishing Speed§7.",
+      "text": "Grants +%1$s Fishing Speed.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "数值",
+          "type": "number",
+          "example": "45"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§b",
+          "text": "+%1$s Fishing Speed",
+          "zh": "+%1$s 钓鱼速度"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "提供 +%1$s 钓鱼速度。"
+    },
+    {
+      "id": "bait_scc",
+      "context": "效果:海洋生物几率",
+      "raw": "§7Grants §3+%1$s Sea Creature Chance§7.",
+      "text": "Grants +%1$s Sea Creature Chance.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "数值",
+          "type": "number",
+          "example": "6"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§3",
+          "text": "+%1$s Sea Creature Chance",
+          "zh": "+%1$s 海洋生物几率"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "提供 +%1$s 海洋生物几率。"
+    },
+    {
+      "id": "bait_treasure_4",
+      "context": "效果:宝藏几率",
+      "raw": "§7Grants §6+4 Treasure Chance§7.",
+      "text": "Grants +4 Treasure Chance.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§6",
+          "text": "+4 Treasure Chance",
+          "zh": "+4 宝藏几率"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "提供 +4 宝藏几率。"
+    },
+    {
+      "id": "bait_speed_and_trophy_1",
+      "context": "效果,英文两行一句(Rosemary)",
+      "raw": "§7Grants §b+15 Fishing Speed§7 and §6+5",
+      "text": "Grants +15 Fishing Speed and +5",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§b",
+          "text": "+15 Fishing Speed",
+          "zh": "+15 钓鱼速度"
+        },
+        {
+          "color": "§7",
+          "text": " and ",
+          "zh": " 和 "
+        },
+        {
+          "color": "§6",
+          "text": "+5",
+          "zh": "+5"
+        }
+      ],
+      "zh": "提供 +15 钓鱼速度 和 +5"
+    },
+    {
+      "id": "bait_speed_and_treasure_1",
+      "context": "效果,英文两行一句(Frozen Treasure)",
+      "raw": "§7Grants §b+10 Fishing Speed§7 and §6+2",
+      "text": "Grants +10 Fishing Speed and +2",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§b",
+          "text": "+10 Fishing Speed",
+          "zh": "+10 钓鱼速度"
+        },
+        {
+          "color": "§7",
+          "text": " and ",
+          "zh": " 和 "
+        },
+        {
+          "color": "§6",
+          "text": "+2",
+          "zh": "+2"
+        }
+      ],
+      "zh": "提供 +10 钓鱼速度 和 +2"
+    },
+    {
+      "id": "bait_chance_tail",
+      "context": "接上一行:Trophy / Treasure Chance",
+      "raw": "§6%1$s Chance§7.",
+      "text": "%1$s Chance.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Trophy / Treasure,译名走 Terms.json",
+          "type": "raw",
+          "example": "Trophy"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§6",
+          "text": "%1$s Chance",
+          "zh": " %1$s几率"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": " %1$s几率。"
+    },
+    {
+      "id": "bait_speed_and_rare_1",
+      "context": "效果,英文三行一句(Junker Joel)",
+      "raw": "§7Grants §b+30 Fishing Speed §7and",
+      "text": "Grants +30 Fishing Speed and",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§b",
+          "text": "+30 Fishing Speed ",
+          "zh": "+30 钓鱼速度"
+        },
+        {
+          "color": "§7",
+          "text": "and",
+          "zh": ",并提高钓到稀有海洋生物的几率。"
+        }
+      ],
+      "zh": "提供 +30 钓鱼速度,并提高钓到稀有海洋生物的几率。"
+    },
+    {
+      "id": "bait_speed_and_rare_2",
+      "context": "接上一行",
+      "raw": "§7increases your chance to catch",
+      "text": "increases your chance to catch",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "bait_speed_and_rare_3",
+      "context": "接上一行",
+      "raw": "§7rare Sea Creatures.",
+      "text": "rare Sea Creatures.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "bait_worms_bite",
+      "context": "Worm Bait 效果",
+      "raw": "§7Worms will bite.",
+      "text": "Worms will bite.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "蠕虫会咬钩。"
+    },
+    {
+      "id": "bait_only_hollows",
+      "context": "限制",
+      "raw": "§7Only works in the §5Crystal Hollows§7.",
+      "text": "Only works in the Crystal Hollows.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Only works in the ",
+          "zh": "仅在"
+        },
+        {
+          "color": "§5",
+          "text": "Crystal Hollows",
+          "zh": "水晶残核"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "中生效。"
+        }
+      ],
+      "zh": "仅在水晶残核中生效。"
+    },
+    {
+      "id": "bait_only_workshop_1",
+      "context": "限制,英文两行一句",
+      "raw": "§7Can only be used in §cJerry's",
+      "text": "Can only be used in Jerry's",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Can only be used in ",
+          "zh": "只能在 "
+        },
+        {
+          "color": "§c",
+          "text": "Jerry's",
+          "zh": "Jerry 的工坊使用。"
+        }
+      ],
+      "zh": "只能在 Jerry 的工坊使用。"
+    },
+    {
+      "id": "bait_only_workshop_2",
+      "context": "接上一行(未采到,按常见写法补)",
+      "raw": "§cWorkshop§7.",
+      "text": "Workshop.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "bait_chum_1",
+      "context": "Glowy Chum Bait 效果,英文两行一句",
+      "raw": "§7Adds §a+2 Chums §7dropped on Sea",
+      "text": "Adds +2 Chums dropped on Sea",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Adds ",
+          "zh": "用此鱼饵钓到的海洋生物额外掉落 "
+        },
+        {
+          "color": "§a",
+          "text": "+2 Chums ",
+          "zh": "+2 碎鱼饵"
+        },
+        {
+          "color": "§7",
+          "text": "dropped on Sea",
+          "zh": "。"
+        }
+      ],
+      "zh": "用此鱼饵钓到的海洋生物额外掉落 +2 碎鱼饵。"
+    },
+    {
+      "id": "bait_chum_2",
+      "context": "接上一行",
+      "raw": "§7Creatures fished with this bait.",
+      "text": "Creatures fished with this bait.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "bait_moby_1",
+      "context": "Moby 效果,英文两行一句",
+      "raw": "§7Ensures your next §eGOOD CATCH",
+      "text": "Ensures your next GOOD CATCH",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Ensures your next ",
+          "zh": "确保你的下一次"
+        },
+        {
+          "color": "§e",
+          "text": "GOOD CATCH",
+          "zh": "良好捕获"
+        }
+      ],
+      "zh": "确保你的下一次良好捕获"
+    },
+    {
+      "id": "bait_moby_2",
+      "context": "接上一行",
+      "raw": "§7hooks a §bRare Fish Shard§7.",
+      "text": "hooks a Rare Fish Shard.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "hooks a ",
+          "zh": "钓上一个"
+        },
+        {
+          "color": "§b",
+          "text": "Rare Fish Shard",
+          "zh": "稀有鱼碎片"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "钓上一个稀有鱼碎片。"
+    },
+    {
+      "id": "bait_moby_3",
+      "context": "Moby 说明,英文两行一句",
+      "raw": "§8§oWill not be consumed if no Rare",
+      "text": "Will not be consumed if no Rare",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "没有可钓的稀有碎片时不会被消耗。"
+    },
+    {
+      "id": "bait_moby_4",
+      "context": "接上一行",
+      "raw": "§8§oShards are available to catch.",
+      "text": "Shards are available to catch.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "bait_great_1",
+      "context": "效果,英文三行一句",
+      "raw": "§7Increases the chance for §6Treasure",
+      "text": "Increases the chance for Treasure",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increases the chance for ",
+          "zh": "使"
+        },
+        {
+          "color": "§6",
+          "text": "Treasure",
+          "zh": "宝藏"
+        }
+      ],
+      "zh": "使宝藏"
+    },
+    {
+      "id": "bait_great_2",
+      "context": "接上一行",
+      "raw": "§7catches to be §6§lGREAT §7or",
+      "text": "catches to be GREAT or",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "catches to be ",
+          "zh": "捕获成为"
+        },
+        {
+          "color": "§6§l",
+          "text": "GREAT ",
+          "zh": "极佳"
+        },
+        {
+          "color": "§7",
+          "text": "or",
+          "zh": "或"
+        }
+      ],
+      "zh": "捕获成为极佳或"
+    },
+    {
+      "id": "bait_great_3",
+      "context": "接上一行",
+      "raw": "§d§lOUTSTANDING §7by §a50%§7.",
+      "text": "OUTSTANDING by 50%.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§d§l",
+          "text": "OUTSTANDING ",
+          "zh": "出色"
+        },
+        {
+          "color": "§7",
+          "text": "by ",
+          "zh": "的几率提高 "
+        },
+        {
+          "color": "§a",
+          "text": "50%",
+          "zh": "50%"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "出色的几率提高 50%。"
+    },
+    {
+      "id": "bait_trophy_1",
+      "context": "效果,英文三行一句(绯红岛锦标鱼饵)",
+      "raw": "§7Decreases your §b Fishing Speed §7by",
+      "text": "Decreases your  Fishing Speed by",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Decreases your ",
+          "zh": "将你的"
+        },
+        {
+          "color": "§b",
+          "text": " Fishing Speed ",
+          "zh": " 钓鱼速度"
+        },
+        {
+          "color": "§7",
+          "text": "by",
+          "zh": "降低"
+        }
+      ],
+      "zh": "将你的 钓鱼速度降低"
+    },
+    {
+      "id": "bait_trophy_2",
+      "context": "接上一行",
+      "raw": "§c50%§7, but lures a special Trophy Fish",
+      "text": "50%, but lures a special Trophy Fish",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§c",
+          "text": "50%",
+          "zh": "50%"
+        },
+        {
+          "color": "§7",
+          "text": ", but lures a special Trophy Fish",
+          "zh": ",但会在"
+        }
+      ],
+      "zh": "50%,但会在"
+    },
+    {
+      "id": "bait_trophy_3",
+      "context": "接上一行",
+      "raw": "§7in the §cCrimson Isle§7.",
+      "text": "in the Crimson Isle.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "in the ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§c",
+          "text": "Crimson Isle",
+          "zh": "绯红岛"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "引来特殊的锦标鱼。"
+        }
+      ],
+      "zh": "绯红岛引来特殊的锦标鱼。"
+    },
+    {
+      "id": "bait_rabbit",
+      "context": "Carrot Bait 效果",
+      "raw": "§7Chance of fishing up... a rabbit?",
+      "text": "Chance of fishing up... a rabbit?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "有几率钓上……一只兔子?"
+    },
+    {
+      "id": "bait_intro_1",
+      "context": "指南说明,英文三行一句",
+      "raw": "§6Bait §7can be stored in your inventory",
+      "text": "Bait can be stored in your inventory",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Bait ",
+          "zh": "鱼饵"
+        },
+        {
+          "color": "§7",
+          "text": "can be stored in your inventory",
+          "zh": "可以放在背包里,也可以放进"
+        }
+      ],
+      "zh": "鱼饵可以放在背包里,也可以放进"
+    },
+    {
+      "id": "bait_intro_2",
+      "context": "接上一行",
+      "raw": "§7or §9Fishing Bag§7, which is unlocked at",
+      "text": "or Fishing Bag, which is unlocked at",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "or ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§9",
+          "text": "Fishing Bag",
+          "zh": "钓鱼袋"
+        },
+        {
+          "color": "§7",
+          "text": ", which is unlocked at",
+          "zh": "(在"
+        }
+      ],
+      "zh": "钓鱼袋(在"
+    },
+    {
+      "id": "bait_intro_3",
+      "context": "接上一行",
+      "raw": "§aRaw Fish Collection III§7.",
+      "text": "Raw Fish Collection III.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Raw Fish Collection III",
+          "zh": "生鱼收藏品 III"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": " 解锁)。"
+        }
+      ],
+      "zh": "生鱼收藏品 III 解锁)。"
+    },
+    {
+      "id": "bait_intro_4",
+      "context": "指南说明,英文三行一句",
+      "raw": "§7When you cast your rod, Bait is",
+      "text": "When you cast your rod, Bait is",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "抛竿时会自动消耗鱼饵并获得其增益。"
+    },
+    {
+      "id": "bait_intro_5",
+      "context": "接上一行",
+      "raw": "§7automatically consumed and its buff",
+      "text": "automatically consumed and its buff",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "bait_intro_6",
+      "context": "接上一行",
+      "raw": "§7is applied.",
+      "text": "is applied.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "bait_intro_7",
+      "context": "指南说明,英文三行一句",
+      "raw": "§7Some Baits, like §fFish Bait§7, increase",
+      "text": "Some Baits, like Fish Bait, increase",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Some Baits, like ",
+          "zh": "有些鱼饵(如"
+        },
+        {
+          "color": "§f",
+          "text": "Fish Bait",
+          "zh": "鱼类鱼饵"
+        },
+        {
+          "color": "§7",
+          "text": ", increase",
+          "zh": ")能提高"
+        }
+      ],
+      "zh": "有些鱼饵(如鱼类鱼饵)能提高"
+    },
+    {
+      "id": "bait_intro_8",
+      "context": "接上一行",
+      "raw": "§7your §b Fishing Speed§7, which makes it",
+      "text": "your  Fishing Speed, which makes it",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "your ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§b",
+          "text": " Fishing Speed",
+          "zh": " 钓鱼速度"
+        },
+        {
+          "color": "§7",
+          "text": ", which makes it",
+          "zh": ",让你更快钓到鱼。"
+        }
+      ],
+      "zh": " 钓鱼速度,让你更快钓到鱼。"
+    },
+    {
+      "id": "bait_intro_9",
+      "context": "接上一行",
+      "raw": "§7quicker to catch fish.",
+      "text": "quicker to catch fish.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "bait_intro_10",
+      "context": "指南说明,英文两行一句",
+      "raw": "§7Other Baits, like §fSpiked Bait§7, make you",
+      "text": "Other Baits, like Spiked Bait, make you",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Other Baits, like ",
+          "zh": "另一些鱼饵(如"
+        },
+        {
+          "color": "§f",
+          "text": "Spiked Bait",
+          "zh": "尖刺鱼饵"
+        },
+        {
+          "color": "§7",
+          "text": ", make you",
+          "zh": ")则让你更容易钓到"
+        }
+      ],
+      "zh": "另一些鱼饵(如尖刺鱼饵)则让你更容易钓到"
+    },
+    {
+      "id": "bait_intro_11",
+      "context": "接上一行",
+      "raw": "§7more likely to catch §3Sea Creatures§7.",
+      "text": "more likely to catch Sea Creatures.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "more likely to catch ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§3",
+          "text": "Sea Creatures",
+          "zh": "海洋生物"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "海洋生物。"
+    },
+    {
+      "id": "bait_intro_12",
+      "context": "指南说明,英文两行一句",
+      "raw": "§7Fishing with §6Bait §7makes fishing easier,",
+      "text": "Fishing with Bait makes fishing easier,",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Fishing with ",
+          "zh": "使用"
+        },
+        {
+          "color": "§6",
+          "text": "Bait ",
+          "zh": "鱼饵"
+        },
+        {
+          "color": "§7",
+          "text": "makes fishing easier,",
+          "zh": "能让钓鱼更轻松,所以多备一些吧!"
+        }
+      ],
+      "zh": "使用鱼饵能让钓鱼更轻松,所以多备一些吧!"
+    },
+    {
+      "id": "bait_intro_13",
+      "context": "接上一行",
+      "raw": "§7so keep plenty on hand!",
+      "text": "so keep plenty on hand!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    }
+  ]
+}

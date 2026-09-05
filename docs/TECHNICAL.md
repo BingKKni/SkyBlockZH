@@ -117,7 +117,7 @@ Mod Menu is a soft dependency. Without it, edit `config/skyzh.json`, which docum
 |---|---|---|
 | `enabled` | on | Master switch |
 | `translateSkyBlockName` | on | Render "SkyBlock" as 空岛生存. Compounds use the short form and get their spacing fixed: `你的 SkyBlock 等级` → `你的空岛等级`; standalone occurrences keep the full name. See below for where the substitution is allowed to happen |
-| `showOriginal` | on | Keep the English beside the Chinese, as 收藏品（Collections）. Applies to container titles and to an item's name — the name is what the Bazaar and the Auction House are searched by, so translating it away would take the search key with it |
+| `showOriginal` | on | Keep the English beside the Chinese, as 收藏品（Collections）. Applies to container titles, item names, and to names that appear inside chat NPC lines or item lore (象牙化石（Tusk Fossil）). Hold **X** to show every surface in English temporarily — capture is not turned off |
 | `captureUntranslated` | **off** | A switch for whoever is filling the corpus in. It writes files to your disk; leave it off to play. See below |
 
 ### Where "SkyBlock" is swapped, and where it is not

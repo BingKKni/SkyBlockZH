@@ -1,0 +1,131 @@
+{
+  "npc": "Maxwell",
+  "location": "Thaumaturgist",
+  "source": "runtime capture (SkyZH) 2026-09-03; logs/latest.log; https://hypixelskyblock.minecraft.wiki/w/Maxwell",
+  "fetched_at": "2026-09-05",
+  "wiki_last_edited": "2026-09-03 01:28",
+  "source_note": "新增首次教学台词以日志为准。Wiki 的乱码装饰字形随机变化,保留实测的两个 X; 属性说明与 Wiki 一致,以句号结尾。",
+  "verified_ingame": true,
+  "messages": [
+    {
+      "id": "come_back_once_youve_put_an_accessory_in",
+      "context": "Maxwell 新手流程实测台词（第 1 条）",
+      "raw": "§fCome back once you've put an accessory in your Accessory Bag!",
+      "text": "Come back once you've put an accessory in your Accessory Bag!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "先往饰品袋里放入一件饰品,然后再来找我!"
+    },
+    {
+      "id": "maxwell_magical_accessories",
+      "context": "首次介绍饰品; 两侧 X 是乱码样式装饰,不是台词",
+      "raw": "§fAccessories are §6§kX§6 magical §kX§f pieces of gear.",
+      "text": "Accessories are X magical X pieces of gear.",
+      "placeholders": [],
+      "gloss": "保留实测两个 obfuscated X 及样式边界,不把乱码装饰译成正文。",
+      "translate": true,
+      "zh": "饰品是一种 X 神奇 X 的装备。",
+      "segments": [
+        {"color": "§f", "text": "Accessories are ", "zh": "饰品是一种 "},
+        {"color": "§6§k", "text": "X", "zh": "X"},
+        {"color": "§6", "text": " magical ", "zh": " 神奇 "},
+        {"color": "§6§k", "text": "X", "zh": "X"},
+        {"color": "§f", "text": " pieces of gear.", "zh": " 的装备。"}
+      ]
+    },
+    {
+      "id": "maxwell_collect_accessories",
+      "context": "让玩家收集并存放饰品",
+      "raw": "§fTo truly harness their power, collect as many as possible and store them in your §aAccessory Bag§f!",
+      "text": "To truly harness their power, collect as many as possible and store them in your Accessory Bag!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "要充分发挥它们的力量,就尽可能多地收集饰品,放进你的饰品袋!",
+      "segments": [
+        {"color": "§f", "text": "To truly harness their power, collect as many as possible and store them in your ", "zh": "要充分发挥它们的力量,就尽可能多地收集饰品,放进你的"},
+        {"color": "§a", "text": "Accessory Bag", "zh": "饰品袋"},
+        {"color": "§f", "text": "!", "zh": "!"}
+      ]
+    },
+    {
+      "id": "maxwell_bag_power",
+      "context": "介绍饰品本身能力之外的作用",
+      "raw": "§fOn top of their existing abilities, each accessory makes your §aAccessory Bag §fmore powerful!",
+      "text": "On top of their existing abilities, each accessory makes your Accessory Bag more powerful!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "除了自带的能力,每件饰品还能让你的饰品袋变得更强!",
+      "segments": [
+        {"color": "§f", "text": "On top of their existing abilities, each accessory makes your ", "zh": "除了自带的能力,每件饰品还能让你的"},
+        {"color": "§a", "text": "Accessory Bag ", "zh": "饰品袋"},
+        {"color": "§f", "text": "more powerful!", "zh": "变得更强!"}
+      ]
+    },
+    {
+      "id": "maxwell_rarity_power",
+      "context": "饰品之力由饰品稀有度决定",
+      "raw": "§fAccessories add some §6§lACCESSORY POWER §fto the bag depending on their §drarity§f.",
+      "text": "Accessories add some ACCESSORY POWER to the bag depending on their rarity.",
+      "placeholders": [],
+      "gloss": "用 order 将稀有度提前; 饰品之力仍保留金色粗体,句号恢复正文色。",
+      "translate": true,
+      "zh": "饰品会根据自身的稀有度,为饰品袋增加一定的饰品之力。",
+      "segments": [
+        {"color": "§f", "text": "Accessories add some ", "zh": "饰品会根据自身的", "order": 0},
+        {"color": "§6§l", "text": "ACCESSORY POWER ", "zh": "饰品之力", "order": 3},
+        {"color": "§f", "text": "to the bag depending on their ", "zh": ",为饰品袋增加一定的", "order": 2},
+        {"color": "§d", "text": "rarity", "zh": "稀有度", "order": 1},
+        {"color": "§f", "text": ".", "zh": "。", "order": 4}
+      ]
+    },
+    {
+      "id": "maxwell_power_stats_live",
+      "context": "解释饰品之力增加属性; 日志与 Wiki 均以句号结尾",
+      "raw": "§fYes! The more §6Accessory Power§f, the more stats like §c❤ Health §for §b✎ Intelligence §fyou get from your §aAccessory Bag§f.",
+      "text": "Yes! The more Accessory Power, the more stats like ❤ Health or ✎ Intelligence you get from your Accessory Bag.",
+      "placeholders": [],
+      "gloss": "Wiki 于 2026-09-03 更新,与实测台词一致。图标使用通用符号,引擎恢复实测字形。",
+      "translate": true,
+      "zh": "没错! 饰品之力越高,你的饰品袋提供的❤ 生命值、✎ 智力等属性就越多。",
+      "segments": [
+        {"color": "§f", "text": "Yes! The more ", "zh": "没错! ", "order": 0},
+        {"color": "§6", "text": "Accessory Power", "zh": "饰品之力", "order": 1},
+        {"color": "§f", "text": ", the more stats like ", "zh": "越高,你的", "order": 2},
+        {"color": "§c", "text": "❤ Health ", "zh": "❤ 生命值", "order": 5},
+        {"color": "§f", "text": "or ", "zh": "、", "order": 6},
+        {"color": "§b", "text": "✎ Intelligence ", "zh": "✎ 智力", "order": 7},
+        {"color": "§f", "text": "you get from your ", "zh": "提供的", "order": 4},
+        {"color": "§a", "text": "Accessory Bag", "zh": "饰品袋", "order": 3},
+        {"color": "§f", "text": ".", "zh": "等属性就越多。", "order": 8}
+      ]
+    },
+    {
+      "id": "maxwell_magic",
+      "context": "回应玩家称赞; amazing/magic 小玩笑",
+      "raw": "§fNo, it's §6magic§f!",
+      "text": "No, it's magic!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "不,这是魔法!",
+      "segments": [
+        {"color": "§f", "text": "No, it's ", "zh": "不,这是"},
+        {"color": "§6", "text": "magic", "zh": "魔法"},
+        {"color": "§f", "text": "!", "zh": "!"}
+      ]
+    },
+    {
+      "id": "maxwell_choose_stats",
+      "context": "说明玩家可以选择属性",
+      "raw": "§fEven better, YOU choose what stats you get!",
+      "text": "Even better, YOU choose what stats you get!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "更棒的是,由你来决定获得哪些属性!"
+    }
+  ]
+}

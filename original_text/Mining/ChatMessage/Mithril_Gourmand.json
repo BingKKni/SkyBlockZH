@@ -203,9 +203,16 @@
           "example": "124"
         }
       ],
-      "gloss": "",
+      "gloss": "按 2026-09-04 实机颜色边界分段；采用与英文相同的片段顺序，避免不必要的 order。",
       "translate": true,
-      "zh": "你喂给 Don Expresso %s 份美味秘银!"
+      "zh": "你喂了 %s 份美味秘银给 Don Expresso!",
+      "segments": [
+        {"color":"§e","text":"You fed ","zh":"你喂了 "},
+        {"color":"§b","text":"%s Tasty Mithril ","zh":"%s 份美味秘银"},
+        {"color":"§e","text":"to ","zh":"给 "},
+        {"color":"§b","text":"Don Expresso","zh":"Don Expresso"},
+        {"color":"§e","text":"!","zh":"!"}
+      ]
     },
     {
       "id": "gourmand_bonus",
@@ -225,9 +232,13 @@
           "example": "10"
         }
       ],
-      "gloss": "",
+      "gloss": "按 2026-09-04 实机颜色边界分段；服务器的居中空格由 layout 重新计算。",
       "translate": true,
       "zh": "奖励! 你一共给 Don Expresso 送了 %1$s/%2$s 份秘银!",
+      "segments": [
+        {"color":"§a§l","text":"BONUS! ","zh":"奖励! "},
+        {"color":"§f","text":"You gave Don Expresso %1$s/%2$s Mithril!","zh":"你一共给 Don Expresso 送了 %1$s/%2$s 份秘银!"}
+      ],
       "layout": "center_chat_banner"
     },
     {
@@ -284,7 +295,8 @@
           "text": ".",
           "zh": "的美味秘银。"
         }
-      ]
+      ],
+      "layout": "center_chat_banner"
     },
     {
       "id": "gourmand_start_line_2",
@@ -339,7 +351,8 @@
           "text": "!",
           "zh": "交给他!"
         }
-      ]
+      ],
+      "layout": "center_chat_banner"
     },
     {
       "id": "gourmand_too_late",

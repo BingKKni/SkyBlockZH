@@ -1,0 +1,652 @@
+{
+  "source": "SkyZH runtime capture (Dungeon Hub, 2026-09-02)",
+  "fetched_at": "2026-09-02",
+  "verified_ingame": true,
+  "source_note": "原文与颜色逐字取自运行时采集；社区 Wiki 普通页面用于核对玩法语境。",
+  "gui_context": "地牢大厅 Mort 的「队伍查找」界面：左边是别人开的队伍，右边是自己的搜索设置。队伍标题里的玩家名与队长写的备注是玩家自己的文字，只翻译它们外面的结构词。",
+  "excluded": [
+    "§7Note: 后面那一段（S+ LF COMPETEND HEALER、sub 5 py mee2 hee3 …）—— 队长自己敲进去的备注，逐条都不一样，只翻译「Note:」这个标签。",
+    "§fTime Held: §a27 Minutes、§7Gear Score: 等 —— 玩家背包物品的 Lore 回显，按用户要求不翻译。"
+  ],
+  "items": [
+    {
+      "id": "finder_no_groups_1",
+      "context": "搜索条件下没有任何队伍时的提示",
+      "raw": "§7No groups found that match your",
+      "text": "No groups found that match your",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "没有找到符合搜索条件的队伍!"
+    },
+    {
+      "id": "finder_no_groups_2",
+      "context": "接上一行",
+      "raw": "§7search!",
+      "text": "search!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "finder_queue_desc_1",
+      "context": "「开始新的排队」入口说明",
+      "raw": "§7Queue up with other players to",
+      "text": "Queue up with other players to",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "和其他玩家一起排队挑战地牢。"
+    },
+    {
+      "id": "finder_queue_desc_2",
+      "context": "接上一行",
+      "raw": "§7defeat a Dungeon.",
+      "text": "defeat a Dungeon.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "finder_refresh_desc_1",
+      "context": "刷新按钮说明",
+      "raw": "§7Refresh the list of active groups",
+      "text": "Refresh the list of active groups",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "刷新符合搜索条件的队伍列表。"
+    },
+    {
+      "id": "finder_refresh_desc_2",
+      "context": "接上一行",
+      "raw": "§7matching your search.",
+      "text": "matching your search.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "finder_settings_desc_1",
+      "context": "搜索设置入口说明",
+      "raw": "§7Change your search settings to find",
+      "text": "Change your search settings to find",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "调整搜索设置，找到适合你的队伍!"
+    },
+    {
+      "id": "finder_settings_desc_2",
+      "context": "接上一行",
+      "raw": "§7groups suited to you!",
+      "text": "groups suited to you!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "finder_floor",
+      "context": "搜索设置里当前选中的楼层",
+      "raw": "§aFloor: §bFloor %s",
+      "text": "Floor: Floor %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "楼层罗马数字",
+          "type": "tier",
+          "example": "I"
+        }
+      ],
+      "gloss": "英文重复了两次 Floor（标签一次、取值一次），中文标签写「楼层」、取值写「第 N 层」，不再重复。",
+      "translate": true,
+      "zh": "楼层: 第 %s 层",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Floor: ",
+          "zh": "楼层: "
+        },
+        {
+          "color": "§b",
+          "text": "Floor %s",
+          "zh": "第 %s 层"
+        }
+      ]
+    },
+    {
+      "id": "finder_sort",
+      "context": "搜索设置里的排序方式",
+      "raw": "§aSort: §bRecently Created",
+      "text": "Sort: Recently Created",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "排序: 最近创建",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Sort: ",
+          "zh": "排序: "
+        },
+        {
+          "color": "§b",
+          "text": "Recently Created",
+          "zh": "最近创建"
+        }
+      ]
+    },
+    {
+      "id": "finder_left_click_open",
+      "context": "可点击项的操作提示",
+      "raw": "§eLeft-Click to open!",
+      "text": "Left-Click to open!",
+      "placeholders": [],
+      "gloss": "游戏里 Left-Click 与 Left click 两种写法都发，各按原样收一条，不要合并。",
+      "translate": true,
+      "zh": "左键点击打开!"
+    },
+    {
+      "id": "finder_right_click_reset",
+      "context": "搜索设置的操作提示",
+      "raw": "§eRight-Click to reset settings!",
+      "text": "Right-Click to reset settings!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "右键点击重置设置!"
+    },
+    {
+      "id": "finder_group_title",
+      "context": "列表里每个队伍的标题：队长名 + Party",
+      "raw": "§6%s's Party",
+      "text": "%s's Party",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "队长的玩家名",
+          "type": "player_name",
+          "example": "SuperrLukas"
+        }
+      ],
+      "gloss": "所有格 's 写成「的」。",
+      "translate": true,
+      "zh": "%s 的队伍"
+    },
+    {
+      "id": "finder_note_label",
+      "context": "队长写的备注，冒号后面是玩家自己的文字",
+      "raw": "§7Note: §f%s",
+      "text": "Note: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "队长自己敲的备注，原样保留",
+          "type": "raw",
+          "example": "S+ Fast"
+        }
+      ],
+      "gloss": "只翻译标签，备注内容是玩家自己的文字，一律原样保留。",
+      "translate": true,
+      "zh": "备注: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Note: ",
+          "zh": "备注: "
+        },
+        {
+          "color": "§f",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "finder_dungeon_level_required",
+      "context": "该队伍要求的地牢等级",
+      "raw": "§7Dungeon Level Required: §b%s",
+      "text": "Dungeon Level Required: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "所需等级",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "英文把 Required 放最后，中文提到前面作「所需」。",
+      "translate": true,
+      "zh": "地牢等级要求: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Dungeon Level Required: ",
+          "zh": "所需地牢等级: "
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "finder_requires_catacombs_level",
+      "context": "自己等级不够时的红色提示",
+      "raw": "§cRequires Catacombs Level %s!",
+      "text": "Requires Catacombs Level %s!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "所需地牢等级",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "需要地牢等级 %s!"
+    },
+    {
+      "id": "finder_requires_class_level",
+      "context": "自己没有达标职业时的红色提示",
+      "raw": "§cRequires a Class at Level %s!",
+      "text": "Requires a Class at Level %s!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "所需职业等级",
+          "type": "number",
+          "example": "32"
+        }
+      ],
+      "gloss": "a Class at Level N 是「任意一个职业达到 N 级」，中文补出「任意一个」这层意思。",
+      "translate": true,
+      "zh": "需要任意一个职业达到 %s 级!"
+    },
+    {
+      "id": "finder_member_healer",
+      "context": "队伍成员行：玩家名、职业、职业等级",
+      "raw": "§b%1$s§f: §eHealer§b (§e%2$s§b)",
+      "text": "%1$s: Healer (%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "成员的玩家名",
+          "type": "player_name",
+          "example": "SMwattle"
+        },
+        {
+          "token": "%2$s",
+          "desc": "该职业的等级",
+          "type": "number",
+          "example": "33"
+        }
+      ],
+      "gloss": "职业名写死在模板里而不做成占位符：模板去掉占位符后必须至少还剩一个词，「%1$s: %2$s (%3$s)」那种写法引擎会直接拒绝，还会把这一面上每一行带冒号的文本都吃掉。五个职业各一条。",
+      "translate": true,
+      "zh": "%1$s: 治疗师（%2$s）",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§f",
+          "text": ": ",
+          "zh": ": "
+        },
+        {
+          "color": "§e",
+          "text": "Healer",
+          "zh": "治疗师"
+        },
+        {
+          "color": "§b",
+          "text": " (",
+          "zh": "（"
+        },
+        {
+          "color": "§e",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§b",
+          "text": ")",
+          "zh": "）"
+        }
+      ]
+    },
+    {
+      "id": "finder_member_mage",
+      "context": "队伍成员行：玩家名、职业、职业等级",
+      "raw": "§b%1$s§f: §eMage§b (§e%2$s§b)",
+      "text": "%1$s: Mage (%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "成员的玩家名",
+          "type": "player_name",
+          "example": "Kinderdorf"
+        },
+        {
+          "token": "%2$s",
+          "desc": "该职业的等级",
+          "type": "number",
+          "example": "48"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s: 法师（%2$s）",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§f",
+          "text": ": ",
+          "zh": ": "
+        },
+        {
+          "color": "§e",
+          "text": "Mage",
+          "zh": "法师"
+        },
+        {
+          "color": "§b",
+          "text": " (",
+          "zh": "（"
+        },
+        {
+          "color": "§e",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§b",
+          "text": ")",
+          "zh": "）"
+        }
+      ]
+    },
+    {
+      "id": "finder_member_berserk",
+      "context": "队伍成员行：玩家名、职业、职业等级",
+      "raw": "§b%1$s§f: §eBerserk§b (§e%2$s§b)",
+      "text": "%1$s: Berserk (%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "成员的玩家名",
+          "type": "player_name",
+          "example": "SuperrLukas"
+        },
+        {
+          "token": "%2$s",
+          "desc": "该职业的等级",
+          "type": "number",
+          "example": "29"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s: 狂战士（%2$s）",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§f",
+          "text": ": ",
+          "zh": ": "
+        },
+        {
+          "color": "§e",
+          "text": "Berserk",
+          "zh": "狂战士"
+        },
+        {
+          "color": "§b",
+          "text": " (",
+          "zh": "（"
+        },
+        {
+          "color": "§e",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§b",
+          "text": ")",
+          "zh": "）"
+        }
+      ]
+    },
+    {
+      "id": "finder_member_archer",
+      "context": "队伍成员行：玩家名、职业、职业等级",
+      "raw": "§b%1$s§f: §eArcher§b (§e%2$s§b)",
+      "text": "%1$s: Archer (%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "成员的玩家名",
+          "type": "player_name",
+          "example": "FarmingChud"
+        },
+        {
+          "token": "%2$s",
+          "desc": "该职业的等级",
+          "type": "number",
+          "example": "27"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s: 弓箭手（%2$s）",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§f",
+          "text": ": ",
+          "zh": ": "
+        },
+        {
+          "color": "§e",
+          "text": "Archer",
+          "zh": "弓箭手"
+        },
+        {
+          "color": "§b",
+          "text": " (",
+          "zh": "（"
+        },
+        {
+          "color": "§e",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§b",
+          "text": ")",
+          "zh": "）"
+        }
+      ]
+    },
+    {
+      "id": "finder_member_tank",
+      "context": "队伍成员行：玩家名、职业、职业等级",
+      "raw": "§b%1$s§f: §eTank§b (§e%2$s§b)",
+      "text": "%1$s: Tank (%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "成员的玩家名",
+          "type": "player_name",
+          "example": "DefinitivPaul"
+        },
+        {
+          "token": "%2$s",
+          "desc": "该职业的等级",
+          "type": "number",
+          "example": "46"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s: 坦克（%2$s）",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§f",
+          "text": ": ",
+          "zh": ": "
+        },
+        {
+          "color": "§e",
+          "text": "Tank",
+          "zh": "坦克"
+        },
+        {
+          "color": "§b",
+          "text": " (",
+          "zh": "（"
+        },
+        {
+          "color": "§e",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§b",
+          "text": ")",
+          "zh": "）"
+        }
+      ]
+    },
+    {
+      "id": "finder_floor_entrance",
+      "context": "队伍卡片:目标楼层是入口层",
+      "raw": "§aFloor: §bEntrance",
+      "text": "Floor: Entrance",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "楼层: 入口",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Floor: ",
+          "zh": "楼层: "
+        },
+        {
+          "color": "§b",
+          "text": "Entrance",
+          "zh": "入口"
+        }
+      ]
+    },
+    {
+      "id": "finder_class_level_required",
+      "context": "队伍卡片:职业等级要求",
+      "raw": "§7Class Level Required: §b%s",
+      "text": "Class Level Required: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "等级",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "职业等级要求: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Class Level Required: ",
+          "zh": "职业等级要求: "
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "finder_you_are_in_this_party",
+      "context": "队伍卡片:这就是自己所在的队伍",
+      "raw": "§cYou are in this party!",
+      "text": "You are in this party!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你就在这个队伍里!"
+    },
+    {
+      "id": "finder_your_party",
+      "context": "组队查找器里自己所在队伍那张卡片的名字",
+      "raw": "§6Your Party",
+      "text": "Your Party",
+      "placeholders": [],
+      "gloss": "精确记录,专门盖住 Hub_General/GUI_Item/SkyBlock_Menu.json#skyblock_menu_your_dynamic_section(`Your %s` → 裸 `%s`),否则这一格会画成英文的 Party。",
+      "translate": true,
+      "zh": "你的队伍"
+    },
+    {
+      "id": "finder_sort_value",
+      "context": "搜索设置里的排序方式,取值走词表",
+      "raw": "§aSort: §b%s",
+      "text": "Sort: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "排序方式:Recently Created / Highest Dungeon Level / Largest Group Size,译名在 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Highest Dungeon Level"
+        }
+      ],
+      "gloss": "finder_sort(Recently Created)是精确记录,精确优先;这条管其余两种。",
+      "translate": true,
+      "zh": "排序: %s",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Sort: ",
+          "zh": "排序: "
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    }
+  ]
+}

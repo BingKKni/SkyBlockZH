@@ -27,7 +27,9 @@ public final class ChatShape {
 	 * English indefinitely. Kept in step with {@link io.github.bingkkni.skyzh.text.LineShape}, which
 	 * peels the same tags off before looking a line up.
 	 */
-	private static final String[] SPEAKER_TAGS = { "[NPC] ", "[SECURITY] " };
+	private static final String[] SPEAKER_TAGS = {
+		"[NPC] ", "[BOSS] ", "[SECURITY] ", "[CROWD] ", "[STATUE] "
+	};
 
 	/** How far past the tag a speaker's colon may sit — long enough for "Keeper of the Crystal". */
 	private static final int LONGEST_SPEAKER = 48;
@@ -73,7 +75,8 @@ public final class ChatShape {
 		return trimmed.startsWith("{\"") && trimmed.endsWith("}");
 	}
 
-	/** Where {@code [NPC] Bubu: } ends, or {@code -1} when this line has no speaker tag. */
+	/** Where a server speaker tag such as {@code [NPC] Bubu: } or {@code [BOSS] Bonzo: } ends,
+	 * or {@code -1} when this line has no speaker tag. */
 	public static int npcTagEnd(String line) {
 		int start = 0;
 

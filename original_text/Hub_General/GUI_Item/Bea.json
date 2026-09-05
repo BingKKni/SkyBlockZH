@@ -1,0 +1,130 @@
+{
+  "source": "runtime capture (SkyZH), build/gaps_B.txt, build/gaps_C.txt, 2026-09-05",
+  "fetched_at": "2026-09-05",
+  "verified_ingame": true,
+  "gui_context": "Bea 的宠物商店与蜜蜂宠物升级说明。",
+  "lines": [
+    {
+      "id": "bee_nearby_players",
+      "context": "蜜蜂宠物按附近玩家数量提供加成的条件",
+      "raw": "§7For each player within §a%s §7blocks:",
+      "text": "For each player within %s blocks:",
+      "placeholders": [{"token": "%s", "desc": "检测附近玩家的范围", "type": "number", "example": "25"}],
+      "gloss": "",
+      "translate": true,
+      "zh": "范围内每有一名玩家(%s 格):",
+      "segments": [
+        {"color": "§7", "text": "For each player within ", "zh": "范围内每有一名玩家("},
+        {"color": "§a", "text": "%s ", "zh": "%s "},
+        {"color": "§7", "text": "blocks:", "zh": "格):"}
+      ]
+    },
+    {
+      "id": "bee_nearby_intelligence",
+      "context": "每名附近玩家提供的智力",
+      "raw": "§b+%s Intelligence",
+      "text": "+%s Intelligence",
+      "placeholders": [{"token": "%s", "desc": "每名玩家提供的智力", "type": "number", "example": "3"}],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s 智力"
+    },
+    {
+      "id": "bee_pet_upgrade_1",
+      "context": "Bee 宠物在 Kat 处升级稀有度的说明首行",
+      "raw": "§7Use at §bKat §7to upgrade §eBee Pets §7from",
+      "text": "Use at Kat to upgrade Bee Pets from",
+      "placeholders": [],
+      "gloss": "Kat 是 NPC 人名；Bee 使用既有译名蜜蜂。",
+      "translate": true,
+      "zh": "在 Kat 处使用,把蜜蜂宠物从普通升级为罕见。",
+      "segments": [
+        {"color": "§7", "text": "Use at ", "zh": "在"},
+        {"color": "§b", "text": "Kat ", "zh": "Kat"},
+        {"color": "§7", "text": "to upgrade ", "zh": "处使用,把"},
+        {"color": "§e", "text": "Bee Pets ", "zh": "蜜蜂宠物"},
+        {"color": "§7", "text": "from", "zh": "从"}
+      ]
+    },
+    {
+      "id": "bee_pet_upgrade_2",
+      "context": "接上一行",
+      "raw": "§fCommon §7to §aUncommon.",
+      "text": "Common to Uncommon.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "普通升级为罕见。",
+      "segments": [
+        {"color": "§f", "text": "Common ", "zh": "普通"},
+        {"color": "§7", "text": "to ", "zh": "升级为"},
+        {"color": "§a", "text": "Uncommon.", "zh": "罕见。"}
+      ]
+    },
+    {
+      "id": "bee_upgrade_uncommon_rare",
+      "context": "蜜蜂宠物稀有度升级链",
+      "raw": "§aUncommon §7to §9Rare.",
+      "text": "Uncommon to Rare.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "罕见升级为稀有。",
+      "segments": [
+        {"color": "§a", "text": "Uncommon ", "zh": "罕见"},
+        {"color": "§7", "text": "to ", "zh": "升级为"},
+        {"color": "§9", "text": "Rare.", "zh": "稀有。"}
+      ]
+    },
+    {
+      "id": "bee_upgrade_rare_epic",
+      "context": "蜜蜂宠物稀有度升级链",
+      "raw": "§9Rare §7to §5Epic.",
+      "text": "Rare to Epic.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "稀有升级为史诗。",
+      "segments": [
+        {"color": "§9", "text": "Rare ", "zh": "稀有"},
+        {"color": "§7", "text": "to ", "zh": "升级为"},
+        {"color": "§5", "text": "Epic.", "zh": "史诗。"}
+      ]
+    },
+    {
+      "id": "bee_upgrade_epic_legendary",
+      "context": "蜜蜂宠物稀有度升级链",
+      "raw": "§5Epic §7to §6Legendary.",
+      "text": "Epic to Legendary.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "史诗升级为传说。",
+      "segments": [
+        {"color": "§5", "text": "Epic ", "zh": "史诗"},
+        {"color": "§7", "text": "to ", "zh": "升级为"},
+        {"color": "§6", "text": "Legendary.", "zh": "传说。"}
+      ]
+    },
+    {
+      "id": "magnetic_mithril_pickaxe_count",
+      "context": "Bea 商店中带 Magnetic 重铸前缀的秘银镐；数量动态",
+      "raw": "§aMagnetic Mithril Pickaxe §8x%s",
+      "text": "Magnetic Mithril Pickaxe x%s",
+      "placeholders": [{"token": "%s", "desc": "物品数量", "type": "number", "example": "1"}],
+      "gloss": "Magnetic 沿用既有译名“磁力”。",
+      "translate": true,
+      "zh": "磁力秘银镐 x%s",
+      "segments": [
+        {"color": "§a", "text": "Magnetic Mithril Pickaxe ", "zh": "磁力秘银镐 "},
+        {"color": "§8", "text": "x%s", "zh": "x%s"}
+      ]
+    },
+    {
+      "id": "sword_count",
+      "ref": "Mining/GUI_Item/Bubu.json#sword_count",
+      "context": "动态剑类物品及数量"
+    }
+  ]
+}

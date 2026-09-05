@@ -1,0 +1,345 @@
+{
+  "source": "runtime capture (SkyZH) 2026-09-04 + https://hypixelskyblock.minecraft.wiki/w/Deep_Caverns + https://hypixel-skyblock.fandom.com/wiki/Deep_Caverns",
+  "fetched_at": "2026-09-04",
+  "verified_ingame": true,
+  "context": "宾果新档首次探索深层洞窟时实测出现的目标、区域介绍和 Redstone Miner 任务系统消息。只收录 Hypixel 服务器文本；数值字段使用受限占位符。",
+  "messages": [
+    {
+      "id": "deep_caverns_redstone_pigmen_warning",
+      "context": "在猪人巢穴挖掘过多红石后，猪人开始敌对",
+      "raw": "§cThe Redstone Pigmen are unhappy with you stealing their ores! Look out!",
+      "text": "The Redstone Pigmen are unhappy with you stealing their ores! Look out!",
+      "placeholders": [],
+      "gloss": "Redstone Pigmen 指猪人巢穴中因玩家挖红石而暂时敌对的猪人。",
+      "translate": true,
+      "zh": "红石猪人不满你偷挖它们的矿石! 小心!"
+    },
+    {
+      "id": "deep_caverns_redstone_pigmen_forgiven",
+      "context": "停止挖红石一段时间后，猪人恢复中立",
+      "raw": "§eThe Redstone Pigmen have forgiven you for now.",
+      "text": "The Redstone Pigmen have forgiven you for now.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "红石猪人暂时原谅你了。"
+    },
+    {
+      "id": "deep_caverns_accessory_bag_slots_reward",
+      "context": "红石收藏品等级提升时获得饰品袋栏位；数量会随奖励等级变化",
+      "raw": "    §8+§7%s §aAccessory Bag §7Slots",
+      "text": "    +%s Accessory Bag Slots",
+      "placeholders": [{"token": "%s", "desc": "本次增加的饰品袋栏位数量", "type": "number", "example": "6"}],
+      "gloss": "实测本次奖励为 6 个，但奖励数值不写死。",
+      "translate": true,
+      "zh": "    +%s 个饰品袋栏位",
+      "segments": [
+        {"color": "", "text": "    ", "zh": "    "},
+        {"color": "§8", "text": "+", "zh": "+"},
+        {"color": "§7", "text": "%s ", "zh": "%s 个"},
+        {"color": "§a", "text": "Accessory Bag ", "zh": "饰品袋"},
+        {"color": "§7", "text": "Slots", "zh": "栏位"}
+      ]
+    },
+    {
+      "id": "deep_caverns_new_objective",
+      "context": "新目标横幅标题",
+      "raw": "  §6§lNEW OBJECTIVE",
+      "text": "  NEW OBJECTIVE",
+      "placeholders": [],
+      "gloss": "保留服务器用于居中的两个前导空格。",
+      "translate": true,
+      "zh": "  新目标",
+      "segments": [
+        {"color": "", "text": "  ", "zh": "  "},
+        {"color": "§6§l", "text": "NEW OBJECTIVE", "zh": "新目标"}
+      ]
+    },
+    {
+      "id": "deep_caverns_talk_to_redstone_miner",
+      "context": "红石收藏品 II 解锁后的新目标",
+      "raw": "  §fTalk to the Redstone Miner",
+      "text": "  Talk to the Redstone Miner",
+      "placeholders": [],
+      "gloss": "Redstone Miner 是 NPC 人名，按规则保留英文。",
+      "translate": true,
+      "zh": "  与 Redstone Miner 交谈",
+      "segments": [
+        {"color": "", "text": "  ", "zh": "  "},
+        {"color": "§f", "text": "Talk to the Redstone Miner", "zh": "与 Redstone Miner 交谈"}
+      ]
+    },
+    {
+      "id": "deep_caverns_select_yes_no",
+      "context": "Redstone Miner 首次任务的可点击选择",
+      "raw": "§eSelect an option: §a§l[YES] §c§l[NO] ",
+      "text": "Select an option: [YES] [NO] ",
+      "placeholders": [],
+      "gloss": "保留末尾空格和按钮方括号。",
+      "translate": true,
+      "zh": "请选择: [接受] [拒绝] ",
+      "segments": [
+        {"color": "§e", "text": "Select an option: ", "zh": "请选择: "},
+        {"color": "§a§l", "text": "[YES] ", "zh": "[接受] "},
+        {"color": "§c§l", "text": "[NO] ", "zh": "[拒绝] "}
+      ]
+    },
+    {
+      "id": "deep_caverns_give_redstone_to_miner",
+      "context": "Redstone Miner 饰品袋栏位任务目标；数量会随任务阶段变化",
+      "raw": "  §fGive %1$s Redstone to the Redstone Miner",
+      "text": "  Give %1$s Redstone to the Redstone Miner",
+      "placeholders": [
+        {"token": "%1$s", "desc": "本阶段需要交付的红石数量", "type": "number", "example": "128"}
+      ],
+      "gloss": "数值不写死，实测第一阶段为 128，后续阶段还会变化。",
+      "translate": true,
+      "zh": "  向 Redstone Miner 交付 %1$s 个红石",
+      "segments": [
+        {"color": "", "text": "  ", "zh": "  "},
+        {"color": "§f", "text": "Give %1$s Redstone to the Redstone Miner", "zh": "向 Redstone Miner 交付 %1$s 个红石"}
+      ]
+    },
+    {
+      "id": "deep_caverns_select_give_materials",
+      "context": "Redstone Miner 提交材料时的可点击选择",
+      "raw": "§eSelect an option: §a[Give materials] §c[No thanks!] ",
+      "text": "Select an option: [Give materials] [No thanks!] ",
+      "placeholders": [],
+      "gloss": "保留末尾空格和按钮方括号。",
+      "translate": true,
+      "zh": "请选择: [交付材料] [不用了]",                           
+      "segments": [
+        {"color": "§e", "text": "Select an option: ", "zh": "请选择: "},
+        {"color": "§a", "text": "[Give materials] ", "zh": "[交付材料] "},
+        {"color": "§c", "text": "[No thanks!] ", "zh": "[不用了]"}
+      ]
+    },
+    {
+      "id": "deep_caverns_redstone_miner_slot_reward",
+      "context": "帮助 Redstone Miner 后获得饰品袋栏位",
+      "raw": " §7You got an extra §aAccessory Bag §7slot from helping the §eRedstone Miner§7!",
+      "text": " You got an extra Accessory Bag slot from helping the Redstone Miner!",
+      "placeholders": [],
+      "gloss": "保留行首空格；Redstone Miner 是 NPC 人名。",
+      "translate": true,
+      "zh": " 你帮助了 Redstone Miner，获得了一个额外的饰品袋栏位!",
+      "segments": [
+        {"color": "", "text": " ", "zh": " ", "order": 0},
+        {"color": "§7", "text": "You got an extra ", "zh": "你帮助了 ", "order": 1},
+        {"color": "§a", "text": "Accessory Bag ", "zh": "饰品袋", "order": 4},
+        {"color": "§7", "text": "slot from helping the ", "zh": "，获得了一个额外的", "order": 3},
+        {"color": "§e", "text": "Redstone Miner", "zh": "Redstone Miner", "order": 2},
+        {"color": "§7", "text": "!", "zh": "栏位!", "order": 5}
+      ]
+    },
+    {
+      "id": "deep_caverns_reach_slimehill",
+      "context": "深层洞窟探索目标",
+      "raw": "  §fReach Slimehill",
+      "text": "  Reach Slimehill",
+      "placeholders": [],
+      "gloss": "Slimehill 是深层洞窟区域名，译为史莱姆山。",
+      "translate": true,
+      "zh": "  抵达史莱姆山",
+      "segments": [{"color": "", "text": "  ", "zh": "  "}, {"color": "§f", "text": "Reach Slimehill", "zh": "抵达史莱姆山"}]
+    },
+    {
+      "id": "deep_caverns_slimehill_title",
+      "context": "首次抵达史莱姆山时的区域介绍标题",
+      "raw": "  §7 §bSlimehill",
+      "text": "   Slimehill",
+      "placeholders": [],
+      "gloss": " 是服务器地点图标。",
+      "translate": true,
+      "zh": "   史莱姆山",
+      "segments": [{"color": "", "text": "  ", "zh": "  "}, {"color": "§7", "text": " ", "zh": " "}, {"color": "§b", "text": "Slimehill", "zh": "史莱姆山"}]
+    },
+    {
+      "id": "deep_caverns_slimehill_lift",
+      "context": "史莱姆山区域介绍",
+      "raw": "§7   ■ §fThe §bSlimehill§f can now be traveled to via the Lift Operator.",
+      "text": "   ■ The Slimehill can now be traveled to via the Lift Operator.",
+      "placeholders": [],
+      "gloss": "Lift Operator 是职务，按术语表译为升降梯管理员。",
+      "translate": true,
+      "zh": "   ■ 现在可以通过升降梯管理员前往史莱姆山了。",
+      "segments": [
+        {"color": "§7", "text": "   ■ ", "zh": "   ■ "},
+        {"color": "§f", "text": "The ", "zh": "现在可以通过升降梯管理员前往"},
+        {"color": "§b", "text": "Slimehill", "zh": "史莱姆山"},
+        {"color": "§f", "text": " can now be traveled to via the Lift Operator.", "zh": "了。"}
+      ]
+    },
+    {
+      "id": "deep_caverns_mine_emerald_ore",
+      "context": "史莱姆山区域介绍；这里的矿石种类是该区域固定内容，并非动态字段",
+      "raw": "§7   ■ §fMine Emerald Ore.",
+      "text": "   ■ Mine Emerald Ore.",
+      "placeholders": [],
+      "gloss": "采集器曾把 Emerald 误推断为 raw 占位符；这里收紧为实测字面量。",
+      "translate": true,
+      "zh": "   ■ 开采绿宝石矿石。",
+      "segments": [{"color": "§7", "text": "   ■ ", "zh": "   ■ "}, {"color": "§f", "text": "Mine Emerald Ore.", "zh": "开采绿宝石矿石。"}]
+    },
+    {
+      "id": "deep_caverns_emerald_slimes",
+      "context": "史莱姆山区域介绍",
+      "raw": "§7   ■ §fThis area is covered with Emerald Slimes!",
+      "text": "   ■ This area is covered with Emerald Slimes!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "   ■ 这里到处都是绿宝石史莱姆!",
+      "segments": [{"color": "§7", "text": "   ■ ", "zh": "   ■ "}, {"color": "§f", "text": "This area is covered with Emerald Slimes!", "zh": "这里到处都是绿宝石史莱姆!"}]
+    },
+    {
+      "id": "deep_caverns_collect_emeralds",
+      "context": "史莱姆山探索目标；收集物固定为绿宝石",
+      "raw": "  §fCollect Emeralds",
+      "text": "  Collect Emeralds",
+      "placeholders": [],
+      "gloss": "采集器曾把 Emeralds 误推断为 raw 占位符；此目标实测固定为绿宝石。",
+      "translate": true,
+      "zh": "  收集绿宝石",
+      "segments": [{"color": "", "text": "  ", "zh": "  "}, {"color": "§f", "text": "Collect Emeralds", "zh": "收集绿宝石"}]
+    },
+    {
+      "id": "deep_caverns_reach_diamond_reserve",
+      "context": "深层洞窟探索目标",
+      "raw": "  §fReach Diamond Reserve",
+      "text": "  Reach Diamond Reserve",
+      "placeholders": [],
+      "gloss": "Diamond Reserve 是深层洞窟区域名，译为钻石储藏区。",
+      "translate": true,
+      "zh": "  抵达钻石储藏区",
+      "segments": [{"color": "", "text": "  ", "zh": "  "}, {"color": "§f", "text": "Reach Diamond Reserve", "zh": "抵达钻石储藏区"}]
+    },
+    {
+      "id": "deep_caverns_diamond_reserve_title",
+      "context": "首次抵达钻石储藏区时的区域介绍标题",
+      "raw": "  §7 §bDiamond Reserve",
+      "text": "   Diamond Reserve",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "   钻石储藏区",
+      "segments": [{"color": "", "text": "  ", "zh": "  "}, {"color": "§7", "text": " ", "zh": " "}, {"color": "§b", "text": "Diamond Reserve", "zh": "钻石储藏区"}]
+    },
+    {
+      "id": "deep_caverns_diamond_reserve_lift_1",
+      "context": "钻石储藏区区域介绍第一行；服务器将一句话折成两行",
+      "raw": "§7   ■ §fThe §bDiamond Reserve§f can now be traveled to via the Lift",
+      "text": "   ■ The Diamond Reserve can now be traveled to via the Lift",
+      "placeholders": [],
+      "gloss": "采集器把区域名误推断成两个 raw 占位符；实测此处固定为 Diamond Reserve。Lift Operator 指负责传送的 NPC；译文按服务器折行拆成两行。",
+      "translate": true,
+      "zh": "   ■ 要前往钻石储藏区,现在可以",
+      "segments": [
+        {"color": "§7", "text": "   ■ ", "zh": "   ■ "},
+        {"color": "§f", "text": "The ", "zh": "要前往"},
+        {"color": "§b", "text": "Diamond Reserve", "zh": "钻石储藏区"},
+        {"color": "§f", "text": " can now be traveled to via the Lift", "zh": ",现在可以"}
+      ]
+    },
+    {
+      "id": "deep_caverns_diamond_reserve_lift_2",
+      "context": "接上一行的升降梯管理员说明",
+      "raw": "   §fOperator.",
+      "text": "   Operator.",
+      "placeholders": [],
+      "gloss": "服务器折行只留下 Operator 片段；与上一行连读。",
+      "translate": true,
+      "zh": "   找升降梯管理员。",
+      "segments": [{"color": "", "text": "   ", "zh": "   "}, {"color": "§f", "text": "Operator.", "zh": "找升降梯管理员。"}]
+    },
+    {
+      "id": "deep_caverns_diamond_reserve_danger",
+      "context": "钻石储藏区区域介绍",
+      "raw": "§7   ■ §fThe Miner Zombies and Skeletons are highly dangerous!",
+      "text": "   ■ The Miner Zombies and Skeletons are highly dangerous!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "   ■ 矿工僵尸和矿工骷髅极其危险!",
+      "segments": [{"color": "§7", "text": "   ■ ", "zh": "   ■ "}, {"color": "§f", "text": "The Miner Zombies and Skeletons are highly dangerous!", "zh": "矿工僵尸和矿工骷髅极其危险!"}]
+    },
+    {
+      "id": "deep_caverns_reach_obsidian_sanctuary",
+      "context": "深层洞窟探索目标",
+      "raw": "  §fReach Obsidian Sanctuary",
+      "text": "  Reach Obsidian Sanctuary",
+      "placeholders": [],
+      "gloss": "Obsidian Sanctuary 是深层洞窟区域名，译为黑曜石圣所。",
+      "translate": true,
+      "zh": "  抵达黑曜石圣所",
+      "segments": [{"color": "", "text": "  ", "zh": "  "}, {"color": "§f", "text": "Reach Obsidian Sanctuary", "zh": "抵达黑曜石圣所"}]
+    },
+    {
+      "id": "deep_caverns_obsidian_sanctuary_title",
+      "context": "首次抵达黑曜石圣所时的区域介绍标题",
+      "raw": "  §7 §bObsidian Sanctuary",
+      "text": "   Obsidian Sanctuary",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "   黑曜石圣所",
+      "segments": [{"color": "", "text": "  ", "zh": "  "}, {"color": "§7", "text": " ", "zh": " "}, {"color": "§b", "text": "Obsidian Sanctuary", "zh": "黑曜石圣所"}]
+    },
+    {
+      "id": "deep_caverns_obsidian_mining",
+      "context": "黑曜石圣所区域介绍",
+      "raw": "§7   ■ §fMine Obsidian and Diamond Ore.",
+      "text": "   ■ Mine Obsidian and Diamond Ore.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "   ■ 开采黑曜石和钻石矿石。",
+      "segments": [{"color": "§7", "text": "   ■ ", "zh": "   ■ "}, {"color": "§f", "text": "Mine Obsidian and Diamond Ore.", "zh": "开采黑曜石和钻石矿石。"}]
+    },
+    {
+      "id": "deep_caverns_talk_to_rhys",
+      "context": "黑曜石圣所区域介绍",
+      "raw": "§7   ■ §fTalk to §dRhys§f.",
+      "text": "   ■ Talk to Rhys.",
+      "placeholders": [],
+      "gloss": "Rhys 是 NPC 人名，保留英文。",
+      "translate": true,
+      "zh": "   ■ 与 Rhys 交谈。",
+      "segments": [{"color": "§7", "text": "   ■ ", "zh": "   ■ "}, {"color": "§f", "text": "Talk to ", "zh": "与 "}, {"color": "§d", "text": "Rhys", "zh": "Rhys"}, {"color": "§f", "text": ".", "zh": " 交谈。"}]
+    },
+    {
+      "id": "deep_caverns_obsidian_danger_1",
+      "context": "黑曜石圣所区域介绍第一行；服务器将一句话折成两行",
+      "raw": "§7   ■ §fThe Miner Zombies and Skeletons here are even more",
+      "text": "   ■ The Miner Zombies and Skeletons here are even more",
+      "placeholders": [],
+      "gloss": "按服务器折行位置拆分译文，与下一行连读。",
+      "translate": true,
+      "zh": "   ■ 这里的矿工僵尸和矿工骷髅更加",
+      "segments": [{"color": "§7", "text": "   ■ ", "zh": "   ■ "}, {"color": "§f", "text": "The Miner Zombies and Skeletons here are even more", "zh": "这里的矿工僵尸和矿工骷髅更加"}]
+    },
+    {
+      "id": "deep_caverns_obsidian_danger_2",
+      "context": "接上一行",
+      "raw": "   §fdangerous!",
+      "text": "   dangerous!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "   危险!",
+      "segments": [{"color": "", "text": "   ", "zh": "   "}, {"color": "§f", "text": "dangerous!", "zh": "危险!"}]
+    },
+    {
+      "id": "deep_caverns_reach_mining_level",
+      "context": "进入矮人矿山前的挖矿等级目标；等级是动态字段",
+      "raw": "  §fReach Mining Level %s",
+      "text": "  Reach Mining Level %s",
+      "placeholders": [{"token": "%s", "desc": "要求达到的挖矿等级", "type": "tier", "example": "XII"}],
+      "gloss": "实测为 XII，但不把等级写死。",
+      "translate": true,
+      "zh": "  挖矿达到 %s 级",
+      "segments": [{"color": "", "text": "  ", "zh": "  "}, {"color": "§f", "text": "Reach Mining Level %s", "zh": "挖矿达到 %s 级"}]
+    }
+  ]
+}

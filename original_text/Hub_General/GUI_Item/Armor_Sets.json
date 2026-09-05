@@ -1,0 +1,395 @@
+{
+  "source": "SkyZH runtime capture 2026-09-03 (Dungeon Hub 会话)",
+  "fetched_at": "2026-09-03",
+  "verified_ingame": true,
+  "gui_context": "衣橱 Armor Sets(护甲套装)三页:槽位状态、放入护甲的提示、解锁更多槽位。玩家自己放在衣橱里的护甲 Lore 按既定约定不收(见 Community_Shop.json 的 excluded 说明),只收通用行。",
+  "excluded": [
+    "Ancient Shadow Assassin / Wise Young Dragon / Fierce Mastiff / Snow Suit / Jaded Divan / Final Destination / Necron 等玩家自己护甲的属性与技能说明"
+  ],
+  "lines": [
+    {
+      "id": "wardrobe_slot_piece",
+      "context": "槽位里某一件的物品名(Slot 9 Helmet)",
+      "raw": "§aSlot %1$s %2$s",
+      "text": "Slot %1$s %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "槽位号",
+          "type": "number",
+          "example": "9"
+        },
+        {
+          "token": "%2$s",
+          "desc": "部位名,译名走 Terms.json",
+          "type": "category_name",
+          "example": "Helmet"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "槽位 %1$s %2$s"
+    },
+    {
+      "id": "wardrobe_place_helmet_1",
+      "context": "空头盔格说明,英文两行一句",
+      "raw": "§7Place a helmet here to add it to this",
+      "text": "Place a helmet here to add it to this",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "把头盔放在这里以加入这套护甲。"
+    },
+    {
+      "id": "wardrobe_place_helmet_2",
+      "context": "接上一行",
+      "raw": "§7set.",
+      "text": "set.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "wardrobe_place_chestplate_1",
+      "context": "空胸甲格说明,英文两行一句",
+      "raw": "§7Place a chestplate here to add it to",
+      "text": "Place a chestplate here to add it to",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "把胸甲放在这里以加入这套护甲。"
+    },
+    {
+      "id": "wardrobe_place_chestplate_2",
+      "context": "接上一行",
+      "raw": "§7this set.",
+      "text": "this set.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "wardrobe_place_leggings_1",
+      "context": "空护腿格说明,英文两行一句",
+      "raw": "§7Place a pair of leggings here to add",
+      "text": "Place a pair of leggings here to add",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "把护腿放在这里以加入这套护甲。"
+    },
+    {
+      "id": "wardrobe_place_leggings_2",
+      "context": "接上一行",
+      "raw": "§7it to this set.",
+      "text": "it to this set.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "wardrobe_place_boots_1",
+      "context": "空靴子格说明,英文两行一句",
+      "raw": "§7Place a pair of boots here to add it",
+      "text": "Place a pair of boots here to add it",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "把靴子放在这里以加入这套护甲。"
+    },
+    {
+      "id": "wardrobe_place_boots_2",
+      "context": "接上一行",
+      "raw": "§7to this set.",
+      "text": "to this set.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "wardrobe_slot_status",
+      "context": "槽位按钮物品名:Slot 1: Equipped / Ready / Empty",
+      "raw": "Slot %1$s:§a %2$s",
+      "text": "Slot %1$s: %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "槽位号",
+          "type": "number",
+          "example": "1"
+        },
+        {
+          "token": "%2$s",
+          "desc": "Equipped / Ready / Empty,译名走 Terms.json",
+          "type": "raw",
+          "example": "Equipped"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "",
+          "text": "Slot %1$s:",
+          "zh": "槽位 %1$s:"
+        },
+        {
+          "color": "§a",
+          "text": " %2$s",
+          "zh": " %2$s"
+        }
+      ],
+      "zh": "槽位 %1$s: %2$s"
+    },
+    {
+      "id": "wardrobe_slot_locked_status",
+      "context": "槽位按钮物品名:已锁定",
+      "raw": "Slot %1$s:§c Locked",
+      "text": "Slot %1$s: Locked",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "槽位号",
+          "type": "number",
+          "example": "19"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "",
+          "text": "Slot %1$s:",
+          "zh": "槽位 %1$s:"
+        },
+        {
+          "color": "§c",
+          "text": " Locked",
+          "zh": " 已锁定"
+        }
+      ],
+      "zh": "槽位 %1$s: 已锁定"
+    },
+    {
+      "id": "wardrobe_slot_current",
+      "context": "当前穿着的槽位",
+      "raw": "§7This slot contains your current set.",
+      "text": "This slot contains your current set.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这个槽位里是你当前穿着的护甲。"
+    },
+    {
+      "id": "wardrobe_click_unequip",
+      "context": "点击提示",
+      "raw": "§eClick to unequip!",
+      "text": "Click to unequip!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击卸下!"
+    },
+    {
+      "id": "wardrobe_slot_ready",
+      "context": "可装备的槽位",
+      "raw": "§7This slot is ready to be equipped.",
+      "text": "This slot is ready to be equipped.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这个槽位可以随时装备。"
+    },
+    {
+      "id": "wardrobe_slot_empty",
+      "context": "空槽位",
+      "raw": "§7This slot contains no items.",
+      "text": "This slot contains no items.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这个槽位是空的。"
+    },
+    {
+      "id": "wardrobe_slot_locked",
+      "context": "已锁定槽位物品名",
+      "raw": "§cSlot %1$s Locked",
+      "text": "Slot %1$s Locked",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "槽位号",
+          "type": "number",
+          "example": "19"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "槽位 %1$s 已锁定"
+    },
+    {
+      "id": "wardrobe_unlock_from",
+      "context": "解锁途径小标题",
+      "raw": "§7Unlock more slots from:",
+      "text": "Unlock more slots from:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "从以下途径解锁更多槽位:"
+    },
+    {
+      "id": "wardrobe_unlock_account",
+      "context": "解锁途径:账号升级",
+      "raw": "§8▶ §aAccount Upgrades §8- §6%1$s Slots",
+      "text": "▶ Account Upgrades - %1$s Slots",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "槽位数",
+          "type": "number",
+          "example": "9"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§8",
+          "text": "▶ ",
+          "zh": "▶ "
+        },
+        {
+          "color": "§a",
+          "text": "Account Upgrades ",
+          "zh": "账号升级"
+        },
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": " - "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s Slots",
+          "zh": "%1$s 个槽位"
+        }
+      ],
+      "zh": "▶ 账号升级 - %1$s 个槽位"
+    },
+    {
+      "id": "wardrobe_unlock_elizabeth_1",
+      "context": "解锁提示,英文两行一句",
+      "raw": "§cUnlock more slots from §dElizabeth §cat",
+      "text": "Unlock more slots from Elizabeth at",
+      "placeholders": [],
+      "gloss": "「the Community Center」在原文第二行且是青色;合并后落进红色段。",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§c",
+          "text": "Unlock more slots from ",
+          "zh": "在社区中心的 "
+        },
+        {
+          "color": "§d",
+          "text": "Elizabeth",
+          "zh": "Elizabeth"
+        },
+        {
+          "color": "§d",
+          "text": " at",
+          "zh": " 处解锁更多槽位"
+        }
+      ],
+      "zh": "在社区中心的 Elizabeth 处解锁更多槽位"
+    },
+    {
+      "id": "wardrobe_unlock_elizabeth_2",
+      "context": "接上一行",
+      "raw": "§cthe §bCommunity Center",
+      "text": "the Community Center",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "lore_reforge_bonus",
+      "context": "重铸加成小标题(Ancient Bonus / Withered Bonus / Spiritual Bonus)",
+      "raw": "§9%1$s Bonus",
+      "text": "%1$s Bonus",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "重铸名,词表里有译名的会翻",
+          "type": "raw",
+          "example": "Ancient"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s 加成"
+    },
+    {
+      "id": "lore_piece_bonus",
+      "context": "地牢护甲单件加成标题",
+      "raw": "§6Piece Bonus: %1$s",
+      "text": "Piece Bonus: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "加成名,保留英文",
+          "type": "raw",
+          "example": "Pursuit"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "部件加成: %1$s"
+    },
+    {
+      "id": "lore_full_set_bonus",
+      "context": "套装加成标题,带已穿件数",
+      "raw": "§6Full Set Bonus: %1$s §7(%2$s)",
+      "text": "Full Set Bonus: %1$s (%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "套装加成名,保留英文",
+          "type": "raw",
+          "example": "Shadow Assassin"
+        },
+        {
+          "token": "%2$s",
+          "desc": "已穿/总件数",
+          "type": "raw",
+          "example": "0/4"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Full Set Bonus: %1$s ",
+          "zh": "全套加成: %1$s "
+        },
+        {
+          "color": "§7",
+          "text": "(%2$s)",
+          "zh": "(%2$s)"
+        }
+      ],
+      "zh": "全套加成: %1$s (%2$s)"
+    }
+  ]
+}

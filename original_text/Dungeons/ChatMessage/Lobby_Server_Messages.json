@@ -1,0 +1,138 @@
+{
+  "source": "SkyZH runtime capture (Dungeon Hub, 2026-09-01)",
+  "fetched_at": "2026-09-01",
+  "verified_ingame": true,
+  "source_note": "原文与颜色来自地牢大厅运行时采集；社区 Wiki 普通页面用于核对玩法语境。",
+  "messages": [
+    {
+      "id": "rare_dungeon_reward",
+      "context": "全服稀有地牢奖励广播",
+      "raw": "§6§lRARE REWARD! §b%1$s §efound a §5%2$s §ein their Obsidian Chest!",
+      "text": "RARE REWARD! %1$s found a %2$s in their Obsidian Chest!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "获得奖励的玩家名",
+          "type": "player_name",
+          "example": "CatGirlIHOP"
+        },
+        {
+          "token": "%2$s",
+          "desc": "奖励物品名（专有名称保持英文）",
+          "type": "item_name",
+          "example": "Fuming Potato Book"
+        }
+      ],
+      "gloss": "玩家名与物品专名不翻译；用 order 保留原有高亮并调整中文语序。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§6§l",
+          "text": "RARE REWARD! ",
+          "zh": "稀有奖励! ",
+          "order": 0
+        },
+        {
+          "color": "§b",
+          "text": "%1$s ",
+          "zh": "%1$s ",
+          "order": 1
+        },
+        {
+          "color": "§e",
+          "text": "found a ",
+          "zh": "在自己的",
+          "order": 2
+        },
+        {
+          "color": "§5",
+          "text": "%2$s ",
+          "zh": "%2$s",
+          "order": 4
+        },
+        {
+          "color": "§e",
+          "text": "in their Obsidian Chest",
+          "zh": "黑曜石宝箱中发现了 ",
+          "order": 3
+        },
+        {
+          "color": "§e",
+          "text": "!",
+          "zh": "!",
+          "order": 5
+        }
+      ]
+    },
+    {
+      "id": "master_mode_auto_ready_disabled",
+      "context": "关闭大师模式地牢自动准备后的聊天提示",
+      "raw": "§cYou will no longer auto ready up when joining §c§lMM§c The Catacombs!",
+      "text": "You will no longer auto ready up when joining MM The Catacombs!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你已关闭进入大师模式地牢时自动准备的功能!",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "You will no longer auto ready up when joining ",
+          "zh": "你已关闭进入"
+        },
+        {
+          "color": "§c§l",
+          "text": "MM",
+          "zh": "大师模式"
+        },
+        {
+          "color": "§c",
+          "text": " The Catacombs!",
+          "zh": "地牢时自动准备的功能!"
+        }
+      ]
+    },
+    {
+      "id": "master_mode_auto_ready_enabled",
+      "context": "开启大师模式地牢自动准备后的聊天提示",
+      "raw": "§aYou will now auto ready up when joining §c§lMM§c The Catacombs§a!",
+      "text": "You will now auto ready up when joining MM The Catacombs!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你已开启进入大师模式地牢时自动准备的功能!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "You will now auto ready up when joining ",
+          "zh": "你已开启进入"
+        },
+        {
+          "color": "§c§l",
+          "text": "MM",
+          "zh": "大师模式"
+        },
+        {
+          "color": "§c",
+          "text": " The Catacombs",
+          "zh": "地牢"
+        },
+        {
+          "color": "§a",
+          "text": "!",
+          "zh": "时自动准备的功能!"
+        }
+      ]
+    },
+    {
+      "id": "lobby_cannot_salvage",
+      "context": "在 Malik 的分解界面放入不能分解的物品",
+      "raw": "§cThis item cannot be salvaged!",
+      "text": "This item cannot be salvaged!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这个物品无法分解!"
+    }
+  ]
+}

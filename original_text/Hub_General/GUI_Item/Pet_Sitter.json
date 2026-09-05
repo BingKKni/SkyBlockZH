@@ -1,0 +1,108 @@
+{
+  "source": "runtime capture (SkyZH), build/gaps_B.txt, 2026-09-05",
+  "fetched_at": "2026-09-05",
+  "verified_ingame": true,
+  "gui_context": "Kat 的宠物稀有度升级菜单。",
+  "lines": [
+    {
+      "id": "pet_sitter_upgrade_1",
+      "context": "宠物稀有度升级说明首行",
+      "raw": "§7After some time, your pet §9Rarity §7will",
+      "text": "After some time, your pet Rarity will",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "过一段时间后,宠物的稀有度将会提升!",
+      "segments": [
+        {"color": "§7", "text": "After some time, your pet ", "zh": "过一段时间后,宠物的"},
+        {"color": "§9", "text": "Rarity ", "zh": "稀有度"},
+        {"color": "§7", "text": "will", "zh": "将会提升!"}
+      ]
+    },
+    {
+      "id": "pet_sitter_upgrade_2",
+      "context": "接上一行",
+      "raw": "§7be upgraded!",
+      "text": "be upgraded!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "pet_sitter_hire",
+      "context": "雇用 Kat 的按钮名",
+      "raw": "§aHire Kat",
+      "text": "Hire Kat",
+      "placeholders": [],
+      "gloss": "Kat 是 NPC 人名。",
+      "translate": true,
+      "zh": "雇用 Kat"
+    },
+    {
+      "id": "pet_sitter_care_1",
+      "context": "Kat 照顾当前宠物的时间与效果首行",
+      "raw": "§7Kat will take care of your §f%1$s §7for §9%2$s",
+      "text": "Kat will take care of your %1$s for %2$s",
+      "placeholders": [
+        {"token": "%1$s", "desc": "当前宠物名，译名走 Terms", "type": "mob_name", "example": "Rock"},
+        {"token": "%2$s", "desc": "照顾天数", "type": "number", "example": "1"}
+      ],
+      "gloss": "宠物和时长都会随玩家选择变化。",
+      "translate": true,
+      "zh": "Kat 会照顾你的%1$s宠物 %2$s 天,之后它的稀有度会提升!",
+      "segments": [
+        {"color": "§7", "text": "Kat will take care of your ", "zh": "Kat 会照顾你的"},
+        {"color": "§f", "text": "%1$s ", "zh": "%1$s宠物 "},
+        {"color": "§7", "text": "for ", "zh": "", "omit": true},
+        {"color": "§9", "text": "%2$s", "zh": "%2$s "}
+      ]
+    },
+    {
+      "id": "pet_sitter_care_2",
+      "context": "接上一行",
+      "raw": "§9day§7 then its §9rarity§7 will be upgraded!",
+      "text": "day then its rarity will be upgraded!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "天,之后它的稀有度会提升!",
+      "segments": [
+        {"color": "§9", "text": "day", "zh": "天"},
+        {"color": "§7", "text": " then its ", "zh": ",之后它的"},
+        {"color": "§9", "text": "rarity", "zh": "稀有度"},
+        {"color": "§7", "text": " will be upgraded!", "zh": "会提升!"}
+      ]
+    },
+    {
+      "id": "pet_sitter_care_days",
+      "context": "照顾多天时的尾行；与 day 变体互斥，不是第三行",
+      "raw": "§9days§7 then its §9rarity§7 will be upgraded!",
+      "text": "days then its rarity will be upgraded!",
+      "placeholders": [],
+      "gloss": "社区 Wiki Kat 页确认各宠物升级时长不同；无占位符的尾行走精确匹配，因此单复数需各记一条。此复数排版尚未实机复核。",
+      "verified_ingame": false,
+      "translate": true,
+      "continuation": true,
+      "zh": "天,之后它的稀有度会提升!",
+      "segments": [
+        {"color": "§9", "text": "days", "zh": "天"},
+        {"color": "§7", "text": " then its ", "zh": ",之后它的"},
+        {"color": "§9", "text": "rarity", "zh": "稀有度"},
+        {"color": "§7", "text": " will be upgraded!", "zh": "会提升!"}
+      ]
+    },
+    {
+      "id": "pet_sitter_click_hire",
+      "context": "确认雇用 Kat",
+      "raw": "§eClick to hire Kat!",
+      "text": "Click to hire Kat!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击雇用 Kat!"
+    }
+  ]
+}

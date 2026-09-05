@@ -1,0 +1,1934 @@
+{
+  "source": "SkyZH runtime capture 2026-09-03 (Dungeon Hub 会话)",
+  "fetched_at": "2026-09-03",
+  "verified_ingame": true,
+  "gui_context": "宠物菜单 → Autopet(自动宠物):规则列表、新建/编辑/删除规则、触发条件与例外条件的全部子菜单(Choose Rule Trigger / Choose a skill / an island / a collection / a mob type / a dungeon class / a Catacombs Floor / a boss / an event / Choose Pet / Choose an Exception / Delete Rule)。",
+  "note": "采集器把「You kill a Zombie.」这类按生物名各归并成了几条 2 个词的模板;这里改写成一条带 mob_name 占位符的记录,生物名走 _shared/Terms.json(原版生物用官方中文名)。方括号写法「[Mob]」「[Island]」是触发条件列表里的字面文本,照原文保留方括号只翻译里面的词。",
+  "lines": [
+    {
+      "id": "autopet_rule_n",
+      "context": "规则格子的灰色副标题",
+      "raw": "§8Autopet Rule #%1$s",
+      "text": "Autopet Rule #%1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "规则序号",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "自动宠物规则 #%1$s"
+    },
+    {
+      "id": "autopet_when",
+      "context": "规则格子:触发条件小标题",
+      "raw": "§aWhen:",
+      "text": "When:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "触发条件:"
+    },
+    {
+      "id": "autopet_equip_pet",
+      "context": "规则格子:要装备的宠物(等级 + 宠物名)",
+      "raw": "§aEquip: §7[Lvl %1$s] §5%2$s",
+      "text": "Equip: [Lvl %1$s] %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "宠物等级",
+          "type": "number",
+          "example": "100"
+        },
+        {
+          "token": "%2$s",
+          "desc": "宠物名,译名走 _shared/Terms.json",
+          "type": "mob_name",
+          "example": "Phoenix"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Equip: ",
+          "zh": "装备: "
+        },
+        {
+          "color": "§7",
+          "text": "[Lvl %1$s] ",
+          "zh": "[%1$s 级] "
+        },
+        {
+          "color": "§5",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ],
+      "zh": "装备: [%1$s 级] %2$s"
+    },
+    {
+      "id": "autopet_click_edit_rule",
+      "context": "规则格子点击提示",
+      "raw": "§eClick to edit rule!",
+      "text": "Click to edit rule!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击编辑规则!"
+    },
+    {
+      "id": "autopet_on_enter",
+      "context": "规则格子物品名:进入某岛时触发",
+      "raw": "§aOn Enter §b%1$s",
+      "text": "On Enter %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "岛屿/区域名",
+          "type": "location_name",
+          "example": "Glacite Tunnels"
+        }
+      ],
+      "gloss": "中文语序:「进入极冰隧道时」;「时」放在值后面会挤进值的颜色,所以只写「进入 X」。",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§a",
+          "text": "On Enter ",
+          "zh": "进入 "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ],
+      "zh": "进入 %1$s"
+    },
+    {
+      "id": "autopet_on_select_class",
+      "context": "规则格子物品名:选择地牢职业时触发。写成整行记录,否则会被 Class_Perks.json 的「%s Class」模板吃掉",
+      "raw": "§aOn Select Dungeon Class",
+      "text": "On Select Dungeon Class",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "选择地牢职业时"
+    },
+    {
+      "id": "autopet_create_rule",
+      "context": "新建规则格子物品名",
+      "raw": "§cCreate Rule",
+      "text": "Create Rule",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "创建规则"
+    },
+    {
+      "id": "autopet_limit_1",
+      "context": "规则数已满提示,英文两行一句",
+      "raw": "§7You reached your autopet",
+      "text": "You reached your autopet",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的自动宠物规则数量已达上限!"
+    },
+    {
+      "id": "autopet_limit_2",
+      "context": "接上一行",
+      "raw": "§7rules limit!",
+      "text": "rules limit!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "autopet_limit_3",
+      "context": "规则数已满提示,英文两行一句",
+      "raw": "§7Obtain additional rules from the",
+      "text": "Obtain additional rules from the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "可在大厅的社区商店购买更多规则!"
+    },
+    {
+      "id": "autopet_limit_4",
+      "context": "接上一行",
+      "raw": "§7community shop in the hub!",
+      "text": "community shop in the hub!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "autopet_rules_used",
+      "context": "已用规则数,如 1/2",
+      "raw": "§7Rules used: §c%1$s",
+      "text": "Rules used: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "已用/上限",
+          "type": "raw",
+          "example": "1/2"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Rules used: ",
+          "zh": "已用规则: "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ],
+      "zh": "已用规则: %1$s"
+    },
+    {
+      "id": "autopet_setup_new",
+      "context": "新建规则说明",
+      "raw": "§7Setup a new §cAutopet §7rule.",
+      "text": "Setup a new Autopet rule.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Setup a new ",
+          "zh": "设置一条新的"
+        },
+        {
+          "color": "§c",
+          "text": "Autopet ",
+          "zh": "自动宠物"
+        },
+        {
+          "color": "§7",
+          "text": "rule.",
+          "zh": "规则。"
+        }
+      ],
+      "zh": "设置一条新的自动宠物规则。"
+    },
+    {
+      "id": "autopet_click_create",
+      "context": "点击提示",
+      "raw": "§eClick to create!",
+      "text": "Click to create!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击创建!"
+    },
+    {
+      "id": "autopet_creating",
+      "context": "创建流程里各步骤格子的物品名",
+      "raw": "§cCreating new rule...",
+      "text": "Creating new rule...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "正在创建新规则……"
+    },
+    {
+      "id": "autopet_adding_except",
+      "context": "添加例外条件流程的格子物品名",
+      "raw": "§cAdding EXCEPT condition...",
+      "text": "Adding EXCEPT condition...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "正在添加例外条件……"
+    },
+    {
+      "id": "autopet_use_another_pet",
+      "context": "编辑规则:更换宠物格。写成整行记录,否则会被 Pets.json 的「%s Pet」模板吃掉",
+      "raw": "§aUse Another Pet",
+      "text": "Use Another Pet",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "更换宠物"
+    },
+    {
+      "id": "autopet_select_different_pet",
+      "context": "更换宠物格说明",
+      "raw": "§7Select a different pet for this rule.",
+      "text": "Select a different pet for this rule.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "为这条规则选择另一只宠物。"
+    },
+    {
+      "id": "autopet_current_pet",
+      "context": "当前宠物",
+      "raw": "§7Current: [Lvl %1$s] §5%2$s",
+      "text": "Current: [Lvl %1$s] %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "宠物等级",
+          "type": "number",
+          "example": "100"
+        },
+        {
+          "token": "%2$s",
+          "desc": "宠物名",
+          "type": "mob_name",
+          "example": "Phoenix"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Current: [Lvl %1$s] ",
+          "zh": "当前: [%1$s 级] "
+        },
+        {
+          "color": "§5",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ],
+      "zh": "当前: [%1$s 级] %2$s"
+    },
+    {
+      "id": "autopet_click_pick_pet",
+      "context": "点击提示",
+      "raw": "§eClick to pick a pet!",
+      "text": "Click to pick a pet!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击挑选宠物!"
+    },
+    {
+      "id": "autopet_add_exception",
+      "context": "添加例外格物品名",
+      "raw": "§aAdd Rule Exception",
+      "text": "Add Rule Exception",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "添加规则例外"
+    },
+    {
+      "id": "autopet_exception_desc_1",
+      "context": "添加例外说明,英文两行一句",
+      "raw": "§7Setup conditions under which this",
+      "text": "Setup conditions under which this",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "设置让这条自动宠物规则「不」触发的条件。"
+    },
+    {
+      "id": "autopet_exception_desc_2",
+      "context": "接上一行",
+      "raw": "§7autopet rule will NOT trigger.",
+      "text": "autopet rule will NOT trigger.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "autopet_no_exceptions",
+      "context": "当前没有例外",
+      "raw": "§8This rule has no exceptions!",
+      "text": "This rule has no exceptions!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这条规则没有任何例外!"
+    },
+    {
+      "id": "autopet_click_add_exception",
+      "context": "点击提示",
+      "raw": "§eClick to add an exception!",
+      "text": "Click to add an exception!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击添加例外!"
+    },
+    {
+      "id": "autopet_rule_is_enabled",
+      "context": "规则启用状态格物品名",
+      "raw": "§aRule is %1$s!",
+      "text": "Rule is %1$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "enabled / disabled,译名走 Terms.json",
+          "type": "raw",
+          "example": "enabled"
+        }
+      ],
+      "gloss": "值走词表:enabled → 已启用、disabled → 已禁用。",
+      "translate": true,
+      "zh": "规则%1$s!"
+    },
+    {
+      "id": "autopet_temp_disable_1",
+      "context": "启用状态说明,英文两行一句",
+      "raw": "§7You may temporarily disable this rule",
+      "text": "You may temporarily disable this rule",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "如果需要,你可以暂时禁用这条规则。"
+    },
+    {
+      "id": "autopet_temp_disable_2",
+      "context": "接上一行",
+      "raw": "§7if you'd like.",
+      "text": "if you'd like.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "autopet_click_toggle",
+      "context": "点击提示:disable / enable",
+      "raw": "§eClick to %1$s it!",
+      "text": "Click to %1$s it!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "disable / enable",
+          "type": "raw",
+          "example": "disable"
+        }
+      ],
+      "gloss": "值走词表:disable → 禁用、enable → 启用。",
+      "translate": true,
+      "zh": "点击%1$s!"
+    },
+    {
+      "id": "autopet_delete_rule",
+      "context": "删除规则格物品名(也是确认界面的标题格)",
+      "raw": "§cDelete Rule",
+      "text": "Delete Rule",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "删除规则"
+    },
+    {
+      "id": "autopet_delete_desc",
+      "context": "删除规则说明",
+      "raw": "§7Get rid of this rule now! It's trash!",
+      "text": "Get rid of this rule now! It's trash!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "马上把这条规则扔掉! 它就是垃圾!"
+    },
+    {
+      "id": "autopet_click_delete",
+      "context": "点击提示",
+      "raw": "§eClick to delete!",
+      "text": "Click to delete!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击删除!"
+    },
+    {
+      "id": "autopet_cancel",
+      "context": "确认删除界面的取消格",
+      "raw": "§cCancel",
+      "text": "Cancel",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "取消"
+    },
+    {
+      "id": "autopet_rule_disabled_title",
+      "context": "规则已禁用时的红色大字",
+      "raw": "§cRULE IS DISABLED!",
+      "text": "RULE IS DISABLED!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "规则已禁用!"
+    },
+    {
+      "id": "autopet_rule_disabled_desc",
+      "context": "规则已禁用说明",
+      "raw": "§7You've temporarily disabled this rule.",
+      "text": "You've temporarily disabled this rule.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你已暂时禁用了这条规则。"
+    },
+    {
+      "id": "autopet_click_use_trigger",
+      "context": "触发条件格点击提示",
+      "raw": "§eClick to use this trigger!",
+      "text": "Click to use this trigger!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击使用这个触发条件!"
+    },
+    {
+      "id": "autopet_click_use_option",
+      "context": "触发条件参数格点击提示",
+      "raw": "§eClick to use this option!",
+      "text": "Click to use this option!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击使用这个选项!"
+    },
+    {
+      "id": "autopet_click_add_exception_option",
+      "context": "例外条件格点击提示",
+      "raw": "§eClick to add exception!",
+      "text": "Click to add exception!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击添加例外!"
+    },
+    {
+      "id": "autopet_rule_in_use",
+      "context": "已有规则使用了同一触发条件",
+      "raw": "§cRule already in use!",
+      "text": "Rule already in use!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这个触发条件已被其他规则使用!"
+    },
+    {
+      "id": "autopet_except_if",
+      "context": "例外条件小标题",
+      "raw": "§eExcept if:",
+      "text": "Except if:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "除非:"
+    },
+    {
+      "id": "autopet_trig_login",
+      "context": "触发:登录",
+      "raw": "§7You log into SkyBlock.",
+      "text": "You log into SkyBlock.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你登录 SkyBlock。"
+    },
+    {
+      "id": "autopet_trig_skill_xp_ph",
+      "context": "触发模板(带方括号占位)",
+      "raw": "§7You gain §b[Skill] §7XP.",
+      "text": "You gain [Skill] XP.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You gain ",
+          "zh": "你获得"
+        },
+        {
+          "color": "§b",
+          "text": "[Skill] ",
+          "zh": "[技能]"
+        },
+        {
+          "color": "§7",
+          "text": "XP.",
+          "zh": "经验。"
+        }
+      ],
+      "zh": "你获得[技能]经验。"
+    },
+    {
+      "id": "autopet_trig_skill_xp",
+      "context": "触发:获得某技能经验",
+      "raw": "§7You gain §b%1$s §7XP.",
+      "text": "You gain %1$s XP.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "技能名,译名走 Terms.json",
+          "type": "category_name",
+          "example": "Combat"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You gain ",
+          "zh": "你获得"
+        },
+        {
+          "color": "§b",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "XP.",
+          "zh": "经验。"
+        }
+      ],
+      "zh": "你获得%1$s经验。"
+    },
+    {
+      "id": "autopet_trig_enter_island_ph",
+      "context": "触发模板(带方括号占位)",
+      "raw": "§7You enter §a[Island]§7.",
+      "text": "You enter [Island].",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You enter ",
+          "zh": "你进入"
+        },
+        {
+          "color": "§a",
+          "text": "[Island]",
+          "zh": "[岛屿]"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "你进入[岛屿]。"
+    },
+    {
+      "id": "autopet_trig_enter_island",
+      "context": "触发:进入某岛",
+      "raw": "§7You enter §a%1$s§7.",
+      "text": "You enter %1$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "岛屿名,译名走 Terms.json",
+          "type": "location_name",
+          "example": "Dwarven Mines"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You enter ",
+          "zh": "你进入"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "你进入%1$s。"
+    },
+    {
+      "id": "autopet_trig_enter_dungeons_kuudra",
+      "context": "触发:进入地牢或 Kuudra",
+      "raw": "§7You enter §aDungeons or Kuudra§7.",
+      "text": "You enter Dungeons or Kuudra.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You enter ",
+          "zh": "你进入"
+        },
+        {
+          "color": "§a",
+          "text": "Dungeons or Kuudra",
+          "zh": "地牢或 Kuudra"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "你进入地牢或 Kuudra。"
+    },
+    {
+      "id": "autopet_trig_enter_farming_islands",
+      "context": "触发:进入农业群岛",
+      "raw": "§7You enter §aThe Farming Islands§7.",
+      "text": "You enter The Farming Islands.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You enter ",
+          "zh": "你进入"
+        },
+        {
+          "color": "§a",
+          "text": "The Farming Islands",
+          "zh": "农业群岛"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "你进入农业群岛。"
+    },
+    {
+      "id": "autopet_trig_combat",
+      "context": "触发:进入战斗",
+      "raw": "§7You enter combat.",
+      "text": "You enter combat.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你进入战斗。"
+    },
+    {
+      "id": "autopet_trig_collection_ph",
+      "context": "触发模板(带方括号占位),英文两行一句",
+      "raw": "§7You increase your §a[Collection]",
+      "text": "You increase your [Collection]",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You increase your ",
+          "zh": "你的"
+        },
+        {
+          "color": "§a",
+          "text": "[Collection]",
+          "zh": "[收藏品]"
+        }
+      ],
+      "zh": "你的[收藏品]收藏进度提升。"
+    },
+    {
+      "id": "autopet_trig_collection_head",
+      "context": "触发:某收藏品进度提升(名字长,collection. 折到下一行)",
+      "raw": "§7You increase your §a%1$s",
+      "text": "You increase your %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "收藏品名,译名走 Terms.json",
+          "type": "category_name",
+          "example": "Cocoa Beans"
+        }
+      ],
+      "gloss": "尾行「collection.」带自己的译文「收藏进度提升。」,和这一行的两段一起渲染;colour 由引擎从屏幕读取。",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You increase your ",
+          "zh": "你的"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ],
+      "zh": "你的%1$s收藏进度提升。"
+    },
+    {
+      "id": "autopet_trig_collection_tail",
+      "context": "接上一行",
+      "raw": "§7collection.",
+      "text": "collection.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "收藏进度提升。"
+    },
+    {
+      "id": "autopet_trig_collection_one_line",
+      "context": "触发:某收藏品进度提升(名字短,一行写完)",
+      "raw": "§7You increase your §a%1$s §7collection.",
+      "text": "You increase your %1$s collection.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "收藏品名",
+          "type": "category_name",
+          "example": "Ice"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You increase your ",
+          "zh": "你的"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "collection.",
+          "zh": "收藏进度提升。"
+        }
+      ],
+      "zh": "你的%1$s收藏进度提升。"
+    },
+    {
+      "id": "autopet_trig_kill_mob_ph",
+      "context": "触发模板(带方括号占位)",
+      "raw": "§7You kill a §c[Mob]§7.",
+      "text": "You kill a [Mob].",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You kill a ",
+          "zh": "你击杀一只"
+        },
+        {
+          "color": "§c",
+          "text": "[Mob]",
+          "zh": "[生物]"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "你击杀一只[生物]。"
+    },
+    {
+      "id": "autopet_trig_kill_a",
+      "context": "触发:击杀某种生物",
+      "raw": "§7You kill a §c%1$s§7.",
+      "text": "You kill a %1$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "生物名,译名走 Terms.json",
+          "type": "mob_name",
+          "example": "Zombie"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You kill a ",
+          "zh": "你击杀一只"
+        },
+        {
+          "color": "§c",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "你击杀一只%1$s。"
+    },
+    {
+      "id": "autopet_trig_kill_an",
+      "context": "触发:击杀某种生物(元音开头的冠词 an)",
+      "raw": "§7You kill an §c%1$s§7.",
+      "text": "You kill an %1$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "生物名",
+          "type": "mob_name",
+          "example": "Enderman"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You kill an ",
+          "zh": "你击杀一只"
+        },
+        {
+          "color": "§c",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "你击杀一只%1$s。"
+    },
+    {
+      "id": "autopet_trig_class_ph",
+      "context": "触发模板(带方括号占位),英文两行一句",
+      "raw": "§7You select the §a[Class] §7dungeon",
+      "text": "You select the [Class] dungeon",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You select the ",
+          "zh": "你选择"
+        },
+        {
+          "color": "§a",
+          "text": "[Class] ",
+          "zh": "[职业]"
+        },
+        {
+          "color": "§7",
+          "text": "dungeon",
+          "zh": "地牢职业。"
+        }
+      ],
+      "zh": "你选择[职业]地牢职业。"
+    },
+    {
+      "id": "autopet_trig_class",
+      "context": "触发:选择某地牢职业",
+      "raw": "§7You select the §a%1$s §7dungeon",
+      "text": "You select the %1$s dungeon",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "职业名,译名走 Terms.json",
+          "type": "category_name",
+          "example": "Healer"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You select the ",
+          "zh": "你选择"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "dungeon",
+          "zh": "地牢职业。"
+        }
+      ],
+      "zh": "你选择%1$s地牢职业。"
+    },
+    {
+      "id": "autopet_trig_class_tail",
+      "context": "接上一行",
+      "raw": "§7class.",
+      "text": "class.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "autopet_trig_floor_ph",
+      "context": "触发模板(带方括号占位)",
+      "raw": "§7You begin Catacombs §c[Floor]§7.",
+      "text": "You begin Catacombs [Floor].",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You begin Catacombs ",
+          "zh": "你开始地牢"
+        },
+        {
+          "color": "§c",
+          "text": "[Floor]",
+          "zh": "[楼层]"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "你开始地牢[楼层]。"
+    },
+    {
+      "id": "autopet_trig_floor_entrance",
+      "context": "触发:开始地牢入口层",
+      "raw": "§7You begin Catacombs Entrance.",
+      "text": "You begin Catacombs Entrance.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你开始地牢入口层。"
+    },
+    {
+      "id": "autopet_trig_floor_n",
+      "context": "触发:开始地牢第 N 层",
+      "raw": "§7You begin Catacombs Floor %1$s.",
+      "text": "You begin Catacombs Floor %1$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "楼层罗马数字",
+          "type": "tier",
+          "example": "IV"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你开始地牢第 %1$s 层。"
+    },
+    {
+      "id": "autopet_trig_floor_master_1",
+      "context": "触发:开始大师模式第 N 层,英文两行一句",
+      "raw": "§7You begin Catacombs Master",
+      "text": "You begin Catacombs Master",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你开始地牢大师模式第 "
+    },
+    {
+      "id": "autopet_trig_floor_master_2",
+      "context": "接上一行,层数在这一行",
+      "raw": "§7Mode Floor %1$s.",
+      "text": "Mode Floor %1$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "楼层罗马数字",
+          "type": "tier",
+          "example": "VII"
+        }
+      ],
+      "gloss": "占位符在尾行:首行译到「第 」,尾行接「N 层。」,两条一起渲染成一句。",
+      "translate": true,
+      "continuation": true,
+      "zh": "%1$s 层。"
+    },
+    {
+      "id": "autopet_trig_boss_ph",
+      "context": "触发模板(带方括号占位)",
+      "raw": "§7A §c[Boss] §7spawns.",
+      "text": "A [Boss] spawns.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "A ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§c",
+          "text": "[Boss] ",
+          "zh": "[Boss]"
+        },
+        {
+          "color": "§7",
+          "text": "spawns.",
+          "zh": "出现。"
+        }
+      ],
+      "zh": "[Boss]出现。"
+    },
+    {
+      "id": "autopet_trig_slayer_quest",
+      "context": "触发:开始猎杀任务",
+      "raw": "§7You start a slayer quest.",
+      "text": "You start a slayer quest.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你开始一个猎杀任务。"
+    },
+    {
+      "id": "autopet_trig_afk",
+      "context": "触发:挂机",
+      "raw": "§7You go AFK.",
+      "text": "You go AFK.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你进入 AFK 状态。"
+    },
+    {
+      "id": "autopet_trig_fishing",
+      "context": "触发:抛出鱼钩",
+      "raw": "§7You throw a fishing hook.",
+      "text": "You throw a fishing hook.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你抛出鱼钩。"
+    },
+    {
+      "id": "autopet_trig_burrow",
+      "context": "触发:挖狮鹫洞穴(神话仪式)",
+      "raw": "§7You dig a griffin burrow.",
+      "text": "You dig a griffin burrow.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你挖开一个狮鹫洞穴。"
+    },
+    {
+      "id": "autopet_trig_gift",
+      "context": "触发:打开冬季礼物",
+      "raw": "§7You open a winter gift.",
+      "text": "You open a winter gift.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你打开一个冬季礼物。"
+    },
+    {
+      "id": "autopet_trig_experiment_1",
+      "context": "触发:打开实验台,英文两行一句",
+      "raw": "§7You open the §9Experimentation",
+      "text": "You open the Experimentation",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You open the ",
+          "zh": "你打开"
+        },
+        {
+          "color": "§9",
+          "text": "Experimentation",
+          "zh": "实验台。"
+        }
+      ],
+      "zh": "你打开实验台。"
+    },
+    {
+      "id": "autopet_trig_experiment_2",
+      "context": "接上一行",
+      "raw": "§9Table§7.",
+      "text": "Table.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "autopet_trig_first_cold",
+      "context": "触发:首次获得寒冷值 / 热量",
+      "raw": "§7You first gain %1$s.",
+      "text": "You first gain %1$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "cold / heat,译名走 Terms.json",
+          "type": "raw",
+          "example": "cold"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你首次获得%1$s。"
+    },
+    {
+      "id": "autopet_trig_visitor_1",
+      "context": "触发:与花园访客交谈,英文两行一句",
+      "raw": "§7You talk to a visitor in §aThe",
+      "text": "You talk to a visitor in The",
+      "placeholders": [],
+      "gloss": "「The Garden」的绿色跨了两行;首行只画出「你与」+绿色的「花园」,尾行灰色段补「中的访客交谈。」。",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You talk to a visitor in ",
+          "zh": "你与"
+        },
+        {
+          "color": "§a",
+          "text": "The",
+          "zh": "花园"
+        }
+      ],
+      "zh": "你与花园中的访客交谈。"
+    },
+    {
+      "id": "autopet_trig_visitor_2",
+      "context": "接上一行",
+      "raw": "§aGarden§7.",
+      "text": "Garden.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Garden",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "中的访客交谈。"
+        }
+      ],
+      "zh": "中的访客交谈。"
+    },
+    {
+      "id": "autopet_trig_event_ph",
+      "context": "触发模板(带方括号占位)",
+      "raw": "§7The §d[Event] §7event starts.",
+      "text": "The [Event] event starts.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "The ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§d",
+          "text": "[Event] ",
+          "zh": "[活动]"
+        },
+        {
+          "color": "§7",
+          "text": "event starts.",
+          "zh": "活动开始。"
+        }
+      ],
+      "zh": "[活动]活动开始。"
+    },
+    {
+      "id": "autopet_trig_event_starts",
+      "context": "触发:某活动开始(一行写完)",
+      "raw": "§7The §d%1$s §7event starts.",
+      "text": "The %1$s event starts.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "活动名,译名走 Terms.json",
+          "type": "category_name",
+          "example": "Dark Auction"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "The ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§d",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "event starts.",
+          "zh": "活动开始。"
+        }
+      ],
+      "zh": "%1$s活动开始。"
+    },
+    {
+      "id": "autopet_trig_event_head",
+      "context": "触发:某活动开始(名字长,starts. 折到下一行)",
+      "raw": "§7The §d%1$s §7event",
+      "text": "The %1$s event",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "活动名",
+          "type": "category_name",
+          "example": "New Year Celebration"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "The ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§d",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "event",
+          "zh": "活动开始。"
+        }
+      ],
+      "zh": "%1$s活动开始。"
+    },
+    {
+      "id": "autopet_trig_event_tail",
+      "context": "接上一行",
+      "raw": "§7starts.",
+      "text": "starts.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "autopet_trig_event_name_head",
+      "context": "触发:活动名太长,「event starts.」整个折到下一行",
+      "raw": "§7The §d%1$s",
+      "text": "The %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "活动名",
+          "type": "category_name",
+          "example": "Jacob's Farming Contest"
+        }
+      ],
+      "gloss": "category_name 的形状规则(最多 5 个词、两端大写开头)把普通 Lore 挡在外面,所以「The %s」不会吃掉别的行。",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "The ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§d",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ],
+      "zh": "%1$s活动开始。"
+    },
+    {
+      "id": "autopet_trig_event_name_tail",
+      "context": "接上一行",
+      "raw": "§7event starts.",
+      "text": "event starts.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "活动开始。"
+    },
+    {
+      "id": "autopet_trig_workshop_opens",
+      "context": "触发:Jerry 的工坊开放/关闭(event starts. 在下一行)",
+      "raw": "§7The §fJerry's Workshop %1$s",
+      "text": "The Jerry's Workshop %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Opens / Closes,译名走 Terms.json",
+          "type": "raw",
+          "example": "Opens"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "The ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§f",
+          "text": "Jerry's Workshop %1$s",
+          "zh": "Jerry 的工坊%1$s"
+        }
+      ],
+      "zh": "Jerry 的工坊%1$s活动开始。"
+    },
+    {
+      "id": "autopet_trig_feast",
+      "context": "触发:丰收盛宴/盛大宴会开始/结束",
+      "raw": "§7The §6%1$s Feast %2$s §7event",
+      "text": "The %1$s Feast %2$s event",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Harvest / Grand",
+          "type": "raw",
+          "example": "Harvest"
+        },
+        {
+          "token": "%2$s",
+          "desc": "Begins / Ends",
+          "type": "raw",
+          "example": "Begins"
+        }
+      ],
+      "gloss": "值走词表:Harvest → 丰收、Grand → 盛大、Begins → 开始、Ends → 结束。",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "The ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§6",
+          "text": "%1$s Feast %2$s ",
+          "zh": "%1$s盛宴%2$s"
+        },
+        {
+          "color": "§7",
+          "text": "event",
+          "zh": "活动开始。"
+        }
+      ],
+      "zh": "%1$s盛宴%2$s活动开始。"
+    },
+    {
+      "id": "autopet_trig_year_of",
+      "context": "触发:XX 年(海豹年/猪年/女巫年)开始",
+      "raw": "§7The §9Year of the %1$s §7event",
+      "text": "The Year of the %1$s event",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Seal / Pig / Witch",
+          "type": "raw",
+          "example": "Seal"
+        }
+      ],
+      "gloss": "值走词表:Seal → 海豹、Pig → 猪、Witch → 女巫。",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "The ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§9",
+          "text": "Year of the %1$s ",
+          "zh": "%1$s年"
+        },
+        {
+          "color": "§7",
+          "text": "event",
+          "zh": "活动开始。"
+        }
+      ],
+      "zh": "%1$s年活动开始。"
+    },
+    {
+      "id": "autopet_exc_in_island_ph",
+      "context": "例外模板(带方括号占位)",
+      "raw": "§7You're in §a[Island]§7.",
+      "text": "You're in [Island].",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You're in ",
+          "zh": "你在"
+        },
+        {
+          "color": "§a",
+          "text": "[Island]",
+          "zh": "[岛屿]"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "你在[岛屿]。"
+    },
+    {
+      "id": "autopet_exc_not_in_island_ph",
+      "context": "例外模板(带方括号占位)",
+      "raw": "§7You're NOT in §a[Island]§7.",
+      "text": "You're NOT in [Island].",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You're NOT in ",
+          "zh": "你不在"
+        },
+        {
+          "color": "§a",
+          "text": "[Island]",
+          "zh": "[岛屿]"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "你不在[岛屿]。"
+    },
+    {
+      "id": "autopet_exc_in_island",
+      "context": "例外:你在某岛",
+      "raw": "§7You're in §a%1$s§7.",
+      "text": "You're in %1$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "岛屿名",
+          "type": "location_name",
+          "example": "Hub"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You're in ",
+          "zh": "你在"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "你在%1$s。"
+    },
+    {
+      "id": "autopet_exc_not_in_island",
+      "context": "例外:你不在某岛",
+      "raw": "§7You're NOT in §a%1$s§7.",
+      "text": "You're NOT in %1$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "岛屿名",
+          "type": "location_name",
+          "example": "Hub"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You're NOT in ",
+          "zh": "你不在"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "你不在%1$s。"
+    },
+    {
+      "id": "autopet_exc_pet_equipped",
+      "context": "例外模板(带方括号占位)",
+      "raw": "§7You have a §a[Pet] §7pet equipped.",
+      "text": "You have a [Pet] pet equipped.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You have a ",
+          "zh": "你装备着"
+        },
+        {
+          "color": "§a",
+          "text": "[Pet] ",
+          "zh": "[宠物]"
+        },
+        {
+          "color": "§7",
+          "text": "pet equipped.",
+          "zh": "宠物。"
+        }
+      ],
+      "zh": "你装备着[宠物]宠物。"
+    },
+    {
+      "id": "autopet_exc_pet_equipped_v",
+      "context": "例外:装备着某宠物",
+      "raw": "§7You have a §a%1$s §7pet equipped.",
+      "text": "You have a %1$s pet equipped.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "宠物名",
+          "type": "mob_name",
+          "example": "Phoenix"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You have a ",
+          "zh": "你装备着"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "pet equipped.",
+          "zh": "宠物。"
+        }
+      ],
+      "zh": "你装备着%1$s宠物。"
+    },
+    {
+      "id": "autopet_exc_slayer_active",
+      "context": "例外:有进行中的猎杀任务",
+      "raw": "§7You have an active slayer quest.",
+      "text": "You have an active slayer quest.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你有一个进行中的猎杀任务。"
+    },
+    {
+      "id": "autopet_exc_slayer_boss_1",
+      "context": "例外:猎杀 Boss 已生成,英文两行一句",
+      "raw": "§7You have a slayer quest with a",
+      "text": "You have a slayer quest with a",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的猎杀任务 Boss 已经出现。"
+    },
+    {
+      "id": "autopet_exc_slayer_boss_2",
+      "context": "接上一行",
+      "raw": "§7spawned boss.",
+      "text": "spawned boss.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "autopet_exc_thursday",
+      "context": "例外:今天是星期四(彩蛋)",
+      "raw": "§7It is Thursday.",
+      "text": "It is Thursday.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "今天是星期四。"
+    },
+    {
+      "id": "autopet_boss_any",
+      "context": "触发:任意 Boss / 巨龙出现",
+      "raw": "§cAny %1$s §7spawns.",
+      "text": "Any %1$s spawns.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Boss / Dragon",
+          "type": "raw",
+          "example": "Boss"
+        }
+      ],
+      "gloss": "值走词表:Dragon → 巨龙;Boss 保留英文(项目惯例)。",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§c",
+          "text": "Any %1$s ",
+          "zh": "任意%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "spawns.",
+          "zh": "出现。"
+        }
+      ],
+      "zh": "任意%1$s出现。"
+    },
+    {
+      "id": "autopet_boss_any_kind",
+      "context": "触发:任意猎杀/地牢 Boss 出现",
+      "raw": "§cAny %1$s Boss §7spawns.",
+      "text": "Any %1$s Boss spawns.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Slayer / Dungeon",
+          "type": "raw",
+          "example": "Slayer"
+        }
+      ],
+      "gloss": "值走词表:Slayer → 猎杀、Dungeon → 地牢。",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§c",
+          "text": "Any %1$s Boss ",
+          "zh": "任意%1$s Boss"
+        },
+        {
+          "color": "§7",
+          "text": "spawns.",
+          "zh": "出现。"
+        }
+      ],
+      "zh": "任意%1$s Boss出现。"
+    },
+    {
+      "id": "autopet_boss_dragon",
+      "context": "触发:某种末地龙出现",
+      "raw": "§c%1$s Dragon §7spawns.",
+      "text": "%1$s Dragon spawns.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "龙的种类,译名走 Terms.json(mob_name)",
+          "type": "mob_name",
+          "example": "Strong"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§c",
+          "text": "%1$s Dragon ",
+          "zh": "%1$s巨龙"
+        },
+        {
+          "color": "§7",
+          "text": "spawns.",
+          "zh": "出现。"
+        }
+      ],
+      "zh": "%1$s巨龙出现。"
+    },
+    {
+      "id": "autopet_boss_spawns",
+      "context": "触发:某个 Boss 出现(名字保留英文)",
+      "raw": "§c%1$s §7spawns.",
+      "text": "%1$s spawns.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Boss 名,词表里有的会翻(如 Magma Boss),没有的保持英文",
+          "type": "mob_name",
+          "example": "Bonzo"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "spawns.",
+          "zh": "出现。"
+        }
+      ],
+      "zh": "%1$s出现。"
+    },
+    {
+      "id": "autopet_equip_pet_v",
+      "context": "选择宠物格:要装备的宠物",
+      "raw": "§aEquip: §7[Lvl %1$s] §d%2$s",
+      "text": "Equip: [Lvl %1$s] %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "宠物等级",
+          "type": "number",
+          "example": "90"
+        },
+        {
+          "token": "%2$s",
+          "desc": "宠物名",
+          "type": "mob_name",
+          "example": "Enderman"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Equip: ",
+          "zh": "装备: "
+        },
+        {
+          "color": "§7",
+          "text": "[Lvl %1$s] ",
+          "zh": "[%1$s 级] "
+        },
+        {
+          "color": "§d",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ],
+      "zh": "装备: [%1$s 级] %2$s"
+    },
+    {
+      "id": "autopet_click_choose_pet",
+      "context": "点击提示",
+      "raw": "§eClick to choose this pet!",
+      "text": "Click to choose this pet!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击选择这只宠物!"
+    },
+    {
+      "id": "autopet_held_item",
+      "context": "宠物携带物品",
+      "raw": "§aHeld Item: §9%1$s",
+      "text": "Held Item: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "宠物道具名,保留英文",
+          "type": "item_name",
+          "example": "Titanium Minecart"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Held Item: ",
+          "zh": "携带物品: "
+        },
+        {
+          "color": "§9",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ],
+      "zh": "携带物品: %1$s"
+    }
+  ]
+}

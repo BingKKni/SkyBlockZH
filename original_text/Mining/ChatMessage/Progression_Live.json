@@ -1,0 +1,390 @@
+{
+  "source": "logs/latest.log; https://hypixelskyblock.minecraft.wiki/w/Heart_of_the_Mountain; https://hypixelskyblock.minecraft.wiki/w/Crystal_Hollows; https://hypixelskyblock.minecraft.wiki/w/Essence; https://hypixelskyblock.minecraft.wiki/w/Gemstone; https://hypixelskyblock.minecraft.wiki/w/Collections",
+  "fetched_at": "2026-09-05",
+  "verified_ingame": true,
+  "source_note": "逐字原文以用户日志为准; 社区 Wiki 普通页面用于核对语境。日志未保留颜色码的消息不伪造 raw; 分段按语义边界保留运行时颜色。",
+  "messages": [
+    {
+      "id": "hotm_chat_tier",
+      "context": "山峦之心升级横幅",
+      "text": "HEART OF THE MOUNTAIN TIER %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "4",
+          "desc": "升级后的层级"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "山峦之心 %s 级",
+      "raw": "§5§lHEART OF THE MOUNTAIN §f§lTIER %s",
+      "segments": [
+        {
+          "color": "§5§l",
+          "text": "HEART OF THE MOUNTAIN ",
+          "zh": "山峦之心 "
+        },
+        {
+          "color": "§f§l",
+          "text": "TIER %s",
+          "zh": "%s 级"
+        }
+      ],
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "hotm_chat_tokens",
+      "context": "山心升级奖励的代币数量",
+      "text": "+%s Tokens of the Mountain",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "2",
+          "desc": "代币数量"
+        }
+      ],
+      "gloss": "模板按规范写复数,兼容日志里 2 Token 的单数形式。数字与山心代币之间留空格。",
+      "translate": true,
+      "zh": "+%s 山心代币",
+      "raw": "§8+§5%s Tokens of the Mountain",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§5",
+          "text": "%s Tokens of the Mountain",
+          "zh": "%s 山心代币"
+        }
+      ]
+    },
+    {
+      "id": "hotm_chat_forge_slots",
+      "context": "山心升级奖励的熔炉槽位",
+      "text": "+%s Forge Slots",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "1",
+          "desc": "新增槽位数; 单复数共用"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s 个熔炉槽位",
+      "raw": "§8+§a%s Forge Slots",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%s Forge Slots",
+          "zh": "%s 个熔炉槽位"
+        }
+      ]
+    },
+    {
+      "id": "hotm_chat_forgeable",
+      "context": "山心升级解锁新锻造物品",
+      "text": "+New Forgeable Items",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "+解锁更多可锻造物品",
+      "raw": "§8+§6New Forgeable Items",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§6",
+          "text": "New Forgeable Items",
+          "zh": "解锁更多可锻造物品"
+        }
+      ]
+    },
+    {
+      "id": "hotm_chat_access",
+      "context": "山心升级解锁区域",
+      "text": "Access to the %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "location_name",
+          "example": "Crystal Hollows",
+          "desc": "解锁区域名; 译名走词表"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "解锁%s",
+      "raw": "§dAccess to the §5%s",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "Access to the ",
+          "zh": "解锁"
+        },
+        {
+          "color": "§5",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "crystal_pass_inactive",
+      "context": "尝试传送到水晶残核但通行证无效",
+      "text": "You do not have an active Crystal Hollows pass!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你没有有效的水晶残核通行证!",
+      "segments": [
+        {
+          "color": "",
+          "text": "You do not have an active ",
+          "zh": "你没有有效的"
+        },
+        {
+          "color": "",
+          "text": "Crystal Hollows",
+          "zh": "水晶残核"
+        },
+        {
+          "color": "",
+          "text": " pass!",
+          "zh": "通行证!"
+        }
+      ]
+    },
+    {
+      "id": "fast_travel_destination_unlocked",
+      "context": "解锁快速传送目的地",
+      "text": "You may now Fast Travel to %s!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "raw",
+          "example": "Crystal Hollows - Entrance",
+          "desc": "目的地完整名称; 含连接号,无法使用严格 location_name"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你现在可以快速传送至%s了!",
+      "segments": [
+        {
+          "color": "",
+          "text": "You may now Fast Travel to ",
+          "zh": "你现在可以快速传送至"
+        },
+        {
+          "color": "",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "",
+          "text": "!",
+          "zh": "了!"
+        }
+      ]
+    },
+    {
+      "id": "collection_unlocked_live",
+      "context": "首次解锁某种收藏品",
+      "text": "COLLECTION UNLOCKED %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "category_name",
+          "example": "Hard Stone",
+          "desc": "收藏品类别,译名走词表"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "解锁收藏品 %s",
+      "raw": "§6§lCOLLECTION UNLOCKED §e%s",
+      "segments": [
+        {
+          "color": "§6§l",
+          "text": "COLLECTION UNLOCKED ",
+          "zh": "解锁收藏品 "
+        },
+        {
+          "color": "§e",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ],
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "minion_recipe_reward",
+      "context": "收藏品奖励中的小人配方",
+      "text": "%s Minion Recipes",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "category_name",
+          "example": "Hard Stone",
+          "desc": "小人材料种类; 不枚举硬石/末地石等值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%s小人配方",
+      "raw": "§9%s Minion §7Recipes",
+      "segments": [
+        {
+          "color": "§9",
+          "text": "%s Minion ",
+          "zh": "%s小人"
+        },
+        {
+          "color": "§7",
+          "text": "Recipes",
+          "zh": "配方"
+        }
+      ]
+    },
+    {
+      "id": "gemstone_recipe_reward",
+      "context": "收藏品奖励中的带图标宝石配方",
+      "text": "%1$s %2$s %3$s Gemstone Recipes",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "raw",
+          "example": "❤",
+          "desc": "属性图标; 示例限定纯符号形状,不捕获单词"
+        },
+        {
+          "token": "%2$s",
+          "type": "category_name",
+          "example": "Flawed",
+          "desc": "宝石品质; 复用词表有瑕等译名"
+        },
+        {
+          "token": "%3$s",
+          "type": "item_name",
+          "example": "Ruby",
+          "desc": "宝石种类名; 按项目决定保留英文"
+        }
+      ],
+      "gloss": "一条模板覆盖日志中十二种宝石; 不硬编码私用区字形,不将 Ruby 等种类名另译。",
+      "translate": true,
+      "zh": "%1$s %2$s %3$s 宝石配方",
+      "raw": "§a%1$s %2$s %3$s Gemstone §7Recipes",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "%1$s %2$s %3$s Gemstone ",
+          "zh": "%1$s %2$s %3$s 宝石"
+        },
+        {
+          "color": "§7",
+          "text": "Recipes",
+          "zh": "配方"
+        }
+      ]
+    },
+    {
+      "id": "essence_found_first",
+      "context": "第一次发现某种精华",
+      "text": "ESSENCE! You found some %s Essence!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "category_name",
+          "example": "Diamond",
+          "desc": "精华种类的材质前缀; 钻石等既有译名走词表"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "精华! 你找到了一些%s精华!",
+      "segments": [
+        {
+          "color": "",
+          "text": "ESSENCE! ",
+          "zh": "精华! "
+        },
+        {
+          "color": "",
+          "text": "You found some ",
+          "zh": "你找到了一些"
+        },
+        {
+          "color": "",
+          "text": "%s Essence",
+          "zh": "%s精华"
+        },
+        {
+          "color": "",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "essence_tutorial_currency",
+      "context": "精华教学第 1/3 行; 聊天不能使用 lore continuation",
+      "text": "Essence is a type of currency that is saved to your",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "精华是一种保存在你当前档案中的货币。"
+    },
+    {
+      "id": "essence_tutorial_uses",
+      "context": "精华教学第 2/3 行; 接上行,不重复档案说明",
+      "text": "Profile. Use it to upgrade Items or purchase Perks",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "可用于升级物品,也可在精华商店中"
+    },
+    {
+      "id": "essence_tutorial_shops",
+      "context": "精华教学第 3/3 行; 与上行合起来是完整句子",
+      "text": "from Essence Shops!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "购买天赋!"
+    },
+    {
+      "id": "small_gemstone_sack_recipe_reward",
+      "context": "宝石收藏品 I 解锁的配方; 社区 Wiki Gemstone 页确认",
+      "raw": "§aSmall Gemstone Sack §7Recipe",
+      "text": "Small Gemstone Sack Recipe",
+      "placeholders": [],
+      "gloss": "Sack 沿用收纳袋,Small 是容量档次。",
+      "translate": true,
+      "zh": "小型宝石收纳袋配方",
+      "segments": [
+        {"color": "§a", "text": "Small Gemstone Sack ", "zh": "小型宝石收纳袋"},
+        {"color": "§7", "text": "Recipe", "zh": "配方"}
+      ]
+    },
+    {
+      "id": "ascension_rope_chat_name",
+      "ref": "Mining/GUI_Item/Ascension_Rope.json#ascension_rope_name",
+      "context": "日志中的物品奖励名称; 复用已有升天绳索译名,不抄第二份"
+    }
+  ]
+}

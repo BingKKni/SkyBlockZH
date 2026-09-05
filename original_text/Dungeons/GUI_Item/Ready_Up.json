@@ -1,0 +1,328 @@
+{
+  "source": "SkyZH runtime capture (The Catacombs, 2026-09-02)",
+  "fetched_at": "2026-09-02",
+  "verified_ingame": true,
+  "source_note": "原文与颜色逐字取自运行时采集。",
+  "gui_context": "地牢开局的准备界面（Ready Up）、人数不足确认框、以及正在创建实例时的等待框。三个界面在同一段流程里，放同一个文件。",
+  "excluded": [
+    "§7Gear Score:、§fTime Held:、§7Crit Chance: 等 —— 玩家背包装备的 Lore 回显，按用户要求不翻译。",
+    "§7  - §b[MVP§9+§b] inkkni —— 已选择该难度的玩家名单，主体是玩家名与称号。"
+  ],
+  "items": [
+    {
+      "id": "ready_marked_as_ready_1",
+      "context": "自己已按下准备后的说明",
+      "raw": "§7You are marked as ready! The fight",
+      "text": "You are marked as ready! The fight",
+      "placeholders": [],
+      "gloss": "英文分四行说完一句话，中文合并成一条；后三行标 continuation。",
+      "translate": true,
+      "zh": "你已准备就绪! 等所有人都准备好、并且选了同一个难度，战斗就会开始。"
+    },
+    {
+      "id": "ready_marked_as_ready_2",
+      "context": "接上一行",
+      "raw": "§7will start when all players have",
+      "text": "will start when all players have",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "ready_marked_as_ready_3",
+      "context": "接上一行",
+      "raw": "§7readied up and have the same tier",
+      "text": "readied up and have the same tier",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "ready_marked_as_ready_4",
+      "context": "接上一行",
+      "raw": "§7selected!",
+      "text": "selected!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "ready_left_click_select",
+      "context": "难度格子的操作提示",
+      "raw": "§eLeft click to select!",
+      "text": "Left click to select!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "左键点击选择!"
+    },
+    {
+      "id": "ready_right_click_details",
+      "context": "难度格子的操作提示",
+      "raw": "§eRight click for more details!",
+      "text": "Right click for more details!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "右键点击查看详情!"
+    },
+    {
+      "id": "ready_player_count_zero",
+      "context": "选了该难度的人数（零人时用复数写法）",
+      "raw": "§c%s Players",
+      "text": "%s Players",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "人数",
+          "type": "number",
+          "example": "0"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%s 名玩家"
+    },
+    {
+      "id": "ready_player_count_one",
+      "context": "选了该难度的人数（服务器在 1 人时写成 Player(s) 这种带括号的形式，和复数那条不是同一个字符串）",
+      "raw": "§a%s Player(s)",
+      "text": "%s Player(s)",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "人数",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "中文没有单复数，两条译文一样；但英文是两个不同的字符串，引擎的复数折算只处理词尾的 s，管不了 (s) 这种写法，所以必须各写一条。",
+      "translate": true,
+      "zh": "%s 名玩家"
+    },
+    {
+      "id": "ready_selected_by",
+      "context": "已选择该难度的玩家名单标题",
+      "raw": "§eSelected by:",
+      "text": "Selected by:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "已选择的玩家:"
+    },
+    {
+      "id": "ready_not_ready",
+      "context": "自己还没按准备时格子上的状态",
+      "raw": "§cNot Ready",
+      "text": "Not Ready",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "尚未准备"
+    },
+    {
+      "id": "ready_click_to_mark_1",
+      "context": "准备按钮说明",
+      "raw": "§7Click to mark yourself as ready to",
+      "text": "Click to mark yourself as ready to",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击把自己标记为准备就绪!"
+    },
+    {
+      "id": "ready_click_to_mark_2",
+      "context": "接上一行",
+      "raw": "§7start!",
+      "text": "start!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "ready_click_to_ready_up",
+      "context": "准备按钮的操作提示",
+      "raw": "§eClick to ready up!",
+      "text": "Click to ready up!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击准备!"
+    },
+    {
+      "id": "ready_already_claimed",
+      "context": "重复领取奖励时的提示",
+      "raw": "§cAlready claimed!",
+      "text": "Already claimed!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "已经领取过了!"
+    },
+    {
+      "id": "undersized_party_name",
+      "context": "人数不足确认框的物品名",
+      "raw": "§eUndersized party!",
+      "text": "Undersized party!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "队伍人数不足!"
+    },
+    {
+      "id": "undersized_should_party_up_1",
+      "context": "人数不足确认框的说明",
+      "raw": "§7You should party up with 5 players",
+      "text": "You should party up with 5 players",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这个副本建议凑齐 5 人再进!"
+    },
+    {
+      "id": "undersized_should_party_up_2",
+      "context": "接上一行",
+      "raw": "§7for this instance!",
+      "text": "for this instance!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "undersized_best_with_1",
+      "context": "人数不足确认框的红色强调行",
+      "raw": "§c§lTHIS INSTANCE IS BEST",
+      "text": "THIS INSTANCE IS BEST",
+      "placeholders": [],
+      "gloss": "英文拆成两行，第二行还把「5 PLAYER」单独染成蓝色；中文合并成一句，蓝色高亮在第二行的记录里保留。",
+      "translate": true,
+      "zh": "这个副本最适合"
+    },
+    {
+      "id": "undersized_best_with_2",
+      "context": "接上一行，5 PLAYER 在游戏里是蓝色高亮",
+      "raw": "§c§lWITH A §b§l5 PLAYER§c§l PARTY!",
+      "text": "WITH A 5 PLAYER PARTY!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§c§l",
+          "text": "WITH A ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§b§l",
+          "text": "5 PLAYER",
+          "zh": "5 人"
+        },
+        {
+          "color": "§c§l",
+          "text": " PARTY!",
+          "zh": "队伍!"
+        }
+      ]
+    },
+    {
+      "id": "undersized_your_party_solo",
+      "context": "人数不足确认框里当前队伍的规模",
+      "raw": "§7Your party: §3Solo",
+      "text": "Your party: Solo",
+      "placeholders": [],
+      "gloss": "Solo 指队伍里只有你一个人。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Your party: ",
+          "zh": "你的队伍: "
+        },
+        {
+          "color": "§3",
+          "text": "Solo",
+          "zh": "单人"
+        }
+      ]
+    },
+    {
+      "id": "undersized_click_to_play_anyway",
+      "context": "人数不足时仍要开始的按钮",
+      "raw": "§eClick to play anyway!",
+      "text": "Click to play anyway!",
+      "placeholders": [],
+      "gloss": "anyway 在中文里由「仍要」承担。",
+      "translate": true,
+      "zh": "仍要开始，点击继续!"
+    },
+    {
+      "id": "creating_instance_estimated",
+      "context": "创建实例等待框：预计还要多久",
+      "raw": "§7Estimated: §a%s seconds",
+      "text": "Estimated: %s seconds",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "预计秒数",
+          "type": "number",
+          "example": "14"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Estimated: ",
+          "zh": "预计: "
+        },
+        {
+          "color": "§a",
+          "text": "%s seconds",
+          "zh": "%s 秒"
+        }
+      ]
+    },
+    {
+      "id": "creating_instance_opening_1",
+      "context": "创建实例等待框的说明",
+      "raw": "§7Opening §aThe Catacombs§7 for your",
+      "text": "Opening The Catacombs for your",
+      "placeholders": [],
+      "gloss": "英文的下一行是 party.，中文并进这一条。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Opening ",
+          "zh": "正在为你的队伍打开"
+        },
+        {
+          "color": "§a",
+          "text": "The Catacombs",
+          "zh": "地牢"
+        },
+        {
+          "color": "§7",
+          "text": " for your",
+          "zh": "……"
+        }
+      ]
+    }
+  ]
+}

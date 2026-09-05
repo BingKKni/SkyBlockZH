@@ -1,0 +1,1153 @@
+{
+  "source": "SkyZH runtime capture (Dungeon Hub, 2026-09-01)",
+  "fetched_at": "2026-09-01",
+  "verified_ingame": true,
+  "source_note": "原文与颜色来自地牢大厅运行时采集；社区 Wiki 普通页面用于核对玩法语境。",
+  "items": [
+    {
+      "id": "history_master_floor_item",
+      "context": "地牢资料菜单中的大师模式楼层选择项",
+      "raw": "§cMaster Mode The Catacombs §8- §eFloor %s",
+      "text": "Master Mode The Catacombs - Floor %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "楼层罗马数字",
+          "type": "tier",
+          "example": "VII"
+        }
+      ],
+      "gloss": "此处服务器使用完整的 Master Mode，而非 Catacombs Gate 中的 MM 缩写。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "Master Mode The Catacombs ",
+          "zh": "大师模式地牢 "
+        },
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§e",
+          "text": "Floor %s",
+          "zh": "第 %s 层"
+        }
+      ]
+    },
+    {
+      "id": "history_loading",
+      "context": "地牢资料尚在加载",
+      "text": "Loading stats...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "正在加载数据……"
+    },
+    {
+      "id": "history_locked",
+      "context": "尚未完成该层时的说明",
+      "text": "Play this floor once to unlock stats",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "完成一次本层后即可解锁数据!"
+    },
+    {
+      "id": "history_locked_continuation",
+      "context": "接上一行",
+      "text": "for it!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "history_boss_kills",
+      "context": "地牢资料中的 Boss 击杀数与排名",
+      "raw": "§7%1$s Kills: §a%2$s§7 (Top §6%3$s%§7)",
+      "text": "%1$s Kills: %2$s (Top %3$s%)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Boss 名称（专有名保持英文）",
+          "type": "npc_name",
+          "example": "Bonzo"
+        },
+        {
+          "token": "%2$s",
+          "desc": "击杀数",
+          "type": "number",
+          "example": "7"
+        },
+        {
+          "token": "%3$s",
+          "desc": "排名百分比",
+          "type": "number",
+          "example": "36.69"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "%1$s Kills: ",
+          "zh": "%1$s击杀数: "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": " (Top ",
+          "zh": "（前 "
+        },
+        {
+          "color": "§6",
+          "text": "%3$s%",
+          "zh": "%3$s%"
+        },
+        {
+          "color": "§7",
+          "text": ")",
+          "zh": "）"
+        }
+      ]
+    },
+    {
+      "id": "history_watcher_kills",
+      "context": "The Watcher 击杀数",
+      "text": "The Watcher Kills: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "击杀数",
+          "type": "number",
+          "example": "10"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "The Watcher 击杀数: %s"
+    },
+    {
+      "id": "history_professor_kills",
+      "context": "The Professor 击杀数",
+      "text": "The Professor Kills: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "击杀数",
+          "type": "number",
+          "example": "25"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "The Professor 击杀数: %s"
+    },
+    {
+      "id": "history_fastest_time",
+      "context": "地牢资料的最快通关时间",
+      "raw": "§7Fastest Time: §a%1$sm %2$ss",
+      "text": "Fastest Time: %1$sm %2$ss",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟",
+          "type": "number",
+          "example": "05"
+        },
+        {
+          "token": "%2$s",
+          "desc": "秒",
+          "type": "number",
+          "example": "23"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "最快用时: %1$s分%2$s秒",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Fastest Time: ",
+          "zh": "最快用时: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$sm %2$ss",
+          "zh": "%1$s 分 %2$s 秒"
+        }
+      ]
+    },
+    {
+      "id": "history_fastest_s",
+      "context": "取得 S 评分的最快通关时间",
+      "raw": "§7Fastest Time (S): §a%1$sm %2$ss",
+      "text": "Fastest Time (S): %1$sm %2$ss",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟",
+          "type": "number",
+          "example": "11"
+        },
+        {
+          "token": "%2$s",
+          "desc": "秒",
+          "type": "number",
+          "example": "15"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "最快用时（S）: %1$s分%2$s秒",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Fastest Time (S): ",
+          "zh": "最快用时（S）: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$sm %2$ss",
+          "zh": "%1$s 分 %2$s 秒"
+        }
+      ]
+    },
+    {
+      "id": "history_fastest_s_na",
+      "context": "尚无 S 评分通关记录",
+      "raw": "§7Fastest Time (S): §cN/A",
+      "text": "Fastest Time (S): N/A",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "最快用时（S）: 暂无",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Fastest Time (S): ",
+          "zh": "最快用时（S）: "
+        },
+        {
+          "color": "§c",
+          "text": "N/A",
+          "zh": "暂无"
+        }
+      ]
+    },
+    {
+      "id": "history_fastest_s_plus_na",
+      "context": "尚无 S+ 评分通关记录",
+      "text": "Fastest Time (S+): N/A",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "最快用时（S+）: 暂无",
+      "raw": "§7Fastest Time (S+): §cN/A",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Fastest Time (S+): ",
+          "zh": "最快用时（S+）: "
+        },
+        {
+          "color": "§c",
+          "text": "N/A",
+          "zh": "暂无"
+        }
+      ]
+    },
+    {
+      "id": "history_best_score",
+      "context": "地牢资料的最高评分与排名",
+      "raw": "§7Best Score: §a%1$s§7 (Top §c%2$s%§7)",
+      "text": "Best Score: %1$s (Top %2$s%)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "最高评分",
+          "type": "number",
+          "example": "302"
+        },
+        {
+          "token": "%2$s",
+          "desc": "排名百分比",
+          "type": "number",
+          "example": "30.57"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Best Score: ",
+          "zh": "最高评分: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " (Top ",
+          "zh": "（前 "
+        },
+        {
+          "color": "§c",
+          "text": "%2$s%",
+          "zh": "%2$s%"
+        },
+        {
+          "color": "§7",
+          "text": ")",
+          "zh": "）"
+        }
+      ]
+    },
+    {
+      "id": "history_total_enemies",
+      "context": "地牢资料的累计击杀数",
+      "raw": "§7Total Enemies Killed: §a%1$s§7 (Top §6%2$s%§7)",
+      "text": "Total Enemies Killed: %1$s (Top %2$s%)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "累计击杀数",
+          "type": "number",
+          "example": "2,403"
+        },
+        {
+          "token": "%2$s",
+          "desc": "排名百分比",
+          "type": "number",
+          "example": "30.67"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Total Enemies Killed: ",
+          "zh": "累计击杀敌人: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " (Top ",
+          "zh": "（前 "
+        },
+        {
+          "color": "§6",
+          "text": "%2$s%",
+          "zh": "%2$s%"
+        },
+        {
+          "color": "§7",
+          "text": ")",
+          "zh": "）"
+        }
+      ]
+    },
+    {
+      "id": "history_rankings_refresh",
+      "context": "地牢资料排名刷新提示",
+      "text": "Rankings may take some time to refresh.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "排名数据可能需要一段时间才能刷新。"
+    },
+    {
+      "id": "history_completion_time",
+      "context": "单次通关记录的完成时间",
+      "raw": "§7Completion Time: §a%1$sm %2$ss",
+      "text": "Completion Time: %1$sm %2$ss",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟",
+          "type": "number",
+          "example": "02"
+        },
+        {
+          "token": "%2$s",
+          "desc": "秒",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "通关用时: %1$s分%2$s秒",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Completion Time: ",
+          "zh": "通关用时: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$sm %2$ss",
+          "zh": "%1$s 分 %2$s 秒"
+        }
+      ]
+    },
+    {
+      "id": "history_damage_dealt",
+      "context": "单次通关记录的总伤害",
+      "text": "Damage Dealt: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "伤害数值",
+          "type": "number",
+          "example": "817,979"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "造成伤害: %s"
+    },
+    {
+      "id": "history_damage_mitigated",
+      "context": "单次通关记录的减免伤害",
+      "text": "Damage Mitigated: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "伤害数值",
+          "type": "number",
+          "example": "60,480"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "减免伤害: %s"
+    },
+    {
+      "id": "history_mobs_killed",
+      "context": "单次通关记录的怪物击杀数",
+      "text": "Mobs Killed: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "击杀数",
+          "type": "number",
+          "example": "28"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "击杀怪物: %s"
+    },
+    {
+      "id": "history_secrets_found",
+      "context": "单次通关记录发现的秘密数量",
+      "text": "Secrets Found: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "秘密数量",
+          "type": "number",
+          "example": "5"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "发现秘密: %s"
+    },
+    {
+      "id": "history_deaths",
+      "context": "单次通关记录的死亡次数",
+      "text": "Deaths: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "死亡次数",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "死亡次数: %s"
+    },
+    {
+      "id": "history_ally_healing",
+      "context": "单次通关记录的队友治疗量",
+      "text": "Ally Healing: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "治疗量",
+          "type": "number",
+          "example": "4,271"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "队友治疗量: %s"
+    },
+    {
+      "id": "history_most_archer_damage_unranked",
+      "context": "地牢资料中尚无排名或数据的职业最高伤害",
+      "text": "Most Archer Damage: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "伤害数值或 N/A",
+          "type": "raw",
+          "example": "N/A"
+        }
+      ],
+      "gloss": "raw 用于同时接收数值与 N/A。",
+      "translate": true,
+      "zh": "弓箭手最高伤害: %s"
+    },
+    {
+      "id": "history_most_healer_damage_unranked",
+      "context": "地牢资料中尚无排名或数据的职业最高伤害",
+      "text": "Most Healer Damage: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "伤害数值或 N/A",
+          "type": "raw",
+          "example": "N/A"
+        }
+      ],
+      "gloss": "raw 用于同时接收数值与 N/A。",
+      "translate": true,
+      "zh": "治疗师最高伤害: %s"
+    },
+    {
+      "id": "history_most_mage_damage_unranked",
+      "context": "地牢资料中尚无排名或数据的职业最高伤害",
+      "text": "Most Mage Damage: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "伤害数值或 N/A",
+          "type": "raw",
+          "example": "N/A"
+        }
+      ],
+      "gloss": "raw 用于同时接收数值与 N/A。",
+      "translate": true,
+      "zh": "法师最高伤害: %s"
+    },
+    {
+      "id": "history_most_tank_damage_unranked",
+      "context": "地牢资料中尚无排名或数据的职业最高伤害",
+      "text": "Most Tank Damage: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "伤害数值或 N/A",
+          "type": "raw",
+          "example": "N/A"
+        }
+      ],
+      "gloss": "raw 用于同时接收数值与 N/A。",
+      "translate": true,
+      "zh": "坦克最高伤害: %s"
+    },
+    {
+      "id": "history_most_class_damage",
+      "context": "地牢资料职业最高伤害（五个职业共用）",
+      "raw": "§7Most %1$s Damage: §a%2$s§7 (Top §e%3$s%§7)",
+      "text": "Most %1$s Damage: %2$s (Top %3$s%)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "职业名，五种之一",
+          "type": "category_name",
+          "example": "Berserk"
+        },
+        {
+          "token": "%2$s",
+          "desc": "伤害数值",
+          "type": "raw",
+          "example": "1,336,258,240"
+        },
+        {
+          "token": "%3$s",
+          "desc": "排名百分比",
+          "type": "number",
+          "example": "6.64"
+        }
+      ],
+      "gloss": "五个职业共用这一条模板，职业名走 _shared/Terms.json（category_name），不要每个职业各写一条。2026-09-03 实测 Healer/Tank/Archer/Mage 四条各自写死的记录因字面文本更多而胜出，却没有 segments，整行被刷成灰色，已删除并改用本条。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Most %1$s Damage: ",
+          "zh": "%1$s最高伤害: "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": " (Top ",
+          "zh": "（前 "
+        },
+        {
+          "color": "§e",
+          "text": "%3$s%",
+          "zh": "%3$s%"
+        },
+        {
+          "color": "§7",
+          "text": ")",
+          "zh": "）"
+        }
+      ]
+    },
+    {
+      "id": "history_most_enemies_killed_rank",
+      "context": "地牢资料的单次最多击杀数与全服名次",
+      "raw": "§7Most Enemies Killed: §a%1$s§7 (#§b%2$s§7)",
+      "text": "Most Enemies Killed: %1$s (#%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "单次最多击杀数",
+          "type": "number",
+          "example": "683"
+        },
+        {
+          "token": "%2$s",
+          "desc": "全服名次",
+          "type": "number",
+          "example": "281"
+        }
+      ],
+      "gloss": "括号中的 #N 是具体名次，不是前百分比。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Most Enemies Killed: ",
+          "zh": "单次最多击杀敌人: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " (#",
+          "zh": "（第 "
+        },
+        {
+          "color": "§b",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": ")",
+          "zh": " 名）"
+        }
+      ]
+    },
+    {
+      "id": "history_most_ally_healing",
+      "context": "地牢资料最高队友治疗量",
+      "text": "Most Ally Healing: %1$s (Top %2$s%)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "治疗量",
+          "type": "number",
+          "example": "137,053"
+        },
+        {
+          "token": "%2$s",
+          "desc": "排名百分比",
+          "type": "number",
+          "example": "16.06"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "最高队友治疗量: %1$s（前 %2$s%）",
+      "raw": "§7Most Ally Healing: §a%1$s§7 (Top §6%2$s%§7)",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Most Ally Healing: ",
+          "zh": "最高队友治疗量: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " (Top ",
+          "zh": "（前 "
+        },
+        {
+          "color": "§6",
+          "text": "%2$s%",
+          "zh": "%2$s%"
+        },
+        {
+          "color": "§7",
+          "text": ")",
+          "zh": "）"
+        }
+      ]
+    },
+    {
+      "id": "history_most_enemies_killed",
+      "context": "地牢资料单次最多击杀数",
+      "text": "Most Enemies Killed: %1$s (Top %2$s%)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "击杀数",
+          "type": "number",
+          "example": "683"
+        },
+        {
+          "token": "%2$s",
+          "desc": "排名百分比",
+          "type": "number",
+          "example": "7"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "单次最多击杀敌人: %1$s（前 %2$s%）",
+      "raw": "§7Most Enemies Killed: §a%1$s§7 (Top §6%2$s%§7)",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Most Enemies Killed: ",
+          "zh": "单次最多击杀敌人: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " (Top ",
+          "zh": "（前 "
+        },
+        {
+          "color": "§6",
+          "text": "%2$s%",
+          "zh": "%2$s%"
+        },
+        {
+          "color": "§7",
+          "text": ")",
+          "zh": "）"
+        }
+      ]
+    },
+    {
+      "id": "history_date_jan",
+      "context": "单次通关记录的现实日期与时间",
+      "text": "Jan %1$s, %2$s %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "日期",
+          "type": "number",
+          "example": "29"
+        },
+        {
+          "token": "%2$s",
+          "desc": "年份",
+          "type": "number",
+          "example": "2025"
+        },
+        {
+          "token": "%3$s",
+          "desc": "12 小时制时间",
+          "type": "raw",
+          "example": "6:31AM"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%2$s 年 1 月 %1$s 日 %3$s"
+    },
+    {
+      "id": "history_date_feb",
+      "context": "单次通关记录的现实日期与时间",
+      "text": "Feb %1$s, %2$s %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "日期",
+          "type": "number",
+          "example": "29"
+        },
+        {
+          "token": "%2$s",
+          "desc": "年份",
+          "type": "number",
+          "example": "2025"
+        },
+        {
+          "token": "%3$s",
+          "desc": "12 小时制时间",
+          "type": "raw",
+          "example": "6:31AM"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%2$s 年 2 月 %1$s 日 %3$s"
+    },
+    {
+      "id": "history_date_mar",
+      "context": "单次通关记录的现实日期与时间",
+      "text": "Mar %1$s, %2$s %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "日期",
+          "type": "number",
+          "example": "29"
+        },
+        {
+          "token": "%2$s",
+          "desc": "年份",
+          "type": "number",
+          "example": "2025"
+        },
+        {
+          "token": "%3$s",
+          "desc": "12 小时制时间",
+          "type": "raw",
+          "example": "6:31AM"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%2$s 年 3 月 %1$s 日 %3$s"
+    },
+    {
+      "id": "history_date_apr",
+      "context": "单次通关记录的现实日期与时间",
+      "text": "Apr %1$s, %2$s %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "日期",
+          "type": "number",
+          "example": "29"
+        },
+        {
+          "token": "%2$s",
+          "desc": "年份",
+          "type": "number",
+          "example": "2025"
+        },
+        {
+          "token": "%3$s",
+          "desc": "12 小时制时间",
+          "type": "raw",
+          "example": "6:31AM"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%2$s 年 4 月 %1$s 日 %3$s"
+    },
+    {
+      "id": "history_date_may",
+      "context": "单次通关记录的现实日期与时间",
+      "text": "May %1$s, %2$s %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "日期",
+          "type": "number",
+          "example": "29"
+        },
+        {
+          "token": "%2$s",
+          "desc": "年份",
+          "type": "number",
+          "example": "2025"
+        },
+        {
+          "token": "%3$s",
+          "desc": "12 小时制时间",
+          "type": "raw",
+          "example": "6:31AM"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%2$s 年 5 月 %1$s 日 %3$s"
+    },
+    {
+      "id": "history_date_jun",
+      "context": "单次通关记录的现实日期与时间",
+      "text": "Jun %1$s, %2$s %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "日期",
+          "type": "number",
+          "example": "29"
+        },
+        {
+          "token": "%2$s",
+          "desc": "年份",
+          "type": "number",
+          "example": "2025"
+        },
+        {
+          "token": "%3$s",
+          "desc": "12 小时制时间",
+          "type": "raw",
+          "example": "6:31AM"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%2$s 年 6 月 %1$s 日 %3$s"
+    },
+    {
+      "id": "history_date_jul",
+      "context": "单次通关记录的现实日期与时间",
+      "text": "Jul %1$s, %2$s %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "日期",
+          "type": "number",
+          "example": "29"
+        },
+        {
+          "token": "%2$s",
+          "desc": "年份",
+          "type": "number",
+          "example": "2025"
+        },
+        {
+          "token": "%3$s",
+          "desc": "12 小时制时间",
+          "type": "raw",
+          "example": "6:31AM"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%2$s 年 7 月 %1$s 日 %3$s"
+    },
+    {
+      "id": "history_date_aug",
+      "context": "单次通关记录的现实日期与时间",
+      "text": "Aug %1$s, %2$s %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "日期",
+          "type": "number",
+          "example": "29"
+        },
+        {
+          "token": "%2$s",
+          "desc": "年份",
+          "type": "number",
+          "example": "2025"
+        },
+        {
+          "token": "%3$s",
+          "desc": "12 小时制时间",
+          "type": "raw",
+          "example": "6:31AM"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%2$s 年 8 月 %1$s 日 %3$s"
+    },
+    {
+      "id": "history_date_sep",
+      "context": "单次通关记录的现实日期与时间",
+      "text": "Sep %1$s, %2$s %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "日期",
+          "type": "number",
+          "example": "29"
+        },
+        {
+          "token": "%2$s",
+          "desc": "年份",
+          "type": "number",
+          "example": "2025"
+        },
+        {
+          "token": "%3$s",
+          "desc": "12 小时制时间",
+          "type": "raw",
+          "example": "6:31AM"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%2$s 年 9 月 %1$s 日 %3$s"
+    },
+    {
+      "id": "history_date_oct",
+      "context": "单次通关记录的现实日期与时间",
+      "text": "Oct %1$s, %2$s %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "日期",
+          "type": "number",
+          "example": "29"
+        },
+        {
+          "token": "%2$s",
+          "desc": "年份",
+          "type": "number",
+          "example": "2025"
+        },
+        {
+          "token": "%3$s",
+          "desc": "12 小时制时间",
+          "type": "raw",
+          "example": "6:31AM"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%2$s 年 10 月 %1$s 日 %3$s"
+    },
+    {
+      "id": "history_date_nov",
+      "context": "单次通关记录的现实日期与时间",
+      "text": "Nov %1$s, %2$s %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "日期",
+          "type": "number",
+          "example": "29"
+        },
+        {
+          "token": "%2$s",
+          "desc": "年份",
+          "type": "number",
+          "example": "2025"
+        },
+        {
+          "token": "%3$s",
+          "desc": "12 小时制时间",
+          "type": "raw",
+          "example": "6:31AM"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%2$s 年 11 月 %1$s 日 %3$s"
+    },
+    {
+      "id": "history_date_dec",
+      "context": "单次通关记录的现实日期与时间",
+      "text": "Dec %1$s, %2$s %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "日期",
+          "type": "number",
+          "example": "29"
+        },
+        {
+          "token": "%2$s",
+          "desc": "年份",
+          "type": "number",
+          "example": "2025"
+        },
+        {
+          "token": "%3$s",
+          "desc": "12 小时制时间",
+          "type": "raw",
+          "example": "6:31AM"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%2$s 年 12 月 %1$s 日 %3$s"
+    },
+    {
+      "id": "history_fastest_s_plus",
+      "context": "地牢资料:S+ 评级下的最快通关时间",
+      "raw": "§7Fastest Time (S+): §a%1$sm %2$ss",
+      "text": "Fastest Time (S+): %1$sm %2$ss",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟",
+          "type": "number",
+          "example": "07"
+        },
+        {
+          "token": "%2$s",
+          "desc": "秒",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "括号沿用同文件 history_fastest_s_plus_na 的全角写法。分秒写法同 Bank.json 的时长换算规则:数字和中文单位之间不留空格。",
+      "translate": true,
+      "zh": "最快用时（S+）: %1$s分%2$s秒",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Fastest Time (S+): ",
+          "zh": "最快用时（S+）: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$sm %2$ss",
+          "zh": "%1$s分%2$s秒"
+        }
+      ]
+    }
+  ]
+}

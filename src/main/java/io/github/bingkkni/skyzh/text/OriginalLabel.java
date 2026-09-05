@@ -8,15 +8,16 @@ import net.minecraft.network.chat.Style;
 /**
  * The English kept alongside the Chinese, as 收藏品（Collections）.
  *
- * <p>Two surfaces ask for it and they ask for it for different reasons. A container title is
- * labelled so a player can tell which of Hypixel's menus they are in while reading about it in
- * English elsewhere. An item's name is labelled because the name <em>is</em> the search key: the
- * Bazaar and the Auction House are searched by typing the English name, and a player who only ever
- * sees 秘银镐 cannot type "Mithril Pickaxe" into the box. Translating the name and hiding the
- * original would take away the one string the game asks the player to reproduce.
+ * <p>Container titles and item names were the first two callers: a title so a player can tell which
+ * of Hypixel's menus they are in, and an item name because the name <em>is</em> the search key for
+ * the Bazaar and the Auction House. Chat NPC lines and lore lines ask for the same pair when a
+ * fragment is itself a known name — 象牙化石（Tusk Fossil）, 钻石精华（Diamond Essence） — so a player
+ * reading dialogue can still type the English into a search box.
  *
  * <p>Bracketing is full-width （） and the label takes the colour of the Chinese in front of it, so
- * the pair reads as one name rather than as a name with a note stuck to it.
+ * the pair reads as one name rather than as a name with a note stuck to it. Applying this twice is
+ * a no-op: a tooltip name that was already labelled as a term does not become
+ * 象牙化石（Tusk Fossil）（Tusk Fossil）.
  */
 public final class OriginalLabel {
 	private OriginalLabel() {
@@ -32,7 +33,7 @@ public final class OriginalLabel {
 	public static MutableComponent append(MutableComponent chinese, Component original) {
 		String trimmed = plain(original);
 
-		if (trimmed.isEmpty() || trimmed.equals(chinese.getString())) {
+		if (skip(chinese, trimmed)) {
 			return chinese;
 		}
 
@@ -49,7 +50,7 @@ public final class OriginalLabel {
 	public static MutableComponent fit(Font font, MutableComponent chinese, Component original, int available) {
 		String trimmed = plain(original);
 
-		if (trimmed.isEmpty() || trimmed.equals(chinese.getString())) {
+		if (skip(chinese, trimmed)) {
 			return chinese;
 		}
 
@@ -68,6 +69,16 @@ public final class OriginalLabel {
 		}
 
 		return chinese;
+	}
+
+	private static boolean skip(MutableComponent chinese, String trimmed) {
+		if (trimmed.isEmpty()) {
+			return true;
+		}
+
+		String text = chinese.getString();
+
+		return text.equals(trimmed) || text.contains("（" + trimmed + "）");
 	}
 
 	/**

@@ -1,0 +1,587 @@
+{
+  "source": "SkyZH runtime capture (Dungeon Hub, 2026-09-03)",
+  "fetched_at": "2026-09-03",
+  "verified_ingame": true,
+  "source_note": "地牢奖励菜单 → Catacombs RNG Meters 总览，以及每层各自的 RNG Meter 菜单。掉落物本身是物品名（附魔书、Spirit 系列、Bonzo 面具等），不在本文件收录。",
+  "items": [
+    {
+      "id": "rng_meters_floor_name",
+      "context": "RNG 计量表总览菜单每层一格的物品名，也是每层计量表菜单左上的自己那一格",
+      "raw": "§dCatacombs (%1$s) RNG Meter",
+      "text": "Catacombs (%1$s) RNG Meter",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "楼层代号 F1–F7 / M1–M7",
+          "type": "raw",
+          "example": "F1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "地牢 (%1$s) RNG 计量表"
+    },
+    {
+      "id": "rng_meter_desc_1",
+      "context": "每层格说明首行",
+      "raw": "§7Your §dRNG Meter §7fills each time you",
+      "text": "Your RNG Meter fills each time you",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的 RNG 计量表会在你每次",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Your ",
+          "zh": "你的"
+        },
+        {
+          "color": "§d",
+          "text": "RNG Meter ",
+          "zh": "RNG 计量表"
+        },
+        {
+          "color": "§7",
+          "text": "fills each time you",
+          "zh": "会在你每次"
+        }
+      ]
+    },
+    {
+      "id": "rng_meter_desc_2",
+      "context": "接上一行",
+      "raw": "§7complete an §b§lS+ §7run on §cCatacombs",
+      "text": "complete an S+ run on Catacombs",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "以 S+ 评价通关地牢",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "complete an ",
+          "zh": "以 "
+        },
+        {
+          "color": "§b§l",
+          "text": "S+ ",
+          "zh": "S+ "
+        },
+        {
+          "color": "§7",
+          "text": "run on ",
+          "zh": "评价通关"
+        },
+        {
+          "color": "§c",
+          "text": "Catacombs",
+          "zh": "地牢"
+        }
+      ]
+    },
+    {
+      "id": "rng_meter_desc_3",
+      "context": "接上一行",
+      "raw": "§c(%1$s) §7by your §bscore §7for that run.",
+      "text": "(%1$s) by your score for that run.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "楼层代号",
+          "type": "raw",
+          "example": "F1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "(%1$s) 时，按该局评分累积。",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "(%1$s) ",
+          "zh": "(%1$s) "
+        },
+        {
+          "color": "§7",
+          "text": "by your ",
+          "zh": "时，按该局"
+        },
+        {
+          "color": "§b",
+          "text": "score ",
+          "zh": "评分"
+        },
+        {
+          "color": "§7",
+          "text": "for that run.",
+          "zh": "累积。"
+        }
+      ]
+    },
+    {
+      "id": "rng_meter_desc_4",
+      "context": "接上一行",
+      "raw": "§7Completing §bS §7runs fills your meter",
+      "text": "Completing S runs fills your meter",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "以 S 评价通关时，",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Completing ",
+          "zh": "以 "
+        },
+        {
+          "color": "§b",
+          "text": "S ",
+          "zh": "S "
+        },
+        {
+          "color": "§7",
+          "text": "runs fills your meter",
+          "zh": "评价通关时，"
+        }
+      ]
+    },
+    {
+      "id": "rng_meter_desc_5",
+      "context": "接上一行",
+      "raw": "§7with §a70% §7of your score.",
+      "text": "with %1$s of your score.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "折算比例",
+          "type": "number",
+          "example": "70%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "按评分的 %1$s 累积。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "with ",
+          "zh": "按评分的 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "of your score.",
+          "zh": "累积。"
+        }
+      ]
+    },
+    {
+      "id": "rng_meter_full_1",
+      "context": "计量表填满的效果说明，英文四行一句",
+      "raw": "§7When your meter is full, your",
+      "text": "When your meter is full, your",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "计量表填满后，你选定的掉落物保证在下一局符合条件的副本宝箱中掉落!"
+    },
+    {
+      "id": "rng_meter_full_2",
+      "context": "接上一行",
+      "raw": "§7selected drop will be guaranteed to",
+      "text": "selected drop will be guaranteed to",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "rng_meter_full_3",
+      "context": "接上一行",
+      "raw": "§7drop in a chest in your next eligible",
+      "text": "drop in a chest in your next eligible",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "rng_meter_full_4",
+      "context": "接上一行",
+      "raw": "§7run!",
+      "text": "run!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "rng_meter_selected_drop",
+      "context": "每层格 Lore：当前选定掉落物小标题",
+      "raw": "§7Selected Drop",
+      "text": "Selected Drop",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "选定掉落物"
+    },
+    {
+      "id": "rng_meter_entry_name",
+      "context": "总览菜单左侧的说明格物品名",
+      "raw": "§dRNG Meter",
+      "text": "RNG Meter",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "RNG 计量表"
+    },
+    {
+      "id": "rng_meter_locked_floor",
+      "context": "未解锁的大师模式楼层格物品名",
+      "raw": "§8Catacombs (M%1$s)",
+      "text": "Catacombs (M%1$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "大师模式层数",
+          "type": "number",
+          "example": "3"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "地牢 (M%1$s)"
+    },
+    {
+      "id": "rng_meter_must_defeat_professor",
+      "context": "未解锁楼层的提示",
+      "raw": "§cYou must defeat The Professor first!",
+      "text": "You must defeat The Professor first!",
+      "placeholders": [],
+      "gloss": "Boss 名按 Catacombs_Gate.json 的处理保留英文。",
+      "translate": true,
+      "zh": "你必须先击败 The Professor!"
+    },
+    {
+      "id": "rng_meter_must_defeat",
+      "context": "未解锁楼层的提示（单个 Boss）",
+      "raw": "§cYou must defeat %1$s first!",
+      "text": "You must defeat %1$s first!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Boss 名，保留英文",
+          "type": "npc_name",
+          "example": "Thorn"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你必须先击败 %1$s!"
+    },
+    {
+      "id": "rng_meter_must_defeat_wither_lords_1",
+      "context": "未解锁楼层的提示（四位凋零领主），英文两行一句",
+      "raw": "§cYou must defeat Maxor, Storm,",
+      "text": "You must defeat Maxor, Storm,",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你必须先击败 Maxor、Storm、Goldor 和 Necron!"
+    },
+    {
+      "id": "rng_meter_must_defeat_wither_lords_2",
+      "context": "接上一行",
+      "raw": "§cGoldor, and Necron first!",
+      "text": "Goldor, and Necron first!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "rng_meter_appears_in",
+      "context": "每层计量表菜单里掉落物格 Lore：出自哪个宝箱",
+      "raw": "§7Appears In: §f%1$s Chest",
+      "text": "Appears In: %1$s Chest",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "宝箱等级 Wood/Gold/Diamond/Emerald/Obsidian/Bedrock，译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Wood"
+        }
+      ],
+      "gloss": "宝箱名的颜色随等级变（§f 木质 / §5 黑曜石…），引擎从屏幕读色，raw 只记一种。",
+      "translate": true,
+      "zh": "出现于: %1$s宝箱",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Appears In: ",
+          "zh": "出现于: "
+        },
+        {
+          "color": "§f",
+          "text": "%1$s Chest",
+          "zh": "%1$s宝箱"
+        }
+      ]
+    },
+    {
+      "id": "rng_meter_odds",
+      "context": "掉落物格 Lore：掉落几率",
+      "raw": "§7Odds: §9%1$s §7(%2$s%)",
+      "text": "Odds: %1$s (%2$s%)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "几率档位 Occasional/Rare/Extraordinary，译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Rare"
+        },
+        {
+          "token": "%2$s",
+          "desc": "百分比数值",
+          "type": "number",
+          "example": "14.1509"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "几率: %1$s (%2$s%)",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Odds: ",
+          "zh": "几率: "
+        },
+        {
+          "color": "§9",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "(%2$s%)",
+          "zh": "(%2$s%)"
+        }
+      ]
+    },
+    {
+      "id": "rng_meter_odds_boosted",
+      "context": "掉落物格 Lore：计量表加成后的几率（原几率划掉）",
+      "raw": "§7Odds: §9%1$s §7(§8§m%2$s%§r §7%3$s%)",
+      "text": "Odds: %1$s (%2$s% %3$s%)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "几率档位",
+          "type": "category_name",
+          "example": "Rare"
+        },
+        {
+          "token": "%2$s",
+          "desc": "原几率",
+          "type": "number",
+          "example": "3.6145"
+        },
+        {
+          "token": "%3$s",
+          "desc": "加成后几率",
+          "type": "number",
+          "example": "6.6267"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "几率: %1$s (%2$s% %3$s%)",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Odds: ",
+          "zh": "几率: "
+        },
+        {
+          "color": "§9",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "(",
+          "zh": "("
+        },
+        {
+          "color": "§8§m",
+          "text": "%2$s%",
+          "zh": "%2$s%"
+        },
+        {
+          "color": "§r",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§7",
+          "text": "%3$s%)",
+          "zh": "%3$s%)"
+        }
+      ]
+    },
+    {
+      "id": "rng_meter_dungeon_score",
+      "context": "掉落物格 Lore：本层已累积的地牢评分 / 所需评分",
+      "raw": "§7Dungeon Score: §d%1$s",
+      "text": "Dungeon Score: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "已累积/所需",
+          "type": "raw",
+          "example": "1,463/1,272"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "地牢评分: %1$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Dungeon Score: ",
+          "zh": "地牢评分: "
+        },
+        {
+          "color": "§d",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ]
+    },
+    {
+      "id": "rng_meter_filling_1",
+      "context": "选定后的说明，英文三行",
+      "raw": "§7Filling the meter increases the drop",
+      "text": "Filling the meter increases the drop",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "填充计量表可提高此物品的掉落几率，"
+    },
+    {
+      "id": "rng_meter_filling_2",
+      "context": "接上一行",
+      "raw": "§7chance of this item. Reaching §a100%",
+      "text": "chance of this item. Reaching %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "百分比",
+          "type": "number",
+          "example": "100%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "达到 %1$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "chance of this item. Reaching ",
+          "zh": "达到 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ]
+    },
+    {
+      "id": "rng_meter_filling_3",
+      "context": "接上一行",
+      "raw": "§7will guarantee it to drop!",
+      "text": "will guarantee it to drop!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "时必定掉落!"
+    },
+    {
+      "id": "rng_meter_find_by_name",
+      "context": "搜索格说明",
+      "raw": "§7Find drops by name!",
+      "text": "Find drops by name!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "按名称查找掉落物!"
+    },
+    {
+      "id": "rng_meter_reset_name",
+      "context": "重置格物品名",
+      "raw": "§dReset RNG Drop",
+      "text": "Reset RNG Drop",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "重置 RNG 掉落物"
+    },
+    {
+      "id": "rng_meter_reset_desc_1",
+      "context": "重置格说明，英文三行",
+      "raw": "§7Resets the selected drop for this",
+      "text": "Resets the selected drop for this",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "重置此 RNG 计量表的选定掉落物。未选定掉落物时仍会累积进度。"
+    },
+    {
+      "id": "rng_meter_reset_desc_2",
+      "context": "接上一行",
+      "raw": "§dRNG Meter§7. You still earn progress",
+      "text": "RNG Meter. You still earn progress",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "rng_meter_reset_desc_3",
+      "context": "接上一行",
+      "raw": "§7without a drop selected.",
+      "text": "without a drop selected.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "rng_meter_click_to_reset",
+      "context": "重置格操作提示",
+      "raw": "§eClick to reset!",
+      "text": "Click to reset!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击重置!"
+    }
+  ]
+}

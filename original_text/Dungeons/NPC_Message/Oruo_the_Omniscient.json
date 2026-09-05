@@ -1,0 +1,308 @@
+{
+  "source": "SkyZH runtime capture (The Catacombs, 2026-09-02)",
+  "fetched_at": "2026-09-02",
+  "verified_ingame": true,
+  "source_note": "原文与颜色逐字取自运行时采集；玩法语境已对照 hypixelskyblock.minecraft.wiki/wiki/Catacombs_Puzzle_Rooms#Quiz（2026-09-02）核实。",
+  "npc": "Oruo the Omniscient",
+  "gui_context": "问答谜题房里的石像 Oruo。他问三道 SkyBlock 常识题，答对全部三题奖励「时间祝福」，并把队伍身上的训练负重加满、给 Bottle of Jyrre 加一小时。游戏里这几行带 [STATUE] Oruo the Omniscient: 前缀，前缀由 text/LineShape.java 剥离后再查表，所以记录里只写台词本身。",
+  "messages": [
+    {
+      "id": "oruo_intro_i_am_oruo_the_omniscient",
+      "context": "石像开场白",
+      "text": "I am Oruo the Omniscient. I have lived many lives. I have learned all there is to know.",
+      "placeholders": [],
+      "gloss": "Oruo 是人名保留英文；the Omniscient 是头衔，作「全知者」。「I have learned all there is to know」直译成「我学会了一切可知之事」是书面腔，中文说「该知道的我都知道」更像一个自负的老家伙在说话。",
+      "translate": true,
+      "zh": "我是全知者 Oruo。我活过许多世，该知道的我都知道。"
+    },
+    {
+      "id": "oruo_intro_though_i_sit_stationary",
+      "context": "石像开场白",
+      "text": "Though I sit stationary in this prison that is The Catacombs, my knowledge knows no bounds.",
+      "placeholders": [],
+      "gloss": "this prison that is The Catacombs 是同位语，中文写成「地牢这座牢笼」。",
+      "translate": true,
+      "zh": "尽管我被困在地牢这座牢笼里动弹不得，我的学识却没有边界。"
+    },
+    {
+      "id": "oruo_intro_prove_your_knowledge",
+      "context": "石像开场白：说明规则",
+      "text": "Prove your knowledge by answering 3 questions and I shall reward you in ways that transcend time!",
+      "placeholders": [],
+      "gloss": "in ways that transcend time 指的是奖励里那份「时间祝福」和给计时物品加时间，中文点到「超越时间」即可，不必展开。",
+      "translate": true,
+      "zh": "答对三道题证明你们的学识，我便给你们一份超越时间的奖赏!"
+    },
+    {
+      "id": "oruo_intro_answer_incorrectly",
+      "context": "石像开场白：答错的后果",
+      "text": "Answer incorrectly, and your moment of ineptitude will live on for generations.",
+      "placeholders": [],
+      "gloss": "will live on for generations 是石像在吓唬人，中文用「传上好几代」这种口语说法，比「流芳百世」之类更贴他的语气。",
+      "translate": true,
+      "zh": "答错的话，你们出丑的这一刻会被传上好几代。"
+    },
+    {
+      "id": "oruo_answered_correctly",
+      "context": "有人答对一题",
+      "text": "%1$s answered Question #%2$s correctly!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "答题的玩家名",
+          "type": "player_name",
+          "example": "inkkni"
+        },
+        {
+          "token": "%2$s",
+          "desc": "题号",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s 答对了第 %2$s 题!"
+    },
+    {
+      "id": "oruo_thinks_the_answer_is",
+      "context": "有人点了某个选项，等队伍锁定答案",
+      "text": "%1$s thinks the answer is  %2$s! Lock in your party's answer in my Chamber!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "答题的玩家名",
+          "type": "player_name",
+          "example": "inkkni"
+        },
+        {
+          "token": "%2$s",
+          "desc": "选项字母加答案内容",
+          "type": "raw",
+          "example": "ⓑ Zombie Villager"
+        }
+      ],
+      "gloss": "is 后面是两个空格——服务器在这里换了一次颜色，前一段以空格结尾、后一段以空格开头。占位符不收两端带空格的值（那条规则是用来防止横幅的居中空白被吞掉的），所以第二个空格必须写进模板。my Chamber 指石像所在的那间房，中文作「我的房间」。",
+      "translate": true,
+      "zh": "%1$s 认为答案是 %2$s! 去我的房间里锁定队伍的答案!"
+    },
+    {
+      "id": "oruo_two_questions_left",
+      "context": "答对第一题后",
+      "text": "2 questions left... Then you will have proven your worth to me!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "还剩两道题……答完你们就算在我这儿证明了自己!"
+    },
+    {
+      "id": "oruo_one_more_question",
+      "context": "答对第二题后",
+      "text": "One more question!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "还剩最后一道题!"
+    },
+    {
+      "id": "oruo_answered_final_correctly",
+      "context": "答对最后一题",
+      "text": "%s answered the final question correctly!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "答题的玩家名",
+          "type": "player_name",
+          "example": "inkkni"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%s 答对了最后一题!"
+    },
+    {
+      "id": "oruo_i_bestow_upon_you",
+      "context": "三题全对后发放奖励",
+      "text": "I bestow upon you all the power of a hundred years!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "我把百年的力量赐予你们!"
+    },
+    {
+      "id": "oruo_as_a_token_of_my_respect",
+      "context": "三题全对后的附加奖励：加满训练负重、给计时物品加时间",
+      "text": "As a token of my respect, I have maxed out all of your Training Weights and added time to your Bottle of Jyrre!",
+      "placeholders": [],
+      "gloss": "Bottle of Jyrre 是物品自造专名，保持英文（集市与拍卖行按英文名搜索）；Training Weights 是可翻的道具名，作「训练负重」，与 Dungeons/ChatMessage/Dungeon_Run.json 一致。",
+      "translate": true,
+      "zh": "作为敬意，我把你们身上的训练负重全部加满，还给 Bottle of Jyrre 添了时间!"
+    },
+    {
+      "id": "oruo_question_header",
+      "context": "题目上方的居中标题",
+      "raw": "§6§lQuestion #%s",
+      "text": "Question #%s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "题号",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "英文用 # 表示序号，中文用「第 N 题」，井号不再保留。",
+      "translate": true,
+      "layout": "center_chat_banner",
+      "zh": "第 %s 题"
+    },
+    {
+      "id": "oruo_question_wither_lords_status",
+      "context": "题库：第七层四位 Boss 的身份",
+      "raw": "§6What is the status of Maxor, Storm, Goldor, and Necron?",
+      "text": "What is the status of Maxor, Storm, Goldor, and Necron?",
+      "placeholders": [],
+      "gloss": "status 在这里问的是他们的身份／称号，不是「状态」。",
+      "translate": true,
+      "layout": "center_chat_banner",
+      "zh": "Maxor、Storm、Goldor 和 Necron 的身份是什么?"
+    },
+    {
+      "id": "oruo_question_night_monster",
+      "context": "题库：哪种怪物只在夜间生成",
+      "raw": "§6Which of these monsters only spawns at night?",
+      "text": "Which of these monsters only spawns at night?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "layout": "center_chat_banner",
+      "zh": "下列哪种怪物只在夜间生成?"
+    },
+    {
+      "id": "oruo_question_fairy_souls_count",
+      "context": "题库：某个地点有多少个仙女之魂",
+      "raw": "§6How many Fairy Souls are there in %s?",
+      "text": "How many Fairy Souls are there in %s?",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "地点名",
+          "type": "location_name",
+          "example": "Gold Mine"
+        }
+      ],
+      "gloss": "地名的中文在 _shared/Terms.json 里。",
+      "translate": true,
+      "layout": "center_chat_banner",
+      "zh": "%s里有多少个仙女之魂?"
+    },
+    {
+      "id": "oruo_option_a",
+      "context": "题目下方的选项 ⓐ",
+      "raw": "§6ⓐ §a%s",
+      "text": "ⓐ %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "选项内容",
+          "type": "raw",
+          "example": "The Wither Lords"
+        }
+      ],
+      "gloss": "圈字母写进模板而不做成占位符：模板去掉占位符后必须至少还剩一个「词」，圈字母这种非 ASCII 符号算词，一个裸占位符不算。选项内容来自很大的题库，走 _shared/Terms.json——查得到的换成中文，查不到的保持英文，不在这里逐个枚举。　行首那个空格不写进 text：服务器发的是「四格居中空白 + §6 + 空格 + 圈字母」，LineShape 会把前导空白整段剥掉再查表，剩下的正好从圈字母开头。",
+      "translate": true,
+      "layout": "center_chat_banner",
+      "zh": "ⓐ %s"
+    },
+    {
+      "id": "oruo_option_b",
+      "context": "题目下方的选项 ⓑ",
+      "raw": "§6ⓑ §a%s",
+      "text": "ⓑ %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "选项内容",
+          "type": "raw",
+          "example": "Zombie Villager"
+        }
+      ],
+      "gloss": "　行首那个空格不写进 text：服务器发的是「四格居中空白 + §6 + 空格 + 圈字母」，LineShape 会把前导空白整段剥掉再查表，剩下的正好从圈字母开头。",
+      "translate": true,
+      "layout": "center_chat_banner",
+      "zh": "ⓑ %s"
+    },
+    {
+      "id": "oruo_option_c",
+      "context": "题目下方的选项 ⓒ",
+      "raw": "§6ⓒ §a%s",
+      "text": "ⓒ %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "选项内容",
+          "type": "raw",
+          "example": "Zombie Horse"
+        }
+      ],
+      "gloss": "　行首那个空格不写进 text：服务器发的是「四格居中空白 + §6 + 空格 + 圈字母」，LineShape 会把前导空白整段剥掉再查表，剩下的正好从圈字母开头。",
+      "translate": true,
+      "layout": "center_chat_banner",
+      "zh": "ⓒ %s"
+    },
+    {
+      "id": "oruo_option_fairy_souls",
+      "context": "仙女之魂题的三个选项：数量加名词，三个圈字母各一条",
+      "raw": "§6ⓐ §a%s Fairy Souls",
+      "text": "ⓐ %s Fairy Souls",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "10"
+        }
+      ],
+      "gloss": "数量加名词的选项不能靠词表，要单写一条：中文量词「个」是凭空补出来的。　行首那个空格不写进 text：服务器发的是「四格居中空白 + §6 + 空格 + 圈字母」，LineShape 会把前导空白整段剥掉再查表，剩下的正好从圈字母开头。",
+      "translate": true,
+      "layout": "center_chat_banner",
+      "zh": "ⓐ %s 个仙女之魂"
+    },
+    {
+      "id": "oruo_option_fairy_souls_b",
+      "context": "仙女之魂题的选项 ⓑ",
+      "raw": "§6ⓑ §a%s Fairy Souls",
+      "text": "ⓑ %s Fairy Souls",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "8"
+        }
+      ],
+      "gloss": "　行首那个空格不写进 text：服务器发的是「四格居中空白 + §6 + 空格 + 圈字母」，LineShape 会把前导空白整段剥掉再查表，剩下的正好从圈字母开头。",
+      "translate": true,
+      "layout": "center_chat_banner",
+      "zh": "ⓑ %s 个仙女之魂"
+    },
+    {
+      "id": "oruo_option_fairy_souls_c",
+      "context": "仙女之魂题的选项 ⓒ",
+      "raw": "§6ⓒ §a%s Fairy Souls",
+      "text": "ⓒ %s Fairy Souls",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "12"
+        }
+      ],
+      "gloss": "　行首那个空格不写进 text：服务器发的是「四格居中空白 + §6 + 空格 + 圈字母」，LineShape 会把前导空白整段剥掉再查表，剩下的正好从圈字母开头。",
+      "translate": true,
+      "layout": "center_chat_banner",
+      "zh": "ⓒ %s 个仙女之魂"
+    }
+  ]
+}

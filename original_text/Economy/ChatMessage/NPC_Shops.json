@@ -1,0 +1,261 @@
+{
+  "source": "logs/latest.log; https://hypixelskyblock.minecraft.wiki/w/Merchants; https://hypixelskyblock.minecraft.wiki/w/Taylor",
+  "fetched_at": "2026-09-05",
+  "verified_ingame": true,
+  "source_note": "逐字原文以用户日志为准; 社区 Wiki 普通页面用于核对语境。日志未保留颜色码的消息不伪造 raw; 分段按语义边界保留运行时颜色。",
+  "messages": [
+    {
+      "id": "npc_shop_buy",
+      "context": "NPC 商店交易回执; 不为每种商品或数量枚举记录",
+      "text": "You bought %1$s x%2$s for %3$s Coins!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "item_name",
+          "example": "Experience Bottle",
+          "desc": "商品原名,保留英文以便搜索"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "64",
+          "desc": "交易数量"
+        },
+        {
+          "token": "%3$s",
+          "type": "coins",
+          "example": "1,920",
+          "desc": "交易金额; 可为 6.5 等小数"
+        }
+      ],
+      "gloss": "日志未记录交易回执的颜色; 按商品、数量/连接词、金额拆分,实际颜色由运行时读取。",
+      "translate": true,
+      "zh": "你购买了%1$s ×%2$s,金额为 %3$s 硬币!",
+      "segments": [
+        {
+          "color": "",
+          "text": "You bought ",
+          "zh": "你购买了"
+        },
+        {
+          "color": "",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "",
+          "text": " x%2$s for ",
+          "zh": " ×%2$s,金额为 "
+        },
+        {
+          "color": "",
+          "text": "%3$s Coins",
+          "zh": "%3$s 硬币"
+        },
+        {
+          "color": "",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "npc_shop_sell",
+      "context": "NPC 商店交易回执; 不为每种商品或数量枚举记录",
+      "text": "You sold %1$s x%2$s for %3$s Coins!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "item_name",
+          "example": "Experience Bottle",
+          "desc": "商品原名,保留英文以便搜索"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "64",
+          "desc": "交易数量"
+        },
+        {
+          "token": "%3$s",
+          "type": "coins",
+          "example": "1,920",
+          "desc": "交易金额; 可为 6.5 等小数"
+        }
+      ],
+      "gloss": "日志未记录交易回执的颜色; 按商品、数量/连接词、金额拆分,实际颜色由运行时读取。",
+      "translate": true,
+      "zh": "你出售了%1$s ×%2$s,金额为 %3$s 硬币!",
+      "segments": [
+        {
+          "color": "",
+          "text": "You sold ",
+          "zh": "你出售了"
+        },
+        {
+          "color": "",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "",
+          "text": " x%2$s for ",
+          "zh": " ×%2$s,金额为 "
+        },
+        {
+          "color": "",
+          "text": "%3$s Coins",
+          "zh": "%3$s 硬币"
+        },
+        {
+          "color": "",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "npc_shop_buyback",
+      "context": "NPC 商店交易回执; 不为每种商品或数量枚举记录",
+      "text": "You bought back %1$s x%2$s for %3$s Coins!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "item_name",
+          "example": "Experience Bottle",
+          "desc": "商品原名,保留英文以便搜索"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "64",
+          "desc": "交易数量"
+        },
+        {
+          "token": "%3$s",
+          "type": "coins",
+          "example": "1,920",
+          "desc": "交易金额; 可为 6.5 等小数"
+        }
+      ],
+      "gloss": "日志未记录交易回执的颜色; 按商品、数量/连接词、金额拆分,实际颜色由运行时读取。",
+      "translate": true,
+      "zh": "你回购了%1$s ×%2$s,金额为 %3$s 硬币!",
+      "segments": [
+        {
+          "color": "",
+          "text": "You bought back ",
+          "zh": "你回购了"
+        },
+        {
+          "color": "",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "",
+          "text": " x%2$s for ",
+          "zh": " ×%2$s,金额为 "
+        },
+        {
+          "color": "",
+          "text": "%3$s Coins",
+          "zh": "%3$s 硬币"
+        },
+        {
+          "color": "",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "npc_shop_sell_rune",
+      "context": "出售带固定 ◆ 前缀的符文; 图标不能被 item_name 吞入",
+      "text": "You sold ◆ %1$s Rune %2$s x%3$s for %4$s Coins!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "item_name",
+          "example": "Zap",
+          "desc": "符文专名,保持英文"
+        },
+        {
+          "token": "%2$s",
+          "type": "tier",
+          "example": "I",
+          "desc": "符文等级"
+        },
+        {
+          "token": "%3$s",
+          "type": "number",
+          "example": "1",
+          "desc": "出售数量"
+        },
+        {
+          "token": "%4$s",
+          "type": "coins",
+          "example": "1",
+          "desc": "出售金额"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你出售了 ◆ %1$s 符文 %2$s ×%3$s,金额为 %4$s 硬币!",
+      "segments": [
+        {
+          "color": "",
+          "text": "You sold ",
+          "zh": "你出售了 "
+        },
+        {
+          "color": "",
+          "text": "◆ %1$s Rune %2$s",
+          "zh": "◆ %1$s 符文 %2$s"
+        },
+        {
+          "color": "",
+          "text": " x%3$s for ",
+          "zh": " ×%3$s,金额为 "
+        },
+        {
+          "color": "",
+          "text": "%4$s Coins",
+          "zh": "%4$s 硬币"
+        },
+        {
+          "color": "",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "npc_shop_no_coins",
+      "context": "交易时硬币不足",
+      "text": "You don't have enough Coins!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的硬币不足!"
+    },
+    {
+      "id": "npc_shop_no_gems",
+      "context": "外观购买时 Gems 不足",
+      "text": "You don't have enough Gems!",
+      "placeholders": [],
+      "gloss": "Gems 是付费货币,按 GLOSSARY.md 保留英文,不是挖矿宝石。",
+      "translate": true,
+      "zh": "你的 Gems 不足!"
+    },
+    {
+      "id": "npc_shop_unsellable",
+      "context": "向 NPC 出售不接受的物品",
+      "text": "That item cannot be sold!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这件物品无法出售!"
+    }
+  ]
+}

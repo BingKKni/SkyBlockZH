@@ -1,0 +1,116 @@
+{
+  "npc": "Kat",
+  "location": "Pet Care",
+  "source": "runtime capture (SkyZH) 2026-09-03",
+  "fetched_at": "2026-09-03",
+  "verified_ingame": true,
+  "messages": [
+    {
+      "id": "hey_there_im_kat_the_pet_sitter",
+      "context": "Kat 新手流程实测台词（第 1 条）",
+      "raw": "§fHey there, I'm Kat the Pet Sitter!",
+      "text": "Hey there, I'm Kat the Pet Sitter!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你好呀,我是宠物保姆 Kat!"
+    },
+    {
+      "id": "while_youre_busy_adventuring_i_can_take_care",
+      "context": "Kat 新手流程实测台词（第 2 条）",
+      "raw": "§fWhile you're busy adventuring I can take care of your pets.",
+      "text": "While you're busy adventuring I can take care of your pets.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你忙着冒险时,我可以替你照顾宠物。"
+    },
+    {
+      "id": "i_might_even_be_able_to_give_them",
+      "context": "Kat 新手流程实测台词（第 3 条）",
+      "raw": "§fI might even be able to give them new abilities!",
+      "text": "I might even be able to give them new abilities!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "我甚至还能赋予它们新的能力!"
+    },
+    {
+      "id": "kat_upgrade_pet_rarity",
+      "context": "确认接单后告知当前宠物将升级到目标稀有度",
+      "raw": "I'll get your §f%1$s §fupgraded to §a§l%2$s §fin no time!",
+      "text": "I'll get your %1$s upgraded to %2$s in no time!",
+      "placeholders": [
+        {"token": "%1$s", "desc": "当前宠物名，译名走 Terms", "type": "mob_name", "example": "Rock"},
+        {"token": "%2$s", "desc": "目标稀有度，译名走 Terms", "type": "category_name", "example": "UNCOMMON"}
+      ],
+      "gloss": "宠物种类和目标稀有度都随本次订单变化。",
+      "translate": true,
+      "zh": "我很快就能把你的%1$s升级到%2$s!",
+      "segments": [
+        {"color": "", "text": "I'll get your ", "zh": "我很快就能把你的"},
+        {"color": "§f", "text": "%1$s upgraded to ", "zh": "%1$s升级到"},
+        {"color": "§a§l", "text": "%2$s ", "zh": "%2$s"},
+        {"color": "§f", "text": "in no time!", "zh": "!"}
+      ]
+    },
+    {
+      "id": "kat_come_back_days",
+      "context": "告知宠物升级完成所需天数",
+      "raw": "Come back in §e1 day §fto pick it up!",
+      "text": "Come back in %s days to pick it up!",
+      "placeholders": [{"token": "%s", "desc": "等待天数", "type": "number", "example": "1"}],
+      "gloss": "模板写复数 days，由引擎同时匹配 1 day。",
+      "translate": true,
+      "zh": "%s 天后再来接它吧!",
+      "segments": [
+        {"color": "", "text": "Come back in ", "zh": "", "omit": true},
+        {"color": "§e", "text": "%s days ", "zh": "%s 天后"},
+        {"color": "§f", "text": "to pick it up!", "zh": "再来接它吧!"}
+      ]
+    },
+    {
+      "id": "kat_currently_caring",
+      "context": "宠物正在升级中",
+      "raw": "I'm currently taking care of your §f%s§f!",
+      "text": "I'm currently taking care of your %s!",
+      "placeholders": [{"token": "%s", "desc": "正在照顾的宠物名，译名走 Terms", "type": "mob_name", "example": "Rock"}],
+      "gloss": "",
+      "translate": true,
+      "zh": "我正在照顾你的%s!",
+      "segments": [
+        {"color": "", "text": "I'm currently taking care of your ", "zh": "我正在照顾你的"},
+        {"color": "§f", "text": "%s!", "zh": "%s!"}
+      ]
+    },
+    {
+      "id": "kat_stop_by_when_done",
+      "context": "提醒完成后回来领取宠物",
+      "raw": "Stop by once it's done, okay?",
+      "text": "Stop by once it's done, okay?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "完成后记得回来一趟,好吗?"
+    },
+    {
+      "id": "kat_pickup_countdown",
+      "context": "宠物升级完成前的精确倒计时",
+      "raw": "You can pick it up in §e%1$s hours %2$s minutes %3$s seconds§f.",
+      "text": "You can pick it up in %1$s hours %2$s minutes %3$s seconds.",
+      "placeholders": [
+        {"token": "%1$s", "desc": "剩余小时", "type": "number", "example": "23"},
+        {"token": "%2$s", "desc": "剩余分钟", "type": "number", "example": "59"},
+        {"token": "%3$s", "desc": "剩余秒数", "type": "number", "example": "55"}
+      ],
+      "gloss": "复数词尾由引擎兼容单数。",
+      "translate": true,
+      "zh": "再过 %1$s小时%2$s分%3$s秒就能接它了。",
+      "segments": [
+        {"color": "", "text": "You can pick it up in ", "zh": "再过"},
+        {"color": "§e", "text": "%1$s hours %2$s minutes %3$s seconds", "zh": "%1$s小时%2$s分%3$s秒"},
+        {"color": "§f", "text": ".", "zh": "就能接它了。"}
+      ]
+    }
+  ]
+}

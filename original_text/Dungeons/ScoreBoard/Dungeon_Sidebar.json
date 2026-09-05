@@ -1,0 +1,316 @@
+{
+  "source": "SkyZH runtime capture (The Catacombs, 2026-09-02)",
+  "fetched_at": "2026-09-02",
+  "verified_ingame": true,
+  "source_note": "地牢挑战中的侧边栏。原文与颜色逐字取自运行时采集；社区 Wiki 普通页面用于核对玩法语境。",
+  "gui_context": "进入地牢实例后侧边栏换成这一套：所在楼层、已用时间、清理进度、钥匙、以及 Boss 战期间的守卫血量列表。大厅侧边栏那一套在 Dungeon_Hub.json。",
+  "excluded": [
+    "§709/01/26 §8m73BH 462,-204 —— 日期加服务器实例编号与坐标，纯机器数据，没有词可翻。",
+    "§ewww.hypixel.net —— 网址。",
+    "§c[B] inkkni §7[Lv26] —— 玩家自己那一行，主体是玩家名，只有 Lv 两个字母，翻了反而更乱。"
+  ],
+  "lines": [
+    {
+      "id": "sidebar_area_catacombs",
+      "context": "侧边栏顶部所在地行；括号里是楼层与模式代号",
+      "raw": "§7⏣ §cThe Catacombs §7(%s)",
+      "text": "⏣ The Catacombs (%s)",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "楼层与模式代号，M 开头是大师模式",
+          "type": "raw",
+          "example": "M1"
+        }
+      ],
+      "gloss": "楼层代号 M1/F7 是玩家之间通用的写法，保持原样不译。⏣ 在游戏里是服务器字体的字形，数据里写通用符号即可（见 text/Glyphs.java）。",
+      "translate": true,
+      "zh": "⏣ 地牢 (%s)",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "⏣ ",
+          "zh": "⏣ "
+        },
+        {
+          "color": "§c",
+          "text": "The Catacombs ",
+          "zh": "地牢 "
+        },
+        {
+          "color": "§7",
+          "text": "(%s)",
+          "zh": "（%s）"
+        }
+      ]
+    },
+    {
+      "id": "sidebar_auto_closing",
+      "context": "通关结算后实例自动关闭的倒计时",
+      "raw": "§fAuto-closing in: §c%s",
+      "text": "Auto-closing in: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "剩余时间，分:秒",
+          "type": "raw",
+          "example": "1:59"
+        }
+      ],
+      "gloss": "不能写成 type: time —— 那会走 DURATION（35d+、2h 14m 那种写法），冒号分隔的钟点它匹配不上。",
+      "translate": true,
+      "zh": "自动关闭: %s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Auto-closing in: ",
+          "zh": "自动关闭倒计时: "
+        },
+        {
+          "color": "§c",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "sidebar_time_elapsed_seconds",
+      "context": "本次挑战已用时间，不足一分钟时只有秒",
+      "raw": "§fTime Elapsed: §a%ss",
+      "text": "Time Elapsed: %ss",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "秒",
+          "type": "number",
+          "example": "01"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "已用时: %s秒",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Time Elapsed: ",
+          "zh": "已用时间: "
+        },
+        {
+          "color": "§a",
+          "text": "%ss",
+          "zh": "%s 秒"
+        }
+      ]
+    },
+    {
+      "id": "sidebar_time_elapsed",
+      "context": "本次挑战已用时间",
+      "raw": "§fTime Elapsed: §a%1$sm %2$ss",
+      "text": "Time Elapsed: %1$sm %2$ss",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟",
+          "type": "number",
+          "example": "01"
+        },
+        {
+          "token": "%2$s",
+          "desc": "秒",
+          "type": "number",
+          "example": "00"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "已用时: %1$s分%2$s秒",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Time Elapsed: ",
+          "zh": "已用时间: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$sm %2$ss",
+          "zh": "%1$s 分 %2$s 秒"
+        }
+      ]
+    },
+    {
+      "id": "sidebar_cleared",
+      "context": "地牢房间清理进度；括号里是已开启的房间数",
+      "raw": "§fCleared: §c%1$s% §8(%2$s)",
+      "text": "Cleared: %1$s% (%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "清理百分比",
+          "type": "number",
+          "example": "0"
+        },
+        {
+          "token": "%2$s",
+          "desc": "已探索房间数",
+          "type": "number",
+          "example": "10"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "清理进度: %1$s% (%2$s)",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Cleared: ",
+          "zh": "已清理: "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s%",
+          "zh": "%1$s%"
+        },
+        {
+          "color": "§8",
+          "text": " (%2$s)",
+          "zh": "（%2$s）"
+        }
+      ]
+    },
+    {
+      "id": "sidebar_keys_no_blood",
+      "context": "钥匙持有情况：血门钥匙未取得",
+      "raw": "§fKeys: §c■ ✗ §8■ §a%sx",
+      "text": "Keys: ■ ✗ ■ %sx",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "手上的凋零钥匙数量",
+          "type": "number",
+          "example": "0"
+        }
+      ],
+      "gloss": "前面那个方块是血门钥匙（✗ 未取得 / ✓ 已取得），后面那个是凋零钥匙的计数。方块与勾叉都是排版符号，照抄。",
+      "translate": true,
+      "zh": "钥匙: ■ ✗ ■ %sx",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Keys: ",
+          "zh": "钥匙: "
+        },
+        {
+          "color": "§c",
+          "text": "■ ✗ ",
+          "zh": "■ ✗ "
+        },
+        {
+          "color": "§8",
+          "text": "■ ",
+          "zh": "■ "
+        },
+        {
+          "color": "§a",
+          "text": "%sx",
+          "zh": "%sx"
+        }
+      ]
+    },
+    {
+      "id": "sidebar_keys_blood_taken",
+      "context": "钥匙持有情况：血门钥匙已取得",
+      "raw": "§fKeys: §c■ §a✓ §8■ §a%sx",
+      "text": "Keys: ■ ✓ ■ %sx",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "手上的凋零钥匙数量",
+          "type": "number",
+          "example": "0"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "钥匙: ■ ✓ ■ %sx",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Keys: ",
+          "zh": "钥匙: "
+        },
+        {
+          "color": "§c",
+          "text": "■ ",
+          "zh": "■ "
+        },
+        {
+          "color": "§a",
+          "text": "✓ ",
+          "zh": "✓ "
+        },
+        {
+          "color": "§8",
+          "text": "■ ",
+          "zh": "■ "
+        },
+        {
+          "color": "§a",
+          "text": "%sx",
+          "zh": "%sx"
+        }
+      ]
+    },
+    {
+      "id": "sidebar_guardian_health",
+      "context": "第三层 The Professor 战斗中，侧边栏逐行列出还活着的守卫及其血量",
+      "raw": "§8 - §c%1$s§a %2$s§c❤",
+      "text": " - %1$s %2$s❤",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "守卫的类型名",
+          "type": "mob_name",
+          "example": "Chaos"
+        },
+        {
+          "token": "%2$s",
+          "desc": "剩余血量，带 k / M 后缀",
+          "type": "raw",
+          "example": "1M"
+        }
+      ],
+      "gloss": "守卫名的中文在 _shared/Terms.json 里，不要在这条记录里写死某一个守卫。",
+      "translate": true,
+      "zh": " - %1$s %2$s❤"
+    },
+    {
+      "id": "sidebar_starting_in",
+      "context": "进入地牢后倒计时开始前的侧边栏行",
+      "raw": "§fStarting in: §a%s",
+      "text": "Starting in: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "倒计时,`0:30` 这类",
+          "type": "raw",
+          "example": "0:30"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "开始倒计时: %s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Starting in: ",
+          "zh": "开始倒计时: "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    }
+  ]
+}

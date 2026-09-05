@@ -1,0 +1,1957 @@
+{
+  "source": "SkyZH runtime capture 2026-09-03 (Dungeon Hub 会话,Maddox 猎手菜单)",
+  "fetched_at": "2026-09-03",
+  "verified_ingame": true,
+  "gui_context": "猎手任务菜单点进某个 Boss 后的页面:五个阶的难度、技能说明、奖励与花费、Boss 等级奖励、掉落物、RNG 计量表。五个 Boss 共用一套版式,所以合在一个文件里。掉落的染料(Matcha Dye 等)是物品名,不收。",
+  "lines": [
+    {
+      "id": "sb_diff_beginner",
+      "context": "Boss 阶难度副标题",
+      "raw": "§8Beginner",
+      "text": "Beginner",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "初级"
+    },
+    {
+      "id": "sb_diff_strong",
+      "context": "Boss 阶难度副标题",
+      "raw": "§8Strong",
+      "text": "Strong",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "强力"
+    },
+    {
+      "id": "sb_diff_challenging",
+      "context": "Boss 阶难度副标题",
+      "raw": "§8Challenging",
+      "text": "Challenging",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "挑战"
+    },
+    {
+      "id": "sb_diff_deadly",
+      "context": "Boss 阶难度副标题",
+      "raw": "§8Deadly",
+      "text": "Deadly",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "致命"
+    },
+    {
+      "id": "sb_diff_excruciating",
+      "context": "Boss 阶难度副标题",
+      "raw": "§8Excruciating",
+      "text": "Excruciating",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "极痛"
+    },
+    {
+      "id": "sb_diff_debilitating",
+      "context": "Boss 阶难度副标题",
+      "raw": "§8Debilitating",
+      "text": "Debilitating",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "衰竭"
+    },
+    {
+      "id": "sb_diff_truly_painful",
+      "context": "Boss 阶难度副标题",
+      "raw": "§8Truly Painful",
+      "text": "Truly Painful",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "真正痛苦"
+    },
+    {
+      "id": "sb_diff_guaranteed_doom",
+      "context": "Boss 阶难度副标题",
+      "raw": "§8Guaranteed Doom",
+      "text": "Guaranteed Doom",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "必死无疑"
+    },
+    {
+      "id": "sb_diff_despair",
+      "context": "Boss 阶难度副标题",
+      "raw": "§8Overwhelming Despair",
+      "text": "Overwhelming Despair",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "无尽绝望"
+    },
+    {
+      "id": "sb_passive",
+      "context": "技能标签:被动",
+      "raw": "§8Passive",
+      "text": "Passive",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "被动"
+    },
+    {
+      "id": "sb_reward_xp",
+      "context": "击杀奖励",
+      "raw": "§7Reward: §d%1$s %2$s Slayer XP",
+      "text": "Reward: %1$s %2$s Slayer XP",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "经验值",
+          "type": "number",
+          "example": "5"
+        },
+        {
+          "token": "%2$s",
+          "desc": "生物种类,译名走 Terms.json",
+          "type": "mob_name",
+          "example": "Zombie"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Reward: ",
+          "zh": "奖励: "
+        },
+        {
+          "color": "§d",
+          "text": "%1$s %2$s Slayer XP",
+          "zh": "%1$s %2$s猎手经验"
+        }
+      ],
+      "zh": "奖励: %1$s %2$s猎手经验"
+    },
+    {
+      "id": "sb_boss_drops_plus",
+      "context": "奖励下面的补充行",
+      "raw": "§8  + Boss drops",
+      "text": "+ Boss drops",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "+ Boss 掉落物"
+    },
+    {
+      "id": "sb_cost_to_start",
+      "context": "开始任务的花费",
+      "raw": "§7Cost to start: §6%1$s Coins",
+      "text": "Cost to start: %1$s Coins",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "硬币数",
+          "type": "coins",
+          "example": "2,000"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Cost to start: ",
+          "zh": "开始花费: "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s Coins",
+          "zh": "%1$s 硬币"
+        }
+      ],
+      "zh": "开始花费: %1$s 硬币"
+    },
+    {
+      "id": "sb_click_to_slay",
+      "context": "点击提示",
+      "raw": "§eClick to slay!",
+      "text": "Click to slay!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击开始猎杀!"
+    },
+    {
+      "id": "sb_later_1",
+      "context": "未开放阶,英文两行一句",
+      "raw": "§7This excruciatingly difficult boss",
+      "text": "This excruciatingly difficult boss",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这一极其困难的 Boss 阶段将在日后推出。"
+    },
+    {
+      "id": "sb_later_2",
+      "context": "接上一行",
+      "raw": "§7tier will release at a later date.",
+      "text": "tier will release at a later date.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "sb_requires_slayer_7",
+      "context": "第五阶要求",
+      "raw": "§cRequires Tarantula Broodfather Slayer 7",
+      "text": "Requires Tarantula Broodfather Slayer 7",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "需要 Tarantula Broodfather 猎手等级 7"
+    },
+    {
+      "id": "sb_right_click_learn",
+      "context": "点击提示",
+      "raw": "§bRight-Click to learn more!",
+      "text": "Right-Click to learn more!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "右键点击了解更多!"
+    },
+    {
+      "id": "sb_leveling_rewards",
+      "context": "等级奖励格物品名",
+      "raw": "§5Boss Leveling Rewards",
+      "text": "Boss Leveling Rewards",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Boss 等级奖励"
+    },
+    {
+      "id": "sb_slayer_lvl_sub",
+      "context": "灰色副标题",
+      "raw": "§8%1$s Slayer LVL",
+      "text": "%1$s Slayer LVL",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "生物种类",
+          "type": "mob_name",
+          "example": "Zombie"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s猎手等级"
+    },
+    {
+      "id": "sb_step_1",
+      "context": "步骤说明",
+      "raw": "§51. §7Kill boss to get XP",
+      "text": "1. Kill boss to get XP",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§5",
+          "text": "1. ",
+          "zh": "1. "
+        },
+        {
+          "color": "§7",
+          "text": "Kill boss to get XP",
+          "zh": "击杀 Boss 获得经验"
+        }
+      ],
+      "zh": "1. 击杀 Boss 获得经验"
+    },
+    {
+      "id": "sb_step_2",
+      "context": "步骤说明",
+      "raw": "§52. §7Gain LVL from XP",
+      "text": "2. Gain LVL from XP",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§5",
+          "text": "2. ",
+          "zh": "2. "
+        },
+        {
+          "color": "§7",
+          "text": "Gain LVL from XP",
+          "zh": "用经验提升等级"
+        }
+      ],
+      "zh": "2. 用经验提升等级"
+    },
+    {
+      "id": "sb_step_3",
+      "context": "步骤说明",
+      "raw": "§53. §7Unlock rewards per LVL",
+      "text": "3. Unlock rewards per LVL",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§5",
+          "text": "3. ",
+          "zh": "3. "
+        },
+        {
+          "color": "§7",
+          "text": "Unlock rewards per LVL",
+          "zh": "每级解锁奖励"
+        }
+      ],
+      "zh": "3. 每级解锁奖励"
+    },
+    {
+      "id": "sb_current_lvl",
+      "context": "当前等级",
+      "raw": "§7Current LVL: §e%1$s",
+      "text": "Current LVL: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "等级",
+          "type": "number",
+          "example": "7"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Current LVL: ",
+          "zh": "当前等级: "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ],
+      "zh": "当前等级: %1$s"
+    },
+    {
+      "id": "sb_xp_to_lvl",
+      "context": "升级所需经验标题",
+      "raw": "§7%1$s Slayer XP to LVL %2$s:",
+      "text": "%1$s Slayer XP to LVL %2$s:",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "生物种类",
+          "type": "mob_name",
+          "example": "Zombie"
+        },
+        {
+          "token": "%2$s",
+          "desc": "下一级",
+          "type": "number",
+          "example": "8"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "升到%1$s猎手 %2$s 级所需经验:"
+    },
+    {
+      "id": "sb_click_view_levels",
+      "context": "点击提示",
+      "raw": "§eClick to view levels!",
+      "text": "Click to view levels!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击查看等级!"
+    },
+    {
+      "id": "sb_click_view_drops",
+      "context": "点击提示",
+      "raw": "§eClick to view drops!",
+      "text": "Click to view drops!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击查看掉落物!"
+    },
+    {
+      "id": "sb_boss_drops",
+      "context": "掉落格物品名",
+      "raw": "§6Boss Drops",
+      "text": "Boss Drops",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Boss 掉落物"
+    },
+    {
+      "id": "sb_usually_drop_head",
+      "context": "掉落说明首行(掉落物名在下一行)",
+      "raw": "§7Usually, the boss will drop",
+      "text": "Usually, the boss will drop",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这个 Boss 通常会掉落 "
+    },
+    {
+      "id": "sb_usually_drop_item",
+      "context": "接上一行:掉落物名 + 用途",
+      "raw": "§a%1$s §7which are used",
+      "text": "%1$s which are used",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "掉落物名,保留英文",
+          "type": "item_name",
+          "example": "Revenant Flesh"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "which are used",
+          "zh": ",用于猎手合成。"
+        }
+      ],
+      "zh": "%1$s,用于猎手合成。"
+    },
+    {
+      "id": "sb_usually_drop_for",
+      "context": "接上一行",
+      "raw": "§7for slayer crafts.",
+      "text": "for slayer crafts.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "sb_usually_drop_head_v",
+      "context": "掉落说明首行,掉落物名的前半个词在这一行(Wolf / Null)",
+      "raw": "§7Usually, the boss will drop §a%1$s",
+      "text": "Usually, the boss will drop %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "掉落物名前半",
+          "type": "item_name",
+          "example": "Wolf"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Usually, the boss will drop ",
+          "zh": "这个 Boss 通常会掉落 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ],
+      "zh": "这个 Boss 通常会掉落 %1$s"
+    },
+    {
+      "id": "sb_usually_drop_item_v",
+      "context": "接上一行:掉落物名后半 + 用途(Tooth / Sphere)",
+      "raw": "§a%1$s §7which are used for",
+      "text": "%1$s which are used for",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "掉落物名后半",
+          "type": "item_name",
+          "example": "Tooth"
+        }
+      ],
+      "gloss": "译文以空格开头,把跨行断开的物品名(Wolf / Tooth)重新拼成「Wolf Tooth」。",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": " %1$s"
+        },
+        {
+          "color": "§7",
+          "text": "which are used for",
+          "zh": ",用于猎手合成。"
+        }
+      ],
+      "zh": " %1$s,用于猎手合成。"
+    },
+    {
+      "id": "sb_usually_drop_crafts",
+      "context": "接上一行",
+      "raw": "§7slayer crafts.",
+      "text": "slayer crafts.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "sb_lucky_1",
+      "context": "稀有掉落说明,英文三行一句",
+      "raw": "§7If you're lucky, you may get one",
+      "text": "If you're lucky, you may get one",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "运气好的话,你还可能从这个 Boss 的 "
+    },
+    {
+      "id": "sb_lucky_2",
+      "context": "接上一行",
+      "raw": "§7out of §d%1$s §7possible drops from",
+      "text": "out of %1$s possible drops from",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "掉落物种类数",
+          "type": "number",
+          "example": "17"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "out of ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§d",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "possible drops from",
+          "zh": " 种可能掉落物中获得一件!"
+        }
+      ],
+      "zh": "%1$s 种可能掉落物中获得一件!"
+    },
+    {
+      "id": "sb_lucky_3",
+      "context": "接上一行",
+      "raw": "§7this boss!",
+      "text": "this boss!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "sb_recipes_count_1",
+      "context": "相关配方数,英文两行一句",
+      "raw": "§7There are §e%1$s §7recipes related to the",
+      "text": "There are %1$s recipes related to the",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "配方数",
+          "type": "number",
+          "example": "26"
+        }
+      ],
+      "gloss": "尾行「Zombie boss.」只是重复这一页的 Boss 种类,中文省略。",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "There are ",
+          "zh": "相关配方共有 "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "recipes related to the",
+          "zh": " 个。"
+        }
+      ],
+      "zh": "相关配方共有 %1$s 个。"
+    },
+    {
+      "id": "sb_recipes_count_2",
+      "context": "接上一行",
+      "raw": "§7%1$s boss.",
+      "text": "%1$s boss.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "生物种类",
+          "type": "mob_name",
+          "example": "Zombie"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "sb_unlock_recipes_1",
+      "context": "配方说明,英文三行一句",
+      "raw": "§7Unlock recipes and collect rare",
+      "text": "Unlock recipes and collect rare",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "解锁配方并收集稀有掉落物,以制作强力物品!"
+    },
+    {
+      "id": "sb_unlock_recipes_2",
+      "context": "接上一行",
+      "raw": "§7drops in order to craft powerful",
+      "text": "drops in order to craft powerful",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "sb_unlock_recipes_3",
+      "context": "接上一行(未采到,按 Wiki 补)",
+      "raw": "§7items!",
+      "text": "items!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "sb_unlocked_recipes",
+      "context": "已解锁配方数",
+      "raw": "§7Unlocked: §e%1$s recipes",
+      "text": "Unlocked: %1$s recipes",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "数量",
+          "type": "number",
+          "example": "23"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Unlocked: ",
+          "zh": "已解锁: "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s recipes",
+          "zh": "%1$s 个配方"
+        }
+      ],
+      "zh": "已解锁: %1$s 个配方"
+    },
+    {
+      "id": "sb_rng_meter",
+      "context": "RNG 计量表格物品名",
+      "raw": "§d%1$s RNG Meter",
+      "text": "%1$s RNG Meter",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "猎手 Boss 名,按 GLOSSARY 保留英文",
+          "type": "mob_name",
+          "example": "Revenant Horror"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s RNG 计量表"
+    },
+    {
+      "id": "sb_rng_desc_head_a",
+      "context": "RNG 计量表说明首行(种类名在行尾,Slayer XP 折到下一行)",
+      "raw": "§7Your §dRNG Meter §7fills with §d%1$s",
+      "text": "Your RNG Meter fills with %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "生物种类",
+          "type": "mob_name",
+          "example": "Zombie"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Your ",
+          "zh": "每次击败三阶或更高阶的 Boss,你的 "
+        },
+        {
+          "color": "§d",
+          "text": "RNG Meter ",
+          "zh": "RNG 计量表"
+        },
+        {
+          "color": "§7",
+          "text": "fills with ",
+          "zh": "都会累积"
+        },
+        {
+          "color": "§d",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ],
+      "zh": "每次击败三阶或更高阶的 Boss,你的 RNG 计量表都会累积%1$s"
+    },
+    {
+      "id": "sb_rng_desc_tail_a",
+      "context": "接上一行",
+      "raw": "§dSlayer XP §7every time you defeat",
+      "text": "Slayer XP every time you defeat",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§d",
+          "text": "Slayer XP ",
+          "zh": "猎手经验"
+        },
+        {
+          "color": "§7",
+          "text": "every time you defeat",
+          "zh": "!"
+        }
+      ],
+      "zh": "猎手经验!"
+    },
+    {
+      "id": "sb_rng_desc_head_b",
+      "context": "RNG 计量表说明首行(Sven 版:Wolf Slayer 在这一行)",
+      "raw": "§7Your §dRNG Meter §7fills with §d%1$s Slayer",
+      "text": "Your RNG Meter fills with %1$s Slayer",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "生物种类",
+          "type": "mob_name",
+          "example": "Wolf"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Your ",
+          "zh": "每次击败三阶或更高阶的 Boss,你的 "
+        },
+        {
+          "color": "§d",
+          "text": "RNG Meter ",
+          "zh": "RNG 计量表"
+        },
+        {
+          "color": "§7",
+          "text": "fills with ",
+          "zh": "都会累积"
+        },
+        {
+          "color": "§d",
+          "text": "%1$s Slayer",
+          "zh": "%1$s猎手"
+        }
+      ],
+      "zh": "每次击败三阶或更高阶的 Boss,你的 RNG 计量表都会累积%1$s猎手"
+    },
+    {
+      "id": "sb_rng_desc_tail_b",
+      "context": "接上一行(Sven 版)",
+      "raw": "§dXP §7every time you defeat §a%1$s",
+      "text": "XP every time you defeat %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Boss 名前半",
+          "type": "raw",
+          "example": "Sven"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§d",
+          "text": "XP ",
+          "zh": "经验"
+        },
+        {
+          "color": "§7",
+          "text": "every time you defeat ",
+          "zh": "!"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "",
+          "omit": true
+        }
+      ],
+      "zh": "经验!"
+    },
+    {
+      "id": "sb_rng_desc_last",
+      "context": "接上一行:Boss 名 + 三阶以上",
+      "raw": "§a%1$s III §7or higher!",
+      "text": "%1$s III or higher!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "猎手 Boss 名,按 GLOSSARY 保留英文",
+          "type": "mob_name",
+          "example": "Revenant Horror"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "sb_rng_desc_last_sven",
+      "context": "接上一行(Sven 版)",
+      "raw": "§aPackmaster III §7or higher!",
+      "text": "Packmaster III or higher!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "sb_rng_none_1",
+      "context": "未选择 RNG 掉落物,英文三行一句",
+      "raw": "§cYou don't have an RNG drop",
+      "text": "You don't have an RNG drop",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你还没有选择 RNG 掉落物。选择一个以开始累积进度!"
+    },
+    {
+      "id": "sb_rng_none_2",
+      "context": "接上一行",
+      "raw": "§cselected. Choose one to start",
+      "text": "selected. Choose one to start",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "sb_rng_none_3",
+      "context": "接上一行",
+      "raw": "§cprogressing towards it!",
+      "text": "progressing towards it!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "sb_stored_xp",
+      "context": "已存储的猎手经验",
+      "raw": "§7Stored Slayer XP: §d%1$s",
+      "text": "Stored Slayer XP: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "数值",
+          "type": "number",
+          "example": "1,100"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Stored Slayer XP: ",
+          "zh": "已存储猎手经验: "
+        },
+        {
+          "color": "§d",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ],
+      "zh": "已存储猎手经验: %1$s"
+    },
+    {
+      "id": "sb_rev_life_drain",
+      "context": "技能名",
+      "raw": "§cLife Drain",
+      "text": "Life Drain",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "生命汲取"
+    },
+    {
+      "id": "sb_rev_life_drain_desc",
+      "context": "技能说明",
+      "raw": "§7Drains health every few seconds.",
+      "text": "Drains health every few seconds.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "每隔几秒吸取生命值。"
+    },
+    {
+      "id": "sb_rev_pestilence",
+      "context": "技能名",
+      "raw": "§aPestilence",
+      "text": "Pestilence",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "瘟疫"
+    },
+    {
+      "id": "sb_rev_pestilence_desc_1",
+      "context": "技能说明,英文两行一句",
+      "raw": "§7Deals AOE damage every second,",
+      "text": "Deals AOE damage every second,",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "每秒造成范围伤害,并削减 25% 护甲。"
+    },
+    {
+      "id": "sb_rev_pestilence_desc_2",
+      "context": "接上一行",
+      "raw": "§7shredding armor by 25%.",
+      "text": "shredding armor by 25%.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "sb_rev_enrage",
+      "context": "技能名",
+      "raw": "§cEnrage",
+      "text": "Enrage",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "激怒"
+    },
+    {
+      "id": "sb_rev_enrage_desc",
+      "context": "技能说明",
+      "raw": "§7Gets real mad once in a while.",
+      "text": "Gets real mad once in a while.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "时不时会真的暴怒。"
+    },
+    {
+      "id": "sb_rev_redemption",
+      "context": "技能名",
+      "raw": "§aRedemption",
+      "text": "Redemption",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "救赎"
+    },
+    {
+      "id": "sb_rev_redemption_desc_1",
+      "context": "技能说明,英文两行一句",
+      "raw": "§7Heals rapidly and is immune to magic",
+      "text": "Heals rapidly and is immune to magic",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "快速回血,并免疫魔法伤害。"
+    },
+    {
+      "id": "sb_rev_redemption_desc_2",
+      "context": "接上一行",
+      "raw": "§7damage.",
+      "text": "damage.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "sb_rev_explosive",
+      "context": "技能名",
+      "raw": "§cExplosive Assault",
+      "text": "Explosive Assault",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "爆炸突袭"
+    },
+    {
+      "id": "sb_rev_explosive_desc",
+      "context": "技能说明",
+      "raw": "§7Throws explosive TNT.",
+      "text": "Throws explosive TNT.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "投掷爆炸性 TNT。"
+    },
+    {
+      "id": "sb_rev_thermonuclear",
+      "context": "技能名",
+      "raw": "§5Thermonuclear",
+      "text": "Thermonuclear",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "热核"
+    },
+    {
+      "id": "sb_rev_thermonuclear_desc_1",
+      "context": "技能说明,英文两行一句",
+      "raw": "§7Charges up and releases a massive",
+      "text": "Charges up and releases a massive",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "蓄力后释放一场巨大的爆炸。"
+    },
+    {
+      "id": "sb_rev_thermonuclear_desc_2",
+      "context": "接上一行",
+      "raw": "§7explosion.",
+      "text": "explosion.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "sb_tara_backstab",
+      "context": "技能名",
+      "raw": "§eBackstab",
+      "text": "Backstab",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "背刺"
+    },
+    {
+      "id": "sb_tara_backstab_desc_1",
+      "context": "技能说明,英文两行一句",
+      "raw": "§7Occasionally leaps behind you. Attacks",
+      "text": "Occasionally leaps behind you. Attacks",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "偶尔会跳到你背后。来自背后的攻击造成 "
+    },
+    {
+      "id": "sb_tara_backstab_desc_2",
+      "context": "接上一行",
+      "raw": "§7from behind deal §c+%1$s% Damage§7.",
+      "text": "from behind deal +%1$s% Damage.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "额外伤害",
+          "type": "percentage",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "from behind deal ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§c",
+          "text": "+%1$s% Damage",
+          "zh": "+%1$s% 伤害"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "+%1$s% 伤害。"
+    },
+    {
+      "id": "sb_tara_paralysis",
+      "context": "技能名",
+      "raw": "§eNoxious Paralysis",
+      "text": "Noxious Paralysis",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "毒性麻痹"
+    },
+    {
+      "id": "sb_tara_paralysis_desc_1",
+      "context": "技能说明,英文两行一句",
+      "raw": "§7Reduces your §4 Vitality§7 by §c%1$s% §7and §f",
+      "text": "Reduces your  Vitality by %1$s% and ",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "降低比例",
+          "type": "percentage",
+          "example": "15"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Reduces your ",
+          "zh": "将你的"
+        },
+        {
+          "color": "§4",
+          "text": " Vitality",
+          "zh": " 活力"
+        },
+        {
+          "color": "§7",
+          "text": " by ",
+          "zh": "降低 "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s% ",
+          "zh": "%1$s%"
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": ","
+        },
+        {
+          "color": "§f",
+          "text": "",
+          "zh": ""
+        }
+      ],
+      "zh": "将你的 活力降低 %1$s%,"
+    },
+    {
+      "id": "sb_tara_paralysis_desc_2",
+      "context": "接上一行",
+      "raw": "§fSpeed§7 by §c%1$s%§7.",
+      "text": "Speed by %1$s%.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "降低比例",
+          "type": "percentage",
+          "example": "10"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Speed",
+          "zh": " 速度"
+        },
+        {
+          "color": "§7",
+          "text": " by ",
+          "zh": "降低 "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s%",
+          "zh": "%1$s%"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": " 速度降低 %1$s%。"
+    },
+    {
+      "id": "sb_tara_web",
+      "context": "技能名",
+      "raw": "§cWeb of Lies",
+      "text": "Web of Lies",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "谎言之网"
+    },
+    {
+      "id": "sb_tara_web_desc_1",
+      "context": "技能说明,英文六行一句",
+      "raw": "§7The boss begins to heal and spews",
+      "text": "The boss begins to heal and spews",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Boss 开始回血并向地面喷吐蛛网,在清除之前会禁用传送技能;同时在空中生成 "
+    },
+    {
+      "id": "sb_tara_web_desc_2",
+      "context": "接上一行",
+      "raw": "§7webbing along the ground, disabling",
+      "text": "webbing along the ground, disabling",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "sb_tara_web_desc_3",
+      "context": "接上一行",
+      "raw": "§5teleportation§7 abilities until they are",
+      "text": "teleportation abilities until they are",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "sb_tara_web_desc_4",
+      "context": "接上一行",
+      "raw": "§7cleared, and spawns §a%1$s§7 egg sacs in the",
+      "text": "cleared, and spawns %1$s egg sacs in the",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "卵囊数",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "cleared, and spawns ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " egg sacs in the",
+          "zh": " 个卵囊,在它们孵化成小怪之前摧毁它们!"
+        }
+      ],
+      "zh": "%1$s 个卵囊,在它们孵化成小怪之前摧毁它们!"
+    },
+    {
+      "id": "sb_tara_web_desc_5",
+      "context": "接上一行",
+      "raw": "§7air. Destroy them before they hatch into",
+      "text": "air. Destroy them before they hatch into",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "sb_tara_web_desc_6",
+      "context": "接上一行",
+      "raw": "§7minions!",
+      "text": "minions!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "sb_tara_bats",
+      "context": "技能名",
+      "raw": "§cBat Barrage",
+      "text": "Bat Barrage",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "蝙蝠弹幕"
+    },
+    {
+      "id": "sb_tara_bats_desc_1",
+      "context": "技能说明,英文两行一句",
+      "raw": "§7Releases a horde of evil bats. Take §c0.1%",
+      "text": "Releases a horde of evil bats. Take 0.1%",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Releases a horde of evil bats. Take ",
+          "zh": "释放一群邪恶的蝙蝠。每只存活的蝙蝠每秒使你损失最大生命值的 "
+        },
+        {
+          "color": "§c",
+          "text": "0.1%",
+          "zh": "0.1%"
+        }
+      ],
+      "zh": "释放一群邪恶的蝙蝠。每只存活的蝙蝠每秒使你损失最大生命值的 0.1%"
+    },
+    {
+      "id": "sb_tara_bats_desc_2",
+      "context": "接上一行",
+      "raw": "§7Max §c❤§7 per second for each bat alive.",
+      "text": "Max ❤ per second for each bat alive.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Max ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§c",
+          "text": "❤",
+          "zh": "❤"
+        },
+        {
+          "color": "§7",
+          "text": " per second for each bat alive.",
+          "zh": "。"
+        }
+      ],
+      "zh": "❤。"
+    },
+    {
+      "id": "sb_sven_agile",
+      "context": "技能名",
+      "raw": "§aAgile",
+      "text": "Agile",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "敏捷"
+    },
+    {
+      "id": "sb_sven_agile_desc_1",
+      "context": "技能说明,英文两行一句",
+      "raw": "§7The wolf is small and fast, making it hard",
+      "text": "The wolf is small and fast, making it hard",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这只狼小而快,很难打中。"
+    },
+    {
+      "id": "sb_sven_agile_desc_2",
+      "context": "接上一行",
+      "raw": "§7to hit.",
+      "text": "to hit.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "sb_sven_true_damage_row",
+      "context": "真实伤害数值",
+      "raw": "§7True damage: §f%1$s §7per second",
+      "text": "True damage: %1$s per second",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每秒真实伤害",
+          "type": "number",
+          "example": "10"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "True damage: ",
+          "zh": "真实伤害: 每秒 "
+        },
+        {
+          "color": "§f",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "per second",
+          "zh": "",
+          "omit": true
+        }
+      ],
+      "zh": "真实伤害: 每秒 %1$s"
+    },
+    {
+      "id": "sb_sven_true_damage",
+      "context": "技能名",
+      "raw": "§fTrue Damage",
+      "text": "True Damage",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "真实伤害"
+    },
+    {
+      "id": "sb_sven_true_damage_desc",
+      "context": "技能说明",
+      "raw": "§7Ignores your defense. Very painful.",
+      "text": "Ignores your defense. Very painful.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "无视你的防御力。非常疼。"
+    },
+    {
+      "id": "sb_sven_pups",
+      "context": "技能名",
+      "raw": "§bCall the pups!",
+      "text": "Call the pups!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "呼唤幼崽!"
+    },
+    {
+      "id": "sb_sven_pups_desc_1",
+      "context": "技能说明,英文两行一句",
+      "raw": "§7At 50% health, calls its deadly pack of",
+      "text": "At 50% health, calls its deadly pack of",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "生命值降至 50% 时,呼唤它致命的幼崽群。"
+    },
+    {
+      "id": "sb_sven_pups_desc_2",
+      "context": "接上一行",
+      "raw": "§7pups.",
+      "text": "pups.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "sb_void_hitshield",
+      "context": "技能名",
+      "raw": "§aMalevolent Hitshield",
+      "text": "Malevolent Hitshield",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "恶意击盾"
+    },
+    {
+      "id": "sb_void_hp_thresholds",
+      "context": "触发条件",
+      "raw": "§8At 100%/66%/33% HP",
+      "text": "At 100%/66%/33% HP",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "在 100%/66%/33% 生命值时"
+    },
+    {
+      "id": "sb_void_hitshield_desc_1",
+      "context": "技能说明,英文两行一句",
+      "raw": "§7Immunity shield dropped by hits",
+      "text": "Immunity shield dropped by hits",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "免疫护盾按受击次数消耗,与伤害高低无关。"
+    },
+    {
+      "id": "sb_void_hitshield_desc_2",
+      "context": "接上一行",
+      "raw": "§7regardless of damage.",
+      "text": "regardless of damage.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "sb_void_ferocity_1",
+      "context": "技能说明,英文两行一句",
+      "raw": "§7Receives §c-75%  Ferocity §7while NOT",
+      "text": "Receives -75%  Ferocity while NOT",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Receives ",
+          "zh": "护盾未激活时,受到 "
+        },
+        {
+          "color": "§c",
+          "text": "-75%  Ferocity ",
+          "zh": "-75%  凶暴"
+        },
+        {
+          "color": "§7",
+          "text": "while NOT",
+          "zh": "。"
+        }
+      ],
+      "zh": "护盾未激活时,受到 -75%  凶暴。"
+    },
+    {
+      "id": "sb_void_ferocity_2",
+      "context": "接上一行",
+      "raw": "§7active.",
+      "text": "active.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "sb_void_yang",
+      "context": "技能名",
+      "raw": "§cYang Glyphs",
+      "text": "Yang Glyphs",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "阳之符文"
+    },
+    {
+      "id": "sb_starting_at_hp",
+      "context": "触发条件",
+      "raw": "§8Starting at %1$s% HP",
+      "text": "Starting at %1$s% HP",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "生命百分比",
+          "type": "percentage",
+          "example": "50"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "从 %1$s% 生命值开始"
+    },
+    {
+      "id": "sb_void_yang_desc_1",
+      "context": "技能说明",
+      "raw": "§7Throws glyphs down.",
+      "text": "Throws glyphs down.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "向地面投下符文。"
+    },
+    {
+      "id": "sb_void_yang_desc_2",
+      "context": "技能说明",
+      "raw": "§7Stand next to them or die.",
+      "text": "Stand next to them or die.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "站到符文旁边,否则死亡。"
+    },
+    {
+      "id": "sb_void_nukekubi",
+      "context": "技能名",
+      "raw": "§eNukekubi Fixations",
+      "text": "Nukekubi Fixations",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "飞头蛮凝视"
+    },
+    {
+      "id": "sb_void_nukekubi_desc_1",
+      "context": "技能说明",
+      "raw": "§7Spawns weird heads.",
+      "text": "Spawns weird heads.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "召唤诡异的头颅。"
+    },
+    {
+      "id": "sb_void_nukekubi_desc_2",
+      "context": "技能说明,英文两行一句",
+      "raw": "§7Clear them by looking at them or",
+      "text": "Clear them by looking at them or",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "注视它们以将其清除,否则会受到伤害。"
+    },
+    {
+      "id": "sb_void_nukekubi_desc_3",
+      "context": "接上一行",
+      "raw": "§7suffer damage.",
+      "text": "suffer damage.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "sb_inf_demon_damage",
+      "context": "恶魔伤害",
+      "raw": "§7Demon's damage: §c%1$s§7/s",
+      "text": "Demon's damage: %1$s/s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每秒伤害",
+          "type": "number",
+          "example": "2,500"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Demon's damage: ",
+          "zh": "恶魔伤害: "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "/s",
+          "zh": "/秒"
+        }
+      ],
+      "zh": "恶魔伤害: %1$s/秒"
+    },
+    {
+      "id": "sb_inf_demon_health",
+      "context": "恶魔生命值",
+      "raw": "§7Demon's health: §c%1$s❤",
+      "text": "Demon's health: %1$s❤",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "生命值",
+          "type": "number",
+          "example": "500,000"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Demon's health: ",
+          "zh": "恶魔生命值: "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s❤",
+          "zh": "%1$s❤"
+        }
+      ],
+      "zh": "恶魔生命值: %1$s❤"
+    },
+    {
+      "id": "sb_inf_immolate",
+      "context": "技能名",
+      "raw": "§6Immolate",
+      "text": "Immolate",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "献祭"
+    },
+    {
+      "id": "sb_inf_immolate_desc_1",
+      "context": "技能说明,英文三行一句",
+      "raw": "§7Deals §c%1$s True Damage §7at",
+      "text": "Deals %1$s True Damage at",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "三档真实伤害",
+          "type": "raw",
+          "example": "45/65/115"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Deals ",
+          "zh": "每秒在 Boss 生命值为 100%/66%/33% 时分别造成 "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s True Damage ",
+          "zh": "%1$s 真实伤害"
+        },
+        {
+          "color": "§7",
+          "text": "at",
+          "zh": "。"
+        }
+      ],
+      "zh": "每秒在 Boss 生命值为 100%/66%/33% 时分别造成 %1$s 真实伤害。"
+    },
+    {
+      "id": "sb_inf_immolate_desc_2",
+      "context": "接上一行",
+      "raw": "§c100%/66%/33% Boss Health §7respectively",
+      "text": "100%/66%/33% Boss Health respectively",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "sb_inf_immolate_desc_3",
+      "context": "接上一行",
+      "raw": "§7every second.",
+      "text": "every second.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "sb_inf_demonsplit",
+      "context": "技能名",
+      "raw": "§5Demonsplit",
+      "text": "Demonsplit",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "恶魔分裂"
+    },
+    {
+      "id": "sb_at_50_hp",
+      "context": "触发条件",
+      "raw": "§8At 50% HP",
+      "text": "At 50% HP",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "在 50% 生命值时"
+    },
+    {
+      "id": "sb_inf_demonsplit_desc",
+      "context": "技能说明",
+      "raw": "§7Splits into two powerful demons.",
+      "text": "Splits into two powerful demons.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "分裂成两只强大的恶魔。"
+    },
+    {
+      "id": "sb_inf_hellion",
+      "context": "技能名",
+      "raw": "§bHellion Shield",
+      "text": "Hellion Shield",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "狱火护盾"
+    },
+    {
+      "id": "sb_inf_hellion_desc_1",
+      "context": "技能说明,英文两行一句",
+      "raw": "§7Match the attunement on your",
+      "text": "Match the attunement on your",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "把匕首的属性调到与 Boss 一致才能造成伤害。"
+    },
+    {
+      "id": "sb_inf_hellion_desc_2",
+      "context": "接上一行",
+      "raw": "§7dagger to damage the boss.",
+      "text": "dagger to damage the boss.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "sb_inf_pillars",
+      "context": "技能名",
+      "raw": "§cFire Pillars",
+      "text": "Fire Pillars",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "火柱"
+    },
+    {
+      "id": "sb_inf_pillars_desc_1",
+      "context": "技能说明",
+      "raw": "§7Spawns fire pillars.",
+      "text": "Spawns fire pillars.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "召唤火柱。"
+    },
+    {
+      "id": "sb_inf_pillars_desc_2",
+      "context": "技能说明",
+      "raw": "§7Destroy them or die.",
+      "text": "Destroy them or die.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "摧毁它们,否则死亡。"
+    },
+    {
+      "id": "sb_inf_pillars_when",
+      "context": "触发条件",
+      "raw": "§8At 66% HP and 33% HP",
+      "text": "At 66% HP and 33% HP",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "在 66% 和 33% 生命值时"
+    },
+    {
+      "id": "sb_inf_ddr",
+      "context": "技能名",
+      "raw": "§dDDR Apocalypse",
+      "text": "DDR Apocalypse",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "DDR 末日"
+    },
+    {
+      "id": "sb_inf_ddr_desc_1",
+      "context": "技能说明,英文两行一句",
+      "raw": "§7Spawns dangerous fire pits which",
+      "text": "Spawns dangerous fire pits which",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "生成需要你躲避的危险火坑。"
+    },
+    {
+      "id": "sb_inf_ddr_desc_2",
+      "context": "接上一行",
+      "raw": "§7you need to dodge.",
+      "text": "you need to dodge.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    }
+  ]
+}

@@ -1,0 +1,188 @@
+{
+  "source": "runtime capture (SkyZH), build/gaps_C.txt, 2026-09-05",
+  "fetched_at": "2026-09-05",
+  "verified_ingame": true,
+  "context": "Bubu 商店与配方界面中的物品材料。",
+  "lines": [
+    {
+      "id": "refined_mineral_count",
+      "context": "所需的精炼矿物数量",
+      "raw": "§9Refined Mineral §8x%s",
+      "text": "Refined Mineral x%s",
+      "placeholders": [{"token": "%s", "desc": "物品数量", "type": "number", "example": "2"}],
+      "gloss": "沿用既有物品译名。",
+      "translate": true,
+      "zh": "精炼矿物 x%s",
+      "segments": [
+        {"color": "§9", "text": "Refined Mineral ", "zh": "精炼矿物 "},
+        {"color": "§8", "text": "x%s", "zh": "x%s"}
+      ]
+    },
+    {
+      "id": "cobblestone_count",
+      "context": "所需的圆石数量",
+      "raw": "§fCobblestone §8x%s",
+      "text": "Cobblestone x%s",
+      "placeholders": [{"token": "%s", "desc": "物品数量", "type": "number", "example": "6"}],
+      "gloss": "Cobblestone 使用 Minecraft 官方译名。",
+      "translate": true,
+      "zh": "圆石 x%s",
+      "segments": [
+        {"color": "§f", "text": "Cobblestone ", "zh": "圆石 "},
+        {"color": "§8", "text": "x%s", "zh": "x%s"}
+      ]
+    },
+    {
+      "id": "pixie_dust_count",
+      "context": "所需的小精灵粉尘数量",
+      "raw": "§9Pixie Dust §8x%s",
+      "text": "Pixie Dust x%s",
+      "placeholders": [{"token": "%s", "desc": "物品数量", "type": "number", "example": "1"}],
+      "gloss": "Year of the Witch 活动材料，译名依据社区 Wiki 语境报告。",
+      "translate": true,
+      "zh": "小精灵粉尘 x%s",
+      "segments": [
+        {"color": "§9", "text": "Pixie Dust ", "zh": "小精灵粉尘 "},
+        {"color": "§8", "text": "x%s", "zh": "x%s"}
+      ]
+    },
+    {
+      "id": "magnetic_bandaged_mithril_pickaxe_count",
+      "context": "带 Magnetic 重铸前缀的缠绷带秘银镐；数量动态",
+      "raw": "§aMagnetic Bandaged Mithril Pickaxe §8x%s",
+      "text": "Magnetic Bandaged Mithril Pickaxe x%s",
+      "placeholders": [{"token": "%s", "desc": "物品数量", "type": "number", "example": "1"}],
+      "gloss": "底名沿用 Bandaged_Mithril_Pickaxe.json 的既有译名。",
+      "translate": true,
+      "zh": "磁力缠绷带的秘银镐 x%s",
+      "segments": [
+        {"color": "§a", "text": "Magnetic Bandaged Mithril Pickaxe ", "zh": "磁力缠绷带的秘银镐 "},
+        {"color": "§8", "text": "x%s", "zh": "x%s"}
+      ]
+    },
+    {
+      "id": "dirty_fingernails_count",
+      "context": "所需的脏指甲数量",
+      "raw": "§9Dirty Fingernails §8x%s",
+      "text": "Dirty Fingernails x%s",
+      "placeholders": [{"token": "%s", "desc": "物品数量", "type": "number", "example": "12"}],
+      "gloss": "Year of the Witch 活动材料，沿用既有译名。",
+      "translate": true,
+      "zh": "脏指甲 x%s",
+      "segments": [
+        {"color": "§9", "text": "Dirty Fingernails ", "zh": "脏指甲 "},
+        {"color": "§8", "text": "x%s", "zh": "x%s"}
+      ]
+    },
+    {
+      "id": "bejeweled_handle_count",
+      "context": "所需的镶宝手柄数量",
+      "raw": "§9Bejeweled Handle §8x%s",
+      "text": "Bejeweled Handle x%s",
+      "placeholders": [{"token": "%s", "desc": "物品数量", "type": "number", "example": "1"}],
+      "gloss": "沿用本阶段 Mining/TabList/Tab_List.json 的译名。",
+      "translate": true,
+      "zh": "镶宝手柄 x%s",
+      "segments": [
+        {"color": "§9", "text": "Bejeweled Handle ", "zh": "镶宝手柄 "},
+        {"color": "§8", "text": "x%s", "zh": "x%s"}
+      ]
+    },
+    {
+      "id": "sword_count",
+      "context": "动态剑类物品及数量",
+      "raw": "§f%1$s Sword §8x%2$s",
+      "text": "%1$s Sword x%2$s",
+      "placeholders": [
+        {"token": "%1$s", "desc": "剑的种类，译名走 Terms", "type": "category_name", "example": "Undead"},
+        {"token": "%2$s", "desc": "物品数量", "type": "number", "example": "1"}
+      ],
+      "gloss": "Undead 已有 Terms 译名“亡灵”。",
+      "translate": true,
+      "zh": "%1$s剑 x%2$s",
+      "segments": [
+        {"color": "§f", "text": "%1$s Sword ", "zh": "%1$s剑 "},
+        {"color": "§8", "text": "x%2$s", "zh": "x%2$s"}
+      ]
+    },
+    {
+      "id": "mithril_variant_count",
+      "context": "动态加工类型的秘银材料及数量",
+      "raw": "§9%1$s Mithril §8x%2$s",
+      "text": "%1$s Mithril x%2$s",
+      "placeholders": [
+        {"token": "%1$s", "desc": "秘银材料前缀，译名走 Terms", "type": "category_name", "example": "Enchanted"},
+        {"token": "%2$s", "desc": "物品数量", "type": "number", "example": "2"}
+      ],
+      "gloss": "Enchanted 由 _shared/Terms.json 的 category_name 词条翻译为附魔。",
+      "translate": true,
+      "zh": "%1$s秘银 x%2$s",
+      "segments": [
+        {"color": "§9", "text": "%1$s Mithril ", "zh": "%1$s秘银 "},
+        {"color": "§8", "text": "x%2$s", "zh": "x%2$s"}
+      ]
+    },
+    {
+      "id": "enchanted_material_count",
+      "context": "动态附魔材料及数量",
+      "raw": "§9Enchanted %1$s §8x%2$s",
+      "text": "Enchanted %1$s x%2$s",
+      "placeholders": [
+        {"token": "%1$s", "desc": "材料名，译名走 Terms", "type": "category_name", "example": "Mithril"},
+        {"token": "%2$s", "desc": "物品数量", "type": "number", "example": "64"}
+      ],
+      "gloss": "可覆盖实机中的 Mithril、Titanium 与 Lapis Lazuli；材料均已有 Terms 译名。",
+      "translate": true,
+      "zh": "附魔%1$s x%2$s",
+      "segments": [
+        {"color": "§9", "text": "Enchanted %1$s ", "zh": "附魔%1$s "},
+        {"color": "§8", "text": "x%2$s", "zh": "x%2$s"}
+      ]
+    },
+    {
+      "id": "titanium_count",
+      "context": "所需的钛数量",
+      "raw": "§9Titanium §8x%s",
+      "text": "Titanium x%s",
+      "placeholders": [{"token": "%s", "desc": "物品数量", "type": "number", "example": "64"}],
+      "gloss": "Titanium 沿用既定译名“钛”。",
+      "translate": true,
+      "zh": "钛 x%s",
+      "segments": [
+        {"color": "§9", "text": "Titanium ", "zh": "钛 "},
+        {"color": "§8", "text": "x%s", "zh": "x%s"}
+      ]
+    },
+    {
+      "id": "glacite_component_count",
+      "context": "动态极冰材料及数量",
+      "raw": "§9Glacite %1$s §8x%2$s",
+      "text": "Glacite %1$s x%2$s",
+      "placeholders": [
+        {"token": "%1$s", "desc": "极冰材料后缀，译名走 Terms", "type": "category_name", "example": "Jewel"},
+        {"token": "%2$s", "desc": "物品数量", "type": "number", "example": "2"}
+      ],
+      "gloss": "Jewel 在该模板中指 Glacite Jewel，沿用 _shared/Terms.json 的宝珠译名。",
+      "translate": true,
+      "zh": "极冰%1$s x%2$s",
+      "segments": [
+        {"color": "§9", "text": "Glacite %1$s ", "zh": "极冰%1$s "},
+        {"color": "§8", "text": "x%2$s", "zh": "x%2$s"}
+      ]
+    },
+    {
+      "id": "mithril_count",
+      "context": "所需的秘银数量",
+      "raw": "§fMithril §8x%s",
+      "text": "Mithril x%s",
+      "placeholders": [{"token": "%s", "desc": "物品数量", "type": "number", "example": "64"}],
+      "gloss": "Mithril 沿用既定译名“秘银”。",
+      "translate": true,
+      "zh": "秘银 x%s",
+      "segments": [
+        {"color": "§f", "text": "Mithril ", "zh": "秘银 "},
+        {"color": "§8", "text": "x%s", "zh": "x%s"}
+      ]
+    }
+  ]
+}

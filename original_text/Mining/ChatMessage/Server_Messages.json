@@ -1,0 +1,1103 @@
+{
+  "source": "runtime capture (SkyZH), logs/skyzh-capture, 2026-09-04",
+  "fetched_at": "2026-09-04",
+  "verified_ingame": true,
+  "context": "技能升级、配方解锁、属性发现及通用服务器提示。",
+  "messages": [
+    {
+      "id": "skill_zoologist_pet_exp",
+      "context": "驯养升级广播复用技能菜单中的动物学家奖励，聊天缩进由引擎保留",
+      "ref": "Hub_General/GUI_Item/Your_Skills.json#skills_perk_zoologist_desc"
+    },
+    {
+      "id": "skill_exp_share_rate",
+      "context": "驯养升级广播复用技能菜单中的经验分享比例奖励",
+      "ref": "Hub_General/GUI_Item/Your_Skills.json#skills_perk_exp_share"
+    },
+    {
+      "id": "looting_exp_discount",
+      "context": "收藏品升级解锁抢夺附魔的经验消耗折扣",
+      "raw": "§9Looting §7Exp Discount §a(-%s%)",
+      "text": "Looting Exp Discount (-%s%)",
+      "placeholders": [
+        {"token": "%s", "desc": "经验消耗折扣百分比", "type": "percentage", "example": "25"}
+      ],
+      "gloss": "Looting 采用原版译名“抢夺”；区别于保留英文的空岛专属附魔 Experience。原文及颜色来自实机采集。",
+      "translate": true,
+      "zh": "抢夺附魔经验折扣 (-%s%)",
+      "segments": [
+        {"color": "§9", "text": "Looting ", "zh": "抢夺"},
+        {"color": "§7", "text": "Exp Discount ", "zh": "附魔经验折扣 "},
+        {"color": "§a", "text": "(-%s%)", "zh": "(-%s%)"}
+      ]
+    },
+    {
+      "id": "skill_zoologist_tier",
+      "context": "驯养技能升级奖励标题",
+      "raw": "   §eZoologist %s",
+      "text": "   Zoologist %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "动物学家技能奖励等级",
+          "type": "tier",
+          "example": "XVII"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "   动物学家 %s",
+      "segments": [
+        {
+          "color": "",
+          "text": "   ",
+          "zh": "   "
+        },
+        {
+          "color": "§e",
+          "text": "Zoologist %s",
+          "zh": "动物学家 %s"
+        }
+      ]
+    },
+    {
+      "id": "reward_pet_luck",
+      "context": "技能升级属性奖励",
+      "raw": "   §8+§a%s §d Pet Luck",
+      "text": "   +%s  Pet Luck",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "增加的宠物幸运",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "   +%s  宠物幸运",
+      "segments": [
+        {
+          "color": "",
+          "text": "   ",
+          "zh": "   "
+        },
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s "
+        },
+        {
+          "color": "§d",
+          "text": " Pet Luck",
+          "zh": " 宠物幸运"
+        }
+      ]
+    },
+    {
+      "id": "reward_health",
+      "context": "技能升级属性奖励",
+      "raw": "   §8+§a%s §c Health",
+      "text": "   +%s  Health",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "增加的生命值",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "   +%s  生命值",
+      "segments": [
+        {
+          "color": "",
+          "text": "   ",
+          "zh": "   "
+        },
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s "
+        },
+        {
+          "color": "§c",
+          "text": " Health",
+          "zh": " 生命值"
+        }
+      ]
+    },
+    {
+      "id": "drops_private_in_skyblock",
+      "context": "掉落物保护提示；SkyBlock 名称保留给配置项运行时替换",
+      "raw": "§e⚠ §aYour drops can't be seen by other players in §bSkyBlock§a!",
+      "text": "⚠ Your drops can't be seen by other players in SkyBlock!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "⚠ 在 SkyBlock 中,其他玩家看不到你的掉落物!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "⚠ ",
+          "zh": "⚠ ",
+          "order": 0
+        },
+        {
+          "color": "§a",
+          "text": "Your drops can't be seen by other players in ",
+          "zh": "在 ",
+          "order": 1
+        },
+        {
+          "color": "§b",
+          "text": "SkyBlock",
+          "zh": "SkyBlock",
+          "order": 2
+        },
+        {
+          "color": "§a",
+          "text": "!",
+          "zh": " 中,其他玩家看不到你的掉落物!",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "id": "reward_hotm_exp",
+      "context": "居中的等级奖励清单",
+      "raw": "§f                               §8+§5%s HOTM Exp",
+      "text": "                               +%s HOTM Exp",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "获得的山心经验",
+          "type": "number",
+          "example": "200"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "                               +%s 山心经验",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "                               ",
+          "zh": "                               "
+        },
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§5",
+          "text": "%s HOTM Exp",
+          "zh": "%s 山心经验"
+        }
+      ]
+    },
+    {
+      "id": "reward_titanium_minecart",
+      "context": "等级奖励的宠物道具",
+      "raw": "§f                             §8+§9Titanium Minecart",
+      "text": "                             +Titanium Minecart",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "                             +钛矿车",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "                             ",
+          "zh": "                             "
+        },
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§9",
+          "text": "Titanium Minecart",
+          "zh": "钛矿车"
+        }
+      ]
+    },
+    {
+      "id": "skill_spelunker_tier",
+      "context": "挖矿技能升级奖励标题",
+      "raw": "   §eSpelunker %s",
+      "text": "   Spelunker %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "洞穴探险家技能奖励等级",
+          "type": "tier",
+          "example": "XX"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "   洞穴探险家 %s",
+      "segments": [
+        {
+          "color": "",
+          "text": "   ",
+          "zh": "   "
+        },
+        {
+          "color": "§e",
+          "text": "Spelunker %s",
+          "zh": "洞穴探险家 %s"
+        }
+      ]
+    },
+    {
+      "id": "spelunker_fortune_upgrade",
+      "context": "洞穴探险家每级奖励说明首行",
+      "raw": "     §fGrants §a+§8%1$s➜§a%2$s§f §6 Mining Fortune§f, which increases your",
+      "text": "     Grants +%1$s➜%2$s  Mining Fortune, which increases your",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "升级前的挖掘时运",
+          "type": "number",
+          "example": "76"
+        },
+        {
+          "token": "%2$s",
+          "desc": "升级后的挖掘时运",
+          "type": "number",
+          "example": "80"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "     提供 +%1$s➜%2$s  挖掘时运,这会提高你",
+      "segments": [
+        {
+          "color": "",
+          "text": "   ",
+          "zh": "   "
+        },
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§f",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§a",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§8",
+          "text": "%1$s➜",
+          "zh": "%1$s➜"
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§f",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§6",
+          "text": " Mining Fortune",
+          "zh": " 挖掘时运"
+        },
+        {
+          "color": "§f",
+          "text": ", which increases your",
+          "zh": ",这会提高你"
+        }
+      ]
+    },
+    {
+      "id": "spelunker_fortune_upgrade_tail",
+      "context": "接洞穴探险家奖励说明首行",
+      "raw": "     §fchance for multiple ore drops.",
+      "text": "     chance for multiple ore drops.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "     获得多份矿石掉落的概率。"
+    },
+    {
+      "id": "reward_defense",
+      "context": "技能升级属性奖励",
+      "raw": "   §8+§a%s  Defense",
+      "text": "   +%s  Defense",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "增加的防御力",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "   +%s  防御力",
+      "segments": [
+        {
+          "color": "",
+          "text": "   ",
+          "zh": "   "
+        },
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%s  Defense",
+          "zh": "%s  防御力"
+        }
+      ]
+    },
+    {
+      "id": "entropy_suppressor_reforge",
+      "context": "重铸解锁奖励；前半是重铸石物品名",
+      "raw": "   §9Entropy Suppressor §7Reforge",
+      "text": "   Entropy Suppressor Reforge",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "   熵抑制器重铸",
+      "segments": [
+        {
+          "color": "",
+          "text": "   ",
+          "zh": "   "
+        },
+        {
+          "color": "§9",
+          "text": "Entropy Suppressor ",
+          "zh": "熵抑制器"
+        },
+        {
+          "color": "§7",
+          "text": "Reforge",
+          "zh": "重铸"
+        }
+      ]
+    },
+    {
+      "id": "titanium_tesseract_reforge",
+      "context": "重铸解锁奖励；前半是重铸石物品名",
+      "raw": "   §9Titanium Tesseract §7Reforge",
+      "text": "   Titanium Tesseract Reforge",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "   钛超立方体重铸",
+      "segments": [
+        {
+          "color": "",
+          "text": "   ",
+          "zh": "   "
+        },
+        {
+          "color": "§9",
+          "text": "Titanium Tesseract ",
+          "zh": "钛超立方体"
+        },
+        {
+          "color": "§7",
+          "text": "Reforge",
+          "zh": "重铸"
+        }
+      ]
+    },
+    {
+      "id": "dragon_scale_reforge",
+      "context": "重铸解锁奖励；前半是重铸石物品名",
+      "raw": "   §9Dragon Scale §7Reforge",
+      "text": "   Dragon Scale Reforge",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "   巨龙鳞片重铸",
+      "segments": [
+        {
+          "color": "",
+          "text": "   ",
+          "zh": "   "
+        },
+        {
+          "color": "§9",
+          "text": "Dragon Scale ",
+          "zh": "巨龙鳞片"
+        },
+        {
+          "color": "§7",
+          "text": "Reforge",
+          "zh": "重铸"
+        }
+      ]
+    },
+    {
+      "id": "molten_cube_reforge",
+      "context": "重铸解锁奖励；前半是重铸石物品名",
+      "raw": "   §9Molten Cube §7Reforge",
+      "text": "   Molten Cube Reforge",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "   熔融立方体重铸",
+      "segments": [
+        {
+          "color": "",
+          "text": "   ",
+          "zh": "   "
+        },
+        {
+          "color": "§9",
+          "text": "Molten Cube ",
+          "zh": "熔融立方体"
+        },
+        {
+          "color": "§7",
+          "text": "Reforge",
+          "zh": "重铸"
+        }
+      ]
+    },
+    {
+      "id": "frozen_bauble_reforge",
+      "context": "重铸解锁奖励；前半是重铸石物品名",
+      "raw": "   §5Frozen Bauble §7Reforge",
+      "text": "   Frozen Bauble Reforge",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "   冰冻彩球重铸",
+      "segments": [
+        {
+          "color": "",
+          "text": "   ",
+          "zh": "   "
+        },
+        {
+          "color": "§5",
+          "text": "Frozen Bauble ",
+          "zh": "冰冻彩球"
+        },
+        {
+          "color": "§7",
+          "text": "Reforge",
+          "zh": "重铸"
+        }
+      ]
+    },
+    {
+      "id": "mithril_crystal_recipe",
+      "context": "收藏品等级解锁的配方",
+      "raw": "    §9Mithril Crystal §7Recipe",
+      "text": "    Mithril Crystal Recipe",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "    秘银水晶配方",
+      "segments": [
+        {
+          "color": "",
+          "text": "    ",
+          "zh": "    "
+        },
+        {
+          "color": "§9",
+          "text": "Mithril Crystal ",
+          "zh": "秘银水晶"
+        },
+        {
+          "color": "§7",
+          "text": "Recipe",
+          "zh": "配方"
+        }
+      ]
+    },
+    {
+      "id": "gold_minion_recipes",
+      "context": "收藏品等级解锁的配方",
+      "raw": "    §9Gold Minion §7Recipes",
+      "text": "    Gold Minion Recipes",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "    黄金小人配方",
+      "segments": [
+        {
+          "color": "",
+          "text": "    ",
+          "zh": "    "
+        },
+        {
+          "color": "§9",
+          "text": "Gold Minion ",
+          "zh": "黄金小人"
+        },
+        {
+          "color": "§7",
+          "text": "Recipes",
+          "zh": "配方"
+        }
+      ]
+    },
+    {
+      "id": "cleaver_recipe",
+      "context": "收藏品等级解锁的配方",
+      "raw": "    §aCleaver §7Recipe",
+      "text": "    Cleaver Recipe",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "    砍刀配方",
+      "segments": [
+        {
+          "color": "",
+          "text": "    ",
+          "zh": "    "
+        },
+        {
+          "color": "§a",
+          "text": "Cleaver ",
+          "zh": "砍刀"
+        },
+        {
+          "color": "§7",
+          "text": "Recipe",
+          "zh": "配方"
+        }
+      ]
+    },
+    {
+      "id": "portal_gold_mine_recipe",
+      "context": "收藏品等级解锁的配方",
+      "raw": "    §fPortal to the Gold Mine §7Recipe",
+      "text": "    Portal to the Gold Mine Recipe",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "    金矿传送门配方",
+      "segments": [
+        {
+          "color": "",
+          "text": "    ",
+          "zh": "    "
+        },
+        {
+          "color": "§f",
+          "text": "Portal to the Gold Mine ",
+          "zh": "金矿传送门"
+        },
+        {
+          "color": "§7",
+          "text": "Recipe",
+          "zh": "配方"
+        }
+      ]
+    },
+    {
+      "id": "absorption_potion_recipe",
+      "context": "收藏品等级解锁的配方",
+      "raw": "    §6Absorption Potion §7Recipe",
+      "text": "    Absorption Potion Recipe",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "    伤害吸收药水配方",
+      "segments": [
+        {
+          "color": "",
+          "text": "    ",
+          "zh": "    "
+        },
+        {
+          "color": "§6",
+          "text": "Absorption Potion ",
+          "zh": "伤害吸收药水"
+        },
+        {
+          "color": "§7",
+          "text": "Recipe",
+          "zh": "配方"
+        }
+      ]
+    },
+    {
+      "id": "grand_experience_bottle_recipe",
+      "context": "收藏品等级解锁的配方",
+      "raw": "    §aGrand Experience Bottle §7Recipe",
+      "text": "    Grand Experience Bottle Recipe",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "    大型经验瓶配方",
+      "segments": [
+        {
+          "color": "",
+          "text": "    ",
+          "zh": "    "
+        },
+        {
+          "color": "§a",
+          "text": "Grand Experience Bottle ",
+          "zh": "大型经验瓶"
+        },
+        {
+          "color": "§7",
+          "text": "Recipe",
+          "zh": "配方"
+        }
+      ]
+    },
+    {
+      "id": "new_stat_heat_resistance",
+      "context": "首次解锁抗热属性",
+      "raw": "§6§lNEW STAT DISCOVERED! §c Heat Resistance",
+      "text": "NEW STAT DISCOVERED!  Heat Resistance",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "发现新属性!  抗热",
+      "segments": [
+        {
+          "color": "§6§l",
+          "text": "NEW STAT DISCOVERED! ",
+          "zh": "发现新属性! "
+        },
+        {
+          "color": "§c",
+          "text": " Heat Resistance",
+          "zh": " 抗热"
+        }
+      ]
+    },
+    {
+      "id": "heat_resistance_explanation",
+      "context": "抗热属性机制说明",
+      "raw": "§c Heat Resistance §7decreases how quickly §c Heat §7builds up. For every §c1 Heat Resistance §7you have, §c Heat §7builds up §a1% §7slower.",
+      "text": " Heat Resistance decreases how quickly  Heat builds up. For every 1 Heat Resistance you have,  Heat builds up 1% slower.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "每拥有 1 抗热, 炙热值的积累速度就会降低 1%。",
+      "segments": [
+        {
+          "color": "§c",
+          "text": " Heat Resistance ",
+          "zh": "",
+          "omit": true,
+          "order": 7
+        },
+        {
+          "color": "§7",
+          "text": "decreases how quickly ",
+          "zh": "每拥有 ",
+          "order": 0
+        },
+        {
+          "color": "§c",
+          "text": " Heat ",
+          "zh": " 炙热值",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "builds up. For every ",
+          "zh": "",
+          "omit": true,
+          "order": 8
+        },
+        {
+          "color": "§c",
+          "text": "1 Heat Resistance ",
+          "zh": "1 抗热",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "you have, ",
+          "zh": ",",
+          "order": 2
+        },
+        {
+          "color": "§c",
+          "text": " Heat ",
+          "zh": "",
+          "omit": true,
+          "order": 9
+        },
+        {
+          "color": "§7",
+          "text": "builds up ",
+          "zh": "的积累速度就会降低 ",
+          "order": 4
+        },
+        {
+          "color": "§a",
+          "text": "1% ",
+          "zh": "1%",
+          "order": 5
+        },
+        {
+          "color": "§7",
+          "text": "slower.",
+          "zh": "。",
+          "order": 6
+        }
+      ]
+    },
+    {
+      "id": "picked_all_material_stash",
+      "context": "一次取回全部材料暂存物",
+      "raw": "§eYou picked up §aall §eitems from your material stash!",
+      "text": "You picked up all items from your material stash!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你从材料暂存区取回了所有物品!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "You picked up ",
+          "zh": "你从材料暂存区取回了"
+        },
+        {
+          "color": "§a",
+          "text": "all ",
+          "zh": "所有"
+        },
+        {
+          "color": "§e",
+          "text": "items from your material stash!",
+          "zh": "物品!"
+        }
+      ]
+    },
+    {
+      "id": "forge_navigation",
+      "context": "等级解锁页面的熔炉入口",
+      "raw": "  §7 §bThe Forge",
+      "text": "   The Forge",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "   熔炉",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§7",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§b",
+          "text": "The Forge",
+          "zh": "熔炉"
+        }
+      ]
+    },
+    {
+      "id": "forge_navigation_desc",
+      "context": "熔炉入口说明",
+      "raw": "§7   ■ §fRefine ores and cast items at the §6Forge§f!",
+      "text": "   ■ Refine ores and cast items at the Forge!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "   ■ 在熔炉精炼矿石并铸造物品!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "   ■ ",
+          "zh": "   ■ "
+        },
+        {
+          "color": "§f",
+          "text": "Refine ores and cast items at the ",
+          "zh": "在"
+        },
+        {
+          "color": "§6",
+          "text": "Forge",
+          "zh": "熔炉"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "精炼矿石并铸造物品!"
+        }
+      ]
+    },
+    {
+      "id": "new_stat_true_defense",
+      "context": "首次解锁真实防御属性",
+      "raw": "§6§lNEW STAT DISCOVERED! §f True Defense",
+      "text": "NEW STAT DISCOVERED!  True Defense",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "发现新属性!  真实防御",
+      "segments": [
+        {
+          "color": "§6§l",
+          "text": "NEW STAT DISCOVERED! ",
+          "zh": "发现新属性! "
+        },
+        {
+          "color": "§f",
+          "text": " True Defense",
+          "zh": " 真实防御"
+        }
+      ]
+    },
+    {
+      "id": "true_defense_explanation",
+      "context": "真实防御属性机制说明",
+      "raw": "§7Unlike §a Defense§7, §f True Defense §7reduces the amount of damage you take from all sources of True Damage.",
+      "text": "Unlike  Defense,  True Defense reduces the amount of damage you take from all sources of True Damage.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "与  防御力不同, 真实防御能减少你受到的所有真实伤害。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Unlike ",
+          "zh": "与 "
+        },
+        {
+          "color": "§a",
+          "text": " Defense",
+          "zh": " 防御力"
+        },
+        {
+          "color": "§7",
+          "text": ", ",
+          "zh": "不同,"
+        },
+        {
+          "color": "§f",
+          "text": " True Defense ",
+          "zh": " 真实防御"
+        },
+        {
+          "color": "§7",
+          "text": "reduces the amount of damage you take from all sources of True Damage.",
+          "zh": "能减少你受到的所有真实伤害。"
+        }
+      ]
+    },
+    {
+      "id": "npc_no_abiphone",
+      "context": "尝试把没有电话的 NPC 加入联系人",
+      "raw": "§7[§b✆§7] This NPC doesn't own an Abiphone...",
+      "text": "[✆] This NPC doesn't own an Abiphone...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "[✆] 此 NPC 没有 Abiphone……",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": "✆"
+        },
+        {
+          "color": "§7",
+          "text": "] This NPC doesn't own an Abiphone...",
+          "zh": "] 此 NPC 没有 Abiphone……"
+        }
+      ]
+    },
+    {
+      "id": "access_to_the_end",
+      "context": "技能等级解锁地区奖励",
+      "raw": "   §8+§aAccess to §dThe End",
+      "text": "   +Access to The End",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "   +解锁末地",
+      "segments": [
+        {
+          "color": "",
+          "text": "   ",
+          "zh": "   "
+        },
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "Access to ",
+          "zh": "解锁"
+        },
+        {
+          "color": "§d",
+          "text": "The End",
+          "zh": "末地"
+        }
+      ]
+    },
+    {
+      "id": "skill_warrior_tier",
+      "context": "战斗技能升级奖励标题",
+      "raw": "   §eWarrior %s",
+      "text": "   Warrior %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "战士技能奖励等级",
+          "type": "tier",
+          "example": "XII"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "   战士 %s",
+      "segments": [
+        {
+          "color": "",
+          "text": "   ",
+          "zh": "   "
+        },
+        {
+          "color": "§e",
+          "text": "Warrior %s",
+          "zh": "战士 %s"
+        }
+      ]
+    },
+    {
+      "id": "warrior_damage_upgrade",
+      "context": "战士每级伤害奖励说明",
+      "raw": "     §fDeal §8%1$s➜§a%2$s%§f more damage to mobs.",
+      "text": "     Deal %1$s➜%2$s% more damage to mobs.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "升级前伤害加成",
+          "type": "number",
+          "example": "44"
+        },
+        {
+          "token": "%2$s",
+          "desc": "升级后伤害加成",
+          "type": "number",
+          "example": "48"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "     对生物造成的伤害提高 %1$s➜%2$s%。",
+      "segments": [
+        {
+          "color": "",
+          "text": "   ",
+          "zh": "   "
+        },
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§f",
+          "text": "Deal ",
+          "zh": "对生物造成的伤害提高 "
+        },
+        {
+          "color": "§8",
+          "text": "%1$s➜",
+          "zh": "%1$s➜"
+        },
+        {
+          "color": "§a",
+          "text": "%2$s%",
+          "zh": "%2$s%"
+        },
+        {
+          "color": "§f",
+          "text": " more damage to mobs.",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "reward_crit_chance",
+      "context": "技能升级属性奖励",
+      "raw": "   §8+§a%s% §9 Crit Chance",
+      "text": "   +%s%  Crit Chance",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "增加的暴击率",
+          "type": "number",
+          "example": "0.5"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "   +%s%  暴击率",
+      "segments": [
+        {
+          "color": "",
+          "text": "   ",
+          "zh": "   "
+        },
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%s% ",
+          "zh": "%s% "
+        },
+        {
+          "color": "§9",
+          "text": " Crit Chance",
+          "zh": " 暴击率"
+        }
+      ]
+    }
+  ]
+}

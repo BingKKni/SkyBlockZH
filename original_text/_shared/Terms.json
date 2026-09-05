@@ -44,6 +44,87 @@
       "note": "玩法主区域名"
     },
     {
+      "en": "Dungeon Hub",
+      "zh": "地牢大厅",
+      "types": [
+        "location_name",
+        "raw"
+      ],
+      "note": "地牢玩法主大厅；运行时侧边栏的地点占位符会捕获此值。也是 Tab 列表「Area: %s」的取值,那一半按 raw 查表(见 Translator.termed),所以两种 type 都要列上——2026-09-02 实测只写 location_name 时「区域: Dungeon Hub」留在英文。"
+    },
+    {
+      "en": "Crystal Core",
+      "zh": "水晶核心",
+      "types": [
+        "raw"
+      ],
+      "note": "Guildford 地牢大厅竞速路线。"
+    },
+    {
+      "en": "Giant Mushroom",
+      "zh": "巨型蘑菇",
+      "types": [
+        "raw"
+      ],
+      "note": "Guildford 地牢大厅竞速路线。"
+    },
+    {
+      "en": "Precursor Ruins",
+      "zh": "先驱遗迹",
+      "types": [
+        "raw"
+      ],
+      "note": "Guildford 地牢大厅竞速路线。"
+    },
+    {
+      "en": "Anything",
+      "zh": "不限制",
+      "types": [
+        "raw"
+      ],
+      "note": "Guildford 竞速规则：允许使用技能、末影珍珠和抓钩。"
+    },
+    {
+      "en": "No Pearls",
+      "zh": "禁用末影珍珠",
+      "types": [
+        "raw"
+      ],
+      "note": "Guildford 竞速规则。"
+    },
+    {
+      "en": "No Abilities",
+      "zh": "禁用技能",
+      "types": [
+        "raw"
+      ],
+      "note": "Guildford 竞速规则。"
+    },
+    {
+      "en": "Nothing at all",
+      "zh": "完全不使用",
+      "types": [
+        "raw"
+      ],
+      "note": "Guildford 竞速规则：技能、末影珍珠和抓钩均不可使用。"
+    },
+    {
+      "en": "Runback",
+      "zh": "需要返回起点",
+      "types": [
+        "raw"
+      ],
+      "note": "Guildford 竞速抵达终点后还需跑回起点。"
+    },
+    {
+      "en": "No Runback",
+      "zh": "无需返回起点",
+      "types": [
+        "raw"
+      ],
+      "note": "Guildford 竞速抵达终点即完成。"
+    },
+    {
       "en": "Dwarven Village",
       "zh": "矮人村庄"
     },
@@ -1447,9 +1528,10 @@
       "en": "Wither",
       "zh": "凋零",
       "types": [
-        "category_name"
+        "category_name",
+        "mob_name"
       ],
-      "note": "Bazaar 精华分类的取值。已查证 hysb.wiki/w/Essence(2026-08-29)确有 Wither Essence;限定 category_name,只用于「%1$s Essence」这类分类名。"
+      "note": "Bazaar 精华分类的取值。已查证 hysb.wiki/w/Essence(2026-08-29)确有 Wither Essence;限定 category_name,只用于「%1$s Essence」这类分类名。　也用作生物图鉴的分类名（「Undead X ➡ XI」这类横幅），那个位置的占位符是 mob_name，所以两种都要列上，否则那一行会匹配上却仍然画成英文。"
     },
     {
       "en": "Spider Essence",
@@ -1465,9 +1547,10 @@
       "en": "Undead",
       "zh": "亡灵",
       "types": [
-        "category_name"
+        "category_name",
+        "mob_name"
       ],
-      "note": "Bazaar 精华分类的取值。已查证 hysb.wiki/w/Essence(2026-08-29)确有 Undead Essence;限定 category_name,只用于「%1$s Essence」这类分类名。"
+      "note": "Bazaar 精华分类的取值。已查证 hysb.wiki/w/Essence(2026-08-29)确有 Undead Essence;限定 category_name,只用于「%1$s Essence」这类分类名。　也用作生物图鉴的分类名（「Undead X ➡ XI」这类横幅），那个位置的占位符是 mob_name，所以两种都要列上，否则那一行会匹配上却仍然画成英文。"
     },
     {
       "en": "Dragon Essence",
@@ -3107,6 +3190,3190 @@
         "raw"
       ],
       "note": "2026 年 9 月宾果卡的社区目标名,只出现在宾果卡的「Progress to X I」那一行里。已查证 hypixelskyblock.minecraft.wiki/w/Bingo/Events/2026(2026-08-31)第 58 期卡面:它的达成条件是「Gain 750M Taming experience」(V 档),即靠练技能拿经验,所以译「技艺精湛」而不是照字面的「熟练」。同一批社区目标名里 Scavenger **故意不加**——那是空岛专属附魔名,按 2026-08-27 的决定整族保持英文(见 _shared/Enchantments.json 的 scope),加词条会让玩家剑上的 Scavenger V 也跟着变中文。"
+    },
+    {
+      "en": "Berserk",
+      "zh": "狂战士",
+      "types": [
+        "category_name",
+        "mob_name"
+      ],
+      "note": "地牢五职业之一。这个名字会被服务器塞进十来种模板：准备界面的「Currently Selected: %s」、选职业广播、职业属性升级行、职业里程碑、Tab 列表、结算经验行。写在词表里，一个名字只写一处。限定 category_name，半句话进不来。已查证 hypixelskyblock.minecraft.wiki/wiki/Dungeons（2026-09-02）。"
+    },
+    {
+      "en": "Mage",
+      "zh": "法师",
+      "types": [
+        "category_name",
+        "mob_name"
+      ],
+      "note": "地牢五职业之一。这个名字会被服务器塞进十来种模板：准备界面的「Currently Selected: %s」、选职业广播、职业属性升级行、职业里程碑、Tab 列表、结算经验行。写在词表里，一个名字只写一处。限定 category_name，半句话进不来。已查证 hypixelskyblock.minecraft.wiki/wiki/Dungeons（2026-09-02）。"
+    },
+    {
+      "en": "Healer",
+      "zh": "治疗师",
+      "types": [
+        "category_name",
+        "mob_name"
+      ],
+      "note": "地牢五职业之一。这个名字会被服务器塞进十来种模板：准备界面的「Currently Selected: %s」、选职业广播、职业属性升级行、职业里程碑、Tab 列表、结算经验行。写在词表里，一个名字只写一处。限定 category_name，半句话进不来。已查证 hypixelskyblock.minecraft.wiki/wiki/Dungeons（2026-09-02）。"
+    },
+    {
+      "en": "Archer",
+      "zh": "弓箭手",
+      "types": [
+        "category_name",
+        "mob_name"
+      ],
+      "note": "地牢五职业之一。这个名字会被服务器塞进十来种模板：准备界面的「Currently Selected: %s」、选职业广播、职业属性升级行、职业里程碑、Tab 列表、结算经验行。写在词表里，一个名字只写一处。限定 category_name，半句话进不来。已查证 hypixelskyblock.minecraft.wiki/wiki/Dungeons（2026-09-02）。"
+    },
+    {
+      "en": "Tank",
+      "zh": "坦克",
+      "types": [
+        "category_name",
+        "mob_name"
+      ],
+      "note": "地牢五职业之一。这个名字会被服务器塞进十来种模板：准备界面的「Currently Selected: %s」、选职业广播、职业属性升级行、职业里程碑、Tab 列表、结算经验行。写在词表里，一个名字只写一处。限定 category_name，半句话进不来。已查证 hypixelskyblock.minecraft.wiki/wiki/Dungeons（2026-09-02）。"
+    },
+    {
+      "en": "Warrior",
+      "zh": "战士",
+      "types": [
+        "category_name",
+        "mob_name"
+      ],
+      "note": "Scarf（第二层 Boss）召唤的四个亡灵随从之一，各自对应一个玩家职业；Scarf 在随从死亡时的三句台词都用它做占位符。已查证 hypixelskyblock.minecraft.wiki/wiki/Scarf（2026-09-02）。"
+    },
+    {
+      "en": "Priest",
+      "zh": "牧师",
+      "types": [
+        "category_name",
+        "mob_name"
+      ],
+      "note": "Scarf（第二层 Boss）召唤的四个亡灵随从之一，各自对应一个玩家职业；Scarf 在随从死亡时的三句台词都用它做占位符。已查证 hypixelskyblock.minecraft.wiki/wiki/Scarf（2026-09-02）。"
+    },
+    {
+      "en": "Chaos",
+      "zh": "混沌",
+      "types": [
+        "category_name",
+        "mob_name"
+      ],
+      "note": "The Professor（第三层 Boss）四座基座上的守卫之一，出现在侧边栏血量行与「Revive, %s!」的复活台词里。已查证 hypixelskyblock.minecraft.wiki/wiki/The_Professor（2026-09-02）。"
+    },
+    {
+      "en": "Healthy",
+      "zh": "治愈",
+      "types": [
+        "category_name",
+        "mob_name"
+      ],
+      "note": "The Professor（第三层 Boss）四座基座上的守卫之一，出现在侧边栏血量行与「Revive, %s!」的复活台词里。已查证 hypixelskyblock.minecraft.wiki/wiki/The_Professor（2026-09-02）。"
+    },
+    {
+      "en": "Reinforced",
+      "zh": "强化",
+      "types": [
+        "category_name",
+        "mob_name"
+      ],
+      "note": "The Professor（第三层 Boss）四座基座上的守卫之一，出现在侧边栏血量行与「Revive, %s!」的复活台词里。已查证 hypixelskyblock.minecraft.wiki/wiki/The_Professor（2026-09-02）。"
+    },
+    {
+      "en": "Laser",
+      "zh": "激光",
+      "types": [
+        "category_name",
+        "mob_name"
+      ],
+      "note": "The Professor（第三层 Boss）四座基座上的守卫之一，出现在侧边栏血量行与「Revive, %s!」的复活台词里。已查证 hypixelskyblock.minecraft.wiki/wiki/The_Professor（2026-09-02）。"
+    },
+    {
+      "en": "Life",
+      "zh": "生命",
+      "types": [
+        "category_name"
+      ],
+      "note": "地牢祝福的种类名，只出现在「Blessing of %s」这一族模板里（聊天播报、Tab 列表）。英文把中心词 Blessing 放前面，中文放后面，所以词表里只写种类，「祝福」两个字写在模板的译文里。已查证 hypixelskyblock.minecraft.wiki/wiki/Dungeon_Blessing（2026-09-02）确认恰好这五种。"
+    },
+    {
+      "en": "Power",
+      "zh": "力量",
+      "types": [
+        "category_name"
+      ],
+      "note": "地牢祝福的种类名，只出现在「Blessing of %s」这一族模板里（聊天播报、Tab 列表）。英文把中心词 Blessing 放前面，中文放后面，所以词表里只写种类，「祝福」两个字写在模板的译文里。已查证 hypixelskyblock.minecraft.wiki/wiki/Dungeon_Blessing（2026-09-02）确认恰好这五种。"
+    },
+    {
+      "en": "Stone",
+      "zh": "坚石",
+      "types": [
+        "category_name"
+      ],
+      "note": "地牢祝福的种类名，只出现在「Blessing of %s」这一族模板里（聊天播报、Tab 列表）。英文把中心词 Blessing 放前面，中文放后面，所以词表里只写种类，「祝福」两个字写在模板的译文里。已查证 hypixelskyblock.minecraft.wiki/wiki/Dungeon_Blessing（2026-09-02）确认恰好这五种。　Stone 作「坚石」，和 Dungeon_Classes.json 的 Castle of Stone→坚石城堡一致。"
+    },
+    {
+      "en": "Wisdom",
+      "zh": "智慧",
+      "types": [
+        "category_name"
+      ],
+      "note": "地牢祝福的种类名，只出现在「Blessing of %s」这一族模板里（聊天播报、Tab 列表）。英文把中心词 Blessing 放前面，中文放后面，所以词表里只写种类，「祝福」两个字写在模板的译文里。已查证 hypixelskyblock.minecraft.wiki/wiki/Dungeon_Blessing（2026-09-02）确认恰好这五种。"
+    },
+    {
+      "en": "Time",
+      "zh": "时间",
+      "types": [
+        "category_name"
+      ],
+      "note": "地牢祝福的种类名，只出现在「Blessing of %s」这一族模板里（聊天播报、Tab 列表）。英文把中心词 Blessing 放前面，中文放后面，所以词表里只写种类，「祝福」两个字写在模板的译文里。已查证 hypixelskyblock.minecraft.wiki/wiki/Dungeon_Blessing（2026-09-02）确认恰好这五种。"
+    },
+    {
+      "en": "NONE",
+      "zh": "无",
+      "types": [
+        "raw"
+      ],
+      "note": "Tab 列表「标签: 数值」右半边的状态词。引擎在没有记录应答时会拿右半边来查这张表（见 Translator.termed）。"
+    },
+    {
+      "en": "N/A",
+      "zh": "暂无",
+      "types": [
+        "raw"
+      ],
+      "note": "Tab 列表「标签: 数值」右半边的状态词。引擎在没有记录应答时会拿右半边来查这张表（见 Translator.termed）。"
+    },
+    {
+      "en": "Ready",
+      "zh": "就绪",
+      "types": [
+        "raw"
+      ],
+      "note": "Tab 列表「标签: 数值」右半边的状态词。引擎在没有记录应答时会拿右半边来查这张表（见 Translator.termed）。"
+    },
+    {
+      "en": "EMPTY",
+      "zh": "空",
+      "types": [
+        "raw"
+      ],
+      "note": "Tab 列表「标签: 数值」右半边的状态词。引擎在没有记录应答时会拿右半边来查这张表（见 Translator.termed）。"
+    },
+    {
+      "en": "Loading...",
+      "zh": "加载中……",
+      "types": [
+        "raw"
+      ],
+      "note": "Tab 列表「标签: 数值」右半边的状态词。引擎在没有记录应答时会拿右半边来查这张表（见 Translator.termed）。"
+    },
+    {
+      "en": "Soon!",
+      "zh": "快了!",
+      "types": [
+        "raw"
+      ],
+      "note": "Tab 列表「标签: 数值」右半边的状态词。引擎在没有记录应答时会拿右半边来查这张表（见 Translator.termed）。"
+    },
+    {
+      "en": "activated",
+      "zh": "激活",
+      "types": [
+        "raw"
+      ],
+      "note": "第七层第三阶段终端谜题广播「%1$s %2$s a %3$s! (%4$s)」里的动作词与目标词。这些位置是小写的普通词，只能走 raw。"
+    },
+    {
+      "en": "completed",
+      "zh": "完成",
+      "types": [
+        "raw"
+      ],
+      "note": "第七层第三阶段终端谜题广播「%1$s %2$s a %3$s! (%4$s)」里的动作词与目标词。这些位置是小写的普通词，只能走 raw。"
+    },
+    {
+      "en": "terminal",
+      "zh": "终端",
+      "types": [
+        "raw"
+      ],
+      "note": "第七层第三阶段终端谜题广播「%1$s %2$s a %3$s! (%4$s)」里的动作词与目标词。这些位置是小写的普通词，只能走 raw。"
+    },
+    {
+      "en": "device",
+      "zh": "装置",
+      "types": [
+        "raw"
+      ],
+      "note": "第七层第三阶段终端谜题广播「%1$s %2$s a %3$s! (%4$s)」里的动作词与目标词。这些位置是小写的普通词，只能走 raw。"
+    },
+    {
+      "en": "lever",
+      "zh": "拉杆",
+      "types": [
+        "raw"
+      ],
+      "note": "第七层第三阶段终端谜题广播「%1$s %2$s a %3$s! (%4$s)」里的动作词与目标词。这些位置是小写的普通词，只能走 raw。"
+    },
+    {
+      "en": "Total",
+      "zh": "总",
+      "types": [
+        "category_name"
+      ],
+      "note": "职业里程碑「You have dealt %s %s Damage so far!」里的伤害种类：狂战士与法师记总伤害，弓箭手记远程伤害。中文接在「伤害」前面作定语，所以只写一个字/两个字。"
+    },
+    {
+      "en": "Ranged",
+      "zh": "远程",
+      "types": [
+        "category_name"
+      ],
+      "note": "职业里程碑「You have dealt %s %s Damage so far!」里的伤害种类：狂战士与法师记总伤害，弓箭手记远程伤害。中文接在「伤害」前面作定语，所以只写一个字/两个字。"
+    },
+    {
+      "en": "Walk Speed",
+      "zh": "行走速度",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "选好职业后服务器逐行播报「[职业] 数值名 旧值 -> 新值」，数值名走这张表。属性类名字与 GLOSSARY.md 的属性表、_shared/Stats.json 保持一致。"
+    },
+    {
+      "en": "Melee Damage",
+      "zh": "近战伤害",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "选好职业后服务器逐行播报「[职业] 数值名 旧值 -> 新值」，数值名走这张表。属性类名字与 GLOSSARY.md 的属性表、_shared/Stats.json 保持一致。"
+    },
+    {
+      "en": "Arrow Damage",
+      "zh": "箭矢伤害",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "选好职业后服务器逐行播报「[职业] 数值名 旧值 -> 新值」，数值名走这张表。属性类名字与 GLOSSARY.md 的属性表、_shared/Stats.json 保持一致。"
+    },
+    {
+      "en": "Ability Damage",
+      "zh": "技能伤害",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "选好职业后服务器逐行播报「[职业] 数值名 旧值 -> 新值」，数值名走这张表。属性类名字与 GLOSSARY.md 的属性表、_shared/Stats.json 保持一致。"
+    },
+    {
+      "en": "Cooldown Reduction",
+      "zh": "冷却缩减",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "选好职业后服务器逐行播报「[职业] 数值名 旧值 -> 新值」，数值名走这张表。属性类名字与 GLOSSARY.md 的属性表、_shared/Stats.json 保持一致。"
+    },
+    {
+      "en": "Extra Arrow Chance",
+      "zh": "额外箭矢概率",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "选好职业后服务器逐行播报「[职业] 数值名 旧值 -> 新值」，数值名走这张表。属性类名字与 GLOSSARY.md 的属性表、_shared/Stats.json 保持一致。"
+    },
+    {
+      "en": "Intelligence",
+      "zh": "智力",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "选好职业后服务器逐行播报「[职业] 数值名 旧值 -> 新值」，数值名走这张表。属性类名字与 GLOSSARY.md 的属性表、_shared/Stats.json 保持一致。"
+    },
+    {
+      "en": "Strength",
+      "zh": "力量",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "选好职业后服务器逐行播报「[职业] 数值名 旧值 -> 新值」，数值名走这张表。属性类名字与 GLOSSARY.md 的属性表、_shared/Stats.json 保持一致。"
+    },
+    {
+      "en": "Defense",
+      "zh": "防御力",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "选好职业后服务器逐行播报「[职业] 数值名 旧值 -> 新值」，数值名走这张表。属性类名字与 GLOSSARY.md 的属性表、_shared/Stats.json 保持一致。"
+    },
+    {
+      "en": "Total Defense",
+      "zh": "总防御力",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "选好职业后服务器逐行播报「[职业] 数值名 旧值 -> 新值」，数值名走这张表。属性类名字与 GLOSSARY.md 的属性表、_shared/Stats.json 保持一致。"
+    },
+    {
+      "en": "Vitality",
+      "zh": "活力",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "选好职业后服务器逐行播报「[职业] 数值名 旧值 -> 新值」，数值名走这张表。属性类名字与 GLOSSARY.md 的属性表、_shared/Stats.json 保持一致。"
+    },
+    {
+      "en": "Absorption Health",
+      "zh": "伤害吸收生命",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "选好职业后服务器逐行播报「[职业] 数值名 旧值 -> 新值」，数值名走这张表。属性类名字与 GLOSSARY.md 的属性表、_shared/Stats.json 保持一致。"
+    },
+    {
+      "en": "Absorption Shield Health Required",
+      "zh": "护盾触发所需生命",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "选好职业后服务器逐行播报「[职业] 数值名 旧值 -> 新值」，数值名走这张表。属性类名字与 GLOSSARY.md 的属性表、_shared/Stats.json 保持一致。"
+    },
+    {
+      "en": "Absorption Shield Percentage",
+      "zh": "护盾比例",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "选好职业后服务器逐行播报「[职业] 数值名 旧值 -> 新值」，数值名走这张表。属性类名字与 GLOSSARY.md 的属性表、_shared/Stats.json 保持一致。"
+    },
+    {
+      "en": "Barrier Cooldown",
+      "zh": "屏障冷却",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "选好职业后服务器逐行播报「[职业] 数值名 旧值 -> 新值」，数值名走这张表。属性类名字与 GLOSSARY.md 的属性表、_shared/Stats.json 保持一致。"
+    },
+    {
+      "en": "Revive Cooldown",
+      "zh": "复活冷却",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "选好职业后服务器逐行播报「[职业] 数值名 旧值 -> 新值」，数值名走这张表。属性类名字与 GLOSSARY.md 的属性表、_shared/Stats.json 保持一致。"
+    },
+    {
+      "en": "Overheal Maximum Shield",
+      "zh": "过量治疗护盾上限",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "选好职业后服务器逐行播报「[职业] 数值名 旧值 -> 新值」，数值名走这张表。属性类名字与 GLOSSARY.md 的属性表、_shared/Stats.json 保持一致。"
+    },
+    {
+      "en": "Healing Aura Healing",
+      "zh": "治疗光环治疗量",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "选好职业后服务器逐行播报「[职业] 数值名 旧值 -> 新值」，数值名走这张表。属性类名字与 GLOSSARY.md 的属性表、_shared/Stats.json 保持一致。"
+    },
+    {
+      "en": "Ghost Healing Aura Healing",
+      "zh": "幽灵治疗光环治疗量",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "选好职业后服务器逐行播报「[职业] 数值名 旧值 -> 新值」，数值名走这张表。属性类名字与 GLOSSARY.md 的属性表、_shared/Stats.json 保持一致。"
+    },
+    {
+      "en": "Bloodlust Heal Percent",
+      "zh": "嗜血治疗比例",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "选好职业后服务器逐行播报「[职业] 数值名 旧值 -> 新值」，数值名走这张表。属性类名字与 GLOSSARY.md 的属性表、_shared/Stats.json 保持一致。"
+    },
+    {
+      "en": "Bloodlust Duration",
+      "zh": "嗜血持续时间",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "选好职业后服务器逐行播报「[职业] 数值名 旧值 -> 新值」，数值名走这张表。属性类名字与 GLOSSARY.md 的属性表、_shared/Stats.json 保持一致。"
+    },
+    {
+      "en": "Lust For Blood Damage Increase Cap",
+      "zh": "鲜血渴望伤害上限",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "选好职业后服务器逐行播报「[职业] 数值名 旧值 -> 新值」，数值名走这张表。属性类名字与 GLOSSARY.md 的属性表、_shared/Stats.json 保持一致。"
+    },
+    {
+      "en": "Lust For Blood Damage Increase Per Hit",
+      "zh": "鲜血渴望每击伤害提升",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "选好职业后服务器逐行播报「[职业] 数值名 旧值 -> 新值」，数值名走这张表。属性类名字与 GLOSSARY.md 的属性表、_shared/Stats.json 保持一致。"
+    },
+    {
+      "en": "Indomitable Strength to Defense",
+      "zh": "不屈力量转防御",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "选好职业后服务器逐行播报「[职业] 数值名 旧值 -> 新值」，数值名走这张表。属性类名字与 GLOSSARY.md 的属性表、_shared/Stats.json 保持一致。"
+    },
+    {
+      "en": "Weapon Master Swing Range Increase",
+      "zh": "武器大师挥击范围提升",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "选好职业后服务器逐行播报「[职业] 数值名 旧值 -> 新值」，数值名走这张表。属性类名字与 GLOSSARY.md 的属性表、_shared/Stats.json 保持一致。"
+    },
+    {
+      "en": "Rapid Fire",
+      "zh": "急速射击",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "地牢职业技能或 Boss 招式名，出现在「Used %s!」「%s is ready to use!」「%s 的 %s 命中了你」这几族模板里。"
+    },
+    {
+      "en": "Rapid-fire",
+      "zh": "急速射击",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "地牢职业技能或 Boss 招式名，出现在「Used %s!」「%s is ready to use!」「%s 的 %s 命中了你」这几族模板里。"
+    },
+    {
+      "en": "Throwing Axe",
+      "zh": "飞斧",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "地牢职业技能或 Boss 招式名，出现在「Used %s!」「%s is ready to use!」「%s 的 %s 命中了你」这几族模板里。　技能名与 Dungeons/GUI_Item/Dungeon_Classes.json 的职业技能列表一致。"
+    },
+    {
+      "en": "Ragnarok",
+      "zh": "诸神黄昏",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "地牢职业技能或 Boss 招式名，出现在「Used %s!」「%s is ready to use!」「%s 的 %s 命中了你」这几族模板里。　技能名与 Dungeons/GUI_Item/Dungeon_Classes.json 的职业技能列表一致。"
+    },
+    {
+      "en": "Thunderstorm",
+      "zh": "雷暴",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "地牢职业技能或 Boss 招式名，出现在「Used %s!」「%s is ready to use!」「%s 的 %s 命中了你」这几族模板里。　技能名与 Dungeons/GUI_Item/Dungeon_Classes.json 的职业技能列表一致。"
+    },
+    {
+      "en": "Guided Sheep",
+      "zh": "制导绵羊",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "地牢职业技能或 Boss 招式名，出现在「Used %s!」「%s is ready to use!」「%s 的 %s 命中了你」这几族模板里。　技能名与 Dungeons/GUI_Item/Dungeon_Classes.json 的职业技能列表一致。"
+    },
+    {
+      "en": "Healing Circle",
+      "zh": "治疗法阵",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "地牢职业技能或 Boss 招式名，出现在「Used %s!」「%s is ready to use!」「%s 的 %s 命中了你」这几族模板里。　技能名与 Dungeons/GUI_Item/Dungeon_Classes.json 的职业技能列表一致。"
+    },
+    {
+      "en": "Wish",
+      "zh": "祈愿",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "地牢职业技能或 Boss 招式名，出现在「Used %s!」「%s is ready to use!」「%s 的 %s 命中了你」这几族模板里。　技能名与 Dungeons/GUI_Item/Dungeon_Classes.json 的职业技能列表一致。"
+    },
+    {
+      "en": "Explosive Shot",
+      "zh": "爆炸射击",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "地牢职业技能或 Boss 招式名，出现在「Used %s!」「%s is ready to use!」「%s 的 %s 命中了你」这几族模板里。　技能名与 Dungeons/GUI_Item/Dungeon_Classes.json 的职业技能列表一致。"
+    },
+    {
+      "en": "Seismic Wave",
+      "zh": "地震波",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "地牢职业技能或 Boss 招式名，出现在「Used %s!」「%s is ready to use!」「%s 的 %s 命中了你」这几族模板里。　技能名与 Dungeons/GUI_Item/Dungeon_Classes.json 的职业技能列表一致。"
+    },
+    {
+      "en": "Castle of Stone",
+      "zh": "坚石城堡",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "地牢职业技能或 Boss 招式名，出现在「Used %s!」「%s is ready to use!」「%s 的 %s 命中了你」这几族模板里。　技能名与 Dungeons/GUI_Item/Dungeon_Classes.json 的职业技能列表一致。"
+    },
+    {
+      "en": "Shadow Wave",
+      "zh": "暗影波",
+      "types": [
+        "category_name"
+      ],
+      "note": "地牢职业技能或 Boss 招式名，出现在「Used %s!」「%s is ready to use!」「%s 的 %s 命中了你」这几族模板里。"
+    },
+    {
+      "en": "Static Field",
+      "zh": "静电力场",
+      "types": [
+        "category_name"
+      ],
+      "note": "地牢职业技能或 Boss 招式名，出现在「Used %s!」「%s is ready to use!」「%s 的 %s 命中了你」这几族模板里。"
+    },
+    {
+      "en": "Giga Lightning",
+      "zh": "千兆闪电",
+      "types": [
+        "category_name"
+      ],
+      "note": "地牢职业技能或 Boss 招式名，出现在「Used %s!」「%s is ready to use!」「%s 的 %s 命中了你」这几族模板里。"
+    },
+    {
+      "en": "Frenzy",
+      "zh": "狂乱",
+      "types": [
+        "category_name"
+      ],
+      "note": "地牢职业技能或 Boss 招式名，出现在「Used %s!」「%s is ready to use!」「%s 的 %s 命中了你」这几族模板里。"
+    },
+    {
+      "en": "Focus Laser",
+      "zh": "聚焦光束",
+      "types": [
+        "category_name"
+      ],
+      "note": "地牢职业技能或 Boss 招式名，出现在「Used %s!」「%s is ready to use!」「%s 的 %s 命中了你」这几族模板里。"
+    },
+    {
+      "en": "Focus Beam",
+      "zh": "聚焦光束",
+      "types": [
+        "category_name"
+      ],
+      "note": "地牢职业技能或 Boss 招式名，出现在「Used %s!」「%s is ready to use!」「%s 的 %s 命中了你」这几族模板里。"
+    },
+    {
+      "en": "Stomp",
+      "zh": "践踏",
+      "types": [
+        "category_name"
+      ],
+      "note": "地牢职业技能或 Boss 招式名，出现在「Used %s!」「%s is ready to use!」「%s 的 %s 命中了你」这几族模板里。"
+    },
+    {
+      "en": "Laser Eyes",
+      "zh": "激光之眼",
+      "types": [
+        "category_name"
+      ],
+      "note": "地牢职业技能或 Boss 招式名，出现在「Used %s!」「%s is ready to use!」「%s 的 %s 命中了你」这几族模板里。"
+    },
+    {
+      "en": "Charge",
+      "zh": "冲锋",
+      "types": [
+        "category_name"
+      ],
+      "note": "地牢职业技能或 Boss 招式名，出现在「Used %s!」「%s is ready to use!」「%s 的 %s 命中了你」这几族模板里。"
+    },
+    {
+      "en": "Arrow Barrage",
+      "zh": "箭雨",
+      "types": [
+        "category_name"
+      ],
+      "note": "地牢职业技能或 Boss 招式名，出现在「Used %s!」「%s is ready to use!」「%s 的 %s 命中了你」这几族模板里。"
+    },
+    {
+      "en": "Damage Potion",
+      "zh": "伤害药水",
+      "types": [
+        "category_name"
+      ],
+      "note": "地牢职业技能或 Boss 招式名，出现在「Used %s!」「%s is ready to use!」「%s 的 %s 命中了你」这几族模板里。"
+    },
+    {
+      "en": "Zombie Grunt",
+      "zh": "僵尸小兵",
+      "types": [
+        "mob_name",
+        "category_name"
+      ],
+      "note": "地牢里的怪物名，按 GLOSSARY.md「怪物名：和物品名同一套规则」条目翻译。"
+    },
+    {
+      "en": "Zombie Soldier",
+      "zh": "僵尸士兵",
+      "types": [
+        "mob_name",
+        "category_name"
+      ],
+      "note": "地牢里的怪物名，按 GLOSSARY.md「怪物名：和物品名同一套规则」条目翻译。"
+    },
+    {
+      "en": "Zombie Knight",
+      "zh": "僵尸骑士",
+      "types": [
+        "mob_name",
+        "category_name"
+      ],
+      "note": "地牢里的怪物名，按 GLOSSARY.md「怪物名：和物品名同一套规则」条目翻译。"
+    },
+    {
+      "en": "Zombie Commander",
+      "zh": "僵尸指挥官",
+      "types": [
+        "mob_name",
+        "category_name"
+      ],
+      "note": "地牢里的怪物名，按 GLOSSARY.md「怪物名：和物品名同一套规则」条目翻译。"
+    },
+    {
+      "en": "Zombie Lord",
+      "zh": "僵尸领主",
+      "types": [
+        "mob_name",
+        "category_name"
+      ],
+      "note": "地牢里的怪物名，按 GLOSSARY.md「怪物名：和物品名同一套规则」条目翻译。"
+    },
+    {
+      "en": "Skeleton Grunt",
+      "zh": "骷髅小兵",
+      "types": [
+        "mob_name",
+        "category_name"
+      ],
+      "note": "地牢里的怪物名，按 GLOSSARY.md「怪物名：和物品名同一套规则」条目翻译。"
+    },
+    {
+      "en": "Skeleton Soldier",
+      "zh": "骷髅士兵",
+      "types": [
+        "mob_name",
+        "category_name"
+      ],
+      "note": "地牢里的怪物名，按 GLOSSARY.md「怪物名：和物品名同一套规则」条目翻译。"
+    },
+    {
+      "en": "Skeleton Master",
+      "zh": "骷髅大师",
+      "types": [
+        "mob_name",
+        "category_name"
+      ],
+      "note": "地牢里的怪物名，按 GLOSSARY.md「怪物名：和物品名同一套规则」条目翻译。"
+    },
+    {
+      "en": "Crypt Lurker",
+      "zh": "墓穴潜伏者",
+      "types": [
+        "mob_name",
+        "category_name"
+      ],
+      "note": "地牢里的怪物名，按 GLOSSARY.md「怪物名：和物品名同一套规则」条目翻译。"
+    },
+    {
+      "en": "Crypt Souleater",
+      "zh": "墓穴噬魂者",
+      "types": [
+        "mob_name",
+        "category_name"
+      ],
+      "note": "地牢里的怪物名，按 GLOSSARY.md「怪物名：和物品名同一套规则」条目翻译。"
+    },
+    {
+      "en": "Crypt Dreadlord",
+      "zh": "墓穴恐惧领主",
+      "types": [
+        "mob_name",
+        "category_name"
+      ],
+      "note": "地牢里的怪物名，按 GLOSSARY.md「怪物名：和物品名同一套规则」条目翻译。"
+    },
+    {
+      "en": "Lost Adventurer",
+      "zh": "迷失冒险者",
+      "types": [
+        "mob_name",
+        "category_name"
+      ],
+      "note": "地牢里的怪物名，按 GLOSSARY.md「怪物名：和物品名同一套规则」条目翻译。"
+    },
+    {
+      "en": "Angry Archaeologist",
+      "zh": "愤怒的考古学家",
+      "types": [
+        "mob_name",
+        "category_name"
+      ],
+      "note": "地牢里的怪物名，按 GLOSSARY.md「怪物名：和物品名同一套规则」条目翻译。"
+    },
+    {
+      "en": "Frozen Adventurer",
+      "zh": "冰冻冒险者",
+      "types": [
+        "mob_name",
+        "category_name"
+      ],
+      "note": "地牢里的怪物名，按 GLOSSARY.md「怪物名：和物品名同一套规则」条目翻译。"
+    },
+    {
+      "en": "Spirit Chicken",
+      "zh": "灵魂鸡",
+      "types": [
+        "mob_name",
+        "category_name"
+      ],
+      "note": "地牢里的怪物名，按 GLOSSARY.md「怪物名：和物品名同一套规则」条目翻译。"
+    },
+    {
+      "en": "Chicken Mine",
+      "zh": "鸡雷",
+      "types": [
+        "mob_name",
+        "category_name"
+      ],
+      "note": "地牢里的怪物名，按 GLOSSARY.md「怪物名：和物品名同一套规则」条目翻译。"
+    },
+    {
+      "en": "Watchful Eye",
+      "zh": "监视之眼",
+      "types": [
+        "mob_name",
+        "category_name"
+      ],
+      "note": "地牢里的怪物名，按 GLOSSARY.md「怪物名：和物品名同一套规则」条目翻译。"
+    },
+    {
+      "en": "Laser Guardian",
+      "zh": "激光守卫",
+      "types": [
+        "mob_name",
+        "category_name"
+      ],
+      "note": "地牢里的怪物名，按 GLOSSARY.md「怪物名：和物品名同一套规则」条目翻译。"
+    },
+    {
+      "en": "Stormy Skeleton Soldier",
+      "zh": "风暴骷髅士兵",
+      "types": [
+        "mob_name",
+        "category_name"
+      ],
+      "note": "地牢里的怪物名，按 GLOSSARY.md「怪物名：和物品名同一套规则」条目翻译。"
+    },
+    {
+      "en": "Tripwire",
+      "zh": "绊线",
+      "types": [
+        "category_name"
+      ],
+      "note": "地牢机关名，出现在「The %s Trap hit you for %s damage!」里。"
+    },
+    {
+      "en": "Wood",
+      "zh": "木质",
+      "types": [
+        "category_name"
+      ],
+      "note": "地牢结算宝箱的最低一档。原版 Minecraft 材料名按 GLOSSARY.md 的规则处理；这里作宝箱等级的定语，作「木质」而不是「木头」。"
+    },
+    {
+      "en": "Bedrock",
+      "zh": "基岩",
+      "types": [
+        "category_name"
+      ],
+      "note": "地牢结算宝箱的最高一档。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理。"
+    },
+    {
+      "en": "Boss Collections",
+      "zh": "Boss 收藏品",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "空岛等级「升级途径」里的一类经验来源：击败地牢七位 Boss 与 Kuudra 各自累计一份收藏。已查证 hypixelskyblock.minecraft.wiki/wiki/Collections#Boss_Collections（2026-09-02）。Collections 作「收藏品」，和本表已有的 Collections 一致；Boss 是玩家通用叫法，保持原样。"
+    },
+    {
+      "en": "Common",
+      "zh": "普通",
+      "types": [
+        "category_name"
+      ],
+      "note": "稀有度词的首字母大写写法。_shared/Rarity.json 收的是物品 Lore 末行那种全大写的 UNCOMMON / RARE，和这里不是同一个字符串；分解台的「Insert all salvageable %s items」之类模板里服务器发的是首字母大写这一种，走词表。译名与 Rarity.json 一致。"
+    },
+    {
+      "en": "Uncommon",
+      "zh": "罕见",
+      "types": [
+        "category_name"
+      ],
+      "note": "稀有度词的首字母大写写法。_shared/Rarity.json 收的是物品 Lore 末行那种全大写的 UNCOMMON / RARE，和这里不是同一个字符串；分解台的「Insert all salvageable %s items」之类模板里服务器发的是首字母大写这一种，走词表。译名与 Rarity.json 一致。"
+    },
+    {
+      "en": "Rare",
+      "zh": "稀有",
+      "types": [
+        "category_name"
+      ],
+      "note": "稀有度词的首字母大写写法。_shared/Rarity.json 收的是物品 Lore 末行那种全大写的 UNCOMMON / RARE，和这里不是同一个字符串；分解台的「Insert all salvageable %s items」之类模板里服务器发的是首字母大写这一种，走词表。译名与 Rarity.json 一致。"
+    },
+    {
+      "en": "Epic",
+      "zh": "史诗",
+      "types": [
+        "category_name"
+      ],
+      "note": "稀有度词的首字母大写写法。_shared/Rarity.json 收的是物品 Lore 末行那种全大写的 UNCOMMON / RARE，和这里不是同一个字符串；分解台的「Insert all salvageable %s items」之类模板里服务器发的是首字母大写这一种，走词表。译名与 Rarity.json 一致。"
+    },
+    {
+      "en": "Legendary",
+      "zh": "传说",
+      "types": [
+        "category_name"
+      ],
+      "note": "稀有度词的首字母大写写法。_shared/Rarity.json 收的是物品 Lore 末行那种全大写的 UNCOMMON / RARE，和这里不是同一个字符串；分解台的「Insert all salvageable %s items」之类模板里服务器发的是首字母大写这一种，走词表。译名与 Rarity.json 一致。"
+    },
+    {
+      "en": "Mythic",
+      "zh": "神话",
+      "types": [
+        "category_name"
+      ],
+      "note": "稀有度词的首字母大写写法。_shared/Rarity.json 收的是物品 Lore 末行那种全大写的 UNCOMMON / RARE，和这里不是同一个字符串；分解台的「Insert all salvageable %s items」之类模板里服务器发的是首字母大写这一种，走词表。译名与 Rarity.json 一致。"
+    },
+    {
+      "en": "The Wither Lords",
+      "zh": "凋零领主",
+      "types": [
+        "raw",
+        "mob_name",
+        "category_name"
+      ],
+      "note": "问答谜题房 Oruo 的选项内容，出现在「 ⓐ %s」这一族模板里。题库很大，只收已经在实测里见过的；查不到的选项保持英文，不影响其余部分。已查证 hypixelskyblock.minecraft.wiki/wiki/Catacombs_Puzzle_Rooms#Quiz（2026-09-02）。"
+    },
+    {
+      "en": "Necromancer Lord",
+      "zh": "亡灵领主",
+      "types": [
+        "raw",
+        "mob_name",
+        "category_name"
+      ],
+      "note": "问答谜题房 Oruo 的选项内容，出现在「 ⓐ %s」这一族模板里。题库很大，只收已经在实测里见过的；查不到的选项保持英文，不影响其余部分。已查证 hypixelskyblock.minecraft.wiki/wiki/Catacombs_Puzzle_Rooms#Quiz（2026-09-02）。"
+    },
+    {
+      "en": "Apprentice Necromancer",
+      "zh": "见习亡灵法师",
+      "types": [
+        "raw",
+        "mob_name",
+        "category_name"
+      ],
+      "note": "问答谜题房 Oruo 的选项内容，出现在「 ⓐ %s」这一族模板里。题库很大，只收已经在实测里见过的；查不到的选项保持英文，不影响其余部分。已查证 hypixelskyblock.minecraft.wiki/wiki/Catacombs_Puzzle_Rooms#Quiz（2026-09-02）。"
+    },
+    {
+      "en": "Master Necromancer",
+      "zh": "亡灵法师大师",
+      "types": [
+        "raw",
+        "mob_name",
+        "category_name"
+      ],
+      "note": "问答谜题房 Oruo 的选项内容，出现在「 ⓐ %s」这一族模板里。题库很大，只收已经在实测里见过的；查不到的选项保持英文，不影响其余部分。已查证 hypixelskyblock.minecraft.wiki/wiki/Catacombs_Puzzle_Rooms#Quiz（2026-09-02）。"
+    },
+    {
+      "en": "New Necromancer",
+      "zh": "新晋亡灵法师",
+      "types": [
+        "raw",
+        "mob_name",
+        "category_name"
+      ],
+      "note": "问答谜题房 Oruo 的选项内容，出现在「 ⓐ %s」这一族模板里。题库很大，只收已经在实测里见过的；查不到的选项保持英文，不影响其余部分。已查证 hypixelskyblock.minecraft.wiki/wiki/Catacombs_Puzzle_Rooms#Quiz（2026-09-02）。"
+    },
+    {
+      "en": "Shaman Necromancer",
+      "zh": "萨满亡灵法师",
+      "types": [
+        "raw",
+        "mob_name",
+        "category_name"
+      ],
+      "note": "问答谜题房 Oruo 的选项内容，出现在「 ⓐ %s」这一族模板里。题库很大，只收已经在实测里见过的；查不到的选项保持英文，不影响其余部分。已查证 hypixelskyblock.minecraft.wiki/wiki/Catacombs_Puzzle_Rooms#Quiz（2026-09-02）。"
+    },
+    {
+      "en": "Night Spider",
+      "zh": "夜行蜘蛛",
+      "types": [
+        "raw",
+        "mob_name",
+        "category_name"
+      ],
+      "note": "问答谜题房 Oruo 的选项内容，出现在「 ⓐ %s」这一族模板里。题库很大，只收已经在实测里见过的；查不到的选项保持英文，不影响其余部分。已查证 hypixelskyblock.minecraft.wiki/wiki/Catacombs_Puzzle_Rooms#Quiz（2026-09-02）。"
+    },
+    {
+      "en": "Zombie Villager",
+      "zh": "僵尸村民",
+      "types": [
+        "raw",
+        "mob_name",
+        "category_name"
+      ],
+      "note": "问答谜题房 Oruo 的选项内容，出现在「 ⓐ %s」这一族模板里。题库很大，只收已经在实测里见过的；查不到的选项保持英文，不影响其余部分。已查证 hypixelskyblock.minecraft.wiki/wiki/Catacombs_Puzzle_Rooms#Quiz（2026-09-02）。"
+    },
+    {
+      "en": "Zombie Horse",
+      "zh": "僵尸马",
+      "types": [
+        "raw",
+        "mob_name",
+        "category_name"
+      ],
+      "note": "问答谜题房 Oruo 的选项内容，出现在「 ⓐ %s」这一族模板里。题库很大，只收已经在实测里见过的；查不到的选项保持英文，不影响其余部分。已查证 hypixelskyblock.minecraft.wiki/wiki/Catacombs_Puzzle_Rooms#Quiz（2026-09-02）。"
+    },
+    {
+      "en": "Bloodlust Damage",
+      "zh": "嗜血伤害",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "选好职业后服务器逐行播报「[职业] 数值名 旧值 -> 新值」,数值名走这张表;与同族的 Bloodlust Heal Percent / Bloodlust Duration 一致。2026-09-02 实测采到。"
+    },
+    {
+      "en": "Safari",
+      "zh": "游猎",
+      "types": [
+        "category_name"
+      ],
+      "note": "Bazaar 精华分类的取值(Safari Essence)。已查证 hypixelskyblock.minecraft.wiki/wiki/Safari_Essence(2026-09-02):来自 Torrhus Canyon 的 Critter Safari。限定 category_name,只用于「%1$s Essence」这类分类名。"
+    },
+    {
+      "en": "Balloon",
+      "zh": "气球",
+      "types": [
+        "category_name"
+      ],
+      "note": "Bonzo 的招式名,出现在「%1$s's %2$s hit you for %3$s damage.」的招式位。2026-09-02 实测采到「Bonzo's Balloon hit you for …」。"
+    },
+    {
+      "en": "Guests Limit Upgrade",
+      "zh": "访客上限升级",
+      "types": [
+        "raw"
+      ],
+      "note": "动作栏经验提示里的经验来源:「+10 SkyBlock XP (Guests Limit Upgrade)」。和 Guests Limit 同族,这里是带 Upgrade 的整值。2026-09-02 实测采到。"
+    },
+    {
+      "en": "Entrance",
+      "zh": "入口",
+      "types": [
+        "category_name"
+      ],
+      "note": "地牢楼层的取值:「Currently Selected: %s」里的入口层(组队查找器卡片上的整行「Floor: Entrance」另有精确记录,不走词表)。与 Dungeons/GUI_Item/Catacombs_Gate.json 里「The Catacombs - Entrance」的既定译法一致。2026-09-02 实测采到。"
+    },
+    {
+      "en": "Recently Created",
+      "zh": "最近创建",
+      "types": [
+        "category_name"
+      ],
+      "note": "组队查找器排序方式的取值,出现在「Currently Selected: %s」。与 Dungeons/GUI_Item/Mort.json#mort_recently_created 一致。"
+    },
+    {
+      "en": "The Catacombs",
+      "zh": "地牢",
+      "types": [
+        "category_name"
+      ],
+      "note": "地牢类型的取值,出现在「Currently Selected: %s」。与 Dungeons/GUI_Item/Mort.json#mort_the_catacombs 的既定译法一致。"
+    },
+    {
+      "en": "Highest Dungeon Level",
+      "zh": "地牢等级最高",
+      "types": [
+        "category_name"
+      ],
+      "note": "组队查找器排序方式的取值,出现在「Sort: %s」/「Currently Selected: %s」。与 Dungeons/GUI_Item/Mort.json#mort_sort_highest_dungeon_level 一致。2026-09-02 实测采到。"
+    },
+    {
+      "en": "Largest Group Size",
+      "zh": "队伍人数最多",
+      "types": [
+        "category_name"
+      ],
+      "note": "组队查找器排序方式的取值,出现在「Sort: %s」/「Currently Selected: %s」。与 Dungeons/GUI_Item/Mort.json#mort_sort_largest_group_size 一致。2026-09-02 实测采到。"
+    },
+    {
+      "en": "Occasional",
+      "zh": "偶见",
+      "types": [
+        "category_name"
+      ],
+      "note": "RNG 计量表「Odds: %s」的几率档位，三档 Occasional / Rare / Extraordinary。不用「罕见」——那是稀有度 Uncommon 的既定译名。"
+    },
+    {
+      "en": "Extraordinary",
+      "zh": "非凡",
+      "types": [
+        "category_name"
+      ],
+      "note": "同上，几率最低的一档。"
+    },
+    {
+      "en": "Co-op",
+      "zh": "合作",
+      "types": [
+        "category_name"
+      ],
+      "note": "银行根菜单的账户名「%s Bank Account」的取值;GLOSSARY 统一 Co-op → 合作。"
+    },
+    {
+      "en": "Starter",
+      "zh": "入门",
+      "types": [
+        "category_name"
+      ],
+      "note": "银行账户档次(Bank_Account_Upgrades)。"
+    },
+    {
+      "en": "Deluxe",
+      "zh": "豪华",
+      "types": [
+        "category_name"
+      ],
+      "note": "银行账户档次。"
+    },
+    {
+      "en": "Super Deluxe",
+      "zh": "超级豪华",
+      "types": [
+        "category_name"
+      ],
+      "note": "银行账户档次。"
+    },
+    {
+      "en": "Premier",
+      "zh": "尊享",
+      "types": [
+        "category_name"
+      ],
+      "note": "银行账户档次。"
+    },
+    {
+      "en": "Luxurious",
+      "zh": "奢华",
+      "types": [
+        "category_name"
+      ],
+      "note": "银行账户档次。"
+    },
+    {
+      "en": "Palatial",
+      "zh": "殿堂",
+      "types": [
+        "category_name"
+      ],
+      "note": "银行账户档次,最高一档。"
+    },
+    {
+      "en": "Million",
+      "zh": "百万",
+      "types": [
+        "raw"
+      ],
+      "note": "银行余额上限的单位(Balance limit: 250 Million)。只限 raw:别处的 million 都在整句里。"
+    },
+    {
+      "en": "Billion",
+      "zh": "十亿",
+      "types": [
+        "raw"
+      ],
+      "note": "银行余额上限的单位。"
+    },
+    {
+      "en": "Enchant",
+      "zh": "附魔",
+      "types": [
+        "raw"
+      ],
+      "note": "技能菜单说明模板「%1$s %2$s to earn %3$s EXP!」的动词。"
+    },
+    {
+      "en": "Brew",
+      "zh": "酿造",
+      "types": [
+        "raw"
+      ],
+      "note": "同上。"
+    },
+    {
+      "en": "Craft",
+      "zh": "制作",
+      "types": [
+        "raw"
+      ],
+      "note": "同上。"
+    },
+    {
+      "en": "fuse",
+      "zh": "熔合",
+      "types": [
+        "raw"
+      ],
+      "note": "同上(符文制作那一句的第二个动词)。"
+    },
+    {
+      "en": "items",
+      "zh": "物品",
+      "types": [
+        "raw"
+      ],
+      "note": "同上的对象。只限 raw。"
+    },
+    {
+      "en": "potions",
+      "zh": "药水",
+      "types": [
+        "raw"
+      ],
+      "note": "同上。"
+    },
+    {
+      "en": "runes",
+      "zh": "符文",
+      "types": [
+        "raw"
+      ],
+      "note": "同上。"
+    },
+    {
+      "en": "Found",
+      "zh": "已发现",
+      "types": [
+        "raw"
+      ],
+      "note": "生物图鉴族系统计「Families %1$s: %2$s%」的取值。"
+    },
+    {
+      "en": "Completed",
+      "zh": "已完成",
+      "types": [
+        "raw"
+      ],
+      "note": "同上。"
+    },
+    {
+      "en": "Expert",
+      "zh": "专家",
+      "types": [
+        "category_name"
+      ],
+      "note": "Fann 处的训练课程档次(Taming 每级奖励)。"
+    },
+    {
+      "en": "Ultra",
+      "zh": "极限",
+      "types": [
+        "category_name"
+      ],
+      "note": "同上。"
+    },
+    {
+      "en": "Desert",
+      "zh": "沙漠",
+      "types": [
+        "category_name"
+      ],
+      "note": "森林之心的低语种类「%1$s Whispers」;Forest 已有词条。"
+    },
+    {
+      "en": "Slug",
+      "zh": "蛞蝓",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园等级奖励解锁的害虫名「%s Pest」。"
+    },
+    {
+      "en": "Tic Tac Toe",
+      "zh": "井字棋",
+      "types": [
+        "category_name"
+      ],
+      "note": "社交每级奖励可购买的小游戏;沿用 Dungeon_Run.json 井字棋谜题的译名。"
+    },
+    {
+      "en": "Four in a Row",
+      "zh": "四子棋",
+      "types": [
+        "category_name"
+      ],
+      "note": "社交每级奖励可购买的小游戏。"
+    },
+    {
+      "en": "Egg Hunt",
+      "zh": "寻蛋游戏",
+      "types": [
+        "category_name"
+      ],
+      "note": "社交每级奖励可购买的小游戏。"
+    },
+    {
+      "en": "Island NPCs",
+      "zh": "岛屿 NPC",
+      "types": [
+        "category_name"
+      ],
+      "note": "社交每级奖励可购买的物品。"
+    },
+    {
+      "en": "Parkour Blocks",
+      "zh": "跑酷方块",
+      "types": [
+        "category_name"
+      ],
+      "note": "社交每级奖励可购买的物品。"
+    },
+    {
+      "en": "Social Display",
+      "zh": "社交展示牌",
+      "types": [
+        "category_name"
+      ],
+      "note": "社交每级奖励可购买的物品;Display 沿用宾果展示牌的「展示牌」。"
+    },
+    {
+      "en": "Showcase Block",
+      "zh": "展示方块",
+      "types": [
+        "category_name"
+      ],
+      "note": "社交每级奖励可购买的物品。"
+    },
+    {
+      "en": "Naming",
+      "zh": "命名",
+      "types": [
+        "raw"
+      ],
+      "note": "社交每级奖励「Unlock Island %s」的取值;Ranks 按 GLOSSARY 保留英文,不加词条。"
+    },
+    {
+      "en": "Faction",
+      "zh": "派系",
+      "types": [
+        "category_name"
+      ],
+      "note": "巧克力工厂「%s Tower: UNLOCKED」的取值。"
+    },
+    {
+      "en": "Breakfast",
+      "zh": "早餐",
+      "types": [
+        "category_name"
+      ],
+      "note": "Hoppity 寻兔行动彩蛋的时段名(Chocolate %1$s Egg),译名和 Common_Menus.json 的标题一致。"
+    },
+    {
+      "en": "Brunch",
+      "zh": "早午餐",
+      "types": [
+        "category_name"
+      ],
+      "note": "同上。"
+    },
+    {
+      "en": "Lunch",
+      "zh": "午餐",
+      "types": [
+        "category_name"
+      ],
+      "note": "同上。"
+    },
+    {
+      "en": "Déjeuner",
+      "zh": "午宴",
+      "types": [
+        "category_name"
+      ],
+      "note": "同上。"
+    },
+    {
+      "en": "Dinner",
+      "zh": "晚餐",
+      "types": [
+        "category_name"
+      ],
+      "note": "同上。"
+    },
+    {
+      "en": "Supper",
+      "zh": "晚膳",
+      "types": [
+        "category_name"
+      ],
+      "note": "与 GUI_Title/Common_Menus.json 的「巧克力晚膳蛋」统一；Dinner 已译「晚餐」，两种活动蛋必须能区分。"
+    },
+    {
+      "en": "behind leaderboards",
+      "zh": "排行榜后面",
+      "types": [
+        "raw"
+      ],
+      "note": "找到彩蛋的位置描述(hoppity_egg_found_at 的 %2$s)。"
+    },
+    {
+      "en": "beside the Hub Island portal",
+      "zh": "大厅岛传送门旁边",
+      "types": [
+        "raw"
+      ],
+      "note": "同上。"
+    },
+    {
+      "en": "near Malik",
+      "zh": "Malik 附近",
+      "types": [
+        "raw"
+      ],
+      "note": "同上;Malik 是 NPC 人名,保留英文。"
+    },
+    {
+      "en": "Wolf",
+      "zh": "狼",
+      "types": [
+        "mob_name"
+      ],
+      "note": "原版生物及 Sven 猎手对应种类。官方中文名。"
+    },
+    {
+      "en": "The End",
+      "zh": "末地",
+      "types": [
+        "location_name",
+        "raw"
+      ],
+      "note": "原版维度名,官方中文。"
+    },
+    {
+      "en": "Crimson Isle",
+      "zh": "绯红岛",
+      "types": [
+        "location_name",
+        "raw"
+      ],
+      "note": "绯红岛主区域。已查证 hypixelskyblock.minecraft.wiki/w/Crimson_Isle。"
+    },
+    {
+      "en": "The Farming Islands",
+      "zh": "农业岛屿",
+      "types": [
+        "location_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "The Rift",
+      "zh": "裂隙",
+      "types": [
+        "location_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Backwater Bayou",
+      "zh": "死水沼泽",
+      "types": [
+        "location_name",
+        "raw"
+      ],
+      "note": "钓鱼第一岛。已查证 hypixelskyblock.minecraft.wiki/w/Backwater_Bayou(2026-09-03):Junk Fishing / Bayou Sea Creatures 所在的沼泽岛。Fishing_Stats.json 已用「死水沼泽」,与 Enid.json 的「穷乡河湾」相比取多数并与 Pearl of the Swamp 的 swamp 对应。"
+    },
+    {
+      "en": "Lotus Atoll",
+      "zh": "莲花环礁",
+      "types": [
+        "location_name",
+        "raw"
+      ],
+      "note": "已有 Pity.json 译名。"
+    },
+    {
+      "en": "Moonglade Marsh",
+      "zh": "月光沼泽",
+      "types": [
+        "location_name",
+        "raw"
+      ],
+      "note": "已有 Pity.json 查证译名。Torrhus_Canyon.json NPC 曾写「月辉沼泽」,以 Pity 的查证为准。"
+    },
+    {
+      "en": "Torrhus Canyon",
+      "zh": "Torrhus 峡谷",
+      "types": [
+        "location_name",
+        "raw"
+      ],
+      "note": "Torrhus 是自造专名,只译 Canyon。"
+    },
+    {
+      "en": "Fishing Hotspots",
+      "zh": "钓鱼热点",
+      "types": [
+        "location_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Bayou",
+      "zh": "河湾",
+      "types": [
+        "category_name"
+      ],
+      "note": "海洋生物指南分区短名(Bayou Sea Creatures)。全称 Backwater Bayou 译死水沼泽。"
+    },
+    {
+      "en": "Lotus",
+      "zh": "莲花",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "分区短名 / 坠子材料ize 的 Lotus。全称 Lotus Atoll 译莲花环礁。"
+    },
+    {
+      "en": "Winter",
+      "zh": "寒冬",
+      "types": [
+        "category_name"
+      ],
+      "note": "海洋生物指南寒冬分区。不用节气「冬至」(那是空岛月份 Winter)。"
+    },
+    {
+      "en": "Spooky",
+      "zh": "惊魂",
+      "types": [
+        "category_name"
+      ],
+      "note": "惊魂节分区 / 惊魂鱼饵 / 惊魂鱼钩。"
+    },
+    {
+      "en": "Shark",
+      "zh": "鲨鱼",
+      "types": [
+        "category_name"
+      ],
+      "note": "钓鱼节鲨鱼分区 / 鲨鱼鱼饵。"
+    },
+    {
+      "en": "Hotspot",
+      "zh": "热点",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "钓鱼热点分区 / 热点鱼饵 / 热点鱼钩。"
+    },
+    {
+      "en": "Special",
+      "zh": "特殊",
+      "types": [
+        "category_name"
+      ],
+      "note": "海洋生物指南特殊分区。"
+    },
+    {
+      "en": "Basic",
+      "zh": "基础",
+      "types": [
+        "category_name"
+      ],
+      "note": "海洋生物指南基础分区。"
+    },
+    {
+      "en": "COMMON",
+      "zh": "普通",
+      "types": [
+        "category_name"
+      ],
+      "note": "稀有度词。菜单格子里的 (COMMON) / COMMON BAIT 走占位符,和 _shared/Rarity.json 译名一致。"
+    },
+    {
+      "en": "UNCOMMON",
+      "zh": "罕见",
+      "types": [
+        "category_name"
+      ],
+      "note": "稀有度词,同 Rarity.json。"
+    },
+    {
+      "en": "RARE",
+      "zh": "稀有",
+      "types": [
+        "category_name"
+      ],
+      "note": "稀有度词,同 Rarity.json。"
+    },
+    {
+      "en": "EPIC",
+      "zh": "史诗",
+      "types": [
+        "category_name"
+      ],
+      "note": "稀有度词,同 Rarity.json。"
+    },
+    {
+      "en": "LEGENDARY",
+      "zh": "传说",
+      "types": [
+        "category_name"
+      ],
+      "note": "稀有度词,同 Rarity.json。"
+    },
+    {
+      "en": "MYTHIC",
+      "zh": "神话",
+      "types": [
+        "category_name"
+      ],
+      "note": "稀有度词,同 Rarity.json。"
+    },
+    {
+      "en": "DIVINE",
+      "zh": "神圣",
+      "types": [
+        "category_name"
+      ],
+      "note": "稀有度词,同 Rarity.json。"
+    },
+    {
+      "en": "VERY SPECIAL",
+      "zh": "超级特殊",
+      "types": [
+        "category_name"
+      ],
+      "note": "稀有度词,同 Rarity.json。Special 单字已是指南分区名。"
+    },
+    {
+      "en": "ADMIN",
+      "zh": "管理员",
+      "types": [
+        "category_name"
+      ],
+      "note": "稀有度词,同 Rarity.json。"
+    },
+    {
+      "en": "Water",
+      "zh": "水",
+      "types": [
+        "raw"
+      ],
+      "note": "海洋生物指南 Liquid: Water。限定 raw,避免短词误伤。"
+    },
+    {
+      "en": "Lava",
+      "zh": "熔岩",
+      "types": [
+        "raw"
+      ],
+      "note": "海洋生物指南 Liquid: Lava。"
+    },
+    {
+      "en": "Trophy",
+      "zh": "锦标",
+      "types": [
+        "raw"
+      ],
+      "note": "Trophy Chance / Trophy Fisher。"
+    },
+    {
+      "en": "Treasure",
+      "zh": "宝藏",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "Treasure Chance / Treasure Hook / Treasure Bait。"
+    },
+    {
+      "en": "RNGesus",
+      "zh": "RNGesus",
+      "types": [
+        "category_name"
+      ],
+      "note": "图鉴掉落分组 RNGesus Loot。专有梗名,保留英文,只让「%s掉落」模板别把这一格留成半句英文。"
+    },
+    {
+      "en": "Novice",
+      "zh": "新手",
+      "types": [
+        "raw"
+      ],
+      "note": "Novice Trophy Fisher。"
+    },
+    {
+      "en": "Adept",
+      "zh": "熟手",
+      "types": [
+        "raw"
+      ],
+      "note": "Adept Trophy Fisher。"
+    },
+    {
+      "en": "Chum",
+      "zh": "碎鱼饵",
+      "types": [
+        "raw"
+      ],
+      "note": "碎鱼饵坠子。GLOSSARY: Chum → 碎鱼饵。"
+    },
+    {
+      "en": "Junk",
+      "zh": "垃圾",
+      "types": [
+        "category_name"
+      ],
+      "note": "垃圾坠子 / Junk Fishing。"
+    },
+    {
+      "en": "Speedy",
+      "zh": "迅捷",
+      "types": [
+        "category_name"
+      ],
+      "note": "迅捷鱼线。"
+    },
+    {
+      "en": "Shredded",
+      "zh": "碎裂",
+      "types": [
+        "category_name"
+      ],
+      "note": "碎裂鱼线。"
+    },
+    {
+      "en": "Titan",
+      "zh": "泰坦",
+      "types": [
+        "category_name"
+      ],
+      "note": "泰坦鱼线。"
+    },
+    {
+      "en": "Prismarine",
+      "zh": "海晶",
+      "types": [
+        "category_name"
+      ],
+      "note": "海晶坠子。原版材料前缀。"
+    },
+    {
+      "en": "Icy",
+      "zh": "冰冷",
+      "types": [
+        "category_name"
+      ],
+      "note": "冰冷坠子。"
+    },
+    {
+      "en": "Festive",
+      "zh": "节庆",
+      "types": [
+        "category_name"
+      ],
+      "note": "节庆坠子。"
+    },
+    {
+      "en": "Sponge",
+      "zh": "海绵",
+      "types": [
+        "category_name"
+      ],
+      "note": "海绵坠子。"
+    },
+    {
+      "en": "Cabin",
+      "zh": "木屋",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园谷仓皮肤。"
+    },
+    {
+      "en": "Minnow",
+      "zh": "小鱼",
+      "types": [
+        "category_name"
+      ],
+      "note": "GLOSSARY: Minnow Bait → 小鱼饵。"
+    },
+    {
+      "en": "Fish",
+      "zh": "鱼类",
+      "types": [
+        "category_name"
+      ],
+      "note": "Fish Bait → 鱼类鱼饵。限定 category_name。"
+    },
+    {
+      "en": "Light",
+      "zh": "光明",
+      "types": [
+        "category_name"
+      ],
+      "note": "Light Bait。"
+    },
+    {
+      "en": "Dark",
+      "zh": "黑暗",
+      "types": [
+        "category_name"
+      ],
+      "note": "Dark Bait。"
+    },
+    {
+      "en": "Spiked",
+      "zh": "尖刺",
+      "types": [
+        "category_name"
+      ],
+      "note": "Spiked Bait。"
+    },
+    {
+      "en": "Corrupted",
+      "zh": "腐化",
+      "types": [
+        "category_name"
+      ],
+      "note": "Corrupted Bait。"
+    },
+    {
+      "en": "Blessed",
+      "zh": "祝福",
+      "types": [
+        "category_name"
+      ],
+      "note": "Blessed Bait。"
+    },
+    {
+      "en": "Hot",
+      "zh": "炎热",
+      "types": [
+        "category_name"
+      ],
+      "note": "Hot Bait。"
+    },
+    {
+      "en": "Worm",
+      "zh": "蠕虫",
+      "types": [
+        "category_name"
+      ],
+      "note": "Worm Bait。"
+    },
+    {
+      "en": "Frozen",
+      "zh": "冰冻",
+      "types": [
+        "category_name"
+      ],
+      "note": "Frozen Bait。族群标签 Frozen 已在 Mob_Families.json 写整行。"
+    },
+    {
+      "en": "Whale",
+      "zh": "鲸鱼",
+      "types": [
+        "category_name"
+      ],
+      "note": "Whale Bait。"
+    },
+    {
+      "en": "Golden",
+      "zh": "黄金",
+      "types": [
+        "category_name"
+      ],
+      "note": "Golden Bait。"
+    },
+    {
+      "en": "Wooden",
+      "zh": "木制",
+      "types": [
+        "category_name"
+      ],
+      "note": "Wooden Bait。"
+    },
+    {
+      "en": "Lotus Collection VIII",
+      "zh": "莲花收藏品 VIII",
+      "types": [
+        "raw"
+      ],
+      "note": "❣ Requires Lotus Collection VIII."
+    },
+    {
+      "en": "Squid",
+      "zh": "鱿鱼",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Sea Walker",
+      "zh": "海行者",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Sea Witch",
+      "zh": "海女巫",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Sea Archer",
+      "zh": "海弓箭手",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Rider of the Deep",
+      "zh": "深海骑士",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Catfish",
+      "zh": "鲶鱼",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Sea Leech",
+      "zh": "海蛭",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Guardian Defender",
+      "zh": "守卫者卫士",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Deep Sea Protector",
+      "zh": "深海保护者",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Water Hydra",
+      "zh": "九头海蛇",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Trash Gobbler",
+      "zh": "垃圾吞噬者",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Dumpster Diver",
+      "zh": "垃圾箱潜水员",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Banshee",
+      "zh": "女妖",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Bayou Sludge",
+      "zh": "河湾软泥怪",
+      "types": [
+        "mob_name"
+      ],
+      "note": "GLOSSARY: Sludge → 软泥怪。"
+    },
+    {
+      "en": "Alligator",
+      "zh": "短吻鳄",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Atoll Croaker",
+      "zh": "环礁鸣蛙",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Lotus Guardian",
+      "zh": "莲花守卫",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Drowned Captain",
+      "zh": "溺尸船长",
+      "types": [
+        "mob_name"
+      ],
+      "note": "Drowned 是原版溺尸。"
+    },
+    {
+      "en": "Frog Prince",
+      "zh": "青蛙王子",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Bogged",
+      "zh": "沼骸",
+      "types": [
+        "mob_name"
+      ],
+      "note": "原版 1.21 生物官方中文名。"
+    },
+    {
+      "en": "Wetwing",
+      "zh": "湿翼",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Ent",
+      "zh": "树人",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "The Loch Emperor",
+      "zh": "湖中皇帝",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Stridersurfer",
+      "zh": "炽足兽冲浪者",
+      "types": [
+        "mob_name"
+      ],
+      "note": "Strider 是原版炽足兽。"
+    },
+    {
+      "en": "Giant Isopod",
+      "zh": "巨型等足虫",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Frog Man",
+      "zh": "蛙人",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Snapping Turtle",
+      "zh": "鳄龟",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Manta Ray",
+      "zh": "蝠鲼",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Blue Ringed Octopus",
+      "zh": "蓝环章鱼",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Scarecrow",
+      "zh": "稻草人",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Nightmare",
+      "zh": "梦魇",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Werewolf",
+      "zh": "狼人",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Phantom Fisher",
+      "zh": "幻影渔夫",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Grim Reaper",
+      "zh": "死神",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Nurse Shark",
+      "zh": "护士鲨",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Blue Shark",
+      "zh": "蓝鲨",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Tiger Shark",
+      "zh": "虎鲨",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Great White Shark",
+      "zh": "大白鲨",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Nutcracker",
+      "zh": "胡桃夹子",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Magma Slug",
+      "zh": "岩浆蛞蝓",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Lava Leech",
+      "zh": "熔岩水蛭",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Pyroclastic Worm",
+      "zh": "火山碎屑虫",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Lava Flame",
+      "zh": "熔岩火焰",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Fire Eel",
+      "zh": "火鳗",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Thunder",
+      "zh": "雷霆",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Fried Chicken",
+      "zh": "炸鸡",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Volcanic Snail",
+      "zh": "火山蜗牛",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Fireproof Witch",
+      "zh": "防火女巫",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Magma Pillar",
+      "zh": "岩浆柱",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Fiery Scuttler",
+      "zh": "炽热奔行者",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Oasis Sheep",
+      "zh": "绿洲绵羊",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Oasis Rabbit",
+      "zh": "绿洲兔子",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Carrot King",
+      "zh": "胡萝卜王",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Water Worm",
+      "zh": "水虫",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Poisoned Water Worm",
+      "zh": "毒水虫",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Flaming Worm",
+      "zh": "火焰虫",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Lava Blaze",
+      "zh": "熔岩烈焰人",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Lava Pigman",
+      "zh": "熔岩猪人",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Abyssal Miner",
+      "zh": "深渊矿工",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Jumpin' Jack",
+      "zh": "蹦跳 Jack",
+      "types": [
+        "mob_name"
+      ],
+      "note": "Jack 是人名。"
+    },
+    {
+      "en": "Silkbreeze",
+      "zh": "丝风",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Torrid",
+      "zh": "灼热者",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Haggard",
+      "zh": "憔悴者",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Talisman",
+      "zh": "护符",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 固定菜单动态分类名。"
+    },
+    {
+      "en": "Ring",
+      "zh": "戒指",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 固定菜单动态分类名。"
+    },
+    {
+      "en": "Artifact",
+      "zh": "神器",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 固定菜单动态分类名。"
+    },
+    {
+      "en": "Sack",
+      "zh": "收纳袋",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 固定菜单动态分类名。"
+    },
+    {
+      "en": "Small",
+      "zh": "小型",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 固定菜单动态分类名。"
+    },
+    {
+      "en": "Medium",
+      "zh": "中型",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 固定菜单动态分类名。"
+    },
+    {
+      "en": "Large",
+      "zh": "大型",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 固定菜单动态分类名。"
+    },
+    {
+      "en": "Giant",
+      "zh": "巨型",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 固定菜单动态分类名。"
+    },
+    {
+      "en": "Pixie",
+      "zh": "小精灵",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 固定菜单动态分类名。"
+    },
+    {
+      "en": "Shield",
+      "zh": "护盾",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 固定菜单动态分类名。"
+    },
+    {
+      "en": "Rogue",
+      "zh": "游侠",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 固定菜单动态分类名。"
+    },
+    {
+      "en": "Accessories",
+      "zh": "饰品",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 固定菜单动态分类名。"
+    },
+    {
+      "en": "Weapons & Gear",
+      "zh": "武器与装备",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 固定菜单动态分类名。"
+    },
+    {
+      "en": "Miscellaneous",
+      "zh": "杂项",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 固定菜单动态分类名。"
+    },
+    {
+      "en": "Pets & Pet Items",
+      "zh": "宠物与宠物道具",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 固定菜单动态分类名。"
+    },
+    {
+      "en": "Grand Feast",
+      "zh": "盛大宴会",
+      "types": [
+        "raw",
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Bonus Mining Fiesta",
+      "zh": "额外挖矿狂欢节",
+      "types": [
+        "raw",
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Commission Milestone",
+      "zh": "委托里程碑",
+      "types": [
+        "raw",
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Pet Score",
+      "zh": "宠物评分",
+      "types": [
+        "raw"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Skill Level Up",
+      "zh": "技能升级",
+      "types": [
+        "raw"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Obsidian Sanctuary",
+      "zh": "黑曜石圣所",
+      "types": [
+        "location_name",
+        "raw"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Slimehill",
+      "zh": "史莱姆山",
+      "types": [
+        "location_name",
+        "raw"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Redstone Pigman",
+      "zh": "红石猪人",
+      "types": [
+        "mob_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Redstone Dust",
+      "zh": "红石粉",
+      "types": [
+        "raw",
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "String",
+      "zh": "线",
+      "types": [
+        "raw",
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Rock",
+      "zh": "石头",
+      "types": [
+        "mob_name",
+        "raw"
+      ],
+      "note": "宠物名，Mining Mount 类型宠物。2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Bee",
+      "zh": "蜜蜂",
+      "types": [
+        "raw"
+      ],
+      "note": "宠物名，Farming 类型宠物。2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Owl",
+      "zh": "猫头鹰",
+      "types": [
+        "raw"
+      ],
+      "note": "宠物名。2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Magnetic",
+      "zh": "磁力",
+      "types": [
+        "raw"
+      ],
+      "note": "重铸名，提供挖矿经验加成。2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Enabled",
+      "zh": "启用",
+      "types": [
+        "raw"
+      ],
+      "note": "状态标识。2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "No",
+      "zh": "否",
+      "types": [
+        "raw"
+      ],
+      "note": "否定选项。2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Boss",
+      "zh": "首领",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "分类名。2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Experience",
+      "zh": "经验",
+      "types": [
+        "raw"
+      ],
+      "note": "资源类型。2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Properties",
+      "zh": "属性",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "界面分类名。2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Pickup",
+      "zh": "拾取",
+      "types": [
+        "raw"
+      ],
+      "note": "仆从动作类型。2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Quick-Upgrade",
+      "zh": "快速升级",
+      "types": [
+        "raw"
+      ],
+      "note": "仆从功能。2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "milestone",
+      "zh": "里程碑",
+      "types": [
+        "raw"
+      ],
+      "note": "进度术语。2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "enderchest",
+      "zh": "末影箱",
+      "types": [
+        "raw"
+      ],
+      "note": "存储类型名（小写形式）。2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Communal Stew",
+      "zh": "公共炖锅",
+      "types": [
+        "location_name",
+        "raw"
+      ],
+      "note": "Farm 区域中 Harvest Feast 活动举办的地点。2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Builder's House",
+      "zh": "建筑师之家",
+      "types": [
+        "location_name"
+      ],
+      "note": "地点名。2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Fashion Shop",
+      "zh": "时装店",
+      "types": [
+        "location_name"
+      ],
+      "note": "地点名。2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Mango Ⓑ",
+      "zh": "芒果 Ⓑ",
+      "types": [
+        "raw"
+      ],
+      "note": "Mango Dye 在集市中的显示名，Ⓑ 标记保持英文。2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Witch",
+      "zh": "女巫",
+      "types": [
+        "category_name",
+        "mob_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "The Barn",
+      "zh": "牲畜棚",
+      "types": [
+        "location_name",
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Rewards",
+      "zh": "奖励",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 固定菜单动态分类名。"
+    },
+    {
+      "en": "Ore",
+      "zh": "矿石",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 固定菜单动态分类名。"
+    },
+    {
+      "en": "Potion",
+      "zh": "药水",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 固定菜单动态分类名。"
+    },
+    {
+      "en": "Accessory",
+      "zh": "饰品",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 固定菜单动态分类名。"
+    },
+    {
+      "en": "Efficiency",
+      "zh": "效率",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 固定菜单动态分类名。"
+    },
+    {
+      "en": "Fortune",
+      "zh": "时运",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 固定菜单动态分类名。"
+    },
+    {
+      "en": "Protection",
+      "zh": "保护",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 固定菜单动态分类名。"
+    },
+    {
+      "en": "Feather Falling",
+      "zh": "摔落缓冲",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 固定菜单动态分类名。"
+    },
+    {
+      "en": "Coconut",
+      "zh": "椰子",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Relaxation",
+      "zh": "放松",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Sunbathing",
+      "zh": "日光浴",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Sunbather",
+      "zh": "日光浴者",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Lei",
+      "zh": "花环",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Kite",
+      "zh": "风筝",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Sandcastle",
+      "zh": "沙堡",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Vacation",
+      "zh": "度假",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Surfing",
+      "zh": "冲浪",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Volleyball",
+      "zh": "排球",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Sparklers",
+      "zh": "烟花棒",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Lifebelt",
+      "zh": "救生圈",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Hammock",
+      "zh": "吊床",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Puffer",
+      "zh": "河豚",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Snorkeling",
+      "zh": "浮潜",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Beach Ball",
+      "zh": "沙滩球",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Ice Lolly",
+      "zh": "冰棒",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Ice Cream",
+      "zh": "冰淇淋",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Hermit Crab",
+      "zh": "寄居蟹",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Basketball",
+      "zh": "篮球",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Tropical Fish",
+      "zh": "热带鱼",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Tropical Shark",
+      "zh": "热带鲨鱼",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Chair",
+      "zh": "椅",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Ball",
+      "zh": "球",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Umbrella",
+      "zh": "遮阳伞",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Table",
+      "zh": "桌",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Dresser",
+      "zh": "梳妆台",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Bed",
+      "zh": "床",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Deck",
+      "zh": "甲板",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Lifeguard",
+      "zh": "救生员",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Castle",
+      "zh": "城堡",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Sun",
+      "zh": "太阳",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Pufferfish",
+      "zh": "河豚",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Hopscotch",
+      "zh": "跳房子",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Bench",
+      "zh": "长椅",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Sofa",
+      "zh": "沙发",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-04 实机采集中的动态值。"
+    },
+    {
+      "en": "Gold Ingot",
+      "zh": "金锭",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "原版完整材料名，无 Gold 单词的歧义；也用于通用进度行的 raw 捕获值。不扩大 Gold 或其他短词的作用域。"
+    },
+    {
+      "en": "Iron Ingot",
+      "zh": "铁锭",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "原版完整材料名，采用 Minecraft 官方中文译名；与 Gold Ingot 一同用于收藏品进度行的 raw 捕获值。"
+    },
+    {
+      "en": "Enchanted Coal",
+      "zh": "附魔煤炭",
+      "types": [
+        "category_name"
+      ],
+      "note": "小人升级缺料提示，沿用 GLOSSARY.md 的原版材料名及 Enchanted 前缀规则。"
+    },
+    {
+      "en": "Enchanted Cobblestone",
+      "zh": "附魔圆石",
+      "types": [
+        "category_name"
+      ],
+      "note": "小人升级缺料提示，沿用原版材料名及 Enchanted 前缀规则。"
+    },
+    {
+      "en": "Enchanted Lapis Lazuli",
+      "zh": "附魔青金石",
+      "types": [
+        "category_name"
+      ],
+      "note": "小人升级缺料提示，沿用 GLOSSARY.md 的既定译名。"
+    },
+    {
+      "en": "Minion Machine",
+      "zh": "小人机器",
+      "types": [
+        "category_name"
+      ],
+      "note": "宾果目标名，沿用 Hub_General/GUI_Item/Bingo_Card.json 的既定译名。"
+    },
+    {
+      "en": "Enchanted",
+      "zh": "附魔",
+      "types": [
+        "category_name"
+      ],
+      "note": "动态秘银材料前缀，沿用 GLOSSARY.md 的 Enchanted 前缀规则。"
+    },
+    {
+      "en": "Jewel",
+      "zh": "宝珠",
+      "types": [
+        "category_name"
+      ],
+      "note": "Glacite Jewel 模板的材料后缀，沿用完整译名“极冰宝珠”。"
+    },
+    {
+      "en": "Wall",
+      "zh": "墙",
+      "types": [
+        "category_name"
+      ],
+      "note": "Cobblestone Wall 模板的方块后缀，采用 Minecraft 官方中文译名。"
+    },
+    {
+      "en": "Slab",
+      "zh": "台阶",
+      "types": [
+        "category_name"
+      ],
+      "note": "Cobblestone Slab 模板的方块后缀，采用 Minecraft 官方中文译名。"
+    },
+    {
+      "en": "Experience Bottle",
+      "zh": "经验瓶",
+      "types": ["category_name"],
+      "note": "配方奖励中的完整物品名；沿用 Economy/GUI_Item/Bazaar.json 的译名，不改写 item_name。"
+    },
+    {
+      "en": "Prospecting Helmet",
+      "zh": "勘探头盔",
+      "types": ["category_name"],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Prospecting_Armor：铁锭 II 解锁的挖矿护甲部件，普通词组成，并非自造专名。用于配方奖励。"
+    },
+    {
+      "en": "Dragon's Nest",
+      "zh": "龙巢",
+      "types": ["location_name", "raw"],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Dragon%27s_Nest：末地的 Boss 区域,并非水晶残核的 Dragon's Lair。"
+    },
+    {
+      "en": "Crystal Hollows - Entrance",
+      "zh": "水晶残核 - 入口",
+      "types": ["raw"],
+      "note": "logs/latest.log 中解锁的快速传送目的地; 山心 IV 开放,已对照 Heart_of_the_Mountain。连接号要求使用 raw 捕获,不是独立新地名。"
+    },
+    {
+      "en": "Ender Pearl",
+      "zh": "末影珍珠",
+      "types": ["category_name"],
+      "note": "末地收藏品类别,原版官方译名; 不改变 item_name 商品原名。"
+    },
+    {
+      "en": "Fortuitous",
+      "zh": "幸运",
+      "types": ["category_name"],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Accessory_Powers/List_of_Accessory_Powers：默认解锁的饰品袋能力,偏向暴击概率。按功能性能力名翻译,仅用于能力/分类占位符。"
+    },
+    {
+      "en": "Void Sword",
+      "zh": "虚空之剑",
+      "types": ["category_name", "raw"],
+      "note": "Lone_Adventurer 页面核实的任务武器; 普通词组成。也让 NPC 台词的 showOriginal 名称对照可以保留英文搜索名。"
+    },
+    {
+      "en": "Ender Armor",
+      "zh": "末影护甲",
+      "types": ["category_name", "raw"],
+      "note": "Lone_Adventurer 页面核实的护甲名; 任务要求八件时包含装备,该整句译为末影套装,见 GLOSSARY.md。"
+    },
+    {
+      "en": "End Stone Protector",
+      "zh": "末地石守护者",
+      "types": ["mob_name", "raw"],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/End_Stone_Protector：龙巢中由狂信徒击杀数推进生成的 Boss,不是 NPC。"
+    },
+    {
+      "en": "Zealot",
+      "zh": "狂信徒",
+      "types": ["mob_name"],
+      "note": "沿用 Taming/GUI_Item/Pet_Perks.json 的既有译名; Dragon%27s_Nest 页面确认是末地怪物。"
     }
   ],
   "todo": [

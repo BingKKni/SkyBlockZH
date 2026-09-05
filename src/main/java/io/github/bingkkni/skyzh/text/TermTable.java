@@ -29,7 +29,7 @@ import java.util.Set;
  * Chinese name for somebody's weapon — is far worse than the cost of leaving a place name English.
  */
 public final class TermTable {
-	public static final TermTable EMPTY = new TermTable(Set.of(), Map.of(), Map.of(), Map.of(), Map.of());
+	public static final TermTable EMPTY = new TermTable(Set.of(), Map.of(), Map.of(), Map.of(), Map.of(), Map.of());
 
 	private final Set<String> types;
 	private final Map<String, String> terms;
@@ -38,16 +38,20 @@ public final class TermTable {
 	/** Terms whose meaning is safe only in one placeholder type, such as a location named "Farm". */
 	private final Map<String, Map<String, String>> typed;
 	private final Map<String, Map<String, String>> foldedTyped;
+	/** Canonical English keyed in lower case, typed and untyped together, for {@link #canonicalEnglish}. */
+	private final Map<String, String> canonicalByFolded;
 
 	private TermTable(
 		Set<String> types, Map<String, String> terms, Map<String, String> folded,
-		Map<String, Map<String, String>> typed, Map<String, Map<String, String>> foldedTyped
+		Map<String, Map<String, String>> typed, Map<String, Map<String, String>> foldedTyped,
+		Map<String, String> canonicalByFolded
 	) {
 		this.types = types;
 		this.terms = terms;
 		this.folded = folded;
 		this.typed = typed;
 		this.foldedTyped = foldedTyped;
+		this.canonicalByFolded = canonicalByFolded;
 	}
 
 	public static TermTable from(JsonObject json) {
@@ -100,9 +104,21 @@ public final class TermTable {
 			foldedTyped.put(group.getKey(), Map.copyOf(foldedGroup));
 		}
 
+		Map<String, String> canonicalByFolded = new HashMap<>();
+
+		for (String en : terms.keySet()) {
+			canonicalByFolded.putIfAbsent(en.toLowerCase(Locale.ROOT), en);
+		}
+
+		for (Map<String, String> group : typed.values()) {
+			for (String en : group.keySet()) {
+				canonicalByFolded.putIfAbsent(en.toLowerCase(Locale.ROOT), en);
+			}
+		}
+
 		return new TermTable(
 			Set.copyOf(types), Map.copyOf(terms), Map.copyOf(folded),
-			Map.copyOf(frozenTyped), Map.copyOf(foldedTyped)
+			Map.copyOf(frozenTyped), Map.copyOf(foldedTyped), Map.copyOf(canonicalByFolded)
 		);
 	}
 
@@ -203,6 +219,32 @@ public final class TermTable {
 		}
 
 		return thing == null ? null : owned.owner() + " 的" + thing;
+	}
+
+	/**
+	 * The corpus spelling of a known term, or {@code null} if this value is not in the table at all.
+	 *
+	 * <p>Used when a translated colour run is itself a name — {@code Diamond Essence} drawn blue in
+	 * Gemma's greeting — so {@code showOriginal} can write 钻石精华（Diamond Essence） without the
+	 * placeholder machinery. Typed and untyped entries both count: the question is "is this a
+	 * name we have Chinese for", not "would this placeholder type consult the table".
+	 */
+	public String canonicalEnglish(String value) {
+		if (value == null || value.isEmpty()) {
+			return null;
+		}
+
+		if (this.terms.containsKey(value)) {
+			return value;
+		}
+
+		for (Map<String, String> group : this.typed.values()) {
+			if (group.containsKey(value)) {
+				return value;
+			}
+		}
+
+		return this.canonicalByFolded.get(value.toLowerCase(Locale.ROOT));
 	}
 
 	public int size() {

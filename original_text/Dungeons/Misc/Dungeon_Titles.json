@@ -1,0 +1,201 @@
+{
+  "source": "SkyZH runtime capture (The Catacombs, 2026-09-02)",
+  "fetched_at": "2026-09-02",
+  "verified_ingame": true,
+  "source_note": "原文与颜色逐字取自运行时采集。",
+  "gui_context": "地牢里屏幕正中央的大字（Title）与它下面那一行小字（Subtitle）。多数副标题和聊天里那一条是同一句话，但渲染面不同，两边各要一条记录。",
+  "lines": [
+    {
+      "id": "title_you_became_a_ghost",
+      "context": "自己被击杀时屏幕中央的大字",
+      "raw": "§eYou became a ghost!",
+      "text": "You became a ghost!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你变成了幽灵!"
+    },
+    {
+      "id": "subtitle_teammates_revive_you",
+      "context": "变成幽灵后的副标题",
+      "raw": "§7Hopefully your teammates will be able to revive you!",
+      "text": "Hopefully your teammates will be able to revive you!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "希望队友能把你救回来!"
+    },
+    {
+      "id": "subtitle_energy_crystals_active",
+      "context": "第七层第一阶段：放好一颗能量水晶后的副标题",
+      "raw": "§c%s§a Energy Crystals are now active!",
+      "text": "%s Energy Crystals are now active!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "已激活数量／总数",
+          "type": "raw",
+          "example": "1/2"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§a",
+          "text": " Energy Crystals are now active!",
+          "zh": " 颗能量水晶已激活!"
+        }
+      ]
+    },
+    {
+      "id": "subtitle_energy_laser_charging",
+      "context": "第七层第一阶段：两颗水晶都放好后能量激光开始蓄力",
+      "raw": "§aThe Energy Laser is charging up!",
+      "text": "The Energy Laser is charging up!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "能量激光正在蓄力!"
+    },
+    {
+      "id": "subtitle_boss_enraged",
+      "context": "第七层 Boss 进入狂暴状态",
+      "raw": "§c⚠ %s is enraged! ⚠",
+      "text": "⚠ %s is enraged! ⚠",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "Boss 名（专有名，保持英文）",
+          "type": "npc_name",
+          "example": "Maxor"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "⚠ %s 狂暴了! ⚠"
+    },
+    {
+      "id": "subtitle_terminal_activated",
+      "context": "第七层第三阶段：队友激活了一个终端／装置／拉杆",
+      "raw": "§b%1$s§a %2$s a %3$s! (§c%4$s§a)",
+      "text": "%1$s %2$s a %3$s! (%4$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "玩家名",
+          "type": "player_name",
+          "example": "inkkni"
+        },
+        {
+          "token": "%2$s",
+          "desc": "动作，activated 或 completed",
+          "type": "raw",
+          "example": "activated"
+        },
+        {
+          "token": "%3$s",
+          "desc": "目标，terminal / device / lever",
+          "type": "raw",
+          "example": "terminal"
+        },
+        {
+          "token": "%4$s",
+          "desc": "进度，已完成／总数",
+          "type": "raw",
+          "example": "1/7"
+        }
+      ],
+      "gloss": "动作词与目标词的中文都在 _shared/Terms.json 里。原文用括号补进度，中文改成「，进度 N/7」——半角感叹号紧接全角括号，checkTranslations 的标点间距检查会拦。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§a",
+          "text": " %2$s a %3$s! (%4$s)",
+          "zh": " %2$s了一个 %3$s，进度 %4$s"
+        }
+      ]
+    },
+    {
+      "id": "subtitle_gate_open_in_5",
+      "context": "第七层第三阶段：全部终端完成，闸门即将开启",
+      "raw": "§aThe gate will open in 5 seconds!",
+      "text": "The gate will open in 5 seconds!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "闸门将在 5 秒后开启!"
+    },
+    {
+      "id": "subtitle_gate_destroyed",
+      "context": "第七层第三阶段：闸门被摧毁",
+      "raw": "§aThe gate has been destroyed!",
+      "text": "The gate has been destroyed!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "闸门已被摧毁!"
+    },
+    {
+      "id": "subtitle_spirit_bow_dropped",
+      "context": "第四层 Thorn 战：灵魂弓掉落时的副标题；聊天里那一条措辞带颜色强调，不是同一条",
+      "raw": "§aThe Spirit Bow has dropped!",
+      "text": "The Spirit Bow has dropped!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "灵魂弓掉落了!"
+    },
+    {
+      "id": "subtitle_picked_up_spirit_bow",
+      "context": "第四层 Thorn 战：有人捡起了灵魂弓",
+      "raw": "§b%s§a picked up the §5Spirit Bow§a!",
+      "text": "%s picked up the Spirit Bow!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "玩家名",
+          "type": "player_name",
+          "example": "inkkni"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§a",
+          "text": " picked up the ",
+          "zh": " 捡起了"
+        },
+        {
+          "color": "§5",
+          "text": "Spirit Bow",
+          "zh": "灵魂弓"
+        },
+        {
+          "color": "§a",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    }
+  ]
+}

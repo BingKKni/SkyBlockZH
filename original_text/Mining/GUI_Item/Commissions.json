@@ -331,6 +331,221 @@
       "gloss": "已核实(同上 wiki 源):wiki 原文是分段链接 [[Glacite Maniacs|Maniacs]],说明 “Maniac” 不是专有名词而是怪物全名 “Glacite Maniac”(极冰狂人)的通用名词简称,和 Glacite Walker 同类,应翻译而非保留英文。此前 gloss 猜测“疑似专有名词,不翻译”是错的,已更正。",
       "translate": true,
       "zh": "狂人猎手"
+    },
+    {
+      "id": "commission_participate_goblin_raid",
+      "context": "哥布林突袭委托要求",
+      "raw": "§7Participate in the §cGoblin Raid §7Event.",
+      "text": "Participate in the Goblin Raid Event.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "参与哥布林突袭活动。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Participate in the ",
+          "zh": "参与"
+        },
+        {
+          "color": "§c",
+          "text": "Goblin Raid ",
+          "zh": "哥布林突袭"
+        },
+        {
+          "color": "§7",
+          "text": "Event.",
+          "zh": "活动。"
+        }
+      ]
+    },
+    {
+      "id": "commission_daily_hotm_exp",
+      "context": "每日委托额外奖励",
+      "raw": "§7- §5+%s HOTM Exp §e(Daily Bonus)",
+      "text": "- +%s HOTM Exp (Daily Bonus)",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "每日首个委托的山心经验",
+          "type": "number",
+          "example": "900"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "- +%s 山心经验(每日加成)",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§5",
+          "text": "+%s HOTM Exp ",
+          "zh": "+%s 山心经验"
+        },
+        {
+          "color": "§e",
+          "text": "(Daily Bonus)",
+          "zh": "(每日加成)"
+        }
+      ]
+    },
+    {
+      "id": "commission_hotm_exp",
+      "context": "委托基础奖励",
+      "raw": "§7- §5+%s HOTM Exp",
+      "text": "- +%s HOTM Exp",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "委托奖励的山心经验",
+          "type": "number",
+          "example": "400"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "- +%s 山心经验",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§5",
+          "text": "+%s HOTM Exp",
+          "zh": "+%s 山心经验"
+        }
+      ]
+    },
+    {
+      "id": "commission_mine_ore_in_location",
+      "context": "按区域开采秘银或钛的动态委托要求",
+      "raw": "§7Mine §a%1$s §7%2$s Ore in §b%3$s§7.",
+      "text": "Mine %1$s %2$s Ore in %3$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "需开采的矿石数量",
+          "type": "number",
+          "example": "250"
+        },
+        {
+          "token": "%2$s",
+          "desc": "矿石材料名",
+          "type": "category_name",
+          "example": "Mithril"
+        },
+        {
+          "token": "%3$s",
+          "desc": "委托指定区域",
+          "type": "location_name",
+          "example": "Lava Springs"
+        }
+      ],
+      "gloss": "材料和地点都由共享词表翻译；地点作为一个 location_name 捕获，不拆成两个 raw 单词。",
+      "translate": true,
+      "zh": "在%3$s开采 %1$s 个%2$s矿石。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Mine ",
+          "zh": "在",
+          "order": 0
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s ",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "%2$s Ore in ",
+          "zh": "个%2$s矿石。",
+          "order": 4
+        },
+        {
+          "color": "§b",
+          "text": "%3$s",
+          "zh": "%3$s",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "开采 ",
+          "order": 2
+        }
+      ]
+    },
+    {
+      "id": "commission_mine_ramparts_wrapped_1",
+      "context": "壁垒采石场名称因菜单宽度拆到下一行的委托要求；数量和矿石种类保持动态",
+      "raw": "§7Mine §a%1$s §7%2$s Ore in §bRampart's",
+      "text": "Mine %1$s %2$s Ore in Rampart's",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "需开采的矿石数量",
+          "type": "number",
+          "example": "10"
+        },
+        {
+          "token": "%2$s",
+          "desc": "矿石材料名",
+          "type": "category_name",
+          "example": "Titanium"
+        }
+      ],
+      "gloss": "只有 Rampart's Quarry 这一长地名在当前菜单宽度下折行；这是布局变体，不是逐值枚举。",
+      "translate": true,
+      "zh": "在壁垒采石场开采 %1$s 个%2$s矿石。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Mine ",
+          "zh": "在",
+          "order": 0
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s ",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "%2$s Ore in ",
+          "zh": "个%2$s矿石。",
+          "order": 4
+        },
+        {
+          "color": "§b",
+          "text": "Rampart's",
+          "zh": "壁垒采石场",
+          "order": 1
+        }
+      ]
+    },
+    {
+      "id": "commission_mine_ramparts_wrapped_2",
+      "context": "接上一行的地名折行尾部",
+      "raw": "§bQuarry§7.",
+      "text": "Quarry.",
+      "placeholders": [],
+      "gloss": "中文地名已合并到上一行。",
+      "translate": true,
+      "zh": "",
+      "continuation": true,
+      "segments": [
+        {"color": "§b", "text": "Quarry", "zh": "", "omit": true, "order": 5},
+        {"color": "§7", "text": ".", "zh": "开采 ", "order": 2}
+      ]
     }
   ],
   "todo": [

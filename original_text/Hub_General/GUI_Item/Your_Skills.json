@@ -1,0 +1,3438 @@
+{
+  "source": "runtime capture (SkyZH) 2026-09-03 实测会话(地牢大厅打开的空岛菜单 → 技能)",
+  "fetched_at": "2026-09-03",
+  "verified_ingame": true,
+  "gameplay": "Hub_General",
+  "surface": "GUI_Item",
+  "name": "Your_Skills",
+  "gui_context": "空岛菜单 → 技能:总览页每个技能一格,点进去是该技能的子菜单(每级一格,列出该级的天赋数值与属性奖励)。十二个技能的子菜单排版完全一样,只有技能名和天赋名不同,所以合在一个文件里。技能格名 / 子菜单格名带罗马数字等级,按 README §4「拆标签」各写一条(Class_Perks.json 的 %1$s Level %2$s 模板第二个占位符是 number,罗马数字进不来)。地牢技能那一格的子菜单见 Dungeons/GUI_Item/Dungeoneering.json。",
+  "excluded": [
+    "Your Skills 总览页格子名里的具体等级(Combat XXXVI 等)随玩家变化,已做成 %s 模板;附魔子菜单里解锁的附魔名(Fatal Tempo / Inferno / One For All)按 _shared/Enchantments.json 的既定决定保留英文,记录只译「Enchantment」。"
+  ],
+  "lines": [
+    {
+      "id": "skills_entry_combat",
+      "context": "「技能」菜单里战斗技能的格子名:技能名 + 罗马数字等级",
+      "raw": "§aCombat %s",
+      "text": "Combat %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前等级(罗马数字)",
+          "type": "tier",
+          "example": "XXVI"
+        }
+      ],
+      "gloss": "等级写法沿用 Dungeoneering.json 的「%s 级」。",
+      "translate": true,
+      "zh": "战斗 %s 级"
+    },
+    {
+      "id": "skills_level_combat",
+      "context": "战斗技能子菜单里每一格的物品名:技能名 + Level + 罗马数字",
+      "raw": "§aCombat Level %s",
+      "text": "Combat Level %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "该格对应的等级(罗马数字)",
+          "type": "tier",
+          "example": "XV"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "战斗等级 %s"
+    },
+    {
+      "id": "skills_desc_combat_1",
+      "context": "战斗技能格子的说明首行",
+      "raw": "§7Fight mobs and special bosses to",
+      "text": "Fight mobs and special bosses to",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "击杀怪物和特殊 Boss，获得战斗经验!"
+    },
+    {
+      "id": "skills_perk_combat",
+      "context": "战斗技能每级奖励的天赋名 + 罗马数字等级",
+      "raw": "§eWarrior %s",
+      "text": "Warrior %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "天赋等级(罗马数字)",
+          "type": "tier",
+          "example": "XXVI"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "战士 %s"
+    },
+    {
+      "id": "skills_entry_farming",
+      "context": "「技能」菜单里农业技能的格子名:技能名 + 罗马数字等级",
+      "raw": "§aFarming %s",
+      "text": "Farming %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前等级(罗马数字)",
+          "type": "tier",
+          "example": "XXVI"
+        }
+      ],
+      "gloss": "等级写法沿用 Dungeoneering.json 的「%s 级」。",
+      "translate": true,
+      "zh": "农业 %s 级"
+    },
+    {
+      "id": "skills_level_farming",
+      "context": "农业技能子菜单里每一格的物品名:技能名 + Level + 罗马数字",
+      "raw": "§aFarming Level %s",
+      "text": "Farming Level %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "该格对应的等级(罗马数字)",
+          "type": "tier",
+          "example": "XV"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "农业等级 %s"
+    },
+    {
+      "id": "skills_desc_farming_1",
+      "context": "农业技能格子的说明首行",
+      "raw": "§7Harvest crops and shear sheep to",
+      "text": "Harvest crops and shear sheep to",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "收割作物、给羊剪毛，获得农业经验!"
+    },
+    {
+      "id": "skills_perk_farming",
+      "context": "农业技能每级奖励的天赋名 + 罗马数字等级",
+      "raw": "§eFarmhand %s",
+      "text": "Farmhand %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "天赋等级(罗马数字)",
+          "type": "tier",
+          "example": "XXVI"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "农场帮手 %s"
+    },
+    {
+      "id": "skills_entry_fishing",
+      "context": "「技能」菜单里钓鱼技能的格子名:技能名 + 罗马数字等级",
+      "raw": "§aFishing %s",
+      "text": "Fishing %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前等级(罗马数字)",
+          "type": "tier",
+          "example": "XXVI"
+        }
+      ],
+      "gloss": "等级写法沿用 Dungeoneering.json 的「%s 级」。",
+      "translate": true,
+      "zh": "钓鱼 %s 级"
+    },
+    {
+      "id": "skills_level_fishing",
+      "context": "钓鱼技能子菜单里每一格的物品名:技能名 + Level + 罗马数字",
+      "raw": "§aFishing Level %s",
+      "text": "Fishing Level %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "该格对应的等级(罗马数字)",
+          "type": "tier",
+          "example": "XV"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "钓鱼等级 %s"
+    },
+    {
+      "id": "skills_desc_fishing_1",
+      "context": "钓鱼技能格子的说明首行",
+      "raw": "§7Visit your local pond to fish and",
+      "text": "Visit your local pond to fish and",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "去附近的池塘钓鱼，获得钓鱼经验!"
+    },
+    {
+      "id": "skills_perk_fishing",
+      "context": "钓鱼技能每级奖励的天赋名 + 罗马数字等级",
+      "raw": "§eTreasure Hunter %s",
+      "text": "Treasure Hunter %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "天赋等级(罗马数字)",
+          "type": "tier",
+          "example": "XXVI"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "寻宝猎人 %s"
+    },
+    {
+      "id": "skills_entry_mining",
+      "context": "「技能」菜单里挖矿技能的格子名:技能名 + 罗马数字等级",
+      "raw": "§aMining %s",
+      "text": "Mining %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前等级(罗马数字)",
+          "type": "tier",
+          "example": "XXVI"
+        }
+      ],
+      "gloss": "等级写法沿用 Dungeoneering.json 的「%s 级」。",
+      "translate": true,
+      "zh": "挖矿 %s 级"
+    },
+    {
+      "id": "skills_level_mining",
+      "context": "挖矿技能子菜单里每一格的物品名:技能名 + Level + 罗马数字",
+      "raw": "§aMining Level %s",
+      "text": "Mining Level %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "该格对应的等级(罗马数字)",
+          "type": "tier",
+          "example": "XV"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "挖矿等级 %s"
+    },
+    {
+      "id": "skills_desc_mining_1",
+      "context": "挖矿技能格子的说明首行",
+      "raw": "§7Dive into deep caves and find rare",
+      "text": "Dive into deep caves and find rare",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "深入洞穴，寻找稀有矿石和珍贵材料，获得挖矿经验!"
+    },
+    {
+      "id": "skills_perk_mining",
+      "context": "挖矿技能每级奖励的天赋名 + 罗马数字等级",
+      "raw": "§eSpelunker %s",
+      "text": "Spelunker %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "天赋等级(罗马数字)",
+          "type": "tier",
+          "example": "XXVI"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "洞穴探险家 %s"
+    },
+    {
+      "id": "skills_entry_foraging",
+      "context": "「技能」菜单里伐木技能的格子名:技能名 + 罗马数字等级",
+      "raw": "§aForaging %s",
+      "text": "Foraging %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前等级(罗马数字)",
+          "type": "tier",
+          "example": "XXVI"
+        }
+      ],
+      "gloss": "等级写法沿用 Dungeoneering.json 的「%s 级」。",
+      "translate": true,
+      "zh": "伐木 %s 级"
+    },
+    {
+      "id": "skills_level_foraging",
+      "context": "伐木技能子菜单里每一格的物品名:技能名 + Level + 罗马数字",
+      "raw": "§aForaging Level %s",
+      "text": "Foraging Level %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "该格对应的等级(罗马数字)",
+          "type": "tier",
+          "example": "XV"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "伐木等级 %s"
+    },
+    {
+      "id": "skills_desc_foraging_1",
+      "context": "伐木技能格子的说明首行",
+      "raw": "§7Cut trees and forage for other",
+      "text": "Cut trees and forage for other",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "砍伐树木、采集植物，获得伐木经验!"
+    },
+    {
+      "id": "skills_perk_foraging",
+      "context": "伐木技能每级奖励的天赋名 + 罗马数字等级",
+      "raw": "§eLogger %s",
+      "text": "Logger %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "天赋等级(罗马数字)",
+          "type": "tier",
+          "example": "XXVI"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "伐木工 %s"
+    },
+    {
+      "id": "skills_entry_enchanting",
+      "context": "「技能」菜单里附魔技能的格子名:技能名 + 罗马数字等级",
+      "raw": "§aEnchanting %s",
+      "text": "Enchanting %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前等级(罗马数字)",
+          "type": "tier",
+          "example": "XXVI"
+        }
+      ],
+      "gloss": "等级写法沿用 Dungeoneering.json 的「%s 级」。",
+      "translate": true,
+      "zh": "附魔 %s 级"
+    },
+    {
+      "id": "skills_level_enchanting",
+      "context": "附魔技能子菜单里每一格的物品名:技能名 + Level + 罗马数字",
+      "raw": "§aEnchanting Level %s",
+      "text": "Enchanting Level %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "该格对应的等级(罗马数字)",
+          "type": "tier",
+          "example": "XV"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "附魔等级 %s"
+    },
+    {
+      "id": "skills_perk_enchanting",
+      "context": "附魔技能每级奖励的天赋名 + 罗马数字等级",
+      "raw": "§eConjurer %s",
+      "text": "Conjurer %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "天赋等级(罗马数字)",
+          "type": "tier",
+          "example": "XXVI"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "咒术师 %s"
+    },
+    {
+      "id": "skills_entry_alchemy",
+      "context": "「技能」菜单里炼药技能的格子名:技能名 + 罗马数字等级",
+      "raw": "§aAlchemy %s",
+      "text": "Alchemy %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前等级(罗马数字)",
+          "type": "tier",
+          "example": "XXVI"
+        }
+      ],
+      "gloss": "等级写法沿用 Dungeoneering.json 的「%s 级」。",
+      "translate": true,
+      "zh": "炼药 %s 级"
+    },
+    {
+      "id": "skills_level_alchemy",
+      "context": "炼药技能子菜单里每一格的物品名:技能名 + Level + 罗马数字",
+      "raw": "§aAlchemy Level %s",
+      "text": "Alchemy Level %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "该格对应的等级(罗马数字)",
+          "type": "tier",
+          "example": "XV"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "炼药等级 %s"
+    },
+    {
+      "id": "skills_perk_alchemy",
+      "context": "炼药技能每级奖励的天赋名 + 罗马数字等级",
+      "raw": "§eBrewer %s",
+      "text": "Brewer %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "天赋等级(罗马数字)",
+          "type": "tier",
+          "example": "XXVI"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "酿造师 %s"
+    },
+    {
+      "id": "skills_entry_carpentry",
+      "context": "「技能」菜单里木工技能的格子名:技能名 + 罗马数字等级",
+      "raw": "§aCarpentry %s",
+      "text": "Carpentry %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前等级(罗马数字)",
+          "type": "tier",
+          "example": "XXVI"
+        }
+      ],
+      "gloss": "等级写法沿用 Dungeoneering.json 的「%s 级」。",
+      "translate": true,
+      "zh": "木工 %s 级"
+    },
+    {
+      "id": "skills_level_carpentry",
+      "context": "木工技能子菜单里每一格的物品名:技能名 + Level + 罗马数字",
+      "raw": "§aCarpentry Level %s",
+      "text": "Carpentry Level %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "该格对应的等级(罗马数字)",
+          "type": "tier",
+          "example": "XV"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "木工等级 %s"
+    },
+    {
+      "id": "skills_entry_runecrafting",
+      "context": "「技能」菜单里符文制作技能的格子名:技能名 + 罗马数字等级",
+      "raw": "§aRunecrafting %s",
+      "text": "Runecrafting %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前等级(罗马数字)",
+          "type": "tier",
+          "example": "XXVI"
+        }
+      ],
+      "gloss": "等级写法沿用 Dungeoneering.json 的「%s 级」。",
+      "translate": true,
+      "zh": "符文制作 %s 级"
+    },
+    {
+      "id": "skills_level_runecrafting",
+      "context": "符文制作技能子菜单里每一格的物品名:技能名 + Level + 罗马数字",
+      "raw": "§aRunecrafting Level %s",
+      "text": "Runecrafting Level %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "该格对应的等级(罗马数字)",
+          "type": "tier",
+          "example": "XV"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "符文制作等级 %s"
+    },
+    {
+      "id": "skills_desc_runecrafting_1",
+      "context": "符文制作技能格子的说明首行",
+      "raw": "§7Slay bosses and runic mobs, and",
+      "text": "Slay bosses and runic mobs, and",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "击杀 Boss 和符文怪物，并"
+    },
+    {
+      "id": "skills_entry_taming",
+      "context": "「技能」菜单里驯养技能的格子名:技能名 + 罗马数字等级",
+      "raw": "§aTaming %s",
+      "text": "Taming %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前等级(罗马数字)",
+          "type": "tier",
+          "example": "XXVI"
+        }
+      ],
+      "gloss": "等级写法沿用 Dungeoneering.json 的「%s 级」。",
+      "translate": true,
+      "zh": "驯养 %s 级"
+    },
+    {
+      "id": "skills_level_taming",
+      "context": "驯养技能子菜单里每一格的物品名:技能名 + Level + 罗马数字",
+      "raw": "§aTaming Level %s",
+      "text": "Taming Level %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "该格对应的等级(罗马数字)",
+          "type": "tier",
+          "example": "XV"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "驯养等级 %s"
+    },
+    {
+      "id": "skills_perk_taming",
+      "context": "驯养技能每级奖励的天赋名 + 罗马数字等级",
+      "raw": "§eZoologist %s",
+      "text": "Zoologist %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "天赋等级(罗马数字)",
+          "type": "tier",
+          "example": "XXVI"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "动物学家 %s"
+    },
+    {
+      "id": "skills_entry_social",
+      "context": "「技能」菜单里社交技能的格子名:技能名 + 罗马数字等级",
+      "raw": "§aSocial %s",
+      "text": "Social %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前等级(罗马数字)",
+          "type": "tier",
+          "example": "XXVI"
+        }
+      ],
+      "gloss": "等级写法沿用 Dungeoneering.json 的「%s 级」。",
+      "translate": true,
+      "zh": "社交 %s 级"
+    },
+    {
+      "id": "skills_level_social",
+      "context": "社交技能子菜单里每一格的物品名:技能名 + Level + 罗马数字",
+      "raw": "§aSocial Level %s",
+      "text": "Social Level %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "该格对应的等级(罗马数字)",
+          "type": "tier",
+          "example": "XV"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "社交等级 %s"
+    },
+    {
+      "id": "skills_desc_social_1",
+      "context": "社交技能格子的说明首行",
+      "raw": "§7Gain Social EXP for every new unique",
+      "text": "Gain Social EXP for every new unique",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "每接待一位新访客、每次招待访客或拜访别人的岛屿，都能获得社交经验!"
+    },
+    {
+      "id": "skills_entry_hunting",
+      "context": "「技能」菜单里狩猎技能的格子名:技能名 + 罗马数字等级",
+      "raw": "§aHunting %s",
+      "text": "Hunting %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前等级(罗马数字)",
+          "type": "tier",
+          "example": "XXVI"
+        }
+      ],
+      "gloss": "等级写法沿用 Dungeoneering.json 的「%s 级」。",
+      "translate": true,
+      "zh": "狩猎 %s 级"
+    },
+    {
+      "id": "skills_level_hunting",
+      "context": "狩猎技能子菜单里每一格的物品名:技能名 + Level + 罗马数字",
+      "raw": "§aHunting Level %s",
+      "text": "Hunting Level %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "该格对应的等级(罗马数字)",
+          "type": "tier",
+          "example": "XV"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "狩猎等级 %s"
+    },
+    {
+      "id": "skills_desc_hunting_1",
+      "context": "狩猎技能格子的说明首行",
+      "raw": "§7Hunt various monsters to earn",
+      "text": "Hunt various monsters to earn",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "狩猎各种怪物，获得狩猎经验!"
+    },
+    {
+      "id": "skills_perk_hunting",
+      "context": "狩猎技能每级奖励的天赋名 + 罗马数字等级",
+      "raw": "§eCharming %s",
+      "text": "Charming %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "天赋等级(罗马数字)",
+          "type": "tier",
+          "example": "XXVI"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "魅惑 %s"
+    },
+    {
+      "id": "skills_desc_earn_exp_tail",
+      "context": "技能格子说明的尾行:获得 X 经验!",
+      "raw": "§7earn %s EXP!",
+      "text": "earn %s EXP!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "技能名",
+          "type": "category_name",
+          "example": "Combat"
+        }
+      ],
+      "gloss": "Combat / Farming / Fishing 三个技能的说明首行各自不同,尾行共用这一条;首行的译文已经把整句说完,尾行留空被吞掉。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_desc_exp_tail",
+      "context": "技能格子说明的尾行:X 经验!(Mining / Hunting 的第三行)",
+      "raw": "§7%s EXP!",
+      "text": "%s EXP!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "技能名",
+          "type": "category_name",
+          "example": "Mining"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_desc_mining_2",
+      "context": "挖矿技能格子说明的第二行",
+      "raw": "§7ores and valuable materials to earn",
+      "text": "ores and valuable materials to earn",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_desc_foraging_2",
+      "context": "伐木技能格子说明的尾行",
+      "raw": "§7plants to earn Foraging EXP!",
+      "text": "plants to earn Foraging EXP!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_desc_social_2",
+      "context": "社交技能格子说明的第二行",
+      "raw": "§7guest, hosting guests, and visiting",
+      "text": "guest, hosting guests, and visiting",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_desc_social_3",
+      "context": "社交技能格子说明的尾行",
+      "raw": "§7islands!",
+      "text": "islands!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_desc_generic",
+      "context": "附魔 / 炼药 / 木工 / 符文制作 四个技能共用的说明模板:动词 + 对象 + to earn X EXP!",
+      "raw": "§7%1$s %2$s to earn %3$s EXP!",
+      "text": "%1$s %2$s to earn %3$s EXP!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "动词:Enchant / Brew / Craft / fuse",
+          "type": "raw",
+          "example": "Enchant"
+        },
+        {
+          "token": "%2$s",
+          "desc": "对象:items / potions / runes",
+          "type": "raw",
+          "example": "items"
+        },
+        {
+          "token": "%3$s",
+          "desc": "技能名",
+          "type": "category_name",
+          "example": "Enchanting"
+        }
+      ],
+      "gloss": "动词和对象走 _shared/Terms.json(raw 型),本批已补 Enchant → 附魔 / Brew → 酿造 / Craft → 制作 / items → 物品 / potions → 药水 / runes → 符文;fuse 是符文制作那一行的第二句动词,同样收。译文里不手写空格,由引擎按接缝补。",
+      "translate": true,
+      "zh": "%1$s%2$s，获得%3$s经验!"
+    },
+    {
+      "id": "skills_desc_taming",
+      "context": "驯养技能格子的说明(一行)",
+      "raw": "§7Level up pets to earn Taming EXP!",
+      "text": "Level up pets to earn Taming EXP!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "提升宠物等级，获得驯养经验!"
+    },
+    {
+      "id": "skills_desc_dungeoneering_1",
+      "context": "地牢技能格子的说明首行",
+      "raw": "§7Complete Dungeons to level up your",
+      "text": "Complete Dungeons to level up your",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "通关地牢来提升你的职业等级! 通关更高层的地牢即可解锁新装备和职业升级!"
+    },
+    {
+      "id": "skills_desc_dungeoneering_2",
+      "context": "接上一行",
+      "raw": "§7classes! Unlock new gear and class",
+      "text": "classes! Unlock new gear and class",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_desc_dungeoneering_3",
+      "context": "接上一行",
+      "raw": "§7upgrades by completing higher tier",
+      "text": "upgrades by completing higher tier",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_desc_dungeoneering_4",
+      "context": "接上一行",
+      "raw": "§7dungeons!",
+      "text": "dungeons!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_dungeoneering_requires_1",
+      "context": "地牢技能格子:进入门槛",
+      "raw": "§7Requires §bCombat Level 15 §7to enter a",
+      "text": "Requires Combat Level 15 to enter a",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "需要战斗等级 15 级才能进入地牢。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Requires ",
+          "zh": "需要"
+        },
+        {
+          "color": "§b",
+          "text": "Combat Level 15 ",
+          "zh": "战斗等级 15 级"
+        },
+        {
+          "color": "§7",
+          "text": "to enter a",
+          "zh": "才能进入地牢。"
+        }
+      ]
+    },
+    {
+      "id": "skills_dungeoneering_requires_2",
+      "context": "接上一行",
+      "raw": "§7Dungeon.",
+      "text": "Dungeon.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_entry_dungeoneering",
+      "context": "「技能」菜单里地牢技能的格子名",
+      "raw": "§aDungeoneering",
+      "text": "Dungeoneering",
+      "placeholders": [],
+      "gloss": "译名沿用 Dungeons/GUI_Title/Dungeoneering.json。",
+      "translate": true,
+      "zh": "地牢技能"
+    },
+    {
+      "id": "skills_level_rewards",
+      "context": "技能子菜单每一格:某级奖励的小标题",
+      "raw": "§7Level %s Rewards:",
+      "text": "Level %s Rewards:",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "等级(罗马数字)",
+          "type": "tier",
+          "example": "XXXVII"
+        }
+      ],
+      "gloss": "只有一项奖励时服务器写单数 Reward:,复数折算(eitherNumber)同时管两种。",
+      "translate": true,
+      "zh": "%s 级奖励:"
+    },
+    {
+      "id": "skills_max_level_reached",
+      "context": "技能满级时的提示",
+      "raw": "§8Max Skill level reached!",
+      "text": "Max Skill level reached!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "已达到技能最高等级!"
+    },
+    {
+      "id": "skills_show_rankings",
+      "context": "「技能」菜单右下角的格子名",
+      "raw": "§aShow Skill Rankings",
+      "text": "Show Skill Rankings",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "显示技能排名"
+    },
+    {
+      "id": "skills_perk_warrior_desc",
+      "context": "战士天赋说明",
+      "raw": "§fDeal §8%1$s➜§a%2$s%§f more damage to mobs.",
+      "text": "Deal %1$s➜%2$s% more damage to mobs.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前值",
+          "type": "number",
+          "example": "144"
+        },
+        {
+          "token": "%2$s",
+          "desc": "下一级的值",
+          "type": "number",
+          "example": "148"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "对怪物造成的伤害提高 %1$s➜%2$s%。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Deal ",
+          "zh": "对怪物造成的伤害提高 "
+        },
+        {
+          "color": "§8",
+          "text": "%1$s➜",
+          "zh": "%1$s➜"
+        },
+        {
+          "color": "§a",
+          "text": "%2$s%",
+          "zh": "%2$s%"
+        },
+        {
+          "color": "§f",
+          "text": " more damage to mobs.",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "skills_perk_fortune_farming",
+      "context": "农场帮手天赋说明首行(数值两位数,农业时运在同一行)",
+      "raw": "§fGrants §a+§8%1$s➜§a%2$s§f §6☘ Farming Fortune§f,",
+      "text": "Grants +%1$s➜%2$s ☘ Farming Fortune,",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前值",
+          "type": "number",
+          "example": "88"
+        },
+        {
+          "token": "%2$s",
+          "desc": "下一级的值",
+          "type": "number",
+          "example": "92"
+        }
+      ],
+      "gloss": "☘ 是农业时运图标 U+E051 的通用符号(text/Glyphs.java)。整句说明拆在三行,尾行 which increases your / multiple crops. 留空被吞。",
+      "translate": true,
+      "zh": "提供 +%1$s➜%2$s ☘ 农业时运，提高多倍作物掉落的概率。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§a",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§8",
+          "text": "%1$s➜",
+          "zh": "%1$s➜"
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§f",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§6",
+          "text": "☘ Farming Fortune",
+          "zh": "☘ 农业时运"
+        },
+        {
+          "color": "§f",
+          "text": ",",
+          "zh": "，提高多倍作物掉落的概率。"
+        }
+      ]
+    },
+    {
+      "id": "skills_perk_fortune_which_increases",
+      "context": "时运天赋说明的第二行",
+      "raw": "§fwhich increases your chance for",
+      "text": "which increases your chance for",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_perk_fortune_multiple",
+      "context": "时运天赋说明的尾行",
+      "raw": "§fmultiple %s.",
+      "text": "multiple %s.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "crops / logs",
+          "type": "raw",
+          "example": "crops"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_perk_fortune_farming_wrapped",
+      "context": "农场帮手天赋说明首行(数值三位数时 Fortune 折到下一行)",
+      "raw": "§fGrants §a+§8%1$s➜§a%2$s§f §6☘ Farming",
+      "text": "Grants +%1$s➜%2$s ☘ Farming",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前值",
+          "type": "number",
+          "example": "100"
+        },
+        {
+          "token": "%2$s",
+          "desc": "下一级的值",
+          "type": "number",
+          "example": "104"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "提供 +%1$s➜%2$s ☘ 农业时运，提高多倍作物掉落的概率。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§a",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§8",
+          "text": "%1$s➜",
+          "zh": "%1$s➜"
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§f",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§6",
+          "text": "☘ Farming",
+          "zh": "☘ 农业时运，提高多倍作物掉落的概率。"
+        }
+      ]
+    },
+    {
+      "id": "skills_perk_fortune_wrapped_2",
+      "context": "折行版本的第二行",
+      "raw": "§6Fortune§f, which increases your",
+      "text": "Fortune, which increases your",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_perk_fortune_wrapped_3",
+      "context": "折行版本的尾行",
+      "raw": "§fchance for multiple %s.",
+      "text": "chance for multiple %s.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "crops / logs / ore drops",
+          "type": "raw",
+          "example": "crops"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_perk_fortune_mining",
+      "context": "洞穴探险家天赋说明首行",
+      "raw": "§fGrants §a+§8%1$s➜§a%2$s§f §6☘ Mining Fortune§f,",
+      "text": "Grants +%1$s➜%2$s ☘ Mining Fortune,",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前值",
+          "type": "number",
+          "example": "236"
+        },
+        {
+          "token": "%2$s",
+          "desc": "下一级的值",
+          "type": "number",
+          "example": "240"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "提供 +%1$s➜%2$s ☘ 挖掘时运，提高多倍矿石掉落的概率。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§a",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§8",
+          "text": "%1$s➜",
+          "zh": "%1$s➜"
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§f",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§6",
+          "text": "☘ Mining Fortune",
+          "zh": "☘ 挖掘时运"
+        },
+        {
+          "color": "§f",
+          "text": ",",
+          "zh": "，提高多倍矿石掉落的概率。"
+        }
+      ]
+    },
+    {
+      "id": "skills_perk_fortune_foraging",
+      "context": "伐木工天赋说明首行",
+      "raw": "§fGrants §a+§8%1$s➜§a%2$s§f §6☘ Foraging Fortune§f,",
+      "text": "Grants +%1$s➜%2$s ☘ Foraging Fortune,",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前值",
+          "type": "number",
+          "example": "76"
+        },
+        {
+          "token": "%2$s",
+          "desc": "下一级的值",
+          "type": "number",
+          "example": "80"
+        }
+      ],
+      "gloss": "Foraging Fortune 按 GLOSSARY「XX时运」命名。",
+      "translate": true,
+      "zh": "提供 +%1$s➜%2$s ☘ 伐木时运，提高多倍原木掉落的概率。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§a",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§8",
+          "text": "%1$s➜",
+          "zh": "%1$s➜"
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§f",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§6",
+          "text": "☘ Foraging Fortune",
+          "zh": "☘ 伐木时运"
+        },
+        {
+          "color": "§f",
+          "text": ",",
+          "zh": "，提高多倍原木掉落的概率。"
+        }
+      ]
+    },
+    {
+      "id": "skills_perk_fortune_foraging_wrapped",
+      "context": "伐木工天赋说明首行(数值三位数时折行)",
+      "raw": "§fGrants §a+§8%1$s➜§a%2$s§f §6☘ Foraging",
+      "text": "Grants +%1$s➜%2$s ☘ Foraging",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前值",
+          "type": "number",
+          "example": "100"
+        },
+        {
+          "token": "%2$s",
+          "desc": "下一级的值",
+          "type": "number",
+          "example": "104"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "提供 +%1$s➜%2$s ☘ 伐木时运，提高多倍原木掉落的概率。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§a",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§8",
+          "text": "%1$s➜",
+          "zh": "%1$s➜"
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§f",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§6",
+          "text": "☘ Foraging",
+          "zh": "☘ 伐木时运，提高多倍原木掉落的概率。"
+        }
+      ]
+    },
+    {
+      "id": "skills_perk_treasure_hunter_desc",
+      "context": "寻宝猎人天赋说明",
+      "raw": "§fGrants §a+§8%1$s➜§a%2$s§f §6 Treasure Chance§f.",
+      "text": "Grants +%1$s➜%2$s  Treasure Chance.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前值",
+          "type": "number",
+          "example": "1.7"
+        },
+        {
+          "token": "%2$s",
+          "desc": "下一级的值",
+          "type": "number",
+          "example": "1.8"
+        }
+      ],
+      "gloss": " 是宝藏概率的私用区图标,Glyphs.java 没有它的通用符号,原样写码点。",
+      "translate": true,
+      "zh": "提供 +%1$s➜%2$s  宝藏概率。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§a",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§8",
+          "text": "%1$s➜",
+          "zh": "%1$s➜"
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§f",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§6",
+          "text": " Treasure Chance",
+          "zh": " 宝藏概率"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "skills_perk_charming_desc",
+      "context": "魅惑天赋说明",
+      "raw": "§fGrants §a+§8%1$s➜§a%2$s§f §b❣ Charm Chance§f.",
+      "text": "Grants +%1$s➜%2$s ❣ Charm Chance.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前值",
+          "type": "number",
+          "example": "0.6"
+        },
+        {
+          "token": "%2$s",
+          "desc": "下一级的值",
+          "type": "number",
+          "example": "0.64"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "提供 +%1$s➜%2$s ❣ 魅惑概率。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§a",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§8",
+          "text": "%1$s➜",
+          "zh": "%1$s➜"
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§f",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§b",
+          "text": "❣ Charm Chance",
+          "zh": "❣ 魅惑概率"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "skills_perk_conjurer_desc_1",
+      "context": "咒术师天赋说明首行",
+      "raw": "§fGain §8%1$s➜§a%2$s%§f more experience",
+      "text": "Gain %1$s➜%2$s% more experience",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前值",
+          "type": "number",
+          "example": "255"
+        },
+        {
+          "token": "%2$s",
+          "desc": "下一级的值",
+          "type": "number",
+          "example": "260"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "从任何来源获得的经验球增加 %1$s➜%2$s%。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Gain ",
+          "zh": "从任何来源获得的经验球增加 "
+        },
+        {
+          "color": "§8",
+          "text": "%1$s➜",
+          "zh": "%1$s➜"
+        },
+        {
+          "color": "§a",
+          "text": "%2$s%",
+          "zh": "%2$s%"
+        },
+        {
+          "color": "§f",
+          "text": " more experience",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "skills_perk_conjurer_desc_2",
+      "context": "接上一行",
+      "raw": "§forbs from any source.",
+      "text": "orbs from any source.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_perk_brewer_desc_1",
+      "context": "酿造师天赋说明首行(数值在下一行)",
+      "raw": "§fPotions that you brew have a",
+      "text": "Potions that you brew have a",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你酿造的药水持续时间延长"
+    },
+    {
+      "id": "skills_perk_brewer_desc_2",
+      "context": "接上一行,带数值",
+      "raw": "§8%1$s➜§a%2$s%§f longer duration.",
+      "text": "%1$s➜%2$s% longer duration.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前值",
+          "type": "number",
+          "example": "12"
+        },
+        {
+          "token": "%2$s",
+          "desc": "下一级的值",
+          "type": "number",
+          "example": "13"
+        }
+      ],
+      "gloss": "尾行自己带数值,所以用 segments 自己渲染,而不是留空被吞。",
+      "translate": true,
+      "continuation": true,
+      "zh": "%1$s➜%2$s%。",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "%1$s➜",
+          "zh": " %1$s➜"
+        },
+        {
+          "color": "§a",
+          "text": "%2$s%",
+          "zh": "%2$s%"
+        },
+        {
+          "color": "§f",
+          "text": " longer duration.",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "skills_perk_brewer_desc_inline",
+      "context": "酿造师天赋说明首行(数值一位数时和首行同行)",
+      "raw": "§fPotions that you brew have a §8%1$s➜§a%2$s%",
+      "text": "Potions that you brew have a %1$s➜%2$s%",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前值",
+          "type": "number",
+          "example": "4"
+        },
+        {
+          "token": "%2$s",
+          "desc": "下一级的值",
+          "type": "number",
+          "example": "5"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你酿造的药水持续时间延长 %1$s➜%2$s%。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Potions that you brew have a ",
+          "zh": "你酿造的药水持续时间延长 "
+        },
+        {
+          "color": "§8",
+          "text": "%1$s➜",
+          "zh": "%1$s➜"
+        },
+        {
+          "color": "§a",
+          "text": "%2$s%",
+          "zh": "%2$s%。"
+        }
+      ]
+    },
+    {
+      "id": "skills_perk_brewer_desc_inline_tail",
+      "context": "接上一行",
+      "raw": "§flonger duration.",
+      "text": "longer duration.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_perk_zoologist_desc",
+      "context": "动物学家天赋说明",
+      "raw": "§fGain §8%1$s➜§a%2$s%§f extra pet exp.",
+      "text": "Gain %1$s➜%2$s% extra pet exp.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前值",
+          "type": "number",
+          "example": "52"
+        },
+        {
+          "token": "%2$s",
+          "desc": "下一级的值",
+          "type": "number",
+          "example": "53"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "宠物经验额外增加 %1$s➜%2$s%。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Gain ",
+          "zh": "宠物经验额外增加 "
+        },
+        {
+          "color": "§8",
+          "text": "%1$s➜",
+          "zh": "%1$s➜"
+        },
+        {
+          "color": "§a",
+          "text": "%2$s%",
+          "zh": "%2$s%"
+        },
+        {
+          "color": "§f",
+          "text": " extra pet exp.",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "skills_perk_exp_share",
+      "context": "驯养每级奖励:经验分享比例",
+      "raw": "§8+§fGain §8%1$s➜§a%2$s% §fExp Share rate.",
+      "text": "+Gain %1$s➜%2$s% Exp Share rate.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前值",
+          "type": "number",
+          "example": "10.4"
+        },
+        {
+          "token": "%2$s",
+          "desc": "下一级的值",
+          "type": "number",
+          "example": "10.6"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+经验分享比例提高 %1$s➜%2$s%。",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§f",
+          "text": "Gain ",
+          "zh": "经验分享比例提高 "
+        },
+        {
+          "color": "§8",
+          "text": "%1$s➜",
+          "zh": "%1$s➜"
+        },
+        {
+          "color": "§a",
+          "text": "%2$s% ",
+          "zh": "%2$s%"
+        },
+        {
+          "color": "§f",
+          "text": "Exp Share rate.",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "skills_reward_training_session",
+      "context": "驯养每级奖励:Fann 处的训练课程",
+      "raw": "§8+§5%s Training Session at Fann",
+      "text": "+%s Training Session at Fann",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "课程档次:Expert / Ultra,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Expert"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+Fann 处的%s训练课程",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§5",
+          "text": "%s Training Session at Fann",
+          "zh": "Fann 处的%s训练课程"
+        }
+      ]
+    },
+    {
+      "id": "skills_reward_health",
+      "context": "每级奖励:生命值",
+      "raw": "§8+§a%s §c❤ Health",
+      "text": "+%s ❤ Health",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": "3"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s ❤ 生命值",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s "
+        },
+        {
+          "color": "§c",
+          "text": "❤ Health",
+          "zh": "❤ 生命值"
+        }
+      ]
+    },
+    {
+      "id": "skills_reward_intelligence",
+      "context": "每级奖励:智力",
+      "raw": "§8+§a%s §b✎ Intelligence",
+      "text": "+%s ✎ Intelligence",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s ✎ 智力",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s "
+        },
+        {
+          "color": "§b",
+          "text": "✎ Intelligence",
+          "zh": "✎ 智力"
+        }
+      ]
+    },
+    {
+      "id": "skills_reward_strength",
+      "context": "每级奖励:力量",
+      "raw": "§8+§a%s §c❁ Strength",
+      "text": "+%s ❁ Strength",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s ❁ 力量",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s "
+        },
+        {
+          "color": "§c",
+          "text": "❁ Strength",
+          "zh": "❁ 力量"
+        }
+      ]
+    },
+    {
+      "id": "skills_reward_defense",
+      "context": "每级奖励:防御力(图标和名字同色)",
+      "raw": "§8+§a%s ❈ Defense",
+      "text": "+%s ❈ Defense",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s ❈ 防御力",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%s ❈ Defense",
+          "zh": "%s ❈ 防御力"
+        }
+      ]
+    },
+    {
+      "id": "skills_reward_crit_chance",
+      "context": "每级奖励:暴击率",
+      "raw": "§8+§a%s §9☣ Crit Chance",
+      "text": "+%s ☣ Crit Chance",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "percentage",
+          "example": "0.5%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s ☣ 暴击率",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s "
+        },
+        {
+          "color": "§9",
+          "text": "☣ Crit Chance",
+          "zh": "☣ 暴击率"
+        }
+      ]
+    },
+    {
+      "id": "skills_reward_ability_damage",
+      "context": "每级奖励:技能伤害",
+      "raw": "§8+§a%s §c๑ Ability Damage",
+      "text": "+%s ๑ Ability Damage",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "percentage",
+          "example": "0.5%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s ๑ 技能伤害",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s "
+        },
+        {
+          "color": "§c",
+          "text": "๑ Ability Damage",
+          "zh": "๑ 技能伤害"
+        }
+      ]
+    },
+    {
+      "id": "skills_reward_pet_luck",
+      "context": "每级奖励:宠物幸运",
+      "raw": "§8+§a%s §d♣ Pet Luck",
+      "text": "+%s ♣ Pet Luck",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s ♣ 宠物幸运",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s "
+        },
+        {
+          "color": "§d",
+          "text": "♣ Pet Luck",
+          "zh": "♣ 宠物幸运"
+        }
+      ]
+    },
+    {
+      "id": "skills_reward_hunting_fortune",
+      "context": "每级奖励:狩猎时运",
+      "raw": "§8+§a%s §d☘ Hunting Fortune",
+      "text": "+%s ☘ Hunting Fortune",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s ☘ 狩猎时运",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s "
+        },
+        {
+          "color": "§d",
+          "text": "☘ Hunting Fortune",
+          "zh": "☘ 狩猎时运"
+        }
+      ]
+    },
+    {
+      "id": "skills_reward_access_to",
+      "context": "每级奖励:解锁进入某地",
+      "raw": "§8+§aAccess to §2%s",
+      "text": "+Access to %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "地名:Galatea / Critter Safari,译名走 _shared/Terms.json",
+          "type": "location_name",
+          "example": "Galatea"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+可进入%s",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "Access to ",
+          "zh": "可进入"
+        },
+        {
+          "color": "§2",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "skills_reward_runes_access",
+      "context": "符文制作每级奖励",
+      "raw": "§7Access to Level §5%s §7Runes",
+      "text": "Access to Level %s Runes",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "符文等级",
+          "type": "number",
+          "example": "21"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "可使用 %s 级符文",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Access to Level ",
+          "zh": "可使用 "
+        },
+        {
+          "color": "§5",
+          "text": "%s ",
+          "zh": "%s "
+        },
+        {
+          "color": "§7",
+          "text": "Runes",
+          "zh": "级符文"
+        }
+      ]
+    },
+    {
+      "id": "skills_reward_furniture_recipe",
+      "context": "木工每级奖励:家具配方",
+      "raw": "§f%1$s §7Furniture Recipe",
+      "text": "%1$s Furniture Recipe",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "家具名,保留英文",
+          "type": "item_name",
+          "example": "Grandfather Clock"
+        }
+      ],
+      "gloss": "2026-09-03 实测这一行被 Recipe_Book.json#recipe_category(%1$s Recipes)应答,%1$s 捕到「Food Trough Furniture」。本条字面文本更多,按引擎规则优先。",
+      "translate": true,
+      "zh": "%1$s家具配方",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "Furniture Recipe",
+          "zh": "家具配方"
+        }
+      ]
+    },
+    {
+      "id": "skills_reward_furniture_coming_soon",
+      "context": "木工奖励:即将推出的家具配方",
+      "raw": "§7Furniture Recipe §8(§4COMING SOON§8)",
+      "text": "Furniture Recipe (COMING SOON)",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "家具配方 (即将推出)",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Furniture Recipe ",
+          "zh": "家具配方 "
+        },
+        {
+          "color": "§8",
+          "text": "(",
+          "zh": "("
+        },
+        {
+          "color": "§4",
+          "text": "COMING SOON",
+          "zh": "即将推出"
+        },
+        {
+          "color": "§8",
+          "text": ")",
+          "zh": ")"
+        }
+      ]
+    },
+    {
+      "id": "skills_reward_enchantment_unlock",
+      "context": "附魔每级奖励:解锁某个附魔",
+      "raw": "§d§l%s Enchantment",
+      "text": "%s Enchantment",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "附魔名,保留英文",
+          "type": "item_name",
+          "example": "One For All"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%s附魔"
+    },
+    {
+      "id": "skills_reward_power_stone",
+      "context": "战斗每级奖励:能力石",
+      "raw": "§d%s §7Power Stone",
+      "text": "%s Power Stone",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "能力石名,保留英文",
+          "type": "item_name",
+          "example": "Scorched Books"
+        }
+      ],
+      "gloss": "Power Stone 沿用 Economy/GUI_Item/Bazaar.json 的「能力石」。",
+      "translate": true,
+      "zh": "%s 能力石",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "%s ",
+          "zh": "%s "
+        },
+        {
+          "color": "§7",
+          "text": "Power Stone",
+          "zh": "能力石"
+        }
+      ]
+    },
+    {
+      "id": "skills_reward_sea_creature",
+      "context": "钓鱼每级奖励:解锁一种海洋生物(名字一到两个词)",
+      "raw": "§a%s§3 Sea Creature",
+      "text": "%s Sea Creature",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "海洋生物名",
+          "type": "mob_name",
+          "example": "Sea Witch"
+        }
+      ],
+      "gloss": "生物名按 GLOSSARY「怪物名」规则,词表里有的会翻,没有的保持英文并由引擎补空格。",
+      "translate": true,
+      "zh": "%s海洋生物",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§3",
+          "text": " Sea Creature",
+          "zh": "海洋生物"
+        }
+      ]
+    },
+    {
+      "id": "skills_reward_sea_creature_unknown",
+      "context": "钓鱼每级奖励:尚未解锁的海洋生物显示 ???",
+      "raw": "§5???§3 Sea Creature",
+      "text": "??? Sea Creature",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "???海洋生物",
+      "segments": [
+        {
+          "color": "§5",
+          "text": "???",
+          "zh": "???"
+        },
+        {
+          "color": "§3",
+          "text": " Sea Creature",
+          "zh": "海洋生物"
+        }
+      ]
+    },
+    {
+      "id": "skills_reward_misc_header",
+      "context": "挖矿每级奖励里「杂项」小节的标签",
+      "raw": "§8 - §dMiscellaneous",
+      "text": "- Miscellaneous",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "- 杂项",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§d",
+          "text": "Miscellaneous",
+          "zh": "杂项"
+        }
+      ]
+    },
+    {
+      "id": "skills_cap_farming_1",
+      "context": "农业技能格子:等级上限提示",
+      "raw": "§6Increase your Farming level cap by",
+      "text": "Increase your Farming level cap by",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "在大厅或花园拜访 Jacob 和 Anita，即可提高农业等级上限!"
+    },
+    {
+      "id": "skills_cap_farming_2",
+      "context": "接上一行",
+      "raw": "§6visiting Jacob and Anita in the Hub or",
+      "text": "visiting Jacob and Anita in the Hub or",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_cap_farming_3",
+      "context": "接上一行",
+      "raw": "§6Garden!",
+      "text": "Garden!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_cap_foraging_1",
+      "context": "伐木技能格子:等级上限提示",
+      "raw": "§6Increase your Foraging level cap",
+      "text": "Increase your Foraging level cap",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "通过伐木收藏品和 Starlyn 竞赛，即可提高伐木等级上限!"
+    },
+    {
+      "id": "skills_cap_foraging_2",
+      "context": "接上一行",
+      "raw": "§6through your Foraging collections",
+      "text": "through your Foraging collections",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_cap_foraging_3",
+      "context": "接上一行",
+      "raw": "§6and Starlyn Contests!",
+      "text": "and Starlyn Contests!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_cap_taming_1",
+      "context": "驯养技能格子:等级上限提示",
+      "raw": "§6Increase your Taming level cap by",
+      "text": "Increase your Taming level cap by",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "拜访宠物护理所的 George，即可提高驯养等级上限!"
+    },
+    {
+      "id": "skills_cap_taming_2",
+      "context": "接上一行",
+      "raw": "§6visiting George at §bPet Care§6!",
+      "text": "visiting George at Pet Care!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_runecrafting_activate_1",
+      "context": "符文制作格子:提示",
+      "raw": "§dLevel up Runecrafting to activate",
+      "text": "Level up Runecrafting to activate",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "提升符文制作等级，即可激活带符文物品的效果!"
+    },
+    {
+      "id": "skills_runecrafting_activate_2",
+      "context": "接上一行",
+      "raw": "§dthe effects of rune-bearing items!",
+      "text": "the effects of rune-bearing items!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_garden_level",
+      "context": "农业子菜单里的花园等级格",
+      "raw": "§aGarden Level %s",
+      "text": "Garden Level %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "等级(罗马数字)",
+          "type": "tier",
+          "example": "VIII"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "花园等级 %s"
+    },
+    {
+      "id": "skills_garden_desc_1",
+      "context": "花园等级格的说明",
+      "raw": "§7Earn Garden experience by",
+      "text": "Earn Garden experience by",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "接受访客的委托、解锁新的里程碑，即可获得花园经验!"
+    },
+    {
+      "id": "skills_garden_desc_2",
+      "context": "接上一行",
+      "raw": "§7accepting visitors' offers and",
+      "text": "accepting visitors' offers and",
+      "placeholders": [],
+      "gloss": "2026-09-03 采集 near_miss:游戏里 visitors 是小写。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_garden_desc_3",
+      "context": "接上一行",
+      "raw": "§7unlocking new milestones!",
+      "text": "unlocking new milestones!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_garden_reward_visitors",
+      "context": "花园等级奖励:访客数",
+      "raw": "§8+§b%s §eVisitors",
+      "text": "+%s Visitors",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "8"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s 位访客",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§b",
+          "text": "%s ",
+          "zh": "%s "
+        },
+        {
+          "color": "§e",
+          "text": "Visitors",
+          "zh": "位访客"
+        }
+      ]
+    },
+    {
+      "id": "skills_garden_reward_crop",
+      "context": "花园等级奖励:解锁作物",
+      "raw": "§a%s §7Crop",
+      "text": "%s Crop",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "作物名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Mushroom"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%s作物",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": "Crop",
+          "zh": "作物"
+        }
+      ]
+    },
+    {
+      "id": "skills_garden_reward_pest",
+      "context": "花园等级奖励:解锁害虫",
+      "raw": "§6%s Pest",
+      "text": "%s Pest",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "害虫名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Slug"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%s害虫"
+    },
+    {
+      "id": "skills_garden_reward_barn_skin",
+      "context": "花园等级奖励:红色谷仓皮肤",
+      "raw": "§aRed Barn Skin",
+      "text": "Red Barn Skin",
+      "placeholders": [],
+      "gloss": "只实测到这一种,写字面记录;Red 太短,做成 category_name 词条会在别处误译。",
+      "translate": true,
+      "zh": "红色谷仓皮肤"
+    },
+    {
+      "id": "skills_garden_reward_crop_growth",
+      "context": "花园等级奖励:作物生长",
+      "raw": "§8+§2%s Crop Growth",
+      "text": "+%s Crop Growth",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": "10"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s 作物生长",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§2",
+          "text": "%s Crop Growth",
+          "zh": "%s 作物生长"
+        }
+      ]
+    },
+    {
+      "id": "skills_bait_guide",
+      "context": "钓鱼子菜单:鱼饵指南格",
+      "raw": "§a⚑ Bait Guide",
+      "text": "⚑ Bait Guide",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "⚑ 鱼饵指南"
+    },
+    {
+      "id": "skills_bait_guide_desc_1",
+      "context": "鱼饵指南说明",
+      "raw": "§7View §6Baits§7, their uses, and how to",
+      "text": "View Baits, their uses, and how to",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "查看各种鱼饵、它们的用途以及获取方式!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "View ",
+          "zh": "查看各种"
+        },
+        {
+          "color": "§6",
+          "text": "Baits",
+          "zh": "鱼饵"
+        },
+        {
+          "color": "§7",
+          "text": ", their uses, and how to",
+          "zh": "、它们的用途以及获取方式!"
+        }
+      ]
+    },
+    {
+      "id": "skills_bait_guide_desc_2",
+      "context": "接上一行",
+      "raw": "§7obtain them!",
+      "text": "obtain them!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_sea_creature_guide",
+      "context": "钓鱼子菜单:海洋生物指南格",
+      "raw": "§a⚑ Sea Creature Guide",
+      "text": "⚑ Sea Creature Guide",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "⚑ 海洋生物指南"
+    },
+    {
+      "id": "skills_sea_creature_guide_desc_1",
+      "context": "海洋生物指南说明",
+      "raw": "§7Your guide to the creatures of the",
+      "text": "Your guide to the creatures of the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "深海生物指南!"
+    },
+    {
+      "id": "skills_sea_creature_guide_desc_2",
+      "context": "接上一行",
+      "raw": "§7deep!",
+      "text": "deep!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_sea_creature_warning_1",
+      "context": "海洋生物指南:私人岛屿刷新率提示",
+      "raw": "§7Beware, Sea Creatures spawn much",
+      "text": "Beware, Sea Creatures spawn much",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "注意，海洋生物在你的私人岛屿上出现的频率要低得多。"
+    },
+    {
+      "id": "skills_sea_creature_warning_2",
+      "context": "接上一行",
+      "raw": "§7less often on your private island.",
+      "text": "less often on your private island.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_rod_part_guide",
+      "context": "钓鱼子菜单:鱼竿配件指南格",
+      "raw": "§a⚑ Rod Part Guide",
+      "text": "⚑ Rod Part Guide",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "⚑ 鱼竿配件指南"
+    },
+    {
+      "id": "skills_rod_part_guide_desc_1",
+      "context": "鱼竿配件指南说明",
+      "raw": "§7View all of the §9Rod Parts §7that can be",
+      "text": "View all of the Rod Parts that can be",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "查看所有可安装在鱼竿上的鱼竿配件!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "View all of the ",
+          "zh": "查看所有可安装在鱼竿上的"
+        },
+        {
+          "color": "§9",
+          "text": "Rod Parts ",
+          "zh": "鱼竿配件"
+        },
+        {
+          "color": "§7",
+          "text": "that can be",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "skills_rod_part_guide_desc_2",
+      "context": "接上一行",
+      "raw": "§7applied to §aFishing Rods§7!",
+      "text": "applied to Fishing Rods!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_bestiary",
+      "context": "战斗子菜单:生物图鉴格",
+      "raw": "§3Bestiary",
+      "text": "Bestiary",
+      "placeholders": [],
+      "gloss": "沿用 Common_Menus.json 的 Bestiary Milestones → 生物图鉴里程碑。",
+      "translate": true,
+      "zh": "生物图鉴"
+    },
+    {
+      "id": "skills_bestiary_desc_1",
+      "context": "生物图鉴说明",
+      "raw": "§7The Bestiary is a compendium of",
+      "text": "The Bestiary is a compendium of",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "生物图鉴是 SkyBlock 的怪物大全，收录了掉落物、你的怪物统计等详细信息!"
+    },
+    {
+      "id": "skills_bestiary_desc_2",
+      "context": "接上一行",
+      "raw": "§7mobs in SkyBlock. It contains detailed",
+      "text": "mobs in SkyBlock. It contains detailed",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_bestiary_desc_3",
+      "context": "接上一行",
+      "raw": "§7information on loot drops, your mob",
+      "text": "information on loot drops, your mob",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_bestiary_desc_4",
+      "context": "接上一行",
+      "raw": "§7stats, and more!",
+      "text": "stats, and more!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_bestiary_families_1",
+      "context": "生物图鉴说明:按族系推进",
+      "raw": "§7Kill mobs within §aFamilies §7to progress",
+      "text": "Kill mobs within Families to progress",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "击杀同一族系内的怪物来推进图鉴，获得奖励，包括对该族系怪物的 ✯ 魔法寻宝加成。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Kill mobs within ",
+          "zh": "击杀同一"
+        },
+        {
+          "color": "§a",
+          "text": "Families ",
+          "zh": "族系"
+        },
+        {
+          "color": "§7",
+          "text": "to progress",
+          "zh": "内的怪物来推进图鉴，获得奖励，包括对该族系怪物的 ✯ 魔法寻宝加成。"
+        }
+      ]
+    },
+    {
+      "id": "skills_bestiary_families_2",
+      "context": "接上一行",
+      "raw": "§7and earn §arewards§7, including §b✯ Magic",
+      "text": "and earn rewards, including ✯ Magic",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_bestiary_families_3",
+      "context": "接上一行",
+      "raw": "§bFind §7bonuses towards mobs in the",
+      "text": "Find bonuses towards mobs in the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_bestiary_families_4",
+      "context": "接上一行",
+      "raw": "§7Family.",
+      "text": "Family.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_bestiary_families_stat",
+      "context": "生物图鉴:已发现 / 已完成的族系比例",
+      "raw": "§7Families %1$s: §e%2$s%",
+      "text": "Families %1$s: %2$s%",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Found / Completed,译名走 _shared/Terms.json",
+          "type": "raw",
+          "example": "Found"
+        },
+        {
+          "token": "%2$s",
+          "desc": "百分比",
+          "type": "percentage",
+          "example": "40.4"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s族系: %2$s%",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Families %1$s: ",
+          "zh": "%1$s族系: "
+        },
+        {
+          "color": "§e",
+          "text": "%2$s%",
+          "zh": "%2$s%"
+        }
+      ]
+    },
+    {
+      "id": "skills_slayer",
+      "context": "战斗子菜单:猎手格",
+      "raw": "§5Slayer",
+      "text": "Slayer",
+      "placeholders": [],
+      "gloss": "Slayer 沿用委托名 Goblin Slayer → 哥布林猎手 的「猎手」。",
+      "translate": true,
+      "zh": "猎手"
+    },
+    {
+      "id": "skills_slayer_desc_1",
+      "context": "猎手说明",
+      "raw": "§5Slayer Quests §7involve killing a large",
+      "text": "Slayer Quests involve killing a large",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "猎手任务需要先大量击杀某种怪物，再击败一只强大的 Boss。每种 Boss 都有自己强力的技能和稀有掉落。",
+      "segments": [
+        {
+          "color": "§5",
+          "text": "Slayer Quests ",
+          "zh": "猎手任务"
+        },
+        {
+          "color": "§7",
+          "text": "involve killing a large",
+          "zh": "需要先大量击杀某种怪物，再击败一只强大的 Boss。每种 Boss 都有自己强力的技能和稀有掉落。"
+        }
+      ]
+    },
+    {
+      "id": "skills_slayer_desc_2",
+      "context": "接上一行",
+      "raw": "§7number of a certain mob before",
+      "text": "number of a certain mob before",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_slayer_desc_3",
+      "context": "接上一行",
+      "raw": "§7defeating a powerful §cboss§7. Each",
+      "text": "defeating a powerful boss. Each",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_slayer_desc_4",
+      "context": "接上一行",
+      "raw": "§7type of §cboss §7has its own powerful",
+      "text": "type of boss has its own powerful",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_slayer_desc_5",
+      "context": "接上一行",
+      "raw": "§7abilities and rare drops.",
+      "text": "abilities and rare drops.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_slayer_maddox_1",
+      "context": "猎手说明:去哪接任务",
+      "raw": "§7Take on a §5Slayer Quest §7by speaking",
+      "text": "Take on a Slayer Quest by speaking",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "在大厅找 Maddox the Slayer 交谈即可接取猎手任务!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Take on a ",
+          "zh": "在大厅找 Maddox the Slayer 交谈即可接取"
+        },
+        {
+          "color": "§5",
+          "text": "Slayer Quest ",
+          "zh": "猎手任务"
+        },
+        {
+          "color": "§7",
+          "text": "by speaking",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "skills_slayer_maddox_2",
+      "context": "接上一行",
+      "raw": "§7to §5Maddox the Slayer §7in the §bHub§7!",
+      "text": "to Maddox the Slayer in the Hub!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_rock_pet_milestones",
+      "context": "挖矿子菜单:岩石宠物里程碑格",
+      "raw": "§fRock Pet Milestones",
+      "text": "Rock Pet Milestones",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "岩石宠物里程碑"
+    },
+    {
+      "id": "skills_rock_pet_desc_1",
+      "context": "岩石宠物里程碑说明",
+      "raw": "§7Upgrade your rock pet by mining",
+      "text": "Upgrade your rock pet by mining",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "通过挖掘矿石、矮人金属和宝石来升级你的岩石宠物。"
+    },
+    {
+      "id": "skills_rock_pet_desc_2",
+      "context": "接上一行",
+      "raw": "§6Ores§7, §aDwarven Metals§7, and §dGemstones§7.",
+      "text": "Ores, Dwarven Metals, and Gemstones.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_rock_pet_max_tier",
+      "context": "岩石宠物里程碑:已满级",
+      "raw": "§bYou reached the max tier!",
+      "text": "You reached the max tier!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你已达到最高等级!"
+    },
+    {
+      "id": "skills_rock_pet_ores_mined",
+      "context": "岩石宠物里程碑:已挖矿石数",
+      "raw": "§7Ores mined: §f%s",
+      "text": "Ores mined: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "1,140,320"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "已挖掘矿石: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Ores mined: ",
+          "zh": "已挖掘矿石: "
+        },
+        {
+          "color": "§f",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "skills_enchantment_guide",
+      "context": "附魔子菜单 / 附魔物品菜单:附魔指南格",
+      "raw": "§a⚑ Enchantment Guide",
+      "text": "⚑ Enchantment Guide",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "⚑ 附魔指南"
+    },
+    {
+      "id": "skills_enchantment_guide_desc_1",
+      "context": "附魔指南说明",
+      "raw": "§7View a complete list of all",
+      "text": "View a complete list of all",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "查看所有附魔及其解锁条件的完整列表。"
+    },
+    {
+      "id": "skills_enchantment_guide_desc_2",
+      "context": "接上一行",
+      "raw": "§7enchantments and their requirements.",
+      "text": "enchantments and their requirements.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_heart_of_the_forest",
+      "context": "伐木子菜单:森林之心格",
+      "raw": "§aHeart of the Forest",
+      "text": "Heart of the Forest",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "森林之心"
+    },
+    {
+      "id": "skills_hotf_desc_1",
+      "context": "森林之心说明",
+      "raw": "§7Your §aHeart of the Forest §7contains",
+      "text": "Your Heart of the Forest contains",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的森林之心记录着你在伐木群岛上的进度!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Your ",
+          "zh": "你的"
+        },
+        {
+          "color": "§a",
+          "text": "Heart of the Forest ",
+          "zh": "森林之心"
+        },
+        {
+          "color": "§7",
+          "text": "contains",
+          "zh": "记录着你在伐木群岛上的进度!"
+        }
+      ]
+    },
+    {
+      "id": "skills_hotf_desc_2",
+      "context": "接上一行",
+      "raw": "§7your progression for the §9Foraging",
+      "text": "your progression for the Foraging",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_hotf_desc_3",
+      "context": "接上一行",
+      "raw": "§9Islands§7!",
+      "text": "Islands!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_hotf_tiers_1",
+      "context": "森林之心:如何解锁",
+      "raw": "§7Unlock Tiers by participating in",
+      "text": "Unlock Tiers by participating in",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "参加 Starlyn 竞赛即可解锁阶级，并用低语升级天赋。"
+    },
+    {
+      "id": "skills_hotf_tiers_2",
+      "context": "接上一行",
+      "raw": "§5Starlyn Contests §7and upgrade perks",
+      "text": "Starlyn Contests and upgrade perks",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_hotf_tiers_3",
+      "context": "接上一行",
+      "raw": "§7using §3Whispers§7.",
+      "text": "using Whispers.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_hotf_whispers",
+      "context": "森林之心:两种低语的数量",
+      "raw": "§7%1$s Whispers: §3%2$s",
+      "text": "%1$s Whispers: %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Forest / Desert,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Forest"
+        },
+        {
+          "token": "%2$s",
+          "desc": "数量",
+          "type": "number",
+          "example": "1,603"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s低语: %2$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "%1$s Whispers: ",
+          "zh": "%1$s低语: "
+        },
+        {
+          "color": "§3",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ]
+    },
+    {
+      "id": "skills_hunting_box",
+      "context": "狩猎子菜单:狩猎箱格",
+      "raw": "§aHunting Box",
+      "text": "Hunting Box",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "狩猎箱"
+    },
+    {
+      "id": "skills_hunting_box_desc_1",
+      "context": "狩猎箱说明",
+      "raw": "§7This is where all your Shards are",
+      "text": "This is where all your Shards are",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的所有碎片都存放在这里!"
+    },
+    {
+      "id": "skills_hunting_box_desc_2",
+      "context": "接上一行",
+      "raw": "§7stored!",
+      "text": "stored!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_hunting_box_desc_3",
+      "context": "狩猎箱说明",
+      "raw": "§7From here you can Syphon shards,",
+      "text": "From here you can Syphon shards,",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "在这里你可以注入碎片，或把它们做成物品!"
+    },
+    {
+      "id": "skills_hunting_box_desc_4",
+      "context": "接上一行",
+      "raw": "§7or turn them into items!",
+      "text": "or turn them into items!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_hunting_box_shards",
+      "context": "狩猎箱:碎片数",
+      "raw": "§7Shards: §2%s",
+      "text": "Shards: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "碎片: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Shards: ",
+          "zh": "碎片: "
+        },
+        {
+          "color": "§2",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "skills_attribute_menu",
+      "context": "狩猎子菜单:属性菜单格",
+      "raw": "§aAttribute Menu",
+      "text": "Attribute Menu",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "属性菜单"
+    },
+    {
+      "id": "skills_attribute_menu_desc_1",
+      "context": "属性菜单说明",
+      "raw": "§7View a complete list of all Attributes!",
+      "text": "View a complete list of all Attributes!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "查看所有属性的完整列表!"
+    },
+    {
+      "id": "skills_attribute_menu_desc_2",
+      "context": "属性菜单说明",
+      "raw": "§7Check your progress, discover new",
+      "text": "Check your progress, discover new",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "查看你的进度、发现新属性，并了解如何获取你尚未拥有的属性。"
+    },
+    {
+      "id": "skills_attribute_menu_desc_3",
+      "context": "接上一行",
+      "raw": "§7Attributes, and learn how to obtain",
+      "text": "Attributes, and learn how to obtain",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_attribute_menu_desc_4",
+      "context": "接上一行",
+      "raw": "§7the ones you don't own yet.",
+      "text": "the ones you don't own yet.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_social_skill_entry",
+      "context": "社交子菜单里的技能格名",
+      "raw": "§aSocial Skill",
+      "text": "Social Skill",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "社交技能"
+    },
+    {
+      "id": "skills_social_purchase_from",
+      "context": "社交每级奖励:可从 Amelia 处购买某物(物品名在同一行,from 折行)",
+      "raw": "§fAbility to purchase §d%s §ffrom",
+      "text": "Ability to purchase %s from",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "物品名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Tic Tac Toe"
+        }
+      ],
+      "gloss": "尾行 Amelia 留空被吞。词表本批补 Tic Tac Toe → 井字棋 / Egg Hunt → 寻蛋游戏 / Island NPCs → 岛屿 NPC。",
+      "translate": true,
+      "zh": "可从 Amelia 处购买%s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Ability to purchase ",
+          "zh": "可从 Amelia 处购买"
+        },
+        {
+          "color": "§d",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§f",
+          "text": "from",
+          "zh": "",
+          "omit": true
+        }
+      ]
+    },
+    {
+      "id": "skills_social_amelia_tail",
+      "context": "接上一行",
+      "raw": "§fAmelia",
+      "text": "Amelia",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_social_purchase",
+      "context": "社交每级奖励:可购买某物(from Amelia 整个折到下一行)",
+      "raw": "§fAbility to purchase §d%s",
+      "text": "Ability to purchase %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "物品名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Four in a Row"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "可从 Amelia 处购买%s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Ability to purchase ",
+          "zh": "可从 Amelia 处购买"
+        },
+        {
+          "color": "§d",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "skills_social_from_amelia_tail",
+      "context": "接上一行",
+      "raw": "§ffrom Amelia",
+      "text": "from Amelia",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "skills_social_shears_tail",
+      "context": "接上一行:Rock Paper Shears 的物品名被折成两行,尾行要把 Shears 接回去",
+      "raw": "§dShears §ffrom Amelia",
+      "text": "Shears from Amelia",
+      "placeholders": [],
+      "gloss": "物品名 Rock Paper Shears 保留英文;首行捕到 Rock Paper,这里补上 Shears,from Amelia 的意思已在首行。",
+      "translate": true,
+      "continuation": true,
+      "zh": " Shears",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "Shears ",
+          "zh": " Shears"
+        },
+        {
+          "color": "§f",
+          "text": "from Amelia",
+          "zh": "",
+          "omit": true
+        }
+      ]
+    },
+    {
+      "id": "skills_social_unlock_commands",
+      "context": "社交每级奖励:解锁 /social 指令",
+      "raw": "§fUnlock §d/social Commands",
+      "text": "Unlock /social Commands",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "解锁 /social 指令",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Unlock ",
+          "zh": "解锁 "
+        },
+        {
+          "color": "§d",
+          "text": "/social Commands",
+          "zh": "/social 指令"
+        }
+      ]
+    },
+    {
+      "id": "skills_social_unlock_island",
+      "context": "社交每级奖励:解锁岛屿功能",
+      "raw": "§fUnlock §dIsland %s",
+      "text": "Unlock Island %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "Ranks / Naming,译名走 _shared/Terms.json",
+          "type": "raw",
+          "example": "Naming"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "解锁岛屿%s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Unlock ",
+          "zh": "解锁"
+        },
+        {
+          "color": "§d",
+          "text": "Island %s",
+          "zh": "岛屿%s"
+        }
+      ]
+    },
+    {
+      "id": "skills_desc_skills_word",
+      "context": "技能菜单某格说明被折成两行时孤零零的尾行「Skills.」",
+      "raw": "§7Skills.",
+      "text": "Skills.",
+      "placeholders": [],
+      "gloss": "采集到的是一条只有一个词的尾行;上一行未知,先按 continuation 登记,首行翻译后它会被吞掉。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    }
+  ]
+}

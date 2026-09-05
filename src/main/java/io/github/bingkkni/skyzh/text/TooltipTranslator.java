@@ -1,5 +1,6 @@
 package io.github.bingkkni.skyzh.text;
 
+import io.github.bingkkni.skyzh.HoldOriginal;
 import io.github.bingkkni.skyzh.SkyZHConfig;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -7,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import net.minecraft.client.gui.Font;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 
 /**
  * Item name and lore, translated as a block rather than line by line.
@@ -103,14 +105,21 @@ public final class TooltipTranslator {
 	public static List<Component> translate(Font font, List<Component> lines) {
 		SkyZHConfig config = SkyZHConfig.get();
 
-		if (!config.enabled || lines.isEmpty()) {
+		if (!config.enabled || HoldOriginal.active() || lines.isEmpty()) {
 			return lines;
 		}
 
 		StringBuilder key = new StringBuilder();
 
 		for (Component line : lines) {
-			key.append(line.getString()).append('\n');
+			StyledText styled = StyledText.of(line);
+			key.append(styled.plain()).append('\n');
+
+			for (int i = 0; i < styled.length(); i++) {
+				key.append(styled.styleAt(i).hashCode()).append(',');
+			}
+
+			key.append('\n');
 		}
 
 		String cacheKey = key.toString();
@@ -142,10 +151,11 @@ public final class TooltipTranslator {
 		boolean merging = false;
 		boolean name = true;
 
-		for (Component line : lines) {
+		for (int i = 0; i < lines.size(); i++) {
+			Component line = lines.get(i);
 			Translator.Result translated = name
 				? translateItemName(line)
-				: Translator.translate(line, Surface.ITEM);
+				: Translator.translate(line, Surface.ITEM, config.showOriginal);
 
 			if (name) {
 				// The first line of a tooltip is the item's name, and the name is what a player types
@@ -176,7 +186,35 @@ public final class TooltipTranslator {
 			}
 
 			if (translated.matched()) {
-				result.addAll(TextLayout.wrap(font, translated.padded(), width));
+				List<TranslationEntry.Matched> joined = new ArrayList<>();
+				joined.add(new TranslationEntry.Matched(translated.entry(), translated.matchedCore(), translated.match()));
+
+				int tail = i + 1;
+
+				while (tail < lines.size()) {
+					Translator.Result continuation = Translator.translate(lines.get(tail), Surface.ITEM);
+
+					if (!continuation.matched() || !continuation.entry().continuation()) {
+						break;
+					}
+
+					joined.add(new TranslationEntry.Matched(
+						continuation.entry(), continuation.matchedCore(), continuation.match()
+					));
+					tail++;
+				}
+
+				if (joined.size() == 1) {
+					result.addAll(TextLayout.wrap(font, translated.padded(), width));
+				} else {
+					Component rendered = Translator.skyBlockName(
+						TranslationEntry.renderJoined(joined, Translator.index().terms(), config.showOriginal), config
+					);
+					Component padded = pad(translated.head(), rendered, translated.tail());
+
+					result.addAll(TextLayout.wrap(font, padded, width));
+					i = tail - 1;
+				}
 			} else {
 				// No record answers for the whole line, which is the normal state of an enchantment
 				// line: it lists whichever enchantments this item carries, and the corpus holds them
@@ -197,5 +235,25 @@ public final class TooltipTranslator {
 		}
 
 		return immutable;
+	}
+
+	private static Component pad(Component head, Component core, Component tail) {
+		if (head == null && tail == null) {
+			return core;
+		}
+
+		MutableComponent result = Component.empty();
+
+		if (head != null) {
+			result.append(head);
+		}
+
+		result.append(core);
+
+		if (tail != null) {
+			result.append(tail);
+		}
+
+		return result;
 	}
 }

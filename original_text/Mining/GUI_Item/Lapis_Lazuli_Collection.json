@@ -1,0 +1,91 @@
+{
+  "source": "runtime capture (SkyZH), logs/skyzh-capture, 2026-09-04",
+  "fetched_at": "2026-09-04",
+  "verified_ingame": true,
+  "context": "青金石收藏品详情界面。",
+  "lines": [
+    {
+      "id": "lapis_collection_view",
+      "context": "青金石收藏品入口说明",
+      "raw": "§7View all your §aLapis Lazuli Collection",
+      "text": "View all your Lapis Lazuli Collection",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "查看你的全部青金石收藏品",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "View all your ",
+          "zh": "查看你的全部"
+        },
+        {
+          "color": "§a",
+          "text": "Lapis Lazuli Collection",
+          "zh": "青金石收藏品"
+        }
+      ]
+    },
+    {
+      "id": "collection_total_collected",
+      "context": "收藏品总收集量",
+      "raw": "§7Total Collected: §e%s",
+      "text": "Total Collected: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "已收集数量",
+          "type": "number",
+          "example": "8,887"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "收集总量: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Total Collected: ",
+          "zh": "收集总量: "
+        },
+        {
+          "color": "§e",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "lapis_collection_tier",
+      "context": "青金石收藏品层级名称",
+      "raw": "§aLapis Lazuli %s",
+      "text": "Lapis Lazuli %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "青金石收藏品层级",
+          "type": "tier",
+          "example": "I"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "青金石 %s"
+    },
+    {
+      "id": "lapis_experience_discount",
+      "context": "青金石收藏品奖励中的 Experience 附魔经验折扣",
+      "raw": "§9Experience §7Exp Discount §a(-%s%)",
+      "text": "Experience Exp Discount (-%s%)",
+      "placeholders": [{"token": "%s", "desc": "Experience 附魔的经验消耗折扣", "type": "number", "example": "25"}],
+      "gloss": "Experience 是 SkyBlock 专属附魔名，按既定规则保留英文；Exp Discount 译作经验折扣。",
+      "translate": true,
+      "zh": "Experience 附魔经验折扣 (-%s%)",
+      "segments": [
+        {"color": "§9", "text": "Experience ", "zh": "Experience "},
+        {"color": "§7", "text": "Exp Discount ", "zh": "附魔经验折扣 "},
+        {"color": "§a", "text": "(-%s%)", "zh": "(-%s%)"}
+      ]
+    }
+  ]
+}

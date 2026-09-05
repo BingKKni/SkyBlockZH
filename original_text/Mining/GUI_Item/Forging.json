@@ -1,0 +1,84 @@
+{
+  "source": "runtime capture (SkyZH), logs/skyzh-capture, build/gaps_C.txt, 2026-09-05",
+  "fetched_at": "2026-09-05",
+  "verified_ingame": true,
+  "context": "熔炉锻造分类中的配方要求。",
+  "lines": [
+    {
+      "id": "forging_requires_hotm_tier",
+      "context": "锻造配方的山心层级要求",
+      "raw": "§cRequires Heart of the Mountain Tier %s",
+      "text": "Requires Heart of the Mountain Tier %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "所需山峦之心层级",
+          "type": "number",
+          "example": "4"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "需要山峦之心第 %s 层"
+    },
+    {
+      "id": "treasurite_count",
+      "context": "锻造所需的 Treasurite 数量",
+      "raw": "§5Treasurite §8x%s",
+      "text": "Treasurite x%s",
+      "placeholders": [{"token": "%s", "desc": "物品数量", "type": "number", "example": "10"}],
+      "gloss": "Treasurite 是 SkyBlock 自造矿物名，按研究结论保留英文。",
+      "translate": true,
+      "zh": "Treasurite x%s",
+      "segments": [
+        {"color": "§5", "text": "Treasurite ", "zh": "Treasurite "},
+        {"color": "§8", "text": "x%s", "zh": "x%s"}
+      ]
+    },
+    {
+      "id": "refined_mithril_count",
+      "context": "锻造所需的精炼秘银数量",
+      "raw": "§5Refined Mithril §8x%s",
+      "text": "Refined Mithril x%s",
+      "placeholders": [{"token": "%s", "desc": "物品数量", "type": "number", "example": "5"}],
+      "gloss": "沿用既有物品译名。",
+      "translate": true,
+      "zh": "精炼秘银 x%s",
+      "segments": [
+        {"color": "§5", "text": "Refined Mithril ", "zh": "精炼秘银 "},
+        {"color": "§8", "text": "x%s", "zh": "x%s"}
+      ]
+    },
+    {
+      "id": "glacite_jewel_count",
+      "context": "锻造所需的极冰宝珠数量",
+      "raw": "§9Glacite Jewel §8x%s",
+      "text": "Glacite Jewel x%s",
+      "placeholders": [{"token": "%s", "desc": "物品数量", "type": "number", "example": "3"}],
+      "gloss": "沿用既有物品译名。",
+      "translate": true,
+      "zh": "极冰宝珠 x%s",
+      "segments": [
+        {"color": "§9", "text": "Glacite Jewel ", "zh": "极冰宝珠 "},
+        {"color": "§8", "text": "x%s", "zh": "x%s"}
+      ]
+    },
+    {
+      "id": "enchanted_material_block_count",
+      "context": "锻造所需的动态附魔材料块及数量",
+      "raw": "§9Enchanted %1$s Block §8x%2$s",
+      "text": "Enchanted %1$s Block x%2$s",
+      "placeholders": [
+        {"token": "%1$s", "desc": "材料名，译名走 Terms", "type": "category_name", "example": "Redstone"},
+        {"token": "%2$s", "desc": "物品数量", "type": "number", "example": "3"}
+      ],
+      "gloss": "材料名采用 Minecraft 官方译名。",
+      "translate": true,
+      "zh": "附魔%1$s块 x%2$s",
+      "segments": [
+        {"color": "§9", "text": "Enchanted %1$s Block ", "zh": "附魔%1$s块 "},
+        {"color": "§8", "text": "x%2$s", "zh": "x%2$s"}
+      ]
+    }
+  ]
+}

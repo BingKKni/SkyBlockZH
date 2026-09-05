@@ -1,0 +1,153 @@
+{
+  "source": "运行时采集(logs/skyzh-capture,2026-09-02)",
+  "fetched_at": "2026-09-02",
+  "verified_ingame": true,
+  "gui_context": "Hypixel 主服的组队系统消息(/party),不属于任何玩法,地牢大厅采到的最多。玩家名连同 Rank 标签一律原样保留。",
+  "messages": [
+    {
+      "id": "party_attempting_add",
+      "context": "点击组队查找器里的队伍后",
+      "raw": "§aAttempting to add you to the party...",
+      "text": "Attempting to add you to the party...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "正在尝试把你加入队伍……"
+    },
+    {
+      "id": "party_you_left",
+      "context": "自己退出队伍",
+      "raw": "§eYou left the party.",
+      "text": "You left the party.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你退出了队伍。"
+    },
+    {
+      "id": "party_members_header",
+      "context": "/party list 的第一行,括号里是人数",
+      "raw": "§6Party Members (%s)",
+      "text": "Party Members (%s)",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "队伍人数",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "队伍成员 (%s)"
+    },
+    {
+      "id": "party_leader_line",
+      "context": "/party list:队长那一行,名字后面的 ● 是在线标记",
+      "raw": "§eParty Leader: §a%s",
+      "text": "Party Leader: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "队长名,含 Rank 标签与在线标记 ●,原样保留",
+          "type": "raw",
+          "example": "[VIP] CARGOES1 ●"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "队长: %s",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Party Leader: ",
+          "zh": "队长: "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "party_members_line",
+      "context": "/party list:成员那一行,可能有多个名字",
+      "raw": "§eParty Members: §b%s",
+      "text": "Party Members: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "成员名列表,含 Rank 标签与在线标记,原样保留",
+          "type": "raw",
+          "example": "[MVP+] inkkni ●"
+        }
+      ],
+      "gloss": "raw 类型最多捕 8 个词,一个成员「[MVP+] inkkni ●」算 3 个词,所以这条只管 2 人以内的成员行;3 人以上整行保持英文。人数更多时的写法待实测后再评估是否值得放宽。",
+      "translate": true,
+      "zh": "成员: %s",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Party Members: ",
+          "zh": "成员: "
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "party_transferred_because_left",
+      "context": "队长离队后队伍自动转交",
+      "raw": "§eThe party was transferred to §a%1$s §ebecause §7%2$s §eleft",
+      "text": "The party was transferred to %1$s because %2$s left",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "新队长名(含 Rank 标签)",
+          "type": "raw",
+          "example": "[VIP] CARGOES1"
+        },
+        {
+          "token": "%2$s",
+          "desc": "离开者的玩家名",
+          "type": "player_name",
+          "example": "Ninji1111"
+        }
+      ],
+      "gloss": "按英文语序翻,每段颜色对应屏幕上同一位置,新队长名保持绿色、离开者保持灰色。若换成「由于 X 离开,队伍已转交给 Y」需要 order 互换两个名字所在的段,但颜色是按段的原位置取的,会把两个人的颜色对调,所以不换。",
+      "translate": true,
+      "zh": "队伍已转交给 %1$s，因为 %2$s 离开了",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "The party was transferred to ",
+          "zh": "队伍已转交给 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§e",
+          "text": "because ",
+          "zh": "，因为 "
+        },
+        {
+          "color": "§7",
+          "text": "%2$s ",
+          "zh": "%2$s "
+        },
+        {
+          "color": "§e",
+          "text": "left",
+          "zh": "离开了"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,247 @@
+{
+  "source": "runtime capture (SkyZH), logs/skyzh-capture, 2026-09-04",
+  "fetched_at": "2026-09-04",
+  "verified_ingame": true,
+  "context": "收藏品菜单中制作独特小人以提升槽位上限的动态说明。",
+  "lines": [
+    {
+      "id": "crafted_minions_help_1",
+      "context": "收藏品菜单的小人上限说明首行；英文四行一句",
+      "raw": "§7Craft minions §ayou have never crafted",
+      "text": "Craft minions you have never crafted",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "制作从未制作过的小人,可以提升私人岛屿上的小人上限! 你还可以在大厅的社区商店解锁 5 个额外槽位。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Craft minions ",
+          "zh": "制作",
+          "order": 0
+        },
+        {
+          "color": "§a",
+          "text": "you have never crafted",
+          "zh": "从未制作过的",
+          "order": 1
+        }
+      ]
+    },
+    {
+      "id": "crafted_minions_help_2",
+      "context": "接上一行",
+      "raw": "§abefore §7to increase the minions limit on",
+      "text": "before to increase the minions limit on",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true,
+      "segments": [
+        {"color": "§a", "text": "before ", "zh": "", "omit": true, "order": 2},
+        {"color": "§7", "text": "to increase the minions limit on", "zh": "小人,可以提升私人岛屿上的小人上限! ", "order": 3}
+      ]
+    },
+    {
+      "id": "crafted_minions_help_3",
+      "context": "接上一行",
+      "raw": "§7your Private Island! You can also unlock",
+      "text": "your Private Island! You can also unlock",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true,
+      "segments": [
+        {"color": "§7", "text": "your Private Island! You can also unlock", "zh": "你还可以在大厅的", "order": 4}
+      ]
+    },
+    {
+      "id": "crafted_minions_help_4",
+      "context": "接上一行",
+      "raw": "§75 bonus slots via the §bCommunity Shop §7in",
+      "text": "5 bonus slots via the Community Shop in",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true,
+      "segments": [
+        {"color": "§7", "text": "5 bonus slots via the ", "zh": "解锁 5 个额外槽位。", "order": 6},
+        {"color": "§b", "text": "Community Shop ", "zh": "社区商店", "order": 5},
+        {"color": "§7", "text": "in", "zh": "", "omit": true, "order": 7}
+      ]
+    },
+    {
+      "id": "crafted_minions_progress",
+      "context": "独特小人制作进度",
+      "raw": "§7Crafted minions: §e%1$s§7/§6%2$s",
+      "text": "Crafted minions: %1$s/%2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "已制作的独特小人数",
+          "type": "number",
+          "example": "13"
+        },
+        {
+          "token": "%2$s",
+          "desc": "独特小人总数",
+          "type": "number",
+          "example": "719"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "已制作小人: %1$s/%2$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Crafted minions: ",
+          "zh": "已制作小人: "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "/",
+          "zh": "/"
+        },
+        {
+          "color": "§6",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ]
+    },
+    {
+      "id": "minion_limit_progress",
+      "context": "小人上限进度",
+      "raw": "§7Minion limit: §e%1$s§7/§6%2$s",
+      "text": "Minion limit: %1$s/%2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前小人上限",
+          "type": "number",
+          "example": "6"
+        },
+        {
+          "token": "%2$s",
+          "desc": "最高小人上限",
+          "type": "number",
+          "example": "32"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "小人上限: %1$s/%2$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Minion limit: ",
+          "zh": "小人上限: "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "/",
+          "zh": "/"
+        },
+        {
+          "color": "§6",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ]
+    },
+    {
+      "id": "unlock_next_minion_slot_1",
+      "context": "距离下一个小人槽位的说明首行",
+      "raw": "§7Craft §b%1$s §7more §aunique §7minions to unlock",
+      "text": "Craft %1$s more unique minions to unlock",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "还需制作的独特小人数",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "再制作 %1$s 种独特小人,即可解锁你的",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Craft ",
+          "zh": "再制作 "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "more ",
+          "zh": "种"
+        },
+        {
+          "color": "§a",
+          "text": "unique ",
+          "zh": "独特"
+        },
+        {
+          "color": "§7",
+          "text": "minions to unlock",
+          "zh": "小人,即可解锁你的"
+        }
+      ]
+    },
+    {
+      "id": "unlock_next_minion_slot_2",
+      "context": "接上一行",
+      "raw": "§7your §b%2$s §7slot.",
+      "text": "your %2$s slot.",
+      "placeholders": [
+        {
+          "token": "%2$s",
+          "desc": "将解锁的槽位序号",
+          "type": "ordinal",
+          "example": "7th"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "your ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§b",
+          "text": "%2$s ",
+          "zh": "第 %2$s 个"
+        },
+        {
+          "color": "§7",
+          "text": "slot.",
+          "zh": "槽位。"
+        }
+      ]
+    }
+  ]
+}

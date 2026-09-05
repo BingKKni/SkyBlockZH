@@ -174,9 +174,14 @@
       "context": "取回暂存的物品",
       "text": "You picked up all items from your item stash!",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "按 2026-09-04 实机颜色边界分段，绿色 all 对应中文“所有”。",
       "translate": true,
-      "zh": "你取回了物品暂存区里的所有东西!"
+      "zh": "你从物品暂存区取回了所有东西!",
+      "segments": [
+        {"color":"§e","text":"You picked up ","zh":"你从物品暂存区取回了"},
+        {"color":"§a","text":"all ","zh":"所有"},
+        {"color":"§e","text":"items from your item stash!","zh":"东西!"}
+      ]
     },
     {
       "id": "common_stash_picked_materials",
@@ -831,7 +836,7 @@
       ],
       "gloss": "",
       "translate": true,
-      "zh": "进服 %s 秒后才能使用这个指令!"
+      "zh": "你需要先等待 %s 秒才能使用这个指令!"
     },
     {
       "id": "common_sacks_gained_and_lost",
@@ -1075,9 +1080,21 @@
       "translate": true,
       "zh": "",
       "segments": [
-        {"color": "§c", "text": "[Important] ", "zh": "[重要] "},
-        {"color": "§e", "text": "This server will restart soon: ", "zh": "本房间即将重启: "},
-        {"color": "§b", "text": "Scheduled Reboot", "zh": "例行重启"}
+        {
+          "color": "§c",
+          "text": "[Important] ",
+          "zh": "[重要] "
+        },
+        {
+          "color": "§e",
+          "text": "This server will restart soon: ",
+          "zh": "本房间即将重启: "
+        },
+        {
+          "color": "§b",
+          "text": "Scheduled Reboot",
+          "zh": "例行重启"
+        }
       ]
     },
     {
@@ -1090,8 +1107,16 @@
       "translate": true,
       "zh": "",
       "segments": [
-        {"color": "§e", "text": "General Security Support Article ", "zh": "通用账号安全帮助文档 "},
-        {"color": "§b§l", "text": "CLICK HERE", "zh": "点击查看"}
+        {
+          "color": "§e",
+          "text": "General Security Support Article ",
+          "zh": "通用账号安全帮助文档 "
+        },
+        {
+          "color": "§b§l",
+          "text": "CLICK HERE",
+          "zh": "点击查看"
+        }
       ]
     },
     {
@@ -1104,8 +1129,16 @@
       "translate": true,
       "zh": "",
       "segments": [
-        {"color": "§e", "text": "SkyBlock Security Support Article ", "zh": "SkyBlock 账号安全帮助文档 "},
-        {"color": "§b§l", "text": "CLICK HERE", "zh": "点击查看"}
+        {
+          "color": "§e",
+          "text": "SkyBlock Security Support Article ",
+          "zh": "SkyBlock 账号安全帮助文档 "
+        },
+        {
+          "color": "§b§l",
+          "text": "CLICK HERE",
+          "zh": "点击查看"
+        }
       ]
     },
     {
@@ -1114,15 +1147,32 @@
       "raw": "§f               §7You have §316,753 §7materials stashed away!",
       "text": "You have %s materials stashed away!",
       "placeholders": [
-        {"token": "%s", "desc": "暂存区里材料的总个数", "type": "number", "example": "16,753"}
+        {
+          "token": "%s",
+          "desc": "暂存区里材料的总个数",
+          "type": "number",
+          "example": "16,753"
+        }
       ],
       "gloss": "已查证(wiki 的 Material Stash 页):背包塞不下的可堆叠物品会按类型自动进材料暂存区,暂存区容量无上限,提醒每分钟播一次,用 /pickupstash 取回。stash 译「暂存区」:它不是仓库(不能长期放),而是「没地方放先替你收着」。行首空格是服务器凑居中用的,按 README 的规定丢弃不写进 text,改用 layout 标记让引擎按中文宽度重算。原文的复数 materials 不用另写单数一条,带占位符的记录引擎会把词尾的 s 编成可选。",
       "translate": true,
       "zh": "你有 %s 个材料被暂存了!",
       "segments": [
-        {"color": "§7", "text": "You have ", "zh": "你有 "},
-        {"color": "§3", "text": "%s ", "zh": "%s "},
-        {"color": "§7", "text": "materials stashed away!", "zh": "个材料被暂存了!"}
+        {
+          "color": "§7",
+          "text": "You have ",
+          "zh": "你有 "
+        },
+        {
+          "color": "§3",
+          "text": "%s ",
+          "zh": "%s "
+        },
+        {
+          "color": "§7",
+          "text": "materials stashed away!",
+          "zh": "个材料被暂存了!"
+        }
       ],
       "layout": "center_chat_banner"
     },
@@ -1132,7 +1182,12 @@
       "raw": "§f              §8(This totals 5 types of materials stashed!)",
       "text": "(This totals %s types of materials stashed!)",
       "placeholders": [
-        {"token": "%s", "desc": "暂存材料的种类数", "type": "number", "example": "5"}
+        {
+          "token": "%s",
+          "desc": "暂存材料的种类数",
+          "type": "number",
+          "example": "5"
+        }
       ],
       "gloss": "整行同一个颜色,不用分段。括号照抄英文半角括号:原文的括号本身是这条附注的视觉标记,换成中文全角括号会和上一行的对齐宽度打架。",
       "translate": true,
@@ -1149,9 +1204,21 @@
       "translate": true,
       "zh": ">>> 点击这里 取回材料! <<<",
       "segments": [
-        {"color": "§3§l", "text": ">>> CLICK HERE", "zh": ">>> 点击这里"},
-        {"color": "§b", "text": " to pick them up! ", "zh": " 取回材料! "},
-        {"color": "§3§l", "text": "<<<", "zh": "<<<"}
+        {
+          "color": "§3§l",
+          "text": ">>> CLICK HERE",
+          "zh": ">>> 点击这里"
+        },
+        {
+          "color": "§b",
+          "text": " to pick them up! ",
+          "zh": " 取回材料! "
+        },
+        {
+          "color": "§3§l",
+          "text": "<<<",
+          "zh": "<<<"
+        }
       ],
       "layout": "center_chat_banner"
     },
@@ -1161,18 +1228,48 @@
       "raw": "§eYou still have §a%1$s materials §etotalling §b%2$s §etypes of materials in there!",
       "text": "You still have %1$s materials totalling %2$s types of materials in there!",
       "placeholders": [
-        {"token": "%1$s", "desc": "暂存区里还剩的材料总件数", "type": "number", "example": "15,153"},
-        {"token": "%2$s", "desc": "还剩多少种材料", "type": "number", "example": "5"}
+        {
+          "token": "%1$s",
+          "desc": "暂存区里还剩的材料总件数",
+          "type": "number",
+          "example": "15,153"
+        },
+        {
+          "token": "%2$s",
+          "desc": "还剩多少种材料",
+          "type": "number",
+          "example": "5"
+        }
       ],
       "gloss": "「暂存区」沿用同文件 common_stash_picked_materials / common_material_stash_amount 的既定说法。in there 指的就是暂存区,中文把它挑明,不直译成「在那里面」。五段颜色照原文分:服务器给两个数字各上了一种高亮色,合成一段会把整句刷成第一段的黄色。",
       "translate": true,
       "zh": "你的材料暂存区里还有 %1$s 个材料,共 %2$s 种!",
       "segments": [
-        {"color": "§e", "text": "You still have ", "zh": "你的材料暂存区里还有 "},
-        {"color": "§a", "text": "%1$s materials ", "zh": "%1$s 个材料"},
-        {"color": "§e", "text": "totalling ", "zh": ",共 "},
-        {"color": "§b", "text": "%2$s ", "zh": "%2$s "},
-        {"color": "§e", "text": "types of materials in there!", "zh": "种!"}
+        {
+          "color": "§e",
+          "text": "You still have ",
+          "zh": "你的材料暂存区里还有 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s materials ",
+          "zh": "%1$s 个材料"
+        },
+        {
+          "color": "§e",
+          "text": "totalling ",
+          "zh": ",共 "
+        },
+        {
+          "color": "§b",
+          "text": "%2$s ",
+          "zh": "%2$s "
+        },
+        {
+          "color": "§e",
+          "text": "types of materials in there!",
+          "zh": "种!"
+        }
       ]
     },
     {
@@ -1181,7 +1278,12 @@
       "raw": "§7Sending to server mini35AN...",
       "text": "Sending to server %s...",
       "placeholders": [
-        {"token": "%s", "desc": "目标房间号。Hypixel 的 mini 服编号,不是可翻译的词", "type": "raw", "example": "mini35AN"}
+        {
+          "token": "%s",
+          "desc": "目标房间号。Hypixel 的 mini 服编号,不是可翻译的词",
+          "type": "raw",
+          "example": "mini35AN"
+        }
       ],
       "gloss": "和同文件的 common_warping_home(Warping you to your SkyBlock island...)是同一类切服提示。房间号原样保留:它是服务器实例的编号,和玩家名一样没有中文。三个点是服务器原文,中文改用省略号,写法同 Community_Shop.json 的两条。",
       "translate": true,
@@ -1193,14 +1295,27 @@
       "raw": "§cBooster Cookie expires in §e60s",
       "text": "Booster Cookie expires in %ss",
       "placeholders": [
-        {"token": "%s", "desc": "剩余秒数。实测见过 60/10/5/4/3/2/1", "type": "number", "example": "60"}
+        {
+          "token": "%s",
+          "desc": "剩余秒数。实测见过 60/10/5/4/3/2/1",
+          "type": "number",
+          "example": "60"
+        }
       ],
       "gloss": "Booster Cookie 按 GLOSSARY.md 译「增益曲奇」(道具名;它给的加成叫「曲奇增益」,商店卖的网络加成 Boosters 不翻译,三个别混)。末尾的 s 是 seconds 的缩写,中文补出「秒」。",
       "translate": true,
       "zh": "增益曲奇将在 %s 秒后过期",
       "segments": [
-        {"color": "§c", "text": "Booster Cookie expires in ", "zh": "增益曲奇将在 "},
-        {"color": "§e", "text": "%ss", "zh": "%s 秒后过期"}
+        {
+          "color": "§c",
+          "text": "Booster Cookie expires in ",
+          "zh": "增益曲奇将在 "
+        },
+        {
+          "color": "§e",
+          "text": "%ss",
+          "zh": "%s 秒后过期"
+        }
       ]
     },
     {
@@ -1212,6 +1327,193 @@
       "gloss": "承接上一条的倒计时。",
       "translate": true,
       "zh": "增益曲奇已过期!"
+    },
+    {
+      "id": "common_security_sketchy_links_1",
+      "context": "进入房间时 Hypixel 主服的账号安全提示,三行,行首两个空格是缩进",
+      "raw": "  §cClicking sketchy links can result in your account",
+      "text": "Clicking sketchy links can result in your account",
+      "placeholders": [],
+      "gloss": "英文被拆成两行的一整句。聊天面不能用 continuation(尾行不会被删),所以两行各译一半、在同一位置断开。行首缩进由引擎剥掉再查,不写进 text。运行时采集(2026-09-02)。",
+      "translate": true,
+      "zh": "点击可疑链接可能导致你的账号"
+    },
+    {
+      "id": "common_security_sketchy_links_2",
+      "context": "承接上一行",
+      "raw": "  §cbeing stolen!",
+      "text": "being stolen!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "被盗!"
+    },
+    {
+      "id": "common_security_link_suspicious",
+      "context": "账号安全提示第三行",
+      "raw": "  §eLink looks suspicious? - §cDon't click it!",
+      "text": "Link looks suspicious? - Don't click it!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "链接看着可疑? - 那就别点!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Link looks suspicious? - ",
+          "zh": "链接看着可疑? - "
+        },
+        {
+          "color": "§c",
+          "text": "Don't click it!",
+          "zh": "那就别点!"
+        }
+      ]
+    },
+    {
+      "id": "common_watchdog_header",
+      "context": "Hypixel 反作弊 Watchdog 的定时公告,第一行",
+      "raw": "§4[WATCHDOG ANNOUNCEMENT]",
+      "text": "[WATCHDOG ANNOUNCEMENT]",
+      "placeholders": [],
+      "gloss": "Watchdog 是 Hypixel 反作弊系统的专名,保留英文。运行时采集(2026-09-02)。",
+      "translate": true,
+      "zh": "[WATCHDOG 公告]"
+    },
+    {
+      "id": "common_watchdog_banned",
+      "context": "Watchdog 公告第二行:过去 7 天的封禁数",
+      "raw": "§fWatchdog has banned §c§l%s§f players in the last 7 days.",
+      "text": "Watchdog has banned %s players in the last 7 days.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "封禁人数",
+          "type": "number",
+          "example": "4,841"
+        }
+      ],
+      "gloss": "中文把时间状语提到句首;数字保留自己的红色粗体。",
+      "translate": true,
+      "zh": "过去 7 天内 Watchdog 反作弊封禁了 %s 名玩家。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Watchdog has banned ",
+          "zh": "过去 7 天内 Watchdog 封禁了 "
+        },
+        {
+          "color": "§c§l",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§f",
+          "text": " players in the last 7 days.",
+          "zh": " 名玩家。"
+        }
+      ]
+    },
+    {
+      "id": "common_watchdog_staff_banned",
+      "context": "Watchdog 公告第三行:工作人员额外封禁数",
+      "raw": "§fStaff have banned an additional §c§l%s§f in the last 7 days.",
+      "text": "Staff have banned an additional %s in the last 7 days.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "封禁人数",
+          "type": "number",
+          "example": "11,247"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "过去 7 天内客服/工作人员额外封禁了 %s 名玩家。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Staff have banned an additional ",
+          "zh": "过去 7 天内工作人员额外封禁了 "
+        },
+        {
+          "color": "§c§l",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§f",
+          "text": " in the last 7 days.",
+          "zh": " 名玩家。"
+        }
+      ]
+    },
+    {
+      "id": "common_watchdog_blacklisted",
+      "context": "Watchdog 公告最后一行",
+      "raw": "§cBlacklisted modifications are a bannable offense!",
+      "text": "Blacklisted modifications are a bannable offense!",
+      "placeholders": [],
+      "gloss": "modifications 指客户端 Mod/客户端修改；blacklisted 指列入黑名单、服务器明确禁止的修改。",
+      "translate": true,
+      "zh": "使用列入黑名单的客户端修改将会被封禁!"
+    },
+    {
+      "id": "sys_nothing_to_load_template",
+      "context": "属性调优:加载空模板槽",
+      "raw": "§cThere's nothing to load! Save a template first!",
+      "text": "There's nothing to load! Save a template first!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "没有可加载的内容! 请先保存一个模板!"
+    },
+    {
+      "id": "sys_autopet_limit",
+      "context": "自动宠物:规则数已满",
+      "raw": "§cYou reached your autopet rules limit!",
+      "text": "You reached your autopet rules limit!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的自动宠物规则数量已达上限!"
+    },
+    {
+      "id": "sys_family_not_unlocked",
+      "context": "生物图鉴:点击未解锁的生物",
+      "raw": "§cYou haven't unlocked this Family yet!",
+      "text": "You haven't unlocked this Family yet!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你还没有解锁这个生物族群!"
+    },
+    {
+      "id": "common_warp_failed_short",
+      "context": "服务器无法将玩家传送到目标岛屿时的短提示",
+      "raw": "§cCouldn't warp you!",
+      "text": "Couldn't warp you!",
+      "placeholders": [],
+      "gloss": "区别于下方带 Try again later 和原因代码的长提示。",
+      "translate": true,
+      "zh": "传送失败!"
+    },
+    {
+      "id": "common_island_mining_level_requirement",
+      "context": "目标岛屿有最低挖矿等级要求时的准入提示",
+      "raw": "§cYou must be at least Mining Level %s to join this island!",
+      "text": "You must be at least Mining Level %s to join this island!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "进入目标岛屿所需的最低挖矿等级",
+          "type": "number",
+          "example": "12"
+        }
+      ],
+      "gloss": "实测为 12，但准入等级是可变字段，不写死。",
+      "translate": true,
+      "zh": "挖矿等级至少达到 %s 级才能进入这个岛屿!"
     }
   ]
 }

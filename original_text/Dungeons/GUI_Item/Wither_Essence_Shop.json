@@ -1,0 +1,416 @@
+{
+  "source": "SkyZH runtime capture 2026-09-03 (Dungeon Hub, Malik 的凋零精华商店)",
+  "fetched_at": "2026-09-03",
+  "verified_ingame": true,
+  "gui_context": "Malik → Essence Shop → Wither Essence Shop 里出售的地牢道具 Lore(Spirit Leap、秘密指南针、回声定位、地牢破坏者升级、属性精华升级预览)。菜单框架行(Essence Shop / 页码 / 返回)在 Malik.json 与 _shared/Menu_Common.json。玩家自己背包里物品的 Lore 按既定约定不收(见 Community_Shop.json 的 excluded 说明)。",
+  "excluded": [
+    "Ability: Instant Transmission 等来自玩家随身物品的行",
+    "Dungeon_Blacksmith 采集文件里的全部行(also_seen 均为「背包」)"
+  ],
+  "items": [
+    {
+      "id": "wes_spirit_leap_ability",
+      "context": "灵魂跳跃技能标题",
+      "raw": "§6Ability: Spirit Leap  §e§lRIGHT CLICK",
+      "text": "Ability: Spirit Leap  RIGHT CLICK",
+      "placeholders": [],
+      "gloss": "Spirit Leap 是物品名,保留英文;RIGHT CLICK 沿用 Class_Perks.json 的「右键点击」。",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Ability: Spirit Leap  ",
+          "zh": "技能: Spirit Leap  "
+        },
+        {
+          "color": "§e§l",
+          "text": "RIGHT CLICK",
+          "zh": "右键点击"
+        }
+      ],
+      "zh": "技能: Spirit Leap  右键点击"
+    },
+    {
+      "id": "wes_spirit_leap_desc_1",
+      "context": "灵魂跳跃说明,英文三行一句",
+      "raw": "§7Allows you to teleport to any teammate! Grants",
+      "text": "Allows you to teleport to any teammate! Grants",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "让你可以传送到任意队友身边! 传送后获得 1 秒无敌,造成伤害时无敌立即解除。"
+    },
+    {
+      "id": "wes_spirit_leap_desc_2",
+      "context": "接上一行",
+      "raw": "§a1 §7second of immunity after teleporting,",
+      "text": "1 second of immunity after teleporting,",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "wes_spirit_leap_desc_3",
+      "context": "接上一行",
+      "raw": "§7immunity is cancelled upon dealing damage.",
+      "text": "immunity is cancelled upon dealing damage.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "wes_rarity_dungeon_item",
+      "context": "精华商店道具的稀有度行(EPIC / UNCOMMON DUNGEON ITEM)",
+      "raw": "§5§l%1$s DUNGEON ITEM",
+      "text": "%1$s DUNGEON ITEM",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "稀有度词,全大写;译名走 _shared/Terms.json(Epic → 史诗,查表不分大小写)",
+          "type": "category_name",
+          "example": "EPIC"
+        }
+      ],
+      "gloss": "稀有度词表在 Terms.json 里是 Common/Uncommon/Rare/Epic/... 的 category_name 词条,大小写折叠后同样命中。",
+      "translate": true,
+      "zh": "%1$s地牢物品"
+    },
+    {
+      "id": "wes_stat_health_upgrade",
+      "context": "精华升级预览:生命值 +4➜+6",
+      "raw": "§7Increases your §c Health §7by §8+4➜§a+6§7.",
+      "text": "Increases your  Health by +4➜+6.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increases your ",
+          "zh": "将你的"
+        },
+        {
+          "color": "§c",
+          "text": " Health ",
+          "zh": " 生命值"
+        },
+        {
+          "color": "§7",
+          "text": "by ",
+          "zh": "提高"
+        },
+        {
+          "color": "§8",
+          "text": "+4➜",
+          "zh": "+4➜"
+        },
+        {
+          "color": "§a",
+          "text": "+6",
+          "zh": "+6"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "将你的 生命值提高+4➜+6。"
+    },
+    {
+      "id": "wes_stat_defense_prefix",
+      "context": "精华升级预览:防御力(数值在下一行)",
+      "raw": "§7Increases your §a Defense §7by",
+      "text": "Increases your  Defense by",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increases your ",
+          "zh": "将你的"
+        },
+        {
+          "color": "§a",
+          "text": " Defense ",
+          "zh": " 防御力"
+        },
+        {
+          "color": "§7",
+          "text": "by",
+          "zh": "提高"
+        }
+      ],
+      "zh": "将你的 防御力提高"
+    },
+    {
+      "id": "wes_stat_speed_upgrade",
+      "context": "精华升级预览:速度 +1",
+      "raw": "§7Increases your §f Speed §7by §a+1§7.",
+      "text": "Increases your  Speed by +1.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increases your ",
+          "zh": "将你的"
+        },
+        {
+          "color": "§f",
+          "text": " Speed ",
+          "zh": " 速度"
+        },
+        {
+          "color": "§7",
+          "text": "by ",
+          "zh": "提高"
+        },
+        {
+          "color": "§a",
+          "text": "+1",
+          "zh": "+1"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "将你的 速度提高+1。"
+    },
+    {
+      "id": "wes_stat_intelligence_upgrade",
+      "context": "精华升级预览:智力 +2",
+      "raw": "§7Increases your §b Intelligence §7by §a+2§7.",
+      "text": "Increases your  Intelligence by +2.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increases your ",
+          "zh": "将你的"
+        },
+        {
+          "color": "§b",
+          "text": " Intelligence ",
+          "zh": " 智力"
+        },
+        {
+          "color": "§7",
+          "text": "by ",
+          "zh": "提高"
+        },
+        {
+          "color": "§a",
+          "text": "+2",
+          "zh": "+2"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "将你的 智力提高+2。"
+    },
+    {
+      "id": "wes_stat_strength_prefix",
+      "context": "精华升级预览:力量(数值在下一行)",
+      "raw": "§7Increases your §c Strength §7by",
+      "text": "Increases your  Strength by",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increases your ",
+          "zh": "将你的"
+        },
+        {
+          "color": "§c",
+          "text": " Strength ",
+          "zh": " 力量"
+        },
+        {
+          "color": "§7",
+          "text": "by",
+          "zh": "提高"
+        }
+      ],
+      "zh": "将你的 力量提高"
+    },
+    {
+      "id": "wes_blessings_effective_1",
+      "context": "凋零精华升级:祝福效果提升",
+      "raw": "§7Blessings are §a%1$s% §7more effective on",
+      "text": "Blessings are %1$s% more effective on",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "提升百分比",
+          "type": "percentage",
+          "example": "1"
+        }
+      ],
+      "gloss": "Blessings 指地牢里的祝福(沿用 Mayor_Election.json)。原文第二行「you.」被合并进这一句。",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Blessings are ",
+          "zh": "地牢祝福对你的效果提升 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s% ",
+          "zh": "%1$s%"
+        },
+        {
+          "color": "§7",
+          "text": "more effective on",
+          "zh": "。"
+        }
+      ],
+      "zh": "地牢祝福对你的效果提升 %1$s%。"
+    },
+    {
+      "id": "wes_blessings_effective_2",
+      "context": "接上一行",
+      "raw": "§7you.",
+      "text": "you.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "wes_dungeonbreaker_restore_1",
+      "context": "地牢破坏者升级:捡到秘密回复充能,英文三行一句",
+      "raw": "§7Restore §e1§c⸕§7 charge on your",
+      "text": "Restore 1⸕ charge on your",
+      "placeholders": [],
+      "gloss": "物品名 Dungeonbreaker 在原文第二行是红色高亮,合并后落进灰色段里(和 Croesus.json 的 Kuudra 同样处理);数字与图标保留原色。",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Restore ",
+          "zh": "每收集一个秘密,为你的 Dungeonbreaker 回复 "
+        },
+        {
+          "color": "§e",
+          "text": "1",
+          "zh": "1"
+        },
+        {
+          "color": "§c",
+          "text": "⸕",
+          "zh": "⸕"
+        },
+        {
+          "color": "§7",
+          "text": " charge on your",
+          "zh": " 充能。"
+        }
+      ],
+      "zh": "每收集一个秘密,为你的 Dungeonbreaker 回复 1⸕ 充能。"
+    },
+    {
+      "id": "wes_dungeonbreaker_restore_2",
+      "context": "接上一行",
+      "raw": "§cDungeonbreaker§7 after collecting a",
+      "text": "Dungeonbreaker after collecting a",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "wes_dungeonbreaker_restore_3",
+      "context": "接上一行",
+      "raw": "§7secret.",
+      "text": "secret.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "wes_compass_desc_1",
+      "context": "秘密指南针说明,英文两行一句",
+      "raw": "§7Always points towards the closest",
+      "text": "Always points towards the closest",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "在地牢中始终指向最近的秘密。"
+    },
+    {
+      "id": "wes_compass_desc_2",
+      "context": "接上一行",
+      "raw": "§7secret while in dungeons.",
+      "text": "secret while in dungeons.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "wes_echolocation_ability",
+      "context": "回声定位技能标题",
+      "raw": "§6Ability: Echolocation  §e§lRIGHT CLICK",
+      "text": "Ability: Echolocation  RIGHT CLICK",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Ability: Echolocation  ",
+          "zh": "技能: 回声定位  "
+        },
+        {
+          "color": "§e§l",
+          "text": "RIGHT CLICK",
+          "zh": "右键点击"
+        }
+      ],
+      "zh": "技能: 回声定位  右键点击"
+    },
+    {
+      "id": "wes_echolocation_desc_1",
+      "context": "回声定位说明,英文两行一句",
+      "raw": "§7Shows you where the nearest dungeon secret",
+      "text": "Shows you where the nearest dungeon secret",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "显示最近的地牢秘密所在的位置。"
+    },
+    {
+      "id": "wes_echolocation_desc_2",
+      "context": "接上一行",
+      "raw": "§7is.",
+      "text": "is.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    }
+  ]
+}

@@ -18,7 +18,7 @@
 
 ## 这里面有什么
 
-- **全局规则与排版**（9 条）：SkyBlock、感叹号后面加空格、空岛时钟、空岛日期、空岛季节名、"Nx" 倍率加成的翻译方式、全大写的消息前缀、原版 Minecraft 材料名一律用官方中文译名、稀有度词
+- **全局规则与排版**（10 条）：NPC 对白的口语与人情味、SkyBlock、感叹号后面加空格、空岛时钟、空岛日期、空岛季节名、"Nx" 倍率加成的翻译方式、全大写的消息前缀、原版 Minecraft 材料名一律用官方中文译名、稀有度词
 - **什么翻、什么不翻**（7 条）：Rank / Boosters / Gems、NPC 的"职务型名字"翻译,"人名"不翻译、物品名、怪物名、带专有人名的地名、重铸名、技能名 Mining vs 属性前缀 Mining
 - **货币与经济**（5 条）：货币名、Cost / Price、Fame / Fame Rank、The Hex、Bazaar
 - **属性词条与物品 Lore**（10 条）：Fortune、Block Fortune / Mining Fortune、Breaking Power、Mining Spread、Tiered Bonus / Mineralworks、Reforge / Soulbound / Accessory Power / Accessory Bag、Soulbound 标记行的三种变体、物品 Lore 里的固定词汇表、Titanium、Fuel
@@ -29,6 +29,17 @@
 - **语料库建设记录**（1 条）：共享片段库 `_shared/` 建设情况
 
 ## 全局规则与排版
+
+### NPC 对白 —— 先像人在说话,再像游戏说明
+
+- 用户于 2026-09-05 明确要求: **NPC 的发言要有人情味,避免无意译成中二宣言或正式说明书。**
+  默认采用自然的搭话、邀请、抱怨或调侃口吻; 不照搬英文的书面句式。
+  例如 `Do you thirst for adventure?` 在 Maddox 的招呼里译作「想出去冒个险吗?」,
+  比「你渴望冒险吗?」更像面对玩家说话。
+- **口语化不等于所有 NPC 都一个性格。** 保留角色原本的情绪和身份; 剧情确实在演说、威胁或故意夸张时,
+  可以保留相应语气。不要为制造亲切感硬塞网络梗、方言、称兄道弟或原文没有的人物关系。
+- **语气可以放松,机制不能改。** 任务名、条件、数量、因果、概率与奖励方式仍须准确;
+  「解锁奖励」不能润色成「打一次就必掉好东西」。专有名词和颜色分段仍按既有规则处理。
 
 ### SkyBlock(玩法名本身)
 
@@ -783,6 +794,40 @@ BossBar 里是全大写(`GONE WITH THE WIND`)、计分板小部件里是正常�
   原文对同一个数用了三个词,中文统一成一个,比原文更一致;`Progress:` 那一行是进度条读数,
   只作"进度",不重复"保底"二字。
 - 不用"吉兆":`Auspicious` 已经占了这个词(见本文件重铸前缀一节)。
+
+### 技能菜单的每级天赋名 —— 已确定译名
+
+- 出现场景: 空岛菜单 → 技能 → 各技能子菜单(`Hub_General/GUI_Item/Your_Skills.json`),每级奖励的第一项。
+- 按 §5.5「天赋名一律翻译」:Warrior → 战士,Farmhand → 农场帮手,Treasure Hunter → 寻宝猎人,
+  Spelunker → 洞穴探险家,Logger → 伐木工,Conjurer → 咒术师,Brewer → 酿造师,Zoologist → 动物学家,
+  Charming → 魅惑(狩猎技能的 Charm Chance 译「魅惑概率」,同一个词)。
+- 同一菜单里 `Slayer` → 猎手(沿用委托 Goblin Slayer → 哥布林猎手),`Bestiary` → 生物图鉴,
+  `Power Stone` → 能力石(沿用 Bazaar.json;本文件物品类型表里的「能量石」是老写法,以能力石为准)。
+- 十二个技能名本身沿用动作栏经验条(`Common_HUD.json`)的译名:战斗 / 农业 / 钓鱼 / 挖矿 / 伐木 / 附魔 /
+  炼药 / 木工 / 符文制作 / 驯养 / 社交 / 狩猎;等级写「战斗 XXVI 级」,罗马数字照抄。
+
+### 银行账户档次(Bank Account Upgrades)—— 已确定译名
+
+- 出现场景: `Economy/GUI_Item/Bank.json`,升级菜单每档的格子名 `%s Account`,取值走 `_shared/Terms.json`。
+- Starter → 入门,Gold → 黄金,Deluxe → 豪华,Super Deluxe → 超级豪华,Premier → 尊享,Luxurious → 奢华,Palatial → 殿堂。
+- 银行里的 `Million` / `Billion` 作 raw 值译「百万 / 十亿」(`Balance limit: 250 Million` → 「余额上限: 250 百万」),
+  利率档位里带 M/B 后缀的金额(`10M`)照抄不动。`Personal Vault` → 个人保险箱。
+
+### 末地入门任务与饰品能力 —— 2026-09-05 日志补译
+
+- 社区 Wiki 语境来源: `Lone_Adventurer`、`Pearl_Dealer`、`Dragon%27s_Nest`、
+  `End_Stone_Protector`、`Accessory_Powers/List_of_Accessory_Powers`。
+- **Void Sword → 虚空之剑**、**Ender Armor → 末影护甲**。均由普通词组成,不属于品牌或型号。
+  独行冒险者要求的 **8 pieces of Ender Armor** 实际包括四件护甲和四件装备,
+  该任务整句用 **末影套装**; 不能写成八个护甲槽。NPC 姓名/品牌标识依然保留英文。
+- **Lone Adventurer → 独行冒险者**、**Pearl Dealer → 珍珠商人**是职务型称呼;
+  本轮新增台词正文遵循该规则。结构化 NPC 标签和 `npc_name` 捕获值仍遵循引擎的原名保留策略。
+- **Dragon's Nest → 龙巢**。它在末地,不是水晶残核的 **Dragon's Lair**。
+- **End Stone Protector → 末地石守护者**。Wiki 历史记载 2025-09-02 从
+  `Endstone Protector` 改名,但日志的出现警报仍采用旧拼写; 不要擅自改写警报的 `text`。
+- **Zealot → 狂信徒**,沿用 `Taming/GUI_Item/Pet_Perks.json` 中的既有译名,不另译成狂热者。
+- **Fortuitous → 幸运**,是默认解锁的饰品袋能力,不是附魔或 NPC 人名。
+  词表限定 `category_name`,不将这个英文词泛化成对任意正文的替换。
 
 ## 剧情线与彩蛋
 

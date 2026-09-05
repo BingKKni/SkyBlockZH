@@ -208,7 +208,22 @@ public final class CaptureHarness {
 	private static void chatShapes() {
 		check("NPC 台词认得出名字", ChatShape.npcName("[NPC] Fragilis: Hello there!"), "Fragilis");
 		check("NPC 名字带空格", ChatShape.npcName("[NPC] Keeper of the Crystal: Hi."), "Keeper of the Crystal");
+		check("Boss 名字可识别", ChatShape.npcName("[BOSS] Bonzo: I am unbeatable!"), "Bonzo");
 		check("NPC 不算玩家发言", ChatShape.isPlayerChat("[NPC] Fragilis: Hello there!"), false);
+		check("Boss 不算玩家发言", ChatShape.isPlayerChat("[BOSS] Bonzo: I am unbeatable!"), false);
+		// The two the Catacombs adds. Thorn's arena crowd heckles under [CROWD] with the name of
+		// whichever mob is doing the heckling; Oruo's quiz statue asks its questions under [STATUE].
+		// Both name a speaker after the tag, so both wear a player's shape and were classed as
+		// somebody's chat until they were listed.
+		check("观众起哄认得出说话人",
+			ChatShape.npcName("[CROWD] Zombie Soldier: Go Thorn! Gooooo!!!"), "Zombie Soldier");
+		check("观众起哄不算玩家发言",
+			ChatShape.isPlayerChat("[CROWD] Zombie Soldier: Go Thorn! Gooooo!!!"), false);
+		check("石像认得出说话人",
+			ChatShape.npcName("[STATUE] Oruo the Omniscient: One more question!"),
+			"Oruo the Omniscient");
+		check("石像不算玩家发言",
+			ChatShape.isPlayerChat("[STATUE] Oruo the Omniscient: One more question!"), false);
 		// [SECURITY] Sloth wears a bracketed tag and a one-word name, which is exactly a player's
 		// shape. Read as chat it was dropped on the floor: never captured, so never reported missing,
 		// and never translated. It has to be recognised as a speaker tag on both sides.

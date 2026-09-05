@@ -1,0 +1,910 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Year_of_the_Witch + runtime capture (SkyZH)",
+  "fetched_at": "2026-09-04",
+  "verified_ingame": true,
+  "gui_context": "Agnes 的女巫年固定商店：活动饰品、宠物升级物品、Mixins 与活动说明。",
+  "lines": [
+    {
+      "id": "witchs_talisman",
+      "context": "女巫饰品与女巫收纳袋的动态名称",
+      "raw": "§fWitch's %1$s",
+      "text": "Witch's %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Talisman / Ring / Artifact / Sack，译名走词表",
+          "type": "category_name",
+          "example": "Talisman"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "女巫%s"
+    },
+    {
+      "id": "alchemy_wisdom_05",
+      "context": "女巫饰品提供的炼药智慧",
+      "raw": "§7Alchemy Wisdom: §3+%1$s",
+      "text": "Alchemy Wisdom: +%1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "运行时采集推断出的可变位置，语义待人工确认",
+          "type": "number",
+          "example": "0.5"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "炼药智慧: +%1$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Alchemy Wisdom: ",
+          "zh": "炼药智慧: "
+        },
+        {
+          "color": "§3",
+          "text": "+%1$s",
+          "zh": "+%1$s"
+        }
+      ]
+    },
+    {
+      "id": "stinks_up_your_entire_accessory_bag",
+      "context": "女巫饰品的风味说明；英文排版跨三行",
+      "raw": "§8§oStinks up your entire accessory bag",
+      "text": "Stinks up your entire accessory bag",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "让整个饰品袋臭气熏天——显然有人做完炖菜后没洗手。"
+    },
+    {
+      "id": "somebody_clearly_didnt_wash_their",
+      "context": "接上一行",
+      "raw": "§8§o- somebody clearly didn't wash their",
+      "text": "- somebody clearly didn't wash their",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "hands_after_making_a_stew",
+      "context": "接上一行",
+      "raw": "§8§ohands after making a stew.",
+      "text": "hands after making a stew.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "festering_fly_x32",
+      "context": "女巫年商店的物品花费",
+      "raw": "§9Festering Fly §8x%1$s",
+      "text": "Festering Fly x%1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "运行时采集推断出的可变位置，语义待人工确认",
+          "type": "number",
+          "example": "32"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "溃烂苍蝇 x%1$s",
+      "segments": [
+        {
+          "color": "§9",
+          "text": "Festering Fly ",
+          "zh": "溃烂苍蝇 "
+        },
+        {
+          "color": "§8",
+          "text": "x%1$s",
+          "zh": "x%1$s"
+        }
+      ]
+    },
+    {
+      "id": "witchs_ring",
+      "context": "女巫年活动固定菜单文本",
+      "raw": "§aWitch's Ring",
+      "text": "Witch's Ring",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": ""
+    },
+    {
+      "id": "small_witch_cauldron",
+      "context": "不同大小的女巫坩埚宠物升级物品",
+      "raw": "§a%1$s Witch Cauldron",
+      "text": "%1$s Witch Cauldron",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "坩埚大小，译名走词表",
+          "type": "category_name",
+          "example": "Small"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s女巫坩埚"
+    },
+    {
+      "id": "use_at_kat_to_upgrade_witch_pets",
+      "context": "女巫坩埚：在 Kat 处升级女巫宠物",
+      "raw": "§7Use at §bKat §7to upgrade §eWitch Pets",
+      "text": "Use at Kat to upgrade Witch Pets",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "在 Kat 处使用，可将女巫宠物",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Use at ",
+          "zh": "在 "
+        },
+        {
+          "color": "§b",
+          "text": "Kat ",
+          "zh": "Kat "
+        },
+        {
+          "color": "§7",
+          "text": "to upgrade ",
+          "zh": "处使用，可将"
+        },
+        {
+          "color": "§e",
+          "text": "Witch Pets",
+          "zh": "女巫宠物"
+        }
+      ]
+    },
+    {
+      "id": "from_common_to_uncommon",
+      "context": "接上一行：宠物升级前后的稀有度",
+      "raw": "§7from §f%1$s §7to §a%2$s.",
+      "text": "from %1$s to %2$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "升级前稀有度，译名走词表",
+          "type": "category_name",
+          "example": "Common"
+        },
+        {
+          "token": "%2$s",
+          "desc": "升级后稀有度，译名走词表",
+          "type": "category_name",
+          "example": "Uncommon"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "从%1$s升级至%2$s。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "from ",
+          "zh": "从"
+        },
+        {
+          "color": "§f",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "to ",
+          "zh": "升级至"
+        },
+        {
+          "color": "§a",
+          "text": "%2$s.",
+          "zh": "%2$s。"
+        }
+      ]
+    },
+    {
+      "id": "annual_stock_year_512",
+      "context": "商店物品的年度库存标记",
+      "raw": "§7Annual Stock §8Year %s",
+      "text": "Annual Stock Year %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前 SkyBlock 年份",
+          "type": "number",
+          "example": "512"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "年度库存 第 %s 年",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Annual Stock ",
+          "zh": "年度库存 "
+        },
+        {
+          "color": "§8",
+          "text": "Year %s",
+          "zh": "第 %s 年"
+        }
+      ]
+    },
+    {
+      "id": "shield_dust_x64",
+      "context": "女巫年商店的物品花费",
+      "raw": "§9Shield Dust §8x64",
+      "text": "Shield Dust x64",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "护盾粉尘 x64",
+      "segments": [
+        {
+          "color": "§9",
+          "text": "Shield Dust ",
+          "zh": "护盾粉尘 "
+        },
+        {
+          "color": "§8",
+          "text": "x64",
+          "zh": "x64"
+        }
+      ]
+    },
+    {
+      "id": "holds_items_found_during_the_year_of",
+      "context": "女巫收纳袋说明第一行",
+      "raw": "§7Holds items found during the §5Year of",
+      "text": "Holds items found during the Year of",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "存放在女巫年",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Holds items found during the ",
+          "zh": "存放在"
+        },
+        {
+          "color": "§5",
+          "text": "Year of",
+          "zh": "女巫年"
+        }
+      ]
+    },
+    {
+      "id": "the_witch_items_you_pickup_go",
+      "context": "女巫收纳袋说明第二行",
+      "raw": "§5the Witch§7! Items you pickup go",
+      "text": "the Witch! Items you pickup go",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "活动期间找到的物品! 拾取的物品会",
+      "segments": [
+        {
+          "color": "§5",
+          "text": "the Witch",
+          "zh": "活动期间找到的物品"
+        },
+        {
+          "color": "§7",
+          "text": "! Items you pickup go",
+          "zh": "! 拾取的物品会"
+        }
+      ]
+    },
+    {
+      "id": "spider_egg_x16",
+      "context": "女巫年商店的物品花费",
+      "raw": "§9Spider Egg §8x16",
+      "text": "Spider Egg x16",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "蜘蛛卵 x16",
+      "segments": [
+        {
+          "color": "§9",
+          "text": "Spider Egg ",
+          "zh": "蜘蛛卵 "
+        },
+        {
+          "color": "§8",
+          "text": "x16",
+          "zh": "x16"
+        }
+      ]
+    },
+    {
+      "id": "pig_brain_mixin",
+      "context": "闪亮猪活动的神药 Mixin 物品名",
+      "raw": "§9Pig Brain Mixin",
+      "text": "Pig Brain Mixin",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "猪脑 Mixin"
+    },
+    {
+      "id": "mixins_provide_a_buff_that_can_be",
+      "context": "神药 Mixins 的通用说明；英文跨三行",
+      "raw": "§7Mixins provide a buff that can be",
+      "text": "Mixins provide a buff that can be",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Mixins 提供的增益可通过酿造台加入神药，并在神药的整个持续时间内生效。"
+    },
+    {
+      "id": "added_to_god_potions_in_a_brewing",
+      "context": "接上一行",
+      "raw": "§7added to §cGod Potions §7in a brewing",
+      "text": "added to God Potions in a brewing",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "added to ",
+          "zh": ""
+        },
+        {
+          "color": "§c",
+          "text": "God Potions ",
+          "zh": ""
+        },
+        {
+          "color": "§7",
+          "text": "in a brewing",
+          "zh": ""
+        }
+      ],
+      "continuation": true
+    },
+    {
+      "id": "stand_and_lasts_for_the_full_duration",
+      "context": "接上一行",
+      "raw": "§7stand and lasts for the full duration.",
+      "text": "stand and lasts for the full duration.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "gain_a_10_chance_to_receive_an",
+      "context": "猪脑调料效果第一行",
+      "raw": "§7Gain a §a10% §7chance to receive an",
+      "text": "Gain a 10% chance to receive an",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "有 10% 的概率从",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain a ",
+          "zh": "有 "
+        },
+        {
+          "color": "§a",
+          "text": "10% ",
+          "zh": "10% "
+        },
+        {
+          "color": "§7",
+          "text": "chance to receive an",
+          "zh": "的概率从"
+        }
+      ]
+    },
+    {
+      "id": "extra_item_from_shiny_pigs",
+      "context": "猪脑调料效果第二行",
+      "raw": "§7extra item from §6§lShiny Pigs§7!",
+      "text": "extra item from Shiny Pigs!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "闪亮猪处额外获得一件物品!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "extra item from ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§6§l",
+          "text": "Shiny Pigs",
+          "zh": "闪亮猪"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "处额外获得一件物品!"
+        }
+      ]
+    },
+    {
+      "id": "the_duration_of_mixins_can_be_stacked",
+      "context": "Mixins 的持续时间可叠加",
+      "raw": "§7The duration of Mixins can be stacked!",
+      "text": "The duration of Mixins can be stacked!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Mixins 的持续时间可以叠加!"
+    },
+    {
+      "id": "requires_active_booster_cookie",
+      "context": "使用调料需要曲奇增益",
+      "raw": "§8(Requires active Booster Cookie)",
+      "text": "(Requires active Booster Cookie)",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "(需要生效中的增益曲奇)"
+    },
+    {
+      "id": "frog_legs_x128",
+      "context": "女巫年商店的物品花费",
+      "raw": "§9Frog Legs §8x128",
+      "text": "Frog Legs x128",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "蛙腿 x128",
+      "segments": [
+        {
+          "color": "§9",
+          "text": "Frog Legs ",
+          "zh": "蛙腿 "
+        },
+        {
+          "color": "§8",
+          "text": "x128",
+          "zh": "x128"
+        }
+      ]
+    },
+    {
+      "id": "blended_fish_mixin",
+      "context": "沙滩球活动的神药 Mixin 物品名",
+      "raw": "§9Blended Fish Mixin",
+      "text": "Blended Fish Mixin",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "混合鱼 Mixin"
+    },
+    {
+      "id": "grants_3_fishy_treats_from",
+      "context": "鱼肉混合调料效果第一行",
+      "raw": "§7Grants §a+3§7 §9Fishy Treats§7 from",
+      "text": "Grants +3 Fishy Treats from",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "要获得 +3 份鱼味零食，需要",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "要获得 "
+        },
+        {
+          "color": "§a",
+          "text": "+3",
+          "zh": "+3 "
+        },
+        {
+          "color": "§7",
+          "text": " ",
+          "zh": "份"
+        },
+        {
+          "color": "§9",
+          "text": "Fishy Treats",
+          "zh": "鱼味零食"
+        },
+        {
+          "color": "§7",
+          "text": " from",
+          "zh": "，需要"
+        }
+      ]
+    },
+    {
+      "id": "bouncing_bouncy_beach_ball_and",
+      "context": "鱼肉混合调料效果第二行",
+      "raw": "§7bouncing §5Bouncy Beach Ball§7 and",
+      "text": "bouncing Bouncy Beach Ball and",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "弹跳弹力沙滩球和",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "bouncing ",
+          "zh": "弹跳"
+        },
+        {
+          "color": "§5",
+          "text": "Bouncy Beach Ball",
+          "zh": "弹力沙滩球"
+        },
+        {
+          "color": "§7",
+          "text": " and",
+          "zh": "和"
+        }
+      ]
+    },
+    {
+      "id": "giant_bouncy_beach_ball",
+      "context": "鱼肉混合调料效果第三行",
+      "raw": "§6Giant Bouncy Beach Ball§7.",
+      "text": "Giant Bouncy Beach Ball.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "巨型弹力沙滩球。",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Giant Bouncy Beach Ball",
+          "zh": "巨型弹力沙滩球"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "waterbourne_lice_x128",
+      "context": "女巫年商店的物品花费",
+      "raw": "§9Waterbourne Lice §8x128",
+      "text": "Waterbourne Lice x128",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "水栖虱 x128",
+      "segments": [
+        {
+          "color": "§9",
+          "text": "Waterbourne Lice ",
+          "zh": "水栖虱 "
+        },
+        {
+          "color": "§8",
+          "text": "x128",
+          "zh": "x128"
+        }
+      ]
+    },
+    {
+      "id": "toil_and_trouble",
+      "context": "女巫宠物的材料掉落天赋名",
+      "raw": "§6Toil and Trouble",
+      "text": "Toil and Trouble",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "辛劳与烦恼"
+    },
+    {
+      "id": "increases_your_chance_of_dropping",
+      "context": "天赋效果第一行",
+      "raw": "§7Increases your chance of dropping",
+      "text": "Increases your chance of dropping",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "女巫年期间，材料的掉落概率"
+    },
+    {
+      "id": "ingredients_during_the_year_of_the",
+      "context": "天赋效果第二行",
+      "raw": "§6Ingredients§7 during the §5Year of the",
+      "text": "Ingredients during the Year of the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Ingredients",
+          "zh": ""
+        },
+        {
+          "color": "§7",
+          "text": " during the ",
+          "zh": ""
+        },
+        {
+          "color": "§5",
+          "text": "Year of the",
+          "zh": ""
+        }
+      ],
+      "continuation": true
+    },
+    {
+      "id": "witch_by_50",
+      "context": "天赋效果第三行",
+      "raw": "§5Witch§7 by §a50%§7.",
+      "text": "Witch by 50%.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "提高 50%。",
+      "segments": [
+        {
+          "color": "§5",
+          "text": "Witch",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§7",
+          "text": " by ",
+          "zh": "提高 "
+        },
+        {
+          "color": "§a",
+          "text": "50%",
+          "zh": "50%"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "continuation": true
+    },
+    {
+      "id": "event_info",
+      "context": "女巫年活动信息标题",
+      "raw": "§8Event Info",
+      "text": "Event Info",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "活动信息"
+    },
+    {
+      "id": "gather_ingredients_from_killing",
+      "context": "活动信息：材料来源第一行",
+      "raw": "§7Gather §6ingredients§7 from killing",
+      "text": "Gather ingredients from killing",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "收集材料需击杀",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gather ",
+          "zh": "收集"
+        },
+        {
+          "color": "§6",
+          "text": "ingredients",
+          "zh": "材料"
+        },
+        {
+          "color": "§7",
+          "text": " from killing",
+          "zh": "需击杀"
+        }
+      ]
+    },
+    {
+      "id": "various_mob_types_throughout",
+      "context": "活动信息：材料来源第二行",
+      "raw": "§7various §eMob Types§7 throughout",
+      "text": "various Mob Types throughout",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "分布在各地的生物种类。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "various ",
+          "zh": "分布在各地的"
+        },
+        {
+          "color": "§e",
+          "text": "Mob Types",
+          "zh": "生物种类"
+        },
+        {
+          "color": "§7",
+          "text": " throughout",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "spend_your_ingredients_at_agnes_and",
+      "context": "活动信息：材料用途第一行",
+      "raw": "§7Spend your §6ingredients§7 at §dAgnes§7 and",
+      "text": "Spend your ingredients at Agnes and",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "把材料交给Agnes和",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Spend your ",
+          "zh": "把"
+        },
+        {
+          "color": "§6",
+          "text": "ingredients",
+          "zh": "材料"
+        },
+        {
+          "color": "§7",
+          "text": " at ",
+          "zh": "交给"
+        },
+        {
+          "color": "§d",
+          "text": "Agnes",
+          "zh": "Agnes"
+        },
+        {
+          "color": "§7",
+          "text": " and",
+          "zh": "和"
+        }
+      ]
+    },
+    {
+      "id": "alcina_in_exchange_for_exclusive",
+      "context": "活动信息：材料用途第二行",
+      "raw": "§dAlcina§7 in exchange for exclusive",
+      "text": "Alcina in exchange for exclusive",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Alcina，即可兑换专属",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "Alcina",
+          "zh": "Alcina"
+        },
+        {
+          "color": "§7",
+          "text": " in exchange for exclusive",
+          "zh": "，即可兑换专属"
+        }
+      ]
+    },
+    {
+      "id": "perks_and_items",
+      "context": "活动信息：材料用途第三行",
+      "raw": "§7perks and items!",
+      "text": "perks and items!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "天赋和物品!"
+    },
+    {
+      "id": "the_year_of_the_witch_comes_around",
+      "context": "女巫年出现周期第一行",
+      "raw": "§7The §5Year of the Witch §7comes around",
+      "text": "The Year of the Witch comes around",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "女巫年每隔",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "The ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§5",
+          "text": "Year of the Witch ",
+          "zh": "女巫年"
+        },
+        {
+          "color": "§7",
+          "text": "comes around",
+          "zh": "每隔"
+        }
+      ]
+    },
+    {
+      "id": "every_12_skyblock_years",
+      "context": "女巫年出现周期第二行",
+      "raw": "§7every §a12 SkyBlock years§7.",
+      "text": "every 12 SkyBlock years.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "12 个 SkyBlock 年出现一次。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "every ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§a",
+          "text": "12 SkyBlock years",
+          "zh": "12 个 SkyBlock 年"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "出现一次。"
+        }
+      ]
+    },
+    {
+      "id": "event_ends_in_3d_20h_13m",
+      "context": "女巫年剩余时间；改为动态时长",
+      "raw": "§7Event ends in: §a%s",
+      "text": "Event ends in: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "活动剩余时间",
+          "type": "time",
+          "example": "3d 20h 13m"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "距活动结束: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Event ends in: ",
+          "zh": "距活动结束: "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,532 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Dungeon_Hub",
+  "fetched_at": "2026-09-01",
+  "verified_ingame": true,
+  "source_note": "原文与颜色来自地牢大厅运行时采集；社区 Wiki 普通页面用于核对玩法语境。",
+  "lines": [
+    {
+      "id": "tab_essence_header",
+      "context": "Tab 列表的精华小节标题",
+      "text": "Essence:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "精华:"
+    },
+    {
+      "id": "tab_wither_essence",
+      "context": "Tab 列表的凋零精华数量",
+      "text": " Wither: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前凋零精华数量",
+          "type": "number",
+          "example": "901"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "",
+          "text": " Wither: ",
+          "zh": " 凋零: "
+        },
+        {
+          "color": "§d",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "tab_collection_header",
+      "context": "Tab 列表的地牢收藏品小节标题",
+      "text": "Collection:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "收藏品:"
+    },
+    {
+      "id": "tab_bonzo_collection",
+      "context": "Bonzo 收藏品进度",
+      "text": " Bonzo %1$s: %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "收藏品等级",
+          "type": "tier",
+          "example": "II"
+        },
+        {
+          "token": "%2$s",
+          "desc": "当前进度",
+          "type": "raw",
+          "example": "26/50"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": " Bonzo %1$s: %2$s"
+    },
+    {
+      "id": "tab_scarf_collection",
+      "context": "Scarf 收藏品进度",
+      "text": " Scarf %1$s: %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "收藏品等级",
+          "type": "tier",
+          "example": "I"
+        },
+        {
+          "token": "%2$s",
+          "desc": "当前进度",
+          "type": "raw",
+          "example": "16/25"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": " Scarf %1$s: %2$s"
+    },
+    {
+      "id": "tab_the_professor_collection",
+      "context": "The Professor 收藏品进度",
+      "text": " The Professor %1$s: %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "收藏品等级",
+          "type": "tier",
+          "example": "II"
+        },
+        {
+          "token": "%2$s",
+          "desc": "当前进度",
+          "type": "raw",
+          "example": "25/50"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": " The Professor %1$s: %2$s"
+    },
+    {
+      "id": "tab_thorn_collection",
+      "context": "Thorn 收藏品进度",
+      "text": " Thorn %1$s: %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "收藏品等级",
+          "type": "tier",
+          "example": "I"
+        },
+        {
+          "token": "%2$s",
+          "desc": "当前进度",
+          "type": "raw",
+          "example": "27/50"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": " Thorn %1$s: %2$s"
+    },
+    {
+      "id": "tab_livid_collection",
+      "context": "Livid 收藏品进度",
+      "text": " Livid %1$s: %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "收藏品等级",
+          "type": "tier",
+          "example": "I"
+        },
+        {
+          "token": "%2$s",
+          "desc": "当前进度",
+          "type": "raw",
+          "example": "34/50"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": " Livid %1$s: %2$s"
+    },
+    {
+      "id": "tab_sadan_collection",
+      "context": "Sadan 收藏品进度",
+      "text": " Sadan %1$s: %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "收藏品等级",
+          "type": "tier",
+          "example": "I"
+        },
+        {
+          "token": "%2$s",
+          "desc": "当前进度",
+          "type": "raw",
+          "example": "32/50"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": " Sadan %1$s: %2$s"
+    },
+    {
+      "id": "tab_necron_collection",
+      "context": "Necron 收藏品进度",
+      "text": " Necron %1$s: %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "收藏品等级",
+          "type": "tier",
+          "example": "I"
+        },
+        {
+          "token": "%2$s",
+          "desc": "当前进度",
+          "type": "raw",
+          "example": "21/50"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": " Necron %1$s: %2$s"
+    },
+    {
+      "id": "tab_party_none",
+      "context": "未加入队伍时的 Tab 列表状态",
+      "raw": "§b§lParty: §7No party",
+      "text": "Party: No party",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "队伍: 未组队",
+      "segments": [
+        {
+          "color": "§b§l",
+          "text": "Party: ",
+          "zh": "队伍: "
+        },
+        {
+          "color": "§7",
+          "text": "No party",
+          "zh": "未组队"
+        }
+      ]
+    },
+    {
+      "id": "tab_catacombs_level",
+      "context": "Tab 列表的地牢等级与经验进度",
+      "text": " Catacombs %1$s: %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "地牢等级",
+          "type": "number",
+          "example": "29"
+        },
+        {
+          "token": "%2$s",
+          "desc": "当前等级经验进度",
+          "type": "percentage",
+          "example": "33.3%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§f",
+          "text": "Catacombs %1$s: ",
+          "zh": "地牢 %1$s 级: "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ]
+    },
+    {
+      "id": "tab_unclaimed_chests",
+      "context": "Croesus 尚未领取的奖励箱数量",
+      "text": " Unclaimed chests: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "尚未领取的奖励箱数量",
+          "type": "number",
+          "example": "0"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "",
+          "text": " Unclaimed chests: ",
+          "zh": " 未领取的宝箱: "
+        },
+        {
+          "color": "§6",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "tab_dungeons_header",
+      "context": "Tab 列表的地牢小节标题",
+      "text": "Dungeons:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "地牢:"
+    },
+    {
+      "id": "tab_undead_essence",
+      "context": "Tab 列表的亡灵精华数量",
+      "text": " Undead: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前亡灵精华数量",
+          "type": "number",
+          "example": "3,325"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "",
+          "text": " Undead: ",
+          "zh": " 亡灵: "
+        },
+        {
+          "color": "§d",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "tab_class_healer",
+      "context": "Healer 职业等级与经验进度",
+      "text": " Healer %1$s: %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "职业等级",
+          "type": "number",
+          "example": "26"
+        },
+        {
+          "token": "%2$s",
+          "desc": "当前等级经验进度",
+          "type": "percentage",
+          "example": "81.4%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": " 治疗师 %1$s 级: %2$s"
+    },
+    {
+      "id": "tab_class_mage",
+      "context": "Mage 职业等级与经验进度",
+      "text": " Mage %1$s: %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "职业等级",
+          "type": "number",
+          "example": "26"
+        },
+        {
+          "token": "%2$s",
+          "desc": "当前等级经验进度",
+          "type": "percentage",
+          "example": "81.4%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": " 法师 %1$s 级: %2$s"
+    },
+    {
+      "id": "tab_class_berserk",
+      "context": "Berserk 职业等级与经验进度",
+      "text": " Berserk %1$s: %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "职业等级",
+          "type": "number",
+          "example": "26"
+        },
+        {
+          "token": "%2$s",
+          "desc": "当前等级经验进度",
+          "type": "percentage",
+          "example": "81.4%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": " 狂战士 %1$s 级: %2$s"
+    },
+    {
+      "id": "tab_class_archer",
+      "context": "Archer 职业等级与经验进度",
+      "text": " Archer %1$s: %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "职业等级",
+          "type": "number",
+          "example": "26"
+        },
+        {
+          "token": "%2$s",
+          "desc": "当前等级经验进度",
+          "type": "percentage",
+          "example": "81.4%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": " 弓箭手 %1$s 级: %2$s"
+    },
+    {
+      "id": "tab_class_tank",
+      "context": "Tank 职业等级与经验进度",
+      "text": " Tank %1$s: %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "职业等级",
+          "type": "number",
+          "example": "26"
+        },
+        {
+          "token": "%2$s",
+          "desc": "当前等级经验进度",
+          "type": "percentage",
+          "example": "81.4%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": " 坦克 %1$s 级: %2$s"
+    },
+    {
+      "id": "tab_party_label",
+      "context": "地牢大厅 Tab 列表:队伍小节标题(只有标签;数值 Loading... 走词表,人数走 tab_party_count_hub)",
+      "text": "Party:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "队伍:"
+    },
+    {
+      "id": "tab_party_count_hub",
+      "context": "地牢大厅 Tab 列表:队伍人数",
+      "raw": "§b§lParty: §f(%s)",
+      "text": "Party: (%s)",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前/上限人数",
+          "type": "raw",
+          "example": "3/5"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "队伍: (%s)",
+      "segments": [
+        {
+          "color": "§b§l",
+          "text": "Party: ",
+          "zh": "队伍: "
+        },
+        {
+          "color": "§f",
+          "text": "(%s)",
+          "zh": "(%s)"
+        }
+      ]
+    },
+    {
+      "id": "tab_party_member_cata",
+      "context": "地牢大厅 Tab 列表:队伍成员及其地牢等级",
+      "raw": " §a%1$s§f: §cCata %2$s",
+      "text": "%1$s: Cata %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "成员玩家名",
+          "type": "player_name",
+          "example": "inkkni"
+        },
+        {
+          "token": "%2$s",
+          "desc": "地牢(Catacombs)等级",
+          "type": "number",
+          "example": "29"
+        }
+      ],
+      "gloss": "Cata 是 Catacombs 的缩写,按 Mort.json#mort_the_catacombs 的既定译法作「地牢」。",
+      "translate": true,
+      "zh": "%1$s: 地牢 %2$s 级",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§f",
+          "text": ": ",
+          "zh": ": "
+        },
+        {
+          "color": "§c",
+          "text": "Cata %2$s",
+          "zh": "地牢 %2$s 级"
+        }
+      ]
+    },
+    {
+      "id": "tab_loading_alone",
+      "context": "地牢大厅 Tab 列表:队伍小节还没加载出来时的那一行",
+      "raw": " §7Loading...",
+      "text": "Loading...",
+      "placeholders": [],
+      "gloss": "没有冒号的独行,查不到词表的「标签: 数值」拆分,所以要一条记录。词表里的 Loading... 管的是「Party: Loading...」右半边。",
+      "translate": true,
+      "zh": "加载中……"
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "source": "runtime capture (SkyZH), build/gaps_B.txt, 2026-09-05",
+  "fetched_at": "2026-09-05",
+  "verified_ingame": true,
+  "gui_context": "Jerry 助手中的宾果物品转移与拜访教程。",
+  "lines": [
+    {
+      "id": "jerry_bingo_transfer_1",
+      "context": "宾果档案物品转移说明首行；英文共三行",
+      "raw": "§7Transfer up to §a%s items §7from your",
+      "text": "Transfer up to %s items from your",
+      "placeholders": [{"token": "%s", "desc": "最多可转移的物品数量", "type": "number", "example": "10"}],
+      "gloss": "",
+      "translate": true,
+      "zh": "最多可将 %s 件物品从宾果档案转移到你的任意其他档案!",
+      "segments": [
+        {"color": "§7", "text": "Transfer up to ", "zh": "最多可将 "},
+        {"color": "§a", "text": "%s items ", "zh": "%s 件物品"},
+        {"color": "§7", "text": "from your", "zh": "从宾果档案转移到你的任意其他档案!"}
+      ]
+    },
+    {
+      "id": "jerry_bingo_transfer_2",
+      "context": "接上一行",
+      "raw": "§7Bingo profile to any of your other",
+      "text": "Bingo profile to any of your other",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "jerry_bingo_transfer_3",
+      "context": "接上一行",
+      "raw": "§7profiles!",
+      "text": "profiles!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "jerry_items_transferred",
+      "context": "本轮宾果档案已转移物品数和上限",
+      "raw": "§7Items Transferred: §a%1$s/%2$s",
+      "text": "Items Transferred: %1$s/%2$s",
+      "placeholders": [
+        {"token": "%1$s", "desc": "已经转移的物品数", "type": "number", "example": "0"},
+        {"token": "%2$s", "desc": "最多可转移的物品数", "type": "number", "example": "10"}
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "已转移物品: %1$s/%2$s",
+      "segments": [
+        {"color": "§7", "text": "Items Transferred: ", "zh": "已转移物品: "},
+        {"color": "§a", "text": "%1$s/%2$s", "zh": "%1$s/%2$s"}
+      ]
+    },
+    {
+      "id": "jerry_visit_guide_1",
+      "context": "拜访玩家教程首行；英文两行",
+      "raw": "§7Learn all about how to §a/visit §7players",
+      "text": "Learn all about how to /visit players",
+      "placeholders": [],
+      "gloss": "命令 /visit 保留英文。",
+      "translate": true,
+      "zh": "了解如何使用 /visit 在 SkyBlock 世界中拜访其他玩家!",
+      "segments": [
+        {"color": "§7", "text": "Learn all about how to ", "zh": "了解如何使用 "},
+        {"color": "§a", "text": "/visit ", "zh": "/visit "},
+        {"color": "§7", "text": "players", "zh": "在 SkyBlock 世界中拜访其他玩家!"}
+      ]
+    },
+    {
+      "id": "jerry_visit_guide_2",
+      "context": "接上一行",
+      "raw": "§7across the SkyBlock universe!",
+      "text": "across the SkyBlock universe!",
+      "placeholders": [],
+      "gloss": "SkyBlock 保留给配置项运行时替换。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    }
+  ]
+}

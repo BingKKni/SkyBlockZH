@@ -11,9 +11,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
@@ -282,29 +284,28 @@ public final class TranslationLoader {
 	/**
 	 * The declared render order, or an empty list meaning "leave it in the order the English is in".
 	 *
-	 * <p>Checked here rather than where it is used, because this is the only place that knows which
-	 * record to name. Two positions claiming the same slot, or a slot outside the array, would mean a
-	 * fragment silently never drawn — half a sentence missing from the screen with nothing said about
-	 * it — so a malformed order is refused outright and the line is drawn in the order it arrived.
+	 * <p>Lore continuation groups are allowed to order fragments across several records: the head and
+	 * its tails together own the 0..n-1 permutation. At load time one record can therefore only reject
+	 * nonsense that is locally knowable — negative slots and two of its own fragments claiming the same
+	 * slot. {@code checkTranslations} validates the whole group while the authored corpus is available.
 	 */
 	private static List<Integer> permutation(List<Integer> order, String id, String relative) {
-		boolean[] taken = new boolean[order.size()];
+		Set<Integer> taken = new HashSet<>();
 		boolean reordered = false;
 
 		for (int i = 0; i < order.size(); i++) {
 			int at = order.get(i);
 
-			if (at < 0 || at >= taken.length || taken[at]) {
+			if (at < 0 || !taken.add(at)) {
 				LOGGER.warn(
-					"记录 {}（{}）的 segments[].order 不是 0..{} 的一个排列（第 {} 段写的是 {}），"
-						+ "这会让某一段永远不被画出来。已忽略这条记录的 order，按原文顺序渲染。",
-					id, relative, order.size() - 1, i, at
+					"记录 {}（{}）的 segments[].order 在本记录内重复或为负数（第 {} 段写的是 {}），"
+						+ "已忽略这条记录的 order，按原文顺序渲染。",
+					id, relative, i, at
 				);
 
 				return List.of();
 			}
 
-			taken[at] = true;
 			reordered |= at != i;
 		}
 

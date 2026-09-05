@@ -1,0 +1,262 @@
+{
+  "source": "runtime capture (SkyZH) 2026-09-03 实测会话",
+  "fetched_at": "2026-09-03",
+  "verified_ingame": true,
+  "gameplay": "Hub_General",
+  "surface": "GUI_Item",
+  "name": "Enchant_Item",
+  "gui_context": "附魔台打开的「Enchant Item」菜单:放入物品、排序、附魔指南(附魔指南格的记录在 Your_Skills.json)。",
+  "lines": [
+    {
+      "id": "enchant_item",
+      "context": "附魔物品菜单:中间的提示格",
+      "raw": "§cEnchant Item",
+      "text": "Enchant Item",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "附魔物品"
+    },
+    {
+      "id": "enchant_item_desc_1",
+      "context": "提示格说明",
+      "raw": "§7Place an item in the open slot to",
+      "text": "Place an item in the open slot to",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "把物品放进空槽即可附魔!"
+    },
+    {
+      "id": "enchant_item_desc_2",
+      "context": "接上一行",
+      "raw": "§7enchant it!",
+      "text": "enchant it!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "enchant_item_desc_3",
+      "context": "提示格说明",
+      "raw": "§7Add and remove enchantments from",
+      "text": "Add and remove enchantments from",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "为上方槽位中的物品添加或移除附魔!"
+    },
+    {
+      "id": "enchant_item_desc_4",
+      "context": "接上一行",
+      "raw": "§7the item in the slot above!",
+      "text": "the item in the slot above!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "enchant_sort",
+      "context": "排序格",
+      "raw": "§aSort",
+      "text": "Sort",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "排序"
+    },
+    {
+      "id": "enchant_sort_desc",
+      "context": "排序格说明",
+      "raw": "§7Change how Enchantments are sorted.",
+      "text": "Change how Enchantments are sorted.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "更改附魔的排序方式。"
+    },
+    {
+      "id": "enchant_sort_default",
+      "context": "排序选项",
+      "raw": "§b▶ Default",
+      "text": "Default",
+      "placeholders": [],
+      "gloss": "行首的 ▶ 是当前选中标记,引擎会剥掉再查(text/LineShape.java),所以 text 里不写。",
+      "translate": true,
+      "zh": "默认"
+    },
+    {
+      "id": "enchant_sort_missing_first",
+      "context": "排序选项",
+      "raw": "§7  Missing Enchantments First",
+      "text": "Missing Enchantments First",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "缺少的附魔优先"
+    },
+    {
+      "id": "enchant_sort_a_to_z",
+      "context": "排序选项",
+      "raw": "§7  A to Z",
+      "text": "A to Z",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "A 到 Z"
+    },
+    {
+      "id": "enchant_sort_z_to_a",
+      "context": "排序选项",
+      "raw": "§7  Z to A",
+      "text": "Z to A",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Z 到 A"
+    },
+    {
+      "id": "enchant_click_to_switch_sort",
+      "context": "排序格的操作提示",
+      "raw": "§eClick to switch sort!",
+      "text": "Click to switch sort!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击切换排序!"
+    },
+    {
+      "id": "enchant_cannot_enchant",
+      "context": "放入不能附魔的物品",
+      "raw": "§cCannot Enchant Item!",
+      "text": "Cannot Enchant Item!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "无法附魔此物品!"
+    },
+    {
+      "id": "enchant_cannot_enchant_desc",
+      "context": "同上,说明",
+      "raw": "§7This item cannot be enchanted!",
+      "text": "This item cannot be enchanted!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "此物品无法附魔!"
+    },
+    {
+      "id": "enchant_protection_off",
+      "context": "保护附魔当前未应用",
+      "raw": "§cProtection ✖",
+      "text": "Protection ✖",
+      "placeholders": [],
+      "gloss": "原版附魔采用 Minecraft 官方译名。",
+      "translate": true,
+      "zh": "保护 ✖"
+    },
+    {
+      "id": "enchant_thorns_off",
+      "context": "荆棘附魔当前未应用",
+      "raw": "§cThorns ✖",
+      "text": "Thorns ✖",
+      "placeholders": [],
+      "gloss": "原版附魔采用 Minecraft 官方译名。",
+      "translate": true,
+      "zh": "荆棘 ✖"
+    },
+    {
+      "id": "enchant_thorns_desc_head",
+      "context": "荆棘附魔说明首行，与下一行合成完整逻辑句",
+      "raw": "§7Grants a §a%1$s% §7chance to rebound §a%2$s%",
+      "text": "Grants a %1$s% chance to rebound %2$s%",
+      "placeholders": [
+        {"token": "%1$s", "desc": "触发概率", "type": "percentage", "example": "50"},
+        {"token": "%2$s", "desc": "反弹伤害比例，随附魔等级变化", "type": "percentage", "example": "3"}
+      ],
+      "gloss": "https://hypixelskyblock.minecraft.wiki/w/Thorns：将受到的部分伤害反弹给攻击者；两个绿色百分比各自保留。",
+      "translate": true,
+      "zh": "有 %1$s% 的概率向攻击者反弹所受伤害的 %2$s%。",
+      "segments": [
+        {"color": "§7", "text": "Grants a ", "zh": "有 "},
+        {"color": "§a", "text": "%1$s% ", "zh": "%1$s% "},
+        {"color": "§7", "text": "chance to rebound ", "zh": "的概率向攻击者反弹所受伤害的 "},
+        {"color": "§a", "text": "%2$s%", "zh": "%2$s%"}
+      ]
+    },
+    {
+      "id": "enchant_thorns_desc_tail",
+      "context": "接荆棘说明首行，保留灰色句号",
+      "raw": "§7of damage dealt back at the attacker.",
+      "text": "of damage dealt back at the attacker.",
+      "placeholders": [],
+      "gloss": "正文已合入首行；尾行必须标为 continuation，不能再重复反弹说明。",
+      "translate": true,
+      "continuation": true,
+      "zh": "。"
+    },
+    {
+      "id": "enchant_fortune_on",
+      "context": "已应用的时运附魔",
+      "raw": "§aFortune %s ✔",
+      "text": "Fortune %s ✔",
+      "placeholders": [{"token": "%s", "desc": "时运附魔等级", "type": "tier", "example": "II"}],
+      "gloss": "原版附魔采用 Minecraft 官方译名。",
+      "translate": true,
+      "zh": "时运 %s ✔"
+    },
+    {
+      "id": "enchant_exp_levels_available",
+      "context": "附魔所需经验等级充足",
+      "raw": "§3%s Exp Levels §a✔",
+      "text": "%s Exp Levels ✔",
+      "placeholders": [{"token": "%s", "desc": "所需经验等级", "type": "number", "example": "15"}],
+      "gloss": "",
+      "translate": true,
+      "zh": "%s 经验等级 ✔",
+      "segments": [
+        {"color": "§3", "text": "%s Exp Levels ", "zh": "%s 经验等级 "},
+        {"color": "§a", "text": "✔", "zh": "✔"}
+      ]
+    },
+    {
+      "id": "enchant_exp_levels_unavailable",
+      "context": "附魔所需经验等级不足",
+      "raw": "§3%s Exp Levels §c✖",
+      "text": "%s Exp Levels ✖",
+      "placeholders": [{"token": "%s", "desc": "所需经验等级", "type": "number", "example": "50"}],
+      "gloss": "",
+      "translate": true,
+      "zh": "%s 经验等级 ✖",
+      "segments": [
+        {"color": "§3", "text": "%s Exp Levels ", "zh": "%s 经验等级 "},
+        {"color": "§c", "text": "✖", "zh": "✖"}
+      ]
+    },
+    {
+      "id": "enchant_exp_levels_discounted",
+      "context": "经验消耗打折后同时显示划线原价和现价",
+      "raw": "§8§m%1$s§3 %2$s Exp Levels §a✔",
+      "text": "%1$s %2$s Exp Levels ✔",
+      "placeholders": [
+        {"token": "%1$s", "desc": "折扣前经验等级", "type": "number", "example": "45"},
+        {"token": "%2$s", "desc": "折扣后经验等级", "type": "number", "example": "39"}
+      ],
+      "gloss": "第一段保留服务器的删除线格式。",
+      "translate": true,
+      "zh": "%1$s %2$s 经验等级 ✔",
+      "segments": [
+        {"color": "§8§m", "text": "%1$s", "zh": "%1$s"},
+        {"color": "§3", "text": " %2$s Exp Levels ", "zh": " %2$s 经验等级 "},
+        {"color": "§a", "text": "✔", "zh": "✔"}
+      ]
+    }
+  ],
+  "excluded": [
+    "Reinforced Lapis Armor Chestplate —— 玩家放入附魔台的装备名称回显，按任务要求排除玩家物品。"
+  ]
+}

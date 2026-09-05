@@ -2,8 +2,10 @@
   "npc": "Jotraeline Greatforge",
   "location": "Forge Basin, Dwarven Mines (-6.5, 145, -18.5)",
   "note": "钻头(Drill)加油/升级专员,游戏内头衔为 'Drill Mechanic'(见 Mining/GUI_Item/Mithril_Drill_SX-R226.json 里 mithril_drill_sxr226_apply_hint_2 的 gloss,已交叉核实两处一致)。翻译该头衔时需要和物品 Lore 里的说法保持统一。",
-  "source": "https://hypixelskyblock.minecraft.wiki/w/Jotraeline_Greatforge",
-  "fetched_at": "2026-08-18",
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Jotraeline_Greatforge; logs/latest.log",
+  "fetched_at": "2026-09-05",
+  "wiki_last_edited": "2026-08-19 23:44",
+  "source_note": "Wiki 的手机索要台词仍为 wanted one; 实测为 wanted an Abiphone Basic,两者都保留。ONLY Abiphone 的分段按日志修复。",
   "verified_ingame": false,
   "messages": [
     {
@@ -215,23 +217,17 @@
     {
       "id": "jotraeline_greatforge_hey_it_s_very_nice",
       "context": "",
-      "raw": "§b✆§f Hey it's very nice of you, but I can't take your ONLY Abiphone!",
+      "raw": "§b✆ §fHey it's very nice of you, but I can't take your ONLY §3Abiphone§f!",
       "text": "✆ Hey it's very nice of you, but I can't take your ONLY Abiphone!",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "按 logs/latest.log 补回 Abiphone 的深青色高亮,感叹号恢复正文白色。",
       "translate": true,
-      "zh": "",
+      "zh": "✆ 嘿,你人是真好,可我不能收下你唯一的一台 Abiphone!",
       "segments": [
-        {
-          "color": "§b",
-          "text": "✆",
-          "zh": ""
-        },
-        {
-          "color": "§f",
-          "text": " Hey it's very nice of you, but I can't take your ONLY Abiphone!",
-          "zh": " 嘿,你人是真好,可我不能收下你唯一的一台 Abiphone!"
-        }
+        {"color": "§b", "text": "✆ ", "zh": "✆ "},
+        {"color": "§f", "text": "Hey it's very nice of you, but I can't take your ONLY ", "zh": "嘿,你人是真好,可我不能收下你唯一的一台 "},
+        {"color": "§3", "text": "Abiphone", "zh": "Abiphone"},
+        {"color": "§f", "text": "!", "zh": "!"}
       ]
     },
     {
@@ -563,6 +559,34 @@
           "zh": " 我要是也能有假期就好了。"
         }
       ]
+    },
+    {
+      "id": "jotraeline_wanted_abiphone_basic_live",
+      "context": "用 Abiphone 与钻头技师互动; 实测明确索要 Basic 型号",
+      "raw": "§b✆ §fYou have an §3Abiphone§f! I've always wanted an §fAbiphone Basic§r!",
+      "text": "✆ You have an Abiphone! I've always wanted an Abiphone Basic!",
+      "placeholders": [],
+      "gloss": "Abiphone 与 Abiphone Basic 是品牌和型号,按 GLOSSARY.md 保留原名。旧 wanted one 台词继续保留。",
+      "translate": true,
+      "zh": "✆ 你有一台 Abiphone! 我一直都想要一台 Abiphone Basic!",
+      "segments": [
+        {"color": "§b", "text": "✆ ", "zh": "✆ "},
+        {"color": "§f", "text": "You have an ", "zh": "你有一台 "},
+        {"color": "§3", "text": "Abiphone", "zh": "Abiphone"},
+        {"color": "§f", "text": "! I've always wanted an ", "zh": "! 我一直都想要一台 "},
+        {"color": "§f", "text": "Abiphone Basic", "zh": "Abiphone Basic"},
+        {"color": "§r", "text": "!", "zh": "!"}
+      ]
+    },
+    {
+      "id": "jotraeline_happy_drilling",
+      "context": "钻头介绍结束时的祝福,见用户日志",
+      "raw": "§fHappy drilling!",
+      "text": "Happy drilling!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "祝你挖矿愉快!"
     }
   ],
   "todo": [

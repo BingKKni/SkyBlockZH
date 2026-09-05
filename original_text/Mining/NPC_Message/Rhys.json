@@ -2,9 +2,9 @@
   "npc": "Rhys",
   "location": "Obsidian Sanctuary (31.5, 12, 14.5) 与 Dwarven Village (-38, 200, -119) 均有出现",
   "note": "矮人矿山入场引导 NPC,负责在玩家达到条件前把关、达到条件后带玩家传送进矮人矿山并给予山之心。",
-  "source": "https://hypixelskyblock.minecraft.wiki/w/Rhys",
-  "fetched_at": "2026-08-18",
-  "verified_ingame": false,
+  "source": "runtime capture (SkyZH) 2026-09-04 + https://hypixelskyblock.minecraft.wiki/w/Rhys + https://hypixel-skyblock.fandom.com/wiki/Rhys",
+  "fetched_at": "2026-09-04",
+  "verified_ingame": true,
   "messages": [
     {
       "id": "rhys_so_you_want_to_visit",
@@ -62,23 +62,57 @@
     },
     {
       "id": "rhys_you_are_no_match_for",
-      "context": "",
-      "raw": "§fYou are no match for the Dwarves of the Deeper Caverns.",
-      "text": "You are no match for the Dwarves of the Deeper Caverns.",
+      "context": "挖矿等级不足 XII 时，Rhys 拒绝玩家进入矮人矿山；游戏实测原文与两个社区 Wiki 的旧版 Deeper Caverns 不同",
+      "raw": "You are no match for the Dwarves of the §2Dwarven Mines§f.",
+      "text": "You are no match for the Dwarves of the Dwarven Mines.",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "以 2026-09-04 游戏实测的 Dwarven Mines 为准，社区 Wiki 此处均已过时。",
       "translate": true,
-      "zh": "你还不是深层洞穴那些矮人的对手。"
+      "zh": "你还不是矮人矿山中那些矮人的对手。",
+      "segments": [
+        {
+          "color": "",
+          "text": "You are no match for the Dwarves of the ",
+          "zh": "你还不是"
+        },
+        {
+          "color": "§2",
+          "text": "Dwarven Mines",
+          "zh": "矮人矿山"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "中那些矮人的对手。"
+        }
+      ]
     },
     {
       "id": "rhys_come_back_when_you_are",
-      "context": "",
-      "raw": "§fCome back when you are Mining Level XII!",
+      "context": "挖矿等级不足 XII 时的返回条件提示",
+      "raw": "Come back when you are §3Mining Level XII§f!",
       "text": "Come back when you are Mining Level XII!",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "XII 是该 NPC 固定准入条件的一部分，以游戏实测字面量精确匹配。",
       "translate": true,
-      "zh": "等你挖矿等级到 12 级再回来吧!"
+      "zh": "等你的挖矿达到 XII 级再回来吧!",
+      "segments": [
+        {
+          "color": "",
+          "text": "Come back when you are ",
+          "zh": "等你的"
+        },
+        {
+          "color": "§3",
+          "text": "Mining Level XII",
+          "zh": "挖矿达到 XII 级"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "再回来吧!"
+        }
+      ]
     },
     {
       "id": "rhys_you_must_bring_me_some",

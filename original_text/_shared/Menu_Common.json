@@ -375,7 +375,11 @@
       "placeholders": [],
       "gloss": "英文因为宽度被拆成了几行,中文按 original_text/README.md 的规定合成一句写在首行,尾行标 continuation,渲染时整行删掉并按中文宽度重新折行。",
       "translate": true,
-      "zh": "很多物品都可以镶嵌宝石。宝石会按种类给这件物品加上对应的属性。"
+      "zh": "很多物品都可以镶嵌宝石。宝石会按种类给这件物品加上对应的属性。",
+      "segments": [
+        {"color":"§7","text":"Many items can have ","zh":"很多物品都可以镶嵌"},
+        {"color":"§d","text":"Gemstones","zh":"宝石。宝石会按种类给这件物品加上对应的属性。"}
+      ]
     },
     {
       "id": "gemstone_guide_intro_2",
@@ -414,7 +418,12 @@
       "placeholders": [],
       "gloss": "英文因为宽度被拆成了几行,中文按 original_text/README.md 的规定合成一句写在首行,尾行标 continuation,渲染时整行删掉并按中文宽度重新折行。",
       "translate": true,
-      "zh": "宝石分好几个品质档位,从「粗糙」一路到「完美」。品质越高,加的属性越多!"
+      "zh": "宝石分好几个品质档位,从「粗糙」一路到「完美」。品质越高,加的属性越多!",
+      "segments": [
+        {"color":"§7","text":"There are several ","zh":"宝石分好几个"},
+        {"color":"§a","text":"qualities ","zh":"品质档位"},
+        {"color":"§7","text":"of","zh":",从「粗糙」一路到「完美」。品质越高,加的属性越多!"}
+      ]
     },
     {
       "id": "gemstone_guide_quality_2",
@@ -591,6 +600,180 @@
       "gloss": "Bits 按 GLOSSARY.md 的统一决定译作「点券」。该价格行在社区商店及所有点券商店分类中共用。",
       "translate": true,
       "zh": "%s 点券"
+    },
+    {
+      "id": "menu_requires_collection_tier",
+      "context": "熔炉等菜单的收藏品等级门槛；完整 Requires 句式优先于普通收藏品名称",
+      "raw": "§cRequires %1$s Collection %2$s",
+      "text": "Requires %1$s Collection %2$s",
+      "placeholders": [
+        {"token": "%1$s", "desc": "收藏品材料名", "type": "category_name", "example": "Glacite"},
+        {"token": "%2$s", "desc": "所需收藏品层级", "type": "tier", "example": "III"}
+      ],
+      "gloss": "实机采集见 Glacite/Tungsten；材料走既有词表，不把 Requires 当作材料名的一部分。",
+      "translate": true,
+      "zh": "需要%1$s收藏品 %2$s"
+    },
+    {
+      "id": "menu_progress_to_tier",
+      "context": "生物图鉴每种怪物格子的进度行：升至下一档位的百分比。也见于其他按档位（Tier）推进的菜单",
+      "raw": "§7Progress to Tier %1$s: §b%2$s%",
+      "text": "Progress to Tier %1$s: %2$s%",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "目标档位的罗马数字",
+          "type": "tier",
+          "example": "XIII"
+        },
+        {
+          "token": "%2$s",
+          "desc": "进度百分比数值",
+          "type": "number",
+          "example": "85"
+        }
+      ],
+      "gloss": "2026-09-03 实测这一行原本被宾果卡的 Progress to %1$s %2$s 模板吃掉，Tier 被当成目标名捕获而留在英文（屏幕上是「Tier XIII 档进度」）。本条字面文本更多，按引擎规则优先。图鉴 Tier 就是该怪物的图鉴等级，所以写「%1$s 级」。",
+      "translate": true,
+      "zh": "升至 %1$s 级的进度: %2$s%",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Progress to Tier %1$s: ",
+          "zh": "升至 %1$s 级的进度: "
+        },
+        {
+          "color": "§b",
+          "text": "%2$s%",
+          "zh": "%2$s%"
+        }
+      ]
+    },
+    {
+      "id": "menu_progress_to_milestone",
+      "context": "生物图鉴总览格子的进度行：升至下一个里程碑的百分比",
+      "raw": "§7Progress to Milestone %1$s: §e%2$s%",
+      "text": "Progress to Milestone %1$s: %2$s%",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "目标里程碑的罗马数字",
+          "type": "tier",
+          "example": "CXVII"
+        },
+        {
+          "token": "%2$s",
+          "desc": "进度百分比数值",
+          "type": "number",
+          "example": "50"
+        }
+      ],
+      "gloss": "同 menu_progress_to_tier：原本被宾果卡模板误吃，Milestone 留在英文。",
+      "translate": true,
+      "zh": "升至里程碑 %1$s 的进度: %2$s%",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Progress to Milestone %1$s: ",
+          "zh": "升至里程碑 %1$s 的进度: "
+        },
+        {
+          "color": "§e",
+          "text": "%2$s%",
+          "zh": "%2$s%"
+        }
+      ]
+    },
+    {
+      "id": "menu_scroll_left",
+      "context": "长条形天赋/等级菜单（职业天赋、地牢奖励、山之心等）两侧的滚动按钮：向左",
+      "raw": "§aScroll Left",
+      "text": "Scroll Left",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "向左滚动"
+    },
+    {
+      "id": "menu_scroll_right",
+      "context": "同上：向右",
+      "raw": "§aScroll Right",
+      "text": "Scroll Right",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "向右滚动"
+    },
+    {
+      "id": "menu_left_click_to_scroll",
+      "context": "滚动按钮的操作提示",
+      "raw": "§eLeft-click to scroll!",
+      "text": "Left-click to scroll!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "左键点击滚动!"
+    },
+    {
+      "id": "menu_right_click_to_scroll_fast",
+      "context": "滚动按钮的操作提示：右键快速滚动",
+      "raw": "§eRight-click to scroll fast!",
+      "text": "Right-click to scroll fast!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "右键点击快速滚动!"
+    },
+    {
+      "id": "menu_re_center",
+      "context": "长条形等级菜单的「回到当前等级」按钮名",
+      "raw": "§aRe-Center",
+      "text": "Re-Center",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "回到当前位置"
+    },
+    {
+      "id": "menu_re_center_desc_1",
+      "context": "回到当前位置按钮说明，英文拆成两行",
+      "raw": "§7Centers the menu around your",
+      "text": "Centers the menu around your",
+      "placeholders": [],
+      "gloss": "完整句为 Centers the menu around your current tier.",
+      "translate": true,
+      "zh": "把菜单滚动到你当前等级所在的位置。"
+    },
+    {
+      "id": "menu_re_center_desc_2",
+      "context": "接上一行",
+      "raw": "§7current tier.",
+      "text": "current tier.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "menu_click_to_re_center",
+      "context": "回到当前位置按钮的操作提示",
+      "raw": "§eClick to re-center!",
+      "text": "Click to re-center!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击回到当前位置!"
+    },
+    {
+      "id": "menu_unlocked_banner",
+      "context": "等级/天赋格子 Lore 里表示已解锁的全大写状态行",
+      "raw": "§a§lUNLOCKED",
+      "text": "UNLOCKED",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "已解锁"
     }
   ]
 }

@@ -1,0 +1,484 @@
+{
+  "source": "SkyZH runtime capture (The Catacombs, 2026-09-02)",
+  "fetched_at": "2026-09-02",
+  "verified_ingame": true,
+  "source_note": "原文与颜色逐字取自运行时采集；社区 Wiki 普通页面用于核对玩法语境。",
+  "gui_context": "地牢里 Malik 的分解台与地牢铁匠入口。分解台把背包里指定稀有度的怪物掉落一次性投进去，换成精华。",
+  "excluded": [
+    "§7Crit Chance:、§fTime Held:、§9Smart Rotten Boots 等 —— 玩家背包装备的名称与 Lore 回显，按用户要求不翻译。"
+  ],
+  "items": [
+    {
+      "id": "blacksmith_desc_1",
+      "context": "地牢铁匠入口说明",
+      "raw": "§7Upgrade items or convert regular",
+      "text": "Upgrade items or convert regular",
+      "placeholders": [],
+      "gloss": "英文分三行说完一句话，中文合并成一条；后两行标 continuation。",
+      "translate": true,
+      "zh": "用精华升级物品，或把普通物品转换成地牢物品!"
+    },
+    {
+      "id": "blacksmith_desc_2",
+      "context": "接上一行",
+      "raw": "§7items into Dungeon items using",
+      "text": "items into Dungeon items using",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "blacksmith_desc_3",
+      "context": "接上一行",
+      "raw": "§dEssence§7!",
+      "text": "Essence!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "blacksmith_exchange_1",
+      "context": "精华商店入口说明",
+      "raw": "§7Exchange §dUndead Essence §7and",
+      "text": "Exchange Undead Essence and",
+      "placeholders": [],
+      "gloss": "英文分两行,中文合并成一条;按颜色分段让「亡灵精华」保留粉色。原文第二行的 Wither Essence 也是粉色,但尾行已被 continuation 删掉,只能落进灰色段。2026-09-02 实测 colour 桶。",
+      "translate": true,
+      "zh": "用亡灵精华和凋零精华兑换物品与特权!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Exchange ",
+          "zh": "用"
+        },
+        {
+          "color": "§d",
+          "text": "Undead Essence ",
+          "zh": "亡灵精华"
+        },
+        {
+          "color": "§7",
+          "text": "and",
+          "zh": "和凋零精华兑换物品与特权!"
+        }
+      ]
+    },
+    {
+      "id": "blacksmith_exchange_2",
+      "context": "接上一行",
+      "raw": "§dWither Essence §7for items and perks!",
+      "text": "Wither Essence for items and perks!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "salvage_select_items",
+      "context": "分解台标题下的说明",
+      "raw": "§7Select items to salvage for materials!",
+      "text": "Select items to salvage for materials!",
+      "placeholders": [],
+      "gloss": "手动本土化修正",
+      "translate": true,
+      "zh": "选择要分解成材料的物品."
+    },
+    {
+      "id": "salvage_careful_1",
+      "context": "分解台的红色警告",
+      "raw": "§cCAREFUL: Salvaging an item will delete",
+      "text": "CAREFUL: Salvaging an item will delete",
+      "placeholders": [],
+      "gloss": "手动本土化修正",
+      "translate": true,
+      "zh": "注意: 此操作不可逆!"
+    },
+    {
+      "id": "salvage_careful_2",
+      "context": "接上一行",
+      "raw": "§cit forever!",
+      "text": "it forever!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "salvage_essence_desc_1",
+      "context": "精华用途说明",
+      "raw": "§7You can use §dEssence §7to upgrade",
+      "text": "You can use Essence to upgrade",
+      "placeholders": [],
+      "gloss": "2026-09-03 实测这一行中途换色（Essence 为 §d），补 segments；同一句也出现在「精华合成」菜单里，引擎按整行匹配，两处共用本条。",
+      "translate": true,
+      "zh": "精华可以用来升级物品，或把它们转换成地牢物品。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You can use ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§d",
+          "text": "Essence ",
+          "zh": "精华"
+        },
+        {
+          "color": "§7",
+          "text": "to upgrade",
+          "zh": "可以用来升级物品，或把它们转换成地牢物品。"
+        }
+      ]
+    },
+    {
+      "id": "salvage_essence_desc_2",
+      "context": "接上一行",
+      "raw": "§7items or convert them into §bDungeon",
+      "text": "items or convert them into Dungeon",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "salvage_essence_desc_3",
+      "context": "接上一行",
+      "raw": "§bitems§7.",
+      "text": "items.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "salvage_level_upgrade_1",
+      "context": "物品升级带来的加成说明",
+      "raw": "§7Each item level upgrade §6✪ §7grants a",
+      "text": "Each item level upgrade ✪ grants a",
+      "placeholders": [],
+      "gloss": "✪ 是物品等级的星标，照抄不译。2026-09-03 实测星标为 §6 金色，补 segments。",
+      "translate": true,
+      "zh": "物品每升一级 ✪，属性加成 +2%，技能伤害加成 +10%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Each item level upgrade ",
+          "zh": "物品每升一级 "
+        },
+        {
+          "color": "§6",
+          "text": "✪ ",
+          "zh": "✪"
+        },
+        {
+          "color": "§7",
+          "text": "grants a",
+          "zh": "，属性加成 +2%，技能伤害加成 +10%。"
+        }
+      ]
+    },
+    {
+      "id": "salvage_level_upgrade_2",
+      "context": "接上一行",
+      "raw": "§a+2% §7stat bonus and a §a+10% §7bonus",
+      "text": "+2% stat bonus and a +10% bonus",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "salvage_dungeon_items_1",
+      "context": "地牢物品的加成规则说明",
+      "raw": "§7Dungeon items grant stat boosts",
+      "text": "Dungeon items grant stat boosts",
+      "placeholders": [],
+      "gloss": "Dungeoneering Skill 与 Catacombs_Gate.json 一致，作「地牢技能」。",
+      "translate": true,
+      "zh": "地牢物品在地牢中会按你的地牢技能等级提供属性加成。"
+    },
+    {
+      "id": "salvage_dungeon_items_2",
+      "context": "接上一行",
+      "raw": "§7while you are in Dungeons based on",
+      "text": "while you are in Dungeons based on",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "salvage_dungeon_items_3",
+      "context": "接上一行",
+      "raw": "§7your §aDungeoneering Skill §7level.",
+      "text": "your Dungeoneering Skill level.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "salvage_guide_desc_1",
+      "context": "精华指南入口说明",
+      "raw": "§7This guide shows the different",
+      "text": "This guide shows the different",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "本指南列出你能获得的各种精华，以及每种精华可以升级哪些物品。"
+    },
+    {
+      "id": "salvage_guide_desc_2",
+      "context": "接上一行",
+      "raw": "§7Essences you can obtain and which",
+      "text": "Essences you can obtain and which",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "salvage_guide_desc_3",
+      "context": "接上一行",
+      "raw": "§7items can be upgraded using each",
+      "text": "items can be upgraded using each",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "salvage_guide_desc_4",
+      "context": "接上一行",
+      "raw": "§7one.",
+      "text": "one.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "salvage_insert_uncommon_1",
+      "context": "一键放入罕见物品的按钮说明",
+      "raw": "§7Insert all salvageable §aUncommon",
+      "text": "Insert all salvageable Uncommon",
+      "placeholders": [],
+      "gloss": "Uncommon 作「罕见」，与 _shared/Rarity.json 一致。2026-09-03 实测稀有度词为 §a，补 segments；中文把稀有度词挪到句尾，让它单独带色。",
+      "translate": true,
+      "zh": "全部放入背包里所有未改造、未升级、由怪物掉落且可回收的罕见物品。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Insert all salvageable ",
+          "zh": "全部放入背包里所有未改造、未升级、由怪物掉落且可回收的"
+        },
+        {
+          "color": "§a",
+          "text": "Uncommon",
+          "zh": "罕见物品。"
+        }
+      ]
+    },
+    {
+      "id": "salvage_insert_rarity",
+      "context": "一键放入指定稀有度物品的按钮说明（罕见以外的档位）",
+      "raw": "§7Insert all salvageable §9%s §7items",
+      "text": "Insert all salvageable %s items",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "稀有度",
+          "type": "category_name",
+          "example": "Rare"
+        }
+      ],
+      "gloss": "稀有度词的中文在 _shared/Terms.json 里；用 category_name 而不是 rarity，因为词表只对 location_name / mob_name / category_name / raw 生效。 2026-09-03 与 salvage_insert_uncommon_1 同步改为分段：稀有度词单独带色，中文把它挪到句尾。",
+      "translate": true,
+      "zh": "全部放入背包里所有未改造、未升级、由怪物掉落且可回收的%s物品。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Insert all salvageable ",
+          "zh": "全部放入背包里所有未改造、未升级、由怪物掉落且可回收的"
+        },
+        {
+          "color": "§9",
+          "text": "%s ",
+          "zh": "%s物品。"
+        },
+        {
+          "color": "§7",
+          "text": "items",
+          "zh": "",
+          "omit": true
+        }
+      ]
+    },
+    {
+      "id": "salvage_insert_desc_2",
+      "context": "接上一行",
+      "raw": "§7items dropped from mobs in your",
+      "text": "items dropped from mobs in your",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "salvage_insert_desc_2b",
+      "context": "接上一行（指定稀有度那一版的措辞）",
+      "raw": "§7dropped from mobs in your",
+      "text": "dropped from mobs in your",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "salvage_insert_desc_3",
+      "context": "接上一行",
+      "raw": "§7inventory that have not been",
+      "text": "inventory that have not been",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "salvage_insert_desc_4",
+      "context": "接上一行",
+      "raw": "§7modified or upgraded.",
+      "text": "modified or upgraded.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "salvage_click_to_move",
+      "context": "一键放入按钮的操作提示",
+      "raw": "§eClick to move items!",
+      "text": "Click to move items!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击放入物品!"
+    },
+    {
+      "id": "salvage_confirm_desc_1",
+      "context": "确认分解按钮的说明",
+      "raw": "§7By salvaging the above items, they",
+      "text": "By salvaging the above items, they",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "分解上面这些物品会把它们永久删除，同时按比例返还材料。"
+    },
+    {
+      "id": "salvage_confirm_desc_2",
+      "context": "接上一行",
+      "raw": "§7will be deleted forever but you will",
+      "text": "will be deleted forever but you will",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "salvage_confirm_desc_3",
+      "context": "接上一行",
+      "raw": "§7be given salvaged materials in return.",
+      "text": "be given salvaged materials in return.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "salvage_items_returned",
+      "context": "分解将返还的材料清单标题",
+      "raw": "§7Items Returned",
+      "text": "Items Returned",
+      "placeholders": [],
+      "gloss": "这里的 Items 指返还的材料，不是被分解的物品。",
+      "translate": true,
+      "zh": "返还材料"
+    },
+    {
+      "id": "salvage_returned_essence",
+      "context": "返还清单里的一行：精华种类与数量",
+      "raw": "§d%1$s Essence §8x%2$s",
+      "text": "%1$s Essence x%2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "精华种类",
+          "type": "category_name",
+          "example": "Undead"
+        },
+        {
+          "token": "%2$s",
+          "desc": "数量",
+          "type": "number",
+          "example": "36"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "%1$s Essence ",
+          "zh": "%1$s精华 "
+        },
+        {
+          "color": "§8",
+          "text": "x%2$s",
+          "zh": "x%2$s"
+        }
+      ]
+    },
+    {
+      "id": "salvage_click_to_salvage",
+      "context": "确认分解按钮的操作提示",
+      "raw": "§eClick to salvage!",
+      "text": "Click to salvage!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击分解!"
+    },
+    {
+      "id": "salvage_confirm_name",
+      "context": "确认分解按钮的物品名",
+      "raw": "§aConfirm Salvage",
+      "text": "Confirm Salvage",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "确认分解"
+    }
+  ]
+}

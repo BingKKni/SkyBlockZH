@@ -1,0 +1,125 @@
+{
+  "source": "运行时采集(logs/skyzh-capture,2026-09-02)",
+  "fetched_at": "2026-09-02",
+  "verified_ingame": true,
+  "gui_context": "组队查找器(Party Finder)在聊天里发的系统消息,前缀是 §dParty Finder §f> ",
+  "messages": [
+    {
+      "id": "pf_joined_group",
+      "context": "有人通过组队查找器加入了你的队伍",
+      "raw": "§dParty Finder §f> §b%1$s §ejoined the dungeon group! (§b%2$s Level %3$s§e)",
+      "text": "Party Finder > %1$s joined the dungeon group! (%2$s Level %3$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "加入者的玩家名",
+          "type": "player_name",
+          "example": "Ninji1111"
+        },
+        {
+          "token": "%2$s",
+          "desc": "职业名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Archer"
+        },
+        {
+          "token": "%3$s",
+          "desc": "职业等级",
+          "type": "number",
+          "example": "8"
+        }
+      ],
+      "gloss": "Party Finder 的译名与 GUI_Title/Mort.json#party_finder_title 一致:组队查找。",
+      "translate": true,
+      "zh": "组队查找 > %1$s 加入了地牢队伍! (%2$s %3$s 级)",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "Party Finder ",
+          "zh": "组队查找 "
+        },
+        {
+          "color": "§f",
+          "text": "> ",
+          "zh": "> "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§e",
+          "text": "joined the dungeon group! (",
+          "zh": "加入了地牢队伍! ("
+        },
+        {
+          "color": "§b",
+          "text": "%2$s Level %3$s",
+          "zh": "%2$s %3$s 级"
+        },
+        {
+          "color": "§e",
+          "text": ")",
+          "zh": ")"
+        }
+      ]
+    },
+    {
+      "id": "pf_group_removed",
+      "context": "自己的队伍被从组队查找器上撤下(满员/开始/解散)",
+      "raw": "§dParty Finder §f> §cYour group has been removed from the party finder!",
+      "text": "Party Finder > Your group has been removed from the party finder!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "组队查找 > 你的队伍已从组队查找器中移除!",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "Party Finder ",
+          "zh": "组队查找 "
+        },
+        {
+          "color": "§f",
+          "text": "> ",
+          "zh": "> "
+        },
+        {
+          "color": "§c",
+          "text": "Your group has been removed from the party finder!",
+          "zh": "你的队伍已从组队查找器中移除!"
+        }
+      ]
+    },
+    {
+      "id": "pf_searching_text",
+      "context": "在组队查找器输入关键词后的聊天确认",
+      "raw": "§eSearching text: §f%s",
+      "text": "Searching text: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "玩家输入的关键词,原样保留",
+          "type": "raw",
+          "example": "11"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "正在搜索文本: %s",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Searching text: ",
+          "zh": "正在搜索文本: "
+        },
+        {
+          "color": "§f",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    }
+  ]
+}

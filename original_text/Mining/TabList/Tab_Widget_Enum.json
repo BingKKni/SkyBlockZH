@@ -252,12 +252,121 @@
     },
     {
       "id": "tab_row_interest",
-      "context": "Tab 列表:距离下一次银行利息结算还有多久",
+      "context": "Tab 列表:距离下一次银行利息结算还有多久(只有标签的那一半)",
       "text": "Interest:",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "只管标签。数值那一半由下一条 tab_row_interest_time 整行接管;两条并存不冲突,整行记录永远优先于只匹配标签的记录。",
       "translate": true,
       "zh": "利息:"
+    },
+    {
+      "id": "tab_row_interest_time",
+      "context": "Tab 列表银行小节:距离下一次结息的倒计时,服务器按剩余时间长短换写法",
+      "raw": "§eInterest: §b%s",
+      "text": "Interest: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "倒计时,`1h 32m` / `12m 5s` 这类紧凑写法,整段交给 duration 换算",
+          "type": "duration",
+          "example": "1h 32m"
+        }
+      ],
+      "gloss": "这一行连续几轮都显示成「利息: 47 Hours」/「利息: 1h1m」:上面那条只匹配标签,数值原样贴回。`type: duration` 一条管所有 `1h 32m` 这类紧凑写法(同 Hub_Widgets.json#tab_row_election_time)。整点小时的写法 `47 Hours` / `1 Hour` 不走这条——duration 认不出带空格的英文单位——由引擎把数值那一半单独拿去查记录,命中 Tab_Header_Footer.json#tab_duration_hours。颜色按屏幕实时颜色套,raw 里的颜色码只是采集当时的快照。",
+      "translate": true,
+      "zh": "利息: %s",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Interest: ",
+          "zh": "利息: "
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "tab_row_interest_hours_amount",
+      "context": "Tab 列表银行小节:距结息的整点小时数,后面跟着金色的本次结息金额",
+      "raw": " Interest: §e%1$s Hours§6 (%2$s)",
+      "text": "Interest: %1$s Hours (%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "剩余小时数",
+          "type": "number",
+          "example": "6"
+        },
+        {
+          "token": "%2$s",
+          "desc": "本次结息金额,`46.5k` 这类带 k 的缩写",
+          "type": "number",
+          "example": "46.5k"
+        }
+      ],
+      "gloss": "2026-09-02 实测(mixed/Dungeons/TabList/Tab_List.json,count 441)服务器发的是「 Interest: §e6 Hours§6 (46.5k)」——数值后面还挂着结息金额,所以 `%1$s Hours` 单独那条匹不上、词表也查不到,几轮都原样贴回英文。单复数不用另写,`1 Hour (…)` 也能匹配。金额段颜色按屏幕实时颜色套。",
+      "translate": true,
+      "zh": "利息: %1$s 小时 (%2$s)",
+      "segments": [
+        {
+          "color": "",
+          "text": "Interest: ",
+          "zh": "利息: "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s Hours",
+          "zh": "%1$s 小时"
+        },
+        {
+          "color": "§6",
+          "text": " (%2$s)",
+          "zh": " (%2$s)"
+        }
+      ]
+    },
+    {
+      "id": "tab_row_interest_time_amount",
+      "context": "同上,不足整点时的紧凑倒计时写法 + 结息金额",
+      "raw": " Interest: §e%1$s§6 (%2$s)",
+      "text": "Interest: %1$s (%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "倒计时,`1h 32m` / `12m 5s`,整段交给 duration 换算",
+          "type": "duration",
+          "example": "1h 32m"
+        },
+        {
+          "token": "%2$s",
+          "desc": "本次结息金额",
+          "type": "number",
+          "example": "46.5k"
+        }
+      ],
+      "gloss": "和 tab_row_interest_hours_amount 是同一行的两种写法;`Hours` 那条字面词更多,整点小时时它赢,其余写法落到这条。",
+      "translate": true,
+      "zh": "利息: %1$s (%2$s)",
+      "segments": [
+        {
+          "color": "",
+          "text": "Interest: ",
+          "zh": "利息: "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§6",
+          "text": " (%2$s)",
+          "zh": " (%2$s)"
+        }
+      ]
     },
     {
       "id": "tab_row_fairy_souls",
@@ -683,6 +792,128 @@
           "color": "§6",
           "text": "%2$s %3$s %4$s Gemstone",
           "zh": "%2$s %3$s %4$s 宝石"
+        }
+      ]
+    },
+    {
+      "id": "tab_header_profile_name",
+      "context": "Tab 列表:当前档案名整行",
+      "raw": "§e§lProfile: §a%s §7Ⓑ",
+      "text": "Profile: %s Ⓑ",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "档案名(Hypixel 用水果名命名,是专名,保留英文)",
+          "type": "player_name",
+          "example": "Papaya"
+        }
+      ],
+      "gloss": "整行记录；档案名永远原样保留，末尾的 Bingo 档案图标 Ⓑ 也按服务器原样保留。",
+      "translate": true,
+      "zh": "档案: %s Ⓑ",
+      "segments": [
+        {"color":"§e§l","text":"Profile: ","zh":"档案: "},
+        {"color":"§a","text":"%s ","zh":"%s "},
+        {"color":"§7","text":"Ⓑ","zh":"Ⓑ"}
+      ]
+    },
+    {
+      "id": "tab_row_server_id",
+      "context": "Tab 列表:当前服务器编号整行",
+      "raw": " Server: §8%s",
+      "text": "Server: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "服务器编号,`mini95N` / `mega12A`",
+          "type": "player_name",
+          "example": "mini95N"
+        }
+      ],
+      "gloss": "同 tab_header_profile_name:编号是标识符,整行记录让它不再被采集器报成中英混杂。",
+      "translate": true,
+      "zh": "服务器: %s",
+      "segments": [
+        {
+          "color": "",
+          "text": "Server: ",
+          "zh": "服务器: "
+        },
+        {
+          "color": "§8",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "tab_row_sb_level_xp",
+      "context": "Tab 列表:空岛等级和距离下一级的经验,整行",
+      "raw": " SB Level§f: §8[§2188§8] §b68§3/§b100 XP",
+      "text": "SB Level: [%1$s] %2$s/%3$s XP",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前空岛等级",
+          "type": "number",
+          "example": "188"
+        },
+        {
+          "token": "%2$s",
+          "desc": "本级已获经验",
+          "type": "number",
+          "example": "68"
+        },
+        {
+          "token": "%3$s",
+          "desc": "本级所需经验",
+          "type": "number",
+          "example": "100"
+        }
+      ],
+      "gloss": "以前只有标签记录 tab_row_sb_level,值里的 XP 留在英文。2026-09-02 实测原样「 SB Level§f: §8[§2188§8] §b68§3/§b100 XP」,八段颜色按屏幕实时颜色套。",
+      "translate": true,
+      "zh": "空岛等级: [%1$s] %2$s/%3$s 经验",
+      "segments": [
+        {
+          "color": "",
+          "text": "SB Level",
+          "zh": "空岛等级"
+        },
+        {
+          "color": "§f",
+          "text": ": ",
+          "zh": ": "
+        },
+        {
+          "color": "§8",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§2",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§8",
+          "text": "] ",
+          "zh": "] "
+        },
+        {
+          "color": "§b",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§3",
+          "text": "/",
+          "zh": "/"
+        },
+        {
+          "color": "§b",
+          "text": "%3$s XP",
+          "zh": "%3$s 经验"
         }
       ]
     }

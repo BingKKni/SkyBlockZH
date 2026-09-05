@@ -36,37 +36,53 @@ public final class Probe {
 
 			String[] parts = line.split("\t", 2);
 			Surface surface = Surface.valueOf(parts[0]);
-			StyledText styled = StyledText.of(Component.literal(parts[1]));
+			Component source = Component.literal(parts[1]);
+			StyledText styled = StyledText.of(source);
 			Translator.Located located = Translator.locate(styled, surface);
+			Component drawn = draw(source, surface);
 
 			System.out.println("in      = " + parts[1]);
 
 			if (!located.matched()) {
-				// An enchantment line is several records rather than one, so no single record answers
-				// for it and the lookup above rightly says nothing. It is also the line most worth
-				// probing — which of a weapon's five enchantments have Chinese yet is exactly the
-				// question this tool gets asked.
-				Component list = Translator.translateList(Component.literal(parts[1]), surface);
-
-				System.out.println(list == null
-					? "record  = (没有记录应答)"
-					: "records = 附魔列表，逐段查表\nrender  = " + list.getString());
+				// No whole-line record does not mean no translation: Tab rows can be answered
+				// entirely by terms, action bars by widgets, and lore by an enchantment list.
+				boolean changed = !StyledText.of(drawn).plain().equals(styled.plain());
+				System.out.println(changed
+					? "records = 渲染面专用路径（标签/数值、部件或附魔列表）"
+					: "record  = (没有记录应答)");
+				System.out.println("render  = " + drawn.getString());
 				System.out.println();
 				continue;
 			}
 
 			Matcher match = located.match();
-			Component source = Component.literal(parts[1]);
-			// The tab list is drawn through translateRow, which puts the value half through the term
-			// table after the record has had the label. Anywhere else a line is a line.
-			Component drawn = surface == Surface.TABLIST
-				? Translator.translateRow(source, surface)
-				: Translator.translateLine(source, surface);
-
 			System.out.println("record  = " + located.entry().sourceFile() + "#" + located.entry().id());
 			System.out.println("loses   = " + located.entry().losesColour(located.core(), match));
 			System.out.println("render  = " + drawn.getString());
 			System.out.println();
 		}
+	}
+
+	/** The font-free render paths used in game, even when no single record answers the line. */
+	static Component draw(Component source, Surface surface) {
+		if (surface == Surface.TABLIST) {
+			return Translator.translateRow(source, surface);
+		}
+
+		if (surface == Surface.ACTION_BAR) {
+			return Translator.translateWidgets(source, surface);
+		}
+
+		Translator.Result line = Translator.translate(source, surface);
+
+		if (!line.matched() && surface == Surface.ITEM) {
+			Component list = Translator.translateList(source, surface);
+
+			if (list != null) {
+				return list;
+			}
+		}
+
+		return line.padded();
 	}
 }

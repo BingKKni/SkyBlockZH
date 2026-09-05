@@ -21,8 +21,16 @@
       "translate": true,
       "zh": "距结息: %s",
       "segments": [
-        {"color": "§7", "text": "Interest in: ", "zh": "距结息: "},
-        {"color": "§b", "text": "%s", "zh": "%s"}
+        {
+          "color": "§7",
+          "text": "Interest in: ",
+          "zh": "距结息: "
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        }
       ]
     },
     {
@@ -42,8 +50,16 @@
       "translate": true,
       "zh": "距结息: %s 小时",
       "segments": [
-        {"color": "§7", "text": "Until interest: ", "zh": "距结息: "},
-        {"color": "§b", "text": "%s Hours", "zh": "%s 小时"}
+        {
+          "color": "§7",
+          "text": "Until interest: ",
+          "zh": "距结息: "
+        },
+        {
+          "color": "§b",
+          "text": "%s Hours",
+          "zh": "%s 小时"
+        }
       ]
     },
     {
@@ -63,8 +79,16 @@
       "translate": true,
       "zh": "距结息: %s",
       "segments": [
-        {"color": "§7", "text": "Until interest: ", "zh": "距结息: "},
-        {"color": "§b", "text": "%s", "zh": "%s"}
+        {
+          "color": "§7",
+          "text": "Until interest: ",
+          "zh": "距结息: "
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        }
       ]
     },
     {
@@ -84,8 +108,16 @@
       "translate": true,
       "zh": "上次结息: %s 硬币",
       "segments": [
-        {"color": "§7", "text": "Last interest: ", "zh": "上次结息: "},
-        {"color": "§b", "text": "%s coins", "zh": "%s 硬币"}
+        {
+          "color": "§7",
+          "text": "Last interest: ",
+          "zh": "上次结息: "
+        },
+        {
+          "color": "§b",
+          "text": "%s coins",
+          "zh": "%s 硬币"
+        }
       ]
     },
     {
@@ -111,10 +143,1949 @@
       "translate": true,
       "zh": "预估: %1$s 硬币 (%2$s%)",
       "segments": [
-        {"color": "§7", "text": "Projected: ", "zh": "预估: "},
-        {"color": "§6", "text": "%1$s coins ", "zh": "%1$s 硬币 "},
-        {"color": "§b", "text": "(%2$s%)", "zh": "(%2$s%)"}
+        {
+          "color": "§7",
+          "text": "Projected: ",
+          "zh": "预估: "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s coins ",
+          "zh": "%1$s 硬币 "
+        },
+        {
+          "color": "§b",
+          "text": "(%2$s%)",
+          "zh": "(%2$s%)"
+        }
       ]
+    },
+    {
+      "id": "bank_account_entry",
+      "context": "银行根菜单:两个账户的格子名",
+      "raw": "§a%s Bank Account",
+      "text": "%s Bank Account",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "Co-op / Personal,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Co-op"
+        }
+      ],
+      "gloss": "和 Economy/GUI_Title/Bank.json 的两个标题「合作银行账户 / 个人银行账户」一致。",
+      "translate": true,
+      "zh": "%s银行账户"
+    },
+    {
+      "id": "bank_coop_shared_1",
+      "context": "合作账户说明",
+      "raw": "§7This account is shared with all the",
+      "text": "This account is shared with all the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "此账户由你的所有合作成员共享!"
+    },
+    {
+      "id": "bank_coop_shared_2",
+      "context": "接上一行",
+      "raw": "§7members of your §bco-op§7!",
+      "text": "members of your co-op!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "bank_account_tier",
+      "context": "账户档次",
+      "raw": "§7Account: §d%s",
+      "text": "Account: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "档次名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Deluxe"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "账户: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Account: ",
+          "zh": "账户: "
+        },
+        {
+          "color": "§d",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "bank_balance",
+      "context": "账户余额",
+      "raw": "§7Balance: §6%s",
+      "text": "Balance: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "金额",
+          "type": "coins",
+          "example": "106,253,648.3"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "余额: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Balance: ",
+          "zh": "余额: "
+        },
+        {
+          "color": "§6",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "bank_click_to_open_account",
+      "context": "账户格的操作提示",
+      "raw": "§eClick to open account!",
+      "text": "Click to open account!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击打开账户!"
+    },
+    {
+      "id": "bank_click_to_view_upgrades",
+      "context": "升级格的操作提示",
+      "raw": "§eClick to view upgrades!",
+      "text": "Click to view upgrades!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击查看升级!"
+    },
+    {
+      "id": "bank_personal_own",
+      "context": "个人账户说明",
+      "raw": "§7Your very own account!",
+      "text": "Your very own account!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "完全属于你自己的账户!"
+    },
+    {
+      "id": "bank_personal_stores_1",
+      "context": "个人账户说明:容量",
+      "raw": "§7Stores up to §620% §7of your §bco-op",
+      "text": "Stores up to 20% of your co-op",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "最多可存放合作账户余额的 20%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Stores up to ",
+          "zh": "最多可存放合作账户余额的 "
+        },
+        {
+          "color": "§6",
+          "text": "20% ",
+          "zh": "20%"
+        },
+        {
+          "color": "§7",
+          "text": "of your ",
+          "zh": "。"
+        },
+        {
+          "color": "§b",
+          "text": "co-op",
+          "zh": "",
+          "omit": true
+        }
+      ]
+    },
+    {
+      "id": "bank_personal_stores_2",
+      "context": "接上一行",
+      "raw": "§7account.",
+      "text": "account.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "bank_personal_interest_1",
+      "context": "个人账户说明:利息",
+      "raw": "§7Both accounts accrue interest,",
+      "text": "Both accounts accrue interest,",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "两个账户都会产生利息，但个人账户只能获得其中的 20%。"
+    },
+    {
+      "id": "bank_personal_interest_2",
+      "context": "接上一行",
+      "raw": "§7but you will only earn §620% §7of it",
+      "text": "but you will only earn 20% of it",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "bank_personal_interest_3",
+      "context": "接上一行",
+      "raw": "§7on your personal account.",
+      "text": "on your personal account.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "bank_personal_vault",
+      "context": "银行根菜单 / 玩家档案里的保险箱格",
+      "raw": "§aPersonal Vault",
+      "text": "Personal Vault",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "个人保险箱"
+    },
+    {
+      "id": "bank_personal_vault_desc_1",
+      "context": "保险箱说明",
+      "raw": "§7Store your valuable items in a safe",
+      "text": "Store your valuable items in a safe",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "把贵重物品存放在只有你能打开的安全地方!"
+    },
+    {
+      "id": "bank_personal_vault_desc_2",
+      "context": "接上一行",
+      "raw": "§7place that only you can access!",
+      "text": "place that only you can access!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "bank_upgrades",
+      "context": "银行根菜单:升级格",
+      "raw": "§6Bank Upgrades",
+      "text": "Bank Upgrades",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "银行升级"
+    },
+    {
+      "id": "bank_upgrades_rich_1",
+      "context": "升级格说明",
+      "raw": "§7Are you so rich that you can't even",
+      "text": "Are you so rich that you can't even",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你是不是富得连硬币都放不下了?"
+    },
+    {
+      "id": "bank_upgrades_rich_2",
+      "context": "接上一行",
+      "raw": "§7store your coins?",
+      "text": "store your coins?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "bank_current_account",
+      "context": "升级格:当前档次",
+      "raw": "§7Current account: §d%s",
+      "text": "Current account: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "档次名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Deluxe"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "当前账户: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Current account: ",
+          "zh": "当前账户: "
+        },
+        {
+          "color": "§d",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "bank_coop_limit",
+      "context": "升级格:合作账户上限",
+      "raw": "§7Co-op bank limit: §6%s",
+      "text": "Co-op bank limit: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "金额",
+          "type": "coins",
+          "example": "250,000,000"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "合作银行上限: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Co-op bank limit: ",
+          "zh": "合作银行上限: "
+        },
+        {
+          "color": "§6",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "bank_withdraw_all",
+      "context": "取款菜单:全部",
+      "raw": "§aEverything in the account",
+      "text": "Everything in the account",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "账户里的全部"
+    },
+    {
+      "id": "bank_withdraw_half",
+      "context": "取款菜单:一半",
+      "raw": "§aHalf the account",
+      "text": "Half the account",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "账户里的一半"
+    },
+    {
+      "id": "bank_withdraw_20",
+      "context": "取款菜单:20%",
+      "raw": "§aWithdraw 20%",
+      "text": "Withdraw 20%",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "取出 20%"
+    },
+    {
+      "id": "bank_specific_amount",
+      "context": "存 / 取款菜单:自定义金额",
+      "raw": "§aSpecific amount",
+      "text": "Specific amount",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "指定金额"
+    },
+    {
+      "id": "bank_withdrawal_label",
+      "context": "取款格的小标题",
+      "raw": "§8Bank withdrawal",
+      "text": "Bank withdrawal",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "银行取款"
+    },
+    {
+      "id": "bank_deposit_label",
+      "context": "存款格的小标题",
+      "raw": "§8Bank deposit",
+      "text": "Bank deposit",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "银行存款"
+    },
+    {
+      "id": "bank_amount_to_withdraw",
+      "context": "取款格:将取出的金额",
+      "raw": "§7Amount to withdraw: §6%s",
+      "text": "Amount to withdraw: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "金额",
+          "type": "coins",
+          "example": "106,253,648"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "取出金额: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Amount to withdraw: ",
+          "zh": "取出金额: "
+        },
+        {
+          "color": "§6",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "bank_amount_to_deposit",
+      "context": "存款格:将存入的金额",
+      "raw": "§7Amount to deposit: §6%s",
+      "text": "Amount to deposit: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "金额",
+          "type": "coins",
+          "example": "0"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "存入金额: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Amount to deposit: ",
+          "zh": "存入金额: "
+        },
+        {
+          "color": "§6",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "bank_current_balance",
+      "context": "存 / 取款格:当前余额",
+      "raw": "§7Current balance: §6%s",
+      "text": "Current balance: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "金额",
+          "type": "coins",
+          "example": "105,253,648.3"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "当前余额: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Current balance: ",
+          "zh": "当前余额: "
+        },
+        {
+          "color": "§6",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "bank_deposit_whole_purse",
+      "context": "存款菜单:全部",
+      "raw": "§aYour whole purse",
+      "text": "Your whole purse",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的全部硬币"
+    },
+    {
+      "id": "bank_deposit_half_purse",
+      "context": "存款菜单:一半",
+      "raw": "§aHalf your purse",
+      "text": "Half your purse",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你硬币的一半"
+    },
+    {
+      "id": "bank_click_to_deposit_coins",
+      "context": "存款格的操作提示",
+      "raw": "§eClick to deposit coins!",
+      "text": "Click to deposit coins!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击存入硬币!"
+    },
+    {
+      "id": "bank_deposit_coins",
+      "context": "账户菜单:存款格",
+      "raw": "§aDeposit Coins",
+      "text": "Deposit Coins",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "存入硬币"
+    },
+    {
+      "id": "bank_withdraw_coins",
+      "context": "账户菜单:取款格",
+      "raw": "§aWithdraw Coins",
+      "text": "Withdraw Coins",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "取出硬币"
+    },
+    {
+      "id": "bank_store_1",
+      "context": "存款格说明",
+      "raw": "§7Store coins in the bank to keep them",
+      "text": "Store coins in the bank to keep them",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "把硬币存进银行，在外冒险时也能保证它们安全!"
+    },
+    {
+      "id": "bank_store_2",
+      "context": "接上一行",
+      "raw": "§7safe while you go on adventures!",
+      "text": "safe while you go on adventures!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "bank_season_interest_1",
+      "context": "存款格说明:利率",
+      "raw": "§7You will earn §b%s §7interest every season",
+      "text": "You will earn %s interest every season",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "利率",
+          "type": "percentage",
+          "example": "2%"
+        }
+      ],
+      "gloss": "跨行整句,中文把「前 N 百万硬币」放在前面。首行只译到「前」,利率挪到尾行的 order 里;尾行 bank_season_interest_2 带自己的分段。首尾两行一起按 order 排:本行三段 order 0/3/4,尾行三段 order 1/2/5。",
+      "translate": true,
+      "zh": "每个季节，你存入的前 %s 百万硬币都能获得 %s 的利息。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You will earn ",
+          "zh": "每个季节，你存入的前 ",
+          "order": 0
+        },
+        {
+          "color": "§b",
+          "text": "%s ",
+          "zh": "%s ",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "interest every season",
+          "zh": "的利息。",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "bank_season_interest_2",
+      "context": "接上一行:前 N 百万硬币",
+      "raw": "§7for your first §6%s million §7banked coins.",
+      "text": "for your first %s million banked coins.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数字",
+          "type": "number",
+          "example": "10"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "%s 百万硬币都能获得 ",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "for your first ",
+          "zh": "",
+          "omit": true,
+          "order": 5
+        },
+        {
+          "color": "§6",
+          "text": "%s million ",
+          "zh": "%s 百万",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "banked coins.",
+          "zh": "硬币都能获得 ",
+          "order": 2
+        }
+      ]
+    },
+    {
+      "id": "bank_click_to_make_deposit",
+      "context": "存款格的操作提示",
+      "raw": "§eClick to make a deposit!",
+      "text": "Click to make a deposit!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击存款!"
+    },
+    {
+      "id": "bank_take_out_1",
+      "context": "取款格说明",
+      "raw": "§7Take your coins out of the bank in",
+      "text": "Take your coins out of the bank in",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "把硬币从银行取出来才能花。"
+    },
+    {
+      "id": "bank_take_out_2",
+      "context": "接上一行",
+      "raw": "§7order to spend them.",
+      "text": "order to spend them.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "bank_click_to_withdraw_coins",
+      "context": "取款格的操作提示",
+      "raw": "§eClick to withdraw coins!",
+      "text": "Click to withdraw coins!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击取出硬币!"
+    },
+    {
+      "id": "bank_recent_transactions",
+      "context": "账户菜单:最近交易格",
+      "raw": "§aRecent transactions",
+      "text": "Recent transactions",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "最近交易"
+    },
+    {
+      "id": "bank_txn_plus_secs",
+      "context": "最近交易一行:存入,秒前,操作者是玩家",
+      "raw": "§a+ §6%1$s§7, §e%2$s secs ago §7by §b%3$s",
+      "text": "+ %1$s, %2$s secs ago by %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "金额",
+          "type": "coins",
+          "example": "106,253,648"
+        },
+        {
+          "token": "%2$s",
+          "desc": "数字",
+          "type": "number",
+          "example": "3"
+        },
+        {
+          "token": "%3$s",
+          "desc": "玩家名",
+          "type": "player_name",
+          "example": "inkkni"
+        }
+      ],
+      "gloss": "时间单位跟着数量走(1 day / 2 days),复数模板同时管单数(见 README「单复数不用各写一条」)。",
+      "translate": true,
+      "zh": "+ %1$s，%2$s 秒前，由 %3$s 操作",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "+ ",
+          "zh": "+ "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": ", ",
+          "zh": "，"
+        },
+        {
+          "color": "§e",
+          "text": "%2$s secs ago ",
+          "zh": "%2$s 秒前"
+        },
+        {
+          "color": "§7",
+          "text": "by ",
+          "zh": "，由 "
+        },
+        {
+          "color": "§b",
+          "text": "%3$s",
+          "zh": "%3$s 操作"
+        }
+      ]
+    },
+    {
+      "id": "bank_txn_plus_mins",
+      "context": "最近交易一行:存入,分前,操作者是玩家",
+      "raw": "§a+ §6%1$s§7, §e%2$s mins ago §7by §b%3$s",
+      "text": "+ %1$s, %2$s mins ago by %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "金额",
+          "type": "coins",
+          "example": "106,253,648"
+        },
+        {
+          "token": "%2$s",
+          "desc": "数字",
+          "type": "number",
+          "example": "3"
+        },
+        {
+          "token": "%3$s",
+          "desc": "玩家名",
+          "type": "player_name",
+          "example": "inkkni"
+        }
+      ],
+      "gloss": "时间单位跟着数量走(1 day / 2 days),复数模板同时管单数(见 README「单复数不用各写一条」)。",
+      "translate": true,
+      "zh": "+ %1$s，%2$s 分前，由 %3$s 操作",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "+ ",
+          "zh": "+ "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": ", ",
+          "zh": "，"
+        },
+        {
+          "color": "§e",
+          "text": "%2$s mins ago ",
+          "zh": "%2$s 分前"
+        },
+        {
+          "color": "§7",
+          "text": "by ",
+          "zh": "，由 "
+        },
+        {
+          "color": "§b",
+          "text": "%3$s",
+          "zh": "%3$s 操作"
+        }
+      ]
+    },
+    {
+      "id": "bank_txn_plus_hours",
+      "context": "最近交易一行:存入,小时前,操作者是玩家",
+      "raw": "§a+ §6%1$s§7, §e%2$s hours ago §7by §b%3$s",
+      "text": "+ %1$s, %2$s hours ago by %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "金额",
+          "type": "coins",
+          "example": "106,253,648"
+        },
+        {
+          "token": "%2$s",
+          "desc": "数字",
+          "type": "number",
+          "example": "3"
+        },
+        {
+          "token": "%3$s",
+          "desc": "玩家名",
+          "type": "player_name",
+          "example": "inkkni"
+        }
+      ],
+      "gloss": "时间单位跟着数量走(1 day / 2 days),复数模板同时管单数(见 README「单复数不用各写一条」)。",
+      "translate": true,
+      "zh": "+ %1$s，%2$s 小时前，由 %3$s 操作",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "+ ",
+          "zh": "+ "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": ", ",
+          "zh": "，"
+        },
+        {
+          "color": "§e",
+          "text": "%2$s hours ago ",
+          "zh": "%2$s 小时前"
+        },
+        {
+          "color": "§7",
+          "text": "by ",
+          "zh": "，由 "
+        },
+        {
+          "color": "§b",
+          "text": "%3$s",
+          "zh": "%3$s 操作"
+        }
+      ]
+    },
+    {
+      "id": "bank_txn_plus_days",
+      "context": "最近交易一行:存入,天前,操作者是玩家",
+      "raw": "§a+ §6%1$s§7, §e%2$s days ago §7by §b%3$s",
+      "text": "+ %1$s, %2$s days ago by %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "金额",
+          "type": "coins",
+          "example": "106,253,648"
+        },
+        {
+          "token": "%2$s",
+          "desc": "数字",
+          "type": "number",
+          "example": "3"
+        },
+        {
+          "token": "%3$s",
+          "desc": "玩家名",
+          "type": "player_name",
+          "example": "inkkni"
+        }
+      ],
+      "gloss": "时间单位跟着数量走(1 day / 2 days),复数模板同时管单数(见 README「单复数不用各写一条」)。",
+      "translate": true,
+      "zh": "+ %1$s，%2$s 天前，由 %3$s 操作",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "+ ",
+          "zh": "+ "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": ", ",
+          "zh": "，"
+        },
+        {
+          "color": "§e",
+          "text": "%2$s days ago ",
+          "zh": "%2$s 天前"
+        },
+        {
+          "color": "§7",
+          "text": "by ",
+          "zh": "，由 "
+        },
+        {
+          "color": "§b",
+          "text": "%3$s",
+          "zh": "%3$s 操作"
+        }
+      ]
+    },
+    {
+      "id": "bank_txn_minus_secs",
+      "context": "最近交易一行:取出,秒前,操作者是玩家",
+      "raw": "§c- §6%1$s§7, §e%2$s secs ago §7by §b%3$s",
+      "text": "- %1$s, %2$s secs ago by %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "金额",
+          "type": "coins",
+          "example": "106,253,648"
+        },
+        {
+          "token": "%2$s",
+          "desc": "数字",
+          "type": "number",
+          "example": "3"
+        },
+        {
+          "token": "%3$s",
+          "desc": "玩家名",
+          "type": "player_name",
+          "example": "inkkni"
+        }
+      ],
+      "gloss": "时间单位跟着数量走(1 day / 2 days),复数模板同时管单数(见 README「单复数不用各写一条」)。",
+      "translate": true,
+      "zh": "- %1$s，%2$s 秒前，由 %3$s 操作",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": ", ",
+          "zh": "，"
+        },
+        {
+          "color": "§e",
+          "text": "%2$s secs ago ",
+          "zh": "%2$s 秒前"
+        },
+        {
+          "color": "§7",
+          "text": "by ",
+          "zh": "，由 "
+        },
+        {
+          "color": "§b",
+          "text": "%3$s",
+          "zh": "%3$s 操作"
+        }
+      ]
+    },
+    {
+      "id": "bank_txn_minus_mins",
+      "context": "最近交易一行:取出,分前,操作者是玩家",
+      "raw": "§c- §6%1$s§7, §e%2$s mins ago §7by §b%3$s",
+      "text": "- %1$s, %2$s mins ago by %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "金额",
+          "type": "coins",
+          "example": "106,253,648"
+        },
+        {
+          "token": "%2$s",
+          "desc": "数字",
+          "type": "number",
+          "example": "3"
+        },
+        {
+          "token": "%3$s",
+          "desc": "玩家名",
+          "type": "player_name",
+          "example": "inkkni"
+        }
+      ],
+      "gloss": "时间单位跟着数量走(1 day / 2 days),复数模板同时管单数(见 README「单复数不用各写一条」)。",
+      "translate": true,
+      "zh": "- %1$s，%2$s 分前，由 %3$s 操作",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": ", ",
+          "zh": "，"
+        },
+        {
+          "color": "§e",
+          "text": "%2$s mins ago ",
+          "zh": "%2$s 分前"
+        },
+        {
+          "color": "§7",
+          "text": "by ",
+          "zh": "，由 "
+        },
+        {
+          "color": "§b",
+          "text": "%3$s",
+          "zh": "%3$s 操作"
+        }
+      ]
+    },
+    {
+      "id": "bank_txn_minus_hours",
+      "context": "最近交易一行:取出,小时前,操作者是玩家",
+      "raw": "§c- §6%1$s§7, §e%2$s hours ago §7by §b%3$s",
+      "text": "- %1$s, %2$s hours ago by %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "金额",
+          "type": "coins",
+          "example": "106,253,648"
+        },
+        {
+          "token": "%2$s",
+          "desc": "数字",
+          "type": "number",
+          "example": "3"
+        },
+        {
+          "token": "%3$s",
+          "desc": "玩家名",
+          "type": "player_name",
+          "example": "inkkni"
+        }
+      ],
+      "gloss": "时间单位跟着数量走(1 day / 2 days),复数模板同时管单数(见 README「单复数不用各写一条」)。",
+      "translate": true,
+      "zh": "- %1$s，%2$s 小时前，由 %3$s 操作",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": ", ",
+          "zh": "，"
+        },
+        {
+          "color": "§e",
+          "text": "%2$s hours ago ",
+          "zh": "%2$s 小时前"
+        },
+        {
+          "color": "§7",
+          "text": "by ",
+          "zh": "，由 "
+        },
+        {
+          "color": "§b",
+          "text": "%3$s",
+          "zh": "%3$s 操作"
+        }
+      ]
+    },
+    {
+      "id": "bank_txn_minus_days",
+      "context": "最近交易一行:取出,天前,操作者是玩家",
+      "raw": "§c- §6%1$s§7, §e%2$s days ago §7by §b%3$s",
+      "text": "- %1$s, %2$s days ago by %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "金额",
+          "type": "coins",
+          "example": "106,253,648"
+        },
+        {
+          "token": "%2$s",
+          "desc": "数字",
+          "type": "number",
+          "example": "3"
+        },
+        {
+          "token": "%3$s",
+          "desc": "玩家名",
+          "type": "player_name",
+          "example": "inkkni"
+        }
+      ],
+      "gloss": "时间单位跟着数量走(1 day / 2 days),复数模板同时管单数(见 README「单复数不用各写一条」)。",
+      "translate": true,
+      "zh": "- %1$s，%2$s 天前，由 %3$s 操作",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": ", ",
+          "zh": "，"
+        },
+        {
+          "color": "§e",
+          "text": "%2$s days ago ",
+          "zh": "%2$s 天前"
+        },
+        {
+          "color": "§7",
+          "text": "by ",
+          "zh": "，由 "
+        },
+        {
+          "color": "§b",
+          "text": "%3$s",
+          "zh": "%3$s 操作"
+        }
+      ]
+    },
+    {
+      "id": "bank_txn_interest_hours",
+      "context": "最近交易一行:银行结息存入,小时前",
+      "raw": "§a+ §6%1$s§7, §e%2$s hours ago §7by Bank Interest",
+      "text": "+ %1$s, %2$s hours ago by Bank Interest",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "金额",
+          "type": "coins",
+          "example": "371,000"
+        },
+        {
+          "token": "%2$s",
+          "desc": "数字",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "Bank Interest 带空格,进不了 player_name 的形状,所以单写一条。",
+      "translate": true,
+      "zh": "+ %1$s，%2$s 小时前，来自银行利息",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "+ ",
+          "zh": "+ "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": ", ",
+          "zh": "，"
+        },
+        {
+          "color": "§e",
+          "text": "%2$s hours ago ",
+          "zh": "%2$s 小时前"
+        },
+        {
+          "color": "§7",
+          "text": "by Bank Interest",
+          "zh": "，来自银行利息"
+        }
+      ]
+    },
+    {
+      "id": "bank_txn_interest_days",
+      "context": "最近交易一行:银行结息存入,天前",
+      "raw": "§a+ §6%1$s§7, §e%2$s days ago §7by Bank Interest",
+      "text": "+ %1$s, %2$s days ago by Bank Interest",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "金额",
+          "type": "coins",
+          "example": "371,000"
+        },
+        {
+          "token": "%2$s",
+          "desc": "数字",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "Bank Interest 带空格,进不了 player_name 的形状,所以单写一条。",
+      "translate": true,
+      "zh": "+ %1$s，%2$s 天前，来自银行利息",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "+ ",
+          "zh": "+ "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": ", ",
+          "zh": "，"
+        },
+        {
+          "color": "§e",
+          "text": "%2$s days ago ",
+          "zh": "%2$s 天前"
+        },
+        {
+          "color": "§7",
+          "text": "by Bank Interest",
+          "zh": "，来自银行利息"
+        }
+      ]
+    },
+    {
+      "id": "bank_information",
+      "context": "账户菜单:信息格",
+      "raw": "§aInformation",
+      "text": "Information",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "信息"
+    },
+    {
+      "id": "bank_keep_safe",
+      "context": "信息格说明",
+      "raw": "§7Keep your coins safe in the bank!",
+      "text": "Keep your coins safe in the bank!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "把硬币存进银行保管!"
+    },
+    {
+      "id": "bank_lose_half_1",
+      "context": "信息格说明:死亡掉钱",
+      "raw": "§7You lose half the coins in your purse",
+      "text": "You lose half the coins in your purse",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "在战斗中死亡时，你会失去随身硬币的一半。"
+    },
+    {
+      "id": "bank_lose_half_2",
+      "context": "接上一行",
+      "raw": "§7when dying in combat.",
+      "text": "when dying in combat.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "bank_balance_limit",
+      "context": "信息格:余额上限",
+      "raw": "§7Balance limit: §6%1$s %2$s",
+      "text": "Balance limit: %1$s %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "数字",
+          "type": "number",
+          "example": "250"
+        },
+        {
+          "token": "%2$s",
+          "desc": "Million / Billion,译名走 _shared/Terms.json",
+          "type": "raw",
+          "example": "Million"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "余额上限: %1$s %2$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Balance limit: ",
+          "zh": "余额上限: "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s %2$s",
+          "zh": "%1$s %2$s"
+        }
+      ]
+    },
+    {
+      "id": "bank_banker_rewards_1",
+      "context": "信息格说明:结息周期",
+      "raw": "§7The banker rewards you every 31",
+      "text": "The banker rewards you every 31",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "银行职员每 31 小时会按你的银行余额发放一次利息。"
+    },
+    {
+      "id": "bank_banker_rewards_2",
+      "context": "接上一行",
+      "raw": "§7hours with §binterest §7for the coins in",
+      "text": "hours with interest for the coins in",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "bank_banker_rewards_3",
+      "context": "接上一行",
+      "raw": "§7your bank balance.",
+      "text": "your bank balance.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "bank_interest_tranches",
+      "context": "信息格 / 升级格:利息分档的横幅",
+      "raw": "§d>§d§m------- §r  §6Interest Tranches§d  §d§m-------§d<",
+      "text": ">-------   Interest Tranches  -------<",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": ">-------   利息分档  -------<",
+      "segments": [
+        {
+          "color": "§d",
+          "text": ">",
+          "zh": ">"
+        },
+        {
+          "color": "§d§m",
+          "text": "------- ",
+          "zh": "------- "
+        },
+        {
+          "color": "§r",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§6",
+          "text": "Interest Tranches",
+          "zh": "利息分档"
+        },
+        {
+          "color": "§d",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§d§m",
+          "text": "-------",
+          "zh": "-------"
+        },
+        {
+          "color": "§d",
+          "text": "<",
+          "zh": "<"
+        }
+      ]
+    },
+    {
+      "id": "bank_tranche_first_boosted",
+      "context": "利息分档首档(带曲奇增益后的划线原利率)",
+      "raw": " §eFirst §6%1$s §ecoins yields §8§m%2$s%§r §b%3$s% §einterest.",
+      "text": " First %1$s coins yields %2$s% %3$s% interest.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "金额,带 M 后缀",
+          "type": "number",
+          "example": "10M"
+        },
+        {
+          "token": "%2$s",
+          "desc": "原利率(划线)",
+          "type": "percentage",
+          "example": "2"
+        },
+        {
+          "token": "%3$s",
+          "desc": "加成后利率",
+          "type": "percentage",
+          "example": "2.12"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": " 前 %1$s 硬币获得 %2$s% %3$s% 的利息。",
+      "segments": [
+        {
+          "color": "",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§e",
+          "text": "First ",
+          "zh": "前 "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§e",
+          "text": "coins yields ",
+          "zh": "硬币获得 "
+        },
+        {
+          "color": "§8§m",
+          "text": "%2$s%",
+          "zh": "%2$s%"
+        },
+        {
+          "color": "§r",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§b",
+          "text": "%3$s% ",
+          "zh": "%3$s% "
+        },
+        {
+          "color": "§e",
+          "text": "interest.",
+          "zh": "的利息。"
+        }
+      ]
+    },
+    {
+      "id": "bank_tranche_first",
+      "context": "利息分档首档(升级菜单里,无划线)",
+      "raw": " §eFirst §6%1$s §ecoins yields §b%2$s% §einterest.",
+      "text": " First %1$s coins yields %2$s% interest.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "金额,带 M 后缀",
+          "type": "number",
+          "example": "10M"
+        },
+        {
+          "token": "%2$s",
+          "desc": "利率",
+          "type": "percentage",
+          "example": "2"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": " 前 %1$s 硬币获得 %2$s% 的利息。",
+      "segments": [
+        {
+          "color": "",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§e",
+          "text": "First ",
+          "zh": "前 "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§e",
+          "text": "coins yields ",
+          "zh": "硬币获得 "
+        },
+        {
+          "color": "§b",
+          "text": "%2$s% ",
+          "zh": "%2$s% "
+        },
+        {
+          "color": "§e",
+          "text": "interest.",
+          "zh": "的利息。"
+        }
+      ]
+    },
+    {
+      "id": "bank_tranche_range_boosted",
+      "context": "利息分档后续档(带划线原利率)",
+      "raw": " §eFrom §6%1$s §eto §6%2$s §ecoins yields §8§m%3$s%§r §b%4$s% §einterest.",
+      "text": " From %1$s to %2$s coins yields %3$s% %4$s% interest.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "下限,带 M 后缀",
+          "type": "number",
+          "example": "10M"
+        },
+        {
+          "token": "%2$s",
+          "desc": "上限,带 M 后缀",
+          "type": "number",
+          "example": "20M"
+        },
+        {
+          "token": "%3$s",
+          "desc": "原利率(划线)",
+          "type": "percentage",
+          "example": "1"
+        },
+        {
+          "token": "%4$s",
+          "desc": "加成后利率",
+          "type": "percentage",
+          "example": "1.06"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": " %1$s 到 %2$s 硬币获得 %3$s% %4$s% 的利息。",
+      "segments": [
+        {
+          "color": "",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§e",
+          "text": "From ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§6",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§e",
+          "text": "to ",
+          "zh": "到 "
+        },
+        {
+          "color": "§6",
+          "text": "%2$s ",
+          "zh": "%2$s "
+        },
+        {
+          "color": "§e",
+          "text": "coins yields ",
+          "zh": "硬币获得 "
+        },
+        {
+          "color": "§8§m",
+          "text": "%3$s%",
+          "zh": "%3$s%"
+        },
+        {
+          "color": "§r",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§b",
+          "text": "%4$s% ",
+          "zh": "%4$s% "
+        },
+        {
+          "color": "§e",
+          "text": "interest.",
+          "zh": "的利息。"
+        }
+      ]
+    },
+    {
+      "id": "bank_tranche_range",
+      "context": "利息分档后续档(升级菜单里,无划线)",
+      "raw": " §eFrom §6%1$s §eto §6%2$s §ecoins yields §b%3$s% §einterest.",
+      "text": " From %1$s to %2$s coins yields %3$s% interest.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "下限,带 M/B 后缀",
+          "type": "number",
+          "example": "10M"
+        },
+        {
+          "token": "%2$s",
+          "desc": "上限,带 M/B 后缀",
+          "type": "number",
+          "example": "15M"
+        },
+        {
+          "token": "%3$s",
+          "desc": "利率",
+          "type": "percentage",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": " %1$s 到 %2$s 硬币获得 %3$s% 的利息。",
+      "segments": [
+        {
+          "color": "",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§e",
+          "text": "From ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§6",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§e",
+          "text": "to ",
+          "zh": "到 "
+        },
+        {
+          "color": "§6",
+          "text": "%2$s ",
+          "zh": "%2$s "
+        },
+        {
+          "color": "§e",
+          "text": "coins yields ",
+          "zh": "硬币获得 "
+        },
+        {
+          "color": "§b",
+          "text": "%3$s% ",
+          "zh": "%3$s% "
+        },
+        {
+          "color": "§e",
+          "text": "interest.",
+          "zh": "的利息。"
+        }
+      ]
+    },
+    {
+      "id": "bank_max_interest",
+      "context": "利息分档:最高利息",
+      "raw": " §7Max interest: §6%s",
+      "text": " Max interest: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "金额",
+          "type": "coins",
+          "example": "371,000"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": " 最高利息: %s",
+      "segments": [
+        {
+          "color": "",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§7",
+          "text": "Max interest: ",
+          "zh": "最高利息: "
+        },
+        {
+          "color": "§6",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "bank_max_interest_with_balance",
+      "context": "利息分档:达到最高利息所需余额",
+      "raw": " §8 (With %s balance)",
+      "text": "(With %s balance)",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "金额",
+          "type": "coins",
+          "example": "30,000,000"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "(余额达到 %s 时)"
+    },
+    {
+      "id": "bank_upgrade_account_name",
+      "context": "升级菜单:每档账户的格子名",
+      "raw": "§a%s Account",
+      "text": "%s Account",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "档次名(Starter / Gold / Deluxe / Super Deluxe / Premier / Luxurious / Palatial),译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Deluxe"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%s账户"
+    },
+    {
+      "id": "bank_upgrade_not_upgraded",
+      "context": "升级菜单:初始档",
+      "raw": "§8Not upgraded",
+      "text": "Not upgraded",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "未升级"
+    },
+    {
+      "id": "bank_upgrade_label",
+      "context": "升级菜单格的小标题",
+      "raw": "§8Bank Upgrade",
+      "text": "Bank Upgrade",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "银行升级"
+    },
+    {
+      "id": "bank_upgrade_max_balance",
+      "context": "升级菜单:该档余额上限",
+      "raw": "§7Max balance: §6%1$s %2$s Coins",
+      "text": "Max balance: %1$s %2$s Coins",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "数字",
+          "type": "number",
+          "example": "250"
+        },
+        {
+          "token": "%2$s",
+          "desc": "Million / Billion,译名走 _shared/Terms.json",
+          "type": "raw",
+          "example": "Million"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "余额上限: %1$s %2$s硬币",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Max balance: ",
+          "zh": "余额上限: "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s %2$s Coins",
+          "zh": "%1$s %2$s硬币"
+        }
+      ]
+    },
+    {
+      "id": "bank_upgrade_cost_complimentary",
+      "context": "升级菜单:初始档免费",
+      "raw": "§7Cost: §aComplimentary",
+      "text": "Cost: Complimentary",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "花费: 免费赠送",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Cost: ",
+          "zh": "花费: "
+        },
+        {
+          "color": "§a",
+          "text": "Complimentary",
+          "zh": "免费赠送"
+        }
+      ]
+    },
+    {
+      "id": "bank_upgrade_better_account",
+      "context": "升级菜单:已有更高档",
+      "raw": "§cYou have a better account!",
+      "text": "You have a better account!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你已拥有更高级的账户!"
+    },
+    {
+      "id": "bank_upgrade_this_is_yours",
+      "context": "升级菜单:当前档",
+      "raw": "§aThis is your account!",
+      "text": "This is your account!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这是你当前的账户!"
+    },
+    {
+      "id": "bank_upgrade_enchanted_gold_block",
+      "context": "升级菜单:所需材料",
+      "raw": "§9Enchanted Gold Block §8x%s",
+      "text": "Enchanted Gold Block x%s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数量",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "按 GLOSSARY「原版材料名用官方译名」,Enchanted Gold Block → 附魔金块。",
+      "translate": true,
+      "zh": "附魔金块 x%s",
+      "segments": [
+        {
+          "color": "§9",
+          "text": "Enchanted Gold Block ",
+          "zh": "附魔金块 "
+        },
+        {
+          "color": "§8",
+          "text": "x%s",
+          "zh": "x%s"
+        }
+      ]
+    },
+    {
+      "id": "bank_upgrade_requires_milestone",
+      "context": "升级菜单:博物馆里程碑门槛",
+      "raw": "§cRequires Museum Milestone %s!",
+      "text": "Requires Museum Milestone %s!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "里程碑编号",
+          "type": "number",
+          "example": "6"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "需要博物馆里程碑 %s!"
+    },
+    {
+      "id": "bank_upgrade_not_enough_coins",
+      "context": "升级菜单:钱不够",
+      "raw": "§cNot enough coins!",
+      "text": "Not enough coins!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "硬币不足!"
+    },
+    {
+      "id": "bank_upgrade_need_previous",
+      "context": "升级菜单:要先买前一档",
+      "raw": "§cNeed previous upgrade!",
+      "text": "Need previous upgrade!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "需要先完成上一档升级!"
     }
   ]
 }

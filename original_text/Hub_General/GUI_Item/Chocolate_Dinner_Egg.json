@@ -13,32 +13,72 @@
       "raw": "§f%1$s §7§lDUPLICATE",
       "text": "%1$s DUPLICATE",
       "placeholders": [
-        { "token": "%1$s", "desc": "兔子专名，保留英文", "type": "npc_name", "example": "Cuddles" }
+        {
+          "token": "%1$s",
+          "desc": "兔子专名，保留英文",
+          "type": "npc_name",
+          "example": "Cuddles"
+        }
       ],
       "gloss": "Cuddles、Smokey 等兔子专名保留英文。",
       "translate": true,
       "zh": "%1$s (重复)",
       "segments": [
-        { "color": "§f", "text": "%1$s ", "zh": "%1$s " },
-        { "color": "§7§l", "text": "DUPLICATE", "zh": "(重复)" }
+        {
+          "color": "§f",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7§l",
+          "text": "DUPLICATE",
+          "zh": "(重复)"
+        }
       ]
     },
     {
       "id": "dinner_egg_duplicate_bonus",
       "context": "重复兔子的固定工厂增益说明首行；完整句跨三行",
-      "raw": "§7Grants §6+1 Chocolate §7and §6%1$sx",
-      "text": "Grants +1 Chocolate and %1$sx",
+      "raw": "§7Grants §6+%1$s Chocolate §7and §6%2$sx",
+      "text": "Grants +%1$s Chocolate and %2$sx",
       "placeholders": [
-        { "token": "%1$s", "desc": "每秒巧克力倍率", "type": "number", "example": "0.002" }
+        {
+          "token": "%1$s",
+          "desc": "每秒巧克力基础产量",
+          "type": "number",
+          "example": "1"
+        },
+        {
+          "token": "%2$s",
+          "desc": "每秒巧克力倍率",
+          "type": "number",
+          "example": "0.002"
+        }
       ],
-      "gloss": "+1 是每秒巧克力基础产量，0.002x 是巧克力产量倍率；两项都是兔子为工厂提供的永久产量加成。",
+      "gloss": "+N 是每秒巧克力基础产量(稀有度越高越大,实测 1 / 2 / 4),Nx 是巧克力产量倍率;两项都是兔子为工厂提供的永久产量加成。",
       "translate": true,
-      "zh": "使你的巧克力工厂每秒巧克力基础产量 +1，并使巧克力产量倍率 +%1$s 倍。",
+      "zh": "使你的巧克力工厂每秒巧克力基础产量 +%1$s，并使巧克力产量倍率 +%2$s 倍。",
       "segments": [
-        { "color": "§7", "text": "Grants ", "zh": "使你的巧克力工厂每秒巧克力基础产量 " },
-        { "color": "§6", "text": "+1 Chocolate ", "zh": "+1" },
-        { "color": "§7", "text": "and ", "zh": "，并使巧克力产量倍率 " },
-        { "color": "§6", "text": "%1$sx", "zh": "+%1$s 倍。" }
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "使你的巧克力工厂每秒巧克力基础产量 "
+        },
+        {
+          "color": "§6",
+          "text": "+%1$s Chocolate ",
+          "zh": "+%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "，并使巧克力产量倍率 "
+        },
+        {
+          "color": "§6",
+          "text": "%2$sx",
+          "zh": "+%2$s 倍。"
+        }
       ]
     },
     {
@@ -69,15 +109,32 @@
       "raw": "§7You have already found §f%1$s§7, so",
       "text": "You have already found %1$s, so",
       "placeholders": [
-        { "token": "%1$s", "desc": "兔子专名，保留英文", "type": "npc_name", "example": "Cuddles" }
+        {
+          "token": "%1$s",
+          "desc": "兔子专名，保留英文",
+          "type": "npc_name",
+          "example": "Cuddles"
+        }
       ],
       "gloss": "",
       "translate": true,
       "zh": "你已经找到过 %1$s，因此",
       "segments": [
-        { "color": "§7", "text": "You have already found ", "zh": "你已经找到过 " },
-        { "color": "§f", "text": "%1$s", "zh": "%1$s" },
-        { "color": "§7", "text": ", so", "zh": "，因此" }
+        {
+          "color": "§7",
+          "text": "You have already found ",
+          "zh": "你已经找到过 "
+        },
+        {
+          "color": "§f",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": ", so",
+          "zh": "，因此"
+        }
       ]
     },
     {
@@ -86,15 +143,32 @@
       "raw": "§7you received §6%1$s Chocolate§7!",
       "text": "you received %1$s Chocolate!",
       "placeholders": [
-        { "token": "%1$s", "desc": "本次获得的巧克力数量", "type": "number", "example": "5,031,355" }
+        {
+          "token": "%1$s",
+          "desc": "本次获得的巧克力数量",
+          "type": "number",
+          "example": "5,031,355"
+        }
       ],
       "gloss": "奖励随账号当前每秒巧克力变化。",
       "translate": true,
       "zh": "你获得了 %1$s 巧克力!",
       "segments": [
-        { "color": "§7", "text": "you received ", "zh": "你获得了 " },
-        { "color": "§6", "text": "%1$s Chocolate", "zh": "%1$s 巧克力" },
-        { "color": "§7", "text": "!", "zh": "!" }
+        {
+          "color": "§7",
+          "text": "you received ",
+          "zh": "你获得了 "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s Chocolate",
+          "zh": "%1$s 巧克力"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!"
+        }
       ]
     },
     {
@@ -107,6 +181,57 @@
       "rarity_ref": "_shared/Rarity.json#rarity_common",
       "translate": true,
       "zh": "普通兔子"
+    },
+    {
+      "id": "egg_new_rabbit_name",
+      "context": "巧克力蛋开出新兔子时的物品名:兔子名 + NEW RABBIT!",
+      "raw": "§9%s §d§lNEW RABBIT!",
+      "text": "%s NEW RABBIT!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "兔子专名,保留英文",
+          "type": "npc_name",
+          "example": "Cinnamon"
+        }
+      ],
+      "gloss": "兔子名的颜色随稀有度变(白 / 绿 / 蓝),颜色从屏幕上读,一条记录管所有稀有度。",
+      "translate": true,
+      "zh": "%s 新兔子!",
+      "segments": [
+        {
+          "color": "§9",
+          "text": "%s ",
+          "zh": "%s "
+        },
+        {
+          "color": "§d§l",
+          "text": "NEW RABBIT!",
+          "zh": "新兔子!"
+        }
+      ]
+    },
+    {
+      "id": "dinner_egg_uncommon_rabbit",
+      "context": "稀有度行:罕见兔子",
+      "raw": "§a§lUNCOMMON RABBIT",
+      "text": "UNCOMMON RABBIT",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "罕见兔子",
+      "rarity_ref": "_shared/Rarity.json#rarity_uncommon"
+    },
+    {
+      "id": "dinner_egg_rare_rabbit",
+      "context": "稀有度行:稀有兔子",
+      "raw": "§9§lRARE RABBIT",
+      "text": "RARE RABBIT",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "稀有兔子",
+      "rarity_ref": "_shared/Rarity.json#rarity_rare"
     }
   ]
 }

@@ -1,0 +1,439 @@
+{
+  "source": "SkyZH runtime capture (Dungeon Hub, 2026-09-03)",
+  "fetched_at": "2026-09-03",
+  "verified_ingame": true,
+  "source_note": "地牢技能菜单 → 地牢格 → Catacombs Rewards：长条形等级菜单，每级一格。Scroll / Re-Center 走 _shared/Menu_Common.json。",
+  "items": [
+    {
+      "id": "catacombs_rewards_level_name",
+      "context": "地牢奖励菜单每一格的物品名",
+      "raw": "§aCatacombs Mastery %1$s",
+      "text": "Catacombs Mastery %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "该格对应的等级",
+          "type": "number",
+          "example": "17"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "地牢精通 %1$s 级"
+    },
+    {
+      "id": "catacombs_rewards_health",
+      "context": " 等级格奖励：生命值加成（行首一个空格是缩进）",
+      "raw": " §8+§a2 §c❤ Health",
+      "text": " +%1$s ❤ Health",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "生命值加成",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "❤ 是生命值图标的通用符号。",
+      "translate": true,
+      "zh": " +%1$s ❤ 生命值",
+      "segments": [
+        {
+          "color": "§8",
+          "text": " +",
+          "zh": " +"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§c",
+          "text": "❤ Health",
+          "zh": "❤ 生命值"
+        }
+      ]
+    },
+    {
+      "id": "catacombs_rewards_stat_boost_1",
+      "context": "等级格奖励：地牢物品属性加成说明，英文四行一句",
+      "raw": " §7Increases the base stats of your",
+      "text": " Increases the base stats of your",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": " 在地牢中，你的地牢物品基础属性和治疗量"
+    },
+    {
+      "id": "catacombs_rewards_stat_boost_2",
+      "context": "接上一行",
+      "raw": " §7dungeon items and healing in",
+      "text": " dungeon items and healing in",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "catacombs_rewards_stat_boost_3a",
+      "context": "加成数值（The 落到下一行的版本）。文件顺序故意与 3b 交错：两条是同一行的两种折行版本，各自后面跟自己的尾行",
+      "raw": " §7dungeons by §8%1$s➜§c%2$s%§7 while in",
+      "text": " dungeons by %1$s➜%2$s% while in",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前加成",
+          "type": "number",
+          "example": "145"
+        },
+        {
+          "token": "%2$s",
+          "desc": "该级加成",
+          "type": "number",
+          "example": "155"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": " 提升 %1$s➜%2$s%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": " dungeons by ",
+          "zh": " 提升 "
+        },
+        {
+          "color": "§8",
+          "text": "%1$s➜",
+          "zh": "%1$s➜"
+        },
+        {
+          "color": "§c",
+          "text": "%2$s%",
+          "zh": "%2$s%"
+        },
+        {
+          "color": "§7",
+          "text": " while in",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "catacombs_rewards_stat_boost_4b",
+      "context": "接上一行（Catacombs. 半行）",
+      "raw": " §cCatacombs§7.",
+      "text": " Catacombs.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§c",
+          "text": " Catacombs",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "",
+          "omit": true
+        }
+      ]
+    },
+    {
+      "id": "catacombs_rewards_stat_boost_3b",
+      "context": "加成数值（The 留在本行的版本）",
+      "raw": " §7dungeons by §8%1$s➜§c%2$s%§7 while in §cThe",
+      "text": " dungeons by %1$s➜%2$s% while in The",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前加成",
+          "type": "number",
+          "example": "95"
+        },
+        {
+          "token": "%2$s",
+          "desc": "该级加成",
+          "type": "number",
+          "example": "105"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": " 提升 %1$s➜%2$s%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": " dungeons by ",
+          "zh": " 提升 "
+        },
+        {
+          "color": "§8",
+          "text": "%1$s➜",
+          "zh": "%1$s➜"
+        },
+        {
+          "color": "§c",
+          "text": "%2$s%",
+          "zh": "%2$s%"
+        },
+        {
+          "color": "§7",
+          "text": " while in ",
+          "zh": "。"
+        },
+        {
+          "color": "§c",
+          "text": "The",
+          "zh": "",
+          "omit": true
+        }
+      ]
+    },
+    {
+      "id": "catacombs_rewards_stat_boost_4a",
+      "context": "接上一行（The Catacombs. 整行）",
+      "raw": " §cThe Catacombs§7.",
+      "text": " The Catacombs.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§c",
+          "text": " The Catacombs",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "",
+          "omit": true
+        }
+      ]
+    },
+    {
+      "id": "catacombs_rewards_rng_meters_name",
+      "context": "右侧「RNG 计量表」入口格物品名",
+      "raw": "§dCatacombs RNG Meters",
+      "text": "Catacombs RNG Meters",
+      "placeholders": [],
+      "gloss": "RNG Meter 沿用 GLOSSARY「Pity」条目：保底机制，界面名保留 RNG 缩写。",
+      "translate": true,
+      "zh": "地牢 RNG 计量表"
+    },
+    {
+      "id": "catacombs_rewards_rng_desc_1",
+      "context": "RNG 计量表入口说明首行",
+      "raw": "§7Your §dCatacombs RNG Meters §7fill with",
+      "text": "Your Catacombs RNG Meters fill with",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的地牢 RNG 计量表会在你",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Your ",
+          "zh": "你的"
+        },
+        {
+          "color": "§d",
+          "text": "Catacombs RNG Meters ",
+          "zh": "地牢 RNG 计量表"
+        },
+        {
+          "color": "§7",
+          "text": "fill with",
+          "zh": "会在你"
+        }
+      ]
+    },
+    {
+      "id": "catacombs_rewards_rng_desc_2",
+      "context": "接上一行",
+      "raw": "§bDungeon Score §7each time you",
+      "text": "Dungeon Score each time you",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "每次以",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "Dungeon Score ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§7",
+          "text": "each time you",
+          "zh": "每次以"
+        }
+      ]
+    },
+    {
+      "id": "catacombs_rewards_rng_desc_3",
+      "context": "接上一行",
+      "raw": "§7complete an §bS §7or §b§lS+ §7run.",
+      "text": "complete an S or S+ run.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "S 或 S+ 评价通关副本时，按地牢评分累积。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "complete an ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§b",
+          "text": "S ",
+          "zh": "S "
+        },
+        {
+          "color": "§7",
+          "text": "or ",
+          "zh": "或 "
+        },
+        {
+          "color": "§b§l",
+          "text": "S+ ",
+          "zh": "S+ "
+        },
+        {
+          "color": "§7",
+          "text": "run.",
+          "zh": "评价通关副本时，按地牢评分累积。"
+        }
+      ]
+    },
+    {
+      "id": "catacombs_rewards_rng_desc_4",
+      "context": "接上一行",
+      "raw": "§7Your selected §dRNG drop §7will be",
+      "text": "Your selected RNG drop will be",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "某一层的计量表填满后，你选定的 RNG 掉落物",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Your selected ",
+          "zh": "某一层的计量表填满后，你选定的"
+        },
+        {
+          "color": "§d",
+          "text": "RNG drop ",
+          "zh": "RNG 掉落物"
+        },
+        {
+          "color": "§7",
+          "text": "will be",
+          "zh": "",
+          "omit": true
+        }
+      ]
+    },
+    {
+      "id": "catacombs_rewards_rng_desc_5",
+      "context": "接上一行，英文三行一句",
+      "raw": "§7guaranteed to appear in a chest",
+      "text": "guaranteed to appear in a chest",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "保证出现在宝箱中!"
+    },
+    {
+      "id": "catacombs_rewards_rng_desc_6",
+      "context": "接上一行",
+      "raw": "§7once your RNG Meter for a floor is",
+      "text": "once your RNG Meter for a floor is",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "catacombs_rewards_rng_desc_7",
+      "context": "接上一行",
+      "raw": "§7full!",
+      "text": "full!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "catacombs_rewards_entry_name",
+      "context": "左侧总览格物品名",
+      "raw": "§aCatacombs",
+      "text": "Catacombs",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "地牢"
+    },
+    {
+      "id": "catacombs_rewards_entry_desc_1",
+      "context": "总览格说明，英文两行一句",
+      "raw": "§7Complete Catacombs dungeons to",
+      "text": "Complete Catacombs dungeons to",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "通关地牢副本即可获得经验!"
+    },
+    {
+      "id": "catacombs_rewards_entry_desc_2",
+      "context": "接上一行",
+      "raw": "§7earn experience!",
+      "text": "earn experience!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "catacombs_rewards_entry_hint_1",
+      "context": "总览格灰字提示，英文两行一句",
+      "raw": "§8Increase your Catacombs dungeon",
+      "text": "Increase your Catacombs dungeon",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "提升地牢等级即可解锁新奖励!"
+    },
+    {
+      "id": "catacombs_rewards_entry_hint_2",
+      "context": "接上一行",
+      "raw": "§8level to unlock new rewards!",
+      "text": "level to unlock new rewards!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    }
+  ]
+}

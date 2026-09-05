@@ -1,0 +1,37 @@
+{
+  "source": "runtime capture (SkyZH), build/gaps_B.txt, 2026-09-05",
+  "fetched_at": "2026-09-05",
+  "verified_ingame": true,
+  "gui_context": "圆石小人 IV 的升级预览。",
+  "lines": [
+    {"id": "cobble_minion_storage", "ref": "_shared/Item_Lore.json#minion_max_storage", "context": "当前存储上限"},
+    {"id": "cobble_minion_time_upgrade", "ref": "_shared/Item_Lore.json#minion_time_between_actions_upgrade", "context": "行动间隔变化"},
+    {
+      "id": "cobble_minion_needed_1",
+      "context": "升级缺少附魔圆石；材料名在英文中拆成两行",
+      "raw": "§cYou need §6%s §cmore Enchanted",
+      "text": "You need %s more Enchanted",
+      "placeholders": [{"token": "%s", "desc": "仍缺少的附魔圆石数量", "type": "number", "example": "8"}],
+      "gloss": "",
+      "translate": true,
+      "zh": "你还需要 %s 个附魔圆石。",
+      "segments": [
+        {"color": "§c", "text": "You need ", "zh": "你还需要 "},
+        {"color": "§6", "text": "%s ", "zh": "%s "},
+        {"color": "§c", "text": "more Enchanted", "zh": "个附魔圆石。"}
+      ]
+    },
+    {
+      "id": "cobble_minion_needed_2",
+      "context": "接上一行",
+      "raw": "§cCobblestone.",
+      "text": "Cobblestone.",
+      "placeholders": [],
+      "gloss": "材料名已移入上一行。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {"id": "cobble_minion_generated", "ref": "_shared/Item_Lore.json#minion_resources_generated", "context": "累计产量"}
+  ]
+}

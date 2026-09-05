@@ -1,0 +1,5000 @@
+{
+  "source": "SkyZH runtime capture (Dungeon Hub, 2026-09-03)",
+  "fetched_at": "2026-09-03",
+  "verified_ingame": true,
+  "source_note": "Mort 的「地牢职业」菜单点进每个职业后的天赋（Class Perks）菜单，五个职业共用同一套版式，所以合在一个文件里。技能名沿用 Dungeon_Classes.json 的既定译名；等级行的数值全部随等级变化，一律做成 number 占位符（采集器只在见过 ≥2 种取值时才标占位符，这里按机制人工补齐）。属性图标写通用符号（☄ 修补 / ♨ 活力 / ❁ 力量 / ✦ 速度 / ❈ 防御 / ❤ 生命 / ⚔ 攻速），见 text/Glyphs.java。",
+  "todo": [
+    "Scroll Left/Right、Re-Center、UNLOCKED 与 Progress to Level 走 _shared/Menu_Common.json，不在本文件重复。",
+    "「Healing Aura」「Soul Tether」小标题在 Healer 菜单里是 §a 而不是其他被动的 §6，颜色由屏幕实时读取，这里只影响 raw 记录。"
+  ],
+  "items": [
+    {
+      "id": "perks_level_name",
+      "context": "五个职业天赋菜单里每一格的物品名：职业名 + 等级",
+      "raw": "§a%1$s Level %2$s",
+      "text": "%1$s Level %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "职业名，五种之一，译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Healer"
+        },
+        {
+          "token": "%2$s",
+          "desc": "该格对应的等级",
+          "type": "number",
+          "example": "26"
+        }
+      ],
+      "gloss": "等级写法与 Dungeon_Classes.json#classes_name_with_level 的「%1$s 级」一致。",
+      "translate": true,
+      "zh": "%1$s %2$s 级"
+    },
+    {
+      "id": "perks_class_entry_name",
+      "context": "天赋菜单最左的职业总览格物品名",
+      "raw": "§a%1$s Class",
+      "text": "%1$s Class",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "职业名，译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Healer"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s职业"
+    },
+    {
+      "id": "perks_class_entry_desc_1",
+      "context": "职业总览格说明：怎么升级，英文拆成两行",
+      "raw": "§7Use this class in a Dungeon to level",
+      "text": "Use this class in a Dungeon to level",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "在地牢中使用该职业即可提升其等级!"
+    },
+    {
+      "id": "perks_class_entry_desc_2",
+      "context": "接上一行",
+      "raw": "§7it up!",
+      "text": "it up!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "perks_increase_level_3a",
+      "context": "职业总览格灰字提示（三行版，Healer/Berserk/Archer）",
+      "raw": "§8Increase your %1$s Level to",
+      "text": "Increase your %1$s Level to",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "职业名",
+          "type": "category_name",
+          "example": "Healer"
+        }
+      ],
+      "gloss": "完整句 Increase your X Level to unlock Perks, statistic bonuses, and more!",
+      "translate": true,
+      "zh": "提升%1$s等级即可解锁天赋、属性加成等更多内容!"
+    },
+    {
+      "id": "perks_increase_level_3b",
+      "context": "接上一行",
+      "raw": "§8unlock Perks, statistic bonuses, and",
+      "text": "unlock Perks, statistic bonuses, and",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "perks_increase_level_3c",
+      "context": "接上一行",
+      "raw": "§8more!",
+      "text": "more!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "perks_increase_level_2a",
+      "context": "职业总览格灰字提示（两行版，Mage/Tank）",
+      "raw": "§8Increase your %1$s Level to unlock",
+      "text": "Increase your %1$s Level to unlock",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "职业名",
+          "type": "category_name",
+          "example": "Mage"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "提升%1$s等级即可解锁天赋、属性加成等更多内容!"
+    },
+    {
+      "id": "perks_increase_level_2b",
+      "context": "接上一行",
+      "raw": "§8Perks, statistic bonuses, and more!",
+      "text": "Perks, statistic bonuses, and more!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "perks_stat_renew_healing",
+      "context": "职业等级格 Lore：该级加成 Renew Healing",
+      "raw": "§8+§a%1$s §7Renew Healing",
+      "text": "+%1$s Renew Healing",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 焕新治疗量",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Renew Healing",
+          "zh": "焕新治疗量"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_ghost_aura_healing",
+      "context": "职业等级格 Lore：该级加成 Ghost Healing Aura Healing",
+      "raw": "§8+§a%1$s §7Ghost Healing Aura Healing",
+      "text": "+%1$s Ghost Healing Aura Healing",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "1%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 幽灵治疗光环治疗量",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Ghost Healing Aura Healing",
+          "zh": "幽灵治疗光环治疗量"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_ghost_potion_health",
+      "context": "职业等级格 Lore：该级加成 Ghost Healing Potion Health Restored",
+      "raw": "§8+§a%1$s §7Ghost Healing Potion Health Restored",
+      "text": "+%1$s Ghost Healing Potion Health Restored",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 幽灵治疗药水回复生命值",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Ghost Healing Potion Health Restored",
+          "zh": "幽灵治疗药水回复生命值"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_wish_shield",
+      "context": "职业等级格 Lore：该级加成 Wish Shield Percent",
+      "raw": "§8+§a%1$s §7Wish Shield Percent",
+      "text": "+%1$s Wish Shield Percent",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "0.4%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 祈愿护盾百分比",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Wish Shield Percent",
+          "zh": "祈愿护盾百分比"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_overheal_shield",
+      "context": "职业等级格 Lore：该级加成 Overheal Maximum Shield",
+      "raw": "§8+§a%1$s §7Overheal Maximum Shield",
+      "text": "+%1$s Overheal Maximum Shield",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "0.4%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 过量治疗护盾上限",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Overheal Maximum Shield",
+          "zh": "过量治疗护盾上限"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_vitality",
+      "context": "职业等级格 Lore：该级加成 Vitality",
+      "raw": "§8+§a%1$s §7Vitality",
+      "text": "+%1$s Vitality",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "0.2"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 活力",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Vitality",
+          "zh": "活力"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_mending",
+      "context": "职业等级格 Lore：该级加成 Mending",
+      "raw": "§8+§a%1$s §7Mending",
+      "text": "+%1$s Mending",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "0.5"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 修补",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Mending",
+          "zh": "修补"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_aura_healing",
+      "context": "职业等级格 Lore：该级加成 Healing Aura Healing",
+      "raw": "§8+§a%1$s §7Healing Aura Healing",
+      "text": "+%1$s Healing Aura Healing",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "0.1%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 治疗光环治疗量",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Healing Aura Healing",
+          "zh": "治疗光环治疗量"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_circle_healing",
+      "context": "职业等级格 Lore：该级加成 Healing Circle Healing",
+      "raw": "§8+§a%1$s §7Healing Circle Healing",
+      "text": "+%1$s Healing Circle Healing",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "0.5%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 治疗法阵治疗量",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Healing Circle Healing",
+          "zh": "治疗法阵治疗量"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_circle_radius",
+      "context": "职业等级格 Lore：该级加成 Healing Circle Radius",
+      "raw": "§8+§a%1$s §7Healing Circle Radius",
+      "text": "+%1$s Healing Circle Radius",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "0.5"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 治疗法阵半径",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Healing Circle Radius",
+          "zh": "治疗法阵半径"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_circle_duration",
+      "context": "职业等级格 Lore：该级加成 Healing Circle Duration",
+      "raw": "§8+§a%1$s §7Healing Circle Duration",
+      "text": "+%1$s Healing Circle Duration",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 治疗法阵持续时间",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Healing Circle Duration",
+          "zh": "治疗法阵持续时间"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_intelligence",
+      "context": "职业等级格 Lore：该级加成 Intelligence",
+      "raw": "§8+§a%1$s §7Intelligence",
+      "text": "+%1$s Intelligence",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "5"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 智力",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Intelligence",
+          "zh": "智力"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_ability_damage",
+      "context": "职业等级格 Lore：该级加成 Ability Damage",
+      "raw": "§8+§a%1$s §7Ability Damage",
+      "text": "+%1$s Ability Damage",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "2,000"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 技能伤害",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Ability Damage",
+          "zh": "技能伤害"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_fireball_damage",
+      "context": "职业等级格 Lore：该级加成 Fireball Damage",
+      "raw": "§8+§a%1$s §7Fireball Damage",
+      "text": "+%1$s Fireball Damage",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "5,000"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 火球术伤害",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Fireball Damage",
+          "zh": "火球术伤害"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_thunderstorm_damage",
+      "context": "职业等级格 Lore：该级加成 Thunderstorm Damage",
+      "raw": "§8+§a%1$s §7Thunderstorm Damage",
+      "text": "+%1$s Thunderstorm Damage",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "8,000"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 雷暴伤害",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Thunderstorm Damage",
+          "zh": "雷暴伤害"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_sheep_damage",
+      "context": "职业等级格 Lore：该级加成 Guided Sheep Damage",
+      "raw": "§8+§a%1$s §7Guided Sheep Damage",
+      "text": "+%1$s Guided Sheep Damage",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "2,500"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 制导绵羊伤害",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Guided Sheep Damage",
+          "zh": "制导绵羊伤害"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_cooldown_reduction",
+      "context": "职业等级格 Lore：该级加成 Cooldown Reduction",
+      "raw": "§8+§a%1$s §7Cooldown Reduction",
+      "text": "+%1$s Cooldown Reduction",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "1%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 冷却缩减",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Cooldown Reduction",
+          "zh": "冷却缩减"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_melee_damage",
+      "context": "职业等级格 Lore：该级加成 Melee Damage",
+      "raw": "§8+§a%1$s §7Melee Damage",
+      "text": "+%1$s Melee Damage",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "0.8%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 近战伤害",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Melee Damage",
+          "zh": "近战伤害"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_bloodlust_damage",
+      "context": "职业等级格 Lore：该级加成 Bloodlust Damage",
+      "raw": "§8+§a%1$s §7Bloodlust Damage",
+      "text": "+%1$s Bloodlust Damage",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "0.8%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 嗜血伤害",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Bloodlust Damage",
+          "zh": "嗜血伤害"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_throwing_axe_damage",
+      "context": "职业等级格 Lore：该级加成 Throwing Axe Damage",
+      "raw": "§8+§a%1$s §7Throwing Axe Damage",
+      "text": "+%1$s Throwing Axe Damage",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "1,250"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 飞斧伤害",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Throwing Axe Damage",
+          "zh": "飞斧伤害"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_ghost_axe_damage",
+      "context": "职业等级格 Lore：该级加成 Ghost Axe Damage",
+      "raw": "§8+§a%1$s §7Ghost Axe Damage",
+      "text": "+%1$s Ghost Axe Damage",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "500"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 幽灵飞斧伤害",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Ghost Axe Damage",
+          "zh": "幽灵飞斧伤害"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_ragnarok_health",
+      "context": "职业等级格 Lore：该级加成 Ragnarok Summon Health",
+      "raw": "§8+§a%1$s §7Ragnarok Summon Health",
+      "text": "+%1$s Ragnarok Summon Health",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "20,000"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 诸神黄昏召唤物生命值",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Ragnarok Summon Health",
+          "zh": "诸神黄昏召唤物生命值"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_lfb_per_hit",
+      "context": "职业等级格 Lore：该级加成 Lust For Blood Damage Increase Per Hit",
+      "raw": "§8+§a%1$s §7Lust For Blood Damage Increase Per Hit",
+      "text": "+%1$s Lust For Blood Damage Increase Per Hit",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "3%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 鲜血渴望每击伤害增幅",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Lust For Blood Damage Increase Per Hit",
+          "zh": "鲜血渴望每击伤害增幅"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_indomitable_conv",
+      "context": "职业等级格 Lore：该级加成 Indomitable Strength to Defense",
+      "raw": "§8+§a%1$s §7Indomitable Strength to Defense",
+      "text": "+%1$s Indomitable Strength to Defense",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "0.1%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 不屈力量转防御比例",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Indomitable Strength to Defense",
+          "zh": "不屈力量转防御比例"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_weapon_master_range",
+      "context": "职业等级格 Lore：该级加成 Weapon Master Swing Range Increase",
+      "raw": "§8+§a%1$s §7Weapon Master Swing Range Increase",
+      "text": "+%1$s Weapon Master Swing Range Increase",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "0.1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 武器大师挥击范围增幅",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Weapon Master Swing Range Increase",
+          "zh": "武器大师挥击范围增幅"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_walk_speed",
+      "context": "职业等级格 Lore：该级加成 Walk Speed",
+      "raw": "§8+§a%1$s §7Walk Speed",
+      "text": "+%1$s Walk Speed",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "0.4"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 行走速度",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Walk Speed",
+          "zh": "行走速度"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_ghost_buff_strength",
+      "context": "职业等级格 Lore：该级加成 Ghost Buff Potion Strength",
+      "raw": "§8+§a%1$s §7Ghost Buff Potion Strength",
+      "text": "+%1$s Ghost Buff Potion Strength",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 幽灵增益药水力量",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Ghost Buff Potion Strength",
+          "zh": "幽灵增益药水力量"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_lfb_cap",
+      "context": "职业等级格 Lore：该级加成 Lust For Blood Damage Increase Cap",
+      "raw": "§8+§a%1$s §7Lust For Blood Damage Increase Cap",
+      "text": "+%1$s Lust For Blood Damage Increase Cap",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "70%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 鲜血渴望伤害增幅上限",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Lust For Blood Damage Increase Cap",
+          "zh": "鲜血渴望伤害增幅上限"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_extra_arrow",
+      "context": "职业等级格 Lore：该级加成 Extra Arrow Chance",
+      "raw": "§8+§a%1$s §7Extra Arrow Chance",
+      "text": "+%1$s Extra Arrow Chance",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "1%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 额外箭矢几率",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Extra Arrow Chance",
+          "zh": "额外箭矢几率"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_bouncy_arrow",
+      "context": "职业等级格 Lore：该级加成 Bouncy Arrow Chance",
+      "raw": "§8+§a%1$s §7Bouncy Arrow Chance",
+      "text": "+%1$s Bouncy Arrow Chance",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "2%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 弹射箭几率",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Bouncy Arrow Chance",
+          "zh": "弹射箭几率"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_arrow_damage",
+      "context": "职业等级格 Lore：该级加成 Arrow Damage",
+      "raw": "§8+§a%1$s §7Arrow Damage",
+      "text": "+%1$s Arrow Damage",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "1.6%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 箭矢伤害",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Arrow Damage",
+          "zh": "箭矢伤害"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_rapid_fire_duration",
+      "context": "职业等级格 Lore：该级加成 Rapid Fire Duration",
+      "raw": "§8+§a%1$s §7Rapid Fire Duration",
+      "text": "+%1$s Rapid Fire Duration",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 急速射击持续时间",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Rapid Fire Duration",
+          "zh": "急速射击持续时间"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_defense",
+      "context": "职业等级格 Lore：该级加成 Defense",
+      "raw": "§8+§a%1$s §7Defense",
+      "text": "+%1$s Defense",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 防御力",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Defense",
+          "zh": "防御力"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_total_defense",
+      "context": "职业等级格 Lore：该级加成 Total Defense",
+      "raw": "§8+§a%1$s §7Total Defense",
+      "text": "+%1$s Total Defense",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "0.2%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 总防御力",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Total Defense",
+          "zh": "总防御力"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_seismic_damage",
+      "context": "职业等级格 Lore：该级加成 Seismic Wave Damage",
+      "raw": "§8+§a%1$s §7Seismic Wave Damage",
+      "text": "+%1$s Seismic Wave Damage",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "5,000"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 地震波伤害",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Seismic Wave Damage",
+          "zh": "地震波伤害"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_absorption_health",
+      "context": "职业等级格 Lore：该级加成 Absorption Health",
+      "raw": "§8+§a%1$s §7Absorption Health",
+      "text": "+%1$s Absorption Health",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "10"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 伤害吸收生命值",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Absorption Health",
+          "zh": "伤害吸收生命值"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_revive_cooldown",
+      "context": "职业等级格 Lore：该级加成 Revive Cooldown",
+      "raw": "§8-§a%1$s §7Revive Cooldown",
+      "text": "-%1$s Revive Cooldown",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "-%1$s 复活冷却",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "-",
+          "zh": "-"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Revive Cooldown",
+          "zh": "复活冷却"
+        }
+      ]
+    },
+    {
+      "id": "perks_stat_explosive_shot_cooldown",
+      "context": "职业等级格 Lore：该级加成 Explosive Shot Cooldown",
+      "raw": "§8-§a%1$s §7Explosive Shot Cooldown",
+      "text": "-%1$s Explosive Shot Cooldown",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每级增加的数值，可带 % 后缀",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "-%1$s 爆炸射击冷却",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "-",
+          "zh": "-"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "Explosive Shot Cooldown",
+          "zh": "爆炸射击冷却"
+        }
+      ]
+    },
+    {
+      "id": "perks_healer_p_renew",
+      "context": "治疗师天赋菜单：Class Passive 小标题",
+      "raw": "§8∙ §6Class Passive: Renew",
+      "text": "∙ Class Passive: Renew",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 职业被动: 焕新",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§6",
+          "text": "Class Passive: Renew",
+          "zh": "职业被动: 焕新"
+        }
+      ]
+    },
+    {
+      "id": "perks_healer_renew_1",
+      "context": "焕新说明首行",
+      "raw": "§7Grants §a1.8x ☄ Mending§7, which increases your",
+      "text": "Grants %1$s ☄ Mending, which increases your",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "修补倍率，随等级变化",
+          "type": "number",
+          "example": "1.8x"
+        }
+      ],
+      "gloss": "☄ 是修补图标的通用符号（text/Glyphs.java），译文原样保留。这一行有 others / yourself 两种尾行，分别见下两条。",
+      "translate": true,
+      "zh": "获得 %1$s ☄ 修补，用来提升你对",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "获得 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ☄ Mending",
+          "zh": "%1$s ☄ 修补"
+        },
+        {
+          "color": "§7",
+          "text": ", which increases your",
+          "zh": "，用来提升你对"
+        }
+      ]
+    },
+    {
+      "id": "perks_healer_renew_2_others",
+      "context": "焕新说明尾行：对他人的治疗",
+      "raw": "§7healing on others.",
+      "text": "healing on others.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "他人的治疗量。"
+    },
+    {
+      "id": "perks_healer_renew_2_self",
+      "context": "焕新说明尾行：对自己的治疗",
+      "raw": "§7healing on §7§oyourself§7.",
+      "text": "healing on yourself.",
+      "placeholders": [],
+      "gloss": "yourself 在游戏里是斜体,分成三段;「healing on」的意思在中文里并进后面,标 omit。",
+      "translate": true,
+      "continuation": true,
+      "zh": "自己的治疗量。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "healing on ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§7§o",
+          "text": "yourself",
+          "zh": "自己"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "的治疗量。"
+        }
+      ]
+    },
+    {
+      "id": "perks_healer_renew_3",
+      "context": "焕新说明：使用治疗师时修补也提升自疗",
+      "raw": "§7While playing Healer, §a☄ Mending §7also boosts",
+      "text": "While playing Healer, ☄ Mending also boosts",
+      "placeholders": [],
+      "gloss": "尾行是 healing on yourself.（perks_healer_renew_2_self）。",
+      "translate": true,
+      "zh": "使用治疗师时，☄ 修补还会同时提升你对",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "While playing Healer, ",
+          "zh": "使用治疗师时，"
+        },
+        {
+          "color": "§a",
+          "text": "☄ Mending ",
+          "zh": "☄ 修补"
+        },
+        {
+          "color": "§7",
+          "text": "also boosts",
+          "zh": "还会同时提升你对"
+        }
+      ]
+    },
+    {
+      "id": "perks_healer_p_healing_aura",
+      "context": "治疗师天赋菜单：Class Passive 小标题",
+      "raw": "§8∙ §aClass Passive: Healing Aura",
+      "text": "∙ Class Passive: Healing Aura",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 职业被动: 治疗光环",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Class Passive: Healing Aura",
+          "zh": "职业被动: 治疗光环"
+        }
+      ]
+    },
+    {
+      "id": "perks_healer_aura_1",
+      "context": "治疗光环说明首行",
+      "raw": "§7Passively heals all living teammates within a §e8",
+      "text": "Passively heals all living teammates within a %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "半径格数",
+          "type": "number",
+          "example": "8"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "实时治疗周围 %1$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Passively heals all living teammates within a ",
+          "zh": "实时治疗周围 "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ]
+    },
+    {
+      "id": "perks_healer_aura_2",
+      "context": "接上一行",
+      "raw": "§7block radius for §a1.5% §7HP per second.",
+      "text": "block radius for %1$s HP per second.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每秒回复的生命值百分比",
+          "type": "number",
+          "example": "1.5%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "格范围内的所有存活队友，每秒回复其 %1$s 生命值。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "block radius for ",
+          "zh": "格范围内的所有存活队友，每秒回复其 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "HP per second.",
+          "zh": "生命值。"
+        }
+      ]
+    },
+    {
+      "id": "perks_healer_p_revive",
+      "context": "治疗师天赋菜单：Class Passive 小标题",
+      "raw": "§8∙ §6Class Passive: Revive",
+      "text": "∙ Class Passive: Revive",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 职业被动: 复活",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§6",
+          "text": "Class Passive: Revive",
+          "zh": "职业被动: 复活"
+        }
+      ]
+    },
+    {
+      "id": "perks_healer_revive_1",
+      "context": "复活说明，英文三行一句",
+      "raw": "§7Spawns a fairy that follows you and uses it's",
+      "text": "Spawns a fairy that follows you and uses it's",
+      "placeholders": [],
+      "gloss": "原文 it's 是 Hypixel 的笔误，照抄以便匹配。",
+      "translate": true,
+      "zh": "召唤一位跟随你的仙女，用她的能量复活阵亡的队友；没有人阵亡时，她会留在你身边提供支援。"
+    },
+    {
+      "id": "perks_healer_revive_2",
+      "context": "接上一行",
+      "raw": "§7energy to revives dead teammates, while no one is",
+      "text": "energy to revives dead teammates, while no one is",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "perks_healer_revive_3",
+      "context": "接上一行",
+      "raw": "§7dead it will stick around and provide support.",
+      "text": "dead it will stick around and provide support.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "perks_healer_revive_4",
+      "context": "复活后的消失时间",
+      "raw": "§7Vanishes for §e74 §7seconds after reviving a player.",
+      "text": "Vanishes for %1$s seconds after reviving a player.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "消失秒数，随等级变化",
+          "type": "number",
+          "example": "74"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "复活一名玩家后会消失 %1$s 秒。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Vanishes for ",
+          "zh": "复活一名玩家后会消失 "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "seconds after reviving a player.",
+          "zh": "秒。"
+        }
+      ]
+    },
+    {
+      "id": "perks_healer_p_orbies",
+      "context": "治疗师天赋菜单：Class Passive 小标题",
+      "raw": "§8∙ §6Class Passive: Orbies",
+      "text": "∙ Class Passive: Orbies",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 职业被动: 治疗光球",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§6",
+          "text": "Class Passive: Orbies",
+          "zh": "职业被动: 治疗光球"
+        }
+      ]
+    },
+    {
+      "id": "perks_healer_orbies_1",
+      "context": "治疗光球说明首行",
+      "raw": "§7Enemies that you help kill have a §e15% §7chance to",
+      "text": "Enemies that you help kill have a %1$s chance to",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "掉落几率",
+          "type": "number",
+          "example": "15%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你参与击杀的敌人有 %1$s 几率",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Enemies that you help kill have a ",
+          "zh": "你参与击杀的敌人有 "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "chance to",
+          "zh": "几率"
+        }
+      ]
+    },
+    {
+      "id": "perks_healer_orbies_2",
+      "context": "接上一行，英文三行一句",
+      "raw": "§7drop an orb that anyone can pick up. The orb",
+      "text": "drop an orb that anyone can pick up. The orb",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "掉落一颗任何人都能拾取的光球。拾取者会被治疗，并获得一个随机增益。"
+    },
+    {
+      "id": "perks_healer_orbies_3",
+      "context": "接上一行",
+      "raw": "§7heals the player that picked it up and grants",
+      "text": "heals the player that picked it up and grants",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "perks_healer_orbies_4",
+      "context": "接上一行",
+      "raw": "§7them a random buff.",
+      "text": "them a random buff.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "perks_healer_p_soul_tether",
+      "context": "治疗师天赋菜单：Class Passive 小标题",
+      "raw": "§8∙ §aClass Passive: Soul Tether",
+      "text": "∙ Class Passive: Soul Tether",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 职业被动: 灵魂牵引",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Class Passive: Soul Tether",
+          "zh": "职业被动: 灵魂牵引"
+        }
+      ]
+    },
+    {
+      "id": "perks_healer_tether_1",
+      "context": "灵魂牵引说明，英文两行一句",
+      "raw": "§7Clicking on a teammate creates a tether",
+      "text": "Clicking on a teammate creates a tether",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击一名队友即可在你们之间建立牵引。被牵引的队友"
+    },
+    {
+      "id": "perks_healer_tether_2",
+      "context": "接上一行",
+      "raw": "§7connecting yourself to them. Tethered teammates",
+      "text": "connecting yourself to them. Tethered teammates",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "perks_healer_tether_3",
+      "context": "灵魂牵引：每秒治疗量",
+      "raw": "§7receive §a0.5% §7of your maximum health as healing",
+      "text": "receive %1$s of your maximum health as healing",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "治疗百分比",
+          "type": "number",
+          "example": "0.5%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "每秒获得相当于你最大生命值 %1$s 的治疗，",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "receive ",
+          "zh": "每秒获得相当于你最大生命值 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "of your maximum health as healing",
+          "zh": "的治疗，"
+        }
+      ]
+    },
+    {
+      "id": "perks_healer_tether_4",
+      "context": "灵魂牵引：生效距离",
+      "raw": "§7every second while they are within §e30 §7blocks of",
+      "text": "every second while they are within %1$s blocks of",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "距离格数",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "前提是他们在你 %1$s 格范围内；",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "every second while they are within ",
+          "zh": "前提是他们在你 "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "blocks of",
+          "zh": "格范围内；"
+        }
+      ]
+    },
+    {
+      "id": "perks_healer_tether_5",
+      "context": "灵魂牵引：近战触发",
+      "raw": "§7you. Every §e5 §7melee hits you deal while tethered",
+      "text": "you. Every %1$s melee hits you deal while tethered",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "触发所需击中次数",
+          "type": "number",
+          "example": "5"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "牵引期间你每造成 %1$s 次近战攻击，",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "you. Every ",
+          "zh": "牵引期间你每造成 "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "melee hits you deal while tethered",
+          "zh": "次近战攻击，"
+        }
+      ]
+    },
+    {
+      "id": "perks_healer_tether_6",
+      "context": "灵魂牵引：双方回血",
+      "raw": "§7will heal both players for §a1% §7of their maximum",
+      "text": "will heal both players for %1$s of their maximum",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "回复百分比",
+          "type": "number",
+          "example": "1%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "就会为双方各回复其最大生命值的 %1$s。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "will heal both players for ",
+          "zh": "就会为双方各回复其最大生命值的 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "of their maximum",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "perks_healer_tether_7",
+      "context": "接上一行",
+      "raw": "§7health.",
+      "text": "health.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "perks_healer_p_overheal",
+      "context": "治疗师天赋菜单：Class Passive 小标题",
+      "raw": "§8∙ §6Class Passive: Overheal",
+      "text": "∙ Class Passive: Overheal",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 职业被动: 过量治疗",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§6",
+          "text": "Class Passive: Overheal",
+          "zh": "职业被动: 过量治疗"
+        }
+      ]
+    },
+    {
+      "id": "perks_healer_overheal_1",
+      "context": "过量治疗说明，英文两行一句",
+      "raw": "§7Healing a player that is full health will convert",
+      "text": "Healing a player that is full health will convert",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "治疗满血玩家时，多出的治疗量会转化为伤害吸收护盾，"
+    },
+    {
+      "id": "perks_healer_overheal_2",
+      "context": "过量治疗：护盾上限",
+      "raw": "§7the healing into an absorption shield up to §a30.4%",
+      "text": "the healing into an absorption shield up to %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "护盾上限百分比",
+          "type": "number",
+          "example": "30.4%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "最多可达其生命值的 %1$s。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "the healing into an absorption shield up to ",
+          "zh": "最多可达其生命值的 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s。"
+        }
+      ]
+    },
+    {
+      "id": "perks_healer_overheal_3",
+      "context": "接上一行",
+      "raw": "§7of their health.",
+      "text": "of their health.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "perks_healer_a_healing_circle",
+      "context": "治疗师天赋菜单：Ability 小标题",
+      "raw": "§8∙ §6Ability: Healing Circle  §e§lRIGHT CLICK",
+      "text": "∙ Ability: Healing Circle  RIGHT CLICK",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 技能: 治疗法阵  右键点击",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§6",
+          "text": "Ability: Healing Circle  ",
+          "zh": "技能: 治疗法阵  "
+        },
+        {
+          "color": "§e§l",
+          "text": "RIGHT CLICK",
+          "zh": "右键点击"
+        }
+      ]
+    },
+    {
+      "id": "perks_healer_circle_1",
+      "context": "治疗法阵说明，英文三行一句",
+      "raw": "§7Launches a healing orb that creates",
+      "text": "Launches a healing orb that creates",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "发射一颗治疗光球，在落点生成治疗法阵。法阵内的友方玩家"
+    },
+    {
+      "id": "perks_healer_circle_2",
+      "context": "接上一行",
+      "raw": "§7a healing circle where it lands. The",
+      "text": "a healing circle where it lands. The",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "perks_healer_circle_3",
+      "context": "接上一行",
+      "raw": "§7healing circle heals friendly players",
+      "text": "healing circle heals friendly players",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "perks_healer_circle_4",
+      "context": "治疗法阵：每秒治疗量。尾行 second. 走 Ophelia.json 里的同名 continuation",
+      "raw": "§7inside for §a1% §7of their health every",
+      "text": "inside for %1$s of their health every",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每秒回复百分比",
+          "type": "number",
+          "example": "1%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "每秒回复其生命值的 %1$s。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "inside for ",
+          "zh": "每秒回复其生命值的 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "of their health every",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "perks_healer_a_wish",
+      "context": "治疗师天赋菜单：Ability 小标题",
+      "raw": "§8∙ §6Ability: Wish  §e§lRIGHT CLICK",
+      "text": "∙ Ability: Wish  RIGHT CLICK",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 技能: 祈愿  右键点击",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§6",
+          "text": "Ability: Wish  ",
+          "zh": "技能: 祈愿  "
+        },
+        {
+          "color": "§e§l",
+          "text": "RIGHT CLICK",
+          "zh": "右键点击"
+        }
+      ]
+    },
+    {
+      "id": "perks_healer_wish_1",
+      "context": "祈愿说明，英文两行一句",
+      "raw": "§7Heals everyone in your group to full",
+      "text": "Heals everyone in your group to full",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "将队伍中所有人治疗至满血，并为他们提供一层护盾，护盾量为其最大生命值的"
+    },
+    {
+      "id": "perks_healer_wish_2",
+      "context": "接上一行",
+      "raw": "§7health and grants them a shield for",
+      "text": "health and grants them a shield for",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "perks_healer_wish_3",
+      "context": "祈愿：护盾量",
+      "raw": "§a20% §7of their maximum health. The",
+      "text": "%1$s of their maximum health. The",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "护盾百分比",
+          "type": "number",
+          "example": "20%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s；",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "of their maximum health. The",
+          "zh": "；"
+        }
+      ]
+    },
+    {
+      "id": "perks_healer_wish_4",
+      "context": "祈愿：冷却缩短",
+      "raw": "§7cooldown is reduced by §b10 §7seconds",
+      "text": "cooldown is reduced by %1$s seconds",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "缩短秒数",
+          "type": "number",
+          "example": "10"
+        }
+      ],
+      "gloss": "英文把「每有一名玩家低于 X%」放在后一行，中文两行分别渲染无法换位，所以本行先说缩短多少秒，下一行补条件。",
+      "translate": true,
+      "continuation": true,
+      "zh": "冷却时间缩短 %1$s 秒，",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "cooldown is reduced by ",
+          "zh": "冷却时间缩短 "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "seconds",
+          "zh": "秒，"
+        }
+      ]
+    },
+    {
+      "id": "perks_healer_wish_5",
+      "context": "祈愿：触发阈值",
+      "raw": "§7for every player below §a25% §7health.",
+      "text": "for every player below %1$s health.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "生命值阈值",
+          "type": "number",
+          "example": "25%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "每有一名玩家的生命值低于 %1$s 就缩短一次。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "for every player below ",
+          "zh": "每有一名玩家的生命值低于 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "health.",
+          "zh": "就缩短一次。"
+        }
+      ]
+    },
+    {
+      "id": "perks_healer_g_healing_potion",
+      "context": "治疗师天赋菜单：Ghost Ability 小标题",
+      "raw": "§8∙ §fGhost Ability: Healing Potion",
+      "text": "∙ Ghost Ability: Healing Potion",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 幽灵技能: 治疗药水",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§f",
+          "text": "Ghost Ability: Healing Potion",
+          "zh": "幽灵技能: 治疗药水"
+        }
+      ]
+    },
+    {
+      "id": "perks_healer_gpotion_1",
+      "context": "幽灵治疗药水说明首行",
+      "raw": "§7Throw a potion which heals all teammates in a §a10",
+      "text": "Throw a potion which heals all teammates in a %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "半径格数",
+          "type": "number",
+          "example": "10"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "投掷一瓶药水，治疗周围 %1$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Throw a potion which heals all teammates in a ",
+          "zh": "投掷一瓶药水，治疗周围 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ]
+    },
+    {
+      "id": "perks_healer_gpotion_2",
+      "context": "接上一行",
+      "raw": "§7block radius for §a10%§7 of their max health and",
+      "text": "block radius for %1$s of their max health and",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "回复百分比",
+          "type": "number",
+          "example": "10%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "格范围内的所有队友，回复其最大生命值的 %1$s 外加",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "block radius for ",
+          "zh": "格范围内的所有队友，回复其最大生命值的 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " of their max health and",
+          "zh": " 外加"
+        }
+      ]
+    },
+    {
+      "id": "perks_healer_gpotion_3",
+      "context": "接上一行",
+      "raw": "§c+100❤ Health§7.",
+      "text": "+%1$s❤ Health.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "额外回复的固定生命值",
+          "type": "number",
+          "example": "100"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s❤ 生命值。",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "+%1$s❤ Health",
+          "zh": "+%1$s❤ 生命值"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "perks_healer_g_revive",
+      "context": "治疗师天赋菜单：Ghost Ability 小标题",
+      "raw": "§8∙ §fGhost Ability: Revive",
+      "text": "∙ Ghost Ability: Revive",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 幽灵技能: 复活",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§f",
+          "text": "Ghost Ability: Revive",
+          "zh": "幽灵技能: 复活"
+        }
+      ]
+    },
+    {
+      "id": "perks_healer_grevive_1",
+      "context": "幽灵复活说明",
+      "raw": "§7Revive yourself after 50 seconds.",
+      "text": "Revive yourself after %1$s seconds.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "等待秒数",
+          "type": "number",
+          "example": "50"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s 秒后自我复活。"
+    },
+    {
+      "id": "perks_mage_p_mage_staff",
+      "context": "法师天赋菜单：Class Passive 小标题",
+      "raw": "§8∙ §6Class Passive: Mage Staff",
+      "text": "∙ Class Passive: Mage Staff",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 职业被动: 法师法杖",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§6",
+          "text": "Class Passive: Mage Staff",
+          "zh": "职业被动: 法师法杖"
+        }
+      ]
+    },
+    {
+      "id": "perks_mage_staff_1",
+      "context": "法师法杖说明首行",
+      "raw": "§7All your melee weapon attacks become ranged.",
+      "text": "All your melee weapon attacks become ranged.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的所有近战武器攻击都变为远程。"
+    },
+    {
+      "id": "perks_mage_staff_2",
+      "context": "法师法杖：伤害比例",
+      "raw": "§7Those attacks deal §a78.1% §7of their melee damage",
+      "text": "Those attacks deal %1$s of their melee damage",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "伤害百分比，随等级变化",
+          "type": "number",
+          "example": "78.1%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "这些攻击造成其近战伤害的 %1$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Those attacks deal ",
+          "zh": "这些攻击造成其近战伤害的 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "of their melee damage",
+          "zh": "",
+          "omit": true
+        }
+      ]
+    },
+    {
+      "id": "perks_mage_staff_3",
+      "context": "法师法杖：射程",
+      "raw": "§7(increased by your Intelligence) up to §a10§7 blocks,",
+      "text": "(increased by your Intelligence) up to %1$s blocks,",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "射程格数",
+          "type": "number",
+          "example": "10"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "（受智力加成），有效射程 %1$s 格，",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "(increased by your Intelligence) up to ",
+          "zh": "（受智力加成），有效射程 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " blocks,",
+          "zh": " 格，"
+        }
+      ]
+    },
+    {
+      "id": "perks_mage_staff_4",
+      "context": "接上一行",
+      "raw": "§7after which damage is reduced.",
+      "text": "after which damage is reduced.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "超出后伤害递减。"
+    },
+    {
+      "id": "perks_mage_p_efficient_spells",
+      "context": "法师天赋菜单：Class Passive 小标题",
+      "raw": "§8∙ §6Class Passive: Efficient Spells",
+      "text": "∙ Class Passive: Efficient Spells",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 职业被动: 高效法术",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§6",
+          "text": "Class Passive: Efficient Spells",
+          "zh": "职业被动: 高效法术"
+        }
+      ]
+    },
+    {
+      "id": "perks_mage_efficient_1",
+      "context": "高效法术说明",
+      "raw": "§7All abilities have a §a35%§7 shorter cooldown.",
+      "text": "All abilities have a %1$s shorter cooldown.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "缩短百分比",
+          "type": "number",
+          "example": "35%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "所有技能的冷却时间缩短 %1$s。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "All abilities have a ",
+          "zh": "所有技能的冷却时间缩短 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " shorter cooldown.",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "perks_mage_a_guided_sheep",
+      "context": "法师天赋菜单：Ability 小标题",
+      "raw": "§8∙ §6Ability: Guided Sheep  §e§lRIGHT CLICK",
+      "text": "∙ Ability: Guided Sheep  RIGHT CLICK",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 技能: 制导绵羊  右键点击",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§6",
+          "text": "Ability: Guided Sheep  ",
+          "zh": "技能: 制导绵羊  "
+        },
+        {
+          "color": "§e§l",
+          "text": "RIGHT CLICK",
+          "zh": "右键点击"
+        }
+      ]
+    },
+    {
+      "id": "perks_mage_sheep_1",
+      "context": "制导绵羊说明，英文两行一句",
+      "raw": "§7Shoots a Guided Sheep, dealing",
+      "text": "Shoots a Guided Sheep, dealing",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "发射一只制导绵羊，造成的伤害随法师等级提升!"
+    },
+    {
+      "id": "perks_mage_sheep_2",
+      "context": "接上一行",
+      "raw": "§7damage based on your Mage level!",
+      "text": "damage based on your Mage level!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "perks_mage_sheep_3",
+      "context": "制导绵羊可以炸开地牢暗门",
+      "raw": "§8Acts as Superboom TNT!",
+      "text": "Acts as Superboom TNT!",
+      "placeholders": [],
+      "gloss": "Superboom TNT 是地牢炸墙道具的自造专名，按 README 第 6 节保留英文。",
+      "translate": true,
+      "zh": "效果等同于 Superboom TNT!"
+    },
+    {
+      "id": "perks_mage_a_thunderstorm",
+      "context": "法师天赋菜单：Ability 小标题",
+      "raw": "§8∙ §6Ability: Thunderstorm  §e§lRIGHT CLICK",
+      "text": "∙ Ability: Thunderstorm  RIGHT CLICK",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 技能: 雷暴  右键点击",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§6",
+          "text": "Ability: Thunderstorm  ",
+          "zh": "技能: 雷暴  "
+        },
+        {
+          "color": "§e§l",
+          "text": "RIGHT CLICK",
+          "zh": "右键点击"
+        }
+      ]
+    },
+    {
+      "id": "perks_mage_storm_1",
+      "context": "雷暴说明首行",
+      "raw": "§7Unleash a Thunderstorm, striking",
+      "text": "Unleash a Thunderstorm, striking",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "释放一场雷暴，持续轰击"
+    },
+    {
+      "id": "perks_mage_storm_2",
+      "context": "雷暴：范围与时长",
+      "raw": "§7enemies in a §a10§7 block radius for §a15",
+      "text": "enemies in a %1$s block radius for %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "半径格数",
+          "type": "number",
+          "example": "10"
+        },
+        {
+          "token": "%2$s",
+          "desc": "持续秒数",
+          "type": "number",
+          "example": "15"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "周围 %1$s 格半径内的敌人 %2$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "enemies in a ",
+          "zh": "周围 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " block radius for ",
+          "zh": " 格半径内的敌人 "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ]
+    },
+    {
+      "id": "perks_mage_storm_3",
+      "context": "接上一行，英文两行一句",
+      "raw": "§7seconds, dealing damage based on",
+      "text": "seconds, dealing damage based on",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "秒，造成的伤害随法师等级提升!"
+    },
+    {
+      "id": "perks_mage_storm_4",
+      "context": "接上一行",
+      "raw": "§7your Mage level!",
+      "text": "your Mage level!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "perks_mage_g_instant_wall",
+      "context": "法师天赋菜单：Ghost Ability 小标题",
+      "raw": "§8∙ §fGhost Ability: Instant Wall",
+      "text": "∙ Ghost Ability: Instant Wall",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 幽灵技能: 突现之墙",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§f",
+          "text": "Ghost Ability: Instant Wall",
+          "zh": "幽灵技能: 突现之墙"
+        }
+      ]
+    },
+    {
+      "id": "perks_mage_wall_1",
+      "context": "突现之墙说明首行",
+      "raw": "§7Create a 5x3 wall at the block you are looking at",
+      "text": "Create a 5x3 wall at the block you are looking at",
+      "placeholders": [],
+      "gloss": "Dungeon_Classes.json 里这个技能叫 Pop-up Wall，天赋菜单里叫 Instant Wall，是同一个技能，沿用「突现之墙」。",
+      "translate": true,
+      "zh": "在你注视的方块处生成一堵 5x3 的墙，"
+    },
+    {
+      "id": "perks_mage_wall_2",
+      "context": "接上一行",
+      "raw": "§7which lasts for §a10§7 seconds.",
+      "text": "which lasts for %1$s seconds.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "持续秒数",
+          "type": "number",
+          "example": "10"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "持续 %1$s 秒。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "which lasts for ",
+          "zh": "持续 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " seconds.",
+          "zh": " 秒。"
+        }
+      ]
+    },
+    {
+      "id": "perks_mage_g_fireball",
+      "context": "法师天赋菜单：Ghost Ability 小标题",
+      "raw": "§8∙ §fGhost Ability: Fireball",
+      "text": "∙ Ghost Ability: Fireball",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 幽灵技能: 火球术",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§f",
+          "text": "Ghost Ability: Fireball",
+          "zh": "幽灵技能: 火球术"
+        }
+      ]
+    },
+    {
+      "id": "perks_mage_fireball_1",
+      "context": "火球术说明，英文两行一句",
+      "raw": "§7Shoots a fireball, dealing damage based on your",
+      "text": "Shoots a fireball, dealing damage based on your",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "发射一颗火球，造成的伤害随法师等级提升!"
+    },
+    {
+      "id": "perks_mage_fireball_2",
+      "context": "接上一行",
+      "raw": "§7Mage level!",
+      "text": "Mage level!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "perks_berserk_p_bloodlust",
+      "context": "狂战士天赋菜单：Class Passive 小标题",
+      "raw": "§8∙ §cClass Passive: Bloodlust",
+      "text": "∙ Class Passive: Bloodlust",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 职业被动: 嗜血",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§c",
+          "text": "Class Passive: Bloodlust",
+          "zh": "职业被动: 嗜血"
+        }
+      ]
+    },
+    {
+      "id": "perks_berserk_bloodlust_1",
+      "context": "嗜血说明首行",
+      "raw": "§7Your next hit after killing a monster deals §c39.5%",
+      "text": "Your next hit after killing a monster deals %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "伤害提升百分比",
+          "type": "number",
+          "example": "39.5%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "击杀怪物后的下一次攻击伤害提升 %1$s。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Your next hit after killing a monster deals ",
+          "zh": "击杀怪物后的下一次攻击伤害提升 "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s",
+          "zh": "%1$s。"
+        }
+      ]
+    },
+    {
+      "id": "perks_berserk_bloodlust_2",
+      "context": "嗜血：失效时间",
+      "raw": "§7increased damage. This bonus will expire after §e5",
+      "text": "increased damage. This bonus will expire after %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "失效秒数",
+          "type": "number",
+          "example": "5"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "此加成将在 %1$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "increased damage. This bonus will expire after ",
+          "zh": "此加成将在 "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ]
+    },
+    {
+      "id": "perks_berserk_bloodlust_3",
+      "context": "嗜血：飞斧冷却",
+      "raw": "§7seconds. Reduces the cooldown remaining on",
+      "text": "seconds. Reduces the cooldown remaining on",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "秒后失效。触发时飞斧的剩余冷却"
+    },
+    {
+      "id": "perks_berserk_bloodlust_4",
+      "context": "接上一行",
+      "raw": "§7Throwing Axe by §b1 §7second on activation. Heals",
+      "text": "Throwing Axe by %1$s second on activation. Heals",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "缩短秒数",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "缩短 %1$s 秒。每次击中",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Throwing Axe by ",
+          "zh": "缩短 "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "second on activation. Heals",
+          "zh": "秒。每次击中"
+        }
+      ]
+    },
+    {
+      "id": "perks_berserk_bloodlust_5",
+      "context": "接上一行",
+      "raw": "§7you for §a3% §7of your missing health every hit.",
+      "text": "you for %1$s of your missing health every hit.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "回复百分比",
+          "type": "number",
+          "example": "3%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "为你回复已损失生命值的 %1$s。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "you for ",
+          "zh": "为你回复已损失生命值的 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "of your missing health every hit.",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "perks_berserk_p_lust_for_blood",
+      "context": "狂战士天赋菜单：Class Passive 小标题",
+      "raw": "§8∙ §cClass Passive: Lust For Blood",
+      "text": "∙ Class Passive: Lust For Blood",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 职业被动: 鲜血渴望",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§c",
+          "text": "Class Passive: Lust For Blood",
+          "zh": "职业被动: 鲜血渴望"
+        }
+      ]
+    },
+    {
+      "id": "perks_berserk_lfb_1",
+      "context": "鲜血渴望说明首行",
+      "raw": "§7Every time you hit an enemy, increases the",
+      "text": "Every time you hit an enemy, increases the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "每次击中敌人，你对该敌人"
+    },
+    {
+      "id": "perks_berserk_lfb_2",
+      "context": "鲜血渴望：每击增幅",
+      "raw": "§7damage you deal to that enemy by §c93% §7up to a",
+      "text": "damage you deal to that enemy by %1$s up to a",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每击增幅",
+          "type": "number",
+          "example": "93%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "造成的伤害提升 %1$s，",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "damage you deal to that enemy by ",
+          "zh": "造成的伤害提升 "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "up to a",
+          "zh": "，"
+        }
+      ]
+    },
+    {
+      "id": "perks_berserk_lfb_3",
+      "context": "鲜血渴望：上限",
+      "raw": "§7maximum of §a600%§7.",
+      "text": "maximum of %1$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "上限百分比",
+          "type": "number",
+          "example": "600%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "最高叠加至 %1$s。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "maximum of ",
+          "zh": "最高叠加至 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "perks_berserk_p_indomitable",
+      "context": "狂战士天赋菜单：Class Passive 小标题",
+      "raw": "§8∙ §cClass Passive: Indomitable",
+      "text": "∙ Class Passive: Indomitable",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 职业被动: 不屈",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§c",
+          "text": "Class Passive: Indomitable",
+          "zh": "职业被动: 不屈"
+        }
+      ]
+    },
+    {
+      "id": "perks_berserk_indomitable_1",
+      "context": "不屈说明",
+      "raw": "§7Gain §c7.6% §7of your Strength as Defense.",
+      "text": "Gain %1$s of your Strength as Defense.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "转化百分比",
+          "type": "number",
+          "example": "7.6%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "获得相当于你力量 %1$s 的防御力。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "获得相当于你力量 "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "of your Strength as Defense.",
+          "zh": "的防御力。"
+        }
+      ]
+    },
+    {
+      "id": "perks_berserk_p_weapon_master",
+      "context": "狂战士天赋菜单：Class Passive 小标题",
+      "raw": "§8∙ §cClass Passive: Weapon Master",
+      "text": "∙ Class Passive: Weapon Master",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 职业被动: 武器大师",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§c",
+          "text": "Class Passive: Weapon Master",
+          "zh": "职业被动: 武器大师"
+        }
+      ]
+    },
+    {
+      "id": "perks_berserk_wm_1",
+      "context": "武器大师说明首行",
+      "raw": "§7Your melee weapons hit up to §c5 §7enemies within",
+      "text": "Your melee weapons hit up to %1$s enemies within",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "最多命中数",
+          "type": "number",
+          "example": "5"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的近战武器最多可命中挥击范围内 %1$s 名",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Your melee weapons hit up to ",
+          "zh": "你的近战武器最多可命中挥击范围内 "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "enemies within",
+          "zh": "名"
+        }
+      ]
+    },
+    {
+      "id": "perks_berserk_wm_2",
+      "context": "接上一行",
+      "raw": "§7your swing range in a frontal cone. Increases",
+      "text": "your swing range in a frontal cone. Increases",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "处于前方扇形区域内的敌人，"
+    },
+    {
+      "id": "perks_berserk_wm_3",
+      "context": "武器大师：范围增幅",
+      "raw": "§7your maximum swing range by §c3.56 §7blocks.",
+      "text": "your maximum swing range by %1$s blocks.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "增加格数",
+          "type": "number",
+          "example": "3.56"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "并使你的最大挥击范围增加 %1$s 格。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "your maximum swing range by ",
+          "zh": "并使你的最大挥击范围增加 "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "blocks.",
+          "zh": "格。"
+        }
+      ]
+    },
+    {
+      "id": "perks_berserk_a_throwing_axe",
+      "context": "狂战士天赋菜单：Ability 小标题",
+      "raw": "§8∙ §6Ability: Throwing Axe  §e§lRIGHT CLICK",
+      "text": "∙ Ability: Throwing Axe  RIGHT CLICK",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 技能: 飞斧  右键点击",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§6",
+          "text": "Ability: Throwing Axe  ",
+          "zh": "技能: 飞斧  "
+        },
+        {
+          "color": "§e§l",
+          "text": "RIGHT CLICK",
+          "zh": "右键点击"
+        }
+      ]
+    },
+    {
+      "id": "perks_berserk_axe_1",
+      "context": "飞斧说明，英文三行一句",
+      "raw": "§7Throw an Axe, dealing the same",
+      "text": "Throw an Axe, dealing the same",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "掷出一把斧头，伤害等同于你过去一分钟内的最高一击。"
+    },
+    {
+      "id": "perks_berserk_axe_2",
+      "context": "接上一行",
+      "raw": "§7damage as your highest hit in the",
+      "text": "damage as your highest hit in the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "perks_berserk_axe_3",
+      "context": "接上一行",
+      "raw": "§7last minute.",
+      "text": "last minute.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "perks_berserk_a_ragnarok",
+      "context": "狂战士天赋菜单：Ability 小标题",
+      "raw": "§8∙ §6Ability: Ragnarok  §e§lRIGHT CLICK",
+      "text": "∙ Ability: Ragnarok  RIGHT CLICK",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 技能: 诸神黄昏  右键点击",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§6",
+          "text": "Ability: Ragnarok  ",
+          "zh": "技能: 诸神黄昏  "
+        },
+        {
+          "color": "§e§l",
+          "text": "RIGHT CLICK",
+          "zh": "右键点击"
+        }
+      ]
+    },
+    {
+      "id": "perks_berserk_ragnarok_1",
+      "context": "诸神黄昏说明首行",
+      "raw": "§7Grants §e100⚔ Attack Speed§7, §f400✦",
+      "text": "Grants %1$s⚔ Attack Speed, %2$s✦",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "攻击速度数值",
+          "type": "number",
+          "example": "100"
+        },
+        {
+          "token": "%2$s",
+          "desc": "速度数值",
+          "type": "number",
+          "example": "400"
+        }
+      ],
+      "gloss": "⚔ / ✦ 是攻击速度 / 速度图标的通用符号。",
+      "translate": true,
+      "zh": "获得 %1$s⚔ 攻击速度、%2$s✦",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "获得 "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s⚔ Attack Speed",
+          "zh": "%1$s⚔ 攻击速度"
+        },
+        {
+          "color": "§7",
+          "text": ", ",
+          "zh": "、"
+        },
+        {
+          "color": "§f",
+          "text": "%2$s✦",
+          "zh": "%2$s✦"
+        }
+      ]
+    },
+    {
+      "id": "perks_berserk_ragnarok_2",
+      "context": "接上一行",
+      "raw": "§fSpeed §7and §c1.5x §7melee damage",
+      "text": "Speed and %1$s melee damage",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "近战倍率",
+          "type": "number",
+          "example": "1.5x"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "速度，以及 %1$s 近战伤害",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Speed ",
+          "zh": "速度"
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "，以及 "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "melee damage",
+          "zh": "近战伤害"
+        }
+      ]
+    },
+    {
+      "id": "perks_berserk_ragnarok_3",
+      "context": "接上一行",
+      "raw": "§7increase for §b15 §7seconds. Also",
+      "text": "increase for %1$s seconds. Also",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "持续秒数",
+          "type": "number",
+          "example": "15"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "加成，持续 %1$s 秒。同时",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "increase for ",
+          "zh": "加成，持续 "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "seconds. Also",
+          "zh": "秒。同时"
+        }
+      ]
+    },
+    {
+      "id": "perks_berserk_ragnarok_4",
+      "context": "接上一行",
+      "raw": "§7summons §a3§7 Zombie minions to aid you",
+      "text": "summons %1$s Zombie minions to aid you",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "召唤数量",
+          "type": "number",
+          "example": "3"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "召唤 %1$s 只僵尸随从协助你",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "summons ",
+          "zh": "召唤 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " Zombie minions to aid you",
+          "zh": " 只僵尸随从协助你"
+        }
+      ]
+    },
+    {
+      "id": "perks_berserk_ragnarok_5",
+      "context": "接上一行",
+      "raw": "§7in battle!",
+      "text": "in battle!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "作战!"
+    },
+    {
+      "id": "perks_berserk_g_buff_potion",
+      "context": "狂战士天赋菜单：Ghost Ability 小标题",
+      "raw": "§8∙ §fGhost Ability: Buff Potion",
+      "text": "∙ Ghost Ability: Buff Potion",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 幽灵技能: 增益药水",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§f",
+          "text": "Ghost Ability: Buff Potion",
+          "zh": "幽灵技能: 增益药水"
+        }
+      ]
+    },
+    {
+      "id": "perks_berserk_gbuff_1",
+      "context": "增益药水说明首行",
+      "raw": "§7Throw a potion which temporarily gives all",
+      "text": "Throw a potion which temporarily gives all",
+      "placeholders": [],
+      "gloss": "Dungeon_Classes.json 里这个技能叫 Strength Potion（力量药水），天赋菜单里叫 Buff Potion，按菜单原文译「增益药水」。",
+      "translate": true,
+      "zh": "投掷一瓶药水，暂时为周围"
+    },
+    {
+      "id": "perks_berserk_gbuff_2",
+      "context": "接上一行",
+      "raw": "§7teammates in a §a10§7 block radius §c+30❁ Strength§7.",
+      "text": "teammates in a %1$s block radius +%2$s❁ Strength.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "半径格数",
+          "type": "number",
+          "example": "10"
+        },
+        {
+          "token": "%2$s",
+          "desc": "力量数值",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "%1$s 格范围内的所有队友提供 +%2$s❁ 力量。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "teammates in a ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " block radius ",
+          "zh": " 格范围内的所有队友提供 "
+        },
+        {
+          "color": "§c",
+          "text": "+%2$s❁ Strength",
+          "zh": "+%2$s❁ 力量"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "perks_berserk_g_ghost_axe",
+      "context": "狂战士天赋菜单：Ghost Ability 小标题",
+      "raw": "§8∙ §fGhost Ability: Ghost Axe",
+      "text": "∙ Ghost Ability: Ghost Axe",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 幽灵技能: 幽灵飞斧",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§f",
+          "text": "Ghost Ability: Ghost Axe",
+          "zh": "幽灵技能: 幽灵飞斧"
+        }
+      ]
+    },
+    {
+      "id": "perks_berserk_gaxe_1",
+      "context": "幽灵飞斧说明，英文两行一句",
+      "raw": "§7Throw an Axe, dealing damage based on your",
+      "text": "Throw an Axe, dealing damage based on your",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "掷出一把斧头，造成的伤害随狂战士等级提升!"
+    },
+    {
+      "id": "perks_berserk_gaxe_2",
+      "context": "接上一行",
+      "raw": "§7Berserk level!",
+      "text": "Berserk level!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "perks_archer_p_doubleshot",
+      "context": "弓箭手天赋菜单：Class Passive 小标题",
+      "raw": "§8∙ §aClass Passive: Doubleshot",
+      "text": "∙ Class Passive: Doubleshot",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 职业被动: 双重射击",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Class Passive: Doubleshot",
+          "zh": "职业被动: 双重射击"
+        }
+      ]
+    },
+    {
+      "id": "perks_archer_doubleshot_1",
+      "context": "双重射击说明",
+      "raw": "§a72% §7chance to shoot a second arrow.",
+      "text": "%1$s chance to shoot a second arrow.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "触发几率",
+          "type": "number",
+          "example": "72%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s 几率射出第二支箭。",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "chance to shoot a second arrow.",
+          "zh": "几率射出第二支箭。"
+        }
+      ]
+    },
+    {
+      "id": "perks_archer_p_bone_plating",
+      "context": "弓箭手天赋菜单：Class Passive 小标题",
+      "raw": "§8∙ §aClass Passive: Bone Plating",
+      "text": "∙ Class Passive: Bone Plating",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 职业被动: 骨甲",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Class Passive: Bone Plating",
+          "zh": "职业被动: 骨甲"
+        }
+      ]
+    },
+    {
+      "id": "perks_archer_bone_1",
+      "context": "骨甲说明首行",
+      "raw": "§7Reduces your next incoming hit by §a761.5 §7damage",
+      "text": "Reduces your next incoming hit by %1$s damage",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "减伤数值",
+          "type": "number",
+          "example": "761.5"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你受到的下一次攻击伤害减少 %1$s 点",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Reduces your next incoming hit by ",
+          "zh": "你受到的下一次攻击伤害减少 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "damage",
+          "zh": "点"
+        }
+      ]
+    },
+    {
+      "id": "perks_archer_bone_2",
+      "context": "接上一行",
+      "raw": "§7(scales with Archer Level and Critical Damage).",
+      "text": "(scales with Archer Level and Critical Damage).",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "（随弓箭手等级和暴击伤害提升）。"
+    },
+    {
+      "id": "perks_archer_p_bouncy_arrows",
+      "context": "弓箭手天赋菜单：Class Passive 小标题",
+      "raw": "§8∙ §aClass Passive: Bouncy Arrows",
+      "text": "∙ Class Passive: Bouncy Arrows",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 职业被动: 弹射箭",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Class Passive: Bouncy Arrows",
+          "zh": "职业被动: 弹射箭"
+        }
+      ]
+    },
+    {
+      "id": "perks_archer_bouncy_1",
+      "context": "弹射箭说明首行",
+      "raw": "§a44% §7chance for your arrows to bounce to an",
+      "text": "%1$s chance for your arrows to bounce to an",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "触发几率",
+          "type": "number",
+          "example": "44%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s 几率让你的箭矢弹向",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "chance for your arrows to bounce to an",
+          "zh": "几率让你的箭矢弹向"
+        }
+      ]
+    },
+    {
+      "id": "perks_archer_bouncy_2",
+      "context": "接上一行",
+      "raw": "§7additional target.",
+      "text": "additional target.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "另一个目标。"
+    },
+    {
+      "id": "perks_archer_a_explosive_shot",
+      "context": "弓箭手天赋菜单：Ability 小标题",
+      "raw": "§8∙ §6Ability: Explosive Shot  §e§lRIGHT CLICK",
+      "text": "∙ Ability: Explosive Shot  RIGHT CLICK",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 技能: 爆炸射击  右键点击",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§6",
+          "text": "Ability: Explosive Shot  ",
+          "zh": "技能: 爆炸射击  "
+        },
+        {
+          "color": "§e§l",
+          "text": "RIGHT CLICK",
+          "zh": "右键点击"
+        }
+      ]
+    },
+    {
+      "id": "perks_archer_explosive_1",
+      "context": "爆炸射击说明，英文三行一句",
+      "raw": "§7Shoots a volley of 3 Arrows that",
+      "text": "Shoots a volley of 3 Arrows that",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "射出一轮 3 支箭，箭矢落地时爆炸，伤害等同于你过去一分钟内弓的最高一击，"
+    },
+    {
+      "id": "perks_archer_explosive_2",
+      "context": "接上一行",
+      "raw": "§7explodes on impact, dealing the same",
+      "text": "explodes on impact, dealing the same",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "perks_archer_explosive_3",
+      "context": "接上一行",
+      "raw": "§7damage as your highest bow hit in",
+      "text": "damage as your highest bow hit in",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "perks_archer_explosive_4",
+      "context": "爆炸射击：爆炸半径",
+      "raw": "§7the last minute in a §a4§7 block radius.",
+      "text": "the last minute in a %1$s block radius.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "半径格数",
+          "type": "number",
+          "example": "4"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "爆炸半径为 %1$s 格。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "the last minute in a ",
+          "zh": "爆炸半径为 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " block radius.",
+          "zh": " 格。"
+        }
+      ]
+    },
+    {
+      "id": "perks_archer_a_rapid_fire",
+      "context": "弓箭手天赋菜单：Ability 小标题",
+      "raw": "§8∙ §6Ability: Rapid Fire  §e§lLEFT CLICK",
+      "text": "∙ Ability: Rapid Fire  LEFT CLICK",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。 Rapid Fire 沿用 _shared/Terms.json 的「急速射击」（聊天模板已用）。",
+      "translate": true,
+      "zh": "∙ 技能: 急速射击  左键点击",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§6",
+          "text": "Ability: Rapid Fire  ",
+          "zh": "技能: 急速射击  "
+        },
+        {
+          "color": "§e§l",
+          "text": "LEFT CLICK",
+          "zh": "左键点击"
+        }
+      ]
+    },
+    {
+      "id": "perks_archer_rapid_1",
+      "context": "速射说明首行",
+      "raw": "§7Shoots §a5§7 Arrows per second for §a5",
+      "text": "Shoots %1$s Arrows per second for %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每秒箭数",
+          "type": "number",
+          "example": "5"
+        },
+        {
+          "token": "%2$s",
+          "desc": "持续秒数",
+          "type": "number",
+          "example": "5"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "每秒射出 %1$s 支箭，持续 %2$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Shoots ",
+          "zh": "每秒射出 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " Arrows per second for ",
+          "zh": " 支箭，持续 "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ]
+    },
+    {
+      "id": "perks_archer_rapid_2",
+      "context": "速射：伤害比例",
+      "raw": "§7seconds! Arrows deal §a75.0%§7 of your",
+      "text": "seconds! Arrows deal %1$s of your",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "伤害百分比",
+          "type": "number",
+          "example": "75.0%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "秒! 箭矢伤害为你过去一分钟内弓的最高一击的 %1$s。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "seconds! Arrows deal ",
+          "zh": "秒! 箭矢伤害为你过去一分钟内弓的最高一击的 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " of your",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "perks_archer_rapid_3",
+      "context": "接上一行",
+      "raw": "§7highest Bow hit in the last minute.",
+      "text": "highest Bow hit in the last minute.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "perks_archer_g_stun_bow",
+      "context": "弓箭手天赋菜单：Ghost Ability 小标题",
+      "raw": "§8∙ §fGhost Ability: Stun Bow",
+      "text": "∙ Ghost Ability: Stun Bow",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 幽灵技能: 眩晕弓",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§f",
+          "text": "Ghost Ability: Stun Bow",
+          "zh": "幽灵技能: 眩晕弓"
+        }
+      ]
+    },
+    {
+      "id": "perks_archer_stunbow_1",
+      "context": "眩晕弓说明，英文三行一句",
+      "raw": "§7Temporarily stuns any non-boss",
+      "text": "Temporarily stuns any non-boss",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "射中任意非 Boss 地牢怪物时，使其短暂眩晕。"
+    },
+    {
+      "id": "perks_archer_stunbow_2",
+      "context": "接上一行",
+      "raw": "§7dungeon monster for a short period",
+      "text": "dungeon monster for a short period",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "perks_archer_stunbow_3",
+      "context": "接上一行",
+      "raw": "§7of time when shot.",
+      "text": "of time when shot.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "perks_archer_g_healing_bow",
+      "context": "弓箭手天赋菜单：Ghost Ability 小标题",
+      "raw": "§8∙ §fGhost Ability: Healing Bow",
+      "text": "∙ Ghost Ability: Healing Bow",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 幽灵技能: 治疗弓",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§f",
+          "text": "Ghost Ability: Healing Bow",
+          "zh": "幽灵技能: 治疗弓"
+        }
+      ]
+    },
+    {
+      "id": "perks_archer_healbow_1",
+      "context": "治疗弓说明首行",
+      "raw": "§7Shoot a teammate to heal them for",
+      "text": "Shoot a teammate to heal them for",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "射中队友即可为其回复最大生命值的"
+    },
+    {
+      "id": "perks_archer_healbow_2",
+      "context": "接上一行",
+      "raw": "§a10%§7 of their max HP and grant them",
+      "text": "%1$s of their max HP and grant them",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "回复百分比",
+          "type": "number",
+          "example": "10%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s，并赋予其",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " of their max HP and grant them",
+          "zh": "，并赋予其"
+        }
+      ]
+    },
+    {
+      "id": "perks_archer_healbow_3",
+      "context": "接上一行",
+      "raw": "§c+50❁ Strength§7 for 10 seconds.",
+      "text": "+%1$s❁ Strength for %2$s seconds.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "力量数值",
+          "type": "number",
+          "example": "50"
+        },
+        {
+          "token": "%2$s",
+          "desc": "持续秒数",
+          "type": "number",
+          "example": "10"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s❁ 力量，持续 %2$s 秒。",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "+%1$s❁ Strength",
+          "zh": "+%1$s❁ 力量"
+        },
+        {
+          "color": "§7",
+          "text": " for %2$s seconds.",
+          "zh": "，持续 %2$s 秒。"
+        }
+      ]
+    },
+    {
+      "id": "perks_tank_p_protective_barrier",
+      "context": "坦克天赋菜单：Class Passive 小标题",
+      "raw": "§8∙ §aClass Passive: Protective Barrier",
+      "text": "∙ Class Passive: Protective Barrier",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 职业被动: 防护屏障",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Class Passive: Protective Barrier",
+          "zh": "职业被动: 防护屏障"
+        }
+      ]
+    },
+    {
+      "id": "perks_tank_barrier_1",
+      "context": "防护屏障说明",
+      "raw": "§7Grants §a1.3x ❈ Defense§7.",
+      "text": "Grants %1$s ❈ Defense.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "防御倍率",
+          "type": "number",
+          "example": "1.3x"
+        }
+      ],
+      "gloss": "❈ 是防御力图标的通用符号。",
+      "translate": true,
+      "zh": "获得 %1$s ❈ 防御力。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "获得 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ❈ Defense",
+          "zh": "%1$s ❈ 防御力"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "perks_tank_p_defensive_stance",
+      "context": "坦克天赋菜单：Class Passive 小标题",
+      "raw": "§8∙ §aClass Passive: Defensive Stance",
+      "text": "∙ Class Passive: Defensive Stance",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 职业被动: 防御姿态",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Class Passive: Defensive Stance",
+          "zh": "职业被动: 防御姿态"
+        }
+      ]
+    },
+    {
+      "id": "perks_tank_stance_1",
+      "context": "防御姿态说明首行",
+      "raw": "§7Upon falling below §a50% §7health, gain a §e10% §7health",
+      "text": "Upon falling below %1$s health, gain a %2$s health",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "触发阈值",
+          "type": "number",
+          "example": "50%"
+        },
+        {
+          "token": "%2$s",
+          "desc": "护盾百分比",
+          "type": "number",
+          "example": "10%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "生命值低于 %1$s 时，获得一层相当于 %2$s 生命值的",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Upon falling below ",
+          "zh": "生命值低于 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "health, gain a ",
+          "zh": "时，获得一层相当于 "
+        },
+        {
+          "color": "§e",
+          "text": "%2$s ",
+          "zh": "%2$s "
+        },
+        {
+          "color": "§7",
+          "text": "health",
+          "zh": "生命值的"
+        }
+      ]
+    },
+    {
+      "id": "perks_tank_stance_2",
+      "context": "接上一行",
+      "raw": "§7absorption shield.",
+      "text": "absorption shield.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "伤害吸收护盾。"
+    },
+    {
+      "id": "perks_tank_p_taunt",
+      "context": "坦克天赋菜单：Class Passive 小标题",
+      "raw": "§8∙ §aClass Passive: Taunt",
+      "text": "∙ Class Passive: Taunt",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 职业被动: 嘲讽",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Class Passive: Taunt",
+          "zh": "职业被动: 嘲讽"
+        }
+      ]
+    },
+    {
+      "id": "perks_tank_taunt_1",
+      "context": "嘲讽说明首行",
+      "raw": "§7Increases the chance for mobs to target you",
+      "text": "Increases the chance for mobs to target you",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "当你的生命值高于"
+    },
+    {
+      "id": "perks_tank_taunt_2",
+      "context": "接上一行",
+      "raw": "§7when you are above §a25% §7HP.",
+      "text": "when you are above %1$s HP.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "生命值阈值",
+          "type": "number",
+          "example": "25%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "%1$s 时，怪物更倾向于攻击你。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "when you are above ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "HP.",
+          "zh": "时，怪物更倾向于攻击你。"
+        }
+      ]
+    },
+    {
+      "id": "perks_tank_p_diversion",
+      "context": "坦克天赋菜单：Class Passive 小标题",
+      "raw": "§8∙ §aClass Passive: Diversion",
+      "text": "∙ Class Passive: Diversion",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 职业被动: 伤害转移",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Class Passive: Diversion",
+          "zh": "职业被动: 伤害转移"
+        }
+      ]
+    },
+    {
+      "id": "perks_tank_diversion_1",
+      "context": "伤害转移说明首行",
+      "raw": "§7Divert §c80% §7of the damage taken by your",
+      "text": "Divert %1$s of the damage taken by your",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "转移百分比",
+          "type": "number",
+          "example": "80%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "将队友所受伤害的 %1$s 转移到自己身上，",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Divert ",
+          "zh": "将队友所受伤害的 "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "of the damage taken by your",
+          "zh": "转移到自己身上，"
+        }
+      ]
+    },
+    {
+      "id": "perks_tank_diversion_2",
+      "context": "接上一行",
+      "raw": "§7teammates within §e30 §7blocks around you.",
+      "text": "teammates within %1$s blocks around you.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "范围格数",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "范围为你周围 %1$s 格。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "teammates within ",
+          "zh": "范围为你周围 "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "blocks around you.",
+          "zh": "格。"
+        }
+      ]
+    },
+    {
+      "id": "perks_tank_diversion_3",
+      "context": "伤害转移：击退免疫",
+      "raw": "§7Grants immunity to knockback from mobs.",
+      "text": "Grants immunity to knockback from mobs.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "免疫怪物造成的击退。"
+    },
+    {
+      "id": "perks_tank_a_seismic_wave",
+      "context": "坦克天赋菜单：Ability 小标题",
+      "raw": "§8∙ §6Ability: Seismic Wave  §e§lRIGHT CLICK",
+      "text": "∙ Ability: Seismic Wave  RIGHT CLICK",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 技能: 地震波  右键点击",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§6",
+          "text": "Ability: Seismic Wave  ",
+          "zh": "技能: 地震波  "
+        },
+        {
+          "color": "§e§l",
+          "text": "RIGHT CLICK",
+          "zh": "右键点击"
+        }
+      ]
+    },
+    {
+      "id": "perks_tank_seismic_1",
+      "context": "地震波说明，英文两行一句",
+      "raw": "§7A Seismic Wave emerges from",
+      "text": "A Seismic Wave emerges from",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "一道地震波从你脚下涌出并沿直线前进，"
+    },
+    {
+      "id": "perks_tank_seismic_2",
+      "context": "接上一行",
+      "raw": "§7underneath you and travels in a",
+      "text": "underneath you and travels in a",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "perks_tank_seismic_3",
+      "context": "地震波：基础伤害",
+      "raw": "§7straight line. Deals §c20,000 +10%",
+      "text": "straight line. Deals %1$s +%2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "基础伤害",
+          "type": "number",
+          "example": "20,000"
+        },
+        {
+          "token": "%2$s",
+          "desc": "每档加成百分比",
+          "type": "number",
+          "example": "10%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "对路径上的所有敌人造成 %1$s +%2$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "straight line. Deals ",
+          "zh": "对路径上的所有敌人造成 "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s +%2$s",
+          "zh": "%1$s +%2$s"
+        }
+      ]
+    },
+    {
+      "id": "perks_tank_seismic_4",
+      "context": "地震波：防御加成",
+      "raw": "§7every §a+50❈ Defense §7in damage to",
+      "text": "every +%1$s❈ Defense in damage to",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "防御档位",
+          "type": "number",
+          "example": "50"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "（每 +%1$s❈ 防御力加成一次）",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "every ",
+          "zh": "（每 "
+        },
+        {
+          "color": "§a",
+          "text": "+%1$s❈ Defense ",
+          "zh": "+%1$s❈ 防御力"
+        },
+        {
+          "color": "§7",
+          "text": "in damage to",
+          "zh": "加成一次）"
+        }
+      ]
+    },
+    {
+      "id": "perks_tank_seismic_5",
+      "context": "接上一行",
+      "raw": "§7any enemy in its path.",
+      "text": "any enemy in its path.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "的伤害。"
+    },
+    {
+      "id": "perks_tank_a_castle_of_stone",
+      "context": "坦克天赋菜单：Ability 小标题",
+      "raw": "§8∙ §6Ability: Castle of Stone  §e§lRIGHT CLICK",
+      "text": "∙ Ability: Castle of Stone  RIGHT CLICK",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 技能: 坚石城堡  右键点击",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§6",
+          "text": "Ability: Castle of Stone  ",
+          "zh": "技能: 坚石城堡  "
+        },
+        {
+          "color": "§e§l",
+          "text": "RIGHT CLICK",
+          "zh": "右键点击"
+        }
+      ]
+    },
+    {
+      "id": "perks_tank_castle_1",
+      "context": "坚石城堡说明首行",
+      "raw": "§7Fortifies your defence, reducing the",
+      "text": "Fortifies your defence, reducing the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "强化你的防御，"
+    },
+    {
+      "id": "perks_tank_castle_2",
+      "context": "坚石城堡：减伤与时长",
+      "raw": "§7damage you take by §c70% §7for §a20",
+      "text": "damage you take by %1$s for %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "减伤百分比",
+          "type": "number",
+          "example": "70%"
+        },
+        {
+          "token": "%2$s",
+          "desc": "持续秒数",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "使你受到的伤害减少 %1$s，持续 %2$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "damage you take by ",
+          "zh": "使你受到的伤害减少 "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "for ",
+          "zh": "，持续 "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ]
+    },
+    {
+      "id": "perks_tank_castle_3",
+      "context": "接上一行",
+      "raw": "§7seconds. Also aggros all enemies in",
+      "text": "seconds. Also aggros all enemies in",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "秒。同时吸引"
+    },
+    {
+      "id": "perks_tank_castle_4",
+      "context": "接上一行",
+      "raw": "§7a §a10§7 block radius.",
+      "text": "a %1$s block radius.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "半径格数",
+          "type": "number",
+          "example": "10"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "周围 %1$s 格内所有敌人的仇恨。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "a ",
+          "zh": "周围 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " block radius.",
+          "zh": " 格内所有敌人的仇恨。"
+        }
+      ]
+    },
+    {
+      "id": "perks_tank_g_stun_potion",
+      "context": "坦克天赋菜单：Ghost Ability 小标题",
+      "raw": "§8∙ §fGhost Ability: Stun Potion",
+      "text": "∙ Ghost Ability: Stun Potion",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 幽灵技能: 眩晕药水",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§f",
+          "text": "Ghost Ability: Stun Potion",
+          "zh": "幽灵技能: 眩晕药水"
+        }
+      ]
+    },
+    {
+      "id": "perks_tank_gstun_1",
+      "context": "眩晕药水说明首行",
+      "raw": "§7Throw a potion which temporarily stuns all",
+      "text": "Throw a potion which temporarily stuns all",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "投掷一瓶药水，暂时眩晕"
+    },
+    {
+      "id": "perks_tank_gstun_2",
+      "context": "接上一行",
+      "raw": "§7monsters in a §a10§7 block radius.",
+      "text": "monsters in a %1$s block radius.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "半径格数",
+          "type": "number",
+          "example": "10"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "周围 %1$s 格内的所有怪物。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "monsters in a ",
+          "zh": "周围 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " block radius.",
+          "zh": " 格内的所有怪物。"
+        }
+      ]
+    },
+    {
+      "id": "perks_tank_g_absorption_potion",
+      "context": "坦克天赋菜单：Ghost Ability 小标题",
+      "raw": "§8∙ §fGhost Ability: Absorption Potion",
+      "text": "∙ Ghost Ability: Absorption Potion",
+      "placeholders": [],
+      "gloss": "技能名沿用 Dungeons/GUI_Item/Dungeon_Classes.json 的既定译名。",
+      "translate": true,
+      "zh": "∙ 幽灵技能: 伤害吸收药水",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§f",
+          "text": "Ghost Ability: Absorption Potion",
+          "zh": "幽灵技能: 伤害吸收药水"
+        }
+      ]
+    },
+    {
+      "id": "perks_tank_gabsorb_1",
+      "context": "伤害吸收药水说明首行",
+      "raw": "§7Throw a potion which gives all teammates in a §a10",
+      "text": "Throw a potion which gives all teammates in a %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "半径格数",
+          "type": "number",
+          "example": "10"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "投掷一瓶药水，为周围 %1$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Throw a potion which gives all teammates in a ",
+          "zh": "投掷一瓶药水，为周围 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ]
+    },
+    {
+      "id": "perks_tank_gabsorb_2",
+      "context": "接上一行",
+      "raw": "§7block radius §a200§7 HP worth of absorption for §a3",
+      "text": "block radius %1$s HP worth of absorption for %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "吸收量",
+          "type": "number",
+          "example": "200"
+        },
+        {
+          "token": "%2$s",
+          "desc": "持续秒数",
+          "type": "number",
+          "example": "3"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "格范围内的所有队友提供 %1$s 点伤害吸收，持续 %2$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "block radius ",
+          "zh": "格范围内的所有队友提供 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " HP worth of absorption for ",
+          "zh": " 点伤害吸收，持续 "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ]
+    },
+    {
+      "id": "perks_tank_gabsorb_3",
+      "context": "接上一行",
+      "raw": "§7seconds.",
+      "text": "seconds.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "秒。"
+    }
+  ]
+}

@@ -93,6 +93,11 @@ public final class Classifier {
 	 * in a file nobody should be writing other people's names into. Non-ASCII rather than "not a
 	 * letter", because half of those icons are letters — {@code ᛝ} is a runic ingwaz — while a
 	 * Minecraft name is only ever {@code [A-Za-z0-9_]}.
+	 *
+	 * <p>Only asked of the two surfaces a player's row can appear on. A menu item named with one
+	 * word — {@code Healer}, {@code Tank}, the five classes in Mort's menu — has exactly this shape,
+	 * and for several sessions those five went untranslated <em>and</em> unreported because this test
+	 * threw them away before the corpus was ever asked.
 	 */
 	private static final Pattern PLAYER_ENTRY = Pattern.compile(
 		"^(?:\\[[^\\]]{1,24}\\] ?)*[A-Za-z0-9_]{1,16}(?: ?[^\\x00-\\x7F\\s]{1,4})*$"
@@ -111,7 +116,12 @@ public final class Classifier {
 	public static Verdict of(CaptureSurface surface, StyledText styled) {
 		String plain = styled.plain().trim();
 
-		if (!hasEnglishWord(plain) || hasHan(plain) || PLAYER_ENTRY.matcher(plain).matches()) {
+		if (!hasEnglishWord(plain) || hasHan(plain)) {
+			return null;
+		}
+
+		if ((surface.surface() == Surface.CHAT || surface.surface() == Surface.TABLIST)
+			&& PLAYER_ENTRY.matcher(plain).matches()) {
 			return null;
 		}
 
@@ -129,6 +139,20 @@ public final class Classifier {
 				Bucket.MIXED, mixed.words(), mixed.values(), null,
 				located.entry().id(), located.entry().sourceFile()
 			);
+		}
+
+		if (surface.surface() == Surface.TABLIST) {
+			// A tab row is a label and a value, and a record that answered for the label alone says
+			// nothing about the value. "Interest: 47 Hours" matched "Interest:" and was filed as done
+			// for several sessions running while the half a player actually reads stayed English.
+			String value = englishValue(styled, located.core(), surface.surface());
+
+			if (value != null) {
+				return new Verdict(
+					Bucket.MIXED, List.of(), List.of(value), null,
+					located.entry().id(), located.entry().sourceFile()
+				);
+			}
 		}
 
 		// Fully Chinese and still wrong on screen: the record answered for a line that changes colour
@@ -166,6 +190,44 @@ public final class Classifier {
 		}
 
 		return false;
+	}
+
+	/**
+	 * The value half of a tab-list row that nothing translates, or {@code null} when there is no
+	 * such half — the record covered the whole row, the value has no English in it, or the term
+	 * table or a record answers for it the way {@link Translator#translateRow} will draw it.
+	 */
+	private static String englishValue(StyledText styled, StyledText core, Surface surface) {
+		String plain = styled.canonical();
+		String matched = core.canonical();
+		int start = plain.indexOf(matched);
+
+		if (start < 0) {
+			return null;
+		}
+
+		int from = start + matched.length();
+		int to = plain.length();
+
+		while (from < to && (plain.charAt(from) == ':' || plain.charAt(from) == ' ')) {
+			from++;
+		}
+
+		while (to > from && plain.charAt(to - 1) == ' ') {
+			to--;
+		}
+
+		if (from >= to) {
+			return null;
+		}
+
+		String value = plain.substring(from, to);
+
+		if (!hasEnglishWord(value) || Translator.index().terms().translate("raw", value) != null) {
+			return null;
+		}
+
+		return Translator.locate(styled.sub(from, to), surface).matched() ? null : value;
 	}
 
 	/**

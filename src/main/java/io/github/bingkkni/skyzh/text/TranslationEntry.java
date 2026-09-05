@@ -35,7 +35,13 @@ public final class TranslationEntry {
 	 * @param argGroups the capture groups of this run's own placeholders, whose contents are the
 	 *                  server's values rather than the record's words
 	 */
-	private record Fragment(List<Piece> pieces, boolean translated, boolean omitted, int group, int[] argGroups) {}
+	private record Fragment(
+		List<Piece> pieces, boolean translated, boolean omitted, int group, int[] argGroups, int order,
+		boolean explicitOrder
+	) {}
+
+	/** One matched line whose fragments should be drawn together with another matched line. */
+	public record Matched(TranslationEntry entry, StyledText source, Matcher match) {}
 
 	private sealed interface Piece {}
 
@@ -236,9 +242,11 @@ public final class TranslationEntry {
 			String target = targets.get(i);
 			boolean omitted = target == null;
 			boolean rendered = !omitted && !target.isEmpty();
+			boolean ordered = order.size() == sources.size();
 			fragments.add(new Fragment(
 				rendered ? parse(target, targetArg) : List.of(), rendered, omitted, fragmentGroup,
-				fragmentArgs.stream().mapToInt(Integer::intValue).toArray()
+				fragmentArgs.stream().mapToInt(Integer::intValue).toArray(), ordered ? order.get(i) : i,
+				ordered
 			));
 
 			if (!rendered) {
@@ -281,21 +289,9 @@ public final class TranslationEntry {
 			return List.copyOf(fragments);
 		}
 
-		Fragment[] rendered = new Fragment[fragments.size()];
-
-		for (int i = 0; i < fragments.size(); i++) {
-			int at = order.get(i);
-
-			if (at < 0 || at >= rendered.length || rendered[at] != null) {
-				// Not a permutation. The loader checks and complains; drawing the line in the order it
-				// arrived is the harmless answer, and the alternative is dropping the record entirely.
-				return List.copyOf(fragments);
-			}
-
-			rendered[at] = fragments.get(i);
-		}
-
-		return List.of(rendered);
+		List<Fragment> rendered = new ArrayList<>(fragments);
+		rendered.sort((left, right) -> Integer.compare(left.order(), right.order()));
+		return List.copyOf(rendered);
 	}
 
 	/**
@@ -517,11 +513,64 @@ public final class TranslationEntry {
 	 * therefore what colour it takes, does not depend on that order at all.
 	 */
 	public MutableComponent render(StyledText source, Matcher match, TermTable terms) {
+		return renderJoined(List.of(new Matched(this, source, match)), terms, false);
+	}
+
+	/** @see #renderJoined(List, TermTable, boolean) */
+	public MutableComponent render(StyledText source, Matcher match, TermTable terms, boolean labelOriginals) {
+		return renderJoined(List.of(new Matched(this, source, match)), terms, labelOriginals);
+	}
+
+	/**
+	 * Builds one Chinese sentence out of fragments matched on several lore lines.
+	 *
+	 * <p>The ordinary line renderer is the one-line case of this method. Tooltip lore can hand in the
+	 * head plus its {@code continuation} tails, so {@code segments[].order} may refer to the combined
+	 * fragment list instead of just the record it was written on. A tail fragment then keeps the colour
+	 * it had on the tail line while moving to wherever Chinese needs it.
+	 */
+	public static MutableComponent renderJoined(List<Matched> matches, TermTable terms) {
+		return renderJoined(matches, terms, false);
+	}
+
+	/**
+	 * Builds one Chinese sentence out of fragments matched on several lore lines.
+	 *
+	 * <p>The ordinary line renderer is the one-line case of this method. Tooltip lore can hand in the
+	 * head plus its {@code continuation} tails, so {@code segments[].order} may refer to the combined
+	 * fragment list instead of just the record it was written on. A tail fragment then keeps the colour
+	 * it had on the tail line while moving to wherever Chinese needs it.
+	 *
+	 * <p>{@code labelOriginals} is the chat/lore half of {@code showOriginal}: a colour run whose
+	 * English is itself a term-table name — {@code Diamond Essence}, {@code Tusk Fossil} — keeps
+	 * that English in brackets after the Chinese. Placeholder values are not labelled here; those
+	 * would stamp （Royal Mines） onto every commission row.
+	 */
+	public static MutableComponent renderJoined(List<Matched> matches, TermTable terms, boolean labelOriginals) {
+		record Part(Matched matched, Fragment fragment) {}
+
+		List<Part> parts = new ArrayList<>();
+
+		for (Matched matched : matches) {
+			for (Fragment fragment : matched.entry().fragments) {
+				parts.add(new Part(matched, fragment));
+			}
+		}
+
+		if (parts.stream().anyMatch(part -> part.fragment().explicitOrder())) {
+			parts.sort((left, right) -> Integer.compare(left.fragment().order(), right.fragment().order()));
+		}
+
 		MutableComponent result = Component.empty();
 		Style style = Style.EMPTY;
 		Seam seam = new Seam(result);
 
-		for (Fragment fragment : this.rendered) {
+		for (Part part : parts) {
+			Matched matched = part.matched();
+			TranslationEntry entry = matched.entry();
+			StyledText source = matched.source();
+			Matcher match = matched.match();
+			Fragment fragment = part.fragment();
 			int start = match.start(fragment.group());
 			int end = match.end(fragment.group());
 
@@ -530,33 +579,48 @@ public final class TranslationEntry {
 			}
 
 			if (fragment.omitted()) {
-				// This run's words moved into another run when the sentence was reordered. Drawing
-				// nothing is the point; the placeholders it held, if any, belong to the run they
-				// moved to and are written out there.
 				continue;
 			}
 
 			if (!fragment.translated()) {
-				// Untranslated run: the English stays, with the colours it arrived in.
-				seam.append(source.slice(start, end), source.plain().substring(start, end), style);
+				if (!entry.continuation()) {
+					seam.append(source.slice(start, end), source.plain().substring(start, end), style);
+				}
 				continue;
 			}
 
+			MutableComponent frag = Component.empty();
+			Seam inner = new Seam(frag);
+
 			for (Piece piece : fragment.pieces()) {
 				if (piece instanceof Literal literal) {
-					// The translator typed "⸕ 挖掘速度"; this line was drawn with the server's own icon
-					// font, so the icon goes back the way the server drew it. See Glyphs.
 					String text = Glyphs.restore(literal.text(), source.plain());
 
-					seam.append(Component.literal(text).setStyle(style), text, style);
+					inner.append(Component.literal(text).setStyle(style), text, style);
 				} else if (piece instanceof Arg arg) {
-					int group = arg.index() < this.argGroups.length ? this.argGroups[arg.index()] : 0;
+					int group = arg.index() < entry.argGroups.length ? entry.argGroups[arg.index()] : 0;
 
 					if (group > 0 && match.start(group) >= 0) {
-						append(seam, source, match, group, terms, style);
+						entry.append(inner, source, match, group, terms, style);
 					}
 				}
 			}
+
+			String written = frag.getString();
+
+			if (labelOriginals && fragment.argGroups().length == 0 && start >= 0 && end > start) {
+				String english = source.plain().substring(start, end).trim();
+				String termEn = termEnglish(terms, english);
+
+				if (termEn != null && !written.isEmpty() && !written.equals(english)) {
+					MutableComponent labelled = OriginalLabel.append(frag, Component.literal(termEn));
+
+					seam.append(labelled, labelled.getString(), style);
+					continue;
+				}
+			}
+
+			seam.append(frag, written, style);
 		}
 
 		return result;
@@ -590,6 +654,24 @@ public final class TranslationEntry {
 		Style valueStyle = start < source.length() ? source.styleAt(start) : style;
 
 		seam.append(Component.literal(written).setStyle(valueStyle), written, valueStyle);
+	}
+
+	/**
+	 * The term-table spelling of a colour run, or {@code null} if it is not a name.
+	 *
+	 * <p>Gemma's "25 Diamond Essence" is one run, not a placeholder plus a name, so the leading
+	 * count is stripped before the lookup. A run that is just a number must not become a term.
+	 */
+	private static String termEnglish(TermTable terms, String english) {
+		String key = terms.canonicalEnglish(english);
+
+		if (key != null) {
+			return key;
+		}
+
+		String stripped = english.replaceFirst("^[0-9][0-9,.]*(?:[kKmMbB])?\\s+", "");
+
+		return stripped.equals(english) ? null : terms.canonicalEnglish(stripped);
 	}
 
 	/**

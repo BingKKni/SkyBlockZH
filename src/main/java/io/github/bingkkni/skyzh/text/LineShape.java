@@ -36,8 +36,16 @@ public final class LineShape {
 	 * both that it is never translated and that the capture never records it, so nobody finds out it
 	 * is missing. See {@link io.github.bingkkni.skyzh.capture.ChatShape}, which needs the same list
 	 * for the same reason.
+	 *
+	 * <p>{@code [CROWD] } and {@code [STATUE] } are the Catacombs' two: the mobs in Thorn's arena
+	 * heckle the party under the first, and Oruo's quiz statue asks its three questions under the
+	 * second. Both name a speaker after the tag the way {@code [NPC] } does, so both have to be
+	 * peeled for the sentence behind them to be found — the corpus already held sixty-three of the
+	 * crowd's lines, written as the sentence alone, and not one of them could ever match.
 	 */
-	private static final String[] SPEAKER_TAGS = { "[NPC] ", "[SECURITY] " };
+	private static final String[] SPEAKER_TAGS = {
+		"[NPC] ", "[BOSS] ", "[SECURITY] ", "[CROWD] ", "[STATUE] "
+	};
 
 	/**
 	 * How far past the tag the name's colon may sit. The longest name in the corpus is "Keeper of

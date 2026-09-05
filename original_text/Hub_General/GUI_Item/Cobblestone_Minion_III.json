@@ -1,0 +1,71 @@
+{
+  "source": "runtime capture (SkyZH), build/gaps_B.txt, 2026-09-05",
+  "fetched_at": "2026-09-05",
+  "verified_ingame": true,
+  "gui_context": "圆石小人 III 的说明与升级预览。",
+  "lines": [
+    {"id": "cobble_minion_time", "ref": "_shared/Item_Lore.json#minion_time_between_actions", "context": "当前行动间隔"},
+    {"id": "cobble_minion_generated", "ref": "_shared/Item_Lore.json#minion_resources_generated", "context": "累计产量"},
+    {"id": "cobble_minion_storage_upgrade", "ref": "_shared/Item_Lore.json#minion_max_storage_upgrade", "context": "存储上限变化"},
+    {
+      "id": "cobble_hopper_1",
+      "context": "小人自动出售漏斗说明首行；英文共四行",
+      "raw": "§7Add a §aBudget Hopper§7 or §9Enchanted",
+      "text": "Add a Budget Hopper or Enchanted",
+      "placeholders": [],
+      "gloss": "中文把存储栏满的条件移到自动出售动作之前，使用跨行 order 保留颜色。",
+      "translate": true,
+      "zh": "在这里装上简易漏斗或附魔漏斗,小人存储栏满后就会自动卖出产物。",
+      "segments": [
+        {"color": "§7", "text": "Add a ", "zh": "在这里装上", "order": 0},
+        {"color": "§a", "text": "Budget Hopper", "zh": "简易漏斗", "order": 1},
+        {"color": "§7", "text": " or ", "zh": "或", "order": 2},
+        {"color": "§9", "text": "Enchanted", "zh": "附魔", "order": 3}
+      ]
+    },
+    {
+      "id": "cobble_hopper_2",
+      "context": "接上一行",
+      "raw": "§9Hopper §7here to make your minion",
+      "text": "Hopper here to make your minion",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "漏斗,小人",
+      "segments": [
+        {"color": "§9", "text": "Hopper ", "zh": "漏斗", "order": 4},
+        {"color": "§7", "text": "here to make your minion", "zh": ",小人", "order": 5}
+      ]
+    },
+    {
+      "id": "cobble_hopper_3",
+      "context": "接上一行",
+      "raw": "§7automatically sell generated items",
+      "text": "automatically sell generated items",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "就会自动卖出产物。",
+      "segments": [
+        {"color": "§7", "text": "automatically sell generated items", "zh": "就会自动卖出产物。", "order": 7}
+      ]
+    },
+    {
+      "id": "cobble_hopper_4",
+      "context": "接上一行",
+      "raw": "§7after its inventory is full.",
+      "text": "after its inventory is full.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "存储栏满后",
+      "segments": [
+        {"color": "§7", "text": "after its inventory is full.", "zh": "存储栏满后", "order": 6}
+      ]
+    },
+    {"id": "cobble_minion_needed", "ref": "_shared/Item_Lore.json#minion_materials_needed", "context": "升级缺少圆石"}
+  ]
+}

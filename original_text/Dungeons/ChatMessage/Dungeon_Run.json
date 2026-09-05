@@ -1,0 +1,4855 @@
+{
+  "source": "SkyZH runtime capture (The Catacombs, 2026-09-02)",
+  "fetched_at": "2026-09-02",
+  "verified_ingame": true,
+  "source_note": "原文与颜色逐字取自运行时采集；社区 Wiki 普通页面用于核对玩法语境。",
+  "gui_context": "一次地牢挑战里聊天框会滚过的服务器消息：开局与准备、钥匙与门、地牢增益、职业技能与里程碑、受到的伤害、结算面板。大厅那一套在 Lobby_Server_Messages.json。",
+  "excluded": [
+    "§4[WATCHDOG ANNOUNCEMENT] 及其后三行封禁播报 —— 全服公告，不属于地牢玩法，按 Hub_General 归类。",
+    "/trade 请求、拍卖行成交播报 —— 属于 Economy。",
+    "§eThe §aTraveling Zoo §eis visiting… —— 属于 Events。"
+  ],
+  "lines": [
+    {
+      "id": "run_refreshing",
+      "context": "在队伍查找器里点刷新",
+      "raw": "§aRefreshing...",
+      "text": "Refreshing...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "正在刷新……"
+    },
+    {
+      "id": "run_refresh_too_fast",
+      "context": "刷新点得太快",
+      "raw": "§cPlease wait a few seconds between refreshing!",
+      "text": "Please wait a few seconds between refreshing!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "两次刷新之间请隔几秒!"
+    },
+    {
+      "id": "run_player_ready",
+      "context": "队友按下准备",
+      "raw": "§b%s§a is now ready!",
+      "text": "%s is now ready!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "玩家名",
+          "type": "player_name",
+          "example": "inkkni"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§a",
+          "text": " is now ready!",
+          "zh": " 已准备就绪!"
+        }
+      ]
+    },
+    {
+      "id": "run_starting_in",
+      "context": "全员准备后的开场倒计时",
+      "raw": "§aStarting in %s seconds.",
+      "text": "Starting in %s seconds.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "剩余秒数",
+          "type": "number",
+          "example": "4"
+        }
+      ],
+      "gloss": "英文在数量为 1 时写 second，引擎编译时会把复数的 s 变成可选，所以模板一律写复数那一种。",
+      "translate": true,
+      "zh": "%s 秒后开始。"
+    },
+    {
+      "id": "run_entered_floor",
+      "context": "有人进入地牢楼层的广播",
+      "raw": "%1$s§f §eentered §aThe Catacombs§e, Floor %2$s!",
+      "text": "%1$s entered The Catacombs, Floor %2$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "带称号的玩家名，无称号时就是光名字",
+          "type": "raw",
+          "example": "[MVP+] inkkni"
+        },
+        {
+          "token": "%2$s",
+          "desc": "楼层罗马数字",
+          "type": "tier",
+          "example": "VII"
+        }
+      ],
+      "gloss": "称号标签和玩家名一起当作一个不翻译的整体捕获；Hypixel 的称号写法太多，拆开反而容易切错。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§e",
+          "text": " entered ",
+          "zh": " 进入了"
+        },
+        {
+          "color": "§a",
+          "text": "The Catacombs",
+          "zh": "地牢"
+        },
+        {
+          "color": "§e",
+          "text": ", Floor %2$s!",
+          "zh": "第 %2$s 层!"
+        }
+      ]
+    },
+    {
+      "id": "run_entered_entrance",
+      "context": "有人进入地牢入口层的广播",
+      "raw": "%s§f §eentered §aThe Catacombs§e, Entrance!",
+      "text": "%s entered The Catacombs, Entrance!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "带称号的玩家名",
+          "type": "raw",
+          "example": "[MVP+] inkkni"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§e",
+          "text": " entered ",
+          "zh": " 进入了"
+        },
+        {
+          "color": "§a",
+          "text": "The Catacombs",
+          "zh": "地牢"
+        },
+        {
+          "color": "§e",
+          "text": ", Entrance!",
+          "zh": "入口层!"
+        }
+      ]
+    },
+    {
+      "id": "run_entered_mm_floor",
+      "context": "有人进入大师模式楼层的广播",
+      "raw": "%1$s§f §eentered §c§lMM§c The Catacombs§e, Floor %2$s!",
+      "text": "%1$s entered MM The Catacombs, Floor %2$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "带称号的玩家名",
+          "type": "raw",
+          "example": "[MVP+] inkkni"
+        },
+        {
+          "token": "%2$s",
+          "desc": "楼层罗马数字",
+          "type": "tier",
+          "example": "I"
+        }
+      ],
+      "gloss": "MM 是 Master Mode 的缩写，中文按全称写「大师模式」，和 Catacombs_Gate.json 一致。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§e",
+          "text": " entered ",
+          "zh": " 进入了"
+        },
+        {
+          "color": "§c§l",
+          "text": "MM",
+          "zh": "大师模式"
+        },
+        {
+          "color": "§c",
+          "text": " The Catacombs",
+          "zh": "地牢"
+        },
+        {
+          "color": "§e",
+          "text": ", Floor %2$s!",
+          "zh": "第 %2$s 层!"
+        }
+      ]
+    },
+    {
+      "id": "run_selected_class",
+      "context": "有人在准备界面选好了职业",
+      "raw": "§b%1$s§a selected the %2$s Class!",
+      "text": "%1$s selected the %2$s Class!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "玩家名",
+          "type": "player_name",
+          "example": "inkkni"
+        },
+        {
+          "token": "%2$s",
+          "desc": "职业名",
+          "type": "category_name",
+          "example": "Mage"
+        }
+      ],
+      "gloss": "职业名的中文在 _shared/Terms.json 里。中文说「选择了法师」就够了，Class 这个词不必再译一遍。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§a",
+          "text": " selected the %2$s Class!",
+          "zh": " 选择了 %2$s!"
+        }
+      ]
+    },
+    {
+      "id": "run_already_this_class",
+      "context": "重复点选同一个职业",
+      "raw": "§cYou already have this class selected!",
+      "text": "You already have this class selected!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你已经选好这个职业了!"
+    },
+    {
+      "id": "run_solo_class_doubled",
+      "context": "队里只有你一个人用这个职业，正向属性翻倍",
+      "raw": "§6Your §a%s §6stats are doubled because you are the only player using this class!",
+      "text": "Your %s stats are doubled because you are the only player using this class!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "职业名",
+          "type": "category_name",
+          "example": "Berserk"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Your ",
+          "zh": "队里只有你一个人用",
+          "order": 0
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s",
+          "order": 1
+        },
+        {
+          "color": "§6",
+          "text": " stats are doubled because you are the only player using this class!",
+          "zh": "，属性加成翻倍!",
+          "order": 2
+        }
+      ]
+    },
+    {
+      "id": "run_class_stat_upgrade_berserk",
+      "context": "选好职业后逐行列出该职业各项数值的提升",
+      "raw": "§a[Berserk] §f%1$s §c%2$s§f -> §a%3$s",
+      "text": "[Berserk] %1$s %2$s -> %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "数值名称，最多六个词",
+          "type": "raw",
+          "example": "Walk Speed"
+        },
+        {
+          "token": "%2$s",
+          "desc": "升级前的数值",
+          "type": "number",
+          "example": "40.4"
+        },
+        {
+          "token": "%3$s",
+          "desc": "升级后的数值",
+          "type": "number",
+          "example": "70.4"
+        }
+      ],
+      "gloss": "数值名不能用 category_name：它最多只收五个词，而 「Lust For Blood Damage Increase Cap」有六个，于是引擎改从第五个词后面切开，把「Cap 600%」当成了旧值——整行看着没变，词表却查了一个根本不是名字的字符串。把旧值新值收紧成 number 之后，数值名只能整段被取走。职业名写死在模板里：模板去掉占位符后必须至少还剩一个词。数值名的中文在 _shared/Terms.json 里。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "[Berserk] ",
+          "zh": "[狂战士] "
+        },
+        {
+          "color": "§f",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§c",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§f",
+          "text": " -> ",
+          "zh": " → "
+        },
+        {
+          "color": "§a",
+          "text": "%3$s",
+          "zh": "%3$s"
+        }
+      ]
+    },
+    {
+      "id": "run_class_stat_upgrade_mage",
+      "context": "选好职业后逐行列出该职业各项数值的提升",
+      "raw": "§a[Mage] §f%1$s §c%2$s§f -> §a%3$s",
+      "text": "[Mage] %1$s %2$s -> %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "数值名称，最多六个词",
+          "type": "raw",
+          "example": "Walk Speed"
+        },
+        {
+          "token": "%2$s",
+          "desc": "升级前的数值",
+          "type": "number",
+          "example": "40.4"
+        },
+        {
+          "token": "%3$s",
+          "desc": "升级后的数值",
+          "type": "number",
+          "example": "70.4"
+        }
+      ],
+      "gloss": "数值名不能用 category_name：它最多只收五个词，而 「Lust For Blood Damage Increase Cap」有六个，于是引擎改从第五个词后面切开，把「Cap 600%」当成了旧值——整行看着没变，词表却查了一个根本不是名字的字符串。把旧值新值收紧成 number 之后，数值名只能整段被取走。职业名写死在模板里：模板去掉占位符后必须至少还剩一个词。数值名的中文在 _shared/Terms.json 里。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "[Mage] ",
+          "zh": "[法师] "
+        },
+        {
+          "color": "§f",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§c",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§f",
+          "text": " -> ",
+          "zh": " → "
+        },
+        {
+          "color": "§a",
+          "text": "%3$s",
+          "zh": "%3$s"
+        }
+      ]
+    },
+    {
+      "id": "run_class_stat_upgrade_healer",
+      "context": "选好职业后逐行列出该职业各项数值的提升",
+      "raw": "§a[Healer] §f%1$s §c%2$s§f -> §a%3$s",
+      "text": "[Healer] %1$s %2$s -> %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "数值名称，最多六个词",
+          "type": "raw",
+          "example": "Walk Speed"
+        },
+        {
+          "token": "%2$s",
+          "desc": "升级前的数值",
+          "type": "number",
+          "example": "40.4"
+        },
+        {
+          "token": "%3$s",
+          "desc": "升级后的数值",
+          "type": "number",
+          "example": "70.4"
+        }
+      ],
+      "gloss": "数值名不能用 category_name：它最多只收五个词，而 「Lust For Blood Damage Increase Cap」有六个，于是引擎改从第五个词后面切开，把「Cap 600%」当成了旧值——整行看着没变，词表却查了一个根本不是名字的字符串。把旧值新值收紧成 number 之后，数值名只能整段被取走。职业名写死在模板里：模板去掉占位符后必须至少还剩一个词。数值名的中文在 _shared/Terms.json 里。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "[Healer] ",
+          "zh": "[治疗师] "
+        },
+        {
+          "color": "§f",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§c",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§f",
+          "text": " -> ",
+          "zh": " → "
+        },
+        {
+          "color": "§a",
+          "text": "%3$s",
+          "zh": "%3$s"
+        }
+      ]
+    },
+    {
+      "id": "run_class_stat_upgrade_archer",
+      "context": "选好职业后逐行列出该职业各项数值的提升",
+      "raw": "§a[Archer] §f%1$s §c%2$s§f -> §a%3$s",
+      "text": "[Archer] %1$s %2$s -> %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "数值名称，最多六个词",
+          "type": "raw",
+          "example": "Walk Speed"
+        },
+        {
+          "token": "%2$s",
+          "desc": "升级前的数值",
+          "type": "number",
+          "example": "40.4"
+        },
+        {
+          "token": "%3$s",
+          "desc": "升级后的数值",
+          "type": "number",
+          "example": "70.4"
+        }
+      ],
+      "gloss": "数值名不能用 category_name：它最多只收五个词，而 「Lust For Blood Damage Increase Cap」有六个，于是引擎改从第五个词后面切开，把「Cap 600%」当成了旧值——整行看着没变，词表却查了一个根本不是名字的字符串。把旧值新值收紧成 number 之后，数值名只能整段被取走。职业名写死在模板里：模板去掉占位符后必须至少还剩一个词。数值名的中文在 _shared/Terms.json 里。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "[Archer] ",
+          "zh": "[弓箭手] "
+        },
+        {
+          "color": "§f",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§c",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§f",
+          "text": " -> ",
+          "zh": " → "
+        },
+        {
+          "color": "§a",
+          "text": "%3$s",
+          "zh": "%3$s"
+        }
+      ]
+    },
+    {
+      "id": "run_class_stat_upgrade_tank",
+      "context": "选好职业后逐行列出该职业各项数值的提升",
+      "raw": "§a[Tank] §f%1$s §c%2$s§f -> §a%3$s",
+      "text": "[Tank] %1$s %2$s -> %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "数值名称，最多六个词",
+          "type": "raw",
+          "example": "Walk Speed"
+        },
+        {
+          "token": "%2$s",
+          "desc": "升级前的数值",
+          "type": "number",
+          "example": "40.4"
+        },
+        {
+          "token": "%3$s",
+          "desc": "升级后的数值",
+          "type": "number",
+          "example": "70.4"
+        }
+      ],
+      "gloss": "数值名不能用 category_name：它最多只收五个词，而 「Lust For Blood Damage Increase Cap」有六个，于是引擎改从第五个词后面切开，把「Cap 600%」当成了旧值——整行看着没变，词表却查了一个根本不是名字的字符串。把旧值新值收紧成 number 之后，数值名只能整段被取走。职业名写死在模板里：模板去掉占位符后必须至少还剩一个词。数值名的中文在 _shared/Terms.json 里。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "[Tank] ",
+          "zh": "[坦克] "
+        },
+        {
+          "color": "§f",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§c",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§f",
+          "text": " -> ",
+          "zh": " → "
+        },
+        {
+          "color": "§a",
+          "text": "%3$s",
+          "zh": "%3$s"
+        }
+      ]
+    },
+    {
+      "id": "run_class_milestone",
+      "context": "职业里程碑：累计伤害或治疗到达一档时播报，末尾是达成用时",
+      "raw": "§e§l%1$s Milestone §e%2$s§7: You have dealt §c%3$s§7 %4$s Damage so far! §a%5$s",
+      "text": "%1$s Milestone %2$s: You have dealt %3$s %4$s Damage so far! %5$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "职业名",
+          "type": "category_name",
+          "example": "Berserk"
+        },
+        {
+          "token": "%2$s",
+          "desc": "里程碑档位，圈数字符号",
+          "type": "raw",
+          "example": "❶"
+        },
+        {
+          "token": "%3$s",
+          "desc": "累计伤害",
+          "type": "number",
+          "example": "850,000"
+        },
+        {
+          "token": "%4$s",
+          "desc": "伤害种类，Total 或 Ranged",
+          "type": "category_name",
+          "example": "Total"
+        },
+        {
+          "token": "%5$s",
+          "desc": "达成用时",
+          "type": "time",
+          "example": "01m 02s"
+        }
+      ],
+      "gloss": "so far 在中文里由「累计」这个词承担，不必另译成「到目前为止」。　达成用时用 type: time（DURATION），引擎会把 01m 02s 渲染成 01分02秒；写成 raw 则原样留着两个英文字母。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§e§l",
+          "text": "%1$s Milestone %2$s",
+          "zh": "%1$s里程碑 %2$s"
+        },
+        {
+          "color": "§7",
+          "text": ": You have dealt ",
+          "zh": ": 累计造成 "
+        },
+        {
+          "color": "§c",
+          "text": "%3$s",
+          "zh": "%3$s"
+        },
+        {
+          "color": "§7",
+          "text": " %4$s Damage so far! ",
+          "zh": " 点%4$s伤害! "
+        },
+        {
+          "color": "§a",
+          "text": "%5$s",
+          "zh": "%5$s"
+        }
+      ]
+    },
+    {
+      "id": "run_healer_milestone",
+      "context": "治疗师的里程碑，统计的是治疗量加伤害量",
+      "raw": "§e§l%1$s Milestone §e%2$s§7: You have done a total of §a%3$s§7 healing and damage so far! §a%4$s",
+      "text": "%1$s Milestone %2$s: You have done a total of %3$s healing and damage so far! %4$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "职业名，实际只有 Healer",
+          "type": "category_name",
+          "example": "Healer"
+        },
+        {
+          "token": "%2$s",
+          "desc": "里程碑档位，圈数字符号",
+          "type": "raw",
+          "example": "❶"
+        },
+        {
+          "token": "%3$s",
+          "desc": "累计治疗量与伤害量之和",
+          "type": "number",
+          "example": "75,000"
+        },
+        {
+          "token": "%4$s",
+          "desc": "达成用时",
+          "type": "time",
+          "example": "01m 02s"
+        }
+      ],
+      "gloss": "　达成用时用 type: time（DURATION），引擎会把 01m 02s 渲染成 01分02秒；写成 raw 则原样留着两个英文字母。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§e§l",
+          "text": "%1$s Milestone %2$s",
+          "zh": "%1$s里程碑 %2$s"
+        },
+        {
+          "color": "§7",
+          "text": ": You have done a total of ",
+          "zh": ": 累计治疗与伤害合计 "
+        },
+        {
+          "color": "§a",
+          "text": "%3$s",
+          "zh": "%3$s"
+        },
+        {
+          "color": "§7",
+          "text": " healing and damage so far! ",
+          "zh": " 点! "
+        },
+        {
+          "color": "§a",
+          "text": "%4$s",
+          "zh": "%4$s"
+        }
+      ]
+    },
+    {
+      "id": "run_key_obtained",
+      "context": "有人拿到了钥匙或其他掉落物的广播",
+      "raw": "%1$s§f §ehas obtained %2$s§e!",
+      "text": "%1$s has obtained %2$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "带称号的玩家名",
+          "type": "raw",
+          "example": "[MVP+] inkkni"
+        },
+        {
+          "token": "%2$s",
+          "desc": "物品名",
+          "type": "item_name",
+          "example": "Wither Key"
+        }
+      ],
+      "gloss": "物品名保持英文（集市和拍卖行按英文名搜索）。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§e",
+          "text": " has obtained %2$s!",
+          "zh": " 获得了 %2$s!"
+        }
+      ]
+    },
+    {
+      "id": "run_key_picked_up",
+      "context": "钥匙被队友捡走",
+      "raw": "§eA §8%s Key§e was picked up!",
+      "text": "A %s Key was picked up!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "钥匙种类，Wither 或 Blood",
+          "type": "category_name",
+          "example": "Wither"
+        }
+      ],
+      "gloss": "英文的不定冠词 a 在中文里不体现。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "A ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§8",
+          "text": "%s Key",
+          "zh": "%s钥匙"
+        },
+        {
+          "color": "§e",
+          "text": " was picked up!",
+          "zh": "已被捡起!"
+        }
+      ]
+    },
+    {
+      "id": "run_right_click_door",
+      "context": "拿到钥匙后提示怎么开门",
+      "raw": "§e§lRIGHT CLICK §7on a §8%s §7door to open it. This key can only be used to open §a1§7 door!",
+      "text": "RIGHT CLICK on a %s door to open it. This key can only be used to open 1 door!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "门的种类，WITHER 或 BLOOD",
+          "type": "category_name",
+          "example": "WITHER"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§e§l",
+          "text": "RIGHT CLICK ",
+          "zh": "右键点击"
+        },
+        {
+          "color": "§7",
+          "text": "on a ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§8",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": " door to open it. This key can only be used to open ",
+          "zh": "门即可开启。一把钥匙只能开 "
+        },
+        {
+          "color": "§a",
+          "text": "1",
+          "zh": "1"
+        },
+        {
+          "color": "§7",
+          "text": " door!",
+          "zh": " 扇门!"
+        }
+      ]
+    },
+    {
+      "id": "run_opened_wither_door",
+      "context": "有人开了一扇凋零门",
+      "raw": "§b%s§a opened a §8§lWITHER §adoor!",
+      "text": "%s opened a WITHER door!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "玩家名",
+          "type": "player_name",
+          "example": "inkkni"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§a",
+          "text": " opened a ",
+          "zh": " 打开了一扇"
+        },
+        {
+          "color": "§8§l",
+          "text": "WITHER ",
+          "zh": "凋零"
+        },
+        {
+          "color": "§a",
+          "text": "door!",
+          "zh": "门!"
+        }
+      ]
+    },
+    {
+      "id": "run_blood_door_opened",
+      "context": "血门开启，Boss 房前的最后一道门",
+      "raw": "§cThe §c§lBLOOD DOOR§c has been opened!",
+      "text": "The BLOOD DOOR has been opened!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "The ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§c§l",
+          "text": "BLOOD DOOR",
+          "zh": "血门"
+        },
+        {
+          "color": "§c",
+          "text": " has been opened!",
+          "zh": "已开启!"
+        }
+      ]
+    },
+    {
+      "id": "run_shiver_down_spine",
+      "context": "血门开启后的气氛提示",
+      "raw": "§5A shiver runs down your spine...",
+      "text": "A shiver runs down your spine...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "一股寒意顺着脊背爬上来……"
+    },
+    {
+      "id": "run_hear_something_opening",
+      "context": "队友在别处开了门或拉了拉杆",
+      "raw": "§cYou hear the sound of something opening...",
+      "text": "You hear the sound of something opening...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你听见什么东西打开的声音……"
+    },
+    {
+      "id": "run_lever_already_used",
+      "context": "重复拉同一个拉杆",
+      "raw": "§cThis lever has already been used.",
+      "text": "This lever has already been used.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这个拉杆已经用过了。"
+    },
+    {
+      "id": "run_chest_already_searched",
+      "context": "重复打开同一个秘密箱子",
+      "raw": "§cThis chest has already been searched!",
+      "text": "This chest has already been searched!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这个箱子已经搜过了!"
+    },
+    {
+      "id": "run_dungeon_buff",
+      "context": "捡到地牢增益，末尾括号里是剩余时间",
+      "raw": "§6§lDUNGEON BUFF! §fYou found a §dBlessing of %1$s %2$s§f!",
+      "text": "DUNGEON BUFF! You found a Blessing of %1$s %2$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "祝福种类",
+          "type": "category_name",
+          "example": "Life"
+        },
+        {
+          "token": "%2$s",
+          "desc": "祝福等级（罗马数字）",
+          "type": "tier",
+          "example": "II"
+        }
+      ],
+      "gloss": "英文的中心词 Blessing 在前，中文放后面：Blessing of Life → 生命祝福。种类名的中文在 _shared/Terms.json 里。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§6§l",
+          "text": "DUNGEON BUFF! ",
+          "zh": "地牢增益! "
+        },
+        {
+          "color": "§f",
+          "text": "You found a ",
+          "zh": "你找到了"
+        },
+        {
+          "color": "§d",
+          "text": "Blessing of %1$s %2$s",
+          "zh": "%1$s祝福 %2$s"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "run_dungeon_buff_timed",
+      "context": "捡到地牢增益，括号里是剩余时间",
+      "raw": "§6§lDUNGEON BUFF! §fYou found a §dBlessing of %1$s %2$s§f! (§a%3$s§f)",
+      "text": "DUNGEON BUFF! You found a Blessing of %1$s %2$s! (%3$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "祝福种类",
+          "type": "category_name",
+          "example": "Stone"
+        },
+        {
+          "token": "%2$s",
+          "desc": "祝福等级（罗马数字）",
+          "type": "tier",
+          "example": "V"
+        },
+        {
+          "token": "%3$s",
+          "desc": "剩余时间",
+          "type": "raw",
+          "example": "41s"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§6§l",
+          "text": "DUNGEON BUFF! ",
+          "zh": "地牢增益! "
+        },
+        {
+          "color": "§f",
+          "text": "You found a ",
+          "zh": "你找到了"
+        },
+        {
+          "color": "§d",
+          "text": "Blessing of %1$s %2$s",
+          "zh": "%1$s祝福 %2$s"
+        },
+        {
+          "color": "§f",
+          "text": "! (",
+          "zh": "，剩余 "
+        },
+        {
+          "color": "§a",
+          "text": "%3$s",
+          "zh": "%3$s"
+        },
+        {
+          "color": "§f",
+          "text": ")",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "run_found_wither_essence",
+      "context": "找到凋零精华，全队各得一份",
+      "raw": "§fYou found a §dWither Essence§f! Everyone gains an extra essence!",
+      "text": "You found a Wither Essence! Everyone gains an extra essence!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "You found a ",
+          "zh": "你找到了"
+        },
+        {
+          "color": "§d",
+          "text": "Wither Essence",
+          "zh": "凋零精华"
+        },
+        {
+          "color": "§f",
+          "text": "! Everyone gains an extra essence!",
+          "zh": "! 全队各额外获得一份精华!"
+        }
+      ]
+    },
+    {
+      "id": "run_essence_found",
+      "context": "开箱得到精华",
+      "raw": "§6§lESSENCE! §fYou found §6x10 %s Essence§f!",
+      "text": "ESSENCE! You found x10 %s Essence!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "精华种类",
+          "type": "category_name",
+          "example": "Gold"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§6§l",
+          "text": "ESSENCE! ",
+          "zh": "精华! "
+        },
+        {
+          "color": "§f",
+          "text": "You found ",
+          "zh": "你找到了 "
+        },
+        {
+          "color": "§6",
+          "text": "x10 %s Essence",
+          "zh": "10 份%s精华"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "run_ability_ready",
+      "context": "终极技能冷却结束",
+      "raw": "§6%s§a is ready to use! Press §6§lDROP§a to activate it!",
+      "text": "%s is ready to use! Press DROP to activate it!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "技能名",
+          "type": "category_name",
+          "example": "Ragnarok"
+        }
+      ],
+      "gloss": "技能名的中文在 _shared/Terms.json 里。DROP 指丢弃键，中文按键名译。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§a",
+          "text": " is ready to use! Press ",
+          "zh": " 已就绪! 按 "
+        },
+        {
+          "color": "§6§l",
+          "text": "DROP",
+          "zh": "丢弃键"
+        },
+        {
+          "color": "§a",
+          "text": " to activate it!",
+          "zh": "释放!"
+        }
+      ]
+    },
+    {
+      "id": "run_used_ability",
+      "context": "释放了技能",
+      "raw": "§aUsed §6%s§a!",
+      "text": "Used %s!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "技能名",
+          "type": "category_name",
+          "example": "Ragnarok"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Used ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§6",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§a",
+          "text": "!",
+          "zh": " 已释放!"
+        }
+      ]
+    },
+    {
+      "id": "run_ultimate_cooldown",
+      "context": "终极技能还在冷却",
+      "raw": "§cYour Ultimate is currently on cooldown for %s more seconds.",
+      "text": "Your Ultimate is currently on cooldown for %s more seconds.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "剩余冷却秒数",
+          "type": "number",
+          "example": "60"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "终极技能还需冷却 %s 秒。"
+    },
+    {
+      "id": "run_regular_ability_cooldown",
+      "context": "普通技能还在冷却",
+      "raw": "§cYour Regular Ability is currently on cooldown for %s more seconds.",
+      "text": "Your Regular Ability is currently on cooldown for %s more seconds.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "剩余冷却秒数",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "普通技能还需冷却 %s 秒。"
+    },
+    {
+      "id": "run_aoe_hit_enemies",
+      "context": "范围技能命中若干敌人",
+      "raw": "§7Your %1$s hit §c%2$s §7enemies for §c%3$s §7damage.",
+      "text": "Your %1$s hit %2$s enemies for %3$s damage.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "武器或技能名",
+          "type": "item_name",
+          "example": "Giant's Sword"
+        },
+        {
+          "token": "%2$s",
+          "desc": "命中的敌人数",
+          "type": "number",
+          "example": "12"
+        },
+        {
+          "token": "%3$s",
+          "desc": "总伤害",
+          "type": "number",
+          "example": "642,438"
+        }
+      ],
+      "gloss": "英文数量为 1 时写 enemy，引擎会把复数的 s 变成可选，所以只写复数这一条。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Your %1$s hit ",
+          "zh": "你的 %1$s 命中 "
+        },
+        {
+          "color": "§c",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": " enemies for ",
+          "zh": " 个敌人，造成 "
+        },
+        {
+          "color": "§c",
+          "text": "%3$s",
+          "zh": "%3$s"
+        },
+        {
+          "color": "§7",
+          "text": " damage.",
+          "zh": " 点伤害。"
+        }
+      ]
+    },
+    {
+      "id": "run_boss_hit_you",
+      "context": "Boss 的招式命中自己",
+      "raw": "§c%1$s's§7 %2$s hit you for §c%3$s§7 damage.",
+      "text": "%1$s's %2$s hit you for %3$s damage.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Boss 名（专有名，保持英文）",
+          "type": "npc_name",
+          "example": "Maxor"
+        },
+        {
+          "token": "%2$s",
+          "desc": "招式名",
+          "type": "category_name",
+          "example": "Shadow Wave"
+        },
+        {
+          "token": "%3$s",
+          "desc": "伤害值",
+          "type": "number",
+          "example": "1,800"
+        }
+      ],
+      "gloss": "所有格 's 在中文里写成「的」；招式名的中文在 _shared/Terms.json 里。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "%1$s's",
+          "zh": "%1$s 的"
+        },
+        {
+          "color": "§7",
+          "text": " %2$s hit you for ",
+          "zh": "%2$s命中了你，造成 "
+        },
+        {
+          "color": "§c",
+          "text": "%3$s",
+          "zh": "%3$s"
+        },
+        {
+          "color": "§7",
+          "text": " damage.",
+          "zh": " 点伤害。"
+        }
+      ]
+    },
+    {
+      "id": "run_boss_hit_you_true",
+      "context": "Boss 的招式对自己造成真实伤害",
+      "raw": "§c%1$s's§7 %2$s hit you for §c%3$s§7 true damage.",
+      "text": "%1$s's %2$s hit you for %3$s true damage.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Boss 名（专有名，保持英文）",
+          "type": "npc_name",
+          "example": "Storm"
+        },
+        {
+          "token": "%2$s",
+          "desc": "招式名",
+          "type": "category_name",
+          "example": "Giga Lightning"
+        },
+        {
+          "token": "%3$s",
+          "desc": "伤害值",
+          "type": "number",
+          "example": "12,314.7"
+        }
+      ],
+      "gloss": "真实伤害无视防御，是 SkyBlock 的固定说法。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "%1$s's",
+          "zh": "%1$s 的"
+        },
+        {
+          "color": "§7",
+          "text": " %2$s hit you for ",
+          "zh": "%2$s命中了你，造成 "
+        },
+        {
+          "color": "§c",
+          "text": "%3$s",
+          "zh": "%3$s"
+        },
+        {
+          "color": "§7",
+          "text": " true damage.",
+          "zh": " 点真实伤害。"
+        }
+      ]
+    },
+    {
+      "id": "run_mob_struck_you",
+      "context": "小怪的招式命中自己",
+      "raw": "§cThe %1$s struck you for %2$s damage!",
+      "text": "The %1$s struck you for %2$s damage!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "怪物名或招式名",
+          "type": "mob_name",
+          "example": "Stormy Skeleton Soldier"
+        },
+        {
+          "token": "%2$s",
+          "desc": "伤害值",
+          "type": "number",
+          "example": "883.9"
+        }
+      ],
+      "gloss": "英文的定冠词 The 在中文里不体现；怪物名的中文在 _shared/Terms.json 里。",
+      "translate": true,
+      "zh": "%1$s命中了你，造成 %2$s 点伤害!"
+    },
+    {
+      "id": "run_trap_hit_you",
+      "context": "机关命中自己",
+      "raw": "§cThe %1$s Trap hit you for %2$s damage!",
+      "text": "The %1$s Trap hit you for %2$s damage!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "机关种类",
+          "type": "category_name",
+          "example": "Tripwire"
+        },
+        {
+          "token": "%2$s",
+          "desc": "伤害值",
+          "type": "number",
+          "example": "1,161.8"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s陷阱命中了你，造成 %2$s 点伤害!"
+    },
+    {
+      "id": "run_flamethrower_hit_you",
+      "context": "喷火器机关命中自己",
+      "raw": "§cThe Flamethrower hit you for %s damage!",
+      "text": "The Flamethrower hit you for %s damage!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "伤害值",
+          "type": "number",
+          "example": "1,453.3"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "喷火器命中了你，造成 %s 点伤害!"
+    },
+    {
+      "id": "run_crypt_skull_exploded",
+      "context": "墓穴凋零头颅在身边炸开",
+      "raw": "§7A Crypt Wither Skull exploded, hitting you for §c%s§7 damage.",
+      "text": "A Crypt Wither Skull exploded, hitting you for %s damage.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "伤害值",
+          "type": "number",
+          "example": "23,760"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "A Crypt Wither Skull exploded, hitting you for ",
+          "zh": "墓穴凋零头颅爆炸，对你造成 "
+        },
+        {
+          "color": "§c",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": " damage.",
+          "zh": " 点伤害。"
+        }
+      ]
+    },
+    {
+      "id": "run_mine_exploded",
+      "context": "地雷在身边炸开",
+      "raw": "§7A §9%1$s§7 exploded, hitting you for §c%2$s§7 damage.",
+      "text": "A %1$s exploded, hitting you for %2$s damage.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "地雷种类",
+          "type": "mob_name",
+          "example": "Chicken Mine"
+        },
+        {
+          "token": "%2$s",
+          "desc": "伤害值",
+          "type": "number",
+          "example": "6,638.2"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "A ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§9",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " exploded, hitting you for ",
+          "zh": " 爆炸，对你造成 "
+        },
+        {
+          "color": "§c",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": " damage.",
+          "zh": " 点伤害。"
+        }
+      ]
+    },
+    {
+      "id": "run_spirit_lightning_struck",
+      "context": "灵魂鸡的闪电命中自己",
+      "raw": "§7The §9%1$s§7's %2$s struck you for §c%3$s§7 damage.",
+      "text": "The %1$s's %2$s struck you for %3$s damage.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "怪物名",
+          "type": "mob_name",
+          "example": "Spirit Chicken"
+        },
+        {
+          "token": "%2$s",
+          "desc": "招式名",
+          "type": "raw",
+          "example": "lightning"
+        },
+        {
+          "token": "%3$s",
+          "desc": "伤害值",
+          "type": "number",
+          "example": "1,392"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "The ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§9",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "'s %2$s struck you for ",
+          "zh": " 的%2$s命中了你，造成 "
+        },
+        {
+          "color": "§c",
+          "text": "%3$s",
+          "zh": "%3$s"
+        },
+        {
+          "color": "§7",
+          "text": " damage.",
+          "zh": " 点伤害。"
+        }
+      ]
+    },
+    {
+      "id": "run_warriors_charge",
+      "context": "Scarf 的战士小怪冲锋命中自己",
+      "raw": "§7The Warrior's Charge struck you for §c%s§7 damage.",
+      "text": "The Warrior's Charge struck you for %s damage.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "伤害值",
+          "type": "number",
+          "example": "864"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "The Warrior's Charge struck you for ",
+          "zh": "战士的冲锋命中了你，造成 "
+        },
+        {
+          "color": "§c",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": " damage.",
+          "zh": " 点伤害。"
+        }
+      ]
+    },
+    {
+      "id": "run_named_mob_hit_you",
+      "context": "有名字的小 Boss 用某个招式命中自己",
+      "raw": "§c§l%1$s§c hit you with §e%2$s §cfor %3$s damage!",
+      "text": "%1$s hit you with %2$s for %3$s damage!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "怪物名",
+          "type": "mob_name",
+          "example": "The Giant One"
+        },
+        {
+          "token": "%2$s",
+          "desc": "招式名",
+          "type": "category_name",
+          "example": "Stomp"
+        },
+        {
+          "token": "%3$s",
+          "desc": "伤害值",
+          "type": "number",
+          "example": "1,467"
+        }
+      ],
+      "gloss": "英文把武器放在句中，中文把它提到动词前面，所以三段要用 order 调换。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§c§l",
+          "text": "%1$s",
+          "zh": "%1$s",
+          "order": 0
+        },
+        {
+          "color": "§c",
+          "text": " hit you with ",
+          "zh": " 用",
+          "order": 1
+        },
+        {
+          "color": "§e",
+          "text": "%2$s",
+          "zh": "%2$s",
+          "order": 2
+        },
+        {
+          "color": "§c",
+          "text": " for %3$s damage!",
+          "zh": "命中了你，造成 %3$s 点伤害!",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "id": "run_bone_plating",
+      "context": "弓箭手的骨甲抵消了一部分伤害",
+      "raw": "§eYour bone plating reduced the damage you took by §c%s§e!",
+      "text": "Your bone plating reduced the damage you took by %s!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "减免的伤害值",
+          "type": "number",
+          "example": "1,738.1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Your bone plating reduced the damage you took by ",
+          "zh": "骨甲为你减免了 "
+        },
+        {
+          "color": "§c",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§e",
+          "text": "!",
+          "zh": " 点伤害!"
+        }
+      ]
+    },
+    {
+      "id": "run_healed_yourself",
+      "context": "治疗药水或技能治好了自己",
+      "raw": "§a§lYou healed yourself for %s health!",
+      "text": "You healed yourself for %s health!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "回复的生命值",
+          "type": "number",
+          "example": "1,875"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你为自己回复了 %s 点生命!"
+    },
+    {
+      "id": "run_picked_up_orb",
+      "context": "捡到治疗师放出的光球",
+      "raw": "§c◕ §eYou picked up a %1$s Orb from §b%2$s §ehealing you for §c%3$s❤ §eand granting you +§a%4$s §e%5$s for §b%6$s §eseconds.",
+      "text": "◕ You picked up a %1$s Orb from %2$s healing you for %3$s❤ and granting you +%4$s %5$s for %6$s seconds.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "光球种类",
+          "type": "category_name",
+          "example": "Defense"
+        },
+        {
+          "token": "%2$s",
+          "desc": "放出光球的玩家名",
+          "type": "player_name",
+          "example": "inkkni"
+        },
+        {
+          "token": "%3$s",
+          "desc": "回复的生命值",
+          "type": "number",
+          "example": "0"
+        },
+        {
+          "token": "%4$s",
+          "desc": "属性加成",
+          "type": "number",
+          "example": "20%"
+        },
+        {
+          "token": "%5$s",
+          "desc": "加成的属性名",
+          "type": "category_name",
+          "example": "Defense"
+        },
+        {
+          "token": "%6$s",
+          "desc": "持续秒数",
+          "type": "number",
+          "example": "10"
+        }
+      ],
+      "gloss": "英文一句话把三件事串着说，中文按「捡到谁的球 → 回了多少血 → 得到什么加成 → 持续多久」重新断句，语序不同但内容一一对应；这样正好和原文的颜色分段顺序一致，不需要 order。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "◕ ",
+          "zh": "◕ "
+        },
+        {
+          "color": "§e",
+          "text": "You picked up a %1$s Orb from ",
+          "zh": "你捡起了 "
+        },
+        {
+          "color": "§b",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§e",
+          "text": " healing you for ",
+          "zh": " 放的%1$s光球，回复了 "
+        },
+        {
+          "color": "§c",
+          "text": "%3$s❤",
+          "zh": "%3$s❤"
+        },
+        {
+          "color": "§e",
+          "text": " and granting you +",
+          "zh": "，并获得 +"
+        },
+        {
+          "color": "§a",
+          "text": "%4$s",
+          "zh": "%4$s"
+        },
+        {
+          "color": "§e",
+          "text": " %5$s for ",
+          "zh": " %5$s，持续 "
+        },
+        {
+          "color": "§b",
+          "text": "%6$s",
+          "zh": "%6$s"
+        },
+        {
+          "color": "§e",
+          "text": " seconds.",
+          "zh": " 秒。"
+        }
+      ]
+    },
+    {
+      "id": "run_bone_plating_kill_combo",
+      "context": "连杀数达到一档",
+      "raw": "§6§l+%s Kill Combo",
+      "text": "+%s Kill Combo",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "连杀数",
+          "type": "number",
+          "example": "75"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s 连杀"
+    },
+    {
+      "id": "run_kill_combo_reward",
+      "context": "连杀达到一档并附带智慧加成",
+      "raw": "§5§l+%1$s Kill Combo §3+%2$s☯ Combat Wisdom",
+      "text": "+%1$s Kill Combo +%2$s☯ Combat Wisdom",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "连杀数",
+          "type": "number",
+          "example": "20"
+        },
+        {
+          "token": "%2$s",
+          "desc": "战斗智慧加成",
+          "type": "number",
+          "example": "15"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§5§l",
+          "text": "+%1$s Kill Combo ",
+          "zh": "+%1$s 连杀 "
+        },
+        {
+          "color": "§3",
+          "text": "+%2$s☯ Combat Wisdom",
+          "zh": "+%2$s☯ 战斗智慧"
+        }
+      ]
+    },
+    {
+      "id": "run_phoenix_saved_you",
+      "context": "凤凰宠物在致命伤害前救了你一命",
+      "raw": "§eYour §cPhoenix Pet §esaved you from certain death!",
+      "text": "Your Phoenix Pet saved you from certain death!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Your ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§c",
+          "text": "Phoenix Pet",
+          "zh": "凤凰宠物"
+        },
+        {
+          "color": "§e",
+          "text": " saved you from certain death!",
+          "zh": "把你从必死的一击里拉了回来!"
+        }
+      ]
+    },
+    {
+      "id": "run_you_were_killed_by",
+      "context": "自己被击杀，变成幽灵",
+      "raw": "§c ☠ §7You were killed by %s and became a ghost.",
+      "text": " ☠ You were killed by %s and became a ghost.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "击杀者名字",
+          "type": "mob_name",
+          "example": "Goldor"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§c",
+          "text": " ☠ ",
+          "zh": " ☠ "
+        },
+        {
+          "color": "§7",
+          "text": "You were killed by %s and became a ghost.",
+          "zh": "你被 %s 击杀，变成了幽灵。"
+        }
+      ]
+    },
+    {
+      "id": "run_reviving_player",
+      "context": "正在扶起倒地的队友",
+      "raw": "§a ❣ §7You are reviving §b%s§7!",
+      "text": " ❣ You are reviving %s!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "被救队友的玩家名",
+          "type": "player_name",
+          "example": "inkkni"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§a",
+          "text": " ❣ ",
+          "zh": " ❣ "
+        },
+        {
+          "color": "§7",
+          "text": "You are reviving ",
+          "zh": "你正在复活 "
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "run_revive_stone_used",
+      "context": "复活石自动生效",
+      "raw": "§aYour Revive Stone revived you and broke!",
+      "text": "Your Revive Stone revived you and broke!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "复活石让你复活，随后碎掉了!"
+    },
+    {
+      "id": "run_no_potions_rest_of_run",
+      "context": "喝过药水后本次挑战不能再喝",
+      "raw": "§aYou can no longer consume or splash any potions during the remainder of this Dungeon run!",
+      "text": "You can no longer consume or splash any potions during the remainder of this Dungeon run!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "本次地牢挑战剩下的时间里，你不能再喝药水或泼洒药水了!"
+    },
+    {
+      "id": "run_energy_crystals_active",
+      "context": "第七层第一阶段：能量水晶已激活",
+      "raw": "§c%s§a Energy Crystals are now active!",
+      "text": "%s Energy Crystals are now active!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "已激活数量／总数",
+          "type": "raw",
+          "example": "1/2"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§a",
+          "text": " Energy Crystals are now active!",
+          "zh": " 颗能量水晶已激活!"
+        }
+      ]
+    },
+    {
+      "id": "run_energy_laser_charging",
+      "context": "第七层第一阶段：能量激光开始蓄力",
+      "raw": "§aThe Energy Laser is charging up!",
+      "text": "The Energy Laser is charging up!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "能量激光正在蓄力!"
+    },
+    {
+      "id": "run_picked_up_energy_crystal",
+      "context": "第七层第一阶段：有人捡起了能量水晶",
+      "raw": "§b%s§a picked up an §bEnergy Crystal§a!",
+      "text": "%s picked up an Energy Crystal!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "玩家名",
+          "type": "player_name",
+          "example": "inkkni"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§a",
+          "text": " picked up an ",
+          "zh": " 捡起了"
+        },
+        {
+          "color": "§b",
+          "text": "Energy Crystal",
+          "zh": "能量水晶"
+        },
+        {
+          "color": "§a",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "run_boss_enraged",
+      "context": "第七层 Boss 进入狂暴",
+      "raw": "§c⚠ %s is enraged! ⚠",
+      "text": "⚠ %s is enraged! ⚠",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "Boss 名（专有名，保持英文）",
+          "type": "npc_name",
+          "example": "Maxor"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "⚠ %s 狂暴了! ⚠"
+    },
+    {
+      "id": "run_terminal_activated",
+      "context": "第七层第三阶段：有人激活了终端／装置／拉杆",
+      "raw": "§b%1$s§a %2$s a %3$s! (§c%4$s§a)",
+      "text": "%1$s %2$s a %3$s! (%4$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "玩家名",
+          "type": "player_name",
+          "example": "inkkni"
+        },
+        {
+          "token": "%2$s",
+          "desc": "动作，activated 或 completed",
+          "type": "raw",
+          "example": "activated"
+        },
+        {
+          "token": "%3$s",
+          "desc": "目标，terminal / device / lever",
+          "type": "raw",
+          "example": "terminal"
+        },
+        {
+          "token": "%4$s",
+          "desc": "进度，已完成／总数",
+          "type": "raw",
+          "example": "1/7"
+        }
+      ],
+      "gloss": "动作词与目标词的中文都在 _shared/Terms.json 里。原文用括号补进度，中文改成「，进度 N/7」——半角感叹号紧接全角括号，checkTranslations 的标点间距检查会拦。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§a",
+          "text": " %2$s a %3$s! (%4$s)",
+          "zh": " %2$s了一个 %3$s，进度 %4$s"
+        }
+      ]
+    },
+    {
+      "id": "run_wrong_number",
+      "context": "第七层终端谜题按错了",
+      "raw": "§cWrong number!",
+      "text": "Wrong number!",
+      "placeholders": [],
+      "gloss": "指按错了序号，不是「打错电话」。",
+      "translate": true,
+      "zh": "序号按错了!"
+    },
+    {
+      "id": "run_gate_open_in_5",
+      "context": "第七层第三阶段：闸门即将开启",
+      "raw": "§aThe gate will open in 5 seconds!",
+      "text": "The gate will open in 5 seconds!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "闸门将在 5 秒后开启!"
+    },
+    {
+      "id": "run_gate_destroyed",
+      "context": "第七层第三阶段：闸门被摧毁",
+      "raw": "§aThe gate has been destroyed!",
+      "text": "The gate has been destroyed!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "闸门已被摧毁!"
+    },
+    {
+      "id": "run_laser_guardian_focus",
+      "context": "第三层：激光守卫开始蓄聚焦光束",
+      "raw": "§c⚠ The §4Laser Guardian§c is charging up their §e§lFocus Beam§c! ⚠",
+      "text": "⚠ The Laser Guardian is charging up their Focus Beam! ⚠",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "⚠ The ",
+          "zh": "⚠ "
+        },
+        {
+          "color": "§4",
+          "text": "Laser Guardian",
+          "zh": "激光守卫"
+        },
+        {
+          "color": "§c",
+          "text": " is charging up their ",
+          "zh": "正在蓄力"
+        },
+        {
+          "color": "§e§l",
+          "text": "Focus Beam",
+          "zh": "聚焦光束"
+        },
+        {
+          "color": "§c",
+          "text": "! ⚠",
+          "zh": "! ⚠"
+        }
+      ]
+    },
+    {
+      "id": "run_guardian_laser_hit",
+      "context": "第三层：守卫的光束命中自己",
+      "raw": "§7The %1$s Guardians's %2$s hit you for §c%3$s§7 damage.",
+      "text": "The %1$s Guardians's %2$s hit you for %3$s damage.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "守卫种类",
+          "type": "category_name",
+          "example": "Laser"
+        },
+        {
+          "token": "%2$s",
+          "desc": "招式名",
+          "type": "category_name",
+          "example": "Focus Laser"
+        },
+        {
+          "token": "%3$s",
+          "desc": "伤害值",
+          "type": "number",
+          "example": "432"
+        }
+      ],
+      "gloss": "原文 Guardians's 是 Hypixel 自己的拼写错误，原样收录，别改成 Guardian's，否则匹配不上。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "The %1$s Guardians's %2$s hit you for ",
+          "zh": "%1$s守卫的%2$s命中了你，造成 "
+        },
+        {
+          "color": "§c",
+          "text": "%3$s",
+          "zh": "%3$s"
+        },
+        {
+          "color": "§7",
+          "text": " damage.",
+          "zh": " 点伤害。"
+        }
+      ]
+    },
+    {
+      "id": "run_spirit_bear_appeared",
+      "context": "第四层 Thorn 战：灵魂熊出现",
+      "raw": "§a§lA §5§lSpirit Bear §a§lhas appeared!",
+      "text": "A Spirit Bear has appeared!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§a§l",
+          "text": "A ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§5§l",
+          "text": "Spirit Bear ",
+          "zh": "灵魂熊"
+        },
+        {
+          "color": "§a§l",
+          "text": "has appeared!",
+          "zh": "出现了!"
+        }
+      ]
+    },
+    {
+      "id": "run_spirit_bow_dropped",
+      "context": "第四层 Thorn 战：灵魂弓掉落",
+      "raw": "§a§lThe §5§lSpirit Bow §a§lhas dropped!",
+      "text": "The Spirit Bow has dropped!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§a§l",
+          "text": "The ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§5§l",
+          "text": "Spirit Bow ",
+          "zh": "灵魂弓"
+        },
+        {
+          "color": "§a§l",
+          "text": "has dropped!",
+          "zh": "掉落了!"
+        }
+      ]
+    },
+    {
+      "id": "run_picked_up_spirit_bow",
+      "context": "第四层 Thorn 战：自己捡起了灵魂弓",
+      "raw": "§aYou picked up the §5Spirit Bow§a! Use it to attack §cThorn§a!",
+      "text": "You picked up the Spirit Bow! Use it to attack Thorn!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "You picked up the ",
+          "zh": "你捡起了"
+        },
+        {
+          "color": "§5",
+          "text": "Spirit Bow",
+          "zh": "灵魂弓"
+        },
+        {
+          "color": "§a",
+          "text": "! Use it to attack ",
+          "zh": "! 用它去打"
+        },
+        {
+          "color": "§c",
+          "text": "Thorn",
+          "zh": "Thorn"
+        },
+        {
+          "color": "§a",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "run_spirit_bow_disintegrates",
+      "context": "第四层 Thorn 战：灵魂弓射出一箭后消失",
+      "raw": "§cThe §5Spirit Bow§c disintegrates as you fire off the shot!",
+      "text": "The Spirit Bow disintegrates as you fire off the shot!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "The ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§5",
+          "text": "Spirit Bow",
+          "zh": "灵魂弓"
+        },
+        {
+          "color": "§c",
+          "text": " disintegrates as you fire off the shot!",
+          "zh": "在这一箭射出后化为齑粉!"
+        }
+      ]
+    },
+    {
+      "id": "run_charmed_mob",
+      "context": "魅惑效果触发，把怪物变成了碎片",
+      "raw": "§b§lCHARM! §7You charmed the §c%1$s §7and received §a%2$s§7!",
+      "text": "CHARM! You charmed the %1$s and received %2$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "被魅惑的怪物名",
+          "type": "mob_name",
+          "example": "Zombie Commander"
+        },
+        {
+          "token": "%2$s",
+          "desc": "得到的物品与数量",
+          "type": "raw",
+          "example": "1 Zombie Soldier Shard"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b§l",
+          "text": "CHARM! ",
+          "zh": "魅惑! "
+        },
+        {
+          "color": "§7",
+          "text": "You charmed the ",
+          "zh": "你魅惑了 "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " and received ",
+          "zh": "，获得了 "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "run_rare_drop",
+      "context": "稀有掉落，括号里是当时的魔法寻宝",
+      "raw": "§6§lRARE DROP! §5%1$s §b(+%2$s ✯ Magic Find)",
+      "text": "RARE DROP! %1$s (+%2$s ✯ Magic Find)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "掉落的物品名",
+          "type": "item_name",
+          "example": "Zombie Commander Helmet"
+        },
+        {
+          "token": "%2$s",
+          "desc": "魔法寻宝加成",
+          "type": "number",
+          "example": "54"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§6§l",
+          "text": "RARE DROP! ",
+          "zh": "稀有掉落! "
+        },
+        {
+          "color": "§5",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§b",
+          "text": "(+%2$s ✯ Magic Find)",
+          "zh": "（+%2$s ✯ 魔法寻宝）"
+        }
+      ]
+    },
+    {
+      "id": "run_rare_reward_chest",
+      "context": "开箱时队伍里有人开出稀有物品的广播",
+      "raw": "§6§lRARE REWARD! §b%1$s §efound a §5%2$s §ein their %3$s Chest!",
+      "text": "RARE REWARD! %1$s found a %2$s in their %3$s Chest!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "玩家名",
+          "type": "player_name",
+          "example": "ButterKeks_"
+        },
+        {
+          "token": "%2$s",
+          "desc": "开出的物品名",
+          "type": "item_name",
+          "example": "Fuming Potato Book"
+        },
+        {
+          "token": "%3$s",
+          "desc": "宝箱等级",
+          "type": "category_name",
+          "example": "Emerald"
+        }
+      ],
+      "gloss": "英文按「谁 → 开出什么 → 在哪个箱子」排，中文按「谁 → 在哪个箱子 → 开出什么」更顺，所以用 order 调换后两段。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§6§l",
+          "text": "RARE REWARD! ",
+          "zh": "稀有奖励! ",
+          "order": 0
+        },
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s",
+          "order": 1
+        },
+        {
+          "color": "§e",
+          "text": " found a ",
+          "zh": "开出了 ",
+          "order": 3
+        },
+        {
+          "color": "§5",
+          "text": "%2$s",
+          "zh": "%2$s!",
+          "order": 4
+        },
+        {
+          "color": "§e",
+          "text": " in their %3$s Chest!",
+          "zh": " 从自己的%3$s宝箱里",
+          "order": 2
+        }
+      ]
+    },
+    {
+      "id": "run_items_stashed",
+      "context": "背包满了，物品进了暂存区",
+      "raw": "§eOne or more items didn't fit in your inventory and were added to your item stash! §6Click here §eto pick them up!",
+      "text": "One or more items didn't fit in your inventory and were added to your item stash! Click here to pick them up!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "One or more items didn't fit in your inventory and were added to your item stash! ",
+          "zh": "背包放不下的物品已存入暂存区! "
+        },
+        {
+          "color": "§6",
+          "text": "Click here ",
+          "zh": "点此"
+        },
+        {
+          "color": "§e",
+          "text": "to pick them up!",
+          "zh": "领取!"
+        }
+      ]
+    },
+    {
+      "id": "run_items_stashed_count",
+      "context": "暂存区里还有多少件东西",
+      "raw": "§7You have §a%s §7items stashed away!",
+      "text": "You have %s items stashed away!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "暂存的物品件数",
+          "type": "number",
+          "example": "11"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You have ",
+          "zh": "暂存区里还有 "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": " items stashed away!",
+          "zh": " 件物品!"
+        }
+      ]
+    },
+    {
+      "id": "run_inventory_full",
+      "context": "背包满了捡不起东西",
+      "raw": "§cYou don't have enough space in your inventory to pick up this item!",
+      "text": "You don't have enough space in your inventory to pick up this item!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "背包空间不足，捡不起这件物品!"
+    },
+    {
+      "id": "run_click_here_pick_up",
+      "context": "掉落物提示下方的领取横幅",
+      "raw": "§3§l>>> CLICK HERE§b to pick it up! §3§l<<<",
+      "text": ">>> CLICK HERE to pick it up! <<<",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "layout": "center_chat_banner",
+      "zh": "",
+      "segments": [
+        {
+          "color": "§3§l",
+          "text": ">>> CLICK HERE",
+          "zh": ">>> 点此"
+        },
+        {
+          "color": "§b",
+          "text": " to pick it up! ",
+          "zh": "领取! "
+        },
+        {
+          "color": "§3§l",
+          "text": "<<<",
+          "zh": "<<<"
+        }
+      ]
+    },
+    {
+      "id": "run_already_opened_chest",
+      "context": "本次挑战已经开过一次结算宝箱",
+      "raw": "§cYou have already opened a Dungeon chest for this run!",
+      "text": "You have already opened a Dungeon chest for this run!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "本次挑战你已经开过一次地牢宝箱了!"
+    },
+    {
+      "id": "run_chest_rewards_header",
+      "context": "结算宝箱奖励清单的标题",
+      "raw": "§2§l%s CHEST REWARDS",
+      "text": "%s CHEST REWARDS",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "宝箱等级，全大写",
+          "type": "category_name",
+          "example": "EMERALD"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%s宝箱奖励"
+    },
+    {
+      "id": "run_salvaged_items",
+      "context": "在分解台一次分解掉多件物品",
+      "raw": "§aYou salvaged §b%s §aitems for:",
+      "text": "You salvaged %s items for:",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "分解的件数",
+          "type": "number",
+          "example": "6"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "You salvaged ",
+          "zh": "你分解了 "
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§a",
+          "text": " items for:",
+          "zh": " 件物品，换得:"
+        }
+      ]
+    },
+    {
+      "id": "run_salvage_returned_essence",
+      "context": "分解得到的精华，接在上一行下面",
+      "raw": "§f%1$sx §d%2$s Essence§f!",
+      "text": "%1$sx %2$s Essence!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "数量",
+          "type": "number",
+          "example": "36"
+        },
+        {
+          "token": "%2$s",
+          "desc": "精华种类",
+          "type": "category_name",
+          "example": "Undead"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "%1$sx ",
+          "zh": "%1$s 份"
+        },
+        {
+          "color": "§d",
+          "text": "%2$s Essence",
+          "zh": "%2$s精华"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "run_no_items_to_salvage",
+      "context": "背包里没有可分解的对应稀有度物品",
+      "raw": "§cYou don't have any %s items in your inventory to salvage!",
+      "text": "You don't have any %s items in your inventory to salvage!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "稀有度",
+          "type": "rarity",
+          "example": "Uncommon"
+        }
+      ],
+      "gloss": "稀有度词的中文在 _shared/Rarity.json 与 Terms.json 里。",
+      "translate": true,
+      "zh": "背包里没有可分解的%s物品!"
+    },
+    {
+      "id": "run_training_weights_shatter",
+      "context": "取下训练负重时的提示",
+      "raw": "§7The §aTraining Weights §7shatter as you remove them...",
+      "text": "The Training Weights shatter as you remove them...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "The ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§a",
+          "text": "Training Weights ",
+          "zh": "训练负重"
+        },
+        {
+          "color": "§7",
+          "text": "shatter as you remove them...",
+          "zh": "在取下的一瞬间碎裂了……"
+        }
+      ]
+    },
+    {
+      "id": "run_feel_stronger",
+      "context": "接上一行，训练负重取下后的效果",
+      "raw": "§7You suddenly feel a bit stronger!",
+      "text": "You suddenly feel a bit stronger!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你忽然觉得自己强了一点!"
+    },
+    {
+      "id": "run_gained_strength_minutes",
+      "context": "训练负重给的临时力量加成",
+      "raw": "§aYou gained §c+%s❁ Strength §afor 2 minutes.",
+      "text": "You gained +%s❁ Strength for 2 minutes.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "力量加成",
+          "type": "number",
+          "example": "50"
+        }
+      ],
+      "gloss": "数字和 Strength 之间有属性图标，漏掉它这一行就永远匹配不上；数据里写通用符号 ❁，渲染时会换回服务器实际发的字形。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "You gained ",
+          "zh": "你在 2 分钟内获得 "
+        },
+        {
+          "color": "§c",
+          "text": "+%s❁ Strength ",
+          "zh": "+%s❁ 力量"
+        },
+        {
+          "color": "§a",
+          "text": "for 2 minutes.",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "run_training_weights_hit_ground",
+      "context": "训练负重掉在地上",
+      "raw": "§8The Training Weights shatter as they hit the ground.",
+      "text": "The Training Weights shatter as they hit the ground.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "训练负重砸到地上碎了。"
+    },
+    {
+      "id": "run_one_training_weights_buff",
+      "context": "训练负重的加成一次只能有一个",
+      "raw": "§cYou can only have one active Training Weights buff at a time!",
+      "text": "You can only have one active Training Weights buff at a time!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "训练负重的加成同一时间只能有一个!"
+    },
+    {
+      "id": "run_found_journal",
+      "context": "找到一本日志",
+      "raw": "§aYou found a journal named §6%s§a!",
+      "text": "You found a journal named %s!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "日志名",
+          "type": "item_name",
+          "example": "Grim Adversity"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "You found a journal named ",
+          "zh": "你找到了一本日志: "
+        },
+        {
+          "color": "§6",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§a",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "run_journal_already_found",
+      "context": "重复捡同一本日志",
+      "raw": "§cYou have already found this journal!",
+      "text": "You have already found this journal!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这本日志你已经找到过了!"
+    },
+    {
+      "id": "run_fairy_soul_already_found",
+      "context": "重复捡同一个仙女之魂",
+      "raw": "§dYou have already found that Fairy Soul!",
+      "text": "You have already found that Fairy Soul!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这个仙女之魂你已经找到过了!"
+    },
+    {
+      "id": "run_not_in_party",
+      "context": "不在队伍里时执行队伍指令",
+      "raw": "§cYou are not in a party right now.",
+      "text": "You are not in a party right now.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你现在不在任何队伍里。"
+    },
+    {
+      "id": "run_menu_after_seconds",
+      "context": "刚进服务器就开菜单",
+      "raw": "§cYou may only use this menu after 4s on the server!",
+      "text": "You may only use this menu after 4s on the server!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "进入服务器 4 秒后才能打开这个菜单!"
+    },
+    {
+      "id": "run_cannot_do_this_now",
+      "context": "当前状态下不能执行该操作",
+      "raw": "§cYou cannot do this now!",
+      "text": "You cannot do this now!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "现在不能这么做!"
+    },
+    {
+      "id": "run_muted",
+      "context": "被禁言时发言",
+      "raw": "§cMute silenced you!",
+      "text": "Mute silenced you!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你已被禁言!"
+    },
+    {
+      "id": "run_no_auto_ready",
+      "context": "关掉了加入普通地牢时的自动准备",
+      "raw": "§cYou will no longer auto ready up when joining §aThe Catacombs§c!",
+      "text": "You will no longer auto ready up when joining The Catacombs!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你已关闭加入地牢时自动准备的功能!",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "You will no longer auto ready up when joining ",
+          "zh": "你已关闭加入",
+          "order": 0
+        },
+        {
+          "color": "§a",
+          "text": "The Catacombs",
+          "zh": "地牢",
+          "order": 1
+        },
+        {
+          "color": "§c",
+          "text": "!",
+          "zh": "时自动准备的功能!",
+          "order": 2
+        }
+      ]
+    },
+    {
+      "id": "run_togglereadyup_hint",
+      "context": "接上一行的指令提示",
+      "raw": "§8Use '/togglereadyup' when the instance has started or the toggle in the queue menu to change this option whenever.",
+      "text": "Use '/togglereadyup' when the instance has started or the toggle in the queue menu to change this option whenever.",
+      "placeholders": [],
+      "gloss": "指令名保持原样，不能翻译。",
+      "translate": true,
+      "zh": "实例开始后用 '/togglereadyup'，或在排队菜单里点那个开关，随时都能改这项设置。"
+    },
+    {
+      "id": "run_game_settings_notification",
+      "context": "提示可以在设置里关掉某类通知",
+      "raw": "§eOpen the §a§lGAME SETTINGS §eto disable this notification!",
+      "text": "Open the GAME SETTINGS to disable this notification!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Open the ",
+          "zh": "打开"
+        },
+        {
+          "color": "§a§l",
+          "text": "GAME SETTINGS ",
+          "zh": "游戏设置"
+        },
+        {
+          "color": "§e",
+          "text": "to disable this notification!",
+          "zh": "即可关闭这条提示!"
+        }
+      ]
+    },
+    {
+      "id": "run_lost_adventurer_dragons_breath",
+      "context": "迷失冒险者对你使用了龙息",
+      "raw": "§aThe §d§lLost Adventurer §aused §6Dragon's Breath §aon you!",
+      "text": "The Lost Adventurer used Dragon's Breath on you!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "The ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§d§l",
+          "text": "Lost Adventurer ",
+          "zh": "迷失冒险者"
+        },
+        {
+          "color": "§a",
+          "text": "used ",
+          "zh": "对你使用了"
+        },
+        {
+          "color": "§6",
+          "text": "Dragon's Breath ",
+          "zh": "龙息"
+        },
+        {
+          "color": "§a",
+          "text": "on you!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "run_ilene_revive_stone",
+      "context": "第五层 Livid 战前，仙女 Ilene 被击杀后留下复活石",
+      "raw": "§dIlene the Fairy§f: You killed me! Take this §6Revive Stone §fso that my death is not in vain!",
+      "text": "Ilene the Fairy: You killed me! Take this Revive Stone so that my death is not in vain!",
+      "placeholders": [],
+      "gloss": "这一行没有 [NPC] 标签，说话人写在句子里，所以说话人名要一起收进 text。Ilene 是人名，保持英文；the Fairy 是头衔，译作「仙女」。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "Ilene the Fairy",
+          "zh": "仙女 Ilene"
+        },
+        {
+          "color": "§f",
+          "text": ": You killed me! Take this ",
+          "zh": ": 你们把我杀了! 拿上这块"
+        },
+        {
+          "color": "§6",
+          "text": "Revive Stone ",
+          "zh": "复活石"
+        },
+        {
+          "color": "§f",
+          "text": "so that my death is not in vain!",
+          "zh": "，别让我白死!"
+        }
+      ]
+    },
+    {
+      "id": "run_score_floor_banner",
+      "context": "结算面板顶行：本次挑战的楼层",
+      "raw": "§cThe Catacombs §8- §eFloor %s",
+      "text": "The Catacombs - Floor %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "楼层罗马数字",
+          "type": "tier",
+          "example": "VII"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "layout": "center_chat_banner",
+      "zh": "",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "The Catacombs ",
+          "zh": "地牢 "
+        },
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§e",
+          "text": "Floor %s",
+          "zh": "第 %s 层"
+        }
+      ]
+    },
+    {
+      "id": "run_score_entrance_banner",
+      "context": "结算面板顶行：入口层",
+      "raw": "§cThe Catacombs §8- §eEntrance",
+      "text": "The Catacombs - Entrance",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "layout": "center_chat_banner",
+      "zh": "",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "The Catacombs ",
+          "zh": "地牢 "
+        },
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§e",
+          "text": "Entrance",
+          "zh": "入口层"
+        }
+      ]
+    },
+    {
+      "id": "run_score_mm_floor_banner",
+      "context": "结算面板顶行：大师模式楼层",
+      "raw": "§cMaster Mode The Catacombs §8- §eFloor %s",
+      "text": "Master Mode The Catacombs - Floor %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "楼层罗马数字",
+          "type": "tier",
+          "example": "I"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "layout": "center_chat_banner",
+      "zh": "",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "Master Mode The Catacombs ",
+          "zh": "大师模式地牢 "
+        },
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§e",
+          "text": "Floor %s",
+          "zh": "第 %s 层"
+        }
+      ]
+    },
+    {
+      "id": "run_team_score",
+      "context": "结算面板：队伍评分与评级",
+      "raw": "Team Score: §a%1$s §f(§e%2$s§f)",
+      "text": "Team Score: %1$s (%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "队伍总评分",
+          "type": "number",
+          "example": "302"
+        },
+        {
+          "token": "%2$s",
+          "desc": "评级，S+ / S / A / B / C / D",
+          "type": "raw",
+          "example": "S+"
+        }
+      ],
+      "gloss": "评级字母是玩家之间通用的写法，保持原样不译。",
+      "translate": true,
+      "layout": "center_chat_banner",
+      "zh": "",
+      "segments": [
+        {
+          "color": "",
+          "text": "Team Score: ",
+          "zh": "队伍评分: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§f",
+          "text": " (",
+          "zh": "（"
+        },
+        {
+          "color": "§e",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§f",
+          "text": ")",
+          "zh": "）"
+        }
+      ]
+    },
+    {
+      "id": "run_score_defeated_boss",
+      "context": "结算面板：击败 Boss 及用时",
+      "raw": "§c☠ §eDefeated §c%1$s §ein §a%2$sm %3$ss",
+      "text": "☠ Defeated %1$s in %2$sm %3$ss",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Boss 名（专有名，保持英文）",
+          "type": "npc_name",
+          "example": "Bonzo"
+        },
+        {
+          "token": "%2$s",
+          "desc": "分钟",
+          "type": "number",
+          "example": "09"
+        },
+        {
+          "token": "%3$s",
+          "desc": "秒",
+          "type": "number",
+          "example": "19"
+        }
+      ],
+      "gloss": "英文「击败 X 用时 Y」，中文把用时提到前面读起来更顺: 「用时 Y 击败 X」。",
+      "translate": true,
+      "layout": "center_chat_banner",
+      "zh": "",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "☠ ",
+          "zh": "☠ ",
+          "order": 0
+        },
+        {
+          "color": "§e",
+          "text": "Defeated ",
+          "zh": "击败 ",
+          "order": 3
+        },
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s",
+          "order": 4
+        },
+        {
+          "color": "§e",
+          "text": "in ",
+          "zh": "用时 ",
+          "order": 1
+        },
+        {
+          "color": "§a",
+          "text": "%2$sm %3$ss",
+          "zh": "%2$s 分 %3$s 秒，",
+          "order": 2
+        }
+      ]
+    },
+    {
+      "id": "run_score_extra_stats",
+      "context": "结算面板的附加统计小标题",
+      "raw": "§6> §e§lEXTRA STATS §6<",
+      "text": "> EXTRA STATS <",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "layout": "center_chat_banner",
+      "zh": "",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "> ",
+          "zh": "> "
+        },
+        {
+          "color": "§e§l",
+          "text": "EXTRA STATS ",
+          "zh": "附加统计 "
+        },
+        {
+          "color": "§6",
+          "text": "<",
+          "zh": "<"
+        }
+      ]
+    },
+    {
+      "id": "run_score_catacombs_experience",
+      "context": "结算面板：本次获得的地牢经验",
+      "raw": "§8+§3%s Catacombs Experience",
+      "text": "+%s Catacombs Experience",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "经验值",
+          "type": "number",
+          "example": "27,313.6"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "layout": "center_chat_banner",
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§3",
+          "text": "%s Catacombs Experience",
+          "zh": "%s 点地牢经验"
+        }
+      ]
+    },
+    {
+      "id": "run_score_class_experience",
+      "context": "结算面板：本次获得的职业经验",
+      "raw": "§8+§3%1$s %2$s Experience",
+      "text": "+%1$s %2$s Experience",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "经验值",
+          "type": "number",
+          "example": "23,406.2"
+        },
+        {
+          "token": "%2$s",
+          "desc": "职业名",
+          "type": "category_name",
+          "example": "Berserk"
+        }
+      ],
+      "gloss": "职业名的中文在 _shared/Terms.json 里。",
+      "translate": true,
+      "layout": "center_chat_banner",
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§3",
+          "text": "%1$s %2$s Experience",
+          "zh": "%1$s 点%2$s经验"
+        }
+      ]
+    },
+    {
+      "id": "run_requeue_catacombs",
+      "context": "结算后重新排队的按钮行",
+      "raw": "§7Click §e§lHERE §7to re-queue into §aThe Catacombs§7!",
+      "text": "Click HERE to re-queue into The Catacombs!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Click ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§e§l",
+          "text": "HERE ",
+          "zh": "点此"
+        },
+        {
+          "color": "§7",
+          "text": "to re-queue into ",
+          "zh": "重新排队进入"
+        },
+        {
+          "color": "§a",
+          "text": "The Catacombs",
+          "zh": "地牢"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "run_requeue_mm_catacombs",
+      "context": "结算后重新排队进入大师模式",
+      "raw": "§7Click §e§lHERE §7to re-queue into §c§lMM§c The Catacombs§7!",
+      "text": "Click HERE to re-queue into MM The Catacombs!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Click ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§e§l",
+          "text": "HERE ",
+          "zh": "点此"
+        },
+        {
+          "color": "§7",
+          "text": "to re-queue into ",
+          "zh": "重新排队进入"
+        },
+        {
+          "color": "§c§l",
+          "text": "MM",
+          "zh": "大师模式"
+        },
+        {
+          "color": "§c",
+          "text": " The Catacombs",
+          "zh": "地牢"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "run_bestiary_tier_up",
+      "context": "生物图鉴等级提升的横幅",
+      "raw": "§b§l%1$s §8%2$s ➡§b %3$s",
+      "text": "%1$s %2$s ➡ %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "怪物名或图鉴分类名",
+          "type": "mob_name",
+          "example": "Zombie Grunt"
+        },
+        {
+          "token": "%2$s",
+          "desc": "升级前的等级",
+          "type": "tier",
+          "example": "XI"
+        },
+        {
+          "token": "%3$s",
+          "desc": "升级后的等级",
+          "type": "tier",
+          "example": "XII"
+        }
+      ],
+      "gloss": "怪物名的中文在 _shared/Terms.json 里。",
+      "translate": true,
+      "layout": "center_chat_banner",
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b§l",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§8",
+          "text": "%2$s ➡",
+          "zh": "%2$s ➡"
+        },
+        {
+          "color": "§b",
+          "text": " %3$s",
+          "zh": " %3$s"
+        }
+      ]
+    },
+    {
+      "id": "run_bestiary_extra_xp_orbs",
+      "context": "生物图鉴升级奖励：额外经验球概率",
+      "raw": "§8+§a%s% §7chance for extra XP orbs",
+      "text": "+%s% chance for extra XP orbs",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "概率百分比",
+          "type": "number",
+          "example": "50"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "layout": "center_chat_banner",
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%s% ",
+          "zh": "%s% "
+        },
+        {
+          "color": "§7",
+          "text": "chance for extra XP orbs",
+          "zh": "概率掉落额外经验球"
+        }
+      ]
+    },
+    {
+      "id": "run_bestiary_reward_magic_find",
+      "context": "生物图鉴升级奖励：对该怪物的魔法寻宝加成",
+      "raw": "§8+§a%1$s %2$s §b✯ Magic Find",
+      "text": "+%1$s %2$s ✯ Magic Find",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "加成数值",
+          "type": "number",
+          "example": "4"
+        },
+        {
+          "token": "%2$s",
+          "desc": "怪物名或图鉴分类名",
+          "type": "mob_name",
+          "example": "Zombie Grunt"
+        }
+      ],
+      "gloss": "怪物名的中文在 _shared/Terms.json 里；属性图标写通用符号，渲染时会换回服务器实际发的字形。",
+      "translate": true,
+      "layout": "center_chat_banner",
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s %2$s ",
+          "zh": "%1$s %2$s "
+        },
+        {
+          "color": "§b",
+          "text": "✯ Magic Find",
+          "zh": "✯ 魔法寻宝"
+        }
+      ]
+    },
+    {
+      "id": "run_bestiary_reward_strength",
+      "context": "生物图鉴升级奖励：对该怪物的力量加成",
+      "raw": "§8+§a%1$s %2$s §c❁ Strength",
+      "text": "+%1$s %2$s ❁ Strength",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "加成数值",
+          "type": "number",
+          "example": "4"
+        },
+        {
+          "token": "%2$s",
+          "desc": "怪物名或图鉴分类名",
+          "type": "mob_name",
+          "example": "Zombie Grunt"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "layout": "center_chat_banner",
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s %2$s ",
+          "zh": "%1$s %2$s "
+        },
+        {
+          "color": "§c",
+          "text": "❁ Strength",
+          "zh": "❁ 力量"
+        }
+      ]
+    },
+    {
+      "id": "run_bestiary_reward_coins",
+      "context": "生物图鉴升级奖励：该怪物掉落硬币的加成",
+      "raw": "§8+§6%1$s% §a%2$s §7coins",
+      "text": "+%1$s% %2$s coins",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "加成百分比",
+          "type": "number",
+          "example": "2"
+        },
+        {
+          "token": "%2$s",
+          "desc": "怪物名或图鉴分类名",
+          "type": "mob_name",
+          "example": "Zombie Grunt"
+        }
+      ],
+      "gloss": "英文只写 coins，中文补出「掉落的」才说得清这个加成加在哪里。",
+      "translate": true,
+      "layout": "center_chat_banner",
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§6",
+          "text": "%1$s% ",
+          "zh": "%1$s% "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s ",
+          "zh": "%2$s "
+        },
+        {
+          "color": "§7",
+          "text": "coins",
+          "zh": "掉落的硬币"
+        }
+      ]
+    },
+    {
+      "id": "run_bestiary_reward_skyblock_xp",
+      "context": "生物图鉴升级奖励：空岛经验",
+      "raw": "§8+§b%s SkyBlock XP",
+      "text": "+%s SkyBlock XP",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "经验值",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "SkyBlock 的译名与简称由 _shared/SkyBlock_Name.json 决定，译文里保留原词，开关照旧管得住它。",
+      "translate": true,
+      "layout": "center_chat_banner",
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§b",
+          "text": "%s SkyBlock XP",
+          "zh": "%s SkyBlock 经验"
+        }
+      ]
+    },
+    {
+      "id": "run_score_defeated_boss_record",
+      "context": "结算面板：击败 Boss 并刷新了个人最快纪录",
+      "raw": "§c☠ §eDefeated §c%1$s §ein §a%2$sm %3$ss §d§l(NEW RECORD!)",
+      "text": "☠ Defeated %1$s in %2$sm %3$ss (NEW RECORD!)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Boss 名（专有名，保持英文）",
+          "type": "npc_name",
+          "example": "Livid"
+        },
+        {
+          "token": "%2$s",
+          "desc": "分钟",
+          "type": "number",
+          "example": "03"
+        },
+        {
+          "token": "%3$s",
+          "desc": "秒",
+          "type": "number",
+          "example": "51"
+        }
+      ],
+      "gloss": "和 run_score_defeated_boss 是两条不同的服务器字符串，末尾多一段新纪录标记，各写一条。",
+      "translate": true,
+      "layout": "center_chat_banner",
+      "zh": "",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "☠ ",
+          "zh": "☠ "
+        },
+        {
+          "color": "§e",
+          "text": "Defeated ",
+          "zh": "击败 "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§e",
+          "text": "in ",
+          "zh": "，用时 "
+        },
+        {
+          "color": "§a",
+          "text": "%2$sm %3$ss ",
+          "zh": "%2$s 分 %3$s 秒 "
+        },
+        {
+          "color": "§d§l",
+          "text": "(NEW RECORD!)",
+          "zh": "（新纪录!）"
+        }
+      ]
+    },
+    {
+      "id": "run_puzzle_solved_tied",
+      "context": "谜题房：有人把井字棋下成平局也算过关",
+      "raw": "§a§lPUZZLE SOLVED! §b%1$s §etied %2$s! §4G§co§6o§ed§a §2j§bo§3b§5!",
+      "text": "PUZZLE SOLVED! %1$s tied %2$s! Good job!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "玩家名",
+          "type": "player_name",
+          "example": "inkkni"
+        },
+        {
+          "token": "%2$s",
+          "desc": "谜题名",
+          "type": "category_name",
+          "example": "Tic Tac Toe"
+        }
+      ],
+      "gloss": "末尾的 Good job! 服务器逐字染成彩虹色，中文「干得漂亮!」只有五个字，所以把多出来的英文字母标成 omit，让四个汉字各自落在一段颜色上，彩虹效果得以保留。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§a§l",
+          "text": "PUZZLE SOLVED! ",
+          "zh": "谜题完成! "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§e",
+          "text": "tied %2$s! ",
+          "zh": "和 %2$s 打成平手! "
+        },
+        {
+          "color": "§4",
+          "text": "G",
+          "zh": "干"
+        },
+        {
+          "color": "§c",
+          "text": "o",
+          "zh": "得"
+        },
+        {
+          "color": "§6",
+          "text": "o",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§e",
+          "text": "d",
+          "zh": "漂"
+        },
+        {
+          "color": "§a",
+          "text": " ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§2",
+          "text": "j",
+          "zh": "亮"
+        },
+        {
+          "color": "§b",
+          "text": "o",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§3",
+          "text": "b",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§5",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "run_gained_strength",
+      "context": "取下训练负重后立刻拿到的力量加成",
+      "raw": "§7You gained §c+%s❁ Strength",
+      "text": "You gained +%s❁ Strength",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "力量加成",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You gained ",
+          "zh": "你获得了 "
+        },
+        {
+          "color": "§c",
+          "text": "+%s❁ Strength",
+          "zh": "+%s❁ 力量"
+        }
+      ]
+    },
+    {
+      "id": "run_buff_splashed_potion",
+      "context": "给自己泼了一瓶药水后的增益提示",
+      "raw": "§a§lBUFF! §fYou splashed yourself with §c%1$s %2$s§f! Press TAB or type /effects to view your active effects!",
+      "text": "BUFF! You splashed yourself with %1$s %2$s! Press TAB or type /effects to view your active effects!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "效果名",
+          "type": "category_name",
+          "example": "Healing"
+        },
+        {
+          "token": "%2$s",
+          "desc": "效果等级（罗马数字）",
+          "type": "tier",
+          "example": "VIII"
+        }
+      ],
+      "gloss": "效果名的中文在 _shared/Terms.json 里；/effects 是指令名，保持原样。英文的 splashed yourself with 中文补出量词「一瓶」才自然。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§a§l",
+          "text": "BUFF! ",
+          "zh": "增益! "
+        },
+        {
+          "color": "§f",
+          "text": "You splashed yourself with ",
+          "zh": "你给自己泼了一瓶"
+        },
+        {
+          "color": "§c",
+          "text": "%1$s %2$s",
+          "zh": "%1$s %2$s"
+        },
+        {
+          "color": "§f",
+          "text": "! Press TAB or type /effects to view your active effects!",
+          "zh": "! 按 TAB 或输入 /effects 查看当前生效的效果!"
+        }
+      ]
+    },
+    {
+      "id": "run_ultimate_now_available",
+      "context": "职业终极技能冷却结束时的聊天提示",
+      "raw": "§aYour %1$s §e§lULTIMATE§a §6%2$s §ais now available!",
+      "text": "Your %1$s ULTIMATE %2$s is now available!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "职业名",
+          "type": "category_name",
+          "example": "Berserk"
+        },
+        {
+          "token": "%2$s",
+          "desc": "终极技能名",
+          "type": "category_name",
+          "example": "Ragnarok"
+        }
+      ],
+      "gloss": "不写这一条的话，整句会被 Mining/ChatMessage/Pickaxe_Abilities.json 的 `%s is now available!` 接走，把「Your Berserk ULTIMATE Ragnarok」整段当成一个技能名，渲染成「「Your Berserk ULTIMATE Ragnarok」冷却完毕」。职业名与技能名的中文都在 _shared/Terms.json 里。英文把 ULTIMATE 夹在中间强调，中文把它并进技能名前面作定语。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Your %1$s ",
+          "zh": "%1$s的"
+        },
+        {
+          "color": "§e§l",
+          "text": "ULTIMATE",
+          "zh": "终极技能"
+        },
+        {
+          "color": "§a",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§6",
+          "text": "%2$s ",
+          "zh": "%2$s "
+        },
+        {
+          "color": "§a",
+          "text": "is now available!",
+          "zh": "已就绪!"
+        }
+      ]
+    },
+    {
+      "id": "run_lasr_hit_you",
+      "context": "第五层 L.A.S.R. 用某个招式命中自己",
+      "raw": "§4§lL.A.S.R.§c hit you with §e%1$s §cfor %2$s damage!",
+      "text": "L.A.S.R. hit you with %1$s for %2$s damage!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "招式名",
+          "type": "category_name",
+          "example": "Laser Eyes"
+        },
+        {
+          "token": "%2$s",
+          "desc": "伤害值",
+          "type": "number",
+          "example": "1,973"
+        }
+      ],
+      "gloss": "名字里的句点会被 mob_name 当成句末标点而拒收，所以这一位 Boss 的名字不能靠 run_named_mob_hit_you 那条通用模板，要单写一条。L.A.S.R. 是物品／怪物自造专名，保持英文。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§4§l",
+          "text": "L.A.S.R.",
+          "zh": "L.A.S.R."
+        },
+        {
+          "color": "§c",
+          "text": " hit you with ",
+          "zh": " 用"
+        },
+        {
+          "color": "§e",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§c",
+          "text": "for %2$s damage!",
+          "zh": "命中了你，造成 %2$s 点伤害!"
+        }
+      ]
+    },
+    {
+      "id": "run_granted_four_stats",
+      "context": "答对 Oruo 三题后一次性发放四项属性加成",
+      "raw": "§7Granted you §a+%1$s§7 & §a+%2$sx HP§7, §a+%3$s§7 & §a+%4$sx ❈ Defense§7, §a+%5$s§7 & §a+%6$sx §b✎ Intelligence§7, and §a+%7$s§7 & §a+%8$sx §c❁ Strength§7.",
+      "text": "Granted you +%1$s & +%2$sx HP, +%3$s & +%4$sx ❈ Defense, +%5$s & +%6$sx ✎ Intelligence, and +%7$s & +%8$sx ❁ Strength.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "生命值的固定加成",
+          "type": "number",
+          "example": "30.9"
+        },
+        {
+          "token": "%2$s",
+          "desc": "生命值的倍率",
+          "type": "number",
+          "example": "1.15"
+        },
+        {
+          "token": "%3$s",
+          "desc": "防御力的固定加成",
+          "type": "number",
+          "example": "30.9"
+        },
+        {
+          "token": "%4$s",
+          "desc": "防御力的倍率",
+          "type": "number",
+          "example": "1.15"
+        },
+        {
+          "token": "%5$s",
+          "desc": "智力的固定加成",
+          "type": "number",
+          "example": "30.9"
+        },
+        {
+          "token": "%6$s",
+          "desc": "智力的倍率",
+          "type": "number",
+          "example": "1.15"
+        },
+        {
+          "token": "%7$s",
+          "desc": "力量的固定加成",
+          "type": "number",
+          "example": "30.9"
+        },
+        {
+          "token": "%8$s",
+          "desc": "力量的倍率",
+          "type": "number",
+          "example": "1.15"
+        }
+      ],
+      "gloss": "英文用 & 把「固定加成」和「倍率」串在一起，中文用「与」；x 是倍率后缀，中文补出量词「倍」。属性图标写通用符号，渲染时会换回服务器实际发的字形。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Granted you ",
+          "zh": "为你提升 "
+        },
+        {
+          "color": "§a",
+          "text": "+%1$s",
+          "zh": "+%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " & ",
+          "zh": " 与 "
+        },
+        {
+          "color": "§a",
+          "text": "+%2$sx HP",
+          "zh": "%2$s 倍生命值"
+        },
+        {
+          "color": "§7",
+          "text": ", ",
+          "zh": "、"
+        },
+        {
+          "color": "§a",
+          "text": "+%3$s",
+          "zh": "+%3$s"
+        },
+        {
+          "color": "§7",
+          "text": " & ",
+          "zh": " 与 "
+        },
+        {
+          "color": "§a",
+          "text": "+%4$sx ❈ Defense",
+          "zh": "%4$s 倍 ❈ 防御力"
+        },
+        {
+          "color": "§7",
+          "text": ", ",
+          "zh": "、"
+        },
+        {
+          "color": "§a",
+          "text": "+%5$s",
+          "zh": "+%5$s"
+        },
+        {
+          "color": "§7",
+          "text": " & ",
+          "zh": " 与 "
+        },
+        {
+          "color": "§a",
+          "text": "+%6$sx ",
+          "zh": "%6$s 倍 "
+        },
+        {
+          "color": "§b",
+          "text": "✎ Intelligence",
+          "zh": "✎ 智力"
+        },
+        {
+          "color": "§7",
+          "text": ", and ",
+          "zh": "，以及 "
+        },
+        {
+          "color": "§a",
+          "text": "+%7$s",
+          "zh": "+%7$s"
+        },
+        {
+          "color": "§7",
+          "text": " & ",
+          "zh": " 与 "
+        },
+        {
+          "color": "§a",
+          "text": "+%8$sx ",
+          "zh": "%8$s 倍 "
+        },
+        {
+          "color": "§c",
+          "text": "❁ Strength",
+          "zh": "❁ 力量"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "run_granted_hp_and_regen",
+      "context": "捡到生命祝福后的第二行：这一级带来的属性提升",
+      "raw": "§7Granted you §a+%1$sx HP §7and §a+%2$sx §c❣ Health Regen§7.",
+      "text": "Granted you +%1$sx HP and +%2$sx ❣ Health Regen.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "生命值倍率",
+          "type": "number",
+          "example": "1.08"
+        },
+        {
+          "token": "%2$s",
+          "desc": "生命回复倍率",
+          "type": "number",
+          "example": "1.08"
+        }
+      ],
+      "gloss": "这一条只有倍率、没有固定加成，和另外几条祝福的写法不同，各写一条。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Granted you ",
+          "zh": "为你提升 "
+        },
+        {
+          "color": "§a",
+          "text": "+%1$sx HP ",
+          "zh": "%1$s 倍生命值"
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": " 与 "
+        },
+        {
+          "color": "§a",
+          "text": "+%2$sx ",
+          "zh": "%2$s 倍 "
+        },
+        {
+          "color": "§c",
+          "text": "❣ Health Regen",
+          "zh": "❣ 生命回复"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "run_granted_defense_and_damage",
+      "context": "捡到坚石祝福后的第二行",
+      "raw": "§7Granted you §a+%1$s§7 & §a+%2$sx ❈ Defense §7and §a+%3$s §c Damage§7.",
+      "text": "Granted you +%1$s & +%2$sx ❈ Defense and +%3$s  Damage.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "防御力的固定加成",
+          "type": "number",
+          "example": "25.8"
+        },
+        {
+          "token": "%2$s",
+          "desc": "防御力倍率",
+          "type": "number",
+          "example": "1.13"
+        },
+        {
+          "token": "%3$s",
+          "desc": "伤害加成",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "两个数字里前一个是固定加成、后一个是倍率，英文用 & 串起来，中文用「与」；x 是倍率后缀，中文补出量词「倍」。属性图标写通用符号，渲染时会换回服务器实际发的字形。　Damage 的图标是 \\uE050，它不在 text/Glyphs.java 的对照表里——没人认出来的码点是故意不猜的，两边都保持原样才能对上，所以这条记录里写的就是那个私用区字符本身，不是通用符号。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Granted you ",
+          "zh": "为你提升 "
+        },
+        {
+          "color": "§a",
+          "text": "+%1$s",
+          "zh": "+%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " & ",
+          "zh": " 与 "
+        },
+        {
+          "color": "§a",
+          "text": "+%2$sx ❈ Defense ",
+          "zh": "%2$s 倍 ❈ 防御力"
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "，以及 "
+        },
+        {
+          "color": "§a",
+          "text": "+%3$s ",
+          "zh": "+%3$s "
+        },
+        {
+          "color": "§c",
+          "text": " Damage",
+          "zh": " 伤害"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "run_granted_intelligence_and_speed",
+      "context": "捡到智慧祝福后的第二行",
+      "raw": "§7Granted you §a+%1$s§7 & §a+%2$sx §b✎ Intelligence §7and §a+%3$s §f✦ Speed§7.",
+      "text": "Granted you +%1$s & +%2$sx ✎ Intelligence and +%3$s ✦ Speed.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "智力的固定加成",
+          "type": "number",
+          "example": "25.8"
+        },
+        {
+          "token": "%2$s",
+          "desc": "智力倍率",
+          "type": "number",
+          "example": "1.13"
+        },
+        {
+          "token": "%3$s",
+          "desc": "速度加成",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "两个数字里前一个是固定加成、后一个是倍率，英文用 & 串起来，中文用「与」；x 是倍率后缀，中文补出量词「倍」。属性图标写通用符号，渲染时会换回服务器实际发的字形。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Granted you ",
+          "zh": "为你提升 "
+        },
+        {
+          "color": "§a",
+          "text": "+%1$s",
+          "zh": "+%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " & ",
+          "zh": " 与 "
+        },
+        {
+          "color": "§a",
+          "text": "+%2$sx ",
+          "zh": "%2$s 倍 "
+        },
+        {
+          "color": "§b",
+          "text": "✎ Intelligence ",
+          "zh": "✎ 智力"
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "，以及 "
+        },
+        {
+          "color": "§a",
+          "text": "+%3$s ",
+          "zh": "+%3$s "
+        },
+        {
+          "color": "§f",
+          "text": "✦ Speed",
+          "zh": "✦ 速度"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "run_granted_strength",
+      "context": "捡到力量祝福后的第二行",
+      "raw": "§7Granted you §a+%1$s§7 & §a+%2$sx §c❁ Strength§7.",
+      "text": "Granted you +%1$s & +%2$sx ❁ Strength.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "力量的固定加成",
+          "type": "number",
+          "example": "10.3"
+        },
+        {
+          "token": "%2$s",
+          "desc": "力量倍率",
+          "type": "number",
+          "example": "1.05"
+        }
+      ],
+      "gloss": "两个数字里前一个是固定加成、后一个是倍率，英文用 & 串起来，中文用「与」；x 是倍率后缀，中文补出量词「倍」。属性图标写通用符号，渲染时会换回服务器实际发的字形。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Granted you ",
+          "zh": "为你提升 "
+        },
+        {
+          "color": "§a",
+          "text": "+%1$s",
+          "zh": "+%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " & ",
+          "zh": " 与 "
+        },
+        {
+          "color": "§a",
+          "text": "+%2$sx ",
+          "zh": "%2$s 倍 "
+        },
+        {
+          "color": "§c",
+          "text": "❁ Strength",
+          "zh": "❁ 力量"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "run_also_granted_crit_damage",
+      "context": "力量祝福的第三行，接着上一行再给一项",
+      "raw": "§7Also granted you §a+%1$s§7 & §a+%2$sx §9☠ Crit Damage§7.",
+      "text": "Also granted you +%1$s & +%2$sx ☠ Crit Damage.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "暴击伤害的固定加成",
+          "type": "number",
+          "example": "10.3"
+        },
+        {
+          "token": "%2$s",
+          "desc": "暴击伤害倍率",
+          "type": "number",
+          "example": "1.05"
+        }
+      ],
+      "gloss": "Also 在中文里由「另外」承担。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Also granted you ",
+          "zh": "另外还提升 "
+        },
+        {
+          "color": "§a",
+          "text": "+%1$s",
+          "zh": "+%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " & ",
+          "zh": " 与 "
+        },
+        {
+          "color": "§a",
+          "text": "+%2$sx ",
+          "zh": "%2$s 倍 "
+        },
+        {
+          "color": "§9",
+          "text": "☠ Crit Damage",
+          "zh": "☠ 暴击伤害"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "run_aoe_hit_one_enemy",
+      "context": "范围技能只命中一个敌人时的单数写法",
+      "raw": "§7Your %1$s hit §c1 §7enemy for §c%2$s §7damage.",
+      "text": "Your %1$s hit 1 enemy for %2$s damage.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "武器或技能名",
+          "type": "item_name",
+          "example": "Giant's Sword"
+        },
+        {
+          "token": "%2$s",
+          "desc": "伤害值",
+          "type": "number",
+          "example": "271,926"
+        }
+      ],
+      "gloss": "引擎的单复数折算只把词尾那个 s 变成可选，管得了 slot/slots，管不了 enemy/enemies 这种不规则复数，所以单数这一条必须单写（见 README §4 的例外）。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Your %1$s hit ",
+          "zh": "你的 %1$s 命中 "
+        },
+        {
+          "color": "§c",
+          "text": "1",
+          "zh": "1"
+        },
+        {
+          "color": "§7",
+          "text": " enemy for ",
+          "zh": " 个敌人，造成 "
+        },
+        {
+          "color": "§c",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": " damage.",
+          "zh": " 点伤害。"
+        }
+      ]
+    },
+    {
+      "id": "run_bestiary_banner",
+      "context": "生物图鉴升级横幅的标题行",
+      "raw": "§6§lBESTIARY",
+      "text": "BESTIARY",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "layout": "center_chat_banner",
+      "zh": "",
+      "segments": [
+        {
+          "color": "§6§l",
+          "text": "BESTIARY",
+          "zh": "生物图鉴"
+        }
+      ]
+    },
+    {
+      "id": "run_potion_effect_banner",
+      "context": "喝下地牢药水时屏幕上方的效果横幅",
+      "raw": "§a§lPotion Effect! §r§4%1$s %2$s",
+      "text": "Potion Effect! %1$s %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "效果名",
+          "type": "category_name",
+          "example": "Regeneration"
+        },
+        {
+          "token": "%2$s",
+          "desc": "效果等级（罗马数字）",
+          "type": "tier",
+          "example": "IV"
+        }
+      ],
+      "gloss": "效果名的中文在 _shared/Terms.json 里，六种地牢药水共用这一条。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§a§l",
+          "text": "Potion Effect! ",
+          "zh": "药水效果! "
+        },
+        {
+          "color": "§4",
+          "text": "%1$s %2$s",
+          "zh": "%1$s %2$s"
+        }
+      ]
+    },
+    {
+      "id": "run_buff_gained_effect",
+      "context": "获得药水效果后的增益提示；和「你给自己泼了一瓶」那条是两句不同的服务器文本",
+      "raw": "§a§lBUFF! §fYou have gained §4%1$s %2$s§f! Press TAB or type /effects to view your active effects!",
+      "text": "BUFF! You have gained %1$s %2$s! Press TAB or type /effects to view your active effects!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "效果名",
+          "type": "category_name",
+          "example": "Regeneration"
+        },
+        {
+          "token": "%2$s",
+          "desc": "效果等级（罗马数字）",
+          "type": "tier",
+          "example": "IV"
+        }
+      ],
+      "gloss": "/effects 是指令名，保持原样。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§a§l",
+          "text": "BUFF! ",
+          "zh": "增益! "
+        },
+        {
+          "color": "§f",
+          "text": "You have gained ",
+          "zh": "你获得了"
+        },
+        {
+          "color": "§4",
+          "text": "%1$s %2$s",
+          "zh": "%1$s %2$s"
+        },
+        {
+          "color": "§f",
+          "text": "! Press TAB or type /effects to view your active effects!",
+          "zh": "! 按 TAB 或输入 /effects 查看当前生效的效果!"
+        }
+      ]
+    },
+    {
+      "id": "run_right_click_blood_door",
+      "context": "拿到血门钥匙后提示怎么开门；和凋零门那条是两句不同的服务器文本",
+      "raw": "§e§lRIGHT CLICK §7on the §c§lBLOOD DOOR §7to open it. This key can only be used to open §a1§7 door!",
+      "text": "RIGHT CLICK on the BLOOD DOOR to open it. This key can only be used to open 1 door!",
+      "placeholders": [],
+      "gloss": "凋零门那条写的是 on a WITHER door（不定冠词、door 小写），血门这条是 on the BLOOD DOOR（定冠词、整个词组大写），两个是不同的字符串，一条模板盖不住，各写一条。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§e§l",
+          "text": "RIGHT CLICK ",
+          "zh": "右键点击"
+        },
+        {
+          "color": "§7",
+          "text": "on the ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§c§l",
+          "text": "BLOOD DOOR ",
+          "zh": "血门"
+        },
+        {
+          "color": "§7",
+          "text": "to open it. This key can only be used to open ",
+          "zh": "即可开启。一把钥匙只能开 "
+        },
+        {
+          "color": "§a",
+          "text": "1",
+          "zh": "1"
+        },
+        {
+          "color": "§7",
+          "text": " door!",
+          "zh": " 扇门!"
+        }
+      ]
+    },
+    {
+      "id": "run_auto_ready_enabled",
+      "context": "在排队菜单开启自动准备后的确认",
+      "raw": "§aYou will now auto ready up when joining The Catacombs!",
+      "text": "You will now auto ready up when joining The Catacombs!",
+      "placeholders": [],
+      "gloss": "和 run_no_auto_ready 是同一个开关的开/关两句;大师模式的两句在 Lobby_Server_Messages.json。",
+      "translate": true,
+      "zh": "你已开启加入地牢时自动准备的功能!"
+    },
+    {
+      "id": "run_you_selected_class",
+      "context": "自己在准备界面选好职业后的确认(给自己看的那一句,广播给全队的是 run_selected_class)",
+      "raw": "§aYou have selected the §b%s §aDungeon Class!",
+      "text": "You have selected the %s Dungeon Class!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "职业名,五种之一,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Berserk"
+        }
+      ],
+      "gloss": "Dungeon Class 在中文里并进「职业」二字;职业名和「职业」之间不留空格,引擎在需要时自动补接缝空格。",
+      "translate": true,
+      "zh": "你选择了%s职业!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "You have selected the ",
+          "zh": "你选择了"
+        },
+        {
+          "color": "§b",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§a",
+          "text": "Dungeon Class!",
+          "zh": "职业!"
+        }
+      ]
+    },
+    {
+      "id": "run_mage_magma_pit_burned",
+      "context": "F1 Boss 战里踩到法师岩浆池",
+      "raw": "§7The Mage's Magma Pit burned you for §c%s§7 damage.",
+      "text": "The Mage's Magma Pit burned you for %s damage.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "伤害值",
+          "type": "number",
+          "example": "364.8"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "法师的岩浆池灼烧了你，造成 %s 点伤害。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "The Mage's Magma Pit burned you for ",
+          "zh": "法师的岩浆池灼烧了你，造成 "
+        },
+        {
+          "color": "§c",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": " damage.",
+          "zh": " 点伤害。"
+        }
+      ]
+    },
+    {
+      "id": "run_puzzle_fail_tic_tac_toe",
+      "context": "谜题房失败广播:井字棋输了,末尾 Yikes! 每个字母一种颜色",
+      "raw": "§c§lPUZZLE FAIL! §b%s §elost Tic Tac Toe! §4Y§ci§6k§ee§as§2!",
+      "text": "PUZZLE FAIL! %s lost Tic Tac Toe! Yikes!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "输掉谜题的玩家名",
+          "type": "player_name",
+          "example": "inkkni"
+        }
+      ],
+      "gloss": "Yikes! 六个字母六种颜色,中文只有三个字,后三段 zh 留空但不是没翻——它们是 omit。见 segments 里的 omit 标记。",
+      "translate": true,
+      "zh": "谜题失败! %s 输掉了井字棋! 哎呀!",
+      "segments": [
+        {
+          "color": "§c§l",
+          "text": "PUZZLE FAIL! ",
+          "zh": "谜题失败! "
+        },
+        {
+          "color": "§b",
+          "text": "%s ",
+          "zh": "%s "
+        },
+        {
+          "color": "§e",
+          "text": "lost Tic Tac Toe! ",
+          "zh": "输掉了井字棋! "
+        },
+        {
+          "color": "§4",
+          "text": "Y",
+          "zh": "哎"
+        },
+        {
+          "color": "§c",
+          "text": "i",
+          "zh": "呀"
+        },
+        {
+          "color": "§6",
+          "text": "k",
+          "zh": "!"
+        },
+        {
+          "color": "§e",
+          "text": "e",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§a",
+          "text": "s",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§2",
+          "text": "!",
+          "zh": "",
+          "omit": true
+        }
+      ]
+    },
+    {
+      "id": "run_rng_drop_broadcast",
+      "context": "全服 RNG 掉落广播",
+      "raw": "§d§lRNG DROP! §6%1$s §ejust found a §6%2$s§e!",
+      "text": "RNG DROP! %1$s just found a %2$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "玩家名(含 Rank 标签,原样保留)",
+          "type": "raw",
+          "example": "[MVP++] Dontana"
+        },
+        {
+          "token": "%2$s",
+          "desc": "掉落物品名,物品自造名保留英文",
+          "type": "item_name",
+          "example": "Necron's Handle"
+        }
+      ],
+      "gloss": "RNG 是社区通用叫法,保留英文;不译作「随机」。",
+      "translate": true,
+      "zh": "RNG 掉落! %1$s 刚刚获得了 %2$s!",
+      "segments": [
+        {
+          "color": "§d§l",
+          "text": "RNG DROP! ",
+          "zh": "RNG 掉落! "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§e",
+          "text": "just found a ",
+          "zh": "刚刚获得了 "
+        },
+        {
+          "color": "§6",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§e",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    }
+  ]
+}

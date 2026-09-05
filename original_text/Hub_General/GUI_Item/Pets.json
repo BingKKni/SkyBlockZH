@@ -35,6 +35,637 @@
       "gloss": "",
       "translate": true,
       "zh": "右键点击将此宠物加入你的宠物菜单!"
+    },
+    {
+      "id": "pets_exp_sharing",
+      "context": "经验共享入口格物品名",
+      "raw": "§6Exp Sharing",
+      "text": "Exp Sharing",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "经验共享"
+    },
+    {
+      "id": "pets_exp_sharing_desc_1",
+      "context": "经验共享说明,英文两行一句",
+      "raw": "§7Let your pets gain §aPet Exp §7without",
+      "text": "Let your pets gain Pet Exp without",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Let your pets gain ",
+          "zh": "让你的宠物在未出战时也能获得"
+        },
+        {
+          "color": "§a",
+          "text": "Pet Exp ",
+          "zh": "宠物经验"
+        },
+        {
+          "color": "§7",
+          "text": "without",
+          "zh": "!"
+        }
+      ],
+      "zh": "让你的宠物在未出战时也能获得宠物经验!"
+    },
+    {
+      "id": "pets_exp_sharing_desc_2",
+      "context": "接上一行",
+      "raw": "§7them being actively deployed!",
+      "text": "them being actively deployed!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "pets_more_slots",
+      "context": "解锁新一页宠物的格子",
+      "raw": "§a+%1$s Pet Slots",
+      "text": "+%1$s Pet Slots",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "新增槽位数",
+          "type": "number",
+          "example": "28"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 个宠物槽位"
+    },
+    {
+      "id": "pets_unlock_page",
+      "context": "解锁新一页说明",
+      "raw": "§7Unlock a new page of pets.",
+      "text": "Unlock a new page of pets.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "解锁新的一页宠物。"
+    },
+    {
+      "id": "pets_current_max",
+      "context": "当前宠物上限",
+      "raw": "§7Current Max Pets: §a%1$s",
+      "text": "Current Max Pets: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "上限",
+          "type": "number",
+          "example": "112"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Current Max Pets: ",
+          "zh": "当前宠物上限: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ],
+      "zh": "当前宠物上限: %1$s"
+    },
+    {
+      "id": "pets_held_item",
+      "context": "宠物携带物品(金色标签)",
+      "raw": "§6Held Item: §5%1$s",
+      "text": "Held Item: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "宠物道具名,保留英文",
+          "type": "item_name",
+          "example": "Dwarf Turtle Shelmet"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Held Item: ",
+          "zh": "携带物品: "
+        },
+        {
+          "color": "§5",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ],
+      "zh": "携带物品: %1$s"
+    },
+    {
+      "id": "pets_candy_used",
+      "context": "已使用宠物糖果数",
+      "raw": "§a(%1$s) Pet Candy Used",
+      "text": "(%1$s) Pet Candy Used",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "已用/上限",
+          "type": "raw",
+          "example": "10/10"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "(%1$s) 已使用宠物糖果"
+    },
+    {
+      "id": "pets_left_click_summon",
+      "context": "点击提示",
+      "raw": "§eLeft-click to summon!",
+      "text": "Left-click to summon!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "左键点击召唤!"
+    },
+    {
+      "id": "pets_shift_favorite",
+      "context": "点击提示",
+      "raw": "§eShift Left-click to toggle as favorite!",
+      "text": "Shift Left-click to toggle as favorite!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Shift+左键点击 切换收藏!"
+    },
+    {
+      "id": "pets_right_click_item",
+      "context": "点击提示",
+      "raw": "§eRight-click to convert to an item!",
+      "text": "Right-click to convert to an item!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "右键点击转换为物品!"
+    },
+    {
+      "id": "pets_click_despawn",
+      "context": "已召唤宠物的点击提示",
+      "raw": "§cClick to despawn!",
+      "text": "Click to despawn!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击收回!"
+    },
+    {
+      "id": "pets_upgrade_kat",
+      "context": "可升级提示",
+      "raw": "§8Can be upgraded at Kat in The Hub!",
+      "text": "Can be upgraded at Kat in The Hub!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "可在大厅的 Kat 处升级!"
+    },
+    {
+      "id": "pets_pet_luck",
+      "context": "宠物幸运属性行",
+      "raw": "§7Pet Luck: §d+%1$s",
+      "text": "Pet Luck: +%1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "数值",
+          "type": "number",
+          "example": "15"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Pet Luck: ",
+          "zh": "宠物幸运: "
+        },
+        {
+          "color": "§d",
+          "text": "+%1$s",
+          "zh": "+%1$s"
+        }
+      ],
+      "zh": "宠物幸运: +%1$s"
+    },
+    {
+      "id": "pets_mining_mount",
+      "context": "犰狳宠物的灰色副标题",
+      "raw": "§8Mining Mount",
+      "text": "Mining Mount",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "挖矿坐骑"
+    },
+    {
+      "id": "pets_autopet",
+      "context": "自动宠物入口格物品名",
+      "raw": "§cAutopet",
+      "text": "Autopet",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "自动宠物"
+    },
+    {
+      "id": "pets_autopet_desc_1",
+      "context": "自动宠物说明,英文两行一句",
+      "raw": "§7Define custom §crules §7to automatically",
+      "text": "Define custom rules to automatically",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Define custom ",
+          "zh": "自定义"
+        },
+        {
+          "color": "§c",
+          "text": "rules ",
+          "zh": "规则"
+        },
+        {
+          "color": "§7",
+          "text": "to automatically",
+          "zh": ",自动为你装备宠物。"
+        }
+      ],
+      "zh": "自定义规则,自动为你装备宠物。"
+    },
+    {
+      "id": "pets_autopet_desc_2",
+      "context": "接上一行",
+      "raw": "§7equip your pets.",
+      "text": "equip your pets.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "pets_click_setup_autopet",
+      "context": "点击提示",
+      "raw": "§eClick to setup autopet!",
+      "text": "Click to setup autopet!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击设置自动宠物!"
+    },
+    {
+      "id": "pets_score_rewards",
+      "context": "宠物分数奖励格物品名",
+      "raw": "§aPet Score Rewards",
+      "text": "Pet Score Rewards",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "宠物分数奖励"
+    },
+    {
+      "id": "pets_score_desc_1",
+      "context": "宠物分数说明,英文三行一句",
+      "raw": "§7Pet score is calculated based on",
+      "text": "Pet score is calculated based on",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "宠物分数由你拥有的不同种类宠物数量及其稀有度计算得出。"
+    },
+    {
+      "id": "pets_score_desc_2",
+      "context": "接上一行",
+      "raw": "§7how many §aunique §7pets you have and",
+      "text": "how many unique pets you have and",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "pets_score_desc_3",
+      "context": "接上一行",
+      "raw": "§7the §ararity §7of these pets.",
+      "text": "the rarity of these pets.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "pets_score_desc_4",
+      "context": "宠物分数说明,英文两行一句",
+      "raw": "§7You gain an additional score for",
+      "text": "You gain an additional score for",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "每有一只满级宠物,还能额外获得分数!"
+    },
+    {
+      "id": "pets_score_desc_5",
+      "context": "接上一行",
+      "raw": "§7each max level pet you have!",
+      "text": "each max level pet you have!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "pets_score_row",
+      "context": "分数档位行",
+      "raw": "§6%1$s Score§8: +§b%2$s Magic Find",
+      "text": "%1$s Score: +%2$s Magic Find",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分数",
+          "type": "number",
+          "example": "10"
+        },
+        {
+          "token": "%2$s",
+          "desc": "魔法寻宝",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§6",
+          "text": "%1$s Score",
+          "zh": "%1$s 分"
+        },
+        {
+          "color": "§8",
+          "text": ": +",
+          "zh": ": +"
+        },
+        {
+          "color": "§b",
+          "text": "%2$s Magic Find",
+          "zh": "%2$s 魔法寻宝"
+        }
+      ],
+      "zh": "%1$s 分: +%2$s 魔法寻宝"
+    },
+    {
+      "id": "pets_score_row_current",
+      "context": "分数档位行,带当前档标记",
+      "raw": "§6%1$s Score§8: +§b%2$s Magic Find §5«",
+      "text": "%1$s Score: +%2$s Magic Find «",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分数",
+          "type": "number",
+          "example": "75"
+        },
+        {
+          "token": "%2$s",
+          "desc": "魔法寻宝",
+          "type": "number",
+          "example": "4"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§6",
+          "text": "%1$s Score",
+          "zh": "%1$s 分"
+        },
+        {
+          "color": "§8",
+          "text": ": +",
+          "zh": ": +"
+        },
+        {
+          "color": "§b",
+          "text": "%2$s Magic Find ",
+          "zh": "%2$s 魔法寻宝 "
+        },
+        {
+          "color": "§5",
+          "text": "«",
+          "zh": "«"
+        }
+      ],
+      "zh": "%1$s 分: +%2$s 魔法寻宝 «"
+    },
+    {
+      "id": "pets_find_by_name",
+      "context": "搜索格说明",
+      "raw": "§7Find pets by name!",
+      "text": "Find pets by name!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "按名称查找宠物!"
+    },
+    {
+      "id": "pets_visibility",
+      "context": "宠物可见性格物品名",
+      "raw": "§aPet visibility",
+      "text": "Pet visibility",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "宠物可见性"
+    },
+    {
+      "id": "pets_show_all",
+      "context": "可见性选项",
+      "raw": "§7Show all pets",
+      "text": "Show all pets",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "显示所有宠物"
+    },
+    {
+      "id": "pets_hide_all",
+      "context": "可见性选项",
+      "raw": "§7Hide all pets",
+      "text": "Hide all pets",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "隐藏所有宠物"
+    },
+    {
+      "id": "pets_only_yours",
+      "context": "可见性选项",
+      "raw": "§7Only your pet",
+      "text": "Only your pet",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "只显示你的宠物"
+    },
+    {
+      "id": "pets_name_tags",
+      "context": "宠物名牌开关状态",
+      "raw": "§7Pet name tags: §a%1$s",
+      "text": "Pet name tags: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Enabled / Disabled,译名走 Terms.json",
+          "type": "raw",
+          "example": "Enabled"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Pet name tags: ",
+          "zh": "宠物名牌: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ],
+      "zh": "宠物名牌: %1$s"
+    },
+    {
+      "id": "pets_right_click_name_tags",
+      "context": "点击提示",
+      "raw": "§bRight-click to toggle name tags!",
+      "text": "Right-click to toggle name tags!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "右键点击切换名牌显示!"
+    },
+    {
+      "id": "pets_left_click_visibility",
+      "context": "点击提示",
+      "raw": "§eLeft-click to switch visibility!",
+      "text": "Left-click to switch visibility!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "左键点击切换可见性!"
+    },
+    {
+      "id": "pets_sort_rarity",
+      "context": "排序选项",
+      "raw": "§7Rarity",
+      "text": "Rarity",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "稀有度"
+    },
+    {
+      "id": "pets_sort_pet_exp",
+      "context": "排序选项",
+      "raw": "§7Pet Exp",
+      "text": "Pet Exp",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "宠物经验"
+    },
+    {
+      "id": "pets_sort_skill",
+      "context": "排序选项",
+      "raw": "§7Skill",
+      "text": "Skill",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "技能"
+    },
+    {
+      "id": "pets_level_name",
+      "context": "宠物菜单里各宠物格子的物品名:等级 + 宠物名",
+      "raw": "§7[Lvl %1$s] §6%2$s",
+      "text": "[Lvl %1$s] %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "宠物等级",
+          "type": "number",
+          "example": "100"
+        },
+        {
+          "token": "%2$s",
+          "desc": "宠物名,译名走 _shared/Terms.json",
+          "type": "mob_name",
+          "example": "Enderman"
+        }
+      ],
+      "gloss": "地牢职业格子改成了带职业名的整行,这条才负责宠物菜单的「[Lvl N] 名」。",
+      "translate": true,
+      "zh": "[%1$s 级] %2$s"
+    },
+    {
+      "id": "pets_collection_bonus",
+      "context": "宠物加成:提高获得收藏品物品的数量",
+      "raw": "§7Gain §c%s% §7more collection items from",
+      "text": "Gain %s% more collection items from",
+      "placeholders": [{"token": "%s", "desc": "收藏品物品增量", "type": "number", "example": "20.2"}],
+      "gloss": "该句在英文中继续到下一行，缺口只采到带动态值的首行。",
+      "translate": true,
+      "zh": "从该宠物对应的技能中获得的收藏品物品增加 %s%",
+      "segments": [
+        {"color": "§7", "text": "Gain ", "zh": "从该宠物对应的技能中获得的收藏品物品增加 "},
+        {"color": "§c", "text": "%s% ", "zh": "%s%"},
+        {"color": "§7", "text": "more collection items from", "zh": "", "omit": true}
+      ]
+    },
+    {
+      "id": "pets_hotm_hotf_xp",
+      "context": "宠物加成:山峦之心与森林之心经验",
+      "raw": "§7Gain §c%s% §7more §6HOTM§7 and §aHOTF§7 XP.",
+      "text": "Gain %s% more HOTM and HOTF XP.",
+      "placeholders": [{"token": "%s", "desc": "两种技能树经验加成", "type": "number", "example": "214"}],
+      "gloss": "HOTM 是山峦之心；HOTF 是森林之心，不可混为同一经验。",
+      "translate": true,
+      "zh": "获得的山心经验和森林之心经验提高 %s%。",
+      "segments": [
+        {"color": "§7", "text": "Gain ", "zh": "获得的", "order": 0},
+        {"color": "§c", "text": "%s% ", "zh": "%s%。", "order": 5},
+        {"color": "§7", "text": "more ", "zh": "", "omit": true, "order": 6},
+        {"color": "§6", "text": "HOTM", "zh": "山心经验", "order": 1},
+        {"color": "§7", "text": " and ", "zh": "和", "order": 2},
+        {"color": "§a", "text": "HOTF", "zh": "森林之心经验", "order": 3},
+        {"color": "§7", "text": " XP.", "zh": "提高 ", "order": 4}
+      ]
     }
   ]
 }

@@ -1,0 +1,261 @@
+{
+  "source": "SkyZH runtime capture (Dungeon Hub, 2026-09-03)",
+  "fetched_at": "2026-09-03",
+  "verified_ingame": true,
+  "source_note": "地牢技能菜单 → 「你的精华」：每种精华一格，Lore 是持有数量 + 一句斜体风味文本。风味文本按 GLOSSARY 的语气保留玩笑感。",
+  "items": [
+    {
+      "id": "your_essence_own_count_full",
+      "context": "「你的精华」菜单每种精华格的持有数量（整行版）",
+      "raw": "§7You currently own §a%1$s §d%2$s Essence§7.",
+      "text": "You currently own %1$s %2$s Essence.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "持有数量",
+          "type": "number",
+          "example": "52"
+        },
+        {
+          "token": "%2$s",
+          "desc": "精华种类，译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Wither"
+        }
+      ],
+      "gloss": "种类名长的（Spider/Undead/Dragon/Gold/Diamond/Crimson/Forest/Fossil）被服务器折到两行，见下一条。 已知不一致：Ice 在 Terms.json 无 types 且译「冰」（小人名用），这里拼出「冰精华」，而整词条 Ice Essence 是「冰霜精华」；Ice 词条不能直接改（波及小人名），待引擎支持同 en 按 type 分条后再统一。",
+      "translate": true,
+      "zh": "你目前拥有 %1$s %2$s精华。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You currently own ",
+          "zh": "你目前拥有 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§d",
+          "text": "%2$s Essence",
+          "zh": "%2$s精华"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "your_essence_own_count_1",
+      "context": "持有数量（两行版首行）",
+      "raw": "§7You currently own §a%1$s §d%2$s",
+      "text": "You currently own %1$s %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "持有数量",
+          "type": "number",
+          "example": "605"
+        },
+        {
+          "token": "%2$s",
+          "desc": "精华种类",
+          "type": "category_name",
+          "example": "Spider"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你目前拥有 %1$s %2$s精华。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You currently own ",
+          "zh": "你目前拥有 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§d",
+          "text": "%2$s",
+          "zh": "%2$s精华。"
+        }
+      ]
+    },
+    {
+      "id": "your_essence_own_count_2",
+      "context": "接上一行",
+      "raw": "§dEssence§7.",
+      "text": "Essence.",
+      "placeholders": [],
+      "gloss": "Mining/GUI_Item/Ghostly_Boots.json 有一条 essence. 小写的 near-miss，那是另一句话的尾巴，不能改它。",
+      "translate": true,
+      "continuation": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "Essence",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "",
+          "omit": true
+        }
+      ]
+    },
+    {
+      "id": "your_essence_flavor_wither",
+      "context": "Wither 精华格的斜体风味文本",
+      "raw": "§7§osuffer...",
+      "text": "suffer...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "受苦吧……"
+    },
+    {
+      "id": "your_essence_flavor_spider",
+      "context": "Spider 精华格的斜体风味文本",
+      "raw": "§7§oSpinning a web of lies...",
+      "text": "Spinning a web of lies...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "编织着谎言之网……"
+    },
+    {
+      "id": "your_essence_flavor_undead_1",
+      "context": "Undead 精华格的斜体风味文本，英文两行一句",
+      "raw": "§7§oIs this thing rotten? And the smell,",
+      "text": "Is this thing rotten? And the smell,",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这东西是不是烂了? 还有这股味道，哎哟……"
+    },
+    {
+      "id": "your_essence_flavor_dragon",
+      "context": "Dragon 精华格的斜体风味文本",
+      "raw": "§7§oIs it glowing? And pulsating?!",
+      "text": "Is it glowing? And pulsating?!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "它在发光? 还在搏动?!"
+    },
+    {
+      "id": "your_essence_flavor_gold_1",
+      "context": "Gold 精华格的斜体风味文本，英文两行一句",
+      "raw": "§7§oThere's something dirty about this",
+      "text": "There's something dirty about this",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这块金子透着一股不干净的味道……"
+    },
+    {
+      "id": "your_essence_flavor_diamond",
+      "context": "Diamond 精华格的斜体风味文本",
+      "raw": "§7§oSo pristine...so magnificent!",
+      "text": "So pristine...so magnificent!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "如此纯净……如此壮丽!"
+    },
+    {
+      "id": "your_essence_flavor_ice",
+      "context": "Ice 精华格的斜体风味文本",
+      "raw": "§7§oIce cold, yet warm to the touch.",
+      "text": "Ice cold, yet warm to the touch.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "冰冷刺骨，触之却温暖。"
+    },
+    {
+      "id": "your_essence_flavor_crimson",
+      "context": "Crimson 精华格的斜体风味文本",
+      "raw": "§7§oSmoke is rising from the houses.",
+      "text": "Smoke is rising from the houses.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "房舍间正升起烟雾。"
+    },
+    {
+      "id": "your_essence_flavor_forest_1",
+      "context": "Forest 精华格的斜体风味文本，英文两行一句",
+      "raw": "§7§oNature's hidden treasure, radiant",
+      "text": "Nature's hidden treasure, radiant",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "自然的隐秘珍宝，璀璨而珍贵。"
+    },
+    {
+      "id": "your_essence_flavor_fossil",
+      "context": "Fossil 精华格的斜体风味文本",
+      "raw": "§7§oThe oldest essence of all.",
+      "text": "The oldest essence of all.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "最古老的精华。"
+    },
+    {
+      "id": "your_essence_flavor_safari",
+      "context": "Safari 精华格的斜体风味文本",
+      "raw": "§7§oThe sweet smell of the safari.",
+      "text": "The sweet smell of the safari.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "游猎的芬芳气息。"
+    },
+    {
+      "id": "your_essence_flavor_undead_2",
+      "context": "接上一行",
+      "raw": "§7§oyikes...",
+      "text": "yikes...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "your_essence_flavor_gold_2",
+      "context": "接上一行",
+      "raw": "§7§ogold...",
+      "text": "gold...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "your_essence_flavor_forest_2",
+      "context": "接上一行",
+      "raw": "§7§oand precious.",
+      "text": "and precious.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    }
+  ]
+}

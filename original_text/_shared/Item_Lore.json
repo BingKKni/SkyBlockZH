@@ -1878,6 +1878,104 @@
       ]
     },
     {
+      "id": "item_crit_chance_s",
+      "context": "物品 Lore / 职业菜单 / 属性面板里的属性行:Crit Chance",
+      "raw": "§7Crit Chance: §9%s",
+      "text": "Crit Chance: %s",
+      "placeholders": [{"token": "%s", "desc": "数值。写成 raw 而不是 number:装备带上重铸/附魔/星级之后这一行是「基础值 + 若干个加成括号」(§7Crit Damage: §9+23% (+7%) §8(+87.17%)),number 只吃得下第一个数,整行就匹配不上。括号里各自的颜色由引擎照抄服务器原样(StyledText#slice),不需要分段。", "type": "raw", "example": "+23% (+7%) (+87.17%)"}],
+      "gloss": "2026-09-03 实测(Mort 地牢职业菜单弓箭手的暴击行、装备 Lore)这一族战斗属性没有通用行,同为属性行的 Damage/Strength/Health 却有,于是同一件装备上一半属性是中文一半是英文。译名与 Hub_General/TabList/Stat_Labels.json 一致。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Crit Chance: ", "zh": "暴击率: "},
+        {"color": "§9", "text": "%s", "zh": "%s"}
+      ]
+    },
+    {
+      "id": "item_crit_damage_s",
+      "context": "物品 Lore / 职业菜单 / 属性面板里的属性行:Crit Damage",
+      "raw": "§7Crit Damage: §9%s",
+      "text": "Crit Damage: %s",
+      "placeholders": [{"token": "%s", "desc": "数值。写成 raw 而不是 number:装备带上重铸/附魔/星级之后这一行是「基础值 + 若干个加成括号」(§7Crit Damage: §9+23% (+7%) §8(+87.17%)),number 只吃得下第一个数,整行就匹配不上。括号里各自的颜色由引擎照抄服务器原样(StyledText#slice),不需要分段。", "type": "raw", "example": "+194.5%"}],
+      "gloss": "2026-09-03 实测(Mort 地牢职业菜单弓箭手的暴击行、装备 Lore)这一族战斗属性没有通用行,同为属性行的 Damage/Strength/Health 却有,于是同一件装备上一半属性是中文一半是英文。译名与 Hub_General/TabList/Stat_Labels.json 一致。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Crit Damage: ", "zh": "暴击伤害: "},
+        {"color": "§9", "text": "%s", "zh": "%s"}
+      ]
+    },
+    {
+      "id": "item_ferocity_s",
+      "context": "物品 Lore / 职业菜单 / 属性面板里的属性行:Ferocity",
+      "raw": "§7Ferocity: §c%s",
+      "text": "Ferocity: %s",
+      "placeholders": [{"token": "%s", "desc": "数值。写成 raw 而不是 number:装备带上重铸/附魔/星级之后这一行是「基础值 + 若干个加成括号」(§7Crit Damage: §9+23% (+7%) §8(+87.17%)),number 只吃得下第一个数,整行就匹配不上。括号里各自的颜色由引擎照抄服务器原样(StyledText#slice),不需要分段。", "type": "raw", "example": "+33 (+46.2)"}],
+      "gloss": "2026-09-03 实测(Mort 地牢职业菜单弓箭手的暴击行、装备 Lore)这一族战斗属性没有通用行,同为属性行的 Damage/Strength/Health 却有,于是同一件装备上一半属性是中文一半是英文。译名与 Hub_General/TabList/Stat_Labels.json 一致。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Ferocity: ", "zh": "凶暴: "},
+        {"color": "§c", "text": "%s", "zh": "%s"}
+      ]
+    },
+    {
+      "id": "item_vitality_s",
+      "context": "物品 Lore / 职业菜单 / 属性面板里的属性行:Vitality",
+      "raw": "§7Vitality: §4%s",
+      "text": "Vitality: %s",
+      "placeholders": [{"token": "%s", "desc": "数值。写成 raw 而不是 number:装备带上重铸/附魔/星级之后这一行是「基础值 + 若干个加成括号」(§7Crit Damage: §9+23% (+7%) §8(+87.17%)),number 只吃得下第一个数,整行就匹配不上。括号里各自的颜色由引擎照抄服务器原样(StyledText#slice),不需要分段。", "type": "raw", "example": "+3 (+3.15)"}],
+      "gloss": "2026-09-03 实测(Mort 地牢职业菜单弓箭手的暴击行、装备 Lore)这一族战斗属性没有通用行,同为属性行的 Damage/Strength/Health 却有,于是同一件装备上一半属性是中文一半是英文。译名与 Hub_General/TabList/Stat_Labels.json 一致。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Vitality: ", "zh": "活力: "},
+        {"color": "§4", "text": "%s", "zh": "%s"}
+      ]
+    },
+    {
+      "id": "item_mending_s",
+      "context": "物品 Lore / 职业菜单 / 属性面板里的属性行:Mending",
+      "raw": "§7Mending: §a%s",
+      "text": "Mending: %s",
+      "placeholders": [{"token": "%s", "desc": "数值。写成 raw 而不是 number:装备带上重铸/附魔/星级之后这一行是「基础值 + 若干个加成括号」(§7Crit Damage: §9+23% (+7%) §8(+87.17%)),number 只吃得下第一个数,整行就匹配不上。括号里各自的颜色由引擎照抄服务器原样(StyledText#slice),不需要分段。", "type": "raw", "example": "+23 (+5)"}],
+      "gloss": "2026-09-03 实测(Mort 地牢职业菜单弓箭手的暴击行、装备 Lore)这一族战斗属性没有通用行,同为属性行的 Damage/Strength/Health 却有,于是同一件装备上一半属性是中文一半是英文。译名与 Hub_General/TabList/Stat_Labels.json 一致。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Mending: ", "zh": "修补: "},
+        {"color": "§a", "text": "%s", "zh": "%s"}
+      ]
+    },
+    {
+      "id": "item_health_regen_s",
+      "context": "物品 Lore / 职业菜单 / 属性面板里的属性行:Health Regen",
+      "raw": "§7Health Regen: §c%s",
+      "text": "Health Regen: %s",
+      "placeholders": [{"token": "%s", "desc": "数值。写成 raw 而不是 number:装备带上重铸/附魔/星级之后这一行是「基础值 + 若干个加成括号」(§7Crit Damage: §9+23% (+7%) §8(+87.17%)),number 只吃得下第一个数,整行就匹配不上。括号里各自的颜色由引擎照抄服务器原样(StyledText#slice),不需要分段。", "type": "raw", "example": "+5 (+5.2)"}],
+      "gloss": "2026-09-03 实测(Mort 地牢职业菜单弓箭手的暴击行、装备 Lore)这一族战斗属性没有通用行,同为属性行的 Damage/Strength/Health 却有,于是同一件装备上一半属性是中文一半是英文。译名与 Hub_General/TabList/Stat_Labels.json 一致。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Health Regen: ", "zh": "生命回复: "},
+        {"color": "§c", "text": "%s", "zh": "%s"}
+      ]
+    },
+    {
+      "id": "item_cooldown_reduction_s",
+      "context": "物品 Lore / 职业菜单 / 属性面板里的属性行:Cooldown Reduction",
+      "raw": "§7Cooldown Reduction: §a%s",
+      "text": "Cooldown Reduction: %s",
+      "placeholders": [{"token": "%s", "desc": "数值。写成 raw 而不是 number:装备带上重铸/附魔/星级之后这一行是「基础值 + 若干个加成括号」(§7Crit Damage: §9+23% (+7%) §8(+87.17%)),number 只吃得下第一个数,整行就匹配不上。括号里各自的颜色由引擎照抄服务器原样(StyledText#slice),不需要分段。", "type": "raw", "example": "+10%"}],
+      "gloss": "2026-09-03 实测(Mort 地牢职业菜单弓箭手的暴击行、装备 Lore)这一族战斗属性没有通用行,同为属性行的 Damage/Strength/Health 却有,于是同一件装备上一半属性是中文一半是英文。译名与 Hub_General/TabList/Stat_Labels.json 一致。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Cooldown Reduction: ", "zh": "冷却缩减: "},
+        {"color": "§a", "text": "%s", "zh": "%s"}
+      ]
+    },
+    {
       "id": "item_upgrade_module_not_installed",
       "context": "",
       "raw": "§7Upgrade Module: §cNot Installed",
@@ -3280,6 +3378,108 @@
       "gloss": "两个数值都会变化,按两个独立占位符处理。上限那个曾写成 raw,但 3k 是个量而不是一段文字:Capture.NUMBER 的正则本就收数字后面跟一到两个字母,写成 number 才是它真正的类型,也才不会被当成需要查词表的词。",
       "translate": true,
       "zh": ""
+    },
+    {
+      "id": "minion_time_between_actions",
+      "context": "小人详情与升级预览中的当前行动间隔",
+      "raw": "§7Time Between Actions: §a%s",
+      "text": "Time Between Actions: %s",
+      "placeholders": [
+        {"token": "%s", "desc": "当前行动间隔", "type": "duration", "example": "10.4s"}
+      ],
+      "gloss": "时长由引擎换算单位；一条记录覆盖所有小人和档位。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Time Between Actions: ", "zh": "行动间隔: "},
+        {"color": "§a", "text": "%s", "zh": "%s"}
+      ]
+    },
+    {
+      "id": "minion_time_between_actions_upgrade",
+      "context": "小人升级预览中的行动间隔变化",
+      "raw": "§7Time Between Actions: §8%1$s ➜ §a%2$s",
+      "text": "Time Between Actions: %1$s ➜ %2$s",
+      "placeholders": [
+        {"token": "%1$s", "desc": "升级前的行动间隔", "type": "duration", "example": "10.4s"},
+        {"token": "%2$s", "desc": "升级后的行动间隔", "type": "duration", "example": "9.6s"}
+      ],
+      "gloss": "两个值都会随小人种类和档位变化。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Time Between Actions: ", "zh": "行动间隔: "},
+        {"color": "§8", "text": "%1$s ➜ ", "zh": "%1$s ➜ "},
+        {"color": "§a", "text": "%2$s", "zh": "%2$s"}
+      ]
+    },
+    {
+      "id": "minion_resources_generated",
+      "context": "小人详情中的累计产量",
+      "raw": "§7Resources Generated: §b%s",
+      "text": "Resources Generated: %s",
+      "placeholders": [
+        {"token": "%s", "desc": "累计生成的资源数量", "type": "number", "example": "1,875"}
+      ],
+      "gloss": "累计值持续变化，不按采集值枚举。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Resources Generated: ", "zh": "已生成资源: "},
+        {"color": "§b", "text": "%s", "zh": "%s"}
+      ]
+    },
+    {
+      "id": "minion_max_storage",
+      "context": "小人详情中的当前存储上限",
+      "raw": "§7Max Storage: §e%s",
+      "text": "Max Storage: %s",
+      "placeholders": [
+        {"token": "%s", "desc": "当前存储上限", "type": "number", "example": "384"}
+      ],
+      "gloss": "存储上限随档位变化。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Max Storage: ", "zh": "最大存储量: "},
+        {"color": "§e", "text": "%s", "zh": "%s"}
+      ]
+    },
+    {
+      "id": "minion_max_storage_upgrade",
+      "context": "小人升级预览中的存储上限变化",
+      "raw": "§7Max Storage: §8%1$s ➜ §e%2$s",
+      "text": "Max Storage: %1$s ➜ %2$s",
+      "placeholders": [
+        {"token": "%1$s", "desc": "升级前的存储上限", "type": "number", "example": "192"},
+        {"token": "%2$s", "desc": "升级后的存储上限", "type": "number", "example": "384"}
+      ],
+      "gloss": "两个值都会随档位变化。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§7", "text": "Max Storage: ", "zh": "最大存储量: "},
+        {"color": "§8", "text": "%1$s ➜ ", "zh": "%1$s ➜ "},
+        {"color": "§e", "text": "%2$s", "zh": "%2$s"}
+      ]
+    },
+    {
+      "id": "minion_materials_needed",
+      "context": "小人升级材料不足提示；数量和材料都随目标档位变化",
+      "raw": "§cYou need §6%1$s §cmore %2$s.",
+      "text": "You need %1$s more %2$s.",
+      "placeholders": [
+        {"token": "%1$s", "desc": "仍缺少的材料数量", "type": "number", "example": "512"},
+        {"token": "%2$s", "desc": "所需材料名，原版材料译名走 Terms", "type": "category_name", "example": "Coal"}
+      ],
+      "gloss": "材料值由 _shared/Terms.json 统一，不按每种材料复制模板。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {"color": "§c", "text": "You need ", "zh": "你还需要 "},
+        {"color": "§6", "text": "%1$s ", "zh": "%1$s "},
+        {"color": "§c", "text": "more %2$s.", "zh": "个%2$s。"}
+      ]
     }
   ],
   "merged_note": "原 _shared/Item_Boilerplate.json 已并入本文件并删除。两个共享库同时存在时,同一句话会有两条记录,引擎按文件名排序注册、先到先得,维护起来看不出哪条在生效。Boilerplate 里那几条**更通用的模板**(如 'Fuel Tank: %s',对应装了配件之后的状态)一并保留了下来:它们和 NEU 快照里的具体状态行('Fuel Tank: Not Installed')并存是对的,引擎按模板里字面文本的多少择优,具体行赢在空槽时,通用模板兜住装了配件之后的情况。"

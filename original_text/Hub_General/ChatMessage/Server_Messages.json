@@ -1,0 +1,542 @@
+{
+  "source": "runtime capture (SkyZH), build/gaps_B.txt, 2026-09-05",
+  "fetched_at": "2026-09-05",
+  "verified_ingame": true,
+  "context": "技能、收藏品、小人、宾果、教程和 SkyBlock 等级的服务器聊天消息。",
+  "messages": [
+    {
+      "id": "skill_level_up",
+      "context": "技能升级横幅；技能名和升级前后等级均动态",
+      "raw": "§b§lSKILL LEVEL UP §3%1$s §8%2$s➜§3%3$s",
+      "text": "SKILL LEVEL UP %1$s %2$s➜%3$s",
+      "placeholders": [
+        {"token": "%1$s", "desc": "技能名，译名走 Terms", "type": "category_name", "example": "Enchanting"},
+        {"token": "%2$s", "desc": "升级前等级", "type": "tier", "example": "IX"},
+        {"token": "%3$s", "desc": "升级后等级", "type": "tier", "example": "X"}
+      ],
+      "gloss": "同一模板覆盖附魔、驯养等技能。行首居中空格由 LineShape 保留。",
+      "translate": true,
+      "zh": "技能升级 %1$s %2$s➜%3$s",
+      "segments": [
+        {"color": "§b§l", "text": "SKILL LEVEL UP ", "zh": "技能升级 "},
+        {"color": "§3", "text": "%1$s ", "zh": "%1$s "},
+        {"color": "§8", "text": "%2$s➜", "zh": "%2$s➜"},
+        {"color": "§3", "text": "%3$s", "zh": "%3$s"}
+      ]
+    },
+    {
+      "id": "skill_conjurer",
+      "context": "附魔技能每级天赋名",
+      "raw": "§eConjurer %s",
+      "text": "Conjurer %s",
+      "placeholders": [{"token": "%s", "desc": "咒术师天赋等级", "type": "tier", "example": "X"}],
+      "gloss": "译名沿用 GLOSSARY.md。",
+      "translate": true,
+      "zh": "咒术师 %s"
+    },
+    {
+      "id": "skill_conjurer_experience_orbs",
+      "context": "咒术师天赋升级效果",
+      "raw": "§fGain §8%1$s➜§a%2$s%§f more experience orbs from any source.",
+      "text": "Gain %1$s➜%2$s% more experience orbs from any source.",
+      "placeholders": [
+        {"token": "%1$s", "desc": "升级前经验球加成", "type": "number", "example": "45"},
+        {"token": "%2$s", "desc": "升级后经验球加成", "type": "number", "example": "50"}
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "从任何来源获得的经验球增加 %1$s➜%2$s%。",
+      "segments": [
+        {"color": "§f", "text": "Gain ", "zh": "从任何来源获得的经验球增加 "},
+        {"color": "§8", "text": "%1$s➜", "zh": "%1$s➜"},
+        {"color": "§a", "text": "%2$s%", "zh": "%2$s%"},
+        {"color": "§f", "text": " more experience orbs from any source.", "zh": "。"}
+      ]
+    },
+    {
+      "id": "reward_ability_damage",
+      "context": "技能升级属性奖励",
+      "raw": "§8+§a%s% §c Ability Damage",
+      "text": "+%s% ๑ Ability Damage",
+      "placeholders": [{"token": "%s", "desc": "技能伤害加成", "type": "number", "example": "0.5"}],
+      "gloss": "๑ 是技能伤害图标的通用写法。",
+      "translate": true,
+      "zh": "+%s% ๑ 技能伤害",
+      "segments": [
+        {"color": "§8", "text": "+", "zh": "+"},
+        {"color": "§a", "text": "%s% ", "zh": "%s% "},
+        {"color": "§c", "text": "๑ Ability Damage", "zh": "๑ 技能伤害"}
+      ]
+    },
+    {
+      "id": "reward_intelligence",
+      "context": "技能升级属性奖励",
+      "raw": "§8+§a%s §b Intelligence",
+      "text": "+%s  Intelligence",
+      "placeholders": [{"token": "%s", "desc": "智力加成", "type": "number", "example": "1"}],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s  智力",
+      "segments": [
+        {"color": "§8", "text": "+", "zh": "+"},
+        {"color": "§a", "text": "%s ", "zh": "%s "},
+        {"color": "§b", "text": " Intelligence", "zh": " 智力"}
+      ]
+    },
+    {
+      "id": "reward_strength",
+      "context": "SkyBlock 等级属性奖励",
+      "raw": "§8+§a%s §c Strength",
+      "text": "+%s  Strength",
+      "placeholders": [{"token": "%s", "desc": "力量加成", "type": "number", "example": "1"}],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s  力量",
+      "segments": [
+        {"color": "§8", "text": "+", "zh": "+"},
+        {"color": "§a", "text": "%s ", "zh": "%s "},
+        {"color": "§c", "text": " Strength", "zh": " 力量"}
+      ]
+    },
+    {
+      "id": "reward_health",
+      "context": "SkyBlock 等级属性奖励",
+      "raw": "§8+§a%s §c Health",
+      "text": "+%s  Health",
+      "placeholders": [{"token": "%s", "desc": "生命值加成", "type": "number", "example": "5"}],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s  生命值",
+      "segments": [
+        {"color": "§8", "text": "+", "zh": "+"},
+        {"color": "§a", "text": "%s ", "zh": "%s "},
+        {"color": "§c", "text": " Health", "zh": " 生命值"}
+      ]
+    },
+    {
+      "id": "reward_enchantment",
+      "context": "技能等级奖励中的附魔解锁；附魔名按项目规则保留英文",
+      "raw": "§a%1$s Enchantment",
+      "text": "%1$s Enchantment",
+      "placeholders": [{"token": "%1$s", "desc": "空岛专属附魔名", "type": "item_name", "example": "Pesterminator"}],
+      "gloss": "只翻译功能后缀 Enchantment，不改附魔专名。",
+      "translate": true,
+      "zh": "%1$s附魔"
+    },
+    {
+      "id": "reward_experimentation_table_recipe",
+      "context": "附魔技能等级奖励的配方",
+      "raw": "§9Experimentation Table §7Recipe",
+      "text": "Experimentation Table Recipe",
+      "placeholders": [],
+      "gloss": "普通词组成的功能物品名。",
+      "translate": true,
+      "zh": "实验台配方",
+      "segments": [
+        {"color": "§9", "text": "Experimentation Table ", "zh": "实验台"},
+        {"color": "§7", "text": "Recipe", "zh": "配方"}
+      ]
+    },
+    {
+      "id": "reward_coins",
+      "context": "等级奖励中的硬币数量",
+      "raw": "§8+§6%s §7Coins",
+      "text": "+%s Coins",
+      "placeholders": [{"token": "%s", "desc": "奖励的硬币数量", "type": "coins", "example": "7,500"}],
+      "gloss": "Coins 统一译作硬币。",
+      "translate": true,
+      "zh": "+%s 硬币",
+      "segments": [
+        {"color": "§8", "text": "+", "zh": "+"},
+        {"color": "§6", "text": "%s ", "zh": "%s "},
+        {"color": "§7", "text": "Coins", "zh": "硬币"}
+      ]
+    },
+    {
+      "id": "skyblock_level_up",
+      "context": "SkyBlock 等级提升横幅标题",
+      "raw": "§3§lSKYBLOCK LEVEL UP",
+      "text": "SKYBLOCK LEVEL UP",
+      "placeholders": [],
+      "gloss": "SkyBlock 按配置项在运行时替换，译文使用规范拼写。",
+      "translate": true,
+      "zh": "SkyBlock 等级提升"
+    },
+    {
+      "id": "skyblock_level_change",
+      "context": "SkyBlock 升级前后的等级",
+      "raw": "§7Level §8%1$s ➡ [§7%2$s§8]",
+      "text": "Level %1$s ➡ [%2$s]",
+      "placeholders": [
+        {"token": "%1$s", "desc": "升级前等级", "type": "number", "example": "9"},
+        {"token": "%2$s", "desc": "升级后等级", "type": "number", "example": "10"}
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "等级 %1$s ➡ [%2$s]",
+      "segments": [
+        {"color": "§7", "text": "Level ", "zh": "等级 "},
+        {"color": "§8", "text": "%1$s ➡ [", "zh": "%1$s ➡ ["},
+        {"color": "§7", "text": "%2$s", "zh": "%2$s"},
+        {"color": "§8", "text": "]", "zh": "]"}
+      ]
+    },
+    {
+      "id": "diamond_emblem",
+      "context": "SkyBlock 等级奖励的钻石徽记",
+      "raw": "Diamond Emblem §7♦",
+      "text": "Diamond Emblem ♦",
+      "placeholders": [],
+      "gloss": "Emblem 是显示在玩家名字旁的徽记。",
+      "translate": true,
+      "zh": "钻石徽记 ♦",
+      "segments": [
+        {"color": "", "text": "Diamond Emblem ", "zh": "钻石徽记 "},
+        {"color": "§7", "text": "♦", "zh": "♦"}
+      ]
+    },
+    {
+      "id": "tutorial_farm",
+      "context": "新手教程的农场章节标题",
+      "raw": "§7 §eFarm",
+      "text": " Farm",
+      "placeholders": [],
+      "gloss": "Farm 在这里是地点/章节名。",
+      "translate": true,
+      "zh": " 农场",
+      "segments": [
+        {"color": "§7", "text": " ", "zh": " "},
+        {"color": "§e", "text": "Farm", "zh": "农场"}
+      ]
+    },
+    {
+      "id": "tutorial_farming_skill",
+      "context": "农场新手教程目标",
+      "raw": "§7■ §fLearn about the Farming Skill at §eFarmer Rigby§f.",
+      "text": "■ Learn about the Farming Skill at Farmer Rigby.",
+      "placeholders": [],
+      "gloss": "Farmer Rigby 是 NPC 名，保留英文。",
+      "translate": true,
+      "zh": "■ 向 Farmer Rigby 了解农业技能。",
+      "segments": [
+        {"color": "§7", "text": "■ ", "zh": "■ "},
+        {"color": "§f", "text": "Learn about the Farming Skill at ", "zh": "向"},
+        {"color": "§e", "text": "Farmer Rigby", "zh": "Farmer Rigby"},
+        {"color": "§f", "text": ".", "zh": "了解农业技能。"}
+      ]
+    },
+    {
+      "id": "tutorial_gather_wheat",
+      "context": "农场新手教程目标",
+      "raw": "§7■ §fGather §eWheat§f.",
+      "text": "■ Gather Wheat.",
+      "placeholders": [],
+      "gloss": "Wheat 使用 Minecraft 官方译名。",
+      "translate": true,
+      "zh": "■ 收集小麦。",
+      "segments": [
+        {"color": "§7", "text": "■ ", "zh": "■ "},
+        {"color": "§f", "text": "Gather ", "zh": "收集"},
+        {"color": "§e", "text": "Wheat", "zh": "小麦"},
+        {"color": "§f", "text": ".", "zh": "。"}
+      ]
+    },
+    {
+      "id": "tutorial_minion_upgrades",
+      "context": "农场新手教程目标",
+      "raw": "§7■ §fLearn about Minion Upgrades at §eArthur§f.",
+      "text": "■ Learn about Minion Upgrades at Arthur.",
+      "placeholders": [],
+      "gloss": "Arthur 是 NPC 名，保留英文。",
+      "translate": true,
+      "zh": "■ 向 Arthur 了解小人升级。",
+      "segments": [
+        {"color": "§7", "text": "■ ", "zh": "■ "},
+        {"color": "§f", "text": "Learn about Minion Upgrades at ", "zh": "向"},
+        {"color": "§e", "text": "Arthur", "zh": "Arthur"},
+        {"color": "§f", "text": ".", "zh": "了解小人升级。"}
+      ]
+    },
+    {
+      "id": "tutorial_travel_barn",
+      "context": "农场新手教程目标",
+      "raw": "§7■ §fTravel to §eThe Barn§f.",
+      "text": "■ Travel to The Barn.",
+      "placeholders": [],
+      "gloss": "The Barn 沿用既有译名牲畜棚。",
+      "translate": true,
+      "zh": "■ 前往牲畜棚。",
+      "segments": [
+        {"color": "§7", "text": "■ ", "zh": "■ "},
+        {"color": "§f", "text": "Travel to ", "zh": "前往"},
+        {"color": "§e", "text": "The Barn", "zh": "牲畜棚"},
+        {"color": "§f", "text": ".", "zh": "。"}
+      ]
+    },
+    {
+      "id": "mining_fiesta_underway",
+      "context": "挖矿狂欢节开始公告",
+      "raw": "§6§lMINING FIESTA §eis now underway! Equip your pickaxe and head to the mines!",
+      "text": "MINING FIESTA is now underway! Equip your pickaxe and head to the mines!",
+      "placeholders": [],
+      "gloss": "活动名沿用挖矿狂欢节。",
+      "translate": true,
+      "zh": "挖矿狂欢节现已开始! 装备好你的镐,前往矿区吧!",
+      "segments": [
+        {"color": "§6§l", "text": "MINING FIESTA ", "zh": "挖矿狂欢节 "},
+        {"color": "§e", "text": "is now underway! Equip your pickaxe and head to the mines!", "zh": "现已开始! 装备好你的镐,前往矿区吧!"}
+      ]
+    },
+    {
+      "id": "stranger_appears",
+      "context": "Sam 首次以 Stranger 身份出现在私人岛屿",
+      "raw": "§aA §bStranger §aappears on your island at §f%1$s§a, §f%2$s§a, §f%3$s§a! You should go talk to them.",
+      "text": "A Stranger appears on your island at %1$s, %2$s, %3$s! You should go talk to them.",
+      "placeholders": [
+        {"token": "%1$s", "desc": "X 坐标", "type": "number", "example": "8"},
+        {"token": "%2$s", "desc": "Y 坐标", "type": "number", "example": "100"},
+        {"token": "%3$s", "desc": "Z 坐标", "type": "number", "example": "41"}
+      ],
+      "gloss": "Stranger 是 Sam 自我介绍前的临时称呼，译作陌生人。",
+      "translate": true,
+      "zh": "一位陌生人出现在你岛屿的 %1$s, %2$s, %3$s 处! 去和她谈谈吧。",
+      "segments": [
+        {"color": "§a", "text": "A ", "zh": "一位"},
+        {"color": "§b", "text": "Stranger ", "zh": "陌生人"},
+        {"color": "§a", "text": "appears on your island at ", "zh": "出现在你岛屿的 "},
+        {"color": "§f", "text": "%1$s", "zh": "%1$s"},
+        {"color": "§a", "text": ", ", "zh": ", "},
+        {"color": "§f", "text": "%2$s", "zh": "%2$s"},
+        {"color": "§a", "text": ", ", "zh": ", "},
+        {"color": "§f", "text": "%3$s", "zh": "%3$s"},
+        {"color": "§a", "text": "! You should go talk to them.", "zh": " 处! 去和她谈谈吧。"}
+      ]
+    },
+    {
+      "id": "wither_skeleton_recipe",
+      "context": "收藏品奖励中的宠物配方",
+      "raw": "§7[Lvl 1] §fWither Skeleton §7Recipe",
+      "text": "[Lvl 1] Wither Skeleton Recipe",
+      "placeholders": [],
+      "gloss": "Wither Skeleton 使用 Minecraft 官方译名。",
+      "translate": true,
+      "zh": "[1 级] 凋零骷髅配方",
+      "segments": [
+        {"color": "§7", "text": "[Lvl 1] ", "zh": "[1 级] "},
+        {"color": "§f", "text": "Wither Skeleton ", "zh": "凋零骷髅"},
+        {"color": "§7", "text": "Recipe", "zh": "配方"}
+      ]
+    },
+    {
+      "id": "bingo_goal_complete",
+      "context": "宾果目标完成横幅；目标名动态",
+      "raw": "§6§lBINGO GOAL COMPLETE! §e%s",
+      "text": "BINGO GOAL COMPLETE! %s",
+      "placeholders": [{"token": "%s", "desc": "宾果目标名，译名走 Terms", "type": "category_name", "example": "Minion Machine"}],
+      "gloss": "Minion Machine 沿用宾果卡既有译名小人机器。",
+      "translate": true,
+      "zh": "宾果目标完成! %s",
+      "segments": [
+        {"color": "§6§l", "text": "BINGO GOAL COMPLETE! ", "zh": "宾果目标完成! "},
+        {"color": "§e", "text": "%s", "zh": "%s"}
+      ]
+    },
+    {
+      "id": "bingo_obtain_unique_minions",
+      "context": "宾果小人机器目标要求",
+      "raw": "§fObtain §a%s §funique Minions.",
+      "text": "Obtain %s unique Minions.",
+      "placeholders": [{"token": "%s", "desc": "需要获得的不同小人数量", "type": "number", "example": "15"}],
+      "gloss": "",
+      "translate": true,
+      "zh": "获得 %s 种不同的小人。",
+      "segments": [
+        {"color": "§f", "text": "Obtain ", "zh": "获得 "},
+        {"color": "§a", "text": "%s ", "zh": "%s "},
+        {"color": "§f", "text": "unique Minions.", "zh": "种不同的小人。"}
+      ]
+    },
+    {
+      "id": "minion_slot_unlocked",
+      "context": "解锁新的小人槽位",
+      "raw": "§aYou have now unlocked your %s Minion slot!",
+      "text": "You have now unlocked your %s Minion slot!",
+      "placeholders": [{"token": "%s", "desc": "解锁的槽位序数", "type": "ordinal", "example": "7th"}],
+      "gloss": "ordinal 会移除英文序数后缀。",
+      "translate": true,
+      "zh": "你已解锁第 %s 个小人槽位!"
+    },
+    {
+      "id": "sam_help_choice",
+      "context": "是否帮助 Sam 的聊天选项",
+      "raw": "§eHelp her out? §a§l[YES] §c§l[NO]",
+      "text": "Help her out? [YES] [NO]",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "帮助她吗? [是] [否]",
+      "segments": [
+        {"color": "§e", "text": "Help her out? ", "zh": "帮助她吗? "},
+        {"color": "§a§l", "text": "[YES] ", "zh": "[是] "},
+        {"color": "§c§l", "text": "[NO]", "zh": "[否]"}
+      ]
+    },
+    {
+      "id": "bingo_pet_not_item",
+      "context": "宾果宠物不能转换为物品",
+      "raw": "§cThe Bingo Pet cannot be converted into an item!",
+      "text": "The Bingo Pet cannot be converted into an item!",
+      "placeholders": [],
+      "gloss": "Bingo Pet 沿用宾果宠物。",
+      "translate": true,
+      "zh": "宾果宠物无法转换成物品!"
+    },
+    {
+      "id": "tutorial_taylors_shop",
+      "context": "新手教程的 Taylor 商店章节标题",
+      "raw": "§7 §bTaylor's Shop",
+      "text": " Taylor's Shop",
+      "placeholders": [],
+      "gloss": "Taylor 是 NPC 人名；地点译名沿用时装店。",
+      "translate": true,
+      "zh": " 时装店",
+      "segments": [
+        {"color": "§7", "text": " ", "zh": " "},
+        {"color": "§b", "text": "Taylor's Shop", "zh": "时装店"}
+      ]
+    },
+    {
+      "id": "tutorial_taylors_shop_desc_1",
+      "context": "时装店新手教程说明第一行；聊天消息不能使用 continuation",
+      "raw": "§7■ §fPurchase various cosmetics for your Pets, Helmets, and",
+      "text": "■ Purchase various cosmetics for your Pets, Helmets, and",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "■ 购买适用于宠物、头盔等物品的",
+      "segments": [
+        {"color": "§7", "text": "■ ", "zh": "■ "},
+        {"color": "§f", "text": "Purchase various cosmetics for your Pets, Helmets, and", "zh": "购买适用于宠物、头盔等物品的"}
+      ]
+    },
+    {
+      "id": "tutorial_taylors_shop_desc_2",
+      "context": "接上一条独立聊天行",
+      "raw": "§fmore!",
+      "text": "more!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "各种装饰品!"
+    },
+    {
+      "id": "collection_level_up",
+      "context": "收藏品等级提升横幅；收藏品和前后等级均动态",
+      "raw": "§6§lCOLLECTION LEVEL UP §e%1$s §8%2$s➜§e%3$s",
+      "text": "COLLECTION LEVEL UP %1$s %2$s➜%3$s",
+      "placeholders": [
+        {"token": "%1$s", "desc": "收藏品材料名，译名走 Terms", "type": "category_name", "example": "Cobblestone"},
+        {"token": "%2$s", "desc": "升级前档位", "type": "tier", "example": "III"},
+        {"token": "%3$s", "desc": "升级后档位", "type": "tier", "example": "IV"}
+      ],
+      "gloss": "收藏品材料名由 _shared/Terms.json 的 category_name 词条翻译。",
+      "translate": true,
+      "zh": "收藏品升级 %1$s %2$s➜%3$s",
+      "segments": [
+        {"color": "§6§l", "text": "COLLECTION LEVEL UP ", "zh": "收藏品升级 "},
+        {"color": "§e", "text": "%1$s ", "zh": "%1$s "},
+        {"color": "§8", "text": "%2$s➜", "zh": "%2$s➜"},
+        {"color": "§e", "text": "%3$s", "zh": "%3$s"}
+      ]
+    },
+    {
+      "id": "collection_level_first",
+      "context": "首次解锁收藏品等级；没有前后等级箭头",
+      "raw": "§6§lCOLLECTION LEVEL UP §e%1$s %2$s",
+      "text": "COLLECTION LEVEL UP %1$s %2$s",
+      "placeholders": [
+        {"token": "%1$s", "desc": "收藏品材料名，译名走 Terms", "type": "category_name", "example": "Gold Ingot"},
+        {"token": "%2$s", "desc": "解锁的档位", "type": "tier", "example": "I"}
+      ],
+      "gloss": "收藏品材料名由 _shared/Terms.json 的 category_name 词条翻译。",
+      "translate": true,
+      "zh": "收藏品升级 %1$s %2$s",
+      "segments": [
+        {"color": "§6§l", "text": "COLLECTION LEVEL UP ", "zh": "收藏品升级 "},
+        {"color": "§e", "text": "%1$s %2$s", "zh": "%1$s %2$s"}
+      ]
+    },
+    {
+      "id": "crafted_new_minion",
+      "context": "首次制作某种档位的小人",
+      "raw": "§aYou crafted a §eTier %1$s %2$s Minion§a! That's a new one!",
+      "text": "You crafted a Tier %1$s %2$s Minion! That's a new one!",
+      "placeholders": [
+        {"token": "%1$s", "desc": "小人档位", "type": "tier", "example": "IV"},
+        {"token": "%2$s", "desc": "小人种类，译名走 Terms", "type": "category_name", "example": "Cobblestone"}
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你制作了一个 %1$s 档%2$s小人! 这是新的种类!",
+      "segments": [
+        {"color": "§a", "text": "You crafted a ", "zh": "你制作了一个 "},
+        {"color": "§e", "text": "Tier %1$s %2$s Minion", "zh": "%1$s 档%2$s小人"},
+        {"color": "§a", "text": "! That's a new one!", "zh": "! 这是新的种类!"}
+      ]
+    },
+    {
+      "id": "craft_more_unique_minions",
+      "context": "距离解锁下一个小人槽位的制作提示",
+      "raw": "§aCraft %1$s more unique Minions to unlock your %2$s Minion slot!",
+      "text": "Craft %1$s more unique Minions to unlock your %2$s Minion slot!",
+      "placeholders": [
+        {"token": "%1$s", "desc": "还需制作的不同小人数量", "type": "number", "example": "1"},
+        {"token": "%2$s", "desc": "待解锁槽位的序数", "type": "ordinal", "example": "7th"}
+      ],
+      "gloss": "复数由引擎兼容单数写法。",
+      "translate": true,
+      "zh": "再制作 %1$s 种不同的小人,即可解锁第 %2$s 个小人槽位!"
+    },
+    {
+      "id": "minion_upgraded_tier",
+      "context": "小人升级完成提示",
+      "raw": "§aYou have upgraded your Minion to Tier %s",
+      "text": "You have upgraded your Minion to Tier %s",
+      "placeholders": [{"token": "%s", "desc": "升级后的档位", "type": "tier", "example": "IV"}],
+      "gloss": "",
+      "translate": true,
+      "zh": "你已将小人升级至 %s 档"
+    },
+    {
+      "id": "bingo_leveled_up",
+      "context": "宾果等级提升提示",
+      "raw": "§aYour §fBingo §aleveled up to level §9%s§a!",
+      "text": "Your Bingo leveled up to level %s!",
+      "placeholders": [{"token": "%s", "desc": "新的宾果等级", "type": "number", "example": "69"}],
+      "gloss": "Bingo 译名沿用宾果。",
+      "translate": true,
+      "zh": "你的宾果等级提升至 %s 级!",
+      "segments": [
+        {"color": "§a", "text": "Your ", "zh": "你的"},
+        {"color": "§f", "text": "Bingo ", "zh": "宾果"},
+        {"color": "§a", "text": "leveled up to level ", "zh": "等级提升至 "},
+        {"color": "§9", "text": "%s", "zh": "%s"},
+        {"color": "§a", "text": "!", "zh": " 级!"}
+      ]
+    },
+    {
+      "id": "reward_furniture_recipe",
+      "context": "技能等级奖励中的家具配方；家具专名保留英文",
+      "raw": "§f%1$s §7Furniture Recipe",
+      "text": "%1$s Furniture Recipe",
+      "placeholders": [{"token": "%1$s", "desc": "家具名", "type": "item_name", "example": "Scarecrow"}],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s家具配方",
+      "segments": [
+        {"color": "§f", "text": "%1$s ", "zh": "%1$s"},
+        {"color": "§7", "text": "Furniture Recipe", "zh": "家具配方"}
+      ]
+    }
+  ]
+}

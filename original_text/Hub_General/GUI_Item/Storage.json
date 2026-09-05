@@ -1,10 +1,19 @@
 {
-  "source": "SkyZH runtime capture (2026-08-27, Mining GUI session)",
-  "fetched_at": "2026-08-27",
+  "source": "SkyZH runtime capture (2026-08-27 + 2026-09-03)",
+  "fetched_at": "2026-09-03",
   "verified_ingame": true,
-  "gui_context": "空岛菜单打开后的 Storage 菜单；仅收录通用仓储入口、状态与说明。",
+  "gui_context": "空岛菜单 → Storage(存储)总览:末影箱页、背包、工具包。",
   "lines": [
-    {"id": "ender_chest", "context": "末影箱入口", "raw": "§aEnder Chest", "text": "Ender Chest", "placeholders": [], "gloss": "Minecraft 通用容器名。", "translate": true, "zh": "末影箱"},
+    {
+      "id": "ender_chest",
+      "context": "末影箱入口",
+      "raw": "§aEnder Chest",
+      "text": "Ender Chest",
+      "placeholders": [],
+      "gloss": "Minecraft 通用容器名。",
+      "translate": true,
+      "zh": "末影箱"
+    },
     {
       "id": "ender_chest_desc_1",
       "context": "末影箱入口说明首行",
@@ -15,11 +24,49 @@
       "translate": true,
       "zh": "在末影箱中存放可随时取用的全局物品。"
     },
-    {"id": "ender_chest_desc_2", "context": "接上一行", "raw": "§7anywhere in your ender chest.", "text": "anywhere in your ender chest.", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
-    {"id": "ender_chest_page", "context": "末影箱分页入口", "raw": "§aEnder Chest Page %1$s", "text": "Ender Chest Page %1$s", "placeholders": [{"token": "%1$s", "desc": "页码", "type": "number", "example": "1"}], "gloss": "", "translate": true, "zh": "末影箱第 %1$s 页"},
-    {"id": "left_click_open", "ref": "_shared/Menu_Common.json#menu_left_click_to_open", "context": "打开仓储页的操作提示"},
-    {"id": "right_click_change_icon", "ref": "_shared/Menu_Common.json#menu_right_click_to_change_icon", "context": "更换仓储页图标的操作提示"},
-    {"id": "locked_page", "ref": "_shared/Menu_Common.json#menu_locked_page", "context": "未开放的仓储页"},
+    {
+      "id": "ender_chest_desc_2",
+      "context": "接上一行",
+      "raw": "§7anywhere in your ender chest.",
+      "text": "anywhere in your ender chest.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "ender_chest_page",
+      "context": "末影箱分页入口",
+      "raw": "§aEnder Chest Page %1$s",
+      "text": "Ender Chest Page %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "页码",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "末影箱第 %1$s 页"
+    },
+    {
+      "id": "left_click_open",
+      "ref": "_shared/Menu_Common.json#menu_left_click_to_open",
+      "context": "打开仓储页的操作提示"
+    },
+    {
+      "id": "right_click_change_icon",
+      "ref": "_shared/Menu_Common.json#menu_right_click_to_change_icon",
+      "context": "更换仓储页图标的操作提示"
+    },
+    {
+      "id": "locked_page",
+      "ref": "_shared/Menu_Common.json#menu_locked_page",
+      "context": "未开放的仓储页"
+    },
     {
       "id": "backpack_storage_desc_1",
       "context": "背包槽位说明首行；英文说明被菜单宽度拆成三行",
@@ -30,26 +77,101 @@
       "translate": true,
       "zh": "将收纳背包放入这些槽位，作为可随时取用的额外存储空间。"
     },
-    {"id": "backpack_storage_desc_2", "context": "接上一行", "raw": "§7to use them as additional storage", "text": "to use them as additional storage", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
-    {"id": "backpack_storage_desc_3", "context": "接上一行", "raw": "§7that can be accessed anywhere.", "text": "that can be accessed anywhere.", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
-    {"id": "backpack_slot", "context": "已放置收纳背包的槽位", "raw": "§6Backpack Slot %1$s", "text": "Backpack Slot %1$s", "placeholders": [{"token": "%1$s", "desc": "槽位编号", "type": "number", "example": "1"}], "gloss": "", "translate": true, "zh": "收纳背包槽位 %1$s"},
+    {
+      "id": "backpack_storage_desc_2",
+      "context": "接上一行",
+      "raw": "§7to use them as additional storage",
+      "text": "to use them as additional storage",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "backpack_storage_desc_3",
+      "context": "接上一行",
+      "raw": "§7that can be accessed anywhere.",
+      "text": "that can be accessed anywhere.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "backpack_slot",
+      "context": "已放置收纳背包的槽位",
+      "raw": "§6Backpack Slot %1$s",
+      "text": "Backpack Slot %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "槽位编号",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "收纳背包槽位 %1$s"
+    },
     {
       "id": "backpack_capacity",
       "context": "收纳背包容量状态",
       "raw": "§7This backpack has §a%1$s§7 slots.",
       "text": "This backpack has %1$s slots.",
-      "placeholders": [{"token": "%1$s", "desc": "背包槽位数", "type": "number", "example": "45"}],
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "背包槽位数",
+          "type": "number",
+          "example": "45"
+        }
+      ],
       "gloss": "",
       "translate": true,
       "zh": "",
       "segments": [
-        {"color": "§7", "text": "This backpack has ", "zh": "此收纳背包有 "},
-        {"color": "§a", "text": "%1$s", "zh": "%1$s"},
-        {"color": "§7", "text": " slots.", "zh": " 个槽位。"}
+        {
+          "color": "§7",
+          "text": "This backpack has ",
+          "zh": "此收纳背包有 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " slots.",
+          "zh": " 个槽位。"
+        }
       ]
     },
-    {"id": "right_click_remove", "ref": "_shared/Menu_Common.json#menu_right_click_to_remove", "context": "移除收纳背包的操作提示"},
-    {"id": "empty_backpack_slot", "context": "空的收纳背包槽位", "raw": "§eEmpty Backpack Slot %1$s", "text": "Empty Backpack Slot %1$s", "placeholders": [{"token": "%1$s", "desc": "槽位编号", "type": "number", "example": "4"}], "gloss": "", "translate": true, "zh": "空收纳背包槽位 %1$s"},
+    {
+      "id": "right_click_remove",
+      "ref": "_shared/Menu_Common.json#menu_right_click_to_remove",
+      "context": "移除收纳背包的操作提示"
+    },
+    {
+      "id": "empty_backpack_slot",
+      "context": "空的收纳背包槽位",
+      "raw": "§eEmpty Backpack Slot %1$s",
+      "text": "Empty Backpack Slot %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "槽位编号",
+          "type": "number",
+          "example": "4"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "空收纳背包槽位 %1$s"
+    },
     {
       "id": "place_backpack_desc_1",
       "context": "放入收纳背包的操作提示首行",
@@ -60,6 +182,128 @@
       "translate": true,
       "zh": "左键点击此槽位中的收纳背包以放入!"
     },
-    {"id": "place_backpack_desc_2", "context": "接上一行", "raw": "§eslot to place it!", "text": "slot to place it!", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""}
+    {
+      "id": "place_backpack_desc_2",
+      "context": "接上一行",
+      "raw": "§eslot to place it!",
+      "text": "slot to place it!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "storage_also_via",
+      "context": "末影箱页/背包格的命令提示",
+      "raw": "§8Also accessible via /%1$s %2$s",
+      "text": "Also accessible via /%1$s %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "命令名 enderchest / backpack,原样保留",
+          "type": "player_name",
+          "example": "enderchest"
+        },
+        {
+          "token": "%2$s",
+          "desc": "页码",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "命令名是要玩家照着输入的,不翻译。用 player_name 的严格单词形状承载，避免 raw 值被中英混杂诊断当成待翻术语。",
+      "translate": true,
+      "zh": "也可以通过 /%1$s %2$s 打开"
+    },
+    {
+      "id": "storage_unlock_pages_1",
+      "context": "解锁更多末影箱页,英文两行一句",
+      "raw": "§7Unlock more Ender Chest pages in",
+      "text": "Unlock more Ender Chest pages in",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "在社区商店解锁更多末影箱页面!"
+    },
+    {
+      "id": "storage_unlock_pages_2",
+      "context": "接上一行",
+      "raw": "§7the community shop!",
+      "text": "the community shop!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "storage_backpacks",
+      "context": "背包分区标题格",
+      "raw": "§aBackpacks",
+      "text": "Backpacks",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "背包"
+    },
+    {
+      "id": "storage_jumbo_backpack",
+      "context": "背包格物品名",
+      "raw": "§6Jumbo Backpack",
+      "text": "Jumbo Backpack",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "超大背包"
+    },
+    {
+      "id": "storage_toolkits",
+      "context": "工具包分区标题格",
+      "raw": "§aToolkits",
+      "text": "Toolkits",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "工具包"
+    },
+    {
+      "id": "storage_toolkits_desc_1",
+      "context": "工具包说明,英文两行一句",
+      "raw": "§7Store all of your Farming and",
+      "text": "Store all of your Farming and",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "把你所有的农业和狩猎工具集中存放在一处。"
+    },
+    {
+      "id": "storage_toolkits_desc_2",
+      "context": "接上一行",
+      "raw": "§7Hunting Tools in one convenient place.",
+      "text": "Hunting Tools in one convenient place.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "storage_open_toolkit",
+      "context": "打开工具包的点击提示",
+      "raw": "§eRight-click to open the %1$s Toolkit!",
+      "text": "Right-click to open the %1$s Toolkit!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "工具包种类 Hunting / Farming,译名走 Terms.json",
+          "type": "category_name",
+          "example": "Hunting"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "右键点击打开%1$s工具包!"
+    }
   ]
 }

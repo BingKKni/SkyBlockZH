@@ -1,0 +1,920 @@
+{
+  "source": "SkyZH runtime capture 2026-09-03 (Dungeon Hub 会话,技能菜单 → 钓鱼)",
+  "fetched_at": "2026-09-03",
+  "verified_ingame": true,
+  "gui_context": "技能菜单 → 钓鱼 → Rod Part Guide(鱼竿配件指南)及 Hook / Line / Sinker 三个子页:配件名、效果与稀有度。「❣ Requires Lotus Collection VIII.」走 _shared/Item_Lore.json#requires_generic,值在 Terms.json。",
+  "lines": [
+    {
+      "id": "rod_guide_hooks",
+      "context": "鱼竿配件指南:鱼钩分类格",
+      "raw": "§9ථ Hooks",
+      "text": "ථ Hooks",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "ථ 鱼钩"
+    },
+    {
+      "id": "rod_guide_hooks_desc_1",
+      "context": "说明,英文两行一句",
+      "raw": "§9Hooks §7make you more likely to catch",
+      "text": "Hooks make you more likely to catch",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§9",
+          "text": "Hooks ",
+          "zh": "鱼钩"
+        },
+        {
+          "color": "§7",
+          "text": "make you more likely to catch",
+          "zh": "让你更容易钓到特定的东西。"
+        }
+      ],
+      "zh": "鱼钩让你更容易钓到特定的东西。"
+    },
+    {
+      "id": "rod_guide_hooks_desc_2",
+      "context": "接上一行",
+      "raw": "§7certain things.",
+      "text": "certain things.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "rod_guide_lines",
+      "context": "鱼线分类格",
+      "raw": "§9ꨃ Lines",
+      "text": "ꨃ Lines",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "ꨃ 鱼线"
+    },
+    {
+      "id": "rod_guide_lines_desc_1",
+      "context": "说明,英文两行一句",
+      "raw": "§9Lines §7grant you stat bonuses",
+      "text": "Lines grant you stat bonuses",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§9",
+          "text": "Lines ",
+          "zh": "鱼线"
+        },
+        {
+          "color": "§7",
+          "text": "grant you stat bonuses",
+          "zh": "在任何地方都能为你提供属性加成!"
+        }
+      ],
+      "zh": "鱼线在任何地方都能为你提供属性加成!"
+    },
+    {
+      "id": "rod_guide_lines_desc_2",
+      "context": "接上一行",
+      "raw": "§7everywhere!",
+      "text": "everywhere!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "rod_guide_sinkers",
+      "context": "坠子分类格",
+      "raw": "§9࿉ Sinkers",
+      "text": "࿉ Sinkers",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "࿉ 坠子"
+    },
+    {
+      "id": "rod_guide_sinkers_desc_1",
+      "context": "说明,英文两行一句",
+      "raw": "§9Sinkers §7give your rods special",
+      "text": "Sinkers give your rods special",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§9",
+          "text": "Sinkers ",
+          "zh": "坠子"
+        },
+        {
+          "color": "§7",
+          "text": "give your rods special",
+          "zh": "赋予你的鱼竿特殊能力!"
+        }
+      ],
+      "zh": "坠子赋予你的鱼竿特殊能力!"
+    },
+    {
+      "id": "rod_guide_sinkers_desc_2",
+      "context": "接上一行",
+      "raw": "§7abilities!",
+      "text": "abilities!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "rod_part_rarity",
+      "context": "配件稀有度行",
+      "raw": "§f§l%1$s ROD PART",
+      "text": "%1$s ROD PART",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "稀有度",
+          "type": "category_name",
+          "example": "COMMON"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s鱼竿配件"
+    },
+    {
+      "id": "rod_hook_kind",
+      "context": "鱼钩物品名(Common / Spooky / Hotspot / Treasure Hook)",
+      "raw": "§f%1$s Hook",
+      "text": "%1$s Hook",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "种类,译名走 Terms.json",
+          "type": "category_name",
+          "example": "Common"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s鱼钩"
+    },
+    {
+      "id": "rod_hook_puddle_jumper",
+      "context": "鱼钩物品名",
+      "raw": "§9Puddle Jumper Hook",
+      "text": "Puddle Jumper Hook",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Puddle Jumper 鱼钩"
+    },
+    {
+      "id": "rod_hook_common_1",
+      "context": "普通鱼钩说明,英文两行一句",
+      "raw": "§7Increases the chance to catch",
+      "text": "Increases the chance to catch",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "将钓到"
+    },
+    {
+      "id": "rod_hook_common_2",
+      "context": "接上一行",
+      "raw": "§f§lCOMMON §3Sea Creatures §7by §a25%§7.",
+      "text": "COMMON Sea Creatures by 25%.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§f§l",
+          "text": "COMMON ",
+          "zh": "普通"
+        },
+        {
+          "color": "§3",
+          "text": "Sea Creatures ",
+          "zh": "海洋生物"
+        },
+        {
+          "color": "§7",
+          "text": "by ",
+          "zh": "的几率提高 "
+        },
+        {
+          "color": "§a",
+          "text": "25%",
+          "zh": "25%"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "普通海洋生物的几率提高 25%。"
+    },
+    {
+      "id": "rod_hook_pj_1",
+      "context": "Puddle Jumper 鱼钩说明,英文两行一句",
+      "raw": "§7Increases the chance to catch a",
+      "text": "Increases the chance to catch a",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "将钓到 "
+    },
+    {
+      "id": "rod_hook_pj_2",
+      "context": "接上一行",
+      "raw": "§6Puddle Jumper §7by §a400%§7.",
+      "text": "Puddle Jumper by 400%.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Puddle Jumper ",
+          "zh": "Puddle Jumper "
+        },
+        {
+          "color": "§7",
+          "text": "by ",
+          "zh": "的几率提高 "
+        },
+        {
+          "color": "§a",
+          "text": "400%",
+          "zh": "400%"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "Puddle Jumper 的几率提高 400%。"
+    },
+    {
+      "id": "rod_hook_spooky_1",
+      "context": "惊魂/热点鱼钩说明首行,英文三行一句",
+      "raw": "§7Grants a §a+20% §7chance to catch",
+      "text": "Grants a +20% chance to catch",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants a ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§a",
+          "text": "+20% ",
+          "zh": "+20% "
+        },
+        {
+          "color": "§7",
+          "text": "chance to catch",
+          "zh": "几率钓到"
+        }
+      ],
+      "zh": "提供 +20% 几率钓到"
+    },
+    {
+      "id": "rod_hook_spooky_2",
+      "context": "接上一行(惊魂)",
+      "raw": "§6Spooky Sea Creatures §7during the",
+      "text": "Spooky Sea Creatures during the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Spooky Sea Creatures ",
+          "zh": "惊魂海洋生物"
+        },
+        {
+          "color": "§7",
+          "text": "during the",
+          "zh": "(仅限"
+        }
+      ],
+      "zh": "惊魂海洋生物(仅限"
+    },
+    {
+      "id": "rod_hook_spooky_3",
+      "context": "接上一行",
+      "raw": "§6Spooky Festival§7.",
+      "text": "Spooky Festival.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Spooky Festival",
+          "zh": "惊魂节"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "期间)。"
+        }
+      ],
+      "zh": "惊魂节期间)。"
+    },
+    {
+      "id": "rod_hook_hotspot_2",
+      "context": "接上一行(热点)",
+      "raw": "§dHotspot Sea Creatures §7while fishing",
+      "text": "Hotspot Sea Creatures while fishing",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§d",
+          "text": "Hotspot Sea Creatures ",
+          "zh": "热点海洋生物"
+        },
+        {
+          "color": "§7",
+          "text": "while fishing",
+          "zh": "(仅限在"
+        }
+      ],
+      "zh": "热点海洋生物(仅限在"
+    },
+    {
+      "id": "rod_hook_hotspot_3",
+      "context": "接上一行",
+      "raw": "§7in a §dHotspot§7.",
+      "text": "in a Hotspot.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "in a ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§d",
+          "text": "Hotspot",
+          "zh": "热点"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "中钓鱼时)。"
+        }
+      ],
+      "zh": "热点中钓鱼时)。"
+    },
+    {
+      "id": "rod_hook_treasure_1",
+      "context": "宝藏鱼钩说明,英文两行一句",
+      "raw": "§7Only allows you to catch items and",
+      "text": "Only allows you to catch items and",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "只能钓到物品和"
+    },
+    {
+      "id": "rod_hook_treasure_2",
+      "context": "接上一行",
+      "raw": "§6Treasure§7.",
+      "text": "Treasure.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Treasure",
+          "zh": "宝藏"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "宝藏。"
+    },
+    {
+      "id": "rod_line_kind",
+      "context": "鱼线物品名(Speedy / Trophy / Shredded / Titan Line)",
+      "raw": "§a%1$s Line",
+      "text": "%1$s Line",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "种类,译名走 Terms.json",
+          "type": "category_name",
+          "example": "Speedy"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s鱼线"
+    },
+    {
+      "id": "rod_line_trophy",
+      "context": "锦标鱼线效果",
+      "raw": "§7Grants §6+5 Trophy Chance§7.",
+      "text": "Grants +5 Trophy Chance.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§6",
+          "text": "+5 Trophy Chance",
+          "zh": "+5 锦标几率"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "提供 +5 锦标几率。"
+    },
+    {
+      "id": "rod_line_titan_1",
+      "context": "泰坦鱼线效果,英文两行一句",
+      "raw": "§7Grants §c+250 Damage §7and §c+50",
+      "text": "Grants +250 Damage and +50",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§c",
+          "text": "+250 Damage ",
+          "zh": "+250 伤害"
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": " 和 "
+        },
+        {
+          "color": "§c",
+          "text": "+50",
+          "zh": "+50"
+        }
+      ],
+      "zh": "提供 +250 伤害 和 +50"
+    },
+    {
+      "id": "rod_line_titan_2",
+      "context": "接上一行",
+      "raw": "§cFerocity§7.",
+      "text": "Ferocity.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§c",
+          "text": "Ferocity",
+          "zh": " 凶暴"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": " 凶暴。"
+    },
+    {
+      "id": "rod_line_double_hook",
+      "context": "碎裂鱼线效果",
+      "raw": "§7Grants §9+2 Double Hook Chance§7.",
+      "text": "Grants +2 Double Hook Chance.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§9",
+          "text": "+2 Double Hook Chance",
+          "zh": "+2 双钩几率"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "提供 +2 双钩几率。"
+    },
+    {
+      "id": "rod_sinker_kind",
+      "context": "坠子物品名(Prismarine / Icy / Festive / Sponge / Chum / Junk / Stingy / Lotus / Hotspot Sinker)",
+      "raw": "§f%1$s Sinker",
+      "text": "%1$s Sinker",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "种类,译名走 Terms.json",
+          "type": "category_name",
+          "example": "Prismarine"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s坠子"
+    },
+    {
+      "id": "rod_sinker_prismarine_1",
+      "context": "海晶坠子效果,英文四行一句",
+      "raw": "§7Materializes §fPrismarine Shard§7 or",
+      "text": "Materializes Prismarine Shard or",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Materializes ",
+          "zh": "每次钓到东西时,在你的背包中生成"
+        },
+        {
+          "color": "§f",
+          "text": "Prismarine Shard",
+          "zh": "海晶碎片"
+        },
+        {
+          "color": "§7",
+          "text": " or",
+          "zh": "或"
+        }
+      ],
+      "zh": "每次钓到东西时,在你的背包中生成海晶碎片或"
+    },
+    {
+      "id": "rod_sinker_prismarine_2",
+      "context": "接上一行",
+      "raw": "§fPrismarine Crystals §7in your",
+      "text": "Prismarine Crystals in your",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Prismarine Crystals ",
+          "zh": "海晶砂粒"
+        },
+        {
+          "color": "§7",
+          "text": "in your",
+          "zh": "。"
+        }
+      ],
+      "zh": "海晶砂粒。"
+    },
+    {
+      "id": "rod_sinker_sponge_1",
+      "context": "海绵坠子效果,英文三行一句",
+      "raw": "§7Materializes §fSponge §7in your",
+      "text": "Materializes Sponge in your",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Materializes ",
+          "zh": "每次钓到东西时,在你的背包中生成"
+        },
+        {
+          "color": "§f",
+          "text": "Sponge ",
+          "zh": "海绵"
+        },
+        {
+          "color": "§7",
+          "text": "in your",
+          "zh": "。"
+        }
+      ],
+      "zh": "每次钓到东西时,在你的背包中生成海绵。"
+    },
+    {
+      "id": "rod_sinker_inventory_3",
+      "context": "接上一行",
+      "raw": "§7inventory whenever you catch",
+      "text": "inventory whenever you catch",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "rod_sinker_inventory_4",
+      "context": "接上一行",
+      "raw": "§7something.",
+      "text": "something.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "rod_sinker_materialize",
+      "context": "冰冷/碎鱼饵/莲花坠子效果,英文两行一句",
+      "raw": "§7Materializes §f%1$s §7in your inventory",
+      "text": "Materializes %1$s in your inventory",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Ice / Chum / Lotus,译名走 Terms.json",
+          "type": "raw",
+          "example": "Ice"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Materializes ",
+          "zh": "每次钓到东西时,在你的背包中生成"
+        },
+        {
+          "color": "§f",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "in your inventory",
+          "zh": "。"
+        }
+      ],
+      "zh": "每次钓到东西时,在你的背包中生成%1$s。"
+    },
+    {
+      "id": "rod_sinker_materialize_2",
+      "context": "接上一行",
+      "raw": "§7whenever you catch something.",
+      "text": "whenever you catch something.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "rod_sinker_gifts_1",
+      "context": "节庆坠子效果,英文两行一句",
+      "raw": "§7Grants a small chance to catch §aGifts",
+      "text": "Grants a small chance to catch Gifts",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants a small chance to catch ",
+          "zh": "在 Jerry 季期间,有小几率钓到"
+        },
+        {
+          "color": "§a",
+          "text": "Gifts",
+          "zh": "礼物"
+        }
+      ],
+      "zh": "在 Jerry 季期间,有小几率钓到礼物"
+    },
+    {
+      "id": "rod_sinker_gifts_2",
+      "context": "接上一行",
+      "raw": "§7during the §cSeason of Jerry§7.",
+      "text": "during the Season of Jerry.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "during the ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§c",
+          "text": "Season of Jerry",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "。"
+    },
+    {
+      "id": "rod_sinker_junk_1",
+      "context": "垃圾坠子效果,英文三行一句",
+      "raw": "§7Grants §6+10 Treasure Chance §7while",
+      "text": "Grants +10 Treasure Chance while",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "在死水沼泽中提供 "
+        },
+        {
+          "color": "§6",
+          "text": "+10 Treasure Chance ",
+          "zh": "+10 宝藏几率"
+        },
+        {
+          "color": "§7",
+          "text": "while",
+          "zh": ","
+        }
+      ],
+      "zh": "在死水沼泽中提供 +10 宝藏几率,"
+    },
+    {
+      "id": "rod_sinker_junk_2",
+      "context": "接上一行",
+      "raw": "§7in the §2Backwater Bayou §7but replaces",
+      "text": "in the Backwater Bayou but replaces",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "in the ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§2",
+          "text": "Backwater Bayou ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§7",
+          "text": "but replaces",
+          "zh": "但所有"
+        }
+      ],
+      "zh": "但所有"
+    },
+    {
+      "id": "rod_sinker_junk_3",
+      "context": "接上一行",
+      "raw": "§7all §6Treasure §7catches with §2Junk§7!",
+      "text": "all Treasure catches with Junk!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "all ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§6",
+          "text": "Treasure ",
+          "zh": "宝藏"
+        },
+        {
+          "color": "§7",
+          "text": "catches with ",
+          "zh": "捕获都会变成"
+        },
+        {
+          "color": "§2",
+          "text": "Junk",
+          "zh": "垃圾"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!"
+        }
+      ],
+      "zh": "宝藏捕获都会变成垃圾!"
+    },
+    {
+      "id": "rod_sinker_hotspot_1",
+      "context": "热点坠子效果,英文两行一句",
+      "raw": "§7Increases the bonuses of §dFishing",
+      "text": "Increases the bonuses of Fishing",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increases the bonuses of ",
+          "zh": "使"
+        },
+        {
+          "color": "§d",
+          "text": "Fishing",
+          "zh": "钓鱼"
+        }
+      ],
+      "zh": "使钓鱼"
+    },
+    {
+      "id": "rod_sinker_hotspot_2",
+      "context": "接上一行",
+      "raw": "§dHotspots §7by §a100%§7.",
+      "text": "Hotspots by 100%.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§d",
+          "text": "Hotspots ",
+          "zh": "热点"
+        },
+        {
+          "color": "§7",
+          "text": "by ",
+          "zh": "的加成提高 "
+        },
+        {
+          "color": "§a",
+          "text": "100%",
+          "zh": "100%"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "热点的加成提高 100%。"
+    }
+  ]
+}

@@ -1,0 +1,401 @@
+{
+  "source": "SkyZH runtime capture 2026-09-03 (Dungeon Hub 会话)",
+  "fetched_at": "2026-09-03",
+  "verified_ingame": true,
+  "gui_context": "衣橱 Loadouts(预设栏)三页:每份预设的部位清单、山峦之心/森林之心槽、能力石、属性调优。玩家自己装备的 Lore 不收。",
+  "excluded": [
+    "Strengthened Bone Necklace / Shadow Assassin Cloak / Adaptive Belt / Soulweaver Gloves / Necron 等玩家自己装备的 Lore"
+  ],
+  "lines": [
+    {
+      "id": "loadout_n",
+      "context": "预设格物品名",
+      "raw": "§aLoadout %1$s",
+      "text": "Loadout %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "预设序号",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "预设 %1$s"
+    },
+    {
+      "id": "loadout_n_locked",
+      "context": "未解锁的预设格物品名",
+      "raw": "§cLoadout %1$s Locked",
+      "text": "Loadout %1$s Locked",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "预设序号",
+          "type": "number",
+          "example": "19"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "预设 %1$s 已锁定"
+    },
+    {
+      "id": "loadout_part_none",
+      "context": "预设里某部位为空",
+      "raw": "§7%1$s: §8None",
+      "text": "%1$s: None",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "部位名 Helmet / Cloak / Pet / HOTM / HOTF 等,译名走 Terms.json",
+          "type": "category_name",
+          "example": "Helmet"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "%1$s: ",
+          "zh": "%1$s: "
+        },
+        {
+          "color": "§8",
+          "text": "None",
+          "zh": "无"
+        }
+      ],
+      "zh": "%1$s: 无"
+    },
+    {
+      "id": "loadout_power_stone_none",
+      "context": "预设里能力石为空",
+      "raw": "§7Power Stone: §8None",
+      "text": "Power Stone: None",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Power Stone: ",
+          "zh": "能力石: "
+        },
+        {
+          "color": "§8",
+          "text": "None",
+          "zh": "无"
+        }
+      ],
+      "zh": "能力石: 无"
+    },
+    {
+      "id": "loadout_tuning_none",
+      "context": "预设里调优模板为空",
+      "raw": "§7Tuning Template Slot: §8None",
+      "text": "Tuning Template Slot: None",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Tuning Template Slot: ",
+          "zh": "调优模板槽位: "
+        },
+        {
+          "color": "§8",
+          "text": "None",
+          "zh": "无"
+        }
+      ],
+      "zh": "调优模板槽位: 无"
+    },
+    {
+      "id": "loadout_right_click_edit",
+      "context": "点击提示",
+      "raw": "§eRight-click to edit",
+      "text": "Right-click to edit",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "右键点击编辑"
+    },
+    {
+      "id": "loadout_customize_1",
+      "context": "未设置的预设提示,英文两行一句",
+      "raw": "§cYou must customize this loadout",
+      "text": "You must customize this loadout",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你必须先自定义这份预设才能装备它!"
+    },
+    {
+      "id": "loadout_customize_2",
+      "context": "接上一行",
+      "raw": "§cbefore you can equip it!",
+      "text": "before you can equip it!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "loadout_heart_slot",
+      "context": "山峦之心 / 森林之心 天赋树槽格物品名",
+      "raw": "§aHeart of the %1$s Slot",
+      "text": "Heart of the %1$s Slot",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Forest / Mountain,译名走 Terms.json",
+          "type": "raw",
+          "example": "Forest"
+        }
+      ],
+      "gloss": "值走词表:Mountain → 山峦之心、Forest → 森林之心(限定 raw,和 location_name 的 Mountain → 山顶 分开)。",
+      "translate": true,
+      "zh": "%1$s槽"
+    },
+    {
+      "id": "loadout_hotm_slot",
+      "context": "山峦之心天赋树槽格物品名(整行写法)",
+      "raw": "§aHeart of the Mountain Slot",
+      "text": "Heart of the Mountain Slot",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "山峦之心槽"
+    },
+    {
+      "id": "loadout_swap_trees",
+      "context": "天赋树槽说明",
+      "raw": "§7Quickly swap between saved trees.",
+      "text": "Quickly swap between saved trees.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "快速切换已保存的天赋树。"
+    },
+    {
+      "id": "loadout_current_tree",
+      "context": "当前天赋树 / 当前能力石",
+      "raw": "§7Current: §a%1$s",
+      "text": "Current: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "天赋树存档名或能力石名",
+          "type": "raw",
+          "example": "Heart of the Forest 1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Current: ",
+          "zh": "当前: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ],
+      "zh": "当前: %1$s"
+    },
+    {
+      "id": "loadout_swap_cooldown",
+      "context": "切换天赋树冷却提示",
+      "raw": "§cSwapping trees has a 10m cooldown!",
+      "text": "Swapping trees has a 10m cooldown!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "切换天赋树有 10 分钟冷却!"
+    },
+    {
+      "id": "loadout_power_stone",
+      "context": "能力石槽格物品名",
+      "raw": "§aPower Stone",
+      "text": "Power Stone",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "能力石"
+    },
+    {
+      "id": "loadout_choose_power_stone",
+      "context": "能力石槽说明",
+      "raw": "§7Choose your selected Power Stone.",
+      "text": "Choose your selected Power Stone.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "选择要使用的能力石。"
+    },
+    {
+      "id": "loadout_stats_header",
+      "context": "能力石属性小标题",
+      "raw": "§7Stats:",
+      "text": "Stats:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "属性:"
+    },
+    {
+      "id": "loadout_stats_tuning",
+      "context": "属性调优槽格物品名",
+      "raw": "§aStats Tuning",
+      "text": "Stats Tuning",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "属性调优"
+    },
+    {
+      "id": "loadout_tuning_desc_1",
+      "context": "属性调优说明,英文两行一句",
+      "raw": "§7Optimize your build to your liking by using",
+      "text": "Optimize your build to your liking by using",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "使用调优点数按你的喜好优化配置。"
+    },
+    {
+      "id": "loadout_tuning_desc_2",
+      "context": "接上一行",
+      "raw": "§eTuning Points§7.",
+      "text": "Tuning Points.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "loadout_tuning_rate",
+      "context": "调优点数换算",
+      "raw": "§7Every §610 MP §7grants §e1 Tuning Point§7.",
+      "text": "Every 10 MP grants 1 Tuning Point.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Every ",
+          "zh": "每 "
+        },
+        {
+          "color": "§6",
+          "text": "10 MP ",
+          "zh": "10 魔力"
+        },
+        {
+          "color": "§7",
+          "text": "grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§e",
+          "text": "1 Tuning Point",
+          "zh": "1 调优点数"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "每 10 魔力提供 1 调优点数。"
+    },
+    {
+      "id": "loadout_magical_power",
+      "context": "魔力值",
+      "raw": "§7Magical Power: §6%1$s",
+      "text": "Magical Power: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "数值",
+          "type": "number",
+          "example": "544"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Magical Power: ",
+          "zh": "魔力: "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ],
+      "zh": "魔力: %1$s"
+    },
+    {
+      "id": "loadout_tuning_points",
+      "context": "调优点数",
+      "raw": "§7Tuning Points: §e%1$s",
+      "text": "Tuning Points: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "数值",
+          "type": "number",
+          "example": "54"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Tuning Points: ",
+          "zh": "调优点数: "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ],
+      "zh": "调优点数: %1$s"
+    },
+    {
+      "id": "loadout_your_tuning",
+      "context": "当前调优分配小标题",
+      "raw": "§7Your tuning:",
+      "text": "Your tuning:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的调优:"
+    },
+    {
+      "id": "loadout_unlock_from",
+      "context": "解锁途径小标题(和衣橱共用一句)",
+      "raw": "§7Unlock more slots from:",
+      "text": "Unlock more slots from:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "从以下途径解锁更多槽位:"
+    }
+  ]
+}

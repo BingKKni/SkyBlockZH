@@ -1,0 +1,390 @@
+{
+  "source": "runtime capture (SkyZH) 2026-09-03 实测会话(地牢大厅点开另一名玩家的档案)",
+  "fetched_at": "2026-09-03",
+  "verified_ingame": true,
+  "gameplay": "Hub_General",
+  "surface": "GUI_Item",
+  "name": "Player_Profile",
+  "gui_context": "点击其他玩家打开的「XX's Profile」菜单:拜访 / 邀请 / 交易 / 合作四个按钮,玩家头像格的属性摘要,以及对方穿戴的装备与宠物。",
+  "excluded": [
+    "对方穿戴的每件装备、宠物、徽章的 Lore(Ancient Diamond Necron Head、Golden Dragon 等):那是别人的物品,按 README §6 物品自造专名保留英文,且逐件收录会让语料膨胀。"
+  ],
+  "lines": [
+    {
+      "id": "profile_visit_island",
+      "context": "拜访岛屿格",
+      "raw": "§aVisit Island",
+      "text": "Visit Island",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "拜访岛屿"
+    },
+    {
+      "id": "profile_click_to_visit",
+      "context": "拜访岛屿格的操作提示",
+      "raw": "§eClick to visit!",
+      "text": "Click to visit!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击拜访!"
+    },
+    {
+      "id": "profile_invite_to_island",
+      "context": "邀请上岛格",
+      "raw": "§aInvite to Island",
+      "text": "Invite to Island",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "邀请至岛屿"
+    },
+    {
+      "id": "profile_click_to_invite",
+      "context": "邀请上岛格的操作提示",
+      "raw": "§eClick to invite!",
+      "text": "Click to invite!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击邀请!"
+    },
+    {
+      "id": "profile_trade_request",
+      "context": "交易请求格",
+      "raw": "§aTrade Request",
+      "text": "Trade Request",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "交易请求"
+    },
+    {
+      "id": "profile_send_trade_request",
+      "context": "交易请求格的操作提示",
+      "raw": "§eSend a trade request!",
+      "text": "Send a trade request!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "发送交易请求!"
+    },
+    {
+      "id": "profile_coop_request",
+      "context": "合作请求格",
+      "raw": "§aCo-op Request",
+      "text": "Co-op Request",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "合作请求"
+    },
+    {
+      "id": "profile_send_coop_request",
+      "context": "合作请求格的操作提示",
+      "raw": "§eSend a co-op request!",
+      "text": "Send a co-op request!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "发送合作请求!"
+    },
+    {
+      "id": "profile_stat_health",
+      "context": "玩家头像格:属性摘要",
+      "raw": "  §c❤ Health §f%s",
+      "text": "❤ Health %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": "7,021.92"
+        }
+      ],
+      "gloss": "档案里这一行前面有两个空格,再加图标;SkyBlock_Menu.json 的同名记录把空格写进了 text,这里只写正文,引擎剥掉行首空格后查得到。",
+      "translate": true,
+      "zh": "❤ 生命值 %s",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "❤ Health ",
+          "zh": "❤ 生命值 "
+        },
+        {
+          "color": "§f",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "profile_stat_strength",
+      "context": "玩家头像格:属性摘要",
+      "raw": "  §c❁ Strength §f%s",
+      "text": "❁ Strength %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": "1,859.96"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "❁ 力量 %s",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "❁ Strength ",
+          "zh": "❁ 力量 "
+        },
+        {
+          "color": "§f",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "profile_stat_defense",
+      "context": "玩家头像格:属性摘要",
+      "raw": "  §a❈ Defense §f%s",
+      "text": "❈ Defense %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": "1,151.76"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "❈ 防御力 %s",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "❈ Defense ",
+          "zh": "❈ 防御力 "
+        },
+        {
+          "color": "§f",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "profile_stat_speed",
+      "context": "玩家头像格:属性摘要(速度整行白色)",
+      "raw": "  §f✦ Speed %s",
+      "text": "✦ Speed %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": "400"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "✦ 速度 %s"
+    },
+    {
+      "id": "profile_stat_crit_chance",
+      "context": "玩家头像格:属性摘要",
+      "raw": "  §9☣ Crit Chance §f%s",
+      "text": "☣ Crit Chance %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "percentage",
+          "example": "546.91%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "☣ 暴击率 %s",
+      "segments": [
+        {
+          "color": "§9",
+          "text": "☣ Crit Chance ",
+          "zh": "☣ 暴击率 "
+        },
+        {
+          "color": "§f",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "profile_stat_crit_damage",
+      "context": "玩家头像格:属性摘要",
+      "raw": "  §9☠ Crit Damage §f%s",
+      "text": "☠ Crit Damage %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "percentage",
+          "example": "879.55%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "☠ 暴击伤害 %s",
+      "segments": [
+        {
+          "color": "§9",
+          "text": "☠ Crit Damage ",
+          "zh": "☠ 暴击伤害 "
+        },
+        {
+          "color": "§f",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "profile_stat_intelligence",
+      "context": "玩家头像格:属性摘要",
+      "raw": "  §b✎ Intelligence §f%s",
+      "text": "✎ Intelligence %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值",
+          "type": "number",
+          "example": "873.82"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "✎ 智力 %s",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✎ Intelligence ",
+          "zh": "✎ 智力 "
+        },
+        {
+          "color": "§f",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "profile_skyblock_level",
+      "context": "玩家头像格:空岛等级",
+      "raw": "§7SkyBlock Level: §4%s",
+      "text": "SkyBlock Level: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "等级",
+          "type": "number",
+          "example": "579"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "SkyBlock 等级: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "SkyBlock Level: ",
+          "zh": "SkyBlock 等级: "
+        },
+        {
+          "color": "§4",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "profile_oldest_profile",
+      "context": "玩家头像格:最早的档案年龄",
+      "raw": "§7Oldest Profile: §5%1$s years, %2$s months",
+      "text": "Oldest Profile: %1$s years, %2$s months",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "年数",
+          "type": "number",
+          "example": "6"
+        },
+        {
+          "token": "%2$s",
+          "desc": "月数",
+          "type": "number",
+          "example": "11"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "最早的档案: %1$s 年 %2$s 个月",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Oldest Profile: ",
+          "zh": "最早的档案: "
+        },
+        {
+          "color": "§5",
+          "text": "%1$s years, %2$s months",
+          "zh": "%1$s 年 %2$s 个月"
+        }
+      ]
+    },
+    {
+      "id": "profile_no_selected_emblem",
+      "context": "徽章格:未选择",
+      "raw": "§cNo Selected Emblem",
+      "text": "No Selected Emblem",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "未选择徽章"
+    },
+    {
+      "id": "profile_no_emblem_desc_1",
+      "context": "徽章格说明",
+      "raw": "§7This player does not have any",
+      "text": "This player does not have any",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "该玩家没有选择任何徽章。"
+    },
+    {
+      "id": "profile_no_emblem_desc_2",
+      "context": "接上一行",
+      "raw": "§7emblem selected.",
+      "text": "emblem selected.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "profile_click_to_view_emblems",
+      "context": "徽章格的操作提示",
+      "raw": "§eClick to view unlocked emblems!",
+      "text": "Click to view unlocked emblems!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击查看已解锁的徽章!"
+    }
+  ]
+}

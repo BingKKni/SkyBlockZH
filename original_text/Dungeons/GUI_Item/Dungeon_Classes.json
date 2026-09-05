@@ -1,0 +1,1263 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Classes",
+  "fetched_at": "2026-09-01",
+  "verified_ingame": true,
+  "source_note": "原文与颜色来自地牢大厅运行时采集；社区 Wiki 普通页面用于核对玩法语境。",
+  "source_pages": [
+    "https://hypixelskyblock.minecraft.wiki/w/Healer",
+    "https://hypixelskyblock.minecraft.wiki/w/Mage",
+    "https://hypixelskyblock.minecraft.wiki/w/Berserk",
+    "https://hypixelskyblock.minecraft.wiki/w/Archer",
+    "https://hypixelskyblock.minecraft.wiki/w/Tank"
+  ],
+  "excluded": [
+    "Ability: Instant Transmission  RIGHT CLICK：来自玩家随身物品的技能 Lore，不属于职业菜单，按用户要求不翻译。"
+  ],
+  "items": [
+    {
+      "id": "classes_vitality",
+      "context": "治疗师/坦克职业的活力属性加成",
+      "raw": "§7Vitality: §a+%s",
+      "text": "Vitality: +%s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "职业提供的活力数值",
+          "type": "number",
+          "example": "15.2"
+        }
+      ],
+      "gloss": "Vitality 是治疗技能消耗并会自然恢复的资源池，不再是旧版的“受治疗倍率”。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Vitality: ",
+          "zh": "活力: "
+        },
+        {
+          "color": "§a",
+          "text": "+%s",
+          "zh": "+%s"
+        }
+      ]
+    },
+    {
+      "id": "classes_mending",
+      "context": "治疗师职业对他人造成的修补",
+      "raw": "§7Mending: §a+%s",
+      "text": "Mending: +%s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "修补数值",
+          "type": "number",
+          "example": "23"
+        }
+      ],
+      "gloss": "这里是增加对他人治疗量的属性，不是原版附魔“经验修补”。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Mending: ",
+          "zh": "修补: "
+        },
+        {
+          "color": "§a",
+          "text": "+%s",
+          "zh": "+%s"
+        }
+      ]
+    },
+    {
+      "id": "classes_name_with_level_healer",
+      "context": "Mort 的地牢职业菜单格子物品名:等级 + Healer",
+      "raw": "§7[Lvl %1$s] §aHealer",
+      "text": "[Lvl %1$s] Healer",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "该职业当前等级",
+          "type": "number",
+          "example": "26"
+        }
+      ],
+      "gloss": "写成带职业名的整行,避免和宠物菜单「[Lvl N] Enderman」抢同一条「[Lvl %s] %s」模板。",
+      "translate": true,
+      "zh": "[%1$s 级] 治疗师",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "[Lvl %1$s] ",
+          "zh": "[%1$s 级] "
+        },
+        {
+          "color": "§a",
+          "text": "Healer",
+          "zh": "治疗师"
+        }
+      ]
+    },
+    {
+      "id": "classes_name_with_level_mage",
+      "context": "Mort 的地牢职业菜单格子物品名:等级 + Mage",
+      "raw": "§7[Lvl %1$s] §aMage",
+      "text": "[Lvl %1$s] Mage",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "该职业当前等级",
+          "type": "number",
+          "example": "26"
+        }
+      ],
+      "gloss": "写成带职业名的整行,避免和宠物菜单「[Lvl N] Enderman」抢同一条「[Lvl %s] %s」模板。",
+      "translate": true,
+      "zh": "[%1$s 级] 法师",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "[Lvl %1$s] ",
+          "zh": "[%1$s 级] "
+        },
+        {
+          "color": "§a",
+          "text": "Mage",
+          "zh": "法师"
+        }
+      ]
+    },
+    {
+      "id": "classes_name_with_level_berserk",
+      "context": "Mort 的地牢职业菜单格子物品名:等级 + Berserk",
+      "raw": "§7[Lvl %1$s] §aBerserk",
+      "text": "[Lvl %1$s] Berserk",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "该职业当前等级",
+          "type": "number",
+          "example": "26"
+        }
+      ],
+      "gloss": "写成带职业名的整行,避免和宠物菜单「[Lvl N] Enderman」抢同一条「[Lvl %s] %s」模板。",
+      "translate": true,
+      "zh": "[%1$s 级] 狂战士",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "[Lvl %1$s] ",
+          "zh": "[%1$s 级] "
+        },
+        {
+          "color": "§a",
+          "text": "Berserk",
+          "zh": "狂战士"
+        }
+      ]
+    },
+    {
+      "id": "classes_name_with_level_archer",
+      "context": "Mort 的地牢职业菜单格子物品名:等级 + Archer",
+      "raw": "§7[Lvl %1$s] §aArcher",
+      "text": "[Lvl %1$s] Archer",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "该职业当前等级",
+          "type": "number",
+          "example": "26"
+        }
+      ],
+      "gloss": "写成带职业名的整行,避免和宠物菜单「[Lvl N] Enderman」抢同一条「[Lvl %s] %s」模板。",
+      "translate": true,
+      "zh": "[%1$s 级] 弓箭手",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "[Lvl %1$s] ",
+          "zh": "[%1$s 级] "
+        },
+        {
+          "color": "§a",
+          "text": "Archer",
+          "zh": "弓箭手"
+        }
+      ]
+    },
+    {
+      "id": "classes_name_with_level_tank",
+      "context": "Mort 的地牢职业菜单格子物品名:等级 + Tank",
+      "raw": "§7[Lvl %1$s] §aTank",
+      "text": "[Lvl %1$s] Tank",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "该职业当前等级",
+          "type": "number",
+          "example": "26"
+        }
+      ],
+      "gloss": "写成带职业名的整行,避免和宠物菜单「[Lvl N] Enderman」抢同一条「[Lvl %s] %s」模板。",
+      "translate": true,
+      "zh": "[%1$s 级] 坦克",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "[Lvl %1$s] ",
+          "zh": "[%1$s 级] "
+        },
+        {
+          "color": "§a",
+          "text": "Tank",
+          "zh": "坦克"
+        }
+      ]
+    },
+    {
+      "id": "classes_passives",
+      "context": "职业详情中的被动技能小节",
+      "text": "Class Passives",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "职业被动"
+    },
+    {
+      "id": "classes_orb_abilities",
+      "context": "职业详情中的地牢光球技能小节",
+      "text": "Dungeon Orb Abilities",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "地牢光球技能"
+    },
+    {
+      "id": "classes_ghost_abilities",
+      "context": "职业详情中的幽灵技能小节",
+      "text": "Ghost Abilities",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "幽灵技能"
+    },
+    {
+      "id": "classes_solo_bonus_1",
+      "context": "职业唯一性加成说明",
+      "text": "All positive bonus stats are doubled if only 1",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "队伍中只有一名玩家使用该职业时，所有正向属性加成翻倍。"
+    },
+    {
+      "id": "classes_solo_bonus_2",
+      "context": "接上一行",
+      "text": "player uses this class in a dungeon.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "classes_renew",
+      "context": "职业技能名 Renew",
+      "raw": "§8∙ §aRenew",
+      "text": "∙ Renew",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Renew",
+          "zh": "焕新"
+        }
+      ]
+    },
+    {
+      "id": "classes_healing_aura",
+      "context": "职业技能名 Healing Aura",
+      "raw": "§8∙ §aHealing Aura",
+      "text": "∙ Healing Aura",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Healing Aura",
+          "zh": "治疗光环"
+        }
+      ]
+    },
+    {
+      "id": "classes_healing_circle",
+      "context": "职业技能名 Healing Circle",
+      "raw": "§8∙ §aHealing Circle",
+      "text": "∙ Healing Circle",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Healing Circle",
+          "zh": "治疗法阵"
+        }
+      ]
+    },
+    {
+      "id": "classes_healing_potion",
+      "context": "职业技能名 Healing Potion",
+      "raw": "§8∙ §aHealing Potion",
+      "text": "∙ Healing Potion",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Healing Potion",
+          "zh": "治疗药水"
+        }
+      ]
+    },
+    {
+      "id": "classes_revive",
+      "context": "职业技能名 Revive",
+      "raw": "§8∙ §aRevive",
+      "text": "∙ Revive",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Revive",
+          "zh": "复活"
+        }
+      ]
+    },
+    {
+      "id": "classes_orbies",
+      "context": "职业技能名 Orbies",
+      "raw": "§8∙ §aOrbies",
+      "text": "∙ Orbies",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Orbies",
+          "zh": "治疗光球"
+        }
+      ]
+    },
+    {
+      "id": "classes_soul_tether",
+      "context": "职业技能名 Soul Tether",
+      "raw": "§8∙ §aSoul Tether",
+      "text": "∙ Soul Tether",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Soul Tether",
+          "zh": "灵魂牵引"
+        }
+      ]
+    },
+    {
+      "id": "classes_overheal",
+      "context": "职业技能名 Overheal",
+      "raw": "§8∙ §aOverheal",
+      "text": "∙ Overheal",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Overheal",
+          "zh": "过量治疗"
+        }
+      ]
+    },
+    {
+      "id": "classes_wish",
+      "context": "职业技能名 Wish",
+      "raw": "§8∙ §aWish",
+      "text": "∙ Wish",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Wish",
+          "zh": "祈愿"
+        }
+      ]
+    },
+    {
+      "id": "classes_revive_self",
+      "context": "职业技能名 Revive Self",
+      "raw": "§8∙ §aRevive Self",
+      "text": "∙ Revive Self",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Revive Self",
+          "zh": "自我复活"
+        }
+      ]
+    },
+    {
+      "id": "classes_mage_staff",
+      "context": "职业技能名 Mage Staff",
+      "raw": "§8∙ §aMage Staff",
+      "text": "∙ Mage Staff",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Mage Staff",
+          "zh": "法师法杖"
+        }
+      ]
+    },
+    {
+      "id": "classes_efficient_spells",
+      "context": "职业技能名 Efficient Spells",
+      "raw": "§8∙ §aEfficient Spells",
+      "text": "∙ Efficient Spells",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Efficient Spells",
+          "zh": "高效法术"
+        }
+      ]
+    },
+    {
+      "id": "classes_guided_sheep",
+      "context": "职业技能名 Guided Sheep",
+      "raw": "§8∙ §aGuided Sheep",
+      "text": "∙ Guided Sheep",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Guided Sheep",
+          "zh": "制导绵羊"
+        }
+      ]
+    },
+    {
+      "id": "classes_thunderstorm",
+      "context": "职业技能名 Thunderstorm",
+      "raw": "§8∙ §aThunderstorm",
+      "text": "∙ Thunderstorm",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Thunderstorm",
+          "zh": "雷暴"
+        }
+      ]
+    },
+    {
+      "id": "classes_popup_wall",
+      "context": "职业技能名 Pop-up Wall",
+      "raw": "§8∙ §aPop-up Wall",
+      "text": "∙ Pop-up Wall",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Pop-up Wall",
+          "zh": "突现之墙"
+        }
+      ]
+    },
+    {
+      "id": "classes_fireball",
+      "context": "职业技能名 Fireball",
+      "raw": "§8∙ §aFireball",
+      "text": "∙ Fireball",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Fireball",
+          "zh": "火球术"
+        }
+      ]
+    },
+    {
+      "id": "classes_bloodlust",
+      "context": "职业技能名 Bloodlust",
+      "raw": "§8∙ §aBloodlust",
+      "text": "∙ Bloodlust",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Bloodlust",
+          "zh": "嗜血"
+        }
+      ]
+    },
+    {
+      "id": "classes_lust_for_blood",
+      "context": "职业技能名 Lust for Blood",
+      "raw": "§8∙ §aLust for Blood",
+      "text": "∙ Lust for Blood",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Lust for Blood",
+          "zh": "鲜血渴望"
+        }
+      ]
+    },
+    {
+      "id": "classes_indomitable",
+      "context": "职业技能名 Indomitable",
+      "raw": "§8∙ §aIndomitable",
+      "text": "∙ Indomitable",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Indomitable",
+          "zh": "不屈"
+        }
+      ]
+    },
+    {
+      "id": "classes_weapon_master",
+      "context": "职业技能名 Weapon Master",
+      "raw": "§8∙ §aWeapon Master",
+      "text": "∙ Weapon Master",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Weapon Master",
+          "zh": "武器大师"
+        }
+      ]
+    },
+    {
+      "id": "classes_throwing_axe",
+      "context": "职业技能名 Throwing Axe",
+      "raw": "§8∙ §aThrowing Axe",
+      "text": "∙ Throwing Axe",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Throwing Axe",
+          "zh": "飞斧"
+        }
+      ]
+    },
+    {
+      "id": "classes_ghost_axe",
+      "context": "职业技能名 Ghost Axe",
+      "raw": "§8∙ §aGhost Axe",
+      "text": "∙ Ghost Axe",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Ghost Axe",
+          "zh": "幽灵飞斧"
+        }
+      ]
+    },
+    {
+      "id": "classes_ragnarok",
+      "context": "职业技能名 Ragnarok",
+      "raw": "§8∙ §aRagnarok",
+      "text": "∙ Ragnarok",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Ragnarok",
+          "zh": "诸神黄昏"
+        }
+      ]
+    },
+    {
+      "id": "classes_strength_potion",
+      "context": "职业技能名 Strength Potion",
+      "raw": "§8∙ §aStrength Potion",
+      "text": "∙ Strength Potion",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Strength Potion",
+          "zh": "力量药水"
+        }
+      ]
+    },
+    {
+      "id": "classes_stun_potion",
+      "context": "职业技能名 Stun Potion",
+      "raw": "§8∙ §aStun Potion",
+      "text": "∙ Stun Potion",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Stun Potion",
+          "zh": "眩晕药水"
+        }
+      ]
+    },
+    {
+      "id": "classes_absorption_potion",
+      "context": "职业技能名 Absorption Potion",
+      "raw": "§8∙ §aAbsorption Potion",
+      "text": "∙ Absorption Potion",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Absorption Potion",
+          "zh": "伤害吸收药水"
+        }
+      ]
+    },
+    {
+      "id": "classes_doubleshot",
+      "context": "职业技能名 Doubleshot",
+      "raw": "§8∙ §aDoubleshot",
+      "text": "∙ Doubleshot",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Doubleshot",
+          "zh": "双重射击"
+        }
+      ]
+    },
+    {
+      "id": "classes_bone_plating",
+      "context": "职业技能名 Bone Plating",
+      "raw": "§8∙ §aBone Plating",
+      "text": "∙ Bone Plating",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Bone Plating",
+          "zh": "骨甲"
+        }
+      ]
+    },
+    {
+      "id": "classes_bouncy_arrows",
+      "context": "职业技能名 Bouncy Arrows",
+      "raw": "§8∙ §aBouncy Arrows",
+      "text": "∙ Bouncy Arrows",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Bouncy Arrows",
+          "zh": "弹射箭"
+        }
+      ]
+    },
+    {
+      "id": "classes_explosive_shot",
+      "context": "职业技能名 Explosive Shot",
+      "raw": "§8∙ §aExplosive Shot",
+      "text": "∙ Explosive Shot",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Explosive Shot",
+          "zh": "爆炸射击"
+        }
+      ]
+    },
+    {
+      "id": "classes_machine_gun_bow",
+      "context": "职业技能名 Machine Gun Bow",
+      "raw": "§8∙ §aMachine Gun Bow",
+      "text": "∙ Machine Gun Bow",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Machine Gun Bow",
+          "zh": "机枪弓"
+        }
+      ]
+    },
+    {
+      "id": "classes_stun_bow",
+      "context": "职业技能名 Stun Bow",
+      "raw": "§8∙ §aStun Bow",
+      "text": "∙ Stun Bow",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Stun Bow",
+          "zh": "眩晕弓"
+        }
+      ]
+    },
+    {
+      "id": "classes_protective_barrier",
+      "context": "职业技能名 Protective Barrier",
+      "raw": "§8∙ §aProtective Barrier",
+      "text": "∙ Protective Barrier",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Protective Barrier",
+          "zh": "防护屏障"
+        }
+      ]
+    },
+    {
+      "id": "classes_taunt",
+      "context": "职业技能名 Taunt",
+      "raw": "§8∙ §aTaunt",
+      "text": "∙ Taunt",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Taunt",
+          "zh": "嘲讽"
+        }
+      ]
+    },
+    {
+      "id": "classes_diversion",
+      "context": "职业技能名 Diversion",
+      "raw": "§8∙ §aDiversion",
+      "text": "∙ Diversion",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Diversion",
+          "zh": "伤害转移"
+        }
+      ]
+    },
+    {
+      "id": "classes_defensive_stance",
+      "context": "职业技能名 Defensive Stance",
+      "raw": "§8∙ §aDefensive Stance",
+      "text": "∙ Defensive Stance",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Defensive Stance",
+          "zh": "防御姿态"
+        }
+      ]
+    },
+    {
+      "id": "classes_seismic_wave",
+      "context": "职业技能名 Seismic Wave",
+      "raw": "§8∙ §aSeismic Wave",
+      "text": "∙ Seismic Wave",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Seismic Wave",
+          "zh": "地震波"
+        }
+      ]
+    },
+    {
+      "id": "classes_castle_of_stone",
+      "context": "职业技能名 Castle of Stone",
+      "raw": "§8∙ §aCastle of Stone",
+      "text": "∙ Castle of Stone",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§a",
+          "text": "Castle of Stone",
+          "zh": "坚石城堡"
+        }
+      ]
+    },
+    {
+      "id": "classes_ability_damage",
+      "context": "法师职业的技能伤害加成",
+      "raw": "§7Ability Damage: §a+%s%",
+      "text": "Ability Damage: +%s%",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "加成百分比",
+          "type": "number",
+          "example": "9"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Ability Damage: ",
+          "zh": "技能伤害: "
+        },
+        {
+          "color": "§a",
+          "text": "+%s%",
+          "zh": "+%s%"
+        }
+      ]
+    },
+    {
+      "id": "classes_melee_damage_bonus",
+      "context": "狂战士职业的近战伤害加成",
+      "raw": "§7Melee Damage: §c+%s%",
+      "text": "Melee Damage: +%s%",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "加成百分比",
+          "type": "number",
+          "example": "59.5"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Melee Damage: ",
+          "zh": "近战伤害: "
+        },
+        {
+          "color": "§c",
+          "text": "+%s%",
+          "zh": "+%s%"
+        }
+      ]
+    },
+    {
+      "id": "classes_arrow_damage",
+      "context": "弓箭手职业的箭矢伤害加成",
+      "raw": "§7Arrow Damage: §c+%s%",
+      "text": "Arrow Damage: +%s%",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "加成百分比",
+          "type": "number",
+          "example": "185.2"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Arrow Damage: ",
+          "zh": "箭矢伤害: "
+        },
+        {
+          "color": "§c",
+          "text": "+%s%",
+          "zh": "+%s%"
+        }
+      ]
+    },
+    {
+      "id": "classes_walk_speed",
+      "context": "狂战士职业的行走速度加成",
+      "raw": "§7Walk Speed: §a+%s",
+      "text": "Walk Speed: +%s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "速度加成",
+          "type": "number",
+          "example": "40.4"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Walk Speed: ",
+          "zh": "行走速度: "
+        },
+        {
+          "color": "§a",
+          "text": "+%s",
+          "zh": "+%s"
+        }
+      ]
+    },
+    {
+      "id": "classes_melee_penalty",
+      "context": "弓箭手职业的近战伤害惩罚",
+      "raw": "§7Melee Damage: §c-25%",
+      "text": "Melee Damage: -25%",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Melee Damage: ",
+          "zh": "近战伤害: "
+        },
+        {
+          "color": "§c",
+          "text": "-25%",
+          "zh": "-25%"
+        }
+      ]
+    },
+    {
+      "id": "classes_healing_bow",
+      "context": "职业技能名 Healing Bow（弓箭手幽灵技能，2026-09-03 实测漏收）",
+      "raw": "§8∙ §fHealing Bow",
+      "text": "∙ Healing Bow",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "∙ ",
+          "zh": "∙ "
+        },
+        {
+          "color": "§f",
+          "text": "Healing Bow",
+          "zh": "治疗弓"
+        }
+      ]
+    }
+  ]
+}

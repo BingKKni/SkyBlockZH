@@ -1,0 +1,106 @@
+{
+  "source": "SkyZH runtime capture 2026-09-03 (Dungeon Hub 会话,技能菜单 → 钓鱼)",
+  "fetched_at": "2026-09-03",
+  "verified_ingame": true,
+  "gui_context": "技能菜单 → 农业 → Garden Levels(花园等级)页:每级解锁内容。害虫/作物奖励行走 Hub_General/GUI_Item/Your_Skills.json 的模板,名字在 Terms.json。",
+  "lines": [
+    {
+      "id": "garden_levels_item",
+      "context": "花园等级格物品名",
+      "raw": "§aGarden Levels",
+      "text": "Garden Levels",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "花园等级"
+    },
+    {
+      "id": "garden_levels_unlock_tail",
+      "context": "花园等级页说明的独立尾行;首行本次没采到,Wiki 也没有逐字 Lore,先留空以免中英混杂",
+      "raw": "§8unlock new visitors, crops and more!",
+      "text": "unlock new visitors, crops and more!",
+      "placeholders": [],
+      "gloss": "采集只见到小写开头的折行尾行。社区 Wiki The Garden 页只概述「unlocks new visitors…」,没有菜单首行原文,按 AGENTS.md 放弃这条,等下次采到完整两行再合成一句。",
+      "translate": true,
+      "zh": ""
+    },
+    {
+      "id": "garden_crop_upgrades",
+      "context": "奖励:作物升级",
+      "raw": "§aTier %1$s §7Crop Upgrades",
+      "text": "Tier %1$s Crop Upgrades",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "阶数",
+          "type": "tier",
+          "example": "IV"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Tier %1$s ",
+          "zh": "第 %1$s 阶"
+        },
+        {
+          "color": "§7",
+          "text": "Crop Upgrades",
+          "zh": "作物升级"
+        }
+      ],
+      "zh": "第 %1$s 阶作物升级"
+    },
+    {
+      "id": "garden_barn_skin",
+      "context": "奖励:谷仓皮肤",
+      "raw": "§9%1$s Barn Skin",
+      "text": "%1$s Barn Skin",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "皮肤名,译名走 Terms.json",
+          "type": "category_name",
+          "example": "Cabin"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s谷仓皮肤"
+    },
+    {
+      "id": "garden_barn_skin_mansion",
+      "context": "奖励:谷仓皮肤(史诗)",
+      "raw": "§5Mansion Heights Barn Skin",
+      "text": "Mansion Heights Barn Skin",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Mansion Heights 谷仓皮肤"
+    },
+    {
+      "id": "garden_gearing_up",
+      "context": "奖励:任务",
+      "raw": "§8+§7Gearing Up Quest",
+      "text": "+Gearing Up Quest",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§7",
+          "text": "Gearing Up Quest",
+          "zh": "「整装待发」任务"
+        }
+      ],
+      "zh": "+「整装待发」任务"
+    }
+  ]
+}

@@ -1,477 +1,191 @@
 {
-  "source": "https://hypixelskyblock.minecraft.wiki/w/Calendar_and_Events + https://hypixelskyblock.minecraft.wiki/w/Calendar_and_Events/UI + SkyZH 运行时采集(2026-08-24 实测会话)",
-  "fetched_at": "2026-08-24",
+  "source": "runtime capture (SkyZH)",
   "verified_ingame": true,
-  "gui_context": "SkyBlock 主菜单中的「日历与活动」页面,展示近期事件、活动说明、市长增益与活动奖励。",
+  "gameplay": "Hub_General",
+  "surface": "GUI_Item",
+  "name": "Calendar_and_Events",
   "lines": [
     {
-      "id": "calendar_event_election_over_name",
-      "ref": "_shared/Event_Names.json#event_election_over_nth",
-      "context": "选举结束事件物品名"
+      "id": "bonus_mining_fiesta",
+      "ref": "_shared/Event_Names.json#event_bonus_mining_fiesta",
+      "context": "日历和活动菜单中的活动名称"
     },
     {
-      "id": "calendar_event_traveling_zoo_name",
-      "ref": "_shared/Event_Names.json#event_traveling_zoo",
-      "context": "巡回动物园事件物品名"
+      "id": "event_lasts_for_2h_20m",
+      "context": "活动持续时间说明",
+      "raw": "§7Event lasts for §e2h 20m§7!",
+      "text": "Event lasts for 2h 20m!",
+      "placeholders": [],
+      "gloss": "说明活动持续时长",
+      "translate": true,
+      "zh": "§7活动持续时间：§e2小时20分钟§7！",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Event lasts for ",
+          "zh": "活动持续时间："
+        },
+        {
+          "color": "§e",
+          "text": "2h 20m",
+          "zh": "2小时20分钟"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "！"
+        }
+      ]
     },
     {
-      "id": "calendar_event_election_booth_name",
-      "ref": "_shared/Event_Names.json#event_election_booth_opens_nth",
-      "context": "选举开放事件物品名"
+      "id": "tons_more_mining_skill_xp_double",
+      "ref": "Hub_General/GUI_Item/Calendar_2026-09-04.json#calendar_fiesta_1",
+      "context": "活动效果描述的第一行"
     },
     {
-      "id": "calendar_event_spooky_name",
-      "ref": "_shared/Event_Names.json#event_spooky_festival_nth",
-      "context": "惊魂节事件物品名"
+      "id": "mining_drops_and_bonus_items_only",
+      "ref": "Hub_General/GUI_Item/Calendar_2026-09-04.json#calendar_fiesta_2",
+      "context": "活动效果描述的第二行"
     },
     {
-      "id": "calendar_event_jerry_name",
-      "ref": "_shared/Event_Names.json#event_season_of_jerry_nth",
-      "context": "Jerry 季事件物品名"
+      "id": "active_on_public_islands",
+      "ref": "Hub_General/GUI_Item/Calendar_2026-09-04.json#calendar_fiesta_3",
+      "context": "活动生效范围说明"
     },
     {
-      "id": "calendar_event_new_year_name",
-      "ref": "_shared/Event_Names.json#event_new_year_celebration_nth",
-      "context": "新年庆典事件物品名"
-    },
-    {
-      "id": "calendar_event_hoppity_name",
-      "ref": "_shared/Event_Names.json#event_hoppitys_hunt_nth",
-      "context": "Hoppity 的寻兔行动事件物品名"
-    },
-    {
-      "id": "calendar_event_rewards_name",
-      "ref": "_shared/Event_Names.json#event_rewards",
-      "context": "活动奖励入口物品名"
-    },
-    {
-      "id": "calendar_full_calendar_name",
-      "ref": "_shared/Event_Names.json#event_calendar",
-      "context": "完整日历入口物品名"
-    },
-    {
-      "id": "calendar_chocolate_factory_name",
-      "ref": "_shared/Event_Names.json#event_chocolate_factory",
-      "context": "巧克力工厂入口物品名"
-    },
-    {
-      "id": "calendar_starts_in_hms",
-      "context": "事件开始倒计时:时分秒",
-      "raw": "§7Starts in: §e%1$sh %2$sm %3$ss",
-      "text": "Starts in: %1$sh %2$sm %3$ss",
-      "placeholders": [{"token": "%1$s", "desc": "小时", "type": "number", "example": "22"}, {"token": "%2$s", "desc": "分钟", "type": "number", "example": "43"}, {"token": "%3$s", "desc": "秒", "type": "number", "example": "45"}],
-      "gloss": "所有倒计时单位均模板化。",
+      "id": "mining_fiesta_minion_speed",
+      "context": "挖矿狂欢节市长加成:挖矿小人工作速度",
+      "raw": "§7Mining minions work §a25% §7faster.",
+      "text": "Mining minions work %s faster.",
+      "placeholders": [
+        {"token": "%s", "desc": "挖矿小人的工作速度加成", "type": "percentage", "example": "25%"}
+      ],
+      "gloss": "加成数值模板化。",
       "translate": true,
       "zh": "",
-      "segments": [{"color": "§7", "text": "Starts in: ", "zh": "距开始: "}, {"color": "§e", "text": "%1$sh %2$sm %3$ss", "zh": "%1$s小时 %2$s分 %3$s秒"}]
-    },
-    {
-      "id": "calendar_starts_in_dms",
-      "context": "事件开始倒计时:天、分、秒",
-      "raw": "§7Starts in: §e%1$sd %2$sm %3$ss",
-      "text": "Starts in: %1$sd %2$sm %3$ss",
-      "placeholders": [{"token": "%1$s", "desc": "天", "type": "number", "example": "1"}, {"token": "%2$s", "desc": "分钟", "type": "number", "example": "23"}, {"token": "%3$s", "desc": "秒", "type": "number", "example": "45"}],
-      "gloss": "服务器在小时为零时省略小时段。",
-      "translate": true,
-      "zh": "",
-      "segments": [{"color": "§7", "text": "Starts in: ", "zh": "距开始: "}, {"color": "§e", "text": "%1$sd %2$sm %3$ss", "zh": "%1$s天 %2$s分 %3$s秒"}]
-    },
-    {
-      "id": "calendar_starts_in_dhms",
-      "context": "事件开始倒计时:天、时、分、秒",
-      "raw": "§7Starts in: §e%1$sd %2$sh %3$sm %4$ss",
-      "text": "Starts in: %1$sd %2$sh %3$sm %4$ss",
-      "placeholders": [{"token": "%1$s", "desc": "天", "type": "number", "example": "2"}, {"token": "%2$s", "desc": "小时", "type": "number", "example": "5"}, {"token": "%3$s", "desc": "分钟", "type": "number", "example": "43"}, {"token": "%4$s", "desc": "秒", "type": "number", "example": "45"}],
-      "gloss": "所有倒计时单位均模板化。",
-      "translate": true,
-      "zh": "",
-      "segments": [{"color": "§7", "text": "Starts in: ", "zh": "距开始: "}, {"color": "§e", "text": "%1$sd %2$sh %3$sm %4$ss", "zh": "%1$s天 %2$s小时 %3$s分 %4$s秒"}]
-    },
-    {
-      "id": "calendar_mayor_selected_desc_1",
-      "context": "选举结束事件说明,英文分两行",
-      "raw": "§7The Mayor is selected until the next",
-      "text": "The Mayor is selected until the next",
-      "placeholders": [],
-      "gloss": "",
-      "translate": true,
-      "zh": "市长将任职至下一届选举结束!"
-    },
-    {"id": "calendar_mayor_selected_desc_2", "context": "接上一行", "raw": "§7election ends!", "text": "election ends!", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
-    {
-      "id": "calendar_event_lasts_hours",
-      "context": "活动持续时长:小时",
-      "raw": "§7Event lasts for §e%sh§7!",
-      "text": "Event lasts for %sh!",
-      "placeholders": [{"token": "%s", "desc": "小时", "type": "number", "example": "1"}],
-      "gloss": "不写死活动时长。",
-      "translate": true,
-      "zh": "",
-      "segments": [{"color": "§7", "text": "Event lasts for ", "zh": "活动持续 "}, {"color": "§e", "text": "%sh", "zh": "%s小时"}, {"color": "§7", "text": "!", "zh": "!"}]
-    },
-    {
-      "id": "calendar_event_lasts_days_hours",
-      "context": "活动持续时长:天和小时",
-      "raw": "§7Event lasts for §e%1$sd %2$sh§7!",
-      "text": "Event lasts for %1$sd %2$sh!",
-      "placeholders": [{"token": "%1$s", "desc": "天", "type": "number", "example": "1"}, {"token": "%2$s", "desc": "小时", "type": "number", "example": "7"}],
-      "gloss": "不写死活动时长。",
-      "translate": true,
-      "zh": "",
-      "segments": [{"color": "§7", "text": "Event lasts for ", "zh": "活动持续 "}, {"color": "§e", "text": "%1$sd %2$sh", "zh": "%1$s天 %2$s小时"}, {"color": "§7", "text": "!", "zh": "!"}]
-    },
-    {
-      "id": "calendar_traveling_zoo_desc_1",
-      "context": "巡回动物园说明,英文分两行",
-      "raw": "§7Oringo the Traveling Zookeeper is",
-      "text": "Oringo the Traveling Zookeeper is",
-      "placeholders": [],
-      "gloss": "Oringo 是 NPC 人名,保留英文;Traveling Zookeeper 是职务。",
-      "translate": true,
-      "zh": "巡回动物园管理员 Oringo 带着可交易的宠物来到了 SkyBlock!"
-    },
-    {"id": "calendar_traveling_zoo_desc_2", "context": "接上一行", "raw": "§7visiting SkyBlock with pets to trade!", "text": "visiting SkyBlock with pets to trade!", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
-    {
-      "id": "calendar_election_booth_desc_1",
-      "context": "选举开放说明,英文分两行",
-      "raw": "§7The Mayor election booth opens in",
-      "text": "The Mayor election booth opens in",
-      "placeholders": [],
-      "gloss": "",
-      "translate": true,
-      "zh": "市长选举将在社区中心开放!"
-    },
-    {"id": "calendar_election_booth_desc_2", "context": "接上一行", "raw": "§7the community center!", "text": "the community center!", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
-    {
-      "id": "calendar_harvest_feast_nth",
-      "context": "丰收盛宴事件物品名,届数动态",
-      "raw": "§6%s Harvest Feast",
-      "text": "%s Harvest Feast",
-      "placeholders": [{"token": "%s", "desc": "活动届数", "type": "ordinal", "example": "24th"}],
-      "gloss": "固定活动名沿用 _shared/Event_Names.json 的译名。",
-      "translate": true,
-      "zh": "第 %s 届丰收盛宴"
-    },
-    {
-      "id": "calendar_harvest_desc_1",
-      "context": "丰收盛宴说明,英文分四行",
-      "raw": "§7Farm in-season crops to help",
-      "text": "Farm in-season crops to help",
-      "placeholders": [],
-      "gloss": "Ted 是 NPC 人名,保留英文。",
-      "translate": true,
-      "zh": "收获应季作物,为共享炖菜增添风味。在大厅找盛宴厨师 Ted 了解详情。"
-    },
-    {"id": "calendar_harvest_desc_2", "context": "接上一行", "raw": "§7season the §eCommunal Stew§7. Talk to", "text": "season the Communal Stew. Talk to", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
-    {"id": "calendar_harvest_desc_3", "context": "接上一行", "raw": "§7Feast Chef Ted in the §bHub §7for more", "text": "Feast Chef Ted in the Hub for more", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
-    {"id": "calendar_harvest_desc_4", "context": "接上一行", "raw": "§7info.", "text": "info.", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
-    {
-      "id": "calendar_spooky_desc_1",
-      "context": "惊魂节说明,英文分五行",
-      "raw": "§7Autumn is in full swing and the air is",
-      "text": "Autumn is in full swing and the air is",
-      "placeholders": [],
-      "gloss": "Fear Mongerer 是 NPC 显示名,保留英文。",
-      "translate": true,
-      "zh": "秋意正浓,空气中充满恐惧。怪物掉落物有几率包含糖果,可与 Fear Mongerer 交换稀有物品!"
-    },
-    {"id": "calendar_spooky_desc_2", "context": "接上一行", "raw": "§7full of fright. Mob drops have a", "text": "full of fright. Mob drops have a", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
-    {"id": "calendar_spooky_desc_3", "context": "接上一行", "raw": "§7chance to contain Candy, which can", "text": "chance to contain Candy, which can", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
-    {"id": "calendar_spooky_desc_4", "context": "接上一行", "raw": "§7be traded with the Fear Mongerer", "text": "be traded with the Fear Mongerer", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
-    {"id": "calendar_spooky_desc_5", "context": "接上一行", "raw": "§7for rare items!", "text": "for rare items!", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
-    {
-      "id": "calendar_jerry_defense_desc_1",
-      "context": "Jerry 工坊保卫战说明,英文分六行",
-      "raw": "§7The Jerrys are hard at work trying",
-      "text": "The Jerrys are hard at work trying",
-      "placeholders": [],
-      "gloss": "Jerry 是 NPC 人名,保留英文。",
-      "translate": true,
-      "zh": "Jerry 们正努力为 SkyBlock 的所有人制作足够的礼物,但敌军来袭了! 帮助保卫 Jerry 的工坊,让大家都能带着礼物回家!"
-    },
-    {"id": "calendar_jerry_defense_desc_2", "context": "接上一行", "raw": "§7to craft enough Gifts for all of", "text": "to craft enough Gifts for all of", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
-    {"id": "calendar_jerry_defense_desc_3", "context": "接上一行", "raw": "§7SkyBlock, but an army of enemies are", "text": "SkyBlock, but an army of enemies are", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
-    {"id": "calendar_jerry_defense_desc_4", "context": "接上一行", "raw": "§7on the attack! Help protect Jerry's", "text": "on the attack! Help protect Jerry's", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
-    {"id": "calendar_jerry_defense_desc_5", "context": "接上一行", "raw": "§7Workshop so that everyone can go", "text": "Workshop so that everyone can go", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
-    {"id": "calendar_jerry_defense_desc_6", "context": "接上一行", "raw": "§7home with Gifts!", "text": "home with Gifts!", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
-    {
-      "id": "calendar_new_year_desc_1",
-      "context": "新年庆典说明,英文分两行",
-      "raw": "§7To celebrate the SkyBlock New Year,",
-      "text": "To celebrate the SkyBlock New Year,",
-      "placeholders": [],
-      "gloss": "Baker 是职务型称呼。",
-      "translate": true,
-      "zh": "为庆祝 SkyBlock 新年,烘焙师正在免费发放蛋糕!"
-    },
-    {"id": "calendar_new_year_desc_2", "context": "接上一行", "raw": "§7the Baker is giving out free Cake!", "text": "the Baker is giving out free Cake!", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
-    {
-      "id": "calendar_hoppity_event_desc_1",
-      "context": "Hoppity 寻兔行动说明,英文分两行",
-      "raw": "§7Help §aHoppity §7find his §6Chocolate",
-      "text": "Help Hoppity find his Chocolate",
-      "placeholders": [],
-      "gloss": "Hoppity 是 NPC 人名,保留英文。",
-      "translate": true,
-      "zh": "帮助 Hoppity 在 SkyBlock 各处找到他的巧克力兔子。",
       "segments": [
-        {"color": "§7", "text": "Help ", "zh": "帮助 "},
-        {"color": "§a", "text": "Hoppity ", "zh": "Hoppity "},
-        {"color": "§7", "text": "find his ", "zh": "在 SkyBlock 各处找到他的"},
-        {"color": "§6", "text": "Chocolate", "zh": "巧克力兔子。"}
+        {"color": "§7", "text": "Mining minions work ", "zh": "挖矿小人的工作速度提高 "},
+        {"color": "§a", "text": "%s ", "zh": "%s"},
+        {"color": "§7", "text": "faster.", "zh": "。"}
       ]
     },
-    {"id": "calendar_hoppity_event_desc_2", "context": "接上一行", "raw": "§6Rabbits §7across SkyBlock.", "text": "Rabbits across SkyBlock.", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
     {
-      "id": "calendar_rewards_desc_1",
-      "context": "活动奖励入口说明,英文分两行",
-      "raw": "§7View and claim rewards obtained",
-      "text": "View and claim rewards obtained",
-      "placeholders": [],
-      "gloss": "",
+      "id": "mining_fiesta_public_wisdom_1",
+      "context": "挖矿狂欢节市长加成:公共岛屿挖掘智慧；英文拆成两行",
+      "raw": "§7Get §3+60☯ Mining Wisdom §7on public",
+      "text": "Get +%s☯ Mining Wisdom on public",
+      "placeholders": [
+        {"token": "%s", "desc": "公共岛屿获得的挖掘智慧", "type": "number", "example": "60"}
+      ],
+      "gloss": "public islands 在英文两行间断开，中文在首段补全。",
       "translate": true,
-      "zh": "查看并领取参与活动获得的奖励!"
-    },
-    {"id": "calendar_rewards_desc_2", "context": "接上一行", "raw": "§7through participating in Events!", "text": "through participating in Events!", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
-    {
-      "id": "calendar_no_rewards_desc_1",
-      "context": "当前没有活动奖励,英文斜体分三行",
-      "raw": "§8§oYou have no rewards! Place atop",
-      "text": "You have no rewards! Place atop",
-      "placeholders": [],
-      "gloss": "Place atop Event Leaderboards 指登上活动排行榜。",
-      "translate": true,
-      "zh": "你还没有奖励! 登上活动排行榜即可获得酷炫奖励!"
-    },
-    {"id": "calendar_no_rewards_desc_2", "context": "接上一行", "raw": "§8§oEvent Leaderboards to obtain cool", "text": "Event Leaderboards to obtain cool", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
-    {"id": "calendar_no_rewards_desc_3", "context": "接上一行", "raw": "§8§orewards!", "text": "rewards!", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
-    {
-      "id": "calendar_current_mayor",
-      "context": "当前市长物品名,候选人名字动态并保留英文",
-      "raw": "§bMayor %s",
-      "text": "Mayor %s",
-      "placeholders": [{"token": "%s", "desc": "市长候选人名", "type": "npc_name", "example": "Foxy"}],
-      "gloss": "NPC/候选人名保持服务器原文。",
-      "translate": true,
-      "zh": "市长 %s"
-    },
-    {
-      "id": "calendar_mayor_elected_desc_1",
-      "context": "当前市长当选年份说明,英文分三行(本行 + calendar_mayor_elected_year + calendar_mayor_elected_desc_3)",
-      "raw": "§7The mayor has been elected for",
-      "text": "The mayor has been elected for",
-      "placeholders": [],
-      "gloss": "原文三行是一整句 'The mayor has been elected for year %s by the whole SkyBlock community.'。年份在第二行,必须留在带占位符的那条记录里,所以这一句不能像别的跨行整句那样整句塞进首行、把后面全标 continuation——只有第三行 'community.' 能删。译文因此拆在前两行:本行说「谁选的」,第二行说「任期是哪一年」,合起来读是一句话。曾经两行各自都写成完整句(本行「该市长由整个 SkyBlock 社区选出。」+ 第二行「当选年份: SkyBlock 第 %s 年」),SkyBlock 和「选出/当选」在屏幕上各出现两次。已查社区 wiki(Mayor Election):每个 SkyBlock 年选一次,得票最高者出任下一年的市长,所以 'elected for year %s' 说的是任期年份,不是投票发生的年份。",
-      "translate": true,
-      "zh": "该市长由整个 SkyBlock 社区投票选出,"
-    },
-    {
-      "id": "calendar_mayor_elected_year",
-      "context": "整句的第二行,承接 calendar_mayor_elected_desc_1;尾行 calendar_mayor_elected_desc_3 已标 continuation",
-      "raw": "§7year %s by the whole SkyBlock",
-      "text": "year %s by the whole SkyBlock",
-      "placeholders": [{"token": "%s", "desc": "市长任期所在的 SkyBlock 年份", "type": "number", "example": "509"}],
-      "gloss": "整句见 calendar_mayor_elected_desc_1 的 gloss。这一行只承担后半句「任期是哪一年」——「由谁选出」首行已经说过,不要在这里重复。年份保持占位符不写死。译文里也不再出现 SkyBlock 字样:首行说了是 SkyBlock 社区,紧跟其后的年份读作 SkyBlock 年不会有歧义。",
-      "translate": true,
-      "zh": "任期为第 %s 年。"
-    },
-    {"id": "calendar_mayor_elected_desc_3", "context": "接上一行", "raw": "§7community.", "text": "community.", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
-    {
-      "id": "calendar_perk_sweet_benevolence",
-      "context": "Foxy 市长增益名",
-      "raw": "§bSweet Benevolence",
-      "text": "Sweet Benevolence",
-      "placeholders": [],
-      "gloss": "市长增益属于功能性名称,翻译。",
-      "translate": true,
-      "zh": "甜蜜恩惠"
-    },
-    {
-      "id": "calendar_perk_sweet_benevolence_desc_1",
-      "context": "甜蜜善意增益说明,英文分三行",
-      "raw": "§7Earn §a+30% §7more §dCandy§7, §cGifts §7and",
-      "text": "Earn +30% more Candy, Gifts and",
-      "placeholders": [],
-      "gloss": "",
-      "translate": true,
-      "zh": "在对应活动期间,糖果、礼物以及重复兔子提供的巧克力增加 30%。",
+      "zh": "在公共岛屿获得 +%s☯ 挖掘智慧。",
       "segments": [
-        {"color": "§7", "text": "Earn ", "zh": "在对应活动期间,"},
-        {"color": "§a", "text": "+30% ", "zh": "", "omit": true},
-        {"color": "§7", "text": "more ", "zh": "", "omit": true},
-        {"color": "§d", "text": "Candy", "zh": "糖果"},
-        {"color": "§7", "text": ", ", "zh": "、"},
-        {"color": "§c", "text": "Gifts ", "zh": "礼物"},
-        {"color": "§7", "text": "and", "zh": "以及重复兔子提供的巧克力增加 30%。"}
+        {"color": "§7", "text": "Get ", "zh": "在公共岛屿获得 "},
+        {"color": "§3", "text": "+%s☯ Mining Wisdom ", "zh": "+%s☯ 挖掘智慧"},
+        {"color": "§7", "text": "on public", "zh": "", "omit": true}
       ]
     },
-    {"id": "calendar_perk_sweet_benevolence_desc_2", "context": "接上一行", "raw": "§6Chocolate §7from duplicate rabbits", "text": "Chocolate from duplicate rabbits", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
-    {"id": "calendar_perk_sweet_benevolence_desc_3", "context": "接上一行", "raw": "§7during their respective events.", "text": "during their respective events.", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
     {
-      "id": "calendar_perk_time_for_giving",
-      "context": "Foxy 市长增益名",
-      "raw": "§bA Time for Giving",
-      "text": "A Time for Giving",
+      "id": "mining_fiesta_public_wisdom_2",
+      "context": "接上一行",
+      "raw": "§7islands.",
+      "text": "islands.",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "public islands 的含义已移入上一行。",
       "translate": true,
-      "zh": "馈赠时刻"
+      "continuation": true,
+      "zh": "。"
     },
     {
-      "id": "calendar_perk_time_for_giving_desc_1",
-      "context": "馈赠时刻增益说明,英文分四行",
-      "raw": "§7Spawn §dParty Chests §7by killing mobs",
-      "text": "Spawn Party Chests by killing mobs",
-      "placeholders": [],
-      "gloss": "",
+      "id": "mining_fiesta_schedule_1",
+      "context": "挖矿狂欢节市长加成的完整说明首行；英文共六行",
+      "raw": "§7Schedules 5 §6Mining Fiestas",
+      "text": "Schedules %1$s Mining Fiestas",
+      "placeholders": [
+        {"token": "%1$s", "desc": "全年安排的挖矿狂欢节场数", "type": "number", "example": "5"}
+      ],
+      "gloss": "三个动态数值分布在同一组跨行 Lore 中，各自在实际出现的记录声明。",
       "translate": true,
-      "zh": "惊魂节期间击杀怪物会生成派对宝箱,并可从 Jerry 的工坊收集派对礼物。",
+      "zh": "全年会安排 %1$s 场挖矿狂欢节! 活动期间,你将获得 +%2$s☯ 挖掘智慧,能收集精炼矿物和光泽宝石,挖矿掉落提升 1 倍!",
       "segments": [
-        {"color": "§7", "text": "Spawn ", "zh": "惊魂节期间击杀怪物会生成"},
-        {"color": "§d", "text": "Party Chests ", "zh": "派对宝箱"},
-        {"color": "§7", "text": "by killing mobs", "zh": ",并可从 Jerry 的工坊收集派对礼物。"}
+        {"color": "§7", "text": "Schedules %1$s ", "zh": "全年会安排 %1$s 场"},
+        {"color": "§6", "text": "Mining Fiestas", "zh": "挖矿狂欢节"}
       ]
     },
-    {"id": "calendar_perk_time_for_giving_desc_2", "context": "接上一行", "raw": "§7during the §6Spooky Festival §7and", "text": "during the Spooky Festival and", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
-    {"id": "calendar_perk_time_for_giving_desc_3", "context": "接上一行", "raw": "§7collect §bParty Gifts §7from §cJerry's", "text": "collect Party Gifts from Jerry's", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
-    {"id": "calendar_perk_time_for_giving_desc_4", "context": "接上一行", "raw": "§cWorkshop§7.", "text": "Workshop.", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
     {
-      "id": "calendar_perk_chivalrous_carnival",
-      "context": "Foxy 市长增益名",
-      "raw": "§bChivalrous Carnival",
-      "text": "Chivalrous Carnival",
+      "id": "mining_fiesta_schedule_2",
+      "context": "接上一行",
+      "raw": "§7throughout the year! During these",
+      "text": "throughout the year! During these",
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "侠义嘉年华"
+      "continuation": true,
+      "zh": "! 活动期间,"
     },
     {
-      "id": "calendar_perk_chivalrous_carnival_desc",
-      "context": "骑士嘉年华增益说明",
-      "raw": "§7Schedules a §eCarnival §7in the hub,",
-      "text": "Schedules a Carnival in the hub,",
-      "placeholders": [],
-      "gloss": "完整句与下一行连读。",
+      "id": "mining_fiesta_schedule_3",
+      "context": "接上一行；挖掘智慧数值动态",
+      "raw": "§7events gain §3+75☯ Mining Wisdom§7,",
+      "text": "events gain +%2$s☯ Mining Wisdom,",
+      "placeholders": [
+        {"token": "%2$s", "desc": "活动期间获得的挖掘智慧", "type": "number", "example": "75"}
+      ],
+      "gloss": "编号与整组首行的占位符保持一致。",
       "translate": true,
-      "zh": "在大厅安排一场全年开放的嘉年华。",
+      "continuation": true,
+      "zh": "你将获得 +%2$s☯ 挖掘智慧,",
       "segments": [
-        {"color": "§7", "text": "Schedules a ", "zh": "在大厅安排一场全年开放的"},
-        {"color": "§e", "text": "Carnival ", "zh": "嘉年华"},
-        {"color": "§7", "text": "in the hub,", "zh": "。"}
+        {"color": "§7", "text": "events gain ", "zh": "你将获得 "},
+        {"color": "§3", "text": "+%2$s☯ Mining Wisdom", "zh": "+%2$s☯ 挖掘智慧"},
+        {"color": "§7", "text": ",", "zh": ","}
       ]
     },
-    {"id": "calendar_perk_chivalrous_carnival_desc_2", "context": "接上一行", "raw": "§7active throughout the §bentire year§7.", "text": "active throughout the entire year.", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
     {
-      "id": "calendar_perk_extra_event",
-      "context": "Foxy 市长增益名",
-      "raw": "§bExtra Event",
-      "text": "Extra Event",
+      "id": "mining_fiesta_schedule_4",
+      "context": "接上一行；两种活动材料",
+      "raw": "§7collect §9Refined Mineral §7and §5Glossy",
+      "text": "collect Refined Mineral and Glossy",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "Refined Mineral 与 Glossy Gemstone 的译名来自社区 Wiki 语境报告。",
       "translate": true,
-      "zh": "额外活动"
-    },
-    {
-      "id": "calendar_perk_extra_event_desc_1",
-      "context": "额外活动增益说明,英文分两行",
-      "raw": "§7Schedules an extra §6Spooky",
-      "text": "Schedules an extra Spooky",
-      "placeholders": [],
-      "gloss": "",
-      "translate": true,
-      "zh": "本年度额外安排一场惊魂节活动。",
+      "continuation": true,
+      "zh": "能收集精炼矿物和光泽",
       "segments": [
-        {"color": "§7", "text": "Schedules an extra ", "zh": "本年度额外安排一场"},
-        {"color": "§6", "text": "Spooky", "zh": "惊魂节活动。"}
+        {"color": "§7", "text": "collect ", "zh": "能收集"},
+        {"color": "§9", "text": "Refined Mineral ", "zh": "精炼矿物"},
+        {"color": "§7", "text": "and ", "zh": "和"},
+        {"color": "§5", "text": "Glossy", "zh": "光泽"}
       ]
     },
-    {"id": "calendar_perk_extra_event_desc_2", "context": "接上一行", "raw": "§6Festival §7event during the year.", "text": "Festival event during the year.", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
     {
-      "id": "calendar_perks_availability_desc_1",
-      "context": "市长增益有效期说明,英文分三行",
-      "raw": "§7The listed perks are available to",
-      "text": "The listed perks are available to",
+      "id": "mining_fiesta_schedule_5",
+      "context": "接上一行；光泽宝石与掉落倍率",
+      "raw": "§5Gemstone§7, and earn §d2x drops §7from",
+      "text": "Gemstone, and earn 2x drops from",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "按 GLOSSARY.md 的 Nx 规则，2x 译作提升 1 倍，避免被理解为叠加上限。",
       "translate": true,
-      "zh": "上述特权对所有玩家生效,直至下一届选举结束。"
-    },
-    {"id": "calendar_perks_availability_desc_2", "context": "接上一行", "raw": "§7all players until the closing of", "text": "all players until the closing of", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
-    {"id": "calendar_perks_availability_desc_3", "context": "接上一行", "raw": "§7the next elections.", "text": "the next elections.", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
-    {
-      "id": "calendar_full_calendar_desc",
-      "context": "完整日历入口说明",
-      "raw": "§7Opens the full SkyBlock Calendar.",
-      "text": "Opens the full SkyBlock Calendar.",
-      "placeholders": [],
-      "gloss": "",
-      "translate": true,
-      "zh": "打开完整的 SkyBlock 日历。"
-    },
-    {
-      "id": "calendar_hoppity_calendar_desc_1",
-      "context": "日历入口中的 Hoppity 说明,英文分三行",
-      "raw": "§aHoppity the Rabbit §7needs help finding",
-      "text": "Hoppity the Rabbit needs help finding",
-      "placeholders": [],
-      "gloss": "Hoppity 是 NPC 人名,保留英文。",
-      "translate": true,
-      "zh": "兔子 Hoppity 需要帮助,在春季寻找他的所有巧克力朋友。",
+      "continuation": true,
+      "zh": "宝石,挖矿掉落提升 1 倍",
       "segments": [
-        {"color": "§a", "text": "Hoppity the Rabbit ", "zh": "兔子 Hoppity "},
-        {"color": "§7", "text": "needs help finding", "zh": "需要帮助,在春季寻找他的所有巧克力朋友。"}
+        {"color": "§5", "text": "Gemstone", "zh": "宝石"},
+        {"color": "§7", "text": ", and earn ", "zh": ",挖矿掉落"},
+        {"color": "§d", "text": "2x drops ", "zh": "提升 1 倍"},
+        {"color": "§7", "text": "from", "zh": "", "omit": true}
       ]
     },
-    {"id": "calendar_hoppity_calendar_desc_2", "context": "接上一行", "raw": "§7all of his chocolate friends during", "text": "all of his chocolate friends during", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
-    {"id": "calendar_hoppity_calendar_desc_3", "context": "接上一行", "raw": "§7the §aSpring §7season.", "text": "the Spring season.", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
     {
-      "id": "calendar_chocolate_factory_desc_1",
-      "context": "巧克力工厂入口说明,英文分三行",
-      "raw": "§7Meanwhile, he has granted you",
-      "text": "Meanwhile, he has granted you",
+      "id": "mining_fiesta_schedule_6",
+      "context": "接上一行",
+      "raw": "§7mining!",
+      "text": "mining!",
       "placeholders": [],
-      "gloss": "he 指 Hoppity。",
+      "gloss": "mining 的含义已移入上一行。",
       "translate": true,
-      "zh": "与此同时,Hoppity 还允许你全年进入他的巧克力工厂!"
-    },
-    {"id": "calendar_chocolate_factory_desc_2", "context": "接上一行", "raw": "§7access to his §6Chocolate Factory §7all", "text": "access to his Chocolate Factory all", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
-    {"id": "calendar_chocolate_factory_desc_3", "context": "接上一行", "raw": "§7year round!", "text": "year round!", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
-    {
-      "id": "calendar_chocolate_factory_flavor_1",
-      "context": "巧克力工厂入口的灰色趣味说明,第一句英文分三行",
-      "raw": "§8In the future, everything is §fchrome",
-      "text": "In the future, everything is chrome",
-      "placeholders": [],
-      "gloss": "保留对未来世界与自动化的调侃。",
-      "translate": true,
-      "zh": "未来的一切都是镀铬的,一切都实现了自动化。对这座老旧的小工厂来说,未来就是现在!",
-      "segments": [
-        {"color": "§8", "text": "In the future, everything is ", "zh": "未来的一切都是"},
-        {"color": "§f", "text": "chrome", "zh": "镀铬的,一切都实现了自动化。对这座老旧的小工厂来说,未来就是现在!"}
-      ]
-    },
-    {"id": "calendar_chocolate_factory_flavor_2", "context": "接上一行", "raw": "§8and everything is §aautomated§8. For this", "text": "and everything is automated. For this", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
-    {"id": "calendar_chocolate_factory_flavor_3", "context": "接上一行", "raw": "§8little old factory, that future is §dnow§8!", "text": "little old factory, that future is now!", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
-    {
-      "id": "calendar_chocolate_factory_flavor_4",
-      "context": "巧克力工厂入口的第二句趣味说明,英文分两行",
-      "raw": "§8This is what that guy was singing",
-      "text": "This is what that guy was singing",
-      "placeholders": [],
-      "gloss": "指某部音乐剧中的歌曲,不补写原文未给出的人名或剧名。",
-      "translate": true,
-      "zh": "这就是那家伙在那部音乐剧里唱的东西。"
-    },
-    {"id": "calendar_chocolate_factory_flavor_5", "context": "接上一行", "raw": "§8about in that §5musical§8.", "text": "about in that musical.", "placeholders": [], "gloss": "", "translate": true, "continuation": true, "zh": ""},
-    {
-      "id": "calendar_click_to_click_more",
-      "context": "巧克力工厂入口点击提示",
-      "raw": "§eClick to click more!",
-      "text": "Click to click more!",
-      "placeholders": [],
-      "gloss": "原文刻意重复 click。",
-      "translate": true,
-      "zh": "点击继续点!"
+      "continuation": true,
+      "zh": "!"
     }
   ]
 }

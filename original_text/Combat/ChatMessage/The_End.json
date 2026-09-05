@@ -1,0 +1,431 @@
+{
+  "source": "logs/latest.log; https://hypixelskyblock.minecraft.wiki/w/The_End; https://hypixelskyblock.minecraft.wiki/w/Dragon%27s_Nest; https://hypixelskyblock.minecraft.wiki/w/End_Stone_Protector; https://hypixelskyblock.minecraft.wiki/w/Lone_Adventurer; https://hypixelskyblock.minecraft.wiki/w/End_Biome_Stick",
+  "fetched_at": "2026-09-05",
+  "verified_ingame": true,
+  "source_note": "逐字原文以用户日志为准; 社区 Wiki 普通页面用于核对语境。日志未保留颜色码的消息不伪造 raw; 分段按语义边界保留运行时颜色。",
+  "messages": [
+    {
+      "id": "end_fight_mobs",
+      "context": "末地新区域介绍",
+      "text": "Fight Endermen and Endermites.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "击败末影人和末影螨。"
+    },
+    {
+      "id": "end_mine_resources",
+      "context": "末地新区域介绍",
+      "text": "Mine End Stone and Obsidian.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "开采末地石和黑曜石。"
+    },
+    {
+      "id": "end_travel_nest",
+      "context": "末地新区域介绍",
+      "text": "Travel to the Dragon's Nest.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "前往龙巢。"
+    },
+    {
+      "id": "end_summon_dragon",
+      "context": "龙巢新区域介绍",
+      "text": "Summon the Ender Dragon!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "召唤末影龙!"
+    },
+    {
+      "id": "end_fight_zealots",
+      "context": "龙巢新区域介绍",
+      "text": "Fight Zealots.",
+      "placeholders": [],
+      "gloss": "Zealot 沿用 Taming/GUI_Item/Pet_Perks.json 已有译名狂信徒,不另造译名。",
+      "translate": true,
+      "zh": "击败狂信徒。"
+    },
+    {
+      "id": "protector_tremor",
+      "context": "末地石守护者生成阶段推进",
+      "text": "You feel a tremor from beneath the earth!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你感觉到地下传来一阵震动!"
+    },
+    {
+      "id": "protector_rising",
+      "context": "末地石守护者即将生成",
+      "text": "The ground begins to shake as an End Stone Protector rises from below!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "地面开始震动,末地石守护者正从地下升起!",
+      "segments": [
+        {
+          "color": "",
+          "text": "The ground begins to shake as an ",
+          "zh": "地面开始震动,"
+        },
+        {
+          "color": "",
+          "text": "End Stone Protector",
+          "zh": "末地石守护者"
+        },
+        {
+          "color": "",
+          "text": " rises from below!",
+          "zh": "正从地下升起!"
+        }
+      ]
+    },
+    {
+      "id": "protector_spawned",
+      "context": "守护者出现; 日志仍使用 Endstone 旧拼写",
+      "text": "BEWARE - An Endstone Protector has risen!",
+      "placeholders": [],
+      "gloss": "Wiki 于 2026-08-30 更新,历史记录说明 2025-09-02 改名为 End Stone Protector; 此处保留实测 Endstone 拼写。",
+      "translate": true,
+      "zh": "小心 - 末地石守护者已经出现!",
+      "segments": [
+        {
+          "color": "",
+          "text": "BEWARE - An ",
+          "zh": "小心 - "
+        },
+        {
+          "color": "",
+          "text": "Endstone Protector",
+          "zh": "末地石守护者"
+        },
+        {
+          "color": "",
+          "text": " has risen!",
+          "zh": "已经出现!"
+        }
+      ]
+    },
+    {
+      "id": "protector_down",
+      "context": "末地石守护者击败横幅",
+      "text": "END STONE PROTECTOR DOWN!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "末地石守护者已被击败!",
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "protector_final_blow",
+      "context": "Boss 结算中完成最后一击的玩家; 无 Rank 前缀",
+      "text": "%s dealt the final blow.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "player_name",
+          "example": "mrflflfll",
+          "desc": "玩家名,绝不通过词表翻译"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%s完成了最后一击。",
+      "segments": [
+        {
+          "color": "",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "",
+          "text": " dealt the final blow.",
+          "zh": "完成了最后一击。"
+        }
+      ],
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "protector_damage_ranking",
+      "context": "Boss 结算的伤害名次",
+      "text": "%1$s Damager - %2$s - %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "ordinal",
+          "example": "1st",
+          "desc": "伤害名次; 自动去掉 st/nd/rd/th"
+        },
+        {
+          "token": "%2$s",
+          "type": "player_name",
+          "example": "sitif0",
+          "desc": "无 Rank 前缀的玩家名,绝不通过词表翻译"
+        },
+        {
+          "token": "%3$s",
+          "type": "number",
+          "example": "7,633,673",
+          "desc": "造成伤害"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "伤害第 %1$s 名 - %2$s - %3$s",
+      "segments": [
+        {
+          "color": "",
+          "text": "%1$s Damager - ",
+          "zh": "伤害第 %1$s 名 - "
+        },
+        {
+          "color": "",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "",
+          "text": " - %3$s",
+          "zh": " - %3$s"
+        }
+      ],
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "protector_final_blow_ranked",
+      "context": "最后一击玩家带 Rank 的排版变体; 与玩家名分开捕获",
+      "text": "%1$s %2$s dealt the final blow.",
+      "placeholders": [
+        {"token": "%1$s", "type": "raw", "example": "[VIP]", "desc": "完整带方括号的 Rank 标签,按规则保留英文"},
+        {"token": "%2$s", "type": "player_name", "example": "mrflflfll", "desc": "玩家名,不得走词表"}
+      ],
+      "gloss": "两种结构各一条,不枚举 Rank 值; 防止名为 Mining 的玩家被 raw 词表改名。",
+      "translate": true,
+      "zh": "%1$s %2$s完成了最后一击。",
+      "segments": [
+        {"color": "", "text": "%1$s %2$s", "zh": "%1$s %2$s"},
+        {"color": "", "text": " dealt the final blow.", "zh": "完成了最后一击。"}
+      ],
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "protector_damage_ranking_ranked",
+      "context": "伤害榜玩家带 Rank 的排版变体; 玩家名仍用严格类型",
+      "text": "%1$s Damager - %2$s %3$s - %4$s",
+      "placeholders": [
+        {"token": "%1$s", "type": "ordinal", "example": "1st", "desc": "伤害名次"},
+        {"token": "%2$s", "type": "raw", "example": "[MVP+]", "desc": "完整带方括号的 Rank 标签"},
+        {"token": "%3$s", "type": "player_name", "example": "Lynn0526", "desc": "玩家名,不得走词表"},
+        {"token": "%4$s", "type": "number", "example": "7,633,673", "desc": "造成伤害"}
+      ],
+      "gloss": "不把带 Rank 的整段名字标为 raw,避免无 Rank 时同名术语误译玩家名。",
+      "translate": true,
+      "zh": "伤害第 %1$s 名 - %2$s %3$s - %4$s",
+      "segments": [
+        {"color": "", "text": "%1$s Damager - ", "zh": "伤害第 %1$s 名 - "},
+        {"color": "", "text": "%2$s %3$s", "zh": "%2$s %3$s"},
+        {"color": "", "text": " - %4$s", "zh": " - %4$s"}
+      ],
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "protector_personal_damage",
+      "context": "Boss 结算中的个人伤害与名次",
+      "text": "Your Damage: %1$s (Position #%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "0",
+          "desc": "个人伤害"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "21",
+          "desc": "伤害排名"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的伤害: %1$s (第 %2$s 名)",
+      "segments": [
+        {
+          "color": "",
+          "text": "Your Damage: ",
+          "zh": "你的伤害: "
+        },
+        {
+          "color": "",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "",
+          "text": " (Position #%2$s)",
+          "zh": " (第 %2$s 名)"
+        }
+      ],
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "protector_zealot_contribution",
+      "context": "Boss 奖励质量中计入的狂信徒击杀数",
+      "text": "Zealots Contributed: %1$s/%2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "0",
+          "desc": "计入贡献的击杀数"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "100",
+          "desc": "贡献计数上限"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "狂信徒击杀贡献: %1$s/%2$s",
+      "segments": [
+        {
+          "color": "",
+          "text": "Zealots Contributed: ",
+          "zh": "狂信徒击杀贡献: "
+        },
+        {
+          "color": "",
+          "text": "%1$s/%2$s",
+          "zh": "%1$s/%2$s"
+        }
+      ],
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "end_kill_nearby_endermen",
+      "context": "独行冒险者的击杀任务提示",
+      "text": "Kill nearby Endermen",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "击杀附近的末影人"
+    },
+    {
+      "id": "end_find_full_set",
+      "context": "独行冒险者的套装收集任务提示",
+      "text": "Find Full Ender Set then talk to %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "npc_name",
+          "example": "Lone Adventurer",
+          "desc": "任务 NPC 的显示名,保留英文便于寻找"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "收齐末影套装后与%s交谈"
+    },
+    {
+      "id": "end_reach_nest",
+      "context": "任务进度提示",
+      "text": "Reach the Dragon's Nest",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "抵达龙巢"
+    },
+    {
+      "id": "end_fight_dragon",
+      "context": "任务进度提示",
+      "text": "Fight a Dragon",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "挑战末影龙"
+    },
+    {
+      "id": "end_pearls_warning",
+      "context": "在末地使用末影珍珠的风险提醒",
+      "text": "Be careful! Using Ender Pearls on this island will anger nearby Endermen!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "小心! 在这座岛上使用末影珍珠会激怒附近的末影人!"
+    },
+    {
+      "id": "end_underleveled",
+      "context": "低于区域建议战斗等级的警告",
+      "text": "BE CAREFUL! You're below the recommended Combat Level for this zone!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "小心! 你的战斗等级低于此区域的建议等级!"
+    },
+    {
+      "id": "end_recommended_level",
+      "context": "区域建议等级与玩家当前等级",
+      "text": "The recommended level to enter %1$s is %2$s. You are Combat Level %3$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "location_name",
+          "example": "Dragon's Nest",
+          "desc": "区域名称"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "14",
+          "desc": "区域建议战斗等级,不等于准入门槛"
+        },
+        {
+          "token": "%3$s",
+          "type": "number",
+          "example": "12",
+          "desc": "玩家当前战斗等级"
+        }
+      ],
+      "gloss": "Wiki 的准入条件为战斗 XII,日志的推荐值为 14,两者含义不同; 使用日志提供的推荐值。",
+      "translate": true,
+      "zh": "进入%1$s的建议战斗等级为 %2$s 级,你目前为 %3$s 级。",
+      "segments": [
+        {
+          "color": "",
+          "text": "The recommended level to enter ",
+          "zh": "进入"
+        },
+        {
+          "color": "",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "",
+          "text": " is %2$s. You are Combat Level %3$s.",
+          "zh": "的建议战斗等级为 %2$s 级,你目前为 %3$s 级。"
+        }
+      ]
+    },
+    {
+      "id": "end_biome_stick_recipe_reward",
+      "context": "末地石收藏品解锁的配方; 生物群系棒用于更改私人岛屿的生物群系",
+      "raw": "§fEnd Biome Stick §7Recipe",
+      "text": "End Biome Stick Recipe",
+      "placeholders": [],
+      "gloss": "Biome 使用原版术语生物群系,并非生态属性加成。",
+      "translate": true,
+      "zh": "末地生物群系棒配方",
+      "segments": [
+        {"color": "§f", "text": "End Biome Stick ", "zh": "末地生物群系棒"},
+        {"color": "§7", "text": "Recipe", "zh": "配方"}
+      ]
+    }
+  ]
+}

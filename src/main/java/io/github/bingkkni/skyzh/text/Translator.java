@@ -1,5 +1,6 @@
 package io.github.bingkkni.skyzh.text;
 
+import io.github.bingkkni.skyzh.HoldOriginal;
 import io.github.bingkkni.skyzh.SkyZHConfig;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +41,14 @@ public final class Translator {
 	 * @param tail  what followed it, on the same terms
 	 * @param entry the record that matched, or {@code null} if the corpus had nothing
 	 */
-	public record Result(MutableComponent core, Component head, Component tail, TranslationEntry entry) {
+	public record Result(
+		MutableComponent core, Component head, Component tail, TranslationEntry entry, StyledText matchedCore,
+		Matcher match
+	) {
+		public Result(MutableComponent core, Component head, Component tail, TranslationEntry entry) {
+			this(core, head, tail, entry, null, null);
+		}
+
 		public boolean matched() {
 			return this.entry != null;
 		}
@@ -108,9 +116,19 @@ public final class Translator {
 	 * mod has any business rewriting.
 	 */
 	public static Result translate(Component source, Surface surface) {
+		return translate(source, surface, false);
+	}
+
+	/**
+	 * Translates one line. {@code labelOriginals} is the chat/lore half of {@code showOriginal}:
+	 * colour runs that are themselves a term-table name keep the English in brackets. Callers that
+	 * already label the whole line — container titles, tooltip names — pass {@code false} so the
+	 * name is not bracketed twice.
+	 */
+	public static Result translate(Component source, Surface surface, boolean labelOriginals) {
 		SkyZHConfig config = SkyZHConfig.get();
 
-		if (!config.enabled) {
+		if (!config.enabled || HoldOriginal.active()) {
 			return new Result(source.copy(), null, null, null);
 		}
 
@@ -149,13 +167,15 @@ public final class Translator {
 				);
 			}
 
-			MutableComponent translated = entry.render(core, match, index.terms());
+			MutableComponent translated = entry.render(core, match, index.terms(), labelOriginals);
 
 			return new Result(
 				skyBlockName(translated, config),
 				range.start() > 0 ? styled.slice(0, range.start()) : null,
 				range.end() < plain.length() ? styled.slice(range.end(), plain.length()) : null,
-				entry
+				entry,
+				core,
+				match
 			);
 		}
 
@@ -223,7 +243,7 @@ public final class Translator {
 	 * single message and every member of a newline-separated message.
 	 */
 	public static Component translateChatLine(Component source, Font font, int width) {
-		Result result = translate(source, Surface.CHAT);
+		Result result = translate(source, Surface.CHAT, SkyZHConfig.get().showOriginal);
 
 		return result.matched() && "center_chat_banner".equals(result.entry().layout())
 			? TextLayout.centeredWithSpaces(font, result.core(), width)
@@ -389,6 +409,13 @@ public final class Translator {
 	 * TabList record per commission saying what the table already says, and a second place to
 	 * remember whenever Hypixel adds an area or a gemstone.
 	 *
+	 * <p>The value is also given to the <em>records</em> when the table has nothing, because a value
+	 * is not always a word: the bank widget's {@code Interest: 47 Hours} is a label the corpus has
+	 * and a value that is a number with a unit after it. No table entry can hold every number, but
+	 * the footer already has a record for {@code %1$s Hours} — and until the value half was looked up
+	 * on its own, that record was never asked. The label came out Chinese, the value stayed
+	 * English, and because the label <em>had</em> matched, the capture filed the row as done.
+	 *
 	 * <p>A record still wins wherever there is one. This only ever fills in halves nothing else
 	 * answered for, so a row the corpus spells out in full is untouched.
 	 */
@@ -396,7 +423,7 @@ public final class Translator {
 		Result row = translate(source, surface);
 
 		if (row.matched()) {
-			Component value = row.tail() == null ? null : termed(row.tail());
+			Component value = row.tail() == null ? null : valued(row.tail(), surface);
 
 			if (value == null) {
 				return row.padded();
@@ -422,7 +449,7 @@ public final class Translator {
 		}
 
 		Component label = termed(styled.slice(0, colon));
-		Component value = termed(styled.slice(colon, styled.length()));
+		Component value = valued(styled.slice(colon, styled.length()), surface);
 
 		if (label == null && value == null) {
 			return row.padded();
@@ -446,16 +473,8 @@ public final class Translator {
 	private static Component termed(Component half) {
 		StyledText styled = StyledText.of(half);
 		String plain = styled.canonical();
-		int from = 0;
-		int to = plain.length();
-
-		while (from < to && (plain.charAt(from) == ':' || plain.charAt(from) == ' ')) {
-			from++;
-		}
-
-		while (to > from && plain.charAt(to - 1) == ' ') {
-			to--;
-		}
+		int from = wordsStart(plain);
+		int to = wordsEnd(plain, from);
 
 		String zh = from < to ? index.terms().translate(VALUE, plain.substring(from, to)) : null;
 
@@ -463,16 +482,74 @@ public final class Translator {
 			return null;
 		}
 
+		return around(styled, from, to, Component.literal(zh).setStyle(styled.styleAt(from)));
+	}
+
+	/**
+	 * The value half of a tab-list row translated by whatever answers for it — the term table
+	 * first, then the records — or {@code null} when neither has anything.
+	 *
+	 * <p>The table goes first because it is the closed list of status words ({@code DONE},
+	 * {@code N/A}) and an exact hit there is never wrong. The records come second for the values
+	 * that are not words: {@code 47 Hours}, {@code 1 Hour}, anything with a number in it. Only the
+	 * words between the separator and the trailing padding are looked up, and those come back
+	 * exactly as they arrived around the translation.
+	 */
+	private static Component valued(Component half, Surface surface) {
+		Component termed = termed(half);
+
+		if (termed != null) {
+			return termed;
+		}
+
+		StyledText styled = StyledText.of(half);
+		String plain = styled.canonical();
+		int from = wordsStart(plain);
+		int to = wordsEnd(plain, from);
+
+		if (from >= to) {
+			return null;
+		}
+
+		Result value = translate(styled.slice(from, to), surface);
+
+		return value.matched() ? around(styled, from, to, value.padded()) : null;
+	}
+
+	/** Where the words of a row's half begin, past the colon and the spaces the server put before them. */
+	static int wordsStart(String plain) {
+		int from = 0;
+
+		while (from < plain.length() && (plain.charAt(from) == ':' || plain.charAt(from) == ' ')) {
+			from++;
+		}
+
+		return from;
+	}
+
+	/** Where they end, before any trailing padding. */
+	static int wordsEnd(String plain, int from) {
+		int to = plain.length();
+
+		while (to > from && plain.charAt(to - 1) == ' ') {
+			to--;
+		}
+
+		return to;
+	}
+
+	/** {@code replacement} with whatever surrounded {@code [from, to)} put back as it arrived. */
+	private static MutableComponent around(StyledText styled, int from, int to, Component replacement) {
 		MutableComponent result = Component.empty();
 
 		if (from > 0) {
 			result.append(styled.slice(0, from));
 		}
 
-		result.append(Component.literal(zh).setStyle(styled.styleAt(from)));
+		result.append(replacement);
 
-		if (to < plain.length()) {
-			result.append(styled.slice(to, plain.length()));
+		if (to < styled.length()) {
+			result.append(styled.slice(to, styled.length()));
 		}
 
 		return result;
@@ -542,7 +619,7 @@ public final class Translator {
 	}
 
 	/** The same, for a line the mod has just built and therefore has no flattened form of yet. */
-	private static MutableComponent skyBlockName(MutableComponent source, SkyZHConfig config) {
+	static MutableComponent skyBlockName(MutableComponent source, SkyZHConfig config) {
 		if (!config.translateSkyBlockName) {
 			return source;
 		}

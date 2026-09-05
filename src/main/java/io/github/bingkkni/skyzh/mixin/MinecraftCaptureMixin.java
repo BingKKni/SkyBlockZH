@@ -1,5 +1,6 @@
 package io.github.bingkkni.skyzh.mixin;
 
+import io.github.bingkkni.skyzh.HoldOriginal;
 import io.github.bingkkni.skyzh.capture.ScreenWatcher;
 import net.minecraft.client.Minecraft;
 import org.spongepowered.asm.mixin.Mixin;
@@ -15,12 +16,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  * a SkyBlock modpack is one fewer way to collide with SkyHanni or SkyBlocker.
  *
  * <p>{@link ScreenWatcher#tick} returns on its first line while capture is switched off, which is the
- * state every ordinary player is in.
+ * state every ordinary player is in. {@link io.github.bingkkni.skyzh.HoldOriginal#poll} always runs:
+ * holding X is a render-only courtesy and must not depend on capture being on.
  */
 @Mixin(Minecraft.class)
 public abstract class MinecraftCaptureMixin {
 	@Inject(method = "tick", at = @At("TAIL"), require = 0)
 	private void skyzh$captureTick(CallbackInfo info) {
+		HoldOriginal.poll((Minecraft) (Object) this);
 		ScreenWatcher.tick();
 	}
 }

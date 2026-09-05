@@ -30,6 +30,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.ClickEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 
@@ -85,9 +86,41 @@ public final class TranslationHarness {
 		checkContinuationOnlyInLore(files);
 		// ---- ...and no sentence is drawn twice, which is the same edit gone the other way ----
 		checkNoDuplicatedSentence(files);
+		JsonObject numberedTail = JsonParser.parseString("""
+			{"placeholders":[{"token":"%2$s","type":"ordinal","example":"7th"}]}
+			""").getAsJsonObject();
+		report("自检按 token 读取非连续编号的占位符",
+			"your 27th slot.".equals(fillPlaceholders("your %2$s slot.", numberedTail)),
+			"独立尾行的 %2$s 应按 ordinal 取样，不能退回数字");
 
 		// ---- colour reconstruction, the known-issue-3 cases ----
 		check("Lore 两段色 + 占位符", "§7Mining Speed: §6+450", Surface.ITEM, "§7挖掘速度: §6+450");
+		check("收藏品金锭术语", "§eGold Ingot VII", Surface.ITEM, "§e金锭 VII");
+		check("收藏品铁锭术语", "§eIron Ingot I", Surface.ITEM, "§e铁锭 I");
+		check("小人升级缺少附魔煤炭", "§cYou need §68 §cmore Enchanted Coal.", Surface.ITEM,
+			"§c你还需要 §68 §c个附魔煤炭。");
+		check("圆石墙后缀术语", "§fCobblestone Wall", Surface.ITEM, "§f圆石墙");
+		check("圆石台阶后缀术语", "§fCobblestone Slab", Surface.ITEM, "§f圆石台阶");
+		check("附魔秘银数量与颜色", "§9Enchanted Mithril §8x64", Surface.ITEM, "§9附魔秘银 §8x64");
+		check("极冰宝珠数量与颜色", "§9Glacite Jewel §8x2", Surface.ITEM, "§9极冰宝珠 §8x2");
+		check("完整区域委托的数字不染到动词", "§7Mine §a250 §7Mithril Ore in §bLava Springs§7.",
+			Surface.ITEM, "§7在§b熔岩泉§7开采 §a250 §7个秘银矿石。");
+		checkJoined("折行区域委托保留蓝色地名", List.of(
+			"§7Mine §a10 §7Titanium Ore in §bRampart's", "§bQuarry§7."),
+			"§7在§b壁垒采石场§7开采 §a10 §7个钛矿石。");
+		checkJoined("小人槽位序数尾行参与整句", List.of(
+			"§7Craft §b2 §7more §aunique §7minions to unlock", "§7your §b7th §7slot."),
+			"§7再制作 §b2 §7种§a独特§7小人,即可解锁你的§b第 7 个§7槽位。");
+		checkJoined("小人上限说明保留跨行高亮", List.of(
+			"§7Craft minions §ayou have never crafted", "§abefore §7to increase the minions limit on",
+			"§7your Private Island! You can also unlock", "§75 bonus slots via the §bCommunity Shop §7in"),
+			"§7制作§a从未制作过的§7小人,可以提升私人岛屿上的小人上限! 你还可以在大厅的§b社区商店§7解锁 5 个额外槽位。");
+		checkRow("Tab 曲奇未激活提示首行", "§7Not active! Obtain booster cookies from the community",
+			"§7未激活! 可前往大厅的社区商店");
+		checkRow("Tab 曲奇未激活提示尾行不被丢弃", "§7shop in the hub.", "§7获取增益曲奇。");
+		check("Kat 照料提示保留宠物和叹号颜色", "I'm currently taking care of your §fRock!", Surface.CHAT,
+			"我正在照顾你的§f石头!");
+		checkHandoffIntegration();
 		check("Lore 复合挖掘速度值", "§7Mining Speed: §6+3,135 §9[+500] [+50] §d(+75) (+100)", Surface.ITEM,
 			"§7挖掘速度: §6+3,135 §9[+500] [+50] §d(+75) (+100)");
 		check("Lore 复合挖掘时运值", "§7Mining Fortune: §6+340 §9[+5] (+20) §d(+50)", Surface.ITEM,
@@ -156,6 +189,15 @@ public final class TranslationHarness {
 			"[NPC] King: 你好,冒险者!");
 		check("NPC 名字有空格", "[NPC] Banker Broadjaw: You're a long way from home!", Surface.CHAT,
 			"[NPC] Banker Broadjaw: 你在离家很远的地方啊!");
+		check("Boss 台词带 [BOSS] 前缀", "[BOSS] Bonzo: I don't even need to fight, this is the life!", Surface.CHAT,
+			"[BOSS] Bonzo: 我甚至不用战斗，这才叫生活!");
+		// Thorn's arena crowd. Sixty-three of these were in the corpus, written as the sentence
+		// alone, and not one could match until [CROWD] was peeled the way [NPC] is.
+		check("观众台词带 [CROWD] 前缀", "[CROWD] Zombie Soldier: Go Thorn! Gooooo!!!", Surface.CHAT,
+			"[CROWD] Zombie Soldier: Thorn，上啊! 冲——!!!");
+		check("石像台词带 [STATUE] 前缀",
+			"[STATUE] Oruo the Omniscient: One more question!", Surface.CHAT,
+			"[STATUE] Oruo the Omniscient: 还剩最后一道题!");
 		check("前缀 + 占位符", "[NPC] King: Today the King is Brammor.", Surface.CHAT,
 			"[NPC] King: 今天当值的国王是 Brammor。");
 		check("前缀保留自己的颜色", "§e[NPC] §eKing§f: §fHello Adventurer!", Surface.CHAT,
@@ -560,6 +602,82 @@ public final class TranslationHarness {
 		check("Tab 活动分钟倒计时不加后", "Starts In: §e26m", Surface.TABLIST, "距开始: §e26 分钟");
 		check("宾果活动倒计时不加后", "§7Event Starts: §a43h", Surface.ITEM, "§7距活动开始: §a43 小时");
 		check("Tab 只剩一小时", "§f1 Hour", Surface.TABLIST, "§f1 小时");
+		// The bank widget's interest row. The label record answered and the value went back English for
+		// several sessions running: the value half was only ever asked of the term table, never of the
+		// records, so "%1$s Hours" sat in the footer file and was never tried. Four server writings.
+		checkRow("Tab 银行利息整点小时", " §eInterest: §b47 Hours", " §e利息: §b47 小时");
+		checkRow("Tab 银行利息只剩一小时", " §eInterest: §b1 Hour", " §e利息: §b1 小时");
+		checkRow("Tab 银行利息紧凑写法", " §eInterest: §b1h 32m", " §e利息: §b1小时32分");
+		checkRow("Tab 银行利息只剩分秒", " §eInterest: §b12m 5s", " §e利息: §b12分5秒");
+		checkRow("Tab 银行利息不足一小时的整句", " §eInterest: §bLess than an hour", " §e利息: §b不足 1 小时");
+		// What the server actually sends (2026-09-02 capture): the interest *amount* follows the hours in
+		// gold, so the value half is "6 Hours (46.5k)" and no bare-duration record can answer for it.
+		checkRow("Tab 银行利息带结息金额(实测原样)", " Interest: §e6 Hours§6 (46.5k)", " 利息: §e6 小时§6 (46.5k)");
+		checkRow("Tab 银行利息带金额只剩一小时", " Interest: §e1 Hour§6 (46.5k)", " 利息: §e1 小时§6 (46.5k)");
+		checkRow("Tab 银行利息带金额紧凑写法", " Interest: §e1h 32m§6 (46.5k)", " 利息: §e1小时32分§6 (46.5k)");
+		// Same session: the level row's value had an English word in it, and two rows whose values are
+		// identifiers (a profile's fruit name, a server id) must stay English without being reported.
+		checkRow("Tab 空岛等级整行", " SB Level§f: §8[§2188§8] §b68§3/§b100 XP", " 空岛等级§f: §8[§2188§8] §b68§3/§b100 经验");
+		checkRow("Tab 档案名保留英文", "§e§lProfile: §aPapaya", "§e§l档案: §aPapaya");
+		checkRow("Tab 服务器编号保留英文", " Server: §8mini95N", " 服务器: §8mini95N");
+		check("铁匠精华兑换说明保留精华颜色", "§7Exchange §dUndead Essence §7and", Surface.ITEM, "§7用§d亡灵精华§7和凋零精华兑换物品与特权!");
+		check("排序方式取值走词表", "§aSort: §bLargest Group Size", Surface.ITEM, "§a排序: §b队伍人数最多");
+		// Dungeon tab rows from the 2026-09-02 session.
+		checkRow("Tab 地牢队伍成员的地牢等级", " §ainkkni§f: §cCata 29", " §ainkkni§f: §c地牢 29 级");
+		checkRow("Tab 地牢里程碑进度", " §7(61.6% to ❷)", " §7(距 ❷ 还差 61.6%)");
+		checkRow("Tab 地牢已用时分秒", " Time: §601m 05s", " 用时: §601分05秒");
+		checkRow("Tab 地牢已用时只有秒", " Time: §603s", " 用时: §603秒");
+		checkRow("Tab 地牢用时暂无", " Time: §eN/A", " 用时: §e暂无");
+		checkRow("Tab 地牢复活暂无", " Revive: §eN/A", " 复活: §e暂无");
+		checkRow("Tab 地牢大厅队伍人数", "§b§lParty: §f(3/5)", "§b§l队伍: §f(3/5)");
+		// Dungeon GUI lines from the same session whose colour was flattened or whose value stayed English.
+		check("组队查找器成员行保留三种颜色", " §a King_v§f: §eBerserk§b (§e30§b)", Surface.ITEM,
+			" §a King_v§f: §e狂战士§b（§e30§b）");
+		check("地牢资料最高队友治疗量分段", "§7Most Ally Healing: §a137,053§7 (Top §616.06%§7)", Surface.ITEM,
+			"§7最高队友治疗量: §a137,053§7（前 §616.06%§7）");
+		check("搜索设置当前选择地牢类型", "§aCurrently Selected: §bThe Catacombs", Surface.ITEM, "§a当前选择: §b地牢");
+		// The five class items in Mort's Dungeon Classes menu, as the server actually names them
+		// (2026-09-03 capture): the class level in grey, then the class name in green.
+		check("地牢职业菜单:带等级的职业名", "§7[Lvl 26] §aHealer", Surface.ITEM, "§7[26 级] §a治疗师");
+		check("地牢职业菜单:狂战士", "§7[Lvl 22] §aBerserk", Surface.ITEM, "§7[22 级] §a狂战士");
+		check("地牢职业菜单:坦克", "§7[Lvl 21] §aTank", Surface.ITEM, "§7[21 级] §a坦克");
+		// The combat stat rows had no generic record while Damage/Strength/Health did, so the archer's
+		// two crit lines in the same menu — and half the stats on any piece of gear — stayed English.
+		check("暴击率属性行带加成括号", "§7Crit Chance: §9+23% (+7%) §8(+87.17%)", Surface.ITEM,
+			"§7暴击率: §9+23% (+7%) §8(+87.17%)");
+		check("暴击伤害属性行", "§7Crit Damage: §9+194.5%", Surface.ITEM, "§7暴击伤害: §9+194.5%");
+		check("凶暴属性行带加成括号", "§7Ferocity: §c+33 §8(+46.2)", Surface.ITEM, "§7凶暴: §c+33 §8(+46.2)");
+		check("生命回复属性行", "§7Health Regen: §c+5 §8(+5.2)", Surface.ITEM, "§7生命回复: §c+5 §8(+5.2)");
+		check("职业菜单活力行译名统一", "§7Vitality: §a+15.2", Surface.ITEM, "§7活力: §a+15.2");
+		check("职业菜单修补行译名统一", "§7Mending: §a+23", Surface.ITEM, "§7修补: §a+23");
+		check("搜索设置当前选择排序", "§aCurrently Selected: §bRecently Created", Surface.ITEM, "§a当前选择: §b最近创建");
+		check("Croesus 已开宝箱档位", "§7Opened Chest: §bEmerald", Surface.ITEM, "§7已开宝箱: §b绿宝石");
+		check("Croesus 宝箱过期倒计时", "§8Chests expire in 2d 23h!", Surface.ITEM, "§8宝箱将在2天23小时后过期!");
+		check("Croesus 完成于几小时前", "§7Completed: §b20 hours ago", Surface.ITEM, "§7完成于: §b20 小时前");
+		check("Bonzo 点名要气球", "§f[BOSS] Bonzo§f: Do you want a balloon inkkni?", Surface.CHAT,
+			"§f[BOSS] Bonzo: 你想要气球吗，inkkni?");
+		check("组队查找器有人加入", "§dParty Finder §f> §bNinji1111 §ejoined the dungeon group! (§bArcher Level 8§e)",
+			Surface.CHAT, "§d组队查找 §f> §bNinji1111 §e加入了地牢队伍! (§b弓箭手 8 级§e)");
+		check("井字棋谜题失败的彩色 Yikes", "§c§lPUZZLE FAIL! §binkkni §elost Tic Tac Toe! §4Y§ci§6k§ee§as§2!",
+			Surface.CHAT, "§c§l谜题失败! §binkkni §e输掉了井字棋! §4哎§c呀§6!");
+		// Lore sentences whose Chinese starts with the word the English wrapped onto the tail line.
+		// The head and the continuation tail carry one segments[].order across both records
+		// (2026-09-03 engine change); this is what the tooltip draws once the two lines are joined.
+		checkJoined("跨行 order:修补头盔的 Dungeons 挪到句首",
+			List.of("§7Grants §a+50\ue014 Mending §7while in", "§7Dungeons."),
+			"§7在地牢中提供 §a+50\ue014 修补。");
+		checkJoined("跨行 order:修补+活力的 while in Dungeons 挪到句首",
+			List.of("§7Grants §a+65\ue014 Mending §7and §4\ue028 Vitality", "§7while in Dungeons."),
+			"§7在地牢中提供 §a+65\ue014 修补§7与 §4\ue028 活力。");
+		checkJoined("跨行不排序:坦克光环两行各带自己的占位符",
+			List.of("§7While in Dungeons, players within §e10", "§7blocks of you take §c5% §7less damage."),
+			"§7在地牢中，你周围 §e10§7格内的玩家受到的伤害降低 §c5%§7。");
+		checkJoined("跨行 order:银行利率把「前 N 百万硬币」提到句中",
+			List.of("§7You will earn §b2% §7interest every season", "§7for your first §610 million §7banked coins."),
+			"§7每个季节，你存入的前 §610 百万§7硬币都能获得 §b2% §7的利息。");
+		checkJoined("跨行不排序:生命精华两行各带自己的颜色与占位符",
+			List.of("§7Increases your base §c\ue010 Health §7while", "§7in §cThe Catacombs§7 by §a+§825➜§a50§7."),
+			"§7你的基础 §c\ue010 生命值§7在§c地牢§7中提高 §a+§825➜§a50§7。");
 		check("Tab 曲奇增益小节", "Cookie Buff", Surface.TABLIST, "曲奇增益");
 		check("Tab 魔法寻宝剩余小时", "§eMagic Find V §f7 Hours", Surface.TABLIST, "§e魔法寻宝 V §f7 小时");
 		// The unit letter must not be written into a template: the server picks the unit by how much
@@ -735,6 +853,25 @@ public final class TranslationHarness {
 		check("化石物品名", "§6Tusk Fossil", Surface.ITEM, "§6象牙化石");
 		check("化石物品名(另一种)", "§6Clubbed Fossil", Surface.ITEM, "§6棒状化石");
 		checkTooltipName("化石名带英文对照", "§6Tusk Fossil", "§6象牙化石（Tusk Fossil）", true);
+		report("Lore 行上的化石名也带英文对照",
+			"§6象牙化石（Tusk Fossil）".equals(legacy(
+				Translator.translate(Component.literal("§6Tusk Fossil"), Surface.ITEM, true).padded())),
+			"实际 [" + legacy(Translator.translate(Component.literal("§6Tusk Fossil"), Surface.ITEM, true).padded()) + "]");
+		report("聊天里高亮的钻石精华带英文对照",
+			legacy(Translator.translate(Component.literal(
+				"§fThe name's §bGemma§f, and I run the §bDiamond Essence Shop§f, where you can trade in §bDiamond Essence§f for useful perks and upgrades!"),
+				Surface.CHAT, true).padded()).contains("钻石精华（Diamond Essence）"),
+			"实际 [" + legacy(Translator.translate(Component.literal(
+				"§fThe name's §bGemma§f, and I run the §bDiamond Essence Shop§f, where you can trade in §bDiamond Essence§f for useful perks and upgrades!"),
+				Surface.CHAT, true).padded()) + "]");
+		HoldOriginal.setActive(true);
+		report("按住 X 时化石名回到英文",
+			"§6Tusk Fossil".equals(legacy(Translator.translate(Component.literal("§6Tusk Fossil"), Surface.ITEM).padded())),
+			"实际 [" + legacy(Translator.translate(Component.literal("§6Tusk Fossil"), Surface.ITEM).padded()) + "]");
+		HoldOriginal.setActive(false);
+		report("松开 X 后化石名恢复中文",
+			"§6象牙化石".equals(legacy(Translator.translate(Component.literal("§6Tusk Fossil"), Surface.ITEM).padded())),
+			"实际 [" + legacy(Translator.translate(Component.literal("§6Tusk Fossil"), Surface.ITEM).padded()) + "]");
 		// The date reads as Chinese does: the year first, then the solar term and the day.
 		check("空岛菜单日期语序", "§7Date: §a10th Autumn 510", Surface.ITEM,
 			"§7日期: 第 §a510 年 · 秋分 10 日");
@@ -783,6 +920,8 @@ public final class TranslationHarness {
 		report("没翻译的名字不加对照",
 			"Bazaar".equals(OriginalLabel.append(Component.literal("Bazaar"), Component.literal("Bazaar")).getString()),
 			"实际 [" + OriginalLabel.append(Component.literal("Bazaar"), Component.literal("Bazaar")).getString() + "]");
+
+		checkLogTranslations();
 
 		System.out.println();
 		System.out.println("通过 " + passed + " / 失败 " + failed);
@@ -933,6 +1072,20 @@ public final class TranslationHarness {
 		}
 
 		report("跨行整句不重复画第二遍", duplicated.isEmpty(), String.join("\n      ", duplicated));
+	}
+
+	private static List<JsonObject> orderFragments(JsonObject record) {
+		if (record.has("segments") && record.get("segments").isJsonArray()) {
+			List<JsonObject> fragments = new ArrayList<>();
+
+			for (JsonElement element : record.getAsJsonArray("segments")) {
+				fragments.add(element.getAsJsonObject());
+			}
+
+			return fragments;
+		}
+
+		return List.of(record);
 	}
 
 	/** What a record actually draws in Chinese: its own {@code zh}, or its segments joined. */
@@ -1414,44 +1567,66 @@ public final class TranslationHarness {
 		List<String> broken = new ArrayList<>();
 
 		for (String relative : new TreeSet<>(files.keySet())) {
-			for (JsonObject record : recordsOf(files.get(relative))) {
-				JsonObject source = resolveRef(record, files);
+			for (List<JsonObject> group : groupsOf(files.get(relative))) {
+				for (int i = 0; i < group.size(); i++) {
+					JsonObject head = resolveRef(group.get(i), files);
 
-				if (!source.has("segments") || !source.get("segments").isJsonArray()) {
-					continue;
-				}
-
-				JsonArray segments = source.getAsJsonArray("segments");
-				Set<Integer> taken = new HashSet<>();
-				boolean ordered = false;
-
-				for (int i = 0; i < segments.size(); i++) {
-					JsonObject segment = segments.get(i).getAsJsonObject();
-
-					if (!segment.has("order")) {
+					if (truthy(head, "continuation")) {
 						continue;
 					}
 
-					ordered = true;
-					int at = segment.get("order").getAsInt();
+					List<JsonObject> run = new ArrayList<>();
+					run.add(head);
 
-					if (at < 0 || at >= segments.size() || !taken.add(at)) {
-						broken.add(relative + "#" + id(record) + " 的第 " + i + " 段写的 order 是 " + at
-							+ "，不在 0.." + (segments.size() - 1) + " 里或者和别的段撞了");
+					for (int tail = i + 1; tail < group.size(); tail++) {
+						JsonObject next = resolveRef(group.get(tail), files);
+
+						if (!truthy(next, "continuation")) {
+							break;
+						}
+
+						// Old-style empty tails draw nothing and keep backward compatibility; they do not take
+						// part in a cross-line order until they actually carry translated fragments.
+						if (hasTranslation(next)) {
+							run.add(next);
+						}
 					}
-				}
 
-				// Every position has to be claimed, not just no two claiming one: a record that gives
-				// three of its four segments an order leaves the fourth on whichever slot is left,
-				// which is a coincidence rather than a decision.
-				if (ordered && taken.size() != segments.size()) {
-					broken.add(relative + "#" + id(record) + " 只给一部分 segments 写了 order，"
-						+ "剩下的段落在哪一位是碰运气；要写就每一段都写");
+					List<JsonObject> fragments = new ArrayList<>();
+
+					for (JsonObject record : run) {
+						fragments.addAll(orderFragments(record));
+					}
+
+					Set<Integer> taken = new HashSet<>();
+					boolean ordered = false;
+
+					for (int fragment = 0; fragment < fragments.size(); fragment++) {
+						JsonObject source = fragments.get(fragment);
+
+						if (!source.has("order")) {
+							continue;
+						}
+
+						ordered = true;
+						int at = source.get("order").getAsInt();
+
+						if (at < 0 || at >= fragments.size() || !taken.add(at)) {
+							broken.add(relative + "#" + id(group.get(i)) + " 组的第 " + fragment
+								+ " 段写的 order 是 " + at + "，不在 0.." + (fragments.size() - 1)
+								+ " 里或者和别的段撞了");
+						}
+					}
+
+					if (ordered && taken.size() != fragments.size()) {
+						broken.add(relative + "#" + id(group.get(i)) + " 组只给一部分 fragments 写了 order，"
+							+ "跨首尾行排序时要写就每一段都写");
+					}
 				}
 			}
 		}
 
-		report("segments[].order 是一个完整排列", broken.isEmpty(), String.join("\n      ", broken));
+		report("segments[].order 是首尾行组上的完整排列", broken.isEmpty(), String.join("\n      ", broken));
 	}
 
 	/**
@@ -1474,51 +1649,68 @@ public final class TranslationHarness {
 		List<String> broken = new ArrayList<>();
 
 		for (String relative : new TreeSet<>(files.keySet())) {
-			for (JsonObject record : recordsOf(files.get(relative))) {
-				JsonObject source = resolveRef(record, files);
+			for (List<JsonObject> group : groupsOf(files.get(relative))) {
+				for (int i = 0; i < group.size(); i++) {
+					JsonObject head = resolveRef(group.get(i), files);
 
-				if (!source.has("segments") || !source.get("segments").isJsonArray()) {
-					continue;
-				}
-
-				String zh = text(source, "zh");
-
-				if (zh.isEmpty()) {
-					continue;
-				}
-
-				List<JsonObject> segments = new ArrayList<>();
-
-				for (JsonElement element : source.getAsJsonArray("segments")) {
-					segments.add(element.getAsJsonObject());
-				}
-
-				if (segments.isEmpty() || !segments.stream().allMatch(s -> s.has("order"))) {
-					continue;
-				}
-
-				segments.sort((left, right) -> Integer.compare(
-					left.get("order").getAsInt(), right.get("order").getAsInt()
-				));
-
-				StringBuilder drawn = new StringBuilder();
-
-				for (JsonObject segment : segments) {
-					if (truthy(segment, "omit")) {
+					if (truthy(head, "continuation")) {
 						continue;
 					}
 
-					drawn.append(text(segment, "zh"));
-				}
+					String zh = text(head, "zh");
 
-				if (!drawn.toString().equals(zh)) {
-					broken.add(relative + '#' + id(record) + " 按 order 画出来是 [" + drawn
-						+ "]，但 zh 写的是 [" + zh + ']');
+					if (zh.isEmpty()) {
+						continue;
+					}
+
+					List<JsonObject> run = new ArrayList<>();
+					run.add(head);
+
+					for (int tail = i + 1; tail < group.size(); tail++) {
+						JsonObject next = resolveRef(group.get(tail), files);
+
+						if (!truthy(next, "continuation")) {
+							break;
+						}
+
+						if (hasTranslation(next)) {
+							run.add(next);
+						}
+					}
+
+					List<JsonObject> segments = new ArrayList<>();
+
+					for (JsonObject record : run) {
+						segments.addAll(orderFragments(record));
+					}
+
+					if (segments.isEmpty() || !segments.stream().allMatch(s -> s.has("order"))) {
+						continue;
+					}
+
+					segments.sort((left, right) -> Integer.compare(
+						left.get("order").getAsInt(), right.get("order").getAsInt()
+					));
+
+					StringBuilder drawn = new StringBuilder();
+
+					for (JsonObject segment : segments) {
+						if (truthy(segment, "omit")) {
+							continue;
+						}
+
+						drawn.append(text(segment, "zh"));
+					}
+
+					if (!drawn.toString().equals(zh)) {
+						broken.add(relative + '#' + id(group.get(i)) + " 组按 order 画出来是 [" + drawn
+							+ "]，但首行 zh 写的是 [" + zh + ']');
+					}
 				}
 			}
 		}
 
-		report("按 order 排好的 segments 拼出来就是 zh", broken.isEmpty(), String.join("\n      ", broken));
+		report("按 order 排好的首尾行组拼出来就是 zh", broken.isEmpty(), String.join("\n      ", broken));
 	}
 
 	/** A half-width exclamation mark followed by more text has exactly one separating space. */
@@ -1572,7 +1764,8 @@ public final class TranslationHarness {
 	}
 
 	private static boolean hasUnspacedBang(String text) {
-		String tight = "!,.，。、；;：:）)】」』”’？?…";
+		// A closing ASCII bracket is punctuation too: NPC choices legitimately end in "!]".
+		String tight = "!,.，。、；;：:）)]】」』”’？?…";
 
 		for (int i = 0; i < text.length(); i++) {
 			if (text.charAt(i) != '!') {
@@ -1638,11 +1831,19 @@ public final class TranslationHarness {
 
 		if (source.has("placeholders") && source.get("placeholders").isJsonArray()) {
 			JsonArray declared = source.getAsJsonArray("placeholders");
+			int next = 1;
 
-			if (index >= 1 && index <= declared.size()) {
-				JsonObject placeholder = declared.get(index - 1).getAsJsonObject();
-				type = text(placeholder, "type");
-				example = text(placeholder, "example");
+			// Numbered tokens name their argument, not their position in this array.
+			for (JsonElement element : declared) {
+				JsonObject placeholder = element.getAsJsonObject();
+				Matcher token = Pattern.compile("%(\\d+)\\$").matcher(text(placeholder, "token"));
+				int argument = token.find() ? Integer.parseInt(token.group(1)) : next++;
+
+				if (argument == index) {
+					type = text(placeholder, "type");
+					example = text(placeholder, "example");
+					break;
+				}
 			}
 		}
 
@@ -1835,6 +2036,240 @@ public final class TranslationHarness {
 		report(name, expected.equals(legacy(actual)), "期望 [" + expected + "] 实际 [" + legacy(actual) + "]");
 	}
 
+	/** User log translations, including live variants and style-sensitive Chinese word order. */
+	private static void checkLogTranslations() {
+		report("感叹号后可直接闭合选项括号", !hasUnspacedBang("[真神奇!]"), "右方括号不是正文");
+		report("感叹号后接正文仍须空格", hasUnspacedBang("真神奇!继续")
+			&& !hasUnspacedBang("真神奇! 继续"), "不能为修复选项而放宽正文间距规则");
+		check("NPC 选项感叹号与括号", "§eSelect an option: §a[That's amazing!] ", Surface.CHAT,
+			"§e请选择: §a[这也太神奇了!] ");
+		ClickEvent decline = new ClickEvent.RunCommand("/test-decline");
+		ClickEvent buy = new ClickEvent.RunCommand("/test-buy");
+		Style optionStyle = Style.EMPTY.withColor(ChatFormatting.GREEN).withBold(true);
+		Component choices = Component.empty()
+			.append(Component.literal("Select an option: ").withStyle(ChatFormatting.YELLOW))
+			.append(Component.literal("[").setStyle(optionStyle))
+			.append(Component.literal("I am sure").setStyle(optionStyle.withClickEvent(decline)))
+			.append(Component.literal("] [").setStyle(optionStyle))
+			.append(Component.literal("Fine I'll buy your sword").setStyle(optionStyle.withClickEvent(buy)))
+			.append(Component.literal("] ").setStyle(optionStyle));
+		StyledText drawnChoices = StyledText.of(Translator.translateLine(choices, Surface.CHAT));
+		report("NPC 选项保留各自绑定的点击事件",
+			decline.equals(drawnChoices.styleAt(drawnChoices.plain().indexOf("我确定")).getClickEvent())
+				&& buy.equals(drawnChoices.styleAt(drawnChoices.plain().indexOf("好吧")).getClickEvent()),
+			"即使原文括号不可点击,两个选项文字仍分别执行原本的动作");
+		check("Maxwell 稀有度提前且句号不染金",
+			"§fAccessories add some §6§lACCESSORY POWER §fto the bag depending on their §drarity§f.",
+			Surface.CHAT, "§f饰品会根据自身的§d稀有度§f,为饰品袋增加一定的§6§l饰品之力§f。");
+		check("Maxwell 交错属性颜色与实测图标",
+			"§fYes! The more §6Accessory Power§f, the more stats like §c\uE010 Health §for §b\uE003 Intelligence "
+				+ "§fyou get from your §aAccessory Bag§f.", Surface.CHAT,
+			"§f没错! §6饰品之力§f越高,你的§a饰品袋§f提供的§c\uE010 生命值§f、§b\uE003 智力§f等属性就越多。");
+		check("末影八件套含护甲与装备", "§fYou should focus on getting all 8 pieces of the §5Ender Armor §rnow.",
+			Surface.CHAT, "§f接下来,你该专心收齐全套 8 件§5末影套装了。");
+		// legacy() omits Style.EMPTY, so assert the actual reset style rather than a printed §r.
+		StyledText enderReset = StyledText.of(Translator.translateLine(Component.literal(
+			"§fYou should focus on getting all 8 pieces of the §5Ender Armor §rnow."), Surface.CHAT));
+		report("末影套装后的正文确实恢复默认样式",
+			Style.EMPTY.equals(enderReset.styleAt(enderReset.plain().indexOf("了。"))), "不能被套装的紫色染色");
+		check("Jotraeline 手机名称高亮与感叹号分色",
+			"§b✆ §fHey it's very nice of you, but I can't take your ONLY §3Abiphone§f!", Surface.CHAT,
+			"§b✆ §f嘿,你人是真好,可我不能收下你唯一的一台 §3Abiphone§f!");
+		check("Jotraeline Basic 实测新台词",
+			"§b✆ §fYou have an §3Abiphone§f! I've always wanted an §fAbiphone Basic§r!", Surface.CHAT,
+			"§b✆ §f你有一台 §3Abiphone§f! 我一直都想要一台 Abiphone Basic!");
+		check("Jotraeline Wiki 旧台词仍兼容", "✆ You have an Abiphone! I've always wanted one!", Surface.CHAT,
+			"✆ 你有一台 Abiphone! 我一直都想要一台!");
+		check("Pat 实测感叹号与沙砾译名",
+			"§fMy brother is mining the gravel from the §cSpider's Den§f! We are the §7Flint Bros§f!", Surface.CHAT,
+			"§f我兄弟正在§c蜘蛛巢穴§f挖沙砾! 我们是§7燧石兄弟§f!");
+		for (String to : List.of("", "to ")) {
+			check("神庙守门人兼容 to 变体 [" + to + "]",
+				"This temple is locked, you will need to bring me a key " + to + "open the door!", Surface.CHAT,
+				"这座神庙已经上锁,你得给我带一把钥匙来才能开门!");
+		}
+		check("商店购买按数量和价格模板匹配", "You bought Experience Bottle x64 for 1,920 Coins!", Surface.CHAT,
+			"你购买了 Experience Bottle ×64,金额为 1,920 硬币!");
+		check("商店出售小数价格", "You sold Oak Slab x13 for 6.5 Coins!", Surface.CHAT,
+			"你出售了 Oak Slab ×13,金额为 6.5 硬币!");
+		check("商店回购单数 Coin", "You bought back Stone x1 for 1 Coin!", Surface.CHAT,
+			"你回购了 Stone ×1,金额为 1 硬币!");
+		check("商店宝石图标不丢失", "You sold \uE008 Flawed Amethyst Gemstone x3 for 720 Coins!", Surface.CHAT,
+			"你出售了\uE008 Flawed Amethyst Gemstone ×3,金额为 720 硬币!");
+		check("符文出售独立处理固定图标", "You sold ◆ Zap Rune I x1 for 1 Coin!", Surface.CHAT,
+			"你出售了 ◆ Zap 符文 I ×1,金额为 1 硬币!");
+		check("合作档案类型的颜色", "§aYour profile was changed to: §ePapaya§b (Co-op)", Surface.CHAT,
+			"§a已切换至档案: §ePapaya§b (合作)");
+		check("山心升级标题的层级保色", "§5§lHEART OF THE MOUNTAIN §f§lTIER 4", Surface.CHAT,
+			"§5§l山峦之心 §f§l4 级");
+		check("山心代币数后保留空格", "    §7§8+§52 §5Token of the Mountain", Surface.CHAT,
+			"    §8+§52 山心代币");
+		for (int count : List.of(1, 2)) {
+			check("山心聊天熔炉槽位单复数 " + count,
+				"§8+§a" + count + " Forge Slot" + (count == 1 ? "" : "s"), Surface.CHAT,
+				"§8+§a" + count + " 个熔炉槽位");
+		}
+		check("山心解锁区域保留紫色区别", "§dAccess to the §5Crystal Hollows", Surface.CHAT,
+			"§d解锁§5水晶残核");
+		check("快速传送目的地包含连接号", "You may now Fast Travel to Crystal Hollows - Entrance!", Surface.CHAT,
+			"你现在可以快速传送至水晶残核 - 入口了!");
+		check("收藏品首次解锁末影珍珠", "§6§lCOLLECTION UNLOCKED §eEnder Pearl", Surface.CHAT,
+			"§6§l解锁收藏品 §e末影珍珠");
+		check("末地石小人配方不枚举材料", "    §9End Stone Minion §7Recipes", Surface.CHAT,
+			"    §9末地石小人§7配方");
+		check("红宝石配方的品质和图标", "    §a\uE010 Flawed Ruby Gemstone §7Recipe", Surface.CHAT,
+			"    §a\uE010 有瑕 Ruby 宝石§7配方");
+		check("宝石配方换种类与品质", "§9\uE00C Fine Aquamarine Gemstone §7Recipes", Surface.CHAT,
+			"§9\uE00C 精细 Aquamarine 宝石§7配方");
+		checkNoMatch("宝石图标位不能吞入英文半句", "Please Flawed Ruby Gemstone Recipe", Surface.CHAT);
+		check("新区域入口复用地名词表", "  §7\uE067 §eFishing Outpost", Surface.CHAT,
+			"  §7\uE067 §e钓鱼前哨");
+		check("公司名末尾句点的例外", "  \uE067 Abiphones & Co.", Surface.CHAT, "  \uE067 Abiphone 公司");
+		check("龙巢地名复用", "\uE067 Dragon's Nest", Surface.CHAT, "\uE067 龙巢");
+		check("小部件启用换区域", "The Stats Widget is now ENABLED when in the Crystal Hollows.", Surface.CHAT,
+			"属性小部件现已在水晶残核中启用。");
+		check("原区域小部件启用继续有效", "The Stats Widget is now ENABLED when in the Dwarven Mines.", Surface.CHAT,
+			"属性小部件现已在矮人矿山中启用。");
+		check("带 Rank 的伤害榜不混淆序数和玩家名", "1st Damager - [MVP+] Lynn0526 - 7,633,673", Surface.CHAT,
+			"伤害第 1 名 - [MVP+] Lynn0526 - 7,633,673");
+		check("不带 Rank 的伤害榜", "2nd Damager - sitif0 - 1,464,052", Surface.CHAT,
+			"伤害第 2 名 - sitif0 - 1,464,052");
+		check("玩家名不能作为 raw 查词表", "3rd Damager - Mining - 42", Surface.CHAT,
+			"伤害第 3 名 - Mining - 42");
+		check("带 Rank 的玩家名也不翻译", "3rd Damager - [VIP] Mining - 42", Surface.CHAT,
+			"伤害第 3 名 - [VIP] Mining - 42");
+		check("最后一击消息的玩家名不翻译", "Mining dealt the final blow.", Surface.CHAT,
+			"Mining 完成了最后一击。");
+		check("最后一击消息保留 Rank", "[VIP] mrflflfll dealt the final blow.", Surface.CHAT,
+			"[VIP] mrflflfll 完成了最后一击。");
+		check("个人伤害与名次的数字槽位", "Your Damage: 0 (Position #21)", Surface.CHAT,
+			"你的伤害: 0 (第 21 名)");
+		check("区域推荐等级不是准入等级", "The recommended level to enter Dragon's Nest is 14. You are Combat Level 12.",
+			Surface.CHAT, "进入龙巢的建议战斗等级为 14 级,你目前为 12 级。");
+		check("饰品袋能力名查词表", "You selected the Fortuitous power for your Accessory Bag!", Surface.CHAT,
+			"你为饰品袋选择了幸运能力!");
+		check("使节任务不把职务留在英文里", "  Talk to Emissary Braum", Surface.CHAT, "  与使节 Braum 交谈");
+		check("再次交谈提示不把 Again 当成人名", "Talk to Lone Adventurer Again", Surface.CHAT,
+			"再次与 Lone Adventurer 交谈");
+		check("三行精华教学首行", "Essence is a type of currency that is saved to your", Surface.CHAT,
+			"精华是一种保存在你当前档案中的货币。");
+		check("三行精华教学中行不重复档案说明", "Profile. Use it to upgrade Items or purchase Perks", Surface.CHAT,
+			"可用于升级物品,也可在精华商店中");
+		check("三行精华教学末行不会漏英文", "from Essence Shops!", Surface.CHAT, "购买天赋!");
+		checkNoMatch("不翻译带相同内容的玩家聊天",
+			"[42] example: You bought Experience Bottle x64 for 1,920 Coins!", Surface.CHAT);
+		check("宝石收纳袋配方颜色", "§aSmall Gemstone Sack §7Recipe", Surface.CHAT,
+			"§a小型宝石收纳袋§7配方");
+		check("末地生物群系棒配方颜色", "§fEnd Biome Stick §7Recipe", Surface.CHAT,
+			"§f末地生物群系棒§7配方");
+		check("聊天奖励复用升天绳索名称", "    Ascension Rope", Surface.CHAT, "    升天绳索");
+		report("新武器名称支持英文对照",
+			Translator.translate(Component.literal("I use a §5Void Sword§r, it's a very powerful weapon."),
+				Surface.CHAT, true).padded().getString().contains("虚空之剑（Void Sword）"),
+			"保留玩家在商店或资料中搜索的原名");
+		checkNoMatch("不将任意交易长句当作商品名",
+			"You sold this is a whole sentence x1 for 10 Coins!", Surface.CHAT);
+	}
+
+	/** Capture examples that used to pass static coverage while rendering wrongly or not at all. */
+	private static void checkHandoffIntegration() {
+		checkProbe("Probe 无整行记录时仍翻译熔岩泉委托", " §fLava Springs Mithril: §e57.6%",
+			Surface.TABLIST, " §f熔岩泉 - 秘银: §e57.6%");
+		checkProbe("Probe 皇家矿区委托", " §fRoyal Mines Titanium: §c0%",
+			Surface.TABLIST, " §f皇家矿区 - 钛: §c0%");
+		checkProbe("Probe 上层矿区委托", " §fUpper Mines Mithril: §c0%",
+			Surface.TABLIST, " §f上层矿区 - 秘银: §c0%");
+		checkProbe("Probe 壁垒采石场委托", " §fRampart's Quarry Titanium: §c0%",
+			Surface.TABLIST, " §f壁垒采石场 - 钛: §c0%");
+		checkProbe("Probe 未覆盖原文仍可见", "§5Reinforced Glacite Chestplate",
+			Surface.ITEM, "§5Reinforced Glacite Chestplate");
+		checkProbe("Probe 附魔列表保留专名", "§9Protection V, Growth I",
+			Surface.ITEM, "§9保护 V, Growth I");
+		checkProbe("Probe 动作栏部件与运行时一致",
+			"§62,610/2,235\uE010     §7\uE067 §bDwarven Base Camp     §265,321/100k Drill Fuel",
+			Surface.ACTION_BAR, "§62,610/2,235\uE010     §7\uE067 §b矮人营地     §265,321/100k 钻头燃料");
+
+		check("升级聊天复用宠物经验奖励", "     §fGain §816➜§a17%§f extra pet exp.", Surface.CHAT,
+			"     §f宠物经验额外增加 §816➜§a17%§f。");
+		check("升级聊天复用经验分享奖励", "   §8+§fGain §83.2➜§a3.4% §fExp Share rate.", Surface.CHAT,
+			"   §8+§f经验分享比例提高 §83.2➜§a3.4%§f。");
+		check("抢夺折扣不冒充 Experience 附魔", "    §9Looting §7Exp Discount §a(-25%)", Surface.CHAT,
+			"    §9抢夺§7附魔经验折扣 §a(-25%)");
+		check("Experience 专属附魔折扣保持英文", "  §9Experience §7Exp Discount §a(-25%)", Surface.ITEM,
+			"  §9Experience §7附魔经验折扣 §a(-25%)");
+
+		check("附魔材料名不能吞掉配方后缀", "  §aEnchanted Cobblestone §7Recipe", Surface.ITEM,
+			"  §a附魔圆石§7配方");
+		check("附魔配方复数与另一种材料", "§aEnchanted Iron Ingot §7Recipes", Surface.ITEM,
+			"§a附魔铁锭§7配方");
+		check("经验瓶配方沿用原版译名", "  §fExperience Bottle §7Recipe", Surface.ITEM,
+			"  §f经验瓶§7配方");
+		check("勘探护甲部件配方", "  §aProspecting Helmet §7Recipe", Surface.ITEM,
+			"  §a勘探头盔§7配方");
+		check("快速升级是按钮不是小人种类", "§aQuick-Upgrade Minion", Surface.ITEM, "§a快速升级小人");
+		check("极冰收藏品门槛不能吞掉 Requires", "§cRequires Glacite Collection III", Surface.ITEM,
+			"§c需要极冰收藏品 III");
+		check("钨收藏品门槛等级可变", "§cRequires Tungsten Collection IV", Surface.ITEM,
+			"§c需要钨收藏品 IV");
+		check("收藏品进度只扩展完整金锭词条", "§7Progress to Gold Ingot VIII: §e56.5§6%", Surface.ITEM,
+			"§7金锭 VIII 档进度: §e56.5§6%");
+		check("共用进度行仍能翻译宾果目标", "§7Progress to Agricultural Revolution I: §e0§6%", Surface.ITEM,
+			"§7农业革命 I 档进度: §e0§6%");
+		report("词表不扩展短词或玩家物品占位符",
+			Translator.index().terms().translate("raw", "Wall") == null
+				&& Translator.index().terms().translate("raw", "March") == null
+				&& Translator.index().terms().translate("item_name", "Gold Ingot") == null,
+			"只扩展无歧义的完整材料名，不放宽通用短词和 item_name");
+
+		for (String rebound : List.of("3", "9")) {
+			checkJoined("荆棘概率与反伤比例 " + rebound, List.of(
+				"§7Grants a §a50% §7chance to rebound §a" + rebound + "%",
+				"§7of damage dealt back at the attacker."),
+				"§7有 §a50% §7的概率向攻击者反弹所受伤害的 §a" + rebound + "%§7。");
+		}
+		for (String chance : List.of("2.1", "7")) {
+			checkJoined("疯钛三行成句 " + chance, List.of(
+				"§7When mining §2Mithril Ore§7, you have a",
+				"§a" + chance + "% §7chance to convert the block", "§7into §fTitanium Ore§7."),
+				"§7开采§2秘银矿石§7时,有 §a" + chance + "% §7的概率将方块转化成§f钛矿石§7。");
+		}
+		check("熔炉槽位单数", "§8+§a1 Forge Slot", Surface.ITEM, "§8+§a1 个熔炉槽位");
+		check("熔炉槽位复数", "§8+§a2 Forge Slots", Surface.ITEM, "§8+§a2 个熔炉槽位");
+		checkJoined("代币不足的红色不被名词吞掉", List.of(
+			"§cYou don't have enough §5Token of the", "§5Mountain!"), "§5山心代币§c不足!");
+		check("Front Loaded 固定三倍按增量表述", " §8■ §d3x Gemstone Powder", Surface.ITEM,
+			" §8■ §d宝石粉末获取量提升 2 倍");
+		check("Daily Grind 低等级奖励", "§2Dwarven Mines§7: §a+1,500 §2Mithril Powder", Surface.ITEM,
+			"§2矮人矿山§7: §a+1,500 §2秘银粉末");
+		check("Daily Grind 高等级及另一种粉末", "§5Crystal Hollows§7: §a+5,000 §dGemstone Powder", Surface.ITEM,
+			"§5水晶残核§7: §a+5,000 §d宝石粉末");
+		checkJoined("宝石粉末十段跨行语序与颜色", List.of(
+			"§7Obtain §dGemstone Powder §7by mining", "§dGemstones §7and opening §6Treasure",
+			"§6Chests §7in the §5Crystal Hollows§7."),
+			"§7开采§d宝石§7并打开§5水晶残核§7中的§6宝箱§7,即可获得§d宝石粉末§7。");
+		checkJoined("秘银粉末说明结尾恢复灰色", List.of(
+			"§7Obtain §2Mithril Powder §7by mining and", "§7taking part in events in the §2Dwarven", "§2Mines§7."),
+			"§7通过挖矿并参与§2矮人矿山§7中的活动来获得§2秘银粉末§7。");
+		checkJoined("代币解锁说明句号不染紫", List.of(
+			"§8Unlock more §5Token of the Mountain", "§8by leveling up your Heart of the", "§8Mountain tiers."),
+			"§8提升山峦之心层级可解锁更多§5山心代币§8。");
+		check("抗热说明沿用炙热值且正文不染红",
+			"§c Heat Resistance §7decreases how quickly §c Heat §7builds up. For every §c1 Heat Resistance "
+				+ "§7you have, §c Heat §7builds up §a1% §7slower.", Surface.CHAT,
+			"§7每拥有 §c1 抗热§7,§c 炙热值§7的积累速度就会降低 §a1%§7。");
+		for (int days : List.of(1, 3)) {
+			checkJoined("Kat 照顾天数变体 " + days, List.of(
+				"§7Kat will take care of your §fRock §7for §9" + days,
+				"§9" + (days == 1 ? "day" : "days") + "§7 then its §9rarity§7 will be upgraded!"),
+				"§7Kat 会照顾你的§f石头宠物 §9" + days + " 天§7,之后它的§9稀有度§7会提升!");
+		}
+	}
+
+	private static void checkProbe(String name, String input, Surface surface, String expected) {
+		String actual = legacy(Probe.draw(Component.literal(input), surface));
+		report(name, expected.equals(actual), "期望 [" + expected + "] 实际 [" + actual + "]");
+	}
+
 	/** A tab-list row, which is a label and a value rather than one sentence. */
 	private static void checkRow(String name, String input, String expected) {
 		String actual = legacy(Translator.translateRow(Component.literal(input), Surface.TABLIST));
@@ -1864,6 +2299,35 @@ public final class TranslationHarness {
 
 		String drawn = actual == null ? "(原样不动)" : legacy(actual);
 		report(name, expected.equals(drawn), "期望 [" + expected + "] 实际 [" + drawn + "]");
+	}
+
+	/**
+	 * A lore head plus its {@code continuation} tails, drawn the way {@link TooltipTranslator} draws
+	 * them: every line looked up on its own, then rendered as one sentence through
+	 * {@link TranslationEntry#renderJoined}. The only place a cross-line {@code segments[].order} can
+	 * be seen doing its job — a single-line replay shows each half in isolation.
+	 */
+	private static void checkJoined(String name, List<String> lines, String expected) {
+		List<TranslationEntry.Matched> joined = new ArrayList<>();
+
+		for (String line : lines) {
+			Translator.Result result = Translator.translate(Component.literal(line), Surface.ITEM);
+
+			if (!result.matched()) {
+				report(name, false, "[" + line + "] 没有记录应答");
+				return;
+			}
+
+			if (result.entry().continuation() != !joined.isEmpty()) {
+				report(name, false, "[" + line + "] 首行/continuation 标记与真实 Lore 合并路径不符");
+				return;
+			}
+
+			joined.add(new TranslationEntry.Matched(result.entry(), result.matchedCore(), result.match()));
+		}
+
+		String actual = legacy(TranslationEntry.renderJoined(joined, Translator.index().terms()));
+		report(name, expected.equals(actual), "期望 [" + expected + "] 实际 [" + actual + "]");
 	}
 
 	private static void checkComponent(String name, Component input, Surface surface, String expected) {

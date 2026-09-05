@@ -1,0 +1,1312 @@
+{
+  "source": "SkyZH runtime capture (Dungeon Hub, 2026-09-01)",
+  "fetched_at": "2026-09-01",
+  "verified_ingame": true,
+  "source_note": "原文与颜色来自地牢大厅运行时采集；社区 Wiki 普通页面用于核对玩法语境。",
+  "excluded": [
+    "Young Dragon Fragment、Superboom TNT 以及其后的装备名称、属性、附魔和技能 Lore：采集元数据标记为“背包 物品名/Lore”，属于玩家背包回显，按用户要求不翻译。",
+    "大师模式前置楼层要求的数字被服务器拆到下一行；已按两行分别翻译，避免跨记录引用动态占位符。"
+  ],
+  "items": [
+    {
+      "id": "gate_catacombs_entrance",
+      "context": "地牢入口选择项名称",
+      "raw": "§aThe Catacombs §8- §eEntrance",
+      "text": "The Catacombs - Entrance",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "The Catacombs ",
+          "zh": "地牢 "
+        },
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§e",
+          "text": "Entrance",
+          "zh": "入口"
+        }
+      ]
+    },
+    {
+      "id": "gate_catacombs_floor",
+      "context": "普通模式地牢楼层选择项名称",
+      "raw": "§aThe Catacombs §8- §eFloor %s",
+      "text": "The Catacombs - Floor %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "楼层罗马数字",
+          "type": "tier",
+          "example": "VII"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "The Catacombs ",
+          "zh": "地牢 "
+        },
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§e",
+          "text": "Floor %s",
+          "zh": "第 %s 层"
+        }
+      ]
+    },
+    {
+      "id": "gate_master_catacombs_floor",
+      "context": "大师模式地牢楼层选择项名称",
+      "raw": "§c§lMM§c The Catacombs §8- §eFloor %s",
+      "text": "MM The Catacombs - Floor %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "楼层罗马数字",
+          "type": "tier",
+          "example": "VII"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§c§l",
+          "text": "MM",
+          "zh": "大师模式"
+        },
+        {
+          "color": "§c",
+          "text": " The Catacombs ",
+          "zh": "地牢 "
+        },
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§e",
+          "text": "Floor %s",
+          "zh": "第 %s 层"
+        }
+      ]
+    },
+    {
+      "id": "gate_party_size",
+      "context": "地牢允许的队伍人数",
+      "raw": "§7Party size: §91-5",
+      "text": "Party size: 1-5",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Party size: ",
+          "zh": "队伍人数: "
+        },
+        {
+          "color": "§9",
+          "text": "1-5",
+          "zh": "1-5"
+        }
+      ]
+    },
+    {
+      "id": "gate_requirements",
+      "context": "楼层进入条件标题",
+      "text": "Requirements:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "要求:"
+    },
+    {
+      "id": "gate_combat_skill",
+      "context": "入口的战斗技能等级要求",
+      "text": "✓ Combat Skill %s.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "所需战斗技能等级",
+          "type": "number",
+          "example": "15"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "✓ 战斗技能 %s 级。"
+    },
+    {
+      "id": "gate_catacombs_skill_met",
+      "context": "已满足的地牢等级要求",
+      "text": "✓ Catacombs Skill %s.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "所需地牢等级",
+          "type": "number",
+          "example": "24"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "✓ 地牢技能 %s 级。"
+    },
+    {
+      "id": "gate_catacombs_skill_unmet",
+      "context": "未满足的地牢等级要求",
+      "text": "✗ Catacombs Skill %s.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "所需地牢等级",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "✗ 地牢技能 %s 级。"
+    },
+    {
+      "id": "gate_entrance_completion",
+      "context": "普通一层的前置通关条件",
+      "text": "✓ The Catacombs Entrance",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✓ 通关地牢 - 入口。"
+    },
+    {
+      "id": "gate_entrance_completion_tail",
+      "context": "接上一行",
+      "text": "Completion.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "gate_master_floor_completion_met",
+      "context": "已满足的大师模式前置楼层要求首行；楼层变量位于下一行",
+      "text": "✓ Master Mode The Catacombs Floor",
+      "placeholders": [],
+      "gloss": "服务器把楼层数字拆到下一行，故译文也保留跨行衔接。",
+      "translate": true,
+      "zh": "✓ 通关大师模式地牢第"
+    },
+    {
+      "id": "gate_master_floor_completion_unmet",
+      "context": "未满足的大师模式前置楼层要求首行；楼层变量位于下一行",
+      "text": "✗ Master Mode The Catacombs Floor",
+      "placeholders": [],
+      "gloss": "服务器把楼层数字拆到下一行，故译文也保留跨行衔接。",
+      "translate": true,
+      "zh": "✗ 尚未通关大师模式地牢第"
+    },
+    {
+      "id": "gate_master_floor_completion_tail",
+      "context": "大师模式前置楼层要求尾行，承接上一行",
+      "text": "%s Completion.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "前置楼层罗马数字",
+          "type": "tier",
+          "example": "VI"
+        }
+      ],
+      "gloss": "需要渲染楼层变量，不能标为 continuation。",
+      "translate": true,
+      "zh": "%s 层。"
+    },
+    {
+      "id": "gate_floor_completion",
+      "context": "普通模式楼层前置条件",
+      "text": "✓ The Catacombs Floor %s Completion.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "前置楼层罗马数字",
+          "type": "tier",
+          "example": "VI"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "✓ 通关地牢第 %s 层。"
+    },
+    {
+      "id": "gate_floor_seven_completion",
+      "context": "大师一层的前置通关条件",
+      "text": "✓ The Catacombs Floor VII",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✓ 通关地牢第 VII 层。"
+    },
+    {
+      "id": "gate_mini_boss_watcher",
+      "context": "楼层选择项的 Boss 名称与已完成标记",
+      "raw": "§7Mini-Boss: §cThe Watcher§a ✔",
+      "text": "Mini-Boss: The Watcher ✔",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Mini-Boss: ",
+          "zh": "迷你 Boss: "
+        },
+        {
+          "color": "§c",
+          "text": "The Watcher",
+          "zh": "The Watcher"
+        },
+        {
+          "color": "§a",
+          "text": " ✔",
+          "zh": " ✔"
+        }
+      ]
+    },
+    {
+      "id": "gate_boss_bonzo",
+      "context": "楼层选择项的 Boss 名称与已完成标记",
+      "raw": "§7Boss: §cBonzo§a ✔",
+      "text": "Boss: Bonzo ✔",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Boss: ",
+          "zh": "Boss: "
+        },
+        {
+          "color": "§c",
+          "text": "Bonzo",
+          "zh": "Bonzo"
+        },
+        {
+          "color": "§a",
+          "text": " ✔",
+          "zh": " ✔"
+        }
+      ]
+    },
+    {
+      "id": "gate_boss_scarf",
+      "context": "楼层选择项的 Boss 名称与已完成标记",
+      "raw": "§7Boss: §cScarf§a ✔",
+      "text": "Boss: Scarf ✔",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Boss: ",
+          "zh": "Boss: "
+        },
+        {
+          "color": "§c",
+          "text": "Scarf",
+          "zh": "Scarf"
+        },
+        {
+          "color": "§a",
+          "text": " ✔",
+          "zh": " ✔"
+        }
+      ]
+    },
+    {
+      "id": "gate_boss_professor",
+      "context": "楼层选择项的 Boss 名称与已完成标记",
+      "raw": "§7Boss: §cThe Professor§a ✔",
+      "text": "Boss: The Professor ✔",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Boss: ",
+          "zh": "Boss: "
+        },
+        {
+          "color": "§c",
+          "text": "The Professor",
+          "zh": "The Professor"
+        },
+        {
+          "color": "§a",
+          "text": " ✔",
+          "zh": " ✔"
+        }
+      ]
+    },
+    {
+      "id": "gate_boss_thorn",
+      "context": "楼层选择项的 Boss 名称与已完成标记",
+      "raw": "§7Boss: §cThorn§a ✔",
+      "text": "Boss: Thorn ✔",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Boss: ",
+          "zh": "Boss: "
+        },
+        {
+          "color": "§c",
+          "text": "Thorn",
+          "zh": "Thorn"
+        },
+        {
+          "color": "§a",
+          "text": " ✔",
+          "zh": " ✔"
+        }
+      ]
+    },
+    {
+      "id": "gate_boss_livid",
+      "context": "楼层选择项的 Boss 名称与已完成标记",
+      "raw": "§7Boss: §cLivid§a ✔",
+      "text": "Boss: Livid ✔",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Boss: ",
+          "zh": "Boss: "
+        },
+        {
+          "color": "§c",
+          "text": "Livid",
+          "zh": "Livid"
+        },
+        {
+          "color": "§a",
+          "text": " ✔",
+          "zh": " ✔"
+        }
+      ]
+    },
+    {
+      "id": "gate_boss_sadan",
+      "context": "楼层选择项的 Boss 名称与已完成标记",
+      "raw": "§7Boss: §cSadan§a ✔",
+      "text": "Boss: Sadan ✔",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Boss: ",
+          "zh": "Boss: "
+        },
+        {
+          "color": "§c",
+          "text": "Sadan",
+          "zh": "Sadan"
+        },
+        {
+          "color": "§a",
+          "text": " ✔",
+          "zh": " ✔"
+        }
+      ]
+    },
+    {
+      "id": "gate_boss_wither_lords",
+      "context": "第七层的四名 Boss 与已完成标记",
+      "raw": "§7Boss: §cMaxor, Storm, Goldor, and Necron§a ✔",
+      "text": "Boss: Maxor, Storm, Goldor, and Necron ✔",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Boss: ",
+          "zh": "Boss: "
+        },
+        {
+          "color": "§c",
+          "text": "Maxor, Storm, Goldor, and Necron",
+          "zh": "Maxor、Storm、Goldor 和 Necron"
+        },
+        {
+          "color": "§a",
+          "text": " ✔",
+          "zh": " ✔"
+        }
+      ]
+    },
+    {
+      "id": "gate_master_boss_bonzo",
+      "context": "大师模式楼层的 Boss 名称与已完成标记",
+      "raw": "§7Boss: §c§lMASTER §cBonzo§a ✔",
+      "text": "Boss: MASTER Bonzo ✔",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Boss: ",
+          "zh": "Boss: "
+        },
+        {
+          "color": "§c§l",
+          "text": "MASTER ",
+          "zh": "大师 "
+        },
+        {
+          "color": "§c",
+          "text": "Bonzo",
+          "zh": "Bonzo"
+        },
+        {
+          "color": "§a",
+          "text": " ✔",
+          "zh": " ✔"
+        }
+      ]
+    },
+    {
+      "id": "gate_master_boss_scarf",
+      "context": "大师模式楼层的 Boss 名称与已完成标记",
+      "raw": "§7Boss: §c§lMASTER §cScarf§a ✔",
+      "text": "Boss: MASTER Scarf ✔",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Boss: ",
+          "zh": "Boss: "
+        },
+        {
+          "color": "§c§l",
+          "text": "MASTER ",
+          "zh": "大师 "
+        },
+        {
+          "color": "§c",
+          "text": "Scarf",
+          "zh": "Scarf"
+        },
+        {
+          "color": "§a",
+          "text": " ✔",
+          "zh": " ✔"
+        }
+      ]
+    },
+    {
+      "id": "gate_master_boss_the_professor",
+      "context": "大师模式楼层的 Boss 名称与已完成标记",
+      "raw": "§7Boss: §c§lMASTER §cThe Professor§a ✔",
+      "text": "Boss: MASTER The Professor ✔",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Boss: ",
+          "zh": "Boss: "
+        },
+        {
+          "color": "§c§l",
+          "text": "MASTER ",
+          "zh": "大师 "
+        },
+        {
+          "color": "§c",
+          "text": "The Professor",
+          "zh": "The Professor"
+        },
+        {
+          "color": "§a",
+          "text": " ✔",
+          "zh": " ✔"
+        }
+      ]
+    },
+    {
+      "id": "gate_master_boss_thorn",
+      "context": "大师模式楼层的 Boss 名称与已完成标记",
+      "raw": "§7Boss: §c§lMASTER §cThorn§a ✔",
+      "text": "Boss: MASTER Thorn ✔",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Boss: ",
+          "zh": "Boss: "
+        },
+        {
+          "color": "§c§l",
+          "text": "MASTER ",
+          "zh": "大师 "
+        },
+        {
+          "color": "§c",
+          "text": "Thorn",
+          "zh": "Thorn"
+        },
+        {
+          "color": "§a",
+          "text": " ✔",
+          "zh": " ✔"
+        }
+      ]
+    },
+    {
+      "id": "gate_master_boss_livid",
+      "context": "大师模式楼层的 Boss 名称与已完成标记",
+      "raw": "§7Boss: §c§lMASTER §cLivid§a ✔",
+      "text": "Boss: MASTER Livid ✔",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Boss: ",
+          "zh": "Boss: "
+        },
+        {
+          "color": "§c§l",
+          "text": "MASTER ",
+          "zh": "大师 "
+        },
+        {
+          "color": "§c",
+          "text": "Livid",
+          "zh": "Livid"
+        },
+        {
+          "color": "§a",
+          "text": " ✔",
+          "zh": " ✔"
+        }
+      ]
+    },
+    {
+      "id": "gate_master_boss_sadan",
+      "context": "大师模式楼层的 Boss 名称与已完成标记",
+      "raw": "§7Boss: §c§lMASTER §cSadan§a ✔",
+      "text": "Boss: MASTER Sadan ✔",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Boss: ",
+          "zh": "Boss: "
+        },
+        {
+          "color": "§c§l",
+          "text": "MASTER ",
+          "zh": "大师 "
+        },
+        {
+          "color": "§c",
+          "text": "Sadan",
+          "zh": "Sadan"
+        },
+        {
+          "color": "§a",
+          "text": " ✔",
+          "zh": " ✔"
+        }
+      ]
+    },
+    {
+      "id": "gate_master_boss_wither_lords",
+      "context": "大师七层的四名 Boss 与已完成标记",
+      "raw": "§7Boss: §c§lMASTER §cMaxor, Storm, Goldor, and Necron§a ✔",
+      "text": "Boss: MASTER Maxor, Storm, Goldor, and Necron ✔",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Boss: ",
+          "zh": "Boss: "
+        },
+        {
+          "color": "§c§l",
+          "text": "MASTER ",
+          "zh": "大师 "
+        },
+        {
+          "color": "§c",
+          "text": "Maxor, Storm, Goldor, and Necron",
+          "zh": "Maxor、Storm、Goldor 和 Necron"
+        },
+        {
+          "color": "§a",
+          "text": " ✔",
+          "zh": " ✔"
+        }
+      ]
+    },
+    {
+      "id": "gate_watcher_bio_1",
+      "context": "The Watcher 简介",
+      "text": "This strange creature is roaming the Catacombs",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这种奇异生物在地牢中游荡，将强大的冒险者纳入自己的收藏品。"
+    },
+    {
+      "id": "gate_watcher_bio_2",
+      "context": "接上一行",
+      "text": "to add powerful adventurers to its collection.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "gate_new_necromancer",
+      "context": "楼层 Boss 头衔",
+      "text": "New Necromancer",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "新晋亡灵法师"
+    },
+    {
+      "id": "gate_apprentice_necromancer",
+      "context": "楼层 Boss 头衔",
+      "text": "Apprentice Necromancer",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "见习亡灵法师"
+    },
+    {
+      "id": "gate_shaman_necromancer",
+      "context": "楼层 Boss 头衔",
+      "text": "Shaman Necromancer",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "萨满亡灵法师"
+    },
+    {
+      "id": "gate_master_necromancer",
+      "context": "楼层 Boss 头衔",
+      "text": "Master Necromancer",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "亡灵法师大师"
+    },
+    {
+      "id": "gate_bonzo_bio_1",
+      "context": "Bonzo 简介",
+      "text": "Involved in the dark arts due to his parents'",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "在父母的坚持下涉足黑魔法，原本是一名马戏团小丑。"
+    },
+    {
+      "id": "gate_bonzo_bio_2",
+      "context": "接上一行",
+      "text": "insistence. Originally worked as a Circus clown.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "gate_scarf_bio_1",
+      "context": "Scarf 简介",
+      "text": "First of his class. His teacher said he will do",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "班级第一名。他的老师说他将来会“大有作为”。"
+    },
+    {
+      "id": "gate_scarf_bio_2",
+      "context": "接上一行",
+      "text": "\"great things\".",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "gate_professor_bio_1",
+      "context": "The Professor 简介",
+      "text": "Despite his great technique, he failed the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "尽管技术出众，他却三次没通过大师考试。每天朝八晚五，很关心自己的学生。"
+    },
+    {
+      "id": "gate_professor_bio_2",
+      "context": "接上一行",
+      "text": "Masters exam three times. Works from 8 to 5.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "gate_professor_bio_3",
+      "context": "接上一行",
+      "text": "Cares about his students.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "gate_thorn_bio_1",
+      "context": "Thorn 简介",
+      "text": "Powerful Necromancer that specializes in",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "专攻动物的强大亡灵法师。他自称素食主义者，真让人摸不着头脑。"
+    },
+    {
+      "id": "gate_thorn_bio_2",
+      "context": "接上一行",
+      "text": "animals. Calls himself a vegetarian, go figure.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "gate_livid_bio_1",
+      "context": "Livid 简介",
+      "text": "Strongly believes he will become the Lord one",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "他坚信自己有朝一日会成为领主，却成了笑柄，连他的弟子都嘲笑他。"
+    },
+    {
+      "id": "gate_livid_bio_2",
+      "context": "接上一行",
+      "text": "day. Subject of mockeries, even from his",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "gate_livid_bio_3",
+      "context": "接上一行",
+      "text": "disciples.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "gate_necromancer_lord",
+      "context": "Sadan 的头衔",
+      "text": "Necromancer Lord",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "亡灵领主"
+    },
+    {
+      "id": "gate_sadan_bio_1",
+      "context": "Sadan 简介",
+      "text": "Necromancy was always strong in his family.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "他的家族一直精通亡灵之术。他声称自己在决斗中击败过一只凋零，而且很爱吹嘘。"
+    },
+    {
+      "id": "gate_sadan_bio_2",
+      "context": "接上一行",
+      "text": "Says he once beat a Wither in a duel. Likes to",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "gate_sadan_bio_3",
+      "context": "接上一行",
+      "text": "brag.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "gate_wither_lords",
+      "context": "第七层四名 Boss 的统称",
+      "text": "The Wither Lords",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "凋零领主"
+    },
+    {
+      "id": "gate_wither_lords_bio_1",
+      "context": "第七层凋零领主简介",
+      "text": "Disciples of the Wither King. Inherited the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "The Wither King 的弟子，于亿万年前继承了地牢。他们从未被打败，生者与死者都畏惧他们。"
+    },
+    {
+      "id": "gate_wither_lords_bio_2",
+      "context": "接上一行",
+      "text": "Catacombs eons ago. Never defeated, feared by",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "gate_wither_lords_bio_3",
+      "context": "接上一行",
+      "text": "anything living AND dead.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "gate_master_mode_bio_1",
+      "context": "大师模式简介",
+      "text": "Like normal Dungeons... but more",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "和普通地牢一样……但更加硬核。"
+    },
+    {
+      "id": "gate_master_mode_bio_2",
+      "context": "接上一行",
+      "text": "hardcore.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "gate_current_class",
+      "context": "当前选择的地牢职业",
+      "raw": "§aCurrently Selected: §b%s",
+      "text": "Currently Selected: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前选择的职业名，五种之一",
+          "type": "category_name",
+          "example": "Berserk"
+        }
+      ],
+      "gloss": "职业名的中文在 _shared/Terms.json 里，不要在这条记录里写死某一个职业。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Currently Selected: ",
+          "zh": "当前选择: "
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "gate_party_finder_desc_1",
+      "context": "队伍查找器说明",
+      "text": "Use the Party Finder to join a party",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "使用队伍查找器加入正在排队进入地牢的队伍。"
+    },
+    {
+      "id": "gate_party_finder_desc_2",
+      "context": "接上一行",
+      "text": "queued for the dungeon.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "gate_warning_1",
+      "context": "账号安全警告",
+      "raw": "§c§lWARNING! §cDon't click any suspicious",
+      "text": "WARNING! Don't click any suspicious",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§c§l",
+          "text": "WARNING! ",
+          "zh": "警告! "
+        },
+        {
+          "color": "§c",
+          "text": "Don't click any suspicious",
+          "zh": "不要点击任何可疑链接或 Discord 邀请，也绝不要泄露账号信息!"
+        }
+      ]
+    },
+    {
+      "id": "gate_warning_2",
+      "context": "接上一行",
+      "text": "links or Discord invites. Never share",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "gate_warning_3",
+      "context": "接上一行",
+      "text": "your account information!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "gate_auto_ready_1",
+      "context": "普通地牢自动准备说明",
+      "raw": "§7Auto ready up when joining §aThe",
+      "text": "Auto ready up when joining The",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Auto ready up when ",
+          "zh": "满足进入要求时，加入",
+          "order": 0
+        },
+        {
+          "color": "§7",
+          "text": "joining ",
+          "zh": "后自动准备，省得你自己点!",
+          "order": 2
+        },
+        {
+          "color": "§a",
+          "text": "The",
+          "zh": "地牢",
+          "order": 1
+        }
+      ]
+    },
+    {
+      "id": "gate_auto_ready_2",
+      "context": "接上一行",
+      "text": "Catacombs if you have the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "gate_auto_ready_3",
+      "context": "接上一行",
+      "text": "requirements, so you don't have to!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "gate_auto_ready_mm_1",
+      "context": "大师模式地牢自动准备说明",
+      "raw": "§7Auto ready up when joining §c§lMM§c The",
+      "text": "Auto ready up when joining MM The",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Auto ready up when joining ",
+          "zh": "加入"
+        },
+        {
+          "color": "§c§l",
+          "text": "MM",
+          "zh": "大师模式"
+        },
+        {
+          "color": "§c",
+          "text": " The",
+          "zh": "地牢时自动准备!"
+        }
+      ]
+    },
+    {
+      "id": "gate_auto_ready_mm_2",
+      "context": "接上一行",
+      "text": "Mode The Catacombs!",
+      "placeholders": [],
+      "gloss": "服务器原文跨行后出现“MM The / Mode The Catacombs”的重复措辞；中文合并为正常表达。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "gate_current_enabled",
+      "context": "自动准备当前状态",
+      "raw": "§7Currently: §aEnabled",
+      "text": "Currently: Enabled",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Currently: ",
+          "zh": "当前: "
+        },
+        {
+          "color": "§a",
+          "text": "Enabled",
+          "zh": "已启用"
+        }
+      ]
+    },
+    {
+      "id": "gate_current_disabled",
+      "context": "自动准备当前状态",
+      "raw": "§7Currently: §cDisabled",
+      "text": "Currently: Disabled",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Currently: ",
+          "zh": "当前: "
+        },
+        {
+          "color": "§c",
+          "text": "Disabled",
+          "zh": "已禁用"
+        }
+      ]
+    },
+    {
+      "id": "gate_profile_desc_1",
+      "context": "地牢资料入口说明",
+      "text": "View your statistics, best",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "查看地牢统计数据、最佳表现等。"
+    },
+    {
+      "id": "gate_profile_desc_2",
+      "context": "接上一行",
+      "text": "performances, and more for The",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "gate_profile_desc_2_master",
+      "context": "接上一行",
+      "text": "performances, and more for Master",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "gate_profile_desc_3",
+      "context": "接上一行",
+      "text": "Catacombs!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "gate_rules_desc_1",
+      "context": "地牢规则与提示入口说明",
+      "text": "SkyBlock Dungeons has special",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "SkyBlock 地牢有特殊规则! 地牢内的一些机制与常规 SkyBlock 不同；本菜单列出了这些改动。"
+    },
+    {
+      "id": "gate_rules_desc_2",
+      "context": "接上一行",
+      "text": "rules! Some things inside Dungeons",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "gate_rules_desc_3",
+      "context": "接上一行",
+      "text": "work differently than they do in",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "gate_rules_desc_4",
+      "context": "接上一行",
+      "text": "regular SkyBlock. This menu",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "gate_rules_desc_5",
+      "context": "接上一行",
+      "text": "describes the list of changes!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "gate_current_floor",
+      "context": "搜索设置里楼层按钮的当前选择:第几层",
+      "raw": "§aCurrently Selected: §bFloor %s",
+      "text": "Currently Selected: Floor %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "楼层,罗马数字",
+          "type": "tier",
+          "example": "IV"
+        }
+      ],
+      "gloss": "比 gate_current_class(`Currently Selected: %s`)多一个字面词 Floor,引擎选字面文本最多的,两条并存不冲突。Entrance / The Catacombs / Recently Created 这些取值走 gate_current_class + _shared/Terms.json。",
+      "translate": true,
+      "zh": "当前选择: 第 %s 层",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Currently Selected: ",
+          "zh": "当前选择: "
+        },
+        {
+          "color": "§b",
+          "text": "Floor %s",
+          "zh": "第 %s 层"
+        }
+      ]
+    }
+  ]
+}

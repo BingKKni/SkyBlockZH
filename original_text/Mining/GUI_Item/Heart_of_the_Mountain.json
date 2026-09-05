@@ -1,0 +1,891 @@
+{
+  "source": "runtime capture (SkyZH), logs/skyzh-capture, 2026-09-04",
+  "fetched_at": "2026-09-04",
+  "verified_ingame": true,
+  "context": "山峦之心实机界面的本轮动态奖励、天赋说明和操作提示。",
+  "lines": [
+    {
+      "id": "hotm_reward_forge_slot",
+      "context": "山心层级奖励",
+      "raw": "§8+§a%s Forge Slots",
+      "text": "+%s Forge Slots",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "新增熔炉槽位数",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s 个熔炉槽位",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%s Forge Slots",
+          "zh": "%s 个熔炉槽位"
+        }
+      ]
+    },
+    {
+      "id": "hotm_reward_forgeables",
+      "context": "山心层级奖励",
+      "raw": "§8+§6New Forgeable Items",
+      "text": "+New Forgeable Items",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "+新的可锻造物品",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§6",
+          "text": "New Forgeable Items",
+          "zh": "新的可锻造物品"
+        }
+      ]
+    },
+    {
+      "id": "hotm_reward_helix_emblem",
+      "context": "山心层级奖励的名字徽记",
+      "raw": "§8+§aMining Helix Emblem §7§lᛝ",
+      "text": "+Mining Helix Emblem ᛝ",
+      "placeholders": [],
+      "gloss": "Wiki 已核实为显示在玩家名字旁的 Emblem。",
+      "translate": true,
+      "zh": "+挖矿螺旋徽记 ᛝ",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "Mining Helix Emblem ",
+          "zh": "挖矿螺旋徽记 "
+        },
+        {
+          "color": "§7§l",
+          "text": "ᛝ",
+          "zh": "ᛝ"
+        }
+      ]
+    },
+    {
+      "id": "hotm_powder_reward_by_region",
+      "context": "日常磨砺（Daily Grind）天赋的各区域粉末奖励；数量随山心等级变化，颜色取自服务器",
+      "raw": "§2%1$s§7: §a+%2$s §2%3$s Powder",
+      "text": "%1$s: +%2$s %3$s Powder",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "挖矿区域名",
+          "type": "location_name",
+          "example": "Dwarven Mines"
+        },
+        {
+          "token": "%2$s",
+          "desc": "粉末奖励数量，山心等级乘 500",
+          "type": "number",
+          "example": "1,500"
+        },
+        {
+          "token": "%3$s",
+          "desc": "对应粉末种类",
+          "type": "category_name",
+          "example": "Mithril"
+        }
+      ],
+      "gloss": "https://hypixelskyblock.minecraft.wiki/w/Heart_of_the_Mountain 的 Daily Grind；不将当前等级显示的 1,500 写死。",
+      "translate": true,
+      "zh": "%1$s: +%2$s %3$s粉末",
+      "segments": [
+        {
+          "color": "§2",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": ": ",
+          "zh": ": "
+        },
+        {
+          "color": "§a",
+          "text": "+%2$s ",
+          "zh": "+%2$s "
+        },
+        {
+          "color": "§2",
+          "text": "%3$s Powder",
+          "zh": "%3$s粉末"
+        }
+      ]
+    },
+    {
+      "id": "hotm_scroll_up_click",
+      "context": "山心层级列表滚动按钮",
+      "raw": "§eLeft-click §7to scroll up!",
+      "text": "Left-click to scroll up!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "左键点击向上滚动!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Left-click ",
+          "zh": "左键点击"
+        },
+        {
+          "color": "§7",
+          "text": "to scroll up!",
+          "zh": "向上滚动!"
+        }
+      ]
+    },
+    {
+      "id": "hotm_top_tier_click",
+      "context": "山心层级列表滚动按钮",
+      "raw": "§eRight-click §7to go to the top tier!",
+      "text": "Right-click to go to the top tier!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "右键点击前往最高层!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Right-click ",
+          "zh": "右键点击"
+        },
+        {
+          "color": "§7",
+          "text": "to go to the top tier!",
+          "zh": "前往最高层!"
+        }
+      ]
+    },
+    {
+      "id": "hotm_access_crystal_hollows",
+      "context": "山心层级地区解锁奖励",
+      "raw": "§dAccess to the §5Crystal Hollows",
+      "text": "Access to the Crystal Hollows",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "解锁水晶残核",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "Access to the ",
+          "zh": "解锁"
+        },
+        {
+          "color": "§5",
+          "text": "Crystal Hollows",
+          "zh": "水晶残核"
+        }
+      ]
+    },
+    {
+      "id": "hotm_gain_mining_speed_when_mining",
+      "context": "山心天赋的挖掘速度效果行",
+      "raw": "§7Gain §6+%s Mining Speed§7 when mining",
+      "text": "Gain +%s Mining Speed when mining",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "获得的挖掘速度",
+          "type": "number",
+          "example": "55"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "挖矿时获得 +%s 挖掘速度",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "挖矿时获得 "
+        },
+        {
+          "color": "§6",
+          "text": "+%s Mining Speed",
+          "zh": "+%s 挖掘速度"
+        },
+        {
+          "color": "§7",
+          "text": " when mining",
+          "zh": "",
+          "omit": true
+        }
+      ]
+    },
+    {
+      "id": "hotm_gemstone_powder_multiplier",
+      "context": "Front Loaded 对每日前 2,500 个宝石方块提供的固定加成",
+      "raw": " §8■ §d3x Gemstone Powder",
+      "text": "3x Gemstone Powder",
+      "placeholders": [],
+      "gloss": "https://hypixelskyblock.minecraft.wiki/w/Heart_of_the_Mountain：此项固定为 3x，并非随等级变化。按 GLOSSARY 译为提升 2 倍；■ 及缩进由引擎保留。",
+      "translate": true,
+      "zh": "宝石粉末获取量提升 2 倍"
+    },
+    {
+      "id": "hotm_gemstone_fortune_bonus",
+      "context": "每日宝石增益候选",
+      "raw": " §8■ §6+%s Gemstone Fortune",
+      "text": " ■ +%s Gemstone Fortune",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "宝石时运加成",
+          "type": "number",
+          "example": "150"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": " ■ +%s 宝石时运",
+      "segments": [
+        {
+          "color": "",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§8",
+          "text": "■ ",
+          "zh": "■ "
+        },
+        {
+          "color": "§6",
+          "text": "+%s Gemstone Fortune",
+          "zh": "+%s 宝石时运"
+        }
+      ]
+    },
+    {
+      "id": "hotm_blocks_remaining",
+      "context": "每日宝石增益剩余进度",
+      "raw": "§7Blocks remaining: §a%s",
+      "text": "Blocks remaining: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "每日增益剩余方块数",
+          "type": "number",
+          "example": "2,500"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "剩余方块: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Blocks remaining: ",
+          "zh": "剩余方块: "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "hotm_possible_golden_goblins",
+      "context": "山心效果可能触发的目标",
+      "raw": "§7 • §6Golden Goblins",
+      "text": " • Golden Goblins",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": " • 黄金哥布林",
+      "segments": [
+        {
+          "color": "§7",
+          "text": " • ",
+          "zh": " • "
+        },
+        {
+          "color": "§6",
+          "text": "Golden Goblins",
+          "zh": "黄金哥布林"
+        }
+      ]
+    },
+    {
+      "id": "hotm_possible_fallen_stars",
+      "context": "山心效果可能触发的目标",
+      "raw": "§7 • §5Fallen Stars",
+      "text": " • Fallen Stars",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": " • 陨落之星",
+      "segments": [
+        {
+          "color": "§7",
+          "text": " • ",
+          "zh": " • "
+        },
+        {
+          "color": "§5",
+          "text": "Fallen Stars",
+          "zh": "陨落之星"
+        }
+      ]
+    },
+    {
+      "id": "hotm_possible_powder_ghasts",
+      "context": "山心效果可能触发的目标",
+      "raw": "§7 • §6Powder Ghasts",
+      "text": " • Powder Ghasts",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": " • 粉末恶魂",
+      "segments": [
+        {
+          "color": "§7",
+          "text": " • ",
+          "zh": " • "
+        },
+        {
+          "color": "§6",
+          "text": "Powder Ghasts",
+          "zh": "粉末恶魂"
+        }
+      ]
+    },
+    {
+      "id": "hotm_upgrade_banner",
+      "context": "天赋升级按钮",
+      "raw": "§a=====[ §a§lUPGRADE §a]=====",
+      "text": "=====[ UPGRADE ]=====",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "=====[ 升级 ]=====",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "=====[ ",
+          "zh": "=====[ "
+        },
+        {
+          "color": "§a§l",
+          "text": "UPGRADE ",
+          "zh": "升级 "
+        },
+        {
+          "color": "§a",
+          "text": "]=====",
+          "zh": "]====="
+        }
+      ]
+    },
+    {
+      "id": "hotm_disable_click",
+      "context": "天赋禁用按钮",
+      "raw": "§eRight-click to §cdisable§e!",
+      "text": "Right-click to disable!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "右键点击禁用!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Right-click to ",
+          "zh": "右键点击"
+        },
+        {
+          "color": "§c",
+          "text": "disable",
+          "zh": "禁用"
+        },
+        {
+          "color": "§e",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "hotm_not_enough_token_1",
+      "context": "山心代币不足提示首行；下一行 Mountain! 已由既有排版续行记录吞并",
+      "raw": "§cYou don't have enough §5Token of the",
+      "text": "You don't have enough Token of the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "山心代币不足!",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "You don't have enough ",
+          "zh": "不足!",
+          "order": 1
+        },
+        {
+          "color": "§5",
+          "text": "Token of the",
+          "zh": "山心代币",
+          "order": 0
+        }
+      ]
+    },
+    {
+      "id": "precision_mining_1",
+      "context": "精准开采天赋说明首行；英文四行一句",
+      "raw": "§7When Mining §6Ores§7 or §8Dwarven Metals§7,",
+      "text": "When Mining Ores or Dwarven Metals,",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "开采矿石或矮人金属时,方块上会出现一个粒子目标;瞄准它时,你的挖掘速度提高 30%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "When Mining ",
+          "zh": "开采"
+        },
+        {
+          "color": "§6",
+          "text": "Ores",
+          "zh": "矿石"
+        },
+        {
+          "color": "§7",
+          "text": " or ",
+          "zh": "或"
+        },
+        {
+          "color": "§8",
+          "text": "Dwarven Metals",
+          "zh": "矮人金属"
+        },
+        {
+          "color": "§7",
+          "text": ",",
+          "zh": "时,"
+        }
+      ]
+    },
+    {
+      "id": "precision_mining_2",
+      "context": "接上一行",
+      "raw": "§7a particle target appears on the",
+      "text": "a particle target appears on the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "precision_mining_3",
+      "context": "接上一行",
+      "raw": "§7block that increases your §6 Mining",
+      "text": "block that increases your  Mining",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "block that increases your ",
+          "zh": "方块上会出现一个粒子目标;瞄准它时,你的"
+        },
+        {
+          "color": "§6",
+          "text": " Mining",
+          "zh": " 挖掘"
+        }
+      ]
+    },
+    {
+      "id": "precision_mining_4",
+      "context": "接上一行",
+      "raw": "§6Speed §7by §a30% §7when aiming at it.",
+      "text": "Speed by 30% when aiming at it.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Speed ",
+          "zh": "速度"
+        },
+        {
+          "color": "§7",
+          "text": "by ",
+          "zh": "提高 "
+        },
+        {
+          "color": "§a",
+          "text": "30% ",
+          "zh": "30%"
+        },
+        {
+          "color": "§7",
+          "text": "when aiming at it.",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "titanium_insanium_head",
+      "context": "疯钛天赋说明首行，与概率中间行及钛矿石尾行合并",
+      "raw": "§7When mining §2Mithril Ore§7, you have a",
+      "text": "When mining Mithril Ore, you have a",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "开采秘银矿石时,有 ",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "When mining ",
+          "zh": "开采"
+        },
+        {
+          "color": "§2",
+          "text": "Mithril Ore",
+          "zh": "秘银矿石"
+        },
+        {
+          "color": "§7",
+          "text": ", you have a",
+          "zh": "时,有 "
+        }
+      ]
+    },
+    {
+      "id": "titanium_insanium_chance",
+      "context": "接疯钛首行；概率随天赋等级变化，后接 into Titanium Ore.",
+      "raw": "§a%s% §7chance to convert the block",
+      "text": "%s% chance to convert the block",
+      "placeholders": [
+        {"token": "%s", "desc": "秘银矿石转化为钛矿石的概率", "type": "percentage", "example": "2.1"}
+      ],
+      "gloss": "原文及绿色概率来自实机采集；疯钛天赋见社区 Wiki Heart_of_the_Mountain。",
+      "translate": true,
+      "continuation": true,
+      "zh": "%s% 的概率将方块",
+      "segments": [
+        {"color": "§a", "text": "%s% ", "zh": "%s% "},
+        {"color": "§7", "text": "chance to convert the block", "zh": "的概率将方块"}
+      ]
+    },
+    {
+      "id": "titanium_insanium_tail",
+      "context": "疯钛天赋说明尾行",
+      "raw": "§7into §fTitanium Ore§7.",
+      "text": "into Titanium Ore.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "转化成钛矿石。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "into ",
+          "zh": "转化成"
+        },
+        {
+          "color": "§f",
+          "text": "Titanium Ore",
+          "zh": "钛矿石"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "hotm_unlock_more_tokens_1",
+      "context": "山心代币获取说明首行；英文三行一句",
+      "raw": "§8Unlock more §5Token of the Mountain",
+      "text": "Unlock more Token of the Mountain",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "提升山峦之心层级可解锁更多山心代币。",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "Unlock more ",
+          "zh": "提升山峦之心层级可解锁更多"
+        },
+        {
+          "color": "§5",
+          "text": "Token of the Mountain",
+          "zh": "山心代币"
+        }
+      ]
+    },
+    {
+      "id": "hotm_unlock_more_tokens_2",
+      "context": "接上一行",
+      "raw": "§8by leveling up your Heart of the",
+      "text": "by leveling up your Heart of the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "hotm_unlock_more_tokens_3",
+      "context": "接上一行",
+      "raw": "§8Mountain tiers.",
+      "text": "Mountain tiers.",
+      "placeholders": [],
+      "gloss": "正文已在首行译出，句号仍取灰色尾行的颜色。",
+      "translate": true,
+      "zh": "。",
+      "continuation": true
+    },
+    {
+      "id": "hotm_obtain_mithril_powder_1",
+      "context": "秘银粉末获取说明首行；英文三行一句",
+      "raw": "§7Obtain §2Mithril Powder §7by mining and",
+      "text": "Obtain Mithril Powder by mining and",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "通过挖矿并参与矮人矿山中的活动来获得秘银粉末。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Obtain ",
+          "zh": "通过挖矿并参与",
+          "order": 0
+        },
+        {
+          "color": "§2",
+          "text": "Mithril Powder ",
+          "zh": "秘银粉末",
+          "order": 4
+        },
+        {
+          "color": "§7",
+          "text": "by mining and",
+          "zh": "。",
+          "order": 5
+        }
+      ]
+    },
+    {
+      "id": "hotm_obtain_mithril_powder_2",
+      "context": "接上一行",
+      "raw": "§7taking part in events in the §2Dwarven",
+      "text": "taking part in events in the Dwarven",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "taking part in events in the ",
+          "zh": "中的活动来获得",
+          "order": 3
+        },
+        {
+          "color": "§2",
+          "text": "Dwarven",
+          "zh": "矮人",
+          "order": 1
+        }
+      ]
+    },
+    {
+      "id": "hotm_obtain_mithril_powder_3",
+      "context": "接上一行",
+      "raw": "§2Mines§7.",
+      "text": "Mines.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§2",
+          "text": "Mines",
+          "zh": "矿山",
+          "order": 2
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "",
+          "omit": true,
+          "order": 6
+        }
+      ]
+    },
+    {
+      "id": "hotm_token_delta",
+      "context": "山心层级奖励的代币变化",
+      "raw": "§8%s§5 Token of the Mountain",
+      "text": "%s Token of the Mountain",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "山心代币增减数量",
+          "type": "number",
+          "example": "+2"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%s 山心代币",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§5",
+          "text": " Token of the Mountain",
+          "zh": " 山心代币"
+        }
+      ]
+    },
+    {
+      "id": "hotm_fortune_grant",
+      "context": "山心天赋的动态时运加成",
+      "raw": "§7Grants §6+%1$s %2$s Fortune§7.",
+      "text": "Grants +%1$s %2$s Fortune.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "时运加成",
+          "type": "number",
+          "example": "5"
+        },
+        {
+          "token": "%2$s",
+          "desc": "时运作用对象",
+          "type": "category_name",
+          "example": "Ore"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "提供 +%1$s %2$s时运。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§6",
+          "text": "+%1$s %2$s Fortune",
+          "zh": "+%1$s %2$s时运"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "hotm_mining_spread_grant",
+      "context": "山心天赋的挖掘扩散加成",
+      "raw": "§7Grants §e+%s Mining Spread§7.",
+      "text": "Grants +%s Mining Spread.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "挖掘扩散加成",
+          "type": "number",
+          "example": "3"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "提供 +%s 挖掘扩散。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§e",
+          "text": "+%s Mining Spread",
+          "zh": "+%s 挖掘扩散"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "hotm_mithril_powder_amount_plain",
+      "context": "山心天赋花费或持有量",
+      "raw": "§2%s Mithril Powder",
+      "text": "%s Mithril Powder",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "秘银粉末数量",
+          "type": "number",
+          "example": "17"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%s 秘银粉末"
+    },
+    {
+      "id": "hotm_grants_mining_speed",
+      "context": "山心天赋提供的动态挖掘速度",
+      "raw": "§7Grants §6+%s Mining Speed§7.",
+      "text": "Grants +%s Mining Speed.",
+      "placeholders": [{"token": "%s", "desc": "挖掘速度加成", "type": "number", "example": "340"}],
+      "gloss": "数值随天赋等级变化。",
+      "translate": true,
+      "zh": "提供 +%s 挖掘速度。",
+      "segments": [
+        {"color": "§7", "text": "Grants ", "zh": "提供 "},
+        {"color": "§6", "text": "+%s Mining Speed", "zh": "+%s 挖掘速度"},
+        {"color": "§7", "text": ".", "zh": "。"}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "source": "runtime capture (SkyZH), build/gaps_B.txt, 2026-09-05",
+  "fetched_at": "2026-09-05",
+  "verified_ingame": true,
+  "gui_context": "应用火焰保护附魔时的冲突警告和经验花费。",
+  "lines": [
+    {
+      "id": "fire_protection_warning_1",
+      "context": "应用火焰保护会移除保护的警告首行",
+      "raw": "§c§lWARNING: This will remove",
+      "text": "WARNING: This will remove",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "警告: 这会移除"
+    },
+    {
+      "id": "fire_protection_warning_2",
+      "context": "接上一行；保护附魔名称保持粗体",
+      "raw": "§c§lProtection§c.",
+      "text": "Protection.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "保护附魔。",
+      "segments": [
+        {"color": "§c§l", "text": "Protection", "zh": "保护"},
+        {"color": "§c", "text": ".", "zh": "附魔。"}
+      ]
+    },
+    {"id": "fire_protection_exp", "ref": "Hub_General/GUI_Item/Enchant_Item.json#enchant_exp_levels_available", "context": "所需经验等级充足"}
+  ]
+}

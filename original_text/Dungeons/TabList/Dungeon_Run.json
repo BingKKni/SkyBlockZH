@@ -1,0 +1,639 @@
+{
+  "source": "SkyZH runtime capture (The Catacombs, 2026-09-02)",
+  "fetched_at": "2026-09-02",
+  "verified_ingame": true,
+  "source_note": "原文与颜色逐字取自运行时采集。",
+  "gui_context": "地牢实例里按 Tab 弹出的侧栏。这一面的行是「标签: 数值」，引擎先查整行记录、再单独查标签，剩下那半边走 _shared/Terms.json，所以 NONE / N/A / Ready / Loading... 这类状态词写在词表里而不是这里。没有冒号的整行才在这里写记录。",
+  "labels": [
+    {
+      "id": "tab_puzzles",
+      "context": "本层谜题总数",
+      "text": "Puzzles:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "谜题:"
+    },
+    {
+      "id": "tab_completed_rooms",
+      "context": "已打通的房间数",
+      "text": "Completed Rooms:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "已完成房间:"
+    },
+    {
+      "id": "tab_downed",
+      "context": "当前倒地待救的队友",
+      "text": "Downed:",
+      "placeholders": [],
+      "gloss": "Downed 指被打倒、还没变成幽灵、可以被扶起来的状态，不是「已阵亡」。",
+      "translate": true,
+      "zh": "倒地:"
+    },
+    {
+      "id": "tab_revive_stones",
+      "context": "队伍手上的复活石数量",
+      "text": "Revive Stones:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "复活石:"
+    },
+    {
+      "id": "tab_team_deaths",
+      "context": "队伍累计死亡次数，直接扣评分",
+      "text": "Team Deaths:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "队伍死亡:"
+    },
+    {
+      "id": "tab_discoveries",
+      "context": "本次挑战发现的新东西数量",
+      "text": "Discoveries:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "发现:"
+    },
+    {
+      "id": "tab_secrets_found",
+      "context": "本次挑战累计找到的秘密数",
+      "text": "Secrets Found:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "已找到秘密:"
+    },
+    {
+      "id": "tab_crypts",
+      "context": "已炸开的墓穴数量",
+      "text": "Crypts:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "墓穴:"
+    },
+    {
+      "id": "tab_team_healing_done",
+      "context": "队伍累计治疗量",
+      "text": "Team Healing Done:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "队伍治疗量:"
+    },
+    {
+      "id": "tab_team_damage_dealt",
+      "context": "队伍累计伤害量",
+      "text": "Team Damage Dealt:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "队伍伤害量:"
+    },
+    {
+      "id": "tab_your_milestone",
+      "context": "自己当前达到的职业里程碑，数值是一个符号加圈数字",
+      "text": "Your Milestone:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "我的里程碑:"
+    },
+    {
+      "id": "tab_ultimate",
+      "context": "终极技能的就绪状态或剩余冷却",
+      "text": "Ultimate:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "终极技能:"
+    },
+    {
+      "id": "tab_pet_sitter",
+      "context": "宠物寄存",
+      "text": "Pet Sitter:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "宠物寄存:"
+    },
+    {
+      "id": "tab_water_board",
+      "context": "谜题名：水流板",
+      "text": "Water Board:",
+      "placeholders": [],
+      "gloss": "谜题名一律翻译（见 README §5.5 天赋名/玩法名的处理原则）。",
+      "translate": true,
+      "zh": "水流板:"
+    },
+    {
+      "id": "tab_teleport_maze",
+      "context": "谜题名：传送迷宫",
+      "text": "Teleport Maze:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "传送迷宫:"
+    },
+    {
+      "id": "tab_creeper_beams",
+      "context": "谜题名：苦力怕光束",
+      "text": "Creeper Beams:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "苦力怕光束:"
+    },
+    {
+      "id": "tab_tic_tac_toe",
+      "context": "谜题名：井字棋",
+      "text": "Tic Tac Toe:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "井字棋:"
+    },
+    {
+      "id": "tab_higher_or_lower",
+      "context": "谜题名：猜大小",
+      "text": "Higher Or Lower:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "猜大小:"
+    },
+    {
+      "id": "tab_quiz",
+      "context": "谜题名：Oruo 的三题问答",
+      "text": "Quiz:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "问答:"
+    },
+    {
+      "id": "tab_boulder",
+      "context": "谜题名：推石块",
+      "text": "Boulder:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "推石块:"
+    },
+    {
+      "id": "tab_dungeon_stats",
+      "context": "地牢内 Tab 列表右栏小节标题,行首七个空格是 Hypixel 的居中/缩进",
+      "raw": "       §3§lDungeon Stats",
+      "text": "Dungeon Stats",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "地牢统计"
+    },
+    {
+      "id": "tab_time_label",
+      "context": "地牢内 Tab 列表:本次挑战已用时(只有标签的那一半;数值 N/A / Soon! 走词表,倒计时走下一条)",
+      "text": "Time:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "用时:"
+    },
+    {
+      "id": "tab_revive_label",
+      "context": "地牢内 Tab 列表:复活可用状态,数值 N/A 走词表",
+      "text": "Revive:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "复活:"
+    },
+    {
+      "id": "tab_opened_rooms",
+      "context": "地牢内 Tab 列表:已开启房间数",
+      "text": "Opened Rooms:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "已开启房间:"
+    }
+  ],
+  "lines": [
+    {
+      "id": "tab_account_info",
+      "context": "Tab 列表左栏的分组标题",
+      "raw": "§6§lAccount Info",
+      "text": "Account Info",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "账户信息"
+    },
+    {
+      "id": "tab_player_stats",
+      "context": "Tab 列表的属性分组标题",
+      "raw": "§2§lPlayer Stats",
+      "text": "Player Stats",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "玩家属性"
+    },
+    {
+      "id": "tab_party_count",
+      "context": "队伍分组标题，括号里是人数",
+      "raw": "§b§lParty §f(%s)",
+      "text": "Party (%s)",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "队伍人数",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "队伍 (%s)",
+      "segments": [
+        {
+          "color": "§b§l",
+          "text": "Party ",
+          "zh": "队伍 "
+        },
+        {
+          "color": "§f",
+          "text": "(%s)",
+          "zh": "（%s）"
+        }
+      ]
+    },
+    {
+      "id": "tab_dungeon_buffs",
+      "context": "地牢增益分组标题",
+      "raw": "§6§lDungeon Buffs",
+      "text": "Dungeon Buffs",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "地牢增益"
+    },
+    {
+      "id": "tab_no_buffs_active",
+      "context": "还没捡到任何地牢增益时的提示",
+      "raw": "§7No Buffs active. Find them by exploring the Dungeon!",
+      "text": "No Buffs active. Find them by exploring the Dungeon!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "当前没有任何增益，多探索地牢就能找到!"
+    },
+    {
+      "id": "tab_blessing",
+      "context": "已获得的地牢祝福及其等级",
+      "raw": "§fBlessing of %1$s %2$s",
+      "text": "Blessing of %1$s %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "祝福种类",
+          "type": "category_name",
+          "example": "Life"
+        },
+        {
+          "token": "%2$s",
+          "desc": "祝福等级（罗马数字）",
+          "type": "tier",
+          "example": "II"
+        }
+      ],
+      "gloss": "英文把中心词 Blessing 放前面，中文放后面，所以译文是「生命祝福 II」而不是「祝福的生命」。种类名的中文在 _shared/Terms.json 里。",
+      "translate": true,
+      "zh": "%1$s祝福 %2$s"
+    },
+    {
+      "id": "tab_rng_meter",
+      "context": "RNG 计量器分组标题",
+      "raw": "§d§lRNG Meter",
+      "text": "RNG Meter",
+      "placeholders": [],
+      "gloss": "RNG 是玩家之间通用的说法（随机数），保持原样不译。",
+      "translate": true,
+      "zh": "RNG 计量器"
+    },
+    {
+      "id": "tab_rng_meter_floor",
+      "context": "RNG 计量器当前锁定的楼层",
+      "raw": "§cCatacombs Floor %s",
+      "text": "Catacombs Floor %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "楼层罗马数字",
+          "type": "tier",
+          "example": "I"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "地牢第 %s 层"
+    },
+    {
+      "id": "tab_effect_regeneration",
+      "context": "药水效果部件：效果名、等级与剩余时间",
+      "raw": "§4Regeneration %1$s§r §f%2$s",
+      "text": "Regeneration %1$s %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "效果等级（罗马数字）",
+          "type": "tier",
+          "example": "IV"
+        },
+        {
+          "token": "%2$s",
+          "desc": "剩余时间",
+          "type": "time",
+          "example": "59m"
+        }
+      ],
+      "gloss": "六种地牢药水各一条：模板去掉占位符后必须还剩一个词，否则引擎会拒绝整条记录，所以不能写成 `%1$s %2$s %3$s`。",
+      "translate": true,
+      "zh": "再生 %1$s %2$s",
+      "segments": [
+        {
+          "color": "§4",
+          "text": "Regeneration %1$s",
+          "zh": "再生 %1$s"
+        },
+        {
+          "color": "§r",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§f",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ]
+    },
+    {
+      "id": "tab_effect_strength",
+      "context": "药水效果部件：效果名、等级与剩余时间",
+      "raw": "§4Strength %1$s§r §f%2$s",
+      "text": "Strength %1$s %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "效果等级（罗马数字）",
+          "type": "tier",
+          "example": "V"
+        },
+        {
+          "token": "%2$s",
+          "desc": "剩余时间",
+          "type": "time",
+          "example": "59m"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "力量 %1$s %2$s",
+      "segments": [
+        {
+          "color": "§4",
+          "text": "Strength %1$s",
+          "zh": "力量 %1$s"
+        },
+        {
+          "color": "§r",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§f",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ]
+    },
+    {
+      "id": "tab_effect_critical",
+      "context": "药水效果部件：效果名、等级与剩余时间",
+      "raw": "§4Critical %1$s§r §f%2$s",
+      "text": "Critical %1$s %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "效果等级（罗马数字）",
+          "type": "tier",
+          "example": "III"
+        },
+        {
+          "token": "%2$s",
+          "desc": "剩余时间",
+          "type": "time",
+          "example": "59m"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "暴击 %1$s %2$s",
+      "segments": [
+        {
+          "color": "§4",
+          "text": "Critical %1$s",
+          "zh": "暴击 %1$s"
+        },
+        {
+          "color": "§r",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§f",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ]
+    },
+    {
+      "id": "tab_effect_speed",
+      "context": "药水效果部件：效果名、等级与剩余时间",
+      "raw": "§9Speed %1$s§r §f%2$s",
+      "text": "Speed %1$s %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "效果等级（罗马数字）",
+          "type": "tier",
+          "example": "IV"
+        },
+        {
+          "token": "%2$s",
+          "desc": "剩余时间",
+          "type": "time",
+          "example": "59m"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "速度 %1$s %2$s",
+      "segments": [
+        {
+          "color": "§9",
+          "text": "Speed %1$s",
+          "zh": "速度 %1$s"
+        },
+        {
+          "color": "§r",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§f",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ]
+    },
+    {
+      "id": "tab_effect_resistance",
+      "context": "药水效果部件：效果名、等级与剩余时间",
+      "raw": "§aResistance %1$s§r §f%2$s",
+      "text": "Resistance %1$s %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "效果等级（罗马数字）",
+          "type": "tier",
+          "example": "V"
+        },
+        {
+          "token": "%2$s",
+          "desc": "剩余时间",
+          "type": "time",
+          "example": "59m"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "抗性 %1$s %2$s",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Resistance %1$s",
+          "zh": "抗性 %1$s"
+        },
+        {
+          "color": "§r",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§f",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ]
+    },
+    {
+      "id": "tab_effect_archery",
+      "context": "药水效果部件：效果名、等级与剩余时间",
+      "raw": "§bArchery %1$s§r §f%2$s",
+      "text": "Archery %1$s %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "效果等级（罗马数字）",
+          "type": "tier",
+          "example": "III"
+        },
+        {
+          "token": "%2$s",
+          "desc": "剩余时间",
+          "type": "time",
+          "example": "59m"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "箭术 %1$s %2$s",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "Archery %1$s",
+          "zh": "箭术 %1$s"
+        },
+        {
+          "color": "§r",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§f",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ]
+    },
+    {
+      "id": "tab_time_elapsed",
+      "context": "地牢内 Tab 列表:本次挑战已用时,`03s` / `01m 05s` 两种写法",
+      "raw": "Time: §6%s",
+      "text": "Time: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "已用时,整段交给 duration 换算",
+          "type": "duration",
+          "example": "01m 05s"
+        }
+      ],
+      "gloss": "N/A 和 Soon! 不是 duration,匹配不上这条,落回上面只有标签的 tab_time_label + 词表。行首空格是 Tab 列表缩进,引擎剥掉再查,不写进 text。",
+      "translate": true,
+      "zh": "用时: %s",
+      "segments": [
+        {
+          "color": "",
+          "text": "Time: ",
+          "zh": "用时: "
+        },
+        {
+          "color": "§6",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "tab_milestone_progress",
+      "context": "地牢内 Tab 列表「Your Milestone: ❸」下一行,距离下一个里程碑的百分比",
+      "raw": "§7(%1$s% to %2$s)",
+      "text": "(%1$s% to %2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "百分比",
+          "type": "number",
+          "example": "61.6"
+        },
+        {
+          "token": "%2$s",
+          "desc": "下一个里程碑的带圈数字 ❶–❾",
+          "type": "raw",
+          "example": "❷"
+        }
+      ],
+      "gloss": "❶❷❸ 是里程碑的带圈数字,每一级一个不同的字符,做成 raw 占位符一条管全部。",
+      "translate": true,
+      "zh": "(距 %2$s 还差 %1$s%)"
+    }
+  ]
+}

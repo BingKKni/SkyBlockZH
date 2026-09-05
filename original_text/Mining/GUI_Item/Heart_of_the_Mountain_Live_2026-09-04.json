@@ -1,0 +1,616 @@
+{
+  "source": "runtime capture (SkyZH), 2026-09-04",
+  "fetched_at": "2026-09-04",
+  "verified_ingame": true,
+  "gui_context": "山峦之心实机界面中本轮新增的层级、天赋说明、花费与按钮。",
+  "lines": [
+    {
+      "id": "hotm_tier",
+      "context": "固定菜单文本",
+      "text": "Tier %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "山心层级",
+          "type": "number",
+          "example": "5"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "第 %s 层"
+    },
+    {
+      "id": "hotm_progress_1",
+      "context": "固定菜单文本",
+      "text": "Progress through your Heart of the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "获取山心经验，推进你的山峦之心进度。"
+    },
+    {
+      "id": "hotm_progress_2",
+      "context": "固定菜单文本",
+      "text": "Mountain by gaining HOTM Exp.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "hotm_requires_tier",
+      "context": "固定菜单文本",
+      "text": "Requires Tier %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "层级",
+          "type": "number",
+          "example": "4"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "需要第 %s 层"
+    },
+    {
+      "id": "hotm_daily_comm_1",
+      "context": "固定菜单文本",
+      "text": "Your first daily commission on each",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "每座挖矿岛屿上的首个每日委托都会提供 +500 粉末，再乘以你的山心等级。"
+    },
+    {
+      "id": "hotm_daily_comm_2",
+      "context": "固定菜单文本",
+      "text": "Mining Island grants +500 Powder,",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "hotm_daily_comm_3",
+      "context": "固定菜单文本",
+      "text": "multiplied by your HOTM level.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "hotm_resets",
+      "context": "固定菜单文本",
+      "text": "Resets in: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "剩余时间",
+          "type": "time",
+          "example": "1h 16m"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "重置倒计时：%s"
+    },
+    {
+      "id": "hotm_free",
+      "context": "固定菜单文本",
+      "text": "FREE",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "免费"
+    },
+    {
+      "id": "hotm_first_ore_1",
+      "context": "固定菜单文本",
+      "text": "The first ore you mine each day",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "每天开采的第一块矿石会提供 +500 粉末，再乘以你的山心等级。"
+    },
+    {
+      "id": "hotm_first_ore_2",
+      "context": "固定菜单文本",
+      "text": "grants +500 Powder, multiplied by",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "hotm_first_ore_3",
+      "context": "固定菜单文本",
+      "text": "your HOTM level.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "hotm_scroll_up",
+      "context": "固定菜单文本",
+      "text": "Scroll Up",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "向上滚动"
+    },
+    {
+      "id": "hotm_skyblock_day_1",
+      "context": "固定菜单文本",
+      "text": "Every SkyBlock day, you receive a",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "每个 SkyBlock 日，你在任意挖矿岛屿上都会获得一项随机增益。"
+    },
+    {
+      "id": "hotm_skyblock_day_2",
+      "context": "固定菜单文本",
+      "text": "random buff while on any Mining",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "hotm_skyblock_day_3",
+      "context": "固定菜单文本",
+      "text": "Island.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "hotm_possible_buffs",
+      "context": "固定菜单文本",
+      "text": "Possible Buffs",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "可能的增益"
+    },
+    {
+      "id": "hotm_front_1",
+      "context": "固定菜单文本",
+      "text": "Grants the following buffs for the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "每天开采的前 2,500 块宝石会获得以下增益："
+    },
+    {
+      "id": "hotm_front_2",
+      "context": "固定菜单文本",
+      "text": "first 2,500 Gemstones you mine each",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "hotm_front_3",
+      "context": "固定菜单文本",
+      "text": "day.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "hotm_rare_1",
+      "context": "固定菜单文本",
+      "text": "Increases the chance for you to",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "使你在矮人矿山触发稀有事件的概率提高 6%。"
+    },
+    {
+      "id": "hotm_rare_2",
+      "context": "固定菜单文本",
+      "text": "trigger rare occurrences in the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "hotm_rare_3",
+      "context": "固定菜单文本",
+      "text": "Dwarven Mines by 6%.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "hotm_rare_title",
+      "context": "固定菜单文本",
+      "text": "Rare occurrences include:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "稀有事件包括："
+    },
+    {
+      "id": "hotm_forge_time_1",
+      "context": "固定菜单文本",
+      "text": "Decreases the time it takes to forge",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "锻造所需时间缩短 10.5%。"
+    },
+    {
+      "id": "hotm_forge_time_2",
+      "context": "固定菜单文本",
+      "text": "by 10.5%.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "hotm_forge_access",
+      "context": "固定菜单文本",
+      "text": "Access to the Forge",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "解锁熔炉"
+    },
+    {
+      "id": "hotm_locked",
+      "context": "固定菜单文本",
+      "text": "LOCKED",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "未解锁"
+    },
+    {
+      "id": "hotm_pickaxe_speed",
+      "context": "固定菜单文本",
+      "text": "Pickaxe Ability: Mining Speed Boost",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "镐子技能：挖掘速度爆发"
+    },
+    {
+      "id": "hotm_pickaxe_all_1",
+      "context": "固定菜单文本",
+      "text": "Pickaxe Abilities apply to all of your",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "镐子技能适用于你的所有镐。你可以在山峦之心中选择一项镐子技能。"
+    },
+    {
+      "id": "hotm_pickaxe_all_2",
+      "context": "固定菜单文本",
+      "text": "Pickaxes. You can select a Pickaxe",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "hotm_pickaxe_all_3",
+      "context": "固定菜单文本",
+      "text": "Ability from your Heart of the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "hotm_pickaxe_all_4",
+      "context": "固定菜单文本",
+      "text": "Mountain.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "hotm_core_1",
+      "context": "固定菜单文本",
+      "text": "Upgrade your Pickaxe Abilities by",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "在此菜单中解锁“山之核心”，即可升级你的镐子技能!"
+    },
+    {
+      "id": "hotm_core_2",
+      "context": "固定菜单文本",
+      "text": "unlocking Core of the Mountain in",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "hotm_core_3",
+      "context": "固定菜单文本",
+      "text": "this menu!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "hotm_pickobulus",
+      "context": "固定菜单文本",
+      "text": "Pickaxe Ability: Pickobulus",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "镐子技能：碎石飞弹"
+    },
+    {
+      "id": "hotm_pickobulus_1",
+      "context": "固定菜单文本",
+      "text": "Throw your pickaxe to create an",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "投掷镐子制造爆炸，开采 3 格半径内的所有矿石。"
+    },
+    {
+      "id": "hotm_pickobulus_2",
+      "context": "固定菜单文本",
+      "text": "explosion mining all ores in a 3 block",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "hotm_pickobulus_3",
+      "context": "固定菜单文本",
+      "text": "radius.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "hotm_tier_unlocked_1",
+      "context": "固定菜单文本",
+      "text": "You have unlocked this tier. All",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你已解锁这一层。现在可使用山心代币解锁本层的所有天赋和技能。"
+    },
+    {
+      "id": "hotm_tier_unlocked_2",
+      "context": "固定菜单文本",
+      "text": "perks and abilities on this tier are",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "hotm_tier_unlocked_3",
+      "context": "固定菜单文本",
+      "text": "available for unlocking with Token of",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "hotm_tier_unlocked_4",
+      "context": "固定菜单文本",
+      "text": "the Mountain.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "hotm_gem_get_1",
+      "context": "宝石粉末获取说明首行；三行的十段颜色共同按中文语序排列",
+      "raw": "§7Obtain §dGemstone Powder §7by mining",
+      "text": "Obtain Gemstone Powder by mining",
+      "placeholders": [],
+      "gloss": "颜色来自实机采集；地点、宝箱、宝石和粉末分别保留高亮，标点使用灰色正文段。",
+      "translate": true,
+      "zh": "开采宝石并打开水晶残核中的宝箱,即可获得宝石粉末。",
+      "segments": [
+        {"color": "§7", "text": "Obtain ", "zh": "开采", "order": 0},
+        {"color": "§d", "text": "Gemstone Powder ", "zh": "宝石粉末", "order": 8},
+        {"color": "§7", "text": "by mining", "zh": "。", "order": 9}
+      ]
+    },
+    {
+      "id": "hotm_gem_get_2",
+      "context": "接宝石粉末说明首行",
+      "raw": "§dGemstones §7and opening §6Treasure",
+      "text": "Gemstones and opening Treasure",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true,
+      "segments": [
+        {"color": "§d", "text": "Gemstones ", "zh": "宝石", "order": 1},
+        {"color": "§7", "text": "and opening ", "zh": "并打开", "order": 2},
+        {"color": "§6", "text": "Treasure", "zh": "宝箱", "order": 5}
+      ]
+    },
+    {
+      "id": "hotm_gem_get_3",
+      "context": "接宝石粉末说明中间行",
+      "raw": "§6Chests §7in the §5Crystal Hollows§7.",
+      "text": "Chests in the Crystal Hollows.",
+      "placeholders": [],
+      "gloss": "Treasure Chests 的中文已放在前一行的金色片段，此处 Chests 显式省略。",
+      "translate": true,
+      "zh": "",
+      "continuation": true,
+      "segments": [
+        {"color": "§6", "text": "Chests ", "zh": "", "omit": true, "order": 6},
+        {"color": "§7", "text": "in the ", "zh": "中的", "order": 4},
+        {"color": "§5", "text": "Crystal Hollows", "zh": "水晶残核", "order": 3},
+        {"color": "§7", "text": ".", "zh": ",即可获得", "order": 7}
+      ]
+    },
+    {
+      "id": "hotm_glacite_get_1",
+      "context": "固定菜单文本",
+      "text": "Obtain Glacite Powder by mining",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "在极冰隧道中开采极冰并搜刮冰封尸体，即可获得极冰粉末。"
+    },
+    {
+      "id": "hotm_glacite_get_2",
+      "context": "固定菜单文本",
+      "text": "Glacite and looting Frozen Corpses",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "hotm_glacite_get_3",
+      "context": "固定菜单文本",
+      "text": "in the Glacite Tunnels.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "hotm_extra_1",
+      "context": "固定菜单文本",
+      "text": "Increase your chance to gain extra",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "解锁天赋、装备秘银石魔宠物等方式都能提高获得额外粉末的概率!"
+    },
+    {
+      "id": "hotm_extra_2",
+      "context": "固定菜单文本",
+      "text": "Powder by unlocking perks, equipping",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "hotm_extra_3",
+      "context": "固定菜单文本",
+      "text": "the Mithril Golem Pet, and more!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "hotm_no_mithril",
+      "context": "固定菜单文本",
+      "text": "You don't have enough Mithril Powder!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的秘银粉末不足!"
+    },
+    {
+      "id": "hotm_shift",
+      "context": "固定菜单文本",
+      "text": "Shift Left-click to upgrade 10 levels!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Shift+左键点击升级 10 级!"
+    },
+    {
+      "id": "hotm_req_precision",
+      "context": "固定菜单文本",
+      "text": "Requires Precision Mining",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "需要精准挖矿"
+    },
+    {
+      "id": "hotm_req_fortune",
+      "context": "固定菜单文本",
+      "text": "Requires Mining Fortune",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "需要挖掘时运"
+    },
+    {
+      "id": "hotm_req_titanium",
+      "context": "固定菜单文本",
+      "text": "Requires Titanium Insanium",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "需要疯钛"
+    },
+    {
+      "id": "hotm_req_speed",
+      "context": "固定菜单文本",
+      "text": "Requires Mining Speed Boost",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "需要挖掘速度爆发"
+    },
+    {
+      "id": "hotm_req_pickobulus",
+      "context": "固定菜单文本",
+      "text": "Requires Pickobulus",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "需要碎石飞弹"
+    }
+  ]
+}
