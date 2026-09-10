@@ -1,0 +1,180 @@
+{
+  "source": "logs/skyzh-capture; https://hypixelskyblock.minecraft.wiki/w/Dungeon_Reward_Chest",
+  "fetched_at": "2026-09-09",
+  "verified_ingame": true,
+  "gui_context": "首领收藏品升级与战利品系统消息；物品参数保留原名",
+  "source_note": "原文与颜色以本次用户采集为准；社区 Wiki 普通页面核对玩法语境。动态数值使用有类型占位符，完整 Lore 只在 GUI_Lore 匹配。",
+  "lines": [
+    {
+      "id": "boss_collection_level_up",
+      "context": "首领收藏品升级与战利品系统消息；物品参数保留原名",
+      "raw": "§5§lBOSS COLLECTION LEVEL UP §d%1$s %2$s",
+      "text": "BOSS COLLECTION LEVEL UP %1$s %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "npc_name",
+          "example": "Scarf",
+          "desc": "npc_name"
+        },
+        {
+          "token": "%2$s",
+          "type": "tier",
+          "example": "I",
+          "desc": "tier"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "首领收藏品升级 %1$s %2$s",
+      "segments": [
+        {
+          "color": "§5§l",
+          "text": "BOSS COLLECTION LEVEL UP ",
+          "zh": "首领收藏品升级 "
+        },
+        {
+          "color": "§d",
+          "text": "%1$s %2$s",
+          "zh": "%1$s %2$s"
+        }
+      ],
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "auto_recombobulator",
+      "context": "首领收藏品升级与战利品系统消息；物品参数保留原名",
+      "raw": "§eYour §6Auto Recombobulator §erecombobulated §5%1$s§e!",
+      "text": "Your Auto Recombobulator recombobulated %1$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "item_name",
+          "example": "Odd Zombie Soldier Cutlass",
+          "desc": "item_name"
+        }
+      ],
+      "gloss": "Auto Recombobulator 的固定系统播报；不枚举或翻译自动生成的装备名称。",
+      "translate": true,
+      "zh": "你的自动重组器提升了 %1$s 的稀有度!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Your ",
+          "zh": "你的"
+        },
+        {
+          "color": "§6",
+          "text": "Auto Recombobulator ",
+          "zh": "自动重组器"
+        },
+        {
+          "color": "§e",
+          "text": "recombobulated ",
+          "zh": "提升了 "
+        },
+        {
+          "color": "§5",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§e",
+          "text": "!",
+          "zh": " 的稀有度!"
+        }
+      ]
+    },
+    {
+      "id": "party_obtained_loot",
+      "context": "首领收藏品升级与战利品系统消息；物品参数保留原名",
+      "raw": "§b[%1$s] %2$s§f §ehas obtained §9%3$s §8x%4$s§e!",
+      "text": "[%1$s] %2$s has obtained %3$s x%4$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "raw",
+          "example": "MVP+",
+          "desc": "Rank"
+        },
+        {
+          "token": "%2$s",
+          "type": "player_name",
+          "example": "inkkni",
+          "desc": "player_name"
+        },
+        {
+          "token": "%3$s",
+          "type": "item_name",
+          "example": "Superboom TNT",
+          "desc": "item_name"
+        },
+        {
+          "token": "%4$s",
+          "type": "number",
+          "example": "2",
+          "desc": "number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "[%1$s] %2$s 获得了 %3$s x%4$s!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "[%1$s] %2$s",
+          "zh": "[%1$s] %2$s"
+        },
+        {
+          "color": "§f",
+          "text": " ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§e",
+          "text": "has obtained ",
+          "zh": " 获得了 "
+        },
+        {
+          "color": "§9",
+          "text": "%3$s ",
+          "zh": "%3$s "
+        },
+        {
+          "color": "§8",
+          "text": "x%4$s",
+          "zh": "x%4$s"
+        },
+        {
+          "color": "§e",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "request_dungeon_hub",
+      "context": "首领收藏品升级与战利品系统消息；物品参数保留原名",
+      "raw": "§7Request join for Dungeon Hub #%1$s (%2$s)...",
+      "text": "Request join for Dungeon Hub #%1$s (%2$s)...",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "1",
+          "desc": "number"
+        },
+        {
+          "token": "%2$s",
+          "type": "raw",
+          "example": "mini6AP",
+          "desc": "服务器编号"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "正在请求加入地牢大厅 #%1$s（%2$s）……"
+    }
+  ]
+}

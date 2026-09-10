@@ -105,7 +105,7 @@ SkyBlock 的很多提示是"全大写标签 + 一句话",标签点出这句话�
 | 原文 | 译名 | 机制 |
 |---|---|---|
 | PRISTINE! | 纯净! | 纯净(Pristine)属性额外掉宝石 |
-| COMPACT! | 压缩! | 压缩(Compact)天赋 |
+| COMPACT! | COMPACT! | Compact 附魔; 2026-09-08 要求附魔名保持英文 |
 | MAYHEM! | 矿井狂乱! | 矿井狂乱(Mineshaft Mayhem)天赋 |
 | EXCAVATOR! | 挖掘! | 挖到可疑残料 |
 | MINESHAFT! | 矿井! | 附近刷出矿井传送门 |
@@ -225,6 +225,10 @@ SkyBlock 的很多提示是"全大写标签 + 一句话",标签点出这句话�
 | Mithraic | 秘银之力 | Pure Mithril |
 | Stellar | 星辉 | Petrified Starfall |
 | Scraped | 刮蚀 | Pocket Iceberg |
+| Ancient | 远古 | 护甲重铸; 2026-09-05 核对社区 Wiki Reforging |
+| Withered | 凋零 | 近战武器重铸; 同上 |
+| Spiritual | 灵性 | 弓类重铸; 同上 |
+| Undead | 亡灵 | 护甲重铸; 与亡灵生物类别同词,词表按 raw 也查得到 |
 
 **注意**:重铸名作为**物品名前缀**出现时(如 "Fleet Titanium Pickaxe"),目前引擎不会翻译
 ——物品名记录是整名匹配的,加了前缀就对不上。见 TODO.md。
@@ -303,6 +307,35 @@ SkyBlock 的很多提示是"全大写标签 + 一句话",标签点出这句话�
   和集市功能本身翻译成"集市"分开决策,不要用同一个词。
 
 ## 属性词条与物品 Lore
+
+### Lore 与技能文案风格（2026-09-09 新要求）
+
+- 参考二次元游戏的技能说明组织信息，而不是搬用其他游戏的机制术语。优先写
+  **条件 → 对象 → 效果 → 数值 → 持续时间/上限**，如「从目标背后发动暴击时，造成的伤害提高 X%」
+  「每损失 X% 生命值，对亡灵生物造成的伤害 +Y%」。无条件效果不强加触发条件。
+- 明确区分自身与目标、持有与穿戴、每件与全套、概率与必定、伤害系数与倍率增量，
+  以及触发间隔、持续时间、层数上限。不能为求简短删去限制，也不能把濒死免疫写成死后复活。
+- 属性/能力名称沿用已确认译名；`Ability` 的标题统一使用「技能」，不是「能力」。
+  `Syphon` 沿用「注入」，`Ice Essence` 沿用「冰霜精华」。
+- **本轮不新增物品名翻译，既有物品名翻译不撤销。** 新技能名/标题放在 `GUI_Lore`，
+  不得借用 `GUI_Item` 的同名匹配改变物品名称。正文中的既有通用资源译名照常使用；
+  新出现的物品/宠物专名保持英文。非原版附魔名仍保留英文。
+- 颜色必须跟随对应词义和数值；利用 `order` 或带编号占位符调整语序，不给整句染成数值的颜色。
+  英文空白段不能作为中文词句的颜色来源。
+- 新机制词：Arcane Energy → 奥术能量；Dominus → 主宰；Fervor → 热忱；
+  Hydra Strike → 九头蛇之击；Hollow Armor 的 Spirit 层数 → 灵力；
+  Homing Missiles → 追踪飞弹；Ground Pound → 震地重击；Aligned → 共调。
+  它们按具体 Lore 整句使用，不写进不分语境的全局 raw 词表。
+
+
+### Heat —— 炎热 / 炎热值（2026-09-09 用户再次确认）
+
+- **Heat → 炎热**，描述积累量或数值时用**炎热值**；沿用 `Tungsten_Regulator.json` 的既有译名。
+- 岩浆原野的环境状态、Bal 的散热技能、钨调节器及计分板中的 Heat 是同一个挖矿机制，
+  不因出现在宠物、配件或计分板上就改叫「炙热」「热量」或「高温」。
+- **Heat Resistance → 抗热**，保持既有属性译名。不要改成新的“炎热抗性”。
+- 装备升级档次 **Hot** 也已有「炎热」译名，但它是另一个英文词；不涉及炎热值机制。
+- 普通叙述中的“熔炉高温”等描述不是 Heat 属性，不做全局字符串替换。
 
 ### Fortune
 
@@ -764,9 +797,8 @@ BossBar 里是全大写(`GONE WITH THE WIND`)、计分板小部件里是正常�
   跟的词各有各的译名(卡 / 商店 / 点数 / 等级 / 护符 / 活动),一个模板套下来必出中英混排;
   而且 raw 型占位符会把别处任何以 Bingo 开头的半句话吃进来(同第 4 节的 `Your %s` 事故)。
   一律写死成字面记录。
-- `Scavenger` 作为宾果社区目标名出现时**保持英文**:它同时是空岛专属附魔名,
-  按用户 2026-08-27 的决定那一族不翻译(见 `_shared/Enchantments.json` 的 scope)。
-  给它加词表条目会让这个名字在附魔语境里也变中文,两边就对不上了。
+- `Scavenger` → **保留英文**。2026-09-08 用户要求撤销所有非原版附魔名称的汉化,
+  同名宾果目标和进度取值也恢复英文,与装备上的附魔名称一致。效果说明仍翻译。
 
 ### Chum / Bait —— 两种不同的物品,不能都叫「鱼饵」
 
@@ -828,6 +860,72 @@ BossBar 里是全大写(`GONE WITH THE WIND`)、计分板小部件里是正常�
 - **Zealot → 狂信徒**,沿用 `Taming/GUI_Item/Pet_Perks.json` 中的既有译名,不另译成狂热者。
 - **Fortuitous → 幸运**,是默认解锁的饰品袋能力,不是附魔或 NPC 人名。
   词表限定 `category_name`,不将这个英文词泛化成对任意正文的替换。
+
+### 2026-09-05 采集补译: 收藏品、怪物与外观商店
+
+- `Scared Skeleton` → **惊恐骷髅**。社区 Wiki 同名页说明它会逃离附近玩家,不是施加恐惧的骷髅。
+- `Zealot Bruiser` → **狂信徒斗士**; `Zealot Bruiser Hideout` → **狂信徒斗士藏身处**。
+  沿用 Zealot → 狂信徒,不改为另一套词根。
+- `Tsunami` → **海啸**; `Soul Sand Blizzard` → **灵魂沙暴**。社区 Wiki `Scarf` 页的招式名,
+  前者属于 Mage,后者属于 Scarf; 角色人名仍保留英文。
+- `Dragon Sack` 的材料前缀沿用既有 `Dragon` → **巨龙**,因此 `Small Dragon Sack` 为**小型巨龙收纳袋**。
+  `Beginner Combat Sack` → **入门战斗收纳袋**,与小型/中型/大型容量档次区分。
+- 收藏品中的 `[Lvl N] Skeleton Recipe` 指的是**宠物配方**,不是小人配方。中文补出「宠物」以消除歧义;
+  等级和宠物种类仍用占位符。原版材料/生物名继续使用官方中文,`Aspect of the End` 等既定专名不另译。
+- `Exp Discount` 沿用**附魔经验折扣**。`enchantment_name` 现在使用有界名称形状,
+  译名由 `Terms.json` 的类型白名单控制。2026-09-08 新要求覆盖之前的全汉化决定:
+  仅原版附魔名称汉化,`Ender Slayer`、`Infinite Quiver`、`Experience` 均保留英文。
+- `Taylor's Cosmetics` 沿用已有**Taylor 的装饰品**; `Taylor's Collection` 为**Taylor 的常驻系列**,
+  后者是全年销售的商品分类,不是资源收藏品系统。`Seasonal Bundles` → **季节礼包**,
+  `Summer Bundle` → **夏季礼包**。这里的季节是现实活动季节,不能套用空岛历的「夏至/冬至」。
+  **2024 年冬季**是礼包返场规则的固定历史分界,不是动态年份; `can return` 只表示有机会返场。
+- 三怪人谜题台词可以口语化,但必须逐项保留**真/假、否定、箱子归属和人名指代**,
+  不替玩家下结论,也不添加解谜提示。
+
+### 附魔名称 —— 最新决定（2026-09-08）
+
+- **只翻译原版 Minecraft 附魔名称,其余附魔名全部保留英文。效果说明继续汉化。**
+  本决定覆盖 2026-09-05/06 的全部名称汉化要求,也不保留更早的 Ice Cold 特例。
+  范围包括无等级名称、罗马数字等级、逗号列表、勾叉、冲突列表、经验折扣、详情标题及 NPC/提示中的名称。
+- **同词不同机制不要误删。** `Pristine` 是纯净属性、`Wisdom` 也可指地牢祝福种类、`Bank` 也可指银行;
+  非附魔语境仍沿用既有译名。`Compact` 是附魔,连同 `COMPACT!` 广播/提示开关恢复英文。
+- `Green Thumb` 与 Builder 的同名入口共用 ITEM 面且无菜单上下文,两处暂都保留英文,说明照常翻译;
+  不靠颜色猜菜单。`Spiked Hook` 不能被鱼钩通用模板重新汉化,使用该模板的 `exclude` 配置排除。
+- 下列 2026-09-06 的中文名称仅是历史记录,**不再用于附魔名渲染**; 属性/效果机制说明仍有效。
+- 规范名称维护在 `Hub_General/GUI_Item/Enchantment_Names.json` 与 `Terms.json` 的
+  `enchantment_name` 用途中。`The One` → **独一无二**、`One For All` → **万法归一**,
+  两个不同附魔不能合并; 不能恢复会吞掉未知 The 名称的自动宠物通吃模板。
+- `Turbo-` 作物附魔家族统一为**增产·作物名**; 如增产·小麦、增产·下界疣、增产·月光花。
+  名称与等级各用模板,不枚举等级/勾叉状态; 完整值词表与模板使用的作物名必须一致。
+- `Prismatic` → **棱彩**,与它提供的 `Pristine` → 纯净区别开。
+  `Vicious` → **凶恶**,属性 `Ferocity` 仍为凶暴; `Green Thumb` 沿用园艺。
+- `Hecatomb` → **百牛祭**,是名称的祭祀含义,不是要求玩家击杀一百头牛。
+  `Cayenne` → **卡宴辣椒**、`Tabasco` → **塔巴斯科**、`Habanero Tactics` → **哈瓦那战术**;
+  辣椒主题名称不当 NPC 人名保留,`Ultimate Jerry` 中的 Jerry 人名仍保留。
+- `Timber` → **整树砍伐**: Petalfall 提供的整棵树伐倒概率属性,不是原木材料。
+  `Overbloom` 沿用过度绽放。属性图标保留服务器实际字形,不能用挖掘时运字形替代农业时运。
+- 倍率有两种含义: Duplex 的 `1.5x fire damage` 译作**火焰伤害提升 0.5 倍**;
+  Reflection 的 `30x Intelligence`、Inferno 的 `2.25x damage` 是计算系数,仍是 **30 倍 / 2.25 倍**,
+  不得减一。参数类型 `multiplier_increase` 仅用于前一类增量表述。
+- Guide 中出现的来源 NPC 人名、品牌以及既定武器专名,不是附魔名称本身,继续遵循原有边界。
+  本轮的完整名称表、分组说明及覆盖证据见 `docs/TRANSLATIONS_ENCHANTMENT_GUIDE_2026-09-06.md`。
+
+### 2026-09-08 采集补译
+
+- `Crypts` → **墓穴**; `Unincorporated` / `Unincorporated Territory` → **未辖地**。
+  地名按类型限定词表供侧边栏/动作栏/发现提示共用,不把彩蛋的整句位置描述当成地名。
+- `Witherborn` → **凋灵降生**; `Instant Transmission` → **瞬间传送**; `Instant Heal` → **瞬间治疗**;
+  `Giant's Slam` → **巨人重击**; `Ether Transmission` → **以太传送**; `Huge Heal` → **强效治疗**。
+  它们是装备技能,不是附魔名称,所以继续翻译。`Soulflow` → **魂流**。
+- `Seasoning` → **调味料**; `Feast Flask` → **宴会烧瓶**; `Carrot Zest` → **胡萝卜皮屑**;
+  `Cane Knot` → **甘蔗节**; `Salted Sunflower Seeds` → **盐焗葵花籽**。
+  `Grand Feast` / `Communal Stew` / `Kernels` 沿用 **盛大宴会 / 公共炖锅 / 谷粒**。
+  `Aggourdian` 是自造物品名,保留英文。
+- `Superpairs` → **超级配对**; 实验难度 `Supreme` / `Transcendent` / `Metaphysical` → **至高 / 超凡 / 玄奥**。
+  染料色名 Nyanza/Byzantium/Nadeshiko 保留英文搜索名; `Dye` 译染料。
+  彩虹逐字分色的 `dyes` 译作「各色染料」以对应四段颜色,后续说明恢复原灰色。
+- `Brews` → **酿饮**,`Basic Brew` → **基础酿饮**; 原版 `Awkward Potion` 用 **粗制的药水**。
+  `Dctr. Paper` / `Slayer©` 是品牌梗,保留英文。药水 `Critical` 仍译暴击,不是同名附魔。
 
 ## 剧情线与彩蛋
 

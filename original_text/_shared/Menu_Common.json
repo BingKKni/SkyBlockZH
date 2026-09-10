@@ -377,8 +377,16 @@
       "translate": true,
       "zh": "很多物品都可以镶嵌宝石。宝石会按种类给这件物品加上对应的属性。",
       "segments": [
-        {"color":"§7","text":"Many items can have ","zh":"很多物品都可以镶嵌"},
-        {"color":"§d","text":"Gemstones","zh":"宝石。宝石会按种类给这件物品加上对应的属性。"}
+        {
+          "color": "§7",
+          "text": "Many items can have ",
+          "zh": "很多物品都可以镶嵌"
+        },
+        {
+          "color": "§d",
+          "text": "Gemstones",
+          "zh": "宝石。宝石会按种类给这件物品加上对应的属性。"
+        }
       ]
     },
     {
@@ -420,9 +428,21 @@
       "translate": true,
       "zh": "宝石分好几个品质档位,从「粗糙」一路到「完美」。品质越高,加的属性越多!",
       "segments": [
-        {"color":"§7","text":"There are several ","zh":"宝石分好几个"},
-        {"color":"§a","text":"qualities ","zh":"品质档位"},
-        {"color":"§7","text":"of","zh":",从「粗糙」一路到「完美」。品质越高,加的属性越多!"}
+        {
+          "color": "§7",
+          "text": "There are several ",
+          "zh": "宝石分好几个"
+        },
+        {
+          "color": "§a",
+          "text": "qualities ",
+          "zh": "品质档位"
+        },
+        {
+          "color": "§7",
+          "text": "of",
+          "zh": ",从「粗糙」一路到「完美」。品质越高,加的属性越多!"
+        }
       ]
     },
     {
@@ -607,8 +627,18 @@
       "raw": "§cRequires %1$s Collection %2$s",
       "text": "Requires %1$s Collection %2$s",
       "placeholders": [
-        {"token": "%1$s", "desc": "收藏品材料名", "type": "category_name", "example": "Glacite"},
-        {"token": "%2$s", "desc": "所需收藏品层级", "type": "tier", "example": "III"}
+        {
+          "token": "%1$s",
+          "desc": "收藏品材料名",
+          "type": "category_name",
+          "example": "Glacite"
+        },
+        {
+          "token": "%2$s",
+          "desc": "所需收藏品层级",
+          "type": "tier",
+          "example": "III"
+        }
       ],
       "gloss": "实机采集见 Glacite/Tungsten；材料走既有词表，不把 Requires 当作材料名的一部分。",
       "translate": true,
@@ -774,6 +804,75 @@
       "gloss": "",
       "translate": true,
       "zh": "已解锁"
+    },
+    {
+      "id": "menu_requires_collection_tier_bang",
+      "context": "配方书收藏品前置条件,包含实测感叹号/换行变体",
+      "raw": "§7Requires §a%1$s Collection %2$s§7!",
+      "text": "Requires %1$s Collection %2$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "category_name",
+          "example": "Nether Quartz",
+          "desc": "收藏品材料"
+        },
+        {
+          "token": "%2$s",
+          "type": "tier",
+          "example": "III",
+          "desc": "所需等级"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "需要%1$s收藏品 %2$s!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Requires ",
+          "zh": "需要"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s Collection %2$s",
+          "zh": "%1$s收藏品 %2$s"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "menu_requires_collection_head",
+      "context": "配方书收藏品前置条件,包含实测感叹号/换行变体",
+      "raw": "§7Requires §a%s Collection",
+      "text": "Requires %s Collection",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "category_name",
+          "example": "Nether Quartz",
+          "desc": "收藏品材料"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "需要%s收藏品",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Requires ",
+          "zh": "需要"
+        },
+        {
+          "color": "§a",
+          "text": "%s Collection",
+          "zh": "%s收藏品"
+        }
+      ]
     }
   ]
 }

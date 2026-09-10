@@ -1,0 +1,2348 @@
+{
+  "source": "logs/skyzh-capture/{untranslated,mixed}/{Dungeons,Hub_General}/GUI_Item/*Enchantment_Guide*.json; https://hypixelskyblock.minecraft.wiki/w/Enchantments; https://hypixelskyblock.minecraft.wiki/w/Ultimate_Enchantments; https://hypixelskyblock.minecraft.wiki/w/Re-heated_Gummy_Polar_Bear",
+  "fetched_at": "2026-09-05",
+  "verified_ingame": true,
+  "source_note": "机制按普通Wiki页面核对,数值和断行优先采用实际Guide。Duplex的火伤倍率通过专用类型转成增量; 炽焰/反射/噬魂者的伤害系数不作减一处理。",
+  "scope": "终极附魔全部效果说明; 不扩张至玩家放入槽位的普通武器技能。",
+  "lines": [
+    {
+      "id": "ultimate_bank_death",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Saves §6%s% §7of your coins on death.",
+      "text": "Saves %s% of your coins on death.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "50",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Saves ",
+          "zh": "死亡时保留身上 "
+        },
+        {
+          "color": "§6",
+          "text": "%s% ",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": "of your coins on death.",
+          "zh": " 的硬币。"
+        }
+      ],
+      "zh": "死亡时保留身上 %s% 的硬币。"
+    },
+    {
+      "id": "ultimate_bank_kill_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Additionally, enemies drop §6+%s coins",
+      "text": "Additionally, enemies drop +%s coins",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "2.5",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Additionally, enemies drop ",
+          "zh": "此外,击杀敌人时额外掉落 "
+        },
+        {
+          "color": "§6",
+          "text": "+%s coins",
+          "zh": "+%s 硬币"
+        }
+      ],
+      "zh": "此外,击杀敌人时额外掉落 +%s 硬币"
+    },
+    {
+      "id": "ultimate_bank_kill_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7when killed.",
+      "text": "when killed.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "。"
+    },
+    {
+      "id": "ultimate_bobbin_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Increases all §bFishing Stats §7and §b✯ Magic Find §7by",
+      "text": "Increases all Fishing Stats and ✯ Magic Find by",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increases all ",
+          "zh": "使全部"
+        },
+        {
+          "color": "§b",
+          "text": "Fishing Stats ",
+          "zh": "钓鱼属性"
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "和"
+        },
+        {
+          "color": "§b",
+          "text": "✯ Magic Find ",
+          "zh": "✯ 魔法寻宝"
+        },
+        {
+          "color": "§7",
+          "text": "by",
+          "zh": "提高 "
+        }
+      ],
+      "zh": "使全部钓鱼属性和✯ 魔法寻宝提高 "
+    },
+    {
+      "id": "ultimate_bobbin_mid",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§b+%1$s% §7per fishing bobber within §a%2$s blocks§7, up to §b%3$s",
+      "text": "+%1$s% per fishing bobber within %2$s blocks, up to %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "1",
+          "desc": "随附魔等级变化的数值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "30",
+          "desc": "随附魔等级变化的数值"
+        },
+        {
+          "token": "%3$s",
+          "type": "number",
+          "example": "5",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§b",
+          "text": "+%1$s% ",
+          "zh": "+%1$s%"
+        },
+        {
+          "color": "§7",
+          "text": "per fishing bobber within ",
+          "zh": "（按周围 "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s blocks",
+          "zh": "%2$s 格"
+        },
+        {
+          "color": "§7",
+          "text": ", up to ",
+          "zh": "内的浮漂数量计算）,最多计入 "
+        },
+        {
+          "color": "§b",
+          "text": "%3$s",
+          "zh": "%3$s"
+        }
+      ],
+      "zh": "+%1$s%（按周围 %2$s 格内的浮漂数量计算）,最多计入 %3$s"
+    },
+    {
+      "id": "ultimate_bobbin_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7bobbers.",
+      "text": "bobbers.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": " 个浮漂。"
+    },
+    {
+      "id": "ultimate_chimera_max",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Copies your active pet's stats.",
+      "text": "Copies your active pet's stats.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "复制当前激活宠物的属性。"
+    },
+    {
+      "id": "ultimate_chimera_scaled",
+      "context": "社区 Wiki 的百分比表述; 最高级实际指南省略百分比",
+      "text": "Copies %s% of your active pet's stats.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "20",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "此条来自 Ultimate Enchantments 普通页面的说明,未采到实际样式,不伪造 raw 颜色快照。",
+      "translate": true,
+      "segments": [
+        {
+          "color": "",
+          "text": "Copies ",
+          "zh": "复制当前激活宠物 "
+        },
+        {
+          "color": "",
+          "text": "%s% ",
+          "zh": "%s%"
+        },
+        {
+          "color": "",
+          "text": "of your active pet's stats.",
+          "zh": " 的属性。"
+        }
+      ],
+      "zh": "复制当前激活宠物 %s% 的属性。",
+      "verified_ingame": false
+    },
+    {
+      "id": "ultimate_combo_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Increases your damage by §c+%s% §7per",
+      "text": "Increases your damage by +%s% per",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "5",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increases your damage by ",
+          "zh": "伤害提高 "
+        },
+        {
+          "color": "§c",
+          "text": "+%s% ",
+          "zh": "+%s%"
+        },
+        {
+          "color": "§7",
+          "text": "per",
+          "zh": "（按"
+        }
+      ],
+      "zh": "伤害提高 +%s%（按"
+    },
+    {
+      "id": "ultimate_combo_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7kill up to §a%1$s §7kills within §a%2$s§7.",
+      "text": "kill up to %1$s kills within %2$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "10",
+          "desc": "随附魔等级变化的数值"
+        },
+        {
+          "token": "%2$s",
+          "type": "time",
+          "example": "10s",
+          "desc": "时长,保留服务器实际单位"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "kill up to ",
+          "zh": "击杀数计算,最多 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "kills within ",
+          "zh": " 次击杀,时间窗口为 "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "）。"
+        }
+      ],
+      "zh": "击杀数计算,最多 %1$s 次击杀,时间窗口为 %2$s）。"
+    },
+    {
+      "id": "ultimate_crop_fever_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7When breaking crops, there is a",
+      "text": "When breaking crops, there is a",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "收获作物时,有 "
+    },
+    {
+      "id": "ultimate_crop_fever_chance",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§a%s% §7chance to trigger §d§lCrop",
+      "text": "%s% chance to trigger Crop",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "0.005",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§a",
+          "text": "%s% ",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": "chance to trigger ",
+          "zh": " 的概率触发"
+        },
+        {
+          "color": "§d§l",
+          "text": "Crop",
+          "zh": " Crop "
+        }
+      ],
+      "zh": "%s% 的概率触发 Crop "
+    },
+    {
+      "id": "ultimate_crop_fever_duration",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§d§lFever §7for §a%s §7which grants:",
+      "text": "Fever for %s which grants:",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "time",
+          "example": "60s",
+          "desc": "时长,保留服务器实际单位"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§d§l",
+          "text": "Fever ",
+          "zh": "Fever"
+        },
+        {
+          "color": "§7",
+          "text": "for ",
+          "zh": ",持续 "
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": "which grants:",
+          "zh": ",获得以下效果:"
+        }
+      ],
+      "zh": "Fever,持续 %s,获得以下效果:"
+    },
+    {
+      "id": "ultimate_crop_fever_rolls",
+      "context": "丰收狂热的额外作物掉落判定,不是简单增加固定数量",
+      "raw": "§7Additional crop rolls",
+      "text": "Additional crop rolls",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "额外进行作物掉落判定"
+    },
+    {
+      "id": "ultimate_overbloom_bonus",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§e+%s Overbloom",
+      "text": "+%s Overbloom",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "15",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s 过度绽放"
+    },
+    {
+      "id": "ultimate_farming_fortune_bonus",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§6+%s☘ Farming Fortune",
+      "text": "+%s☘ Farming Fortune",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "100",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s☘ 农业时运"
+    },
+    {
+      "id": "ultimate_duplex_arrow_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Shoot an extra arrow dealing §c%s% §7of the",
+      "text": "Shoot an extra arrow dealing %s% of the",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "20",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Shoot an extra arrow dealing ",
+          "zh": "额外射出一支箭,造成相当于首支箭矢 "
+        },
+        {
+          "color": "§c",
+          "text": "%s% ",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": "of the",
+          "zh": " 的伤害。"
+        }
+      ],
+      "zh": "额外射出一支箭,造成相当于首支箭矢 %s% 的伤害。"
+    },
+    {
+      "id": "ultimate_duplex_arrow_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7first arrow's damage.",
+      "text": "first arrow's damage.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "ultimate_duplex_fire_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Targets hit take §c%sx §7fire damage",
+      "text": "Targets hit take %sx fire damage",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "multiplier_increase",
+          "example": "1.5",
+          "desc": "原文倍率N,译为提升N-1倍,不是叠加后封顶"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Targets hit take ",
+          "zh": "被命中的目标受到的火焰伤害提升 "
+        },
+        {
+          "color": "§c",
+          "text": "%sx ",
+          "zh": "%s 倍"
+        },
+        {
+          "color": "§7",
+          "text": "fire damage",
+          "zh": ","
+        }
+      ],
+      "zh": "被命中的目标受到的火焰伤害提升 %s 倍,"
+    },
+    {
+      "id": "ultimate_duration_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7for §a%s§7.",
+      "text": "for %s.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "time",
+          "example": "60s",
+          "desc": "时长,保留服务器实际单位"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "for ",
+          "zh": "持续 "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "持续 %s。"
+    },
+    {
+      "id": "ultimate_fatal_tempo_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Attacking increases your §c⫽ Ferocity",
+      "text": "Attacking increases your ⫽ Ferocity",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Attacking increases your ",
+          "zh": "攻击会使你的"
+        },
+        {
+          "color": "§c",
+          "text": "⫽ Ferocity",
+          "zh": "⫽ 凶暴"
+        }
+      ],
+      "zh": "攻击会使你的⫽ 凶暴"
+    },
+    {
+      "id": "ultimate_fatal_tempo_mid",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7by §c%1$s% §7per hit, capped at §c%2$s% §7for %3$s",
+      "text": "by %1$s% per hit, capped at %2$s% for %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "50",
+          "desc": "随附魔等级变化的数值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "200",
+          "desc": "随附魔等级变化的数值"
+        },
+        {
+          "token": "%3$s",
+          "type": "number",
+          "example": "3",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "by ",
+          "zh": "每次命中提高 "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s% ",
+          "zh": "%1$s%"
+        },
+        {
+          "color": "§7",
+          "text": "per hit, capped at ",
+          "zh": ",最多提高 "
+        },
+        {
+          "color": "§c",
+          "text": "%2$s% ",
+          "zh": "%2$s%"
+        },
+        {
+          "color": "§7",
+          "text": "for %3$s",
+          "zh": ",效果持续至最后一次攻击后 %3$s"
+        }
+      ],
+      "zh": "每次命中提高 %1$s%,最多提高 %2$s%,效果持续至最后一次攻击后 %3$s"
+    },
+    {
+      "id": "ultimate_fatal_tempo_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7seconds after your last attack.",
+      "text": "seconds after your last attack.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": " 秒。"
+    },
+    {
+      "id": "ultimate_first_impression_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Grants §2+%s Sweep §7on melee Log",
+      "text": "Grants +%s Sweep on melee Log",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "5",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "近战砍伐原木时提供 "
+        },
+        {
+          "color": "§2",
+          "text": "+%s Sweep ",
+          "zh": "+%s 横扫"
+        },
+        {
+          "color": "§7",
+          "text": "on melee Log",
+          "zh": "。"
+        }
+      ],
+      "zh": "近战砍伐原木时提供 +%s 横扫。"
+    },
+    {
+      "id": "ultimate_first_impression_mid",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Breaks, and your first melee Log",
+      "text": "Breaks, and your first melee Log",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "ultimate_first_impression_tree",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Break on a tree grants you §2+%s",
+      "text": "Break on a tree grants you +%s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "10",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Break on a tree grants you ",
+          "zh": "每棵树的首次近战砍伐还会提供 "
+        },
+        {
+          "color": "§2",
+          "text": "+%s",
+          "zh": "+%s"
+        }
+      ],
+      "zh": "每棵树的首次近战砍伐还会提供 +%s"
+    },
+    {
+      "id": "ultimate_first_impression_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§2Sweep§7.",
+      "text": "Sweep.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§2",
+          "text": "Sweep",
+          "zh": " 横扫"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": " 横扫。"
+    },
+    {
+      "id": "ultimate_flash_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Gain a §a%s%§7 chance to instantly attract",
+      "text": "Gain a %s% chance to instantly attract",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "5",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain a ",
+          "zh": "有 "
+        },
+        {
+          "color": "§a",
+          "text": "%s%",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": " chance to instantly attract",
+          "zh": " 的概率让鱼立即咬钩。"
+        }
+      ],
+      "zh": "有 %s% 的概率让鱼立即咬钩。"
+    },
+    {
+      "id": "ultimate_flash_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7a fish.",
+      "text": "a fish.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "ultimate_flowstate_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Consecutive blocks broken grant",
+      "text": "Consecutive blocks broken grant",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "连续破坏方块时,每个方块增加 "
+    },
+    {
+      "id": "ultimate_flowstate_mid",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§6+%1$s⸕ Mining Speed§7. Stops after §a%2$s",
+      "text": "+%1$s⸕ Mining Speed. Stops after %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "3",
+          "desc": "随附魔等级变化的数值"
+        },
+        {
+          "token": "%2$s",
+          "type": "time",
+          "example": "10s",
+          "desc": "时长,保留服务器实际单位"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§6",
+          "text": "+%1$s⸕ Mining Speed",
+          "zh": "+%1$s⸕ 挖掘速度"
+        },
+        {
+          "color": "§7",
+          "text": ". Stops after ",
+          "zh": "。停止挖矿 "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ],
+      "zh": "+%1$s⸕ 挖掘速度。停止挖矿 %2$s"
+    },
+    {
+      "id": "ultimate_flowstate_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7of not mining and caps at §a%s §7blocks.",
+      "text": "of not mining and caps at %s blocks.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "200",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "of not mining and caps at ",
+          "zh": "后失效,最多累计 "
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": "blocks.",
+          "zh": " 个方块。"
+        }
+      ],
+      "zh": "后失效,最多累计 %s 个方块。"
+    },
+    {
+      "id": "ultimate_habanero_healing",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§8ℏ §7Heal §a+%s% §7more from wands.",
+      "text": "ℏ Heal +%s% more from wands.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "7.5",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§8",
+          "text": "ℏ ",
+          "zh": "ℏ "
+        },
+        {
+          "color": "§7",
+          "text": "Heal ",
+          "zh": "魔杖的治疗量提高 "
+        },
+        {
+          "color": "§a",
+          "text": "+%s% ",
+          "zh": "+%s%"
+        },
+        {
+          "color": "§7",
+          "text": "more from wands.",
+          "zh": "。"
+        }
+      ],
+      "zh": "ℏ 魔杖的治疗量提高 +%s%。"
+    },
+    {
+      "id": "ultimate_habanero_damage",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§8ℏ §7Deal §c+%s% damage §7with Slayer weapons.",
+      "text": "ℏ Deal +%s% damage with Slayer weapons.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "25",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§8",
+          "text": "ℏ ",
+          "zh": "ℏ "
+        },
+        {
+          "color": "§7",
+          "text": "Deal ",
+          "zh": "使用猎杀武器时,获得 "
+        },
+        {
+          "color": "§c",
+          "text": "+%s% damage ",
+          "zh": "+%s% 伤害加成"
+        },
+        {
+          "color": "§7",
+          "text": "with Slayer weapons.",
+          "zh": "。"
+        }
+      ],
+      "zh": "ℏ 使用猎杀武器时,获得 +%s% 伤害加成。"
+    },
+    {
+      "id": "ultimate_habanero_wisdom",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§8ℏ §7Gain §3+%s☯ Combat Wisdom §7with Slayer",
+      "text": "ℏ Gain +%s☯ Combat Wisdom with Slayer",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "5",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§8",
+          "text": "ℏ ",
+          "zh": "ℏ "
+        },
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "持有猎杀武器时,提供 "
+        },
+        {
+          "color": "§3",
+          "text": "+%s☯ Combat Wisdom ",
+          "zh": "+%s☯ 战斗智慧"
+        },
+        {
+          "color": "§7",
+          "text": "with Slayer",
+          "zh": "。"
+        }
+      ],
+      "zh": "ℏ 持有猎杀武器时,提供 +%s☯ 战斗智慧。"
+    },
+    {
+      "id": "ultimate_habanero_weapons",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7weapons.",
+      "text": "weapons.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "ultimate_habanero_effect",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§8ℏ §7With §aSmoldering Polarization§7, gain §b+%s✯",
+      "text": "ℏ With Smoldering Polarization, gain +%s✯",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "15",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§8",
+          "text": "ℏ ",
+          "zh": "ℏ "
+        },
+        {
+          "color": "§7",
+          "text": "With ",
+          "zh": "带有"
+        },
+        {
+          "color": "§a",
+          "text": "Smoldering Polarization",
+          "zh": "闷燃极化"
+        },
+        {
+          "color": "§7",
+          "text": ", gain ",
+          "zh": "效果时,你的猎杀武器获得 "
+        },
+        {
+          "color": "§b",
+          "text": "+%s✯",
+          "zh": "+%s✯"
+        }
+      ],
+      "zh": "ℏ 带有闷燃极化效果时,你的猎杀武器获得 +%s✯"
+    },
+    {
+      "id": "ultimate_habanero_magic_find",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§bMagic Find §7on your slayer weapon.",
+      "text": "Magic Find on your slayer weapon.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§b",
+          "text": "Magic Find ",
+          "zh": " 魔法寻宝"
+        },
+        {
+          "color": "§7",
+          "text": "on your slayer weapon.",
+          "zh": "。"
+        }
+      ],
+      "zh": " 魔法寻宝。"
+    },
+    {
+      "id": "ultimate_inferno_head",
+      "context": "第10次命中触发; 固定th写法,不误改成伤害数量",
+      "raw": "§7Every §c%sth §7hit on a mob traps it for",
+      "text": "Every %sth hit on a mob traps it for",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "10",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Every ",
+          "zh": "每命中同一只怪物 "
+        },
+        {
+          "color": "§c",
+          "text": "%sth ",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": "hit on a mob traps it for",
+          "zh": " 次,将其困住 "
+        }
+      ],
+      "zh": "每命中同一只怪物 %s 次,将其困住 "
+    },
+    {
+      "id": "ultimate_inferno_trap",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§a%1$s §7and deals §2%2$sx §7of that hit's",
+      "text": "%1$s and deals %2$sx of that hit's",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "time",
+          "example": "5s",
+          "desc": "时长,保留服务器实际单位"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "2.25",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "and deals ",
+          "zh": ",并在困住期间造成相当于该次攻击 "
+        },
+        {
+          "color": "§2",
+          "text": "%2$sx ",
+          "zh": "%2$s 倍"
+        },
+        {
+          "color": "§7",
+          "text": "of that hit's",
+          "zh": "的伤害。"
+        }
+      ],
+      "zh": "%1$s,并在困住期间造成相当于该次攻击 %2$s 倍的伤害。"
+    },
+    {
+      "id": "ultimate_inferno_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7damage over the trap duration.",
+      "text": "damage over the trap duration.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "ultimate_last_stand_condition",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7When falling below §c%s% ❤ Health§7:",
+      "text": "When falling below %s% ❤ Health:",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "40",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "When falling below ",
+          "zh": "当生命值降至 "
+        },
+        {
+          "color": "§c",
+          "text": "%s% ❤ Health",
+          "zh": "%s% ❤"
+        },
+        {
+          "color": "§7",
+          "text": ":",
+          "zh": " 以下时:"
+        }
+      ],
+      "zh": "当生命值降至 %s% ❤ 以下时:"
+    },
+    {
+      "id": "ultimate_last_stand_defense",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Gain §a+%1$s% ❈ Defense §7for §a%2$s§7.",
+      "text": "Gain +%1$s% ❈ Defense for %2$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "12.5",
+          "desc": "随附魔等级变化的数值"
+        },
+        {
+          "token": "%2$s",
+          "type": "time",
+          "example": "10s",
+          "desc": "时长,保留服务器实际单位"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "获得 "
+        },
+        {
+          "color": "§a",
+          "text": "+%1$s% ❈ Defense ",
+          "zh": "+%1$s% ❈ 防御力"
+        },
+        {
+          "color": "§7",
+          "text": "for ",
+          "zh": ",持续 "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "获得 +%1$s% ❈ 防御力,持续 %2$s。"
+    },
+    {
+      "id": "ultimate_last_stand_vitality",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Regen §4%s♨ Vitality§7.",
+      "text": "Regen %s♨ Vitality.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "10",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Regen ",
+          "zh": "回复 "
+        },
+        {
+          "color": "§4",
+          "text": "%s♨ Vitality",
+          "zh": "%s♨ 活力"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "回复 %s♨ 活力。"
+    },
+    {
+      "id": "ultimate_legion_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Increases all §cCombat §7stats and §b✯",
+      "text": "Increases all Combat stats and ✯",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increases all ",
+          "zh": "使全部"
+        },
+        {
+          "color": "§c",
+          "text": "Combat ",
+          "zh": "战斗"
+        },
+        {
+          "color": "§7",
+          "text": "stats and ",
+          "zh": "属性和"
+        },
+        {
+          "color": "§b",
+          "text": "✯",
+          "zh": "✯"
+        }
+      ],
+      "zh": "使全部战斗属性和✯"
+    },
+    {
+      "id": "ultimate_legion_mid",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§bMagic Find §7by §e%s% §7per player within",
+      "text": "Magic Find by %s% per player within",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "0.35",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§b",
+          "text": "Magic Find ",
+          "zh": "魔法寻宝"
+        },
+        {
+          "color": "§7",
+          "text": "by ",
+          "zh": "提高 "
+        },
+        {
+          "color": "§e",
+          "text": "%s% ",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": "per player within",
+          "zh": "（按周围 "
+        }
+      ],
+      "zh": "魔法寻宝提高 %s%（按周围 "
+    },
+    {
+      "id": "ultimate_legion_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§b%1$s §7blocks of you, up to §c%2$s §7players.",
+      "text": "%1$s blocks of you, up to %2$s players.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "30",
+          "desc": "随附魔等级变化的数值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "20",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§b",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "blocks of you, up to ",
+          "zh": " 格内的玩家数计算）,最多计入 "
+        },
+        {
+          "color": "§c",
+          "text": "%2$s ",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": "players.",
+          "zh": " 名玩家。"
+        }
+      ],
+      "zh": "%1$s 格内的玩家数计算）,最多计入 %2$s 名玩家。"
+    },
+    {
+      "id": "ultimate_missile_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7The Log penalty on Throwing Axe is",
+      "text": "The Log penalty on Throwing Axe is",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "投掷斧头的原木惩罚降低 "
+    },
+    {
+      "id": "ultimate_missile_tail",
+      "context": "Wiki旧概述写Sweep penalty,实际Guide写Log penalty; 不替换用户原文",
+      "raw": "§7reduced by §a%s%§7.",
+      "text": "reduced by %s%.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "50",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "reduced by ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§a",
+          "text": "%s%",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "%s%。"
+    },
+    {
+      "id": "ultimate_no_pain_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7You have §e%1$s% §7chance to gain §b%2$s",
+      "text": "You have %1$s% chance to gain %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "100",
+          "desc": "随附魔等级变化的数值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "10",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You have ",
+          "zh": "被怪物命中时,有 "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s% ",
+          "zh": "%1$s%"
+        },
+        {
+          "color": "§7",
+          "text": "chance to gain ",
+          "zh": " 的概率获得 "
+        },
+        {
+          "color": "§b",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ],
+      "zh": "被怪物命中时,有 %1$s% 的概率获得 %2$s"
+    },
+    {
+      "id": "ultimate_no_pain_mid",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7experience orbs every time you take",
+      "text": "experience orbs every time you take",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": " 个经验球。"
+    },
+    {
+      "id": "ultimate_no_pain_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7hits from mobs.",
+      "text": "hits from mobs.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "ultimate_one_for_all_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Removes all other enchants but",
+      "text": "Removes all other enchants but",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "移除所有其他附魔,但伤害提高 "
+    },
+    {
+      "id": "ultimate_one_for_all_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7increases your damage by §a%s%§7.",
+      "text": "increases your damage by %s%.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "500",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "increases your damage by ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§a",
+          "text": "%s%",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "%s%。"
+    },
+    {
+      "id": "ultimate_refrigerate_head",
+      "ref": "Hub_General/GUI_Item/Enchantment_Effects.json#guide_resource_convert_head",
+      "context": "冷藏与活力附魔共用转化句式,实际参数为法力值和防御力"
+    },
+    {
+      "id": "ultimate_refrigerate_duration",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§aDefense §7for §a%s§7.",
+      "text": "Defense for %s.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "time",
+          "example": "10s",
+          "desc": "时长,保留服务器实际单位"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Defense ",
+          "zh": " 防御力",
+          "order": 6
+        },
+        {
+          "color": "§7",
+          "text": "for ",
+          "zh": ",持续 ",
+          "order": 7
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s",
+          "order": 8
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。",
+          "order": 9
+        }
+      ],
+      "zh": ""
+    },
+    {
+      "id": "ultimate_refrigerate_cap",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§8(Max %s Defense)",
+      "text": "(Max %s Defense)",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "150",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§8",
+          "text": "(Max %s Defense)",
+          "zh": "（防御力上限: %s）",
+          "order": 10
+        }
+      ],
+      "zh": ""
+    },
+    {
+      "id": "ultimate_rend_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Use Left Click ability to rip your",
+      "text": "Use Left Click ability to rip your",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "使用左键技能,拔出附近敌人身上的箭矢。"
+    },
+    {
+      "id": "ultimate_rend_mid",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7arrows out of nearby enemies. Each",
+      "text": "arrows out of nearby enemies. Each",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "ultimate_rend_damage",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7arrow deals §c%s% §7of your last critical",
+      "text": "arrow deals %s% of your last critical",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "25",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "arrow deals ",
+          "zh": "每支箭造成相当于你上一次暴击射击伤害 "
+        },
+        {
+          "color": "§c",
+          "text": "%s% ",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": "of your last critical",
+          "zh": " 的伤害,"
+        }
+      ],
+      "zh": "每支箭造成相当于你上一次暴击射击伤害 %s% 的伤害,"
+    },
+    {
+      "id": "ultimate_rend_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7shot on the target, up to §c%s §7arrows.",
+      "text": "shot on the target, up to %s arrows.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "5",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "shot on the target, up to ",
+          "zh": "按该目标分别计算,最多拔出 "
+        },
+        {
+          "color": "§c",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": "arrows.",
+          "zh": " 支箭。"
+        }
+      ],
+      "zh": "按该目标分别计算,最多拔出 %s 支箭。"
+    },
+    {
+      "id": "ultimate_rend_cooldown",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§a%s §7Cooldown.",
+      "text": "%s Cooldown.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "time",
+          "example": "2s",
+          "desc": "时长,保留服务器实际单位"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s。",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "Cooldown.",
+          "zh": "冷却时间: ",
+          "order": 0
+        }
+      ],
+      "zh": "冷却时间: %s。"
+    },
+    {
+      "id": "ultimate_soul_eater_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Your weapon gains §c%sx §7the Mob",
+      "text": "Your weapon gains %sx the Mob",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "10",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Your weapon gains ",
+          "zh": "你的武器获得相当于最近击杀怪物攻击力 "
+        },
+        {
+          "color": "§c",
+          "text": "%sx ",
+          "zh": "%s 倍"
+        },
+        {
+          "color": "§7",
+          "text": "the Mob",
+          "zh": "的数值,"
+        }
+      ],
+      "zh": "你的武器获得相当于最近击杀怪物攻击力 %s 倍的数值,"
+    },
+    {
+      "id": "ultimate_soul_eater_monster",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Damage of the latest monster killed",
+      "text": "Damage of the latest monster killed",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "ultimate_soul_eater_strength",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7and adds it as §c❁ Strength §7on your",
+      "text": "and adds it as ❁ Strength on your",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "and adds it as ",
+          "zh": "并将其作为"
+        },
+        {
+          "color": "§c",
+          "text": "❁ Strength ",
+          "zh": "❁ 力量"
+        },
+        {
+          "color": "§7",
+          "text": "on your",
+          "zh": "加到"
+        }
+      ],
+      "zh": "并将其作为❁ 力量加到"
+    },
+    {
+      "id": "ultimate_soul_eater_next",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7next critical hit. §8(Max %s outside",
+      "text": "next critical hit. (Max %s outside",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "5k",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "next critical hit. ",
+          "zh": "下一次暴击上。"
+        },
+        {
+          "color": "§8",
+          "text": "(Max %s outside",
+          "zh": "（地牢外上限为 %s"
+        }
+      ],
+      "zh": "下一次暴击上。（地牢外上限为 %s"
+    },
+    {
+      "id": "ultimate_soul_eater_cap",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§8Dungeons).",
+      "text": "Dungeons).",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "）。"
+    },
+    {
+      "id": "ultimate_sunset_day",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7During the day, §e+%s Overbloom§7.",
+      "text": "During the day, +%s Overbloom.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "5",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "During the day, ",
+          "zh": "白天提供 "
+        },
+        {
+          "color": "§e",
+          "text": "+%s Overbloom",
+          "zh": "+%s 过度绽放"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "白天提供 +%s 过度绽放。"
+    },
+    {
+      "id": "ultimate_sunset_night",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7During the night, §b-%s% Visitor Cooldown.",
+      "text": "During the night, -%s% Visitor Cooldown.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "5",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "During the night, ",
+          "zh": "夜晚的"
+        },
+        {
+          "color": "§b",
+          "text": "-%s% Visitor Cooldown.",
+          "zh": "访客冷却时间减少 %s%。"
+        }
+      ],
+      "zh": "夜晚的访客冷却时间减少 %s%。"
+    },
+    {
+      "id": "ultimate_swarm_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Increases your damage by §c%s% §7for",
+      "text": "Increases your damage by %s% for",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "10",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increases your damage by ",
+          "zh": "伤害提高 "
+        },
+        {
+          "color": "§c",
+          "text": "%s% ",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": "for",
+          "zh": "（按周围 "
+        }
+      ],
+      "zh": "伤害提高 %s%（按周围 "
+    },
+    {
+      "id": "ultimate_swarm_mid",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7each enemy within §e%s §7blocks. Maximum",
+      "text": "each enemy within %s blocks. Maximum",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "10",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "each enemy within ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§e",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": "blocks. Maximum",
+          "zh": " 格内的敌人数计算）,最多计入 "
+        }
+      ],
+      "zh": "%s 格内的敌人数计算）,最多计入 "
+    },
+    {
+      "id": "ultimate_swarm_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7of §c%s §7enemies.",
+      "text": "of %s enemies.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "10",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "of ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§c",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": "enemies.",
+          "zh": " 只敌人。"
+        }
+      ],
+      "zh": "%s 只敌人。"
+    },
+    {
+      "id": "ultimate_the_one_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Grants §c+%1$s❤ Health §7and §c+%2$s❁",
+      "text": "Grants +%1$s❤ Health and +%2$s❁",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "1",
+          "desc": "随附魔等级变化的数值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "0.2",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§c",
+          "text": "+%1$s❤ Health ",
+          "zh": "+%1$s❤ 生命值"
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "和 "
+        },
+        {
+          "color": "§c",
+          "text": "+%2$s❁",
+          "zh": "+%2$s❁"
+        }
+      ],
+      "zh": "提供 +%1$s❤ 生命值和 +%2$s❁"
+    },
+    {
+      "id": "ultimate_the_one_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§cStrength §7per maxed out collection.",
+      "text": "Strength per maxed out collection.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§c",
+          "text": "Strength ",
+          "zh": " 力量"
+        },
+        {
+          "color": "§7",
+          "text": "per maxed out collection.",
+          "zh": "（每项满级收藏品）。"
+        }
+      ],
+      "zh": " 力量（每项满级收藏品）。"
+    },
+    {
+      "id": "ultimate_the_one_count",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7You have §a%s collections §7maxed.",
+      "text": "You have %s collections maxed.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "21",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You have ",
+          "zh": "你有 "
+        },
+        {
+          "color": "§a",
+          "text": "%s collections ",
+          "zh": "%s 项收藏品"
+        },
+        {
+          "color": "§7",
+          "text": "maxed.",
+          "zh": "已满级。"
+        }
+      ],
+      "zh": "你有 %s 项收藏品已满级。"
+    },
+    {
+      "id": "ultimate_jerry_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Increases the base damage of",
+      "text": "Increases the base damage of",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "使 "
+    },
+    {
+      "id": "ultimate_jerry_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§fAspect of the Jerry§7 by §a%s%§7.",
+      "text": "Aspect of the Jerry by %s%.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "5,000",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Aspect of the Jerry",
+          "zh": "Aspect of the Jerry"
+        },
+        {
+          "color": "§7",
+          "text": " by ",
+          "zh": " 的基础伤害提高 "
+        },
+        {
+          "color": "§a",
+          "text": "%s%",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "Aspect of the Jerry 的基础伤害提高 %s%。"
+    },
+    {
+      "id": "ultimate_jerry_signature",
+      "context": "适用武器的签名版后缀; 武器自造名保留",
+      "raw": "§aAspect of the Jerry, Signature Edition",
+      "text": "Aspect of the Jerry, Signature Edition",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Aspect of the Jerry（签名版）"
+    },
+    {
+      "id": "ultimate_precursor_eye",
+      "context": "终极智慧适用物品; 社区Wiki Ultimate Enchantments说明其技能消耗法力",
+      "raw": "§6Precursor Eye",
+      "text": "Precursor Eye",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "先驱之眼"
+    },
+    {
+      "id": "ultimate_ultimate_wise_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Reduces the ability mana cost of this",
+      "text": "Reduces the ability mana cost of this",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "此物品的技能法力消耗降低 "
+    },
+    {
+      "id": "ultimate_ultimate_wise_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7item by §a%s%§7.",
+      "text": "item by %s%.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "50",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "item by ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§a",
+          "text": "%s%",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "%s%。"
+    },
+    {
+      "id": "ultimate_wisdom_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Gain §b%1$s §7Intelligence for every §b%2$s",
+      "text": "Gain %1$s Intelligence for every %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "5",
+          "desc": "随附魔等级变化的数值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "5",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "获得 "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "Intelligence for every ",
+          "zh": " 智力（每拥有 "
+        },
+        {
+          "color": "§b",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ],
+      "zh": "获得 %1$s 智力（每拥有 %2$s"
+    },
+    {
+      "id": "ultimate_wisdom_mid",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7levels of exp you have on you.",
+      "text": "levels of exp you have on you.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": " 个经验等级）。"
+    },
+    {
+      "id": "ultimate_wisdom_cap",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Capped at §b%s §7Intelligence.",
+      "text": "Capped at %s Intelligence.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "100",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Capped at ",
+          "zh": "智力加成上限为 "
+        },
+        {
+          "color": "§b",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": "Intelligence.",
+          "zh": "。"
+        }
+      ],
+      "zh": "智力加成上限为 %s。"
+    }
+  ]
+}

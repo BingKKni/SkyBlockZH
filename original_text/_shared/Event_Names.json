@@ -6,7 +6,6 @@
   "gui_context": "「日历与活动」菜单里每个格子的物品名。带届数的那几条名字长成 「88th Election Booth Opens」,所以模板前面有一个 ordinal 占位符。",
   "todo": [
     "本文件里带届数(ordinal)的六条来自 wiki 的 Calendar and Events/UI 子页,是逐格抄的,可信度高;不带届数的那些是从 Events 页的活动表来的,**游戏里格子上的确切写法(有没有届数前缀、颜色码)还没实测**,verified_ingame 因此是 false。进游戏打开日历对一眼就能定。",
-    "`Starlyn Contest`(Galatea 的每日竞赛,由 Agatha 主持)故意留空:Starlyn 是地名还是人名没查实,猜错了比不翻更糟。等 Foraging/Galatea 阶段一起定。",
     "活动名同时写进了 _shared/Terms.json——那张表管的是占位符捕到的值(计分板的 `Mining Event: %s`、BossBar 喊的活动名),本文件管的是菜单格子的物品名,两条路引擎不通用。两边译名必须一致,checkTranslations 里的 checkEventNamesAgree 会拦住写歪的。"
   ],
   "entries": [
@@ -333,9 +332,9 @@
       "context": "Galatea 的每日竞赛活动名",
       "text": "Starlyn Contest",
       "placeholders": [],
-      "gloss": "Starlyn 是地名还是人名没查实,先不翻。见本文件 todo。",
+      "gloss": "社区 Wiki Starlyn_Contest 于 2026-09-08 12:18 更新，已确认是日常竞赛机制。沿用 Your_Skills.json 的 Starlyn 竞赛，专名 Starlyn 保留。",
       "translate": true,
-      "zh": ""
+      "zh": "Starlyn 竞赛"
     },
     {
       "id": "event_bonus_mining_fiesta",

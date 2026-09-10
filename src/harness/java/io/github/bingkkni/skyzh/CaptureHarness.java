@@ -922,6 +922,25 @@ public final class CaptureHarness {
 		check("换了玩法就各归各的",
 			Files.exists(root.resolve("untranslated/Foraging/GUI_Item/Bank.json")), true);
 
+		String brokenLore = "§7Can damage §cendermen.";
+		for (String menu : List.of("LoreInventory", "LoreShop")) {
+			CaptureStore.accept(new CaptureStore.Sighting(
+				CaptureSurface.GUI_LORE, "lore-shared-" + menu, styled(brokenLore),
+				"Combat", "", menu, menu + " Lore", now + 3
+			));
+		}
+		item(root, "Combat", "LegacyItem", brokenLore, "LegacyItem Lore", now + 4);
+		CaptureStore.flush();
+		Path loreFile = root.resolve("colour/Combat/GUI_Lore/LoreInventory.json");
+		check("整句 Lore 的首个菜单保留颜色诊断", Files.exists(loreFile), true);
+		check("整句 Lore 跨菜单不重复落盘",
+			Files.exists(root.resolve("colour/Combat/GUI_Lore/LoreShop.json")), false);
+		JsonObject loreCapture = find(loreFile, "can_damage_endermen");
+		check("整句 Lore 合并次数", loreCapture.get("count").getAsInt(), 2);
+		check("整句 Lore 合并菜单来源", loreCapture.getAsJsonArray("also_seen").get(0).getAsString(), "LoreShop Lore");
+		check("同文本 ITEM 与 LORE 诊断不合并",
+			Files.exists(root.resolve("colour/Combat/GUI_Item/LegacyItem.json")), true);
+
 		CaptureStore.clear(root);
 		delete(root);
 	}

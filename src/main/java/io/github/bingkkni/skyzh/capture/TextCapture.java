@@ -3,6 +3,8 @@ package io.github.bingkkni.skyzh.capture;
 import io.github.bingkkni.skyzh.SkyZHConfig;
 import io.github.bingkkni.skyzh.compat.HypixelApi;
 import io.github.bingkkni.skyzh.text.LineShape;
+import io.github.bingkkni.skyzh.text.LoreMatcher;
+import io.github.bingkkni.skyzh.text.Translator;
 import io.github.bingkkni.skyzh.text.StyledText;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -158,7 +160,15 @@ public final class TextCapture {
 		// in the note and not in the key: the same sentence on line 4 of one item and line 9 of another
 		// is one record, which is what the shared-fragment library in _shared/ is made of.
 		for (int i = 0; i < lines.size(); i++) {
-			offer(CaptureSurface.GUI_ITEM, lines.get(i), name, where + " Lore", 0);
+			LoreMatcher.Match sentence = LoreMatcher.find(Translator.index(), lines, i);
+			if (sentence != null) {
+				// Classify the entire matched sentence, so mixed/colour diagnostics still work;
+				// do not report its already-translated English wrap tails as missing records.
+				offer(CaptureSurface.GUI_LORE, sentence.source(), name, where + " Lore 整句", 0);
+				i += sentence.lines() - 1;
+			} else {
+				offer(CaptureSurface.GUI_ITEM, lines.get(i), name, where + " Lore", 0);
+			}
 		}
 	}
 

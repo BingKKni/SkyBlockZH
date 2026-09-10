@@ -4,7 +4,7 @@
   "fetched_at": "2026-08-29",
   "verified_ingame": true,
   "gui_context": "拍卖行的几个界面标题:按关键词搜索后的结果页、单件拍卖品的详情页、合作岛共用的拍卖行、自己出过价的列表。",
-  "source_note": "两处需要留底的判断。① 搜索结果的标题里,引号内是玩家自己敲的搜索词,做成占位符;example 写成 LT-522 而不是 LT,是因为 example 的字符族会绑定这个占位符能接什么(见 text/ValueShape.java)——实测见过的词里既有纯字母(LT / TX / god p / sx-)也有字母带数字(LT-522),写一个同时含两者的例子才不会把另一半挡在外面。② 标题被截断的那一种没有收:实测采到过 `Auctions: \"Spicy Goblin Omelett`(31 个字符,末尾的引号被容器标题长度上限吃掉了)。没给它单独写记录,是因为「Auctions: \"%s」这种不带收尾引号的模板会把正常的 `Auctions: \"LT\"` 也一起收进来(占位符吃掉 `LT\"`),两条记录抢同一行、谁先谁后都对不上。宁可让被截断的标题保持英文,也不要一个可能答错的记录——同 GLOSSARY.md 的取舍原则。",
+  "source_note": "搜索词使用 search_query，保留玩家输入的字母、数字、中文及标点，不查词表，也不以示例字符族约束输入。无右引号的实测截断标题见 Trading_Submenus_Live.json；完整标题因字面量更长而优先匹配。",
   "titles": [
     {
       "id": "gui_title_auctions_search",
@@ -14,7 +14,7 @@
         {
           "token": "%s",
           "desc": "玩家自己输入的搜索词,原样保留不翻译",
-          "type": "raw",
+          "type": "search_query",
           "example": "LT-522"
         }
       ],

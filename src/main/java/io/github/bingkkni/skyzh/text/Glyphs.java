@@ -150,6 +150,25 @@ public final class Glyphs {
 		return restored == null ? chinese : new String(restored);
 	}
 
+	/**
+	 * Every symbol the table folds an icon onto, as the body of a regex character class.
+	 *
+	 * <p>For {@link Capture#ICON}. Matching runs on the canonical spelling, so an icon placeholder sees
+	 * these symbols and never the private-use glyphs — and several of them are not Unicode symbols at
+	 * all: ⸕ (Mining Speed) is punctuation, ๑ (Ability Damage) is a Thai digit. A class written as
+	 * {@code \\p{S}} silently refused both, and the template that spells the icon slot out then lost to
+	 * the one that allows it to be empty, which swallowed the icon into the stat name.
+	 */
+	public static String symbolClass() {
+		StringBuilder symbols = new StringBuilder();
+
+		for (char symbol : new java.util.TreeSet<>(SYMBOLS.values())) {
+			symbols.append(symbol);
+		}
+
+		return symbols.toString();
+	}
+
 	/** The character this line used for a given symbol, or the symbol itself if it used none. */
 	private static char glyphFor(char symbol, String sourcePlain) {
 		for (int i = 0; i < sourcePlain.length(); i++) {

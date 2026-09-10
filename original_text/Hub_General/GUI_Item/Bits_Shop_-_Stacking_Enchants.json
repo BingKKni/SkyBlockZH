@@ -18,13 +18,8 @@
     },
     {
       "id": "expertise_i",
-      "context": "附魔书 Lore 中的 Expertise I 名称",
-      "raw": "§9Expertise I",
-      "text": "Expertise I",
-      "placeholders": [],
-      "gloss": "采集器曾把七个附魔名合并为 `%1$s I`。仓库没有 Expertise 的可靠既有译名，按要求保留英文名称。",
-      "translate": true,
-      "zh": "Expertise I"
+      "ref": "Hub_General/GUI_Item/Enchantment_Names.json#guide_name_expertise_tier",
+      "context": "专精附魔名复用等级模板,不再由旧I级英文精确记录截获"
     },
     {
       "id": "compact_i",
@@ -32,59 +27,34 @@
       "raw": "§9Compact I",
       "text": "Compact I",
       "placeholders": [],
-      "gloss": "Compact 沿用 GLOSSARY.md 与 _shared/Terms.json 的既定译名“压缩”。",
-      "translate": true,
-      "zh": "压缩 I"
+      "gloss": "2026-09-08 用户要求: 非原版附魔名称保留英文,只翻译效果说明。",
+      "translate": false,
+      "zh": ""
     },
     {
       "id": "cultivating_i",
-      "context": "附魔书 Lore 中的 Cultivating I 名称",
-      "raw": "§9Cultivating I",
-      "text": "Cultivating I",
-      "placeholders": [],
-      "gloss": "仓库没有 Cultivating 的可靠既有译名，保留英文名称。",
-      "translate": true,
-      "zh": "Cultivating I"
+      "ref": "Hub_General/GUI_Item/Enchantment_Names.json#guide_name_cultivating_tier",
+      "context": "耕耘附魔名复用等级模板"
     },
     {
       "id": "absorb_i",
-      "context": "附魔书 Lore 中的 Absorb I 名称",
-      "raw": "§9Absorb I",
-      "text": "Absorb I",
-      "placeholders": [],
-      "gloss": "仓库没有 Absorb 的可靠既有译名，保留英文名称。",
-      "translate": true,
-      "zh": "Absorb I"
+      "ref": "Hub_General/GUI_Item/Enchantment_Names.json#guide_name_absorb_tier",
+      "context": "吸收附魔名复用等级模板"
     },
     {
       "id": "champion_i",
-      "context": "附魔书 Lore 中的 Champion I 名称",
-      "raw": "§9Champion I",
-      "text": "Champion I",
-      "placeholders": [],
-      "gloss": "仓库没有 Champion 的可靠既有译名，保留英文名称。",
-      "translate": true,
-      "zh": "Champion I"
+      "ref": "Hub_General/GUI_Item/Enchantment_Names.json#guide_name_champion_tier",
+      "context": "冠军附魔名复用等级模板"
     },
     {
       "id": "hecatomb_i",
-      "context": "附魔书 Lore 中的 Hecatomb I 名称",
-      "raw": "§9Hecatomb I",
-      "text": "Hecatomb I",
-      "placeholders": [],
-      "gloss": "Hecatomb 是空岛自造附魔名，仓库没有可靠既有译名，保留英文名称。",
-      "translate": true,
-      "zh": "Hecatomb I"
+      "ref": "Hub_General/GUI_Item/Enchantment_Names.json#guide_name_hecatomb_tier",
+      "context": "百牛祭附魔名复用等级模板"
     },
     {
       "id": "toxophilite_i",
-      "context": "附魔书 Lore 中的 Toxophilite I 名称",
-      "raw": "§9Toxophilite I",
-      "text": "Toxophilite I",
-      "placeholders": [],
-      "gloss": "仓库没有 Toxophilite 的可靠既有译名，保留英文名称。",
-      "translate": true,
-      "zh": "Toxophilite I"
+      "ref": "Hub_General/GUI_Item/Enchantment_Names.json#guide_name_toxophilite_tier",
+      "context": "弓术精通附魔名复用等级模板"
     },
     {
       "id": "grants_06_sea_creature_chance",
@@ -96,8 +66,16 @@
       "translate": true,
       "zh": "提供 +0.6 海洋生物几率",
       "segments": [
-        { "color": "§7", "text": "Grants ", "zh": "提供 " },
-        { "color": "§3", "text": "+0.6 Sea Creature Chance", "zh": "+0.6 海洋生物几率" }
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§3",
+          "text": "+0.6 Sea Creature Chance",
+          "zh": "+0.6 海洋生物几率"
+        }
       ]
     },
     {
@@ -110,9 +88,21 @@
       "translate": true,
       "zh": "以及 +2☯ 钓鱼智慧,对海洋生物生效。",
       "segments": [
-        { "color": "§7", "text": "and ", "zh": "以及 " },
-        { "color": "§3", "text": "+2☯ Fishing Wisdom ", "zh": "+2☯ 钓鱼智慧" },
-        { "color": "§7", "text": "when killing", "zh": ",对海洋生物生效。" }
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "以及 "
+        },
+        {
+          "color": "§3",
+          "text": "+2☯ Fishing Wisdom ",
+          "zh": "+2☯ 钓鱼智慧"
+        },
+        {
+          "color": "§7",
+          "text": "when killing",
+          "zh": ",对海洋生物生效。"
+        }
       ]
     },
     {
@@ -165,8 +155,16 @@
       "translate": true,
       "zh": "适用于: 钓鱼竿",
       "segments": [
-        { "color": "§7", "text": "Applicable on: ", "zh": "适用于: " },
-        { "color": "§9", "text": "Fishing Rod", "zh": "钓鱼竿" }
+        {
+          "color": "§7",
+          "text": "Applicable on: ",
+          "zh": "适用于: "
+        },
+        {
+          "color": "§9",
+          "text": "Fishing Rod",
+          "zh": "钓鱼竿"
+        }
       ]
     },
     {
@@ -179,8 +177,16 @@
       "translate": true,
       "zh": "适用于: 挖矿工具",
       "segments": [
-        { "color": "§7", "text": "Applicable on: ", "zh": "适用于: " },
-        { "color": "§9", "text": "Mining Tools", "zh": "挖矿工具" }
+        {
+          "color": "§7",
+          "text": "Applicable on: ",
+          "zh": "适用于: "
+        },
+        {
+          "color": "§9",
+          "text": "Mining Tools",
+          "zh": "挖矿工具"
+        }
       ]
     },
     {
@@ -193,8 +199,16 @@
       "translate": true,
       "zh": "适用于: 农业工具",
       "segments": [
-        { "color": "§7", "text": "Applicable on: ", "zh": "适用于: " },
-        { "color": "§9", "text": "Farming Tool", "zh": "农业工具" }
+        {
+          "color": "§7",
+          "text": "Applicable on: ",
+          "zh": "适用于: "
+        },
+        {
+          "color": "§9",
+          "text": "Farming Tool",
+          "zh": "农业工具"
+        }
       ]
     },
     {
@@ -207,8 +221,16 @@
       "translate": true,
       "zh": "适用于: 近战武器",
       "segments": [
-        { "color": "§7", "text": "Applicable on: ", "zh": "适用于: " },
-        { "color": "§9", "text": "Melee Weapon", "zh": "近战武器" }
+        {
+          "color": "§7",
+          "text": "Applicable on: ",
+          "zh": "适用于: "
+        },
+        {
+          "color": "§9",
+          "text": "Melee Weapon",
+          "zh": "近战武器"
+        }
       ]
     },
     {
@@ -217,14 +239,27 @@
       "raw": "§7Apply Cost: §3%1$s Exp Levels",
       "text": "Apply Cost: %1$s Exp Levels",
       "placeholders": [
-        { "token": "%1$s", "desc": "应用该附魔所需的经验等级", "type": "number", "example": "25" }
+        {
+          "token": "%1$s",
+          "desc": "应用该附魔所需的经验等级",
+          "type": "number",
+          "example": "25"
+        }
       ],
       "gloss": "采集观察到 25 与 10 两种数值；仅数值动态，分类词 Exp Levels 固定并翻译。",
       "translate": true,
       "zh": "应用花费: %1$s 经验等级",
       "segments": [
-        { "color": "§7", "text": "Apply Cost: ", "zh": "应用花费: " },
-        { "color": "§3", "text": "%1$s Exp Levels", "zh": "%1$s 经验等级" }
+        {
+          "color": "§7",
+          "text": "Apply Cost: ",
+          "zh": "应用花费: "
+        },
+        {
+          "color": "§3",
+          "text": "%1$s Exp Levels",
+          "zh": "%1$s 经验等级"
+        }
       ]
     },
     {
@@ -237,8 +272,16 @@
       "translate": true,
       "zh": "▲ Expertise 附魔无法通过铁砧合并附魔书来升到下一级!",
       "segments": [
-        { "color": "§e", "text": "▲ ", "zh": "▲ " },
-        { "color": "§7", "text": "Expertise cannot be combined!", "zh": "Expertise 附魔无法通过铁砧合并附魔书来升到下一级!" }
+        {
+          "color": "§e",
+          "text": "▲ ",
+          "zh": "▲ "
+        },
+        {
+          "color": "§7",
+          "text": "Expertise cannot be combined!",
+          "zh": "Expertise 附魔无法通过铁砧合并附魔书来升到下一级!"
+        }
       ]
     },
     {
@@ -249,10 +292,18 @@
       "placeholders": [],
       "gloss": "Compact 沿用既定译名“压缩”；由动态附魔名模板拆出。",
       "translate": true,
-      "zh": "▲ 压缩附魔无法通过铁砧合并附魔书来升到下一级!",
+      "zh": "▲ Compact 附魔无法通过铁砧合并附魔书来升到下一级!",
       "segments": [
-        { "color": "§e", "text": "▲ ", "zh": "▲ " },
-        { "color": "§7", "text": "Compact cannot be combined!", "zh": "压缩附魔无法通过铁砧合并附魔书来升到下一级!" }
+        {
+          "color": "§e",
+          "text": "▲ ",
+          "zh": "▲ "
+        },
+        {
+          "color": "§7",
+          "text": "Compact cannot be combined!",
+          "zh": "Compact 附魔无法通过铁砧合并附魔书来升到下一级!"
+        }
       ]
     },
     {
@@ -265,8 +316,16 @@
       "translate": true,
       "zh": "▲ Cultivating 附魔无法通过铁砧合并附魔书来升到下一级!",
       "segments": [
-        { "color": "§e", "text": "▲ ", "zh": "▲ " },
-        { "color": "§7", "text": "Cultivating cannot be combined!", "zh": "Cultivating 附魔无法通过铁砧合并附魔书来升到下一级!" }
+        {
+          "color": "§e",
+          "text": "▲ ",
+          "zh": "▲ "
+        },
+        {
+          "color": "§7",
+          "text": "Cultivating cannot be combined!",
+          "zh": "Cultivating 附魔无法通过铁砧合并附魔书来升到下一级!"
+        }
       ]
     },
     {
@@ -279,8 +338,16 @@
       "translate": true,
       "zh": "▲ Absorb 附魔无法通过铁砧合并附魔书来升到下一级!",
       "segments": [
-        { "color": "§e", "text": "▲ ", "zh": "▲ " },
-        { "color": "§7", "text": "Absorb cannot be combined!", "zh": "Absorb 附魔无法通过铁砧合并附魔书来升到下一级!" }
+        {
+          "color": "§e",
+          "text": "▲ ",
+          "zh": "▲ "
+        },
+        {
+          "color": "§7",
+          "text": "Absorb cannot be combined!",
+          "zh": "Absorb 附魔无法通过铁砧合并附魔书来升到下一级!"
+        }
       ]
     },
     {
@@ -293,8 +360,16 @@
       "translate": true,
       "zh": "▲ Champion 附魔无法通过铁砧合并附魔书来升到下一级!",
       "segments": [
-        { "color": "§e", "text": "▲ ", "zh": "▲ " },
-        { "color": "§7", "text": "Champion cannot be combined!", "zh": "Champion 附魔无法通过铁砧合并附魔书来升到下一级!" }
+        {
+          "color": "§e",
+          "text": "▲ ",
+          "zh": "▲ "
+        },
+        {
+          "color": "§7",
+          "text": "Champion cannot be combined!",
+          "zh": "Champion 附魔无法通过铁砧合并附魔书来升到下一级!"
+        }
       ]
     },
     {
@@ -307,8 +382,16 @@
       "translate": true,
       "zh": "▲ Hecatomb 附魔无法通过铁砧合并附魔书来升到下一级!",
       "segments": [
-        { "color": "§e", "text": "▲ ", "zh": "▲ " },
-        { "color": "§7", "text": "Hecatomb cannot be combined!", "zh": "Hecatomb 附魔无法通过铁砧合并附魔书来升到下一级!" }
+        {
+          "color": "§e",
+          "text": "▲ ",
+          "zh": "▲ "
+        },
+        {
+          "color": "§7",
+          "text": "Hecatomb cannot be combined!",
+          "zh": "Hecatomb 附魔无法通过铁砧合并附魔书来升到下一级!"
+        }
       ]
     },
     {
@@ -321,8 +404,16 @@
       "translate": true,
       "zh": "▲ Toxophilite 附魔无法通过铁砧合并附魔书来升到下一级!",
       "segments": [
-        { "color": "§e", "text": "▲ ", "zh": "▲ " },
-        { "color": "§7", "text": "Toxophilite cannot be combined!", "zh": "Toxophilite 附魔无法通过铁砧合并附魔书来升到下一级!" }
+        {
+          "color": "§e",
+          "text": "▲ ",
+          "zh": "▲ "
+        },
+        {
+          "color": "§7",
+          "text": "Toxophilite cannot be combined!",
+          "zh": "Toxophilite 附魔无法通过铁砧合并附魔书来升到下一级!"
+        }
       ]
     },
     {
@@ -340,10 +431,26 @@
       "translate": true,
       "zh": "获得 +1☯ 挖掘智慧,并有 0.25% 的概率额外掉落附魔物品。",
       "segments": [
-        { "color": "§7", "text": "Gain ", "zh": "获得 " },
-        { "color": "§3", "text": "+1☯ Mining Wisdom ", "zh": "+1☯ 挖掘智慧" },
-        { "color": "§7", "text": "and a ", "zh": ",并有 " },
-        { "color": "§a", "text": "0.25%", "zh": "0.25% 的概率额外掉落附魔物品。" }
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "获得 "
+        },
+        {
+          "color": "§3",
+          "text": "+1☯ Mining Wisdom ",
+          "zh": "+1☯ 挖掘智慧"
+        },
+        {
+          "color": "§7",
+          "text": "and a ",
+          "zh": ",并有 "
+        },
+        {
+          "color": "§a",
+          "text": "0.25%",
+          "zh": "0.25% 的概率额外掉落附魔物品。"
+        }
       ]
     },
     {
@@ -367,10 +474,26 @@
       "translate": true,
       "zh": "获得 +1☯ 农业智慧和 +2 农业时运。",
       "segments": [
-        { "color": "§7", "text": "Gain ", "zh": "获得 " },
-        { "color": "§3", "text": "+1☯ Farming Wisdom ", "zh": "+1☯ 农业智慧" },
-        { "color": "§7", "text": "and ", "zh": "和 " },
-        { "color": "§6", "text": "+2", "zh": "+2 农业时运。" }
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "获得 "
+        },
+        {
+          "color": "§3",
+          "text": "+1☯ Farming Wisdom ",
+          "zh": "+1☯ 农业智慧"
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "和 "
+        },
+        {
+          "color": "§6",
+          "text": "+2",
+          "zh": "+2 农业时运。"
+        }
       ]
     },
     {
@@ -383,9 +506,21 @@
       "translate": true,
       "zh": "提供 +1☯ 伐木智慧和",
       "segments": [
-        { "color": "§7", "text": "Grants ", "zh": "提供 " },
-        { "color": "§3", "text": "+1☯ Foraging Wisdom ", "zh": "+1☯ 伐木智慧" },
-        { "color": "§7", "text": "and", "zh": "和" }
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§3",
+          "text": "+1☯ Foraging Wisdom ",
+          "zh": "+1☯ 伐木智慧"
+        },
+        {
+          "color": "§7",
+          "text": "and",
+          "zh": "和"
+        }
       ]
     },
     {
@@ -398,8 +533,16 @@
       "translate": true,
       "zh": "+2 伐木时运。",
       "segments": [
-        { "color": "§6", "text": "+2 Foraging Fortune", "zh": "+2 伐木时运" },
-        { "color": "§7", "text": ".", "zh": "。" }
+        {
+          "color": "§6",
+          "text": "+2 Foraging Fortune",
+          "zh": "+2 伐木时运"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
       ]
     },
     {
@@ -412,8 +555,16 @@
       "translate": true,
       "zh": "适用于: 斧",
       "segments": [
-        { "color": "§7", "text": "Applicable on: ", "zh": "适用于: " },
-        { "color": "§9", "text": "Axe", "zh": "斧" }
+        {
+          "color": "§7",
+          "text": "Applicable on: ",
+          "zh": "适用于: "
+        },
+        {
+          "color": "§9",
+          "text": "Axe",
+          "zh": "斧"
+        }
       ]
     },
     {
@@ -426,8 +577,16 @@
       "translate": true,
       "zh": "适用于: 头盔",
       "segments": [
-        { "color": "§7", "text": "Applicable on: ", "zh": "适用于: " },
-        { "color": "§9", "text": "Helmet", "zh": "头盔" }
+        {
+          "color": "§7",
+          "text": "Applicable on: ",
+          "zh": "适用于: "
+        },
+        {
+          "color": "§9",
+          "text": "Helmet",
+          "zh": "头盔"
+        }
       ]
     },
     {
@@ -440,8 +599,16 @@
       "translate": true,
       "zh": "适用于: 弓",
       "segments": [
-        { "color": "§7", "text": "Applicable on: ", "zh": "适用于: " },
-        { "color": "§9", "text": "Bow", "zh": "弓" }
+        {
+          "color": "§7",
+          "text": "Applicable on: ",
+          "zh": "适用于: "
+        },
+        {
+          "color": "§9",
+          "text": "Bow",
+          "zh": "弓"
+        }
       ]
     },
     {
@@ -454,9 +621,21 @@
       "translate": true,
       "zh": "获得 3% 额外战斗经验。对同一只怪物的第 2 次攻击",
       "segments": [
-        { "color": "§7", "text": "Gain ", "zh": "获得 " },
-        { "color": "§a", "text": "3% ", "zh": "3% " },
-        { "color": "§7", "text": "extra Combat XP. The 2nd hit", "zh": "额外战斗经验。对同一只怪物的第 2 次攻击" }
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "获得 "
+        },
+        {
+          "color": "§a",
+          "text": "3% ",
+          "zh": "3% "
+        },
+        {
+          "color": "§7",
+          "text": "extra Combat XP. The 2nd hit",
+          "zh": "额外战斗经验。对同一只怪物的第 2 次攻击"
+        }
       ]
     },
     {
@@ -469,11 +648,31 @@
       "translate": true,
       "zh": "会提供 +1.4 硬币和 +7 经验球。",
       "segments": [
-        { "color": "§7", "text": "on a mob grants ", "zh": "会提供 " },
-        { "color": "§6", "text": "+1.4 coins ", "zh": "+1.4 硬币" },
-        { "color": "§7", "text": "& ", "zh": "和 " },
-        { "color": "§3", "text": "+7 ", "zh": "+7 " },
-        { "color": "§7", "text": "exp", "zh": "经验球。" }
+        {
+          "color": "§7",
+          "text": "on a mob grants ",
+          "zh": "会提供 "
+        },
+        {
+          "color": "§6",
+          "text": "+1.4 coins ",
+          "zh": "+1.4 硬币"
+        },
+        {
+          "color": "§7",
+          "text": "& ",
+          "zh": "和 "
+        },
+        {
+          "color": "§3",
+          "text": "+7 ",
+          "zh": "+7 "
+        },
+        {
+          "color": "§7",
+          "text": "exp",
+          "zh": "经验球。"
+        }
       ]
     },
     {
@@ -517,13 +716,41 @@
       "translate": true,
       "zh": "获得 +0.28% 地牢经验和 +0.56% 职业经验，",
       "segments": [
-        { "color": "§7", "text": "Gain ", "zh": "获得 " },
-        { "color": "§a", "text": "+0.28% ", "zh": "+0.28% " },
-        { "color": "§c", "text": "Catacombs ", "zh": "地牢" },
-        { "color": "§7", "text": "XP & ", "zh": "经验和 " },
-        { "color": "§a", "text": "+0.56% ", "zh": "+0.56% " },
-        { "color": "§3", "text": "Class ", "zh": "职业" },
-        { "color": "§7", "text": "XP,", "zh": "经验，" }
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "获得 "
+        },
+        {
+          "color": "§a",
+          "text": "+0.28% ",
+          "zh": "+0.28% "
+        },
+        {
+          "color": "§c",
+          "text": "Catacombs ",
+          "zh": "地牢"
+        },
+        {
+          "color": "§7",
+          "text": "XP & ",
+          "zh": "经验和 "
+        },
+        {
+          "color": "§a",
+          "text": "+0.56% ",
+          "zh": "+0.56% "
+        },
+        {
+          "color": "§3",
+          "text": "Class ",
+          "zh": "职业"
+        },
+        {
+          "color": "§7",
+          "text": "XP,",
+          "zh": "经验，"
+        }
       ]
     },
     {
@@ -536,9 +763,21 @@
       "translate": true,
       "zh": "在 S+ 评分通关时翻倍。",
       "segments": [
-        { "color": "§7", "text": "doubled on ", "zh": "在 " },
-        { "color": "§b§l", "text": "S+ ", "zh": "S+ " },
-        { "color": "§7", "text": "runs.", "zh": "评分通关时翻倍。" }
+        {
+          "color": "§7",
+          "text": "doubled on ",
+          "zh": "在 "
+        },
+        {
+          "color": "§b§l",
+          "text": "S+ ",
+          "zh": "S+ "
+        },
+        {
+          "color": "§7",
+          "text": "runs.",
+          "zh": "评分通关时翻倍。"
+        }
       ]
     },
     {
@@ -551,11 +790,31 @@
       "translate": true,
       "zh": "提供 +2.6 生命值，每 10 级地牢等级生效一次。",
       "segments": [
-        { "color": "§7", "text": "Grants ", "zh": "提供 " },
-        { "color": "§c", "text": "+2.6 ", "zh": "+2.6 生命值" },
-        { "color": "§7", "text": "per 10 ", "zh": "，每 10 级" },
-        { "color": "§c", "text": "Catacombs ", "zh": "地牢" },
-        { "color": "§7", "text": "levels.", "zh": "等级生效一次。" }
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§c",
+          "text": "+2.6 ",
+          "zh": "+2.6 生命值"
+        },
+        {
+          "color": "§7",
+          "text": "per 10 ",
+          "zh": "，每 10 级"
+        },
+        {
+          "color": "§c",
+          "text": "Catacombs ",
+          "zh": "地牢"
+        },
+        {
+          "color": "§7",
+          "text": "levels.",
+          "zh": "等级生效一次。"
+        }
       ]
     },
     {
@@ -568,9 +827,21 @@
       "translate": true,
       "zh": "获得 3% 额外战斗经验，并提供",
       "segments": [
-        { "color": "§7", "text": "Gain ", "zh": "获得 " },
-        { "color": "§a", "text": "3% ", "zh": "3% " },
-        { "color": "§7", "text": "extra Combat XP. Grants", "zh": "额外战斗经验，并提供" }
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "获得 "
+        },
+        {
+          "color": "§a",
+          "text": "3% ",
+          "zh": "3% "
+        },
+        {
+          "color": "§7",
+          "text": "extra Combat XP. Grants",
+          "zh": "额外战斗经验，并提供"
+        }
       ]
     },
     {
@@ -583,8 +854,16 @@
       "translate": true,
       "zh": "+3.7 暴击率。",
       "segments": [
-        { "color": "§9", "text": "+3.7 Crit Chance", "zh": "+3.7 暴击率" },
-        { "color": "§7", "text": ".", "zh": "。" }
+        {
+          "color": "§9",
+          "text": "+3.7 Crit Chance",
+          "zh": "+3.7 暴击率"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
       ]
     }
   ]

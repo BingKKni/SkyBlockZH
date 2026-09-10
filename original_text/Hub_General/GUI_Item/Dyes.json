@@ -1,0 +1,821 @@
+{
+  "source": "; 2026-09-07/08 编译后实测; https://hypixelskyblock.minecraft.wiki/w/Vincent/UI",
+  "fetched_at": "2026-09-08",
+  "verified_ingame": true,
+  "gui_context": "Vincent 染料界面",
+  "lines": [
+    {
+      "id": "dye_masterpiece",
+      "context": "Vincent 染料界面",
+      "raw": "§6Vincent's Masterpiece",
+      "text": "Vincent's Masterpiece",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Vincent 的杰作"
+    },
+    {
+      "id": "dye_masterpiece_head",
+      "context": "Vincent 染料界面",
+      "raw": "§7Every §dSkyBlock Year§7, §bVincent§7 picks",
+      "text": "Every SkyBlock Year, Vincent picks",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Every ",
+          "zh": "每个"
+        },
+        {
+          "color": "§d",
+          "text": "SkyBlock Year",
+          "zh": "SkyBlock 年"
+        },
+        {
+          "color": "§7",
+          "text": ", ",
+          "zh": ","
+        },
+        {
+          "color": "§b",
+          "text": "Vincent",
+          "zh": "Vincent"
+        },
+        {
+          "color": "§7",
+          "text": " picks",
+          "zh": "都会挑选"
+        }
+      ],
+      "zh": "每个SkyBlock 年,Vincent都会挑选"
+    },
+    {
+      "id": "dye_masterpiece_mid",
+      "context": "Vincent 染料界面",
+      "raw": "§cd§6y§ee§as§7 that he will use to paint a",
+      "text": "dyes that he will use to paint a",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§c",
+          "text": "d",
+          "zh": "各"
+        },
+        {
+          "color": "§6",
+          "text": "y",
+          "zh": "色"
+        },
+        {
+          "color": "§e",
+          "text": "e",
+          "zh": "染"
+        },
+        {
+          "color": "§a",
+          "text": "s",
+          "zh": "料"
+        },
+        {
+          "color": "§7",
+          "text": " that he will use to paint a",
+          "zh": ",用来画一幅杰作!"
+        }
+      ],
+      "zh": "各色染料,用来画一幅杰作!"
+    },
+    {
+      "id": "dye_masterpiece_tail",
+      "context": "Vincent 染料界面",
+      "raw": "§7masterpiece!",
+      "text": "masterpiece!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "dye_boost_head",
+      "context": "Vincent 染料界面",
+      "raw": "§7The §a%s §7chosen dyes will have their",
+      "text": "The %s chosen dyes will have their",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "3",
+          "desc": "随服务器变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "The ",
+          "zh": "选中的 "
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": "chosen dyes will have their",
+          "zh": " 种染料在这一年中的掉落概率会提高。"
+        }
+      ],
+      "zh": "选中的 %s 种染料在这一年中的掉落概率会提高。"
+    },
+    {
+      "id": "dye_boost_mid",
+      "context": "Vincent 染料界面",
+      "raw": "§7drop chances increased for the",
+      "text": "drop chances increased for the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "dye_boost_tail",
+      "context": "Vincent 染料界面",
+      "raw": "§7duration of the year.",
+      "text": "duration of the year.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "dye_name",
+      "context": "Vincent 染料界面",
+      "raw": "§a%s Dye",
+      "text": "%s Dye",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "item_name",
+          "example": "Nyanza",
+          "desc": "染料颜色专名,保留用于搜索的英文"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%s 染料"
+    },
+    {
+      "id": "dye_hex",
+      "context": "Vincent 染料界面",
+      "raw": "§8Hex #%s",
+      "text": "Hex #%s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "raw",
+          "example": "E9FFDB",
+          "desc": "十六进制色值; example 同时包含数字和字母,ValueShape 允许纯数字或纯字母变体"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "色值 #%s"
+    },
+    {
+      "id": "dye_mining_odds",
+      "context": "Vincent 染料界面",
+      "raw": "§8§m%1$s§a %2$s§7/§a%3$s §7drop from completing",
+      "text": "%1$s %2$s/%3$s drop from completing",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "raw",
+          "example": "1/250k",
+          "desc": "原始概率"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "1",
+          "desc": "随服务器变化的数值"
+        },
+        {
+          "token": "%3$s",
+          "type": "number",
+          "example": "125k",
+          "desc": "随服务器变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§8§m",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§a",
+          "text": " %2$s",
+          "zh": " %2$s"
+        },
+        {
+          "color": "§7",
+          "text": "/",
+          "zh": "/"
+        },
+        {
+          "color": "§a",
+          "text": "%3$s ",
+          "zh": "%3$s"
+        },
+        {
+          "color": "§7",
+          "text": "drop from completing",
+          "zh": " 的掉落概率（完成"
+        }
+      ],
+      "zh": "%1$s %2$s/%3$s 的掉落概率（完成"
+    },
+    {
+      "id": "dye_mining_tail",
+      "context": "Vincent 染料界面",
+      "raw": "§7a Mining Commission.",
+      "text": "a Mining Commission.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "挖矿委托时）。"
+    },
+    {
+      "id": "dye_chance",
+      "context": "Vincent 染料界面",
+      "raw": "§8%s% chance",
+      "text": "%s% chance",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "0.0008",
+          "desc": "随服务器变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%s% 概率"
+    },
+    {
+      "id": "dye_year_boost",
+      "context": "Vincent 染料界面",
+      "raw": "§eThis dye is §a%sx§e as common during",
+      "text": "This dye is %sx as common during",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "multiplier_increase",
+          "example": "2",
+          "desc": "原倍率 N,中文用提升 N-1 倍"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§e",
+          "text": "This dye is ",
+          "zh": "此染料的掉落概率提升 "
+        },
+        {
+          "color": "§a",
+          "text": "%sx",
+          "zh": "%s 倍"
+        },
+        {
+          "color": "§e",
+          "text": " as common during",
+          "zh": "（"
+        }
+      ],
+      "zh": "此染料的掉落概率提升 %s 倍（"
+    },
+    {
+      "id": "dye_year_boost_tail",
+      "context": "Vincent 染料界面",
+      "raw": "§dSkyBlock Year §5%s§e!",
+      "text": "SkyBlock Year %s!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "513",
+          "desc": "随服务器变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§d",
+          "text": "SkyBlock Year ",
+          "zh": "SkyBlock 第 "
+        },
+        {
+          "color": "§5",
+          "text": "%s",
+          "zh": "%s 年"
+        },
+        {
+          "color": "§e",
+          "text": "!",
+          "zh": "）!"
+        }
+      ],
+      "zh": "SkyBlock 第 %s 年）!"
+    },
+    {
+      "id": "dye_global_drops",
+      "context": "Vincent 染料界面",
+      "raw": "§7Global drops: §e%s",
+      "text": "Global drops: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "1,852",
+          "desc": "随服务器变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Global drops: ",
+          "zh": "全服掉落: "
+        },
+        {
+          "color": "§e",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ],
+      "zh": "全服掉落: %s"
+    },
+    {
+      "id": "dye_personal_drops",
+      "context": "Vincent 染料界面",
+      "raw": "§7You've dropped: §6%s",
+      "text": "You've dropped: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "0",
+          "desc": "随服务器变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You've dropped: ",
+          "zh": "你的掉落: "
+        },
+        {
+          "color": "§6",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ],
+      "zh": "你的掉落: %s"
+    },
+    {
+      "id": "dye_preview",
+      "context": "Vincent 染料界面",
+      "raw": "§eRight-click to preview!",
+      "text": "Right-click to preview!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "右键预览!"
+    },
+    {
+      "id": "dye_collapse",
+      "context": "Vincent 染料界面",
+      "raw": "§eClick to collapse!",
+      "text": "Click to collapse!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击收起!"
+    },
+    {
+      "id": "dye_voidgloom_head",
+      "context": "Vincent 染料界面",
+      "raw": "§7Dropped from killing a §5Voidgloom",
+      "text": "Dropped from killing a Voidgloom",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Dropped from killing a ",
+          "zh": "击杀 "
+        },
+        {
+          "color": "§5",
+          "text": "Voidgloom",
+          "zh": "Voidgloom"
+        }
+      ],
+      "zh": "击杀 Voidgloom"
+    },
+    {
+      "id": "dye_voidgloom_tail",
+      "context": "Vincent 染料界面",
+      "raw": "§5Seraph§7.",
+      "text": "Seraph.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§5",
+          "text": "Seraph",
+          "zh": " Seraph"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "时掉落。"
+        }
+      ],
+      "zh": " Seraph时掉落。"
+    },
+    {
+      "id": "dye_slayer_odds",
+      "context": "Vincent 染料界面",
+      "raw": "§8§m%1$s§a %2$s §7from §aTier %3$s",
+      "text": "%1$s %2$s from Tier %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "raw",
+          "example": "1/10M",
+          "desc": "原始概率"
+        },
+        {
+          "token": "%2$s",
+          "type": "raw",
+          "example": "1/3.3M",
+          "desc": "加成后概率"
+        },
+        {
+          "token": "%3$s",
+          "type": "tier",
+          "example": "I",
+          "desc": "罗马数字等级"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§8§m",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§a",
+          "text": " %2$s ",
+          "zh": " %2$s "
+        },
+        {
+          "color": "§7",
+          "text": "from ",
+          "zh": "的掉落概率（"
+        },
+        {
+          "color": "§a",
+          "text": "Tier %3$s",
+          "zh": "第 %3$s 阶）"
+        }
+      ],
+      "zh": "%1$s %2$s 的掉落概率（第 %3$s 阶）"
+    },
+    {
+      "id": "dye_superpairs_head",
+      "context": "Vincent 染料界面",
+      "raw": "§7Dropped from completing §dSuperpairs",
+      "text": "Dropped from completing Superpairs",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Dropped from completing ",
+          "zh": "完成"
+        },
+        {
+          "color": "§d",
+          "text": "Superpairs",
+          "zh": "超级配对"
+        }
+      ],
+      "zh": "完成超级配对"
+    },
+    {
+      "id": "dye_superpairs_tail",
+      "context": "Vincent 染料界面",
+      "raw": "§7in the Experimentation Table.",
+      "text": "in the Experimentation Table.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "时掉落（附魔实验台）。"
+    },
+    {
+      "id": "dye_experiment_odds",
+      "context": "Vincent 染料界面",
+      "raw": "§8§m%1$sk§a %2$sk §7from §6%3$s",
+      "text": "%1$sk %2$sk from %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "raw",
+          "example": "1/75",
+          "desc": "原始概率的分数部分"
+        },
+        {
+          "token": "%2$s",
+          "type": "raw",
+          "example": "1/37.5",
+          "desc": "加成后概率的分数部分"
+        },
+        {
+          "token": "%3$s",
+          "type": "category_name",
+          "example": "Supreme",
+          "desc": "实验难度档次"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§8§m",
+          "text": "%1$sk",
+          "zh": "%1$sk"
+        },
+        {
+          "color": "§a",
+          "text": " %2$sk ",
+          "zh": " %2$sk "
+        },
+        {
+          "color": "§7",
+          "text": "from ",
+          "zh": "的掉落概率（"
+        },
+        {
+          "color": "§6",
+          "text": "%3$s",
+          "zh": "%3$s"
+        }
+      ],
+      "zh": "%1$sk %2$sk 的掉落概率（%3$s"
+    },
+    {
+      "id": "dye_experiment_tail",
+      "context": "Vincent 染料界面",
+      "raw": "§6Experiments",
+      "text": "Experiments",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "实验）"
+    },
+    {
+      "id": "dye_bucket",
+      "context": "Vincent 染料界面",
+      "raw": "§6Bucket of Dye",
+      "text": "Bucket of Dye",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "染料桶"
+    },
+    {
+      "id": "dye_donate_head",
+      "context": "Vincent 染料界面",
+      "raw": "§7Found a §cd§6y§ee §7on your travels?",
+      "text": "Found a dye on your travels?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Found a ",
+          "zh": "旅途中找到一"
+        },
+        {
+          "color": "§c",
+          "text": "d",
+          "zh": "份"
+        },
+        {
+          "color": "§6",
+          "text": "y",
+          "zh": "染"
+        },
+        {
+          "color": "§e",
+          "text": "e ",
+          "zh": "料"
+        },
+        {
+          "color": "§7",
+          "text": "on your travels?",
+          "zh": "?"
+        }
+      ],
+      "zh": "旅途中找到一份染料?"
+    },
+    {
+      "id": "dye_donate_mid",
+      "context": "Vincent 染料界面",
+      "raw": "§bVincent§7 will exchange it for an",
+      "text": "Vincent will exchange it for an",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§b",
+          "text": "Vincent",
+          "zh": "Vincent"
+        },
+        {
+          "color": "§7",
+          "text": " will exchange it for an",
+          "zh": "可以用它为你换一件"
+        }
+      ],
+      "zh": "Vincent可以用它为你换一件"
+    },
+    {
+      "id": "dye_donate_accessory",
+      "context": "Vincent 染料界面",
+      "raw": "§daccessory§7, the color of which",
+      "text": "accessory, the color of which",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§d",
+          "text": "accessory",
+          "zh": "饰品"
+        },
+        {
+          "color": "§7",
+          "text": ", the color of which",
+          "zh": ",颜色由你捐出的染料决定。"
+        }
+      ],
+      "zh": "饰品,颜色由你捐出的染料决定。"
+    },
+    {
+      "id": "dye_donate_tail",
+      "context": "Vincent 染料界面",
+      "raw": "§7depends upon the dye donated.",
+      "text": "depends upon the dye donated.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "dye_guide",
+      "context": "Vincent 染料界面",
+      "raw": "§aDye Guide",
+      "text": "Dye Guide",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "染料指南"
+    },
+    {
+      "id": "dye_intro_head",
+      "context": "Vincent 染料界面",
+      "raw": "§cD§6y§ee§as §7are ultra rare cosmetic items",
+      "text": "Dyes are ultra rare cosmetic items",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§c",
+          "text": "D",
+          "zh": "各"
+        },
+        {
+          "color": "§6",
+          "text": "y",
+          "zh": "色"
+        },
+        {
+          "color": "§e",
+          "text": "e",
+          "zh": "染"
+        },
+        {
+          "color": "§a",
+          "text": "s ",
+          "zh": "料"
+        },
+        {
+          "color": "§7",
+          "text": "are ultra rare cosmetic items",
+          "zh": "是极其稀有的外观道具,可用来改变护甲的颜色。"
+        }
+      ],
+      "zh": "各色染料是极其稀有的外观道具,可用来改变护甲的颜色。"
+    },
+    {
+      "id": "dye_intro_mid",
+      "context": "Vincent 染料界面",
+      "raw": "§7that let you change the color of",
+      "text": "that let you change the color of",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "dye_intro_tail",
+      "context": "Vincent 染料界面",
+      "raw": "§7your armor.",
+      "text": "your armor.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "dye_compendium_head",
+      "context": "Vincent 染料界面",
+      "raw": "§7View a compendium of all of them, how",
+      "text": "View a compendium of all of them, how",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "查看全部染料的获取方式与掉落概率。"
+    },
+    {
+      "id": "dye_compendium_mid",
+      "context": "Vincent 染料界面",
+      "raw": "§7they are obtained, and their chances",
+      "text": "they are obtained, and their chances",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "dye_compendium_tail",
+      "context": "Vincent 染料界面",
+      "raw": "§7of dropping.",
+      "text": "of dropping.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    }
+  ],
+  "capture_update": "2026-09-08; 仅采用 2026-09-06 10:47:44 +08:00 编译之后的记录。Wiki UI 最后更新 2026-09-05; Nyanza 的 claiming a Mining Commission 与实测 completing a Mining Commission 不同,以实测为准。英文 rainbow dyes 四段在中文写作“各色染料”,每字保留对应颜色,随后说明文字恢复灰色。"
+}

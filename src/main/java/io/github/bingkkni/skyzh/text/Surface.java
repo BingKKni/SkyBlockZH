@@ -17,6 +17,8 @@ public enum Surface {
 	GUI_TITLE,
 	/** Item name and lore, in a container or in the player's own inventory — {@code GUI_Item/}, {@code _shared/}. */
 	ITEM,
+	/** Complete tooltip lore sentences only; never item names — {@code GUI_Lore/}. */
+	LORE,
 	/** The short prompt above the hotbar — {@code ActionBar/}. */
 	ACTION_BAR,
 	/** The bar at the top of the screen — {@code BossBar/}. */
@@ -54,6 +56,7 @@ public enum Surface {
 			case "npc_message", "chatmessage" -> CHAT;
 			case "gui_title" -> GUI_TITLE;
 			case "gui_item", "_shared" -> ITEM;
+			case "gui_lore" -> LORE;
 			case "actionbar" -> ACTION_BAR;
 			case "bossbar" -> BOSS_BAR;
 			case "scoreboard" -> SCOREBOARD;

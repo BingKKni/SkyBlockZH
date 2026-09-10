@@ -90,19 +90,18 @@
     },
     {
       "id": "sword_count",
-      "context": "动态剑类物品及数量",
-      "raw": "§f%1$s Sword §8x%2$s",
-      "text": "%1$s Sword x%2$s",
+      "context": "动态剑类物品及数量(实测为 Undead Sword)",
+      "raw": "§fUndead Sword §8x%s",
+      "text": "Undead Sword x%s",
       "placeholders": [
-        {"token": "%1$s", "desc": "剑的种类，译名走 Terms", "type": "category_name", "example": "Undead"},
-        {"token": "%2$s", "desc": "物品数量", "type": "number", "example": "1"}
+        {"token": "%s", "desc": "物品数量", "type": "number", "example": "1"}
       ],
-      "gloss": "Undead 已有 Terms 译名“亡灵”。",
+      "gloss": "以前写成「%1$s Sword x%2$s」模板,任何以 Sword 结尾的自造剑名都会被截成「Gentle Dreadlord 剑 x1」这种半译名(见采集 mixed 桶),所以改成精确剑名;Undead 沿用词表的「亡灵」。",
       "translate": true,
-      "zh": "%1$s剑 x%2$s",
+      "zh": "亡灵剑 x%s",
       "segments": [
-        {"color": "§f", "text": "%1$s Sword ", "zh": "%1$s剑 "},
-        {"color": "§8", "text": "x%2$s", "zh": "x%2$s"}
+        {"color": "§f", "text": "Undead Sword ", "zh": "亡灵剑 "},
+        {"color": "§8", "text": "x%s", "zh": "x%s"}
       ]
     },
     {

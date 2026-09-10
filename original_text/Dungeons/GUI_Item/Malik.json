@@ -786,6 +786,35 @@
       "zh": "查看可用"
     },
     {
+      "id": "malik_guide_upgrade_only_tail",
+      "context": "精华指南 Crimson 格的第二行",
+      "raw": "§7upgraded using §cCrimson Essence§7.",
+      "text": "upgraded using Crimson Essence.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "绯红精华升级的物品列表。",
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "upgraded using ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§c",
+          "text": "Crimson Essence",
+          "zh": "绯红精华"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "升级的物品列表。"
+        }
+      ]
+    },
+    {
       "id": "malik_guide_view_list_2",
       "context": "接上一行(精华名在第三行)",
       "raw": "§7converted and upgraded using",
@@ -1379,6 +1408,29 @@
       "gloss": "",
       "translate": true,
       "zh": "这个物品无法升级!"
+    },
+    {
+      "id": "malik_essence_cost",
+      "context": "精华商店商品的花费行;截图为 50,000 Undead Essence",
+      "raw": "§d%1$s %2$s Essence",
+      "text": "%1$s %2$s Essence",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "50,000",
+          "desc": "精华数量"
+        },
+        {
+          "token": "%2$s",
+          "type": "category_name",
+          "example": "Undead",
+          "desc": "精华种类,复用既有词表"
+        }
+      ],
+      "gloss": "数量与类型分开捕获,避免集市分类模板把 50,000 Undead 当成一个名称。适用于亡灵/凋零等精华,不枚举价格。",
+      "translate": true,
+      "zh": "%1$s %2$s精华"
     }
   ],
   "todo": [

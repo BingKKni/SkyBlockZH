@@ -163,6 +163,14 @@ harnessTask('checkTranslations', 'io.github.bingkkni.skyzh.TranslationHarness',
 	inputs.dir rootProject.file('original_text')
 }
 
+harnessTask('checkLore', 'io.github.bingkkni.skyzh.LoreHarness',
+	'Checks complete lore sentences, colour, reflow, boundaries and independent NEU fixtures.') {
+	args rootProject.file('original_text').absolutePath,
+		rootProject.file('src/harness/resources/neu-lore-cases.json').absolutePath
+	inputs.dir rootProject.file('original_text')
+	inputs.file rootProject.file('src/harness/resources/neu-lore-cases.json')
+}
+
 // The capture in capture/ decides what is worth writing down, which two lines are the same sentence
 // and which characters of one are values. Every one of those decisions ends up in a file somebody
 // reads days later, so they are exercised here against strings taken verbatim from a client log.
@@ -218,6 +226,14 @@ if (project.ext.has('primary') && project.ext.primary) {
 		'Redraws captured SkyBlock lines through the current corpus.') {
 		args rootProject.file('original_text').absolutePath,
 			rootProject.file(project.findProperty('capture') ?: 'logs/skyzh-capture').absolutePath
+	}
+
+	// Read-only offline audit of a caller-supplied NEU checkout; no downloading at build/runtime.
+	harnessTask('auditNeuLore', 'io.github.bingkkni.skyzh.NeuLoreAudit',
+		'Reports whole-item and lore-line coverage for a local NEU item snapshot.') {
+		args rootProject.file('original_text').absolutePath,
+			rootProject.file(project.findProperty('neuItems') ?: 'build/neu/items').absolutePath,
+			rootProject.file(project.findProperty('neuReport') ?: 'build/neu-lore-audit.json').absolutePath
 	}
 
 	// Scratch probe: prints what one live line renders as, and whether its record flattens the colours.
@@ -279,7 +295,7 @@ tasks.register('checkMixinTargets', Exec) {
 }
 
 tasks.named('check') {
-	dependsOn 'checkTranslations', 'checkCapture', 'checkCommands', 'checkClientSettings', 'checkMinifiedCorpus',
+	dependsOn 'checkTranslations', 'checkLore', 'checkCapture', 'checkCommands', 'checkClientSettings', 'checkMinifiedCorpus',
 		'checkMixinTargets'
 }
 

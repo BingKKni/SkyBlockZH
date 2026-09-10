@@ -1366,18 +1366,18 @@
     },
     {
       "id": "autopet_trig_event_name_head",
-      "context": "触发:活动名太长,「event starts.」整个折到下一行",
-      "raw": "§7The §d%1$s",
-      "text": "The %1$s",
+      "context": "农业竞赛触发条件的长行; event starts. 整行折到下一行",
+      "raw": "§7The §d%1$s's Farming Contest",
+      "text": "The %1$s's Farming Contest",
       "placeholders": [
         {
           "token": "%1$s",
-          "desc": "活动名",
-          "type": "category_name",
-          "example": "Jacob's Farming Contest"
+          "desc": "农业竞赛主办者人名,原样保留",
+          "type": "npc_name",
+          "example": "Jacob"
         }
       ],
-      "gloss": "category_name 的形状规则(最多 5 个词、两端大写开头)把普通 Lore 挡在外面,所以「The %s」不会吃掉别的行。",
+      "gloss": "原来的 The %s 模板会吞掉本轮附魔指南中的 The One V,把 The 删除。收紧为已收录的农业竞赛长行形状; 其他带 event 字面词的通用模板照常保留,不靠原文透传记录掩盖误匹配。",
       "translate": true,
       "segments": [
         {
@@ -1388,11 +1388,11 @@
         },
         {
           "color": "§d",
-          "text": "%1$s",
-          "zh": "%1$s"
+          "text": "%1$s's Farming Contest",
+          "zh": "%1$s 的农业竞赛"
         }
       ],
-      "zh": "%1$s活动开始。"
+      "zh": "%1$s 的农业竞赛活动开始。"
     },
     {
       "id": "autopet_trig_event_name_tail",

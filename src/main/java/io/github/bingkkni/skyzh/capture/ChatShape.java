@@ -28,7 +28,7 @@ public final class ChatShape {
 	 * peels the same tags off before looking a line up.
 	 */
 	private static final String[] SPEAKER_TAGS = {
-		"[NPC] ", "[BOSS] ", "[SECURITY] ", "[CROWD] ", "[STATUE] "
+		"[NPC] ", "[BOSS] ", "[SECURITY] ", "[CROWD] ", "[STATUE] ", "[SKULL] "
 	};
 
 	/** How far past the tag a speaker's colon may sit — long enough for "Keeper of the Crystal". */

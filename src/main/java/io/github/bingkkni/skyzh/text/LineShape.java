@@ -44,7 +44,7 @@ public final class LineShape {
 	 * crowd's lines, written as the sentence alone, and not one of them could ever match.
 	 */
 	private static final String[] SPEAKER_TAGS = {
-		"[NPC] ", "[BOSS] ", "[SECURITY] ", "[CROWD] ", "[STATUE] "
+		"[NPC] ", "[BOSS] ", "[SECURITY] ", "[CROWD] ", "[STATUE] ", "[SKULL] "
 	};
 
 	/**
@@ -81,6 +81,23 @@ public final class LineShape {
 		// after it is the same text the corpus already has, under the item's or the section's own
 		// name. Without this a translated item is English for exactly as long as it is selected.
 		add(ranges, skipSpaces(plain, bullet(plain, start, end), end), end);
+
+		if (surface == Surface.ITEM) {
+			// Guide lists use an ASCII dash; a negative number such as -25 is not a bullet.
+			if (plain.startsWith("- ", start)) {
+				add(ranges, skipSpaces(plain, start + 2, end), end);
+			}
+
+			// Enchantment menus append their applied/conflicting state to the name. Keep the
+			// marker as a styled tail rather than copying every name/level for both states.
+			// Full-line records still win, and an unknown name still has no record to answer it.
+			if (end >= 2 && plain.charAt(end - 2) == ' '
+				&& (plain.charAt(end - 1) == '✔' || plain.charAt(end - 1) == '✖')) {
+				for (Range candidate : List.copyOf(ranges)) {
+					add(ranges, candidate.start(), trimSpaces(plain, candidate.start(), end - 2));
+				}
+			}
+		}
 
 		if (surface == Surface.CHAT) {
 			int speaker = speakerTagEnd(plain, start, end);
@@ -120,7 +137,7 @@ public final class LineShape {
 	 * says the same thing either way — "Death Messages" — so stepping over the mark lets one record
 	 * answer for both states and leaves each mark in the colour that is carrying the meaning.
 	 */
-	private static final String BULLETS = "▶▸➤➜■◆•⦾⁍⚑✔✖";
+	private static final String BULLETS = "▶▸➤➜■◼○◆•⦾⁍⚑✔✖";
 
 	/** Whether this character is one of those marks. Used by {@link Capture} to refuse it as a name. */
 	static boolean isBullet(char c) {

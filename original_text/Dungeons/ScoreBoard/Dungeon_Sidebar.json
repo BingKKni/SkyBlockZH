@@ -275,13 +275,19 @@
         {
           "token": "%2$s",
           "desc": "剩余血量，带 k / M 后缀",
-          "type": "raw",
+          "type": "number",
           "example": "1M"
         }
       ],
       "gloss": "守卫名的中文在 _shared/Terms.json 里，不要在这条记录里写死某一个守卫。",
       "translate": true,
-      "zh": " - %1$s %2$s❤"
+      "zh": " - %1$s %2$s❤",
+      "segments": [
+        {"color": "§8", "text": " - ", "zh": " - "},
+        {"color": "§c", "text": "%1$s", "zh": "%1$s"},
+        {"color": "§a", "text": " %2$s", "zh": " %2$s"},
+        {"color": "§c", "text": "❤", "zh": "❤"}
+      ]
     },
     {
       "id": "sidebar_starting_in",

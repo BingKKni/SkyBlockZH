@@ -554,11 +554,11 @@
     {
       "id": "widget_preview",
       "context": "固定菜单文本",
-      "text": "Dwarven Mines Widgets Preview",
-      "placeholders": [],
-      "gloss": "",
+      "text": "%s Widgets Preview",
+      "placeholders": [{"token":"%s","type":"location_name","example":"Dwarven Mines","desc":"当前编辑的小部件区域"}],
+      "gloss": "本轮采到 Crystal Hollows 变体; 地名走已有词表,不按岛屿枚举。社区 Wiki Changelog/2024/March_12 确认小部件按岛屿配置。",
       "translate": true,
-      "zh": "矮人矿山小部件预览"
+      "zh": "%s小部件预览"
     },
     {
       "id": "widget_column_1",
@@ -889,7 +889,12 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "当前：已启用"
+      "zh": "当前: 已启用",
+      "raw": "§7Currently: §aENABLED",
+      "segments": [
+        {"color":"§7","text":"Currently: ","zh":"当前: "},
+        {"color":"§a","text":"ENABLED","zh":"已启用"}
+      ]
     },
     {
       "id": "widget_disabled",
@@ -898,7 +903,12 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "当前：已禁用"
+      "zh": "当前: 已禁用",
+      "raw": "§7Currently: §cDISABLED",
+      "segments": [
+        {"color":"§7","text":"Currently: ","zh":"当前: "},
+        {"color":"§c","text":"DISABLED","zh":"已禁用"}
+      ]
     },
     {
       "id": "widget_general_desc_1",
@@ -1111,11 +1121,11 @@
     {
       "id": "widget_reset_1",
       "context": "固定菜单文本",
-      "text": "Reset all Dwarven Mines Tablist",
-      "placeholders": [],
-      "gloss": "",
+      "text": "Reset all %s Tablist",
+      "placeholders": [{"token":"%s","type":"location_name","example":"Crystal Hollows","desc":"待重置设置所属的区域"}],
+      "gloss": "完整译文包含下一行 Widget settings back to their default.; 原有尾行继续作为 continuation。",
       "translate": true,
-      "zh": "将所有矮人矿山 Tab 列表小部件设置恢复默认值。"
+      "zh": "将%s的所有 Tab 列表小部件设置恢复默认值。"
     },
     {
       "id": "widget_reset_2",
@@ -1130,20 +1140,20 @@
     {
       "id": "widget_reset_click",
       "context": "固定菜单文本",
-      "text": "Click to reset ALL Dwarven Mines settings!",
-      "placeholders": [],
-      "gloss": "",
+      "text": "Click to reset ALL %s settings!",
+      "placeholders": [{"token":"%s","type":"location_name","example":"Crystal Hollows","desc":"待重置设置所属的区域"}],
+      "gloss": "Dwarven Mines / Crystal Hollows 共用一条模板。",
       "translate": true,
-      "zh": "点击重置所有矮人矿山设置!"
+      "zh": "点击重置%s的所有设置!"
     },
     {
       "id": "widget_reset_name",
       "context": "固定菜单文本",
-      "text": "Reset All Dwarven Mines Settings",
-      "placeholders": [],
-      "gloss": "",
+      "text": "Reset All %s Settings",
+      "placeholders": [{"token":"%s","type":"location_name","example":"Crystal Hollows","desc":"待重置设置所属的区域"}],
+      "gloss": "比通用 Settings 模板更具体,避免将 Reset All 当成类别名的一部分。",
       "translate": true,
-      "zh": "重置所有矮人矿山设置"
+      "zh": "重置%s的所有设置"
     },
     {
       "id": "widget_none",

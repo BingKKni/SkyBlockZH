@@ -21,6 +21,8 @@ public enum CaptureSurface {
 	GUI_TITLE(Surface.GUI_TITLE, "GUI_Title"),
 	/** An item's name, and each line of its lore. */
 	GUI_ITEM(Surface.ITEM, "GUI_Item"),
+	/** An authored complete lore sentence, possibly spanning several server lines. */
+	GUI_LORE(Surface.LORE, "GUI_Lore"),
 	/** A row of the sidebar, or the sidebar's own title. */
 	SCOREBOARD(Surface.SCOREBOARD, "ScoreBoard"),
 	/** A row of the player list, or its header and footer. */

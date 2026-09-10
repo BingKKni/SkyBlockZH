@@ -71,7 +71,7 @@
       ],
       "gloss": "“- ”是深灰色,数量和代币名是紫色;原来整行只记了一个颜色,译文会被整段刷成深灰。",
       "translate": true,
-      "zh": "- %s山心代币",
+      "zh": "- %s 山心代币",
       "raw": "  §8- §5%s Token of the Mountain",
       "segments": [
         {
@@ -82,7 +82,7 @@
         {
           "color": "§5",
           "text": "%s Token of the Mountain",
-          "zh": "%s山心代币"
+          "zh": "%s 山心代币"
         }
       ]
     },
@@ -129,19 +129,53 @@
     },
     {
       "id": "hotm_perk_level",
-      "context": "天赋当前等级显示",
+      "context": "天赋当前等级显示(单个等级)",
       "text": "Level %s",
       "placeholders": [
         {
           "token": "%s",
           "desc": "等级数值",
-          "type": "raw",
-          "example": "1/10"
+          "type": "number",
+          "example": "5"
         }
       ],
-      "gloss": "同一标签既显示单个等级，也显示 1/10 形式的当前/上限进度，因此不能限制为纯 number。",
+      "gloss": "以前是 raw 占位符,会把 Combat Merchant 的「Level 1 monsters will no longer」整句吞成等级值,画成「等级 1 monsters will no longer」。现在限定为数字;当前/上限进度形式见下一条。",
       "translate": true,
       "zh": "等级 %s"
+    },
+    {
+      "id": "hotm_perk_level_progress",
+      "context": "天赋当前等级显示(当前/上限进度)",
+      "text": "Level %1$s/%2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前等级",
+          "type": "number",
+          "example": "1"
+        },
+        {
+          "token": "%2$s",
+          "desc": "等级上限",
+          "type": "number",
+          "example": "10"
+        }
+      ],
+      "gloss": "斜杠和数字在游戏里可能与 Level 不同色,所以按段分开,各段从屏幕上取色。",
+      "translate": true,
+      "zh": "等级 %1$s/%2$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Level ",
+          "zh": "等级 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s/%2$s",
+          "zh": "%1$s/%2$s"
+        }
+      ]
     },
     {
       "id": "hotm_perk_click_to_unlock",
@@ -340,12 +374,12 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "「山之核」。",
+      "zh": "「山之核心」。",
       "segments": [
         {
           "color": "§c",
           "text": "the Mountain ",
-          "zh": "「山之核」"
+          "zh": "「山之核心」"
         },
         {
           "color": "§7",
@@ -361,7 +395,7 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "警告:此操作不可撤销。"
+      "zh": "警告: 此操作不可撤销。"
     },
     {
       "id": "hotm_reset_warning_2",

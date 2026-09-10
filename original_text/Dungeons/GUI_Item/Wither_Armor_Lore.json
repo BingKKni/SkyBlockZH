@@ -1,0 +1,322 @@
+{
+  "source": "; 2026-09-07/08 编译后实测; https://hypixelskyblock.minecraft.wiki/w/Wither_Armor",
+  "fetched_at": "2026-09-08",
+  "verified_ingame": true,
+  "gui_context": "凋灵护甲/Necron 与 Maxor 系列效果,以及远古/凋零重铸加成",
+  "lines": [
+    {
+      "id": "wither_reduction_head",
+      "context": "凋灵护甲/Necron 与 Maxor 系列效果,以及远古/凋零重铸加成",
+      "raw": "§7Reduces the damage you take from",
+      "text": "Reduces the damage you take from",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "受到凋灵的伤害减少 "
+    },
+    {
+      "id": "wither_reduction_tail",
+      "context": "凋灵护甲/Necron 与 Maxor 系列效果,以及远古/凋零重铸加成",
+      "raw": "§7withers by §c%s%§7.",
+      "text": "withers by %s%.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "10",
+          "desc": "随服务器变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "withers by ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§c",
+          "text": "%s%",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "%s%。"
+    },
+    {
+      "id": "wither_reduction_ref",
+      "ref": "Dungeons/GUI_Item/Wither_Armor_Lore.json#wither_reduction_head",
+      "context": "凋灵护甲/Necron 与 Maxor 系列效果,以及远古/凋零重铸加成"
+    },
+    {
+      "id": "wither_reduction_and_tail",
+      "context": "凋灵护甲/Necron 与 Maxor 系列效果,以及远古/凋零重铸加成",
+      "raw": "§7withers by §c%s% §7and increases your",
+      "text": "withers by %s% and increases your",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "10",
+          "desc": "随服务器变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "withers by ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§c",
+          "text": "%s% ",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": "and increases your",
+          "zh": ","
+        }
+      ],
+      "zh": "%s%,"
+    },
+    {
+      "id": "wither_arrow_tail",
+      "context": "凋灵护甲/Necron 与 Maxor 系列效果,以及远古/凋零重铸加成",
+      "raw": "§7arrow damage by §c%s%§7.",
+      "text": "arrow damage by %s%.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "5",
+          "desc": "随服务器变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "arrow damage by ",
+          "zh": "箭矢伤害提高 "
+        },
+        {
+          "color": "§c",
+          "text": "%s%",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "箭矢伤害提高 %s%。"
+    },
+    {
+      "id": "wither_spawn_head",
+      "context": "凋灵护甲/Necron 与 Maxor 系列效果,以及远古/凋零重铸加成",
+      "raw": "§7Spawns a wither minion every §e%s",
+      "text": "Spawns a wither minion every %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "30",
+          "desc": "随服务器变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Spawns a wither minion every ",
+          "zh": "每隔 "
+        },
+        {
+          "color": "§e",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ],
+      "zh": "每隔 %s"
+    },
+    {
+      "id": "wither_spawn_tail",
+      "context": "凋灵护甲/Necron 与 Maxor 系列效果,以及远古/凋零重铸加成",
+      "raw": "§7seconds up to a maximum §a%s §7wither.",
+      "text": "seconds up to a maximum %s wither.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "1",
+          "desc": "随服务器变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "seconds up to a maximum ",
+          "zh": " 秒召唤一只小凋灵,最多同时存在 "
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": "wither.",
+          "zh": " 只。"
+        }
+      ],
+      "zh": " 秒召唤一只小凋灵,最多同时存在 %s 只。"
+    },
+    {
+      "id": "wither_explode_head",
+      "context": "凋灵护甲/Necron 与 Maxor 系列效果,以及远古/凋零重铸加成",
+      "raw": "§7Your withers will travel to and",
+      "text": "Your withers will travel to and",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的小凋灵会飞向附近的敌人并自爆。"
+    },
+    {
+      "id": "wither_explode_tail",
+      "context": "凋灵护甲/Necron 与 Maxor 系列效果,以及远古/凋零重铸加成",
+      "raw": "§7explode on nearby enemies.",
+      "text": "explode on nearby enemies.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "catacombs_strength_head",
+      "context": "凋灵护甲/Necron 与 Maxor 系列效果,以及远古/凋零重铸加成",
+      "raw": "§7Grants §a+%s §c❁ Strength §7per",
+      "text": "Grants +%s ❁ Strength per",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "1",
+          "desc": "随服务器变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§a",
+          "text": "+%s ",
+          "zh": "+%s "
+        },
+        {
+          "color": "§c",
+          "text": "❁ Strength ",
+          "zh": "❁ 力量"
+        },
+        {
+          "color": "§7",
+          "text": "per",
+          "zh": "（每个"
+        }
+      ],
+      "zh": "提供 +%s ❁ 力量（每个"
+    },
+    {
+      "id": "catacombs_level_tail",
+      "context": "凋灵护甲/Necron 与 Maxor 系列效果,以及远古/凋零重铸加成",
+      "raw": "§cCatacombs §7level.",
+      "text": "Catacombs level.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§c",
+          "text": "Catacombs ",
+          "zh": "地牢"
+        },
+        {
+          "color": "§7",
+          "text": "level.",
+          "zh": "等级）。"
+        }
+      ],
+      "zh": "地牢等级）。"
+    },
+    {
+      "id": "catacombs_crit_head",
+      "context": "凋灵护甲/Necron 与 Maxor 系列效果,以及远古/凋零重铸加成",
+      "raw": "§7Grants §a+%s §9☠ Crit Damage §7per",
+      "text": "Grants +%s ☠ Crit Damage per",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "1",
+          "desc": "随服务器变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§a",
+          "text": "+%s ",
+          "zh": "+%s "
+        },
+        {
+          "color": "§9",
+          "text": "☠ Crit Damage ",
+          "zh": "☠ 暴击伤害"
+        },
+        {
+          "color": "§7",
+          "text": "per",
+          "zh": "（每个"
+        }
+      ],
+      "zh": "提供 +%s ☠ 暴击伤害（每个"
+    },
+    {
+      "id": "catacombs_crit_tail_ref",
+      "ref": "Dungeons/GUI_Item/Wither_Armor_Lore.json#catacombs_level_tail",
+      "context": "凋灵护甲/Necron 与 Maxor 系列效果,以及远古/凋零重铸加成"
+    }
+  ],
+  "capture_update": "2026-09-08; 仅采用 2026-09-06 10:47:44 +08:00 编译之后的记录。Wiki 最后更新 2026-08-11,Spawns 句中的 of 不在实测中,以实测为准。重铸加成需同时核对 Reforging; Maxor 箭伤变体取实测。"
+}

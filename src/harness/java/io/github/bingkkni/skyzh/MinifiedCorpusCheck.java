@@ -103,11 +103,19 @@ public final class MinifiedCorpusCheck {
 				}
 
 				TranslationEntry mine = entry.getValue();
+				for (String excluded : mine.excludedTexts()) {
+					TranslationEntry originalMatch = authored.lookup(surface, excluded);
+					TranslationEntry shippedMatch = shipped.lookup(surface, excluded);
+					check("排除文本精简前后匹配一致 [" + excluded + "]",
+						originalMatch == null ? "(无)" : originalMatch.id(),
+						shippedMatch == null ? "(无)" : shippedMatch.id());
+				}
 
 				if (!mine.template().equals(other.template())
 					|| mine.continuation() != other.continuation()
 					|| !String.valueOf(mine.layout()).equals(String.valueOf(other.layout()))
-					|| mine.specificity() != other.specificity()) {
+					|| mine.specificity() != other.specificity()
+					|| !mine.excludedTexts().equals(other.excludedTexts())) {
 					report("记录 " + entry.getKey() + " 精简前后不一致", false,
 						"模板 [" + mine.template() + "] vs [" + other.template() + "]，"
 							+ "continuation " + mine.continuation() + " vs " + other.continuation() + "，"

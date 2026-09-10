@@ -1,5 +1,6 @@
 package io.github.bingkkni.skyzh.text;
 
+import java.math.BigDecimal;
 import java.util.Locale;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -58,6 +59,20 @@ public enum Capture {
 	 */
 	TIER("[IVXLCDM]{1,8}"),
 
+	/** Enchantment sources list one tier or a range, not arbitrary parenthesised prose. */
+	TIER_RANGE("[IVXLCDM]{1,8}(?:[-–][IVXLCDM]{1,8})?"),
+
+	/**
+	 * One stat/family icon: any Unicode symbol, any private-use glyph, or one of the characters the
+	 * server uses as an icon that Unicode files elsewhere — the glyph table's own symbols (⸕ is
+	 * punctuation, ๑ a digit), plus the ones sent as themselves: α (Sea Creature Chance), ᠅ (Mithril
+	 * Powder), ᝐ (Dominus), Ѫ (Arcane Energy), ℏ, ථ, ꨃ, ҉.
+	 */
+	ICON("[\\p{S}\\p{Co}" + Glyphs.symbolClass() + "α᠅ᝐѪℏථꨃ҉]"),
+
+	/** An Nx bonus written in Chinese as an increase of (N-1) times; distinct from a damage coefficient. */
+	MULTIPLIER_INCREASE("[0-9]+(?:\\.[0-9]+)?"),
+
 	/**
 	 * An English ordinal: {@code 27th}, {@code 1st}, {@code 88th}. The count of something that has
 	 * happened before — the 27th Spooky Festival, the 88th election, the 20th of Early Spring.
@@ -78,7 +93,10 @@ public enum Capture {
 	 * Anything the corpus has not pinned down — {@code type: raw}, or no {@code placeholders} entry
 	 * at all. Still bounded: whatever the value is, it is a value and not a sentence.
 	 */
-	PHRASE("[^\\n]{1,64}?");
+	PHRASE("[^\\n]{1,64}?"),
+
+	/** A bounded, single-line search value; punctuation and character families are user-chosen. */
+	SEARCH_QUERY("[^\\r\\n]{1,64}?");
 
 	/**
 	 * Lowercase words that belong inside a name rather than marking the start of a sentence.
@@ -111,10 +129,15 @@ public enum Capture {
 			// a single word plus a placeholder ("Your %s", "%s Settings", "%s Pet"), which under the
 			// looser PHRASE rule matched any lore line that happened to start or end that way and drew
 			// the rest of the sentence in its place.
-			case "item_name", "npc_name", "location_name", "mob_name", "rarity", "category_name" -> NAME;
+			case "item_name", "npc_name", "location_name", "mob_name", "rarity", "category_name",
+				"enchantment_name", "enchantment_crop", "mob_family", "accessory_power", "skyblock_month" -> NAME;
 			case "player_name" -> PLAYER;
 			case "tier" -> TIER;
+			case "tier_range" -> TIER_RANGE;
+			case "icon" -> ICON;
+			case "multiplier_increase" -> MULTIPLIER_INCREASE;
 			case "ordinal" -> ORDINAL;
+			case "search_query" -> SEARCH_QUERY;
 			default -> PHRASE;
 		};
 	}
@@ -135,7 +158,8 @@ public enum Capture {
 		return switch (this) {
 			// The regex is the whole of the rule for these: a numeral is a numeral, and a player's
 			// name is whatever sixteen word characters somebody chose.
-			case NUMBER, PLAYER, TIER, ORDINAL, DURATION -> true;
+			case NUMBER, PLAYER, TIER, TIER_RANGE, ICON, ORDINAL, DURATION, SEARCH_QUERY -> true;
+			case MULTIPLIER_INCREASE -> new BigDecimal(value).compareTo(BigDecimal.ONE) >= 0;
 			case NAME -> isName(value);
 			case PHRASE -> isValue(value);
 		};
@@ -151,6 +175,10 @@ public enum Capture {
 	 * copied across exactly as they arrived, which is the whole point of their being placeholders.
 	 */
 	public String renderValue(String value) {
+		if (this == MULTIPLIER_INCREASE && !value.isEmpty()) {
+			return new BigDecimal(value).subtract(BigDecimal.ONE).stripTrailingZeros().toPlainString();
+		}
+
 		if (this == ORDINAL && value.length() >= 3) {
 			return value.substring(0, value.length() - 2);
 		}

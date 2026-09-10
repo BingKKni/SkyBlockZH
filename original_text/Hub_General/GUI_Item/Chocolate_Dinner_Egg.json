@@ -1,5 +1,5 @@
 {
-  "source": "https://hypixelskyblock.minecraft.wiki/w/Hoppity%27s_Hunt + runtime capture (SkyZH) 2026-08-24",
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Hoppity%27s_Hunt + runtime capture (SkyZH) 2026-08-24; 2026-09-07/08 编译后实测; https://hypixelskyblock.minecraft.wiki/w/Hoppity%27s_Hunt",
   "fetched_at": "2026-08-24",
   "verified_ingame": true,
   "gameplay": "Hub_General",
@@ -232,6 +232,243 @@
       "translate": true,
       "zh": "稀有兔子",
       "rarity_ref": "_shared/Rarity.json#rarity_rare"
+    },
+    {
+      "id": "egg_already_found_so_you",
+      "context": "巧克力蛋开出新兔子/重复兔子的说明",
+      "raw": "§7You have already found §f%s§7, so you",
+      "text": "You have already found %s, so you",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "npc_name",
+          "example": "Annabelle",
+          "desc": "兔子专名,保留英文"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You have already found ",
+          "zh": "你已经找到过 "
+        },
+        {
+          "color": "§f",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": ", so you",
+          "zh": ",因此"
+        }
+      ],
+      "zh": "你已经找到过 %s,因此"
+    },
+    {
+      "id": "egg_received_tail",
+      "context": "巧克力蛋开出新兔子/重复兔子的说明",
+      "raw": "§7received §6%s Chocolate§7!",
+      "text": "received %s Chocolate!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "3,406,873",
+          "desc": "随服务器变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "received ",
+          "zh": "获得了 "
+        },
+        {
+          "color": "§6",
+          "text": "%s Chocolate",
+          "zh": "%s 巧克力"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!"
+        }
+      ],
+      "zh": "获得了 %s 巧克力!"
+    },
+    {
+      "id": "egg_already_found_comma",
+      "context": "巧克力蛋开出新兔子/重复兔子的说明",
+      "raw": "§7You have already found §a%s§7,",
+      "text": "You have already found %s,",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "npc_name",
+          "example": "Annabelle",
+          "desc": "兔子专名,保留英文"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You have already found ",
+          "zh": "你已经找到过 "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": ",",
+          "zh": ",因此"
+        }
+      ],
+      "zh": "你已经找到过 %s,因此"
+    },
+    {
+      "id": "egg_so_received_tail",
+      "context": "巧克力蛋开出新兔子/重复兔子的说明",
+      "raw": "§7so you received §6%s Chocolate§7!",
+      "text": "so you received %s Chocolate!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "7,433,178",
+          "desc": "随服务器变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "so you received ",
+          "zh": "获得了 "
+        },
+        {
+          "color": "§6",
+          "text": "%s Chocolate",
+          "zh": "%s 巧克力"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!"
+        }
+      ],
+      "zh": "获得了 %s 巧克力!"
+    },
+    {
+      "id": "egg_factory_flat_bonus",
+      "context": "巧克力蛋开出新兔子/重复兔子的说明",
+      "raw": "§7Grants §6+%s Chocolate §7per second to",
+      "text": "Grants +%s Chocolate per second to",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "50",
+          "desc": "随服务器变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "每秒为",
+          "order": 0
+        },
+        {
+          "color": "§6",
+          "text": "+%s Chocolate ",
+          "zh": "+%s 巧克力",
+          "order": 4
+        },
+        {
+          "color": "§7",
+          "text": "per second to",
+          "zh": "提供 ",
+          "order": 3
+        }
+      ],
+      "zh": "每秒为你的巧克力工厂提供 +%s 巧克力。"
+    },
+    {
+      "id": "egg_factory_flat_tail",
+      "context": "巧克力蛋开出新兔子/重复兔子的说明",
+      "raw": "§7your §6Chocolate Factory§7.",
+      "text": "your Chocolate Factory.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "your ",
+          "zh": "你的",
+          "order": 1
+        },
+        {
+          "color": "§6",
+          "text": "Chocolate Factory",
+          "zh": "巧克力工厂",
+          "order": 2
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。",
+          "order": 5
+        }
+      ],
+      "zh": "你的巧克力工厂。"
+    },
+    {
+      "id": "egg_open_factory",
+      "context": "巧克力蛋开出新兔子/重复兔子的说明",
+      "raw": "§eClick to open Chocolate Factory!",
+      "text": "Click to open Chocolate Factory!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击打开巧克力工厂!"
+    },
+    {
+      "id": "egg_epic_rarity",
+      "context": "巧克力蛋开出新兔子/重复兔子的说明",
+      "raw": "§5§lEPIC RABBIT",
+      "text": "EPIC RABBIT",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "史诗兔子"
+    },
+    {
+      "id": "egg_mythic_rarity",
+      "context": "巧克力蛋开出新兔子/重复兔子的说明",
+      "raw": "§d§lMYTHIC RABBIT",
+      "text": "MYTHIC RABBIT",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "神话兔子"
     }
-  ]
+  ],
+  "capture_update": "2026-09-08; 仅采用 2026-09-06 10:47:44 +08:00 编译之后的记录。"
 }

@@ -165,24 +165,27 @@
       "raw": "§7Each item level upgrade §6✪ §7grants a",
       "text": "Each item level upgrade ✪ grants a",
       "placeholders": [],
-      "gloss": "✪ 是物品等级的星标，照抄不译。2026-09-03 实测星标为 §6 金色，补 segments。",
+      "gloss": "2026-09-06 截图修正:原文没有技能伤害。社区 Wiki Malik 的精华指南与截图对应三行一致;每星属性加成通常为 +2%,地牢中为 +10%。复用 Ophelia 的 while in Dungeons. 尾行,整组三行统一排序并保留绿色百分比。",
       "translate": true,
-      "zh": "物品每升一级 ✪，属性加成 +2%，技能伤害加成 +10%。",
+      "zh": "在地牢中，物品每升一级 ✪，属性加成 +10%；其他场景为 +2%。",
       "segments": [
         {
           "color": "§7",
           "text": "Each item level upgrade ",
-          "zh": "物品每升一级 "
+          "zh": "，物品每升一级 ",
+          "order": 1
         },
         {
           "color": "§6",
           "text": "✪ ",
-          "zh": "✪"
+          "zh": "✪",
+          "order": 2
         },
         {
           "color": "§7",
           "text": "grants a",
-          "zh": "，属性加成 +2%，技能伤害加成 +10%。"
+          "zh": "，属性加成 ",
+          "order": 3
         }
       ]
     },
@@ -192,10 +195,41 @@
       "raw": "§a+2% §7stat bonus and a §a+10% §7bonus",
       "text": "+2% stat bonus and a +10% bonus",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "数值来自实时绿色分段;不能在首行写死成灰色,也不能误当技能伤害。",
       "translate": true,
       "continuation": true,
-      "zh": ""
+      "zh": "",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "+2% ",
+          "zh": "+2%",
+          "order": 6
+        },
+        {
+          "color": "§7",
+          "text": "stat bonus and a ",
+          "zh": "；其他场景为 ",
+          "order": 5
+        },
+        {
+          "color": "§a",
+          "text": "+10% ",
+          "zh": "+10%",
+          "order": 4
+        },
+        {
+          "color": "§7",
+          "text": "bonus",
+          "zh": "。",
+          "order": 7
+        }
+      ]
+    },
+    {
+      "id": "salvage_level_upgrade_dungeon_tail",
+      "ref": "Dungeons/GUI_Item/Ophelia.json#ophelia_mending_vitality_2",
+      "context": "精华指南第三行 while in Dungeons.;与首两行组成完整 order 排列"
     },
     {
       "id": "salvage_dungeon_items_1",

@@ -216,7 +216,9 @@ public final class CaptureStore {
 			return;
 		}
 
-		String shared = shareable(sighting) ? sighting.gameplay() + '\u0000' + sighting.text().plain() : null;
+		// ITEM and LORE can answer the same English with different entries/diagnostics.
+		String shared = shareable(sighting)
+			? sighting.surface() + "\u0000" + sighting.gameplay() + '\u0000' + sighting.text().plain() : null;
 
 		if (shared != null) {
 			CapturedLine already = SHARED.get(shared);
@@ -290,7 +292,8 @@ public final class CaptureStore {
 	 * sentence two NPCs both say is two records, because they are two characters saying it.
 	 */
 	private static boolean shareable(Sighting sighting) {
-		return sighting.surface() == CaptureSurface.GUI_ITEM && sighting.gameplay() != null;
+		return (sighting.surface() == CaptureSurface.GUI_ITEM || sighting.surface() == CaptureSurface.GUI_LORE)
+			&& sighting.gameplay() != null;
 	}
 
 	/** {@code id}s are unique inside a file, which is the scope the corpus requires them to be. */

@@ -5,14 +5,1055 @@
     "location_name",
     "mob_name",
     "category_name",
-    "raw"
+    "raw",
+    "enchantment_name",
+    "enchantment_crop",
+    "mob_family",
+    "minion_resource",
+    "accessory_power",
+    "skyblock_month"
   ],
   "types_note": "只对这几种 placeholders[].type 生效。**故意**不含 item_name / npc_name / player_name:那三种正是需求里写死'保留英文'的位置(NPC 人名、物品自造专名),在那里翻错的代价——给别人的武器编一个中文名——远大于一个地名留着英文的代价。新增 type 前先想清楚这一点。category_name 是菜单入口名/功能分类名(Bags、Other Crystals、Recipe Book、Settings 的前半截),形状规则走 Capture.NAME 而不是 raw 的宽松短语——见下面 category_name_note。",
+  "enchantment_name_note": "2026-09-08: 附魔名称仅原版 Minecraft 附魔使用官方中文。SkyBlock 专属名称保持英文,包括 Ice Cold/Compact/Scavenger/Turbo- 系列; 其效果和同名的属性、银行、地牢祝福仍翻译。Bank/Inferno 的其他用途必须限定 types,避免全局词表回退将附魔名重新汉化。",
   "category_name_note": "为什么菜单分类名要单独一种 type 而不是继续用 raw:这类记录的模板全是「一个词 + 一个占位符」('Your %s'、'%s Settings'、'%s Pet'、'Bazaar ➜ %s')。raw 的形状规则允许最多 8 个词的任意短语,于是 'Your %s' 在 2026-08-27 的实测里把 GUI 上任何以 Your 开头的 Lore 整句都吃了下来('Your withers will travel to and'、'Your first daily commission on each' 等四句),而它的译文是裸 '%s',结果把 Your 删掉、剩下半句英文原样画出来。category_name 走 Capture.NAME(最多 5 个词、两端必须大写或数字开头),半句话进不来,真正的入口名照旧通过。",
   "matching_note": "整值精确匹配,不做词根/部分替换。把 'Amber Gemstone' 里的 Amber 换掉而留下 Gemstone,需要表知道两半在中文里怎么拼接,拼错了就正是本表要消灭的中英混排。两半都该翻译的复合词,单独给它一条完整的词条。 匹配不分大小写:BossBar 把活动名喊成 “GONE WITH THE WIND”,计分板写成 “Gone with the Wind”,委托完成广播把任务名喊成 “CORPSE LOOTER”,中文没有大小写之分,一条词条同时管这几种写法。",
   "term_types_note": "单条词可选 types 数组进一步限定用途。例如 Farm 只有作为 location_name 时才译为“农场”,作为普通 raw 值时保持英文,避免短词在别的语境误译。未写 types 的旧词仍按 applies_to_types 全局生效。",
   "spacing_note": "查不到的值保持英文,引擎会在英文和汉字之间自动补一个空格(TranslationEntry.Seam),所以 'Amber Gemstone Collector' 渲染成 'Amber 宝石收集员' 而不是 'Amber宝石收集员'。译者不需要、也不应该为此在 zh 里手动加空格。",
+  "minion_resource_note": "2026-09-09: 仅 GUI_Lore 小人生产说明使用的资源/生物宾语。按有界短语捕获并整值查表，不影响物品名、NPC 名或旧 raw 词条。来源 https://hypixelskyblock.minecraft.wiki/w/Minions；原版资源沿用官方中文。",
+  "accessory_power_note": "饰品能力单独使用 accessory_power，避免 Frozen 的既有鱼饵分类译名与冰封能力混用。名称来自 Maxwell/Powers 社区 Wiki；冰封与幸运沿用旧语料，其他名称仅供该机制使用。",
+  "skyblock_month_note": "日历标题的空岛月份单独使用 skyblock_month，沿用 GLOSSARY 的节气名，不改变 Winter 作为海洋生物分类时的寒冬译名。",
   "terms": [
+    {"en": "Frozen", "zh": "冰封", "types": ["accessory_power"]},
+    {"en": "Itchy", "zh": "刺痒", "types": ["accessory_power"]},
+    {"en": "Silky", "zh": "丝滑", "types": ["accessory_power"]},
+    {"en": "Commando", "zh": "突击队员", "types": ["accessory_power"]},
+    {"en": "Disciplined", "zh": "自律", "types": ["accessory_power"]},
+    {"en": "Inspired", "zh": "灵感", "types": ["accessory_power"]},
+    {"en": "Ominous", "zh": "不祥", "types": ["accessory_power"]},
+    {"en": "Prepared", "zh": "有备", "types": ["accessory_power"]},
+    {"en": "Fortuitous", "zh": "幸运", "types": ["accessory_power"]},
+    {"en": "Pretty", "zh": "秀美", "types": ["accessory_power"]},
+    {"en": "Protected", "zh": "庇护", "types": ["accessory_power"]},
+    {"en": "Simple", "zh": "简朴", "types": ["accessory_power"]},
+    {"en": "Warrior", "zh": "战士", "types": ["accessory_power"]},
+    {"en": "Forceful", "zh": "强劲", "types": ["accessory_power"]},
+    {"en": "Early Spring", "zh": "立春", "types": ["skyblock_month"]},
+    {"en": "Spring", "zh": "春分", "types": ["skyblock_month"]},
+    {"en": "Late Spring", "zh": "谷雨", "types": ["skyblock_month"]},
+    {"en": "Early Summer", "zh": "立夏", "types": ["skyblock_month"]},
+    {"en": "Summer", "zh": "夏至", "types": ["skyblock_month"]},
+    {"en": "Late Summer", "zh": "大暑", "types": ["skyblock_month"]},
+    {"en": "Early Autumn", "zh": "立秋", "types": ["skyblock_month"]},
+    {"en": "Autumn", "zh": "秋分", "types": ["skyblock_month"]},
+    {"en": "Late Autumn", "zh": "霜降", "types": ["skyblock_month"]},
+    {"en": "Early Winter", "zh": "立冬", "types": ["skyblock_month"]},
+    {"en": "Winter", "zh": "冬至", "types": ["skyblock_month"]},
+    {"en": "Late Winter", "zh": "大寒", "types": ["skyblock_month"]},
+    {"en": "LIGHT BLUE", "zh": "淡蓝色", "types": ["category_name"], "note": "Terminal 指定颜色；旧版 silver 对应淡灰色，gray 对应灰色。"},
+    {"en": "GRAY", "zh": "灰色", "types": ["category_name"]},
+    {"en": "SILVER", "zh": "淡灰色", "types": ["category_name"]},
+    {"en": "BLUE", "zh": "蓝色", "types": ["category_name"]},
+    {"en": "RED", "zh": "红色", "types": ["category_name"]},
+    {"en": "YELLOW", "zh": "黄色", "types": ["category_name"]},
+    {"en": "GREEN", "zh": "绿色", "types": ["category_name"]},
+    {"en": "ORANGE", "zh": "橙色", "types": ["category_name"], "note": "仅颜色参数，不覆盖 Builder 杂货里的橙子。"},
+    {"en": "Rift", "zh": "裂隙", "types": ["category_name"]},
+    {"en": "Pet EXP", "zh": "宠物经验", "types": ["raw", "category_name"]},
+    {"en": "Unlocking Power", "zh": "解锁饰品能力", "types": ["raw"]},
+    {"en": "at the bottom of the stairs", "zh": "楼梯底部", "types": ["raw"], "note": "本次 Hoppity 彩蛋实测位置短语；只用于整值查找。"},
+    {"en": "behind the Deep Caverns launch pad", "zh": "深层洞窟弹射台后方", "types": ["raw"]},
+    {"en": "in front of the Pigmen sign", "zh": "猪人指示牌前方", "types": ["raw"]},
+    {"en": "next to Rhys", "zh": "Rhys 身旁", "types": ["raw"]},
+    {"en": "Crafted Minion", "zh": "制作小人", "types": ["raw"]},
+    {"en": "Blood", "zh": "鲜血", "types": ["category_name"], "note": "地牢 Blood Key 的钥匙种类；沿用鲜血之门用词。"},
+    {"en": "Arrow", "zh": "箭矢", "types": ["category_name"]},
+    {"en": "Healing", "zh": "治疗", "types": ["category_name"]},
+    {"en": "Regeneration", "zh": "生命恢复", "types": ["category_name"]},
+    {"en": "Resistance", "zh": "抗性提升", "types": ["category_name"]},
+    {"en": "Archery", "zh": "箭术", "types": ["category_name"]},
+    {"en": "Lightning", "zh": "闪电", "types": ["raw", "category_name"]},
+    {"en": "Overcharge", "zh": "过载", "types": ["raw", "category_name"]},
+    {"en": "Body Slam", "zh": "冲撞", "types": ["category_name"]},
+    {"en": "TNT Rain", "zh": "TNT 雨", "types": ["category_name"]},
+    {"en": "Chaos Guardians", "zh": "混沌守卫", "types": ["mob_name"], "note": "The Professor 实测伤害消息使用 Guardians's，保留该拼写。"},
+    {"en": "Chaos Guardian", "zh": "混沌守卫", "types": ["mob_name"]},
+    {"en": "Healthy Guardian", "zh": "治愈守卫", "types": ["mob_name"]},
+    {"en": "Reinforced Guardian", "zh": "强化守卫", "types": ["mob_name"]},
+    {"en": "Protector", "zh": "保护", "types": ["category_name"], "note": "The Professor 第三阶段实测显示 Protector Guardian。"},
+    {"en": "Shadow Assassin", "zh": "暗影刺客", "types": ["mob_name"]},
+    {"en": "Tank Zombie", "zh": "坦克僵尸", "types": ["mob_name"]},
+    {"en": "Lapis Zombie", "zh": "青金石僵尸", "types": ["mob_name"], "note": "深层洞窟青金石采石场的僵尸,沿用 Lazy_Miner.json 既有译名;狩猎战利品共享的碎片名和魅惑消息都以 mob_name 捕到它。"},
+    {"en": "Stormy Skeleton Grunt", "zh": "风暴骷髅步兵", "types": ["mob_name"]},
+    {"en": "Ice Path", "zh": "冰路", "types": ["raw"], "note": "Catacombs Puzzle Rooms 的蠹虫冰路谜题，供 Tab 标签使用。"},
+    {"en": "Master Mode The Catacombs", "zh": "大师模式地牢", "types": ["category_name"]},
+    {"en": "NECKLACE", "zh": "项链", "types": ["category_name"]},
+    {"en": "CLOAK", "zh": "披风", "types": ["category_name"]},
+    {"en": "BELT", "zh": "腰带", "types": ["category_name"]},
+    {"en": "GLOVES", "zh": "手套", "types": ["category_name"]},
+    {"en": "BOW", "zh": "弓", "types": ["category_name"], "note": "稀有度行的装备类别(EPIC DUNGEON BOW),与 combat_rarity_bow_magic 的「传说弓」同词。"},
+    {"en": "AXE", "zh": "斧", "types": ["category_name"], "note": "稀有度行的装备类别(UNCOMMON DUNGEON AXE)。"},
+    {"en": "Pet", "zh": "宠物", "types": ["category_name"]},
+    {"en": "HOTM", "zh": "山峦之心", "types": ["category_name"]},
+    {"en": "HOTF", "zh": "森林之心", "types": ["category_name"]},
+    {"en": "Starlyn Contest", "zh": "Starlyn 竞赛", "types": ["raw", "category_name"], "note": "Starlyn Contest 社区 Wiki 2026-09-08 更新，沿用 Your_Skills.json 既有名称，只翻译 Contest。"},
+    {"en": "Starlyn Contests", "zh": "Starlyn 竞赛", "types": ["raw", "category_name"]},
+    {"en": "acacia logs", "zh": "金合欢原木", "types": ["minion_resource"]},
+    {"en": "birch logs", "zh": "白桦原木", "types": ["minion_resource"]},
+    {"en": "dark oak logs", "zh": "深色橡木原木", "types": ["minion_resource"]},
+    {"en": "jungle logs", "zh": "丛林原木", "types": ["minion_resource"]},
+    {"en": "oak logs", "zh": "橡木原木", "types": ["minion_resource"]},
+    {"en": "spruce logs", "zh": "云杉原木", "types": ["minion_resource"]},
+    {"en": "coal ore", "zh": "煤矿石", "types": ["minion_resource"]},
+    {"en": "diamond ore", "zh": "钻石矿石", "types": ["minion_resource"]},
+    {"en": "emerald ore", "zh": "绿宝石矿石", "types": ["minion_resource"]},
+    {"en": "gold ore", "zh": "金矿石", "types": ["minion_resource"]},
+    {"en": "iron ore", "zh": "铁矿石", "types": ["minion_resource"]},
+    {"en": "lapis ore", "zh": "青金石矿石", "types": ["minion_resource"]},
+    {"en": "mithril ore", "zh": "秘银矿石", "types": ["minion_resource"]},
+    {"en": "quartz ore", "zh": "下界石英矿石", "types": ["minion_resource"]},
+    {"en": "redstone ore", "zh": "红石矿石", "types": ["minion_resource"]},
+    {"en": "cobblestone", "zh": "圆石", "types": ["minion_resource"]},
+    {"en": "clay", "zh": "黏土", "types": ["minion_resource"]},
+    {"en": "end stone", "zh": "末地石", "types": ["minion_resource"]},
+    {"en": "glowstone", "zh": "荧石", "types": ["minion_resource"]},
+    {"en": "gravel", "zh": "沙砾", "types": ["minion_resource"]},
+    {"en": "Hard Stone", "zh": "硬石", "types": ["minion_resource"]},
+    {"en": "ice", "zh": "冰", "types": ["minion_resource"]},
+    {"en": "mycelium", "zh": "菌丝", "types": ["minion_resource"]},
+    {"en": "obsidian", "zh": "黑曜石", "types": ["minion_resource"]},
+    {"en": "red sand", "zh": "红沙", "types": ["minion_resource"]},
+    {"en": "sand", "zh": "沙子", "types": ["minion_resource"]},
+    {"en": "snow", "zh": "雪", "types": ["minion_resource"]},
+    {"en": "cactus", "zh": "仙人掌", "types": ["minion_resource"]},
+    {"en": "cacti", "zh": "仙人掌", "types": ["minion_resource"]},
+    {"en": "carrots", "zh": "胡萝卜", "types": ["minion_resource"]},
+    {"en": "cocoa beans", "zh": "可可豆", "types": ["minion_resource"]},
+    {"en": "flowers", "zh": "花", "types": ["minion_resource"]},
+    {"en": "lily pads", "zh": "睡莲", "types": ["minion_resource"]},
+    {"en": "melons", "zh": "西瓜", "types": ["minion_resource"]},
+    {"en": "red and brown mushrooms", "zh": "红色和棕色蘑菇", "types": ["minion_resource"]},
+    {"en": "nether warts", "zh": "下界疣", "types": ["minion_resource"]},
+    {"en": "potatoes", "zh": "马铃薯", "types": ["minion_resource"]},
+    {"en": "pumpkins", "zh": "南瓜", "types": ["minion_resource"]},
+    {"en": "sugar canes", "zh": "甘蔗", "types": ["minion_resource"]},
+    {"en": "sugar cane", "zh": "甘蔗", "types": ["minion_resource"]},
+    {"en": "wheat", "zh": "小麦", "types": ["minion_resource"]},
+    {"en": "Blazes", "zh": "烈焰人", "types": ["minion_resource"]},
+    {"en": "Cave Spiders", "zh": "洞穴蜘蛛", "types": ["minion_resource"]},
+    {"en": "Chickens", "zh": "鸡", "types": ["minion_resource"]},
+    {"en": "Cows", "zh": "牛", "types": ["minion_resource"]},
+    {"en": "Creepers", "zh": "苦力怕", "types": ["minion_resource"]},
+    {"en": "Endermen", "zh": "末影人", "types": ["minion_resource"]},
+    {"en": "Ghasts", "zh": "恶魂", "types": ["minion_resource"]},
+    {"en": "Magma Cubes", "zh": "岩浆怪", "types": ["minion_resource"]},
+    {"en": "Pigs", "zh": "猪", "types": ["minion_resource"]},
+    {"en": "Rabbits", "zh": "兔子", "types": ["minion_resource"]},
+    {"en": "Sheep", "zh": "绵羊", "types": ["minion_resource"]},
+    {"en": "Skeletons", "zh": "骷髅", "types": ["minion_resource"]},
+    {"en": "Slimes", "zh": "史莱姆", "types": ["minion_resource"]},
+    {"en": "Spiders", "zh": "蜘蛛", "types": ["minion_resource"]},
+    {"en": "Zombies", "zh": "僵尸", "types": ["minion_resource"]},
+    {"en": "trees", "zh": "树木", "types": ["minion_resource"]},
+    {"en": "mushrooms", "zh": "蘑菇", "types": ["minion_resource"]},
+    {"en": "soul sand", "zh": "灵魂沙", "types": ["minion_resource"]},
+    {"en": "Revenants", "zh": "亡魂", "types": ["minion_resource"]},
+    {"en": "Tarantulas", "zh": "狼蛛", "types": ["minion_resource"]},
+    {"en": "Infernals", "zh": "炼狱生物", "types": ["minion_resource"], "note": "Inferno Minion 正常页面确认的生成目标，仅描述内使用。"},
+    {"en": "Vampire Scions", "zh": "吸血鬼子嗣", "types": ["minion_resource"], "note": "Vampire Minion 正常页面确认的生成目标。"},
+    {"en": "Voidlings", "zh": "Voidlings", "types": ["minion_resource"], "note": "既有语料保留 Voidling 专名；显式标记有意保留，不扩展到物品名。"},
+    {
+      "en": "Nether Quartz",
+      "zh": "下界石英",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-06 核对社区 Wiki https://hypixelskyblock.minecraft.wiki/w/Collections;沿用既有语料译名,仅补值词表。"
+    },
+    {
+      "en": "Slayer",
+      "zh": "猎手",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-06 核对社区 Wiki https://hypixelskyblock.minecraft.wiki/w/Recipe_Book;沿用既有语料译名,仅补值词表。"
+    },
+    {
+      "en": "Gunpowder Mines",
+      "zh": "火药矿区",
+      "types": [
+        "location_name",
+        "raw"
+      ],
+      "note": "2026-09-06 核对社区 Wiki https://hypixelskyblock.minecraft.wiki/w/Deep_Caverns;沿用既有语料译名,仅补值词表。"
+    },
+    {
+      "en": "Pigmen's Den",
+      "zh": "猪人巢穴",
+      "types": [
+        "location_name",
+        "raw"
+      ],
+      "note": "2026-09-06 核对社区 Wiki https://hypixelskyblock.minecraft.wiki/w/Deep_Caverns;沿用既有语料译名,仅补值词表。"
+    },
+    {
+      "en": "Diamond Reserve",
+      "zh": "钻石储藏区",
+      "types": [
+        "location_name",
+        "raw"
+      ],
+      "note": "2026-09-06 核对社区 Wiki https://hypixelskyblock.minecraft.wiki/w/Deep_Caverns;沿用既有语料译名,仅补值词表。"
+    },
+    {
+      "en": "Miner Zombie",
+      "zh": "矿工僵尸",
+      "types": [
+        "mob_name"
+      ],
+      "note": "2026-09-06 核对社区 Wiki https://hypixelskyblock.minecraft.wiki/w/Deep_Caverns;沿用既有语料译名,仅补值词表。"
+    },
+    {
+      "en": "Miner Skeleton",
+      "zh": "矿工骷髅",
+      "types": [
+        "mob_name"
+      ],
+      "note": "2026-09-06 核对社区 Wiki https://hypixelskyblock.minecraft.wiki/w/Deep_Caverns;沿用既有语料译名,仅补值词表。"
+    },
+    {
+      "en": "Archery Range",
+      "zh": "射箭场",
+      "types": [
+        "location_name",
+        "raw"
+      ],
+      "note": "2026-09-06 核对社区 Wiki https://hypixelskyblock.minecraft.wiki/w/Archery_Range;沿用既有语料译名,仅补值词表。"
+    },
+    {
+      "en": "Health",
+      "zh": "生命值",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "True Defense",
+      "zh": "真实防御",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Attack Speed",
+      "zh": "攻击速度",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Crit Chance",
+      "zh": "暴击率",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Crit Damage",
+      "zh": "暴击伤害",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Health Regen",
+      "zh": "生命回复",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Ferocity",
+      "zh": "凶暴",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Fishing Speed",
+      "zh": "钓鱼速度",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Pressure Resistance",
+      "zh": "抗压",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Respiration",
+      "zh": "水下呼吸",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Cold Resistance",
+      "zh": "抗寒",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Overbloom",
+      "zh": "过度绽放",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Timber",
+      "zh": "整树砍伐",
+      "types": [
+        "category_name"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Petalfall：增加一次砍倒整棵树的概率,不是原木材料。"
+    },
+    {
+      "en": "Farming Fortune",
+      "zh": "农业时运",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Gemstone Fortune",
+      "zh": "宝石时运",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Foraging Fortune",
+      "zh": "伐木时运",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Mining Wisdom",
+      "zh": "挖掘智慧",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Fishing Wisdom",
+      "zh": "钓鱼智慧",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Foraging Wisdom",
+      "zh": "伐木智慧",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Farming Wisdom",
+      "zh": "农业智慧",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Bonus Pest Chance",
+      "zh": "额外害虫几率",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Mana",
+      "zh": "法力值",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Melon Slice",
+      "zh": "西瓜片",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Wild Rose",
+      "zh": "野玫瑰",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Moonflower",
+      "zh": "月光花",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Chili Pepper",
+      "zh": "辣椒",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Librarian",
+      "zh": "图书管理员",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Arthropod",
+      "zh": "节肢",
+      "types": [
+        "mob_family"
+      ]
+    },
+    {
+      "en": "Cubic",
+      "zh": "方块",
+      "types": [
+        "mob_family"
+      ]
+    },
+    {
+      "en": "Ender",
+      "zh": "末影",
+      "types": [
+        "mob_family"
+      ]
+    },
+    {
+      "en": "Skeletal",
+      "zh": "骷髅",
+      "types": [
+        "mob_family"
+      ]
+    },
+    {
+      "en": "Woodland",
+      "zh": "林地",
+      "types": [
+        "mob_family"
+      ]
+    },
+    {
+      "en": "Timid",
+      "zh": "胆怯",
+      "types": [
+        "mob_family"
+      ]
+    },
+    {
+      "en": "Magmatic",
+      "zh": "岩浆",
+      "types": [
+        "mob_family"
+      ]
+    },
+    {
+      "en": "Infernal",
+      "zh": "炼狱",
+      "types": [
+        "mob_family"
+      ]
+    },
+    {
+      "en": "Airborne",
+      "zh": "飞行",
+      "types": [
+        "mob_family"
+      ]
+    },
+    {
+      "en": "Aquatic",
+      "zh": "水生",
+      "types": [
+        "mob_family"
+      ]
+    },
+    {
+      "en": "Undead",
+      "zh": "亡灵",
+      "types": [
+        "mob_family"
+      ]
+    },
+    {
+      "en": "Wither",
+      "zh": "凋灵",
+      "types": [
+        "mob_family"
+      ]
+    },
+    {
+      "en": "Humanoid",
+      "zh": "人形",
+      "types": [
+        "mob_family"
+      ]
+    },
+    {
+      "en": "Aqua Affinity",
+      "zh": "水下速掘",
+      "types": [
+        "enchantment_name"
+      ]
+    },
+    {
+      "en": "Bane of Arthropods",
+      "zh": "节肢杀手",
+      "types": [
+        "enchantment_name"
+      ]
+    },
+    {
+      "en": "Blast Protection",
+      "zh": "爆炸保护",
+      "types": [
+        "enchantment_name"
+      ]
+    },
+    {
+      "en": "Depth Strider",
+      "zh": "深海探索者",
+      "types": [
+        "enchantment_name"
+      ]
+    },
+    {
+      "en": "Efficiency",
+      "zh": "效率",
+      "types": [
+        "enchantment_name"
+      ]
+    },
+    {
+      "en": "Feather Falling",
+      "zh": "摔落缓冲",
+      "types": [
+        "enchantment_name"
+      ]
+    },
+    {
+      "en": "Fire Aspect",
+      "zh": "火焰附加",
+      "types": [
+        "enchantment_name"
+      ]
+    },
+    {
+      "en": "Fire Protection",
+      "zh": "火焰保护",
+      "types": [
+        "enchantment_name"
+      ]
+    },
+    {
+      "en": "Flame",
+      "zh": "火矢",
+      "types": [
+        "enchantment_name"
+      ]
+    },
+    {
+      "en": "Fortune",
+      "zh": "时运",
+      "types": [
+        "enchantment_name"
+      ]
+    },
+    {
+      "en": "Impaling",
+      "zh": "穿刺",
+      "types": [
+        "enchantment_name"
+      ]
+    },
+    {
+      "en": "Knockback",
+      "zh": "击退",
+      "types": [
+        "enchantment_name"
+      ]
+    },
+    {
+      "en": "Looting",
+      "zh": "抢夺",
+      "types": [
+        "enchantment_name"
+      ]
+    },
+    {
+      "en": "Luck of the Sea",
+      "zh": "海之眷顾",
+      "types": [
+        "enchantment_name"
+      ]
+    },
+    {
+      "en": "Lure",
+      "zh": "饵钓",
+      "types": [
+        "enchantment_name"
+      ]
+    },
+    {
+      "en": "Mending",
+      "zh": "经验修补",
+      "types": [
+        "enchantment_name"
+      ]
+    },
+    {
+      "en": "Piercing",
+      "zh": "穿透",
+      "types": [
+        "enchantment_name"
+      ]
+    },
+    {
+      "en": "Projectile Protection",
+      "zh": "弹射物保护",
+      "types": [
+        "enchantment_name"
+      ]
+    },
+    {
+      "en": "Protection",
+      "zh": "保护",
+      "types": [
+        "enchantment_name"
+      ]
+    },
+    {
+      "en": "Punch",
+      "zh": "冲击",
+      "types": [
+        "enchantment_name"
+      ]
+    },
+    {
+      "en": "Respiration",
+      "zh": "水下呼吸",
+      "types": [
+        "enchantment_name"
+      ]
+    },
+    {
+      "en": "Sharpness",
+      "zh": "锋利",
+      "types": [
+        "enchantment_name"
+      ]
+    },
+    {
+      "en": "Thorns",
+      "zh": "荆棘",
+      "types": [
+        "enchantment_name"
+      ]
+    },
+    {
+      "en": "Unbreaking",
+      "zh": "耐久",
+      "types": [
+        "enchantment_name"
+      ]
+    },
+    {
+      "en": "Summer Bundle",
+      "zh": "夏季礼包",
+      "types": [
+        "category_name"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Taylor；现实夏季的外观礼包,不使用 SkyBlock 游戏历的夏至。"
+    },
+    {
+      "en": "Bone",
+      "zh": "骨头",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Collection；沿用 Fixed_Shops_2026-09-04.json 的原版材料译名。"
+    },
+    {
+      "en": "Rotten Flesh",
+      "zh": "腐肉",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Collection；原版材料与收藏品名。"
+    },
+    {
+      "en": "Charcoal",
+      "zh": "木炭",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Minions；附魔木炭的材料词。"
+    },
+    {
+      "en": "Eye of Ender",
+      "zh": "末影之眼",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Collection；末影珍珠收藏品的附魔材料配方。"
+    },
+    {
+      "en": "Bone Block",
+      "zh": "骨块",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Collection；骨头收藏品 X 的附魔骨块配方。"
+    },
+    {
+      "en": "Gold Block",
+      "zh": "金块",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Collection；沿用原版方块译名。"
+    },
+    {
+      "en": "Hopper",
+      "zh": "漏斗",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Minions；Enchanted Hopper 用于小人自动出售。"
+    },
+    {
+      "en": "Lava Bucket",
+      "zh": "熔岩桶",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Minions；Enchanted Lava Bucket 是永久燃料,材料部分用原版译名。"
+    },
+    {
+      "en": "Runecrafting",
+      "zh": "符文制作",
+      "types": [
+        "category_name"
+      ],
+      "note": "沿用 Common_HUD.json/Your_Skills.json 的技能译名; 修复技能说明中的动态值漏译。"
+    },
+    {
+      "en": "Sea Creature Chance",
+      "zh": "海洋生物几率",
+      "types": [
+        "category_name"
+      ],
+      "note": "沿用 Mining/GUI_Item/Tablist_Widgets_2026-09-04.json#widget_stat_19；用于宾果卡中的 Your Sea Creature Chance。"
+    },
+    {
+      "en": "Grappling Hook",
+      "zh": "抓钩",
+      "types": [
+        "category_name"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Grappling_Hook；沿用 GLOSSARY 宾果赠品译名,不是钓鱼用鱼钩。"
+    },
+    {
+      "en": "Silent Pearl",
+      "zh": "无声珍珠",
+      "types": [
+        "category_name"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Collection；末影珍珠 I 的配方奖励。"
+    },
+    {
+      "en": "Ender Bow",
+      "zh": "末影弓",
+      "types": [
+        "category_name"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Collection；末影珍珠 V 的配方奖励。"
+    },
+    {
+      "en": "Beginner Combat Sack",
+      "zh": "入门战斗收纳袋",
+      "types": [
+        "category_name"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Collection；腐肉 II 的配方奖励。"
+    },
+    {
+      "en": "Small Combat Sack",
+      "zh": "小型战斗收纳袋",
+      "types": [
+        "category_name"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Collection；腐肉 V 的配方奖励。"
+    },
+    {
+      "en": "Medium Combat Sack",
+      "zh": "中型战斗收纳袋",
+      "types": [
+        "category_name"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Collection；腐肉 VII 的配方奖励。"
+    },
+    {
+      "en": "Large Combat Sack",
+      "zh": "大型战斗收纳袋",
+      "types": [
+        "category_name"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Collection；腐肉 IX 的配方奖励。"
+    },
+    {
+      "en": "Large Enchanted Combat Sack",
+      "zh": "大型附魔战斗收纳袋",
+      "types": [
+        "category_name"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Collection；腐肉 X 的配方奖励。"
+    },
+    {
+      "en": "Small Dragon Sack",
+      "zh": "小型巨龙收纳袋",
+      "types": [
+        "category_name"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Collection；末影珍珠 IV 的配方奖励。"
+    },
+    {
+      "en": "Medium Dragon Sack",
+      "zh": "中型巨龙收纳袋",
+      "types": [
+        "category_name"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Collection；末影珍珠 VI 的配方奖励。"
+    },
+    {
+      "en": "Large Dragon Sack",
+      "zh": "大型巨龙收纳袋",
+      "types": [
+        "category_name"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Collection；末影珍珠 IX 的配方奖励。"
+    },
+    {
+      "en": "Small Mining Sack",
+      "zh": "小型挖矿收纳袋",
+      "types": [
+        "category_name"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Collection；挖矿收藏品的配方奖励。"
+    },
+    {
+      "en": "Zombie Pickaxe",
+      "zh": "僵尸镐",
+      "types": [
+        "category_name"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Collection；腐肉 II 的配方奖励。"
+    },
+    {
+      "en": "Zombie's Heart",
+      "zh": "僵尸之心",
+      "types": [
+        "category_name"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Collection；腐肉 VI 的配方奖励,Zombie 是生物通名。"
+    },
+    {
+      "en": "Zombie Hat",
+      "zh": "僵尸帽",
+      "types": [
+        "category_name"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Collection；腐肉 V 的配方奖励。"
+    },
+    {
+      "en": "Zombie Sword",
+      "zh": "僵尸剑",
+      "types": [
+        "category_name"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Collection；腐肉 VII 的配方奖励。"
+    },
+    {
+      "en": "Zombie Armor",
+      "zh": "僵尸护甲",
+      "types": [
+        "category_name"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Collection；腐肉 VIII 的配方奖励。"
+    },
+    {
+      "en": "Skeleton Hat",
+      "zh": "骷髅帽",
+      "types": [
+        "category_name"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Collection；骨头 IV 的配方奖励。"
+    },
+    {
+      "en": "Skeleton's Helmet",
+      "zh": "骷髅头盔",
+      "types": [
+        "category_name"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Collection；骨头 VIII 的配方奖励,与 Skeleton Hat 是不同装备。"
+    },
+    {
+      "en": "Hurricane Bow",
+      "zh": "飓风弓",
+      "types": [
+        "category_name"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Collection；骨头 VII 的配方奖励。"
+    },
+    {
+      "en": "Spider's Boots",
+      "zh": "蜘蛛靴",
+      "types": [
+        "category_name"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Grappling_Hook；带二段跳技能的靴子,线 VIII 的配方奖励。"
+    },
+    {
+      "en": "Web",
+      "zh": "蜘蛛网",
+      "types": [
+        "category_name"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Collection；线 II 的原版蜘蛛网配方。"
+    },
+    {
+      "en": "Catacombs",
+      "zh": "地牢",
+      "types": [
+        "category_name",
+        "location_name",
+        "raw"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Scared_Skeleton；沿用 The Catacombs 和 Catacombs_Rewards.json 的既定译名,补 Tab 列表的无冠词形式。"
+    },
+    {
+      "en": "Scared Skeleton",
+      "zh": "惊恐骷髅",
+      "types": [
+        "mob_name",
+        "category_name"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Scared_Skeleton；会逃离玩家的地牢怪物。"
+    },
+    {
+      "en": "Zealot Bruiser",
+      "zh": "狂信徒斗士",
+      "types": [
+        "mob_name",
+        "category_name"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Zealot_Bruiser；强化型狂信徒,Zealot 沿用狂信徒。"
+    },
+    {
+      "en": "Zealot Bruiser Hideout",
+      "zh": "狂信徒斗士藏身处",
+      "types": [
+        "location_name",
+        "category_name"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Zealot_Bruiser；此怪物所在的末地区域。"
+    },
+    {
+      "en": "Tsunami",
+      "zh": "海啸",
+      "types": [
+        "category_name"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Scarf；Mage 召唤波浪的招式,技能名须翻译。"
+    },
+    {
+      "en": "Soul Sand Blizzard",
+      "zh": "灵魂沙暴",
+      "types": [
+        "category_name"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Scarf；Scarf 的持续真实伤害招式。"
+    },
+    {
+      "en": "Ancient",
+      "zh": "远古",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Reforging；护甲重铸名,普通词按重铸命名规则翻译。"
+    },
+    {
+      "en": "Withered",
+      "zh": "凋零",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Reforging；近战武器重铸名。"
+    },
+    {
+      "en": "Spiritual",
+      "zh": "灵性",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Reforging；弓类重铸名。"
+    },
+    {
+      "en": "Smite",
+      "zh": "亡灵杀手",
+      "types": [
+        "enchantment_name"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Collection；经验折扣内的原版附魔,沿用 _shared/Enchantments.json。"
+    },
+    {
+      "en": "Power",
+      "zh": "力量",
+      "types": [
+        "enchantment_name"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Collection；经验折扣内的原版附魔,不扩大祝福类别 Power 的作用域。"
+    },
+    {
+      "en": "Silk Touch",
+      "zh": "精准采集",
+      "types": [
+        "enchantment_name"
+      ],
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Collection；经验折扣内的原版附魔。原版译名继续沿用; 本轮按用户新要求一并收录专属附魔名。"
+    },
     {
       "en": "Collections",
       "zh": "收藏品",
@@ -56,7 +1097,8 @@
       "en": "Crystal Core",
       "zh": "水晶核心",
       "types": [
-        "raw"
+        "raw",
+        "location_name"
       ],
       "note": "Guildford 地牢大厅竞速路线。"
     },
@@ -64,7 +1106,8 @@
       "en": "Giant Mushroom",
       "zh": "巨型蘑菇",
       "types": [
-        "raw"
+        "raw",
+        "location_name"
       ],
       "note": "Guildford 地牢大厅竞速路线。"
     },
@@ -72,7 +1115,8 @@
       "en": "Precursor Ruins",
       "zh": "先驱遗迹",
       "types": [
-        "raw"
+        "raw",
+        "location_name"
       ],
       "note": "Guildford 地牢大厅竞速路线。"
     },
@@ -1183,7 +2227,14 @@
     {
       "en": "Bank",
       "zh": "银行",
-      "note": "Hub 岛的银行,也是玩法功能名"
+      "note": "Hub 岛的银行,也是玩法功能名; 非附魔语境的译名,不应用于附魔名称。",
+      "types": [
+        "location_name",
+        "mob_name",
+        "category_name",
+        "raw",
+        "mob_family"
+      ]
     },
     {
       "en": "Colosseum",
@@ -1459,7 +2510,7 @@
     {
       "en": "Ghoul",
       "zh": "食尸鬼",
-      "note": "宠物训练 Tab 行中的宠物种类名"
+      "note": "宠物训练 Tab 等处的宠物/怪物种类名,同名同义只保留一条。"
     },
     {
       "en": "God Potion",
@@ -1548,9 +2599,10 @@
       "zh": "亡灵",
       "types": [
         "category_name",
-        "mob_name"
+        "mob_name",
+        "raw"
       ],
-      "note": "Bazaar 精华分类的取值。已查证 hysb.wiki/w/Essence(2026-08-29)确有 Undead Essence;限定 category_name,只用于「%1$s Essence」这类分类名。　也用作生物图鉴的分类名（「Undead X ➡ XI」这类横幅），那个位置的占位符是 mob_name，所以两种都要列上，否则那一行会匹配上却仍然画成英文。"
+      "note": "Bazaar 精华分类的取值。已查证 hysb.wiki/w/Essence(2026-08-29)确有 Undead Essence;限定 category_name,只用于「%1$s Essence」这类分类名。　也用作生物图鉴的分类名（「Undead X ➡ XI」这类横幅），那个位置的占位符是 mob_name，所以两种都要列上，否则那一行会匹配上却仍然画成英文。　另加 raw:护甲重铸加成行「Undead Bonus」(Hub_General/GUI_Item/Armor_Sets.json#lore_reforge_bonus 的 raw 占位符)也要译成「亡灵加成」。"
     },
     {
       "en": "Dragon Essence",
@@ -1816,18 +2868,14 @@
     {
       "en": "IMMUNE",
       "zh": "免疫",
-      "note": "计分板炙热值的字面取值:免疫时不显示数字"
-    },
-    {
-      "en": "Ghoul",
-      "zh": "食尸鬼",
-      "note": "宠物/怪物名"
+      "note": "计分板炎热值的字面取值:免疫时不显示数字"
     },
     {
       "en": "Enderman",
       "zh": "末影人",
       "types": [
-        "mob_name"
+        "mob_name",
+        "category_name"
       ],
       "note": "原版怪物及同名宠物"
     },
@@ -2078,7 +3126,7 @@
     },
     {
       "en": "Nether Wart",
-      "zh": "下界疙瘤",
+      "zh": "下界疣",
       "note": "小人种类名。原版材料名按 GLOSSARY.md「原版 Minecraft 材料名一律用官方中文译名」处理"
     },
     {
@@ -2214,7 +3262,14 @@
     {
       "en": "Inferno",
       "zh": "炽焰",
-      "note": "小人种类名。词源是空岛的首领名,但这个词英语里本来就有,按 GLOSSARY.md §6 的判断标准照常翻译(Inferno Demonlord,烈焰人首领)"
+      "note": "小人种类名。词源是空岛的首领名,但这个词英语里本来就有,按 GLOSSARY.md §6 的判断标准照常翻译(Inferno Demonlord,烈焰人首领); 非附魔语境的译名,不应用于附魔名称。",
+      "types": [
+        "location_name",
+        "mob_name",
+        "category_name",
+        "raw",
+        "mob_family"
+      ]
     },
     {
       "en": "Bazaar",
@@ -2631,7 +3686,7 @@
     },
     {
       "en": "Compact Chat",
-      "zh": "压缩提示",
+      "zh": "Compact 提示",
       "types": [
         "raw"
       ],
@@ -2876,14 +3931,6 @@
         "raw"
       ],
       "note": "挖矿天赋名。已有译法见 GLOSSARY.md 的属性表(Pristine → 纯净)和 Mining/ChatMessage/Mineshaft_Loot.json 的 PRISTINE! → 纯净!。限定 raw:目前只被 Hub_General/GUI_Item/Settings.json#mining_message_chat_desc 用到。"
-    },
-    {
-      "en": "Compact",
-      "zh": "压缩",
-      "types": [
-        "raw"
-      ],
-      "note": "挖矿天赋名。已有译法见 GLOSSARY.md(COMPACT! → 压缩!)和 Mining/ChatMessage/Mineshaft_Loot.json。限定 raw 同 Pristine。"
     },
     {
       "en": "Bingo Account",
@@ -3147,7 +4194,8 @@
       "en": "Accessory Bag",
       "zh": "饰品袋",
       "types": [
-        "category_name"
+        "category_name",
+        "raw"
       ],
       "note": "社区中心「账号与存档升级」的升级名。这一族名字会被服务器塞进四类模板里——根菜单的状态行、升级历史行、Tab 页脚的倒计时行、开始/领取升级的聊天提示——过去每处都把名字写死在模板里(Minion Slots 一条、Ender Chest Pages 一条、Heart of the Mountain 一条…),于是换一个升级名就掉回英文,而且同一个名字在不同文件里译得还不一样(末影箱「页面」/「页数」)。改成占位符 + 本表之后,一个名字只写一处。限定 category_name:这些位置的占位符都按 Capture.NAME 的形状收着,半句话进不来。"
     },
@@ -3189,7 +4237,7 @@
       "types": [
         "raw"
       ],
-      "note": "2026 年 9 月宾果卡的社区目标名,只出现在宾果卡的「Progress to X I」那一行里。已查证 hypixelskyblock.minecraft.wiki/w/Bingo/Events/2026(2026-08-31)第 58 期卡面:它的达成条件是「Gain 750M Taming experience」(V 档),即靠练技能拿经验,所以译「技艺精湛」而不是照字面的「熟练」。同一批社区目标名里 Scavenger **故意不加**——那是空岛专属附魔名,按 2026-08-27 的决定整族保持英文(见 _shared/Enchantments.json 的 scope),加词条会让玩家剑上的 Scavenger V 也跟着变中文。"
+      "note": "2026 年 9 月宾果卡的社区目标名,只出现在宾果卡的「Progress to X I」那一行里。已查证 hypixelskyblock.minecraft.wiki/w/Bingo/Events/2026(2026-08-31)第 58 期卡面:它的达成条件是「Gain 750M Taming experience」(V 档),即靠练技能拿经验,所以译「技艺精湛」而不是照字面的「熟练」。同一批社区目标 Scavenger 按 2026-09-08 要求恢复英文附魔名。"
     },
     {
       "en": "Berserk",
@@ -5736,7 +6784,8 @@
       "en": "Bee",
       "zh": "蜜蜂",
       "types": [
-        "raw"
+        "raw",
+        "mob_name"
       ],
       "note": "宠物名，Farming 类型宠物。2026-09-04 实机采集中的动态值。"
     },
@@ -5744,7 +6793,8 @@
       "en": "Owl",
       "zh": "猫头鹰",
       "types": [
-        "raw"
+        "raw",
+        "mob_name"
       ],
       "note": "宠物名。2026-09-04 实机采集中的动态值。"
     },
@@ -6318,62 +7368,258 @@
     {
       "en": "Experience Bottle",
       "zh": "经验瓶",
-      "types": ["category_name"],
+      "types": [
+        "category_name"
+      ],
       "note": "配方奖励中的完整物品名；沿用 Economy/GUI_Item/Bazaar.json 的译名，不改写 item_name。"
     },
     {
       "en": "Prospecting Helmet",
       "zh": "勘探头盔",
-      "types": ["category_name"],
+      "types": [
+        "category_name"
+      ],
       "note": "https://hypixelskyblock.minecraft.wiki/w/Prospecting_Armor：铁锭 II 解锁的挖矿护甲部件，普通词组成，并非自造专名。用于配方奖励。"
     },
     {
       "en": "Dragon's Nest",
       "zh": "龙巢",
-      "types": ["location_name", "raw"],
+      "types": [
+        "location_name",
+        "raw"
+      ],
       "note": "https://hypixelskyblock.minecraft.wiki/w/Dragon%27s_Nest：末地的 Boss 区域,并非水晶残核的 Dragon's Lair。"
     },
     {
       "en": "Crystal Hollows - Entrance",
       "zh": "水晶残核 - 入口",
-      "types": ["raw"],
+      "types": [
+        "raw"
+      ],
       "note": "logs/latest.log 中解锁的快速传送目的地; 山心 IV 开放,已对照 Heart_of_the_Mountain。连接号要求使用 raw 捕获,不是独立新地名。"
     },
     {
       "en": "Ender Pearl",
       "zh": "末影珍珠",
-      "types": ["category_name"],
+      "types": [
+        "category_name",
+        "raw"
+      ],
       "note": "末地收藏品类别,原版官方译名; 不改变 item_name 商品原名。"
     },
     {
       "en": "Fortuitous",
       "zh": "幸运",
-      "types": ["category_name"],
+      "types": [
+        "category_name"
+      ],
       "note": "https://hypixelskyblock.minecraft.wiki/w/Accessory_Powers/List_of_Accessory_Powers：默认解锁的饰品袋能力,偏向暴击概率。按功能性能力名翻译,仅用于能力/分类占位符。"
     },
     {
       "en": "Void Sword",
       "zh": "虚空之剑",
-      "types": ["category_name", "raw"],
+      "types": [
+        "category_name",
+        "raw"
+      ],
       "note": "Lone_Adventurer 页面核实的任务武器; 普通词组成。也让 NPC 台词的 showOriginal 名称对照可以保留英文搜索名。"
     },
     {
       "en": "Ender Armor",
       "zh": "末影护甲",
-      "types": ["category_name", "raw"],
+      "types": [
+        "category_name",
+        "raw"
+      ],
       "note": "Lone_Adventurer 页面核实的护甲名; 任务要求八件时包含装备,该整句译为末影套装,见 GLOSSARY.md。"
     },
     {
       "en": "End Stone Protector",
       "zh": "末地石守护者",
-      "types": ["mob_name", "raw"],
+      "types": [
+        "mob_name",
+        "raw"
+      ],
       "note": "https://hypixelskyblock.minecraft.wiki/w/End_Stone_Protector：龙巢中由狂信徒击杀数推进生成的 Boss,不是 NPC。"
     },
     {
       "en": "Zealot",
       "zh": "狂信徒",
-      "types": ["mob_name"],
+      "types": [
+        "mob_name"
+      ],
       "note": "沿用 Taming/GUI_Item/Pet_Perks.json 的既有译名; Dragon%27s_Nest 页面确认是末地怪物。"
+    },
+    {
+      "en": "Crypts",
+      "zh": "墓穴",
+      "types": [
+        "location_name",
+        "raw"
+      ],
+      "note": "2026-09-08 编译后实测; 社区 Wiki Crypts/Unincorporated/Wither Armor/Chocolate Factory 语境。"
+    },
+    {
+      "en": "Unincorporated",
+      "zh": "未辖地",
+      "types": [
+        "location_name",
+        "raw"
+      ],
+      "note": "2026-09-08 编译后实测; 社区 Wiki Crypts/Unincorporated/Wither Armor/Chocolate Factory 语境。"
+    },
+    {
+      "en": "Unincorporated Territory",
+      "zh": "未辖地",
+      "types": [
+        "location_name",
+        "raw"
+      ],
+      "note": "2026-09-08 编译后实测; 社区 Wiki Crypts/Unincorporated/Wither Armor/Chocolate Factory 语境。"
+    },
+    {
+      "en": "Wheat Minion",
+      "zh": "小麦小人",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-08 编译后实测; 社区 Wiki Crypts/Unincorporated/Wither Armor/Chocolate Factory 语境。"
+    },
+    {
+      "en": "Witherborn",
+      "zh": "凋灵降生",
+      "types": [
+        "raw"
+      ],
+      "note": "2026-09-08 编译后实测; 社区 Wiki Crypts/Unincorporated/Wither Armor/Chocolate Factory 语境。"
+    },
+    {
+      "en": "Time Tower",
+      "zh": "时光塔",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-08 编译后实测; 社区 Wiki Crypts/Unincorporated/Wither Armor/Chocolate Factory 语境。"
+    },
+    {
+      "en": "Rabbit Shrine",
+      "zh": "兔子圣坛",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-08 编译后实测; 社区 Wiki Crypts/Unincorporated/Wither Armor/Chocolate Factory 语境。"
+    },
+    {
+      "en": "Instant Transmission",
+      "zh": "瞬间传送",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-08 实测; 社区 Wiki 对应武器 Usage 核对技能; 人名/物品名占位符不查此表。"
+    },
+    {
+      "en": "Instant Heal",
+      "zh": "瞬间治疗",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-08 实测; 社区 Wiki 对应武器 Usage 核对技能; 人名/物品名占位符不查此表。"
+    },
+    {
+      "en": "Giant's Slam",
+      "zh": "巨人重击",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-08 实测; 社区 Wiki 对应武器 Usage 核对技能; 人名/物品名占位符不查此表。"
+    },
+    {
+      "en": "Ether Transmission",
+      "zh": "以太传送",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-08 实测; 社区 Wiki 对应武器 Usage 核对技能; 人名/物品名占位符不查此表。"
+    },
+    {
+      "en": "Huge Heal",
+      "zh": "强效治疗",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-08 实测; 社区 Wiki 对应武器 Usage 核对技能; 人名/物品名占位符不查此表。"
+    },
+    {
+      "en": "HELMET",
+      "zh": "头盔",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-08 实测; 社区 Wiki 对应武器 Usage 核对技能; 人名/物品名占位符不查此表。"
+    },
+    {
+      "en": "CHESTPLATE",
+      "zh": "胸甲",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-08 实测; 社区 Wiki 对应武器 Usage 核对技能; 人名/物品名占位符不查此表。"
+    },
+    {
+      "en": "LEGGINGS",
+      "zh": "护腿",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-08 实测; 社区 Wiki 对应武器 Usage 核对技能; 人名/物品名占位符不查此表。"
+    },
+    {
+      "en": "BOOTS",
+      "zh": "靴子",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-08 实测; 社区 Wiki 对应武器 Usage 核对技能; 人名/物品名占位符不查此表。"
+    },
+    {
+      "en": "LONGSWORD",
+      "zh": "长剑",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-08 实测; 社区 Wiki 对应武器 Usage 核对技能; 人名/物品名占位符不查此表。"
+    },
+    {
+      "en": "SWORD",
+      "zh": "剑",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-08 实测; 社区 Wiki 对应武器 Usage 核对技能; 人名/物品名占位符不查此表。"
+    },
+    {
+      "en": "Supreme",
+      "zh": "至高",
+      "types": [
+        "category_name"
+      ],
+      "note": "附魔实验台的实验难度档次,社区 Wiki Experimentation Table/Vincent UI; 2026-09-08 实测。"
+    },
+    {
+      "en": "Transcendent",
+      "zh": "超凡",
+      "types": [
+        "category_name"
+      ],
+      "note": "附魔实验台的实验难度档次,社区 Wiki Experimentation Table/Vincent UI; 2026-09-08 实测。"
+    },
+    {
+      "en": "Metaphysical",
+      "zh": "玄奥",
+      "types": [
+        "category_name"
+      ],
+      "note": "附魔实验台的实验难度档次,社区 Wiki Experimentation Table/Vincent UI; 2026-09-08 实测。"
     }
   ],
   "todo": [

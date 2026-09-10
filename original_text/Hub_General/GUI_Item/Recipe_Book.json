@@ -30,18 +30,18 @@
         {
           "token": "%1$s",
           "desc": "配方类别名，保持服务器原文",
-          "type": "raw",
+          "type": "category_name",
           "example": "Farming"
         }
       ],
-      "gloss": "完整句为 View all of the %1$s Recipes that you've unlocked!",
+      "gloss": "2026-09-06 实测:配方类型使用 category_name 查询既有技能词表。Wiki 界面标注过时,保留日志的断行与缩写。",
       "translate": true,
       "zh": "",
       "segments": [
         {
           "color": "§7",
           "text": "View all of the ",
-          "zh": "查看已解锁的全部 "
+          "zh": "查看已解锁的全部"
         },
         {
           "color": "§a",
@@ -75,18 +75,18 @@
         {
           "token": "%1$s",
           "desc": "配方类别名，保持服务器原文",
-          "type": "raw",
+          "type": "category_name",
           "example": "Enchanting"
         }
       ],
-      "gloss": "",
+      "gloss": "2026-09-06 实测:配方类型使用 category_name 查询既有技能词表。Wiki 界面标注过时,保留日志的断行与缩写。",
       "translate": true,
       "zh": "",
       "segments": [
         {
           "color": "§7",
           "text": "View all of the ",
-          "zh": "查看全部 "
+          "zh": "查看已解锁的全部"
         },
         {
           "color": "§a",
@@ -94,6 +94,17 @@
           "zh": "%1$s配方"
         }
       ]
+    },
+    {
+      "id": "view_category_recipes_unlocked_tail",
+      "context": "短首行 View all of the ... Recipes 的实测尾行",
+      "raw": "§7that you've unlocked!",
+      "text": "that you've unlocked!",
+      "placeholders": [],
+      "gloss": "句末感叹号保留本尾行的实时正文颜色。",
+      "translate": true,
+      "zh": "!",
+      "continuation": true
     },
     {
       "id": "trades_desc_1",
@@ -213,6 +224,60 @@
       "id": "click_to_search",
       "ref": "_shared/Menu_Common.json#menu_click_to_search",
       "context": "搜索入口的点击提示"
+    },
+    {
+      "id": "recipe_search_name",
+      "context": "配方书操作按钮,不能把操作词当配方类别",
+      "raw": "§aSearch Recipes",
+      "text": "Search Recipes",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "搜索配方"
+    },
+    {
+      "id": "recipe_next_name",
+      "context": "配方书操作按钮,不能把操作词当配方类别",
+      "raw": "§aNext Recipe",
+      "text": "Next Recipe",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "下一个配方"
+    },
+    {
+      "id": "recipe_return_category",
+      "context": "配方书返回按钮,To 属于固定正文",
+      "raw": "§7To %s Recipes",
+      "text": "To %s Recipes",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "category_name",
+          "example": "Mining",
+          "desc": "配方类别或小人材料名称"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "返回%s配方"
+    },
+    {
+      "id": "recipe_return_minion",
+      "context": "配方书返回按钮,To 属于固定正文",
+      "raw": "§7To %s Minion Recipes",
+      "text": "To %s Minion Recipes",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "category_name",
+          "example": "Lapis",
+          "desc": "配方类别或小人材料名称"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "返回%s小人配方"
     }
   ]
 }

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -72,11 +73,14 @@ public final class TranslationEntry {
 	private final int specificity;
 	/** The record's English with its fragments joined and its placeholders still in it. */
 	private final String template;
+	/** Exact canonical inputs this template must decline; not a global no-translation rule. */
+	private final Set<String> excludedTexts;
 
 	private TranslationEntry(
 		String id, String sourceFile, Pattern pattern, List<Fragment> fragments, List<Fragment> rendered,
 		int[] argGroups, Map<Integer, Capture> captures, Map<Integer, String> argTypes,
-		Map<Integer, Integer> shapes, boolean continuation, String layout, int specificity, String template
+		Map<Integer, Integer> shapes, boolean continuation, String layout, int specificity, String template,
+		Set<String> excludedTexts
 	) {
 		this.id = id;
 		this.sourceFile = sourceFile;
@@ -91,6 +95,7 @@ public final class TranslationEntry {
 		this.layout = layout;
 		this.specificity = specificity;
 		this.template = template;
+		this.excludedTexts = Set.copyOf(excludedTexts);
 	}
 
 	/**
@@ -142,6 +147,15 @@ public final class TranslationEntry {
 		String id, String sourceFile, List<String> sources, List<String> targets, List<Integer> order,
 		boolean continuation, String layout, Map<Integer, String> argTypes,
 		Map<Integer, String> argExamples
+	) {
+		return compile(id, sourceFile, sources, targets, order, continuation, layout, argTypes, argExamples, Set.of());
+	}
+
+	/** A bounded list of literal exceptions to one template; other records may still answer. */
+	public static TranslationEntry compile(
+		String id, String sourceFile, List<String> sources, List<String> targets, List<Integer> order,
+		boolean continuation, String layout, Map<Integer, String> argTypes,
+		Map<Integer, String> argExamples, Set<String> excludedTexts
 	) {
 		if (sources.isEmpty() || sources.size() != targets.size()) {
 			return null;
@@ -261,7 +275,7 @@ public final class TranslationEntry {
 		return new TranslationEntry(
 			id, sourceFile, Pattern.compile(regex.toString(), Pattern.DOTALL), List.copyOf(fragments),
 			reorder(fragments, order), argGroups, Map.copyOf(captures), Map.copyOf(typeByGroup),
-			Map.copyOf(shapeByGroup), continuation, layout, literals, String.join("", sources)
+			Map.copyOf(shapeByGroup), continuation, layout, literals, String.join("", sources), excludedTexts
 		);
 	}
 
@@ -432,6 +446,10 @@ public final class TranslationEntry {
 		return this.template;
 	}
 
+	public Set<String> excludedTexts() {
+		return this.excludedTexts;
+	}
+
 	/** Whether this line is the tail of a sentence that was folded into the line before it. */
 	public boolean continuation() {
 		return this.continuation;
@@ -473,6 +491,10 @@ public final class TranslationEntry {
 
 	/** Whether every placeholder caught something of the kind it was declared to hold. */
 	public boolean accepts(Matcher match) {
+		if (this.excludedTexts.contains(match.group())) {
+			return false;
+		}
+
 		for (Map.Entry<Integer, Capture> capture : this.captures.entrySet()) {
 			int group = capture.getKey();
 
@@ -892,18 +914,18 @@ public final class TranslationEntry {
 
 			int start = match.start(fragment.group());
 			int end = match.end(fragment.group());
-			String words = null;
+			Style words = null;
 
 			for (int i = start; i < end; i++) {
 				if (!coloursWords(source, fragment, match, i)) {
 					continue;
 				}
 
-				String look = look(source.styleAt(i));
+				Style look = source.styleAt(i);
 
 				if (words == null) {
 					words = look;
-				} else if (!look.equals(words)) {
+				} else if (!sameLook(look, words)) {
 					return true;
 				}
 			}
@@ -924,10 +946,12 @@ public final class TranslationEntry {
 	 * that has no colour on either side of it. Nothing here draws hover text, so nothing here should
 	 * count it as a colour.
 	 */
-	private static String look(Style style) {
-		return style.getColor() + "/" + style.getFont()
-			+ (style.isBold() ? "b" : "") + (style.isItalic() ? "i" : "")
-			+ (style.isUnderlined() ? "u" : "") + (style.isStrikethrough() ? "s" : "")
-			+ (style.isObfuscated() ? "o" : "");
+	private static boolean sameLook(Style left, Style right) {
+		return left == right || Objects.equals(left.getColor(), right.getColor())
+			&& Objects.equals(left.getFont(), right.getFont())
+			&& left.isBold() == right.isBold() && left.isItalic() == right.isItalic()
+			&& left.isUnderlined() == right.isUnderlined()
+			&& left.isStrikethrough() == right.isStrikethrough()
+			&& left.isObfuscated() == right.isObfuscated();
 	}
 }

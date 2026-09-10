@@ -412,6 +412,32 @@ the wrong order, or whose hand-written space lands between two Chinese character
 nobody added to `_shared/Terms.json`, passes it and still looks wrong on screen. Here it is one line
 of output.
 
+## Whole lore sentences from NEU
+
+`GUI_Lore/` is its own render surface, `Surface.LORE`, consulted only for the lines after a tooltip's
+item name. `LoreMatcher` matches a complete authored sentence across the server's wrap boundaries —
+at most 12 lines or 2048 characters, never across a blank line — and it only ever uses this surface's
+own templates; it does not extend an old per-line ITEM record into the lines below it. A whole-sentence
+hit wins; a miss consumes nothing and the line falls through to the per-line path. Values, icons and
+colours still come off the live components through `TranslationEntry`, and `TextLayout` re-wraps the
+Chinese by pixel width. The item-name path never asks this surface, so a skill title that happens to
+share an item's name does not rename the item; with translation off or the original-text key held,
+the tooltip cache is not read.
+
+`TextCapture.item` uses the same matcher: a sentence the corpus covers is checked for mixed language and
+flattened colours under `GUI_Lore`, and lines it does not cover are still captured one by one. Nothing
+here touches the `ItemStack`, no online translation is introduced, and nothing downloads NEU at build
+or run time.
+
+- `checkLore` runs on both targets: the recorded multi-line samples, the same sentences re-wrapped at
+  other points, hand-written expectations, the line and length limits, item names left alone, and the
+  capture diagnostics.
+- `auditNeuLore -PneuItems=<items directory>` is a development tool only and writes
+  `build/neu-lore-audit.json`. It reports per-line matches and whole-item matches separately; a stat
+  line matching is not an item being done. Pet placeholders are sampled at 10, which is not a test of
+  every level.
+- `samples` and the source-item lists are for translators and tests; the minifier does not ship them.
+
 ## Building
 
 ```bash

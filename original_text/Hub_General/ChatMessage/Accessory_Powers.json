@@ -11,30 +11,21 @@
       "placeholders": [
         {
           "token": "%s",
-          "type": "category_name",
+          "type": "accessory_power",
           "example": "Fortuitous",
           "desc": "能力名; 译名放入 Terms,不枚举模板"
         }
       ],
-      "gloss": "",
+      "gloss": "实测饰品袋与能力名各有独立绿色高亮；用 order 调整语序，能力二字与句末恢复黄色。accessory_power 单独限定能力词表，不改变同名鱼饵分类。",
+      "raw": "§eYou selected the §a%s §epower for your §aAccessory Bag§e!",
       "translate": true,
       "zh": "你为饰品袋选择了%s能力!",
       "segments": [
-        {
-          "color": "",
-          "text": "You selected the ",
-          "zh": "你为饰品袋选择了"
-        },
-        {
-          "color": "",
-          "text": "%s",
-          "zh": "%s"
-        },
-        {
-          "color": "",
-          "text": " power for your Accessory Bag!",
-          "zh": "能力!"
-        }
+        {"color": "§e", "text": "You selected the ", "zh": "你为", "order": 0},
+        {"color": "§a", "text": "%s ", "zh": "%s", "order": 3},
+        {"color": "§e", "text": "power for your ", "zh": "选择了", "order": 2},
+        {"color": "§a", "text": "Accessory Bag", "zh": "饰品袋", "order": 1},
+        {"color": "§e", "text": "!", "zh": "能力!", "order": 4}
       ]
     },
     {

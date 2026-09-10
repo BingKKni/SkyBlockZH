@@ -24,19 +24,20 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "需要一片可放置煤矿石的开阔区域。你离线时小人也会继续工作!"
+      "zh": "需要一片可放置煤矿石的开阔区域。"
     },
     {
       "id": "coal_minion_area_2",
-      "context": "接上一行",
+      "context": "承接煤炭/青金石小人的区域说明; 离线工作说明由本行与 offline! 共同承载",
       "raw": "§7ore. Minions also work when you are",
       "text": "ore. Minions also work when you are",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "https://hypixelskyblock.minecraft.wiki/w/Minions; 本轮青金石小人使用同一尾行,不能只在煤炭首行写死离线说明。",
       "translate": true,
       "continuation": true,
-      "zh": ""
+      "zh": "你离线时小人也会继续工作!"
     },
+    {"id":"minion_offline_tail","context":"煤炭/青金石小人说明的最后一行; 与 ore. Minions also work when you are 一同合并","raw":"§7offline!","text":"offline!","placeholders":[],"gloss":"https://hypixelskyblock.minecraft.wiki/w/Minions；实测原文来自 logs/skyzh-capture/untranslated/Hub_General/GUI_Item/Lapis_Minion_IV.json。离线说明由前一条 continuation 的译文提供。","translate":true,"continuation":true,"zh":""},
     {"id": "coal_minion_time", "ref": "_shared/Item_Lore.json#minion_time_between_actions", "context": "当前行动间隔"},
     {"id": "coal_minion_generated", "ref": "_shared/Item_Lore.json#minion_resources_generated", "context": "累计产量"},
     {"id": "coal_minion_needed", "ref": "_shared/Item_Lore.json#minion_materials_needed", "context": "升级缺少煤炭"}

@@ -1,12 +1,17 @@
 package io.github.bingkkni.skyzh.text;
 
 import io.github.bingkkni.skyzh.HypixelServer;
+import io.github.bingkkni.skyzh.HoldOriginal;
 import io.github.bingkkni.skyzh.SkyZHConfig;
+import io.github.bingkkni.skyzh.platform.ClientGui;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 
@@ -102,14 +107,24 @@ public final class TooltipTranslator {
 		);
 	}
 
+	/** The terminal tests English initials; hiding the original names would hide the question's data. */
+	public static boolean requiresOriginalName(Component title) {
+		return title != null && StyledText.of(title).plain().trim().matches("What starts with: '[A-Z]'\\?");
+	}
+
 	public static List<Component> translate(Font font, List<Component> lines) {
 		SkyZHConfig config = SkyZHConfig.get();
 
-		if (!HypixelServer.canTranslate() || lines.isEmpty()) {
+		if (!HypixelServer.canTranslate() || !config.enabled || HoldOriginal.active() || lines.isEmpty()) {
 			return lines;
 		}
 
-		StringBuilder key = new StringBuilder();
+		Minecraft minecraft = Minecraft.getInstance();
+		Screen screen = minecraft == null ? null : ClientGui.screen(minecraft);
+		boolean keepOriginalNames = config.showOriginal || (screen instanceof AbstractContainerScreen<?>
+			&& requiresOriginalName(screen.getTitle()));
+		// A tooltip can be identical in a shop and in a terminal; the display policy is part of its key.
+		StringBuilder key = new StringBuilder().append(keepOriginalNames).append('\n');
 
 		for (Component line : lines) {
 			StyledText styled = StyledText.of(line);
@@ -153,6 +168,18 @@ public final class TooltipTranslator {
 
 		for (int i = 0; i < lines.size(); i++) {
 			Component line = lines.get(i);
+			if (!name) {
+				LoreMatcher.Match sentence = LoreMatcher.find(Translator.index(), lines, i);
+				if (sentence != null) {
+					Component rendered = Translator.skyBlockName(
+						sentence.render(Translator.index().terms(), config.showOriginal), config);
+					result.addAll(TextLayout.wrap(font, rendered, width));
+					i += sentence.lines() - 1;
+					// A complete sentence must never swallow an unrelated legacy continuation.
+					merging = false;
+					continue;
+				}
+			}
 			Translator.Result translated = name
 				? translateItemName(line)
 				: Translator.translate(line, Surface.ITEM, config.showOriginal);
@@ -164,7 +191,7 @@ public final class TooltipTranslator {
 				// keeps it — under the same switch, in the same brackets. See OriginalLabel.
 				name = false;
 
-				if (translated.matched() && config.showOriginal) {
+				if (translated.matched() && keepOriginalNames) {
 					// Not re-wrapped: a name is one line in every language, and the tooltip is welcome
 					// to be as wide as the pair needs.
 					result.add(OriginalLabel.append(translated.padded(), line));

@@ -1,0 +1,139 @@
+{
+  "source": "; 2026-09-07/08 编译后实测; https://hypixelskyblock.minecraft.wiki/w/Florid_Zombie_Sword",
+  "fetched_at": "2026-09-08",
+  "verified_ingame": true,
+  "gui_context": "武器治疗效果",
+  "lines": [
+    {
+      "id": "florid_heal_head",
+      "context": "武器治疗效果",
+      "raw": "§7Heal for §c%1$s❤ §7and heal players within §a%2$s",
+      "text": "Heal for %1$s❤ and heal players within %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "500",
+          "desc": "随服务器变化的数值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "8",
+          "desc": "随服务器变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Heal for ",
+          "zh": "为自己恢复 "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s❤ ",
+          "zh": "%1$s❤"
+        },
+        {
+          "color": "§7",
+          "text": "and heal players within ",
+          "zh": ",并为周围 "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ],
+      "zh": "为自己恢复 %1$s❤,并为周围 %2$s"
+    },
+    {
+      "id": "florid_heal_tail",
+      "context": "武器治疗效果",
+      "raw": "§7blocks for §c%s❤§7.",
+      "text": "blocks for %s❤.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "100",
+          "desc": "随服务器变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "blocks for ",
+          "zh": " 格内的玩家恢复 "
+        },
+        {
+          "color": "§c",
+          "text": "%s❤",
+          "zh": "%s❤"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": " 格内的玩家恢复 %s❤。"
+    },
+    {
+      "id": "atonement_heal",
+      "context": "武器治疗效果",
+      "raw": "§7Heal §c%1$s❤ §7per second for %2$s.",
+      "text": "Heal %1$s❤ per second for %2$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "120",
+          "desc": "随服务器变化的数值"
+        },
+        {
+          "token": "%2$s",
+          "type": "time",
+          "example": "6s",
+          "desc": "服务器紧凑时长"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Heal ",
+          "zh": "每秒恢复 "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s❤ ",
+          "zh": "%1$s❤"
+        },
+        {
+          "color": "§7",
+          "text": "per second for %2$s.",
+          "zh": ",持续 %2$s。"
+        }
+      ],
+      "zh": "每秒恢复 %1$s❤,持续 %2$s。"
+    },
+    {
+      "id": "wand_heals_no_stack",
+      "context": "武器治疗效果",
+      "raw": "§8Wand heals don't stack.",
+      "text": "Wand heals don't stack.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "魔杖的治疗效果无法叠加。"
+    }
+  ],
+  "capture_update": "2026-09-08; 仅采用 2026-09-06 10:47:44 +08:00 编译之后的记录。同时核对 Wand of Atonement; 2026-09-06/08 更新的 Wiki 已改为活力消耗,不沿用旧法力/充能版本。实测 Heal for 与 Wiki Heal yourself for 有轻微差异,以实测为准。"
+}

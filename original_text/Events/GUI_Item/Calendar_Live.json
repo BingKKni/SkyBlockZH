@@ -1,0 +1,360 @@
+{
+  "source": "logs/skyzh-capture; https://hypixelskyblock.minecraft.wiki/w/Calendar",
+  "fetched_at": "2026-09-09",
+  "verified_ingame": true,
+  "gui_context": "日历与活动固定文本、日期与倒计时",
+  "source_note": "原文与颜色以本次用户采集为准；社区 Wiki 普通页面核对玩法语境。动态数值使用有类型占位符，完整 Lore 只在 GUI_Lore 匹配。",
+  "wiki_last_edited": "2026-08-28 15:39",
+  "lines": [
+    {
+      "id": "menu_e339ba737a",
+      "context": "日历与活动固定文本、日期与倒计时",
+      "raw": "§7No events",
+      "text": "No events",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "无活动"
+    },
+    {
+      "id": "menu_ae719cdb68",
+      "context": "日历与活动固定文本、日期与倒计时",
+      "raw": "§7Opens the full SkyBlock Calendar.",
+      "text": "Opens the full SkyBlock Calendar.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "打开完整的 SkyBlock 日历。"
+    },
+    {
+      "id": "calendar_day",
+      "context": "日历与活动固定文本、日期与倒计时",
+      "raw": "§aDay %1$s",
+      "text": "Day %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "2",
+          "desc": "number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "第 %1$s 日"
+    },
+    {
+      "id": "calendar_starts",
+      "context": "日历与活动固定文本、日期与倒计时",
+      "raw": "§7Starts in: §e%1$s",
+      "text": "Starts in: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "time",
+          "example": "1d 20h 43m 54s",
+          "desc": "time"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "距开始: %1$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Starts in: ",
+          "zh": "距开始: "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ]
+    },
+    {
+      "id": "calendar_duration",
+      "context": "日历与活动固定文本、日期与倒计时",
+      "raw": "§7Event lasts for §e%1$s§7!",
+      "text": "Event lasts for %1$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "time",
+          "example": "1h",
+          "desc": "time"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "活动持续 %1$s!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Event lasts for ",
+          "zh": "活动持续 "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "calendar_harvest",
+      "context": "日历与活动固定文本、日期与倒计时",
+      "raw": "§6%1$s Harvest Feast",
+      "text": "%1$s Harvest Feast",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "ordinal",
+          "example": "27th",
+          "desc": "ordinal"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "第 %1$s 届丰收盛宴"
+    },
+    {
+      "id": "calendar_mayor",
+      "context": "日历与活动固定文本、日期与倒计时",
+      "raw": "§aMayor %1$s",
+      "text": "Mayor %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "npc_name",
+          "example": "Cole",
+          "desc": "npc_name"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "市长 %1$s"
+    },
+    {
+      "id": "calendar_all_day",
+      "context": "日历与活动固定文本、日期与倒计时",
+      "raw": "§7All day: §a%1$s§7 (§e%2$s§7)",
+      "text": "All day: %1$s (%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "category_name",
+          "example": "Traveling Zoo",
+          "desc": "category_name"
+        },
+        {
+          "token": "%2$s",
+          "type": "time",
+          "example": "24h",
+          "desc": "time"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "全天: %1$s（%2$s）",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "All day: ",
+          "zh": "全天: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " (",
+          "zh": "（"
+        },
+        {
+          "color": "§e",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": ")",
+          "zh": "）"
+        }
+      ]
+    },
+    {
+      "id": "calendar_all_day_edition",
+      "context": "日历与活动固定文本、日期与倒计时",
+      "raw": "§7All day: §6%1$s %2$s§7 (§e%3$s§7)",
+      "text": "All day: %1$s %2$s (%3$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "ordinal",
+          "example": "512th",
+          "desc": "ordinal"
+        },
+        {
+          "token": "%2$s",
+          "type": "category_name",
+          "example": "Spooky Festival",
+          "desc": "category_name"
+        },
+        {
+          "token": "%3$s",
+          "type": "time",
+          "example": "13h",
+          "desc": "time"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "全天: 第 %1$s 届%2$s（%3$s）",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "All day: ",
+          "zh": "全天: "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s %2$s",
+          "zh": "第 %1$s 届%2$s"
+        },
+        {
+          "color": "§7",
+          "text": " (",
+          "zh": "（"
+        },
+        {
+          "color": "§e",
+          "text": "%3$s",
+          "zh": "%3$s"
+        },
+        {
+          "color": "§7",
+          "text": ")",
+          "zh": "）"
+        }
+      ]
+    },
+    {
+      "id": "calendar_contest",
+      "context": "日历与活动固定文本、日期与倒计时",
+      "raw": "§712:00 am-11:59 pm: §eJacob's Farming Contest",
+      "text": "12:00 am-11:59 pm: Jacob's Farming Contest",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "全天: Jacob 的农业竞赛",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "12:00 am-11:59 pm: ",
+          "zh": "全天: "
+        },
+        {
+          "color": "§e",
+          "text": "Jacob's Farming Contest",
+          "zh": "Jacob 的农业竞赛"
+        }
+      ]
+    },
+    {
+      "id": "calendar_contest_countdown",
+      "context": "日历与活动固定文本、日期与倒计时",
+      "raw": "§712:00 am-11:59 pm: §eJacob's Farming Contest§7 (§e%1$s§7)",
+      "text": "12:00 am-11:59 pm: Jacob's Farming Contest (%1$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "time",
+          "example": "04h 16m 03s",
+          "desc": "time"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "全天: Jacob 的农业竞赛（%1$s）",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "12:00 am-11:59 pm: ",
+          "zh": "全天: "
+        },
+        {
+          "color": "§e",
+          "text": "Jacob's Farming Contest",
+          "zh": "Jacob 的农业竞赛"
+        },
+        {
+          "color": "§7",
+          "text": " (",
+          "zh": "（"
+        },
+        {
+          "color": "§e",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": ")",
+          "zh": "）"
+        }
+      ]
+    },
+    {
+      "id": "calendar_workshop",
+      "context": "日历与活动固定文本、日期与倒计时",
+      "raw": "§712:00 am: §fJerry's Workshop Opens§7 (§e%1$s§7)",
+      "text": "12:00 am: Jerry's Workshop Opens (%1$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "time",
+          "example": "45h",
+          "desc": "time"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "凌晨 12:00: Jerry 的工坊开放（%1$s）",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "12:00 am: ",
+          "zh": "凌晨 12:00: "
+        },
+        {
+          "color": "§f",
+          "text": "Jerry's Workshop Opens",
+          "zh": "Jerry 的工坊开放"
+        },
+        {
+          "color": "§7",
+          "text": " (",
+          "zh": "（"
+        },
+        {
+          "color": "§e",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": ")",
+          "zh": "）"
+        }
+      ]
+    }
+  ]
+}

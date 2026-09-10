@@ -38,7 +38,13 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "召唤末影龙!"
+      "zh": "召唤末影龙!",
+      "raw": "§fSummon the §5Ender Dragon§f!",
+      "segments": [
+        {"color": "§f", "text": "Summon the ", "zh": "召唤"},
+        {"color": "§5", "text": "Ender Dragon", "zh": "末影龙"},
+        {"color": "§f", "text": "!", "zh": "!"}
+      ]
     },
     {
       "id": "end_fight_zealots",
@@ -179,9 +185,10 @@
       "segments": [
         {
           "color": "",
-          "text": "%1$s Damager - ",
-          "zh": "伤害第 %1$s 名 - "
+          "text": "%1$s Damager",
+          "zh": "伤害第 %1$s 名"
         },
+        {"color": "§7", "text": " - ", "zh": " - "},
         {
           "color": "",
           "text": "%2$s",
@@ -226,7 +233,8 @@
       "translate": true,
       "zh": "伤害第 %1$s 名 - %2$s %3$s - %4$s",
       "segments": [
-        {"color": "", "text": "%1$s Damager - ", "zh": "伤害第 %1$s 名 - "},
+        {"color": "", "text": "%1$s Damager", "zh": "伤害第 %1$s 名"},
+        {"color": "§7", "text": " - ", "zh": " - "},
         {"color": "", "text": "%2$s %3$s", "zh": "%2$s %3$s"},
         {"color": "", "text": " - %4$s", "zh": " - %4$s"}
       ],
@@ -366,7 +374,12 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "小心! 你的战斗等级低于此区域的建议等级!"
+      "zh": "小心! 你的战斗等级低于此区域的建议等级!",
+      "raw": "§c§lBE CAREFUL! §cYou're below the recommended Combat Level for this zone!",
+      "segments": [
+        {"color": "§c§l", "text": "BE CAREFUL! ", "zh": "小心! "},
+        {"color": "§c", "text": "You're below the recommended Combat Level for this zone!", "zh": "你的战斗等级低于此区域的建议等级!"}
+      ]
     },
     {
       "id": "end_recommended_level",

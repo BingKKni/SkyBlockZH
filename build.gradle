@@ -42,7 +42,7 @@ tasks.register('minifyCorpus', MinifyCorpus) {
  *
  * Which fields those are is not a guess: TranslationLoader#compile reads `id`, `ref`, `translate`,
  * `text`, `zh`, `segments[].text/.zh/.omit/.order`, `placeholders[].token/.type/.example`,
- * `continuation` and `layout`; TermTable#from reads `applies_to_types` and `terms[].en/.zh/.types`;
+ * `continuation`, `layout` and `exclude`; TermTable#from reads `applies_to_types` and `terms[].en/.zh/.types`;
  * SkyBlockName#from reads `full`, `short` and `compound_stoplist`. Everything else in a corpus file is
  * written for whoever edits it next — `context` and `gloss` (the two biggest, on nearly every record),
  * `raw` (the line with its colour codes, kept so a record can be compared against what the server
@@ -68,7 +68,7 @@ abstract class MinifyCorpus extends DefaultTask {
 
 	/** Per-record keys the runtime reads. Anything else on a record is a note to a translator. */
 	private static final Set<String> RECORD_KEYS = [
-		'id', 'ref', 'translate', 'text', 'zh', 'segments', 'placeholders', 'continuation', 'layout',
+		'id', 'ref', 'translate', 'text', 'zh', 'segments', 'placeholders', 'continuation', 'layout', 'exclude',
 	] as Set
 
 	/** `color` is deliberately absent: it documents the boundary, the drawn colour comes off the screen. */

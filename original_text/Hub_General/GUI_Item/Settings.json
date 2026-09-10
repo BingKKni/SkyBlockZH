@@ -292,9 +292,9 @@
       "raw": "§7Compact Chat",
       "text": "Compact Chat",
       "placeholders": [],
-      "gloss": "COMPACT! 那一行已按 Mining/ChatMessage/Mineshaft_Loot.json 译「压缩!」,这里沿用同一个词。行首的 ✔/✖ 不写进 text,理由见 double_tap_to_drop。",
+      "gloss": "2026-09-08 要求非原版附魔名保持英文,开关与 COMPACT! 掉落提示联动。行首 ✔/✖ 由引擎保留。",
       "translate": true,
-      "zh": "压缩提示"
+      "zh": "Compact 提示"
     },
     {
       "id": "confirm_breaking_ungrown_mutations",
@@ -1688,7 +1688,7 @@
           "example": "Pristine"
         }
       ],
-      "gloss": "采集观察到的取值只有 Pristine 和 Compact 两个(见 _capture.observed),对应同文件的 pristine_chat(纯净提示)和 compact_chat(压缩提示)两行——两行共用这一句说明,只差中间一个词,所以做成模板而不是两条字面记录。这和同一批里 get from %1$s %2$s.、Hear the sound effect when %1$s 那两条不一样:那两条采集观察到的取值分别是 other players / certain items 和 an / Ferocity,是两句不同的话被并到了一起,所以那两处各写字面量。占位符定 raw:取值是天赋名,项目里没有专给天赋名的 type,而这条模板的字面部分够长,不会误吃别的行。",
+      "gloss": "采集观察到的取值只有 Pristine 和 Compact 两个(见 _capture.observed),对应同文件的 pristine_chat(纯净提示)和 compact_chat(Compact 提示)两行——两行共用这一句说明,只差中间一个词,所以做成模板而不是两条字面记录。这和同一批里 get from %1$s %2$s.、Hear the sound effect when %1$s 那两条不一样:那两条采集观察到的取值分别是 other players / certain items 和 an / Ferocity,是两句不同的话被并到了一起,所以那两处各写字面量。占位符定 raw:取值是属性/附魔名,项目里没有专给天赋名的 type,而这条模板的字面部分够长,不会误吃别的行。",
       "translate": true,
       "zh": "显示挖矿时的%1$s提示。"
     },

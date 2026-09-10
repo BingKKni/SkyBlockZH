@@ -1558,7 +1558,7 @@
         {
           "color": "§7",
           "text": "'s %2$s struck you for ",
-          "zh": " 的%2$s命中了你，造成 "
+          "zh": "的%2$s命中了你，造成 "
         },
         {
           "color": "§c",
@@ -1916,7 +1916,7 @@
         {
           "color": "§7",
           "text": "You were killed by %s and became a ghost.",
-          "zh": "你被 %s 击杀，变成了幽灵。"
+          "zh": "你被%s击杀，变成了幽灵。"
         }
       ]
     },
@@ -2358,56 +2358,24 @@
     {
       "id": "run_charmed_mob",
       "context": "魅惑效果触发，把怪物变成了碎片",
-      "raw": "§b§lCHARM! §7You charmed the §c%1$s §7and received §a%2$s§7!",
-      "text": "CHARM! You charmed the %1$s and received %2$s!",
+      "raw": "§b§lCHARM! §7You charmed the §c%1$s §7and received §a%2$s §f%3$s Shards§7!",
+      "text": "CHARM! You charmed the %1$s and received %2$s %3$s Shards!",
       "placeholders": [
-        {
-          "token": "%1$s",
-          "desc": "被魅惑的怪物名",
-          "type": "mob_name",
-          "example": "Zombie Commander"
-        },
-        {
-          "token": "%2$s",
-          "desc": "得到的物品与数量",
-          "type": "raw",
-          "example": "1 Zombie Soldier Shard"
-        }
+        {"token": "%1$s", "desc": "被魅惑的怪物名", "type": "mob_name", "example": "Tank Zombie"},
+        {"token": "%2$s", "desc": "碎片数量", "type": "number", "example": "1"},
+        {"token": "%3$s", "desc": "碎片对应生物", "type": "mob_name", "example": "Tank Zombie"}
       ],
-      "gloss": "",
+      "gloss": "数量与碎片名分开捕获；沿用生物译名，避免把整段物品和数量塞进 raw 后残留英文。",
       "translate": true,
-      "zh": "",
+      "zh": "魅惑! 你魅惑了%1$s，获得了 %2$s 个%3$s碎片!",
       "segments": [
-        {
-          "color": "§b§l",
-          "text": "CHARM! ",
-          "zh": "魅惑! "
-        },
-        {
-          "color": "§7",
-          "text": "You charmed the ",
-          "zh": "你魅惑了 "
-        },
-        {
-          "color": "§c",
-          "text": "%1$s",
-          "zh": "%1$s"
-        },
-        {
-          "color": "§7",
-          "text": " and received ",
-          "zh": "，获得了 "
-        },
-        {
-          "color": "§a",
-          "text": "%2$s",
-          "zh": "%2$s"
-        },
-        {
-          "color": "§7",
-          "text": "!",
-          "zh": "!"
-        }
+        {"color": "§b§l", "text": "CHARM! ", "zh": "魅惑! "},
+        {"color": "§7", "text": "You charmed the ", "zh": "你魅惑了"},
+        {"color": "§c", "text": "%1$s ", "zh": "%1$s"},
+        {"color": "§7", "text": "and received ", "zh": "，获得了 "},
+        {"color": "§a", "text": "%2$s ", "zh": "%2$s "},
+        {"color": "§f", "text": "%3$s Shards", "zh": "个%3$s碎片"},
+        {"color": "§7", "text": "!", "zh": "!"}
       ]
     },
     {
@@ -2764,7 +2732,7 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "你忽然觉得自己强了一点!"
+      "zh": "你忽然觉得自己变强了一点!"
     },
     {
       "id": "run_gained_strength_minutes",
@@ -3638,7 +3606,7 @@
         {
           "color": "§a",
           "text": "%2$s ",
-          "zh": "%2$s "
+          "zh": "%2$s"
         },
         {
           "color": "§7",

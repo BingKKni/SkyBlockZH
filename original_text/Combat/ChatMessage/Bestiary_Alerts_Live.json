@@ -1,0 +1,229 @@
+{
+  "source": "logs/skyzh-capture; https://hypixelskyblock.minecraft.wiki/w/Bestiary",
+  "fetched_at": "2026-09-09",
+  "verified_ingame": true,
+  "gui_context": "生物图鉴里程碑领取与狩猎战利品共享提示",
+  "source_note": "原文与颜色以本次用户采集为准；社区 Wiki 普通页面核对玩法语境。动态数值使用有类型占位符，完整 Lore 只在 GUI_Lore 匹配。",
+  "wiki_last_edited": "2026-09-06 10:53",
+  "lines": [
+    {
+      "id": "bestiary_milestone_banner",
+      "context": "生物图鉴里程碑领取与狩猎战利品共享提示",
+      "raw": "§6§lBESTIARY MILESTONE",
+      "text": "BESTIARY MILESTONE",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "生物图鉴里程碑",
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "bestiary_pending",
+      "context": "生物图鉴里程碑领取与狩猎战利品共享提示",
+      "raw": "§7You have §3%1$s §7pending §3Bestiary Milestones §7to be claimed!",
+      "text": "You have %1$s pending Bestiary Milestones to be claimed!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "1",
+          "desc": "number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你有 %1$s 份生物图鉴里程碑奖励待领取!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You have ",
+          "zh": "你有 "
+        },
+        {
+          "color": "§3",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "pending ",
+          "zh": "份"
+        },
+        {
+          "color": "§3",
+          "text": "Bestiary Milestones ",
+          "zh": "生物图鉴里程碑"
+        },
+        {
+          "color": "§7",
+          "text": "to be claimed!",
+          "zh": "奖励待领取!"
+        }
+      ],
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "bestiary_click_claim",
+      "context": "生物图鉴里程碑领取与狩猎战利品共享提示",
+      "raw": "§6§l>>> CLICK HERE§e to claim it! §6§l<<<",
+      "text": ">>> CLICK HERE to claim it! <<<",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": ">>> 点击这里领取奖励! <<<",
+      "segments": [
+        {
+          "color": "§6§l",
+          "text": ">>> CLICK HERE",
+          "zh": ">>> 点击这里"
+        },
+        {
+          "color": "§e",
+          "text": " to claim it! ",
+          "zh": "领取奖励! "
+        },
+        {
+          "color": "§6§l",
+          "text": "<<<",
+          "zh": "<<<"
+        }
+      ],
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "loot_share_assist",
+      "context": "生物图鉴里程碑领取与狩猎战利品共享提示",
+      "raw": "§e§lLOOT SHARE §fYou received loot for assisting §7%1$s§f!",
+      "text": "LOOT SHARE You received loot for assisting %1$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "player_name",
+          "example": "FDSUeshugf",
+          "desc": "player_name"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "战利品共享: 你协助 %1$s，获得了战利品!",
+      "segments": [
+        {
+          "color": "§e§l",
+          "text": "LOOT SHARE ",
+          "zh": "战利品共享: "
+        },
+        {
+          "color": "§f",
+          "text": "You received loot for assisting ",
+          "zh": "你协助 "
+        },
+        {
+          "color": "§7",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "，获得了战利品!"
+        }
+      ]
+    },
+    {
+      "id": "loot_share_shard",
+      "context": "生物图鉴里程碑领取与狩猎战利品共享提示",
+      "raw": "§e§lLOOT SHARE §fYou received a %1$s Shard for assisting §7%2$s§f!",
+      "text": "LOOT SHARE You received a %1$s Shard for assisting %2$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "mob_name",
+          "example": "Lapis Zombie",
+          "desc": "mob_name"
+        },
+        {
+          "token": "%2$s",
+          "type": "player_name",
+          "example": "michele27op",
+          "desc": "player_name"
+        }
+      ],
+      "gloss": "碎片名由 %1$s 的 mob_name 词表翻译(Lapis Zombie → 青金石僵尸);玩家名段保持原色,%1$s 由末段引用以还原中文语序,占位符两侧不写空格,英文值的空格由引擎接缝补上。",
+      "translate": true,
+      "zh": "战利品共享: 你协助 %2$s 击杀，获得了%1$s碎片!",
+      "segments": [
+        {
+          "color": "§e§l",
+          "text": "LOOT SHARE ",
+          "zh": "战利品共享: "
+        },
+        {
+          "color": "§f",
+          "text": "You received a %1$s Shard for assisting ",
+          "zh": "你协助 "
+        },
+        {
+          "color": "§7",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": " 击杀，获得了%1$s碎片!"
+        }
+      ]
+    },
+    {
+      "id": "hunting_box_sent",
+      "context": "生物图鉴里程碑领取与狩猎战利品共享提示",
+      "raw": "§eIt got sent to your Hunting Box! §a§l[I GET IT]",
+      "text": "It got sent to your Hunting Box! [I GET IT]",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "已送入你的狩猎箱! [知道了]",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "It got sent to your Hunting Box! ",
+          "zh": "已送入你的狩猎箱! "
+        },
+        {
+          "color": "§a§l",
+          "text": "[I GET IT]",
+          "zh": "[知道了]"
+        }
+      ]
+    },
+    {
+      "id": "hunting_dont_kill",
+      "context": "生物图鉴里程碑领取与狩猎战利品共享提示",
+      "raw": "§a%1$s §cis currently Hunting this monster with a Huntaxe. Don't kill it!",
+      "text": "%1$s is currently Hunting this monster with a Huntaxe. Don't kill it!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "player_name",
+          "example": "Rafabpc",
+          "desc": "player_name"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s 正在使用狩猎斧捕获这只怪物，请不要击杀它!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§c",
+          "text": "is currently Hunting this monster with a Huntaxe. Don't kill it!",
+          "zh": " 正在使用狩猎斧捕获这只怪物，请不要击杀它!"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,5105 @@
+{
+  "source": "logs/skyzh-capture/{untranslated,mixed}/{Dungeons,Hub_General}/GUI_Item/*Enchantment_Guide*.json; https://hypixelskyblock.minecraft.wiki/w/Enchantments; https://hypixelskyblock.minecraft.wiki/w/Ultimate_Enchantments",
+  "fetched_at": "2026-09-05",
+  "verified_ingame": true,
+  "scope": "附魔指南及附魔台中的普通附魔说明; 参数随等级变化,先按真实语义拆开采集器误归并的句子。",
+  "source_note": "Wiki 的概述用于理解机制,原文、断行和数值以采集为准。伤害系数不擅自换成触发概率; 巨人/泰坦杀手上限与百分比分别保留。",
+  "lines": [
+    {
+      "id": "guide_grant_stat_tight",
+      "context": "完整属性加成句; 使用动态符号,不把所有时运图标写成挖掘时运",
+      "raw": "§7Grants §a%1$s§b%2$s %3$s§7.",
+      "text": "Grants %1$s%2$s %3$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "+25",
+          "desc": "随附魔等级变化的数值"
+        },
+        {
+          "token": "%2$s",
+          "type": "icon",
+          "example": "✎",
+          "desc": "变量值; 语义见记录上下文"
+        },
+        {
+          "token": "%3$s",
+          "type": "category_name",
+          "example": "Intelligence",
+          "desc": "变量值; 语义见记录上下文"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§b",
+          "text": "%2$s %3$s",
+          "zh": "%2$s %3$s"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "提供 %1$s%2$s %3$s。"
+    },
+    {
+      "id": "guide_grant_stat_spaced",
+      "context": "完整属性加成句; 使用动态符号,不把所有时运图标写成挖掘时运",
+      "raw": "§7Grants §a%1$s §b%2$s %3$s§7.",
+      "text": "Grants %1$s %2$s %3$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "+25",
+          "desc": "随附魔等级变化的数值"
+        },
+        {
+          "token": "%2$s",
+          "type": "icon",
+          "example": "✎",
+          "desc": "变量值; 语义见记录上下文"
+        },
+        {
+          "token": "%3$s",
+          "type": "category_name",
+          "example": "Intelligence",
+          "desc": "变量值; 语义见记录上下文"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§b",
+          "text": "%2$s %3$s",
+          "zh": "%2$s %3$s"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "提供 %1$s %2$s %3$s。"
+    },
+    {
+      "id": "guide_absorb_head",
+      "context": "吸收附魔的智慧与时运加成",
+      "raw": "§7Grants §3+%s☯ Foraging Wisdom §7and",
+      "text": "Grants +%s☯ Foraging Wisdom and",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "10",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§3",
+          "text": "+%s☯ Foraging Wisdom ",
+          "zh": "+%s☯ 伐木智慧"
+        },
+        {
+          "color": "§7",
+          "text": "and",
+          "zh": "和 "
+        }
+      ],
+      "zh": "提供 +%s☯ 伐木智慧和 "
+    },
+    {
+      "id": "guide_absorb_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§6+%s☘ Foraging Fortune§7.",
+      "text": "+%s☘ Foraging Fortune.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "20",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§6",
+          "text": "+%s☘ Foraging Fortune",
+          "zh": "+%s☘ 伐木时运"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "+%s☘ 伐木时运。"
+    },
+    {
+      "id": "guide_mob_damage_icon_head",
+      "context": "生物类别图标落在首行,名称在下一行",
+      "raw": "§7Increases damage dealt to §4%s",
+      "text": "Increases damage dealt to %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "icon",
+          "example": "",
+          "desc": "变量值; 语义见记录上下文"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increases damage dealt to ",
+          "zh": "对"
+        },
+        {
+          "color": "§4",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ],
+      "zh": "对%s"
+    },
+    {
+      "id": "guide_mob_damage_family_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§4%1$s§7 mobs by §a%2$s%§7.",
+      "text": "%1$s mobs by %2$s%.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "mob_family",
+          "example": "Arthropod",
+          "desc": "变量值; 语义见记录上下文"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "50",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§4",
+          "text": "%1$s",
+          "zh": " %1$s"
+        },
+        {
+          "color": "§7",
+          "text": " mobs by ",
+          "zh": "类怪物造成的伤害提高 "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s%",
+          "zh": "%2$s%"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": " %1$s类怪物造成的伤害提高 %2$s%。"
+    },
+    {
+      "id": "guide_mob_damage_family_head",
+      "context": "首行带图标及一个完整生物类别名",
+      "raw": "§7Increases damage dealt to §a%1$s %2$s",
+      "text": "Increases damage dealt to %1$s %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "icon",
+          "example": "",
+          "desc": "变量值; 语义见记录上下文"
+        },
+        {
+          "token": "%2$s",
+          "type": "mob_family",
+          "example": "Cubic",
+          "desc": "变量值; 语义见记录上下文"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increases damage dealt to ",
+          "zh": "对"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s %2$s",
+          "zh": "%1$s %2$s"
+        }
+      ],
+      "zh": "对%1$s %2$s"
+    },
+    {
+      "id": "guide_mob_damage_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7mobs by §a%s%§7.",
+      "text": "mobs by %s%.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "40",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "mobs ",
+          "zh": "类怪物"
+        },
+        {
+          "color": "§7",
+          "text": "by ",
+          "zh": "造成的伤害提高 "
+        },
+        {
+          "color": "§a",
+          "text": "%s%",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "类怪物造成的伤害提高 %s%。"
+    },
+    {
+      "id": "guide_smite_wither_head",
+      "context": "亡灵杀手指南中的类别排列",
+      "raw": "§7Increases damage dealt to §8 Wither§7,",
+      "text": "Increases damage dealt to  Wither,",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increases damage dealt to ",
+          "zh": "对"
+        },
+        {
+          "color": "§8",
+          "text": " Wither",
+          "zh": " 凋灵"
+        },
+        {
+          "color": "§7",
+          "text": ",",
+          "zh": "、"
+        }
+      ],
+      "zh": "对 凋灵、"
+    },
+    {
+      "id": "guide_smite_three_families_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§2 Undead §7and §f Skeletal§7 mobs by",
+      "text": " Undead and  Skeletal mobs by",
+      "placeholders": [],
+      "gloss": "实测本行已经包含 mobs by,必须在本行保留伤害提升含义。后续纯百分比行不另造全局模板,由原渲染路径保留其数值和颜色。",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§2",
+          "text": " Undead ",
+          "zh": " 亡灵"
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "和"
+        },
+        {
+          "color": "§f",
+          "text": " Skeletal",
+          "zh": " 骷髅"
+        },
+        {
+          "color": "§7",
+          "text": " mobs by",
+          "zh": "类怪物造成的伤害提高 "
+        }
+      ],
+      "zh": " 亡灵和 骷髅类怪物造成的伤害提高 "
+    },
+    {
+      "id": "guide_smite_skeletal_undead_tail",
+      "context": "附魔台说明,Skeletal 先于 Undead 的另一种断行;首行为凋灵",
+      "raw": "§f Skeletal §7and §2 Undead§7 mobs by",
+      "text": " Skeletal and  Undead mobs by",
+      "placeholders": [],
+      "gloss": "实测本行已经包含 mobs by,必须在本行保留伤害提升含义。后续纯百分比行不另造全局模板,由原渲染路径保留其数值和颜色。",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§f",
+          "text": " Skeletal ",
+          "zh": " 骷髅"
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "和"
+        },
+        {
+          "color": "§2",
+          "text": " Undead",
+          "zh": " 亡灵"
+        },
+        {
+          "color": "§7",
+          "text": " mobs by",
+          "zh": "类怪物造成的伤害提高 "
+        }
+      ],
+      "zh": " 骷髅和 亡灵类怪物造成的伤害提高 "
+    },
+    {
+      "id": "guide_smite_skeletal_undead_percent_tail",
+      "context": "附魔台说明,Skeletal 先于 Undead 且百分比同行的断行;首行为凋灵",
+      "raw": "§f Skeletal §7and §2 Undead§7 mobs by §a%s%§7.",
+      "text": " Skeletal and  Undead mobs by %s%.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "伤害提升百分比",
+          "type": "number",
+          "example": "5"
+        }
+      ],
+      "gloss": "实测行末带百分比。没有这条精确记录时,通用的 %1$s mobs by 模板会把「Skeletal and Undead」整段捕成一个类别名,词表查不到就留成英文。",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§f",
+          "text": " Skeletal ",
+          "zh": " 骷髅"
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "和"
+        },
+        {
+          "color": "§2",
+          "text": " Undead",
+          "zh": " 亡灵"
+        },
+        {
+          "color": "§7",
+          "text": " mobs by ",
+          "zh": "类怪物造成的伤害提高 "
+        },
+        {
+          "color": "§a",
+          "text": "%s%",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": " 骷髅和 亡灵类怪物造成的伤害提高 %s%。"
+    },
+    {
+      "id": "guide_smite_skeletal_head",
+      "ref": "Hub_General/GUI_Item/Enchantment_Effects.json#guide_mob_damage_icon_head",
+      "context": "附魔台的另一种类别排列"
+    },
+    {
+      "id": "guide_smite_skeletal_first",
+      "context": "附魔台先显示骷髅的另一种断行,前接通用图标首行",
+      "raw": "§fSkeletal§7, §2 Undead §7and §8 Wither",
+      "text": "Skeletal,  Undead and  Wither",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Skeletal",
+          "zh": " 骷髅"
+        },
+        {
+          "color": "§7",
+          "text": ", ",
+          "zh": "、"
+        },
+        {
+          "color": "§2",
+          "text": " Undead ",
+          "zh": " 亡灵"
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "和"
+        },
+        {
+          "color": "§8",
+          "text": " Wither",
+          "zh": " 凋灵"
+        }
+      ],
+      "zh": " 骷髅、 亡灵和 凋灵"
+    },
+    {
+      "id": "guide_smite_skeletal_finish",
+      "ref": "Hub_General/GUI_Item/Enchantment_Effects.json#guide_mob_damage_tail",
+      "context": "附魔台伤害百分比尾行"
+    },
+    {
+      "id": "guide_smite_undead_wither_head",
+      "ref": "Hub_General/GUI_Item/Enchantment_Effects.json#guide_mob_damage_icon_head",
+      "context": "来自附魔书界面的亡灵杀手类别顺序变体"
+    },
+    {
+      "id": "guide_smite_undead_wither_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§2Undead§7, §8 Wither §7and §f Skeletal",
+      "text": "Undead,  Wither and  Skeletal",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§2",
+          "text": "Undead",
+          "zh": " 亡灵"
+        },
+        {
+          "color": "§7",
+          "text": ", ",
+          "zh": "、"
+        },
+        {
+          "color": "§8",
+          "text": " Wither ",
+          "zh": " 凋灵"
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "和"
+        },
+        {
+          "color": "§f",
+          "text": " Skeletal",
+          "zh": " 骷髅"
+        }
+      ],
+      "zh": " 亡灵、 凋灵和 骷髅"
+    },
+    {
+      "id": "guide_smite_undead_wither_finish",
+      "ref": "Hub_General/GUI_Item/Enchantment_Effects.json#guide_mob_damage_tail",
+      "context": "共享伤害百分比尾行"
+    },
+    {
+      "id": "guide_smite_undead_skeletal_head",
+      "ref": "Hub_General/GUI_Item/Enchantment_Effects.json#guide_mob_damage_icon_head",
+      "context": "来自附魔书界面的亡灵杀手类别顺序变体"
+    },
+    {
+      "id": "guide_smite_undead_skeletal_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§2Undead§7, §f Skeletal §7and §8 Wither",
+      "text": "Undead,  Skeletal and  Wither",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§2",
+          "text": "Undead",
+          "zh": " 亡灵"
+        },
+        {
+          "color": "§7",
+          "text": ", ",
+          "zh": "、"
+        },
+        {
+          "color": "§f",
+          "text": " Skeletal ",
+          "zh": " 骷髅"
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "和"
+        },
+        {
+          "color": "§8",
+          "text": " Wither",
+          "zh": " 凋灵"
+        }
+      ],
+      "zh": " 亡灵、 骷髅和 凋灵"
+    },
+    {
+      "id": "guide_smite_undead_skeletal_finish",
+      "ref": "Hub_General/GUI_Item/Enchantment_Effects.json#guide_mob_damage_tail",
+      "context": "共享伤害百分比尾行"
+    },
+    {
+      "id": "guide_blessing_head",
+      "ref": "Fishing/GUI_Item/Bait_Guide.json#bait_great_1",
+      "context": "完整逻辑句复用已有首行或尾行"
+    },
+    {
+      "id": "guide_blessing_mid",
+      "ref": "Fishing/GUI_Item/Bait_Guide.json#bait_great_2",
+      "context": "完整逻辑句复用已有首行或尾行"
+    },
+    {
+      "id": "guide_blessing_outstanding",
+      "ref": "Fishing/GUI_Item/Bait_Guide.json#bait_great_3",
+      "context": "祝福与鱼饵共用的宝藏品质尾行,已推广为数量模板"
+    },
+    {
+      "id": "guide_charm_head",
+      "ref": "Fishing/GUI_Item/Rod_Parts.json#rod_hook_common_1",
+      "context": "完整逻辑句复用已有首行或尾行"
+    },
+    {
+      "id": "guide_charm_trophies",
+      "context": "魅惑附魔的锦标品质; 与首行将钓到连读",
+      "raw": "§7higher-tiered §6Trophies §7by §a%s%§7.",
+      "text": "higher-tiered Trophies by %s%.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "12",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "higher-tiered ",
+          "zh": "更高品质的"
+        },
+        {
+          "color": "§6",
+          "text": "Trophies ",
+          "zh": "锦标"
+        },
+        {
+          "color": "§7",
+          "text": "by ",
+          "zh": "的概率提高 "
+        },
+        {
+          "color": "§a",
+          "text": "%s%",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "更高品质的锦标的概率提高 %s%。"
+    },
+    {
+      "id": "guide_bug_blender_head",
+      "context": "碎虫机: 清除害虫时的农业时运",
+      "raw": "§7Grants §6%s☘ Farming Fortune §7when",
+      "text": "Grants %s☘ Farming Fortune when",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "+100",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "提供 ",
+          "order": 3
+        },
+        {
+          "color": "§6",
+          "text": "%s☘ Farming Fortune ",
+          "zh": "%s☘ 农业时运",
+          "order": 4
+        },
+        {
+          "color": "§7",
+          "text": "when",
+          "zh": "。",
+          "order": 5
+        }
+      ],
+      "zh": ""
+    },
+    {
+      "id": "guide_bug_blender_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7vacuuming §2 Pests§7.",
+      "text": "vacuuming  Pests.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "vacuuming ",
+          "zh": "用吸尘器清除",
+          "order": 0
+        },
+        {
+          "color": "§2",
+          "text": " Pests",
+          "zh": " 害虫",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "时,",
+          "order": 2
+        }
+      ],
+      "zh": "用吸尘器清除 害虫时,"
+    },
+    {
+      "id": "guide_caster_bait",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§a%s%§7 chance to not consume bait.",
+      "text": "%s% chance to not consume bait.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "30",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§a",
+          "text": "%s%",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": " chance to not consume bait.",
+          "zh": " 的概率不消耗鱼饵。"
+        }
+      ],
+      "zh": "%s% 的概率不消耗鱼饵。"
+    },
+    {
+      "id": "guide_cayenne_head",
+      "context": "卡宴辣椒: 饰品之力每一位数字提供一份加成",
+      "raw": "§7Grants §c+%1$s❤ Health §7and §f+%2$s❂ True",
+      "text": "Grants +%1$s❤ Health and +%2$s❂ True",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "1",
+          "desc": "随附魔等级变化的数值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "0.5",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "",
+          "omit": true,
+          "order": 3
+        },
+        {
+          "color": "§c",
+          "text": "+%1$s❤ Health ",
+          "zh": "+%1$s❤ 生命值",
+          "order": 4
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "和 ",
+          "order": 5
+        },
+        {
+          "color": "§f",
+          "text": "+%2$s❂ True",
+          "zh": "+%2$s❂ 真实",
+          "order": 6
+        }
+      ],
+      "zh": ""
+    },
+    {
+      "id": "guide_cayenne_mid",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§fDefense §7per digit in your §6Accessory",
+      "text": "Defense per digit in your Accessory",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Defense ",
+          "zh": "防御",
+          "order": 7
+        },
+        {
+          "color": "§7",
+          "text": "per digit in your ",
+          "zh": "每有一位数,就提供 ",
+          "order": 2
+        },
+        {
+          "color": "§6",
+          "text": "Accessory",
+          "zh": "饰品",
+          "order": 0
+        }
+      ],
+      "zh": ""
+    },
+    {
+      "id": "guide_cayenne_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§6Power§7.",
+      "text": "Power.",
+      "placeholders": [],
+      "gloss": "饰品之力前移,实际尾行中的灰色句号仍在句末。",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Power",
+          "zh": "之力",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。",
+          "order": 8
+        }
+      ],
+      "zh": ""
+    },
+    {
+      "id": "guide_champion_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Gain §a%s% §7extra Combat XP. The 2nd",
+      "text": "Gain %s% extra Combat XP. The 2nd",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "10",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "额外获得 "
+        },
+        {
+          "color": "§a",
+          "text": "%s% ",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": "extra Combat XP. The 2nd",
+          "zh": " 战斗经验。对同一只怪物的第二次"
+        }
+      ],
+      "zh": "额外获得 %s% 战斗经验。对同一只怪物的第二次"
+    },
+    {
+      "id": "guide_champion_mid",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7hit on a mob grants §6+%1$s coins §7& §3+%2$s",
+      "text": "hit on a mob grants +%1$s coins & +%2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "5",
+          "desc": "随附魔等级变化的数值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "25",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "hit on a mob grants ",
+          "zh": "命中会获得 "
+        },
+        {
+          "color": "§6",
+          "text": "+%1$s coins ",
+          "zh": "+%1$s 硬币"
+        },
+        {
+          "color": "§7",
+          "text": "& ",
+          "zh": "和 "
+        },
+        {
+          "color": "§3",
+          "text": "+%2$s",
+          "zh": "+%2$s"
+        }
+      ],
+      "zh": "命中会获得 +%1$s 硬币和 +%2$s"
+    },
+    {
+      "id": "guide_champion_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7exp orbs.",
+      "text": "exp orbs.",
+      "placeholders": [],
+      "gloss": "保留经验球奖励的概念,与上一句的战斗技能经验区分。",
+      "translate": true,
+      "continuation": true,
+      "zh": " 个经验球。"
+    },
+    {
+      "id": "guide_cleave_head_guide",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Deals up to §a%s% §7of your damage",
+      "text": "Deals up to %s% of your damage",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "30",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Deals up to ",
+          "zh": "额外造成相当于本次伤害至多 "
+        },
+        {
+          "color": "§a",
+          "text": "%s% ",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": "of your damage",
+          "zh": " 的伤害,"
+        }
+      ],
+      "zh": "额外造成相当于本次伤害至多 %s% 的伤害,"
+    },
+    {
+      "id": "guide_cleave_head_table",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Deals up to §a%s% §7of your damage dealt",
+      "text": "Deals up to %s% of your damage dealt",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "30",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Deals up to ",
+          "zh": "额外造成相当于本次伤害至多 "
+        },
+        {
+          "color": "§a",
+          "text": "%s% ",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": "of your damage dealt",
+          "zh": " 的伤害,"
+        }
+      ],
+      "zh": "额外造成相当于本次伤害至多 %s% 的伤害,"
+    },
+    {
+      "id": "guide_cleave_radius_guide",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7dealt to other monsters within §a%s",
+      "text": "dealt to other monsters within %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "6",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "dealt to other monsters within ",
+          "zh": "波及目标周围 "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ],
+      "zh": "波及目标周围 %s"
+    },
+    {
+      "id": "guide_cleave_target_guide",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7blocks of the target.",
+      "text": "blocks of the target.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": " 格内的其他怪物。"
+    },
+    {
+      "id": "guide_cleave_radius_table",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7to other monsters within §a%s §7blocks",
+      "text": "to other monsters within %s blocks",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "3.5",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "to other monsters within ",
+          "zh": "波及目标周围 "
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": "blocks",
+          "zh": " 格内的其他怪物。"
+        }
+      ],
+      "zh": "波及目标周围 %s 格内的其他怪物。"
+    },
+    {
+      "id": "guide_cleave_target_table",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7of the target.",
+      "text": "of the target.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "guide_compact_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Gain §3+%1$s☯ Mining Wisdom §7and a §a%2$s%",
+      "text": "Gain +%1$s☯ Mining Wisdom and a %2$s%",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "10",
+          "desc": "随附魔等级变化的数值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "0.57",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "获得 "
+        },
+        {
+          "color": "§3",
+          "text": "+%1$s☯ Mining Wisdom ",
+          "zh": "+%1$s☯ 挖掘智慧"
+        },
+        {
+          "color": "§7",
+          "text": "and a ",
+          "zh": ",额外掉落附魔物品的概率为 "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s%",
+          "zh": "%2$s%"
+        }
+      ],
+      "zh": "获得 +%1$s☯ 挖掘智慧,额外掉落附魔物品的概率为 %2$s%"
+    },
+    {
+      "id": "guide_compact_tail",
+      "ref": "Hub_General/GUI_Item/Bits_Shop_-_Stacking_Enchants.json#compact_chance_to_drop_an_enchanted_item",
+      "context": "完整逻辑句复用已有首行或尾行"
+    },
+    {
+      "id": "guide_corruption_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Gain a §a%s% §7chance to spawn a",
+      "text": "Gain a %s% chance to spawn a",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "5",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain a ",
+          "zh": "有 "
+        },
+        {
+          "color": "§a",
+          "text": "%s% ",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": "chance to spawn a",
+          "zh": " 的概率生成腐化海洋生物。"
+        }
+      ],
+      "zh": "有 %s% 的概率生成腐化海洋生物。"
+    },
+    {
+      "id": "guide_corruption_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Corrupted Sea Creature.",
+      "text": "Corrupted Sea Creature.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "guide_counter_strike_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Gain §a+%1$s❈ Defense §7for §a%2$s §7on the",
+      "text": "Gain +%1$s❈ Defense for %2$s on the",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "10",
+          "desc": "随附魔等级变化的数值"
+        },
+        {
+          "token": "%2$s",
+          "type": "time",
+          "example": "7s",
+          "desc": "时长,保留服务器实际单位"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "获得 "
+        },
+        {
+          "color": "§a",
+          "text": "+%1$s❈ Defense ",
+          "zh": "+%1$s❈ 防御力"
+        },
+        {
+          "color": "§7",
+          "text": "for ",
+          "zh": ",持续 "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s ",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": "on the",
+          "zh": "（每只敌人的首次命中触发）。"
+        }
+      ],
+      "zh": "获得 +%1$s❈ 防御力,持续 %2$s（每只敌人的首次命中触发）。"
+    },
+    {
+      "id": "guide_counter_strike_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7first hit from an enemy.",
+      "text": "first hit from an enemy.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "guide_crit_damage",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Increases §9☠ Crit Damage §7by §a%s%§7.",
+      "text": "Increases ☠ Crit Damage by %s%.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "100",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increases ",
+          "zh": "使"
+        },
+        {
+          "color": "§9",
+          "text": "☠ Crit Damage ",
+          "zh": "☠ 暴击伤害"
+        },
+        {
+          "color": "§7",
+          "text": "by ",
+          "zh": "提高 "
+        },
+        {
+          "color": "§a",
+          "text": "%s%",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "使☠ 暴击伤害提高 %s%。"
+    },
+    {
+      "id": "guide_cultivating_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Gain §3+%1$s☯ Farming Wisdom §7and §6+%2$s☘",
+      "text": "Gain +%1$s☯ Farming Wisdom and +%2$s☘",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "10",
+          "desc": "随附魔等级变化的数值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "20",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "获得 "
+        },
+        {
+          "color": "§3",
+          "text": "+%1$s☯ Farming Wisdom ",
+          "zh": "+%1$s☯ 农业智慧"
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "和 "
+        },
+        {
+          "color": "§6",
+          "text": "+%2$s☘",
+          "zh": "+%2$s☘"
+        }
+      ],
+      "zh": "获得 +%1$s☯ 农业智慧和 +%2$s☘"
+    },
+    {
+      "id": "guide_cultivating_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§6Farming Fortune§7.",
+      "text": "Farming Fortune.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Farming Fortune",
+          "zh": " 农业时运"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": " 农业时运。"
+    },
+    {
+      "id": "guide_dedication_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Grants §6%s☘ Farming Fortune §7for",
+      "text": "Grants %s☘ Farming Fortune for",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "2",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§6",
+          "text": "%s☘ Farming Fortune ",
+          "zh": "%s☘ 农业时运"
+        },
+        {
+          "color": "§7",
+          "text": "for",
+          "zh": ",此加成乘以该作物的"
+        }
+      ],
+      "zh": "提供 %s☘ 农业时运,此加成乘以该作物的"
+    },
+    {
+      "id": "guide_dedication_mid",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7crops, multiplied by your §aGarden",
+      "text": "crops, multiplied by your Garden",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "crops, multiplied by your ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§a",
+          "text": "Garden",
+          "zh": "花园"
+        }
+      ],
+      "zh": "花园"
+    },
+    {
+      "id": "guide_dedication_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7milestone for that crop.",
+      "text": "milestone for that crop.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "里程碑等级。"
+    },
+    {
+      "id": "guide_delicate_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Avoids breaking stems and baby",
+      "text": "Avoids breaking stems and baby",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "避免破坏作物茎和幼苗。"
+    },
+    {
+      "id": "guide_delicate_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7crops.",
+      "text": "crops.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "guide_dragon_tracer_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Arrows home towards dragons if",
+      "text": "Arrows home towards dragons if",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "箭矢会追踪附近的龙,追踪距离为 "
+    },
+    {
+      "id": "guide_dragon_tracer_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7they are within §a%s §7blocks.",
+      "text": "they are within %s blocks.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "10",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "they are within ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": "blocks.",
+          "zh": " 格。"
+        }
+      ],
+      "zh": "%s 格。"
+    },
+    {
+      "id": "guide_drain_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Regen §4+%s♨ Vitality §7every time you",
+      "text": "Regen +%s♨ Vitality every time you",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "2.5",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Regen ",
+          "zh": "每次命中怪物,回复 "
+        },
+        {
+          "color": "§4",
+          "text": "+%s♨ Vitality ",
+          "zh": "+%s♨ 活力"
+        },
+        {
+          "color": "§7",
+          "text": "every time you",
+          "zh": "。"
+        }
+      ],
+      "zh": "每次命中怪物,回复 +%s♨ 活力。"
+    },
+    {
+      "id": "guide_drain_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7hit a mob.",
+      "text": "hit a mob.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "guide_cooldown_parenthesis",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§8(%ss Cooldown).",
+      "text": "(%ss Cooldown).",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "1",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "（冷却时间: %s 秒）。"
+    },
+    {
+      "id": "guide_damage_per_condition",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Increases damage dealt by §a%s% §7for",
+      "text": "Increases damage dealt by %s% for",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "1.25",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increases damage dealt by ",
+          "zh": "造成的伤害提高 ",
+          "order": 3
+        },
+        {
+          "color": "§a",
+          "text": "%s% ",
+          "zh": "%s%",
+          "order": 4
+        },
+        {
+          "color": "§7",
+          "text": "for",
+          "zh": "。",
+          "order": 5
+        }
+      ],
+      "zh": ""
+    },
+    {
+      "id": "guide_execute_condition",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7each percent of health missing on",
+      "text": "each percent of health missing on",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "each percent of health",
+          "zh": "目标每损失 ",
+          "order": 0
+        },
+        {
+          "color": "§7",
+          "text": " missing on",
+          "zh": "1% 生命值",
+          "order": 1
+        }
+      ],
+      "zh": "目标每损失 1% 生命值"
+    },
+    {
+      "id": "guide_execute_target",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7your target.",
+      "text": "your target.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "your target.",
+          "zh": ",",
+          "order": 2
+        }
+      ],
+      "zh": ""
+    },
+    {
+      "id": "guide_giant_damage_head",
+      "ref": "Hub_General/GUI_Item/Enchantment_Effects.json#guide_damage_per_condition",
+      "context": "巨人杀手与处决共用加伤首行"
+    },
+    {
+      "id": "guide_giant_condition",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7each percent of extra health that",
+      "text": "each percent of extra health that",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "guide_giant_cap",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7your target has above you up to §a%s%§7.",
+      "text": "your target has above you up to %s%.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "65",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "your target has above you up to ",
+          "zh": "目标每比你多 1% 生命值（加成上限 ",
+          "order": 0
+        },
+        {
+          "color": "§a",
+          "text": "%s%",
+          "zh": "%s%",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "）,",
+          "order": 2
+        }
+      ],
+      "zh": "目标每比你多 1% 生命值（加成上限 %s%）,"
+    },
+    {
+      "id": "guide_prosecute_damage_head",
+      "ref": "Hub_General/GUI_Item/Enchantment_Effects.json#guide_damage_per_condition",
+      "context": "审判共用加伤首行"
+    },
+    {
+      "id": "guide_prosecute_condition",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7each percent of health your target",
+      "text": "each percent of health your target",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "each percent of health",
+          "zh": "目标每剩余 ",
+          "order": 0
+        },
+        {
+          "color": "§7",
+          "text": " your target",
+          "zh": "1% 生命值",
+          "order": 1
+        }
+      ],
+      "zh": "目标每剩余 1% 生命值"
+    },
+    {
+      "id": "guide_prosecute_has",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7has.",
+      "text": "has.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "has.",
+          "zh": ",",
+          "order": 2
+        }
+      ],
+      "zh": ""
+    },
+    {
+      "id": "guide_titan_damage_head",
+      "ref": "Hub_General/GUI_Item/Enchantment_Effects.json#guide_damage_per_condition",
+      "context": "泰坦杀手共用加伤首行"
+    },
+    {
+      "id": "guide_titan_condition",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7every 100 defense your target has",
+      "text": "every 100 defense your target has",
+      "placeholders": [],
+      "gloss": "100 是原文固定的计算单位,不是随附魔等级变化的加成。",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "guide_titan_cap",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7up to §a%s%§7.",
+      "text": "up to %s%.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "80",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "up to ",
+          "zh": "目标每拥有 100 点防御力（加成上限 ",
+          "order": 0
+        },
+        {
+          "color": "§a",
+          "text": "%s%",
+          "zh": "%s%",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "）,",
+          "order": 2
+        }
+      ],
+      "zh": "目标每拥有 100 点防御力（加成上限 %s%）,"
+    },
+    {
+      "id": "guide_experience_head",
+      "ref": "Mining/GUI_Item/SkyBlock_Menu.json#experience_enchant_desc_1",
+      "context": "完整逻辑句复用已有首行或尾行"
+    },
+    {
+      "id": "guide_experience_tail",
+      "ref": "Mining/GUI_Item/SkyBlock_Menu.json#experience_enchant_desc_2",
+      "context": "完整逻辑句复用已有首行或尾行"
+    },
+    {
+      "id": "guide_expertise_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Grants §3+%sα Sea Creature Chance",
+      "text": "Grants +%sα Sea Creature Chance",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "6",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§3",
+          "text": "+%sα Sea Creature Chance",
+          "zh": "+%sα 海洋生物几率"
+        }
+      ],
+      "zh": "提供 +%sα 海洋生物几率"
+    },
+    {
+      "id": "guide_expertise_mid",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7and §3+%s☯ Fishing Wisdom §7when killing",
+      "text": "and +%s☯ Fishing Wisdom when killing",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "20",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": ",击杀海洋生物时还提供 "
+        },
+        {
+          "color": "§3",
+          "text": "+%s☯ Fishing Wisdom ",
+          "zh": "+%s☯ 钓鱼智慧"
+        },
+        {
+          "color": "§7",
+          "text": "when killing",
+          "zh": "。"
+        }
+      ],
+      "zh": ",击杀海洋生物时还提供 +%s☯ 钓鱼智慧。"
+    },
+    {
+      "id": "guide_expertise_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Sea Creatures.",
+      "text": "Sea Creatures.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "guide_feather_head",
+      "ref": "Hub_General/GUI_Item/Bingo_Shop.json#bingo_shop_feather_falling_desc_1",
+      "context": "完整逻辑句复用已有首行或尾行"
+    },
+    {
+      "id": "guide_feather_mid",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7before taking fall damage by §a%s§7 and",
+      "text": "before taking fall damage by %s and",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "10",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "before taking fall damage by ",
+          "zh": "增加 "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": " and",
+          "zh": " 格,并使"
+        }
+      ],
+      "zh": "增加 %s 格,并使"
+    },
+    {
+      "id": "guide_feather_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7reduces fall damage by §a%s%§7.",
+      "text": "reduces fall damage by %s%.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "50",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "reduces fall damage by ",
+          "zh": "摔落伤害减少 "
+        },
+        {
+          "color": "§a",
+          "text": "%s%",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "摔落伤害减少 %s%。"
+    },
+    {
+      "id": "guide_fire_aspect_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Ignites your enemies for §a%ss§7, dealing",
+      "text": "Ignites your enemies for %ss, dealing",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "4",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Ignites your enemies for ",
+          "zh": "点燃敌人 "
+        },
+        {
+          "color": "§a",
+          "text": "%ss",
+          "zh": "%s 秒"
+        },
+        {
+          "color": "§7",
+          "text": ", dealing",
+          "zh": ",每秒造成相当于本次伤害 "
+        }
+      ],
+      "zh": "点燃敌人 %s 秒,每秒造成相当于本次伤害 "
+    },
+    {
+      "id": "guide_fire_aspect_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§a%s% §7of your damage per second.",
+      "text": "%s% of your damage per second.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "9",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§a",
+          "text": "%s% ",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": "of your damage per second.",
+          "zh": " 的伤害。"
+        }
+      ],
+      "zh": "%s% 的伤害。"
+    },
+    {
+      "id": "guide_first_strike_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Increases melee damage dealt by",
+      "text": "Increases melee damage dealt by",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "近战伤害提高 "
+    },
+    {
+      "id": "guide_first_strike_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§a%s% §7for the first hit on a mob.",
+      "text": "%s% for the first hit on a mob.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "125",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§a",
+          "text": "%s% ",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": "for the first hit on a mob.",
+          "zh": ",仅限对同一只怪物的首次命中。"
+        }
+      ],
+      "zh": "%s%,仅限对同一只怪物的首次命中。"
+    },
+    {
+      "id": "guide_triple_strike_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§a%s% §7for the first three hits on a mob.",
+      "text": "%s% for the first three hits on a mob.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "50",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§a",
+          "text": "%s% ",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": "for the first three hits on a mob.",
+          "zh": ",仅限对同一只怪物的前三次命中。"
+        }
+      ],
+      "zh": "%s%,仅限对同一只怪物的前三次命中。"
+    },
+    {
+      "id": "guide_flame_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Arrows ignite your enemies for §a%ss§7,",
+      "text": "Arrows ignite your enemies for %ss,",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "4",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Arrows ignite your enemies for ",
+          "zh": "箭矢会点燃敌人 "
+        },
+        {
+          "color": "§a",
+          "text": "%ss",
+          "zh": "%s 秒"
+        },
+        {
+          "color": "§7",
+          "text": ",",
+          "zh": ","
+        }
+      ],
+      "zh": "箭矢会点燃敌人 %s 秒,"
+    },
+    {
+      "id": "guide_flame_mid",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7dealing §a%s% §7of your damage per",
+      "text": "dealing %s% of your damage per",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "6",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "dealing ",
+          "zh": "每秒造成相当于本次伤害 "
+        },
+        {
+          "color": "§a",
+          "text": "%s% ",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": "of your damage per",
+          "zh": " 的伤害。"
+        }
+      ],
+      "zh": "每秒造成相当于本次伤害 %s% 的伤害。"
+    },
+    {
+      "id": "guide_flame_tail",
+      "ref": "Dungeons/GUI_Item/Ophelia.json#ophelia_breaker_desc_5",
+      "context": "完整逻辑句复用已有首行或尾行"
+    },
+    {
+      "id": "guide_frail_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Sea creatures start with §a%s%",
+      "text": "Sea creatures start with %s%",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "17.5",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Sea creatures start with ",
+          "zh": "海洋生物生成时,生命值减少 "
+        },
+        {
+          "color": "§a",
+          "text": "%s%",
+          "zh": "%s%"
+        }
+      ],
+      "zh": "海洋生物生成时,生命值减少 %s%"
+    },
+    {
+      "id": "guide_frail_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7reduced health.",
+      "text": "reduced health.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "。"
+    },
+    {
+      "id": "guide_great_spook_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Grants §a+%s §5Fear §7on §5Great Spook",
+      "text": "Grants +%s Fear on Great Spook",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "1",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§a",
+          "text": "+%s ",
+          "zh": "+%s "
+        },
+        {
+          "color": "§5",
+          "text": "Fear ",
+          "zh": "恐惧"
+        },
+        {
+          "color": "§7",
+          "text": "on ",
+          "zh": "（仅限"
+        },
+        {
+          "color": "§5",
+          "text": "Great Spook",
+          "zh": "大惊魂"
+        }
+      ],
+      "zh": "提供 +%s 恐惧（仅限大惊魂"
+    },
+    {
+      "id": "guide_great_spook_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§5Armor§7.",
+      "text": "Armor.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§5",
+          "text": "Armor",
+          "zh": "护甲"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "）。"
+        }
+      ],
+      "zh": "护甲）。"
+    },
+    {
+      "id": "guide_green_thumb_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Grants §6%s☘ Farming Fortune §7per",
+      "text": "Grants %s☘ Farming Fortune per",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "0.25",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§6",
+          "text": "%s☘ Farming Fortune ",
+          "zh": "%s☘ 农业时运"
+        },
+        {
+          "color": "§7",
+          "text": "per",
+          "zh": "（每接待一位不同的访客）。"
+        }
+      ],
+      "zh": "提供 %s☘ 农业时运（每接待一位不同的访客）。"
+    },
+    {
+      "id": "guide_green_thumb_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7unique visitor served.",
+      "text": "unique visitor served.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "guide_resource_convert_head",
+      "context": "活力/法力转化附魔; 图标和属性名均保留自己的实时颜色",
+      "raw": "§7Convert §a%1$s% §7of §4%2$s %3$s §7used as §a%4$s",
+      "text": "Convert %1$s% of %2$s %3$s used as %4$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "40",
+          "desc": "随附魔等级变化的数值"
+        },
+        {
+          "token": "%2$s",
+          "type": "icon",
+          "example": "♨",
+          "desc": "变量值; 语义见记录上下文"
+        },
+        {
+          "token": "%3$s",
+          "type": "category_name",
+          "example": "Vitality",
+          "desc": "变量值; 语义见记录上下文"
+        },
+        {
+          "token": "%4$s",
+          "type": "icon",
+          "example": "❈",
+          "desc": "变量值; 语义见记录上下文"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Convert ",
+          "zh": "将消耗的",
+          "order": 0
+        },
+        {
+          "color": "§a",
+          "text": "%1$s% ",
+          "zh": "%1$s% ",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "of ",
+          "zh": "数值的 ",
+          "order": 2
+        },
+        {
+          "color": "§4",
+          "text": "%2$s %3$s ",
+          "zh": "%2$s %3$s",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "used as ",
+          "zh": "转化为",
+          "order": 4
+        },
+        {
+          "color": "§a",
+          "text": "%4$s",
+          "zh": "%4$s",
+          "order": 5
+        }
+      ],
+      "zh": ""
+    },
+    {
+      "id": "guide_hardened_vitality_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§aDefense §7for §a%1$s§7. §8(Max %2$s❈ Defense).",
+      "text": "Defense for %1$s. (Max %2$s❈ Defense).",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "time",
+          "example": "10s",
+          "desc": "时长,保留服务器实际单位"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "25",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Defense ",
+          "zh": " 防御力",
+          "order": 6
+        },
+        {
+          "color": "§7",
+          "text": "for ",
+          "zh": ",持续 ",
+          "order": 7
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s",
+          "order": 8
+        },
+        {
+          "color": "§7",
+          "text": ". ",
+          "zh": "。",
+          "order": 9
+        },
+        {
+          "color": "§8",
+          "text": "(Max %2$s❈ Defense).",
+          "zh": "（防御力上限: %2$s❈）",
+          "order": 10
+        }
+      ],
+      "zh": ""
+    },
+    {
+      "id": "guide_strong_vitality_head",
+      "ref": "Hub_General/GUI_Item/Enchantment_Effects.json#guide_resource_convert_head",
+      "context": "强健活力使用同一资源转化首行"
+    },
+    {
+      "id": "guide_strong_vitality_mid",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§cStrength §7for §a%1$s§7. §8(Max %2$s❁",
+      "text": "Strength for %1$s. (Max %2$s❁",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "time",
+          "example": "10s",
+          "desc": "时长,保留服务器实际单位"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "15",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§c",
+          "text": "Strength ",
+          "zh": " 力量",
+          "order": 6
+        },
+        {
+          "color": "§7",
+          "text": "for ",
+          "zh": ",持续 ",
+          "order": 7
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s",
+          "order": 8
+        },
+        {
+          "color": "§7",
+          "text": ". ",
+          "zh": "。",
+          "order": 9
+        },
+        {
+          "color": "§8",
+          "text": "(Max %2$s❁",
+          "zh": "（上限 %2$s❁",
+          "order": 10
+        }
+      ],
+      "zh": ""
+    },
+    {
+      "id": "guide_strong_vitality_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§8Strength).",
+      "text": "Strength).",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§8",
+          "text": "Strength).",
+          "zh": " 力量）。",
+          "order": 11
+        }
+      ],
+      "zh": ""
+    },
+    {
+      "id": "guide_vivacious_vitality_head",
+      "ref": "Hub_General/GUI_Item/Enchantment_Effects.json#guide_resource_convert_head",
+      "context": "灵动活力使用同一资源转化首行"
+    },
+    {
+      "id": "guide_vivacious_vitality_mid",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§eAttack Speed §7for §a%1$s§7. §8(Max %2$s⚔",
+      "text": "Attack Speed for %1$s. (Max %2$s⚔",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "time",
+          "example": "10s",
+          "desc": "时长,保留服务器实际单位"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "5",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Attack Speed ",
+          "zh": " 攻击速度",
+          "order": 6
+        },
+        {
+          "color": "§7",
+          "text": "for ",
+          "zh": ",持续 ",
+          "order": 7
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s",
+          "order": 8
+        },
+        {
+          "color": "§7",
+          "text": ". ",
+          "zh": "。",
+          "order": 9
+        },
+        {
+          "color": "§8",
+          "text": "(Max %2$s⚔",
+          "zh": "（上限 %2$s⚔",
+          "order": 10
+        }
+      ],
+      "zh": ""
+    },
+    {
+      "id": "guide_vivacious_vitality_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§8Attack Speed).",
+      "text": "Attack Speed).",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§8",
+          "text": "Attack Speed).",
+          "zh": " 攻击速度）。",
+          "order": 11
+        }
+      ],
+      "zh": ""
+    },
+    {
+      "id": "guide_harvesting_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Grants §a+%s §6☘ Farming Fortune§7, which",
+      "text": "Grants +%s ☘ Farming Fortune, which",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "75",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§a",
+          "text": "+%s ",
+          "zh": "+%s "
+        },
+        {
+          "color": "§6",
+          "text": "☘ Farming Fortune",
+          "zh": "☘ 农业时运"
+        },
+        {
+          "color": "§7",
+          "text": ", which",
+          "zh": ",提高额外获得作物掉落的概率。"
+        }
+      ],
+      "zh": "提供 +%s ☘ 农业时运,提高额外获得作物掉落的概率。"
+    },
+    {
+      "id": "guide_harvesting_tail_a",
+      "ref": "_shared/Enchantments.json#ench_fortune_desc_2",
+      "context": "完整逻辑句复用已有首行或尾行"
+    },
+    {
+      "id": "guide_harvesting_tail_b",
+      "ref": "_shared/Enchantments.json#ench_fortune_desc_3",
+      "context": "完整逻辑句复用已有首行或尾行"
+    },
+    {
+      "id": "guide_hecatomb_xp_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Gain §a+%1$s% §cCatacombs §7XP & §a+%2$s% §3Class §7XP, doubled on",
+      "text": "Gain +%1$s% Catacombs XP & +%2$s% Class XP, doubled on",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "1",
+          "desc": "随附魔等级变化的数值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "2",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "获得 "
+        },
+        {
+          "color": "§a",
+          "text": "+%1$s% ",
+          "zh": "+%1$s% "
+        },
+        {
+          "color": "§c",
+          "text": "Catacombs ",
+          "zh": "地牢"
+        },
+        {
+          "color": "§7",
+          "text": "XP & ",
+          "zh": "经验和 "
+        },
+        {
+          "color": "§a",
+          "text": "+%2$s% ",
+          "zh": "+%2$s% "
+        },
+        {
+          "color": "§3",
+          "text": "Class ",
+          "zh": "职业"
+        },
+        {
+          "color": "§7",
+          "text": "XP, doubled on",
+          "zh": "经验,若评级为 "
+        }
+      ],
+      "zh": "获得 +%1$s% 地牢经验和 +%2$s% 职业经验,若评级为 "
+    },
+    {
+      "id": "guide_hecatomb_xp_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§b§lS+ §7runs.",
+      "text": "S+ runs.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§b§l",
+          "text": "S+ ",
+          "zh": "S+"
+        },
+        {
+          "color": "§7",
+          "text": "runs.",
+          "zh": " 则加成翻倍。"
+        }
+      ],
+      "zh": "S+ 则加成翻倍。"
+    },
+    {
+      "id": "guide_hecatomb_health",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Grants §c+%s❤ §7per 10 §cCatacombs §7levels.",
+      "text": "Grants +%s❤ per 10 Catacombs levels.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "8",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "等级每提升 10 级,提供 ",
+          "order": 1
+        },
+        {
+          "color": "§c",
+          "text": "+%s❤ ",
+          "zh": "+%s❤",
+          "order": 2
+        },
+        {
+          "color": "§7",
+          "text": "per 10 ",
+          "zh": " 生命值",
+          "order": 3
+        },
+        {
+          "color": "§c",
+          "text": "Catacombs ",
+          "zh": "地牢",
+          "order": 0
+        },
+        {
+          "color": "§7",
+          "text": "levels.",
+          "zh": "。",
+          "order": 4
+        }
+      ],
+      "zh": "地牢等级每提升 10 级,提供 +%s❤ 生命值。"
+    },
+    {
+      "id": "guide_quiver_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Saves arrows §a%s%§7 of the time when",
+      "text": "Saves arrows %s% of the time when",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "30",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Saves arrows ",
+          "zh": "射箭时有 "
+        },
+        {
+          "color": "§a",
+          "text": "%s%",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": " of the time when",
+          "zh": " 的概率不消耗箭矢。"
+        }
+      ],
+      "zh": "射箭时有 %s% 的概率不消耗箭矢。"
+    },
+    {
+      "id": "guide_quiver_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7you fire your bow.",
+      "text": "you fire your bow.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "guide_karma_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Grants a §a%s% §7chance for §2Tree Gifts",
+      "text": "Grants a %s% chance for Tree Gifts",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "6",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants a ",
+          "zh": "有 "
+        },
+        {
+          "color": "§a",
+          "text": "%s% ",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": "chance for ",
+          "zh": " 的概率使"
+        },
+        {
+          "color": "§2",
+          "text": "Tree Gifts",
+          "zh": "树木礼物"
+        }
+      ],
+      "zh": "有 %s% 的概率使树木礼物"
+    },
+    {
+      "id": "guide_karma_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7to contain double loot.",
+      "text": "to contain double loot.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "中的战利品翻倍。"
+    },
+    {
+      "id": "guide_knockback_effect",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Increases knockback by §a%s§7 blocks.",
+      "text": "Increases knockback by %s blocks.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "6",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increases knockback by ",
+          "zh": "击退距离增加 "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": " blocks.",
+          "zh": " 格。"
+        }
+      ],
+      "zh": "击退距离增加 %s 格。"
+    },
+    {
+      "id": "guide_lapidary_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Grants §6+%s☘ Gemstone Fortune §7and",
+      "text": "Grants +%s☘ Gemstone Fortune and",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "50",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§6",
+          "text": "+%s☘ Gemstone Fortune ",
+          "zh": "+%s☘ 宝石时运"
+        },
+        {
+          "color": "§7",
+          "text": "and",
+          "zh": "和 "
+        }
+      ],
+      "zh": "提供 +%s☘ 宝石时运和 "
+    },
+    {
+      "id": "guide_lapidary_mid",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§6+%s⸕ Mining Speed §7while mining",
+      "text": "+%s⸕ Mining Speed while mining",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "100",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§6",
+          "text": "+%s⸕ Mining Speed ",
+          "zh": "+%s⸕ 挖掘速度"
+        },
+        {
+          "color": "§7",
+          "text": "while mining",
+          "zh": "（开采"
+        }
+      ],
+      "zh": "+%s⸕ 挖掘速度（开采"
+    },
+    {
+      "id": "guide_lapidary_tail",
+      "ref": "Mining/GUI_Item/Gemstone_Drill_LT-522.json#gemstone_drill_lt_522_gemstones_2",
+      "context": "完整逻辑句复用已有首行或尾行"
+    },
+    {
+      "id": "guide_lethality_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Reduces the §a❈ Defense §7of your",
+      "text": "Reduces the ❈ Defense of your",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Reduces the ",
+          "zh": "降低目标的"
+        },
+        {
+          "color": "§a",
+          "text": "❈ Defense ",
+          "zh": "❈ 防御力 "
+        },
+        {
+          "color": "§7",
+          "text": "of your",
+          "zh": "",
+          "omit": true
+        }
+      ],
+      "zh": "降低目标的❈ 防御力 "
+    },
+    {
+      "id": "guide_lethality_mid",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7target by §a%1$s% §7for §6%2$s §7each time you",
+      "text": "target by %1$s% for %2$s each time you",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "9",
+          "desc": "随附魔等级变化的数值"
+        },
+        {
+          "token": "%2$s",
+          "type": "time",
+          "example": "4s",
+          "desc": "时长,保留服务器实际单位"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "target by ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§a",
+          "text": "%1$s% ",
+          "zh": "%1$s%"
+        },
+        {
+          "color": "§7",
+          "text": "for ",
+          "zh": ",持续 "
+        },
+        {
+          "color": "§6",
+          "text": "%2$s ",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": "each time you",
+          "zh": "（每次近战命中触发）。"
+        }
+      ],
+      "zh": "%1$s%,持续 %2$s（每次近战命中触发）。"
+    },
+    {
+      "id": "guide_lethality_stack",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7hit them with melee. Stacks up to §a%s",
+      "text": "hit them with melee. Stacks up to %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "4",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "hit them with melee. Stacks up to ",
+          "zh": "最多叠加 "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ],
+      "zh": "最多叠加 %s"
+    },
+    {
+      "id": "guide_lethality_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7times.",
+      "text": "times.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": " 层。"
+    },
+    {
+      "id": "guide_life_steal_effect",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Heal §c%s❤ §7every time you hit a mob.",
+      "text": "Heal %s❤ every time you hit a mob.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "12",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Heal ",
+          "zh": "每次命中怪物,回复 "
+        },
+        {
+          "color": "§c",
+          "text": "%s❤ ",
+          "zh": "%s❤"
+        },
+        {
+          "color": "§7",
+          "text": "every time you hit a mob.",
+          "zh": " 生命值。"
+        }
+      ],
+      "zh": "每次命中怪物,回复 %s❤ 生命值。"
+    },
+    {
+      "id": "guide_luck_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Increases the chance for Monsters",
+      "text": "Increases the chance for Monsters",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "怪物掉落护甲的概率提高 "
+    },
+    {
+      "id": "guide_luck_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7to drop their armor by §a%s%§7.",
+      "text": "to drop their armor by %s%.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "35",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "to drop their armor by ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§a",
+          "text": "%s%",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "%s%。"
+    },
+    {
+      "id": "guide_luck_sea_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Grants §6+%s Treasure Chance§7,",
+      "text": "Grants +%s Treasure Chance,",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "3.5",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§6",
+          "text": "+%s Treasure Chance",
+          "zh": "+%s 宝藏几率"
+        },
+        {
+          "color": "§7",
+          "text": ",",
+          "zh": ",提高钓到宝藏的概率。"
+        }
+      ],
+      "zh": "提供 +%s 宝藏几率,提高钓到宝藏的概率。"
+    },
+    {
+      "id": "guide_luck_sea_mid",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7which increases the chance of",
+      "text": "which increases the chance of",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "guide_luck_sea_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7fishing treasure.",
+      "text": "fishing treasure.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "guide_lure_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Shortens the maximum time it takes to",
+      "text": "Shortens the maximum time it takes to",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "咬钩所需的最长等待时间缩短 "
+    },
+    {
+      "id": "guide_lure_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7catch something by §a%s%§7.",
+      "text": "catch something by %s%.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "30",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "catch something by ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§a",
+          "text": "%s%",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "%s%。"
+    },
+    {
+      "id": "guide_magnet_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Grants §a%s §7additional experience orbs",
+      "text": "Grants %s additional experience orbs",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "6",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "每次成功钓到鱼,额外获得 "
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": "additional experience orbs",
+          "zh": " 个经验球。"
+        }
+      ],
+      "zh": "每次成功钓到鱼,额外获得 %s 个经验球。"
+    },
+    {
+      "id": "guide_magnet_mid",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7every time you successfully catch a",
+      "text": "every time you successfully catch a",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "guide_magnet_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7fish.",
+      "text": "fish.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "guide_mana_steal",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Regain §b%s% §7of your mana on hit.",
+      "text": "Regain %s% of your mana on hit.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "0.75",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Regain ",
+          "zh": "命中时回复自身 "
+        },
+        {
+          "color": "§b",
+          "text": "%s% ",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": "of your mana on hit.",
+          "zh": " 的法力值。"
+        }
+      ],
+      "zh": "命中时回复自身 %s% 的法力值。"
+    },
+    {
+      "id": "guide_overload_crit_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Increases §9☠ Crit Damage §7by §a%s%§7 and",
+      "text": "Increases ☠ Crit Damage by %s% and",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "5",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increases ",
+          "zh": "使"
+        },
+        {
+          "color": "§9",
+          "text": "☠ Crit Damage ",
+          "zh": "☠ 暴击伤害"
+        },
+        {
+          "color": "§7",
+          "text": "by ",
+          "zh": "提高 "
+        },
+        {
+          "color": "§a",
+          "text": "%s%",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": " and",
+          "zh": ",并使"
+        }
+      ],
+      "zh": "使☠ 暴击伤害提高 %s%,并使"
+    },
+    {
+      "id": "guide_overload_crit_mid",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§9☣ Crit Chance §7by §a%s%§7. Having a",
+      "text": "☣ Crit Chance by %s%. Having a",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "5",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§9",
+          "text": "☣ Crit Chance ",
+          "zh": "☣ 暴击率"
+        },
+        {
+          "color": "§7",
+          "text": "by ",
+          "zh": "提高 "
+        },
+        {
+          "color": "§a",
+          "text": "%s%",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": ". Having a",
+          "zh": "。"
+        }
+      ],
+      "zh": "☣ 暴击率提高 %s%。"
+    },
+    {
+      "id": "guide_overload_chance",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Critical chance above §9%s% §7grants a",
+      "text": "Critical chance above %s% grants a",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "100",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Critical chance above ",
+          "zh": "暴击率超过 "
+        },
+        {
+          "color": "§9",
+          "text": "%s% ",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": "grants a",
+          "zh": " 时,有概率触发超级暴击,"
+        }
+      ],
+      "zh": "暴击率超过 %s% 时,有概率触发超级暴击,"
+    },
+    {
+      "id": "guide_overload_mega",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7chance to perform a Mega Critical Hit",
+      "text": "chance to perform a Mega Critical Hit",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "guide_overload_damage",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7dealing §9%s% §7extra damage.",
+      "text": "dealing %s% extra damage.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "50",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "dealing ",
+          "zh": "额外造成 "
+        },
+        {
+          "color": "§9",
+          "text": "%s% ",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": "extra damage.",
+          "zh": " 伤害。"
+        }
+      ],
+      "zh": "额外造成 %s% 伤害。"
+    },
+    {
+      "id": "guide_paleontologist_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Increases chances of finding a",
+      "text": "Increases chances of finding a",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "找到"
+    },
+    {
+      "id": "guide_paleontologist_mid",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§9Suspicious Scrap §7when mining in",
+      "text": "Suspicious Scrap when mining in",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§9",
+          "text": "Suspicious Scrap ",
+          "zh": "可疑残料"
+        },
+        {
+          "color": "§7",
+          "text": "when mining in",
+          "zh": "的概率,在"
+        }
+      ],
+      "zh": "可疑残料的概率,在"
+    },
+    {
+      "id": "guide_paleontologist_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§bGlacite Mineshafts §7by §a%s%§7.",
+      "text": "Glacite Mineshafts by %s%.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "12.5",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§b",
+          "text": "Glacite Mineshafts ",
+          "zh": "极冰矿井"
+        },
+        {
+          "color": "§7",
+          "text": "by ",
+          "zh": "内挖矿时提高 "
+        },
+        {
+          "color": "§a",
+          "text": "%s%",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "极冰矿井内挖矿时提高 %s%。"
+    },
+    {
+      "id": "guide_pesterminator_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Grants §6+%s☘ Farming Fortune §7and",
+      "text": "Grants +%s☘ Farming Fortune and",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "12",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§6",
+          "text": "+%s☘ Farming Fortune ",
+          "zh": "+%s☘ 农业时运"
+        },
+        {
+          "color": "§7",
+          "text": "and",
+          "zh": "和 "
+        }
+      ],
+      "zh": "提供 +%s☘ 农业时运和 "
+    },
+    {
+      "id": "guide_pesterminator_bonus",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§2+%s Bonus Pest Chance§7, which",
+      "text": "+%s Bonus Pest Chance, which",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "6",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§2",
+          "text": "+%s Bonus Pest Chance",
+          "zh": "+%s 额外害虫几率"
+        },
+        {
+          "color": "§7",
+          "text": ", which",
+          "zh": ",提高"
+        }
+      ],
+      "zh": "+%s 额外害虫几率,提高"
+    },
+    {
+      "id": "guide_pesterminator_spawn",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7increases your chance to spawn",
+      "text": "increases your chance to spawn",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "guide_pesterminator_garden",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7bonus §2 Pests §7on §aThe Garden§7.",
+      "text": "bonus  Pests on The Garden.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "bonus ",
+          "zh": "生成额外"
+        },
+        {
+          "color": "§2",
+          "text": " Pests ",
+          "zh": " 害虫"
+        },
+        {
+          "color": "§7",
+          "text": "on ",
+          "zh": "的概率（"
+        },
+        {
+          "color": "§a",
+          "text": "The Garden",
+          "zh": "花园"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "中）。"
+        }
+      ],
+      "zh": "生成额外 害虫的概率（花园中）。"
+    },
+    {
+      "id": "guide_piercing_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Arrows travel through enemies. The",
+      "text": "Arrows travel through enemies. The",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "箭矢会穿透敌人,额外命中的目标受到相当于原伤害 "
+    },
+    {
+      "id": "guide_piercing_mid",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7extra targets hit take §a%s% §7of the",
+      "text": "extra targets hit take %s% of the",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "25",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "extra targets hit take ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§a",
+          "text": "%s% ",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": "of the",
+          "zh": " 的伤害。"
+        }
+      ],
+      "zh": "%s% 的伤害。"
+    },
+    {
+      "id": "guide_piercing_tail",
+      "ref": "Combat/GUI_Item/Slayer_Boss.json#sb_rev_redemption_desc_2",
+      "context": "完整逻辑句复用已有首行或尾行"
+    },
+    {
+      "id": "guide_prismatic_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Grants §5+%s ✧ Pristine§7, which",
+      "text": "Grants +%s ✧ Pristine, which",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "2.5",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§5",
+          "text": "+%s ✧ Pristine",
+          "zh": "+%s ✧ 纯净"
+        },
+        {
+          "color": "§7",
+          "text": ", which",
+          "zh": ",提高掉落"
+        }
+      ],
+      "zh": "提供 +%s ✧ 纯净,提高掉落"
+    },
+    {
+      "id": "guide_prismatic_mid",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7increases the chance to improve the",
+      "text": "increases the chance to improve the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "guide_prismatic_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7quality of dropped §dGemstones§7.",
+      "text": "quality of dropped Gemstones.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "quality of dropped ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§d",
+          "text": "Gemstones",
+          "zh": "宝石"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "品质提升的概率。"
+        }
+      ],
+      "zh": "宝石品质提升的概率。"
+    },
+    {
+      "id": "guide_quantum_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Grants §4+%s♨ Vitality §7on weekdays and",
+      "text": "Grants +%s♨ Vitality on weekdays and",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "3",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "工作日提供 "
+        },
+        {
+          "color": "§4",
+          "text": "+%s♨ Vitality ",
+          "zh": "+%s♨ 活力"
+        },
+        {
+          "color": "§7",
+          "text": "on weekdays and",
+          "zh": "；周末提供 "
+        }
+      ],
+      "zh": "工作日提供 +%s♨ 活力；周末提供 "
+    },
+    {
+      "id": "guide_quantum_mid",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§3+%s☯ §7of a random §3Wisdom §7stat on",
+      "text": "+%s☯ of a random Wisdom stat on",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "2",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§3",
+          "text": "+%s☯ ",
+          "zh": "+%s☯"
+        },
+        {
+          "color": "§7",
+          "text": "of a random ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§3",
+          "text": "Wisdom ",
+          "zh": " 智慧"
+        },
+        {
+          "color": "§7",
+          "text": "stat on",
+          "zh": "属性加成（随机一项）。"
+        }
+      ],
+      "zh": "+%s☯ 智慧属性加成（随机一项）。"
+    },
+    {
+      "id": "guide_quantum_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7weekends.",
+      "text": "weekends.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "guide_quick_bite_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Makes fish swim §a%s% §7faster towards",
+      "text": "Makes fish swim %s% faster towards",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "25",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Makes fish swim ",
+          "zh": "鱼游向浮漂的速度提高 "
+        },
+        {
+          "color": "§a",
+          "text": "%s% ",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": "faster towards",
+          "zh": "。"
+        }
+      ],
+      "zh": "鱼游向浮漂的速度提高 %s%。"
+    },
+    {
+      "id": "guide_quick_bite_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7your bobber.",
+      "text": "your bobber.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "guide_rainbow_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Grants an §a%s% §7chance to change the",
+      "text": "Grants an %s% chance to change the",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "80",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants an ",
+          "zh": "给羊剪毛时,有 "
+        },
+        {
+          "color": "§a",
+          "text": "%s% ",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": "chance to change the",
+          "zh": " 的概率改变它的颜色,"
+        }
+      ],
+      "zh": "给羊剪毛时,有 %s% 的概率改变它的颜色,"
+    },
+    {
+      "id": "guide_rainbow_mid",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7color of a sheep when shearing it,",
+      "text": "color of a sheep when shearing it,",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "guide_rainbow_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7which will also flip it, of course.",
+      "text": "which will also flip it, of course.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "当然,也会把它翻个底朝天。"
+    },
+    {
+      "id": "guide_reflection_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7When damaged by an arrow, deal §b%sx §7your §b✎",
+      "text": "When damaged by an arrow, deal %sx your ✎",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "30",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "When damaged by an arrow, deal ",
+          "zh": "被箭矢击中时,对射手造成相当于自身 "
+        },
+        {
+          "color": "§b",
+          "text": "%sx ",
+          "zh": "%s 倍"
+        },
+        {
+          "color": "§7",
+          "text": "your ",
+          "zh": "的"
+        },
+        {
+          "color": "§b",
+          "text": "✎",
+          "zh": "✎"
+        }
+      ],
+      "zh": "被箭矢击中时,对射手造成相当于自身 %s 倍的✎"
+    },
+    {
+      "id": "guide_reflection_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§bIntelligence §7to its shooter.",
+      "text": "Intelligence to its shooter.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§b",
+          "text": "Intelligence ",
+          "zh": "智力"
+        },
+        {
+          "color": "§7",
+          "text": "to its shooter.",
+          "zh": "数值的伤害。"
+        }
+      ],
+      "zh": "智力数值的伤害。"
+    },
+    {
+      "id": "guide_replenish_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Upon breaking crops, nether wart,",
+      "text": "Upon breaking crops, nether wart,",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "收获作物、下界疣、可可豆、野玫瑰或向日葵后,自动使用背包中的材料补种。"
+    },
+    {
+      "id": "guide_replenish_plants",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7cocoa, wild rose, or sunflower,",
+      "text": "cocoa, wild rose, or sunflower,",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "guide_replenish_replant",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7automatically replant from materials",
+      "text": "automatically replant from materials",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "guide_replenish_inventory",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7in your inventory.",
+      "text": "in your inventory.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "guide_respiration_head_live",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Grants §3+%s Respiration§7, which",
+      "text": "Grants +%s Respiration, which",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "60",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§3",
+          "text": "+%s Respiration",
+          "zh": "+%s 水下呼吸"
+        },
+        {
+          "color": "§7",
+          "text": ", which",
+          "zh": ",延长你能在水下停留的时间。"
+        }
+      ],
+      "zh": "提供 +%s 水下呼吸,延长你能在水下停留的时间。"
+    },
+    {
+      "id": "guide_respiration_mid",
+      "ref": "_shared/Enchantments.json#ench_respiration_desc_2",
+      "context": "完整逻辑句复用已有首行或尾行"
+    },
+    {
+      "id": "guide_respiration_tail",
+      "ref": "_shared/Enchantments.json#ench_respiration_desc_3",
+      "context": "完整逻辑句复用已有首行或尾行"
+    },
+    {
+      "id": "guide_respite_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Grants §c+%s❣ Health Regen §7while out",
+      "text": "Grants +%s❣ Health Regen while out",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "15",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§c",
+          "text": "+%s❣ Health Regen ",
+          "zh": "+%s❣ 生命回复"
+        },
+        {
+          "color": "§7",
+          "text": "while out",
+          "zh": "（脱离战斗时）。"
+        }
+      ],
+      "zh": "提供 +%s❣ 生命回复（脱离战斗时）。"
+    },
+    {
+      "id": "guide_respite_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7of combat.",
+      "text": "of combat.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "guide_scavenger_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Scavenge §6%s Coins §7per monster",
+      "text": "Scavenge %s Coins per monster",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "1.8",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Scavenge ",
+          "zh": "每击杀一只怪物,按其每一级获得 "
+        },
+        {
+          "color": "§6",
+          "text": "%s Coins ",
+          "zh": "%s 硬币"
+        },
+        {
+          "color": "§7",
+          "text": "per monster",
+          "zh": "。"
+        }
+      ],
+      "zh": "每击杀一只怪物,按其每一级获得 %s 硬币。"
+    },
+    {
+      "id": "guide_scavenger_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7level on kill.",
+      "text": "level on kill.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "guide_sharpness_effect",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Increases melee damage dealt by §a%s%§7.",
+      "text": "Increases melee damage dealt by %s%.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "50",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increases melee damage dealt by ",
+          "zh": "近战伤害提高 "
+        },
+        {
+          "color": "§a",
+          "text": "%s%",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "近战伤害提高 %s%。"
+    },
+    {
+      "id": "guide_small_brain_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Grants §b%1$s✎ Intelligence§7 and §f+%2$s❂",
+      "text": "Grants %1$s✎ Intelligence and +%2$s❂",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "-15",
+          "desc": "随附魔等级变化的数值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "3",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s✎ Intelligence",
+          "zh": "%1$s✎ 智力"
+        },
+        {
+          "color": "§7",
+          "text": " and ",
+          "zh": "和 "
+        },
+        {
+          "color": "§f",
+          "text": "+%2$s❂",
+          "zh": "+%2$s❂"
+        }
+      ],
+      "zh": "提供 %1$s✎ 智力和 +%2$s❂"
+    },
+    {
+      "id": "guide_small_brain_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§fTrue Defense§7.",
+      "text": "True Defense.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§f",
+          "text": "True Defense",
+          "zh": " 真实防御"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": " 真实防御。"
+    },
+    {
+      "id": "guide_snipe_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Arrows deal §a+%s% §7damage for every",
+      "text": "Arrows deal +%s% damage for every",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "4",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Arrows deal ",
+          "zh": "箭矢伤害增加 "
+        },
+        {
+          "color": "§a",
+          "text": "+%s% ",
+          "zh": "+%s%"
+        },
+        {
+          "color": "§7",
+          "text": "damage for every",
+          "zh": "（每飞行 "
+        }
+      ],
+      "zh": "箭矢伤害增加 +%s%（每飞行 "
+    },
+    {
+      "id": "guide_snipe_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§a%s §7blocks traveled.",
+      "text": "%s blocks traveled.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "10",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": "blocks traveled.",
+          "zh": " 格）。"
+        }
+      ],
+      "zh": "%s 格）。"
+    },
+    {
+      "id": "guide_spiked_hook_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Fishing rod deals §a%s%§7 more damage",
+      "text": "Fishing rod deals %s% more damage",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "35",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Fishing rod deals ",
+          "zh": "钓鱼竿对怪物造成的伤害提高 "
+        },
+        {
+          "color": "§a",
+          "text": "%s%",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": " more damage",
+          "zh": "。"
+        }
+      ],
+      "zh": "钓鱼竿对怪物造成的伤害提高 %s%。"
+    },
+    {
+      "id": "guide_spiked_hook_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7to monsters.",
+      "text": "to monsters.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "guide_stealth_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§e Timid §7mobs have a §a%s% §7chance to",
+      "text": " Timid mobs have a %s% chance to",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "60",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§e",
+          "text": " Timid ",
+          "zh": " 胆怯"
+        },
+        {
+          "color": "§7",
+          "text": "mobs have a ",
+          "zh": "类怪物有 "
+        },
+        {
+          "color": "§a",
+          "text": "%s% ",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": "chance to",
+          "zh": " 的概率留在原地,而不是逃跑。"
+        }
+      ],
+      "zh": " 胆怯类怪物有 %s% 的概率留在原地,而不是逃跑。"
+    },
+    {
+      "id": "guide_stealth_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7remain still instead of fleeing.",
+      "text": "remain still instead of fleeing.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "guide_tabasco_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Grants §f+%s §7weapon damage if you",
+      "text": "Grants +%s weapon damage if you",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "3",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§f",
+          "text": "+%s ",
+          "zh": "+%s "
+        },
+        {
+          "color": "§7",
+          "text": "weapon damage if you",
+          "zh": "武器伤害（"
+        }
+      ],
+      "zh": "提供 +%s 武器伤害（"
+    },
+    {
+      "id": "guide_tabasco_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7don't have a §5Dragon §7pet equipped.",
+      "text": "don't have a Dragon pet equipped.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "don't have a ",
+          "zh": "未装备"
+        },
+        {
+          "color": "§5",
+          "text": "Dragon ",
+          "zh": "巨龙"
+        },
+        {
+          "color": "§7",
+          "text": "pet equipped.",
+          "zh": "宠物时）。"
+        }
+      ],
+      "zh": "未装备巨龙宠物时）。"
+    },
+    {
+      "id": "guide_thunder_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Every §c%s §7hits on a monster, strike",
+      "text": "Every %s hits on a monster, strike",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "3",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Every ",
+          "zh": "每命中同一只怪物 "
+        },
+        {
+          "color": "§c",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": "hits on a monster, strike",
+          "zh": " 次,就召唤"
+        }
+      ],
+      "zh": "每命中同一只怪物 %s 次,就召唤"
+    },
+    {
+      "id": "guide_thunder_lightning",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§elightning§7, dealing §a%s% §7of the hit's",
+      "text": "lightning, dealing %s% of the hit's",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "30",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§e",
+          "text": "lightning",
+          "zh": "闪电"
+        },
+        {
+          "color": "§7",
+          "text": ", dealing ",
+          "zh": ",造成相当于该次攻击 "
+        },
+        {
+          "color": "§a",
+          "text": "%s% ",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": "of the hit's",
+          "zh": " 的伤害。"
+        }
+      ],
+      "zh": "闪电,造成相当于该次攻击 %s% 的伤害。"
+    },
+    {
+      "id": "guide_thunderbolt_radius",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7damage to up to %1$s monsters within %2$s",
+      "text": "damage to up to %1$s monsters within %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "10",
+          "desc": "随附魔等级变化的数值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "2",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "最多波及 %2$s 格内的 %1$s 只怪物。"
+    },
+    {
+      "id": "guide_thunderbolt_blocks",
+      "ref": "_shared/Enchantments.json#ench_punch_desc_2",
+      "context": "完整逻辑句复用已有首行或尾行"
+    },
+    {
+      "id": "guide_tidal_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Increases your §a❈ Defense §7by §a+%s%",
+      "text": "Increases your ❈ Defense by +%s%",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "15",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increases your ",
+          "zh": "使你的"
+        },
+        {
+          "color": "§a",
+          "text": "❈ Defense ",
+          "zh": "❈ 防御力"
+        },
+        {
+          "color": "§7",
+          "text": "by ",
+          "zh": "提高 "
+        },
+        {
+          "color": "§a",
+          "text": "+%s%",
+          "zh": "%s%"
+        }
+      ],
+      "zh": "使你的❈ 防御力提高 %s%"
+    },
+    {
+      "id": "guide_tidal_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7against Sea Creatures.",
+      "text": "against Sea Creatures.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "（抵御海洋生物时）。"
+    },
+    {
+      "id": "guide_toxophilite_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Gain §a%s% §7extra Combat XP. Grants",
+      "text": "Gain %s% extra Combat XP. Grants",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "10",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "额外获得 "
+        },
+        {
+          "color": "§a",
+          "text": "%s% ",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": "extra Combat XP. Grants",
+          "zh": " 战斗经验,并提供"
+        }
+      ],
+      "zh": "额外获得 %s% 战斗经验,并提供"
+    },
+    {
+      "id": "guide_transylvanian_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Heal §c%1$s❤§7/s per enemy within §a%2$s",
+      "text": "Heal %1$s❤/s per enemy within %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "3",
+          "desc": "随附魔等级变化的数值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "10",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Heal ",
+          "zh": "每秒回复 "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s❤",
+          "zh": "%1$s❤"
+        },
+        {
+          "color": "§7",
+          "text": "/s per enemy within ",
+          "zh": " 生命值（按周围 "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ],
+      "zh": "每秒回复 %1$s❤ 生命值（按周围 %2$s"
+    },
+    {
+      "id": "guide_transylvanian_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7blocks, up to §c%s❤§7/s.",
+      "text": "blocks, up to %s❤/s.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "30",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "blocks, up to ",
+          "zh": " 格内的敌人数计算）,最多 "
+        },
+        {
+          "color": "§c",
+          "text": "%s❤",
+          "zh": "%s❤"
+        },
+        {
+          "color": "§7",
+          "text": "/s.",
+          "zh": "/秒。"
+        }
+      ],
+      "zh": " 格内的敌人数计算）,最多 %s❤/秒。"
+    },
+    {
+      "id": "guide_vampiric_vitality",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Heal for §c%s❤ §7per §4♨ Vitality §7used.",
+      "text": "Heal for %s❤ per ♨ Vitality used.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "1",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Heal for ",
+          "zh": "每消耗 1 点",
+          "order": 0
+        },
+        {
+          "color": "§c",
+          "text": "%s❤ ",
+          "zh": "%s❤",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "per ",
+          "zh": ",回复 ",
+          "order": 2
+        },
+        {
+          "color": "§4",
+          "text": "♨ Vitality ",
+          "zh": "♨ 活力",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "used.",
+          "zh": " 生命值。",
+          "order": 4
+        }
+      ],
+      "zh": "每消耗 1 点♨ 活力,回复 %s❤ 生命值。"
+    },
+    {
+      "id": "guide_vampirism_heal",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Heal §c%s❤ §7every time you kill a mob.",
+      "text": "Heal %s❤ every time you kill a mob.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "30",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Heal ",
+          "zh": "每次击杀怪物,回复 "
+        },
+        {
+          "color": "§c",
+          "text": "%s❤ ",
+          "zh": "%s❤"
+        },
+        {
+          "color": "§7",
+          "text": "every time you kill a mob.",
+          "zh": " 生命值。"
+        }
+      ],
+      "zh": "每次击杀怪物,回复 %s❤ 生命值。"
+    },
+    {
+      "id": "guide_venomous_head",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7Reduces the target's walk speed by",
+      "text": "Reduces the target's walk speed by",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "使目标的移动速度降低 "
+    },
+    {
+      "id": "guide_venomous_hit",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§a%1$s% §7and deals §2+%2$s% §7of your damage",
+      "text": "%1$s% and deals +%2$s% of your damage",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "20",
+          "desc": "随附魔等级变化的数值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "2",
+          "desc": "随附魔等级变化的数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§a",
+          "text": "%1$s% ",
+          "zh": "%1$s%"
+        },
+        {
+          "color": "§7",
+          "text": "and deals ",
+          "zh": ",每次命中都会附加相当于本次伤害 "
+        },
+        {
+          "color": "§2",
+          "text": "+%2$s% ",
+          "zh": "%2$s%"
+        },
+        {
+          "color": "§7",
+          "text": "of your damage",
+          "zh": " 的每秒伤害,"
+        }
+      ],
+      "zh": "%1$s%,每次命中都会附加相当于本次伤害 %2$s% 的每秒伤害,"
+    },
+    {
+      "id": "guide_venomous_stack",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7per second per hit, stacking globally",
+      "text": "per second per hit, stacking globally",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": "所有玩家合计最多叠加 "
+    },
+    {
+      "id": "guide_venomous_tail",
+      "context": "附魔指南/附魔台说明",
+      "raw": "§7up to §2%1$s §7hits. Lasts §6%2$s§7.",
+      "text": "up to %1$s hits. Lasts %2$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "40",
+          "desc": "随附魔等级变化的数值"
+        },
+        {
+          "token": "%2$s",
+          "type": "time",
+          "example": "5s",
+          "desc": "时长,保留服务器实际单位"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "up to ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§2",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "hits. Lasts ",
+          "zh": " 层,持续 "
+        },
+        {
+          "color": "§6",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "%1$s 层,持续 %2$s。"
+    }
+  ]
+}

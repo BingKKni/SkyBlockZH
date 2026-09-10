@@ -277,8 +277,20 @@ public final class TranslationLoader {
 		return TranslationEntry.compile(
 			id, relative, sources, targets, permutation(order, id, relative),
 			source.has("continuation") && source.get("continuation").getAsBoolean(),
-			string(source, "layout"), argField(source, "type"), argField(source, "example")
+			string(source, "layout"), argField(source, "type"), argField(source, "example"), excludedTexts(source)
 		);
+	}
+
+	private static Set<String> excludedTexts(JsonObject source) {
+		Set<String> excluded = new HashSet<>();
+		if (source.has("exclude") && source.get("exclude").isJsonArray()) {
+			for (JsonElement value : source.getAsJsonArray("exclude")) {
+				if (value.isJsonPrimitive() && value.getAsJsonPrimitive().isString()) {
+					excluded.add(Glyphs.canonical(value.getAsString()));
+				}
+			}
+		}
+		return Set.copyOf(excluded);
 	}
 
 	/**
