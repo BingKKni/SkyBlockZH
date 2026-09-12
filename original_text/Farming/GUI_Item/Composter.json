@@ -1,0 +1,1164 @@
+{
+  "source": "runtime capture (SkyZH) 2026-09-10 花园实测; 语境核对 https://hypixelskyblock.minecraft.wiki/w/Composter (2026-08-13 更新)",
+  "fetched_at": "2026-09-10",
+  "verified_ingame": true,
+  "gui_context": "堆肥器菜单:有机物 / 燃料两个仪表格、从收纳袋 / 背包放入、收取堆肥、堆肥器升级;以及升级子菜单的五种升级。Wiki 核对过的事实:每份堆肥消耗 4,000 有机物和 2,000 机器燃料,耗时 10 分钟。",
+  "lines": [
+    {
+      "id": "composter_organic_matter",
+      "context": "",
+      "raw": "§eOrganic Matter",
+      "text": "Organic Matter",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "有机物"
+    },
+    {
+      "id": "composter_meter",
+      "context": "",
+      "raw": "§e%1$s Meter",
+      "text": "%1$s Meter",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Crop / Fuel,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Crop"
+        }
+      ],
+      "gloss": "Crop → 作物、Fuel → 燃料:作物仪表 / 燃料仪表。",
+      "translate": true,
+      "zh": "%1$s仪表"
+    },
+    {
+      "id": "composter_fill_crops_1",
+      "context": "",
+      "raw": "§7Fill your composter with §acrops§7, like",
+      "text": "Fill your composter with crops, like",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "往堆肥器里放作物,比如",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Fill your composter with ",
+          "zh": "往堆肥器里放"
+        },
+        {
+          "color": "§a",
+          "text": "crops",
+          "zh": "作物"
+        },
+        {
+          "color": "§7",
+          "text": ", like",
+          "zh": ",比如"
+        }
+      ]
+    },
+    {
+      "id": "composter_fill_crops_2",
+      "context": "",
+      "raw": "§fWheat §7or §aEnchanted Potato§7, to turn",
+      "text": "Wheat or Enchanted Potato, to turn",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "小麦或附魔马铃薯,将它们变成",
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Wheat ",
+          "zh": "小麦"
+        },
+        {
+          "color": "§7",
+          "text": "or ",
+          "zh": "或"
+        },
+        {
+          "color": "§a",
+          "text": "Enchanted Potato",
+          "zh": "附魔马铃薯"
+        },
+        {
+          "color": "§7",
+          "text": ", to turn",
+          "zh": ",将它们变成"
+        }
+      ]
+    },
+    {
+      "id": "composter_fill_crops_3",
+      "context": "",
+      "raw": "§7them into §eOrganic Matter§7. Organic",
+      "text": "them into Organic Matter. Organic",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "有机物。有机物",
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "them into ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§e",
+          "text": "Organic Matter",
+          "zh": "有机物"
+        },
+        {
+          "color": "§7",
+          "text": ". Organic",
+          "zh": "。有机物"
+        }
+      ]
+    },
+    {
+      "id": "composter_fill_crops_4",
+      "context": "",
+      "raw": "§7Matter is used to make §6Compost§7.",
+      "text": "Matter is used to make Compost.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "可用来制作堆肥。",
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Matter is used to make ",
+          "zh": "可用来制作"
+        },
+        {
+          "color": "§6",
+          "text": "Compost",
+          "zh": "堆肥"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "composter_needs_organic_1",
+      "context": "",
+      "raw": "§7The composter must have §b4,000",
+      "text": "The composter must have 4,000",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "堆肥器需要存有 4,000",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "The composter must have ",
+          "zh": "堆肥器需要存有 "
+        },
+        {
+          "color": "§b",
+          "text": "4,000",
+          "zh": "4,000"
+        }
+      ]
+    },
+    {
+      "id": "composter_needs_organic_2",
+      "context": "",
+      "raw": "§7organic matter stored to start",
+      "text": "organic matter stored to start",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": " 有机物才会开始制作堆肥。",
+      "continuation": true
+    },
+    {
+      "id": "composter_needs_organic_3",
+      "context": "",
+      "raw": "§7making compost.",
+      "text": "making compost.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "composter_fill_fuel_1",
+      "context": "",
+      "raw": "§7Fill your composter with §2machine fuel§7,",
+      "text": "Fill your composter with machine fuel,",
+      "placeholders": [],
+      "gloss": "Biofuel → 生物燃料。",
+      "translate": true,
+      "zh": "往堆肥器里加机器燃料,",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Fill your composter with ",
+          "zh": "往堆肥器里加"
+        },
+        {
+          "color": "§2",
+          "text": "machine fuel",
+          "zh": "机器燃料"
+        },
+        {
+          "color": "§7",
+          "text": ",",
+          "zh": ","
+        }
+      ]
+    },
+    {
+      "id": "composter_fill_fuel_2",
+      "context": "",
+      "raw": "§7like §9Biofuel§7 to power the composter",
+      "text": "like Biofuel to power the composter",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "比如生物燃料,驱动堆肥器",
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "like ",
+          "zh": "比如"
+        },
+        {
+          "color": "§9",
+          "text": "Biofuel",
+          "zh": "生物燃料"
+        },
+        {
+          "color": "§7",
+          "text": " to power the composter",
+          "zh": ",驱动堆肥器"
+        }
+      ]
+    },
+    {
+      "id": "composter_fill_fuel_3",
+      "context": "",
+      "raw": "§7to turn Organic Matter into §6Compost§7.",
+      "text": "to turn Organic Matter into Compost.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "将有机物变成堆肥。",
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "to turn Organic Matter into ",
+          "zh": "将有机物变成"
+        },
+        {
+          "color": "§6",
+          "text": "Compost",
+          "zh": "堆肥"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "composter_needs_fuel_1",
+      "context": "",
+      "raw": "§7The composter must have §22,000",
+      "text": "The composter must have 2,000",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "堆肥器需要存有 2,000",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "The composter must have ",
+          "zh": "堆肥器需要存有 "
+        },
+        {
+          "color": "§2",
+          "text": "2,000",
+          "zh": "2,000"
+        }
+      ]
+    },
+    {
+      "id": "composter_needs_fuel_2",
+      "context": "",
+      "raw": "§2Fuel §7stored to start making compost.",
+      "text": "Fuel stored to start making compost.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": " 燃料才会开始制作堆肥。",
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§2",
+          "text": "Fuel ",
+          "zh": " 燃料"
+        },
+        {
+          "color": "§7",
+          "text": "stored to start making compost.",
+          "zh": "才会开始制作堆肥。"
+        }
+      ]
+    },
+    {
+      "id": "composter_in_your",
+      "context": "",
+      "raw": "§7In your %1$s: §cNo %2$s",
+      "text": "In your %1$s: No %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "sacks / inventory,译名走 _shared/Terms.json",
+          "type": "raw",
+          "example": "sacks"
+        },
+        {
+          "token": "%2$s",
+          "desc": "Organic Matter / Fuel,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Organic Matter"
+        }
+      ],
+      "gloss": "小写的 sacks / inventory 走 raw 词表(收纳袋 / 背包)。",
+      "translate": true,
+      "zh": "你的%1$s里: 没有%2$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "In your %1$s: ",
+          "zh": "你的%1$s里: "
+        },
+        {
+          "color": "§c",
+          "text": "No %2$s",
+          "zh": "没有%2$s"
+        }
+      ]
+    },
+    {
+      "id": "composter_in_your_inventory",
+      "context": "",
+      "raw": "§7In your inventory:",
+      "text": "In your inventory:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的背包里:"
+    },
+    {
+      "id": "composter_insert_from",
+      "context": "",
+      "raw": "§aInsert %1$s from %2$s",
+      "text": "Insert %1$s from %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Crops / Fuel,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Crops"
+        },
+        {
+          "token": "%2$s",
+          "desc": "Sacks / Inventory,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Sacks"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "从%2$s放入%1$s"
+    },
+    {
+      "id": "composter_grab_as_1",
+      "context": "",
+      "raw": "§7Grab as %1$s %2$s that will fit into",
+      "text": "Grab as %1$s %2$s that will fit into",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "many / much(可数与不可数),中文不体现",
+          "type": "raw",
+          "example": "many"
+        },
+        {
+          "token": "%2$s",
+          "desc": "crops / fuel,译名走 _shared/Terms.json",
+          "type": "raw",
+          "example": "crops"
+        }
+      ],
+      "gloss": "英文两行合成一句;尾行自己带着 sacks / inventory 的占位符和译文(README:尾行可以带非空 zh)。",
+      "translate": true,
+      "zh": "把%2$s尽可能多地放进堆肥器,材料取自"
+    },
+    {
+      "id": "composter_grab_as_2",
+      "context": "",
+      "raw": "§7the composter from your %1$s.",
+      "text": "the composter from your %1$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "sacks / inventory,译名走 _shared/Terms.json",
+          "type": "raw",
+          "example": "sacks"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的%1$s。",
+      "continuation": true
+    },
+    {
+      "id": "composter_no_in_your",
+      "context": "",
+      "raw": "§cNo %1$s in your %2$s!",
+      "text": "No %1$s in your %2$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "crops / fuel,译名走 _shared/Terms.json",
+          "type": "raw",
+          "example": "crops"
+        },
+        {
+          "token": "%2$s",
+          "desc": "sacks / inventory,译名走 _shared/Terms.json",
+          "type": "raw",
+          "example": "sacks"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的%2$s里没有%1$s!"
+    },
+    {
+      "id": "composter_item_worth",
+      "context": "",
+      "raw": "  §a%1$s§7x §f%2$s §7worth §e%3$s Organic Matter",
+      "text": "  %1$sx %2$s worth %3$s Organic Matter",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "数量",
+          "type": "number",
+          "example": "76"
+        },
+        {
+          "token": "%2$s",
+          "desc": "作物名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Seeds"
+        },
+        {
+          "token": "%3$s",
+          "desc": "折算的有机物",
+          "type": "number",
+          "example": "76"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "  %1$sx %2$s,相当于 %3$s 有机物",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "x ",
+          "zh": "x "
+        },
+        {
+          "color": "§f",
+          "text": "%2$s ",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": "worth ",
+          "zh": ",相当于 "
+        },
+        {
+          "color": "§e",
+          "text": "%3$s Organic Matter",
+          "zh": "%3$s 有机物"
+        }
+      ]
+    },
+    {
+      "id": "composter_enchanted_item_worth",
+      "context": "",
+      "raw": "  §a%1$s§7x §a%2$s %3$s §7worth §e%4$s Organic Matter",
+      "text": "  %1$sx %2$s %3$s worth %4$s Organic Matter",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "数量",
+          "type": "number",
+          "example": "5"
+        },
+        {
+          "token": "%2$s",
+          "desc": "Enchanted / Sugar,两个词的物品名前半",
+          "type": "raw",
+          "example": "Enchanted"
+        },
+        {
+          "token": "%3$s",
+          "desc": "物品名后半",
+          "type": "raw",
+          "example": "Carrot"
+        },
+        {
+          "token": "%4$s",
+          "desc": "折算的有机物",
+          "type": "number",
+          "example": "232"
+        }
+      ],
+      "gloss": "采集器把「Enchanted Carrot」「Sugar Cane」切成两个 raw;两半各查词表(Enchanted → 附魔,Carrot → 胡萝卜)拼成「附魔胡萝卜」。",
+      "translate": true,
+      "zh": "  %1$sx %2$s%3$s,相当于 %4$s 有机物",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "x ",
+          "zh": "x "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s %3$s ",
+          "zh": "%2$s%3$s"
+        },
+        {
+          "color": "§7",
+          "text": "worth ",
+          "zh": ",相当于 "
+        },
+        {
+          "color": "§e",
+          "text": "%4$s Organic Matter",
+          "zh": "%4$s 有机物"
+        }
+      ]
+    },
+    {
+      "id": "composter_totalling",
+      "context": "",
+      "raw": "§7Totalling §e%1$s Organic Matter§7.",
+      "text": "Totalling %1$s Organic Matter.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "合计,可带 k 后缀",
+          "type": "number",
+          "example": "97"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "共计 %1$s 有机物。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Totalling ",
+          "zh": "共计 "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s Organic Matter",
+          "zh": "%1$s 有机物"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "composter_fuel_worth",
+      "context": "",
+      "raw": "  §a4§7x §9Biofuel §7worth §212k Fuel",
+      "text": "  4x Biofuel worth 12k Fuel",
+      "placeholders": [],
+      "gloss": "采集时只见过 4 个,没归并成模板,按字面收。",
+      "translate": true,
+      "zh": "  4x 生物燃料,相当于 12k 燃料",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§a",
+          "text": "4",
+          "zh": "4"
+        },
+        {
+          "color": "§7",
+          "text": "x ",
+          "zh": "x "
+        },
+        {
+          "color": "§9",
+          "text": "Biofuel ",
+          "zh": "生物燃料 "
+        },
+        {
+          "color": "§7",
+          "text": "worth ",
+          "zh": ",相当于 "
+        },
+        {
+          "color": "§2",
+          "text": "12k Fuel",
+          "zh": "12k 燃料"
+        }
+      ]
+    },
+    {
+      "id": "composter_totalling_fuel",
+      "context": "",
+      "raw": "§7Totalling §212k Fuel§7.",
+      "text": "Totalling 12k Fuel.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "共计 12k 燃料。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Totalling ",
+          "zh": "共计 "
+        },
+        {
+          "color": "§2",
+          "text": "12k Fuel",
+          "zh": "12k 燃料"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "composter_click_to_grab",
+      "context": "",
+      "raw": "§e%1$s to grab from inventory!",
+      "text": "%1$s to grab from inventory!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Left-click / Click,译名走 _shared/Terms.json",
+          "type": "raw",
+          "example": "Left-click"
+        }
+      ],
+      "gloss": "Left-click → 左键点击、Click → 点击。",
+      "translate": true,
+      "zh": "%1$s从背包放入!"
+    },
+    {
+      "id": "composter_insert_bulk_fuel",
+      "context": "",
+      "raw": "§aInsert Bulk - Fuel",
+      "text": "Insert Bulk - Fuel",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "批量放入 - 燃料"
+    },
+    {
+      "id": "composter_collect_compost",
+      "context": "",
+      "raw": "§eCollect Compost",
+      "text": "Collect Compost",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "收取堆肥"
+    },
+    {
+      "id": "composter_compost_available",
+      "context": "",
+      "raw": "§7Compost Available: §a%1$s",
+      "text": "Compost Available: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "数量",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "可收取的堆肥: %1$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Compost Available: ",
+          "zh": "可收取的堆肥: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ]
+    },
+    {
+      "id": "composter_next_compost",
+      "context": "",
+      "raw": "§7Next Compost: §a%1$s",
+      "text": "Next Compost: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "时:分:秒倒计时",
+          "type": "raw",
+          "example": "00:09:58"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "下一份堆肥: %1$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Next Compost: ",
+          "zh": "下一份堆肥: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ]
+    },
+    {
+      "id": "composter_upgrades",
+      "context": "",
+      "raw": "§aComposter Upgrades",
+      "text": "Composter Upgrades",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "堆肥器升级"
+    },
+    {
+      "id": "composter_upgrades_desc_1",
+      "context": "",
+      "raw": "§7Upgrade your composter to increase",
+      "text": "Upgrade your composter to increase",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "升级堆肥器,提高堆肥产量。"
+    },
+    {
+      "id": "composter_upgrades_desc_2",
+      "context": "",
+      "raw": "§7your compost production.",
+      "text": "your compost production.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "composter_organic_matter_lore",
+      "context": "背包里作物的 Lore 行",
+      "raw": "§6Organic Matter: §e%1$s",
+      "text": "Organic Matter: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "该物品折算的有机物",
+          "type": "number",
+          "example": "28"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "有机物: %1$s",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Organic Matter: ",
+          "zh": "有机物: "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ]
+    },
+    {
+      "id": "composter_click_to_add",
+      "context": "",
+      "raw": "§eClick to add to the composter!",
+      "text": "Click to add to the composter!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击放入堆肥器!"
+    },
+    {
+      "id": "cu_composter_speed",
+      "context": "堆肥器升级子菜单",
+      "raw": "§aComposter Speed",
+      "text": "Composter Speed",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "堆肥器速度"
+    },
+    {
+      "id": "cu_increases_production_1",
+      "context": "",
+      "raw": "§7Increases composter production",
+      "text": "Increases composter production",
+      "placeholders": [],
+      "gloss": "尾行「speed by 0%」/「compost by 0%」两种,数值和对象都在尾行;首行只写主语,尾行的分段接着说完。",
+      "translate": true,
+      "zh": "堆肥器的产出"
+    },
+    {
+      "id": "cu_by_percent",
+      "context": "",
+      "raw": "§7%1$s by §a%2$s%§7.",
+      "text": "%1$s by %2$s%.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "speed / compost,译名走 _shared/Terms.json",
+          "type": "raw",
+          "example": "speed"
+        },
+        {
+          "token": "%2$s",
+          "desc": "百分比",
+          "type": "number",
+          "example": "0"
+        }
+      ],
+      "gloss": "speed → 速度、compost → 堆肥:「堆肥器产出速度提高 20%」。",
+      "translate": true,
+      "zh": "%1$s提高 %2$s%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "%1$s by ",
+          "zh": "%1$s提高 "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s%",
+          "zh": "%2$s%"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "continuation": true
+    },
+    {
+      "id": "cu_next_tier",
+      "context": "",
+      "raw": "§7Next Tier: §a%1$s",
+      "text": "Next Tier: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "下一档的数值(百分比或数量)",
+          "type": "raw",
+          "example": "20%"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "下一档: %1$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Next Tier: ",
+          "zh": "下一档: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ]
+    },
+    {
+      "id": "cu_upgrade_cost",
+      "context": "",
+      "raw": "§7Upgrade Cost:",
+      "text": "Upgrade Cost:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "升级花费:"
+    },
+    {
+      "id": "cu_copper_cost",
+      "context": "",
+      "raw": "  §c%1$s Copper",
+      "text": "  %1$s Copper",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "铜数量",
+          "type": "number",
+          "example": "100"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "  %1$s 铜",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s Copper",
+          "zh": "%1$s 铜"
+        }
+      ]
+    },
+    {
+      "id": "cu_not_enough_copper",
+      "context": "",
+      "raw": "§cNot enough Copper!",
+      "text": "Not enough Copper!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "铜不够!"
+    },
+    {
+      "id": "cu_multi_drop",
+      "context": "",
+      "raw": "§aMulti Drop",
+      "text": "Multi Drop",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "多重产出"
+    },
+    {
+      "id": "cu_multi_drop_desc_1",
+      "context": "",
+      "raw": "§7When compost is produced, grants a",
+      "text": "When compost is produced, grants a",
+      "placeholders": [],
+      "gloss": "数值在尾行,首行写到「有 」为止。",
+      "translate": true,
+      "zh": "产出堆肥时,有 "
+    },
+    {
+      "id": "cu_multi_drop_desc_2",
+      "context": "",
+      "raw": "§a%1$s% §7chance to produce an extra one.",
+      "text": "%1$s% chance to produce an extra one.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "百分比",
+          "type": "number",
+          "example": "0"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s% 的概率额外多产一份。",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "%1$s% ",
+          "zh": "%1$s% "
+        },
+        {
+          "color": "§7",
+          "text": "chance to produce an extra one.",
+          "zh": "的概率额外多产一份。"
+        }
+      ],
+      "continuation": true
+    },
+    {
+      "id": "cu_fuel_cap",
+      "context": "",
+      "raw": "§aFuel Cap",
+      "text": "Fuel Cap",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "燃料上限"
+    },
+    {
+      "id": "cu_fuel_cap_desc_1",
+      "context": "",
+      "raw": "§7Increase the maximum machine fuel",
+      "text": "Increase the maximum machine fuel",
+      "placeholders": [],
+      "gloss": "采集器把这一行和有机物上限的首行归并成了「Increase the maximum %1$s %2$s」;两条各写字面记录,字面记录优先。数值在共用的尾行里。",
+      "translate": true,
+      "zh": "把堆肥器能存放的机器燃料上限提高到 "
+    },
+    {
+      "id": "cu_cap_hold_to",
+      "context": "",
+      "raw": "§7the composter can hold to §a%1$s§7.",
+      "text": "the composter can hold to %1$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "新上限",
+          "type": "number",
+          "example": "100,000"
+        }
+      ],
+      "gloss": "燃料上限和有机物上限共用的尾行,只带数值;两个首行各自把「把堆肥器能存放的……上限提高到」说完。",
+      "translate": true,
+      "zh": "%1$s。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "the composter can hold to ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "continuation": true
+    },
+    {
+      "id": "cu_organic_matter_cap",
+      "context": "",
+      "raw": "§aOrganic Matter Cap",
+      "text": "Organic Matter Cap",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "有机物上限"
+    },
+    {
+      "id": "cu_organic_cap_desc_1",
+      "context": "",
+      "raw": "§7Increase the maximum amount of",
+      "text": "Increase the maximum amount of",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "把堆肥器能存放的"
+    },
+    {
+      "id": "cu_organic_cap_desc_2",
+      "context": "",
+      "raw": "§7organic matter that can be stored to",
+      "text": "organic matter that can be stored to",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "有机物上限提高到 ",
+      "continuation": true
+    },
+    {
+      "id": "cu_organic_cap_hold_to",
+      "ref": "Farming/GUI_Item/Composter.json#cu_cap_hold_to",
+      "context": "有机物上限说明的第三行,和燃料上限共用"
+    },
+    {
+      "id": "cu_cost_reduction",
+      "context": "",
+      "raw": "§aCost Reduction",
+      "text": "Cost Reduction",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "成本削减"
+    },
+    {
+      "id": "cu_cost_reduction_desc_1",
+      "context": "",
+      "raw": "§7Reduces the amount of organic",
+      "text": "Reduces the amount of organic",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "减少制作堆肥所需的有机物和燃料。"
+    },
+    {
+      "id": "cu_cost_reduction_desc_2",
+      "context": "",
+      "raw": "§7matter and fuel required to produce",
+      "text": "matter and fuel required to produce",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    }
+  ]
+}

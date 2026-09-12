@@ -8,772 +8,196 @@
   ],
   "lines": [
     {
-      "id": "sb_date_early_spring_st",
-      "context": "侧边栏第二行的空岛日期:立春那个月的第 N 天。英文序数后缀 st 决定是哪一天,中文统一写“N 日”",
-      "text": "Early Spring %sst",
+      "id": "sb_date_early_spring",
+      "context": "侧边栏第二行的空岛日期:空岛历第 1 个月(Early Spring)的第 N 天",
+      "text": "Early Spring %s",
       "placeholders": [
         {
           "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
+          "desc": "空岛月里的第几天,带英文序数后缀(1st / 2nd / 3rd / 20th);ordinal 类型渲染时会去掉后缀",
+          "type": "ordinal",
+          "example": "20th"
         }
       ],
-      "gloss": "空岛一年十二个月,每季按 Early / (无前缀) / Late 分三段。中文用二十四节气里对应的那一个:季首取四立(立春/立夏/立秋/立冬)、季中取二分二至(春分/夏至/秋分/冬至)、季末取该季最后一个节气(谷雨/大暑/霜降/大寒)。英文四种序数后缀各写一条记录,因为 %s 只能捕数字、捕不到后缀本身;四条的译文完全相同,中文没有序数后缀。中文写成「节气 N 日」,数字两边各留一个空格——挨着写(“夏至20日”)在计分板上挤成一团。",
+      "gloss": "空岛一年十二个月,英文按 Early / (无前缀) / Late × 春夏秋冬命名。2026-09-10 用户拍板:中文一律按月序写「1 月」到「12 月」,不用季节或节气;日期行里的数字写阿拉伯数字,数字两边各留一个空格(“7 月 20 日”),挨着写在计分板上会挤成一团。一条 ordinal 记录同时管 st/nd/rd/th 四种后缀,不用像以前那样每个后缀各写一条。",
       "translate": true,
-      "zh": "立春 %s 日"
+      "zh": "1 月 %s 日"
     },
     {
-      "id": "sb_date_early_spring_nd",
-      "context": "侧边栏第二行的空岛日期:立春那个月的第 N 天。英文序数后缀 nd 决定是哪一天,中文统一写“N 日”",
-      "text": "Early Spring %snd",
+      "id": "sb_date_spring",
+      "context": "侧边栏第二行的空岛日期:空岛历第 2 个月(Spring)的第 N 天",
+      "text": "Spring %s",
       "placeholders": [
         {
           "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
+          "desc": "空岛月里的第几天,带英文序数后缀(1st / 2nd / 3rd / 20th);ordinal 类型渲染时会去掉后缀",
+          "type": "ordinal",
+          "example": "20th"
         }
       ],
       "gloss": "",
       "translate": true,
-      "zh": "立春 %s 日"
+      "zh": "2 月 %s 日"
     },
     {
-      "id": "sb_date_early_spring_rd",
-      "context": "侧边栏第二行的空岛日期:立春那个月的第 N 天。英文序数后缀 rd 决定是哪一天,中文统一写“N 日”",
-      "text": "Early Spring %srd",
+      "id": "sb_date_late_spring",
+      "context": "侧边栏第二行的空岛日期:空岛历第 3 个月(Late Spring)的第 N 天",
+      "text": "Late Spring %s",
       "placeholders": [
         {
           "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
+          "desc": "空岛月里的第几天,带英文序数后缀(1st / 2nd / 3rd / 20th);ordinal 类型渲染时会去掉后缀",
+          "type": "ordinal",
+          "example": "20th"
         }
       ],
       "gloss": "",
       "translate": true,
-      "zh": "立春 %s 日"
+      "zh": "3 月 %s 日"
     },
     {
-      "id": "sb_date_early_spring_th",
-      "context": "侧边栏第二行的空岛日期:立春那个月的第 N 天。英文序数后缀 th 决定是哪一天,中文统一写“N 日”",
-      "text": "Early Spring %sth",
+      "id": "sb_date_early_summer",
+      "context": "侧边栏第二行的空岛日期:空岛历第 4 个月(Early Summer)的第 N 天",
+      "text": "Early Summer %s",
       "placeholders": [
         {
           "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
+          "desc": "空岛月里的第几天,带英文序数后缀(1st / 2nd / 3rd / 20th);ordinal 类型渲染时会去掉后缀",
+          "type": "ordinal",
+          "example": "20th"
         }
       ],
       "gloss": "",
       "translate": true,
-      "zh": "立春 %s 日"
+      "zh": "4 月 %s 日"
     },
     {
-      "id": "sb_date_spring_st",
-      "context": "侧边栏第二行的空岛日期:春分那个月的第 N 天。英文序数后缀 st 决定是哪一天,中文统一写“N 日”",
-      "text": "Spring %sst",
+      "id": "sb_date_summer",
+      "context": "侧边栏第二行的空岛日期:空岛历第 5 个月(Summer)的第 N 天",
+      "text": "Summer %s",
       "placeholders": [
         {
           "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
+          "desc": "空岛月里的第几天,带英文序数后缀(1st / 2nd / 3rd / 20th);ordinal 类型渲染时会去掉后缀",
+          "type": "ordinal",
+          "example": "20th"
         }
       ],
       "gloss": "",
       "translate": true,
-      "zh": "春分 %s 日"
+      "zh": "5 月 %s 日"
     },
     {
-      "id": "sb_date_spring_nd",
-      "context": "侧边栏第二行的空岛日期:春分那个月的第 N 天。英文序数后缀 nd 决定是哪一天,中文统一写“N 日”",
-      "text": "Spring %snd",
+      "id": "sb_date_late_summer",
+      "context": "侧边栏第二行的空岛日期:空岛历第 6 个月(Late Summer)的第 N 天",
+      "text": "Late Summer %s",
       "placeholders": [
         {
           "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
+          "desc": "空岛月里的第几天,带英文序数后缀(1st / 2nd / 3rd / 20th);ordinal 类型渲染时会去掉后缀",
+          "type": "ordinal",
+          "example": "20th"
         }
       ],
       "gloss": "",
       "translate": true,
-      "zh": "春分 %s 日"
+      "zh": "6 月 %s 日"
     },
     {
-      "id": "sb_date_spring_rd",
-      "context": "侧边栏第二行的空岛日期:春分那个月的第 N 天。英文序数后缀 rd 决定是哪一天,中文统一写“N 日”",
-      "text": "Spring %srd",
+      "id": "sb_date_early_autumn",
+      "context": "侧边栏第二行的空岛日期:空岛历第 7 个月(Early Autumn)的第 N 天",
+      "text": "Early Autumn %s",
       "placeholders": [
         {
           "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
+          "desc": "空岛月里的第几天,带英文序数后缀(1st / 2nd / 3rd / 20th);ordinal 类型渲染时会去掉后缀",
+          "type": "ordinal",
+          "example": "20th"
         }
       ],
       "gloss": "",
       "translate": true,
-      "zh": "春分 %s 日"
+      "zh": "7 月 %s 日"
     },
     {
-      "id": "sb_date_spring_th",
-      "context": "侧边栏第二行的空岛日期:春分那个月的第 N 天。英文序数后缀 th 决定是哪一天,中文统一写“N 日”",
-      "text": "Spring %sth",
+      "id": "sb_date_autumn",
+      "context": "侧边栏第二行的空岛日期:空岛历第 8 个月(Autumn)的第 N 天",
+      "text": "Autumn %s",
       "placeholders": [
         {
           "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
+          "desc": "空岛月里的第几天,带英文序数后缀(1st / 2nd / 3rd / 20th);ordinal 类型渲染时会去掉后缀",
+          "type": "ordinal",
+          "example": "20th"
         }
       ],
       "gloss": "",
       "translate": true,
-      "zh": "春分 %s 日"
+      "zh": "8 月 %s 日"
     },
     {
-      "id": "sb_date_late_spring_st",
-      "context": "侧边栏第二行的空岛日期:谷雨那个月的第 N 天。英文序数后缀 st 决定是哪一天,中文统一写“N 日”",
-      "text": "Late Spring %sst",
+      "id": "sb_date_late_autumn",
+      "context": "侧边栏第二行的空岛日期:空岛历第 9 个月(Late Autumn)的第 N 天",
+      "text": "Late Autumn %s",
       "placeholders": [
         {
           "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
+          "desc": "空岛月里的第几天,带英文序数后缀(1st / 2nd / 3rd / 20th);ordinal 类型渲染时会去掉后缀",
+          "type": "ordinal",
+          "example": "20th"
         }
       ],
       "gloss": "",
       "translate": true,
-      "zh": "谷雨 %s 日"
+      "zh": "9 月 %s 日"
     },
     {
-      "id": "sb_date_late_spring_nd",
-      "context": "侧边栏第二行的空岛日期:谷雨那个月的第 N 天。英文序数后缀 nd 决定是哪一天,中文统一写“N 日”",
-      "text": "Late Spring %snd",
+      "id": "sb_date_early_winter",
+      "context": "侧边栏第二行的空岛日期:空岛历第 10 个月(Early Winter)的第 N 天",
+      "text": "Early Winter %s",
       "placeholders": [
         {
           "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
+          "desc": "空岛月里的第几天,带英文序数后缀(1st / 2nd / 3rd / 20th);ordinal 类型渲染时会去掉后缀",
+          "type": "ordinal",
+          "example": "20th"
         }
       ],
       "gloss": "",
       "translate": true,
-      "zh": "谷雨 %s 日"
+      "zh": "10 月 %s 日"
     },
     {
-      "id": "sb_date_late_spring_rd",
-      "context": "侧边栏第二行的空岛日期:谷雨那个月的第 N 天。英文序数后缀 rd 决定是哪一天,中文统一写“N 日”",
-      "text": "Late Spring %srd",
+      "id": "sb_date_winter",
+      "context": "侧边栏第二行的空岛日期:空岛历第 11 个月(Winter)的第 N 天",
+      "text": "Winter %s",
       "placeholders": [
         {
           "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
+          "desc": "空岛月里的第几天,带英文序数后缀(1st / 2nd / 3rd / 20th);ordinal 类型渲染时会去掉后缀",
+          "type": "ordinal",
+          "example": "20th"
         }
       ],
       "gloss": "",
       "translate": true,
-      "zh": "谷雨 %s 日"
+      "zh": "11 月 %s 日"
     },
     {
-      "id": "sb_date_late_spring_th",
-      "context": "侧边栏第二行的空岛日期:谷雨那个月的第 N 天。英文序数后缀 th 决定是哪一天,中文统一写“N 日”",
-      "text": "Late Spring %sth",
+      "id": "sb_date_late_winter",
+      "context": "侧边栏第二行的空岛日期:空岛历第 12 个月(Late Winter)的第 N 天",
+      "text": "Late Winter %s",
       "placeholders": [
         {
           "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
+          "desc": "空岛月里的第几天,带英文序数后缀(1st / 2nd / 3rd / 20th);ordinal 类型渲染时会去掉后缀",
+          "type": "ordinal",
+          "example": "20th"
         }
       ],
       "gloss": "",
       "translate": true,
-      "zh": "谷雨 %s 日"
-    },
-    {
-      "id": "sb_date_early_summer_st",
-      "context": "侧边栏第二行的空岛日期:立夏那个月的第 N 天。英文序数后缀 st 决定是哪一天,中文统一写“N 日”",
-      "text": "Early Summer %sst",
-      "placeholders": [
-        {
-          "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "立夏 %s 日"
-    },
-    {
-      "id": "sb_date_early_summer_nd",
-      "context": "侧边栏第二行的空岛日期:立夏那个月的第 N 天。英文序数后缀 nd 决定是哪一天,中文统一写“N 日”",
-      "text": "Early Summer %snd",
-      "placeholders": [
-        {
-          "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "立夏 %s 日"
-    },
-    {
-      "id": "sb_date_early_summer_rd",
-      "context": "侧边栏第二行的空岛日期:立夏那个月的第 N 天。英文序数后缀 rd 决定是哪一天,中文统一写“N 日”",
-      "text": "Early Summer %srd",
-      "placeholders": [
-        {
-          "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "立夏 %s 日"
-    },
-    {
-      "id": "sb_date_early_summer_th",
-      "context": "侧边栏第二行的空岛日期:立夏那个月的第 N 天。英文序数后缀 th 决定是哪一天,中文统一写“N 日”",
-      "text": "Early Summer %sth",
-      "placeholders": [
-        {
-          "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "立夏 %s 日"
-    },
-    {
-      "id": "sb_date_summer_st",
-      "context": "侧边栏第二行的空岛日期:夏至那个月的第 N 天。英文序数后缀 st 决定是哪一天,中文统一写“N 日”",
-      "text": "Summer %sst",
-      "placeholders": [
-        {
-          "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "夏至 %s 日"
-    },
-    {
-      "id": "sb_date_summer_nd",
-      "context": "侧边栏第二行的空岛日期:夏至那个月的第 N 天。英文序数后缀 nd 决定是哪一天,中文统一写“N 日”",
-      "text": "Summer %snd",
-      "placeholders": [
-        {
-          "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "夏至 %s 日"
-    },
-    {
-      "id": "sb_date_summer_rd",
-      "context": "侧边栏第二行的空岛日期:夏至那个月的第 N 天。英文序数后缀 rd 决定是哪一天,中文统一写“N 日”",
-      "text": "Summer %srd",
-      "placeholders": [
-        {
-          "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "夏至 %s 日"
-    },
-    {
-      "id": "sb_date_summer_th",
-      "context": "侧边栏第二行的空岛日期:夏至那个月的第 N 天。英文序数后缀 th 决定是哪一天,中文统一写“N 日”",
-      "text": "Summer %sth",
-      "placeholders": [
-        {
-          "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "夏至 %s 日"
-    },
-    {
-      "id": "sb_date_late_summer_st",
-      "context": "侧边栏第二行的空岛日期:大暑那个月的第 N 天。英文序数后缀 st 决定是哪一天,中文统一写“N 日”",
-      "text": "Late Summer %sst",
-      "placeholders": [
-        {
-          "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "大暑 %s 日"
-    },
-    {
-      "id": "sb_date_late_summer_nd",
-      "context": "侧边栏第二行的空岛日期:大暑那个月的第 N 天。英文序数后缀 nd 决定是哪一天,中文统一写“N 日”",
-      "text": "Late Summer %snd",
-      "placeholders": [
-        {
-          "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "大暑 %s 日"
-    },
-    {
-      "id": "sb_date_late_summer_rd",
-      "context": "侧边栏第二行的空岛日期:大暑那个月的第 N 天。英文序数后缀 rd 决定是哪一天,中文统一写“N 日”",
-      "text": "Late Summer %srd",
-      "placeholders": [
-        {
-          "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "大暑 %s 日"
-    },
-    {
-      "id": "sb_date_late_summer_th",
-      "context": "侧边栏第二行的空岛日期:大暑那个月的第 N 天。英文序数后缀 th 决定是哪一天,中文统一写“N 日”",
-      "text": "Late Summer %sth",
-      "placeholders": [
-        {
-          "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "大暑 %s 日"
-    },
-    {
-      "id": "sb_date_early_autumn_st",
-      "context": "侧边栏第二行的空岛日期:立秋那个月的第 N 天。英文序数后缀 st 决定是哪一天,中文统一写“N 日”",
-      "text": "Early Autumn %sst",
-      "placeholders": [
-        {
-          "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "立秋 %s 日"
-    },
-    {
-      "id": "sb_date_early_autumn_nd",
-      "context": "侧边栏第二行的空岛日期:立秋那个月的第 N 天。英文序数后缀 nd 决定是哪一天,中文统一写“N 日”",
-      "text": "Early Autumn %snd",
-      "placeholders": [
-        {
-          "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "立秋 %s 日"
-    },
-    {
-      "id": "sb_date_early_autumn_rd",
-      "context": "侧边栏第二行的空岛日期:立秋那个月的第 N 天。英文序数后缀 rd 决定是哪一天,中文统一写“N 日”",
-      "text": "Early Autumn %srd",
-      "placeholders": [
-        {
-          "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "立秋 %s 日"
-    },
-    {
-      "id": "sb_date_early_autumn_th",
-      "context": "侧边栏第二行的空岛日期:立秋那个月的第 N 天。英文序数后缀 th 决定是哪一天,中文统一写“N 日”",
-      "text": "Early Autumn %sth",
-      "placeholders": [
-        {
-          "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "立秋 %s 日"
-    },
-    {
-      "id": "sb_date_autumn_st",
-      "context": "侧边栏第二行的空岛日期:秋分那个月的第 N 天。英文序数后缀 st 决定是哪一天,中文统一写“N 日”",
-      "text": "Autumn %sst",
-      "placeholders": [
-        {
-          "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "秋分 %s 日"
-    },
-    {
-      "id": "sb_date_autumn_nd",
-      "context": "侧边栏第二行的空岛日期:秋分那个月的第 N 天。英文序数后缀 nd 决定是哪一天,中文统一写“N 日”",
-      "text": "Autumn %snd",
-      "placeholders": [
-        {
-          "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "秋分 %s 日"
-    },
-    {
-      "id": "sb_date_autumn_rd",
-      "context": "侧边栏第二行的空岛日期:秋分那个月的第 N 天。英文序数后缀 rd 决定是哪一天,中文统一写“N 日”",
-      "text": "Autumn %srd",
-      "placeholders": [
-        {
-          "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "秋分 %s 日"
-    },
-    {
-      "id": "sb_date_autumn_th",
-      "context": "侧边栏第二行的空岛日期:秋分那个月的第 N 天。英文序数后缀 th 决定是哪一天,中文统一写“N 日”",
-      "text": "Autumn %sth",
-      "placeholders": [
-        {
-          "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "秋分 %s 日"
-    },
-    {
-      "id": "sb_date_late_autumn_st",
-      "context": "侧边栏第二行的空岛日期:霜降那个月的第 N 天。英文序数后缀 st 决定是哪一天,中文统一写“N 日”",
-      "text": "Late Autumn %sst",
-      "placeholders": [
-        {
-          "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "霜降 %s 日"
-    },
-    {
-      "id": "sb_date_late_autumn_nd",
-      "context": "侧边栏第二行的空岛日期:霜降那个月的第 N 天。英文序数后缀 nd 决定是哪一天,中文统一写“N 日”",
-      "text": "Late Autumn %snd",
-      "placeholders": [
-        {
-          "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "霜降 %s 日"
-    },
-    {
-      "id": "sb_date_late_autumn_rd",
-      "context": "侧边栏第二行的空岛日期:霜降那个月的第 N 天。英文序数后缀 rd 决定是哪一天,中文统一写“N 日”",
-      "text": "Late Autumn %srd",
-      "placeholders": [
-        {
-          "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "霜降 %s 日"
-    },
-    {
-      "id": "sb_date_late_autumn_th",
-      "context": "侧边栏第二行的空岛日期:霜降那个月的第 N 天。英文序数后缀 th 决定是哪一天,中文统一写“N 日”",
-      "text": "Late Autumn %sth",
-      "placeholders": [
-        {
-          "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "霜降 %s 日"
-    },
-    {
-      "id": "sb_date_early_winter_st",
-      "context": "侧边栏第二行的空岛日期:立冬那个月的第 N 天。英文序数后缀 st 决定是哪一天,中文统一写“N 日”",
-      "text": "Early Winter %sst",
-      "placeholders": [
-        {
-          "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "立冬 %s 日"
-    },
-    {
-      "id": "sb_date_early_winter_nd",
-      "context": "侧边栏第二行的空岛日期:立冬那个月的第 N 天。英文序数后缀 nd 决定是哪一天,中文统一写“N 日”",
-      "text": "Early Winter %snd",
-      "placeholders": [
-        {
-          "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "立冬 %s 日"
-    },
-    {
-      "id": "sb_date_early_winter_rd",
-      "context": "侧边栏第二行的空岛日期:立冬那个月的第 N 天。英文序数后缀 rd 决定是哪一天,中文统一写“N 日”",
-      "text": "Early Winter %srd",
-      "placeholders": [
-        {
-          "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "立冬 %s 日"
-    },
-    {
-      "id": "sb_date_early_winter_th",
-      "context": "侧边栏第二行的空岛日期:立冬那个月的第 N 天。英文序数后缀 th 决定是哪一天,中文统一写“N 日”",
-      "text": "Early Winter %sth",
-      "placeholders": [
-        {
-          "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "立冬 %s 日"
-    },
-    {
-      "id": "sb_date_winter_st",
-      "context": "侧边栏第二行的空岛日期:冬至那个月的第 N 天。英文序数后缀 st 决定是哪一天,中文统一写“N 日”",
-      "text": "Winter %sst",
-      "placeholders": [
-        {
-          "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "冬至 %s 日"
-    },
-    {
-      "id": "sb_date_winter_nd",
-      "context": "侧边栏第二行的空岛日期:冬至那个月的第 N 天。英文序数后缀 nd 决定是哪一天,中文统一写“N 日”",
-      "text": "Winter %snd",
-      "placeholders": [
-        {
-          "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "冬至 %s 日"
-    },
-    {
-      "id": "sb_date_winter_rd",
-      "context": "侧边栏第二行的空岛日期:冬至那个月的第 N 天。英文序数后缀 rd 决定是哪一天,中文统一写“N 日”",
-      "text": "Winter %srd",
-      "placeholders": [
-        {
-          "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "冬至 %s 日"
-    },
-    {
-      "id": "sb_date_winter_th",
-      "context": "侧边栏第二行的空岛日期:冬至那个月的第 N 天。英文序数后缀 th 决定是哪一天,中文统一写“N 日”",
-      "text": "Winter %sth",
-      "placeholders": [
-        {
-          "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "冬至 %s 日"
-    },
-    {
-      "id": "sb_date_late_winter_st",
-      "context": "侧边栏第二行的空岛日期:大寒那个月的第 N 天。英文序数后缀 st 决定是哪一天,中文统一写“N 日”",
-      "text": "Late Winter %sst",
-      "placeholders": [
-        {
-          "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "大寒 %s 日"
-    },
-    {
-      "id": "sb_date_late_winter_nd",
-      "context": "侧边栏第二行的空岛日期:大寒那个月的第 N 天。英文序数后缀 nd 决定是哪一天,中文统一写“N 日”",
-      "text": "Late Winter %snd",
-      "placeholders": [
-        {
-          "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "大寒 %s 日"
-    },
-    {
-      "id": "sb_date_late_winter_rd",
-      "context": "侧边栏第二行的空岛日期:大寒那个月的第 N 天。英文序数后缀 rd 决定是哪一天,中文统一写“N 日”",
-      "text": "Late Winter %srd",
-      "placeholders": [
-        {
-          "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "大寒 %s 日"
-    },
-    {
-      "id": "sb_date_late_winter_th",
-      "context": "侧边栏第二行的空岛日期:大寒那个月的第 N 天。英文序数后缀 th 决定是哪一天,中文统一写“N 日”",
-      "text": "Late Winter %sth",
-      "placeholders": [
-        {
-          "token": "%s",
-          "desc": "空岛月里的第几天(1-31)",
-          "type": "number",
-          "example": "20"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "大寒 %s 日"
+      "zh": "12 月 %s 日"
     },
     {
       "id": "sb_clock_1_am",

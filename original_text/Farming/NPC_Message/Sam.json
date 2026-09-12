@@ -1,0 +1,1087 @@
+{
+  "npc": "Sam",
+  "location": "The Garden",
+  "source": "runtime capture (SkyZH) 2026-09-10 花园新手流程实测; https://hypixelskyblock.minecraft.wiki/w/Sam (2026-09-09 更新); 交叉核对 https://hypixel-skyblock.fandom.com/wiki/Sam",
+  "fetched_at": "2026-09-10",
+  "verified_ingame": true,
+  "note": "Sam(女性,wiki 提示语「Help her out?」),邻居家的年轻农场主,从父亲手里继承了农场却不擅长农活,所以拉着玩家一起经营花园。和玩家是熟络的朋友关系;说话朴素、热情、爱感叹(So exciting! / Amazing!!!),句尾常带省略号表示自己也不太懂机器的原理;不说网络黑话,不爆粗。私人岛屿上的开场台词在 Hub_General/NPC_Message/Sam.json,这里只放花园里的教程、温室教程和季节随机台词。",
+  "source_note": [
+    "实测采到 40 句,其余按社区 Wiki 补齐。变异作物那一段两家 Wiki 写法不同(minecraft.wiki 2026-09-09:并排种 2 份种子;fandom:用 4 株小麦围成十字),差异很大且都未实测,两种写法都保留。",
+    "新地块完成台词保留实测末尾一个感叹号和社区 Wiki 末尾两个感叹号的写法。",
+    "「Wow, you did it!」「Thank you so much!」「Come back with the right amount of items!」和别的 NPC 台词一字不差,按 README §4 用 ref 指向已有记录,避免同一渲染面两条同模板记录互相遮挡。"
+  ],
+  "messages": [
+    {
+      "id": "sam_garden_excited",
+      "context": "玩家第一次进花园",
+      "raw": "§fI am so excited to have you here!",
+      "text": "I am so excited to have you here!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你能来我真是太开心了!"
+    },
+    {
+      "id": "sam_garden_clear_plot",
+      "context": "",
+      "raw": "§fYou can come to me anytime you need help, but first let's clear out a plot to grow your crops.",
+      "text": "You can come to me anytime you need help, but first let's clear out a plot to grow your crops.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "需要帮忙随时来找我,不过咱们得先清出一块地来种庄稼。"
+    },
+    {
+      "id": "sam_garden_need_compost",
+      "context": "",
+      "raw": "§fFor that however... I need some Compost... If you can bring me some Wheat, I can make some Compost out of it!",
+      "text": "For that however... I need some Compost... If you can bring me some Wheat, I can make some Compost out of it!",
+      "placeholders": [],
+      "gloss": "Compost → 堆肥、Composter → 堆肥器,沿用 Farming/TabList/Tab_List.json 的既定译名。",
+      "translate": true,
+      "zh": "不过要清地……得先有堆肥……你要是能给我弄些小麦来,我就能拿它做出堆肥!"
+    },
+    {
+      "id": "sam_garden_wow_you_did_it",
+      "ref": "Mining/NPC_Message/Royal_Resident.json#royal_resident_wow_you_did_it",
+      "context": "交了 25 个小麦之后"
+    },
+    {
+      "id": "sam_garden_head_inside",
+      "context": "",
+      "raw": "§fNow I can finally produce some Compost... let's head inside!",
+      "text": "Now I can finally produce some Compost... let's head inside!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这下总算能做堆肥了……咱们进屋去!"
+    },
+    {
+      "id": "sam_composter_machine",
+      "context": "在堆肥器旁第一次对话",
+      "raw": "§fYou see this machine here...",
+      "text": "You see this machine here...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你看这台机器……"
+    },
+    {
+      "id": "sam_composter_produces",
+      "context": "",
+      "raw": "§fIt produces Compost when you put crops inside of it... somehow... but that's what I need to increase the §f§lamount of plots §fwe can have! So exciting!",
+      "text": "It produces Compost when you put crops inside of it... somehow... but that's what I need to increase the amount of plots we can have! So exciting!",
+      "placeholders": [],
+      "gloss": "「amount of plots」在游戏里加粗,单独分一段。",
+      "translate": true,
+      "zh": "把庄稼丢进去,它就能产出堆肥……原理我也说不清……但有了堆肥,咱们能开的地块数量就能变多! 想想就激动!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "It produces Compost when you put crops inside of it... somehow... but that's what I need to increase the ",
+          "zh": "把庄稼丢进去,它就能产出堆肥……原理我也说不清……但有了堆肥,咱们能开的"
+        },
+        {
+          "color": "§f§l",
+          "text": "amount of plots ",
+          "zh": "地块数量"
+        },
+        {
+          "color": "§f",
+          "text": "we can have! So exciting!",
+          "zh": "就能变多! 想想就激动!"
+        }
+      ]
+    },
+    {
+      "id": "sam_composter_fuel",
+      "context": "",
+      "raw": "§fIt needs machine fuel to operate... luckily we can order fuel online!",
+      "text": "It needs machine fuel to operate... luckily we can order fuel online!",
+      "placeholders": [],
+      "gloss": "Machine Fuel → 机器燃料(GLOSSARY 物品 Lore 固定词汇表)。",
+      "translate": true,
+      "zh": "它得靠机器燃料才能运转……好在燃料可以直接网购!"
+    },
+    {
+      "id": "sam_composter_desk",
+      "context": "",
+      "raw": "§fHead over to the desk, there you can browse SkyMart to order some fuel.",
+      "text": "Head over to the desk, there you can browse SkyMart to order some fuel.",
+      "placeholders": [],
+      "gloss": "Desk → 管理台,沿用 Hub_General/GUI_Item/SkyBlock_Menu.json「花园管理台」;SkyMart 是自造商店品牌名,保留英文。",
+      "translate": true,
+      "zh": "去管理台那边,打开 SkyMart 就能下单买燃料。"
+    },
+    {
+      "id": "sam_composter_desk_reminder",
+      "context": "还没在 SkyMart 买生物燃料时再次对话",
+      "text": "Remember, you can order fuel from the Desk nearby.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "记得,燃料可以在旁边的管理台下单。"
+    },
+    {
+      "id": "sam_composter_put_fuel",
+      "context": "",
+      "raw": "§fGreat! Now, you can go open the composter and put the fuel in there, and it'll start doing... whatever it does!",
+      "text": "Great! Now, you can go open the composter and put the fuel in there, and it'll start doing... whatever it does!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "太好了! 现在去打开堆肥器,把燃料放进去,它就会开始……嗯,干它该干的事!"
+    },
+    {
+      "id": "sam_composter_refuelled",
+      "context": "燃料还没放进堆肥器时再次对话",
+      "text": "Have you refuelled the Composter yet?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你给堆肥器加燃料了吗?"
+    },
+    {
+      "id": "sam_composter_done",
+      "context": "",
+      "raw": "Oh the Composter is done!",
+      "text": "Oh the Composter is done!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "哦,堆肥器做好了!"
+    },
+    {
+      "id": "sam_composter_free_plot",
+      "context": "",
+      "raw": "We can finally free up a plot! Take out the compost when you are ready!",
+      "text": "We can finally free up a plot! Take out the compost when you are ready!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "终于能腾出一块地了! 准备好了就把堆肥取出来吧!"
+    },
+    {
+      "id": "sam_plot_brand_new",
+      "context": "买下第一块花园地块",
+      "raw": "Amazing!!! We got ourselves a brand new plot!",
+      "text": "Amazing!!! We got ourselves a brand new plot!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "太棒了!!! 咱们有一块崭新的地啦!"
+    },
+    {
+      "id": "sam_plot_dirty_part",
+      "context": "",
+      "raw": "Now to the dirty part... the plot has to be cleaned up before it can be used...",
+      "text": "Now to the dirty part... the plot has to be cleaned up before it can be used...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "接下来是脏活……这块地得先清理干净才能用……"
+    },
+    {
+      "id": "sam_plot_go_clean",
+      "context": "",
+      "raw": "Head over to your unlocked plot and try to clean it up a bit and then come back to me once you've done so!",
+      "text": "Head over to your unlocked plot and try to clean it up a bit and then come back to me once you've done so!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "去你刚解锁的那块地,把它收拾收拾,弄完了再回来找我!"
+    },
+    {
+      "id": "sam_plot_take_this",
+      "context": "递出 Sam 的镰刀",
+      "raw": "Also, here take this.",
+      "text": "Also, here take this.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "对了,这个给你。"
+    },
+    {
+      "id": "sam_plot_forgot_scythe",
+      "context": "没领 Sam 的镰刀就再次对话",
+      "text": "Oh, I think you forgot to take this!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "哦,你好像忘了拿这个!"
+    },
+    {
+      "id": "sam_plot_scythe",
+      "context": "",
+      "raw": "This Scythe will help you clean your plot even faster!",
+      "text": "This Scythe will help you clean your plot even faster!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "有了这把镰刀,清地能快不少!"
+    },
+    {
+      "id": "sam_plot_coop_bought",
+      "context": "合作档案里已有人买地但还没清理",
+      "text": "It looks like one of your co-op members already purchased a plot, but you should go help them clean it up!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "看来你的合作伙伴已经买下一块地了,不过你也该去搭把手,一起清理!"
+    },
+    {
+      "id": "sam_plot_found_it",
+      "context": "",
+      "raw": "Great, you found it!",
+      "text": "Great, you found it!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "太好了,你找到了!"
+    },
+    {
+      "id": "sam_plot_believe",
+      "context": "",
+      "raw": "I believe in you. Go make it sparkly clean!",
+      "text": "I believe in you. Go make it sparkly clean!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "我相信你。去把它收拾得亮堂堂的!"
+    },
+    {
+      "id": "sam_plot_squeaky_clean",
+      "context": "清理完第一块地",
+      "raw": "Wow! It's squeaky clean over there, you did so well!",
+      "text": "Wow! It's squeaky clean over there, you did so well!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "哇! 那边收拾得一尘不染,你太厉害了!"
+    },
+    {
+      "id": "sam_plot_grow_crops",
+      "context": "",
+      "raw": "Now you can grow crops you've unlocked there!",
+      "text": "Now you can grow crops you've unlocked there!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "现在你可以在那儿种已解锁的作物了!"
+    },
+    {
+      "id": "sam_plot_preset",
+      "context": "",
+      "raw": "To save you a bit of time, you can also use a preset farm at your desk!",
+      "text": "To save you a bit of time, you can also use a preset farm at your desk!",
+      "placeholders": [],
+      "gloss": "preset → 预设,和 Desk 菜单里 Preset 的译名一致。",
+      "translate": true,
+      "zh": "想省点时间的话,也可以在管理台用预设农田!"
+    },
+    {
+      "id": "sam_plot_come_back",
+      "context": "",
+      "raw": "Come and talk to me when you've finished up on your Plot!",
+      "text": "Come and talk to me when you've finished up on your Plot!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你那块地忙完了就来找我聊聊!"
+    },
+    {
+      "id": "sam_plot_coop_did_that",
+      "context": "",
+      "text": "However, it looks like one of your co-op members already did that!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "不过,看起来你的合作伙伴已经把这事办好了!"
+    },
+    {
+      "id": "sam_bread_idea",
+      "context": "",
+      "raw": "I have an idea! Why don't you collect me some Wheat and I'll bake us some lovely bread for dinner!",
+      "text": "I have an idea! Why don't you collect me some Wheat and I'll bake us some lovely bread for dinner!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "我有个主意! 你去给我收点小麦,我来烤几块香喷喷的面包当晚饭!"
+    },
+    {
+      "id": "sam_bread_pretty_please",
+      "context": "玩家选了 [I'd rather not]",
+      "raw": "Pretty please...!!",
+      "text": "Pretty please...!!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "求你啦……!!"
+    },
+    {
+      "id": "sam_bread_100_wheat",
+      "context": "",
+      "raw": "To bake us some bread, I think I need about 100 Wheat.",
+      "text": "To bake us some bread, I think I need about 100 Wheat.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "要烤面包的话,我估计得要 100 个小麦。"
+    },
+    {
+      "id": "sam_bread_no_problem",
+      "context": "",
+      "raw": "That shouldn't be a problem for someone like you, right?",
+      "text": "That shouldn't be a problem for someone like you, right?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "对你这样的人来说,不成问题吧?"
+    },
+    {
+      "id": "sam_bread_fresh",
+      "context": "",
+      "raw": "Wow, that was quick! Here, take some fresh bread! *nom* *nom*",
+      "text": "Wow, that was quick! Here, take some fresh bread! *nom* *nom*",
+      "placeholders": [],
+      "gloss": "*nom* 是嚼东西的拟声,中文用「吧唧」。",
+      "translate": true,
+      "zh": "哇,这么快! 来,尝尝刚出炉的面包! *吧唧* *吧唧*"
+    },
+    {
+      "id": "sam_bread_tasty",
+      "context": "",
+      "raw": "It's pretty tasty. But it seems like we still have some dozen Wheat left over and our Composter is already full...",
+      "text": "It's pretty tasty. But it seems like we still have some dozen Wheat left over and our Composter is already full...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "真好吃。不过好像还剩下几十个小麦,而堆肥器已经装满了……"
+    },
+    {
+      "id": "sam_stand_idea",
+      "context": "",
+      "raw": "Oh, I have an idea! We could open a small stand and sell our Wheat to other people!",
+      "text": "Oh, I have an idea! We could open a small stand and sell our Wheat to other people!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "哦,我有主意了! 咱们可以支个小摊,把小麦卖给别人!"
+    },
+    {
+      "id": "sam_bread_right_amount",
+      "ref": "Hub_General/NPC_Message/Marco.json#come_back_with_the_right_amount_of_items",
+      "context": "小麦没带够 100 个"
+    },
+    {
+      "id": "sam_stand_selfish",
+      "context": "玩家选了 [I'd rather keep it for myself]",
+      "raw": "Don't be selfish! This Wheat is too good to waste. We've got enough to share with everyone!",
+      "text": "Don't be selfish! This Wheat is too good to waste. We've got enough to share with everyone!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "别这么小气嘛! 这么好的小麦浪费了多可惜。咱们多得很,够分给大家的!"
+    },
+    {
+      "id": "sam_stand_somewhere",
+      "context": "",
+      "raw": "We need to set up a stand somewhere...",
+      "text": "We need to set up a stand somewhere...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "咱们得找个地方支摊子……"
+    },
+    {
+      "id": "sam_stand_spot",
+      "context": "在访客摊位旁第一次对话",
+      "raw": "§fI think this spot would work perfectly!",
+      "text": "I think this spot would work perfectly!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "我看这个位置就再合适不过了!"
+    },
+    {
+      "id": "sam_stand_first_customer",
+      "context": "",
+      "raw": "Oh, we already have our first customer! How exciting, I wonder what they want! Can you check on them?",
+      "text": "Oh, we already have our first customer! How exciting, I wonder what they want! Can you check on them?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "哦,第一位顾客已经上门了! 好激动,不知道对方想要什么! 你去招呼一下?"
+    },
+    {
+      "id": "sam_stand_customer_in_front",
+      "context": "还没接待第一位顾客时再次对话",
+      "text": "Your first customer is right in front of you!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的第一位顾客就在你眼前!"
+    },
+    {
+      "id": "sam_stand_talk_to_them",
+      "context": "",
+      "text": "Go ahead and talk to them to see what they need!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "去跟对方聊聊,看看需要什么!"
+    },
+    {
+      "id": "sam_stand_served",
+      "context": "",
+      "raw": "Wow we did it! We served our first customer!",
+      "text": "Wow we did it! We served our first customer!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "哇,成功了! 咱们接待了第一位顾客!"
+    },
+    {
+      "id": "sam_stand_keep_checking",
+      "context": "",
+      "raw": "Keep checking back on them, I am sure more people will visit our farm soon.",
+      "text": "Keep checking back on them, I am sure more people will visit our farm soon.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "记得常回来看看,我敢说很快就会有更多人来咱们农场的。"
+    },
+    {
+      "id": "sam_stand_check_desk",
+      "context": "",
+      "raw": "Besides that, you can always go check the desk to find out what to do next!",
+      "text": "Besides that, you can always go check the desk to find out what to do next!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "另外,不知道接下来做什么的话,随时可以去管理台看看!"
+    },
+    {
+      "id": "sam_stand_head_outside",
+      "context": "",
+      "raw": "I'll head back outside now.",
+      "text": "I'll head back outside now.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "那我先回外面去了。"
+    },
+    {
+      "id": "sam_gh_blueprint",
+      "context": "从木匠那里领到温室设计图之后",
+      "text": "What's this? ... A blueprint for a Greenhouse?!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这是什么? ……温室的设计图?!"
+    },
+    {
+      "id": "sam_gh_means",
+      "context": "",
+      "text": "Do you know what this means??",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你知道这意味着什么吗??"
+    },
+    {
+      "id": "sam_gh_own",
+      "context": "",
+      "text": "We can build our very own Greenhouse!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "咱们可以建一座属于自己的温室了!"
+    },
+    {
+      "id": "sam_gh_cant_wait",
+      "context": "",
+      "text": "I'm so excited, I can't wait to get started on it!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "太激动了,我等不及要动工了!"
+    },
+    {
+      "id": "sam_gh_calm_down",
+      "context": "",
+      "text": "I'm sorry, I just can't help myself. Let me calm myself down a bit.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "抱歉,我实在按捺不住。让我先冷静一下。"
+    },
+    {
+      "id": "sam_gh_breathing",
+      "context": "",
+      "text": "*deep breathing noises*",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "*深呼吸声*"
+    },
+    {
+      "id": "sam_gh_gather",
+      "context": "",
+      "text": "Alright, I feel better now. First we need to gather some resources to build the Greenhouse.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "好了,我缓过来了。首先,咱们得凑齐建温室的材料。"
+    },
+    {
+      "id": "sam_gh_blueprint_needs",
+      "context": "",
+      "text": "Looking at the blueprint, it seems we need about 64 Enchanted Oak Logs and ...? 128 Enchanted Sand??",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "照设计图看,大概需要 64 个附魔橡木原木,还有……? 128 个附魔沙子??"
+    },
+    {
+      "id": "sam_gh_one_step",
+      "context": "",
+      "text": "If you can find these items, we'll be one step closer to building our very own Greenhouse!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "只要你能找齐这些东西,咱们离自己的温室就更近一步了!"
+    },
+    {
+      "id": "sam_gh_select_plot",
+      "context": "温室还没建时再次对话",
+      "text": "Remember, you should go to the Desk and select one of your plots.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "记得去管理台,选一块你的地。"
+    },
+    {
+      "id": "sam_gh_convert",
+      "context": "",
+      "text": "Then, you should convert it to a Greenhouse.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "然后把它改建成温室。"
+    },
+    {
+      "id": "sam_gh_better_than_imagined",
+      "context": "在温室里第一次对话",
+      "text": "Wow, it looks even better than I imagined!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "哇,比我想象中还要漂亮!"
+    },
+    {
+      "id": "sam_gh_get_to_work",
+      "context": "",
+      "text": "Now, let's get to work. It's time to plant our first crop.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "好了,开工吧。该种下咱们的第一株作物了。"
+    },
+    {
+      "id": "sam_gh_honor",
+      "context": "",
+      "text": "Why don't you do the honor? Here, take this carrot and plant it in the Greenhouse!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这份荣誉就交给你了! 来,拿着这根胡萝卜,把它种进温室!"
+    },
+    {
+      "id": "sam_gh_slower_more",
+      "context": "",
+      "text": "Inside the Greenhouse, crops usually grow at a much slower speed than normal, but they will also yield way more!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "温室里的作物长得比平时慢得多,但产量也高得多!"
+    },
+    {
+      "id": "sam_gh_water",
+      "context": "",
+      "text": "Nice! But crops need water to grow. Use this watering can to water the plot.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "不错! 但作物得浇水才能生长。用这把洒水壶给地块浇浇水。"
+    },
+    {
+      "id": "sam_gh_water_different",
+      "context": "",
+      "text": "Watering a crop inside the Greenhouse is different than normal.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "在温室里浇水和平时不一样。"
+    },
+    {
+      "id": "sam_gh_water_time",
+      "context": "",
+      "text": "In here, you need to water crops from time to time to keep them healthy.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "在这里,你得时不时浇一浇,作物才能长得健康。"
+    },
+    {
+      "id": "sam_gh_dry_out",
+      "context": "",
+      "text": "Otherwise they'll completely dry out!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "不然它们会彻底干枯的!"
+    },
+    {
+      "id": "sam_gh_aim",
+      "context": "",
+      "text": "Just aim the can at the crop you want to water and hold right-click!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "把洒水壶对准想浇的作物,按住右键就行!"
+    },
+    {
+      "id": "sam_gh_growing",
+      "context": "",
+      "text": "Look at that! It's already growing! It should be ready to harvest soon.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "快看! 它已经在长了! 应该很快就能收获。"
+    },
+    {
+      "id": "sam_gh_fully_grown",
+      "context": "",
+      "text": "It's fully grown! You should be able to harvest it now.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "长熟了! 现在可以收获了。"
+    },
+    {
+      "id": "sam_gh_first_harvest",
+      "context": "",
+      "text": "Amazing! We've done it! Our very first harvest from the Greenhouse. You've really got the hang of this.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "太棒了! 成功了! 温室里的第一次收成。你已经完全上手了。"
+    },
+    {
+      "id": "sam_gh_advanced",
+      "context": "",
+      "text": "Now that you are familiar with the basics, let's move on to the more advanced techniques.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "基础你已经熟悉了,接下来讲点进阶的技巧。"
+    },
+    {
+      "id": "sam_gh_buffs",
+      "context": "",
+      "text": "Planted crops in your Greenhouse apply buffs and debuffs to nearby crops!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "温室里种下的作物会给旁边的作物施加增益或减益!"
+    },
+    {
+      "id": "sam_gh_visualize",
+      "context": "",
+      "text": "Let's visualize it to help.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "咱们直观地演示一下。"
+    },
+    {
+      "id": "sam_gh_two_carrots",
+      "context": "",
+      "text": "Take these Carrot x2 and plant them next to each other in the Greenhouse.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "拿上这 2 根胡萝卜,把它们并排种进温室。"
+    },
+    {
+      "id": "sam_gh_dont_forget_water",
+      "context": "",
+      "text": "And don't forget to water them!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "别忘了浇水!"
+    },
+    {
+      "id": "sam_gh_two_wheat",
+      "context": "",
+      "text": "Remember, you need to plant 2 Wheat crops next to each other.",
+      "placeholders": [],
+      "gloss": "Wiki 这一段前后自相矛盾(前面发的是胡萝卜,这里说小麦),照原文译,不替 Hypixel 改。",
+      "translate": true,
+      "zh": "记住,要把 2 株小麦并排种下。"
+    },
+    {
+      "id": "sam_gh_water_strong",
+      "context": "",
+      "text": "Then, water them so they grow strong and healthy.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "然后给它们浇水,让它们长得壮壮的。"
+    },
+    {
+      "id": "sam_gh_neat_trick",
+      "context": "",
+      "text": "Once you do that, I'll show you a neat trick!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "弄好之后,我教你一个小妙招!"
+    },
+    {
+      "id": "sam_gh_diagnostics",
+      "context": "",
+      "text": "Nice! Now that both plants are growing, take this Plant Diagnostics Tool to learn how crops are affected by each other.",
+      "placeholders": [],
+      "gloss": "Plant Diagnostics Tool → 植物诊断工具,和 SkyMart 商品名一致。",
+      "translate": true,
+      "zh": "不错! 两株都在长了,拿上这个植物诊断工具,看看作物之间是怎么互相影响的。"
+    },
+    {
+      "id": "sam_gh_diagnostics_water",
+      "context": "",
+      "text": "It's also great for knowing when a crop will finish growing or how much water it needs!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "它还能告诉你作物什么时候长熟、还需要多少水!"
+    },
+    {
+      "id": "sam_gh_try_now",
+      "context": "",
+      "text": "Why don't you try it out right now?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "现在就试试吧?"
+    },
+    {
+      "id": "sam_gh_try_tool",
+      "context": "",
+      "text": "Try to use the Plant Diagnostics Tool on a crop to understand it better!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "对着作物用一下植物诊断工具,更好地了解它!"
+    },
+    {
+      "id": "sam_gh_mutations",
+      "context": "",
+      "text": "Great job! I think you are ready to learn about mutations now!",
+      "placeholders": [],
+      "gloss": "mutation → 变异作物,和 Common_Sidebar.json「扩散一株变异作物」一致。",
+      "translate": true,
+      "zh": "干得漂亮! 我看你可以学学变异作物了!"
+    },
+    {
+      "id": "sam_gh_mutation_sprout",
+      "context": "",
+      "text": "Sometimes, when you grow certain crops next to each other, a mutation will eventually sprout nearby. This doesn't always need to be on dirt!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "有时候,把某些作物挨着种,附近就会冒出一株变异作物。而且它不一定非得长在泥土上!"
+    },
+    {
+      "id": "sam_gh_mutation_one",
+      "context": "",
+      "text": "There are lots of mutations that exist and they are quite interesting to discover, however I really only know how to spread one of them.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "变异作物有很多种,一一发现它们很有意思,不过我只知道其中一种的培育方法。"
+    },
+    {
+      "id": "sam_gh_mutation_seeds",
+      "context": "",
+      "text": "From what I remember, all you need to do is plant 2x Seeds side by side. Make sure to leave space for the mutation to spread!",
+      "placeholders": [],
+      "gloss": "minecraft.wiki(2026-09-09)的写法;fandom 的旧写法见下一条,未实测,两条都留。",
+      "translate": true,
+      "zh": "我记得,只要把 2 份种子并排种下就行。记得留出空位,好让变异作物长出来!",
+      "raw": "§fFrom what I remember, all you need to do is plant §e2x Seeds §fside by side. Make sure to leave space for the §cmutation§f to spread!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "From what I remember, all you need to do is plant ",
+          "zh": "我记得,只要把 "
+        },
+        {
+          "color": "§e",
+          "text": "2x Seeds ",
+          "zh": "2 份种子"
+        },
+        {
+          "color": "§f",
+          "text": "side by side. Make sure to leave space for the ",
+          "zh": "并排种下就行。记得留出空位,好让"
+        },
+        {
+          "color": "§c",
+          "text": "mutation",
+          "zh": "变异作物"
+        },
+        {
+          "color": "§f",
+          "text": " to spread!",
+          "zh": "长出来!"
+        }
+      ]
+    },
+    {
+      "id": "sam_gh_mutation_plus",
+      "context": "",
+      "text": "From what I remember, all you need to do is surround an empty piece of farmland with 4x Wheat Crops, in a plus shape!",
+      "placeholders": [],
+      "gloss": "fandom 的写法。",
+      "translate": true,
+      "zh": "我记得,只要用 4 株小麦把一格空耕地围成十字形就行!"
+    },
+    {
+      "id": "sam_gh_seeds_left",
+      "context": "",
+      "text": "I have a few seeds left for you to try it out for yourself!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "我还剩几份种子,给你自己试试!"
+    },
+    {
+      "id": "sam_gh_thats_right",
+      "context": "",
+      "text": "Hmmmm I think that's right. I watered them too so they grow strong and healthy!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "嗯……我觉得这样就对了。我也给它们浇过水了,保准长得壮壮的!"
+    },
+    {
+      "id": "sam_gh_it_worked",
+      "context": "",
+      "text": "Wow, it worked!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "哇,成功了!"
+    },
+    {
+      "id": "sam_gh_harvest_mutation",
+      "context": "",
+      "text": "Go ahead and harvest the mutated crop. Right there, in the middle of the wheat!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "去把那株变异作物收了吧。就在那儿,小麦中间!"
+    },
+    {
+      "id": "sam_gh_expert",
+      "context": "",
+      "text": "You are pretty much a Greenhouse Expert now!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "现在你差不多算温室专家了!"
+    },
+    {
+      "id": "sam_gh_on_your_own",
+      "context": "",
+      "text": "I taught you all I know about Greenhouses, you are on your own from now on!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "关于温室我知道的都教给你了,接下来就靠你自己啦!"
+    },
+    {
+      "id": "sam_gh_carpenter",
+      "context": "",
+      "text": "If you have any more questions, you can talk to the Carpenter in the Greenhouse.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "还有什么问题的话,可以去温室里找木匠聊聊。"
+    },
+    {
+      "id": "sam_sundial_gift",
+      "context": "送出日晷之后",
+      "text": "Oh wow, is that gift for me?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "哇,这是送给我的礼物吗?"
+    },
+    {
+      "id": "sam_sundial_thanks",
+      "ref": "Mining/NPC_Message/Sludge.json#sludge_thank_you_so_much",
+      "context": "送出日晷之后"
+    },
+    {
+      "id": "sam_sundial_place",
+      "context": "",
+      "text": "I'll make sure to find a nice place for it!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "我一定给它找个好地方摆着!"
+    },
+    {
+      "id": "sam_hydrocan_empty",
+      "context": "",
+      "text": "Looks like your HydroCan ran out of water, you can simply refill it by right-clicking on any water block! [I GET IT]",
+      "placeholders": [],
+      "gloss": "HydroCan 是自造品牌名,保留英文;末尾方括号是可点的确认选项。",
+      "translate": true,
+      "zh": "看来你的 HydroCan 没水了,对着任意水方块右键就能加满! [我懂了]"
+    },
+    {
+      "id": "sam_random_preset",
+      "context": "教程做完后的随机台词",
+      "text": "When you paste a crop preset onto your Plot, it will plant any specified resource from your inventory. So cool!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "往地块上粘贴作物预设时,它会自动从你背包里取材料种下去。太酷了!"
+    },
+    {
+      "id": "sam_random_garden_level",
+      "context": "",
+      "text": "As your Garden Level increases from working on the farm, you'll be able to harvest more crops. Amazing!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "在农场里忙活能提升花园等级,等级越高,能种的作物就越多。太棒了!"
+    },
+    {
+      "id": "sam_random_composter_resources",
+      "context": "",
+      "raw": "Make sure your composter has enough resources! It won't start making more compost if it doesn't have the full materials to do it.",
+      "text": "Make sure your composter has enough resources! It won't start making more compost if it doesn't have the full materials to do it.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "记得给堆肥器备足材料! 材料不够的话,它是不会开工做堆肥的。"
+    },
+    {
+      "id": "sam_random_friends",
+      "context": "",
+      "text": "Oh, have you met my friends here? They like to host farming contests and sell cool new tools!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "哦,见过我这儿的朋友们了吗? 他们喜欢办农业竞赛,还卖各种新奇的工具!"
+    },
+    {
+      "id": "sam_random_more_customers",
+      "context": "",
+      "text": "As you interact with more NPCs in the game, more kinds of customers will show up to buy stuff.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你在游戏里接触的 NPC 越多,来买东西的顾客种类就越多。"
+    },
+    {
+      "id": "sam_spring",
+      "context": "空岛历一月到三月的随机台词",
+      "text": "I love spring! It's not too hot or too cold, it's perfect!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "我最爱春天了! 不冷不热,刚刚好!"
+    },
+    {
+      "id": "sam_summer_warm",
+      "context": "空岛历四月到六月的随机台词",
+      "raw": "It's so warm outside!",
+      "text": "It's so warm outside!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "外面好暖和!"
+    },
+    {
+      "id": "sam_summer_ice_cream",
+      "context": "",
+      "raw": "I should go out with my friends soon, maybe get some ice cream.",
+      "text": "I should go out with my friends soon, maybe get some ice cream.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "我该找朋友们出去玩玩了,顺便吃个冰淇淋。"
+    },
+    {
+      "id": "sam_autumn",
+      "context": "空岛历七月到九月的随机台词",
+      "text": "The leaves are so colorful!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "树叶五颜六色的,真好看!"
+    },
+    {
+      "id": "sam_winter_cold",
+      "context": "空岛历十月到十二月的随机台词",
+      "text": "It's cold out here!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "外面好冷!"
+    },
+    {
+      "id": "sam_winter_warm",
+      "context": "",
+      "text": "Make sure you're keeping yourself warm.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "记得注意保暖哦。"
+    },
+    {
+      "id": "sam_guest_hello",
+      "context": "在别人的花园里和 Sam 对话",
+      "text": "Ah, hello there guest!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "啊,你好呀,客人!"
+    },
+    {
+      "id": "sam_guest_own_island",
+      "context": "",
+      "text": "Meet me on your own island for help.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "想找我帮忙的话,回你自己的岛上来见我。"
+    },
+    {
+      "id": "sam_plot_brand_new_wiki",
+      "context": "社区 Wiki 的双感叹号写法;实测单感叹号版本仍保留",
+      "text": "Amazing!!! We got ourselves a brand new plot!!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "太棒了!!! 咱们有一块崭新的地啦!"
+    }
+  ]
+}

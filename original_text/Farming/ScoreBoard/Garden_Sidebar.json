@@ -22,11 +22,774 @@
       "translate": true,
       "zh": "  花园  x%1$s",
       "segments": [
-        { "color": "§c", "text": " ", "zh": " " },
-        { "color": "§7", "text": " ", "zh": " " },
-        { "color": "§c", "text": "The Garden ", "zh": "花园 " },
-        { "color": "§4", "text": "", "zh": "" },
-        { "color": "§7", "text": " x%1$s", "zh": " x%1$s" }
+        {
+          "color": "§c",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§7",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§c",
+          "text": "The Garden ",
+          "zh": "花园 "
+        },
+        {
+          "color": "§4",
+          "text": "",
+          "zh": ""
+        },
+        {
+          "color": "§7",
+          "text": " x%1$s",
+          "zh": " x%1$s"
+        }
+      ]
+    },
+    {
+      "id": "gsb_zone_garden",
+      "context": "花园侧边栏的所在地行(没有害虫时的样子)",
+      "raw": "§a §7⏣ §aThe Garden",
+      "text": " ⏣ The Garden",
+      "placeholders": [],
+      "gloss": "2026-09-10 实测:害虫数为 0 时这一行没有尾巴,和 garden_sb_area_pests 是两种写法。地点图标按 README 写通用符号 ⏣,引擎会换回服务器的私用区字形。",
+      "translate": true,
+      "zh": " ⏣ 花园",
+      "segments": [
+        {
+          "color": "§a",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§7",
+          "text": "⏣ ",
+          "zh": "⏣ "
+        },
+        {
+          "color": "§a",
+          "text": "The Garden",
+          "zh": "花园"
+        }
+      ]
+    },
+    {
+      "id": "gsb_talk_to",
+      "context": "侧边栏当前任务行",
+      "raw": "§eTalk to %1$s",
+      "text": "Talk to %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "NPC 人名,保留英文",
+          "type": "npc_name",
+          "example": "Sam"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "和 %1$s 交谈"
+    },
+    {
+      "id": "gsb_bring_sam_wheat",
+      "context": "",
+      "raw": "§eBring Sam Wheat",
+      "text": "Bring Sam Wheat",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "把小麦交给 Sam"
+    },
+    {
+      "id": "gsb_wheat_count",
+      "context": "",
+      "raw": "§f Wheat §8x%1$s",
+      "text": " Wheat x%1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "还需要的数量",
+          "type": "number",
+          "example": "25"
+        }
+      ],
+      "gloss": "任务物品行,行首一个空格是缩进。",
+      "translate": true,
+      "zh": " 小麦 x%1$s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": " Wheat ",
+          "zh": " 小麦 "
+        },
+        {
+          "color": "§8",
+          "text": "x%1$s",
+          "zh": "x%1$s"
+        }
+      ]
+    },
+    {
+      "id": "gsb_talk_sam_composter",
+      "context": "",
+      "raw": "§eTalk to Sam at the Composter",
+      "text": "Talk to Sam at the Composter",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "去堆肥器旁和 Sam 交谈"
+    },
+    {
+      "id": "gsb_purchase_fuel",
+      "context": "",
+      "raw": "§ePurchase Fuel",
+      "text": "Purchase Fuel",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "购买燃料"
+    },
+    {
+      "id": "gsb_refuel_composter",
+      "context": "",
+      "raw": "§eRefuel Composter",
+      "text": "Refuel Composter",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "给堆肥器加燃料"
+    },
+    {
+      "id": "gsb_take_compost",
+      "context": "",
+      "raw": "§eTake Compost from Composter",
+      "text": "Take Compost from Composter",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "从堆肥器取出堆肥"
+    },
+    {
+      "id": "gsb_purchase_plot",
+      "context": "",
+      "raw": "§ePurchase a Garden Plot",
+      "text": "Purchase a Garden Plot",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "购买一块花园地块"
+    },
+    {
+      "id": "gsb_clean_plot",
+      "context": "",
+      "raw": "§eClean your Garden Plot",
+      "text": "Clean your Garden Plot",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "清理你的花园地块"
+    },
+    {
+      "id": "gsb_go_to_plot",
+      "context": "",
+      "raw": "§eGo to your Garden Plot",
+      "text": "Go to your Garden Plot",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "前往你的花园地块"
+    },
+    {
+      "id": "gsb_cleanup_progress",
+      "context": "",
+      "raw": "§7   §fCleanup§7: §e%1$s%",
+      "text": "   Cleanup: %1$s%",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "百分比",
+          "type": "number",
+          "example": "4.5"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "   清理进度: %1$s%",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "   ",
+          "zh": "   "
+        },
+        {
+          "color": "§f",
+          "text": "Cleanup",
+          "zh": "清理进度"
+        },
+        {
+          "color": "§7",
+          "text": ": ",
+          "zh": ": "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s%",
+          "zh": "%1$s%"
+        }
+      ]
+    },
+    {
+      "id": "gsb_pasting_progress",
+      "context": "",
+      "raw": "§7   §fPasting§7: §e%1$s%",
+      "text": "   Pasting: %1$s%",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "百分比",
+          "type": "number",
+          "example": "8.2"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "   粘贴进度: %1$s%",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "   ",
+          "zh": "   "
+        },
+        {
+          "color": "§f",
+          "text": "Pasting",
+          "zh": "粘贴进度"
+        },
+        {
+          "color": "§7",
+          "text": ": ",
+          "zh": ": "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s%",
+          "zh": "%1$s%"
+        }
+      ]
+    },
+    {
+      "id": "gsb_plot_row",
+      "context": "",
+      "raw": "§7 §7⏣ §aPlot §7- §b%1$s",
+      "text": " ⏣ Plot - %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "地块编号",
+          "type": "number",
+          "example": "4"
+        }
+      ],
+      "gloss": "行首是缩进和地点图标。",
+      "translate": true,
+      "zh": " ⏣ 地块 - %1$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§7",
+          "text": "⏣ ",
+          "zh": "⏣ "
+        },
+        {
+          "color": "§a",
+          "text": "Plot ",
+          "zh": "地块 "
+        },
+        {
+          "color": "§7",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ]
+    },
+    {
+      "id": "gsb_plot_row_selected",
+      "context": "",
+      "raw": "§b   §aPlot §7- §b%1$s",
+      "text": "   Plot - %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "地块编号",
+          "type": "number",
+          "example": "3"
+        }
+      ],
+      "gloss": "玩家所在地块的那一行,没有地点图标,缩进是青色空格。",
+      "translate": true,
+      "zh": "   地块 - %1$s",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "   ",
+          "zh": "   "
+        },
+        {
+          "color": "§a",
+          "text": "Plot ",
+          "zh": "地块 "
+        },
+        {
+          "color": "§7",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ]
+    },
+    {
+      "id": "gsb_plot_row_pests",
+      "context": "",
+      "raw": "§b   §aPlot §7- §b%1$s §4§l§7 x%2$s",
+      "text": "   Plot - %1$s  x%2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "地块编号",
+          "type": "number",
+          "example": "2"
+        },
+        {
+          "token": "%2$s",
+          "desc": "该地块上的害虫数",
+          "type": "number",
+          "example": "3"
+        }
+      ],
+      "gloss": "害虫图标 \\uE07F 在 text/Glyphs.java 的折算表里没有通用符号,照码点写(同 Garden_Sidebar 的所在地行)。",
+      "translate": true,
+      "zh": "   地块 - %1$s  x%2$s",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "   ",
+          "zh": "   "
+        },
+        {
+          "color": "§a",
+          "text": "Plot ",
+          "zh": "地块 "
+        },
+        {
+          "color": "§7",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§4§l",
+          "text": "",
+          "zh": ""
+        },
+        {
+          "color": "§7",
+          "text": " x%2$s",
+          "zh": " x%2$s"
+        }
+      ]
+    },
+    {
+      "id": "gsb_locked",
+      "context": "侧边栏里未解锁的地块行",
+      "raw": "§c   §cLocked",
+      "text": "   Locked",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "   未解锁",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "   ",
+          "zh": "   "
+        },
+        {
+          "color": "§c",
+          "text": "Locked",
+          "zh": "未解锁"
+        }
+      ]
+    },
+    {
+      "id": "gsb_find_out_sam",
+      "context": "",
+      "raw": "§eFind out what Sam wants",
+      "text": "Find out what Sam wants",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "去看看 Sam 想要什么"
+    },
+    {
+      "id": "gsb_open_shop_stand",
+      "context": "",
+      "raw": "§eOpen Shop Stand",
+      "text": "Open Shop Stand",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "开设售货摊"
+    },
+    {
+      "id": "gsb_find_sam_stand",
+      "context": "",
+      "raw": "§eFind Sam at the Shop Stand",
+      "text": "Find Sam at the Shop Stand",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "去售货摊找 Sam"
+    },
+    {
+      "id": "gsb_serve_first_customer",
+      "context": "",
+      "raw": "§eServe your first Customer",
+      "text": "Serve your first Customer",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "接待你的第一位顾客"
+    },
+    {
+      "id": "gsb_reach_garden_level",
+      "context": "",
+      "raw": "§eReach Garden Level %1$s",
+      "text": "Reach Garden Level %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "目标等级",
+          "type": "tier",
+          "example": "IV"
+        }
+      ],
+      "gloss": "必须有这条字面记录:否则会被 Mining/ScoreBoard/Early_Quests_Live.json 的「Reach %1$s」(前往某地)吃掉,渲染成「前往Garden Level IV」。",
+      "translate": true,
+      "zh": "花园等级达到 %1$s 级"
+    },
+    {
+      "id": "gsb_lvl_progress",
+      "context": "",
+      "raw": "§8  §8(§aLVL %1$s§8)",
+      "text": "  (LVL %1$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前等级/目标等级",
+          "type": "raw",
+          "example": "2/4"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "  (%1$s 级)",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§8",
+          "text": "(",
+          "zh": "("
+        },
+        {
+          "color": "§a",
+          "text": "LVL %1$s",
+          "zh": "%1$s 级"
+        },
+        {
+          "color": "§8",
+          "text": ")",
+          "zh": ")"
+        }
+      ]
+    },
+    {
+      "id": "gsb_talk_to_farmhand",
+      "context": "",
+      "raw": "§eTalk to the Farmhand",
+      "text": "Talk to the Farmhand",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "和农场帮手交谈"
+    },
+    {
+      "id": "gsb_craft_wheat_minion",
+      "context": "",
+      "raw": "§eCraft a Wheat Minion",
+      "text": "Craft a Wheat Minion",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "制作一台小麦小人"
+    },
+    {
+      "id": "gsb_show_jeff_tool",
+      "context": "",
+      "raw": "§eShow §bJeff §ea Special Tool",
+      "text": "Show Jeff a Special Tool",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "向 Jeff 展示一件专精农具",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Show ",
+          "zh": "向 "
+        },
+        {
+          "color": "§b",
+          "text": "Jeff ",
+          "zh": "Jeff"
+        },
+        {
+          "color": "§e",
+          "text": "a Special Tool",
+          "zh": " 展示一件专精农具"
+        }
+      ]
+    },
+    {
+      "id": "gsb_jacobs_contest",
+      "context": "竞赛进行中侧边栏的小节标题",
+      "raw": "§eJacob's Contest",
+      "text": "Jacob's Contest",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Jacob 的农业竞赛"
+    },
+    {
+      "id": "gsb_contest_crop_timer",
+      "context": "",
+      "raw": "§a §e○ §f%1$s §a%2$ss",
+      "text": " ○ %1$s %2$ss",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "竞赛作物名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Wheat"
+        },
+        {
+          "token": "%2$s",
+          "desc": "剩余时间,分和秒之间没有空格(10m30)",
+          "type": "raw",
+          "example": "10m30"
+        }
+      ],
+      "gloss": "服务器把剩余时间写成 10m30s,采集切在末尾的 s 前;分钟的 m 留在值里没法换算,先照样保留数字,只把最后的 s 译成「秒」。",
+      "translate": true,
+      "zh": " ○ %1$s %2$s秒",
+      "segments": [
+        {
+          "color": "§a",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§e",
+          "text": "○ ",
+          "zh": "○ "
+        },
+        {
+          "color": "§f",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§a",
+          "text": "%2$ss",
+          "zh": "%2$s秒"
+        }
+      ]
+    },
+    {
+      "id": "gsb_contest_collected",
+      "context": "",
+      "raw": "§f Collected §e%1$s",
+      "text": " Collected %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "收集数,可带 k 后缀",
+          "type": "number",
+          "example": "252"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": " 已收集 %1$s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": " Collected ",
+          "zh": " 已收集 "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ]
+    },
+    {
+      "id": "gsb_contest_updating",
+      "context": "",
+      "raw": "§7 Updating ranking...",
+      "text": " Updating ranking...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": " 排名更新中……"
+    },
+    {
+      "id": "gsb_contest_bracket_needs",
+      "context": "",
+      "raw": "§7 §7%1$s has +%2$sk",
+      "text": " %1$s has +%2$sk",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "奖牌档位 Bronze / Silver / Gold,译名走 _shared/Terms.json 的 medal 类型",
+          "type": "medal",
+          "example": "Bronze"
+        },
+        {
+          "token": "%2$s",
+          "desc": "差距(千)",
+          "type": "number",
+          "example": "13.35"
+        }
+      ],
+      "gloss": "意思是「铜牌档的门槛比你多 N」,中文写成「铜牌还差」。",
+      "translate": true,
+      "zh": " %1$s还差 +%2$sk",
+      "segments": [
+        {
+          "color": "§7",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§7",
+          "text": "%1$s has +%2$sk",
+          "zh": "%1$s还差 +%2$sk"
+        }
+      ]
+    },
+    {
+      "id": "gsb_contest_placed_bracket",
+      "context": "",
+      "raw": "§f §c§lBRONZE §fwith §e%1$sk",
+      "text": " BRONZE with %1$sk",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前收集数(千)",
+          "type": "number",
+          "example": "12.43"
+        }
+      ],
+      "gloss": "实测只见过 BRONZE;with 在中文里省略。",
+      "translate": true,
+      "zh": " 铜牌档 %1$sk",
+      "segments": [
+        {
+          "color": "§f",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§c§l",
+          "text": "BRONZE ",
+          "zh": "铜牌档 "
+        },
+        {
+          "color": "§f",
+          "text": "with ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§e",
+          "text": "%1$sk",
+          "zh": "%1$sk"
+        }
+      ]
+    },
+    {
+      "id": "gsb_contest_medals",
+      "context": "",
+      "raw": "§c§l%1$s §fmedals: §c%2$s",
+      "text": "%1$s medals: %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "奖牌档位 Bronze / Silver / Gold,译名走 _shared/Terms.json 的 medal 类型",
+          "type": "medal",
+          "example": "BRONZE"
+        },
+        {
+          "token": "%2$s",
+          "desc": "数量",
+          "type": "number",
+          "example": "0"
+        }
+      ],
+      "gloss": "词表把 BRONZE 译成「铜牌」,所以 medals 不再重复。",
+      "translate": true,
+      "zh": "%1$s: %2$s 枚",
+      "segments": [
+        {
+          "color": "§c§l",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§f",
+          "text": "medals: ",
+          "zh": ": "
+        },
+        {
+          "color": "§c",
+          "text": "%2$s",
+          "zh": "%2$s 枚"
+        }
       ]
     }
   ]

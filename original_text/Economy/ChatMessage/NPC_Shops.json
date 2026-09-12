@@ -2,7 +2,7 @@
   "source": "logs/latest.log; https://hypixelskyblock.minecraft.wiki/w/Merchants; https://hypixelskyblock.minecraft.wiki/w/Taylor",
   "fetched_at": "2026-09-05",
   "verified_ingame": true,
-  "source_note": "逐字原文以用户日志为准; 社区 Wiki 普通页面用于核对语境。日志未保留颜色码的消息不伪造 raw; 分段按语义边界保留运行时颜色。",
+  "source_note": "颜色边界按本轮商店实测补齐,每段实际样式仍取自屏幕原文。",
   "messages": [
     {
       "id": "npc_shop_buy",
@@ -28,7 +28,7 @@
           "desc": "交易金额; 可为 6.5 等小数"
         }
       ],
-      "gloss": "日志未记录交易回执的颜色; 按商品、数量/连接词、金额拆分,实际颜色由运行时读取。",
+      "gloss": "实测数量段为深灰色,for 连接词恢复绿色。数量与金额连接词分别采样,避免绿色正文被前一段染色。",
       "translate": true,
       "zh": "你购买了%1$s ×%2$s,金额为 %3$s 硬币!",
       "segments": [
@@ -43,9 +43,14 @@
           "zh": "%1$s"
         },
         {
-          "color": "",
-          "text": " x%2$s for ",
-          "zh": " ×%2$s,金额为 "
+          "color": "§8",
+          "text": " x%2$s ",
+          "zh": " ×%2$s"
+        },
+        {
+          "color": "§a",
+          "text": "for ",
+          "zh": ",金额为 "
         },
         {
           "color": "",
@@ -83,7 +88,7 @@
           "desc": "交易金额; 可为 6.5 等小数"
         }
       ],
-      "gloss": "日志未记录交易回执的颜色; 按商品、数量/连接词、金额拆分,实际颜色由运行时读取。",
+      "gloss": "实测数量段为深灰色,for 连接词恢复绿色。数量与金额连接词分别采样,避免绿色正文被前一段染色。",
       "translate": true,
       "zh": "你出售了%1$s ×%2$s,金额为 %3$s 硬币!",
       "segments": [
@@ -98,9 +103,14 @@
           "zh": "%1$s"
         },
         {
-          "color": "",
-          "text": " x%2$s for ",
-          "zh": " ×%2$s,金额为 "
+          "color": "§8",
+          "text": " x%2$s ",
+          "zh": " ×%2$s"
+        },
+        {
+          "color": "§a",
+          "text": "for ",
+          "zh": ",金额为 "
         },
         {
           "color": "",
@@ -138,7 +148,7 @@
           "desc": "交易金额; 可为 6.5 等小数"
         }
       ],
-      "gloss": "日志未记录交易回执的颜色; 按商品、数量/连接词、金额拆分,实际颜色由运行时读取。",
+      "gloss": "实测数量段为深灰色,for 连接词恢复绿色。数量与金额连接词分别采样,避免绿色正文被前一段染色。",
       "translate": true,
       "zh": "你回购了%1$s ×%2$s,金额为 %3$s 硬币!",
       "segments": [
@@ -153,9 +163,14 @@
           "zh": "%1$s"
         },
         {
-          "color": "",
-          "text": " x%2$s for ",
-          "zh": " ×%2$s,金额为 "
+          "color": "§8",
+          "text": " x%2$s ",
+          "zh": " ×%2$s"
+        },
+        {
+          "color": "§a",
+          "text": "for ",
+          "zh": ",金额为 "
         },
         {
           "color": "",
@@ -199,7 +214,7 @@
           "desc": "出售金额"
         }
       ],
-      "gloss": "",
+      "gloss": "实测数量段为深灰色,for 连接词恢复绿色。数量与金额连接词分别采样,避免绿色正文被前一段染色。",
       "translate": true,
       "zh": "你出售了 ◆ %1$s 符文 %2$s ×%3$s,金额为 %4$s 硬币!",
       "segments": [
@@ -214,9 +229,14 @@
           "zh": "◆ %1$s 符文 %2$s"
         },
         {
-          "color": "",
-          "text": " x%3$s for ",
-          "zh": " ×%3$s,金额为 "
+          "color": "§8",
+          "text": " x%3$s ",
+          "zh": " ×%3$s"
+        },
+        {
+          "color": "§a",
+          "text": "for ",
+          "zh": ",金额为 "
         },
         {
           "color": "",

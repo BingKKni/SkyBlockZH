@@ -1,0 +1,148 @@
+{
+  "source": "本轮 SkyMart 分行实测; https://hypixelskyblock.minecraft.wiki/w/Barn_Skins; https://hypixelskyblock.minecraft.wiki/w/Greenhouse_Skins; https://hypixelskyblock.minecraft.wiki/w/Garden_Chips",
+  "verified_ingame": true,
+  "lines": [
+    {
+      "id": "garden_unlock_barn_skin_sentence",
+      "context": "SkyMart 皮肤使用说明;完整匹配两行或三行折法",
+      "raw": "§7Consume this item to unlock the §a%1$s Barn Skin §7on §aThe Garden§7!",
+      "text": "Consume this item to unlock the %1$s Barn Skin on The Garden!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "category_name",
+          "example": "Trading Post",
+          "desc": "完整皮肤名称,保留对应稀有度颜色"
+        }
+      ],
+      "gloss": "按完整句匹配,皮肤名与花园分别从实际文本取色;不改共享的 Garden! 空尾行。",
+      "translate": true,
+      "zh": "使用此物品,即可解锁花园的%1$s谷仓皮肤!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Consume this item to unlock the ",
+          "zh": "使用此物品,即可解锁",
+          "order": 0
+        },
+        {
+          "color": "§a",
+          "text": "%1$s Barn Skin ",
+          "zh": "%1$s谷仓皮肤",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "on ",
+          "zh": "的",
+          "order": 2
+        },
+        {
+          "color": "§a",
+          "text": "The Garden",
+          "zh": "花园",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "garden_unlock_greenhouse_skin_sentence",
+      "context": "SkyMart 皮肤使用说明;完整匹配两行或三行折法",
+      "raw": "§7Consume this item to unlock the §a%1$s Greenhouse Skin §7on §aThe Garden§7!",
+      "text": "Consume this item to unlock the %1$s Greenhouse Skin on The Garden!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "category_name",
+          "example": "Botanical Garden",
+          "desc": "完整皮肤名称,保留对应稀有度颜色"
+        }
+      ],
+      "gloss": "按完整句匹配,皮肤名与花园分别从实际文本取色;不改共享的 Garden! 空尾行。",
+      "translate": true,
+      "zh": "使用此物品,即可解锁花园的%1$s温室皮肤!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Consume this item to unlock the ",
+          "zh": "使用此物品,即可解锁",
+          "order": 0
+        },
+        {
+          "color": "§a",
+          "text": "%1$s Greenhouse Skin ",
+          "zh": "%1$s温室皮肤",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "on ",
+          "zh": "的",
+          "order": 2
+        },
+        {
+          "color": "§a",
+          "text": "The Garden",
+          "zh": "花园",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "garden_cropshot_fortune_sentence",
+      "context": "Cropshot 芯片,与 Green Thumb 附魔共用首行但计算条件不同",
+      "raw": "§7Grants §6%1$s☘ Farming Fortune §7per §9Chip §7Level!",
+      "text": "Grants %1$s☘ Farming Fortune per Chip Level!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "+3",
+          "desc": "每芯片等级提供的农业时运"
+        }
+      ],
+      "gloss": "完整匹配 Chip Level 条件,不能沿用每位独特访客的附魔说明。",
+      "translate": true,
+      "zh": "提供 %1$s☘ 农业时运（每芯片等级）。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s☘ Farming Fortune ",
+          "zh": "%1$s☘ 农业时运"
+        },
+        {
+          "color": "§7",
+          "text": "per ",
+          "zh": "（每"
+        },
+        {
+          "color": "§9",
+          "text": "Chip ",
+          "zh": "芯片"
+        },
+        {
+          "color": "§7",
+          "text": "Level!",
+          "zh": "等级）。"
+        }
+      ]
+    }
+  ]
+}

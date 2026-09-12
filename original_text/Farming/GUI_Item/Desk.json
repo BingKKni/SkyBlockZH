@@ -1,0 +1,328 @@
+{
+  "source": "runtime capture (SkyZH) 2026-09-10 花园实测; 语境核对 https://hypixelskyblock.minecraft.wiki/w/The_Garden#The_Desk",
+  "fetched_at": "2026-09-10",
+  "verified_ingame": true,
+  "gui_context": "花园管理台(Desk)根菜单:花园等级格、配置地块、花园升级、SkyMart、花园里程碑、花园皮肤、花园时间、农业工具包。玩家背包里那 36 格不收。",
+  "lines": [
+    {
+      "id": "desk_garden_desc_head",
+      "ref": "Hub_General/GUI_Item/Your_Skills.json#skills_garden_desc_1",
+      "context": "花园等级格说明首行(和技能菜单同一句)"
+    },
+    {
+      "id": "desk_accepting_visitors_offers",
+      "context": "花园等级格说明的第二行(首行在 Hub_General/GUI_Item/Your_Skills.json#skills_garden_desc_1)",
+      "raw": "§7accepting Visitors' offers and",
+      "text": "accepting Visitors' offers and",
+      "placeholders": [],
+      "gloss": "实测这一行的 Visitors 是大写 V,和 Your_Skills.json 记的小写不同,那边的首行译文已经把整句说完,这行只是尾巴。",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "desk_crop_growth",
+      "context": "",
+      "raw": "§7You currently have §2%1$s Crop Growth§7!",
+      "text": "You currently have %1$s Crop Growth!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "作物生长值",
+          "type": "number",
+          "example": "10"
+        }
+      ],
+      "gloss": "Crop Growth → 作物生长,沿用 Your_Skills.json。",
+      "translate": true,
+      "zh": "你当前拥有 %1$s 作物生长!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You currently have ",
+          "zh": "你当前拥有 "
+        },
+        {
+          "color": "§2",
+          "text": "%1$s Crop Growth",
+          "zh": "%1$s 作物生长"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "desk_configure_plots",
+      "context": "",
+      "raw": "§aConfigure Plots",
+      "text": "Configure Plots",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "配置地块"
+    },
+    {
+      "id": "desk_configure_plots_desc_1",
+      "context": "",
+      "raw": "§7Unlock access to new plots or modify",
+      "text": "Unlock access to new plots or modify",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "解锁新的地块,或修改已经解锁的地块!"
+    },
+    {
+      "id": "desk_configure_plots_desc_2",
+      "context": "",
+      "raw": "§7plots that you have already unlocked!",
+      "text": "plots that you have already unlocked!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "desk_garden_entry",
+      "context": "",
+      "raw": "§aGarden %1$s",
+      "text": "Garden %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Upgrades / Milestones / Skins / Time,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Upgrades"
+        }
+      ],
+      "gloss": "四个格子名共用一条模板:花园升级 / 花园里程碑 / 花园皮肤 / 花园时间。",
+      "translate": true,
+      "zh": "花园%1$s"
+    },
+    {
+      "id": "desk_garden_upgrades_desc_1",
+      "context": "",
+      "raw": "§7Upgrade various aspects of your",
+      "text": "Upgrade various aspects of your",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "全方位升级你的花园,提高产量、经验等等。"
+    },
+    {
+      "id": "desk_garden_upgrades_desc_2",
+      "context": "",
+      "raw": "§7Garden to increase yield,",
+      "text": "Garden to increase yield,",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "desk_garden_upgrades_desc_3",
+      "context": "",
+      "raw": "§7experience, and more.",
+      "text": "experience, and more.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "desk_skymart",
+      "context": "",
+      "raw": "§aSkyMart",
+      "text": "SkyMart",
+      "placeholders": [],
+      "gloss": "自造商店品牌名,保留英文。",
+      "translate": false,
+      "zh": ""
+    },
+    {
+      "id": "desk_skymart_desc_1",
+      "context": "",
+      "raw": "§7Browse the wide variety of products",
+      "text": "Browse the wide variety of products",
+      "placeholders": [],
+      "gloss": "免责声明式的搞笑文案,中文照商场广播的腔调写。",
+      "translate": true,
+      "zh": "浏览 SkyMart 琳琅满目的商品。如有任何受伤、意外、头痛、被纸割伤或突然泪崩,本店概不负责。SkyMart 祝您购物愉快。"
+    },
+    {
+      "id": "desk_skymart_desc_2",
+      "context": "",
+      "raw": "§7SkyMart has to offer. We are not",
+      "text": "SkyMart has to offer. We are not",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "desk_skymart_desc_3",
+      "context": "",
+      "raw": "§7responsible for any injuries,",
+      "text": "responsible for any injuries,",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "desk_skymart_desc_4",
+      "context": "",
+      "raw": "§7accidents, headaches, paper-cuts or",
+      "text": "accidents, headaches, paper-cuts or",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "desk_skymart_desc_5",
+      "context": "",
+      "raw": "§7sudden outburst of tears. SkyMart",
+      "text": "sudden outburst of tears. SkyMart",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "desk_skymart_desc_6",
+      "context": "",
+      "raw": "§7wishes you happy shopping.",
+      "text": "wishes you happy shopping.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "desk_milestones_desc_1",
+      "context": "",
+      "raw": "§7Achieve milestones on your Garden",
+      "text": "Achieve milestones on your Garden",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "在花园里达成里程碑,获得花园经验和农业经验。"
+    },
+    {
+      "id": "desk_milestones_desc_2",
+      "context": "",
+      "raw": "§7to earn Garden XP and Farming XP.",
+      "text": "to earn Garden XP and Farming XP.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "desk_skins_desc_1",
+      "context": "",
+      "raw": "§7View and select different skins for",
+      "text": "View and select different skins for",
+      "placeholders": [],
+      "gloss": "同一首行在花园皮肤菜单里接「your Barn.」「your Greenhouse.」,所以首行只写到「给」,后半句由各尾行自己带(README「跨行整句的标记」:尾行可以带非空 zh)。",
+      "translate": true,
+      "zh": "查看并挑选各种皮肤,给"
+    },
+    {
+      "id": "desk_skins_desc_2",
+      "context": "",
+      "raw": "§7your Garden!",
+      "text": "your Garden!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的花园换个新样貌!",
+      "continuation": true
+    },
+    {
+      "id": "desk_garden_time_desc",
+      "context": "",
+      "raw": "§7Modifies your Garden time.",
+      "text": "Modifies your Garden time.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "修改花园的时间。"
+    },
+    {
+      "id": "desk_day_saver_1",
+      "context": "",
+      "raw": "§cClick on a Day Saver in your",
+      "text": "Click on a Day Saver in your",
+      "placeholders": [],
+      "gloss": "Day Saver → 日光保持器(见 _shared/Terms.json);(0/2) 是两个方块里已放置的个数。",
+      "translate": true,
+      "zh": "点击背包里的日光保持器即可解锁!"
+    },
+    {
+      "id": "desk_day_saver_2",
+      "context": "",
+      "raw": "§cinventory to unlock! (0/2).",
+      "text": "inventory to unlock! (0/2).",
+      "placeholders": [],
+      "gloss": "解锁进度由共享尾行保留,同时供日光保持器和其他岛屿属性设备使用。",
+      "translate": true,
+      "zh": " (0/2)。",
+      "continuation": true
+    },
+    {
+      "id": "desk_farming_toolkit",
+      "context": "",
+      "raw": "§aFarming Toolkit",
+      "text": "Farming Toolkit",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "农业工具包"
+    },
+    {
+      "id": "desk_farming_toolkit_desc_1",
+      "context": "",
+      "raw": "§7Store all of your Farming Tools in",
+      "text": "Store all of your Farming Tools in",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "把所有农具集中存放在一处,随时轻松切换。"
+    },
+    {
+      "id": "desk_farming_toolkit_desc_2",
+      "context": "",
+      "raw": "§7one convenient place and swap",
+      "text": "one convenient place and swap",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "desk_farming_toolkit_desc_3",
+      "context": "",
+      "raw": "§7between them with ease.",
+      "text": "between them with ease.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    }
+  ]
+}

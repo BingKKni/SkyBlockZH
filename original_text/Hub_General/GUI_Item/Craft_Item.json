@@ -10,16 +10,38 @@
       "raw": "§7your minion by §a%1$s%§7 for %2$s",
       "text": "your minion by %1$s% for %2$s",
       "placeholders": [
-        {"token": "%1$s", "desc": "小人工作速度加成", "type": "number", "example": "10"},
-        {"token": "%2$s", "desc": "持续小时数", "type": "number", "example": "24"}
+        {
+          "token": "%1$s",
+          "desc": "小人工作速度加成",
+          "type": "number",
+          "example": "10"
+        },
+        {
+          "token": "%2$s",
+          "desc": "持续小时数",
+          "type": "number",
+          "example": "24"
+        }
       ],
       "gloss": "与 Mine_Merchant.json 中 5%/30 分钟变体共用首行，但单位不同。",
       "translate": true,
       "zh": "提高 %1$s%,持续 %2$s",
       "segments": [
-        {"color": "§7", "text": "your minion by ", "zh": "提高 "},
-        {"color": "§a", "text": "%1$s%", "zh": "%1$s%"},
-        {"color": "§7", "text": " for %2$s", "zh": ",持续 %2$s"}
+        {
+          "color": "§7",
+          "text": "your minion by ",
+          "zh": "提高 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s%",
+          "zh": "%1$s%"
+        },
+        {
+          "color": "§7",
+          "text": " for %2$s",
+          "zh": ",持续 %2$s"
+        }
       ]
     },
     {
@@ -58,7 +80,14 @@
       "context": "配方所需的煤炭数量",
       "raw": "§7%sx Coal",
       "text": "%sx Coal",
-      "placeholders": [{"token": "%s", "desc": "所需煤炭数量", "type": "number", "example": "160"}],
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "所需煤炭数量",
+          "type": "number",
+          "example": "160"
+        }
+      ],
       "gloss": "Coal 使用 Minecraft 官方译名。",
       "translate": true,
       "zh": "%sx 煤炭"
@@ -68,7 +97,14 @@
       "context": "配方所需的钻石数量",
       "raw": "§7%sx Diamond",
       "text": "%sx Diamond",
-      "placeholders": [{"token": "%s", "desc": "所需钻石数量", "type": "number", "example": "9"}],
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "所需钻石数量",
+          "type": "number",
+          "example": "9"
+        }
+      ],
       "gloss": "Diamond 使用 Minecraft 官方译名。",
       "translate": true,
       "zh": "%sx 钻石"
@@ -78,13 +114,28 @@
       "context": "当前材料可快速合成的次数",
       "raw": "§9Craftable: §b%sx",
       "text": "Craftable: %sx",
-      "placeholders": [{"token": "%s", "desc": "可快速合成次数", "type": "number", "example": "66"}],
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "可快速合成次数",
+          "type": "number",
+          "example": "66"
+        }
+      ],
       "gloss": "",
       "translate": true,
       "zh": "可合成: %sx",
       "segments": [
-        {"color": "§9", "text": "Craftable: ", "zh": "可合成: "},
-        {"color": "§b", "text": "%sx", "zh": "%sx"}
+        {
+          "color": "§9",
+          "text": "Craftable: ",
+          "zh": "可合成: "
+        },
+        {
+          "color": "§b",
+          "text": "%sx",
+          "zh": "%sx"
+        }
       ]
     },
     {
@@ -92,7 +143,14 @@
       "context": "配方产物中的动态附魔材料名",
       "raw": "§aEnchanted %s",
       "text": "Enchanted %s",
-      "placeholders": [{"token": "%s", "desc": "材料名，译名走 Terms", "type": "category_name", "example": "Cobblestone"}],
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "材料名，译名走 Terms",
+          "type": "category_name",
+          "example": "Cobblestone"
+        }
+      ],
       "gloss": "材料使用 Minecraft 官方译名。",
       "translate": true,
       "zh": "附魔%s"
@@ -102,14 +160,33 @@
       "context": "还有更多可快速合成配方的说明首行",
       "raw": "§7There are §a%s §7more recipes that you",
       "text": "There are %s more recipes that you",
-      "placeholders": [{"token": "%s", "desc": "其他可快速合成的配方数量", "type": "number", "example": "3"}],
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "其他可快速合成的配方数量",
+          "type": "number",
+          "example": "3"
+        }
+      ],
       "gloss": "与下一条组成同一句 Lore。",
       "translate": true,
       "zh": "你还可以快速合成 %s 个配方!",
       "segments": [
-        {"color": "§7", "text": "There are ", "zh": "你还可以快速合成 "},
-        {"color": "§a", "text": "%s ", "zh": "%s "},
-        {"color": "§7", "text": "more recipes that you", "zh": "个配方!"}
+        {
+          "color": "§7",
+          "text": "There are ",
+          "zh": "你还可以快速合成 "
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s "
+        },
+        {
+          "color": "§7",
+          "text": "more recipes that you",
+          "zh": "个配方!"
+        }
       ]
     },
     {
@@ -186,19 +263,26 @@
     {
       "id": "cobblestone_variant",
       "context": "以圆石制作的动态原版方块名",
-      "raw": "§fCobblestone %s",
-      "text": "Cobblestone %s",
-      "placeholders": [{"token": "%s", "desc": "原版方块后缀，译名走 Terms", "type": "category_name", "example": "Wall"}],
-      "gloss": "实机见过 Wall 与 Slab，译名统一在 _shared/Terms.json。",
+      "raw": "§fCobblestone Wall",
+      "text": "Cobblestone Wall",
+      "placeholders": [],
+      "gloss": "只匹配原版圆石方块名称,避免把 Cobblestone Minion IV 误认成方块后缀。",
       "translate": true,
-      "zh": "圆石%s"
+      "zh": "圆石墙"
     },
     {
       "id": "ingredient_cobblestone_count",
       "context": "配方所需的圆石数量",
       "raw": "§7%sx Cobblestone",
       "text": "%sx Cobblestone",
-      "placeholders": [{"token": "%s", "desc": "所需圆石数量", "type": "number", "example": "6"}],
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "所需圆石数量",
+          "type": "number",
+          "example": "6"
+        }
+      ],
       "gloss": "Cobblestone 使用 Minecraft 官方译名。",
       "translate": true,
       "zh": "%sx 圆石"
@@ -208,7 +292,14 @@
       "context": "配方所需的青金石数量",
       "raw": "§7%sx Lapis Lazuli",
       "text": "%sx Lapis Lazuli",
-      "placeholders": [{"token": "%s", "desc": "所需青金石数量", "type": "number", "example": "160"}],
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "所需青金石数量",
+          "type": "number",
+          "example": "160"
+        }
+      ],
       "gloss": "Lapis Lazuli 使用 Minecraft 官方译名。",
       "translate": true,
       "zh": "%sx 青金石"
@@ -218,10 +309,37 @@
       "context": "配方所需的金锭数量",
       "raw": "§7%sx Gold Ingot",
       "text": "%sx Gold Ingot",
-      "placeholders": [{"token": "%s", "desc": "所需金锭数量", "type": "number", "example": "2"}],
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "所需金锭数量",
+          "type": "number",
+          "example": "2"
+        }
+      ],
       "gloss": "Gold Ingot 使用 Minecraft 官方译名。",
       "translate": true,
       "zh": "%sx 金锭"
+    },
+    {
+      "id": "cobblestone_block_slab",
+      "context": "以圆石制作的动态原版方块名",
+      "raw": "§fCobblestone Slab",
+      "text": "Cobblestone Slab",
+      "placeholders": [],
+      "gloss": "只匹配原版圆石方块名称,避免把 Cobblestone Minion IV 误认成方块后缀。",
+      "translate": true,
+      "zh": "圆石台阶"
+    },
+    {
+      "id": "cobblestone_block_stairs",
+      "context": "以圆石制作的动态原版方块名",
+      "raw": "§fCobblestone Stairs",
+      "text": "Cobblestone Stairs",
+      "placeholders": [],
+      "gloss": "只匹配原版圆石方块名称,避免把 Cobblestone Minion IV 误认成方块后缀。",
+      "translate": true,
+      "zh": "圆石楼梯"
     }
   ]
 }

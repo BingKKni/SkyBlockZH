@@ -1,34 +1,377 @@
 {
   "cases": [
-    {"name":"饰品袋与能力名分别保留绿色","surface":"ChatMessage","source":["§eYou selected the §aFrozen §epower for your §aAccessory Bag§e!"],"expected":"§e你为§a饰品袋§e选择了§a冰封§e能力!"},
-    {"name":"守卫血量与红心颜色分开","surface":"ScoreBoard","source":["§8 - §cChaos§a 120M§c❤"],"expected":"§8 - §c混沌§a 120M§c❤"},
-    {"name":"无缝保留NPC电话图标","surface":"ChatMessage","source":["§e[NPC] Maxwell: §b✆ §fIsn't that cheating though?"],"expected":"§e[NPC] Maxwell: §b✆ §f这算不算作弊啊?"},
-    {"name":"三怪人否定和箱主不丢","surface":"ChatMessage","source":["They are both telling the truth. The reward isn't in §cRose's §rchest."],"expected":"他们俩说的都是真话。奖励不在 §cRose§r 的箱子里。"},
-    {"name":"头颅门提示沿用服务器前缀","surface":"ChatMessage","source":["§c[SKULL] §7Wither Skull:§r You need a Wither Key to open this door!"],"expected":"§c[SKULL] §7Wither Skull:§r 得有凋零钥匙才能打开这扇门!"},
-    {"name":"The Watcher 按用户要求保留英文","surface":"BossBar","source":["§c§lThe Watcher"],"expected":"§c§lThe Watcher"},
-    {"name":"日历月份使用节气","surface":"GUI_Title","source":["Winter, Year 513"],"expected":"第 513 年 · 冬至"},
-    {"name":"首字母题保留目标英文字母","surface":"GUI_Title","source":["What starts with: 'F'?"],"expected":"选择英文名以「F」开头的物品"},
-    {"name":"灰色与淡灰色不合并","surface":"GUI_Title","source":["Select all the SILVER items!"],"expected":"选择所有淡灰色物品!"},
-    {"name":"拍卖列表项目符号","surface":"GUI_Item","source":["§8◼ §7Magic Weapons"],"expected":"§8◼ §7魔法武器"},
-    {"name":"已售出的绿色状态","surface":"GUI_Item","source":["§7Status: §aSold!"],"expected":"§7状态: §a已售出!"},
-    {"name":"集市空背包的红色状态","surface":"GUI_Item","source":["§7Inventory: §cNone!"],"expected":"§7背包内: §c无!"},
-    {"name":"魅惑消息复数及两种生物独立捕获","surface":"ChatMessage","source":["§b§lCHARM! §7You charmed the §cTank Zombie §7and received §a2 §fTank Zombie Shards§7!"],"expected":"§b§l魅惑! §7你魅惑了§c坦克僵尸§7，获得了 §a2 §f个坦克僵尸碎片§7!"},
-    {"name":"十小时倒计时不写死单位","surface":"GUI_Item","source":["§7Starts in: §e1d 2h 30m"],"expected":"§7距开始: §e1天2小时30分"},
-    {"name":"能力石整句不遗留英文尾行","source":["§7Combine §a9x §7identical §9Power Stones","§7that you may find across §aSkyBlock §7to","§7permanently unlock their §apower§7."],"expected":"§7将在 §aSkyBlock§7 各地找到的 §a9 块§7相同的§9能力石§7合并，即可永久解锁其§a能力§7。","consumed":3},
-    {"name":"不同能力石共用整句且名称使用专用词表","source":["§7Combine §ax9 §7of this item at the","§6Thaumaturgist §7in the §bHub §7to unlock the","§aForceful §7power."],"expected":"§7将 §a9 个§7此物品交给§b大厅§7的§6秘术师§7合并，即可解锁§a强劲§7能力。","consumed":3},
-    {"name":"学习能力石颜色来自可见词","source":["§7Fill all the slots on the right with","§7identical §9Power Stones §7to","§7permanently unlock their §apower§7."],"expected":"§7将右侧所有槽位填入相同的§9能力石§7，即可永久解锁其§a能力§7。","consumed":3},
-    {"name":"属性调优完整说明","source":["§7Intelligence increases the damage of","§7your magical items and your mana","§7pool.","§7An unrelated footer."],"expected":"§7智力提高魔法物品的伤害，并增加法力上限。","consumed":3},
-    {"name":"未译前缀不会被当作后续完整句的一部分","source":["§7Unknown heading", "§7Intelligence increases the damage of", "§7your magical items and your mana", "§7pool."],"miss":true},
-    {"name":"跳过未译行后从实际位置匹配完整句","start":1,"source":["§7Unknown heading", "§7Intelligence increases the damage of", "§7your magical items and your mana", "§7pool.", "§7Unrelated footer."],"expected":"§7智力提高魔法物品的伤害，并增加法力上限。","consumed":3},
-    {"name":"看不到完整尾句时不消费","source":["§7Intelligence increases the damage of","§7Some unrelated sentence."],"miss":true},
-    {"name":"不会跨越空行吞掉正文","source":["§7Fill all the slots on the right with","","§7identical §9Power Stones §7to"],"miss":true},
-    {"name":"比最低卖单低而非提高卖价","source":["§7Beat the price of the best offer so","§7yours is filled first."],"expected":"§7以更低的价格挂单，让你的卖单优先成交。","consumed":2},
-    {"name":"巧克力加成已是倍率增量","source":["§7Grants §6+0.02x Chocolate §7per second","§7to your §6Chocolate Factory§7."],"expected":"§7使§6巧克力工厂§7的§6巧克力产量倍率 +0.02§7。","consumed":2},
-    {"name":"已发现兔子完整补偿不重复","source":["§7You have already found §aAnnabelle§7,","§7so you received §610,788,111","§6Chocolate§7!"],"expected":"§7你已经找到过 §aAnnabelle§7，因此获得 §610,788,111 巧克力§7!","consumed":3},
-    {"name":"升降梯折行地点完整恢复颜色","source":["§7Teleports you to the §bDiamond","§bReserve§7!"],"expected":"§7传送至§b钻石储藏区§7!","consumed":2},
-    {"name":"秘术师拒用能力不吞下一句","source":["§7Decline to use any power, as you","§7prefer to lead a simpler life.","§eClick to select NO power!"],"expected":"§7不使用任何能力，选择简简单单的生活。","consumed":2},
-    {"name":"地牢奖励收费来源完整保留","source":["§cNOTE: Coins are withdrawn from your","§cbank if you don't have enough in","§cyour purse."],"expected":"§c注意: 随身硬币不足时，将从银行扣除硬币。","consumed":3},
-    {"name":"热土豆书颜色与属性对应","source":["§7When applied to armor, grants §a+2","§aDefense §7and §c+4 Health§7."],"expected":"§7用于护甲时，获得 §a+2 防御力§7和 §c+4 生命值§7。","consumed":2},
-    {"name":"Scarfs母亲剧情是愿望而非复活成功","source":["§8§oGiven by his mother. Scarf always","§8§ostudied harder than everyone else,","§8§ohoping that one day he could bring","§8§oher back."],"expected":"§8§o母亲送给他的礼物。Scarf 总比旁人更加用功，只盼有朝一日能让她回到身边。","consumed":4}
+    {
+      "name": "饰品袋与能力名分别保留绿色",
+      "surface": "ChatMessage",
+      "source": [
+        "§eYou selected the §aFrozen §epower for your §aAccessory Bag§e!"
+      ],
+      "expected": "§e你为§a饰品袋§e选择了§a冰封§e能力!"
+    },
+    {
+      "name": "守卫血量与红心颜色分开",
+      "surface": "ScoreBoard",
+      "source": [
+        "§8 - §cChaos§a 120M§c❤"
+      ],
+      "expected": "§8 - §c混沌§a 120M§c❤"
+    },
+    {
+      "name": "无缝保留NPC电话图标",
+      "surface": "ChatMessage",
+      "source": [
+        "§e[NPC] Maxwell: §b✆ §fIsn't that cheating though?"
+      ],
+      "expected": "§e[NPC] Maxwell: §b✆ §f这算不算作弊啊?"
+    },
+    {
+      "name": "三怪人否定和箱主不丢",
+      "surface": "ChatMessage",
+      "source": [
+        "They are both telling the truth. The reward isn't in §cRose's §rchest."
+      ],
+      "expected": "他们俩说的都是真话。奖励不在 §cRose§r 的箱子里。"
+    },
+    {
+      "name": "头颅门提示沿用服务器前缀",
+      "surface": "ChatMessage",
+      "source": [
+        "§c[SKULL] §7Wither Skull:§r You need a Wither Key to open this door!"
+      ],
+      "expected": "§c[SKULL] §7Wither Skull:§r 得有凋零钥匙才能打开这扇门!"
+    },
+    {
+      "name": "The Watcher 按用户要求保留英文",
+      "surface": "BossBar",
+      "source": [
+        "§c§lThe Watcher"
+      ],
+      "expected": "§c§lThe Watcher"
+    },
+    {
+      "name": "日历月份用月序数字",
+      "surface": "GUI_Title",
+      "source": [
+        "Winter, Year 513"
+      ],
+      "expected": "第 513 年 11 月"
+    },
+    {
+      "name": "首字母题保留目标英文字母",
+      "surface": "GUI_Title",
+      "source": [
+        "What starts with: 'F'?"
+      ],
+      "expected": "选择英文名以「F」开头的物品"
+    },
+    {
+      "name": "灰色与淡灰色不合并",
+      "surface": "GUI_Title",
+      "source": [
+        "Select all the SILVER items!"
+      ],
+      "expected": "选择所有淡灰色物品!"
+    },
+    {
+      "name": "拍卖列表项目符号",
+      "surface": "GUI_Item",
+      "source": [
+        "§8◼ §7Magic Weapons"
+      ],
+      "expected": "§8◼ §7魔法武器"
+    },
+    {
+      "name": "已售出的绿色状态",
+      "surface": "GUI_Item",
+      "source": [
+        "§7Status: §aSold!"
+      ],
+      "expected": "§7状态: §a已售出!"
+    },
+    {
+      "name": "集市空背包的红色状态",
+      "surface": "GUI_Item",
+      "source": [
+        "§7Inventory: §cNone!"
+      ],
+      "expected": "§7背包内: §c无!"
+    },
+    {
+      "name": "魅惑消息复数及两种生物独立捕获",
+      "surface": "ChatMessage",
+      "source": [
+        "§b§lCHARM! §7You charmed the §cTank Zombie §7and received §a2 §fTank Zombie Shards§7!"
+      ],
+      "expected": "§b§l魅惑! §7你魅惑了§c坦克僵尸§7，获得了 §a2 §f个坦克僵尸碎片§7!"
+    },
+    {
+      "name": "十小时倒计时不写死单位",
+      "surface": "GUI_Item",
+      "source": [
+        "§7Starts in: §e1d 2h 30m"
+      ],
+      "expected": "§7距开始: §e1天2小时30分"
+    },
+    {
+      "name": "能力石整句不遗留英文尾行",
+      "source": [
+        "§7Combine §a9x §7identical §9Power Stones",
+        "§7that you may find across §aSkyBlock §7to",
+        "§7permanently unlock their §apower§7."
+      ],
+      "expected": "§7将在 §aSkyBlock§7 各地找到的 §a9 块§7相同的§9能力石§7合并，即可永久解锁其§a能力§7。",
+      "consumed": 3
+    },
+    {
+      "name": "不同能力石共用整句且名称使用专用词表",
+      "source": [
+        "§7Combine §ax9 §7of this item at the",
+        "§6Thaumaturgist §7in the §bHub §7to unlock the",
+        "§aForceful §7power."
+      ],
+      "expected": "§7将 §a9 个§7此物品交给§b大厅§7的§6秘术师§7合并，即可解锁§a强劲§7能力。",
+      "consumed": 3
+    },
+    {
+      "name": "学习能力石颜色来自可见词",
+      "source": [
+        "§7Fill all the slots on the right with",
+        "§7identical §9Power Stones §7to",
+        "§7permanently unlock their §apower§7."
+      ],
+      "expected": "§7将右侧所有槽位填入相同的§9能力石§7，即可永久解锁其§a能力§7。",
+      "consumed": 3
+    },
+    {
+      "name": "属性调优完整说明",
+      "source": [
+        "§7Intelligence increases the damage of",
+        "§7your magical items and your mana",
+        "§7pool.",
+        "§7An unrelated footer."
+      ],
+      "expected": "§7法力提高魔法物品的伤害，并增加法力上限。",
+      "consumed": 3
+    },
+    {
+      "name": "未译前缀不会被当作后续完整句的一部分",
+      "source": [
+        "§7Unknown heading",
+        "§7Intelligence increases the damage of",
+        "§7your magical items and your mana",
+        "§7pool."
+      ],
+      "miss": true
+    },
+    {
+      "name": "跳过未译行后从实际位置匹配完整句",
+      "start": 1,
+      "source": [
+        "§7Unknown heading",
+        "§7Intelligence increases the damage of",
+        "§7your magical items and your mana",
+        "§7pool.",
+        "§7Unrelated footer."
+      ],
+      "expected": "§7法力提高魔法物品的伤害，并增加法力上限。",
+      "consumed": 3
+    },
+    {
+      "name": "看不到完整尾句时不消费",
+      "source": [
+        "§7Intelligence increases the damage of",
+        "§7Some unrelated sentence."
+      ],
+      "miss": true
+    },
+    {
+      "name": "不会跨越空行吞掉正文",
+      "source": [
+        "§7Fill all the slots on the right with",
+        "",
+        "§7identical §9Power Stones §7to"
+      ],
+      "miss": true
+    },
+    {
+      "name": "比最低卖单低而非提高卖价",
+      "source": [
+        "§7Beat the price of the best offer so",
+        "§7yours is filled first."
+      ],
+      "expected": "§7以更低的价格挂单，让你的卖单优先成交。",
+      "consumed": 2
+    },
+    {
+      "name": "巧克力加成已是倍率增量",
+      "source": [
+        "§7Grants §6+0.02x Chocolate §7per second",
+        "§7to your §6Chocolate Factory§7."
+      ],
+      "expected": "§7使§6巧克力工厂§7的§6巧克力产量倍率 +0.02§7。",
+      "consumed": 2
+    },
+    {
+      "name": "已发现兔子完整补偿不重复",
+      "source": [
+        "§7You have already found §aAnnabelle§7,",
+        "§7so you received §610,788,111",
+        "§6Chocolate§7!"
+      ],
+      "expected": "§7你已经找到过 §aAnnabelle§7，因此获得 §610,788,111 巧克力§7!",
+      "consumed": 3
+    },
+    {
+      "name": "升降梯折行地点完整恢复颜色",
+      "source": [
+        "§7Teleports you to the §bDiamond",
+        "§bReserve§7!"
+      ],
+      "expected": "§7传送至§b钻石储藏区§7!",
+      "consumed": 2
+    },
+    {
+      "name": "秘术师拒用能力不吞下一句",
+      "source": [
+        "§7Decline to use any power, as you",
+        "§7prefer to lead a simpler life.",
+        "§eClick to select NO power!"
+      ],
+      "expected": "§7不使用任何能力，选择简简单单的生活。",
+      "consumed": 2
+    },
+    {
+      "name": "地牢奖励收费来源完整保留",
+      "source": [
+        "§cNOTE: Coins are withdrawn from your",
+        "§cbank if you don't have enough in",
+        "§cyour purse."
+      ],
+      "expected": "§c注意: 随身硬币不足时，将从银行扣除硬币。",
+      "consumed": 3
+    },
+    {
+      "name": "热土豆书颜色与属性对应",
+      "source": [
+        "§7When applied to armor, grants §a+2",
+        "§aDefense §7and §c+4 Health§7."
+      ],
+      "expected": "§7用于护甲时，获得 §a+2 防御力§7和 §c+4 生命值§7。",
+      "consumed": 2
+    },
+    {
+      "name": "Scarfs母亲剧情是愿望而非复活成功",
+      "source": [
+        "§8§oGiven by his mother. Scarf always",
+        "§8§ostudied harder than everyone else,",
+        "§8§ohoping that one day he could bring",
+        "§8§oher back."
+      ],
+      "expected": "§8§o母亲送给他的礼物。Scarf 总比旁人更加用功，只盼有朝一日能让她回到身边。",
+      "consumed": 4
+    },
+    {
+      "name": "农业新手:Skymart护甲重铸不能译成农具",
+      "source": [
+        "§7Applies the §9Bustling §7reforge when",
+        "§7combined with armor."
+      ],
+      "expected": "§7与护甲合并后,施加§9熙攘§7重铸。",
+      "consumed": 2
+    },
+    {
+      "name": "农业新手:核桃农具重铸保留正确对象",
+      "source": [
+        "§7Applies the §9Earthy §7reforge when",
+        "§7combined with a farming tool."
+      ],
+      "expected": "§7与农具合并后,施加§9沃土§7重铸。",
+      "consumed": 2
+    },
+    {
+      "name": "农业新手:Replenish旧折行不重复补种",
+      "source": [
+        "§7Upon breaking crops, nether wart,",
+        "§7or cocoa, automatically replant from",
+        "§7materials in your inventory."
+      ],
+      "expected": "§7收获作物、下界疣或可可豆后,自动使用背包中的材料补种。",
+      "consumed": 3
+    },
+    {
+      "name": "农业新手:压缩器把材料变成方块而非附魔材料",
+      "source": [
+        "§7This item can be used as a minion",
+        "§7upgrade. This will automatically turn",
+        "§7materials that a minion produces into",
+        "§7their block form."
+      ],
+      "expected": "§7此物品可用作小人升级配件,自动将小人产出的材料压缩成对应方块。",
+      "consumed": 4
+    },
+    {
+      "name": "农业复查:谷仓皮肤两行保留史诗与地点颜色",
+      "source": [
+        "§7Consume this item to unlock the",
+        "§5Bamboo Barn Skin §7on §aThe Garden§7!"
+      ],
+      "expected": "§7使用此物品,即可解锁§a花园§7的§5竹屋谷仓皮肤§7!",
+      "consumed": 2
+    },
+    {
+      "name": "农业复查:谷仓皮肤三行不误吞地点",
+      "source": [
+        "§7Consume this item to unlock the",
+        "§aTrading Post Barn Skin §7on §aThe",
+        "§aGarden§7!"
+      ],
+      "expected": "§7使用此物品,即可解锁§a花园§7的§a贸易站谷仓皮肤§7!",
+      "consumed": 3
+    },
+    {
+      "name": "农业复查:谷仓皮肤名称折在首行",
+      "source": [
+        "§7Consume this item to unlock the §6Hive",
+        "§6Barn Skin §7on §aThe Garden§7!"
+      ],
+      "expected": "§7使用此物品,即可解锁§a花园§7的§6蜂巢谷仓皮肤§7!",
+      "consumed": 2
+    },
+    {
+      "name": "农业复查:月亮温室皮肤跨行合并",
+      "source": [
+        "§7Consume this item to unlock the §9Moon",
+        "§9Greenhouse Skin §7on §aThe Garden§7!"
+      ],
+      "expected": "§7使用此物品,即可解锁§a花园§7的§9月亮温室皮肤§7!",
+      "consumed": 2
+    },
+    {
+      "name": "农业复查:植物园温室皮肤三行保色",
+      "source": [
+        "§7Consume this item to unlock the",
+        "§9Botanical Garden Greenhouse Skin §7on",
+        "§aThe Garden§7!"
+      ],
+      "expected": "§7使用此物品,即可解锁§a花园§7的§9植物园温室皮肤§7!",
+      "consumed": 3
+    },
+    {
+      "name": "农业复查:芯片首行不套用访客附魔",
+      "source": [
+        "§7Grants §6+3☘ Farming Fortune §7per",
+        "§9Chip §7Level!"
+      ],
+      "expected": "§7提供 §6+3☘ 农业时运§7（每§9芯片§7等级）。",
+      "consumed": 2
+    },
+    {
+      "name": "盛宴捐献装饰空格不污染正文颜色",
+      "surface": "GUI_Item",
+      "source": [
+        "§f§l§m                    §e 0/5 Donations"
+      ],
+      "expected": "§f§l§m                    §e 捐献进度: 0/5"
+    }
   ]
 }

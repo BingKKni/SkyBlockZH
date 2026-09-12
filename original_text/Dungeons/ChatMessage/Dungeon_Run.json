@@ -2077,20 +2077,14 @@
     {
       "id": "run_terminal_activated",
       "context": "第七层第三阶段：有人激活了终端／装置／拉杆",
-      "raw": "§b%1$s§a %2$s a %3$s! (§c%4$s§a)",
-      "text": "%1$s %2$s a %3$s! (%4$s)",
+      "raw": "§b%1$s§a activated a %3$s! (§c%4$s§a)",
+      "text": "%1$s activated a %3$s! (%4$s)",
       "placeholders": [
         {
           "token": "%1$s",
           "desc": "玩家名",
           "type": "player_name",
           "example": "inkkni"
-        },
-        {
-          "token": "%2$s",
-          "desc": "动作，activated 或 completed",
-          "type": "raw",
-          "example": "activated"
         },
         {
           "token": "%3$s",
@@ -2105,7 +2099,7 @@
           "example": "1/7"
         }
       ],
-      "gloss": "动作词与目标词的中文都在 _shared/Terms.json 里。原文用括号补进度，中文改成「，进度 N/7」——半角感叹号紧接全角括号，checkTranslations 的标点间距检查会拦。",
+      "gloss": "动作限定 activated/completed,不让 Click on a Day Saver 等普通提示误入终端广播。",
       "translate": true,
       "zh": "",
       "segments": [
@@ -2116,8 +2110,8 @@
         },
         {
           "color": "§a",
-          "text": " %2$s a %3$s! (%4$s)",
-          "zh": " %2$s了一个 %3$s，进度 %4$s"
+          "text": " activated a %3$s! (%4$s)",
+          "zh": " 激活了一个 %3$s，进度 %4$s"
         }
       ]
     },
@@ -2361,21 +2355,64 @@
       "raw": "§b§lCHARM! §7You charmed the §c%1$s §7and received §a%2$s §f%3$s Shards§7!",
       "text": "CHARM! You charmed the %1$s and received %2$s %3$s Shards!",
       "placeholders": [
-        {"token": "%1$s", "desc": "被魅惑的怪物名", "type": "mob_name", "example": "Tank Zombie"},
-        {"token": "%2$s", "desc": "碎片数量", "type": "number", "example": "1"},
-        {"token": "%3$s", "desc": "碎片对应生物", "type": "mob_name", "example": "Tank Zombie"}
+        {
+          "token": "%1$s",
+          "desc": "被魅惑的怪物名",
+          "type": "mob_name",
+          "example": "Tank Zombie"
+        },
+        {
+          "token": "%2$s",
+          "desc": "碎片数量",
+          "type": "number",
+          "example": "1"
+        },
+        {
+          "token": "%3$s",
+          "desc": "碎片对应生物",
+          "type": "mob_name",
+          "example": "Tank Zombie"
+        }
       ],
       "gloss": "数量与碎片名分开捕获；沿用生物译名，避免把整段物品和数量塞进 raw 后残留英文。",
       "translate": true,
       "zh": "魅惑! 你魅惑了%1$s，获得了 %2$s 个%3$s碎片!",
       "segments": [
-        {"color": "§b§l", "text": "CHARM! ", "zh": "魅惑! "},
-        {"color": "§7", "text": "You charmed the ", "zh": "你魅惑了"},
-        {"color": "§c", "text": "%1$s ", "zh": "%1$s"},
-        {"color": "§7", "text": "and received ", "zh": "，获得了 "},
-        {"color": "§a", "text": "%2$s ", "zh": "%2$s "},
-        {"color": "§f", "text": "%3$s Shards", "zh": "个%3$s碎片"},
-        {"color": "§7", "text": "!", "zh": "!"}
+        {
+          "color": "§b§l",
+          "text": "CHARM! ",
+          "zh": "魅惑! "
+        },
+        {
+          "color": "§7",
+          "text": "You charmed the ",
+          "zh": "你魅惑了"
+        },
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "and received ",
+          "zh": "，获得了 "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s ",
+          "zh": "%2$s "
+        },
+        {
+          "color": "§f",
+          "text": "%3$s Shards",
+          "zh": "个%3$s碎片"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!"
+        }
       ]
     },
     {
@@ -3630,7 +3667,7 @@
       ],
       "gloss": "SkyBlock 的译名与简称由 _shared/SkyBlock_Name.json 决定，译文里保留原词，开关照旧管得住它。",
       "translate": true,
-      "layout": "center_chat_banner",
+      "layout": "center_chat_if_padded",
       "zh": "",
       "segments": [
         {
@@ -3997,13 +4034,13 @@
         },
         {
           "token": "%5$s",
-          "desc": "智力的固定加成",
+          "desc": "法力的固定加成",
           "type": "number",
           "example": "30.9"
         },
         {
           "token": "%6$s",
-          "desc": "智力的倍率",
+          "desc": "法力的倍率",
           "type": "number",
           "example": "1.15"
         },
@@ -4087,7 +4124,7 @@
         {
           "color": "§b",
           "text": "✎ Intelligence",
-          "zh": "✎ 智力"
+          "zh": "✎ 法力"
         },
         {
           "color": "§7",
@@ -4255,13 +4292,13 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "desc": "智力的固定加成",
+          "desc": "法力的固定加成",
           "type": "number",
           "example": "25.8"
         },
         {
           "token": "%2$s",
-          "desc": "智力倍率",
+          "desc": "法力倍率",
           "type": "number",
           "example": "1.13"
         },
@@ -4299,7 +4336,7 @@
         {
           "color": "§b",
           "text": "✎ Intelligence ",
-          "zh": "✎ 智力"
+          "zh": "✎ 法力"
         },
         {
           "color": "§7",
@@ -4816,6 +4853,47 @@
           "color": "§e",
           "text": "!",
           "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "run_terminal_completed",
+      "context": "第七层第三阶段：有人激活了终端／装置／拉杆",
+      "raw": "§b%1$s§a completed a %3$s! (§c%4$s§a)",
+      "text": "%1$s completed a %3$s! (%4$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "玩家名",
+          "type": "player_name",
+          "example": "inkkni"
+        },
+        {
+          "token": "%3$s",
+          "desc": "目标，terminal / device / lever",
+          "type": "raw",
+          "example": "terminal"
+        },
+        {
+          "token": "%4$s",
+          "desc": "进度，已完成／总数",
+          "type": "raw",
+          "example": "1/7"
+        }
+      ],
+      "gloss": "动作限定 activated/completed,不让 Click on a Day Saver 等普通提示误入终端广播。",
+      "translate": true,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§a",
+          "text": " completed a %3$s! (%4$s)",
+          "zh": " 完成了一个 %3$s，进度 %4$s"
         }
       ]
     }

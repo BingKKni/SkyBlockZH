@@ -563,10 +563,10 @@ public final class TranslationEntry {
 	 * fragment list instead of just the record it was written on. A tail fragment then keeps the colour
 	 * it had on the tail line while moving to wherever Chinese needs it.
 	 *
-	 * <p>{@code labelOriginals} is the chat/lore half of {@code showOriginal}: a colour run whose
-	 * English is itself a term-table name — {@code Diamond Essence}, {@code Tusk Fossil} — keeps
-	 * that English in brackets after the Chinese. Placeholder values are not labelled here; those
-	 * would stamp （Royal Mines） onto every commission row.
+	 * <p>{@code labelOriginals} is the chat/lore half of {@code showOriginal}: only a colour run that
+	 * resolves to an offline NEU item identity — {@code Diamond Essence}, {@code Tusk Fossil} — keeps
+	 * the English search name after its Chinese. Gameplay terms such as events, states and attributes
+	 * deliberately do not qualify. Placeholder values are checked by the same item catalog.
 	 */
 	public static MutableComponent renderJoined(List<Matched> matches, TermTable terms, boolean labelOriginals) {
 		record Part(Matched matched, Fragment fragment) {}
@@ -611,6 +611,8 @@ public final class TranslationEntry {
 				continue;
 			}
 
+			String fragmentItem = labelOriginals && start >= 0 && end > start
+				? termEnglish(source.plain().substring(start, end).trim()) : null;
 			MutableComponent frag = Component.empty();
 			Seam inner = new Seam(frag);
 
@@ -623,16 +625,16 @@ public final class TranslationEntry {
 					int group = arg.index() < entry.argGroups.length ? entry.argGroups[arg.index()] : 0;
 
 					if (group > 0 && match.start(group) >= 0) {
-						entry.append(inner, source, match, group, terms, style);
+						entry.append(inner, source, match, group, terms, style, labelOriginals && fragmentItem == null);
 					}
 				}
 			}
 
 			String written = frag.getString();
 
-			if (labelOriginals && fragment.argGroups().length == 0 && start >= 0 && end > start) {
+			if (labelOriginals && start >= 0 && end > start) {
 				String english = source.plain().substring(start, end).trim();
-				String termEn = termEnglish(terms, english);
+				String termEn = fragmentItem;
 
 				if (termEn != null && !written.isEmpty() && !written.equals(english)) {
 					MutableComponent labelled = OriginalLabel.append(frag, Component.literal(termEn));
@@ -658,7 +660,8 @@ public final class TranslationEntry {
 	 * {@link Capture#renderValue}. Everything else is copied through untouched, character for
 	 * character, because a name is a name.
 	 */
-	private void append(Seam seam, StyledText source, Matcher match, int group, TermTable terms, Style style) {
+	private void append(Seam seam, StyledText source, Matcher match, int group, TermTable terms, Style style,
+		boolean labelOriginals) {
 		int start = match.start(group);
 		int end = match.end(group);
 		String value = source.plain().substring(start, end);
@@ -675,7 +678,14 @@ public final class TranslationEntry {
 		// own far more often than not, and translating the word is no reason to repaint it.
 		Style valueStyle = start < source.length() ? source.styleAt(start) : style;
 
-		seam.append(Component.literal(written).setStyle(valueStyle), written, valueStyle);
+		MutableComponent rendered = Component.literal(written).setStyle(valueStyle);
+		if (labelOriginals && ("raw".equals(type) || "item_name".equals(type))) {
+			String item = ItemNames.canonical(value);
+			if (item != null) {
+				rendered = OriginalLabel.append(rendered, Component.literal(item));
+			}
+		}
+		seam.append(rendered, rendered.getString(), valueStyle);
 	}
 
 	/**
@@ -684,8 +694,8 @@ public final class TranslationEntry {
 	 * <p>Gemma's "25 Diamond Essence" is one run, not a placeholder plus a name, so the leading
 	 * count is stripped before the lookup. A run that is just a number must not become a term.
 	 */
-	private static String termEnglish(TermTable terms, String english) {
-		String key = terms.canonicalEnglish(english);
+	private static String termEnglish(String english) {
+		String key = ItemNames.canonical(english);
 
 		if (key != null) {
 			return key;
@@ -693,7 +703,7 @@ public final class TranslationEntry {
 
 		String stripped = english.replaceFirst("^[0-9][0-9,.]*(?:[kKmMbB])?\\s+", "");
 
-		return stripped.equals(english) ? null : terms.canonicalEnglish(stripped);
+		return stripped.equals(english) ? null : ItemNames.canonical(stripped);
 	}
 
 	/**

@@ -1,0 +1,49 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Pickonimbus_2000; NEU items/PICKONIMBUS.json; logs/7.png",
+  "note": "Wiki 核实使用次数会随耐久减少。数值从服务器两行原文组成的完整句子中捕获，不从首行引用不存在的参数。",
+  "lines": [
+    {
+      "id": "pickonimbus_complete_durability",
+      "context": "剩余使用次数说明，支持英文断行变化",
+      "raw": "§7A powerful tool that breaks after §a%1$s§7 uses.",
+      "text": "A powerful tool that breaks after %1$s uses.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "2,000",
+          "desc": "剩余使用次数"
+        }
+      ],
+      "zh": "一把强力的工具,使用 %1$s 次后就会损坏。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "A powerful tool that breaks after ",
+          "zh": "一把强力的工具,使用 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " uses.",
+          "zh": " 次后就会损坏。"
+        }
+      ],
+      "samples": [
+        [
+          "§7A powerful tool that breaks after",
+          "§a2,000§7 uses."
+        ],
+        [
+          "§7A powerful tool that breaks after",
+          "§a137§7 uses."
+        ]
+      ],
+      "translate": true
+    }
+  ]
+}

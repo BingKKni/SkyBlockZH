@@ -39,25 +39,25 @@
     {
       "id": "lazy_miner_s_s_is_my_resting",
       "context": "",
-      "raw": "§f%s %s is my resting day!",
-      "text": "%s %s is my resting day!",
+      "raw": "§f%1$s %2$s is my resting day!",
+      "text": "%1$s %2$s is my resting day!",
       "placeholders": [
         {
           "token": "%1$s",
-          "desc": "SkyBlock 历的月份名,如 Late Winter;月份名本身另有记录,这里整段当占位符收下",
-          "type": "raw",
+          "desc": "SkyBlock 历的月份名,如 Late Winter;译名走 _shared/Terms.json 的 skyblock_month",
+          "type": "skyblock_month",
           "example": "Late Winter"
         },
         {
           "token": "%2$s",
-          "desc": "SkyBlock 历的日期,带英文序数后缀",
-          "type": "raw",
+          "desc": "SkyBlock 历的日期,带英文序数后缀;ordinal 渲染时去掉后缀",
+          "type": "ordinal",
           "example": "15th"
         }
       ],
-      "gloss": "维基写作「<Current Month> <Current Day> is my resting day!」,两个占位符分别是月份名和日期。",
+      "gloss": "维基写作「<Current Month> <Current Day> is my resting day!」,两个占位符分别是月份名和日期。月份 + 日期是日期写法,按 GLOSSARY「空岛月份名」写阿拉伯数字:「12 月 15 日是我的休息日!」。",
       "translate": true,
-      "zh": "%s %s 是我的休息日!"
+      "zh": "%1$s %2$s 日是我的休息日!"
     },
     {
       "id": "lazy_miner_i_d_go_mining_but",

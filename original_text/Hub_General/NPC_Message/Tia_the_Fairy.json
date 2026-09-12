@@ -1,0 +1,463 @@
+{
+  "npc": "Tia the Fairy",
+  "location": "Wilderness (Fairy Pond)",
+  "source": "runtime capture (SkyZH) 2026-09-10 荒野仙女池塘实测; https://hypixelskyblock.minecraft.wiki/w/Tia_the_Fairy (2026-08-11 更新); 交叉核对 https://hypixel-skyblock.fandom.com/wiki/Tia_the_Fairy",
+  "fetched_at": "2026-09-10",
+  "verified_ingame": true,
+  "note": "仙女 Tia,荒野仙女池塘边收仙女之魂的仙女(职务型称呼「仙女 Tia」沿用 Progression_Alerts_Live.json)。开场是带着哀伤的温柔;Abiphone 里则活泼跳脱,爱用感叹号,最后还讲冷笑话。花园访客台词在 Farming/NPC_Message/Tia_the_Fairy.json。",
+  "source_note": "首次对话四句已实测;9f™ 网络中继那一串只有 minecraft.wiki 有,未实测,不写 raw/segments。",
+  "messages": [
+    {
+      "id": "tia_welcome",
+      "context": "首次对话",
+      "raw": "§fWelcome to the §dFairy Pond§f, §b%s§f! I am Tia.",
+      "text": "Welcome to the Fairy Pond, %s! I am Tia.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "玩家名",
+          "type": "player_name",
+          "example": "inkkni"
+        }
+      ],
+      "gloss": "Fairy Pond → 仙女池塘,同 _shared/Terms.json 新增的地名。",
+      "translate": true,
+      "zh": "欢迎来到仙女池塘,%s! 我是 Tia。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Welcome to the ",
+          "zh": "欢迎来到"
+        },
+        {
+          "color": "§d",
+          "text": "Fairy Pond",
+          "zh": "仙女池塘"
+        },
+        {
+          "color": "§f",
+          "text": ", ",
+          "zh": ","
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§f",
+          "text": "! I am Tia.",
+          "zh": "! 我是 Tia。"
+        }
+      ]
+    },
+    {
+      "id": "tia_strange_orbs",
+      "context": "",
+      "raw": "§fYou may have noticed some strange orbs laying around the island.",
+      "text": "You may have noticed some strange orbs laying around the island.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你也许注意到了,岛上散落着一些奇怪的光球。"
+    },
+    {
+      "id": "tia_fallen_sisters",
+      "context": "",
+      "raw": "§fThey are the souls of my fallen sisters.",
+      "text": "They are the souls of my fallen sisters.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "那是我逝去的姐妹们的灵魂。"
+    },
+    {
+      "id": "tia_bring_them_back",
+      "context": "",
+      "raw": "§fIf you find any more during your travels, please bring them back to me!",
+      "text": "If you find any more during your travels, please bring them back to me!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "旅途中要是再找到,请把它们带回来给我!"
+    },
+    {
+      "id": "tia_phone_abiphone",
+      "context": "Abiphone 加联系人",
+      "text": "✆ You have an Abiphone!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 你有 Abiphone 啦!"
+    },
+    {
+      "id": "tia_phone_super_cool",
+      "context": "",
+      "text": "✆ That's super cool!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 太酷了!"
+    },
+    {
+      "id": "tia_phone_9f",
+      "context": "",
+      "text": "✆ Did you know the fairies helped the mages build the Abiphone's 9f™ network?",
+      "placeholders": [],
+      "gloss": "9f™ 是自造品牌名,保留英文。",
+      "translate": true,
+      "zh": "✆ 你知道吗? Abiphone 的 9f™ 网络,是我们仙女帮法师们一起建的。"
+    },
+    {
+      "id": "tia_phone_maintenance",
+      "context": "",
+      "text": "✆ But since so many of us are now missing, we're behind on maintenance!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 可我们失踪了太多姐妹,维护工作早就落下了!"
+    },
+    {
+      "id": "tia_phone_fairy_armor",
+      "context": "",
+      "text": "✆ Come back wearing Fairy Armor and I can add a 9f™ Operator Chip to your Abiphone so you can help us out!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 穿上仙女护甲再来,我就能给你的 Abiphone 装上 9f™ 运营商芯片,你就能帮上忙了!"
+    },
+    {
+      "id": "tia_phone_uniform",
+      "context": "穿着仙女护甲",
+      "text": "✆ Sweet uniform!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 制服真好看!"
+    },
+    {
+      "id": "tia_phone_added_chip",
+      "context": "",
+      "text": "✆ Okay I added 9f™ Operator Chip to your Abiphone plan.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 好了,我把 9f™ 运营商芯片加进你的 Abiphone 套餐了。"
+    },
+    {
+      "id": "tia_phone_any_abiphone",
+      "context": "",
+      "text": "✆ It will work on any Abiphone as long as I'm in your contacts list.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 只要我还在你的通讯录里,它在任何 Abiphone 上都能用。"
+    },
+    {
+      "id": "tia_phone_upgrade_relays",
+      "context": "",
+      "text": "✆ We need to upgrade all of the 9f™ Network Relays spread across SkyBlock.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 我们得把分布在 SkyBlock 各处的 9f™ 网络中继全部升级一遍。"
+    },
+    {
+      "id": "tia_phone_first_relay",
+      "context": "",
+      "text": "✆ Call me and I can tell you where the first relay is!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 打给我,我告诉你第一个中继在哪儿!"
+    },
+    {
+      "id": "tia_relay_more_contacts",
+      "context": "联系人数量不够",
+      "text": "✆ You need more contacts before you can deal with the next relay!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 你的联系人还不够多,还处理不了下一个中继!"
+    },
+    {
+      "id": "tia_relay_dont_ask",
+      "context": "",
+      "text": "✆ Don't ask me why...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 别问我为什么……"
+    },
+    {
+      "id": "tia_relay_rules",
+      "context": "",
+      "text": "✆ I don't make the rules!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 规矩又不是我定的!"
+    },
+    {
+      "id": "tia_relay_1_hey",
+      "context": "第 1 个中继的提示",
+      "text": "✆ Hey! It's you! On the Abiphone!!!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 嘿! 是你! 打的是 Abiphone!!!"
+    },
+    {
+      "id": "tia_relay_1_tree",
+      "context": "",
+      "text": "✆ The first relay is on a branch of the large tree on the north-east of the fairy pond.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 第一个中继在仙女池塘东北边那棵大树的树枝上。"
+    },
+    {
+      "id": "tia_relay_1_armor",
+      "context": "",
+      "text": "✆ Make sure to wear Fairy Armor!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 记得穿上仙女护甲!"
+    },
+    {
+      "id": "tia_relay_1_procedure",
+      "context": "",
+      "text": "✆ I don't personally know what the maintenance procedure is, but I'm sure you can figure it out!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 维护流程我自己也不清楚,但我相信你能琢磨出来!"
+    },
+    {
+      "id": "tia_relay_2_figured",
+      "context": "第 2 个中继",
+      "text": "✆ Wow, you figured out the maintenance plan!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 哇,你把维护方案搞明白了!"
+    },
+    {
+      "id": "tia_relay_2_smart",
+      "context": "",
+      "text": "✆ That's really smart!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 真聪明!"
+    },
+    {
+      "id": "tia_relay_2_castle",
+      "context": "",
+      "text": "✆ The next relay is in the castle ruins!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 下一个中继在城堡废墟里!"
+    },
+    {
+      "id": "tia_relay_3_palace",
+      "context": "第 3 个中继",
+      "text": "✆ The next relay is in the Royal Palace within the Dwarven Mines.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 下一个中继在矮人矿山的皇家宫殿里。"
+    },
+    {
+      "id": "tia_relay_3_high",
+      "context": "",
+      "text": "✆ It's in a very high place to reverb the signal for the royal council.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 它装在很高的地方,好把信号传给王室议会。"
+    },
+    {
+      "id": "tia_relay_3_communication",
+      "context": "",
+      "text": "✆ Although I don't think technology can help with their communication problems...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 不过我觉得,他们之间的沟通问题,科技也帮不上忙……"
+    },
+    {
+      "id": "tia_relay_4_end",
+      "context": "第 4 个中继",
+      "text": "✆ The next relay is on the highest spike of The End.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 下一个中继在末地最高的那根尖塔上。"
+    },
+    {
+      "id": "tia_relay_4_moon",
+      "context": "",
+      "text": "✆ It's on the face which looks at the moon rising.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 在朝着月亮升起的那一面。"
+    },
+    {
+      "id": "tia_relay_4_sun",
+      "context": "",
+      "text": "✆ Or the sun! If you're that kind of person...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 或者说朝着太阳! 如果你是那种人的话……"
+    },
+    {
+      "id": "tia_relay_5_odger",
+      "context": "第 5 个中继",
+      "text": "✆ The next relay was placed by our consultant, Odger.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 下一个中继是我们的顾问 Odger 装的。"
+    },
+    {
+      "id": "tia_relay_5_bye",
+      "context": "",
+      "text": "✆ He said \"Travel too far home. Bye.\" after installing it and never called again.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 他装完只说了句“回家路太远。拜。”,之后再没打过电话。"
+    },
+    {
+      "id": "tia_relay_5_maybe",
+      "context": "",
+      "text": "✆ Maybe he can tell you where he put the relay?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 说不定他能告诉你中继装在哪儿?"
+    },
+    {
+      "id": "tia_relay_6_scarleton",
+      "context": "第 6 个中继",
+      "text": "✆ Scarleton itself has one of the most robust connection to the 9f™ Network.",
+      "placeholders": [],
+      "gloss": "Scarleton 是绯红岛的城镇名,自造地名,保留英文。",
+      "translate": true,
+      "zh": "✆ Scarleton 本身就是 9f™ 网络信号最强的地方之一。"
+    },
+    {
+      "id": "tia_relay_6_cathedral",
+      "context": "",
+      "text": "✆ If you face the cathedral, there is a relay at the top of the left tower.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 面朝大教堂,左边塔楼的顶上就有一个中继。"
+    },
+    {
+      "id": "tia_relay_7_shack",
+      "context": "第 7 个中继",
+      "text": "✆ The next relay is on top of the shack next to the shady inn right here close to the pond.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 下一个中继就在池塘附近那家可疑小旅馆旁边的小屋顶上。"
+    },
+    {
+      "id": "tia_relay_7_paid",
+      "context": "",
+      "text": "✆ Usually we wouldn't have a relay serve so few people, but we were paid generously by anonymous contributors!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 平时我们不会为这么少的人专门架一个中继,不过有匿名人士出手阔绰!"
+    },
+    {
+      "id": "tia_relay_7_share",
+      "context": "",
+      "text": "✆ So generously in fact that we also share some of the data from the 9f™ Network with one of the mayor candidates.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 阔绰到我们还把 9f™ 网络的一部分数据分享给了某位市长候选人。"
+    },
+    {
+      "id": "tia_relay_7_between_us",
+      "context": "",
+      "text": "✆ But hey, let's keep this between us!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 不过嘿,这事你知我知就行!"
+    },
+    {
+      "id": "tia_relay_7_they_know",
+      "context": "",
+      "text": "✆ They'll know if you tell anyone.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 你要是说出去,他们会知道的。"
+    },
+    {
+      "id": "tia_relay_8_statue",
+      "context": "第 8 个中继",
+      "text": "✆ The next relay is on top of a statue in the dungeon hub.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 下一个中继在地牢大厅的一座雕像顶上。"
+    },
+    {
+      "id": "tia_relay_8_no_soul",
+      "context": "",
+      "text": "✆ The one that doesn't have a fairy soul...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 就是没有仙女之魂的那座……"
+    },
+    {
+      "id": "tia_relay_9_auction",
+      "context": "第 9 个中继",
+      "text": "✆ The next relay is on top of the Auction House.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 下一个中继在拍卖行的屋顶上。"
+    },
+    {
+      "id": "tia_relay_9_village",
+      "context": "",
+      "text": "✆ It offers service to the whole village!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 整个村庄的信号都靠它!"
+    },
+    {
+      "id": "tia_relay_done_joke",
+      "context": "全部中继完成后打电话",
+      "text": "✆ Why is the tooth fairy so smart?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 为什么牙仙那么聪明?"
+    },
+    {
+      "id": "tia_relay_done_punchline",
+      "context": "",
+      "text": "✆ Because she has wisdom teeth!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 因为她有智齿!"
+    }
+  ]
+}

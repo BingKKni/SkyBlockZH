@@ -1,0 +1,921 @@
+{
+  "source": "runtime capture (SkyZH) 2026-09-10 花园新手流程实测; 语境核对 https://hypixelskyblock.minecraft.wiki/w/Sam、/Composter、/The_Garden",
+  "fetched_at": "2026-09-10",
+  "verified_ingame": true,
+  "gui_context": "花园新手教程(Sam 的任务)里的系统消息:目标标题行、NPC 选项提示、堆肥器和地块的操作反馈、报错。",
+  "source_note": [
+    "目标标题行(“  Bring 25 Wheat to Sam”)前面两个空格是服务器的缩进,照抄进 text;同一句在 BossBar 和侧边栏里另有记录,三个面各自独立。",
+    "选项行(“[That's a great idea] [I'd rather not] ”)末尾带一个空格,是服务器发的,照抄。"
+  ],
+  "lines": [
+    {
+      "id": "gq_obj_bring_25_wheat",
+      "context": "目标更新时聊天里的目标标题",
+      "raw": "  §fBring 25 Wheat to Sam",
+      "text": "  Bring 25 Wheat to Sam",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "  把 25 个小麦交给 Sam",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§f",
+          "text": "Bring 25 Wheat to Sam",
+          "zh": "把 25 个小麦交给 Sam"
+        }
+      ]
+    },
+    {
+      "id": "gq_obj_purchase_fuel",
+      "context": "",
+      "raw": "  §fPurchase Fuel from SkyMart",
+      "text": "  Purchase Fuel from SkyMart",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "  在 SkyMart 购买燃料",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§f",
+          "text": "Purchase Fuel from SkyMart",
+          "zh": "在 SkyMart 购买燃料"
+        }
+      ]
+    },
+    {
+      "id": "gq_obj_put_fuel",
+      "context": "",
+      "raw": "  §fPut Fuel in the Composter",
+      "text": "  Put Fuel in the Composter",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "  把燃料放进堆肥器",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§f",
+          "text": "Put Fuel in the Composter",
+          "zh": "把燃料放进堆肥器"
+        }
+      ]
+    },
+    {
+      "id": "gq_obj_take_compost",
+      "context": "",
+      "raw": "  §fTake Compost from the Composter",
+      "text": "  Take Compost from the Composter",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "  从堆肥器里取出堆肥",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§f",
+          "text": "Take Compost from the Composter",
+          "zh": "从堆肥器里取出堆肥"
+        }
+      ]
+    },
+    {
+      "id": "gq_obj_purchase_plot",
+      "context": "",
+      "raw": "  §fPurchase a Garden Plot at the Desk",
+      "text": "  Purchase a Garden Plot at the Desk",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "  在管理台购买一块花园地块",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§f",
+          "text": "Purchase a Garden Plot at the Desk",
+          "zh": "在管理台购买一块花园地块"
+        }
+      ]
+    },
+    {
+      "id": "gq_obj_go_to_plot",
+      "context": "",
+      "raw": "  §fGo to your Garden Plot",
+      "text": "  Go to your Garden Plot",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "  前往你的花园地块",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§f",
+          "text": "Go to your Garden Plot",
+          "zh": "前往你的花园地块"
+        }
+      ]
+    },
+    {
+      "id": "gq_obj_clean_plot",
+      "context": "",
+      "raw": "  §fClean your Garden Plot",
+      "text": "  Clean your Garden Plot",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "  清理你的花园地块",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§f",
+          "text": "Clean your Garden Plot",
+          "zh": "清理你的花园地块"
+        }
+      ]
+    },
+    {
+      "id": "gq_obj_find_out_sam",
+      "context": "",
+      "raw": "  §fFind out what Sam wants",
+      "text": "  Find out what Sam wants",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "  去看看 Sam 想要什么",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§f",
+          "text": "Find out what Sam wants",
+          "zh": "去看看 Sam 想要什么"
+        }
+      ]
+    },
+    {
+      "id": "gq_obj_bring_100_wheat",
+      "context": "",
+      "raw": "  §fBring Sam 100 Wheat",
+      "text": "  Bring Sam 100 Wheat",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "  把 100 个小麦交给 Sam",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§f",
+          "text": "Bring Sam 100 Wheat",
+          "zh": "把 100 个小麦交给 Sam"
+        }
+      ]
+    },
+    {
+      "id": "gq_obj_open_stand",
+      "context": "",
+      "raw": "  §fOpen a Shop Stand with Sam",
+      "text": "  Open a Shop Stand with Sam",
+      "placeholders": [],
+      "gloss": "Shop Stand → 售货摊(访客排队买东西的摊位)。",
+      "translate": true,
+      "zh": "  和 Sam 一起开一个售货摊",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§f",
+          "text": "Open a Shop Stand with Sam",
+          "zh": "和 Sam 一起开一个售货摊"
+        }
+      ]
+    },
+    {
+      "id": "gq_obj_find_sam_stand",
+      "context": "",
+      "raw": "  §fFind Sam at the Shop Stand",
+      "text": "  Find Sam at the Shop Stand",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "  去售货摊找 Sam",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§f",
+          "text": "Find Sam at the Shop Stand",
+          "zh": "去售货摊找 Sam"
+        }
+      ]
+    },
+    {
+      "id": "gq_obj_serve_customer",
+      "context": "",
+      "raw": "  §fServe your first Customer",
+      "text": "  Serve your first Customer",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "  接待你的第一位顾客",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§f",
+          "text": "Serve your first Customer",
+          "zh": "接待你的第一位顾客"
+        }
+      ]
+    },
+    {
+      "id": "gq_obj_reach_garden_iv",
+      "context": "",
+      "raw": "  §fReach Garden Level IV",
+      "text": "  Reach Garden Level IV",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "  花园等级达到 4 级",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§f",
+          "text": "Reach Garden Level IV",
+          "zh": "花园等级达到 4 级"
+        }
+      ]
+    },
+    {
+      "id": "gq_obj_talk_jeff",
+      "context": "",
+      "raw": "  §fTalk to §bJeff §fin your Barn",
+      "text": "  Talk to Jeff in your Barn",
+      "placeholders": [],
+      "gloss": "Barn 在花园里指玩家自己的谷仓建筑,译「谷仓」;农业岛的地名 The Barn 另译「牲畜棚」。",
+      "translate": true,
+      "zh": "  去谷仓和 Jeff 交谈",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§f",
+          "text": "Talk to ",
+          "zh": "去谷仓和 "
+        },
+        {
+          "color": "§b",
+          "text": "Jeff ",
+          "zh": "Jeff"
+        },
+        {
+          "color": "§f",
+          "text": "in your Barn",
+          "zh": " 交谈"
+        }
+      ]
+    },
+    {
+      "id": "gq_obj_show_jeff_tool",
+      "context": "",
+      "raw": "  §fShow §bJeff §fa Specialized Farming Tool",
+      "text": "  Show Jeff a Specialized Farming Tool",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "  向 Jeff 展示一件专精农具",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§f",
+          "text": "Show ",
+          "zh": "向 "
+        },
+        {
+          "color": "§b",
+          "text": "Jeff ",
+          "zh": "Jeff"
+        },
+        {
+          "color": "§f",
+          "text": "a Specialized Farming Tool",
+          "zh": " 展示一件专精农具"
+        }
+      ]
+    },
+    {
+      "id": "gq_obj_craft_wheat_minion",
+      "context": "",
+      "raw": "  §fCraft a Wheat Minion",
+      "text": "  Craft a Wheat Minion",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "  制作一台小麦小人",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§f",
+          "text": "Craft a Wheat Minion",
+          "zh": "制作一台小麦小人"
+        }
+      ]
+    },
+    {
+      "id": "gq_progress_sam_quest",
+      "context": "",
+      "raw": "§cProgress in Sam's quest in order to use this!",
+      "text": "Progress in Sam's quest in order to use this!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "先把 Sam 的任务做下去,才能用这个!"
+    },
+    {
+      "id": "gq_perk_anita_shop",
+      "context": "",
+      "raw": "§cPurchase the perk in Anita's Shop to unlock this menu!",
+      "text": "Purchase the perk in Anita's Shop to unlock this menu!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "在 Anita 的商店购买该天赋,即可解锁此菜单!"
+    },
+    {
+      "id": "gq_need_more_compost",
+      "context": "",
+      "raw": "§cYou need more Compost to unlock this plot.",
+      "text": "You need more Compost to unlock this plot.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "堆肥不够,还解锁不了这块地。"
+    },
+    {
+      "id": "gq_cant_change_preset",
+      "context": "",
+      "raw": "§cYou can't change the preset of this plot!",
+      "text": "You can't change the preset of this plot!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这块地的预设不能更改!"
+    },
+    {
+      "id": "gq_must_complete_objective",
+      "context": "",
+      "raw": "§cYou must complete the §6%s§c objective to use this!",
+      "text": "You must complete the %s objective to use this!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "任务目标名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Gathering Greenhouse Resources"
+        }
+      ],
+      "gloss": "实测见过 Gathering Greenhouse Resources、Staying Informed、Marco the Artist 三个目标名,都收进词表。",
+      "translate": true,
+      "zh": "先完成“%s”目标,才能用这个!",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "You must complete the ",
+          "zh": "先完成“"
+        },
+        {
+          "color": "§6",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§c",
+          "text": " objective to use this!",
+          "zh": "”目标,才能用这个!"
+        }
+      ]
+    },
+    {
+      "id": "gq_added_fuel",
+      "context": "",
+      "raw": "§aAdded §2%1$s §afuel to the composter!",
+      "text": "Added %1$s fuel to the composter!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "加入的燃料值",
+          "type": "number",
+          "example": "3,000"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "已向堆肥器加入 %1$s 燃料!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Added ",
+          "zh": "已向堆肥器加入 "
+        },
+        {
+          "color": "§2",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§a",
+          "text": "fuel to the composter!",
+          "zh": " 燃料!"
+        }
+      ]
+    },
+    {
+      "id": "gq_added_organic",
+      "context": "",
+      "raw": "§aAdded §2%1$s §aorganic matter to the composter!",
+      "text": "Added %1$s organic matter to the composter!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "加入的有机物值",
+          "type": "number",
+          "example": "64"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "已向堆肥器加入 %1$s 有机物!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Added ",
+          "zh": "已向堆肥器加入 "
+        },
+        {
+          "color": "§2",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§a",
+          "text": "organic matter to the composter!",
+          "zh": " 有机物!"
+        }
+      ]
+    },
+    {
+      "id": "gq_inserted_organic",
+      "context": "",
+      "raw": "§aInserted §2%1$s §aOrganic Matter from your inventory!",
+      "text": "Inserted %1$s Organic Matter from your inventory!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "放入的有机物值",
+          "type": "number",
+          "example": "267"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "已从背包放入 %1$s 有机物!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Inserted ",
+          "zh": "已从背包放入 "
+        },
+        {
+          "color": "§2",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§a",
+          "text": "Organic Matter from your inventory!",
+          "zh": " 有机物!"
+        }
+      ]
+    },
+    {
+      "id": "gq_picked_up_compost",
+      "context": "",
+      "raw": "§aPicked up 1 Compost!",
+      "text": "Picked up 1 Compost!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "拾取了 1 个堆肥!"
+    },
+    {
+      "id": "gq_no_compost_to_collect",
+      "context": "",
+      "raw": "§cYour composter has no Compost to collect!",
+      "text": "Your composter has no Compost to collect!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "堆肥器里没有可收取的堆肥!"
+    },
+    {
+      "id": "gq_no_items_to_insert",
+      "context": "",
+      "raw": "§cNo items in your inventory to insert!",
+      "text": "No items in your inventory to insert!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "背包里没有可放入的物品!"
+    },
+    {
+      "id": "gq_unlocked_plot",
+      "context": "",
+      "raw": "§aUnlocked Garden Plot §7- §b%1$s§a!",
+      "text": "Unlocked Garden Plot - %1$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "地块编号",
+          "type": "number",
+          "example": "4"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "已解锁花园地块 - %1$s!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Unlocked Garden Plot ",
+          "zh": "已解锁花园地块 "
+        },
+        {
+          "color": "§7",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§a",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "gq_plot_now_clean",
+      "context": "",
+      "raw": "§aPlot §7- §b%1$s §ais now clean!",
+      "text": "Plot - %1$s is now clean!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "地块编号",
+          "type": "number",
+          "example": "4"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "地块 - %1$s 已清理干净!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Plot ",
+          "zh": "地块 "
+        },
+        {
+          "color": "§7",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§a",
+          "text": "is now clean!",
+          "zh": " 已清理干净!"
+        }
+      ]
+    },
+    {
+      "id": "gq_only_dirt_while_cleaning",
+      "context": "",
+      "raw": "§cYou can only place dirt while cleaning a plot!",
+      "text": "You can only place dirt while cleaning a plot!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "清理地块期间只能放置泥土!"
+    },
+    {
+      "id": "gq_disable_holograms",
+      "context": "",
+      "raw": "§eYou can disable plot holograms in your §aGarden Settings§e menu!",
+      "text": "You can disable plot holograms in your Garden Settings menu!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你可以在花园设置菜单里关掉地块悬浮字!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "You can disable plot holograms in your ",
+          "zh": "你可以在"
+        },
+        {
+          "color": "§a",
+          "text": "Garden Settings",
+          "zh": "花园设置"
+        },
+        {
+          "color": "§e",
+          "text": " menu!",
+          "zh": "菜单里关掉地块悬浮字!"
+        }
+      ]
+    },
+    {
+      "id": "gq_started_pasting",
+      "context": "",
+      "raw": "§aStarted pasting §b%1$s §apreset on Garden Plot §7- §b%2$s§a!",
+      "text": "Started pasting %1$s preset on Garden Plot - %2$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "预设名(作物名),译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Wheat"
+        },
+        {
+          "token": "%2$s",
+          "desc": "地块编号",
+          "type": "number",
+          "example": "4"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "开始把%1$s预设粘贴到花园地块 - %2$s!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Started pasting ",
+          "zh": "开始把"
+        },
+        {
+          "color": "§b",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§a",
+          "text": "preset on Garden Plot ",
+          "zh": "预设粘贴到花园地块 "
+        },
+        {
+          "color": "§7",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§b",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§a",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "gq_stay_on_island",
+      "context": "",
+      "raw": "§eRemember, you have to be on the island for the resources to be planted!",
+      "text": "Remember, you have to be on the island for the resources to be planted!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "记住,你得待在岛上,材料才会种下去!"
+    },
+    {
+      "id": "gq_cant_edit_pasting",
+      "context": "",
+      "raw": "§cYou can't edit blocks while this plot is pasting!",
+      "text": "You can't edit blocks while this plot is pasting!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这块地正在粘贴预设,现在不能改方块!"
+    },
+    {
+      "id": "gq_area_not_unlocked",
+      "context": "",
+      "raw": "§cYou haven't unlocked this area yet!",
+      "text": "You haven't unlocked this area yet!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你还没有解锁这片区域!"
+    },
+    {
+      "id": "gq_not_enough_copper",
+      "context": "",
+      "raw": "§cYou don't have enough Copper!",
+      "text": "You don't have enough Copper!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的铜不够!"
+    },
+    {
+      "id": "gq_not_enough_required_item",
+      "context": "",
+      "raw": "§cYou don't have enough of the required item!",
+      "text": "You don't have enough of the required item!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "所需物品的数量不够!"
+    },
+    {
+      "id": "gq_item_not_unlocked",
+      "context": "",
+      "raw": "§cYou have not unlocked this item!",
+      "text": "You have not unlocked this item!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你还没有解锁这件物品!"
+    },
+    {
+      "id": "gq_cookie_buff_required",
+      "context": "",
+      "raw": "§cYou need the Cookie Buff active to use this feature!",
+      "text": "You need the Cookie Buff active to use this feature!",
+      "placeholders": [],
+      "gloss": "Cookie Buff → 曲奇增益(GLOSSARY)。",
+      "translate": true,
+      "zh": "此功能需要曲奇增益生效中才能使用!"
+    },
+    {
+      "id": "gq_prompt_collect_wheat",
+      "context": "Sam 烤面包任务的选项提示",
+      "raw": "§eCollect Wheat for Sam?",
+      "text": "Collect Wheat for Sam?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "替 Sam 收集小麦吗?"
+    },
+    {
+      "id": "gq_prompt_great_idea",
+      "context": "",
+      "raw": "§a§l[That's a great idea] §c§l[I'd rather not] ",
+      "text": "[That's a great idea] [I'd rather not] ",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "[好主意] [还是算了] ",
+      "segments": [
+        {
+          "color": "§a§l",
+          "text": "[That's a great idea] ",
+          "zh": "[好主意] "
+        },
+        {
+          "color": "§c§l",
+          "text": "[I'd rather not] ",
+          "zh": "[还是算了] "
+        }
+      ]
+    },
+    {
+      "id": "gq_prompt_help_her",
+      "context": "",
+      "raw": "§eHelp her? §a§l[Fine] ",
+      "text": "Help her? [Fine] ",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "帮她吗? [好吧] ",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Help her? ",
+          "zh": "帮她吗? "
+        },
+        {
+          "color": "§a§l",
+          "text": "[Fine] ",
+          "zh": "[好吧] "
+        }
+      ]
+    },
+    {
+      "id": "gq_prompt_sell_wheat",
+      "context": "",
+      "raw": "§eSell leftover Wheat? ",
+      "text": "Sell leftover Wheat? ",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "卖掉多余的小麦吗? "
+    },
+    {
+      "id": "gq_prompt_good_call",
+      "context": "",
+      "raw": "§e §a§l[Good call!] §c§l[I'd rather keep it for myself] ",
+      "text": " [Good call!] [I'd rather keep it for myself] ",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": " [好主意!] [我还是自己留着] ",
+      "segments": [
+        {
+          "color": "§e",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§a§l",
+          "text": "[Good call!] ",
+          "zh": "[好主意!] "
+        },
+        {
+          "color": "§c§l",
+          "text": "[I'd rather keep it for myself] ",
+          "zh": "[我还是自己留着] "
+        }
+      ]
+    }
+  ]
+}

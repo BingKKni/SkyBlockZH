@@ -19,7 +19,10 @@
       ],
       "gloss": "不会误吃 `Wheat Minion Skin`、`Flower Minion Recipes` 这类行:记录要匹配整个范围,模板以 Minion 收尾,后面还有词就匹配不上。`Crafted Minions` 那一格也不受影响——引擎只把**已经以 s 结尾**的字面词的 s 变成可选,不会给 Minion 补一个。",
       "translate": true,
-      "zh": "%s小人"
+      "zh": "%s小人",
+      "exclude": [
+        "Pickup Minion"
+      ]
     },
     {
       "id": "crafted_minion_name_tiered",
@@ -50,7 +53,12 @@
       "raw": "§a✔ Tier %s",
       "text": "✔ Tier %s",
       "placeholders": [
-        {"token": "%s", "desc": "档位(罗马数字)", "type": "tier", "example": "IV"}
+        {
+          "token": "%s",
+          "desc": "档位(罗马数字)",
+          "type": "tier",
+          "example": "IV"
+        }
       ],
       "gloss": "Tier 在这个菜单里是小人的档位(I 到 XII),不是稀有度,所以译「档」而不是「级」——小人界面自己另有「等级」的说法(Minion Slots),两个词分开才不会混。",
       "translate": true,
@@ -62,7 +70,12 @@
       "raw": "§c✖ Tier %s",
       "text": "✖ Tier %s",
       "placeholders": [
-        {"token": "%s", "desc": "档位(罗马数字)", "type": "tier", "example": "XII"}
+        {
+          "token": "%s",
+          "desc": "档位(罗马数字)",
+          "type": "tier",
+          "example": "XII"
+        }
       ],
       "gloss": "见 crafted_minion_tier_done。",
       "translate": true,
@@ -191,14 +204,27 @@
       "raw": "§7Minions limit: §e%s",
       "text": "Minions limit: %s",
       "placeholders": [
-        {"token": "%s", "desc": "当前小人上限", "type": "number", "example": "5"}
+        {
+          "token": "%s",
+          "desc": "当前小人上限",
+          "type": "number",
+          "example": "5"
+        }
       ],
       "gloss": "",
       "translate": true,
       "zh": "",
       "segments": [
-        {"color": "§7", "text": "Minions limit: ", "zh": "小人上限: "},
-        {"color": "§e", "text": "%s", "zh": "%s"}
+        {
+          "color": "§7",
+          "text": "Minions limit: ",
+          "zh": "小人上限: "
+        },
+        {
+          "color": "§e",
+          "text": "%s",
+          "zh": "%s"
+        }
       ]
     },
     {
@@ -207,18 +233,48 @@
       "raw": "§7Next minion slot: (§e%1$s§7/§a%2$s§7)",
       "text": "Next minion slot: (%1$s/%2$s)",
       "placeholders": [
-        {"token": "%1$s", "desc": "已完成的进度", "type": "number", "example": "0"},
-        {"token": "%2$s", "desc": "解锁下一个槽位需要的数量", "type": "number", "example": "5"}
+        {
+          "token": "%1$s",
+          "desc": "已完成的进度",
+          "type": "number",
+          "example": "0"
+        },
+        {
+          "token": "%2$s",
+          "desc": "解锁下一个槽位需要的数量",
+          "type": "number",
+          "example": "5"
+        }
       ],
       "gloss": "",
       "translate": true,
       "zh": "",
       "segments": [
-        {"color": "§7", "text": "Next minion slot: (", "zh": "下一个小人槽位: ("},
-        {"color": "§e", "text": "%1$s", "zh": "%1$s"},
-        {"color": "§7", "text": "/", "zh": "/"},
-        {"color": "§a", "text": "%2$s", "zh": "%2$s"},
-        {"color": "§7", "text": ")", "zh": ")"}
+        {
+          "color": "§7",
+          "text": "Next minion slot: (",
+          "zh": "下一个小人槽位: ("
+        },
+        {
+          "color": "§e",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "/",
+          "zh": "/"
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": ")",
+          "zh": ")"
+        }
       ]
     }
   ],

@@ -1,0 +1,85 @@
+{
+  "npc": "Jerry",
+  "location": "The Garden",
+  "source": "runtime capture (SkyZH) 2026-09-10 花园实测; https://hypixelskyblock.minecraft.wiki/w/Jerry (2026-09-07 更新); 交叉核对 https://hypixel-skyblock.fandom.com/wiki/Jerry (一致)",
+  "fetched_at": "2026-09-10",
+  "verified_ingame": true,
+  "note": "Jerry 作为花园访客(教程里的第一位顾客)。他平时是私人岛屿的向导,说话短促、机械、有点萌(Jerry unhappy),不要把他翻得太流利。私人岛屿等处的台词在 Hub_General/NPC_Message/Jerry.json。",
+  "messages": [
+    {
+      "id": "jerry_garden_request_bread",
+      "context": "教程里的第一位顾客",
+      "raw": "Hello §b%s§f. Glad to meet you here. I need some Bread.",
+      "text": "Hello %s. Glad to meet you here. I need some Bread.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "玩家名",
+          "type": "player_name",
+          "example": "inkkni"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你好,%s。在这儿见到你真好。我需要一些面包。",
+      "segments": [
+        {
+          "color": "",
+          "text": "Hello ",
+          "zh": "你好,"
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§f",
+          "text": ". Glad to meet you here. I need some Bread.",
+          "zh": "。在这儿见到你真好。我需要一些面包。"
+        }
+      ]
+    },
+    {
+      "id": "jerry_garden_request_item",
+      "context": "教程之后的普通来访",
+      "text": "Hello %1$s. Glad to meet you here. I need some %2$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "玩家名",
+          "type": "player_name",
+          "example": "inkkni"
+        },
+        {
+          "token": "%2$s",
+          "desc": "他要的物品,原版材料译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Enchanted Bread"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你好,%1$s。在这儿见到你真好。我需要一些%2$s。"
+    },
+    {
+      "id": "jerry_garden_completing",
+      "context": "",
+      "raw": "§fThis is not my realm. I must return. Thank you.",
+      "text": "This is not my realm. I must return. Thank you.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "此地非我领域。我必须回去了。谢谢你。"
+    },
+    {
+      "id": "jerry_garden_denying",
+      "context": "",
+      "text": "Jerry unhappy.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Jerry 不开心。"
+    }
+  ]
+}

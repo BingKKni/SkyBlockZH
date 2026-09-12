@@ -26,8 +26,16 @@
       "translate": true,
       "zh": "%1$s 开启了花园的地块悬浮字!",
       "segments": [
-        { "color": "§b", "text": "%1$s ", "zh": "%1$s " },
-        { "color": "§c", "text": "enabled Garden Plot Holograms!", "zh": "开启了花园的地块悬浮字!" }
+        {
+          "color": "§b",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§c",
+          "text": "enabled Garden Plot Holograms!",
+          "zh": "开启了花园的地块悬浮字!"
+        }
       ]
     },
     {
@@ -47,8 +55,16 @@
       "translate": true,
       "zh": "%1$s 关闭了花园的地块悬浮字!",
       "segments": [
-        { "color": "§b", "text": "%1$s ", "zh": "%1$s " },
-        { "color": "§c", "text": "disabled Garden Plot Holograms!", "zh": "关闭了花园的地块悬浮字!" }
+        {
+          "color": "§b",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§c",
+          "text": "disabled Garden Plot Holograms!",
+          "zh": "关闭了花园的地块悬浮字!"
+        }
       ]
     },
     {
@@ -74,10 +90,26 @@
       "translate": true,
       "zh": "%1$s 开启了花园的「来访: %2$s」!",
       "segments": [
-        { "color": "§b", "text": "%1$s ", "zh": "%1$s " },
-        { "color": "§a", "text": "enabled Garden Visits: ", "zh": "开启了花园的「来访: " },
-        { "color": "§2", "text": "%2$s", "zh": "%2$s" },
-        { "color": "§a", "text": "!", "zh": "」!" }
+        {
+          "color": "§b",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§a",
+          "text": "enabled Garden Visits: ",
+          "zh": "开启了花园的「来访: "
+        },
+        {
+          "color": "§2",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§a",
+          "text": "!",
+          "zh": "」!"
+        }
       ]
     },
     {
@@ -103,10 +135,879 @@
       "translate": true,
       "zh": "%1$s 关闭了花园的「来访: %2$s」!",
       "segments": [
-        { "color": "§b", "text": "%1$s ", "zh": "%1$s " },
-        { "color": "§a", "text": "disabled Garden Visits: ", "zh": "关闭了花园的「来访: " },
-        { "color": "§2", "text": "%2$s", "zh": "%2$s" },
-        { "color": "§a", "text": "!", "zh": "」!" }
+        {
+          "color": "§b",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§a",
+          "text": "disabled Garden Visits: ",
+          "zh": "关闭了花园的「来访: "
+        },
+        {
+          "color": "§2",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§a",
+          "text": "!",
+          "zh": "」!"
+        }
+      ]
+    },
+    {
+      "id": "gb_visitor_arrived",
+      "context": "有访客到达摊位",
+      "raw": "§6%1$s §ehas arrived on your §aGarden§e!",
+      "text": "%1$s has arrived on your Garden!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "访客 NPC 名,保留英文",
+          "type": "npc_name",
+          "example": "Jerry"
+        }
+      ],
+      "gloss": "NPC 名颜色随稀有度变(Jerry 金色、Jotraeline 绿色),分段只定边界;两个词的名字(Jotraeline Greatforge / Queen Mismyla)同样由 npc_name 一次捕到。",
+      "translate": true,
+      "zh": "%1$s 来到了你的花园!",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§e",
+          "text": "has arrived on your ",
+          "zh": " 来到了你的"
+        },
+        {
+          "color": "§a",
+          "text": "Garden",
+          "zh": "花园"
+        },
+        {
+          "color": "§e",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "gb_offer_accepted",
+      "context": "",
+      "raw": "§6§lOFFER ACCEPTED §8with §6%1$s §8(§6§l%2$s§8)",
+      "text": "OFFER ACCEPTED with %1$s (%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "访客 NPC 名,保留英文",
+          "type": "npc_name",
+          "example": "Jerry"
+        },
+        {
+          "token": "%2$s",
+          "desc": "访客稀有度,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "LEGENDARY"
+        }
+      ],
+      "gloss": "访客的委托统一叫「委托」(Your_Skills.json「接受访客的委托」);with 在中文里换成间隔号。",
+      "translate": true,
+      "zh": "已接受委托 · %1$s (%2$s)",
+      "segments": [
+        {
+          "color": "§6§l",
+          "text": "OFFER ACCEPTED ",
+          "zh": "已接受委托 "
+        },
+        {
+          "color": "§8",
+          "text": "with ",
+          "zh": "· "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§8",
+          "text": "(",
+          "zh": "("
+        },
+        {
+          "color": "§6§l",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§8",
+          "text": ")",
+          "zh": ")"
+        }
+      ]
+    },
+    {
+      "id": "gb_reward_farming_xp",
+      "context": "接受委托后的奖励清单",
+      "raw": "    §8+§3%1$s §7Farming XP",
+      "text": "    +%1$s Farming XP",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "农业经验,可带 k 后缀",
+          "type": "number",
+          "example": "500"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "    +%1$s 农业经验",
+      "segments": [
+        {
+          "color": "",
+          "text": "    ",
+          "zh": "    "
+        },
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§3",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "Farming XP",
+          "zh": " 农业经验"
+        }
+      ]
+    },
+    {
+      "id": "gb_reward_copper",
+      "context": "",
+      "raw": "    §8+§c%1$s Copper",
+      "text": "    +%1$s Copper",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "铜数量",
+          "type": "number",
+          "example": "5"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "    +%1$s 铜",
+      "segments": [
+        {
+          "color": "",
+          "text": "    ",
+          "zh": "    "
+        },
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§c",
+          "text": "%1$s Copper",
+          "zh": "%1$s 铜"
+        }
+      ]
+    },
+    {
+      "id": "gb_reward_visitors",
+      "context": "花园升级的奖励清单",
+      "raw": "    §8+§b%1$s §eVisitors",
+      "text": "    +%1$s Visitors",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "解锁的访客数",
+          "type": "number",
+          "example": "9"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "    +%1$s 位访客",
+      "segments": [
+        {
+          "color": "",
+          "text": "    ",
+          "zh": "    "
+        },
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§b",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§e",
+          "text": "Visitors",
+          "zh": " 位访客"
+        }
+      ]
+    },
+    {
+      "id": "gb_reward_crop",
+      "context": "",
+      "raw": "    §a%1$s §7Crop",
+      "text": "    %1$s Crop",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "作物名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Carrot"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "    %1$s作物",
+      "segments": [
+        {
+          "color": "",
+          "text": "    ",
+          "zh": "    "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "Crop",
+          "zh": "作物"
+        }
+      ]
+    },
+    {
+      "id": "gb_reward_crop_upgrades",
+      "context": "",
+      "raw": "    §aTier I §7Crop Upgrades",
+      "text": "    Tier I Crop Upgrades",
+      "placeholders": [],
+      "gloss": "和 Farming/GUI_Item/Garden_Levels.json 的「第 %1$s 阶作物升级」一致;聊天里只见过 Tier I,先按字面收。",
+      "translate": true,
+      "zh": "    第 I 阶作物升级",
+      "segments": [
+        {
+          "color": "",
+          "text": "    ",
+          "zh": "    "
+        },
+        {
+          "color": "§a",
+          "text": "Tier I ",
+          "zh": "第 I 阶"
+        },
+        {
+          "color": "§7",
+          "text": "Crop Upgrades",
+          "zh": "作物升级"
+        }
+      ]
+    },
+    {
+      "id": "gb_reward_crop_growth",
+      "context": "",
+      "raw": "    §8+§210 Crop Growth",
+      "text": "    +10 Crop Growth",
+      "placeholders": [],
+      "gloss": "每级固定 +10,采集器没把它当占位符;和 Your_Skills.json「+%s 作物生长」一致。",
+      "translate": true,
+      "zh": "    +10 作物生长",
+      "segments": [
+        {
+          "color": "",
+          "text": "    ",
+          "zh": "    "
+        },
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§2",
+          "text": "10 Crop Growth",
+          "zh": "10 作物生长"
+        }
+      ]
+    },
+    {
+      "id": "gb_reward_barn_skin",
+      "context": "",
+      "raw": "    §a%1$s Barn Skin",
+      "text": "    %1$s Barn Skin",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "皮肤名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Medieval"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "    %1$s谷仓皮肤",
+      "segments": [
+        {
+          "color": "",
+          "text": "    ",
+          "zh": "    "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s Barn Skin",
+          "zh": "%1$s谷仓皮肤"
+        }
+      ]
+    },
+    {
+      "id": "gb_reward_gearing_up",
+      "context": "",
+      "raw": "    §8+§7Gearing Up Quest",
+      "text": "    +Gearing Up Quest",
+      "placeholders": [],
+      "gloss": "Gearing Up → 整装待发,沿用 Garden_Levels.json。",
+      "translate": true,
+      "zh": "    +整装待发任务",
+      "segments": [
+        {
+          "color": "",
+          "text": "    ",
+          "zh": "    "
+        },
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§7",
+          "text": "Gearing Up Quest",
+          "zh": "整装待发任务"
+        }
+      ]
+    },
+    {
+      "id": "gb_reward_jacobs_ticket",
+      "context": "",
+      "raw": "    §a%1$s Ticket",
+      "text": "    %1$s Ticket",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "票券前缀,实测有 Jacob's / Carnival 两种,译名走 _shared/Terms.json",
+          "type": "raw",
+          "example": "Jacob's"
+        }
+      ],
+      "gloss": "raw 值 Jacob's → 「Jacob 的」、Carnival → 「嘉年华」,拼出「Jacob 的票券 / 嘉年华票券」。Carnival Ticket 的物品记录写的是「嘉年华门票」,这里是竞赛奖励清单,统一叫票券。",
+      "translate": true,
+      "zh": "    %1$s票券",
+      "segments": [
+        {
+          "color": "",
+          "text": "    ",
+          "zh": "    "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s Ticket",
+          "zh": "%1$s票券"
+        }
+      ]
+    },
+    {
+      "id": "gb_reward_jacobs_ticket_count",
+      "context": "",
+      "raw": "    §aJacob's Ticket §8x%1$s",
+      "text": "    Jacob's Ticket x%1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "数量",
+          "type": "number",
+          "example": "10"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "    Jacob 的票券 x%1$s",
+      "segments": [
+        {
+          "color": "",
+          "text": "    ",
+          "zh": "    "
+        },
+        {
+          "color": "§a",
+          "text": "Jacob's Ticket ",
+          "zh": "Jacob 的票券 "
+        },
+        {
+          "color": "§8",
+          "text": "x%1$s",
+          "zh": "x%1$s"
+        }
+      ]
+    },
+    {
+      "id": "gb_reward_turbo_book_count",
+      "context": "",
+      "raw": "    §8%1$sx §9Turbo-%2$s %3$s Book",
+      "text": "    %1$sx Turbo-%2$s %3$s Book",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "数量",
+          "type": "number",
+          "example": "1"
+        },
+        {
+          "token": "%2$s",
+          "desc": "Turbo 系列作物后缀,按项目规则保留英文",
+          "type": "enchantment_crop",
+          "example": "Cane"
+        },
+        {
+          "token": "%3$s",
+          "desc": "附魔等级",
+          "type": "tier",
+          "example": "I"
+        }
+      ],
+      "gloss": "Turbo 系列附魔名按 2026-09-08 规则保留英文,只译 Book → 附魔书。",
+      "translate": true,
+      "zh": "    %1$sx Turbo-%2$s %3$s 附魔书",
+      "segments": [
+        {
+          "color": "",
+          "text": "    ",
+          "zh": "    "
+        },
+        {
+          "color": "§8",
+          "text": "%1$sx ",
+          "zh": "%1$sx "
+        },
+        {
+          "color": "§9",
+          "text": "Turbo-%2$s %3$s Book",
+          "zh": "Turbo-%2$s %3$s 附魔书"
+        }
+      ]
+    },
+    {
+      "id": "gb_reward_turbo_book",
+      "context": "",
+      "raw": "    §9Turbo-%1$s %2$s Book",
+      "text": "    Turbo-%1$s %2$s Book",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Turbo 系列作物后缀,保留英文",
+          "type": "enchantment_crop",
+          "example": "Carrot"
+        },
+        {
+          "token": "%2$s",
+          "desc": "附魔等级",
+          "type": "tier",
+          "example": "I"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "    Turbo-%1$s %2$s 附魔书",
+      "segments": [
+        {
+          "color": "",
+          "text": "    ",
+          "zh": "    "
+        },
+        {
+          "color": "§9",
+          "text": "Turbo-%1$s %2$s Book",
+          "zh": "Turbo-%1$s %2$s 附魔书"
+        }
+      ]
+    },
+    {
+      "id": "gb_reward_medal",
+      "context": "",
+      "raw": "    §8+§e1 §7%1$s medal",
+      "text": "    +1 %1$s medal",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "奖牌档位 bronze / silver / gold,译名走 _shared/Terms.json 的 medal 类型(大小写不敏感)",
+          "type": "medal",
+          "example": "bronze"
+        }
+      ],
+      "gloss": "小写的 bronze / silver / gold 在词表里译成「铜牌 / 银牌 / 金牌」,所以模板里不再写「奖牌」。",
+      "translate": true,
+      "zh": "    +1 枚%1$s",
+      "segments": [
+        {
+          "color": "",
+          "text": "    ",
+          "zh": "    "
+        },
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§e",
+          "text": "1 ",
+          "zh": "1"
+        },
+        {
+          "color": "§7",
+          "text": "%1$s medal",
+          "zh": " 枚%1$s"
+        }
+      ]
+    },
+    {
+      "id": "gb_reward_purple_candy",
+      "context": "",
+      "raw": "    §5Purple Candy",
+      "text": "    Purple Candy",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "    紫色糖果",
+      "segments": [
+        {
+          "color": "",
+          "text": "    ",
+          "zh": "    "
+        },
+        {
+          "color": "§5",
+          "text": "Purple Candy",
+          "zh": "紫色糖果"
+        }
+      ]
+    },
+    {
+      "id": "gb_reward_medieval_barn_skin",
+      "context": "",
+      "raw": "    §aMedieval Barn Skin",
+      "text": "    Medieval Barn Skin",
+      "placeholders": [],
+      "gloss": "花园升到 3 级时的奖励行,采集器没把 Medieval 当占位符,按字面收;词表里另有 Medieval → 中世纪供模板用。",
+      "translate": true,
+      "zh": "    中世纪谷仓皮肤",
+      "segments": [
+        {
+          "color": "",
+          "text": "    ",
+          "zh": "    "
+        },
+        {
+          "color": "§a",
+          "text": "Medieval Barn Skin",
+          "zh": "中世纪谷仓皮肤"
+        }
+      ]
+    },
+    {
+      "id": "gb_milestone_generic",
+      "context": "首次达成某项里程碑的横幅",
+      "raw": "  §b§lGARDEN MILESTONE §3%1$s %2$s",
+      "text": "  GARDEN MILESTONE %1$s %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "里程碑名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Unique Visitors Served"
+        },
+        {
+          "token": "%2$s",
+          "desc": "里程碑等级",
+          "type": "tier",
+          "example": "I"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "  花园里程碑 %1$s %2$s",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§b§l",
+          "text": "GARDEN MILESTONE ",
+          "zh": "花园里程碑 "
+        },
+        {
+          "color": "§3",
+          "text": "%1$s %2$s",
+          "zh": "%1$s %2$s"
+        }
+      ]
+    },
+    {
+      "id": "gb_milestone_up",
+      "context": "",
+      "raw": "  §b§lGARDEN MILESTONE §3%1$s §8%2$s➜§3%3$s",
+      "text": "  GARDEN MILESTONE %1$s %2$s➜%3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "里程碑名(作物名或访客里程碑名),译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Wheat"
+        },
+        {
+          "token": "%2$s",
+          "desc": "升级前等级",
+          "type": "tier",
+          "example": "II"
+        },
+        {
+          "token": "%3$s",
+          "desc": "升级后等级",
+          "type": "tier",
+          "example": "III"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "  花园里程碑 %1$s %2$s➜%3$s",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§b§l",
+          "text": "GARDEN MILESTONE ",
+          "zh": "花园里程碑 "
+        },
+        {
+          "color": "§3",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§8",
+          "text": "%2$s➜",
+          "zh": "%2$s➜"
+        },
+        {
+          "color": "§3",
+          "text": "%3$s",
+          "zh": "%3$s"
+        }
+      ]
+    },
+    {
+      "id": "gb_milestone_next",
+      "context": "",
+      "raw": "  §6Milestone %1$s in §a%2$s %3$s",
+      "text": "  Milestone %1$s in %2$s %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "下一里程碑等级",
+          "type": "tier",
+          "example": "II"
+        },
+        {
+          "token": "%2$s",
+          "desc": "还差的数量,可带 k 后缀",
+          "type": "number",
+          "example": "50"
+        },
+        {
+          "token": "%3$s",
+          "desc": "作物名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Wheat"
+        }
+      ],
+      "gloss": "里程碑编号保留原文金色,剩余作物数量与名称保留绿色。",
+      "translate": true,
+      "zh": "  达到里程碑 %1$s 还需收集 %2$s 个%3$s",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§6",
+          "text": "Milestone %1$s in ",
+          "zh": "达到里程碑 %1$s 还需收集 "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s %3$s",
+          "zh": "%2$s 个%3$s"
+        }
+      ]
+    },
+    {
+      "id": "gb_level_up",
+      "context": "",
+      "raw": "  §b§lGARDEN LEVEL UP §8%1$s➜§3%2$s",
+      "text": "  GARDEN LEVEL UP %1$s➜%2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "升级前等级",
+          "type": "tier",
+          "example": "II"
+        },
+        {
+          "token": "%2$s",
+          "desc": "升级后等级",
+          "type": "tier",
+          "example": "III"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "  花园升级 %1$s➜%2$s",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§b§l",
+          "text": "GARDEN LEVEL UP ",
+          "zh": "花园升级 "
+        },
+        {
+          "color": "§8",
+          "text": "%1$s➜",
+          "zh": "%1$s➜"
+        },
+        {
+          "color": "§3",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ]
+    },
+    {
+      "id": "gb_contest_rewards_claimed",
+      "context": "",
+      "raw": "  §6§lFARMING CONTEST REWARDS CLAIMED",
+      "text": "  FARMING CONTEST REWARDS CLAIMED",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "  已领取农业竞赛奖励",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§6§l",
+          "text": "FARMING CONTEST REWARDS CLAIMED",
+          "zh": "已领取农业竞赛奖励"
+        }
+      ]
+    },
+    {
+      "id": "gb_contest_entry",
+      "context": "",
+      "raw": "   §e§l» §a%1$s §fContest on §e%2$s %3$s, Year %4$s",
+      "text": "   » %1$s Contest on %2$s %3$s, Year %4$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "竞赛作物名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Wheat"
+        },
+        {
+          "token": "%2$s",
+          "desc": "空岛月份,译名走 _shared/Terms.json 的 skyblock_month",
+          "type": "skyblock_month",
+          "example": "Late Summer"
+        },
+        {
+          "token": "%3$s",
+          "desc": "日期,渲染时去掉英文后缀",
+          "type": "ordinal",
+          "example": "6th"
+        },
+        {
+          "token": "%4$s",
+          "desc": "空岛年份",
+          "type": "number",
+          "example": "513"
+        }
+      ],
+      "gloss": "日期按 GLOSSARY「空岛日期」写成「第 513 年 6 月 6 日」;英文先说作物后说日期,中文倒过来。",
+      "translate": true,
+      "zh": "   » 第 %4$s 年 %2$s %3$s 日的%1$s竞赛",
+      "segments": [
+        {
+          "color": "",
+          "text": "   ",
+          "zh": "   ",
+          "order": 0
+        },
+        {
+          "color": "§e§l",
+          "text": "» ",
+          "zh": "» ",
+          "order": 1
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s",
+          "order": 3
+        },
+        {
+          "color": "§f",
+          "text": "Contest on ",
+          "zh": "竞赛",
+          "order": 4
+        },
+        {
+          "color": "§e",
+          "text": "%2$s %3$s, Year %4$s",
+          "zh": "第 %4$s 年 %2$s %3$s 日的",
+          "order": 2
+        }
       ]
     }
   ]

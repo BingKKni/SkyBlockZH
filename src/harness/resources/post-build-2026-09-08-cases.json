@@ -1,47 +1,970 @@
 {
   "note": "2026-09-08 编译后采集的整段语义/颜色回归。expected 独立手写,不是从语料 zh 自动生成。joined 在玩法名替换前比较,所以期望中保留 SkyBlock。",
   "cases": [
-    {"name":"新地名和蛋名高亮随语序移动", "surface":"ChatMessage", "source":["§d§lHOPPITY'S HUNT §dYou found a §9Chocolate Déjeuner Egg §din §cUnincorporated Territory§d!"], "expected":"§d§lHoppity 的寻兔行动: §d你在§c未辖地§d找到了§9巧克力午宴蛋§d!"},
-    {"name":"树顶地点不是原文短语", "surface":"ChatMessage", "source":["§d§lHOPPITY'S HUNT §dYou found a §aChocolate Supper Egg §datop a tree in the §bColosseum§d!"], "expected":"§d§lHoppity 的寻兔行动: §d你在§b斗兽场§d的一棵树顶上找到了§a巧克力晚膳蛋§d!"},
-    {"name":"墓穴图标沿用服务器字形", "surface":"ActionBar", "source":["§7\uE067 §cCrypts"], "expected":"§7\uE067 §c墓穴"},
-    {"name":"蛋每秒产量跨行颜色排序", "source":["§7Grants §6+50 Chocolate §7per second to","§7your §6Chocolate Factory§7."], "expected":"§7每秒为你的§6巧克力工厂§7提供 §6+50 巧克力§7。"},
-    {"name":"重复兔子so-you断行不漏奖励", "source":["§7You have already found §fSpot§7, so you","§7received §63,725,532 Chocolate§7!"], "expected":"§7你已经找到过 §fSpot§7,因此获得了 §63,725,532 巧克力§7!"},
-    {"name":"重复兔子逗号断行不重复谓语", "source":["§7You have already found §aPenelope§7,","§7so you received §67,433,178 Chocolate§7!"], "expected":"§7你已经找到过 §aPenelope§7,因此获得了 §67,433,178 巧克力§7!"},
-    {"name":"重复兔子商店按数量补偿", "source":["§4❣ §cYou have already found §a12 §cof this","§crabbit! Purchasing it will grant you","§6123,456 Chocolate §cinstead!"], "expected":"§4❣ §c你已经找到过这只兔子 §a12§c 次! 购买后将改为获得 §6123,456 巧克力§c!"},
-    {"name":"兔子每季限购一次", "source":["§8§oThis rabbit can be purchased once","§8§othis season!"], "expected":"§8§o这只兔子本季只能购买一次!"},
-    {"name":"工厂全年开放保留高亮", "source":["§7Meanwhile, he has granted you","§7access to his §6Chocolate Factory §7all","§7year round!"], "expected":"§7同时,他也让你全年都能使用他的§6巧克力工厂§7!"},
-    {"name":"Hoppity活动指整个春季", "source":["§aHoppity the Rabbit §7needs help finding","§7all of his chocolate friends during","§7the §aSpring §7season."], "expected":"§a兔子 Hoppity §7想请你帮个忙,找到他所有的巧克力朋友（活动时间:§a春季§7）。"},
-    {"name":"自动化玩笑三行完整", "source":["§8In the future, everything is §fchrome","§8and everything is §aautomated§8. For this","§8little old factory, that future is §dnow§8!"], "expected":"§8未来,一切都将闪着§f金属光泽§8,一切都将§a自动化§8。而这座小小的老工厂,它的未来就是§d现在§8!"},
-    {"name":"仙女奖励不丢已覆盖的背包尾行", "source":["§7Find §dFairy Souls §7around the world","§7and bring them back to me and I will","§7reward you with SkyBlock XP and","§7Backpack Slots!"], "expected":"§7在世界各地寻找§d仙女之魂§7,带回来交给我,我会奖励你 SkyBlock 经验和收纳背包槽位!"},
-    {"name":"仓库复用背包尾行不会说两遍", "source":["§7Talk to Tia the Fairy to unlock more","§7Backpack Slots!"], "expected":"§7与仙女 Tia 交谈,解锁更多收纳背包槽位!"},
-    {"name":"拍卖出价规则三行", "source":["§7Items offered here are for §6auction§7,","§7meaning you have to place the top","§7bid to acquire them!"], "expected":"§7这里的物品采用§6竞拍§7方式出售,出价最高者得!"},
-    {"name":"拍卖数量一复数同模板", "source":["§7You own §e2 auctions §7in progress or","§7which recently ended."], "expected":"§7你有 §e2 场拍卖§7正在进行或刚刚结束。"},
-    {"name":"拍卖出价与硬币总额不漏行", "source":["§7Your auction has §a1 bid §7totaling","§6800,000 coins§7."], "expected":"§7你的拍卖共收到 §a1 次出价§7,总额为 §6800,000 硬币§7。"},
-    {"name":"凋灵减伤基础款", "source":["§7Reduces the damage you take from","§7withers by §c10%§7."], "expected":"§7受到凋灵的伤害减少 §c10%§7。"},
-    {"name":"Maxor额外箭伤不漏第二效果", "source":["§7Reduces the damage you take from","§7withers by §c10% §7and increases your","§7arrow damage by §c5%§7."], "expected":"§7受到凋灵的伤害减少 §c10%§7,箭矢伤害提高 §c5%§7。"},
-    {"name":"小凋灵间隔与数量上限", "source":["§7Spawns a wither minion every §e30","§7seconds up to a maximum §a1 §7wither."], "expected":"§7每隔 §e30§7 秒召唤一只小凋灵,最多同时存在 §a1§7 只。"},
-    {"name":"巨人重击读取非整数伤害", "source":["§7Slam your sword into the ground dealing","§c185,401.1 §7damage to nearby enemies."], "expected":"§7将剑砸向地面,对附近的敌人造成 §c185,401.1§7 点伤害。"},
-    {"name":"Florid两个治疗量和距离", "source":["§7Heal for §c500❤ §7and heal players within §a8","§7blocks for §c100❤§7."], "expected":"§7为自己恢复 §c500❤§7,并为周围 §a8§7 格内的玩家恢复 §c100❤§7。"},
-    {"name":"AOTV传送加速不丢颜色与图标", "source":["§7Teleport §a8 blocks§7 ahead of you and","§7gain §a+50 §f\uE022 Speed§7 for §a3 seconds§7."], "expected":"§7向前传送 §a8 格§7,获得 §a+50 §f\uE022 速度§7,持续 §a3 秒§7。"},
-    {"name":"以太传送完整距离", "source":["§7Teleport to your targeted block up","§7to §a57 blocks §7away."], "expected":"§7传送到你瞄准的方块,最远 §a57 格§7。"},
-    {"name":"灵性重铸的生成条件完整", "source":["§7Grants a §a10% §7chance to spawn a","§7Spirit Decoy when you kill an enemy","§7in a dungeon."], "expected":"§7有 §a10%§7 的概率在地牢内击杀敌人时生成一个灵魂诱饵。"},
-    {"name":"神话地牢长剑与乱码装饰", "surface":"GUI_Item", "source":["§d§l§ka§r §d§lMYTHIC DUNGEON LONGSWORD §d§l§ka"], "expected":"§d§l§ka §d§l神话地牢长剑 §d§l§ka"},
-    {"name":"右键技能保留前缀图标与粗体", "surface":"GUI_Item", "source":["§b§l⦾ §6Ability: Instant Transmission  §e§lRIGHT CLICK"], "expected":"§b§l⦾ §6技能: 瞬间传送  §e§l右键"},
-    {"name":"染料倍率使用提升N-1", "source":["§eThis dye is §a3x§e as common during","§dSkyBlock Year §5513§e!"], "expected":"§e此染料的掉落概率提升 §a2 倍§e（§dSkyBlock 第 §5513 年§e）!"},
-    {"name":"染料分数旧概率删除线仍在", "source":["§8§m1/250k§a 1§7/§a125k §7drop from completing","§7a Mining Commission."], "expected":"§8§m1/250k§a 1§7/§a125k§7 的掉落概率（完成挖矿委托时）。"},
-    {"name":"彩虹四段字形后恢复灰色", "source":["§7Every §dSkyBlock Year§7, §bVincent§7 picks","§cd§6y§ee§as§7 that he will use to paint a","§7masterpiece!"], "expected":"§7每个§d SkyBlock 年§7,§bVincent§7 都会挑选§c各§6色§e染§a料§7,用来画一幅杰作!"},
-    {"name":"染料击杀来源不拼坏专名", "source":["§7Dropped from killing a §5Voidgloom","§5Seraph§7."], "expected":"§7击杀 §5Voidgloom Seraph§7 时掉落。"},
-    {"name":"附魔实验概率跨行不漏分数", "source":["§8§m1/75k§a 1/37.5k §7from §6Supreme","§6Experiments"], "expected":"§8§m1/75k§a 1/37.5k §7的掉落概率（§6至高实验）"},
-    {"name":"Hex纯数字色值", "surface":"GUI_Item", "source":["§8Hex #702963"], "expected":"§8色值 #702963"},
-    {"name":"Hex纯字母色值", "surface":"GUI_Item", "source":["§8Hex #FFFFFF"], "expected":"§8色值 #FFFFFF"},
-    {"name":"当季材料与公共炖锅保持高亮", "source":["§7Farm crops that are in-season to","§7earn §2Seasoning§7! It'll automatically","§7get donated to the §eCommunal Stew§7."], "expected":"§7收获当季作物,即可获得§2调味料§7! 调味料会自动捐入§e公共炖锅§7。"},
-    {"name":"盛宴时长不硬编码小时", "surface":"GUI_Item", "source":["§eWill be in-season for another 2d 3h!"], "expected":"§e本轮当季时间还剩 2天3小时!"},
-    {"name":"弓术酿饮说明不残留英文尾行", "source":["§7Adds §c+5% §7to the damage of","§7Archery potions."], "expected":"§7使弓术药水的伤害加成提高 §c+5%§7。"},
-    {"name":"Dctr酿饮不是附魔名称", "source":["§7Adds §6+75 Absorption ❤ §7to potions","§7with that stat."], "expected":"§7为带伤害吸收效果的药水额外增加 §6+75❤ 伤害吸收§7。"},
-    {"name":"暴击药水不随附魔名称撤销", "source":["§7Adds §b+10\uE01A Magic Find §7to Critical","§7potions."], "expected":"§7为暴击药水额外增加 §b+10\uE01A 魔法寻宝§7。"},
-    {"name":"NPC兔妹斜体吐槽保留", "surface":"NPC_Message", "source":["§fChocolate is love, chocolate is life. §f§oBut at what cost?"], "expected":"§f巧克力就是爱,巧克力就是生命。§f§o可代价呢?"},
-    {"name":"另一台设备竞速消息", "surface":"ChatMessage", "source":["PRECURSOR RUINS RACE Timer reset to 0:00!"], "expected":"先驱遗迹竞速计时器已重置为 0:00!"},
-    {"name":"教练带NPC前缀和原文尾空格", "surface":"ChatMessage", "source":["§e[NPC] §dCoach Jackrabbit§f: §fIt's not about the individual leaps; it's about how we hop together as a team. "], "expected":"§e[NPC] §dCoach Jackrabbit§f: 关键不在谁一个人跳得多远,而在咱们这支队伍能不能一起往前跳。 "},
-    {"name":"另一台设备时光塔升级", "surface":"ChatMessage", "source":["You upgraded to Time Tower XV!"], "expected":"时光塔已升至 XV 级!"}
+    {
+      "name": "新地名和蛋名高亮随语序移动",
+      "surface": "ChatMessage",
+      "source": [
+        "§d§lHOPPITY'S HUNT §dYou found a §9Chocolate Déjeuner Egg §din §cUnincorporated Territory§d!"
+      ],
+      "expected": "§d§lHoppity 的寻兔行动: §d你在§c未辖地§d找到了§9巧克力午宴蛋§d!"
+    },
+    {
+      "name": "树顶地点不是原文短语",
+      "surface": "ChatMessage",
+      "source": [
+        "§d§lHOPPITY'S HUNT §dYou found a §aChocolate Supper Egg §datop a tree in the §bColosseum§d!"
+      ],
+      "expected": "§d§lHoppity 的寻兔行动: §d你在§b斗兽场§d的一棵树顶上找到了§a巧克力晚膳蛋§d!"
+    },
+    {
+      "name": "墓穴图标沿用服务器字形",
+      "surface": "ActionBar",
+      "source": [
+        "§7 §cCrypts"
+      ],
+      "expected": "§7 §c墓穴"
+    },
+    {
+      "name": "蛋每秒产量跨行颜色排序",
+      "source": [
+        "§7Grants §6+50 Chocolate §7per second to",
+        "§7your §6Chocolate Factory§7."
+      ],
+      "expected": "§7每秒为你的§6巧克力工厂§7提供 §6+50 巧克力§7。"
+    },
+    {
+      "name": "重复兔子so-you断行不漏奖励",
+      "source": [
+        "§7You have already found §fSpot§7, so you",
+        "§7received §63,725,532 Chocolate§7!"
+      ],
+      "expected": "§7你已经找到过 §fSpot§7,因此获得了 §63,725,532 巧克力§7!"
+    },
+    {
+      "name": "重复兔子逗号断行不重复谓语",
+      "source": [
+        "§7You have already found §aPenelope§7,",
+        "§7so you received §67,433,178 Chocolate§7!"
+      ],
+      "expected": "§7你已经找到过 §aPenelope§7,因此获得了 §67,433,178 巧克力§7!"
+    },
+    {
+      "name": "重复兔子商店按数量补偿",
+      "source": [
+        "§4❣ §cYou have already found §a12 §cof this",
+        "§crabbit! Purchasing it will grant you",
+        "§6123,456 Chocolate §cinstead!"
+      ],
+      "expected": "§4❣ §c你已经找到过这只兔子 §a12§c 次! 购买后将改为获得 §6123,456 巧克力§c!"
+    },
+    {
+      "name": "兔子每季限购一次",
+      "source": [
+        "§8§oThis rabbit can be purchased once",
+        "§8§othis season!"
+      ],
+      "expected": "§8§o这只兔子本季只能购买一次!"
+    },
+    {
+      "name": "工厂全年开放保留高亮",
+      "source": [
+        "§7Meanwhile, he has granted you",
+        "§7access to his §6Chocolate Factory §7all",
+        "§7year round!"
+      ],
+      "expected": "§7同时,他也让你全年都能使用他的§6巧克力工厂§7!"
+    },
+    {
+      "name": "Hoppity活动指整个春季",
+      "source": [
+        "§aHoppity the Rabbit §7needs help finding",
+        "§7all of his chocolate friends during",
+        "§7the §aSpring §7season."
+      ],
+      "expected": "§a兔子 Hoppity §7想请你帮个忙,找到他所有的巧克力朋友（活动时间:§a春季§7）。"
+    },
+    {
+      "name": "自动化玩笑三行完整",
+      "source": [
+        "§8In the future, everything is §fchrome",
+        "§8and everything is §aautomated§8. For this",
+        "§8little old factory, that future is §dnow§8!"
+      ],
+      "expected": "§8未来,一切都将闪着§f金属光泽§8,一切都将§a自动化§8。而这座小小的老工厂,它的未来就是§d现在§8!"
+    },
+    {
+      "name": "仙女奖励不丢已覆盖的背包尾行",
+      "source": [
+        "§7Find §dFairy Souls §7around the world",
+        "§7and bring them back to me and I will",
+        "§7reward you with SkyBlock XP and",
+        "§7Backpack Slots!"
+      ],
+      "expected": "§7在世界各地寻找§d仙女之魂§7,带回来交给我,我会奖励你 SkyBlock 经验和收纳背包槽位!"
+    },
+    {
+      "name": "仓库复用背包尾行不会说两遍",
+      "source": [
+        "§7Talk to Tia the Fairy to unlock more",
+        "§7Backpack Slots!"
+      ],
+      "expected": "§7与仙女 Tia 交谈,解锁更多收纳背包槽位!"
+    },
+    {
+      "name": "拍卖出价规则三行",
+      "source": [
+        "§7Items offered here are for §6auction§7,",
+        "§7meaning you have to place the top",
+        "§7bid to acquire them!"
+      ],
+      "expected": "§7这里的物品采用§6竞拍§7方式出售,出价最高者得!"
+    },
+    {
+      "name": "拍卖数量一复数同模板",
+      "source": [
+        "§7You own §e2 auctions §7in progress or",
+        "§7which recently ended."
+      ],
+      "expected": "§7你有 §e2 场拍卖§7正在进行或刚刚结束。"
+    },
+    {
+      "name": "拍卖出价与硬币总额不漏行",
+      "source": [
+        "§7Your auction has §a1 bid §7totaling",
+        "§6800,000 coins§7."
+      ],
+      "expected": "§7你的拍卖共收到 §a1 次出价§7,总额为 §6800,000 硬币§7。"
+    },
+    {
+      "name": "凋灵减伤基础款",
+      "source": [
+        "§7Reduces the damage you take from",
+        "§7withers by §c10%§7."
+      ],
+      "expected": "§7受到凋灵的伤害减少 §c10%§7。"
+    },
+    {
+      "name": "Maxor额外箭伤不漏第二效果",
+      "source": [
+        "§7Reduces the damage you take from",
+        "§7withers by §c10% §7and increases your",
+        "§7arrow damage by §c5%§7."
+      ],
+      "expected": "§7受到凋灵的伤害减少 §c10%§7,箭矢伤害提高 §c5%§7。"
+    },
+    {
+      "name": "小凋灵间隔与数量上限",
+      "source": [
+        "§7Spawns a wither minion every §e30",
+        "§7seconds up to a maximum §a1 §7wither."
+      ],
+      "expected": "§7每隔 §e30§7 秒召唤一只小凋灵,最多同时存在 §a1§7 只。"
+    },
+    {
+      "name": "巨人重击读取非整数伤害",
+      "source": [
+        "§7Slam your sword into the ground dealing",
+        "§c185,401.1 §7damage to nearby enemies."
+      ],
+      "expected": "§7将剑砸向地面,对附近的敌人造成 §c185,401.1§7 点伤害。"
+    },
+    {
+      "name": "Florid两个治疗量和距离",
+      "source": [
+        "§7Heal for §c500❤ §7and heal players within §a8",
+        "§7blocks for §c100❤§7."
+      ],
+      "expected": "§7为自己恢复 §c500❤§7,并为周围 §a8§7 格内的玩家恢复 §c100❤§7。"
+    },
+    {
+      "name": "AOTV传送加速不丢颜色与图标",
+      "source": [
+        "§7Teleport §a8 blocks§7 ahead of you and",
+        "§7gain §a+50 §f Speed§7 for §a3 seconds§7."
+      ],
+      "expected": "§7向前传送 §a8 格§7,获得 §a+50 §f 速度§7,持续 §a3 秒§7。"
+    },
+    {
+      "name": "以太传送完整距离",
+      "source": [
+        "§7Teleport to your targeted block up",
+        "§7to §a57 blocks §7away."
+      ],
+      "expected": "§7传送到你瞄准的方块,最远 §a57 格§7。"
+    },
+    {
+      "name": "灵性重铸的生成条件完整",
+      "source": [
+        "§7Grants a §a10% §7chance to spawn a",
+        "§7Spirit Decoy when you kill an enemy",
+        "§7in a dungeon."
+      ],
+      "expected": "§7有 §a10%§7 的概率在地牢内击杀敌人时生成一个灵魂诱饵。"
+    },
+    {
+      "name": "神话地牢长剑与乱码装饰",
+      "surface": "GUI_Item",
+      "source": [
+        "§d§l§ka§r §d§lMYTHIC DUNGEON LONGSWORD §d§l§ka"
+      ],
+      "expected": "§d§l§ka §d§l神话地牢长剑 §d§l§ka"
+    },
+    {
+      "name": "右键技能保留前缀图标与粗体",
+      "surface": "GUI_Item",
+      "source": [
+        "§b§l⦾ §6Ability: Instant Transmission  §e§lRIGHT CLICK"
+      ],
+      "expected": "§b§l⦾ §6技能: 瞬间传送  §e§l右键"
+    },
+    {
+      "name": "染料倍率使用提升N-1",
+      "source": [
+        "§eThis dye is §a3x§e as common during",
+        "§dSkyBlock Year §5513§e!"
+      ],
+      "expected": "§e此染料的掉落概率提升 §a2 倍§e（§dSkyBlock 第 §5513 年§e）!"
+    },
+    {
+      "name": "染料分数旧概率删除线仍在",
+      "source": [
+        "§8§m1/250k§a 1§7/§a125k §7drop from completing",
+        "§7a Mining Commission."
+      ],
+      "expected": "§8§m1/250k§a 1§7/§a125k§7 的掉落概率（完成挖矿委托时）。"
+    },
+    {
+      "name": "彩虹四段字形后恢复灰色",
+      "source": [
+        "§7Every §dSkyBlock Year§7, §bVincent§7 picks",
+        "§cd§6y§ee§as§7 that he will use to paint a",
+        "§7masterpiece!"
+      ],
+      "expected": "§7每个§d SkyBlock 年§7,§bVincent§7 都会挑选§c各§6色§e染§a料§7,用来画一幅杰作!"
+    },
+    {
+      "name": "染料击杀来源不拼坏专名",
+      "source": [
+        "§7Dropped from killing a §5Voidgloom",
+        "§5Seraph§7."
+      ],
+      "expected": "§7击杀 §5Voidgloom Seraph§7 时掉落。"
+    },
+    {
+      "name": "附魔实验概率跨行不漏分数",
+      "source": [
+        "§8§m1/75k§a 1/37.5k §7from §6Supreme",
+        "§6Experiments"
+      ],
+      "expected": "§8§m1/75k§a 1/37.5k §7的掉落概率（§6至高实验）"
+    },
+    {
+      "name": "Hex纯数字色值",
+      "surface": "GUI_Item",
+      "source": [
+        "§8Hex #702963"
+      ],
+      "expected": "§8色值 #702963"
+    },
+    {
+      "name": "Hex纯字母色值",
+      "surface": "GUI_Item",
+      "source": [
+        "§8Hex #FFFFFF"
+      ],
+      "expected": "§8色值 #FFFFFF"
+    },
+    {
+      "name": "当季材料与公共炖锅保持高亮",
+      "source": [
+        "§7Farm crops that are in-season to",
+        "§7earn §2Seasoning§7! It'll automatically",
+        "§7get donated to the §eCommunal Stew§7."
+      ],
+      "expected": "§7收获当季作物,即可获得§2调味料§7! 调味料会自动捐入§e公共炖锅§7。"
+    },
+    {
+      "name": "盛宴时长不硬编码小时",
+      "surface": "GUI_Item",
+      "source": [
+        "§eWill be in-season for another 2d 3h!"
+      ],
+      "expected": "§e本轮当季时间还剩 2天3小时!"
+    },
+    {
+      "name": "弓术酿饮说明不残留英文尾行",
+      "source": [
+        "§7Adds §c+5% §7to the damage of",
+        "§7Archery potions."
+      ],
+      "expected": "§7使弓术药水的伤害加成提高 §c+5%§7。"
+    },
+    {
+      "name": "Dctr酿饮不是附魔名称",
+      "source": [
+        "§7Adds §6+75 Absorption ❤ §7to potions",
+        "§7with that stat."
+      ],
+      "expected": "§7为带伤害吸收效果的药水额外增加 §6+75❤ 伤害吸收§7。"
+    },
+    {
+      "name": "暴击药水不随附魔名称撤销",
+      "source": [
+        "§7Adds §b+10 Magic Find §7to Critical",
+        "§7potions."
+      ],
+      "expected": "§7为暴击药水额外增加 §b+10 魔法寻宝§7。"
+    },
+    {
+      "name": "NPC兔妹斜体吐槽保留",
+      "surface": "NPC_Message",
+      "source": [
+        "§fChocolate is love, chocolate is life. §f§oBut at what cost?"
+      ],
+      "expected": "§f巧克力就是爱,巧克力就是生命。§f§o可代价呢?"
+    },
+    {
+      "name": "另一台设备竞速消息",
+      "surface": "ChatMessage",
+      "source": [
+        "PRECURSOR RUINS RACE Timer reset to 0:00!"
+      ],
+      "expected": "先驱遗迹竞速计时器已重置为 0:00!"
+    },
+    {
+      "name": "教练带NPC前缀和原文尾空格",
+      "surface": "ChatMessage",
+      "source": [
+        "§e[NPC] §dCoach Jackrabbit§f: §fIt's not about the individual leaps; it's about how we hop together as a team. "
+      ],
+      "expected": "§e[NPC] §dCoach Jackrabbit§f: 关键不在谁一个人跳得多远,而在咱们这支队伍能不能一起往前跳。 "
+    },
+    {
+      "name": "另一台设备时光塔升级",
+      "surface": "ChatMessage",
+      "source": [
+        "You upgraded to Time Tower XV!"
+      ],
+      "expected": "时光塔已升至 XV 级!"
+    },
+    {
+      "name": "农业新手:侧栏一月序数日期",
+      "surface": "ScoreBoard",
+      "source": [
+        "§f Early Spring 1st"
+      ],
+      "expected": "§f 1 月 1 日"
+    },
+    {
+      "name": "农业新手:竞赛月份不遗留Early或Late",
+      "surface": "GUI_Item",
+      "source": [
+        "§aLate Summer 6th, Year 513"
+      ],
+      "expected": "§a第 513 年 6 月 6 日"
+    },
+    {
+      "name": "农业新手:历史竞赛保留年份",
+      "surface": "GUI_Item",
+      "source": [
+        "§aEarly Winter 17th, Year 418"
+      ],
+      "expected": "§a第 418 年 10 月 17 日"
+    },
+    {
+      "name": "农业新手:月底序数不保留st",
+      "surface": "GUI_Item",
+      "source": [
+        "§aSpring 31st, Year 419"
+      ],
+      "expected": "§a第 419 年 2 月 31 日"
+    },
+    {
+      "name": "农业新手:小人名不被圆石方块吃掉",
+      "surface": "GUI_Item",
+      "source": [
+        "§9Cobblestone Minion IV"
+      ],
+      "expected": "§9圆石小人 IV"
+    },
+    {
+      "name": "农业新手:收回小人是操作按钮",
+      "surface": "GUI_Item",
+      "source": [
+        "§aPickup Minion"
+      ],
+      "expected": "§a收回小人"
+    },
+    {
+      "name": "农业新手:唱片访客不是挖矿委托",
+      "surface": "GUI_Item",
+      "source": [
+        "§9Vinyl Collector"
+      ],
+      "expected": "§9黑胶唱片收藏家"
+    },
+    {
+      "name": "农业新手:解锁门槛不是地牢职业名",
+      "surface": "GUI_Item",
+      "source": [
+        "§8Unlocked for SkyBlock Level 40."
+      ],
+      "expected": "§8空岛等级 40 级时解锁。"
+    },
+    {
+      "name": "农业新手:日光保持器提示不是终端广播",
+      "surface": "ChatMessage",
+      "source": [
+        "§cClick on a Day Saver in your inventory to unlock! (0/2)"
+      ],
+      "expected": "§c点击背包中的日光保持器以解锁! (0/2)"
+    },
+    {
+      "name": "农业新手:商店数量不把金额连接词染灰",
+      "surface": "ChatMessage",
+      "source": [
+        "§aYou bought §fExperience Bottle§8 x2 §afor §66 Coins§a!"
+      ],
+      "expected": "§a你购买了§f Experience Bottle§8 ×2§a,金额为 §66 硬币§a!"
+    },
+    {
+      "name": "农业新手:同色物品回购仍正确拆数量",
+      "surface": "ChatMessage",
+      "source": [
+        "§aYou bought back Simple Carrot Candy§8 x2 §afor §62 Coins§a!"
+      ],
+      "expected": "§a你回购了 Simple Carrot Candy§8 ×2§a,金额为 §62 硬币§a!"
+    },
+    {
+      "name": "农业新手:堆肥燃料图标与灰色说明",
+      "source": [
+        "§7The composter must have §22,000",
+        "§2Fuel §7stored to start making compost."
+      ],
+      "expected": "§7堆肥器需要存有 §22,000 燃料§7才会开始制作堆肥。"
+    },
+    {
+      "name": "农业新手:有机物数值后恢复灰色",
+      "source": [
+        "§7The composter must have §b4,000",
+        "§7organic matter stored to start",
+        "§7making compost."
+      ],
+      "expected": "§7堆肥器需要存有 §b4,000§7 有机物才会开始制作堆肥。"
+    },
+    {
+      "name": "农业新手:芯片等级前置仍逐词保色",
+      "source": [
+        "§7Grants §3+1☯ Farming Wisdom §7per §9Chip",
+        "§7Level!"
+      ],
+      "expected": "§7每§9芯片§7等级提供 §3+1☯ 农业智慧§7。"
+    },
+    {
+      "name": "农业新手:里程碑编号保持金色作物数量保持绿色",
+      "surface": "ChatMessage",
+      "source": [
+        "  §6Milestone III in §a1,000 Wheat"
+      ],
+      "expected": "  §6达到里程碑 III 还需收集 §a1,000 个小麦"
+    },
+    {
+      "name": "农业复查:Tab竞赛收集数不能隐藏",
+      "source": [
+        " §c§lBRONZE §fwith §e12,425"
+      ],
+      "expected": " §c§l铜牌档 §e12,425",
+      "surface": "TabList"
+    },
+    {
+      "name": "农业复查:堆肥原料与成品逐词保色",
+      "source": [
+        "§7Fill your composter with §acrops§7, like",
+        "§fWheat §7or §aEnchanted Potato§7, to turn",
+        "§7them into §eOrganic Matter§7. Organic",
+        "§7Matter is used to make §6Compost§7."
+      ],
+      "expected": "§7往堆肥器里放§a作物§7,比如§f小麦§7或§a附魔马铃薯§7,将它们变成§e有机物§7。有机物可用来制作§6堆肥§7。"
+    },
+    {
+      "name": "农业复查:堆肥燃料来源逐词保色",
+      "source": [
+        "§7Fill your composter with §2machine fuel§7,",
+        "§7like §9Biofuel§7 to power the composter",
+        "§7to turn Organic Matter into §6Compost§7."
+      ],
+      "expected": "§7往堆肥器里加§2机器燃料§7,比如§9生物燃料§7,驱动堆肥器将有机物变成§6堆肥§7。"
+    },
+    {
+      "name": "农业复查:跨行任务名高亮",
+      "source": [
+        "§cYou must complete the §6Gathering",
+        "§6Greenhouse Resources§c objective to",
+        "§cuse this!"
+      ],
+      "expected": "§c先完成“§6收集温室材料§c”任务,才能使用!"
+    },
+    {
+      "name": "农业复查:集市购买说明不重复共享尾句",
+      "source": [
+        "§7Purchase resources from the",
+        "§6Bazaar §7that go towards the plot",
+        "§7instead of using inventory or sack",
+        "§7resources."
+      ],
+      "expected": "§7从§6集市§7购买地块所需的材料,不用背包或收纳袋里的材料。"
+    },
+    {
+      "name": "农业复查:粘贴材料及两个仓库独立保色",
+      "source": [
+        "§7While pasting, §fSugar Cane §7will",
+        "§7automatically be consumed from your",
+        "§ainventory §7or §bsacks §7and planted on",
+        "§7the plot."
+      ],
+      "expected": "§7粘贴期间,§f甘蔗§7将自动取自你的§a背包§7或§b收纳袋§7,并种到这块地上。"
+    },
+    {
+      "name": "农业复查:访客装备不丢农业时运颜色",
+      "source": [
+        "§7Complete §aGarden Visitor Offers §7to",
+        "§7gain §6☘ Farming Fortune§7."
+      ],
+      "expected": "§7完成§a花园访客的委托§7,即可获得 §6☘ 农业时运§7。"
+    },
+    {
+      "name": "农业复查:植物诊断跨行温室高亮",
+      "source": [
+        "§7View the detailed properties of a",
+        "§7plant inside the §aGreenhouse§7."
+      ],
+      "expected": "§7查看§a温室§7里某株植物的详细属性。"
+    },
+    {
+      "name": "农业复查:仙人掌刀范围前置不丢颜色",
+      "source": [
+        "§7Increases your speed cap by 100",
+        "§7while in §aThe Garden§7."
+      ],
+      "expected": "§7在§a花园§7里时,速度上限提高 100。"
+    },
+    {
+      "name": "农业复查:洒水壶保留植物及出水量高亮",
+      "source": [
+        "§7Aim and hold in the direction of a",
+        "§2plant §7to water it. Dispenses §b100",
+        "§7water per second."
+      ],
+      "expected": "§7对准§2植物§7按住右键即可浇水。每秒出水 §b100§7。"
+    },
+    {
+      "name": "农业复查:炖汤制作对象地点和成品保色",
+      "source": [
+        "§7Bring to §dAlcina§7 in the §aHub§7 to craft it",
+        "§7into §dStews§7!"
+      ],
+      "expected": "§7交给位于§a主城§7的§d Alcina§7,即可制作§d炖汤§7!"
+    },
+    {
+      "name": "月份全集:侧栏:Early Spring",
+      "surface": "ScoreBoard",
+      "source": [
+        "§f Early Spring 1st"
+      ],
+      "expected": "§f 1 月 1 日"
+    },
+    {
+      "name": "月份全集:日历:Early Spring",
+      "surface": "GUI_Title",
+      "source": [
+        "Early Spring, Year 100"
+      ],
+      "expected": "第 100 年 1 月"
+    },
+    {
+      "name": "月份全集:菜单:Early Spring",
+      "surface": "GUI_Item",
+      "source": [
+        "§7Date: §a1st Early Spring 100"
+      ],
+      "expected": "§7日期: 第 §a100 年 1 月 1 日"
+    },
+    {
+      "name": "月份全集:侧栏:Spring",
+      "surface": "ScoreBoard",
+      "source": [
+        "§f Spring 2nd"
+      ],
+      "expected": "§f 2 月 2 日"
+    },
+    {
+      "name": "月份全集:日历:Spring",
+      "surface": "GUI_Title",
+      "source": [
+        "Spring, Year 100"
+      ],
+      "expected": "第 100 年 2 月"
+    },
+    {
+      "name": "月份全集:菜单:Spring",
+      "surface": "GUI_Item",
+      "source": [
+        "§7Date: §a2nd Spring 100"
+      ],
+      "expected": "§7日期: 第 §a100 年 2 月 2 日"
+    },
+    {
+      "name": "月份全集:侧栏:Late Spring",
+      "surface": "ScoreBoard",
+      "source": [
+        "§f Late Spring 3rd"
+      ],
+      "expected": "§f 3 月 3 日"
+    },
+    {
+      "name": "月份全集:日历:Late Spring",
+      "surface": "GUI_Title",
+      "source": [
+        "Late Spring, Year 100"
+      ],
+      "expected": "第 100 年 3 月"
+    },
+    {
+      "name": "月份全集:菜单:Late Spring",
+      "surface": "GUI_Item",
+      "source": [
+        "§7Date: §a3rd Late Spring 100"
+      ],
+      "expected": "§7日期: 第 §a100 年 3 月 3 日"
+    },
+    {
+      "name": "月份全集:侧栏:Early Summer",
+      "surface": "ScoreBoard",
+      "source": [
+        "§f Early Summer 20th"
+      ],
+      "expected": "§f 4 月 20 日"
+    },
+    {
+      "name": "月份全集:日历:Early Summer",
+      "surface": "GUI_Title",
+      "source": [
+        "Early Summer, Year 100"
+      ],
+      "expected": "第 100 年 4 月"
+    },
+    {
+      "name": "月份全集:菜单:Early Summer",
+      "surface": "GUI_Item",
+      "source": [
+        "§7Date: §a20th Early Summer 100"
+      ],
+      "expected": "§7日期: 第 §a100 年 4 月 20 日"
+    },
+    {
+      "name": "月份全集:侧栏:Summer",
+      "surface": "ScoreBoard",
+      "source": [
+        "§f Summer 1st"
+      ],
+      "expected": "§f 5 月 1 日"
+    },
+    {
+      "name": "月份全集:日历:Summer",
+      "surface": "GUI_Title",
+      "source": [
+        "Summer, Year 100"
+      ],
+      "expected": "第 100 年 5 月"
+    },
+    {
+      "name": "月份全集:菜单:Summer",
+      "surface": "GUI_Item",
+      "source": [
+        "§7Date: §a1st Summer 100"
+      ],
+      "expected": "§7日期: 第 §a100 年 5 月 1 日"
+    },
+    {
+      "name": "月份全集:侧栏:Late Summer",
+      "surface": "ScoreBoard",
+      "source": [
+        "§f Late Summer 2nd"
+      ],
+      "expected": "§f 6 月 2 日"
+    },
+    {
+      "name": "月份全集:日历:Late Summer",
+      "surface": "GUI_Title",
+      "source": [
+        "Late Summer, Year 100"
+      ],
+      "expected": "第 100 年 6 月"
+    },
+    {
+      "name": "月份全集:菜单:Late Summer",
+      "surface": "GUI_Item",
+      "source": [
+        "§7Date: §a2nd Late Summer 100"
+      ],
+      "expected": "§7日期: 第 §a100 年 6 月 2 日"
+    },
+    {
+      "name": "月份全集:侧栏:Early Autumn",
+      "surface": "ScoreBoard",
+      "source": [
+        "§f Early Autumn 3rd"
+      ],
+      "expected": "§f 7 月 3 日"
+    },
+    {
+      "name": "月份全集:日历:Early Autumn",
+      "surface": "GUI_Title",
+      "source": [
+        "Early Autumn, Year 100"
+      ],
+      "expected": "第 100 年 7 月"
+    },
+    {
+      "name": "月份全集:菜单:Early Autumn",
+      "surface": "GUI_Item",
+      "source": [
+        "§7Date: §a3rd Early Autumn 100"
+      ],
+      "expected": "§7日期: 第 §a100 年 7 月 3 日"
+    },
+    {
+      "name": "月份全集:侧栏:Autumn",
+      "surface": "ScoreBoard",
+      "source": [
+        "§f Autumn 20th"
+      ],
+      "expected": "§f 8 月 20 日"
+    },
+    {
+      "name": "月份全集:日历:Autumn",
+      "surface": "GUI_Title",
+      "source": [
+        "Autumn, Year 100"
+      ],
+      "expected": "第 100 年 8 月"
+    },
+    {
+      "name": "月份全集:菜单:Autumn",
+      "surface": "GUI_Item",
+      "source": [
+        "§7Date: §a20th Autumn 100"
+      ],
+      "expected": "§7日期: 第 §a100 年 8 月 20 日"
+    },
+    {
+      "name": "月份全集:侧栏:Late Autumn",
+      "surface": "ScoreBoard",
+      "source": [
+        "§f Late Autumn 1st"
+      ],
+      "expected": "§f 9 月 1 日"
+    },
+    {
+      "name": "月份全集:日历:Late Autumn",
+      "surface": "GUI_Title",
+      "source": [
+        "Late Autumn, Year 100"
+      ],
+      "expected": "第 100 年 9 月"
+    },
+    {
+      "name": "月份全集:菜单:Late Autumn",
+      "surface": "GUI_Item",
+      "source": [
+        "§7Date: §a1st Late Autumn 100"
+      ],
+      "expected": "§7日期: 第 §a100 年 9 月 1 日"
+    },
+    {
+      "name": "月份全集:侧栏:Early Winter",
+      "surface": "ScoreBoard",
+      "source": [
+        "§f Early Winter 2nd"
+      ],
+      "expected": "§f 10 月 2 日"
+    },
+    {
+      "name": "月份全集:日历:Early Winter",
+      "surface": "GUI_Title",
+      "source": [
+        "Early Winter, Year 100"
+      ],
+      "expected": "第 100 年 10 月"
+    },
+    {
+      "name": "月份全集:菜单:Early Winter",
+      "surface": "GUI_Item",
+      "source": [
+        "§7Date: §a2nd Early Winter 100"
+      ],
+      "expected": "§7日期: 第 §a100 年 10 月 2 日"
+    },
+    {
+      "name": "月份全集:侧栏:Winter",
+      "surface": "ScoreBoard",
+      "source": [
+        "§f Winter 3rd"
+      ],
+      "expected": "§f 11 月 3 日"
+    },
+    {
+      "name": "月份全集:日历:Winter",
+      "surface": "GUI_Title",
+      "source": [
+        "Winter, Year 100"
+      ],
+      "expected": "第 100 年 11 月"
+    },
+    {
+      "name": "月份全集:菜单:Winter",
+      "surface": "GUI_Item",
+      "source": [
+        "§7Date: §a3rd Winter 100"
+      ],
+      "expected": "§7日期: 第 §a100 年 11 月 3 日"
+    },
+    {
+      "name": "月份全集:侧栏:Late Winter",
+      "surface": "ScoreBoard",
+      "source": [
+        "§f Late Winter 20th"
+      ],
+      "expected": "§f 12 月 20 日"
+    },
+    {
+      "name": "月份全集:日历:Late Winter",
+      "surface": "GUI_Title",
+      "source": [
+        "Late Winter, Year 100"
+      ],
+      "expected": "第 100 年 12 月"
+    },
+    {
+      "name": "月份全集:菜单:Late Winter",
+      "surface": "GUI_Item",
+      "source": [
+        "§7Date: §a20th Late Winter 100"
+      ],
+      "expected": "§7日期: 第 §a100 年 12 月 20 日"
+    },
+    {
+      "name": "农业复查:日光保持器共享尾行不重复进度",
+      "source": [
+        "§cClick on a Day Saver in your",
+        "§cinventory to unlock! (0/2)."
+      ],
+      "expected": "§c点击背包里的日光保持器即可解锁! (0/2)。"
+    },
+    {
+      "name": "农业复查:夜色保持器不丢共享尾行进度",
+      "source": [
+        "§cClick on a Night Saver in your",
+        "§cinventory to unlock! (0/2)."
+      ],
+      "expected": "§c点击背包里的夜色保持器来解锁! (0/2)。"
+    },
+    {
+      "name": "农业复查:芯片整句不影响访客附魔旧规则",
+      "source": [
+        "§7Grants §60.25☘ Farming Fortune §7per",
+        "§7unique visitor served."
+      ],
+      "expected": "§7提供 §60.25☘ 农业时运§7（每接待一位不同的访客）。"
+    },
+    {
+      "name": "NPC补全:felix_hub_ender_chest",
+      "surface": "ChatMessage",
+      "source": [
+        "You can access your Ender Chest in your SkyBlock Menu."
+      ],
+      "expected": "打开空岛菜单就能找到你的末影箱。"
+    },
+    {
+      "name": "NPC补全:felix_hub_storage",
+      "surface": "ChatMessage",
+      "source": [
+        "Store items in this chest and access them at any time!"
+      ],
+      "expected": "把东西放进这个箱子,随时都能取出来!"
+    },
+    {
+      "name": "NPC补全:jack_hub_profile",
+      "surface": "ChatMessage",
+      "source": [
+        "Your SkyBlock Profile in your SkyBlock Menu shows details about your current stats!"
+      ],
+      "expected": "想看自己现在的属性,打开空岛菜单里的空岛档案就行!"
+    },
+    {
+      "name": "NPC补全:jack_hub_seven_stats",
+      "surface": "ChatMessage",
+      "source": [
+        "There are 7 stats in total, including ❤ Health, ❁ Strength, and ❈ Defense."
+      ],
+      "expected": "一共有 7 种属性,比如 ❤ 生命值、❁ 力量和 ❈ 防御力。"
+    },
+    {
+      "name": "NPC补全:jack_hub_equipment",
+      "surface": "ChatMessage",
+      "source": [
+        "Equipped armor, weapons, and accessories in your inventory all improve your stats."
+      ],
+      "expected": "穿戴的护甲、武器,还有背包里的饰品,都能提升你的属性。"
+    },
+    {
+      "name": "NPC补全:jack_hub_skills",
+      "surface": "ChatMessage",
+      "source": [
+        "Additionally, leveling your Skills can permanently boost some of your stats!"
+      ],
+      "expected": "另外,把技能练上去,还能永久提升部分属性!"
+    },
+    {
+      "name": "NPC补全:jack_hub_health_regen",
+      "surface": "ChatMessage",
+      "source": [
+        "The higher your ❤ Health stat, the faster your health will regenerate!"
+      ],
+      "expected": "你的 ❤ 生命值越高,回血就越快!"
+    },
+    {
+      "name": "NPC补全:鸡宠物农业时运保留图标与颜色",
+      "surface": "ChatMessage",
+      "source": [
+        "§fThat Chicken Pet gives you §6 Farming Fortune§f, which gives you a chance to drop additional crops!"
+      ],
+      "expected": "§f这只鸡宠物会给你 §6 农业时运§f,有概率多掉作物!"
+    },
+    {
+      "name": "NPC补全:Sam双感叹号变体",
+      "surface": "ChatMessage",
+      "source": [
+        "Amazing!!! We got ourselves a brand new plot!!"
+      ],
+      "expected": "太棒了!!! 咱们有一块崭新的地啦!"
+    },
+    {
+      "name": "NPC复查:Kat天数领取提示",
+      "surface": "ChatMessage",
+      "source": [
+        "§fCome back in §e1 day §fto pick it up!"
+      ],
+      "expected": "§e1 天后§f再来接它吧!"
+    },
+    {
+      "name": "NPC复查:Kat时分秒领取倒计时",
+      "surface": "ChatMessage",
+      "source": [
+        "§fYou can pick it up in §e23 hours 59 minutes 55 seconds§f."
+      ],
+      "expected": "§f再过§e23小时59分55秒§f就能接它了。"
+    }
   ]
 }

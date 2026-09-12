@@ -1,0 +1,113 @@
+{
+  "npc": "Jack",
+  "location": "The Garden",
+  "source": "runtime capture (SkyZH) 2026-09-10 花园实测; https://hypixelskyblock.minecraft.wiki/w/Hub_Villagers#Jack (2026-08-18 更新); 交叉核对 https://hypixel-skyblock.fandom.com/wiki/Hub_Villagers",
+  "fetched_at": "2026-09-10",
+  "verified_ingame": true,
+  "note": "Jack 原是大厅村庄里讲属性面板的村民(0.24.2 已从大厅移除),现在只作为花园访客出现。语气像个爱科普的热心村民。",
+  "source_note": "实测和 minecraft.wiki 一样写「on the The Garden」(Hypixel 自己多打了一个 The),fandom 写「on the Garden」;以实测为准,不替 Hypixel 改。",
+  "messages": [
+    {
+      "id": "jack_garden_request",
+      "context": "作为花园访客上门",
+      "raw": "§fDid you know that you gain additional §6☘ Farming Fortune §fwhile on the §aThe Garden§f? You can check it in your SkyBlock Profile!",
+      "text": "Did you know that you gain additional ☘ Farming Fortune while on the The Garden? You can check it in your SkyBlock Profile!",
+      "placeholders": [],
+      "gloss": "属性图标原样保留(引擎会换回服务器字形);Farming Fortune → 农业时运。英文先说时运再说地点,中文倒过来,用 order 调换。",
+      "translate": true,
+      "zh": "你知道吗? 待在花园里能额外获得 ☘ 农业时运! 打开你的 SkyBlock 档案就能看到。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Did you know that you gain additional ",
+          "zh": "你知道吗? 待在",
+          "order": 0
+        },
+        {
+          "color": "§6",
+          "text": "☘ Farming Fortune ",
+          "zh": "☘ 农业时运",
+          "order": 3
+        },
+        {
+          "color": "§f",
+          "text": "while on the ",
+          "zh": "花园",
+          "order": 1
+        },
+        {
+          "color": "§a",
+          "text": "The Garden",
+          "zh": "里能额外获得 ",
+          "order": 2
+        },
+        {
+          "color": "§f",
+          "text": "? You can check it in your SkyBlock Profile!",
+          "zh": "! 打开你的 SkyBlock 档案就能看到。",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "jack_garden_completing",
+      "context": "",
+      "raw": "§fThanks for the crops. See ya around.",
+      "text": "Thanks for the crops. See ya around.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "谢谢你的庄稼。回头见。"
+    },
+    {
+      "id": "jack_garden_denying",
+      "context": "",
+      "text": "I'll come by later.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "那我晚点再来。"
+    },
+    {
+      "id": "jack_garden_request_fandom",
+      "context": "Fandom 花园访客台词省去重复的 The;实测版本保留",
+      "text": "Did you know that you gain additional ☘ Farming Fortune while on the Garden? You can check it in your SkyBlock Profile!",
+      "placeholders": [],
+      "gloss": "两家社区 Wiki 的冠词不同,保留两种写法。",
+      "translate": true,
+      "zh": "你知道吗? 待在花园里能额外获得 ☘ 农业时运! 打开你的 SkyBlock 档案就能看到。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Did you know that you gain additional ",
+          "zh": "你知道吗? 待在",
+          "order": 0
+        },
+        {
+          "color": "§6",
+          "text": "☘ Farming Fortune ",
+          "zh": "☘ 农业时运",
+          "order": 3
+        },
+        {
+          "color": "§f",
+          "text": "while on the ",
+          "zh": "花园",
+          "order": 1
+        },
+        {
+          "color": "§a",
+          "text": "Garden",
+          "zh": "里能额外获得 ",
+          "order": 2
+        },
+        {
+          "color": "§f",
+          "text": "? You can check it in your SkyBlock Profile!",
+          "zh": "! 打开你的 SkyBlock 档案就能看到。",
+          "order": 4
+        }
+      ]
+    }
+  ]
+}

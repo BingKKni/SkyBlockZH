@@ -1,7 +1,7 @@
 {
   "npc": "Jacob",
-  "source": "logs/latest.log; https://hypixelskyblock.minecraft.wiki/w/Jacob",
-  "fetched_at": "2026-09-05",
+  "source": "logs/latest.log; runtime capture (SkyZH) 2026-09-10 花园与竞赛实测; https://hypixelskyblock.minecraft.wiki/w/Jacob (2026-09-03 更新); 交叉核对 https://hypixel-skyblock.fandom.com/wiki/Jacob",
+  "fetched_at": "2026-09-10",
   "verified_ingame": true,
   "messages": [
     {
@@ -13,6 +13,683 @@
       "gloss": "沿用农业竞赛的既有玩法称呼,Jacob 人名不翻译。",
       "translate": true,
       "zh": "我的农业竞赛开始了!"
+    },
+    {
+      "id": "jacob_howdy",
+      "context": "农业等级不到 10 级时的招呼",
+      "raw": "Howdy!",
+      "text": "Howdy!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "嘿,你好啊!"
+    },
+    {
+      "id": "jacob_organize_contests",
+      "context": "",
+      "raw": "I organize farming contests once every few days!",
+      "text": "I organize farming contests once every few days!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "我隔几天就办一场农业竞赛!"
+    },
+    {
+      "id": "jacob_need_farming_x",
+      "context": "",
+      "raw": "You need §aFarming X §rto participate! :)",
+      "text": "You need Farming X to participate! :)",
+      "placeholders": [],
+      "gloss": "Farming X 是农业技能 10 级,按「农业 10 级」的既定写法;高亮段落只放等级本身。",
+      "translate": true,
+      "zh": "你得先把农业练到 10 级才能参赛! :)",
+      "segments": [
+        {
+          "color": "",
+          "text": "You need ",
+          "zh": "你得先把"
+        },
+        {
+          "color": "§a",
+          "text": "Farming X ",
+          "zh": "农业练到 10 级"
+        },
+        {
+          "color": "§r",
+          "text": "to participate! :)",
+          "zh": "才能参赛! :)"
+        }
+      ]
+    },
+    {
+      "id": "jacob_howdy_fine_day",
+      "context": "农业到 10 级后第一次对话",
+      "raw": "Howdy! Fine day eh?",
+      "text": "Howdy! Fine day eh?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "嘿! 今天天气不错啊?"
+    },
+    {
+      "id": "jacob_mighty_farmer",
+      "context": "",
+      "raw": "You wouldn't happen to be one mighty farmer eh?",
+      "text": "You wouldn't happen to be one mighty farmer eh?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你该不会就是那位了不起的农夫吧,啊?"
+    },
+    {
+      "id": "jacob_mighty_fine_farmer",
+      "context": "",
+      "text": "You wouldn't happen to be one mighty fine farmer eh?",
+      "placeholders": [],
+      "gloss": "Wiki 写法(多一个 fine),未实测。",
+      "translate": true,
+      "zh": "你该不会就是那位了不起的好农夫吧,啊?"
+    },
+    {
+      "id": "jacob_coordinate_contest",
+      "context": "",
+      "raw": "Well, well! I coordinate a §efarming contest §revery few SkyBlock days, eh?",
+      "text": "Well, well! I coordinate a farming contest every few SkyBlock days, eh?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "好嘛,好嘛! 每隔几个空岛日,我就张罗一场农业竞赛,懂吧?",
+      "segments": [
+        {
+          "color": "",
+          "text": "Well, well! I coordinate a ",
+          "zh": "好嘛,好嘛! 每隔几个空岛日,我就张罗一场"
+        },
+        {
+          "color": "§e",
+          "text": "farming contest ",
+          "zh": "农业竞赛"
+        },
+        {
+          "color": "§r",
+          "text": "every few SkyBlock days, eh?",
+          "zh": ",懂吧?"
+        }
+      ]
+    },
+    {
+      "id": "jacob_check_calendar",
+      "context": "",
+      "raw": "Check ye calendar eh? Or better yet, click me to learn more, eh!",
+      "text": "Check ye calendar eh? Or better yet, click me to learn more, eh!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "去翻翻你的日历呗? 或者干脆再点我一下,我细说给你听!"
+    },
+    {
+      "id": "jacob_finnegan_lenient",
+      "context": "Finnegan 当市长时竞赛开始的广播",
+      "text": "Finnegan is forcing me to be more lenient with rankings...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Finnegan 非逼着我把名次划得宽松点……"
+    },
+    {
+      "id": "jacob_anita_talisman",
+      "context": "竞赛开始时佩戴 Anita 饰品",
+      "text": "Your Anita's Talisman is giving you +5 %s Fortune during the contest!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "作物名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Sugar Cane"
+        }
+      ],
+      "gloss": "Wiki 写作 [crop] Fortune,作物名走词表;「Anita's Talisman」是饰品名,只翻通用词 Talisman → 护符。",
+      "translate": true,
+      "zh": "你的 Anita 护符在本场竞赛中为你提供 +5 %s时运!"
+    },
+    {
+      "id": "jacob_anita_ring",
+      "context": "",
+      "text": "Your Anita's Ring is giving you +15 %s Fortune during the contest!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "作物名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Sugar Cane"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的 Anita 戒指在本场竞赛中为你提供 +15 %s时运!"
+    },
+    {
+      "id": "jacob_anita_artifact",
+      "context": "",
+      "text": "Your Anita's Artifact is giving you +25 %s Fortune during the contest!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "作物名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Sugar Cane"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的 Anita 神器在本场竞赛中为你提供 +25 %s时运!"
+    },
+    {
+      "id": "jacob_personal_best",
+      "context": "竞赛期间超过个人最佳时",
+      "raw": "§d§lPERSONAL BEST§f! You've surpassed your previous record of §e%1$s §fitems collected in the §a%2$s Contest§f!",
+      "text": "PERSONAL BEST! You've surpassed your previous record of %1$s items collected in the %2$s Contest!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "此前的个人最佳数量",
+          "type": "number",
+          "example": "3,040"
+        },
+        {
+          "token": "%2$s",
+          "desc": "竞赛作物名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Sugar Cane"
+        }
+      ],
+      "gloss": "英文先说数量后说作物,中文按语序调换,靠 order 让两个高亮段各自带着颜色走。",
+      "translate": true,
+      "zh": "个人最佳! 你刷新了自己在%2$s竞赛中的纪录,此前是 %1$s 个!",
+      "segments": [
+        {
+          "color": "§d§l",
+          "text": "PERSONAL BEST",
+          "zh": "个人最佳",
+          "order": 0
+        },
+        {
+          "color": "§f",
+          "text": "! You've surpassed your previous record of ",
+          "zh": "! 你刷新了自己在",
+          "order": 1
+        },
+        {
+          "color": "§e",
+          "text": "%1$s ",
+          "zh": "%1$s",
+          "order": 4
+        },
+        {
+          "color": "§f",
+          "text": "items collected in the ",
+          "zh": "中的纪录,此前是 ",
+          "order": 3
+        },
+        {
+          "color": "§a",
+          "text": "%2$s Contest",
+          "zh": "%2$s竞赛",
+          "order": 2
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": " 个!",
+          "order": 5
+        }
+      ]
+    },
+    {
+      "id": "jacob_keep_it_up",
+      "context": "",
+      "raw": "Keep it up!",
+      "text": "Keep it up!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "再接再厉!"
+    },
+    {
+      "id": "jacob_contest_over",
+      "context": "竞赛结束播报",
+      "raw": "§fThe Farming Contest is over!",
+      "text": "The Farming Contest is over!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "农业竞赛结束了!"
+    },
+    {
+      "id": "jacob_count_final_results",
+      "context": "",
+      "raw": "§fLet me count the final results eh?",
+      "text": "Let me count the final results eh?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "让我来算算最终成绩,啊?"
+    },
+    {
+      "id": "jacob_count_results",
+      "context": "",
+      "text": "Let me count the results eh?",
+      "placeholders": [],
+      "gloss": "Wiki 另一种写法(少了 final),未实测。",
+      "translate": true,
+      "zh": "让我来算算成绩,啊?"
+    },
+    {
+      "id": "jacob_placed_bracket",
+      "context": "",
+      "raw": "You placed in the §c§l%1$s §fbracket in the §a%2$s Contest§f!",
+      "text": "You placed in the %1$s bracket in the %2$s Contest!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "名次档位 BRONZE / SILVER / GOLD / PLATINUM / DIAMOND,译名走 _shared/Terms.json 的 medal 类型(铜牌/银牌/金牌/白金/钻石)",
+          "type": "medal",
+          "example": "BRONZE"
+        },
+        {
+          "token": "%2$s",
+          "desc": "竞赛作物名",
+          "type": "category_name",
+          "example": "Sugar Cane"
+        }
+      ],
+      "gloss": "档位颜色随档位变(铜是 §c),分段只定边界。",
+      "translate": true,
+      "zh": "你在%2$s竞赛中进入了%1$s档!",
+      "segments": [
+        {
+          "color": "",
+          "text": "You placed in the ",
+          "zh": "你在",
+          "order": 0
+        },
+        {
+          "color": "§c§l",
+          "text": "%1$s ",
+          "zh": "%1$s",
+          "order": 3
+        },
+        {
+          "color": "§f",
+          "text": "bracket in the ",
+          "zh": "档!",
+          "order": 4
+        },
+        {
+          "color": "§a",
+          "text": "%2$s Contest",
+          "zh": "%2$s竞赛",
+          "order": 1
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "中进入了",
+          "order": 2
+        }
+      ]
+    },
+    {
+      "id": "jacob_collected_personal_best",
+      "context": "",
+      "raw": "You collected §e%1$s §fitems! §d§lPERSONAL BEST§f!",
+      "text": "You collected %1$s items! PERSONAL BEST!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "收集数量",
+          "type": "number",
+          "example": "16,925"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你收集了 %1$s 个! 个人最佳!",
+      "segments": [
+        {
+          "color": "",
+          "text": "You collected ",
+          "zh": "你收集了 "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§f",
+          "text": "items! ",
+          "zh": " 个! "
+        },
+        {
+          "color": "§d§l",
+          "text": "PERSONAL BEST",
+          "zh": "个人最佳"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "jacob_collected",
+      "context": "",
+      "text": "You collected %1$s items!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "收集数量",
+          "type": "number",
+          "example": "4,527"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你收集了 %1$s 个!"
+    },
+    {
+      "id": "jacob_previous_personal_best",
+      "context": "",
+      "raw": "Your previous Personal Best was §e%1$s§f.",
+      "text": "Your previous Personal Best was %1$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "此前的个人最佳",
+          "type": "number",
+          "example": "3,040"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你此前的个人最佳是 %1$s 个。",
+      "segments": [
+        {
+          "color": "",
+          "text": "Your previous Personal Best was ",
+          "zh": "你此前的个人最佳是 "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": " 个。"
+        }
+      ]
+    },
+    {
+      "id": "jacob_personal_bests_perk",
+      "context": "",
+      "text": "Your Personal Bests perk is now granting you +%1$s☘ %2$s Fortune!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "时运数值",
+          "type": "number",
+          "example": "12.34"
+        },
+        {
+          "token": "%2$s",
+          "desc": "作物名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Sugar Cane"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的个人最佳天赋现在为你提供 +%1$s☘ %2$s时运!"
+    },
+    {
+      "id": "jacob_no_medal",
+      "context": "",
+      "raw": "You didn't earn a medal, but you may claim a participation reward in the §a%1$s Contest§f!",
+      "text": "You didn't earn a medal, but you may claim a participation reward in the %1$s Contest!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "竞赛作物名",
+          "type": "category_name",
+          "example": "Wheat"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你没拿到奖牌,不过可以领一份%1$s竞赛的参与奖!",
+      "segments": [
+        {
+          "color": "",
+          "text": "You didn't earn a medal, but you may claim a participation reward in the ",
+          "zh": "你没拿到奖牌,不过可以领一份"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s Contest",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "竞赛的参与奖!"
+        }
+      ]
+    },
+    {
+      "id": "jacob_see_me_in_hub",
+      "context": "",
+      "raw": "Come see me in the §aHub §fto claim your reward!",
+      "text": "Come see me in the Hub to claim your reward!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "来大厅找我领奖!",
+      "segments": [
+        {
+          "color": "",
+          "text": "Come see me in the ",
+          "zh": "来"
+        },
+        {
+          "color": "§a",
+          "text": "Hub ",
+          "zh": "大厅"
+        },
+        {
+          "color": "§f",
+          "text": "to claim your reward!",
+          "zh": "找我领奖!"
+        }
+      ]
+    },
+    {
+      "id": "jacob_couldnt_figure",
+      "context": "",
+      "text": "Uh oh! Couldn't figure out how well ya did!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "糟糕! 我没算出来你这场发挥得怎么样!"
+    },
+    {
+      "id": "jacob_see_me_anyway",
+      "context": "",
+      "text": "Come see me in the hub anyway!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "不管怎样,来大厅找我一趟吧!"
+    },
+    {
+      "id": "jacob_garden_request",
+      "context": "作为花园访客上门",
+      "raw": "§fHowdy! Fine barn ye got there eh? Good lad, you think ye could get me some wheat, eh?",
+      "text": "Howdy! Fine barn ye got there eh? Good lad, you think ye could get me some wheat, eh?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "嘿! 你这谷仓真不赖啊? 好小伙,能给我弄点小麦来不?"
+    },
+    {
+      "id": "jacob_garden_completing",
+      "context": "",
+      "raw": "§fThanks a lot matey. That'll help ye prepare my next farming contest eh?",
+      "text": "Thanks a lot matey. That'll help ye prepare my next farming contest eh?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "多谢了伙计。这下我下一场农业竞赛就好准备了,啊?"
+    },
+    {
+      "id": "jacob_garden_denying",
+      "context": "",
+      "text": "Gosh darn it matey, can't believe ya do me like that, eh?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "哎哟我的天,伙计,你真忍心这么对我,啊?"
+    },
+    {
+      "id": "jacob_phone_howdy",
+      "context": "Abiphone 加联系人",
+      "text": "✆ Howdy!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 嘿,你好啊!"
+    },
+    {
+      "id": "jacob_phone_abithingy",
+      "context": "",
+      "text": "✆ You want my abithingy eh?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 你想要我那个啥……Abi 什么玩意儿的联系方式?"
+    },
+    {
+      "id": "jacob_phone_ma",
+      "context": "",
+      "text": "✆ Ma' always told me to worry of stuff I don't understand.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 我妈总说,搞不懂的东西要多留个心眼。"
+    },
+    {
+      "id": "jacob_phone_not_stupid",
+      "context": "",
+      "text": "✆ I'm far from stupid, don't get me wrong, eh.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 别误会,我可一点都不傻,啊。"
+    },
+    {
+      "id": "jacob_phone_simple_life",
+      "context": "",
+      "text": "✆ I simply enjoy a more simple life, ye?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 我只是更喜欢简简单单地过日子,懂吧?"
+    },
+    {
+      "id": "jacob_phone_ten_tickets",
+      "context": "",
+      "text": "✆ Ya sure can add my contact, against 10 Jacob's Ticket, eh?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 加我当然行,拿 10 张 Jacob 的票券来换,啊?"
+    },
+    {
+      "id": "jacob_phone_nice_try",
+      "ref": "Mining/NPC_Message/Queen_Mismyla.json#queen_mismyla_you_don_t_have_what",
+      "context": "没带够 10 张 Jacob 的票券"
+    },
+    {
+      "id": "jacob_phone_not_too_often",
+      "context": "",
+      "text": "✆ Ya won't call me too often, eh?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 你不会老给我打电话吧,啊?"
+    },
+    {
+      "id": "jacob_phone_contests_today",
+      "context": "竞赛期间打电话",
+      "text": "✆ Howdy, just telling ya there are contests today for %1$s, %2$s, and %3$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "作物名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Sugar Cane"
+        },
+        {
+          "token": "%2$s",
+          "desc": "作物名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Sugar Cane"
+        },
+        {
+          "token": "%3$s",
+          "desc": "作物名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Sugar Cane"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 嘿,跟你说一声,今天的竞赛作物是%1$s、%2$s和%3$s!"
+    },
+    {
+      "id": "jacob_phone_hope_farming",
+      "context": "",
+      "text": "✆ Hope to see ya farming!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 希望能看到你下地干活!"
+    },
+    {
+      "id": "jacob_lots_of_medals",
+      "context": "一次领取超过 28 场竞赛的奖励",
+      "text": "Hot diggity, that's a lot of medals! I gave ya some rewards, speak with me if you're interested in the rest.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "好家伙,这么多奖牌! 我先给你发一部分奖励,剩下的想要就再来找我。"
+    },
+    {
+      "id": "jacob_howdy_no_punctuation",
+      "context": "社区 Wiki 收录的大厅新手引导台词",
+      "text": "Howdy",
+      "placeholders": [],
+      "gloss": "Wiki 原文,未伪造游戏内颜色 raw;分段在运行时采样实际文字颜色。",
+      "translate": true,
+      "zh": "嘿,你好啊!"
     }
+  ],
+  "note": "Jacob,农舍和花园里主持农业竞赛的老农夫,Finnegan 市长的姐夫/妹夫。对玩家是热情的乡下大叔口吻,几乎句句带「eh?」「ye」「matey」这种口头禅;中文用「嘿」「啊」「伙计」这类语气词还原,不写成书面通知。竞赛结算那几句是系统性播报,事实(名次档位、数量、作物)一个字不能改。竞赛结束的播报在大厅和花园里都会出现,同一句只在这一个文件里写一份。",
+  "source_note": [
+    "「You wouldn't happen to be one mighty farmer eh?」实测没有 Wiki 里的 fine 一词,两家 Wiki 都写 fine;差一个词,两种写法都保留。",
+    "「Howdy」Wiki 无感叹号,实测有;以实测为准。"
   ]
 }

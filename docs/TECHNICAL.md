@@ -125,7 +125,7 @@ Mod Menu is a soft dependency. Without it, edit `config/skyzh.json`, which docum
 |---|---|---|
 | `enabled` | on | Master switch |
 | `translateSkyBlockName` | on | Render "SkyBlock" as 空岛生存. Compounds use the short form and get their spacing fixed: `你的 SkyBlock 等级` → `你的空岛等级`; standalone occurrences keep the full name. See below for where the substitution is allowed to happen |
-| `showOriginal` | on | Keep the English beside the Chinese, as 收藏品（Collections）. Applies to container titles, item names, and to names that appear inside chat NPC lines or item lore (象牙化石（Tusk Fossil）). Hold **Show original text (default X)** to show every surface in English temporarily — capture is not turned off. Rebind or unbind to NONE in vanilla Controls |
+| `showOriginal` | on | Retain English search names only for real SkyBlock items, including soulbound items and item references in chat/lore. Excludes menu titles, controls, pages, events, stats and states. `ItemNames` reads a bundled offline NEU catalog and declines unknown names. Hold Show original text (default X) for all original text without disabling capture |
 | `captureUntranslated` | **off** | A switch for whoever is filling the corpus in. It writes files to your disk; leave it off to play. See below |
 | `captureNotifications` | on | Report newly captured untranslated text, colour errors and mixed-language text in chat. Turning reports off does not stop file writes |
 | `autoClearCapture` | **off** | Clear the previous captures once per client launch, whether or not capture is enabled or a server is joined. Reconnecting never clears files |

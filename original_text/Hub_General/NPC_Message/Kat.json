@@ -1,7 +1,7 @@
 {
   "npc": "Kat",
   "location": "Pet Care",
-  "source": "runtime capture (SkyZH) 2026-09-03",
+  "source": "runtime capture (SkyZH) 2026-09-03; https://hypixelskyblock.minecraft.wiki/w/Kat; 交叉核对 https://hypixel-skyblock.fandom.com/wiki/Kat",
   "fetched_at": "2026-09-03",
   "verified_ingame": true,
   "messages": [
@@ -41,17 +41,43 @@
       "raw": "I'll get your §f%1$s §fupgraded to §a§l%2$s §fin no time!",
       "text": "I'll get your %1$s upgraded to %2$s in no time!",
       "placeholders": [
-        {"token": "%1$s", "desc": "当前宠物名，译名走 Terms", "type": "mob_name", "example": "Rock"},
-        {"token": "%2$s", "desc": "目标稀有度，译名走 Terms", "type": "category_name", "example": "UNCOMMON"}
+        {
+          "token": "%1$s",
+          "desc": "当前宠物名，译名走 Terms",
+          "type": "mob_name",
+          "example": "Rock"
+        },
+        {
+          "token": "%2$s",
+          "desc": "目标稀有度，译名走 Terms",
+          "type": "category_name",
+          "example": "UNCOMMON"
+        }
       ],
       "gloss": "宠物种类和目标稀有度都随本次订单变化。",
       "translate": true,
       "zh": "我很快就能把你的%1$s升级到%2$s!",
       "segments": [
-        {"color": "", "text": "I'll get your ", "zh": "我很快就能把你的"},
-        {"color": "§f", "text": "%1$s upgraded to ", "zh": "%1$s升级到"},
-        {"color": "§a§l", "text": "%2$s ", "zh": "%2$s"},
-        {"color": "§f", "text": "in no time!", "zh": "!"}
+        {
+          "color": "",
+          "text": "I'll get your ",
+          "zh": "我很快就能把你的"
+        },
+        {
+          "color": "§f",
+          "text": "%1$s upgraded to ",
+          "zh": "%1$s升级到"
+        },
+        {
+          "color": "§a§l",
+          "text": "%2$s ",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§f",
+          "text": "in no time!",
+          "zh": "!"
+        }
       ]
     },
     {
@@ -59,14 +85,34 @@
       "context": "告知宠物升级完成所需天数",
       "raw": "Come back in §e1 day §fto pick it up!",
       "text": "Come back in %s days to pick it up!",
-      "placeholders": [{"token": "%s", "desc": "等待天数", "type": "number", "example": "1"}],
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "等待天数",
+          "type": "number",
+          "example": "1"
+        }
+      ],
       "gloss": "模板写复数 days，由引擎同时匹配 1 day。",
       "translate": true,
       "zh": "%s 天后再来接它吧!",
       "segments": [
-        {"color": "", "text": "Come back in ", "zh": "", "omit": true},
-        {"color": "§e", "text": "%s days ", "zh": "%s 天后"},
-        {"color": "§f", "text": "to pick it up!", "zh": "再来接它吧!"}
+        {
+          "color": "",
+          "text": "Come back in ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§e",
+          "text": "%s days ",
+          "zh": "%s 天后"
+        },
+        {
+          "color": "§f",
+          "text": "to pick it up!",
+          "zh": "再来接它吧!"
+        }
       ]
     },
     {
@@ -74,13 +120,28 @@
       "context": "宠物正在升级中",
       "raw": "I'm currently taking care of your §f%s§f!",
       "text": "I'm currently taking care of your %s!",
-      "placeholders": [{"token": "%s", "desc": "正在照顾的宠物名，译名走 Terms", "type": "mob_name", "example": "Rock"}],
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "正在照顾的宠物名，译名走 Terms",
+          "type": "mob_name",
+          "example": "Rock"
+        }
+      ],
       "gloss": "",
       "translate": true,
       "zh": "我正在照顾你的%s!",
       "segments": [
-        {"color": "", "text": "I'm currently taking care of your ", "zh": "我正在照顾你的"},
-        {"color": "§f", "text": "%s!", "zh": "%s!"}
+        {
+          "color": "",
+          "text": "I'm currently taking care of your ",
+          "zh": "我正在照顾你的"
+        },
+        {
+          "color": "§f",
+          "text": "%s!",
+          "zh": "%s!"
+        }
       ]
     },
     {
@@ -99,18 +160,178 @@
       "raw": "You can pick it up in §e%1$s hours %2$s minutes %3$s seconds§f.",
       "text": "You can pick it up in %1$s hours %2$s minutes %3$s seconds.",
       "placeholders": [
-        {"token": "%1$s", "desc": "剩余小时", "type": "number", "example": "23"},
-        {"token": "%2$s", "desc": "剩余分钟", "type": "number", "example": "59"},
-        {"token": "%3$s", "desc": "剩余秒数", "type": "number", "example": "55"}
+        {
+          "token": "%1$s",
+          "desc": "剩余小时",
+          "type": "number",
+          "example": "23"
+        },
+        {
+          "token": "%2$s",
+          "desc": "剩余分钟",
+          "type": "number",
+          "example": "59"
+        },
+        {
+          "token": "%3$s",
+          "desc": "剩余秒数",
+          "type": "number",
+          "example": "55"
+        }
       ],
       "gloss": "复数词尾由引擎兼容单数。",
       "translate": true,
       "zh": "再过 %1$s小时%2$s分%3$s秒就能接它了。",
       "segments": [
-        {"color": "", "text": "You can pick it up in ", "zh": "再过"},
-        {"color": "§e", "text": "%1$s hours %2$s minutes %3$s seconds", "zh": "%1$s小时%2$s分%3$s秒"},
-        {"color": "§f", "text": ".", "zh": "就能接它了。"}
+        {
+          "color": "",
+          "text": "You can pick it up in ",
+          "zh": "再过"
+        },
+        {
+          "color": "§e",
+          "text": "%1$s hours %2$s minutes %3$s seconds",
+          "zh": "%1$s小时%2$s分%3$s秒"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "就能接它了。"
+        }
       ]
+    },
+    {
+      "id": "kat_oh_hey",
+      "context": "宠物升级完成后来领取",
+      "raw": "Oh, hey!",
+      "text": "Oh, hey!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "哦,嗨!"
+    },
+    {
+      "id": "kat_upgraded_pet",
+      "context": "",
+      "raw": "I was able to upgrade your pet §f%1$s to §a§l%2$s§f.",
+      "text": "I was able to upgrade your pet %1$s to %2$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "宠物名,译名走 _shared/Terms.json",
+          "type": "mob_name",
+          "example": "Rock"
+        },
+        {
+          "token": "%2$s",
+          "desc": "目标稀有度,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "UNCOMMON"
+        }
+      ],
+      "gloss": "宠物名和稀有度的颜色随宠物走,分段只定边界。",
+      "translate": true,
+      "zh": "我把你的宠物%1$s升级到%2$s了。",
+      "segments": [
+        {
+          "color": "",
+          "text": "I was able to upgrade your pet ",
+          "zh": "我把你的宠物"
+        },
+        {
+          "color": "§f",
+          "text": "%1$s to ",
+          "zh": "%1$s升级到"
+        },
+        {
+          "color": "§a§l",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "了。"
+        }
+      ]
+    },
+    {
+      "id": "kat_other_pets",
+      "context": "",
+      "raw": "If you have any other pets you'd like to upgrade, you know where to find me!",
+      "text": "If you have any other pets you'd like to upgrade, you know where to find me!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "还有别的宠物想升级的话,你知道上哪儿找我!"
+    },
+    {
+      "id": "kat_flower",
+      "context": "带着 Kat 之花",
+      "text": "A flower? For me? How sweet!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "一朵花? 送我的? 太贴心了!"
+    },
+    {
+      "id": "kat_bouquet",
+      "context": "带着 Kat 花束",
+      "text": "A bouquet? For me? How sweet!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "一束花? 送我的? 太贴心了!"
+    },
+    {
+      "id": "kat_phone_friends",
+      "context": "Abiphone 加联系人",
+      "text": "✆ Friends? Sure!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 交个朋友? 当然可以!"
+    },
+    {
+      "id": "kat_phone_not_everyone",
+      "context": "",
+      "text": "✆ But hold on, I don't give my contact for everyone.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 不过等等,我可不是谁都给联系方式的。"
+    },
+    {
+      "id": "kat_phone_shouldnt_have",
+      "context": "送出 Kat 之花",
+      "text": "✆ Aww, you shouldn't have! :3",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 哎呀,太客气啦! :3"
+    },
+    {
+      "id": "kat_phone_hello",
+      "context": "打电话",
+      "text": "✆ Hello?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 喂?"
+    },
+    {
+      "id": "kat_phone_train_pet",
+      "context": "",
+      "text": "✆ Do you want me to train your pet?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 要我帮你训练宠物吗?"
+    },
+    {
+      "id": "kat_phone_nice_try",
+      "ref": "Mining/NPC_Message/Queen_Mismyla.json#queen_mismyla_you_don_t_have_what",
+      "context": "没带 Kat 之花就点 [GIVE ITEM]"
     }
   ]
 }

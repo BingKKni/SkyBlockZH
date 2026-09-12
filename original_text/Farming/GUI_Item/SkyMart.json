@@ -1,0 +1,1927 @@
+{
+  "source": "runtime capture (SkyZH) 2026-09-10 花园实测; 语境核对 https://hypixelskyblock.minecraft.wiki/w/The_Garden#SkyMart、/Builder%27s_Ruler、/HydroCan%E2%84%A2_1000、/Peony_Set、/Copper_Talisman、/SkyMart_Brochure、/Large_Walnut、/Garden_Chips、/Farming_Tools、/Barn_Skins、/Greenhouse_Skins",
+  "fetched_at": "2026-09-10",
+  "verified_ingame": true,
+  "gui_context": "管理台里的 SkyMart 商店:根菜单五个分类,农业必备品两页(园艺锄 / 斧、建筑师尺、牡丹 / 繁花装备、铜护符系列、重铸石、芯片、洒水壶、植物诊断工具),农具页(专精农具 Mk. I),谷仓 / 温室皮肤页。SkyMart / HydroCan™ / AquaMaster™ 是自造品牌名,保留英文。",
+  "source_note": [
+    "同一件商品的 Lore 在背包、末影箱、访客菜单里也会出现,采集器的 also_seen 已合并,这里只写一份。",
+    "商品名里的稀有度词(RARE WATERING CAN 等)按 README §5.6 的复合行写法保留完整行,稀有度走 rarity_ref。"
+  ],
+  "lines": [
+    {
+      "id": "skymart_farming_essentials",
+      "context": "SkyMart 根菜单",
+      "raw": "§aFarming Essentials",
+      "text": "Farming Essentials",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "农业必备品"
+    },
+    {
+      "id": "skymart_farming_tools",
+      "context": "SkyMart 根菜单",
+      "raw": "§aFarming Tools",
+      "text": "Farming Tools",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "农业工具"
+    },
+    {
+      "id": "skymart_essentials_desc_1",
+      "context": "",
+      "raw": "§7All the farming supplies you could",
+      "text": "All the farming supplies you could",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你想得到的农业用品这里全都有!"
+    },
+    {
+      "id": "skymart_essentials_desc_2",
+      "context": "",
+      "raw": "§7ever need!",
+      "text": "ever need!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "skymart_tools_desc_1",
+      "context": "",
+      "raw": "§7Purchase tools made specifically for",
+      "text": "Purchase tools made specifically for",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "购买专为每种作物打造的农具!"
+    },
+    {
+      "id": "skymart_tools_desc_2",
+      "context": "",
+      "raw": "§7each crop!",
+      "text": "each crop!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "skymart_unlocked_at_level",
+      "context": "",
+      "raw": "§cUnlocked at §aGarden Level %1$s§c!",
+      "text": "Unlocked at Garden Level %1$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "所需等级",
+          "type": "number",
+          "example": "4"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "花园等级 %1$s 级时解锁!",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "Unlocked at ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§a",
+          "text": "Garden Level %1$s",
+          "zh": "花园等级 %1$s 级"
+        },
+        {
+          "color": "§c",
+          "text": "!",
+          "zh": "时解锁!"
+        }
+      ]
+    },
+    {
+      "id": "skymart_spruce_up_barn",
+      "context": "",
+      "raw": "§7Spruce up your Barn!",
+      "text": "Spruce up your Barn!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "给你的谷仓换个新面貌!"
+    },
+    {
+      "id": "skymart_greenhouse_fresh",
+      "context": "",
+      "raw": "§7Make your Greenhouse look fresh!",
+      "text": "Make your Greenhouse look fresh!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "让你的温室焕然一新!"
+    },
+    {
+      "id": "skymart_pests",
+      "context": "",
+      "raw": "§aPests",
+      "text": "Pests",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "害虫"
+    },
+    {
+      "id": "skymart_got_pests",
+      "context": "",
+      "raw": "§7Got pests? We got you.",
+      "text": "Got pests? We got you.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "闹虫害了? 交给我们。"
+    },
+    {
+      "id": "skymart_scythe",
+      "context": "农业必备品第 1 页",
+      "raw": "§f%1$s Scythe",
+      "text": "%1$s Scythe",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Sam's / Garden,译名走 _shared/Terms.json",
+          "type": "raw",
+          "example": "Sam's"
+        }
+      ],
+      "gloss": "Sam's → Sam 的、Garden → 花园:Sam 的镰刀 / 花园镰刀。",
+      "translate": true,
+      "zh": "%1$s镰刀"
+    },
+    {
+      "id": "skymart_scythe_desc_1",
+      "context": "",
+      "raw": "§7Cleans a §9%1$s §7area of grass, leaves",
+      "text": "Cleans a %1$s area of grass, leaves",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "范围,3x3 / 5x5",
+          "type": "raw",
+          "example": "3x3"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "一次清除 %1$s 范围内的草、树叶和花。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Cleans a ",
+          "zh": "一次清除 "
+        },
+        {
+          "color": "§9",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "area of grass, leaves",
+          "zh": " 范围内的草、树叶和花。"
+        }
+      ]
+    },
+    {
+      "id": "skymart_scythe_desc_2",
+      "context": "",
+      "raw": "§7and flowers.",
+      "text": "and flowers.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "skymart_copper_price",
+      "context": "商品价格行",
+      "raw": "§c%1$s Copper",
+      "text": "%1$s Copper",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "铜价格",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s 铜"
+    },
+    {
+      "id": "skymart_gardening_hoe",
+      "context": "",
+      "raw": "§a%1$s Gardening Hoe",
+      "text": "%1$s Gardening Hoe",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Basic / Advanced,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Basic"
+        }
+      ],
+      "gloss": "基础园艺锄 / 进阶园艺锄。",
+      "translate": true,
+      "zh": "%1$s园艺锄"
+    },
+    {
+      "id": "skymart_gardening_axe",
+      "context": "",
+      "raw": "§a%1$s Gardening Axe",
+      "text": "%1$s Gardening Axe",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Basic / Advanced,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Basic"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s园艺斧"
+    },
+    {
+      "id": "skymart_advanced_gardening_tool",
+      "context": "",
+      "raw": "§9Advanced Gardening %1$s",
+      "text": "Advanced Gardening %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Hoe / Axe,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Hoe"
+        }
+      ],
+      "gloss": "稀有档的写法(§9)。",
+      "translate": true,
+      "zh": "进阶园艺%1$s"
+    },
+    {
+      "id": "skymart_farming_fortune_stat",
+      "context": "农具 Lore 的属性行",
+      "raw": "§7Farming Fortune: §6+%1$s",
+      "text": "Farming Fortune: +%1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "数值",
+          "type": "number",
+          "example": "10"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "农业时运: +%1$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Farming Fortune: ",
+          "zh": "农业时运: "
+        },
+        {
+          "color": "§6",
+          "text": "+%1$s",
+          "zh": "+%1$s"
+        }
+      ]
+    },
+    {
+      "id": "skymart_farming_fortune_stat_bonus",
+      "context": "",
+      "raw": "§7Farming Fortune: §6+%1$s §9(+%2$s)",
+      "text": "Farming Fortune: +%1$s (+%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "基础值",
+          "type": "number",
+          "example": "34"
+        },
+        {
+          "token": "%2$s",
+          "desc": "重铸加成",
+          "type": "number",
+          "example": "9"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "农业时运: +%1$s (+%2$s)",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Farming Fortune: ",
+          "zh": "农业时运: "
+        },
+        {
+          "color": "§6",
+          "text": "+%1$s ",
+          "zh": "+%1$s "
+        },
+        {
+          "color": "§9",
+          "text": "(+%2$s)",
+          "zh": "(+%2$s)"
+        }
+      ]
+    },
+    {
+      "id": "skymart_farming_wisdom_stat",
+      "context": "",
+      "raw": "§7Farming Wisdom: §3+%1$s",
+      "text": "Farming Wisdom: +%1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "数值",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "农业智慧: +%1$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Farming Wisdom: ",
+          "zh": "农业智慧: "
+        },
+        {
+          "color": "§3",
+          "text": "+%1$s",
+          "zh": "+%1$s"
+        }
+      ]
+    },
+    {
+      "id": "skymart_crop_fortune_stat",
+      "context": "",
+      "raw": "§7%1$s Fortune: §6+%2$s",
+      "text": "%1$s Fortune: +%2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "作物名(可能两个词),译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Pumpkin"
+        },
+        {
+          "token": "%2$s",
+          "desc": "数值",
+          "type": "number",
+          "example": "4"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s时运: +%2$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "%1$s Fortune: ",
+          "zh": "%1$s时运: "
+        },
+        {
+          "color": "§6",
+          "text": "+%2$s",
+          "zh": "+%2$s"
+        }
+      ]
+    },
+    {
+      "id": "skymart_builders_ruler",
+      "context": "",
+      "raw": "§6Builder's Ruler",
+      "text": "Builder's Ruler",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "建筑师尺"
+    },
+    {
+      "id": "skymart_ruler_area_planner_1",
+      "context": "",
+      "raw": "§7Right-Click the top of a block to",
+      "text": "Right-Click the top of a block to",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "右键点击方块顶面,放置一整排方块。"
+    },
+    {
+      "id": "skymart_ruler_area_planner_2",
+      "context": "",
+      "raw": "§7place a line of blocks.",
+      "text": "place a line of blocks.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "skymart_ruler_organized_1",
+      "context": "",
+      "raw": "§7Sneak Right-Click a block to collect",
+      "text": "Sneak Right-Click a block to collect",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "潜行右键点击方块,收走一整排方块。"
+    },
+    {
+      "id": "skymart_ruler_organized_2",
+      "context": "",
+      "raw": "§7all blocks in a line.",
+      "text": "all blocks in a line.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "skymart_ruler_storage_1",
+      "context": "",
+      "raw": "§7Opens the ruler storage. Blocks will",
+      "text": "Opens the ruler storage. Blocks will",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "打开尺子的内置仓库。放置的方块取自你的背包或尺子仓库。"
+    },
+    {
+      "id": "skymart_ruler_storage_2",
+      "context": "",
+      "raw": "§7the ruler storage.",
+      "text": "the ruler storage.",
+      "placeholders": [],
+      "gloss": "中间那一行「be placed from your inventory or」实测没采到(和建筑师魔杖的同一句合并了),首行译文已把整句说完。",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "skymart_can_be_applied_axes_hoes",
+      "context": "",
+      "raw": "§7Can be applied to Axes and Hoes.",
+      "text": "Can be applied to Axes and Hoes.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "可用于斧和锄。"
+    },
+    {
+      "id": "skymart_green_thumb_i",
+      "context": "",
+      "raw": "§7Green Thumb I",
+      "text": "Green Thumb I",
+      "placeholders": [],
+      "gloss": "附魔名,按 2026-09-08 规则保留英文;这一行是重铸石 / 附魔书商品的 Lore。",
+      "translate": true,
+      "zh": "Green Thumb I"
+    },
+    {
+      "id": "skymart_can_be_applied_equipment",
+      "context": "",
+      "raw": "§7Can be applied to Equipment.",
+      "text": "Can be applied to Equipment.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "可用于装备。"
+    },
+    {
+      "id": "skymart_applicable_on_equipment",
+      "context": "",
+      "raw": "§7Applicable on: §9Equipment",
+      "text": "Applicable on: Equipment",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "适用于: 装备",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Applicable on: ",
+          "zh": "适用于: "
+        },
+        {
+          "color": "§9",
+          "text": "Equipment",
+          "zh": "装备"
+        }
+      ]
+    },
+    {
+      "id": "skymart_requires_enchanting_24",
+      "context": "",
+      "raw": "§cRequires Enchanting 24 to apply.",
+      "text": "Requires Enchanting 24 to apply.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "需要附魔等级 24 才能使用。"
+    },
+    {
+      "id": "skymart_peony_piece",
+      "context": "",
+      "raw": "§9Peony %1$s",
+      "text": "Peony %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Bracelet / Belt / Necklace / Cloak,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Bracelet"
+        }
+      ],
+      "gloss": "Peony 装备(稀有):牡丹手镯 / 腰带 / 项链 / 披风。",
+      "translate": true,
+      "zh": "牡丹%1$s"
+    },
+    {
+      "id": "skymart_blossom_piece",
+      "context": "",
+      "raw": "§5Blossom %1$s",
+      "text": "Blossom %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Bracelet / Belt / Necklace / Cloak",
+          "type": "category_name",
+          "example": "Bracelet"
+        }
+      ],
+      "gloss": "Blossom 装备(史诗):繁花手镯 / 腰带 / 项链 / 披风。",
+      "translate": true,
+      "zh": "繁花%1$s"
+    },
+    {
+      "id": "skymart_visitor_offers_fortune_1",
+      "context": "",
+      "raw": "§7Complete §aGarden Visitor Offers §7to",
+      "text": "Complete Garden Visitor Offers to",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "完成花园访客的委托,即可",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Complete ",
+          "zh": "完成"
+        },
+        {
+          "color": "§a",
+          "text": "Garden Visitor Offers ",
+          "zh": "花园访客的委托"
+        },
+        {
+          "color": "§7",
+          "text": "to",
+          "zh": ",即可"
+        }
+      ]
+    },
+    {
+      "id": "skymart_visitor_offers_fortune_2",
+      "context": "",
+      "raw": "§7gain §6☘ Farming Fortune§7.",
+      "text": "gain ☘ Farming Fortune.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "获得 ☘ 农业时运。",
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "gain ",
+          "zh": "获得 "
+        },
+        {
+          "color": "§6",
+          "text": "☘ Farming Fortune",
+          "zh": "☘ 农业时运"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "skymart_piece_bonus_fortune",
+      "context": "",
+      "raw": "§7Piece Bonus: §6+%1$s☘",
+      "text": "Piece Bonus: +%1$s☘",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "数值",
+          "type": "number",
+          "example": "0"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "部件加成: +%1$s☘",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Piece Bonus: ",
+          "zh": "部件加成: "
+        },
+        {
+          "color": "§6",
+          "text": "+%1$s☘",
+          "zh": "+%1$s☘"
+        }
+      ]
+    },
+    {
+      "id": "skymart_next_upgrade",
+      "context": "",
+      "raw": "§7Next Upgrade: §6+%1$s☘ §8(§a%2$s§8)",
+      "text": "Next Upgrade: +%1$s☘ (%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "数值",
+          "type": "number",
+          "example": "1"
+        },
+        {
+          "token": "%2$s",
+          "desc": "进度",
+          "type": "raw",
+          "example": "0/1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "下一次升级: +%1$s☘ (%2$s)",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Next Upgrade: ",
+          "zh": "下一次升级: "
+        },
+        {
+          "color": "§6",
+          "text": "+%1$s☘ ",
+          "zh": "+%1$s☘ "
+        },
+        {
+          "color": "§8",
+          "text": "(",
+          "zh": "("
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§8",
+          "text": ")",
+          "zh": ")"
+        }
+      ]
+    },
+    {
+      "id": "skymart_rare_equipment_type",
+      "context": "",
+      "raw": "§9§lRARE %1$s",
+      "text": "RARE %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "BRACELET / BELT / NECKLACE / CLOAK,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "BRACELET"
+        }
+      ],
+      "gloss": "稀有度 + 装备部位的复合行;部位词的全大写写法已在词表里(BELT → 腰带等),BRACELET 本轮补入。",
+      "translate": true,
+      "zh": "稀有%1$s",
+      "rarity_ref": "_shared/Rarity.json#rarity_rare"
+    },
+    {
+      "id": "skymart_epic_equipment_type",
+      "context": "",
+      "raw": "§5§lEPIC %1$s",
+      "text": "EPIC %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "装备部位",
+          "type": "category_name",
+          "example": "BRACELET"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "史诗%1$s",
+      "rarity_ref": "_shared/Rarity.json#rarity_epic"
+    },
+    {
+      "id": "skymart_yellow_bandana",
+      "context": "",
+      "raw": "§9Yellow Bandana",
+      "text": "Yellow Bandana",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "黄色头巾"
+    },
+    {
+      "id": "skymart_brochure",
+      "context": "",
+      "raw": "§9SkyMart Brochure",
+      "text": "SkyMart Brochure",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "SkyMart 宣传册"
+    },
+    {
+      "id": "skymart_applies_reforge_1",
+      "context": "",
+      "raw": "§7Applies the §9%1$s §7reforge when",
+      "text": "Applies the %1$s reforge when",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "重铸名,译名走 _shared/Terms.json",
+          "type": "raw",
+          "example": "Bustling"
+        }
+      ],
+      "gloss": "英文两行合成一句,尾行「combined with a farming tool.」被吞掉;SkyMart 宣传册用于护甲,大核桃用于农具,尾行只实测到农具那种。",
+      "translate": true,
+      "zh": "与农具合并后,施加%1$s重铸。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Applies the ",
+          "zh": "与农具合并后,施加"
+        },
+        {
+          "color": "§9",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "reforge when",
+          "zh": "重铸。"
+        }
+      ]
+    },
+    {
+      "id": "skymart_applies_reforge_2",
+      "context": "",
+      "raw": "§7combined with a farming tool.",
+      "text": "combined with a farming tool.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "skymart_reforge_rarity_header",
+      "context": "",
+      "raw": "§9%1$s §7(§6Legendary§7):",
+      "text": "%1$s (Legendary):",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "重铸名",
+          "type": "raw",
+          "example": "Bustling"
+        }
+      ],
+      "gloss": "重铸石 Lore 里按稀有度列属性,这是传说档那一行的标题;只实测到传说档。",
+      "translate": true,
+      "zh": "%1$s (传说):",
+      "segments": [
+        {
+          "color": "§9",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "(",
+          "zh": "("
+        },
+        {
+          "color": "§6",
+          "text": "Legendary",
+          "zh": "传说"
+        },
+        {
+          "color": "§7",
+          "text": "):",
+          "zh": "):"
+        }
+      ]
+    },
+    {
+      "id": "skymart_large_walnut",
+      "context": "",
+      "raw": "§9Large Walnut",
+      "text": "Large Walnut",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "大核桃"
+    },
+    {
+      "id": "skymart_earn_sowdust",
+      "context": "",
+      "raw": "§7Earn §2+5% Sowdust §7from farming.",
+      "text": "Earn +5% Sowdust from farming.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "种田获得的播尘 +5%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Earn ",
+          "zh": "种田获得的"
+        },
+        {
+          "color": "§2",
+          "text": "+5% Sowdust ",
+          "zh": "播尘 +5%"
+        },
+        {
+          "color": "§7",
+          "text": "from farming.",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "skymart_copper_accessory",
+      "context": "",
+      "raw": "§fCopper %1$s",
+      "text": "Copper %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Talisman / Ring / Artifact,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Talisman"
+        }
+      ],
+      "gloss": "铜护符 / 铜戒指 / 铜神器。",
+      "translate": true,
+      "zh": "铜%1$s"
+    },
+    {
+      "id": "skymart_copper_ring",
+      "context": "",
+      "raw": "§aCopper Ring",
+      "text": "Copper Ring",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "铜戒指"
+    },
+    {
+      "id": "skymart_rare_visitors_chance_1",
+      "context": "",
+      "raw": "§9§lRARE §7and above §aGarden Visitors",
+      "text": "RARE and above Garden Visitors",
+      "placeholders": [],
+      "gloss": "数值在尾行,尾行自己带分段接着说。",
+      "translate": true,
+      "zh": "稀有及以上的花园访客",
+      "segments": [
+        {
+          "color": "§9§l",
+          "text": "RARE ",
+          "zh": "稀有"
+        },
+        {
+          "color": "§7",
+          "text": "and above ",
+          "zh": "及以上的"
+        },
+        {
+          "color": "§a",
+          "text": "Garden Visitors",
+          "zh": "花园访客"
+        }
+      ]
+    },
+    {
+      "id": "skymart_rare_visitors_chance_2",
+      "context": "",
+      "raw": "§7have a §a%1$s% §7higher chance to arrive.",
+      "text": "have a %1$s% higher chance to arrive.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "百分比",
+          "type": "number",
+          "example": "4"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "到访的概率提高 %1$s%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "have a ",
+          "zh": "到访的概率提高 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s% ",
+          "zh": "%1$s%"
+        },
+        {
+          "color": "§7",
+          "text": "higher chance to arrive.",
+          "zh": "。"
+        }
+      ],
+      "continuation": true
+    },
+    {
+      "id": "skymart_chip",
+      "context": "",
+      "raw": "§9%1$s Chip",
+      "text": "%1$s Chip",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "芯片名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Sowledge"
+        }
+      ],
+      "gloss": "播知芯片 / 丰收一击芯片。",
+      "translate": true,
+      "zh": "%1$s芯片"
+    },
+    {
+      "id": "skymart_garden_chip_type",
+      "context": "",
+      "raw": "§8Garden Chip",
+      "text": "Garden Chip",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "花园芯片"
+    },
+    {
+      "id": "skymart_ability_chip",
+      "context": "",
+      "raw": "§6Ability: %1$s ",
+      "text": "Ability: %1$s ",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "芯片技能名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Sowledge"
+        }
+      ],
+      "gloss": "芯片的技能行末尾带一个空格、没有按键提示,和 _shared/Combat_Lore.json 那几条不是同一个模板。",
+      "translate": true,
+      "zh": "技能: %1$s "
+    },
+    {
+      "id": "skymart_sowledge_desc",
+      "context": "",
+      "raw": "§7Grants §3+1☯ Farming Wisdom §7per §9Chip",
+      "text": "Grants +1☯ Farming Wisdom per Chip",
+      "placeholders": [],
+      "gloss": "尾行「Level!」被吞掉;英文先说数值后说「每芯片等级」,中文倒过来。",
+      "translate": true,
+      "zh": "每芯片等级提供 +1☯ 农业智慧。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "每",
+          "order": 0
+        },
+        {
+          "color": "§3",
+          "text": "+1☯ Farming Wisdom ",
+          "zh": "+1☯ 农业智慧",
+          "order": 4
+        },
+        {
+          "color": "§7",
+          "text": "per ",
+          "zh": "提供 ",
+          "order": 3
+        },
+        {
+          "color": "§9",
+          "text": "Chip",
+          "zh": "芯片",
+          "order": 1
+        }
+      ]
+    },
+    {
+      "id": "skymart_level_tail",
+      "context": "",
+      "raw": "§7Level!",
+      "text": "Level!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Level",
+          "zh": "等级",
+          "order": 2
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "。",
+          "order": 5
+        }
+      ]
+    },
+    {
+      "id": "skymart_redeem_chips",
+      "context": "",
+      "raw": "§7Redeem Chips to increase their rarity!",
+      "text": "Redeem Chips to increase their rarity!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "消耗同种芯片可提升它的稀有度!"
+    },
+    {
+      "id": "skymart_right_click_redeem",
+      "context": "",
+      "raw": "§eRight-Click to redeem!",
+      "text": "Right-Click to redeem!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "右键点击消耗!"
+    },
+    {
+      "id": "skymart_shift_right_click_redeem_all",
+      "context": "",
+      "raw": "§eShift Right-Click to redeem all!",
+      "text": "Shift Right-Click to redeem all!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Shift + 右键点击全部消耗!"
+    },
+    {
+      "id": "skymart_rare_garden_chip",
+      "context": "",
+      "raw": "§9§lRARE GARDEN CHIP",
+      "text": "RARE GARDEN CHIP",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "稀有花园芯片",
+      "rarity_ref": "_shared/Rarity.json#rarity_rare"
+    },
+    {
+      "id": "skymart_chip_level_tail",
+      "context": "",
+      "raw": "§9Chip §7Level!",
+      "text": "Chip Level!",
+      "placeholders": [],
+      "gloss": "完整芯片句由 GUI_Lore/Garden_Utility_Live.json 匹配,防止共用首行被误当作 Green Thumb 附魔。",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "skymart_hydrocan",
+      "context": "",
+      "raw": "§fHydroCan™ 1000",
+      "text": "HydroCan™ 1000",
+      "placeholders": [],
+      "gloss": "自造品牌名 + 型号,保留英文。",
+      "translate": false,
+      "zh": ""
+    },
+    {
+      "id": "skymart_hydrocan_turbo",
+      "context": "",
+      "raw": "§aHydroCan™ Turbo 2000",
+      "text": "HydroCan™ Turbo 2000",
+      "placeholders": [],
+      "gloss": "",
+      "translate": false,
+      "zh": ""
+    },
+    {
+      "id": "skymart_hydrocan_ultra",
+      "context": "",
+      "raw": "§9HydroCan™ Ultra 3000",
+      "text": "HydroCan™ Ultra 3000",
+      "placeholders": [],
+      "gloss": "",
+      "translate": false,
+      "zh": ""
+    },
+    {
+      "id": "skymart_aquamaster",
+      "context": "",
+      "raw": "§5AquaMaster™ %1$s",
+      "text": "AquaMaster™ %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "型号 X / Hydromax",
+          "type": "raw",
+          "example": "X"
+        }
+      ],
+      "gloss": "自造品牌名,保留英文。",
+      "translate": false,
+      "zh": ""
+    },
+    {
+      "id": "skymart_use_in_greenhouse_1",
+      "context": "",
+      "raw": "§7Use it on plants in the §aGreenhouse",
+      "text": "Use it on plants in the Greenhouse",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "给温室",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Use it on plants in the ",
+          "zh": "给"
+        },
+        {
+          "color": "§a",
+          "text": "Greenhouse",
+          "zh": "温室"
+        }
+      ]
+    },
+    {
+      "id": "skymart_use_in_greenhouse_2",
+      "context": "",
+      "raw": "§7to keep them watered.",
+      "text": "to keep them watered.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "里的植物浇水。",
+      "continuation": true
+    },
+    {
+      "id": "skymart_ability_hydrate",
+      "context": "",
+      "raw": "§6Ability: Hydrate  §e§lHOLD RIGHT CLICK",
+      "text": "Ability: Hydrate  HOLD RIGHT CLICK",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "技能: 浇水  按住右键",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Ability: Hydrate  ",
+          "zh": "技能: 浇水  "
+        },
+        {
+          "color": "§e§l",
+          "text": "HOLD RIGHT CLICK",
+          "zh": "按住右键"
+        }
+      ]
+    },
+    {
+      "id": "skymart_hydrate_desc_1",
+      "context": "",
+      "raw": "§7Aim and hold in the direction of a",
+      "text": "Aim and hold in the direction of a",
+      "placeholders": [],
+      "gloss": "数值在第二行,由尾行的分段接着说。",
+      "translate": true,
+      "zh": "对准"
+    },
+    {
+      "id": "skymart_hydrate_desc_2",
+      "context": "",
+      "raw": "§2plant §7to water it. Dispenses §b%1$s",
+      "text": "plant to water it. Dispenses %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每秒出水量",
+          "type": "number",
+          "example": "150"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "植物按住右键即可浇水。每秒出水 %1$s",
+      "segments": [
+        {
+          "color": "§2",
+          "text": "plant ",
+          "zh": "植物"
+        },
+        {
+          "color": "§7",
+          "text": "to water it. Dispenses ",
+          "zh": "按住右键即可浇水。每秒出水 "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ],
+      "continuation": true
+    },
+    {
+      "id": "skymart_hydrate_desc_3",
+      "context": "",
+      "raw": "§7water per second.",
+      "text": "water per second.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "。",
+      "continuation": true
+    },
+    {
+      "id": "skymart_refill_desc_1",
+      "context": "",
+      "raw": "§7When aiming at a water source, fills",
+      "text": "When aiming at a water source, fills",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "对着水源使用,即可给洒水壶补水。"
+    },
+    {
+      "id": "skymart_refill_desc_2",
+      "context": "",
+      "raw": "§7your can back up with water.",
+      "text": "your can back up with water.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "skymart_water_capacity",
+      "context": "",
+      "raw": "§7Water: §b%1$s§7k",
+      "text": "Water: %1$sk",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前/上限(千)",
+          "type": "raw",
+          "example": "0/3"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "水量: %1$sk",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Water: ",
+          "zh": "水量: "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "k",
+          "zh": "k"
+        }
+      ]
+    },
+    {
+      "id": "skymart_watering_can_type",
+      "context": "",
+      "raw": "§f§lCOMMON WATERING CAN",
+      "text": "COMMON WATERING CAN",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "普通洒水壶",
+      "rarity_ref": "_shared/Rarity.json#rarity_common"
+    },
+    {
+      "id": "skymart_watering_can_type_rare",
+      "context": "",
+      "raw": "§9§l%1$s WATERING CAN",
+      "text": "%1$s WATERING CAN",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "稀有度词,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "RARE"
+        }
+      ],
+      "gloss": "RARE / EPIC / LEGENDARY 三档共用;稀有度颜色随档位变,分段只定边界。",
+      "translate": true,
+      "zh": "%1$s洒水壶"
+    },
+    {
+      "id": "skymart_ability_aquaburst",
+      "context": "",
+      "raw": "§6Ability: Aquaburst ",
+      "text": "Ability: Aquaburst ",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "技能: 水流爆发 "
+    },
+    {
+      "id": "skymart_ability_aquaburst_ex",
+      "context": "",
+      "raw": "§6Ability: Aquaburst EX ",
+      "text": "Ability: Aquaburst EX ",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "技能: 水流爆发 EX "
+    },
+    {
+      "id": "skymart_aquaburst_desc_1",
+      "context": "",
+      "raw": "§7Spreads water in a larger area at",
+      "text": "Spreads water in a larger area at",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "一次向更大范围洒水。"
+    },
+    {
+      "id": "skymart_aquaburst_desc_2",
+      "context": "",
+      "raw": "§7once.",
+      "text": "once.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "skymart_requires_crop_analyzer",
+      "context": "",
+      "raw": "§cRequires Crop Analyzer Milestone %1$s.",
+      "text": "Requires Crop Analyzer Milestone %1$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "里程碑等级",
+          "type": "tier",
+          "example": "II"
+        }
+      ],
+      "gloss": "Crop Analyzer → 作物分析仪(温室里分析变异作物的装置)。",
+      "translate": true,
+      "zh": "需要作物分析仪里程碑 %1$s。"
+    },
+    {
+      "id": "skymart_requires_crop_analyzer_i",
+      "context": "",
+      "raw": "§cRequires Crop Analyzer Milestone I.",
+      "text": "Requires Crop Analyzer Milestone I.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "需要作物分析仪里程碑 I。"
+    },
+    {
+      "id": "skymart_iridium",
+      "context": "",
+      "raw": "§6Iridium",
+      "text": "Iridium",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "铱"
+    },
+    {
+      "id": "skymart_compacted_sunflower_count",
+      "context": "",
+      "raw": "§9Compacted Sunflower §8x%1$s",
+      "text": "Compacted Sunflower x%1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "数量",
+          "type": "number",
+          "example": "32"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "压缩向日葵 x%1$s",
+      "segments": [
+        {
+          "color": "§9",
+          "text": "Compacted Sunflower ",
+          "zh": "压缩向日葵 "
+        },
+        {
+          "color": "§8",
+          "text": "x%1$s",
+          "zh": "x%1$s"
+        }
+      ]
+    },
+    {
+      "id": "skymart_plant_diagnostics_tool",
+      "context": "",
+      "raw": "§9Plant Diagnostics Tool",
+      "text": "Plant Diagnostics Tool",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "植物诊断工具"
+    },
+    {
+      "id": "skymart_diagnostics_desc_1",
+      "context": "",
+      "raw": "§7View the detailed properties of a",
+      "text": "View the detailed properties of a",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "查看温室里某株植物的详细属性。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "View the detailed properties of a",
+          "zh": "查看",
+          "order": 0
+        }
+      ]
+    },
+    {
+      "id": "skymart_diagnostics_desc_2",
+      "context": "",
+      "raw": "§7plant inside the §aGreenhouse§7.",
+      "text": "plant inside the Greenhouse.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "里某株植物的详细属性温室。",
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "plant inside the ",
+          "zh": "里某株植物的详细属性",
+          "order": 2
+        },
+        {
+          "color": "§a",
+          "text": "Greenhouse",
+          "zh": "温室",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "id": "skymart_gems_price",
+      "context": "",
+      "raw": "§a%1$s Gems",
+      "text": "%1$s Gems",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Gems 价格",
+          "type": "number",
+          "example": "250"
+        }
+      ],
+      "gloss": "Gems 是付费货币,按 GLOSSARY 保留英文。",
+      "translate": true,
+      "zh": "%1$s Gems"
+    },
+    {
+      "id": "skymart_tool_euclid",
+      "context": "农具页",
+      "raw": "§aEuclid's Wheat Sickle Mk. I",
+      "text": "Euclid's Wheat Sickle Mk. I",
+      "placeholders": [],
+      "gloss": "专精农具名里的数学家名字(Euclid / Gauss / Pythagorean / Turing / Newton)是人名,保留英文;品类词翻译,型号 Mk. I 照抄。",
+      "translate": true,
+      "zh": "Euclid 小麦镰刀 Mk. I"
+    },
+    {
+      "id": "skymart_tool_shovel",
+      "context": "",
+      "raw": "§a%1$s %2$s Shovel Mk. I",
+      "text": "%1$s %2$s Shovel Mk. I",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "人名 Gauss / Pythagorean,保留英文",
+          "type": "raw",
+          "example": "Gauss"
+        },
+        {
+          "token": "%2$s",
+          "desc": "作物名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Carrot"
+        }
+      ],
+      "gloss": "Gauss 胡萝卜铲 / Pythagorean 马铃薯铲。",
+      "translate": true,
+      "zh": "%1$s %2$s铲 Mk. I"
+    },
+    {
+      "id": "skymart_tool_dicer",
+      "context": "",
+      "raw": "§a%1$s %2$s Mk. I",
+      "text": "%1$s %2$s Mk. I",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "作物 / 前缀,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Pumpkin"
+        },
+        {
+          "token": "%2$s",
+          "desc": "Dicer / Knife / Chopper / Cutter / Sickle,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Dicer"
+        }
+      ],
+      "gloss": "南瓜切丁器 / 西瓜切丁器 / 仙人掌刀 / 可可切碎器 / 真菌切割器 / 日蚀镰刀。",
+      "translate": true,
+      "zh": "%1$s%2$s Mk. I"
+    },
+    {
+      "id": "skymart_tool_cutter",
+      "context": "",
+      "raw": "§a%1$s %2$s %3$s Cutter Mk. I",
+      "text": "%1$s %2$s %3$s Cutter Mk. I",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "人名 Turing / Newton,保留英文",
+          "type": "raw",
+          "example": "Turing"
+        },
+        {
+          "token": "%2$s",
+          "desc": "作物名前半 Sugar / Nether",
+          "type": "raw",
+          "example": "Sugar"
+        },
+        {
+          "token": "%3$s",
+          "desc": "作物名后半 Cane / Wart",
+          "type": "raw",
+          "example": "Cane"
+        }
+      ],
+      "gloss": "采集器把 Sugar Cane / Nether Wart 切成了两个 raw;词表里 Sugar → 糖、Cane → 甘蔗节……拼不出「甘蔗」,所以这两件另写字面记录,这条只兜底。",
+      "translate": true,
+      "zh": "%1$s %2$s%3$s切割器 Mk. I"
+    },
+    {
+      "id": "skymart_tool_turing",
+      "context": "",
+      "raw": "§aTuring Sugar Cane Cutter Mk. I",
+      "text": "Turing Sugar Cane Cutter Mk. I",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Turing 甘蔗切割器 Mk. I"
+    },
+    {
+      "id": "skymart_tool_newton",
+      "context": "",
+      "raw": "§aNewton Nether Wart Cutter Mk. I",
+      "text": "Newton Nether Wart Cutter Mk. I",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Newton 下界疣切割器 Mk. I"
+    },
+    {
+      "id": "skymart_tool_wild_rose",
+      "context": "",
+      "raw": "§aWild Rose Cutter Mk. I",
+      "text": "Wild Rose Cutter Mk. I",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "野玫瑰切割器 Mk. I"
+    },
+    {
+      "id": "skymart_tool_level",
+      "context": "",
+      "raw": "§7Level §a%1$s §8-> §6%2$s   §8(%3$s)",
+      "text": "Level %1$s -> %2$s   (%3$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前等级",
+          "type": "number",
+          "example": "1"
+        },
+        {
+          "token": "%2$s",
+          "desc": "下一等级",
+          "type": "number",
+          "example": "2"
+        },
+        {
+          "token": "%3$s",
+          "desc": "经验进度",
+          "type": "raw",
+          "example": "0/1k"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "等级 %1$s -> %2$s   (%3$s)",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Level ",
+          "zh": "等级 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§8",
+          "text": "-> ",
+          "zh": "-> "
+        },
+        {
+          "color": "§6",
+          "text": "%2$s   ",
+          "zh": "%2$s   "
+        },
+        {
+          "color": "§8",
+          "text": "(%3$s)",
+          "zh": "(%3$s)"
+        }
+      ]
+    },
+    {
+      "id": "skymart_cactus_knife_desc",
+      "context": "",
+      "raw": "§7Slices through §acactus§7 instantly!",
+      "text": "Slices through cactus instantly!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "瞬间切开仙人掌!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Slices through ",
+          "zh": "瞬间切开"
+        },
+        {
+          "color": "§a",
+          "text": "cactus",
+          "zh": "仙人掌"
+        },
+        {
+          "color": "§7",
+          "text": " instantly!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "skymart_ability_swift_slicer",
+      "context": "",
+      "raw": "§6Ability: Swift Slicer ",
+      "text": "Ability: Swift Slicer ",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "技能: 迅捷切割 "
+    },
+    {
+      "id": "skymart_swift_slicer_desc_1",
+      "context": "",
+      "raw": "§7Increases your speed cap by 100",
+      "text": "Increases your speed cap by 100",
+      "placeholders": [],
+      "gloss": "尾行「while in The Garden.」的高亮地名挪到句首。",
+      "translate": true,
+      "zh": "在花园里时,速度上限提高 100。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increases your speed cap by 100",
+          "zh": "速度上限提高 100。",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "id": "skymart_swift_slicer_desc_2",
+      "context": "",
+      "raw": "§7while in §aThe Garden§7.",
+      "text": "while in The Garden.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "在花园里时,",
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "while in ",
+          "zh": "在",
+          "order": 0
+        },
+        {
+          "color": "§a",
+          "text": "The Garden",
+          "zh": "花园",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "里时,",
+          "order": 2
+        }
+      ]
+    },
+    {
+      "id": "skymart_barn_skin_name",
+      "context": "谷仓皮肤页",
+      "raw": "§a%1$s Barn Skin",
+      "text": "%1$s Barn Skin",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "皮肤名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Trading Post"
+        }
+      ],
+      "gloss": "和 Farming/GUI_Item/Garden_Levels.json#garden_barn_skin(§9 稀有档)是不同颜色的同一模板,两条都要。",
+      "translate": true,
+      "zh": "%1$s谷仓皮肤"
+    },
+    {
+      "id": "skymart_barn_skin_name_epic",
+      "context": "",
+      "raw": "§5%1$s Barn Skin",
+      "text": "%1$s Barn Skin",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "皮肤名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Bamboo"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s谷仓皮肤"
+    },
+    {
+      "id": "skymart_greenhouse_skin_name",
+      "context": "温室皮肤页",
+      "raw": "§a%1$s Greenhouse Skin",
+      "text": "%1$s Greenhouse Skin",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "皮肤名",
+          "type": "category_name",
+          "example": "Country"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s温室皮肤"
+    },
+    {
+      "id": "skymart_greenhouse_skin_botanical",
+      "context": "",
+      "raw": "§9Botanical Garden Greenhouse Skin",
+      "text": "Botanical Garden Greenhouse Skin",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "植物园温室皮肤"
+    },
+    {
+      "id": "skymart_click_to_consume",
+      "context": "",
+      "raw": "§eClick to consume!",
+      "text": "Click to consume!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击使用!"
+    },
+    {
+      "id": "skymart_garden_scythe",
+      "context": "",
+      "raw": "§aGarden Scythe",
+      "text": "Garden Scythe",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "花园镰刀"
+    },
+    {
+      "id": "skymart_garden_scythe_desc_1",
+      "context": "",
+      "raw": "§7Cleans a §95x5 §7area of grass, leaves",
+      "text": "Cleans a 5x5 area of grass, leaves",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "一次清除 5x5 范围内的草、树叶和花。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Cleans a ",
+          "zh": "一次清除 "
+        },
+        {
+          "color": "§9",
+          "text": "5x5 ",
+          "zh": "5x5"
+        },
+        {
+          "color": "§7",
+          "text": "area of grass, leaves",
+          "zh": " 范围内的草、树叶和花。"
+        }
+      ]
+    }
+  ]
+}

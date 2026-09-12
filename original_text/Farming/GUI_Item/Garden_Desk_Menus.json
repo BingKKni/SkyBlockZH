@@ -1,0 +1,690 @@
+{
+  "source": "runtime capture (SkyZH) 2026-09-10 花园实测; 语境核对 https://hypixelskyblock.minecraft.wiki/w/The_Garden(Crop Milestones / Crop Upgrades / Garden Milestones / Barn Skins 小节)",
+  "fetched_at": "2026-09-10",
+  "verified_ingame": true,
+  "gui_context": "管理台下的作物里程碑、作物升级(含单种作物的升级页)、花园升级、花园里程碑、访客里程碑、花园皮肤 / 谷仓皮肤菜单。",
+  "lines": [
+    {
+      "id": "gm_harvest_to_increase_1",
+      "context": "作物里程碑页的作物格",
+      "raw": "§7Harvest §f%1$s §7on your Garden to",
+      "text": "Harvest %1$s on your Garden to",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "作物名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Wheat"
+        }
+      ],
+      "gloss": "英文两行各提一次作物名,尾行自己带占位符和分段。",
+      "translate": true,
+      "zh": "在花园里收获%1$s,即可提升",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Harvest ",
+          "zh": "在花园里收获"
+        },
+        {
+          "color": "§f",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "on your Garden to",
+          "zh": ",即可提升"
+        }
+      ]
+    },
+    {
+      "id": "gm_harvest_to_increase_2",
+      "context": "",
+      "raw": "§7increase your §f%1$s §7tier!",
+      "text": "increase your %1$s tier!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "作物名",
+          "type": "category_name",
+          "example": "Wheat"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s的里程碑等级!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "increase your ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§f",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "tier!",
+          "zh": "的里程碑等级!"
+        }
+      ],
+      "continuation": true
+    },
+    {
+      "id": "gm_total",
+      "context": "",
+      "raw": "§7Total: §a%1$s",
+      "text": "Total: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "累计收获数",
+          "type": "number",
+          "example": "0"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "总计: %1$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Total: ",
+          "zh": "总计: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ]
+    },
+    {
+      "id": "gm_moonflower",
+      "context": "未解锁作物的格子名(红色)",
+      "raw": "§cMoonflower",
+      "text": "Moonflower",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "月光花"
+    },
+    {
+      "id": "gm_wild_rose",
+      "context": "",
+      "raw": "§cWild Rose",
+      "text": "Wild Rose",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "野玫瑰"
+    },
+    {
+      "id": "gm_upgrade_tier_1",
+      "context": "作物升级页的作物格",
+      "raw": "§7Upgrade your §a%1$s §7tier to increase",
+      "text": "Upgrade your %1$s tier to increase",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "作物名",
+          "type": "category_name",
+          "example": "Wheat"
+        }
+      ],
+      "gloss": "Wheat Fortune → 小麦时运,和 Tab 列表的「%1$s时运」写法一致;尾行自己带占位符和分段。",
+      "translate": true,
+      "zh": "提升%1$s的升级档位,增加你的",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Upgrade your ",
+          "zh": "提升"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "tier to increase",
+          "zh": "的升级档位,增加你的"
+        }
+      ]
+    },
+    {
+      "id": "gm_upgrade_tier_2",
+      "context": "",
+      "raw": "§7your §6☘ %1$s Fortune§7.",
+      "text": "your ☘ %1$s Fortune.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "作物名",
+          "type": "category_name",
+          "example": "Wheat"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": " ☘ %1$s时运。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "your ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§6",
+          "text": "☘ %1$s Fortune",
+          "zh": "☘ %1$s时运"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "continuation": true
+    },
+    {
+      "id": "gm_upgrade_tier_1b",
+      "context": "",
+      "raw": "§7Upgrade your §a%1$s §7tier to",
+      "text": "Upgrade your %1$s tier to",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "作物名",
+          "type": "category_name",
+          "example": "Carrot"
+        }
+      ],
+      "gloss": "作物名较长时英文折行位置提前的写法。",
+      "translate": true,
+      "zh": "提升%1$s的升级档位,增加你的",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Upgrade your ",
+          "zh": "提升"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "tier to",
+          "zh": "的升级档位,增加你的"
+        }
+      ]
+    },
+    {
+      "id": "gm_upgrade_tier_2b",
+      "context": "",
+      "raw": "§7increase your §6☘ %1$s Fortune§7.",
+      "text": "increase your ☘ %1$s Fortune.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "作物名",
+          "type": "category_name",
+          "example": "Carrot"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": " ☘ %1$s时运。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "increase your ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§6",
+          "text": "☘ %1$s Fortune",
+          "zh": "☘ %1$s时运"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "continuation": true
+    },
+    {
+      "id": "gm_current_tier",
+      "context": "",
+      "raw": "§7Current Tier: §e%1$s§7/§a%2$s",
+      "text": "Current Tier: %1$s/%2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前档位",
+          "type": "number",
+          "example": "0"
+        },
+        {
+          "token": "%2$s",
+          "desc": "最高档位",
+          "type": "number",
+          "example": "9"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "当前档位: %1$s/%2$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Current Tier: ",
+          "zh": "当前档位: "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "/",
+          "zh": "/"
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ]
+    },
+    {
+      "id": "gm_crop_fortune_stat",
+      "context": "",
+      "raw": "§7%1$s Fortune: §6+%2$s☘",
+      "text": "%1$s Fortune: +%2$s☘",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "作物名",
+          "type": "category_name",
+          "example": "Wheat"
+        },
+        {
+          "token": "%2$s",
+          "desc": "数值",
+          "type": "number",
+          "example": "0"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s时运: +%2$s☘",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "%1$s Fortune: ",
+          "zh": "%1$s时运: "
+        },
+        {
+          "color": "§6",
+          "text": "+%2$s☘",
+          "zh": "+%2$s☘"
+        }
+      ]
+    },
+    {
+      "id": "gm_requires_garden_level",
+      "context": "",
+      "raw": "§cRequires Garden Level %1$s!",
+      "text": "Requires Garden Level %1$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "所需等级",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "需要花园等级 %1$s 级!"
+    },
+    {
+      "id": "gm_wheat_tier",
+      "context": "小麦升级页的每一档",
+      "raw": "§eWheat %1$s",
+      "text": "Wheat %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "档位",
+          "type": "tier",
+          "example": "I"
+        }
+      ],
+      "gloss": "其他作物的升级页没实测到,先只收小麦;Tab 那边的作物里程碑也是按作物各写一条。",
+      "translate": true,
+      "zh": "小麦 %1$s"
+    },
+    {
+      "id": "gm_plus_wheat_fortune",
+      "context": "",
+      "raw": "§6+5☘ Wheat Fortune",
+      "text": "+5☘ Wheat Fortune",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "+5☘ 小麦时运"
+    },
+    {
+      "id": "gm_costs",
+      "context": "",
+      "raw": "§7Costs",
+      "text": "Costs",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "花费"
+    },
+    {
+      "id": "gm_copper_price",
+      "context": "升级 / 商品价格行",
+      "raw": "§c%1$s Copper",
+      "text": "%1$s Copper",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "铜数量",
+          "type": "number",
+          "example": "5"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s 铜"
+    },
+    {
+      "id": "gm_unlock_previous_1",
+      "context": "",
+      "raw": "§cYou need to unlock the previous tier",
+      "text": "You need to unlock the previous tier",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "得先解锁上一档!"
+    },
+    {
+      "id": "gm_unlock_previous_2",
+      "context": "",
+      "raw": "§cfirst!",
+      "text": "first!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "gm_cant_afford_upgrade",
+      "context": "",
+      "raw": "§cYou can't afford this upgrade!",
+      "text": "You can't afford this upgrade!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你买不起这项升级!"
+    },
+    {
+      "id": "gm_crop_upgrades_entry",
+      "context": "花园升级页的两个入口",
+      "raw": "§a%1$s Upgrades",
+      "text": "%1$s Upgrades",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Crop / Greenhouse,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Crop"
+        }
+      ],
+      "gloss": "作物升级 / 温室升级。",
+      "translate": true,
+      "zh": "%1$s升级"
+    },
+    {
+      "id": "gm_increase_fortune_1",
+      "context": "",
+      "raw": "§7Increase your §6☘ Farming Fortune",
+      "text": "Increase your ☘ Farming Fortune",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "逐个升级作物,提高对应的 ☘ 农业时运!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increase your ",
+          "zh": "逐个升级作物,提高对应的 "
+        },
+        {
+          "color": "§6",
+          "text": "☘ Farming Fortune",
+          "zh": "☘ 农业时运!"
+        }
+      ]
+    },
+    {
+      "id": "gm_increase_fortune_2",
+      "context": "",
+      "raw": "§7for each crop by upgrading them!",
+      "text": "for each crop by upgrading them!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "gm_greenhouse_upgrade_desc_1",
+      "context": "",
+      "raw": "§7Upgrade your Greenhouse to",
+      "text": "Upgrade your Greenhouse to",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "升级温室,提高它的生长速度和产量。"
+    },
+    {
+      "id": "gm_greenhouse_upgrade_desc_2",
+      "context": "",
+      "raw": "§7improve its growth and yield.",
+      "text": "improve its growth and yield.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "gm_milestones_entry",
+      "context": "花园里程碑页的两个入口",
+      "raw": "§a%1$s Milestones",
+      "text": "%1$s Milestones",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Crop / Visitor,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Crop"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s里程碑"
+    },
+    {
+      "id": "gm_milestones_desc_1",
+      "context": "",
+      "raw": "§7View progress and rewards for",
+      "text": "View progress and rewards for",
+      "placeholders": [],
+      "gloss": "尾行带占位符(crop / Visitor),接着首行说完。",
+      "translate": true,
+      "zh": "查看花园里"
+    },
+    {
+      "id": "gm_milestones_desc_2",
+      "context": "",
+      "raw": "§7%1$s milestones on your Garden!",
+      "text": "%1$s milestones on your Garden!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "crop / Visitor,译名走 _shared/Terms.json",
+          "type": "raw",
+          "example": "crop"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s里程碑的进度和奖励!",
+      "continuation": true
+    },
+    {
+      "id": "gm_unique_visitors_served",
+      "context": "",
+      "raw": "§aUnique Visitors Served",
+      "text": "Unique Visitors Served",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "接待独特访客"
+    },
+    {
+      "id": "gm_unique_visitors_desc_1",
+      "context": "",
+      "raw": "§7Unlock unique visitors and complete",
+      "text": "Unlock unique visitors and complete",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "解锁新的访客并在你的岛上完成他们的委托,即可提升此里程碑。"
+    },
+    {
+      "id": "gm_unique_visitors_desc_2",
+      "context": "",
+      "raw": "§7their offer on your island to",
+      "text": "their offer on your island to",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "gm_unique_visitors_desc_3",
+      "context": "",
+      "raw": "§7increase this milestone.",
+      "text": "increase this milestone.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "gm_accept_offers_desc_1",
+      "context": "",
+      "raw": "§7Accept offers from visitors to",
+      "text": "Accept offers from visitors to",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "接受访客的委托,即可提升此里程碑。"
+    },
+    {
+      "id": "gm_browse_visitors_1",
+      "context": "",
+      "raw": "§7Browse and filter through all of the",
+      "text": "Browse and filter through all of the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "浏览并筛选花园里的全部访客。"
+    },
+    {
+      "id": "gm_browse_visitors_2",
+      "context": "",
+      "raw": "§7visitors on the Garden.",
+      "text": "visitors on the Garden.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "gm_barn_skins",
+      "context": "花园皮肤页 / SkyMart 的入口",
+      "raw": "§aBarn Skins",
+      "text": "Barn Skins",
+      "placeholders": [],
+      "gloss": "不做成「%1$s Skins」模板:那会把「Gingerbread Man Minion Skin」这类小人皮肤名吃进来。",
+      "translate": true,
+      "zh": "谷仓皮肤"
+    },
+    {
+      "id": "gm_skins_view_desc_barn",
+      "context": "",
+      "raw": "§7your Barn.",
+      "text": "your Barn.",
+      "placeholders": [],
+      "gloss": "首行是 Desk.json#desk_skins_desc_1「查看并挑选各种皮肤,给」;尾行不做成模板,免得「your X.」这种短模板误吃别的 Lore。",
+      "translate": true,
+      "zh": "你的谷仓换个新样貌。",
+      "continuation": true
+    },
+    {
+      "id": "gm_skins_view_desc_greenhouse",
+      "context": "",
+      "raw": "§7your Greenhouse.",
+      "text": "your Greenhouse.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的温室换个新样貌。",
+      "continuation": true
+    },
+    {
+      "id": "gm_greenhouse_skins",
+      "context": "",
+      "raw": "§aGreenhouse Skins",
+      "text": "Greenhouse Skins",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "温室皮肤"
+    },
+    {
+      "id": "gm_select_barn_skin",
+      "context": "",
+      "raw": "§7Select this skin for your Barn!",
+      "text": "Select this skin for your Barn!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "为你的谷仓选用这款皮肤!"
+    }
+  ]
+}

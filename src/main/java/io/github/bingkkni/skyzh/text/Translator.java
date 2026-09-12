@@ -245,9 +245,14 @@ public final class Translator {
 	public static Component translateChatLine(Component source, Font font, int width) {
 		Result result = translate(source, Surface.CHAT, SkyZHConfig.get().showOriginal);
 
-		return result.matched() && "center_chat_banner".equals(result.entry().layout())
+		return centerChat(result)
 			? TextLayout.centeredWithSpaces(font, result.core(), width)
 			: result.padded();
+	}
+
+	public static boolean centerChat(Result result) {
+		return result.matched() && ("center_chat_banner".equals(result.entry().layout())
+			|| "center_chat_if_padded".equals(result.entry().layout()) && result.centredByServer());
 	}
 
 	/** The newline-preserving counterpart of {@link #translateChatLine}. */

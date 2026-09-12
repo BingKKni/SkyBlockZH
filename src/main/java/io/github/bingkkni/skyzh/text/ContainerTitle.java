@@ -7,7 +7,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 
 /**
- * Chest and menu titles: translated, optionally labelled with the English, and re-centred.
+ * Chest and menu titles: translated and re-centred. The item-only comparison setting deliberately
+ * does not label titles; menu names are not Bazaar or Auction House search keys.
  *
  * <p>Known issue 1 in its most tractable form. SkyBlock centres a container title by padding it with
  * spaces until it looks middled at the width Minecraft gives the title area — a trick that is
@@ -41,7 +42,6 @@ public final class ContainerTitle {
 			return new Rendered(title, false);
 		}
 
-		SkyZHConfig config = SkyZHConfig.get();
 		String key = title.getString() + ' ' + available + ' ' + SkyZHConfig.generation();
 
 		synchronized (ContainerTitle.class) {
@@ -57,10 +57,6 @@ public final class ContainerTitle {
 			rendered = new Rendered(result.padded(), false);
 		} else {
 			MutableComponent line = result.core();
-
-			if (config.showOriginal) {
-				line = OriginalLabel.fit(font, line, title, available);
-			}
 
 			rendered = new Rendered(line, result.centredByServer());
 		}

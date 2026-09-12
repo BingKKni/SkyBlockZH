@@ -54,7 +54,7 @@ public final class SkyZHConfig {
 	/** Whether "SkyBlock" itself becomes 空岛生存. */
 	public boolean translateSkyBlockName = true;
 
-	/** Whether container titles keep the English alongside the Chinese, as 收藏品（Collections）. */
+	/** Whether translated SkyBlock item names retain their English search names. */
 	public boolean showOriginal = true;
 
 	/**
@@ -194,7 +194,7 @@ public final class SkyZHConfig {
 		JsonObject help = new JsonObject();
 		help.addProperty("enabled", "是否启用 Mod 功能。关闭将不翻译任何文本。");
 		help.addProperty("translateSkyBlockName", "是否翻译 SkyBlock 玩法名。翻译后的文本为「空岛生存」。");
-		help.addProperty("showOriginal", "启用翻译对比：在容器标题、物品名、以及聊天/Lore 里出现的已译物品名后面加括号英文，如「收藏品（Collections）」「象牙化石（Tusk Fossil）」「钻石精华（Diamond Essence）」。集市和拍卖行是按英文名搜索的，关掉之后就搜不到自己手里的物品了。按住「临时显示原文」键（默认 X）可以临时显示全部原文，松开恢复；可在原版控制设置里改键或设为 NONE 禁用，那一键不关采集。");
+		help.addProperty("showOriginal", "启用翻译对比：仅在真实空岛物品的译名后保留英文搜索名，包括绑定物品及聊天、Lore 中提到的物品。不为菜单标题、返回按钮、页码、活动、属性或状态加原文。按住临时显示原文键（默认 X）可查看全部原文；可在原版控制设置中改键或解绑，不影响采集。");
 		help.addProperty("captureUntranslated", "【给翻译者用，普通玩家请保持关闭】把游戏里还没翻译、以及翻译了但仍中英混杂的文本写到硬盘上，供补全语料用。只采集服务器发来的原文，不会采集其他 Mod 的文本，也不会改变游戏里显示的任何内容。打开它时，如果装了 hypixel-mod-api，会向服务器订阅一次位置事件（用来判断采到的文本属于哪个玩法）——这是本 Mod 唯一一处往外发包的地方，关掉就不发。");
 		help.addProperty("captureNotifications", "采集到未翻译文本、颜色错误、中英混杂文本时，是否在聊天栏里输出报告");
 		help.addProperty("autoClearCapture", "每次启动游戏时，是否自动清空上一轮已采集的文本。启动时执行一次，与采集总开关和是否进入 Hypixel 无关；断线重连不清空。");

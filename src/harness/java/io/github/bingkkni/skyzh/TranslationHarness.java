@@ -11,6 +11,7 @@ import io.github.bingkkni.skyzh.text.LoreMatcher;
 import io.github.bingkkni.skyzh.text.OriginalLabel;
 import io.github.bingkkni.skyzh.text.StyledText;
 import io.github.bingkkni.skyzh.text.Surface;
+import io.github.bingkkni.skyzh.text.TermTable;
 import io.github.bingkkni.skyzh.text.TranslationEntry;
 import io.github.bingkkni.skyzh.text.TranslationIndex;
 import io.github.bingkkni.skyzh.text.TranslationLoader;
@@ -313,10 +314,10 @@ public final class TranslationHarness {
 		check("保底总览标题", "Pity", Surface.GUI_TITLE, "保底进度");
 
 		// ---- the rows that are on screen every frame, from the 2026-08-20 session ----
-		// The day number gets air on both sides. Written together — 立秋20日 — the three glyphs and the
+		// The day number gets air on both sides. Written together — 7月20日 — the glyphs and the
 		// two digits run into one another on a sidebar that is already the densest text on screen.
-		check("侧边栏日期", "§f Early Autumn 20th", Surface.SCOREBOARD, "§f 立秋 20 日");
-		check("序数后缀换一种也认得", "§f Late Winter 1st", Surface.SCOREBOARD, "§f 大寒 1 日");
+		check("侧边栏日期", "§f Early Autumn 20th", Surface.SCOREBOARD, "§f 7 月 20 日");
+		check("序数后缀换一种也认得", "§f Late Winter 1st", Surface.SCOREBOARD, "§f 12 月 1 日");
 		// The clock keeps SkyBlock's 12-hour time and replaces am/pm with the Chinese time-of-day word,
 		// which is how the language actually says a clock time. English 12-hour time is ambiguous at
 		// twelve — 12:30am is the middle of the night — and 凌晨/上午/中午/下午/晚上 each cover one stretch,
@@ -721,7 +722,8 @@ public final class TranslationHarness {
 		check("词表里没有的小人种类保持英文", "§eVoidling Minion", Surface.ITEM, "§eVoidling 小人");
 		check("带档位的小人名", "§eInferno Minion XI", Surface.ITEM, "§e炽焰小人 XI");
 		// The tier placeholder is what stops "Gingerbread Man Minion Skin" being read as a tiered name.
-		checkNoMatch("小人皮肤不算带档位的小人名", "§eGingerbread Man Minion Skin", Surface.ITEM);
+		check("已收录小人皮肤按整名翻译", "§eGingerbread Man Minion Skin", Surface.ITEM, "§e姜饼人小人皮肤");
+		checkNoMatch("未知小人皮肤不算带档位的小人名", "§eUnverified Minion Skin", Surface.ITEM);
 		check("已制作的档位", "§a✔ Tier IV", Surface.ITEM, "§a✔ 第 IV 档");
 		check("未制作的档位", "§c✖ Tier XII", Surface.ITEM, "§c✖ 第 XII 档");
 		// "To Collections" used to be eaten by "%1$s Collections", rendering as "To 收藏品".
@@ -879,9 +881,9 @@ public final class TranslationHarness {
 		report("松开 X 后化石名恢复中文",
 			"§6象牙化石".equals(legacy(Translator.translate(Component.literal("§6Tusk Fossil"), Surface.ITEM).padded())),
 			"实际 [" + legacy(Translator.translate(Component.literal("§6Tusk Fossil"), Surface.ITEM).padded()) + "]");
-		// The date reads as Chinese does: the year first, then the solar term and the day.
+		// The date reads as Chinese does: the year first, then the month number and the day.
 		check("空岛菜单日期语序", "§7Date: §a10th Autumn 510", Surface.ITEM,
-			"§7日期: 第 §a510 年 · 秋分 10 日");
+			"§7日期: 第 §a510 年 8 月 10 日");
 
 		// ---- the 2026-08-31 session: an item's stat line once it has a reforge on it ----
 		// The bonus brackets are the normal case, not the exception — an item with nothing on it is a
@@ -891,7 +893,7 @@ public final class TranslationHarness {
 		check("属性行带一个加成括号", "§7Damage: §c+285 §9(+165)", Surface.ITEM, "§7伤害: §c+285 §9(+165)");
 		check("属性行带四个加成括号", "§7Strength: §c+261 §e(+30) §9(+199) §d(+32) §8(+1,119.69)",
 			Surface.ITEM, "§7力量: §c+261 §e(+30) §9(+199) §d(+32) §8(+1,119.69)");
-		check("属性行没有加成括号时照旧", "§7Intelligence: §b+110", Surface.ITEM, "§7智力: §b+110");
+		check("属性行没有加成括号时照旧", "§7Intelligence: §b+110", Surface.ITEM, "§7法力: §b+110");
 
 		// ---- the 2026-08-31 session: one template per upgrade *line*, not per upgrade *name* ----
 		// Sixteen account/profile upgrades share four line shapes. Spelling a name into each shape is
@@ -934,6 +936,7 @@ public final class TranslationHarness {
 		checkRefExclude(files);
 		checkPostBuildCapture(root);
 		checkCaptureFixes();
+		checkItemComparisonAndScreenshots();
 
 		System.out.println();
 		System.out.println("通过 " + passed + " / 失败 " + failed);
@@ -2046,9 +2049,59 @@ public final class TranslationHarness {
 		Component source = Component.literal(input);
 		Translator.Result translated = TooltipTranslator.translateItemName(source);
 		Component actual = translated.matched() && showOriginal
+			&& io.github.bingkkni.skyzh.text.ItemNames.canonical(StyledText.of(source).plain()) != null
 			? OriginalLabel.append(translated.padded(), source)
 			: translated.padded();
 		report(name, expected.equals(legacy(actual)), "期望 [" + expected + "] 实际 [" + legacy(actual) + "]");
+	}
+
+	private static void checkItemComparisonAndScreenshots() {
+		for (String name : List.of("Back", "Enabled", "Apprentice Necromancer", "Recently Created",
+			"Rewards", "Hoppity's Hunt", "Ender Chest (1/5)", "Page 2", "Copper", "Bingo",
+			"Hoppity (NPC)", "SkyBlock Menu (Click)", "Unknown New Item")) {
+			report("非物品不进入对比目录: " + name,
+				io.github.bingkkni.skyzh.text.ItemNames.canonical(name) == null, name);
+			Translator.Result result = Translator.translate(Component.literal(name), Surface.ITEM, true);
+			report("非物品 Lore 不加原文: " + name, !result.padded().getString().contains("（"), result.padded().getString());
+		}
+		for (String name : List.of("Mithril Pickaxe", "Melody's Shoes", "Ditto Blob", "Booster Cookie",
+			"Tusk Fossil", "Diamond Essence", "Fleet Titanium Drill DR-X455", "[Lvl 100] Sheep",
+			"Ancient Diamond Necron Head ✪✪✪✪✪➎")) {
+			String canonical = io.github.bingkkni.skyzh.text.ItemNames.canonical(name);
+			report("真实物品含绑定/重铸/星级/宠物仍可对比: " + name, name.equals(canonical),
+				"括号必须保留实时完整原名，实际 [" + canonical + "]");
+			TranslationEntry item = TranslationEntry.compile("comparison-test", "test", List.of(name),
+				List.of("测试物品"), false, "", Map.of(), Map.of());
+			StyledText source = StyledText.of(Component.literal(name));
+			report("聊天与 Lore 保留完整物品原名: " + name,
+				("测试物品（" + name + "）").equals(item.render(source, item.match(source.canonical()),
+					TermTable.EMPTY, true).getString()), name);
+		}
+		checkTooltipName("返回按钮不加原文", "Back", "返回", true);
+		checkTooltipName("真实物品保留搜索原名", "§6Ditto Blob", "§6仿制黏团（Ditto Blob）", true);
+		checkTooltipName("关闭对比保留译名", "§6Ditto Blob", "§6仿制黏团", false);
+		check("Duke 实测委托不残留英文作物名",
+			"You seem new here. You should probably try to get some §aEnchanted Wheat §ffor me.", Surface.CHAT,
+			"看着像是新来的啊。不如先帮我弄点§a附魔小麦§f吧。");
+		Component dukeCompared = Translator.translate(Component.literal(
+			"You seem new here. You should probably try to get some §aEnchanted Wheat §ffor me."),
+			Surface.CHAT, true).padded();
+		report("Duke 委托开启对比后保留完整物品搜索名",
+			"看着像是新来的啊。不如先帮我弄点§a附魔小麦（Enchanted Wheat）§f吧。".equals(legacy(dukeCompared)),
+			legacy(dukeCompared));
+		check("随身余额不出现 Purse 或重复硬币", "§7Purse Coins: §65,179,288.8", Surface.ITEM,
+			"§7硬币: §65,179,288.8");
+		check("花园等级条件已修复，不是前往地点", "§eReach Garden Level IV", Surface.SCOREBOARD,
+			"§e花园等级达到 IV 级");
+		check("Melody 鞋子是伐木时运", "§7Foraging Fortune: §6+6", Surface.ITEM, "§7伐木时运: §6+6");
+		for (String line : List.of("QUEST COMPLETE", "COLLECTION UNLOCKED Wheat", "+5 SkyBlock XP")) {
+			report("任务通知保持左对齐: " + line,
+				!Translator.centerChat(Translator.translate(Component.literal(line), Surface.CHAT)), line);
+		}
+		for (String line : List.of("                          SKYBLOCK LEVEL UP", "                 +5 SkyBlock XP")) {
+			report("等级横幅和居中奖励重新计算居中: " + line,
+				Translator.centerChat(Translator.translate(Component.literal(line), Surface.CHAT)), line);
+		}
 	}
 
 	/** User log translations, including live variants and style-sensitive Chinese word order. */
@@ -2079,7 +2132,7 @@ public final class TranslationHarness {
 		check("Maxwell 交错属性颜色与实测图标",
 			"§fYes! The more §6Accessory Power§f, the more stats like §c\uE010 Health §for §b\uE003 Intelligence "
 				+ "§fyou get from your §aAccessory Bag§f.", Surface.CHAT,
-			"§f没错! §6饰品之力§f越高,你的§a饰品袋§f提供的§c\uE010 生命值§f、§b\uE003 智力§f等属性就越多。");
+			"§f没错! §6饰品之力§f越高,你的§a饰品袋§f提供的§c\uE010 生命值§f、§b\uE003 法力§f等属性就越多。");
 		check("末影八件套含护甲与装备", "§fYou should focus on getting all 8 pieces of the §5Ender Armor §rnow.",
 			Surface.CHAT, "§f接下来,你该专心收齐全套 8 件§5末影套装了。");
 		// legacy() omits Style.EMPTY, so assert the actual reset style rather than a printed §r.
@@ -2221,7 +2274,7 @@ public final class TranslationHarness {
 			"冰封".equals(Translator.index().terms().translate("accessory_power", "Frozen"))
 				&& "冰冻".equals(Translator.index().terms().translate("category_name", "Frozen")), "Frozen 按语境查表");
 		report("日历月份与海洋生物分类隔离",
-			"冬至".equals(Translator.index().terms().translate("skyblock_month", "Winter"))
+			"11 月".equals(Translator.index().terms().translate("skyblock_month", "Winter"))
 				&& "寒冬".equals(Translator.index().terms().translate("category_name", "Winter")), "Winter 按语境查表");
 		report("新类型仍拒绝句子作为能力名", !Capture.of("accessory_power").accepts("you choose to remain humble"), "使用有界名称形状");
 		report("首字母终端必须显示英文线索", TooltipTranslator.requiresOriginalName(Component.literal("What starts with: 'G'?")), "原文标题触发");
@@ -2370,7 +2423,7 @@ public final class TranslationHarness {
 		report("减号数值不当成列表项", LineShape.candidates(Surface.ITEM, "-25 Unknown").stream()
 			.allMatch(range -> range.start() == 0), "只有带空格的列表短横线可以剥离");
 		check("数字紧邻图标仍能正确捕获", "§7Grants §b+25\uE003 Intelligence§7.", Surface.ITEM,
-			"§7提供 §b+25\uE003 智力§7。");
+			"§7提供 §b+25\uE003 法力§7。");
 		check("农业时运保留实际字形而不是挖掘字形", "§7Grants §6+35\uE051 Moonflower Fortune§7.", Surface.ITEM,
 			"§7提供 §6+35\uE051 月光花时运§7。");
 		check("Timber统一为整树砍伐", "§7Grants §4+1\uE02E Timber§7.", Surface.ITEM,
@@ -2517,7 +2570,9 @@ public final class TranslationHarness {
 		// "%s Sword" used to answer every custom sword name as "<name> 剑".
 		check("亡灵剑是精确记录", "§fUndead Sword", Surface.ITEM, "§f亡灵剑");
 		checkNoMatch("自造剑名不再被剑类模板截断", "§5Wither Cloak Sword", Surface.ITEM);
-		checkNoMatch("带重铸的自造剑名不再被截断", "§5Heroic Wither Cloak Sword", Surface.ITEM);
+		check("已收录重铸剑名按完整名称翻译", "§5Heroic Wither Cloak Sword", Surface.ITEM, "§5英勇 凋灵披风剑");
+		checkNoMatch("未知重铸剑名不被宽泛模板截断", "§5Heroic Unverified Example Sword", Surface.ITEM);
+		checkNoMatch("同名谷仓与牲畜棚入口不全局误译", "§aThe Barn", Surface.ITEM);
 		// Smite in the enchant table wraps as "Wither," + "Skeletal and Undead mobs by 5%." - the generic
 		// family tail captured the whole "Skeletal and Undead" as one family and left it in English.
 		checkJoined("凋灵首行接骷髅亡灵尾行带百分比", List.of(
@@ -2597,8 +2652,8 @@ public final class TranslationHarness {
 			Surface.TABLIST, " §f上层矿区 - 秘银: §c0%");
 		checkProbe("Probe 壁垒采石场委托", " §fRampart's Quarry Titanium: §c0%",
 			Surface.TABLIST, " §f壁垒采石场 - 钛: §c0%");
-		checkProbe("Probe 未覆盖原文仍可见", "§5Reinforced Glacite Chestplate",
-			Surface.ITEM, "§5Reinforced Glacite Chestplate");
+		checkProbe("Probe 未覆盖原文仍可见", "§5Unverified Example Object",
+			Surface.ITEM, "§5Unverified Example Object");
 		checkProbe("Probe 附魔列表保留专属英文名称", "§9Protection V, Growth I",
 			Surface.ITEM, "§9保护 V, Growth I");
 		checkProbe("Probe 动作栏部件与运行时一致",
@@ -2748,7 +2803,8 @@ public final class TranslationHarness {
 		Component cost = Component.literal("§d50,000 Undead Essence");
 		for (boolean originals : List.of(false, true)) {
 			Component output = Translator.translate(cost, Surface.ITEM, originals).padded();
-			report("精华费用英文对照开关 " + originals, "50,000 亡灵精华".equals(output.getString()), output.getString());
+			report("精华费用英文对照开关 " + originals,
+				("50,000 亡灵精华" + (originals ? "（Undead Essence）" : "")).equals(output.getString()), output.getString());
 		}
 		report("翻译不改写原始组件", "§d50,000 Undead Essence".equals(cost.getString()), cost.getString());
 		for (Map.Entry<String, String> skill : Map.of(

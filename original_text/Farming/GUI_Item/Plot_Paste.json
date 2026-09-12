@@ -1,0 +1,1295 @@
+{
+  "source": "runtime capture (SkyZH) 2026-09-10 花园实测",
+  "fetched_at": "2026-09-10",
+  "verified_ingame": true,
+  "gui_context": "往地块上粘贴作物预设的三个菜单:选择粘贴方式(从集市买 / 用背包)、购买材料、确认粘贴。",
+  "lines": [
+    {
+      "id": "paste_from_source",
+      "context": "",
+      "raw": "§6From %1$s",
+      "text": "From %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Bazaar / Inventory,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Bazaar"
+        }
+      ],
+      "gloss": "集市 / 背包。",
+      "translate": true,
+      "zh": "来自%1$s"
+    },
+    {
+      "id": "paste_from_bazaar_desc_1",
+      "context": "",
+      "raw": "§7Purchase resources from the",
+      "text": "Purchase resources from the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "从"
+    },
+    {
+      "id": "paste_from_bazaar_desc_2",
+      "context": "",
+      "raw": "§6Bazaar §7that go towards the plot",
+      "text": "Bazaar that go towards the plot",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "集市购买地块所需的材料,",
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Bazaar ",
+          "zh": "集市"
+        },
+        {
+          "color": "§7",
+          "text": "that go towards the plot",
+          "zh": "购买地块所需的材料,"
+        }
+      ]
+    },
+    {
+      "id": "paste_from_bazaar_desc_3",
+      "context": "",
+      "raw": "§7instead of using inventory or sack",
+      "text": "instead of using inventory or sack",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "不用背包或收纳袋",
+      "continuation": true
+    },
+    {
+      "id": "paste_must_be_on_island_1",
+      "context": "",
+      "raw": "§eYou must be on the island for the",
+      "text": "You must be on the island for the",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "材料要种下去,你必须待在岛上。"
+    },
+    {
+      "id": "paste_must_be_on_island_2",
+      "context": "",
+      "raw": "§eresources to populate.",
+      "text": "resources to populate.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "paste_cookie_buff_1",
+      "context": "",
+      "raw": "§cYou must have an active Cookie Buff",
+      "text": "You must have an active Cookie Buff",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "需要曲奇增益生效中才能使用!"
+    },
+    {
+      "id": "paste_cookie_buff_2",
+      "context": "",
+      "raw": "§cto use this!",
+      "text": "to use this!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "paste_while_pasting_1",
+      "context": "",
+      "raw": "§7While pasting, §f%1$s §7will",
+      "text": "While pasting, %1$s will",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "作物名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Sugar Cane"
+        }
+      ],
+      "gloss": "四行英文合成一句;第三行「inventory / sacks」的高亮随合并丢失,这是 continuation 的既有代价。",
+      "translate": true,
+      "zh": "粘贴期间,%1$s将",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "While pasting, ",
+          "zh": "粘贴期间,"
+        },
+        {
+          "color": "§f",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "will",
+          "zh": "将"
+        }
+      ]
+    },
+    {
+      "id": "paste_while_pasting_2",
+      "context": "",
+      "raw": "§7automatically be consumed from your",
+      "text": "automatically be consumed from your",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "自动取自你的",
+      "continuation": true
+    },
+    {
+      "id": "paste_while_pasting_3",
+      "context": "",
+      "raw": "§ainventory §7or §bsacks §7and planted on",
+      "text": "inventory or sacks and planted on",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "背包或收纳袋,并种到",
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§a",
+          "text": "inventory ",
+          "zh": "背包"
+        },
+        {
+          "color": "§7",
+          "text": "or ",
+          "zh": "或"
+        },
+        {
+          "color": "§b",
+          "text": "sacks ",
+          "zh": "收纳袋"
+        },
+        {
+          "color": "§7",
+          "text": "and planted on",
+          "zh": ",并种到"
+        }
+      ]
+    },
+    {
+      "id": "paste_while_pasting_4",
+      "context": "",
+      "raw": "§7the plot.",
+      "text": "the plot.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这块地上。",
+      "continuation": true
+    },
+    {
+      "id": "paste_you_currently_have",
+      "context": "",
+      "raw": "§7You currently have:",
+      "text": "You currently have:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你当前拥有:"
+    },
+    {
+      "id": "paste_have_wheat",
+      "context": "「你当前拥有:」下面的原料行",
+      "raw": "  §a%1$s§7/%2$s §fWheat",
+      "text": "  %1$s/%2$s Wheat",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "已有数量",
+          "type": "number",
+          "example": "0"
+        },
+        {
+          "token": "%2$s",
+          "desc": "所需数量",
+          "type": "number",
+          "example": "5,704"
+        }
+      ],
+      "gloss": "作物名做成占位符的话模板就只剩「/」,没有自己的词,引擎会拒;按作物各写一条(README 允许的拆标签),只实测到甘蔗和种子。",
+      "translate": true,
+      "zh": "  %1$s/%2$s 小麦",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "/%2$s ",
+          "zh": "/%2$s "
+        },
+        {
+          "color": "§f",
+          "text": "Wheat",
+          "zh": "小麦"
+        }
+      ]
+    },
+    {
+      "id": "paste_have_carrot",
+      "context": "「你当前拥有:」下面的原料行",
+      "raw": "  §a%1$s§7/%2$s §fCarrot",
+      "text": "  %1$s/%2$s Carrot",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "已有数量",
+          "type": "number",
+          "example": "0"
+        },
+        {
+          "token": "%2$s",
+          "desc": "所需数量",
+          "type": "number",
+          "example": "5,704"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "  %1$s/%2$s 胡萝卜",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "/%2$s ",
+          "zh": "/%2$s "
+        },
+        {
+          "color": "§f",
+          "text": "Carrot",
+          "zh": "胡萝卜"
+        }
+      ]
+    },
+    {
+      "id": "paste_have_potato",
+      "context": "「你当前拥有:」下面的原料行",
+      "raw": "  §a%1$s§7/%2$s §fPotato",
+      "text": "  %1$s/%2$s Potato",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "已有数量",
+          "type": "number",
+          "example": "0"
+        },
+        {
+          "token": "%2$s",
+          "desc": "所需数量",
+          "type": "number",
+          "example": "5,704"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "  %1$s/%2$s 马铃薯",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "/%2$s ",
+          "zh": "/%2$s "
+        },
+        {
+          "color": "§f",
+          "text": "Potato",
+          "zh": "马铃薯"
+        }
+      ]
+    },
+    {
+      "id": "paste_have_pumpkin",
+      "context": "「你当前拥有:」下面的原料行",
+      "raw": "  §a%1$s§7/%2$s §fPumpkin",
+      "text": "  %1$s/%2$s Pumpkin",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "已有数量",
+          "type": "number",
+          "example": "0"
+        },
+        {
+          "token": "%2$s",
+          "desc": "所需数量",
+          "type": "number",
+          "example": "5,704"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "  %1$s/%2$s 南瓜",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "/%2$s ",
+          "zh": "/%2$s "
+        },
+        {
+          "color": "§f",
+          "text": "Pumpkin",
+          "zh": "南瓜"
+        }
+      ]
+    },
+    {
+      "id": "paste_have_sugar_cane",
+      "context": "「你当前拥有:」下面的原料行",
+      "raw": "  §a%1$s§7/%2$s §fSugar Cane",
+      "text": "  %1$s/%2$s Sugar Cane",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "已有数量",
+          "type": "number",
+          "example": "0"
+        },
+        {
+          "token": "%2$s",
+          "desc": "所需数量",
+          "type": "number",
+          "example": "5,704"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "  %1$s/%2$s 甘蔗",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "/%2$s ",
+          "zh": "/%2$s "
+        },
+        {
+          "color": "§f",
+          "text": "Sugar Cane",
+          "zh": "甘蔗"
+        }
+      ]
+    },
+    {
+      "id": "paste_have_melon",
+      "context": "「你当前拥有:」下面的原料行",
+      "raw": "  §a%1$s§7/%2$s §fMelon",
+      "text": "  %1$s/%2$s Melon",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "已有数量",
+          "type": "number",
+          "example": "0"
+        },
+        {
+          "token": "%2$s",
+          "desc": "所需数量",
+          "type": "number",
+          "example": "5,704"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "  %1$s/%2$s 西瓜",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "/%2$s ",
+          "zh": "/%2$s "
+        },
+        {
+          "color": "§f",
+          "text": "Melon",
+          "zh": "西瓜"
+        }
+      ]
+    },
+    {
+      "id": "paste_have_cactus",
+      "context": "「你当前拥有:」下面的原料行",
+      "raw": "  §a%1$s§7/%2$s §fCactus",
+      "text": "  %1$s/%2$s Cactus",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "已有数量",
+          "type": "number",
+          "example": "0"
+        },
+        {
+          "token": "%2$s",
+          "desc": "所需数量",
+          "type": "number",
+          "example": "5,704"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "  %1$s/%2$s 仙人掌",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "/%2$s ",
+          "zh": "/%2$s "
+        },
+        {
+          "color": "§f",
+          "text": "Cactus",
+          "zh": "仙人掌"
+        }
+      ]
+    },
+    {
+      "id": "paste_have_cocoa_beans",
+      "context": "「你当前拥有:」下面的原料行",
+      "raw": "  §a%1$s§7/%2$s §fCocoa Beans",
+      "text": "  %1$s/%2$s Cocoa Beans",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "已有数量",
+          "type": "number",
+          "example": "0"
+        },
+        {
+          "token": "%2$s",
+          "desc": "所需数量",
+          "type": "number",
+          "example": "5,704"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "  %1$s/%2$s 可可豆",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "/%2$s ",
+          "zh": "/%2$s "
+        },
+        {
+          "color": "§f",
+          "text": "Cocoa Beans",
+          "zh": "可可豆"
+        }
+      ]
+    },
+    {
+      "id": "paste_have_mushroom",
+      "context": "「你当前拥有:」下面的原料行",
+      "raw": "  §a%1$s§7/%2$s §fMushroom",
+      "text": "  %1$s/%2$s Mushroom",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "已有数量",
+          "type": "number",
+          "example": "0"
+        },
+        {
+          "token": "%2$s",
+          "desc": "所需数量",
+          "type": "number",
+          "example": "5,704"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "  %1$s/%2$s 蘑菇",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "/%2$s ",
+          "zh": "/%2$s "
+        },
+        {
+          "color": "§f",
+          "text": "Mushroom",
+          "zh": "蘑菇"
+        }
+      ]
+    },
+    {
+      "id": "paste_have_nether_wart",
+      "context": "「你当前拥有:」下面的原料行",
+      "raw": "  §a%1$s§7/%2$s §fNether Wart",
+      "text": "  %1$s/%2$s Nether Wart",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "已有数量",
+          "type": "number",
+          "example": "0"
+        },
+        {
+          "token": "%2$s",
+          "desc": "所需数量",
+          "type": "number",
+          "example": "5,704"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "  %1$s/%2$s 下界疣",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "/%2$s ",
+          "zh": "/%2$s "
+        },
+        {
+          "color": "§f",
+          "text": "Nether Wart",
+          "zh": "下界疣"
+        }
+      ]
+    },
+    {
+      "id": "paste_have_sunflower",
+      "context": "「你当前拥有:」下面的原料行",
+      "raw": "  §a%1$s§7/%2$s §fSunflower",
+      "text": "  %1$s/%2$s Sunflower",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "已有数量",
+          "type": "number",
+          "example": "0"
+        },
+        {
+          "token": "%2$s",
+          "desc": "所需数量",
+          "type": "number",
+          "example": "5,704"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "  %1$s/%2$s 向日葵",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "/%2$s ",
+          "zh": "/%2$s "
+        },
+        {
+          "color": "§f",
+          "text": "Sunflower",
+          "zh": "向日葵"
+        }
+      ]
+    },
+    {
+      "id": "paste_have_moonflower",
+      "context": "「你当前拥有:」下面的原料行",
+      "raw": "  §a%1$s§7/%2$s §fMoonflower",
+      "text": "  %1$s/%2$s Moonflower",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "已有数量",
+          "type": "number",
+          "example": "0"
+        },
+        {
+          "token": "%2$s",
+          "desc": "所需数量",
+          "type": "number",
+          "example": "5,704"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "  %1$s/%2$s 月光花",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "/%2$s ",
+          "zh": "/%2$s "
+        },
+        {
+          "color": "§f",
+          "text": "Moonflower",
+          "zh": "月光花"
+        }
+      ]
+    },
+    {
+      "id": "paste_have_wild_rose",
+      "context": "「你当前拥有:」下面的原料行",
+      "raw": "  §a%1$s§7/%2$s §fWild Rose",
+      "text": "  %1$s/%2$s Wild Rose",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "已有数量",
+          "type": "number",
+          "example": "0"
+        },
+        {
+          "token": "%2$s",
+          "desc": "所需数量",
+          "type": "number",
+          "example": "5,704"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "  %1$s/%2$s 野玫瑰",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "/%2$s ",
+          "zh": "/%2$s "
+        },
+        {
+          "color": "§f",
+          "text": "Wild Rose",
+          "zh": "野玫瑰"
+        }
+      ]
+    },
+    {
+      "id": "paste_have_enchanted_or",
+      "context": "",
+      "raw": "    §7or §a%1$s§7/%2$s §aEnchanted %3$s",
+      "text": "    or %1$s/%2$s Enchanted %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "已有数量",
+          "type": "number",
+          "example": "0"
+        },
+        {
+          "token": "%2$s",
+          "desc": "所需数量",
+          "type": "number",
+          "example": "36"
+        },
+        {
+          "token": "%3$s",
+          "desc": "材料名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Sugar"
+        }
+      ],
+      "gloss": "附魔糖 / 附魔甘蔗 / 附魔种子这些压缩品由同一条模板管;Box of Seeds 那种没有 Enchanted 前缀的另有一条。",
+      "translate": true,
+      "zh": "    或 %1$s/%2$s 附魔%3$s",
+      "segments": [
+        {
+          "color": "",
+          "text": "    ",
+          "zh": "    "
+        },
+        {
+          "color": "§7",
+          "text": "or ",
+          "zh": "或 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "/%2$s ",
+          "zh": "/%2$s "
+        },
+        {
+          "color": "§a",
+          "text": "Enchanted %3$s",
+          "zh": "附魔%3$s"
+        }
+      ]
+    },
+    {
+      "id": "paste_have_compacted_or",
+      "context": "",
+      "raw": "    §7or §a%1$s§7/%2$s §9%3$s",
+      "text": "    or %1$s/%2$s %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "已有数量",
+          "type": "number",
+          "example": "0"
+        },
+        {
+          "token": "%2$s",
+          "desc": "所需数量",
+          "type": "number",
+          "example": "1"
+        },
+        {
+          "token": "%3$s",
+          "desc": "压缩材料名(Enchanted Sugar Cane / Box of Seeds),译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Box of Seeds"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "    或 %1$s/%2$s %3$s",
+      "segments": [
+        {
+          "color": "",
+          "text": "    ",
+          "zh": "    "
+        },
+        {
+          "color": "§7",
+          "text": "or ",
+          "zh": "或 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "/%2$s ",
+          "zh": "/%2$s "
+        },
+        {
+          "color": "§9",
+          "text": "%3$s",
+          "zh": "%3$s"
+        }
+      ]
+    },
+    {
+      "id": "paste_have_seeds",
+      "context": "",
+      "raw": "  §a%1$s§7 §fSeeds",
+      "text": "  %1$s Seeds",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "已有/所需",
+          "type": "raw",
+          "example": "483/7,896"
+        }
+      ],
+      "gloss": "种子这一行的斜杠没被单独拆开,整段当值。",
+      "translate": true,
+      "zh": "  %1$s 种子",
+      "segments": [
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§f",
+          "text": "Seeds",
+          "zh": "种子"
+        }
+      ]
+    },
+    {
+      "id": "paste_no_resources",
+      "context": "",
+      "raw": "§cNo resources on you!",
+      "text": "No resources on you!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你身上没有材料!"
+    },
+    {
+      "id": "paste_click_buy_resources",
+      "context": "",
+      "raw": "§eClick to buy resources!",
+      "text": "Click to buy resources!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击购买材料!"
+    },
+    {
+      "id": "paste_purchase_resource",
+      "context": "",
+      "raw": "§6Purchase Resource",
+      "text": "Purchase Resource",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "购买材料"
+    },
+    {
+      "id": "paste_start_paste",
+      "context": "",
+      "raw": "§cStart Paste",
+      "text": "Start Paste",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "开始粘贴"
+    },
+    {
+      "id": "paste_start_paste_desc_1",
+      "context": "",
+      "raw": "§7Use the resources bought here to",
+      "text": "Use the resources bought here to",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "用在这里买的材料开始粘贴。"
+    },
+    {
+      "id": "paste_start_paste_desc_2",
+      "context": "",
+      "raw": "§7begin pasting.",
+      "text": "begin pasting.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "paste_purchase_all_first",
+      "context": "",
+      "raw": "§cPurchase all materials on the left first!",
+      "text": "Purchase all materials on the left first!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "先把左边的材料全部买齐!"
+    },
+    {
+      "id": "paste_click_start_paste",
+      "context": "",
+      "raw": "§eClick to start paste!",
+      "text": "Click to start paste!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击开始粘贴!"
+    },
+    {
+      "id": "paste_confirm",
+      "context": "",
+      "raw": "§aConfirm Paste",
+      "text": "Confirm Paste",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "确认粘贴"
+    },
+    {
+      "id": "paste_confirm_desc_1",
+      "context": "",
+      "raw": "§7You are pasting the §f%1$s §7preset on",
+      "text": "You are pasting the %1$s preset on",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "预设名,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Wheat"
+        }
+      ],
+      "gloss": "英文两行合成一句;尾行自己带占位符和分段(README「跨行整句的标记」允许尾行写 segments[].zh),首行 zh 只写自己那一半。",
+      "translate": true,
+      "zh": "你正把%1$s预设粘贴到",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You are pasting the ",
+          "zh": "你正把"
+        },
+        {
+          "color": "§f",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "preset on",
+          "zh": "预设粘贴到"
+        }
+      ]
+    },
+    {
+      "id": "paste_confirm_desc_2",
+      "context": "",
+      "raw": "§aPlot §7- §b%1$s §7using §a%2$s §7resources.",
+      "text": "Plot - %1$s using %2$s resources.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "地块编号",
+          "type": "number",
+          "example": "4"
+        },
+        {
+          "token": "%2$s",
+          "desc": "Inventory / Bazaar,译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Inventory"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "地块 - %1$s,使用%2$s里的材料。",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Plot ",
+          "zh": "地块 "
+        },
+        {
+          "color": "§7",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "using ",
+          "zh": ",使用"
+        },
+        {
+          "color": "§a",
+          "text": "%2$s ",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": "resources.",
+          "zh": "里的材料。"
+        }
+      ],
+      "continuation": true
+    },
+    {
+      "id": "paste_confirm_desc_1b",
+      "context": "",
+      "raw": "§7You are pasting the §f%1$s",
+      "text": "You are pasting the %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "预设名",
+          "type": "category_name",
+          "example": "Sugar Cane"
+        }
+      ],
+      "gloss": "预设名是两个词时英文折成三行,这是那种折法的首行;后两行各自带译文。",
+      "translate": true,
+      "zh": "你正把%1$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You are pasting the ",
+          "zh": "你正把"
+        },
+        {
+          "color": "§f",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ]
+    },
+    {
+      "id": "paste_confirm_desc_2b",
+      "context": "",
+      "raw": "§7preset on §aPlot §7- §b%1$s §7using §6%2$s",
+      "text": "preset on Plot - %1$s using %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "地块编号",
+          "type": "number",
+          "example": "3"
+        },
+        {
+          "token": "%2$s",
+          "desc": "材料来源",
+          "type": "category_name",
+          "example": "Bazaar"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "预设粘贴到地块 - %1$s,使用%2$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "preset on ",
+          "zh": "预设粘贴到"
+        },
+        {
+          "color": "§a",
+          "text": "Plot ",
+          "zh": "地块 "
+        },
+        {
+          "color": "§7",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "using ",
+          "zh": ",使用"
+        },
+        {
+          "color": "§6",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ],
+      "continuation": true
+    },
+    {
+      "id": "paste_confirm_desc_3b",
+      "context": "",
+      "raw": "§7resources.",
+      "text": "resources.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "里的材料。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "resources.",
+          "zh": "里的材料。"
+        }
+      ],
+      "continuation": true
+    },
+    {
+      "id": "paste_you_will_use",
+      "context": "",
+      "raw": "§7You will use:",
+      "text": "You will use:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "将会用掉:"
+    },
+    {
+      "id": "paste_warning_1",
+      "context": "",
+      "raw": "§c§lWARNING!§c This plot will lose its",
+      "text": "WARNING! This plot will lose its",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "警告! 这块地上种着的温室作物会全部丢失! 建议先收完再换预设。",
+      "segments": [
+        {
+          "color": "§c§l",
+          "text": "WARNING!",
+          "zh": "警告!"
+        },
+        {
+          "color": "§c",
+          "text": " This plot will lose its",
+          "zh": " 这块地上种着的温室作物会全部丢失! 建议先收完再换预设。"
+        }
+      ]
+    },
+    {
+      "id": "paste_warning_2",
+      "context": "",
+      "raw": "§cplanted Greenhouse crops! It's",
+      "text": "planted Greenhouse crops! It's",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "paste_warning_3",
+      "context": "",
+      "raw": "§crecommended to collect them before",
+      "text": "recommended to collect them before",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "paste_warning_4",
+      "context": "",
+      "raw": "§cchanging to a preset.",
+      "text": "changing to a preset.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    }
+  ]
+}

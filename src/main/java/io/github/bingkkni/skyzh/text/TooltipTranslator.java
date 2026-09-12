@@ -121,10 +121,10 @@ public final class TooltipTranslator {
 
 		Minecraft minecraft = Minecraft.getInstance();
 		Screen screen = minecraft == null ? null : ClientGui.screen(minecraft);
-		boolean keepOriginalNames = config.showOriginal || (screen instanceof AbstractContainerScreen<?>
-			&& requiresOriginalName(screen.getTitle()));
+		boolean terminalNames = screen instanceof AbstractContainerScreen<?> && requiresOriginalName(screen.getTitle());
+		boolean keepOriginalNames = config.showOriginal || terminalNames;
 		// A tooltip can be identical in a shop and in a terminal; the display policy is part of its key.
-		StringBuilder key = new StringBuilder().append(keepOriginalNames).append('\n');
+		StringBuilder key = new StringBuilder().append(keepOriginalNames).append(':').append(terminalNames).append('\n');
 
 		for (Component line : lines) {
 			StyledText styled = StyledText.of(line);
@@ -185,15 +185,12 @@ public final class TooltipTranslator {
 				: Translator.translate(line, Surface.ITEM, config.showOriginal);
 
 			if (name) {
-				// The first line of a tooltip is the item's name, and the name is what a player types
-				// into the Bazaar and the Auction House. Translating it away would take the search key
-				// with it, so the English is kept beside the Chinese exactly as a container title
-				// keeps it — under the same switch, in the same brackets. See OriginalLabel.
 				name = false;
 
-				if (translated.matched() && keepOriginalNames) {
-					// Not re-wrapped: a name is one line in every language, and the tooltip is welcome
-					// to be as wide as the pair needs.
+				if (translated.matched() && keepOriginalNames
+					&& (terminalNames || ItemNames.canonical(StyledText.of(line).plain()) != null)) {
+					// A confirmed item name keeps the English search key. Terminal letter puzzles are
+					// the deliberate exception: their answer data must stay visible regardless of catalog identity.
 					result.add(OriginalLabel.append(translated.padded(), line));
 					merging = true;
 					continue;

@@ -11,7 +11,8 @@
     "mob_family",
     "minion_resource",
     "accessory_power",
-    "skyblock_month"
+    "skyblock_month",
+    "medal"
   ],
   "types_note": "只对这几种 placeholders[].type 生效。**故意**不含 item_name / npc_name / player_name:那三种正是需求里写死'保留英文'的位置(NPC 人名、物品自造专名),在那里翻错的代价——给别人的武器编一个中文名——远大于一个地名留着英文的代价。新增 type 前先想清楚这一点。category_name 是菜单入口名/功能分类名(Bags、Other Crystals、Recipe Book、Settings 的前半截),形状规则走 Capture.NAME 而不是 raw 的宽松短语——见下面 category_name_note。",
   "enchantment_name_note": "2026-09-08: 附魔名称仅原版 Minecraft 附魔使用官方中文。SkyBlock 专属名称保持英文,包括 Ice Cold/Compact/Scavenger/Turbo- 系列; 其效果和同名的属性、银行、地牢祝福仍翻译。Bank/Inferno 的其他用途必须限定 types,避免全局词表回退将附魔名重新汉化。",
@@ -21,146 +22,1005 @@
   "spacing_note": "查不到的值保持英文,引擎会在英文和汉字之间自动补一个空格(TranslationEntry.Seam),所以 'Amber Gemstone Collector' 渲染成 'Amber 宝石收集员' 而不是 'Amber宝石收集员'。译者不需要、也不应该为此在 zh 里手动加空格。",
   "minion_resource_note": "2026-09-09: 仅 GUI_Lore 小人生产说明使用的资源/生物宾语。按有界短语捕获并整值查表，不影响物品名、NPC 名或旧 raw 词条。来源 https://hypixelskyblock.minecraft.wiki/w/Minions；原版资源沿用官方中文。",
   "accessory_power_note": "饰品能力单独使用 accessory_power，避免 Frozen 的既有鱼饵分类译名与冰封能力混用。名称来自 Maxwell/Powers 社区 Wiki；冰封与幸运沿用旧语料，其他名称仅供该机制使用。",
-  "skyblock_month_note": "日历标题的空岛月份单独使用 skyblock_month，沿用 GLOSSARY 的节气名，不改变 Winter 作为海洋生物分类时的寒冬译名。",
+  "skyblock_month_note": "日历标题等日期行里的空岛月份单独使用 skyblock_month:Early/(无前缀)/Late × 春夏秋冬十二个月按顺序译成「1 月」到「12 月」(用户 2026-09-10 拍板,以月份代替季节),不改变 Winter 作为海洋生物分类时的寒冬译名。",
   "terms": [
-    {"en": "Frozen", "zh": "冰封", "types": ["accessory_power"]},
-    {"en": "Itchy", "zh": "刺痒", "types": ["accessory_power"]},
-    {"en": "Silky", "zh": "丝滑", "types": ["accessory_power"]},
-    {"en": "Commando", "zh": "突击队员", "types": ["accessory_power"]},
-    {"en": "Disciplined", "zh": "自律", "types": ["accessory_power"]},
-    {"en": "Inspired", "zh": "灵感", "types": ["accessory_power"]},
-    {"en": "Ominous", "zh": "不祥", "types": ["accessory_power"]},
-    {"en": "Prepared", "zh": "有备", "types": ["accessory_power"]},
-    {"en": "Fortuitous", "zh": "幸运", "types": ["accessory_power"]},
-    {"en": "Pretty", "zh": "秀美", "types": ["accessory_power"]},
-    {"en": "Protected", "zh": "庇护", "types": ["accessory_power"]},
-    {"en": "Simple", "zh": "简朴", "types": ["accessory_power"]},
-    {"en": "Warrior", "zh": "战士", "types": ["accessory_power"]},
-    {"en": "Forceful", "zh": "强劲", "types": ["accessory_power"]},
-    {"en": "Early Spring", "zh": "立春", "types": ["skyblock_month"]},
-    {"en": "Spring", "zh": "春分", "types": ["skyblock_month"]},
-    {"en": "Late Spring", "zh": "谷雨", "types": ["skyblock_month"]},
-    {"en": "Early Summer", "zh": "立夏", "types": ["skyblock_month"]},
-    {"en": "Summer", "zh": "夏至", "types": ["skyblock_month"]},
-    {"en": "Late Summer", "zh": "大暑", "types": ["skyblock_month"]},
-    {"en": "Early Autumn", "zh": "立秋", "types": ["skyblock_month"]},
-    {"en": "Autumn", "zh": "秋分", "types": ["skyblock_month"]},
-    {"en": "Late Autumn", "zh": "霜降", "types": ["skyblock_month"]},
-    {"en": "Early Winter", "zh": "立冬", "types": ["skyblock_month"]},
-    {"en": "Winter", "zh": "冬至", "types": ["skyblock_month"]},
-    {"en": "Late Winter", "zh": "大寒", "types": ["skyblock_month"]},
-    {"en": "LIGHT BLUE", "zh": "淡蓝色", "types": ["category_name"], "note": "Terminal 指定颜色；旧版 silver 对应淡灰色，gray 对应灰色。"},
-    {"en": "GRAY", "zh": "灰色", "types": ["category_name"]},
-    {"en": "SILVER", "zh": "淡灰色", "types": ["category_name"]},
-    {"en": "BLUE", "zh": "蓝色", "types": ["category_name"]},
-    {"en": "RED", "zh": "红色", "types": ["category_name"]},
-    {"en": "YELLOW", "zh": "黄色", "types": ["category_name"]},
-    {"en": "GREEN", "zh": "绿色", "types": ["category_name"]},
-    {"en": "ORANGE", "zh": "橙色", "types": ["category_name"], "note": "仅颜色参数，不覆盖 Builder 杂货里的橙子。"},
-    {"en": "Rift", "zh": "裂隙", "types": ["category_name"]},
-    {"en": "Pet EXP", "zh": "宠物经验", "types": ["raw", "category_name"]},
-    {"en": "Unlocking Power", "zh": "解锁饰品能力", "types": ["raw"]},
-    {"en": "at the bottom of the stairs", "zh": "楼梯底部", "types": ["raw"], "note": "本次 Hoppity 彩蛋实测位置短语；只用于整值查找。"},
-    {"en": "behind the Deep Caverns launch pad", "zh": "深层洞窟弹射台后方", "types": ["raw"]},
-    {"en": "in front of the Pigmen sign", "zh": "猪人指示牌前方", "types": ["raw"]},
-    {"en": "next to Rhys", "zh": "Rhys 身旁", "types": ["raw"]},
-    {"en": "Crafted Minion", "zh": "制作小人", "types": ["raw"]},
-    {"en": "Blood", "zh": "鲜血", "types": ["category_name"], "note": "地牢 Blood Key 的钥匙种类；沿用鲜血之门用词。"},
-    {"en": "Arrow", "zh": "箭矢", "types": ["category_name"]},
-    {"en": "Healing", "zh": "治疗", "types": ["category_name"]},
-    {"en": "Regeneration", "zh": "生命恢复", "types": ["category_name"]},
-    {"en": "Resistance", "zh": "抗性提升", "types": ["category_name"]},
-    {"en": "Archery", "zh": "箭术", "types": ["category_name"]},
-    {"en": "Lightning", "zh": "闪电", "types": ["raw", "category_name"]},
-    {"en": "Overcharge", "zh": "过载", "types": ["raw", "category_name"]},
-    {"en": "Body Slam", "zh": "冲撞", "types": ["category_name"]},
-    {"en": "TNT Rain", "zh": "TNT 雨", "types": ["category_name"]},
-    {"en": "Chaos Guardians", "zh": "混沌守卫", "types": ["mob_name"], "note": "The Professor 实测伤害消息使用 Guardians's，保留该拼写。"},
-    {"en": "Chaos Guardian", "zh": "混沌守卫", "types": ["mob_name"]},
-    {"en": "Healthy Guardian", "zh": "治愈守卫", "types": ["mob_name"]},
-    {"en": "Reinforced Guardian", "zh": "强化守卫", "types": ["mob_name"]},
-    {"en": "Protector", "zh": "保护", "types": ["category_name"], "note": "The Professor 第三阶段实测显示 Protector Guardian。"},
-    {"en": "Shadow Assassin", "zh": "暗影刺客", "types": ["mob_name"]},
-    {"en": "Tank Zombie", "zh": "坦克僵尸", "types": ["mob_name"]},
-    {"en": "Lapis Zombie", "zh": "青金石僵尸", "types": ["mob_name"], "note": "深层洞窟青金石采石场的僵尸,沿用 Lazy_Miner.json 既有译名;狩猎战利品共享的碎片名和魅惑消息都以 mob_name 捕到它。"},
-    {"en": "Stormy Skeleton Grunt", "zh": "风暴骷髅步兵", "types": ["mob_name"]},
-    {"en": "Ice Path", "zh": "冰路", "types": ["raw"], "note": "Catacombs Puzzle Rooms 的蠹虫冰路谜题，供 Tab 标签使用。"},
-    {"en": "Master Mode The Catacombs", "zh": "大师模式地牢", "types": ["category_name"]},
-    {"en": "NECKLACE", "zh": "项链", "types": ["category_name"]},
-    {"en": "CLOAK", "zh": "披风", "types": ["category_name"]},
-    {"en": "BELT", "zh": "腰带", "types": ["category_name"]},
-    {"en": "GLOVES", "zh": "手套", "types": ["category_name"]},
-    {"en": "BOW", "zh": "弓", "types": ["category_name"], "note": "稀有度行的装备类别(EPIC DUNGEON BOW),与 combat_rarity_bow_magic 的「传说弓」同词。"},
-    {"en": "AXE", "zh": "斧", "types": ["category_name"], "note": "稀有度行的装备类别(UNCOMMON DUNGEON AXE)。"},
-    {"en": "Pet", "zh": "宠物", "types": ["category_name"]},
-    {"en": "HOTM", "zh": "山峦之心", "types": ["category_name"]},
-    {"en": "HOTF", "zh": "森林之心", "types": ["category_name"]},
-    {"en": "Starlyn Contest", "zh": "Starlyn 竞赛", "types": ["raw", "category_name"], "note": "Starlyn Contest 社区 Wiki 2026-09-08 更新，沿用 Your_Skills.json 既有名称，只翻译 Contest。"},
-    {"en": "Starlyn Contests", "zh": "Starlyn 竞赛", "types": ["raw", "category_name"]},
-    {"en": "acacia logs", "zh": "金合欢原木", "types": ["minion_resource"]},
-    {"en": "birch logs", "zh": "白桦原木", "types": ["minion_resource"]},
-    {"en": "dark oak logs", "zh": "深色橡木原木", "types": ["minion_resource"]},
-    {"en": "jungle logs", "zh": "丛林原木", "types": ["minion_resource"]},
-    {"en": "oak logs", "zh": "橡木原木", "types": ["minion_resource"]},
-    {"en": "spruce logs", "zh": "云杉原木", "types": ["minion_resource"]},
-    {"en": "coal ore", "zh": "煤矿石", "types": ["minion_resource"]},
-    {"en": "diamond ore", "zh": "钻石矿石", "types": ["minion_resource"]},
-    {"en": "emerald ore", "zh": "绿宝石矿石", "types": ["minion_resource"]},
-    {"en": "gold ore", "zh": "金矿石", "types": ["minion_resource"]},
-    {"en": "iron ore", "zh": "铁矿石", "types": ["minion_resource"]},
-    {"en": "lapis ore", "zh": "青金石矿石", "types": ["minion_resource"]},
-    {"en": "mithril ore", "zh": "秘银矿石", "types": ["minion_resource"]},
-    {"en": "quartz ore", "zh": "下界石英矿石", "types": ["minion_resource"]},
-    {"en": "redstone ore", "zh": "红石矿石", "types": ["minion_resource"]},
-    {"en": "cobblestone", "zh": "圆石", "types": ["minion_resource"]},
-    {"en": "clay", "zh": "黏土", "types": ["minion_resource"]},
-    {"en": "end stone", "zh": "末地石", "types": ["minion_resource"]},
-    {"en": "glowstone", "zh": "荧石", "types": ["minion_resource"]},
-    {"en": "gravel", "zh": "沙砾", "types": ["minion_resource"]},
-    {"en": "Hard Stone", "zh": "硬石", "types": ["minion_resource"]},
-    {"en": "ice", "zh": "冰", "types": ["minion_resource"]},
-    {"en": "mycelium", "zh": "菌丝", "types": ["minion_resource"]},
-    {"en": "obsidian", "zh": "黑曜石", "types": ["minion_resource"]},
-    {"en": "red sand", "zh": "红沙", "types": ["minion_resource"]},
-    {"en": "sand", "zh": "沙子", "types": ["minion_resource"]},
-    {"en": "snow", "zh": "雪", "types": ["minion_resource"]},
-    {"en": "cactus", "zh": "仙人掌", "types": ["minion_resource"]},
-    {"en": "cacti", "zh": "仙人掌", "types": ["minion_resource"]},
-    {"en": "carrots", "zh": "胡萝卜", "types": ["minion_resource"]},
-    {"en": "cocoa beans", "zh": "可可豆", "types": ["minion_resource"]},
-    {"en": "flowers", "zh": "花", "types": ["minion_resource"]},
-    {"en": "lily pads", "zh": "睡莲", "types": ["minion_resource"]},
-    {"en": "melons", "zh": "西瓜", "types": ["minion_resource"]},
-    {"en": "red and brown mushrooms", "zh": "红色和棕色蘑菇", "types": ["minion_resource"]},
-    {"en": "nether warts", "zh": "下界疣", "types": ["minion_resource"]},
-    {"en": "potatoes", "zh": "马铃薯", "types": ["minion_resource"]},
-    {"en": "pumpkins", "zh": "南瓜", "types": ["minion_resource"]},
-    {"en": "sugar canes", "zh": "甘蔗", "types": ["minion_resource"]},
-    {"en": "sugar cane", "zh": "甘蔗", "types": ["minion_resource"]},
-    {"en": "wheat", "zh": "小麦", "types": ["minion_resource"]},
-    {"en": "Blazes", "zh": "烈焰人", "types": ["minion_resource"]},
-    {"en": "Cave Spiders", "zh": "洞穴蜘蛛", "types": ["minion_resource"]},
-    {"en": "Chickens", "zh": "鸡", "types": ["minion_resource"]},
-    {"en": "Cows", "zh": "牛", "types": ["minion_resource"]},
-    {"en": "Creepers", "zh": "苦力怕", "types": ["minion_resource"]},
-    {"en": "Endermen", "zh": "末影人", "types": ["minion_resource"]},
-    {"en": "Ghasts", "zh": "恶魂", "types": ["minion_resource"]},
-    {"en": "Magma Cubes", "zh": "岩浆怪", "types": ["minion_resource"]},
-    {"en": "Pigs", "zh": "猪", "types": ["minion_resource"]},
-    {"en": "Rabbits", "zh": "兔子", "types": ["minion_resource"]},
-    {"en": "Sheep", "zh": "绵羊", "types": ["minion_resource"]},
-    {"en": "Skeletons", "zh": "骷髅", "types": ["minion_resource"]},
-    {"en": "Slimes", "zh": "史莱姆", "types": ["minion_resource"]},
-    {"en": "Spiders", "zh": "蜘蛛", "types": ["minion_resource"]},
-    {"en": "Zombies", "zh": "僵尸", "types": ["minion_resource"]},
-    {"en": "trees", "zh": "树木", "types": ["minion_resource"]},
-    {"en": "mushrooms", "zh": "蘑菇", "types": ["minion_resource"]},
-    {"en": "soul sand", "zh": "灵魂沙", "types": ["minion_resource"]},
-    {"en": "Revenants", "zh": "亡魂", "types": ["minion_resource"]},
-    {"en": "Tarantulas", "zh": "狼蛛", "types": ["minion_resource"]},
-    {"en": "Infernals", "zh": "炼狱生物", "types": ["minion_resource"], "note": "Inferno Minion 正常页面确认的生成目标，仅描述内使用。"},
-    {"en": "Vampire Scions", "zh": "吸血鬼子嗣", "types": ["minion_resource"], "note": "Vampire Minion 正常页面确认的生成目标。"},
-    {"en": "Voidlings", "zh": "Voidlings", "types": ["minion_resource"], "note": "既有语料保留 Voidling 专名；显式标记有意保留，不扩展到物品名。"},
+    {
+      "en": "Frozen",
+      "zh": "冰封",
+      "types": [
+        "accessory_power"
+      ]
+    },
+    {
+      "en": "Itchy",
+      "zh": "刺痒",
+      "types": [
+        "accessory_power"
+      ]
+    },
+    {
+      "en": "Silky",
+      "zh": "丝滑",
+      "types": [
+        "accessory_power"
+      ]
+    },
+    {
+      "en": "Commando",
+      "zh": "突击队员",
+      "types": [
+        "accessory_power"
+      ]
+    },
+    {
+      "en": "Disciplined",
+      "zh": "自律",
+      "types": [
+        "accessory_power"
+      ]
+    },
+    {
+      "en": "Inspired",
+      "zh": "灵感",
+      "types": [
+        "accessory_power"
+      ]
+    },
+    {
+      "en": "Ominous",
+      "zh": "不祥",
+      "types": [
+        "accessory_power"
+      ]
+    },
+    {
+      "en": "Prepared",
+      "zh": "有备",
+      "types": [
+        "accessory_power"
+      ]
+    },
+    {
+      "en": "Fortuitous",
+      "zh": "幸运",
+      "types": [
+        "accessory_power"
+      ]
+    },
+    {
+      "en": "Pretty",
+      "zh": "秀美",
+      "types": [
+        "accessory_power"
+      ]
+    },
+    {
+      "en": "Protected",
+      "zh": "庇护",
+      "types": [
+        "accessory_power"
+      ]
+    },
+    {
+      "en": "Simple",
+      "zh": "简朴",
+      "types": [
+        "accessory_power"
+      ]
+    },
+    {
+      "en": "Warrior",
+      "zh": "战士",
+      "types": [
+        "accessory_power"
+      ]
+    },
+    {
+      "en": "Forceful",
+      "zh": "强劲",
+      "types": [
+        "accessory_power"
+      ]
+    },
+    {
+      "en": "Early Spring",
+      "zh": "1 月",
+      "types": [
+        "skyblock_month"
+      ],
+      "note": "空岛历第 1 个月。2026-09-10 用户拍板:空岛月份一律用一月到十二月代替季节名,不再用节气;和年、日拼在一起时写阿拉伯数字(第 513 年 1 月 1 日),单独出现在台词里写汉字月份(见 GLOSSARY.md「空岛月份名」)。"
+    },
+    {
+      "en": "Spring",
+      "zh": "2 月",
+      "types": [
+        "skyblock_month"
+      ],
+      "note": "空岛历第 2 个月。2026-09-10 用户拍板:空岛月份一律用一月到十二月代替季节名,不再用节气;和年、日拼在一起时写阿拉伯数字(第 513 年 2 月 1 日),单独出现在台词里写汉字月份(见 GLOSSARY.md「空岛月份名」)。"
+    },
+    {
+      "en": "Late Spring",
+      "zh": "3 月",
+      "types": [
+        "skyblock_month"
+      ],
+      "note": "空岛历第 3 个月。2026-09-10 用户拍板:空岛月份一律用一月到十二月代替季节名,不再用节气;和年、日拼在一起时写阿拉伯数字(第 513 年 3 月 1 日),单独出现在台词里写汉字月份(见 GLOSSARY.md「空岛月份名」)。"
+    },
+    {
+      "en": "Early Summer",
+      "zh": "4 月",
+      "types": [
+        "skyblock_month"
+      ],
+      "note": "空岛历第 4 个月。2026-09-10 用户拍板:空岛月份一律用一月到十二月代替季节名,不再用节气;和年、日拼在一起时写阿拉伯数字(第 513 年 4 月 1 日),单独出现在台词里写汉字月份(见 GLOSSARY.md「空岛月份名」)。"
+    },
+    {
+      "en": "Summer",
+      "zh": "5 月",
+      "types": [
+        "skyblock_month"
+      ],
+      "note": "空岛历第 5 个月。2026-09-10 用户拍板:空岛月份一律用一月到十二月代替季节名,不再用节气;和年、日拼在一起时写阿拉伯数字(第 513 年 5 月 1 日),单独出现在台词里写汉字月份(见 GLOSSARY.md「空岛月份名」)。"
+    },
+    {
+      "en": "Late Summer",
+      "zh": "6 月",
+      "types": [
+        "skyblock_month"
+      ],
+      "note": "空岛历第 6 个月。2026-09-10 用户拍板:空岛月份一律用一月到十二月代替季节名,不再用节气;和年、日拼在一起时写阿拉伯数字(第 513 年 6 月 1 日),单独出现在台词里写汉字月份(见 GLOSSARY.md「空岛月份名」)。"
+    },
+    {
+      "en": "Early Autumn",
+      "zh": "7 月",
+      "types": [
+        "skyblock_month"
+      ],
+      "note": "空岛历第 7 个月。2026-09-10 用户拍板:空岛月份一律用一月到十二月代替季节名,不再用节气;和年、日拼在一起时写阿拉伯数字(第 513 年 7 月 1 日),单独出现在台词里写汉字月份(见 GLOSSARY.md「空岛月份名」)。"
+    },
+    {
+      "en": "Autumn",
+      "zh": "8 月",
+      "types": [
+        "skyblock_month"
+      ],
+      "note": "空岛历第 8 个月。2026-09-10 用户拍板:空岛月份一律用一月到十二月代替季节名,不再用节气;和年、日拼在一起时写阿拉伯数字(第 513 年 8 月 1 日),单独出现在台词里写汉字月份(见 GLOSSARY.md「空岛月份名」)。"
+    },
+    {
+      "en": "Late Autumn",
+      "zh": "9 月",
+      "types": [
+        "skyblock_month"
+      ],
+      "note": "空岛历第 9 个月。2026-09-10 用户拍板:空岛月份一律用一月到十二月代替季节名,不再用节气;和年、日拼在一起时写阿拉伯数字(第 513 年 9 月 1 日),单独出现在台词里写汉字月份(见 GLOSSARY.md「空岛月份名」)。"
+    },
+    {
+      "en": "Early Winter",
+      "zh": "10 月",
+      "types": [
+        "skyblock_month"
+      ],
+      "note": "空岛历第 10 个月。2026-09-10 用户拍板:空岛月份一律用一月到十二月代替季节名,不再用节气;和年、日拼在一起时写阿拉伯数字(第 513 年 10 月 1 日),单独出现在台词里写汉字月份(见 GLOSSARY.md「空岛月份名」)。"
+    },
+    {
+      "en": "Winter",
+      "zh": "11 月",
+      "types": [
+        "skyblock_month"
+      ],
+      "note": "空岛历第 11 个月。2026-09-10 用户拍板:空岛月份一律用一月到十二月代替季节名,不再用节气;和年、日拼在一起时写阿拉伯数字(第 513 年 11 月 1 日),单独出现在台词里写汉字月份(见 GLOSSARY.md「空岛月份名」)。"
+    },
+    {
+      "en": "Late Winter",
+      "zh": "12 月",
+      "types": [
+        "skyblock_month"
+      ],
+      "note": "空岛历第 12 个月。2026-09-10 用户拍板:空岛月份一律用一月到十二月代替季节名,不再用节气;和年、日拼在一起时写阿拉伯数字(第 513 年 12 月 1 日),单独出现在台词里写汉字月份(见 GLOSSARY.md「空岛月份名」)。"
+    },
+    {
+      "en": "LIGHT BLUE",
+      "zh": "淡蓝色",
+      "types": [
+        "category_name"
+      ],
+      "note": "Terminal 指定颜色；旧版 silver 对应淡灰色，gray 对应灰色。"
+    },
+    {
+      "en": "GRAY",
+      "zh": "灰色",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "SILVER",
+      "zh": "淡灰色",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "BLUE",
+      "zh": "蓝色",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "RED",
+      "zh": "红色",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "YELLOW",
+      "zh": "黄色",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "GREEN",
+      "zh": "绿色",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "ORANGE",
+      "zh": "橙色",
+      "types": [
+        "category_name"
+      ],
+      "note": "仅颜色参数，不覆盖 Builder 杂货里的橙子。"
+    },
+    {
+      "en": "Rift",
+      "zh": "裂隙",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Pet EXP",
+      "zh": "宠物经验",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Unlocking Power",
+      "zh": "解锁饰品能力",
+      "types": [
+        "raw"
+      ]
+    },
+    {
+      "en": "at the bottom of the stairs",
+      "zh": "楼梯底部",
+      "types": [
+        "raw"
+      ],
+      "note": "本次 Hoppity 彩蛋实测位置短语；只用于整值查找。"
+    },
+    {
+      "en": "behind the Deep Caverns launch pad",
+      "zh": "深层洞窟弹射台后方",
+      "types": [
+        "raw"
+      ]
+    },
+    {
+      "en": "in front of the Pigmen sign",
+      "zh": "猪人指示牌前方",
+      "types": [
+        "raw"
+      ]
+    },
+    {
+      "en": "next to Rhys",
+      "zh": "Rhys 身旁",
+      "types": [
+        "raw"
+      ]
+    },
+    {
+      "en": "Crafted Minion",
+      "zh": "制作小人",
+      "types": [
+        "raw"
+      ]
+    },
+    {
+      "en": "Blood",
+      "zh": "鲜血",
+      "types": [
+        "category_name"
+      ],
+      "note": "地牢 Blood Key 的钥匙种类；沿用鲜血之门用词。"
+    },
+    {
+      "en": "Arrow",
+      "zh": "箭矢",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Healing",
+      "zh": "治疗",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Regeneration",
+      "zh": "生命恢复",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Resistance",
+      "zh": "抗性提升",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Archery",
+      "zh": "箭术",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Lightning",
+      "zh": "闪电",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Overcharge",
+      "zh": "过载",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Body Slam",
+      "zh": "冲撞",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "TNT Rain",
+      "zh": "TNT 雨",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Chaos Guardians",
+      "zh": "混沌守卫",
+      "types": [
+        "mob_name"
+      ],
+      "note": "The Professor 实测伤害消息使用 Guardians's，保留该拼写。"
+    },
+    {
+      "en": "Chaos Guardian",
+      "zh": "混沌守卫",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Healthy Guardian",
+      "zh": "治愈守卫",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Reinforced Guardian",
+      "zh": "强化守卫",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Protector",
+      "zh": "保护",
+      "types": [
+        "category_name"
+      ],
+      "note": "The Professor 第三阶段实测显示 Protector Guardian。"
+    },
+    {
+      "en": "Shadow Assassin",
+      "zh": "暗影刺客",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Tank Zombie",
+      "zh": "坦克僵尸",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Lapis Zombie",
+      "zh": "青金石僵尸",
+      "types": [
+        "mob_name"
+      ],
+      "note": "深层洞窟青金石采石场的僵尸,沿用 Lazy_Miner.json 既有译名;狩猎战利品共享的碎片名和魅惑消息都以 mob_name 捕到它。"
+    },
+    {
+      "en": "Stormy Skeleton Grunt",
+      "zh": "风暴骷髅步兵",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Ice Path",
+      "zh": "冰路",
+      "types": [
+        "raw"
+      ],
+      "note": "Catacombs Puzzle Rooms 的蠹虫冰路谜题，供 Tab 标签使用。"
+    },
+    {
+      "en": "Master Mode The Catacombs",
+      "zh": "大师模式地牢",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "NECKLACE",
+      "zh": "项链",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "CLOAK",
+      "zh": "披风",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "BELT",
+      "zh": "腰带",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "GLOVES",
+      "zh": "手套",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "BOW",
+      "zh": "弓",
+      "types": [
+        "category_name"
+      ],
+      "note": "稀有度行的装备类别(EPIC DUNGEON BOW),与 combat_rarity_bow_magic 的「传说弓」同词。"
+    },
+    {
+      "en": "AXE",
+      "zh": "斧",
+      "types": [
+        "category_name"
+      ],
+      "note": "稀有度行的装备类别(UNCOMMON DUNGEON AXE)。"
+    },
+    {
+      "en": "Pet",
+      "zh": "宠物",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "HOTM",
+      "zh": "山峦之心",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "HOTF",
+      "zh": "森林之心",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Starlyn Contest",
+      "zh": "Starlyn 竞赛",
+      "types": [
+        "raw",
+        "category_name"
+      ],
+      "note": "Starlyn Contest 社区 Wiki 2026-09-08 更新，沿用 Your_Skills.json 既有名称，只翻译 Contest。"
+    },
+    {
+      "en": "Starlyn Contests",
+      "zh": "Starlyn 竞赛",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "acacia logs",
+      "zh": "金合欢原木",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "birch logs",
+      "zh": "白桦原木",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "dark oak logs",
+      "zh": "深色橡木原木",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "jungle logs",
+      "zh": "丛林原木",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "oak logs",
+      "zh": "橡木原木",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "spruce logs",
+      "zh": "云杉原木",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "coal ore",
+      "zh": "煤矿石",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "diamond ore",
+      "zh": "钻石矿石",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "emerald ore",
+      "zh": "绿宝石矿石",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "gold ore",
+      "zh": "金矿石",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "iron ore",
+      "zh": "铁矿石",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "lapis ore",
+      "zh": "青金石矿石",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "mithril ore",
+      "zh": "秘银矿石",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "quartz ore",
+      "zh": "下界石英矿石",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "redstone ore",
+      "zh": "红石矿石",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "cobblestone",
+      "zh": "圆石",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "clay",
+      "zh": "黏土",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "end stone",
+      "zh": "末地石",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "glowstone",
+      "zh": "荧石",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "gravel",
+      "zh": "沙砾",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "Hard Stone",
+      "zh": "硬石",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "ice",
+      "zh": "冰",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "mycelium",
+      "zh": "菌丝",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "obsidian",
+      "zh": "黑曜石",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "red sand",
+      "zh": "红沙",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "sand",
+      "zh": "沙子",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "snow",
+      "zh": "雪",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "cactus",
+      "zh": "仙人掌",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "cacti",
+      "zh": "仙人掌",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "carrots",
+      "zh": "胡萝卜",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "cocoa beans",
+      "zh": "可可豆",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "flowers",
+      "zh": "花",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "lily pads",
+      "zh": "睡莲",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "melons",
+      "zh": "西瓜",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "red and brown mushrooms",
+      "zh": "红色和棕色蘑菇",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "nether warts",
+      "zh": "下界疣",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "potatoes",
+      "zh": "马铃薯",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "pumpkins",
+      "zh": "南瓜",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "sugar canes",
+      "zh": "甘蔗",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "sugar cane",
+      "zh": "甘蔗",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "wheat",
+      "zh": "小麦",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "Blazes",
+      "zh": "烈焰人",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "Cave Spiders",
+      "zh": "洞穴蜘蛛",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "Chickens",
+      "zh": "鸡",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "Cows",
+      "zh": "牛",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "Creepers",
+      "zh": "苦力怕",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "Endermen",
+      "zh": "末影人",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "Ghasts",
+      "zh": "恶魂",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "Magma Cubes",
+      "zh": "岩浆怪",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "Pigs",
+      "zh": "猪",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "Rabbits",
+      "zh": "兔子",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "Sheep",
+      "zh": "绵羊",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "Skeletons",
+      "zh": "骷髅",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "Slimes",
+      "zh": "史莱姆",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "Spiders",
+      "zh": "蜘蛛",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "Zombies",
+      "zh": "僵尸",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "trees",
+      "zh": "树木",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "mushrooms",
+      "zh": "蘑菇",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "soul sand",
+      "zh": "灵魂沙",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "Revenants",
+      "zh": "亡魂",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "Tarantulas",
+      "zh": "狼蛛",
+      "types": [
+        "minion_resource"
+      ]
+    },
+    {
+      "en": "Infernals",
+      "zh": "炼狱生物",
+      "types": [
+        "minion_resource"
+      ],
+      "note": "Inferno Minion 正常页面确认的生成目标，仅描述内使用。"
+    },
+    {
+      "en": "Vampire Scions",
+      "zh": "吸血鬼子嗣",
+      "types": [
+        "minion_resource"
+      ],
+      "note": "Vampire Minion 正常页面确认的生成目标。"
+    },
+    {
+      "en": "Voidlings",
+      "zh": "Voidlings",
+      "types": [
+        "minion_resource"
+      ],
+      "note": "既有语料保留 Voidling 专名；显式标记有意保留，不扩展到物品名。"
+    },
     {
       "en": "Nether Quartz",
       "zh": "下界石英",
@@ -374,7 +1234,8 @@
       "en": "Bonus Pest Chance",
       "zh": "额外害虫几率",
       "types": [
-        "category_name"
+        "category_name",
+        "raw"
       ]
     },
     {
@@ -684,7 +1545,7 @@
       "types": [
         "category_name"
       ],
-      "note": "https://hypixelskyblock.minecraft.wiki/w/Taylor；现实夏季的外观礼包,不使用 SkyBlock 游戏历的夏至。"
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Taylor；现实夏季的外观礼包,不套用空岛历里 Summer → 5 月的写法。"
     },
     {
       "en": "Bone",
@@ -2405,7 +3266,8 @@
       "en": "Tavern",
       "zh": "酒馆",
       "types": [
-        "location_name"
+        "location_name",
+        "category_name"
       ]
     },
     {
@@ -3560,9 +4422,11 @@
       "en": "Garden",
       "zh": "花园",
       "types": [
-        "category_name"
+        "category_name",
+        "raw",
+        "location_name"
       ],
-      "note": "设置类别名(只在私人岛屿和花园里出现的那一档,已查证 wiki 的 Settings 页给它标了 Zone|The Garden)。「花园」是本项目既有译法,见 GLOSSARY.md 的 Garden Visitor(花园访客)和 Booster_Cookie.json 的「在私人岛屿和花园里永久飞行」。只限定 category_name:这个值作设置类别时是光秃秃的 Garden,地名那一侧服务器发的是另一个取值 “The Garden”,而那一行已经由 Farming/ScoreBoard/Garden_Sidebar.json 按字面量收掉了(花园的所在地行地名不会变),所以这里不需要放开到 location_name。"
+      "note": "设置类别名、动作栏经验来源和聊天里「Access to the Garden」捕到的值;2026-09-10 放开到 raw / location_name(以前只限 category_name 是因为花园侧边栏那一行是字面记录,现在 Farming/ScoreBoard/Garden_Sidebar.json 两种写法都有记录,不冲突)。「花园」是本项目既有译法,见 GLOSSARY.md 的 Garden Visitor(花园访客)。"
     },
     {
       "en": "Woods & Fishes",
@@ -4538,12 +5402,12 @@
     },
     {
       "en": "Intelligence",
-      "zh": "智力",
+      "zh": "法力",
       "types": [
         "category_name",
         "raw"
       ],
-      "note": "选好职业后服务器逐行播报「[职业] 数值名 旧值 -> 新值」，数值名走这张表。属性类名字与 GLOSSARY.md 的属性表、_shared/Stats.json 保持一致。"
+      "note": "用户指定：Intelligence 与 Mana 的显示译名统一为法力。Intelligence 属性会影响法力上限、回复及魔法伤害，不把它误写成恢复当前法力；数值和机制说明仍按原文。"
     },
     {
       "en": "Strength",
@@ -5754,7 +6618,7 @@
       "types": [
         "category_name"
       ],
-      "note": "海洋生物指南寒冬分区。不用节气「冬至」(那是空岛月份 Winter)。"
+      "note": "海洋生物指南寒冬分区。不用空岛月份 Winter 的译名「11 月」。"
     },
     {
       "en": "Spooky",
@@ -7620,11 +8484,1638 @@
         "category_name"
       ],
       "note": "附魔实验台的实验难度档次,社区 Wiki Experimentation Table/Vincent UI; 2026-09-08 实测。"
+    },
+    {
+      "en": "Seeds",
+      "zh": "种子",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "原版材料名用官方中文译名(GLOSSARY);花园 / 集市 / 收藏品的模板值。2026-09-10 实测。"
+    },
+    {
+      "en": "Bread",
+      "zh": "面包",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Hay Bale",
+      "zh": "干草块",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Carrot on a Stick",
+      "zh": "胡萝卜钓竿",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Golden Carrot",
+      "zh": "金胡萝卜",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Poisonous Potato",
+      "zh": "毒马铃薯",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Baked Potato",
+      "zh": "烤马铃薯",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Glistering Melon Slice",
+      "zh": "闪烁的西瓜片",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Red Mushroom",
+      "zh": "红色蘑菇",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Brown Mushroom",
+      "zh": "棕色蘑菇",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Red Mushroom Block",
+      "zh": "红色蘑菇方块",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Brown Mushroom Block",
+      "zh": "棕色蘑菇方块",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Cactus Green",
+      "zh": "仙人掌绿",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Sugar",
+      "zh": "糖",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Cookie",
+      "zh": "曲奇",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Paper",
+      "zh": "纸",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Cake",
+      "zh": "蛋糕",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Egg",
+      "zh": "鸡蛋",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Feather",
+      "zh": "羽毛",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Leather",
+      "zh": "皮革",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Wool",
+      "zh": "羊毛",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Raw Beef",
+      "zh": "生牛肉",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Raw Porkchop",
+      "zh": "生猪排",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Raw Chicken",
+      "zh": "生鸡肉",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Raw Mutton",
+      "zh": "生羊肉",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Raw Rabbit",
+      "zh": "生兔肉",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Cooked Porkchop",
+      "zh": "熟猪排",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Cooked Mutton",
+      "zh": "熟羊肉",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Cooked Rabbit",
+      "zh": "熟兔肉",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Rabbit Foot",
+      "zh": "兔子脚",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Rabbit Hide",
+      "zh": "兔子皮",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Enchanted Diamond",
+      "zh": "附魔钻石",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Dirt",
+      "zh": "泥土",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Stick",
+      "zh": "木棍",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Oak Planks",
+      "zh": "橡木木板",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Spruce Planks",
+      "zh": "云杉木板",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Spruce Slab",
+      "zh": "云杉木台阶",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Spruce Stairs",
+      "zh": "云杉木楼梯",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Poppy",
+      "zh": "虞美人",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Azure Bluet",
+      "zh": "蓝花美耳草",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Dead Bush",
+      "zh": "枯萎的灌木",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Fern",
+      "zh": "蕨",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Long Grass",
+      "zh": "草",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Double Tallgrass",
+      "zh": "高草丛",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Clay Ball",
+      "zh": "黏土球",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Lush Berberis",
+      "zh": "繁茂小檗",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Compacted Sunflower",
+      "zh": "压缩向日葵",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Compacted Moonflower",
+      "zh": "压缩月光花",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Compacted Wild Rose",
+      "zh": "压缩野玫瑰",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Polished Pumpkin",
+      "zh": "抛光南瓜",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Box of Seeds",
+      "zh": "种子箱",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Mutant Nether Wart",
+      "zh": "变异下界疣",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "The Garden",
+      "zh": "花园",
+      "types": [
+        "location_name",
+        "raw"
+      ],
+      "note": "花园的所在地写法(侧边栏 ⏣ 行、区域发现、聊天里的 Access to the Garden)。和 Garden 同一个译名。"
+    },
+    {
+      "en": "Copper",
+      "zh": "铜",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "花园货币,沿用 Farming/TabList「铜: N」。"
+    },
+    {
+      "en": "Compost",
+      "zh": "堆肥",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "堆肥器产物。"
+    },
+    {
+      "en": "Sowdust",
+      "zh": "播尘",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "花园货币(sow + dust 的自造词),用专精农具种田攒到,升级芯片用。2026-09-10 定名,见 GLOSSARY。"
+    },
+    {
+      "en": "Garden Plot",
+      "zh": "花园地块",
+      "types": [
+        "raw",
+        "category_name"
+      ],
+      "note": "动作栏经验来源「+5 SkyBlock XP (Garden Plot)」。"
+    },
+    {
+      "en": "Complete Objective",
+      "zh": "完成目标",
+      "types": [
+        "raw"
+      ],
+      "note": "动作栏经验来源。"
+    },
+    {
+      "en": "Fairy Souls",
+      "zh": "仙女之魂",
+      "types": [
+        "raw",
+        "category_name"
+      ],
+      "note": "动作栏经验来源。"
+    },
+    {
+      "en": "Garden Level",
+      "zh": "花园等级",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Greenhouse",
+      "zh": "温室",
+      "types": [
+        "category_name",
+        "raw",
+        "location_name"
+      ],
+      "note": "花园里的温室地块。"
+    },
+    {
+      "en": "Barn",
+      "zh": "谷仓",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园里玩家自己的谷仓建筑(Barn Skin / your Barn);农业岛的地名 The Barn 另译「牲畜棚」。"
+    },
+    {
+      "en": "Visitor",
+      "zh": "访客",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Visitors",
+      "zh": "访客",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Unique Visitors Served",
+      "zh": "接待独特访客",
+      "types": [
+        "category_name"
+      ],
+      "note": "访客里程碑名。"
+    },
+    {
+      "en": "Visitor Offers Accepted",
+      "zh": "接受访客委托",
+      "types": [
+        "category_name"
+      ],
+      "note": "访客里程碑名。"
+    },
+    {
+      "en": "Offers Accepted",
+      "zh": "已接受委托",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
+    {
+      "en": "Gathering Greenhouse Resources",
+      "zh": "收集温室材料",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园任务目标名。"
+    },
+    {
+      "en": "Staying Informed",
+      "zh": "了解情况",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园任务目标名(去管理台看下一步)。"
+    },
+    {
+      "en": "Marco the Artist",
+      "zh": "艺术家 Marco",
+      "types": [
+        "category_name"
+      ],
+      "note": "大厅 Marco 任务的目标名,职务 + 人名只翻职务。"
+    },
+    {
+      "en": "Spray",
+      "zh": "喷洒",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园 Tab 害虫小节的「Spray: None」。"
+    },
+    {
+      "en": "Repellent",
+      "zh": "驱虫剂",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园 Tab 害虫小节的「Repellent: None」。"
+    },
+    {
+      "en": "Now Playing",
+      "zh": "正在播放",
+      "types": [
+        "category_name"
+      ],
+      "note": "吸尘器唱片行「Now Playing: None」。"
+    },
+    {
+      "en": "Jacob's",
+      "zh": "Jacob 的",
+      "types": [
+        "raw"
+      ],
+      "note": "竞赛奖励清单「%1$s Ticket」的前缀。"
+    },
+    {
+      "en": "Carnival",
+      "zh": "嘉年华",
+      "types": [
+        "raw",
+        "category_name"
+      ],
+      "note": "同上;和 Event_Names 的嘉年华一致。"
+    },
+    {
+      "en": "Level",
+      "zh": "等级",
+      "types": [
+        "category_name"
+      ],
+      "note": "SkyBlock 等级菜单的「Your Level」由「Your %s」模板应答。"
+    },
+    {
+      "en": "Equipped",
+      "zh": "已装备",
+      "types": [
+        "raw"
+      ],
+      "note": "衣柜槽位状态「Slot 1: Equipped」。"
+    },
+    {
+      "en": "Empty",
+      "zh": "空",
+      "types": [
+        "raw"
+      ],
+      "note": "衣柜槽位状态。"
+    },
+    {
+      "en": "Day Saver",
+      "zh": "日光保持器",
+      "types": [
+        "category_name"
+      ],
+      "note": "岛屿属性菜单里解锁「岛屿时间」的方块;和 Night Saver 配套。"
+    },
+    {
+      "en": "Night Saver",
+      "zh": "夜色保持器",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Repelling Candle",
+      "zh": "驱怪蜡烛",
+      "types": [
+        "category_name"
+      ],
+      "note": "沿用 Island_Properties_Fixed_2026-09-04.json。"
+    },
+    {
+      "en": "Silence Block",
+      "zh": "静音方块",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Ice Cube",
+      "zh": "冰块",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Weather Node",
+      "zh": "天气节点",
+      "types": [
+        "category_name"
+      ]
+    },
+    {
+      "en": "Bronze",
+      "zh": "铜牌",
+      "types": [
+        "medal"
+      ],
+      "note": "Jacob 农业竞赛的奖牌 / 名次档位,见 medal_note。"
+    },
+    {
+      "en": "Silver",
+      "zh": "银牌",
+      "types": [
+        "medal"
+      ],
+      "note": "Jacob 农业竞赛的奖牌 / 名次档位,见 medal_note。"
+    },
+    {
+      "en": "Gold",
+      "zh": "金牌",
+      "types": [
+        "medal"
+      ],
+      "note": "Jacob 农业竞赛的奖牌 / 名次档位,见 medal_note。"
+    },
+    {
+      "en": "Platinum",
+      "zh": "白金",
+      "types": [
+        "medal"
+      ],
+      "note": "Jacob 农业竞赛的奖牌 / 名次档位,见 medal_note。"
+    },
+    {
+      "en": "Diamond",
+      "zh": "钻石",
+      "types": [
+        "medal"
+      ],
+      "note": "Jacob 农业竞赛的奖牌 / 名次档位,见 medal_note。"
+    },
+    {
+      "en": "Bustling",
+      "zh": "熙攘",
+      "types": [
+        "raw"
+      ],
+      "note": "重铸名,按 GLOSSARY 重铸名一节用通用词翻译;「%1$s Bonus」和拍卖行物品名前缀的取值。2026-09-10 实测。"
+    },
+    {
+      "en": "Earthy",
+      "zh": "沃土",
+      "types": [
+        "raw"
+      ],
+      "note": "重铸名,按 GLOSSARY 重铸名一节用通用词翻译;「%1$s Bonus」和拍卖行物品名前缀的取值。2026-09-10 实测。"
+    },
+    {
+      "en": "Buzzing",
+      "zh": "嗡鸣",
+      "types": [
+        "raw"
+      ],
+      "note": "重铸名,按 GLOSSARY 重铸名一节用通用词翻译;「%1$s Bonus」和拍卖行物品名前缀的取值。2026-09-10 实测。"
+    },
+    {
+      "en": "Fabled",
+      "zh": "传奇",
+      "types": [
+        "raw"
+      ],
+      "note": "重铸名,按 GLOSSARY 重铸名一节用通用词翻译;「%1$s Bonus」和拍卖行物品名前缀的取值。2026-09-10 实测。"
+    },
+    {
+      "en": "Glacial",
+      "zh": "冰川",
+      "types": [
+        "raw"
+      ],
+      "note": "重铸名,按 GLOSSARY 重铸名一节用通用词翻译;「%1$s Bonus」和拍卖行物品名前缀的取值。2026-09-10 实测。"
+    },
+    {
+      "en": "Lustrous",
+      "zh": "光泽",
+      "types": [
+        "raw"
+      ],
+      "note": "重铸名,按 GLOSSARY 重铸名一节用通用词翻译;「%1$s Bonus」和拍卖行物品名前缀的取值。2026-09-10 实测。"
+    },
+    {
+      "en": "Refined",
+      "zh": "精炼",
+      "types": [
+        "raw"
+      ],
+      "note": "重铸名,按 GLOSSARY 重铸名一节用通用词翻译;「%1$s Bonus」和拍卖行物品名前缀的取值。2026-09-10 实测。"
+    },
+    {
+      "en": "Blended",
+      "zh": "调和",
+      "types": [
+        "raw"
+      ],
+      "note": "重铸名,按 GLOSSARY 重铸名一节用通用词翻译;「%1$s Bonus」和拍卖行物品名前缀的取值。2026-09-10 实测。"
+    },
+    {
+      "en": "Glistening",
+      "zh": "闪亮",
+      "types": [
+        "raw"
+      ],
+      "note": "重铸名,按 GLOSSARY 重铸名一节用通用词翻译;「%1$s Bonus」和拍卖行物品名前缀的取值。2026-09-10 实测。"
+    },
+    {
+      "en": "Menacing",
+      "zh": "威慑",
+      "types": [
+        "raw"
+      ],
+      "note": "重铸名,按 GLOSSARY 重铸名一节用通用词翻译;「%1$s Bonus」和拍卖行物品名前缀的取值。2026-09-10 实测。"
+    },
+    {
+      "en": "Fierce",
+      "zh": "凶猛",
+      "types": [
+        "raw"
+      ],
+      "note": "重铸名,按 GLOSSARY 重铸名一节用通用词翻译;「%1$s Bonus」和拍卖行物品名前缀的取值。2026-09-10 实测。"
+    },
+    {
+      "en": "Wise",
+      "zh": "睿智",
+      "types": [
+        "raw"
+      ],
+      "note": "重铸名,按 GLOSSARY 重铸名一节用通用词翻译;「%1$s Bonus」和拍卖行物品名前缀的取值。2026-09-10 实测。"
+    },
+    {
+      "en": "Heroic",
+      "zh": "英勇",
+      "types": [
+        "raw"
+      ],
+      "note": "重铸名,按 GLOSSARY 重铸名一节用通用词翻译;「%1$s Bonus」和拍卖行物品名前缀的取值。2026-09-10 实测。"
+    },
+    {
+      "en": "Florid",
+      "zh": "华丽",
+      "types": [
+        "raw"
+      ],
+      "note": "重铸名,按 GLOSSARY 重铸名一节用通用词翻译;「%1$s Bonus」和拍卖行物品名前缀的取值。2026-09-10 实测。"
+    },
+    {
+      "en": "Dirty",
+      "zh": "污秽",
+      "types": [
+        "raw"
+      ],
+      "note": "重铸名,按 GLOSSARY 重铸名一节用通用词翻译;「%1$s Bonus」和拍卖行物品名前缀的取值。2026-09-10 实测。"
+    },
+    {
+      "en": "Salesperson",
+      "zh": "推销员",
+      "types": [
+        "raw"
+      ],
+      "note": "牡丹 / 繁花装备的 Piece Bonus 名。"
+    },
+    {
+      "en": "Florist",
+      "zh": "花匠",
+      "types": [
+        "raw"
+      ],
+      "note": "牡丹 / 繁花装备的 Piece Bonus 名。"
+    },
+    {
+      "en": "Area Planner",
+      "zh": "区域规划",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园农具 / 芯片的技能名(「Ability: %s」与「%1$s Chip」的取值),按 §5.5 技能名一律翻译。2026-09-10 实测,语境核对社区 Wiki Garden_Chips / Builder's_Ruler / HydroCan 等页。"
+    },
+    {
+      "en": "Organized Builder",
+      "zh": "有序建造",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园农具 / 芯片的技能名(「Ability: %s」与「%1$s Chip」的取值),按 §5.5 技能名一律翻译。2026-09-10 实测,语境核对社区 Wiki Garden_Chips / Builder's_Ruler / HydroCan 等页。"
+    },
+    {
+      "en": "Organised Builder",
+      "zh": "有序建造",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园农具 / 芯片的技能名(「Ability: %s」与「%1$s Chip」的取值),按 §5.5 技能名一律翻译。2026-09-10 实测,语境核对社区 Wiki Garden_Chips / Builder's_Ruler / HydroCan 等页。"
+    },
+    {
+      "en": "Fill",
+      "zh": "加水",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园农具 / 芯片的技能名(「Ability: %s」与「%1$s Chip」的取值),按 §5.5 技能名一律翻译。2026-09-10 实测,语境核对社区 Wiki Garden_Chips / Builder's_Ruler / HydroCan 等页。"
+    },
+    {
+      "en": "Analyze",
+      "zh": "分析",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园农具 / 芯片的技能名(「Ability: %s」与「%1$s Chip」的取值),按 §5.5 技能名一律翻译。2026-09-10 实测,语境核对社区 Wiki Garden_Chips / Builder's_Ruler / HydroCan 等页。"
+    },
+    {
+      "en": "Place Dirt",
+      "zh": "放置泥土",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园农具 / 芯片的技能名(「Ability: %s」与「%1$s Chip」的取值),按 §5.5 技能名一律翻译。2026-09-10 实测,语境核对社区 Wiki Garden_Chips / Builder's_Ruler / HydroCan 等页。"
+    },
+    {
+      "en": "Farmer's Delight",
+      "zh": "农夫之乐",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园农具 / 芯片的技能名(「Ability: %s」与「%1$s Chip」的取值),按 §5.5 技能名一律翻译。2026-09-10 实测,语境核对社区 Wiki Garden_Chips / Builder's_Ruler / HydroCan 等页。"
+    },
+    {
+      "en": "Alchemist's Bliss",
+      "zh": "炼金师之福",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园农具 / 芯片的技能名(「Ability: %s」与「%1$s Chip」的取值),按 §5.5 技能名一律翻译。2026-09-10 实测,语境核对社区 Wiki Garden_Chips / Builder's_Ruler / HydroCan 等页。"
+    },
+    {
+      "en": "Pipeline",
+      "zh": "引水管道",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园农具 / 芯片的技能名(「Ability: %s」与「%1$s Chip」的取值),按 §5.5 技能名一律翻译。2026-09-10 实测,语境核对社区 Wiki Garden_Chips / Builder's_Ruler / HydroCan 等页。"
+    },
+    {
+      "en": "Configure",
+      "zh": "配置",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园农具 / 芯片的技能名(「Ability: %s」与「%1$s Chip」的取值),按 §5.5 技能名一律翻译。2026-09-10 实测,语境核对社区 Wiki Garden_Chips / Builder's_Ruler / HydroCan 等页。"
+    },
+    {
+      "en": "Hydrate",
+      "zh": "浇水",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园农具 / 芯片的技能名(「Ability: %s」与「%1$s Chip」的取值),按 §5.5 技能名一律翻译。2026-09-10 实测,语境核对社区 Wiki Garden_Chips / Builder's_Ruler / HydroCan 等页。"
+    },
+    {
+      "en": "Aquaburst",
+      "zh": "水流爆发",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园农具 / 芯片的技能名(「Ability: %s」与「%1$s Chip」的取值),按 §5.5 技能名一律翻译。2026-09-10 实测,语境核对社区 Wiki Garden_Chips / Builder's_Ruler / HydroCan 等页。"
+    },
+    {
+      "en": "Aquaburst EX",
+      "zh": "水流爆发 EX",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园农具 / 芯片的技能名(「Ability: %s」与「%1$s Chip」的取值),按 §5.5 技能名一律翻译。2026-09-10 实测,语境核对社区 Wiki Garden_Chips / Builder's_Ruler / HydroCan 等页。"
+    },
+    {
+      "en": "Seed Storage",
+      "zh": "种子存储",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园农具 / 芯片的技能名(「Ability: %s」与「%1$s Chip」的取值),按 §5.5 技能名一律翻译。2026-09-10 实测,语境核对社区 Wiki Garden_Chips / Builder's_Ruler / HydroCan 等页。"
+    },
+    {
+      "en": "Nether Wart Storage",
+      "zh": "下界疣存储",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园农具 / 芯片的技能名(「Ability: %s」与「%1$s Chip」的取值),按 §5.5 技能名一律翻译。2026-09-10 实测,语境核对社区 Wiki Garden_Chips / Builder's_Ruler / HydroCan 等页。"
+    },
+    {
+      "en": "Vacuum",
+      "zh": "吸尘",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园农具 / 芯片的技能名(「Ability: %s」与「%1$s Chip」的取值),按 §5.5 技能名一律翻译。2026-09-10 实测,语境核对社区 Wiki Garden_Chips / Builder's_Ruler / HydroCan 等页。"
+    },
+    {
+      "en": "Pest Tracker",
+      "zh": "害虫追踪",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园农具 / 芯片的技能名(「Ability: %s」与「%1$s Chip」的取值),按 §5.5 技能名一律翻译。2026-09-10 实测,语境核对社区 Wiki Garden_Chips / Builder's_Ruler / HydroCan 等页。"
+    },
+    {
+      "en": "Swift Slicer",
+      "zh": "迅捷切割",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园农具 / 芯片的技能名(「Ability: %s」与「%1$s Chip」的取值),按 §5.5 技能名一律翻译。2026-09-10 实测,语境核对社区 Wiki Garden_Chips / Builder's_Ruler / HydroCan 等页。"
+    },
+    {
+      "en": "Stereo Harmony",
+      "zh": "立体声和鸣",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园农具 / 芯片的技能名(「Ability: %s」与「%1$s Chip」的取值),按 §5.5 技能名一律翻译。2026-09-10 实测,语境核对社区 Wiki Garden_Chips / Builder's_Ruler / HydroCan 等页。"
+    },
+    {
+      "en": "Time Warp",
+      "zh": "时光加速",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园农具 / 芯片的技能名(「Ability: %s」与「%1$s Chip」的取值),按 §5.5 技能名一律翻译。2026-09-10 实测,语境核对社区 Wiki Garden_Chips / Builder's_Ruler / HydroCan 等页。"
+    },
+    {
+      "en": "Black Hole",
+      "zh": "黑洞",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园农具 / 芯片的技能名(「Ability: %s」与「%1$s Chip」的取值),按 §5.5 技能名一律翻译。2026-09-10 实测,语境核对社区 Wiki Garden_Chips / Builder's_Ruler / HydroCan 等页。"
+    },
+    {
+      "en": "Reel In",
+      "zh": "收线",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园农具 / 芯片的技能名(「Ability: %s」与「%1$s Chip」的取值),按 §5.5 技能名一律翻译。2026-09-10 实测,语境核对社区 Wiki Garden_Chips / Builder's_Ruler / HydroCan 等页。"
+    },
+    {
+      "en": "Sowledge",
+      "zh": "播知",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园农具 / 芯片的技能名(「Ability: %s」与「%1$s Chip」的取值),按 §5.5 技能名一律翻译。2026-09-10 实测,语境核对社区 Wiki Garden_Chips / Builder's_Ruler / HydroCan 等页。"
+    },
+    {
+      "en": "Cropshot",
+      "zh": "丰收一击",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园农具 / 芯片的技能名(「Ability: %s」与「%1$s Chip」的取值),按 §5.5 技能名一律翻译。2026-09-10 实测,语境核对社区 Wiki Garden_Chips / Builder's_Ruler / HydroCan 等页。"
+    },
+    {
+      "en": "Quickdraw",
+      "zh": "速客",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园农具 / 芯片的技能名(「Ability: %s」与「%1$s Chip」的取值),按 §5.5 技能名一律翻译。2026-09-10 实测,语境核对社区 Wiki Garden_Chips / Builder's_Ruler / HydroCan 等页。"
+    },
+    {
+      "en": "Mechamind",
+      "zh": "机械之心",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园农具 / 芯片的技能名(「Ability: %s」与「%1$s Chip」的取值),按 §5.5 技能名一律翻译。2026-09-10 实测,语境核对社区 Wiki Garden_Chips / Builder's_Ruler / HydroCan 等页。"
+    },
+    {
+      "en": "Hypercharge",
+      "zh": "超能充能",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园农具 / 芯片的技能名(「Ability: %s」与「%1$s Chip」的取值),按 §5.5 技能名一律翻译。2026-09-10 实测,语境核对社区 Wiki Garden_Chips / Builder's_Ruler / HydroCan 等页。"
+    },
+    {
+      "en": "Evergreen",
+      "zh": "常青",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园农具 / 芯片的技能名(「Ability: %s」与「%1$s Chip」的取值),按 §5.5 技能名一律翻译。2026-09-10 实测,语境核对社区 Wiki Garden_Chips / Builder's_Ruler / HydroCan 等页。"
+    },
+    {
+      "en": "Overdrive",
+      "zh": "超速运转",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园农具 / 芯片的技能名(「Ability: %s」与「%1$s Chip」的取值),按 §5.5 技能名一律翻译。2026-09-10 实测,语境核对社区 Wiki Garden_Chips / Builder's_Ruler / HydroCan 等页。"
+    },
+    {
+      "en": "Rarefinder",
+      "zh": "稀有探寻",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园农具 / 芯片的技能名(「Ability: %s」与「%1$s Chip」的取值),按 §5.5 技能名一律翻译。2026-09-10 实测,语境核对社区 Wiki Garden_Chips / Builder's_Ruler / HydroCan 等页。"
+    },
+    {
+      "en": "Synthesis",
+      "zh": "合成",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园农具 / 芯片的技能名(「Ability: %s」与「%1$s Chip」的取值),按 §5.5 技能名一律翻译。2026-09-10 实测,语境核对社区 Wiki Garden_Chips / Builder's_Ruler / HydroCan 等页。"
+    },
+    {
+      "en": "Vermin Vaporizer",
+      "zh": "害虫蒸发器",
+      "types": [
+        "category_name"
+      ],
+      "note": "花园农具 / 芯片的技能名(「Ability: %s」与「%1$s Chip」的取值),按 §5.5 技能名一律翻译。2026-09-10 实测,语境核对社区 Wiki Garden_Chips / Builder's_Ruler / HydroCan 等页。"
+    },
+    {
+      "en": "Fly",
+      "zh": "苍蝇",
+      "types": [
+        "category_name",
+        "mob_name",
+        "raw"
+      ],
+      "note": "花园害虫名(社区 Wiki Pests 页);「%s Pest」和喷洒器「Attracts:」行的取值。"
+    },
+    {
+      "en": "Cricket",
+      "zh": "蟋蟀",
+      "types": [
+        "category_name",
+        "mob_name",
+        "raw"
+      ],
+      "note": "花园害虫名(社区 Wiki Pests 页);「%s Pest」和喷洒器「Attracts:」行的取值。"
+    },
+    {
+      "en": "Locust",
+      "zh": "蝗虫",
+      "types": [
+        "category_name",
+        "mob_name",
+        "raw"
+      ],
+      "note": "花园害虫名(社区 Wiki Pests 页);「%s Pest」和喷洒器「Attracts:」行的取值。"
+    },
+    {
+      "en": "Rat",
+      "zh": "老鼠",
+      "types": [
+        "category_name",
+        "mob_name",
+        "raw"
+      ],
+      "note": "花园害虫名(社区 Wiki Pests 页);「%s Pest」和喷洒器「Attracts:」行的取值。"
+    },
+    {
+      "en": "Mosquito",
+      "zh": "蚊子",
+      "types": [
+        "category_name",
+        "mob_name",
+        "raw"
+      ],
+      "note": "花园害虫名(社区 Wiki Pests 页);「%s Pest」和喷洒器「Attracts:」行的取值。"
+    },
+    {
+      "en": "Moth",
+      "zh": "飞蛾",
+      "types": [
+        "category_name",
+        "mob_name",
+        "raw"
+      ],
+      "note": "花园害虫名(社区 Wiki Pests 页);「%s Pest」和喷洒器「Attracts:」行的取值。"
+    },
+    {
+      "en": "Beetle",
+      "zh": "甲虫",
+      "types": [
+        "category_name",
+        "mob_name",
+        "raw"
+      ],
+      "note": "花园害虫名(社区 Wiki Pests 页);「%s Pest」和喷洒器「Attracts:」行的取值。"
+    },
+    {
+      "en": "Mite",
+      "zh": "螨虫",
+      "types": [
+        "category_name",
+        "mob_name",
+        "raw"
+      ],
+      "note": "花园害虫名(社区 Wiki Pests 页);「%s Pest」和喷洒器「Attracts:」行的取值。"
+    },
+    {
+      "en": "Firefly",
+      "zh": "萤火虫",
+      "types": [
+        "category_name",
+        "mob_name",
+        "raw"
+      ],
+      "note": "花园害虫名(社区 Wiki Pests 页);「%s Pest」和喷洒器「Attracts:」行的取值。"
+    },
+    {
+      "en": "Dragonfly",
+      "zh": "蜻蜓",
+      "types": [
+        "category_name",
+        "mob_name",
+        "raw"
+      ],
+      "note": "花园害虫名(社区 Wiki Pests 页);「%s Pest」和喷洒器「Attracts:」行的取值。"
+    },
+    {
+      "en": "Earthworm",
+      "zh": "蚯蚓",
+      "types": [
+        "category_name",
+        "mob_name",
+        "raw"
+      ],
+      "note": "花园害虫名(社区 Wiki Pests 页);「%s Pest」和喷洒器「Attracts:」行的取值。"
+    },
+    {
+      "en": "Praying Mantis",
+      "zh": "螳螂",
+      "types": [
+        "category_name",
+        "mob_name",
+        "raw"
+      ],
+      "note": "花园害虫名(社区 Wiki Pests 页);「%s Pest」和喷洒器「Attracts:」行的取值。"
+    },
+    {
+      "en": "Lunar Moth",
+      "zh": "月光蛾",
+      "types": [
+        "category_name",
+        "mob_name",
+        "raw"
+      ],
+      "note": "花园害虫名(社区 Wiki Pests 页);「%s Pest」和喷洒器「Attracts:」行的取值。"
+    },
+    {
+      "en": "Field Mouse",
+      "zh": "田鼠",
+      "types": [
+        "category_name",
+        "mob_name",
+        "raw"
+      ],
+      "note": "花园害虫名(社区 Wiki Pests 页);「%s Pest」和喷洒器「Attracts:」行的取值。"
+    },
+    {
+      "en": "Sunny",
+      "zh": "阳光",
+      "types": [
+        "category_name"
+      ],
+      "note": "谷仓 / 温室皮肤名前缀(「%1$s Barn Skin」「%1$s Greenhouse Skin」的取值),社区 Wiki Barn_Skins / Greenhouse_Skins 页。"
+    },
+    {
+      "en": "Medieval",
+      "zh": "中世纪",
+      "types": [
+        "category_name"
+      ],
+      "note": "谷仓 / 温室皮肤名前缀(「%1$s Barn Skin」「%1$s Greenhouse Skin」的取值),社区 Wiki Barn_Skins / Greenhouse_Skins 页。"
+    },
+    {
+      "en": "Trading Post",
+      "zh": "贸易站",
+      "types": [
+        "category_name"
+      ],
+      "note": "谷仓 / 温室皮肤名前缀(「%1$s Barn Skin」「%1$s Greenhouse Skin」的取值),社区 Wiki Barn_Skins / Greenhouse_Skins 页。"
+    },
+    {
+      "en": "Autumn Hut",
+      "zh": "秋日小屋",
+      "types": [
+        "category_name"
+      ],
+      "note": "谷仓 / 温室皮肤名前缀(「%1$s Barn Skin」「%1$s Greenhouse Skin」的取值),社区 Wiki Barn_Skins / Greenhouse_Skins 页。"
+    },
+    {
+      "en": "Cozy Cottage",
+      "zh": "温馨小屋",
+      "types": [
+        "category_name"
+      ],
+      "note": "谷仓 / 温室皮肤名前缀(「%1$s Barn Skin」「%1$s Greenhouse Skin」的取值),社区 Wiki Barn_Skins / Greenhouse_Skins 页。"
+    },
+    {
+      "en": "Bamboo",
+      "zh": "竹屋",
+      "types": [
+        "category_name"
+      ],
+      "note": "谷仓 / 温室皮肤名前缀(「%1$s Barn Skin」「%1$s Greenhouse Skin」的取值),社区 Wiki Barn_Skins / Greenhouse_Skins 页。"
+    },
+    {
+      "en": "Hive",
+      "zh": "蜂巢",
+      "types": [
+        "category_name"
+      ],
+      "note": "谷仓 / 温室皮肤名前缀(「%1$s Barn Skin」「%1$s Greenhouse Skin」的取值),社区 Wiki Barn_Skins / Greenhouse_Skins 页。"
+    },
+    {
+      "en": "Cube",
+      "zh": "方块",
+      "types": [
+        "category_name"
+      ],
+      "note": "谷仓 / 温室皮肤名前缀(「%1$s Barn Skin」「%1$s Greenhouse Skin」的取值),社区 Wiki Barn_Skins / Greenhouse_Skins 页。"
+    },
+    {
+      "en": "Windmill",
+      "zh": "风车",
+      "types": [
+        "category_name"
+      ],
+      "note": "谷仓 / 温室皮肤名前缀(「%1$s Barn Skin」「%1$s Greenhouse Skin」的取值),社区 Wiki Barn_Skins / Greenhouse_Skins 页。"
+    },
+    {
+      "en": "Lucky",
+      "zh": "幸运",
+      "types": [
+        "category_name"
+      ],
+      "note": "谷仓 / 温室皮肤名前缀(「%1$s Barn Skin」「%1$s Greenhouse Skin」的取值),社区 Wiki Barn_Skins / Greenhouse_Skins 页。"
+    },
+    {
+      "en": "Frog",
+      "zh": "青蛙",
+      "types": [
+        "category_name"
+      ],
+      "note": "谷仓 / 温室皮肤名前缀(「%1$s Barn Skin」「%1$s Greenhouse Skin」的取值),社区 Wiki Barn_Skins / Greenhouse_Skins 页。"
+    },
+    {
+      "en": "Pinwheel House",
+      "zh": "纸风车小屋",
+      "types": [
+        "category_name"
+      ],
+      "note": "谷仓 / 温室皮肤名前缀(「%1$s Barn Skin」「%1$s Greenhouse Skin」的取值),社区 Wiki Barn_Skins / Greenhouse_Skins 页。"
+    },
+    {
+      "en": "Mansion Heights",
+      "zh": "豪宅高地",
+      "types": [
+        "category_name"
+      ],
+      "note": "谷仓 / 温室皮肤名前缀(「%1$s Barn Skin」「%1$s Greenhouse Skin」的取值),社区 Wiki Barn_Skins / Greenhouse_Skins 页。"
+    },
+    {
+      "en": "Country",
+      "zh": "乡村",
+      "types": [
+        "category_name"
+      ],
+      "note": "谷仓 / 温室皮肤名前缀(「%1$s Barn Skin」「%1$s Greenhouse Skin」的取值),社区 Wiki Barn_Skins / Greenhouse_Skins 页。"
+    },
+    {
+      "en": "Moon",
+      "zh": "月亮",
+      "types": [
+        "category_name"
+      ],
+      "note": "谷仓 / 温室皮肤名前缀(「%1$s Barn Skin」「%1$s Greenhouse Skin」的取值),社区 Wiki Barn_Skins / Greenhouse_Skins 页。"
+    },
+    {
+      "en": "Orchard",
+      "zh": "果园",
+      "types": [
+        "category_name"
+      ],
+      "note": "谷仓 / 温室皮肤名前缀(「%1$s Barn Skin」「%1$s Greenhouse Skin」的取值),社区 Wiki Barn_Skins / Greenhouse_Skins 页。"
+    },
+    {
+      "en": "Botanical Garden",
+      "zh": "植物园",
+      "types": [
+        "category_name"
+      ],
+      "note": "谷仓 / 温室皮肤名前缀(「%1$s Barn Skin」「%1$s Greenhouse Skin」的取值),社区 Wiki Barn_Skins / Greenhouse_Skins 页。"
+    },
+    {
+      "en": "Estate",
+      "zh": "庄园",
+      "types": [
+        "category_name"
+      ],
+      "note": "谷仓 / 温室皮肤名前缀(「%1$s Barn Skin」「%1$s Greenhouse Skin」的取值),社区 Wiki Barn_Skins / Greenhouse_Skins 页。"
+    },
+    {
+      "en": "Glacite Palace",
+      "zh": "极冰宫殿",
+      "types": [
+        "category_name"
+      ],
+      "note": "谷仓 / 温室皮肤名前缀(「%1$s Barn Skin」「%1$s Greenhouse Skin」的取值),社区 Wiki Barn_Skins / Greenhouse_Skins 页。"
+    },
+    {
+      "en": "Jelly Garden",
+      "zh": "果冻花园",
+      "types": [
+        "category_name"
+      ],
+      "note": "谷仓 / 温室皮肤名前缀(「%1$s Barn Skin」「%1$s Greenhouse Skin」的取值),社区 Wiki Barn_Skins / Greenhouse_Skins 页。"
+    },
+    {
+      "en": "Shipwreck",
+      "zh": "沉船",
+      "types": [
+        "category_name"
+      ],
+      "note": "谷仓 / 温室皮肤名前缀(「%1$s Barn Skin」「%1$s Greenhouse Skin」的取值),社区 Wiki Barn_Skins / Greenhouse_Skins 页。"
+    },
+    {
+      "en": "Desert Settlement",
+      "zh": "沙漠聚落",
+      "types": [
+        "location_name",
+        "raw"
+      ],
+      "note": "2026-09-10 实测的所在地 / 区域发现地名。"
+    },
+    {
+      "en": "Mushroom Desert",
+      "zh": "蘑菇沙漠",
+      "types": [
+        "location_name",
+        "raw"
+      ],
+      "note": "2026-09-10 实测的所在地 / 区域发现地名。"
+    },
+    {
+      "en": "Oasis",
+      "zh": "绿洲",
+      "types": [
+        "location_name",
+        "raw"
+      ],
+      "note": "2026-09-10 实测的所在地 / 区域发现地名。"
+    },
+    {
+      "en": "Fairy Pond",
+      "zh": "仙女池塘",
+      "types": [
+        "location_name",
+        "raw"
+      ],
+      "note": "2026-09-10 实测的所在地 / 区域发现地名。"
+    },
+    {
+      "en": "Guardian",
+      "zh": "守卫者",
+      "types": [
+        "mob_name"
+      ],
+      "note": "宠物名(宠物菜单「[Lvl N] 名」),按怪物名规则用通用词翻译;Bal / Scatha 等自造名保留英文。"
+    },
+    {
+      "en": "Reindeer",
+      "zh": "驯鹿",
+      "types": [
+        "mob_name"
+      ],
+      "note": "宠物名(宠物菜单「[Lvl N] 名」),按怪物名规则用通用词翻译;Bal / Scatha 等自造名保留英文。"
+    },
+    {
+      "en": "Armadillo",
+      "zh": "犰狳",
+      "types": [
+        "mob_name"
+      ],
+      "note": "宠物名(宠物菜单「[Lvl N] 名」),按怪物名规则用通用词翻译;Bal / Scatha 等自造名保留英文。"
+    },
+    {
+      "en": "Snowman",
+      "zh": "雪人",
+      "types": [
+        "mob_name"
+      ],
+      "note": "宠物名(宠物菜单「[Lvl N] 名」),按怪物名规则用通用词翻译;Bal / Scatha 等自造名保留英文。"
+    },
+    {
+      "en": "Baby Yeti",
+      "zh": "小雪怪",
+      "types": [
+        "mob_name"
+      ],
+      "note": "宠物名(宠物菜单「[Lvl N] 名」),按怪物名规则用通用词翻译;Bal / Scatha 等自造名保留英文。"
+    },
+    {
+      "en": "Mithril Golem",
+      "zh": "秘银傀儡",
+      "types": [
+        "mob_name"
+      ],
+      "note": "宠物名(宠物菜单「[Lvl N] 名」),按怪物名规则用通用词翻译;Bal / Scatha 等自造名保留英文。"
+    },
+    {
+      "en": "Pursuit",
+      "zh": "追猎",
+      "types": [
+        "raw"
+      ],
+      "note": "本轮实测;社区 Wiki Shadow_Assassin_Armor、Dark_Orb、Sharpened_Huntaxe、Basic_Fishing_Net 及菜单语境核对。"
+    },
+    {
+      "en": "Sinew",
+      "zh": "强筋",
+      "types": [
+        "raw"
+      ],
+      "note": "本轮实测;社区 Wiki Shadow_Assassin_Armor、Dark_Orb、Sharpened_Huntaxe、Basic_Fishing_Net 及菜单语境核对。"
+    },
+    {
+      "en": "Salubrious",
+      "zh": "康健",
+      "types": [
+        "raw"
+      ],
+      "note": "本轮实测;社区 Wiki Shadow_Assassin_Armor、Dark_Orb、Sharpened_Huntaxe、Basic_Fishing_Net 及菜单语境核对。"
+    },
+    {
+      "en": "Fluxation",
+      "zh": "涌流",
+      "types": [
+        "raw"
+      ],
+      "note": "本轮实测;社区 Wiki Shadow_Assassin_Armor、Dark_Orb、Sharpened_Huntaxe、Basic_Fishing_Net 及菜单语境核对。"
+    },
+    {
+      "en": "Shaded",
+      "zh": "暗影",
+      "types": [
+        "accessory_power"
+      ],
+      "note": "本轮实测;社区 Wiki Shadow_Assassin_Armor、Dark_Orb、Sharpened_Huntaxe、Basic_Fishing_Net 及菜单语境核对。"
+    },
+    {
+      "en": "Absorptio",
+      "zh": "属性吸收",
+      "types": [
+        "category_name"
+      ],
+      "note": "本轮实测;社区 Wiki Shadow_Assassin_Armor、Dark_Orb、Sharpened_Huntaxe、Basic_Fishing_Net 及菜单语境核对。"
+    },
+    {
+      "en": "Yoink",
+      "zh": "捞上来!",
+      "types": [
+        "category_name"
+      ],
+      "note": "本轮实测;社区 Wiki Shadow_Assassin_Armor、Dark_Orb、Sharpened_Huntaxe、Basic_Fishing_Net 及菜单语境核对。"
+    },
+    {
+      "en": "Menu",
+      "zh": "菜单",
+      "types": [
+        "raw"
+      ],
+      "note": "本轮实测;社区 Wiki Shadow_Assassin_Armor、Dark_Orb、Sharpened_Huntaxe、Basic_Fishing_Net 及菜单语境核对。"
+    },
+    {
+      "en": "Crafting",
+      "zh": "合成",
+      "types": [
+        "raw"
+      ],
+      "note": "本轮实测;社区 Wiki Shadow_Assassin_Armor、Dark_Orb、Sharpened_Huntaxe、Basic_Fishing_Net 及菜单语境核对。"
+    },
+    {
+      "en": "Agronomy",
+      "zh": "农艺",
+      "types": [
+        "raw",
+        "category_name"
+      ],
+      "note": "本轮实测;社区 Wiki Shadow_Assassin_Armor、Dark_Orb、Sharpened_Huntaxe、Basic_Fishing_Net 及菜单语境核对。"
+    },
+    {
+      "en": "Beginner",
+      "zh": "入门",
+      "types": [
+        "raw",
+        "category_name"
+      ],
+      "note": "本轮实测;社区 Wiki Shadow_Assassin_Armor、Dark_Orb、Sharpened_Huntaxe、Basic_Fishing_Net 及菜单语境核对。"
+    },
+    {
+      "en": "Farming Tools",
+      "zh": "农业工具",
+      "types": [
+        "raw",
+        "category_name"
+      ],
+      "note": "本轮实测;社区 Wiki Shadow_Assassin_Armor、Dark_Orb、Sharpened_Huntaxe、Basic_Fishing_Net 及菜单语境核对。"
+    },
+    {
+      "en": "Plots",
+      "zh": "地块",
+      "types": [
+        "raw"
+      ],
+      "note": "花园 Tab 列表的标签或状态;上下文已核对社区 Wiki The_Garden / Pests。"
+    },
+    {
+      "en": "Next Visitor",
+      "zh": "下一位访客",
+      "types": [
+        "raw"
+      ],
+      "note": "花园 Tab 列表的标签或状态;上下文已核对社区 Wiki The_Garden / Pests。"
+    },
+    {
+      "en": "Not Unlocked!",
+      "zh": "尚未解锁!",
+      "types": [
+        "raw"
+      ],
+      "note": "花园 Tab 列表的标签或状态;上下文已核对社区 Wiki The_Garden / Pests。"
     }
   ],
   "todo": [
     "宝石种类名(Amber / Amethyst / Jade / Ruby / Sapphire / Topaz / Aquamarine / Citrine / Onyx / Peridot)按既定原则保持英文,**不要**往表里加。它们和汉字之间的空格由引擎自动处理。",
     "自造怪物名(Thyst / Yog / Zog / Boss Corleone)按 GLOSSARY.md 保留英文,**不要**往表里加;通用词组成的怪物名已经收进来了。",
     "设置类别名 API(“API Settings”)**故意**不加词条:这个缩写在中文技术语境里就是原样念原样写,没有通行中文译名,硬译成「接口设置」反而不如原文好认。查不到的值保持英文,引擎会在接缝处自动补空格(见 spacing_note),渲染出来是「API 设置」,已经是想要的样子。"
-  ]
+  ],
+  "medal_note": "2026-09-10: Jacob 农业竞赛的奖牌 / 名次档位(Bronze / Silver / Gold / Platinum / Diamond)单独用 medal 类型。原因:SILVER 作 category_name 已经是地牢终端的「淡灰色」,Gold / Diamond 作全局词是材料「黄金 / 钻石」,同一个字符串两种意思不能共用一张表。词表匹配不分大小写,所以一条 Bronze 同时管聊天里的 BRONZE、Tab 里的 Bronze 和奖励清单里的 bronze。Capture.of 不认识的类型按 raw 形状捕获,所以不需要改代码。",
+  "garden_note": "2026-09-10 花园玩法专有词:Copper → 铜(花园货币,沿用 Tab 的「铜: N」)、Compost → 堆肥、Sowdust → 播尘、Chip → 芯片、Plot → 地块、Visitor → 访客、Greenhouse → 温室、Barn(花园里的建筑)→ 谷仓;地名 The Barn 仍是「牲畜棚」。见 GLOSSARY.md「花园玩法专有词」。"
 }

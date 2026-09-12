@@ -1,0 +1,874 @@
+{
+  "source": "runtime capture (SkyZH) 2026-09-10 花园实测; 语境核对 https://hypixelskyblock.minecraft.wiki/w/The_Garden#Plots",
+  "fetched_at": "2026-09-10",
+  "verified_ingame": true,
+  "gui_context": "管理台 → 配置地块:5×5 的地块网格,中间是谷仓;每格是一块地的名字、解锁花费(堆肥)和状态。点进某块地是「修改地块」菜单:预设、改建温室、保存预设、改名。",
+  "lines": [
+    {
+      "id": "plots_plot_name",
+      "context": "",
+      "raw": "§ePlot §7- §b%1$s",
+      "text": "Plot - %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "地块编号",
+          "type": "number",
+          "example": "21"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "地块 - %1$s",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Plot ",
+          "zh": "地块 "
+        },
+        {
+          "color": "§7",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ]
+    },
+    {
+      "id": "plots_cost",
+      "context": "",
+      "raw": "§7Cost:",
+      "text": "Cost:",
+      "placeholders": [],
+      "gloss": "花费而不是价格:付的是堆肥,见 GLOSSARY「Cost / Price」。",
+      "translate": true,
+      "zh": "花费:"
+    },
+    {
+      "id": "plots_compost_bundle",
+      "context": "",
+      "raw": "§9Compost Bundle §8x%1$s",
+      "text": "Compost Bundle x%1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "数量",
+          "type": "number",
+          "example": "8"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "堆肥捆 x%1$s",
+      "segments": [
+        {
+          "color": "§9",
+          "text": "Compost Bundle ",
+          "zh": "堆肥捆 "
+        },
+        {
+          "color": "§8",
+          "text": "x%1$s",
+          "zh": "x%1$s"
+        }
+      ]
+    },
+    {
+      "id": "plots_compost_count",
+      "context": "",
+      "raw": "§aCompost §8x%1$s",
+      "text": "Compost x%1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "数量",
+          "type": "number",
+          "example": "64"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "堆肥 x%1$s",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Compost ",
+          "zh": "堆肥 "
+        },
+        {
+          "color": "§8",
+          "text": "x%1$s",
+          "zh": "x%1$s"
+        }
+      ]
+    },
+    {
+      "id": "plots_farming_fortune_bonus",
+      "context": "",
+      "raw": "§8+§a3 §6☘ Farming Fortune",
+      "text": "+3 ☘ Farming Fortune",
+      "placeholders": [],
+      "gloss": "每解锁一块地 +3 农业时运。",
+      "translate": true,
+      "zh": "+3 ☘ 农业时运",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "3 ",
+          "zh": "3 "
+        },
+        {
+          "color": "§6",
+          "text": "☘ Farming Fortune",
+          "zh": "☘ 农业时运"
+        }
+      ]
+    },
+    {
+      "id": "plots_quests_to_unlock",
+      "context": "",
+      "raw": "§cQuests to unlock plots!",
+      "text": "Quests to unlock plots!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "完成任务才能解锁地块!"
+    },
+    {
+      "id": "plots_the_barn",
+      "context": "",
+      "raw": "§aThe Barn",
+      "text": "The Barn",
+      "placeholders": [],
+      "gloss": "单独的 The Barn 既可指花园中心谷仓,也可指农业岛牲畜棚;ITEM 渲染面没有菜单上下文,保留原名以免误译其他入口。带明确语境的句子仍分别翻译。",
+      "translate": false,
+      "zh": ""
+    },
+    {
+      "id": "plots_right_click_teleport",
+      "context": "",
+      "raw": "§eRight-click to teleport to this plot!",
+      "text": "Right-click to teleport to this plot!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "右键点击传送到这块地!"
+    },
+    {
+      "id": "plots_need_adjacent",
+      "context": "",
+      "raw": "§cYou need to unlock an adjacent plot",
+      "text": "You need to unlock an adjacent plot",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "得先解锁相邻的地块!"
+    },
+    {
+      "id": "plots_need_adjacent_tail",
+      "context": "",
+      "raw": "§cfirst!",
+      "text": "first!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "plots_click_to_unlock",
+      "context": "",
+      "raw": "§eClick to Unlock!",
+      "text": "Click to Unlock!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击解锁!"
+    },
+    {
+      "id": "plots_need_more_compost",
+      "context": "",
+      "raw": "§cYou need more Compost to unlock this!",
+      "text": "You need more Compost to unlock this!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "堆肥不够,还解锁不了!"
+    },
+    {
+      "id": "plots_need_garden_level_1",
+      "context": "",
+      "raw": "§cYou don't have the required Garden",
+      "text": "You don't have the required Garden",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "花园等级不够!"
+    },
+    {
+      "id": "plots_cleanup_completed",
+      "context": "",
+      "raw": "§7Cleanup: §b%1$s% Completed",
+      "text": "Cleanup: %1$s% Completed",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "百分比",
+          "type": "number",
+          "example": "0"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "清理进度: 已完成 %1$s%",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Cleanup: ",
+          "zh": "清理进度: "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s% Completed",
+          "zh": "已完成 %1$s%"
+        }
+      ]
+    },
+    {
+      "id": "plots_clean_to_access_1",
+      "context": "",
+      "raw": "§8Clean this plot to be able to access",
+      "text": "Clean this plot to be able to access",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "清理完这块地,才能使用地块预设!"
+    },
+    {
+      "id": "plots_clean_to_access_2",
+      "context": "",
+      "raw": "§8plot presets!",
+      "text": "plot presets!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "plots_left_click_modify",
+      "context": "",
+      "raw": "§eLeft-click to modify!",
+      "text": "Left-click to modify!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "左键点击修改!"
+    },
+    {
+      "id": "plots_preset",
+      "context": "",
+      "raw": "§7Preset: §a%1$s",
+      "text": "Preset: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "预设名(作物名),译名走 _shared/Terms.json",
+          "type": "category_name",
+          "example": "Wheat"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "预设: %1$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Preset: ",
+          "zh": "预设: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ]
+    },
+    {
+      "id": "plots_has_pests",
+      "context": "",
+      "raw": "§4§l §cThis plot has §2%1$s  %2$s§c!",
+      "text": " This plot has %1$s  %2$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "害虫数",
+          "type": "number",
+          "example": "3"
+        },
+        {
+          "token": "%2$s",
+          "desc": "Pests / Pest 单复数",
+          "type": "raw",
+          "example": "Pests"
+        }
+      ],
+      "gloss": "Pests / Pest 单复数由占位符吞掉,中文统一「只害虫」;害虫图标 \\uE07F 没有通用符号,照码点写。",
+      "translate": true,
+      "zh": " 这块地上有 %1$s  只害虫!",
+      "segments": [
+        {
+          "color": "§4§l",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§c",
+          "text": "This plot has ",
+          "zh": "这块地上有 "
+        },
+        {
+          "color": "§2",
+          "text": "%1$s  %2$s",
+          "zh": "%1$s  只害虫"
+        },
+        {
+          "color": "§c",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "plots_greenhouse_plot",
+      "context": "",
+      "raw": "§7Greenhouse Plot",
+      "text": "Greenhouse Plot",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "温室地块"
+    },
+    {
+      "id": "plots_reach_level_to_unlock_1",
+      "context": "作物里程碑 / 作物升级里未解锁的作物",
+      "raw": "§7Reach §2Garden Level %1$s §7to unlock this",
+      "text": "Reach Garden Level %1$s to unlock this",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "所需花园等级",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "同一模板在作物里程碑、作物升级、修改地块三个菜单里都出现,后半句折成「crop!」或「this crop!」,尾行见下。",
+      "translate": true,
+      "zh": "花园等级达到 %1$s 级即可解锁此作物!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Reach ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§2",
+          "text": "Garden Level %1$s ",
+          "zh": "花园等级达到 %1$s 级"
+        },
+        {
+          "color": "§7",
+          "text": "to unlock this",
+          "zh": "即可解锁此作物!"
+        }
+      ]
+    },
+    {
+      "id": "plots_reach_level_to_unlock_2",
+      "context": "",
+      "raw": "§7crop!",
+      "text": "crop!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "plots_reach_level_to_unlock_short",
+      "context": "",
+      "raw": "§7Reach §2Garden Level %1$s §7to unlock",
+      "text": "Reach Garden Level %1$s to unlock",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "所需花园等级",
+          "type": "number",
+          "example": "10"
+        }
+      ],
+      "gloss": "等级到两位数时英文折行位置提前,尾行变成「this crop!」;修改地块菜单里等级 9 / 12 也是这两种折法。",
+      "translate": true,
+      "zh": "花园等级达到 %1$s 级即可解锁此作物!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Reach ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§2",
+          "text": "Garden Level %1$s ",
+          "zh": "花园等级达到 %1$s 级"
+        },
+        {
+          "color": "§7",
+          "text": "to unlock",
+          "zh": "即可解锁此作物!"
+        }
+      ]
+    },
+    {
+      "id": "plots_reach_level_to_unlock_short_tail",
+      "context": "",
+      "raw": "§7this crop!",
+      "text": "this crop!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "plots_reach_level_9_to_unlock_this",
+      "context": "修改地块菜单里的预设(蘑菇)",
+      "raw": "§7Reach §2Garden Level 9 §7to unlock this",
+      "text": "Reach Garden Level 9 to unlock this",
+      "placeholders": [],
+      "gloss": "修改地块菜单里的尾行是「preset!」,所以整句说「预设」;等级 3-8 走 plots_reach_level_to_unlock_1 那条模板,它的尾行在这个菜单里也是 preset!,这两条尾行都要有。",
+      "translate": true,
+      "zh": "花园等级达到 9 级即可解锁此预设!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Reach ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§2",
+          "text": "Garden Level 9 ",
+          "zh": "花园等级达到 9 级"
+        },
+        {
+          "color": "§7",
+          "text": "to unlock this",
+          "zh": "即可解锁此预设!"
+        }
+      ]
+    },
+    {
+      "id": "plots_reach_level_12_to_unlock",
+      "context": "修改地块菜单里的预设(野玫瑰)",
+      "raw": "§7Reach §2Garden Level 12 §7to unlock",
+      "text": "Reach Garden Level 12 to unlock",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "花园等级达到 12 级即可解锁此预设!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Reach ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§2",
+          "text": "Garden Level 12 ",
+          "zh": "花园等级达到 12 级"
+        },
+        {
+          "color": "§7",
+          "text": "to unlock",
+          "zh": "即可解锁此预设!"
+        }
+      ]
+    },
+    {
+      "id": "plots_preset_tail",
+      "context": "",
+      "raw": "§7preset!",
+      "text": "preset!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "plots_this_preset_tail",
+      "context": "",
+      "raw": "§7this preset!",
+      "text": "this preset!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "plots_super_flat",
+      "context": "修改地块菜单里的预设",
+      "raw": "§aSuper Flat",
+      "text": "Super Flat",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "超平坦"
+    },
+    {
+      "id": "plots_cocoa",
+      "context": "",
+      "raw": "§cCocoa",
+      "text": "Cocoa",
+      "placeholders": [],
+      "gloss": "预设名里的 Cocoa 单独成词;作物名 Cocoa Beans 是可可豆。",
+      "translate": true,
+      "zh": "可可"
+    },
+    {
+      "id": "plots_change_to_preset_1",
+      "context": "",
+      "raw": "§7Change the selected plot to this",
+      "text": "Change the selected plot to this",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "把选中的地块改成这个预设!"
+    },
+    {
+      "id": "plots_change_to_preset_2",
+      "context": "",
+      "raw": "§7preset!",
+      "text": "preset!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "plots_click_to_action",
+      "context": "",
+      "raw": "§eClick to %1$s!",
+      "text": "Click to %1$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "use / Save / Change,译名走 _shared/Terms.json",
+          "type": "raw",
+          "example": "use"
+        }
+      ],
+      "gloss": "use → 使用、Save → 保存、Change → 更改,词表大小写不敏感。",
+      "translate": true,
+      "zh": "点击%1$s!"
+    },
+    {
+      "id": "plots_click_view_pasting",
+      "context": "",
+      "raw": "§eClick to view pasting options!",
+      "text": "Click to view pasting options!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击查看粘贴选项!"
+    },
+    {
+      "id": "plots_convert_to_greenhouse",
+      "context": "",
+      "raw": "§aConvert to Greenhouse",
+      "text": "Convert to Greenhouse",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "改建为温室"
+    },
+    {
+      "id": "plots_convert_desc_1",
+      "context": "",
+      "raw": "§7Turns this plot into a Greenhouse,",
+      "text": "Turns this plot into a Greenhouse,",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "把这块地改建成温室,可以种植不同种类的作物。"
+    },
+    {
+      "id": "plots_convert_desc_2",
+      "context": "",
+      "raw": "§7allowing for different kinds of crops",
+      "text": "allowing for different kinds of crops",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "plots_convert_desc_3",
+      "context": "",
+      "raw": "§7to grow.",
+      "text": "to grow.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "plots_click_change_greenhouse_skin",
+      "context": "",
+      "raw": "§eClick to change Greenhouse skin!",
+      "text": "Click to change Greenhouse skin!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击更换温室皮肤!"
+    },
+    {
+      "id": "plots_only_farming_plots",
+      "context": "",
+      "raw": "§cThis can only be used on farming plots!",
+      "text": "This can only be used on farming plots!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "只能用在农田地块上!"
+    },
+    {
+      "id": "plots_save_preset",
+      "context": "",
+      "raw": "§aSave Preset",
+      "text": "Save Preset",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "保存预设"
+    },
+    {
+      "id": "plots_save_preset_desc_1",
+      "context": "",
+      "raw": "§7Store the selected plot as a custom",
+      "text": "Store the selected plot as a custom",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "把选中的地块存成自定义预设,之后可以复制到别的地块上。"
+    },
+    {
+      "id": "plots_save_preset_desc_2",
+      "context": "",
+      "raw": "§7preset that can be copied over to a",
+      "text": "preset that can be copied over to a",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "plots_save_preset_desc_3",
+      "context": "",
+      "raw": "§7different plot.",
+      "text": "different plot.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "",
+      "continuation": true
+    },
+    {
+      "id": "plots_change_name",
+      "context": "",
+      "raw": "§aChange Plot Name",
+      "text": "Change Plot Name",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "更改地块名称"
+    },
+    {
+      "id": "plots_set_name",
+      "context": "",
+      "raw": "§7Set a name for this plot.",
+      "text": "Set a name for this plot.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "给这块地起个名字。"
+    },
+    {
+      "id": "plots_current_name",
+      "context": "",
+      "raw": "§7Current Name: §a%1$s",
+      "text": "Current Name: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前地块名,默认是编号",
+          "type": "raw",
+          "example": "4"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "当前名称: %1$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Current Name: ",
+          "zh": "当前名称: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ]
+    },
+    {
+      "id": "plots_click_to_change",
+      "context": "",
+      "raw": "§eClick to Change!",
+      "text": "Click to Change!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击更改!"
+    },
+    {
+      "id": "plots_you_must_complete_1",
+      "context": "",
+      "raw": "§cYou must complete the §6Gathering",
+      "text": "You must complete the Gathering",
+      "placeholders": [],
+      "gloss": "Gathering Greenhouse Resources 目标名,和 _shared/Terms.json 一致;英文折成三行。",
+      "translate": true,
+      "zh": "先完成“收集",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "You must complete the ",
+          "zh": "先完成“"
+        },
+        {
+          "color": "§6",
+          "text": "Gathering",
+          "zh": "收集"
+        }
+      ]
+    },
+    {
+      "id": "plots_you_must_complete_2",
+      "context": "",
+      "raw": "§6Greenhouse Resources§c objective to",
+      "text": "Greenhouse Resources objective to",
+      "placeholders": [],
+      "gloss": "用户指定：此处 objective 是花园引导任务,译作任务；不改动任务完成条件。",
+      "translate": true,
+      "zh": "温室材料”任务,才能",
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Greenhouse Resources",
+          "zh": "温室材料"
+        },
+        {
+          "color": "§c",
+          "text": " objective to",
+          "zh": "”任务,才能"
+        }
+      ]
+    },
+    {
+      "id": "plots_you_must_complete_3",
+      "context": "",
+      "raw": "§cuse this!",
+      "text": "use this!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "使用!",
+      "continuation": true
+    },
+    {
+      "id": "plots_must_complete_staying_1",
+      "context": "",
+      "raw": "§cYou must complete the §6Staying",
+      "text": "You must complete the Staying",
+      "placeholders": [],
+      "gloss": "Staying Informed 目标名。",
+      "translate": true,
+      "zh": "先完成“了解",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "You must complete the ",
+          "zh": "先完成“"
+        },
+        {
+          "color": "§6",
+          "text": "Staying",
+          "zh": "了解"
+        }
+      ]
+    },
+    {
+      "id": "plots_must_complete_staying_2",
+      "context": "",
+      "raw": "§6Informed§c objective to use this!",
+      "text": "Informed objective to use this!",
+      "placeholders": [],
+      "gloss": "用户指定：此处 objective 是花园引导任务,译作任务；不改动任务完成条件。",
+      "translate": true,
+      "zh": "情况”任务,才能用这个!",
+      "continuation": true,
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Informed",
+          "zh": "情况"
+        },
+        {
+          "color": "§c",
+          "text": " objective to use this!",
+          "zh": "”任务,才能用这个!"
+        }
+      ]
+    },
+    {
+      "id": "plots_confirm_requirement",
+      "context": "确认解锁地块 / Anita 商店里的要求标题",
+      "raw": "§7Requirement",
+      "text": "Requirement",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "要求"
+    }
+  ]
+}

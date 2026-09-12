@@ -11,15 +11,9 @@
     {
       "id": "perks_level_name",
       "context": "五个职业天赋菜单里每一格的物品名：职业名 + 等级",
-      "raw": "§a%1$s Level %2$s",
-      "text": "%1$s Level %2$s",
+      "raw": "§aHealer Level %2$s",
+      "text": "Healer Level %2$s",
       "placeholders": [
-        {
-          "token": "%1$s",
-          "desc": "职业名，五种之一，译名走 _shared/Terms.json",
-          "type": "category_name",
-          "example": "Healer"
-        },
         {
           "token": "%2$s",
           "desc": "该格对应的等级",
@@ -27,9 +21,9 @@
           "example": "26"
         }
       ],
-      "gloss": "等级写法与 Dungeon_Classes.json#classes_name_with_level 的「%1$s 级」一致。",
+      "gloss": "职业名限定为五种已知职业,不会误匹配 Unlocked for SkyBlock Level 40.。",
       "translate": true,
-      "zh": "%1$s %2$s 级"
+      "zh": "治疗师 %2$s 级"
     },
     {
       "id": "perks_class_entry_name",
@@ -525,7 +519,7 @@
       ],
       "gloss": "",
       "translate": true,
-      "zh": "+%1$s 智力",
+      "zh": "+%1$s 法力",
       "segments": [
         {
           "color": "§8",
@@ -540,7 +534,7 @@
         {
           "color": "§7",
           "text": "Intelligence",
-          "zh": "智力"
+          "zh": "法力"
         }
       ]
     },
@@ -2556,12 +2550,12 @@
       ],
       "gloss": "",
       "translate": true,
-      "zh": "（受智力加成），有效射程 %1$s 格，",
+      "zh": "（受法力加成），有效射程 %1$s 格，",
       "segments": [
         {
           "color": "§7",
           "text": "(increased by your Intelligence) up to ",
-          "zh": "（受智力加成），有效射程 "
+          "zh": "（受法力加成），有效射程 "
         },
         {
           "color": "§a",
@@ -4995,6 +4989,74 @@
       "translate": true,
       "continuation": true,
       "zh": "秒。"
+    },
+    {
+      "id": "perks_mage_level_name",
+      "context": "五个职业天赋菜单里每一格的物品名：职业名 + 等级",
+      "raw": "§aMage Level %2$s",
+      "text": "Mage Level %2$s",
+      "placeholders": [
+        {
+          "token": "%2$s",
+          "desc": "该格对应的等级",
+          "type": "number",
+          "example": "26"
+        }
+      ],
+      "gloss": "职业名限定为五种已知职业,不会误匹配 Unlocked for SkyBlock Level 40.。",
+      "translate": true,
+      "zh": "法师 %2$s 级"
+    },
+    {
+      "id": "perks_berserk_level_name",
+      "context": "五个职业天赋菜单里每一格的物品名：职业名 + 等级",
+      "raw": "§aBerserk Level %2$s",
+      "text": "Berserk Level %2$s",
+      "placeholders": [
+        {
+          "token": "%2$s",
+          "desc": "该格对应的等级",
+          "type": "number",
+          "example": "26"
+        }
+      ],
+      "gloss": "职业名限定为五种已知职业,不会误匹配 Unlocked for SkyBlock Level 40.。",
+      "translate": true,
+      "zh": "狂战士 %2$s 级"
+    },
+    {
+      "id": "perks_archer_level_name",
+      "context": "五个职业天赋菜单里每一格的物品名：职业名 + 等级",
+      "raw": "§aArcher Level %2$s",
+      "text": "Archer Level %2$s",
+      "placeholders": [
+        {
+          "token": "%2$s",
+          "desc": "该格对应的等级",
+          "type": "number",
+          "example": "26"
+        }
+      ],
+      "gloss": "职业名限定为五种已知职业,不会误匹配 Unlocked for SkyBlock Level 40.。",
+      "translate": true,
+      "zh": "弓箭手 %2$s 级"
+    },
+    {
+      "id": "perks_tank_level_name",
+      "context": "五个职业天赋菜单里每一格的物品名：职业名 + 等级",
+      "raw": "§aTank Level %2$s",
+      "text": "Tank Level %2$s",
+      "placeholders": [
+        {
+          "token": "%2$s",
+          "desc": "该格对应的等级",
+          "type": "number",
+          "example": "26"
+        }
+      ],
+      "gloss": "职业名限定为五种已知职业,不会误匹配 Unlocked for SkyBlock Level 40.。",
+      "translate": true,
+      "zh": "坦克 %2$s 级"
     }
   ]
 }

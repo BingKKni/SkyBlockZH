@@ -1,0 +1,63 @@
+{
+  "npc": "Terry",
+  "location": "The Garden",
+  "source": "runtime capture (SkyZH) 2026-09-10 花园实测; https://hypixelskyblock.minecraft.wiki/w/Terry (2026-09-03 更新); 交叉核对 https://hypixel-skyblock.fandom.com/wiki/Terry (一致)",
+  "fetched_at": "2026-09-10",
+  "verified_ingame": true,
+  "note": "Terry,Jerry 工坊冰钓小屋里的渔夫,开口就是「Ahoy」的水手腔;作为花园访客时抱怨自己吃冰没味道。Jerry 工坊那边的台词在 Events/NPC_Message/Terry.json。",
+  "messages": [
+    {
+      "id": "terry_garden_request",
+      "context": "作为花园访客上门",
+      "raw": "§fAhoy, §b%s§f! People always tell me they like ice cream, but ice never really tastes like anything for me!",
+      "text": "Ahoy, %s! People always tell me they like ice cream, but ice never really tastes like anything for me!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "玩家名",
+          "type": "player_name",
+          "example": "inkkni"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "嘿哟,%s! 大伙儿都说喜欢吃冰淇淋,可冰在我嘴里从来就没什么味道!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Ahoy, ",
+          "zh": "嘿哟,"
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§f",
+          "text": "! People always tell me they like ice cream, but ice never really tastes like anything for me!",
+          "zh": "! 大伙儿都说喜欢吃冰淇淋,可冰在我嘴里从来就没什么味道!"
+        }
+      ]
+    },
+    {
+      "id": "terry_garden_completing",
+      "context": "",
+      "raw": "§fYou are saying I need to combine these items with ice to have a taste? I'll believe it when I see it!",
+      "text": "You are saying I need to combine these items with ice to have a taste? I'll believe it when I see it!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你是说把这些东西和冰掺在一起就有味道了? 眼见为实,我得亲自试试!"
+    },
+    {
+      "id": "terry_garden_denying",
+      "context": "",
+      "text": "I'll keep crunching on those ice cubes, maybe I am missing something.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "那我接着嚼我的冰块吧,说不定是我漏了什么门道。"
+    }
+  ]
+}

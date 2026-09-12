@@ -30,9 +30,12 @@
           "example": "Glacite"
         }
       ],
-      "gloss": "任务类型名,功能性命名,按统一原则翻译。已知变体材料名至少有 Glacite、Scrap(见 mining_commission_task_scrap_collector,是否算同一个模板的特例还是独立任务名待核实)以及各种宝石类型(见 mining_commission_task_gemstone_collector)。",
+      "gloss": "委托的材料收集任务;排除访客 Vinyl Collector。NPC 名不是任务材料。",
       "translate": true,
-      "zh": "%s收集员"
+      "zh": "%s收集员",
+      "exclude": [
+        "Vinyl Collector"
+      ]
     },
     {
       "id": "mining_commission_task_2x_mithril_powder_collector",
@@ -543,8 +546,19 @@
       "zh": "",
       "continuation": true,
       "segments": [
-        {"color": "§b", "text": "Quarry", "zh": "", "omit": true, "order": 5},
-        {"color": "§7", "text": ".", "zh": "开采 ", "order": 2}
+        {
+          "color": "§b",
+          "text": "Quarry",
+          "zh": "",
+          "omit": true,
+          "order": 5
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "开采 ",
+          "order": 2
+        }
       ]
     }
   ],
