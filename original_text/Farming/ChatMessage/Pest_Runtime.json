@@ -1,0 +1,244 @@
+{
+  "source": "logs/skyzh-capture (last_seen > 2026-09-12 09:15:15); https://hypixelskyblock.minecraft.wiki/w/Pests; https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip",
+  "fetched_at": "2026-09-12",
+  "verified_ingame": true,
+  "gui_context": "花园除害反馈和作物掉落提示",
+  "source_note": "原文、颜色与数值以本轮实测为准；社区 Wiki 普通页面核对机制。完整句在 GUI_Lore 匹配，不按旧英文断行翻译。",
+  "lines": [
+    {
+      "id": "pest_chat_fortune_reduced",
+      "context": "花园害虫过多导致农业时运下降",
+      "raw": "§7Your §6 Farming Fortune §7has been reduced by §4%1$s%§7!",
+      "text": "Your  Farming Fortune has been reduced by %1$s%!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "75",
+          "desc": "降低百分比"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的 农业时运降低了 %1$s%!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Your ",
+          "zh": "你的"
+        },
+        {
+          "color": "§6",
+          "text": " Farming Fortune ",
+          "zh": " 农业时运"
+        },
+        {
+          "color": "§7",
+          "text": "has been reduced by ",
+          "zh": "降低了 "
+        },
+        {
+          "color": "§4",
+          "text": "%1$s%",
+          "zh": "%1$s%"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "pest_chat_plot_teleport",
+      "context": "虫害提示的传送操作",
+      "raw": "§7Click on a plot's name in chat to teleport to it!",
+      "text": "Click on a plot's name in chat to teleport to it!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击聊天中的地块名称即可传送过去!"
+    },
+    {
+      "id": "pest_chat_worm_burrow",
+      "context": "蚯蚓害虫在当前地块内钻地移动",
+      "raw": "§4 §7The Worm seems to have burrowed its way to somewhere else in the plot!",
+      "text": " The Worm seems to have burrowed its way to somewhere else in the plot!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": " 蚯蚓似乎钻到了这块地的其他地方!",
+      "segments": [
+        {
+          "color": "§4",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§7",
+          "text": "The Worm seems to have burrowed its way to somewhere else in the plot!",
+          "zh": "蚯蚓似乎钻到了这块地的其他地方!"
+        }
+      ]
+    },
+    {
+      "id": "pest_chat_fortune_restored",
+      "context": "清除虫害后农业时运恢复",
+      "raw": "§aYour Garden is no longer infested and your §6 Farming Fortune §ahas returned to normal!",
+      "text": "Your Garden is no longer infested and your  Farming Fortune has returned to normal!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "花园虫害已清除，你的 农业时运已恢复正常!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Your Garden is no longer infested and your ",
+          "zh": "花园虫害已清除，你的"
+        },
+        {
+          "color": "§6",
+          "text": " Farming Fortune ",
+          "zh": " 农业时运"
+        },
+        {
+          "color": "§a",
+          "text": "has returned to normal!",
+          "zh": "已恢复正常!"
+        }
+      ]
+    },
+    {
+      "id": "pest_chat_none",
+      "context": "搜索害虫时没有目标",
+      "raw": "§cThere are not any Pests on your Garden right now! Keep farming!",
+      "text": "There are not any Pests on your Garden right now! Keep farming!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的花园目前没有害虫! 继续耕作吧!"
+    },
+    {
+      "id": "pest_chat_crop_reward_a",
+      "context": "击杀害虫后获得对应作物",
+      "raw": "§eYou received §a%1$sx %2$s §efor killing a §2%3$s§e!",
+      "text": "You received %1$sx %2$s for killing a %3$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "10",
+          "desc": "作物数量"
+        },
+        {
+          "token": "%2$s",
+          "type": "category_name",
+          "example": "Enchanted Melon Slice",
+          "desc": "作物物品名"
+        },
+        {
+          "token": "%3$s",
+          "type": "mob_name",
+          "example": "Mite",
+          "desc": "害虫名"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你击杀%3$s，获得了 %1$sx %2$s",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "You received ",
+          "zh": "获得了 ",
+          "order": 3
+        },
+        {
+          "color": "§a",
+          "text": "%1$sx %2$s ",
+          "zh": "%1$sx %2$s",
+          "order": 4
+        },
+        {
+          "color": "§e",
+          "text": "for killing a ",
+          "zh": "你击杀",
+          "order": 0
+        },
+        {
+          "color": "§2",
+          "text": "%3$s",
+          "zh": "%3$s",
+          "order": 1
+        },
+        {
+          "color": "§e",
+          "text": "!",
+          "zh": "，",
+          "order": 2
+        }
+      ]
+    },
+    {
+      "id": "pest_chat_crop_reward_an",
+      "context": "击杀害虫后获得对应作物",
+      "raw": "§eYou received §a%1$sx %2$s §efor killing an §2%3$s§e!",
+      "text": "You received %1$sx %2$s for killing an %3$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "10",
+          "desc": "作物数量"
+        },
+        {
+          "token": "%2$s",
+          "type": "category_name",
+          "example": "Enchanted Melon Slice",
+          "desc": "作物物品名"
+        },
+        {
+          "token": "%3$s",
+          "type": "mob_name",
+          "example": "Earthworm",
+          "desc": "害虫名"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你击杀%3$s，获得了 %1$sx %2$s",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "You received ",
+          "zh": "获得了 ",
+          "order": 3
+        },
+        {
+          "color": "§a",
+          "text": "%1$sx %2$s ",
+          "zh": "%1$sx %2$s",
+          "order": 4
+        },
+        {
+          "color": "§e",
+          "text": "for killing an ",
+          "zh": "你击杀",
+          "order": 0
+        },
+        {
+          "color": "§2",
+          "text": "%3$s",
+          "zh": "%3$s",
+          "order": 1
+        },
+        {
+          "color": "§e",
+          "text": "!",
+          "zh": "，",
+          "order": 2
+        }
+      ]
+    }
+  ]
+}

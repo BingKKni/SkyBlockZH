@@ -1,0 +1,386 @@
+{
+  "source": "logs/skyzh-capture (last_seen > 2026-09-12 09:15:15); https://hypixelskyblock.minecraft.wiki/w/Museum",
+  "fetched_at": "2026-09-12",
+  "verified_ingame": true,
+  "gui_context": "博物馆功能与奖励说明的完整句",
+  "source_note": "原文、颜色与数值以本轮实测为准；社区 Wiki 普通页面核对机制。完整句在 GUI_Lore 匹配，不按旧英文断行翻译。",
+  "lines": [
+    {
+      "id": "museum_intro_live",
+      "context": "博物馆总览说明",
+      "raw": "§7The §9Museum §7is a compendium of all of your items in SkyBlock. §7Donate items to your Museum to unlock rewards.",
+      "text": "The Museum is a compendium of all of your items in SkyBlock. Donate items to your Museum to unlock rewards.",
+      "placeholders": [],
+      "gloss": "实测相邻两句共用一条物理行，必须整段匹配，不能在句号处分成两条 Lore。",
+      "translate": true,
+      "zh": "博物馆记录了你在 SkyBlock 中的全部物品。向博物馆捐赠物品即可解锁奖励。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "The ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§9",
+          "text": "Museum ",
+          "zh": "博物馆"
+        },
+        {
+          "color": "§7",
+          "text": "is a compendium of all of your items in SkyBlock. ",
+          "zh": "记录了你在 SkyBlock 中的全部物品。"
+        },
+        {
+          "color": "§7",
+          "text": "Donate items to your Museum to unlock rewards.",
+          "zh": "向博物馆捐赠物品即可解锁奖励。"
+        }
+      ],
+      "samples": [
+        [
+          "§7The §9Museum §7is a compendium of all of",
+          "§7your items in SkyBlock. Donate items",
+          "§7to your Museum to unlock rewards."
+        ]
+      ]
+    },
+    {
+      "id": "museum_visit_live",
+      "context": "博物馆菜单",
+      "raw": "§7Other players can visit your Museum at any time! §7Display your best items proudly for all to see.",
+      "text": "Other players can visit your Museum at any time! Display your best items proudly for all to see.",
+      "placeholders": [],
+      "gloss": "实测相邻两句共用一条物理行，必须整段匹配，不能在句号处分成两条 Lore。",
+      "translate": true,
+      "zh": "其他玩家随时都能参观你的博物馆! 把最得意的藏品摆出来，让大家一饱眼福吧。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Other players can visit your Museum at any time! ",
+          "zh": "其他玩家随时都能参观你的博物馆! "
+        },
+        {
+          "color": "§7",
+          "text": "Display your best items proudly for all to see.",
+          "zh": "把最得意的藏品摆出来，让大家一饱眼福吧。"
+        }
+      ],
+      "samples": [
+        [
+          "§7Other players can visit your Museum",
+          "§7at any time! Display your best items",
+          "§7proudly for all to see."
+        ]
+      ]
+    },
+    {
+      "id": "museum_skill_items_live",
+      "context": "按技能分类查看捐赠藏品",
+      "raw": "§7View all of the items related to the §c%1$s Skill §7that you have donated to the §9Museum§7!",
+      "text": "View all of the items related to the %1$s Skill that you have donated to the Museum!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "category_name",
+          "example": "Combat",
+          "desc": "技能类别"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "查看你捐赠给博物馆的全部%1$s相关物品!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "View all of the items related to the ",
+          "zh": "查看你捐赠给",
+          "order": 0
+        },
+        {
+          "color": "§c",
+          "text": "%1$s Skill ",
+          "zh": "%1$s",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "that you have donated to the ",
+          "zh": "的全部",
+          "order": 2
+        },
+        {
+          "color": "§9",
+          "text": "Museum",
+          "zh": "博物馆",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "相关物品!",
+          "order": 4
+        }
+      ],
+      "samples": [
+        [
+          "§7View all of the items related to the",
+          "§cCombat Skill §7that you have donated",
+          "§7to the §9Museum§7!"
+        ]
+      ]
+    },
+    {
+      "id": "museum_special_items_live",
+      "context": "查看特殊类别藏品",
+      "raw": "§7View all of the §dSpecial Items §7that you have donated to the §9Museum§7!",
+      "text": "View all of the Special Items that you have donated to the Museum!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "查看你捐赠给博物馆的全部特殊物品!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "View all of the ",
+          "zh": "查看你捐赠给",
+          "order": 0
+        },
+        {
+          "color": "§d",
+          "text": "Special Items ",
+          "zh": "特殊物品",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "that you have donated to the ",
+          "zh": "的全部",
+          "order": 2
+        },
+        {
+          "color": "§9",
+          "text": "Museum",
+          "zh": "博物馆",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "museum_special_progress_live",
+      "context": "博物馆菜单",
+      "raw": "§7These items don't count towards Museum progress and rewards, but are cool nonetheless. §7Items that are §9rare §7and §6prestigious §7fit into this category, and can be displayed in the Museum.",
+      "text": "These items don't count towards Museum progress and rewards, but are cool nonetheless. Items that are rare and prestigious fit into this category, and can be displayed in the Museum.",
+      "placeholders": [],
+      "gloss": "实测相邻两句共用一条物理行，必须整段匹配，不能在句号处分成两条 Lore。",
+      "translate": true,
+      "zh": "这些物品不计入博物馆进度，也不提供奖励，但依然值得收藏。这类物品稀有且名贵，可以在博物馆中展示。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "These items don't count towards Museum progress and rewards, but are cool nonetheless. ",
+          "zh": "这些物品不计入博物馆进度，也不提供奖励，但依然值得收藏。"
+        },
+        {
+          "color": "§7",
+          "text": "Items that are ",
+          "zh": "这类物品"
+        },
+        {
+          "color": "§9",
+          "text": "rare ",
+          "zh": "稀有"
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "且"
+        },
+        {
+          "color": "§6",
+          "text": "prestigious ",
+          "zh": "名贵"
+        },
+        {
+          "color": "§7",
+          "text": "fit into this category, and can be displayed in the Museum.",
+          "zh": "，可以在博物馆中展示。"
+        }
+      ],
+      "samples": [
+        [
+          "§7These items don't count towards",
+          "§7Museum progress and rewards, but",
+          "§7are cool nonetheless. Items that are",
+          "§9rare §7and §6prestigious §7fit into this",
+          "§7category, and can be displayed in",
+          "§7the Museum."
+        ]
+      ]
+    },
+    {
+      "id": "museum_milestone_reward_live",
+      "context": "每获得一定博物馆经验即可领奖",
+      "raw": "§7Every §b%1$s SkyBlock XP §7obtained from your Museum, §6Eleanor §7will reward you.",
+      "text": "Every %1$s SkyBlock XP obtained from your Museum, Eleanor will reward you.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "100",
+          "desc": "里程碑所需经验"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "每从博物馆获得 %1$s SkyBlock 经验，Eleanor 就会给你一份奖励。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Every ",
+          "zh": "每从博物馆获得 "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s SkyBlock XP ",
+          "zh": "%1$s SkyBlock 经验"
+        },
+        {
+          "color": "§7",
+          "text": "obtained from your Museum, ",
+          "zh": "，"
+        },
+        {
+          "color": "§6",
+          "text": "Eleanor ",
+          "zh": "Eleanor"
+        },
+        {
+          "color": "§7",
+          "text": "will reward you.",
+          "zh": " 就会给你一份奖励。"
+        }
+      ],
+      "samples": [
+        [
+          "§7Every §b100 SkyBlock XP §7obtained from",
+          "§7your Museum, §6Eleanor §7will reward you."
+        ]
+      ]
+    },
+    {
+      "id": "museum_special_no_xp_live",
+      "context": "特殊物品不奖励空岛经验",
+      "raw": "§dSpecial Items §7do not reward SkyBlock XP.",
+      "text": "Special Items do not reward SkyBlock XP.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "特殊物品不提供 SkyBlock 经验。",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "Special Items ",
+          "zh": "特殊物品"
+        },
+        {
+          "color": "§7",
+          "text": "do not reward SkyBlock XP.",
+          "zh": "不提供 SkyBlock 经验。"
+        }
+      ],
+      "samples": [
+        [
+          "§dSpecial Items §7do not reward SkyBlock",
+          "§7XP."
+        ]
+      ]
+    },
+    {
+      "id": "museum_search_live",
+      "context": "博物馆菜单",
+      "raw": "§7Search your entire Museum for a specific item or armor set!",
+      "text": "Search your entire Museum for a specific item or armor set!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "在整个博物馆中搜索指定物品或护甲套装!"
+    },
+    {
+      "id": "museum_appraisal_live",
+      "context": "博物馆增减藏品时重新估值",
+      "raw": "§6Madame Goldsworth §7offers an appraisal service for Museums. §7She will appraise the value of your Museum each time you add or remove items.",
+      "text": "Madame Goldsworth offers an appraisal service for Museums. She will appraise the value of your Museum each time you add or remove items.",
+      "placeholders": [],
+      "gloss": "实测相邻两句共用一条物理行，必须整段匹配，不能在句号处分成两条 Lore。",
+      "translate": true,
+      "zh": "Goldsworth 女士提供博物馆估值服务。每当你增添或取出物品，她都会重新评估博物馆的价值。",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Madame Goldsworth ",
+          "zh": "Goldsworth 女士"
+        },
+        {
+          "color": "§7",
+          "text": "offers an appraisal service for Museums. ",
+          "zh": "提供博物馆估值服务。"
+        },
+        {
+          "color": "§7",
+          "text": "She will appraise the value of your Museum each time you add or remove items.",
+          "zh": "每当你增添或取出物品，她都会重新评估博物馆的价值。"
+        }
+      ],
+      "samples": [
+        [
+          "§6Madame Goldsworth §7offers an",
+          "§7appraisal service for Museums. She",
+          "§7will appraise the value of your",
+          "§7Museum each time you add or remove",
+          "§7items."
+        ]
+      ]
+    },
+    {
+      "id": "museum_value_rank_live",
+      "context": "博物馆总价值排名",
+      "raw": "§7Your Museum is the §6§l#%1$s §7most valued Museum in SkyBlock.",
+      "text": "Your Museum is the #%1$s most valued Museum in SkyBlock.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "203,687",
+          "desc": "价值排名"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的博物馆在 SkyBlock 博物馆价值榜上排名第 %1$s。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Your Museum is the ",
+          "zh": "你的博物馆在 SkyBlock 博物馆价值榜上排名第 "
+        },
+        {
+          "color": "§6§l",
+          "text": "#%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "most valued Museum in SkyBlock.",
+          "zh": "。"
+        }
+      ]
+    }
+  ]
+}

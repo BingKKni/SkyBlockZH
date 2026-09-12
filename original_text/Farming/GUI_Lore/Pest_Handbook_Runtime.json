@@ -1,0 +1,481 @@
+{
+  "source": "logs/skyzh-capture (last_seen > 2026-09-12 09:15:15); https://hypixelskyblock.minecraft.wiki/w/Pests; https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip",
+  "fetched_at": "2026-09-12",
+  "verified_ingame": true,
+  "gui_context": "害虫兑换、虫害阈值和手册中的完整说明",
+  "source_note": "原文、颜色与数值以本轮实测为准；社区 Wiki 普通页面核对机制。完整句在 GUI_Lore 匹配，不按旧英文断行翻译。",
+  "lines": [
+    {
+      "id": "pest_empty_vacuum",
+      "context": "清空集尘袋换取花园临时农业时运",
+      "raw": "§7Empty your §6Vacuum Bag §7to receive bonus §6 Farming Fortune §7while on your §aGarden §7over the next §a%1$s§7!",
+      "text": "Empty your Vacuum Bag to receive bonus  Farming Fortune while on your Garden over the next %1$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "time",
+          "example": "30m",
+          "desc": "加成持续时间"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "清空集尘袋后，在花园中获得额外 农业时运，持续 %1$s!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Empty your ",
+          "zh": "清空",
+          "order": 0
+        },
+        {
+          "color": "§6",
+          "text": "Vacuum Bag ",
+          "zh": "集尘袋",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "to receive bonus ",
+          "zh": "后，在",
+          "order": 2
+        },
+        {
+          "color": "§6",
+          "text": " Farming Fortune ",
+          "zh": " 农业时运",
+          "order": 5
+        },
+        {
+          "color": "§7",
+          "text": "while on your ",
+          "zh": "中获得额外",
+          "order": 4
+        },
+        {
+          "color": "§a",
+          "text": "Garden ",
+          "zh": "花园",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "over the next ",
+          "zh": "，持续 ",
+          "order": 6
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s",
+          "order": 7
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!",
+          "order": 8
+        }
+      ],
+      "samples": [
+        [
+          "§7Empty your §6Vacuum Bag §7to receive",
+          "§7bonus §6 Farming Fortune §7while on",
+          "§7your §aGarden §7over the next §a30m§7!"
+        ]
+      ]
+    },
+    {
+      "id": "pest_exchange_reward",
+      "context": "兑换害虫获得的农业时运数量",
+      "raw": "§7You will receive §6+%1$s Farming Fortune §7from this exchange!",
+      "text": "You will receive +%1$s Farming Fortune from this exchange!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "180",
+          "desc": "时运加成"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "本次兑换可获得 +%1$s 农业时运!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You will receive ",
+          "zh": "本次兑换可获得 "
+        },
+        {
+          "color": "§6",
+          "text": "+%1$s Farming Fortune ",
+          "zh": "+%1$s 农业时运"
+        },
+        {
+          "color": "§7",
+          "text": "from this exchange!",
+          "zh": "!"
+        }
+      ],
+      "samples": [
+        [
+          "§7You will receive §6+180 Farming",
+          "§6Fortune §7from this exchange!"
+        ]
+      ]
+    },
+    {
+      "id": "pest_exchange_instructions",
+      "context": "将集尘袋中的害虫交给害虫猎手换临时加成",
+      "raw": "§7Exchange §2 Pests §7from your §6Vacuum Bag §7with the §6Pesthunter §7to gain temporary §6 Farming Fortune §7while on your §aGarden§7.",
+      "text": "Exchange  Pests from your Vacuum Bag with the Pesthunter to gain temporary  Farming Fortune while on your Garden.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "将集尘袋中的 害虫交给害虫猎手，即可在花园中获得临时 农业时运加成。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Exchange ",
+          "zh": "将",
+          "order": 0
+        },
+        {
+          "color": "§2",
+          "text": " Pests ",
+          "zh": " 害虫",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "from your ",
+          "zh": "中的",
+          "order": 2
+        },
+        {
+          "color": "§6",
+          "text": "Vacuum Bag ",
+          "zh": "集尘袋",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "with the ",
+          "zh": "交给",
+          "order": 4
+        },
+        {
+          "color": "§6",
+          "text": "Pesthunter ",
+          "zh": "害虫猎手",
+          "order": 5
+        },
+        {
+          "color": "§7",
+          "text": "to gain temporary ",
+          "zh": "，即可在",
+          "order": 6
+        },
+        {
+          "color": "§6",
+          "text": " Farming Fortune ",
+          "zh": " 农业时运",
+          "order": 9
+        },
+        {
+          "color": "§7",
+          "text": "while on your ",
+          "zh": "中获得临时",
+          "order": 8
+        },
+        {
+          "color": "§a",
+          "text": "Garden",
+          "zh": "花园",
+          "order": 7
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "加成。",
+          "order": 10
+        }
+      ],
+      "samples": [
+        [
+          "§7Exchange §2 Pests §7from your",
+          "§6Vacuum Bag §7with the §6Pesthunter §7to",
+          "§7gain temporary §6 Farming Fortune",
+          "§7while on your §aGarden§7."
+        ]
+      ]
+    },
+    {
+      "id": "pest_wares_intro",
+      "context": "害虫猎手用害虫作货币出售收藏的杂物",
+      "raw": "§7Using §2 Pests§7 as currency, purchase a variety of bits 'n bobs that §6Phillip§7 has held onto over the years!",
+      "text": "Using  Pests as currency, purchase a variety of bits 'n bobs that Phillip has held onto over the years!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "用 害虫作为货币，购买 Phillip 多年来收藏的各式小玩意!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Using ",
+          "zh": "用"
+        },
+        {
+          "color": "§2",
+          "text": " Pests",
+          "zh": " 害虫"
+        },
+        {
+          "color": "§7",
+          "text": " as currency, purchase a variety of bits 'n bobs that ",
+          "zh": "作为货币，购买 "
+        },
+        {
+          "color": "§6",
+          "text": "Phillip",
+          "zh": "Phillip"
+        },
+        {
+          "color": "§7",
+          "text": " has held onto over the years!",
+          "zh": " 多年来收藏的各式小玩意!"
+        }
+      ],
+      "samples": [
+        [
+          "§7Using §2 Pests§7 as currency,",
+          "§7purchase a variety of bits 'n bobs",
+          "§7that §6Phillip§7 has held onto over the",
+          "§7years!"
+        ]
+      ]
+    },
+    {
+      "id": "pest_infestation_restore",
+      "context": "清理害虫可恢复降低的农业时运",
+      "raw": "§7Get rid of §2 Pests §7to restore it!",
+      "text": "Get rid of  Pests to restore it!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "清除 害虫即可恢复!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Get rid of ",
+          "zh": "清除"
+        },
+        {
+          "color": "§2",
+          "text": " Pests ",
+          "zh": " 害虫"
+        },
+        {
+          "color": "§7",
+          "text": "to restore it!",
+          "zh": "即可恢复!"
+        }
+      ]
+    },
+    {
+      "id": "pest_infestation_threshold",
+      "context": "额外害虫几率提高时运开始下降前的害虫数量阈值",
+      "raw": "§7For every §2+%1$s Bonus Pest Chance§7 you have, you can spawn §a%2$s §7extra §2 Pest §7before you start losing fortune!",
+      "text": "For every +%1$s Bonus Pest Chance you have, you can spawn %2$s extra  Pest before you start losing fortune!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "100",
+          "desc": "每档额外害虫几率"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "1",
+          "desc": "增加的害虫数量"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "每有 +%1$s 额外害虫几率，开始损失农业时运前可容纳的 害虫数量增加 %2$s 只!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "For every ",
+          "zh": "每有 ",
+          "order": 0
+        },
+        {
+          "color": "§2",
+          "text": "+%1$s Bonus Pest Chance",
+          "zh": "+%1$s 额外害虫几率",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": " you have, you can spawn ",
+          "zh": "，开始损失农业时运前可容纳的",
+          "order": 2
+        },
+        {
+          "color": "§a",
+          "text": "%2$s ",
+          "zh": "%2$s",
+          "order": 5
+        },
+        {
+          "color": "§7",
+          "text": "extra ",
+          "zh": " 只!",
+          "order": 6
+        },
+        {
+          "color": "§2",
+          "text": " Pest ",
+          "zh": " 害虫",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "before you start losing fortune!",
+          "zh": "数量增加 ",
+          "order": 4
+        }
+      ],
+      "samples": [
+        [
+          "§7For every §2+100 Bonus Pest Chance",
+          "§7you have, you can spawn §a1 §7extra §2",
+          "§2Pest §7before you start losing fortune!"
+        ]
+      ]
+    },
+    {
+      "id": "pest_description_mouse",
+      "context": "害虫手册的生物短描述",
+      "raw": "§7A shy little fellow!",
+      "text": "A shy little fellow!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "胆小的小家伙!"
+    },
+    {
+      "id": "pest_description_fly",
+      "context": "害虫手册的生物短描述",
+      "raw": "§7A common Garden pest, known for its big eyes.",
+      "text": "A common Garden pest, known for its big eyes.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "花园里常见的害虫，那双大眼睛格外显眼。"
+    },
+    {
+      "id": "pest_description_lunar_moth",
+      "context": "害虫手册的生物短描述",
+      "raw": "§7Drawn to the light and dew of the moon.",
+      "text": "Drawn to the light and dew of the moon.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "循着月光与月露而来。"
+    },
+    {
+      "id": "pest_description_trap_only",
+      "context": "害虫手册的生物短描述",
+      "raw": "§8Can only be found in pest traps.",
+      "text": "Can only be found in pest traps.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "只能在害虫陷阱中找到。"
+    },
+    {
+      "id": "pest_description_cricket",
+      "context": "害虫手册的生物短描述",
+      "raw": "§7Usually just a hop, skip, and a jump away.",
+      "text": "Usually just a hop, skip, and a jump away.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "蹦蹦跳跳，就在不远处。"
+    },
+    {
+      "id": "pest_description_locust",
+      "context": "害虫手册的生物短描述",
+      "raw": "§7Pretty loud, and pretty annoying.",
+      "text": "Pretty loud, and pretty annoying.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "吵得很，也烦得很。"
+    },
+    {
+      "id": "pest_description_rat",
+      "context": "害虫手册的生物短描述",
+      "raw": "§7Quick, yet nasty.",
+      "text": "Quick, yet nasty.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "跑得飞快，讨厌得很。"
+    },
+    {
+      "id": "pest_description_mosquito",
+      "context": "害虫手册的生物短描述",
+      "raw": "§7One of nature's most useless creatures.",
+      "text": "One of nature's most useless creatures.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "大自然里最没用的生物之一。"
+    },
+    {
+      "id": "pest_description_earthworm",
+      "context": "害虫手册的生物短描述",
+      "raw": "§7Big, scary, and pink.",
+      "text": "Big, scary, and pink.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "又大又吓人，还是粉红色的。"
+    },
+    {
+      "id": "pest_description_mite",
+      "context": "害虫手册的生物短描述",
+      "raw": "§7Try and you just mite.",
+      "text": "Try and you just mite.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "小小螨虫，也想试着闯一闯。"
+    },
+    {
+      "id": "pest_description_moth",
+      "context": "害虫手册的生物短描述",
+      "raw": "§7Fluttering around a Garden near you.",
+      "text": "Fluttering around a Garden near you.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "就在你附近的花园里扑腾。"
+    },
+    {
+      "id": "pest_description_slug",
+      "context": "害虫手册的生物短描述",
+      "raw": "§7Methodical in movement, ineffective in survival.",
+      "text": "Methodical in movement, ineffective in survival.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "走得有条不紊，逃命却不太在行。"
+    }
+  ]
+}

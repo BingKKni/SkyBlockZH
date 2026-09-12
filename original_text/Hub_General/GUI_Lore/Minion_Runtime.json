@@ -1,0 +1,65 @@
+{
+  "source": "logs/skyzh-capture (last_seen > 2026-09-12 09:15:15); https://hypixelskyblock.minecraft.wiki/w/Minions",
+  "fetched_at": "2026-09-12",
+  "verified_ingame": true,
+  "gui_context": "小人管理中的完整等级提示与燃料说明",
+  "source_note": "原文、颜色与数值以本轮实测为准；社区 Wiki 普通页面核对机制。完整句在 GUI_Lore 匹配，不按旧英文断行翻译。",
+  "lines": [
+    {
+      "id": "minion_runtime_max_tier",
+      "context": "小人管理菜单",
+      "raw": "§cThis minion has reached the maximum tier.",
+      "text": "This minion has reached the maximum tier.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这个小人已达到最高等级。",
+      "samples": [
+        [
+          "§cThis minion has reached the maximum",
+          "§ctier."
+        ]
+      ]
+    },
+    {
+      "id": "minion_runtime_permanent_fuel",
+      "context": "小人永久燃料的速度加成",
+      "raw": "§7Increases the speed of your minion by §a%1$s%§7. Unlimited Duration!",
+      "text": "Increases the speed of your minion by %1$s%. Unlimited Duration!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "25",
+          "desc": "速度加成"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "小人的工作速度提高 %1$s%，永久生效!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increases the speed of your minion by ",
+          "zh": "小人的工作速度提高 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s%",
+          "zh": "%1$s%"
+        },
+        {
+          "color": "§7",
+          "text": ". Unlimited Duration!",
+          "zh": "，永久生效!"
+        }
+      ],
+      "samples": [
+        [
+          "§7Increases the speed of your minion",
+          "§7by §a25%§7. Unlimited Duration!"
+        ]
+      ]
+    }
+  ]
+}

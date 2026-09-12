@@ -2094,12 +2094,26 @@ public final class TranslationHarness {
 		check("花园等级条件已修复，不是前往地点", "§eReach Garden Level IV", Surface.SCOREBOARD,
 			"§e花园等级达到 IV 级");
 		check("Melody 鞋子是伐木时运", "§7Foraging Fortune: §6+6", Surface.ITEM, "§7伐木时运: §6+6");
-		for (String line : List.of("QUEST COMPLETE", "COLLECTION UNLOCKED Wheat", "+5 SkyBlock XP")) {
+		check("博物馆数字里程碑保留实测进度颜色", "§7Progress to Milestone 4: §366%", Surface.ITEM,
+			"§7升至里程碑 4 的进度: §366%");
+		check("生物图鉴罗马数字里程碑仍可翻译", "§7Progress to Milestone CXVII: §e50%", Surface.ITEM,
+			"§7升至里程碑 CXVII 的进度: §e50%");
+		check("矿井随机残料增益保留项目符号与换序颜色", "§8 ■ §a+5% §7chance to find a §9Suspicious Scrap§7.",
+			Surface.ITEM, "§8 ■ §7发现§9可疑残料§7的概率提高 §a5%");
+		check("矿井时运增益保留项目符号", "§8 ■ §7Gain §6+100 Mining Fortune", Surface.ITEM,
+			"§8 ■ §7获得 §6+100 挖掘时运");
+		check("矿井速度增益保留项目符号", "§8 ■ §7Gain §6+200 Mining Speed", Surface.ITEM,
+			"§8 ■ §7获得 §6+200 挖掘速度");
+		check("矿井抗寒增益保留项目符号", "§8 ■ §7Gain §b+10 Cold Resistance", Surface.ITEM,
+			"§8 ■ §7获得 §b+10 抗寒");
+		for (String line : List.of("QUEST COMPLETE", "COLLECTION UNLOCKED Wheat", "+5 SkyBlock XP",
+			"    +5 SkyBlock XP", "    +1,000 Mining Experience", "  LAPIS CORPSE LOOT! ",
+			"  REWARDS", "    +2,000 Coins", "                 +5 SkyBlock XP")) {
 			report("任务通知保持左对齐: " + line,
 				!Translator.centerChat(Translator.translate(Component.literal(line), Surface.CHAT)), line);
 		}
-		for (String line : List.of("                          SKYBLOCK LEVEL UP", "                 +5 SkyBlock XP")) {
-			report("等级横幅和居中奖励重新计算居中: " + line,
+		for (String line : List.of("                          SKYBLOCK LEVEL UP", "                  RAFFLE STARTED!")) {
+			report("真正的活动与等级横幅重新计算居中: " + line,
 				Translator.centerChat(Translator.translate(Component.literal(line), Surface.CHAT)), line);
 		}
 	}

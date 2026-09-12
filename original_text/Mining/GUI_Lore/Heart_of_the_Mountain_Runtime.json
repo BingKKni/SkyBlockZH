@@ -1,0 +1,1199 @@
+{
+  "source": "logs/skyzh-capture (last_seen > 2026-09-12 09:15:15); https://hypixelskyblock.minecraft.wiki/w/Heart_of_the_Mountain; https://hypixelskyblock.minecraft.wiki/w/Crystal_Nucleus",
+  "fetched_at": "2026-09-12",
+  "verified_ingame": true,
+  "gui_context": "山心实测完整技能说明；Wiki 最后编辑 2026-09-09，界面措辞以采集为准。",
+  "source_note": "原文、颜色与数值以本轮实测为准；社区 Wiki 普通页面核对机制。完整句在 GUI_Lore 匹配，不按旧英文断行翻译。",
+  "lines": [
+    {
+      "id": "hotm_tunnel_vision_live",
+      "context": "隧道视野：提升稀有事件触发概率",
+      "raw": "§7Increases the chances of triggering rare occurrences by §a%1$s%§7 for §a%2$ss§7.",
+      "text": "Increases the chances of triggering rare occurrences by %1$s% for %2$ss.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "40",
+          "desc": "概率加成"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "30",
+          "desc": "持续秒数"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "稀有事件的触发概率提高 %1$s%，持续 %2$s 秒。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increases the chances of triggering rare occurrences by ",
+          "zh": "稀有事件的触发概率提高 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s%",
+          "zh": "%1$s%"
+        },
+        {
+          "color": "§7",
+          "text": " for ",
+          "zh": "，持续 "
+        },
+        {
+          "color": "§a",
+          "text": "%2$ss",
+          "zh": "%2$s 秒"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "samples": [
+        [
+          "§7Increases the chances of triggering",
+          "§7rare occurrences by §a40%§7 for §a30s§7."
+        ]
+      ]
+    },
+    {
+      "id": "hotm_subterranean_fisher_live",
+      "context": "地下渔夫：仅在挖矿岛屿生效",
+      "raw": "§7Grants §b+%1$s Fishing Speed§7 and §3+%2$s Sea Creature Chance§7 while on §bMining Islands§7.",
+      "text": "Grants +%1$s Fishing Speed and +%2$s Sea Creature Chance while on Mining Islands.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "5.5",
+          "desc": "钓鱼速度"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "1.1",
+          "desc": "海洋生物几率"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "在挖矿岛屿时，获得 +%1$s 钓鱼速度和 +%2$s 海洋生物几率。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "时，获得 ",
+          "order": 2
+        },
+        {
+          "color": "§b",
+          "text": "+%1$s Fishing Speed",
+          "zh": "+%1$s 钓鱼速度",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": " and ",
+          "zh": "和 ",
+          "order": 4
+        },
+        {
+          "color": "§3",
+          "text": "+%2$s Sea Creature Chance",
+          "zh": "+%2$s 海洋生物几率",
+          "order": 5
+        },
+        {
+          "color": "§7",
+          "text": " while on ",
+          "zh": "在",
+          "order": 0
+        },
+        {
+          "color": "§b",
+          "text": "Mining Islands",
+          "zh": "挖矿岛屿",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。",
+          "order": 6
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants §b+5.5 Fishing Speed§7 and",
+          "§3+1.1 Sea Creature Chance§7 while on",
+          "§bMining Islands§7."
+        ]
+      ]
+    },
+    {
+      "id": "hotm_lonesome_miner_live",
+      "context": "孤独矿工：提高挖矿岛屿上的五项属性",
+      "raw": "§7Increases §c Strength§7, §9 Crit Chance§7, §9 Crit Damage§7, §a Defense§7, and §c Health §7statistics gain by §a%1$s%§7 while on §bMining Islands§7.",
+      "text": "Increases  Strength,  Crit Chance,  Crit Damage,  Defense, and  Health statistics gain by %1$s% while on Mining Islands.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "5",
+          "desc": "属性加成百分比"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "在挖矿岛屿时， 力量、 暴击几率、 暴击伤害、 防御力和 生命值提高 %1$s%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increases ",
+          "zh": "时，",
+          "order": 2
+        },
+        {
+          "color": "§c",
+          "text": " Strength",
+          "zh": " 力量",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": ", ",
+          "zh": "、",
+          "order": 4
+        },
+        {
+          "color": "§9",
+          "text": " Crit Chance",
+          "zh": " 暴击几率",
+          "order": 5
+        },
+        {
+          "color": "§7",
+          "text": ", ",
+          "zh": "、",
+          "order": 6
+        },
+        {
+          "color": "§9",
+          "text": " Crit Damage",
+          "zh": " 暴击伤害",
+          "order": 7
+        },
+        {
+          "color": "§7",
+          "text": ", ",
+          "zh": "、",
+          "order": 8
+        },
+        {
+          "color": "§a",
+          "text": " Defense",
+          "zh": " 防御力",
+          "order": 9
+        },
+        {
+          "color": "§7",
+          "text": ", and ",
+          "zh": "和",
+          "order": 10
+        },
+        {
+          "color": "§c",
+          "text": " Health ",
+          "zh": " 生命值",
+          "order": 11
+        },
+        {
+          "color": "§7",
+          "text": "statistics gain by ",
+          "zh": "提高 ",
+          "order": 12
+        },
+        {
+          "color": "§a",
+          "text": "%1$s%",
+          "zh": "%1$s%",
+          "order": 13
+        },
+        {
+          "color": "§7",
+          "text": " while on ",
+          "zh": "在",
+          "order": 0
+        },
+        {
+          "color": "§b",
+          "text": "Mining Islands",
+          "zh": "挖矿岛屿",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。",
+          "order": 14
+        }
+      ],
+      "samples": [
+        [
+          "§7Increases §c Strength§7, §9 Crit",
+          "§9Chance§7, §9 Crit Damage§7, §a Defense§7,",
+          "§7and §c Health §7statistics gain by §a5%",
+          "§7while on §bMining Islands§7."
+        ]
+      ]
+    },
+    {
+      "id": "hotm_great_explorer_live",
+      "context": "伟大探险家：水晶残核宝箱发现率与开锁次数",
+      "raw": "§7Boosts the chance to find treasure chests while mining in the §5Crystal Hollows §7by §a+%1$s% §7and reduces the amount of locks on the chests by §a%2$s§7.",
+      "text": "Boosts the chance to find treasure chests while mining in the Crystal Hollows by +%1$s% and reduces the amount of locks on the chests by %2$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "20",
+          "desc": "宝箱概率加成"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "1",
+          "desc": "减少开锁次数"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "在水晶残核开采时，发现宝箱的概率提高 %1$s%，宝箱所需的开锁次数减少 %2$s 次。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Boosts the chance to find treasure chests while mining in the ",
+          "zh": "开采时，发现宝箱的概率提高 ",
+          "order": 2
+        },
+        {
+          "color": "§5",
+          "text": "Crystal Hollows ",
+          "zh": "水晶残核",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "by ",
+          "zh": "在",
+          "order": 0
+        },
+        {
+          "color": "§a",
+          "text": "+%1$s% ",
+          "zh": "%1$s%",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "and reduces the amount of locks on the chests by ",
+          "zh": "，宝箱所需的开锁次数减少 ",
+          "order": 4
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s",
+          "order": 5
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": " 次。",
+          "order": 6
+        }
+      ],
+      "samples": [
+        [
+          "§7Boosts the chance to find treasure",
+          "§7chests while mining in the §5Crystal",
+          "§5Hollows §7by §a+20% §7and reduces the",
+          "§7amount of locks on the chests by §a1§7."
+        ]
+      ]
+    },
+    {
+      "id": "hotm_maniac_miner_live",
+      "context": "疯狂矿工：限时开采等级与逐块叠加时运",
+      "raw": "§7Grants §2+%1$s Breaking Power§7 and a stack of §6+%2$s Mining Fortune §8(caps at %3$s) §7per block broken for §a%4$ss§7.",
+      "text": "Grants +%1$s Breaking Power and a stack of +%2$s Mining Fortune (caps at %3$s) per block broken for %4$ss.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "1",
+          "desc": "开采等级"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "10",
+          "desc": "每块时运"
+        },
+        {
+          "token": "%3$s",
+          "type": "number",
+          "example": "500",
+          "desc": "时运上限"
+        },
+        {
+          "token": "%4$s",
+          "type": "number",
+          "example": "30",
+          "desc": "技能持续秒数"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%4$s 秒内，获得 +%1$s 开采等级；每开采 1 个方块，叠加 +%2$s 挖掘时运（上限 %3$s）。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "内，获得 ",
+          "order": 1
+        },
+        {
+          "color": "§2",
+          "text": "+%1$s Breaking Power",
+          "zh": "+%1$s 开采等级",
+          "order": 2
+        },
+        {
+          "color": "§7",
+          "text": " and a stack of ",
+          "zh": "；每开采 1 个方块，叠加 ",
+          "order": 3
+        },
+        {
+          "color": "§6",
+          "text": "+%2$s Mining Fortune ",
+          "zh": "+%2$s 挖掘时运",
+          "order": 4
+        },
+        {
+          "color": "§8",
+          "text": "(caps at %3$s) ",
+          "zh": "（上限 %3$s）",
+          "order": 5
+        },
+        {
+          "color": "§7",
+          "text": "per block broken for ",
+          "zh": "",
+          "order": 6,
+          "omit": true
+        },
+        {
+          "color": "§a",
+          "text": "%4$ss",
+          "zh": "%4$s 秒",
+          "order": 0
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。",
+          "order": 7
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants §2+1 Breaking Power§7 and a",
+          "§7stack of §6+10 Mining Fortune §8(caps",
+          "§8at 500) §7per block broken for §a30s§7."
+        ]
+      ]
+    },
+    {
+      "id": "hotm_maniac_mana_live",
+      "context": "疯狂矿工：逐块法力消耗",
+      "raw": "§7Each block broken consumes §b%1$s Mana§7.",
+      "text": "Each block broken consumes %1$s Mana.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "20",
+          "desc": "法力消耗"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "每开采 1 个方块，消耗 %1$s 点法力。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Each block broken consumes ",
+          "zh": "每开采 1 个方块，消耗 "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s Mana",
+          "zh": "%1$s 点法力"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "hotm_powder_buff_live",
+      "context": "粉末增益：所有来源的粉末",
+      "raw": "§7Gain §a+%1$s% §7more Powder from any source.",
+      "text": "Gain +%1$s% more Powder from any source.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "50",
+          "desc": "粉末加成"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "从任何途径获得的粉末数量提高 %1$s%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "从任何途径获得的粉末数量提高 "
+        },
+        {
+          "color": "§a",
+          "text": "+%1$s% ",
+          "zh": "%1$s%"
+        },
+        {
+          "color": "§7",
+          "text": "more Powder from any source.",
+          "zh": "。"
+        }
+      ],
+      "samples": [
+        [
+          "§7Gain §a+50% §7more Powder from any",
+          "§7source."
+        ]
+      ]
+    },
+    {
+      "id": "hotm_miners_blessing_live",
+      "context": "矿工祝福：所有挖矿岛屿",
+      "raw": "§7Grants §b+%1$s Magic Find§7 on all §bMining Islands§7.",
+      "text": "Grants +%1$s Magic Find on all Mining Islands.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "30",
+          "desc": "魔法寻宝"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "在所有挖矿岛屿时，获得 +%1$s 魔法寻宝。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "时，获得 ",
+          "order": 2
+        },
+        {
+          "color": "§b",
+          "text": "+%1$s Magic Find",
+          "zh": "+%1$s 魔法寻宝",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": " on all ",
+          "zh": "在所有",
+          "order": 0
+        },
+        {
+          "color": "§b",
+          "text": "Mining Islands",
+          "zh": "挖矿岛屿",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "hotm_steady_hand_live",
+      "context": "稳手：矿井中的宝石扩散",
+      "raw": "§7Grants §e+%1$s Gemstone Spread§7 while in the §bGlacite Mineshafts§7.",
+      "text": "Grants +%1$s Gemstone Spread while in the Glacite Mineshafts.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "10",
+          "desc": "宝石扩散"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "在极冰矿井时，获得 +%1$s 宝石扩散。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "时，获得 ",
+          "order": 2
+        },
+        {
+          "color": "§e",
+          "text": "+%1$s Gemstone Spread",
+          "zh": "+%1$s 宝石扩散",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": " while in the ",
+          "zh": "在",
+          "order": 0
+        },
+        {
+          "color": "§b",
+          "text": "Glacite Mineshafts",
+          "zh": "极冰矿井",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。",
+          "order": 4
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants §e+10 Gemstone Spread§7 while",
+          "§7in the §bGlacite Mineshafts§7."
+        ]
+      ]
+    },
+    {
+      "id": "hotm_mayhem_live",
+      "context": "矿井狂乱：每次进入矿井时获得随机增益",
+      "raw": "§7Every time you enter a §bGlacite Mineshaft§7, you receive a random buff.",
+      "text": "Every time you enter a Glacite Mineshaft, you receive a random buff.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "每次进入极冰矿井时，获得一项随机增益。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Every time you enter a ",
+          "zh": "每次进入"
+        },
+        {
+          "color": "§b",
+          "text": "Glacite Mineshaft",
+          "zh": "极冰矿井"
+        },
+        {
+          "color": "§7",
+          "text": ", you receive a random buff.",
+          "zh": "时，获得一项随机增益。"
+        }
+      ],
+      "samples": [
+        [
+          "§7Every time you enter a §bGlacite",
+          "§bMineshaft§7, you receive a random buff."
+        ]
+      ]
+    },
+    {
+      "id": "hotm_rags_to_riches_live",
+      "context": "矿井内增加挖掘时运",
+      "raw": "§7Grants §6+%1$s Mining Fortune §7while in a §bGlacite Mineshaft§7.",
+      "text": "Grants +%1$s Mining Fortune while in a Glacite Mineshaft.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "200",
+          "desc": "挖掘时运"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "在极冰矿井时，获得 +%1$s 挖掘时运。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "时，获得 ",
+          "order": 2
+        },
+        {
+          "color": "§6",
+          "text": "+%1$s Mining Fortune ",
+          "zh": "+%1$s 挖掘时运",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "while in a ",
+          "zh": "在",
+          "order": 0
+        },
+        {
+          "color": "§b",
+          "text": "Glacite Mineshaft",
+          "zh": "极冰矿井",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。",
+          "order": 4
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants §6+200 Mining Fortune §7while in",
+          "§7a §bGlacite Mineshaft§7."
+        ]
+      ]
+    },
+    {
+      "id": "hotm_eager_adventurer_live",
+      "context": "矿井内增加挖掘速度",
+      "raw": "§7Grants §6+%1$s Mining Speed §7while in a §bGlacite Mineshaft§7.",
+      "text": "Grants +%1$s Mining Speed while in a Glacite Mineshaft.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "400",
+          "desc": "挖掘速度"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "在极冰矿井时，获得 +%1$s 挖掘速度。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "时，获得 ",
+          "order": 2
+        },
+        {
+          "color": "§6",
+          "text": "+%1$s Mining Speed ",
+          "zh": "+%1$s 挖掘速度",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "while in a ",
+          "zh": "在",
+          "order": 0
+        },
+        {
+          "color": "§b",
+          "text": "Glacite Mineshaft",
+          "zh": "极冰矿井",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。",
+          "order": 4
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants §6+400 Mining Speed §7while in a",
+          "§bGlacite Mineshaft§7."
+        ]
+      ]
+    },
+    {
+      "id": "hotm_gemstone_infusion_live",
+      "context": "宝石灌注：限时提升钻头宝石槽中所有宝石的效果",
+      "raw": "§7Increases the effectiveness of §6every Gemstone §7in your drill's Gemstone Slots by §a%1$s%§7 for §a%2$ss§7.",
+      "text": "Increases the effectiveness of every Gemstone in your drill's Gemstone Slots by %1$s% for %2$ss.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "100",
+          "desc": "效果增幅"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "25",
+          "desc": "持续秒数"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "钻头宝石槽中所有宝石的效果提高 %1$s%，持续 %2$s 秒。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increases the effectiveness of ",
+          "zh": "钻头宝石槽中"
+        },
+        {
+          "color": "§6",
+          "text": "every Gemstone ",
+          "zh": "所有宝石"
+        },
+        {
+          "color": "§7",
+          "text": "in your drill's Gemstone Slots by ",
+          "zh": "的效果提高 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s%",
+          "zh": "%1$s%"
+        },
+        {
+          "color": "§7",
+          "text": " for ",
+          "zh": "，持续 "
+        },
+        {
+          "color": "§a",
+          "text": "%2$ss",
+          "zh": "%2$s 秒"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "samples": [
+        [
+          "§7Increases the effectiveness of",
+          "§6every Gemstone §7in your drill's",
+          "§7Gemstone Slots by §a100%§7 for §a25s§7."
+        ]
+      ]
+    },
+    {
+      "id": "hotm_gifts_from_departed_live",
+      "context": "亡者馈赠：搜刮冰封尸体的额外战利品",
+      "raw": "§7Gain a §a+%1$s% §7chance to get §a+%2$s §7item when looting a §bFrozen Corpse§7.",
+      "text": "Gain a +%1$s% chance to get +%2$s item when looting a Frozen Corpse.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "20",
+          "desc": "额外掉落概率"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "1",
+          "desc": "额外物品数"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "搜刮冰封尸体时，有 %1$s% 的概率额外获得 %2$s 件物品。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain a ",
+          "zh": "时，有 ",
+          "order": 2
+        },
+        {
+          "color": "§a",
+          "text": "+%1$s% ",
+          "zh": "%1$s%",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "chance to get ",
+          "zh": " 的概率额外获得 ",
+          "order": 4
+        },
+        {
+          "color": "§a",
+          "text": "+%2$s ",
+          "zh": "%2$s",
+          "order": 5
+        },
+        {
+          "color": "§7",
+          "text": "item when looting a ",
+          "zh": "搜刮",
+          "order": 0
+        },
+        {
+          "color": "§b",
+          "text": "Frozen Corpse",
+          "zh": "冰封尸体",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": " 件物品。",
+          "order": 6
+        }
+      ],
+      "samples": [
+        [
+          "§7Gain a §a+20% §7chance to get §a+1 §7item",
+          "§7when looting a §bFrozen Corpse§7."
+        ]
+      ]
+    },
+    {
+      "id": "hotm_dead_mans_chest_live",
+      "context": "亡者宝箱：仅在进入自己召唤的矿井时判定",
+      "raw": "§7Gain a §a+%1$s% §7chance to spawn §a+%2$s §bFrozen Corpse §7when entering a §bGlacite Mineshaft §7you summoned.",
+      "text": "Gain a +%1$s% chance to spawn +%2$s Frozen Corpse when entering a Glacite Mineshaft you summoned.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "6",
+          "desc": "生成概率"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "1",
+          "desc": "额外尸体数"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "进入自己召唤的极冰矿井时，有 %1$s% 的概率额外生成 %2$s 具冰封尸体",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain a ",
+          "zh": "时，有 ",
+          "order": 2
+        },
+        {
+          "color": "§a",
+          "text": "+%1$s% ",
+          "zh": "%1$s%",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "chance to spawn ",
+          "zh": " 的概率额外生成 ",
+          "order": 4
+        },
+        {
+          "color": "§a",
+          "text": "+%2$s ",
+          "zh": "%2$s",
+          "order": 5
+        },
+        {
+          "color": "§b",
+          "text": "Frozen Corpse ",
+          "zh": "冰封尸体",
+          "order": 7
+        },
+        {
+          "color": "§7",
+          "text": "when entering a ",
+          "zh": "进入自己召唤的",
+          "order": 0
+        },
+        {
+          "color": "§b",
+          "text": "Glacite Mineshaft ",
+          "zh": "极冰矿井",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "you summoned.",
+          "zh": " 具",
+          "order": 6
+        }
+      ],
+      "samples": [
+        [
+          "§7Gain a §a+6% §7chance to spawn §a+1",
+          "§bFrozen Corpse §7when entering a",
+          "§bGlacite Mineshaft §7you summoned."
+        ]
+      ]
+    },
+    {
+      "id": "hotm_titanium_chance_live",
+      "context": "疯钛：方块转化为钛矿石",
+      "raw": "§a%1$s% §7chance to convert the block into §fTitanium Ore§7.",
+      "text": "%1$s% chance to convert the block into Titanium Ore.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "7",
+          "desc": "转化概率"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s% 的概率将方块转化为钛矿石。",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "%1$s% ",
+          "zh": "%1$s%"
+        },
+        {
+          "color": "§7",
+          "text": "chance to convert the block into ",
+          "zh": " 的概率将方块转化为"
+        },
+        {
+          "color": "§f",
+          "text": "Titanium Ore",
+          "zh": "钛矿石"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "samples": [
+        [
+          "§a7% §7chance to convert the block into",
+          "§fTitanium Ore§7."
+        ]
+      ]
+    },
+    {
+      "id": "hotm_requires_perk_live",
+      "context": "山心前置解锁条件",
+      "raw": "§cRequires %1$s",
+      "text": "Requires %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "category_name",
+          "example": "Seasoned Mineman",
+          "desc": "前置天赋名"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "需要%1$s"
+    },
+    {
+      "id": "hotm_pickaxe_ability_live",
+      "context": "山心镐子技能标题",
+      "raw": "§6Pickaxe Ability: %1$s",
+      "text": "Pickaxe Ability: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "category_name",
+          "example": "Tunnel Vision",
+          "desc": "技能完整名称，不按单词拆开"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "镐子技能: %1$s"
+    },
+    {
+      "id": "hotm_core_pickaxe_level_live",
+      "context": "山之核心的镐子技能等级奖励",
+      "raw": "§8+§c%1$s Pickaxe Ability Levels",
+      "text": "+%1$s Pickaxe Ability Levels",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "1",
+          "desc": "增加技能等级"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 级镐子技能等级",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§c",
+          "text": "%1$s Pickaxe Ability Levels",
+          "zh": "%1$s 级镐子技能等级"
+        }
+      ]
+    },
+    {
+      "id": "hotm_crystal_nucleus_meter_live",
+      "context": "水晶核心 RNG 计量表经验获取",
+      "raw": "§7Your §dCrystal Nucleus RNG Meter §7fills with §9%1$s Nucleus XP §7every time you complete the §dCrystal Nucleus§7!",
+      "text": "Your Crystal Nucleus RNG Meter fills with %1$s Nucleus XP every time you complete the Crystal Nucleus!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "1,000",
+          "desc": "计量表经验"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "每完成一次水晶核心，你的水晶核心 RNG 计量表增加 %1$s 核心经验",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Your ",
+          "zh": "你的",
+          "order": 3
+        },
+        {
+          "color": "§d",
+          "text": "Crystal Nucleus RNG Meter ",
+          "zh": "水晶核心 RNG 计量表",
+          "order": 4
+        },
+        {
+          "color": "§7",
+          "text": "fills with ",
+          "zh": "增加 ",
+          "order": 5
+        },
+        {
+          "color": "§9",
+          "text": "%1$s Nucleus XP ",
+          "zh": "%1$s 核心经验",
+          "order": 6
+        },
+        {
+          "color": "§7",
+          "text": "every time you complete the ",
+          "zh": "每完成一次",
+          "order": 0
+        },
+        {
+          "color": "§d",
+          "text": "Crystal Nucleus",
+          "zh": "水晶核心",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "，",
+          "order": 2
+        }
+      ],
+      "samples": [
+        [
+          "§7Your §dCrystal Nucleus RNG Meter §7fills",
+          "§7with §91,000 Nucleus XP §7every time you",
+          "§7complete the §dCrystal Nucleus§7!"
+        ]
+      ]
+    },
+    {
+      "id": "hotm_crystal_nucleus_guarantee_live",
+      "context": "RNG 计量表满时保底掉落选中的物品",
+      "raw": "§7Your selected §dRNG Drop §7will be guaranteed to appear in a Crystal Nucleus Bundle once your RNG Meter is full!",
+      "text": "Your selected RNG Drop will be guaranteed to appear in a Crystal Nucleus Bundle once your RNG Meter is full!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "RNG 计量表满后，水晶核心奖励包必定包含你选中的RNG 掉落物!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Your selected ",
+          "zh": "RNG 计量表满后，水晶核心奖励包必定包含你选中的"
+        },
+        {
+          "color": "§d",
+          "text": "RNG Drop ",
+          "zh": "RNG 掉落物"
+        },
+        {
+          "color": "§7",
+          "text": "will be guaranteed to appear in a Crystal Nucleus Bundle once your RNG Meter is full!",
+          "zh": "!"
+        }
+      ],
+      "samples": [
+        [
+          "§7Your selected §dRNG Drop §7will be",
+          "§7guaranteed to appear in a Crystal",
+          "§7Nucleus Bundle once your RNG Meter",
+          "§7is full!"
+        ]
+      ]
+    },
+    {
+      "id": "hotm_powder_amount_live",
+      "context": "山心粉末花费或余额",
+      "raw": "§d%1$s %2$s Powder",
+      "text": "%1$s %2$s Powder",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "93,321",
+          "desc": "粉末数量"
+        },
+        {
+          "token": "%2$s",
+          "type": "category_name",
+          "example": "Gemstone",
+          "desc": "粉末种类"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s %2$s粉末"
+    }
+  ]
+}

@@ -25,10 +25,9 @@
           "example": "LAPIS"
         }
       ],
-      "gloss": "尸体类型词(LAPIS / UMBER / TUNGSTEN / VANGUARD)由服务器塞进来,自带颜色,译名走 _shared/Terms.json。",
+      "gloss": "尸体类型词(LAPIS / UMBER / TUNGSTEN / VANGUARD)由服务器塞进来,自带颜色,译名走 _shared/Terms.json。 实测为左侧结算标题，保留原始缩进；不是居中横幅。",
       "translate": true,
-      "zh": "%s尸体战利品!",
-      "layout": "center_chat_banner"
+      "zh": "%s尸体战利品!"
     },
     {
       "id": "mineshaft_loot_item_line",
@@ -1478,6 +1477,104 @@
           "zh": "!"
         }
       ]
+    },
+    {
+      "id": "mining_loot_goblin_egg",
+      "context": "冰封尸体的战利品清单",
+      "raw": "§9Goblin Egg",
+      "text": "Goblin Egg",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "哥布林蛋"
+    },
+    {
+      "id": "mining_loot_goblin_egg_count",
+      "context": "冰封尸体战利品数量行",
+      "raw": "§9Goblin Egg §8x%1$s",
+      "text": "Goblin Egg x%1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "2",
+          "desc": "掉落数量"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "哥布林蛋 x%1$s",
+      "segments": [
+        {
+          "color": "§9",
+          "text": "Goblin Egg ",
+          "zh": "哥布林蛋 "
+        },
+        {
+          "color": "§8",
+          "text": "x%1$s",
+          "zh": "x%1$s"
+        }
+      ]
+    },
+    {
+      "id": "mining_loot_red_goblin_egg",
+      "context": "冰封尸体的战利品清单",
+      "raw": "§9Red Goblin Egg",
+      "text": "Red Goblin Egg",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "红色哥布林蛋"
+    },
+    {
+      "id": "mining_loot_red_goblin_egg_count",
+      "context": "冰封尸体战利品数量行",
+      "raw": "§9Red Goblin Egg §8x%1$s",
+      "text": "Red Goblin Egg x%1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "5",
+          "desc": "掉落数量"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "红色哥布林蛋 x%1$s",
+      "segments": [
+        {
+          "color": "§9",
+          "text": "Red Goblin Egg ",
+          "zh": "红色哥布林蛋 "
+        },
+        {
+          "color": "§8",
+          "text": "x%1$s",
+          "zh": "x%1$s"
+        }
+      ]
+    },
+    {
+      "id": "mining_loot_refined_umber",
+      "context": "冰封尸体的战利品清单",
+      "raw": "§5Refined Umber",
+      "text": "Refined Umber",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "精炼褐铁矿"
+    },
+    {
+      "id": "mining_loot_glacite_amalgamation",
+      "context": "冰封尸体的战利品清单",
+      "raw": "§5Glacite Amalgamation",
+      "text": "Glacite Amalgamation",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "极冰融合体"
     }
   ],
   "todo": []

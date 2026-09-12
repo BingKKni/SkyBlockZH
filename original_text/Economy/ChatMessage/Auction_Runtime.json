@@ -1,0 +1,83 @@
+{
+  "source": "logs/skyzh-capture (last_seen > 2026-09-12 09:15:15); https://hypixelskyblock.minecraft.wiki/w/Auction_House",
+  "fetched_at": "2026-09-12",
+  "verified_ingame": true,
+  "gui_context": "拍卖操作反馈",
+  "source_note": "原文、颜色与数值以本轮实测为准；社区 Wiki 普通页面核对机制。完整句在 GUI_Lore 匹配，不按旧英文断行翻译。",
+  "lines": [
+    {
+      "id": "auction_chat_slot_occupied",
+      "context": "拍卖行操作提示",
+      "raw": "§cYou already have an item in the auction slot!",
+      "text": "You already have an item in the auction slot!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "拍卖栏位中已经有一件物品了!"
+    },
+    {
+      "id": "auction_chat_common_price_cap",
+      "context": "拍卖行操作提示",
+      "raw": "§cYou may only auction common items at 5x their NPC sell price!",
+      "text": "You may only auction common items at 5x their NPC sell price!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "普通物品的拍卖价格最高只能设为 NPC 出售价的 5 倍!"
+    },
+    {
+      "id": "auction_chat_escrow",
+      "context": "拍卖行操作提示",
+      "raw": "§7Putting item in escrow...",
+      "text": "Putting item in escrow...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "正在托管物品……"
+    },
+    {
+      "id": "auction_chat_setting_up",
+      "context": "拍卖行操作提示",
+      "raw": "§7Setting up the auction...",
+      "text": "Setting up the auction...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "正在创建拍卖……"
+    },
+    {
+      "id": "auction_chat_bin_started",
+      "context": "一口价上架成功",
+      "raw": "§eBIN Auction started for §f%1$s§e!",
+      "text": "BIN Auction started for %1$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "category_name",
+          "example": "Golden Carrot",
+          "desc": "所售物品名；普通材料走词表"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "已为%1$s创建一口价拍卖!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "BIN Auction started for ",
+          "zh": "已为"
+        },
+        {
+          "color": "§f",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§e",
+          "text": "!",
+          "zh": "创建一口价拍卖!"
+        }
+      ]
+    }
+  ]
+}

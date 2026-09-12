@@ -1,0 +1,223 @@
+{
+  "source": "logs/skyzh-capture (last_seen > 2026-09-12 09:15:15); https://hypixelskyblock.minecraft.wiki/w/Auction_House",
+  "fetched_at": "2026-09-12",
+  "verified_ingame": true,
+  "gui_context": "拍卖创建与结算的完整说明",
+  "source_note": "原文、颜色与数值以本轮实测为准；社区 Wiki 普通页面核对机制。完整句在 GUI_Lore 匹配，不按旧英文断行翻译。",
+  "lines": [
+    {
+      "id": "auction_lore_select_item",
+      "context": "拍卖行菜单",
+      "raw": "§7Click an item in your inventory to select it for this auction.",
+      "text": "Click an item in your inventory to select it for this auction.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击背包中的物品，将其选为本次拍卖的商品。"
+    },
+    {
+      "id": "auction_lore_item_price",
+      "context": "拍卖行菜单",
+      "raw": "§7The price at which you want to sell this item.",
+      "text": "The price at which you want to sell this item.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "设置这件物品的出售价格。"
+    },
+    {
+      "id": "auction_lore_sale_duration",
+      "context": "拍卖行菜单",
+      "raw": "§7How long the item will be up for sale.",
+      "text": "How long the item will be up for sale.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "设置物品的上架时长。"
+    },
+    {
+      "id": "auction_lore_traditional",
+      "context": "拍卖行菜单",
+      "raw": "§7With traditional auctions, multiple buyers compete for the item by bidding turn by turn.",
+      "text": "With traditional auctions, multiple buyers compete for the item by bidding turn by turn.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "竞拍模式下，多名买家轮流出价，价高者得。"
+    },
+    {
+      "id": "auction_lore_list_item",
+      "context": "拍卖行菜单",
+      "raw": "§7This item will be added to the auction house for other players to purchase.",
+      "text": "This item will be added to the auction house for other players to purchase.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "将此物品上架拍卖行，供其他玩家购买。"
+    },
+    {
+      "id": "auction_lore_list_own",
+      "context": "拍卖行菜单",
+      "raw": "§7Set your own items on auction for other players to purchase.",
+      "text": "Set your own items on auction for other players to purchase.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "将自己的物品上架拍卖，供其他玩家购买。"
+    },
+    {
+      "id": "auction_lore_custom_duration",
+      "context": "拍卖行菜单",
+      "raw": "§7Specify how long you want the auction to last.",
+      "text": "Specify how long you want the auction to last.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "自定义本次拍卖的持续时间。"
+    },
+    {
+      "id": "auction_lore_coop",
+      "context": "拍卖行菜单",
+      "raw": "§bAuctions in co-op are shared! Your coop partners can manage the auctions you create.",
+      "text": "Auctions in co-op are shared! Your coop partners can manage the auctions you create.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "合作成员共享拍卖! 你的合作伙伴也可以管理你创建的拍卖。"
+    },
+    {
+      "id": "auction_lore_cancel_zero_bids",
+      "context": "仅未收到出价的拍卖可以取消",
+      "raw": "§7You may cancel auctions as long as they have §c0 §7bids!",
+      "text": "You may cancel auctions as long as they have 0 bids!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "拍卖尚未收到出价（0 次）时，可以取消!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You may cancel auctions as long as they have ",
+          "zh": "拍卖尚未收到出价（"
+        },
+        {
+          "color": "§c",
+          "text": "0 ",
+          "zh": "0"
+        },
+        {
+          "color": "§7",
+          "text": "bids!",
+          "zh": " 次）时，可以取消!"
+        }
+      ],
+      "samples": [
+        [
+          "§7You may cancel auctions as long",
+          "§7as they have §c0 §7bids!"
+        ]
+      ]
+    },
+    {
+      "id": "auction_lore_price_warning",
+      "context": "购买价格相对 NPC 出售价的提醒",
+      "raw": "§eWarning! §7You are paying §c%1$sx §7this item's NPC sell value!",
+      "text": "Warning! You are paying %1$sx this item's NPC sell value!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "5",
+          "desc": "价格倍率；原始比值不作增量换算"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "注意! 你支付的价格是该物品 NPC 出售价值的 %1$s 倍!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Warning! ",
+          "zh": "注意! "
+        },
+        {
+          "color": "§7",
+          "text": "You are paying ",
+          "zh": "你支付的价格是该物品 NPC 出售价值的 "
+        },
+        {
+          "color": "§c",
+          "text": "%1$sx ",
+          "zh": "%1$s 倍"
+        },
+        {
+          "color": "§7",
+          "text": "this item's NPC sell value!",
+          "zh": "!"
+        }
+      ],
+      "samples": [
+        [
+          "§eWarning! §7You are paying §c5x §7this",
+          "§7item's NPC sell value!"
+        ]
+      ]
+    },
+    {
+      "id": "auction_lore_sold_to",
+      "context": "出售成功后显示买家和成交金额",
+      "raw": "§7Item sold to §b%1$s§7 for a marvelous §6%2$s coins§7, gg!",
+      "text": "Item sold to %1$s for a marvelous %2$s coins, gg!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "raw",
+          "example": "[MVP+] ikillrevs",
+          "desc": "买家称号与玩家名"
+        },
+        {
+          "token": "%2$s",
+          "type": "coins",
+          "example": "300,000",
+          "desc": "成交金额"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "物品已售给 %1$s，成交价高达 %2$s 硬币，恭喜!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Item sold to ",
+          "zh": "物品已售给 "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " for a marvelous ",
+          "zh": "，成交价高达 "
+        },
+        {
+          "color": "§6",
+          "text": "%2$s coins",
+          "zh": "%2$s 硬币"
+        },
+        {
+          "color": "§7",
+          "text": ", gg!",
+          "zh": "，恭喜!"
+        }
+      ],
+      "samples": [
+        [
+          "§7Item sold to §b[MVP§c+§b] ikillrevs",
+          "§7for a marvelous §6300,000 coins§7, gg!"
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,508 @@
+{
+  "source": "logs/skyzh-capture (last_seen > 2026-09-12 09:15:15); https://hypixelskyblock.minecraft.wiki/w/Auction_House",
+  "fetched_at": "2026-09-12",
+  "verified_ingame": true,
+  "gui_context": "拍卖创建、时长、领取与购买按钮；Wiki 最后编辑 2026-08-04。",
+  "source_note": "原文、颜色与数值以本轮实测为准；社区 Wiki 普通页面核对机制。完整句在 GUI_Lore 匹配，不按旧英文断行翻译。",
+  "lines": [
+    {
+      "id": "auction_live_select_prompt",
+      "context": "拍卖行菜单",
+      "raw": "§eClick an item in your inventory!",
+      "text": "Click an item in your inventory!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击背包中的物品!"
+    },
+    {
+      "id": "auction_live_select_hint",
+      "context": "拍卖行菜单",
+      "raw": "§7Selects it for auction",
+      "text": "Selects it for auction",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "选为拍卖物品"
+    },
+    {
+      "id": "auction_live_create_bin",
+      "context": "拍卖行菜单",
+      "raw": "§cCreate BIN Auction",
+      "text": "Create BIN Auction",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "创建一口价拍卖"
+    },
+    {
+      "id": "auction_live_no_item",
+      "context": "拍卖行菜单",
+      "raw": "§7No item selected!",
+      "text": "No item selected!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "尚未选择物品!"
+    },
+    {
+      "id": "auction_live_switch_auction",
+      "context": "拍卖行菜单",
+      "raw": "§aSwitch to Auction",
+      "text": "Switch to Auction",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "切换为竞拍"
+    },
+    {
+      "id": "auction_live_auction_for_item",
+      "context": "拍卖行菜单",
+      "raw": "§a§l§nAUCTION FOR ITEM:",
+      "text": "AUCTION FOR ITEM:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "拍卖物品:"
+    },
+    {
+      "id": "auction_live_confirm_bin",
+      "context": "拍卖行菜单",
+      "raw": "§aConfirm BIN Auction",
+      "text": "Confirm BIN Auction",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "确认一口价拍卖"
+    },
+    {
+      "id": "auction_live_own_auction",
+      "context": "拍卖行菜单",
+      "raw": "§aThis is your own auction!",
+      "text": "This is your own auction!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这是你自己的拍卖!"
+    },
+    {
+      "id": "auction_live_recently_updated",
+      "context": "拍卖行菜单",
+      "raw": "§bRecently Updated",
+      "text": "Recently Updated",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "最近更新"
+    },
+    {
+      "id": "auction_live_highest_bid",
+      "context": "拍卖行菜单",
+      "raw": "§7Highest Bid",
+      "text": "Highest Bid",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "最高出价"
+    },
+    {
+      "id": "auction_live_most_bids",
+      "context": "拍卖行菜单",
+      "raw": "§7Most Bids",
+      "text": "Most Bids",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "最多出价"
+    },
+    {
+      "id": "auction_live_create",
+      "context": "拍卖行菜单",
+      "raw": "§aCreate Auction",
+      "text": "Create Auction",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "创建拍卖"
+    },
+    {
+      "id": "auction_live_coop_shared",
+      "context": "拍卖行菜单",
+      "raw": "§bAuctions in co-op are shared!",
+      "text": "Auctions in co-op are shared!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "合作成员共享拍卖!"
+    },
+    {
+      "id": "auction_live_buy_now",
+      "context": "拍卖行菜单",
+      "raw": "§6Buy Item Right Now",
+      "text": "Buy Item Right Now",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "立即购买物品"
+    },
+    {
+      "id": "auction_live_custom_duration",
+      "context": "拍卖行菜单",
+      "raw": "§aCustom Duration",
+      "text": "Custom Duration",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "自定义时长"
+    },
+    {
+      "id": "auction_live_minutes",
+      "context": "拍卖行菜单",
+      "raw": "§bRight-click for minutes!",
+      "text": "Right-click for minutes!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "右键设置分钟数!"
+    },
+    {
+      "id": "auction_live_collect",
+      "context": "拍卖行菜单",
+      "raw": "§6Collect Auction",
+      "text": "Collect Auction",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "领取拍卖收益"
+    },
+    {
+      "id": "auction_live_cancel",
+      "context": "拍卖行菜单",
+      "raw": "§6Cancel Auction",
+      "text": "Cancel Auction",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "取消拍卖"
+    },
+    {
+      "id": "auction_live_duration_hours_option",
+      "context": "拍卖时长选项",
+      "raw": "§a%1$s Hours",
+      "text": "%1$s Hours",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "6",
+          "desc": "时长"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s 小时"
+    },
+    {
+      "id": "auction_live_duration_days",
+      "context": "拍卖时长选项",
+      "raw": "§a%1$s Days",
+      "text": "%1$s Days",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "2",
+          "desc": "时长"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s 天"
+    },
+    {
+      "id": "auction_live_extra_fee",
+      "context": "拍卖上架附加手续费",
+      "raw": "§7Extra fee: §6%1$s coins",
+      "text": "Extra fee: %1$s coins",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "coins",
+          "example": "20",
+          "desc": "手续费"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "额外手续费: %1$s 硬币",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Extra fee: ",
+          "zh": "额外手续费: "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s coins",
+          "zh": "%1$s 硬币"
+        }
+      ]
+    },
+    {
+      "id": "auction_live_extra_fee_percent",
+      "context": "一口价上架手续费与费率",
+      "raw": "§7Extra fee: §6+%1$s coins §e(%2$s%)",
+      "text": "Extra fee: +%1$s coins (%2$s%)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "coins",
+          "example": "5",
+          "desc": "手续费"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "1",
+          "desc": "费率"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "额外手续费: +%1$s 硬币 (%2$s%)",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Extra fee: ",
+          "zh": "额外手续费: "
+        },
+        {
+          "color": "§6",
+          "text": "+%1$s coins ",
+          "zh": "+%1$s 硬币 "
+        },
+        {
+          "color": "§e",
+          "text": "(%2$s%)",
+          "zh": "(%2$s%)"
+        }
+      ]
+    },
+    {
+      "id": "auction_live_item_price",
+      "context": "一口价出售价格",
+      "raw": "§7Item price: §6%1$s coins",
+      "text": "Item price: %1$s coins",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "coins",
+          "example": "248",
+          "desc": "一口价价格"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "物品价格: %1$s 硬币",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Item price: ",
+          "zh": "物品价格: "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s coins",
+          "zh": "%1$s 硬币"
+        }
+      ]
+    },
+    {
+      "id": "auction_live_duration_hours",
+      "context": "拍卖持续时间",
+      "raw": "§7Duration: §e%1$s Hours",
+      "text": "Duration: %1$s Hours",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "6",
+          "desc": "拍卖小时数"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "拍卖时长: %1$s 小时",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Duration: ",
+          "zh": "拍卖时长: "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s Hours",
+          "zh": "%1$s 小时"
+        }
+      ]
+    },
+    {
+      "id": "auction_live_auction_duration_hours",
+      "context": "拍卖持续时间",
+      "raw": "§7Auction duration: §e%1$s Hours",
+      "text": "Auction duration: %1$s Hours",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "6",
+          "desc": "拍卖小时数"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "拍卖时长: %1$s 小时",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Auction duration: ",
+          "zh": "拍卖时长: "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s Hours",
+          "zh": "%1$s 小时"
+        }
+      ]
+    },
+    {
+      "id": "auction_live_buy_countdown",
+      "context": "新建一口价拍卖的保护倒计时",
+      "raw": "§7Can buy in: §e%1$s",
+      "text": "Can buy in: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "time",
+          "example": "19s",
+          "desc": "保护时间"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "可购买倒计时: %1$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Can buy in: ",
+          "zh": "可购买倒计时: "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ]
+    },
+    {
+      "id": "auction_live_selling",
+      "context": "拍卖确认页所售物品与数量",
+      "raw": "§7Selling: %1$sx §f%2$s",
+      "text": "Selling: %1$sx %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "62",
+          "desc": "物品数量"
+        },
+        {
+          "token": "%2$s",
+          "type": "category_name",
+          "example": "Golden Carrot",
+          "desc": "物品完整名称；普通材料走既有词表"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "出售物品: %1$sx %2$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Selling: %1$sx ",
+          "zh": "出售物品: %1$sx "
+        },
+        {
+          "color": "§f",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ]
+    },
+    {
+      "id": "auction_live_item",
+      "context": "拍卖确认页所售物品与数量",
+      "raw": "§7Item: %1$sx §f%2$s",
+      "text": "Item: %1$sx %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "62",
+          "desc": "物品数量"
+        },
+        {
+          "token": "%2$s",
+          "type": "category_name",
+          "example": "Golden Carrot",
+          "desc": "物品完整名称；普通材料走既有词表"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "出售物品: %1$sx %2$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Item: %1$sx ",
+          "zh": "出售物品: %1$sx "
+        },
+        {
+          "color": "§f",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ]
+    },
+    {
+      "id": "auction_live_click_pick",
+      "context": "拍卖行按钮提示",
+      "raw": "§eClick to pick!",
+      "text": "Click to pick!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击选择!"
+    },
+    {
+      "id": "auction_live_click_hours",
+      "context": "拍卖行按钮提示",
+      "raw": "§eClick to set hours!",
+      "text": "Click to set hours!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击设置小时数!"
+    },
+    {
+      "id": "auction_live_click_rich",
+      "context": "拍卖行按钮提示",
+      "raw": "§eClick to become rich!",
+      "text": "Click to become rich!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击上架，赚上一笔!"
+    }
+  ]
+}

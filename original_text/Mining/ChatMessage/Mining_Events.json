@@ -624,7 +624,7 @@
     },
     {
       "id": "mining_event_reward_mining_exp",
-      "context": "活动结算:挖矿经验奖励",
+      "context": "共用挖矿经验奖励：活动与任务结算，保留原始缩进",
       "text": "+%s Mining Experience",
       "placeholders": [
         {
@@ -634,10 +634,9 @@
           "example": "25,000"
         }
       ],
-      "gloss": "活动结算清单:加号是深灰的,奖励本身是它自己的颜色。分段只决定颜色边界,颜色渲染时从屏幕上当场读,所以 color 字段只是给人看的记号。",
+      "gloss": "任务结算中加号、数值与经验标签分别着色；活动沿用运行时真实颜色。共用清单项不强制居中。",
       "translate": true,
       "zh": "+%s 挖矿经验",
-      "layout": "center_chat_banner",
       "segments": [
         {
           "color": "§8",
@@ -645,11 +644,17 @@
           "zh": "+"
         },
         {
-          "color": "§b",
-          "text": "%s Mining Experience",
-          "zh": "%s 挖矿经验"
+          "color": "§3",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": " Mining Experience",
+          "zh": " 挖矿经验"
         }
-      ]
+      ],
+      "raw": "§8+§3%s§7 Mining Experience"
     },
     {
       "id": "mining_event_reward_mithril_powder",
