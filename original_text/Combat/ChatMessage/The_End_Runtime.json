@@ -1,0 +1,928 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/The_End; https://hypixelskyblock.minecraft.wiki/w/Ender_Dragon; https://hypixelskyblock.minecraft.wiki/w/Draconic_Altar; https://hypixelskyblock.minecraft.wiki/w/Dragon_Essence_Shop; https://hypixelskyblock.minecraft.wiki/w/Crimson_Isle; https://hypixelskyblock.minecraft.wiki/w/Ender_Node; https://hypixelskyblock.minecraft.wiki/w/Arachne",
+  "fetched_at": "2026-09-13",
+  "verified_ingame": true,
+  "source_note": "原文与颜色来自本轮运行时采集；语境用社区 Wiki 原网页核对。",
+  "capture_files": [
+    "Combat/ChatMessage/Server_Messages.json"
+  ],
+  "lines": [
+    {
+      "id": "end_select_equipment",
+      "context": "独行冒险者要求玩家选择缺少的末影装备部位",
+      "text": "Select an option: [Cloak] [Belt] [Necklace] [Gauntlet] [Armor] ",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "请选择: [披风] [腰带] [项链] [护手] [护甲] ",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Select an option: ",
+          "zh": "请选择: "
+        },
+        {
+          "color": "§a§l",
+          "text": "[Cloak] ",
+          "zh": "[披风] "
+        },
+        {
+          "color": "§a§l",
+          "text": "[Belt] ",
+          "zh": "[腰带] "
+        },
+        {
+          "color": "§a§l",
+          "text": "[Necklace] ",
+          "zh": "[项链] "
+        },
+        {
+          "color": "§a§l",
+          "text": "[Gauntlet] ",
+          "zh": "[护手] "
+        },
+        {
+          "color": "§a§l",
+          "text": "[Armor] ",
+          "zh": "[护甲] "
+        }
+      ]
+    },
+    {
+      "id": "end_travel_scroll_recipe",
+      "context": "解锁配方聊天行；前导四格是结构缩进，不写进 text",
+      "text": "Travel Scroll to the End Recipe",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "末地传送卷轴配方",
+      "segments": [
+        {
+          "color": "§9",
+          "text": "Travel Scroll to the End ",
+          "zh": "末地传送卷轴"
+        },
+        {
+          "color": "§7",
+          "text": "Recipe",
+          "zh": "配方"
+        }
+      ]
+    },
+    {
+      "id": "end_catalyst_recipe",
+      "context": "解锁配方聊天行",
+      "text": "Catalyst Recipe",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "催化剂配方",
+      "segments": [
+        {
+          "color": "§9",
+          "text": "Catalyst ",
+          "zh": "催化剂"
+        },
+        {
+          "color": "§7",
+          "text": "Recipe",
+          "zh": "配方"
+        }
+      ]
+    },
+    {
+      "id": "dragon_eye_placed",
+      "context": "末影龙祭坛放眼广播",
+      "text": "☬ %1$s placed a Summoning Eye! (%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "放眼玩家",
+          "type": "player_name",
+          "example": "A7XXX"
+        },
+        {
+          "token": "%2$s",
+          "desc": "已放置数量/总数",
+          "type": "raw",
+          "example": "1/8"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "☬ %1$s 放置了一只召唤之眼! (%2$s)",
+      "segments": [
+        {
+          "color": "§5",
+          "text": "☬ ",
+          "zh": "☬ "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§d",
+          "text": "placed a Summoning Eye! ",
+          "zh": "放置了一只召唤之眼! "
+        },
+        {
+          "color": "§7",
+          "text": "(",
+          "zh": "("
+        },
+        {
+          "color": "§e",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": ")",
+          "zh": ")"
+        }
+      ]
+    },
+    {
+      "id": "dragon_eye_placed_final",
+      "context": "第八只召唤之眼广播",
+      "text": "☬ %1$s placed a Summoning Eye! Brace yourselves! (%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "放眼玩家",
+          "type": "player_name",
+          "example": "MarinaSaltWater"
+        },
+        {
+          "token": "%2$s",
+          "desc": "已放置数量/总数",
+          "type": "raw",
+          "example": "8/8"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "☬ %1$s 放置了最后一只召唤之眼! 准备迎战! (%2$s)",
+      "segments": [
+        {
+          "color": "§5",
+          "text": "☬ ",
+          "zh": "☬ "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§d",
+          "text": "placed a Summoning Eye! Brace yourselves! ",
+          "zh": "放置了最后一只召唤之眼! 准备迎战! "
+        },
+        {
+          "color": "§7",
+          "text": "(%2$s)",
+          "zh": "(%2$s)"
+        }
+      ]
+    },
+    {
+      "id": "dragon_crystal_destroyed",
+      "context": "末影龙战斗中摧毁水晶",
+      "text": "☬ %1$s destroyed an Ender Crystal!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "玩家名",
+          "type": "player_name",
+          "example": "zzzzxzx"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "☬ %1$s 摧毁了一枚末影水晶!"
+    },
+    {
+      "id": "dragon_spawned",
+      "context": "末影龙或龙蛋生成广播",
+      "text": "☬ The %1$s has spawned!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Boss/对象名称；译名走怪物名词表",
+          "type": "mob_name",
+          "example": "Wise Dragon"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "☬ %1$s 出现了!",
+      "segments": [
+        {
+          "color": "§#AA00AA",
+          "text": "☬ ",
+          "zh": "☬ "
+        },
+        {
+          "color": "§#FF55FF§l",
+          "text": "The ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§c§l",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§#FF55FF§l",
+          "text": " has spawned!",
+          "zh": " 出现了!"
+        }
+      ]
+    },
+    {
+      "id": "dragon_down_wise",
+      "context": "智慧巨龙结算横幅",
+      "text": "WISE DRAGON DOWN!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "智慧巨龙已被击败!",
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "dragon_damage_record",
+      "context": "末影龙结算个人伤害",
+      "text": "Your Damage: %1$s (NEW RECORD!) (Position #%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "伤害数值",
+          "type": "number",
+          "example": "595,988"
+        },
+        {
+          "token": "%2$s",
+          "desc": "伤害排名",
+          "type": "number",
+          "example": "4"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的伤害: %1$s (新纪录!) (第 %2$s 名)",
+      "layout": "center_chat_if_padded",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Your Damage: ",
+          "zh": "你的伤害: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§d§l",
+          "text": "(NEW RECORD!) ",
+          "zh": "(新纪录!) "
+        },
+        {
+          "color": "§7",
+          "text": "(Position #%2$s)",
+          "zh": "(第 %2$s 名)"
+        }
+      ]
+    },
+    {
+      "id": "dragon_escrow_refund_pearls",
+      "context": "召唤眼交易/祭坛托管退还",
+      "text": "Escrow refunded %1$sx Ender Pearl!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "末影珍珠数量",
+          "type": "number",
+          "example": "16"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "托管已退还 %1$s 个末影珍珠!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Escrow refunded ",
+          "zh": "托管已退还 "
+        },
+        {
+          "color": "§7",
+          "text": "%1$sx ",
+          "zh": "%1$s 个"
+        },
+        {
+          "color": "§f",
+          "text": "Ender Pearl",
+          "zh": "末影珍珠"
+        },
+        {
+          "color": "§e",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "hunting_sent_draconic_shard",
+      "context": "狩猎箱自动收纳；碎片自造专名暂保留英文",
+      "text": "You sent a Draconic Shard to your Hunting Box.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你已将 Draconic Shard 送入狩猎箱。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You sent a ",
+          "zh": "你已将 "
+        },
+        {
+          "color": "§9",
+          "text": "Draconic Shard ",
+          "zh": "Draconic Shard "
+        },
+        {
+          "color": "§7",
+          "text": "to your ",
+          "zh": "送入"
+        },
+        {
+          "color": "§a",
+          "text": "Hunting Box",
+          "zh": "狩猎箱"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "altar_sacrifice_self",
+      "context": "玩家献祭末影套装部件",
+      "text": "SACRIFICE! You turned Ender %1$s into %2$s Dragon Essence!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "装备部位；译名走分类词表",
+          "type": "category_name",
+          "example": "Leggings"
+        },
+        {
+          "token": "%2$s",
+          "desc": "巨龙精华数量",
+          "type": "number",
+          "example": "3"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "献祭! 你将末影%1$s转化成了 %2$s 巨龙精华!"
+    },
+    {
+      "id": "altar_bonus_loot_self",
+      "context": "本人献祭额外奖励",
+      "text": "BONUS LOOT! You also received %1$sx Enchanted Ender Pearl from your sacrifice!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "奖励数量",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "额外奖励! 你还从本次献祭中获得了 %1$s 个附魔末影珍珠!"
+    },
+    {
+      "id": "altar_bonus_loot_other",
+      "context": "他人献祭额外奖励",
+      "text": "BONUS LOOT! They also received %1$sx Enchanted Ender Pearl from their sacrifice!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "奖励数量",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "额外奖励! 对方还从本次献祭中获得了 %1$s 个附魔末影珍珠!"
+    },
+    {
+      "id": "altar_not_enough_essence",
+      "context": "升级/献祭失败提示",
+      "text": "You don't have enough Dragon Essence!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的巨龙精华不足!"
+    },
+    {
+      "id": "altar_already_running",
+      "context": "重复启动献祭提示",
+      "text": "A sacrifice is already in progress!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "已有一场献祭正在进行!"
+    },
+    {
+      "id": "end_rare_drop_eye",
+      "context": "特殊狂热末影人掉落",
+      "text": "RARE DROP! Summoning Eye",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "稀有掉落! 召唤之眼"
+    },
+    {
+      "id": "end_rare_drop_crystal_fragment",
+      "context": "末地稀有掉落",
+      "text": "RARE DROP! Crystal Fragment",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "稀有掉落! 水晶碎片"
+    },
+    {
+      "id": "end_rare_drop_enchanted_obsidian",
+      "context": "末地稀有掉落",
+      "text": "RARE DROP! Enchanted Obsidian",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "稀有掉落! 附魔黑曜石"
+    },
+    {
+      "id": "end_rare_drop_enchanted_eye",
+      "context": "末地稀有掉落",
+      "text": "RARE DROP! Enchanted Eye of Ender",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "稀有掉落! 附魔末影之眼",
+      "segments": [
+        {
+          "color": "§6§l",
+          "text": "RARE DROP! ",
+          "zh": "稀有掉落! "
+        },
+        {
+          "color": "§a",
+          "text": "Enchanted Eye of Ender",
+          "zh": "附魔末影之眼"
+        }
+      ]
+    },
+    {
+      "id": "end_rare_drop_enchanted_pearl",
+      "context": "末地稀有掉落",
+      "text": "RARE DROP! Enchanted Ender Pearl",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "稀有掉落! 附魔末影珍珠"
+    },
+    {
+      "id": "end_rare_drop_enchanted_endstone",
+      "context": "末地稀有掉落",
+      "text": "RARE DROP! Enchanted End Stone",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "稀有掉落! 附魔末地石"
+    },
+    {
+      "id": "special_zealot_spawn",
+      "context": "特殊狂热末影人生成提示",
+      "text": "A special Zealot has spawned nearby!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "附近出现了一只特殊狂热末影人!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "A special ",
+          "zh": "附近出现了一只特殊"
+        },
+        {
+          "color": "§5",
+          "text": "Zealot ",
+          "zh": "狂热末影人"
+        },
+        {
+          "color": "§a",
+          "text": "has spawned nearby!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "charming_tier_xvi",
+      "context": "狩猎技能等级提示；功能性技能名翻译",
+      "text": "Charming XVI",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "魅惑 XVI"
+    },
+    {
+      "id": "charming_stat_upgrade",
+      "context": "魅惑技能升级属性说明",
+      "text": "Grants +0.6➜0.64 ❣ Charm Chance.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "提供 +0.6➜0.64 ❣ 魅惑概率。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§a",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§8",
+          "text": "0.6➜",
+          "zh": "0.6➜"
+        },
+        {
+          "color": "§a",
+          "text": "0.64",
+          "zh": "0.64"
+        },
+        {
+          "color": "§f",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§b",
+          "text": "❣ Charm Chance",
+          "zh": "❣ 魅惑概率"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "hunting_fortune_reward",
+      "context": "魅惑升级奖励属性",
+      "text": "+1  Hunting Fortune",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "+1  狩猎时运",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "1 ",
+          "zh": "1 "
+        },
+        {
+          "color": "§d",
+          "text": " Hunting Fortune",
+          "zh": " 狩猎时运"
+        }
+      ]
+    },
+    {
+      "id": "altar_sacrifice_other",
+      "context": "其他玩家献祭广播",
+      "text": "SACRIFICE! [%1$s] %2$s turned Ender %3$s into %4$s Dragon Essence!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Hypixel Rank，保留英文",
+          "type": "rank",
+          "example": "MVP+"
+        },
+        {
+          "token": "%2$s",
+          "desc": "玩家名",
+          "type": "player_name",
+          "example": "W0id88"
+        },
+        {
+          "token": "%3$s",
+          "desc": "装备部位",
+          "type": "category_name",
+          "example": "Leggings"
+        },
+        {
+          "token": "%4$s",
+          "desc": "精华数量",
+          "type": "number",
+          "example": "3"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "献祭! [%1$s] %2$s 将末影%3$s转化成了 %4$s 巨龙精华!"
+    },
+    {
+      "id": "protector_shard_reward",
+      "context": "末地石守护者战斗贡献奖励",
+      "text": "SHARD! Your contribution earned you the End Stone Protector Shard!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "碎片! 你的贡献为你赢得了末地石守护者碎片!",
+      "segments": [
+        {
+          "color": "§5§l",
+          "text": "SHARD!",
+          "zh": "碎片!"
+        },
+        {
+          "color": "§7",
+          "text": " Your contribution earned you the ",
+          "zh": " 你的贡献为你赢得了"
+        },
+        {
+          "color": "§6",
+          "text": "End Stone Protector ",
+          "zh": "末地石守护者"
+        },
+        {
+          "color": "§7",
+          "text": "Shard!",
+          "zh": "碎片!"
+        }
+      ]
+    },
+    {
+      "id": "enchant_upgrade_item",
+      "context": "装备附魔升级；SkyBlock 专属附魔名与物品专名保留英文",
+      "text": "%1$s on your %2$s was upgraded to %3$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "原附魔名及等级",
+          "type": "enchantment_name",
+          "example": "Toxophilite II"
+        },
+        {
+          "token": "%2$s",
+          "desc": "物品完整名称",
+          "type": "item_name",
+          "example": "Spiritual Juju Shortbow ✪✪✪✪✪"
+        },
+        {
+          "token": "%3$s",
+          "desc": "新附魔名及等级",
+          "type": "enchantment_name",
+          "example": "Toxophilite III"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的 %2$s 上的 %1$s 已升级为 %3$s!"
+    },
+    {
+      "id": "pet_level_up",
+      "context": "宠物升级提示",
+      "text": "Your %1$s leveled up to level %2$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "宠物名；译名走怪物名词表",
+          "type": "mob_name",
+          "example": "Enderman"
+        },
+        {
+          "token": "%2$s",
+          "desc": "新等级",
+          "type": "number",
+          "example": "91"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的%1$s升到了 %2$s 级!"
+    },
+    {
+      "id": "unknown_command_server",
+      "context": "服务器返回未知命令及玩家输入",
+      "text": "Unknown command. Type \"/help\" for help. ('%1$s')",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "未知命令文本",
+          "type": "search_query",
+          "example": "nz"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "未知命令。输入 \"/help\" 查看帮助。('%1$s')"
+    },
+    {
+      "id": "arachne_crystal_placed",
+      "context": "Arachne 召唤广播",
+      "text": "☄ %1$s placed an Arachne Crystal! Something is awakening!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "玩家名",
+          "type": "player_name",
+          "example": "Red_Sama"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "☄ %1$s 放置了一枚 Arachne 水晶! 有什么东西正在苏醒!",
+      "segments": [
+        {
+          "color": "§4",
+          "text": "☄ ",
+          "zh": "☄ "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§e",
+          "text": "placed an Arachne Crystal! Something is awakening!",
+          "zh": "放置了一枚 Arachne 水晶! 有什么东西正在苏醒!"
+        }
+      ]
+    },
+    {
+      "id": "mage_area_denied",
+      "context": "绯红岛法师阵营区域准入提示",
+      "text": "You are not allowed in here because you are not a Mage!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你不是法师,不能进入这里!"
+    },
+    {
+      "id": "abiphone_not_impressive",
+      "context": "Abiphone 联系人条件不足提示",
+      "text": "[✆] Your Abiphone doesn't impress this NPC...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "[✆] 这名 NPC 对你的 Abiphone 不感兴趣……",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": "✆"
+        },
+        {
+          "color": "§7",
+          "text": "] Your Abiphone doesn't impress this NPC...",
+          "zh": "] 这名 NPC 对你的 Abiphone 不感兴趣……"
+        }
+      ]
+    },
+    {
+      "id": "bazaar_lag_disabled",
+      "context": "集市临时停用提示",
+      "text": "This server is too laggy to use the Bazaar, sorry!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "服务器延迟过高,暂时无法使用集市,抱歉!"
+    },
+    {
+      "id": "missing_inventory_item",
+      "context": "操作缺少物品提示",
+      "text": "You don't have this item in your inventory!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的背包里没有这个物品!"
+    },
+    {
+      "id": "auction_lag_disabled",
+      "context": "拍卖行临时停用提示",
+      "text": "This server is too laggy to use the Auction House, sorry!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "服务器延迟过高,暂时无法使用拍卖行,抱歉!"
+    },
+    {
+      "id": "ender_node_enchanted_obsidian",
+      "context": "末影节点奖励；使用精确完整奖励名，避免泛化模板误匹配",
+      "text": "ENDER NODE! You found Enchanted Obsidian!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "末影节点! 你找到了附魔黑曜石!"
+    },
+    {
+      "id": "ender_node_endermite_nest",
+      "context": "末影节点奖励；使用精确完整奖励名，避免泛化模板误匹配",
+      "text": "ENDER NODE! You found Endermite Nest!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "末影节点! 你找到了末影螨巢!"
+    },
+    {
+      "id": "ender_node_enchanted_end_stone",
+      "context": "末影节点奖励；使用精确完整奖励名，避免泛化模板误匹配",
+      "text": "ENDER NODE! You found Enchanted End Stone!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "末影节点! 你找到了附魔末地石!"
+    },
+    {
+      "id": "ender_node_end_stone_shulker",
+      "context": "末影节点奖励；使用精确完整奖励名，避免泛化模板误匹配",
+      "text": "ENDER NODE! You found End Stone Shulker!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "末影节点! 你找到了末地石潜影贝!"
+    },
+    {
+      "id": "ender_node_grand_experience_bottle",
+      "context": "末影节点奖励；使用精确完整奖励名，避免泛化模板误匹配",
+      "text": "ENDER NODE! You found Grand Experience Bottle!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "末影节点! 你找到了大型经验瓶!"
+    },
+    {
+      "id": "ender_node_2x_grand_experience",
+      "context": "末影节点数量奖励",
+      "text": "ENDER NODE! You found 2x Grand Experience Bottle!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "末影节点! 你找到了 2 个大型经验瓶!",
+      "segments": [
+        {
+          "color": "§5§l",
+          "text": "ENDER NODE! ",
+          "zh": "末影节点! "
+        },
+        {
+          "color": "§f",
+          "text": "You found ",
+          "zh": "你找到了 "
+        },
+        {
+          "color": "§8",
+          "text": "2x ",
+          "zh": "2 个"
+        },
+        {
+          "color": "§a",
+          "text": "Grand Experience Bottle",
+          "zh": "大型经验瓶"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    }
+  ]
+}

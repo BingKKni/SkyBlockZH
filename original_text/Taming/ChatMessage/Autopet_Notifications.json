@@ -1,0 +1,62 @@
+{
+  "source": "logs/skyzh-capture; https://hypixelskyblock.minecraft.wiki/w/Autopet",
+  "fetched_at": "2026-09-12",
+  "verified_ingame": true,
+  "lines": [
+    {
+      "id": "autopet_equipped_rule",
+      "context": "自动宠物规则触发后的装备通知",
+      "raw": "§cAutopet §eequipped your §7[Lvl %1$s] §6%2$s§e! §a§lVIEW RULE",
+      "text": "Autopet equipped your [Lvl %1$s] %2$s! VIEW RULE",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "100",
+          "desc": "宠物等级"
+        },
+        {
+          "token": "%2$s",
+          "type": "mob_name",
+          "example": "Glacite Golem",
+          "desc": "宠物完整名称；沿用已确定的同名生物译名,未知专名保留英文"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "自动宠物已为你装备 [%1$s 级] %2$s! 查看规则",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "Autopet ",
+          "zh": "自动宠物"
+        },
+        {
+          "color": "§e",
+          "text": "equipped your ",
+          "zh": "已为你装备 "
+        },
+        {
+          "color": "§7",
+          "text": "[Lvl %1$s] ",
+          "zh": "[%1$s 级] "
+        },
+        {
+          "color": "§6",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§e",
+          "text": "! ",
+          "zh": "! "
+        },
+        {
+          "color": "§a§l",
+          "text": "VIEW RULE",
+          "zh": "查看规则"
+        }
+      ]
+    }
+  ]
+}

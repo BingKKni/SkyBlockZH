@@ -323,21 +323,104 @@
       "zh": ""
     },
     {
-      "id": "lore_reforge_bonus",
-      "context": "重铸加成小标题(Ancient Bonus / Withered Bonus / Spiritual Bonus)",
-      "raw": "§9%1$s Bonus",
-      "text": "%1$s Bonus",
-      "placeholders": [
-        {
-          "token": "%1$s",
-          "desc": "重铸名,词表里有译名的会翻",
-          "type": "raw",
-          "example": "Ancient"
-        }
-      ],
-      "gloss": "",
+      "id": "reforge_bonus_ancient",
+      "context": "Ancient 重铸加成小标题",
+      "raw": "§9Ancient Bonus",
+      "text": "Ancient Bonus",
+      "placeholders": [],
+      "gloss": "2026-09-13 核对社区 Wiki 对应重铸石普通页面。精确记录避免 %s Bonus 吞掉其他加成标题。",
       "translate": true,
-      "zh": "%1$s加成"
+      "zh": "远古加成"
+    },
+    {
+      "id": "reforge_bonus_withered",
+      "context": "Withered 重铸加成小标题",
+      "raw": "§9Withered Bonus",
+      "text": "Withered Bonus",
+      "placeholders": [],
+      "gloss": "2026-09-13 核对社区 Wiki 对应重铸石普通页面。精确记录避免 %s Bonus 吞掉其他加成标题。",
+      "translate": true,
+      "zh": "凋零加成"
+    },
+    {
+      "id": "reforge_bonus_spiritual",
+      "context": "Spiritual 重铸加成小标题",
+      "raw": "§9Spiritual Bonus",
+      "text": "Spiritual Bonus",
+      "placeholders": [],
+      "gloss": "2026-09-13 核对社区 Wiki 对应重铸石普通页面。精确记录避免 %s Bonus 吞掉其他加成标题。",
+      "translate": true,
+      "zh": "灵性加成"
+    },
+    {
+      "id": "reforge_bonus_royal",
+      "context": "Royal 重铸加成小标题",
+      "raw": "§9Royal Bonus",
+      "text": "Royal Bonus",
+      "placeholders": [],
+      "gloss": "2026-09-13 核对社区 Wiki 对应重铸石普通页面。精确记录避免 %s Bonus 吞掉其他加成标题。",
+      "translate": true,
+      "zh": "皇家加成"
+    },
+    {
+      "id": "reforge_bonus_chomp",
+      "context": "Chomp 重铸加成小标题",
+      "raw": "§9Chomp Bonus",
+      "text": "Chomp Bonus",
+      "placeholders": [],
+      "gloss": "2026-09-13 核对社区 Wiki 对应重铸石普通页面。精确记录避免 %s Bonus 吞掉其他加成标题。",
+      "translate": true,
+      "zh": "啃噬加成"
+    },
+    {
+      "id": "reforge_bonus_blazing",
+      "context": "Blazing 重铸加成小标题",
+      "raw": "§9Blazing Bonus",
+      "text": "Blazing Bonus",
+      "placeholders": [],
+      "gloss": "2026-09-13 核对社区 Wiki 对应重铸石普通页面。精确记录避免 %s Bonus 吞掉其他加成标题。",
+      "translate": true,
+      "zh": "炽焰加成"
+    },
+    {
+      "id": "reforge_bonus_trashy",
+      "context": "Trashy 重铸加成小标题",
+      "raw": "§9Trashy Bonus",
+      "text": "Trashy Bonus",
+      "placeholders": [],
+      "gloss": "2026-09-13 核对社区 Wiki 对应重铸石普通页面。精确记录避免 %s Bonus 吞掉其他加成标题。",
+      "translate": true,
+      "zh": "破烂加成"
+    },
+    {
+      "id": "reforge_bonus_precise",
+      "context": "Precise 重铸加成小标题",
+      "raw": "§9Precise Bonus",
+      "text": "Precise Bonus",
+      "placeholders": [],
+      "gloss": "2026-09-13 核对社区 Wiki 对应重铸石普通页面。精确记录避免 %s Bonus 吞掉其他加成标题。",
+      "translate": true,
+      "zh": "精准加成"
+    },
+    {
+      "id": "reforge_bonus_magnetic",
+      "context": "Magnetic 重铸加成小标题",
+      "raw": "§9Magnetic Bonus",
+      "text": "Magnetic Bonus",
+      "placeholders": [],
+      "gloss": "社区 Wiki Reforging 普通页面与实测语料已核对；改用精确记录避免 %s Bonus 误匹配。",
+      "translate": true,
+      "zh": "磁力加成"
+    },
+    {
+      "id": "reforge_bonus_undead",
+      "context": "Undead 重铸加成小标题",
+      "raw": "§9Undead Bonus",
+      "text": "Undead Bonus",
+      "placeholders": [],
+      "gloss": "社区 Wiki Reforging 普通页面与实测语料已核对；改用精确记录避免 %s Bonus 误匹配。",
+      "translate": true,
+      "zh": "亡灵加成"
     },
     {
       "id": "lore_piece_bonus",
@@ -364,8 +447,8 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "desc": "套装加成名,保留英文",
-          "type": "raw",
+          "desc": "套装加成名，译名走 Terms.json；自造名查不到时原样保留",
+          "type": "category_name",
           "example": "Shadow Assassin"
         },
         {
@@ -390,6 +473,16 @@
         }
       ],
       "zh": "全套加成: %1$s (%2$s)"
+    },
+    {
+      "id": "piece_bonus_bloodrush",
+      "context": "实测装备部件加成标题；社区 Wiki 搜索无效果语境",
+      "raw": "§6Piece Bonus: Bloodrush",
+      "text": "Piece Bonus: Bloodrush",
+      "placeholders": [],
+      "gloss": "只翻结构标签；Bloodrush 缺少可靠 Wiki 语境，暂不猜译。",
+      "translate": true,
+      "zh": "部件加成: Bloodrush"
     }
   ]
 }

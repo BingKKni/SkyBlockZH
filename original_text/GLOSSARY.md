@@ -853,11 +853,11 @@ BossBar 里是全大写(`GONE WITH THE WIND`)、计分板小部件里是正常�
 | Desk | 管理台 | 花园管理入口 |
 | Barn / The Barn | 谷仓 / 牲畜棚 | 花园建筑 / 农业岛地名 |
 | Greenhouse | 温室 | 变异作物与植物培育 |
-| Garden Plot | 花园地块 | 清理、解锁与套用作物布局 |
+| Garden Plot | 花园地皮 | 清理、解锁与套用作物布局 |
 | Shop Stand | 售货摊 | 新手流程接待顾客的位置 |
 | Visitor / Visitor Offer | 访客 / 访客委托 | NPC 提出的物品请求 |
 | Copper | 铜 | 花园货币,不是原版铜锭 |
-| Compost / Composter | 堆肥 / 堆肥器 | 解锁地块的材料 / 制作设备 |
+| Compost / Composter | 堆肥 / 堆肥器 | 解锁地皮的材料 / 制作设备 |
 | Sowdust | 播尘 | 专精农具种田获得,用于升级芯片 |
 | Garden Chip | 花园芯片 | 可升级的永久增益 |
 | Specialized Farming Tool | 专精农具 | 按作物类型设计的可升级农具 |
@@ -974,15 +974,15 @@ BossBar 里是全大写(`GONE WITH THE WIND`)、计分板小部件里是正常�
 - **Dragon's Nest → 龙巢**。它在末地,不是水晶残核的 **Dragon's Lair**。
 - **End Stone Protector → 末地石守护者**。Wiki 历史记载 2025-09-02 从
   `Endstone Protector` 改名,但日志的出现警报仍采用旧拼写; 不要擅自改写警报的 `text`。
-- **Zealot → 狂信徒**,沿用 `Taming/GUI_Item/Pet_Perks.json` 中的既有译名,不另译成狂热者。
+- **Zealot → 狂热末影人**,沿用 `Taming/GUI_Item/Pet_Perks.json` 中的既有译名,不另译成狂热者。
 - **Fortuitous → 幸运**,是默认解锁的饰品袋能力,不是附魔或 NPC 人名。
   词表限定 `category_name`,不将这个英文词泛化成对任意正文的替换。
 
 ### 2026-09-05 采集补译: 收藏品、怪物与外观商店
 
 - `Scared Skeleton` → **惊恐骷髅**。社区 Wiki 同名页说明它会逃离附近玩家,不是施加恐惧的骷髅。
-- `Zealot Bruiser` → **狂信徒斗士**; `Zealot Bruiser Hideout` → **狂信徒斗士藏身处**。
-  沿用 Zealot → 狂信徒,不改为另一套词根。
+- `Zealot Bruiser` → **狂热末影人斗士**; `Zealot Bruiser Hideout` → **狂热末影人斗士藏身处**。
+  沿用 Zealot → 狂热末影人,不改为另一套词根。
 - `Tsunami` → **海啸**; `Soul Sand Blizzard` → **灵魂沙暴**。社区 Wiki `Scarf` 页的招式名,
   前者属于 Mage,后者属于 Scarf; 角色人名仍保留英文。
 - `Dragon Sack` 的材料前缀沿用既有 `Dragon` → **巨龙**,因此 `Small Dragon Sack` 为**小型巨龙收纳袋**。

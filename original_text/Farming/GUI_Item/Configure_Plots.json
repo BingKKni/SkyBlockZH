@@ -2,7 +2,7 @@
   "source": "runtime capture (SkyZH) 2026-09-10 花园实测; 语境核对 https://hypixelskyblock.minecraft.wiki/w/The_Garden#Plots",
   "fetched_at": "2026-09-10",
   "verified_ingame": true,
-  "gui_context": "管理台 → 配置地块:5×5 的地块网格,中间是谷仓;每格是一块地的名字、解锁花费(堆肥)和状态。点进某块地是「修改地块」菜单:预设、改建温室、保存预设、改名。",
+  "gui_context": "管理台 → 配置地皮:5×5 的地皮网格,中间是谷仓;每格是一块地的名字、解锁花费(堆肥)和状态。点进某块地是「修改地皮」菜单:预设、改建温室、保存预设、改名。",
   "lines": [
     {
       "id": "plots_plot_name",
@@ -12,19 +12,19 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "desc": "地块编号",
+          "desc": "地皮编号",
           "type": "number",
           "example": "21"
         }
       ],
       "gloss": "",
       "translate": true,
-      "zh": "地块 - %1$s",
+      "zh": "地皮 - %1$s",
       "segments": [
         {
           "color": "§e",
           "text": "Plot ",
-          "zh": "地块 "
+          "zh": "地皮 "
         },
         {
           "color": "§7",
@@ -141,7 +141,7 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "完成任务才能解锁地块!"
+      "zh": "完成任务才能解锁地皮!"
     },
     {
       "id": "plots_the_barn",
@@ -171,7 +171,7 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "得先解锁相邻的地块!"
+      "zh": "得先解锁相邻的地皮!"
     },
     {
       "id": "plots_need_adjacent_tail",
@@ -251,7 +251,7 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "清理完这块地,才能使用地块预设!"
+      "zh": "清理完这块地,才能使用地皮预设!"
     },
     {
       "id": "plots_clean_to_access_2",
@@ -356,7 +356,7 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "温室地块"
+      "zh": "温室地皮"
     },
     {
       "id": "plots_reach_level_to_unlock_1",
@@ -371,7 +371,7 @@
           "example": "2"
         }
       ],
-      "gloss": "同一模板在作物里程碑、作物升级、修改地块三个菜单里都出现,后半句折成「crop!」或「this crop!」,尾行见下。",
+      "gloss": "同一模板在作物里程碑、作物升级、修改地皮三个菜单里都出现,后半句折成「crop!」或「this crop!」,尾行见下。",
       "translate": true,
       "zh": "花园等级达到 %1$s 级即可解锁此作物!",
       "segments": [
@@ -417,7 +417,7 @@
           "example": "10"
         }
       ],
-      "gloss": "等级到两位数时英文折行位置提前,尾行变成「this crop!」;修改地块菜单里等级 9 / 12 也是这两种折法。",
+      "gloss": "等级到两位数时英文折行位置提前,尾行变成「this crop!」;修改地皮菜单里等级 9 / 12 也是这两种折法。",
       "translate": true,
       "zh": "花园等级达到 %1$s 级即可解锁此作物!",
       "segments": [
@@ -452,11 +452,11 @@
     },
     {
       "id": "plots_reach_level_9_to_unlock_this",
-      "context": "修改地块菜单里的预设(蘑菇)",
+      "context": "修改地皮菜单里的预设(蘑菇)",
       "raw": "§7Reach §2Garden Level 9 §7to unlock this",
       "text": "Reach Garden Level 9 to unlock this",
       "placeholders": [],
-      "gloss": "修改地块菜单里的尾行是「preset!」,所以整句说「预设」;等级 3-8 走 plots_reach_level_to_unlock_1 那条模板,它的尾行在这个菜单里也是 preset!,这两条尾行都要有。",
+      "gloss": "修改地皮菜单里的尾行是「preset!」,所以整句说「预设」;等级 3-8 走 plots_reach_level_to_unlock_1 那条模板,它的尾行在这个菜单里也是 preset!,这两条尾行都要有。",
       "translate": true,
       "zh": "花园等级达到 9 级即可解锁此预设!",
       "segments": [
@@ -480,7 +480,7 @@
     },
     {
       "id": "plots_reach_level_12_to_unlock",
-      "context": "修改地块菜单里的预设(野玫瑰)",
+      "context": "修改地皮菜单里的预设(野玫瑰)",
       "raw": "§7Reach §2Garden Level 12 §7to unlock",
       "text": "Reach Garden Level 12 to unlock",
       "placeholders": [],
@@ -530,7 +530,7 @@
     },
     {
       "id": "plots_super_flat",
-      "context": "修改地块菜单里的预设",
+      "context": "修改地皮菜单里的预设",
       "raw": "§aSuper Flat",
       "text": "Super Flat",
       "placeholders": [],
@@ -556,7 +556,7 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "把选中的地块改成这个预设!"
+      "zh": "把选中的地皮改成这个预设!"
     },
     {
       "id": "plots_change_to_preset_2",
@@ -570,21 +570,114 @@
       "continuation": true
     },
     {
-      "id": "plots_click_to_action",
-      "context": "",
-      "raw": "§eClick to %1$s!",
-      "text": "Click to %1$s!",
-      "placeholders": [
-        {
-          "token": "%1$s",
-          "desc": "use / Save / Change,译名走 _shared/Terms.json",
-          "type": "raw",
-          "example": "use"
-        }
-      ],
-      "gloss": "use → 使用、Save → 保存、Change → 更改,词表大小写不敏感。",
+      "id": "plots_click_use",
+      "context": "Configure Plots 的预设操作",
+      "raw": "§eClick to use!",
+      "text": "Click to use!",
+      "placeholders": [],
+      "gloss": "精确整句，避免跨系统 Click to %s! 模板吞掉未译动作。",
       "translate": true,
-      "zh": "点击%1$s!"
+      "zh": "点击使用!"
+    },
+    {
+      "id": "plots_click_save",
+      "context": "Configure Plots 的预设操作",
+      "raw": "§eClick to Save!",
+      "text": "Click to Save!",
+      "placeholders": [],
+      "gloss": "精确整句，避免跨系统 Click to %s! 模板吞掉未译动作。",
+      "translate": true,
+      "zh": "点击保存!"
+    },
+    {
+      "id": "plots_click_change",
+      "context": "Configure Plots 的预设操作",
+      "raw": "§eClick to Change!",
+      "text": "Click to Change!",
+      "placeholders": [],
+      "gloss": "精确整句，避免跨系统 Click to %s! 模板吞掉未译动作。",
+      "translate": true,
+      "zh": "点击更改!"
+    },
+    {
+      "id": "click_clear_search",
+      "context": "集市搜索",
+      "raw": "§eClick to clear search!",
+      "text": "Click to clear search!",
+      "placeholders": [],
+      "gloss": "精确整句，避免跨系统 Click to %s! 模板吞掉未译动作。",
+      "translate": true,
+      "zh": "点击清除搜索条件!"
+    },
+    {
+      "id": "click_export",
+      "context": "Carrolyn 可导出作物",
+      "raw": "§eClick to export!",
+      "text": "Click to export!",
+      "placeholders": [],
+      "gloss": "精确整句，避免跨系统 Click to %s! 模板吞掉未译动作。",
+      "translate": true,
+      "zh": "点击导出!"
+    },
+    {
+      "id": "click_mass_syphon",
+      "context": "狩猎箱批量吸收",
+      "raw": "§eClick to mass Syphon!",
+      "text": "Click to mass Syphon!",
+      "placeholders": [],
+      "gloss": "精确整句，避免跨系统 Click to %s! 模板吞掉未译动作。",
+      "translate": true,
+      "zh": "点击批量吸收!"
+    },
+    {
+      "id": "click_remove_item",
+      "context": "物品筛选/收纳控件",
+      "raw": "§eClick to remove item!",
+      "text": "Click to remove item!",
+      "placeholders": [],
+      "gloss": "精确整句，避免跨系统 Click to %s! 模板吞掉未译动作。",
+      "translate": true,
+      "zh": "点击移除物品!"
+    },
+    {
+      "id": "click_sacrifice",
+      "context": "龙族献祭",
+      "raw": "§eClick to sacrifice!",
+      "text": "Click to sacrifice!",
+      "placeholders": [],
+      "gloss": "精确整句，避免跨系统 Click to %s! 模板吞掉未译动作。",
+      "translate": true,
+      "zh": "点击献祭!"
+    },
+    {
+      "id": "click_select_modifiers",
+      "context": "属性菜单",
+      "raw": "§eClick to select modifiers!",
+      "text": "Click to select modifiers!",
+      "placeholders": [],
+      "gloss": "精确整句，避免跨系统 Click to %s! 模板吞掉未译动作。",
+      "translate": true,
+      "zh": "点击选择修正项!"
+    },
+    {
+      "id": "click_swap_attribute_menu",
+      "context": "狩猎箱导航",
+      "raw": "§eClick to swap to the Attribute Menu!",
+      "text": "Click to swap to the Attribute Menu!",
+      "placeholders": [],
+      "gloss": "精确整句，避免跨系统 Click to %s! 模板吞掉未译动作。",
+      "translate": true,
+      "zh": "点击切换至属性菜单!"
+    },
+    {
+      "id": "click_swap_hunting_box",
+      "context": "属性菜单导航",
+      "raw": "§eClick to swap to the Hunting Box!",
+      "text": "Click to swap to the Hunting Box!",
+      "placeholders": [],
+      "gloss": "精确整句，避免跨系统 Click to %s! 模板吞掉未译动作。",
+      "translate": true,
+      "zh": "点击切换至狩猎箱!"
     },
     {
       "id": "plots_click_view_pasting",
@@ -656,7 +749,7 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "只能用在农田地块上!"
+      "zh": "只能用在农田地皮上!"
     },
     {
       "id": "plots_save_preset",
@@ -676,7 +769,7 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "把选中的地块存成自定义预设,之后可以复制到别的地块上。"
+      "zh": "把选中的地皮存成自定义预设,之后可以复制到别的地皮上。"
     },
     {
       "id": "plots_save_preset_desc_2",
@@ -708,7 +801,7 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "更改地块名称"
+      "zh": "更改地皮名称"
     },
     {
       "id": "plots_set_name",
@@ -728,7 +821,7 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "desc": "当前地块名,默认是编号",
+          "desc": "当前地皮名,默认是编号",
           "type": "raw",
           "example": "4"
         }
@@ -862,7 +955,7 @@
     },
     {
       "id": "plots_confirm_requirement",
-      "context": "确认解锁地块 / Anita 商店里的要求标题",
+      "context": "确认解锁地皮 / Anita 商店里的要求标题",
       "raw": "§7Requirement",
       "text": "Requirement",
       "placeholders": [],

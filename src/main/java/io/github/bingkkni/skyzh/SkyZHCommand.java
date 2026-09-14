@@ -9,7 +9,7 @@ import java.util.function.BooleanSupplier;
 /** The two local command aliases and their deliberately small grammar. */
 public final class SkyZHCommand {
 	public static final List<String> ALIASES = List.of("skyzh", "skyblockzh");
-	public static final List<String> SWITCHES = List.of("power", "compare", "capture");
+	public static final List<String> SWITCHES = List.of("power", "tip", "capture");
 	public static final List<String> PLAIN = List.of("on", "off", "clear");
 
 	private SkyZHCommand() {
@@ -27,7 +27,7 @@ public final class SkyZHCommand {
 			case "" -> help(parsed.alias());
 			case "on" -> power(true);
 			case "off" -> power(false);
-			case "switch" -> flip(parsed.alias(), parsed.argument());
+			case "switch" -> flip(parsed.alias(), parsed.argument(), parsed.state());
 			case "clear" -> clear();
 			default -> unknown(parsed.alias(), parsed.sub());
 		}
@@ -57,7 +57,8 @@ public final class SkyZHCommand {
 		return new Parsed(
 			alias,
 			words.length > 1 ? words[1].toLowerCase(Locale.ROOT) : "",
-			words.length > 2 ? words[2].toLowerCase(Locale.ROOT) : ""
+			words.length > 2 ? words[2].toLowerCase(Locale.ROOT) : "",
+			words.length > 3 ? String.join(" ", java.util.Arrays.copyOfRange(words, 3, words.length)).toLowerCase(Locale.ROOT) : ""
 		);
 	}
 
@@ -66,7 +67,7 @@ public final class SkyZHCommand {
 		List<String> lines = new ArrayList<>();
 		lines.add("§e=============== §b" + Feedback.NAME + " §e===============");
 		lines.add("§6/" + alias + "  §f列出帮助菜单");
-		lines.add("§6/" + alias + " switch power/compare/capture  §f切换总功能/翻译对比功能/采集功能为开/关");
+		lines.add("§6/" + alias + " switch power/tip/capture [on/off]  §f切换总功能/显示原文提示/采集功能为开/关");
 
 		if (captureEnabled) {
 			lines.add("§6/" + alias + " clear  §f清空捕捉到的文本");
@@ -87,18 +88,26 @@ public final class SkyZHCommand {
 		change("翻译", () -> config.enabled, value -> config.enabled = value, on);
 	}
 
-	private static void flip(String alias, String which) {
+	private static void flip(String alias, String which, String state) {
+		if (!state.isEmpty() && !state.equals("on") && !state.equals("off")) {
+			unknown(alias, "switch " + which + " " + state);
+			return;
+		}
 		SkyZHConfig config = SkyZHConfig.get();
 
 		switch (which) {
 			case "power" -> change("翻译", () -> config.enabled,
-				value -> config.enabled = value, !config.enabled);
-			case "compare" -> change("翻译对比", () -> config.showOriginal,
-				value -> config.showOriginal = value, !config.showOriginal);
+				value -> config.enabled = value, switchValue(config.enabled, state));
+			case "tip" -> change("显示原文提示", () -> config.originalTips,
+				value -> config.originalTips = value, switchValue(config.originalTips, state));
 			case "capture" -> change("采集未翻译文本", () -> config.captureUntranslated,
-				value -> config.captureUntranslated = value, !config.captureUntranslated);
+				value -> config.captureUntranslated = value, switchValue(config.captureUntranslated, state));
 			default -> unknown(alias, which.isEmpty() ? "switch" : "switch " + which);
 		}
+	}
+
+	static boolean switchValue(boolean current, String state) {
+		return state.isEmpty() ? !current : state.equals("on");
 	}
 
 	static String clearSucceeded() {
@@ -158,6 +167,6 @@ public final class SkyZHCommand {
 		void set(boolean value);
 	}
 
-	record Parsed(String alias, String sub, String argument) {
+	record Parsed(String alias, String sub, String argument, String state) {
 	}
 }

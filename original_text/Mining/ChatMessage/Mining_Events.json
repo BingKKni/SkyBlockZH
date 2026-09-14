@@ -624,7 +624,7 @@
     },
     {
       "id": "mining_event_reward_mining_exp",
-      "context": "共用挖矿经验奖励：活动与任务结算，保留原始缩进",
+      "context": "共用挖矿经验奖励：活动开奖横幅会用大量前导空格居中，任务结算只用短缩进",
       "text": "+%s Mining Experience",
       "placeholders": [
         {
@@ -634,9 +634,10 @@
           "example": "25,000"
         }
       ],
-      "gloss": "任务结算中加号、数值与经验标签分别着色；活动沿用运行时真实颜色。共用清单项不强制居中。",
+      "gloss": "同一原文用于两种布局：抽奖箱开奖时有二十多个前导空格，应按译文重算居中；任务结算只有四格缩进，应保持左对齐。center_chat_if_widely_padded 只处理前者。",
       "translate": true,
       "zh": "+%s 挖矿经验",
+      "layout": "center_chat_if_widely_padded",
       "segments": [
         {
           "color": "§8",

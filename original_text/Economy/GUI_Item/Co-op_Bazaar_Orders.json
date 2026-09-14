@@ -1,0 +1,299 @@
+{
+  "source": "SkyZH runtime capture; Hypixel SkyBlock community Wiki ordinary pages",
+  "fetched_at": "2026-09-13",
+  "verified_ingame": true,
+  "source_note": "本轮实测原文与颜色优先；社区 Wiki 原网页用于核对机制与语境，未使用 Raw 页面。",
+  "items": [
+    {
+      "id": "coop_bazaar_sell_pet_cake",
+      "context": "合作档案集市出售订单标题",
+      "text": "SELL Pet Cake",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "出售 宠物蛋糕",
+      "raw": "§6§lSELL §fPet Cake",
+      "segments": [
+        {
+          "color": "§6§l",
+          "text": "SELL ",
+          "zh": "出售 "
+        },
+        {
+          "color": "§f",
+          "text": "Pet Cake",
+          "zh": "宠物蛋糕"
+        }
+      ]
+    },
+    {
+      "id": "coop_bazaar_buy_turbo_potato",
+      "context": "合作档案集市购买订单标题",
+      "text": "BUY Turbo-Potato I",
+      "placeholders": [],
+      "gloss": "SkyBlock 专属附魔名按规则保留。",
+      "translate": true,
+      "zh": "购买 Turbo-Potato I",
+      "raw": "§a§lBUY §fTurbo-Potato I",
+      "segments": [
+        {
+          "color": "§a§l",
+          "text": "BUY ",
+          "zh": "购买 "
+        },
+        {
+          "color": "§f",
+          "text": "Turbo-Potato I",
+          "zh": "Turbo-Potato I"
+        }
+      ]
+    },
+    {
+      "id": "coop_bazaar_buy_bonzo_shard",
+      "context": "合作档案集市购买订单标题",
+      "text": "BUY Bonzo Shard",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "购买 Bonzo 碎片",
+      "raw": "§a§lBUY §5Bonzo Shard",
+      "segments": [
+        {
+          "color": "§a§l",
+          "text": "BUY ",
+          "zh": "购买 "
+        },
+        {
+          "color": "§5",
+          "text": "Bonzo Shard",
+          "zh": "Bonzo 碎片"
+        }
+      ]
+    },
+    {
+      "id": "coop_bazaar_by_rank",
+      "context": "合作档案订单创建者",
+      "text": "By: [%1$s] %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "rank",
+          "example": "MVP+",
+          "desc": "Hypixel 付费 Rank，保留英文"
+        },
+        {
+          "token": "%2$s",
+          "type": "player_name",
+          "example": "inkkni",
+          "desc": "玩家名"
+        }
+      ],
+      "gloss": "需要主分支新增的 rank 捕获类型；不要把 MVP/VIP 放进全局词表。",
+      "translate": true,
+      "zh": "创建者: [%1$s] %2$s",
+      "raw": "§7By: §b[%1$s] %2$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "By: ",
+          "zh": "创建者: "
+        },
+        {
+          "color": "§b",
+          "text": "[%1$s] %2$s",
+          "zh": "[%1$s] %2$s"
+        }
+      ]
+    },
+    {
+      "id": "coop_bazaar_order_amount",
+      "context": "合作档案订单总数量",
+      "text": "Order amount: %1$sx",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "15",
+          "desc": "订单数量"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "订单数量: %1$s",
+      "raw": "§7Order amount: §a%1$s§7x",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Order amount: ",
+          "zh": "订单数量: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "x",
+          "zh": "",
+          "omit": true
+        }
+      ]
+    },
+    {
+      "id": "coop_bazaar_vendors",
+      "context": "合作档案出售方列表标题",
+      "text": "Vendors:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "卖家:",
+      "raw": "§7Vendors:"
+    },
+    {
+      "id": "coop_bazaar_vendor_ranked",
+      "context": "带 Rank 的卖家成交记录",
+      "text": "- %1$sx [%2$s] %3$s %4$s ago",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "4",
+          "desc": "数量"
+        },
+        {
+          "token": "%2$s",
+          "type": "rank",
+          "example": "VIP+",
+          "desc": "付费 Rank"
+        },
+        {
+          "token": "%3$s",
+          "type": "player_name",
+          "example": "tibvss",
+          "desc": "玩家名"
+        },
+        {
+          "token": "%4$s",
+          "type": "duration",
+          "example": "8m",
+          "desc": "多久以前"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "- %1$s 个 · [%2$s] %3$s · %4$s前",
+      "raw": "§8- §a%1$s§7x §b[%2$s] %3$s§f §8%4$s ago",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "x ",
+          "zh": " 个 · "
+        },
+        {
+          "color": "§b",
+          "text": "[%2$s] %3$s",
+          "zh": "[%2$s] %3$s"
+        },
+        {
+          "color": "§f",
+          "text": " ",
+          "zh": " · "
+        },
+        {
+          "color": "§8",
+          "text": "%4$s ago",
+          "zh": "%4$s前"
+        }
+      ]
+    },
+    {
+      "id": "coop_bazaar_vendor_plain",
+      "context": "无 Rank 的卖家成交记录",
+      "text": "- %1$sx %2$s %3$s ago",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "1",
+          "desc": "数量"
+        },
+        {
+          "token": "%2$s",
+          "type": "player_name",
+          "example": "SNEG0V1K",
+          "desc": "玩家名"
+        },
+        {
+          "token": "%3$s",
+          "type": "duration",
+          "example": "7m",
+          "desc": "多久以前"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "- %1$s 个 · %2$s · %3$s前",
+      "raw": "§8- §a%1$s§7x %2$s §8%3$s ago",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "x %2$s ",
+          "zh": " 个 · %2$s · "
+        },
+        {
+          "color": "§8",
+          "text": "%3$s ago",
+          "zh": "%3$s前"
+        }
+      ]
+    },
+    {
+      "id": "coop_bazaar_other_vendors",
+      "context": "未展开显示的其他卖家人数",
+      "text": "+ %1$s others",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "5",
+          "desc": "其他卖家人数"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+ 另有 %1$s 人",
+      "raw": "§8+ %1$s others"
+    },
+    {
+      "id": "coop_bazaar_options",
+      "context": "合作档案订单操作提示",
+      "text": "Right-Click for options!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "右键点击查看选项!",
+      "raw": "§bRight-Click for options!"
+    }
+  ]
+}

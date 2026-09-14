@@ -36,8 +36,8 @@ import net.minecraft.ChatFormatting;
  * </ul>
  *
  * <p>English that is <em>meant</em> to survive is in neither pile: an item's name is the Bazaar's
- * search key, a player's name is a player's name, and {@code showOriginal}'s bracketed original is
- * the point of the option. {@link TranslationEntry#mixed} draws that line, not this class.
+ * search key and a player's name is a player's name. {@link TranslationEntry#mixed} draws that
+ * line, not this class.
  */
 public final class Classifier {
 	public enum Bucket {
@@ -128,6 +128,10 @@ public final class Classifier {
 		Translator.Located located = Translator.locate(styled, surface.surface());
 
 		if (!located.matched()) {
+			if (surface.surface() == Surface.TABLIST && rowFallbackCovered(styled, surface.surface())) {
+				return null;
+			}
+
 			return new Verdict(Bucket.UNTRANSLATED, List.of(), List.of(), nearMiss(surface.surface(), plain), "", "");
 		}
 
@@ -165,6 +169,18 @@ public final class Classifier {
 		}
 
 		return null;
+	}
+
+	/**
+	 * Whether the tab-list label/value fallback completely covers a row no single record owns.
+	 *
+	 * <p>Commission widgets are assembled from a task label and a progress value, so the renderer can
+	 * answer them from the term table even though {@link Translator#locate} quite correctly reports no
+	 * full-row record. Coverage is decided per half: approved proper names may remain English, while an
+	 * unknown label or unknown English value must still leave evidence in the untranslated capture.
+	 */
+	private static boolean rowFallbackCovered(StyledText styled, Surface surface) {
+		return Translator.rowFallbackCovered(styled.slice(0, styled.length()), surface);
 	}
 
 	/**

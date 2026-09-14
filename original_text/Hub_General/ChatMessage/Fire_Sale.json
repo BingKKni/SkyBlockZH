@@ -135,7 +135,7 @@
       ],
       "gloss": "Elizabeth 是 NPC 人名,保留英文;倒计时拆成三个数字占位符,避免 raw 捕获任意句子。",
       "translate": true,
-      "zh": "♨ [传送] 前往 Elizabeth,请在接下来的 %1$s 天 %2$s 小时 %3$s 分钟内抢购!",
+      "zh": "♨ [传送] 前往 Elizabeth,在接下来的 %1$s 天 %2$s 小时 %3$s 分钟内抢购!",
       "segments": [
         {
           "color": "§c",
@@ -160,7 +160,7 @@
         {
           "color": "§e",
           "text": " in the next ",
-          "zh": ",请在接下来的 "
+          "zh": ",在接下来的 "
         },
         {
           "color": "§c",
@@ -171,6 +171,112 @@
           "color": "§e",
           "text": "to grab yours!",
           "zh": "内抢购!"
+        }
+      ]
+    },
+    {
+      "id": "fire_sale_tidal_bowl_last_chance",
+      "context": "限量皮肤售卖接近售罄的聊天提示；皮肤自造专名保留英文。",
+      "text": "♨ Tidal Bowl Flying Fish Skin (%1$s left) A LAST CHANCE A",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "94",
+          "desc": "剩余件数"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "♨ Tidal Bowl Flying Fish Skin (仅剩 %1$s 件) A 最后机会 A",
+      "raw": "§c♨ §dTidal Bowl Flying Fish Skin §e(§c%1$s left§e)§c §c§l§kA§r §c§lLAST CHANCE §c§l§kA",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "♨ ",
+          "zh": "♨ "
+        },
+        {
+          "color": "§d",
+          "text": "Tidal Bowl Flying Fish Skin ",
+          "zh": "Tidal Bowl Flying Fish Skin "
+        },
+        {
+          "color": "§e",
+          "text": "(",
+          "zh": "("
+        },
+        {
+          "color": "§c",
+          "text": "%1$s left",
+          "zh": "仅剩 %1$s 件"
+        },
+        {
+          "color": "§e",
+          "text": ")",
+          "zh": ")"
+        },
+        {
+          "color": "§c",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§c§l§k",
+          "text": "A",
+          "zh": "A"
+        },
+        {
+          "color": "§r",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§c§l",
+          "text": "LAST CHANCE ",
+          "zh": "最后机会 "
+        },
+        {
+          "color": "§c§l§k",
+          "text": "A",
+          "zh": "A"
+        }
+      ]
+    },
+    {
+      "id": "fire_sale_tidal_bowl_ended",
+      "context": "皮肤限时特卖结束；皮肤名保留英文。",
+      "text": "♨ Fire Sale for Tidal Bowl Flying Fish Skin ended!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "♨ Tidal Bowl Flying Fish Skin 的限时特卖结束了!",
+      "raw": "§c♨ §eFire Sale for §dTidal Bowl Flying Fish Skin§r §eended!",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "♨ ",
+          "zh": "♨ "
+        },
+        {
+          "color": "§e",
+          "text": "Fire Sale for ",
+          "zh": "限时特卖: "
+        },
+        {
+          "color": "§d",
+          "text": "Tidal Bowl Flying Fish Skin",
+          "zh": "Tidal Bowl Flying Fish Skin"
+        },
+        {
+          "color": "§r",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§e",
+          "text": "ended!",
+          "zh": "结束了!"
         }
       ]
     }

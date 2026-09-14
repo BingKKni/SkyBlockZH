@@ -123,6 +123,56 @@
       ]
     },
     {
+      "id": "bank_withdrawn_account",
+      "context": "新版银行取款成功提示；后半句报账户余额",
+      "raw": "§aYou have withdrawn §6%1$s coins§a! You now have §6%2$s coins §ain your account!",
+      "text": "You have withdrawn %1$s coins! You now have %2$s coins in your account!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "取出的数量",
+          "type": "number",
+          "example": "2.3M"
+        },
+        {
+          "token": "%2$s",
+          "desc": "取完之后账户里的余额",
+          "type": "number",
+          "example": "0"
+        }
+      ],
+      "gloss": "2026-09-13 实测原文；社区 Wiki Banking 普通页面核对语境。",
+      "translate": true,
+      "zh": "已取出 %1$s 硬币! 账户里现在有 %2$s 硬币!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "You have withdrawn ",
+          "zh": "已取出 "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s coins",
+          "zh": "%1$s 硬币"
+        },
+        {
+          "color": "§a",
+          "text": "! You now have ",
+          "zh": "! 账户里现在有 "
+        },
+        {
+          "color": "§6",
+          "text": "%2$s coins ",
+          "zh": "%2$s 硬币"
+        },
+        {
+          "color": "§a",
+          "text": "in your account!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
       "id": "bank_interest_personal",
       "context": "个人账户结算利息",
       "raw": "§aYou have just received §6%s coins §aas interest in your personal bank account!",

@@ -180,7 +180,7 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "购买一块花园地块"
+      "zh": "购买一块花园地皮"
     },
     {
       "id": "gsb_clean_plot",
@@ -190,7 +190,7 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "清理你的花园地块"
+      "zh": "清理你的花园地皮"
     },
     {
       "id": "gsb_go_to_plot",
@@ -200,7 +200,7 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "前往你的花园地块"
+      "zh": "前往你的花园地皮"
     },
     {
       "id": "gsb_cleanup_progress",
@@ -288,14 +288,14 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "desc": "地块编号",
+          "desc": "地皮编号",
           "type": "number",
           "example": "4"
         }
       ],
       "gloss": "行首是缩进和地点图标。",
       "translate": true,
-      "zh": " ⏣ 地块 - %1$s",
+      "zh": " ⏣ 地皮 - %1$s",
       "segments": [
         {
           "color": "§7",
@@ -310,7 +310,7 @@
         {
           "color": "§a",
           "text": "Plot ",
-          "zh": "地块 "
+          "zh": "地皮 "
         },
         {
           "color": "§7",
@@ -332,14 +332,14 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "desc": "地块编号",
+          "desc": "地皮编号",
           "type": "number",
           "example": "3"
         }
       ],
-      "gloss": "玩家所在地块的那一行,没有地点图标,缩进是青色空格。",
+      "gloss": "玩家所在地皮的那一行,没有地点图标,缩进是青色空格。",
       "translate": true,
-      "zh": "   地块 - %1$s",
+      "zh": "   地皮 - %1$s",
       "segments": [
         {
           "color": "§b",
@@ -349,7 +349,7 @@
         {
           "color": "§a",
           "text": "Plot ",
-          "zh": "地块 "
+          "zh": "地皮 "
         },
         {
           "color": "§7",
@@ -371,20 +371,20 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "desc": "地块编号",
+          "desc": "地皮编号",
           "type": "number",
           "example": "2"
         },
         {
           "token": "%2$s",
-          "desc": "该地块上的害虫数",
+          "desc": "该地皮上的害虫数",
           "type": "number",
           "example": "3"
         }
       ],
       "gloss": "害虫图标 \\uE07F 在 text/Glyphs.java 的折算表里没有通用符号,照码点写(同 Garden_Sidebar 的所在地行)。",
       "translate": true,
-      "zh": "   地块 - %1$s  x%2$s",
+      "zh": "   地皮 - %1$s  x%2$s",
       "segments": [
         {
           "color": "§b",
@@ -394,7 +394,7 @@
         {
           "color": "§a",
           "text": "Plot ",
-          "zh": "地块 "
+          "zh": "地皮 "
         },
         {
           "color": "§7",
@@ -420,7 +420,7 @@
     },
     {
       "id": "gsb_locked",
-      "context": "侧边栏里未解锁的地块行",
+      "context": "侧边栏里未解锁的地皮行",
       "raw": "§c   §cLocked",
       "text": "   Locked",
       "placeholders": [],
@@ -595,9 +595,9 @@
     },
     {
       "id": "gsb_contest_crop_timer",
-      "context": "",
-      "raw": "§a §e○ §f%1$s §a%2$ss",
-      "text": " ○ %1$s %2$ss",
+      "context": "农业竞赛进行中：作物名与剩余时间",
+      "raw": "§a §e○ §f%1$s §a%2$s",
+      "text": " ○ %1$s %2$s",
       "placeholders": [
         {
           "token": "%1$s",
@@ -607,14 +607,14 @@
         },
         {
           "token": "%2$s",
-          "desc": "剩余时间,分和秒之间没有空格(10m30)",
-          "type": "raw",
-          "example": "10m30"
+          "desc": "竞赛剩余时间,服务器使用紧凑的分秒格式",
+          "type": "duration",
+          "example": "10m30s"
         }
       ],
-      "gloss": "服务器把剩余时间写成 10m30s,采集切在末尾的 s 前;分钟的 m 留在值里没法换算,先照样保留数字,只把最后的 s 译成「秒」。",
+      "gloss": "剩余时间必须整段交给 duration 占位符,由引擎把 3m19s / 10m30s 等写法转换成 3分19秒 / 10分30秒；不能把末尾 s 写死在模板里,否则 m 会残留英文。",
       "translate": true,
-      "zh": " ○ %1$s %2$s秒",
+      "zh": " ○ %1$s %2$s",
       "segments": [
         {
           "color": "§a",
@@ -633,8 +633,8 @@
         },
         {
           "color": "§a",
-          "text": "%2$ss",
-          "zh": "%2$s秒"
+          "text": "%2$s",
+          "zh": "%2$s"
         }
       ]
     },
@@ -791,6 +791,28 @@
           "zh": "%2$s 枚"
         }
       ]
+    },
+    {
+      "id": "gsb_contest_bracket_needs_plain",
+      "context": "农业竞赛奖牌门槛差值小于 1k 时没有 k 后缀。",
+      "text": " %1$s has +%2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "medal",
+          "example": "Bronze",
+          "desc": "奖牌档位"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "833",
+          "desc": "差值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": " %1$s还差 +%2$s"
     }
   ]
 }

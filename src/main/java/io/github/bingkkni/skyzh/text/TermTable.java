@@ -224,10 +224,7 @@ public final class TermTable {
 	/**
 	 * The corpus spelling of a known term, or {@code null} if this value is not in the table at all.
 	 *
-	 * <p>Used when a translated colour run is itself a name — {@code Diamond Essence} drawn blue in
-	 * Gemma's greeting — so {@code showOriginal} can write 钻石精华（Diamond Essence） without the
-	 * placeholder machinery. Typed and untyped entries both count: the question is "is this a
-	 * name we have Chinese for", not "would this placeholder type consult the table".
+	 * Typed and untyped entries both count, independently of placeholder eligibility.
 	 */
 	public String canonicalEnglish(String value) {
 		if (value == null || value.isEmpty()) {

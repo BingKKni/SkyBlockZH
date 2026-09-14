@@ -11,7 +11,7 @@
   "excluded": [
     "Sowdust: hysb.wiki/w/Sowdust 确认它是花园货币,但当前项目没有确立中文专名,因此保留英文。",
     "Fear Mongerer: NPC 显示名,按项目人名/NPC 专名规则保留英文。",
-    "Plots: 1, 2, 4:地块编号列表会随玩家解锁情况变化,且本次采集的每个编号带独立颜色,在确认可安全泛化的分段方案前不写固定译文。"
+    "Plots: 1, 2, 4:地皮编号列表会随玩家解锁情况变化,且本次采集的每个编号带独立颜色,在确认可安全泛化的分段方案前不写固定译文。"
   ],
   "lines": [
     {
@@ -341,7 +341,7 @@
           "example": "0"
         }
       ],
-      "gloss": "Compost 页面确认 Compost 是花园中用于解锁地块等用途的物品,这里是数量。",
+      "gloss": "Compost 页面确认 Compost 是花园中用于解锁地皮等用途的物品,这里是数量。",
       "translate": true,
       "zh": "已储存堆肥: %1$s",
       "segments": [
@@ -1124,14 +1124,14 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "desc": "已解锁地块编号列表,每个数字各带颜色",
+          "desc": "已解锁地皮编号列表,每个数字各带颜色",
           "type": "raw",
           "example": "1, 2, 4"
         }
       ],
       "gloss": "值是逗号分隔的数字列表,颜色由服务器按段给,捕获值原样带颜色搬过去。",
       "translate": true,
-      "zh": "地块: %1$s",
+      "zh": "地皮: %1$s",
       "segments": [
         {
           "color": "",
@@ -1663,6 +1663,41 @@
           "zh": "%2$s%"
         }
       ]
+    },
+    {
+      "id": "tab_visitor_emissary_ceanna",
+      "context": "花园 Tab 访客列表；职务 + 人名。",
+      "text": "Emissary Ceanna",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "使节 Ceanna",
+      "raw": "§aEmissary Ceanna"
+    },
+    {
+      "id": "tab_cooldown_duration",
+      "context": "花园 Tab 冷却倒计时；整段 duration 同时处理秒和分秒。",
+      "text": "Cooldown: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "duration",
+          "example": "4m 59s",
+          "desc": "冷却剩余时间"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "冷却时间: %1$s"
+    },
+    {
+      "id": "tab_cooldown_ready",
+      "context": "冷却完成状态。",
+      "text": "Cooldown: READY",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "冷却时间: 就绪"
     }
   ]
 }

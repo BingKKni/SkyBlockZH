@@ -47,6 +47,9 @@ public enum Capture {
 	/** A player's name, which Minecraft limits to sixteen word characters. */
 	PLAYER("[A-Za-z0-9_]{1,16}"),
 
+	/** A Hypixel paid rank token such as VIP, MVP+ or YOUTUBE; always preserved in English. */
+	RANK("[A-Za-z0-9+]{1,16}"),
+
 	/**
 	 * A tier written as a Roman numeral: an enchantment level, a minion tier, a cookie buff's rank.
 	 *
@@ -132,6 +135,7 @@ public enum Capture {
 			case "item_name", "npc_name", "location_name", "mob_name", "rarity", "category_name",
 				"enchantment_name", "enchantment_crop", "mob_family", "accessory_power", "skyblock_month" -> NAME;
 			case "player_name" -> PLAYER;
+			case "rank" -> RANK;
 			case "tier" -> TIER;
 			case "tier_range" -> TIER_RANGE;
 			case "icon" -> ICON;
@@ -158,7 +162,7 @@ public enum Capture {
 		return switch (this) {
 			// The regex is the whole of the rule for these: a numeral is a numeral, and a player's
 			// name is whatever sixteen word characters somebody chose.
-			case NUMBER, PLAYER, TIER, TIER_RANGE, ICON, ORDINAL, DURATION, SEARCH_QUERY -> true;
+			case NUMBER, PLAYER, RANK, TIER, TIER_RANGE, ICON, ORDINAL, DURATION, SEARCH_QUERY -> true;
 			case MULTIPLIER_INCREASE -> new BigDecimal(value).compareTo(BigDecimal.ONE) >= 0;
 			case NAME -> isName(value);
 			case PHRASE -> isValue(value);
@@ -239,6 +243,9 @@ public enum Capture {
 	 * clause chopped off mid-sentence very often does ("...in the").
 	 */
 	private static boolean isName(String value) {
+		if (value.startsWith(" ") || value.endsWith(" ")) {
+			return false;
+		}
 		Possessive.Owned owned = Possessive.split(value);
 
 		if (owned != null && isPlayerName(owned.owner())) {

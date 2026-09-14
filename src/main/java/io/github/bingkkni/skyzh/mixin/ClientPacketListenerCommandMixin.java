@@ -3,6 +3,7 @@ package io.github.bingkkni.skyzh.mixin;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import io.github.bingkkni.skyzh.SkyZHCommand;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.multiplayer.ClientSuggestionProvider;
 import net.minecraft.network.protocol.game.ClientboundCommandsPacket;
@@ -47,6 +48,14 @@ public abstract class ClientPacketListenerCommandMixin {
 		}
 	}
 
+	// ClickEvent.RunCommand bypasses sendCommand and would otherwise go straight to the server.
+	@Inject(method = "sendUnattendedCommand", at = @At("HEAD"), cancellable = true, require = 0)
+	private void skyzh$runOwnClickedCommand(String command, Screen screen, CallbackInfo info) {
+		if (SkyZHCommand.run(command)) {
+			info.cancel();
+		}
+	}
+
 	/** Puts the mod's own words back into the tree the server just replaced. */
 	@Inject(method = "handleCommands", at = @At("TAIL"), require = 0)
 	private void skyzh$addOwnCommands(ClientboundCommandsPacket packet, CallbackInfo info) {
@@ -63,7 +72,7 @@ public abstract class ClientPacketListenerCommandMixin {
 			LiteralArgumentBuilder<ClientSuggestionProvider> flip = skyzh$node("switch");
 
 			for (String which : SkyZHCommand.SWITCHES) {
-				flip.then(skyzh$node(which));
+				flip.then(skyzh$node(which).then(skyzh$node("on")).then(skyzh$node("off")));
 			}
 
 			commands.register(root.then(flip));

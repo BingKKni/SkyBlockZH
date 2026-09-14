@@ -53,7 +53,7 @@ public class SkyZHConfigScreen extends Screen {
 			1, 0
 		);
 		grid.addChild(
-			toggle("showOriginal", SMALL_WIDTH, this.config.showOriginal, value -> this.config.showOriginal = value),
+			toggle("originalTips", SMALL_WIDTH, this.config.originalTips, value -> this.config.originalTips = value),
 			1, 1
 		);
 		// A row to itself, under the three that change what a player sees, because it changes nothing

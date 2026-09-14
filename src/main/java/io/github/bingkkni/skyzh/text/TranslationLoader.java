@@ -212,6 +212,10 @@ public final class TranslationLoader {
 
 	/** Whether a record carries Chinese at all — the difference between "not done yet" and "wrong". */
 	private static boolean translated(JsonObject source) {
+		if (source.has("translate") && !source.get("translate").getAsBoolean()) {
+			return false;
+		}
+
 		if (source.has("continuation") && source.get("continuation").getAsBoolean()) {
 			return true;
 		}

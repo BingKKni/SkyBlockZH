@@ -810,8 +810,8 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "desc": "运行时采集推断出的可变位置，语义待人工确认",
-          "type": "raw",
+          "desc": "SkyBlock 专属附魔名，按规则保留英文；原版附魔才走 Terms.json",
+          "type": "enchantment_name",
           "example": "Turbo-Cane"
         }
       ],
@@ -1384,6 +1384,56 @@
       "gloss": "",
       "translate": true,
       "zh": "12 月 %1$s 日"
+    },
+    {
+      "id": "contest_requires_potato_medal",
+      "context": "Turbo-Potato 等级的竞赛奖牌要求",
+      "text": "Requires %1$s in a Potato Contest!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "medal",
+          "example": "Bronze",
+          "desc": "所需奖牌档位；铜牌或银牌"
+        }
+      ],
+      "gloss": "medal 走现有词表；中文把竞赛条件提前。",
+      "translate": true,
+      "zh": "需要在马铃薯竞赛中获得%1$s!",
+      "raw": "§7Requires §c%1$s §7in a §aPotato Contest§7!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Requires ",
+          "zh": "需要在",
+          "order": 0
+        },
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "in a ",
+          "zh": "",
+          "order": 1,
+          "omit": true
+        },
+        {
+          "color": "§a",
+          "text": "Potato Contest",
+          "zh": "马铃薯竞赛中获得",
+          "order": 2
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!",
+          "order": 4
+        }
+      ]
     }
   ]
 }

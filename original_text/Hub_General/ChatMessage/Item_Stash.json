@@ -1,0 +1,95 @@
+{
+  "source": "logs/skyzh-capture; https://hypixelskyblock.minecraft.wiki/w/Stash",
+  "fetched_at": "2026-09-12",
+  "verified_ingame": true,
+  "lines": [
+    {
+      "id": "stash_empty",
+      "context": "物品暂存区领取反馈",
+      "raw": "§cYour stash isn't holding any items or materials!",
+      "text": "Your stash isn't holding any items or materials!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "暂存区里没有任何物品或材料!"
+    },
+    {
+      "id": "stash_picked_up",
+      "context": "物品暂存区领取反馈",
+      "raw": "§eYou picked up §a%1$s §eitems from your item stash!",
+      "text": "You picked up %1$s items from your item stash!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "4",
+          "desc": "取出的物品数量"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你从物品暂存区取出了 %1$s 件物品!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "You picked up ",
+          "zh": "你从物品暂存区取出了 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§e",
+          "text": "items from your item stash!",
+          "zh": "件物品!"
+        }
+      ]
+    },
+    {
+      "id": "stash_remaining",
+      "context": "物品暂存区领取反馈",
+      "raw": "§eYou still have §b%1$s §eitems in there!",
+      "text": "You still have %1$s items in there!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "2",
+          "desc": "剩余物品数量"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "暂存区里还剩 %1$s 件物品!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "You still have ",
+          "zh": "暂存区里还剩 "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§e",
+          "text": "items in there!",
+          "zh": "件物品!"
+        }
+      ]
+    },
+    {
+      "id": "stash_material_full",
+      "context": "物品暂存区领取反馈",
+      "raw": "§cCouldn't unstash your material stash! Your inventory is full!",
+      "text": "Couldn't unstash your material stash! Your inventory is full!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "背包已满,无法取出材料暂存区中的物品!"
+    }
+  ]
+}

@@ -2230,17 +2230,19 @@
       ],
       "gloss": "",
       "translate": true,
-      "zh": "%1$s；",
+      "zh": "%1$s；每有一名玩家的生命值低于 %1$s，该技能冷却时间缩短 %1$s 秒。",
       "segments": [
         {
           "color": "§a",
           "text": "%1$s ",
-          "zh": "%1$s"
+          "zh": "%1$s",
+          "order": 0
         },
         {
           "color": "§7",
           "text": "of their maximum health. The",
-          "zh": "；"
+          "zh": "；",
+          "order": 1
         }
       ]
     },
@@ -2257,25 +2259,28 @@
           "example": "10"
         }
       ],
-      "gloss": "英文把「每有一名玩家低于 X%」放在后一行，中文两行分别渲染无法换位，所以本行先说缩短多少秒，下一行补条件。",
+      "gloss": "英文把触发条件放在后一行；本组通过跨 continuation 的 segments[].order 调整为中文机制文案的条件在前。",
       "translate": true,
       "continuation": true,
-      "zh": "冷却时间缩短 %1$s 秒，",
+      "zh": "该技能冷却时间缩短 %1$s 秒。",
       "segments": [
         {
           "color": "§7",
           "text": "cooldown is reduced by ",
-          "zh": "冷却时间缩短 "
+          "zh": "该技能冷却时间缩短 ",
+          "order": 5
         },
         {
           "color": "§b",
           "text": "%1$s ",
-          "zh": "%1$s "
+          "zh": "%1$s ",
+          "order": 6
         },
         {
           "color": "§7",
           "text": "seconds",
-          "zh": "秒，"
+          "zh": "秒。",
+          "order": 7
         }
       ]
     },
@@ -2292,25 +2297,28 @@
           "example": "25%"
         }
       ],
-      "gloss": "",
+      "gloss": "与上一行组成同一机制句；中文按条件 → 效果排列。",
       "translate": true,
       "continuation": true,
-      "zh": "每有一名玩家的生命值低于 %1$s 就缩短一次。",
+      "zh": "每有一名玩家的生命值低于 %1$s，",
       "segments": [
         {
           "color": "§7",
           "text": "for every player below ",
-          "zh": "每有一名玩家的生命值低于 "
+          "zh": "每有一名玩家的生命值低于 ",
+          "order": 2
         },
         {
           "color": "§a",
           "text": "%1$s ",
-          "zh": "%1$s "
+          "zh": "%1$s",
+          "order": 3
         },
         {
           "color": "§7",
           "text": "health.",
-          "zh": "就缩短一次。"
+          "zh": "，",
+          "order": 4
         }
       ]
     },

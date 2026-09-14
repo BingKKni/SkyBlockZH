@@ -113,6 +113,11 @@ public final class HoldOriginal {
 		}
 	}
 
+	/** Null when unbound; the display name follows vanilla keyboard and mouse rebinding. */
+	public static String keyName() {
+		return binding == null || binding.isUnbound() ? null : binding.getTranslatedKeyMessage().getString();
+	}
+
 	private static InputConstants.Key configuredKey() {
 		// This is vanilla's saved key name, not a second preference. It changes immediately on rebind.
 		return InputConstants.getKey(binding.saveString());

@@ -152,7 +152,9 @@
     },
     {
       "id": "rod_hook_kind",
-      "exclude": ["Spiked Hook"],
+      "exclude": [
+        "Spiked Hook"
+      ],
       "context": "鱼钩物品名(Common / Spooky / Hotspot / Treasure Hook)",
       "raw": "§f%1$s Hook",
       "text": "%1$s Hook",
@@ -916,6 +918,52 @@
         }
       ],
       "zh": "热点的加成提高 100%。"
+    },
+    {
+      "id": "rod_hook_kind_icon",
+      "context": "拍卖行物品 Lore 中带鱼钩图标的种类名",
+      "raw": "§cථ %1$s Hook",
+      "text": "ථ %1$s Hook",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "鱼钩种类，译名走 Terms.json",
+          "type": "category_name",
+          "example": "Hotspot"
+        }
+      ],
+      "gloss": "固定图标写成字面量，避免旧模板把“ථ Hotspot”整段吞进名称占位符。",
+      "translate": true,
+      "zh": "ථ %1$s鱼钩"
+    },
+    {
+      "id": "rod_line_kind_icon",
+      "context": "拍卖行物品 Lore 中带鱼线图标的种类名",
+      "raw": "§9ꨃ §a%1$s Line",
+      "text": "ꨃ %1$s Line",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "鱼线种类，译名走 Terms.json",
+          "type": "category_name",
+          "example": "Speedy"
+        }
+      ],
+      "gloss": "固定图标写成字面量，避免旧模板把图标吞进名称占位符。",
+      "translate": true,
+      "zh": "ꨃ %1$s鱼线",
+      "segments": [
+        {
+          "color": "§9",
+          "text": "ꨃ ",
+          "zh": "ꨃ "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s Line",
+          "zh": "%1$s鱼线"
+        }
+      ]
     }
   ]
 }

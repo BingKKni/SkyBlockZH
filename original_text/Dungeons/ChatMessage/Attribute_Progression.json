@@ -1,0 +1,363 @@
+{
+  "source": "logs/skyzh-capture; https://hypixelskyblock.minecraft.wiki/w/Attributes; https://hypixelskyblock.minecraft.wiki/w/Sweep",
+  "fetched_at": "2026-09-12",
+  "verified_ingame": true,
+  "lines": [
+    {
+      "id": "attribute_syphon_shard",
+      "context": "吸收狩猎碎片后的属性等级与进度",
+      "raw": "§6You used Syphon on §5%1$s Shard§6!",
+      "text": "You used Syphon on %1$s Shard!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "mob_name",
+          "example": "Bonzo",
+          "desc": "碎片对应的生物名"
+        }
+      ],
+      "gloss": "Syphon 此处是吸收狩猎碎片的操作,不是同名附魔；生物自造专名保留。",
+      "translate": true,
+      "zh": "你吸收了%1$s碎片!",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "You used Syphon on ",
+          "zh": "你吸收了"
+        },
+        {
+          "color": "§5",
+          "text": "%1$s Shard",
+          "zh": "%1$s碎片"
+        },
+        {
+          "color": "§6",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "attribute_progress",
+      "context": "吸收狩猎碎片后的属性等级与进度",
+      "raw": "§a+%1$s %2$s Attribute §7(Level %3$s) - %4$s more to upgrade!",
+      "text": "+%1$s %2$s Attribute (Level %3$s) - %4$s more to upgrade!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "3",
+          "desc": "获得的属性碎片数量"
+        },
+        {
+          "token": "%2$s",
+          "type": "category_name",
+          "example": "Catacombs Explorer",
+          "desc": "属性完整名称"
+        },
+        {
+          "token": "%3$s",
+          "type": "number",
+          "example": "5",
+          "desc": "当前属性等级"
+        },
+        {
+          "token": "%4$s",
+          "type": "number",
+          "example": "3",
+          "desc": "距离升级所需数量"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s %2$s属性 (等级 %3$s) - 再获得 %4$s 个即可升级!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "+%1$s %2$s Attribute ",
+          "zh": "+%1$s %2$s属性 "
+        },
+        {
+          "color": "§7",
+          "text": "(Level %3$s) - %4$s more to upgrade!",
+          "zh": "(等级 %3$s) - 再获得 %4$s 个即可升级!"
+        }
+      ]
+    },
+    {
+      "id": "attribute_level_up_first",
+      "context": "吸收狩猎碎片后的属性等级与进度",
+      "raw": "§b§lATTRIBUTE LEVEL UP §6%1$s §3%2$s",
+      "text": "ATTRIBUTE LEVEL UP %1$s %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "category_name",
+          "example": "Reborn",
+          "desc": "属性完整名称"
+        },
+        {
+          "token": "%2$s",
+          "type": "tier",
+          "example": "I",
+          "desc": "新等级"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "属性升级 %1$s %2$s",
+      "segments": [
+        {
+          "color": "§b§l",
+          "text": "ATTRIBUTE LEVEL UP ",
+          "zh": "属性升级 "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§3",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ]
+    },
+    {
+      "id": "attribute_level_up",
+      "context": "吸收狩猎碎片后的属性等级与进度",
+      "raw": "§b§lATTRIBUTE LEVEL UP §6%1$s §8%2$s➜§3%3$s",
+      "text": "ATTRIBUTE LEVEL UP %1$s %2$s➜%3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "category_name",
+          "example": "Catacombs Explorer",
+          "desc": "属性完整名称"
+        },
+        {
+          "token": "%2$s",
+          "type": "tier",
+          "example": "IV",
+          "desc": "原等级"
+        },
+        {
+          "token": "%3$s",
+          "type": "tier",
+          "example": "V",
+          "desc": "新等级"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "属性升级 %1$s %2$s➜%3$s",
+      "segments": [
+        {
+          "color": "§b§l",
+          "text": "ATTRIBUTE LEVEL UP ",
+          "zh": "属性升级 "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§8",
+          "text": "%2$s➜",
+          "zh": "%2$s➜"
+        },
+        {
+          "color": "§3",
+          "text": "%3$s",
+          "zh": "%3$s"
+        }
+      ]
+    },
+    {
+      "id": "attribute_sweep_reward",
+      "context": "吸收狩猎碎片后的属性等级与进度",
+      "raw": "§7You gained §2+%1$s Sweep",
+      "text": "You gained +%1$s Sweep",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "2",
+          "desc": "横扫属性增量"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你获得了 +%1$s 横扫",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You gained ",
+          "zh": "你获得了 "
+        },
+        {
+          "color": "§2",
+          "text": "+%1$s Sweep",
+          "zh": "+%1$s 横扫"
+        }
+      ]
+    },
+    {
+      "id": "attribute_sent_shards_to_hunting_box",
+      "context": "把多枚属性碎片送入狩猎箱",
+      "text": "You sent %1$s %2$s Shards to your Hunting Box.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "15",
+          "desc": "碎片数量"
+        },
+        {
+          "token": "%2$s",
+          "type": "category_name",
+          "example": "Bonzo",
+          "desc": "碎片基名；功能名走词表，自造角色名保留"
+        }
+      ],
+      "gloss": "Attribute/Hunting Box 机制已由社区 Wiki 核对。Bonzo 是角色名，保留英文。",
+      "translate": true,
+      "zh": "你将 %1$s 个%2$s碎片送入了狩猎箱。",
+      "raw": "§7You sent §a%1$s §5%2$s Shards §7to your §aHunting Box§7.",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You sent ",
+          "zh": "你将 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s 个"
+        },
+        {
+          "color": "§5",
+          "text": "%2$s Shards ",
+          "zh": "%2$s碎片"
+        },
+        {
+          "color": "§7",
+          "text": "to your ",
+          "zh": "送入了"
+        },
+        {
+          "color": "§a",
+          "text": "Hunting Box",
+          "zh": "狩猎箱"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "attribute_sent_one_shard_to_hunting_box",
+      "context": "把单枚属性碎片送入狩猎箱",
+      "text": "You sent a %1$s Shard to your Hunting Box.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "category_name",
+          "example": "Power Dragon",
+          "desc": "碎片基名"
+        }
+      ],
+      "gloss": "单数原文用 a，不能强塞进数字复数模板。",
+      "translate": true,
+      "zh": "你将 1 个%1$s碎片送入了狩猎箱。",
+      "raw": "§7You sent a §6%1$s Shard §7to your §aHunting Box§7.",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You sent a ",
+          "zh": "你将 1 个"
+        },
+        {
+          "color": "§6",
+          "text": "%1$s Shard ",
+          "zh": "%1$s碎片"
+        },
+        {
+          "color": "§7",
+          "text": "to your ",
+          "zh": "送入了"
+        },
+        {
+          "color": "§a",
+          "text": "Hunting Box",
+          "zh": "狩猎箱"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "attribute_progress_maxed",
+      "context": "属性达到 10 级后的碎片吸收结果",
+      "text": "+%1$s %2$s Attribute (Level %3$s) MAXED",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "15",
+          "desc": "获得的碎片数量"
+        },
+        {
+          "token": "%2$s",
+          "type": "category_name",
+          "example": "Catacombs Explorer",
+          "desc": "属性完整名称"
+        },
+        {
+          "token": "%3$s",
+          "type": "number",
+          "example": "10",
+          "desc": "当前等级"
+        }
+      ],
+      "gloss": "Catacombs Explorer 已在现有 Terms 中定为地牢探索者；MAXED 表示属性已满级。",
+      "translate": true,
+      "zh": "+%1$s %2$s属性 (等级 %3$s) 已满级",
+      "raw": "§a+%1$s %2$s Attribute §7(Level %3$s) §a§lMAXED",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "+%1$s %2$s Attribute ",
+          "zh": "+%1$s %2$s属性 "
+        },
+        {
+          "color": "§7",
+          "text": "(Level %3$s) ",
+          "zh": "(等级 %3$s) "
+        },
+        {
+          "color": "§a§l",
+          "text": "MAXED",
+          "zh": "已满级"
+        }
+      ]
+    },
+    {
+      "id": "attribute_syphon_bonzo_shard",
+      "context": "Bonzo 是角色专名，保留英文",
+      "raw": "§6You used Syphon on §5Bonzo Shard§6!",
+      "text": "You used Syphon on Bonzo Shard!",
+      "placeholders": [],
+      "gloss": "精确记录避免把 Bonzo 当缺失怪物术语。",
+      "translate": true,
+      "zh": "你吸收了 Bonzo 碎片!"
+    }
+  ]
+}

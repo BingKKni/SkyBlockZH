@@ -42,7 +42,10 @@ public final class ClientSettingsHarness {
 			{"enabled":false,"showOriginal":false,"captureUntranslated":true,"captureDirectory":"my-captures"}
 			""").getAsJsonObject());
 		check("旧配置保留总开关", old.enabled, false);
-		check("旧配置保留对比开关", old.showOriginal, false);
+		check("旧对比开关不影响新提示默认值", old.originalTips, true);
+		check("保存移除旧对比字段", old.toJson().has("showOriginal"), false);
+		old.originalTips = false;
+		check("原文提示关闭可保存再读取", SkyZHConfig.fromJson(old.toJson()).originalTips, false);
 		check("旧配置保留采集开关", old.captureUntranslated, true);
 		check("旧配置保留目录", old.captureDirectory, "my-captures");
 		check("旧配置缺少提示键时默认开", old.captureNotifications, true);
@@ -86,6 +89,7 @@ public final class ClientSettingsHarness {
 		binding.setKey(InputConstants.UNKNOWN);
 		KeyMapping.resetMapping();
 		check("原版 NONE 是未绑定", binding.isUnbound(), true);
+		check("解绑后不提示 X", HoldOriginal.keyName(), null);
 		check("NONE 不会退回 X", binding.matches(new KeyEvent(InputConstants.KEY_X, 0, 0)), false);
 		check("NONE 可持久化", InputConstants.getKey(binding.saveString()), InputConstants.UNKNOWN);
 

@@ -234,6 +234,9 @@ public final class CaptureHarness {
 			ChatShape.npcName("[SECURITY] Sloth: Downloading suspicious mods is risky!"), "Sloth");
 
 		check("带等级和称号的玩家发言", ChatShape.isPlayerChat("[123] [MVP+] Someone: hi"), true);
+		check("MVP 称号的玩家发言", ChatShape.isPlayerChat("[123] [MVP] Someone: hi"), true);
+		check("VIP 称号的玩家发言", ChatShape.isPlayerChat("[123] [VIP] Someone: hi"), true);
+		check("YOUTUBE 称号的玩家发言", ChatShape.isPlayerChat("[123] [YOUTUBE] Someone: hi"), true);
 		check("裸名玩家发言", ChatShape.isPlayerChat("Someone: hi"), true);
 		check("公会频道", ChatShape.isPlayerChat("Guild > Someone [Officer]: hi"), true);
 		check("组队频道", ChatShape.isPlayerChat("Party > Someone: hi"), true);
@@ -265,6 +268,9 @@ public final class CaptureHarness {
 		checkNothing("纯数字没有可翻译的东西", CaptureSurface.SCOREBOARD, "§a1,234");
 		checkNothing("风向罗盘箭头行没有词", CaptureSurface.SCOREBOARD, "§9⋖ §7≈ §9⋗");
 		checkNothing("Tab 列表里的玩家名不采集", CaptureSurface.TABLIST, "§7[123] §b[MVP§c+§b] §aSomeone");
+		checkNothing("Tab MVP 玩家名不采集", CaptureSurface.TABLIST, "§7[123] §b[MVP] §aSomeone");
+		checkNothing("Tab VIP 玩家名不采集", CaptureSurface.TABLIST, "§7[123] §a[VIP] §aSomeone");
+		checkNothing("Tab YOUTUBE 玩家名不采集", CaptureSurface.TABLIST, "§7[123] §c[YOUTUBE] §aSomeone");
 		// Hypixel hangs a guild icon, an AFK mark and a party symbol off the end of a tab-list row.
 		// Without them here, half of one session's tab capture was a list of strangers' usernames.
 		checkNothing("名字后面挂着公会图标也不采集", CaptureSurface.TABLIST, "§8[§2184§8] §binkkni §b§lᛝ");
@@ -275,6 +281,43 @@ public final class CaptureHarness {
 		// The tab list peels a value off after the colon before looking a label up, so a row whose
 		// label is translated but whose value is not must not come back as untranslated.
 		checkNothing("Tab 行的数值部分不算未翻译", CaptureSurface.TABLIST, "§9Mining Speed: §a1,234");
+		checkNothing("Tab 委托标签由整行词表兜底", CaptureSurface.TABLIST,
+			"§rCliffside Veins Mithril: §a0%");
+		checkNothing("Tab 带序号任务及状态由整行词表兜底", CaptureSurface.TABLIST,
+			"§r1) Mithril Plate: §aReady!");
+		checkVerdict("Tab 已知状态不能掩盖未知的序号任务", CaptureSurface.TABLIST,
+			"§r1) Unverified Task: §aReady!", Classifier.Bucket.UNTRANSLATED);
+		checkNothing("Tab 活动任务标签由整行词表兜底", CaptureSurface.TABLIST,
+			"§rGoblin Raid Slayer: §a0%");
+		checkNothing("Tab 词表保留英文专名仍算完整覆盖", CaptureSurface.TABLIST,
+			"§rAmber Gemstone Collector: §a0%");
+		checkNothing("Tab 结构前导空格不伪报颜色失真", CaptureSurface.TABLIST,
+			" §e4,322.6/1M XP §6(0.4%)");
+
+		// Coverage describes the corpus, not the player's current display choice. The row renderer's
+		// term/record fallback still has to suppress fully covered commission rows while translation is
+		// visually bypassed, without hiding an unknown task merely because its status is known.
+		SkyZHConfig config = SkyZHConfig.get();
+		boolean enabled = config.enabled;
+		boolean held = HoldOriginal.active();
+
+		try {
+			config.enabled = false;
+			checkNothing("关闭翻译时 Tab 物品记录兜底仍按已覆盖处理", CaptureSurface.TABLIST,
+				"§r1) Hot Chocolate: §aReady!");
+			checkVerdict("关闭翻译时未知 Tab 标签仍要采集", CaptureSurface.TABLIST,
+				"§r1) Unverified Task: §aReady!", Classifier.Bucket.UNTRANSLATED);
+
+			config.enabled = true;
+			HoldOriginal.setActive(true);
+			checkNothing("按住原文键时 Tab 物品记录兜底仍按已覆盖处理", CaptureSurface.TABLIST,
+				"§r1) Hot Chocolate: §aReady!");
+			checkVerdict("按住原文键时未知 Tab 标签仍要采集", CaptureSurface.TABLIST,
+				"§r1) Unverified Task: §aReady!", Classifier.Bucket.UNTRANSLATED);
+		} finally {
+			config.enabled = enabled;
+			HoldOriginal.setActive(held);
+		}
 
 		// The diagnostic this whole feature was built to make routine: the corpus does cover this
 		// sentence, and one invisible character is all that keeps the two apart.

@@ -1,0 +1,251 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/The_End; https://hypixelskyblock.minecraft.wiki/w/Ender_Dragon; https://hypixelskyblock.minecraft.wiki/w/Crimson_Isle; https://hypixelskyblock.minecraft.wiki/w/Matriarch; https://hypixelskyblock.minecraft.wiki/w/Broodmother",
+  "fetched_at": "2026-09-13",
+  "verified_ingame": true,
+  "source_note": "原文与颜色来自本轮运行时采集；语境用社区 Wiki 原网页核对。",
+  "capture_files": [
+    "Combat/TabList/Tab_List.json"
+  ],
+  "lines": [
+    {
+      "id": "tab_eyes_placed",
+      "context": "末影龙祭坛进度",
+      "text": "Eyes placed: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "已放置/总数",
+          "type": "raw",
+          "example": "0/8"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "已放置召唤之眼: %1$s"
+    },
+    {
+      "id": "tab_non_god_effects",
+      "context": "Tab 页脚状态",
+      "text": "You have %1$s non-god effects.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "效果数量",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你有 %1$s 个非神药效果。"
+    },
+    {
+      "id": "tab_effects_hint",
+      "context": "Tab 页脚提示",
+      "text": "Use \"/effects\" to see them!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "输入 \"/effects\" 查看!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Use \"",
+          "zh": "输入 \""
+        },
+        {
+          "color": "§6",
+          "text": "/effects",
+          "zh": "/effects"
+        },
+        {
+          "color": "§7",
+          "text": "\" to see them!",
+          "zh": "\" 查看!"
+        }
+      ]
+    },
+    {
+      "id": "tab_wither_effect",
+      "context": "原版状态效果与剩余时间",
+      "text": "Wither I %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "紧凑时长",
+          "type": "duration",
+          "example": "9s"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "凋零 I %1$s"
+    },
+    {
+      "id": "tab_dragon_spawned",
+      "context": "末影龙状态",
+      "text": "Dragon spawned!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "巨龙已出现!"
+    },
+    {
+      "id": "tab_dragon_type",
+      "context": "末影龙类型",
+      "text": "Dragon: (%1$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "类型词；译名走词表",
+          "type": "raw",
+          "example": "Wise"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "巨龙: (%1$s)",
+      "segments": [
+        {
+          "color": "§b§l",
+          "text": "Dragon: ",
+          "zh": "巨龙: "
+        },
+        {
+          "color": "§f",
+          "text": "(%1$s)",
+          "zh": "(%1$s)"
+        }
+      ]
+    },
+    {
+      "id": "tab_egg_respawning",
+      "context": "龙蛋状态",
+      "text": "Egg respawning!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "龙蛋重生中!"
+    },
+    {
+      "id": "tab_broodmother_alive_runtime",
+      "context": "蜘蛛洞穴 Tab 列表中的育母蜘蛛状态；社区 Wiki 说明 Alive 表示育母蜘蛛已经生成。",
+      "raw": " Broodmother: §4Alive!",
+      "text": " Broodmother: Alive!",
+      "placeholders": [],
+      "gloss": "2026-09-13 实机原文与颜色；社区 Wiki 普通页面于 2026-09-11 更新，状态含义与实机一致。用精确记录而非状态占位符，避免未知状态只翻一半。",
+      "translate": true,
+      "zh": " 育母蜘蛛: 已现身!",
+      "segments": [
+        {
+          "color": "",
+          "text": " Broodmother: ",
+          "zh": " 育母蜘蛛: "
+        },
+        {
+          "color": "§4",
+          "text": "Alive!",
+          "zh": "已现身!"
+        }
+      ]
+    },
+    {
+      "id": "tab_broodmother_slain_runtime",
+      "context": "蜘蛛洞穴 Tab 列表中的育母蜘蛛状态；社区 Wiki 说明 Slain 表示距离重生尚有 9 至 10 分钟。",
+      "raw": " Broodmother: §eSlain",
+      "text": " Broodmother: Slain",
+      "placeholders": [],
+      "gloss": "2026-09-13 实机原文与颜色；社区 Wiki 普通页面于 2026-09-11 更新，状态含义与实机一致。用精确记录而非状态占位符，避免未知状态只翻一半。",
+      "translate": true,
+      "zh": " 育母蜘蛛: 已被击杀",
+      "segments": [
+        {
+          "color": "",
+          "text": " Broodmother: ",
+          "zh": " 育母蜘蛛: "
+        },
+        {
+          "color": "§e",
+          "text": "Slain",
+          "zh": "已被击杀"
+        }
+      ]
+    },
+    {
+      "id": "tab_rain_timer",
+      "context": "蜘蛛洞穴降雨倒计时",
+      "text": "Rain: in %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "紧凑时长",
+          "type": "duration",
+          "example": "38m"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "降雨: %1$s 后",
+      "segments": [
+        {
+          "color": "",
+          "text": "Rain: ",
+          "zh": "降雨: "
+        },
+        {
+          "color": "§b",
+          "text": "in %1$s",
+          "zh": "%1$s 后"
+        }
+      ]
+    },
+    {
+      "id": "tab_volcano_status",
+      "context": "绯红岛火山状态",
+      "text": "Volcano: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "High/Low 等状态",
+          "type": "raw",
+          "example": "High"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "火山: %1$s"
+    },
+    {
+      "id": "tab_matriarch_status",
+      "context": "重珍珠女族长状态",
+      "text": "Matriarch: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Available 等状态",
+          "type": "raw",
+          "example": "Available"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "女族长: %1$s"
+    },
+    {
+      "id": "tab_protector_status",
+      "context": "末地石守护者状态",
+      "text": "Protector: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Resting/Alive 等状态",
+          "type": "raw",
+          "example": "Resting"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "守护者: %1$s"
+    }
+  ]
+}

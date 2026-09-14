@@ -93,6 +93,15 @@ public final class Translator {
 
 			return !text.isEmpty() && text.isBlank();
 		}
+
+		/**
+		 * Whether the server used enough leading padding that it can only be centring, not a short list
+		 * indent. A few reward lines are shared by centred event results and four-space task summaries;
+		 * the latter must stay left-aligned while the former needs its English-width padding replaced.
+		 */
+		public boolean widelyCentredByServer() {
+			return centredByServer() && this.head.getString().length() >= 8;
+		}
 	}
 
 	public static void reload() {
@@ -116,22 +125,23 @@ public final class Translator {
 	 * mod has any business rewriting.
 	 */
 	public static Result translate(Component source, Surface surface) {
-		return translate(source, surface, false);
-	}
-
-	/**
-	 * Translates one line. {@code labelOriginals} is the chat/lore half of {@code showOriginal}:
-	 * colour runs that are themselves a term-table name keep the English in brackets. Callers that
-	 * already label the whole line — container titles, tooltip names — pass {@code false} so the
-	 * name is not bracketed twice.
-	 */
-	public static Result translate(Component source, Surface surface, boolean labelOriginals) {
 		SkyZHConfig config = SkyZHConfig.get();
 
 		if (!config.enabled || HoldOriginal.active()) {
 			return new Result(source.copy(), null, null, null);
 		}
 
+		return translateAvailable(source, surface, config);
+	}
+
+	/**
+	 * Renders a corpus-backed translation without consulting the two visual bypasses.
+	 *
+	 * <p>Capture uses this only while deciding whether the tab-list's label/value fallback covers a
+	 * row. Turning the pixels off, or holding the original-text key, does not make a corpus record
+	 * disappear and therefore must not turn a covered row into an untranslated capture.
+	 */
+	private static Result translateAvailable(Component source, Surface surface, SkyZHConfig config) {
 		StyledText styled = StyledText.of(source);
 		// Matching runs on the canonical spelling of the line: the same characters with SkyBlock's
 		// icon font folded back onto the symbols the corpus was written with. Drawing still uses the
@@ -167,7 +177,7 @@ public final class Translator {
 				);
 			}
 
-			MutableComponent translated = entry.render(core, match, index.terms(), labelOriginals);
+			MutableComponent translated = entry.render(core, match, index.terms());
 
 			return new Result(
 				skyBlockName(translated, config),
@@ -243,7 +253,7 @@ public final class Translator {
 	 * single message and every member of a newline-separated message.
 	 */
 	public static Component translateChatLine(Component source, Font font, int width) {
-		Result result = translate(source, Surface.CHAT, SkyZHConfig.get().showOriginal);
+		Result result = translate(source, Surface.CHAT);
 
 		return centerChat(result)
 			? TextLayout.centeredWithSpaces(font, result.core(), width)
@@ -252,7 +262,8 @@ public final class Translator {
 
 	public static boolean centerChat(Result result) {
 		return result.matched() && ("center_chat_banner".equals(result.entry().layout())
-			|| "center_chat_if_padded".equals(result.entry().layout()) && result.centredByServer());
+			|| "center_chat_if_padded".equals(result.entry().layout()) && result.centredByServer()
+			|| "center_chat_if_widely_padded".equals(result.entry().layout()) && result.widelyCentredByServer());
 	}
 
 	/** The newline-preserving counterpart of {@link #translateChatLine}. */
@@ -425,10 +436,47 @@ public final class Translator {
 	 * answered for, so a row the corpus spells out in full is untouched.
 	 */
 	public static Component translateRow(Component source, Surface surface) {
-		Result row = translate(source, surface);
+		SkyZHConfig config = SkyZHConfig.get();
+
+		if (!config.enabled || HoldOriginal.active()) {
+			return source.copy();
+		}
+
+		return translateRowAvailable(source, surface, config);
+	}
+
+	/**
+	 * Whether the tab-list's label/value fallback completely covers a row no single record owns.
+	 *
+	 * <p>Coverage is based on whether each English half has an answering term or record, not whether
+	 * the rendered Chinese still contains Latin letters. Approved translations deliberately retain
+	 * proper names such as {@code Amber} and {@code Boss Corleone}; those names do not make the row
+	 * untranslated. The visual master switch and held original-text key are intentionally ignored.
+	 */
+	public static boolean rowFallbackCovered(Component source, Surface surface) {
+		SkyZHConfig config = SkyZHConfig.get();
+		StyledText styled = StyledText.of(source);
+		String plain = styled.canonical();
+		int colon = plain.indexOf(':');
+
+		if (colon < 0) {
+			return false;
+		}
+
+		Component label = termedLabel(styled.slice(0, colon), config);
+		Component value = valued(styled.slice(colon, styled.length()), surface, config);
+		boolean any = label != null || value != null;
+		boolean labelCovered = label != null || !hasEnglishWord(plain.substring(0, colon));
+		boolean valueCovered = value != null || !hasEnglishWord(plain.substring(colon));
+
+		return any && labelCovered && valueCovered;
+	}
+
+	private static Component translateRowAvailable(Component source, Surface surface, SkyZHConfig config) {
+		Result row = translateAvailable(source, surface, config);
 
 		if (row.matched()) {
-			Component value = row.tail() == null ? null : valued(row.tail(), surface);
+			Component value = row.tail() == null ? null : valued(row.tail(), surface, config);
 
 			if (value == null) {
 				return row.padded();
@@ -453,8 +501,8 @@ public final class Translator {
 			return row.padded();
 		}
 
-		Component label = termed(styled.slice(0, colon));
-		Component value = valued(styled.slice(colon, styled.length()), surface);
+		Component label = termedLabel(styled.slice(0, colon), config);
+		Component value = valued(styled.slice(colon, styled.length()), surface, config);
 
 		if (label == null && value == null) {
 			return row.padded();
@@ -463,6 +511,56 @@ public final class Translator {
 		return Component.empty()
 			.append(label != null ? label : styled.slice(0, colon))
 			.append(value != null ? value : styled.slice(colon, styled.length()));
+	}
+
+	/**
+	 * A tab-list label translated as a whole, or without the numeric list marker Hypixel puts before
+	 * ordered commission requirements ({@code 1) Mithril Plate}).
+	 *
+	 * <p>The marker is layout, not part of the task name stored in the term table. It stays exactly as
+	 * the server sent it while the words after it are looked up as one closed value. Ordered requirements
+	 * can also name an item ({@code Mithril Plate}), so an exact ITEM record gets one chance after the
+	 * term table. Unknown task names still return {@code null} rather than being translated word by word.
+	 */
+	private static Component termedLabel(Component half, SkyZHConfig config) {
+		Component whole = termed(half);
+
+		if (whole != null) {
+			return whole;
+		}
+
+		StyledText styled = StyledText.of(half);
+		String plain = styled.canonical();
+		int from = wordsStart(plain);
+		int to = wordsEnd(plain, from);
+		int marker = from;
+
+		while (marker < to && Character.isDigit(plain.charAt(marker))) {
+			marker++;
+		}
+
+		if (marker == from || marker >= to || plain.charAt(marker) != ')') {
+			return null;
+		}
+
+		int words = marker + 1;
+
+		while (words < to && plain.charAt(words) == ' ') {
+			words++;
+		}
+
+		String zh = words < to ? index.terms().translate(VALUE, plain.substring(words, to)) : null;
+		Component replacement = zh == null ? null : Component.literal(zh).setStyle(styled.styleAt(words));
+
+		if (replacement == null && words < to) {
+			Result item = translateAvailable(styled.slice(words, to), Surface.ITEM, config);
+
+			if (item.matched()) {
+				replacement = item.padded();
+			}
+		}
+
+		return replacement == null ? null : around(styled, words, to, replacement);
 	}
 
 	/**
@@ -480,8 +578,14 @@ public final class Translator {
 		String plain = styled.canonical();
 		int from = wordsStart(plain);
 		int to = wordsEnd(plain, from);
-
 		String zh = from < to ? index.terms().translate(VALUE, plain.substring(from, to)) : null;
+
+		// Statuses are sometimes emphatic ("Ready!") while the term table stores the reusable word.
+		// Keep the punctuation live and only retry the exact word before it; never split the word itself.
+		if (zh == null && to > from && plain.charAt(to - 1) == '!') {
+			to--;
+			zh = from < to ? index.terms().translate(VALUE, plain.substring(from, to)) : null;
+		}
 
 		if (zh == null) {
 			return null;
@@ -500,7 +604,7 @@ public final class Translator {
 	 * words between the separator and the trailing padding are looked up, and those come back
 	 * exactly as they arrived around the translation.
 	 */
-	private static Component valued(Component half, Surface surface) {
+	private static Component valued(Component half, Surface surface, SkyZHConfig config) {
 		Component termed = termed(half);
 
 		if (termed != null) {
@@ -516,9 +620,27 @@ public final class Translator {
 			return null;
 		}
 
-		Result value = translate(styled.slice(from, to), surface);
+		Result value = translateAvailable(styled.slice(from, to), surface, config);
 
 		return value.matched() ? around(styled, from, to, value.padded()) : null;
+	}
+
+	private static boolean hasEnglishWord(String plain) {
+		int run = 0;
+
+		for (int i = 0; i < plain.length(); i++) {
+			char c = plain.charAt(i);
+
+			if (c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z') {
+				if (++run >= 2) {
+					return true;
+				}
+			} else {
+				run = 0;
+			}
+		}
+
+		return false;
 	}
 
 	/** Where the words of a row's half begin, past the colon and the spaces the server put before them. */

@@ -20,8 +20,7 @@ public final class LoreHarness {
 		TranslationHarness.installIndex(index);
 		for (var file : files.entrySet()) {
 			if (!file.getKey().contains("/GUI_Lore/")) continue;
-			for (JsonElement el : file.getValue().getAsJsonArray("lines")) {
-				JsonObject r = el.getAsJsonObject();
+			for (JsonObject r : records(file.getValue())) {
 				String id = r.get("id").getAsString();
 				String raw = sample(r);
 				List<List<Component>> samples = new ArrayList<>();
@@ -49,7 +48,7 @@ public final class LoreHarness {
 						LoreMatcher.Match reflow = LoreMatcher.find(index, List.of(whole.slice(0, split),
 							whole.slice(split + 1, whole.length())), 0);
 						check(id + " 改变英文断行", reflow != null && reflow.lines() == 2
-							&& rendered.equals(TranslationHarness.legacy(reflow.render(index.terms(), false))));
+							&& rendered.equals(TranslationHarness.legacy(reflow.render(index.terms()))));
 					}
 				}
 			}
@@ -65,7 +64,7 @@ public final class LoreHarness {
 				check(title, match == null); continue;
 			}
 			String expected = TranslationHarness.legacy(Component.literal(f.get("expected").getAsString()));
-			String actual = match == null ? "<no match>" : TranslationHarness.legacy(match.render(index.terms(), false));
+			String actual = match == null ? "<no match>" : TranslationHarness.legacy(match.render(index.terms()));
 			check(title + " expected=" + expected + " actual=" + actual, expected.equals(actual));
 			if (match != null) check(title + " 只消费已匹配行", match.lines() == f.get("consumed").getAsInt());
 		}
@@ -141,8 +140,21 @@ public final class LoreHarness {
 		index.add(Surface.LORE, text, entry);
 	}
 
+	private static List<JsonObject> records(JsonObject file) {
+		List<JsonObject> records = new ArrayList<>();
+		for (Map.Entry<String, JsonElement> member : file.entrySet()) {
+			JsonElement value = member.getValue();
+			if (!value.isJsonArray()) continue;
+			for (JsonElement element : value.getAsJsonArray()) {
+				if (element.isJsonObject() && element.getAsJsonObject().has("id"))
+					records.add(element.getAsJsonObject());
+			}
+		}
+		return records;
+	}
+
 	private static String sample(JsonObject r) {
-		String raw = r.get("raw").getAsString();
+		String raw = r.has("raw") ? r.get("raw").getAsString() : r.get("text").getAsString();
 		Map<String,String> values = new HashMap<>();
 		for (JsonElement el : r.getAsJsonArray("placeholders")) {
 			JsonObject p = el.getAsJsonObject(); values.put(p.get("token").getAsString(), p.get("example").getAsString());

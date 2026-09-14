@@ -1,5 +1,6 @@
 package io.github.bingkkni.skyzh.mixin;
 
+import io.github.bingkkni.skyzh.OriginalTips;
 import io.github.bingkkni.skyzh.capture.CaptureContext;
 import io.github.bingkkni.skyzh.capture.TextCapture;
 import java.util.List;
@@ -21,10 +22,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 /**
  * Runtime capture, read straight off the wire.
  *
- * <p>Every hook here is {@code @Inject} at {@code HEAD} and returns nothing: the packet is observed
- * and handed on untouched, so this class cannot change what the game does even if it wanted to. That
- * is the whole shape of the feature — capture reads, the render hooks in the rest of this package
- * write, and the two never meet.
+ * <p>Capture observes packets at HEAD without changing them. The separate original-key hint observes
+ * server chat at TAIL, after vanilla has displayed it; it does not depend on capture being enabled.
+ * Neither path modifies the packet or the game state.
  *
  * <p><b>Why the packet handler and not the screen.</b> This is the point in the client where the text
  * is provably Hypixel's. One frame later a tooltip has lines four mods contributed, the sidebar may
@@ -51,6 +51,13 @@ public abstract class ClientPacketListenerCaptureMixin {
 			TextCapture.actionBar(packet.content());
 		} else {
 			TextCapture.chat(packet.content());
+		}
+	}
+
+	@Inject(method = "handleSystemChat", at = @At("TAIL"), require = 0)
+	private void skyzh$originalTip(ClientboundSystemChatPacket packet, CallbackInfo info) {
+		if (!packet.overlay()) {
+			OriginalTips.serverChat(packet.content());
 		}
 	}
 

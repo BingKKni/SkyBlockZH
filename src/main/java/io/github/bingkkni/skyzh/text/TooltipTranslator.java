@@ -2,6 +2,7 @@ package io.github.bingkkni.skyzh.text;
 
 import io.github.bingkkni.skyzh.HypixelServer;
 import io.github.bingkkni.skyzh.HoldOriginal;
+import io.github.bingkkni.skyzh.OriginalTips;
 import io.github.bingkkni.skyzh.SkyZHConfig;
 import io.github.bingkkni.skyzh.platform.ClientGui;
 import java.util.ArrayList;
@@ -122,9 +123,9 @@ public final class TooltipTranslator {
 		Minecraft minecraft = Minecraft.getInstance();
 		Screen screen = minecraft == null ? null : ClientGui.screen(minecraft);
 		boolean terminalNames = screen instanceof AbstractContainerScreen<?> && requiresOriginalName(screen.getTitle());
-		boolean keepOriginalNames = config.showOriginal || terminalNames;
+		String hintKey = config.originalTips && screen != null ? HoldOriginal.keyName() : null;
 		// A tooltip can be identical in a shop and in a terminal; the display policy is part of its key.
-		StringBuilder key = new StringBuilder().append(keepOriginalNames).append(':').append(terminalNames).append('\n');
+		StringBuilder key = new StringBuilder().append(hintKey).append(':').append(terminalNames).append('\n');
 
 		for (Component line : lines) {
 			StyledText styled = StyledText.of(line);
@@ -165,6 +166,7 @@ public final class TooltipTranslator {
 		List<Component> result = new ArrayList<>(lines.size());
 		boolean merging = false;
 		boolean name = true;
+		boolean hint = false;
 
 		for (int i = 0; i < lines.size(); i++) {
 			Component line = lines.get(i);
@@ -172,7 +174,7 @@ public final class TooltipTranslator {
 				LoreMatcher.Match sentence = LoreMatcher.find(Translator.index(), lines, i);
 				if (sentence != null) {
 					Component rendered = Translator.skyBlockName(
-						sentence.render(Translator.index().terms(), config.showOriginal), config);
+						sentence.render(Translator.index().terms()), config);
 					result.addAll(TextLayout.wrap(font, rendered, width));
 					i += sentence.lines() - 1;
 					// A complete sentence must never swallow an unrelated legacy continuation.
@@ -182,16 +184,16 @@ public final class TooltipTranslator {
 			}
 			Translator.Result translated = name
 				? translateItemName(line)
-				: Translator.translate(line, Surface.ITEM, config.showOriginal);
+				: Translator.translate(line, Surface.ITEM);
 
 			if (name) {
 				name = false;
 
-				if (translated.matched() && keepOriginalNames
-					&& (terminalNames || ItemNames.canonical(StyledText.of(line).plain()) != null)) {
-					// A confirmed item name keeps the English search key. Terminal letter puzzles are
-					// the deliberate exception: their answer data must stay visible regardless of catalog identity.
-					result.add(OriginalLabel.append(translated.padded(), line));
+				hint = hintKey != null && !terminalNames
+					&& OriginalTips.eligibleName(line, translated);
+				if (terminalNames) {
+					// Terminal letter puzzles must retain their English answer data.
+					result.add(line);
 					merging = true;
 					continue;
 				}
@@ -232,7 +234,7 @@ public final class TooltipTranslator {
 					result.addAll(TextLayout.wrap(font, translated.padded(), width));
 				} else {
 					Component rendered = Translator.skyBlockName(
-						TranslationEntry.renderJoined(joined, Translator.index().terms(), config.showOriginal), config
+						TranslationEntry.renderJoined(joined, Translator.index().terms()), config
 					);
 					Component padded = pad(translated.head(), rendered, translated.tail());
 
@@ -252,6 +254,9 @@ public final class TooltipTranslator {
 			merging = translated.matched();
 		}
 
+		if (hint) {
+			result.add(OriginalTips.loreHint(hintKey));
+		}
 		List<Component> immutable = List.copyOf(result);
 
 		synchronized (CACHE) {

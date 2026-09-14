@@ -859,47 +859,86 @@
       "zh": "堆肥器速度"
     },
     {
-      "id": "cu_increases_production_1",
-      "context": "",
+      "id": "cu_increases_production_speed_1",
+      "context": "堆肥器速度升级说明首行",
       "raw": "§7Increases composter production",
       "text": "Increases composter production",
       "placeholders": [],
-      "gloss": "尾行「speed by 0%」/「compost by 0%」两种,数值和对象都在尾行;首行只写主语,尾行的分段接着说完。",
+      "gloss": "与下一行组成完整说明；使用字面尾行，避免宽泛 raw 占位符误吃其他物品 Lore。",
       "translate": true,
-      "zh": "堆肥器的产出"
+      "zh": "堆肥器"
     },
     {
-      "id": "cu_by_percent",
-      "context": "",
-      "raw": "§7%1$s by §a%2$s%§7.",
-      "text": "%1$s by %2$s%.",
+      "id": "cu_increases_production_speed_2",
+      "context": "接上一行：产出速度增幅",
+      "raw": "§7speed by §a%1$s%§7.",
+      "text": "speed by %1$s%.",
       "placeholders": [
         {
           "token": "%1$s",
-          "desc": "speed / compost,译名走 _shared/Terms.json",
-          "type": "raw",
-          "example": "speed"
-        },
-        {
-          "token": "%2$s",
-          "desc": "百分比",
+          "desc": "速度增幅百分比",
           "type": "number",
-          "example": "0"
+          "example": "20"
         }
       ],
-      "gloss": "speed → 速度、compost → 堆肥:「堆肥器产出速度提高 20%」。",
+      "gloss": "与首行合并为「堆肥器的产出速度提高 N%」。",
       "translate": true,
-      "zh": "%1$s提高 %2$s%。",
+      "zh": "的产出速度提高 %1$s%。",
       "segments": [
         {
           "color": "§7",
-          "text": "%1$s by ",
-          "zh": "%1$s提高 "
+          "text": "speed by ",
+          "zh": "的产出速度提高 "
         },
         {
           "color": "§a",
-          "text": "%2$s%",
-          "zh": "%2$s%"
+          "text": "%1$s%",
+          "zh": "%1$s%"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "continuation": true
+    },
+    {
+      "id": "cu_increases_production_compost_1",
+      "context": "堆肥器多重产出升级说明首行",
+      "raw": "§7Increases composter production",
+      "text": "Increases composter production",
+      "placeholders": [],
+      "gloss": "与下一行组成完整说明；同原文首行复用相同译文。",
+      "translate": true,
+      "zh": "堆肥器"
+    },
+    {
+      "id": "cu_increases_production_compost_2",
+      "context": "接上一行：额外堆肥产量增幅",
+      "raw": "§7compost by §a%1$s%§7.",
+      "text": "compost by %1$s%.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "额外堆肥产量百分比",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "与首行合并为「堆肥器产出的堆肥数量提高 N%」。",
+      "translate": true,
+      "zh": "产出的堆肥数量提高 %1$s%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "compost by ",
+          "zh": "产出的堆肥数量提高 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s%",
+          "zh": "%1$s%"
         },
         {
           "color": "§7",

@@ -46,11 +46,10 @@ instruction first, the result is "this surface stops being translated", not "the
 The startup log prints how many records loaded per surface, which is how you tell "not translated
 yet" from "not working".
 
-One optional path does read packets, and only when a switch that is off by default is turned on: the
-capture described [below](#runtime-capture-which-is-off-by-default), which writes text the corpus
-cannot answer for to a file. It changes no packet, no game state and no pixel. It does send exactly
-one thing, and only with that switch on: a subscription to Hypixel's own location event, described
-[below](#the-one-thing-that-is-sent).
+Original-key hints observe incoming server chat without modifying or sending packets; rebuilding chat
+history cannot emit another hint. The separate, default-off [capture](#runtime-capture-which-is-off-by-default)
+path writes uncovered text to files without changing packets, game state or pixels. Only capture may send
+a subscription to Hypixel's own location event, described [below](#the-one-thing-that-is-sent).
 
 ## The three known problems, and how each is handled
 
@@ -125,7 +124,7 @@ Mod Menu is a soft dependency. Without it, edit `config/skyzh.json`, which docum
 |---|---|---|
 | `enabled` | on | Master switch |
 | `translateSkyBlockName` | on | Render "SkyBlock" as 空岛生存. Compounds use the short form and get their spacing fixed: `你的 SkyBlock 等级` → `你的空岛等级`; standalone occurrences keep the full name. See below for where the substitution is allowed to happen |
-| `showOriginal` | on | Retain English search names only for real SkyBlock items, including soulbound items and item references in chat/lore. Excludes menu titles, controls, pages, events, stats and states. `ItemNames` reads a bundled offline NEU catalog and declines unknown names. Hold Show original text (default X) for all original text without disabling capture |
+| `originalTips` | on | Append a current-key hint to translated real-item tooltips in GUIs. Incoming server chat mentioning eligible translated items may show a dismissible hint, at least five minutes apart. `ItemNames` uses the bundled offline NEU catalog, excluding menus, states and unknown names. `/skyzh switch tip on/off` (also `/skyblockzh`) controls hints, not the hold key. The old `showOriginal` field is ignored and no longer saved; missing `originalTips` defaults to on. Normal rendering no longer appends bracketed originals |
 | `captureUntranslated` | **off** | A switch for whoever is filling the corpus in. It writes files to your disk; leave it off to play. See below |
 | `captureNotifications` | on | Report newly captured untranslated text, colour errors and mixed-language text in chat. Turning reports off does not stop file writes |
 | `autoClearCapture` | **off** | Clear the previous captures once per client launch, whether or not capture is enabled or a server is joined. Reconnecting never clears files |

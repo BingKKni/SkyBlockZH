@@ -1,0 +1,144 @@
+{
+  "source": "logs/skyzh-capture; https://hypixelskyblock.minecraft.wiki/w/Bestiary; https://hypixelskyblock.minecraft.wiki/w/SkyBlock_Levels; https://hypixelskyblock.minecraft.wiki/w/Runecrafting",
+  "fetched_at": "2026-09-13",
+  "verified_ingame": true,
+  "lines": [
+    {
+      "id": "bestiary_tier_arrow_compact",
+      "context": "生物图鉴与服务器等级升级横幅",
+      "raw": "§8%1$s➡§e%2$s",
+      "text": "%1$s➡%2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "tier",
+          "example": "CXVII",
+          "desc": "原里程碑等级"
+        },
+        {
+          "token": "%2$s",
+          "type": "tier",
+          "example": "CXVIII",
+          "desc": "新里程碑等级"
+        }
+      ],
+      "gloss": "只有带服务器前置空格的等级横幅重算居中；罗马数字与箭头保留原文。",
+      "translate": true,
+      "zh": "%1$s ➡ %2$s",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "%1$s➡",
+          "zh": "%1$s ➡ "
+        },
+        {
+          "color": "§e",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ],
+      "layout": "center_chat_if_padded"
+    },
+    {
+      "id": "bestiary_tier_arrow_spaced",
+      "context": "生物图鉴与服务器等级升级横幅",
+      "raw": "§8%1$s ➡ §e%2$s",
+      "text": "%1$s ➡ %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "tier",
+          "example": "CXVII",
+          "desc": "原里程碑等级"
+        },
+        {
+          "token": "%2$s",
+          "type": "tier",
+          "example": "CXVIII",
+          "desc": "新里程碑等级"
+        }
+      ],
+      "gloss": "只有带服务器前置空格的等级横幅重算居中；罗马数字与箭头保留原文。",
+      "translate": true,
+      "zh": "%1$s ➡ %2$s",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "%1$s ➡ ",
+          "zh": "%1$s ➡ "
+        },
+        {
+          "color": "§e",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ],
+      "layout": "center_chat_if_padded"
+    },
+    {
+      "id": "bestiary_reward_singular",
+      "context": "生物图鉴与服务器等级升级横幅",
+      "raw": "§6§lREWARD",
+      "text": "REWARD",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "奖励",
+      "layout": "center_chat_if_padded"
+    },
+    {
+      "id": "skyblock_leveling_unclaimed_reward_runtime",
+      "context": "有一份未领取的 SkyBlock 等级奖励时发送的聊天提醒。",
+      "raw": "§aYou have §b1 §aunclaimed leveling reward!",
+      "text": "You have 1 unclaimed leveling reward!",
+      "placeholders": [],
+      "gloss": "2026-09-13 实机原文与颜色；社区 Wiki 普通 SkyBlock Levels 页面核对等级奖励语境。仅记录实测单数写法，不猜测复数格式。",
+      "translate": true,
+      "zh": "你有 1 份未领取的等级奖励!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "You have ",
+          "zh": "你有 "
+        },
+        {
+          "color": "§b",
+          "text": "1 ",
+          "zh": "1 份"
+        },
+        {
+          "color": "§a",
+          "text": "unclaimed leveling reward!",
+          "zh": "未领取的等级奖励!"
+        }
+      ]
+    },
+    {
+      "id": "skyblock_leveling_view_reward_runtime",
+      "context": "紧接未领取的 SkyBlock 等级奖励提醒，点击后打开奖励界面。",
+      "raw": "§eClick here to view it!",
+      "text": "Click here to view it!",
+      "placeholders": [],
+      "gloss": "2026-09-13 实机原文与颜色；社区 Wiki 普通 SkyBlock Levels 页面核对等级奖励界面语境。",
+      "translate": true,
+      "zh": "点击此处查看!"
+    },
+    {
+      "id": "runecrafting_xp_chat_runtime",
+      "context": "符文融合后居中显示的符文制作经验奖励。",
+      "text": "Runecrafting: +%1$s XP",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "168",
+          "desc": "本次获得的符文制作经验"
+        }
+      ],
+      "gloss": "2026-09-13 实机见到 168 与 246 两种数值；社区 Wiki 普通 Runecrafting 页面确认融合符文会奖励符文制作经验。保留服务器前置填充并按译文重新居中。",
+      "translate": true,
+      "zh": "符文制作: +%1$s 经验",
+      "layout": "center_chat_if_padded"
+    }
+  ]
+}

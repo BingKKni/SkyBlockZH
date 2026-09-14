@@ -1140,13 +1140,28 @@
       "context": "护甲、装备与宠物的抗热属性行",
       "raw": "§7Heat Resistance: §c%s",
       "text": "Heat Resistance: %s",
-      "placeholders": [{"token": "%s", "desc": "抗热属性值及附加值", "type": "raw", "example": "+10"}],
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "抗热属性值及附加值",
+          "type": "raw",
+          "example": "+10"
+        }
+      ],
       "gloss": "数值及括号附加值会随物品变化。",
       "translate": true,
       "zh": "抗热: %s",
       "segments": [
-        {"color": "§7", "text": "Heat Resistance: ", "zh": "抗热: "},
-        {"color": "§c", "text": "%s", "zh": "%s"}
+        {
+          "color": "§7",
+          "text": "Heat Resistance: ",
+          "zh": "抗热: "
+        },
+        {
+          "color": "§c",
+          "text": "%s",
+          "zh": "%s"
+        }
       ]
     },
     {
@@ -1155,16 +1170,38 @@
       "raw": "§7Gear Score: §d%1$s §8(%2$s)",
       "text": "Gear Score: %1$s (%2$s)",
       "placeholders": [
-        {"token": "%1$s", "desc": "当前评分", "type": "number", "example": "367"},
-        {"token": "%2$s", "desc": "括号内的参考评分", "type": "number", "example": "1286"}
+        {
+          "token": "%1$s",
+          "desc": "当前评分",
+          "type": "number",
+          "example": "367"
+        },
+        {
+          "token": "%2$s",
+          "desc": "括号内的参考评分",
+          "type": "number",
+          "example": "1286"
+        }
       ],
       "gloss": "两个数值都随物品变化。",
       "translate": true,
       "zh": "装备评分: %1$s (%2$s)",
       "segments": [
-        {"color": "§7", "text": "Gear Score: ", "zh": "装备评分: "},
-        {"color": "§d", "text": "%1$s ", "zh": "%1$s "},
-        {"color": "§8", "text": "(%2$s)", "zh": "(%2$s)"}
+        {
+          "color": "§7",
+          "text": "Gear Score: ",
+          "zh": "装备评分: "
+        },
+        {
+          "color": "§d",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§8",
+          "text": "(%2$s)",
+          "zh": "(%2$s)"
+        }
       ]
     },
     {
@@ -1188,8 +1225,16 @@
       "continuation": true,
       "zh": "",
       "segments": [
-        {"color": "§e", "text": "/reclaim ", "zh": ""},
-        {"color": "§c", "text": "to take back what's", "zh": ""}
+        {
+          "color": "§e",
+          "text": "/reclaim ",
+          "zh": ""
+        },
+        {
+          "color": "§c",
+          "text": "to take back what's",
+          "zh": ""
+        }
       ]
     },
     {
@@ -1882,13 +1927,28 @@
       "context": "物品 Lore / 职业菜单 / 属性面板里的属性行:Crit Chance",
       "raw": "§7Crit Chance: §9%s",
       "text": "Crit Chance: %s",
-      "placeholders": [{"token": "%s", "desc": "数值。写成 raw 而不是 number:装备带上重铸/附魔/星级之后这一行是「基础值 + 若干个加成括号」(§7Crit Damage: §9+23% (+7%) §8(+87.17%)),number 只吃得下第一个数,整行就匹配不上。括号里各自的颜色由引擎照抄服务器原样(StyledText#slice),不需要分段。", "type": "raw", "example": "+23% (+7%) (+87.17%)"}],
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值。写成 raw 而不是 number:装备带上重铸/附魔/星级之后这一行是「基础值 + 若干个加成括号」(§7Crit Damage: §9+23% (+7%) §8(+87.17%)),number 只吃得下第一个数,整行就匹配不上。括号里各自的颜色由引擎照抄服务器原样(StyledText#slice),不需要分段。",
+          "type": "raw",
+          "example": "+23% (+7%) (+87.17%)"
+        }
+      ],
       "gloss": "2026-09-03 实测(Mort 地牢职业菜单弓箭手的暴击行、装备 Lore)这一族战斗属性没有通用行,同为属性行的 Damage/Strength/Health 却有,于是同一件装备上一半属性是中文一半是英文。译名与 Hub_General/TabList/Stat_Labels.json 一致。",
       "translate": true,
       "zh": "",
       "segments": [
-        {"color": "§7", "text": "Crit Chance: ", "zh": "暴击率: "},
-        {"color": "§9", "text": "%s", "zh": "%s"}
+        {
+          "color": "§7",
+          "text": "Crit Chance: ",
+          "zh": "暴击率: "
+        },
+        {
+          "color": "§9",
+          "text": "%s",
+          "zh": "%s"
+        }
       ]
     },
     {
@@ -1896,13 +1956,28 @@
       "context": "物品 Lore / 职业菜单 / 属性面板里的属性行:Crit Damage",
       "raw": "§7Crit Damage: §9%s",
       "text": "Crit Damage: %s",
-      "placeholders": [{"token": "%s", "desc": "数值。写成 raw 而不是 number:装备带上重铸/附魔/星级之后这一行是「基础值 + 若干个加成括号」(§7Crit Damage: §9+23% (+7%) §8(+87.17%)),number 只吃得下第一个数,整行就匹配不上。括号里各自的颜色由引擎照抄服务器原样(StyledText#slice),不需要分段。", "type": "raw", "example": "+194.5%"}],
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值。写成 raw 而不是 number:装备带上重铸/附魔/星级之后这一行是「基础值 + 若干个加成括号」(§7Crit Damage: §9+23% (+7%) §8(+87.17%)),number 只吃得下第一个数,整行就匹配不上。括号里各自的颜色由引擎照抄服务器原样(StyledText#slice),不需要分段。",
+          "type": "raw",
+          "example": "+194.5%"
+        }
+      ],
       "gloss": "2026-09-03 实测(Mort 地牢职业菜单弓箭手的暴击行、装备 Lore)这一族战斗属性没有通用行,同为属性行的 Damage/Strength/Health 却有,于是同一件装备上一半属性是中文一半是英文。译名与 Hub_General/TabList/Stat_Labels.json 一致。",
       "translate": true,
       "zh": "",
       "segments": [
-        {"color": "§7", "text": "Crit Damage: ", "zh": "暴击伤害: "},
-        {"color": "§9", "text": "%s", "zh": "%s"}
+        {
+          "color": "§7",
+          "text": "Crit Damage: ",
+          "zh": "暴击伤害: "
+        },
+        {
+          "color": "§9",
+          "text": "%s",
+          "zh": "%s"
+        }
       ]
     },
     {
@@ -1910,13 +1985,28 @@
       "context": "物品 Lore / 职业菜单 / 属性面板里的属性行:Ferocity",
       "raw": "§7Ferocity: §c%s",
       "text": "Ferocity: %s",
-      "placeholders": [{"token": "%s", "desc": "数值。写成 raw 而不是 number:装备带上重铸/附魔/星级之后这一行是「基础值 + 若干个加成括号」(§7Crit Damage: §9+23% (+7%) §8(+87.17%)),number 只吃得下第一个数,整行就匹配不上。括号里各自的颜色由引擎照抄服务器原样(StyledText#slice),不需要分段。", "type": "raw", "example": "+33 (+46.2)"}],
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值。写成 raw 而不是 number:装备带上重铸/附魔/星级之后这一行是「基础值 + 若干个加成括号」(§7Crit Damage: §9+23% (+7%) §8(+87.17%)),number 只吃得下第一个数,整行就匹配不上。括号里各自的颜色由引擎照抄服务器原样(StyledText#slice),不需要分段。",
+          "type": "raw",
+          "example": "+33 (+46.2)"
+        }
+      ],
       "gloss": "2026-09-03 实测(Mort 地牢职业菜单弓箭手的暴击行、装备 Lore)这一族战斗属性没有通用行,同为属性行的 Damage/Strength/Health 却有,于是同一件装备上一半属性是中文一半是英文。译名与 Hub_General/TabList/Stat_Labels.json 一致。",
       "translate": true,
       "zh": "",
       "segments": [
-        {"color": "§7", "text": "Ferocity: ", "zh": "凶暴: "},
-        {"color": "§c", "text": "%s", "zh": "%s"}
+        {
+          "color": "§7",
+          "text": "Ferocity: ",
+          "zh": "凶暴: "
+        },
+        {
+          "color": "§c",
+          "text": "%s",
+          "zh": "%s"
+        }
       ]
     },
     {
@@ -1924,13 +2014,28 @@
       "context": "物品 Lore / 职业菜单 / 属性面板里的属性行:Vitality",
       "raw": "§7Vitality: §4%s",
       "text": "Vitality: %s",
-      "placeholders": [{"token": "%s", "desc": "数值。写成 raw 而不是 number:装备带上重铸/附魔/星级之后这一行是「基础值 + 若干个加成括号」(§7Crit Damage: §9+23% (+7%) §8(+87.17%)),number 只吃得下第一个数,整行就匹配不上。括号里各自的颜色由引擎照抄服务器原样(StyledText#slice),不需要分段。", "type": "raw", "example": "+3 (+3.15)"}],
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值。写成 raw 而不是 number:装备带上重铸/附魔/星级之后这一行是「基础值 + 若干个加成括号」(§7Crit Damage: §9+23% (+7%) §8(+87.17%)),number 只吃得下第一个数,整行就匹配不上。括号里各自的颜色由引擎照抄服务器原样(StyledText#slice),不需要分段。",
+          "type": "raw",
+          "example": "+3 (+3.15)"
+        }
+      ],
       "gloss": "2026-09-03 实测(Mort 地牢职业菜单弓箭手的暴击行、装备 Lore)这一族战斗属性没有通用行,同为属性行的 Damage/Strength/Health 却有,于是同一件装备上一半属性是中文一半是英文。译名与 Hub_General/TabList/Stat_Labels.json 一致。",
       "translate": true,
       "zh": "",
       "segments": [
-        {"color": "§7", "text": "Vitality: ", "zh": "活力: "},
-        {"color": "§4", "text": "%s", "zh": "%s"}
+        {
+          "color": "§7",
+          "text": "Vitality: ",
+          "zh": "活力: "
+        },
+        {
+          "color": "§4",
+          "text": "%s",
+          "zh": "%s"
+        }
       ]
     },
     {
@@ -1938,13 +2043,28 @@
       "context": "物品 Lore / 职业菜单 / 属性面板里的属性行:Mending",
       "raw": "§7Mending: §a%s",
       "text": "Mending: %s",
-      "placeholders": [{"token": "%s", "desc": "数值。写成 raw 而不是 number:装备带上重铸/附魔/星级之后这一行是「基础值 + 若干个加成括号」(§7Crit Damage: §9+23% (+7%) §8(+87.17%)),number 只吃得下第一个数,整行就匹配不上。括号里各自的颜色由引擎照抄服务器原样(StyledText#slice),不需要分段。", "type": "raw", "example": "+23 (+5)"}],
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值。写成 raw 而不是 number:装备带上重铸/附魔/星级之后这一行是「基础值 + 若干个加成括号」(§7Crit Damage: §9+23% (+7%) §8(+87.17%)),number 只吃得下第一个数,整行就匹配不上。括号里各自的颜色由引擎照抄服务器原样(StyledText#slice),不需要分段。",
+          "type": "raw",
+          "example": "+23 (+5)"
+        }
+      ],
       "gloss": "2026-09-03 实测(Mort 地牢职业菜单弓箭手的暴击行、装备 Lore)这一族战斗属性没有通用行,同为属性行的 Damage/Strength/Health 却有,于是同一件装备上一半属性是中文一半是英文。译名与 Hub_General/TabList/Stat_Labels.json 一致。",
       "translate": true,
       "zh": "",
       "segments": [
-        {"color": "§7", "text": "Mending: ", "zh": "修补: "},
-        {"color": "§a", "text": "%s", "zh": "%s"}
+        {
+          "color": "§7",
+          "text": "Mending: ",
+          "zh": "修补: "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        }
       ]
     },
     {
@@ -1952,13 +2072,28 @@
       "context": "物品 Lore / 职业菜单 / 属性面板里的属性行:Health Regen",
       "raw": "§7Health Regen: §c%s",
       "text": "Health Regen: %s",
-      "placeholders": [{"token": "%s", "desc": "数值。写成 raw 而不是 number:装备带上重铸/附魔/星级之后这一行是「基础值 + 若干个加成括号」(§7Crit Damage: §9+23% (+7%) §8(+87.17%)),number 只吃得下第一个数,整行就匹配不上。括号里各自的颜色由引擎照抄服务器原样(StyledText#slice),不需要分段。", "type": "raw", "example": "+5 (+5.2)"}],
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值。写成 raw 而不是 number:装备带上重铸/附魔/星级之后这一行是「基础值 + 若干个加成括号」(§7Crit Damage: §9+23% (+7%) §8(+87.17%)),number 只吃得下第一个数,整行就匹配不上。括号里各自的颜色由引擎照抄服务器原样(StyledText#slice),不需要分段。",
+          "type": "raw",
+          "example": "+5 (+5.2)"
+        }
+      ],
       "gloss": "2026-09-03 实测(Mort 地牢职业菜单弓箭手的暴击行、装备 Lore)这一族战斗属性没有通用行,同为属性行的 Damage/Strength/Health 却有,于是同一件装备上一半属性是中文一半是英文。译名与 Hub_General/TabList/Stat_Labels.json 一致。",
       "translate": true,
       "zh": "",
       "segments": [
-        {"color": "§7", "text": "Health Regen: ", "zh": "生命回复: "},
-        {"color": "§c", "text": "%s", "zh": "%s"}
+        {
+          "color": "§7",
+          "text": "Health Regen: ",
+          "zh": "生命回复: "
+        },
+        {
+          "color": "§c",
+          "text": "%s",
+          "zh": "%s"
+        }
       ]
     },
     {
@@ -1966,13 +2101,28 @@
       "context": "物品 Lore / 职业菜单 / 属性面板里的属性行:Cooldown Reduction",
       "raw": "§7Cooldown Reduction: §a%s",
       "text": "Cooldown Reduction: %s",
-      "placeholders": [{"token": "%s", "desc": "数值。写成 raw 而不是 number:装备带上重铸/附魔/星级之后这一行是「基础值 + 若干个加成括号」(§7Crit Damage: §9+23% (+7%) §8(+87.17%)),number 只吃得下第一个数,整行就匹配不上。括号里各自的颜色由引擎照抄服务器原样(StyledText#slice),不需要分段。", "type": "raw", "example": "+10%"}],
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "数值。写成 raw 而不是 number:装备带上重铸/附魔/星级之后这一行是「基础值 + 若干个加成括号」(§7Crit Damage: §9+23% (+7%) §8(+87.17%)),number 只吃得下第一个数,整行就匹配不上。括号里各自的颜色由引擎照抄服务器原样(StyledText#slice),不需要分段。",
+          "type": "raw",
+          "example": "+10%"
+        }
+      ],
       "gloss": "2026-09-03 实测(Mort 地牢职业菜单弓箭手的暴击行、装备 Lore)这一族战斗属性没有通用行,同为属性行的 Damage/Strength/Health 却有,于是同一件装备上一半属性是中文一半是英文。译名与 Hub_General/TabList/Stat_Labels.json 一致。",
       "translate": true,
       "zh": "",
       "segments": [
-        {"color": "§7", "text": "Cooldown Reduction: ", "zh": "冷却缩减: "},
-        {"color": "§a", "text": "%s", "zh": "%s"}
+        {
+          "color": "§7",
+          "text": "Cooldown Reduction: ",
+          "zh": "冷却缩减: "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        }
       ]
     },
     {
@@ -3386,14 +3536,27 @@
       "raw": "§7Time Between Actions: §a%s",
       "text": "Time Between Actions: %s",
       "placeholders": [
-        {"token": "%s", "desc": "当前行动间隔", "type": "duration", "example": "10.4s"}
+        {
+          "token": "%s",
+          "desc": "当前行动间隔",
+          "type": "duration",
+          "example": "10.4s"
+        }
       ],
       "gloss": "时长由引擎换算单位；一条记录覆盖所有小人和档位。",
       "translate": true,
       "zh": "",
       "segments": [
-        {"color": "§7", "text": "Time Between Actions: ", "zh": "行动间隔: "},
-        {"color": "§a", "text": "%s", "zh": "%s"}
+        {
+          "color": "§7",
+          "text": "Time Between Actions: ",
+          "zh": "行动间隔: "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        }
       ]
     },
     {
@@ -3402,16 +3565,38 @@
       "raw": "§7Time Between Actions: §8%1$s ➜ §a%2$s",
       "text": "Time Between Actions: %1$s ➜ %2$s",
       "placeholders": [
-        {"token": "%1$s", "desc": "升级前的行动间隔", "type": "duration", "example": "10.4s"},
-        {"token": "%2$s", "desc": "升级后的行动间隔", "type": "duration", "example": "9.6s"}
+        {
+          "token": "%1$s",
+          "desc": "升级前的行动间隔",
+          "type": "duration",
+          "example": "10.4s"
+        },
+        {
+          "token": "%2$s",
+          "desc": "升级后的行动间隔",
+          "type": "duration",
+          "example": "9.6s"
+        }
       ],
       "gloss": "两个值都会随小人种类和档位变化。",
       "translate": true,
       "zh": "",
       "segments": [
-        {"color": "§7", "text": "Time Between Actions: ", "zh": "行动间隔: "},
-        {"color": "§8", "text": "%1$s ➜ ", "zh": "%1$s ➜ "},
-        {"color": "§a", "text": "%2$s", "zh": "%2$s"}
+        {
+          "color": "§7",
+          "text": "Time Between Actions: ",
+          "zh": "行动间隔: "
+        },
+        {
+          "color": "§8",
+          "text": "%1$s ➜ ",
+          "zh": "%1$s ➜ "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
       ]
     },
     {
@@ -3420,14 +3605,27 @@
       "raw": "§7Resources Generated: §b%s",
       "text": "Resources Generated: %s",
       "placeholders": [
-        {"token": "%s", "desc": "累计生成的资源数量", "type": "number", "example": "1,875"}
+        {
+          "token": "%s",
+          "desc": "累计生成的资源数量",
+          "type": "number",
+          "example": "1,875"
+        }
       ],
       "gloss": "累计值持续变化，不按采集值枚举。",
       "translate": true,
       "zh": "",
       "segments": [
-        {"color": "§7", "text": "Resources Generated: ", "zh": "已生成资源: "},
-        {"color": "§b", "text": "%s", "zh": "%s"}
+        {
+          "color": "§7",
+          "text": "Resources Generated: ",
+          "zh": "已生成资源: "
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        }
       ]
     },
     {
@@ -3436,14 +3634,27 @@
       "raw": "§7Max Storage: §e%s",
       "text": "Max Storage: %s",
       "placeholders": [
-        {"token": "%s", "desc": "当前存储上限", "type": "number", "example": "384"}
+        {
+          "token": "%s",
+          "desc": "当前存储上限",
+          "type": "number",
+          "example": "384"
+        }
       ],
       "gloss": "存储上限随档位变化。",
       "translate": true,
       "zh": "",
       "segments": [
-        {"color": "§7", "text": "Max Storage: ", "zh": "最大存储量: "},
-        {"color": "§e", "text": "%s", "zh": "%s"}
+        {
+          "color": "§7",
+          "text": "Max Storage: ",
+          "zh": "最大存储量: "
+        },
+        {
+          "color": "§e",
+          "text": "%s",
+          "zh": "%s"
+        }
       ]
     },
     {
@@ -3452,16 +3663,38 @@
       "raw": "§7Max Storage: §8%1$s ➜ §e%2$s",
       "text": "Max Storage: %1$s ➜ %2$s",
       "placeholders": [
-        {"token": "%1$s", "desc": "升级前的存储上限", "type": "number", "example": "192"},
-        {"token": "%2$s", "desc": "升级后的存储上限", "type": "number", "example": "384"}
+        {
+          "token": "%1$s",
+          "desc": "升级前的存储上限",
+          "type": "number",
+          "example": "192"
+        },
+        {
+          "token": "%2$s",
+          "desc": "升级后的存储上限",
+          "type": "number",
+          "example": "384"
+        }
       ],
       "gloss": "两个值都会随档位变化。",
       "translate": true,
       "zh": "",
       "segments": [
-        {"color": "§7", "text": "Max Storage: ", "zh": "最大存储量: "},
-        {"color": "§8", "text": "%1$s ➜ ", "zh": "%1$s ➜ "},
-        {"color": "§e", "text": "%2$s", "zh": "%2$s"}
+        {
+          "color": "§7",
+          "text": "Max Storage: ",
+          "zh": "最大存储量: "
+        },
+        {
+          "color": "§8",
+          "text": "%1$s ➜ ",
+          "zh": "%1$s ➜ "
+        },
+        {
+          "color": "§e",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
       ]
     },
     {
@@ -3470,16 +3703,77 @@
       "raw": "§cYou need §6%1$s §cmore %2$s.",
       "text": "You need %1$s more %2$s.",
       "placeholders": [
-        {"token": "%1$s", "desc": "仍缺少的材料数量", "type": "number", "example": "512"},
-        {"token": "%2$s", "desc": "所需材料名，原版材料译名走 Terms", "type": "category_name", "example": "Coal"}
+        {
+          "token": "%1$s",
+          "desc": "仍缺少的材料数量",
+          "type": "number",
+          "example": "512"
+        },
+        {
+          "token": "%2$s",
+          "desc": "所需材料名，原版材料译名走 Terms",
+          "type": "category_name",
+          "example": "Coal"
+        }
       ],
       "gloss": "材料值由 _shared/Terms.json 统一，不按每种材料复制模板。",
       "translate": true,
       "zh": "",
       "segments": [
-        {"color": "§c", "text": "You need ", "zh": "你还需要 "},
-        {"color": "§6", "text": "%1$s ", "zh": "%1$s "},
-        {"color": "§c", "text": "more %2$s.", "zh": "个%2$s。"}
+        {
+          "color": "§c",
+          "text": "You need ",
+          "zh": "你还需要 "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§c",
+          "text": "more %2$s.",
+          "zh": "个%2$s。"
+        }
+      ]
+    },
+    {
+      "id": "requires_lotus_collection",
+      "context": "Lotus 系列装备的收藏品等级限制",
+      "raw": "§4❣ §cRequires §aLotus Collection %1$s§c.",
+      "text": "❣ Requires Lotus Collection %1$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Lotus 收藏品等级",
+          "type": "tier",
+          "example": "IX"
+        }
+      ],
+      "gloss": "精确模板避免 requires_generic 把“Lotus Collection IX”整段当 raw 值。",
+      "translate": true,
+      "zh": "❣ 需要 Lotus 收藏品达到 %1$s 级。",
+      "segments": [
+        {
+          "color": "§4",
+          "text": "❣ ",
+          "zh": "❣ "
+        },
+        {
+          "color": "§c",
+          "text": "Requires ",
+          "zh": "需要 "
+        },
+        {
+          "color": "§a",
+          "text": "Lotus Collection %1$s",
+          "zh": "Lotus 收藏品达到 %1$s 级"
+        },
+        {
+          "color": "§c",
+          "text": ".",
+          "zh": "。"
+        }
       ]
     }
   ],

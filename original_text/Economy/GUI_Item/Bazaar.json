@@ -415,25 +415,25 @@
     },
     {
       "id": "bazaar_query",
-      "context": "集市搜索结果页显示的搜索词",
+      "context": "集市搜索结果页显示玩家输入的原始搜索词",
       "raw": "§7Query: §a%1$s",
       "text": "Query: %1$s",
       "placeholders": [
         {
           "token": "%1$s",
-          "desc": "搜索的商品专名，保留英文",
-          "type": "item_name",
-          "example": "Tungsten Key"
+          "desc": "玩家输入的搜索词，原样保留",
+          "type": "search_query",
+          "example": "potato"
         }
       ],
-      "gloss": "商品专名不翻译。",
+      "gloss": "搜索词可能不是完整商品名，使用 search_query 原样保留。",
       "translate": true,
-      "zh": "搜索: %1$s",
+      "zh": "查询: %1$s",
       "segments": [
         {
           "color": "§7",
           "text": "Query: ",
-          "zh": "搜索: "
+          "zh": "查询: "
         },
         {
           "color": "§a",

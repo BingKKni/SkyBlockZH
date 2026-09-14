@@ -1,0 +1,219 @@
+{
+  "source": "SkyZH runtime capture; Hypixel SkyBlock community Wiki ordinary pages",
+  "fetched_at": "2026-09-13",
+  "verified_ingame": true,
+  "source_note": "本轮实测原文与颜色优先；社区 Wiki 原网页用于核对机制与语境，未使用 Raw 页面。",
+  "items": [
+    {
+      "id": "bazaar_history_created_buy_order",
+      "context": "集市订单历史：创建买单",
+      "text": "%1$s ago Created Buy Order for %2$sx %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "duration",
+          "example": "9m",
+          "desc": "多久以前"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "15",
+          "desc": "订单数量"
+        },
+        {
+          "token": "%3$s",
+          "type": "item_name",
+          "example": "Bonzo Shard",
+          "desc": "完整商品名，按物品专名规则保留"
+        }
+      ],
+      "gloss": "原采集把 m 写死并把商品名拆成两个 raw，已收紧为 duration + 完整 item_name。",
+      "translate": true,
+      "zh": "%1$s前创建了买单: %2$s 个%3$s",
+      "raw": "§8%1$s ago §7Created §aBuy Order §7for §a%2$s§7x %3$s",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "%1$s ago ",
+          "zh": "%1$s前"
+        },
+        {
+          "color": "§7",
+          "text": "Created ",
+          "zh": "创建了"
+        },
+        {
+          "color": "§a",
+          "text": "Buy Order ",
+          "zh": "买单"
+        },
+        {
+          "color": "§7",
+          "text": "for ",
+          "zh": ": "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": "x %3$s",
+          "zh": " 个%3$s"
+        }
+      ]
+    },
+    {
+      "id": "bazaar_history_claimed_buy_offer",
+      "context": "集市订单历史：领取买单商品",
+      "text": "%1$s ago Claimed Buy Offer of %2$sx %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "duration",
+          "example": "2m",
+          "desc": "多久以前"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "15",
+          "desc": "商品数量"
+        },
+        {
+          "token": "%3$s",
+          "type": "item_name",
+          "example": "Turbo-Potato I",
+          "desc": "完整商品名"
+        }
+      ],
+      "gloss": "完整 item_name 避免把 Turbo-Potato / I 或 Bonzo / Shard 错拆成相邻 raw。",
+      "translate": true,
+      "zh": "%1$s前领取了买单: %2$s 个%3$s",
+      "raw": "§8%1$s ago §7Claimed §6Buy Offer §7of §a%2$s§7x %3$s",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "%1$s ago ",
+          "zh": "%1$s前"
+        },
+        {
+          "color": "§7",
+          "text": "Claimed ",
+          "zh": "领取了"
+        },
+        {
+          "color": "§6",
+          "text": "Buy Offer ",
+          "zh": "买单"
+        },
+        {
+          "color": "§7",
+          "text": "of ",
+          "zh": ": "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": "x %3$s",
+          "zh": " 个%3$s"
+        }
+      ]
+    },
+    {
+      "id": "bazaar_history_other_items",
+      "context": "集市分类下其他订单的汇总行",
+      "text": "%1$sx Other items for %2$s coins",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "17,903",
+          "desc": "其他物品总数"
+        },
+        {
+          "token": "%2$s",
+          "type": "coins",
+          "example": "261,739",
+          "desc": "总价"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s 件其他物品,共 %2$s 硬币",
+      "raw": "§e%1$s§7x §fOther items §7for §6%2$s coins",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "x ",
+          "zh": " 件"
+        },
+        {
+          "color": "§f",
+          "text": "Other items ",
+          "zh": "其他物品"
+        },
+        {
+          "color": "§7",
+          "text": "for ",
+          "zh": ",共 "
+        },
+        {
+          "color": "§6",
+          "text": "%2$s coins",
+          "zh": "%2$s 硬币"
+        }
+      ]
+    },
+    {
+      "id": "bazaar_items_to_claim",
+      "context": "集市订单中待领取物品数量",
+      "text": "You have %1$s items to claim!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "30",
+          "desc": "待领取数量"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你有 %1$s 件物品待领取!",
+      "raw": "§2You have §a%1$s §2items to claim!",
+      "segments": [
+        {
+          "color": "§2",
+          "text": "You have ",
+          "zh": "你有 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§2",
+          "text": " items ",
+          "zh": " 件物品"
+        },
+        {
+          "color": "§2",
+          "text": "to claim!",
+          "zh": "待领取!"
+        }
+      ]
+    }
+  ]
+}

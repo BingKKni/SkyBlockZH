@@ -20,10 +20,10 @@ public final class LoreMatcher {
 
 	public record Match(int lines, Component source, TranslationEntry entry, StyledText core,
 		Matcher matcher, Component head, Component tail) {
-		public MutableComponent render(TermTable terms, boolean originals) {
+		public MutableComponent render(TermTable terms) {
 			MutableComponent result = Component.empty();
 			if (head != null) result.append(head);
-			result.append(entry.render(core, matcher, terms, originals));
+			result.append(entry.render(core, matcher, terms));
 			if (tail != null) result.append(tail);
 			return result;
 		}

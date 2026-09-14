@@ -50,7 +50,7 @@ public final class ItemNames {
 			return new ItemNames(JsonParser.parseReader(
 				new InputStreamReader(stream, StandardCharsets.UTF_8)).getAsJsonObject());
 		} catch (Exception exception) {
-			LoggerFactory.getLogger("SkyZH").warn("物品原名目录加载失败，已关闭物品原文标注。", exception);
+			LoggerFactory.getLogger("SkyZH").warn("物品原名目录加载失败，已关闭物品原文提示。", exception);
 			return new ItemNames(new JsonObject());
 		}
 	}

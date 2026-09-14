@@ -671,7 +671,7 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "type": "raw",
+          "type": "rank",
           "example": "MVP+",
           "desc": "付费 Rank 保留"
         },
@@ -723,7 +723,7 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "type": "raw",
+          "type": "rank",
           "example": "MVP+",
           "desc": "付费 Rank 保留"
         },
@@ -749,6 +749,22 @@
           "zh": "[%1$s] %2$s"
         }
       ]
+    },
+    {
+      "id": "coop_order_sell_item",
+      "text": "SELL %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "item_name",
+          "example": "Pet Cake",
+          "desc": "商品名"
+        }
+      ],
+      "translate": true,
+      "zh": "出售 %1$s",
+      "context": "本轮实测补充",
+      "gloss": "社区 Wiki 普通页面核对；原文以本轮实测为准。"
     }
   ]
 }

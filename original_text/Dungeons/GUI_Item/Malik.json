@@ -1431,6 +1431,68 @@
       "gloss": "数量与类型分开捕获,避免集市分类模板把 50,000 Undead 当成一个名称。适用于亡灵/凋零等精华,不枚举价格。",
       "translate": true,
       "zh": "%1$s %2$s精华"
+    },
+    {
+      "id": "malik_boss_luck_desc_2_right_arrow",
+      "context": "Boss 幸运说明尾行的 U+2192 实测变体",
+      "text": "rewards in The Catacombs by %1$s→%2$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "0",
+          "desc": "当前值"
+        },
+        {
+          "token": "%2$s",
+          "type": "percentage",
+          "example": "+1",
+          "desc": "下一级值"
+        }
+      ],
+      "gloss": "现有记录使用 ➜(U+279C)，实测属性界面使用 →(U+2192)。两者差异可见且 Wiki Attributes 2026-09-12 页面采用当前界面；保留两种模板。",
+      "translate": true,
+      "zh": "地牢中提高 %1$s→%2$s。",
+      "raw": "§7rewards in §cThe Catacombs §7by §8%1$s§8§l→§a%2$s§7.",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "rewards in ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§c",
+          "text": "The Catacombs ",
+          "zh": "地牢"
+        },
+        {
+          "color": "§7",
+          "text": "by ",
+          "zh": "中提高 "
+        },
+        {
+          "color": "§8",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§8§l",
+          "text": "→",
+          "zh": "→"
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "continuation": true
     }
   ],
   "todo": [

@@ -78,6 +78,106 @@
           "zh": "创建一口价拍卖!"
         }
       ]
+    },
+    {
+      "id": "auction_coins_escrow",
+      "context": "拍卖行购买与领取反馈",
+      "raw": "§7Putting coins in escrow...",
+      "text": "Putting coins in escrow...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "正在托管硬币……"
+    },
+    {
+      "id": "auction_processing_purchase",
+      "context": "拍卖行购买与领取反馈",
+      "raw": "§7Processing purchase...",
+      "text": "Processing purchase...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "正在处理购买……"
+    },
+    {
+      "id": "auction_claiming_bin",
+      "context": "拍卖行购买与领取反馈",
+      "raw": "§7Claiming BIN auction...",
+      "text": "Claiming BIN auction...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "正在领取一口价拍卖物品……"
+    },
+    {
+      "id": "auction_missing_search_item",
+      "context": "拍卖行购买与领取反馈",
+      "raw": "§cMissing arguments! Usage: /auctionsearch <item>",
+      "text": "Missing arguments! Usage: /auctionsearch <item>",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "缺少参数! 用法: /auctionsearch <物品名>"
+    },
+    {
+      "id": "auction_cannot_report",
+      "context": "拍卖行购买与领取反馈",
+      "raw": "§cYou can't report this item",
+      "text": "You can't report this item",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "无法举报这件物品"
+    },
+    {
+      "id": "auction_purchased",
+      "context": "拍卖行购买与领取反馈",
+      "raw": "§eYou purchased §6%1$s §efor §6%2$s coins§e!",
+      "text": "You purchased %1$s for %2$s coins!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "item_name",
+          "example": "Candy Relic",
+          "desc": "购买的完整物品名"
+        },
+        {
+          "token": "%2$s",
+          "type": "coins",
+          "example": "25,499,999",
+          "desc": "价格"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你购买了%1$s，花费 %2$s 硬币!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "You purchased ",
+          "zh": "你购买了"
+        },
+        {
+          "color": "§6",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§e",
+          "text": "for ",
+          "zh": "，花费 "
+        },
+        {
+          "color": "§6",
+          "text": "%2$s coins",
+          "zh": "%2$s 硬币"
+        },
+        {
+          "color": "§e",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
     }
   ]
 }

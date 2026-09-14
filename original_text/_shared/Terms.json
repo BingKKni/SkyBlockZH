@@ -12,7 +12,8 @@
     "minion_resource",
     "accessory_power",
     "skyblock_month",
-    "medal"
+    "medal",
+    "compactor_toggle"
   ],
   "types_note": "只对这几种 placeholders[].type 生效。**故意**不含 item_name / npc_name / player_name:那三种正是需求里写死'保留英文'的位置(NPC 人名、物品自造专名),在那里翻错的代价——给别人的武器编一个中文名——远大于一个地名留着英文的代价。新增 type 前先想清楚这一点。category_name 是菜单入口名/功能分类名(Bags、Other Crystals、Recipe Book、Settings 的前半截),形状规则走 Capture.NAME 而不是 raw 的宽松短语——见下面 category_name_note。",
   "enchantment_name_note": "2026-09-08: 附魔名称仅原版 Minecraft 附魔使用官方中文。SkyBlock 专属名称保持英文,包括 Ice Cold/Compact/Scavenger/Turbo- 系列; 其效果和同名的属性、银行、地牢祝福仍翻译。Bank/Inferno 的其他用途必须限定 types,避免全局词表回退将附魔名重新汉化。",
@@ -833,8 +834,10 @@
       "en": "pumpkins",
       "zh": "南瓜",
       "types": [
-        "minion_resource"
-      ]
+        "minion_resource",
+        "category_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
     },
     {
       "en": "sugar canes",
@@ -1832,16 +1835,16 @@
     },
     {
       "en": "Zealot Bruiser",
-      "zh": "狂信徒斗士",
+      "zh": "狂热末影人斗士",
       "types": [
         "mob_name",
         "category_name"
       ],
-      "note": "https://hypixelskyblock.minecraft.wiki/w/Zealot_Bruiser；强化型狂信徒,Zealot 沿用狂信徒。"
+      "note": "https://hypixelskyblock.minecraft.wiki/w/Zealot_Bruiser；强化型狂热末影人,Zealot 沿用狂热末影人。"
     },
     {
       "en": "Zealot Bruiser Hideout",
-      "zh": "狂信徒斗士藏身处",
+      "zh": "狂热末影人斗士藏身处",
       "types": [
         "location_name",
         "category_name"
@@ -3461,10 +3464,9 @@
       "zh": "亡灵",
       "types": [
         "category_name",
-        "mob_name",
-        "raw"
+        "mob_name"
       ],
-      "note": "Bazaar 精华分类的取值。已查证 hysb.wiki/w/Essence(2026-08-29)确有 Undead Essence;限定 category_name,只用于「%1$s Essence」这类分类名。　也用作生物图鉴的分类名（「Undead X ➡ XI」这类横幅），那个位置的占位符是 mob_name，所以两种都要列上，否则那一行会匹配上却仍然画成英文。　另加 raw:护甲重铸加成行「Undead Bonus」(Hub_General/GUI_Item/Armor_Sets.json#lore_reforge_bonus 的 raw 占位符)也要译成「亡灵加成」。"
+      "note": "Bazaar 精华分类与生物图鉴分类使用；护甲重铸中的「Undead Bonus」现由精确记录单独翻译，不再依赖 raw 词条。"
     },
     {
       "en": "Dragon Essence",
@@ -6789,7 +6791,8 @@
       "en": "Adept",
       "zh": "熟手",
       "types": [
-        "raw"
+        "raw",
+        "accessory_power"
       ],
       "note": "Adept Trophy Fisher。"
     },
@@ -8289,7 +8292,7 @@
         "category_name",
         "raw"
       ],
-      "note": "Lone_Adventurer 页面核实的任务武器; 普通词组成。也让 NPC 台词的 showOriginal 名称对照可以保留英文搜索名。"
+      "note": "Lone_Adventurer 页面核实的任务武器；普通词组成。该 raw 词条供 NPC 台词翻译；需要核对英文任务武器名时可按住原文热键查看整行原文。"
     },
     {
       "en": "Ender Armor",
@@ -8307,11 +8310,11 @@
         "mob_name",
         "raw"
       ],
-      "note": "https://hypixelskyblock.minecraft.wiki/w/End_Stone_Protector：龙巢中由狂信徒击杀数推进生成的 Boss,不是 NPC。"
+      "note": "https://hypixelskyblock.minecraft.wiki/w/End_Stone_Protector：龙巢中由狂热末影人击杀数推进生成的 Boss,不是 NPC。"
     },
     {
       "en": "Zealot",
-      "zh": "狂信徒",
+      "zh": "狂热末影人",
       "types": [
         "mob_name"
       ],
@@ -8943,7 +8946,7 @@
     },
     {
       "en": "Garden Plot",
-      "zh": "花园地块",
+      "zh": "花园地皮",
       "types": [
         "raw",
         "category_name"
@@ -8983,7 +8986,7 @@
         "raw",
         "location_name"
       ],
-      "note": "花园里的温室地块。"
+      "note": "花园里的温室地皮。"
     },
     {
       "en": "Barn",
@@ -10091,7 +10094,7 @@
     },
     {
       "en": "Plots",
-      "zh": "地块",
+      "zh": "地皮",
       "types": [
         "raw"
       ],
@@ -10234,6 +10237,737 @@
         "category_name"
       ],
       "note": "本轮实测取值。小人语境核对社区 Wiki Minions；作物、战利品和技能沿用既有译名，分别核对 Pests、Glacite Mineshafts 和 Museum。"
+    },
+    {
+      "en": "Catacombs Explorer",
+      "zh": "地牢探索者",
+      "types": [
+        "category_name"
+      ],
+      "note": "狩猎碎片属性名；社区 Wiki Attributes 与精确名称搜索核对。限定属性/分类名捕获位,不改附魔或物品名称。"
+    },
+    {
+      "en": "Catacombs Graduate",
+      "zh": "地牢毕业生",
+      "types": [
+        "category_name"
+      ],
+      "note": "狩猎碎片属性名；社区 Wiki Attributes 与精确名称搜索核对。限定属性/分类名捕获位,不改附魔或物品名称。"
+    },
+    {
+      "en": "Reborn",
+      "zh": "重生",
+      "types": [
+        "category_name"
+      ],
+      "note": "狩猎碎片属性名；社区 Wiki Attributes 与精确名称搜索核对。限定属性/分类名捕获位,不改附魔或物品名称。"
+    },
+    {
+      "en": "Undead Ruler",
+      "zh": "亡灵统御",
+      "types": [
+        "category_name"
+      ],
+      "note": "狩猎碎片属性名；社区 Wiki Attributes 与精确名称搜索核对。限定属性/分类名捕获位,不改附魔或物品名称。"
+    },
+    {
+      "en": "Undead Resistance",
+      "zh": "亡灵抗性",
+      "types": [
+        "category_name"
+      ],
+      "note": "狩猎碎片属性名；社区 Wiki Attributes 与精确名称搜索核对。限定属性/分类名捕获位,不改附魔或物品名称。"
+    },
+    {
+      "en": "Monday",
+      "zh": "星期一",
+      "types": [
+        "raw"
+      ],
+      "note": "Lazy Miner 花园访客的现实星期取值。"
+    },
+    {
+      "en": "Tuesday",
+      "zh": "星期二",
+      "types": [
+        "raw"
+      ],
+      "note": "Lazy Miner 花园访客的现实星期取值。"
+    },
+    {
+      "en": "Wednesday",
+      "zh": "星期三",
+      "types": [
+        "raw"
+      ],
+      "note": "Lazy Miner 花园访客的现实星期取值。"
+    },
+    {
+      "en": "Thursday",
+      "zh": "星期四",
+      "types": [
+        "raw"
+      ],
+      "note": "Lazy Miner 花园访客的现实星期取值。"
+    },
+    {
+      "en": "Friday",
+      "zh": "星期五",
+      "types": [
+        "raw"
+      ],
+      "note": "Lazy Miner 花园访客的现实星期取值。"
+    },
+    {
+      "en": "Saturday",
+      "zh": "星期六",
+      "types": [
+        "raw"
+      ],
+      "note": "Lazy Miner 花园访客的现实星期取值。"
+    },
+    {
+      "en": "Sunday",
+      "zh": "星期日",
+      "types": [
+        "raw"
+      ],
+      "note": "Lazy Miner 花园访客的现实星期取值。"
+    },
+    {
+      "en": "Special Upgrades",
+      "zh": "特殊升级",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Elite",
+      "zh": "精英",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Essence of Dragons",
+      "zh": "巨龙精华",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Speed",
+      "zh": "速度",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Unlimited Fortitude",
+      "zh": "无尽坚毅",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Draconic",
+      "zh": "龙裔",
+      "types": [
+        "mob_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Power Dragon",
+      "zh": "力量巨龙",
+      "types": [
+        "mob_name",
+        "category_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Special Zealot",
+      "zh": "特殊狂热末影人",
+      "types": [
+        "mob_name",
+        "category_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Endermite",
+      "zh": "末影螨",
+      "types": [
+        "mob_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Magma Cube Rider",
+      "zh": "岩浆怪骑手",
+      "types": [
+        "mob_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Mushroom Bull",
+      "zh": "蘑菇公牛",
+      "types": [
+        "mob_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Obsidian Defender",
+      "zh": "黑曜石守卫",
+      "types": [
+        "mob_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Seer",
+      "zh": "先知",
+      "types": [
+        "mob_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "On",
+      "zh": "开启",
+      "types": [
+        "raw",
+        "compactor_toggle"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。Personal Compactor 状态占位符也复用。"
+    },
+    {
+      "en": "Off",
+      "zh": "关闭",
+      "types": [
+        "compactor_toggle"
+      ],
+      "note": "Personal Compactor 状态占位符；社区 Wiki 普通页面核对语境。"
+    },
+    {
+      "en": "start",
+      "zh": "开始",
+      "types": [
+        "compactor_toggle"
+      ],
+      "note": "Personal Compactor 动作占位符；社区 Wiki 普通页面核对语境。"
+    },
+    {
+      "en": "stop",
+      "zh": "停止",
+      "types": [
+        "compactor_toggle"
+      ],
+      "note": "Personal Compactor 动作占位符；社区 Wiki 普通页面核对语境。"
+    },
+    {
+      "en": "Yes",
+      "zh": "是",
+      "types": [
+        "raw"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Pet Cake",
+      "zh": "宠物蛋糕",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Summoning Eye",
+      "zh": "召唤之眼",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Melon Slices",
+      "zh": "西瓜片",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Enchanted Cocoa Beans",
+      "zh": "附魔可可豆",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Enchanted Pumpkin",
+      "zh": "附魔南瓜",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Fig",
+      "zh": "无花果",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "TRAVEL SCROLL",
+      "zh": "传送卷轴",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Puddle Jumper",
+      "zh": "水坑跃者",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Burning Desert",
+      "zh": "烈焰沙漠",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Cathedral",
+      "zh": "大教堂",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Courtyard",
+      "zh": "庭院",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Crimson Fields",
+      "zh": "绯红原野",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Mystic Marsh",
+      "zh": "神秘沼泽",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Scarleton",
+      "zh": "绯红城",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Scarleton Auction House",
+      "zh": "绯红城拍卖行",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Scarleton Blacksmith",
+      "zh": "绯红城铁匠铺",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Scarleton Minion Shop",
+      "zh": "绯红城小人商店",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Scarleton Bazaar",
+      "zh": "绯红城集市",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Blazing Volcano",
+      "zh": "炽焰火山",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；绯红岛区域地名。"
+    },
+    {
+      "en": "Odger's Hut",
+      "zh": "Odger 的小屋",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；NPC 名 Odger 保留英文。"
+    },
+    {
+      "en": "Barbarian Outpost",
+      "zh": "野蛮人前哨站",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；绯红岛区域地名。"
+    },
+    {
+      "en": "Dragontail",
+      "zh": "龙尾镇",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；剧情明确称其为 village。"
+    },
+    {
+      "en": "Chief's Hut",
+      "zh": "酋长小屋",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；绯红岛区域地名。"
+    },
+    {
+      "en": "Dragontail Blacksmith",
+      "zh": "龙尾镇铁匠铺",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；完整地点值精确匹配。"
+    },
+    {
+      "en": "Dragontail Townsquare",
+      "zh": "龙尾镇广场",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；完整地点值精确匹配。"
+    },
+    {
+      "en": "Dragontail Auction House",
+      "zh": "龙尾镇拍卖行",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；完整地点值精确匹配。"
+    },
+    {
+      "en": "Dragontail Bank",
+      "zh": "龙尾镇银行",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；完整地点值精确匹配。"
+    },
+    {
+      "en": "Dragontail Bazaar",
+      "zh": "龙尾镇集市",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；完整地点值精确匹配。"
+    },
+    {
+      "en": "Minion Shop",
+      "zh": "小人商店",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；绯红岛区域地名。"
+    },
+    {
+      "en": "The Bastion",
+      "zh": "壁垒",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；绯红岛区域地名。"
+    },
+    {
+      "en": "The Dukedom",
+      "zh": "公爵领",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；绯红岛区域地名。"
+    },
+    {
+      "en": "Mage Outpost",
+      "zh": "法师前哨站",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；绯红岛区域地名。"
+    },
+    {
+      "en": "Dojo",
+      "zh": "道场",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；绯红岛区域地名。"
+    },
+    {
+      "en": "Mage Council",
+      "zh": "法师议会",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；绯红岛区域地名。"
+    },
+    {
+      "en": "Scarleton Plaza",
+      "zh": "绯红城广场",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；完整地点值精确匹配。"
+    },
+    {
+      "en": "Scarleton Bank",
+      "zh": "绯红城银行",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；完整地点值精确匹配。"
+    },
+    {
+      "en": "Igrupan's House",
+      "zh": "Igrupan 的房屋",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；NPC 名 Igrupan 保留英文。"
+    },
+    {
+      "en": "Igrupan's Chicken Coop",
+      "zh": "Igrupan 的鸡舍",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；NPC 名 Igrupan 保留英文。"
+    },
+    {
+      "en": "Magma Chamber",
+      "zh": "岩浆洞室",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；绯红岛区域地名。"
+    },
+    {
+      "en": "Plhlegblast Pool",
+      "zh": "Plhlegblast 池",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；自造专名 Plhlegblast 保留英文。"
+    },
+    {
+      "en": "Aura's Lab",
+      "zh": "Aura 的实验室",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；NPC 名 Aura 保留英文。"
+    },
+    {
+      "en": "Matriarch's Lair",
+      "zh": "女族长的巢穴",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；绯红岛区域地名。"
+    },
+    {
+      "en": "Belly of the Beast",
+      "zh": "巨兽之腹",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；绯红岛区域地名。"
+    },
+    {
+      "en": "Smoldering Tomb",
+      "zh": "阴燃墓穴",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；绯红岛区域地名。"
+    },
+    {
+      "en": "Ruins of Ashfang",
+      "zh": "Ashfang 遗迹",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；Boss 名 Ashfang 保留英文。"
+    },
+    {
+      "en": "Forgotten Skull",
+      "zh": "遗忘之颅",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；绯红岛区域地名。"
+    },
+    {
+      "en": "Stronghold",
+      "zh": "要塞",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "The Wasteland",
+      "zh": "荒原",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Throne Room",
+      "zh": "王座厅",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Attribute Levels",
+      "zh": "属性等级",
+      "types": [
+        "raw"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Crop Milestones",
+      "zh": "作物里程碑",
+      "types": [
+        "raw"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Killed Wise Dragon",
+      "zh": "击杀智慧巨龙",
+      "types": [
+        "raw"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "True Dwarf",
+      "zh": "真·矮人",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Gemstone Spread",
+      "zh": "宝石扩散",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Animal",
+      "zh": "动物",
+      "types": [
+        "mob_family"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Grandma Wolf",
+      "zh": "狼外婆",
+      "types": [
+        "mob_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Blaze Rod",
+      "zh": "烈焰棒",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Magma Cream",
+      "zh": "岩浆膏",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Mycelium Cube",
+      "zh": "菌丝块",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
+    },
+    {
+      "en": "Void Slate",
+      "zh": "虚空石台",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 实机区域标签；社区 Wiki Void Slate 普通页面确认其为末地区域与龙族祭坛所在地。"
+    },
+    {
+      "en": "Tangleburg's Path",
+      "zh": "藤蔓堡小径",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 实机区域标签；社区 Wiki Tangleburg's Path 与 Tangleburg 普通页面确认其为 Galatea 的入门小径。"
     }
   ],
   "todo": [
@@ -10242,5 +10976,5 @@
     "设置类别名 API(“API Settings”)**故意**不加词条:这个缩写在中文技术语境里就是原样念原样写,没有通行中文译名,硬译成「接口设置」反而不如原文好认。查不到的值保持英文,引擎会在接缝处自动补空格(见 spacing_note),渲染出来是「API 设置」,已经是想要的样子。"
   ],
   "medal_note": "2026-09-10: Jacob 农业竞赛的奖牌 / 名次档位(Bronze / Silver / Gold / Platinum / Diamond)单独用 medal 类型。原因:SILVER 作 category_name 已经是地牢终端的「淡灰色」,Gold / Diamond 作全局词是材料「黄金 / 钻石」,同一个字符串两种意思不能共用一张表。词表匹配不分大小写,所以一条 Bronze 同时管聊天里的 BRONZE、Tab 里的 Bronze 和奖励清单里的 bronze。Capture.of 不认识的类型按 raw 形状捕获,所以不需要改代码。",
-  "garden_note": "2026-09-10 花园玩法专有词:Copper → 铜(花园货币,沿用 Tab 的「铜: N」)、Compost → 堆肥、Sowdust → 播尘、Chip → 芯片、Plot → 地块、Visitor → 访客、Greenhouse → 温室、Barn(花园里的建筑)→ 谷仓;地名 The Barn 仍是「牲畜棚」。见 GLOSSARY.md「花园玩法专有词」。"
+  "garden_note": "2026-09-10 花园玩法专有词:Copper → 铜(花园货币,沿用 Tab 的「铜: N」)、Compost → 堆肥、Sowdust → 播尘、Chip → 芯片、Plot → 地皮、Visitor → 访客、Greenhouse → 温室、Barn(花园里的建筑)→ 谷仓;地名 The Barn 仍是「牲畜棚」。见 GLOSSARY.md「花园玩法专有词」。"
 }

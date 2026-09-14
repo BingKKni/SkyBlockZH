@@ -535,12 +535,14 @@ public final class TranslationEntry {
 	 * therefore what colour it takes, does not depend on that order at all.
 	 */
 	public MutableComponent render(StyledText source, Matcher match, TermTable terms) {
-		return renderJoined(List.of(new Matched(this, source, match)), terms, false);
+		return renderJoined(List.of(new Matched(this, source, match)), terms, null);
 	}
 
-	/** @see #renderJoined(List, TermTable, boolean) */
-	public MutableComponent render(StyledText source, Matcher match, TermTable terms, boolean labelOriginals) {
-		return renderJoined(List.of(new Matched(this, source, match)), terms, labelOriginals);
+	/** Finds translated item references without adding anything to the rendered text. */
+	public boolean hasTranslatedItemReference(StyledText source, Matcher match, TermTable terms) {
+		boolean[] found = {false};
+		renderJoined(List.of(new Matched(this, source, match)), terms, () -> found[0] = true);
+		return found[0];
 	}
 
 	/**
@@ -552,23 +554,10 @@ public final class TranslationEntry {
 	 * it had on the tail line while moving to wherever Chinese needs it.
 	 */
 	public static MutableComponent renderJoined(List<Matched> matches, TermTable terms) {
-		return renderJoined(matches, terms, false);
+		return renderJoined(matches, terms, null);
 	}
 
-	/**
-	 * Builds one Chinese sentence out of fragments matched on several lore lines.
-	 *
-	 * <p>The ordinary line renderer is the one-line case of this method. Tooltip lore can hand in the
-	 * head plus its {@code continuation} tails, so {@code segments[].order} may refer to the combined
-	 * fragment list instead of just the record it was written on. A tail fragment then keeps the colour
-	 * it had on the tail line while moving to wherever Chinese needs it.
-	 *
-	 * <p>{@code labelOriginals} is the chat/lore half of {@code showOriginal}: only a colour run that
-	 * resolves to an offline NEU item identity — {@code Diamond Essence}, {@code Tusk Fossil} — keeps
-	 * the English search name after its Chinese. Gameplay terms such as events, states and attributes
-	 * deliberately do not qualify. Placeholder values are checked by the same item catalog.
-	 */
-	public static MutableComponent renderJoined(List<Matched> matches, TermTable terms, boolean labelOriginals) {
+	private static MutableComponent renderJoined(List<Matched> matches, TermTable terms, Runnable translatedItem) {
 		record Part(Matched matched, Fragment fragment) {}
 
 		List<Part> parts = new ArrayList<>();
@@ -611,7 +600,7 @@ public final class TranslationEntry {
 				continue;
 			}
 
-			String fragmentItem = labelOriginals && start >= 0 && end > start
+			String fragmentItem = translatedItem != null && start >= 0 && end > start
 				? termEnglish(source.plain().substring(start, end).trim()) : null;
 			MutableComponent frag = Component.empty();
 			Seam inner = new Seam(frag);
@@ -625,23 +614,16 @@ public final class TranslationEntry {
 					int group = arg.index() < entry.argGroups.length ? entry.argGroups[arg.index()] : 0;
 
 					if (group > 0 && match.start(group) >= 0) {
-						entry.append(inner, source, match, group, terms, style, labelOriginals && fragmentItem == null);
+						entry.append(inner, source, match, group, terms, style, fragmentItem == null ? translatedItem : null);
 					}
 				}
 			}
 
 			String written = frag.getString();
 
-			if (labelOriginals && start >= 0 && end > start) {
-				String english = source.plain().substring(start, end).trim();
-				String termEn = fragmentItem;
-
-				if (termEn != null && !written.isEmpty() && !written.equals(english)) {
-					MutableComponent labelled = OriginalLabel.append(frag, Component.literal(termEn));
-
-					seam.append(labelled, labelled.getString(), style);
-					continue;
-				}
+			if (fragmentItem != null && !written.isBlank()
+				&& !written.trim().equals(source.plain().substring(start, end).trim())) {
+				translatedItem.run();
 			}
 
 			seam.append(frag, written, style);
@@ -661,7 +643,7 @@ public final class TranslationEntry {
 	 * character, because a name is a name.
 	 */
 	private void append(Seam seam, StyledText source, Matcher match, int group, TermTable terms, Style style,
-		boolean labelOriginals) {
+		Runnable translatedItem) {
 		int start = match.start(group);
 		int end = match.end(group);
 		String value = source.plain().substring(start, end);
@@ -679,12 +661,11 @@ public final class TranslationEntry {
 		Style valueStyle = start < source.length() ? source.styleAt(start) : style;
 
 		MutableComponent rendered = Component.literal(written).setStyle(valueStyle);
-		if (labelOriginals && ("raw".equals(type) || "item_name".equals(type))) {
-			String item = ItemNames.canonical(value);
-			if (item != null) {
-				rendered = OriginalLabel.append(rendered, Component.literal(item));
-			}
+		if (translatedItem != null && ("raw".equals(type) || "item_name".equals(type))
+			&& ItemNames.canonical(value) != null) {
+			translatedItem.run();
 		}
+
 		seam.append(rendered, rendered.getString(), valueStyle);
 	}
 
@@ -695,6 +676,8 @@ public final class TranslationEntry {
 	 * count is stripped before the lookup. A run that is just a number must not become a term.
 	 */
 	private static String termEnglish(String english) {
+		// The catalog also contains an item named X; lowercase x here is the quantity marker.
+		if (english.equals("x")) return null;
 		String key = ItemNames.canonical(english);
 
 		if (key != null) {
@@ -806,8 +789,7 @@ public final class TranslationEntry {
 	 *
 	 * <p>Both are fixable in the data, which is the only reason they are worth telling apart from the
 	 * English a record deliberately keeps. An item's name, an NPC's name and a player's name are
-	 * <em>meant</em> to survive in English (see {@link TermTable}), and so is the bracketed original
-	 * under {@code showOriginal}; neither is reported here.
+	 * <em>meant</em> to survive in English (see {@link TermTable}) and are not reported here.
 	 *
 	 * @param words  fragments whose {@code zh} is still empty, so half the sentence is English while
 	 *               the other half is Chinese. The fix is to fill that {@code segments[].zh}

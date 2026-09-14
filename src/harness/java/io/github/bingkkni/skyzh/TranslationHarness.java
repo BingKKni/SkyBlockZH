@@ -8,7 +8,6 @@ import io.github.bingkkni.skyzh.text.Capture;
 import io.github.bingkkni.skyzh.text.Glyphs;
 import io.github.bingkkni.skyzh.text.LineShape;
 import io.github.bingkkni.skyzh.text.LoreMatcher;
-import io.github.bingkkni.skyzh.text.OriginalLabel;
 import io.github.bingkkni.skyzh.text.StyledText;
 import io.github.bingkkni.skyzh.text.Surface;
 import io.github.bingkkni.skyzh.text.TermTable;
@@ -147,10 +146,10 @@ public final class TranslationHarness {
 		check("配件槽空位状态", "§7Fuel Tank: §cNot Installed", Surface.ITEM, "§7燃料箱: §c未安装");
 		check("物品名整名翻译", "§9Mithril Drill SX-R226", Surface.ITEM, "§9秘银钻头 SX-R226");
 		checkTooltipName("重铸前缀保留样式并翻译整名", "§6Fleet §dTitanium Drill DR-X655",
-			"§6迅捷 §d钛钻头 DR-X655", false);
-		checkTooltipName("重铸物品名对照保留原始整名", "§6Fleet §dTitanium Drill DR-X655",
-			"§6迅捷 §d钛钻头 DR-X655§6（Fleet Titanium Drill DR-X655）", true);
-		checkTooltipName("重铸前缀不猜测未收录物品", "§6Fleet Unknown Drill", "§6Fleet Unknown Drill", false);
+			"§6迅捷 §d钛钻头 DR-X655");
+		checkTooltipName("重铸物品名不再追加原文", "§6Fleet §dTitanium Drill DR-X655",
+			"§6迅捷 §d钛钻头 DR-X655");
+		checkTooltipName("重铸前缀不猜测未收录物品", "§6Fleet Unknown Drill", "§6Fleet Unknown Drill");
 		check("稀有度+类型标签", "§6§lLEGENDARY HELMET", Surface.ITEM, "§6§l传说头盔");
 		checkNoMatch("宽泛 Requires 模板不再误吃普通 Lore", "§7Requires dirt or soil nearby so", Surface.ITEM);
 
@@ -685,6 +684,12 @@ public final class TranslationHarness {
 		checkJoined("跨行不排序:生命精华两行各带自己的颜色与占位符",
 			List.of("§7Increases your base §c\ue010 Health §7while", "§7in §cThe Catacombs§7 by §a+§825➜§a50§7."),
 			"§7你的基础 §c\ue010 生命值§7在§c地牢§7中提高 §a+§825➜§a50§7。");
+		checkJoined("治疗师祈愿按条件到效果重排三行",
+			List.of("§a20% §7of their maximum health. The", "§7cooldown is reduced by §b10 §7seconds",
+				"§7for every player below §a25% §7health."),
+			"§a20%§7；每有一名玩家的生命值低于 §a25%§7，该技能冷却时间缩短 §b10 §7秒。");
+		check("农业竞赛分秒完整翻译", "§a §e○ §fPotato §a3m19s", Surface.SCOREBOARD,
+			"§a §e○ §f马铃薯 §a3分19秒");
 		check("Tab 曲奇增益小节", "Cookie Buff", Surface.TABLIST, "曲奇增益");
 		check("Tab 魔法寻宝剩余小时", "§eMagic Find V §f7 Hours", Surface.TABLIST, "§e魔法寻宝 V §f7 小时");
 		// The unit letter must not be written into a template: the server picks the unit by how much
@@ -778,9 +783,9 @@ public final class TranslationHarness {
 			"§7查看你的§a农业收藏品§7!");
 		// Item lore reported as untranslated in the same session.
 		checkTooltipName("吉兆前缀的钛钻头", "§dAuspicious §6Titanium Drill DR-X655",
-			"§d吉兆 §6钛钻头 DR-X655", false);
-		checkTooltipName("吉兆钻头保留英文对照", "§dAuspicious §6Titanium Drill DR-X655",
-			"§d吉兆 §6钛钻头 DR-X655§d（Auspicious Titanium Drill DR-X655）", true);
+			"§d吉兆 §6钛钻头 DR-X655");
+		checkTooltipName("吉兆钻头保留中文译名", "§dAuspicious §6Titanium Drill DR-X655",
+			"§d吉兆 §6钛钻头 DR-X655");
 		check("钻头配件名", "§aBlue Cheese Goblin Omelette Part", Surface.ITEM,
 			"§a蓝纹奶酪哥布林煎蛋卷配件");
 		check("动态挖掘速度加成", "§7Grants §6+300%  Mining Speed §7for", Surface.ITEM,
@@ -838,9 +843,9 @@ public final class TranslationHarness {
 		// The garden broadcasts carry a rank alongside the name, which player_name refuses, so the
 		// placeholder is raw. Both forms are checked: with a rank and without one.
 		check("花园广播带称号", "§b[MVP§9+§b] inkkni §cenabled Garden Plot Holograms!", Surface.CHAT,
-			"§b[MVP§9+§b] inkkni §c开启了花园的地块悬浮字!");
+			"§b[MVP§9+§b] inkkni §c开启了花园的地皮悬浮字!");
 		check("花园广播不带称号", "§7Steve123 §cdisabled Garden Plot Holograms!", Surface.CHAT,
-			"§7Steve123 §c关闭了花园的地块悬浮字!");
+			"§7Steve123 §c关闭了花园的地皮悬浮字!");
 		check("花园来访广播的取值走词表", "§b[MVP§9+§b] inkkni §aenabled Garden Visits: §2Guild§a!",
 			Surface.CHAT, "§b[MVP§9+§b] inkkni §a开启了花园的「来访: §2公会§a」!");
 		// A setting's confirmation line: four records carry the state, the term table carries the name.
@@ -861,23 +866,40 @@ public final class TranslationHarness {
 		check("子菜单里同一行没有记号", "§aAPI: §eCollections", Surface.ITEM, "§aAPI: §e收藏品");
 		check("化石物品名", "§6Tusk Fossil", Surface.ITEM, "§6象牙化石");
 		check("化石物品名(另一种)", "§6Clubbed Fossil", Surface.ITEM, "§6棒状化石");
-		checkTooltipName("化石名带英文对照", "§6Tusk Fossil", "§6象牙化石（Tusk Fossil）", true);
-		report("Lore 行上的化石名也带英文对照",
-			"§6象牙化石（Tusk Fossil）".equals(legacy(
-				Translator.translate(Component.literal("§6Tusk Fossil"), Surface.ITEM, true).padded())),
-			"实际 [" + legacy(Translator.translate(Component.literal("§6Tusk Fossil"), Surface.ITEM, true).padded()) + "]");
-		report("聊天里高亮的钻石精华带英文对照",
+		checkTooltipName("化石名不追加原文", "§6Tusk Fossil", "§6象牙化石");
+		report("Lore 行上的化石名不追加原文",
+			"§6象牙化石".equals(legacy(
+				Translator.translate(Component.literal("§6Tusk Fossil"), Surface.ITEM).padded())),
+			"实际 [" + legacy(Translator.translate(Component.literal("§6Tusk Fossil"), Surface.ITEM).padded()) + "]");
+		report("聊天里高亮的钻石精华仍翻译",
 			legacy(Translator.translate(Component.literal(
 				"§fThe name's §bGemma§f, and I run the §bDiamond Essence Shop§f, where you can trade in §bDiamond Essence§f for useful perks and upgrades!"),
-				Surface.CHAT, true).padded()).contains("钻石精华（Diamond Essence）"),
+				Surface.CHAT).padded()).contains("钻石精华"),
 			"实际 [" + legacy(Translator.translate(Component.literal(
 				"§fThe name's §bGemma§f, and I run the §bDiamond Essence Shop§f, where you can trade in §bDiamond Essence§f for useful perks and upgrades!"),
-				Surface.CHAT, true).padded()) + "]");
+				Surface.CHAT).padded()) + "]");
+		checkRow("Tab 序号标签可由物品记录兜底", "§r1) Hot Chocolate: §aReady!",
+			"1) 热巧克力: §a就绪!");
+		SkyZHConfig settings = SkyZHConfig.get();
+		boolean wasEnabled = settings.enabled;
+
+		try {
+			settings.enabled = false;
+			checkRow("关闭翻译时 Tab 物品记录兜底保持原文", "§r1) Hot Chocolate: §aReady!",
+				"1) Hot Chocolate: §aReady!");
+		} finally {
+			settings.enabled = wasEnabled;
+		}
+
 		HoldOriginal.setActive(true);
+		checkRow("按住 X 时 Tab 物品记录兜底保持原文", "§r1) Hot Chocolate: §aReady!",
+			"1) Hot Chocolate: §aReady!");
 		report("按住 X 时化石名回到英文",
 			"§6Tusk Fossil".equals(legacy(Translator.translate(Component.literal("§6Tusk Fossil"), Surface.ITEM).padded())),
 			"实际 [" + legacy(Translator.translate(Component.literal("§6Tusk Fossil"), Surface.ITEM).padded()) + "]");
 		HoldOriginal.setActive(false);
+		checkRow("松开 X 后 Tab 物品记录兜底恢复中文", "§r1) Hot Chocolate: §aReady!",
+			"1) 热巧克力: §a就绪!");
 		report("松开 X 后化石名恢复中文",
 			"§6象牙化石".equals(legacy(Translator.translate(Component.literal("§6Tusk Fossil"), Surface.ITEM).padded())),
 			"实际 [" + legacy(Translator.translate(Component.literal("§6Tusk Fossil"), Surface.ITEM).padded()) + "]");
@@ -921,14 +943,6 @@ public final class TranslationHarness {
 		check("宾果菜单标题的月份", "Bingo - September 2026", Surface.GUI_TITLE, "宾果 - 2026 年 9 月");
 		check("宾果格子副标题的月份", "§8September 2026", Surface.ITEM, "§82026 年 9 月");
 
-		// ---- the English kept beside the Chinese, which is what the Bazaar is searched by ----
-		report("物品名带上英文对照(颜色码不进括号)",
-			"秘银镐（Mithril Pickaxe）".equals(
-				OriginalLabel.append(Component.literal("秘银镐"), Component.literal("§9Mithril Pickaxe")).getString()),
-			"实际 [" + OriginalLabel.append(Component.literal("秘银镐"), Component.literal("§9Mithril Pickaxe")).getString() + "]");
-		report("没翻译的名字不加对照",
-			"Bazaar".equals(OriginalLabel.append(Component.literal("Bazaar"), Component.literal("Bazaar")).getString()),
-			"实际 [" + OriginalLabel.append(Component.literal("Bazaar"), Component.literal("Bazaar")).getString() + "]");
 
 		checkLogTranslations();
 		checkCaptureRound();
@@ -936,7 +950,7 @@ public final class TranslationHarness {
 		checkRefExclude(files);
 		checkPostBuildCapture(root);
 		checkCaptureFixes();
-		checkItemComparisonAndScreenshots();
+		checkOriginalTipsAndScreenshots();
 
 		System.out.println();
 		System.out.println("通过 " + passed + " / 失败 " + failed);
@@ -1045,6 +1059,10 @@ public final class TranslationHarness {
 		List<String> duplicated = new ArrayList<>();
 
 		for (String relative : new TreeSet<>(files.keySet())) {
+			if (surfaceOf(relative) != Surface.ITEM) {
+				continue;
+			}
+
 			for (List<JsonObject> group : groupsOf(files.get(relative))) {
 				for (int i = 0; i + 1 < group.size(); i++) {
 					JsonObject head = resolveRef(group.get(i), files);
@@ -2044,50 +2062,98 @@ public final class TranslationHarness {
 		checkComponent(name, Component.literal(input), surface, expected);
 	}
 
-	/** First-line tooltip names need no Font, so their matching and original-label behaviour are safe here. */
-	private static void checkTooltipName(String name, String input, String expected, boolean showOriginal) {
+	/** First-line tooltip names need no Font, so their translation can be checked here. */
+	private static void checkTooltipName(String name, String input, String expected) {
 		Component source = Component.literal(input);
 		Translator.Result translated = TooltipTranslator.translateItemName(source);
-		Component actual = translated.matched() && showOriginal
-			&& io.github.bingkkni.skyzh.text.ItemNames.canonical(StyledText.of(source).plain()) != null
-			? OriginalLabel.append(translated.padded(), source)
-			: translated.padded();
+		Component actual = translated.padded();
 		report(name, expected.equals(legacy(actual)), "期望 [" + expected + "] 实际 [" + legacy(actual) + "]");
 	}
 
-	private static void checkItemComparisonAndScreenshots() {
+	private static void checkOriginalTipsAndScreenshots() {
 		for (String name : List.of("Back", "Enabled", "Apprentice Necromancer", "Recently Created",
 			"Rewards", "Hoppity's Hunt", "Ender Chest (1/5)", "Page 2", "Copper", "Bingo",
 			"Hoppity (NPC)", "SkyBlock Menu (Click)", "Unknown New Item")) {
-			report("非物品不进入对比目录: " + name,
+			report("非物品不进入提示目录: " + name,
 				io.github.bingkkni.skyzh.text.ItemNames.canonical(name) == null, name);
-			Translator.Result result = Translator.translate(Component.literal(name), Surface.ITEM, true);
+			Translator.Result result = Translator.translate(Component.literal(name), Surface.ITEM);
 			report("非物品 Lore 不加原文: " + name, !result.padded().getString().contains("（"), result.padded().getString());
 		}
 		for (String name : List.of("Mithril Pickaxe", "Melody's Shoes", "Ditto Blob", "Booster Cookie",
 			"Tusk Fossil", "Diamond Essence", "Fleet Titanium Drill DR-X455", "[Lvl 100] Sheep",
 			"Ancient Diamond Necron Head ✪✪✪✪✪➎")) {
 			String canonical = io.github.bingkkni.skyzh.text.ItemNames.canonical(name);
-			report("真实物品含绑定/重铸/星级/宠物仍可对比: " + name, name.equals(canonical),
-				"括号必须保留实时完整原名，实际 [" + canonical + "]");
+			report("真实物品含绑定/重铸/星级/宠物仍可识别: " + name, name.equals(canonical),
+				"目录必须识别实时完整原名，实际 [" + canonical + "]");
 			TranslationEntry item = TranslationEntry.compile("comparison-test", "test", List.of(name),
 				List.of("测试物品"), false, "", Map.of(), Map.of());
 			StyledText source = StyledText.of(Component.literal(name));
-			report("聊天与 Lore 保留完整物品原名: " + name,
-				("测试物品（" + name + "）").equals(item.render(source, item.match(source.canonical()),
-					TermTable.EMPTY, true).getString()), name);
+			report("聊天真实物品译名符合提示条件: " + name,
+				item.hasTranslatedItemReference(source, item.match(source.canonical()), TermTable.EMPTY), name);
+			report("真实物品不再追加括号原文: " + name,
+				"测试物品".equals(item.render(source, item.match(source.canonical()), TermTable.EMPTY).getString()), name);
 		}
-		checkTooltipName("返回按钮不加原文", "Back", "返回", true);
-		checkTooltipName("真实物品保留搜索原名", "§6Ditto Blob", "§6仿制黏团（Ditto Blob）", true);
-		checkTooltipName("关闭对比保留译名", "§6Ditto Blob", "§6仿制黏团", false);
+		checkTooltipName("返回按钮不加原文", "Back", "返回");
+		checkTooltipName("真实物品仅显示译名", "§6Ditto Blob", "§6仿制黏团");
+		checkTooltipName("物品译名不依赖提示开关", "§6Ditto Blob", "§6仿制黏团");
+		for (String input : List.of("Back", "Page 2", "Unknown New Item", "Bazaar")) {
+			Component source = Component.literal(input);
+			report("菜单或未知名称不加 Lore 提示: " + input,
+				!OriginalTips.eligibleName(source, TooltipTranslator.translateItemName(source)), input);
+		}
+		for (String invalid : List.of(" ", "                                ", "Mithril ", " Bob")) {
+			report("名称不能吞掉服务器排版空格", !io.github.bingkkni.skyzh.text.Capture.NAME.accepts(invalid), invalid);
+		}
+		Component fossil = Component.literal("§6Tusk Fossil");
+		report("已翻译真实物品加 Lore 提示", OriginalTips.eligibleName(fossil, TooltipTranslator.translateItemName(fossil)), "Tusk Fossil");
+		String bazaar = "§6[Bazaar] §eYour §aBuy Order §efor §a8§7x §5Bonzo Shard §ewas filled!";
+		check("集市数量不出现 x 原文括号", bazaar, Surface.CHAT, "§6[集市] §e你挂的 §a8§7 个§5 Bonzo Shard§e 买单已成交!");
+		report("数量 x 不冒充物品 X 触发提示", !OriginalTips.containsTranslatedItem(Component.literal(bazaar)), bazaar);
+		report("纯属性或系统消息不提示", !OriginalTips.containsTranslatedItem(Component.literal("You gained +2 Sweep")), "Sweep");
+		for (String line : List.of("  §f                                §8CXVII➡§eCXVIII", "                                CXVII ➡ CXVIII")) {
+			Translator.Result result = Translator.translate(Component.literal(line), Surface.CHAT);
+			report("截图等级行参与居中: " + line, Translator.centerChat(result), line);
+			report("等级行核心不残留旧空格", result.core().getString().equals("CXVII ➡ CXVIII"), result.core().getString());
+		}
+		report("非横幅的等级行不强制居中", !Translator.centerChat(Translator.translate(Component.literal("CXVII ➡ CXVIII"), Surface.CHAT)), "unpadded");
+
+		check("亲属关系不擅自区分堂表", "Jacob's brother-in-law and Trevor's cousin!!", Surface.CHAT,
+			"我跟 Jacob 是姻亲,跟 Trevor 是堂表亲!!");
+		check("钨矿等级与中文单位留空格", "You need a tool with a Breaking Power of 9 to mine Tungsten! Speak to Fragilis by the entrance to the Crystal Hollows to learn more!", Surface.CHAT,
+			"挖掘钨需要工具的开采等级达到 9 级! 前往水晶残核入口找 Fragilis 了解详情!");
+		check("暂存领取数量可变", "§eYou picked up §a17 §eitems from your item stash!", Surface.CHAT,
+			"§e你从物品暂存区取出了 §a17 §e件物品!");
+		check("暂存数量单数也匹配", "You still have 1 item in there!", Surface.CHAT, "暂存区里还剩 1 件物品!");
+		check("拍卖购买完整名称不按 Relic 枚举", "You purchased Candy Relic for 25,500,000 coins!", Surface.CHAT,
+			"你购买了 Candy Relic，花费 25,500,000 硬币!");
+		check("粉末和精华数量可变", "You received §b+1,000 Glacite Powder §fand §6+20 Fossil Essence§f!", Surface.CHAT,
+			"你获得了 §b+1,000 极冰粉末§f和 §6+20 化石精华§f!");
+		check("自动宠物沿用既有译名", "§cAutopet §eequipped your §7[Lvl 100] §6Glacite Golem§e! §a§lVIEW RULE", Surface.CHAT,
+			"§c自动宠物§e已为你装备 §7[100 级] §6极冰石魔§e! §a§l查看规则");
+		check("吸收完整的多词碎片名", "You used Syphon on Zombie Soldier Shard!", Surface.CHAT,
+			"你吸收了僵尸士兵碎片!");
+		check("属性进度使用整名与可变数量", "+3 Catacombs Explorer Attribute (Level 5) - 3 more to upgrade!", Surface.CHAT,
+			"+3 地牢探索者属性 (等级 5) - 再获得 3 个即可升级!");
+		check("换一种属性仍匹配", "+6 Undead Resistance Attribute (Level 3) - 4 more to upgrade!", Surface.CHAT,
+			"+6 亡灵抗性属性 (等级 3) - 再获得 4 个即可升级!");
+		check("重生属性首次升级", "  ATTRIBUTE LEVEL UP Reborn I", Surface.CHAT, "  属性升级 重生 I");
+		check("属性升级前后等级颜色", "  §b§lATTRIBUTE LEVEL UP §6Catacombs Graduate §8II➜§3III", Surface.CHAT,
+			"  §b§l属性升级 §6地牢毕业生 §8II➜§3III");
+		check("横扫奖励保留图标", "§7You gained §2+2 Sweep", Surface.CHAT, "§7你获得了 §2+2 横扫");
+		check("炖汤完成沿用物品名", "§fYour §aMayfly Stew§f is ready!", Surface.CHAT, "§f你的§a蜉蝣炖汤§f炖好啦!");
+		check("三怪人奖励归属不因姓名变化改变", "Both of them are telling the truth. Also, §cMorris §rhas the reward in their chest!", Surface.CHAT,
+			"他们俩说的都是真话。而且,奖励在 §cMorris 的箱子里!");
+		report("多行服务器消息中的已翻译物品也提示", OriginalTips.containsTranslatedItem(Component.literal(
+			"Some banner\nI use a §5Void Sword§r, it's a very powerful weapon.")), "Void Sword");
+
 		check("Duke 实测委托不残留英文作物名",
 			"You seem new here. You should probably try to get some §aEnchanted Wheat §ffor me.", Surface.CHAT,
 			"看着像是新来的啊。不如先帮我弄点§a附魔小麦§f吧。");
 		Component dukeCompared = Translator.translate(Component.literal(
 			"You seem new here. You should probably try to get some §aEnchanted Wheat §ffor me."),
-			Surface.CHAT, true).padded();
-		report("Duke 委托开启对比后保留完整物品搜索名",
-			"看着像是新来的啊。不如先帮我弄点§a附魔小麦（Enchanted Wheat）§f吧。".equals(legacy(dukeCompared)),
+			Surface.CHAT).padded();
+		report("Duke 委托不再追加物品原文",
+			"看着像是新来的啊。不如先帮我弄点§a附魔小麦§f吧。".equals(legacy(dukeCompared)),
 			legacy(dukeCompared));
 		check("随身余额不出现 Purse 或重复硬币", "§7Purse Coins: §65,179,288.8", Surface.ITEM,
 			"§7硬币: §65,179,288.8");
@@ -2112,6 +2178,12 @@ public final class TranslationHarness {
 			report("任务通知保持左对齐: " + line,
 				!Translator.centerChat(Translator.translate(Component.literal(line), Surface.CHAT)), line);
 		}
+		report("短缩进的挖矿经验任务奖励保持左对齐",
+			!Translator.centerChat(Translator.translate(Component.literal("    +10,000 Mining Experience"), Surface.CHAT)),
+			"commission reward");
+		report("抽奖箱挖矿经验奖励重新计算居中",
+			Translator.centerChat(Translator.translate(Component.literal("                         +20,000 Mining Experience"), Surface.CHAT)),
+			"raffle reward");
 		for (String line : List.of("                          SKYBLOCK LEVEL UP", "                  RAFFLE STARTED!")) {
 			report("真正的活动与等级横幅重新计算居中: " + line,
 				Translator.centerChat(Translator.translate(Component.literal(line), Surface.CHAT)), line);
@@ -2246,9 +2318,8 @@ public final class TranslationHarness {
 		check("末地生物群系棒配方颜色", "§fEnd Biome Stick §7Recipe", Surface.CHAT,
 			"§f末地生物群系棒§7配方");
 		check("聊天奖励复用升天绳索名称", "    Ascension Rope", Surface.CHAT, "    升天绳索");
-		report("新武器名称支持英文对照",
-			Translator.translate(Component.literal("I use a §5Void Sword§r, it's a very powerful weapon."),
-				Surface.CHAT, true).padded().getString().contains("虚空之剑（Void Sword）"),
+		report("新武器名称触发原文提示",
+			OriginalTips.containsTranslatedItem(Component.literal("I use a §5Void Sword§r, it's a very powerful weapon.")),
 			"保留玩家在商店或资料中搜索的原名");
 		checkNoMatch("不将任意交易长句当作商品名",
 			"You sold this is a whole sentence x1 for 10 Coins!", Surface.CHAT);
@@ -2273,7 +2344,7 @@ public final class TranslationHarness {
 				report(name, match == null, "不完整段落不能消费任何行");
 				continue;
 			}
-			String actual = match == null ? "<no match>" : legacy(match.render(Translator.index().terms(), false));
+			String actual = match == null ? "<no match>" : legacy(match.render(Translator.index().terms()));
 			String expected = legacy(Component.literal(text(test, "expected")));
 			report(name, expected.equals(actual) && match.lines() == test.get("consumed").getAsInt(),
 				"期望 " + expected + "，实际 " + actual);
@@ -2552,8 +2623,12 @@ public final class TranslationHarness {
 			"  §8+§320,000 §7战斗经验");
 		check("箭袋奖励调整语序仍保色", "§8+§79 §aQuiver §7Slots", Surface.ITEM,
 			"§a箭袋 §8+§79 个槽位");
-		checkTooltipName("抓钩不再误入鱼钩模板", "§aGrappling Hook", "§a抓钩", false);
-		checkTooltipName("抓钩保留英文搜索名", "§aGrappling Hook", "§a抓钩（Grappling Hook）", true);
+		checkTooltipName("抓钩不再误入鱼钩模板", "§aGrappling Hook", "§a抓钩");
+		checkTooltipName("抓钩仅显示译名", "§aGrappling Hook", "§a抓钩");
+		check("带图标鱼钩不把图标吞进名称", "§cථ Puddle Jumper Hook", Surface.ITEM,
+			"§cථ 水坑跃者鱼钩");
+		check("分色鱼线不把图标吞进名称", "§9ꨃ §aSpeedy Line", Surface.ITEM,
+			"§9ꨃ §a迅捷鱼线");
 		checkJoined("抓钩说明不残留第二行", List.of("§7Travel around in style using this", "§7Grappling Hook."),
 			"§7用这把抓钩潇洒地穿梭四方。");
 		check("抓钩冷却兼容服务器错误单数", "§82 Second Cooldown", Surface.ITEM, "§8冷却时间: 2 秒");
@@ -2575,8 +2650,18 @@ public final class TranslationHarness {
 			"§dJacob 的农业竞赛§7活动开始。");
 		check("重铸中文与加成之间不夹空格", "§9Magnetic Bonus", Surface.ITEM, "§9磁力加成");
 		check("远古重铸加成名称", "§9Ancient Bonus", Surface.ITEM, "§9远古加成");
-		check("未核实重铸仍保留英文并补空格", "§9Unverified Bonus", Surface.ITEM, "§9Unverified 加成");
+		checkNoMatch("未核实 Bonus 标题不再由宽泛重铸模板吞掉", "§9Unverified Bonus", Surface.ITEM);
 		check("Undead 重铸沿用亡灵", "§9Undead Bonus", Surface.ITEM, "§9亡灵加成");
+		checkNoMatch("Composter 旧模板不吞陌生效果尾行", "§7consumed Potion by §a50%§7.", Surface.ITEM);
+		checkNoMatch("Composter 旧模板不吞属性效果尾行", "§ePickaxe Ability §7by §a+10%§7.", Surface.ITEM);
+		checkNoMatch("Composter 旧模板不吞特殊狂热末影人尾行", "§7special zealot by §52%§7.", Surface.ITEM);
+		check("属性菜单动作使用精确记录", "§eClick to swap to the Attribute Menu!", Surface.ITEM,
+			"§e点击切换至属性菜单!");
+		check("批量吸收动作使用精确记录", "§eClick to mass Syphon!", Surface.ITEM, "§e点击批量吸收!");
+		checkNoMatch("未知 Click to 动作不再由宽模板吞掉", "§eClick to unverified action!", Surface.ITEM);
+		check("Overflow Mana 技能标题使用精确记录", "§6Ability: Overflow Mana ", Surface.ITEM,
+			"§6技能: Overflow Mana ");
+		checkNoMatch("未知技能标题不再由宽模板吞掉", "§6Ability: Unverified Effect ", Surface.ITEM);
 		// A raw "Level %s" used to swallow the Combat Merchant's wrapped lore line as an HOTM level.
 		check("山心天赋单个等级", "§7Level §a5", Surface.ITEM, "§7等级 §a5");
 		check("山心天赋等级进度", "§7Level §a1/10", Surface.ITEM, "§7等级 §a1/10");
@@ -2618,13 +2703,59 @@ public final class TranslationHarness {
 		check("三怪人指认的人名可变且不改名", "They are both telling the truth, the reward is in §cHope's §fchest!",
 			Surface.CHAT, "他们俩说的都是真话,奖励在§c Hope§f 的箱子里!");
 		check("狂信徒斗士死亡广播", "§c☠ §bMining§7 was killed by Zealot Bruiser.", Surface.CHAT,
-			"§c☠ §bMining§7 被狂信徒斗士杀死了。");
+			"§c☠ §bMining§7 被狂热末影人斗士杀死了。");
 		check("地牢图鉴怪物名", "Scared Skeleton XV ➡ XVI", Surface.CHAT, "惊恐骷髅 XV ➡ XVI");
 		check("图鉴硬币奖励去掉汉字之间的空格", "§8+§62% §aScared Skeleton §7coins", Surface.CHAT,
 			"§8+§62% §a惊恐骷髅§7掉落的硬币");
 		check("地牢技能名与专有 Boss 名分开", "Scarf's Soul Sand Blizzard hit you for 1,978.2 true damage.", Surface.CHAT,
 			"Scarf 的灵魂沙暴命中了你，造成 1,978.2 点真实伤害。");
 		check("召唤末影龙的紫色名称", "§fSummon the §5Ender Dragon§f!", Surface.CHAT, "§f召唤§5末影龙§f!");
+		check("力量巨龙碎片使用精确物品名", "§6Power Dragon Shard", Surface.ITEM, "§6力量巨龙碎片");
+		check("巅峰巨龙碎片使用精确物品名", "§6Apex Dragon Shard", Surface.ITEM, "§6巅峰巨龙碎片");
+		check("巨龙之爪使用精确物品名", "Dragon Claw", Surface.ITEM, "巨龙之爪");
+		checkNoMatch("未知巨龙碎片不再由宽模板吞掉", "Unverified Dragon Shard", Surface.ITEM);
+		check("绯红城区域标题统一译名", "Scarleton", Surface.MISC, "绯红城");
+		check("龙尾镇区域标题统一译名", "Dragontail", Surface.MISC, "龙尾镇");
+		check("末地动作栏区域名称复用地点词表", "§7 §8Void Slate", Surface.ACTION_BAR,
+			"§7 §8虚空石台");
+		check("Galatea 动作栏区域名称复用地点词表", "§7 §bTangleburg's Path", Surface.ACTION_BAR,
+			"§7 §b藤蔓堡小径");
+		check("实机绯红岛区域任务保留颜色", "§7   ■ §fFight the §5§lMage Outlaw§f.", Surface.CHAT,
+			"§7   ■ §f击败§5§l法师匪徒§f。");
+		check("Wiki 区域任务在无颜色证据时仍按正文匹配", "   ■ Visit the Dojo.", Surface.CHAT,
+			"   ■ 前往道场。");
+		check("Tyzzo 龙族祭坛介绍按中文语序重排颜色", "§fSacrifice your items at this §cDraconic Altar §fto obtain §dDragon Essence §fand special items.",
+			Surface.CHAT, "§c在这座龙族祭坛§f献祭物品,即可获得§d巨龙精华§f和特殊物品。");
+		check("Tyzzo 巨龙精华商店介绍保留分色", "§fYou can then exchange this Essence with me for §dspecial perks §fthat will aid you in your quest to slay the mighty Dragons.",
+			Surface.CHAT, "§f之后,你可以拿这些精华来找我兑换§d特殊天赋§f,它们会助你讨伐强大的巨龙。");
+		check("蛞蝓图鉴单行横幅保留重置与等级颜色", "§6§lBESTIARY §r§b§lSlug §7§bI", Surface.CHAT,
+			"§6§l生物图鉴 §b§l蛞蝓 §bI");
+		check("育母蜘蛛已现身状态保留红色", " Broodmother: §4Alive!", Surface.TABLIST,
+			" 育母蜘蛛: §4已现身!");
+		check("育母蜘蛛已击杀状态保留黄色", " Broodmother: §eSlain", Surface.TABLIST,
+			" 育母蜘蛛: §e已被击杀");
+		check("未领取的等级奖励保留数量颜色", "§aYou have §b1 §aunclaimed leveling reward!", Surface.CHAT,
+			"§a你有 §b1 份§a未领取的等级奖励!");
+		check("等级奖励查看提示", "§eClick here to view it!", Surface.CHAT, "§e点击此处查看!");
+		check("符文制作经验奖励", "Runecrafting: +168 XP", Surface.CHAT, "符文制作: +168 经验");
+		check("David 战斗狩猎里程碑", "DAVID: You reached Milestone 10 in Combat Hunts!", Surface.CHAT,
+			"DAVID: 你在战斗狩猎中达到了里程碑 10!");
+		check("David 属性菜单里程碑", "DAVID: You reached Milestone 10 in Attribute Menu!", Surface.CHAT,
+			"DAVID: 你在属性菜单中达到了里程碑 10!");
+		checkComponent("末影龙出现横幅保留图标、动态名称与公告颜色",
+			CaptureReplay.decode("§#AA00AA☬ §#FF55FF§lThe §c§lWise Dragon§#FF55FF§l has spawned!"), Surface.CHAT,
+			"§5☬ §c§lWise Dragon§d§l 出现了!");
+		check("最后一只召唤之眼保留玩家名与进度颜色",
+			"§5☬ §aMarinaSaltWater §dplaced a Summoning Eye! Brace yourselves! §7(§a8§7/§a8§7)",
+			Surface.CHAT, "§5☬ §aMarinaSaltWater §d放置了最后一只召唤之眼! 准备迎战! §7(§a8§7/§a8§7)");
+		check("绯红岛法师计数按中文语序重排颜色", "§c0§7/§a4§f Mages", Surface.SCOREBOARD,
+			"§f法师: §c0§7/§a4");
+		check("Tab 效果命令保留金色", "§7Use \"§6/effects§7\" to see them!", Surface.TABLIST,
+			"§7输入 \"§6/effects§7\" 查看!");
+		check("Lumina 园艺锄名称与数量分色", "§9Advanced Gardening Hoe §8x1", Surface.ITEM,
+			"§9进阶园艺锄 §8x1");
+		check("访客南瓜灯数量前缀保持深灰", "§fJack o' Lantern §8x512", Surface.ITEM,
+			"§f南瓜灯 §8x512");
 		check("区域等级警告只加粗前缀", "§c§lBE CAREFUL! §cYou're below the recommended Combat Level for this zone!",
 			Surface.CHAT, "§c§l小心! §c你的战斗等级低于此区域的建议等级!");
 		String ranking = "§e§l1st Damager §7- §b[MVP§f+§b] Lynn0526§f §7- §e7,633,673";
@@ -2815,11 +2946,8 @@ public final class TranslationHarness {
 			"§a50,000§d 亡灵精华");
 		check("集市不带数量的精华分类照旧", "§7Undead Essence", Surface.ITEM, "§7亡灵精华");
 		Component cost = Component.literal("§d50,000 Undead Essence");
-		for (boolean originals : List.of(false, true)) {
-			Component output = Translator.translate(cost, Surface.ITEM, originals).padded();
-			report("精华费用英文对照开关 " + originals,
-				("50,000 亡灵精华" + (originals ? "（Undead Essence）" : "")).equals(output.getString()), output.getString());
-		}
+		Component output = Translator.translate(cost, Surface.ITEM).padded();
+		report("精华费用不追加括号原文", "50,000 亡灵精华".equals(output.getString()), output.getString());
 		report("翻译不改写原始组件", "§d50,000 Undead Essence".equals(cost.getString()), cost.getString());
 		for (Map.Entry<String, String> skill : Map.of(
 			"Farming", "农业", "Combat", "战斗", "Foraging", "伐木", "Alchemy", "炼药",
