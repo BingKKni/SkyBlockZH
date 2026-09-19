@@ -2,18 +2,22 @@ package io.github.bingkkni.skyzh.capture;
 
 import io.github.bingkkni.skyzh.SkyZHConfig;
 import io.github.bingkkni.skyzh.compat.HypixelApi;
+import io.github.bingkkni.skyzh.text.ChatTranslation;
 import io.github.bingkkni.skyzh.text.LineShape;
-import io.github.bingkkni.skyzh.text.LoreMatcher;
-import io.github.bingkkni.skyzh.text.Translator;
+import io.github.bingkkni.skyzh.text.LoreTranslation;
 import io.github.bingkkni.skyzh.text.StyledText;
+import io.github.bingkkni.skyzh.text.TranslationIndex;
+import io.github.bingkkni.skyzh.text.Translator;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.components.ChatComponent;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
@@ -58,6 +62,18 @@ public final class TextCapture {
 	/** Text already sent to the worker. Bounded, because a long session sees a lot of numbers. */
 	private static final Map<String, Boolean> SEEN = new ConcurrentHashMap<>();
 	private static final int MAX_SEEN = 200_000;
+
+	/** Repeated container packets reuse font-free plans and evidence, including live styles. */
+	private static final int MAX_LORE_CACHE = 128;
+	private static final Map<List<StyledText>, List<LoreObservation>> LORE_CACHE =
+		new LinkedHashMap<>(MAX_LORE_CACHE, 0.75f, true) {
+			@Override
+			protected boolean removeEldestEntry(Map.Entry<List<StyledText>, List<LoreObservation>> eldest) {
+				return size() > MAX_LORE_CACHE;
+			}
+		};
+	private static TranslationIndex loreIndex;
+	private static boolean loreSkyBlockName;
 
 	/** File names for the surfaces where the text has no name of its own. */
 	private static final String SIDEBAR = "Sidebar";
@@ -104,15 +120,20 @@ public final class TextCapture {
 
 		int body = ChatShape.npcTagEnd(plain);
 
-		if (body >= 0) {
-			// The corpus stores the sentence, not the "[NPC] Bubu: " in front of it, and the engine
-			// peels the tag off before looking anything up. Capturing the whole line would file a
-			// record nothing on screen can ever match.
-			offer(CaptureSurface.NPC_MESSAGE, message, Classifier.fileName(ChatShape.npcName(plain)), "", body);
-			return;
-		}
+		CaptureSurface surface = body >= 0 ? CaptureSurface.NPC_MESSAGE : CaptureSurface.CHAT_MESSAGE;
+		String name = body >= 0 ? Classifier.fileName(ChatShape.npcName(plain)) : SERVER_MESSAGES;
+		offer(surface, message, name, "", Math.max(0, body));
+		Minecraft client = Minecraft.getInstance();
 
-		offer(CaptureSurface.CHAT_MESSAGE, message, SERVER_MESSAGES, "", 0);
+		if (client.font != null) {
+			int width = (int) Math.floor(ChatComponent.getWidth(client.options.chatWidth().get())
+				/ client.options.chatScale().get());
+			ChatTranslation.Plan plan = ChatTranslation.plan(message, width, client.font::width);
+
+			for (TranslationDiagnostics.Finding finding : TranslationDiagnostics.chat(plan)) {
+				diagnose(surface, finding.source(), name, "聊天排版", finding.verdict());
+			}
+		}
 	}
 
 	/** The title the server opened a container with. */
@@ -156,20 +177,93 @@ public final class TextCapture {
 
 		List<Component> lines = lore.lines();
 
-		// The line number is part of where a lore line was seen, not part of what it says, so it goes
-		// in the note and not in the key: the same sentence on line 4 of one item and line 9 of another
-		// is one record, which is what the shared-fragment library in _shared/ is made of.
-		for (int i = 0; i < lines.size(); i++) {
-			LoreMatcher.Match sentence = LoreMatcher.find(Translator.index(), lines, i);
-			if (sentence != null) {
-				// Classify the entire matched sentence, so mixed/colour diagnostics still work;
-				// do not report its already-translated English wrap tails as missing records.
-				offer(CaptureSurface.GUI_LORE, sentence.source(), name, where + " Lore 整句", 0);
-				i += sentence.lines() - 1;
+		for (LoreObservation observation : inspectLore(lines)) {
+			if (observation.diagnostic() != null) {
+				diagnose(observation.surface(), observation.source(), name,
+					where + " / " + (custom == null ? "" : plainOf(custom)) + " Lore", observation.diagnostic());
 			} else {
-				offer(CaptureSurface.GUI_ITEM, lines.get(i), name, where + " Lore", 0);
+				offer(observation.surface(), observation.source().getFirst(), name, where + " Lore", 0, Integer.MAX_VALUE, false);
 			}
 		}
+	}
+
+	/** The production lore capture path, exposed without client state for packet-content regression tests. */
+	public record LoreObservation(CaptureSurface surface, List<Component> source, Classifier.Verdict diagnostic) {}
+
+	public static synchronized List<LoreObservation> inspectLore(List<Component> lines) {
+		TranslationIndex index = Translator.index();
+		boolean skyBlockName = SkyZHConfig.get().translateSkyBlockName;
+
+		if (loreIndex != index || loreSkyBlockName != skyBlockName) {
+			LORE_CACHE.clear();
+			loreIndex = index;
+			loreSkyBlockName = skyBlockName;
+		}
+
+		List<StyledText> key = lines.stream().map(StyledText::of).toList();
+		List<LoreObservation> cached = LORE_CACHE.get(key);
+
+		if (cached != null) {
+			return cached;
+		}
+
+		// Cache-owned components cannot change if another caller later mutates the packet's text.
+		List<Component> snapshot = key.stream().<Component>map(text -> text.slice(0, text.length())).toList();
+		List<LoreObservation> observations = new ArrayList<>();
+		List<LoreTranslation.Unit> plan = LoreTranslation.plan(snapshot);
+
+		for (TranslationDiagnostics.Finding finding : TranslationDiagnostics.lore(plan)) {
+			observations.add(new LoreObservation(CaptureSurface.GUI_LORE, finding.source(), finding.verdict()));
+		}
+
+		for (LoreTranslation.Unit unit : plan) {
+			if (unit.complete()) {
+				StyledText source = unit.matches().getFirst().source();
+				observations.add(new LoreObservation(
+					CaptureSurface.GUI_LORE, List.of(source.slice(0, source.length())), null
+				));
+			} else {
+				for (Component line : unit.source()) {
+					observations.add(new LoreObservation(CaptureSurface.GUI_ITEM, List.of(line), null));
+				}
+			}
+		}
+
+		List<LoreObservation> result = List.copyOf(observations);
+		LORE_CACHE.put(key, result);
+
+		return result;
+	}
+
+	private static synchronized void clearLoreCache() {
+		LORE_CACHE.clear();
+		loreIndex = null;
+	}
+
+	/** Packet-derived diagnostic with concrete, ordered evidence. Never called for mod-added tooltips. */
+	private static void diagnose(
+		CaptureSurface surface, List<Component> source, String name, String where, Classifier.Verdict verdict
+	) {
+		String gameplay = placed();
+		String key = key(surface, name, where, verdict.bucket() + verdict.evidence().toString(), gameplay);
+		boolean first = SEEN.putIfAbsent(key, Boolean.TRUE) == null;
+		CaptureStore.Observation observation = CaptureStore.Repeated.INSTANCE;
+
+		if (first) {
+			var joined = Component.empty();
+
+			for (int i = 0; i < source.size(); i++) {
+				if (i > 0) {
+					joined.append("\n");
+				}
+
+				joined.append(source.get(i));
+			}
+
+			observation = new CaptureStore.Diagnosed(StyledText.of(joined), verdict);
+		}
+
+		queue(surface, key, observation, name, where, gameplay);
 	}
 
 	/** The sidebar's title, or one of its rows. */
@@ -253,6 +347,12 @@ public final class TextCapture {
 	private static void offer(
 		CaptureSurface surface, Component component, String name, String where, int from, int to
 	) {
+		offer(surface, component, name, where, from, to, true);
+	}
+
+	private static void offer(
+		CaptureSurface surface, Component component, String name, String where, int from, int to, boolean checkValues
+	) {
 		String full = plainOf(component);
 		int end = Math.min(to, full.length());
 
@@ -284,7 +384,9 @@ public final class TextCapture {
 					String lineKey = key(surface, name, where, line.plain(), gameplay);
 					boolean lineFirst = SEEN.putIfAbsent(lineKey, Boolean.TRUE) == null;
 
-					queue(surface, lineKey, lineFirst ? line : null, name, where, gameplay);
+					CaptureStore.Observation observation = lineFirst
+						? new CaptureStore.Line(line, checkValues) : CaptureStore.Repeated.INSTANCE;
+					queue(surface, lineKey, observation, name, where, gameplay);
 				}
 
 				start = stop + 1;
@@ -296,16 +398,17 @@ public final class TextCapture {
 		String gameplay = placed();
 		String key = key(surface, name, where, plain, gameplay);
 		boolean first = SEEN.putIfAbsent(key, Boolean.TRUE) == null;
-		StyledText text = null;
+		CaptureStore.Observation observation = CaptureStore.Repeated.INSTANCE;
 
 		if (first) {
 			StyledText styled = StyledText.of(component);
 			int start = Math.min(from, styled.length());
 			int stop = Math.min(end, styled.length());
-			text = from > 0 || stop < styled.length() ? styled.sub(start, Math.max(start, stop)) : styled;
+			StyledText text = from > 0 || stop < styled.length() ? styled.sub(start, Math.max(start, stop)) : styled;
+			observation = new CaptureStore.Line(text, checkValues);
 		}
 
-		queue(surface, key, text, name, where, gameplay);
+		queue(surface, key, observation, name, where, gameplay);
 	}
 
 	/**
@@ -317,7 +420,7 @@ public final class TextCapture {
 	 * it for why the line waits rather than being filed under the honest but useless answer.
 	 */
 	private static void queue(
-		CaptureSurface surface, String key, StyledText text, String name, String where, String gameplay
+		CaptureSurface surface, String key, CaptureStore.Observation observation, String name, String where, String gameplay
 	) {
 		if (SEEN.size() > MAX_SEEN) {
 			SEEN.clear();
@@ -326,8 +429,9 @@ public final class TextCapture {
 		long now = System.currentTimeMillis();
 		// The area is read now rather than when the line is finally filed: a line held through a warp
 		// belongs to the place it arrived in, not to wherever the player ended up.
-		CaptureStore.Sighting sighting =
-			new CaptureStore.Sighting(surface, key, text, null, CaptureContext.area(), name, where, now);
+		CaptureStore.Sighting sighting = new CaptureStore.Sighting(
+			surface, key, observation, null, CaptureContext.area(), name, where, now
+		);
 
 		for (CaptureStore.Sighting ready : HELD.offer(sighting, gameplay, now)) {
 			CaptureStore.offer(ready);
@@ -438,6 +542,7 @@ public final class TextCapture {
 	public static void clear() throws IOException {
 		HELD.clear();
 		SEEN.clear();
+		clearLoreCache();
 
 		// The directory rather than the store's own root, so files left by an earlier session can be
 		// cleared in one where capture has not started and never set it.
@@ -454,6 +559,7 @@ public final class TextCapture {
 		}
 
 		CaptureContext.reset();
+		clearLoreCache();
 
 		if (!started) {
 			return;

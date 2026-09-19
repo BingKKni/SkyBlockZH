@@ -1,5 +1,6 @@
 package io.github.bingkkni.skyzh.capture;
 
+import com.google.gson.JsonObject;
 import io.github.bingkkni.skyzh.text.StyledText;
 import io.github.bingkkni.skyzh.text.Surface;
 import io.github.bingkkni.skyzh.text.TranslationEntry;
@@ -18,7 +19,8 @@ import net.minecraft.ChatFormatting;
  *
  * <p>Capture is not a log of everything on screen — that is what made it worthless last time. A line
  * the corpus already answers for correctly is not evidence of anything, and a line with no words in
- * it cannot be translated. What is left is three piles, kept apart because each names a different
+ * it cannot be translated. Ordinary line checks cover three categories; ordered lore and layout
+ * diagnostics add INCOMPLETE, VALUE and LAYOUT with concrete evidence. Each names a different
  * repair:
  *
  * <ul>
@@ -43,7 +45,10 @@ public final class Classifier {
 	public enum Bucket {
 		UNTRANSLATED("untranslated"),
 		MIXED("mixed"),
-		COLOUR("colour");
+		COLOUR("colour"),
+		LAYOUT("layout"),
+		INCOMPLETE("incomplete"),
+		VALUE("value");
 
 		private final String directory;
 
@@ -80,8 +85,66 @@ public final class Classifier {
 	 */
 	public record Verdict(
 		Bucket bucket, List<String> words, List<String> values, NearMiss nearMiss,
-		String recordId, String recordFile
-	) {}
+		String recordId, String recordFile, JsonObject evidence
+	) {
+		public Verdict(Bucket bucket, List<String> words, List<String> values, NearMiss nearMiss,
+			String recordId, String recordFile) {
+			this(bucket, words, values, nearMiss, recordId, recordFile, null);
+		}
+
+		public String identity() {
+			StringBuilder key = new StringBuilder(bucket.name()).append('\u0000').append(recordFile)
+				.append('\u0000').append(recordId);
+			if (evidence != null) {
+				for (String field : List.of("code", "records", "expected_alignment", "source_alignment", "declared_policy", "chat_width_px")) {
+					key.append('\u0000').append(evidence.get(field));
+				}
+
+				key.append('\u0000').append(evidence.getAsJsonArray("original_lines").size());
+			}
+			return key.toString();
+		}
+
+		/** Values may vary, but a different fault or viewport needs its own concrete sample. */
+		public boolean sameKind(Verdict other) {
+			return identity().equals(other.identity());
+		}
+	}
+
+	/** Independent faults survive together; a missing number must not hide a colour report. */
+	public static List<Verdict> all(CaptureSurface surface, StyledText text) {
+		return all(surface, text, true);
+	}
+
+	/** Lore groups have already checked values with their continuations in hand. */
+	public static List<Verdict> all(CaptureSurface surface, StyledText text, boolean checkValues) {
+		List<Verdict> verdicts = new ArrayList<>();
+		Verdict ordinary = of(surface, text);
+
+		if (ordinary != null) {
+			verdicts.add(ordinary);
+		}
+
+		if (!checkValues) {
+			return List.copyOf(verdicts);
+		}
+
+		Translator.Located located = Translator.locate(text, surface.surface());
+
+		if (located.matched() && !located.entry().continuation()) {
+			var matched = new TranslationEntry.Matched(located.entry(), located.core(), located.match());
+			Verdict numeric = TranslationDiagnostics.numbers(
+				List.of(text.slice(0, text.length())),
+				located.entry().render(located.core(), located.match(), Translator.index().terms()), List.of(matched)
+			);
+
+			if (numeric != null) {
+				verdicts.add(numeric);
+			}
+		}
+
+		return List.copyOf(verdicts);
+	}
 
 	/**
 	 * A tab-list row or a chat line that is nothing but somebody's rank tag and name.

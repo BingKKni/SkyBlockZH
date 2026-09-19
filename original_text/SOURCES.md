@@ -98,7 +98,7 @@ wiki 的 `/UI` 子页只覆盖了一部分菜单,NEU-REPO 只有物品本体不�
 
 Mod 里因此有一个默认关闭的开关 `captureUntranslated`(`config/skyzh.json` 或 Mod Menu),
 打开之后把语料答不上来的服务器原文写到游戏目录下的 `skyzh-capture/`,分 `untranslated/`、`mixed/`、
-`colour/` 三堆,各自按本目录的结构(玩法 / 渲染面 / 名字)分好。**采到的记录就是本文件规定的记录格式**——
+`colour/`、`layout/`、`incomplete/`、`value/` 六类,各自按本目录的结构(玩法 / 渲染面 / 名字)分好。**采到的记录就是本文件规定的记录格式**——
 颜色码原样保留、变色的行自动切好 `segments`、`zh` 留空——搬进来只需要删掉 `_capture` 块、
 核对占位符、填 `zh`。
 

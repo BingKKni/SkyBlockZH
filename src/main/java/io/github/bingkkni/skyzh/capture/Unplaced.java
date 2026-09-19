@@ -138,7 +138,7 @@ public final class Unplaced {
 
 	private static CaptureStore.Sighting stamp(CaptureStore.Sighting sighting, String gameplay) {
 		return new CaptureStore.Sighting(
-			sighting.surface(), sighting.key(), sighting.text(), gameplay, sighting.area(),
+			sighting.surface(), sighting.key(), sighting.observation(), gameplay, sighting.area(),
 			sighting.name(), sighting.note(), sighting.when()
 		);
 	}

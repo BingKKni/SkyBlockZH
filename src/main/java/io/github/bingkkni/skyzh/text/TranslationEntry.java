@@ -1,7 +1,9 @@
 package io.github.bingkkni.skyzh.text;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -29,6 +31,44 @@ import net.minecraft.network.chat.Style;
  * numbers, none of which are ever translated.
  */
 public final class TranslationEntry {
+	/** One source segment and its target; null target means omit, null order means source order. */
+	public record Segment(String source, String target, Integer order) {
+		public Segment(String source, String target) {
+			this(source, target, null);
+		}
+	}
+
+	/** The declared type and optional example belong to the same placeholder number. */
+	public record Argument(String type, String example) {
+		public static final Argument UNSPECIFIED = new Argument("", "");
+
+		public Argument {
+			type = Objects.requireNonNullElse(type, "");
+			example = Objects.requireNonNullElse(example, "");
+		}
+	}
+
+	public record Options(boolean continuation, String layout, Set<String> excludedTexts, String chatJoinNext) {
+		public static final Options DEFAULT = new Options(false, "", Set.of(), "");
+
+		public Options {
+			layout = Objects.requireNonNullElse(layout, "");
+			excludedTexts = Set.copyOf(excludedTexts);
+			chatJoinNext = Objects.requireNonNullElse(chatJoinNext, "");
+		}
+	}
+
+	/** Compiler input grouped by segment, placeholder and rendering policy. */
+	public record Definition(
+		String id, String sourceFile, List<Segment> segments, Map<Integer, Argument> arguments, Options options
+	) {
+		public Definition {
+			segments = List.copyOf(segments);
+			arguments = Map.copyOf(arguments);
+			Objects.requireNonNull(options);
+		}
+	}
+
 	/**
 	 * A run of the source line that shares one colour, together with the Chinese for that run.
 	 *
@@ -56,8 +96,6 @@ public final class TranslationEntry {
 	private final String sourceFile;
 	private final Pattern pattern;
 	private final List<Fragment> fragments;
-	/** The same fragments in the order the Chinese reads them. @see #compile */
-	private final List<Fragment> rendered;
 	private final int[] argGroups;
 	/** What each capture group is allowed to hold, so a value cannot swallow a sentence. */
 	private final Map<Integer, Capture> captures;
@@ -70,6 +108,8 @@ public final class TranslationEntry {
 	private final Map<Integer, Integer> shapes;
 	private final boolean continuation;
 	private final String layout;
+	/** The exact next line that may join this record inside one chat component, or empty. */
+	private final String chatJoinNext;
 	private final int specificity;
 	/** The record's English with its fragments joined and its placeholders still in it. */
 	private final String template;
@@ -77,25 +117,24 @@ public final class TranslationEntry {
 	private final Set<String> excludedTexts;
 
 	private TranslationEntry(
-		String id, String sourceFile, Pattern pattern, List<Fragment> fragments, List<Fragment> rendered,
-		int[] argGroups, Map<Integer, Capture> captures, Map<Integer, String> argTypes,
-		Map<Integer, Integer> shapes, boolean continuation, String layout, int specificity, String template,
-		Set<String> excludedTexts
+		Definition definition, Pattern pattern, List<Fragment> fragments, int[] argGroups,
+		Map<Integer, Capture> captures, Map<Integer, String> argTypes, Map<Integer, Integer> shapes,
+		int specificity, String template
 	) {
-		this.id = id;
-		this.sourceFile = sourceFile;
+		this.id = definition.id();
+		this.sourceFile = definition.sourceFile();
 		this.pattern = pattern;
 		this.fragments = fragments;
-		this.rendered = rendered;
 		this.argGroups = argGroups;
 		this.captures = captures;
 		this.argTypes = argTypes;
 		this.shapes = shapes;
-		this.continuation = continuation;
-		this.layout = layout;
+		this.continuation = definition.options().continuation();
+		this.layout = definition.options().layout();
+		this.chatJoinNext = definition.options().chatJoinNext();
 		this.specificity = specificity;
 		this.template = template;
-		this.excludedTexts = Set.copyOf(excludedTexts);
+		this.excludedTexts = definition.options().excludedTexts();
 	}
 
 	/**
@@ -121,50 +160,19 @@ public final class TranslationEntry {
 	 * {@link LineShape}. A record with no placeholder cannot shadow anything — it matches its own text
 	 * and nothing else — so Dalir's {@code "✆ ..."} is allowed to become {@code "✆ ……"}.
 	 *
-	 * @param sources  the English of each fragment, in order
-	 * @param targets  the Chinese of each fragment, in order. An empty entry means "leave this run in
-	 *                 English"; a {@code null} entry means "draw nothing for this run", which is how a
-	 *                 line whose Chinese word order differs from the English is expressed — see below
-	 * @param order    where each fragment sits in the finished Chinese, or empty for "same order as the
-	 *                 English". See {@link #reorder}
-	 * @param argTypes the {@code placeholders[].type} of each argument, keyed by its number, deciding
-	 *                 both what that placeholder may capture and whether {@link TermTable} applies to it
-	 * @param argExamples the {@code placeholders[].example} of each argument, keyed the same way, which
-	 *                 bounds the placeholder to the kind of value the corpus said sits there. See
-	 *                 {@link ValueShape} for the sentence this stopped being drawn wrongly
+	 * @param definition segments stay in source order; their optional order controls drawing only.
+	 *                   Placeholder types bound captures, and examples further constrain raw values.
 	 */
-	public static TranslationEntry compile(
-		String id, String sourceFile, List<String> sources, List<String> targets, boolean continuation,
-		String layout, Map<Integer, String> argTypes, Map<Integer, String> argExamples
-	) {
-		return compile(
-			id, sourceFile, sources, targets, List.of(), continuation, layout, argTypes, argExamples
-		);
-	}
+	public static TranslationEntry compile(Definition definition) {
+		List<Segment> segments = definition.segments();
+		boolean continuation = definition.options().continuation();
 
-	/** @see #compile(String, String, List, List, boolean, String, Map, Map) */
-	public static TranslationEntry compile(
-		String id, String sourceFile, List<String> sources, List<String> targets, List<Integer> order,
-		boolean continuation, String layout, Map<Integer, String> argTypes,
-		Map<Integer, String> argExamples
-	) {
-		return compile(id, sourceFile, sources, targets, order, continuation, layout, argTypes, argExamples, Set.of());
-	}
-
-	/** A bounded list of literal exceptions to one template; other records may still answer. */
-	public static TranslationEntry compile(
-		String id, String sourceFile, List<String> sources, List<String> targets, List<Integer> order,
-		boolean continuation, String layout, Map<Integer, String> argTypes,
-		Map<Integer, String> argExamples, Set<String> excludedTexts
-	) {
-		if (sources.isEmpty() || sources.size() != targets.size()) {
+		if (segments.isEmpty()) {
 			return null;
 		}
 
-		// The record's English is folded onto the same spelling the live line will be folded onto, so
-		// a wiki-collected "❤ Health" and an NEU-collected "\uE010 Health" are one and the same
-		// template — see Glyphs.
-		sources = sources.stream().map(Glyphs::canonical).toList();
+		// Matching and live text use the same canonical spelling of server font icons.
+		List<String> sources = segments.stream().map(segment -> Glyphs.canonical(segment.source())).toList();
 
 		boolean anyTranslated = false;
 		boolean anyWordOfItsOwn = false;
@@ -172,7 +180,7 @@ public final class TranslationEntry {
 		int literals = 0;
 
 		for (int i = 0; i < sources.size(); i++) {
-			String target = targets.get(i);
+			String target = segments.get(i).target();
 
 			if (target != null && !target.isEmpty()) {
 				anyTranslated = true;
@@ -225,7 +233,8 @@ public final class TranslationEntry {
 					// Lazy, so the literals around it decide where the value ends rather than the
 					// value swallowing the rest of the line, and bounded to the kind of value the
 					// corpus said sits here — see Capture for what went wrong when it was not.
-					String type = argTypes.get(arg.index());
+					Argument argument = definition.arguments().getOrDefault(arg.index(), Argument.UNSPECIFIED);
+					String type = argument.type();
 					Capture capture = Capture.of(type);
 					captures.put(group, capture);
 					typeByGroup.put(group, type);
@@ -240,7 +249,7 @@ public final class TranslationEntry {
 					// allows and so was never matchable anyway. Binding to one of those would leave the
 					// record refusing every line including its own, which is worse than not binding: the
 					// point of this is to stop a record answering too widely, not to stop it answering.
-					String example = argExamples.get(arg.index());
+					String example = argument.example();
 
 					if (capture == Capture.PHRASE && example != null && !example.isEmpty()
 						&& capture.accepts(example)) {
@@ -253,17 +262,18 @@ public final class TranslationEntry {
 
 			regex.append(')');
 
-			String target = targets.get(i);
+			Segment segment = segments.get(i);
+			String target = segment.target();
 			boolean omitted = target == null;
-			boolean rendered = !omitted && !target.isEmpty();
-			boolean ordered = order.size() == sources.size();
+			boolean translated = !omitted && !target.isEmpty();
+			boolean ordered = segment.order() != null;
 			fragments.add(new Fragment(
-				rendered ? parse(target, targetArg) : List.of(), rendered, omitted, fragmentGroup,
-				fragmentArgs.stream().mapToInt(Integer::intValue).toArray(), ordered ? order.get(i) : i,
+				translated ? parse(target, targetArg) : List.of(), translated, omitted, fragmentGroup,
+				fragmentArgs.stream().mapToInt(Integer::intValue).toArray(), ordered ? segment.order() : i,
 				ordered
 			));
 
-			if (!rendered) {
+			if (!translated) {
 				// A run left in English still consumes its placeholders' numbering, so the fragment
 				// after it lines up with the right captures.
 				parse(sources.get(i), targetArg);
@@ -273,39 +283,10 @@ public final class TranslationEntry {
 		regex.append('$');
 
 		return new TranslationEntry(
-			id, sourceFile, Pattern.compile(regex.toString(), Pattern.DOTALL), List.copyOf(fragments),
-			reorder(fragments, order), argGroups, Map.copyOf(captures), Map.copyOf(typeByGroup),
-			Map.copyOf(shapeByGroup), continuation, layout, literals, String.join("", sources), excludedTexts
+			definition, Pattern.compile(regex.toString(), Pattern.DOTALL), List.copyOf(fragments),
+			argGroups, Map.copyOf(captures), Map.copyOf(typeByGroup), Map.copyOf(shapeByGroup),
+			literals, String.join("", sources)
 		);
-	}
-
-	/**
-	 * The fragments in the order the Chinese reads them.
-	 *
-	 * <p>{@code omit} already lets a run's words move <em>forwards</em> into the run after it, which
-	 * covers the common case of English naming a thing before the verb that acts on it. It cannot move
-	 * them backwards, and plenty of sentences need exactly that: "You received <b>750 Mithril
-	 * Powder</b> from killing a <b>Golden Goblin</b>!" reads in Chinese as "你通过击杀<b>黄金哥布林</b>获得了
-	 * <b>750 秘银粉末</b>！" — the two highlighted runs swap places, and each has to keep its own colour
-	 * and its own placeholder on the way. Writing that with {@code omit} alone would mean giving one
-	 * run both translations and drawing them in one colour, which is the thing {@code segments} exists
-	 * to avoid.
-	 *
-	 * <p>So a segment may say where it lands: {@code "order": 3} is "this run is the fourth thing the
-	 * Chinese says". Matching is unaffected — the pattern is still built in the order the server sends
-	 * the words — and so is every diagnostic, which walks the source order. Only the drawing changes.
-	 *
-	 * @param order one position per fragment, already checked to be a permutation by
-	 *              {@link TranslationLoader}; empty means the English order, which is almost every record
-	 */
-	private static List<Fragment> reorder(List<Fragment> fragments, List<Integer> order) {
-		if (order.size() != fragments.size()) {
-			return List.copyOf(fragments);
-		}
-
-		List<Fragment> rendered = new ArrayList<>(fragments);
-		rendered.sort((left, right) -> Integer.compare(left.order(), right.order()));
-		return List.copyOf(rendered);
 	}
 
 	/**
@@ -455,6 +436,11 @@ public final class TranslationEntry {
 		return this.continuation;
 	}
 
+	/** The exact next record that may join this line inside one server chat component. */
+	public String chatJoinNext() {
+		return this.chatJoinNext;
+	}
+
 	/** {@code "center_chat_banner"} for the handful of announcements the server centres by hand. */
 	public String layout() {
 		return this.layout;
@@ -531,7 +517,7 @@ public final class TranslationEntry {
 	 * August; the text on screen right now never is.
 	 *
 	 * <p>Fragments are written out in the order the <em>Chinese</em> reads them, which is the English
-	 * order for all but a handful of records — see {@link #reorder}. Where each fragment matched, and
+	 * order for all but a handful of records — see {@link #renderJoined}. Where each fragment matched, and
 	 * therefore what colour it takes, does not depend on that order at all.
 	 */
 	public MutableComponent render(StyledText source, Matcher match, TermTable terms) {
@@ -611,7 +597,7 @@ public final class TranslationEntry {
 
 					inner.append(Component.literal(text).setStyle(style), text, style);
 				} else if (piece instanceof Arg arg) {
-					int group = arg.index() < entry.argGroups.length ? entry.argGroups[arg.index()] : 0;
+					int group = entry.argumentGroup(arg);
 
 					if (group > 0 && match.start(group) >= 0) {
 						entry.append(inner, source, match, group, terms, style, fragmentItem == null ? translatedItem : null);
@@ -677,7 +663,10 @@ public final class TranslationEntry {
 	 */
 	private static String termEnglish(String english) {
 		// The catalog also contains an item named X; lowercase x here is the quantity marker.
-		if (english.equals("x")) return null;
+		if (english.equals("x")) {
+			return null;
+		}
+
 		String key = ItemNames.canonical(english);
 
 		if (key != null) {
@@ -874,7 +863,8 @@ public final class TranslationEntry {
 	 * them as translations somebody forgot to write buries the handful that were.
 	 */
 	private static boolean isWords(String value) {
-		if (!hasLetter(value)) {
+		// A single letter is a grade, a class initial or a bracketed marker, and there is no term to write for it.
+		if (value.length() < 2 || !hasLetter(value)) {
 			return false;
 		}
 
@@ -887,6 +877,92 @@ public final class TranslationEntry {
 		}
 
 		return true;
+	}
+
+	/** A translated placeholder may only refer to a capture in this record, including continuations. */
+	public boolean hasUnboundArguments() {
+		for (Fragment fragment : this.fragments) {
+			for (Piece piece : fragment.pieces()) {
+				if (piece instanceof Arg arg && argumentGroup(arg) == 0) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
+	private int argumentGroup(Arg arg) {
+		return arg.index() < this.argGroups.length ? this.argGroups[arg.index()] : 0;
+	}
+
+	/** Problems in argument wiring, before comparing visible numeric values. */
+	public List<String> argumentProblems(Matcher match) {
+		List<String> problems = new ArrayList<>();
+		Set<Integer> used = new HashSet<>();
+
+		for (Fragment fragment : this.fragments) {
+			if (fragment.omitted()) {
+				continue;
+			}
+
+			if (!fragment.translated()) {
+				if (!this.continuation) {
+					for (int group : fragment.argGroups()) {
+						used.add(group);
+					}
+				}
+
+				continue;
+			}
+
+			for (Piece piece : fragment.pieces()) {
+				if (piece instanceof Arg arg) {
+					int group = argumentGroup(arg);
+
+					if (group == 0) {
+						problems.add("译文引用了原文没有的占位符 %" + arg.index() + "$s");
+					} else {
+						used.add(group);
+					}
+				}
+			}
+		}
+
+		for (var arg : this.captures.entrySet()) {
+			String value = match.group(arg.getKey());
+
+			if (value != null && value.chars().anyMatch(Character::isDigit) && !used.contains(arg.getKey())) {
+				problems.add("数值占位符未输出: " + value);
+			}
+		}
+
+		return List.copyOf(problems);
+	}
+
+	/**
+	 * What each placeholder puts on screen: the value after the ordinal, duration and multiplier
+	 * conversions of {@link Capture#renderValue}, or nothing for a value the term table translates
+	 * whole — that Chinese was written by a person and answers for its own digits.
+	 */
+	public List<String> renderedValues(Matcher match, TermTable terms) {
+		List<String> values = new ArrayList<>();
+
+		for (Map.Entry<Integer, Capture> capture : this.captures.entrySet()) {
+			int group = capture.getKey();
+
+			if (match.start(group) < 0 || match.group(group).isEmpty()) {
+				continue;
+			}
+
+			String value = match.group(group);
+
+			if (terms.translate(this.argTypes.get(group), value) == null) {
+				values.add(capture.getValue().renderValue(value));
+			}
+		}
+
+		return List.copyOf(values);
 	}
 
 	/**

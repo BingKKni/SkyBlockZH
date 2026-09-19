@@ -26,6 +26,9 @@ public final class LineShape {
 	/** A half-open range of a line: the part a corpus record might be responsible for. */
 	public record Range(int start, int end) {}
 
+	/** A server speaker's name and the position immediately after its tag and colon. */
+	public record Speaker(String name, int end) {}
+
 	/**
 	 * The tags Hypixel puts in front of something one of its own characters says.
 	 *
@@ -100,10 +103,10 @@ public final class LineShape {
 		}
 
 		if (surface == Surface.CHAT) {
-			int speaker = speakerTagEnd(plain, start, end);
+			Speaker speaker = speaker(plain, start, end);
 
-			if (speaker > 0) {
-				add(ranges, skipSpaces(plain, speaker, end), end);
+			if (speaker != null) {
+				add(ranges, skipSpaces(plain, speaker.end(), end), end);
 			}
 		}
 
@@ -140,7 +143,7 @@ public final class LineShape {
 	private static final String BULLETS = "▶▸➤➜■◼○◆•⦾⁍⚑✔✖";
 
 	/** Whether this character is one of those marks. Used by {@link Capture} to refuse it as a name. */
-	static boolean isBullet(char c) {
+	public static boolean isBullet(char c) {
 		return BULLETS.indexOf(c) >= 0;
 	}
 
@@ -303,7 +306,18 @@ public final class LineShape {
 	 * — without needing to know any of them. A colon inside the dialogue itself is harmless: the
 	 * first one always belongs to the speaker.
 	 */
-	private static int speakerTagEnd(String plain, int start, int end) {
+	public static int speakerTagEnd(String plain) {
+		Speaker speaker = speaker(plain);
+
+		return speaker == null ? -1 : speaker.end();
+	}
+
+	/** Shared by translation and capture, so both recognise exactly the same server speakers. */
+	public static Speaker speaker(String plain) {
+		return speaker(plain, skipSpaces(plain, 0, plain.length()), plain.length());
+	}
+
+	private static Speaker speaker(String plain, int start, int end) {
 		for (String tag : SPEAKER_TAGS) {
 			if (!plain.startsWith(tag, start)) {
 				continue;
@@ -313,13 +327,13 @@ public final class LineShape {
 			int colon = plain.indexOf(": ", from);
 
 			if (colon < 0 || colon >= end || colon - from > LONGEST_SPEAKER) {
-				return -1;
+				return null;
 			}
 
-			return colon + 2;
+			return new Speaker(plain.substring(from, colon).trim(), colon + 2);
 		}
 
-		return -1;
+		return null;
 	}
 
 	/** Adds a range unless it is empty or already in the list. */

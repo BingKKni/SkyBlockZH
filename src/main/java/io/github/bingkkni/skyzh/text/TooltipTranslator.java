@@ -14,7 +14,6 @@ import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 
 /**
  * Item name and lore, translated as a block rather than line by line.
@@ -164,94 +163,22 @@ public final class TooltipTranslator {
 		}
 
 		List<Component> result = new ArrayList<>(lines.size());
-		boolean merging = false;
-		boolean name = true;
-		boolean hint = false;
+		Component itemName = lines.getFirst();
+		Translator.Result translatedName = translateItemName(itemName);
+		boolean hint = hintKey != null && !terminalNames && OriginalTips.eligibleName(itemName, translatedName);
 
-		for (int i = 0; i < lines.size(); i++) {
-			Component line = lines.get(i);
-			if (!name) {
-				LoreMatcher.Match sentence = LoreMatcher.find(Translator.index(), lines, i);
-				if (sentence != null) {
-					Component rendered = Translator.skyBlockName(
-						sentence.render(Translator.index().terms()), config);
-					result.addAll(TextLayout.wrap(font, rendered, width));
-					i += sentence.lines() - 1;
-					// A complete sentence must never swallow an unrelated legacy continuation.
-					merging = false;
-					continue;
-				}
-			}
-			Translator.Result translated = name
-				? translateItemName(line)
-				: Translator.translate(line, Surface.ITEM);
+		if (terminalNames) {
+			result.add(itemName);
+		} else {
+			result.addAll(TextLayout.wrap(font, translatedName.padded(), width));
+		}
 
-			if (name) {
-				name = false;
-
-				hint = hintKey != null && !terminalNames
-					&& OriginalTips.eligibleName(line, translated);
-				if (terminalNames) {
-					// Terminal letter puzzles must retain their English answer data.
-					result.add(line);
-					merging = true;
-					continue;
-				}
-			}
-
-			if (translated.matched() && translated.entry().continuation()) {
-				if (merging) {
-					// The sentence this line ended is already complete on the line above. Still
-					// merging, so a sentence Hypixel broke across three lines loses both tails.
-					continue;
-				}
-
-				// The line above is still English, so its other half has to stay too.
-				result.add(line);
-				continue;
-			}
-
-			if (translated.matched()) {
-				List<TranslationEntry.Matched> joined = new ArrayList<>();
-				joined.add(new TranslationEntry.Matched(translated.entry(), translated.matchedCore(), translated.match()));
-
-				int tail = i + 1;
-
-				while (tail < lines.size()) {
-					Translator.Result continuation = Translator.translate(lines.get(tail), Surface.ITEM);
-
-					if (!continuation.matched() || !continuation.entry().continuation()) {
-						break;
-					}
-
-					joined.add(new TranslationEntry.Matched(
-						continuation.entry(), continuation.matchedCore(), continuation.match()
-					));
-					tail++;
-				}
-
-				if (joined.size() == 1) {
-					result.addAll(TextLayout.wrap(font, translated.padded(), width));
-				} else {
-					Component rendered = Translator.skyBlockName(
-						TranslationEntry.renderJoined(joined, Translator.index().terms()), config
-					);
-					Component padded = pad(translated.head(), rendered, translated.tail());
-
-					result.addAll(TextLayout.wrap(font, padded, width));
-					i = tail - 1;
-				}
+		for (LoreTranslation.Unit unit : LoreTranslation.plan(lines.subList(1, lines.size()))) {
+			if (unit.translated()) {
+				result.addAll(TextLayout.wrap(font, unit.rendered(), width));
 			} else {
-				// No record answers for the whole line, which is the normal state of an enchantment
-				// line: it lists whichever enchantments this item carries, and the corpus holds them
-				// one at a time. Tried only after the whole line has failed, so a record that spells
-				// a comma out still wins.
-				Component list = Translator.translateList(line, Surface.ITEM);
-
-				result.add(list != null ? list : translated.padded());
+				result.add(unit.rendered());
 			}
-
-			merging = translated.matched();
 		}
 
 		if (hint) {
@@ -264,25 +191,5 @@ public final class TooltipTranslator {
 		}
 
 		return immutable;
-	}
-
-	private static Component pad(Component head, Component core, Component tail) {
-		if (head == null && tail == null) {
-			return core;
-		}
-
-		MutableComponent result = Component.empty();
-
-		if (head != null) {
-			result.append(head);
-		}
-
-		result.append(core);
-
-		if (tail != null) {
-			result.append(tail);
-		}
-
-		return result;
 	}
 }

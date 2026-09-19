@@ -180,6 +180,14 @@ harnessTask('checkCapture', 'io.github.bingkkni.skyzh.CaptureHarness',
 	inputs.dir rootProject.file('original_text')
 }
 
+harnessTask('checkDiagnostics', 'io.github.bingkkni.skyzh.DiagnosticsHarness',
+	'Checks live alignment, continuation and numeric diagnostics with capture persistence.') {
+	args rootProject.file('original_text').absolutePath,
+		rootProject.file('src/harness/resources/runtime-diagnostic-colours.json').absolutePath
+	inputs.dir rootProject.file('original_text')
+	inputs.file rootProject.file('src/harness/resources/runtime-diagnostic-colours.json')
+}
+
 harnessTask('checkCommands', 'io.github.bingkkni.skyzh.CommandHarness',
 	'Checks SkyZH client-command parsing and exact help text.')
 
@@ -295,7 +303,7 @@ tasks.register('checkMixinTargets', Exec) {
 }
 
 tasks.named('check') {
-	dependsOn 'checkTranslations', 'checkLore', 'checkCapture', 'checkCommands', 'checkClientSettings', 'checkMinifiedCorpus',
+	dependsOn 'checkTranslations', 'checkLore', 'checkCapture', 'checkDiagnostics', 'checkCommands', 'checkClientSettings', 'checkMinifiedCorpus',
 		'checkMixinTargets'
 }
 

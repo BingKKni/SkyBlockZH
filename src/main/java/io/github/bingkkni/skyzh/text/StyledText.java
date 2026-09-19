@@ -83,6 +83,18 @@ public final class StyledText {
 		return new StyledText(text.toString(), styles.toArray(Style[]::new));
 	}
 
+	/** Snapshots compare by their rendered characters and complete styles, independently of identity. */
+	@Override
+	public boolean equals(Object other) {
+		return this == other || other instanceof StyledText text
+			&& this.plain.equals(text.plain) && Arrays.equals(this.styles, text.styles);
+	}
+
+	@Override
+	public int hashCode() {
+		return 31 * this.plain.hashCode() + Arrays.hashCode(this.styles);
+	}
+
 	public String plain() {
 		return this.plain;
 	}

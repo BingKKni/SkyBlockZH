@@ -272,6 +272,9 @@ public final class CaptureAnnouncer {
 			case MIXED -> "中英混杂";
 			case COLOUR -> "颜色失真";
 			case UNTRANSLATED -> "未翻译";
+			case LAYOUT -> "排版异常";
+			case INCOMPLETE -> "跨行残留";
+			case VALUE -> "数值异常";
 		};
 	}
 

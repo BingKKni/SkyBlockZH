@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.client.gui.Font;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 
 /**
  * Pixel arithmetic — the answer to known issues 1 and 2, both of which come down to the same thing:
@@ -25,32 +24,6 @@ public final class TextLayout {
 	/** Where to start drawing {@code text} so it sits centred in a box {@code width} wide. */
 	public static int centeredX(Font font, Component text, int width) {
 		return Math.max(0, (width - font.width(text)) / 2);
-	}
-
-	/**
-	 * The same centring for surfaces that only accept a string: spaces on the left, rounded to the
-	 * nearest whole space. Leading spaces the server itself added must be gone before this is called
-	 * — they were its centring for the English, and they are not ours.
-	 */
-	public static MutableComponent centeredWithSpaces(Font font, Component text, int width) {
-		int spaceWidth = Math.max(1, font.width(" "));
-		int slack = width - font.width(text);
-
-		if (slack <= 0) {
-			return text.copy();
-		}
-
-		// Rounding to the nearest space can ask for up to half a space more room than there is, and
-		// a banner that no longer fits gets wrapped onto a second line by the chat renderer — far
-		// uglier than sitting two pixels off centre. So the rounded answer is capped at the number
-		// of spaces that still leaves the line inside the box.
-		int pad = Math.min(Math.round(slack / 2.0f / spaceWidth), slack / spaceWidth);
-
-		if (pad <= 0) {
-			return text.copy();
-		}
-
-		return Component.literal(" ".repeat(pad)).append(text);
 	}
 
 	/**
@@ -101,8 +74,7 @@ public final class TextLayout {
 				// By code point, so a character outside the basic plane is measured as the one glyph
 				// it is and never cut in half — half a surrogate pair renders as a replacement box.
 				int codePoint = plain.codePointAt(cursor);
-				int charWidth = font.width(new String(Character.toChars(codePoint)))
-					+ (styled.styleAt(cursor).isBold() ? 1 : 0);
+				int charWidth = font.width(styled.slice(cursor, cursor + Character.charCount(codePoint)));
 
 				if (width + charWidth > limit && cursor > lineStart) {
 					break;

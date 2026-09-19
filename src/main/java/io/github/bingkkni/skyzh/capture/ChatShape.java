@@ -1,5 +1,6 @@
 package io.github.bingkkni.skyzh.capture;
 
+import io.github.bingkkni.skyzh.text.LineShape;
 import java.util.regex.Pattern;
 
 /**
@@ -17,22 +18,6 @@ import java.util.regex.Pattern;
  * and is checked first, which is also why the two cannot be told apart by looking for brackets.
  */
 public final class ChatShape {
-	/**
-	 * The tags Hypixel puts in front of dialogue one of its own characters speaks.
-	 *
-	 * <p>The second one is why this is a list. {@code [SECURITY] Sloth: } wears the same shape as a
-	 * player's line — bracketed tag, one-word name, colon — so {@link #PLAYER} matches it and the
-	 * whole warning was classed as somebody's chat and dropped. Nothing reports that: the line is not
-	 * captured, so it never appears as missing, and it is not translated, so it sits in the hub in
-	 * English indefinitely. Kept in step with {@link io.github.bingkkni.skyzh.text.LineShape}, which
-	 * peels the same tags off before looking a line up.
-	 */
-	private static final String[] SPEAKER_TAGS = {
-		"[NPC] ", "[BOSS] ", "[SECURITY] ", "[CROWD] ", "[STATUE] ", "[SKULL] "
-	};
-
-	/** How far past the tag a speaker's colon may sit — long enough for "Keeper of the Crystal". */
-	private static final int LONGEST_SPEAKER = 48;
 
 	/**
 	 * A rank tag and a name, and nothing else, in front of a colon.
@@ -78,47 +63,14 @@ public final class ChatShape {
 	/** Where a server speaker tag such as {@code [NPC] Bubu: } or {@code [BOSS] Bonzo: } ends,
 	 * or {@code -1} when this line has no speaker tag. */
 	public static int npcTagEnd(String line) {
-		int start = 0;
-
-		while (start < line.length() && line.charAt(start) == ' ') {
-			start++;
-		}
-
-		for (String tag : SPEAKER_TAGS) {
-			if (!line.startsWith(tag, start)) {
-				continue;
-			}
-
-			int from = start + tag.length();
-			int colon = line.indexOf(": ", from);
-
-			if (colon < 0 || colon - from > LONGEST_SPEAKER) {
-				return -1;
-			}
-
-			return colon + 2;
-		}
-
-		return -1;
+		return LineShape.speakerTagEnd(line);
 	}
 
 	/** The name between the tag and the colon, or an empty string when there is no tag. */
 	public static String npcName(String line) {
-		int end = npcTagEnd(line);
+		LineShape.Speaker speaker = LineShape.speaker(line);
 
-		if (end < 0) {
-			return "";
-		}
-
-		for (String tag : SPEAKER_TAGS) {
-			int tagAt = line.indexOf(tag);
-
-			if (tagAt >= 0) {
-				return line.substring(tagAt + tag.length(), end - 2).trim();
-			}
-		}
-
-		return "";
+		return speaker == null ? "" : speaker.name();
 	}
 
 	/**

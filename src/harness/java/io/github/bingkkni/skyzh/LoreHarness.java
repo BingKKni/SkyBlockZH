@@ -124,8 +124,10 @@ public final class LoreHarness {
 			Component.literal("§9Protection V, §9Unknown V"), index));
 		check("审计接受完整正常的附魔列表", NeuLoreAudit.coveredList(
 			Component.literal("§9Protection V, §9Sharpness V"), index));
-		TranslationEntry badTail = TranslationEntry.compile("tail-test", "test", List.of("tail text"),
-			List.of("尾行"), true, "", Map.of(), Map.of());
+		TranslationEntry badTail = TranslationEntry.compile(new TranslationEntry.Definition(
+			"tail-test", "test", List.of(new TranslationEntry.Segment("tail text", "尾行")),
+			Map.of(), new TranslationEntry.Options(true, "", Set.of(), "")
+		));
 		StyledText tailText = StyledText.of(Component.literal("§7tail §ctext"));
 		check("审计不豁免 continuation 的颜色错误", !NeuLoreAudit.coveredLegacy(
 			new Translator.Located(badTail, tailText, badTail.match(tailText.canonical())), index, true));
@@ -135,8 +137,10 @@ public final class LoreHarness {
 	}
 
 	private static void addTestEntry(TranslationIndex index, String text) {
-		TranslationEntry entry = TranslationEntry.compile("boundary-test", "test", List.of(text),
-			List.of("测试"), false, "", Map.of(), Map.of());
+		TranslationEntry entry = TranslationEntry.compile(new TranslationEntry.Definition(
+			"boundary-test", "test", List.of(new TranslationEntry.Segment(text, "测试")),
+			Map.of(), TranslationEntry.Options.DEFAULT
+		));
 		index.add(Surface.LORE, text, entry);
 	}
 

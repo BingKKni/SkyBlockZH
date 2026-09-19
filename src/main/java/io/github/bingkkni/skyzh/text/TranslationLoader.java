@@ -253,36 +253,32 @@ public final class TranslationLoader {
 			return null;
 		}
 
-		List<String> sources = new ArrayList<>();
-		List<String> targets = new ArrayList<>();
-		List<Integer> order = new ArrayList<>();
+		List<TranslationEntry.Segment> segments = new ArrayList<>();
 		String id = record.has("id") ? record.get("id").getAsString() : "?";
 
 		if (source.has("segments") && source.get("segments").isJsonArray()) {
 			for (JsonElement element : source.getAsJsonArray("segments")) {
 				JsonObject segment = element.getAsJsonObject();
-				sources.add(string(segment, "text"));
-				// "omit": true — this colour run has no Chinese of its own because its words moved
-				// into a neighbouring run when the sentence was reordered. Distinct from an empty
-				// "zh", which still means "not translated yet, leave the English".
+				// An omitted segment draws nothing; an empty translation preserves its English.
 				boolean omit = segment.has("omit") && segment.get("omit").getAsBoolean();
-				targets.add(omit ? null : string(segment, "zh"));
-				// "order": where this run sits in the finished Chinese. Absent on almost every record,
-				// which is what "the Chinese says these things in the order the English did" looks like.
-				order.add(segment.has("order") && segment.get("order").isJsonPrimitive()
-					? segment.get("order").getAsInt() : order.size());
+				int order = segment.has("order") && segment.get("order").isJsonPrimitive()
+					? segment.get("order").getAsInt() : segments.size();
+				segments.add(new TranslationEntry.Segment(
+					string(segment, "text"), omit ? null : string(segment, "zh"), order
+				));
 			}
 		} else {
-			sources.add(string(source, "text"));
-			targets.add(string(source, "zh"));
-			order.add(0);
+			segments.add(new TranslationEntry.Segment(string(source, "text"), string(source, "zh"), 0));
 		}
 
-		return TranslationEntry.compile(
-			id, relative, sources, targets, permutation(order, id, relative),
+		TranslationEntry.Options options = new TranslationEntry.Options(
 			source.has("continuation") && source.get("continuation").getAsBoolean(),
-			string(source, "layout"), argField(source, "type"), argField(source, "example"), excludedTexts(source)
+			string(source, "layout"), excludedTexts(source), string(source, "chat_join_next")
 		);
+
+		return TranslationEntry.compile(new TranslationEntry.Definition(
+			id, relative, orderedSegments(segments, id, relative), arguments(source), options
+		));
 	}
 
 	private static Set<String> excludedTexts(JsonObject source) {
@@ -298,19 +294,21 @@ public final class TranslationLoader {
 	}
 
 	/**
-	 * The declared render order, or an empty list meaning "leave it in the order the English is in".
+	 * Validates segment order; identity or invalid order falls back to the source sequence.
 	 *
 	 * <p>Lore continuation groups are allowed to order fragments across several records: the head and
 	 * its tails together own the 0..n-1 permutation. At load time one record can therefore only reject
 	 * nonsense that is locally knowable — negative slots and two of its own fragments claiming the same
 	 * slot. {@code checkTranslations} validates the whole group while the authored corpus is available.
 	 */
-	private static List<Integer> permutation(List<Integer> order, String id, String relative) {
+	private static List<TranslationEntry.Segment> orderedSegments(
+		List<TranslationEntry.Segment> segments, String id, String relative
+	) {
 		Set<Integer> taken = new HashSet<>();
 		boolean reordered = false;
 
-		for (int i = 0; i < order.size(); i++) {
-			int at = order.get(i);
+		for (int i = 0; i < segments.size(); i++) {
+			int at = segments.get(i).order();
 
 			if (at < 0 || !taken.add(at)) {
 				LOGGER.warn(
@@ -319,34 +317,27 @@ public final class TranslationLoader {
 					id, relative, i, at
 				);
 
-				return List.of();
+				return sourceOrder(segments);
 			}
 
 			reordered |= at != i;
 		}
 
-		return reordered ? List.copyOf(order) : List.of();
+		return reordered ? List.copyOf(segments) : sourceOrder(segments);
 	}
 
-	/**
-	 * One field of each of a record's placeholders, keyed by the argument number the template refers
-	 * to it as — {@code type}, which bounds what the placeholder may capture, or {@code example},
-	 * which bounds it to the kind of value the corpus said sits there.
-	 *
-	 * <p>A {@code token} of {@code "%2$s"} says its own number. A bare {@code "%s"} does not, so it
-	 * takes the next one — which matches how the template itself numbers them, and how a translator
-	 * reading the file top to bottom would pair the array up with the sentence.
-	 *
-	 * <p>The numbering has to be walked identically for both fields, which is why one method reads
-	 * either: an {@code example} paired with the wrong argument is worse than no example at all, since
-	 * it would bind a placeholder to the kind of some other placeholder's value.
-	 */
-	private static Map<Integer, String> argField(JsonObject source, String field) {
+	private static List<TranslationEntry.Segment> sourceOrder(List<TranslationEntry.Segment> segments) {
+		return segments.stream()
+			.map(segment -> new TranslationEntry.Segment(segment.source(), segment.target())).toList();
+	}
+
+	/** Types and examples are read together so both always describe the same placeholder number. */
+	private static Map<Integer, TranslationEntry.Argument> arguments(JsonObject source) {
 		if (!source.has("placeholders") || !source.get("placeholders").isJsonArray()) {
 			return Map.of();
 		}
 
-		Map<Integer, String> values = new HashMap<>();
+		Map<Integer, TranslationEntry.Argument> values = new HashMap<>();
 		int next = 1;
 
 		for (JsonElement element : source.getAsJsonArray("placeholders")) {
@@ -358,7 +349,9 @@ public final class TranslationLoader {
 			Matcher numbered = NUMBERED_TOKEN.matcher(string(placeholder, "token"));
 			int index = numbered.find() ? Integer.parseInt(numbered.group(1)) : next++;
 
-			values.putIfAbsent(index, string(placeholder, field));
+			values.putIfAbsent(index, new TranslationEntry.Argument(
+				string(placeholder, "type"), string(placeholder, "example")
+			));
 		}
 
 		return values;

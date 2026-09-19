@@ -4,6 +4,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import io.github.bingkkni.skyzh.capture.LegacyText;
+import io.github.bingkkni.skyzh.capture.TranslationDiagnostics;
+import io.github.bingkkni.skyzh.text.LoreTranslation;
 import io.github.bingkkni.skyzh.text.StyledText;
 import io.github.bingkkni.skyzh.text.Surface;
 import io.github.bingkkni.skyzh.text.TooltipTranslator;
@@ -34,6 +36,11 @@ import net.minecraft.network.chat.Style;
  *
  * <p>Inferred templates are reported separately, never counted as misses. Their observed value lists
  * do not preserve which values arrived together, so filling them would invent server messages.
+ *
+ * <p>The {@code incomplete} and {@code value} piles carry the ordered lines of one observation, so those
+ * are replayed as the tooltip was: the same plan and the same checks the capture ran, printed as
+ * "cleared" or "still reported" with what the lines draw as now. {@code layout} needs the client font
+ * and is not replayed.
  */
 public final class CaptureReplay {
 	private static final Pattern PLACEHOLDER = Pattern.compile("%(?:[0-9]+\\$)?[sd]");
@@ -55,6 +62,8 @@ public final class CaptureReplay {
 		int changed = 0;
 		int total = 0;
 		int templates = 0;
+		int cleared = 0;
+		int diagnosed = 0;
 
 		for (Path file : files) {
 			JsonObject json;
@@ -74,6 +83,45 @@ public final class CaptureReplay {
 
 			for (JsonElement element : json.getAsJsonArray("lines")) {
 				JsonObject line = element.getAsJsonObject();
+				JsonObject evidence = line.has("_capture") && line.getAsJsonObject("_capture").has("diagnostic")
+					? line.getAsJsonObject("_capture").getAsJsonObject("diagnostic") : null;
+
+				if (evidence != null) {
+					if (!evidence.has("original_lines") || evidence.get("code").getAsString().startsWith("layout")
+						|| evidence.get("code").getAsString().startsWith("alignment")) {
+						report.add("  ~ 排版证据需要字体，未回放 " + rawOf(line));
+						continue;
+					}
+
+					diagnosed++;
+					List<Component> lines = new ArrayList<>();
+
+					for (JsonElement original : evidence.getAsJsonArray("original_lines")) {
+						lines.add(decode(original.getAsString()));
+					}
+
+					List<LoreTranslation.Unit> plan = LoreTranslation.plan(lines);
+					List<String> codes = new ArrayList<>();
+
+					for (TranslationDiagnostics.Finding finding : TranslationDiagnostics.lore(plan)) {
+						codes.add(finding.verdict().evidence().get("code").getAsString());
+					}
+
+					StringBuilder drawn = new StringBuilder();
+
+					for (LoreTranslation.Unit unit : plan) {
+						drawn.append(drawn.isEmpty() ? "" : " | ").append(encoded(unit.rendered()));
+					}
+
+					if (codes.isEmpty()) {
+						cleared++;
+					}
+
+					report.add((codes.isEmpty() ? "  ✓ 已消除 " : "  ✗ 仍报告 " + codes + " ")
+						+ evidence.getAsJsonArray("original_lines").get(0).getAsString() + "\n      -> " + drawn);
+					continue;
+				}
+
 				String raw = rawOf(line);
 
 				if (raw.isEmpty()) {
@@ -108,7 +156,8 @@ public final class CaptureReplay {
 			}
 		}
 
-		System.out.println("\n具体原文: 渲染有变化 " + changed + " / " + total + "；未回放模板 " + templates);
+		System.out.println("\n具体原文: 渲染有变化 " + changed + " / " + total + "；未回放模板 " + templates
+			+ "；诊断证据已消除 " + cleared + " / " + diagnosed);
 		System.out.println("变化数不等于翻译覆盖率；不重建跨行顺序、字体、悬浮/点击事件或像素排版。");
 	}
 

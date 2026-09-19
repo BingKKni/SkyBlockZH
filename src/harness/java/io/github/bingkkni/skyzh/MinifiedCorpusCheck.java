@@ -25,7 +25,7 @@ import net.minecraft.network.chat.Component;
  * machine.
  *
  * <p>So both corpora are compiled and the two indexes compared record by record: same surfaces, same
- * ids, same template, same continuation and layout flags, and — the part that matters most — the same
+ * ids, same template, same continuation, layout and chat-join flags, and — the part that matters most — the same
  * record answering for every line either of them can answer for.
  */
 public final class MinifiedCorpusCheck {
@@ -114,12 +114,14 @@ public final class MinifiedCorpusCheck {
 				if (!mine.template().equals(other.template())
 					|| mine.continuation() != other.continuation()
 					|| !String.valueOf(mine.layout()).equals(String.valueOf(other.layout()))
+					|| !mine.chatJoinNext().equals(other.chatJoinNext())
 					|| mine.specificity() != other.specificity()
 					|| !mine.excludedTexts().equals(other.excludedTexts())) {
 					report("记录 " + entry.getKey() + " 精简前后不一致", false,
 						"模板 [" + mine.template() + "] vs [" + other.template() + "]，"
 							+ "continuation " + mine.continuation() + " vs " + other.continuation() + "，"
-							+ "layout " + mine.layout() + " vs " + other.layout());
+							+ "layout " + mine.layout() + " vs " + other.layout() + "，"
+							+ "chat_join_next " + mine.chatJoinNext() + " vs " + other.chatJoinNext());
 				}
 			}
 		}

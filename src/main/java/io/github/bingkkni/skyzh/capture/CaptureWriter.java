@@ -200,6 +200,10 @@ public final class CaptureWriter {
 			return;
 		}
 
+		if (verdict.evidence() != null) {
+			capture.add("diagnostic", verdict.evidence().deepCopy());
+		}
+
 		if (!verdict.recordId().isEmpty()) {
 			capture.addProperty("matched_record", verdict.recordId());
 			capture.addProperty("matched_file", verdict.recordFile());

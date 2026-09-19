@@ -132,7 +132,7 @@ Mod Menu is a soft dependency. Without it, edit `config/skyzh.json`, which docum
 The two capture sub-options share the row below the capture master: notifications on the left,
 startup clearing on the right. Old configs missing these keys use the defaults above. Startup clearing
 runs once in Fabric's client initializer, before the main menu, through the exact `TextCapture.clear()`
-path used by `/skyzh clear`: in-memory state, queued work and JSON files in the three capture buckets
+path used by `/skyzh clear`: in-memory state, queued work and JSON files in the six capture buckets
 are cleared; unrelated files remain. Failures are logged without preventing startup.
 
 The hold key is a vanilla `KeyMapping`, appended by `OptionsMixin` at the start of `Options.load`
@@ -277,7 +277,7 @@ as every other mod is concerned, a client running in English.
 
 ### What comes out
 
-Three piles, each laid out the way `original_text/` is — gameplay, then surface, then name:
+Six buckets, each laid out the way `original_text/` is — gameplay, then surface, then name:
 
 ```
 skyzh-capture/
@@ -287,8 +287,11 @@ skyzh-capture/
 │   └── _Unknown_Gameplay/ScoreBoard/Sidebar.json
 ├── mixed/                 a record answered and the line still came out half English
 │   └── Mining/ChatMessage/Server_Messages.json
-└── colour/                a record answered, every word is Chinese, the colours are flattened
-    └── Mining/ScoreBoard/Sidebar.json
+├── colour/                a record answered, every word is Chinese, the colours are flattened
+│   └── Mining/ScoreBoard/Sidebar.json
+├── layout/                conflicting chat alignment, offsets or overflow
+├── incomplete/            suspected English continuation after translated lore
+└── value/                 lost numbers or missing/unbound placeholder output
 ```
 
 The third pile is the one that is hard to find any other way. A record that recorded a line as one
@@ -385,6 +388,38 @@ space. That is the most expensive class of bug in this project, because the scre
 data file all look right. Such a line now gets a `near_miss` block naming the record and the file it
 is in, with both sides printed with their invisible characters spelled as `\uXXXX`.
 
+### Alignment, continuation and value diagnostics
+
+`ChatLayout` shares the same styled font measurements between rendering and server-packet capture.
+It compares the source padding and text width against Hypixel's default 320px canvas and the current
+chat width. Short list indents stay on the left; wider padding needs evidence of a center or right
+edge. Shared or undeclared layouts are corrected when that anchor is known; explicit center/left/right
+policies take precedence and conflicting geometry is reported as a suspicion. Speaker prefixes are
+measured with the line, without retaining their old internal padding. Policy, pixel widths and
+before/after text are saved in `layout`. Ambiguous layouts retain their current policy. This does
+not inspect screenshots or infer the intended layout of another mod's custom interface.
+
+`LoreTranslation` supplies one ordered plan to both tooltips and packet capture. `incomplete` keeps
+source and output lines for suspected English tails without deleting them. Only readable characters
+are judged (`§k` decoration is ignored): a tail opening on a lowercase word is a continuation; one
+opening on a capital is reported only when the head reads as prose (lowercase words, no colon, no
+closing punctuation) and the tail does not open with a list mark — the English after a heading such
+as `Ability: X` or `Topaz Crystal Hunter` is an untranslated body, not a torn sentence. `value`
+counts placeholder values only: ordinal, duration and multiplier conversions are applied, then every
+digit group must appear in the Chinese as often as it arrived. Numbers written into the record's own
+English (`12:00 am-11:59 pm`, `5x`) and values the term table translates whole (`2X POWDER` →
+双倍粉末) are the translator's decisions, not losses, and `5m` is no longer read as five million.
+`layout_overflow` is reported only when every source line fitted the box and the translation does
+not; English Hypixel already sends wider than the box wraps in vanilla either way. Unbound translated
+arguments fail `checkTranslations`.
+
+All six buckets use the existing capture switch, notifications, asynchronous writer, area buffering,
+deduplication and clear lifecycle. `_capture.diagnostic.original_lines`, `rendered_lines` and `records`
+keep a concrete observation; combining unrelated `observed` values is not a valid reconstruction.
+`./gradlew checkDiagnostics` checks the screenshot cases, 73 independent colour samples, deliberately
+broken records, persistence and clearing on both targets. Deterministic font metrics test the pixel
+arithmetic; resource-pack rendering and mod combinations still need an in-game check.
+
 ### Checking it
 
 ```bash
@@ -410,6 +445,9 @@ cannot: that check knows only what the corpus says about itself, so a record who
 the wrong order, or whose hand-written space lands between two Chinese characters, or whose value
 nobody added to `_shared/Terms.json`, passes it and still looks wrong on screen. Here it is one line
 of output.
+Records in `incomplete/` and `value/` carry the ordered lines of one observation, so they are
+replayed the way the tooltip was — the same plan and the same checks — and printed as cleared or
+still reported, with what the lines draw as now. `layout/` needs the client font and is not replayed.
 
 ## Whole lore sentences from NEU
 

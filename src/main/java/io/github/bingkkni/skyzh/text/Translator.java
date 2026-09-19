@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.ToIntFunction;
 import java.util.regex.Matcher;
 import net.minecraft.client.gui.Font;
 import net.minecraft.network.chat.Component;
@@ -17,7 +18,9 @@ import org.slf4j.LoggerFactory;
  * The one way in. A mixin hands over the component about to be drawn and the surface it is being
  * drawn on, and gets back either Chinese or the very same object it passed in.
  *
- * <p>Every caller sits in a render path, never in a packet path. Nothing here writes to an
+ * <p>Render hooks respect the visual bypasses; capture and shared planning use
+ * {@link #translateAvailable} to inspect corpus coverage independently of those switches.
+ * Nothing here writes to an
  * {@code ItemStack}, a {@code GuiMessage}, a {@code BossEvent} or a screen's {@code title} field —
  * the objects other mods read stay in English, and SkyHanni or SkyBlocker parsing the same text a
  * frame earlier see exactly what Hypixel sent. Translation is a property of the pixels, not of the
@@ -134,13 +137,11 @@ public final class Translator {
 		return translateAvailable(source, surface, config);
 	}
 
-	/**
-	 * Renders a corpus-backed translation without consulting the two visual bypasses.
-	 *
-	 * <p>Capture uses this only while deciding whether the tab-list's label/value fallback covers a
-	 * row. Turning the pixels off, or holding the original-text key, does not make a corpus record
-	 * disappear and therefore must not turn a covered row into an untranslated capture.
-	 */
+	/** Corpus rendering for capture and shared plans, independent of the two visual bypasses. */
+	public static Result translateAvailable(Component source, Surface surface) {
+		return translateAvailable(source, surface, SkyZHConfig.get());
+	}
+
 	private static Result translateAvailable(Component source, Surface surface, SkyZHConfig config) {
 		StyledText styled = StyledText.of(source);
 		// Matching runs on the canonical spelling of the line: the same characters with SkyBlock's
@@ -253,11 +254,12 @@ public final class Translator {
 	 * single message and every member of a newline-separated message.
 	 */
 	public static Component translateChatLine(Component source, Font font, int width) {
-		Result result = translate(source, Surface.CHAT);
+		return translateChatLine(source, width, font::width);
+	}
 
-		return centerChat(result)
-			? TextLayout.centeredWithSpaces(font, result.core(), width)
-			: result.padded();
+	/** The measurement-injected form used by chat-block regression tests. */
+	public static Component translateChatLine(Component source, int width, ToIntFunction<Component> measure) {
+		return ChatLayout.plan(source, translate(source, Surface.CHAT), width, measure).text();
 	}
 
 	public static boolean centerChat(Result result) {
@@ -266,33 +268,24 @@ public final class Translator {
 			|| "center_chat_if_widely_padded".equals(result.entry().layout()) && result.widelyCentredByServer());
 	}
 
-	/** The newline-preserving counterpart of {@link #translateChatLine}. */
+	/**
+	 * Translates a server message with embedded newlines.
+	 *
+	 * <p>Ordinary lines retain their original newlines. A record that names its exact immediate tail
+	 * through {@code chat_join_next} may consume that tail only within this one component, after both
+	 * lines have matched. Separate {@code GuiMessage}s therefore never influence each other.
+	 */
 	public static Component translateChatBlock(Component source, Font font, int width) {
-		StyledText styled = StyledText.of(source);
-		String plain = styled.plain();
+		return translateChatBlock(source, width, font::width);
+	}
 
-		if (plain.indexOf('\n') < 0) {
-			return translateChatLine(source, font, width);
+	/** The measurement-injected form used by chat-block regression tests. */
+	public static Component translateChatBlock(Component source, int width, ToIntFunction<Component> measure) {
+		if (!SkyZHConfig.get().enabled || HoldOriginal.active()) {
+			return source;
 		}
 
-		MutableComponent result = Component.empty();
-		int start = 0;
-
-		while (true) {
-			int newline = plain.indexOf('\n', start);
-			int end = newline < 0 ? plain.length() : newline;
-
-			if (end > start) {
-				result.append(translateChatLine(styled.slice(start, end), font, width));
-			}
-
-			if (newline < 0) {
-				return result;
-			}
-
-			result.append(Component.literal("\n"));
-			start = newline + 1;
-		}
+		return ChatTranslation.plan(source, width, measure).text();
 	}
 
 	/**
@@ -355,6 +348,14 @@ public final class Translator {
 	 * enchantment in SkyBlock has a record.
 	 */
 	public static Component translateList(Component source, Surface surface) {
+		if (!SkyZHConfig.get().enabled || HoldOriginal.active()) {
+			return null;
+		}
+
+		return translateListAvailable(source, surface);
+	}
+
+	public static Component translateListAvailable(Component source, Surface surface) {
 		StyledText styled = StyledText.of(source);
 		List<LineShape.Range> items = LineShape.enchantments(styled.canonical());
 
@@ -366,7 +367,7 @@ public final class Translator {
 		boolean any = false;
 
 		for (LineShape.Range item : items) {
-			Result piece = translate(styled.slice(item.start(), item.end()), surface);
+			Result piece = translateAvailable(styled.slice(item.start(), item.end()), surface);
 
 			translated.add(piece.matched() ? piece.padded() : styled.slice(item.start(), item.end()));
 			any |= piece.matched();

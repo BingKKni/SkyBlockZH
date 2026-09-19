@@ -73,6 +73,15 @@ public final class TranslationHarness {
 		checkNoRivalRecords(files);
 		checkNoDuplicateIds(files);
 		checkPhrasePlaceholdersHaveExamples(files);
+		List<String> unbound = new ArrayList<>();
+		for (Surface surface : Surface.values()) {
+			for (TranslationEntry entry : index.entries(surface)) {
+				if (entry.hasUnboundArguments()) {
+					unbound.add(entry.sourceFile() + "#" + entry.id());
+				}
+			}
+		}
+		report("译文占位符必须由本记录捕获", unbound.isEmpty(), unbound.toString());
 
 		// ---- a segments array has to be a faithful split of the record's own text ----
 		checkSegmentsSpellTheText(files);
@@ -87,6 +96,7 @@ public final class TranslationHarness {
 		// ---- no sentence is left half Chinese and half English ----
 		checkNoBrokenContinuation(files);
 		checkContinuationOnlyInLore(files);
+		checkChatJoins(files);
 		// ---- ...and no sentence is drawn twice, which is the same edit gone the other way ----
 		checkNoDuplicatedSentence(files);
 		JsonObject numberedTail = JsonParser.parseString("""
@@ -487,6 +497,36 @@ public final class TranslationHarness {
 			Component.literal("Commissions:\nHello Adventurer!"), Surface.TABLIST
 		));
 		report("多行整块逐行翻译", "委托:\nHello Adventurer!".equals(block), "实际 [" + block + "]");
+
+		// Each of these pairs reaches the client as two packets (two [CHAT] lines in the log), so no
+		// record may join them; both halves translate on their own and keep their own line.
+		checkChatLines("独立到达的道场耐力说明", "1. Jump over the walls. Knockback increases as\ntime goes on.",
+			"1. 跳过墙壁。随着时间推移，击退效果会", "不断增强。");
+		checkChatLines("独立到达的道场移动墙壁", "1. Jump through the open holes in the moving\nwalls.",
+			"1. 从移动", "墙壁的开口中跳过。");
+		checkChatLines("独立到达的道场注视得分", "2. More accurate staring gives more points\nand time in the arena.",
+			"2. 注视越准确,获得的分数和", "竞技场时间越多。");
+		checkChatLines("独立到达的道场岩浆规则", "3. Don't look away for too long or fall in the\nlava!",
+			"3. 别移开视线太久,也别掉进", "岩浆!");
+		checkChatLines("独立到达的随风而逝", "The cavern is windy today! Mining in the direction of the wind\nwill give +600⸕ Mining Speed.",
+			"今天洞里风很大! 顺着风向挖矿", "可以获得最高 +600⸕ 挖掘速度。");
+		checkChatLines("独立到达的双倍粉末结束", "Powder amount is back to normal, but there will be another\nevent soon!",
+			"粉末产量恢复正常,不过很快还会有", "下一场活动!");
+		checkChatLines("独立到达的众志成城结束", "The festival has ended, but the Dwarven cooperative spirit\nnever dies.",
+			"庆典结束了,但矮人的协作精神", "永远不会消失。");
+		Component colouredChatJoin = CaptureReplay.decode("§61. §7Jump through the open holes in the moving\n§7walls.");
+		String colouredChatJoinDrawn = legacy(Translator.translateChatBlock(colouredChatJoin, 320, TranslationHarness::chatWidth));
+		report("未合并的两行各自保留颜色", "§61. §7从移动\n§7墙壁的开口中跳过。".equals(colouredChatJoinDrawn),
+			"实际 [" + colouredChatJoinDrawn + "]");
+		String unjoinedTail = legacy(Translator.translateChatBlock(Component.literal(
+			"1. Jump through the open holes in the moving\nunknown tail."), 320, TranslationHarness::chatWidth));
+		report("指定尾行未命中时不吞行", "1. 从移动\nunknown tail.".equals(unjoinedTail),
+			"实际 [" + unjoinedTail + "]");
+		Component independentDrawn = Translator.translateChatBlock(Component.literal(
+			"You already claimed rewards for this event on another\nserver!"), 320, TranslationHarness::chatWidth);
+		String independent = StyledText.of(independentDrawn).plain().replaceAll("(?m)^ +", "");
+		report("未标记的独立聊天行不合并", "你已经在另一个房间领过\n这次活动的奖励了！".equals(independent),
+			"实际 [" + independent + "]");
 
 		// ---- continuation marker ----
 		TranslationEntry tail = index.lookup(Surface.ITEM, "installed.");
@@ -942,6 +982,25 @@ public final class TranslationHarness {
 		// subtitle is a whole line out of _shared/Months.json. Both have to say 2026 年 9 月.
 		check("宾果菜单标题的月份", "Bingo - September 2026", Surface.GUI_TITLE, "宾果 - 2026 年 9 月");
 		check("宾果格子副标题的月份", "§8September 2026", Surface.ITEM, "§82026 年 9 月");
+		check("锦标鱼名称与品质相邻时不串位",
+			"§6 §6§lTROPHY FISH! §fYou caught a §9Volcanic Stonefish §7§lSILVER§f!", Surface.CHAT,
+			"§6 §6§l奖杯鱼! §f你钓到了 §9Volcanic Stonefish §7§l银品质§f!");
+		check("锦标鱼 an 冠词变体",
+			"§6 §6§lTROPHY FISH! §fYou caught an §fObfuscated-1 §7§lSILVER§f!", Surface.CHAT,
+			"§6 §6§l奖杯鱼! §f你钓到了 Obfuscated-1 §7§l银品质§f!");
+		checkNoMatch("未知锦标鱼品质不抢翻译",
+			"§6 §6§lTROPHY FISH! §fYou caught a §9Volcanic Stonefish §7§lMYTHIC§f!", Surface.CHAT);
+		checkNoMatch("缺失锦标鱼品质不抢翻译",
+			"§6 §6§lTROPHY FISH! §fYou caught a §9Volcanic Stonefish §f!", Surface.CHAT);
+		check("矿井开采等级提示保留入口引导与颜色",
+			"§cYou need a tool with a §aBreaking Power §cof §69§c to mine Peridot Gemstone Block! Speak to §dFragilis §cby the entrance to the Crystal Hollows to learn more!", Surface.CHAT,
+			"§c你需要一把§a开采等级§c达到 §69§c 级的工具才能开采 Peridot 宝石方块! 前往 §dFragilis§c 所在的水晶残核入口了解详情!");
+		check("博物馆取回提示保留地点色",
+			"§aYou retrieved your §9Heroic Bonzo's Staff §afrom the §3Museum§a!", Surface.CHAT,
+			"§a你从§3博物馆§a取回了 §9Heroic Bonzo's Staff§a!");
+		check("竖琴提示保留音符与分段文案",
+			"§d[Harp] §eTalk to Melody §d♫ §eto select a song!", Surface.CHAT,
+			"§d[竖琴] §e与 Melody 交谈 §d♫ §e以选择曲目!");
 
 
 		checkLogTranslations();
@@ -1002,6 +1061,65 @@ public final class TranslationHarness {
 
 		report("continuation 只用在物品 Lore 上", misplaced.isEmpty(),
 			"这些面上尾行不会被删掉，会留下半句英文: " + String.join(", ", misplaced));
+	}
+
+	private static void checkChatJoins(Map<String, JsonObject> files) {
+		List<String> broken = new ArrayList<>();
+
+		for (String relative : new TreeSet<>(files.keySet())) {
+			Surface surface = surfaceOf(relative);
+
+			for (List<JsonObject> group : groupsOf(files.get(relative))) {
+				for (int i = 0; i < group.size(); i++) {
+					JsonObject record = group.get(i);
+					JsonObject head = resolveRef(record, files);
+					String expected = text(head, "chat_join_next");
+
+					if (expected.isEmpty()) {
+						continue;
+					}
+
+					String address = relative + '#' + id(record);
+
+					if (surface != Surface.CHAT) {
+						broken.add(address + " —— chat_join_next 只能用于聊天消息块");
+						continue;
+					}
+
+					if (truthy(head, "continuation")) {
+						broken.add(address + " —— 不能同时使用 continuation 和 chat_join_next");
+						continue;
+					}
+
+					if (i + 1 >= group.size()) {
+						broken.add(address + " —— 指向 " + expected + "，但后面没有紧邻记录");
+						continue;
+					}
+
+					JsonObject tailRecord = group.get(i + 1);
+					JsonObject tail = resolveRef(tailRecord, files);
+
+					if (!expected.equals(id(tailRecord))) {
+						broken.add(address + " —— 指向 " + expected + "，紧邻记录实际是 " + id(tailRecord));
+						continue;
+					}
+
+					String headEnglish = text(head, "text").strip();
+					String tailEnglish = text(tail, "text").strip();
+
+					if (!hasTranslation(head) || !hasTranslation(tail) || truthy(tail, "continuation")) {
+						broken.add(address + " —— 首尾行必须都已有独立译文，且尾行不能是 continuation");
+					} else if (headEnglish.isEmpty() || tailEnglish.isEmpty()
+						|| "。！？!?.:：,，、;；".indexOf(headEnglish.charAt(headEnglish.length() - 1)) >= 0
+						|| !Character.isLowerCase(tailEnglish.codePointAt(0))) {
+						broken.add(address + " —— 原文必须是未句终止的首行接小写尾行");
+					}
+				}
+			}
+		}
+
+		report("chat_join_next 只合并同一聊天块内完整的相邻句子", broken.isEmpty(),
+			String.join("\n      ", broken));
 	}
 
 	private static void checkNoBrokenContinuation(Map<String, JsonObject> files) {
@@ -1893,6 +2011,7 @@ public final class TranslationHarness {
 			case TIER -> "XII";
 			case TIER_RANGE -> "III-V";
 			case ICON -> "✎";
+			case TROPHY_QUALITY -> "SILVER";
 			case MULTIPLIER_INCREASE -> "1.5";
 			case ORDINAL -> "27th";
 			default -> "1";
@@ -2085,8 +2204,10 @@ public final class TranslationHarness {
 			String canonical = io.github.bingkkni.skyzh.text.ItemNames.canonical(name);
 			report("真实物品含绑定/重铸/星级/宠物仍可识别: " + name, name.equals(canonical),
 				"目录必须识别实时完整原名，实际 [" + canonical + "]");
-			TranslationEntry item = TranslationEntry.compile("comparison-test", "test", List.of(name),
-				List.of("测试物品"), false, "", Map.of(), Map.of());
+			TranslationEntry item = TranslationEntry.compile(new TranslationEntry.Definition(
+				"comparison-test", "test", List.of(new TranslationEntry.Segment(name, "测试物品")),
+				Map.of(), TranslationEntry.Options.DEFAULT
+			));
 			StyledText source = StyledText.of(Component.literal(name));
 			report("聊天真实物品译名符合提示条件: " + name,
 				item.hasTranslatedItemReference(source, item.match(source.canonical()), TermTable.EMPTY), name);
@@ -3031,8 +3152,10 @@ public final class TranslationHarness {
 		escaped.add("_capture", metadata);
 		report("回放私用区转义", "§7 §bDiamond Reserve".equals(CaptureReplay.rawOf(escaped)), CaptureReplay.rawOf(escaped));
 
-		TranslationEntry flat = TranslationEntry.compile("look_test", "test", List.of("First second"), List.of("测试"),
-			false, "", Map.of(), Map.of());
+		TranslationEntry flat = TranslationEntry.compile(new TranslationEntry.Definition(
+			"look_test", "test", List.of(new TranslationEntry.Segment("First second", "测试")),
+			Map.of(), TranslationEntry.Options.DEFAULT
+		));
 		Style green = Style.EMPTY.withColor(0x55FF55);
 		for (Style changed : List.of(green.withColor(0xFF5555), green.withBold(true), green.withItalic(true),
 			green.withUnderlined(true), green.withStrikethrough(true), green.withObfuscated(true))) {
@@ -3043,6 +3166,24 @@ public final class TranslationHarness {
 		StyledText events = StyledText.of(Component.empty().append(Component.literal("First ").setStyle(green))
 			.append(Component.literal("second").setStyle(green.withClickEvent(new ClickEvent.RunCommand("/ignored")))));
 		report("颜色检查忽略非可见事件差异", !flat.losesColour(events, flat.match(events.plain())), events.plain());
+	}
+
+	/** Renders an opt-in chat block and asserts that its explicit newline disappeared. */
+	/** A multi-line chat block whose lines translate independently, each keeping its own line. */
+	private static void checkChatLines(String name, String source, String... expected) {
+		Component drawn = Translator.translateChatBlock(Component.literal(source), 320, TranslationHarness::chatWidth);
+		String[] actual = StyledText.of(drawn).plain().split("\n", -1);
+		boolean ok = actual.length == expected.length;
+
+		for (int i = 0; ok && i < expected.length; i++) {
+			ok = expected[i].equals(actual[i].trim());
+		}
+
+		report(name, ok, "期望 " + List.of(expected) + " 实际 " + List.of(actual));
+	}
+
+	private static int chatWidth(Component component) {
+		return StyledText.of(component).length() * 8;
 	}
 
 	/**

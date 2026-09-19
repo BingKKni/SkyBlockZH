@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CountDownLatch;
@@ -57,21 +58,40 @@ public final class CaptureStore {
 	private static final int MAX_FILES = 512;
 	private static final int MAX_LINES_PER_FILE = 800;
 
-	/**
-	 * One line as the game thread saw it.
-	 *
-	 * @param text     the flattened line, or {@code null} when this is another sighting of text already
-	 *                 sent — the second time a line is seen there is nothing new to snapshot
-	 * @param area     the place the sidebar named — {@code Dwarven Mines}, {@code Your Island} — as
-	 *                 opposed to {@code gameplay}, which is the folder that place maps to. Kept because
-	 *                 several places share a folder: everything general lands in {@code Hub_General},
-	 *                 so a capture from a private island reads afterwards as if it happened in the Hub,
-	 *                 and nobody looking at the file can tell which. Written out as {@code seen_in}
-	 */
+	/** Capture work has an explicit stage; a repeat carries no redundant text snapshot. */
+	public sealed interface Observation permits Line, Diagnosed, Repeated {}
+
+	public record Line(StyledText text, boolean checkValues) implements Observation {
+		public Line {
+			Objects.requireNonNull(text);
+		}
+
+		public Line(StyledText text) {
+			this(text, true);
+		}
+	}
+
+	public record Diagnosed(StyledText text, Classifier.Verdict verdict) implements Observation {
+		public Diagnosed {
+			Objects.requireNonNull(text);
+			Objects.requireNonNull(verdict);
+		}
+	}
+
+	public enum Repeated implements Observation { INSTANCE }
+
+	/** The observation and the place/time at which it arrived; area stays fixed through a warp. */
 	public record Sighting(
-		CaptureSurface surface, String key, StyledText text, String gameplay, String area, String name,
-		String note, long when
-	) {}
+		CaptureSurface surface, String key, Observation observation, String gameplay, String area,
+		String name, String note, long when
+	) {
+		public Sighting {
+			Objects.requireNonNull(observation);
+		}
+	}
+
+	private record RecordKey(String sighting, Classifier.Bucket bucket) {}
+	private record SharedKey(String verdict, CaptureSurface surface, String gameplay, String text) {}
 
 	/** A normal sighting or a FIFO barrier asking the worker to persist everything before it. */
 	private sealed interface Work permits Queued, FlushRequest {
@@ -87,7 +107,7 @@ public final class CaptureStore {
 	private static final BlockingQueue<Work> QUEUE = new ArrayBlockingQueue<>(QUEUE_DEPTH);
 
 	private static final Map<CaptureWriter.Meta, List<CapturedLine>> FILES = new LinkedHashMap<>();
-	private static final Map<String, CapturedLine> BY_KEY = new HashMap<>();
+	private static final Map<RecordKey, CapturedLine> BY_KEY = new HashMap<>();
 	private static final Map<CaptureWriter.Meta, Boolean> DIRTY = new HashMap<>();
 
 	/**
@@ -103,7 +123,7 @@ public final class CaptureStore {
 	 * <p>Keyed by gameplay as well as by text, because filing a Foraging line into a Mining folder is
 	 * the one kind of contamination nobody would spot afterwards.
 	 */
-	private static final Map<String, CapturedLine> SHARED = new HashMap<>();
+	private static final Map<SharedKey, CapturedLine> SHARED = new HashMap<>();
 
 	private static Path root;
 	private static Thread worker;
@@ -205,37 +225,47 @@ public final class CaptureStore {
 			return;
 		}
 
-		if (sighting.text() == null) {
-			CapturedLine known = BY_KEY.get(sighting.key());
+		switch (sighting.observation()) {
+			case Line line -> classify(sighting, line);
+			case Diagnosed diagnosed -> record(sighting, diagnosed.text(), diagnosed.verdict());
+			case Repeated ignored -> repeat(sighting);
+		}
+	}
+
+	private static void classify(Sighting sighting, Line line) {
+		for (Classifier.Verdict verdict : Classifier.all(sighting.surface(), line.text(), line.checkValues())) {
+			record(sighting, line.text(), verdict);
+		}
+	}
+
+	private static void repeat(Sighting sighting) {
+		for (Classifier.Bucket bucket : Classifier.Bucket.values()) {
+			CapturedLine known = BY_KEY.get(new RecordKey(sighting.key(), bucket));
 
 			if (known != null) {
 				known.again(sighting.when(), sighting.area(), "");
 				DIRTY.put(known.meta(), true);
 			}
-
-			return;
 		}
+	}
 
+	/** Records an already classified snapshot. Called only while accept holds the store monitor. */
+	private static void record(Sighting sighting, StyledText text, Classifier.Verdict verdict) {
+		RecordKey key = new RecordKey(sighting.key(), verdict.bucket());
 		// ITEM and LORE can answer the same English with different entries/diagnostics.
-		String shared = shareable(sighting)
-			? sighting.surface() + "\u0000" + sighting.gameplay() + '\u0000' + sighting.text().plain() : null;
+		SharedKey shared = shareable(sighting)
+			? new SharedKey(verdict.identity(), sighting.surface(), sighting.gameplay(), text.plain()) : null;
 
 		if (shared != null) {
 			CapturedLine already = SHARED.get(shared);
 
 			if (already != null) {
 				already.again(sighting.when(), sighting.area(), sighting.note());
-				BY_KEY.put(sighting.key(), already);
+				BY_KEY.put(key, already);
 				DIRTY.put(already.meta(), true);
 
 				return;
 			}
-		}
-
-		Classifier.Verdict verdict = Classifier.of(sighting.surface(), sighting.text());
-
-		if (verdict == null) {
-			return;
 		}
 
 		CaptureWriter.Meta meta = new CaptureWriter.Meta(
@@ -246,11 +276,17 @@ public final class CaptureStore {
 			return;
 		}
 
-		List<CapturedLine> lines = FILES.computeIfAbsent(meta, key -> new ArrayList<>());
+		List<CapturedLine> lines = FILES.computeIfAbsent(meta, ignored -> new ArrayList<>());
 
 		for (CapturedLine line : lines) {
-			if (line.merge(sighting.text(), sighting.note(), sighting.area(), sighting.when())) {
-				BY_KEY.put(sighting.key(), line);
+			if (line.verdict().sameKind(verdict)
+				&& line.merge(text, sighting.note(), sighting.area(), sighting.when())) {
+				BY_KEY.put(key, line);
+
+				if (shared != null) {
+					SHARED.put(shared, line);
+				}
+
 				DIRTY.put(meta, true);
 				return;
 			}
@@ -261,13 +297,13 @@ public final class CaptureStore {
 		}
 
 		CapturedLine line = new CapturedLine(
-			sighting.surface(), sighting.text(), sighting.note(), verdict, sighting.area(), sighting.when()
+			sighting.surface(), text, sighting.note(), verdict, sighting.area(), sighting.when()
 		);
 
-		line.id(uniqueId(lines, Classifier.id(sighting.text().plain())));
+		line.id(uniqueId(lines, Classifier.id(text.plain())));
 		line.meta(meta);
 		lines.add(line);
-		BY_KEY.put(sighting.key(), line);
+		BY_KEY.put(key, line);
 		DIRTY.put(meta, true);
 		kept++;
 
@@ -513,10 +549,13 @@ public final class CaptureStore {
 		}
 
 		return String.format(
-			"未翻译 %d 条 / 中英混杂 %d 条 / 颜色失真 %d 条，共 %d 个文件%s",
+			"未翻译 %d 条 / 中英混杂 %d 条 / 颜色失真 %d 条 / 排版异常 %d 条 / 跨行残留 %d 条 / 数值异常 %d 条，共 %d 个文件%s",
 			counts.getOrDefault(Classifier.Bucket.UNTRANSLATED, 0),
 			counts.getOrDefault(Classifier.Bucket.MIXED, 0),
 			counts.getOrDefault(Classifier.Bucket.COLOUR, 0),
+			counts.getOrDefault(Classifier.Bucket.LAYOUT, 0),
+			counts.getOrDefault(Classifier.Bucket.INCOMPLETE, 0),
+			counts.getOrDefault(Classifier.Bucket.VALUE, 0),
 			FILES.size(), dropped > 0 ? "（队列满丢弃 " + dropped + " 条）" : ""
 		);
 	}

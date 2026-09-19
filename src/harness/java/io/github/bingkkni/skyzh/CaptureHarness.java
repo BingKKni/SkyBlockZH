@@ -374,10 +374,12 @@ public final class CaptureHarness {
 		check("限定类型的地点词不污染普通值", scopedTerms.translate("raw", "Farm"), null);
 		check("未限定类型的词仍用于所有已启用类型", scopedTerms.translate("raw", "DONE"), "已完成");
 
-		TranslationEntry half = TranslationEntry.compile(
-			"half", "test.json", List.of("Grants ", "Mithril Powder"), List.of("额外获得 ", ""),
-			false, "", Map.of(), Map.of()
-		);
+		TranslationEntry half = TranslationEntry.compile(new TranslationEntry.Definition(
+			"half", "test.json", List.of(
+				new TranslationEntry.Segment("Grants ", "额外获得 "),
+				new TranslationEntry.Segment("Mithril Powder", "")
+			), Map.of(), TranslationEntry.Options.DEFAULT
+		));
 
 		StyledText line = styled("§7Grants §2Mithril Powder");
 		Matcher match = half.match(line.canonical());
@@ -390,10 +392,10 @@ public final class CaptureHarness {
 
 		// A placeholder whose value the term table is asked about and has no Chinese for — the
 		// "Royal Mines钛" case, which is a missing line in Terms.json rather than a missing record.
-		TranslationEntry commission = TranslationEntry.compile(
-			"commission", "test.json", List.of("%s Mithril"), List.of("%s钛"),
-			false, "", Map.of(1, "location_name"), Map.of()
-		);
+		TranslationEntry commission = TranslationEntry.compile(new TranslationEntry.Definition(
+			"commission", "test.json", List.of(new TranslationEntry.Segment("%s Mithril", "%s钛")),
+			Map.of(1, new TranslationEntry.Argument("location_name", "")), TranslationEntry.Options.DEFAULT
+		));
 
 		StyledText known = styled("Royal Mines Mithril");
 		Matcher inTable = commission.match(known.canonical());
@@ -481,7 +483,7 @@ public final class CaptureHarness {
 
 	private static void accept(Path root, CaptureSurface surface, String gameplay, String name, String legacy, long now) {
 		CaptureStore.accept(new CaptureStore.Sighting(
-			surface, surface + " " + name + " " + legacy, styled(legacy), gameplay, "", name, "", now
+			surface, surface + " " + name + " " + legacy, new CaptureStore.Line(styled(legacy)), gameplay, "", name, "", now
 		));
 	}
 
@@ -552,7 +554,7 @@ public final class CaptureHarness {
 
 		CaptureStore.Sighting stale = new CaptureStore.Sighting(
 			CaptureSurface.CHAT_MESSAGE, "stale-clear-key",
-			styled("§7A stale clear harness line nobody translated"), "Mining", "Dwarven Mines",
+			new CaptureStore.Line(styled("§7A stale clear harness line nobody translated")), "Mining", "Dwarven Mines",
 			"Server_Messages", "", System.currentTimeMillis()
 		);
 		java.lang.reflect.Method accept = CaptureStore.class.getDeclaredMethod(
@@ -582,7 +584,7 @@ public final class CaptureHarness {
 
 		CaptureStore.accept(new CaptureStore.Sighting(
 			CaptureSurface.CHAT_MESSAGE, "retry-write-key",
-			styled("§7A retry write harness line nobody translated"), "Mining", "Dwarven Mines",
+			new CaptureStore.Line(styled("§7A retry write harness line nobody translated")), "Mining", "Dwarven Mines",
 			"Server_Messages", "", System.currentTimeMillis()
 		));
 		CaptureStore.flush();
@@ -968,7 +970,7 @@ public final class CaptureHarness {
 		String brokenLore = "§7Can damage §cendermen.";
 		for (String menu : List.of("LoreInventory", "LoreShop")) {
 			CaptureStore.accept(new CaptureStore.Sighting(
-				CaptureSurface.GUI_LORE, "lore-shared-" + menu, styled(brokenLore),
+				CaptureSurface.GUI_LORE, "lore-shared-" + menu, new CaptureStore.Line(styled(brokenLore)),
 				"Combat", "", menu, menu + " Lore", now + 3
 			));
 		}
@@ -994,7 +996,7 @@ public final class CaptureHarness {
 		CaptureStore.start(root);
 		CaptureStore.offer(new CaptureStore.Sighting(
 			CaptureSurface.CHAT_MESSAGE, "finish-pending-key",
-			styled("§7A queued finish harness line nobody translated"), "Mining", "Dwarven Mines",
+			new CaptureStore.Line(styled("§7A queued finish harness line nobody translated")), "Mining", "Dwarven Mines",
 			"Server_Messages", "", System.currentTimeMillis()
 		));
 
@@ -1023,7 +1025,7 @@ public final class CaptureHarness {
 
 	private static void item(Path root, String gameplay, String menu, String legacy, String where, long now) {
 		CaptureStore.accept(new CaptureStore.Sighting(
-			CaptureSurface.GUI_ITEM, gameplay + menu + legacy, styled(legacy), gameplay, "", menu, where, now
+			CaptureSurface.GUI_ITEM, gameplay + menu + legacy, new CaptureStore.Line(styled(legacy)), gameplay, "", menu, where, now
 		));
 	}
 
@@ -1032,7 +1034,7 @@ public final class CaptureHarness {
 	/** A line as the game thread would hand it over, keyed by something readable in a failure message. */
 	private static CaptureStore.Sighting sighting(String key, long when) {
 		return new CaptureStore.Sighting(
-			CaptureSurface.CHAT_MESSAGE, key, styled("§7" + key), null, "", "Server_Messages", "", when
+			CaptureSurface.CHAT_MESSAGE, key, new CaptureStore.Line(styled("§7" + key)), null, "", "Server_Messages", "", when
 		);
 	}
 

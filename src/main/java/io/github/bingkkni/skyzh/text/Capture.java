@@ -73,6 +73,9 @@ public enum Capture {
 	 */
 	ICON("[\\p{S}\\p{Co}" + Glyphs.symbolClass() + "α᠅ᝐѪℏථꨃ҉]"),
 
+	/** A Trophy Fish quality shown in all caps: BRONZE, SILVER, GOLD or DIAMOND. */
+	TROPHY_QUALITY("(?:BRONZE|SILVER|GOLD|DIAMOND)", false),
+
 	/** An Nx bonus written in Chinese as an increase of (N-1) times; distinct from a damage coefficient. */
 	MULTIPLIER_INCREASE("[0-9]+(?:\\.[0-9]+)?"),
 
@@ -113,9 +116,15 @@ public enum Capture {
 	private static final Set<String> CONNECTIVES = Set.of("of", "the", "and", "in", "on", "at", "to", "for", "a", "&");
 
 	private final String regex;
+	private final boolean allowsEmpty;
 
 	Capture(String regex) {
+		this(regex, true);
+	}
+
+	Capture(String regex, boolean allowsEmpty) {
 		this.regex = regex;
+		this.allowsEmpty = allowsEmpty;
 	}
 
 	/**
@@ -139,6 +148,7 @@ public enum Capture {
 			case "tier" -> TIER;
 			case "tier_range" -> TIER_RANGE;
 			case "icon" -> ICON;
+			case "trophy_quality" -> TROPHY_QUALITY;
 			case "multiplier_increase" -> MULTIPLIER_INCREASE;
 			case "ordinal" -> ORDINAL;
 			case "search_query" -> SEARCH_QUERY;
@@ -148,21 +158,23 @@ public enum Capture {
 
 	/** The body of this placeholder's capture group, lazy so surrounding literals decide where it ends. */
 	public String regex() {
-		return "(?:" + this.regex + ")??";
+		String group = "(?:" + this.regex + ")";
+
+		return this.allowsEmpty ? group + "??" : group;
 	}
 
 	/** Whether what was captured looks like the kind of value this placeholder was said to hold. */
 	public boolean accepts(String value) {
 		if (value.isEmpty()) {
-			// Hypixel does draw empty values — an unset drill part, a zero-length prefix — and a
-			// record that spelled the rest of the line out is still the record for that line.
-			return true;
+			// Optional values include unset parts and zero-length prefixes. Required types reject
+			// empty captures in both the pattern and this semantic check.
+			return this.allowsEmpty;
 		}
 
 		return switch (this) {
 			// The regex is the whole of the rule for these: a numeral is a numeral, and a player's
 			// name is whatever sixteen word characters somebody chose.
-			case NUMBER, PLAYER, RANK, TIER, TIER_RANGE, ICON, ORDINAL, DURATION, SEARCH_QUERY -> true;
+			case NUMBER, PLAYER, RANK, TIER, TIER_RANGE, ICON, TROPHY_QUALITY, ORDINAL, DURATION, SEARCH_QUERY -> true;
 			case MULTIPLIER_INCREASE -> new BigDecimal(value).compareTo(BigDecimal.ONE) >= 0;
 			case NAME -> isName(value);
 			case PHRASE -> isValue(value);
