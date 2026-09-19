@@ -39,11 +39,12 @@ public final class ClientSettingsHarness {
 		check("采集总开关仍默认关", defaults.captureUntranslated, false);
 
 		SkyZHConfig old = SkyZHConfig.fromJson(JsonParser.parseString("""
-			{"enabled":false,"showOriginal":false,"captureUntranslated":true,"captureDirectory":"my-captures"}
+			{"enabled":false,"showOriginal":false,"captureUntranslated":true,"captureDirectory":"my-captures","captureServer":"example.org"}
 			""").getAsJsonObject());
 		check("旧配置保留总开关", old.enabled, false);
 		check("旧对比开关不影响新提示默认值", old.originalTips, true);
 		check("保存移除旧对比字段", old.toJson().has("showOriginal"), false);
+		check("保存移除旧 IP 限制字段", old.toJson().has("captureServer"), false);
 		old.originalTips = false;
 		check("原文提示关闭可保存再读取", SkyZHConfig.fromJson(old.toJson()).originalTips, false);
 		check("旧配置保留采集开关", old.captureUntranslated, true);
@@ -103,45 +104,44 @@ public final class ClientSettingsHarness {
 	}
 
 	private static void servers() throws Exception {
-		for (String address : List.of("hypixel.net", "mc.hypixel.net", "alpha.hypixel.net", " MC.HYPIXEL.NET:25565 ",
-			"mc.hypixel.net.", "mc.hypixel.net.:25565")) {
-			check("允许 Hypixel 地址 " + address, HypixelServer.matchesAddress(address, "hypixel.net"), true);
+		check("只认 Hypixel 官方 hello", HypixelServer.isHypixelHello("hypixel:hello"), true);
+		for (String identifier : List.of("", "minecraft:brand", "hyevent:location", "other:hello", "hypixel:ping")) {
+			check("其他载荷不能冒充 Hypixel " + identifier, HypixelServer.isHypixelHello(identifier), false);
 		}
-		for (String address : List.of("", "localhost", "127.0.0.1:25565", "[::1]:25565", "nothypixel.net",
-			"hypixel.net.example.org", "mc.hypixel.net.example.org", "hypixel.net:abc", "hypixel.net:65536")) {
-			check("拒绝非 Hypixel 地址 " + address, HypixelServer.matchesAddress(address, "hypixel.net"), false);
+
+		for (String title : List.of("§6§lSKYBLOCK", "§e§lSKYBLOCK §7Ⓑ", "SKYBLOCK CO-OP", "SKYBLOCK GUEST")) {
+			check("接受 Hypixel SkyBlock 侧边栏 " + title, HypixelServer.isSkyBlockTitle(title), true);
 		}
-		check("空地址拒绝", HypixelServer.matchesAddress(null, "hypixel.net"), false);
-		check("主界面/无客户端连接拒绝", HypixelServer.isConnected(), false);
+		for (String title : List.of("", "HYPIXEL", "MY SKYBLOCK SERVER", "SKYBLOCK LEVEL UP", "NOT SKYBLOCK")) {
+			check("拒绝相似但非官方侧边栏 " + title, HypixelServer.isSkyBlockTitle(title), false);
+		}
+
+		check("主界面没有 Hypixel 身份", HypixelServer.isHypixel(), false);
+		check("主界面不在 SkyBlock", HypixelServer.isSkyBlock(), false);
 		check("没有连接时禁止翻译", HypixelServer.canTranslate(), false);
 
 		Component title = Component.literal("      Select Process");
 		ContainerTitle.Rendered rendered = ContainerTitle.of(null, title, 150);
-		check("非 Hypixel 标题原对象返回", rendered.text() == title, true);
-		check("非 Hypixel 不重算标题居中", rendered.centered(), false);
+		check("未验证连接的标题原对象返回", rendered.text() == title, true);
+		check("未验证连接不重算标题居中", rendered.centered(), false);
 		List<Component> lore = List.of(Component.literal("Tusk Fossil"), Component.literal("Health: +100"));
-		check("非 Hypixel 物品与 Lore 不进入缓存/折行", TooltipTranslator.translate(null, lore) == lore, true);
+		check("未验证连接的物品与 Lore 不进入缓存/折行", TooltipTranslator.translate(null, lore) == lore, true);
 		Component tag = Component.literal("CLICK");
-		check("非 Hypixel 浮空字原样返回", NameTag.translate(tag, false) == tag, true);
-		check("非 Hypixel 玩家名原样返回", NameTag.translate(tag, true) == tag, true);
-		check("非 Hypixel 侧边栏不翻译", SidebarText.row(null, Component.literal("SKYBLOCK")).getString(), "SKYBLOCK");
+		check("未验证连接的浮空字原样返回", NameTag.translate(tag, false) == tag, true);
+		check("未验证连接的玩家名原样返回", NameTag.translate(tag, true) == tag, true);
+		check("未验证连接的侧边栏不翻译", SidebarText.row(null, Component.literal("SKYBLOCK")).getString(), "SKYBLOCK");
 
-		// A stale SKYBLOCK title and an empty/custom captureServer must not bypass the live boundary.
+		// A stale SKYBLOCK capture flag must not bypass the live hello + sidebar boundary.
 		var skyBlock = CaptureContext.class.getDeclaredField("onSkyBlock");
 		skyBlock.setAccessible(true);
 		SkyZHConfig config = SkyZHConfig.get();
 		boolean previousCapture = config.captureUntranslated;
-		String previousServer = config.captureServer;
 		try {
 			skyBlock.setBoolean(null, true);
 			config.captureUntranslated = true;
-			config.captureServer = "";
-			check("旧采集状态 + 空地址开关仍不能绕过 Hypixel", CaptureContext.active(), false);
-			config.captureServer = "example.org";
-			check("自定义其他服务器仍不能采集", CaptureContext.active(), false);
+			check("旧采集状态不能绕过当前连接验证", CaptureContext.active(), false);
 		} finally {
 			config.captureUntranslated = previousCapture;
-			config.captureServer = previousServer;
 			CaptureContext.reset();
 		}
 	}

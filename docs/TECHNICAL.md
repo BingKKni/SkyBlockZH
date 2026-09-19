@@ -34,12 +34,14 @@ sent. That is the design goal, not a side effect: a translation mod that broke S
 worse deal for most SkyBlock players than reading English.
 
 Every runtime translation entry checks `HypixelServer.canTranslate()` before caches, term-table
-fallbacks, wrapping or centring: a live multiplayer connection and a `hypixel.net` host or subdomain
-are required, independently of capture. Other servers, singleplayer and the main menu keep vanilla
-text and coordinates. Entering/leaving Hypixel also rebuilds wrapped chat to remove stale translations.
-The pure corpus engine and `locate` stay server-independent for offline checks and capture classification.
-Custom proxy domains and direct IPs cannot be confirmed as Hypixel and are intentionally not enabled;
-a server brand or a SKYBLOCK scoreboard alone is not accepted as proof.
+fallbacks, wrapping or centring. The address is deliberately not checked: accelerators commonly expose
+an IP or local relay instead of `hypixel.net`. Two independent pieces of live server state are required
+instead — Hypixel's official inbound `hypixel:hello` payload for this exact connection, and an exact
+SkyBlock sidebar title. The first excludes unrelated and SkyBlock-style servers; the second excludes
+other games on Hypixel. Other servers, singleplayer and the main menu keep vanilla text and coordinates.
+Entering/leaving SkyBlock also rebuilds wrapped chat to remove stale translations, and changing the
+network connection clears both pieces of evidence before any new text can pass. The pure corpus engine
+and `locate` stay server-independent for offline checks and capture classification.
 
 Every hook is `require = 0`. If a Minecraft update moves a method, or another mod claims the same
 instruction first, the result is "this surface stops being translated", not "the modpack won't boot".
@@ -254,11 +256,11 @@ There is deliberately **no filter by name**. `[Bazaar]` and `[Sacks]` are Hypixe
 a blocklist of mod-shaped tags would throw away real SkyBlock text to catch something that cannot
 arrive anyway.
 
-Two more guards: the live connection must be **Hypixel**, and the sidebar's title has to say SKYBLOCK.
-Both are required. The legacy `captureServer` setting can further restrict domains within Hypixel
-(e.g. alpha); empty skips only that extra filter and cannot bypass the Hypixel boundary. Every capture
-entry checks the live connection rather than trusting the previous tick after a server switch.
-Disconnect cleanup runs even if capture was switched off mid-session; it never deletes files.
+Two more guards: this exact live connection must have received Hypixel's official
+`hypixel:hello`, and the sidebar's title has to be an exact SkyBlock form. Both are required; neither
+the configured address nor the server brand participates. Every capture entry checks the current
+connection rather than trusting the previous tick after a server switch. Disconnect or leaving
+SkyBlock cleanup runs even if capture was switched off mid-session; it never deletes files.
 
 ### The one thing that is sent
 

@@ -9,7 +9,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.multiplayer.PlayerInfo;
-import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.scores.DisplaySlot;
 import net.minecraft.world.scores.Objective;
@@ -27,8 +26,9 @@ import org.slf4j.LoggerFactory;
  * meant to end up in {@code original_text/}, so text from a survival world, a minigame lobby or
  * another server is not merely useless, it is contamination that nobody could spot afterwards — it
  * looks exactly like SkyBlock text in the output. The mod would rather record nothing than record
- * something it cannot vouch for, so both the address and the sidebar have to agree that this is
- * Hypixel SkyBlock before a single line is kept.
+ * something it cannot vouch for, so Hypixel's inbound {@code hypixel:hello} and the live SKYBLOCK
+ * sidebar must both be present before a single line is kept. The address used to reach the server is
+ * deliberately irrelevant, because an accelerator commonly replaces it with an IP or local relay.
  *
  * <p>The sidebar is read rather than any mod's idea of the current island: it is the server's own
  * state, it is present on every SkyBlock profile, and reading it costs nothing because it is a field
@@ -94,8 +94,7 @@ public final class CaptureContext {
 	 * warping to a lobby empties the sidebar.
 	 */
 	public static boolean active() {
-		return SkyZHConfig.get().captureUntranslated && onSkyBlock
-			&& isExpectedServer(Minecraft.getInstance());
+		return SkyZHConfig.get().captureUntranslated && onSkyBlock && HypixelServer.isSkyBlock();
 	}
 
 	/** The zone the sidebar last reported, or an empty string when it has not said. */
@@ -141,7 +140,7 @@ public final class CaptureContext {
 		Minecraft minecraft = Minecraft.getInstance();
 		ClientLevel level = minecraft.level;
 
-		if (level == null || !isExpectedServer(minecraft)) {
+		if (level == null || !HypixelServer.isSkyBlock()) {
 			onSkyBlock = false;
 			area = "";
 			return;
@@ -156,7 +155,7 @@ public final class CaptureContext {
 			return;
 		}
 
-		onSkyBlock = isSkyBlockTitle(sidebar.getDisplayName().getString());
+		onSkyBlock = HypixelServer.isSkyBlockTitle(sidebar.getDisplayName().getString());
 
 		if (!onSkyBlock) {
 			area = "";
@@ -383,38 +382,6 @@ public final class CaptureContext {
 				+ "、或者这一局还没收到位置事件；有值却还落进未知玩法,就是 areas.json 里缺这一条。",
 			HypixelApi.map(), HypixelApi.mode()
 		);
-	}
-
-	/**
-	 * The mandatory Hypixel boundary, followed by the legacy config's optional extra restriction.
-	 * Emptying captureServer must never admit a different server or a singleplayer SKYBLOCK sidebar.
-	 */
-	private static boolean isExpectedServer(Minecraft minecraft) {
-		if (!HypixelServer.isConnected()) {
-			return false;
-		}
-
-		String expected = SkyZHConfig.get().captureServer.trim();
-		ServerData server = minecraft.getCurrentServer();
-		return expected.isEmpty() || (server != null && HypixelServer.matchesAddress(server.ip, expected));
-	}
-
-	/**
-	 * The sidebar's own title, which on SkyBlock always says SKYBLOCK — with a highlight travelling
-	 * across the letters, and sometimes CO-OP or GUEST after it. Letters only, so neither the shimmer
-	 * nor the suffix matters.
-	 */
-	public static boolean isSkyBlockTitle(String title) {
-		StringBuilder letters = new StringBuilder();
-		String plain = plain(title);
-
-		for (int i = 0; i < plain.length(); i++) {
-			if (Character.isLetter(plain.charAt(i))) {
-				letters.append(Character.toUpperCase(plain.charAt(i)));
-			}
-		}
-
-		return letters.indexOf("SKYBLOCK") >= 0;
 	}
 
 	/** The zone name off the sidebar's {@code ⏣ Dwarven Mines} row. */

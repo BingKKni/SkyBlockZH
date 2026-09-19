@@ -48,7 +48,7 @@ public final class ScreenWatcher {
 		Minecraft minecraft = Minecraft.getInstance();
 		ClientLevel level = minecraft.level;
 
-		if (level == null || !HypixelServer.isConnected()) {
+		if (level == null || !HypixelServer.isSkyBlock()) {
 			if (connected) {
 				connected = false;
 				TextCapture.disconnected();

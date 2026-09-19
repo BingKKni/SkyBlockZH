@@ -87,12 +87,6 @@ public final class SkyZHConfig {
 	 */
 	public String captureDirectory = "skyzh-capture";
 
-	/**
-	 * An optional additional domain restriction inside Hypixel (for example alpha.hypixel.net).
-	 * Empty skips only this extra filter; it cannot bypass the shared Hypixel server boundary.
-	 */
-	public String captureServer = "hypixel.net";
-
 	public static SkyZHConfig get() {
 		if (instance == null) {
 			instance = read();
@@ -133,7 +127,6 @@ public final class SkyZHConfig {
 		config.captureNotifications = bool(json, "captureNotifications", true);
 		config.autoClearCapture = bool(json, "autoClearCapture", false);
 		config.captureDirectory = string(json, "captureDirectory", "skyzh-capture");
-		config.captureServer = string(json, "captureServer", "hypixel.net");
 		return config;
 	}
 
@@ -198,7 +191,6 @@ public final class SkyZHConfig {
 		help.addProperty("captureNotifications", "采集到未翻译、颜色、中英混杂、排版、跨行或数值问题时，是否在聊天栏里输出报告");
 		help.addProperty("autoClearCapture", "每次启动游戏时，是否自动清空上一轮已采集的文本。启动时执行一次，与采集总开关和是否进入 Hypixel 无关；断线重连不清空。");
 		help.addProperty("captureDirectory", "采集输出目录，相对于游戏目录。包含 untranslated/、mixed/、colour/、layout/、incomplete/、value/ 六类，各自再按玩法/来源/名字分目录。");
-		help.addProperty("captureServer", "在 Hypixel 范围内额外限制采集的域名（可指定 alpha.hypixel.net）。留空只取消这层额外限制，不会允许采集其他服务器或单人世界；仍须通过 Hypixel 地址和 SkyBlock 计分板检查。");
 
 		JsonObject json = new JsonObject();
 		json.add("_说明", help);
@@ -209,7 +201,6 @@ public final class SkyZHConfig {
 		json.addProperty("captureNotifications", this.captureNotifications);
 		json.addProperty("autoClearCapture", this.autoClearCapture);
 		json.addProperty("captureDirectory", this.captureDirectory);
-		json.addProperty("captureServer", this.captureServer);
 		return json;
 	}
 

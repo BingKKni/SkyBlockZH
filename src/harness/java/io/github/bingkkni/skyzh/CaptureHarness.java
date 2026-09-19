@@ -772,11 +772,12 @@ public final class CaptureHarness {
 		check("Tab 列表上前后的空格不算名字", CaptureContext.tabArea("  §rArea: §aHub  "), "Hub");
 		check("Tab 列表上别的行不是所在地行", CaptureContext.tabArea("§rPlayers: §a42"), "");
 		check("Tab 列表上的 §q 同样不算内容", CaptureContext.tabArea("§rArea: §aDwarven M§qines"), "Dwarven Mines");
-		check("侧边栏标题认得出 SkyBlock", CaptureContext.isSkyBlockTitle("§6§lSKYBLOCK"), true);
+		check("侧边栏标题认得出 SkyBlock", HypixelServer.isSkyBlockTitle("§6§lSKYBLOCK"), true);
 		check("逐字符变色的标题照样认得出",
-			CaptureContext.isSkyBlockTitle("§bS§fK§bY§fB§bL§fO§bC§fK"), true);
-		check("合作档案的标题也认", CaptureContext.isSkyBlockTitle("§6§lSKYBLOCK §fCO-OP"), true);
-		check("别的服务器的计分板不认", CaptureContext.isSkyBlockTitle("§a§lBEDWARS"), false);
+			HypixelServer.isSkyBlockTitle("§bS§fK§bY§fB§bL§fO§bC§fK"), true);
+		check("合作档案的标题也认", HypixelServer.isSkyBlockTitle("§6§lSKYBLOCK §fCO-OP"), true);
+		check("别的服务器的计分板不认", HypixelServer.isSkyBlockTitle("§a§lBEDWARS"), false);
+		check("包含 SkyBlock 的自定义标题也不认", HypixelServer.isSkyBlockTitle("§aMY SKYBLOCK SERVER"), false);
 
 		// And the table the name is then looked up in, so a rename in the JSON fails here rather than
 		// silently filing a session's worth of Mining text as unknown.

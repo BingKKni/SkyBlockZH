@@ -204,7 +204,7 @@ public final class CaptureAnnouncer {
 		}
 
 		minecraft.execute(() -> {
-			if (!current(expectedGeneration) || !HypixelServer.isConnected()) {
+			if (!current(expectedGeneration) || !HypixelServer.isSkyBlock()) {
 				return;
 			}
 

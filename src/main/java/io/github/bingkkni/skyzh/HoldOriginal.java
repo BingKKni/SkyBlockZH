@@ -73,7 +73,7 @@ public final class HoldOriginal {
 
 	/** Reads the assigned key once per client tick and rebuilds wrapped chat if it flipped. */
 	public static void poll(Minecraft minecraft) {
-		boolean allowed = HypixelServer.isConnected() && minecraft.isWindowActive() && !typing(minecraft);
+		boolean allowed = HypixelServer.isSkyBlock() && minecraft.isWindowActive() && !typing(minecraft);
 
 		if (!allowed) {
 			heldScanCode = null;
