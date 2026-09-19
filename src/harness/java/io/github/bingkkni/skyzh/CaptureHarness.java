@@ -13,6 +13,7 @@ import io.github.bingkkni.skyzh.capture.ChatShape;
 import io.github.bingkkni.skyzh.capture.Classifier;
 import io.github.bingkkni.skyzh.capture.LegacyText;
 import io.github.bingkkni.skyzh.capture.Unplaced;
+import io.github.bingkkni.skyzh.hook.NameTag;
 import io.github.bingkkni.skyzh.text.LineShape;
 import io.github.bingkkni.skyzh.text.StyledText;
 import io.github.bingkkni.skyzh.text.TermTable;
@@ -58,6 +59,7 @@ public final class CaptureHarness {
 		templates();
 		chatShapes();
 		verdicts();
+		holograms();
 		names();
 		layout();
 		clearing();
@@ -359,6 +361,35 @@ public final class CaptureHarness {
 		mixed();
 	}
 
+	/** Hologram capture follows the same boundary as hologram rendering. */
+	private static void holograms() {
+		check("实体共享标志字节会重新检查 Hologram", NameTag.metadataAffectsHologram(0), true);
+		check("自定义名字元数据会重新检查 Hologram", NameTag.metadataAffectsHologram(2), true);
+		check("名字可见元数据会重新检查 Hologram", NameTag.metadataAffectsHologram(3), true);
+		check("盔甲架姿势元数据不会触发 Hologram 检查", NameTag.metadataAffectsHologram(16), false);
+		check("普通操作提示属于可翻译浮空字", NameTag.eligible(styled("§e§lCLICK").slice(0, 5)), true);
+		check("NPC 头顶职务介绍属于可翻译浮空字",
+			NameTag.eligible(Component.literal("§e§lDRILL MECHANIC")), true);
+		check("NPC 绿色专名不翻译也不采集",
+			NameTag.eligible(Component.literal("§aJotraeline Greatforge")), false);
+		check("单词 NPC 绿色专名同样排除", NameTag.eligible(Component.literal("§aBubu")), false);
+		check("绿色但加粗的状态不是 NPC 专名", NameTag.eligible(Component.literal("§a§lREADY")), true);
+		check("怪物动态血条不属于可翻译浮空字",
+			NameTag.eligible(Component.literal("§cGlacite Walker §a1.2M§c❤")), false);
+		check("私用区心形的怪物血条同样排除",
+			NameTag.eligible(Component.literal("§cGlacite Walker §a1.2M§c\uE010")), false);
+		check("带两侧装饰的 Boss 血条同样排除",
+			NameTag.eligible(Component.literal("§e﴾ §cBladesoul §a50M/50M§c❤ §e﴿")), false);
+		check("含生命值说明的完整文案不能被血条规则误杀",
+			NameTag.eligible(Component.literal("Requires 100❤ Health")), true);
+
+		checkNothing("已有的浮空字不重复采集", CaptureSurface.HOLOGRAM, "§e§lCLICK");
+		checkNothing("NPC 专名在分类兜底处也不会伪报", CaptureSurface.HOLOGRAM,
+			"§aJotraeline Greatforge");
+		checkVerdict("未知职务浮空字会进入未翻译采集", CaptureSurface.HOLOGRAM,
+			"§e§lDRILL MECHANIC", Classifier.Bucket.UNTRANSLATED);
+	}
+
 	/** The second pile: a record answered and the line still came out half English. */
 	private static void mixed() {
 		TermTable scopedTerms = TermTable.from(JsonParser.parseString("""
@@ -461,6 +492,7 @@ public final class CaptureHarness {
 		long now = System.currentTimeMillis();
 		accept(root, CaptureSurface.NPC_MESSAGE, "Mining", "Fragilis", "§fHello there, miner!", now);
 		accept(root, CaptureSurface.GUI_ITEM, "Mining", "Commissions", "§7A line nobody wrote down yet", now);
+		accept(root, CaptureSurface.HOLOGRAM, "Mining", "Holograms", "§eDrill Mechanic", now);
 		accept(root, CaptureSurface.SCOREBOARD, "_Unknown_Gameplay", "Sidebar", "§7Somewhere Unclassified", now);
 		CaptureStore.flush();
 
@@ -468,6 +500,8 @@ public final class CaptureHarness {
 		check("NPC 台词按玩法/来源/名字落盘", Files.exists(npc), true);
 		check("界面物品按菜单落盘",
 			Files.exists(root.resolve("untranslated/Mining/GUI_Item/Commissions.json")), true);
+		check("浮空字按独立渲染面落盘",
+			Files.exists(root.resolve("untranslated/Mining/Hologram/Holograms.json")), true);
 		check("玩法认不出来时落进未知玩法",
 			Files.exists(root.resolve("untranslated/_Unknown_Gameplay/ScoreBoard/Sidebar.json")), true);
 
@@ -772,12 +806,12 @@ public final class CaptureHarness {
 		check("Tab 列表上前后的空格不算名字", CaptureContext.tabArea("  §rArea: §aHub  "), "Hub");
 		check("Tab 列表上别的行不是所在地行", CaptureContext.tabArea("§rPlayers: §a42"), "");
 		check("Tab 列表上的 §q 同样不算内容", CaptureContext.tabArea("§rArea: §aDwarven M§qines"), "Dwarven Mines");
-		check("侧边栏标题认得出 SkyBlock", HypixelServer.isSkyBlockTitle("§6§lSKYBLOCK"), true);
-		check("逐字符变色的标题照样认得出",
-			HypixelServer.isSkyBlockTitle("§bS§fK§bY§fB§bL§fO§bC§fK"), true);
-		check("合作档案的标题也认", HypixelServer.isSkyBlockTitle("§6§lSKYBLOCK §fCO-OP"), true);
-		check("别的服务器的计分板不认", HypixelServer.isSkyBlockTitle("§a§lBEDWARS"), false);
-		check("包含 SkyBlock 的自定义标题也不认", HypixelServer.isSkyBlockTitle("§aMY SKYBLOCK SERVER"), false);
+		check("侧边栏 objective 名认得出 SkyBlock", HypixelServer.isSkyBlockObjective("SBScoreboard"), true);
+		check("显示标题不参与判断，只看 objective 名",
+			HypixelServer.isSkyBlockObjective("§6§lSKYBLOCK"), false);
+		check("大小写不同的 objective 名不认", HypixelServer.isSkyBlockObjective("sbscoreboard"), false);
+		check("别的服务器的计分板不认", HypixelServer.isSkyBlockObjective("BedWars"), false);
+		check("包含 SB 的其他 objective 也不认", HypixelServer.isSkyBlockObjective("SBScoreboard2"), false);
 
 		// And the table the name is then looked up in, so a rename in the JSON fails here rather than
 		// silently filing a session's worth of Mining text as unknown.

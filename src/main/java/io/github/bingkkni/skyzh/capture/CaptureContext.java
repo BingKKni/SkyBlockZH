@@ -26,9 +26,10 @@ import org.slf4j.LoggerFactory;
  * meant to end up in {@code original_text/}, so text from a survival world, a minigame lobby or
  * another server is not merely useless, it is contamination that nobody could spot afterwards — it
  * looks exactly like SkyBlock text in the output. The mod would rather record nothing than record
- * something it cannot vouch for, so Hypixel's inbound {@code hypixel:hello} and the live SKYBLOCK
- * sidebar must both be present before a single line is kept. The address used to reach the server is
- * deliberately irrelevant, because an accelerator commonly replaces it with an IP or local relay.
+ * something it cannot vouch for, so Hypixel's inbound identity (its {@code hypixel:hello} or brand)
+ * and the live {@code SBScoreboard} sidebar must both be present before a single line is kept. The
+ * address used to reach the server is deliberately irrelevant, because an accelerator commonly
+ * replaces it with an IP or local relay.
  *
  * <p>The sidebar is read rather than any mod's idea of the current island: it is the server's own
  * state, it is present on every SkyBlock profile, and reading it costs nothing because it is a field
@@ -155,7 +156,7 @@ public final class CaptureContext {
 			return;
 		}
 
-		onSkyBlock = HypixelServer.isSkyBlockTitle(sidebar.getDisplayName().getString());
+		onSkyBlock = HypixelServer.isSkyBlockObjective(sidebar);
 
 		if (!onSkyBlock) {
 			area = "";

@@ -36,12 +36,18 @@ worse deal for most SkyBlock players than reading English.
 Every runtime translation entry checks `HypixelServer.canTranslate()` before caches, term-table
 fallbacks, wrapping or centring. The address is deliberately not checked: accelerators commonly expose
 an IP or local relay instead of `hypixel.net`. Two independent pieces of live server state are required
-instead — Hypixel's official inbound `hypixel:hello` payload for this exact connection, and an exact
-SkyBlock sidebar title. The first excludes unrelated and SkyBlock-style servers; the second excludes
-other games on Hypixel. Other servers, singleplayer and the main menu keep vanilla text and coordinates.
-Entering/leaving SkyBlock also rebuilds wrapped chat to remove stale translations, and changing the
-network connection clears both pieces of evidence before any new text can pass. The pure corpus engine
-and `locate` stay server-independent for offline checks and capture classification.
+instead — Hypixel identifying itself on this exact connection (its official inbound `hypixel:hello`
+payload, or the standard `minecraft:brand` payload naming `Hypixel BungeeCord`, the same signal
+SkyBlocker checks), and the SkyBlock sidebar objective — matched by its internal name `SBScoreboard`,
+the identifier SkyHanni keys on, rather than by the display title, which carries a travelling
+highlight, an icon and `CO-OP`/`GUEST` suffixes that any restyle can change. The first excludes unrelated and SkyBlock-style
+servers; the second excludes other games on Hypixel. Both payloads are read off the packet's own
+`handle`, not off the listener: Fabric API cancels the listener method for every payload type some mod
+has registered, and `hypixel-mod-api` registers the hello, so a listener hook never sees it on a client
+running SkyHanni or SkyBlocker. Other servers, singleplayer and the main menu keep vanilla text and
+coordinates. Entering/leaving SkyBlock also rebuilds wrapped chat to remove stale translations, and
+changing the network connection clears both pieces of evidence before any new text can pass. The pure
+corpus engine and `locate` stay server-independent for offline checks and capture classification.
 
 Every hook is `require = 0`. If a Minecraft update moves a method, or another mod claims the same
 instruction first, the result is "this surface stops being translated", not "the modpack won't boot".
@@ -163,7 +169,7 @@ the corpus does **not** cover, the swap only happens when "SkyBlock" is the only
 | `SKYBLOCK` (the sidebar title) | 空岛生存 |
 | `SkyBlock Level 42` | unchanged — `Level` is still English |
 | `You unlocked SkyBlock XP!` | unchanged |
-| `SKYBLOCK CO-OP` | unchanged — see `TODO.md` |
+| `SKYBLOCK CO-OP` | unchanged — `CO-OP` is another English word |
 
 On a line the corpus **does** cover, the swap runs over the finished translation, so a record whose
 Chinese keeps the word — `"SkyBlock 菜单"` — comes out as 空岛菜单 with the switch on and
@@ -247,6 +253,7 @@ Every capture point is now a *packet handler*, or a read of state only a packet 
 | Chat (system and NPC) | `ClientPacketListener#handleSystemChat` HEAD | Earlier than Fabric's chat events and than SkyHanni or SkyBlocker. A mod's own message goes in through `ChatComponent#addMessage` and **never passes this method** |
 | Container title | `handleOpenScreen` HEAD | The `title` field of the server's packet |
 | Item name and lore | `handleContainerContent` / `handleContainerSetSlot` HEAD | Reads the stack's `CUSTOM_NAME` and `LORE` components, **not** `getTooltipLines()` — that list is where every mod adds its own lines |
+| World hologram | `handleSetEntityData` TAIL plus a 10-tick recheck of packet-observed entities | Rechecks immediately after custom-name, name-visible or shared-flags (invisibility bit) metadata. Relevant armour-stand ids are bounded and tied to the exact `ClientLevel`, then periodically revisited to recover static holograms whose metadata preceded the active boundary; a world change clears them, and client-created Mod entities are never scanned. Only visible custom names on invisible armour stands enter; content filtering removes the green proper-name line above an NPC and dynamic mob-health bars while retaining yellow role/action descriptions |
 | Sidebar | The `Scoreboard` object, every 10 ticks | The same server state vanilla renders from. A useful side effect: **it keeps working when SkyHanni's Custom Scoreboard has replaced the sidebar's rendering entirely** |
 | Tab list | `handleTabListCustomisation` for header and footer, player entries every 10 ticks | As above |
 | Boss bar | `BossHealthOverlay#update` TAIL | That map is written by the packet handler and by nothing else |
@@ -256,9 +263,9 @@ There is deliberately **no filter by name**. `[Bazaar]` and `[Sacks]` are Hypixe
 a blocklist of mod-shaped tags would throw away real SkyBlock text to catch something that cannot
 arrive anyway.
 
-Two more guards: this exact live connection must have received Hypixel's official
-`hypixel:hello`, and the sidebar's title has to be an exact SkyBlock form. Both are required; neither
-the configured address nor the server brand participates. Every capture entry checks the current
+Two more guards: this exact live connection must have identified itself as Hypixel (the official
+`hypixel:hello`, or a `minecraft:brand` naming Hypixel), and the sidebar objective has to be named
+`SBScoreboard`. Both are required; the configured address never participates. Every capture entry checks the current
 connection rather than trusting the previous tick after a server switch. Disconnect or leaving
 SkyBlock cleanup runs even if capture was switched off mid-session; it never deletes files.
 
@@ -286,6 +293,7 @@ skyzh-capture/
 ├── untranslated/          no record answered for these
 │   ├── Mining/NPC_Message/Fragilis.json
 │   ├── Mining/GUI_Item/Commissions.json        ← every slot of that menu, names and lore
+│   ├── Mining/Hologram/Holograms.json
 │   └── _Unknown_Gameplay/ScoreBoard/Sidebar.json
 ├── mixed/                 a record answered and the line still came out half English
 │   └── Mining/ChatMessage/Server_Messages.json
@@ -494,21 +502,20 @@ dependencies, and Loom has no `remapJar` step — `jar` produces the installable
 | `fabric-26.1/` | `SkyBlockZH-<version>-Beta-Fabric-26.1.jar` | `>=26.1 <26.2` | 18.0.0 |
 | `fabric-26.2/` | `SkyBlockZH-<version>-Beta-Fabric-26.2.jar` | `>=26.2 <26.3` | 20.0.1 |
 
-Both targets compile `src/main/` — the engine, the corpus loader, the capture, eleven of the fourteen
+Both targets compile `src/main/` — the engine, the corpus loader, the capture, thirteen of the sixteen
 mixins — and add one small tree of their own, `src/mc26_1/` or `src/mc26_2/`. Everything about a
 target other than its version numbers lives in `gradle/target.gradle`, so the two cannot drift in how
 they package the corpus or which Java release they compile for.
 
-Only four things differ between the two Minecrafts, and each one is a file in the version tree:
+Only three things differ between the two Minecrafts, and each one is a file in the version tree:
 
 | What moved | 26.1.x | 26.2 |
 |---|---|---|
 | The class that draws the HUD | `Gui` | `Hud`, split out of `Gui` |
-| The player entity type constant | `EntityType.PLAYER` | `EntityTypes.PLAYER` |
 | `SubmitNodeCollector#submitNameTag` | takes a trailing `double` | does not |
 | Who owns the chat box and the screen stack | `Gui#getChat`, `Minecraft#setScreen` | `Gui.hud#getChat`, `Gui#setScreen` |
 
-The last row is `platform/ClientGui`, one copy per target with the same signature. The first three are
+The last row is `platform/ClientGui`, one copy per target with the same signature. The first two are
 `mixin/HudMixin`, `mixin/HudScoreboardMixin` and `mixin/EntityRendererMixin` — the annotations only;
 what they do when they fire is shared code in `hook/`, written once.
 

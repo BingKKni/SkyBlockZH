@@ -1,7 +1,7 @@
 package io.github.bingkkni.skyzh;
 
 import io.github.bingkkni.skyzh.platform.ClientGui;
-import io.github.bingkkni.skyzh.text.StyledText;
+import java.util.Locale;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.multiplayer.ClientPacketListener;
@@ -21,19 +21,25 @@ import org.slf4j.LoggerFactory;
  * the server itself:
  *
  * <ol>
- *   <li>Hypixel sends the official {@code hypixel:hello} custom payload on every join.</li>
- *   <li>SkyBlock exposes an exact {@code SKYBLOCK} sidebar while that game is active.</li>
+ *   <li>Hypixel identifies itself on every join: the official {@code hypixel:hello} custom payload,
+ *       and the standard {@code minecraft:brand} payload naming {@code Hypixel BungeeCord}. Either is
+ *       accepted — SkyBlocker checks the brand, SkyHanni subscribes to the hello, and each one alone
+ *       has gone missing in practice (a mod that registers the hello makes Fabric consume it before
+ *       anyone else can look; the brand is only sent once per backend switch).</li>
+ *   <li>SkyBlock displays its {@code SBScoreboard} sidebar objective while that game is active.</li>
  * </ol>
  *
- * <p>Both are required. A random server with a line that happens to match the corpus has neither; a
- * SkyBlock-style server may copy the sidebar but does not accidentally send Hypixel's protocol hello;
- * and another Hypixel game receives the hello but does not have the SkyBlock sidebar. A malicious
- * server can impersonate any unauthenticated game protocol, but accidental translation is fail-closed
- * without rejecting accelerators, direct IPs or local relays.
+ * <p>Both halves are required. A random server with a line that happens to match the corpus has
+ * neither; a SkyBlock-style server may copy the sidebar but does not accidentally send Hypixel's
+ * protocol hello or brand; and another Hypixel game receives the identity but does not have the
+ * SkyBlock sidebar. A malicious server can impersonate any unauthenticated game protocol, but
+ * accidental translation is fail-closed without rejecting accelerators, direct IPs or local relays.
  */
 public final class HypixelServer {
 	private static final Logger LOGGER = LoggerFactory.getLogger("SkyZH");
 	private static final String HELLO_PAYLOAD = "hypixel:hello";
+	private static final String BRAND_MARKER = "hypixel";
+	private static final String SKYBLOCK_OBJECTIVE = "SBScoreboard";
 	private static final int WARNING_DELAY_TICKS = 100;
 
 	/** The exact network session the evidence below belongs to. Never carry it across reconnects. */
@@ -52,24 +58,45 @@ public final class HypixelServer {
 	/**
 	 * Observes one inbound custom payload without reading or changing its body.
 	 *
-	 * <p>The mixin calls this before vanilla/Fabric dispatches the payload. It works whether
-	 * {@code hypixel-mod-api} is installed and recognises the typed payload or vanilla represents it as
-	 * an unknown payload, because the identifier is present in both cases. Merely reading a packet the
-	 * server already sent does not register an event or send anything back.
+	 * <p>The mixin calls this from the packet's own dispatch, before any listener sees it. It works
+	 * whether {@code hypixel-mod-api} is installed and recognises the typed payload or vanilla
+	 * represents it as an unknown payload, because the identifier is present in both cases. Merely
+	 * reading a packet the server already sent does not register an event or send anything back.
 	 */
 	public static void observePayload(Connection source, Identifier identifier) {
 		if (source == null || identifier == null || !isHypixelHello(identifier.toString())) {
 			return;
 		}
 
+		identify(source, "hypixel:hello");
+	}
+
+	/**
+	 * Observes the server brand the moment it arrives, rather than reading it back off the listener.
+	 *
+	 * <p>The brand is sent once per backend, during configuration, before there is a player to read
+	 * it through — waiting for {@code ClientPacketListener#serverBrand()} on the tick would work for
+	 * the first backend and miss nothing, but the packet path is the same one the hello uses and keeps
+	 * the two pieces of identity in one place.
+	 */
+	public static void observeBrand(Connection source, String brand) {
+		if (source == null || !isHypixelBrand(brand)) {
+			return;
+		}
+
+		identify(source, "服务器品牌 " + brand.trim());
+	}
+
+	private static void identify(Connection source, String evidence) {
 		boolean announce = source != sessionConnection || !receivedHello;
 
 		if (source != sessionConnection) {
 			resetFor(source);
-		} else {
-			// Hypixel sends another hello when the proxy moves this connection to another backend.
+		} else if (receivedHello) {
+			// Hypixel identifies itself again when the proxy moves this connection to another backend.
 			// Close the old game's half of the gate immediately; the next tick must see a current
-			// SkyBlock sidebar before rendering can resume.
+			// SkyBlock sidebar before rendering can resume. (The brand and the hello of one join also
+			// land here one after the other, which closes a gate that is not open yet — harmless.)
 			skyBlock = false;
 			unverifiedSidebarTicks = 0;
 			warnedUnverifiedSidebar = false;
@@ -78,13 +105,22 @@ public final class HypixelServer {
 		receivedHello = true;
 
 		if (announce) {
-			LOGGER.info("SkyZH 已通过 hypixel:hello 确认当前连接属于 Hypixel；连接地址不参与判断。");
+			LOGGER.info("SkyZH 已通过 {} 确认当前连接属于 Hypixel；连接地址不参与判断。", evidence);
 		}
 	}
 
 	/** Pure identifier check, exposed for the no-client regression harness. */
 	public static boolean isHypixelHello(String identifier) {
 		return HELLO_PAYLOAD.equals(identifier);
+	}
+
+	/**
+	 * Whether a {@code minecraft:brand} names Hypixel. The live value is {@code Hypixel BungeeCord};
+	 * the word alone is matched, case-insensitively, so a proxy rename does not silently close the
+	 * gate. {@code vanilla}, {@code fabric}, {@code Paper} and friends never contain it.
+	 */
+	public static boolean isHypixelBrand(String brand) {
+		return brand != null && brand.toLowerCase(Locale.ROOT).contains(BRAND_MARKER);
 	}
 
 	/** Whether the live multiplayer connection has supplied Hypixel's own identity payload. */
@@ -119,8 +155,9 @@ public final class HypixelServer {
 			if (++unverifiedSidebarTicks == WARNING_DELAY_TICKS && !warnedUnverifiedSidebar) {
 				warnedUnverifiedSidebar = true;
 				LOGGER.warn(
-					"SkyZH 检测到 SKYBLOCK 侧边栏，但尚未收到 Hypixel 的 hypixel:hello。"
-						+ "为避免在其他服务器误译，本次连接暂不启用翻译；服务器地址不会用于兜底判断。"
+					"SkyZH 检测到 SkyBlock 侧边栏（SBScoreboard），但本次连接既没有收到 Hypixel 的 hypixel:hello，"
+						+ "服务器品牌也不是 Hypixel。为避免在其他服务器误译，本次连接暂不启用翻译；"
+						+ "服务器地址不会用于兜底判断。"
 				);
 			}
 		} else {
@@ -137,30 +174,22 @@ public final class HypixelServer {
 	}
 
 	/**
-	 * The exact sidebar titles Hypixel SkyBlock uses, ignoring colours, punctuation and its icon.
+	 * The internal name of Hypixel SkyBlock's sidebar objective.
 	 *
-	 * <p>Exact accepted forms are intentional. A substring check would admit titles such as
-	 * {@code MY SKYBLOCK SERVER}; the official hello still protects the boundary, but there is no
-	 * reason to weaken its independent second half.
+	 * <p>The objective's <em>name</em>, not its display title. The title is drawn for people — a
+	 * highlight travels across the letters, an icon or {@code CO-OP} / {@code GUEST} trails it, and
+	 * any of that can change with a restyle; the name is the protocol-level identifier the server
+	 * registers the objective under, {@code SBScoreboard}, and is what SkyHanni keys its own
+	 * scoreboard events on. Exact and case-sensitive: the official hello or brand still protects the
+	 * boundary, but there is no reason to weaken its independent second half.
 	 */
-	public static boolean isSkyBlockTitle(String title) {
-		String plain = StyledText.plainOf(title == null ? "" : title);
-		StringBuilder letters = new StringBuilder();
+	public static boolean isSkyBlockObjective(String objectiveName) {
+		return SKYBLOCK_OBJECTIVE.equals(objectiveName);
+	}
 
-		for (int i = 0; i < plain.length(); i++) {
-			char c = plain.charAt(i);
-
-			if (c >= 'a' && c <= 'z') {
-				letters.append((char) (c - ('a' - 'A')));
-			} else if (c >= 'A' && c <= 'Z') {
-				letters.append(c);
-			}
-		}
-
-		return switch (letters.toString()) {
-			case "SKYBLOCK", "SKYBLOCKCOOP", "SKYBLOCKGUEST" -> true;
-			default -> false;
-		};
+	/** Whether this objective is Hypixel SkyBlock's sidebar. */
+	public static boolean isSkyBlockObjective(Objective objective) {
+		return objective != null && isSkyBlockObjective(objective.getName());
 	}
 
 	private static boolean hasSkyBlockSidebar(Minecraft minecraft) {
@@ -170,19 +199,36 @@ public final class HypixelServer {
 			return false;
 		}
 
-		Objective sidebar = level.getScoreboard().getDisplayObjective(DisplaySlot.SIDEBAR);
-		return sidebar != null && isSkyBlockTitle(sidebar.getDisplayName().getString());
+		return isSkyBlockObjective(level.getScoreboard().getDisplayObjective(DisplaySlot.SIDEBAR));
 	}
 
-	/** Makes all remembered evidence belong to the current live connection, or to none. */
+	/**
+	 * Makes all remembered evidence belong to the current live connection, or to none.
+	 *
+	 * <p>"No player" is not "no connection". The hello and the brand arrive during the configuration
+	 * phase — on the first join and again on every backend switch, which Hypixel performs by sending
+	 * the same connection back through configuration — and there is no player to read a listener off
+	 * until play starts. Evidence for a session whose socket is still open is kept through that gap;
+	 * only a closed socket, or a different one, clears it.
+	 */
 	private static boolean syncConnection(Minecraft minecraft) {
 		Connection current = liveConnection(minecraft);
+
+		if (current == null) {
+			Connection session = sessionConnection;
+
+			if (session != null && (!session.isConnected() || minecraft == null || minecraft.hasSingleplayerServer())) {
+				resetFor(null);
+			}
+
+			return false;
+		}
 
 		if (current != sessionConnection) {
 			resetFor(current);
 		}
 
-		return current != null;
+		return true;
 	}
 
 	private static Connection liveConnection(Minecraft minecraft) {

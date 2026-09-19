@@ -31,8 +31,13 @@ SkyBlock 没有官方中文，中文玩家要么花时间啃英文，要么截�
 
 运行时所有翻译入口先经过 `HypixelServer.canTranslate()`，再读取译文缓存、查词表或重算布局。
 连接地址不再参与判断：国内加速器通常会把 `hypixel.net` 换成加速 IP 或本地中转地址。现在必须同时
-满足两份来自服务器的实时证据——当前连接收到 Hypixel 官方的 `hypixel:hello` 数据包，并且侧边栏
-标题是精确的 SkyBlock 形式。前者挡住其他服务器和仿 SkyBlock 服务器，后者挡住 Hypixel 的其他玩法。
+满足两份来自服务器的实时证据——当前连接上 Hypixel 自报了身份（官方的 `hypixel:hello` 数据包，
+或者标准 `minecraft:brand` 里写着 `Hypixel BungeeCord`，后者也是 SkyBlocker 用的判据），并且侧边栏
+objective 的内部名是 `SBScoreboard`（SkyHanni 判定 SkyBlock 计分板用的就是这个名字；不看显示标题，
+标题带跑马灯高亮、图标和 `CO-OP`/`GUEST` 后缀，换个样式就会失配）。前者挡住其他服务器和仿 SkyBlock 服务器，后者挡住 Hypixel 的其他玩法。
+这两个数据包都是在数据包自己的 `handle` 上读的，不在监听器的方法上：Fabric API 会对任何被 Mod
+注册过的载荷类型取消监听器方法，而 `hypixel-mod-api` 恰好注册了 hello，装了 SkyHanni 或 SkyBlocker
+的客户端上，监听器钩子永远看不到它。
 非 Hypixel、单人世界和主界面直接沿用原版文本与坐标；切换进出 SkyBlock 时会重建聊天显示行，
 更换网络连接则先清空两份证据，避免上一台服务器的放行状态残留。这个限制与采集开关无关。
 纯语料匹配引擎及 `locate` 不依赖服务器，仍可供离线自检和采集分类使用。
@@ -136,7 +141,7 @@ Mod Menu 是软依赖。没装也能用，改 `config/skyzh.json` 即可，文�
 | `SKYBLOCK`（侧边栏标题） | 空岛生存 |
 | `SkyBlock Level 42` | 不动——`Level` 还是英文 |
 | `You unlocked SkyBlock XP!` | 不动 |
-| `SKYBLOCK CO-OP` | 不动——见 `TODO.md` |
+| `SKYBLOCK CO-OP` | 不动——`CO-OP` 是另一个英文词 |
 
 语料**已经**覆盖的行上，替换是在译文之上跑的，所以一条译文里保留了这个词的记录——`"SkyBlock 菜单"`——
 开关打开时显示「空岛菜单」，关闭时显示 `SkyBlock 菜单`。想让某一行早点翻出来，正规做法就是这个：
@@ -221,6 +226,7 @@ Minecraft 本来就会把收到的每条聊天消息写进 `logs/`，这个任�
 | 聊天（系统 / NPC） | `ClientPacketListener#handleSystemChat` HEAD | 比 Fabric 的聊天事件、比 SkyHanni / SkyBlocker 都早。Mod 自己发的消息走 `ChatComponent#addMessage`，**根本不经过这个方法** |
 | 界面标题 | `handleOpenScreen` HEAD | 服务器包里的 `title` 字段 |
 | 物品名 + Lore | `handleContainerContent` / `handleContainerSetSlot` HEAD | 读 `ItemStack` 的 `CUSTOM_NAME` / `LORE` 组件，**不是** `getTooltipLines()`——后者正是所有 Mod 往 Lore 里加东西的地方 |
+| 头顶浮空字 | `handleSetEntityData` TAIL + 每 10 tick 复查包里见过的实体 | 名字、名字可见状态、共享标志字节（含隐形位）任一更新后立即检查；相关包里见过的盔甲架 ID 只在所属 `ClientLevel` 内有界保留，周期复查补回边界开启前已经落地的静态 Hologram，换世界立即清空。不会遍历其他 Mod 创建的实体。只收隐形盔甲架的可见 `CUSTOM_NAME`；玩家、普通生物、命名掉落物、可见装饰盔甲架都不进来；内容过滤再排除 NPC 的绿色专名行与形如 `Glacite Walker 1.2M❤` 的动态怪物血条，黄色职务/操作介绍仍会入队 |
 | 计分板 | 每 10 tick 读一次 `Scoreboard` 对象 | 和原版渲染读的是同一份服务器状态。附带好处：**SkyHanni 的自定义计分板把侧边栏整个接管之后，这里照样拿得到 Hypixel 的原始行** |
 | Tab 列表 | `handleTabListCustomisation`（页眉页脚）+ 每 10 tick 读一次玩家条目 | 同上 |
 | BossBar | `BossHealthOverlay#update` TAIL | 那张 map 只有服务器包写得进去 |
@@ -229,8 +235,9 @@ Minecraft 本来就会把收到的每条聊天消息写进 `logs/`，这个任�
 注意这里**故意没有**按名字过滤：`[Bazaar]`、`[Sacks]` 是 Hypixel 自己的前缀，做一张「Mod 名黑名单」
 只会把真的 SkyBlock 文本误杀掉，去挡一个本来就进不来的东西。
 
-再加两道闸：当前这条连接必须收到 Hypixel 官方的 `hypixel:hello`，且侧边栏标题必须是精确的
-SkyBlock 形式，缺一都不采；连接地址和服务器品牌都不参与判断。每个采集入口即时检查当前连接，
+再加两道闸：当前这条连接必须自报为 Hypixel（官方的 `hypixel:hello`，或写着 Hypixel 的
+`minecraft:brand`），且侧边栏 objective 的内部名必须是
+`SBScoreboard`，缺一都不采；连接地址不参与判断。每个采集入口即时检查当前连接，
 切服后不沿用上一 tick 的放行状态；即使中途关闭采集，断线或离开 SkyBlock 时仍会清理会话状态，
 但不会删除磁盘文件。
 
@@ -257,6 +264,7 @@ skyzh-capture/
 ├── untranslated/          没有任何记录应答的行
 │   ├── Mining/NPC_Message/Fragilis.json
 │   ├── Mining/GUI_Item/Commissions.json        ← 这个菜单里所有格子的名字 + Lore
+│   ├── Mining/Hologram/Holograms.json
 │   └── _Unknown_Gameplay/ScoreBoard/Sidebar.json
 ├── mixed/                 有记录应答了，但屏幕上仍然中英混杂
 │   └── Mining/ChatMessage/Server_Messages.json
@@ -427,21 +435,20 @@ Loom 也不再有 `remapJar` 这一步——`jar` 出来的就是能装的那个
 | `fabric-26.1/` | `SkyBlockZH-<版本>-Beta-Fabric-26.1.jar` | `>=26.1 <26.2` | 18.0.0 |
 | `fabric-26.2/` | `SkyBlockZH-<版本>-Beta-Fabric-26.2.jar` | `>=26.2 <26.3` | 20.0.1 |
 
-两个目标都编译 `src/main/`——引擎、语料加载、采集，以及十四个 Mixin 里的十一个——
+两个目标都编译 `src/main/`——引擎、语料加载、采集，以及十六个 Mixin 里的十三个——
 再各自加上一小棵自己的树：`src/mc26_1/` 或 `src/mc26_2/`。除了版本号本身，
 一个目标的其他部分全部写在 `gradle/target.gradle` 里，所以两边不可能在"语料怎么打包"
 或"编译到哪个 Java 版本"上悄悄走岔。
 
-两个 Minecraft 之间只有四处不同，每一处都是版本树里的一个文件：
+两个 Minecraft 之间只有三处不同，每一处都是版本树里的一个文件：
 
 | 动了什么 | 26.1.x | 26.2 |
 |---|---|---|
 | 画 HUD 的类 | `Gui` | 从 `Gui` 里拆出来的 `Hud` |
-| 玩家实体类型常量 | `EntityType.PLAYER` | `EntityTypes.PLAYER` |
 | `SubmitNodeCollector#submitNameTag` | 末尾多一个 `double` | 没有 |
 | 谁持有聊天框和屏幕栈 | `Gui#getChat`、`Minecraft#setScreen` | `Gui.hud#getChat`、`Gui#setScreen` |
 
-最后一行是 `platform/ClientGui`，每个目标一份，方法签名相同。前三行是 `mixin/HudMixin`、
+最后一行是 `platform/ClientGui`，每个目标一份，方法签名相同。前两行是 `mixin/HudMixin`、
 `mixin/HudScoreboardMixin` 和 `mixin/EntityRendererMixin`——**只有注解**；
 它们被触发之后做什么，是 `hook/` 里的共享代码，只写一遍。
 

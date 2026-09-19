@@ -2,6 +2,7 @@ package io.github.bingkkni.skyzh.capture;
 
 import io.github.bingkkni.skyzh.SkyZHConfig;
 import io.github.bingkkni.skyzh.compat.HypixelApi;
+import io.github.bingkkni.skyzh.hook.NameTag;
 import io.github.bingkkni.skyzh.text.ChatTranslation;
 import io.github.bingkkni.skyzh.text.LineShape;
 import io.github.bingkkni.skyzh.text.LoreTranslation;
@@ -11,15 +12,21 @@ import io.github.bingkkni.skyzh.text.Translator;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.ChatComponent;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemLore;
 import org.slf4j.Logger;
@@ -79,6 +86,7 @@ public final class TextCapture {
 	private static final String SIDEBAR = "Sidebar";
 	private static final String BOSS_BAR = "Boss_Bar";
 	private static final String ACTION_BAR = "Action_Bar";
+	private static final String HOLOGRAMS = "Holograms";
 	private static final String TAB_LIST = "Tab_List";
 	private static final String SERVER_MESSAGES = "Server_Messages";
 	private static final String INVENTORY = "_Inventory";
@@ -100,6 +108,11 @@ public final class TextCapture {
 	 * that drains it is the client tick.
 	 */
 	private static final Unplaced HELD = new Unplaced(MAX_HELD, HOLD_MS);
+
+	/** Server metadata candidates retained only inside the exact ClientLevel that supplied them. */
+	private static final int MAX_HOLOGRAM_ENTITIES = 4096;
+	private static final Set<Integer> HOLOGRAM_ENTITIES = new LinkedHashSet<>();
+	private static ClientLevel hologramLevel;
 
 	private static boolean started;
 
@@ -316,6 +329,88 @@ public final class TextCapture {
 		}
 	}
 
+	/**
+	 * One server-owned hologram after an entity-metadata packet has been applied.
+	 *
+	 * <p>Only visible custom names on invisible armour stands belong to the Hologram surface. That
+	 * structural filter keeps players, ordinary mobs, named items and decorative stands out;
+	 * {@link NameTag#eligible} additionally rejects NPC proper names and dynamic mob-health layers.
+	 */
+	public static void hologram(Entity entity) {
+		trackHologram(entity);
+
+		if (ready()) {
+			offerHologram(entity);
+		}
+	}
+
+	/**
+	 * Periodic state read that also sees holograms whose one-shot metadata arrived before the
+	 * hello/sidebar gate opened. Only entity ids observed by the server packet hook are revisited;
+	 * walking every render entity would let another Mod's client-created armour stands into capture.
+	 */
+	public static void holograms(ClientLevel level) {
+		hologramLevel(level);
+
+		if (!ready() || level == null || HOLOGRAM_ENTITIES.isEmpty()) {
+			return;
+		}
+
+		for (Iterator<Integer> ids = HOLOGRAM_ENTITIES.iterator(); ids.hasNext();) {
+			Entity entity = level.getEntity(ids.next());
+
+			if (entity == null) {
+				ids.remove();
+			} else {
+				offerHologram(entity);
+			}
+		}
+	}
+
+	private static void trackHologram(Entity entity) {
+		Minecraft client = Minecraft.getInstance();
+
+		if (!SkyZHConfig.get().captureUntranslated || !client.isSameThread()
+			|| !(entity instanceof ArmorStand)) {
+			return;
+		}
+
+		hologramLevel(client.level);
+		int id = entity.getId();
+
+		if (HOLOGRAM_ENTITIES.contains(id)) {
+			return;
+		}
+
+		if (HOLOGRAM_ENTITIES.size() >= MAX_HOLOGRAM_ENTITIES) {
+			Iterator<Integer> oldest = HOLOGRAM_ENTITIES.iterator();
+			oldest.next();
+			oldest.remove();
+		}
+
+		HOLOGRAM_ENTITIES.add(id);
+	}
+
+	/** Clears packet-era ids as soon as Minecraft replaces or drops their owning world. */
+	public static void hologramLevel(ClientLevel level) {
+		if (!SkyZHConfig.get().captureUntranslated || hologramLevel != level) {
+			hologramLevel = level;
+			HOLOGRAM_ENTITIES.clear();
+		}
+	}
+
+	private static void offerHologram(Entity entity) {
+		if (!(entity instanceof ArmorStand) || !entity.isInvisible() || !entity.isCustomNameVisible()) {
+			return;
+		}
+
+		Component name = entity.getCustomName();
+
+		if (NameTag.eligible(name)) {
+			offer(CaptureSurface.HOLOGRAM, name, HOLOGRAMS, "", 0);
+		}
+	}
+
 	/** The title and subtitle that flash across the middle of the screen. */
 	public static void misc(Component text, String where) {
 		if (ready()) {
@@ -447,6 +542,10 @@ public final class TextCapture {
 	 * which on a private island can be minutes.
 	 */
 	public static void tick() {
+		if (!SkyZHConfig.get().captureUntranslated) {
+			HOLOGRAM_ENTITIES.clear();
+		}
+
 		if (HELD.size() == 0) {
 			return;
 		}
@@ -541,6 +640,7 @@ public final class TextCapture {
 	 */
 	public static void clear() throws IOException {
 		HELD.clear();
+		HOLOGRAM_ENTITIES.clear();
 		SEEN.clear();
 		clearLoreCache();
 
@@ -552,6 +652,8 @@ public final class TextCapture {
 
 	/** Called when the connection ends: write out what is held and forget the session. */
 	public static void disconnected() {
+		HOLOGRAM_ENTITIES.clear();
+		hologramLevel = null;
 		// Drained before the context is forgotten, so the last lines of a session are still filed
 		// under the area the player was standing in when the server dropped them.
 		for (CaptureStore.Sighting ready : HELD.drain(placed())) {

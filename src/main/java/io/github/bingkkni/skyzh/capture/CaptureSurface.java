@@ -31,6 +31,8 @@ public enum CaptureSurface {
 	BOSS_BAR(Surface.BOSS_BAR, "BossBar"),
 	/** The prompt above the hotbar. */
 	ACTION_BAR(Surface.ACTION_BAR, "ActionBar"),
+	/** Server-owned floating text carried by a visible armour stand's custom name. */
+	HOLOGRAM(Surface.HOLOGRAM, "Hologram"),
 	/** Title and subtitle, and anything else without a home. */
 	MISC(Surface.MISC, "Misc");
 

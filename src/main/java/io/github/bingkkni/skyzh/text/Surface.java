@@ -36,11 +36,11 @@ public enum Surface {
 	/**
 	 * The floating text over an NPC's head — {@code Hologram/}.
 	 *
-	 * <p>An armour stand's name, drawn in the world rather than on the HUD, which is why it is its own
-	 * surface: the same word means something else there. {@code CLICK} over an NPC is an instruction to
-	 * the player and reads as 右键点击; {@code CLICK} in a chat line is part of a sentence. And the names
-	 * on these stands are mostly NPC names, which stay English — only the ones that are a job rather
-	 * than a person (Blacksmith, Lift Operator) have a record.
+	 * <p>An invisible armour stand's name, drawn in the world rather than on the HUD, which is why it is its
+	 * own surface: the same word means something else there. {@code CLICK} over an NPC is an instruction
+	 * to the player and reads as 右键点击; {@code CLICK} in a chat line is part of a sentence. The green
+	 * proper-name line above an NPC is excluded before lookup and capture; its yellow role or
+	 * instruction line remains on this surface.
 	 */
 	HOLOGRAM,
 	/** Title/subtitle and anything else — {@code Misc/}. */

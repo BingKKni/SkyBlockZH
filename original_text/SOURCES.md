@@ -108,8 +108,12 @@ Mod 里因此有一个默认关闭的开关 `captureUntranslated`(`config/skyzh.
 说不出**颜色是在哪儿换的**。采集文件说得出来:它写下的 `segments` 就是按服务器实际发的边界切的,
 抄进 `_capture.matched_record` 指的那条记录即可。
 
-**有一个面采不到:`Hologram/`。** NPC 头顶的文字来自实体元数据包,不走上面挂钩子的那几个函数;
-就算挂上去,怪物血条("Glacite Walker 1.2M❤")每帧都在变,采下来全是噪音。那个目录只能进游戏照抄。
+`Hologram/` 从实体元数据包采集。名字、名字可见状态和共享标志字节（隐形位）可能拆成多个包，
+任一相关值应用后都会立即检查实体；相关包里见过的盔甲架 ID 有界绑定在当时的 `ClientLevel`，每 10 tick
+只复查这批服务器实体，从而补回 Hypixel hello 与 SkyBlock 侧边栏尚未就绪前已经落地的静态 Hologram。
+换世界立即清空，既不会把实体 ID/引用带过去，也不会遍历其他 Mod 创建的实体。只有隐形盔甲架上的可见自定义名进入后续分类；
+玩家/普通实体名、NPC 的绿色专名行和动态怪物血条（`Glacite Walker 1.2M❤`）不翻译也不落盘，
+黄色加粗的职务或操作介绍照常采集。
 
 关键的一点是**挂钩子的位置**:全部挂在网络包处理函数或只有网络包写得进去的状态上
 (`handleSystemChat` / `handleOpenScreen` / `handleContainerContent` / `ItemStack` 的 `LORE` 组件 /

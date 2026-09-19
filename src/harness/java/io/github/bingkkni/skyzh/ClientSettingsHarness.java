@@ -109,12 +109,18 @@ public final class ClientSettingsHarness {
 			check("其他载荷不能冒充 Hypixel " + identifier, HypixelServer.isHypixelHello(identifier), false);
 		}
 
-		for (String title : List.of("§6§lSKYBLOCK", "§e§lSKYBLOCK §7Ⓑ", "SKYBLOCK CO-OP", "SKYBLOCK GUEST")) {
-			check("接受 Hypixel SkyBlock 侧边栏 " + title, HypixelServer.isSkyBlockTitle(title), true);
+		for (String brand : List.of("Hypixel BungeeCord", "hypixel", " HYPIXEL Proxy ")) {
+			check("接受 Hypixel 服务器品牌 " + brand, HypixelServer.isHypixelBrand(brand), true);
 		}
-		for (String title : List.of("", "HYPIXEL", "MY SKYBLOCK SERVER", "SKYBLOCK LEVEL UP", "NOT SKYBLOCK")) {
-			check("拒绝相似但非官方侧边栏 " + title, HypixelServer.isSkyBlockTitle(title), false);
+		for (String brand : java.util.Arrays.asList(null, "", "vanilla", "fabric", "Paper", "BungeeCord", "Velocity")) {
+			check("其他品牌不能冒充 Hypixel " + brand, HypixelServer.isHypixelBrand(brand), false);
 		}
+
+		check("接受 Hypixel SkyBlock 侧边栏 objective SBScoreboard", HypixelServer.isSkyBlockObjective("SBScoreboard"), true);
+		for (String name : java.util.Arrays.asList(null, "", "SKYBLOCK", "§6§lSKYBLOCK", "sbscoreboard", "SBScoreboard ", "health", "sidebar")) {
+			check("拒绝其他 objective 名 " + name, HypixelServer.isSkyBlockObjective(name), false);
+		}
+		check("空 objective 不是 SkyBlock", HypixelServer.isSkyBlockObjective((net.minecraft.world.scores.Objective) null), false);
 
 		check("主界面没有 Hypixel 身份", HypixelServer.isHypixel(), false);
 		check("主界面不在 SkyBlock", HypixelServer.isSkyBlock(), false);
@@ -127,8 +133,8 @@ public final class ClientSettingsHarness {
 		List<Component> lore = List.of(Component.literal("Tusk Fossil"), Component.literal("Health: +100"));
 		check("未验证连接的物品与 Lore 不进入缓存/折行", TooltipTranslator.translate(null, lore) == lore, true);
 		Component tag = Component.literal("CLICK");
-		check("未验证连接的浮空字原样返回", NameTag.translate(tag, false) == tag, true);
-		check("未验证连接的玩家名原样返回", NameTag.translate(tag, true) == tag, true);
+		check("未验证连接的浮空字原样返回", NameTag.translate(tag, true) == tag, true);
+		check("非盔甲架名牌原样返回", NameTag.translate(tag, false) == tag, true);
 		check("未验证连接的侧边栏不翻译", SidebarText.row(null, Component.literal("SKYBLOCK")).getString(), "SKYBLOCK");
 
 		// A stale SKYBLOCK capture flag must not bypass the live hello + sidebar boundary.

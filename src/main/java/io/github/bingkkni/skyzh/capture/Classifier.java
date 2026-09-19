@@ -1,6 +1,7 @@
 package io.github.bingkkni.skyzh.capture;
 
 import com.google.gson.JsonObject;
+import io.github.bingkkni.skyzh.hook.NameTag;
 import io.github.bingkkni.skyzh.text.StyledText;
 import io.github.bingkkni.skyzh.text.Surface;
 import io.github.bingkkni.skyzh.text.TranslationEntry;
@@ -180,6 +181,10 @@ public final class Classifier {
 		String plain = styled.plain().trim();
 
 		if (!hasEnglishWord(plain) || hasHan(plain)) {
+			return null;
+		}
+
+		if (surface.surface() == Surface.HOLOGRAM && !NameTag.eligible(styled)) {
 			return null;
 		}
 

@@ -3,10 +3,9 @@
   "fetched_at": "2026-08-22",
   "verified_ingame": true,
   "gui_context": "NPC 头顶的浮空文字。这是世界里的实体名字,不是 HUD,所以自成一个渲染面(Surface.HOLOGRAM,见 mixin/EntityRendererMixin):同一个词在这里和在聊天里意思不一样——头顶上的 CLICK 是给玩家的操作提示,聊天里的 CLICK 是句子的一部分。",
+  "capture_note": "Hologram 已接入运行时采集。引擎只接收服务器隐形盔甲架的可见名字,并与渲染共用过滤规则:玩家/普通实体名、NPC 的绿色专名行及动态怪物血条不翻译也不落盘;黄色加粗的职务或操作介绍仍会采集。",
   "todo": [
-    "这个渲染面没有运行时采集:头顶文字来自实体元数据包,不走 captureUntranslated 挂的那几个包,而且怪物血条(“Glacite Walker 1.2M❤”)每帧都在变、采下来全是噪音。所以这个目录里的每一条都得进游戏照着屏幕抄,不能从 wiki 或 NEU 推。",
-    "NPC 名字里属于**职务**而不是人名的那些(Blacksmith、Lift Operator、Station Master、Drill Mechanic 这类),按用户 2026-08-22 的决定可以翻译,归到各玩法自己的 Hologram/ 目录下(如 Mining/Hologram/)。人名(Bubu、Fragilis、Gwendolyn……)照旧保留英文。本轮只做了 CLICK,职务名等实测确认过每个牌子上的确切写法再补。",
-    "玩家名不会走到这个面上来:引擎按实体类型把玩家的名牌排除掉了(见 EntityRendererMixin),否则一个叫 Blacksmith 的玩家会被翻成“铁匠”。"
+    "NPC 头顶属于职务/介绍而不是人名的行(如 DRILL MECHANIC)可以翻译,归到各玩法自己的 Hologram/ 目录下(如 Mining/Hologram/)。以运行时采集到的确切大小写、颜色和格式为准,不要从 Wiki 或截图猜 raw。"
   ],
   "lines": [
     {

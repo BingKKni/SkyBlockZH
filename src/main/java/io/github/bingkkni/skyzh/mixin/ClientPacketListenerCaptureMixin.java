@@ -3,16 +3,21 @@ package io.github.bingkkni.skyzh.mixin;
 import io.github.bingkkni.skyzh.OriginalTips;
 import io.github.bingkkni.skyzh.capture.CaptureContext;
 import io.github.bingkkni.skyzh.capture.TextCapture;
+import io.github.bingkkni.skyzh.hook.NameTag;
 import java.util.List;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.network.protocol.game.ClientboundContainerSetContentPacket;
 import net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket;
 import net.minecraft.network.protocol.game.ClientboundOpenScreenPacket;
 import net.minecraft.network.protocol.game.ClientboundSetActionBarTextPacket;
+import net.minecraft.network.protocol.game.ClientboundSetEntityDataPacket;
 import net.minecraft.network.protocol.game.ClientboundSetSubtitleTextPacket;
 import net.minecraft.network.protocol.game.ClientboundSetTitleTextPacket;
 import net.minecraft.network.protocol.game.ClientboundSystemChatPacket;
 import net.minecraft.network.protocol.game.ClientboundTabListPacket;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -100,6 +105,29 @@ public abstract class ClientPacketListenerCaptureMixin {
 	@Inject(method = "handleContainerSetSlot", at = @At("HEAD"), require = 0)
 	private void skyzh$captureContainerSlot(ClientboundContainerSetSlotPacket packet, CallbackInfo info) {
 		TextCapture.item(packet.getContainerId(), packet.getSlot(), packet.getItem());
+	}
+
+	/**
+	 * A hologram's custom name, after vanilla has applied the server's metadata to the entity.
+	 *
+	 * <p>The metadata-index gate avoids revisiting every armour stand when an unrelated pose changes.
+	 * It includes the shared-flags byte (which carries invisibility), the optional custom name and the
+	 * separate name-visible boolean; Hypixel may send those in separate packets and any of them can be
+	 * the value that completes a hologram. {@link TextCapture#hologram} then applies the entity/type and
+	 * content exclusions shared with rendering.
+	 */
+	@Inject(method = "handleSetEntityData", at = @At("TAIL"), require = 0)
+	private void skyzh$captureHologram(ClientboundSetEntityDataPacket packet, CallbackInfo info) {
+		boolean nameRelated = packet.packedItems().stream()
+			.anyMatch(value -> NameTag.metadataAffectsHologram(value.id()));
+
+		if (!nameRelated) {
+			return;
+		}
+
+		ClientLevel level = Minecraft.getInstance().level;
+		Entity entity = level == null ? null : level.getEntity(packet.id());
+		TextCapture.hologram(entity);
 	}
 
 	@Inject(method = "setActionBarText", at = @At("HEAD"), require = 0)

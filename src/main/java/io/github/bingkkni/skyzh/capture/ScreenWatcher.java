@@ -14,7 +14,7 @@ import net.minecraft.world.scores.PlayerTeam;
 import net.minecraft.world.scores.Scoreboard;
 
 /**
- * The two surfaces that arrive as state rather than as a message: the sidebar and the player list.
+ * The state-backed surfaces: the sidebar, player list and world holograms.
  *
  * <p>Neither has a packet carrying a finished line. A sidebar row is assembled from a score entry and
  * its team's prefix and suffix, which arrive in separate packets in either order; a tab-list row is a
@@ -30,8 +30,8 @@ import net.minecraft.world.scores.Scoreboard;
  *
  * <p>Ten ticks, not one. Nothing on either surface appears for less than half a second, the text is
  * deduplicated anyway, and the point of a capture feature is to be free when it is not finding
- * anything. The timer covers the reading of those two surfaces and nothing else — where the player is
- * standing is re-read every tick, because that is the label everything captured in between is filed
+ * anything. The timer covers those three state reads and nothing else — where the player is standing
+ * is re-read every tick, because that is the label everything captured in between is filed
  * under and it is wrong for as long as it is stale.
  */
 public final class ScreenWatcher {
@@ -47,6 +47,7 @@ public final class ScreenWatcher {
 	public static void tick() {
 		Minecraft minecraft = Minecraft.getInstance();
 		ClientLevel level = minecraft.level;
+		TextCapture.hologramLevel(level);
 
 		if (level == null || !HypixelServer.isSkyBlock()) {
 			if (connected) {
@@ -68,7 +69,7 @@ public final class ScreenWatcher {
 
 		connected = true;
 
-		// Where the player is standing is read every tick, and the two surfaces are read every tenth.
+		// Where the player is standing is read every tick, and the state-backed surfaces every tenth.
 		// The throttle belongs on the reading, not on the context: the area is the label on every line
 		// captured between two ticks, and a warp that lands half a second before the next refresh
 		// would otherwise file an island's worth of arrival chatter under the island left behind.
@@ -87,6 +88,7 @@ public final class ScreenWatcher {
 
 		sidebar(level.getScoreboard());
 		tabList(minecraft.getConnection());
+		TextCapture.holograms(level);
 	}
 
 	private static void sidebar(Scoreboard scoreboard) {
