@@ -1,0 +1,79 @@
+{
+  "source": "runtime capture (SkyZH, The Park, 2026-09-17); https://hypixelskyblock.minecraft.wiki/w/Campfire_Adept",
+  "fetched_at": "2026-09-18",
+  "verified_ingame": true,
+  "gui_context": "火焰试炼期间 BossBar 的当前目标；方向箭头的样式和进度数值会变化。",
+  "bars": [
+    {
+      "id": "campfire_trials_objective",
+      "context": "火焰试炼的 BossBar 目标与方向、完成进度",
+      "raw": "§fObjective: §eComplete Campfire Trials §e%1$s  §7(§e%2$s§7/§a%3$s§7)",
+      "text": "Objective: Complete Campfire Trials %1$s  (%2$s/%3$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "指向下一处营火的箭头图标",
+          "type": "icon",
+          "example": "⬆"
+        },
+        {
+          "token": "%2$s",
+          "desc": "当前完成数",
+          "type": "number",
+          "example": "22"
+        },
+        {
+          "token": "%3$s",
+          "desc": "总目标数",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "Campfire Trials 是 The Park 内 Trials of Fire 的任务目标；箭头必须作为图标值保留。",
+      "translate": true,
+      "zh": "目标: 完成篝火试炼 %1$s  (%2$s/%3$s)",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Objective: ",
+          "zh": "目标: "
+        },
+        {
+          "color": "§e",
+          "text": "Complete Campfire Trials ",
+          "zh": "完成篝火试炼 "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s  ",
+          "zh": "%1$s  "
+        },
+        {
+          "color": "§7",
+          "text": "(",
+          "zh": "("
+        },
+        {
+          "color": "§e",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": "/",
+          "zh": "/"
+        },
+        {
+          "color": "§a",
+          "text": "%3$s",
+          "zh": "%3$s"
+        },
+        {
+          "color": "§7",
+          "text": ")",
+          "zh": ")"
+        }
+      ]
+    }
+  ]
+}

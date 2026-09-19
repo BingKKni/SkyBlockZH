@@ -1,0 +1,200 @@
+{
+  "source": "runtime capture (SkyZH, Crimson Isle, 2026-09-17); https://hypixelskyblock.minecraft.wiki/w/Trophy_Fish",
+  "fetched_at": "2026-09-18",
+  "verified_ingame": true,
+  "source_note": "锦标鱼名称保留英文物品名；品质和系统提示按实测翻译。",
+  "messages": [
+    {
+      "id": "trophy_fish_caught",
+      "context": "钓到一条锦标鱼时的系统提示",
+      "raw": "§6 §6§lTROPHY FISH! §fYou caught a %1$s %2$s!",
+      "text": " TROPHY FISH! You caught a %1$s %2$s!",
+      "placeholders": [
+        {"token": "%1$s", "desc": "锦标鱼物品名，保留英文", "type": "item_name", "example": "Blobfish"},
+        {"token": "%2$s", "desc": "锦标鱼品质", "type": "trophy_quality", "example": "BRONZE"}
+      ],
+      "gloss": "品质类型与农业竞赛奖牌分开，见 Terms.json 的 trophy_quality。",
+      "translate": true,
+      "zh": " 奖杯鱼! 你钓到了 %1$s %2$s!",
+      "segments": [
+        {"color": "§6", "text": " ", "zh": " "},
+        {"color": "§6§l", "text": "TROPHY FISH! ", "zh": "奖杯鱼! "},
+        {"color": "§f", "text": "You caught a ", "zh": "你钓到了 "},
+        {"color": "§f", "text": "%1$s ", "zh": "%1$s "},
+        {"color": "§7", "text": "%2$s", "zh": "%2$s"},
+        {"color": "§f", "text": "!", "zh": "!"}
+      ]
+    },
+    {
+      "id": "trophy_fish_caught_an",
+      "context": "钓到以元音开头名称的锦标鱼时的系统提示",
+      "raw": "§6 §6§lTROPHY FISH! §fYou caught an %1$s %2$s!",
+      "text": " TROPHY FISH! You caught an %1$s %2$s!",
+      "placeholders": [
+        {"token": "%1$s", "desc": "锦标鱼物品名，保留英文", "type": "item_name", "example": "Obfuscated-1"},
+        {"token": "%2$s", "desc": "锦标鱼品质", "type": "trophy_quality", "example": "SILVER"}
+      ],
+      "gloss": "英文冠词随物品名首音变化；中文不区分 a/an，因此与 trophy_fish_caught 共用译文。",
+      "translate": true,
+      "zh": " 奖杯鱼! 你钓到了 %1$s %2$s!",
+      "segments": [
+        {"color": "§6", "text": " ", "zh": " "},
+        {"color": "§6§l", "text": "TROPHY FISH! ", "zh": "奖杯鱼! "},
+        {"color": "§f", "text": "You caught an ", "zh": "你钓到了 "},
+        {"color": "§f", "text": "%1$s ", "zh": "%1$s "},
+        {"color": "§7", "text": "%2$s", "zh": "%2$s"},
+        {"color": "§f", "text": "!", "zh": "!"}
+      ]
+    },
+    {
+      "id": "trophy_fish_discovered",
+      "context": "首次发现某种锦标鱼时的系统提示",
+      "raw": "§a§lNEW DISCOVERY: §f%1$s §7§l%2$s",
+      "text": "NEW DISCOVERY: %1$s %2$s",
+      "placeholders": [
+        {"token": "%1$s", "desc": "锦标鱼物品名，保留英文", "type": "item_name", "example": "Blobfish"},
+        {"token": "%2$s", "desc": "锦标鱼品质", "type": "trophy_quality", "example": "SILVER"}
+      ],
+      "gloss": "首次发现提示，品质译名沿用 trophy_quality。",
+      "translate": true,
+      "zh": "新发现: %1$s %2$s",
+      "segments": [
+        {"color": "§a§l", "text": "NEW DISCOVERY: ", "zh": "新发现: "},
+        {"color": "§f", "text": "%1$s ", "zh": "%1$s "},
+        {"color": "§7§l", "text": "%2$s", "zh": "%2$s"}
+      ]
+    },
+    {
+      "id": "golden_fish_surfaced",
+      "context": "岩浆中的 Golden Fish 出现",
+      "raw": "§9You spot a §6Golden Fish §9surface from beneath the lava!",
+      "text": "You spot a Golden Fish surface from beneath the lava!",
+      "placeholders": [],
+      "gloss": "Golden Fish 是锦标鱼物品名，保留英文。",
+      "translate": true,
+      "zh": "你发现一条 Golden Fish 从岩浆深处浮了上来!",
+      "segments": [
+        {"color": "§9", "text": "You spot a ", "zh": "你发现一条 "},
+        {"color": "§6", "text": "Golden Fish ", "zh": "Golden Fish"},
+        {"color": "§9", "text": "surface from beneath the lava!", "zh": " 从岩浆深处浮了上来!"}
+      ]
+    },
+    {
+      "id": "golden_fish_retreats",
+      "context": "Golden Fish 游回岩浆深处",
+      "raw": "§9The §6Golden Fish §9swims back beneath the lava...",
+      "text": "The Golden Fish swims back beneath the lava...",
+      "placeholders": [],
+      "gloss": "Golden Fish 是锦标鱼物品名，保留英文。",
+      "translate": true,
+      "zh": "Golden Fish 又游回岩浆深处了……",
+      "segments": [
+        {"color": "§9", "text": "The ", "zh": "" , "omit": true},
+        {"color": "§6", "text": "Golden Fish ", "zh": "Golden Fish"},
+        {"color": "§9", "text": "swims back beneath the lava...", "zh": " 又游回岩浆深处了……"}
+      ]
+    },
+    {
+      "id": "golden_fish_resisting",
+      "context": "与 Golden Fish 拉扯时的状态提示",
+      "raw": "§9The §6Golden Fish §9is resisting...",
+      "text": "The Golden Fish is resisting...",
+      "placeholders": [],
+      "gloss": "Golden Fish 是锦标鱼物品名，保留英文。",
+      "translate": true,
+      "zh": "Golden Fish 正在挣扎……",
+      "segments": [
+        {"color": "§9", "text": "The ", "zh": "", "omit": true},
+        {"color": "§6", "text": "Golden Fish ", "zh": "Golden Fish"},
+        {"color": "§9", "text": "is resisting...", "zh": " 正在挣扎……"}
+      ]
+    },
+    {
+      "id": "golden_fish_weakened",
+      "context": "Golden Fish 脱钩后的状态提示",
+      "raw": "§9The §6Golden Fish §9escapes your hook but looks weakened.",
+      "text": "The Golden Fish escapes your hook but looks weakened.",
+      "placeholders": [],
+      "gloss": "Golden Fish 是锦标鱼物品名，保留英文。",
+      "translate": true,
+      "zh": "Golden Fish 脱钩了，不过看起来已经虚弱不少。",
+      "segments": [
+        {"color": "§9", "text": "The ", "zh": "", "omit": true},
+        {"color": "§6", "text": "Golden Fish ", "zh": "Golden Fish"},
+        {"color": "§9", "text": "escapes your hook but looks weakened.", "zh": " 脱钩了，不过看起来已经虚弱不少。"}
+      ]
+    },
+    {
+      "id": "golden_fish_weak",
+      "context": "Golden Fish 进入虚弱状态",
+      "raw": "§9The §6Golden Fish §9is weak!",
+      "text": "The Golden Fish is weak!",
+      "placeholders": [],
+      "gloss": "Golden Fish 是锦标鱼物品名，保留英文。",
+      "translate": true,
+      "zh": "Golden Fish 已经虚弱了!",
+      "segments": [
+        {"color": "§9", "text": "The ", "zh": "", "omit": true},
+        {"color": "§6", "text": "Golden Fish ", "zh": "Golden Fish"},
+        {"color": "§9", "text": "is weak!", "zh": " 已经虚弱了!"}
+      ]
+    },
+    {
+      "id": "trophy_fishing_quest_complete",
+      "context": "完成钓鱼任务后前往城镇公告板领奖",
+      "text": "You completed your Fishing quest! Visit the Town Board to claim the rewards.",
+      "placeholders": [],
+      "gloss": "Town Board 沿用绯红岛任务中的“城镇公告板”。",
+      "translate": true,
+      "zh": "你完成了钓鱼任务! 前往城镇公告板领取奖励。"
+    },
+    {
+      "id": "trophy_fishing_good_catch_item",
+      "context": "钓到特殊物品时的好收获提示",
+      "raw": "§5 §5§lGOOD CATCH! §fYou caught a %1$s!",
+      "text": " GOOD CATCH! You caught a %1$s!",
+      "placeholders": [
+        {"token": "%1$s", "desc": "钓到的物品名，保留英文", "type": "item_name", "example": "Tentacle Meat"}
+      ],
+      "gloss": "物品名保留英文，避免影响集市搜索。",
+      "translate": true,
+      "zh": " 好收获! 你钓到了 %1$s!",
+      "segments": [
+        {"color": "§5", "text": " ", "zh": " "},
+        {"color": "§5§l", "text": "GOOD CATCH! ", "zh": "好收获! "},
+        {"color": "§f", "text": "You caught a ", "zh": "你钓到了 "},
+        {"color": "§9", "text": "%1$s", "zh": "%1$s"},
+        {"color": "§f", "text": "!", "zh": "!"}
+      ]
+    },
+    {
+      "id": "trophy_fishing_good_catch_coins",
+      "context": "钓到硬币时的好收获提示",
+      "raw": "§5 §5§lGOOD CATCH! §fYou caught §6%1$s Coins§f!",
+      "text": " GOOD CATCH! You caught %1$s Coins!",
+      "placeholders": [
+        {"token": "%1$s", "desc": "获得的硬币数", "type": "coins", "example": "40,142"}
+      ],
+      "gloss": "Coins 按全局货币规则译为硬币。",
+      "translate": true,
+      "zh": " 好收获! 你钓到了 %1$s 硬币!",
+      "segments": [
+        {"color": "§5", "text": " ", "zh": " "},
+        {"color": "§5§l", "text": "GOOD CATCH! ", "zh": "好收获! "},
+        {"color": "§f", "text": "You caught ", "zh": "你钓到了 "},
+        {"color": "§6", "text": "%1$s Coins", "zh": "%1$s 硬币"},
+        {"color": "§f", "text": "!", "zh": "!"}
+      ]
+    },
+    {
+      "id": "fishing_fried_chicken_hint",
+      "context": "绯红岛发现炸鸡生物时的环境提示",
+      "raw": "§aSmells of burning. Must be a Fried Chicken.",
+      "text": "Smells of burning. Must be a Fried Chicken.",
+      "placeholders": [],
+      "gloss": "Fried Chicken 是绯红岛生物，沿用 Terms.json 的“炸鸡”。",
+      "translate": true,
+      "zh": "闻到焦味了。肯定有一只炸鸡。"
+    }
+  ]
+}

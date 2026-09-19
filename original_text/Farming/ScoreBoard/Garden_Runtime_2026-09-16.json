@@ -1,0 +1,106 @@
+{
+  "source": "runtime capture (SkyZH, Garden, 2026-09-16); https://hypixelskyblock.minecraft.wiki/w/Garden",
+  "fetched_at": "2026-09-18",
+  "verified_ingame": true,
+  "gui_context": "花园侧边栏的播尘与铜货币行。Tab 列表已有同义记录，但计分板是独立渲染面。",
+  "lines": [
+    {
+      "id": "garden_sb_sowdust",
+      "context": "花园侧边栏中的播尘余额",
+      "raw": "§fSowdust: §2%1$s",
+      "text": "Sowdust: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "播尘数量",
+          "type": "number",
+          "example": "175,886"
+        }
+      ],
+      "gloss": "Sowdust 是花园芯片升级货币，沿用既定译名“播尘”。",
+      "translate": true,
+      "zh": "播尘: %1$s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Sowdust: ",
+          "zh": "播尘: "
+        },
+        {
+          "color": "§2",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ]
+    },
+    {
+      "id": "garden_sb_copper",
+      "context": "花园侧边栏中的铜余额",
+      "raw": "§fCopper: §c%1$s",
+      "text": "Copper: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "铜数量",
+          "type": "number",
+          "example": "724"
+        }
+      ],
+      "gloss": "Copper 是花园货币，不是原版铜锭。",
+      "translate": true,
+      "zh": "铜: %1$s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Copper: ",
+          "zh": "铜: "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ]
+    },
+    {
+      "id": "garden_sb_copper_gain",
+      "context": "花园侧边栏中铜余额发生变化时的写法",
+      "raw": "§fCopper: §c%1$s §4(+%2$s)",
+      "text": "Copper: %1$s (+%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前铜余额",
+          "type": "number",
+          "example": "737"
+        },
+        {
+          "token": "%2$s",
+          "desc": "本次增加的铜数量",
+          "type": "number",
+          "example": "13"
+        }
+      ],
+      "gloss": "括号内的增量保持服务器给出的深红色。",
+      "translate": true,
+      "zh": "铜: %1$s (+%2$s)",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Copper: ",
+          "zh": "铜: "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§4",
+          "text": "(+%2$s)",
+          "zh": " (+%2$s)"
+        }
+      ]
+    }
+  ]
+}

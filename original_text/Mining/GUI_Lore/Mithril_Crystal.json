@@ -1,0 +1,32 @@
+{
+  "source": "Existing Mining/GUI_Item/Mithril_Crystal.json lore; complete-sentence migration",
+  "fetched_at": "2026-08-19",
+  "verified_ingame": false,
+  "lore": [
+    {
+      "id": "mithril_crystal_minion_speed",
+      "context": "秘银水晶放置效果；英文分为两行",
+      "raw": "§7While placed down, §9Mining Minions §7will work §a%1$s §7faster.",
+      "text": "While placed down, Mining Minions will work %1$s faster.",
+      "placeholders": [
+        {"token": "%1$s", "desc": "小人工作速度加成", "type": "number", "example": "10%"}
+      ],
+      "gloss": "沿用既有蓝色挖矿小人与绿色数值高亮。",
+      "translate": true,
+      "zh": "放置期间,挖矿小人的工作速度提升%1$s。",
+      "segments": [
+        {"color": "§7", "text": "While placed down, ", "zh": "放置期间,"},
+        {"color": "§9", "text": "Mining Minions ", "zh": "挖矿小人"},
+        {"color": "§7", "text": "will work ", "zh": "的工作速度提升"},
+        {"color": "§a", "text": "%1$s ", "zh": "%1$s"},
+        {"color": "§7", "text": "faster.", "zh": "。"}
+      ],
+      "samples": [
+        [
+          "§7While placed down, §9Mining Minions §7will",
+          "§7work §a10% §7faster."
+        ]
+      ]
+    }
+  ]
+}

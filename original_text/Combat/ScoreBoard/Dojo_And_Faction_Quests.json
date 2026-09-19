@@ -1,0 +1,259 @@
+{
+  "source": "runtime capture (SkyZH, Crimson Isle Dojo and Lasea quest, 2026-09-17 to 2026-09-18); https://hypixelskyblock.minecraft.wiki/w/Dojo",
+  "fetched_at": "2026-09-19",
+  "verified_ingame": true,
+  "source_note": "原文、颜色与取值取自两台机器三轮采集(logs/此计算机、第二台计算机、本轮)的 Combat/ScoreBoard/Sidebar.json;社区 Wiki Dojo 页核对玩法语境。挑战名与难度的取值走 _shared/Terms.json(category_name / difficulty)。",
+  "lines": [
+    {
+      "id": "sb_dojo_challenge",
+      "context": "道场挑战进行中侧边栏:当前挑战名,颜色随挑战变化(§6 Force/Tenacity、§9 Control、§d Stamina 等),渲染时按实时颜色",
+      "raw": "§fChallenge: §6%1$s",
+      "text": "Challenge: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "挑战名 Force / Stamina / Mastery / Swiftness / Control / Tenacity / Discipline,译名走 Terms",
+          "type": "category_name",
+          "example": "Force"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "挑战: %1$s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Challenge: ",
+          "zh": "挑战: "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ]
+    },
+    {
+      "id": "sb_dojo_difficulty",
+      "context": "道场挑战进行中侧边栏:当前难度",
+      "raw": "§fDifficulty: §a%1$s",
+      "text": "Difficulty: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Easy / Medium / Hard / Extreme,译名走 Terms 的 difficulty 类型",
+          "type": "difficulty",
+          "example": "Easy"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "难度: %1$s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Difficulty: ",
+          "zh": "难度: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ]
+    },
+    {
+      "id": "sb_dojo_points",
+      "context": "道场挑战进行中侧边栏:当前分数(行尾服务器带一个空格,引擎剥掉)",
+      "raw": "§fPoints: §a%1$s",
+      "text": "Points: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前分数",
+          "type": "number",
+          "example": "30"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "分数: %1$s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Points: ",
+          "zh": "分数: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ]
+    },
+    {
+      "id": "sb_dojo_points_delta",
+      "context": "道场挑战进行中侧边栏:分数及刚刚的变动,括号里 +10 / 0 / -30 颜色随正负变化",
+      "raw": "§fPoints: §a%1$s §7(§a%2$s§7)",
+      "text": "Points: %1$s (%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前分数",
+          "type": "number",
+          "example": "30"
+        },
+        {
+          "token": "%2$s",
+          "desc": "本次变动,带正负号",
+          "type": "number",
+          "example": "+10"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "分数: %1$s (%2$s)",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Points: ",
+          "zh": "分数: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "(",
+          "zh": "("
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": ")",
+          "zh": ")"
+        }
+      ]
+    },
+    {
+      "id": "sb_dojo_time",
+      "context": "道场耐力/掌控等挑战侧边栏:剩余时间",
+      "raw": "§fTime: §a%1$ss",
+      "text": "Time: %1$ss",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "剩余秒数,可带小数",
+          "type": "number",
+          "example": "18"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "时间: %1$s 秒",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Time: ",
+          "zh": "时间: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$ss",
+          "zh": "%1$s 秒"
+        }
+      ]
+    },
+    {
+      "id": "sb_dojo_time_delta",
+      "context": "道场耐力/掌控等挑战侧边栏:剩余时间及刚刚的变动,括号里 +1s / 0s / -1s 颜色随正负变化",
+      "raw": "§fTime: §a%1$ss §7(§a%2$ss§7)",
+      "text": "Time: %1$ss (%2$ss)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "剩余秒数",
+          "type": "number",
+          "example": "18"
+        },
+        {
+          "token": "%2$s",
+          "desc": "本次变动秒数,带正负号",
+          "type": "number",
+          "example": "+1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "时间: %1$s 秒 (%2$s 秒)",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Time: ",
+          "zh": "时间: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$ss ",
+          "zh": "%1$s 秒 "
+        },
+        {
+          "color": "§7",
+          "text": "(",
+          "zh": "("
+        },
+        {
+          "color": "§a",
+          "text": "%2$ss",
+          "zh": "%2$s 秒"
+        },
+        {
+          "color": "§7",
+          "text": ")",
+          "zh": ")"
+        }
+      ]
+    },
+    {
+      "id": "sb_lasea_fish",
+      "context": "Lasea 的野蛮人阵营任务:侧边栏逐条列出要钓的鱼,末尾 ✔ 已完成(§a)/ ✖ 未完成(§c)",
+      "raw": "§fFish 1 %1$s %2$s",
+      "text": "Fish 1 %1$s %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "Flyfish / Skeleton Fish,译名走 Terms(mob_name)",
+          "type": "mob_name",
+          "example": "Flyfish"
+        },
+        {
+          "token": "%2$s",
+          "desc": "完成标记 ✔ 或 ✖",
+          "type": "icon",
+          "example": "✔"
+        }
+      ],
+      "gloss": "Lasea 的对白已把这两种鱼译作飞鱼 / 骷髅鱼。",
+      "translate": true,
+      "zh": "钓 1 条%1$s %2$s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Fish 1 %1$s ",
+          "zh": "钓 1 条%1$s "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "source": "runtime capture (SkyZH, Glacite Tunnels, 2026-09-16); https://hypixelskyblock.minecraft.wiki/w/Glacite_Mineshafts",
+  "fetched_at": "2026-09-18",
+  "verified_ingame": true,
+  "lines": [
+    {
+      "id": "mining_sb_event_bonus_with_icon_live",
+      "context": "极冰矿井相关活动在侧边栏显示的挖掘时运加成",
+      "raw": "§fEvent Bonus: §6+%1$s",
+      "text": "Event Bonus: +%1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "活动提供的挖掘时运数值",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "既有不带图标的 Event Bonus 模板无法匹配实测的私用区挖掘时运图标。",
+      "translate": true,
+      "zh": "活动加成: +%1$s",
+      "segments": [
+        {"color": "§f", "text": "Event Bonus: ", "zh": "活动加成: "},
+        {"color": "§6", "text": "+%1$s", "zh": "+%1$s"}
+      ]
+    },
+    {
+      "id": "mining_sb_queue_target",
+      "context": "组队排队进入极冰矿井时的侧边栏:排队目标",
+      "raw": "§fQueued: %1$s",
+      "text": "Queued: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "排队进入的地点",
+          "type": "location_name",
+          "example": "Glacite Mineshafts"
+        }
+      ],
+      "gloss": "2026-09-17 第二台计算机采集。",
+      "translate": true,
+      "zh": "排队中: %1$s"
+    },
+    {
+      "id": "mining_sb_queue_waiting",
+      "context": "组队排队进入极冰矿井时的侧边栏:队员等待队长",
+      "raw": "§aWaiting on party leader!",
+      "text": "Waiting on party leader!",
+      "placeholders": [],
+      "gloss": "2026-09-17 第二台计算机采集。",
+      "translate": true,
+      "zh": "等待队长操作!"
+    },
+    {
+      "id": "mining_sb_queue_position",
+      "context": "组队排队进入极冰矿井时的侧边栏:队列位置与已等待时长",
+      "raw": "§fPosition: §b#%1$s §fSince: §a%2$s",
+      "text": "Position: #%1$s Since: %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "队列位置",
+          "type": "number",
+          "example": "6"
+        },
+        {
+          "token": "%2$s",
+          "desc": "已等待时长 mm:ss",
+          "type": "raw",
+          "example": "00:00"
+        }
+      ],
+      "gloss": "2026-09-17 第二台计算机采集。",
+      "translate": true,
+      "zh": "排位: #%1$s 已等待: %2$s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Position: ",
+          "zh": "排位: "
+        },
+        {
+          "color": "§b",
+          "text": "#%1$s ",
+          "zh": "#%1$s "
+        },
+        {
+          "color": "§f",
+          "text": "Since: ",
+          "zh": "已等待: "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ]
+    }
+  ]
+}

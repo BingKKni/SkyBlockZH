@@ -1,0 +1,82 @@
+{
+  "source": "Existing Hub_General/GUI_Item/Year_of_the_Witch.json runtime-verified lore; complete-sentence migration",
+  "fetched_at": "2026-09-04",
+  "verified_ingame": true,
+  "lore": [
+    {
+      "id": "witch_cauldron_upgrade",
+      "context": "女巫坩埚升级女巫宠物的说明；英文分为两行",
+      "raw": "§7Use at §bKat §7to upgrade §eWitch Pets §7from §f%1$s §7to §a%2$s.",
+      "text": "Use at Kat to upgrade Witch Pets from %1$s to %2$s.",
+      "placeholders": [
+        {"token": "%1$s", "desc": "升级前稀有度", "type": "category_name", "example": "Common"},
+        {"token": "%2$s", "desc": "升级后稀有度", "type": "category_name", "example": "Uncommon"}
+      ],
+      "gloss": "沿用既有颜色和词表处理；类别值仍由 Terms.json 按类型翻译。",
+      "translate": true,
+      "zh": "在 Kat 处使用，可将女巫宠物从%1$s升级至%2$s。",
+      "segments": [
+        {"color": "§7", "text": "Use at ", "zh": "在 "},
+        {"color": "§b", "text": "Kat ", "zh": "Kat "},
+        {"color": "§7", "text": "to upgrade ", "zh": "处使用，可将"},
+        {"color": "§e", "text": "Witch Pets ", "zh": "女巫宠物"},
+        {"color": "§7", "text": "from ", "zh": "从"},
+        {"color": "§f", "text": "%1$s ", "zh": "%1$s"},
+        {"color": "§7", "text": "to ", "zh": "升级至"},
+        {"color": "§a", "text": "%2$s.", "zh": "%2$s。"}
+      ],
+      "samples": [
+        [
+          "§7Use at §bKat §7to upgrade §eWitch Pets",
+          "§7from §fCommon §7to §aUncommon§7."
+        ]
+      ]
+    },
+    {
+      "id": "pig_brain_mixin_shiny_pigs",
+      "context": "猪脑调料效果；英文在闪亮猪名称前折行",
+      "raw": "§7Gain a §a10% §7chance to receive an extra item from §6§lShiny Pigs§7!",
+      "text": "Gain a 10% chance to receive an extra item from Shiny Pigs!",
+      "placeholders": [],
+      "gloss": "沿用既有金色粗体「闪亮猪」和绿色概率。",
+      "translate": true,
+      "zh": "有 10% 的概率从闪亮猪处额外获得一件物品!",
+      "segments": [
+        {"color": "§7", "text": "Gain a ", "zh": "有 "},
+        {"color": "§a", "text": "10% ", "zh": "10% "},
+        {"color": "§7", "text": "chance to receive an extra item from ", "zh": "的概率从"},
+        {"color": "§6§l", "text": "Shiny Pigs", "zh": "闪亮猪"},
+        {"color": "§7", "text": "!", "zh": "处额外获得一件物品!"}
+      ],
+      "samples": [
+        [
+          "§7Gain a §a10% §7chance to receive an",
+          "§7extra item from §6§lShiny Pigs§7!"
+        ]
+      ]
+    },
+    {
+      "id": "year_of_the_witch_cycle",
+      "context": "女巫年出现周期；英文在周期数前折行",
+      "raw": "§7The §5Year of the Witch §7comes around every §a12 SkyBlock years§7.",
+      "text": "The Year of the Witch comes around every 12 SkyBlock years.",
+      "placeholders": [],
+      "gloss": "沿用既有紫色女巫年和绿色年数高亮。",
+      "translate": true,
+      "zh": "女巫年每隔 12 个 SkyBlock 年出现一次。",
+      "segments": [
+        {"color": "§7", "text": "The ", "zh": "", "omit": true},
+        {"color": "§5", "text": "Year of the Witch ", "zh": "女巫年"},
+        {"color": "§7", "text": "comes around every ", "zh": "每隔 "},
+        {"color": "§a", "text": "12 SkyBlock years", "zh": "12 个 SkyBlock 年"},
+        {"color": "§7", "text": ".", "zh": "出现一次。"}
+      ],
+      "samples": [
+        [
+          "§7The §5Year of the Witch §7comes around",
+          "§7every §a12 SkyBlock years§7."
+        ]
+      ]
+    }
+  ]
+}

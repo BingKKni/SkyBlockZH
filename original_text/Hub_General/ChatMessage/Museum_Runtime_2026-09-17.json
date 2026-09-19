@@ -1,0 +1,127 @@
+{
+  "source": "runtime capture (SkyZH, Museum, 2026-09-17); https://hypixelskyblock.minecraft.wiki/w/Museum",
+  "fetched_at": "2026-09-18",
+  "verified_ingame": true,
+  "messages": [
+    {
+      "id": "museum_cannot_donate_item",
+      "context": "尝试向博物馆捐赠不符合条件的物品",
+      "raw": "§cYou cannot donate that item to your Museum!",
+      "text": "You cannot donate that item to your Museum!",
+      "placeholders": [],
+      "gloss": "Museum 沿用既定译名“博物馆”。",
+      "translate": true,
+      "zh": "这件物品无法捐赠给博物馆!"
+    },
+    {
+      "id": "museum_donated_with_skyblock_xp",
+      "context": "捐赠物品后获得空岛经验",
+      "raw": "§aYou donated your §c%1$s §ato the §d%2$s §asection of the Museum! §b+%3$s SkyBlock XP",
+      "text": "You donated your %1$s to the %2$s section of the Museum! +%3$s SkyBlock XP",
+      "placeholders": [
+        {"token": "%1$s", "desc": "捐出的物品名，保留英文", "type": "item_name", "example": "Wither Cloak Sword"},
+        {"token": "%2$s", "desc": "博物馆展区", "type": "category_name", "example": "Dungeoneering"},
+        {"token": "%3$s", "desc": "获得的空岛经验", "type": "number", "example": "7"}
+      ],
+      "gloss": "物品名保留英文；SkyBlock 由名称开关按配置替换。",
+      "translate": true,
+      "zh": "你把%1$s捐给了博物馆的%2$s展区! +%3$s SkyBlock 经验",
+      "segments": [
+        {"color": "§a", "text": "You donated your ", "zh": "你把"},
+        {"color": "§c", "text": "%1$s ", "zh": "%1$s"},
+        {"color": "§a", "text": "to the ", "zh": "捐给了博物馆的"},
+        {"color": "§d", "text": "%2$s ", "zh": "%2$s"},
+        {"color": "§a", "text": "section of the Museum! ", "zh": "展区! "},
+        {"color": "§b", "text": "+%3$s SkyBlock XP", "zh": "+%3$s SkyBlock 经验"}
+      ]
+    },
+    {
+      "id": "museum_retrieved_item",
+      "context": "从博物馆取回一件已捐赠物品",
+      "raw": "§aYou retrieved your §c%1$s §afrom the §3Museum§a!",
+      "text": "You retrieved your %1$s from the Museum!",
+      "placeholders": [
+        {"token": "%1$s", "desc": "取回的物品名，保留英文", "type": "item_name", "example": "Dungeonbreaker"}
+      ],
+      "gloss": "物品名保留英文；只翻译固定的取回动作。",
+      "translate": true,
+      "zh": "你从博物馆取回了 %1$s!",
+      "segments": [
+        {"color": "§a", "text": "You retrieved your ", "zh": "你从", "order": 0},
+        {"color": "§c", "text": "%1$s ", "zh": "%1$s", "order": 3},
+        {"color": "§a", "text": "from the ", "zh": "取回了 ", "order": 2},
+        {"color": "§3", "text": "Museum", "zh": "博物馆", "order": 1},
+        {"color": "§a", "text": "!", "zh": "!", "order": 4}
+      ]
+    },
+    {
+      "id": "museum_progress_not_value",
+      "context": "特殊物品提示：计入博物馆进度但不计入总物品价值",
+      "raw": "§7It still counts towards your §3Museum§7 progress, but not towards your §6total item value§7.",
+      "text": "It still counts towards your Museum progress, but not towards your total item value.",
+      "placeholders": [],
+      "gloss": "total item value 指博物馆估值，不是单件物品价格。",
+      "translate": true,
+      "zh": "它仍计入你的博物馆进度，但不计入物品总价值。",
+      "segments": [
+        {"color": "§7", "text": "It still counts towards your ", "zh": "它仍计入你的"},
+        {"color": "§3", "text": "Museum", "zh": "博物馆"},
+        {"color": "§7", "text": " progress, but not towards your ", "zh": "进度，但不计入"},
+        {"color": "§6", "text": "total item value", "zh": "物品总价值"},
+        {"color": "§7", "text": ".", "zh": "。"}
+      ]
+    },
+    {
+      "id": "museum_granted_progress_header",
+      "context": "捐赠物品后列出同时获得的其他进度",
+      "raw": "§6You were also granted progress for:",
+      "text": "You were also granted progress for:",
+      "placeholders": [],
+      "gloss": "后续若干行是具体物品或里程碑进度，保持原有列表布局。",
+      "translate": true,
+      "zh": "你同时获得了以下进度:"
+    },
+    {
+      "id": "museum_unclaimed_rewards",
+      "context": "有未领取的博物馆奖励时的可点击提示",
+      "raw": "§aYou have §6%1$s §aunclaimed rewards! §e§lCLICK HERE §ato view your Museum rewards.",
+      "text": "You have %1$s unclaimed rewards! CLICK HERE to view your Museum rewards.",
+      "placeholders": [
+        {"token": "%1$s", "desc": "未领取奖励数量", "type": "number", "example": "1"}
+      ],
+      "gloss": "英文单数 reward 由引擎的复数兼容规则一并覆盖。",
+      "translate": true,
+      "zh": "你有 %1$s 份未领取的奖励! 点击这里查看博物馆奖励。",
+      "segments": [
+        {"color": "§a", "text": "You have ", "zh": "你有 "},
+        {"color": "§6", "text": "%1$s ", "zh": "%1$s "},
+        {"color": "§a", "text": "unclaimed rewards! ", "zh": "份未领取的奖励! "},
+        {"color": "§e§l", "text": "CLICK HERE ", "zh": "点击这里"},
+        {"color": "§a", "text": "to view your Museum rewards.", "zh": "查看博物馆奖励。"}
+      ]
+    },
+    {
+      "id": "museum_milestone_not_obtained",
+      "context": "尝试使用未解锁的博物馆里程碑功能",
+      "raw": "§cYou have not obtained Museum Milestone %1$s!",
+      "text": "You have not obtained Museum Milestone %1$s!",
+      "placeholders": [
+        {"token": "%1$s", "desc": "所需里程碑等级", "type": "number", "example": "8"}
+      ],
+      "gloss": "Milestone 是博物馆功能解锁门槛。",
+      "translate": true,
+      "zh": "你尚未达到博物馆里程碑 %1$s!"
+    },
+    {
+      "id": "museum_milestone_header",
+      "context": "博物馆里程碑升级横幅标题",
+      "raw": "§6§lMUSEUM MILESTONE",
+      "text": "MUSEUM MILESTONE",
+      "placeholders": [],
+      "gloss": "居中横幅标题。",
+      "translate": true,
+      "zh": "博物馆里程碑",
+      "layout": "center_chat_banner"
+    }
+  ]
+}

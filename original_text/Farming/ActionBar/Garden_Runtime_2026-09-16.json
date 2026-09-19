@@ -1,0 +1,43 @@
+{
+  "source": "runtime capture (SkyZH, Garden, 2026-09-16); https://hypixelskyblock.minecraft.wiki/w/Garden",
+  "fetched_at": "2026-09-18",
+  "verified_ingame": true,
+  "gui_context": "花园浇水工具的动作栏水量部件。数值和容量会实时变化，只有单位标签固定。",
+  "lines": [
+    {
+      "id": "garden_hud_water_amount",
+      "context": "手持浇水工具时动作栏显示的当前水量/容量",
+      "raw": "§b%1$s§7/%2$sk Water",
+      "text": "%1$s/%2$sk Water",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前水量",
+          "type": "number",
+          "example": "1,710"
+        },
+        {
+          "token": "%2$s",
+          "desc": "容量的千单位数",
+          "type": "number",
+          "example": "3"
+        }
+      ],
+      "gloss": "水量和容量使用 SkyBlock 的 k 缩写；容量后的 Water 是单位标签，不是普通环境中的水。",
+      "translate": true,
+      "zh": "%1$s/%2$sk 水",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "/%2$sk Water",
+          "zh": "/%2$sk 水"
+        }
+      ]
+    }
+  ]
+}

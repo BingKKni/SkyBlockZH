@@ -1,0 +1,373 @@
+{
+  "source": "runtime capture (SkyZH, Glacite Tunnels and Glacite Mineshafts, 2026-09-17); https://hypixelskyblock.minecraft.wiki/w/Glacite_Mineshafts; https://hypixelskyblock.minecraft.wiki/w/God_Potion",
+  "fetched_at": "2026-09-18",
+  "verified_ingame": true,
+  "messages": [
+    {
+      "id": "mining_breaking_power_required_live",
+      "context": "尝试开采开采等级不足的极冰隧道方块",
+      "raw": "§cYou need a tool with a §aBreaking Power §cof §6%1$s§c to mine %2$s! Speak to §dFragilis §cby the entrance to the Crystal Hollows to learn more!",
+      "text": "You need a tool with a Breaking Power of %1$s to mine %2$s! Speak to Fragilis by the entrance to the Crystal Hollows to learn more!",
+      "placeholders": [
+        {"token": "%1$s", "desc": "所需开采等级", "type": "number", "example": "9"},
+        {"token": "%2$s", "desc": "目标方块或材料名", "type": "category_name", "example": "Peridot Gemstone Block"}
+      ],
+      "gloss": "比 Tungsten 的既有专用记录更宽，实测覆盖 Glacite、Umber 和 Peridot Gemstone Block；字面材料名优先于本条。",
+      "translate": true,
+      "zh": "你需要一把开采等级达到 %1$s 级的工具才能开采%2$s! 前往水晶残核入口找 Fragilis 了解详情!",
+      "segments": [
+        {"color": "§c", "text": "You need a tool with a ", "zh": "你需要一把"},
+        {"color": "§a", "text": "Breaking Power ", "zh": "开采等级"},
+        {"color": "§c", "text": "of ", "zh": "达到 "},
+        {"color": "§6", "text": "%1$s", "zh": "%1$s"},
+        {"color": "§c", "text": " to mine ", "zh": " 级的工具才能开采"},
+        {"color": "§c", "text": "%2$s! Speak to ", "zh": "%2$s! 前往 "},
+        {"color": "§d", "text": "Fragilis ", "zh": "Fragilis"},
+        {"color": "§c", "text": "by the entrance to the Crystal Hollows to learn more!", "zh": " 所在的水晶残核入口了解详情!"}
+      ]
+    },
+    {
+      "id": "mining_not_enough_soulflow",
+      "context": "魂流不足时使用技能失败",
+      "raw": "§cNot enough soulflow!",
+      "text": "Not enough soulflow!",
+      "placeholders": [],
+      "gloss": "Soulflow 沿用既定译名“魂流”。",
+      "translate": true,
+      "zh": "魂流不足!"
+    },
+    {
+      "id": "mining_portal_not_owned",
+      "context": "尝试进入不属于自己的矿井传送门",
+      "raw": "§cThis Mineshaft Portal doesn't belong to you!",
+      "text": "This Mineshaft Portal doesn't belong to you!",
+      "placeholders": [],
+      "gloss": "Mineshaft Portal 是极冰矿井实例的入口。",
+      "translate": true,
+      "zh": "这座矿井传送门不属于你!"
+    },
+    {
+      "id": "mining_corpse_already_looted",
+      "context": "重复搜刮冰封尸体",
+      "raw": "§cYou've already looted this corpse!",
+      "text": "You've already looted this corpse!",
+      "placeholders": [],
+      "gloss": "loot 在冰封尸体交互中译为搜刮。",
+      "translate": true,
+      "zh": "你已经搜刮过这具尸体了!"
+    },
+    {
+      "id": "mining_god_potion_expires",
+      "context": "神药即将到期的倒计时",
+      "raw": "§cGod Potion expires in §e%1$ss",
+      "text": "God Potion expires in %1$ss",
+      "placeholders": [
+        {"token": "%1$s", "desc": "剩余秒数", "type": "number", "example": "30"}
+      ],
+      "gloss": "God Potion 沿用既定译名“神药”。",
+      "translate": true,
+      "zh": "神药将在 %1$s 秒后过期",
+      "segments": [
+        {"color": "§c", "text": "God Potion expires in ", "zh": "神药将在 "},
+        {"color": "§e", "text": "%1$ss", "zh": "%1$s 秒后过期"}
+      ]
+    },
+    {
+      "id": "mining_god_potion_expired",
+      "context": "神药效果结束",
+      "raw": "§cGod Potion has expired!",
+      "text": "God Potion has expired!",
+      "placeholders": [],
+      "gloss": "承接神药倒计时。",
+      "translate": true,
+      "zh": "神药已过期!"
+    },
+    {
+      "id": "mining_god_potion_gulp",
+      "context": "喝下神药后显示的剩余增益时长",
+      "raw": "§a§lGULP! §eThe §cGod Potion §egrants you powers for §9%1$s§e!",
+      "text": "GULP! The God Potion grants you powers for %1$s!",
+      "placeholders": [
+        {"token": "%1$s", "desc": "神药持续时间", "type": "duration", "example": "15h 7m"}
+      ],
+      "gloss": "duration 让 h/m 运行时转为中文单位。",
+      "translate": true,
+      "zh": "咕嘟! 神药的效果将持续 %1$s!",
+      "segments": [
+        {"color": "§a§l", "text": "GULP! ", "zh": "咕嘟! "},
+        {"color": "§e", "text": "The ", "zh": "" , "omit": true},
+        {"color": "§c", "text": "God Potion ", "zh": "神药"},
+        {"color": "§e", "text": "grants you powers for ", "zh": "的效果将持续 "},
+        {"color": "§9", "text": "%1$s", "zh": "%1$s"},
+        {"color": "§e", "text": "!", "zh": "!"}
+      ]
+    },
+    {
+      "id": "mining_fiesta_concluded",
+      "context": "挖矿节结束时的系统提示",
+      "raw": "§6§lMINING FIESTA §ehas concluded! Put your pickaxe down and haul your ores home!",
+      "text": "MINING FIESTA has concluded! Put your pickaxe down and haul your ores home!",
+      "placeholders": [],
+      "gloss": "Mining Fiesta 沿用既定译名“挖矿节”。",
+      "translate": true,
+      "zh": "挖矿节结束了! 收起镐子，把矿石带回家吧!",
+      "segments": [
+        {"color": "§6§l", "text": "MINING FIESTA ", "zh": "挖矿节"},
+        {"color": "§e", "text": "has concluded! Put your pickaxe down and haul your ores home!", "zh": "结束了! 收起镐子，把矿石带回家吧!"}
+      ]
+    },
+    {
+      "id": "mining_not_enough_diamond_essence",
+      "context": "升级或兑换时钻石精华不足",
+      "raw": "§cYou don't have enough Diamond Essence!",
+      "text": "You don't have enough Diamond Essence!",
+      "placeholders": [],
+      "gloss": "Diamond Essence 沿用既定译名“钻石精华”。",
+      "translate": true,
+      "zh": "你的钻石精华不足!"
+    },
+    {
+      "id": "mining_portable_campfire_placed",
+      "context": "成功放置便携营火",
+      "raw": "§aYou placed a Portable Campfire!",
+      "text": "You placed a Portable Campfire!",
+      "placeholders": [],
+      "gloss": "Portable Campfire 沿用物品 Lore 中的既定译名。",
+      "translate": true,
+      "zh": "你放置了一个便携营火!"
+    },
+    {
+      "id": "mining_portable_campfire_burned_out",
+      "context": "便携营火燃尽",
+      "raw": "§cYour Portable Campfire has burned out!",
+      "text": "Your Portable Campfire has burned out!",
+      "placeholders": [],
+      "gloss": "Portable Campfire 沿用物品 Lore 中的既定译名。",
+      "translate": true,
+      "zh": "你的便携营火熄灭了!"
+    },
+    {
+      "id": "mining_crystal_already_obtained",
+      "context": "水晶残核:已拥有该水晶时再次拾取",
+      "raw": "§cYou have already obtained this Crystal!",
+      "text": "You have already obtained this Crystal!",
+      "placeholders": [],
+      "gloss": "2026-09-18 实测。",
+      "translate": true,
+      "zh": "你已经拥有这个水晶了!"
+    },
+    {
+      "id": "mining_sky_mall_new_day",
+      "context": "空中集市天赋:每日加成刷新",
+      "raw": "§bNew day! §eYour §2Sky Mall §ebuff changed!",
+      "text": "New day! Your Sky Mall buff changed!",
+      "placeholders": [],
+      "gloss": "Sky Mall → 空中集市,沿用词表。",
+      "translate": true,
+      "zh": "新的一天! 你的空中集市加成换了!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "New day! ",
+          "zh": "新的一天! "
+        },
+        {
+          "color": "§e",
+          "text": "Your ",
+          "zh": "你的"
+        },
+        {
+          "color": "§2",
+          "text": "Sky Mall ",
+          "zh": "空中集市"
+        },
+        {
+          "color": "§e",
+          "text": "buff changed!",
+          "zh": "加成换了!"
+        }
+      ]
+    },
+    {
+      "id": "mining_sky_mall_new_buff_fortune",
+      "context": "空中集市天赋:今日加成为挖掘时运时的提示",
+      "raw": "§eNew buff§r: §fGain §6+%1$s☘ Mining Fortune§f.",
+      "text": "New buff: Gain +%1$s☘ Mining Fortune.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "挖掘时运数值",
+          "type": "number",
+          "example": "50"
+        }
+      ],
+      "gloss": "其他加成的同款提示实测到再补。",
+      "translate": true,
+      "zh": "新加成: 获得 +%1$s☘ 挖掘时运。",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "New buff",
+          "zh": "新加成"
+        },
+        {
+          "color": "§r",
+          "text": ": ",
+          "zh": ": "
+        },
+        {
+          "color": "§f",
+          "text": "Gain ",
+          "zh": "获得 "
+        },
+        {
+          "color": "§6",
+          "text": "+%1$s☘ Mining Fortune",
+          "zh": "+%1$s☘ 挖掘时运"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "mining_tree_swap_cooldown",
+      "context": "山心天赋树切换冷却中",
+      "raw": "§cSwapping trees is on cooldown! (%1$s)",
+      "text": "Swapping trees is on cooldown! (%1$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "剩余冷却",
+          "type": "time",
+          "example": "7m 18s"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "切换天赋树冷却中! (%1$s)"
+    },
+    {
+      "id": "mining_angered_littlefoot",
+      "context": "极冰矿井:惹怒 Littlefoot(狩猎生物,自造名保留)",
+      "raw": "§7§oLooks like you've angered Littlefoot!",
+      "text": "Looks like you've angered Littlefoot!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "看来你惹怒了 Littlefoot!"
+    },
+    {
+      "id": "mining_fortunate_freezing_banner",
+      "context": "被动活动「幸运冰封」开始时的居中说明行",
+      "raw": "§fGain §6+%1$s ☘ Mining Fortune §ffor every -§b%2$s ❄ Cold§f!",
+      "text": "Gain +%1$s ☘ Mining Fortune for every -%2$s ❄ Cold!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "每点寒冷给的挖掘时运",
+          "type": "number",
+          "example": "2"
+        },
+        {
+          "token": "%2$s",
+          "desc": "寒冷步长",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "Cold → 寒冷,沿用 Mining_HUD;社区 Wiki Fortunate_Freezing 页原文一致。",
+      "translate": true,
+      "zh": "每 -%2$s ❄ 寒冷可获得 +%1$s ☘ 挖掘时运!",
+      "layout": "center_chat_if_padded",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Gain ",
+          "zh": "可获得 ",
+          "order": 2
+        },
+        {
+          "color": "§6",
+          "text": "+%1$s ☘ Mining Fortune ",
+          "zh": "+%1$s ☘ 挖掘时运",
+          "order": 3
+        },
+        {
+          "color": "§f",
+          "text": "for every -",
+          "zh": "每 -",
+          "order": 0
+        },
+        {
+          "color": "§b",
+          "text": "%2$s ❄ Cold",
+          "zh": "%2$s ❄ 寒冷",
+          "order": 1
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "mining_campfire_warmed",
+      "context": "在营火旁取暖降低寒冷",
+      "raw": "§aYou've warmed your feet by your campfire. Your §b❄ Cold §awas reduced by §b%1$s§a!",
+      "text": "You've warmed your feet by your campfire. Your ❄ Cold was reduced by %1$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "降低的寒冷值",
+          "type": "number",
+          "example": "50"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你在营火旁暖了暖脚。你的 ❄ 寒冷降低了 %1$s!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "You've warmed your feet by your campfire. Your ",
+          "zh": "你在营火旁暖了暖脚。你的 "
+        },
+        {
+          "color": "§b",
+          "text": "❄ Cold ",
+          "zh": "❄ 寒冷"
+        },
+        {
+          "color": "§a",
+          "text": "was reduced by ",
+          "zh": "降低了 "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§a",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "mining_campfire_already_used",
+      "context": "同一营火只能取暖一次",
+      "raw": "§cYou've already used this campfire!",
+      "text": "You've already used this campfire!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你已经用过这个营火了!"
+    }
+  ]
+}
