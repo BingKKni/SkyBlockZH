@@ -5,6 +5,38 @@
   "source_note": "本轮实测原文与颜色优先；社区 Wiki 原网页用于核对机制与语境，未使用 Raw 页面。",
   "lore": [
     {
+      "id": "events_next_1",
+      "context": "既有活动倒计时修复；保留带 in 的原文",
+      "raw": "§7The next event will be announced in about §a%1$s §7minutes!",
+      "text": "The next event will be announced in about %1$s minutes!",
+      "placeholders": [{"token": "%1$s", "type": "number", "example": "8", "desc": "实时剩余分钟"}],
+      "gloss": "分钟数来自原文，不能写死为 8；整句消费后由引擎重新折行。",
+      "translate": true,
+      "zh": "下一场活动将在大约 %1$s 分钟后公布!",
+      "segments": [
+        {"color": "§7", "text": "The next event will be announced in about ", "zh": "下一场活动将在大约 "},
+        {"color": "§a", "text": "%1$s ", "zh": "%1$s "},
+        {"color": "§7", "text": "minutes!", "zh": "分钟后公布!"}
+      ],
+      "samples": [["§7The next event will be announced in", "§7about §a8 §7minutes!"]]
+    },
+    {
+      "id": "events_next_live",
+      "context": "实测不带 in 的活动倒计时，与既有写法并存",
+      "raw": "§7The next event will be announced about §a%1$s §7minutes!",
+      "text": "The next event will be announced about %1$s minutes!",
+      "placeholders": [{"token": "%1$s", "type": "number", "example": "2", "desc": "实时剩余分钟"}],
+      "gloss": "修复 logs/10.png 的错误数值和英语续行，措辞沿用既有译文。",
+      "translate": true,
+      "zh": "下一场活动将在大约 %1$s 分钟后公布!",
+      "segments": [
+        {"color": "§7", "text": "The next event will be announced about ", "zh": "下一场活动将在大约 "},
+        {"color": "§a", "text": "%1$s ", "zh": "%1$s "},
+        {"color": "§7", "text": "minutes!", "zh": "分钟后公布!"}
+      ],
+      "samples": [["§7The next event will be announced", "§7about §a2 §7minutes!"]]
+    },
+    {
       "id": "mining_events_guide_schedule",
       "context": "挖矿活动指南总览",
       "text": "Mining Events occur in the Dwarven Mines every 20 minutes.",

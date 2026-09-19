@@ -110,7 +110,7 @@
     {
       "id": "tab_skill_progress",
       "context": "Tab 收藏品等级标签与技能经验进度",
-      "raw": "§e%1$s/%2$s XP §6(%3$s%)",
+      "raw": "§e%1$s§6/§e%2$s XP §6(%3$s%)",
       "text": "%1$s/%2$s XP (%3$s%)",
       "placeholders": [
         {
@@ -138,8 +138,18 @@
       "segments": [
         {
           "color": "§e",
-          "text": "%1$s/%2$s XP ",
-          "zh": "%1$s/%2$s 经验 "
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§6",
+          "text": "/",
+          "zh": "/"
+        },
+        {
+          "color": "§e",
+          "text": "%2$s XP ",
+          "zh": "%2$s 经验 "
         },
         {
           "color": "§6",

@@ -317,6 +317,46 @@
           "zh": "%s"
         }
       ]
+    },
+    {
+      "id": "sidebar_party_member_dead",
+      "context": "地牢内侧边栏:队员阵亡后血量位置改显示 DEAD,方括号里是职业首字母,名字颜色随职业",
+      "raw": "§e[%1$s] §7%2$s §cDEAD",
+      "text": "[%1$s] %2$s DEAD",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "职业首字母 A / B / H / M / T",
+          "type": "raw",
+          "example": "A"
+        },
+        {
+          "token": "%2$s",
+          "desc": "队员名",
+          "type": "player_name",
+          "example": "Ciorya"
+        }
+      ],
+      "gloss": "带 [LvN] 的队员行按 excluded 里的既定决定不收;DEAD 是唯一有词可翻的状态。",
+      "translate": true,
+      "zh": "[%1$s] %2$s 阵亡",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "[%1$s] ",
+          "zh": "[%1$s] "
+        },
+        {
+          "color": "§7",
+          "text": "%2$s ",
+          "zh": "%2$s "
+        },
+        {
+          "color": "§c",
+          "text": "DEAD",
+          "zh": "阵亡"
+        }
+      ]
     }
   ]
 }

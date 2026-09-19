@@ -190,12 +190,19 @@
     {
       "id": "inventory_lore_live_immunity_and_316_strength_for",
       "context": "Ender Chest 1 5 实测",
-      "raw": "§7immunity and §a+31.6 §c Strength §7for",
-      "text": "immunity and +31.6  Strength for",
-      "placeholders": [],
-      "gloss": "",
+      "raw": "§7immunity and §a+%1$s §c Strength §7for",
+      "text": "immunity and +%1$s  Strength for",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "力量加成,随地牢等级变化(实测 31.6 / 32.4)",
+          "type": "number",
+          "example": "32.4"
+        }
+      ],
+      "gloss": "Bonzo's Mask 的技能说明;数值随地牢技能等级变化,不能写死。",
       "translate": true,
-      "zh": "+31.6 ❁ 力量,持续 ",
+      "zh": "+%1$s ❁ 力量,持续 ",
       "segments": [
         {
           "color": "§7",
@@ -205,8 +212,8 @@
         },
         {
           "color": "§a",
-          "text": "+31.6 ",
-          "zh": "+31.6 "
+          "text": "+%1$s ",
+          "zh": "+%1$s "
         },
         {
           "color": "§c",

@@ -19,7 +19,7 @@
 ## 这里面有什么
 
 - **文案风格**（3 条）：动笔前先分红黄绿区、NPC 对白（人情味、戏剧节拍、角色建档、称谓、连读检查）、技能与物品 Lore（信息顺序、机制名当 key、固定句式、动词表、交付自查表）
-- **全局规则与排版**（9 条）：SkyBlock、感叹号后面加空格、空岛时钟、空岛日期、空岛月份名、"Nx" 倍率加成的翻译方式、全大写的消息前缀、原版 Minecraft 材料名一律用官方中文译名、稀有度词
+- **全局规则与排版**（10 条）：对齐、跨行与数值保真、SkyBlock、感叹号后面加空格、空岛时钟、空岛日期、空岛月份名、"Nx" 倍率加成的翻译方式、全大写的消息前缀、原版 Minecraft 材料名一律用官方中文译名、稀有度词
 - **什么翻、什么不翻**（7 条）：Rank / Boosters / Gems、NPC 的"职务型名字"翻译,"人名"不翻译、物品名、怪物名、带专有人名的地名、重铸名、技能名 Mining vs 属性前缀 Mining
 - **货币与经济**（5 条）：货币名、Cost / Price、Fame / Fame Rank、The Hex、Bazaar
 - **属性词条与物品 Lore**（12 条）：2026-09-09 补译的既定译名、Heat、Fortune、Block Fortune / Mining Fortune、Breaking Power、Mining Spread、Tiered Bonus / Mineralworks、Reforge / Soulbound / Accessory Power / Accessory Bag、Soulbound 标记行的三种变体、物品 Lore 里的固定词汇表、Titanium、Fuel
@@ -150,6 +150,13 @@
   | 占位符与颜色 | 占位符数量、颜色段数量和原文一一对应? |
 
 ## 全局规则与排版
+
+### 对齐、跨行与数值保真
+
+- 同一奖励模板可能用于居中横幅或左侧清单，不能无条件居中，也不能把原文填充空格复制到译文里。共用聊天行采用 `chat_source_alignment`，详见 [数据规范](README.md#居中左对齐与右对齐)。
+- 按完整英文逻辑句核对译文；首行已表达的词义不能在 continuation 再出现一次。粉末、精华等资源类型必须有完整后文支持，不能由半句推断。
+- 每个数字占位符必须在捕获它的记录中输出，或迁为 `GUI_Lore` 整句。禁止用采集样本里的固定数字代替动态值；至少验证两个数值，并保留数值的原始颜色。
+- 处理采集的 `incomplete` / `value` 报告时，先看同一次观测的 `original_lines` 与 `rendered_lines`。疑似英语续行不等于可以直接删除；要核对它是否已被中文完整表达，保留专名和无关下一句。
 
 ### SkyBlock(玩法名本身)
 
@@ -661,6 +668,7 @@ BossBar 里是全大写(`GONE WITH THE WIND`)、计分板小部件里是正常�
 | Gone with the Wind | 随风而逝 | 被动活动,《飘》的书名梗,顺风挖矿加速 |
 | Better Together | 众志成城 | 被动活动,同区域人越多加成越高 |
 | 2x Powder | 双倍粉末 | 被动活动 |
+| Fortunate Freezing | 幸运冰封 | 被动活动(极冰矿井),每 1❄ 寒冷 +2☘ 挖掘时运 |
 | Goblin Raid | 哥布林突袭 | 主动活动,沿用委托任务名的既定译法 |
 | Mithril Gourmand | 秘银老饕 | 主动活动,给 Don Expresso 喂美味秘银 |
 | Raffle | 抽奖箱 | 主动活动 |

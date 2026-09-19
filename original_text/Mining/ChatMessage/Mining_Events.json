@@ -617,10 +617,10 @@
       "context": "活动结算横幅:奖励清单标题",
       "text": "Rewards",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "同一奖励行可用于居中横幅或左侧清单；根据原文像素锚点重算，不能无条件居中或沿用英文填充空格。",
       "translate": true,
       "zh": "奖励",
-      "layout": "center_chat_banner"
+      "layout": "chat_source_alignment"
     },
     {
       "id": "mining_event_reward_mining_exp",
@@ -1118,10 +1118,10 @@
           "example": "500"
         }
       ],
-      "gloss": "Bits 统一译为点券;加号保持深灰，奖励数值及货币名保持青色。",
+      "gloss": "同一奖励行可用于居中横幅或左侧清单；根据原文像素锚点重算，不能无条件居中或沿用英文填充空格。",
       "translate": true,
       "zh": "+%s 点券",
-      "layout": "center_chat_banner",
+      "layout": "chat_source_alignment",
       "segments": [
         {
           "color": "§8",
@@ -1205,5 +1205,6 @@
       "translate": true,
       "zh": "皇家信鸽在这儿找不到国王。"
     }
-  ]
+  ],
+  "join_note": "活动开始/结束的两行公告实测各是一个数据包(客户端日志里分两行打印),不能用 chat_join_next 合并;两行各自居中翻译。"
 }

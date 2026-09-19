@@ -355,6 +355,128 @@
           "zh": "）"
         }
       ]
+    },
+    {
+      "id": "calendar_election_over_nth",
+      "context": "日历里选举结束那一行:时段 + 届数 + 倒计时",
+      "raw": "§712:00 am-12:26 am: §b%1$s Election Over!§7 (§e%2$s§7)",
+      "text": "12:00 am-12:26 am: %1$s Election Over! (%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "届数(英文序数)",
+          "type": "ordinal",
+          "example": "427th"
+        },
+        {
+          "token": "%2$s",
+          "desc": "倒计时",
+          "type": "time",
+          "example": "27h"
+        }
+      ],
+      "gloss": "时段与 calendar_workshop 一致写「凌晨 12:00」;活动名沿用 _shared/Event_Names.json,日历行里紧跟倒计时括号,省去感叹号。",
+      "translate": true,
+      "zh": "凌晨 12:00-12:26: 第 %1$s 届选举结束（%2$s）",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "12:00 am-12:26 am: ",
+          "zh": "凌晨 12:00-12:26: "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s Election Over!",
+          "zh": "第 %1$s 届选举结束"
+        },
+        {
+          "color": "§7",
+          "text": " (",
+          "zh": "（"
+        },
+        {
+          "color": "§e",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": ")",
+          "zh": "）"
+        }
+      ]
+    },
+    {
+      "id": "calendar_election_booth_opens_nth",
+      "context": "日历里投票站开放那一行",
+      "raw": "§712:00 am-12:26 am: §b%1$s Election Booth Opens§7 (§e%2$s§7)",
+      "text": "12:00 am-12:26 am: %1$s Election Booth Opens (%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "届数(英文序数)",
+          "type": "ordinal",
+          "example": "428th"
+        },
+        {
+          "token": "%2$s",
+          "desc": "倒计时",
+          "type": "time",
+          "example": "2d"
+        }
+      ],
+      "gloss": "译名沿用 Event_Names 的「第 N 届选举开放」。",
+      "translate": true,
+      "zh": "凌晨 12:00-12:26: 第 %1$s 届选举开放（%2$s）",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "12:00 am-12:26 am: ",
+          "zh": "凌晨 12:00-12:26: "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s Election Booth Opens",
+          "zh": "第 %1$s 届选举开放"
+        },
+        {
+          "color": "§7",
+          "text": " (",
+          "zh": "（"
+        },
+        {
+          "color": "§e",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": ")",
+          "zh": "）"
+        }
+      ]
+    },
+    {
+      "id": "calendar_year_of_the_pig_begins",
+      "context": "日历里猪年开始那一行",
+      "raw": "§712:00 am: §dYear of the Pig Begins",
+      "text": "12:00 am: Year of the Pig Begins",
+      "placeholders": [],
+      "gloss": "Year of the Pig → 猪年(Event_Names)。",
+      "translate": true,
+      "zh": "凌晨 12:00: 猪年开始",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "12:00 am: ",
+          "zh": "凌晨 12:00: "
+        },
+        {
+          "color": "§d",
+          "text": "Year of the Pig Begins",
+          "zh": "猪年开始"
+        }
+      ]
     }
   ]
 }

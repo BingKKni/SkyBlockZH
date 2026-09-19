@@ -13,7 +13,9 @@
     "accessory_power",
     "skyblock_month",
     "medal",
-    "compactor_toggle"
+    "compactor_toggle",
+    "trophy_quality",
+    "difficulty"
   ],
   "types_note": "只对这几种 placeholders[].type 生效。**故意**不含 item_name / npc_name / player_name:那三种正是需求里写死'保留英文'的位置(NPC 人名、物品自造专名),在那里翻错的代价——给别人的武器编一个中文名——远大于一个地名留着英文的代价。新增 type 前先想清楚这一点。category_name 是菜单入口名/功能分类名(Bags、Other Crystals、Recipe Book、Settings 的前半截),形状规则走 Capture.NAME 而不是 raw 的宽松短语——见下面 category_name_note。",
   "enchantment_name_note": "2026-09-08: 附魔名称仅原版 Minecraft 附魔使用官方中文。SkyBlock 专属名称保持英文,包括 Ice Cold/Compact/Scavenger/Turbo- 系列; 其效果和同名的属性、银行、地牢祝福仍翻译。Bank/Inferno 的其他用途必须限定 types,避免全局词表回退将附魔名重新汉化。",
@@ -778,7 +780,8 @@
       "en": "carrots",
       "zh": "胡萝卜",
       "types": [
-        "minion_resource"
+        "minion_resource",
+        "category_name"
       ]
     },
     {
@@ -976,7 +979,8 @@
       "en": "mushrooms",
       "zh": "蘑菇",
       "types": [
-        "minion_resource"
+        "minion_resource",
+        "category_name"
       ]
     },
     {
@@ -1028,7 +1032,8 @@
       "en": "Nether Quartz",
       "zh": "下界石英",
       "types": [
-        "category_name"
+        "category_name",
+        "raw"
       ],
       "note": "2026-09-06 核对社区 Wiki https://hypixelskyblock.minecraft.wiki/w/Collections;沿用既有语料译名,仅补值词表。"
     },
@@ -1252,7 +1257,8 @@
       "en": "Melon Slice",
       "zh": "西瓜片",
       "types": [
-        "category_name"
+        "category_name",
+        "raw"
       ]
     },
     {
@@ -3464,9 +3470,10 @@
       "zh": "亡灵",
       "types": [
         "category_name",
-        "mob_name"
+        "mob_name",
+        "raw"
       ],
-      "note": "Bazaar 精华分类与生物图鉴分类使用；护甲重铸中的「Undead Bonus」现由精确记录单独翻译，不再依赖 raw 词条。"
+      "note": "Bazaar 精华分类、生物图鉴分类与护甲重铸共用既定译名。重铸说明的 raw 取值也需可查；Undead Bonus 的完整记录继续优先。"
     },
     {
       "en": "Dragon Essence",
@@ -3840,7 +3847,7 @@
     },
     {
       "en": "Mining Fiesta",
-      "zh": "挖矿狂欢节",
+      "zh": "挖矿节",
       "note": "限时活动名。菜单格子那一份在 _shared/Event_Names.json,两边译名必须一致"
     },
     {
@@ -4869,7 +4876,8 @@
       "en": "Bait",
       "zh": "鱼饵",
       "types": [
-        "raw"
+        "raw",
+        "category_name"
       ],
       "note": "宾果卡社区目标名,也是钓鱼玩法里挂在鱼竿上的饵。**语料里这个词本来就有两种写法**:Hub_General/GUI_Item/Fishing_Merchant.json 写「鱼饵」(Fishing Bait、COMMON BAIT → 普通鱼饵、Minnow Bait → 小鱼饵),而 Farming/TabList/Tab_List.json 的 no_bait_none 那条写「诱饵」。这里取占多数的「鱼饵」,但那处分歧还没统一,GLOSSARY.md 的 Chum / Bait 一节记着这件事,改之前先看一眼。另外别和 Chum 混:Chum 是另一种物品(击杀海洋生物掉的材料),译「碎鱼饵」,见 Hub_General/GUI_Item/Bingo_Card.json 的 bingo_goal_deposit_chum 那条。该目标格子本身还没在游戏里见到,只在「Progress to X I」那一行里出现过。(这两处都是**反例**,故意和本词条不一致,所以只写文件名加记录名、不写「井号加记录 id」那种指针形式——gradle/check_toggle_terms.py 会把指针当成「两边必须一致」来校验,写成指针就会误报。)"
     },
@@ -6800,7 +6808,8 @@
       "en": "Chum",
       "zh": "碎鱼饵",
       "types": [
-        "raw"
+        "raw",
+        "category_name"
       ],
       "note": "碎鱼饵坠子。GLOSSARY: Chum → 碎鱼饵。"
     },
@@ -7565,7 +7574,7 @@
     },
     {
       "en": "Bonus Mining Fiesta",
-      "zh": "额外挖矿狂欢节",
+      "zh": "挖矿节",
       "types": [
         "raw",
         "category_name"
@@ -7646,7 +7655,8 @@
       "zh": "石头",
       "types": [
         "mob_name",
-        "raw"
+        "raw",
+        "category_name"
       ],
       "note": "宠物名，Mining Mount 类型宠物。2026-09-04 实机采集中的动态值。"
     },
@@ -10933,7 +10943,8 @@
       "en": "Blaze Rod",
       "zh": "烈焰棒",
       "types": [
-        "category_name"
+        "category_name",
+        "raw"
       ],
       "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
     },
@@ -10941,7 +10952,8 @@
       "en": "Magma Cream",
       "zh": "岩浆膏",
       "types": [
-        "category_name"
+        "category_name",
+        "raw"
       ],
       "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
     },
@@ -10968,6 +10980,751 @@
         "location_name"
       ],
       "note": "2026-09-13 实机区域标签；社区 Wiki Tangleburg's Path 与 Tangleburg 普通页面确认其为 Galatea 的入门小径。"
+    },
+    {
+      "en": "on the entrance bridge",
+      "zh": "入口桥上",
+      "types": [
+        "location_name",
+        "raw"
+      ],
+      "note": "2026-09-13 运行时采集核对；本轮 Hoppity 彩蛋实测位置短语。"
+    },
+    {
+      "en": "near Zealots and Seers",
+      "zh": "狂热末影人与先知附近",
+      "types": [
+        "location_name",
+        "raw"
+      ],
+      "note": "2026-09-13 运行时采集核对；本轮 Hoppity 彩蛋实测位置短语。"
+    },
+    {
+      "en": "Board Member",
+      "zh": "董事会成员",
+      "types": [
+        "mob_name"
+      ],
+      "note": "2026-09-13 运行时采集核对；巧克力工厂兔子员工职级。"
+    },
+    {
+      "en": "Ragnarok",
+      "zh": "Ragnarok",
+      "types": [
+        "mob_name"
+      ],
+      "note": "2026-09-13 运行时采集核对；Boss 名按 GLOSSARY 保留英文。"
+    },
+    {
+      "en": "Voidgloom Seraph",
+      "zh": "Voidgloom Seraph",
+      "types": [
+        "mob_name"
+      ],
+      "note": "2026-09-13 运行时采集核对；猎手 Boss 名按 GLOSSARY 保留英文。"
+    },
+    {
+      "en": "Golden Dragon",
+      "zh": "黄金龙",
+      "types": [
+        "mob_name"
+      ],
+      "note": "2026-09-13 运行时采集核对；宠物名由通用词组成。"
+    },
+    {
+      "en": "Flying Fish",
+      "zh": "飞鱼",
+      "types": [
+        "mob_name"
+      ],
+      "note": "2026-09-13 运行时采集核对；宠物名由通用词组成。"
+    },
+    {
+      "en": "Sulphur",
+      "zh": "硫磺",
+      "types": [
+        "item_name",
+        "category_name"
+      ],
+      "note": "2026-09-13 运行时采集核对；绯红岛材料。"
+    },
+    {
+      "en": "Sulphur Cube",
+      "zh": "硫磺立方体",
+      "types": [
+        "item_name",
+        "category_name"
+      ],
+      "note": "2026-09-13 运行时采集核对；绯红岛材料。 2026-09-19 补 category_name:集市的「Enchanted %s」材料行会捕到它。"
+    },
+    {
+      "en": "Red Sand Cube",
+      "zh": "红沙立方体",
+      "types": [
+        "item_name",
+        "category_name"
+      ],
+      "note": "2026-09-13 运行时采集核对；绯红岛材料。 2026-09-19 补 category_name:集市的「Enchanted %s」材料行会捕到它。"
+    },
+    {
+      "en": "Red Sand Collection VII",
+      "zh": "红沙收集 VII",
+      "types": [
+        "requirement"
+      ],
+      "note": "2026-09-13 运行时采集核对；物品解锁条件。"
+    },
+    {
+      "en": "Yellow Belt",
+      "zh": "黄带",
+      "types": [
+        "item_name",
+        "category_name"
+      ],
+      "note": "2026-09-13 运行时采集核对；道场腰带品阶。"
+    },
+    {
+      "en": "Time",
+      "zh": "时间",
+      "types": [
+        "raw"
+      ],
+      "note": "2026-09-13 运行时采集核对；挑战排行榜字段。"
+    },
+    {
+      "en": "Inkling",
+      "zh": "Inkling",
+      "types": [
+        "mob_name"
+      ],
+      "note": "2026-09-13 运行时采集核对；海洋生物专名，保留英文。"
+    },
+    {
+      "en": "Puddle Jumper",
+      "zh": "Puddle Jumper",
+      "types": [
+        "mob_name"
+      ],
+      "note": "2026-09-13 运行时采集核对；海洋生物专名，保留英文。"
+    },
+    {
+      "en": "Angler",
+      "zh": "Angler",
+      "types": [
+        "raw"
+      ],
+      "note": "2026-09-13 运行时采集核对；非原版附魔名按用户既定规则保留英文。"
+    },
+    {
+      "en": "Blessing",
+      "zh": "Blessing",
+      "types": [
+        "raw"
+      ],
+      "note": "2026-09-13 运行时采集核对；非原版附魔或重铸名按既定规则保留英文。"
+    },
+    {
+      "en": "Caster",
+      "zh": "Caster",
+      "types": [
+        "raw"
+      ],
+      "note": "2026-09-13 运行时采集核对；非原版附魔名按用户既定规则保留英文。"
+    },
+    {
+      "en": "Frail",
+      "zh": "Frail",
+      "types": [
+        "raw"
+      ],
+      "note": "2026-09-13 运行时采集核对；非原版附魔名按用户既定规则保留英文。"
+    },
+    {
+      "en": "Magnet",
+      "zh": "Magnet",
+      "types": [
+        "raw"
+      ],
+      "note": "2026-09-13 运行时采集核对；非原版附魔名按用户既定规则保留英文。"
+    },
+    {
+      "en": "Piscary",
+      "zh": "Piscary",
+      "types": [
+        "raw"
+      ],
+      "note": "2026-09-13 运行时采集核对；非原版附魔名按用户既定规则保留英文。"
+    },
+    {
+      "en": "Pyroclasm",
+      "zh": "Pyroclasm",
+      "types": [
+        "raw"
+      ],
+      "note": "2026-09-13 运行时采集核对；非原版附魔名按用户既定规则保留英文。"
+    },
+    {
+      "en": "Spiked Hook",
+      "zh": "Spiked Hook",
+      "types": [
+        "raw"
+      ],
+      "note": "2026-09-13 运行时采集核对；非原版附魔名按用户既定规则保留英文。"
+    },
+    {
+      "en": "Dragontail Auction Hous",
+      "zh": "龙尾镇拍卖行",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 运行时采集核对；计分板宽度导致末尾 e 被截断的实测地名。"
+    },
+    {
+      "en": "Dojo Arena",
+      "zh": "道场竞技场",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 运行时采集核对；本轮计分板实测地名。"
+    },
+    {
+      "en": "INACTIVE",
+      "zh": "未激活",
+      "types": [
+        "raw"
+      ],
+      "note": "2026-09-13 运行时采集核对；火山状态。"
+    },
+    {
+      "en": "Resting",
+      "zh": "休眠中",
+      "types": [
+        "raw"
+      ],
+      "note": "2026-09-13 运行时采集核对；末地保护者状态。"
+    },
+    {
+      "en": "Crimson Isle - Spawn",
+      "zh": "绯红岛 - 出生点",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-13 运行时采集核对；空岛经验来源地名。"
+    },
+    {
+      "en": "To Accessory Bag",
+      "zh": "前往饰品袋",
+      "types": [
+        "raw"
+      ],
+      "note": "2026-09-13 运行时采集核对；菜单入口短语。"
+    },
+    {
+      "en": "NPC",
+      "zh": "NPC",
+      "types": [
+        "raw"
+      ],
+      "note": "2026-09-13 运行时采集核对；通用缩写保留。"
+    },
+    {
+      "en": "GlitchMoustache",
+      "zh": "GlitchMoustache",
+      "types": [
+        "raw"
+      ],
+      "note": "2026-09-13 运行时采集核对；玩家名原样保留。"
+    },
+    {
+      "en": "Moil",
+      "zh": "Moil",
+      "types": [
+        "raw"
+      ],
+      "note": "2026-09-13 运行时采集核对；重铸名按既定规则保留英文。"
+    },
+    {
+      "en": "WAND",
+      "zh": "法杖",
+      "types": [
+        "raw",
+        "category_name"
+      ],
+      "note": "2026-09-13 运行时采集核对；装备类型。"
+    },
+    {
+      "en": "Spruce Woods",
+      "zh": "云杉林",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-17 运行时采集；The Park 社区 Wiki 的区域列表确认。"
+    },
+    {
+      "en": "Viking Longhouse",
+      "zh": "维京长屋",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-17 运行时采集；The Park 社区 Wiki 的区域列表确认。"
+    },
+    {
+      "en": "Savanna Woodland",
+      "zh": "热带草原林地",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-17 运行时采集；The Park 社区 Wiki 的区域列表确认。"
+    },
+    {
+      "en": "Melody's Plateau",
+      "zh": "Melody 高地",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-17 运行时采集；Melody 是 NPC 人名，保留英文，只翻译地形通名。"
+    },
+    {
+      "en": "Dark Thicket",
+      "zh": "幽暗灌木丛",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-17 运行时采集；The Park 社区 Wiki 的区域列表确认。"
+    },
+    {
+      "en": "Trials of Fire",
+      "zh": "火焰试炼",
+      "types": [
+        "location_name"
+      ],
+      "note": "2026-09-17 运行时采集；Campfire Adept 社区 Wiki 确认为 Dark Thicket 内的地点。"
+    },
+    {
+      "en": "Museum Donations",
+      "zh": "博物馆捐赠",
+      "types": [
+        "raw"
+      ],
+      "note": "空岛经验来源标签；2026-09-17 博物馆实测。"
+    },
+    {
+      "en": "Dojo Belt",
+      "zh": "道场腰带",
+      "types": [
+        "raw"
+      ],
+      "note": "空岛经验来源标签；2026-09-17 道场实测。"
+    },
+    {
+      "en": "Bestiary Progress",
+      "zh": "生物图鉴进度",
+      "types": [
+        "raw"
+      ],
+      "note": "空岛经验来源标签；2026-09-18 地牢实测。"
+    },
+    {
+      "en": "Farming Toolkit",
+      "zh": "农业工具包",
+      "types": [
+        "raw"
+      ],
+      "note": "空岛经验来源标签；沿用 Garden_Menus.json 的既有译名。"
+    },
+    {
+      "en": "Peridot Gemstone Block",
+      "zh": "Peridot 宝石方块",
+      "types": [
+        "category_name"
+      ],
+      "note": "极冰隧道开采等级提示中的方块名；宝石专名 Peridot 保留英文。"
+    },
+    {
+      "en": "BRONZE",
+      "zh": "铜品质",
+      "types": [
+        "trophy_quality"
+      ],
+      "note": "仅锦标鱼的品质级别；不要与农业竞赛的 Bronze 铜牌共用。"
+    },
+    {
+      "en": "SILVER",
+      "zh": "银品质",
+      "types": [
+        "trophy_quality"
+      ],
+      "note": "仅锦标鱼的品质级别；不要与农业竞赛的 Silver 银牌共用。"
+    },
+    {
+      "en": "GOLD",
+      "zh": "金品质",
+      "types": [
+        "trophy_quality"
+      ],
+      "note": "仅锦标鱼的品质级别；不要与农业竞赛的 Gold 金牌共用。"
+    },
+    {
+      "en": "DIAMOND",
+      "zh": "钻石品质",
+      "types": [
+        "trophy_quality"
+      ],
+      "note": "仅锦标鱼的品质级别；不要与材料 Diamond 钻石共用。"
+    },
+    {
+      "en": "Force",
+      "zh": "力量",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-19 道场侧边栏「Challenge: %1$s」的取值,与「Test of Force → 力量试炼」同词。"
+    },
+    {
+      "en": "Stamina",
+      "zh": "耐力",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-19 道场挑战名。"
+    },
+    {
+      "en": "Mastery",
+      "zh": "精通",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-19 道场挑战名。"
+    },
+    {
+      "en": "Swiftness",
+      "zh": "迅捷",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-19 道场挑战名。"
+    },
+    {
+      "en": "Control",
+      "zh": "掌控",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-19 道场挑战名。"
+    },
+    {
+      "en": "Tenacity",
+      "zh": "坚韧",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-19 道场挑战名。"
+    },
+    {
+      "en": "Discipline",
+      "zh": "纪律",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-19 道场挑战名。"
+    },
+    {
+      "en": "Easy",
+      "zh": "简单",
+      "types": [
+        "difficulty"
+      ],
+      "note": "道场难度,见 difficulty_note。"
+    },
+    {
+      "en": "Medium",
+      "zh": "中等",
+      "types": [
+        "difficulty"
+      ],
+      "note": "道场难度,见 difficulty_note;副标题记录 dojo_medium_subtitle 同译。"
+    },
+    {
+      "en": "Hard",
+      "zh": "困难",
+      "types": [
+        "difficulty"
+      ],
+      "note": "道场难度,见 difficulty_note。"
+    },
+    {
+      "en": "Extreme",
+      "zh": "极限",
+      "types": [
+        "difficulty"
+      ],
+      "note": "道场难度,见 difficulty_note。"
+    },
+    {
+      "en": "Flyfish",
+      "zh": "飞鱼",
+      "types": [
+        "mob_name"
+      ],
+      "note": "2026-09-19 绯红岛熔岩海洋生物,Lasea 任务侧边栏「Fish 1 Flyfish」;NPC 对白已译「飞鱼」。"
+    },
+    {
+      "en": "Skeleton Fish",
+      "zh": "骷髅鱼",
+      "types": [
+        "mob_name"
+      ],
+      "note": "2026-09-19 绯红岛熔岩海洋生物,Lasea 任务侧边栏;NPC 对白已译「骷髅鱼」。"
+    },
+    {
+      "en": "Green Belt",
+      "zh": "绿带",
+      "types": [
+        "item_name",
+        "category_name"
+      ],
+      "note": "2026-09-19 道场腰带品阶,同 Yellow Belt → 黄带。"
+    },
+    {
+      "en": "Blue Belt",
+      "zh": "蓝带",
+      "types": [
+        "item_name",
+        "category_name"
+      ],
+      "note": "2026-09-19 道场腰带品阶。"
+    },
+    {
+      "en": "Brown Belt",
+      "zh": "棕带",
+      "types": [
+        "item_name",
+        "category_name"
+      ],
+      "note": "2026-09-19 道场腰带品阶。"
+    },
+    {
+      "en": "Black Belt",
+      "zh": "黑带",
+      "types": [
+        "item_name",
+        "category_name"
+      ],
+      "note": "2026-09-19 道场腰带品阶。"
+    },
+    {
+      "en": "Dwarven Metal",
+      "zh": "矮人金属",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-19 山心「Grants +%1$s☘ %2$s Fortune.」的取值,GLOSSARY:Dwarven Metal Fortune → 矮人金属时运。"
+    },
+    {
+      "en": "Current Effect",
+      "zh": "当前效果",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-19 山心「Your %s」格子名(Your Current Effect)。"
+    },
+    {
+      "en": "Lion",
+      "zh": "狮子",
+      "types": [
+        "mob_name"
+      ],
+      "note": "2026-09-19 宠物名,通用词。"
+    },
+    {
+      "en": "TROPHY",
+      "zh": "锦标",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-19 锦标鱼物品的稀有度类型标签(RARE TROPHY → 稀有锦标),与 Trophy → 锦标 同词。"
+    },
+    {
+      "en": "Trophy Fish",
+      "zh": "锦标鱼",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "2026-09-19 绯红岛锦标钓鱼的鱼,Tab 标题「Trophy Fish:」;沿用 Trophy → 锦标。"
+    },
+    {
+      "en": "Dwarf Wannabe",
+      "zh": "矮人模仿者",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-19 秘银装备(Mithril Equipment)的套装加成名,社区 Wiki Mithril_Necklace 页;Full Set Bonus: %1$s 的取值。"
+    },
+    {
+      "en": "Fortunate Freezing",
+      "zh": "幸运冰封",
+      "note": "被动挖矿活动名(极冰矿井),每 1❄ 寒冷 +2☘ 挖掘时运;社区 Wiki Fortunate_Freezing 页。"
+    },
+    {
+      "en": "Lucky",
+      "zh": "幸运",
+      "types": [
+        "raw"
+      ],
+      "note": "2026-09-19 Lucky Dice 重铸石的重铸名(Applies the %1$s reforge),按通用词规则;谷仓皮肤那条 category_name 同译。"
+    },
+    {
+      "en": "Royal",
+      "zh": "皇家",
+      "types": [
+        "raw"
+      ],
+      "note": "2026-09-19 Dwarven Treasure 重铸石的重铸名,与 Royal Mines → 皇家矿区 同词。"
+    },
+    {
+      "en": "Mining Sack",
+      "zh": "挖矿收纳袋",
+      "types": [
+        "category_name"
+      ],
+      "note": "2026-09-19「Enchanted Mining Sack → 附魔挖矿收纳袋」,同 Small Mining Sack → 小型挖矿收纳袋。"
+    },
+    {
+      "en": "Spider Eye",
+      "zh": "蜘蛛眼",
+      "types": [
+        "category_name"
+      ],
+      "note": "原版材料官方译名,集市 Enchanted %s 行。"
+    },
+    {
+      "en": "Fermented Spider Eye",
+      "zh": "发酵蛛眼",
+      "types": [
+        "category_name"
+      ],
+      "note": "原版材料官方译名。"
+    },
+    {
+      "en": "Gunpowder",
+      "zh": "火药",
+      "types": [
+        "category_name"
+      ],
+      "note": "原版材料官方译名。"
+    },
+    {
+      "en": "Slimeball",
+      "zh": "黏液球",
+      "types": [
+        "category_name"
+      ],
+      "note": "原版材料官方译名。"
+    },
+    {
+      "en": "Firework Rocket",
+      "zh": "烟花火箭",
+      "types": [
+        "category_name"
+      ],
+      "note": "原版材料官方译名。"
+    },
+    {
+      "en": "Ghast Tear",
+      "zh": "恶魂之泪",
+      "types": [
+        "category_name"
+      ],
+      "note": "原版材料官方译名。"
+    },
+    {
+      "en": "Slime Block",
+      "zh": "黏液块",
+      "types": [
+        "category_name"
+      ],
+      "note": "原版材料官方译名。"
+    },
+    {
+      "en": "Blaze Powder",
+      "zh": "烈焰粉",
+      "types": [
+        "category_name"
+      ],
+      "note": "原版材料官方译名。"
+    },
+    {
+      "en": "Coal Block",
+      "zh": "煤炭块",
+      "types": [
+        "category_name"
+      ],
+      "note": "原版材料官方译名。"
+    },
+    {
+      "en": "Diamond Block",
+      "zh": "钻石块",
+      "types": [
+        "category_name"
+      ],
+      "note": "原版材料官方译名。"
+    },
+    {
+      "en": "Emerald Block",
+      "zh": "绿宝石块",
+      "types": [
+        "category_name"
+      ],
+      "note": "原版材料官方译名。"
+    },
+    {
+      "en": "Quartz Block",
+      "zh": "石英块",
+      "types": [
+        "category_name"
+      ],
+      "note": "原版材料官方译名。"
+    },
+    {
+      "en": "Flint",
+      "zh": "燧石",
+      "types": [
+        "category_name"
+      ],
+      "note": "原版材料官方译名。"
+    },
+    {
+      "en": "Netherrack",
+      "zh": "下界岩",
+      "types": [
+        "category_name"
+      ],
+      "note": "原版材料官方译名。"
+    },
+    {
+      "en": "Glowstone Dust",
+      "zh": "荧石粉",
+      "types": [
+        "category_name"
+      ],
+      "note": "原版材料官方译名。"
+    },
+    {
+      "en": "Lapis Lazuli Block",
+      "zh": "青金石块",
+      "types": [
+        "category_name"
+      ],
+      "note": "原版材料官方译名。"
+    },
+    {
+      "en": "Packed Ice",
+      "zh": "浮冰",
+      "types": [
+        "category_name"
+      ],
+      "note": "原版材料官方译名。"
     }
   ],
   "todo": [
@@ -10976,5 +11733,6 @@
     "设置类别名 API(“API Settings”)**故意**不加词条:这个缩写在中文技术语境里就是原样念原样写,没有通行中文译名,硬译成「接口设置」反而不如原文好认。查不到的值保持英文,引擎会在接缝处自动补空格(见 spacing_note),渲染出来是「API 设置」,已经是想要的样子。"
   ],
   "medal_note": "2026-09-10: Jacob 农业竞赛的奖牌 / 名次档位(Bronze / Silver / Gold / Platinum / Diamond)单独用 medal 类型。原因:SILVER 作 category_name 已经是地牢终端的「淡灰色」,Gold / Diamond 作全局词是材料「黄金 / 钻石」,同一个字符串两种意思不能共用一张表。词表匹配不分大小写,所以一条 Bronze 同时管聊天里的 BRONZE、Tab 里的 Bronze 和奖励清单里的 bronze。Capture.of 不认识的类型按 raw 形状捕获,所以不需要改代码。",
-  "garden_note": "2026-09-10 花园玩法专有词:Copper → 铜(花园货币,沿用 Tab 的「铜: N」)、Compost → 堆肥、Sowdust → 播尘、Chip → 芯片、Plot → 地皮、Visitor → 访客、Greenhouse → 温室、Barn(花园里的建筑)→ 谷仓;地名 The Barn 仍是「牲畜棚」。见 GLOSSARY.md「花园玩法专有词」。"
+  "garden_note": "2026-09-10 花园玩法专有词:Copper → 铜(花园货币,沿用 Tab 的「铜: N」)、Compost → 堆肥、Sowdust → 播尘、Chip → 芯片、Plot → 地皮、Visitor → 访客、Greenhouse → 温室、Barn(花园里的建筑)→ 谷仓;地名 The Barn 仍是「牲畜棚」。见 GLOSSARY.md「花园玩法专有词」。",
+  "difficulty_note": "2026-09-19 道场侧边栏「Difficulty: Easy/Medium/Hard/Extreme」的取值。单独一种 type,因为 Medium 作为 category_name 已是收纳袋的「中型」,Hard/Easy 这类短词放进通用表会误译。"
 }

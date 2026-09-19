@@ -41,6 +41,7 @@
       "context": "",
       "raw": "§bTunnels§7.",
       "text": "Tunnels.",
+      "continuation": true,
       "placeholders": [],
       "gloss": "",
       "translate": true,
@@ -94,6 +95,7 @@
       "context": "",
       "raw": "§7your §b❄ Cold §7by §a%s§7.",
       "text": "your ❄ Cold by %s.",
+      "continuation": true,
       "placeholders": [
         {
           "token": "%s",
@@ -153,7 +155,7 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "每堆营火只能互动一次,而且每 %s 分钟才能放置一堆。"
+      "zh": "每堆营火只能互动一次,而且每 "
     },
     {
       "id": "portable_campfire_interacted_with_once_and_you",
@@ -186,12 +188,13 @@
         {
           "color": "§7",
           "text": "only place one campfire every ",
-          "zh": ""
+          "zh": "",
+          "omit": true
         },
         {
           "color": "§a",
           "text": "%s",
-          "zh": ""
+          "zh": "%s"
         }
       ],
       "continuation": true
@@ -209,12 +212,12 @@
         {
           "color": "§a",
           "text": "minutes",
-          "zh": ""
+          "zh": " 分钟"
         },
         {
           "color": "§7",
           "text": ".",
-          "zh": ""
+          "zh": "才能放置一堆。"
         }
       ],
       "continuation": true

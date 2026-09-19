@@ -330,6 +330,51 @@
           "zh": "右键点击"
         }
       ]
+    },
+    {
+      "id": "combat_rarity_magic_generic",
+      "context": "带 §k 乱码装饰的稀有度行:升过星/地牢化之外的普通装备也用这种写法(MYTHIC HELMET、EPIC SWORD 等)",
+      "raw": "§d§l§ka§r §d§l%1$s %2$s §d§l§ka",
+      "text": "a %1$s %2$s a",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "category_name",
+          "example": "MYTHIC",
+          "desc": "稀有度"
+        },
+        {
+          "token": "%2$s",
+          "type": "category_name",
+          "example": "HELMET",
+          "desc": "装备类别"
+        }
+      ],
+      "gloss": "2026-09-18 实测。带 DUNGEON 的行仍由 combat_rarity_dungeon_magic 应答(字面更长,优先)。稀有度是两个词时(VERY SPECIAL)会切错,实测到再补。",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§d§l§k",
+          "text": "a",
+          "zh": "a"
+        },
+        {
+          "color": "§r",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§d§l",
+          "text": "%1$s %2$s ",
+          "zh": "%1$s%2$s "
+        },
+        {
+          "color": "§d§l§k",
+          "text": "a",
+          "zh": "a"
+        }
+      ],
+      "zh": "a %1$s%2$s a"
     }
   ],
   "capture_update": "2026-09-08; 仅采用 2026-09-06 10:47:44 +08:00 编译之后的记录。同时核对 Aspect of the Void、Florid Zombie Sword、Wand of Atonement、Juju Shortbow; 私用区属性图标保留原字形。"

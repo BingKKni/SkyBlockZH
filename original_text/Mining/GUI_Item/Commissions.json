@@ -560,6 +560,140 @@
           "order": 2
         }
       ]
+    },
+    {
+      "id": "mining_commission_desc_crystal_hunter",
+      "context": "委托菜单里水晶猎人任务的说明;英文分两行,地点行是独立记录",
+      "raw": "§7Find a §e%1$s Crystal§7 in the",
+      "text": "Find a %1$s Crystal in the",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "宝石种类,按 GLOSSARY 保留英文",
+          "type": "raw",
+          "example": "Topaz"
+        }
+      ],
+      "gloss": "原文 a/an 随宝石变化,分两条记录。",
+      "translate": true,
+      "zh": "在下列地点找到 %1$s 水晶:",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Find a ",
+          "zh": "在下列地点找到 "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s Crystal",
+          "zh": "%1$s 水晶"
+        },
+        {
+          "color": "§7",
+          "text": " in the",
+          "zh": ":"
+        }
+      ]
+    },
+    {
+      "id": "mining_commission_desc_crystal_hunter_an",
+      "context": "同上,元音开头的宝石(Amber / Amethyst)",
+      "raw": "§7Find an §e%1$s Crystal§7 in the",
+      "text": "Find an %1$s Crystal in the",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "宝石种类,按 GLOSSARY 保留英文",
+          "type": "raw",
+          "example": "Amber"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "在下列地点找到 %1$s 水晶:",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Find an ",
+          "zh": "在下列地点找到 "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s Crystal",
+          "zh": "%1$s 水晶"
+        },
+        {
+          "color": "§7",
+          "text": " in the",
+          "zh": ":"
+        }
+      ]
+    },
+    {
+      "id": "mining_commission_desc_crystal_hunter_goblin",
+      "context": "Amber 水晶的地点行前半(Goblin Queen's Den 被折成两行)",
+      "raw": "§7Find an §6Amber Crystal§7 in the §6Goblin",
+      "text": "Find an Amber Crystal in the Goblin",
+      "placeholders": [],
+      "gloss": "与下一行「Queen's Den.」合成整句。",
+      "translate": true,
+      "zh": "在哥布林女王巢穴找到 Amber 水晶。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Find an ",
+          "zh": "在哥布林女王巢穴找到 "
+        },
+        {
+          "color": "§6",
+          "text": "Amber Crystal",
+          "zh": "Amber 水晶"
+        },
+        {
+          "color": "§7",
+          "text": " in the ",
+          "zh": "。"
+        },
+        {
+          "color": "§6",
+          "text": "Goblin",
+          "zh": "",
+          "omit": true
+        }
+      ]
+    },
+    {
+      "id": "mining_commission_desc_crystal_hunter_goblin_tail",
+      "context": "上一行的尾行",
+      "raw": "§6Queen's Den§7.",
+      "text": "Queen's Den.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "continuation": true,
+      "zh": ""
+    },
+    {
+      "id": "mining_commission_desc_crystal_location",
+      "context": "水晶猎人任务的地点行(独立一行);只有占位符加句号的模板引擎不接受,按实测地点写字面",
+      "raw": "§cKhazad-dûm§7.",
+      "text": "Khazad-dûm.",
+      "placeholders": [],
+      "gloss": "Khazad-dûm → 凯萨督姆(词表);其他地点实测到再补。",
+      "translate": true,
+      "zh": "凯萨督姆。",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "Khazad-dûm",
+          "zh": "凯萨督姆"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
     }
   ],
   "todo": [

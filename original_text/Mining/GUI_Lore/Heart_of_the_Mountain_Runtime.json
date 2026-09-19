@@ -6,6 +6,17 @@
   "source_note": "原文、颜色与数值以本轮实测为准；社区 Wiki 普通页面核对机制。完整句在 GUI_Lore 匹配，不按旧英文断行翻译。",
   "lines": [
     {
+      "id": "hotm_not_enough_glacite_powder",
+      "context": "修复粉末不足提示被精华半句误匹配并残留 Powder!",
+      "raw": "§cYou don't have enough Glacite Powder!",
+      "text": "You don't have enough Glacite Powder!",
+      "placeholders": [],
+      "gloss": "沿用 Mining/ChatMessage/Rewards.json 的既有译文；完整消费两行，避免与精华混淆。",
+      "translate": true,
+      "zh": "你的极冰粉末不够!",
+      "samples": [["§cYou don't have enough Glacite", "§cPowder!"]]
+    },
+    {
       "id": "hotm_tunnel_vision_live",
       "context": "隧道视野：提升稀有事件触发概率",
       "raw": "§7Increases the chances of triggering rare occurrences by §a%1$s%§7 for §a%2$ss§7.",
@@ -1194,6 +1205,46 @@
       "gloss": "",
       "translate": true,
       "zh": "%1$s %2$s粉末"
+    },
+    {
+      "id": "hotm_quick_forge_time",
+      "context": "山心天赋 Quick Forge 的说明;英文分两行,数值随天赋等级变化(实测 10.5% / 11%)",
+      "raw": "§7Decreases the time it takes to forge §7by §a%1$s%§7.",
+      "text": "Decreases the time it takes to forge by %1$s%.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "缩短比例",
+          "type": "number",
+          "example": "11"
+        }
+      ],
+      "gloss": "原 GUI_Item 里写死 10.5% 的首尾行已删除,改为整句匹配。",
+      "translate": true,
+      "zh": "锻造所需时间缩短 %1$s%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Decreases the time it takes to forge by ",
+          "zh": "锻造所需时间缩短 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s%",
+          "zh": "%1$s%"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "samples": [
+        [
+          "Decreases the time it takes to forge",
+          "by 11%."
+        ]
+      ]
     }
   ]
 }

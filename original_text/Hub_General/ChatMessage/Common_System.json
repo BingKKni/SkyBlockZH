@@ -1536,6 +1536,119 @@
       "translate": true,
       "zh": "你必须点击下方的铁砧来合并这两件物品!",
       "raw": "§cYou must click the Anvil below to combine the two items!"
+    },
+    {
+      "id": "auction_cannot_afford_bid",
+      "context": "拍卖出价失败",
+      "text": "You don't have enough coins to afford this bid!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的硬币不足,无法出价!"
+    },
+    {
+      "id": "auction_claim_item",
+      "context": "领取拍卖购买物品",
+      "text": "You claimed %1$s from %2$s's auction!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "拍卖物品名",
+          "type": "raw",
+          "example": "Travel Scroll to the Crimson Isle"
+        },
+        {
+          "token": "%2$s",
+          "desc": "卖家名",
+          "type": "player_name",
+          "example": "Dragon0864"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你从 %2$s 的拍卖中领取了 %1$s!"
+    },
+    {
+      "id": "auction_collect_item",
+      "context": "拍卖行领取提醒",
+      "text": "Visit the Auction House to collect your item!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "前往拍卖行领取物品!"
+    },
+    {
+      "id": "auction_collected_sale",
+      "context": "领取拍卖售款",
+      "text": "You collected %1$s coins from selling %2$s to %3$s in an auction!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "领取的硬币",
+          "type": "number",
+          "example": "1,240"
+        },
+        {
+          "token": "%2$s",
+          "desc": "售出的物品",
+          "type": "item_name",
+          "example": "Golden Carrot"
+        },
+        {
+          "token": "%3$s",
+          "desc": "买家显示名",
+          "type": "raw",
+          "example": "[MVP+] MrGretto"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "你通过拍卖将 %2$s 卖给 %3$s,领取了 %1$s 硬币!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "You collected ",
+          "zh": "你通过拍卖将 ",
+          "order": 0
+        },
+        {
+          "color": "§6",
+          "text": "%1$s coins ",
+          "zh": "%1$s 硬币",
+          "order": 5
+        },
+        {
+          "color": "§e",
+          "text": "from selling ",
+          "zh": ",领取了 ",
+          "order": 4
+        },
+        {
+          "color": "§d",
+          "text": "%2$s",
+          "zh": "%2$s",
+          "order": 1
+        },
+        {
+          "color": "§e",
+          "text": " to ",
+          "zh": " 卖给 ",
+          "order": 2
+        },
+        {
+          "color": "§6",
+          "text": "%3$s",
+          "zh": "%3$s",
+          "order": 3
+        },
+        {
+          "color": "§e",
+          "text": " in an auction!",
+          "zh": "!",
+          "order": 6
+        }
+      ],
+      "raw": "§eYou collected §6%1$s coins §efrom selling §d%2$s§e to §6%3$s§e in an auction!"
     }
   ]
 }
