@@ -3,6 +3,8 @@ package io.github.bingkkni.skyzh.capture;
 import com.google.gson.JsonObject;
 import io.github.bingkkni.skyzh.hook.NameTag;
 import io.github.bingkkni.skyzh.text.StyledText;
+import io.github.bingkkni.skyzh.text.LineShape;
+import io.github.bingkkni.skyzh.text.ItemNames;
 import io.github.bingkkni.skyzh.text.Surface;
 import io.github.bingkkni.skyzh.text.TranslationEntry;
 import io.github.bingkkni.skyzh.text.TranslationIndex;
@@ -196,6 +198,23 @@ public final class Classifier {
 		Translator.Located located = Translator.locate(styled, surface.surface());
 
 		if (!located.matched()) {
+			if (PreservedText.ignored(surface.surface(), styled.canonical())
+				|| Translator.index().preserved(surface.surface(), styled.canonical())
+				|| surface.surface() == Surface.HOLOGRAM && ItemNames.canonical(styled.canonical()) != null
+					&& Translator.index().preserved(Surface.ITEM, styled.canonical())) {
+				// The corpus already decided this line stays English (translate: false); reporting it
+				// again every session is noise, not a gap.
+				return null;
+			}
+			if (surface.surface() == Surface.ITEM) {
+				List<LineShape.Range> parts = LineShape.enchantments(styled.canonical());
+				// A mixed vanilla/custom enchantment list is covered only if every piece is either
+				// deliberately preserved or independently passes the ordinary diagnostics.
+				if (!parts.isEmpty() && parts.stream().allMatch(part ->
+					of(surface, styled.sub(part.start(), part.end())) == null)) {
+					return null;
+				}
+			}
 			if (surface.surface() == Surface.TABLIST && rowFallbackCovered(styled, surface.surface())) {
 				return null;
 			}

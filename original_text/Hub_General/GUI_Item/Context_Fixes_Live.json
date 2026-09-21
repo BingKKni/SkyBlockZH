@@ -52,12 +52,29 @@
     {
       "id": "context_buy_dozen",
       "context": "",
-      "raw": "§aBuy a dozen!",
+      "raw": "§aBuy a §edozen§a!",
       "text": "Buy a dozen!",
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "买一打!"
+      "zh": "买一打!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Buy a ",
+          "zh": "买"
+        },
+        {
+          "color": "§e",
+          "text": "dozen",
+          "zh": "一打"
+        },
+        {
+          "color": "§a",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
     },
     {
       "id": "context_lore_apply_armor",

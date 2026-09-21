@@ -1,0 +1,158 @@
+{
+  "source": "logs/skyzh-capture/incomplete；https://hypixelskyblock.minecraft.wiki/w/Rose_Dragon_Pet; https://hypixelskyblock.minecraft.wiki/w/Green_Bandana",
+  "verified_ingame": true,
+  "note": "实测原文与颜色；社区 Wiki 核对语境。完整句优先匹配，未包含的下一行不吞掉。",
+  "records": [
+    {
+      "id": "rose_dragon_farming_level",
+      "context": "玫瑰龙宠物的农业等级加成",
+      "raw": "§7Grants §6%1$s☘ Farming Fortune §7per §aFarming §7level.",
+      "text": "Grants %1$s☘ Farming Fortune per Farming level.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "实时数值",
+          "type": "number",
+          "example": "+3"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "每有 1 级农业等级，获得 %1$s ☘ 农业时运。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "每有 1 级",
+          "order": 0
+        },
+        {
+          "color": "§6",
+          "text": "%1$s☘ Farming Fortune ",
+          "zh": "%1$s ☘ 农业时运",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "per ",
+          "zh": "等级，获得 ",
+          "order": 2
+        },
+        {
+          "color": "§a",
+          "text": "Farming ",
+          "zh": "农业",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "level.",
+          "zh": "。",
+          "order": 4
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants §6+3 Farming Fortune §7per",
+          "§aFarming §7level."
+        ]
+      ]
+    },
+    {
+      "id": "rose_dragon_crop_milestone",
+      "context": "玫瑰龙宠物的作物里程碑加成",
+      "raw": "§7Grants §6%1$s☘ Farming Fortune §7and §f%2$s✦ Speed §7per Crop Milestone.",
+      "text": "Grants %1$s☘ Farming Fortune and %2$s✦ Speed per Crop Milestone.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "实时数值",
+          "type": "number",
+          "example": "+0.15"
+        },
+        {
+          "token": "%2$s",
+          "desc": "实时数值",
+          "type": "number",
+          "example": "+0.1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "每达成 1 级作物里程碑，获得 %1$s ☘ 农业时运和 %2$s ✦ 速度。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "每达成 1 级作物里程碑，获得 "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s☘ Farming Fortune ",
+          "zh": "%1$s ☘ 农业时运"
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "和 "
+        },
+        {
+          "color": "§f",
+          "text": "%2$s✦ Speed ",
+          "zh": "%2$s ✦ 速度"
+        },
+        {
+          "color": "§7",
+          "text": "per Crop Milestone.",
+          "zh": "。"
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants §6+0.15 Farming Fortune §7and",
+          "§f+0.1 Speed §7per Crop Milestone."
+        ]
+      ]
+    },
+    {
+      "id": "green_bandana_garden_levels",
+      "context": "绿色头巾宠物道具，按花园等级提供加成",
+      "raw": "§7Grants §6%1$s☘ Farming Fortune §7for each of your Garden Levels.",
+      "text": "Grants %1$s☘ Farming Fortune for each of your Garden Levels.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "实时数值",
+          "type": "number",
+          "example": "+4"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "每有 1 级花园等级，获得 %1$s ☘ 农业时运。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "每有 1 级花园等级，获得 "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s☘ Farming Fortune ",
+          "zh": "%1$s ☘ 农业时运"
+        },
+        {
+          "color": "§7",
+          "text": "for each of your Garden Levels.",
+          "zh": "。"
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants §6+4 Farming Fortune §7for",
+          "§7each of your Garden Levels."
+        ]
+      ]
+    }
+  ]
+}

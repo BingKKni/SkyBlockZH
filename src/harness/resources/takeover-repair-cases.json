@@ -1,0 +1,89 @@
+{
+  "cases": [
+    {"name":"博物馆旅行解锁保留三段地点颜色", "surface":"ChatMessage", "source":["§eYou may now Fast Travel to §aSkyBlock Hub §7- §bMuseum§e!"], "expected":"§e你现在可以快速传送至§a空岛大厅 §7- §b博物馆§e了!"},
+    {"name":"地牢水晶不误用矿物类型词表", "surface":"Hologram", "source":["§bEnergy Crystal"], "expected":"§b能量水晶"},
+    {"name":"锻造倒计时小时", "surface":"TabList", "source":["§f1) §6☘ Perfect Citrine Gemstone§f: §b19h"], "expected":"§f1) §6☘ 完美 Citrine 宝石§f：§b19 小时"},
+    {"name":"锻造倒计时分钟", "surface":"TabList", "source":["§f1) §6☘ Perfect Citrine Gemstone§f: §b3m"], "expected":"§f1) §6☘ 完美 Citrine 宝石§f：§b3 分"},
+    {"name":"锻造倒计时秒", "surface":"TabList", "source":["§f1) §6☘ Perfect Citrine Gemstone§f: §b56s"], "expected":"§f1) §6☘ 完美 Citrine 宝石§f：§b56 秒"},
+    {"name":"锻造倒计时组合", "surface":"TabList", "source":["§f1) §6☘ Perfect Citrine Gemstone§f: §b3m41s"], "expected":"§f1) §6☘ 完美 Citrine 宝石§f：§b3 分 41 秒"},
+    {"name":"Dungeoneering不擅加技能二字", "surface":"GUI_Item", "source":["§aDungeoneering"], "expected":"§a地牢"},
+    {
+      "name": "玫瑰龙等级条件不能误套访客附魔",
+      "source": ["§7Grants §6+3☘ Farming Fortune §7per", "§aFarming §7level."],
+      "consumed": 2,
+      "expected": "§7每有 1 级§a农业§7等级，获得 §6+3 ☘ 农业时运§7。"
+    },
+    {
+      "name": "玫瑰龙数值变化仍保留原色",
+      "source": ["§7Grants §6+1.52☘ Farming Fortune §7per", "§aFarming §7level."],
+      "consumed": 2,
+      "expected": "§7每有 1 级§a农业§7等级，获得 §6+1.52 ☘ 农业时运§7。"
+    },
+    {
+      "name": "女巫面具实测三千伤害与岛屿限制",
+      "source": ["§7Summons two bats that will follow you", "§7and attack nearby enemies, dealing", "§c3,000 §7damage upon exploding. Your", "§7bats will not spawn on your island."],
+      "consumed": 4,
+      "expected": "§7召唤两只蝙蝠跟随你并攻击附近敌人，爆炸时造成 §c3,000 §7点伤害。蝙蝠不会在你的私人岛屿上生成。"
+    },
+    {
+      "name": "女巫面具兼容Wiki四千伤害",
+      "source": ["§7Summons two bats that will follow you and attack nearby enemies, dealing §c4,000 §7damage upon exploding. Your bats will not spawn on your island."],
+      "consumed": 1,
+      "expected": "§7召唤两只蝙蝠跟随你并攻击附近敌人，爆炸时造成 §c4,000 §7点伤害。蝙蝠不会在你的私人岛屿上生成。"
+    },
+    {
+      "name": "速度时长二十秒",
+      "source": ["§f+30✦ Speed", "§7for §a20 §7seconds."],
+      "consumed": 2,
+      "expected": "§f+30 ✦ 速度§7，持续 §a20 §7秒。"
+    },
+    {
+      "name": "速度时长变化不写死",
+      "source": ["§f+45✦ Speed", "§7for §a12 §7seconds."],
+      "consumed": 2,
+      "expected": "§f+45 ✦ 速度§7，持续 §a12 §7秒。"
+    },
+    {
+      "name": "近战重铸不能误译成农具",
+      "source": ["§7Applies the §9Dirty §7reforge when", "§7combined with a melee weapon."],
+      "consumed": 2,
+      "expected": "§7与近战武器合并后，施加§9污秽§7重铸。"
+    },
+    {
+      "name": "羽毛饰品两个数值均保留",
+      "source": ["§7Increases how high you can fall", "§7before taking fall damage by §a7", "§7blocks. Fall damage is also reduced", "§7by §a10%§7."],
+      "consumed": 4,
+      "expected": "§7安全下落高度增加 §a7 §7格，摔落伤害降低 §a10%§7。"
+    },
+    {
+      "name": "博物馆农具型号II",
+      "surface": "GUI_Item",
+      "source": ["§cEclipse Sickle Mk. II"],
+      "expected": "§c日蚀镰刀 Mk. II"
+    },
+    {
+      "name": "博物馆农具型号III与人名",
+      "surface": "GUI_Item",
+      "source": ["§cNewton Nether Wart Cutter Mk. III"],
+      "expected": "§cNewton 下界疣切割器 Mk. III"
+    },
+    {
+      "name": "队伍备注任意标点保留原文",
+      "surface": "GUI_Item",
+      "source": ["§7Note: §fknow roles! S+?"],
+      "expected": "§7备注: §fknow roles! S+?"
+    },
+    {
+      "name": "复合句中带句点物品名仍匹配",
+      "surface": "GUI_Item",
+      "source": [" §a1§7x §5L.A.S.R.'s Eye §7for §61,575,001 coins"],
+      "expected": " §a1§7个§5 L.A.S.R.'s Eye §7共 §61,575,001 硬币"
+    },
+    {
+      "name": "Wise采用用户最终智慧译名且汉字不留空格",
+      "surface": "GUI_Item",
+      "source": ["§6Wise Young Dragon Helmet"],
+      "expected": "§6智慧幼龙头盔"
+    }
+  ]
+}

@@ -12,6 +12,7 @@ import io.github.bingkkni.skyzh.capture.CapturedLine;
 import io.github.bingkkni.skyzh.capture.ChatShape;
 import io.github.bingkkni.skyzh.capture.Classifier;
 import io.github.bingkkni.skyzh.capture.LegacyText;
+import io.github.bingkkni.skyzh.capture.HologramSnapshot;
 import io.github.bingkkni.skyzh.capture.Unplaced;
 import io.github.bingkkni.skyzh.hook.NameTag;
 import io.github.bingkkni.skyzh.text.LineShape;
@@ -21,6 +22,7 @@ import io.github.bingkkni.skyzh.text.TranslationEntry;
 import io.github.bingkkni.skyzh.text.TranslationIndex;
 import io.github.bingkkni.skyzh.text.TranslationLoader;
 import io.github.bingkkni.skyzh.text.Translator;
+import io.github.bingkkni.skyzh.text.Surface;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -59,7 +61,9 @@ public final class CaptureHarness {
 		templates();
 		chatShapes();
 		verdicts();
+		preservedText(corpus);
 		holograms();
+		hologramScenes();
 		names();
 		layout();
 		clearing();
@@ -133,6 +137,14 @@ public final class CaptureHarness {
 		check("观测到的宝石名", rendered.placeholders().getFirst().observed().size(), 4);
 		check("观测到的数量", String.join(",", rendered.placeholders().get(1).observed()), "23,24,22,19,38");
 		check("出现次数", line.count(), 5);
+		JsonObject saved = CaptureWriter.record(line);
+		var concrete = CaptureReplay.concreteSamples(saved, line.render().encoded().raw());
+		check("完整采集样本上限为三条", concrete.size(), 3);
+		check("样本保留真实宝石与数量配对", concrete.get(2),
+			LegacyText.encode(styled(PRISTINE.formatted("Aquamarine", "22"))).raw());
+		check("不凭observed拼造宝石数量组合", concrete.stream().noneMatch(x -> x.contains("Aquamarine") && x.contains("x23")), true);
+		saved.getAsJsonObject("_capture").remove("raw_samples");
+		check("旧模板没有完整样本仍不回放", CaptureReplay.concreteSamples(saved, line.render().encoded().raw()).isEmpty(), true);
 
 		// The digit rule. x23 and x24 share "x2" as characters; only the "x" is the sentence.
 		CapturedLine two = capture("You found x23!");
@@ -361,6 +373,45 @@ public final class CaptureHarness {
 		mixed();
 	}
 
+	/** Preserving English affects capture only, and never hides an unknown list member or sentence. */
+	private static void preservedText(Path corpus) throws Exception {
+		var expected = new java.util.HashSet<String>();
+		var files = TranslationHarness.readCorpus(corpus);
+		for (String file : List.of("_shared/Enchantments.json", "Hub_General/GUI_Item/Enchantment_Names.json")) {
+			for (var element : files.get(file).getAsJsonArray("lines")) {
+				var entry = element.getAsJsonObject();
+				if (!entry.has("translate") || entry.get("translate").getAsBoolean() || !entry.has("text")) continue;
+				String name = entry.get("text").getAsString().replaceFirst(" %(?:\\d+\\$)?s$", "");
+				if (name.matches("[A-Za-z][A-Za-z' -]*")) expected.add(name);
+			}
+		}
+		for (String crop : List.of("Wheat", "Carrot", "Potato", "Pumpkin", "Melon", "Mushrooms", "Cocoa",
+			"Cacti", "Cane", "Warts", "Sunflower", "Moonflower", "Rose")) expected.add("Turbo-" + crop);
+		check("采集保留名单与明确保留英文的附魔语料一致",
+			io.github.bingkkni.skyzh.capture.PreservedText.enchantmentNames().equals(expected), true);
+		checkNothing("计分板网址不重复采集", CaptureSurface.SCOREBOARD, " §ewww.hypixel.net ");
+		checkVerdict("不屏蔽包含网址的句子", CaptureSurface.SCOREBOARD,
+			"Visit www.hypixel.net for help", Classifier.Bucket.UNTRANSLATED);
+		checkVerdict("网址排除不扩展到聊天", CaptureSurface.CHAT_MESSAGE,
+			"www.hypixel.net", Classifier.Bucket.UNTRANSLATED);
+		checkNothing("非原版附魔单行不重复采集", CaptureSurface.GUI_ITEM, "§9Growth V");
+		checkNothing("非原版附魔裸名不重复采集", CaptureSurface.GUI_ITEM, "§9Growth");
+		checkNothing("附魔计数动态变化仍被识别", CaptureSurface.GUI_ITEM, "§9Cultivating V §8176,473");
+		checkNothing("增产附魔精确家族", CaptureSurface.GUI_ITEM, "§9Turbo-Carrot V");
+		checkNothing("非原版附魔组合不重复采集", CaptureSurface.GUI_ITEM, "§d§lDuplex V, §9Chance IV, Cubism V");
+		checkNothing("原版和非原版附魔混合列表正常覆盖", CaptureSurface.GUI_ITEM, "§9Power V, Snipe III, Punch II");
+		checkVerdict("列表中的未知附魔仍报告", CaptureSurface.GUI_ITEM,
+			"§9Power V, Unverified Enchantment III", Classifier.Bucket.UNTRANSLATED);
+		checkVerdict("附魔效果句不被名称名单吞掉", CaptureSurface.GUI_ITEM,
+			"Growth grants an unverified bonus.", Classifier.Bucket.UNTRANSLATED);
+		checkVerdict("未知Turbo后缀仍报告", CaptureSurface.GUI_ITEM,
+			"Turbo-Unknown V", Classifier.Bucket.UNTRANSLATED);
+		checkVerdict("附魔忽略不扩展到聊天正文", CaptureSurface.CHAT_MESSAGE,
+			"Growth V", Classifier.Bucket.UNTRANSLATED);
+		check("附魔采集排除不更改原文与不同颜色", TranslationHarness.legacy(
+			Translator.translateLine(Component.literal("§9Growth §d§lV"), Surface.ITEM)), "§9Growth §d§lV");
+	}
+
 	/** Hologram capture follows the same boundary as hologram rendering. */
 	private static void holograms() {
 		check("实体共享标志字节会重新检查 Hologram", NameTag.metadataAffectsHologram(0), true);
@@ -387,7 +438,141 @@ public final class CaptureHarness {
 		checkNothing("NPC 专名在分类兜底处也不会伪报", CaptureSurface.HOLOGRAM,
 			"§aJotraeline Greatforge");
 		checkVerdict("未知职务浮空字会进入未翻译采集", CaptureSurface.HOLOGRAM,
-			"§e§lDRILL MECHANIC", Classifier.Bucket.UNTRANSLATED);
+			"§e§lUNRECORDED MECHANIC", Classifier.Bucket.UNTRANSLATED);
+		checkNothing("宠物等级浮空字不生成翻译任务", CaptureSurface.HOLOGRAM, "§8[§7Lv93§8] §dEnderman");
+		checkNothing("竞速玩家榜不生成翻译任务", CaptureSurface.HOLOGRAM, "1. ExamplePlayer - 00:01.872");
+		for (String rank : List.of("YOUTUBE", "ADMIN", "HELPER", "MOD", "GM", "MVP++")) {
+			checkNothing("特殊 Rank 玩家名不采集 " + rank, CaptureSurface.HOLOGRAM, "§c[" + rank + "] ExamplePlayer");
+		}
+		check("已收录的绿色职务不按专名排除", NameTag.eligible(Component.literal("§aLift Operator")), true);
+		check("怪物通名复用词表", NameTag.mobName(Component.literal("§8[Lv100] §cGlacite Mutt §a12,345§c❤")).getString(),
+			"[Lv100] 极冰野狗 12,345❤");
+		check("怪物血量变化不影响名字翻译", NameTag.mobName(Component.literal("§cGlacite Mutt §e3.5M/5M§c❤")).getString(),
+			"极冰野狗 3.5M/5M❤");
+		Component proper = Component.literal("§cYog §a100§c❤");
+		check("怪物专名保持原组件", NameTag.mobName(proper) == proper, true);
+		check("通名替换不染色等级血量及私用区图标", TranslationHarness.legacy(NameTag.mobName(
+			Component.literal("§8[Lv100] §cGlacite Mutt §a12,345§c\uE010"))),
+			"§8[Lv100] §c极冰野狗 §a12,345§c\uE010");
+		Component unknown = Component.literal("§cUnverified Creature §a100§c❤");
+		check("未知生物不进行逐词猜译", NameTag.mobName(unknown) == unknown, true);
+		check("无血量宠物名字不走怪物通名路径", NameTag.mobName(Component.literal("[Lv100] Glacite Mutt")).getString(),
+			"[Lv100] Glacite Mutt");
+		// The corpus's NPC list, not colour, is what makes a nameplate a nameplate.
+		check("语料里的 NPC 人名不分颜色一律排除", NameTag.eligible(Component.literal("§bMort")), false);
+		check("白色 NPC 人名同样排除", NameTag.eligible(Component.literal("Rosetta")), false);
+		checkNothing("NPC 人名浮空字不生成翻译任务", CaptureSurface.HOLOGRAM, "§cMalik");
+		check("有浮空字记录的职务名照常翻译", TranslationHarness.legacy(
+			Translator.translateLine(Component.literal("§aLift Operator"), Surface.HOLOGRAM)), "§a升降梯管理员");
+		check("玩家名形状的单词排除: 小写开头", NameTag.eligible(Component.literal("§binkkni")), false);
+		check("玩家名形状的单词排除: 含数字", NameTag.eligible(Component.literal("§7LittlePecker2")), false);
+		check("玩家名形状的单词排除: 中间大写", NameTag.eligible(Component.literal("§7ZillPap")), false);
+		check("大写整词不是玩家名", NameTag.eligible(Component.literal("§e§lHOTSPOT")), true);
+		check("首字母大写的普通词不是玩家名", NameTag.eligible(Component.literal("§aStart")), true);
+
+		// A museum display label is an item name drawn as a hologram; the exact item record answers.
+		check("浮空字借用精确的物品名记录", TranslationHarness.legacy(
+			Translator.translateLine(Component.literal("§6Wise Young Dragon Helmet"), Surface.HOLOGRAM)), "§6智慧幼龙头盔");
+		checkNothing("借到物品名的浮空字不再报未翻译", CaptureSurface.HOLOGRAM, "§6Wise Young Dragon Helmet");
+		checkVerdict("浮空字不借用物品模板", CaptureSurface.HOLOGRAM,
+			"§9Requires Unrecorded Thing", Classifier.Bucket.UNTRANSLATED);
+		checkVerdict("没有记录的浮空字仍然采集", CaptureSurface.HOLOGRAM,
+			"§9Unrecorded Display Label", Classifier.Bucket.UNTRANSLATED);
+
+		// translate: false is a decision, and capture stops asking about it — on that surface only.
+		checkNothing("translate:false 的整行不再采集", CaptureSurface.BOSS_BAR, "§c§lThe Watcher");
+		checkVerdict("translate:false 只作用于本渲染面", CaptureSurface.CHAT_MESSAGE,
+			"§c§lThe Watcher", Classifier.Bucket.UNTRANSLATED);
+		check("BossBar 保留原文数已加载", Translator.index().preservedCount(Surface.BOSS_BAR) > 0, true);
+	}
+
+	private static void hologramScenes() throws Exception {
+		var target = new HologramSnapshot.Row(1, -0.1, 70, 0, styled("§eUNRECORDED DISPLAY"));
+		var above = new HologramSnapshot.Row(2, 0.1, 70.3, 0, styled("§cREADY"));
+		var far = new HologramSnapshot.Row(3, 2, 70, 0, styled("Unrelated"));
+		var scene = new HologramSnapshot.Index(List.of(target, above, far)).around(target);
+		check("Hologram 跨空间桶寻找相邻行", scene.neighbours().size(), 2);
+		check("Hologram 按显示高度从上到下排列", scene.neighbours().getFirst().entityId(), 2);
+		check("Hologram 明确不把相邻行当完整段落", scene.json().get("kind").getAsString(), "spatial_neighbours_not_confirmed_paragraph");
+		check("Hologram 保留相邻行颜色", scene.json().getAsJsonArray("rows_top_to_bottom").get(0).getAsJsonObject().get("raw").getAsString(), "§cREADY");
+		var recoloured = new HologramSnapshot.Row(2, 0.1, 70.3, 0, styled("§aREADY"));
+		var next = new HologramSnapshot.Index(List.of(target, recoloured)).around(target);
+		check("Hologram 纯颜色变化不被当作重复", !scene.signature().equals(next.signature()), true);
+		check("Hologram 相同观测签名稳定", scene.signature(), new HologramSnapshot.Index(List.of(far, above, target)).around(target).signature());
+		var crowded = new java.util.ArrayList<HologramSnapshot.Row>();
+		crowded.add(target);
+		for (int i = 0; i < 20; i++) crowded.add(new HologramSnapshot.Row(10 + i, -0.1, 70 + i * 0.02, 0, styled("Row " + i)));
+		var limited = new HologramSnapshot.Index(crowded).around(target);
+		check("Hologram 相邻行数量有界", limited.neighbours().size(), 12);
+		check("Hologram 截断显式标记", limited.truncated(), true);
+		check("Hologram 截断仍保留目标行", limited.neighbours().contains(target), true);
+		var exactTwelve = new HologramSnapshot(target, limited.neighbours(), false);
+		check("第十三行仅改变截断标记也触发新观测", !exactTwelve.signature().equals(limited.signature()), true);
+		CapturedLine truncatedLine = new CapturedLine(CaptureSurface.HOLOGRAM, target.text(), "",
+			Classifier.of(CaptureSurface.HOLOGRAM, target.text()), "Museum", 1);
+		truncatedLine.hologram(exactTwelve, 1, "Museum");
+		truncatedLine.hologram(limited, 2, "Museum");
+		check("同长度场景更新截断标记", truncatedLine.holograms().getFirst().get("truncated").getAsBoolean(), true);
+		var replacedRows = new java.util.ArrayList<>(limited.neighbours());
+		var replaced = replacedRows.getFirst();
+		replacedRows.set(0, new HologramSnapshot.Row(999, replaced.x(), replaced.y(), replaced.z(), styled("Late row")));
+		truncatedLine.hologram(new HologramSnapshot(target, replacedRows, true), 3, "Museum");
+		check("同数量新邻行更新旧场景", truncatedLine.holograms().getFirst().getAsJsonArray("rows_top_to_bottom")
+			.get(0).getAsJsonObject().get("entity_id").getAsInt(), 999);
+		check("邻行更新不增加场景名额", truncatedLine.holograms().size(), 1);
+		CapturedLine captured = new CapturedLine(CaptureSurface.HOLOGRAM, target.text(), "",
+			Classifier.of(CaptureSurface.HOLOGRAM, target.text()), "Museum", 1);
+		captured.hologram(new HologramSnapshot.Index(List.of(target)).around(target), 1, "Museum");
+		captured.hologram(scene, 2, "Museum");
+		captured.hologram(next, 3, "Museum");
+		check("迟到的相邻元数据补全首个场景", captured.holograms().getFirst().getAsJsonArray("rows_top_to_bottom").size(), 2);
+		check("同位置动态变化不占更多场景", captured.holograms().size(), 1);
+		var keyMethod = io.github.bingkkni.skyzh.capture.TextCapture.class.getDeclaredMethod(
+			"hologramKey", HologramSnapshot.class, String.class, String.class);
+		keyMethod.setAccessible(true);
+		String museumKey = (String) keyMethod.invoke(null, scene, "Hub_General", "Museum");
+		String hubKey = (String) keyMethod.invoke(null, scene, "Hub_General", "Hub");
+		check("同玩法跨区域场景不走重复观测分支", !museumKey.equals(hubKey), true);
+		check("同区域相同观测继续去重", museumKey,
+			keyMethod.invoke(null, scene, "Hub_General", "Museum"));
+		captured.hologram(scene, 4, "Hub");
+		check("同物理位置保留第二观察区域", captured.holograms().size(), 2);
+		check("第二观察区域不会被第一场景覆盖", captured.holograms().get(1).get("observer_area").getAsString(), "Hub");
+		for (int i = 1; i <= 5; i++) {
+			var moved = new HologramSnapshot.Row(100 + i, i * 10, 70, 0, target.text());
+			captured.hologram(new HologramSnapshot.Index(List.of(moved)).around(moved), 3 + i, "Museum");
+		}
+		check("每条记录最多保留三个物理场景", captured.holograms().size(), 3);
+		captured.holograms().getFirst().addProperty("target_entity", -1);
+		check("场景导出不泄漏可变内部JSON", captured.holograms().getFirst().get("target_entity").getAsInt(), 1);
+		check("场景采集距离包含边界", target.near(-0.1, 70, 32), true);
+		check("场景采集距离排除远处", target.near(-0.1, 70, 33), false);
+		checkVerdict("精确菜单说明不能借作物品名浮空字", CaptureSurface.HOLOGRAM,
+			"§fThis item can be reforged!", Classifier.Bucket.UNTRANSLATED);
+		var idsField = io.github.bingkkni.skyzh.capture.TextCapture.class.getDeclaredField("HOLOGRAM_ENTITIES");
+		idsField.setAccessible(true);
+		@SuppressWarnings("unchecked")
+		var ids = (java.util.Set<Integer>) idsField.get(null);
+		var remember = io.github.bingkkni.skyzh.capture.TextCapture.class.getDeclaredMethod("rememberHologram", int.class);
+		remember.setAccessible(true);
+		boolean wasEnabled = SkyZHConfig.get().captureUntranslated;
+		try {
+			ids.clear();
+			SkyZHConfig.get().captureUntranslated = false;
+			remember.invoke(null, 777);
+			io.github.bingkkni.skyzh.capture.TextCapture.hologramLevel(null);
+			io.github.bingkkni.skyzh.capture.TextCapture.tick();
+			check("采集关闭期间保留包来源实体ID", ids.contains(777), true);
+			SkyZHConfig.get().captureUntranslated = true;
+			io.github.bingkkni.skyzh.capture.TextCapture.hologramLevel(null);
+			check("重新开启仍有静态Hologram追踪", ids.contains(777), true);
+			SkyZHConfig.get().captureUntranslated = false;
+			for (int i = 0; i < 5000; i++) remember.invoke(null, i);
+			check("关闭期间追踪仍有4096上限", ids.size(), 4096);
+		} finally {
+			ids.clear();
+			SkyZHConfig.get().captureUntranslated = wasEnabled;
+		}
 	}
 
 	/** The second pile: a record answered and the line still came out half English. */

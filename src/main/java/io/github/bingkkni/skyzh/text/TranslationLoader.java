@@ -156,11 +156,23 @@ public final class TranslationLoader {
 				continue;
 			}
 
-			for (JsonObject record : records(files.get(relative))) {
+			JsonObject file = files.get(relative);
+
+			if (parts.length >= 3 && "NPC_Message".equalsIgnoreCase(parts[parts.length - 2])) {
+				npcNames(file, index);
+			}
+
+			for (JsonObject record : records(file)) {
 				JsonObject source = resolve(record, byReference);
 				TranslationEntry entry = compile(record, relative, byReference);
 
 				if (entry == null) {
+					if (source.has("translate") && !source.get("translate").getAsBoolean()) {
+						// Decided, not forgotten: the corpus keeps this line in English on purpose, so
+						// capture must stop reporting it as missing every session. Exact lines only.
+						index.preserve(surface, template(source));
+					}
+
 					if (translated(source)) {
 						// It has Chinese in it and still would not compile, which leaves only one
 						// reason: a template with no word of its own, matching every line on its
@@ -185,6 +197,25 @@ public final class TranslationLoader {
 			files.size(), compiled, skipped);
 
 		return index;
+	}
+
+	/**
+	 * The NPC an NPC_Message file belongs to, plus any rotating aliases ({@code King.json} names seven).
+	 *
+	 * <p>A proper name is text the project keeps in English, and a hologram that is nothing but one of
+	 * these names is an NPC's nameplate — not a line anybody will translate. Kept on the index so the
+	 * hologram capture can tell a nameplate from a role label without a colour heuristic.
+	 */
+	private static void npcNames(JsonObject file, TranslationIndex index) {
+		index.npcName(string(file, "npc"));
+
+		if (file.has("aliases") && file.get("aliases").isJsonArray()) {
+			for (JsonElement alias : file.getAsJsonArray("aliases")) {
+				if (alias.isJsonPrimitive()) {
+					index.npcName(alias.getAsString());
+				}
+			}
+		}
 	}
 
 	/** Top-level members that hold records: arrays of objects with an {@code id}, plus a lone {@code name} object. */

@@ -165,6 +165,11 @@ public final class CaptureWriter {
 			}
 
 			capture.add("observed", observed);
+			if (!line.rawSamples().isEmpty()) {
+				JsonArray samples = new JsonArray();
+				line.rawSamples().forEach(samples::add);
+				capture.add("raw_samples", samples);
+			}
 		}
 
 		// Spelled out only when there is something invisible to spell — a private-use icon, a
@@ -179,6 +184,16 @@ public final class CaptureWriter {
 		if (rendered.encoded().lossy()) {
 			capture.addProperty("legacy_codes_lossy", true);
 			capture.add("style_runs", LegacyText.styleRuns(rendered.encoded().runs()));
+		}
+
+		if (!line.holograms().isEmpty()) {
+			JsonArray scenes = new JsonArray();
+			line.holograms().forEach(scenes::add);
+			capture.add("hologram_contexts", scenes);
+			capture.addProperty("hologram_context_note",
+				"同次观测的邻近服务器盔甲架，按高度从上到下排列；坐标为实体位置。"
+					+ "observer_area 是玩家所在地，不是文字所在地；相邻不代表一定属于同一段落。"
+					+ "专名或已译行仅作上下文，不表示需要新增翻译。");
 		}
 
 		explain(capture, line.verdict());

@@ -2,8 +2,10 @@
   "source": "https://hypixelskyblock.minecraft.wiki/w/Vulcan",
   "fetched_at": "2026-09-01",
   "verified_ingame": false,
-  "source_note": "原文逐字取自 Hypixel SkyBlock 社区 Wiki 普通页面 DOM 的 Dialogue 表格；Wiki 明示的游戏内拼写或语法错误按原文保留。页面 DOM 不足以证明服务器颜色码，因此不臆测 raw/segments，待实机触发后再补颜色。",
+  "source_note": "社区 Wiki 普通页面核对对话语境；首次交互原文及颜色以 logs/skyzh-capture 为准。Because 一句的省略号后空格与 Wiki 不同，采用实测。未实测的其他台词不臆造颜色。",
   "npc": "Vulcan",
+  "note": "身份：绯红精华商人。关系：试探玩家实力后推销升级。语言：直率、随意。性格：自信，爱打趣。风格：不写成考评或公文。首次对话颜色已用本轮实测补齐。",
+  "wiki_last_edited": "2026-09-03",
   "messages": [
     {
       "id": "vulcan_message_do_you_really_have_what_it_takes_to_fight_kuudra",
@@ -12,12 +14,15 @@
       "placeholders": [],
       "gloss": "「具备……的实力」是考评用语，have what it takes 是句大白话。",
       "translate": true,
-      "zh": "你真有那个本事去打 Kuudra 吗?"
+      "zh": "你真有那个本事去打 Kuudra 吗?",
+      "raw": "§fDo you really have what it takes to fight §cKuudra§f?",
+      "segments": [{"color":"§f","text":"Do you really have what it takes to fight ","zh":"你真有那个本事去打 "},{"color":"§c","text":"Kuudra","zh":"Kuudra"},{"color":"§f","text":"?","zh":" 吗?"}]
     },
     {
       "id": "vulcan_message_because_if_you_dont_i_have_exactly_what_you_need",
       "context": "首次交互",
-      "text": "Because if you don't... I have exactly what you need!",
+      "text": "Because if you don't...I have exactly what you need!",
+      "raw": "§fBecause if you don't...I have exactly what you need!", 
       "placeholders": [],
       "gloss": "",
       "translate": true,
@@ -30,7 +35,9 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "我是负责绯红精华的人，不过你可以叫我 Vulcan。"
+      "zh": "我是负责绯红精华的人，不过你可以叫我 Vulcan。",
+      "raw": "§fI'm the §dCrimson Essence §fguy, but you can call me §cVulcan§f.",
+      "segments": [{"color":"§f","text":"I'm the ","zh":"我是负责"},{"color":"§d","text":"Crimson Essence ","zh":"绯红精华"},{"color":"§f","text":"guy, but you can call me ","zh":"的人，不过你可以叫我 "},{"color":"§c","text":"Vulcan","zh":"Vulcan"},{"color":"§f","text":".","zh":"。"}]
     },
     {
       "id": "vulcan_abiphone_phone_nice_to_see_youre_still_alive_and_kicking",

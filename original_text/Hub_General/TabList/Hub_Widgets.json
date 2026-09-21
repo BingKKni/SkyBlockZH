@@ -25,19 +25,19 @@
     {
       "id": "tab_row_starts_in_hours",
       "context": "活动倒计时的小时变体,标签和数值在同一行(2026-08-30 实测宾果活动开始前的主城 Tab 列表)",
-      "raw": " Starts In: §e21h",
-      "text": "Starts In: %1$sh",
+      "raw": "Starts In: §e%1$s",
+      "text": "Starts In: %1$s",
       "placeholders": [
         {
           "token": "%1$s",
-          "desc": "距活动开始的小时数",
-          "type": "number",
-          "example": "21"
+          "desc": "距活动开始的时长，单位随剩余时间变化",
+          "type": "duration_spaced",
+          "example": "21h"
         }
       ],
-      "gloss": "和上面的 tab_row_starts_in 不是同一行:那条只有标签(小写 in、没有数值),本条大写 In 且带小时数。h 是 hours 的缩写,中文补出单位。倒计时标签统一写作「距开始」,数值后不再加「后」。行首空格是 Tab 列表缩进。",
+      "gloss": "时长整体捕获，兼容天、小时、分钟、秒及组合；数字与单位留空格。大小写不同的标签另有模板。用户要求活动倒计时不保留英文单位。",
       "translate": true,
-      "zh": "距开始: %1$s 小时",
+      "zh": "距开始: %1$s",
       "segments": [
         {
           "color": "",
@@ -46,8 +46,8 @@
         },
         {
           "color": "§e",
-          "text": "%1$sh",
-          "zh": "%1$s 小时"
+          "text": "%1$s",
+          "zh": "%1$s"
         }
       ]
     },

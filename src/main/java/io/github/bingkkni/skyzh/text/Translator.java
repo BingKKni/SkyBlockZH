@@ -190,7 +190,33 @@ public final class Translator {
 			);
 		}
 
+		TranslationEntry borrowed = borrowed(surface, plain);
+		Matcher match = borrowed == null ? null : borrowed.match(plain);
+
+		if (match != null) {
+			return new Result(
+				skyBlockName(borrowed.render(styled, match, index.terms()), config), null, null, borrowed, styled, match
+			);
+		}
+
 		return new Result(skyBlockNameAlone(source, styled, config), null, null, null);
+	}
+
+	/**
+	 * A record from another surface that is allowed to answer for this line, or {@code null}.
+	 *
+	 * <p>The museum hangs an item's name in the air above its display case, and the Bazaar and pet
+	 * shops do the same over their stands: the text is an item name, drawn as a hologram. Writing every
+	 * item name a second time into {@code Hologram/} would be the value enumeration the corpus forbids,
+	 * so a hologram nothing of its own answers for borrows the item name — and only the exact one
+	 * confirmed by the offline item catalog. ITEM also contains menu labels and old lore fragments,
+	 * which are not safe to borrow just because they happen to be exact records. The
+	 * item surface's templates ({@code %s Sword}) are the ones that swallow half-sentences, and a
+	 * hologram is where a half-sentence wrongly drawn as an item name would sit in the world for good.
+	 */
+	private static TranslationEntry borrowed(Surface surface, String plain) {
+		return surface == Surface.HOLOGRAM && ItemNames.canonical(plain) != null
+			? index.lookupExact(Surface.ITEM, plain.trim()) : null;
 	}
 
 	/**
@@ -238,6 +264,13 @@ public final class Translator {
 			if (match != null) {
 				return new Located(entry, core, match);
 			}
+		}
+
+		TranslationEntry borrowed = borrowed(surface, plain);
+		Matcher match = borrowed == null ? null : borrowed.match(plain);
+
+		if (match != null) {
+			return new Located(borrowed, styled, match);
 		}
 
 		return new Located(null, styled, null);

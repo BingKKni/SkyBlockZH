@@ -54,7 +54,14 @@ public final class MinifiedCorpusCheck {
 		for (Surface surface : Surface.values()) {
 			check("渲染面 " + surface + " 的记录数一致",
 				String.valueOf(authored.size(surface)), String.valueOf(shipped.size(surface)));
+			// translate: false lines are not records, so the count above never sees them; a minifier
+			// that dropped them would silently turn the capture's "already decided" filter off.
+			check("渲染面 " + surface + " 的保留原文数一致",
+				String.valueOf(authored.preservedCount(surface)), String.valueOf(shipped.preservedCount(surface)));
 		}
+
+		check("NPC 人名数一致", String.valueOf(authored.npcNameCount()), String.valueOf(shipped.npcNameCount()));
+		check("精简后仍认得 NPC 人名 Bubu", String.valueOf(authored.isNpcName("Bubu")), String.valueOf(shipped.isNpcName("Bubu")));
 
 		// The word "SkyBlock" and the value dictionary are read by name rather than walked with the
 		// records, so a stripped key there would go unnoticed by a count. Compared by what they draw

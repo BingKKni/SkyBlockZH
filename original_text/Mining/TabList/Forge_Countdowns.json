@@ -1,0 +1,28 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/The_Forge",
+  "verified_ingame": true,
+  "lines": [
+    {
+      "id": "tab_forge_gemstone_countdown",
+      "context": "Tab 锻造炉：槽位、宝石图标、品质与剩余时间；logs/1.png",
+      "text": "%1$s) %2$s %3$s %4$s Gemstone: %5$s",
+      "raw": "§f%1$s) §6%2$s %3$s %4$s Gemstone§f: §b%5$s",
+      "placeholders": [
+        {"token": "%1$s", "type": "number", "desc": "槽位", "example": "1"},
+        {"token": "%2$s", "type": "icon", "desc": "宝石图标", "example": "☘"},
+        {"token": "%3$s", "type": "raw", "desc": "宝石品质，沿用词表", "example": "Perfect"},
+        {"token": "%4$s", "type": "item_name", "desc": "宝石种类保留英文", "example": "Citrine"},
+        {"token": "%5$s", "type": "duration_spaced", "desc": "完整剩余时长，包括相连或空格分隔的组合单位", "example": "19h"}
+      ],
+      "gloss": "用户拍板：19h 作 19 小时，3m、56s、3m41s 等同样翻译单位；不把时长当成纯数值。",
+      "translate": true,
+      "zh": "%1$s) %2$s %3$s %4$s 宝石：%5$s",
+      "segments": [
+        {"color": "§f", "text": "%1$s) ", "zh": "%1$s) "},
+        {"color": "§6", "text": "%2$s %3$s %4$s Gemstone", "zh": "%2$s %3$s %4$s 宝石"},
+        {"color": "§f", "text": ": ", "zh": "："},
+        {"color": "§b", "text": "%5$s", "zh": "%5$s"}
+      ]
+    }
+  ]
+}

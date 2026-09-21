@@ -135,6 +135,9 @@ public final class ClientSettingsHarness {
 		Component tag = Component.literal("CLICK");
 		check("未验证连接的浮空字原样返回", NameTag.translate(tag, true) == tag, true);
 		check("非盔甲架名牌原样返回", NameTag.translate(tag, false) == tag, true);
+		Component mob = Component.literal("§cGlacite Mutt §a100§c❤");
+		check("未验证连接的活体怪物名也原样返回", NameTag.translate(mob, false, true) == mob, true);
+		check("玩家形状不进入怪物通名路径", NameTag.translate(mob, false, false) == mob, true);
 		check("未验证连接的侧边栏不翻译", SidebarText.row(null, Component.literal("SKYBLOCK")).getString(), "SKYBLOCK");
 
 		// A stale SKYBLOCK capture flag must not bypass the live hello + sidebar boundary.

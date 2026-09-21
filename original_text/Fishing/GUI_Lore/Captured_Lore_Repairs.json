@@ -1,0 +1,64 @@
+{
+  "source": "logs/skyzh-capture/incomplete；https://hypixelskyblock.minecraft.wiki/w/Ice_Bait; https://hypixelskyblock.minecraft.wiki/w/Icy_Sinker",
+  "verified_ingame": true,
+  "note": "实测原文与颜色；社区 Wiki 核对语境。完整句优先匹配，未包含的下一行不吞掉。",
+  "records": [
+    {
+      "id": "winter_creature_chance_whole",
+      "context": "Jerry 季期间钓到冬季海洋生物的几率加成",
+      "raw": "§7Increases your chance to catch Winter Sea Creatures during the §cSeason of Jerry §7by §a%1$s%%§7.",
+      "text": "Increases your chance to catch Winter Sea Creatures during the Season of Jerry by %1$s%%.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "实时数值",
+          "type": "number",
+          "example": "35"
+        }
+      ],
+      "gloss": "社区 Wiki Ice Bait 与 Icy Sinker 于 2026-09-08 更新，历史指出 2026-03 已移除冬季生物权重加成；本轮箱子仍有 20% / 35% 旧说明，按实测保留。新版效果已有独立正文，不用 Wiki 新机制改写这段旧原文。", 
+      "translate": true,
+      "zh": "Jerry 季期间，钓到冬季海洋生物的几率提高 %1$s%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increases your chance to catch Winter Sea Creatures during the ",
+          "zh": "期间，钓到冬季海洋生物的几率提高 ",
+          "order": 1
+        },
+        {
+          "color": "§c",
+          "text": "Season of Jerry ",
+          "zh": "Jerry 季",
+          "order": 0
+        },
+        {
+          "color": "§7",
+          "text": "by ",
+          "zh": "",
+          "order": 2,
+          "omit": true
+        },
+        {
+          "color": "§a",
+          "text": "%1$s%%",
+          "zh": "%1$s%",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。",
+          "order": 4
+        }
+      ],
+      "samples": [
+        [
+          "§7Increases your chance to catch",
+          "§7Winter Sea Creatures during the",
+          "§cSeason of Jerry §7by §a35%§7."
+        ]
+      ]
+    }
+  ]
+}

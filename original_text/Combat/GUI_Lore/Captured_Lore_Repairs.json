@@ -1,0 +1,158 @@
+{
+  "source": "logs/skyzh-capture/incomplete；https://hypixelskyblock.minecraft.wiki/w/Weird_Tuba; https://hypixelskyblock.minecraft.wiki/w/Witch_Mask; https://hypixelskyblock.minecraft.wiki/w/Feather_Artifact",
+  "verified_ingame": true,
+  "note": "实测原文与颜色；社区 Wiki 核对语境。完整句优先匹配，未包含的下一行不吞掉。",
+  "records": [
+    {
+      "id": "tuba_speed_duration",
+      "context": "怪异大号的速度加成与持续时间；不合并其他属性行",
+      "raw": "§f%1$s✦ Speed§7 for §a%2$s §7seconds.",
+      "text": "%1$s✦ Speed for %2$s seconds.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "实时数值",
+          "type": "number",
+          "example": "+30"
+        },
+        {
+          "token": "%2$s",
+          "desc": "实时数值",
+          "type": "number",
+          "example": "20"
+        }
+      ],
+      "gloss": "Wiki 为包含力量的完整技能段落；实测这两行只含速度和时长，按实测保留，不把另一属性行吞入。",
+      "translate": true,
+      "zh": "%1$s ✦ 速度，持续 %2$s 秒。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "%1$s✦ Speed",
+          "zh": "%1$s ✦ 速度"
+        },
+        {
+          "color": "§7",
+          "text": " for ",
+          "zh": "，持续 "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s ",
+          "zh": "%2$s "
+        },
+        {
+          "color": "§7",
+          "text": "seconds.",
+          "zh": "秒。"
+        }
+      ],
+      "samples": [
+        [
+          "§7 §f+30 Speed",
+          "§7for §a20 §7seconds."
+        ]
+      ]
+    },
+    {
+      "id": "witch_mask_bats_whole",
+      "context": "女巫面具蝙蝠攻击与私人岛屿限制",
+      "raw": "§7Summons two bats that will follow you and attack nearby enemies, dealing §c%1$s §7damage upon exploding. Your bats will not spawn on your island.",
+      "text": "Summons two bats that will follow you and attack nearby enemies, dealing %1$s damage upon exploding. Your bats will not spawn on your island.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "实时数值",
+          "type": "number",
+          "example": "3,000"
+        }
+      ],
+      "gloss": "社区 Wiki 最后更新 2026-09-06，写 4,000；实测为 3,000。伤害为动态占位符，两者都保留，不能写死 Wiki 数值。",
+      "translate": true,
+      "zh": "召唤两只蝙蝠跟随你并攻击附近敌人，爆炸时造成 %1$s 点伤害。蝙蝠不会在你的私人岛屿上生成。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Summons two bats that will follow you and attack nearby enemies, dealing ",
+          "zh": "召唤两只蝙蝠跟随你并攻击附近敌人，爆炸时造成 "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "damage upon exploding. Your bats will not spawn on your island.",
+          "zh": "点伤害。蝙蝠不会在你的私人岛屿上生成。"
+        }
+      ],
+      "samples": [
+        [
+          "§7Summons two bats that will follow you",
+          "§7and attack nearby enemies, dealing",
+          "§c3,000 §7damage upon exploding. Your",
+          "§7bats will not spawn on your island."
+        ]
+      ]
+    },
+    {
+      "id": "feather_artifact_whole",
+      "context": "羽毛饰品的安全下落高度与摔落减伤",
+      "raw": "§7Increases how high you can fall before taking fall damage by §a%1$s §7blocks. Fall damage is also reduced by §a%2$s%%§7.",
+      "text": "Increases how high you can fall before taking fall damage by %1$s blocks. Fall damage is also reduced by %2$s%%.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "实时数值",
+          "type": "number",
+          "example": "10"
+        },
+        {
+          "token": "%2$s",
+          "desc": "实时数值",
+          "type": "number",
+          "example": "15"
+        }
+      ],
+      "gloss": "Wiki 2026-08-28 写 without taking，实测写 before taking；实测模板优先，数值不写死。",
+      "translate": true,
+      "zh": "安全下落高度增加 %1$s 格，摔落伤害降低 %2$s%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increases how high you can fall before taking fall damage by ",
+          "zh": "安全下落高度增加 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "blocks. Fall damage is also reduced by ",
+          "zh": "格，摔落伤害降低 "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s%%",
+          "zh": "%2$s%"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "samples": [
+        [
+          "§7Increases how high you can fall",
+          "§7before taking fall damage by §a10",
+          "§7blocks. Fall damage is also reduced",
+          "§7by §a15%§7."
+        ]
+      ]
+    }
+  ]
+}

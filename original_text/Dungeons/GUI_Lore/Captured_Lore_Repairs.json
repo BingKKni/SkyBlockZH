@@ -1,0 +1,82 @@
+{
+  "source": "logs/skyzh-capture/incomplete；https://hypixelskyblock.minecraft.wiki/w/Catacombs; https://hypixelskyblock.minecraft.wiki/w/Training_Weights",
+  "verified_ingame": true,
+  "note": "实测原文与颜色；社区 Wiki 核对语境。完整句优先匹配，未包含的下一行不吞掉。",
+  "records": [
+    {
+      "id": "creating_instance_whole",
+      "context": "创建地牢副本的完整提示",
+      "raw": "§7Opening §aThe Catacombs§7 for your party!",
+      "text": "Opening The Catacombs for your party!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "正在为你的队伍打开地牢……",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Opening ",
+          "zh": "正在为你的队伍打开"
+        },
+        {
+          "color": "§a",
+          "text": "The Catacombs",
+          "zh": "地牢"
+        },
+        {
+          "color": "§7",
+          "text": " for your party!",
+          "zh": "……"
+        }
+      ],
+      "samples": [
+        [
+          "§7Opening §aThe Catacombs§7 for your",
+          "§7party!"
+        ]
+      ]
+    },
+    {
+      "id": "training_weights_duration_whole",
+      "context": "训练负重保留背包时间与移出后的力量加成",
+      "raw": "§7The longer you hold this in your inventory, the stronger you'll become for §a%1$s minutes§7 after removing it from your inventory!",
+      "text": "The longer you hold this in your inventory, the stronger you'll become for %1$s minutes after removing it from your inventory!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "实时数值",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "在背包中存放越久，移出背包后获得的力量加成越高，持续 %1$s 分钟!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "The longer you hold this in your inventory, the stronger you'll become for ",
+          "zh": "在背包中存放越久，移出背包后获得的力量加成越高，持续 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s minutes",
+          "zh": "%1$s 分钟"
+        },
+        {
+          "color": "§7",
+          "text": " after removing it from your inventory!",
+          "zh": "!"
+        }
+      ],
+      "samples": [
+        [
+          "§7The longer you hold this in your",
+          "§7inventory, the stronger you'll",
+          "§7become for §a2 minutes§7 after",
+          "§7removing it from your inventory!"
+        ]
+      ]
+    }
+  ]
+}

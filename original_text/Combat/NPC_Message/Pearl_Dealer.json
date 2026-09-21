@@ -5,7 +5,18 @@
   "source_note": "逐字原文以用户日志为准; 社区 Wiki 普通页面用于核对语境。日志未保留颜色码的消息不伪造 raw; 分段按语义边界保留运行时颜色。",
   "npc": "Pearl Dealer",
   "location": "The End",
+  "note": "身份：末地珍珠商人。关系：向初来者提供建议，因玩家帮助朋友而回报。语言：简洁、沉稳。性格：讲人情，有阅历。风格：提醒危险但不故弄玄虚，不硬塞网络梗。",
+  "wiki_last_edited": "2026-08-24",
   "messages": [
+    {"id":"pearl_recognise_player","context":"玩家帮独行冒险者找回弓后","text":"You're %s, right?","raw":"§fYou're §b%s§f, right?","placeholders":[{"token":"%s","type":"player_name","desc":"玩家名","example":"inkkni"}],"translate":true,"zh":"你就是 %s，对吧?","gloss":"Wiki 写 You are [player] right?，实测用缩写及逗号，采用实测。","segments":[{"color":"§f","text":"You're ","zh":"你就是 "},{"color":"§b","text":"%s","zh":"%s"},{"color":"§f","text":", right?","zh":"，对吧?"}]},
+    {"id":"pearl_friend_told","context":"认可玩家帮助了朋友","text":"My friend told me about you!","raw":"§fMy friend told me about you!","translate":true,"zh":"我朋友跟我提起过你!"},
+    {"id":"pearl_free_shortbow","context":"免费赠送巨龙短弓","text":"If you want a Dragon Shortbow, I'll give you one for free!","raw":"§fIf you want a §5Dragon Shortbow§f, I'll give you one for free!","translate":true,"zh":"想要巨龙短弓的话，我免费送你一把!","gloss":"Wiki 缺少逗号，采用实测；免费赠送不能照独行冒险者的推测写成折价出售。","segments":[{"color":"§f","text":"If you want a ","zh":"想要"},{"color":"§5","text":"Dragon Shortbow","zh":"巨龙短弓"},{"color":"§f","text":", I'll give you one for free!","zh":"的话，我免费送你一把!"}]},
+    {"id":"pearl_good_deed","context":"说明赠送缘由","text":"A good deed demands a proper reward!","raw":"§fA good deed demands a proper reward!","translate":true,"zh":"做了好事，总该有份像样的回报!"},
+    {"id":"pearl_guber_terrain","context":"推荐竞速向导","text":"Talk to Guber up the staircase, he is a master of traversing this troubling terrain.","raw":"§fTalk to Guber up the staircase, he is a master of traversing this troubling terrain.","translate":true,"zh":"去找楼梯上面的 Guber 聊聊吧，在这种难走的地形里穿行，他可是行家。"},
+    {"id":"pearl_special_resources","context":"提示洞穴深处的特殊资源","text":"The End has endless End Stone and Obsidian. You may find a special type of these resources deep in the caves.","raw":"§dThe End §fhas endless End Stone and Obsidian. You may find a special type of these resources deep in the caves.","translate":true,"zh":"末地的末地石和黑曜石取之不尽。到洞穴深处去找找，说不定还能发现它们的特殊品种。","segments":[{"color":"§d","text":"The End ","zh":"末地"},{"color":"§f","text":"has endless End Stone and Obsidian. You may find a special type of these resources deep in the caves.","zh":"的末地石和黑曜石取之不尽。到洞穴深处去找找，说不定还能发现它们的特殊品种。"}]},
+    {"id":"pearl_silent_pearls","context":"推荐不会惊动末影人的珍珠","text":"Ender Pearls attract the attention of Endermen, but Silent Pearls don't! You can get them in my shop.","raw":"§fEnder Pearls attract the attention of Endermen, but §5Silent Pearls §fdon't! You can get them in my shop.","translate":true,"zh":"末影珍珠会引来末影人的注意，但无声珍珠不会! 我的店里就有卖。","segments":[{"color":"§f","text":"Ender Pearls attract the attention of Endermen, but ","zh":"末影珍珠会引来末影人的注意，但"},{"color":"§5","text":"Silent Pearls ","zh":"无声珍珠"},{"color":"§f","text":"don't! You can get them in my shop.","zh":"不会! 我的店里就有卖。"}]},
+    {"id":"pearl_shop_help","context":"推荐探险补给","text":"The items in my shop may be of help as you descend into the depths of The End.","raw":"§fThe items in my shop may be of help as you descend into the depths of §dThe End§f.","translate":true,"zh":"往末地深处探索时，我店里的东西也许能帮上忙。","segments":[{"color":"§f","text":"The items in my shop may be of help as you descend into the depths of ","zh":"往"},{"color":"§d","text":"The End","zh":"末地"},{"color":"§f","text":".","zh":"深处探索时，我店里的东西也许能帮上忙。"}]},
+
     {
       "id": "pearl_dealer_beginning",
       "context": "初次抵达末地; End/beginning 的双关",

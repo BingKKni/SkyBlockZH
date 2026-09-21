@@ -226,7 +226,7 @@ Minecraft 本来就会把收到的每条聊天消息写进 `logs/`，这个任�
 | 聊天（系统 / NPC） | `ClientPacketListener#handleSystemChat` HEAD | 比 Fabric 的聊天事件、比 SkyHanni / SkyBlocker 都早。Mod 自己发的消息走 `ChatComponent#addMessage`，**根本不经过这个方法** |
 | 界面标题 | `handleOpenScreen` HEAD | 服务器包里的 `title` 字段 |
 | 物品名 + Lore | `handleContainerContent` / `handleContainerSetSlot` HEAD | 读 `ItemStack` 的 `CUSTOM_NAME` / `LORE` 组件，**不是** `getTooltipLines()`——后者正是所有 Mod 往 Lore 里加东西的地方 |
-| 头顶浮空字 | `handleSetEntityData` TAIL + 每 10 tick 复查包里见过的实体 | 名字、名字可见状态、共享标志字节（含隐形位）任一更新后立即检查；相关包里见过的盔甲架 ID 只在所属 `ClientLevel` 内有界保留，周期复查补回边界开启前已经落地的静态 Hologram，换世界立即清空。不会遍历其他 Mod 创建的实体。只收隐形盔甲架的可见 `CUSTOM_NAME`；玩家、普通生物、命名掉落物、可见装饰盔甲架都不进来；内容过滤再排除 NPC 的绿色专名行与形如 `Glacite Walker 1.2M❤` 的动态怪物血条，黄色职务/操作介绍仍会入队 |
+| 头顶浮空字 | `handleSetEntityData` TAIL + 每 10 tick 复查包里见过的实体 | 名字、名字可见状态、共享标志字节（含隐形位）更新时登记实体，周期读取已落地的整组文字；相关包里见过的盔甲架 ID 只在所属 `ClientLevel` 内有界保留，周期复查补回边界开启前已经落地的静态 Hologram，换世界立即清空。不会遍历其他 Mod 创建的实体。只收隐形盔甲架的可见 `CUSTOM_NAME`；玩家、普通生物、命名掉落物、可见装饰盔甲架都不进来；内容过滤排除 NPC 专名、宠物等级、竞速玩家榜与动态怪物血条；已收录的绿色职务名可翻译，未知职务/操作介绍仍会入队 |
 | 计分板 | 每 10 tick 读一次 `Scoreboard` 对象 | 和原版渲染读的是同一份服务器状态。附带好处：**SkyHanni 的自定义计分板把侧边栏整个接管之后，这里照样拿得到 Hypixel 的原始行** |
 | Tab 列表 | `handleTabListCustomisation`（页眉页脚）+ 每 10 tick 读一次玩家条目 | 同上 |
 | BossBar | `BossHealthOverlay#update` TAIL | 那张 map 只有服务器包写得进去 |
@@ -375,6 +375,15 @@ skyzh-capture/
 
 `./gradlew checkDiagnostics` 在两个目标上回放截图对应的原文、73 条独立采集颜色样本及故意损坏的记录，
 验证检测、落盘、合并与清理。像素算术使用可控字宽，游戏中的字体资源和其他 Mod 组合仍需实机确认。
+
+### 头顶通名与专名
+
+Hologram 的明确职务语料可翻译绿色 NPC 名牌，不按颜色一刀切。非玩家活体实体及隐形盔甲架的
+标准血条另走受限路径：只有整个怪物名命中 `mob_name` 词表时才替换名字，等级、图标、血量与各段
+实时样式原样保留；例如 `Glacite Mutt` 与 Tab 共用“极冰野狗”。玩家、掉落物、未知专名均不进入通用翻译。
+动态血条仍不采集为静态语料，避免血量变化产生重复记录。此路径同样遵守服务器边界、总开关与原文键。
+
+浮空字采集只读取玩家 32 格内的服务器实体，按空间桶查找同列邻行；每次最多 12 行，并标注这只是空间邻近、不是已确认的段落。每条记录最多保留三个位置/区域场景，迟到的邻行可以补全快照，倒计时变化不额外占位。观测签名包含可见样式，因此纯颜色变化仍会重新诊断。`translate: false` 的精确原文与 NPC 名单随分发语料保留，减少重复采集；博物馆标签仅借用离线物品目录确认过的精确物品名，不借菜单或旧 Lore 半句。
 
 ### 自检
 

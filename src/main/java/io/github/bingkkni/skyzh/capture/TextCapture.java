@@ -337,17 +337,22 @@ public final class TextCapture {
 	 * {@link NameTag#eligible} additionally rejects NPC proper names and dynamic mob-health layers.
 	 */
 	public static void hologram(Entity entity) {
+		// Only remembered here. Hypixel sends a hologram's name, visibility and position in separate
+		// packets, and a stack of them one row at a time; the periodic scan below reads the whole
+		// settled scene, which is what the capture writes down as the line's context.
 		trackHologram(entity);
-
-		if (ready()) {
-			offerHologram(entity);
-		}
 	}
 
 	/**
 	 * Periodic state read that also sees holograms whose one-shot metadata arrived before the
 	 * hello/sidebar gate opened. Only entity ids observed by the server packet hook are revisited;
 	 * walking every render entity would let another Mod's client-created armour stands into capture.
+	 *
+	 * <p>Only stands within {@link HologramSnapshot#CAPTURE_DISTANCE} of the player are read. Minecraft
+	 * keeps entities loaded far beyond what the player can see, so without the radius a museum's
+	 * display labels were filed under every Hub area the player later walked through, and the
+	 * {@code seen_in} list stopped meaning anything. Each eligible stand is offered together with the
+	 * stands stacked above and below it, so the file shows the whole sign and not one row of it.
 	 */
 	public static void holograms(ClientLevel level) {
 		hologramLevel(level);
@@ -356,13 +361,26 @@ public final class TextCapture {
 			return;
 		}
 
+		var player = Minecraft.getInstance().player;
+		if (player == null) {
+			return;
+		}
+		List<HologramSnapshot.Row> rows = new ArrayList<>();
 		for (Iterator<Integer> ids = HOLOGRAM_ENTITIES.iterator(); ids.hasNext();) {
 			Entity entity = level.getEntity(ids.next());
-
-			if (entity == null) {
+			if (!(entity instanceof ArmorStand)) {
 				ids.remove();
-			} else {
-				offerHologram(entity);
+			} else if (entity.isInvisible()
+				&& entity.isCustomNameVisible() && entity.getCustomName() != null
+				&& entity.distanceToSqr(player) <= HologramSnapshot.CAPTURE_DISTANCE * HologramSnapshot.CAPTURE_DISTANCE) {
+				rows.add(new HologramSnapshot.Row(entity.getId(), entity.getX(), entity.getY(), entity.getZ(),
+					StyledText.of(entity.getCustomName())));
+			}
+		}
+		HologramSnapshot.Index spatial = new HologramSnapshot.Index(rows);
+		for (HologramSnapshot.Row row : rows) {
+			if (NameTag.eligible(row.text())) {
+				offerHologram(spatial.around(row));
 			}
 		}
 	}
@@ -370,14 +388,17 @@ public final class TextCapture {
 	private static void trackHologram(Entity entity) {
 		Minecraft client = Minecraft.getInstance();
 
-		if (!SkyZHConfig.get().captureUntranslated || !client.isSameThread()
-			|| !(entity instanceof ArmorStand)) {
+		// Retain only bounded packet-observed IDs even while capture is off. Do not read text,
+		// classify, queue or write until ready(); static names may never receive another packet.
+		if (!client.isSameThread() || !(entity instanceof ArmorStand)) {
 			return;
 		}
 
 		hologramLevel(client.level);
-		int id = entity.getId();
+		rememberHologram(entity.getId());
+	}
 
+	private static void rememberHologram(int id) {
 		if (HOLOGRAM_ENTITIES.contains(id)) {
 			return;
 		}
@@ -393,22 +414,27 @@ public final class TextCapture {
 
 	/** Clears packet-era ids as soon as Minecraft replaces or drops their owning world. */
 	public static void hologramLevel(ClientLevel level) {
-		if (!SkyZHConfig.get().captureUntranslated || hologramLevel != level) {
+		if (hologramLevel != level) {
 			hologramLevel = level;
 			HOLOGRAM_ENTITIES.clear();
 		}
 	}
 
-	private static void offerHologram(Entity entity) {
-		if (!(entity instanceof ArmorStand) || !entity.isInvisible() || !entity.isCustomNameVisible()) {
-			return;
-		}
+	private static void offerHologram(HologramSnapshot snapshot) {
+		String gameplay = placed();
+		// Neighbour updates deserve a new observation even when the target text did not change: the
+		// scene around a line is what gets written down, so a changed scene is new evidence.
+		// A nearby sign can be observed across an area boundary within the same gameplay. Keep
+		// that sighting as a Line so the worker can retain its distinct observer_area context.
+		String key = hologramKey(snapshot, gameplay, CaptureContext.area());
+		boolean first = SEEN.putIfAbsent(key, Boolean.TRUE) == null;
+		CaptureStore.Observation observation = first
+			? new CaptureStore.Line(snapshot.target().text(), true, snapshot) : CaptureStore.Repeated.INSTANCE;
+		queue(CaptureSurface.HOLOGRAM, key, observation, HOLOGRAMS, "", gameplay);
+	}
 
-		Component name = entity.getCustomName();
-
-		if (NameTag.eligible(name)) {
-			offer(CaptureSurface.HOLOGRAM, name, HOLOGRAMS, "", 0);
-		}
+	private static String hologramKey(HologramSnapshot snapshot, String gameplay, String area) {
+		return key(CaptureSurface.HOLOGRAM, HOLOGRAMS, area, snapshot.signature(), gameplay);
 	}
 
 	/** The title and subtitle that flash across the middle of the screen. */
@@ -542,10 +568,6 @@ public final class TextCapture {
 	 * which on a private island can be minutes.
 	 */
 	public static void tick() {
-		if (!SkyZHConfig.get().captureUntranslated) {
-			HOLOGRAM_ENTITIES.clear();
-		}
-
 		if (HELD.size() == 0) {
 			return;
 		}

@@ -34,8 +34,9 @@ import net.minecraft.network.chat.Style;
  *   ./gradlew replayCapture -Pcapture=&lt;directory-or-file&gt;
  * </pre>
  *
- * <p>Inferred templates are reported separately, never counted as misses. Their observed value lists
- * do not preserve which values arrived together, so filling them would invent server messages.
+ * <p>Inferred templates replay only their bounded concrete raw_samples, when present. Older captures
+ * without those samples are reported separately, never counted as misses: their independently
+ * observed value lists cannot reconstruct which values arrived together.
  *
  * <p>The {@code incomplete} and {@code value} piles carry the ordered lines of one observation, so those
  * are replayed as the tooltip was: the same plan and the same checks the capture ran, printed as
@@ -128,14 +129,16 @@ public final class CaptureReplay {
 					continue;
 				}
 
-				if (isTemplate(raw)) {
+				List<String> originals = concreteSamples(line, raw);
+				if (originals.isEmpty()) {
 					templates++;
-					report.add("  ~ 模板（未回放） " + raw);
+					report.add("  ~ 模板（无完整样本，未回放） " + raw);
 					continue;
 				}
 
+				for (String original : originals) {
 				total++;
-				Component source = decode(raw);
+				Component source = decode(original);
 				JsonObject capture = line.has("_capture") ? line.getAsJsonObject("_capture") : null;
 				boolean itemName = surface == Surface.ITEM && capture != null && capture.has("where")
 					&& capture.get("where").getAsString().endsWith("物品名");
@@ -144,9 +147,10 @@ public final class CaptureReplay {
 
 				if (changed(source, output)) {
 					changed++;
-					report.add("  ✓ " + raw + "\n      -> " + encoded(output));
+					report.add("  ✓ " + original + "\n      -> " + encoded(output));
 				} else {
-					report.add("  ✗ " + raw);
+					report.add("  ✗ " + original);
+				}
 				}
 			}
 
@@ -159,6 +163,26 @@ public final class CaptureReplay {
 		System.out.println("\n具体原文: 渲染有变化 " + changed + " / " + total + "；未回放模板 " + templates
 			+ "；诊断证据已消除 " + cleared + " / " + diagnosed);
 		System.out.println("变化数不等于翻译覆盖率；不重建跨行顺序、字体、悬浮/点击事件或像素排版。");
+	}
+
+	/** Old captures retain their explicit unknown status; never reconstruct guessed value tuples. */
+	static List<String> concreteSamples(JsonObject line, String raw) {
+		if (!isTemplate(raw)) {
+			return List.of(raw);
+		}
+		JsonObject meta = line.has("_capture") ? line.getAsJsonObject("_capture") : null;
+		if (meta == null || !meta.has("raw_samples")) {
+			return List.of();
+		}
+		List<String> samples = new ArrayList<>();
+		for (JsonElement value : meta.getAsJsonArray("raw_samples")) {
+			String sample = value.getAsString();
+			if (!sample.isEmpty() && !isTemplate(sample) && !samples.contains(sample)) {
+				samples.add(sample);
+			}
+			if (samples.size() == 3) break;
+		}
+		return List.copyOf(samples);
 	}
 
 	static boolean isTemplate(String raw) {

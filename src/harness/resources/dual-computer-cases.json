@@ -1,0 +1,129 @@
+{
+  "cases": [
+    {
+      "name": "巨龙之门逐渐松动保留双色与粗体",
+      "surface": "ChatMessage",
+      "source": ["§5☬ §d§lThe Dragon's Gate is weakening!"],
+      "expected": "§5☬ §d§l巨龙之门正逐渐松动!"
+    },
+    {
+      "name": "巨龙之门开始挪动",
+      "surface": "ChatMessage",
+      "source": ["§5☬ §d§lThe Dragon's Gate is starting to budge!"],
+      "expected": "§5☬ §d§l巨龙之门开始挪动了!"
+    },
+    {
+      "name": "巨龙之门即将开启",
+      "surface": "ChatMessage",
+      "source": ["§5☬ §d§lThe Dragon's Gate is nearly open!"],
+      "expected": "§5☬ §d§l巨龙之门即将打开!"
+    },
+    {
+      "name": "巨龙之门已开启",
+      "surface": "ChatMessage",
+      "source": ["§5☬ §d§lThe Dragon's Gate has opened!"],
+      "expected": "§5☬ §d§l巨龙之门已打开!"
+    },
+    {
+      "name": "Kuudra准备提示不插入汉字间空格",
+      "surface": "ChatMessage",
+      "source": ["§aYou will now auto ready up when joining §cKuudra's Hollow§a!"],
+      "expected": "§a现在进入 §cKuudra 的巢穴§a后会自动准备就绪!"
+    },
+    {
+      "name": "Kuudra自动准备说明不插入汉字间空格",
+      "source": ["§7Auto ready up when joining §cKuudra's", "§cHollow§7 if you have the requirements,", "§7so you don't have to!"],
+      "consumed": 3,
+      "expected": "§7满足条件时，进入 §cKuudra 的巢穴§7后自动准备就绪，无需手动操作!"
+    },
+    {
+      "name": "一次性剧情恢复地点高亮",
+      "surface": "NPC_Message",
+      "source": ["First you have to go down in that §2giant cave below the Volcano§f."],
+      "expected": "首先，你得下到§2火山底下那座大洞窟§f里。"
+    },
+    {
+      "name": "阵营对白不固化玩家名",
+      "surface": "NPC_Message",
+      "source": ["§fWelcome to the §dBarbarian Faction§f, §bOtherPlayer§f!"],
+      "expected": "§f欢迎加入§d野蛮人阵营§f, §bOtherPlayer§f!"
+    },
+    {
+      "name": "考古学者专名保留红色",
+      "surface": "NPC_Message",
+      "source": ["§fI've been studying the ancient artifacts of §cKuudra§f."],
+      "expected": "§f我一直在研究与 §cKuudra§f 有关的古代文物。"
+    },
+    {
+      "name": "维京人年月整体泛化",
+      "surface": "NPC_Message",
+      "source": ["§fI last saw the sea §b17 years, 3 months§f ago."],
+      "expected": "§f我上次见到大海，已经是§b17 年 3 个月§f前了。"
+    },
+    {
+      "name": "浮空职务翻译",
+      "surface": "Hologram",
+      "source": ["§e§lDRILL MECHANIC"],
+      "expected": "§e§l钻头技师"
+    },
+    {
+      "name": "浮空售价变化与颜色",
+      "surface": "Hologram",
+      "source": ["§fCost: §650,000 Coins"],
+      "expected": "§f花费: §650,000 硬币"
+    },
+    {
+      "name": "融合结果新的碎片名不固化Scatha",
+      "surface": "ChatMessage",
+      "source": ["§5§lFUSION! §7You obtained a §5Other Shard§7! §d§lNEW!"],
+      "expected": "§5§l融合! §7你获得了一个 §5Other 碎片§7! §d§l首次获得!"
+    },
+    {
+      "name": "融合说明首尾一起匹配",
+      "source": ["§7To begin a fusion you need to select", "§7a §9Shard §7from your box."],
+      "consumed": 2,
+      "expected": "§7要开始融合，请先从箱中选择一个§9碎片§7。"
+    },
+    {
+      "name": "融合缺尾句不误消费",
+      "source": ["§7To begin a fusion you need to select"],
+      "miss": true
+    },
+    {
+      "name": "狩猎斧数值随等级变化",
+      "source": ["§7Your Hunting Axes gain §a+7% §7more", "§7stats from the weapon they hold."],
+      "consumed": 2,
+      "expected": "§7狩猎斧从其中存放的武器继承的属性提高 §a7%§7。"
+    },
+    {
+      "name": "鱼竿配件与技师重排各自颜色",
+      "source": ["§8 ■ §7Apply §9Rod Parts §7with §2Roddy§7."],
+      "consumed": 1,
+      "expected": "§8 ■ §7请 §2Roddy§7 为鱼竿安装§9鱼竿配件§7。"
+    },
+    {
+      "name": "竖琴提示跨行高亮保留",
+      "source": ["§7If you are having lag issues, try", "§7using §amiddle click §7(clicking the", "§7mousewheel)."],
+      "consumed": 3,
+      "expected": "§7遇到延迟问题时，可尝试使用§a鼠标中键§7（按下滚轮）。"
+    },
+    {
+      "name": "核弹伤害与范围重排",
+      "source": ["§7Purchase a miniature Nuke which you", "§7can detonate at any time, dealing §c80%", "§7max health true damage to all", "§7enemies in a §e20 block§7 radius."],
+      "consumed": 4,
+      "expected": "§7购买一枚可随时引爆的微型核弹，对周围 §e20 格§7范围内所有敌人造成其最大生命值 §c80%§7的真实伤害。"
+    },
+    {
+      "name": "打捞物资目标保留进度",
+      "surface": "ScoreBoard",
+      "source": ["§eRescue supplies §7(§a4/6§7)"],
+      "expected": "§e打捞物资 §7(§a4/6§7)"
+    },
+    {
+      "name": "副本关闭时分秒动态",
+      "surface": "ScoreBoard",
+      "source": ["§fInstance Shutdown In: §a01m 25s"],
+      "expected": "§f副本关闭倒计时: §a01 分 25 秒"
+    }
+  ]
+}

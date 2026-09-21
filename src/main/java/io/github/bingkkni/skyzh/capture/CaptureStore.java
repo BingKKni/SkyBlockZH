@@ -61,13 +61,17 @@ public final class CaptureStore {
 	/** Capture work has an explicit stage; a repeat carries no redundant text snapshot. */
 	public sealed interface Observation permits Line, Diagnosed, Repeated {}
 
-	public record Line(StyledText text, boolean checkValues) implements Observation {
+	public record Line(StyledText text, boolean checkValues, HologramSnapshot hologram) implements Observation {
 		public Line {
 			Objects.requireNonNull(text);
 		}
 
+		public Line(StyledText text, boolean checkValues) {
+			this(text, checkValues, null);
+		}
+
 		public Line(StyledText text) {
-			this(text, true);
+			this(text, true, null);
 		}
 	}
 
@@ -261,6 +265,7 @@ public final class CaptureStore {
 
 			if (already != null) {
 				already.again(sighting.when(), sighting.area(), sighting.note());
+				rememberContext(already, sighting);
 				BY_KEY.put(key, already);
 				DIRTY.put(already.meta(), true);
 
@@ -282,6 +287,7 @@ public final class CaptureStore {
 			if (line.verdict().sameKind(verdict)
 				&& line.merge(text, sighting.note(), sighting.area(), sighting.when())) {
 				BY_KEY.put(key, line);
+				rememberContext(line, sighting);
 
 				if (shared != null) {
 					SHARED.put(shared, line);
@@ -300,6 +306,7 @@ public final class CaptureStore {
 			sighting.surface(), text, sighting.note(), verdict, sighting.area(), sighting.when()
 		);
 
+		rememberContext(line, sighting);
 		line.id(uniqueId(lines, Classifier.id(text.plain())));
 		line.meta(meta);
 		lines.add(line);
@@ -327,6 +334,12 @@ public final class CaptureStore {
 	 * already sees everything — and on the surfaces where it does not, the separation is the point: a
 	 * sentence two NPCs both say is two records, because they are two characters saying it.
 	 */
+	private static void rememberContext(CapturedLine line, Sighting sighting) {
+		if (sighting.observation() instanceof Line observation && observation.hologram() != null) {
+			line.hologram(observation.hologram(), sighting.when(), sighting.area());
+		}
+	}
+
 	private static boolean shareable(Sighting sighting) {
 		return (sighting.surface() == CaptureSurface.GUI_ITEM || sighting.surface() == CaptureSurface.GUI_LORE)
 			&& sighting.gameplay() != null;

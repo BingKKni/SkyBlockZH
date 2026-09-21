@@ -3,9 +3,11 @@ package io.github.bingkkni.skyzh.text;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Every compiled record, bucketed by the surface it is allowed to answer for, plus the lookup that
@@ -24,6 +26,15 @@ public final class TranslationIndex {
 	private final Map<Surface, List<TranslationEntry>> patterns = new EnumMap<>(Surface.class);
 	private final Map<Surface, Map<String, TranslationEntry>> cache = new EnumMap<>(Surface.class);
 
+	/**
+	 * Text a record deliberately keeps in English ({@code translate: false}), by surface. Never drawn
+	 * from, only asked: capture uses it to stop reporting a line the corpus has already decided about.
+	 */
+	private final Map<Surface, Set<String>> preserved = new EnumMap<>(Surface.class);
+
+	/** The {@code npc} names of every NPC_Message file. A hologram that is just one of these is a name. */
+	private final Set<String> npcNames = new HashSet<>();
+
 	private SkyBlockName skyBlockName = SkyBlockName.DEFAULT;
 	private TermTable terms = TermTable.EMPTY;
 
@@ -31,6 +42,7 @@ public final class TranslationIndex {
 		for (Surface surface : Surface.values()) {
 			this.exact.put(surface, new HashMap<>());
 			this.patterns.put(surface, new ArrayList<>());
+			this.preserved.put(surface, new HashSet<>());
 			this.cache.put(surface, new LinkedHashMap<>(256, 0.75f, true) {
 				@Override
 				protected boolean removeEldestEntry(Map.Entry<String, TranslationEntry> eldest) {
@@ -56,6 +68,46 @@ public final class TranslationIndex {
 
 	public void terms(TermTable terms) {
 		this.terms = terms;
+	}
+
+	/** Records a line the corpus keeps in English on this surface. Exact lines only; templates are not kept. */
+	public void preserve(Surface surface, String plain) {
+		if (!plain.isBlank() && plain.indexOf('%') < 0) {
+			this.preserved.get(surface).add(plain.trim());
+		}
+	}
+
+	/** Whether the corpus has decided this exact line stays English on this surface. */
+	public boolean preserved(Surface surface, String plain) {
+		return this.preserved.get(surface).contains(plain.trim());
+	}
+
+	public int preservedCount(Surface surface) {
+		return this.preserved.get(surface).size();
+	}
+
+	public void npcName(String name) {
+		if (name != null && !name.isBlank()) {
+			this.npcNames.add(name.trim());
+		}
+	}
+
+	/** Whether this line is, in full, the name of an NPC the corpus knows. Case-sensitive: names are spelled one way. */
+	public boolean isNpcName(String plain) {
+		return this.npcNames.contains(plain.trim());
+	}
+
+	public int npcNameCount() {
+		return this.npcNames.size();
+	}
+
+	/**
+	 * The record whose English is exactly this line, ignoring templates. For a surface borrowing another
+	 * surface's records — a museum display hologram naming an item — the loose tier is the one that
+	 * over-matches, so the borrower is only allowed the exact one.
+	 */
+	public TranslationEntry lookupExact(Surface surface, String plain) {
+		return this.exact.get(surface).get(plain);
 	}
 
 	/**

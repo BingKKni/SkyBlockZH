@@ -253,7 +253,7 @@ Every capture point is now a *packet handler*, or a read of state only a packet 
 | Chat (system and NPC) | `ClientPacketListener#handleSystemChat` HEAD | Earlier than Fabric's chat events and than SkyHanni or SkyBlocker. A mod's own message goes in through `ChatComponent#addMessage` and **never passes this method** |
 | Container title | `handleOpenScreen` HEAD | The `title` field of the server's packet |
 | Item name and lore | `handleContainerContent` / `handleContainerSetSlot` HEAD | Reads the stack's `CUSTOM_NAME` and `LORE` components, **not** `getTooltipLines()` — that list is where every mod adds its own lines |
-| World hologram | `handleSetEntityData` TAIL plus a 10-tick recheck of packet-observed entities | Rechecks immediately after custom-name, name-visible or shared-flags (invisibility bit) metadata. Relevant armour-stand ids are bounded and tied to the exact `ClientLevel`, then periodically revisited to recover static holograms whose metadata preceded the active boundary; a world change clears them, and client-created Mod entities are never scanned. Only visible custom names on invisible armour stands enter; content filtering removes the green proper-name line above an NPC and dynamic mob-health bars while retaining yellow role/action descriptions |
+| World hologram | `handleSetEntityData` TAIL plus a 10-tick recheck of packet-observed entities | Registers custom-name, name-visible or shared-flags (invisibility bit) metadata, then reads settled text stacks on the periodic scan. Relevant armour-stand ids are bounded and tied to the exact `ClientLevel`, then periodically revisited to recover static holograms whose metadata preceded the active boundary; a world change clears them, and client-created Mod entities are never scanned. Only visible custom names on invisible armour stands enter; content filtering removes NPC proper names, pet-level tags, race leaderboard players and dynamic mob-health bars. Explicitly translated green role names are allowed; unknown role/action descriptions remain eligible |
 | Sidebar | The `Scoreboard` object, every 10 ticks | The same server state vanilla renders from. A useful side effect: **it keeps working when SkyHanni's Custom Scoreboard has replaced the sidebar's rendering entirely** |
 | Tab list | `handleTabListCustomisation` for header and footer, player entries every 10 ticks | As above |
 | Boss bar | `BossHealthOverlay#update` TAIL | That map is written by the packet handler and by nothing else |
@@ -429,6 +429,16 @@ keep a concrete observation; combining unrelated `observed` values is not a vali
 `./gradlew checkDiagnostics` checks the screenshot cases, 73 independent colour samples, deliberately
 broken records, persistence and clearing on both targets. Deterministic font metrics test the pixel
 arithmetic; resource-pack rendering and mod combinations still need an in-game check.
+
+### Known names above entities
+
+Capture reads server-observed stands within 32 blocks, using spatial bins to retain at most 12 neighbouring rows per observation. These are explicitly spatial neighbours, not confirmed paragraphs. Each record retains at most three position/area scenes; late neighbour metadata can enrich an existing scene, while ticking counters do not consume extra slots. Observation signatures include visible styles so colour-only changes are diagnosed again. Exact `translate: false` decisions and NPC names survive corpus minification. Museum labels may borrow exact ITEM records only after the offline item catalog confirms the name, never menu labels or old lore fragments.
+
+Green NPC role labels may use explicit hologram records; colour alone is not a translation policy.
+For non-player living entities and invisible armour stands, a separate bounded health-bar path replaces
+only whole names present in the `mob_name` term table. Level, glyphs, health and live styles remain
+unchanged; proper names, players and dropped items are not translated by a generic name lookup.
+Dynamic health bars are still excluded from static capture. All render bypasses and server gates apply.
 
 ### Checking it
 

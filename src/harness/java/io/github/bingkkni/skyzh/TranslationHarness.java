@@ -645,6 +645,13 @@ public final class TranslationHarness {
 		check("Tab 小时复数", "§f9 Hours", Surface.TABLIST, "§f9 小时");
 		check("Tab 不足一小时", "§fLess than an hour", Surface.TABLIST, "§f不足 1 小时");
 		check("Tab 活动小时倒计时不加后", "Starts In: §e3h", Surface.TABLIST, "距开始: §e3 小时");
+		checkRow("小写开始标签整点小时", " Starts in: §e20h", " 距开始: §e20 小时");
+		checkRow("结束时间换单位与跨日", " Ends In: §a1d 2h 3m 4s", " 距结束: §a1 天 2 小时 3 分 4 秒");
+		checkRow("小写结束标签保留前导零", " Ends in: §e01m05s", " 距结束: §e01 分 05 秒");
+		checkRow("开始倒计时上限", " Starts In: §e35d+", " 距开始: §e35 天以上");
+		check("日历年份不是固定515", "SkyBlock Year 515", Surface.GUI_TITLE, "空岛第 515 年");
+		check("日历次年继续翻译", "SkyBlock Year 516", Surface.GUI_TITLE, "空岛第 516 年");
+		check("日历下划线年份", "Skyblock_Year_516", Surface.GUI_TITLE, "空岛第 516 年");
 		check("Tab 活动分钟倒计时不加后", "Starts In: §e26m", Surface.TABLIST, "距开始: §e26 分钟");
 		check("宾果活动倒计时不加后", "§7Event Starts: §a43h", Surface.ITEM, "§7距活动开始: §a43 小时");
 		check("Tab 只剩一小时", "§f1 Hour", Surface.TABLIST, "§f1 小时");
@@ -2225,6 +2232,14 @@ public final class TranslationHarness {
 		for (String invalid : List.of(" ", "                                ", "Mithril ", " Bob")) {
 			report("名称不能吞掉服务器排版空格", !io.github.bingkkni.skyzh.text.Capture.NAME.accepts(invalid), invalid);
 		}
+		for (String valid : List.of("L.A.S.R.'s Eye", "Gauss Carrot Shovel Mk. III", "Newton Nether Wart Cutter Mk. II")) {
+			report("物品名允许已知缩写及六词型号", Capture.of("item_name").accepts(valid), valid);
+		}
+		for (String invalid : List.of("Deposits. Next", "Mk. blah", "Slay 1 Boss Corleone in the", " Eye", "Eye ", "A B C D E F G", "Sword!")) {
+			report("物品名仍拒绝句子和越界值", !Capture.of("item_name").accepts(invalid), invalid);
+		}
+		report("型号例外不扩大分类名", !Capture.NAME.accepts("Gauss Carrot Shovel Mk. III"), "NAME");
+		report("句点例外不扩大 raw", !Capture.PHRASE.accepts("L.A.S.R.'s Eye"), "PHRASE");
 		Component fossil = Component.literal("§6Tusk Fossil");
 		report("已翻译真实物品加 Lore 提示", OriginalTips.eligibleName(fossil, TooltipTranslator.translateItemName(fossil)), "Tusk Fossil");
 		String bazaar = "§6[Bazaar] §eYour §aBuy Order §efor §a8§7x §5Bonzo Shard §ewas filled!";
@@ -2448,7 +2463,8 @@ public final class TranslationHarness {
 
 	/** Fixed UI capture regression: ordered lore, term isolation, and clues that must survive translation. */
 	private static void checkFixedMenus(Path corpusRoot) throws Exception {
-		Path path = corpusRoot.toAbsolutePath().getParent().resolve("src/harness/resources/capture-fixed-menus-cases.json");
+		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json")) {
+		Path path = corpusRoot.toAbsolutePath().getParent().resolve("src/harness/resources/" + file);
 		JsonObject fixture = JsonParser.parseString(Files.readString(path, StandardCharsets.UTF_8)).getAsJsonObject();
 		for (JsonElement value : fixture.getAsJsonArray("cases")) {
 			JsonObject test = value.getAsJsonObject();
@@ -2469,6 +2485,7 @@ public final class TranslationHarness {
 			String expected = legacy(Component.literal(text(test, "expected")));
 			report(name, expected.equals(actual) && match.lines() == test.get("consumed").getAsInt(),
 				"期望 " + expected + "，实际 " + actual);
+		}
 		}
 		StyledText reset = StyledText.of(Translator.translateLine(Component.literal(
 			"They are both telling the truth. The reward isn't in §cRose's §rchest."), Surface.CHAT));

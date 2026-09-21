@@ -1,0 +1,99 @@
+{
+  "source": "logs/skyzh-capture/incomplete；https://hypixelskyblock.minecraft.wiki/w/Runes; https://hypixelskyblock.minecraft.wiki/w/Runic_Pedestal; https://hypixelskyblock.minecraft.wiki/w/Infinite_Quiver",
+  "verified_ingame": true,
+  "note": "实测原文与颜色；社区 Wiki 核对语境。完整句优先匹配，未包含的下一行不吞掉。",
+  "records": [
+    {
+      "id": "white_spiral_arrows_whole",
+      "context": "白色螺旋符文的箭矢粒子效果",
+      "raw": "§7Show your elegance with white spiraling arrows!",
+      "text": "Show your elegance with white spiraling arrows!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "用洁白的螺旋箭矢特效展现你的优雅!",
+      "samples": [
+        [
+          "§7Show your elegance with white",
+          "§7spiraling arrows!"
+        ]
+      ]
+    },
+    {
+      "id": "rune_revenant_drop_whole",
+      "context": "符文稀有掉落来源",
+      "raw": "§7Obtained very rarely from slaying the Revenant Horror.",
+      "text": "Obtained very rarely from slaying the Revenant Horror.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "击败 Revenant Horror 时极低概率掉落。",
+      "samples": [
+        [
+          "§7Obtained very rarely from slaying",
+          "§7the Revenant Horror."
+        ]
+      ]
+    },
+    {
+      "id": "runic_pedestal_slots_whole",
+      "context": "符文基座左侧目标与右侧祭品，以及双符文融合",
+      "raw": "§7Place a target item in the left slot and a sacrifice rune in the right slot to add the rune's effects to the item or add two runes to attempt to fuse them!",
+      "text": "Place a target item in the left slot and a sacrifice rune in the right slot to add the rune's effects to the item or add two runes to attempt to fuse them!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "将目标物品放入左侧槽位，祭品符文放入右侧槽位，即可为物品添加符文效果；也可放入两枚符文，尝试将其融合!",
+      "samples": [
+        [
+          "§7Place a target item in the left slot",
+          "§7and a sacrifice rune in the right slot",
+          "§7to add the rune's effects to the item",
+          "§7or add two runes to attempt to fuse",
+          "§7them!"
+        ]
+      ]
+    },
+    {
+      "id": "quiver_sneaking_whole",
+      "context": "Infinite Quiver 附魔效果，保留潜行失效限制",
+      "raw": "§7Saves arrows §a%1$s%%§7 of the time when you fire your bow. Disabled while sneaking.",
+      "text": "Saves arrows %1$s%% of the time when you fire your bow. Disabled while sneaking.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "实时数值",
+          "type": "number",
+          "example": "21"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "射箭时有 %1$s%的概率不消耗箭矢，潜行时无效。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Saves arrows ",
+          "zh": "射箭时有 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s%%",
+          "zh": "%1$s%"
+        },
+        {
+          "color": "§7",
+          "text": " of the time when you fire your bow. Disabled while sneaking.",
+          "zh": "的概率不消耗箭矢，潜行时无效。"
+        }
+      ],
+      "samples": [
+        [
+          "§7Saves arrows §a21%§7 of the time when",
+          "§7you fire your bow. Disabled while",
+          "§7sneaking."
+        ]
+      ]
+    }
+  ]
+}

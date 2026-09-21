@@ -44,6 +44,9 @@ public enum Capture {
 	 */
 	NAME("[^\\n]{1,48}?"),
 
+	/** Item names also contain model abbreviations and initials, e.g. Mk. III and L.A.S.R.'s Eye. */
+	ITEM_NAME(NAME.regex),
+
 	/** A player's name, which Minecraft limits to sixteen word characters. */
 	PLAYER("[A-Za-z0-9_]{1,16}"),
 
@@ -95,6 +98,9 @@ public enum Capture {
 	/** A compact duration used in the tab list: {@code 35d+}, {@code 2h 14m}, {@code 30s}. */
 	DURATION("(?:[0-9][0-9,.]*[dDhHmMsS][+]?(?: ?[0-9][0-9,.]*[dDhHmMsS][+]?)*|[0-9][0-9,.]*[+]?)"),
 
+	/** Readable countdown units in event widgets; other compact clocks retain their layout. */
+	DURATION_SPACED(DURATION.regex),
+
 	/**
 	 * Anything the corpus has not pinned down — {@code type: raw}, or no {@code placeholders} entry
 	 * at all. Still bounded: whatever the value is, it is a value and not a sentence.
@@ -136,13 +142,15 @@ public enum Capture {
 		return switch (type == null ? "" : type.toLowerCase(Locale.ROOT)) {
 			case "number", "percentage", "coins" -> NUMBER;
 			case "time", "duration" -> DURATION;
+			case "duration_spaced" -> DURATION_SPACED;
 			// category_name is the name of a menu section or a feature — "Bags", "Other Crystals",
 			// "Recipe Book". Shaped like a name, and it has to be said so: templates that hold one are
 			// a single word plus a placeholder ("Your %s", "%s Settings", "%s Pet"), which under the
 			// looser PHRASE rule matched any lore line that happened to start or end that way and drew
 			// the rest of the sentence in its place.
-			case "item_name", "npc_name", "location_name", "mob_name", "rarity", "category_name",
-				"enchantment_name", "enchantment_crop", "mob_family", "accessory_power", "skyblock_month" -> NAME;
+			case "item_name" -> ITEM_NAME;
+			case "npc_name", "location_name", "mob_name", "rarity", "category_name",
+				"enchantment_name", "enchantment_crop", "mob_family", "accessory_power", "skyblock_month", "dragon_type" -> NAME;
 			case "player_name" -> PLAYER;
 			case "rank" -> RANK;
 			case "tier" -> TIER;
@@ -174,9 +182,10 @@ public enum Capture {
 		return switch (this) {
 			// The regex is the whole of the rule for these: a numeral is a numeral, and a player's
 			// name is whatever sixteen word characters somebody chose.
-			case NUMBER, PLAYER, RANK, TIER, TIER_RANGE, ICON, TROPHY_QUALITY, ORDINAL, DURATION, SEARCH_QUERY -> true;
+			case NUMBER, PLAYER, RANK, TIER, TIER_RANGE, ICON, TROPHY_QUALITY, ORDINAL, DURATION, DURATION_SPACED, SEARCH_QUERY -> true;
 			case MULTIPLIER_INCREASE -> new BigDecimal(value).compareTo(BigDecimal.ONE) >= 0;
 			case NAME -> isName(value);
+			case ITEM_NAME -> isItemName(value);
 			case PHRASE -> isValue(value);
 		};
 	}
@@ -199,7 +208,7 @@ public enum Capture {
 			return value.substring(0, value.length() - 2);
 		}
 
-		if (this != DURATION) {
+		if (this != DURATION && this != DURATION_SPACED) {
 			return value;
 		}
 
@@ -224,7 +233,11 @@ public enum Capture {
 				translated.append(between);
 			}
 
+			if (this == DURATION_SPACED && cursor > 0) {
+				translated.append(' ');
+			}
 			translated.append(unit.group(1))
+				.append(this == DURATION_SPACED ? " " : "")
 				.append(switch (Character.toLowerCase(unit.group(2).charAt(0))) {
 					case 'd' -> "天";
 					case 'h' -> "小时";
@@ -254,7 +267,23 @@ public enum Capture {
 	 * Crystal, Mines of Divan — but a name does not <em>begin</em> or <em>end</em> on one, whereas a
 	 * clause chopped off mid-sentence very often does ("...in the").
 	 */
+	private static boolean isItemName(String value) {
+		// Relax only attested item-name syntax, never generic categories, locations or raw prose.
+		String normalised = value.replaceAll("\\bMk\\.(?= [IVXLCDM]+(?: |$))", "Mk");
+		String[] words = normalised.split(" ", -1);
+		for (int i = 0; i < words.length; i++) {
+			if (words[i].matches("(?:[A-Z]\\.){2,}(?:'s)?")) {
+				words[i] = words[i].replace(".", "");
+			}
+		}
+		return isName(String.join(" ", words), 6);
+	}
+
 	private static boolean isName(String value) {
+		return isName(value, 5);
+	}
+
+	private static boolean isName(String value, int maxWords) {
 		if (value.startsWith(" ") || value.endsWith(" ")) {
 			return false;
 		}
@@ -265,12 +294,12 @@ public enum Capture {
 			// so judging the whole string by the rules below throws away every place that belongs to
 			// somebody — which on the sidebar is the museum and the private island, two of the
 			// handful of rows that are on screen the entire time a player is there.
-			return isName(owned.thing());
+			return isName(owned.thing(), maxWords);
 		}
 
 		String[] words = value.split(" ");
 
-		if (words.length > 5) {
+		if (words.length > maxWords) {
 			return false;
 		}
 

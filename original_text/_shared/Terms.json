@@ -15,7 +15,8 @@
     "medal",
     "compactor_toggle",
     "trophy_quality",
-    "difficulty"
+    "difficulty",
+    "dragon_type"
   ],
   "types_note": "只对这几种 placeholders[].type 生效。**故意**不含 item_name / npc_name / player_name:那三种正是需求里写死'保留英文'的位置(NPC 人名、物品自造专名),在那里翻错的代价——给别人的武器编一个中文名——远大于一个地名留着英文的代价。新增 type 前先想清楚这一点。category_name 是菜单入口名/功能分类名(Bags、Other Crystals、Recipe Book、Settings 的前半截),形状规则走 Capture.NAME 而不是 raw 的宽松短语——见下面 category_name_note。",
   "enchantment_name_note": "2026-09-08: 附魔名称仅原版 Minecraft 附魔使用官方中文。SkyBlock 专属名称保持英文,包括 Ice Cold/Compact/Scavenger/Turbo- 系列; 其效果和同名的属性、银行、地牢祝福仍翻译。Bank/Inferno 的其他用途必须限定 types,避免全局词表回退将附魔名重新汉化。",
@@ -27,6 +28,29 @@
   "accessory_power_note": "饰品能力单独使用 accessory_power，避免 Frozen 的既有鱼饵分类译名与冰封能力混用。名称来自 Maxwell/Powers 社区 Wiki；冰封与幸运沿用旧语料，其他名称仅供该机制使用。",
   "skyblock_month_note": "日历标题等日期行里的空岛月份单独使用 skyblock_month:Early/(无前缀)/Late × 春夏秋冬十二个月按顺序译成「1 月」到「12 月」(用户 2026-09-10 拍板,以月份代替季节),不改变 Winter 作为海洋生物分类时的寒冬译名。",
   "terms": [
+    { "en": "Buff Potion", "zh": "增益药水", "types": ["category_name"], "note": "地牢幽灵技能，沿用 Class_Perks；社区 Wiki /w/Berserk。" },
+    { "en": "Critical", "zh": "暴击", "types": ["category_name"], "note": "药水增益沿用 GLOSSARY 的暴击；不影响保留英文的同名非原版附魔。" },
+    { "en": "Mimic", "zh": "拟态怪", "types": ["mob_name"], "note": "社区 Wiki /w/Mimic：地牢里伪装成宝箱的怪物。" },
+    { "en": "Greatsword", "zh": "巨剑", "types": ["category_name"], "note": "社区 Wiki /w/Goldor：追逐阶段投掷的巨剑；角色人名保留。" },
+    { "en": "All Skills", "zh": "所有技能", "types": ["category_name"], "note": "携带宠物经验道具；沿用 Taming/GUI_Item/Pets_Menu_2026-09-04.json。" },
+    { "en": "Any", "zh": "任意", "types": ["category_name"], "note": "队伍查找器的地牢筛选，沿用 Mort 菜单。" },
+    { "en": "Forges", "zh": "锻造炉", "types": ["raw"], "note": "社区 Wiki /w/Enchanted_Time_Clock：时光加速的锻造选项。" },
+    { "en": "Aging Items", "zh": "陈化物品", "types": ["raw"], "note": "社区 Wiki /w/Enchanted_Time_Clock：时光加速对象；沿用 Enchanted_Clock_Live 正文。" },
+    { "en": "SkyBlock Hub", "zh": "SkyBlock 大厅", "types": ["location_name", "category_name"], "note": "沿用 Travel_Controls_Live，SkyBlock 由运行时开关处理。" },
+    { "en": "SkyBlock Hub - Museum", "zh": "SkyBlock 大厅 - 博物馆", "types": ["location_name", "category_name", "raw"], "note": "实测博物馆经验来源及快速旅行；社区 Wiki /w/Museum。" },
+    { "en": "Old Wolf", "zh": "老狼", "types": ["mob_name"], "note": "社区 Wiki /w/Old_Wolf：废墟里的狼类怪物。" },
+    { "en": "BROWN", "zh": "棕色", "types": ["category_name"], "note": "地牢终端要求选择的颜色，不是重铸、材料或人名。" },
+    { "en": "CYAN", "zh": "青色", "types": ["category_name"], "note": "地牢终端要求选择的颜色。" },
+    { "en": "Skins", "zh": "皮肤", "types": ["category_name"], "note": "沿用 Trading_Controls，花园入口名。" },
+    { "en": "Set", "zh": "套装", "types": ["category_name"], "note": "博物馆 Peony Set / Blossom Set 的套装后缀；不是动词。" },
+    { "en": "Chips", "zh": "芯片", "types": ["category_name"], "note": "沿用 Farming/NPC_Message/Jeff.json 的花园芯片。" },
+    { "en": "Revive", "zh": "复活", "types": ["category_name"], "note": "地牢幽灵技能，沿用 Dungeon_Classes。" },
+    { "en": "Ghost Axe", "zh": "幽灵飞斧", "types": ["category_name"], "note": "地牢幽灵技能，沿用 Dungeon_Classes。" },
+    { "en": "Howl", "zh": "嚎叫", "types": ["category_name"], "note": "社区 Wiki /w/Weird_Tuba 的技能名，不是物品名。" },
+    { "en": "Acupuncture", "zh": "针灸", "types": ["category_name"], "note": "社区 Wiki /w/Voodoo_Doll：从四周向目标射出箭矢的技能。" },
+    { "en": "Experimentation Table", "zh": "实验台", "types": ["category_name"], "note": "沿用 Enchantment_Nerd 的实验台译名。" },
+    { "en": "Toil", "zh": "辛劳", "types": ["raw"], "note": "社区 Wiki /w/Reforging 与实测 Smithmonger：重铸名，按通用词规则翻译。" },
+    { "en": "Suspicious", "zh": "可疑", "types": ["raw"], "note": "社区 Wiki /w/Reforging：近战武器重铸名，不是挖掘菜单的说明句。" },
     {
       "en": "Frozen",
       "zh": "冰封",
@@ -3484,7 +3508,10 @@
       "en": "Dragon",
       "zh": "巨龙",
       "types": [
-        "category_name"
+        "category_name",
+        "mob_name",
+        "mob_family",
+        "raw"
       ],
       "note": "Bazaar 精华分类的取值。已查证 hysb.wiki/w/Essence(2026-08-29)确有 Dragon Essence;限定 category_name,只用于「%1$s Essence」这类分类名。"
     },
@@ -9309,7 +9336,8 @@
     },
     {
       "en": "Wise",
-      "zh": "睿智",
+      "zh": "智慧",
+      "gloss": "用户拍板：Wise 作重铸前缀统一译智慧，不作睿智；和末影龙种类 Wise Dragon 的智慧同词。Ultimate Wise 是附魔名，仍保留英文。",
       "types": [
         "raw"
       ],
@@ -10242,7 +10270,8 @@
     },
     {
       "en": "Dungeoneering",
-      "zh": "地牢技能",
+      "zh": "地牢",
+      "gloss": "用户拍板：单独 Dungeoneering 作地牢，不补技能；Dungeoneering Skill 才作地牢技能。",
       "types": [
         "category_name"
       ],
@@ -11725,6 +11754,566 @@
         "category_name"
       ],
       "note": "原版材料官方译名。"
+    },
+    {
+      "en": "Jungle Island",
+      "zh": "丛林岛",
+      "types": [
+        "location_name"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Jungle_Island"
+    },
+    {
+      "en": "Fisherman's Hut",
+      "zh": "渔夫小屋",
+      "types": [
+        "location_name"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Fisherman's_Hut"
+    },
+    {
+      "en": "Tangleburg",
+      "zh": "盘根镇",
+      "types": [
+        "location_name"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Moonglade_Marsh"
+    },
+    {
+      "en": "Tangleburg Bank",
+      "zh": "盘根镇银行",
+      "types": [
+        "location_name"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Moonglade_Marsh"
+    },
+    {
+      "en": "Evergreen Plateau",
+      "zh": "常青高原",
+      "types": [
+        "location_name"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Moonglade_Marsh"
+    },
+    {
+      "en": "South Reaches",
+      "zh": "南部边境",
+      "types": [
+        "location_name"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Moonglade_Marsh"
+    },
+    {
+      "en": "West Reaches",
+      "zh": "西部边境",
+      "types": [
+        "location_name"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Moonglade_Marsh"
+    },
+    {
+      "en": "North Reaches",
+      "zh": "北部边境",
+      "types": [
+        "location_name"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Moonglade_Marsh"
+    },
+    {
+      "en": "South Wetlands",
+      "zh": "南部湿地",
+      "types": [
+        "location_name"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Moonglade_Marsh"
+    },
+    {
+      "en": "North Wetlands",
+      "zh": "北部湿地",
+      "types": [
+        "location_name"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Moonglade_Marsh"
+    },
+    {
+      "en": "Westbound Wetlands",
+      "zh": "西部湿地",
+      "types": [
+        "location_name"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Moonglade_Marsh"
+    },
+    {
+      "en": "Verdant Summit",
+      "zh": "苍翠峰顶",
+      "types": [
+        "location_name"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Moonglade_Marsh"
+    },
+    {
+      "en": "Fusion House",
+      "zh": "融合屋",
+      "types": [
+        "location_name"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Moonglade_Marsh"
+    },
+    {
+      "en": "Hexatorum",
+      "zh": "六芒殿",
+      "types": [
+        "location_name"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Hexatorum"
+    },
+    {
+      "en": "Young Dragon",
+      "zh": "年轻龙",
+      "types": [
+        "mob_name",
+        "mob_family",
+        "raw"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Young_Dragon"
+    },
+    {
+      "en": "Tentacle",
+      "zh": "触手",
+      "types": [
+        "mob_name",
+        "mob_family",
+        "raw"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Tentacle"
+    },
+    {
+      "en": "Shiny Pig",
+      "zh": "闪亮猪",
+      "types": [
+        "mob_name",
+        "mob_family",
+        "raw"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Shiny_Pig"
+    },
+    {
+      "en": "Kuudra Follower",
+      "zh": "Kuudra 追随者",
+      "types": [
+        "mob_name",
+        "mob_family",
+        "raw"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Kuudra"
+    },
+    {
+      "en": "Kuudra Landmine",
+      "zh": "Kuudra 地雷怪",
+      "types": [
+        "mob_name",
+        "mob_family",
+        "raw"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Kuudra"
+    },
+    {
+      "en": "Inferno Magma Cube",
+      "zh": "炼狱岩浆怪",
+      "types": [
+        "mob_name",
+        "mob_family",
+        "raw"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Kuudra"
+    },
+    {
+      "en": "Kuudra Berserker",
+      "zh": "Kuudra 狂战士",
+      "types": [
+        "mob_name",
+        "mob_family",
+        "raw"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Kuudra"
+    },
+    {
+      "en": "Kuudra Knocker",
+      "zh": "Kuudra 击退者",
+      "types": [
+        "mob_name",
+        "mob_family",
+        "raw"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Kuudra"
+    },
+    {
+      "en": "Wandering Blaze",
+      "zh": "游荡烈焰人",
+      "types": [
+        "mob_name",
+        "mob_family",
+        "raw"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Kuudra"
+    },
+    {
+      "en": "Kuudra Slasher",
+      "zh": "Kuudra 斩击者",
+      "types": [
+        "mob_name",
+        "mob_family",
+        "raw"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Kuudra"
+    },
+    {
+      "en": "Wither Sentry",
+      "zh": "凋灵哨兵",
+      "types": [
+        "mob_name",
+        "mob_family",
+        "raw"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Kuudra"
+    },
+    {
+      "en": "Magma Follower",
+      "zh": "岩浆追随者",
+      "types": [
+        "mob_name",
+        "mob_family",
+        "raw"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Kuudra"
+    },
+    {
+      "en": "Blazing Golem",
+      "zh": "烈焰傀儡",
+      "types": [
+        "mob_name",
+        "mob_family",
+        "raw"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Kuudra"
+    },
+    {
+      "en": "Explosive Imp",
+      "zh": "爆炸小鬼",
+      "types": [
+        "mob_name",
+        "mob_family",
+        "raw"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Kuudra"
+    },
+    {
+      "en": "Magma Bacteria",
+      "zh": "岩浆细菌",
+      "types": [
+        "mob_name",
+        "mob_family",
+        "raw"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Kuudra"
+    },
+    {
+      "en": "Kuudra Tentacle",
+      "zh": "Kuudra 触手",
+      "types": [
+        "mob_name",
+        "mob_family",
+        "raw"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Kuudra"
+    },
+    {
+      "en": "Kuudra's Tentacle",
+      "zh": "Kuudra 的触手",
+      "types": [
+        "mob_name",
+        "mob_family",
+        "raw"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Kuudra"
+    },
+    {
+      "en": "Dropship",
+      "zh": "空投艇",
+      "types": [
+        "mob_name",
+        "mob_family",
+        "raw"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Kuudra"
+    },
+    {
+      "en": "Organic Matter",
+      "zh": "有机物",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Composter"
+    },
+    {
+      "en": "Fuel",
+      "zh": "燃料",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Composter"
+    },
+    {
+      "en": "Inventory",
+      "zh": "背包",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Composter"
+    },
+    {
+      "en": "Sacks",
+      "zh": "收纳袋",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Composter"
+    },
+    {
+      "en": "Crops",
+      "zh": "作物",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Composter"
+    },
+    {
+      "en": "Crop",
+      "zh": "作物",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Composter"
+    },
+    {
+      "en": "Left-click",
+      "zh": "左键点击",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Composter"
+    },
+    {
+      "en": "Click",
+      "zh": "点击",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Composter"
+    },
+    {
+      "en": "Redstone Block",
+      "zh": "红石块",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Moonglade_Marsh"
+    },
+    {
+      "en": "Charm Chance",
+      "zh": "魅惑概率",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Moonglade_Marsh"
+    },
+    {
+      "en": "Heavy Pearl",
+      "zh": "沉重珍珠",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Moonglade_Marsh"
+    },
+    {
+      "en": "Young",
+      "zh": "年轻",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Moonglade_Marsh"
+    },
+    {
+      "en": "DISRUPTIVE",
+      "zh": "剧烈活动",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Moonglade_Marsh"
+    },
+    {
+      "en": "Moonglade Marsh Chapters",
+      "zh": "月光沼泽章节",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Moonglade_Marsh"
+    },
+    {
+      "en": "Defeated Kuudra Basic Tier",
+      "zh": "击败基础等阶 Kuudra",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Kuudra"
+    },
+    {
+      "en": "Sighted",
+      "zh": "远见",
+      "types": [
+        "accessory_power"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Sighted"
+    },
+    {
+      "en": "Waxed",
+      "zh": "打蜡",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Waxed"
+    },
+    {
+      "en": "Wise",
+      "zh": "智慧",
+      "types": [
+        "dragon_type"
+      ],
+      "note": "社区 Wiki Ender Dragon 种类；与重铸名隔离。"
+    },
+    {
+      "en": "Protector",
+      "zh": "守护",
+      "types": [
+        "dragon_type"
+      ],
+      "note": "社区 Wiki Ender Dragon 种类；与重铸名隔离。"
+    },
+    {
+      "en": "Old",
+      "zh": "苍老",
+      "types": [
+        "dragon_type"
+      ],
+      "note": "社区 Wiki Ender Dragon 种类；与重铸名隔离。"
+    },
+    {
+      "en": "Unstable",
+      "zh": "不稳定",
+      "types": [
+        "dragon_type"
+      ],
+      "note": "社区 Wiki Ender Dragon 种类；与重铸名隔离。"
+    },
+    {
+      "en": "Young",
+      "zh": "年轻",
+      "types": [
+        "dragon_type"
+      ],
+      "note": "社区 Wiki Ender Dragon 种类；与重铸名隔离。"
+    },
+    {
+      "en": "Strong",
+      "zh": "强韧",
+      "types": [
+        "dragon_type"
+      ],
+      "note": "社区 Wiki Ender Dragon 种类；与重铸名隔离。"
+    },
+    {
+      "en": "Superior",
+      "zh": "卓越",
+      "types": [
+        "dragon_type"
+      ],
+      "note": "社区 Wiki Ender Dragon 种类；与重铸名隔离。"
+    },
+    {
+      "en": "Void Sepulture",
+      "zh": "虚空墓地",
+      "types": [
+        "location_name",
+        "category_name",
+        "raw"
+      ],
+      "note": "社区 Wiki 普通页面核对本轮实测语境。"
+    },
+    {
+      "en": "Voidling Extremist",
+      "zh": "虚空极端分子",
+      "types": [
+        "mob_name",
+        "mob_family"
+      ],
+      "note": "社区 Wiki 普通页面核对本轮实测语境。"
+    },
+    {
+      "en": "Dragon Egg",
+      "zh": "龙蛋",
+      "types": [
+        "mob_name",
+        "raw"
+      ],
+      "note": "社区 Wiki 普通页面核对本轮实测语境。"
+    },
+    {
+      "en": "Agitated",
+      "zh": "躁动",
+      "types": [
+        "raw"
+      ],
+      "note": "社区 Wiki 普通页面核对本轮实测语境。"
+    },
+    {
+      "en": "Disturbed",
+      "zh": "受惊",
+      "types": [
+        "raw"
+      ],
+      "note": "社区 Wiki 普通页面核对本轮实测语境。"
+    },
+    {
+      "en": "Awakening",
+      "zh": "苏醒中",
+      "types": [
+        "raw"
+      ],
+      "note": "社区 Wiki 普通页面核对本轮实测语境。"
+    },
+    {
+      "en": "Rose Dragon",
+      "zh": "玫瑰龙",
+      "types": [
+        "mob_name"
+      ],
+      "note": "社区 Wiki 普通页面核对本轮实测语境。"
     }
   ],
   "todo": [

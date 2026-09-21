@@ -87,6 +87,16 @@ abstract class MinifyCorpus extends DefaultTask {
 		'applies_to_types', 'terms',               // _shared/Terms.json
 	] as Set
 
+	/**
+	 * Top-level members of an NPC_Message file the loader reads: the NPC's name and its rotating
+	 * aliases. A hologram that is nothing but one of these is a nameplate, and the capture uses the
+	 * list to leave nameplates alone — see hook/NameTag.java.
+	 */
+	private static final Set<String> NPC_KEYS = ['npc', 'aliases'] as Set
+
+	/** All a kept `translate: false` record needs to say: which surface (its file) and which line. */
+	private static final Set<String> PRESERVED_KEYS = ['id', 'text', 'translate'] as Set
+
 	/** Per-term keys in _shared/Terms.json; `note` is the translator's reasoning. */
 	private static final Set<String> TERM_KEYS = ['en', 'zh', 'types'] as Set
 
@@ -134,6 +144,10 @@ abstract class MinifyCorpus extends DefaultTask {
 				// empty — which silently turns off every value translation in the mod.
 				if (DICTIONARY_KEYS.contains(key)) {
 					trimmed[key] = key == 'terms' ? MinifyCorpus.trimTerms(value) : value
+				} else if (NPC_KEYS.contains(key) && relative.contains('/NPC_Message/')) {
+					if (value instanceof String || (value instanceof List && value.every { it instanceof String })) {
+						trimmed[key] = value
+					}
 				} else if (value instanceof List) {
 					def records = []
 
@@ -291,7 +305,9 @@ abstract class MinifyCorpus extends DefaultTask {
 		def source = MinifyCorpus.resolve(record, documents)
 
 		if (source.translate == false) {
-			return true
+			// Kept, trimmed to the line itself (see trimRecord): the loader files it as "decided to stay
+			// English" so capture stops reporting it. A template with translate: false has no such use.
+			return (source.text ?: '').contains('%')
 		}
 
 		if (source.continuation == true) {
@@ -336,6 +352,10 @@ abstract class MinifyCorpus extends DefaultTask {
 
 	static Map trimRecord(Map record) {
 		def trimmed = [:]
+
+		if (record.translate == false) {
+			return record.subMap(PRESERVED_KEYS.intersect(record.keySet()))
+		}
 
 		record.each { key, value ->
 			if (!RECORD_KEYS.contains(key)) {

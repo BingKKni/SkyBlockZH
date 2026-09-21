@@ -163,8 +163,9 @@ public final class LoreHarness {
 		for (JsonElement el : r.getAsJsonArray("placeholders")) {
 			JsonObject p = el.getAsJsonObject(); values.put(p.get("token").getAsString(), p.get("example").getAsString());
 		}
-		Matcher m = Pattern.compile("%\\d+\\$s").matcher(raw);
-		return m.replaceAll(x -> Matcher.quoteReplacement(values.get(x.group())));
+		Matcher m = Pattern.compile("%(?:\\d+\\$)?[sd]|%%").matcher(raw);
+		return m.replaceAll(x -> Matcher.quoteReplacement(
+			x.group().equals("%%") ? "%" : values.get(x.group())));
 	}
 	private static void check(String title, boolean ok) { checked++; if (!ok) failures.add(title); }
 }

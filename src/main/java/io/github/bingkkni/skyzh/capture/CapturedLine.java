@@ -1,5 +1,6 @@
 package io.github.bingkkni.skyzh.capture;
 
+import com.google.gson.JsonObject;
 import io.github.bingkkni.skyzh.text.StyledText;
 import io.github.bingkkni.skyzh.text.TranslationEntry;
 import java.util.ArrayList;
@@ -47,6 +48,9 @@ public final class CapturedLine {
 	private final Set<Integer> slots = new TreeSet<>();
 	private final Set<String> alsoSeen = new LinkedHashSet<>();
 	private final Set<String> seenIn = new LinkedHashSet<>();
+	private final Set<String> rawSamples = new LinkedHashSet<>();
+	private final List<JsonObject> holograms = new ArrayList<>();
+	private static final int MAX_HOLOGRAM_SCENES = 3;
 	private final String note;
 	private final Classifier.Verdict verdict;
 	private final long firstSeen;
@@ -68,6 +72,7 @@ public final class CapturedLine {
 		this.firstSeen = when;
 		this.lastSeen = when;
 		this.count = 1;
+		remember(sample);
 
 		place(area);
 
@@ -135,9 +140,77 @@ public final class CapturedLine {
 
 		this.lastSeen = when;
 		this.count++;
+		remember(other);
 		place(area);
 
 		return true;
+	}
+
+	/** A few real tuples, never a Cartesian product of independently observed placeholder values. */
+	private void remember(StyledText text) {
+		if (rawSamples.size() < 3) {
+			LegacyText.Encoded encoded = LegacyText.encode(text);
+			// Do not present approximate legacy colours as a faithful replay sample.
+			if (!encoded.lossy()) {
+				rawSamples.add(encoded.raw());
+			}
+		}
+	}
+
+	/**
+	 * Bounded concrete scenes, retained separately from token observations and template merging.
+	 *
+	 * <p>One scene per physical sign: a countdown row under this line changes its text every second,
+	 * and three copies of one sign a second apart would tell a translator nothing the first did not.
+	 * The sign is identified by where it stands, so the same sign seen again in another session is
+	 * still the same sign, and a second sign saying the same words elsewhere gets its own slot.
+	 */
+	public void hologram(HologramSnapshot snapshot, long when, String area) {
+		String display = snapshot.displayKey();
+		for (int i = 0; i < holograms.size(); i++) {
+			JsonObject existing = holograms.get(i);
+			if (existing.get("display_key").getAsString().equals(display)
+				&& existing.get("observer_area").getAsString().equals(area)) {
+				// Metadata for neighbouring rows can arrive a tick later. Keep the richer scene,
+				// not an incomplete first packet, without spending another slot on a ticking counter.
+				var previousRows = existing.getAsJsonArray("rows_top_to_bottom");
+				boolean changedSelection = snapshot.neighbours().size() == previousRows.size();
+				if (changedSelection) {
+					changedSelection = false;
+					for (int row = 0; row < previousRows.size(); row++) {
+						if (previousRows.get(row).getAsJsonObject().get("entity_id").getAsInt()
+							!= snapshot.neighbours().get(row).entityId()) {
+							changedSelection = true;
+							break;
+						}
+					}
+				}
+				if (snapshot.neighbours().size() > previousRows.size() || changedSelection
+					|| snapshot.truncated() != existing.get("truncated").getAsBoolean()) {
+					JsonObject scene = snapshot.json();
+					scene.addProperty("display_key", display);
+					scene.addProperty("observed_at_epoch_ms", when);
+					scene.addProperty("observer_area", area);
+					holograms.set(i, scene);
+				}
+				return;
+			}
+		}
+		if (holograms.size() < MAX_HOLOGRAM_SCENES) {
+			JsonObject scene = snapshot.json();
+			scene.addProperty("display_key", display);
+			scene.addProperty("observed_at_epoch_ms", when);
+			scene.addProperty("observer_area", area);
+			holograms.add(scene);
+		}
+	}
+
+	public List<JsonObject> holograms() {
+		return holograms.stream().map(JsonObject::deepCopy).toList();
+	}
+
+	public List<String> rawSamples() {
+		return List.copyOf(rawSamples);
 	}
 
 	/**
