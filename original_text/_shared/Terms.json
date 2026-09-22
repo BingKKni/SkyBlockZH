@@ -16,7 +16,8 @@
     "compactor_toggle",
     "trophy_quality",
     "difficulty",
-    "dragon_type"
+    "dragon_type",
+    "rng_meter_source"
   ],
   "types_note": "只对这几种 placeholders[].type 生效。**故意**不含 item_name / npc_name / player_name:那三种正是需求里写死'保留英文'的位置(NPC 人名、物品自造专名),在那里翻错的代价——给别人的武器编一个中文名——远大于一个地名留着英文的代价。新增 type 前先想清楚这一点。category_name 是菜单入口名/功能分类名(Bags、Other Crystals、Recipe Book、Settings 的前半截),形状规则走 Capture.NAME 而不是 raw 的宽松短语——见下面 category_name_note。",
   "enchantment_name_note": "2026-09-08: 附魔名称仅原版 Minecraft 附魔使用官方中文。SkyBlock 专属名称保持英文,包括 Ice Cold/Compact/Scavenger/Turbo- 系列; 其效果和同名的属性、银行、地牢祝福仍翻译。Bank/Inferno 的其他用途必须限定 types,避免全局词表回退将附魔名重新汉化。",
@@ -28,6 +29,13 @@
   "accessory_power_note": "饰品能力单独使用 accessory_power，避免 Frozen 的既有鱼饵分类译名与冰封能力混用。名称来自 Maxwell/Powers 社区 Wiki；冰封与幸运沿用旧语料，其他名称仅供该机制使用。",
   "skyblock_month_note": "日历标题等日期行里的空岛月份单独使用 skyblock_month:Early/(无前缀)/Late × 春夏秋冬十二个月按顺序译成「1 月」到「12 月」(用户 2026-09-10 拍板,以月份代替季节),不改变 Winter 作为海洋生物分类时的寒冬译名。",
   "terms": [
+    {"en":"The Peak","zh":"巅峰","types":["location_name"],"note":"龙巢传送台；社区 Wiki Dragon's Nest 与实测。"},
+    {"en":"Bedrock Point","zh":"基岩台","types":["location_name"],"note":"龙巢传送台；社区 Wiki Dragon's Nest 与实测。"},
+    {"en":"End Spire","zh":"末地尖塔","types":["location_name"],"note":"龙巢传送台；社区 Wiki Dragon's Nest 与实测。"},
+    {"en":"Obsidian Rock","zh":"黑曜岩","types":["location_name"],"note":"龙巢传送台；社区 Wiki Dragon's Nest 与实测。"},
+    {"en":"Dragon's View","zh":"望龙台","types":["location_name"],"note":"龙巢传送台；社区 Wiki Dragon's Nest 与实测。"},
+    {"en":"Endertower","zh":"末影塔","types":["location_name"],"note":"社区 Wiki Dragon's Nest 记录的同组第六座传送台。"},
+    {"en":"Dormant","zh":"休眠","types":["raw"],"note":"末地石守护者的 Tab 状态，与躁动等状态对应。"},
     { "en": "Buff Potion", "zh": "增益药水", "types": ["category_name"], "note": "地牢幽灵技能，沿用 Class_Perks；社区 Wiki /w/Berserk。" },
     { "en": "Critical", "zh": "暴击", "types": ["category_name"], "note": "药水增益沿用 GLOSSARY 的暴击；不影响保留英文的同名非原版附魔。" },
     { "en": "Mimic", "zh": "拟态怪", "types": ["mob_name"], "note": "社区 Wiki /w/Mimic：地牢里伪装成宝箱的怪物。" },
@@ -48,7 +56,7 @@
     { "en": "Ghost Axe", "zh": "幽灵飞斧", "types": ["category_name"], "note": "地牢幽灵技能，沿用 Dungeon_Classes。" },
     { "en": "Howl", "zh": "嚎叫", "types": ["category_name"], "note": "社区 Wiki /w/Weird_Tuba 的技能名，不是物品名。" },
     { "en": "Acupuncture", "zh": "针灸", "types": ["category_name"], "note": "社区 Wiki /w/Voodoo_Doll：从四周向目标射出箭矢的技能。" },
-    { "en": "Experimentation Table", "zh": "实验台", "types": ["category_name"], "note": "沿用 Enchantment_Nerd 的实验台译名。" },
+    { "en": "Experimentation Table", "zh": "实验台", "types": ["category_name", "rng_meter_source"], "note": "沿用 Enchantment_Nerd 的实验台译名；rng_meter_source 仅用于“%s RNG Meter”这类计量表来源名。" },
     { "en": "Toil", "zh": "辛劳", "types": ["raw"], "note": "社区 Wiki /w/Reforging 与实测 Smithmonger：重铸名，按通用词规则翻译。" },
     { "en": "Suspicious", "zh": "可疑", "types": ["raw"], "note": "社区 Wiki /w/Reforging：近战武器重铸名，不是挖掘菜单的说明句。" },
     {
@@ -1865,7 +1873,7 @@
     },
     {
       "en": "Zealot Bruiser",
-      "zh": "狂热末影人斗士",
+      "zh": "狂热末影人 - 斗士",
       "types": [
         "mob_name",
         "category_name"
@@ -1874,7 +1882,7 @@
     },
     {
       "en": "Zealot Bruiser Hideout",
-      "zh": "狂热末影人斗士藏身处",
+      "zh": "狂热末影人 - 斗士藏身处",
       "types": [
         "location_name",
         "category_name"
@@ -8508,7 +8516,8 @@
       "en": "Supreme",
       "zh": "至高",
       "types": [
-        "category_name"
+        "category_name",
+        "difficulty"
       ],
       "note": "附魔实验台的实验难度档次,社区 Wiki Experimentation Table/Vincent UI; 2026-09-08 实测。"
     },
@@ -8516,7 +8525,8 @@
       "en": "Transcendent",
       "zh": "超凡",
       "types": [
-        "category_name"
+        "category_name",
+        "difficulty"
       ],
       "note": "附魔实验台的实验难度档次,社区 Wiki Experimentation Table/Vincent UI; 2026-09-08 实测。"
     },
@@ -10117,7 +10127,8 @@
       "zh": "入门",
       "types": [
         "raw",
-        "category_name"
+        "category_name",
+        "difficulty"
       ],
       "note": "本轮实测;社区 Wiki Shadow_Assassin_Armor、Dark_Orb、Sharpened_Huntaxe、Basic_Fishing_Net 及菜单语境核对。"
     },
@@ -12314,7 +12325,238 @@
         "mob_name"
       ],
       "note": "社区 Wiki 普通页面核对本轮实测语境。"
-    }
+    },
+    {
+      "en": "Experimentation Table RNG",
+      "zh": "实验台 RNG",
+      "types": [
+        "category_name"
+      ],
+      "note": "本轮实测的实验台 RNG 计量表入口名；RNG 为游戏机制缩写，保留英文。"
+    },
+    {
+      "en": "Superpairs",
+      "zh": "超级配对",
+      "types": [
+        "category_name"
+      ],
+      "note": "附魔实验台主实验，沿用 GLOSSARY.md 的既定译名。"
+    },
+    {
+      "en": "Chronomatron",
+      "zh": "Chronomatron",
+      "types": [
+        "category_name"
+      ],
+      "note": "附魔实验台自造实验名，保留英文；仅让动态模板不误报中英混杂。"
+    },
+    {
+      "en": "Ultrasequencer",
+      "zh": "Ultrasequencer",
+      "types": [
+        "category_name"
+      ],
+      "note": "附魔实验台自造实验名，保留英文；仅让动态模板不误报中英混杂。"
+    },
+    {
+      "en": "RNGesus Incarnate",
+      "zh": "RNGesus Incarnate",
+      "types": [
+        "category_name"
+      ],
+      "note": "实验台 RNG 计量表的专有几率档位，保留英文。"
+    },
+    {
+      "en": "Bonzo",
+      "zh": "Bonzo",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "Boss 收藏品的 Boss 人名，保留英文。"
+    },
+    {
+      "en": "Scarf",
+      "zh": "Scarf",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "Boss 收藏品的 Boss 人名，保留英文。"
+    },
+    {
+      "en": "The Professor",
+      "zh": "The Professor",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "Boss 收藏品的 Boss 人名，保留英文。"
+    },
+    {
+      "en": "Thorn",
+      "zh": "Thorn",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "Boss 收藏品的 Boss 人名，保留英文。"
+    },
+    {
+      "en": "Livid",
+      "zh": "Livid",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "Boss 收藏品的 Boss 人名，保留英文。"
+    },
+    {
+      "en": "Sadan",
+      "zh": "Sadan",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "Boss 收藏品的 Boss 人名，保留英文。"
+    },
+    {
+      "en": "Necron",
+      "zh": "Necron",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "Boss 收藏品的 Boss 人名，保留英文。"
+    },
+    {
+      "en": "Kuudra",
+      "zh": "Kuudra",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "Boss 收藏品的 Boss 人名，保留英文。"
+    },
+    {
+      "en": "Common Kuudra",
+      "zh": "普通 Kuudra",
+      "types": [
+        "category_name"
+      ],
+      "note": "Boss 收藏品中的宠物稀有度与 Kuudra 专名组合。"
+    },
+    {
+      "en": "Drain IV",
+      "zh": "Drain IV",
+      "types": [
+        "category_name"
+      ],
+      "note": "非原版附魔名，按既定规则保留英文；供拍卖/集市动态物品模板识别。"
+    },
+    {
+      "en": "Diana",
+      "zh": "Diana",
+      "types": [
+        "raw"
+      ],
+      "note": "Tab 列表市长选举进度条中的候选人名，保留英文。"
+    },
+    {
+      "en": "Cole",
+      "zh": "Cole",
+      "types": [
+        "raw"
+      ],
+      "note": "Tab 列表市长选举进度条中的候选人名，保留英文。"
+    },
+    {
+      "en": "Diaz",
+      "zh": "Diaz",
+      "types": [
+        "raw"
+      ],
+      "note": "Tab 列表市长选举进度条中的候选人名，保留英文。"
+    },
+    {
+      "en": "Revenant Horror",
+      "zh": "Revenant Horror",
+      "types": [
+        "rng_meter_source"
+      ],
+      "note": "猎手 RNG 计量表来源名，Boss 专名保留英文。"
+    },
+    {
+      "en": "Tarantula Broodfather",
+      "zh": "Tarantula Broodfather",
+      "types": [
+        "rng_meter_source"
+      ],
+      "note": "猎手 RNG 计量表来源名，Boss 专名保留英文。"
+    },
+    {
+      "en": "Sven Packmaster",
+      "zh": "Sven Packmaster",
+      "types": [
+        "rng_meter_source"
+      ],
+      "note": "猎手 RNG 计量表来源名，Boss 专名保留英文。"
+    },
+    {
+      "en": "Voidgloom Seraph",
+      "zh": "Voidgloom Seraph",
+      "types": [
+        "rng_meter_source"
+      ],
+      "note": "猎手 RNG 计量表来源名，Boss 专名保留英文。"
+    },
+    {
+      "en": "Inferno Demonlord",
+      "zh": "Inferno Demonlord",
+      "types": [
+        "rng_meter_source"
+      ],
+      "note": "猎手 RNG 计量表来源名，Boss 专名保留英文。"
+    },
+    {
+      "en": "High",
+      "zh": "高级",
+      "types": [
+        "difficulty"
+      ],
+      "note": "附魔实验台难度；与其他菜单中的普通 high 语义隔离。"
+    },
+    {
+      "en": "Grand",
+      "zh": "高阶",
+      "types": [
+        "difficulty"
+      ],
+      "note": "附魔实验台难度；位于 High 与 Supreme 之间。"
+    },
+    {
+      "en": "Metaphysical",
+      "zh": "玄奥",
+      "types": [
+        "difficulty"
+      ],
+      "note": "附魔实验台难度；沿用 GLOSSARY.md 的既定译名。"
+    },
+    { "en": "Bracelet", "zh": "手镯", "types": ["category_name"], "note": "沿用 SkyMart 装备 gloss 的既定译名。" },
+    { "en": "Mangrove", "zh": "红树", "types": ["category_name"], "note": "原版树种；红树时运属性。" },
+    { "en": "Base", "zh": "基础", "types": ["category_name"], "note": "Base Crop：温室基础作物分类。" },
+    { "en": "Mutation", "zh": "变异", "types": ["category_name"], "note": "Mutation Crop：温室变异作物分类。" },
+    { "en": "Growth Speed", "zh": "生长速度", "types": ["category_name"], "note": "温室升级名称。" },
+    { "en": "Plant Yield", "zh": "植株产量", "types": ["category_name"], "note": "温室升级名称。" },
+    { "en": "Pesthunter's Lair", "zh": "害虫猎手巢穴", "types": ["category_name"], "note": "Pesthunter Phillip 商店的谷仓皮肤。" },
+    { "en": "Hedgehog", "zh": "刺猬", "types": ["category_name", "mob_name"], "note": "社区 Wiki Hedgehog Pet：普通动物名称。" },
+    { "en": "Moondew", "zh": "月露", "types": ["category_name"], "note": "Pest 手册的诱饵，沿用已译描述中的月露。" },
+    { "en": "Tasty Cheese", "zh": "美味奶酪", "types": ["category_name"], "note": "沿用 Garden_Tools_Live 的当前材料译名。" },
+    { "en": "Farmland", "zh": "耕地", "types": ["category_name"], "note": "温室种植基底，原版方块名。" },
+    { "en": "Soul Sand", "zh": "灵魂沙", "types": ["category_name"], "note": "温室种植基底，原版方块名。" },
+    { "en": "Juicy", "zh": "多汁", "types": ["category_name"], "note": "Sprayonator 喷头名称。" },
+    { "en": "Salty", "zh": "咸味", "types": ["category_name"], "note": "Sprayonator 喷头名称。" },
+    { "en": "Badge", "zh": "徽章", "types": ["category_name"], "note": "害虫猎手饰品类型。" }
   ],
   "todo": [
     "宝石种类名(Amber / Amethyst / Jade / Ruby / Sapphire / Topaz / Aquamarine / Citrine / Onyx / Peridot)按既定原则保持英文,**不要**往表里加。它们和汉字之间的空格由引擎自动处理。",

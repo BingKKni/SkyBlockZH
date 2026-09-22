@@ -1,13 +1,13 @@
 {
-  "source": "; 2026-09-07/08 编译后实测; https://hypixelskyblock.minecraft.wiki/w/Dungeon_Hub_Race",
-  "fetched_at": "2026-09-08",
+  "source": "2026-09-07/08 编译后实测; logs/skyzh-capture/colour/Combat/ChatMessage/Server_Messages.json; https://hypixelskyblock.minecraft.wiki/w/Dungeon_Hub_Race",
+  "fetched_at": "2026-09-22",
   "verified_ingame": true,
   "gui_context": "地牢大厅竞速提示",
   "lines": [
     {
       "id": "race_start_live",
-      "context": "地牢大厅竞速提示",
-      "raw": "%s RACE Race started! Good luck!",
+      "context": "地牢大厅与末地共用竞速提示；分段依据末地实测，颜色取实时文本",
+      "raw": "§d§l%s RACE §eRace started! Good luck!",
       "text": "%s RACE Race started! Good luck!",
       "placeholders": [
         {
@@ -19,7 +19,11 @@
       ],
       "gloss": "",
       "translate": true,
-      "zh": "%s竞速开始! 祝你好运!"
+      "zh": "%s竞速 比赛开始! 祝你好运!",
+      "segments": [
+        {"color": "§d§l", "text": "%s RACE ", "zh": "%s竞速 "},
+        {"color": "§e", "text": "Race started! Good luck!", "zh": "比赛开始! 祝你好运!"}
+      ]
     },
     {
       "id": "race_cancel_live",

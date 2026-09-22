@@ -1,0 +1,145 @@
+{
+  "source": "runtime capture (SkyZH, 2026-09-21); https://hypixelskyblock.minecraft.wiki/w/Experiments",
+  "fetched_at": "2026-09-21",
+  "verified_ingame": true,
+  "gui_context": "附魔实验台操作时服务器直接发送的系统消息。三种实验名中，Superpairs 已有既定中文名；Chronomatron 和 Ultrasequencer 仍保留自造名。",
+  "messages": [
+    {
+      "id": "experiments_play_addons_before_superpairs",
+      "context": "未完成附加实验时尝试开始 Superpairs 的提示",
+      "raw": "§ePlay the add-on experiments before playing §dSuperpairs§e!",
+      "text": "Play the add-on experiments before playing Superpairs!",
+      "placeholders": [],
+      "gloss": "Superpairs 沿用既定译名。",
+      "translate": true,
+      "zh": "请先完成附加实验，再进行超级配对!",
+      "segments": [
+        {"color": "§e", "text": "Play the add-on experiments before playing ", "zh": "请先完成附加实验，再进行"},
+        {"color": "§d", "text": "Superpairs", "zh": "超级配对"},
+        {"color": "§e", "text": "!", "zh": "!"}
+      ]
+    },
+    {
+      "id": "experiments_claim_rewards",
+      "context": "完成任一实验后领取奖励的消息",
+      "raw": "§eYou claimed the §d%1$s §erewards!",
+      "text": "You claimed the %1$s rewards!",
+      "placeholders": [
+        {"token": "%1$s", "desc": "实验名称", "type": "category_name", "example": "Superpairs"}
+      ],
+      "gloss": "实验名走受限术语表：Superpairs 汉化，另外两个自造实验名保留英文。",
+      "translate": true,
+      "zh": "你领取了%1$s的奖励!",
+      "segments": [
+        {"color": "§e", "text": "You claimed the ", "zh": "你领取了"},
+        {"color": "§d", "text": "%1$s ", "zh": "%1$s"},
+        {"color": "§e", "text": "rewards!", "zh": "的奖励!"}
+      ]
+    },
+    {
+      "id": "experiments_enchanting_exp_reward",
+      "context": "实验奖励中的附魔经验行",
+      "raw": "§8+§3%1$s Enchanting Exp",
+      "text": "+%1$s Enchanting Exp",
+      "placeholders": [
+        {"token": "%1$s", "desc": "附魔经验数值", "type": "number", "example": "72,000"}
+      ],
+      "gloss": "开头空格是服务器排版，不写进 text。",
+      "translate": true,
+      "zh": "+%1$s 附魔经验",
+      "segments": [
+        {"color": "§8", "text": "+", "zh": "+"},
+        {"color": "§3", "text": "%1$s Enchanting Exp", "zh": "%1$s 附魔经验"}
+      ]
+    },
+    {
+      "id": "experiments_superpairs_click_reward",
+      "context": "实验奖励中的 Superpairs 点击次数行",
+      "raw": "§8+§d%1$s Superpairs clicks",
+      "text": "+%1$s Superpairs clicks",
+      "placeholders": [
+        {"token": "%1$s", "desc": "获得的点击次数", "type": "number", "example": "3"}
+      ],
+      "gloss": "用复数 clicks 模板兼容服务器的单数 Click 写法。",
+      "translate": true,
+      "zh": "+%1$s 次超级配对点击",
+      "segments": [
+        {"color": "§8", "text": "+", "zh": "+"},
+        {"color": "§d", "text": "%1$s Superpairs clicks", "zh": "%1$s 次超级配对点击"}
+      ]
+    },
+    {
+      "id": "experiments_on_cooldown",
+      "context": "实验冷却中的红色提示",
+      "raw": "§cThis experiment is on cooldown!",
+      "text": "This experiment is on cooldown!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "此实验正在冷却中!"
+    },
+    {
+      "id": "experiments_practice_only",
+      "context": "冷却期间只能进入练习模式的提示",
+      "raw": "§cYou may only play practice mode!",
+      "text": "You may only play practice mode!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你只能进行练习模式!"
+    },
+    {
+      "id": "experiments_level_too_low",
+      "context": "附魔等级不足时无法开始实验的提示",
+      "raw": "§cYour Minecraft level is too low to start this experiment!",
+      "text": "Your Minecraft level is too low to start this experiment!",
+      "placeholders": [],
+      "gloss": "Minecraft level 是游戏的总等级，不是附魔等级。",
+      "translate": true,
+      "zh": "你的 Minecraft 等级不足，无法开始此实验!"
+    },
+    {
+      "id": "experiments_removed_table",
+      "context": "从私人岛屿移除实验台后的消息",
+      "raw": "§7You removed an §eExperimentation Table§7. (%1$s)",
+      "text": "You removed an Experimentation Table. (%1$s)",
+      "placeholders": [
+        {"token": "%1$s", "desc": "岛屿放置数量", "type": "raw", "example": "0/1"}
+      ],
+      "gloss": "数量形状是 0/1，不用 number。",
+      "translate": true,
+      "zh": "你移除了实验台。（%1$s）",
+      "segments": [
+        {"color": "§7", "text": "You removed an ", "zh": "你移除了"},
+        {"color": "§e", "text": "Experimentation Table", "zh": "实验台"},
+        {"color": "§7", "text": ". (%1$s)", "zh": "。（%1$s）"}
+      ]
+    },
+    {
+      "id": "experiments_placed_table",
+      "context": "在私人岛屿放置实验台后的消息",
+      "raw": "§7You placed an §eExperimentation Table§7. (%1$s)",
+      "text": "You placed an Experimentation Table. (%1$s)",
+      "placeholders": [
+        {"token": "%1$s", "desc": "岛屿放置数量", "type": "raw", "example": "1/1"}
+      ],
+      "gloss": "数量形状是 1/1，不用 number。",
+      "translate": true,
+      "zh": "你放置了实验台。（%1$s）",
+      "segments": [
+        {"color": "§7", "text": "You placed an ", "zh": "你放置了"},
+        {"color": "§e", "text": "Experimentation Table", "zh": "实验台"},
+        {"color": "§7", "text": ". (%1$s)", "zh": "。（%1$s）"}
+      ]
+    },
+    {
+      "id": "experiments_drain_reward_preserved",
+      "context": "实验奖励中显示的非原版附魔名",
+      "text": "+Drain IV",
+      "placeholders": [],
+      "gloss": "Drain 是明确保留英文的非原版附魔；开头加号属于本条精确原文。",
+      "translate": false,
+      "zh": ""
+    }
+  ]
+}

@@ -993,7 +993,7 @@ BossBar 里是全大写(`GONE WITH THE WIND`)、计分板小部件里是正常�
 ### 2026-09-05 采集补译: 收藏品、怪物与外观商店
 
 - `Scared Skeleton` → **惊恐骷髅**。社区 Wiki 同名页说明它会逃离附近玩家,不是施加恐惧的骷髅。
-- `Zealot Bruiser` → **狂热末影人斗士**; `Zealot Bruiser Hideout` → **狂热末影人斗士藏身处**。
+- `Zealot Bruiser` → **狂热末影人 - 斗士**; `Zealot Bruiser Hideout` → **狂热末影人 - 斗士藏身处**。
   沿用 Zealot → 狂热末影人,不改为另一套词根。
 - `Tsunami` → **海啸**; `Soul Sand Blizzard` → **灵魂沙暴**。社区 Wiki `Scarf` 页的招式名,
   前者属于 Mage,后者属于 Scarf; 角色人名仍保留英文。

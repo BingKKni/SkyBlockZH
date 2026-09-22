@@ -1,0 +1,467 @@
+{
+  "source": "logs/skyzh-capture; https://hypixelskyblock.minecraft.wiki/w/Lone_Adventurer",
+  "fetched_at": "2026-09-22",
+  "verified_ingame": true,
+  "note": "完整检查 Wiki 巨龙指南的七种巨龙栏位；这些栏位无下级菜单链接。动态排行榜以实测为准。",
+  "lines": [
+    {
+      "id": "dragon_guide_name",
+      "context": "巨龙指南菜单的入口和统计",
+      "raw": "§aDragon Guide",
+      "text": "Dragon Guide",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "巨龙指南"
+    },
+    {
+      "id": "dragon_guide_eyes",
+      "context": "巨龙指南菜单的入口和统计",
+      "raw": "§aSummoning Eyes",
+      "text": "Summoning Eyes",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "召唤之眼"
+    },
+    {
+      "id": "dragon_guide_spawning",
+      "context": "巨龙指南菜单的入口和统计",
+      "raw": "§aDragon Spawning",
+      "text": "Dragon Spawning",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "召唤巨龙"
+    },
+    {
+      "id": "dragon_guide_family",
+      "context": "巨龙指南菜单的入口和统计",
+      "raw": "§a%s Dragons",
+      "text": "%s Dragons",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "dragon_type",
+          "example": "Young",
+          "desc": "七种既有巨龙类型"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%s巨龙"
+    },
+    {
+      "id": "dragon_guide_dragons_summoned",
+      "context": "巨龙指南菜单的入口和统计",
+      "raw": "§7Dragons Summoned: §a%s",
+      "text": "Dragons Summoned: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "11",
+          "desc": "统计数量"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "召唤巨龙次数: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Dragons Summoned: ",
+          "zh": "召唤巨龙次数: "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "dragon_guide_amount_summoned",
+      "context": "巨龙指南菜单的入口和统计",
+      "raw": "§7Amount Summoned: §a%s",
+      "text": "Amount Summoned: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "11",
+          "desc": "统计数量"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "召唤次数: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Amount Summoned: ",
+          "zh": "召唤次数: "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "dragon_guide_eyes_contributed",
+      "context": "巨龙指南菜单的入口和统计",
+      "raw": "§7Summoning Eyes Contributed: §a%s",
+      "text": "Summoning Eyes Contributed: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "11",
+          "desc": "统计数量"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "贡献召唤之眼数量: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Summoning Eyes Contributed: ",
+          "zh": "贡献召唤之眼数量: "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "dragon_guide_eyes_collected",
+      "context": "巨龙指南菜单的入口和统计",
+      "raw": "§7Summoning Eyes Collected: §a%s",
+      "text": "Summoning Eyes Collected: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "11",
+          "desc": "统计数量"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "收集召唤之眼数量: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Summoning Eyes Collected: ",
+          "zh": "收集召唤之眼数量: "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "dragon_guide_highest_rank",
+      "context": "巨龙指南菜单的入口和统计",
+      "raw": "§7Highest Rank: §a%s",
+      "text": "Highest Rank: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "ordinal",
+          "example": "2nd",
+          "desc": "最高伤害名次"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "最高排名: 第 %s 名",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Highest Rank: ",
+          "zh": "最高排名: "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "第 %s 名"
+        }
+      ]
+    },
+    {
+      "id": "dragon_guide_fastest_kill",
+      "context": "巨龙指南菜单的入口和统计",
+      "raw": "§7Fastest Kill: §a%s",
+      "text": "Fastest Kill: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "duration_spaced",
+          "example": "02s",
+          "desc": "最短击杀用时"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "最快击杀: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Fastest Kill: ",
+          "zh": "最快击杀: "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "dragon_guide_ranked_eyes",
+      "context": "巨龙指南菜单的入口和统计",
+      "raw": "§7Summoning Eyes Collected: §a%1$s §7(Top §e%2$s%§7)",
+      "text": "Summoning Eyes Collected: %1$s (Top %2$s%)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "11",
+          "desc": "统计值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "3.48",
+          "desc": "位居前百分之几"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "收集召唤之眼数量: %1$s (前 %2$s%)",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Summoning Eyes Collected: ",
+          "zh": "收集召唤之眼数量: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "(Top ",
+          "zh": " (前 "
+        },
+        {
+          "color": "§e",
+          "text": "%2$s%",
+          "zh": "%2$s%"
+        },
+        {
+          "color": "§7",
+          "text": ")",
+          "zh": ")"
+        }
+      ]
+    },
+    {
+      "id": "dragon_guide_ranked_kills",
+      "context": "巨龙指南菜单的入口和统计",
+      "raw": "§7Kills: §a%1$s §7(Top §e%2$s%§7)",
+      "text": "Kills: %1$s (Top %2$s%)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "11",
+          "desc": "统计值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "3.48",
+          "desc": "位居前百分之几"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "击杀数: %1$s (前 %2$s%)",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Kills: ",
+          "zh": "击杀数: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "(Top ",
+          "zh": " (前 "
+        },
+        {
+          "color": "§e",
+          "text": "%2$s%",
+          "zh": "%2$s%"
+        },
+        {
+          "color": "§7",
+          "text": ")",
+          "zh": ")"
+        }
+      ]
+    },
+    {
+      "id": "dragon_guide_ranked_damage",
+      "context": "巨龙指南菜单的入口和统计",
+      "raw": "§7Most Damage: §a%1$s §7(Top §e%2$s%§7)",
+      "text": "Most Damage: %1$s (Top %2$s%)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "11",
+          "desc": "统计值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "3.48",
+          "desc": "位居前百分之几"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "最高伤害: %1$s (前 %2$s%)",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Most Damage: ",
+          "zh": "最高伤害: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "(Top ",
+          "zh": " (前 "
+        },
+        {
+          "color": "§e",
+          "text": "%2$s%",
+          "zh": "%2$s%"
+        },
+        {
+          "color": "§7",
+          "text": ")",
+          "zh": ")"
+        }
+      ]
+    },
+    {
+      "id": "dragon_guide_na_kills",
+      "context": "巨龙指南菜单的入口和统计",
+      "raw": "§7Kills: §cN/A",
+      "text": "Kills: N/A",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "击杀数: 暂无",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Kills: ",
+          "zh": "击杀数: "
+        },
+        {
+          "color": "§c",
+          "text": "N/A",
+          "zh": "暂无"
+        }
+      ]
+    },
+    {
+      "id": "dragon_guide_na_rank",
+      "context": "巨龙指南菜单的入口和统计",
+      "raw": "§7Highest Rank: §cN/A",
+      "text": "Highest Rank: N/A",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "最高排名: 暂无",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Highest Rank: ",
+          "zh": "最高排名: "
+        },
+        {
+          "color": "§c",
+          "text": "N/A",
+          "zh": "暂无"
+        }
+      ]
+    },
+    {
+      "id": "dragon_guide_na_time",
+      "context": "巨龙指南菜单的入口和统计",
+      "raw": "§7Fastest Kill: §cN/A",
+      "text": "Fastest Kill: N/A",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "最快击杀: 暂无",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Fastest Kill: ",
+          "zh": "最快击杀: "
+        },
+        {
+          "color": "§c",
+          "text": "N/A",
+          "zh": "暂无"
+        }
+      ]
+    },
+    {
+      "id": "dragon_guide_na_damage",
+      "context": "巨龙指南菜单的入口和统计",
+      "raw": "§7Most Damage: §cN/A",
+      "text": "Most Damage: N/A",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "最高伤害: 暂无",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Most Damage: ",
+          "zh": "最高伤害: "
+        },
+        {
+          "color": "§c",
+          "text": "N/A",
+          "zh": "暂无"
+        }
+      ]
+    }
+  ]
+}

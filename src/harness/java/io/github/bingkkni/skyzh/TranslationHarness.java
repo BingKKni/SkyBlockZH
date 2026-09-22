@@ -67,6 +67,19 @@ public final class TranslationHarness {
 
 		System.out.println();
 		installIndex(index);
+		report("审计承认精确保留的聊天行", LogAudit.covered(" +Drain IV"), "translate:false 的聊天行不应再次报告");
+		report("审计不豁免未知聊天行", !LogAudit.covered(" +Unverified IV"), "保留规则必须是精确行");
+		report("审计逐行检查保留与未知文本", !LogAudit.covered(" +Drain IV\\n +Unverified IV"),
+			"已保留首行不能掩盖同一消息中的未知次行");
+		SkyZHConfig auditConfig = SkyZHConfig.get();
+		boolean auditEnabled = auditConfig.enabled;
+		try {
+			auditConfig.enabled = false;
+			report("审计不受显示总开关影响", LogAudit.covered("This experiment is on cooldown!"),
+				"离线审计应检查语料覆盖，不检查当前是否显示译文");
+		} finally {
+			auditConfig.enabled = auditEnabled;
+		}
 
 		// ---- every finished record still answers for its own text ----
 		checkNoRecordIsShadowed(index, files);
@@ -2328,6 +2341,23 @@ public final class TranslationHarness {
 
 	/** User log translations, including live variants and style-sensitive Chinese word order. */
 	private static void checkLogTranslations() {
+		check("末地竞速开场标签与正文保留双色", "§d§lTHE END RACE §eRace started! Good luck!", Surface.CHAT,
+			"§d§l末地竞速 §e比赛开始! 祝你好运!");
+		for (String time : List.of("00:29.707", "01:08.123")) {
+			check("末地竞速成绩保留毫秒与独立高亮 " + time,
+				"§d§lTHE END RACE §eRace finished in §d" + time + "§e! §d§lPERSONAL BEST!", Surface.CHAT,
+				"§d§l末地竞速 §e完赛用时: §d" + time + "§e! §d§l刷新个人最佳成绩!");
+		}
+		check("巨龙指南排名保留数值和实时颜色", "§7Most Damage: §a983,344 §7(Top §621.12%§7)", Surface.ITEM,
+			"§7最高伤害: §a983,344§7 (前 §621.12%§7)");
+		check("巨龙指南无数据保留红色", "§7Highest Rank: §cN/A", Surface.ITEM, "§7最高排名: §c暂无");
+		check("巨龙指南序数去掉英文后缀", "§7Highest Rank: §a2nd", Surface.ITEM, "§7最高排名: §a第 2 名");
+		check("巨龙指南时长支持分钟", "§7Fastest Kill: §a1m 02s", Surface.ITEM, "§7最快击杀: §a1 分 02 秒");
+		check("末地竞速目标支持秒数", "Run the race in 48s", Surface.SCOREBOARD, "在 48 秒内完成竞速");
+		check("末地竞速目标支持分钟", "Run the race in 2m", Surface.SCOREBOARD, "在 2 分内完成竞速");
+		check("Guber 对话玩家名不是采集者常量", "Not bad, OtherPlayer!", Surface.CHAT, "不错嘛，OtherPlayer!");
+		check("龙巢传送台的多词地名整值翻译", "§5✦ §dWarp To §7Bedrock Point", Surface.HOLOGRAM,
+			"§5✦ §d传送至 §7基岩台");
 		report("感叹号后可直接闭合选项括号", !hasUnspacedBang("[真神奇!]"), "右方括号不是正文");
 		report("感叹号后接正文仍须空格", hasUnspacedBang("真神奇!继续")
 			&& !hasUnspacedBang("真神奇! 继续"), "不能为修复选项而放宽正文间距规则");
@@ -2728,6 +2758,23 @@ public final class TranslationHarness {
 
 	/** The September capture JSON adds live colour boundaries and real multi-line lore, not just chat. */
 	private static void checkCaptureRound() {
+		check("实验台 RNG 计量表来源名", "§dExperimentation Table RNG Meter", Surface.ITEM,
+			"§d实验台 RNG 计量表");
+		check("猎手 RNG 计量表专名保留", "§dRevenant Horror RNG Meter", Surface.ITEM,
+			"§dRevenant Horror RNG 计量表");
+		check("实验难度 Beginner", "§7Stakes: §bBeginner", Surface.ITEM, "§7难度: §b入门");
+		check("实验难度 Supreme", "§7Stakes: §6Supreme", Surface.ITEM, "§7难度: §6至高");
+		check("实验难度 Transcendent", "§7Stakes: §dTranscendent", Surface.ITEM, "§7难度: §d超凡");
+		check("实验物品名 Beginner", "§bBeginner Experiment", Surface.ITEM, "§b入门实验");
+		check("实验物品名 Transcendent", "§dTranscendent Experiment", Surface.ITEM, "§d超凡实验");
+		check("实验物品名 Metaphysical", "§5Metaphysical Experiment", Surface.ITEM, "§5玄奥实验");
+		check("Superpairs 附魔经验范围保留两个 k", "§33.5k-50k Enchanting Exp", Surface.ITEM,
+			"§33.5k-50k 附魔经验");
+		check("Superpairs 附魔经验单值保留末尾 k", "§35k Enchanting Exp", Surface.ITEM,
+			"§35k 附魔经验");
+		check("集市小写搜索词标题", "Bazaar ➜ \"bottle\"", Surface.GUI_TITLE, "集市 ➜ \"bottle\"");
+		check("集市带空格搜索词标题", "Bazaar ➜ \"bottle cap\"", Surface.GUI_TITLE,
+			"集市 ➜ \"bottle cap\"");
 		check("收藏品返回按钮不把 To 当成名称", "§7To Ender Pearl Collection", Surface.ITEM,
 			"§7返回末影珍珠收藏品");
 		check("收藏品返回按钮复数类别", "§7To Combat Collections", Surface.ITEM, "§7返回战斗收藏品");
@@ -2841,7 +2888,7 @@ public final class TranslationHarness {
 		check("三怪人指认的人名可变且不改名", "They are both telling the truth, the reward is in §cHope's §fchest!",
 			Surface.CHAT, "他们俩说的都是真话,奖励在§c Hope§f 的箱子里!");
 		check("狂信徒斗士死亡广播", "§c☠ §bMining§7 was killed by Zealot Bruiser.", Surface.CHAT,
-			"§c☠ §bMining§7 被狂热末影人斗士杀死了。");
+			"§c☠ §bMining§7 被狂热末影人 - 斗士杀死了。");
 		check("地牢图鉴怪物名", "Scared Skeleton XV ➡ XVI", Surface.CHAT, "惊恐骷髅 XV ➡ XVI");
 		check("图鉴硬币奖励去掉汉字之间的空格", "§8+§62% §aScared Skeleton §7coins", Surface.CHAT,
 			"§8+§62% §a惊恐骷髅§7掉落的硬币");

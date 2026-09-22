@@ -1,0 +1,1325 @@
+{
+  "source": "logs/skyzh-capture; https://hypixelskyblock.minecraft.wiki/w/Book_of_Progression; https://hypixelskyblock.minecraft.wiki/w/Prestige_Chocolate_Realm; https://hypixelskyblock.minecraft.wiki/w/Soulflow_Battery; https://hypixelskyblock.minecraft.wiki/w/Relic_of_Power; https://hypixelskyblock.minecraft.wiki/w/Treasure_Ring; https://hypixelskyblock.minecraft.wiki/w/Experience_Artifact; https://hypixelskyblock.minecraft.wiki/w/Auto_Recombobulator; https://hypixelskyblock.minecraft.wiki/w/New_Year_Cake_Bag; https://hypixelskyblock.minecraft.wiki/w/Sea_Creature_Artifact; https://hypixelskyblock.minecraft.wiki/w/Potion_Affinity_Artifact; https://hypixelskyblock.minecraft.wiki/w/Piggy_Bank; https://hypixelskyblock.minecraft.wiki/w/Intimidation_Relic; https://hypixelskyblock.minecraft.wiki/w/Razor-sharp_Shark_Tooth_Necklace; https://hypixelskyblock.minecraft.wiki/w/Personal_Compactor_7000",
+  "fetched_at": "2026-09-22",
+  "verified_ingame": true,
+  "source_note": "实测原文与颜色优先；社区 Wiki 普通页面核实语境及完整后文。数值泛化为有类型占位符；自造专名保留英文。跨行说明合并为 GUI_Lore 整句。",
+  "lines": [
+    {
+      "id": "garden_extra_book_progress",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7This book, imbued with great power, upgrades as you do.",
+      "text": "This book, imbued with great power, upgrades as you do.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这本蕴藏强大力量的书，会随你的成长一同升级。"
+    },
+    {
+      "id": "garden_extra_book_flavour",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§8§oA wise novel once thought to be the cure to all problems.",
+      "text": "A wise novel once thought to be the cure to all problems.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "一本充满智慧的书，曾被视为解决所有难题的良方。"
+    },
+    {
+      "id": "garden_extra_book_defensive",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§9Defensive Strongman Passive",
+      "text": "Defensive Strongman Passive",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "强健防御·被动"
+    },
+    {
+      "id": "garden_extra_book_reduction",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7When you are attacked, take §9%1$s%§7 less of the incoming damage.",
+      "text": "When you are attacked, take %1$s% less of the incoming damage.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "2",
+          "desc": "随游戏状态变化的number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "受到攻击时，承受的伤害降低 %1$s%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "When you are attacked, take ",
+          "zh": "受到攻击时，承受的伤害降低 "
+        },
+        {
+          "color": "§9",
+          "text": "%1$s%",
+          "zh": "%1$s%"
+        },
+        {
+          "color": "§7",
+          "text": " less of the incoming damage.",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "garden_extra_treasure",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Grants §a+%1$s% §7extra loot to end of dungeon chests.",
+      "text": "Grants +%1$s% extra loot to end of dungeon chests.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "2",
+          "desc": "随游戏状态变化的number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "地牢通关宝箱的额外战利品概率提高 %1$s%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "地牢通关宝箱的额外战利品概率提高 "
+        },
+        {
+          "color": "§a",
+          "text": "+%1$s% ",
+          "zh": "%1$s%"
+        },
+        {
+          "color": "§7",
+          "text": "extra loot to end of dungeon chests.",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "garden_extra_gifts",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Gain §a+%1$s% §7more §6Coins §7and §3Skill XP §7from gifts.",
+      "text": "Gain +%1$s% more Coins and Skill XP from gifts.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "20",
+          "desc": "随游戏状态变化的number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "从礼物中获得的硬币与技能经验提高 %1$s%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "从礼物中获得的",
+          "order": 0
+        },
+        {
+          "color": "§a",
+          "text": "+%1$s% ",
+          "zh": "%1$s%",
+          "order": 5
+        },
+        {
+          "color": "§7",
+          "text": "more ",
+          "zh": "",
+          "omit": true,
+          "order": 6
+        },
+        {
+          "color": "§6",
+          "text": "Coins ",
+          "zh": "硬币",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "与",
+          "order": 2
+        },
+        {
+          "color": "§3",
+          "text": "Skill XP ",
+          "zh": "技能经验",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "from gifts",
+          "zh": "提高 ",
+          "order": 4
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。",
+          "order": 7
+        }
+      ]
+    },
+    {
+      "id": "garden_extra_haste",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Grants permanent §eHaste %1$s§7.",
+      "text": "Grants permanent Haste %1$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "tier",
+          "example": "III",
+          "desc": "随游戏状态变化的tier"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "永久获得急迫 %1$s。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants permanent ",
+          "zh": "永久获得"
+        },
+        {
+          "color": "§e",
+          "text": "Haste %1$s",
+          "zh": "急迫 %1$s"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "garden_extra_chocolate_realm",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Grants §a+%1$s% §7chance to find a §aChocolate Rabbit §7that you haven't found yet and grants §6+%2$s Chocolate §7per second.",
+      "text": "Grants +%1$s% chance to find a Chocolate Rabbit that you haven't found yet and grants +%2$s Chocolate per second.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "10",
+          "desc": "随游戏状态变化的number"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "50",
+          "desc": "随游戏状态变化的number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "发现尚未收集的巧克力兔的概率提高 %1$s%，每秒额外产出 %2$s 巧克力。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "发现尚未收集的",
+          "order": 0
+        },
+        {
+          "color": "§a",
+          "text": "+%1$s% ",
+          "zh": "%1$s%",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "chance to find a ",
+          "zh": "的概率提高 ",
+          "order": 2
+        },
+        {
+          "color": "§a",
+          "text": "Chocolate Rabbit ",
+          "zh": "巧克力兔",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "that you haven't found yet and grants ",
+          "zh": "，每秒额外产出 ",
+          "order": 4
+        },
+        {
+          "color": "§6",
+          "text": "+%2$s Chocolate ",
+          "zh": "%2$s 巧克力",
+          "order": 5
+        },
+        {
+          "color": "§7",
+          "text": "per second.",
+          "zh": "。",
+          "order": 6
+        }
+      ]
+    },
+    {
+      "id": "garden_extra_chocolate_flavour",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§8§oThe Factory's pinnacle creation - its epic taste shatters expectations, offering a taste of utopia.",
+      "text": "The Factory's pinnacle creation - its epic taste shatters expectations, offering a taste of utopia.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "工厂的巅峰之作——滋味远超想象，仿佛尝到了理想乡的甜美。"
+    },
+    {
+      "id": "garden_extra_undead_heal",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Heal §c%1$s❤ §7when killing §2 Undead §7mobs.",
+      "text": "Heal %1$s❤ when killing  Undead mobs.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "10",
+          "desc": "随游戏状态变化的number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "击杀 亡灵生物时，恢复 %1$s❤",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Heal ",
+          "zh": "恢复 ",
+          "order": 3
+        },
+        {
+          "color": "§c",
+          "text": "%1$s❤ ",
+          "zh": "%1$s❤",
+          "order": 4
+        },
+        {
+          "color": "§7",
+          "text": "when killing ",
+          "zh": "击杀",
+          "order": 0
+        },
+        {
+          "color": "§2",
+          "text": " Undead ",
+          "zh": " 亡灵",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "mobs.",
+          "zh": "生物时，",
+          "order": 2
+        }
+      ]
+    },
+    {
+      "id": "garden_extra_personal_compact",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Automatically turns certain materials in your inventory into their enchanted form.",
+      "text": "Automatically turns certain materials in your inventory into their enchanted form.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "自动将背包中的特定材料合成为对应的附魔材料。"
+    },
+    {
+      "id": "garden_extra_no_carpentry",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§8Does not grant Carpentry XP!",
+      "text": "Does not grant Carpentry XP!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "不会获得木工经验!"
+    },
+    {
+      "id": "garden_extra_tenth_hit",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Every §a%1$s §7melee hit on the same enemy deals §c+%2$s% §7damage.",
+      "text": "Every %1$s melee hit on the same enemy deals +%2$s% damage.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "ordinal",
+          "example": "10th",
+          "desc": "随游戏状态变化的ordinal"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "10",
+          "desc": "随游戏状态变化的number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "对同一敌人的每第 %1$s 次近战攻击，伤害提高 %2$s%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Every ",
+          "zh": "对同一敌人的每第 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "melee hit on the same enemy deals ",
+          "zh": " 次近战攻击，伤害提高 "
+        },
+        {
+          "color": "§c",
+          "text": "+%2$s% ",
+          "zh": "%2$s%"
+        },
+        {
+          "color": "§7",
+          "text": "damage.",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "garden_extra_melody_hair",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7A single strand of hair from Melody's head.",
+      "text": "A single strand of hair from Melody's head.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Melody 的一缕头发。"
+    },
+    {
+      "id": "garden_extra_melody_tune",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Left-Click: §eTune up!",
+      "text": "Left-Click: Tune up!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "左键: 升高音调!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Left-Click: ",
+          "zh": "左键: "
+        },
+        {
+          "color": "§e",
+          "text": "Tune up!",
+          "zh": "升高音调!"
+        }
+      ]
+    },
+    {
+      "id": "garden_extra_melody_play",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Right-Click: §dPlay note!",
+      "text": "Right-Click: Play note!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "右键: 演奏音符!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Right-Click: ",
+          "zh": "右键: "
+        },
+        {
+          "color": "§d",
+          "text": "Play note!",
+          "zh": "演奏音符!"
+        }
+      ]
+    },
+    {
+      "id": "garden_extra_experience",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Increase the experience orbs you gain by §a%1$s% §7while this item is in your inventory or accessory bag.",
+      "text": "Increase the experience orbs you gain by %1$s% while this item is in your inventory or accessory bag.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "25",
+          "desc": "随游戏状态变化的number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "置于背包或饰品袋中时，经验球获取量提高 %1$s%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increase the experience orbs you gain by ",
+          "zh": "置于背包或饰品袋中时，经验球获取量提高 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s% ",
+          "zh": "%1$s%"
+        },
+        {
+          "color": "§7",
+          "text": "while this item is in your inventory or accessory bag.",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "garden_extra_auto_recombobulate",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Grants a §a%1$s% §7chance to automatically recombobulate drops you get from enemies.",
+      "text": "Grants a %1$s% chance to automatically recombobulate drops you get from enemies.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "1",
+          "desc": "随游戏状态变化的number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "从敌人身上获得掉落物时，有 %1$s% 的概率自动为其重组。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants a ",
+          "zh": "从敌人身上获得掉落物时，有 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s% ",
+          "zh": "%1$s%"
+        },
+        {
+          "color": "§7",
+          "text": "chance to automatically recombobulate drops you get from enemies.",
+          "zh": " 的概率自动为其重组。"
+        }
+      ]
+    },
+    {
+      "id": "garden_extra_cake_bag",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Holds §cNew Year Cakes§7. Each unique §cNew Year Cake §7within this bag grants §c+%1$s❤ Health§7.",
+      "text": "Holds New Year Cakes. Each unique New Year Cake within this bag grants +%1$s❤ Health.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "1",
+          "desc": "随游戏状态变化的number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "可存放新年蛋糕。袋中每种不同的新年蛋糕提供 +%1$s❤ 生命值。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Holds ",
+          "zh": "可存放"
+        },
+        {
+          "color": "§c",
+          "text": "New Year Cakes",
+          "zh": "新年蛋糕"
+        },
+        {
+          "color": "§7",
+          "text": ". Each unique ",
+          "zh": "。袋中每种不同的"
+        },
+        {
+          "color": "§c",
+          "text": "New Year Cake ",
+          "zh": "新年蛋糕"
+        },
+        {
+          "color": "§7",
+          "text": "within this bag grants ",
+          "zh": "提供 "
+        },
+        {
+          "color": "§c",
+          "text": "+%1$s❤ Health",
+          "zh": "+%1$s❤ 生命值"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "garden_extra_power_gems",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Allows you to harness the power of §a%1$s§7 Gemstones, although only half of the normal power can be harnessed!",
+      "text": "Allows you to harness the power of %1$s Gemstones, although only half of the normal power can be harnessed!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "12",
+          "desc": "随游戏状态变化的number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "可镶嵌 %1$s 颗宝石，但每颗仅发挥正常效果的一半!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Allows you to harness the power of ",
+          "zh": "可镶嵌 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " Gemstones, although only half of the normal power can be harnessed!",
+          "zh": " 颗宝石，但每颗仅发挥正常效果的一半!"
+        }
+      ],
+      "samples": [
+        [
+          "§7Allows you to harness the power of",
+          "§a12§7 Gemstones, although only half of",
+          "§7the normal power can be harnessed!"
+        ]
+      ]
+    },
+    {
+      "id": "garden_extra_relic_point",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Right-click to point towards the nearest §bRelic§7!",
+      "text": "Right-click to point towards the nearest Relic!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "右键指向最近的遗物!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Right-click to point towards the nearest ",
+          "zh": "右键指向最近的"
+        },
+        {
+          "color": "§b",
+          "text": "Relic",
+          "zh": "遗物"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "garden_extra_scavenger",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Grants §6+%1$s coins §7per level of the killed enemy.",
+      "text": "Grants +%1$s coins per level of the killed enemy.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "0.5",
+          "desc": "随游戏状态变化的number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "击杀敌人时，其每有一级，额外获得 %1$s 硬币。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "击杀敌人时，其每有一级，额外获得 "
+        },
+        {
+          "color": "§6",
+          "text": "+%1$s coins ",
+          "zh": "%1$s 硬币"
+        },
+        {
+          "color": "§7",
+          "text": "per level of the killed enemy.",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "garden_extra_catacombs_xp",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Increases §cCatacombs §7dungeon experience by §a+%1$s%§7.",
+      "text": "Increases Catacombs dungeon experience by +%1$s%.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "10",
+          "desc": "随游戏状态变化的number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "墓穴地牢经验获取量提高 %1$s%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increases ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§c",
+          "text": "Catacombs ",
+          "zh": "墓穴"
+        },
+        {
+          "color": "§7",
+          "text": "dungeon experience by ",
+          "zh": "地牢经验获取量提高 "
+        },
+        {
+          "color": "§a",
+          "text": "+%1$s%",
+          "zh": "%1$s%"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "garden_extra_shark_teeth",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Grants §a+%1$s% §7chance to get Shark Teeth during §bFishing Festivals§7.",
+      "text": "Grants +%1$s% chance to get Shark Teeth during Fishing Festivals.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "25",
+          "desc": "随游戏状态变化的number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "钓鱼节期间，获得鲨鱼牙齿的概率提高 %1$s%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "",
+          "omit": true,
+          "order": 4
+        },
+        {
+          "color": "§a",
+          "text": "+%1$s% ",
+          "zh": "%1$s%",
+          "order": 2
+        },
+        {
+          "color": "§7",
+          "text": "chance to get Shark Teeth during ",
+          "zh": "期间，获得鲨鱼牙齿的概率提高 ",
+          "order": 1
+        },
+        {
+          "color": "§b",
+          "text": "Fishing Festivals",
+          "zh": "钓鱼节",
+          "order": 0
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "id": "garden_extra_class_lore",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7§oA research on how to preserve and enhance class abilities in death.",
+      "text": "A research on how to preserve and enhance class abilities in death.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "一项关于如何在死亡后保存并强化职业能力的研究。"
+    },
+    {
+      "id": "garden_extra_sea_damage",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Take §a%1$s%§7 less damage from Sea Creatures.",
+      "text": "Take %1$s% less damage from Sea Creatures.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "15",
+          "desc": "随游戏状态变化的number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "受到海洋生物的伤害降低 %1$s%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Take ",
+          "zh": "受到海洋生物的伤害降低 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s%",
+          "zh": "%1$s%"
+        },
+        {
+          "color": "§7",
+          "text": " less damage from Sea Creatures.",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "garden_extra_lava_immunity",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Provides immunity against damage from §7§omost §cLava§7.",
+      "text": "Provides immunity against damage from most Lava.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "免疫大多数岩浆造成的伤害。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Provides immunity against damage from ",
+          "zh": "免疫"
+        },
+        {
+          "color": "§7§o",
+          "text": "most ",
+          "zh": "大多数"
+        },
+        {
+          "color": "§c",
+          "text": "Lava",
+          "zh": "岩浆"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "造成的伤害。"
+        }
+      ]
+    },
+    {
+      "id": "garden_extra_potion_duration",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Increases the duration of any consumed Potion by §a%1$s%§7.",
+      "text": "Increases the duration of any consumed Potion by %1$s%.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "50",
+          "desc": "随游戏状态变化的number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "饮用的所有药水持续时间延长 %1$s%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increases the duration of any consumed Potion by ",
+          "zh": "饮用的所有药水持续时间延长 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s%",
+          "zh": "%1$s%"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "garden_extra_coins_minute",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Get §6+%1$s coins §7every minute!",
+      "text": "Get +%1$s coins every minute!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "5",
+          "desc": "随游戏状态变化的number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "每分钟获得 %1$s 硬币!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Get ",
+          "zh": "每分钟获得 "
+        },
+        {
+          "color": "§6",
+          "text": "+%1$s coins ",
+          "zh": "%1$s 硬币"
+        },
+        {
+          "color": "§7",
+          "text": "every minute!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "garden_extra_piggy_protect",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Saves your coins from death.",
+      "text": "Saves your coins from death.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "死亡时保护你携带的硬币。"
+    },
+    {
+      "id": "garden_extra_piggy_scope",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Only when in inventory or Accessory Bag.",
+      "text": "Only when in inventory or Accessory Bag.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "仅在背包或饰品袋中生效。"
+    },
+    {
+      "id": "garden_extra_piggy_fragile",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§cFragile!",
+      "text": "Fragile!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "易碎!"
+    },
+    {
+      "id": "garden_extra_piggy_threshold",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§8Triggers when losing %1$s+ coins.",
+      "text": "Triggers when losing %1$s+ coins.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "20k",
+          "desc": "随游戏状态变化的number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "将损失至少 %1$s 硬币时触发。"
+    },
+    {
+      "id": "garden_extra_trick_treat",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Gain §a%1$s% §7chance to find Trick or Treat Chests.",
+      "text": "Gain %1$s% chance to find Trick or Treat Chests.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "1",
+          "desc": "随游戏状态变化的number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "发现不给糖就捣蛋宝箱的概率提高 %1$s%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "发现不给糖就捣蛋宝箱的概率提高 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s% ",
+          "zh": "%1$s%"
+        },
+        {
+          "color": "§7",
+          "text": "chance to find Trick or Treat Chests.",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "garden_extra_soulflow_convert",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7When leaving combat, convert up to §3%1$s⸎ Soulflow §7into §3%2$s Overflow Mana§7.",
+      "text": "When leaving combat, convert up to %1$s⸎ Soulflow into %2$s Overflow Mana.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "4",
+          "desc": "随游戏状态变化的number"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "400",
+          "desc": "随游戏状态变化的number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "脱离战斗时，将最多 %1$s⸎ 魂流转化为 %2$s 溢出法力。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "When leaving combat, convert up to ",
+          "zh": "脱离战斗时，将最多 "
+        },
+        {
+          "color": "§3",
+          "text": "%1$s⸎ Soulflow ",
+          "zh": "%1$s⸎ 魂流"
+        },
+        {
+          "color": "§7",
+          "text": "into ",
+          "zh": "转化为 "
+        },
+        {
+          "color": "§3",
+          "text": "%2$s Overflow Mana",
+          "zh": "%2$s 溢出法力"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "samples": [
+        [
+          "§7When leaving combat, convert up to",
+          "§34⸎ Soulflow §7into §3400 Overflow",
+          "§3Mana§7."
+        ]
+      ]
+    },
+    {
+      "id": "garden_extra_soulflow_internal",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§8Soulflow from abilities is drained from your internalized ⸎.",
+      "text": "Soulflow from abilities is drained from your internalized ⸎.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "技能消耗的魂流会从你已内化的 ⸎ 中扣除。"
+    },
+    {
+      "id": "garden_extra_donor_flavour",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7There's like 5 liters in you.",
+      "text": "There's like 5 liters in you.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你身体里可有差不多 5 升呢。"
+    },
+    {
+      "id": "garden_extra_bluetooth_extra",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§8But wait! There's more...",
+      "text": "But wait! There's more...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "别急! 还没完呢……"
+    },
+    {
+      "id": "garden_extra_bluetooth_bonus",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Adds §c+%1$s Damage §7bonus to the §6Blazetekk™ Ham Radio§7.",
+      "text": "Adds +%1$s Damage bonus to the Blazetekk™ Ham Radio.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "3",
+          "desc": "随游戏状态变化的number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "为 Blazetekk™ 业余无线电台额外提供 +%1$s 伤害。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Adds ",
+          "zh": "为 ",
+          "order": 0
+        },
+        {
+          "color": "§c",
+          "text": "+%1$s Damage ",
+          "zh": "+%1$s 伤害",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "bonus to the ",
+          "zh": "额外提供 ",
+          "order": 2
+        },
+        {
+          "color": "§6",
+          "text": "Blazetekk™ Ham Radio",
+          "zh": "Blazetekk™ 业余无线电台",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "garden_extra_safety_flavour",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§8§oThe holder of this badge is a certified Safety Advocate!",
+      "text": "The holder of this badge is a certified Safety Advocate!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "此徽章持有者是经过认证的安全倡导者!"
+    },
+    {
+      "id": "garden_extra_trash_flavour",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§8§oOne man's trash is another man's treasure.",
+      "text": "One man's trash is another man's treasure.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "彼之弃物，此之珍宝。"
+    },
+    {
+      "id": "garden_extra_honey_trees",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§aTrees §7smeared with §6Honeycomb §7attract mobs §a%1$s% §7faster.",
+      "text": "Trees smeared with Honeycomb attract mobs %1$s% faster.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "15",
+          "desc": "随游戏状态变化的number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "涂抹蜜脾的树木吸引生物的速度提高 %1$s%。",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Trees ",
+          "zh": "树木",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "smeared with ",
+          "zh": "涂抹",
+          "order": 0
+        },
+        {
+          "color": "§6",
+          "text": "Honeycomb ",
+          "zh": "蜜脾",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "attract mobs ",
+          "zh": "的",
+          "order": 2
+        },
+        {
+          "color": "§a",
+          "text": "%1$s% ",
+          "zh": "%1$s%",
+          "order": 5
+        },
+        {
+          "color": "§7",
+          "text": "faster",
+          "zh": "吸引生物的速度提高 ",
+          "order": 4
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。",
+          "order": 6
+        }
+      ]
+    },
+    {
+      "id": "garden_extra_frozen_corpse",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Sends out a §6Ding §7when within §a%1$s blocks §7of an unlooted §bFrozen Corpse§7!",
+      "text": "Sends out a Ding when within %1$s blocks of an unlooted Frozen Corpse!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "20",
+          "desc": "随游戏状态变化的number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "距离尚未搜刮的冰封尸体 %1$s 格内时，发出叮声提示!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Sends out a ",
+          "zh": "距离尚未搜刮的",
+          "order": 0
+        },
+        {
+          "color": "§6",
+          "text": "Ding ",
+          "zh": "叮",
+          "order": 4
+        },
+        {
+          "color": "§7",
+          "text": "when within ",
+          "zh": " 格内时，发出",
+          "order": 3
+        },
+        {
+          "color": "§a",
+          "text": "%1$s blocks ",
+          "zh": "%1$s",
+          "order": 2
+        },
+        {
+          "color": "§7",
+          "text": "of an unlooted ",
+          "zh": "",
+          "omit": true,
+          "order": 6
+        },
+        {
+          "color": "§b",
+          "text": "Frozen Corpse",
+          "zh": "冰封尸体 ",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "声提示!",
+          "order": 5
+        }
+      ]
+    },
+    {
+      "id": "garden_extra_optout",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§8§oIt's an opt-out system, after all.",
+      "text": "It's an opt-out system, after all.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "毕竟，这可是默认加入、随时退出的制度。"
+    },
+    {
+      "id": "garden_extra_intimidation",
+      "context": "Accessory Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Monsters at or below Level §a%1$s §7will no longer target you.",
+      "text": "Monsters at or below Level %1$s will no longer target you.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "30",
+          "desc": "随游戏状态变化的number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "等级不高于 %1$s 的怪物不再主动攻击你。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Monsters at or below Level ",
+          "zh": "等级不高于 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "will no longer target you.",
+          "zh": " 的怪物不再主动攻击你。"
+        }
+      ]
+    }
+  ]
+}

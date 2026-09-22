@@ -133,7 +133,7 @@ public final class DiagnosticsHarness {
 	}
 
 	private static void chat() {
-		for (String source : List.of("                                   Rewards", "                                   REWARDS",
+		for (String source : List.of("                                   Rewards", "                                   REWARDS", "                                   §6§lREWARD",
 			"                              +10 SkyBlock XP", "                       1. Knock mobs into the lava.",
 			"             2. Some mobs give more points than others.", "                       3. Avoid negative point mobs!")) {
 			Component text = Component.literal(source);
@@ -141,7 +141,7 @@ public final class DiagnosticsHarness {
 			check("实测横幅居中 " + source.trim(), Math.abs(center(result.text()) - 160) <= 3);
 		}
 		for (String source : List.of("    +10,000 Farming Experience", "    +5,000 Farming Experience",
-			"    +12 Garden Experience", "    +10 Bits", "  REWARDS", "    +10 SkyBlock XP")) {
+			"    +12 Garden Experience", "    +10 Bits", "  REWARDS", "    §a§lREWARD", "    +10 SkyBlock XP")) {
 			Component text = Component.literal(source);
 			var result = ChatLayout.plan(text, Translator.translateAvailable(text, Surface.CHAT), 320, DiagnosticsHarness::width);
 			check("任务奖励保留左缩进 " + source.trim(), left(result.text()) == left(text));

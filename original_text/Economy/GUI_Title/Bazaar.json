@@ -175,17 +175,17 @@
     },
     {
       "id": "gui_title_bazaar_item",
-      "context": "集市里点开某一件具体商品后的页面标题,箭头后面带引号的是商品名",
+      "context": "集市里点开某一件具体商品或输入搜索词后的页面标题，箭头后面带引号",
       "text": "Bazaar ➜ \"%s\"",
       "placeholders": [
         {
           "token": "%s",
-          "desc": "商品名,译名走 _shared/Terms.json",
-          "type": "item_name",
+          "desc": "商品名或玩家输入的搜索词，原样保留",
+          "type": "search_query",
           "example": "Clubbed Fossil"
         }
       ],
-      "gloss": "和同文件的 gui_title_bazaar_category(`Bazaar ➜ %s`,不带引号)是两个界面:那一条箭头后面是分类名(Oddities 之类),这一条箭头后面是带引号的单件商品名。引号是原文自己打的,分类页没有,所以两条记录靠引号区分,不会互相抢。",
+      "gloss": "带引号的值既可能是具体商品名，也可能是本轮实测的 lowercase 搜索词 bottle。search_query 只在这对固定引号之间匹配，保留内容本身，避免 item_name 的首字母规则把搜索结果标题漏掉。",
       "translate": true,
       "zh": "集市 ➜ \"%s\""
     },

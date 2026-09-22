@@ -1,6 +1,7 @@
 package io.github.bingkkni.skyzh;
 
 import io.github.bingkkni.skyzh.capture.CaptureAnnouncer;
+import io.github.bingkkni.skyzh.text.StyledText;
 import io.github.bingkkni.skyzh.text.Surface;
 import io.github.bingkkni.skyzh.text.TranslationIndex;
 import io.github.bingkkni.skyzh.text.TranslationLoader;
@@ -114,9 +115,16 @@ public final class LogAudit {
 	 * writes the newline as the two characters {@code \n}, which is why the split is on a literal
 	 * backslash rather than on a line break.
 	 */
-	private static boolean covered(String message) {
+	static boolean covered(String message) {
 		for (String line : message.split("\\\\n")) {
-			if (!line.isBlank() && !Translator.translate(Component.literal(line), Surface.CHAT).matched()) {
+			if (line.isBlank()) {
+				continue;
+			}
+
+			Component source = Component.literal(line);
+
+			if (!Translator.translateAvailable(source, Surface.CHAT).matched()
+				&& !Translator.index().preserved(Surface.CHAT, StyledText.of(source).canonical())) {
 				return false;
 			}
 		}

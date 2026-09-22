@@ -1,0 +1,954 @@
+{
+  "source": "logs/skyzh-capture; https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip; https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Pamela; https://hypixelskyblock.minecraft.wiki/w/The_Garden; https://hypixelskyblock.minecraft.wiki/w/Sprayonator",
+  "fetched_at": "2026-09-22",
+  "verified_ingame": true,
+  "source_note": "实测原文与颜色优先；社区 Wiki 普通页面核实语境及完整后文。数值泛化为有类型占位符；自造专名保留英文。跨行说明合并为 GUI_Lore 整句。",
+  "lines": [
+    {
+      "id": "pest_live_pests_cost",
+      "context": "Pest Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§2%1$s Pests",
+      "text": "%1$s Pests",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "50",
+          "desc": "随游戏状态变化的number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s 只害虫"
+    },
+    {
+      "id": "pest_live_trap",
+      "context": "Pest Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Place in a §aGarden §7plot and fill with bait to catch §2 Pests §7while offline.",
+      "text": "Place in a Garden plot and fill with bait to catch  Pests while offline.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "将其放置在花园地皮上并填入诱饵，即可在离线期间捕捉 害虫。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Place in a ",
+          "zh": "将其放置在"
+        },
+        {
+          "color": "§a",
+          "text": "Garden ",
+          "zh": "花园"
+        },
+        {
+          "color": "§7",
+          "text": "plot and fill with bait to catch ",
+          "zh": "地皮上并填入诱饵，即可在离线期间捕捉"
+        },
+        {
+          "color": "§2",
+          "text": " Pests ",
+          "zh": " 害虫"
+        },
+        {
+          "color": "§7",
+          "text": "while offline.",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "pest_live_mouse_multiplier",
+      "context": "Pest Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§6Field Mice §7are §a%1$sx §7more likely to be caught in this type of trap!",
+      "text": "Field Mice are %1$sx more likely to be caught in this type of trap!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "multiplier_increase",
+          "example": "3",
+          "desc": "随游戏状态变化的multiplier_increase"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "此类陷阱捕获田鼠的概率提升 %1$s 倍!",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Field Mice ",
+          "zh": "田鼠",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "are ",
+          "zh": "此类陷阱捕获",
+          "order": 0
+        },
+        {
+          "color": "§a",
+          "text": "%1$sx ",
+          "zh": "%1$s",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "more likely to be caught in this type of trap",
+          "zh": "的概率提升 ",
+          "order": 2
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": " 倍!",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "pest_live_spawn_cooldown",
+      "context": "Pest Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Decreases the spawn cooldown of §2 Pests §7by §a%1$s%§7.",
+      "text": "Decreases the spawn cooldown of  Pests by %1$s%.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "10",
+          "desc": "随游戏状态变化的number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": " 害虫的生成冷却时间缩短 %1$s%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Decreases the spawn cooldown of ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§2",
+          "text": " Pests ",
+          "zh": " 害虫"
+        },
+        {
+          "color": "§7",
+          "text": "by ",
+          "zh": "的生成冷却时间缩短 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s%",
+          "zh": "%1$s%"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "pest_live_eradicator_title",
+      "context": "Pest Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§8Tiered Bonus: Eradicator (%1$s/%2$s)",
+      "text": "Tiered Bonus: Eradicator (%1$s/%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "0",
+          "desc": "随游戏状态变化的number"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "4",
+          "desc": "随游戏状态变化的number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "阶段加成: 灭虫专家 (%1$s/%2$s)"
+    },
+    {
+      "id": "pest_live_eradicator",
+      "context": "Pest Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Grants §6+%1$s☘ Farming Fortune §7when vacuuming up §2 Pests",
+      "text": "Grants +%1$s☘ Farming Fortune when vacuuming up  Pests",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "0",
+          "desc": "随游戏状态变化的number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "使用吸尘器捕捉 害虫时，获得 +%1$s☘ 农业时运",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "时，获得 ",
+          "order": 2
+        },
+        {
+          "color": "§6",
+          "text": "+%1$s☘ Farming Fortune ",
+          "zh": "+%1$s☘ 农业时运",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "when vacuuming up ",
+          "zh": "使用吸尘器捕捉",
+          "order": 0
+        },
+        {
+          "color": "§2",
+          "text": " Pests",
+          "zh": " 害虫",
+          "order": 1
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants §6+0 Farming Fortune §7when",
+          "§7vacuuming up §2 Pests"
+        ]
+      ]
+    },
+    {
+      "id": "pest_live_eradicatorperiod",
+      "context": "Pest Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Grants §6+%1$s☘ Farming Fortune §7when vacuuming up §2 Pests§7.",
+      "text": "Grants +%1$s☘ Farming Fortune when vacuuming up  Pests.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "0",
+          "desc": "随游戏状态变化的number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "使用吸尘器捕捉 害虫时，获得 +%1$s☘ 农业时运。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "时，获得 ",
+          "order": 2
+        },
+        {
+          "color": "§6",
+          "text": "+%1$s☘ Farming Fortune ",
+          "zh": "+%1$s☘ 农业时运",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "when vacuuming up ",
+          "zh": "使用吸尘器捕捉",
+          "order": 0
+        },
+        {
+          "color": "§2",
+          "text": " Pests",
+          "zh": " 害虫",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "pest_live_pesterminator_book",
+      "context": "Pest Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7When applied to armor, increases its §9Pesterminator §7level by §a%1$s§7!",
+      "text": "When applied to armor, increases its Pesterminator level by %1$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "1",
+          "desc": "随游戏状态变化的number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "应用到护甲上后，Pesterminator 等级提高 %1$s 级!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "When applied to armor, increases its ",
+          "zh": "应用到护甲上后，"
+        },
+        {
+          "color": "§9",
+          "text": "Pesterminator ",
+          "zh": "Pesterminator"
+        },
+        {
+          "color": "§7",
+          "text": "level by ",
+          "zh": " 等级提高 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": " 级!"
+        }
+      ]
+    },
+    {
+      "id": "pest_live_apply_once",
+      "context": "Pest Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§8Can be applied once.",
+      "text": "Can be applied once.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "只能应用一次。"
+    },
+    {
+      "id": "pest_live_requires_pesterminator",
+      "context": "Pest Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§8Requires Pesterminator %1$s!",
+      "text": "Requires Pesterminator %1$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "tier",
+          "example": "V",
+          "desc": "随游戏状态变化的tier"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "需要 Pesterminator %1$s!"
+    },
+    {
+      "id": "pest_live_old_handbook",
+      "context": "Pest Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§8§oAn old, well-used handbook detailing how to wrangle various pest types.",
+      "text": "An old, well-used handbook detailing how to wrangle various pest types.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "一本翻得起了毛边的旧手册，详细记载了各种害虫的捕捉方法。"
+    },
+    {
+      "id": "pest_live_old_handbook_good_job",
+      "context": "Pest Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§8§oMany of these pests don't seem to exist anymore - looks like someone did a good job!",
+      "text": "Many of these pests don't seem to exist anymore - looks like someone did a good job!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "里面的不少害虫似乎已经绝迹了——看来前人干得不错!"
+    },
+    {
+      "id": "pest_live_spiky_quills",
+      "context": "Pest Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§6Spiky Quills",
+      "text": "Spiky Quills",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "尖刺硬棘"
+    },
+    {
+      "id": "pest_live_fearsome_farmer",
+      "context": "Pest Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§6Fearsome Farmer",
+      "text": "Fearsome Farmer",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "威慑农夫"
+    },
+    {
+      "id": "pest_live_hunter's_insight",
+      "context": "Pest Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§6Hunter's Insight",
+      "text": "Hunter's Insight",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "猎手洞察"
+    },
+    {
+      "id": "pest_live_hedgehog_damage",
+      "context": "Pest Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Deal §a%1$s%§7 more damage to §2 Pests§7.",
+      "text": "Deal %1$s% more damage to  Pests.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "100",
+          "desc": "随游戏状态变化的number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "对 害虫造成的伤害提高 %1$s%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Deal ",
+          "zh": "对",
+          "order": 0
+        },
+        {
+          "color": "§a",
+          "text": "%1$s%",
+          "zh": "%1$s%",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": " more damage to ",
+          "zh": "造成的伤害提高 ",
+          "order": 2
+        },
+        {
+          "color": "§2",
+          "text": " Pests",
+          "zh": " 害虫",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "pest_live_hedgehog_fortune",
+      "context": "Pest Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Grants §6+%1$s☘ Farming Fortune §7and §e+%2$s Overbloom §7on §2 Pests§7.",
+      "text": "Grants +%1$s☘ Farming Fortune and +%2$s Overbloom on  Pests.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "100",
+          "desc": "随游戏状态变化的number"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "35",
+          "desc": "随游戏状态变化的number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "对 害虫生效时，获得 +%1$s☘ 农业时运与 +%2$s 过度绽放。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "生效时，获得 ",
+          "order": 2
+        },
+        {
+          "color": "§6",
+          "text": "+%1$s☘ Farming Fortune ",
+          "zh": "+%1$s☘ 农业时运",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "与 ",
+          "order": 4
+        },
+        {
+          "color": "§e",
+          "text": "+%2$s Overbloom ",
+          "zh": "+%2$s 过度绽放",
+          "order": 5
+        },
+        {
+          "color": "§7",
+          "text": "on ",
+          "zh": "对",
+          "order": 0
+        },
+        {
+          "color": "§2",
+          "text": " Pests",
+          "zh": " 害虫",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。",
+          "order": 6
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants §6+100 Farming Fortune §7and",
+          "§e+35 Overbloom §7on §2 Pests§7."
+        ]
+      ]
+    },
+    {
+      "id": "pest_live_hedgehog_bestiary",
+      "context": "Pest Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Grants §6+%1$s☘ Farming Fortune §7per Pest Bestiary Tier.",
+      "text": "Grants +%1$s☘ Farming Fortune per Pest Bestiary Tier.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "0.7",
+          "desc": "随游戏状态变化的number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "每有一级害虫生物图鉴等级，获得 +%1$s☘ 农业时运。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "每有一级害虫生物图鉴等级，获得 "
+        },
+        {
+          "color": "§6",
+          "text": "+%1$s☘ Farming Fortune ",
+          "zh": "+%1$s☘ 农业时运"
+        },
+        {
+          "color": "§7",
+          "text": "per Pest Bestiary Tier.",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "pest_live_badge_toggle",
+      "context": "Pest Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Can be used to enable or disable your §2 Bonus Pest Chance §7stat.",
+      "text": "Can be used to enable or disable your  Bonus Pest Chance stat.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "可用来开启或关闭 额外害虫几率属性。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Can be used to enable or disable your ",
+          "zh": "可用来开启或关闭"
+        },
+        {
+          "color": "§2",
+          "text": " Bonus Pest Chance ",
+          "zh": " 额外害虫几率"
+        },
+        {
+          "color": "§7",
+          "text": "stat.",
+          "zh": "属性。"
+        }
+      ]
+    },
+    {
+      "id": "pest_live_vacuum_damage",
+      "context": "Pest Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Deals §c%1$s  Damage §7per second to nearby §2 Pests§7.",
+      "text": "Deals %1$s  Damage per second to nearby  Pests.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "100",
+          "desc": "随游戏状态变化的number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "每秒对附近的 害虫造成 %1$s  伤害。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Deals ",
+          "zh": "每秒对附近的",
+          "order": 0
+        },
+        {
+          "color": "§c",
+          "text": "%1$s  Damage ",
+          "zh": "%1$s  伤害",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "per second to nearby ",
+          "zh": "造成 ",
+          "order": 2
+        },
+        {
+          "color": "§2",
+          "text": " Pests",
+          "zh": " 害虫",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "pest_live_repellent",
+      "context": "Pest Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Consume to cover yourself in a pleasant aroma that §2 Pests §7find truly revolting for §a%1$s§7.",
+      "text": "Consume to cover yourself in a pleasant aroma that  Pests find truly revolting for %1$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "duration_spaced",
+          "example": "60m",
+          "desc": "随游戏状态变化的duration_spaced"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "使用后，身上会散发怡人的香气，让 害虫避之不及，持续 %1$s。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Consume to cover yourself in a pleasant aroma that ",
+          "zh": "使用后，身上会散发怡人的香气，让"
+        },
+        {
+          "color": "§2",
+          "text": " Pests ",
+          "zh": " 害虫"
+        },
+        {
+          "color": "§7",
+          "text": "find truly revolting for ",
+          "zh": "避之不及，持续 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "pest_live_repellent_time",
+      "context": "Pest Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7While active, §2 Pests §7will take §a%1$sx §7as long to spawn.",
+      "text": "While active,  Pests will take %1$sx as long to spawn.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "multiplier_increase",
+          "example": "2",
+          "desc": "随游戏状态变化的multiplier_increase"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "生效期间， 害虫生成所需时间延长 %1$s 倍。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "While active, ",
+          "zh": "生效期间，"
+        },
+        {
+          "color": "§2",
+          "text": " Pests ",
+          "zh": " 害虫"
+        },
+        {
+          "color": "§7",
+          "text": "will take ",
+          "zh": "生成所需时间延长 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$sx ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "as long to spawn.",
+          "zh": " 倍。"
+        }
+      ]
+    },
+    {
+      "id": "pest_live_washer",
+      "context": "Pest Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Consume this item to dunk yourself in a bucket of water that smells of sunshine and rainbows. Doing this will rid your §aGarden §7of all active §aSprayonator §7effects.",
+      "text": "Consume this item to dunk yourself in a bucket of water that smells of sunshine and rainbows. Doing this will rid your Garden of all active Sprayonator effects.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "使用后，整个人浸入一桶满是阳光和彩虹气息的水中，清除花园中所有生效的 Sprayonator 效果。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Consume this item to dunk yourself in a bucket of water that smells of sunshine and rainbows. Doing this will rid your ",
+          "zh": "使用后，整个人浸入一桶满是阳光和彩虹气息的水中，清除"
+        },
+        {
+          "color": "§a",
+          "text": "Garden ",
+          "zh": "花园"
+        },
+        {
+          "color": "§7",
+          "text": "of all active ",
+          "zh": "中所有生效的 "
+        },
+        {
+          "color": "§a",
+          "text": "Sprayonator ",
+          "zh": "Sprayonator"
+        },
+        {
+          "color": "§7",
+          "text": "effects.",
+          "zh": " 效果。"
+        }
+      ]
+    },
+    {
+      "id": "pest_live_infestation",
+      "context": "Pest Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7Your §6☘ Farming Fortune §7decreases as more §2 Pests §7spawn in §aThe Garden§7!",
+      "text": "Your ☘ Farming Fortune decreases as more  Pests spawn in The Garden!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "花园中的 害虫越多，你的☘ 农业时运就越低!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Your ",
+          "zh": "你的",
+          "order": 4
+        },
+        {
+          "color": "§6",
+          "text": "☘ Farming Fortune ",
+          "zh": "☘ 农业时运",
+          "order": 5
+        },
+        {
+          "color": "§7",
+          "text": "decreases as more ",
+          "zh": "越多，",
+          "order": 3
+        },
+        {
+          "color": "§2",
+          "text": " Pests ",
+          "zh": " 害虫",
+          "order": 2
+        },
+        {
+          "color": "§7",
+          "text": "spawn in ",
+          "zh": "中的",
+          "order": 1
+        },
+        {
+          "color": "§a",
+          "text": "The Garden",
+          "zh": "花园",
+          "order": 0
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "就越低!",
+          "order": 6
+        }
+      ]
+    },
+    {
+      "id": "pest_live_handbook_spawn",
+      "context": "Pest Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§2 Pests §7rarely spawn when you break crops in your §aGarden§7. They can only be damaged by §avacuums§7, which can be obtained and upgraded through §aSkyMart§7.",
+      "text": " Pests rarely spawn when you break crops in your Garden. They can only be damaged by vacuums, which can be obtained and upgraded through SkyMart.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "花园中收获作物时，有较低概率生成 害虫。只有吸尘器能对其造成伤害，可通过 SkyMart 获取和升级。",
+      "segments": [
+        {
+          "color": "§2",
+          "text": " Pests ",
+          "zh": " 害虫",
+          "order": 2
+        },
+        {
+          "color": "§7",
+          "text": "rarely spawn when you break crops in your ",
+          "zh": "中收获作物时，有较低概率生成",
+          "order": 1
+        },
+        {
+          "color": "§a",
+          "text": "Garden",
+          "zh": "花园",
+          "order": 0
+        },
+        {
+          "color": "§7",
+          "text": ". They can only be damaged by ",
+          "zh": "。只有",
+          "order": 3
+        },
+        {
+          "color": "§a",
+          "text": "vacuums",
+          "zh": "吸尘器",
+          "order": 4
+        },
+        {
+          "color": "§7",
+          "text": ", which can be obtained and upgraded through ",
+          "zh": "能对其造成伤害，可通过 ",
+          "order": 5
+        },
+        {
+          "color": "§a",
+          "text": "SkyMart",
+          "zh": "SkyMart",
+          "order": 6
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": " 获取和升级。",
+          "order": 7
+        }
+      ]
+    },
+    {
+      "id": "pest_live_handbook_types",
+      "context": "Pest Runtime 2026-09-22：实测菜单/物品文本。",
+      "raw": "§7There are §6%1$s §7unique types of §2 Pests§7, each with their own useful drops. Get rid of §2 Pests§7 before they overrun your §aGarden §7or your §6☘ Farming Fortune §7will diminish!",
+      "text": "There are %1$s unique types of  Pests, each with their own useful drops. Get rid of  Pests before they overrun your Garden or your ☘ Farming Fortune will diminish!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "15",
+          "desc": "随游戏状态变化的number"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": " 害虫共有 %1$s 种，各有实用的掉落物。及时清理 害虫，否则花园虫害泛滥，会降低你的☘ 农业时运!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "There are ",
+          "zh": "共有 ",
+          "order": 1
+        },
+        {
+          "color": "§6",
+          "text": "%1$s ",
+          "zh": "%1$s",
+          "order": 2
+        },
+        {
+          "color": "§7",
+          "text": "unique types of ",
+          "zh": " 种，",
+          "order": 3
+        },
+        {
+          "color": "§2",
+          "text": " Pests",
+          "zh": " 害虫",
+          "order": 0
+        },
+        {
+          "color": "§7",
+          "text": ", each with their own useful drops. Get rid of ",
+          "zh": "各有实用的掉落物。及时清理",
+          "order": 4
+        },
+        {
+          "color": "§2",
+          "text": " Pests",
+          "zh": " 害虫",
+          "order": 5
+        },
+        {
+          "color": "§7",
+          "text": " before they overrun your ",
+          "zh": "，否则",
+          "order": 6
+        },
+        {
+          "color": "§a",
+          "text": "Garden ",
+          "zh": "花园",
+          "order": 7
+        },
+        {
+          "color": "§7",
+          "text": "or your ",
+          "zh": "虫害泛滥，会降低你的",
+          "order": 8
+        },
+        {
+          "color": "§6",
+          "text": "☘ Farming Fortune ",
+          "zh": "☘ 农业时运",
+          "order": 9
+        },
+        {
+          "color": "§7",
+          "text": "will diminish!",
+          "zh": "!",
+          "order": 10
+        }
+      ]
+    }
+  ]
+}

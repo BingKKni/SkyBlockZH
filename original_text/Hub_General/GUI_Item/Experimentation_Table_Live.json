@@ -1,0 +1,1264 @@
+{
+  "source": "runtime capture (SkyZH, 2026-09-21); https://hypixelskyblock.minecraft.wiki/w/Experiments",
+  "fetched_at": "2026-09-21",
+  "verified_ingame": true,
+  "gui_context": "Experimentation Table、Chronomatron、Ultrasequencer 与 Superpairs 的固定格子、奖励及状态。跨行说明存于同名 GUI_Lore 文件。",
+  "lines": [
+    {
+      "id": "experiment_pending",
+      "context": "实验台尚未选中的实验格",
+      "raw": "§7Pending experiment...",
+      "text": "Pending experiment...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "待进行的实验……"
+    },
+    {
+      "id": "experiment_main",
+      "context": "实验台主实验副标题",
+      "raw": "§8Main Experiment",
+      "text": "Main Experiment",
+      "placeholders": [],
+      "gloss": "Superpairs 是主实验。",
+      "translate": true,
+      "zh": "主实验"
+    },
+    {
+      "id": "experiment_addon",
+      "context": "实验台附加实验副标题",
+      "raw": "§8Add-on Experiment",
+      "text": "Add-on Experiment",
+      "placeholders": [],
+      "gloss": "Chronomatron 与 Ultrasequencer 是附加实验。",
+      "translate": true,
+      "zh": "附加实验"
+    },
+    {
+      "id": "experiment_difficulty_name",
+      "context": "附魔实验台各档难度的实验物品名",
+      "raw": "§a%1$s Experiment",
+      "text": "%1$s Experiment",
+      "placeholders": [
+        {"token": "%1$s", "desc": "实验难度", "type": "difficulty", "example": "High"}
+      ],
+      "gloss": "统一覆盖 Beginner、High、Grand、Supreme、Transcendent、Metaphysical 六档；颜色从服务器当前物品名读取。",
+      "translate": true,
+      "zh": "%1$s实验"
+    },
+    {
+      "id": "experiment_click_to_play",
+      "context": "三种实验入口的操作提示",
+      "raw": "§eClick to play!",
+      "text": "Click to play!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击开始!"
+    },
+    {
+      "id": "experiment_round",
+      "context": "Chronomatron 当前轮次",
+      "raw": "§7Round: §e%1$s",
+      "text": "Round: %1$s",
+      "placeholders": [
+        {"token": "%1$s", "desc": "当前轮次", "type": "number", "example": "5"}
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "回合: %1$s",
+      "segments": [
+        {"color": "§7", "text": "Round: ", "zh": "回合: "},
+        {"color": "§e", "text": "%1$s", "zh": "%1$s"}
+      ]
+    },
+    {
+      "id": "experiment_timer",
+      "context": "实验过程中的秒级倒计时",
+      "raw": "§7Timer: §a%1$ss",
+      "text": "Timer: %1$ss",
+      "placeholders": [
+        {"token": "%1$s", "desc": "剩余秒数", "type": "number", "example": "90"}
+      ],
+      "gloss": "s 是秒的英文后缀，中文写全为秒。",
+      "translate": true,
+      "zh": "倒计时: %1$s 秒",
+      "segments": [
+        {"color": "§7", "text": "Timer: ", "zh": "倒计时: "},
+        {"color": "§a", "text": "%1$ss", "zh": "%1$s 秒"}
+      ]
+    },
+    {
+      "id": "chronomatron_colors_on_board",
+      "context": "Chronomatron 棋盘上的颜色数量",
+      "raw": "§7Colors on board: §d%1$s",
+      "text": "Colors on board: %1$s",
+      "placeholders": [
+        {"token": "%1$s", "desc": "棋盘颜色数量", "type": "number", "example": "3"}
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "棋盘颜色数: %1$s",
+      "segments": [
+        {"color": "§7", "text": "Colors on board: ", "zh": "棋盘颜色数: "},
+        {"color": "§d", "text": "%1$s", "zh": "%1$s"}
+      ]
+    },
+    {
+      "id": "experiment_grid_size_title",
+      "context": "Superpairs Stakes 的棋盘尺寸",
+      "raw": "§7Grid Size: §d%1$s",
+      "text": "Grid Size: %1$s",
+      "placeholders": [
+        {"token": "%1$s", "desc": "棋盘尺寸", "type": "raw", "example": "7x2"}
+      ],
+      "gloss": "尺寸如 7x2 是布局参数，保留服务器格式。",
+      "translate": true,
+      "zh": "棋盘尺寸: %1$s",
+      "segments": [
+        {"color": "§7", "text": "Grid Size: ", "zh": "棋盘尺寸: "},
+        {"color": "§d", "text": "%1$s", "zh": "%1$s"}
+      ]
+    },
+    {
+      "id": "experiment_grid_size_lowercase",
+      "context": "Ultrasequencer Stakes 的棋盘尺寸",
+      "raw": "§7Grid size: §d%1$s",
+      "text": "Grid size: %1$s",
+      "placeholders": [
+        {"token": "%1$s", "desc": "棋盘尺寸", "type": "raw", "example": "7x3"}
+      ],
+      "gloss": "服务器同时使用 Size 与 size 两种大小写，分别收录。",
+      "translate": true,
+      "zh": "棋盘尺寸: %1$s",
+      "segments": [
+        {"color": "§7", "text": "Grid size: ", "zh": "棋盘尺寸: "},
+        {"color": "§d", "text": "%1$s", "zh": "%1$s"}
+      ]
+    },
+    {
+      "id": "experiment_xp_reward",
+      "context": "Stakes 内单项经验奖励",
+      "raw": "§7XP Reward: §3%1$sk Enchanting Exp",
+      "text": "XP Reward: %1$sk Enchanting Exp",
+      "placeholders": [
+        {"token": "%1$s", "desc": "经验数值，k 保持游戏缩写", "type": "number", "example": "5"}
+      ],
+      "gloss": "跨行的每音符或每数字说明由 GUI_Lore 完整句优先匹配。",
+      "translate": true,
+      "zh": "经验奖励: %1$sk 附魔经验",
+      "segments": [
+        {"color": "§7", "text": "XP Reward: ", "zh": "经验奖励: "},
+        {"color": "§3", "text": "%1$sk Enchanting Exp", "zh": "%1$sk 附魔经验"}
+      ]
+    },
+    {
+      "id": "experiment_enchanting_exp_reward",
+      "context": "结算或奖励格中的附魔经验",
+      "raw": "§8+§3%1$s Enchanting Exp",
+      "text": "+%1$s Enchanting Exp",
+      "placeholders": [
+        {"token": "%1$s", "desc": "附魔经验数值", "type": "number", "example": "400,000"}
+      ],
+      "gloss": "开头空格是服务器排版，不写进 text。",
+      "translate": true,
+      "zh": "+%1$s 附魔经验",
+      "segments": [
+        {"color": "§8", "text": "+", "zh": "+"},
+        {"color": "§3", "text": "%1$s Enchanting Exp", "zh": "%1$s 附魔经验"}
+      ]
+    },
+    {
+      "id": "experiment_superpairs_rewards_label",
+      "context": "Chronomatron Stakes 中的 Superpairs 奖励小标题",
+      "raw": "§7Superpairs Rewards:",
+      "text": "Superpairs Rewards:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "超级配对奖励:"
+    },
+    {
+      "id": "chronomatron_chain_clicks",
+      "context": "Chronomatron 最长音符连锁的额外点击奖励",
+      "raw": "§7Chain of §e%1$s§7: §a+%2$s Clicks",
+      "text": "Chain of %1$s: +%2$s Clicks",
+      "placeholders": [
+        {"token": "%1$s", "desc": "音符连锁长度", "type": "number", "example": "5"},
+        {"token": "%2$s", "desc": "额外点击次数", "type": "number", "example": "1"}
+      ],
+      "gloss": "复数 Clicks 模板兼容服务器的单数 Click。",
+      "translate": true,
+      "zh": "连锁 %1$s 个音符: +%2$s 次点击",
+      "segments": [
+        {"color": "§7", "text": "Chain of ", "zh": "连锁 "},
+        {"color": "§e", "text": "%1$s", "zh": "%1$s"},
+        {"color": "§7", "text": ": ", "zh": " 个音符: "},
+        {"color": "§a", "text": "+%2$s Clicks", "zh": "+%2$s 次点击"}
+      ]
+    },
+    {
+      "id": "ultrasequencer_series_clicks",
+      "context": "Ultrasequencer 最高数字序列的额外点击奖励",
+      "raw": "§7Series of §e%1$s§7: §a+%2$s Clicks",
+      "text": "Series of %1$s: +%2$s Clicks",
+      "placeholders": [
+        {"token": "%1$s", "desc": "数字序列长度", "type": "number", "example": "5"},
+        {"token": "%2$s", "desc": "额外点击次数", "type": "number", "example": "1"}
+      ],
+      "gloss": "复数 Clicks 模板兼容服务器的单数 Click。",
+      "translate": true,
+      "zh": "序列 %1$s 个数字: +%2$s 次点击",
+      "segments": [
+        {"color": "§7", "text": "Series of ", "zh": "序列 "},
+        {"color": "§e", "text": "%1$s", "zh": "%1$s"},
+        {"color": "§7", "text": ": ", "zh": " 个数字: "},
+        {"color": "§a", "text": "+%2$s Clicks", "zh": "+%2$s 次点击"}
+      ]
+    },
+    {
+      "id": "experiment_requires_enchanting",
+      "context": "实验难度所需的附魔等级",
+      "raw": "§7Requires: §3Enchanting %1$s",
+      "text": "Requires: Enchanting %1$s",
+      "placeholders": [
+        {"token": "%1$s", "desc": "附魔等级罗马数字", "type": "tier", "example": "XX"}
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "需要: 附魔等级 %1$s",
+      "segments": [
+        {"color": "§7", "text": "Requires: ", "zh": "需要: "},
+        {"color": "§3", "text": "Enchanting %1$s", "zh": "附魔等级 %1$s"}
+      ]
+    },
+    {
+      "id": "experiment_starting_cost",
+      "context": "开始一轮实验需要的经验等级",
+      "raw": "§7Starting cost: §b%1$s XP Levels",
+      "text": "Starting cost: %1$s XP Levels",
+      "placeholders": [
+        {"token": "%1$s", "desc": "起始经验等级花费", "type": "number", "example": "25"}
+      ],
+      "gloss": "XP Levels 是经验等级，不是经验点数。",
+      "translate": true,
+      "zh": "初始花费: %1$s 级经验",
+      "segments": [
+        {"color": "§7", "text": "Starting cost: ", "zh": "初始花费: "},
+        {"color": "§b", "text": "%1$s XP Levels", "zh": "%1$s 级经验"}
+      ]
+    },
+    {
+      "id": "experiment_practice_no_rewards",
+      "context": "练习模式说明",
+      "raw": "§bPractice mode has no rewards!",
+      "text": "Practice mode has no rewards!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "练习模式没有奖励!"
+    },
+    {
+      "id": "experiment_not_enough_experience",
+      "context": "开始实验时经验等级不足",
+      "raw": "§cNot enough experience!",
+      "text": "Not enough experience!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "经验不足!"
+    },
+    {
+      "id": "chronomatron_lime",
+      "context": "Chronomatron 音符颜色名",
+      "raw": "§aLime",
+      "text": "Lime",
+      "placeholders": [],
+      "gloss": "Minecraft 颜色名，区别于 Green。",
+      "translate": true,
+      "zh": "黄绿色"
+    },
+    {
+      "id": "chronomatron_aqua",
+      "context": "Chronomatron 音符颜色名",
+      "raw": "§bAqua",
+      "text": "Aqua",
+      "placeholders": [],
+      "gloss": "Aqua 沿用项目内颜色名水蓝色。",
+      "translate": true,
+      "zh": "水蓝色"
+    },
+    {
+      "id": "chronomatron_pink",
+      "context": "Chronomatron 音符颜色名",
+      "raw": "§dPink",
+      "text": "Pink",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "粉红色"
+    },
+    {
+      "id": "chronomatron_cyan",
+      "context": "Chronomatron 音符颜色名",
+      "raw": "§3Cyan",
+      "text": "Cyan",
+      "placeholders": [],
+      "gloss": "Cyan 与 Aqua 分别按青色和水蓝色区分。",
+      "translate": true,
+      "zh": "青色"
+    },
+    {
+      "id": "chronomatron_orange",
+      "context": "Chronomatron 音符颜色名",
+      "raw": "§6Orange",
+      "text": "Orange",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "橙色"
+    },
+    {
+      "id": "chronomatron_purple",
+      "context": "Chronomatron 音符颜色名",
+      "raw": "§5Purple",
+      "text": "Purple",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "紫色"
+    },
+    {
+      "id": "chronomatron_remember_pattern",
+      "context": "Chronomatron 开始一轮时的提示",
+      "raw": "§aRemember the pattern!",
+      "text": "Remember the pattern!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "记住旋律!"
+    },
+    {
+      "id": "ultrasequencer_number_step_one",
+      "context": "Ultrasequencer 的第一步说明",
+      "raw": "§a1. §7Number(s) appear for 2 seconds.",
+      "text": "1. Number(s) appear for 2 seconds.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "1. 数字会显示 2 秒。",
+      "segments": [
+        {"color": "§a", "text": "1. ", "zh": "1. "},
+        {"color": "§7", "text": "Number(s) appear for 2 seconds.", "zh": "数字会显示 2 秒。"}
+      ]
+    },
+    {
+      "id": "ultrasequencer_number_step_two",
+      "context": "Ultrasequencer 的第二步说明",
+      "raw": "§e2. §7They all disappear!",
+      "text": "2. They all disappear!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "2. 它们会全部消失!",
+      "segments": [
+        {"color": "§e", "text": "2. ", "zh": "2. "},
+        {"color": "§7", "text": "They all disappear!", "zh": "它们会全部消失!"}
+      ]
+    },
+    {
+      "id": "ultrasequencer_number_step_three",
+      "context": "Ultrasequencer 的第三步说明",
+      "raw": "§c3. §7Click them in order from memory.",
+      "text": "3. Click them in order from memory.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "3. 根据记忆按顺序点击它们。",
+      "segments": [
+        {"color": "§c", "text": "3. ", "zh": "3. "},
+        {"color": "§7", "text": "Click them in order from memory.", "zh": "根据记忆按顺序点击它们。"}
+      ]
+    },
+    {
+      "id": "experiment_play_addons_first",
+      "context": "主实验尚未解锁时的说明",
+      "raw": "§dPlay add-ons first!",
+      "text": "Play add-ons first!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "请先完成附加实验!"
+    },
+    {
+      "id": "experiment_missing_experience",
+      "context": "经验瓶帮助入口标题",
+      "raw": "§7Missing experience?",
+      "text": "Missing experience?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "缺少经验?"
+    },
+    {
+      "id": "experiment_completed",
+      "context": "实验完成状态",
+      "raw": "§aExperiment completed!",
+      "text": "Experiment completed!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "实验完成!"
+    },
+    {
+      "id": "experiment_bonus_clicks",
+      "context": "Chronomatron 完成后的额外 Superpairs 点击奖励",
+      "raw": "§7Bonus: §d+3 clicks",
+      "text": "Bonus: +3 clicks",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "额外奖励: +3 次点击",
+      "segments": [
+        {"color": "§7", "text": "Bonus: ", "zh": "额外奖励: "},
+        {"color": "§d", "text": "+3 clicks", "zh": "+3 次点击"}
+      ]
+    },
+    {
+      "id": "experiment_right_click_practice",
+      "context": "实验入口的练习模式操作提示",
+      "raw": "§bRight-Click to practice!",
+      "text": "Right-Click to practice!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "右键点击练习!"
+    },
+    {
+      "id": "experiment_on_cooldown",
+      "context": "实验入口的冷却状态",
+      "raw": "§cOn cooldown!",
+      "text": "On cooldown!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "冷却中!"
+    },
+    {
+      "id": "experiment_next_charge",
+      "context": "实验台下一次恢复次数的倒计时",
+      "raw": "§7Next charge in: §a%1$s",
+      "text": "Next charge in: %1$s",
+      "placeholders": [
+        {"token": "%1$s", "desc": "恢复次数倒计时", "type": "duration", "example": "23h"}
+      ],
+      "gloss": "duration 会将 23h 转成 23小时。",
+      "translate": true,
+      "zh": "下次充能: %1$s",
+      "segments": [
+        {"color": "§7", "text": "Next charge in: ", "zh": "下次充能: "},
+        {"color": "§a", "text": "%1$s", "zh": "%1$s"}
+      ]
+    },
+    {
+      "id": "experiment_claim",
+      "context": "实验结算页领取奖励按钮",
+      "raw": "§8Claim",
+      "text": "Claim",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "领取"
+    },
+    {
+      "id": "experiment_wrong_color",
+      "context": "Chronomatron 失败提示",
+      "raw": "§cYou picked the wrong color!",
+      "text": "You picked the wrong color!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你选错颜色了!"
+    },
+    {
+      "id": "experiment_longest_chain",
+      "context": "Chronomatron 结算页的最长音符连锁",
+      "raw": "§7Longest Chain: §a%1$s notes",
+      "text": "Longest Chain: %1$s notes",
+      "placeholders": [
+        {"token": "%1$s", "desc": "最长音符连锁长度", "type": "number", "example": "3"}
+      ],
+      "gloss": "复数 notes 模板兼容服务器的单数 note。",
+      "translate": true,
+      "zh": "最长连锁: %1$s 个音符",
+      "segments": [
+        {"color": "§7", "text": "Longest Chain: ", "zh": "最长连锁: "},
+        {"color": "§a", "text": "%1$s notes", "zh": "%1$s 个音符"}
+      ]
+    },
+    {
+      "id": "experiment_decline",
+      "context": "实验结算页放弃奖励按钮",
+      "raw": "§cDecline",
+      "text": "Decline",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "放弃"
+    },
+    {
+      "id": "experiment_click_decline_rewards",
+      "context": "实验结算页放弃奖励操作提示",
+      "raw": "§eClick to decline rewards!",
+      "text": "Click to decline rewards!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击放弃奖励!"
+    },
+    {
+      "id": "experiment_game_closed",
+      "context": "实验因界面关闭而中断的状态",
+      "raw": "§8Game closed",
+      "text": "Game closed",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "游戏已关闭"
+    },
+    {
+      "id": "experiment_closed_game",
+      "context": "实验结算页说明玩家主动关闭游戏",
+      "raw": "§cYou closed the game!",
+      "text": "You closed the game!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你关闭了游戏!"
+    },
+    {
+      "id": "experiment_wrong_number",
+      "context": "Ultrasequencer 失败原因",
+      "raw": "§8Clicked wrong number",
+      "text": "Clicked wrong number",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击了错误的数字"
+    },
+    {
+      "id": "experiment_highest_series",
+      "context": "Ultrasequencer 结算页的最高数字序列",
+      "raw": "§7Highest series: §a%1$s numbers",
+      "text": "Highest series: %1$s numbers",
+      "placeholders": [
+        {"token": "%1$s", "desc": "最高数字序列长度", "type": "number", "example": "8"}
+      ],
+      "gloss": "复数 numbers 模板兼容服务器的单数 number。",
+      "translate": true,
+      "zh": "最高序列: %1$s 个数字",
+      "segments": [
+        {"color": "§7", "text": "Highest series: ", "zh": "最高序列: "},
+        {"color": "§a", "text": "%1$s numbers", "zh": "%1$s 个数字"}
+      ]
+    },
+    {
+      "id": "experiment_you_would_earn",
+      "context": "练习模式结算的预期奖励小标题",
+      "raw": "§7You would earn:",
+      "text": "You would earn:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你本可获得:"
+    },
+    {
+      "id": "experiment_practice_mode_result",
+      "context": "练习模式结算状态",
+      "raw": "§bYou were in practice mode!",
+      "text": "You were in practice mode!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你处于练习模式!"
+    },
+    {
+      "id": "experiment_thats_cool",
+      "context": "实验结算页的正向提示",
+      "raw": "§eThat's very cool!",
+      "text": "That's very cool!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "真厉害!"
+    },
+    {
+      "id": "experiment_ran_out_of_time",
+      "context": "实验失败原因",
+      "raw": "§cYou ran out of time!",
+      "text": "You ran out of time!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "时间耗尽了!"
+    },
+    {
+      "id": "experiment_out_of_time",
+      "context": "实验结算页的时间耗尽状态",
+      "raw": "§8Out of time",
+      "text": "Out of time",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "时间耗尽"
+    },
+    {
+      "id": "superpairs_remaining_clicks",
+      "context": "Superpairs 游戏中的剩余点击次数",
+      "raw": "§7Remaining Clicks: §e%1$s",
+      "text": "Remaining Clicks: %1$s",
+      "placeholders": [
+        {"token": "%1$s", "desc": "剩余点击次数", "type": "number", "example": "24"}
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "剩余点击次数: %1$s",
+      "segments": [
+        {"color": "§7", "text": "Remaining Clicks: ", "zh": "剩余点击次数: "},
+        {"color": "§e", "text": "%1$s", "zh": "%1$s"}
+      ]
+    },
+    {
+      "id": "superpairs_click_any_button",
+      "context": "Superpairs 首次翻牌提示",
+      "raw": "§eClick any button!",
+      "text": "Click any button!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击任意按钮!"
+    },
+    {
+      "id": "superpairs_click_second_button",
+      "context": "Superpairs 选择第二张牌提示",
+      "raw": "§bClick a second button!",
+      "text": "Click a second button!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击第二个按钮!"
+    },
+    {
+      "id": "superpairs_skill_exp_reward",
+      "context": "Superpairs 奖励格的技能经验标题",
+      "raw": "§8Skill Exp Reward",
+      "text": "Skill Exp Reward",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "技能经验奖励"
+    },
+    {
+      "id": "superpairs_gained_clicks",
+      "context": "Superpairs 获得额外点击次数提示",
+      "raw": "§eGained +%1$s Clicks",
+      "text": "Gained +%1$s Clicks",
+      "placeholders": [
+        {"token": "%1$s", "desc": "获得的点击次数", "type": "number", "example": "3"}
+      ],
+      "gloss": "复数 Clicks 模板兼容服务器的单数 Click。",
+      "translate": true,
+      "zh": "获得 +%1$s 次点击"
+    },
+    {
+      "id": "superpairs_click_reward",
+      "context": "Superpairs 的单次点击奖励",
+      "raw": "§a+%1$s Clicks",
+      "text": "+%1$s Clicks",
+      "placeholders": [
+        {"token": "%1$s", "desc": "获得的点击次数", "type": "number", "example": "1"}
+      ],
+      "gloss": "复数 Clicks 模板兼容服务器的单数 Click。",
+      "translate": true,
+      "zh": "+%1$s 次点击"
+    },
+    {
+      "id": "superpairs_instant_powerup",
+      "context": "Superpairs 即时强化提示",
+      "raw": "§d§lInstant powerup!",
+      "text": "Instant powerup!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "即时强化!"
+    },
+    {
+      "id": "superpairs_next_button_rewarded",
+      "context": "Superpairs 即时强化效果说明",
+      "raw": "§dNext button is instantly rewarded!",
+      "text": "Next button is instantly rewarded!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "下一个按钮将立即获得奖励!"
+    },
+    {
+      "id": "superpairs_instant_find",
+      "context": "Superpairs 即时发现强化名",
+      "raw": "§bInstant Find",
+      "text": "Instant Find",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "即时发现"
+    },
+    {
+      "id": "superpairs_powerup_next_click",
+      "context": "Superpairs 下一次点击强化说明",
+      "raw": "§d§lPowerup for next click!",
+      "text": "Powerup for next click!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "下次点击强化!"
+    },
+    {
+      "id": "superpairs_click_to_proceed",
+      "context": "Superpairs 继续操作提示",
+      "raw": "§eClick any to proceed!",
+      "text": "Click any to proceed!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击任意处继续!"
+    },
+    {
+      "id": "superpairs_rare_book",
+      "context": "Superpairs 翻出的附魔书奖励",
+      "raw": "§9Rare Book!",
+      "text": "Rare Book!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "稀有附魔书!"
+    },
+    {
+      "id": "superpairs_possible_pairs",
+      "context": "Superpairs Stakes 的可能配对奖励标题",
+      "raw": "§7Possible pairs:",
+      "text": "Possible pairs:",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "可配对奖励:"
+    },
+    {
+      "id": "superpairs_enchanting_exp_range",
+      "context": "Superpairs Stakes 的可能附魔经验范围",
+      "raw": "§3%1$sk Enchanting Exp",
+      "text": "%1$sk Enchanting Exp",
+      "placeholders": [
+        {"token": "%1$s", "desc": "经验范围或数值，k 保持游戏缩写", "type": "raw", "example": "3.5k-50"}
+      ],
+      "gloss": "采集样本的 3.5k-50 中含范围连接符，raw 允许它保持原样。",
+      "translate": true,
+      "zh": "%1$sk 附魔经验"
+    },
+    {
+      "id": "superpairs_experience_bottle_range",
+      "context": "Superpairs Stakes 的普通经验瓶奖励范围",
+      "raw": "§f10-30 Experience Bottles",
+      "text": "10-30 Experience Bottles",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "10-30 个经验瓶"
+    },
+    {
+      "id": "superpairs_click_count",
+      "context": "Superpairs Stakes 的初始点击次数",
+      "raw": "§7Clicks: §d§l%1$s",
+      "text": "Clicks: %1$s",
+      "placeholders": [
+        {"token": "%1$s", "desc": "初始点击次数", "type": "number", "example": "16"}
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击次数: %1$s",
+      "segments": [
+        {"color": "§7", "text": "Clicks: ", "zh": "点击次数: "},
+        {"color": "§d§l", "text": "%1$s", "zh": "%1$s"}
+      ]
+    },
+    {
+      "id": "superpairs_default_clicks",
+      "context": "Superpairs Stakes 中的基础点击次数构成",
+      "raw": "§d+%1$s §7default",
+      "text": "+%1$s default",
+      "placeholders": [
+        {"token": "%1$s", "desc": "基础点击次数", "type": "number", "example": "10"}
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 基础点击次数",
+      "segments": [
+        {"color": "§d", "text": "+%1$s ", "zh": "+%1$s "},
+        {"color": "§7", "text": "default", "zh": "基础点击次数"}
+      ]
+    },
+    {
+      "id": "superpairs_addon_clicks",
+      "context": "Superpairs Stakes 中由附加实验提供的点击次数",
+      "raw": "§d+%1$s §5add-ons",
+      "text": "+%1$s add-ons",
+      "placeholders": [
+        {"token": "%1$s", "desc": "附加实验提供的点击次数", "type": "number", "example": "6"}
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s 附加点击次数",
+      "segments": [
+        {"color": "§d", "text": "+%1$s ", "zh": "+%1$s "},
+        {"color": "§5", "text": "add-ons", "zh": "附加点击次数"}
+      ]
+    },
+    {
+      "id": "superpairs_grand_bottle_count",
+      "context": "Superpairs Stakes 的大型经验瓶奖励范围",
+      "raw": "§a%1$s Grand Experience Bottles",
+      "text": "%1$s Grand Experience Bottles",
+      "placeholders": [
+        {"token": "%1$s", "desc": "经验瓶数量或范围", "type": "raw", "example": "5-20"}
+      ],
+      "gloss": "复数 Bottles 模板兼容单数 Bottle。",
+      "translate": true,
+      "zh": "%1$s 个大型经验瓶"
+    },
+    {
+      "id": "superpairs_titanic_bottle_count",
+      "context": "Superpairs Stakes 的泰坦经验瓶奖励范围",
+      "raw": "§a%1$s Titanic Experience Bottles",
+      "text": "%1$s Titanic Experience Bottles",
+      "placeholders": [
+        {"token": "%1$s", "desc": "经验瓶数量或范围", "type": "raw", "example": "1"}
+      ],
+      "gloss": "复数 Bottles 模板兼容单数 Bottle。",
+      "translate": true,
+      "zh": "%1$s 个泰坦经验瓶"
+    },
+    {
+      "id": "superpairs_enchanted_books_range",
+      "context": "Superpairs Stakes 的附魔书等级范围",
+      "raw": "§6III-VI Enchanted Books",
+      "text": "III-VI Enchanted Books",
+      "placeholders": [],
+      "gloss": "罗马数字范围保持原样。",
+      "translate": true,
+      "zh": "III-VI 级附魔书"
+    },
+    {
+      "id": "superpairs_metaphysical_serum_count",
+      "context": "Superpairs Stakes 的形而上血清奖励",
+      "raw": "§5%1$s Metaphysical Serum",
+      "text": "%1$s Metaphysical Serum",
+      "placeholders": [
+        {"token": "%1$s", "desc": "血清数量", "type": "number", "example": "1"}
+      ],
+      "gloss": "形而上血清的独立物品名由共享记录处理；此处补数量单位。",
+      "translate": true,
+      "zh": "%1$s 瓶形而上血清"
+    },
+    {
+      "id": "superpairs_tiny_chance_books",
+      "context": "Superpairs Stakes 的极低概率 VII 级附魔书提示",
+      "raw": "§dTiny chance to find %1$s books!",
+      "text": "Tiny chance to find %1$s books!",
+      "placeholders": [
+        {"token": "%1$s", "desc": "附魔等级罗马数字", "type": "tier", "example": "VII"}
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "有极低概率获得 %1$s 级附魔书!"
+    },
+    {
+      "id": "superpairs_very_rare_chance_books",
+      "context": "Superpairs Stakes 的稀有 VII 级附魔书提示",
+      "raw": "§dVery rare chance to find %1$s books!",
+      "text": "Very rare chance to find %1$s books!",
+      "placeholders": [
+        {"token": "%1$s", "desc": "附魔等级罗马数字", "type": "tier", "example": "VII"}
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "有稀有概率获得 %1$s 级附魔书!"
+    },
+    {
+      "id": "superpairs_doubled_addons",
+      "context": "玄奥 Superpairs 的附加点击双倍提示",
+      "raw": "§d+12 §5add-ons §8(doubled!)",
+      "text": "+12 add-ons (doubled!)",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "+12 附加点击次数（双倍!）",
+      "segments": [
+        {"color": "§d", "text": "+12 ", "zh": "+12 "},
+        {"color": "§5", "text": "add-ons ", "zh": "附加点击次数"},
+        {"color": "§8", "text": "(doubled!)", "zh": "（双倍!）"}
+      ]
+    },
+    {
+      "id": "bank_interest_minutes",
+      "context": "合作银行账户最近交易中的利息入账，分钟前变体",
+      "raw": "§a+ §6%1$s§7, §e%2$s mins ago §7by Bank Interest",
+      "text": "+ %1$s, %2$s mins ago by Bank Interest",
+      "placeholders": [
+        {"token": "%1$s", "desc": "利息金额", "type": "coins", "example": "392,000"},
+        {"token": "%2$s", "desc": "经过的分钟数", "type": "number", "example": "50"}
+      ],
+      "gloss": "与 Economy/GUI_Item/Bank.json 的 hours/days 变体同义；mins 是本轮实测短写。",
+      "translate": true,
+      "zh": "+ %1$s，%2$s 分钟前，来自银行利息",
+      "segments": [
+        {"color": "§a", "text": "+ ", "zh": "+ "},
+        {"color": "§6", "text": "%1$s", "zh": "%1$s"},
+        {"color": "§7", "text": ", ", "zh": "，"},
+        {"color": "§e", "text": "%2$s mins ago ", "zh": "%2$s 分钟前"},
+        {"color": "§7", "text": "by Bank Interest", "zh": "，来自银行利息"}
+      ]
+    },
+    {
+      "id": "boss_collections_maxed_out",
+      "context": "Collections 菜单中的 Boss 收藏品满级进度",
+      "raw": "§7Boss Collections Maxed Out: §e%1$s§6%",
+      "text": "Boss Collections Maxed Out: %1$s%",
+      "placeholders": [
+        {"token": "%1$s", "desc": "已满级的 Boss 收藏品比例", "type": "number", "example": "0"}
+      ],
+      "gloss": "Boss 保留英文，Collections 沿用收藏品。",
+      "translate": true,
+      "zh": "Boss 收藏品满级: %1$s%",
+      "segments": [
+        {"color": "§7", "text": "Boss Collections Maxed Out: ", "zh": "Boss 收藏品满级: "},
+        {"color": "§e", "text": "%1$s", "zh": "%1$s"},
+        {"color": "§6", "text": "%", "zh": "%"}
+      ]
+    },
+    {
+      "id": "co_op_bank_account_item",
+      "context": "银行菜单中的合作账户入口名称",
+      "raw": "§aCo-op Bank Account",
+      "text": "Co-op Bank Account",
+      "placeholders": [],
+      "gloss": "沿用 Economy/GUI_Title/Bank.json 的既定译名。",
+      "translate": true,
+      "zh": "合作银行账户"
+    },
+    {
+      "id": "collections_item",
+      "context": "空岛菜单中的收藏品入口名称",
+      "raw": "§aCollections",
+      "text": "Collections",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "收藏品"
+    },
+    {
+      "id": "pickup_furniture",
+      "context": "私人岛屿家具的收起操作",
+      "raw": "§aPickup Furniture",
+      "text": "Pickup Furniture",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "收起家具"
+    },
+    {
+      "id": "magical_power_threshold",
+      "context": "Premium Flesh 解锁能力石后的阈值标题",
+      "raw": "§7At §6250 Magical Power§7:",
+      "text": "At 250 Magical Power:",
+      "placeholders": [],
+      "gloss": "Magical Power 是饰品之力的旧称，沿用项目既有译名魔力，不译法力。",
+      "translate": true,
+      "zh": "魔力达到 250 时：",
+      "segments": [
+        {"color": "§7", "text": "At ", "zh": "魔力达到 "},
+        {"color": "§6", "text": "250 Magical Power", "zh": "250"},
+        {"color": "§7", "text": ":", "zh": " 时："}
+      ]
+    },
+    {
+      "id": "requires_skill_level",
+      "context": "物品或效果要求某项技能达到指定罗马等级",
+      "raw": "§7Requires §a%1$s Skill Level %2$s§7!",
+      "text": "Requires %1$s Skill Level %2$s!",
+      "placeholders": [
+        {"token": "%1$s", "desc": "技能名", "type": "category_name", "example": "Combat"},
+        {"token": "%2$s", "desc": "所需技能等级", "type": "tier", "example": "MCCXII"}
+      ],
+      "gloss": "技能名走词表；罗马数字等级原样保留。",
+      "translate": true,
+      "zh": "需要%1$s技能等级 %2$s!",
+      "segments": [
+        {"color": "§7", "text": "Requires ", "zh": "需要"},
+        {"color": "§a", "text": "%1$s Skill Level %2$s", "zh": "%1$s技能等级 %2$s"},
+        {"color": "§7", "text": "!", "zh": "!"}
+      ]
+    },
+    {
+      "id": "bonus_attack_speed",
+      "context": "装备 Lore 的额外攻击速度",
+      "raw": "§7Bonus Attack Speed: §c+%1$s%",
+      "text": "Bonus Attack Speed: +%1$s%",
+      "placeholders": [
+        {"token": "%1$s", "desc": "攻击速度百分比", "type": "number", "example": "5"}
+      ],
+      "gloss": "Attack Speed 沿用属性表既定译名。",
+      "translate": true,
+      "zh": "额外攻击速度: +%1$s%",
+      "segments": [
+        {"color": "§7", "text": "Bonus Attack Speed: ", "zh": "额外攻击速度: "},
+        {"color": "§c", "text": "+%1$s%", "zh": "+%1$s%"}
+      ]
+    },
+    {
+      "id": "combinable_in_reforge_anvil",
+      "context": "可在重铸铁砧合并的物品提示",
+      "raw": "§8Combinable in Reforge Anvil",
+      "text": "Combinable in Reforge Anvil",
+      "placeholders": [],
+      "gloss": "Reforge Anvil 指空岛的重铸铁砧。",
+      "translate": true,
+      "zh": "可在重铸铁砧中合并"
+    },
+    {
+      "id": "minion_shipping_name",
+      "context": "Snow Minion XI 中自动出售升级的名称",
+      "raw": "§8Minion Shipping",
+      "text": "Minion Shipping",
+      "placeholders": [],
+      "gloss": "Automated Shipping 是小人菜单的既有“自动出售”，本条为其物品名写法。",
+      "translate": true,
+      "zh": "小人运输"
+    },
+    {
+      "id": "experiment_experimental_xp",
+      "context": "实验台 RNG 计量表中当前经验与所需经验的进度",
+      "raw": "§7Experimental XP: §d%1$s§5/§d%2$s",
+      "text": "Experimental XP: %1$s/%2$s",
+      "placeholders": [
+        {"token": "%1$s", "desc": "当前实验经验", "type": "number", "example": "46,451"},
+        {"token": "%2$s", "desc": "所需实验经验", "type": "number", "example": "150,000"}
+      ],
+      "gloss": "Experimental XP 是实验台 RNG 计量表专用进度，不与普通附魔经验混同。",
+      "translate": true,
+      "zh": "实验经验: %1$s/%2$s",
+      "segments": [
+        {"color": "§7", "text": "Experimental XP: ", "zh": "实验经验: "},
+        {"color": "§d", "text": "%1$s", "zh": "%1$s"},
+        {"color": "§5", "text": "/", "zh": "/"},
+        {"color": "§d", "text": "%2$s", "zh": "%2$s"}
+      ]
+    },
+    {
+      "id": "potion_skill_xp_boost",
+      "context": "私人岛屿箱子中各技能经验加成药水的物品名",
+      "raw": "§f%1$s XP Boost %2$s Potion",
+      "text": "%1$s XP Boost %2$s Potion",
+      "placeholders": [
+        {"token": "%1$s", "desc": "技能名", "type": "category_name", "example": "Alchemy"},
+        {"token": "%2$s", "desc": "药水等级", "type": "tier", "example": "II"}
+      ],
+      "gloss": "通用模板覆盖 Alchemy、Fishing、Foraging 等技能，不把采集到的一种药水写死。",
+      "translate": true,
+      "zh": "%1$s经验加成 %2$s 药水"
+    },
+    {
+      "id": "potion_skill_xp_boost_duration",
+      "context": "技能经验加成药水 Lore 中的等级与持续时间",
+      "raw": "§a%1$s XP Boost %2$s §f(%3$s)",
+      "text": "%1$s XP Boost %2$s (%3$s)",
+      "placeholders": [
+        {"token": "%1$s", "desc": "技能名", "type": "category_name", "example": "Alchemy"},
+        {"token": "%2$s", "desc": "药水等级", "type": "tier", "example": "II"},
+        {"token": "%3$s", "desc": "时钟格式持续时间", "type": "raw", "example": "24:00"}
+      ],
+      "gloss": "24:00 是时钟格式，不适用 duration 的 d/h/m/s 解析。",
+      "translate": true,
+      "zh": "%1$s经验加成 %2$s（%3$s）",
+      "segments": [
+        {"color": "§a", "text": "%1$s XP Boost %2$s ", "zh": "%1$s经验加成 %2$s"},
+        {"color": "§f", "text": "(%3$s)", "zh": "（%3$s）"}
+      ]
+    },
+
+    {
+      "id": "experiment_stakes",
+      "context": "实验结算页的动态难度标签",
+      "raw": "§7Stakes: §a%1$s",
+      "text": "Stakes: %1$s",
+      "placeholders": [
+        {"token": "%1$s", "desc": "实验难度", "type": "difficulty", "example": "High"}
+      ],
+      "gloss": "type: difficulty 将实验难度与普通类别名隔离。",
+      "translate": true,
+      "zh": "难度: %1$s",
+      "segments": [
+        {"color": "§7", "text": "Stakes: ", "zh": "难度: "},
+        {"color": "§a", "text": "%1$s", "zh": "%1$s"}
+      ]
+    },
+    {
+      "id": "experiment_superpairs_clicks",
+      "context": "实验结算中的 Superpairs 点击次数奖励",
+      "raw": "§8+§d%1$s Superpairs clicks",
+      "text": "+%1$s Superpairs clicks",
+      "placeholders": [
+        {"token": "%1$s", "desc": "获得的点击次数", "type": "number", "example": "3"}
+      ],
+      "gloss": "复数 clicks 模板兼容服务器的单数 click。",
+      "translate": true,
+      "zh": "+%1$s 次超级配对点击",
+      "segments": [
+        {"color": "§8", "text": "+", "zh": "+"},
+        {"color": "§d", "text": "%1$s Superpairs clicks", "zh": "%1$s 次超级配对点击"}
+      ]
+    },
+    {
+      "id": "experiment_over_lowercase",
+      "context": "Superpairs 奖励菜单的结算状态",
+      "raw": "§8Experiment over",
+      "text": "Experiment over",
+      "placeholders": [],
+      "gloss": "与容器标题 Experiment Over 大小写不同，需单独记录。",
+      "translate": true,
+      "zh": "实验结束"
+    },
+    {
+      "id": "superpairs_clicks_used",
+      "context": "Superpairs 奖励菜单的已用点击次数",
+      "raw": "§7Clicks used: §a%1$s",
+      "text": "Clicks used: %1$s",
+      "placeholders": [
+        {"token": "%1$s", "desc": "已用点击次数", "type": "number", "example": "28"}
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "已用点击次数: %1$s",
+      "segments": [
+        {"color": "§7", "text": "Clicks used: ", "zh": "已用点击次数: "},
+        {"color": "§a", "text": "%1$s", "zh": "%1$s"}
+      ]
+    },
+    {
+      "id": "superpairs_pairs_found",
+      "context": "Superpairs 奖励菜单的已找到配对数",
+      "raw": "§7Pairs found: §e%1$s",
+      "text": "Pairs found: %1$s",
+      "placeholders": [
+        {"token": "%1$s", "desc": "已找到的配对数", "type": "number", "example": "7"}
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "已找到配对: %1$s",
+      "segments": [
+        {"color": "§7", "text": "Pairs found: ", "zh": "已找到配对: "},
+        {"color": "§e", "text": "%1$s", "zh": "%1$s"}
+      ]
+    },
+    {
+      "id": "superpairs_stakes_enchanting_exp",
+      "context": "Superpairs 结算中按难度给出的附魔经验",
+      "raw": "§8+§3%1$s Enchanting Exp §7(Stakes)",
+      "text": "+%1$s Enchanting Exp (Stakes)",
+      "placeholders": [
+        {"token": "%1$s", "desc": "附魔经验数值", "type": "number", "example": "400,000"}
+      ],
+      "gloss": "Stakes 指难度结算项。",
+      "translate": true,
+      "zh": "+%1$s 附魔经验（难度）",
+      "segments": [
+        {"color": "§8", "text": "+", "zh": "+"},
+        {"color": "§3", "text": "%1$s Enchanting Exp", "zh": "%1$s 附魔经验"},
+        {"color": "§7", "text": " (Stakes)", "zh": "（难度）"}
+      ]
+    },
+    {
+      "id": "superpairs_pairs_enchanting_exp",
+      "context": "Superpairs 结算中按配对给出的附魔经验",
+      "raw": "§8+§3%1$s Enchanting Exp §7(Pairs)",
+      "text": "+%1$s Enchanting Exp (Pairs)",
+      "placeholders": [
+        {"token": "%1$s", "desc": "附魔经验数值", "type": "number", "example": "761,000"}
+      ],
+      "gloss": "Pairs 指成功配对所得的结算项。",
+      "translate": true,
+      "zh": "+%1$s 附魔经验（配对）",
+      "segments": [
+        {"color": "§8", "text": "+", "zh": "+"},
+        {"color": "§3", "text": "%1$s Enchanting Exp", "zh": "%1$s 附魔经验"},
+        {"color": "§7", "text": " (Pairs)", "zh": "（配对）"}
+      ]
+    },
+    {
+      "id": "superpairs_rare_vii_books",
+      "context": "Superpairs Stakes 的稀有 VII 级附魔书提示",
+      "raw": "§dRare chance to find %1$s books!",
+      "text": "Rare chance to find %1$s books!",
+      "placeholders": [
+        {"token": "%1$s", "desc": "附魔等级罗马数字", "type": "tier", "example": "VII"}
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "有较低概率获得 %1$s 级附魔书!"
+    },
+    {
+      "id": "superpairs_minuscule_nadeshiko_dye",
+      "context": "Superpairs Stakes 的极微小概率染料提示",
+      "raw": "§6Minuscule chance to find Nadeshiko Dye!",
+      "text": "Minuscule chance to find Nadeshiko Dye!",
+      "placeholders": [],
+      "gloss": "Nadeshiko 是染料色名，按既定规则保留英文；Dye 译染料。",
+      "translate": true,
+      "zh": "有极微小概率获得 Nadeshiko 染料!"
+    },
+    {
+      "id": "superpairs_incredibly_rare_nadeshiko_dye",
+      "context": "Superpairs Stakes 的极低概率染料提示",
+      "raw": "§6Incredibly rare chance to find Nadeshiko Dye!",
+      "text": "Incredibly rare chance to find Nadeshiko Dye!",
+      "placeholders": [],
+      "gloss": "Nadeshiko 是染料色名，按既定规则保留英文；Dye 译染料。",
+      "translate": true,
+      "zh": "有极低概率获得 Nadeshiko 染料!"
+    },
+    {
+      "id": "superpairs_very_rare_nadeshiko_dye",
+      "context": "Superpairs Stakes 的稀有染料提示",
+      "raw": "§6Very rare chance to find Nadeshiko Dye!",
+      "text": "Very rare chance to find Nadeshiko Dye!",
+      "placeholders": [],
+      "gloss": "Nadeshiko 是染料色名，按既定规则保留英文；Dye 译染料。",
+      "translate": true,
+      "zh": "有稀有概率获得 Nadeshiko 染料!"
+    },
+    {
+      "id": "arrows_remaining",
+      "context": "玩家背包中实验台物品显示的箭矢剩余量",
+      "raw": "§7Arrows Remaining: §a%1$s",
+      "text": "Arrows Remaining: %1$s",
+      "placeholders": [
+        {"token": "%1$s", "desc": "箭矢数量", "type": "number", "example": "1,516"}
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "剩余箭矢: %1$s",
+      "segments": [
+        {"color": "§7", "text": "Arrows Remaining: ", "zh": "剩余箭矢: "},
+        {"color": "§a", "text": "%1$s", "zh": "%1$s"}
+      ]
+    }
+  ]
+}

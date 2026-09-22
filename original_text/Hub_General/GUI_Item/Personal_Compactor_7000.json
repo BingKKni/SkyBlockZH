@@ -22,41 +22,24 @@
     },
     {
       "id": "personal_compactor_item_one",
-      "context": "单词原版材料的附魔物品。",
+      "context": "压缩器所选附魔材料，完整材料名统一查词表。",
+      "raw": "§7Item: §aEnchanted %1$s",
       "text": "Item: Enchanted %1$s",
       "placeholders": [
         {
           "token": "%1$s",
-          "type": "minion_resource",
+          "type": "category_name",
           "example": "Potato",
           "desc": "材料名，走 Terms"
         }
       ],
       "gloss": "",
       "translate": true,
-      "zh": "物品: 附魔%1$s"
-    },
-    {
-      "id": "personal_compactor_item_two",
-      "context": "双词原版材料的附魔物品。",
-      "text": "Item: Enchanted %1$s %2$s",
-      "placeholders": [
-        {
-          "token": "%1$s",
-          "type": "raw",
-          "example": "Blaze",
-          "desc": "材料前半"
-        },
-        {
-          "token": "%2$s",
-          "type": "raw",
-          "example": "Powder",
-          "desc": "材料后半"
-        }
-      ],
-      "gloss": "",
-      "translate": true,
-      "zh": "物品: 附魔%1$s%2$s"
+      "zh": "物品: 附魔%1$s",
+      "segments": [
+        { "color": "§7", "text": "Item: ", "zh": "物品: " },
+        { "color": "§a", "text": "Enchanted %1$s", "zh": "附魔%1$s" }
+      ]
     },
     {
       "id": "personal_compactor_status",
@@ -65,7 +48,7 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "type": "category_name",
+          "type": "compactor_toggle",
           "example": "OFF",
           "desc": "ON/OFF 状态，走 Terms"
         }

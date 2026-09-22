@@ -349,7 +349,7 @@
     {
       "id": "feast_donations",
       "context": "盛大宴会当季作物、调味料捐献与里程碑",
-      "raw": "§e%1$s/%2$s Donations",
+      "raw": "§e%1$s§6/§e%2$s Donations",
       "text": "%1$s/%2$s Donations",
       "placeholders": [
         {
@@ -367,7 +367,13 @@
       ],
       "gloss": "",
       "translate": true,
-      "zh": "捐献进度: %1$s/%2$s"
+      "zh": "捐献进度: %1$s/%2$s",
+      "segments": [
+        { "color": "§e", "text": "%1$s", "zh": "%1$s", "order": 1 },
+        { "color": "§6", "text": "/", "zh": "/", "order": 2 },
+        { "color": "§e", "text": "%2$s", "zh": "%2$s", "order": 3 },
+        { "color": "§e", "text": " Donations", "zh": "捐献进度: ", "order": 0 }
+      ]
     },
     {
       "id": "feast_flask",

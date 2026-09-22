@@ -83,6 +83,50 @@
       "gloss": "Year of the Pig → 猪年(Event_Names)。",
       "translate": true,
       "zh": "猪年 %s"
+    },
+    {
+      "id": "sbmenu_harvest_feast",
+      "context": "SkyBlock 菜单日历格子里本轮丰收盛宴的届数与剩余时间",
+      "raw": "§6%1$s Harvest Feast %2$s",
+      "text": "%1$s Harvest Feast %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "活动届数",
+          "type": "ordinal",
+          "example": "29th"
+        },
+        {
+          "token": "%2$s",
+          "desc": "剩余时间",
+          "type": "time",
+          "example": "1d"
+        }
+      ],
+      "gloss": "Harvest Feast 沿用 Event_Names 与 Terms 的既定译名丰收盛宴。",
+      "translate": true,
+      "zh": "第 %1$s 届丰收盛宴 %2$s"
+    },
+    {
+      "id": "sbmenu_next_spooky_festival",
+      "context": "SkyBlock 菜单中下一场惊魂节的届数提示",
+      "raw": "§7Next Event: §6%1$s Spooky Festival",
+      "text": "Next Event: %1$s Spooky Festival",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "活动届数",
+          "type": "ordinal",
+          "example": "515th"
+        }
+      ],
+      "gloss": "Spooky Festival 沿用 Event_Names 与 Terms 的既定译名惊魂节。",
+      "translate": true,
+      "zh": "下一活动: 第 %1$s 届惊魂节",
+      "segments": [
+        {"color": "§7", "text": "Next Event: ", "zh": "下一活动: "},
+        {"color": "§6", "text": "%1$s Spooky Festival", "zh": "第 %1$s 届惊魂节"}
+      ]
     }
   ]
 }

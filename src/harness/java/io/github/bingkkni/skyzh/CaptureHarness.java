@@ -279,6 +279,18 @@ public final class CaptureHarness {
 		checkVerdict("没有记录应答 → 未翻译", CaptureSurface.SCOREBOARD, "§7Some Line Nobody Wrote Down",
 			Classifier.Bucket.UNTRANSLATED);
 		checkNothing("已经译好的行不采集", CaptureSurface.GUI_ITEM, "§8This item can be reforged!");
+		checkNothing("实验台 RNG 来源值已完整处理", CaptureSurface.GUI_ITEM,
+			"§dExperimentation Table RNG Meter");
+		checkNothing("实验台自造奖励名不重复采集", CaptureSurface.GUI_ITEM, "§cExperiment the Fish");
+		checkNothing("Boss 收藏品人名加等级不重复采集", CaptureSurface.GUI_ITEM, "§eBonzo I");
+		checkNothing("非原版 Drain 奖励变体不重复采集", CaptureSurface.GUI_ITEM, "§8 + §fDrain IV");
+		checkNothing("无测试版标记的侧边栏标题不重复采集", CaptureSurface.SCOREBOARD, "§e§lSKYBLOCK");
+		checkNothing("市长候选人进度条只保留人名与数值", CaptureSurface.TABLIST,
+			" §aDiana: ||§f|||||||| (17%)");
+		checkVerdict("句子状 RNG 计量表来源仍应采集", CaptureSurface.GUI_ITEM,
+			"§dThis is not an RNG Meter", Classifier.Bucket.UNTRANSLATED);
+		checkVerdict("未知小写实验难度仍应采集", CaptureSurface.GUI_ITEM,
+			"§7Stakes: this is not a difficulty", Classifier.Bucket.UNTRANSLATED);
 		checkNothing("纯数字没有可翻译的东西", CaptureSurface.SCOREBOARD, "§a1,234");
 		checkNothing("风向罗盘箭头行没有词", CaptureSurface.SCOREBOARD, "§9⋖ §7≈ §9⋗");
 		checkNothing("Tab 列表里的玩家名不采集", CaptureSurface.TABLIST, "§7[123] §b[MVP§c+§b] §aSomeone");
