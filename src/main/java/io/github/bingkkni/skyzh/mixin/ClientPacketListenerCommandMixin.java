@@ -69,6 +69,8 @@ public abstract class ClientPacketListenerCommandMixin {
 				root.then(skyzh$node(plain));
 			}
 
+			root.then(skyzh$node("updatecheck").then(skyzh$node("on")).then(skyzh$node("off")));
+
 			LiteralArgumentBuilder<ClientSuggestionProvider> flip = skyzh$node("switch");
 
 			for (String which : SkyZHCommand.SWITCHES) {

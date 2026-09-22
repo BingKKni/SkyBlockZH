@@ -51,6 +51,15 @@ public final class SkyZHConfig {
 	/** Whether the mod translates anything at all. Off means every surface is left in English. */
 	public boolean enabled = true;
 
+	/** Whether GitHub Releases is checked once while the enabled mod starts. */
+	public boolean updateCheck = true;
+
+	/** Whether the unavailable in-game translation feedback switch is selected for future use. */
+	public boolean helpImproveTranslation = true;
+
+	/** Whether the one-time setup screen has already been shown after entering Hypixel. */
+	public boolean welcomeShown = false;
+
 	/** Whether "SkyBlock" itself becomes 空岛生存. */
 	public boolean translateSkyBlockName = true;
 
@@ -121,6 +130,9 @@ public final class SkyZHConfig {
 	static SkyZHConfig fromJson(JsonObject json) {
 		SkyZHConfig config = new SkyZHConfig();
 		config.enabled = bool(json, "enabled", true);
+		config.updateCheck = bool(json, "updateCheck", true);
+		config.helpImproveTranslation = bool(json, "helpImproveTranslation", true);
+		config.welcomeShown = bool(json, "welcomeShown", false);
 		config.translateSkyBlockName = bool(json, "translateSkyBlockName", true);
 		config.originalTips = bool(json, "originalTips", true);
 		config.captureUntranslated = bool(json, "captureUntranslated", false);
@@ -185,9 +197,12 @@ public final class SkyZHConfig {
 	JsonObject toJson() {
 		JsonObject help = new JsonObject();
 		help.addProperty("enabled", "是否启用 Mod 功能。关闭将不翻译任何文本。");
+		help.addProperty("updateCheck", "是否在启动客户端时通过 GitHub Releases 检查更新。总开关关闭时不会请求。");
+		help.addProperty("helpImproveTranslation", "在游戏内发现文本未翻译或翻译格式错误时，是否上传到开发者服务器报告（暂不可用）。");
+		help.addProperty("welcomeShown", "是否已经显示首次设置引导。改为 false 后，下次进入 Hypixel 时会再次显示。");
 		help.addProperty("translateSkyBlockName", "是否翻译 SkyBlock 玩法名。翻译后的文本为「空岛生存」。");
 		help.addProperty("originalTips", "在看到服务器发出的消息中包含物品时，提示按住某一热键可以将它们显示出原文。关闭后将不再提示。");
-		help.addProperty("captureUntranslated", "【给翻译者用，普通玩家请保持关闭】把游戏里还没翻译、以及翻译了但仍中英混杂的文本写到硬盘上，供补全语料用。只采集服务器发来的原文，不会采集其他 Mod 的文本，也不会改变游戏里显示的任何内容。打开它时，如果装了 hypixel-mod-api，会向服务器订阅一次位置事件（用来判断采到的文本属于哪个玩法）——这是本 Mod 唯一一处往外发包的地方，关掉就不发。");
+		help.addProperty("captureUntranslated", "【给翻译者用，普通玩家请保持关闭】把游戏里还没翻译、以及翻译了但仍中英混杂的文本写到硬盘上，供补全语料用。只采集服务器发来的原文，不会采集其他 Mod 的文本，也不会改变游戏里显示的任何内容。打开它时，如果装了 hypixel-mod-api，会向服务器订阅一次位置事件（用来判断采到的文本属于哪个玩法）——这是本 Mod 唯一一处会向 Hypixel 发包的地方，关掉就不发。");
 		help.addProperty("captureNotifications", "采集到未翻译、颜色、中英混杂、排版、跨行或数值问题时，是否在聊天栏里输出报告");
 		help.addProperty("autoClearCapture", "每次启动游戏时，是否自动清空上一轮已采集的文本。启动时执行一次，与采集总开关和是否进入 Hypixel 无关；断线重连不清空。");
 		help.addProperty("captureDirectory", "采集输出目录，相对于游戏目录。包含 untranslated/、mixed/、colour/、layout/、incomplete/、value/ 六类，各自再按玩法/来源/名字分目录。");
@@ -195,6 +210,9 @@ public final class SkyZHConfig {
 		JsonObject json = new JsonObject();
 		json.add("_说明", help);
 		json.addProperty("enabled", this.enabled);
+		json.addProperty("updateCheck", this.updateCheck);
+		json.addProperty("helpImproveTranslation", this.helpImproveTranslation);
+		json.addProperty("welcomeShown", this.welcomeShown);
 		json.addProperty("translateSkyBlockName", this.translateSkyBlockName);
 		json.addProperty("originalTips", this.originalTips);
 		json.addProperty("captureUntranslated", this.captureUntranslated);

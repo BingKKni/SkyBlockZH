@@ -19,6 +19,9 @@ public final class CommandHarness {
 		SkyZHCommand.Parsed longAlias = SkyZHCommand.parse("skyblockzh off");
 		check("长别名可解析", longAlias == null ? null : longAlias.alias(), "skyblockzh");
 		check("隐藏的 off 可解析", longAlias == null ? null : longAlias.sub(), "off");
+		SkyZHCommand.Parsed updateCheck = SkyZHCommand.parse("skyzh updatecheck ON");
+		check("更新检查子命令可解析", updateCheck == null ? null : updateCheck.sub(), "updatecheck");
+		check("更新检查状态不分大小写", updateCheck == null ? null : updateCheck.argument(), "on");
 		check("空输入不归本 Mod", SkyZHCommand.parse("   "), null);
 		check("null 输入不崩溃", SkyZHCommand.parse(null), null);
 		check("别的命令不拦截", SkyZHCommand.parse("warp hub"), null);
@@ -31,6 +34,8 @@ public final class CommandHarness {
 			"§b[SkyZH] §a显示原文提示功能已打开!");
 		check("采集开关反馈", Feedback.line(SkyZHCommand.changed("采集未翻译文本", false)),
 			"§b[SkyZH] §c采集未翻译文本功能已关闭!");
+		check("更新检查反馈", Feedback.line(SkyZHCommand.changed("检查更新", true)),
+			"§b[SkyZH] §a检查更新功能已打开!");
 		check("开关失败反馈", Feedback.line(SkyZHCommand.changeFailed("翻译", "disk full")),
 			"§b[SkyZH] §c很抱歉，开关翻译功能时出现错误惹... 原因: disk full");
 		check("清空成功反馈", Feedback.line(SkyZHCommand.clearSucceeded()),
@@ -38,15 +43,17 @@ public final class CommandHarness {
 
 		check("关闭采集时的短别名菜单", SkyZHCommand.helpLines("skyzh", false), List.of(
 			"§e=============== §b[SkyZH] §e===============",
-			"§6/skyzh  §f列出帮助菜单",
+			"§6/skyzh  §f打开设置",
 			"§6/skyzh switch power/tip/capture [on/off]  §f切换总功能/显示原文提示/采集功能为开/关",
+			"§6/skyzh updatecheck [on/off]  §f切换启动检查更新功能",
 			"§e======================================"
 		));
 
 		check("打开采集时的长别名菜单", SkyZHCommand.helpLines("skyblockzh", true), List.of(
 			"§e=============== §b[SkyZH] §e===============",
-			"§6/skyblockzh  §f列出帮助菜单",
+			"§6/skyblockzh  §f打开设置",
 			"§6/skyblockzh switch power/tip/capture [on/off]  §f切换总功能/显示原文提示/采集功能为开/关",
+			"§6/skyblockzh updatecheck [on/off]  §f切换启动检查更新功能",
 			"§6/skyblockzh clear  §f清空捕捉到的文本",
 			"§e======================================"
 		));
@@ -61,7 +68,9 @@ public final class CommandHarness {
 		check("显式 on 不会反复切换", SkyZHCommand.switchValue(true, "on"), true);
 		check("省略状态仍可切换", SkyZHCommand.switchValue(true, ""), false);
 		check("多余参数不能被忽略", SkyZHCommand.parse("skyzh switch tip off extra").state(), "off extra");
+		check("更新检查开关已提供", SkyZHCommand.SWITCHES.contains("updatecheck"), true);
 		check("旧 compare 不再提供", SkyZHCommand.SWITCHES.contains("compare"), false);
+		checkQueuedSettingsScreen();
 		check("首次提示立即允许", OriginalTips.claimInterval(100L), true);
 		check("五分钟内不重复提示", OriginalTips.claimInterval(300_000_000_099L), false);
 		check("满五分钟可再次提示", OriginalTips.claimInterval(300_000_000_100L), true);
@@ -80,6 +89,25 @@ public final class CommandHarness {
 		}
 	}
 
+	private static void checkQueuedSettingsScreen() throws Exception {
+		Class<?> screen = io.github.bingkkni.skyzh.gui.SkyZHWelcomeScreen.class;
+		var clear = screen.getDeclaredMethod("clearCommandScreenRequest");
+		var queued = screen.getDeclaredMethod("commandScreenRequested");
+		clear.setAccessible(true);
+		queued.setAccessible(true);
+
+		try {
+			clear.invoke(null);
+			SkyZHCommand.run("skyzh");
+			check("短别名在下一 tick 打开设置", queued.invoke(null), true);
+			clear.invoke(null);
+			SkyZHCommand.run("skyblockzh");
+			check("长别名在下一 tick 打开设置", queued.invoke(null), true);
+		} finally {
+			clear.invoke(null);
+		}
+	}
+
 	private static void checkClickedCommand() throws Exception {
 		var file = SkyZHConfig.class.getDeclaredField("FILE");
 		file.setAccessible(true);
@@ -94,8 +122,12 @@ public final class CommandHarness {
 		var mixin = new io.github.bingkkni.skyzh.mixin.ClientPacketListenerCommandMixin() {};
 		SkyZHConfig config = SkyZHConfig.get();
 		boolean previous = config.originalTips;
+		boolean previousUpdateCheck = config.updateCheck;
+		boolean previousEnabled = config.enabled;
 		try {
 			config.originalTips = true;
+			config.updateCheck = true;
+			config.enabled = true;
 			var off = new org.spongepowered.asm.mixin.injection.callback.CallbackInfo("sendUnattendedCommand", true);
 			method.invoke(mixin, "skyzh switch tip off", null, off);
 			check("点击禁用确实关闭配置", config.originalTips, false);
@@ -104,11 +136,21 @@ public final class CommandHarness {
 			method.invoke(mixin, "skyblockzh switch tip on", null, on);
 			check("点击长别名确实启用配置", config.originalTips, true);
 			check("点击长别名不发送服务器", on.isCancelled(), true);
+			var updateOff = new org.spongepowered.asm.mixin.injection.callback.CallbackInfo("sendUnattendedCommand", true);
+			method.invoke(mixin, "skyzh updatecheck off", null, updateOff);
+			check("点击更新检查子命令确实关闭配置", config.updateCheck, false);
+			check("点击更新检查子命令不发送服务器", updateOff.isCancelled(), true);
+			var invalidOff = new org.spongepowered.asm.mixin.injection.callback.CallbackInfo("sendUnattendedCommand", true);
+			method.invoke(mixin, "skyzh off unexpected", null, invalidOff);
+			check("带多余参数的关闭命令不修改配置", config.enabled, true);
+			check("无效本地命令仍不发送服务器", invalidOff.isCancelled(), true);
 			var other = new org.spongepowered.asm.mixin.injection.callback.CallbackInfo("sendUnattendedCommand", true);
 			method.invoke(mixin, "warp hub", null, other);
 			check("点击其他指令不拦截", other.isCancelled(), false);
 		} finally {
 			config.originalTips = previous;
+			config.updateCheck = previousUpdateCheck;
+			config.enabled = previousEnabled;
 		}
 	}
 

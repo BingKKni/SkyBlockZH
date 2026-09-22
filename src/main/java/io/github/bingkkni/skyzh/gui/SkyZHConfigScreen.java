@@ -2,7 +2,11 @@ package io.github.bingkkni.skyzh.gui;
 
 import io.github.bingkkni.skyzh.SkyZHConfig;
 import io.github.bingkkni.skyzh.capture.CaptureAnnouncer;
+import io.github.bingkkni.skyzh.capture.TextCapture;
 import io.github.bingkkni.skyzh.platform.ClientGui;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.CycleButton;
@@ -13,21 +17,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.ARGB;
 
-/**
- * The settings screen, reached through Mod Menu.
- *
- * <p>Laid out on an explicit {@link GridLayout} rather than the options list vanilla screens use,
- * because the rows are what carry the meaning here: the master switch owns the top row because
- * nothing under it does anything while it is off, the two switches that only change how an already
- * translated line reads share the row beneath it, and the capture switch owns a full row with its
- * two sub-options on the row immediately below. An options list packs widgets in the order they were handed to it and would break that
- * grouping the moment an option is added, so the grid is addressed by coordinate instead. The two
- * half-width cells add up to the full-width one, spacing included, so every row ends flush.
- *
- * <p>Mod Menu is a soft dependency and this class is only ever reached through it. Everything here
- * also exists in {@code config/skyzh.json}, which is the supported way to change these settings
- * without it.
- */
+/** The complete settings screen reached through Mod Menu. */
 public class SkyZHConfigScreen extends Screen {
 	private static final int SMALL_WIDTH = 150;
 	private static final int WIDE_WIDTH = 308;
@@ -36,6 +26,8 @@ public class SkyZHConfigScreen extends Screen {
 
 	private final Screen parent;
 	private final SkyZHConfig config = SkyZHConfig.get();
+	private final boolean captureInitiallyEnabled = this.config.captureUntranslated;
+	private final List<DependentToggle> dependentToggles = new ArrayList<>();
 
 	public SkyZHConfigScreen(Screen parent) {
 		super(Component.translatable("skyzh.options.title"));
@@ -44,37 +36,41 @@ public class SkyZHConfigScreen extends Screen {
 
 	@Override
 	protected void init() {
+		this.dependentToggles.clear();
 		GridLayout grid = new GridLayout().spacing(SPACING);
 
-		grid.addChild(toggle("enabled", WIDE_WIDTH, this.config.enabled, value -> this.config.enabled = value), 0, 0, 1, 2);
+		grid.addChild(toggle("enabled", SMALL_WIDTH, this.config.enabled, value -> {
+			this.config.enabled = value;
+			updateDependentButtons();
+		}), 0, 0);
 		grid.addChild(
-			toggle("translateSkyBlockName", SMALL_WIDTH, this.config.translateSkyBlockName,
+			dependentToggle("updateCheck", SMALL_WIDTH, this.config.updateCheck, value -> this.config.updateCheck = value),
+			0, 1
+		);
+		grid.addChild(
+			dependentToggle("translateSkyBlockName", SMALL_WIDTH, this.config.translateSkyBlockName,
 				value -> this.config.translateSkyBlockName = value),
 			1, 0
 		);
 		grid.addChild(
-			toggle("originalTips", SMALL_WIDTH, this.config.originalTips, value -> this.config.originalTips = value),
+			dependentToggle("originalTips", SMALL_WIDTH, this.config.originalTips, value -> this.config.originalTips = value),
 			1, 1
 		);
-		// A row to itself, under the three that change what a player sees, because it changes nothing
-		// a player sees: it is the switch that writes files to their disk, and it belongs where nobody
-		// flips it by accident while looking for the translation settings.
+		// Capture writes files rather than changing rendered text, so it retains a full row of its own.
 		grid.addChild(
-			toggle("captureUntranslated", WIDE_WIDTH, this.config.captureUntranslated,
+			dependentToggle("captureUntranslated", WIDE_WIDTH, this.config.captureUntranslated,
 				value -> this.config.captureUntranslated = value),
 			2, 0, 1, 2
 		);
-
 		grid.addChild(
-			toggle("captureNotifications", SMALL_WIDTH, this.config.captureNotifications, value -> {
+			dependentToggle("captureNotifications", SMALL_WIDTH, this.config.captureNotifications, value -> {
 				this.config.captureNotifications = value;
-				// Also invalidate messages already queued to the client thread, even on a quick off/on.
 				CaptureAnnouncer.clear();
 			}),
 			3, 0
 		);
 		grid.addChild(
-			toggle("autoClearCapture", SMALL_WIDTH, this.config.autoClearCapture,
+			dependentToggle("autoClearCapture", SMALL_WIDTH, this.config.autoClearCapture,
 				value -> this.config.autoClearCapture = value),
 			3, 1
 		);
@@ -82,6 +78,7 @@ public class SkyZHConfigScreen extends Screen {
 		grid.arrangeElements();
 		FrameLayout.centerInRectangle(grid, 0, 0, this.width, this.height);
 		grid.visitWidgets(this::addRenderableWidget);
+		updateDependentButtons();
 
 		addRenderableWidget(
 			Button.builder(Component.translatable("gui.done"), button -> onClose())
@@ -90,7 +87,13 @@ public class SkyZHConfigScreen extends Screen {
 		);
 	}
 
-	private CycleButton<Boolean> toggle(String key, int width, boolean initial, java.util.function.Consumer<Boolean> sink) {
+	private CycleButton<Boolean> dependentToggle(String key, int width, boolean initial, Consumer<Boolean> sink) {
+		CycleButton<Boolean> button = toggle(key, width, initial, sink);
+		this.dependentToggles.add(new DependentToggle(button, key));
+		return button;
+	}
+
+	private CycleButton<Boolean> toggle(String key, int width, boolean initial, Consumer<Boolean> sink) {
 		Component name = Component.translatable("skyzh.option." + key);
 		CycleButton<Boolean> button = CycleButton.onOffBuilder(initial)
 			.withTooltip(value -> Tooltip.create(Component.translatable("skyzh.option." + key + ".tooltip")))
@@ -100,6 +103,15 @@ public class SkyZHConfigScreen extends Screen {
 			});
 		button.setMessage(toggleLabel(name, initial));
 		return button;
+	}
+
+	private void updateDependentButtons() {
+		for (DependentToggle dependent : this.dependentToggles) {
+			dependent.button().active = this.config.enabled;
+			dependent.button().setTooltip(Tooltip.create(Component.translatable(
+				this.config.enabled ? "skyzh.option." + dependent.key() + ".tooltip" : "skyzh.option.requiresEnabled"
+			)));
+		}
 	}
 
 	private static Component toggleLabel(Component name, boolean value) {
@@ -114,10 +126,14 @@ public class SkyZHConfigScreen extends Screen {
 
 	@Override
 	public void onClose() {
-		// Writing on close rather than on every click: the file is the source of truth for players
-		// without Mod Menu, and one save per visit keeps it from being rewritten mid-decision.
+		boolean flushCapture = this.captureInitiallyEnabled && !this.config.captureUntranslated;
 		this.config.save();
-		// Which object owns the screen stack moved in 26.2; see platform/ClientGui.
+		if (flushCapture) {
+			TextCapture.flush();
+		}
 		ClientGui.setScreen(this.minecraft, this.parent);
+	}
+
+	private record DependentToggle(CycleButton<Boolean> button, String key) {
 	}
 }

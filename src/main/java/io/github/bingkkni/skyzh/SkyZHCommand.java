@@ -1,6 +1,7 @@
 package io.github.bingkkni.skyzh;
 
 import io.github.bingkkni.skyzh.capture.TextCapture;
+import io.github.bingkkni.skyzh.gui.SkyZHWelcomeScreen;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -9,7 +10,7 @@ import java.util.function.BooleanSupplier;
 /** The two local command aliases and their deliberately small grammar. */
 public final class SkyZHCommand {
 	public static final List<String> ALIASES = List.of("skyzh", "skyblockzh");
-	public static final List<String> SWITCHES = List.of("power", "tip", "capture");
+	public static final List<String> SWITCHES = List.of("power", "tip", "capture", "updatecheck");
 	public static final List<String> PLAIN = List.of("on", "off", "clear");
 
 	private SkyZHCommand() {
@@ -24,11 +25,12 @@ public final class SkyZHCommand {
 		}
 
 		switch (parsed.sub()) {
-			case "" -> help(parsed.alias());
-			case "on" -> power(true);
-			case "off" -> power(false);
+			case "" -> SkyZHWelcomeScreen.openFromCommand();
+			case "on" -> plainPower(parsed.alias(), true, parsed.argument(), parsed.state());
+			case "off" -> plainPower(parsed.alias(), false, parsed.argument(), parsed.state());
 			case "switch" -> flip(parsed.alias(), parsed.argument(), parsed.state());
-			case "clear" -> clear();
+			case "updatecheck" -> updateCheck(parsed.alias(), parsed.argument(), parsed.state());
+			case "clear" -> clear(parsed.alias(), parsed.argument(), parsed.state());
 			default -> unknown(parsed.alias(), parsed.sub());
 		}
 
@@ -62,12 +64,13 @@ public final class SkyZHCommand {
 		);
 	}
 
-	/** The exact menu text, separate from chat so every alias and conditional row can be tested. */
+	/** The exact fallback menu text, separate from chat so every alias and conditional row can be tested. */
 	static List<String> helpLines(String alias, boolean captureEnabled) {
 		List<String> lines = new ArrayList<>();
 		lines.add("§e=============== §b" + Feedback.NAME + " §e===============");
-		lines.add("§6/" + alias + "  §f列出帮助菜单");
+		lines.add("§6/" + alias + "  §f打开设置");
 		lines.add("§6/" + alias + " switch power/tip/capture [on/off]  §f切换总功能/显示原文提示/采集功能为开/关");
+		lines.add("§6/" + alias + " updatecheck [on/off]  §f切换启动检查更新功能");
 
 		if (captureEnabled) {
 			lines.add("§6/" + alias + " clear  §f清空捕捉到的文本");
@@ -77,15 +80,33 @@ public final class SkyZHCommand {
 		return List.copyOf(lines);
 	}
 
-	private static void help(String alias) {
-		for (String line : helpLines(alias, SkyZHConfig.get().captureUntranslated)) {
-			Feedback.raw(line);
-		}
-	}
-
 	private static void power(boolean on) {
 		SkyZHConfig config = SkyZHConfig.get();
 		change("翻译", () -> config.enabled, value -> config.enabled = value, on);
+	}
+
+	private static void plainPower(String alias, boolean on, String argument, String extra) {
+		if (!hasUnexpectedArguments(alias, on ? "on" : "off", argument, extra)) {
+			power(on);
+		}
+	}
+
+	private static boolean hasUnexpectedArguments(String alias, String command, String argument, String extra) {
+		if (argument.isEmpty() && extra.isEmpty()) {
+			return false;
+		}
+
+		unknown(alias, (command + " " + argument + " " + extra).trim());
+		return true;
+	}
+
+	private static void updateCheck(String alias, String state, String extra) {
+		if (!extra.isEmpty()) {
+			unknown(alias, "updatecheck " + state + " " + extra);
+			return;
+		}
+
+		flip(alias, "updatecheck", state);
 	}
 
 	private static void flip(String alias, String which, String state) {
@@ -102,6 +123,8 @@ public final class SkyZHCommand {
 				value -> config.originalTips = value, switchValue(config.originalTips, state));
 			case "capture" -> change("采集未翻译文本", () -> config.captureUntranslated,
 				value -> config.captureUntranslated = value, switchValue(config.captureUntranslated, state));
+			case "updatecheck" -> change("检查更新", () -> config.updateCheck,
+				value -> config.updateCheck = value, switchValue(config.updateCheck, state));
 			default -> unknown(alias, which.isEmpty() ? "switch" : "switch " + which);
 		}
 	}
@@ -148,6 +171,12 @@ public final class SkyZHCommand {
 		Feedback.send(changed(what, on));
 	}
 
+	private static void clear(String alias, String argument, String extra) {
+		if (!hasUnexpectedArguments(alias, "clear", argument, extra)) {
+			clear();
+		}
+	}
+
 	private static void clear() {
 		try {
 			TextCapture.clear();
@@ -159,7 +188,9 @@ public final class SkyZHCommand {
 
 	private static void unknown(String alias, String detail) {
 		Feedback.send("§c未知命令: /" + alias + (detail.isEmpty() ? "" : " " + detail));
-		help(alias);
+		for (String line : helpLines(alias, SkyZHConfig.get().captureUntranslated)) {
+			Feedback.raw(line);
+		}
 	}
 
 	@FunctionalInterface

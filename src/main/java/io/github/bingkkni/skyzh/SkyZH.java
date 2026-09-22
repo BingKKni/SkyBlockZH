@@ -36,6 +36,8 @@ public final class SkyZH implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		SkyZHConfig config = SkyZHConfig.get();
+		// The request is opt-in through both settings and runs off the client thread.
+		UpdateChecker.checkAtStartup();
 
 		// Fabric invokes this once per client launch, before the main menu and independently of
 		// joining any server. Do not put this on the connection/tick path: reconnecting is not a restart.

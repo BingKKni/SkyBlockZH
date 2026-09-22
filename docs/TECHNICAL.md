@@ -130,15 +130,17 @@ Mod Menu is a soft dependency. Without it, edit `config/skyzh.json`, which docum
 
 | Option | Default | Meaning |
 |---|---|---|
-| `enabled` | on | Master switch |
+| `enabled` | on | Master switch. Turning it off also prevents the startup update request |
+| `updateCheck` | on | Once per client startup, request the newest version metadata from GitHub Releases. It neither downloads files nor uploads player or game data. It does not run while the master switch is off; `/skyzh updatecheck [on/off]` and `/skyblockzh` control it |
 | `translateSkyBlockName` | on | Render "SkyBlock" as 空岛生存. Compounds use the short form and get their spacing fixed: `你的 SkyBlock 等级` → `你的空岛等级`; standalone occurrences keep the full name. See below for where the substitution is allowed to happen |
-| `originalTips` | on | Append a current-key hint to translated real-item tooltips in GUIs. Incoming server chat mentioning eligible translated items may show a dismissible hint, at least five minutes apart. `ItemNames` uses the bundled offline NEU catalog, excluding menus, states and unknown names. `/skyzh switch tip on/off` (also `/skyblockzh`) controls hints, not the hold key. The old `showOriginal` field is ignored and no longer saved; missing `originalTips` defaults to on. Normal rendering no longer appends bracketed originals |
+| `originalTips` | on | "Translation hints": append a current-key hint to translated real-item tooltips in GUIs. Incoming server chat mentioning eligible translated items may show a dismissible hint, at least five minutes apart. `ItemNames` uses the bundled offline NEU catalog, excluding menus, states and unknown names. `/skyzh switch tip on/off` (also `/skyblockzh`) controls hints, not the hold key. The old `showOriginal` field is ignored and no longer saved; missing `originalTips` defaults to on. Normal rendering no longer appends bracketed originals |
+| `helpImproveTranslation` | on | Reserved state for the unavailable "Help improve translations" report feature; its screen control is intentionally disabled |
 | `captureUntranslated` | **off** | A switch for whoever is filling the corpus in. It writes files to your disk; leave it off to play. See below |
 | `captureNotifications` | on | Report newly captured untranslated text, colour errors and mixed-language text in chat. Turning reports off does not stop file writes |
 | `autoClearCapture` | **off** | Clear the previous captures once per client launch, whether or not capture is enabled or a server is joined. Reconnecting never clears files |
 
 The two capture sub-options share the row below the capture master: notifications on the left,
-startup clearing on the right. Old configs missing these keys use the defaults above. Startup clearing
+startup clearing on the right. Old configs missing these keys use the defaults above. On a fresh installation, a setup screen appears once after the client has confirmed entry to Hypixel; its internal `welcomeShown` state can be reset to `false` to show it again on the next entry. Mod Menu places the master switch and startup update check side by side; with the master switch off, every remaining setting is disabled and explains why on hover. Startup clearing
 runs once in Fabric's client initializer, before the main menu, through the exact `TextCapture.clear()`
 path used by `/skyzh clear`: in-memory state, queued work and JSON files in the six capture buckets
 are cleared; unrelated files remain. Failures are logged without preventing startup.
@@ -269,7 +271,7 @@ Two more guards: this exact live connection must have identified itself as Hypix
 connection rather than trusting the previous tick after a server switch. Disconnect or leaving
 SkyBlock cleanup runs even if capture was switched off mid-session; it never deletes files.
 
-### The one thing that is sent
+### The one thing sent to Hypixel
 
 With capture **on**, and only then, and only if the [`hypixel-mod-api`][modapi] mod is installed,
 SkyZH subscribes to Hypixel's own location event — one register packet, sent by that mod's plumbing,
@@ -278,7 +280,8 @@ arrive, which is the answer to "which gameplay folder does this text belong in" 
 server instead of read off a sidebar drawn for a human. The library is compiled against and never
 bundled; without that mod the integration does not load and the other two readings carry on.
 
-With capture **off** — every ordinary player — nothing is subscribed and nothing is sent. That half
+With capture **off** — every ordinary player — nothing is subscribed and no packet is sent to Hypixel.
+This is independent of `updateCheck`: when both it and the master switch are on, startup makes one GitHub Releases metadata request. It does not involve Hypixel, upload game data or download a mod file. That half
 of the mod remains what it says on the tin: a client running SkyZH is, as far as Hypixel and as far
 as every other mod is concerned, a client running in English.
 

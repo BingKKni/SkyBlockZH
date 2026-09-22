@@ -23,6 +23,7 @@ public final class ClientSettingsHarness {
 
 	public static void main(String[] args) throws Exception {
 		config();
+		updates();
 		keys();
 		servers();
 
@@ -34,6 +35,9 @@ public final class ClientSettingsHarness {
 
 	private static void config() {
 		SkyZHConfig defaults = SkyZHConfig.fromJson(new JsonObject());
+		check("更新检查默认开", defaults.updateCheck, true);
+		check("帮助改进翻译默认开", defaults.helpImproveTranslation, true);
+		check("首次引导默认未显示", defaults.welcomeShown, false);
 		check("采集提示默认开", defaults.captureNotifications, true);
 		check("启动清空默认关", defaults.autoClearCapture, false);
 		check("采集总开关仍默认关", defaults.captureUntranslated, false);
@@ -42,6 +46,9 @@ public final class ClientSettingsHarness {
 			{"enabled":false,"showOriginal":false,"captureUntranslated":true,"captureDirectory":"my-captures","captureServer":"example.org"}
 			""").getAsJsonObject());
 		check("旧配置保留总开关", old.enabled, false);
+		check("旧配置缺少更新检查时默认开", old.updateCheck, true);
+		check("旧配置缺少帮助改进翻译时默认开", old.helpImproveTranslation, true);
+		check("旧配置缺少引导状态时显示引导", old.welcomeShown, false);
 		check("旧对比开关不影响新提示默认值", old.originalTips, true);
 		check("保存移除旧对比字段", old.toJson().has("showOriginal"), false);
 		check("保存移除旧 IP 限制字段", old.toJson().has("captureServer"), false);
@@ -54,12 +61,28 @@ public final class ClientSettingsHarness {
 
 		old.captureNotifications = false;
 		old.autoClearCapture = true;
+		old.updateCheck = false;
+		old.helpImproveTranslation = false;
+		old.welcomeShown = true;
 		SkyZHConfig restored = SkyZHConfig.fromJson(old.toJson());
 		check("提示关闭可保存再读取", restored.captureNotifications, false);
 		check("自动清空可保存再读取", restored.autoClearCapture, true);
+		check("更新检查关闭可保存再读取", restored.updateCheck, false);
+		check("帮助改进翻译状态可保存再读取", restored.helpImproveTranslation, false);
+		check("首次引导状态可保存再读取", restored.welcomeShown, true);
 		check("保存不修改采集目录", restored.captureDirectory, "my-captures");
 		check("文件含提示说明", old.toJson().getAsJsonObject("_说明").has("captureNotifications"), true);
 		check("文件含自动清空说明", old.toJson().getAsJsonObject("_说明").has("autoClearCapture"), true);
+		check("文件含更新检查说明", old.toJson().getAsJsonObject("_说明").has("updateCheck"), true);
+		check("文件含首次引导说明", old.toJson().getAsJsonObject("_说明").has("welcomeShown"), true);
+	}
+
+	private static void updates() {
+		check("更高发布版本会提示", UpdateChecker.isNewer("0.5.1", "0.5"), true);
+		check("等价的补零版本不重复提示", UpdateChecker.isNewer("0.5.0", "0.5"), false);
+		check("发布版本高于同号预发布", UpdateChecker.isNewer("0.5", "0.5-beta.1"), true);
+		check("带 v 前缀的发布标签可识别", UpdateChecker.isNewer("v0.6", "0.5+mc26.1"), true);
+		check("无效发布标签不提示", UpdateChecker.isNewer("latest", "0.5"), false);
 	}
 
 	private static void keys() {
