@@ -1,0 +1,73 @@
+{
+  "source": [
+    "runtime capture (SkyZH), logs/skyzh-capture",
+    "https://hypixelskyblock.minecraft.wiki/w/Mayor"
+  ],
+  "fetched_at": "2026-09-22",
+  "verified_ingame": true,
+  "lines": [
+    {
+      "id": "mayor_candidate_year",
+      "context": "Mayor 实测菜单或消息",
+      "text": "Year %s Candidate",
+      "raw": "Year %s Candidate",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "10",
+          "desc": "number 动态值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "第 %s 年候选人"
+    },
+    {
+      "id": "mayor_vote_click",
+      "context": "Mayor 实测菜单或消息",
+      "text": "Click to vote for %s!",
+      "raw": "Click to vote for %s!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "npc_name",
+          "example": "Diaz",
+          "desc": "npc_name 动态值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击投票给 %s!"
+    },
+    {
+      "id": "mayor_time_until",
+      "context": "Mayor 实测菜单或消息",
+      "text": "Time until: %s",
+      "raw": "§7Time until: §a%s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "duration_spaced",
+          "example": "24d 10h 27m",
+          "desc": "duration_spaced 动态值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "距上任: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Time until: ",
+          "zh": "距上任: "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    }
+  ]
+}

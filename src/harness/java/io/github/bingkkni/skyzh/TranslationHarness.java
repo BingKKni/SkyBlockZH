@@ -654,6 +654,41 @@ public final class TranslationHarness {
 		checkRow("Tab 离线天数带缩写", "§ainkkni §7(Offline 35d)", "§ainkkni §7(离线 35天)");
 		checkRow("Tab 离线天数封顶写法", "§ainkkni §7(Offline 35d+)", "§ainkkni §7(离线 35天以上)");
 		check("时长缩写按单位换算", "§7Duration: §a1h30m", Surface.ITEM, "§7持续时间: §a1小时30分");
+		check("Alpha 超长曲奇时长保留年份", "§7Duration: §a292471151y 334d 0h 4m 18s", Surface.ITEM,
+			"§7持续时间: §a292471151年334天0小时4分18秒");
+		check("年份与紧凑时钟兼容", "§7Duration: §a1y 2d", Surface.ITEM, "§7持续时间: §a1年2天");
+		checkRow("Alpha 跨年活动倒计时", " Ends In: §a2y 3d", " 距结束: §a2 年 3 天");
+		checkRow("截图利息分钟和金额", " Interest: §e23 Minutes§6 (392k)", " 利息: §e23 分钟§6 (392k)");
+		checkRow("利息分钟单数", " Interest: §e1 Minute§6 (18k)", " 利息: §e1 分钟§6 (18k)");
+		checkRow("利息分钟不带金额", " Interest: §e12 Minutes", " 利息: §e12 分钟");
+		check("本人摧毁水晶", "§5☬ §dYou destroyed an §5Ender Crystal§d!", Surface.CHAT,
+			"§5☬ §d你摧毁了一枚§5末影水晶§d!");
+		check("本人放眼", "§5☬ §dYou placed a Summoning Eye! §7(1/8)", Surface.CHAT,
+			"§5☬ §d你放置了一只召唤之眼! §7(1/8)");
+		check("本人放置最后一只眼", "§5☬ §dYou placed a Summoning Eye! Brace yourselves! §7(8/8)", Surface.CHAT,
+			"§5☬ §d你放置了最后一只召唤之眼! 准备迎战! §7(8/8)");
+		check("其他玩家水晶消息不改人名", "§5☬ §bYouToo §ddestroyed an §5Ender Crystal§d!", Surface.CHAT,
+			"§5☬ §bYouToo§d 摧毁了一枚§5末影水晶§d!");
+		check("用户名恰好为You的放眼", "§5☬ §bYou §dplaced a Summoning Eye! §7(1/8)", Surface.CHAT,
+			"§5☬ §bYou§d 放置了一只召唤之眼! §7(1/8)");
+		check("用户名恰好为You的最后一只眼", "§5☬ §aYou §dplaced a Summoning Eye! Brace yourselves! §7(8/8)", Surface.CHAT,
+			"§5☬ §aYou§d 放置了最后一只召唤之眼! 准备迎战! §7(8/8)");
+		check("用户名恰好为You的水晶", "§5☬ §bYou §ddestroyed an §5Ender Crystal§d!", Surface.CHAT,
+			"§5☬ §bYou§d 摧毁了一枚§5末影水晶§d!");
+		check("无样式证据时保留You", "☬ You destroyed an Ender Crystal!", Surface.CHAT,
+			"☬ You 摧毁了一枚末影水晶!");
+		check("山心水晶种类白名单", "§dJasper §a✔ Found", Surface.ITEM, "§dJasper §a✔ 已找到");
+		checkNoMatch("未知对象不视为山心水晶", "Unverified Object ✖ Not Found", Surface.ITEM);
+		checkNoMatch("尾句不独立补造主句", "special zealot by 10➜20%.", Surface.LORE);
+		checkSentence("狂热之运完整句保留升级颜色",
+			List.of("§7Increases the chance to find a", "§7special zealot by §88➜§510%§7."),
+			"§7特殊狂热末影人的生成概率提高 §88➜§510%§7。");
+		checkSentence("山心宝石挖速条件置前",
+			List.of("§7Gain §6+750 Mining Speed§7 when mining", "§7Gemstones."),
+			"§7挖掘宝石时,§6挖掘速度 +750§7。");
+		checkSentence("山心宝石挖速保留动态数值",
+			List.of("§7Gain §6+55 Mining Speed§7 when mining", "§7Gemstones."),
+			"§7挖掘宝石时,§6挖掘速度 +55§7。");
 		checkRow("Tab 宠物训练剩余时间", " 1: §7[Lvl 99] §5Ghoul §b22d", " 1: §7[99 级] §5食尸鬼 §b22天");
 		check("Tab 小时复数", "§f9 Hours", Surface.TABLIST, "§f9 小时");
 		check("Tab 不足一小时", "§fLess than an hour", Surface.TABLIST, "§f不足 1 小时");
@@ -2032,6 +2067,7 @@ public final class TranslationHarness {
 			case TIER_RANGE -> "III-V";
 			case ICON -> "✎";
 			case TROPHY_QUALITY -> "SILVER";
+			case GEMSTONE_KIND -> "Jade";
 			case MULTIPLIER_INCREASE -> "1.5";
 			case ORDINAL -> "27th";
 			default -> "1";
@@ -2929,10 +2965,10 @@ public final class TranslationHarness {
 			"DAVID: 你在属性菜单中达到了里程碑 10!");
 		checkComponent("末影龙出现横幅保留图标、动态名称与公告颜色",
 			CaptureReplay.decode("§#AA00AA☬ §#FF55FF§lThe §c§lWise Dragon§#FF55FF§l has spawned!"), Surface.CHAT,
-			"§5☬ §c§lWise Dragon§d§l 出现了!");
+			"§5☬ §c§l智慧巨龙§d§l 出现了!");
 		check("最后一只召唤之眼保留玩家名与进度颜色",
 			"§5☬ §aMarinaSaltWater §dplaced a Summoning Eye! Brace yourselves! §7(§a8§7/§a8§7)",
-			Surface.CHAT, "§5☬ §aMarinaSaltWater §d放置了最后一只召唤之眼! 准备迎战! §7(§a8§7/§a8§7)");
+			Surface.CHAT, "§5☬ §aMarinaSaltWater§d 放置了最后一只召唤之眼! 准备迎战! §7(§a8§7/§a8§7)");
 		check("绯红岛法师计数按中文语序重排颜色", "§c0§7/§a4§f Mages", Surface.SCOREBOARD,
 			"§f法师: §c0§7/§a4");
 		check("Tab 效果命令保留金色", "§7Use \"§6/effects§7\" to see them!", Surface.TABLIST,
@@ -3277,6 +3313,14 @@ public final class TranslationHarness {
 
 		String actual = legacy(TranslationEntry.renderJoined(joined, Translator.index().terms()));
 		report(name, expected.equals(actual), "期望 [" + expected + "] 实际 [" + actual + "]");
+	}
+
+	private static void checkSentence(String name, List<String> lines, String expected) {
+		List<Component> input = lines.stream().<Component>map(Component::literal).toList();
+		LoreMatcher.Match match = LoreMatcher.find(Translator.index(), input, 0);
+		String actual = match == null ? "(unmatched)" : legacy(match.render(Translator.index().terms()));
+		report(name, match != null && match.lines() == lines.size() && expected.equals(actual),
+			"期望 [" + expected + "] 实际 [" + actual + "]");
 	}
 
 	private static void checkComponent(String name, Component input, Surface surface, String expected) {

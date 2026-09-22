@@ -1,0 +1,54 @@
+{
+  "source": [
+    "runtime capture (SkyZH), logs/skyzh-capture",
+    "https://hypixelskyblock.minecraft.wiki/w/Heart_of_the_Mountain"
+  ],
+  "fetched_at": "2026-09-22",
+  "verified_ingame": true,
+  "lines": [
+    {
+      "id": "hotm_gemstone_speed",
+      "context": "Heart_of_the_Mountain 实测菜单或消息",
+      "text": "Gain +%s Mining Speed when mining Gemstones.",
+      "raw": "§7Gain §6+%s Mining Speed§7 when mining Gemstones.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "10",
+          "desc": "number 动态值"
+        }
+      ],
+      "gloss": "用户拍板：条件置前，属性名置于数值与图标之前。完整匹配 Gemstones 尾行，避免旧首行拼出“挖矿时获得…宝石时”。",
+      "translate": true,
+      "zh": "挖掘宝石时,挖掘速度 +%s。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "挖掘宝石时,"
+        },
+        {
+          "color": "§6",
+          "text": "+%s Mining Speed",
+          "zh": "挖掘速度 +%s"
+        },
+        {
+          "color": "§7",
+          "text": " when mining Gemstones.",
+          "zh": "。"
+        }
+      ],
+      "samples": [
+        [
+          "§7Gain §6+750 Mining Speed§7 when mining",
+          "§7Gemstones."
+        ],
+        [
+          "§7Gain §6+55 Mining Speed§7 when mining",
+          "§7Gemstones."
+        ]
+      ]
+    }
+  ]
+}

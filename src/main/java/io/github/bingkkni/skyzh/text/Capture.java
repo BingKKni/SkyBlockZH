@@ -79,6 +79,9 @@ public enum Capture {
 	/** A Trophy Fish quality shown in all caps: BRONZE, SILVER, GOLD or DIAMOND. */
 	TROPHY_QUALITY("(?:BRONZE|SILVER|GOLD|DIAMOND)", false),
 
+	/** HotM crystal kinds, not arbitrary item names followed by a discovery status. */
+	GEMSTONE_KIND("(?:Jade|Amber|Amethyst|Sapphire|Topaz|Jasper|Ruby|Opal|Aquamarine|Peridot|Onyx|Citrine)", false),
+
 	/** An Nx bonus written in Chinese as an increase of (N-1) times; distinct from a damage coefficient. */
 	MULTIPLIER_INCREASE("[0-9]+(?:\\.[0-9]+)?"),
 
@@ -96,7 +99,7 @@ public enum Capture {
 	ORDINAL("[0-9]{1,4}(?:st|nd|rd|th|ST|ND|RD|TH)"),
 
 	/** A compact duration used in the tab list: {@code 35d+}, {@code 2h 14m}, {@code 30s}. */
-	DURATION("(?:[0-9][0-9,.]*[dDhHmMsS][+]?(?: ?[0-9][0-9,.]*[dDhHmMsS][+]?)*|[0-9][0-9,.]*[+]?)"),
+	DURATION("(?:[0-9][0-9,.]*[yYdDhHmMsS][+]?(?: ?[0-9][0-9,.]*[yYdDhHmMsS][+]?)*|[0-9][0-9,.]*[+]?)"),
 
 	/** Readable countdown units in event widgets; other compact clocks retain their layout. */
 	DURATION_SPACED(DURATION.regex),
@@ -152,12 +155,13 @@ public enum Capture {
 			case "npc_name", "location_name", "mob_name", "rarity", "category_name",
 				"enchantment_name", "enchantment_crop", "mob_family", "accessory_power", "skyblock_month", "dragon_type",
 				"rng_meter_source", "difficulty" -> NAME;
-			case "player_name" -> PLAYER;
+			case "player_name", "player_or_self" -> PLAYER;
 			case "rank" -> RANK;
 			case "tier" -> TIER;
 			case "tier_range" -> TIER_RANGE;
 			case "icon" -> ICON;
 			case "trophy_quality" -> TROPHY_QUALITY;
+			case "gemstone_kind" -> GEMSTONE_KIND;
 			case "multiplier_increase" -> MULTIPLIER_INCREASE;
 			case "ordinal" -> ORDINAL;
 			case "search_query" -> SEARCH_QUERY;
@@ -183,7 +187,7 @@ public enum Capture {
 		return switch (this) {
 			// The regex is the whole of the rule for these: a numeral is a numeral, and a player's
 			// name is whatever sixteen word characters somebody chose.
-			case NUMBER, PLAYER, RANK, TIER, TIER_RANGE, ICON, TROPHY_QUALITY, ORDINAL, DURATION, DURATION_SPACED, SEARCH_QUERY -> true;
+			case NUMBER, PLAYER, RANK, TIER, TIER_RANGE, ICON, TROPHY_QUALITY, GEMSTONE_KIND, ORDINAL, DURATION, DURATION_SPACED, SEARCH_QUERY -> true;
 			case MULTIPLIER_INCREASE -> new BigDecimal(value).compareTo(BigDecimal.ONE) >= 0;
 			case NAME -> isName(value);
 			case ITEM_NAME -> isItemName(value);
@@ -240,6 +244,7 @@ public enum Capture {
 			translated.append(unit.group(1))
 				.append(this == DURATION_SPACED ? " " : "")
 				.append(switch (Character.toLowerCase(unit.group(2).charAt(0))) {
+					case 'y' -> "年";
 					case 'd' -> "天";
 					case 'h' -> "小时";
 					case 'm' -> "分";
@@ -258,7 +263,7 @@ public enum Capture {
 	 * mean "at least this long". Applied one unit at a time so {@code 1d 16h 21m 14s} comes out whole
 	 * and anything that is not a unit — a bare number, a word — is left exactly as it arrived.
 	 */
-	private static final Pattern DURATION_UNIT = Pattern.compile("([0-9][0-9,.]*)([dDhHmMsS])(\\+?)");
+	private static final Pattern DURATION_UNIT = Pattern.compile("([0-9][0-9,.]*)([yYdDhHmMsS])(\\+?)");
 
 	/**
 	 * Whether this reads as a name: at most five words, none of them sentence punctuation, and with

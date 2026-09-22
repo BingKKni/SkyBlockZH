@@ -636,6 +636,9 @@ public final class TranslationEntry {
 		String type = this.argTypes.get(group);
 		String translated = terms.translate(type, value);
 		String written = translated != null ? translated : Capture.of(type).renderValue(value);
+		if ("player_or_self".equals(type) && "You".equals(value) && selfReference(source, start, end)) {
+			written = "你";
+		}
 
 		if (written.equals(value)) {
 			seam.append(source.slice(start, end), value, style);
@@ -653,6 +656,26 @@ public final class TranslationEntry {
 		}
 
 		seam.append(rendered, rendered.getString(), valueStyle);
+	}
+
+	/**
+	 * Dragon announcements write self-reference in the same magenta run as the action. A separately
+	 * styled/clickable player called You remains a name. Unstyled logs provide no such evidence.
+	 * This is opt-in via player_or_self; ordinary player_name captures never change.
+	 */
+	private static boolean selfReference(StyledText source, int start, int end) {
+		Style name = source.styleAt(start);
+		if (name.getColor() == null || name.getColor().getValue() != 0xFF55FF
+			|| name.getHoverEvent() != null || name.getClickEvent() != null) {
+			return false;
+		}
+		int next = end;
+		while (next < source.length() && source.plain().charAt(next) == ' ') next++;
+		if (next == source.length() || !sameLook(name, source.styleAt(next))) return false;
+		for (int i = start + 1; i < end; i++) {
+			if (!sameLook(name, source.styleAt(i))) return false;
+		}
+		return true;
 	}
 
 	/**

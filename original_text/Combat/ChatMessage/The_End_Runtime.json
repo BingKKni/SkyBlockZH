@@ -97,8 +97,8 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "desc": "放眼玩家",
-          "type": "player_name",
+          "desc": "放眼玩家或本人；仅同色洋红正文中的 You 译为你",
+          "type": "player_or_self",
           "example": "A7XXX"
         },
         {
@@ -110,7 +110,7 @@
       ],
       "gloss": "",
       "translate": true,
-      "zh": "☬ %1$s 放置了一只召唤之眼! (%2$s)",
+      "zh": "☬ %1$s放置了一只召唤之眼! (%2$s)",
       "segments": [
         {
           "color": "§5",
@@ -120,7 +120,7 @@
         {
           "color": "§b",
           "text": "%1$s ",
-          "zh": "%1$s "
+          "zh": "%1$s"
         },
         {
           "color": "§d",
@@ -151,8 +151,8 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "desc": "放眼玩家",
-          "type": "player_name",
+          "desc": "放眼玩家或本人；独立玩家名样式保留英文",
+          "type": "player_or_self",
           "example": "MarinaSaltWater"
         },
         {
@@ -164,7 +164,7 @@
       ],
       "gloss": "",
       "translate": true,
-      "zh": "☬ %1$s 放置了最后一只召唤之眼! 准备迎战! (%2$s)",
+      "zh": "☬ %1$s放置了最后一只召唤之眼! 准备迎战! (%2$s)",
       "segments": [
         {
           "color": "§5",
@@ -174,7 +174,7 @@
         {
           "color": "§a",
           "text": "%1$s ",
-          "zh": "%1$s "
+          "zh": "%1$s"
         },
         {
           "color": "§d",
@@ -195,14 +195,14 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "desc": "玩家名",
-          "type": "player_name",
+          "desc": "玩家名或同色洋红正文中的第二人称 You",
+          "type": "player_or_self",
           "example": "zzzzxzx"
         }
       ],
-      "gloss": "",
+      "gloss": "player_or_self 仅在实时样式确认第二人称时翻译 You；独立着色或可点击的同名玩家保留英文。",
       "translate": true,
-      "zh": "☬ %1$s 摧毁了一枚末影水晶!",
+      "zh": "☬ %1$s摧毁了一枚末影水晶!",
       "segments": [
         {
           "color": "§5",
@@ -217,7 +217,7 @@
         {
           "color": "§d",
           "text": "destroyed an ",
-          "zh": " 摧毁了一枚"
+          "zh": "摧毁了一枚"
         },
         {
           "color": "§5",
