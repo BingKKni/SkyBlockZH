@@ -1,8 +1,8 @@
 {
-  "source": "runtime capture (SkyZH) 2026-09-13 实测会话; https://hypixelskyblock.minecraft.wiki/w/Master_Tao",
-  "fetched_at": "2026-09-13",
+  "source": "runtime capture (SkyZH) 2026-09-13、2026-09-17 至 2026-09-18 实测会话; https://hypixelskyblock.minecraft.wiki/w/Master_Tao",
+  "fetched_at": "2026-09-18",
   "verified_ingame": true,
-  "source_note": "原文及分行来自本轮客户端日志与运行时采集；社区 Wiki 原网页用于核对道场玩法语境。规则说明的两行(如 1. Jump through ... / walls.)实测是两个独立数据包,不能用 chat_join_next 合并,各自按原文位置翻译。",
+  "source_note": "原文及分行来自本轮客户端日志与运行时采集；社区 Wiki 原网页用于核对道场玩法语境。规则说明的两行(如 1. Jump through ... / walls.)实测是两个独立数据包,不能用 chat_join_next 合并,各自按原文位置翻译。2026-09-17 至 2026-09-18 的新增系统消息采用当时实测原文，旧版说法另行保留。",
   "messages": [
     {
       "id": "dojo_test_force",
@@ -1477,6 +1477,46 @@
       "translate": true,
       "zh": "与酋长交谈",
       "continuation": false
+    },
+    {
+      "id": "dojo_tao_protection_granted_live",
+      "context": "进入道场挑战前，Tao 大师给予伤害保护",
+      "raw": "§eMaster Tao sees you getting ready to do the Dojo and grants you damage protection.",
+      "text": "Master Tao sees you getting ready to do the Dojo and grants you damage protection.",
+      "placeholders": [],
+      "gloss": "和旧版“as Master Tao's student”说明不同，这是实测的系统叙述写法。",
+      "translate": true,
+      "zh": "Tao 大师见你要开始道场挑战，为你施加了伤害保护。"
+    },
+    {
+      "id": "dojo_tao_protection_removed_live",
+      "context": "离开道场挑战前，Tao 大师撤去伤害保护",
+      "raw": "§eMaster Tao sees you getting ready to leave the Dojo and removes your protection.",
+      "text": "Master Tao sees you getting ready to leave the Dojo and removes your protection.",
+      "placeholders": [],
+      "gloss": "和旧版“protection dissipates”说明不同，这是实测的系统叙述写法。",
+      "translate": true,
+      "zh": "Tao 大师见你准备离开道场，撤去了伤害保护。"
+    },
+    {
+      "id": "dojo_belt_missing_inventory",
+      "context": "道场挑战结算或装备要求时背包内没有腰带",
+      "raw": "§cYou don't have a belt in your inventory!",
+      "text": "You don't have a belt in your inventory!",
+      "placeholders": [],
+      "gloss": "这是系统错误提示，不翻译玩家背包中具体物品。",
+      "translate": true,
+      "zh": "你的背包里没有腰带!"
+    },
+    {
+      "id": "dojo_bazaar_blocked",
+      "context": "道场挑战期间尝试打开集市",
+      "raw": "§cYou cannot access the bazaar during a challenge.",
+      "text": "You cannot access the bazaar during a challenge.",
+      "placeholders": [],
+      "gloss": "Bazaar 是交易功能，沿用集市译名。",
+      "translate": true,
+      "zh": "挑战期间无法使用集市。"
     }
   ]
 }
