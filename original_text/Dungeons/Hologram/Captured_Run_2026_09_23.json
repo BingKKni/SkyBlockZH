@@ -1,0 +1,864 @@
+{
+  "source": "logs/skyzh-capture/untranslated/Dungeons/Hologram/Holograms.json",
+  "fetched_at": "2026-09-23",
+  "verified_ingame": true,
+  "note": "实测浮空提示。Boss 台词与 NPC_Message 的既定译文保持一致；Boss 专名保留英文。",
+  "lines": [
+    {
+      "id": "dungeon_hologram_miniboss",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§c§lMINIBOSS",
+      "text": "MINIBOSS",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "小型首领"
+    },
+    {
+      "id": "dungeon_hologram_i_almost_died_last_week",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§6I almost died last week!",
+      "text": "I almost died last week!",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "我上周差点死了!"
+    },
+    {
+      "id": "dungeon_hologram_dude_were_undead",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§6Dude.. we're undead.",
+      "text": "Dude.. we're undead.",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "老兄……我们本来就是亡灵。"
+    },
+    {
+      "id": "dungeon_hologram_blood_key",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§c%1$s Key",
+      "text": "%1$s Key",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "category_name",
+          "example": "Blood",
+          "desc": "钥匙种类"
+        }
+      ],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "%1$s钥匙"
+    },
+    {
+      "id": "dungeon_hologram_superboom_tnt_x2",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§9Superboom TNT §8x%s",
+      "text": "Superboom TNT x%s",
+      "placeholders": [{ "token": "%s", "type": "number", "example": "2", "desc": "掉落数量" }],
+      "gloss": "复用 Ophelia 的超级爆破 TNT 译名；数量不写死为本轮样本。",
+      "translate": true,
+      "zh": "超级爆破 TNT x%s",
+      "segments": [
+        { "color": "§9", "text": "Superboom TNT ", "zh": "超级爆破 TNT " },
+        { "color": "§8", "text": "x%s", "zh": "x%s" }
+      ]
+    },
+    {
+      "id": "dungeon_hologram_the_watcher",
+      "context": "地牢实测头顶 Boss 名牌",
+      "raw": "§5 §cThe Watcher",
+      "text": " The Watcher",
+      "placeholders": [],
+      "gloss": "Boss 专名保留英文；记录用于避免重复采集。",
+      "translate": false,
+      "zh": ""
+    },
+    {
+      "id": "dungeon_hologram_watchful_eye",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§9 §3§lWatchful Eye",
+      "text": " Watchful Eye",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": " 监视之眼",
+      "segments": [
+        { "color": "§9", "text": " ", "zh": " " },
+        { "color": "§3§l", "text": "Watchful Eye", "zh": "监视之眼" }
+      ]
+    },
+    {
+      "id": "dungeon_hologram_ah_we_meet_again_as_i_foresaw",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§r§lAh, we meet again. As I foresaw...",
+      "text": "Ah, we meet again. As I foresaw...",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "啊，又见面了。正如我预见的那样……"
+    },
+    {
+      "id": "dungeon_hologram_that_one_was_weak_anyway",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§r§lThat one was weak anyway.",
+      "text": "That one was weak anyway.",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "反正那家伙本来就不禁打。"
+    },
+    {
+      "id": "dungeon_hologram_not_bad",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§r§lNot bad.",
+      "text": "Not bad.",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "还不错。"
+    },
+    {
+      "id": "dungeon_hologram_you_have_proven_yourself_you_may_pass",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§r§lYou have proven yourself. You may pass.",
+      "text": "You have proven yourself. You may pass.",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "你们已经证明了自己，可以通过了。"
+    },
+    {
+      "id": "dungeon_hologram_dead",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§c§lDEAD",
+      "text": "DEAD",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "已死亡"
+    },
+    {
+      "id": "dungeon_hologram_you_have_failed_to_prove_yourselves_and_have",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§r§lYou have failed to prove yourselves, and have paid with your lives.",
+      "text": "You have failed to prove yourselves, and have paid with your lives.",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "你们没能证明自己,还搭上了性命。"
+    },
+    {
+      "id": "dungeon_hologram_blessing_of_life",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§dBlessing of %1$s",
+      "text": "Blessing of %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "category_name",
+          "example": "Life",
+          "desc": "地牢祝福种类"
+        }
+      ],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "%1$s祝福"
+    },
+    {
+      "id": "dungeon_hologram_ice_essence_x10",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§dIce Essence §8x%s",
+      "text": "Ice Essence x%s",
+      "placeholders": [{ "token": "%s", "type": "number", "example": "10", "desc": "精华数量" }],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "冰霜精华 x%s",
+      "segments": [
+        { "color": "§d", "text": "Ice Essence ", "zh": "冰霜精华 " },
+        { "color": "§8", "text": "x%s", "zh": "x%s" }
+      ]
+    },
+    {
+      "id": "dungeon_hologram_youll_do",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§r§lYou'll do.",
+      "text": "You'll do.",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "就你了。"
+    },
+    {
+      "id": "dungeon_hologram_go_fight",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§r§lGo, fight!",
+      "text": "Go, fight!",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "上，打!"
+    },
+    {
+      "id": "dungeon_hologram_very_nice",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§r§lVery nice.",
+      "text": "Very nice.",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "很好。"
+    },
+    {
+      "id": "dungeon_hologram_beating_heart",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§9Beating Heart",
+      "text": "Beating Heart",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "跳动之心"
+    },
+    {
+      "id": "dungeon_hologram_maxor",
+      "context": "地牢实测头顶 Boss 名牌",
+      "raw": "§8§5 §cMaxor",
+      "text": " Maxor",
+      "placeholders": [],
+      "gloss": "Boss 专名保留英文；记录用于避免重复采集。",
+      "translate": false,
+      "zh": ""
+    },
+    {
+      "id": "dungeon_hologram_boss",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§c§lBOSS",
+      "text": "BOSS",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "首领"
+    },
+    {
+      "id": "dungeon_hologram_ive_been_told_i_could_have_a_bit",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lI'VE BEEN TOLD I COULD HAVE A BIT OF FUN WITH YOU.",
+      "text": "I'VE BEEN TOLD I COULD HAVE A BIT OF FUN WITH YOU.",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "听说我可以拿你们找点乐子。"
+    },
+    {
+      "id": "dungeon_hologram_click_here",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§e§lCLICK HERE",
+      "text": "CLICK HERE",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "点击此处"
+    },
+    {
+      "id": "dungeon_hologram_energy_crystal_missing",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§cEnergy Crystal Missing",
+      "text": "Energy Crystal Missing",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "缺少能量水晶"
+    },
+    {
+      "id": "dungeon_hologram_dont_disappoint_me_i_havent_had_a_good",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lDON'T DISAPPOINT ME, I HAVEN'T HAD A GOOD FIGHT IN A WHILE.",
+      "text": "DON'T DISAPPOINT ME, I HAVEN'T HAD A GOOD FIGHT IN A WHILE.",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "别让我失望，我已经很久没痛快打过一场了。"
+    },
+    {
+      "id": "dungeon_hologram_my_minions_will_have_to_wipe_the_floor",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lMY MINIONS WILL HAVE TO WIPE THE FLOOR AFTER I'M DONE WITH YOU ALL!",
+      "text": "MY MINIONS WILL HAVE TO WIPE THE FLOOR AFTER I'M DONE WITH YOU ALL!",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "等我收拾完你们，还得让手下来拖地收拾残局!"
+    },
+    {
+      "id": "dungeon_hologram_time_for_me_to_blast_you_away_for",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lTime for me to blast you away for good!",
+      "text": "Time for me to blast you away for good!",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "该把你们彻底轰飞了!"
+    },
+    {
+      "id": "dungeon_hologram_oh",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§6Oh",
+      "text": "Oh",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "哦。"
+    },
+    {
+      "id": "dungeon_hologram_that_beam_it_hurts_it_hurts",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lTHAT BEAM! IT HURTS! IT HURTS!!",
+      "text": "THAT BEAM! IT HURTS! IT HURTS!!",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "我去，好痛! 好痛!!"
+    },
+    {
+      "id": "dungeon_hologram_what",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§6What?",
+      "text": "What?",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "什么?"
+    },
+    {
+      "id": "dungeon_hologram_thought_i_heard_something",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§6Thought I heard something...",
+      "text": "Thought I heard something...",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "好像听见了什么……"
+    },
+    {
+      "id": "dungeon_hologram_eat_wither_skulls_scum",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lEat Wither Skulls, scum!",
+      "text": "Eat Wither Skulls, scum!",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "尝尝凋零头颅的滋味，杂种!"
+    },
+    {
+      "id": "dungeon_hologram_i_hope_you_like_explosions_too",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lI HOPE YOU LIKE EXPLOSIONS TOO!",
+      "text": "I HOPE YOU LIKE EXPLOSIONS TOO!",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "我希望你们也能欣赏爆炸的艺术!"
+    },
+    {
+      "id": "dungeon_hologram_your_mobility_tricks_dont_work_in_my_domain",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lYOUR MOBILITY TRICKS DON'T WORK IN MY DOMAIN!",
+      "text": "YOUR MOBILITY TRICKS DON'T WORK IN MY DOMAIN!",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "你们那些身法，在我的领域里没用!"
+    },
+    {
+      "id": "dungeon_hologram_how_about_you_taste_some_rapid_fire_wither",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lHow about you taste some rapid fire Wither Skulls!",
+      "text": "How about you taste some rapid fire Wither Skulls!",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "尝尝这阵凋零头颅连射!"
+    },
+    {
+      "id": "dungeon_hologram_what_was_that",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§6What was that?",
+      "text": "What was that?",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "刚才那是什么?"
+    },
+    {
+      "id": "dungeon_hologram_you_tricked_me",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lYOU TRICKED ME!",
+      "text": "YOU TRICKED ME!",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "耍我是吧!"
+    },
+    {
+      "id": "dungeon_hologram_storm",
+      "context": "地牢实测头顶 Boss 名牌",
+      "raw": "§8§5 §cStorm",
+      "text": " Storm",
+      "placeholders": [],
+      "gloss": "Boss 专名保留英文；记录用于避免重复采集。",
+      "translate": false,
+      "zh": ""
+    },
+    {
+      "id": "dungeon_hologram_pathetic_maxor_just_like_expected",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lPathetic Maxor, just like expected.",
+      "text": "Pathetic Maxor, just like expected.",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "Maxor 真是没用，果然不出所料。"
+    },
+    {
+      "id": "dungeon_hologram_dont_boast_about_beating_this_simpleminded_wither",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lDon't boast about beating this simple-minded Wither.",
+      "text": "Don't boast about beating this simple-minded Wither.",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "你们只是打败了那个头脑简单的凋零而已，少得意。"
+    },
+    {
+      "id": "dungeon_hologram_my_abilities_are_unparalleled_in_many_ways_i",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lMy abilities are unparalleled, in many ways I am the last bastion.",
+      "text": "My abilities are unparalleled, in many ways I am the last bastion.",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "我的本事无人能及，怎么说我都是这里最后一道防线。"
+    },
+    {
+      "id": "dungeon_hologram_the_power_of_lightning_is_quite_phenomenal_a",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lThe power of lightning is quite phenomenal. A single strike can vaporize a person whole.",
+      "text": "The power of lightning is quite phenomenal. A single strike can vaporize a person whole.",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "闪电的威力相当惊人，一道下去就能把一个人整个烧成灰。"
+    },
+    {
+      "id": "dungeon_hologram_id_be_happy_to_show_you_what_thats",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lI'd be happy to show you what that's like!",
+      "text": "I'd be happy to show you what that's like!",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "我很乐意让你们亲身试试!"
+    },
+    {
+      "id": "dungeon_hologram_energy_heed_my_call",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lENERGY HEED MY CALL!",
+      "text": "ENERGY HEED MY CALL!",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "能量啊，听我号令!"
+    },
+    {
+      "id": "dungeon_hologram_no_more_adventurers_no_more_heroes_death_and",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lNo more adventurers, no more heroes, death and thunder!",
+      "text": "No more adventurers, no more heroes, death and thunder!",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "不再有冒险者，不再有英雄——只剩死亡与雷霆!"
+    },
+    {
+      "id": "dungeon_hologram_not_just_your_land_but_every_kingdom_will",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lNot just your land, but every kingdom will soon be ruled by our army of undead!",
+      "text": "Not just your land, but every kingdom will soon be ruled by our army of undead!",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "用不了多久，不只你们那片土地，所有空岛都会落到我们亡灵大军手里!"
+    },
+    {
+      "id": "dungeon_hologram_oof",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lOof",
+      "text": "Oof",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "哎哟。"
+    },
+    {
+      "id": "dungeon_hologram_this_factory_is_too_small_for_me",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lThis factory is too small for me!",
+      "text": "This factory is too small for me!",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "这座工厂装不下我!"
+    },
+    {
+      "id": "dungeon_hologram_thunder_let_me_be_your_catalyst",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lTHUNDER LET ME BE YOUR CATALYST!",
+      "text": "THUNDER LET ME BE YOUR CATALYST!",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "雷霆啊，让我来做你的引信!"
+    },
+    {
+      "id": "dungeon_hologram_dodge_this",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§r§lDodge this!",
+      "text": "Dodge this!",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "躲开这个!"
+    },
+    {
+      "id": "dungeon_hologram_the_age_of_men_is_over_we_are",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lThe Age of Men is over, we are creating tens, hundreds of withers!!",
+      "text": "The Age of Men is over, we are creating tens, hundreds of withers!!",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "人类的时代结束了，我们正成批创造凋零——几十只、上百只!!"
+    },
+    {
+      "id": "dungeon_hologram_that_was_only_in_my_way",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lTHAT WAS ONLY IN MY WAY!",
+      "text": "THAT WAS ONLY IN MY WAY!",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "那根柱子本来就碍事!"
+    },
+    {
+      "id": "dungeon_hologram_i_should_have_known_that_i_stood_no",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lI should have known that I stood no chance.",
+      "text": "I should have known that I stood no chance.",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "我早该知道自己毫无胜算。"
+    },
+    {
+      "id": "dungeon_hologram_at_least_my_son_died_by_your_hands",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lAt least my son died by your hands.",
+      "text": "At least my son died by your hands.",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "至少我的儿子死在了你们手里。"
+    },
+    {
+      "id": "dungeon_hologram_goldor",
+      "context": "地牢实测头顶 Boss 名牌",
+      "raw": "§8§5 §cGoldor",
+      "text": " Goldor",
+      "placeholders": [],
+      "gloss": "Boss 专名保留英文；记录用于避免重复采集。",
+      "translate": false,
+      "zh": ""
+    },
+    {
+      "id": "dungeon_hologram_who_dares_trespass_into_my_domain",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lWho dares trespass into my domain?",
+      "text": "Who dares trespass into my domain?",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "哪个人敢闯入我的领域?"
+    },
+    {
+      "id": "dungeon_hologram_inactive_terminal",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§cInactive Terminal",
+      "text": "Inactive Terminal",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "未激活的终端"
+    },
+    {
+      "id": "dungeon_hologram_inactive",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§cInactive",
+      "text": "Inactive",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "未激活"
+    },
+    {
+      "id": "dungeon_hologram_device",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§cDevice",
+      "text": "Device",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "装置"
+    },
+    {
+      "id": "dungeon_hologram_there_is_no_stopping_me_down_there",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lThere is no stopping me down there!",
+      "text": "There is no stopping me down there!",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "在下面，没人能阻止我!"
+    },
+    {
+      "id": "dungeon_hologram_closer",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lCLOSER!",
+      "text": "CLOSER!",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "再近点!"
+    },
+    {
+      "id": "dungeon_hologram_im_impressed",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§r§lI'm impressed.",
+      "text": "I'm impressed.",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "佩服。"
+    },
+    {
+      "id": "dungeon_hologram_aw_i_liked_that_one",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§r§lAw, I liked that one.",
+      "text": "Aw, I liked that one.",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "啊，我还挺喜欢那个的。"
+    },
+    {
+      "id": "dungeon_hologram_that_tickles",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§r§lThat tickles.",
+      "text": "That tickles.",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "真痒啊。"
+    },
+    {
+      "id": "dungeon_hologram_stop_attacking_me",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§r§lStop attacking me.",
+      "text": "Stop attacking me.",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "别打了。"
+    },
+    {
+      "id": "dungeon_hologram_your_weapons_cant_pierce_through_my_shield",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lYOUR WEAPONS CAN'T PIERCE THROUGH MY SHIELD!",
+      "text": "YOUR WEAPONS CAN'T PIERCE THROUGH MY SHIELD!",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "你们的武器破不了我的护盾!"
+    },
+    {
+      "id": "dungeon_hologram_ouch_that_hurt",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lOuch, that hurt!",
+      "text": "Ouch, that hurt!",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "哎哟，这下是真疼!"
+    },
+    {
+      "id": "dungeon_hologram_not_activated",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§cNot Activated",
+      "text": "Not Activated",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "尚未激活"
+    },
+    {
+      "id": "dungeon_hologram_you_cant_damage_me_you_can_barely_slow",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lYou can't damage me, you can barely slow me down!",
+      "text": "You can't damage me, you can barely slow me down!",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "你们伤不了我，顶多让我慢下来!"
+    },
+    {
+      "id": "dungeon_hologram_stop_touching_those_terminals",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lStop touching those terminals!",
+      "text": "Stop touching those terminals!",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "别碰那些终端!"
+    },
+    {
+      "id": "dungeon_hologram_slowing_me_down_only_prolongs_your_pain",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lSlowing me down only prolongs your pain!",
+      "text": "Slowing me down only prolongs your pain!",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "拖慢我，只会让你们多受些折磨!"
+    },
+    {
+      "id": "dungeon_hologram_do_you_really_think_we_wont_repair_everything",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lDo you really think we won't repair everything? Your impact will be minuscule!",
+      "text": "Do you really think we won't repair everything? Your impact will be minuscule!",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "你们真以为我们不会修好一切? 你们造成的影响微不足道!"
+    },
+    {
+      "id": "dungeon_hologram_lets_see_how_you_can_handle_this",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§r§lLet's see how you can handle this.",
+      "text": "Let's see how you can handle this.",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "让我看看你们怎么应付这一手。"
+    },
+    {
+      "id": "dungeon_hologram_hmmm_this_one",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§r§lHmmm... this one!",
+      "text": "Hmmm... this one!",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "唔……就这个吧!"
+    },
+    {
+      "id": "dungeon_hologram_that_will_be_enough_for_now",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§r§lThat will be enough for now.",
+      "text": "That will be enough for now.",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "暂时就这些吧。"
+    },
+    {
+      "id": "dungeon_hologram_i_am_the_death_zone_you_are_smart",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lI am the death zone, you are smart to flee.",
+      "text": "I am the death zone, you are smart to flee.",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "我便是死亡禁区，逃跑算你们聪明。"
+    },
+    {
+      "id": "dungeon_hologram_i_will_replace_that_gate_with_a_stronger",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lI will replace that gate with a stronger one!",
+      "text": "I will replace that gate with a stronger one!",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "我会换上一道更结实的闸门!"
+    },
+    {
+      "id": "dungeon_hologram_closer_to_me",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lCloser to me!",
+      "text": "Closer to me!",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "靠近点!"
+    },
+    {
+      "id": "dungeon_hologram_this_guy_looks_like_a_fighter",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§r§lThis guy looks like a fighter.",
+      "text": "This guy looks like a fighter.",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "这家伙看着挺能打。"
+    },
+    {
+      "id": "dungeon_hologram_well_well_well_look_whos_here",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lWELL! WELL! WELL! LOOK WHO'S HERE!",
+      "text": "WELL! WELL! WELL! LOOK WHO'S HERE!",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "哟哟哟，看看谁来了!"
+    },
+    {
+      "id": "dungeon_hologram_the_memory_of_your_death_will_be_your",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lThe memory of your death will be your fondest, focus up!",
+      "text": "The memory of your death will be your fondest, focus up!",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "你们会把自己的死当成最美好的回忆。打起精神来!"
+    },
+    {
+      "id": "dungeon_hologram_come_closer",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lCome closer!",
+      "text": "Come closer!",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "靠近点!"
+    },
+    {
+      "id": "dungeon_hologram_punishment_served_nothing_survives_my_reach",
+      "context": "地牢实测浮空提示或 Boss 台词",
+      "raw": "§4§lPunishment served, nothing survives my reach.",
+      "text": "Punishment served, nothing survives my reach.",
+      "placeholders": [],
+      "gloss": "聊天与浮空字是不同渲染面；Boss 台词沿用对应 NPC 文件译文。",
+      "translate": true,
+      "zh": "惩罚已至，我所及之处，绝无生还。"
+    }
+  ]
+}

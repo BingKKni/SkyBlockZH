@@ -360,9 +360,12 @@ SkyBlock 的很多提示是"全大写标签 + 一句话",标签点出这句话�
 | Withered | 凋零 | 近战武器重铸; 同上 |
 | Spiritual | 灵性 | 弓类重铸; 同上 |
 | Undead | 亡灵 | 护甲重铸; 与亡灵生物类别同词,词表按 raw 也查得到 |
+| Reinforced / Strengthened | 加固 / 强化 | 两个不同的重铸,不能共用「强化」 |
+| Fine | 精良 | 与宝石品质 Fine(精细)分开 |
 
-**注意**:重铸名作为**物品名前缀**出现时(如 "Fleet Titanium Pickaxe"),目前引擎不会翻译
-——物品名记录是整名匹配的,加了前缀就对不上。见 TODO.md。
+完整的重铸名表在 `_shared/Terms.json` 的 `types: ["reforge"]` 词条里,译名必须与 `%1$s Bonus` 用的 raw 词条和已有整名记录相同。
+物品名整名没有记录时,引擎拆出重铸前缀,剩余部分完整命中物品记录(或明确保留原文的记录)才翻译,前缀后留一个空格
+(`迅捷 钛钻头 DR-X655`);本身就是物品目录里基础名称的(Hyper Catalyst、Heavy Helmet)不拆。
 
 ### 技能名 Mining vs 属性前缀 Mining(两种译法并存,不是不一致)
 

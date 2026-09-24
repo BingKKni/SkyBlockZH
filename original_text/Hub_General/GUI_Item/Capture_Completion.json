@@ -1,0 +1,45 @@
+{
+  "source": "logs/skyzh-capture",
+  "verified_ingame": true,
+  "lines": [
+    {
+      "id": "capture_active_event",
+      "context": "空岛菜单当前活动，名称动态变化",
+      "raw": "§7Active Event: §d%s",
+      "text": "Active Event: %s",
+      "placeholders": [{ "token": "%s", "type": "category_name", "example": "Year of the Pig", "desc": "活动名称，复用活动词表" }],
+      "gloss": "与既有 Active Events 小节和限时活动译名一致。",
+      "translate": true,
+      "zh": "当前活动: %s",
+      "segments": [{ "color": "§7", "text": "Active Event: ", "zh": "当前活动: " }, { "color": "§d", "text": "%s", "zh": "%s" }]
+    },
+    {
+      "id": "guide_boss_tier",
+      "context": "指南中猎手 Boss 的阶数，勾叉由引擎保留",
+      "raw": "§3%1$s Tier %2$s",
+      "text": "%1$s Tier %2$s",
+      "placeholders": [{ "token": "%1$s", "type": "npc_name", "example": "Revenant Horror", "desc": "Boss 专名，保留原文" }, { "token": "%2$s", "type": "tier", "example": "IV", "desc": "Boss 阶数" }],
+      "gloss": "只翻译阶数标签，不给 Boss 专名另造译名。",
+      "translate": true,
+      "zh": "%1$s %2$s 阶"
+    },
+    {
+      "id": "guide_clerk_seraphine_role",
+      "ref": "Hub_General/Hologram/Captured_World_Text.json#capture_85ad2034112c",
+      "context": "指南 Abiphone 联系人，复用办事员职务译名"
+    },
+    {
+      "id": "guide_plumber_joe_role",
+      "context": "指南 Abiphone 联系人，职务翻译、人名保留",
+      "raw": "§bPlumber Joe",
+      "text": "Plumber Joe",
+      "placeholders": [],
+      "gloss": "沿用指南介绍 It's Plumber Joe! 的水管工 Joe。",
+      "translate": true,
+      "zh": "水管工 Joe"
+    },
+    { "id": "preserve_aspect_of_end", "context": "指南博物馆捐赠名称", "text": "Aspect of the End", "placeholders": [], "gloss": "沿用 GLOSSARY 中明确保留的武器专名。", "translate": false, "zh": "" },
+    { "id": "preserve_aspect_of_jerry", "context": "指南博物馆捐赠名称", "text": "Aspect of the Jerry", "placeholders": [], "gloss": "Aspect 武器系列专名，沿用 Aspect of the End 的保留规则。", "translate": false, "zh": "" },
+    { "id": "preserve_guide_phillip", "context": "指南 Abiphone 联系人", "text": "Phillip", "placeholders": [], "gloss": "NPC 人名，明确登记以避免带勾叉时重复采集。", "translate": false, "zh": "" }
+  ]
+}

@@ -18,6 +18,7 @@ import io.github.bingkkni.skyzh.hook.NameTag;
 import io.github.bingkkni.skyzh.text.LineShape;
 import io.github.bingkkni.skyzh.text.StyledText;
 import io.github.bingkkni.skyzh.text.TermTable;
+import io.github.bingkkni.skyzh.text.TooltipTranslator;
 import io.github.bingkkni.skyzh.text.TranslationEntry;
 import io.github.bingkkni.skyzh.text.TranslationIndex;
 import io.github.bingkkni.skyzh.text.TranslationLoader;
@@ -62,6 +63,7 @@ public final class CaptureHarness {
 		chatShapes();
 		verdicts();
 		preservedText(corpus);
+		decoratedItemNames();
 		holograms();
 		hologramScenes();
 		names();
@@ -422,6 +424,40 @@ public final class CaptureHarness {
 			"Growth V", Classifier.Bucket.UNTRANSLATED);
 		check("附魔采集排除不更改原文与不同颜色", TranslationHarness.legacy(
 			Translator.translateLine(Component.literal("§9Growth §d§lV"), Surface.ITEM)), "§9Growth §d§lV");
+		checkVerdict("未装饰的 NPC 同名物品仍进入采集", CaptureSurface.GUI_ITEM,
+			"§fBubu", Classifier.Bucket.UNTRANSLATED);
+		checkNothing("指南勾叉中的 NPC 专名不重复采集", CaptureSurface.GUI_ITEM, "§c✖ §fBubu");
+	}
+
+	/** A first-line capture must strip the same item decorations as the tooltip renderer. */
+	private static void decoratedItemNames() throws Exception {
+		Path root = Files.createTempDirectory("skyzh-capture-item-names");
+		CaptureStore.root(root);
+		try {
+			Map<String, String> examples = Map.of(
+				"§6Giant's Sword §6✪✪✪✪✪", "Giant's Sword",
+				"§5 Strengthened Bone Necklace §6✪✪✪✪✪", "Bone Necklace",
+				"§dFabled Giant's Sword §6✪✪✪✪✪ §8x1", "Giant's Sword",
+				"§9Zombie Ring §8x2", "Zombie Ring"
+			);
+			long now = System.currentTimeMillis();
+			for (var example : examples.entrySet()) {
+				StyledText core = TooltipTranslator.itemNameCore(styled(example.getKey()));
+				check("采集物品名去除图标/重铸/星级/数量", core.canonical(), example.getValue());
+				check("装饰名核心已有译文", Classifier.of(CaptureSurface.GUI_ITEM, core), null);
+				CaptureStore.accept(new CaptureStore.Sighting(CaptureSurface.GUI_ITEM, example.getKey(),
+					new CaptureStore.Line(styled(example.getKey())), "Dungeons", "The Catacombs",
+					"Inventory", "背包物品名", now++));
+			}
+			CaptureStore.flush();
+			for (String bucket : List.of("untranslated", "mixed", "colour")) {
+				check("已翻译装饰名不落入 " + bucket,
+					Files.exists(root.resolve(bucket + "/Dungeons/GUI_Item/Inventory.json")), false);
+			}
+		} finally {
+			CaptureStore.clear(root);
+			delete(root);
+		}
 	}
 
 	/** Hologram capture follows the same boundary as hologram rendering. */

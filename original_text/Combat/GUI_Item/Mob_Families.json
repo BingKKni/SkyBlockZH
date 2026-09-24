@@ -1,6 +1,9 @@
 {
-  "source": "SkyZH runtime capture 2026-09-03",
-  "fetched_at": "2026-09-03",
+  "source": [
+    "SkyZH runtime capture 2026-09-03",
+    "logs/skyzh-capture/untranslated/Hub_General/GUI_Item/1_3_Guide_Intermediate.json (2026-09-22 Alpha 实测)"
+  ],
+  "fetched_at": "2026-09-23",
   "verified_ingame": true,
   "gui_context": "生物图鉴(Bestiary)与猎杀菜单里的生物族群标签:私用区图标 + 族群名。一行经常列出两三个族群(「 Aquatic,  Animal,  Elusive」),引擎把逗号分隔、每项以图标开头的行拆开逐项查(见 text/LineShape.java 的 enchantments/图标列表规则),所以这里每个族群只写一条;首项带「Mob Types: 」前缀时按带前缀的那条查。图标码点在游戏里由服务器字体渲染,照原样写进 text。",
   "lines": [
@@ -383,6 +386,44 @@
       "gloss": "",
       "translate": true,
       "zh": "生物类型:  地底"
+    },
+    {
+      "id": "family_mythological",
+      "context": "生物族群标签(SkyBlock 指南 ➜ 生物类型子菜单 2026-09-22 实测;勾叉由引擎剥离)",
+      "text": " Mythological",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": " 神话"
+    },
+    {
+      "id": "family_mythological_typed",
+      "context": "图鉴页「Mob Types: 」前缀 + 列表里的第一个族群",
+      "raw": "§7Mob Types:  Mythological",
+      "text": "Mob Types:  Mythological",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "生物类型:  神话"
+    },
+    {
+      "id": "family_critter",
+      "context": "生物族群标签(SkyBlock 指南 ➜ 生物类型子菜单 2026-09-22 实测;勾叉由引擎剥离)",
+      "text": " Critter",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": " 小动物"
+    },
+    {
+      "id": "family_critter_typed",
+      "context": "图鉴页「Mob Types: 」前缀 + 列表里的第一个族群",
+      "raw": "§7Mob Types:  Critter",
+      "text": "Mob Types:  Critter",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "生物类型:  小动物"
     }
   ]
 }

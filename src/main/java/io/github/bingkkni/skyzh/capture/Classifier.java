@@ -207,6 +207,15 @@ public final class Classifier {
 				return null;
 			}
 			if (surface.surface() == Surface.ITEM) {
+				// A guide check mark does not turn an approved proper name into a missing translation.
+				// Bare NPC names may also be item names; only a stripped decoration identifies a guide entry.
+				String itemLine = styled.canonical();
+				for (LineShape.Range range : LineShape.candidates(Surface.ITEM, itemLine)) {
+					String core = itemLine.substring(range.start(), range.end());
+					boolean decorated = range.start() != 0 || range.end() != itemLine.length();
+					if (Translator.index().preserved(Surface.ITEM, core)
+						|| decorated && Translator.index().isNpcName(core)) return null;
+				}
 				List<LineShape.Range> parts = LineShape.enchantments(styled.canonical());
 				// A mixed vanilla/custom enchantment list is covered only if every piece is either
 				// deliberately preserved or independently passes the ordinary diagnostics.

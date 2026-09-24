@@ -75,4 +75,13 @@ public final class ItemNames {
 		}
 		return null;
 	}
+
+	/**
+	 * Whether this is a base catalog name as written, dungeon stars aside, with no reforge in front.
+	 * "Hyper Catalyst" and "Heavy Helmet" start with a reforge word and are still items of their own.
+	 */
+	public static boolean isBaseName(String value) {
+		String name = STARS.matcher(value.trim()).replaceFirst("");
+		return INSTANCE.names.containsKey(name.toLowerCase(Locale.ROOT));
+	}
 }

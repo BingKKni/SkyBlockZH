@@ -1,0 +1,28 @@
+{
+  "source": "logs/skyzh-capture/untranslated/Hub_General/ChatMessage/Server_Messages.json",
+  "verified_ingame": true,
+  "lines": [
+    {
+      "id": "pet_shared_with_chat",
+      "context": "玩家通过服务器展示宠物的聊天消息",
+      "raw": "%1$s§7 is friends with a §8[§7[Lvl %2$s] §c%3$s§8]",
+      "text": "%1$s is friends with a [[Lvl %2$s] %3$s]",
+      "placeholders": [
+        { "token": "%1$s", "type": "player_display", "example": "[316] ௐ [MVP+] RoyaleLeopard", "desc": "带等级、徽记和 Rank 的玩家显示名，完整保留样式" },
+        { "token": "%2$s", "type": "number", "example": "80", "desc": "宠物等级" },
+        { "token": "%3$s", "type": "category_name", "example": "Phoenix", "desc": "宠物种类，沿用宠物词表" }
+      ],
+      "gloss": "采集点来自服务器系统消息，不翻译玩家自由聊天；玩家等级、Rank 和徽记均不改写。",
+      "translate": true,
+      "zh": "%1$s 的伙伴是 [[Lv%2$s] %3$s]",
+      "segments": [
+        { "color": "", "text": "%1$s", "zh": "%1$s" },
+        { "color": "§7", "text": " is friends with a ", "zh": " 的伙伴是 " },
+        { "color": "§8", "text": "[", "zh": "[" },
+        { "color": "§7", "text": "[Lvl %2$s] ", "zh": "[Lv%2$s] " },
+        { "color": "§c", "text": "%3$s", "zh": "%3$s" },
+        { "color": "§8", "text": "]", "zh": "]" }
+      ]
+    }
+  ]
+}

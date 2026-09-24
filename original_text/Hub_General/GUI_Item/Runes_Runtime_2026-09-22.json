@@ -5,6 +5,27 @@
   "source_note": "实测原文与颜色优先；社区 Wiki 普通页面核实语境及完整后文。数值泛化为有类型占位符；自造专名保留英文。跨行说明合并为 GUI_Lore 整句。",
   "lines": [
     {
+      "id": "rune_rainbow_live",
+      "context": "装备 Lore 中的彩虹符文标记",
+      "raw": "§d◆ §cR§6a§ei§an§bb§9o§dw§9 Rune %s",
+      "text": "◆ Rainbow Rune %s",
+      "placeholders": [{ "token": "%s", "type": "tier", "example": "III", "desc": "符文等级" }],
+      "gloss": "Rainbow 的七个字母逐字着色；中文两字取首尾红、紫两色，其余字母省略。Rune 与等级保留原蓝色，不把符文二字染成彩虹字色。",
+      "translate": true,
+      "zh": "◆ 彩虹符文 %s",
+      "segments": [
+        { "color": "§d", "text": "◆ ", "zh": "◆ " },
+        { "color": "§c", "text": "R", "zh": "彩" },
+        { "color": "§6", "text": "a", "zh": "", "omit": true },
+        { "color": "§e", "text": "i", "zh": "", "omit": true },
+        { "color": "§a", "text": "n", "zh": "", "omit": true },
+        { "color": "§b", "text": "b", "zh": "", "omit": true },
+        { "color": "§9", "text": "o", "zh": "", "omit": true },
+        { "color": "§d", "text": "w", "zh": "虹" },
+        { "color": "§9", "text": " Rune %s", "zh": "符文 %s" }
+      ]
+    },
+    {
       "id": "rune_reward_zap",
       "context": "Runes Runtime 2026-09-22：实测菜单/物品文本。",
       "raw": "§e◆ Zap Rune %1$s",

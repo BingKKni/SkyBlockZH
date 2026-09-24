@@ -39,6 +39,68 @@
       ]
     },
     {
+      "id": "gemstone_lore_single_stat",
+      "context": "Ruby / Amber / Sapphire / Jade / Amethyst / Topaz / Jasper / Opal 宝石说明;英文分三行,只有属性图标与属性名不同",
+      "raw": "§7Some say that when §eharnessed properly§7, it can give its owner extra §c%1$s %2$s§7.",
+      "text": "Some say that when harnessed properly, it can give its owner extra %1$s %2$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "属性图标,颜色随宝石变化",
+          "type": "icon",
+          "example": "❁"
+        },
+        {
+          "token": "%2$s",
+          "desc": "属性名,走词表(Strength→力量、Health→生命值、Mining Speed→挖掘速度等)",
+          "type": "category_name",
+          "example": "Strength"
+        }
+      ],
+      "gloss": "社区 Wiki Gemstone 页各宝石悬浮框:这 8 种只有属性不同,句末直接收尾;Onyx / Aquamarine / Peridot / Citrine 另有传闻半句,按整句逐种收录。2026-09-23 实测 Flawless Jasper Gemstone 的属性行此前无记录。",
+      "translate": true,
+      "zh": "有人说,只要妥善运用,就能为持有者提供额外的%1$s %2$s。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Some say that when ",
+          "zh": "有人说,只要"
+        },
+        {
+          "color": "§e",
+          "text": "harnessed properly",
+          "zh": "妥善运用"
+        },
+        {
+          "color": "§7",
+          "text": ", it can give its owner extra ",
+          "zh": ",就能为持有者提供额外的"
+        },
+        {
+          "color": "§c",
+          "text": "%1$s %2$s",
+          "zh": "%1$s %2$s"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "samples": [
+        [
+          "§7Some say that when §eharnessed",
+          "§eproperly§7, it can give its owner extra",
+          "§c Strength§7."
+        ],
+        [
+          "§7Some say that when §eharnessed",
+          "§eproperly§7, it can give its owner extra",
+          "§6⸕ Mining Speed§7."
+        ]
+      ]
+    },
+    {
       "id": "gemstone_lore_onyx",
       "context": "Onyx 宝石说明;英文分四行",
       "raw": "§7Some say that when §eharnessed properly§7, it can give its owner extra §9☠ Crit Damage§7; others say it might give §ebonus treasures§7.",

@@ -1,0 +1,198 @@
+{
+  "source": "logs/skyzh-capture/incomplete/Dungeons/GUI_Lore/Undead_Essence_Shop.json",
+  "fetched_at": "2026-09-23",
+  "verified_ingame": true,
+  "lines": [
+    {
+      "id": "essence_boss_reward_quality",
+      "context": "精华商店实测完整说明",
+      "raw": "§7Increases the quality of boss rewards in §cThe Catacombs §7by §a%1$s§7%.",
+      "text": "Increases the quality of boss rewards in The Catacombs by %1$s%.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "10",
+          "desc": "品质提升百分比"
+        }
+      ],
+      "gloss": "按完整逻辑句匹配，避免首行翻译后残留英文尾行。",
+      "translate": true,
+      "zh": "地牢中的 Boss 奖励品质提高 %1$s%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increases the quality of boss rewards in ",
+          "zh": "中的 Boss 奖励品质提高 ",
+          "order": 1
+        },
+        {
+          "color": "§c",
+          "text": "The Catacombs ",
+          "zh": "地牢",
+          "order": 0
+        },
+        {
+          "color": "§7",
+          "text": "by ",
+          "zh": "",
+          "omit": true,
+          "order": 2
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "%.",
+          "zh": "%。",
+          "order": 4
+        }
+      ],
+      "samples": [
+        [
+          "§7Increases the quality of boss",
+          "§7rewards in §cThe Catacombs§7 by §a10§7%."
+        ]
+      ]
+    },
+    {
+      "id": "essence_mob_loot_quality",
+      "context": "精华商店实测完整说明",
+      "raw": "§7Increases the quality of mob loot drops in §cThe Catacombs §7by §8%1$s➜§a%2$s%§7.",
+      "text": "Increases the quality of mob loot drops in The Catacombs by %1$s➜%2$s%.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "2",
+          "desc": "当前百分比"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "4",
+          "desc": "升级后百分比"
+        }
+      ],
+      "gloss": "按完整逻辑句匹配，避免首行翻译后残留英文尾行。",
+      "translate": true,
+      "zh": "地牢中的怪物掉落物品质提高 %1$s➜%2$s%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increases the quality of mob loot drops in ",
+          "zh": "中的怪物掉落物品质提高 ",
+          "order": 1
+        },
+        {
+          "color": "§c",
+          "text": "The Catacombs ",
+          "zh": "地牢",
+          "order": 0
+        },
+        {
+          "color": "§7",
+          "text": "by ",
+          "zh": "",
+          "omit": true,
+          "order": 2
+        },
+        {
+          "color": "§8",
+          "text": "%1$s➜",
+          "zh": "%1$s➜",
+          "order": 3
+        },
+        {
+          "color": "§a",
+          "text": "%2$s%",
+          "zh": "%2$s%",
+          "order": 4
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。",
+          "order": 5
+        }
+      ],
+      "samples": [
+        [
+          "§7Increases the quality of mob loot",
+          "§7drops in §cThe Catacombs§7 by §82➜§a4%§7."
+        ]
+      ]
+    },
+    {
+      "id": "essence_base_health",
+      "context": "精华商店实测完整说明",
+      "raw": "§7Increases your base §c❤ Health §7while in §cThe Catacombs §7by §a+%1$s§7.",
+      "text": "Increases your base ❤ Health while in The Catacombs by +%1$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "125",
+          "desc": "生命值加成"
+        }
+      ],
+      "gloss": "按完整逻辑句匹配，避免首行翻译后残留英文尾行。",
+      "translate": true,
+      "zh": "在地牢中,基础 ❤ 生命值提高 +%1$s。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increases your base ",
+          "zh": "基础 ",
+          "order": 2
+        },
+        {
+          "color": "§c",
+          "text": "❤ Health ",
+          "zh": "❤ 生命值",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "while in ",
+          "zh": "在",
+          "order": 0
+        },
+        {
+          "color": "§c",
+          "text": "The Catacombs ",
+          "zh": "地牢中,",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "by ",
+          "zh": "提高 ",
+          "order": 4
+        },
+        {
+          "color": "§a",
+          "text": "+%1$s",
+          "zh": "+%1$s",
+          "order": 5
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。",
+          "order": 6
+        }
+      ],
+      "samples": [
+        [
+          "§7Increases your base §c Health §7while",
+          "§7in §cThe Catacombs§7 by §a+125§7."
+        ]
+      ]
+    }
+  ]
+}

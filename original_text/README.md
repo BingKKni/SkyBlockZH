@@ -338,11 +338,10 @@ capacity with part" + "installed." 硬拆成两行),**必须在数据里合并�
 |---|---|
 | `token` | 占位符本身,如 `%s`、`%1$s` |
 | `desc` | 中文说明这个位置代表什么 |
-| `type` | 语义类型,建议用固定词汇:`number` `item_name` `player_name` `npc_name` `percentage` `coins` `location_name` `time` `rarity` `raw` |
+| `type` | 语义类型,建议用固定词汇:`number` `item_name` `guide_item_name` `player_name` `npc_name` `percentage` `coins` `location_name` `time` `rarity` `raw` |
 | `example` | 示例值(字符串) |
 
-对于 `type: item_name` 等"这个占位符本身就是一个不翻译的专有名词"的情况,
-不需要再单独处理——翻译代码在替换时插入的就是那个专有名词本身,天然不翻译。
+`type: item_name` 表示保留服务器给出的原始物品名,翻译代码不会擅自汉化它。只有 SkyBlock Guide 的完整任务句可以用专用的 `type: guide_item_name`:它复用语料库中该物品的精确 `GUI_Item` 译名(支持已收录的重铸前缀和地牢星级),没有匹配的物品记录就保留英文;不要在聊天、商店或普通物品 Lore 中使用。
 
 ### 模板必须有自己的词(引擎会拒绝纯占位符模板)
 
@@ -405,7 +404,7 @@ capacity with part" + "installed." 硬拆成两行),**必须在数据里合并�
    `npc_name` / `player_name`**——那三种正是需求里要求保留英文的位置。
 2. **中英之间的空格由引擎自动补**(`TranslationEntry.Seam`)。译文片段和捕获值的接缝处,
    一边是拉丁字母、另一边是汉字时插入一个空格,所以 `%s宝石收集员` 配上 `Amber` 渲染成
-   "Amber 宝石收集员"。数字不触发这条规则,`"剩余: %s只哥布林"` 依然是"剩余: 3只哥布林"。
+   "Amber 宝石收集员"。数量数字不触发这条规则,`"剩余: %s只哥布林"` 依然是"剩余: 3只哥布林";但物品名、玩家名这类名称占位符首尾的数字按字母算,`HydroCan™ Turbo 2000` 后面接汉字时同样补空格。
 
 **译者要做的**:照常写 `"%s收集员"` 这样的模板,不要为了空格去改译文;发现某个地名/材料名
 应该有中文却还显示英文时,往 `Terms.json` 的 `terms` 数组里加一条,不要把模板拆成值枚举。
@@ -440,7 +439,7 @@ Hypixel 让名词跟着数量走:`Bits: 53,998` 但 `Bit: 1`,`+3,598 items` 但 
 |---|---|
 | `number` / `percentage` / `coins` | 数字,可带正负号、千分位、`%`、`k` 之类的后缀 |
 | `duration` / `time` | 紧凑时长:`35d+`、`2h 14m`、`01m 05s`、`30s`。**渲染时单位换算成中文**(`2小时14分`,数字与中文单位之间、两个单位之间都不留空格),所以单位字母**不要**写进模板——服务器按剩余时间长短换单位,写死 `%sh` 的记录在轮到天数的那天就掉回英文。带空格的英文单位(`47 Hours`)不是这种形状,那要写成带 `Hours` 字面词的模板(见 `Tab_Header_Footer.json#tab_duration_hours`) |
-| `item_name` | 物品名:最多 6 个词、48 字符；允许 `L.A.S.R.'s` 这样的全大写缩写和 `Mk. III` 型号，仍拒绝普通句末标点与半句 |
+| `item_name` / `guide_item_name` | 物品名:最多 6 个词、48 字符；允许 `L.A.S.R.'s` 这样的全大写缩写和 `Mk. III` 型号，仍拒绝普通句末标点与半句。仅 `guide_item_name` 会在 SkyBlock Guide 任务模板中复用语料已有的整名译文,未收录名称保持英文 |
 | `npc_name` / `location_name` / `mob_name` / `rarity` / `category_name` | 名字:最多 5 个词,两端必须是大写字母或数字开头,不含句末标点 |
 | `player_name` | 最多 16 个字母数字下划线 |
 | `player_or_self` | 同玩家名形状；仅用于巨龙自称广播。`You` 与随后动作同为洋红色、且无名字点击/悬浮事件时译为“你”；独立着色的同名玩家及缺少样式证据的文本保留英文 |

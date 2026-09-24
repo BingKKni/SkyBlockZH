@@ -9,11 +9,13 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 
 /**
  * Item name and lore, translated as a block rather than line by line.
@@ -29,12 +31,12 @@ import net.minecraft.network.chat.Component;
  */
 public final class TooltipTranslator {
 	private static final int CACHE_SIZE = 64;
-	// Only names confirmed in the corpus glossary belong here. A broader first-word heuristic would
-	// turn an ordinary item's first word into a reforge prefix.
-	private static final Map<String, String> ITEM_REFORGE_PREFIXES = Map.of(
-		"Fleet", "迅捷",
-		"Auspicious", "吉兆"
-	);
+	private static final Pattern DUNGEON_STARS = Pattern.compile("( [✪★☆➊➋➌➍➎]+)$");
+	private static final Pattern STACK_COUNT = Pattern.compile(" x[0-9][0-9,]*$");
+	private static final Pattern ICON_TOKEN = Pattern.compile(Capture.of("icon").regex());
+	// Reforge prefixes and their Chinese live in _shared/Terms.json under type "reforge". Only names
+	// written there count; a broader first-word heuristic would turn an ordinary item's first word
+	// into a reforge prefix.
 
 	/**
 	 * A floor under the width lines are re-broken at, in pixels — about ten Chinese characters.
@@ -75,36 +77,112 @@ public final class TooltipTranslator {
 
 		StyledText styled = StyledText.of(source);
 		String plain = styled.canonical();
-		int space = plain.indexOf(' ');
+		NameParts parts = nameParts(plain);
+		int contentStart = parts.contentStart();
+		int itemStart = parts.itemStart();
+		int starStart = parts.suffixStart();
+		String translatedPrefix = parts.translatedPrefix();
+		int prefixLength = parts.prefixLength();
 
-		if (space <= 0) {
-			return whole;
+		if (!parts.decorated() || itemStart >= starStart) return whole;
+		Translator.Result remainder = Translator.translate(styled.slice(itemStart, starStart), Surface.ITEM);
+		boolean preserved = Translator.index().preserved(Surface.ITEM, plain.substring(itemStart, starStart));
+		if ((!remainder.matched() && !preserved) || remainder.head() != null || remainder.tail() != null) return whole;
+
+		MutableComponent result = Component.empty();
+		if (contentStart > 0) result.append(styled.slice(0, contentStart));
+		if (translatedPrefix != null) {
+			result.append(Component.literal(translatedPrefix).setStyle(styled.styleAt(contentStart)))
+				.append(styled.slice(contentStart + prefixLength, itemStart));
+		}
+		result.append(remainder.padded());
+		if (starStart < plain.length()) result.append(styled.slice(starStart, plain.length()));
+		return new Translator.Result(result, null, null, remainder.entry());
+	}
+
+	/** Capture checks the same undecorated name that the renderer translates, only on first lines. */
+	public static StyledText itemNameCore(StyledText styled) {
+		if (Translator.locate(styled, Surface.ITEM).matched()) return styled;
+		NameParts parts = nameParts(styled.canonical());
+		if (!parts.decorated() || parts.itemStart() >= parts.suffixStart()) return styled;
+		StyledText core = styled.sub(parts.itemStart(), parts.suffixStart());
+		Translator.Located found = Translator.locate(core, Surface.ITEM);
+		boolean complete = found.matched() && found.core().length() == core.length();
+		return complete || Translator.index().preserved(Surface.ITEM, core.canonical()) ? core : styled;
+	}
+
+	private record NameParts(int contentStart, int itemStart, int suffixStart,
+		String translatedPrefix, int prefixLength, boolean decorated) {}
+
+	private static NameParts nameParts(String plain) {
+		int contentStart = leadingIconEnd(plain);
+		int suffixStart = plain.length();
+		var count = STACK_COUNT.matcher(plain);
+
+		if (count.find()) {
+			suffixStart = count.start();
 		}
 
-		String translatedPrefix = ITEM_REFORGE_PREFIXES.get(plain.substring(0, space));
+		int starStart = suffixStart;
+		var stars = DUNGEON_STARS.matcher(plain.substring(0, suffixStart));
 
-		if (translatedPrefix == null) {
-			return whole;
+		if (stars.find() && stars.start() >= contentStart) {
+			starStart = stars.start();
 		}
 
-		int remainderStart = space + 1;
-		Translator.Result remainder = Translator.translate(
-			styled.slice(remainderStart, styled.length()), Surface.ITEM
-		);
+		String translatedPrefix = null;
+		int prefixLength = 0;
 
-		if (!remainder.matched() || remainder.head() != null || remainder.tail() != null) {
-			return whole;
+		// A catalog item whose own name starts with a reforge word (Hyper Catalyst, Heavy Helmet) is not
+		// reforged: splitting it would draw the adjective as a reforge in front of some other item.
+		if (!ItemNames.isBaseName(plain.substring(contentStart, starStart))) {
+			// Longest prefix first: "Deep Fried" must win over any one-word reforge that "Deep" could be.
+			for (Map.Entry<String, String> reforge : Translator.index().terms().typed("reforge").entrySet()) {
+				String prefix = reforge.getKey();
+				int end = contentStart + prefix.length();
+
+				if (plain.length() > end + 1 && plain.startsWith(prefix, contentStart)
+					&& plain.charAt(end) == ' ' && prefix.length() > prefixLength) {
+					translatedPrefix = reforge.getValue();
+					prefixLength = prefix.length();
+				}
+			}
 		}
 
-		// The reforge uses Fleet's live style; its following space keeps any separate live style.
-		return new Translator.Result(
-			Component.literal(translatedPrefix).setStyle(styled.styleAt(0))
-				.append(styled.slice(space, remainderStart))
-				.append(remainder.padded()),
-			null,
-			null,
-			remainder.entry()
-		);
+		int itemStart = translatedPrefix == null ? contentStart : contentStart + prefixLength + 1;
+
+		if (starStart < itemStart) {
+			starStart = suffixStart;
+		}
+
+		boolean hasStars = starStart < suffixStart;
+		boolean hasCount = suffixStart < plain.length();
+
+		return new NameParts(contentStart, itemStart, starStart, translatedPrefix, prefixLength,
+			translatedPrefix != null || contentStart > 0 || hasStars || hasCount);
+	}
+
+	/** Skips only leading single-glyph tokens, preserving them outside a translated reforge/item name. */
+	private static int leadingIconEnd(String plain) {
+		int start = 0;
+
+		while (start < plain.length()) {
+			int end = plain.indexOf(' ', start);
+
+			if (end < 0) {
+				break;
+			}
+
+			String token = plain.substring(start, end);
+
+			if (token.codePointCount(0, token.length()) != 1 || !ICON_TOKEN.matcher(token).matches()) {
+				break;
+			}
+
+			start = end + 1;
+		}
+
+		return start;
 	}
 
 	/** The terminal tests English initials; hiding the original names would hide the question's data. */

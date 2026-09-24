@@ -67,6 +67,7 @@ public final class TranslationHarness {
 
 		System.out.println();
 		installIndex(index);
+		checkGuideItemNameCatalog(files, index);
 		report("审计承认精确保留的聊天行", LogAudit.covered(" +Drain IV"), "translate:false 的聊天行不应再次报告");
 		report("审计不豁免未知聊天行", !LogAudit.covered(" +Unverified IV"), "保留规则必须是精确行");
 		report("审计逐行检查保留与未知文本", !LogAudit.covered(" +Drain IV\\n +Unverified IV"),
@@ -170,6 +171,16 @@ public final class TranslationHarness {
 		check("物品名整名翻译", "§9Mithril Drill SX-R226", Surface.ITEM, "§9秘银钻头 SX-R226");
 		checkTooltipName("重铸前缀保留样式并翻译整名", "§6Fleet §dTitanium Drill DR-X655",
 			"§6迅捷 §d钛钻头 DR-X655");
+		checkTooltipName("无前置图标的地牢星级物品名", "§6Giant's Sword §6✪✪✪✪✪",
+			"§6巨人之剑 ✪✪✪✪✪");
+		checkTooltipName("带图标的重铸物品名保留图标及星级", "§5 Strengthened Bone Necklace §6✪✪✪✪✪",
+			"§5 强化 骨制项链 §6✪✪✪✪✪");
+		checkTooltipName("重铸巨人之剑保留地牢星级", "§dFabled Giant's Sword §6✪✪✪✪✪",
+			"§d传奇 巨人之剑 §6✪✪✪✪✪");
+		checkTooltipName("拍卖列表中带数量的重铸名保留星级与数量",
+			"§dFabled Giant's Sword §6✪✪✪✪✪ §8x1", "§d传奇 巨人之剑 §6✪✪✪✪✪ §8x1");
+		checkTooltipName("以重铸词开头的目录物品名不拆成重铸前缀", "§5Hyper Catalyst", "§5Hyper Catalyst");
+		checkTooltipName("目录物品名带星级也不拆成重铸前缀", "§9Heavy Helmet §6✪✪", "§9Heavy Helmet §6✪✪");
 		checkTooltipName("重铸物品名不再追加原文", "§6Fleet §dTitanium Drill DR-X655",
 			"§6迅捷 §d钛钻头 DR-X655");
 		checkTooltipName("重铸前缀不猜测未收录物品", "§6Fleet Unknown Drill", "§6Fleet Unknown Drill");
@@ -680,6 +691,21 @@ public final class TranslationHarness {
 		check("山心水晶种类白名单", "§dJasper §a✔ Found", Surface.ITEM, "§dJasper §a✔ 已找到");
 		checkNoMatch("未知对象不视为山心水晶", "Unverified Object ✖ Not Found", Surface.ITEM);
 		checkNoMatch("尾句不独立补造主句", "special zealot by 10➜20%.", Surface.LORE);
+		checkSentence("指南蜘蛛巢穴击杀任务的等级标签不混英文",
+			List.of("§7Kill §8[§7Lv500§8] §cArachne §7in the §cSpider's", "§cDen§7."),
+			"§7在§c蜘蛛巢穴§7击杀 §8[§7500 级§8] §cArachne§7。");
+		checkSentence("Carrolyn 地点关系及灰色连接词",
+			List.of("§7Bring §63,000 §7of these to §5Carrolyn §7in",
+				"§5Scarleton §7on the §cCrimson Isle §7to",
+				"§7permanently gain §c+5 Health §7and",
+				"§6+12 Wheat Fortune§7."),
+			"§7将 §63,000§7 个此物品交给§c绯红岛§7上§5绯红城§7的 §5Carrolyn§7,即可永久获得 §c+5 生命值§7和 §6+12 小麦时运§7。");
+		checkSentence("指南博物馆捐赠复用已收录物品译名",
+			List.of("§7Donate §fZombie Hat §7to your §3Museum§7."),
+			"§7将§f僵尸帽§7捐赠至§3博物馆§7。");
+		checkSentence("以型号数字结尾的物品名和中文之间也留空格",
+			List.of("§7Donate §aHydroCan™ Turbo 2000 §7to", "§7your §3Museum§7."),
+			"§7将§a HydroCan™ Turbo 2000§7 捐赠至§3博物馆§7。");
 		checkSentence("狂热之运完整句保留升级颜色",
 			List.of("§7Increases the chance to find a", "§7special zealot by §88➜§510%§7."),
 			"§7特殊狂热末影人的生成概率提高 §88➜§510%§7。");
@@ -2227,6 +2253,33 @@ public final class TranslationHarness {
 		return files;
 	}
 
+	private static void checkGuideItemNameCatalog(Map<String, JsonObject> files, TranslationIndex index) {
+		JsonObject file = files.get("Hub_General/GUI_Item/SkyBlock_Guide_Item_Names.json");
+		List<String> mismatches = new ArrayList<>();
+
+		if (file == null || !file.has("lines") || !file.get("lines").isJsonArray()) {
+			mismatches.add("missing SkyBlock_Guide_Item_Names.json");
+		} else {
+			for (JsonElement element : file.getAsJsonArray("lines")) {
+				JsonObject record = element.getAsJsonObject();
+
+				if (record.has("translate") && !record.get("translate").getAsBoolean()) {
+					continue;
+				}
+
+				String english = text(record, "text");
+				String expected = text(record, "zh");
+				String actual = index.terms().translate("guide_item_name", english);
+
+				if (!expected.equals(actual)) {
+					mismatches.add(english + " => expected " + expected + ", actual " + actual);
+				}
+			}
+		}
+
+		report("指南物品名目录全部复用各自精确译文", mismatches.isEmpty(), String.join("; ", mismatches));
+	}
+
 	static void installIndex(TranslationIndex index) throws Exception {
 		var field = Translator.class.getDeclaredField("index");
 		field.setAccessible(true);
@@ -2282,11 +2335,17 @@ public final class TranslationHarness {
 			report("名称不能吞掉服务器排版空格", !io.github.bingkkni.skyzh.text.Capture.NAME.accepts(invalid), invalid);
 		}
 		for (String valid : List.of("L.A.S.R.'s Eye", "Gauss Carrot Shovel Mk. III", "Newton Nether Wart Cutter Mk. II")) {
-			report("物品名允许已知缩写及六词型号", Capture.of("item_name").accepts(valid), valid);
+			for (String type : List.of("item_name", "guide_item_name")) {
+				report(type + " 允许已知缩写及六词型号", Capture.of(type).accepts(valid), valid);
+			}
 		}
 		for (String invalid : List.of("Deposits. Next", "Mk. blah", "Slay 1 Boss Corleone in the", " Eye", "Eye ", "A B C D E F G", "Sword!")) {
-			report("物品名仍拒绝句子和越界值", !Capture.of("item_name").accepts(invalid), invalid);
+			for (String type : List.of("item_name", "guide_item_name")) {
+				report(type + " 仍拒绝句子和越界值", !Capture.of(type).accepts(invalid), invalid);
+			}
 		}
+		report("分类名允许 Trick or Treat 里的连接词", Capture.of("category_name").accepts("Trick or Treat Enthusiast"),
+			"Trick or Treat Enthusiast");
 		report("型号例外不扩大分类名", !Capture.NAME.accepts("Gauss Carrot Shovel Mk. III"), "NAME");
 		report("句点例外不扩大 raw", !Capture.PHRASE.accepts("L.A.S.R.'s Eye"), "PHRASE");
 		Component fossil = Component.literal("§6Tusk Fossil");
@@ -2871,6 +2930,7 @@ public final class TranslationHarness {
 			"§dJacob 的农业竞赛§7活动开始。");
 		check("重铸中文与加成之间不夹空格", "§9Magnetic Bonus", Surface.ITEM, "§9磁力加成");
 		check("远古重铸加成名称", "§9Ancient Bonus", Surface.ITEM, "§9远古加成");
+		check("Fabled 重铸加成名称", "§9Fabled Bonus", Surface.ITEM, "§9传奇加成");
 		checkNoMatch("未核实 Bonus 标题不再由宽泛重铸模板吞掉", "§9Unverified Bonus", Surface.ITEM);
 		check("Undead 重铸沿用亡灵", "§9Undead Bonus", Surface.ITEM, "§9亡灵加成");
 		checkNoMatch("Composter 旧模板不吞陌生效果尾行", "§7consumed Potion by §a50%§7.", Surface.ITEM);
@@ -3057,6 +3117,19 @@ public final class TranslationHarness {
 				&& Translator.index().terms().translate("raw", "March") == null
 				&& Translator.index().terms().translate("item_name", "Gold Ingot") == null,
 			"只扩展无歧义的完整材料名，不放宽通用短词和 item_name");
+		report("SkyBlock 专属附魔按约定保留原文",
+			"Ender Slayer".equals(Translator.index().terms().translate("enchantment_name", "Ender Slayer"))
+				&& "Cubism".equals(Translator.index().terms().translate("enchantment_name", "Cubism"))
+				&& "Woodsplitter".equals(Translator.index().terms().translate("enchantment_name", "Woodsplitter")),
+			"仅原版附魔名称汉化");
+		report("指南物品名只复用语料已有译名",
+			"僵尸帽".equals(Translator.index().terms().translate("guide_item_name", "Zombie Hat"))
+				&& "英勇 Bonzo 的法杖".equals(Translator.index().terms().translate("guide_item_name", "Heroic Bonzo's Staff"))
+				&& "巨人之剑 ✪✪✪".equals(Translator.index().terms().translate("guide_item_name", "Giant's Sword ✪✪✪"))
+				&& Translator.index().terms().translate("guide_item_name", "Unverified Item") == null
+				&& Translator.index().terms().translate("guide_item_name", "Hyper Catalyst") == null
+				&& Translator.index().terms().translate("item_name", "Zombie Hat") == null,
+			"精确收录名、重铸前缀与星级可继承,未收录名及普通 item_name 不猜译");
 
 		for (String rebound : List.of("3", "9")) {
 			checkJoined("荆棘概率与反伤比例 " + rebound, List.of(

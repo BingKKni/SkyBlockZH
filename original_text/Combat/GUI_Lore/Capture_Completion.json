@@ -1,0 +1,51 @@
+{
+  "source": [
+    "logs/skyzh-capture/untranslated/Dungeons/GUI_Item/Auctions_Browser.json",
+    "logs/skyzh-capture/untranslated/Dungeons/GUI_Item/_Inventory.json",
+    "https://hypixelskyblock.minecraft.wiki/w/Wolf_Ring",
+    "https://hypixelskyblock.minecraft.wiki/w/Zombie_Ring"
+  ],
+  "verified_ingame": true,
+  "lines": [
+    {
+      "id": "accessory_reduce_family_damage",
+      "context": "狼戒指等饰品按生物类型减伤，图标可能折到首行末尾",
+      "raw": "§7Reduces the damage taken from §a%1$s %2$s §7mobs by §a%3$s%§7.",
+      "text": "Reduces the damage taken from %1$s %2$s mobs by %3$s%.",
+      "placeholders": [
+        { "token": "%1$s", "type": "icon", "example": "", "desc": "生物类型图标" },
+        { "token": "%2$s", "type": "mob_family", "example": "Animal", "desc": "生物类型" },
+        { "token": "%3$s", "type": "number", "example": "10", "desc": "减伤百分比" }
+      ],
+      "gloss": "Wolf Ring 与 Zombie Ring 的社区 Wiki 物品悬浮框确认整句及颜色。",
+      "translate": true,
+      "zh": "受到%1$s %2$s类生物的伤害降低 %3$s%。",
+      "segments": [
+        { "color": "§7", "text": "Reduces the damage taken from ", "zh": "受到" },
+        { "color": "§a", "text": "%1$s %2$s ", "zh": "%1$s %2$s" },
+        { "color": "§7", "text": "mobs by ", "zh": "类生物的伤害降低 " },
+        { "color": "§a", "text": "%3$s%", "zh": "%3$s%" },
+        { "color": "§7", "text": ".", "zh": "。" }
+      ],
+      "samples": [["§7Reduces the damage taken from §a", "§aAnimal §7mobs by §a10%§7."]]
+    },
+    {
+      "id": "accessory_decrease_undead_damage_live",
+      "context": "本轮背包里亡灵减伤饰品的旧措辞，首行末尾仅有生物图标",
+      "raw": "§7Decreases damage taken from §2 Undead §7mobs by §a%s%§7.",
+      "text": "Decreases damage taken from  Undead mobs by %s%.",
+      "placeholders": [{ "token": "%s", "type": "number", "example": "5", "desc": "减伤百分比" }],
+      "gloss": "本轮实测首行为 Decreases damage taken from；Wiki Zombie Ring 于 2026-09-06 更新，当前写 Reduces the damage taken from，保留两种完整句。",
+      "translate": true,
+      "zh": "受到 亡灵类生物的伤害降低 %s%。",
+      "segments": [
+        { "color": "§7", "text": "Decreases damage taken from ", "zh": "受到" },
+        { "color": "§2", "text": " Undead ", "zh": " 亡灵" },
+        { "color": "§7", "text": "mobs by ", "zh": "类生物的伤害降低 " },
+        { "color": "§a", "text": "%s%", "zh": "%s%" },
+        { "color": "§7", "text": ".", "zh": "。" }
+      ],
+      "samples": [["§7Decreases damage taken from §2", "§2Undead §7mobs by §a5%§7."]]
+    }
+  ]
+}

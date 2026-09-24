@@ -1,0 +1,22 @@
+{
+  "source": ["logs/skyzh-capture/untranslated/Dungeons/GUI_Item/Ender_Chest_4_5.json", "https://hypixelskyblock.minecraft.wiki/w/Pest_Vinyls"],
+  "verified_ingame": true,
+  "lines": [
+    {
+      "id": "vinyl_attracts_pest_sentence",
+      "context": "虫鸣音响播放唱片时吸引的害虫类型",
+      "raw": "§7When playing, this vinyl attracts §2%s Pests§7.",
+      "text": "When playing, this vinyl attracts %s Pests.",
+      "placeholders": [{ "token": "%s", "type": "category_name", "example": "Rat", "desc": "害虫种类，复用已核实的害虫词表" }],
+      "gloss": "Rat 译老鼠；完整句覆盖换行前后，不单独翻译 Rat 或 Pests. 尾行。",
+      "translate": true,
+      "zh": "播放此唱片时,会吸引%s害虫。",
+      "segments": [
+        { "color": "§7", "text": "When playing, this vinyl attracts ", "zh": "播放此唱片时,会吸引" },
+        { "color": "§2", "text": "%s Pests", "zh": "%s害虫" },
+        { "color": "§7", "text": ".", "zh": "。" }
+      ],
+      "samples": [["§7When playing, this vinyl attracts §2Rat", "§2Pests§7."], ["§7When playing, this vinyl attracts", "§2Praying Mantis Pests§7."]]
+    }
+  ]
+}

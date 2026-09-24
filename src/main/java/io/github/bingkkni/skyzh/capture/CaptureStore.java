@@ -237,7 +237,9 @@ public final class CaptureStore {
 	}
 
 	private static void classify(Sighting sighting, Line line) {
-		for (Classifier.Verdict verdict : Classifier.all(sighting.surface(), line.text(), line.checkValues())) {
+		StyledText inspected = sighting.surface() == CaptureSurface.GUI_ITEM && sighting.note() != null && sighting.note().endsWith("物品名")
+			? io.github.bingkkni.skyzh.text.TooltipTranslator.itemNameCore(line.text()) : line.text();
+		for (Classifier.Verdict verdict : Classifier.all(sighting.surface(), inspected, line.checkValues())) {
 			record(sighting, line.text(), verdict);
 		}
 	}

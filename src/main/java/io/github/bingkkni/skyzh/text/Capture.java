@@ -50,6 +50,10 @@ public enum Capture {
 	/** A player's name, which Minecraft limits to sixteen word characters. */
 	PLAYER("[A-Za-z0-9_]{1,16}"),
 
+	/** A player name with bounded server level/rank tags and non-ASCII badges; never translated. */
+	PLAYER_DISPLAY("(?:\\[(?:[0-9]{1,4}|[A-Z+]{1,16})\\] ?|[^\\x00-\\x7F\\s]{1,4} ){0,3}"
+		+ "[A-Za-z0-9_]{1,16}(?: ?[^\\x00-\\x7F\\s]{1,4}){0,3}", false),
+
 	/** A Hypixel paid rank token such as VIP, MVP+ or YOUTUBE; always preserved in English. */
 	RANK("[A-Za-z0-9+]{1,16}"),
 
@@ -76,8 +80,12 @@ public enum Capture {
 	 */
 	ICON("[\\p{S}\\p{Co}" + Glyphs.symbolClass() + "α᠅ᝐѪℏථꨃ҉]"),
 
-	/** A Trophy Fish quality shown in all caps: BRONZE, SILVER, GOLD or DIAMOND. */
-	TROPHY_QUALITY("(?:BRONZE|SILVER|GOLD|DIAMOND)", false),
+	/**
+	 * A Trophy Fish quality: BRONZE, SILVER, GOLD or DIAMOND in the fish's own lore, and the same four
+	 * words in title case in front of a Trophy Frog's name ("Bronze Wetlands Frog"). The term table
+	 * folds case, so one entry answers both spellings.
+	 */
+	TROPHY_QUALITY("(?:BRONZE|SILVER|GOLD|DIAMOND|Bronze|Silver|Gold|Diamond)", false),
 
 	/** HotM crystal kinds, not arbitrary item names followed by a discovery status. */
 	GEMSTONE_KIND("(?:Jade|Amber|Amethyst|Sapphire|Topaz|Jasper|Ruby|Opal|Aquamarine|Peridot|Onyx|Citrine)", false),
@@ -122,7 +130,7 @@ public enum Capture {
 	 * and the whole title stayed English. It is only ever allowed between two words, never at either
 	 * end, so a fragment beginning or ending on the ampersand is still not a name.
 	 */
-	private static final Set<String> CONNECTIVES = Set.of("of", "the", "and", "in", "on", "at", "to", "for", "a", "&");
+	private static final Set<String> CONNECTIVES = Set.of("of", "the", "and", "or", "in", "on", "at", "to", "for", "a", "&");
 
 	private final String regex;
 	private final boolean allowsEmpty;
@@ -151,11 +159,12 @@ public enum Capture {
 			// a single word plus a placeholder ("Your %s", "%s Settings", "%s Pet"), which under the
 			// looser PHRASE rule matched any lore line that happened to start or end that way and drew
 			// the rest of the sentence in its place.
-			case "item_name" -> ITEM_NAME;
+			case "item_name", "guide_item_name" -> ITEM_NAME;
 			case "npc_name", "location_name", "mob_name", "rarity", "category_name",
 				"enchantment_name", "enchantment_crop", "mob_family", "accessory_power", "skyblock_month", "dragon_type",
 				"rng_meter_source", "difficulty" -> NAME;
 			case "player_name", "player_or_self" -> PLAYER;
+			case "player_display" -> PLAYER_DISPLAY;
 			case "rank" -> RANK;
 			case "tier" -> TIER;
 			case "tier_range" -> TIER_RANGE;
@@ -187,12 +196,20 @@ public enum Capture {
 		return switch (this) {
 			// The regex is the whole of the rule for these: a numeral is a numeral, and a player's
 			// name is whatever sixteen word characters somebody chose.
-			case NUMBER, PLAYER, RANK, TIER, TIER_RANGE, ICON, TROPHY_QUALITY, GEMSTONE_KIND, ORDINAL, DURATION, DURATION_SPACED, SEARCH_QUERY -> true;
+			case NUMBER, PLAYER, PLAYER_DISPLAY, RANK, TIER, TIER_RANGE, ICON, TROPHY_QUALITY, GEMSTONE_KIND, ORDINAL, DURATION, DURATION_SPACED, SEARCH_QUERY -> true;
 			case MULTIPLIER_INCREASE -> new BigDecimal(value).compareTo(BigDecimal.ONE) >= 0;
 			case NAME -> isName(value);
 			case ITEM_NAME -> isItemName(value);
 			case PHRASE -> isValue(value);
 		};
+	}
+
+	/**
+	 * Whether a value of this kind is a name, whose edge digits belong to a word (a model number, a
+	 * player's 34) rather than being a count: see TranslationEntry's seam spacing.
+	 */
+	public boolean nameShaped() {
+		return this == NAME || this == ITEM_NAME || this == PLAYER || this == PLAYER_DISPLAY || this == RANK;
 	}
 
 	/**
@@ -275,7 +292,8 @@ public enum Capture {
 	 */
 	private static boolean isItemName(String value) {
 		// Relax only attested item-name syntax, never generic categories, locations or raw prose.
-		String normalised = value.replaceAll("\\bMk\\.(?= [IVXLCDM]+(?: |$))", "Mk");
+		String normalised = value.replaceAll("\\bMk\\.(?= [IVXLCDM]+(?: |$))", "Mk")
+			.replace(" - ", " of "); // Model separator in Worn Huntaxe - Genesis; never allowed at an edge.
 		String[] words = normalised.split(" ", -1);
 		for (int i = 0; i < words.length; i++) {
 			if (words[i].matches("(?:[A-Z]\\.){2,}(?:'s)?")) {

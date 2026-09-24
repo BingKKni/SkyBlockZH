@@ -1,0 +1,377 @@
+{
+  "source": "logs/skyzh-capture（2026-09-22 Alpha 实测）",
+  "fetched_at": "2026-09-23",
+  "verified_ingame": true,
+  "gui_context": "本轮 Alpha 实测的社区商店卡片、精选物品属性行、拍卖排序项等零散逐行文本",
+  "lines": [
+    {
+      "id": "cs_bonus_guest_slots",
+      "context": "社区商店(Elizabeth)升级卡片",
+      "raw": "§7Your bonus: §a+%1$s ✌ guest slots",
+      "text": "Your bonus: +%1$s ✌ guest slots",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "1",
+          "desc": "访客槽位数"
+        }
+      ],
+      "gloss": "模板写复数 slots,引擎把词尾 s 编成可选。",
+      "translate": true,
+      "zh": "当前加成: +%1$s ✌ 个访客槽位",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Your bonus: ",
+          "zh": "当前加成: "
+        },
+        {
+          "color": "§a",
+          "text": "+%1$s ✌ guest slots",
+          "zh": "+%1$s ✌ 个访客槽位"
+        }
+      ]
+    },
+    {
+      "id": "cs_bonus_farming_fortune",
+      "context": "社区商店(Elizabeth)升级卡片",
+      "raw": "§7Your bonus: §a+%1$s §6☘ Farming Fortune",
+      "text": "Your bonus: +%1$s ☘ Farming Fortune",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "4",
+          "desc": "数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "当前加成: +%1$s ☘ 农业时运",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Your bonus: ",
+          "zh": "当前加成: "
+        },
+        {
+          "color": "§a",
+          "text": "+%1$s ",
+          "zh": "+%1$s "
+        },
+        {
+          "color": "§6",
+          "text": "☘ Farming Fortune",
+          "zh": "☘ 农业时运"
+        }
+      ]
+    },
+    {
+      "id": "cs_adding_farming_fortune",
+      "context": "社区商店(Elizabeth)升级卡片",
+      "raw": "§7Adding: §a+%1$s §6☘ Farming Fortune",
+      "text": "Adding: +%1$s ☘ Farming Fortune",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "4",
+          "desc": "数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "将增加: +%1$s ☘ 农业时运",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Adding: ",
+          "zh": "将增加: "
+        },
+        {
+          "color": "§a",
+          "text": "+%1$s ",
+          "zh": "+%1$s "
+        },
+        {
+          "color": "§6",
+          "text": "☘ Farming Fortune",
+          "zh": "☘ 农业时运"
+        }
+      ]
+    },
+    {
+      "id": "cs_elizabeth_line",
+      "context": "社区商店(Elizabeth)升级卡片",
+      "raw": "§8Elizabeth",
+      "text": "Elizabeth",
+      "placeholders": [],
+      "gloss": "NPC 人名,保留英文。",
+      "translate": false,
+      "zh": ""
+    },
+    {
+      "id": "fi_magic_find_gain",
+      "context": "物品属性加成行",
+      "raw": "§b+%1$s✯ Magic Find",
+      "text": "+%1$s✯ Magic Find",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "1",
+          "desc": "数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s✯ 魔法寻宝"
+    },
+    {
+      "id": "fi_fishing_speed_gain",
+      "context": "物品属性加成行(行首的 • 由引擎剥离)",
+      "raw": "§b+%1$s☂ Fishing Speed",
+      "text": "+%1$s☂ Fishing Speed",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "5",
+          "desc": "数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$s☂ 钓鱼速度"
+    },
+    {
+      "id": "fi_sea_creature_chance_gain",
+      "context": "物品属性加成行",
+      "raw": "§3+%1$sα Sea Creature Chance",
+      "text": "+%1$sα Sea Creature Chance",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "0.5",
+          "desc": "数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%1$sα 海洋生物几率"
+    },
+    {
+      "id": "fi_treasure_chance_gain",
+      "context": "物品属性加成行",
+      "raw": "§6+%1$s Treasure Chance",
+      "text": "+%1$s Treasure Chance",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "0.5",
+          "desc": "数值"
+        }
+      ],
+      "gloss": " 是宝藏几率图标,Glyphs 表里没有通用符号,照码点写。",
+      "translate": true,
+      "zh": "+%1$s 宝藏几率"
+    },
+    {
+      "id": "fi_rarity_ability_scroll",
+      "context": "稀有度行",
+      "raw": "§a§lUNCOMMON ABILITY SCROLL",
+      "text": "UNCOMMON ABILITY SCROLL",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "罕见技能卷轴"
+    },
+    {
+      "id": "fi_rarity_fishing_rod",
+      "context": "稀有度行",
+      "raw": "§a§lUNCOMMON FISHING ROD",
+      "text": "UNCOMMON FISHING ROD",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "罕见钓鱼竿"
+    },
+    {
+      "id": "fi_rift_transferable",
+      "context": "裂隙可转移标记行",
+      "raw": "§5§kX§5 Rift-Transferable §5§kX",
+      "text": "X Rift-Transferable X",
+      "placeholders": [],
+      "gloss": "两端 X 是 §k 乱码装饰,原样保留。",
+      "translate": true,
+      "zh": "X 可转移至裂隙 X",
+      "segments": [
+        {
+          "color": "§5§k",
+          "text": "X",
+          "zh": "X"
+        },
+        {
+          "color": "§5",
+          "text": " Rift-Transferable ",
+          "zh": " 可转移至裂隙 "
+        },
+        {
+          "color": "§5§k",
+          "text": "X",
+          "zh": "X"
+        }
+      ]
+    },
+    {
+      "id": "fi_piece_bonus",
+      "context": "套装部件加成行",
+      "raw": "§7Piece Bonus: §a+%1$s%2$s",
+      "text": "Piece Bonus: +%1$s%2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "20",
+          "desc": "数值"
+        },
+        {
+          "token": "%2$s",
+          "type": "icon",
+          "example": "❈",
+          "desc": "属性图标"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "部件加成: +%1$s%2$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Piece Bonus: ",
+          "zh": "部件加成: "
+        },
+        {
+          "color": "§a",
+          "text": "+%1$s%2$s",
+          "zh": "+%1$s%2$s"
+        }
+      ]
+    },
+    {
+      "id": "fi_next_upgrade",
+      "context": "套装部件升级进度行",
+      "raw": "§7Next Upgrade: §a+%1$s%2$s §8(§a%3$s§7/§c%4$s§8)",
+      "text": "Next Upgrade: +%1$s%2$s (%3$s/%4$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "20",
+          "desc": "数值"
+        },
+        {
+          "token": "%2$s",
+          "type": "icon",
+          "example": "❈",
+          "desc": "属性图标"
+        },
+        {
+          "token": "%3$s",
+          "type": "number",
+          "example": "0",
+          "desc": "当前"
+        },
+        {
+          "token": "%4$s",
+          "type": "number",
+          "example": "50",
+          "desc": "所需"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "下一次升级: +%1$s%2$s (%3$s/%4$s)",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Next Upgrade: ",
+          "zh": "下一次升级: "
+        },
+        {
+          "color": "§a",
+          "text": "+%1$s%2$s ",
+          "zh": "+%1$s%2$s "
+        },
+        {
+          "color": "§8",
+          "text": "(",
+          "zh": "("
+        },
+        {
+          "color": "§a",
+          "text": "%3$s",
+          "zh": "%3$s"
+        },
+        {
+          "color": "§7",
+          "text": "/",
+          "zh": "/"
+        },
+        {
+          "color": "§c",
+          "text": "%4$s",
+          "zh": "%4$s"
+        },
+        {
+          "color": "§8",
+          "text": ")",
+          "zh": ")"
+        }
+      ]
+    },
+    {
+      "id": "fi_right_click_toggle",
+      "context": "可开关物品的提示行",
+      "raw": "§eRight-click to toggle!",
+      "text": "Right-click to toggle!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "右键点击切换!"
+    },
+    {
+      "id": "fi_lowest_bid",
+      "context": "拍卖浏览器排序项(行首三个空格是排版)",
+      "raw": "§7   Lowest Bid",
+      "text": "   Lowest Bid",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "   最低出价"
+    },
+    {
+      "id": "fi_toy_axe_power",
+      "context": "Toy Box 物品的说明行",
+      "raw": "§8The power of an axe.",
+      "text": "The power of an axe.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "斧头的力量。"
+    },
+    {
+      "id": "fi_alpha_url",
+      "context": "Alpha 网络提示里的网址",
+      "raw": "§ehypixel.net/skyblock-alpha",
+      "text": "hypixel.net/skyblock-alpha",
+      "placeholders": [],
+      "gloss": "网址保留原文。",
+      "translate": false,
+      "zh": ""
+    }
+  ]
+}

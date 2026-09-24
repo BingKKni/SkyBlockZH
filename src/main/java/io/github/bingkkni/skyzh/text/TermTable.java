@@ -7,6 +7,9 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Function;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Chinese for the values Hypixel drops into a template, rather than for the template itself.
@@ -29,7 +32,10 @@ import java.util.Set;
  * Chinese name for somebody's weapon — is far worse than the cost of leaving a place name English.
  */
 public final class TermTable {
-	public static final TermTable EMPTY = new TermTable(Set.of(), Map.of(), Map.of(), Map.of(), Map.of(), Map.of());
+	public static final TermTable EMPTY = new TermTable(Set.of(), Map.of(), Map.of(), Map.of(), Map.of(), Map.of(), Map.of());
+
+	/** Dungeon stars and Master Stars on the end of an item name; not part of the name itself. */
+	private static final Pattern STARS = Pattern.compile("( [✪★☆➊➋➌➍➎]+)$");
 
 	private final Set<String> types;
 	private final Map<String, String> terms;
@@ -40,11 +46,17 @@ public final class TermTable {
 	private final Map<String, Map<String, String>> foldedTyped;
 	/** Canonical English keyed in lower case, typed and untyped together, for {@link #canonicalEnglish}. */
 	private final Map<String, String> canonicalByFolded;
+	/**
+	 * Chinese for whole item names, taken from the corpus's own exact {@code GUI_Item} records rather
+	 * than from Terms.json. Consulted only for {@code guide_item_name} placeholders — see {@link #itemName}.
+	 */
+	private final Map<String, String> itemNames;
+	private Function<String, String> knownItemTemplate = value -> null;
 
 	private TermTable(
 		Set<String> types, Map<String, String> terms, Map<String, String> folded,
 		Map<String, Map<String, String>> typed, Map<String, Map<String, String>> foldedTyped,
-		Map<String, String> canonicalByFolded
+		Map<String, String> canonicalByFolded, Map<String, String> itemNames
 	) {
 		this.types = types;
 		this.terms = terms;
@@ -52,6 +64,91 @@ public final class TermTable {
 		this.typed = typed;
 		this.foldedTyped = foldedTyped;
 		this.canonicalByFolded = canonicalByFolded;
+		this.itemNames = itemNames;
+	}
+
+	/**
+	 * The same table, now also answering {@code guide_item_name} placeholders from the corpus's exact item
+	 * records.
+	 *
+	 * <p>{@code guide_item_name} is deliberately separate from {@code item_name}: names in ordinary
+	 * inventory, chat and shop placeholders stay untouched. Terms.json must never
+	 * invent a Chinese name for somebody's weapon. But the SkyBlock Guide writes "Donate Zombie Hat to
+	 * your Museum." one line under "✖ Zombie Hat", and the corpus already decided what that item is
+	 * called on the line above. Reusing that decision keeps the two lines agreeing; a name the corpus
+	 * has not written down stays English exactly as before. Keys are the record's English, values the
+	 * Chinese it renders to.
+	 */
+	public TermTable withItemNames(Map<String, String> names, Function<String, String> knownItemTemplate) {
+		Map<String, String> folded = new HashMap<>();
+
+		for (Map.Entry<String, String> name : names.entrySet()) {
+			folded.putIfAbsent(name.getKey().toLowerCase(Locale.ROOT), name.getValue());
+		}
+
+		TermTable result = new TermTable(
+			this.types, this.terms, this.folded, this.typed, this.foldedTyped, this.canonicalByFolded,
+			Map.copyOf(folded)
+		);
+		result.knownItemTemplate = knownItemTemplate;
+		return result;
+	}
+
+	/** Every term written for one placeholder type, English to Chinese; empty when the type has none. */
+	public Map<String, String> typed(String type) {
+		Map<String, String> group = this.typed.get(type == null ? "" : type.toLowerCase(Locale.ROOT));
+		return group == null ? Map.of() : group;
+	}
+
+	/**
+	 * Chinese for an item name captured by a {@code guide_item_name} placeholder, or {@code null}.
+	 *
+	 * <p>Three shapes are tried, all of them decisions the corpus has already made elsewhere: the
+	 * whole name; the name without its dungeon stars ({@code Giant's Sword ✪✪✪✪✪}), which are put
+	 * back afterwards; and a reforge prefix from the {@code reforge} terms in front of a known name
+	 * ({@code Fabled Giant's Sword}), the same shape the tooltip name translator accepts.
+	 */
+	private String itemName(String value) {
+		if (this.itemNames.isEmpty() || value.isEmpty()) {
+			return null;
+		}
+
+		String exact = this.itemNames.get(value.toLowerCase(Locale.ROOT));
+
+		if (exact != null) {
+			return exact;
+		}
+
+		String templated = this.knownItemTemplate.apply(value);
+		if (templated != null) {
+			return templated;
+		}
+
+		Matcher stars = STARS.matcher(value);
+
+		if (stars.find()) {
+			String bare = itemName(value.substring(0, stars.start()));
+			return bare == null ? null : bare + stars.group(1);
+		}
+
+		int space = value.indexOf(' ');
+
+		// A catalog item that merely begins with a reforge word (Hyper Catalyst) is not a reforged item.
+		if (space > 0 && !ItemNames.isBaseName(value)) {
+			for (Map.Entry<String, String> reforge : typed("reforge").entrySet()) {
+				String prefix = reforge.getKey() + " ";
+
+				if (value.startsWith(prefix) && value.length() > prefix.length()) {
+					String rest = itemName(value.substring(prefix.length()));
+
+					if (rest != null) {
+						return reforge.getValue() + " " + rest;
+					}
+				}
+			}
+		}
+
+		return null;
 	}
 
 	public static TermTable from(JsonObject json) {
@@ -118,7 +215,7 @@ public final class TermTable {
 
 		return new TermTable(
 			Set.copyOf(types), Map.copyOf(terms), Map.copyOf(folded),
-			Map.copyOf(frozenTyped), Map.copyOf(foldedTyped), Map.copyOf(canonicalByFolded)
+			Map.copyOf(frozenTyped), Map.copyOf(foldedTyped), Map.copyOf(canonicalByFolded), Map.of()
 		);
 	}
 
@@ -147,6 +244,10 @@ public final class TermTable {
 	 * worth translating gets its own entry.
 	 */
 	public String translate(String type, String value) {
+		if ("guide_item_name".equalsIgnoreCase(type)) {
+			return itemName(value);
+		}
+
 		if (!applies(type)) {
 			return null;
 		}

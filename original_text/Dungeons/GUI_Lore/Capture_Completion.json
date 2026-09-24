@@ -1,0 +1,65 @@
+{
+  "source": [
+    "logs/skyzh-capture/untranslated/Dungeons/GUI_Item",
+    "https://hypixelskyblock.minecraft.wiki/w/Trap",
+    "https://hypixelskyblock.minecraft.wiki/w/Super_Heavy_Armor"
+  ],
+  "verified_ingame": true,
+  "lines": [
+    {
+      "id": "essence_of_dragons_attribute_tier",
+      "context": "巨龙精华碎片的属性标题",
+      "raw": "§6Essence of Dragons %s",
+      "text": "Essence of Dragons %s",
+      "placeholders": [{ "token": "%s", "type": "tier", "example": "I", "desc": "属性等级" }],
+      "gloss": "沿用 Terms.json 中同名属性的巨龙精华译名。",
+      "translate": true,
+      "zh": "巨龙精华 %s"
+    },
+    {
+      "id": "dungeon_floor_completion_requirement",
+      "context": "地牢装备的楼层通关要求",
+      "raw": "§4❣ §cRequires The Catacombs Floor %s Completion.",
+      "text": "❣ Requires The Catacombs Floor %s Completion.",
+      "placeholders": [{ "token": "%s", "type": "tier", "example": "IV", "desc": "所需楼层，罗马数字" }],
+      "gloss": "完整楼层条件优先于 requires_generic，避免只翻译 Requires。",
+      "translate": true,
+      "zh": "❣ 需要通关地牢第 %s 层。",
+      "segments": [
+        { "color": "§4", "text": "❣ ", "zh": "❣ " },
+        { "color": "§c", "text": "Requires The Catacombs Floor %s Completion.", "zh": "需要通关地牢第 %s 层。" }
+      ]
+    },
+    {
+      "id": "dungeon_trap_damage",
+      "context": "地牢陷阱物品，怪物踩上后引爆",
+      "raw": "§7Place an explosive trap that triggers when mobs walk over it dealing §c%1$s§7-§c%2$s §7damage based on the dungeon floor you are on.",
+      "text": "Place an explosive trap that triggers when mobs walk over it dealing %1$s-%2$s damage based on the dungeon floor you are on.",
+      "placeholders": [
+        { "token": "%1$s", "type": "number", "example": "20,000", "desc": "最低伤害" },
+        { "token": "%2$s", "type": "number", "example": "250,000", "desc": "最高伤害" }
+      ],
+      "gloss": "社区 Wiki Trap 悬浮框确认本轮未重复采集的末行 on.。",
+      "translate": true,
+      "zh": "放置爆炸陷阱,怪物踩上后触发,造成 %1$s-%2$s 点伤害。伤害随当前地牢楼层变化。",
+      "segments": [
+        { "color": "§7", "text": "Place an explosive trap that triggers when mobs walk over it dealing ", "zh": "放置爆炸陷阱,怪物踩上后触发,造成 " },
+        { "color": "§c", "text": "%1$s", "zh": "%1$s" },
+        { "color": "§7", "text": "-", "zh": "-" },
+        { "color": "§c", "text": "%2$s ", "zh": "%2$s" },
+        { "color": "§7", "text": "damage based on the dungeon floor you are on.", "zh": " 点伤害。伤害随当前地牢楼层变化。" }
+      ],
+      "samples": [["§7Place an explosive trap that", "§7triggers when mobs walk over it", "§7dealing §c20,000§7-§c250,000 §7damage", "§7based on the dungeon floor you are", "§7on."]]
+    },
+    {
+      "id": "super_heavy_thicc_flavour",
+      "context": "超重护甲施加 Heavy 重铸后显示的梗文案",
+      "raw": "§8DARN BOI",
+      "text": "DARN BOI",
+      "placeholders": [],
+      "gloss": "社区 Wiki Super Heavy Armor 确认为 Thicc 重铸附带的灰色玩笑，不是第三方 Mod 文本。",
+      "translate": true,
+      "zh": "好家伙,真够厚实的!"
+    }
+  ]
+}

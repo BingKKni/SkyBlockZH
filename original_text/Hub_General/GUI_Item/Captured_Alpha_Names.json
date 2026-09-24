@@ -918,7 +918,7 @@
       "id": "captured_respiration_s",
       "context": "Centauri 实测菜单或消息",
       "text": "Respiration: +%s",
-      "raw": "Respiration: +%s",
+      "raw": "§7Respiration: §3+%s",
       "placeholders": [
         {
           "token": "%s",
@@ -929,7 +929,11 @@
       ],
       "gloss": "",
       "translate": true,
-      "zh": "水下呼吸: +%s"
+      "zh": "水下呼吸: +%s",
+      "segments": [
+        { "color": "§7", "text": "Respiration: ", "zh": "水下呼吸: " },
+        { "color": "§3", "text": "+%s", "zh": "+%s" }
+      ]
     },
     {
       "id": "captured_counter_s",

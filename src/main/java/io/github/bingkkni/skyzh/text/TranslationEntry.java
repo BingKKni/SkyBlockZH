@@ -27,8 +27,9 @@ import net.minecraft.network.chat.Style;
  * fragment is the unit that keeps a colour, a placeholder and the words between them tied together.
  *
  * <p>Placeholders ({@code %s}, {@code %1$s}) become capture groups. Whatever they capture is copied
- * from the live text verbatim, with its own colours: those are player names, item names and
- * numbers, none of which are ever translated.
+ * from the live text verbatim, with its own colours: player names, ordinary {@code item_name}s and
+ * numbers are never translated. The narrowly scoped {@code guide_item_name} type is the exception:
+ * SkyBlock Guide task sentences may reuse an exact item translation already present in the corpus.
  */
 public final class TranslationEntry {
 	/** One source segment and its target; null target means omit, null order means source order. */
@@ -612,7 +613,7 @@ public final class TranslationEntry {
 				translatedItem.run();
 			}
 
-			seam.append(frag, written, style);
+			seam.append(frag, written, style, inner.startsWithName, inner.endsWithName);
 		}
 
 		return result;
@@ -626,7 +627,8 @@ public final class TranslationEntry {
 	 * term table, which knows that {@code Royal Mines} is 皇家矿区; and the kind of value it is, which
 	 * knows that the {@code th} of {@code 27th} is English grammar and does not come across — see
 	 * {@link Capture#renderValue}. Everything else is copied through untouched, character for
-	 * character, because a name is a name.
+	 * character, because a name is a name; only {@code guide_item_name} opts into reusing an already
+	 * translated corpus item name.
 	 */
 	private void append(Seam seam, StyledText source, Matcher match, int group, TermTable terms, Style style,
 		Runnable translatedItem) {
@@ -641,7 +643,8 @@ public final class TranslationEntry {
 		}
 
 		if (written.equals(value)) {
-			seam.append(source.slice(start, end), value, style);
+			boolean name = Capture.of(type).nameShaped();
+			seam.append(source.slice(start, end), value, style, name, name);
 			return;
 		}
 
@@ -715,27 +718,47 @@ public final class TranslationEntry {
 	 * be a rule rewriting somebody's finished translation.
 	 *
 	 * <p>Digits are deliberately not Latin here. "剩余: 3只哥布林" is how Chinese counts, and putting
-	 * air around every number the server sends would space out the whole corpus.
+	 * air around every number the server sends would space out the whole corpus. The exception is a
+	 * digit on the edge of a captured <em>name</em>: the 2000 of "HydroCan™ Turbo 2000" or the 34 of a
+	 * player's name is part of a word, so it meets Chinese the way that name's letters would.
 	 */
 	private static final class Seam {
 		private final MutableComponent target;
 		private char previous;
+		private boolean written;
+		private boolean startsWithName;
+		private boolean endsWithName;
 
 		private Seam(MutableComponent target) {
 			this.target = target;
 		}
 
 		private void append(Component piece, String plain, Style style) {
+			append(piece, plain, style, false, false);
+		}
+
+		/** {@code nameStart}/{@code nameEnd}: whether the piece begins or ends inside a captured name. */
+		private void append(Component piece, String plain, Style style, boolean nameStart, boolean nameEnd) {
 			if (plain.isEmpty()) {
 				return;
 			}
 
-			if (needsSpace(this.previous, plain.charAt(0))) {
+			char first = plain.charAt(0);
+
+			if (needsSpace(this.previous, nameStart && isDigit(first) ? 'a' : first)) {
 				this.target.append(Component.literal(" ").setStyle(style));
 			}
 
 			this.target.append(piece);
-			this.previous = plain.charAt(plain.length() - 1);
+
+			if (!this.written) {
+				this.written = true;
+				this.startsWithName = nameStart;
+			}
+
+			char last = plain.charAt(plain.length() - 1);
+			this.previous = nameEnd && isDigit(last) ? 'a' : last;
+			this.endsWithName = nameEnd;
 		}
 
 		private static boolean needsSpace(char before, char after) {
@@ -744,6 +767,10 @@ public final class TranslationEntry {
 
 		private static boolean isLatin(char c) {
 			return c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z';
+		}
+
+		private static boolean isDigit(char c) {
+			return c >= '0' && c <= '9';
 		}
 
 		/**

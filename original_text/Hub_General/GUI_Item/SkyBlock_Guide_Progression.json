@@ -1,0 +1,983 @@
+{
+  "source": "logs/skyzh-capture（2026-09-22 Alpha 实测）",
+  "fetched_at": "2026-09-23",
+  "verified_ingame": true,
+  "gui_context": "SkyBlock Guides 的章节任务、进度与完成条件(逐行短句与条目名);跨行整句在 GUI_Lore/SkyBlock_Guide_Tasks.json",
+  "source_note": "只收录本轮实测中语义完整、可安全泛化的模板;物品自造专名不做宽泛翻译。",
+  "lines": [
+    {
+      "id": "guide_total_worth",
+      "context": "SkyBlock 指南的任务进度或完成条件",
+      "raw": "§7Total Worth: §b+%1$s XP",
+      "text": "Total Worth: +%1$s XP",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "1,200",
+          "desc": "任务贡献的指南经验"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "总价值: +%1$s 经验",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Total Worth: ",
+          "zh": "总价值: "
+        },
+        {
+          "color": "§b",
+          "text": "+%1$s XP",
+          "zh": "+%1$s 经验"
+        }
+      ]
+    },
+    {
+      "id": "guide_task_count",
+      "context": "SkyBlock 指南的任务进度或完成条件",
+      "raw": "§8%1$s tasks",
+      "text": "%1$s tasks",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "10",
+          "desc": "任务数量"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s 项任务"
+    },
+    {
+      "id": "guide_skill_level",
+      "context": "SkyBlock 指南的任务进度或完成条件",
+      "raw": "%1$s Skill %2$s",
+      "text": "%1$s Skill %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "category_name",
+          "example": "Mining",
+          "desc": "技能名称"
+        },
+        {
+          "token": "%2$s",
+          "type": "tier",
+          "example": "XXIV",
+          "desc": "技能等级"
+        }
+      ],
+      "gloss": "勾叉由引擎保留;技能名通过词表翻译。",
+      "translate": true,
+      "zh": "%1$s技能 %2$s 级"
+    },
+    {
+      "id": "guide_slayer_level",
+      "context": "SkyBlock 指南的任务进度或完成条件",
+      "raw": "%1$s LVL %2$s",
+      "text": "%1$s LVL %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "category_name",
+          "example": "Zombie",
+          "desc": "猎手类型"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "6",
+          "desc": "猎手等级"
+        }
+      ],
+      "gloss": "勾叉由引擎保留;猎手类型通过词表翻译。",
+      "translate": true,
+      "zh": "%1$s猎手等级 %2$s"
+    },
+    {
+      "id": "guide_generic_level",
+      "context": "SkyBlock 指南的任务进度或完成条件",
+      "raw": "%1$s Level %2$s",
+      "text": "%1$s Level %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "category_name",
+          "example": "Healer",
+          "desc": "职业/系统名称,走词表"
+        },
+        {
+          "token": "%2$s",
+          "type": "tier",
+          "example": "IX",
+          "desc": "等级"
+        }
+      ],
+      "gloss": "地牢职业等级、地牢等级等「名字 + Level + 罗马数字」的条目名。",
+      "translate": true,
+      "zh": "%1$s %2$s 级"
+    },
+    {
+      "id": "guide_chapter_entry",
+      "context": "SkyBlock 指南的任务进度或完成条件",
+      "raw": "%1$s Chapter %2$s",
+      "text": "%1$s Chapter %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "location_name",
+          "example": "Moonglade Marsh",
+          "desc": "岛屿名"
+        },
+        {
+          "token": "%2$s",
+          "type": "tier",
+          "example": "VII",
+          "desc": "章节"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s第 %2$s 章"
+    },
+    {
+      "id": "guide_dna_milestone_entry",
+      "context": "SkyBlock 指南的任务进度或完成条件",
+      "raw": "DNA Analysis Milestone %1$s",
+      "text": "DNA Analysis Milestone %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "1",
+          "desc": "里程碑序号"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "DNA 分析里程碑 %1$s"
+    },
+    {
+      "id": "guide_biome_milestone_entry",
+      "context": "SkyBlock 指南的任务进度或完成条件",
+      "raw": "%1$s Biome Milestone %2$s",
+      "text": "%1$s Biome Milestone %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "category_name",
+          "example": "Cavern",
+          "desc": "生物群系名称"
+        },
+        {
+          "token": "%2$s",
+          "type": "tier",
+          "example": "I",
+          "desc": "里程碑等级"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s生物群系里程碑 %2$s"
+    },
+    {
+      "id": "guide_biome_milestone",
+      "context": "SkyBlock 指南的任务进度或完成条件",
+      "raw": "§7Reach §6%1$s Biome Milestone %2$s.",
+      "text": "Reach %1$s Biome Milestone %2$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "category_name",
+          "example": "Cavern",
+          "desc": "生物群系名称"
+        },
+        {
+          "token": "%2$s",
+          "type": "tier",
+          "example": "I",
+          "desc": "里程碑等级"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "达成%1$s生物群系里程碑 %2$s。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Reach ",
+          "zh": "达成"
+        },
+        {
+          "color": "§6",
+          "text": "%1$s Biome Milestone %2$s.",
+          "zh": "%1$s生物群系里程碑 %2$s。"
+        }
+      ]
+    },
+    {
+      "id": "guide_personal_bank_entry",
+      "context": "SkyBlock 指南的任务进度或完成条件",
+      "raw": "Personal Bank %1$s",
+      "text": "Personal Bank %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "tier",
+          "example": "II",
+          "desc": "银行升级档次"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "个人银行 %1$s 级"
+    },
+    {
+      "id": "guide_perk_shop_entry",
+      "context": "SkyBlock 指南的任务进度或完成条件",
+      "raw": "%1$s Perk Shop",
+      "text": "%1$s Perk Shop",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "category_name",
+          "example": "Fishing Festival",
+          "desc": "限时活动名,走词表"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s天赋商店"
+    },
+    {
+      "id": "guide_harp_accuracy",
+      "context": "SkyBlock 指南的任务进度或完成条件",
+      "raw": "§7Complete this song with §a%1$s% §7accuracy!",
+      "text": "Complete this song with %1$s% accuracy!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "90",
+          "desc": "准确率"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "以 %1$s% 的准确率完成这首曲目!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Complete this song with ",
+          "zh": "以 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s% ",
+          "zh": "%1$s% "
+        },
+        {
+          "color": "§7",
+          "text": "accuracy!",
+          "zh": "的准确率完成这首曲目!"
+        }
+      ]
+    },
+    {
+      "id": "guide_slayer_progress",
+      "context": "SkyBlock 指南的任务进度或完成条件",
+      "raw": "§7Progress to LVL %1$s: §3%2$s%",
+      "text": "Progress to LVL %1$s: %2$s%",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "6",
+          "desc": "目标猎手等级"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "42.5",
+          "desc": "当前进度百分比"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "距等级 %1$s: %2$s%",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Progress to LVL %1$s: ",
+          "zh": "距等级 %1$s: "
+        },
+        {
+          "color": "§3",
+          "text": "%2$s%",
+          "zh": "%2$s%"
+        }
+      ]
+    },
+    {
+      "id": "guide_chapter_progress",
+      "context": "SkyBlock 指南的任务进度或完成条件",
+      "raw": "§7Progress to Chapter %1$s: §b%2$s%",
+      "text": "Progress to Chapter %1$s: %2$s%",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "tier",
+          "example": "VII",
+          "desc": "目标章节"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "33.3",
+          "desc": "章节完成进度"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "距第 %1$s 章: %2$s%",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Progress to Chapter %1$s: ",
+          "zh": "距第 %1$s 章: "
+        },
+        {
+          "color": "§b",
+          "text": "%2$s%",
+          "zh": "%2$s%"
+        }
+      ]
+    },
+    {
+      "id": "guide_slots_progress",
+      "context": "SkyBlock 指南的任务进度或完成条件",
+      "raw": "§7Progress to %1$s Slots: §3%2$s%",
+      "text": "Progress to %1$s Slots: %2$s%",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "2",
+          "desc": "目标格数"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "0",
+          "desc": "进度百分比"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "距 %1$s 格: %2$s%",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Progress to %1$s Slots: ",
+          "zh": "距 %1$s 格: "
+        },
+        {
+          "color": "§3",
+          "text": "%2$s%",
+          "zh": "%2$s%"
+        }
+      ]
+    },
+    {
+      "id": "guide_amount_progress",
+      "context": "SkyBlock 指南的任务进度或完成条件",
+      "raw": "§7Progress to Amount Found: §3%1$s%",
+      "text": "Progress to Amount Found: %1$s%",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "0",
+          "desc": "进度百分比"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "距目标数量: %1$s%",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Progress to Amount Found: ",
+          "zh": "距目标数量: "
+        },
+        {
+          "color": "§3",
+          "text": "%1$s%",
+          "zh": "%1$s%"
+        }
+      ]
+    },
+    {
+      "id": "guide_to_starter",
+      "context": "SkyBlock 指南的任务进度或完成条件",
+      "raw": "§7To Guide ➜ Starter",
+      "text": "To Guide ➜ Starter",
+      "placeholders": [],
+      "gloss": "返回箭头的 Lore,沿用「To X」返回箭头译作「返回X」的写法。",
+      "translate": true,
+      "zh": "返回指南 ➜ 新手"
+    },
+    {
+      "id": "guide_to_amateur",
+      "context": "SkyBlock 指南的任务进度或完成条件",
+      "raw": "§7To Guide ➜ Amateur",
+      "text": "To Guide ➜ Amateur",
+      "placeholders": [],
+      "gloss": "返回箭头的 Lore,沿用「To X」返回箭头译作「返回X」的写法。",
+      "translate": true,
+      "zh": "返回指南 ➜ 入门"
+    },
+    {
+      "id": "guide_to_intermediate",
+      "context": "SkyBlock 指南的任务进度或完成条件",
+      "raw": "§7To Guide ➜ Intermediate",
+      "text": "To Guide ➜ Intermediate",
+      "placeholders": [],
+      "gloss": "返回箭头的 Lore,沿用「To X」返回箭头译作「返回X」的写法。",
+      "translate": true,
+      "zh": "返回指南 ➜ 进阶"
+    },
+    {
+      "id": "guide_click_view_more",
+      "context": "SkyBlock 指南的任务进度或完成条件",
+      "raw": "§eClick to view more!",
+      "text": "Click to view more!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击查看更多!"
+    },
+    {
+      "id": "guide_completed_first",
+      "context": "SkyBlock 指南的任务进度或完成条件",
+      "raw": "§7  Completed Tasks First",
+      "text": "  Completed Tasks First",
+      "placeholders": [],
+      "gloss": "行首两个空格是服务器排版,原样保留。",
+      "translate": true,
+      "zh": "  已完成任务优先"
+    },
+    {
+      "id": "guide_level_up_skills",
+      "context": "SkyBlock 指南的任务进度或完成条件",
+      "raw": "§7Level up your Skills.",
+      "text": "Level up your Skills.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "提升你的技能等级。"
+    },
+    {
+      "id": "guide_craft_minions",
+      "context": "SkyBlock 指南的任务进度或完成条件",
+      "raw": "§7Craft unique §aMinions§7.",
+      "text": "Craft unique Minions.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "制作各种不同的小人。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Craft unique ",
+          "zh": "制作各种不同的"
+        },
+        {
+          "color": "§a",
+          "text": "Minions",
+          "zh": "小人"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "guide_collect_mob_types",
+      "context": "SkyBlock 指南的任务进度或完成条件",
+      "raw": "§7Collect these Mob Types.",
+      "text": "Collect these Mob Types.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "收集这些生物类型。"
+    },
+    {
+      "id": "guide_defeat_slayer_bosses",
+      "context": "SkyBlock 指南的任务进度或完成条件",
+      "raw": "§7Defeat Slayer Bosses.",
+      "text": "Defeat Slayer Bosses.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "击败猎手 Boss。"
+    },
+    {
+      "id": "guide_slay_dragons",
+      "context": "SkyBlock 指南的任务进度或完成条件",
+      "raw": "§7Slay §5Dragons §7on §dThe End§7.",
+      "text": "Slay Dragons on The End.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "在末地猎杀巨龙。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Slay ",
+          "zh": "猎杀",
+          "order": 2
+        },
+        {
+          "color": "§5",
+          "text": "Dragons ",
+          "zh": "巨龙",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "on ",
+          "zh": "在",
+          "order": 0
+        },
+        {
+          "color": "§d",
+          "text": "The End",
+          "zh": "末地",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "guide_stage_name_starter",
+      "context": "SkyBlock 指南主菜单里的阶段名(物品名)",
+      "raw": "§aStarter",
+      "text": "Starter",
+      "placeholders": [],
+      "gloss": "阶段名与银行档次/宾果/山心的同名词条不同义,按指南写死。",
+      "translate": true,
+      "zh": "新手"
+    },
+    {
+      "id": "guide_stage_name_amateur",
+      "context": "SkyBlock 指南主菜单里的阶段名(物品名)",
+      "raw": "§bAmateur",
+      "text": "Amateur",
+      "placeholders": [],
+      "gloss": "阶段名与银行档次/宾果/山心的同名词条不同义,按指南写死。",
+      "translate": true,
+      "zh": "入门"
+    },
+    {
+      "id": "guide_stage_name_intermediate",
+      "context": "SkyBlock 指南主菜单里的阶段名(物品名)",
+      "raw": "§3Intermediate",
+      "text": "Intermediate",
+      "placeholders": [],
+      "gloss": "阶段名与银行档次/宾果/山心的同名词条不同义,按指南写死。",
+      "translate": true,
+      "zh": "进阶"
+    },
+    {
+      "id": "guide_stage_name_skilled",
+      "context": "SkyBlock 指南主菜单里的阶段名(物品名)",
+      "raw": "§9Skilled",
+      "text": "Skilled",
+      "placeholders": [],
+      "gloss": "阶段名与银行档次/宾果/山心的同名词条不同义,按指南写死。",
+      "translate": true,
+      "zh": "技艺精湛"
+    },
+    {
+      "id": "guide_stage_name_expert",
+      "context": "SkyBlock 指南主菜单里的阶段名(物品名)",
+      "raw": "§5Expert",
+      "text": "Expert",
+      "placeholders": [],
+      "gloss": "阶段名与银行档次/宾果/山心的同名词条不同义,按指南写死。",
+      "translate": true,
+      "zh": "专家"
+    },
+    {
+      "id": "guide_stage_name_professional",
+      "context": "SkyBlock 指南主菜单里的阶段名(物品名)",
+      "raw": "§6Professional",
+      "text": "Professional",
+      "placeholders": [],
+      "gloss": "阶段名与银行档次/宾果/山心的同名词条不同义,按指南写死。",
+      "translate": true,
+      "zh": "专业人士"
+    },
+    {
+      "id": "guide_stage_name_master",
+      "context": "SkyBlock 指南主菜单里的阶段名(物品名)",
+      "raw": "§dMaster",
+      "text": "Master",
+      "placeholders": [],
+      "gloss": "阶段名与银行档次/宾果/山心的同名词条不同义,按指南写死。",
+      "translate": true,
+      "zh": "大师"
+    },
+    {
+      "id": "guide_phase_new_player",
+      "context": "SkyBlock 指南主菜单里各阶段的灰色副标题",
+      "raw": "§8New Player",
+      "text": "New Player",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "新玩家"
+    },
+    {
+      "id": "guide_phase_very_early_game",
+      "context": "SkyBlock 指南主菜单里各阶段的灰色副标题",
+      "raw": "§8Very Early Game",
+      "text": "Very Early Game",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "极早期"
+    },
+    {
+      "id": "guide_phase_early_game",
+      "context": "SkyBlock 指南主菜单里各阶段的灰色副标题",
+      "raw": "§8Early Game",
+      "text": "Early Game",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "前期"
+    },
+    {
+      "id": "guide_phase_mid_game",
+      "context": "SkyBlock 指南主菜单里各阶段的灰色副标题",
+      "raw": "§8Mid Game",
+      "text": "Mid Game",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "中期"
+    },
+    {
+      "id": "guide_phase_late_game",
+      "context": "SkyBlock 指南主菜单里各阶段的灰色副标题",
+      "raw": "§8Late Game",
+      "text": "Late Game",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "后期"
+    },
+    {
+      "id": "guide_phase_very_late_game",
+      "context": "SkyBlock 指南主菜单里各阶段的灰色副标题",
+      "raw": "§8Very Late Game",
+      "text": "Very Late Game",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "极后期"
+    },
+    {
+      "id": "guide_phase_end_game",
+      "context": "SkyBlock 指南主菜单里各阶段的灰色副标题",
+      "raw": "§8End Game",
+      "text": "End Game",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "终局"
+    },
+    {
+      "id": "guide_header_skills",
+      "context": "SkyBlock 指南子菜单的分类条目名(勾叉由引擎剥离后查这里)",
+      "raw": "Skills",
+      "text": "Skills",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "技能"
+    },
+    {
+      "id": "guide_header_slayer",
+      "context": "SkyBlock 指南子菜单的分类条目名(勾叉由引擎剥离后查这里)",
+      "raw": "Slayer",
+      "text": "Slayer",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "猎手"
+    },
+    {
+      "id": "guide_header_accessories",
+      "context": "SkyBlock 指南子菜单的分类条目名(勾叉由引擎剥离后查这里)",
+      "raw": "Accessories",
+      "text": "Accessories",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "饰品"
+    },
+    {
+      "id": "guide_header_pets",
+      "context": "SkyBlock 指南子菜单的分类条目名(勾叉由引擎剥离后查这里)",
+      "raw": "Pets",
+      "text": "Pets",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "宠物"
+    },
+    {
+      "id": "guide_header_collections",
+      "context": "SkyBlock 指南子菜单的分类条目名(勾叉由引擎剥离后查这里)",
+      "raw": "Collections",
+      "text": "Collections",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "收藏品"
+    },
+    {
+      "id": "guide_header_minions",
+      "context": "SkyBlock 指南子菜单的分类条目名(勾叉由引擎剥离后查这里)",
+      "raw": "Minions",
+      "text": "Minions",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "小人"
+    },
+    {
+      "id": "guide_header_mob_types",
+      "context": "SkyBlock 指南子菜单的分类条目名(勾叉由引擎剥离后查这里)",
+      "raw": "Mob Types",
+      "text": "Mob Types",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "生物类型"
+    },
+    {
+      "id": "guide_header_museum_donations",
+      "context": "SkyBlock 指南子菜单的分类条目名(勾叉由引擎剥离后查这里)",
+      "raw": "Museum Donations",
+      "text": "Museum Donations",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "博物馆捐赠"
+    },
+    {
+      "id": "guide_header_dragons",
+      "context": "SkyBlock 指南子菜单的分类条目名(勾叉由引擎剥离后查这里)",
+      "raw": "Dragons",
+      "text": "Dragons",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "巨龙"
+    },
+    {
+      "id": "guide_header_slayer_bosses",
+      "context": "SkyBlock 指南子菜单的分类条目名(勾叉由引擎剥离后查这里)",
+      "raw": "Slayer Bosses",
+      "text": "Slayer Bosses",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "猎手 Boss"
+    },
+    {
+      "id": "guide_header_abiphone_contacts",
+      "context": "SkyBlock 指南子菜单的分类条目名(勾叉由引擎剥离后查这里)",
+      "raw": "Abiphone Contacts",
+      "text": "Abiphone Contacts",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Abiphone 联系人"
+    },
+    {
+      "id": "guide_header_trophy_frog",
+      "context": "SkyBlock 指南子菜单的分类条目名(勾叉由引擎剥离后查这里)",
+      "raw": "Trophy Frog",
+      "text": "Trophy Frog",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "锦标蛙"
+    },
+    {
+      "id": "guide_header_moonglade_beacon",
+      "context": "SkyBlock 指南子菜单的分类条目名(勾叉由引擎剥离后查这里)",
+      "raw": "Moonglade Beacon",
+      "text": "Moonglade Beacon",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "月光信标"
+    },
+    {
+      "id": "guide_header_ship_parts",
+      "context": "SkyBlock 指南子菜单的分类条目名(勾叉由引擎剥离后查这里)",
+      "raw": "Ship Parts",
+      "text": "Ship Parts",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "船只部件"
+    },
+    {
+      "id": "guide_header_harp_songs",
+      "context": "SkyBlock 指南子菜单的分类条目名(勾叉由引擎剥离后查这里)",
+      "raw": "Harp Songs",
+      "text": "Harp Songs",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "竖琴曲目"
+    },
+    {
+      "id": "guide_header_obtain_all_the_rift_timecharms",
+      "context": "SkyBlock 指南子菜单的分类条目名(勾叉由引擎剥离后查这里)",
+      "raw": "Obtain all the Rift Timecharms",
+      "text": "Obtain all the Rift Timecharms",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "收集所有裂隙时光符"
+    },
+    {
+      "id": "guide_header_finish_the_rift_guide",
+      "context": "SkyBlock 指南子菜单的分类条目名(勾叉由引擎剥离后查这里)",
+      "raw": "Finish the Rift Guide",
+      "text": "Finish the Rift Guide",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "完成裂隙指南"
+    },
+    {
+      "id": "guide_header_rock_pet_milestone",
+      "context": "SkyBlock 指南子菜单的分类条目名(勾叉由引擎剥离后查这里)",
+      "raw": "Rock Pet Milestone",
+      "text": "Rock Pet Milestone",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "岩石宠物里程碑"
+    },
+    {
+      "id": "guide_header_dolphin_pet_milestone",
+      "context": "SkyBlock 指南子菜单的分类条目名(勾叉由引擎剥离后查这里)",
+      "raw": "Dolphin Pet Milestone",
+      "text": "Dolphin Pet Milestone",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "海豚宠物里程碑"
+    },
+    {
+      "id": "guide_header_dna_analysis_milestones",
+      "context": "SkyBlock 指南子菜单的分类条目名(勾叉由引擎剥离后查这里)",
+      "raw": "DNA Analysis Milestones",
+      "text": "DNA Analysis Milestones",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "DNA 分析里程碑"
+    },
+    {
+      "id": "guide_header_dragon_essence_shop",
+      "context": "SkyBlock 指南子菜单的分类条目名(勾叉由引擎剥离后查这里)",
+      "raw": "Dragon Essence Shop",
+      "text": "Dragon Essence Shop",
+      "placeholders": [],
+      "gloss": "Undead/Wither 两家已在 Dungeons/GUI_Item/Malik.json;词表里同名 category_name 词条译名必须一致。",
+      "translate": true,
+      "zh": "巨龙精华商店"
+    },
+    {
+      "id": "guide_header_ice_essence_shop",
+      "context": "SkyBlock 指南子菜单的分类条目名(勾叉由引擎剥离后查这里)",
+      "raw": "Ice Essence Shop",
+      "text": "Ice Essence Shop",
+      "placeholders": [],
+      "gloss": "Undead/Wither 两家已在 Dungeons/GUI_Item/Malik.json;词表里同名 category_name 词条译名必须一致。",
+      "translate": true,
+      "zh": "冰霜精华商店"
+    },
+    {
+      "id": "guide_header_spider_essence_shop",
+      "context": "SkyBlock 指南子菜单的分类条目名(勾叉由引擎剥离后查这里)",
+      "raw": "Spider Essence Shop",
+      "text": "Spider Essence Shop",
+      "placeholders": [],
+      "gloss": "Undead/Wither 两家已在 Dungeons/GUI_Item/Malik.json;词表里同名 category_name 词条译名必须一致。",
+      "translate": true,
+      "zh": "蜘蛛精华商店"
+    },
+    {
+      "id": "guide_header_forest_essence_shop",
+      "context": "SkyBlock 指南子菜单的分类条目名(勾叉由引擎剥离后查这里)",
+      "raw": "Forest Essence Shop",
+      "text": "Forest Essence Shop",
+      "placeholders": [],
+      "gloss": "Undead/Wither 两家已在 Dungeons/GUI_Item/Malik.json;词表里同名 category_name 词条译名必须一致。",
+      "translate": true,
+      "zh": "森林精华商店"
+    },
+    {
+      "id": "guide_header_gold_essence_shop",
+      "context": "SkyBlock 指南子菜单的分类条目名(勾叉由引擎剥离后查这里)",
+      "raw": "Gold Essence Shop",
+      "text": "Gold Essence Shop",
+      "placeholders": [],
+      "gloss": "Undead/Wither 两家已在 Dungeons/GUI_Item/Malik.json;词表里同名 category_name 词条译名必须一致。",
+      "translate": true,
+      "zh": "黄金精华商店"
+    },
+    {
+      "id": "guide_header_diamond_essence_shop",
+      "context": "SkyBlock 指南子菜单的分类条目名(勾叉由引擎剥离后查这里)",
+      "raw": "Diamond Essence Shop",
+      "text": "Diamond Essence Shop",
+      "placeholders": [],
+      "gloss": "Undead/Wither 两家已在 Dungeons/GUI_Item/Malik.json;词表里同名 category_name 词条译名必须一致。",
+      "translate": true,
+      "zh": "钻石精华商店"
+    },
+    {
+      "id": "guide_header_crimson_essence_shop",
+      "context": "SkyBlock 指南子菜单的分类条目名(勾叉由引擎剥离后查这里)",
+      "raw": "Crimson Essence Shop",
+      "text": "Crimson Essence Shop",
+      "placeholders": [],
+      "gloss": "Undead/Wither 两家已在 Dungeons/GUI_Item/Malik.json;词表里同名 category_name 词条译名必须一致。",
+      "translate": true,
+      "zh": "绯红精华商店"
+    }
+  ]
+}

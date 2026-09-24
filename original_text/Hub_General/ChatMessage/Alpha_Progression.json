@@ -71,19 +71,24 @@
       "id": "alpha_bug_report",
       "context": "Centauri 实测菜单或消息",
       "text": "ALPHA! Please report bugs at https://hypixel.net/bugs",
-      "raw": "§eALPHA! Please report bugs at §bhttps://hypixel.net/bugs",
+      "raw": "§a§lALPHA! §ePlease report bugs at §e§nhttps://hypixel.net/bugs",
       "placeholders": [],
       "gloss": "",
       "translate": true,
       "zh": "Alpha 测试! 请在此反馈问题: https://hypixel.net/bugs",
       "segments": [
         {
-          "color": "§e",
-          "text": "ALPHA! Please report bugs at ",
-          "zh": "Alpha 测试! 请在此反馈问题: "
+          "color": "§a§l",
+          "text": "ALPHA! ",
+          "zh": "Alpha 测试! "
         },
         {
-          "color": "§b",
+          "color": "§e",
+          "text": "Please report bugs at ",
+          "zh": "请在此反馈问题: "
+        },
+        {
+          "color": "§e§n",
           "text": "https://hypixel.net/bugs",
           "zh": "https://hypixel.net/bugs"
         }
@@ -288,18 +293,24 @@
       "id": "alpha_cookie_eaten",
       "context": "Booster_Cookie 实测菜单或消息",
       "text": "You consumed a Booster Cookie! %s!",
-      "raw": "§aYou consumed a Booster Cookie! %s!",
+      "raw": "§eYou consumed a §6Booster Cookie§e! §d%s!",
       "placeholders": [
         {
           "token": "%s",
-          "type": "category_name",
+          "type": "cookie_reaction",
           "example": "Yummy",
-          "desc": "category_name 动态值"
+          "desc": "食用曲奇后的随机感叹，独立词表避免与重铸名和稀有度混用"
         }
       ],
       "gloss": "",
       "translate": true,
-      "zh": "你吃下了一块增益曲奇! %s!"
+      "zh": "你吃下了一块增益曲奇! %s!",
+      "segments": [
+        { "color": "§e", "text": "You consumed a ", "zh": "你吃下了一块" },
+        { "color": "§6", "text": "Booster Cookie", "zh": "增益曲奇" },
+        { "color": "§e", "text": "! ", "zh": "! " },
+        { "color": "§d", "text": "%s!", "zh": "%s!" }
+      ]
     },
     {
       "id": "upgrade_skip_gems",

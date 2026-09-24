@@ -21,6 +21,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Stream;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
+import net.minecraft.network.chat.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -193,10 +194,56 @@ public final class TranslationLoader {
 			}
 		}
 
+		TermTable baseTerms = index.terms();
+		index.terms(baseTerms.withItemNames(itemNames(index), english -> {
+			// Name templates cover real catalog items such as Basic Cow Axe. Never apply a menu or
+			// lore template to an unknown captured name, and render with the non-recursive base table.
+			if (ItemNames.canonical(english) == null) return null;
+			TranslationEntry entry = index.lookup(Surface.ITEM, english);
+			if (entry == null || entry.continuation()) return null;
+			Matcher match = entry.match(english);
+			if (match == null) return null;
+			String chinese = entry.render(StyledText.of(Component.literal(english)), match, baseTerms).getString();
+			return chinese.isEmpty() || chinese.equals(english) ? null : chinese;
+		}));
+
 		LOGGER.info("SkyZH 已加载 {} 个翻译文件，可用记录 {} 条（{} 条尚未翻译或不需要翻译，保持英文）。",
 			files.size(), compiled, skipped);
 
 		return index;
+	}
+
+	/**
+	 * English to Chinese for every exact (placeholder-free) item-surface record that actually changes
+	 * its line, so a {@code guide_item_name} placeholder can show the same name the item's own line shows.
+	 * Rendered through the record itself, which is what makes segments, {@code ref}s and the SkyBlock
+	 * name substitution come out the same as on the item.
+	 */
+	private static Map<String, String> itemNames(TranslationIndex index) {
+		Map<String, String> names = new HashMap<>();
+
+		for (TranslationEntry entry : index.entries(Surface.ITEM)) {
+			String english = entry.template();
+
+			if (english.indexOf('%') >= 0 || entry.continuation() || english.isBlank()
+				|| english.length() > 64 || !english.trim().equals(english)) {
+				continue;
+			}
+
+			Matcher match = entry.match(english);
+
+			if (match == null) {
+				continue;
+			}
+
+			String chinese = entry.render(StyledText.of(Component.literal(english)), match, index.terms()).getString();
+
+			if (!chinese.isEmpty() && !chinese.equals(english)) {
+				names.putIfAbsent(english, chinese);
+			}
+		}
+
+		return names;
 	}
 
 	/**
