@@ -1,0 +1,256 @@
+{
+  "source": "runtime capture (SkyZH), logs/skyzh-capture 2026-09-25; https://hypixelskyblock.minecraft.wiki/w/Dojo",
+  "fetched_at": "2026-09-25",
+  "verified_ingame": true,
+  "note": "绯红岛道场(Dojo)浮空字翻译。采集器在实测中将各项目合并为了 Test of %1$s 模板，并在 observed 中记录了具体项目；此处配置对应模板与各浮空字组件。",
+  "lines": [
+    {
+      "id": "dojo_test_of_challenge",
+      "context": "道场上方挑战名浮空字",
+      "raw": "Test of %1$s",
+      "text": "Test of %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "道场项目名，走 Terms 查表",
+          "type": "category_name",
+          "example": "Force"
+        }
+      ],
+      "gloss": "道场项目浮空字。例如 Test of Force -> 力量试炼。在 Terms 中 Force 对应 力量。",
+      "translate": true,
+      "zh": "%1$s试炼"
+    },
+    {
+      "id": "dojo_holo_points",
+      "context": "道场挑战上方得分浮空字",
+      "raw": "§6Points: §a%1$s",
+      "text": "Points: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "当前挑战得分",
+          "type": "number",
+          "example": "0"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "得分: %1$s",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Points: ",
+          "zh": "得分: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ]
+    },
+    {
+      "id": "dojo_holo_time",
+      "context": "道场挑战上方计时浮空字",
+      "raw": "§6Time: §b%1$s",
+      "text": "Time: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "耗时格式 (分:秒)",
+          "type": "raw",
+          "example": "00:00"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "时间: %1$s",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Time: ",
+          "zh": "时间: "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ]
+    },
+    {
+      "id": "dojo_holo_punch",
+      "context": "道场内出拳/击打提示浮空字",
+      "raw": "§c§lPunch!",
+      "text": "Punch!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "出拳!",
+      "segments": [
+        {
+          "color": "§c§l",
+          "text": "Punch!",
+          "zh": "出拳!"
+        }
+      ]
+    },
+    {
+      "id": "dojo_holo_pts_gain",
+      "context": "道场击中目标得分浮动标签",
+      "raw": "§2 §c%1$s pts",
+      "text": " %1$s pts",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "得分增量数字",
+          "type": "number",
+          "example": "10"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": " %1$s 分",
+      "segments": [
+        {
+          "color": "§2",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s pts",
+          "zh": "%1$s 分"
+        }
+      ]
+    },
+    {
+      "id": "dojo_holo_pts_loss",
+      "context": "道场失误扣分浮动标签",
+      "raw": "§2 §c-30 pts",
+      "text": " -30 pts",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": " -30 分",
+      "segments": [
+        {
+          "color": "§2",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§c",
+          "text": "-30 pts",
+          "zh": "-30 分"
+        }
+      ]
+    },
+    {
+      "id": "dojo_holo_attempt_cooldown_min_sec",
+      "context": "道场挑战冷却倒计时(分秒)",
+      "raw": "§cAttempt Cooldown: %1$sm %2$ss",
+      "text": "Attempt Cooldown: %1$sm %2$ss",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "分钟数",
+          "type": "number",
+          "example": "9"
+        },
+        {
+          "token": "%2$s",
+          "desc": "秒数",
+          "type": "number",
+          "example": "59"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "挑战冷却: %1$s分 %2$s秒"
+    },
+    {
+      "id": "dojo_holo_attempt_cooldown_9m",
+      "context": "道场挑战冷却倒计时(9分固定前缀)",
+      "raw": "§cAttempt Cooldown: 9m %1$ss",
+      "text": "Attempt Cooldown: 9m %1$ss",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "秒数",
+          "type": "number",
+          "example": "59"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "挑战冷却: 9分 %1$s秒"
+    },
+    {
+      "id": "dojo_holo_switch_challenge",
+      "context": "道场排行榜上方切换挑战按钮浮空字",
+      "raw": "§6Click to switch challenge!",
+      "text": "Click to switch challenge!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "点击切换挑战!"
+    },
+    {
+      "id": "dojo_holo_empty_arena",
+      "context": "道场无人在挑战时的浮空字状态",
+      "raw": "§bEmpty Arena!",
+      "text": "Empty Arena!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "擂台空闲!"
+    },
+    {
+      "id": "dojo_holo_leaderboard_loading",
+      "context": "道场排行榜加载中占位行",
+      "raw": "§e%1$s. §7Loading ... - §e%2$s",
+      "text": "%1$s. Loading ... - %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "名次数字",
+          "type": "number",
+          "example": "3"
+        },
+        {
+          "token": "%2$s",
+          "desc": "得分数字",
+          "type": "number",
+          "example": "2048"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%1$s. 加载中…… - %2$s",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "%1$s. ",
+          "zh": "%1$s. "
+        },
+        {
+          "color": "§7",
+          "text": "Loading ...",
+          "zh": "加载中……"
+        },
+        {
+          "color": "§7",
+          "text": " - ",
+          "zh": " - "
+        },
+        {
+          "color": "§e",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ]
+    }
+  ]
+}

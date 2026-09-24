@@ -7,18 +7,32 @@
     {
       "id": "mining_chat_crystal_found_progress",
       "context": "水晶残核(Crystal Nucleus)拼图进度提示",
-      "text": "✦ CRYSTAL FOUND (%s/5)",
+      "raw": "§5§l✦ CRYSTAL FOUND §7(%1$s)",
+      "text": "✦ CRYSTAL FOUND (%1$s)",
+      "layout": "center_chat_banner",
       "placeholders": [
         {
-          "token": "%s",
-          "desc": "已找到的水晶碎片数量",
-          "type": "number",
-          "example": "3"
+          "token": "%1$s",
+          "desc": "已找到的水晶碎片数量进度",
+          "type": "raw",
+          "example": "3/5"
         }
       ],
-      "gloss": "",
+      "gloss": "居中横幅；使用 center_chat_banner 排版。",
       "translate": true,
-      "zh": "✦ 发现水晶 (%s/5)"
+      "zh": "✦ 发现水晶 (%1$s)",
+      "segments": [
+        {
+          "color": "§5§l",
+          "text": "✦ CRYSTAL FOUND ",
+          "zh": "✦ 发现水晶 "
+        },
+        {
+          "color": "§7",
+          "text": "(%1$s)",
+          "zh": "(%1$s)"
+        }
+      ]
     },
     {
       "id": "mining_chat_crystal_placed",
@@ -39,6 +53,7 @@
     {
       "id": "mining_chat_metaldetector_found",
       "context": "金属探测器找到战利品时的提示",
+      "raw": "§aYou found §c%s §awith your §cMetal Detector§a!",
       "text": "You found %s with your Metal Detector!",
       "placeholders": [
         {
@@ -48,9 +63,41 @@
           "example": "a Treasurite"
         }
       ],
-      "gloss": "",
+      "gloss": "语序调换：英文将物品置前、金属探测器置后；中文语序为“你的金属探测器找到了 %s！”，使用 segments 配合 order 保证颜色正确归位。",
       "translate": true,
-      "zh": "你的金属探测器找到了 %s!"
+      "zh": "你的金属探测器找到了 %s!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "You found ",
+          "zh": "找到了 ",
+          "order": 2
+        },
+        {
+          "color": "§c",
+          "text": "%s",
+          "zh": "%s",
+          "order": 3
+        },
+        {
+          "color": "§a",
+          "text": " with your ",
+          "zh": "你的",
+          "order": 0
+        },
+        {
+          "color": "§c",
+          "text": "Metal Detector",
+          "zh": "金属探测器",
+          "order": 1
+        },
+        {
+          "color": "§a",
+          "text": "!",
+          "zh": "!",
+          "order": 4
+        }
+      ]
     },
     {
       "id": "mining_chat_goblin_guard_exit_1",
@@ -64,11 +111,29 @@
     {
       "id": "mining_chat_goblin_guard_exit_2",
       "context": "离开哥布林王守卫区域时的提示语(两种随机文案之二)",
+      "raw": "§cThe Goblin King's §afoul stench §chas dissipated!",
       "text": "The Goblin King's foul stench has dissipated!",
       "placeholders": [],
       "gloss": "已查证,机制同 mining_chat_goblin_guard_exit_1。Goblin King 是哥布林 NPC King Yolkar 的头衔(不是他的本名),按 GLOSSARY.md “Drill Mechanic” 头衔翻译先例应翻译;为和矮人矿山的 King(译“国王”,见 NPC_Message/King.json)区分,译作“哥布林王”。",
       "translate": true,
-      "zh": "「哥布林王」的臭味已经散去了!"
+      "zh": "「哥布林王」的恶臭已经散去了!",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "The Goblin King's ",
+          "zh": "「哥布林王」的"
+        },
+        {
+          "color": "§a",
+          "text": "foul stench ",
+          "zh": "恶臭"
+        },
+        {
+          "color": "§c",
+          "text": "has dissipated!",
+          "zh": "已经散去了!"
+        }
+      ]
     },
     {
       "id": "mining_chat_bal_obtained",

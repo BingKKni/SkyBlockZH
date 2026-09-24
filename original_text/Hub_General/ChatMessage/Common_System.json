@@ -522,6 +522,40 @@
       ]
     },
     {
+      "id": "common_death_by_thunder",
+      "context": "任何玩家被闪电劈死时的全区广播",
+      "raw": "§c☠ §b%s§7 was killed by Thunder.",
+      "text": "☠ %s was killed by Thunder.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "死者的玩家名,保留原样",
+          "type": "player_name",
+          "example": "Privern"
+        }
+      ],
+      "gloss": "用户拍板硬规则：不能翻译成“被雷霆杀死了”，雷霆容易联想到网络梗（“笑一下算雷霆半顶”），统一改为“☠ %s 被闪电劈死了。”。",
+      "translate": true,
+      "zh": "☠ %s 被闪电劈死了。",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "☠ ",
+          "zh": "☠ "
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": " was killed by Thunder.",
+          "zh": " 被闪电劈死了。"
+        }
+      ]
+    },
+    {
       "id": "common_death_frozen",
       "context": "任何玩家被冻死时的全区广播",
       "raw": "§c☠ §b%s§7 froze to death.",

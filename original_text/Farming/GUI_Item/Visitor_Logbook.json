@@ -2183,6 +2183,91 @@
       "gloss": "NPC 人名 / 专有物品名,保留英文。",
       "translate": false,
       "zh": ""
+    },
+    {
+      "id": "visitor_logbook_req_garden_level",
+      "context": "访客解锁要求: 花园等级未达标",
+      "raw": "§c✖ Garden Level %1$s",
+      "text": "✖ Garden Level %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "等级数字",
+          "type": "raw",
+          "example": "12"
+        }
+      ],
+      "gloss": "用户拍板硬规则：要求不能写“花园 Level 12”，应为“花园等级 12”或“花园等级 12 级”。",
+      "translate": true,
+      "zh": "✖ 花园等级 %1$s 级"
+    },
+    {
+      "id": "visitor_logbook_req_garden_level_met",
+      "context": "访客解锁要求: 花园等级已达标",
+      "raw": "§a✔ Garden Level %1$s",
+      "text": "✔ Garden Level %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "等级数字",
+          "type": "raw",
+          "example": "12"
+        }
+      ],
+      "gloss": "用户拍板硬规则：要求不能写“花园 Level 12”，应为“花园等级 12”或“花园等级 12 级”。",
+      "translate": true,
+      "zh": "✔ 花园等级 %1$s 级"
+    },
+    {
+      "id": "visitor_logbook_garden_level_line",
+      "context": "访客解锁要求: 无勾叉前缀的花园等级文本",
+      "raw": "Garden Level %1$s",
+      "text": "Garden Level %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "等级数字",
+          "type": "raw",
+          "example": "12"
+        }
+      ],
+      "gloss": "用户拍板硬规则：要求不能写“花园 Level 12”，应为“花园等级 12”或“花园等级 12 级”。",
+      "translate": true,
+      "zh": "花园等级 %1$s 级"
+    },
+    {
+      "id": "visitor_logbook_req_talk_to_npc",
+      "context": "访客解锁要求: 与指定 NPC 交谈",
+      "raw": "§c✖ Talk to the %1$s",
+      "text": "✖ Talk to the %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "NPC 名字",
+          "type": "npc_name",
+          "example": "Spaceman"
+        }
+      ],
+      "gloss": "NPC 名字保留英文。",
+      "translate": true,
+      "zh": "✖ 与 %1$s 交谈"
+    },
+    {
+      "id": "visitor_logbook_req_talk_to_npc_met",
+      "context": "访客解锁要求: 已与指定 NPC 交谈",
+      "raw": "§a✔ Talk to the %1$s",
+      "text": "✔ Talk to the %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "NPC 名字",
+          "type": "npc_name",
+          "example": "Spaceman"
+        }
+      ],
+      "gloss": "NPC 名字保留英文。",
+      "translate": true,
+      "zh": "✔ 与 %1$s 交谈"
     }
   ]
 }
