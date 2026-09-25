@@ -345,8 +345,9 @@ public final class TranslationEntry {
 			}
 
 			// Not a letter, so it cannot be part of a word: punctuation, a space, an icon.
-			regex.append(Pattern.quote(literal.substring(i, i + 1)));
-			i++;
+			int step = Character.isHighSurrogate(literal.charAt(i)) && i + 1 < literal.length() ? 2 : 1;
+			regex.append(Pattern.quote(literal.substring(i, i + step)));
+			i += step;
 		}
 
 		return regex.toString();
