@@ -35,7 +35,7 @@
       "id": "detail_feeding_this_to_your_pets_gives_them_a_boost_of_s_exp_",
       "context": "Centauri 实测菜单或消息",
       "text": "Feeding this to your pets gives them a boost of %s Exp!",
-      "raw": "§7Feeding this to your pets gives them a boost of %s Exp!",
+      "raw": "§7Feeding this to your pets gives them §7a boost of §a%s Exp§7!",
       "placeholders": [
         {
           "token": "%s",
@@ -46,7 +46,13 @@
       ],
       "gloss": "",
       "translate": true,
-      "zh": "喂给宠物后,宠物获得 %s 点经验!"
+      "zh": "喂给宠物后，使宠物获得额外 %s 点经验!",
+      "segments": [
+        {"color":"§7","text":"Feeding this to your pets gives them ","zh":"喂给宠物后，使宠物"},
+        {"color":"§7","text":"a boost of ","zh":"获得额外 "},
+        {"color":"§a","text":"%s Exp","zh":"%s 点经验"},
+        {"color":"§7","text":"!","zh":"!"}
+      ]
     },
     {
       "id": "detail_fragile_and_dry_it_crumbles_with_the_slightest_touch_",
