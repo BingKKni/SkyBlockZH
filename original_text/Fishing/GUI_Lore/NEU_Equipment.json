@@ -1,9 +1,4 @@
 {
-  "source": "https://github.com/NotEnoughUpdates/NotEnoughUpdates-REPO/tree/ac1ac1a93cc7ef39ed0f6d3c067a489eb2d2c137/items",
-  "fetched_at": "2026-09-09",
-  "verified_ingame": false,
-  "neu_commit": "ac1ac1a93cc7ef39ed0f6d3c067a489eb2d2c137",
-  "note": "完整 Lore 句子按 GUI_Lore 专用渲染面匹配，不参与物品名翻译。颜色和数值均取自服务器；NEU 与 Wiki 不一致的机制以条目 gloss 为准，未确认内容不加入。",
   "lines": [
     {
       "id": "neu_985c1be2606a",
@@ -87,37 +82,36 @@
         "VOLCANIC_STONEFISH_GOLD",
         "VOLCANIC_STONEFISH_SILVER"
       ],
-      "source": "https://hypixelskyblock.minecraft.wiki/w/Trophy_Fish",
       "segments": [
         {
-          "color": "§7",
           "text": "Bring this to ",
           "zh": "将此物品交给",
-          "order": 0
+          "order": 0,
+          "color": "§7"
         },
         {
-          "color": "§f",
           "text": "Odger ",
           "zh": "Odger",
-          "order": 3
+          "order": 3,
+          "color": "§f"
         },
         {
-          "color": "§7",
           "text": "at the top of the ",
           "zh": "山顶的 ",
-          "order": 2
+          "order": 2,
+          "color": "§7"
         },
         {
-          "color": "§6",
           "text": "Blazing Volcano",
           "zh": "炽焰火山",
-          "order": 1
+          "order": 1,
+          "color": "§6"
         },
         {
-          "color": "§7",
           "text": ".",
           "zh": "。",
-          "order": 4
+          "order": 4,
+          "color": "§7"
         }
       ],
       "samples": [
@@ -189,43 +183,6946 @@
         "WETLANDS_FROG_GOLD",
         "WETLANDS_FROG_SILVER"
       ],
-      "source": "https://hypixelskyblock.minecraft.wiki/w/Trophy_Fish",
       "segments": [
         {
-          "color": "§7",
           "text": "Bring this to ",
           "zh": "将此物品交给",
-          "order": 0
+          "order": 0,
+          "color": "§7"
         },
         {
-          "color": "§2",
           "text": "Researcher Ribery ",
           "zh": "研究员 Ribery",
-          "order": 3
+          "order": 3,
+          "color": "§2"
         },
         {
-          "color": "§7",
           "text": "on the ",
           "zh": "的",
-          "order": 2
+          "order": 2,
+          "color": "§7"
         },
         {
-          "color": "§3",
           "text": "Lotus Atoll",
           "zh": "莲花环礁",
-          "order": 1
+          "order": 1,
+          "color": "§3"
         },
         {
-          "color": "§7",
           "text": ".",
           "zh": "。",
-          "order": 4
+          "order": 4,
+          "color": "§7"
         }
       ],
       "samples": [
         [
           "§7Bring this to §2Researcher Ribery §7on",
           "§7the §3Lotus Atoll§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_10fdf902f0c3",
+      "context": "物品 Lore 整句；BASIC_FISHING_NET",
+      "raw": "§7Throw your fishing net at swimming §7fish to catch them! §8Cooldown: §a%ss",
+      "text": "Throw your fishing net at swimming fish to catch them! Cooldown: %ss",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "0.5"
+        }
+      ],
+      "translate": true,
+      "zh": "向游动的鱼投掷捕鱼网以捕获它们！冷却时间： %s 秒",
+      "source_items": [
+        "BASIC_FISHING_NET",
+        "GIGANTIC_FISHING_NET",
+        "MEDIUM_FISHING_NET",
+        "TURBO_FISHING_NET"
+      ],
+      "segments": [
+        {
+          "text": "Throw your fishing net at swimming ",
+          "zh": "向游动的鱼投掷捕鱼网以",
+          "color": "§7"
+        },
+        {
+          "text": "fish to catch them! ",
+          "zh": "捕获它们！",
+          "color": "§7"
+        },
+        {
+          "text": "Cooldown: ",
+          "zh": "冷却时间： ",
+          "color": "§8"
+        },
+        {
+          "text": "%ss",
+          "zh": "%s 秒",
+          "color": "§a"
+        }
+      ],
+      "samples": [
+        [
+          "§7Throw your fishing net at swimming",
+          "§7fish to catch them!",
+          "§8Cooldown: §a0.5s"
+        ]
+      ]
+    },
+    {
+      "id": "neu_ed2dcc171135",
+      "context": "物品 Lore 整句；BLESSED_BAIT",
+      "raw": "§7Increases the chance for §6Treasure §7catches to be §6§lGREAT §7or §d§lOUTSTANDING §7by §a%s§7.",
+      "text": "Increases the chance for Treasure catches to be GREAT or OUTSTANDING by %s.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "50%"
+        }
+      ],
+      "translate": true,
+      "zh": "钓起的 宝藏 升级为 极佳 或 卓越 的几率提升 %s。",
+      "source_items": [
+        "BLESSED_BAIT"
+      ],
+      "segments": [
+        {
+          "text": "Increases the chance for ",
+          "zh": "升级为 ",
+          "order": 2,
+          "color": "§7"
+        },
+        {
+          "text": "Treasure ",
+          "zh": "宝藏 ",
+          "order": 1,
+          "color": "§6"
+        },
+        {
+          "text": "catches to be ",
+          "zh": "钓起的 ",
+          "order": 0,
+          "color": "§7"
+        },
+        {
+          "text": "GREAT ",
+          "zh": "极佳 ",
+          "order": 3,
+          "color": "§6§l"
+        },
+        {
+          "text": "or ",
+          "zh": "或 ",
+          "order": 4,
+          "color": "§7"
+        },
+        {
+          "text": "OUTSTANDING ",
+          "zh": "卓越 ",
+          "order": 5,
+          "color": "§d§l"
+        },
+        {
+          "text": "by ",
+          "zh": "的几率提升 ",
+          "order": 6,
+          "color": "§7"
+        },
+        {
+          "text": "%s",
+          "zh": "%s",
+          "order": 7,
+          "color": "§a"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "order": 8,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Increases the chance for §6Treasure",
+          "§7catches to be §6§lGREAT §7or",
+          "§d§lOUTSTANDING §7by §a50%§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_fa5545ae7e7f",
+      "context": "物品 Lore 整句；BLIZZARD_BOTTLE",
+      "raw": "§7Consume to start a §fBlizzard §7while in §cJerry's Workshop §7or the §bGlacite §bTunnels§7, lasting for §a%s minutes§7!",
+      "text": "Consume to start a Blizzard while in Jerry's Workshop or the Glacite Tunnels, lasting for %s minutes!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "10"
+        }
+      ],
+      "translate": true,
+      "zh": "身处 Jerry 的工坊 或 冰川隧道 时使用，可引发 暴风雪，持续 %s 分钟！",
+      "source_items": [
+        "BLIZZARD_BOTTLE"
+      ],
+      "segments": [
+        {
+          "text": "Consume to start a ",
+          "zh": "时使用，可引发 ",
+          "order": 5,
+          "color": "§7"
+        },
+        {
+          "text": "Blizzard ",
+          "zh": "暴风雪",
+          "order": 6,
+          "color": "§f"
+        },
+        {
+          "text": "while in ",
+          "zh": "身处 ",
+          "order": 0,
+          "color": "§7"
+        },
+        {
+          "text": "Jerry's Workshop ",
+          "zh": "Jerry 的工坊 ",
+          "order": 1,
+          "color": "§c"
+        },
+        {
+          "text": "or the ",
+          "zh": "或 ",
+          "order": 2,
+          "color": "§7"
+        },
+        {
+          "text": "Glacite ",
+          "zh": "冰川",
+          "order": 3,
+          "color": "§b"
+        },
+        {
+          "text": "Tunnels",
+          "zh": "隧道 ",
+          "order": 4,
+          "color": "§b"
+        },
+        {
+          "text": ", lasting for ",
+          "zh": "，持续 ",
+          "order": 7,
+          "color": "§7"
+        },
+        {
+          "text": "%s minutes",
+          "zh": "%s 分钟",
+          "order": 8,
+          "color": "§a"
+        },
+        {
+          "text": "!",
+          "zh": "！",
+          "order": 9,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Consume to start a §fBlizzard §7while in",
+          "§cJerry's Workshop §7or the §bGlacite",
+          "§bTunnels§7, lasting for §a10 minutes§7!"
+        ]
+      ]
+    },
+    {
+      "id": "neu_d8d996f11e17",
+      "context": "物品 Lore 整句；BLIZZARD_BOTTLE",
+      "raw": "§7During a §fBlizzard§7, all players gain §7the following buffs:",
+      "text": "During a Blizzard, all players gain the following buffs:",
+      "placeholders": [],
+      "translate": true,
+      "zh": "暴风雪 期间，所有玩家均获得以下增益：",
+      "source_items": [
+        "BLIZZARD_BOTTLE"
+      ],
+      "segments": [
+        {
+          "text": "During a ",
+          "zh": "",
+          "omit": true,
+          "order": 0,
+          "color": "§7"
+        },
+        {
+          "text": "Blizzard",
+          "zh": "暴风雪",
+          "order": 1,
+          "color": "§f"
+        },
+        {
+          "text": ", all players gain ",
+          "zh": " 期间，所有玩家均获得",
+          "order": 2,
+          "color": "§7"
+        },
+        {
+          "text": "the following buffs:",
+          "zh": "以下增益：",
+          "order": 3,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7During a §fBlizzard§7, all players gain",
+          "§7the following buffs:"
+        ]
+      ]
+    },
+    {
+      "id": "neu_3c91c647ddb1",
+      "context": "物品 Lore 整句；BLIZZARD_BOTTLE",
+      "raw": "§b%1$s☂ Fishing Speed §3%2$sα Sea Creature Chance §6%3$s Treasure Chance §d%4$s Tracking §9%5$s Double Hook Chance",
+      "text": "%1$s☂ Fishing Speed %2$sα Sea Creature Chance %3$s Treasure Chance %4$s Tracking %5$s Double Hook Chance",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "+25"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "+5"
+        },
+        {
+          "token": "%3$s",
+          "type": "number",
+          "example": "+5"
+        },
+        {
+          "token": "%4$s",
+          "type": "number",
+          "example": "+2.5"
+        },
+        {
+          "token": "%5$s",
+          "type": "number",
+          "example": "+1"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s ☂ 钓鱼速度 %2$s α 海洋生物几率 %3$s  寻宝几率 %4$s  追踪 %5$s  双钩几率",
+      "source_items": [
+        "BLIZZARD_BOTTLE"
+      ],
+      "segments": [
+        {
+          "text": "%1$s☂ Fishing Speed ",
+          "zh": "%1$s ☂ 钓鱼速度 ",
+          "color": "§b"
+        },
+        {
+          "text": "%2$sα Sea Creature Chance ",
+          "zh": "%2$s α 海洋生物几率 ",
+          "color": "§3"
+        },
+        {
+          "text": "%3$s Treasure Chance ",
+          "zh": "%3$s  寻宝几率 ",
+          "color": "§6"
+        },
+        {
+          "text": "%4$s Tracking ",
+          "zh": "%4$s  追踪 ",
+          "color": "§d"
+        },
+        {
+          "text": "%5$s Double Hook Chance",
+          "zh": "%5$s  双钩几率",
+          "color": "§9"
+        }
+      ],
+      "samples": [
+        [
+          "§b+25☂ Fishing Speed",
+          "§3+5α Sea Creature Chance",
+          "§6+5 Treasure Chance",
+          "§d+2.5 Tracking",
+          "§9+1 Double Hook Chance"
+        ]
+      ]
+    },
+    {
+      "id": "neu_0a5f87908c28",
+      "context": "物品 Lore 整句；BLUE_SHARK_TOOTH",
+      "raw": "§7Dropped by a Shark during Fishing §7Festival.",
+      "text": "Dropped by a Shark during Fishing Festival.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "在钓鱼节日期间由鲨鱼掉落。",
+      "source_items": [
+        "BLUE_SHARK_TOOTH",
+        "GREAT_WHITE_SHARK_TOOTH",
+        "NURSE_SHARK_TOOTH",
+        "SHARK_FIN",
+        "TIGER_SHARK_TOOTH"
+      ],
+      "samples": [
+        [
+          "§7Dropped by a Shark during Fishing",
+          "§7Festival."
+        ]
+      ]
+    },
+    {
+      "id": "neu_3507e3b14bc6",
+      "context": "物品 Lore 整句；BRINE_TONIC",
+      "raw": "§7Grants §b%s❣ Charm Chance §7on §2Moonglade Marsh Sea Creatures §7and §6Torrhus Canyon Sea Creatures§7.",
+      "text": "Grants %s❣ Charm Chance on Moonglade Marsh Sea Creatures and Torrhus Canyon Sea Creatures.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "2.75"
+        }
+      ],
+      "translate": true,
+      "zh": "对 月林沼泽海洋生物 与 托鲁斯峡谷海洋生物 提供 %s ❣ 魅惑几率。",
+      "source_items": [
+        "BRINE_TONIC"
+      ],
+      "segments": [
+        {
+          "text": "Grants ",
+          "zh": "提供 ",
+          "order": 4,
+          "color": "§7"
+        },
+        {
+          "text": "%s❣ Charm Chance ",
+          "zh": "%s ❣ 魅惑几率",
+          "order": 5,
+          "color": "§b"
+        },
+        {
+          "text": "on ",
+          "zh": "对 ",
+          "order": 0,
+          "color": "§7"
+        },
+        {
+          "text": "Moonglade Marsh Sea Creatures ",
+          "zh": "月林沼泽海洋生物 ",
+          "order": 1,
+          "color": "§2"
+        },
+        {
+          "text": "and ",
+          "zh": "与 ",
+          "order": 2,
+          "color": "§7"
+        },
+        {
+          "text": "Torrhus Canyon Sea Creatures",
+          "zh": "托鲁斯峡谷海洋生物 ",
+          "order": 3,
+          "color": "§6"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "order": 6,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants §b2.75❣ Charm Chance §7on",
+          "§2Moonglade Marsh Sea Creatures §7and",
+          "§6Torrhus Canyon Sea Creatures§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_1e6a9727010b",
+      "context": "物品 Lore 整句；BRINE_TONIC",
+      "raw": "§eLeft-click to consume!",
+      "text": "Left-click to consume!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "左键点击使用！",
+      "source_items": [
+        "BRINE_TONIC",
+        "OCEANDY"
+      ],
+      "samples": [
+        [
+          "§eLeft-click to consume!"
+        ]
+      ]
+    },
+    {
+      "id": "neu_d000383b460c",
+      "context": "物品 Lore 整句；BRONZE_SHIP_ENGINE",
+      "raw": "§7Bring this item to §6Captain Baha§7.",
+      "text": "Bring this item to Captain Baha.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "将此物品交给 Captain Baha。",
+      "source_items": [
+        "BRONZE_SHIP_ENGINE",
+        "BRONZE_SHIP_HELM",
+        "BRONZE_SHIP_HULL"
+      ],
+      "segments": [
+        {
+          "text": "Bring this item to ",
+          "zh": "将此物品交给 ",
+          "color": "§7"
+        },
+        {
+          "text": "Captain Baha",
+          "zh": "Captain Baha",
+          "color": "§6"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Bring this item to §6Captain Baha§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_da2da96caa78",
+      "context": "物品 Lore 整句；BRONZE_SHIP_ENGINE",
+      "raw": "§7Grants §3%s☯ Fishing Wisdom §7when §7attached to your §6Ship§7.",
+      "text": "Grants %s☯ Fishing Wisdom when attached to your Ship.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "+0.5"
+        }
+      ],
+      "translate": true,
+      "zh": "安装在你的 船只 上时，提供 %s ☯ 钓鱼智慧。",
+      "source_items": [
+        "BRONZE_SHIP_ENGINE",
+        "BRONZE_SHIP_HELM",
+        "BRONZE_SHIP_HULL"
+      ],
+      "segments": [
+        {
+          "text": "Grants ",
+          "zh": "提供 ",
+          "order": 3,
+          "color": "§7"
+        },
+        {
+          "text": "%s☯ Fishing Wisdom ",
+          "zh": "%s ☯ 钓鱼智慧",
+          "order": 4,
+          "color": "§3"
+        },
+        {
+          "text": "when ",
+          "zh": " 上时，",
+          "order": 2,
+          "color": "§7"
+        },
+        {
+          "text": "attached to your ",
+          "zh": "安装在你的 ",
+          "order": 0,
+          "color": "§7"
+        },
+        {
+          "text": "Ship",
+          "zh": "船只",
+          "order": 1,
+          "color": "§6"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "order": 5,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants §3+0.5☯ Fishing Wisdom §7when",
+          "§7attached to your §6Ship§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_f9e66bde79e9",
+      "context": "物品 Lore 整句；CALCIFIED_HEART",
+      "raw": "§7Applies the §9Calcified §7reforge when §7combined with armor.",
+      "text": "Applies the Calcified reforge when combined with armor.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "与防具结合时，附加 钙化 重铸。",
+      "source_items": [
+        "CALCIFIED_HEART"
+      ],
+      "segments": [
+        {
+          "text": "Applies the ",
+          "zh": "结合时，附加 ",
+          "order": 1,
+          "color": "§7"
+        },
+        {
+          "text": "Calcified ",
+          "zh": "钙化 ",
+          "order": 2,
+          "color": "§9"
+        },
+        {
+          "text": "reforge when ",
+          "zh": "与防具",
+          "order": 0,
+          "color": "§7"
+        },
+        {
+          "text": "combined with armor.",
+          "zh": "重铸。",
+          "order": 3,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Applies the §9Calcified §7reforge when",
+          "§7combined with armor."
+        ]
+      ]
+    },
+    {
+      "id": "neu_45ab9e761d2c",
+      "context": "物品 Lore 整句；CALCIFIED_HEART",
+      "raw": "§7Grants §a%s❈ Defense §7against §3Sea §3Creatures§7.",
+      "text": "Grants %s❈ Defense against Sea Creatures.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "+25"
+        }
+      ],
+      "translate": true,
+      "zh": "对抗 海洋生物 时，提供 %s ❈ 防御力。",
+      "source_items": [
+        "CALCIFIED_HEART"
+      ],
+      "segments": [
+        {
+          "text": "Grants ",
+          "zh": "时，提供 ",
+          "order": 3,
+          "color": "§7"
+        },
+        {
+          "text": "%s❈ Defense ",
+          "zh": "%s ❈ 防御力",
+          "order": 4,
+          "color": "§a"
+        },
+        {
+          "text": "against ",
+          "zh": "对抗 ",
+          "order": 0,
+          "color": "§7"
+        },
+        {
+          "text": "Sea ",
+          "zh": "海洋",
+          "order": 1,
+          "color": "§3"
+        },
+        {
+          "text": "Creatures",
+          "zh": "生物 ",
+          "order": 2,
+          "color": "§3"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "order": 5,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants §a+25❈ Defense §7against §3Sea",
+          "§3Creatures§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_1851ae7a3b4e",
+      "context": "物品 Lore 整句；CALCIFIED_HEART",
+      "raw": "§8§oA cold and hardened heart that was §8§oonce brimming with eager love.",
+      "text": "A cold and hardened heart that was once brimming with eager love.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "一颗冰冷坚硬的心，曾溢满炽热而渴望的爱意。",
+      "source_items": [
+        "CALCIFIED_HEART"
+      ],
+      "segments": [
+        {
+          "text": "A cold and hardened heart that was ",
+          "zh": "一颗冰冷坚硬的心，曾溢满",
+          "color": "§8§o"
+        },
+        {
+          "text": "once brimming with eager love.",
+          "zh": "炽热而渴望的爱意。",
+          "color": "§8§o"
+        }
+      ],
+      "samples": [
+        [
+          "§8§oA cold and hardened heart that was",
+          "§8§oonce brimming with eager love."
+        ]
+      ]
+    },
+    {
+      "id": "neu_2e9d36227ffc",
+      "context": "物品 Lore 整句；CARNIVAL_FISHING_ROD",
+      "raw": "§7Used to catch §3fish §7in the §3Catch a §3Fish §7game.",
+      "text": "Used to catch fish in the Catch a Fish game.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "用于在 捕鱼小游戏 中捕鱼。",
+      "source_items": [
+        "CARNIVAL_FISHING_ROD"
+      ],
+      "segments": [
+        {
+          "text": "Used to catch ",
+          "zh": "中捕",
+          "order": 3,
+          "color": "§7"
+        },
+        {
+          "text": "fish ",
+          "zh": "鱼",
+          "order": 4,
+          "color": "§3"
+        },
+        {
+          "text": "in the ",
+          "zh": "用于在 ",
+          "order": 0,
+          "color": "§7"
+        },
+        {
+          "text": "Catch a ",
+          "zh": "捕鱼",
+          "order": 1,
+          "color": "§3"
+        },
+        {
+          "text": "Fish ",
+          "zh": "小游戏 ",
+          "order": 2,
+          "color": "§3"
+        },
+        {
+          "text": "game.",
+          "zh": "。",
+          "order": 5,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Used to catch §3fish §7in the §3Catch a",
+          "§3Fish §7game."
+        ]
+      ]
+    },
+    {
+      "id": "neu_5fa608b08c76",
+      "context": "物品 Lore 整句；CARROT_BAIT",
+      "raw": "§7Chance of fishing up... a rabbit?",
+      "text": "Chance of fishing up... a rabbit?",
+      "placeholders": [],
+      "translate": true,
+      "zh": "有几率钓起……一只兔子？",
+      "source_items": [
+        "CARROT_BAIT"
+      ],
+      "samples": [
+        [
+          "§7Chance of fishing up... a rabbit?"
+        ]
+      ]
+    },
+    {
+      "id": "neu_999e99e22b02",
+      "context": "物品 Lore 整句；CHUM",
+      "raw": "§7Obtained from killing a sea creature §7with a nearby Chum Bucket.",
+      "text": "Obtained from killing a sea creature with a nearby Chum Bucket.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "在已放置碎鱼饵桶附近击杀海洋生物获得。",
+      "source_items": [
+        "CHUM"
+      ],
+      "segments": [
+        {
+          "text": "Obtained from killing a sea creature ",
+          "zh": "在已放置碎鱼饵桶附近击杀海洋生物",
+          "color": "§7"
+        },
+        {
+          "text": "with a nearby Chum Bucket.",
+          "zh": "获得。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Obtained from killing a sea creature",
+          "§7with a nearby Chum Bucket."
+        ]
+      ]
+    },
+    {
+      "id": "neu_70a0bdae85fa",
+      "context": "物品 Lore 整句；CHUM",
+      "raw": "§7Deposit it in any Chum Bucket to earn §6%1$s Coins §7and §3%2$s Fishing XP§7!",
+      "text": "Deposit it in any Chum Bucket to earn %1$s Coins and %2$s Fishing XP!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "+20"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "+10"
+        }
+      ],
+      "translate": true,
+      "zh": "放入任意碎鱼饵桶可获得 %1$s 硬币 与 %2$s 钓鱼经验！",
+      "source_items": [
+        "CHUM"
+      ],
+      "segments": [
+        {
+          "text": "Deposit it in any Chum Bucket to earn ",
+          "zh": "放入任意碎鱼饵桶可获得 ",
+          "color": "§7"
+        },
+        {
+          "text": "%1$s Coins ",
+          "zh": "%1$s 硬币 ",
+          "color": "§6"
+        },
+        {
+          "text": "and ",
+          "zh": "与 ",
+          "color": "§7"
+        },
+        {
+          "text": "%2$s Fishing XP",
+          "zh": "%2$s 钓鱼经验",
+          "color": "§3"
+        },
+        {
+          "text": "!",
+          "zh": "！",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Deposit it in any Chum Bucket to earn",
+          "§6+20 Coins §7and §3+10 Fishing XP§7!"
+        ]
+      ]
+    },
+    {
+      "id": "neu_08f5ca13ce9b",
+      "context": "物品 Lore 整句；CHUM_SINKER",
+      "raw": "§7Materializes §aChum §7in your inventory §7whenever you catch something.",
+      "text": "Materializes Chum in your inventory whenever you catch something.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "每当钓获物品时，直接在物品栏中凝聚 碎鱼饵。",
+      "source_items": [
+        "CHUM_SINKER"
+      ],
+      "segments": [
+        {
+          "text": "Materializes ",
+          "zh": "直接在物品栏中凝聚 ",
+          "order": 1,
+          "color": "§7"
+        },
+        {
+          "text": "Chum ",
+          "zh": "碎鱼饵",
+          "order": 2,
+          "color": "§a"
+        },
+        {
+          "text": "in your inventory ",
+          "zh": "。",
+          "order": 3,
+          "color": "§7"
+        },
+        {
+          "text": "whenever you catch something.",
+          "zh": "每当钓获物品时，",
+          "order": 0,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Materializes §aChum §7in your inventory",
+          "§7whenever you catch something."
+        ]
+      ]
+    },
+    {
+      "id": "neu_f42ccbfe5813",
+      "context": "物品 Lore 整句；CHUM_SINKER",
+      "raw": "§7Talk to §2Roddy §7in the §2Backwater §2Bayou §7to apply this §9Sinker §7to a §7Fishing Rod.",
+      "text": "Talk to Roddy in the Backwater Bayou to apply this Sinker to a Fishing Rod.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "前往 死水河湾 与 Roddy 对话，将该 铅坠 安装至钓竿上。",
+      "source_items": [
+        "CHUM_SINKER",
+        "FESTIVE_SINKER",
+        "HOTSPOT_SINKER",
+        "ICY_SINKER",
+        "JUNK_SINKER",
+        "LOTUS_SINKER",
+        "PRISMARINE_SINKER",
+        "SPONGE_SINKER",
+        "STINGY_SINKER"
+      ],
+      "segments": [
+        {
+          "text": "Talk to ",
+          "zh": "与 ",
+          "order": 3,
+          "color": "§7"
+        },
+        {
+          "text": "Roddy ",
+          "zh": "Roddy ",
+          "order": 4,
+          "color": "§2"
+        },
+        {
+          "text": "in the ",
+          "zh": "前往 ",
+          "order": 0,
+          "color": "§7"
+        },
+        {
+          "text": "Backwater ",
+          "zh": "死水河湾 ",
+          "order": 1,
+          "color": "§2"
+        },
+        {
+          "text": "Bayou ",
+          "zh": "",
+          "omit": true,
+          "order": 2,
+          "color": "§2"
+        },
+        {
+          "text": "to apply this ",
+          "zh": "对话，将该 ",
+          "order": 5,
+          "color": "§7"
+        },
+        {
+          "text": "Sinker ",
+          "zh": "铅坠 ",
+          "order": 6,
+          "color": "§9"
+        },
+        {
+          "text": "to a ",
+          "zh": "安装至钓竿上。",
+          "order": 7,
+          "color": "§7"
+        },
+        {
+          "text": "Fishing Rod.",
+          "zh": "",
+          "omit": true,
+          "order": 8,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Talk to §2Roddy §7in the §2Backwater",
+          "§2Bayou §7to apply this §9Sinker §7to a",
+          "§7Fishing Rod."
+        ]
+      ]
+    },
+    {
+      "id": "neu_4a904b05ce59",
+      "context": "物品 Lore 整句；COMMON_HOOK",
+      "raw": "§7Increases the chance to catch §f§lCOMMON §3Sea Creatures §7by §a%s§7.",
+      "text": "Increases the chance to catch COMMON Sea Creatures by %s.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "25%"
+        }
+      ],
+      "translate": true,
+      "zh": "钓起 普通 海洋生物 的几率提升 %s。",
+      "source_items": [
+        "COMMON_HOOK"
+      ],
+      "segments": [
+        {
+          "text": "Increases the chance to catch ",
+          "zh": "钓起 ",
+          "order": 0,
+          "color": "§7"
+        },
+        {
+          "text": "COMMON ",
+          "zh": "普通 ",
+          "order": 1,
+          "color": "§f§l"
+        },
+        {
+          "text": "Sea Creatures ",
+          "zh": "海洋生物 ",
+          "order": 2,
+          "color": "§3"
+        },
+        {
+          "text": "by ",
+          "zh": "的几率提升 ",
+          "order": 3,
+          "color": "§7"
+        },
+        {
+          "text": "%s",
+          "zh": "%s",
+          "order": 4,
+          "color": "§a"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "order": 5,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Increases the chance to catch",
+          "§f§lCOMMON §3Sea Creatures §7by §a25%§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_ee44d7678c0e",
+      "context": "物品 Lore 整句；COMMON_HOOK",
+      "raw": "§7Talk to §2Roddy §7in the §2Backwater §2Bayou §7to apply this §9Hook §7to a Fishing §7Rod.",
+      "text": "Talk to Roddy in the Backwater Bayou to apply this Hook to a Fishing Rod.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "前往 死水河湾 与 Roddy 对话，将该 鱼钩 安装至钓竿上。",
+      "source_items": [
+        "COMMON_HOOK",
+        "HOTSPOT_HOOK",
+        "PHANTOM_HOOK",
+        "PUDDLE_JUMPER_HOOK",
+        "TREASURE_HOOK"
+      ],
+      "segments": [
+        {
+          "text": "Talk to ",
+          "zh": "与 ",
+          "order": 3,
+          "color": "§7"
+        },
+        {
+          "text": "Roddy ",
+          "zh": "Roddy ",
+          "order": 4,
+          "color": "§2"
+        },
+        {
+          "text": "in the ",
+          "zh": "前往 ",
+          "order": 0,
+          "color": "§7"
+        },
+        {
+          "text": "Backwater ",
+          "zh": "死水河湾 ",
+          "order": 1,
+          "color": "§2"
+        },
+        {
+          "text": "Bayou ",
+          "zh": "",
+          "omit": true,
+          "order": 2,
+          "color": "§2"
+        },
+        {
+          "text": "to apply this ",
+          "zh": "对话，将该 ",
+          "order": 5,
+          "color": "§7"
+        },
+        {
+          "text": "Hook ",
+          "zh": "鱼钩 ",
+          "order": 6,
+          "color": "§9"
+        },
+        {
+          "text": "to a Fishing ",
+          "zh": "安装至钓竿上。",
+          "order": 7,
+          "color": "§7"
+        },
+        {
+          "text": "Rod.",
+          "zh": "",
+          "omit": true,
+          "order": 8,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Talk to §2Roddy §7in the §2Backwater",
+          "§2Bayou §7to apply this §9Hook §7to a Fishing",
+          "§7Rod."
+        ]
+      ]
+    },
+    {
+      "id": "neu_c1b86ad44e2a",
+      "context": "物品 Lore 整句；CORRUPTED_BAIT",
+      "raw": "§7Decreases your §b☂ Fishing Speed §7by §c%s§7, but lures a special Trophy Fish §7in the §cCrimson Isle§7.",
+      "text": "Decreases your ☂ Fishing Speed by %s, but lures a special Trophy Fish in the Crimson Isle.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "50%"
+        }
+      ],
+      "translate": true,
+      "zh": "使你的 ☂ 钓鱼速度 降低 %s，但在 绯红岛 垂钓时可吸引特殊的奖杯鱼。",
+      "source_items": [
+        "CORRUPTED_BAIT"
+      ],
+      "segments": [
+        {
+          "text": "Decreases your ",
+          "zh": "使你的 ",
+          "color": "§7"
+        },
+        {
+          "text": "☂ Fishing Speed ",
+          "zh": "☂ 钓鱼速度 ",
+          "color": "§b"
+        },
+        {
+          "text": "by ",
+          "zh": "降低 ",
+          "color": "§7"
+        },
+        {
+          "text": "%s",
+          "zh": "%s",
+          "color": "§c"
+        },
+        {
+          "text": ", but lures a special Trophy Fish ",
+          "zh": "，但在 ",
+          "color": "§7"
+        },
+        {
+          "text": "in the ",
+          "zh": "",
+          "omit": true,
+          "color": "§7"
+        },
+        {
+          "text": "Crimson Isle",
+          "zh": "绯红岛 ",
+          "color": "§c"
+        },
+        {
+          "text": ".",
+          "zh": "垂钓时可吸引特殊的奖杯鱼。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Decreases your §b☂ Fishing Speed §7by",
+          "§c50%§7, but lures a special Trophy Fish",
+          "§7in the §cCrimson Isle§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_5edcaca1bbb6",
+      "context": "物品 Lore 整句；DELIRIUM_NECKLACE",
+      "raw": "§7Increase the fire damage you §7receive by §c%1$s §7per §c%2$s❁ Strength§7.",
+      "text": "Increase the fire damage you receive by %1$s per %2$s❁ Strength.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "8%"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "+1"
+        }
+      ],
+      "translate": true,
+      "zh": "每有 %2$s ❁ 力量，你受到的火焰伤害增加 %1$s。",
+      "source_items": [
+        "DELIRIUM_NECKLACE"
+      ],
+      "segments": [
+        {
+          "text": "Increase the fire damage you ",
+          "zh": "你受到的火焰伤害增加 ",
+          "order": 2,
+          "color": "§7"
+        },
+        {
+          "text": "receive by ",
+          "zh": "",
+          "omit": true,
+          "order": 3,
+          "color": "§7"
+        },
+        {
+          "text": "%1$s ",
+          "zh": "%1$s",
+          "order": 4,
+          "color": "§c"
+        },
+        {
+          "text": "per ",
+          "zh": "每有 ",
+          "order": 0,
+          "color": "§7"
+        },
+        {
+          "text": "%2$s❁ Strength",
+          "zh": "%2$s ❁ 力量，",
+          "order": 1,
+          "color": "§c"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "order": 5,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Increase the fire damage you",
+          "§7receive by §c8% §7per §c+1❁ Strength§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_1b73c30de5ca",
+      "context": "物品 Lore 整句；DIRT_ROD",
+      "raw": "§7This rod allows you to fish on dirt.",
+      "text": "This rod allows you to fish on dirt.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "此钓竿允许你在泥土上垂钓。",
+      "source_items": [
+        "DIRT_ROD"
+      ],
+      "samples": [
+        [
+          "§7This rod allows you to fish on dirt."
+        ]
+      ]
+    },
+    {
+      "id": "neu_87d94e0d32af",
+      "context": "物品 Lore 整句；DIRT_ROD",
+      "raw": "§8§oAt least you won't get wet!",
+      "text": "At least you won't get wet!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "至少你不会全身湿透！",
+      "source_items": [
+        "DIRT_ROD"
+      ],
+      "samples": [
+        [
+          "§8§oAt least you won't get wet!"
+        ]
+      ]
+    },
+    {
+      "id": "neu_ca9e0cd4b6da",
+      "context": "物品 Lore 整句；DULL_SHARK_TOOTH_NECKLACE",
+      "raw": "§7Grants §a%s §7chance to get Shark §7Teeth during §bFishing Festivals§7.",
+      "text": "Grants %s chance to get Shark Teeth during Fishing Festivals.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "+10%"
+        }
+      ],
+      "translate": true,
+      "zh": "在 钓鱼节日 期间，获得鲨鱼之齿的几率提升 %s。",
+      "source_items": [
+        "DULL_SHARK_TOOTH_NECKLACE",
+        "HONED_SHARK_TOOTH_NECKLACE",
+        "RAGGEDY_SHARK_TOOTH_NECKLACE",
+        "RAZOR_SHARP_SHARK_TOOTH_NECKLACE",
+        "SHARP_SHARK_TOOTH_NECKLACE"
+      ],
+      "segments": [
+        {
+          "text": "Grants ",
+          "zh": "期间，获得鲨鱼之齿的几率提升 ",
+          "order": 2,
+          "color": "§7"
+        },
+        {
+          "text": "%s ",
+          "zh": "%s",
+          "order": 3,
+          "color": "§a"
+        },
+        {
+          "text": "chance to get Shark ",
+          "zh": "",
+          "omit": true,
+          "order": 4,
+          "color": "§7"
+        },
+        {
+          "text": "Teeth during ",
+          "zh": "在 ",
+          "order": 0,
+          "color": "§7"
+        },
+        {
+          "text": "Fishing Festivals",
+          "zh": "钓鱼节日 ",
+          "order": 1,
+          "color": "§b"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "order": 5,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants §a+10% §7chance to get Shark",
+          "§7Teeth during §bFishing Festivals§7."
+        ],
+        [
+          "§7Grants §a+15% §7chance to get Shark",
+          "§7Teeth during §bFishing Festivals§7."
+        ],
+        [
+          "§7Grants §a+5% §7chance to get Shark",
+          "§7Teeth during §bFishing Festivals§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_15722ba9f361",
+      "context": "物品 Lore 整句；EMPTY_CHUMCAP_BUCKET",
+      "raw": "§7Place it down next to water.",
+      "text": "Place it down next to water.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "将其放置在水边。",
+      "source_items": [
+        "EMPTY_CHUMCAP_BUCKET",
+        "EMPTY_CHUM_BUCKET"
+      ],
+      "samples": [
+        [
+          "§7Place it down next to water."
+        ]
+      ]
+    },
+    {
+      "id": "neu_c01bbb130d85",
+      "context": "物品 Lore 整句；EMPTY_CHUMCAP_BUCKET",
+      "raw": "§7Sea Creatures slain nearby will drop §a%1$s Chum§7. §8Up to %2$s total from buckets!",
+      "text": "Sea Creatures slain nearby will drop %1$s Chum. Up to %2$s total from buckets!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "+1"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "+4"
+        }
+      ],
+      "translate": true,
+      "zh": "在附近被击杀的海洋生物将额外掉落 %1$s 块诱饵。所有碎鱼饵桶累计最多额外掉落 %2$s 块！",
+      "source_items": [
+        "EMPTY_CHUMCAP_BUCKET",
+        "EMPTY_CHUM_BUCKET"
+      ],
+      "segments": [
+        {
+          "text": "Sea Creatures slain nearby will drop ",
+          "zh": "在附近被击杀的海洋生物将额外掉落 ",
+          "color": "§7"
+        },
+        {
+          "text": "%1$s Chum",
+          "zh": "%1$s 块诱饵。",
+          "color": "§a"
+        },
+        {
+          "text": ". ",
+          "zh": "所有碎鱼饵桶累计最多额外掉落 ",
+          "color": "§7"
+        },
+        {
+          "text": "Up to %2$s total from buckets!",
+          "zh": "%2$s 块！",
+          "color": "§8"
+        }
+      ],
+      "samples": [
+        [
+          "§7Sea Creatures slain nearby will drop",
+          "§a+1 Chum§7.",
+          "§8Up to +4 total from buckets!"
+        ]
+      ]
+    },
+    {
+      "id": "neu_42c5321fe8e2",
+      "context": "物品 Lore 整句；EMPTY_CHUMCAP_BUCKET",
+      "raw": "§7You gain a good chance to fish up §7an §cAgarimoo §3Sea Creature§7. §7You and other nearby fishers gain §b%1$s☂ Fishing Speed§7. §8Up to %2$s☂ from buckets!",
+      "text": "You gain a good chance to fish up an Agarimoo Sea Creature. You and other nearby fishers gain %1$s☂ Fishing Speed. Up to %2$s☂ from buckets!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "+4"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "+16"
+        }
+      ],
+      "translate": true,
+      "zh": "大幅提升钓起 Agarimoo 海洋生物 的几率。你与附近的其他垂钓者获得 %1$s ☂ 钓鱼速度。所有碎鱼饵桶累计最高提供 %2$s ☂！",
+      "source_items": [
+        "EMPTY_CHUMCAP_BUCKET"
+      ],
+      "segments": [
+        {
+          "text": "You gain a good chance to fish up ",
+          "zh": "大幅提升钓起 ",
+          "color": "§7"
+        },
+        {
+          "text": "an ",
+          "zh": "",
+          "omit": true,
+          "color": "§7"
+        },
+        {
+          "text": "Agarimoo ",
+          "zh": "Agarimoo ",
+          "color": "§c"
+        },
+        {
+          "text": "Sea Creature",
+          "zh": "海洋生物 ",
+          "color": "§3"
+        },
+        {
+          "text": ". ",
+          "zh": "的几率。",
+          "color": "§7"
+        },
+        {
+          "text": "You and other nearby fishers gain ",
+          "zh": "你与附近的其他垂钓者获得 ",
+          "color": "§7"
+        },
+        {
+          "text": "%1$s☂ Fishing Speed",
+          "zh": "%1$s ☂ 钓鱼速度",
+          "color": "§b"
+        },
+        {
+          "text": ". ",
+          "zh": "。",
+          "color": "§7"
+        },
+        {
+          "text": "Up to %2$s☂ from buckets!",
+          "zh": "所有碎鱼饵桶累计最高提供 %2$s ☂！",
+          "color": "§8"
+        }
+      ],
+      "samples": [
+        [
+          "§7You gain a good chance to fish up",
+          "§7an §cAgarimoo §3Sea Creature§7.",
+          "§7You and other nearby fishers gain",
+          "§b+4☂ Fishing Speed§7.",
+          "§8Up to +16☂ from buckets!"
+        ]
+      ]
+    },
+    {
+      "id": "neu_3b8b8af116e3",
+      "context": "物品 Lore 整句；ENCHANTED_SHARK_FIN",
+      "raw": "§7A razor-sharp shark fin designed to §7craft powerful items.",
+      "text": "A razor-sharp shark fin designed to craft powerful items.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "锋利无比的鲨鱼鳍，专用于锻造强力装备。",
+      "source_items": [
+        "ENCHANTED_SHARK_FIN"
+      ],
+      "segments": [
+        {
+          "text": "A razor-sharp shark fin designed to ",
+          "zh": "锋利无比的鲨鱼鳍，专用于锻造",
+          "color": "§7"
+        },
+        {
+          "text": "craft powerful items.",
+          "zh": "强力装备。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7A razor-sharp shark fin designed to",
+          "§7craft powerful items."
+        ]
+      ]
+    },
+    {
+      "id": "neu_396343d6b535",
+      "context": "物品 Lore 整句；EPOCH_CAKE_BLUE",
+      "raw": "§7Invite your friends to share a slice §7of cake! Eating this cake grants §3%1$sα §3Sea Creature Chance §7for %2$s hours.",
+      "text": "Invite your friends to share a slice of cake! Eating this cake grants %1$sα Sea Creature Chance for %2$s hours.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "+1"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "48"
+        }
+      ],
+      "translate": true,
+      "zh": "邀请你的好友一起分享一块蛋糕！食用此蛋糕可获得 %1$s α 海洋生物几率，持续 %2$s 小时。",
+      "source_items": [
+        "EPOCH_CAKE_BLUE"
+      ],
+      "segments": [
+        {
+          "text": "Invite your friends to share a slice ",
+          "zh": "邀请你的好友一起分享一块蛋糕！",
+          "color": "§7"
+        },
+        {
+          "text": "of cake! Eating this cake grants ",
+          "zh": "食用此蛋糕可获得 ",
+          "color": "§7"
+        },
+        {
+          "text": "%1$sα ",
+          "zh": "%1$s α ",
+          "color": "§3"
+        },
+        {
+          "text": "Sea Creature Chance ",
+          "zh": "海洋生物几率",
+          "color": "§3"
+        },
+        {
+          "text": "for %2$s hours.",
+          "zh": "，持续 %2$s 小时。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Invite your friends to share a slice",
+          "§7of cake! Eating this cake grants §3+1α",
+          "§3Sea Creature Chance §7for 48 hours."
+        ]
+      ]
+    },
+    {
+      "id": "neu_dfee0ff56f0d",
+      "context": "物品 Lore 整句；FESTIVE_SINKER",
+      "raw": "§7Grants a small chance to catch §aGifts §7during the §cSeason of Jerry§7.",
+      "text": "Grants a small chance to catch Gifts during the Season of Jerry.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "在 Jerry 节 期间垂钓时，有小概率钓起 礼物。",
+      "source_items": [
+        "FESTIVE_SINKER"
+      ],
+      "segments": [
+        {
+          "text": "Grants a small chance to catch ",
+          "zh": "期间垂钓时，有小概率钓起 ",
+          "order": 2,
+          "color": "§7"
+        },
+        {
+          "text": "Gifts ",
+          "zh": "礼物",
+          "order": 3,
+          "color": "§a"
+        },
+        {
+          "text": "during the ",
+          "zh": "在 ",
+          "order": 0,
+          "color": "§7"
+        },
+        {
+          "text": "Season of Jerry",
+          "zh": "Jerry 节 ",
+          "order": 1,
+          "color": "§c"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "order": 4,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants a small chance to catch §aGifts",
+          "§7during the §cSeason of Jerry§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_35f129061193",
+      "context": "物品 Lore 整句；FINE_AQUAMARINE_GEM",
+      "raw": "§7A type of §3Aquamarine §7that has §7clearly been treated with care.",
+      "text": "A type of Aquamarine that has clearly been treated with care.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "一种显然经过悉心呵护的 海蓝宝石。",
+      "source_items": [
+        "FINE_AQUAMARINE_GEM"
+      ],
+      "segments": [
+        {
+          "text": "A type of ",
+          "zh": "一种显然经过悉心",
+          "color": "§7"
+        },
+        {
+          "text": "Aquamarine ",
+          "zh": "呵护的 ",
+          "color": "§3"
+        },
+        {
+          "text": "that has ",
+          "zh": "海蓝宝石",
+          "color": "§7"
+        },
+        {
+          "text": "clearly been treated with care.",
+          "zh": "。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7A type of §3Aquamarine §7that has",
+          "§7clearly been treated with care."
+        ]
+      ]
+    },
+    {
+      "id": "neu_e77b6bd3d845",
+      "context": "物品 Lore 整句；FISHING_CRYSTAL",
+      "raw": "§7While placed down, nearby water can §7have Prismarine Shards and §7Crystals fished out of it.",
+      "text": "While placed down, nearby water can have Prismarine Shards and Crystals fished out of it.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "放置后，可从附近水域中钓起海晶碎片与海晶砂粒。",
+      "source_items": [
+        "FISHING_CRYSTAL"
+      ],
+      "segments": [
+        {
+          "text": "While placed down, nearby water can ",
+          "zh": "放置后，可从附近水域中钓起",
+          "color": "§7"
+        },
+        {
+          "text": "have Prismarine Shards and ",
+          "zh": "海晶碎片与",
+          "color": "§7"
+        },
+        {
+          "text": "Crystals fished out of it.",
+          "zh": "海晶砂粒。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7While placed down, nearby water can",
+          "§7have Prismarine Shards and",
+          "§7Crystals fished out of it."
+        ]
+      ]
+    },
+    {
+      "id": "neu_c51130986a5d",
+      "context": "物品 Lore 整句；FISH_BAIT",
+      "raw": "§7Grants §b%s☂ Fishing Speed§7.",
+      "text": "Grants %s☂ Fishing Speed.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "+45"
+        }
+      ],
+      "translate": true,
+      "zh": "提供 %s ☂ 钓鱼速度。",
+      "source_items": [
+        "FISH_BAIT",
+        "MINNOW_BAIT",
+        "SPEEDY_LINE"
+      ],
+      "segments": [
+        {
+          "text": "Grants ",
+          "zh": "提供 ",
+          "color": "§7"
+        },
+        {
+          "text": "%s☂ Fishing Speed",
+          "zh": "%s ☂ 钓鱼速度",
+          "color": "§b"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants §b+45☂ Fishing Speed§7."
+        ],
+        [
+          "§7Grants §b+25☂ Fishing Speed§7."
+        ],
+        [
+          "§7Grants §b+10☂ Fishing Speed§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_683c03fb77d6",
+      "context": "物品 Lore 整句；FLAWED_AQUAMARINE_GEM",
+      "raw": "§7A slightly better version of §3Aquamarine§7, but it could still use §7some work.",
+      "text": "A slightly better version of Aquamarine, but it could still use some work.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "略好一些的 海蓝宝石，但仍有打磨空间。",
+      "source_items": [
+        "FLAWED_AQUAMARINE_GEM"
+      ],
+      "segments": [
+        {
+          "text": "A slightly better version of ",
+          "zh": "略好一些的 ",
+          "color": "§7"
+        },
+        {
+          "text": "Aquamarine",
+          "zh": "海蓝宝石",
+          "color": "§3"
+        },
+        {
+          "text": ", but it could still use ",
+          "zh": "，但仍有打磨空间。",
+          "color": "§7"
+        },
+        {
+          "text": "some work.",
+          "zh": "",
+          "omit": true,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7A slightly better version of",
+          "§3Aquamarine§7, but it could still use",
+          "§7some work."
+        ]
+      ]
+    },
+    {
+      "id": "neu_746c03b5d5e6",
+      "context": "物品 Lore 整句；FLAWLESS_AQUAMARINE_GEM",
+      "raw": "§7A near perfect version of §3Aquamarine§7.",
+      "text": "A near perfect version of Aquamarine.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "近乎完美的 海蓝宝石。",
+      "source_items": [
+        "FLAWLESS_AQUAMARINE_GEM"
+      ],
+      "segments": [
+        {
+          "text": "A near perfect version of ",
+          "zh": "近乎完美的 ",
+          "color": "§7"
+        },
+        {
+          "text": "Aquamarine",
+          "zh": "海蓝宝石",
+          "color": "§3"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7A near perfect version of",
+          "§3Aquamarine§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_eb57a76ea927",
+      "context": "物品 Lore 整句；FROGGLES",
+      "raw": "§7Allows you to conceptualize and §7interact with §dWormholes §7on the §3Lotus §3Atoll §7and §cCrimson Isle§7.",
+      "text": "Allows you to conceptualize and interact with Wormholes on the Lotus Atoll and Crimson Isle.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "使你能够感应并与 莲花 环礁 及 绯红岛 上的 虫洞 进行交互。",
+      "source_items": [
+        "FROGGLES",
+        "FROGGLES_DIAMOND",
+        "FROGGLES_GOLD",
+        "FROGGLES_SILVER"
+      ],
+      "segments": [
+        {
+          "text": "Allows you to conceptualize and ",
+          "zh": "使你能够感应并与 ",
+          "order": 0,
+          "color": "§7"
+        },
+        {
+          "text": "interact with ",
+          "zh": "进行交互。",
+          "order": 7,
+          "color": "§7"
+        },
+        {
+          "text": "Wormholes ",
+          "zh": "虫洞 ",
+          "order": 6,
+          "color": "§d"
+        },
+        {
+          "text": "on the ",
+          "zh": "上的 ",
+          "order": 5,
+          "color": "§7"
+        },
+        {
+          "text": "Lotus ",
+          "zh": "莲花 ",
+          "order": 1,
+          "color": "§3"
+        },
+        {
+          "text": "Atoll ",
+          "zh": "环礁 ",
+          "order": 2,
+          "color": "§3"
+        },
+        {
+          "text": "and ",
+          "zh": "及 ",
+          "order": 3,
+          "color": "§7"
+        },
+        {
+          "text": "Crimson Isle",
+          "zh": "绯红岛 ",
+          "order": 4,
+          "color": "§c"
+        },
+        {
+          "text": ".",
+          "zh": "",
+          "omit": true,
+          "order": 8,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Allows you to conceptualize and",
+          "§7interact with §dWormholes §7on the §3Lotus",
+          "§3Atoll §7and §cCrimson Isle§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_ce942791bc73",
+      "context": "物品 Lore 整句；FROGGLES_DIAMOND",
+      "raw": "§7Allows you to get some §7§ovibes §7about §7far away §dWormhole §7locations.",
+      "text": "Allows you to get some vibes about far away Wormhole locations.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "使你能够模糊感应到远方 虫洞 的具体方位。",
+      "source_items": [
+        "FROGGLES_DIAMOND",
+        "FROGGLES_GOLD"
+      ],
+      "segments": [
+        {
+          "text": "Allows you to get some ",
+          "zh": "使你能够模糊感应到远方 ",
+          "color": "§7"
+        },
+        {
+          "text": "vibes ",
+          "zh": "",
+          "omit": true,
+          "color": "§7§o"
+        },
+        {
+          "text": "about ",
+          "zh": "",
+          "omit": true,
+          "color": "§7"
+        },
+        {
+          "text": "far away ",
+          "zh": "",
+          "omit": true,
+          "color": "§7"
+        },
+        {
+          "text": "Wormhole ",
+          "zh": "虫洞 ",
+          "color": "§d"
+        },
+        {
+          "text": "locations.",
+          "zh": "的具体方位。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Allows you to get some §7§ovibes §7about",
+          "§7far away §dWormhole §7locations."
+        ]
+      ]
+    },
+    {
+      "id": "neu_cf6b61ba3d5e",
+      "context": "物品 Lore 整句；FROGGLES_DIAMOND",
+      "raw": "§7When fishing in §dWormholes§7: §6%1$s Trophy Chance §a%2$s §7chance to find §6§lGOLD §6Trophies§7. §a%3$s §7chance to find §b§lDIAMOND §6Trophies§7.",
+      "text": "When fishing in Wormholes: %1$s Trophy Chance %2$s chance to find GOLD Trophies. %3$s chance to find DIAMOND Trophies.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "+7.5"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "+10%"
+        },
+        {
+          "token": "%3$s",
+          "type": "number",
+          "example": "+5%"
+        }
+      ],
+      "translate": true,
+      "zh": "在 虫洞 中垂钓时： %1$s  奖杯鱼几率 %2$s 几率钓获 黄金 奖杯鱼。 %3$s 几率钓获 钻石 奖杯鱼。",
+      "source_items": [
+        "FROGGLES_DIAMOND"
+      ],
+      "segments": [
+        {
+          "text": "When fishing in ",
+          "zh": "在 ",
+          "color": "§7"
+        },
+        {
+          "text": "Wormholes",
+          "zh": "虫洞",
+          "color": "§d"
+        },
+        {
+          "text": ": ",
+          "zh": " 中垂钓时： ",
+          "color": "§7"
+        },
+        {
+          "text": "%1$s Trophy Chance ",
+          "zh": "%1$s  奖杯鱼几率 ",
+          "color": "§6"
+        },
+        {
+          "text": "%2$s ",
+          "zh": "%2$s ",
+          "color": "§a"
+        },
+        {
+          "text": "chance to find ",
+          "zh": "几率钓获 ",
+          "color": "§7"
+        },
+        {
+          "text": "GOLD ",
+          "zh": "黄金 ",
+          "color": "§6§l"
+        },
+        {
+          "text": "Trophies",
+          "zh": "奖杯鱼",
+          "color": "§6"
+        },
+        {
+          "text": ". ",
+          "zh": "。 ",
+          "color": "§7"
+        },
+        {
+          "text": "%3$s ",
+          "zh": "%3$s ",
+          "color": "§a"
+        },
+        {
+          "text": "chance to find ",
+          "zh": "几率钓获 ",
+          "color": "§7"
+        },
+        {
+          "text": "DIAMOND ",
+          "zh": "钻石 ",
+          "color": "§b§l"
+        },
+        {
+          "text": "Trophies",
+          "zh": "奖杯鱼",
+          "color": "§6"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7When fishing in §dWormholes§7:",
+          "  §6+7.5 Trophy Chance",
+          "  §a+10% §7chance to find §6§lGOLD §6Trophies§7.",
+          "  §a+5% §7chance to find §b§lDIAMOND §6Trophies§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_d665fa7fd63e",
+      "context": "物品 Lore 整句；FROGGLES_GOLD",
+      "raw": "§7When fishing in §dWormholes§7: §6%1$s Trophy Chance §a%2$s §7chance to find §6§lGOLD §6Trophies§7.",
+      "text": "When fishing in Wormholes: %1$s Trophy Chance %2$s chance to find GOLD Trophies.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "+5"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "+5%"
+        }
+      ],
+      "translate": true,
+      "zh": "在 虫洞 中垂钓时： %1$s  奖杯鱼几率 %2$s 几率钓获 黄金 奖杯鱼。",
+      "source_items": [
+        "FROGGLES_GOLD"
+      ],
+      "segments": [
+        {
+          "text": "When fishing in ",
+          "zh": "在 ",
+          "color": "§7"
+        },
+        {
+          "text": "Wormholes",
+          "zh": "虫洞",
+          "color": "§d"
+        },
+        {
+          "text": ": ",
+          "zh": " 中垂钓时： ",
+          "color": "§7"
+        },
+        {
+          "text": "%1$s Trophy Chance ",
+          "zh": "%1$s  奖杯鱼几率 ",
+          "color": "§6"
+        },
+        {
+          "text": "%2$s ",
+          "zh": "%2$s ",
+          "color": "§a"
+        },
+        {
+          "text": "chance to find ",
+          "zh": "几率钓获 ",
+          "color": "§7"
+        },
+        {
+          "text": "GOLD ",
+          "zh": "黄金 ",
+          "color": "§6§l"
+        },
+        {
+          "text": "Trophies",
+          "zh": "奖杯鱼",
+          "color": "§6"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7When fishing in §dWormholes§7:",
+          "  §6+5 Trophy Chance",
+          "  §a+5% §7chance to find §6§lGOLD §6Trophies§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_69e98f968d74",
+      "context": "物品 Lore 整句；FROGGLES_SILVER",
+      "raw": "§7When fishing in §dWormholes§7: §6%s Trophy Chance",
+      "text": "When fishing in Wormholes: %s Trophy Chance",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "+2.5"
+        }
+      ],
+      "translate": true,
+      "zh": "在 虫洞 中垂钓时： %s  奖杯鱼几率",
+      "source_items": [
+        "FROGGLES_SILVER"
+      ],
+      "segments": [
+        {
+          "text": "When fishing in ",
+          "zh": "在 ",
+          "color": "§7"
+        },
+        {
+          "text": "Wormholes",
+          "zh": "虫洞",
+          "color": "§d"
+        },
+        {
+          "text": ": ",
+          "zh": " 中垂钓时： ",
+          "color": "§7"
+        },
+        {
+          "text": "%s Trophy Chance",
+          "zh": "%s  奖杯鱼几率",
+          "color": "§6"
+        }
+      ],
+      "samples": [
+        [
+          "§7When fishing in §dWormholes§7:",
+          "  §6+2.5 Trophy Chance"
+        ]
+      ]
+    },
+    {
+      "id": "neu_5d6079318128",
+      "context": "物品 Lore 整句；FROZEN_BAIT",
+      "raw": "§7Grants §b%1$s☂ Fishing Speed§7. §7Grants §3%2$sα Sea Creature Chance§7.",
+      "text": "Grants %1$s☂ Fishing Speed. Grants %2$sα Sea Creature Chance.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "+50"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "+8"
+        }
+      ],
+      "translate": true,
+      "zh": "提供 %1$s ☂ 钓鱼速度。提供 %2$s α 海洋生物几率。",
+      "source_items": [
+        "FROZEN_BAIT",
+        "GLOWY_CHUM_BAIT",
+        "ICE_BAIT"
+      ],
+      "segments": [
+        {
+          "text": "Grants ",
+          "zh": "提供 ",
+          "color": "§7"
+        },
+        {
+          "text": "%1$s☂ Fishing Speed",
+          "zh": "%1$s ☂ 钓鱼速度",
+          "color": "§b"
+        },
+        {
+          "text": ". ",
+          "zh": "。",
+          "color": "§7"
+        },
+        {
+          "text": "Grants ",
+          "zh": "提供 ",
+          "color": "§7"
+        },
+        {
+          "text": "%2$sα Sea Creature Chance",
+          "zh": "%2$s α 海洋生物几率",
+          "color": "§3"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants §b+50☂ Fishing Speed§7.",
+          "§7Grants §3+8α Sea Creature Chance§7."
+        ],
+        [
+          "§7Grants §b+25☂ Fishing Speed§7.",
+          "§7Grants §3+3α Sea Creature Chance§7."
+        ],
+        [
+          "§7Grants §b+25☂ Fishing Speed§7.",
+          "§7Grants §3+4α Sea Creature Chance§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_d6a2e44521d3",
+      "context": "物品 Lore 整句；FROZEN_BAIT",
+      "raw": "§7Can only be used in §cJerry's §cWorkshop§7.",
+      "text": "Can only be used in Jerry's Workshop.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "仅可在 Jerry 的工坊 中使用。",
+      "source_items": [
+        "FROZEN_BAIT",
+        "ICE_BAIT"
+      ],
+      "segments": [
+        {
+          "text": "Can only be used in ",
+          "zh": "仅可在 ",
+          "color": "§7"
+        },
+        {
+          "text": "Jerry's ",
+          "zh": "Jerry ",
+          "color": "§c"
+        },
+        {
+          "text": "Workshop",
+          "zh": "的工坊",
+          "color": "§c"
+        },
+        {
+          "text": ".",
+          "zh": " 中使用。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Can only be used in §cJerry's",
+          "§cWorkshop§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_ddd7f5ea2fc1",
+      "context": "物品 Lore 整句；FROZEN_BAUBLE",
+      "raw": "§7Applies the §9Festive §7reforge when §7combined with armor.",
+      "text": "Applies the Festive reforge when combined with armor.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "与防具结合时，附加 节日 重铸。",
+      "source_items": [
+        "FROZEN_BAUBLE"
+      ],
+      "segments": [
+        {
+          "text": "Applies the ",
+          "zh": "结合时，附加 ",
+          "order": 1,
+          "color": "§7"
+        },
+        {
+          "text": "Festive ",
+          "zh": "节日 ",
+          "order": 2,
+          "color": "§9"
+        },
+        {
+          "text": "reforge when ",
+          "zh": "与防具",
+          "order": 0,
+          "color": "§7"
+        },
+        {
+          "text": "combined with armor.",
+          "zh": "重铸。",
+          "order": 3,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Applies the §9Festive §7reforge when",
+          "§7combined with armor."
+        ]
+      ]
+    },
+    {
+      "id": "neu_3235d8bb8451",
+      "context": "物品 Lore 整句；GENERATOR_UPGRADE_STONE_FISHING_12",
+      "raw": "§7Use this item to upgrade a §bFishing §bMinion §7from §aTier XI §7to §aTier XII§7.",
+      "text": "Use this item to upgrade a Fishing Minion from Tier XI to Tier XII.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "使用此物品可将 钓鱼 仆从 从 XI 级 升级至 XII 级。",
+      "source_items": [
+        "GENERATOR_UPGRADE_STONE_FISHING_12"
+      ],
+      "segments": [
+        {
+          "text": "Use this item to upgrade a ",
+          "zh": "使用此物品可将 ",
+          "color": "§7"
+        },
+        {
+          "text": "Fishing ",
+          "zh": "钓鱼 ",
+          "color": "§b"
+        },
+        {
+          "text": "Minion ",
+          "zh": "仆从 ",
+          "color": "§b"
+        },
+        {
+          "text": "from ",
+          "zh": "从 ",
+          "color": "§7"
+        },
+        {
+          "text": "Tier XI ",
+          "zh": "XI 级 ",
+          "color": "§a"
+        },
+        {
+          "text": "to ",
+          "zh": "升级至 ",
+          "color": "§7"
+        },
+        {
+          "text": "Tier XII",
+          "zh": "XII 级",
+          "color": "§a"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Use this item to upgrade a §bFishing",
+          "§bMinion §7from §aTier XI §7to §aTier XII§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_b8d3dc04ed4d",
+      "context": "物品 Lore 整句；GENERATOR_UPGRADE_STONE_FISHING_12",
+      "raw": "§7Purchased from §eLukas the Aquarist §7during §9Year of the Seal§7.",
+      "text": "Purchased from Lukas the Aquarist during Year of the Seal.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "在 海豹年 期间购自水族学者 Lukas。",
+      "source_items": [
+        "GENERATOR_UPGRADE_STONE_FISHING_12"
+      ],
+      "segments": [
+        {
+          "text": "Purchased from ",
+          "zh": "在 ",
+          "color": "§7"
+        },
+        {
+          "text": "Lukas the Aquarist ",
+          "zh": "海豹年 ",
+          "color": "§e"
+        },
+        {
+          "text": "during ",
+          "zh": "期间购自水族学者 ",
+          "color": "§7"
+        },
+        {
+          "text": "Year of the Seal",
+          "zh": "Lukas",
+          "color": "§9"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Purchased from §eLukas the Aquarist",
+          "§7during §9Year of the Seal§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_67a72df6b831",
+      "context": "物品 Lore 整句；GEOMETRIC_ODDITY",
+      "raw": "§7Applies the §9Geometric §7reforge when §7combined with §aFroggles§7, §9Silver §9Froggles§7, §5Golden Froggles§7, and §6Diamond Froggles§7.",
+      "text": "Applies the Geometric reforge when combined with Froggles, Silver Froggles, Golden Froggles, and Diamond Froggles.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "与 蛙镜、白银 蛙镜、黄金蛙镜 及 钻石蛙镜 结合时，附加 几何 重铸。",
+      "source_items": [
+        "GEOMETRIC_ODDITY"
+      ],
+      "segments": [
+        {
+          "text": "Applies the ",
+          "zh": "附加 ",
+          "order": 10,
+          "color": "§7"
+        },
+        {
+          "text": "Geometric ",
+          "zh": "几何 ",
+          "order": 11,
+          "color": "§9"
+        },
+        {
+          "text": "reforge when ",
+          "zh": "重铸。",
+          "order": 12,
+          "color": "§7"
+        },
+        {
+          "text": "combined with ",
+          "zh": "与 ",
+          "order": 0,
+          "color": "§7"
+        },
+        {
+          "text": "Froggles",
+          "zh": "蛙镜",
+          "order": 1,
+          "color": "§a"
+        },
+        {
+          "text": ", ",
+          "zh": "、",
+          "order": 2,
+          "color": "§7"
+        },
+        {
+          "text": "Silver ",
+          "zh": "白银 ",
+          "order": 3,
+          "color": "§9"
+        },
+        {
+          "text": "Froggles",
+          "zh": "蛙镜",
+          "order": 4,
+          "color": "§9"
+        },
+        {
+          "text": ", ",
+          "zh": "、",
+          "order": 5,
+          "color": "§7"
+        },
+        {
+          "text": "Golden Froggles",
+          "zh": "黄金蛙镜 ",
+          "order": 6,
+          "color": "§5"
+        },
+        {
+          "text": ", and ",
+          "zh": "及 ",
+          "order": 7,
+          "color": "§7"
+        },
+        {
+          "text": "Diamond Froggles",
+          "zh": "钻石蛙镜 ",
+          "order": 8,
+          "color": "§6"
+        },
+        {
+          "text": ".",
+          "zh": "结合时，",
+          "order": 9,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Applies the §9Geometric §7reforge when",
+          "§7combined with §aFroggles§7, §9Silver",
+          "§9Froggles§7, §5Golden Froggles§7, and",
+          "§6Diamond Froggles§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_e39ce163025c",
+      "context": "物品 Lore 整句；GEOMETRIC_ODDITY",
+      "raw": "§8§oA man, who knows not where he is §8§onor where he has been, reaches into §8§ohis pocket.",
+      "text": "A man, who knows not where he is nor where he has been, reaches into his pocket.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "一个不知身在何处、曾往何方的旅人，缓缓将手探入衣袋。",
+      "source_items": [
+        "GEOMETRIC_ODDITY"
+      ],
+      "segments": [
+        {
+          "text": "A man, who knows not where he is ",
+          "zh": "一个不知身在何处、曾往何方的旅人，",
+          "color": "§8§o"
+        },
+        {
+          "text": "nor where he has been, reaches into ",
+          "zh": "缓缓将手探入",
+          "color": "§8§o"
+        },
+        {
+          "text": "his pocket.",
+          "zh": "衣袋。",
+          "color": "§8§o"
+        }
+      ],
+      "samples": [
+        [
+          "§8§oA man, who knows not where he is",
+          "§8§onor where he has been, reaches into",
+          "§8§ohis pocket."
+        ]
+      ]
+    },
+    {
+      "id": "neu_c685cb7a691e",
+      "context": "物品 Lore 整句；GEOMETRIC_ODDITY",
+      "raw": "§7Gain a §a%s§7 chance to catch a bonus §6Trophy §7while fishing in a §dWormhole§f.",
+      "text": "Gain a %s chance to catch a bonus Trophy while fishing in a Wormhole.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "+5%"
+        }
+      ],
+      "translate": true,
+      "zh": "在 虫洞 中垂钓时，有 %s 几率额外钓获一件 奖杯鱼。",
+      "source_items": [
+        "GEOMETRIC_ODDITY"
+      ],
+      "segments": [
+        {
+          "text": "Gain a ",
+          "zh": "中垂钓时，有 ",
+          "order": 2,
+          "color": "§7"
+        },
+        {
+          "text": "%s",
+          "zh": "%s",
+          "order": 3,
+          "color": "§a"
+        },
+        {
+          "text": " chance to catch a bonus ",
+          "zh": " 几率额外钓获一件 ",
+          "order": 4,
+          "color": "§7"
+        },
+        {
+          "text": "Trophy ",
+          "zh": "奖杯鱼",
+          "order": 5,
+          "color": "§6"
+        },
+        {
+          "text": "while fishing in a ",
+          "zh": "在 ",
+          "order": 0,
+          "color": "§7"
+        },
+        {
+          "text": "Wormhole",
+          "zh": "虫洞 ",
+          "order": 1,
+          "color": "§d"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "order": 6,
+          "color": "§f"
+        }
+      ],
+      "samples": [
+        [
+          "§7Gain a §a+5%§7 chance to catch a bonus",
+          "§6Trophy §7while fishing in a §dWormhole§f."
+        ]
+      ]
+    },
+    {
+      "id": "neu_d9183afc7659",
+      "context": "物品 Lore 整句；GIGANTIC_FISHING_NET",
+      "raw": "§7Grants §d%s Hunting Fortune §7on §9Water Shards §7caught with this net.",
+      "text": "Grants %s Hunting Fortune on Water Shards caught with this net.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "+10"
+        }
+      ],
+      "translate": true,
+      "zh": "使用此网捕获 水之碎片 时，提供 %s  狩猎幸运。",
+      "source_items": [
+        "GIGANTIC_FISHING_NET",
+        "MEDIUM_FISHING_NET",
+        "TURBO_FISHING_NET"
+      ],
+      "segments": [
+        {
+          "text": "Grants ",
+          "zh": "时，提供 ",
+          "order": 3,
+          "color": "§7"
+        },
+        {
+          "text": "%s Hunting Fortune ",
+          "zh": "%s  狩猎幸运。",
+          "order": 4,
+          "color": "§d"
+        },
+        {
+          "text": "on ",
+          "zh": "",
+          "omit": true,
+          "order": 2,
+          "color": "§7"
+        },
+        {
+          "text": "Water Shards ",
+          "zh": "水之碎片 ",
+          "order": 1,
+          "color": "§9"
+        },
+        {
+          "text": "caught with this net.",
+          "zh": "使用此网捕获 ",
+          "order": 0,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants §d+10 Hunting Fortune §7on",
+          "§9Water Shards §7caught with this net."
+        ],
+        [
+          "§7Grants §d+2.5 Hunting Fortune §7on",
+          "§9Water Shards §7caught with this net."
+        ],
+        [
+          "§7Grants §d+5 Hunting Fortune §7on",
+          "§9Water Shards §7caught with this net."
+        ]
+      ]
+    },
+    {
+      "id": "neu_194c62a613c7",
+      "context": "物品 Lore 整句；GLOWY_CHUM_BAIT",
+      "raw": "§7Adds §a%s Chums §7dropped on Sea §7Creatures fished with this bait.",
+      "text": "Adds %s Chums dropped on Sea Creatures fished with this bait.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "+2"
+        }
+      ],
+      "translate": true,
+      "zh": "使用此鱼饵垂钓出的海洋生物额外掉落 %s 块诱饵。",
+      "source_items": [
+        "GLOWY_CHUM_BAIT"
+      ],
+      "segments": [
+        {
+          "text": "Adds ",
+          "zh": "额外掉落 ",
+          "order": 2,
+          "color": "§7"
+        },
+        {
+          "text": "%s Chums ",
+          "zh": "%s 块诱饵。",
+          "order": 3,
+          "color": "§a"
+        },
+        {
+          "text": "dropped on Sea ",
+          "zh": "使用此鱼饵垂钓出的",
+          "order": 0,
+          "color": "§7"
+        },
+        {
+          "text": "Creatures fished with this bait.",
+          "zh": "海洋生物",
+          "order": 1,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Adds §a+2 Chums §7dropped on Sea",
+          "§7Creatures fished with this bait."
+        ]
+      ]
+    },
+    {
+      "id": "neu_ac2ce73131a9",
+      "context": "物品 Lore 整句；GOLDEN_BAIT",
+      "raw": "§7Grants §6%s Treasure Chance§7.",
+      "text": "Grants %s Treasure Chance.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "+4"
+        }
+      ],
+      "translate": true,
+      "zh": "提供 %s  寻宝几率。",
+      "source_items": [
+        "GOLDEN_BAIT"
+      ],
+      "segments": [
+        {
+          "text": "Grants ",
+          "zh": "提供 ",
+          "color": "§7"
+        },
+        {
+          "text": "%s Treasure Chance",
+          "zh": "%s  寻宝几率",
+          "color": "§6"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants §6+4 Treasure Chance§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_e5606341dc7e",
+      "context": "物品 Lore 整句；HARDENED_WOOD",
+      "raw": "§7Applies the §9Stiff §7reforge when §7combined with a fishing rod.",
+      "text": "Applies the Stiff reforge when combined with a fishing rod.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "与钓竿结合时，附加 坚挺 重铸。",
+      "source_items": [
+        "HARDENED_WOOD"
+      ],
+      "segments": [
+        {
+          "text": "Applies the ",
+          "zh": "结合时，附加 ",
+          "order": 1,
+          "color": "§7"
+        },
+        {
+          "text": "Stiff ",
+          "zh": "坚挺 ",
+          "order": 2,
+          "color": "§9"
+        },
+        {
+          "text": "reforge when ",
+          "zh": "与钓竿",
+          "order": 0,
+          "color": "§7"
+        },
+        {
+          "text": "combined with a fishing rod.",
+          "zh": "重铸。",
+          "order": 3,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Applies the §9Stiff §7reforge when",
+          "§7combined with a fishing rod."
+        ]
+      ]
+    },
+    {
+      "id": "neu_5f06b1874666",
+      "context": "物品 Lore 整句；HOTSPOT_BAIT",
+      "raw": "§7Grants a §a%s §7chance to catch §dHotspot Sea Creatures §7while fishing §7in a §dHotspot§7.",
+      "text": "Grants a %s chance to catch Hotspot Sea Creatures while fishing in a Hotspot.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "+20%"
+        }
+      ],
+      "translate": true,
+      "zh": "在 钓鱼热点 中垂钓时，有 %s 几率钓起 热点特有海洋生物。",
+      "source_items": [
+        "HOTSPOT_BAIT",
+        "HOTSPOT_HOOK",
+        "HOTSPOT_TONIC_MIXIN"
+      ],
+      "segments": [
+        {
+          "text": "Grants a ",
+          "zh": "有 ",
+          "order": 4,
+          "color": "§7"
+        },
+        {
+          "text": "%s ",
+          "zh": "%s ",
+          "order": 5,
+          "color": "§a"
+        },
+        {
+          "text": "chance to catch ",
+          "zh": "几率钓起 ",
+          "order": 6,
+          "color": "§7"
+        },
+        {
+          "text": "Hotspot Sea Creatures ",
+          "zh": "热点特有海洋生物。",
+          "order": 7,
+          "color": "§d"
+        },
+        {
+          "text": "while fishing ",
+          "zh": "中垂钓时，",
+          "order": 3,
+          "color": "§7"
+        },
+        {
+          "text": "in a ",
+          "zh": "在 ",
+          "order": 0,
+          "color": "§7"
+        },
+        {
+          "text": "Hotspot",
+          "zh": "钓鱼热点 ",
+          "order": 1,
+          "color": "§d"
+        },
+        {
+          "text": ".",
+          "zh": "",
+          "omit": true,
+          "order": 2,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants a §a+20% §7chance to catch",
+          "§dHotspot Sea Creatures §7while fishing",
+          "§7in a §dHotspot§7."
+        ],
+        [
+          "§7Grants a §a+10% §7chance to catch",
+          "§dHotspot Sea Creatures §7while fishing",
+          "§7in a §dHotspot§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_5f7b4b1d363f",
+      "context": "物品 Lore 整句；HOTSPOT_RADAR",
+      "raw": "§7A radar that can be used to detect §7active §dFishing Hotspots§7. Some §3Sea §3Creatures §7are exclusive to §dHotspots§7.",
+      "text": "A radar that can be used to detect active Fishing Hotspots. Some Sea Creatures are exclusive to Hotspots.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "可用于探测活跃 钓鱼热点 的雷达。部分 海洋 生物 仅出没于 热点 中。",
+      "source_items": [
+        "HOTSPOT_RADAR"
+      ],
+      "segments": [
+        {
+          "text": "A radar that can be used to detect ",
+          "zh": "可用于探测活跃 ",
+          "order": 0,
+          "color": "§7"
+        },
+        {
+          "text": "active ",
+          "zh": "的雷达。部分 ",
+          "order": 3,
+          "color": "§7"
+        },
+        {
+          "text": "Fishing Hotspots",
+          "zh": "钓鱼热点 ",
+          "order": 1,
+          "color": "§d"
+        },
+        {
+          "text": ". Some ",
+          "zh": "",
+          "omit": true,
+          "order": 2,
+          "color": "§7"
+        },
+        {
+          "text": "Sea ",
+          "zh": "海洋 ",
+          "order": 4,
+          "color": "§3"
+        },
+        {
+          "text": "Creatures ",
+          "zh": "生物 ",
+          "order": 5,
+          "color": "§3"
+        },
+        {
+          "text": "are exclusive to ",
+          "zh": "仅出没于 ",
+          "order": 6,
+          "color": "§7"
+        },
+        {
+          "text": "Hotspots",
+          "zh": "热点",
+          "order": 7,
+          "color": "§d"
+        },
+        {
+          "text": ".",
+          "zh": " 中。",
+          "order": 8,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7A radar that can be used to detect",
+          "§7active §dFishing Hotspots§7. Some §3Sea",
+          "§3Creatures §7are exclusive to §dHotspots§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_c9d6d86a89ad",
+      "context": "物品 Lore 整句；HOTSPOT_RADAR",
+      "raw": "§7Points towards the nearest §dFishing Hotspot§7. §8Cooldown: §a%ss",
+      "text": "Points towards the nearest Fishing Hotspot. Cooldown: %ss",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "translate": true,
+      "zh": "指示最近 钓鱼热点 的方向。冷却时间： %s 秒",
+      "source_items": [
+        "HOTSPOT_RADAR"
+      ],
+      "segments": [
+        {
+          "text": "Points towards the nearest ",
+          "zh": "指示最近 ",
+          "color": "§7"
+        },
+        {
+          "text": "Fishing Hotspot",
+          "zh": "钓鱼热点",
+          "color": "§d"
+        },
+        {
+          "text": ". ",
+          "zh": " 的方向。",
+          "color": "§7"
+        },
+        {
+          "text": "Cooldown: ",
+          "zh": "冷却时间： ",
+          "color": "§8"
+        },
+        {
+          "text": "%ss",
+          "zh": "%s 秒",
+          "color": "§a"
+        }
+      ],
+      "samples": [
+        [
+          "§7Points towards the nearest §dFishing Hotspot§7.",
+          "§8Cooldown: §a2s"
+        ]
+      ]
+    },
+    {
+      "id": "neu_52c4a488bf41",
+      "context": "物品 Lore 整句；HOTSPOT_SINKER",
+      "raw": "§7Increases the bonuses of §dFishing §dHotspots §7by §a%s§7.",
+      "text": "Increases the bonuses of Fishing Hotspots by %s.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "100%"
+        }
+      ],
+      "translate": true,
+      "zh": "使 钓鱼热点 的加成效果提升 %s。",
+      "source_items": [
+        "HOTSPOT_SINKER"
+      ],
+      "segments": [
+        {
+          "text": "Increases the bonuses of ",
+          "zh": "使 ",
+          "color": "§7"
+        },
+        {
+          "text": "Fishing ",
+          "zh": "钓鱼",
+          "color": "§d"
+        },
+        {
+          "text": "Hotspots ",
+          "zh": "热点 ",
+          "color": "§d"
+        },
+        {
+          "text": "by ",
+          "zh": "的加成效果提升 ",
+          "color": "§7"
+        },
+        {
+          "text": "%s",
+          "zh": "%s",
+          "color": "§a"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Increases the bonuses of §dFishing",
+          "§dHotspots §7by §a100%§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_0aa49a51dc1b",
+      "context": "物品 Lore 整句；HOT_BAIT",
+      "raw": "§7Grants §b%1$s☂ Fishing Speed§7 and §6%2$s §6Trophy Chance§7.",
+      "text": "Grants %1$s☂ Fishing Speed and %2$s Trophy Chance.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "+15"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "+5"
+        }
+      ],
+      "translate": true,
+      "zh": "提供 %1$s ☂ 钓鱼速度 与 %2$s  奖杯鱼几率。",
+      "source_items": [
+        "HOT_BAIT"
+      ],
+      "segments": [
+        {
+          "text": "Grants ",
+          "zh": "提供 ",
+          "color": "§7"
+        },
+        {
+          "text": "%1$s☂ Fishing Speed",
+          "zh": "%1$s ☂ 钓鱼速度",
+          "color": "§b"
+        },
+        {
+          "text": " and ",
+          "zh": " 与 ",
+          "color": "§7"
+        },
+        {
+          "text": "%2$s ",
+          "zh": "%2$s  ",
+          "color": "§6"
+        },
+        {
+          "text": "Trophy Chance",
+          "zh": "奖杯鱼几率",
+          "color": "§6"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants §b+15☂ Fishing Speed§7 and §6+5",
+          "§6Trophy Chance§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_77a0883ef7e1",
+      "context": "物品 Lore 整句；ICY_SINKER",
+      "raw": "§7Materializes §fIce §7in your inventory §7whenever you catch something.",
+      "text": "Materializes Ice in your inventory whenever you catch something.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "每当钓获物品时，直接在物品栏中凝聚 冰块。",
+      "source_items": [
+        "ICY_SINKER"
+      ],
+      "segments": [
+        {
+          "text": "Materializes ",
+          "zh": "直接在物品栏中凝聚 ",
+          "order": 1,
+          "color": "§7"
+        },
+        {
+          "text": "Ice ",
+          "zh": "冰块",
+          "order": 2,
+          "color": "§f"
+        },
+        {
+          "text": "in your inventory ",
+          "zh": "。",
+          "order": 3,
+          "color": "§7"
+        },
+        {
+          "text": "whenever you catch something.",
+          "zh": "每当钓获物品时，",
+          "order": 0,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Materializes §fIce §7in your inventory",
+          "§7whenever you catch something."
+        ]
+      ]
+    },
+    {
+      "id": "neu_c3d26fa6d86f",
+      "context": "物品 Lore 整句；INFERNO_APEX",
+      "raw": "§7Created very rarely by Inferno §7minions using Hypergolic-grade fuel.",
+      "text": "Created very rarely by Inferno minions using Hypergolic-grade fuel.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "地狱小人使用高能火箭燃料时极罕见产出。",
+      "source_items": [
+        "INFERNO_APEX"
+      ],
+      "segments": [
+        {
+          "text": "Created very rarely by Inferno ",
+          "zh": "地狱小人使用高能火箭燃料时",
+          "color": "§7"
+        },
+        {
+          "text": "minions using Hypergolic-grade fuel.",
+          "zh": "极罕见产出。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Created very rarely by Inferno",
+          "§7minions using Hypergolic-grade fuel."
+        ]
+      ]
+    },
+    {
+      "id": "neu_41a58533c1ed",
+      "context": "物品 Lore 整句；INFERNO_FUEL_BLAZE_ROD",
+      "raw": "§7Can be used as minion fuel §7exclusively in the Inferno minion for §7%s hours!",
+      "text": "Can be used as minion fuel exclusively in the Inferno minion for %s hours!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "24"
+        }
+      ],
+      "translate": true,
+      "zh": "专供地狱小人使用的小人燃料，可持续燃烧 %s 小时！",
+      "source_items": [
+        "INFERNO_FUEL_BLAZE_ROD",
+        "INFERNO_FUEL_CRUDE_GABAGOOL",
+        "INFERNO_FUEL_GLOWSTONE_DUST",
+        "INFERNO_FUEL_MAGMA_CREAM",
+        "INFERNO_FUEL_NETHER_STALK",
+        "INFERNO_HEAVY_BLAZE_ROD",
+        "INFERNO_HEAVY_CRUDE_GABAGOOL",
+        "INFERNO_HEAVY_GLOWSTONE_DUST",
+        "INFERNO_HEAVY_MAGMA_CREAM",
+        "INFERNO_HEAVY_NETHER_STALK",
+        "INFERNO_HYPERGOLIC_BLAZE_ROD",
+        "INFERNO_HYPERGOLIC_CRUDE_GABAGOOL",
+        "INFERNO_HYPERGOLIC_GLOWSTONE_DUST",
+        "INFERNO_HYPERGOLIC_MAGMA_CREAM",
+        "INFERNO_HYPERGOLIC_NETHER_STALK"
+      ],
+      "segments": [
+        {
+          "text": "Can be used as minion fuel ",
+          "zh": "专供地狱小人使用的小人燃料，",
+          "color": "§7"
+        },
+        {
+          "text": "exclusively in the Inferno minion for ",
+          "zh": "可持续燃烧 ",
+          "color": "§7"
+        },
+        {
+          "text": "%s hours!",
+          "zh": "%s 小时！",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Can be used as minion fuel",
+          "§7exclusively in the Inferno minion for",
+          "§724 hours!"
+        ]
+      ]
+    },
+    {
+      "id": "neu_0ab84e5bb257",
+      "context": "物品 Lore 整句；INFERNO_FUEL_BLAZE_ROD",
+      "raw": "§7Replaces §c%1$s/%2$s §7of the regular minion §7production with a §bspecialty §7item.",
+      "text": "Replaces %1$s/%2$s of the regular minion production with a specialty item.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "4"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "5"
+        }
+      ],
+      "translate": true,
+      "zh": "将 %1$s/%2$s 的常规仆从产量替换为 特色 产物。",
+      "source_items": [
+        "INFERNO_FUEL_BLAZE_ROD",
+        "INFERNO_FUEL_CRUDE_GABAGOOL",
+        "INFERNO_FUEL_GLOWSTONE_DUST",
+        "INFERNO_FUEL_MAGMA_CREAM",
+        "INFERNO_FUEL_NETHER_STALK",
+        "INFERNO_HEAVY_BLAZE_ROD",
+        "INFERNO_HEAVY_CRUDE_GABAGOOL",
+        "INFERNO_HEAVY_GLOWSTONE_DUST",
+        "INFERNO_HEAVY_MAGMA_CREAM",
+        "INFERNO_HEAVY_NETHER_STALK",
+        "INFERNO_HYPERGOLIC_BLAZE_ROD",
+        "INFERNO_HYPERGOLIC_CRUDE_GABAGOOL",
+        "INFERNO_HYPERGOLIC_GLOWSTONE_DUST",
+        "INFERNO_HYPERGOLIC_MAGMA_CREAM",
+        "INFERNO_HYPERGOLIC_NETHER_STALK"
+      ],
+      "segments": [
+        {
+          "text": "Replaces ",
+          "zh": "将 ",
+          "color": "§7"
+        },
+        {
+          "text": "%1$s/%2$s ",
+          "zh": "%1$s/%2$s ",
+          "color": "§c"
+        },
+        {
+          "text": "of the regular minion ",
+          "zh": "的常规仆从产量",
+          "color": "§7"
+        },
+        {
+          "text": "production with a ",
+          "zh": "替换为 ",
+          "color": "§7"
+        },
+        {
+          "text": "specialty ",
+          "zh": "特色 ",
+          "color": "§b"
+        },
+        {
+          "text": "item.",
+          "zh": "产物。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Replaces §c4/5 §7of the regular minion",
+          "§7production with a §bspecialty §7item."
+        ]
+      ]
+    },
+    {
+      "id": "neu_5ecc801d6a56",
+      "context": "物品 Lore 整句；INFERNO_FUEL_BLOCK",
+      "raw": "§7Reacts with gabagool in the crafting §7of Inferno minion fuels.",
+      "text": "Reacts with gabagool in the crafting of Inferno minion fuels.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "在合成地狱小人燃料时与肉卷发生反应。",
+      "source_items": [
+        "INFERNO_FUEL_BLOCK"
+      ],
+      "segments": [
+        {
+          "text": "Reacts with gabagool in the crafting ",
+          "zh": "在合成地狱小人燃料时",
+          "color": "§7"
+        },
+        {
+          "text": "of Inferno minion fuels.",
+          "zh": "与肉卷发生反应。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Reacts with gabagool in the crafting",
+          "§7of Inferno minion fuels."
+        ]
+      ]
+    },
+    {
+      "id": "neu_ec9210669cb9",
+      "context": "物品 Lore 整句；INFERNO_HYPERGOLIC_BLAZE_ROD",
+      "raw": "§cHypergolic-grade fuels create §cextra unique items! RARELY!",
+      "text": "Hypergolic-grade fuels create extra unique items! RARELY!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "高能火箭级燃料偶有概率产出额外独特物品！罕见！",
+      "source_items": [
+        "INFERNO_HYPERGOLIC_BLAZE_ROD",
+        "INFERNO_HYPERGOLIC_CRUDE_GABAGOOL",
+        "INFERNO_HYPERGOLIC_GLOWSTONE_DUST",
+        "INFERNO_HYPERGOLIC_MAGMA_CREAM",
+        "INFERNO_HYPERGOLIC_NETHER_STALK"
+      ],
+      "segments": [
+        {
+          "text": "Hypergolic-grade fuels create ",
+          "zh": "高能火箭级燃料偶有概率产出额外独特物品！",
+          "color": "§c"
+        },
+        {
+          "text": "extra unique items! RARELY!",
+          "zh": "罕见！",
+          "color": "§c"
+        }
+      ],
+      "samples": [
+        [
+          "§cHypergolic-grade fuels create",
+          "§cextra unique items! RARELY!"
+        ]
+      ]
+    },
+    {
+      "id": "neu_084024e34809",
+      "context": "物品 Lore 整句；INFERNO_VERTEX",
+      "raw": "§7Created once in a while by Inferno §7minions using Hypergolic-grade fuel.",
+      "text": "Created once in a while by Inferno minions using Hypergolic-grade fuel.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "地狱小人使用高能火箭级燃料时偶尔产出。",
+      "source_items": [
+        "INFERNO_VERTEX"
+      ],
+      "segments": [
+        {
+          "text": "Created once in a while by Inferno ",
+          "zh": "地狱小人使用高能火箭级燃料时",
+          "color": "§7"
+        },
+        {
+          "text": "minions using Hypergolic-grade fuel.",
+          "zh": "偶尔产出。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Created once in a while by Inferno",
+          "§7minions using Hypergolic-grade fuel."
+        ]
+      ]
+    },
+    {
+      "id": "neu_26666d073907",
+      "context": "物品 Lore 整句；JUNK_SINKER",
+      "raw": "§7Grants §6%s Treasure Chance §7while §7in the §2Backwater Bayou §7but replaces §7all §6Treasure §7catches with §2Junk§7!",
+      "text": "Grants %s Treasure Chance while in the Backwater Bayou but replaces all Treasure catches with Junk!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "+10"
+        }
+      ],
+      "translate": true,
+      "zh": "提供 %s  寻宝几率，身处 死水河湾 时，但钓起的所有 宝藏 都将被替换为 垃圾！",
+      "source_items": [
+        "JUNK_SINKER"
+      ],
+      "segments": [
+        {
+          "text": "Grants ",
+          "zh": "提供 ",
+          "color": "§7"
+        },
+        {
+          "text": "%s Treasure Chance ",
+          "zh": "%s  寻宝几率，",
+          "color": "§6"
+        },
+        {
+          "text": "while ",
+          "zh": "身处 ",
+          "color": "§7"
+        },
+        {
+          "text": "in the ",
+          "zh": "",
+          "omit": true,
+          "color": "§7"
+        },
+        {
+          "text": "Backwater Bayou ",
+          "zh": "死水河湾 ",
+          "color": "§2"
+        },
+        {
+          "text": "but replaces ",
+          "zh": "时，但钓起的",
+          "color": "§7"
+        },
+        {
+          "text": "all ",
+          "zh": "所有 ",
+          "color": "§7"
+        },
+        {
+          "text": "Treasure ",
+          "zh": "宝藏 ",
+          "color": "§6"
+        },
+        {
+          "text": "catches with ",
+          "zh": "都将被替换为 ",
+          "color": "§7"
+        },
+        {
+          "text": "Junk",
+          "zh": "垃圾",
+          "color": "§2"
+        },
+        {
+          "text": "!",
+          "zh": "！",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants §6+10 Treasure Chance §7while",
+          "§7in the §2Backwater Bayou §7but replaces",
+          "§7all §6Treasure §7catches with §2Junk§7!"
+        ]
+      ]
+    },
+    {
+      "id": "neu_13728fccba41",
+      "context": "物品 Lore 整句；KUUDRA_MANDIBLE",
+      "raw": "§7Applies the §9Chomp §7reforge when §7combined with a fishing rod.",
+      "text": "Applies the Chomp reforge when combined with a fishing rod.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "与钓竿结合时，附加 撕咬 重铸。",
+      "source_items": [
+        "KUUDRA_MANDIBLE"
+      ],
+      "segments": [
+        {
+          "text": "Applies the ",
+          "zh": "结合时，附加 ",
+          "order": 1,
+          "color": "§7"
+        },
+        {
+          "text": "Chomp ",
+          "zh": "撕咬 ",
+          "order": 2,
+          "color": "§9"
+        },
+        {
+          "text": "reforge when ",
+          "zh": "与钓竿",
+          "order": 0,
+          "color": "§7"
+        },
+        {
+          "text": "combined with a fishing rod.",
+          "zh": "重铸。",
+          "order": 3,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Applies the §9Chomp §7reforge when",
+          "§7combined with a fishing rod."
+        ]
+      ]
+    },
+    {
+      "id": "neu_dd18ccb95bff",
+      "context": "物品 Lore 整句；KUUDRA_MANDIBLE",
+      "raw": "§7Each unique §cLava Sea Creature §7killed with this rod in your inventory §7reduces their §c❤ Health §7when fished §7by §a%1$s§7. §8Capped at %2$s health.",
+      "text": "Each unique Lava Sea Creature killed with this rod in your inventory reduces their ❤ Health when fished by %1$s. Capped at %2$s health.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "1%"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "-20%"
+        }
+      ],
+      "translate": true,
+      "zh": "背包中携带此钓竿时，每击杀一种独特的 熔岩海洋生物 ，钓起时降低其 %1$s ❤ 生命值 。生命值降低上限为 %2$s。",
+      "source_items": [
+        "KUUDRA_MANDIBLE"
+      ],
+      "segments": [
+        {
+          "text": "Each unique ",
+          "zh": "背包中携带此钓竿时，每击杀一种独特的 ",
+          "order": 0,
+          "color": "§7"
+        },
+        {
+          "text": "Lava Sea Creature ",
+          "zh": "熔岩海洋生物 ",
+          "order": 1,
+          "color": "§c"
+        },
+        {
+          "text": "killed with this rod in your inventory ",
+          "zh": "，",
+          "order": 2,
+          "color": "§7"
+        },
+        {
+          "text": "reduces their ",
+          "zh": "钓起时降低其 ",
+          "order": 3,
+          "color": "§7"
+        },
+        {
+          "text": "❤ Health ",
+          "zh": "❤ 生命值 ",
+          "order": 5,
+          "color": "§c"
+        },
+        {
+          "text": "when fished ",
+          "zh": "",
+          "omit": true,
+          "order": 6,
+          "color": "§7"
+        },
+        {
+          "text": "by ",
+          "zh": "",
+          "omit": true,
+          "order": 7,
+          "color": "§7"
+        },
+        {
+          "text": "%1$s",
+          "zh": "%1$s ",
+          "order": 4,
+          "color": "§a"
+        },
+        {
+          "text": ". ",
+          "zh": "。",
+          "order": 8,
+          "color": "§7"
+        },
+        {
+          "text": "Capped at %2$s health.",
+          "zh": "生命值降低上限为 %2$s。",
+          "order": 9,
+          "color": "§8"
+        }
+      ],
+      "samples": [
+        [
+          "§7Each unique §cLava Sea Creature",
+          "§7killed with this rod in your inventory",
+          "§7reduces their §c❤ Health §7when fished",
+          "§7by §a1%§7.",
+          "§8Capped at -20% health."
+        ]
+      ]
+    },
+    {
+      "id": "neu_a13c0af760e0",
+      "context": "物品 Lore 整句；LOTUS_SINKER",
+      "raw": "§7Materializes §aLotus §7in your inventory §7whenever you catch something.",
+      "text": "Materializes Lotus in your inventory whenever you catch something.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "每当钓获物品时，直接在物品栏中凝聚 荷花。",
+      "source_items": [
+        "LOTUS_SINKER"
+      ],
+      "segments": [
+        {
+          "text": "Materializes ",
+          "zh": "直接在物品栏中凝聚 ",
+          "order": 1,
+          "color": "§7"
+        },
+        {
+          "text": "Lotus ",
+          "zh": "荷花",
+          "order": 2,
+          "color": "§a"
+        },
+        {
+          "text": "in your inventory ",
+          "zh": "。",
+          "order": 3,
+          "color": "§7"
+        },
+        {
+          "text": "whenever you catch something.",
+          "zh": "每当钓获物品时，",
+          "order": 0,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Materializes §aLotus §7in your inventory",
+          "§7whenever you catch something."
+        ]
+      ]
+    },
+    {
+      "id": "neu_6456353a0ae3",
+      "context": "物品 Lore 整句；LUCKY_DICE",
+      "raw": "§7Applies the §9Lucky §7reforge when §7combined with a fishing rod.",
+      "text": "Applies the Lucky reforge when combined with a fishing rod.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "与钓竿结合时，附加 幸运 重铸。",
+      "source_items": [
+        "LUCKY_DICE"
+      ],
+      "segments": [
+        {
+          "text": "Applies the ",
+          "zh": "结合时，附加 ",
+          "order": 1,
+          "color": "§7"
+        },
+        {
+          "text": "Lucky ",
+          "zh": "幸运 ",
+          "order": 2,
+          "color": "§9"
+        },
+        {
+          "text": "reforge when ",
+          "zh": "与钓竿",
+          "order": 0,
+          "color": "§7"
+        },
+        {
+          "text": "combined with a fishing rod.",
+          "zh": "重铸。",
+          "order": 3,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Applies the §9Lucky §7reforge when",
+          "§7combined with a fishing rod."
+        ]
+      ]
+    },
+    {
+      "id": "neu_9210d2be9060",
+      "context": "物品 Lore 整句；LUMINOUS_BRACELET",
+      "raw": "§7Earn §6%1$s Coins §7and §3%2$s Fishing XP §7when depositing §aChum §7in someone §7ELSE's bucket.",
+      "text": "Earn %1$s Coins and %2$s Fishing XP when depositing Chum in someone ELSE's bucket.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "+20"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "+10"
+        }
+      ],
+      "translate": true,
+      "zh": "将 诱饵 放入 他人 的碎鱼饵桶时，赚取 %1$s 硬币 与 %2$s 钓鱼经验。",
+      "source_items": [
+        "LUMINOUS_BRACELET"
+      ],
+      "segments": [
+        {
+          "text": "Earn ",
+          "zh": "赚取 ",
+          "order": 4,
+          "color": "§7"
+        },
+        {
+          "text": "%1$s Coins ",
+          "zh": "%1$s 硬币 ",
+          "order": 5,
+          "color": "§6"
+        },
+        {
+          "text": "and ",
+          "zh": "与 ",
+          "order": 6,
+          "color": "§7"
+        },
+        {
+          "text": "%2$s Fishing XP ",
+          "zh": "%2$s 钓鱼经验。",
+          "order": 7,
+          "color": "§3"
+        },
+        {
+          "text": "when depositing ",
+          "zh": "将 ",
+          "order": 0,
+          "color": "§7"
+        },
+        {
+          "text": "Chum ",
+          "zh": "诱饵 ",
+          "order": 1,
+          "color": "§a"
+        },
+        {
+          "text": "in someone ",
+          "zh": "放入 ",
+          "order": 2,
+          "color": "§7"
+        },
+        {
+          "text": "ELSE's bucket.",
+          "zh": "他人 的碎鱼饵桶时，",
+          "order": 3,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Earn §6+20 Coins §7and §3+10 Fishing XP",
+          "§7when depositing §aChum §7in someone",
+          "§7ELSE's bucket."
+        ]
+      ]
+    },
+    {
+      "id": "neu_c2bfa5a34a9f",
+      "context": "物品 Lore 整句；MAGIC_8_BALL",
+      "raw": "§7Every §aSkyBlock Season§7, the §5Magic %s §5Ball §7will grant one of the following §7bonuses:",
+      "text": "Every SkyBlock Season, the Magic %s Ball will grant one of the following bonuses:",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "8"
+        }
+      ],
+      "translate": true,
+      "zh": "每个 SkyBlock 季节，魔术 %s 号球 将赋予以下增益之一：",
+      "source_items": [
+        "MAGIC_8_BALL"
+      ],
+      "segments": [
+        {
+          "text": "Every ",
+          "zh": "每个 ",
+          "color": "§7"
+        },
+        {
+          "text": "SkyBlock Season",
+          "zh": "SkyBlock 季节",
+          "color": "§a"
+        },
+        {
+          "text": ", the ",
+          "zh": "，",
+          "color": "§7"
+        },
+        {
+          "text": "Magic %s ",
+          "zh": "魔术 %s ",
+          "color": "§5"
+        },
+        {
+          "text": "Ball ",
+          "zh": "号球 ",
+          "color": "§5"
+        },
+        {
+          "text": "will grant one of the following ",
+          "zh": "将赋予以下增益之一：",
+          "color": "§7"
+        },
+        {
+          "text": "bonuses:",
+          "zh": "",
+          "omit": true,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Every §aSkyBlock Season§7, the §5Magic 8",
+          "§5Ball §7will grant one of the following",
+          "§7bonuses:"
+        ]
+      ]
+    },
+    {
+      "id": "neu_97233d6a771a",
+      "context": "物品 Lore 整句；MARSHROOM",
+      "raw": "§7Applies the §9Marshy §7reforge when §7combined with equipment.",
+      "text": "Applies the Marshy reforge when combined with equipment.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "与装备结合时，附加 沼泽 重铸。",
+      "source_items": [
+        "MARSHROOM"
+      ],
+      "segments": [
+        {
+          "text": "Applies the ",
+          "zh": "结合时，附加 ",
+          "order": 1,
+          "color": "§7"
+        },
+        {
+          "text": "Marshy ",
+          "zh": "沼泽 ",
+          "order": 2,
+          "color": "§9"
+        },
+        {
+          "text": "reforge when ",
+          "zh": "与装备",
+          "order": 0,
+          "color": "§7"
+        },
+        {
+          "text": "combined with equipment.",
+          "zh": "重铸。",
+          "order": 3,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Applies the §9Marshy §7reforge when",
+          "§7combined with equipment."
+        ]
+      ]
+    },
+    {
+      "id": "neu_86b001170591",
+      "context": "物品 Lore 整句；MARSHROOM",
+      "raw": "§8§oA rare type of mushroom native to §8§othe Moonglade Marsh.",
+      "text": "A rare type of mushroom native to the Moonglade Marsh.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "原生于月林沼泽的稀有蘑菇。",
+      "source_items": [
+        "MARSHROOM"
+      ],
+      "segments": [
+        {
+          "text": "A rare type of mushroom native to ",
+          "zh": "原生于月林沼泽的",
+          "color": "§8§o"
+        },
+        {
+          "text": "the Moonglade Marsh.",
+          "zh": "稀有蘑菇。",
+          "color": "§8§o"
+        }
+      ],
+      "samples": [
+        [
+          "§8§oA rare type of mushroom native to",
+          "§8§othe Moonglade Marsh."
+        ]
+      ]
+    },
+    {
+      "id": "neu_6954cf6a2971",
+      "context": "物品 Lore 整句；MARSHROOM",
+      "raw": "§7Increases §3Forest Whispers §7gain by §a%s§7.",
+      "text": "Increases Forest Whispers gain by %s.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "+1%"
+        }
+      ],
+      "translate": true,
+      "zh": "使 森林低语 获取量提升 %s。",
+      "source_items": [
+        "MARSHROOM"
+      ],
+      "segments": [
+        {
+          "text": "Increases ",
+          "zh": "使 ",
+          "color": "§7"
+        },
+        {
+          "text": "Forest Whispers ",
+          "zh": "森林低语 ",
+          "color": "§3"
+        },
+        {
+          "text": "gain by ",
+          "zh": "获取量提升 ",
+          "color": "§7"
+        },
+        {
+          "text": "%s",
+          "zh": "%s",
+          "color": "§a"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Increases §3Forest Whispers §7gain by",
+          "§a+1%§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_d06b86a167c6",
+      "context": "物品 Lore 整句；MEDIOCRE_FISH_DRAWING",
+      "raw": "§7Commemorates your participation in §7the §bFishing Outpost §7city project.",
+      "text": "Commemorates your participation in the Fishing Outpost city project.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "纪念你参与 钓鱼前哨站 城市项目。",
+      "source_items": [
+        "MEDIOCRE_FISH_DRAWING"
+      ],
+      "segments": [
+        {
+          "text": "Commemorates your participation in ",
+          "zh": "纪念你参与 ",
+          "color": "§7"
+        },
+        {
+          "text": "the ",
+          "zh": "",
+          "omit": true,
+          "color": "§7"
+        },
+        {
+          "text": "Fishing Outpost ",
+          "zh": "钓鱼前哨站 ",
+          "color": "§b"
+        },
+        {
+          "text": "city project.",
+          "zh": "城市项目。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Commemorates your participation in",
+          "§7the §bFishing Outpost §7city project."
+        ]
+      ]
+    },
+    {
+      "id": "neu_2e8abdec8db1",
+      "context": "物品 Lore 整句；MEDIOCRE_FISH_DRAWING",
+      "raw": "§8§oFound underneath the fridge in the §8§oFisherman's Hut during renovations. §8§oThough it leaves a lot to be desired, §8§ovisually speaking, a lot of love was §8§oprobably put into it.",
+      "text": "Found underneath the fridge in the Fisherman's Hut during renovations. Though it leaves a lot to be desired, visually speaking, a lot of love was probably put into it.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "翻修期间在渔夫小屋的冰箱底下发现。虽说视觉上略显简陋，但大概饱含了满满的心意。",
+      "source_items": [
+        "MEDIOCRE_FISH_DRAWING"
+      ],
+      "segments": [
+        {
+          "text": "Found underneath the fridge in the ",
+          "zh": "翻修期间在渔夫小屋的冰箱底下发现。",
+          "color": "§8§o"
+        },
+        {
+          "text": "Fisherman's Hut during renovations. ",
+          "zh": "虽说视觉上略显简陋，",
+          "color": "§8§o"
+        },
+        {
+          "text": "Though it leaves a lot to be desired, ",
+          "zh": "但大概饱含了满满的心意。",
+          "color": "§8§o"
+        },
+        {
+          "text": "visually speaking, a lot of love was ",
+          "zh": "",
+          "omit": true,
+          "color": "§8§o"
+        },
+        {
+          "text": "probably put into it.",
+          "zh": "",
+          "omit": true,
+          "color": "§8§o"
+        }
+      ],
+      "samples": [
+        [
+          "§8§oFound underneath the fridge in the",
+          "§8§oFisherman's Hut during renovations.",
+          "§8§oThough it leaves a lot to be desired,",
+          "§8§ovisually speaking, a lot of love was",
+          "§8§oprobably put into it."
+        ]
+      ]
+    },
+    {
+      "id": "neu_2b78fb7eaacd",
+      "context": "物品 Lore 整句；MOBY_DUCK",
+      "raw": "§7Consume to boost your §3☯ Fishing §3Wisdom §7for §a%sm§7.",
+      "text": "Consume to boost your ☯ Fishing Wisdom for %sm.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "60"
+        }
+      ],
+      "translate": true,
+      "zh": "使用后提高你的 ☯ 钓鱼 智慧 持续 %s 分钟。",
+      "source_items": [
+        "MOBY_DUCK"
+      ],
+      "segments": [
+        {
+          "text": "Consume to boost your ",
+          "zh": "使用后提高你的 ",
+          "color": "§7"
+        },
+        {
+          "text": "☯ Fishing ",
+          "zh": "☯ 钓鱼 ",
+          "color": "§3"
+        },
+        {
+          "text": "Wisdom ",
+          "zh": "智慧 ",
+          "color": "§3"
+        },
+        {
+          "text": "for ",
+          "zh": "持续 ",
+          "color": "§7"
+        },
+        {
+          "text": "%sm",
+          "zh": "%s 分钟",
+          "color": "§a"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Consume to boost your §3☯ Fishing",
+          "§3Wisdom §7for §a60m§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_feef9f42cecf",
+      "context": "物品 Lore 整句；MOBY_DUCK",
+      "raw": "§7Keep this item in your inventory to §7increase the bonus up to §3%s☯ §3Fishing Wisdom§7, at which point the item §c§oevolves§7!",
+      "text": "Keep this item in your inventory to increase the bonus up to %s☯ Fishing Wisdom, at which point the item evolves!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "+30"
+        }
+      ],
+      "translate": true,
+      "zh": "将此物品保留在物品栏中，最高可将其加成提升至 %s ☯ 钓鱼智慧，届时物品将发生 蜕变！",
+      "source_items": [
+        "MOBY_DUCK"
+      ],
+      "segments": [
+        {
+          "text": "Keep this item in your inventory to ",
+          "zh": "将此物品保留在物品栏中，最高可将其加成提升至 ",
+          "color": "§7"
+        },
+        {
+          "text": "increase the bonus up to ",
+          "zh": "",
+          "omit": true,
+          "color": "§7"
+        },
+        {
+          "text": "%s☯ ",
+          "zh": "%s ☯ ",
+          "color": "§3"
+        },
+        {
+          "text": "Fishing Wisdom",
+          "zh": "钓鱼智慧",
+          "color": "§3"
+        },
+        {
+          "text": ", at which point the item ",
+          "zh": "，届时物品将发生 ",
+          "color": "§7"
+        },
+        {
+          "text": "evolves",
+          "zh": "蜕变",
+          "color": "§c§o"
+        },
+        {
+          "text": "!",
+          "zh": "！",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Keep this item in your inventory to",
+          "§7increase the bonus up to §3+30☯",
+          "§3Fishing Wisdom§7, at which point the item",
+          "§c§oevolves§7!"
+        ]
+      ]
+    },
+    {
+      "id": "neu_cce1dd4ca076",
+      "context": "物品 Lore 整句；MOBY_DUCK",
+      "raw": "§8§oA series of tales following a fellow §8§onamed Moby and his waterfowl best §8§ofriend. Who would be so egregious as §8§oto thrust such a literary §8§omasterpiece into the sea?",
+      "text": "A series of tales following a fellow named Moby and his waterfowl best friend. Who would be so egregious as to thrust such a literary masterpiece into the sea?",
+      "placeholders": [],
+      "translate": true,
+      "zh": "一系列讲述一位名叫 Moby 的家伙与其水禽好友的传奇故事。究竟是何等恶徒，竟会将如此文学杰作掷入茫茫大海？",
+      "source_items": [
+        "MOBY_DUCK",
+        "MOBY_DUCK_COLLECTOR_EDITION"
+      ],
+      "segments": [
+        {
+          "text": "A series of tales following a fellow ",
+          "zh": "一系列讲述一位名叫 Moby 的家伙与其水禽好友的",
+          "color": "§8§o"
+        },
+        {
+          "text": "named Moby and his waterfowl best ",
+          "zh": "传奇故事。究竟是何等恶徒，",
+          "color": "§8§o"
+        },
+        {
+          "text": "friend. Who would be so egregious as ",
+          "zh": "竟会将如此文学杰作",
+          "color": "§8§o"
+        },
+        {
+          "text": "to thrust such a literary ",
+          "zh": "掷入茫茫大海？",
+          "color": "§8§o"
+        },
+        {
+          "text": "masterpiece into the sea?",
+          "zh": "",
+          "omit": true,
+          "color": "§8§o"
+        }
+      ],
+      "samples": [
+        [
+          "§8§oA series of tales following a fellow",
+          "§8§onamed Moby and his waterfowl best",
+          "§8§ofriend. Who would be so egregious as",
+          "§8§oto thrust such a literary",
+          "§8§omasterpiece into the sea?"
+        ]
+      ]
+    },
+    {
+      "id": "neu_4ce5e712a3c2",
+      "context": "物品 Lore 整句；MOBY_DUCK_COLLECTOR_EDITION",
+      "raw": "§7Consume to gain §3%1$s☯ Fishing Wisdom §7for §a%2$sm§7!",
+      "text": "Consume to gain %1$s☯ Fishing Wisdom for %2$sm!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "+30"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "60"
+        }
+      ],
+      "translate": true,
+      "zh": "使用可获得 %1$s ☯ 钓鱼智慧 持续 %2$s 分钟！",
+      "source_items": [
+        "MOBY_DUCK_COLLECTOR_EDITION"
+      ],
+      "segments": [
+        {
+          "text": "Consume to gain ",
+          "zh": "使用可获得 ",
+          "color": "§7"
+        },
+        {
+          "text": "%1$s☯ Fishing Wisdom ",
+          "zh": "%1$s ☯ 钓鱼智慧 ",
+          "color": "§3"
+        },
+        {
+          "text": "for ",
+          "zh": "持续 ",
+          "color": "§7"
+        },
+        {
+          "text": "%2$sm",
+          "zh": "%2$s 分钟",
+          "color": "§a"
+        },
+        {
+          "text": "!",
+          "zh": "！",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Consume to gain §3+30☯ Fishing Wisdom",
+          "§7for §a60m§7!"
+        ]
+      ]
+    },
+    {
+      "id": "neu_0cb924a8a1d2",
+      "context": "物品 Lore 整句；MOBY_DUCK_COLLECTOR_EDITION",
+      "raw": "§6Bookworm §7Consuming this grants permanent §3%s☯ Fishing Wisdom§7.",
+      "text": "Bookworm Consuming this grants permanent %s☯ Fishing Wisdom.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "+1"
+        }
+      ],
+      "translate": true,
+      "zh": "书虫 使用可永久获得 %s ☯ 钓鱼智慧。",
+      "source_items": [
+        "MOBY_DUCK_COLLECTOR_EDITION"
+      ],
+      "segments": [
+        {
+          "text": "Bookworm ",
+          "zh": "书虫 ",
+          "color": "§6"
+        },
+        {
+          "text": "Consuming this grants permanent ",
+          "zh": "使用可永久获得 ",
+          "color": "§7"
+        },
+        {
+          "text": "%s☯ Fishing Wisdom",
+          "zh": "%s ☯ 钓鱼智慧",
+          "color": "§3"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§6Bookworm",
+          "§7Consuming this grants permanent",
+          "§3+1☯ Fishing Wisdom§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_00c60f613a1e",
+      "context": "物品 Lore 整句；MOBY_DUCK_COLLECTOR_EDITION",
+      "raw": "§7You may consume §a%s §7of these before §7they lose their magical energy.",
+      "text": "You may consume %s of these before they lose their magical energy.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "translate": true,
+      "zh": "该物品最多只能使用 %s 次，随后其魔力便将消散殆尽。",
+      "source_items": [
+        "MOBY_DUCK_COLLECTOR_EDITION"
+      ],
+      "segments": [
+        {
+          "text": "You may consume ",
+          "zh": "该物品最多只能使用 ",
+          "color": "§7"
+        },
+        {
+          "text": "%s ",
+          "zh": "%s 次",
+          "color": "§a"
+        },
+        {
+          "text": "of these before ",
+          "zh": "，随后其魔力便将",
+          "color": "§7"
+        },
+        {
+          "text": "they lose their magical energy.",
+          "zh": "消散殆尽。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7You may consume §a1 §7of these before",
+          "§7they lose their magical energy."
+        ]
+      ]
+    },
+    {
+      "id": "neu_d17f6f0e55be",
+      "context": "物品 Lore 整句；MUSHED_MUSHROOM_MIXIN",
+      "raw": "§7Gain §b%s☂ Fishing Speed §7if you're §7not getting it from the §2Mushed Glowy §2Tonic§7.",
+      "text": "Gain %s☂ Fishing Speed if you're not getting it from the Mushed Glowy Tonic.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "+30"
+        }
+      ],
+      "translate": true,
+      "zh": "若未获得 泥状发光 补剂速度加成，则提供 %s ☂ 钓鱼速度。",
+      "source_items": [
+        "MUSHED_MUSHROOM_MIXIN"
+      ],
+      "segments": [
+        {
+          "text": "Gain ",
+          "zh": "则提供 ",
+          "order": 4,
+          "color": "§7"
+        },
+        {
+          "text": "%s☂ Fishing Speed ",
+          "zh": "%s ☂ 钓鱼速度",
+          "order": 5,
+          "color": "§b"
+        },
+        {
+          "text": "if you're ",
+          "zh": "若未获得 ",
+          "order": 0,
+          "color": "§7"
+        },
+        {
+          "text": "not getting it from the ",
+          "zh": "速度加成，",
+          "order": 3,
+          "color": "§7"
+        },
+        {
+          "text": "Mushed Glowy ",
+          "zh": "泥状发光 ",
+          "order": 1,
+          "color": "§2"
+        },
+        {
+          "text": "Tonic",
+          "zh": "补剂",
+          "order": 2,
+          "color": "§2"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "order": 6,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Gain §b+30☂ Fishing Speed §7if you're",
+          "§7not getting it from the §2Mushed Glowy",
+          "§2Tonic§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_e067cf6a6eae",
+      "context": "物品 Lore 整句；MYSTERIOUS_PACKAGE",
+      "raw": "§7Correctly dispose of this item to §7permanently gain §3%1$s☯ Fishing Wisdom §7and §6%2$s Coins§7.",
+      "text": "Correctly dispose of this item to permanently gain %1$s☯ Fishing Wisdom and %2$s Coins.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "+1"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "250,000"
+        }
+      ],
+      "translate": true,
+      "zh": "妥善处理此物品可永久获得 %1$s ☯ 钓鱼智慧 与 %2$s 硬币。",
+      "source_items": [
+        "MYSTERIOUS_PACKAGE"
+      ],
+      "segments": [
+        {
+          "text": "Correctly dispose of this item to ",
+          "zh": "妥善处理此物品可",
+          "color": "§7"
+        },
+        {
+          "text": "permanently gain ",
+          "zh": "永久获得 ",
+          "color": "§7"
+        },
+        {
+          "text": "%1$s☯ Fishing Wisdom ",
+          "zh": "%1$s ☯ 钓鱼智慧 ",
+          "color": "§3"
+        },
+        {
+          "text": "and ",
+          "zh": "与 ",
+          "color": "§7"
+        },
+        {
+          "text": "%2$s Coins",
+          "zh": "%2$s 硬币",
+          "color": "§6"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Correctly dispose of this item to",
+          "§7permanently gain §3+1☯ Fishing Wisdom",
+          "§7and §6250,000 Coins§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_7cf68376b878",
+      "context": "物品 Lore 整句；MYSTERIOUS_PACKAGE",
+      "raw": "§7Bonuses may only be obtained once.",
+      "text": "Bonuses may only be obtained once.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "各项加成仅可获取一次。",
+      "source_items": [
+        "MYSTERIOUS_PACKAGE"
+      ],
+      "samples": [
+        [
+          "§7Bonuses may only be obtained once."
+        ]
+      ]
+    },
+    {
+      "id": "neu_c67ce9303e2e",
+      "context": "物品 Lore 整句；MYSTERIOUS_PACKAGE",
+      "raw": "§8§oThrow it back when they are §8§opresent. By he who is both false idol §8§oand beacon of hope.",
+      "text": "Throw it back when they are present. By he who is both false idol and beacon of hope.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "当他们在场时将其掷回。出自那位既是伪神、亦为希望灯塔的存在之手。",
+      "source_items": [
+        "MYSTERIOUS_PACKAGE"
+      ],
+      "segments": [
+        {
+          "text": "Throw it back when they are ",
+          "zh": "当他们在场时将其",
+          "color": "§8§o"
+        },
+        {
+          "text": "present. By he who is both false idol ",
+          "zh": "掷回。出自那位既是伪神、亦为",
+          "color": "§8§o"
+        },
+        {
+          "text": "and beacon of hope.",
+          "zh": "希望灯塔的存在之手。",
+          "color": "§8§o"
+        }
+      ],
+      "samples": [
+        [
+          "§8§oThrow it back when they are",
+          "§8§opresent. By he who is both false idol",
+          "§8§oand beacon of hope."
+        ]
+      ]
+    },
+    {
+      "id": "neu_f2bf1fefa60c",
+      "context": "物品 Lore 整句；NEARLY_COHERENT_ROD",
+      "raw": "§7Hold this and §aChester §7will follow you §7instead of running away.",
+      "text": "Hold this and Chester will follow you instead of running away.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "手持此物，Chester 将跟随你 而非逃跑。",
+      "source_items": [
+        "NEARLY_COHERENT_ROD"
+      ],
+      "segments": [
+        {
+          "text": "Hold this and ",
+          "zh": "手持此物，",
+          "color": "§7"
+        },
+        {
+          "text": "Chester ",
+          "zh": "Chester ",
+          "color": "§a"
+        },
+        {
+          "text": "will follow you ",
+          "zh": "将跟随你 ",
+          "color": "§7"
+        },
+        {
+          "text": "instead of running away.",
+          "zh": "而非逃跑。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Hold this and §aChester §7will follow you",
+          "§7instead of running away."
+        ]
+      ]
+    },
+    {
+      "id": "neu_80695d1ad0d5",
+      "context": "物品 Lore 整句；OBFUSCATED_FISH_2_BRONZE",
+      "raw": "§7Caught with §7§kObfuscated %s§7 Bait.",
+      "text": "Caught with Obfuscated %s Bait.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "translate": true,
+      "zh": "使用 模糊 %s 号鱼饵 钓获。",
+      "source_items": [
+        "OBFUSCATED_FISH_2_BRONZE",
+        "OBFUSCATED_FISH_2_DIAMOND",
+        "OBFUSCATED_FISH_2_GOLD",
+        "OBFUSCATED_FISH_2_SILVER"
+      ],
+      "segments": [
+        {
+          "text": "Caught with ",
+          "zh": "使用 ",
+          "color": "§7"
+        },
+        {
+          "text": "Obfuscated %s",
+          "zh": "模糊 %s ",
+          "color": "§7§k"
+        },
+        {
+          "text": " Bait.",
+          "zh": "号鱼饵 钓获。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Caught with §7§kObfuscated 1§7 Bait."
+        ]
+      ]
+    },
+    {
+      "id": "neu_af49daa71db3",
+      "context": "物品 Lore 整句；OCEANDY",
+      "raw": "§7Grants §b%s❣ Charm Chance §7towards §aSea Creatures§7.",
+      "text": "Grants %s❣ Charm Chance towards Sea Creatures.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "1.25"
+        }
+      ],
+      "translate": true,
+      "zh": "对 海洋生物 提供 %s ❣ 魅惑几率。",
+      "source_items": [
+        "OCEANDY"
+      ],
+      "segments": [
+        {
+          "text": "Grants ",
+          "zh": "对 ",
+          "color": "§7"
+        },
+        {
+          "text": "%s❣ Charm Chance ",
+          "zh": "海洋生物 ",
+          "color": "§b"
+        },
+        {
+          "text": "towards ",
+          "zh": "提供 ",
+          "color": "§7"
+        },
+        {
+          "text": "Sea Creatures",
+          "zh": "%s ❣ 魅惑几率",
+          "color": "§a"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants §b1.25❣ Charm Chance §7towards",
+          "§aSea Creatures§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_9972046d550b",
+      "context": "物品 Lore 整句；OVERFLOWING_TRASH_CAN",
+      "raw": "§7Applies the §9Trashy §7reforge when §7combined with a fishing rod.",
+      "text": "Applies the Trashy reforge when combined with a fishing rod.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "与钓竿结合时，附加 破烂 重铸。",
+      "source_items": [
+        "OVERFLOWING_TRASH_CAN"
+      ],
+      "segments": [
+        {
+          "text": "Applies the ",
+          "zh": "结合时，附加 ",
+          "order": 1,
+          "color": "§7"
+        },
+        {
+          "text": "Trashy ",
+          "zh": "破烂 ",
+          "order": 2,
+          "color": "§9"
+        },
+        {
+          "text": "reforge when ",
+          "zh": "与钓竿",
+          "order": 0,
+          "color": "§7"
+        },
+        {
+          "text": "combined with a fishing rod.",
+          "zh": "重铸。",
+          "order": 3,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Applies the §9Trashy §7reforge when",
+          "§7combined with a fishing rod."
+        ]
+      ]
+    },
+    {
+      "id": "neu_a6a4517a60df",
+      "context": "物品 Lore 整句；OVERFLOWING_TRASH_CAN",
+      "raw": "§7Grants §6%s Treasure Chance §7while §7in the §2Backwater Bayou.",
+      "text": "Grants %s Treasure Chance while in the Backwater Bayou.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "+1"
+        }
+      ],
+      "translate": true,
+      "zh": "提供 %s  寻宝几率 身处 死水河湾 时。",
+      "source_items": [
+        "OVERFLOWING_TRASH_CAN"
+      ],
+      "segments": [
+        {
+          "text": "Grants ",
+          "zh": "提供 ",
+          "color": "§7"
+        },
+        {
+          "text": "%s Treasure Chance ",
+          "zh": "%s  寻宝几率 ",
+          "color": "§6"
+        },
+        {
+          "text": "while ",
+          "zh": "身处 ",
+          "color": "§7"
+        },
+        {
+          "text": "in the ",
+          "zh": "",
+          "omit": true,
+          "color": "§7"
+        },
+        {
+          "text": "Backwater Bayou.",
+          "zh": "死水河湾 时。",
+          "color": "§2"
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants §6+1 Treasure Chance §7while",
+          "§7in the §2Backwater Bayou."
+        ]
+      ]
+    },
+    {
+      "id": "neu_f6d6c3c6b698",
+      "context": "物品 Lore 整句；PERFECT_AQUAMARINE_GEM",
+      "raw": "§7A perfectly §3refined Aquamarine§7.",
+      "text": "A perfectly refined Aquamarine.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "完美打磨的 海蓝宝石。",
+      "source_items": [
+        "PERFECT_AQUAMARINE_GEM"
+      ],
+      "segments": [
+        {
+          "text": "A perfectly ",
+          "zh": "完美打磨的 ",
+          "color": "§7"
+        },
+        {
+          "text": "refined Aquamarine",
+          "zh": "海蓝宝石",
+          "color": "§3"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7A perfectly §3refined Aquamarine§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_f8dc1258b52a",
+      "context": "物品 Lore 整句；PHANTOM_HOOK",
+      "raw": "§7Grants a §a%s §7chance to catch §6Spooky Sea Creatures §7during the §6Spooky Festival§7.",
+      "text": "Grants a %s chance to catch Spooky Sea Creatures during the Spooky Festival.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "+20%"
+        }
+      ],
+      "translate": true,
+      "zh": "在 阴森节 期间垂钓时，有 %s 几率钓起 阴森海洋生物。",
+      "source_items": [
+        "PHANTOM_HOOK"
+      ],
+      "segments": [
+        {
+          "text": "Grants a ",
+          "zh": "在 ",
+          "color": "§7"
+        },
+        {
+          "text": "%s ",
+          "zh": "阴森节 ",
+          "color": "§a"
+        },
+        {
+          "text": "chance to catch ",
+          "zh": "期间垂钓时，有 ",
+          "color": "§7"
+        },
+        {
+          "text": "Spooky Sea Creatures ",
+          "zh": "%s ",
+          "color": "§6"
+        },
+        {
+          "text": "during the ",
+          "zh": "几率钓起 ",
+          "color": "§7"
+        },
+        {
+          "text": "Spooky Festival",
+          "zh": "阴森海洋生物",
+          "color": "§6"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants a §a+20% §7chance to catch",
+          "§6Spooky Sea Creatures §7during the",
+          "§6Spooky Festival§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_786c1bfed007",
+      "context": "物品 Lore 整句；PITCHIN_KOI",
+      "raw": "§7Applies the §9Pitchin' §7reforge when §7combined with a fishing rod.",
+      "text": "Applies the Pitchin' reforge when combined with a fishing rod.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "与钓竿结合时，附加 颠簸 重铸。",
+      "source_items": [
+        "PITCHIN_KOI"
+      ],
+      "segments": [
+        {
+          "text": "Applies the ",
+          "zh": "结合时，附加 ",
+          "order": 1,
+          "color": "§7"
+        },
+        {
+          "text": "Pitchin' ",
+          "zh": "颠簸 ",
+          "order": 2,
+          "color": "§9"
+        },
+        {
+          "text": "reforge when ",
+          "zh": "与钓竿",
+          "order": 0,
+          "color": "§7"
+        },
+        {
+          "text": "combined with a fishing rod.",
+          "zh": "重铸。",
+          "order": 3,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Applies the §9Pitchin' §7reforge when",
+          "§7combined with a fishing rod."
+        ]
+      ]
+    },
+    {
+      "id": "neu_1bfb5db19109",
+      "context": "物品 Lore 整句；POIGNANT_CARROT_BAIT",
+      "raw": "§7Consume this while on §aThe Garden §7to §7attract a certain carrot-craving §bVisitor§7.",
+      "text": "Consume this while on The Garden to attract a certain carrot-craving Visitor.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "身处 花园 时使用此物品，可吸引特定渴望胡萝卜的 访客。",
+      "source_items": [
+        "POIGNANT_CARROT_BAIT"
+      ],
+      "segments": [
+        {
+          "text": "Consume this while on ",
+          "zh": "身处 ",
+          "color": "§7"
+        },
+        {
+          "text": "The Garden ",
+          "zh": "花园 ",
+          "color": "§a"
+        },
+        {
+          "text": "to ",
+          "zh": "时使用此物品，可",
+          "color": "§7"
+        },
+        {
+          "text": "attract a certain carrot-craving ",
+          "zh": "吸引特定渴望胡萝卜的 ",
+          "color": "§7"
+        },
+        {
+          "text": "Visitor",
+          "zh": "访客",
+          "color": "§b"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Consume this while on §aThe Garden §7to",
+          "§7attract a certain carrot-craving",
+          "§bVisitor§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_3e4d174f0489",
+      "context": "物品 Lore 整句；PRISMARINE_SINKER",
+      "raw": "§7Materializes §fPrismarine Shard§7 or §fPrismarine Crystals §7in your §7inventory whenever you catch §7something.",
+      "text": "Materializes Prismarine Shard or Prismarine Crystals in your inventory whenever you catch something.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "每当钓获物品时，直接在物品栏中凝聚 海晶碎片 或 海晶砂粒。",
+      "source_items": [
+        "PRISMARINE_SINKER"
+      ],
+      "segments": [
+        {
+          "text": "Materializes ",
+          "zh": "直接在物品栏中凝聚 ",
+          "order": 1,
+          "color": "§7"
+        },
+        {
+          "text": "Prismarine Shard",
+          "zh": "海晶碎片",
+          "order": 2,
+          "color": "§f"
+        },
+        {
+          "text": " or ",
+          "zh": " 或 ",
+          "order": 3,
+          "color": "§7"
+        },
+        {
+          "text": "Prismarine Crystals ",
+          "zh": "海晶砂粒",
+          "order": 4,
+          "color": "§f"
+        },
+        {
+          "text": "in your ",
+          "zh": "",
+          "omit": true,
+          "order": 5,
+          "color": "§7"
+        },
+        {
+          "text": "inventory whenever you catch ",
+          "zh": "每当钓获物品时，",
+          "order": 0,
+          "color": "§7"
+        },
+        {
+          "text": "something.",
+          "zh": "。",
+          "order": 6,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Materializes §fPrismarine Shard§7 or",
+          "§fPrismarine Crystals §7in your",
+          "§7inventory whenever you catch",
+          "§7something."
+        ]
+      ]
+    },
+    {
+      "id": "neu_b89298efd337",
+      "context": "物品 Lore 整句；PUDDLE_JUMPER_HOOK",
+      "raw": "§7Increases the chance to catch a §6Puddle Jumper §7by §a%s§7.",
+      "text": "Increases the chance to catch a Puddle Jumper by %s.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "400%"
+        }
+      ],
+      "translate": true,
+      "zh": "钓起 水坑跳蛙 的几率提升 %s。",
+      "source_items": [
+        "PUDDLE_JUMPER_HOOK"
+      ],
+      "segments": [
+        {
+          "text": "Increases the chance to catch a ",
+          "zh": "钓起 ",
+          "color": "§7"
+        },
+        {
+          "text": "Puddle Jumper ",
+          "zh": "水坑跳蛙 ",
+          "color": "§6"
+        },
+        {
+          "text": "by ",
+          "zh": "的几率提升 ",
+          "color": "§7"
+        },
+        {
+          "text": "%s",
+          "zh": "%s",
+          "color": "§a"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Increases the chance to catch a",
+          "§6Puddle Jumper §7by §a400%§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_4234eea5928b",
+      "context": "物品 Lore 整句；RIFT_TROPHY_CHICKEN_N_EGG",
+      "raw": "§7Place this timecharm in the §dRift §dGallery §7to secure it forever!",
+      "text": "Place this timecharm in the Rift Gallery to secure it forever!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "将此时间护符放入 裂隙 画廊 中，使其永久固化！",
+      "source_items": [
+        "RIFT_TROPHY_CHICKEN_N_EGG",
+        "RIFT_TROPHY_CITIZEN",
+        "RIFT_TROPHY_LAZY_LIVING",
+        "RIFT_TROPHY_MIRRORED",
+        "RIFT_TROPHY_MOUNTAIN",
+        "RIFT_TROPHY_SLIME",
+        "RIFT_TROPHY_VAMPIRIC"
+      ],
+      "segments": [
+        {
+          "text": "Place this timecharm in the ",
+          "zh": "将此时间护符放入 ",
+          "color": "§7"
+        },
+        {
+          "text": "Rift ",
+          "zh": "裂隙 ",
+          "color": "§d"
+        },
+        {
+          "text": "Gallery ",
+          "zh": "画廊 ",
+          "color": "§d"
+        },
+        {
+          "text": "to secure it forever!",
+          "zh": "中，使其永久固化！",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Place this timecharm in the §dRift",
+          "§dGallery §7to secure it forever!"
+        ]
+      ]
+    },
+    {
+      "id": "neu_3b6bce31acf2",
+      "context": "物品 Lore 整句；RIFT_TROPHY_WYLDLY_SUPREME",
+      "raw": "§7Bring this back to §dElise§7, she'll know §7what to do with it!",
+      "text": "Bring this back to Elise, she'll know what to do with it!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "将其带回给 Elise，她自会知晓 如何处置！",
+      "source_items": [
+        "RIFT_TROPHY_WYLDLY_SUPREME"
+      ],
+      "segments": [
+        {
+          "text": "Bring this back to ",
+          "zh": "将其带回给 ",
+          "color": "§7"
+        },
+        {
+          "text": "Elise",
+          "zh": "Elise",
+          "color": "§d"
+        },
+        {
+          "text": ", she'll know ",
+          "zh": "，她自会知晓 ",
+          "color": "§7"
+        },
+        {
+          "text": "what to do with it!",
+          "zh": "如何处置！",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Bring this back to §dElise§7, she'll know",
+          "§7what to do with it!"
+        ]
+      ]
+    },
+    {
+      "id": "neu_e2af074bc445",
+      "context": "物品 Lore 整句；RUSTY_ANCHOR",
+      "raw": "§7Applies the §9Treacherous §7reforge §7when combined with a fishing rod.",
+      "text": "Applies the Treacherous reforge when combined with a fishing rod.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "与钓竿结合时，附加 险诈 重铸。",
+      "source_items": [
+        "RUSTY_ANCHOR"
+      ],
+      "segments": [
+        {
+          "text": "Applies the ",
+          "zh": "附加 ",
+          "order": 1,
+          "color": "§7"
+        },
+        {
+          "text": "Treacherous ",
+          "zh": "险诈 ",
+          "order": 2,
+          "color": "§9"
+        },
+        {
+          "text": "reforge ",
+          "zh": "重铸。",
+          "order": 3,
+          "color": "§7"
+        },
+        {
+          "text": "when combined with a fishing rod.",
+          "zh": "与钓竿结合时，",
+          "order": 0,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Applies the §9Treacherous §7reforge",
+          "§7when combined with a fishing rod."
+        ]
+      ]
+    },
+    {
+      "id": "neu_72be40f4cbee",
+      "context": "物品 Lore 整句；SALMON_MASK",
+      "raw": "§7Gain §f%1$s✦ Speed §7and §b%2$s☂ Fishing §bSpeed §7while in water.",
+      "text": "Gain %1$s✦ Speed and %2$s☂ Fishing Speed while in water.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "+10"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "+10"
+        }
+      ],
+      "translate": true,
+      "zh": "身处水中时，获得 %1$s ✦ 速度 与 %2$s ☂ 钓鱼速度。",
+      "source_items": [
+        "SALMON_MASK"
+      ],
+      "segments": [
+        {
+          "text": "Gain ",
+          "zh": "获得 ",
+          "order": 1,
+          "color": "§7"
+        },
+        {
+          "text": "%1$s✦ Speed ",
+          "zh": "%1$s ✦ 速度 ",
+          "order": 2,
+          "color": "§f"
+        },
+        {
+          "text": "and ",
+          "zh": "与 ",
+          "order": 3,
+          "color": "§7"
+        },
+        {
+          "text": "%2$s☂ Fishing ",
+          "zh": "%2$s ☂ 钓鱼",
+          "order": 4,
+          "color": "§b"
+        },
+        {
+          "text": "Speed ",
+          "zh": "速度。",
+          "order": 5,
+          "color": "§b"
+        },
+        {
+          "text": "while in water.",
+          "zh": "身处水中时，",
+          "order": 0,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Gain §f+10✦ Speed §7and §b+10☂ Fishing",
+          "§bSpeed §7while in water."
+        ]
+      ]
+    },
+    {
+      "id": "neu_71a04c67b562",
+      "context": "物品 Lore 整句；SALMON_MASK",
+      "raw": "§8§oNot to be confused with Salmon Hat.",
+      "text": "Not to be confused with Salmon Hat.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "请勿与 鲑鱼帽子 混淆。",
+      "source_items": [
+        "SALMON_MASK"
+      ],
+      "samples": [
+        [
+          "§8§oNot to be confused with Salmon Hat."
+        ]
+      ]
+    },
+    {
+      "id": "neu_07a8da0cc997",
+      "context": "物品 Lore 整句；SALMON_OPAL",
+      "raw": "§7Applies the §9Headstrong §7reforge §7when combined with a bow.",
+      "text": "Applies the Headstrong reforge when combined with a bow.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "与弓结合时，附加 顽固 重铸。",
+      "source_items": [
+        "SALMON_OPAL"
+      ],
+      "segments": [
+        {
+          "text": "Applies the ",
+          "zh": "附加 ",
+          "order": 1,
+          "color": "§7"
+        },
+        {
+          "text": "Headstrong ",
+          "zh": "顽固 ",
+          "order": 2,
+          "color": "§9"
+        },
+        {
+          "text": "reforge ",
+          "zh": "重铸。",
+          "order": 3,
+          "color": "§7"
+        },
+        {
+          "text": "when combined with a bow.",
+          "zh": "与弓结合时，",
+          "order": 0,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Applies the §9Headstrong §7reforge",
+          "§7when combined with a bow."
+        ]
+      ]
+    },
+    {
+      "id": "neu_89a0d38ac9d9",
+      "context": "物品 Lore 整句；SALMON_OPAL",
+      "raw": "§8§ohttps://en.wikipedia.org/wiki/Opal.",
+      "text": "https://en.wikipedia.org/wiki/Opal.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "https://en.wikipedia.org/wiki/Opal.",
+      "source_items": [
+        "SALMON_OPAL"
+      ],
+      "samples": [
+        [
+          "§8§ohttps://en.wikipedia.org/wiki/Opal."
+        ]
+      ]
+    },
+    {
+      "id": "neu_c5fe7e3db3c9",
+      "context": "物品 Lore 整句；SALMON_OPAL",
+      "raw": "§7Deal §a%s §7extra damage when arrows §7hit the head of a mob.",
+      "text": "Deal %s extra damage when arrows hit the head of a mob.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "+8%"
+        }
+      ],
+      "translate": true,
+      "zh": "箭矢命中生物头部时，造成 %s 额外伤害。",
+      "source_items": [
+        "SALMON_OPAL"
+      ],
+      "segments": [
+        {
+          "text": "Deal ",
+          "zh": "造成 ",
+          "order": 1,
+          "color": "§7"
+        },
+        {
+          "text": "%s ",
+          "zh": "%s ",
+          "order": 2,
+          "color": "§a"
+        },
+        {
+          "text": "extra damage when arrows ",
+          "zh": "额外伤害。",
+          "order": 3,
+          "color": "§7"
+        },
+        {
+          "text": "hit the head of a mob.",
+          "zh": "箭矢命中生物头部时，",
+          "order": 0,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Deal §a+8% §7extra damage when arrows",
+          "§7hit the head of a mob."
+        ]
+      ]
+    },
+    {
+      "id": "neu_2b918124570f",
+      "context": "物品 Lore 整句；SALT_CUBE",
+      "raw": "§7Applies the §9Salty §7reforge when §7combined with a fishing rod.",
+      "text": "Applies the Salty reforge when combined with a fishing rod.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "与钓竿结合时，附加 咸水 重铸。",
+      "source_items": [
+        "SALT_CUBE"
+      ],
+      "segments": [
+        {
+          "text": "Applies the ",
+          "zh": "结合时，附加 ",
+          "order": 1,
+          "color": "§7"
+        },
+        {
+          "text": "Salty ",
+          "zh": "咸水 ",
+          "order": 2,
+          "color": "§9"
+        },
+        {
+          "text": "reforge when ",
+          "zh": "与钓竿",
+          "order": 0,
+          "color": "§7"
+        },
+        {
+          "text": "combined with a fishing rod.",
+          "zh": "重铸。",
+          "order": 3,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Applies the §9Salty §7reforge when",
+          "§7combined with a fishing rod."
+        ]
+      ]
+    },
+    {
+      "id": "neu_0184858bee85",
+      "context": "物品 Lore 整句；SHINY_ROD",
+      "raw": "§7Shiny pigs run away from you §e%s §7faster while holding this.",
+      "text": "Shiny pigs run away from you %s faster while holding this.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "30%"
+        }
+      ],
+      "translate": true,
+      "zh": "手持此物时，发光猪避开你的速度加快 %s。",
+      "source_items": [
+        "SHINY_ROD"
+      ],
+      "segments": [
+        {
+          "text": "Shiny pigs run away from you ",
+          "zh": "手持此物时，发光猪避开你的速度加快 ",
+          "color": "§7"
+        },
+        {
+          "text": "%s ",
+          "zh": "%s",
+          "color": "§e"
+        },
+        {
+          "text": "faster while holding this.",
+          "zh": "。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Shiny pigs run away from you §e30%",
+          "§7faster while holding this."
+        ]
+      ]
+    },
+    {
+      "id": "neu_90ff87ea5876",
+      "context": "物品 Lore 整句；SHINY_ROD",
+      "raw": "§7Extract §6%s §7extra coins from shiny §7orbs.",
+      "text": "Extract %s extra coins from shiny orbs.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "25%"
+        }
+      ],
+      "translate": true,
+      "zh": "从发光法球中额外汲取 %s 金币。",
+      "source_items": [
+        "SHINY_ROD"
+      ],
+      "segments": [
+        {
+          "text": "Extract ",
+          "zh": "从发光法球中额外汲取 ",
+          "color": "§7"
+        },
+        {
+          "text": "%s ",
+          "zh": "%s ",
+          "color": "§6"
+        },
+        {
+          "text": "extra coins from shiny ",
+          "zh": "金币。",
+          "color": "§7"
+        },
+        {
+          "text": "orbs.",
+          "zh": "",
+          "omit": true,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Extract §625% §7extra coins from shiny",
+          "§7orbs."
+        ]
+      ]
+    },
+    {
+      "id": "neu_4dcccab4b112",
+      "context": "物品 Lore 整句；SHREDDED_LINE",
+      "raw": "§7Grants §c%1$s Damage §7and §c%2$s⫽ §cFerocity§7.",
+      "text": "Grants %1$s Damage and %2$s⫽ Ferocity.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "+250"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "+50"
+        }
+      ],
+      "translate": true,
+      "zh": "提供 %1$s  伤害 与 %2$s ⫽ 凶猛。",
+      "source_items": [
+        "SHREDDED_LINE"
+      ],
+      "segments": [
+        {
+          "text": "Grants ",
+          "zh": "提供 ",
+          "color": "§7"
+        },
+        {
+          "text": "%1$s Damage ",
+          "zh": "%1$s  伤害 ",
+          "color": "§c"
+        },
+        {
+          "text": "and ",
+          "zh": "与 ",
+          "color": "§7"
+        },
+        {
+          "text": "%2$s⫽ ",
+          "zh": "%2$s ⫽ ",
+          "color": "§c"
+        },
+        {
+          "text": "Ferocity",
+          "zh": "凶猛",
+          "color": "§c"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants §c+250 Damage §7and §c+50⫽",
+          "§cFerocity§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_040836259be3",
+      "context": "物品 Lore 整句；SHREDDED_LINE",
+      "raw": "§7Talk to §2Roddy §7in the §2Backwater §2Bayou §7to apply this §9Line §7to a Fishing §7Rod.",
+      "text": "Talk to Roddy in the Backwater Bayou to apply this Line to a Fishing Rod.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "前往 死水河湾 与 Roddy 对话，将该 钓线 安装至钓竿上。",
+      "source_items": [
+        "SHREDDED_LINE",
+        "SPEEDY_LINE",
+        "TITAN_LINE"
+      ],
+      "segments": [
+        {
+          "text": "Talk to ",
+          "zh": "前往 ",
+          "order": 0,
+          "color": "§7"
+        },
+        {
+          "text": "Roddy ",
+          "zh": "",
+          "omit": true,
+          "order": 1,
+          "color": "§2"
+        },
+        {
+          "text": "in the ",
+          "zh": "死水河湾",
+          "order": 2,
+          "color": "§7"
+        },
+        {
+          "text": "Backwater ",
+          "zh": " 与 ",
+          "order": 3,
+          "color": "§2"
+        },
+        {
+          "text": "Bayou ",
+          "zh": "Roddy ",
+          "order": 4,
+          "color": "§2"
+        },
+        {
+          "text": "to apply this ",
+          "zh": "对话，将该 ",
+          "order": 5,
+          "color": "§7"
+        },
+        {
+          "text": "Line ",
+          "zh": "钓线 ",
+          "order": 6,
+          "color": "§9"
+        },
+        {
+          "text": "to a Fishing ",
+          "zh": "安装至钓竿上。",
+          "order": 7,
+          "color": "§7"
+        },
+        {
+          "text": "Rod.",
+          "zh": "",
+          "omit": true,
+          "order": 8,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Talk to §2Roddy §7in the §2Backwater",
+          "§2Bayou §7to apply this §9Line §7to a Fishing",
+          "§7Rod."
+        ]
+      ]
+    },
+    {
+      "id": "neu_e40c1137066d",
+      "context": "物品 Lore 整句；SLUG_BOOTS",
+      "raw": "§7When falling from a great height, you'll bounce §7straight up!",
+      "text": "When falling from a great height, you'll bounce straight up!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "从高处坠落时，你将弹跳笔直弹回高空！",
+      "source_items": [
+        "SLUG_BOOTS"
+      ],
+      "segments": [
+        {
+          "text": "When falling from a great height, you'll bounce ",
+          "zh": "从高处坠落时，你将弹跳",
+          "color": "§7"
+        },
+        {
+          "text": "straight up!",
+          "zh": "笔直弹回高空！",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7When falling from a great height, you'll bounce",
+          "§7straight up!"
+        ]
+      ]
+    },
+    {
+      "id": "neu_ef706b71a650",
+      "context": "物品 Lore 整句；SPIKED_BAIT",
+      "raw": "§7Grants §3%sα Sea Creature Chance§7.",
+      "text": "Grants %sα Sea Creature Chance.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "+6"
+        }
+      ],
+      "translate": true,
+      "zh": "提供 %s α 海洋生物几率。",
+      "source_items": [
+        "SPIKED_BAIT"
+      ],
+      "segments": [
+        {
+          "text": "Grants ",
+          "zh": "提供 ",
+          "color": "§7"
+        },
+        {
+          "text": "%sα Sea Creature Chance",
+          "zh": "%s α 海洋生物几率",
+          "color": "§3"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants §3+6α Sea Creature Chance§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_106a756fef1c",
+      "context": "物品 Lore 整句；SPONGE_SINKER",
+      "raw": "§7Materializes §fSponge §7in your §7inventory whenever you catch §7something.",
+      "text": "Materializes Sponge in your inventory whenever you catch something.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "每当钓获物品时，直接在物品栏中凝聚 海绵。",
+      "source_items": [
+        "SPONGE_SINKER"
+      ],
+      "segments": [
+        {
+          "text": "Materializes ",
+          "zh": "直接在物品栏中凝聚 ",
+          "order": 1,
+          "color": "§7"
+        },
+        {
+          "text": "Sponge ",
+          "zh": "海绵",
+          "order": 2,
+          "color": "§f"
+        },
+        {
+          "text": "in your ",
+          "zh": "",
+          "omit": true,
+          "order": 3,
+          "color": "§7"
+        },
+        {
+          "text": "inventory whenever you catch ",
+          "zh": "每当钓获物品时，",
+          "order": 0,
+          "color": "§7"
+        },
+        {
+          "text": "something.",
+          "zh": "。",
+          "order": 4,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Materializes §fSponge §7in your",
+          "§7inventory whenever you catch",
+          "§7something."
+        ]
+      ]
+    },
+    {
+      "id": "neu_75c6d271a82e",
+      "context": "物品 Lore 整句；SPOOKY_BAIT",
+      "raw": "§7Grants §b%1$s☂ Fishing Speed §7and a §a%2$s §7chance to catch §6Spooky Sea §6Creatures §7during the §6Spooky Festival§7.",
+      "text": "Grants %1$s☂ Fishing Speed and a %2$s chance to catch Spooky Sea Creatures during the Spooky Festival.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "+25"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "+15%"
+        }
+      ],
+      "translate": true,
+      "zh": "在 阴森节 期间垂钓时，提供 %1$s ☂ 钓鱼速度，并有 %2$s 几率钓起 阴森海洋生物。",
+      "source_items": [
+        "SPOOKY_BAIT"
+      ],
+      "segments": [
+        {
+          "text": "Grants ",
+          "zh": "提供 ",
+          "order": 3,
+          "color": "§7"
+        },
+        {
+          "text": "%1$s☂ Fishing Speed ",
+          "zh": "%1$s ☂ 钓鱼速度，",
+          "order": 4,
+          "color": "§b"
+        },
+        {
+          "text": "and a ",
+          "zh": "并有 ",
+          "order": 5,
+          "color": "§7"
+        },
+        {
+          "text": "%2$s ",
+          "zh": "%2$s ",
+          "order": 6,
+          "color": "§a"
+        },
+        {
+          "text": "chance to catch ",
+          "zh": "几率钓起 ",
+          "order": 7,
+          "color": "§7"
+        },
+        {
+          "text": "Spooky Sea ",
+          "zh": "阴森海洋生物",
+          "order": 8,
+          "color": "§6"
+        },
+        {
+          "text": "Creatures ",
+          "zh": "在 ",
+          "order": 0,
+          "color": "§6"
+        },
+        {
+          "text": "during the ",
+          "zh": "阴森节 ",
+          "order": 1,
+          "color": "§7"
+        },
+        {
+          "text": "Spooky Festival",
+          "zh": "期间垂钓时，",
+          "order": 2,
+          "color": "§6"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "order": 9,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants §b+25☂ Fishing Speed §7and a",
+          "§a+15% §7chance to catch §6Spooky Sea",
+          "§6Creatures §7during the §6Spooky Festival§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_23a9ff611fe0",
+      "context": "物品 Lore 整句；SQUID_BOOTS",
+      "raw": "§7Your shoes spit out Squid ink!",
+      "text": "Your shoes spit out Squid ink!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "你的鞋子会喷出 鱿鱼 墨汁！",
+      "source_items": [
+        "SQUID_BOOTS"
+      ],
+      "samples": [
+        [
+          "§7Your shoes spit out Squid ink!"
+        ]
+      ]
+    },
+    {
+      "id": "neu_b702f1a5b5a1",
+      "context": "物品 Lore 整句；SQUID_HAT",
+      "raw": "§7Extra chance to fish up Squids!",
+      "text": "Extra chance to fish up Squids!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "钓起 鱿鱼 的几率提升！",
+      "source_items": [
+        "SQUID_HAT"
+      ],
+      "samples": [
+        [
+          "§7Extra chance to fish up Squids!"
+        ]
+      ]
+    },
+    {
+      "id": "neu_e89cbc6ff81b",
+      "context": "物品 Lore 整句；STINGY_SINKER",
+      "raw": "§7Grants a §a%s §7chance to not consume §7Bait.",
+      "text": "Grants a %s chance to not consume Bait.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "10%"
+        }
+      ],
+      "translate": true,
+      "zh": "有 %s 几率不消耗 鱼饵。",
+      "source_items": [
+        "STINGY_SINKER"
+      ],
+      "segments": [
+        {
+          "text": "Grants a ",
+          "zh": "有 ",
+          "color": "§7"
+        },
+        {
+          "text": "%s ",
+          "zh": "%s ",
+          "color": "§a"
+        },
+        {
+          "text": "chance to not consume ",
+          "zh": "几率不消耗 ",
+          "color": "§7"
+        },
+        {
+          "text": "Bait.",
+          "zh": "鱼饵。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants a §a10% §7chance to not consume",
+          "§7Bait."
+        ]
+      ]
+    },
+    {
+      "id": "neu_0fa92fa03d8c",
+      "context": "物品 Lore 整句；TERRY_SNOWGLOBE",
+      "raw": "§7Applies the §9Snowy §7reforge when §7combined with equipment.",
+      "text": "Applies the Snowy reforge when combined with equipment.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "与装备结合时，附加 冰雪 重铸。",
+      "source_items": [
+        "TERRY_SNOWGLOBE"
+      ],
+      "segments": [
+        {
+          "text": "Applies the ",
+          "zh": "结合时，附加 ",
+          "order": 1,
+          "color": "§7"
+        },
+        {
+          "text": "Snowy ",
+          "zh": "冰雪 ",
+          "order": 2,
+          "color": "§9"
+        },
+        {
+          "text": "reforge when ",
+          "zh": "与装备",
+          "order": 0,
+          "color": "§7"
+        },
+        {
+          "text": "combined with equipment.",
+          "zh": "重铸。",
+          "order": 3,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Applies the §9Snowy §7reforge when",
+          "§7combined with equipment."
+        ]
+      ]
+    },
+    {
+      "id": "neu_58e282681668",
+      "context": "物品 Lore 整句；THUNDERLING",
+      "raw": "§7This plant hums with electricity §7growing more volatile the longer it's §7left unchecked. If you don't release §7its charge in time, it'll shock anything §7nearby, yourself included.",
+      "text": "This plant hums with electricity growing more volatile the longer it's left unchecked. If you don't release its charge in time, it'll shock anything nearby, yourself included.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "这株植物嗡嗡作响并凝聚着电流，放置不理的时间越长越不稳定。若未及时释放电荷，它将电击附近的任何目标，包括你自己。",
+      "source_items": [
+        "THUNDERLING"
+      ],
+      "segments": [
+        {
+          "text": "This plant hums with electricity ",
+          "zh": "这株植物嗡嗡作响并凝聚着电流，",
+          "color": "§7"
+        },
+        {
+          "text": "growing more volatile the longer it's ",
+          "zh": "放置不理的时间越长越不稳定。",
+          "color": "§7"
+        },
+        {
+          "text": "left unchecked. If you don't release ",
+          "zh": "若未及时释放电荷，",
+          "color": "§7"
+        },
+        {
+          "text": "its charge in time, it'll shock anything ",
+          "zh": "它将电击附近的任何目标，包括你自己。",
+          "color": "§7"
+        },
+        {
+          "text": "nearby, yourself included.",
+          "zh": "",
+          "omit": true,
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7This plant hums with electricity",
+          "§7growing more volatile the longer it's",
+          "§7left unchecked. If you don't release",
+          "§7its charge in time, it'll shock anything",
+          "§7nearby, yourself included."
+        ]
+      ]
+    },
+    {
+      "id": "neu_bb9b93b1953d",
+      "context": "物品 Lore 整句；THUNDER_SHARDS",
+      "raw": "§7Wear gloves when handling, and be §7cautious around water pools.",
+      "text": "Wear gloves when handling, and be cautious around water pools.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "处理时请佩戴手套，并在靠近水池时多加小心。",
+      "source_items": [
+        "THUNDER_SHARDS"
+      ],
+      "segments": [
+        {
+          "text": "Wear gloves when handling, and be ",
+          "zh": "处理时请佩戴手套，并在",
+          "color": "§7"
+        },
+        {
+          "text": "cautious around water pools.",
+          "zh": "靠近水池时多加小心。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Wear gloves when handling, and be",
+          "§7cautious around water pools."
+        ]
+      ]
+    },
+    {
+      "id": "neu_b8abaaba2671",
+      "context": "物品 Lore 整句；TIKI_MASK",
+      "raw": "§7Grants buffs when fishing in a §dFishing Hotspot§7.",
+      "text": "Grants buffs when fishing in a Fishing Hotspot.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "在 钓鱼热点 中垂钓时获得增益。",
+      "source_items": [
+        "TIKI_MASK"
+      ],
+      "segments": [
+        {
+          "text": "Grants buffs when fishing in a ",
+          "zh": "在 ",
+          "color": "§7"
+        },
+        {
+          "text": "Fishing Hotspot",
+          "zh": "钓鱼热点 ",
+          "color": "§d"
+        },
+        {
+          "text": ".",
+          "zh": "中垂钓时获得增益。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants buffs when fishing in a",
+          "§dFishing Hotspot§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_1825343c519d",
+      "context": "物品 Lore 整句；TIKI_MASK",
+      "raw": "§b%1$s☂ Fishing Speed §3%2$sα Sea Creature Chance §9%3$s Double Hook Chance §6%4$s Treasure Chance",
+      "text": "%1$s☂ Fishing Speed %2$sα Sea Creature Chance %3$s Double Hook Chance %4$s Treasure Chance",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "+10"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "+4"
+        },
+        {
+          "token": "%3$s",
+          "type": "number",
+          "example": "+2"
+        },
+        {
+          "token": "%4$s",
+          "type": "number",
+          "example": "+2"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s ☂ 钓鱼速度 %2$s α 海洋生物几率 %3$s  双钩几率 %4$s  寻宝几率",
+      "source_items": [
+        "TIKI_MASK"
+      ],
+      "segments": [
+        {
+          "text": "%1$s☂ Fishing Speed ",
+          "zh": "%1$s ☂ 钓鱼速度 ",
+          "color": "§b"
+        },
+        {
+          "text": "%2$sα Sea Creature Chance ",
+          "zh": "%2$s α 海洋生物几率 ",
+          "color": "§3"
+        },
+        {
+          "text": "%3$s Double Hook Chance ",
+          "zh": "%3$s  双钩几率 ",
+          "color": "§9"
+        },
+        {
+          "text": "%4$s Treasure Chance",
+          "zh": "%4$s  寻宝几率",
+          "color": "§6"
+        }
+      ],
+      "samples": [
+        [
+          "  §b+10☂ Fishing Speed",
+          "  §3+4α Sea Creature Chance",
+          "  §9+2 Double Hook Chance",
+          "  §6+2 Treasure Chance"
+        ]
+      ]
+    },
+    {
+      "id": "neu_014975cdead4",
+      "context": "物品 Lore 整句；TITAN_LINE",
+      "raw": "§7Grants §9%s Double Hook Chance§7.",
+      "text": "Grants %s Double Hook Chance.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "+2"
+        }
+      ],
+      "translate": true,
+      "zh": "提供 %s  双钩几率。",
+      "source_items": [
+        "TITAN_LINE"
+      ],
+      "segments": [
+        {
+          "text": "Grants ",
+          "zh": "提供 ",
+          "color": "§7"
+        },
+        {
+          "text": "%s Double Hook Chance",
+          "zh": "%s  双钩几率",
+          "color": "§9"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants §9+2 Double Hook Chance§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_054816fe2115",
+      "context": "物品 Lore 整句；TOTEM_OF_CORRUPTION",
+      "raw": "§7Place a totem down for §a%1$sm§7, buffing §7only yourself within §a%2$s §7blocks. §8Mana Cost: §b%3$s✎",
+      "text": "Place a totem down for %1$sm, buffing only yourself within %2$s blocks. Mana Cost: %3$s✎",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "5"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "30"
+        },
+        {
+          "token": "%3$s",
+          "type": "number",
+          "example": "500"
+        }
+      ],
+      "translate": true,
+      "zh": "放置图腾持续 %1$s 分钟，仅为周围 %2$s 格范围内的自己提供增益。法力消耗： %3$s ✎",
+      "source_items": [
+        "TOTEM_OF_CORRUPTION"
+      ],
+      "segments": [
+        {
+          "text": "Place a totem down for ",
+          "zh": "放置图腾持续 ",
+          "color": "§7"
+        },
+        {
+          "text": "%1$sm",
+          "zh": "%1$s 分钟",
+          "color": "§a"
+        },
+        {
+          "text": ", buffing ",
+          "zh": "，仅为周围 ",
+          "color": "§7"
+        },
+        {
+          "text": "only yourself within ",
+          "zh": "",
+          "omit": true,
+          "color": "§7"
+        },
+        {
+          "text": "%2$s ",
+          "zh": "%2$s ",
+          "color": "§a"
+        },
+        {
+          "text": "blocks. ",
+          "zh": "格范围内的自己提供增益。",
+          "color": "§7"
+        },
+        {
+          "text": "Mana Cost: ",
+          "zh": "法力消耗： ",
+          "color": "§8"
+        },
+        {
+          "text": "%3$s✎",
+          "zh": "%3$s ✎",
+          "color": "§b"
+        }
+      ],
+      "samples": [
+        [
+          "§7Place a totem down for §a5m§7, buffing",
+          "§7only yourself within §a30 §7blocks.",
+          "§8Mana Cost: §b500✎"
+        ]
+      ]
+    },
+    {
+      "id": "neu_225c78ed9aac",
+      "context": "物品 Lore 整句；TOTEM_OF_CORRUPTION",
+      "raw": "§aDeployable Buff: Corrupted §a• §3Sea Creatures §7you fish up will be §5Corrupted§7. §8Corrupted Sea Creatures may drop §8an exclusive Trophy Fish.",
+      "text": "Deployable Buff: Corrupted • Sea Creatures you fish up will be Corrupted. Corrupted Sea Creatures may drop an exclusive Trophy Fish.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "装置增益：腐化 • 钓起的 海洋生物 将被 腐化。 腐化海洋生物 有几率掉落专属 奖杯鱼。",
+      "source_items": [
+        "TOTEM_OF_CORRUPTION"
+      ],
+      "segments": [
+        {
+          "text": "Deployable Buff: Corrupted ",
+          "zh": "装置增益：腐化 ",
+          "color": "§a"
+        },
+        {
+          "text": "• ",
+          "zh": "• ",
+          "color": "§a"
+        },
+        {
+          "text": "Sea Creatures ",
+          "zh": "钓起的 ",
+          "color": "§3"
+        },
+        {
+          "text": "you fish up will be ",
+          "zh": "海洋生物 将被 ",
+          "color": "§7"
+        },
+        {
+          "text": "Corrupted",
+          "zh": "腐化",
+          "color": "§5"
+        },
+        {
+          "text": ". ",
+          "zh": "。 ",
+          "color": "§7"
+        },
+        {
+          "text": "Corrupted Sea Creatures may drop ",
+          "zh": "腐化海洋生物 有几率掉落",
+          "color": "§8"
+        },
+        {
+          "text": "an exclusive Trophy Fish.",
+          "zh": "专属 奖杯鱼。",
+          "color": "§8"
+        }
+      ],
+      "samples": [
+        [
+          "§aDeployable Buff: Corrupted",
+          "§a• §3Sea Creatures §7you fish up will be",
+          "§5Corrupted§7.",
+          "§8Corrupted Sea Creatures may drop",
+          "§8an exclusive Trophy Fish."
+        ]
+      ]
+    },
+    {
+      "id": "neu_c876931138d1",
+      "context": "物品 Lore 整句；TOTEM_OF_CORRUPTION",
+      "raw": "§8Only one deployable can be active at §8a time.",
+      "text": "Only one deployable can be active at a time.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "同一时间只能激活一个装置。",
+      "source_items": [
+        "TOTEM_OF_CORRUPTION"
+      ],
+      "segments": [
+        {
+          "text": "Only one deployable can be active at ",
+          "zh": "同一时间只能激活一个装置。",
+          "color": "§8"
+        },
+        {
+          "text": "a time.",
+          "zh": "",
+          "omit": true,
+          "color": "§8"
+        }
+      ],
+      "samples": [
+        [
+          "§8Only one deployable can be active at",
+          "§8a time."
+        ]
+      ]
+    },
+    {
+      "id": "neu_00299a69043a",
+      "context": "物品 Lore 整句；TREASURE_BAIT",
+      "raw": "§7Grants §b%1$s☂ Fishing Speed§7 and §6%2$s §6Treasure Chance§7.",
+      "text": "Grants %1$s☂ Fishing Speed and %2$s Treasure Chance.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "+10"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "+2"
+        }
+      ],
+      "translate": true,
+      "zh": "提供 %1$s ☂ 钓鱼速度 与 %2$s  寻宝几率。",
+      "source_items": [
+        "TREASURE_BAIT"
+      ],
+      "segments": [
+        {
+          "text": "Grants ",
+          "zh": "提供 ",
+          "color": "§7"
+        },
+        {
+          "text": "%1$s☂ Fishing Speed",
+          "zh": "%1$s ☂ 钓鱼速度",
+          "color": "§b"
+        },
+        {
+          "text": " and ",
+          "zh": " 与 ",
+          "color": "§7"
+        },
+        {
+          "text": "%2$s ",
+          "zh": "%2$s  ",
+          "color": "§6"
+        },
+        {
+          "text": "Treasure Chance",
+          "zh": "寻宝几率",
+          "color": "§6"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants §b+10☂ Fishing Speed§7 and §6+2",
+          "§6Treasure Chance§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_af0aa8f1c29d",
+      "context": "物品 Lore 整句；TREASURE_HOOK",
+      "raw": "§7Only allows you to catch items and §6Treasure§7.",
+      "text": "Only allows you to catch items and Treasure.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "仅允许你钓起物品与 宝藏。",
+      "source_items": [
+        "TREASURE_HOOK"
+      ],
+      "segments": [
+        {
+          "text": "Only allows you to catch items and ",
+          "zh": "仅允许你钓起物品与 ",
+          "color": "§7"
+        },
+        {
+          "text": "Treasure",
+          "zh": "宝藏",
+          "color": "§6"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Only allows you to catch items and",
+          "§6Treasure§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_0174101717d6",
+      "context": "物品 Lore 整句；VINYL_RODENT_REVOLUTION",
+      "raw": "§7When playing, this vinyl attracts §2Rat §2Pests§7.",
+      "text": "When playing, this vinyl attracts Rat Pests.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "播放时，此唱片会吸引 老鼠 害虫。",
+      "source_items": [
+        "VINYL_RODENT_REVOLUTION"
+      ],
+      "segments": [
+        {
+          "text": "When playing, this vinyl attracts ",
+          "zh": "播放时，此唱片会吸引 ",
+          "color": "§7"
+        },
+        {
+          "text": "Rat ",
+          "zh": "老鼠 ",
+          "color": "§2"
+        },
+        {
+          "text": "Pests",
+          "zh": "害虫",
+          "color": "§2"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7When playing, this vinyl attracts §2Rat",
+          "§2Pests§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_13558e721393",
+      "context": "物品 Lore 整句；WET_BOOK",
+      "raw": "§7When applied to Fishing Rods, grants §b%s☂ Fishing Speed§7.",
+      "text": "When applied to Fishing Rods, grants %s☂ Fishing Speed.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "+1"
+        }
+      ],
+      "translate": true,
+      "zh": "应用于钓竿时，提供 %s ☂ 钓鱼速度。",
+      "source_items": [
+        "WET_BOOK"
+      ],
+      "segments": [
+        {
+          "text": "When applied to Fishing Rods, grants ",
+          "zh": "应用于钓竿时，提供 ",
+          "color": "§7"
+        },
+        {
+          "text": "%s☂ Fishing Speed",
+          "zh": "%s ☂ 钓鱼速度",
+          "color": "§b"
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7When applied to Fishing Rods, grants",
+          "§b+1☂ Fishing Speed§7."
+        ]
+      ]
+    },
+    {
+      "id": "neu_030fdb1606d2",
+      "context": "物品 Lore 整句；WHALE_BAIT",
+      "raw": "§7Grants §b%s☂ Fishing Speed §7and §7increases your chance to catch §7rare Sea Creatures.",
+      "text": "Grants %s☂ Fishing Speed and increases your chance to catch rare Sea Creatures.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "+30"
+        }
+      ],
+      "translate": true,
+      "zh": "提供 %s ☂ 钓鱼速度 并 提高钓起 稀有海洋生物的几率。",
+      "source_items": [
+        "WHALE_BAIT"
+      ],
+      "segments": [
+        {
+          "text": "Grants ",
+          "zh": "提供 ",
+          "color": "§7"
+        },
+        {
+          "text": "%s☂ Fishing Speed ",
+          "zh": "%s ☂ 钓鱼速度 ",
+          "color": "§b"
+        },
+        {
+          "text": "and ",
+          "zh": "并 ",
+          "color": "§7"
+        },
+        {
+          "text": "increases your chance to catch ",
+          "zh": "提高钓起 ",
+          "color": "§7"
+        },
+        {
+          "text": "rare Sea Creatures.",
+          "zh": "稀有海洋生物的几率。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants §b+30☂ Fishing Speed §7and",
+          "§7increases your chance to catch",
+          "§7rare Sea Creatures."
+        ]
+      ]
+    },
+    {
+      "id": "neu_c40e75964951",
+      "context": "物品 Lore 整句；WOODEN_BAIT",
+      "raw": "§7Ensures your next §eGOOD CATCH §7hooks a §bRare Fish Shard§7. §8§oWill not be consumed if no Rare §8§oShards are available to catch.",
+      "text": "Ensures your next GOOD CATCH hooks a Rare Fish Shard. Will not be consumed if no Rare Shards are available to catch.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "确保你的下一次 绝佳捕获 必定钓上 稀有鱼类碎片。 若无稀有碎片可捕获，则不会消耗。",
+      "source_items": [
+        "WOODEN_BAIT"
+      ],
+      "segments": [
+        {
+          "text": "Ensures your next ",
+          "zh": "确保你的下一次 ",
+          "color": "§7"
+        },
+        {
+          "text": "GOOD CATCH ",
+          "zh": "绝佳捕获 ",
+          "color": "§e"
+        },
+        {
+          "text": "hooks a ",
+          "zh": "必定钓上 ",
+          "color": "§7"
+        },
+        {
+          "text": "Rare Fish Shard",
+          "zh": "稀有鱼类碎片",
+          "color": "§b"
+        },
+        {
+          "text": ". ",
+          "zh": "。 ",
+          "color": "§7"
+        },
+        {
+          "text": "Will not be consumed if no Rare ",
+          "zh": "若无稀有碎片可捕获，则不会消耗。",
+          "color": "§8§o"
+        },
+        {
+          "text": "Shards are available to catch.",
+          "zh": "",
+          "omit": true,
+          "color": "§8§o"
+        }
+      ],
+      "samples": [
+        [
+          "§7Ensures your next §eGOOD CATCH",
+          "§7hooks a §bRare Fish Shard§7.",
+          "§8§oWill not be consumed if no Rare",
+          "§8§oShards are available to catch."
+        ]
+      ]
+    },
+    {
+      "id": "neu_aeeb9c9aaec3",
+      "context": "物品 Lore 整句；WORM_BAIT",
+      "raw": "§7Grants §b%s☂ Fishing Speed§7 but only §7Worms will bite.",
+      "text": "Grants %s☂ Fishing Speed but only Worms will bite.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "+60"
+        }
+      ],
+      "translate": true,
+      "zh": "提供 %s ☂ 钓鱼速度，但只有 蠕虫会上钩。",
+      "source_items": [
+        "WORM_BAIT"
+      ],
+      "segments": [
+        {
+          "text": "Grants ",
+          "zh": "提供 ",
+          "color": "§7"
+        },
+        {
+          "text": "%s☂ Fishing Speed",
+          "zh": "%s ☂ 钓鱼速度",
+          "color": "§b"
+        },
+        {
+          "text": " but only ",
+          "zh": "，但只有 ",
+          "color": "§7"
+        },
+        {
+          "text": "Worms will bite.",
+          "zh": "蠕虫会上钩。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants §b+60☂ Fishing Speed§7 but only",
+          "§7Worms will bite."
+        ]
+      ]
+    },
+    {
+      "id": "neu_0c25d43d42ba",
+      "context": "物品 Lore 整句；WORM_BAIT",
+      "raw": "§7Only works in the §5Crystal Hollows§7.",
+      "text": "Only works in the Crystal Hollows.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "仅在 水晶残核 中生效。",
+      "source_items": [
+        "WORM_BAIT"
+      ],
+      "segments": [
+        {
+          "text": "Only works in the ",
+          "zh": "仅在 ",
+          "color": "§7"
+        },
+        {
+          "text": "Crystal Hollows",
+          "zh": "水晶残核",
+          "color": "§5"
+        },
+        {
+          "text": ".",
+          "zh": " 中生效。",
+          "color": "§7"
+        }
+      ],
+      "samples": [
+        [
+          "§7Only works in the §5Crystal Hollows§7."
         ]
       ]
     }
