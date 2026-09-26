@@ -506,7 +506,7 @@ SkyBlock 的很多提示是"全大写标签 + 一句话",标签点出这句话�
 - 出现场景: 几乎所有装备/饰品 Lore 的末尾通用行(如 "This item can be reforged!" "* Soulbound *" "Works while in Accessory Bag!" "Accessory Power: +N")
 - 含义: 均为 SkyBlock 全局通用玩法机制专有词,不限于 Mining。
 - 备注: 这些通用行在成百上千个物品文件里会重复出现,**强烈建议翻译阶段把这些行抽成一套共享片段库统一翻译**,不要在每个物品文件里各自翻译一遍导致不一致。分别建议的中文方向:
-  Reforge=重铸,Soulbound=灵魂绑定,Accessory Power=饰品能力,Accessory Bag=饰品袋(具体定名留给翻译阶段)。
+  Reforge=重铸,Soulbound=灵魂绑定,Accessory Power=饰品之力,Accessory Bag=饰品袋。饰品之力是数值属性，与饰品袋可选择的能力(Powers)区分。
 
 ### Soulbound 标记行的三种变体
 

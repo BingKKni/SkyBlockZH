@@ -1996,8 +1996,8 @@ public final class TranslationHarness {
 	}
 
 	private static boolean hasUnspacedBang(String text) {
-		// A closing ASCII bracket is punctuation too: NPC choices legitimately end in "!]".
-		String tight = "!,.，。、；;：:）)]】」』”’？?…";
+		// Closing quotes/brackets are punctuation, not the start of another sentence.
+		String tight = "!,.，。、；;：:）)]】」』”’\"'？?…";
 
 		for (int i = 0; i < text.length(); i++) {
 			if (text.charAt(i) != '!') {
@@ -2454,6 +2454,11 @@ public final class TranslationHarness {
 		check("龙巢传送台的多词地名整值翻译", "§5✦ §dWarp To §7Bedrock Point", Surface.HOLOGRAM,
 			"§5✦ §d传送至 §7基岩台");
 		report("感叹号后可直接闭合选项括号", !hasUnspacedBang("[真神奇!]"), "右方括号不是正文");
+		for (String quote : List.of("\"", "'", "”", "’")) {
+			report("感叹号后可直接闭引号 " + quote, !hasUnspacedBang("玩火的家伙!" + quote), "闭引号是合法标点");
+			report("引号内正文仍需空格 " + quote, hasUnspacedBang(quote + "停!继续" + quote)
+				&& !hasUnspacedBang(quote + "停! 继续" + quote), "不能因引号放宽正文间距规则");
+		}
 		report("感叹号后接正文仍须空格", hasUnspacedBang("真神奇!继续")
 			&& !hasUnspacedBang("真神奇! 继续"), "不能为修复选项而放宽正文间距规则");
 		check("NPC 选项感叹号与括号", "§eSelect an option: §a[That's amazing!] ", Surface.CHAT,

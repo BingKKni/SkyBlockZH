@@ -659,7 +659,9 @@ public final class TranslationEntry {
 			translatedItem.run();
 		}
 
-		seam.append(rendered, rendered.getString(), valueStyle);
+		// Translated names can still start/end with a numeral, e.g. 6th Anniversary -> 6 周年.
+		boolean name = Capture.of(type).nameShaped();
+		seam.append(rendered, rendered.getString(), valueStyle, name, name);
 	}
 
 	/**
