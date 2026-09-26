@@ -46,7 +46,25 @@
       "§bIntelligence §7per §cCatacombs §7level."
     ],
     "consumed": 2,
-    "expected": "§c地牢§7等级每提升 1 级，获得 §c+1  伤害§7和 §a+2 §b 法力§7。"
+    "expected": "§7每有 1 级§c地牢§7等级，获得 §c+1  伤害§7和 §a+2 §b 法力§7。"
+  },
+  {
+    "name": "地牢等级常驻加成保持条件与句号颜色",
+    "lines": [
+      "§7Grants §a+3 §c Strength §7per",
+      "§cCatacombs §7level."
+    ],
+    "consumed": 2,
+    "expected": "§7每有 1 级§c地牢§7等级，获得 §a+3 §c 力量§7。"
+  },
+  {
+    "name": "地牢等级每满五级才获得一次护甲加成",
+    "lines": [
+      "§7Every §b5 §7Catacombs levels, this armor piece",
+      "§7gains +§a2% §7stats."
+    ],
+    "consumed": 2,
+    "expected": "§7地牢等级每满 §b5§7 级，此部件的属性提高 §a2%§7。"
   },
   {
     "name": "背刺条件前置",
@@ -1732,7 +1750,7 @@
       {
         "start": 0,
         "consumed": 1,
-        "expected_plain": "狼猎手等级每提升 1 级，获得 +10  伤害"
+        "expected_plain": "每有 1 级狼猎手等级，获得 +10  伤害"
       },
       {
         "start": 1,
@@ -1755,7 +1773,7 @@
       {
         "start": 0,
         "consumed": 1,
-        "expected_plain": "狼猎手等级每提升 1 级，获得 +20  伤害"
+        "expected_plain": "每有 1 级狼猎手等级，获得 +20  伤害"
       },
       {
         "start": 1,
@@ -2290,7 +2308,7 @@
       {
         "start": 0,
         "consumed": 1,
-        "expected": "  §a+10% §7几率钓到§6§l金品质§6锦标渔获§7。"
+        "expected": "  §a+10% §7几率钓到§6§l金品质§6奖杯渔获§7。"
       }
     ]
   },
@@ -2305,7 +2323,7 @@
       {
         "start": 0,
         "consumed": 1,
-        "expected": "  §a+5% §7几率钓到§b§l钻石品质§6锦标渔获§7。"
+        "expected": "  §a+5% §7几率钓到§b§l钻石品质§6奖杯渔获§7。"
       }
     ]
   },
@@ -2321,7 +2339,7 @@
       {
         "start": 0,
         "consumed": 2,
-        "expected": "§7在§d虫洞§7中钓鱼时，有 §a+5%§7 几率额外钓到一份§6锦标渔获§f。"
+        "expected": "§7在§d虫洞§7中钓鱼时，有 §a+5%§7 几率额外钓到一份§6奖杯渔获§f。"
       }
     ]
   },
@@ -2908,7 +2926,7 @@
   {
     "name": "hub-items / bronze-fish-complete-sentence",
     "source": "NEU BRONZE_TROPHY_FISHING_SACK",
-    "notes": "锦标鱼为金色，只有铜为深灰粗体，品质与其余正文保持灰色；完整样式期望防止修复后再次错位。",
+    "notes": "奖杯鱼为金色，只有铜为深灰粗体，品质与其余正文保持灰色；完整样式期望防止修复后再次错位。",
     "lines": [
       "§6Trophy Fish §7pickups of §8§lBRONZE",
       "§7quality go directly into your sacks."
@@ -2917,7 +2935,7 @@
       {
         "start": 0,
         "consumed": 2,
-        "expected": "§7拾取的§8§l铜§7品质§6锦标鱼§7会直接进入你的收纳袋。"
+        "expected": "§7拾取的§8§l铜§7品质§6奖杯鱼§7会直接进入你的收纳袋。"
       }
     ]
   },
@@ -2933,7 +2951,7 @@
       {
         "start": 0,
         "consumed": 1,
-        "expected_plain": "容量: 每种锦标渔获 512 个"
+        "expected_plain": "容量: 每种奖杯渔获 512 个"
       },
       {
         "start": 1,
@@ -3537,13 +3555,13 @@
       "§6Trophy Fish §7pickups of §7§lSILVER",
       "§7quality go directly into your sacks."
     ],
-    "expected_plain": "拾取的银品质锦标鱼会直接进入你的收纳袋。",
+    "expected_plain": "拾取的银品质奖杯鱼会直接进入你的收纳袋。",
     "consumed": 2,
     "colour_fragments": [
       "§7拾取的",
       "§7§l银",
       "§7品质",
-      "§6锦标鱼",
+      "§6奖杯鱼",
       "§7会直接进入你的收纳袋。"
     ]
   },
@@ -3556,13 +3574,13 @@
       "§7the §cCrimson Isle§7! Items you pickup go",
       "§7directly into your sacks."
     ],
-    "expected_plain": "收纳在绯红岛上发现的银品质锦标鱼! 拾取的物品会直接进入你的收纳袋。",
+    "expected_plain": "收纳在绯红岛上发现的银品质奖杯鱼! 拾取的物品会直接进入你的收纳袋。",
     "consumed": 3,
     "colour_fragments": [
       "§c绯红岛",
       "§7§l银",
       "§7品质",
-      "§6锦标鱼"
+      "§6奖杯鱼"
     ]
   },
   {
@@ -3572,7 +3590,7 @@
     "lines": [
       "§7Capacity: §e512 per fish"
     ],
-    "expected_plain": "容量: 每种锦标鱼 512 条",
+    "expected_plain": "容量: 每种奖杯鱼 512 条",
     "consumed": 1
   },
   {
@@ -3582,7 +3600,7 @@
     "lines": [
       "§7Capacity: §e1,024 per fish"
     ],
-    "expected_plain": "容量: 每种锦标鱼 1,024 条",
+    "expected_plain": "容量: 每种奖杯鱼 1,024 条",
     "consumed": 1
   },
   {
@@ -3815,7 +3833,7 @@
       "§7Grants §6+5 Trophy Chance§7, doubled",
       "§7during §brain§7!"
     ],
-    "expected": "§7获得 §6+5 锦标几率§7，在§b雨天§7时翻倍!",
+    "expected": "§7获得 §6+5 奖杯几率§7，在§b雨天§7时翻倍!",
     "consumed": 2
   },
   {
@@ -3826,7 +3844,7 @@
       "§7Grants §6+5♔ Trophy Chance§7, doubled",
       "§7during §brain§7!"
     ],
-    "expected": "§7获得 §6+5♔ 锦标几率§7，在§b雨天§7时翻倍!",
+    "expected": "§7获得 §6+5♔ 奖杯几率§7，在§b雨天§7时翻倍!",
     "consumed": 2
   },
   {
@@ -4355,7 +4373,7 @@
       "§6Trophies §7are §a+10%§7 more likely to be",
       "§6§lGOLD§7."
     ],
-    "expected": "§6锦标渔获§7为§6§l金品质§7的几率提高 §a+10%§7。",
+    "expected": "§6奖杯渔获§7为§6§l金品质§7的几率提高 §a+10%§7。",
     "consumed": 2
   },
   {

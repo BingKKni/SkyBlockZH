@@ -1063,15 +1063,15 @@ public final class TranslationHarness {
 		// subtitle is a whole line out of _shared/Months.json. Both have to say 2026 年 9 月.
 		check("宾果菜单标题的月份", "Bingo - September 2026", Surface.GUI_TITLE, "宾果 - 2026 年 9 月");
 		check("宾果格子副标题的月份", "§8September 2026", Surface.ITEM, "§82026 年 9 月");
-		check("锦标鱼名称与品质相邻时不串位",
+		check("奖杯鱼名称与品质相邻时不串位",
 			"§6 §6§lTROPHY FISH! §fYou caught a §9Volcanic Stonefish §7§lSILVER§f!", Surface.CHAT,
 			"§6 §6§l奖杯鱼! §f你钓到了 §9Volcanic Stonefish §7§l银品质§f!");
-		check("锦标鱼 an 冠词变体",
+		check("奖杯鱼 an 冠词变体",
 			"§6 §6§lTROPHY FISH! §fYou caught an §fObfuscated-1 §7§lSILVER§f!", Surface.CHAT,
 			"§6 §6§l奖杯鱼! §f你钓到了 Obfuscated-1 §7§l银品质§f!");
-		checkNoMatch("未知锦标鱼品质不抢翻译",
+		checkNoMatch("未知奖杯鱼品质不抢翻译",
 			"§6 §6§lTROPHY FISH! §fYou caught a §9Volcanic Stonefish §7§lMYTHIC§f!", Surface.CHAT);
-		checkNoMatch("缺失锦标鱼品质不抢翻译",
+		checkNoMatch("缺失奖杯鱼品质不抢翻译",
 			"§6 §6§lTROPHY FISH! §fYou caught a §9Volcanic Stonefish §f!", Surface.CHAT);
 		check("矿井开采等级提示保留入口引导与颜色",
 			"§cYou need a tool with a §aBreaking Power §cof §69§c to mine Peridot Gemstone Block! Speak to §dFragilis §cby the entrance to the Crystal Hollows to learn more!", Surface.CHAT,
