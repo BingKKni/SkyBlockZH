@@ -1,0 +1,18 @@
+{
+  "source": "runtime capture (SkyZH); https://hypixelskyblock.minecraft.wiki/w/Gemstone",
+  "fetched_at": "2026-09-27",
+  "verified_ingame": true,
+  "gui_context": "宝石收纳袋的品种、品质计数和可操作状态；不绑定玩家持有的物品种类或数量。",
+  "lines": [
+    {"id":"sack_gemstone_kind","context":"每类宝石的收纳格名称","text":"%s Gemstones","placeholders":[{"token":"%s","type":"gemstone_kind","desc":"十二种宝石之一","example":"Jade"}],"gloss":"种类名按现有宝石专名规则保留英文。","translate":true,"zh":"%s 宝石"},
+    {"id":"sack_rough_count","context":"粗糙宝石数量及折算总量","text":"Rough: %1$s (%2$s)","placeholders":[{"token":"%1$s","type":"number","desc":"库存数量","example":"67"},{"token":"%2$s","type":"number","desc":"折算数量","example":"67"}],"gloss":"两项数值有不同颜色；开头缩进由容器原文保留。","translate":true,"zh":"粗糙: %1$s (%2$s)","segments":[{"color":"§f","text":"Rough: ","zh":"粗糙: "},{"color":"§e","text":"%1$s ","zh":"%1$s "},{"color":"§8","text":"(%2$s)","zh":"(%2$s)"}]},
+    {"id":"sack_flawed_count","context":"有瑕宝石数量及折算总量","text":"Flawed: %1$s (%2$s)","placeholders":[{"token":"%1$s","type":"number","desc":"库存数量","example":"16"},{"token":"%2$s","type":"number","desc":"折算数量","example":"1,280"}],"gloss":"颜色与 Rough 行不同。","translate":true,"zh":"有瑕: %1$s (%2$s)","segments":[{"color":"§a","text":"Flawed: ","zh":"有瑕: "},{"color":"§e","text":"%1$s ","zh":"%1$s "},{"color":"§8","text":"(%2$s)","zh":"(%2$s)"}]},
+    {"id":"sack_fine_count","context":"精细宝石数量及折算总量","text":"Fine: %1$s (%2$s)","placeholders":[{"token":"%1$s","type":"number","desc":"库存数量","example":"2"},{"token":"%2$s","type":"number","desc":"折算数量","example":"12,800"}],"gloss":"颜色与 Rough 行不同。","translate":true,"zh":"精细: %1$s (%2$s)","segments":[{"color":"§9","text":"Fine: ","zh":"精细: "},{"color":"§e","text":"%1$s ","zh":"%1$s "},{"color":"§8","text":"(%2$s)","zh":"(%2$s)"}]},
+    {"id":"sack_stored_capacity","context":"已存宝石折算量和容量","text":"Stored: %1$s/%2$s","placeholders":[{"token":"%1$s","type":"number","desc":"折算存量","example":"7,747"},{"token":"%2$s","type":"number","desc":"容量与单位","example":"2.6M"}],"gloss":"保留服务器的 k/M 容量缩写，不使用采集器误推断的 Stored: %sM。","translate":true,"zh":"已存: %1$s/%2$s","segments":[{"color":"§7","text":"Stored: ","zh":"已存: "},{"color":"§e","text":"%1$s","zh":"%1$s"},{"color":"§7","text":"/%2$s","zh":"/%2$s"}]},
+    {"id":"sack_quality_rough","context":"宝石收纳袋品质分组标签","raw":"§7  Rough","text":"Rough","placeholders":[],"gloss":"品质标签只写名称，前导缩进由界面保留。","translate":true,"zh":"粗糙"},
+    {"id":"sack_quality_flawed","context":"宝石收纳袋品质分组标签","raw":"§7  Flawed","text":"Flawed","placeholders":[],"gloss":"","translate":true,"zh":"有瑕"},
+    {"id":"sack_quality_fine","context":"宝石收纳袋品质分组标签","raw":"§7  Fine","text":"Fine","placeholders":[],"gloss":"宝石品质的精细，不是重铸 Fine 的精良。","translate":true,"zh":"精细"},
+    {"id":"sack_gemstone_deposit","context":"一键存入背包内宝石的说明","text":"Inserts all the gemstones in your inventory into your gemstone sacks.","placeholders":[],"gloss":"inventory 指玩家背包，不是末影箱。","translate":true,"zh":"将背包里的所有宝石存入宝石收纳袋。","samples":[["§7Inserts all the gemstones in your","§7inventory into your gemstone sacks."]]},
+    {"id":"sack_deposit_click","context":"宝石袋存入操作提示","raw":"§eClick to put gemstones in!","text":"Click to put gemstones in!","placeholders":[],"gloss":"","translate":true,"zh":"点击存入宝石!"}
+  ]
+}

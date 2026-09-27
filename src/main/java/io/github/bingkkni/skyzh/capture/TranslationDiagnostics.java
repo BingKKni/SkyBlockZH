@@ -218,12 +218,14 @@ public final class TranslationDiagnostics {
 			return false;
 		}
 
-		if (Character.isLowerCase(tail.charAt(0))) {
-			return true;
-		}
-
+		// A label is already complete, even if the next independent row begins with a lowercase
+		// player name (Party Finder's "Members:" followed by "lfsam (60)").
 		if (HEAD_END.matcher(head).matches() || isHeading(head)) {
 			return false;
+		}
+
+		if (Character.isLowerCase(tail.charAt(0))) {
+			return true;
 		}
 
 		return WORD_END.matcher(tail).matches()

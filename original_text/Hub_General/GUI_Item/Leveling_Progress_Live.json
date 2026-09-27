@@ -1,0 +1,13 @@
+{
+  "source":"logs/skyzh-capture/untranslated/Hub_General/GUI_Item/Ways_to_Level_Up.json; logs/skyzh-capture/untranslated/Hub_General/GUI_Item/SkyBlock_Leveling.json; logs/skyzh-capture/untranslated/Hub_General/GUI_Item/Level_225_Rewards.json",
+  "fetched_at":"2026-09-26","verified_ingame":true,
+  "gui_context":"空岛等级升级途径的类别计数、奖励页和子任务进度；区分“Core Tasks”类目标题与“9 Tasks”纯数字数量，不使用一个 raw 模板兼顾两者。",
+  "lines":[
+    {"id":"level_task_count","context":"分类中的任务数量","raw":"§8%s Tasks","text":"%s Tasks","placeholders":[{"token":"%s","type":"number","desc":"任务数","example":"9"}],"gloss":"仅捕数字，不会误认 Core Tasks 等类别名。","translate":true,"zh":"共 %s 项任务"},
+    {"id":"level_category_progress","context":"任务分类的完成进度百分比","raw":"§7Progress to Complete Category: §6%s%","text":"Progress to Complete Category: %s%","placeholders":[{"token":"%s","type":"number","desc":"分类进度百分比数值","example":"37.6"}],"gloss":"百分比符号属于原文模板，%s 仅捕数值。","translate":true,"zh":"分类完成进度: %s%","segments":[{"color":"§7","text":"Progress to Complete Category: ","zh":"分类完成进度: "},{"color":"§6","text":"%s%","zh":"%s%"}]},
+    {"id":"level_milestone_tier_xp","context":"任务某档里程碑的经验奖励","raw":"§7Tier %1$s: §b+%2$s XP","text":"Tier %1$s: +%2$s XP","placeholders":[{"token":"%1$s","type":"tier","desc":"里程碑罗马数字档位","example":"VII"},{"token":"%2$s","type":"number","desc":"奖励经验数量","example":"35"}],"gloss":"Tier 为档位而非英文字母等级。","translate":true,"zh":"档位 %1$s: +%2$s 经验","segments":[{"color":"§7","text":"Tier %1$s: ","zh":"档位 %1$s: "},{"color":"§b","text":"+%2$s XP","zh":"+%2$s 经验"}]},
+    {"id":"level_task_limit","context":"任务可完成的次数上限","text":"This task can be completed %s times!","placeholders":[{"token":"%s","type":"number","desc":"最多可完成次数","example":"5"}],"gloss":"原文示例为 5 次，不锁定此数。","translate":true,"zh":"此任务最多可完成 %s 次!"},
+    {"id":"level_unlock_progress","context":"等级奖励解锁进度","raw":"§7Progress to Unlock: §3%s%","text":"Progress to Unlock: %s%","placeholders":[{"token":"%s","type":"number","desc":"解锁进度百分比数值","example":"91.7"}],"gloss":"百分号保持原样。","translate":true,"zh":"解锁进度: %s%","segments":[{"color":"§7","text":"Progress to Unlock: ","zh":"解锁进度: "},{"color":"§3","text":"%s%","zh":"%s%"}]},
+    {"id":"level_xp_left","context":"空岛等级升级页到目标所缺经验与等级数","raw":"§7XP Left to Gain: §b%1$s XP §8(%2$s Levels)","text":"XP Left to Gain: %1$s XP (%2$s Levels)","placeholders":[{"token":"%1$s","type":"number","desc":"所缺经验","example":"1,863"},{"token":"%2$s","type":"number","desc":"所缺等级数","example":"19"}],"gloss":"两个值含义不同，均为动态数据，不写死。","translate":true,"zh":"还需 %1$s 经验 (%2$s 级)","segments":[{"color":"§7","text":"XP Left to Gain: ","zh":"还需 "},{"color":"§b","text":"%1$s XP ","zh":"%1$s 经验 "},{"color":"§8","text":"(%2$s Levels)","zh":"(%2$s 级)"}]}
+  ]
+}

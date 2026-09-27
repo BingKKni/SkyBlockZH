@@ -1,0 +1,37 @@
+{
+  "source":"logs/上次/skyzh-capture/untranslated/Farming/ChatMessage/Server_Messages.json; logs/上次/latest.log",
+  "fetched_at":"2026-09-25","verified_ingame":true,
+  "source_note":"离线期间害虫入侵四块地的服务器消息；实测每个地块数字各自可点击，保留独立颜色段与独立占位符。只收四块地的已见形态，其他地块数暂不伪造样本。",
+  "messages":[
+    {
+      "id":"garden_offline_pests_four_plots",
+      "context":"玩家离线期间四块花园地块出现害虫",
+      "raw":"§6§lGROSS! §7While you were offline, §2 Pests §7spawned in §aPlots §b%1$s§7, §b%2$s§7, §b%3$s§7 and §b%4$s§7!",
+      "text":"GROSS! While you were offline,  Pests spawned in Plots %1$s, %2$s, %3$s and %4$s!",
+      "placeholders":[
+        {"token":"%1$s","type":"number","desc":"出现害虫的第 1 块地，可点击传送","example":"4"},
+        {"token":"%2$s","type":"number","desc":"出现害虫的第 2 块地，可点击传送","example":"2"},
+        {"token":"%3$s","type":"number","desc":"出现害虫的第 3 块地，可点击传送","example":"1"},
+        {"token":"%4$s","type":"number","desc":"出现害虫的第 4 块地，可点击传送","example":"8"}
+      ],
+      "gloss":"Plots 是花园地块，不是绘图；Pests 沿用害虫。数字必须各在原有颜色段，以免误连点击事件。",
+      "translate":true,
+      "zh":"恶心! 你离线时, 害虫出现在地块 %1$s、%2$s、%3$s 和 %4$s!",
+      "segments":[
+        {"color":"§6§l","text":"GROSS! ","zh":"恶心! "},
+        {"color":"§7","text":"While you were offline, ","zh":"你离线时,"},
+        {"color":"§2","text":" Pests ","zh":" 害虫"},
+        {"color":"§7","text":"spawned in ","zh":"出现在"},
+        {"color":"§a","text":"Plots ","zh":"地块 "},
+        {"color":"§b","text":"%1$s","zh":"%1$s"},
+        {"color":"§7","text":", ","zh":"、"},
+        {"color":"§b","text":"%2$s","zh":"%2$s"},
+        {"color":"§7","text":", ","zh":"、"},
+        {"color":"§b","text":"%3$s","zh":"%3$s"},
+        {"color":"§7","text":" and ","zh":" 和 "},
+        {"color":"§b","text":"%4$s","zh":"%4$s"},
+        {"color":"§7","text":"!","zh":"!"}
+      ]
+    }
+  ]
+}

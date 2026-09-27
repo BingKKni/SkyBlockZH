@@ -47,7 +47,7 @@ public final class LineShape {
 	 * crowd's lines, written as the sentence alone, and not one of them could ever match.
 	 */
 	private static final String[] SPEAKER_TAGS = {
-		"[NPC] ", "[BOSS] ", "[SECURITY] ", "[CROWD] ", "[STATUE] ", "[SKULL] "
+		"[NPC] ", "[BOSS] ", "[GUARD] ", "[SECURITY] ", "[CROWD] ", "[STATUE] ", "[SKULL] "
 	};
 
 	/**

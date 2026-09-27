@@ -228,6 +228,8 @@ public final class CaptureHarness {
 		check("Boss 名字可识别", ChatShape.npcName("[BOSS] Bonzo: I am unbeatable!"), "Bonzo");
 		check("NPC 不算玩家发言", ChatShape.isPlayerChat("[NPC] Fragilis: Hello there!"), false);
 		check("Boss 不算玩家发言", ChatShape.isPlayerChat("[BOSS] Bonzo: I am unbeatable!"), false);
+		check("哥布林卫兵不算玩家发言", ChatShape.isPlayerChat("[GUARD] Goblak: GET BACK HERE!"), false);
+		check("哥布林卫兵被识别为说话人", ChatShape.npcName("[GUARD] Goblak: GET BACK HERE!"), "Goblak");
 		// The two the Catacombs adds. Thorn's arena crowd heckles under [CROWD] with the name of
 		// whichever mob is doing the heckling; Oruo's quiz statue asks its questions under [STATUE].
 		// Both name a speaker after the tag, so both wear a player's shape and were classed as

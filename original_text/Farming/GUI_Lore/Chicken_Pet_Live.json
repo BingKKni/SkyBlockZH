@@ -1,0 +1,25 @@
+{
+  "source": "logs/上次/skyzh-capture/incomplete/Farming/GUI_Lore/Claim_Reward.json",
+  "fetched_at": "2026-09-25",
+  "verified_ingame": true,
+  "gui_context": "鸡宠物的自由放养效果。出现在奖励领取、宠物菜单和背包等多个界面，完整逻辑句在 GUI_Lore 收录一次。",
+  "lines": [
+    {
+      "id": "chicken_pet_public_islands_fortune",
+      "context": "公共岛屿上的鸡宠物农业时运加成",
+      "text": "Grants +%s☘ Farming Fortune while on Public Islands.",
+      "placeholders": [{"token": "%s", "type": "number", "desc": "宠物当前提供的农业时运数值", "example": "0.5"}],
+      "gloss": "Public Islands 是公共岛屿，不能将 while on 留成第二行英文；数值保留为可变值，图标取服务器实时字形。",
+      "translate": true,
+      "zh": "在公共岛屿时,获得 +%s☘ 农业时运。",
+      "segments": [
+        {"color": "§7", "text": "Grants ", "zh": "在", "order": 0},
+        {"color": "§6", "text": "+%s☘ Farming Fortune ", "zh": "+%s☘ 农业时运", "order": 3},
+        {"color": "§7", "text": "while on ", "zh": "时,获得 ", "order": 2},
+        {"color": "§b", "text": "Public Islands", "zh": "公共岛屿", "order": 1},
+        {"color": "§7", "text": ".", "zh": "。", "order": 4}
+      ],
+      "samples": [["§7Grants §6+0.5 Farming Fortune §7while", "§7on §bPublic Islands§7."]]
+    }
+  ]
+}

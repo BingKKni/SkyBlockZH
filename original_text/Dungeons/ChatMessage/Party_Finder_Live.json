@@ -1,0 +1,13 @@
+{
+  "source": "logs/上次/skyzh-capture/untranslated/Dungeons/ChatMessage/Server_Messages.json; logs/上次/latest.log; https://hypixelskyblock.minecraft.wiki/w/Kuudra",
+  "fetched_at": "2026-09-25",
+  "verified_ingame": true,
+  "source_note": "队伍筛选与房间提示的服务器原文。难度值用限定 difficulty 词表，玩家名保持原样；不收第三方 Mod 的组队通知。",
+  "messages": [
+    {"id":"party_finder_selected_any","context":"队伍查找器选择不限阶级","raw":"§eSelected tier: §bAny","text":"Selected tier: Any","placeholders":[],"gloss":"与 Kuudra 特定阶级不同；Any 指不限。","translate":true,"zh":"所选阶级: 不限","segments":[{"color":"§e","text":"Selected tier: ","zh":"所选阶级: "},{"color":"§b","text":"Any","zh":"不限"}]},
+    {"id":"party_finder_selected_tier","context":"队伍查找器选择 Kuudra 特定阶级","raw":"§eSelected tier: §b%s Tier","text":"Selected tier: %s Tier","placeholders":[{"token":"%s","type":"difficulty","desc":"Kuudra 阶级五种前缀","example":"Basic"}],"gloss":"不能把 Hot 当炎热数值；difficulty 只指 Kuudra 难度。","translate":true,"zh":"所选阶级: %s难度","segments":[{"color":"§e","text":"Selected tier: ","zh":"所选阶级: "},{"color":"§b","text":"%s Tier","zh":"%s难度"}]},
+    {"id":"party_finder_joined","context":"队伍查找器玩家加入队伍时的聊天提醒","text":"Party Finder > %1$s joined the group! (Combat Level %2$s)","placeholders":[{"token":"%1$s","type":"player_name","desc":"加入队伍的玩家名","example":"inkkni"},{"token":"%2$s","type":"number","desc":"玩家战斗等级","example":"42"}],"gloss":"玩家名不翻译，战斗等级保留动态值。","translate":true,"zh":"队伍查找器 > %1$s 加入了队伍! (战斗等级 %2$s)"},
+    {"id":"party_finder_combat_level_required","context":"队伍入队战斗等级不足的反馈","text":"You need to have combat level %s or higher to join this group!","placeholders":[{"token":"%s","type":"number","desc":"队伍入队最低战斗等级","example":"40"}],"gloss":"条件是达到或超过，不是必须高于 40。","translate":true,"zh":"战斗等级至少达到 %s 级才能加入这个队伍!"},
+    {"id":"party_finder_required_combat_level","context":"队伍查找器入队要求简写","text":"Requires Combat Level %s!","placeholders":[{"token":"%s","type":"number","desc":"队伍战斗等级要求","example":"53"}],"gloss":"仅限玩家入队限制，不当成角色当前等级。","translate":true,"zh":"需要战斗等级达到 %s 级!"}
+  ]
+}

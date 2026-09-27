@@ -184,6 +184,11 @@ public final class TranslationHarness {
 		checkTooltipName("重铸物品名不再追加原文", "§6Fleet §dTitanium Drill DR-X655",
 			"§6迅捷 §d钛钻头 DR-X655");
 		checkTooltipName("重铸前缀不猜测未收录物品", "§6Fleet Unknown Drill", "§6Fleet Unknown Drill");
+		checkTooltipName("两把拾获锤的物品名跨容器复用", "§cScavenged Golden Hammer", "§c翻找到的金锤");
+		checkTooltipName("另一把拾获锤", "§cScavenged Emerald Hammer", "§c翻找到的绿宝石锤");
+		checkTooltipName("宝石品质整名与图标", "§5 Flawless Aquamarine Gemstone", "§5 无瑕 Aquamarine 宝石");
+		checkTooltipName("宝石品质及深灰数量", "§a Flawed Peridot Gemstone §8x40", "§a 有瑕 Peridot 宝石 §8x40");
+		checkTooltipName("未知宝石品种不猜译", "§5 Flawless Mystery Gemstone", "§5 Flawless Mystery Gemstone");
 		check("稀有度+类型标签", "§6§lLEGENDARY HELMET", Surface.ITEM, "§6§l传说头盔");
 		checkNoMatch("宽泛 Requires 模板不再误吃普通 Lore", "§7Requires dirt or soil nearby so", Surface.ITEM);
 
@@ -231,6 +236,8 @@ public final class TranslationHarness {
 			"[BOSS] Bonzo: 我甚至不用战斗，这才叫生活!");
 		// Thorn's arena crowd. Sixty-three of these were in the corpus, written as the sentence
 		// alone, and not one could match until [CROWD] was peeled the way [NPC] is.
+		check("哥布林卫兵台词带 [GUARD] 前缀", "[GUARD] Goblak: GET BACK HERE!", Surface.CHAT,
+			"[GUARD] Goblak: 给我站住!");
 		check("观众台词带 [CROWD] 前缀", "[CROWD] Zombie Soldier: Go Thorn! Gooooo!!!", Surface.CHAT,
 			"[CROWD] Zombie Soldier: Thorn，上啊! 冲——!!!");
 		check("石像台词带 [STATUE] 前缀",
@@ -269,6 +276,8 @@ public final class TranslationHarness {
 		checkRow("Tab 委托行:猎手", " §fGoblin Raid Slayer: §c0%", " §f哥布林突袭猎手: §c0%");
 		checkRow("记录管标签、词表管数值", " §7Lapis§f: §c§lNOT LOOTED", " §7青金石§f: §c§l未搜刮");
 		checkRow("词表里没有的标签保持英文", " §fOpal: §a✔ Found", " §fOpal: §a✔ 已找到");
+		checkRow("熔炉状态含感叹号", " 2) §6 Perfect Onyx Gemstone§7: §aReady!",
+			" 2) §6 完美 Onyx 宝石§7: §a就绪!");
 		checkRow("数字数值原样留着", " §fCorpse Looter: §c0%", " §f尸体搜刮者: §c0%");
 		checkRow("两半都查不到就原样不动", " §fSomething Nobody Wrote: §a42", " §fSomething Nobody Wrote: §a42");
 		checkRow("没有冒号的行照常走记录", "§e§lSkills:", "§e§l技能:");
@@ -2094,6 +2103,7 @@ public final class TranslationHarness {
 			case ICON -> "✎";
 			case TROPHY_QUALITY -> "SILVER";
 			case GEMSTONE_KIND -> "Jade";
+			case GEMSTONE_QUALITY -> "Flawless";
 			case MULTIPLIER_INCREASE -> "1.5";
 			case ORDINAL -> "27th";
 			default -> "1";

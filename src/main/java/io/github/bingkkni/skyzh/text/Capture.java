@@ -90,6 +90,9 @@ public enum Capture {
 	/** HotM crystal kinds, not arbitrary item names followed by a discovery status. */
 	GEMSTONE_KIND("(?:Jade|Amber|Amethyst|Sapphire|Topaz|Jasper|Ruby|Opal|Aquamarine|Peridot|Onyx|Citrine)", false),
 
+	/** The five named gemstone qualities, bounded so a menu label cannot become an item name. */
+	GEMSTONE_QUALITY("(?:Rough|Flawed|Fine|Flawless|Perfect)", false),
+
 	/** An Nx bonus written in Chinese as an increase of (N-1) times; distinct from a damage coefficient. */
 	MULTIPLIER_INCREASE("[0-9]+(?:\\.[0-9]+)?"),
 
@@ -171,6 +174,7 @@ public enum Capture {
 			case "icon" -> ICON;
 			case "trophy_quality" -> TROPHY_QUALITY;
 			case "gemstone_kind" -> GEMSTONE_KIND;
+			case "gemstone_quality" -> GEMSTONE_QUALITY;
 			case "multiplier_increase" -> MULTIPLIER_INCREASE;
 			case "ordinal" -> ORDINAL;
 			case "search_query" -> SEARCH_QUERY;
@@ -196,7 +200,7 @@ public enum Capture {
 		return switch (this) {
 			// The regex is the whole of the rule for these: a numeral is a numeral, and a player's
 			// name is whatever sixteen word characters somebody chose.
-			case NUMBER, PLAYER, PLAYER_DISPLAY, RANK, TIER, TIER_RANGE, ICON, TROPHY_QUALITY, GEMSTONE_KIND, ORDINAL, DURATION, DURATION_SPACED, SEARCH_QUERY -> true;
+			case NUMBER, PLAYER, PLAYER_DISPLAY, RANK, TIER, TIER_RANGE, ICON, TROPHY_QUALITY, GEMSTONE_KIND, GEMSTONE_QUALITY, ORDINAL, DURATION, DURATION_SPACED, SEARCH_QUERY -> true;
 			case MULTIPLIER_INCREASE -> new BigDecimal(value).compareTo(BigDecimal.ONE) >= 0;
 			case NAME -> isName(value);
 			case ITEM_NAME -> isItemName(value);

@@ -12,6 +12,7 @@
     "minion_resource",
     "accessory_power",
     "skyblock_month",
+    "gemstone_quality",
     "medal",
     "compactor_toggle",
     "trophy_quality",
@@ -31,6 +32,25 @@
   "reforge_note": "reforge 类型不在 applies_to_types 里:它只给 TooltipTranslator(物品名首词)和 guide_item_name 占位符的「重铸名 + 已收录物品名」拆分用,不会替换任何占位符捕到的值。",
   "skyblock_month_note": "日历标题等日期行里的空岛月份单独使用 skyblock_month:Early/(无前缀)/Late × 春夏秋冬十二个月按顺序译成「1 月」到「12 月」(用户 2026-09-10 拍板,以月份代替季节),不改变 Winter 作为海洋生物分类时的寒冬译名。",
   "terms": [
+    {"en":"Basic","zh":"基础","types":["difficulty"],"note":"Kuudra 阶级后缀由模板补全，不与鱼饵 Basic 混用。"},
+    {"en":"Hot","zh":"灼热","types":["difficulty"]},
+    {"en":"Burning","zh":"燃烧","types":["difficulty"]},
+    {"en":"Fiery","zh":"炽焰","types":["difficulty"]},
+    {"en":"Infernal","zh":"炼狱","types":["difficulty"]},
+    {"en":"Basic Tier","zh":"基础难度","types":["category_name"],"note":"Kuudra 队伍查找器，沿用 Combat/GUI_Item/Crimson_Isle_Interfaces_Wiki.json。"},
+    {"en":"Hot Tier","zh":"灼热难度","types":["category_name"]},
+    {"en":"Burning Tier","zh":"燃烧难度","types":["category_name"]},
+    {"en":"Fiery Tier","zh":"炽焰难度","types":["category_name"]},
+    {"en":"Infernal Tier","zh":"炼狱难度","types":["category_name"]},
+    {"en":"Anita's Shop","zh":"Anita 的商店","types":["category_name"],"note":"升级途径中的商店标签，沿用 Garden_Runtime 的既定译名；人名 Anita 保留。"},
+    {"en":"Community Shop","zh":"社区商店","types":["category_name"],"note":"沿用 GUI_Title/Common_Menus.json 的既定译名。"},
+    {"en":"Common Rock","zh":"普通岩石","types":["category_name"],"note":"岩石宠物里程碑的稀有度+通用物种，不能把玩家名当作宠物类别。"},
+    {"en":"Uncommon Rock","zh":"罕见岩石","types":["category_name"]},
+    {"en":"Rare Rock","zh":"稀有岩石","types":["category_name"]},
+    {"en":"Mithril Ore","zh":"秘银矿石","types":["category_name"],"note":"每日首次挖到秘银矿石的粉末奖励，和 Mithril 材料译名一致。"},
+    {"en":"Canvas Room","zh":"画布室","types":["location_name"],"note":"Marco 对话与传送浮空字使用同一地名译法。"},
+    {"en":"Hub Selector","zh":"大厅选择器","types":["location_name"],"note":"本轮 Hoppity 彩蛋提示中的大厅地标，不是玩家名。"},
+    {"en":"near something that will never arrive","zh":"永远等不到的东西附近","types":["raw"],"note":"Hoppity 彩蛋位置的整句谜面，不截出单词单独翻。"},
     {"en":"Superior Dragon","zh":"卓越巨龙","types":["mob_name","raw"],"note":"社区 Wiki Ender_Dragon；沿用 dragon_type 的卓越译名。"},
     {"en":"Protector Dragon","zh":"守护巨龙","types":["mob_name","raw"]},
     {"en":"Old Dragon","zh":"苍老巨龙","types":["mob_name","raw"]},
@@ -5362,6 +5382,12 @@
         "raw"
       ],
       "note": "Tab 列表「标签: 数值」右半边的状态词。引擎在没有记录应答时会拿右半边来查这张表（见 Translator.termed）。"
+    },
+    {
+      "en": "Ready!",
+      "zh": "就绪!",
+      "types": ["raw"],
+      "note": "熔炉列表中的完整状态值，感叹号属于服务器原文。"
     },
     {
       "en": "Ready",
@@ -10940,7 +10966,8 @@
       "en": "Yes",
       "zh": "是",
       "types": [
-        "raw"
+        "raw",
+        "compactor_toggle"
       ],
       "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
     },
@@ -11457,7 +11484,8 @@
       "en": "Board Member",
       "zh": "董事会成员",
       "types": [
-        "mob_name"
+        "mob_name",
+        "raw"
       ],
       "note": "2026-09-13 运行时采集核对；巧克力工厂兔子员工职级。"
     },

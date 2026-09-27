@@ -45,12 +45,12 @@
       "placeholders": [
         {
           "token": "%s",
-          "desc": "炎热数值,或字面量 'IMMUNE'(表示免疫)",
-          "type": "raw",
-          "example": "IMMUNE"
+          "desc": "炎热数值（免疫状态另有独立文本时须单独收录）",
+          "type": "number",
+          "example": "5"
         }
       ],
-      "gloss": "同 mining_sb_cold:♨ 和数值同色,各自一段。数值可能是数字,也可能是字面量 'IMMUNE'(译“免疫”,走 _shared/Terms.json)。",
+      "gloss": "同 mining_sb_cold:♨ 和数值同色,各自一段。本轮实测 0–5 时原 raw 类型的模板无法应答，数值需用 number；字面量 IMMUNE 另行处理。",
       "translate": true,
       "zh": "炎热: %s♨",
       "segments": [
@@ -69,6 +69,21 @@
           "text": "♨",
           "zh": "♨"
         }
+      ]
+    },
+    {
+      "id": "mining_sb_heat_immune",
+      "context": "炎热值免疫时的计分板行",
+      "raw": "§fHeat: §cIMMUNE♨",
+      "text": "Heat: IMMUNE♨",
+      "placeholders": [],
+      "gloss": "保留原有免疫状态；不能把免疫误作数值，且不能用 raw 占位符替代数字模板。",
+      "translate": true,
+      "zh": "炎热: 免疫♨",
+      "segments": [
+        {"color": "§f", "text": "Heat: ", "zh": "炎热: "},
+        {"color": "§c", "text": "IMMUNE", "zh": "免疫"},
+        {"color": "§c", "text": "♨", "zh": "♨"}
       ]
     }
   ]

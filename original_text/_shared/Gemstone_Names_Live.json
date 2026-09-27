@@ -1,0 +1,9 @@
+{
+  "source":"logs/上次/skyzh-capture/untranslated/Farming/GUI_Item/Jumbo_Backpack_Slot_3.json; logs/skyzh-capture/untranslated/Mining/GUI_Item/Perfect_Gemstones.json; logs/skyzh-capture/untranslated/Mining/GUI_Item/Fossil_Excavator.json; https://hypixelskyblock.minecraft.wiki/w/Gemstone",
+  "fetched_at":"2026-09-26","verified_ingame":true,
+  "purpose":"两轮采集反复出现的通用宝石物品名；五档品质和十二种宝石共用两个受限模板，避免按颜色/数值/背包复制几十条。图标走 Glyphs 原样还原，种类名 Jade 等沿用既有英文，品质查项目词表。",
+  "lines":[
+    {"id":"gemstone_quality_name_live","context":"物品名中的宝石图标、品质和宝石种类","text":"%1$s %2$s %3$s Gemstone","placeholders":[{"token":"%1$s","type":"icon","desc":"宝石的属性图标，保留服务器字形","example":""},{"token":"%2$s","type":"gemstone_quality","desc":"Rough/Flawed/Fine/Flawless/Perfect 五档品质","example":"Flawless"},{"token":"%3$s","type":"gemstone_kind","desc":"十二种限定的宝石种类名","example":"Jade"}],"gloss":"item_name 类型不查 Terms，所以品质专用 gemstone_quality 仅允许五个值，不用无限制 raw，也不随意翻译宝石专名。","translate":true,"zh":"%1$s %2$s %3$s 宝石"},
+    {"id":"gemstone_quality_stack_live","context":"菜单中的宝石叠放数量；等级与数量都可变","text":"%1$s %2$s %3$s Gemstone x%4$s","placeholders":[{"token":"%1$s","type":"icon","desc":"宝石图标","example":""},{"token":"%2$s","type":"gemstone_quality","desc":"宝石品质","example":"Flawed"},{"token":"%3$s","type":"gemstone_kind","desc":"宝石种类","example":"Peridot"},{"token":"%4$s","type":"number","desc":"物品数量","example":"40"}],"gloss":"仅最后 xN 是数量，不能把图标、名字和品质吞进数字；深灰数量的颜色与物品名分段。","translate":true,"zh":"%1$s %2$s %3$s 宝石 x%4$s","segments":[{"color":"§5","text":"%1$s %2$s %3$s Gemstone ","zh":"%1$s %2$s %3$s 宝石 "},{"color":"§8","text":"x%4$s","zh":"x%4$s"}]}
+  ]
+}

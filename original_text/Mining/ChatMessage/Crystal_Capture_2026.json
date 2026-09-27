@@ -1,0 +1,150 @@
+{
+  "source": "logs/上次/skyzh-capture/untranslated/Mining/ChatMessage/Server_Messages.json; logs/skyzh-capture/untranslated/Mining/ChatMessage/Server_Messages.json; https://hypixelskyblock.minecraft.wiki/w/Crystal_Nucleus",
+  "fetched_at": "2026-09-26",
+  "verified_ingame": true,
+  "source_note": "原文与分色来自两轮实测；社区 Wiki 用于确认水晶核心与宝石掉落玩法。五种宝石种类共用有界 gemstone_kind，图标与数量保留服务器实际值。",
+  "messages": [
+    {
+      "id": "crystal_found_name_live",
+      "context": "水晶核心找到宝石水晶时的居中名称；Onyx 等奖励清单中的同名项按原文缩进处理",
+      "text": "%s Crystal",
+      "placeholders": [{"token": "%s", "type": "gemstone_kind", "desc": "宝石种类；Jade 等自造颜色名沿用英文", "example": "Amber"}],
+      "gloss": "宝石种类共用有限白名单，不用无限制 raw，也不挨个列五条。",
+      "translate": true,
+      "zh": "%s 水晶",
+      "layout": "chat_source_alignment"
+    },
+    {
+      "id": "crystal_placed_live",
+      "context": "把宝石水晶放入水晶核心的聊天提示",
+      "raw": "§5§l✦ §dYou placed the §6%s Crystal§d!",
+      "text": "✦ You placed the %s Crystal!",
+      "placeholders": [{"token": "%s", "type": "gemstone_kind", "desc": "所放水晶的宝石种类", "example": "Amber"}],
+      "gloss": "实机 Amber/Topaz/Amethyst 等颜色随宝石变化，seg 的颜色只是样例，以服务器实时分段颜色为准。",
+      "translate": true,
+      "zh": "✦ 你放置了 %s 水晶!",
+      "segments": [
+        {"color": "§5§l", "text": "✦ ", "zh": "✦ "},
+        {"color": "§d", "text": "You placed the ", "zh": "你放置了"},
+        {"color": "§6", "text": "%s Crystal", "zh": "%s 水晶"},
+        {"color": "§d", "text": "!", "zh": "!"}
+      ]
+    },
+    {
+      "id": "metal_detector_flawed_gems_live",
+      "context": "金属探测器找到有瑕宝石（Ruby/Amber/Jade/Topaz 实测）",
+      "text": "You found %1$s Flawed %2$s Gemstone x%3$s with your Metal Detector!",
+      "placeholders": [
+        {"token": "%1$s", "type": "icon", "desc": "宝石图标", "example": ""},
+        {"token": "%2$s", "type": "gemstone_kind", "desc": "宝石种类", "example": "Ruby"},
+        {"token": "%3$s", "type": "number", "desc": "掉落数量", "example": "2"}
+      ],
+      "gloss": "品质 Flawed→有瑕；掉落数字及图标来自实测，占位符不写死。颜色段以有瑕宝石样本为准，与 Rough Jasper 的白色名称独立。",
+      "translate": true,
+      "zh": "你用金属探测器找到了 %1$s 有瑕 %2$s 宝石 x%3$s!",
+      "segments": [
+        {"color": "§a", "text": "You found %1$s Flawed %2$s Gemstone ", "zh": "找到了 %1$s 有瑕 %2$s 宝石 ", "order": 2},
+        {"color": "§8", "text": "x%3$s ", "zh": "x%3$s", "order": 3},
+        {"color": "§a", "text": "with your ", "zh": "你用", "order": 0},
+        {"color": "§c", "text": "Metal Detector", "zh": "金属探测器", "order": 1},
+        {"color": "§a", "text": "!", "zh": "!", "order": 4}
+      ]
+    },
+    {
+      "id": "metal_detector_rough_jasper_live",
+      "context": "金属探测器找到粗糙 Jasper 宝石；名称部分实际为白色",
+      "text": "You found %1$s Rough Jasper Gemstone x%2$s with your Metal Detector!",
+      "placeholders": [
+        {"token": "%1$s", "type": "icon", "desc": "Jasper 图标", "example": ""},
+        {"token": "%2$s", "type": "number", "desc": "掉落数量", "example": "40"}
+      ],
+      "gloss": "与有瑕宝石不是相同的颜色分布，单独建模板避免整段染成发现提示的绿色。",
+      "translate": true,
+      "zh": "你用金属探测器找到了 %1$s 粗糙 Jasper 宝石 x%2$s!",
+      "segments": [
+        {"color": "§a", "text": "You found ", "zh": "找到了 ", "order": 2},
+        {"color": "§f", "text": "%1$s Rough Jasper Gemstone ", "zh": "%1$s 粗糙 Jasper 宝石 ", "order": 3},
+        {"color": "§8", "text": "x%2$s ", "zh": "x%2$s", "order": 4},
+        {"color": "§a", "text": "with your ", "zh": "你用", "order": 0},
+        {"color": "§c", "text": "Metal Detector", "zh": "金属探测器", "order": 1},
+        {"color": "§a", "text": "!", "zh": "!", "order": 5}
+      ]
+    },
+    {
+      "id": "metal_detector_gemstone_powder_live",
+      "context": "金属探测器找到宝石粉末",
+      "text": "You found Gemstone Powder x%s with your Metal Detector!",
+      "placeholders": [{"token": "%s", "type": "number", "desc": "宝石粉末数量", "example": "517"}],
+      "gloss": "粉末名称颜色深紫，数量 xN 深灰；不将 x 写死为采集值。",
+      "translate": true,
+      "zh": "你用金属探测器找到了宝石粉末 x%s!",
+      "segments": [
+        {"color": "§a", "text": "You found ", "zh": "找到了", "order": 2},
+        {"color": "§d", "text": "Gemstone Powder ", "zh": "宝石粉末 ", "order": 3},
+        {"color": "§8", "text": "x%s ", "zh": "x%s", "order": 4},
+        {"color": "§a", "text": "with your ", "zh": "你用", "order": 0},
+        {"color": "§c", "text": "Metal Detector", "zh": "金属探测器", "order": 1},
+        {"color": "§a", "text": "!", "zh": "!", "order": 5}
+      ]
+    },
+    {
+      "id": "pick_it_up_chat_live",
+      "context": "金属探测器发现宝箱后聊天中重复出现的拾取提示，区别于已有 ActionBar 文本",
+      "raw": "§6§lPICK IT UP!",
+      "text": "PICK IT UP!",
+      "placeholders": [],
+      "gloss": "不是第三方 SkyHanni 的探测器提示，采集结果确认它来自服务器包。",
+      "translate": true,
+      "zh": "快拾取!"
+    },
+    {
+      "id": "not_enough_mana_costs_live",
+      "context": "施放矿镐技能等技能时法力不足，括号内消耗会变",
+      "raw": "§cNot enough mana! §7(Costs %s mana)",
+      "text": "Not enough mana! (Costs %s mana)",
+      "placeholders": [{"token": "%s", "type": "number", "desc": "施放技能所需法力", "example": "181"}],
+      "gloss": "不可把样本中的 181 写死；mana 项目词汇作法力。",
+      "translate": true,
+      "zh": "法力不足! (消耗 %s 点法力)",
+      "segments": [
+        {"color": "§c", "text": "Not enough mana! ", "zh": "法力不足! "},
+        {"color": "§7", "text": "(Costs %s mana)", "zh": "(消耗 %s 点法力)"}
+      ]
+    },
+    {
+      "id": "nucleus_keep_exploring_live",
+      "context": "水晶核心尚有水晶未找齐时提示继续探索",
+      "text": "Keep exploring the Crystal Hollows to find the rest!",
+      "placeholders": [],
+      "gloss": "Crystal Hollows 是水晶残核，不是水晶核心。",
+      "translate": true,
+      "zh": "继续探索水晶残核,找齐剩下的水晶!",
+      "segments": [
+        {"color": "§d", "text": "Keep exploring the ", "zh": "继续探索"},
+        {"color": "§5", "text": "Crystal Hollows ", "zh": "水晶残核"},
+        {"color": "§d", "text": "to find the rest!", "zh": ",找齐剩下的水晶!"}
+      ]
+    },
+    {
+      "id": "bal_kill_bits_reward_live",
+      "context": "击败 Bal 后获得点券奖励",
+      "raw": "§aYou gained §b+%s Bits §afor killing §cBal§a!",
+      "text": "You gained +%s Bits for killing Bal!",
+      "placeholders": [{"token":"%s","type":"number","desc":"击败 Bal 得到的点券数量","example":"21"}],
+      "gloss": "Bal 为 Boss 专名；Bits 沿用货币点券；数值动态。",
+      "translate": true,
+      "zh": "你击败了 Bal,获得了 +%s 点券!",
+      "segments": [
+        {"color":"§a","text":"You gained ","zh":"你击败了 ","order":0},
+        {"color":"§b","text":"+%s Bits ","zh":"+%s 点券","order":3},
+        {"color":"§a","text":"for killing ","zh":",获得了 ","order":2},
+        {"color":"§c","text":"Bal","zh":"Bal","order":1},
+        {"color":"§a","text":"!","zh":"!","order":4}
+      ]
+    },
+    {"id":"nucleus_chest_lockpicked_live","context":"水晶残核或丛林宝箱被撬开","raw":"§6§lCHEST LOCKPICKED ","text":"CHEST LOCKPICKED","placeholders":[],"gloss":"独立聊天标题；原文结尾用于排版的空格不入译文。","translate":true,"zh":"宝箱已撬开"},
+    {"id":"nucleus_bundle_title_live","context":"领取水晶核心战利品包时的标题","raw":"§5§lCRYSTAL NUCLEUS LOOT BUNDLE ","text":"CRYSTAL NUCLEUS LOOT BUNDLE","placeholders":[],"gloss":"与 Crystal Hollows 地图名称区分；这条是中央奖池的奖励包。","translate":true,"zh":"水晶核心奖励包"},
+    {"id":"nucleus_oil_barrel_reward_live","context":"水晶核心奖励包中的油桶","raw":"§aOil Barrel","text":"Oil Barrel","placeholders":[],"gloss":"奖励清单物品名，油桶是普通资源名。","translate":true,"zh":"油桶"},
+    {"id":"nucleus_wishing_compass_reward_live","context":"水晶核心奖励包中的许愿罗盘","raw":"§aWishing Compass §8x%s","text":"Wishing Compass x%s","placeholders":[{"token":"%s","type":"number","desc":"许愿罗盘数量","example":"3"}],"gloss":"既有物品名 Wishing_Compass.json 为许愿罗盘；数量独立灰色。","translate":true,"zh":"许愿罗盘 x%s","segments":[{"color":"§a","text":"Wishing Compass ","zh":"许愿罗盘 "},{"color":"§8","text":"x%s","zh":"x%s"}]}
+  ]
+}

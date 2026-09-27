@@ -277,6 +277,7 @@ public final class DiagnosticsHarness {
 		add(broken, Surface.ITEM, "orb", "Place an orb for %sm buffing up to %s", "放置一颗光球,持续 %1$s 分钟,最多为 %2$s 名", "");
 		add(broken, Surface.ITEM, "passive", "PASSIVE EVENT %s", "活动 %s", "", "", Map.of(1, new TranslationEntry.Argument("raw", "2X POWDER")));
 		add(broken, Surface.ITEM, "title", "Ability: Some Title", "技能: 某标题", "");
+		add(broken, Surface.ITEM, "members", "Members:", "成员:", "");
 		add(broken, Surface.ITEM, "name", "Topaz Crystal Hunter", "Topaz 水晶猎人", "");
 		add(broken, Surface.ITEM, "slot", "+%s Commission Slot", "+%s 个委托槽位", "");
 		add(broken, Surface.ITEM, "wrapped", "Grants +%s Mining Speed and +%s", "额外获得 +%1$s 挖掘速度和 +%2$s", "");
@@ -298,6 +299,7 @@ public final class DiagnosticsHarness {
 		check("词表整体翻译的值不算丢数字", TranslationDiagnostics.lore(LoreTranslation.plan(components("PASSIVE EVENT 2X POWDER"))).isEmpty());
 		// A translated heading followed by an English body is an untranslated body, not a torn sentence.
 		check("标题行后的英文正文不算续行", !incomplete(components("Ability: Some Title", "Gain +3 Defense for each enemy")));
+		check("成员标签后的玩家名不是英语续行", !incomplete(components("Members: ", "lfsam (60)", "OMG_itsxam (0)")));
 		check("首字母全大写的名字行后不算续行", !incomplete(components("Topaz Crystal Hunter", "Find a Topaz Crystal in the")));
 		check("列表符号开头的行不算续行", !incomplete(components("+1 Commission Slot", "■ Reduce cooldowns by 25%.")));
 		check("乱码装饰字符不算小写开头", !incomplete(components("This grants 50 extra", "§ka§r Damage Bonus §ka")));

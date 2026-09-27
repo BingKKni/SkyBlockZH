@@ -1,0 +1,19 @@
+{
+  "source": "logs/上次/skyzh-capture/untranslated/Combat/ChatMessage/Server_Messages.json; https://hypixelskyblock.minecraft.wiki/w/Kuudra",
+  "fetched_at": "2026-09-25",
+  "verified_ingame": true,
+  "source_note": "Kuudra 团队战的补给、弩炮、技能购买提示；Wiki 用于核对阶段机制，游戏实测用于原文和颜色。明确拒绝采集器把不同句子合并出的『You retrieved %1$s %2$s %3$s %4$s』模板。技能译名与 Combat/GUI_Item/Captured_Guides.json 相同。",
+  "messages": [
+    {"id":"kuudra_wandering_blaze_power_up","context":"被游荡烈焰人击中次数达到阈值，其力量增强","text":"The Wandering Blazes hit you %s times, its strength increases!","placeholders":[{"token":"%s","type":"number","desc":"累计被击中的次数","example":"20"}],"gloss":"次数动态 10、20、30、40 等；Wandering Blaze 沿用既有怪物通名游荡烈焰人。","translate":true,"zh":"你已被游荡烈焰人击中 %s 次,它们的力量增强了!"},
+    {"id":"kuudra_retrieved_supplies","context":"从熔岩中打捞补给箱","text":"You retrieved some of Elle's supplies from the Lava!","placeholders":[],"gloss":"不是燃料电池，原文是 Elle 的补给。","translate":true,"zh":"你从熔岩中打捞出了 Elle 的补给!"},
+    {"id":"kuudra_retrieved_fuel","context":"从熔岩中打捞弩炮燃料电池","text":"You retrieved a Ballista Fuel Cell from the Lava!","placeholders":[],"gloss":"与 Elle 的补给箱为两个不同句子。","translate":true,"zh":"你从熔岩中打捞出了一块弩炮燃料电池!"},
+    {"id":"kuudra_purchased_elles_pickaxe","context":"购买 Elle 的镐","text":"You purchased Elle's Pickaxe!","placeholders":[],"gloss":"Elle 是专有人名，保留。","translate":true,"zh":"你购买了 Elle 的镐!"},
+    {"id":"kuudra_purchased_steady_hands","context":"购买 Kuudra 专精天赋稳健双手","text":"You purchased Steady Hands %s!","placeholders":[{"token":"%s","type":"tier","desc":"购买的天赋等级","example":"IV"}],"gloss":"沿用 Combat/GUI_Item/Captured_Guides.json 的天赋译名。","translate":true,"zh":"你购买了稳健双手 %s!"},
+    {"id":"kuudra_purchased_ballista_mechanic","context":"购买 Kuudra 专精天赋弩炮技师","text":"You purchased Ballista Mechanic %s!","placeholders":[{"token":"%s","type":"tier","desc":"购买的天赋等级","example":"IV"}],"gloss":"沿用已有天赋译名。","translate":true,"zh":"你购买了弩炮技师 %s!"},
+    {"id":"kuudra_purchased_bomberman","context":"购买 Kuudra 专精天赋爆破专家","text":"You purchased Bomberman %s!","placeholders":[{"token":"%s","type":"tier","desc":"购买的天赋等级","example":"III"}],"gloss":"沿用已有天赋译名。","translate":true,"zh":"你购买了爆破专家 %s!"},
+    {"id":"kuudra_purchased_mining_frenzy","context":"购买 Kuudra 专精天赋挖矿狂热","text":"You purchased Mining Frenzy %s!","placeholders":[{"token":"%s","type":"tier","desc":"购买的天赋等级","example":"I"}],"gloss":"沿用已有天赋译名。","translate":true,"zh":"你购买了挖矿狂热 %s!"},
+    {"id":"kuudra_party_enters","context":"一位带 Rank 的玩家进入 Kuudra 的巢穴","text":"%1$s entered Kuudra's Hollow, %2$s Tier!","placeholders":[{"token":"%1$s","type":"player_display","desc":"玩家名与付费 Rank 标签","example":"[VIP+] Onedirection7"},{"token":"%2$s","type":"difficulty","desc":"副本阶级","example":"Basic"}],"gloss":"彩色分隔线属于聊天块的其他行，不把它拼进玩家名；Kuudra's Hollow 沿用巢穴译名。","translate":true,"zh":"%1$s 进入了 Kuudra 的巢穴,%2$s难度!"},
+    {"id":"kuudra_death_becomes_ghost","context":"玩家在 Kuudra 战中被怪物击杀后变为幽灵","text":"☠ %1$s was killed by %2$s and became a ghost.","placeholders":[{"token":"%1$s","type":"player_name","desc":"阵亡的玩家名","example":"Onedirection7"},{"token":"%2$s","type":"mob_name","desc":"击杀者怪物名","example":"Wandering Blaze"}],"gloss":"Wandering Blaze 沿用既定译名游荡烈焰人；玩家名原样保留。","translate":true,"zh":"☠ %1$s 被%2$s杀死,变成了幽灵。","segments":[{"color":"§c","text":"☠ ","zh":"☠ "},{"color":"§b","text":"%1$s","zh":"%1$s"},{"color":"§7","text":" was killed by %2$s and became a ghost.","zh":" 被%2$s杀死,变成了幽灵。"}]},
+    {"id":"barbarian_reputation_banner_live","context":"选择野蛮人阵营后的声望进度图标题","raw":"§cBarbarian Reputation","text":"Barbarian Reputation","placeholders":[],"gloss":"声望图标题居中；和付费 Rank 无关。","translate":true,"zh":"野蛮人声望","layout":"center_chat_banner"}
+  ]
+}

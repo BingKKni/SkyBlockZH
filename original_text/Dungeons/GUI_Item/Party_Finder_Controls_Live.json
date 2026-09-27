@@ -1,0 +1,15 @@
+{
+  "source":"logs/上次/skyzh-capture/untranslated/Dungeons/GUI_Item; logs/skyzh-capture/untranslated/Dungeons/GUI_Item; https://hypixelskyblock.minecraft.wiki/w/Kuudra",
+  "fetched_at":"2026-09-26",
+  "verified_ingame":true,
+  "gui_context":"队伍查找器和 Kuudra 阶级选择子菜单；与玩家姓名列表分开处理。",
+  "lines":[
+    {"id":"finder_to_party","context":"队伍查找器跳转至组队入口的提示","raw":"§7To Need a party!","text":"To Need a party!","placeholders":[],"gloss":"服务器原文措辞别扭，指向 Need a party! 页面，不是队伍成员名称。","translate":true,"zh":"前往组队界面!"},
+    {"id":"finder_requires_combat_level","context":"队伍设置的入队战斗等级门槛","raw":"§cRequires Combat Level %s!","text":"Requires Combat Level %s!","placeholders":[{"token":"%s","type":"number","desc":"队伍要求的战斗等级","example":"53"}],"gloss":"只翻译门槛提示，队员姓名及其当前等级保持原样。","translate":true,"zh":"需要战斗等级达到 %s 级!"},
+    {"id":"finder_tier_any","context":"队伍阶级筛选为不限","raw":"§aTier: §bAny","text":"Tier: Any","placeholders":[],"gloss":"Any 是不限，不是具体阶级名。","translate":true,"zh":"阶级: 不限","segments":[{"color":"§a","text":"Tier: ","zh":"阶级: "},{"color":"§b","text":"Any","zh":"不限"}]},
+    {"id":"finder_tier_named","context":"队伍阶级筛选为 Kuudra 指定难度","raw":"§7Tier: §b%s Tier","text":"Tier: %s Tier","placeholders":[{"token":"%s","type":"difficulty","desc":"Kuudra 难度五档之一","example":"Infernal"}],"gloss":"与 category_name 的 Hot Bait 区分，难度译名来自 difficulty 词表。","translate":true,"zh":"阶级: %s难度","segments":[{"color":"§7","text":"Tier: ","zh":"阶级: "},{"color":"§b","text":"%s Tier","zh":"%s难度"}]},
+    {"id":"finder_combat_range","context":"队伍战斗等级筛选范围","raw":"§aCombat Level: §f%1$s-%2$s","text":"Combat Level: %1$s-%2$s","placeholders":[{"token":"%1$s","type":"number","desc":"最小战斗等级","example":"0"},{"token":"%2$s","type":"number","desc":"最大战斗等级","example":"60"}],"gloss":"0-60 是本轮样本，不可写死端点。","translate":true,"zh":"战斗等级: %1$s-%2$s","segments":[{"color":"§a","text":"Combat Level: ","zh":"战斗等级: "},{"color":"§f","text":"%1$s-%2$s","zh":"%1$s-%2$s"}]},
+    {"id":"finder_combat_requirement","context":"队伍要求的最低战斗等级","raw":"§7Combat Level Required: §3%s","text":"Combat Level Required: %s","placeholders":[{"token":"%s","type":"number","desc":"入队最低战斗等级","example":"40"}],"gloss":"队伍门槛，不是成员当前等级。","translate":true,"zh":"战斗等级要求: %s","segments":[{"color":"§7","text":"Combat Level Required: ","zh":"战斗等级要求: "},{"color":"§3","text":"%s","zh":"%s"}]},
+    {"id":"kuudra_select_tier","context":"Kuudra 副本难度选择格的标题","raw":"§cKuudra's Hollow §8- §e%s Tier","text":"Kuudra's Hollow - %s Tier","placeholders":[{"token":"%s","type":"difficulty","desc":"Kuudra 难度前缀","example":"Basic"}],"gloss":"Kuudra's Hollow 沿用既有译名 Kuudra 的巢穴。","translate":true,"zh":"Kuudra 的巢穴 - %s难度","segments":[{"color":"§c","text":"Kuudra's Hollow ","zh":"Kuudra 的巢穴 "},{"color":"§8","text":"- ","zh":"- "},{"color":"§e","text":"%s Tier","zh":"%s难度"}]}
+  ]
+}
