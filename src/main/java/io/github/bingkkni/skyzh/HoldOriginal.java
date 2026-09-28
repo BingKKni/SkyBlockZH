@@ -6,110 +6,97 @@ import java.util.Arrays;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.EditBox;
+import net.minecraft.client.gui.components.events.ContainerEventHandler;
+import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractSignEditScreen;
+import net.minecraft.client.gui.screens.inventory.BookEditScreen;
+import net.minecraft.client.gui.screens.options.controls.KeyBindsScreen;
 import net.minecraft.client.input.KeyEvent;
 import net.minecraft.resources.Identifier;
 import org.lwjgl.glfw.GLFW;
 
 /**
- * Hold the configurable original-text key (default {@code X}) without touching the master switch.
- *
- * <p>Mod Menu's enabled toggle is how a player turns the whole mod off. Capture is a separate
- * switch, but "off" still reads as "the mod is not running". Holding a key must not write that.
- * This flag is consulted only on the render path, so {@code locate} keeps answering for capture
- * and {@code captureUntranslated} stays whatever it was.
- *
- * <p>A normal vanilla KeyMapping, appended to Options before options.txt is read. Vanilla owns
- * rebinding, conflict display, reset and NONE; no separate key setting or Fabric API is needed.
- * The configured physical key is polled because vanilla releases gameplay mappings while a GUI is
- * open, which is precisely where players compare item lore. Text entry is still left alone.
+ * Session-only original-text toggle. The class and vanilla mapping ID retain their old names so
+ * existing options.txt bindings survive. This never changes the master/capture switches or saves.
+ * Toggle before opening chat to inspect history without stealing X from the text input.
  */
 public final class HoldOriginal {
-	private static volatile boolean held;
+	private static volatile boolean active;
 	private static KeyMapping binding;
-	private static InputConstants.Key heldScanCode;
+	private static boolean mouseDown;
 
 	private HoldOriginal() {
 	}
 
-	/** Called from Options.load HEAD, including the constructor's first load. Idempotent on reload. */
+	/** Appended before options.txt is read, idempotently; vanilla owns rebinding and NONE. */
 	public static KeyMapping[] register(KeyMapping[] mappings) {
 		if (binding == null) {
 			binding = new KeyMapping("key.skyzh.holdOriginal", InputConstants.KEY_X,
 				KeyMapping.Category.register(Identifier.fromNamespaceAndPath(SkyZH.MOD_ID, "main")));
 		}
-
 		for (KeyMapping mapping : mappings) {
-			if (mapping == binding) {
-				return mappings;
-			}
+			if (mapping == binding) return mappings;
 		}
-
 		KeyMapping[] result = Arrays.copyOf(mappings, mappings.length + 1);
 		result[mappings.length] = binding;
 		return result;
 	}
 
-	/** Whether render paths should skip translation this frame. */
 	public static boolean active() {
-		return held;
+		return active;
 	}
 
-	/**
-	 * Applies or clears the hold. The harness uses this directly; the client tick uses
-	 * {@link #poll}. Generation advances so tooltip and title caches drop the other spelling on the
-	 * same frame.
-	 */
+	/** Bypass gates precede caches; changing display mode must not discard reusable translations. */
 	public static void setActive(boolean value) {
-		if (held == value) {
-			return;
-		}
-
-		held = value;
-		SkyZHConfig.bumpGeneration();
+		active = value;
 	}
 
-	/** Reads the assigned key once per client tick and rebuilds wrapped chat if it flipped. */
+	/** Keyboard events catch even short taps; mouse bindings use physical rising edges in GUIs. */
 	public static void poll(Minecraft minecraft) {
-		boolean allowed = HypixelServer.isSkyBlock() && minecraft.isWindowActive() && !typing(minecraft);
+		boolean bound = binding != null && !binding.isUnbound();
+		boolean available = HypixelServer.isSkyBlock() && SkyZHConfig.get().enabled && bound;
+		boolean down = bound && configuredKey().getType() == InputConstants.Type.MOUSE
+			&& GLFW.glfwGetMouseButton(minecraft.getWindow().handle(), configuredKey().getValue()) == GLFW.GLFW_PRESS;
+		updateMouse(available, minecraft.isWindowActive() && !typing(minecraft), down);
+	}
 
-		if (!allowed) {
-			heldScanCode = null;
-		}
+	/** Pure edge/state handling, also exercised without a GLFW window. */
+	static void updateMouse(boolean available, boolean acceptsPress, boolean down) {
+		if (!available) active = false;
+		if (available && acceptsPress && down && !mouseDown) active = !active;
+		// Track rejected presses too: leaving an input box while holding a button is not a new tap.
+		mouseDown = down;
+	}
 
-		boolean next = allowed && keyDown(minecraft);
-
-		if (next == held) {
-			return;
-		}
-
-		setActive(next);
-		ClientGui.rescaleChat(minecraft);
+	static void press(boolean available, boolean acceptsPress, int action) {
+		if (available && acceptsPress && action == GLFW.GLFW_PRESS) active = !active;
 	}
 
 	private static boolean typing(Minecraft minecraft) {
 		Screen screen = ClientGui.screen(minecraft);
-
-		if (screen == null) {
-			return false;
+		if (screen instanceof ChatScreen || screen instanceof AbstractSignEditScreen
+			|| screen instanceof BookEditScreen || screen instanceof KeyBindsScreen) return true;
+		GuiEventListener focused = screen;
+		// Lists and mod screens may wrap the edit box in another focus container.
+		for (int depth = 0; focused != null && depth < 16; depth++) {
+			if (focused instanceof EditBox) return true;
+			if (!(focused instanceof ContainerEventHandler container)) break;
+			GuiEventListener next = container.getFocused();
+			if (next == focused) break;
+			focused = next;
 		}
-
-		if (screen instanceof ChatScreen || screen instanceof AbstractSignEditScreen) {
-			return true;
-		}
-
-		return screen.getFocused() instanceof EditBox;
+		return false;
 	}
 
-	/** GLFW cannot poll unknown-key scancodes, so those use vanilla's key-event matching instead. */
+	/** Never consumes input; GLFW repeat/release must not toggle, including scan-code bindings. */
 	public static void keyEvent(long window, int action, KeyEvent event) {
 		Minecraft minecraft = Minecraft.getInstance();
-
-		if (binding != null && minecraft != null && window == minecraft.getWindow().handle()
-			&& binding.matches(event) && configuredKey().getType() == InputConstants.Type.SCANCODE) {
-			heldScanCode = action == GLFW.GLFW_RELEASE ? null : configuredKey();
+		if (binding != null && !binding.isUnbound() && minecraft != null
+			&& window == minecraft.getWindow().handle() && binding.matches(event)) {
+			press(HypixelServer.isSkyBlock() && SkyZHConfig.get().enabled,
+				minecraft.isWindowActive() && !typing(minecraft), action);
 		}
 	}
 
@@ -119,20 +106,6 @@ public final class HoldOriginal {
 	}
 
 	private static InputConstants.Key configuredKey() {
-		// This is vanilla's saved key name, not a second preference. It changes immediately on rebind.
 		return InputConstants.getKey(binding.saveString());
-	}
-
-	private static boolean keyDown(Minecraft minecraft) {
-		if (binding == null || binding.isUnbound()) {
-			return false;
-		}
-
-		InputConstants.Key key = configuredKey();
-		return switch (key.getType()) {
-			case KEYSYM -> InputConstants.isKeyDown(minecraft.getWindow(), key.getValue());
-			case MOUSE -> GLFW.glfwGetMouseButton(minecraft.getWindow().handle(), key.getValue()) == GLFW.GLFW_PRESS;
-			case SCANCODE -> key.equals(heldScanCode);
-		};
 	}
 }

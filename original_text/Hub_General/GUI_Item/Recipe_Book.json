@@ -12,14 +12,15 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "desc": "配方类别名，保持服务器原文",
-          "type": "category_name",
+          "desc": "配方类别或物品名；优先复用类别词表，再复用离线物品目录确认的已有物品译名",
+          "type": "recipe_target",
           "example": "Farming"
         }
       ],
-      "gloss": "类别名本身不在这条记录里翻译:它是占位符捕到的值,译名走 _shared/Terms.json,查不到就保持英文。**译文里不要手写空格**——中英之间那个空格由引擎在接缝处按两边的字符自动补(见 text/TranslationEntry.Seam):值还是英文时渲染成「Fishing 宠物」,词表里有译名时渲染成「钓鱼宠物」。手写空格的话后一种会变成「钓鱼 宠物」,两个汉字中间夹一个空格,而中文里没有这种写法。",
+      "gloss": "同一模板既用于 Farming Recipes，也用于 Bait Ring Recipe；后者不再要求把已有物品名逐个抄入类别词表。未知名称仍保留英文。",
       "translate": true,
-      "zh": "%1$s配方"
+      "zh": "%1$s配方",
+      "segments": [{"text":"%1$s ","zh":"%1$s"},{"color":"§7","text":"Recipes","zh":"配方"}]
     },
     {
       "id": "view_category_recipes_desc_1",

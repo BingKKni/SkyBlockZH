@@ -246,11 +246,22 @@ public final class TermTable {
 	 */
 	public String translate(String type, String value) {
 		// Opt-in loot announcements reuse existing names, but never menu/lore records or unknown items.
-		if ("loot_item_name".equalsIgnoreCase(type)) {
+		if ("loot_item_name".equalsIgnoreCase(type) || "catalog_item_name".equalsIgnoreCase(type)) {
 			return ItemNames.canonical(value) == null ? null : itemName(value);
 		}
 		if ("guide_item_name".equalsIgnoreCase(type)) {
 			return itemName(value);
+		}
+		if ("item_part".equalsIgnoreCase(type) || "bait_kind".equalsIgnoreCase(type)) {
+			return translate("category_name", value);
+		}
+		// Recipe headings name either a category (Farming Recipes) or a physical item (Bait Ring
+		// Recipe). Reuse the existing decisions rather than duplicating every item in Terms.json.
+		if ("recipe_target".equalsIgnoreCase(type)) {
+			String category = translate("category_name", value);
+			if (category != null) return category;
+			String mob = translate("mob_name", value);
+			return mob != null ? mob : ItemNames.canonical(value) == null ? null : itemName(value);
 		}
 
 		if (!applies(type)) {

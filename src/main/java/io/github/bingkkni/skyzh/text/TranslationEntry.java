@@ -486,6 +486,9 @@ public final class TranslationEntry {
 		for (Map.Entry<Integer, Capture> capture : this.captures.entrySet()) {
 			int group = capture.getKey();
 
+			// A known suffix is not enough: Frozen Blaze Table combines two valid words into an
+			// unknown item. Family-name templates may only answer for a complete catalog identity.
+			if (capture.getValue() == Capture.ITEM_PART && !ItemNames.isBaseName(match.group())) return false;
 			if (match.start(group) >= 0 && !capture.getValue().accepts(match.group(group))) {
 				return false;
 			}
@@ -654,7 +657,8 @@ public final class TranslationEntry {
 		Style valueStyle = start < source.length() ? source.styleAt(start) : style;
 
 		MutableComponent rendered = Component.literal(written).setStyle(valueStyle);
-		if (translatedItem != null && ("raw".equals(type) || "item_name".equals(type) || "loot_item_name".equals(type))
+		if (translatedItem != null && ("raw".equals(type) || "item_name".equals(type) || "loot_item_name".equals(type)
+			|| "catalog_item_name".equals(type) || "recipe_target".equals(type))
 			&& ItemNames.canonical(value) != null) {
 			translatedItem.run();
 		}

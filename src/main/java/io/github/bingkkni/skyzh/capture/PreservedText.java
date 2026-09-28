@@ -20,7 +20,7 @@ public final class PreservedText {
 	private static final Pattern BOSS_COUNTER = Pattern.compile("^(.+?) [0-9]{1,3}/[0-9]{1,3}$");
 	private static final Pattern LEVELED_NAME = Pattern.compile("^\\[Lv[0-9]{1,4}] (.+)$");
 	private record Rules(Set<String> enchantments, Set<String> scoreboardLines,
-		Set<String> bossCounters, Set<String> leveledItemNames) {}
+		Set<String> bossCounters, Set<String> leveledItemNames, Set<String> profileNames) {}
 	private static final Rules RULES = load();
 
 	private PreservedText() {}
@@ -49,6 +49,19 @@ public final class PreservedText {
 		return level.matches() && RULES.enchantments().contains(level.group(1));
 	}
 
+	/** Fruit Bowl lists profile identities, not ingredients. Do not suppress fruit text elsewhere. */
+	public static boolean fruitProfileLine(String itemName, String plain) {
+		if (!"Fruit Bowl".equals(itemName) || plain.isBlank()) return false;
+		String[] names = plain.trim().split(",", -1);
+		int end = names.length;
+		if (end > 1 && names[end - 1].isBlank()) end--;
+		if (end == 0 || end > 32) return false;
+		for (int i = 0; i < end; i++) {
+			if (!RULES.profileNames().contains(names[i].trim())) return false;
+		}
+		return true;
+	}
+
 	/** Read-only for the authoring/packaging agreement test. */
 	public static Set<String> enchantmentNames() {
 		return RULES.enchantments();
@@ -61,11 +74,11 @@ public final class PreservedText {
 			}
 			JsonObject json = JsonParser.parseReader(new InputStreamReader(stream, StandardCharsets.UTF_8)).getAsJsonObject();
 			return new Rules(strings(json, "enchantments"), strings(json, "scoreboard_lines"),
-				strings(json, "bossbar_counters"), strings(json, "leveled_item_names"));
+				strings(json, "bossbar_counters"), strings(json, "leveled_item_names"), strings(json, "profile_names"));
 		} catch (Exception error) {
 			// Fail open for capture: missing policy must never hide potentially untranslated content.
 			LoggerFactory.getLogger("SkyZH").warn("无法读取保留原文采集名单，继续报告未翻译文本", error);
-			return new Rules(Set.of(), Set.of(), Set.of(), Set.of());
+			return new Rules(Set.of(), Set.of(), Set.of(), Set.of(), Set.of());
 		}
 	}
 

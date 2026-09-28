@@ -1160,6 +1160,7 @@ public final class TranslationHarness {
 		checkPostBuildCapture(root);
 		checkCaptureFixes();
 		checkOriginalTipsAndScreenshots();
+		checkSeptemberBoundaries();
 
 		System.out.println();
 		System.out.println("通过 " + passed + " / 失败 " + failed);
@@ -2153,11 +2154,16 @@ public final class TranslationHarness {
 		// Only for the kind that has no shape of its own. A NUMBER whose example reads "1,234" is
 		// still matched by "1", and taking the example there would test the corpus's prose rather
 		// than the engine's rule.
-		if (capture == Capture.PHRASE && !example.isEmpty() && capture.accepts(example)) {
+		if ((capture == Capture.PHRASE || capture == Capture.CATALOG_ITEM || capture == Capture.ITEM_PART || capture == Capture.BAIT_KIND)
+			&& !example.isEmpty() && capture.accepts(example)) {
 			return example;
 		}
 
 		return switch (capture) {
+			case PLAYER, PLAYER_DISPLAY -> "PlayerName";
+			case YEAR -> "2026";
+			case DAY_OF_MONTH -> "28";
+			case TRAINING_KIND -> "Turbo!";
 			case TIER -> "XII";
 			case TIER_RANGE -> "III-V";
 			case ICON -> "✎";
@@ -2661,9 +2667,37 @@ public final class TranslationHarness {
 			"You sold this is a whole sentence x1 for 10 Coins!", Surface.CHAT);
 	}
 
+	private static void checkSeptemberBoundaries() {
+		checkNoMatch("物品数量不吞未知名称", "8x Unverified Object", Surface.ITEM);
+		checkNoMatch("未知家具后缀不会成为新物品", "Bunny Unverified Story", Surface.ITEM);
+		for (String name : List.of("Frozen Blaze Table", "Bunny Helmet", "Blaze Sofa", "Jungle Boots")) {
+			checkNoMatch("已知后缀不能跨家族造物品 " + name, name, Surface.ITEM);
+		}
+		check("目录中的护甲家族仍匹配", "Frozen Blaze Helmet", Surface.ITEM, "冰冻烈焰头盔");
+		check("目录中的家具家族仍匹配", "Bunny Sofa", Surface.ITEM, "兔子沙发");
+		checkNoMatch("日期月份不接受倒置的普通数字", "28 May 2025", Surface.ITEM);
+		checkNoMatch("日期日号不能超过31", "2025 May 99", Surface.ITEM);
+		report("已登记的长物品名允许超过六词",
+			Capture.of("catalog_item_name").accepts("Travel Scroll to the Glowing Mushroom Cave"), "只对离线目录的完整名称放宽");
+		report("长物品名例外不扩展到未知句子",
+			!Capture.of("catalog_item_name").accepts("Travel Scroll to Some Unverified Strange Island"), "未知长名称不能通用匹配");
+		report("鱼饵种类拒绝返回按钮半句", !Capture.of("bait_kind").accepts("To Fish"), "必须组成已登记的鱼饵名称");
+		report("存档名不借用食材词表", Translator.index().terms().translate("profile_name", "Apple") == null, "角色/档案身份保持原文");
+		Component families = Translator.translateList(Component.literal("§9 Aquatic§7, §a Animal"), Surface.ITEM);
+		report("海洋生物双族群逐项保留图标和颜色", families != null
+			&& legacy(families).equals(legacy(Component.literal("§9 水生§7, §a 动物"))),
+			families == null ? "没有识别列表" : legacy(families));
+		Component labeled = Translator.translateList(Component.literal("§7Mob Types: §9 Aquatic§7, §a Animal"), Surface.ITEM);
+		report("族群列表标题与首项颜色不混合", labeled != null
+			&& legacy(labeled).equals(legacy(Component.literal("§7生物类型: §9 水生§7, §a 动物"))),
+			labeled == null ? "没有识别列表" : legacy(labeled));
+		report("普通逗号句不按族群拆分", LineShape.mobFamilies("Aquatic creatures, Animal food").isEmpty(), "每项必须带独立图标");
+		check("屏幕真实物品名仍能译", "§5Sponge Boots", Surface.ITEM, "§5海绵靴子");
+	}
+
 	/** Fixed UI capture regression: ordered lore, term isolation, and clues that must survive translation. */
 	private static void checkFixedMenus(Path corpusRoot) throws Exception {
-		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json")) {
+		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json")) {
 		Path path = corpusRoot.toAbsolutePath().getParent().resolve("src/harness/resources/" + file);
 		JsonObject fixture = JsonParser.parseString(Files.readString(path, StandardCharsets.UTF_8)).getAsJsonObject();
 		for (JsonElement value : fixture.getAsJsonArray("cases")) {

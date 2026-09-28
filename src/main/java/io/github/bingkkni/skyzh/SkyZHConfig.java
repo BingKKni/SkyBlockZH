@@ -63,7 +63,7 @@ public final class SkyZHConfig {
 	/** Whether "SkyBlock" itself becomes 空岛生存. */
 	public boolean translateSkyBlockName = true;
 
-	/** Whether chat and item tooltips explain how to hold the original-text key. */
+	/** Whether chat and item tooltips explain the original-text toggle. */
 	public boolean originalTips = true;
 
 	/**
@@ -158,9 +158,8 @@ public final class SkyZHConfig {
 	/**
 	 * Invalidates render caches without writing the config file.
 	 *
-	 * <p>Used when a purely runtime flag flips — holding X to show the English — so tooltips and
-	 * container titles drop the other spelling on the next frame. A config save already advances
-	 * this; this is the same signal without a write.
+	 * <p>For changes to translated content or layout, not a temporary original-text bypass.
+	 * Render gates precede caches, so switching to English leaves cached Chinese reusable.
 	 */
 	public static void bumpGeneration() {
 		generation++;
@@ -201,7 +200,7 @@ public final class SkyZHConfig {
 		help.addProperty("helpImproveTranslation", "在游戏内发现文本未翻译或翻译格式错误时，是否上传到开发者服务器报告（暂不可用）。");
 		help.addProperty("welcomeShown", "是否已经显示首次设置引导。改为 false 后，下次进入 Hypixel 时会再次显示。");
 		help.addProperty("translateSkyBlockName", "是否翻译 SkyBlock 玩法名。翻译后的文本为「空岛生存」。");
-		help.addProperty("originalTips", "在看到服务器发出的消息中包含物品时，提示按住某一热键可以将它们显示出原文。关闭后将不再提示。");
+		help.addProperty("originalTips", "在看到服务器发出的消息中包含物品时，提示按热键切换原文，再按恢复译文。关闭后将不再提示。");
 		help.addProperty("captureUntranslated", "【给翻译者用，普通玩家请保持关闭】把游戏里还没翻译、以及翻译了但仍中英混杂的文本写到硬盘上，供补全语料用。只采集服务器发来的原文，不会采集其他 Mod 的文本，也不会改变游戏里显示的任何内容。打开它时，如果装了 hypixel-mod-api，会向服务器订阅一次位置事件（用来判断采到的文本属于哪个玩法）——这是本 Mod 唯一一处会向 Hypixel 发包的地方，关掉就不发。");
 		help.addProperty("captureNotifications", "采集到未翻译、颜色、中英混杂、排版、跨行或数值问题时，是否在聊天栏里输出报告");
 		help.addProperty("autoClearCapture", "每次启动游戏时，是否自动清空上一轮已采集的文本。启动时执行一次，与采集总开关和是否进入 Hypixel 无关；断线重连不清空。");

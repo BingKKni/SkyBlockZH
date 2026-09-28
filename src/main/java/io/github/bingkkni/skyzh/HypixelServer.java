@@ -1,6 +1,5 @@
 package io.github.bingkkni.skyzh;
 
-import io.github.bingkkni.skyzh.platform.ClientGui;
 import java.util.Locale;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -47,8 +46,6 @@ public final class HypixelServer {
 	private static volatile boolean receivedHello;
 	private static volatile boolean skyBlock;
 
-	/** The state for which wrapped chat was last built. Kept separate so a connection reset is observed. */
-	private static boolean displayedSkyBlock;
 	private static int unverifiedSidebarTicks;
 	private static boolean warnedUnverifiedSidebar;
 
@@ -141,7 +138,7 @@ public final class HypixelServer {
 	}
 
 	/**
-	 * Refreshes the SkyBlock half of the boundary and rebuilds wrapped chat when it changes.
+	 * Refreshes the SkyBlock half of the boundary. Chat observes the result before rendering.
 	 *
 	 * <p>The sidebar is deliberately live state, not a sticky "seen once" flag. Leaving SkyBlock for a
 	 * Hypixel lobby closes the gate on the next tick; changing to another connection clears the hello
@@ -166,11 +163,7 @@ public final class HypixelServer {
 
 		skyBlock = connected && receivedHello && sidebar;
 
-		if (skyBlock != displayedSkyBlock) {
-			displayedSkyBlock = skyBlock;
-			SkyZHConfig.bumpGeneration();
-			ClientGui.rescaleChat(minecraft);
-		}
+		// Chat observes the effective render policy before drawing; no eager full-history rebuild.
 	}
 
 	/**

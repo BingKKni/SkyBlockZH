@@ -133,7 +133,7 @@ Mod Menu is a soft dependency. Without it, edit `config/skyzh.json`, which docum
 | `enabled` | on | Master switch. Turning it off also prevents the startup update request |
 | `updateCheck` | on | Once per client startup, request the newest version metadata from GitHub Releases. It neither downloads files nor uploads player or game data. It does not run while the master switch is off; `/skyzh updatecheck [on/off]` and `/skyblockzh` control it |
 | `translateSkyBlockName` | on | Render "SkyBlock" as 空岛生存. Compounds use the short form and get their spacing fixed: `你的 SkyBlock 等级` → `你的空岛等级`; standalone occurrences keep the full name. See below for where the substitution is allowed to happen |
-| `originalTips` | on | "Translation hints": append a current-key hint to translated real-item tooltips in GUIs. Incoming server chat mentioning eligible translated items may show a dismissible hint, at least five minutes apart. `ItemNames` uses the bundled offline NEU catalog, excluding menus, states and unknown names. `/skyzh switch tip on/off` (also `/skyblockzh`) controls hints, not the hold key. The old `showOriginal` field is ignored and no longer saved; missing `originalTips` defaults to on. Normal rendering no longer appends bracketed originals |
+| `originalTips` | on | "Translation hints": append a current-key hint to translated real-item tooltips in GUIs. Incoming server chat mentioning eligible translated items may show a dismissible hint, at least five minutes apart. `ItemNames` uses the bundled offline NEU catalog, excluding menus, states and unknown names. `/skyzh switch tip on/off` (also `/skyblockzh`) controls hints, not the original-text toggle. The old `showOriginal` field is ignored and no longer saved; missing `originalTips` defaults to on. Normal rendering no longer appends bracketed originals |
 | `helpImproveTranslation` | on | Reserved state for the unavailable "Help improve translations" report feature; its screen control is intentionally disabled |
 | `captureUntranslated` | **off** | A switch for whoever is filling the corpus in. It writes files to your disk; leave it off to play. See below |
 | `captureNotifications` | on | Report newly captured untranslated text, colour errors and mixed-language text in chat. Turning reports off does not stop file writes |
@@ -145,19 +145,27 @@ runs once in Fabric's client initializer, before the main menu, through the exac
 path used by `/skyzh clear`: in-memory state, queued work and JSON files in the six capture buckets
 are cleared; unrelated files remain. Failures are logged without preventing startup.
 
-The hold key is a vanilla `KeyMapping`, appended by `OptionsMixin` at the start of `Options.load`
-(idempotently), before the first read of `options.txt`. Vanilla owns persistence, conflicts, reset and
-NONE, with no Fabric API dependency. Gameplay keys are released while containers are open, so
-`HoldOriginal` polls the mapping's **currently assigned** key, not a hard-coded X. Keyboard and mouse
-buttons work; scancode-only keys are observed through vanilla keyboard events. Chat/sign editing,
-a focused text box and an unfocused window suppress the hold.
+The original-text toggle is a vanilla `KeyMapping`, appended idempotently by `OptionsMixin` before
+`Options.load` reads `options.txt`. Vanilla owns persistence, conflicts, reset and NONE. The default X
+switches to originals on one press and restores translation on the next; the old `HoldOriginal` class
+and key ID remain for saved-binding compatibility. Keyboard/scancode events ignore repeats/releases;
+mouse bindings use physical rising edges. Text entry, key rebinding and an unfocused window reject new
+presses without clearing the selected mode. Toggle before opening chat to read old messages. Leaving
+SkyBlock, disabling the mod or unbinding clears this session-only state without saving or changing capture.
+
+Before drawing, chat observes the effective translation policy, including the master switch. Only
+wrapped display lines are rebuilt; `allMessages` stays original and the scroll offset is retained within
+bounds. `ChatDisplayCache` keeps bounded original/translated wraps per message, font, width, corpus and
+SkyBlock-name setting. Toggling no longer discards translated tooltips or re-translates unchanged chat.
+Vanilla rescaling, history clearing and component mutations invalidate cached layouts. A cold language
+view or messages received during bypass still need work; this is not a measured low-end FPS guarantee.
 
 ```bash
 ./gradlew checkClientSettings  # both targets: config migration, vanilla mappings, server boundary
 ```
 
-In-game checks still needed: rebind/unbind and verify persistence after a restart; hold/release while
-hovering item lore; check the left/right settings layout; restart to the main menu to verify startup
+In-game checks still needed: rebind/unbind and verify persistence after a restart; toggle twice while
+hovering item lore, and open chat after toggling to inspect history; check the left/right settings layout; restart to the main menu to verify startup
 clearing, then disconnect/rejoin within that launch to verify the files remain.
 
 ### Where "SkyBlock" is swapped, and where it is not
@@ -481,8 +489,8 @@ own templates; it does not extend an old per-line ITEM record into the lines bel
 hit wins; a miss consumes nothing and the line falls through to the per-line path. Values, icons and
 colours still come off the live components through `TranslationEntry`, and `TextLayout` re-wraps the
 Chinese by pixel width. The item-name path never asks this surface, so a skill title that happens to
-share an item's name does not rename the item; with translation off or the original-text key held,
-the tooltip cache is not read.
+share an item's name does not rename the item; with translation off or original-text mode selected,
+the translated tooltip cache is not read.
 
 `TextCapture.item` uses the same matcher: a sentence the corpus covers is checked for mixed language and
 flattened colours under `GUI_Lore`, and lines it does not cover are still captured one by one. Nothing

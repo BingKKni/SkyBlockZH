@@ -4,7 +4,11 @@
   "fetched_at": "2026-08-29",
   "verified_ingame": true,
   "gui_context": "新年庆典期间站在大厅村庄里的面包师,一年一块新年蛋糕就是找他领的。再点他一次会开商店,卖新年蛋糕袋。",
-  "source_note": "2026-08-29 实测只捕获并经维基核对了前两句。第三句在两个社区维基上存在新旧版本(见 Events/GUI_Item/New_Year_Cake.json 的 todo),没有当前运行时原文可判定版本,因此暂不写记录。面包师另有一套与新年无关的花园访客台词,内容是小麦小人和面粉,名字颜色也不同(活动版 §dBaker,花园版 §6Baker);那套属于 Farming,不要与本文件混合。",
+  "source_note": "本轮核对社区 Wiki 全部 Dialogue 及 Claim Reward/Baker 菜单；Wiki 最后编辑于 2026-08-11 18:55 UTC。补齐商店介绍，花园访客台词仍归 Farming。",
+  "note": "身份: 新年庆典面包师。\n关系: 为玩家送上年末蛋糕。\n说话方式: 温和亲切。\n性格与词汇: 给全镇烤蛋糕，顺带介绍收纳袋。\n禁用风格: 不混淆花园委托和庆典赠礼。",
+  "shop_messages": [
+    {"id":"baker_cake_bag_shop","context":"Wiki 记录的商店介绍，尚待实测","text":"Wondering where to store your cakes? You can buy a New Year Cake Bag from me. Click me again to open my shop!","segments":[{"color":"§f","text":"Wondering where to store your cakes? You can buy a ","zh":"愁蛋糕没地方放? 来我这儿买个"},{"color":"§d","text":"New Year Cake Bag ","zh":"新年蛋糕袋"},{"color":"§f","text":"from me. Click me again to open my shop!","zh":"吧。再点我一下就能打开商店!"}],"zh":"愁蛋糕没地方放? 来我这儿买个新年蛋糕袋吧。再点我一下就能打开商店!"}
+  ],
   "messages": [
     {
       "id": "baker_at_the_end_of_each_year_i_bake",

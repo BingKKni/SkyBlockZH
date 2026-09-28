@@ -48,9 +48,9 @@ public final class ClientGui {
 	/**
 	 * Rebuilds the wrapped chat lines from the English history.
 	 *
-	 * <p>Chat is translated at wrap time, not when the packet arrives. Holding X therefore does
-	 * nothing to already-wrapped lines unless this is called; vanilla already does the same rebuild
-	 * on a resize.
+	 * <p>For explicit vanilla layout resets such as resizing. Original-text mode and master-switch
+	 * changes are observed by ChatComponentMixin before drawing, retaining cached wraps and scroll
+	 * position instead of going through this full layout-reset path.
 	 */
 	public static void rescaleChat(Minecraft minecraft) {
 		Gui gui = minecraft.gui;

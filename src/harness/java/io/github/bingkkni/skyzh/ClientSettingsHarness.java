@@ -7,6 +7,11 @@ import io.github.bingkkni.skyzh.capture.CaptureContext;
 import io.github.bingkkni.skyzh.hook.NameTag;
 import io.github.bingkkni.skyzh.hook.SidebarText;
 import io.github.bingkkni.skyzh.text.ContainerTitle;
+import io.github.bingkkni.skyzh.text.ChatDisplayCache;
+import net.minecraft.client.multiplayer.chat.GuiMessage;
+import net.minecraft.network.chat.Style;
+import net.minecraft.util.FormattedCharSequence;
+import org.lwjgl.glfw.GLFW;
 import io.github.bingkkni.skyzh.text.TooltipTranslator;
 import java.util.List;
 import net.minecraft.client.KeyMapping;
@@ -25,6 +30,8 @@ public final class ClientSettingsHarness {
 		config();
 		updates();
 		keys();
+		originalToggle();
+		chatCache();
 		servers();
 
 		System.out.printf("通过 %d / 失败 %d%n", passed, failed);
@@ -124,6 +131,79 @@ public final class ClientSettingsHarness {
 		check("键位在原版事件表内", binding.isDown(), true);
 		check("同键的其他映射不被覆盖", existing.isDown(), true);
 		KeyMapping.releaseAll();
+	}
+
+	private static void originalToggle() {
+		int generation = SkyZHConfig.generation();
+		HoldOriginal.setActive(false);
+		HoldOriginal.press(true, true, GLFW.GLFW_PRESS);
+		check("按一次切换原文", HoldOriginal.active(), true);
+		HoldOriginal.press(true, true, GLFW.GLFW_REPEAT);
+		HoldOriginal.press(true, true, GLFW.GLFW_RELEASE);
+		check("长按重复及松开不改变模式", HoldOriginal.active(), true);
+		HoldOriginal.updateMouse(true, false, false);
+		HoldOriginal.press(true, false, GLFW.GLFW_PRESS);
+		check("打开聊天输入或失焦保留原文且输入不触发", HoldOriginal.active(), true);
+		HoldOriginal.press(true, true, GLFW.GLFW_PRESS);
+		check("再按恢复译文", HoldOriginal.active(), false);
+		check("切换不清空译文缓存", SkyZHConfig.generation(), generation);
+		HoldOriginal.updateMouse(true, true, true);
+		HoldOriginal.updateMouse(true, true, true);
+		check("鼠标长按只切换一次", HoldOriginal.active(), true);
+		HoldOriginal.updateMouse(true, true, false);
+		HoldOriginal.updateMouse(true, true, true);
+		check("鼠标再次按下恢复", HoldOriginal.active(), false);
+		HoldOriginal.updateMouse(true, false, false);
+		HoldOriginal.updateMouse(true, false, true);
+		HoldOriginal.updateMouse(true, true, true);
+		check("在输入框按下鼠标后离开不误触", HoldOriginal.active(), false);
+		HoldOriginal.setActive(true);
+		HoldOriginal.updateMouse(false, true, false);
+		check("离开空岛、关闭总开关或解绑清除临时原文状态", HoldOriginal.active(), false);
+		HoldOriginal.press(false, true, GLFW.GLFW_PRESS);
+		check("非空岛不响应", HoldOriginal.active(), false);
+	}
+
+	private static void chatCache() {
+		ChatDisplayCache cache = new ChatDisplayCache();
+		Object font = new Object(), corpus = new Object();
+		check("翻译开启触发历史刷新", cache.needsRefresh(true, true, corpus), true);
+		check("相同模式不逐帧重排", cache.needsRefresh(true, true, corpus), false);
+		check("关闭总开关或原文模式立即刷新历史", cache.needsRefresh(false, true, corpus), true);
+		check("原文期间无关设置不重排", cache.needsRefresh(false, false, corpus), false);
+		check("恢复翻译刷新历史", cache.needsRefresh(true, false, corpus), true);
+		check("玩法名选项改变刷新历史", cache.needsRefresh(true, true, corpus), true);
+		int[] splits = {0};
+		java.util.function.Supplier<List<FormattedCharSequence>> split = () -> {
+			splits[0]++;
+			return List.of(FormattedCharSequence.forward("cached", Style.EMPTY));
+		};
+		GuiMessage message = new GuiMessage(1, Component.literal("[NPC] Trevor: Hi there!"), null, null, null);
+		for (int i = 0; i < 100; i++) {
+			cache.get(message, font, 320, true, true, corpus, split);
+			cache.get(message, font, 320, false, true, corpus, split);
+		}
+		check("往返切换100次每种语言只折行一次", splits[0], 2);
+		check("聊天历史仍是原文", message.content().getString(), "[NPC] Trevor: Hi there!");
+		cache.get(message, font, 160, true, true, corpus, split);
+		check("聊天宽度变化失效", splits[0], 3);
+		cache.clear();
+		cache.get(message, font, 160, true, true, corpus, split);
+		check("资源重载或历史清空后不复用旧字形", splits[0], 4);
+		cache.get(message, font, 160, true, false, corpus, split);
+		check("玩法名开关改变重算译文", splits[0], 5);
+		Object reloaded = new Object();
+		cache.get(message, font, 160, true, false, reloaded, split);
+		check("语料重载失效", splits[0], 6);
+		message.content().getSiblings().add(Component.literal(" changed by another mod"));
+		cache.get(message, font, 160, true, false, reloaded, split);
+		check("其他Mod原地改聊天组件后不复用旧译文", splits[0], 7);
+		for (int i = 0; i < 300; i++) {
+			cache.get(new GuiMessage(i, Component.literal("line " + i), null, null, null),
+				font, 160, true, false, reloaded, split);
+		}
+		cache.get(message, font, 160, true, false, reloaded, split);
+		check("缓存容量有界并淘汰旧消息", splits[0], 308);
 	}
 
 	private static void servers() throws Exception {

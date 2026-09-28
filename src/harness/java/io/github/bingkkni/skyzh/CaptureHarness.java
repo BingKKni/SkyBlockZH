@@ -391,6 +391,19 @@ public final class CaptureHarness {
 
 	/** Preserving English affects capture only, and never hides an unknown list member or sentence. */
 	private static void preservedText(Path corpus) throws Exception {
+		check("水果碗存档名列表不重复采集",
+			io.github.bingkkni.skyzh.capture.PreservedText.fruitProfileLine("Fruit Bowl", "Apple, Banana, Blueberry,"), true);
+		check("水果碗最后一个存档名也保留",
+			io.github.bingkkni.skyzh.capture.PreservedText.fruitProfileLine("Fruit Bowl", "Zucchini"), true);
+		check("水果碗的其他英文仍采集",
+			io.github.bingkkni.skyzh.capture.PreservedText.fruitProfileLine("Fruit Bowl", "Names missing:"), false);
+		check("未知存档名不偷偷屏蔽",
+			io.github.bingkkni.skyzh.capture.PreservedText.fruitProfileLine("Fruit Bowl", "Apple, NewFruit"), false);
+		check("不把其他物品的水果材料当存档名",
+			io.github.bingkkni.skyzh.capture.PreservedText.fruitProfileLine("Fruit Basket", "Apple, Banana"), false);
+		check("新收录专名不重复采集", NameTag.eligible(Component.literal("§bGavin")), false);
+		check("新收录小人专名不重复采集", NameTag.eligible(Component.literal("§6Hootie")), false);
+		check("职务加人名仍可翻译", NameTag.eligible(Component.literal("§6Captain Baha")), true);
 		var expected = new java.util.HashSet<String>();
 		var files = TranslationHarness.readCorpus(corpus);
 		for (String file : List.of("_shared/Enchantments.json", "Hub_General/GUI_Item/Enchantment_Names.json")) {

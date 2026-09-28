@@ -189,8 +189,11 @@ public final class TextCapture {
 		}
 
 		List<Component> lines = lore.lines();
+		String originalName = custom == null ? "" : plainOf(custom);
 
 		for (LoreObservation observation : inspectLore(lines)) {
+			if (observation.diagnostic() == null && observation.source().size() == 1
+				&& PreservedText.fruitProfileLine(originalName, plainOf(observation.source().getFirst()))) continue;
 			if (observation.diagnostic() != null) {
 				diagnose(observation.surface(), observation.source(), name,
 					where + " / " + (custom == null ? "" : plainOf(custom)) + " Lore", observation.diagnostic());

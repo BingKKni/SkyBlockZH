@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  *
  * <p>{@link ScreenWatcher#tick} returns on its first line while capture is switched off, which is the
  * state every ordinary player is in. {@link io.github.bingkkni.skyzh.HoldOriginal#poll} always runs:
- * holding X is a render-only courtesy and must not depend on capture being on.
+ * toggling original text is a render-only courtesy and must not depend on capture being on.
  */
 @Mixin(Minecraft.class)
 public abstract class MinecraftCaptureMixin {

@@ -43,12 +43,12 @@ public final class OriginalTips {
 	}
 
 	public static Component loreHint(String key) {
-		return Component.literal("§b[SkyZH] §6按住 " + key + " 键显示原文");
+		return Component.literal("§b[SkyZH] §6按 " + key + " 键切换原文，再按恢复");
 	}
 
 	static Component chatHint(String key) {
-		return Component.literal("§b[SkyZH] §e提示: 按住 " + key
-			+ " 键可以显示该物品的原文，方便你在集市或拍卖行里寻找这个物品! ")
+		return Component.literal("§b[SkyZH] §e提示: 按 " + key
+			+ " 键切换原文，再按恢复。可先切换再打开聊天栏，也方便在集市或拍卖行里搜索物品! ")
 			.append(Component.literal("[禁用提示]").withStyle(style -> style
 				.withColor(ChatFormatting.RED)
 				.withClickEvent(new ClickEvent.RunCommand("/skyzh switch tip off"))));

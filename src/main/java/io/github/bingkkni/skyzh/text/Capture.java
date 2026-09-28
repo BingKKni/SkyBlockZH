@@ -38,6 +38,10 @@ public enum Capture {
 	/** A quantity: {@code 1,234}, {@code +75}, {@code 20%}, {@code 3k}. */
 	NUMBER("[+\\-]?[0-9][0-9,.]*[a-zA-Z%]{0,2}"),
 
+	/** Calendar components; unlike NUMBER, a year cannot also swallow an ordinal day like 4th. */
+	YEAR("[12][0-9]{3}", false),
+	DAY_OF_MONTH("(?:0?[1-9]|[12][0-9]|3[01])", false),
+
 	/**
 	 * A name: an item, a place, an NPC, a mob, a rarity. One to five words, each of which looks like
 	 * part of a name rather than part of a sentence.
@@ -46,6 +50,14 @@ public enum Capture {
 
 	/** Item names also contain model abbreviations and initials, e.g. Mk. III and L.A.S.R.'s Eye. */
 	ITEM_NAME(NAME.regex),
+
+	/** Explicit opt-in item references in recipes/menus; unknown names cannot become fake matches. */
+	CATALOG_ITEM(NAME.regex, false),
+	BAIT_KIND(NAME.regex, false),
+	TRAINING_KIND("(?:Free|Light|Moderate|Expert|Ultra|Turbo!)", false),
+
+	/** Closed suffixes for translated armor, woodworking and furniture families, never enchantments. */
+	ITEM_PART("(?:Helmet|Chestplate|Leggings|Boots|Belt|Ring|Artifact|Armor|Set|Planks|Wood Slab|Wood Stairs|Slab|Stairs|Door|Fence Gate|Fence|Sofa|Bed|Bench|Armchair|Side Table|Coffee Table|Tea Table|Dinner Table|Fireplace|Bookshelf|Dresser|Chair|Table)", false),
 
 	/** A player's name, which Minecraft limits to sixteen word characters. */
 	PLAYER("[A-Za-z0-9_]{1,16}"),
@@ -113,7 +125,7 @@ public enum Capture {
 	DURATION("(?:[0-9][0-9,.]*[yYdDhHmMsS][+]?(?: ?[0-9][0-9,.]*[yYdDhHmMsS][+]?)*|[0-9][0-9,.]*[+]?)"),
 
 	/** Readable countdown units in event widgets; other compact clocks retain their layout. */
-	DURATION_SPACED(DURATION.regex),
+	DURATION_SPACED(DURATION.regex.replace("[0-9][0-9,.]*", "-?[0-9][0-9,.]*")),
 
 	/**
 	 * Anything the corpus has not pinned down — {@code type: raw}, or no {@code placeholders} entry
@@ -155,6 +167,8 @@ public enum Capture {
 	public static Capture of(String type) {
 		return switch (type == null ? "" : type.toLowerCase(Locale.ROOT)) {
 			case "number", "percentage", "coins" -> NUMBER;
+			case "year" -> YEAR;
+			case "day_of_month" -> DAY_OF_MONTH;
 			case "time", "duration" -> DURATION;
 			case "duration_spaced" -> DURATION_SPACED;
 			// category_name is the name of a menu section or a feature — "Bags", "Other Crystals",
@@ -162,8 +176,12 @@ public enum Capture {
 			// a single word plus a placeholder ("Your %s", "%s Settings", "%s Pet"), which under the
 			// looser PHRASE rule matched any lore line that happened to start or end that way and drew
 			// the rest of the sentence in its place.
-			case "item_name", "guide_item_name", "loot_item_name" -> ITEM_NAME;
-			case "npc_name", "location_name", "mob_name", "rarity", "category_name",
+			case "item_name", "guide_item_name", "loot_item_name", "recipe_target" -> ITEM_NAME;
+			case "catalog_item_name" -> CATALOG_ITEM;
+			case "item_part" -> ITEM_PART;
+			case "bait_kind" -> BAIT_KIND;
+			case "training_kind" -> TRAINING_KIND;
+			case "npc_name", "profile_name", "location_name", "mob_name", "rarity", "category_name",
 				"enchantment_name", "enchantment_crop", "mob_family", "accessory_power", "skyblock_month", "dragon_type",
 				"rng_meter_source", "difficulty" -> NAME;
 			case "player_name", "player_or_self" -> PLAYER;
@@ -200,10 +218,12 @@ public enum Capture {
 		return switch (this) {
 			// The regex is the whole of the rule for these: a numeral is a numeral, and a player's
 			// name is whatever sixteen word characters somebody chose.
-			case NUMBER, PLAYER, PLAYER_DISPLAY, RANK, TIER, TIER_RANGE, ICON, TROPHY_QUALITY, GEMSTONE_KIND, GEMSTONE_QUALITY, ORDINAL, DURATION, DURATION_SPACED, SEARCH_QUERY -> true;
+			case NUMBER, YEAR, DAY_OF_MONTH, PLAYER, PLAYER_DISPLAY, RANK, TIER, TIER_RANGE, ICON, ITEM_PART, TRAINING_KIND, TROPHY_QUALITY, GEMSTONE_KIND, GEMSTONE_QUALITY, ORDINAL, DURATION, DURATION_SPACED, SEARCH_QUERY -> true;
 			case MULTIPLIER_INCREASE -> new BigDecimal(value).compareTo(BigDecimal.ONE) >= 0;
 			case NAME -> isName(value);
 			case ITEM_NAME -> isItemName(value);
+			case CATALOG_ITEM -> isItemName(value) && ItemNames.canonical(value) != null;
+			case BAIT_KIND -> isName(value) && ItemNames.isBaseName(value + " Bait");
 			case PHRASE -> isValue(value);
 		};
 	}
@@ -213,7 +233,7 @@ public enum Capture {
 	 * player's 34) rather than being a count: see TranslationEntry's seam spacing.
 	 */
 	public boolean nameShaped() {
-		return this == NAME || this == ITEM_NAME || this == PLAYER || this == PLAYER_DISPLAY || this == RANK;
+		return this == NAME || this == ITEM_NAME || this == CATALOG_ITEM || this == PLAYER || this == PLAYER_DISPLAY || this == RANK;
 	}
 
 	/**
@@ -284,7 +304,7 @@ public enum Capture {
 	 * mean "at least this long". Applied one unit at a time so {@code 1d 16h 21m 14s} comes out whole
 	 * and anything that is not a unit — a bare number, a word — is left exactly as it arrived.
 	 */
-	private static final Pattern DURATION_UNIT = Pattern.compile("([0-9][0-9,.]*)([yYdDhHmMsS])(\\+?)");
+	private static final Pattern DURATION_UNIT = Pattern.compile("(-?[0-9][0-9,.]*)([yYdDhHmMsS])(\\+?)");
 
 	/**
 	 * Whether this reads as a name: at most five words, none of them sentence punctuation, and with
@@ -295,6 +315,9 @@ public enum Capture {
 	 * clause chopped off mid-sentence very often does ("...in the").
 	 */
 	private static boolean isItemName(String value) {
+		// Long attested names (e.g. Travel Scroll to the Glowing Mushroom Cave) are safe even
+		// when they exceed six words. Never extend that exception to unknown prose or padding.
+		if (!value.startsWith(" ") && !value.endsWith(" ") && ItemNames.canonical(value) != null) return true;
 		// Relax only attested item-name syntax, never generic categories, locations or raw prose.
 		String normalised = value.replaceAll("\\bMk\\.(?= [IVXLCDM]+(?: |$))", "Mk")
 			.replace(" - ", " of "); // Model separator in Worn Huntaxe - Genesis; never allowed at an edge.

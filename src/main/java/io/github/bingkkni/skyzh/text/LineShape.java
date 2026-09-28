@@ -2,6 +2,7 @@ package io.github.bingkkni.skyzh.text;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * How a line is put together on screen, as opposed to what it says.
@@ -47,7 +48,7 @@ public final class LineShape {
 	 * crowd's lines, written as the sentence alone, and not one of them could ever match.
 	 */
 	private static final String[] SPEAKER_TAGS = {
-		"[NPC] ", "[BOSS] ", "[GUARD] ", "[SECURITY] ", "[CROWD] ", "[STATUE] ", "[SKULL] "
+		"[NPC] ", "[BOSS] ", "[GUARD] ", "[SECURITY] ", "[CROWD] ", "[STATUE] ", "[SKULL] ", "[PET] "
 	};
 
 	/**
@@ -56,6 +57,7 @@ public final class LineShape {
 	 * and has a colon two sentences later from being cut in the middle of its own text.
 	 */
 	private static final int LONGEST_SPEAKER = 48;
+	private static final Pattern ITEM_COUNT = Pattern.compile(" x[0-9][0-9,]*$");
 
 	private LineShape() {
 	}
@@ -86,6 +88,17 @@ public final class LineShape {
 		add(ranges, skipSpaces(plain, bullet(plain, start, end), end), end);
 
 		if (surface == Surface.ITEM) {
+			// Shop costs and ingredient lists append counts to actual item names. Keep the suffix
+			// live (and styled), rather than rendering the whole decorated name through a string term.
+			var count = ITEM_COUNT.matcher(plain.substring(0, end));
+			if (count.find()) {
+				for (Range candidate : List.copyOf(ranges)) {
+					if (candidate.start() < count.start()
+						&& ItemNames.canonical(plain.substring(candidate.start(), count.start())) != null) {
+						add(ranges, candidate.start(), count.start());
+					}
+				}
+			}
 			// Guide lists use an ASCII dash; a negative number such as -25 is not a bullet.
 			if (plain.startsWith("- ", start)) {
 				add(ranges, skipSpaces(plain, start + 2, end), end);
@@ -270,6 +283,27 @@ public final class LineShape {
 
 			start = comma + 2;
 		}
+	}
+
+	private static final Pattern MOB_FAMILY = Pattern.compile(
+		"(?:Mob Types?: )?" + Capture.ICON.regex() + " [A-Z][A-Za-z]+"
+	);
+
+	/** Explicit icon/name lists from mob guides; ordinary comma-separated sentences never qualify. */
+	public static List<Range> mobFamilies(String plain) {
+		List<Range> ranges = new ArrayList<>();
+		int start = 0;
+		while (start < plain.length()) {
+			int comma = plain.indexOf(", ", start);
+			int end = comma < 0 ? plain.length() : comma;
+			int from = skipSpaces(plain, start, end);
+			int to = trimSpaces(plain, from, end);
+			if (!MOB_FAMILY.matcher(plain.substring(from, to)).matches()) return List.of();
+			ranges.add(new Range(from, to));
+			if (comma < 0) break;
+			start = comma + 2;
+		}
+		return ranges.size() > 1 ? ranges : List.of();
 	}
 
 	/** Roman numerals, as SkyBlock writes an enchantment's tier. */

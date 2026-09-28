@@ -102,7 +102,8 @@ public final class TooltipTranslator {
 
 	/** Capture checks the same undecorated name that the renderer translates, only on first lines. */
 	public static StyledText itemNameCore(StyledText styled) {
-		if (Translator.locate(styled, Surface.ITEM).matched()) return styled;
+		Translator.Located whole = Translator.locate(styled, Surface.ITEM);
+		if (whole.matched() && whole.core().length() == styled.length()) return styled;
 		NameParts parts = nameParts(styled.canonical());
 		if (!parts.decorated() || parts.itemStart() >= parts.suffixStart()) return styled;
 		StyledText core = styled.sub(parts.itemStart(), parts.suffixStart());

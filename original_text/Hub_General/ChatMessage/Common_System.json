@@ -1587,20 +1587,27 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "desc": "拍卖物品名",
-          "type": "raw",
+          "desc": "领取的真实物品名；只复用离线目录确认的已有译名，未知名称保持原文",
+          "type": "loot_item_name",
           "example": "Travel Scroll to the Crimson Isle"
         },
         {
           "token": "%2$s",
-          "desc": "卖家名",
-          "type": "player_name",
-          "example": "Dragon0864"
+          "desc": "卖家显示名，可带服务器等级和 Rank；不翻译",
+          "type": "player_display",
+          "example": "[VIP+] NanoIsOver"
         }
       ],
       "gloss": "",
       "translate": true,
-      "zh": "你从 %2$s 的拍卖中领取了 %1$s!"
+      "zh": "你从 %2$s 的拍卖中领取了%1$s!",
+      "segments": [
+        {"color":"§e","text":"You claimed ","zh":"你从 ","order":0},
+        {"color":"§5","text":"%1$s ","zh":"%1$s","order":3},
+        {"color":"§e","text":"from ","zh":" 的拍卖中领取了","order":2},
+        {"color":"§a","text":"%2$s","zh":"%2$s","order":1},
+        {"color":"§e","text":"'s auction!","zh":"!","order":4}
+      ]
     },
     {
       "id": "auction_collect_item",

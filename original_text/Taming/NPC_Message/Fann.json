@@ -1,0 +1,776 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Fann; SkyZH 2026-09-03 实测台词合并自原 Hub_General/NPC_Message/Fann.json",
+  "fetched_at": "2026-09-29",
+  "verified_ingame": false,
+  "npc": "Fann",
+  "note": "身份: 宠物训练师 Fann\n关系: 感谢玩家照顾 Hootie\n说话方式: 热情爱科普\n性格与词汇: 猫头鹰、羽毛、训练\n禁用风格: 不要把 Hootie 的话归给 Fann；英尺等现实单位不改为游戏格数\nWiki 最后编辑: This page was last edited on 28 September 2026, at 03:11.",
+  "training_complete": [
+    {"id":"fann_training_complete_call","context":"Wiki 的宠物升级来电；训练档次按页面六档闭集，宠物种类和等级保持动态，待实测完整格式核对","raw":"§b✆ §e[#%1$s] §f%2$s %3$s has concluded and is now §7[Lvl %4$s]","text":"✆ [#%1$s] %2$s %3$s has concluded and is now [Lvl %4$s]","placeholders":[{"token":"%1$s","type":"number","example":"2"},{"token":"%2$s","type":"training_kind","example":"Turbo!"},{"token":"%3$s","type":"mob_name","example":"Elephant"},{"token":"%4$s","type":"number","example":"65"}],"segments":[{"color":"§b","text":"✆ ","zh":"✆ "},{"color":"§e","text":"[#%1$s] ","zh":"[#%1$s] "},{"color":"§f","text":"%2$s %3$s has concluded and is now ","zh":"%3$s的%2$s训练结束了,现在是 "},{"color":"§7","text":"[Lvl %4$s]","zh":"[等级 %4$s]"}],"zh":"✆ [#%1$s] %3$s的%2$s训练结束了,现在是 [等级 %4$s]"}
+  ],
+  "entries": [
+    {
+      "id": "my_services_arent_for_everyone_young_traveler",
+      "context": "Fann 新手流程实测台词（第 1 条）",
+      "raw": "My services aren't for everyone young traveler!",
+      "text": "My services aren't for everyone young traveler!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "年轻的旅行者,我的服务并非人人都能享用!"
+    },
+    {
+      "id": "come_back_to_me_when_you_have_taming",
+      "context": "Fann 新手流程实测台词（第 2 条）",
+      "raw": "Come back to me when you have §aTaming Skill 10",
+      "text": "Come back to me when you have Taming Skill 10",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "达到以下条件后再来找我:驯养技能 10 级",
+      "segments": [
+        {
+          "color": "",
+          "text": "Come back to me when you have ",
+          "zh": "达到以下条件后再来找我:"
+        },
+        {
+          "color": "§a",
+          "text": "Taming Skill 10",
+          "zh": "驯养技能 10 级"
+        }
+      ]
+    },
+    {
+      "id": "fann_hey_adventurer",
+      "context": "首次使用宠物训练服务时的招呼",
+      "raw": "§fHey there, adventurer!",
+      "text": "Hey there, adventurer!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你好呀,冒险者!"
+    },
+    {
+      "id": "fann_meet_hootie",
+      "context": "介绍猫头鹰 Hootie",
+      "raw": "§fMeet my lovable owl, Hootie!",
+      "text": "Meet my lovable owl, Hootie!",
+      "placeholders": [],
+      "gloss": "Hootie 是宠物名字，保留英文。",
+      "translate": true,
+      "zh": "来认识一下我可爱的猫头鹰 Hootie!"
+    },
+    {
+      "id": "fann_special_service",
+      "context": "介绍宠物训练服务",
+      "raw": "§fWe offer a special service here.",
+      "text": "We offer a special service here.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "我们这里提供一项特殊服务。"
+    },
+    {
+      "id": "fann_train_pets",
+      "context": "说明玩家外出冒险时可代为训练宠物",
+      "raw": "§fFor a small fee, we'll train your pets and help them while you're off doing heroic things.",
+      "text": "For a small fee, we'll train your pets and help them while you're off doing heroic things.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "只需一点费用,你外出英勇冒险时,我们就会替你训练并照顾宠物。"
+    },
+    {
+      "id": "fann_hootie_approves",
+      "context": "用 Hootie 的态度为服务作保证",
+      "raw": "§fHootie approves, trust me!",
+      "text": "Hootie approves, trust me!",
+      "placeholders": [],
+      "gloss": "Hootie 保留英文。",
+      "translate": true,
+      "zh": "Hootie 也赞成,相信我!"
+    },
+    {
+      "id": "fann_interested",
+      "context": "询问玩家是否愿意暂时留下宠物",
+      "raw": "§fSo, interested in leaving your pet with us for a bit?",
+      "text": "So, interested in leaving your pet with us for a bit?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "所以,有兴趣把宠物暂时留在我们这里吗?"
+    },
+    {
+      "id": "hootie_oh_my_feathers_you_sure_know_how_to_spoil_an_owl_don_t_you",
+      "context": "Feeding Hootie  Great Carrot Candy or  Ultimate Carrot Candy",
+      "raw": "§fOh my feathers! You sure know how to spoil an owl, don't you?",
+      "text": "Oh my feathers! You sure know how to spoil an owl, don't you?",
+      "translate": true,
+      "zh": "哎呀呀! 你可真知道怎么宠一只猫头鹰!"
+    },
+    {
+      "id": "hootie_as_a_reward_for_your_hard_work_i_will_train_an_extra_pet_for_you_",
+      "context": "After having fed Hootie  5 Great Carrot Candy",
+      "raw": "§fAs a reward for your hard work, I will train an extra pet for you in Slot §e#%s",
+      "text": "As a reward for your hard work, I will train an extra pet for you in Slot #%s",
+      "translate": true,
+      "zh": "作为辛苦付出的奖励,我会额外为你训练一只宠物,放在训练位 #%s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "As a reward for your hard work, I will train an extra pet for you in Slot ",
+          "zh": "作为辛苦付出的奖励,我会额外为你训练一只宠物,放在训练位 "
+        },
+        {
+          "color": "§e",
+          "text": "#%s",
+          "zh": "#%s"
+        }
+      ],
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "2"
+        }
+      ]
+    },
+    {
+      "id": "hootie_my_abiphone_contact_you_say",
+      "context": "Abiphone Contact",
+      "raw": "§b✆ §f§fMy Abiphone contact, you say?",
+      "text": "✆ My Abiphone contact, you say?",
+      "translate": true,
+      "zh": "✆ 你想要我的 Abiphone 联系方式?",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "My Abiphone contact, you say?",
+          "zh": "你想要我的 Abiphone 联系方式?"
+        }
+      ]
+    },
+    {
+      "id": "hootie_well_i_m_usually_a_bit_guarded_about_that",
+      "context": "Abiphone Contact",
+      "raw": "§b✆ §f§fWell, I'm usually a bit guarded about that.",
+      "text": "✆ Well, I'm usually a bit guarded about that.",
+      "translate": true,
+      "zh": "✆ 这事嘛,我平常还是挺谨慎的。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Well, I'm usually a bit guarded about that.",
+          "zh": "这事嘛,我平常还是挺谨慎的。"
+        }
+      ]
+    },
+    {
+      "id": "hootie_but",
+      "context": "Abiphone Contact",
+      "raw": "§b✆ §f§fBut...",
+      "text": "✆ But...",
+      "translate": true,
+      "zh": "✆ 不过……",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "But...",
+          "zh": "不过……"
+        }
+      ]
+    },
+    {
+      "id": "hootie_if_you_treat_hootie_to_a_bat_the_fish_we_might_just_become_fast_f",
+      "context": "Abiphone Contact",
+      "raw": "§b✆ §f§fIf you treat Hootie to a §cBat the Fish§f, we might just become fast friends!",
+      "text": "✆ If you treat Hootie to a Bat the Fish, we might just become fast friends!",
+      "translate": true,
+      "zh": "✆ 要是你请 Hootie 吃一条 Bat the Fish,咱们很快就能成为好朋友!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "If you treat Hootie to a ",
+          "zh": "要是你请 Hootie 吃一条 "
+        },
+        {
+          "color": "§c",
+          "text": "Bat the Fish",
+          "zh": "Bat the Fish"
+        },
+        {
+          "color": "§f",
+          "text": ", we might just become fast friends!",
+          "zh": ",咱们很快就能成为好朋友!"
+        }
+      ]
+    },
+    {
+      "id": "hootie_wow_hootie_s_absolutely_thrilled",
+      "context": "After feeding Hootie  Bat the Fish",
+      "raw": "§b✆ §f§fWow, Hootie's absolutely thrilled!",
+      "text": "✆ Wow, Hootie's absolutely thrilled!",
+      "translate": true,
+      "zh": "✆ 哇,Hootie 高兴坏了!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Wow, Hootie's absolutely thrilled!",
+          "zh": "哇,Hootie 高兴坏了!"
+        }
+      ]
+    },
+    {
+      "id": "hootie_did_you_know_bat_the_fish_only_swims_at_night",
+      "context": "After feeding Hootie  Bat the Fish",
+      "raw": "§b✆ §f§fDid you know, §cBat the Fish§f only swims at night?",
+      "text": "✆ Did you know, Bat the Fish only swims at night?",
+      "translate": true,
+      "zh": "✆ 你知道吗,Bat the Fish 只在夜里游动。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Did you know, ",
+          "zh": "你知道吗,"
+        },
+        {
+          "color": "§c",
+          "text": "Bat the Fish",
+          "zh": "Bat the Fish"
+        },
+        {
+          "color": "§f",
+          "text": " only swims at night?",
+          "zh": " 只在夜里游动。"
+        }
+      ]
+    },
+    {
+      "id": "hootie_alright_you_ve_earned_it",
+      "context": "After feeding Hootie  Bat the Fish",
+      "raw": "§b✆ §f§fAlright, you've earned it.",
+      "text": "✆ Alright, you've earned it.",
+      "translate": true,
+      "zh": "✆ 好吧,你已经证明自己了。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Alright, you've earned it.",
+          "zh": "好吧,你已经证明自己了。"
+        }
+      ]
+    },
+    {
+      "id": "hootie_i_ll_add_you_to_my_abiphone_contacts",
+      "context": "After feeding Hootie  Bat the Fish",
+      "raw": "§b✆ §f§fI'll add you to my Abiphone contacts!",
+      "text": "✆ I'll add you to my Abiphone contacts!",
+      "translate": true,
+      "zh": "✆ 我会把你加进 Abiphone 通讯录!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "I'll add you to my Abiphone contacts!",
+          "zh": "我会把你加进 Abiphone 通讯录!"
+        }
+      ]
+    },
+    {
+      "id": "hootie_hey_s",
+      "context": "Being Called for Pet Level Up",
+      "raw": "§b✆ §f§fHey §b%s§f!",
+      "text": "✆ Hey %s!",
+      "translate": true,
+      "zh": "✆ 嘿,%s!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Hey ",
+          "zh": "嘿,"
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ],
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "player_name",
+          "example": "inkkni"
+        }
+      ]
+    },
+    {
+      "id": "hootie_ready_for_a_fun_fact_owls_have_asymmetrical_ears_helping_them_pin",
+      "context": "Abiphone Contact",
+      "raw": "§b✆ §f§fReady for a fun fact? Owls have asymmetrical ears, helping them pinpoint sounds from different directions. Talk about surround sound!",
+      "text": "✆ Ready for a fun fact? Owls have asymmetrical ears, helping them pinpoint sounds from different directions. Talk about surround sound!",
+      "translate": true,
+      "zh": "✆ 来听个小知识? 猫头鹰的双耳不对称,能帮它们准确辨别各个方向的声音。自带环绕声呢!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Ready for a fun fact? Owls have asymmetrical ears, helping them pinpoint sounds from different directions. Talk about surround sound!",
+          "zh": "来听个小知识? 猫头鹰的双耳不对称,能帮它们准确辨别各个方向的声音。自带环绕声呢!"
+        }
+      ]
+    },
+    {
+      "id": "hootie_hoo_s_ready_for_some_owl_wisdom_owls_have_been_symbols_of_wisdom_",
+      "context": "[NPC] Fann: ✆ Hoo's ready for some owl wisdom? Owls have been symbols of wisdom in various cultures. Makes me wonder what Hootie's pondering!",
+      "raw": "§b✆ §f§fHoo's ready for some owl wisdom? Owls have been symbols of wisdom in various cultures. Makes me wonder what Hootie's pondering!",
+      "text": "✆ Hoo's ready for some owl wisdom? Owls have been symbols of wisdom in various cultures. Makes me wonder what Hootie's pondering!",
+      "translate": true,
+      "zh": "✆ 谁想听点猫头鹰的智慧? 在不少文化里,它们都是智慧的象征。真想知道 Hootie 在琢磨什么!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Hoo's ready for some owl wisdom? Owls have been symbols of wisdom in various cultures. Makes me wonder what Hootie's pondering!",
+          "zh": "谁想听点猫头鹰的智慧? 在不少文化里,它们都是智慧的象征。真想知道 Hootie 在琢磨什么!"
+        }
+      ]
+    },
+    {
+      "id": "hootie_whoo_s_up_for_some_owl_trivia_did_you_know_owls_don_t_have_teeth_",
+      "context": "[NPC] Fann: ✆ Whoo's up for some owl trivia? Did you know owls don't have teeth? They swallow their prey whole. A bit gruesome, but efficient!",
+      "raw": "§b✆ §f§fWhoo's up for some owl trivia? Did you know owls don't have teeth? They swallow their prey whole. A bit gruesome, but efficient!",
+      "text": "✆ Whoo's up for some owl trivia? Did you know owls don't have teeth? They swallow their prey whole. A bit gruesome, but efficient!",
+      "translate": true,
+      "zh": "✆ 再来点猫头鹰冷知识? 它们没有牙齿,猎物都是整个吞下去的。有点吓人,不过效率很高!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Whoo's up for some owl trivia? Did you know owls don't have teeth? They swallow their prey whole. A bit gruesome, but efficient!",
+          "zh": "再来点猫头鹰冷知识? 它们没有牙齿,猎物都是整个吞下去的。有点吓人,不过效率很高!"
+        }
+      ]
+    },
+    {
+      "id": "hootie_did_you_know_some_owls_like_to_take_baths_hootie_here_loves_a_goo",
+      "context": "[NPC] Fann: ✆ Did you know some owls like to take baths? Hootie here loves a good splash now and then!",
+      "raw": "§b✆ §f§fDid you know some owls like to take baths? Hootie here loves a good splash now and then!",
+      "text": "✆ Did you know some owls like to take baths? Hootie here loves a good splash now and then!",
+      "translate": true,
+      "zh": "✆ 知道吗,有些猫头鹰喜欢洗澡。Hootie 就喜欢时不时扑腾两下水!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Did you know some owls like to take baths? Hootie here loves a good splash now and then!",
+          "zh": "知道吗,有些猫头鹰喜欢洗澡。Hootie 就喜欢时不时扑腾两下水!"
+        }
+      ]
+    },
+    {
+      "id": "hootie_listen_to_this_the_eurasian_eagle_owl_can_live_up_to_60_years_in_",
+      "context": "[NPC] Fann: ✆ Listen to this: The Eurasian Eagle-Owl can live up to 60 years in captivity. Imagine all the wisdom they gather!",
+      "raw": "§b✆ §f§fListen to this: The Eurasian Eagle-Owl can live up to 60 years in captivity. Imagine all the wisdom they gather!",
+      "text": "✆ Listen to this: The Eurasian Eagle-Owl can live up to 60 years in captivity. Imagine all the wisdom they gather!",
+      "translate": true,
+      "zh": "✆ 听我说,欧亚雕鸮在人工饲养下能活到 60 岁。想想那得攒下多少智慧啊!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Listen to this: The Eurasian Eagle-Owl can live up to 60 years in captivity. Imagine all the wisdom they gather!",
+          "zh": "听我说,欧亚雕鸮在人工饲养下能活到 60 岁。想想那得攒下多少智慧啊!"
+        }
+      ]
+    },
+    {
+      "id": "hootie_listen_to_this_some_owls_have_special_feathers_for_silent_flight_",
+      "context": "[NPC] Fann: ✆ Listen to this: Some owls have special feathers for silent flight. Perfect for sneaking up on snacks, or in Hootie's case, a cheeky cuddle!",
+      "raw": "§b✆ §f§fListen to this: Some owls have special feathers for silent flight. Perfect for sneaking up on snacks, or in Hootie's case, a cheeky cuddle!",
+      "text": "✆ Listen to this: Some owls have special feathers for silent flight. Perfect for sneaking up on snacks, or in Hootie's case, a cheeky cuddle!",
+      "translate": true,
+      "zh": "✆ 有些猫头鹰靠特殊的羽毛悄无声息地飞行。偷袭猎物正合适——至于 Hootie 嘛,是偷偷飞来讨个抱抱!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Listen to this: Some owls have special feathers for silent flight. Perfect for sneaking up on snacks, or in Hootie's case, a cheeky cuddle!",
+          "zh": "有些猫头鹰靠特殊的羽毛悄无声息地飞行。偷袭猎物正合适——至于 Hootie 嘛,是偷偷飞来讨个抱抱!"
+        }
+      ]
+    },
+    {
+      "id": "hootie_did_you_know_that_owls_can_rotate_their_heads_up_to_270_degrees_h",
+      "context": "[NPC] Fann: ✆ Did you know that owls can rotate their heads up to 270 degrees? Hootie's quite the head-turner!",
+      "raw": "§b✆ §f§fDid you know that owls can rotate their heads up to 270 degrees? Hootie's quite the head-turner!",
+      "text": "✆ Did you know that owls can rotate their heads up to 270 degrees? Hootie's quite the head-turner!",
+      "translate": true,
+      "zh": "✆ 你知道猫头鹰能把头转到 270 度吗? Hootie 可真是让人回头看的高手!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Did you know that owls can rotate their heads up to 270 degrees? Hootie's quite the head-turner!",
+          "zh": "你知道猫头鹰能把头转到 270 度吗? Hootie 可真是让人回头看的高手!"
+        }
+      ]
+    },
+    {
+      "id": "hootie_owls_have_a_third_eyelid_it_s_transparent_and_helps_protect_their",
+      "context": "[NPC] Fann: ✆ Owls have a third eyelid! It's transparent and helps protect their eyes while they hunt.",
+      "raw": "§b✆ §f§fOwls have a third eyelid! It's transparent and helps protect their eyes while they hunt.",
+      "text": "✆ Owls have a third eyelid! It's transparent and helps protect their eyes while they hunt.",
+      "translate": true,
+      "zh": "✆ 猫头鹰还有第三层眼睑! 透明的,捕猎时能保护眼睛。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Owls have a third eyelid! It's transparent and helps protect their eyes while they hunt.",
+          "zh": "猫头鹰还有第三层眼睑! 透明的,捕猎时能保护眼睛。"
+        }
+      ]
+    },
+    {
+      "id": "hootie_hoo_s_up_for_a_flight_lesson_unlike_most_birds_owls_make_nearly_s",
+      "context": "[NPC] Fann: ✆ Hoo's up for a flight lesson? Unlike most birds, owls make nearly silent flight possible by the structure of their wing feathers!",
+      "raw": "§b✆ §f§fHoo's up for a flight lesson? Unlike most birds, owls make nearly silent flight possible by the structure of their wing feathers!",
+      "text": "✆ Hoo's up for a flight lesson? Unlike most birds, owls make nearly silent flight possible by the structure of their wing feathers!",
+      "translate": true,
+      "zh": "✆ 想上堂飞行课吗? 猫头鹰翅膀上的羽毛结构和大多数鸟类不同,能让它们几乎无声地飞行!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Hoo's up for a flight lesson? Unlike most birds, owls make nearly silent flight possible by the structure of their wing feathers!",
+          "zh": "想上堂飞行课吗? 猫头鹰翅膀上的羽毛结构和大多数鸟类不同,能让它们几乎无声地飞行!"
+        }
+      ]
+    },
+    {
+      "id": "hootie_fancy_some_trivia_the_barn_owl_has_the_most_extensive_range_of_an",
+      "context": "[NPC] Fann: ✆ Fancy some trivia? The Barn Owl has the most extensive range of any owl species. They're world travelers, just like you!",
+      "raw": "§b✆ §f§fFancy some trivia? The Barn Owl has the most extensive range of any owl species. They're world travelers, just like you!",
+      "text": "✆ Fancy some trivia? The Barn Owl has the most extensive range of any owl species. They're world travelers, just like you!",
+      "translate": true,
+      "zh": "✆ 来点小知识? 仓鸮是分布范围最广的猫头鹰。和你一样,也是满世界跑的旅行家!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Fancy some trivia? The Barn Owl has the most extensive range of any owl species. They're world travelers, just like you!",
+          "zh": "来点小知识? 仓鸮是分布范围最广的猫头鹰。和你一样,也是满世界跑的旅行家!"
+        }
+      ]
+    },
+    {
+      "id": "hootie_fancy_this_the_smallest_owl_in_the_world_is_the_elf_owl_about_the",
+      "context": "[NPC] Fann: ✆ Fancy this: The smallest owl in the world is the Elf Owl, about the size of a sparrow. Hootie here thinks they're adorable!",
+      "raw": "§b✆ §f§fFancy this: The smallest owl in the world is the Elf Owl, about the size of a sparrow. Hootie here thinks they're adorable!",
+      "text": "✆ Fancy this: The smallest owl in the world is the Elf Owl, about the size of a sparrow. Hootie here thinks they're adorable!",
+      "translate": true,
+      "zh": "✆ 世界上最小的猫头鹰是姬鸮,大概只有麻雀那么大。Hootie 觉得它们可爱极了!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Fancy this: The smallest owl in the world is the Elf Owl, about the size of a sparrow. Hootie here thinks they're adorable!",
+          "zh": "世界上最小的猫头鹰是姬鸮,大概只有麻雀那么大。Hootie 觉得它们可爱极了!"
+        }
+      ]
+    },
+    {
+      "id": "hootie_did_you_know_that_owls_can_t_chew_that_s_why_they_regurgitate_pel",
+      "context": "[NPC] Fann: ✆ Did you know that owls can't chew? That's why they regurgitate pellets with the parts they can't digest!",
+      "raw": "§b✆ §f§fDid you know that owls can't chew? That's why they regurgitate pellets with the parts they can't digest!",
+      "text": "✆ Did you know that owls can't chew? That's why they regurgitate pellets with the parts they can't digest!",
+      "translate": true,
+      "zh": "✆ 猫头鹰不会咀嚼,你知道吗? 所以它们会把消化不了的部分团成食丸,再吐出来!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Did you know that owls can't chew? That's why they regurgitate pellets with the parts they can't digest!",
+          "zh": "猫头鹰不会咀嚼,你知道吗? 所以它们会把消化不了的部分团成食丸,再吐出来!"
+        }
+      ]
+    },
+    {
+      "id": "hootie_hoo_knew_owls_can_actually_swim_though_hootie_prefers_to_keep_his",
+      "context": "[NPC] Fann: ✆ Hoo knew? Owls can actually swim! Though Hootie prefers to keep his feathers dry, thank you very much!",
+      "raw": "§b✆ §f§fHoo knew? Owls can actually swim! Though Hootie prefers to keep his feathers dry, thank you very much!",
+      "text": "✆ Hoo knew? Owls can actually swim! Though Hootie prefers to keep his feathers dry, thank you very much!",
+      "translate": true,
+      "zh": "✆ 猜不到吧,猫头鹰其实会游泳! 不过 Hootie 表示,它的羽毛还是干着比较好!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Hoo knew? Owls can actually swim! Though Hootie prefers to keep his feathers dry, thank you very much!",
+          "zh": "猜不到吧,猫头鹰其实会游泳! 不过 Hootie 表示,它的羽毛还是干着比较好!"
+        }
+      ]
+    },
+    {
+      "id": "hootie_brace_yourself_some_owls_have_what_s_called_a_facial_disc_a_feath",
+      "context": "[NPC] Fann: ✆ Brace yourself: Some owls have what's called a ‘facial disc,' a feather arrangement that helps funnel sound to their ears. It's like their own personal satellite dish!",
+      "raw": "§b✆ §f§fBrace yourself: Some owls have what's called a ‘facial disc,' a feather arrangement that helps funnel sound to their ears. It's like their own personal satellite dish!",
+      "text": "✆ Brace yourself: Some owls have what's called a ‘facial disc,' a feather arrangement that helps funnel sound to their ears. It's like their own personal satellite dish!",
+      "translate": true,
+      "zh": "✆ 听好了,有些猫头鹰脸上有个羽毛围成的面盘,能把声音集中到耳朵里。就像自带一口卫星锅!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Brace yourself: Some owls have what's called a ‘facial disc,' a feather arrangement that helps funnel sound to their ears. It's like their own personal satellite dish!",
+          "zh": "听好了,有些猫头鹰脸上有个羽毛围成的面盘,能把声音集中到耳朵里。就像自带一口卫星锅!"
+        }
+      ]
+    },
+    {
+      "id": "hootie_you_ll_love_this_owls_have_zygodactyl_feet_meaning_two_toes_face_",
+      "context": "[NPC] Fann: ✆ You'll love this: Owls have zygodactyl feet, meaning two toes face forward and two face backward. Perfect for gripping prey!",
+      "raw": "§b✆ §f§fYou'll love this: Owls have zygodactyl feet, meaning two toes face forward and two face backward. Perfect for gripping prey!",
+      "text": "✆ You'll love this: Owls have zygodactyl feet, meaning two toes face forward and two face backward. Perfect for gripping prey!",
+      "translate": true,
+      "zh": "✆ 你会喜欢这个的: 猫头鹰是对趾足,两根脚趾朝前、两根朝后。抓猎物可牢了!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "You'll love this: Owls have zygodactyl feet, meaning two toes face forward and two face backward. Perfect for gripping prey!",
+          "zh": "你会喜欢这个的: 猫头鹰是对趾足,两根脚趾朝前、两根朝后。抓猎物可牢了!"
+        }
+      ]
+    },
+    {
+      "id": "hootie_here_s_a_tidbit_owls_have_hollow_bones_which_helps_them_stay_ligh",
+      "context": "[NPC] Fann: ✆ Here's a tidbit: Owls have hollow bones, which helps them stay lightweight for flying. It's like nature's own aviation engineering!",
+      "raw": "§b✆ §f§fHere's a tidbit: Owls have hollow bones, which helps them stay lightweight for flying. It's like nature's own aviation engineering!",
+      "text": "✆ Here's a tidbit: Owls have hollow bones, which helps them stay lightweight for flying. It's like nature's own aviation engineering!",
+      "translate": true,
+      "zh": "✆ 猫头鹰的骨头是中空的,能减轻体重,方便飞行。大自然自己的航空工程!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Here's a tidbit: Owls have hollow bones, which helps them stay lightweight for flying. It's like nature's own aviation engineering!",
+          "zh": "猫头鹰的骨头是中空的,能减轻体重,方便飞行。大自然自己的航空工程!"
+        }
+      ]
+    },
+    {
+      "id": "hootie_hold_onto_your_feathers_some_owls_have_a_wingspan_that_s_nearly_t",
+      "context": "[NPC] Fann: ✆ Hold onto your feathers! Some owls have a wingspan that's nearly twice their body length. Talk about aerodynamics!",
+      "raw": "§b✆ §f§fHold onto your feathers! Some owls have a wingspan that's nearly twice their body length. Talk about aerodynamics!",
+      "text": "✆ Hold onto your feathers! Some owls have a wingspan that's nearly twice their body length. Talk about aerodynamics!",
+      "translate": true,
+      "zh": "✆ 可别吓得掉毛! 有些猫头鹰的翼展接近体长的两倍,这才叫会飞!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Hold onto your feathers! Some owls have a wingspan that's nearly twice their body length. Talk about aerodynamics!",
+          "zh": "可别吓得掉毛! 有些猫头鹰的翼展接近体长的两倍,这才叫会飞!"
+        }
+      ]
+    },
+    {
+      "id": "hootie_here_s_a_beak_blowing_stat_the_great_gray_owl_can_locate_prey_und",
+      "context": "[NPC] Fann: ✆ Here's a beak-blowing stat: The Great Gray Owl can locate prey under two feet of snow and snatch it up without a sound!",
+      "raw": "§b✆ §f§fHere's a beak-blowing stat: The Great Gray Owl can locate prey under two feet of snow and snatch it up without a sound!",
+      "text": "✆ Here's a beak-blowing stat: The Great Gray Owl can locate prey under two feet of snow and snatch it up without a sound!",
+      "translate": true,
+      "zh": "✆ 说个让你惊掉下巴的: 乌林鸮能发现两英尺厚的积雪下的猎物,再悄无声息地抓住它!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Here's a beak-blowing stat: The Great Gray Owl can locate prey under two feet of snow and snatch it up without a sound!",
+          "zh": "说个让你惊掉下巴的: 乌林鸮能发现两英尺厚的积雪下的猎物,再悄无声息地抓住它!"
+        }
+      ]
+    },
+    {
+      "id": "hootie_have_you_heard_the_northern_hawk_owl_can_spot_prey_from_up_to_hal",
+      "context": "[NPC] Fann: ✆ Have you heard? The Northern Hawk Owl can spot prey from up to half a mile away! That's some keen eyesight!",
+      "raw": "§b✆ §f§fHave you heard? The Northern Hawk Owl can spot prey from up to half a mile away! That's some keen eyesight!",
+      "text": "✆ Have you heard? The Northern Hawk Owl can spot prey from up to half a mile away! That's some keen eyesight!",
+      "translate": true,
+      "zh": "✆ 听说了吗? 猛鸮能看清半英里外的猎物! 这眼神可真厉害!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Have you heard? The Northern Hawk Owl can spot prey from up to half a mile away! That's some keen eyesight!",
+          "zh": "听说了吗? 猛鸮能看清半英里外的猎物! 这眼神可真厉害!"
+        }
+      ]
+    },
+    {
+      "id": "hootie_here_s_something_owls_don_t_have_crops_those_pouches_some_birds_h",
+      "context": "[NPC] Fann: ✆ Here's something: Owls don't have crops, those pouches some birds have for storing food. They're all about that direct-to-stomach service!",
+      "raw": "§b✆ §f§fHere's something: Owls don't have crops, those pouches some birds have for storing food. They're all about that direct-to-stomach service!",
+      "text": "✆ Here's something: Owls don't have crops, those pouches some birds have for storing food. They're all about that direct-to-stomach service!",
+      "translate": true,
+      "zh": "✆ 猫头鹰没有嗉囊——就是有些鸟类用来存食物的小袋子。它们的饭都是直达胃里!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Here's something: Owls don't have crops, those pouches some birds have for storing food. They're all about that direct-to-stomach service!",
+          "zh": "猫头鹰没有嗉囊——就是有些鸟类用来存食物的小袋子。它们的饭都是直达胃里!"
+        }
+      ]
+    },
+    {
+      "id": "hootie_did_you_know_the_largest_owl_is_the_blakiston_s_fish_owl_its_wing",
+      "context": "[NPC] Fann: ✆ Did you know the largest owl is the Blakiston's Fish Owl? Its wingspan can reach up to 6.6 feet! Hootie's a bit envious.",
+      "raw": "§b✆ §f§fDid you know the largest owl is the Blakiston's Fish Owl? Its wingspan can reach up to 6.6 feet! Hootie's a bit envious.",
+      "text": "✆ Did you know the largest owl is the Blakiston's Fish Owl? Its wingspan can reach up to 6.6 feet! Hootie's a bit envious.",
+      "translate": true,
+      "zh": "✆ 你知道最大的猫头鹰是毛腿渔鸮吗? 翼展能达到 6.6 英尺! Hootie 可有点羡慕了。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Did you know the largest owl is the Blakiston's Fish Owl? Its wingspan can reach up to 6.6 feet! Hootie's a bit envious.",
+          "zh": "你知道最大的猫头鹰是毛腿渔鸮吗? 翼展能达到 6.6 英尺! Hootie 可有点羡慕了。"
+        }
+      ]
+    }
+  ]
+}
