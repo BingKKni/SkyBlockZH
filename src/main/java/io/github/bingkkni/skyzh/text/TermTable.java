@@ -48,7 +48,8 @@ public final class TermTable {
 	private final Map<String, String> canonicalByFolded;
 	/**
 	 * Chinese for whole item names, taken from the corpus's own exact {@code GUI_Item} records rather
-	 * than from Terms.json. Consulted only for {@code guide_item_name} placeholders — see {@link #itemName}.
+	 * than from Terms.json. Consulted by opt-in {@code guide_item_name} and catalog-checked
+	 * {@code loot_item_name} placeholders — see {@link #itemName}.
 	 */
 	private final Map<String, String> itemNames;
 	private Function<String, String> knownItemTemplate = value -> null;
@@ -244,6 +245,10 @@ public final class TermTable {
 	 * worth translating gets its own entry.
 	 */
 	public String translate(String type, String value) {
+		// Opt-in loot announcements reuse existing names, but never menu/lore records or unknown items.
+		if ("loot_item_name".equalsIgnoreCase(type)) {
+			return ItemNames.canonical(value) == null ? null : itemName(value);
+		}
 		if ("guide_item_name".equalsIgnoreCase(type)) {
 			return itemName(value);
 		}

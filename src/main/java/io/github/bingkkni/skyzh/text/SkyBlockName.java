@@ -217,15 +217,21 @@ public final class SkyBlockName {
 		return index >= 0 && index < plain.length() ? plain.charAt(index) : '\0';
 	}
 
-	/** Case-insensitive, because the game shouts the name in scoreboards and titles. */
+	/** Case-insensitive standalone name, never part of an identifier or a slash command. */
 	private static int indexOf(String plain, int from) {
 		for (int i = from; i + ENGLISH.length() <= plain.length(); i++) {
-			if (plain.regionMatches(true, i, ENGLISH, 0, ENGLISH.length())) {
+			if (plain.regionMatches(true, i, ENGLISH, 0, ENGLISH.length())
+				&& !isIdentifier(charAt(plain, i - 1)) && charAt(plain, i - 1) != '/'
+				&& !isIdentifier(charAt(plain, i + ENGLISH.length()))) {
 				return i;
 			}
 		}
 
 		return -1;
+	}
+
+	private static boolean isIdentifier(char c) {
+		return isLatinLetter(c) || c >= '0' && c <= '9' || c == '_';
 	}
 
 	/**

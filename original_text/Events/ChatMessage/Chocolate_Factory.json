@@ -89,8 +89,8 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "desc": "兔子的名字,保留英文",
-          "type": "npc_name",
+          "desc": "兔子员工称谓,复用菜单的称谓词表",
+          "type": "mob_name",
           "example": "Uncle"
         },
         {
@@ -106,14 +106,14 @@
           "example": "Manager"
         }
       ],
-      "gloss": "兔子名和新职级都是紫的,中间那句是灰的。分段只决定颜色边界,颜色渲染时从屏幕上当场读,所以 color 字段只是给人看的记号。",
+      "gloss": "用户拍板：升职提示须显示完整的兔子中文称谓，沿用菜单中 Granny→奶奶、Daddy→爸爸等已有译名，不按 NPC 专名保留英文。兔子称谓与职级的颜色从实机文本读取，中间叙述为灰色。",
       "translate": true,
-      "zh": "兔子 %1$s 升职为 [%2$s] %3$s!",
+      "zh": "兔子%1$s 升职为 [%2$s] %3$s!",
       "segments": [
         {
           "color": "§5",
           "text": "Rabbit %1$s ",
-          "zh": "兔子 %1$s "
+          "zh": "兔子%1$s "
         },
         {
           "color": "§7",

@@ -465,7 +465,29 @@ public final class TranslationHarness {
 			check("兔子员工称谓: " + employee.getKey(),
 				"Rabbit " + employee.getKey() + " - [220] Board Member", Surface.ITEM,
 				"兔子" + employee.getValue() + " - [220] 董事会成员");
+			for (String level : List.of("209", "214")) {
+				check("兔子升职复用称谓: " + employee.getKey() + level,
+					"§dRabbit " + employee.getKey() + " §7has been promoted to [" + level + "] §dExecutive§7!",
+					Surface.CHAT, "§d兔子" + employee.getValue() + " §7升职为 [" + level + "] §d高管§7!");
+			}
 		}
+		Map<String, String> scavengedItems = Map.of(
+			"Scavenged Lapis Sword", "翻找到的青金石剑", "Scavenged Diamond Axe", "翻找到的钻石斧",
+			"Scavenged Golden Hammer", "翻找到的金锤", "Scavenged Emerald Hammer", "翻找到的绿宝石锤"
+		);
+		for (Map.Entry<String, String> item : scavengedItems.entrySet()) {
+			check("探测器战利品复用整名: " + item.getKey(),
+				"§aYou found §c" + item.getKey() + " §awith your §cMetal Detector§a!", Surface.CHAT,
+				"§a你的§c金属探测器§a找到了 §c" + item.getValue() + "§a!");
+		}
+		check("未知战利品不猜译", "You found Unverified Item with your Metal Detector!", Surface.CHAT,
+			"你的金属探测器找到了 Unverified Item!");
+		report("战利品类型不借用菜单译文",
+			Translator.index().terms().translate("loot_item_name", "Ways to Level Up") == null, "菜单不能充当物品");
+		report("普通物品占位符保持英文",
+			Translator.index().terms().translate("item_name", "Scavenged Lapis Sword") == null, "未放宽普通物品翻译");
+		check("击杀任务复数标签", "§e▶ Defeat Slayers", Surface.ITEM, "§e▶ 完成猎手任务");
+		check("击杀任务单数标签", "§e▶ Defeat Slayer", Surface.ITEM, "§e▶ 完成猎手任务");
 
 		// ---- values the term table knows, and the space around the ones it does not ----
 		check("区域名查词表译出", "Royal Mines Mithril", Surface.ITEM, "皇家矿区 - 秘银");
@@ -515,6 +537,25 @@ public final class TranslationHarness {
 		check("助词不算复合词,仍用全称", "在 SkyBlock 中", Surface.CHAT, "在空岛生存中");
 		check("全大写同样替换", "§6SKYBLOCK", Surface.CHAT, "§6空岛生存");
 		check("替换继承原颜色", "§6SkyBlock §7等级", Surface.CHAT, "§6空岛§7等级");
+
+		checkJoined("升级途径跨行不重复保留 XP 尾行",
+			List.of("§7Learn more about the different ways", "§7to earn SkyBlock XP."),
+			"§7了解获得 SkyBlock 经验的各种方式。");
+		boolean oldNameSetting = SkyZHConfig.get().translateSkyBlockName;
+		try {
+			for (boolean enabled : List.of(true, false)) {
+				SkyZHConfig.get().translateSkyBlockName = enabled;
+				check("升级途径经验与玩法名开关 " + enabled,
+					"§7Learn more about the different ways", Surface.ITEM,
+					enabled ? "§7了解获得空岛经验的各种方式。" : "§7了解获得 SkyBlock 经验的各种方式。");
+				for (String command : List.of("skyblockxp", "skyblock", "SKYBLOCKXP", "skyblockzh")) {
+					check("玩法名开关不改命令 " + command + enabled,
+						"§8Also accessible via /" + command, Surface.ITEM, "§8也可通过 /" + command + " 打开");
+				}
+			}
+		} finally {
+			SkyZHConfig.get().translateSkyBlockName = oldNameSetting;
+		}
 
 		// ---- the scoreboard title's shimmer: per-character colour must survive the alphabet change ----
 		// Hypixel re-sends the title each tick with the highlight one letter further along. Eight

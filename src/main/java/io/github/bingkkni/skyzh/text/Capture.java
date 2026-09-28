@@ -162,7 +162,7 @@ public enum Capture {
 			// a single word plus a placeholder ("Your %s", "%s Settings", "%s Pet"), which under the
 			// looser PHRASE rule matched any lore line that happened to start or end that way and drew
 			// the rest of the sentence in its place.
-			case "item_name", "guide_item_name" -> ITEM_NAME;
+			case "item_name", "guide_item_name", "loot_item_name" -> ITEM_NAME;
 			case "npc_name", "location_name", "mob_name", "rarity", "category_name",
 				"enchantment_name", "enchantment_crop", "mob_family", "accessory_power", "skyblock_month", "dragon_type",
 				"rng_meter_source", "difficulty" -> NAME;

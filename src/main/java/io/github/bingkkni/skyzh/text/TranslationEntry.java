@@ -28,7 +28,7 @@ import net.minecraft.network.chat.Style;
  *
  * <p>Placeholders ({@code %s}, {@code %1$s}) become capture groups. Whatever they capture is copied
  * from the live text verbatim, with its own colours: player names, ordinary {@code item_name}s and
- * numbers are never translated. The narrowly scoped {@code guide_item_name} type is the exception:
+ * numbers are never translated. Opt-in {@code guide_item_name} and {@code loot_item_name} types are exceptions:
  * SkyBlock Guide task sentences may reuse an exact item translation already present in the corpus.
  */
 public final class TranslationEntry {
@@ -628,8 +628,8 @@ public final class TranslationEntry {
 	 * term table, which knows that {@code Royal Mines} is 皇家矿区; and the kind of value it is, which
 	 * knows that the {@code th} of {@code 27th} is English grammar and does not come across — see
 	 * {@link Capture#renderValue}. Everything else is copied through untouched, character for
-	 * character, because a name is a name; only {@code guide_item_name} opts into reusing an already
-	 * translated corpus item name.
+	 * character, because a name is a name; {@code guide_item_name} and {@code loot_item_name} opt into
+	 * reusing an already translated corpus item name.
 	 */
 	private void append(Seam seam, StyledText source, Matcher match, int group, TermTable terms, Style style,
 		Runnable translatedItem) {
@@ -654,7 +654,7 @@ public final class TranslationEntry {
 		Style valueStyle = start < source.length() ? source.styleAt(start) : style;
 
 		MutableComponent rendered = Component.literal(written).setStyle(valueStyle);
-		if (translatedItem != null && ("raw".equals(type) || "item_name".equals(type))
+		if (translatedItem != null && ("raw".equals(type) || "item_name".equals(type) || "loot_item_name".equals(type))
 			&& ItemNames.canonical(value) != null) {
 			translatedItem.run();
 		}
