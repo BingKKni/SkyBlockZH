@@ -321,7 +321,7 @@ public final class TranslationEntry {
 	 * feeds every record its own text back and insists that record still wins, so a pair of records
 	 * that differ only by one {@code s} fails the build instead of silently answering for each other.
 	 */
-	private static String eitherNumber(String literal) {
+	public static String eitherNumber(String literal) {
 		StringBuilder regex = new StringBuilder(literal.length() + 8);
 		int i = 0;
 

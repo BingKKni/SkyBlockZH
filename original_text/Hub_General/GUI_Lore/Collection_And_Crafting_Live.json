@@ -1,0 +1,118 @@
+{
+  "source": "../SkyZH_Logs/ (两台计算机，2026-09-27 12:12:17 编译后实测); https://hypixelskyblock.minecraft.wiki/w/Collections",
+  "fetched_at": "2026-09-28",
+  "verified_ingame": true,
+  "entries": [
+    {
+      "id": "collection_view_all_progress",
+      "context": "收藏品按钮说明；英文折行位置随名字长短变化，整句匹配",
+      "raw": "§7View all your §a%s Collection §7progress and rewards!",
+      "text": "View all your %s Collection progress and rewards!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "category_name",
+          "example": "Glowstone Dust",
+          "desc": "收藏品名，译名走词表"
+        }
+      ],
+      "gloss": "The Professor 等首领收藏品另有精确整句记录，字面更长，优先生效。",
+      "translate": true,
+      "zh": "查看你的全部%s收藏品进度与奖励!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "View all your ",
+          "zh": "查看你的全部"
+        },
+        {
+          "color": "§a",
+          "text": "%s Collection ",
+          "zh": "%s收藏品"
+        },
+        {
+          "color": "§7",
+          "text": "progress and rewards!",
+          "zh": "进度与奖励!"
+        }
+      ],
+      "samples": [
+        [
+          "§7View all your §aGlowstone Dust",
+          "§aCollection §7progress and rewards!"
+        ],
+        [
+          "§7View all your §aIce Collection §7progress",
+          "§7and rewards!"
+        ]
+      ]
+    },
+    {
+      "id": "recipe_need_more_material",
+      "context": "配方材料不足提示；材料名按长度折行",
+      "raw": "§cYou need §6%1$s §cmore %2$s.",
+      "text": "You need %1$s more %2$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "256",
+          "desc": "缺少数量"
+        },
+        {
+          "token": "%2$s",
+          "type": "category_name",
+          "example": "Enchanted Slime Block",
+          "desc": "材料名，词表有译名时翻译"
+        }
+      ],
+      "translate": true,
+      "zh": "你还需要 %1$s 个%2$s。",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "You need ",
+          "zh": "你还需要 "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§c",
+          "text": "more %2$s.",
+          "zh": "个%2$s。"
+        }
+      ],
+      "samples": [
+        [
+          "§cYou need §68 §cmore Enchanted Slime",
+          "§cBlock."
+        ]
+      ]
+    },
+    {
+      "id": "bazaar_instasell_derivatives_inventory",
+      "context": "集市分类快捷出售说明；与 Bazaar_Controls_Live 的旧逐行记录用词一致",
+      "raw": "§7Instantly sell all %s derivatives in your inventory.",
+      "text": "Instantly sell all %s derivatives in your inventory.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "category_name",
+          "example": "Slimes",
+          "desc": "集市分类名"
+        }
+      ],
+      "translate": true,
+      "zh": "立即出售背包中所有%s制品。",
+      "samples": [
+        [
+          "§7Instantly sell all Slimes derivatives in",
+          "§7your inventory."
+        ]
+      ]
+    }
+  ]
+}

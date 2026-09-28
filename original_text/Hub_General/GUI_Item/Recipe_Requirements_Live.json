@@ -1,0 +1,160 @@
+{
+  "source": "../SkyZH_Logs/ (两台计算机，2026-09-27 12:12:17 编译后实测); https://hypixelskyblock.minecraft.wiki/w/Minion",
+  "fetched_at": "2026-09-28",
+  "verified_ingame": true,
+  "source_note": "材料名用 category_name 查词表；无译名保持英文。",
+  "lines": [
+    {
+      "id": "recipe_req_missing",
+      "context": "配方/小人升级的材料进度（缺少）；Catalyst 等具体记录字面更长，优先生效",
+      "raw": "§c✖ %1$s/%2$s §a%3$s",
+      "text": "✖ %1$s/%2$s %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "0",
+          "desc": "已有数量"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "512",
+          "desc": "所需数量"
+        },
+        {
+          "token": "%3$s",
+          "type": "category_name",
+          "example": "Enchanted Cobblestone",
+          "desc": "材料名，词表有译名时翻译"
+        }
+      ],
+      "translate": true,
+      "zh": "✖ %1$s/%2$s %3$s",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "✖ %1$s/%2$s ",
+          "zh": "✖ %1$s/%2$s "
+        },
+        {
+          "color": "§a",
+          "text": "%3$s",
+          "zh": "%3$s"
+        }
+      ]
+    },
+    {
+      "id": "recipe_req_missing_partial",
+      "context": "配方/小人升级的材料进度（部分拥有）",
+      "raw": "§c✖ §e%1$s§c/%2$s §8(-%3$s) §9%4$s",
+      "text": "✖ %1$s/%2$s (-%3$s) %4$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "3",
+          "desc": "已有数量"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "256",
+          "desc": "所需数量"
+        },
+        {
+          "token": "%3$s",
+          "type": "number",
+          "example": "253",
+          "desc": "差额"
+        },
+        {
+          "token": "%4$s",
+          "type": "category_name",
+          "example": "Enchanted Mithril",
+          "desc": "材料名，词表有译名时翻译"
+        }
+      ],
+      "translate": true,
+      "zh": "✖ %1$s/%2$s (-%3$s) %4$s",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "✖ ",
+          "zh": "✖ "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§c",
+          "text": "/%2$s ",
+          "zh": "/%2$s "
+        },
+        {
+          "color": "§8",
+          "text": "(-%3$s) ",
+          "zh": "(-%3$s) "
+        },
+        {
+          "color": "§9",
+          "text": "%4$s",
+          "zh": "%4$s"
+        }
+      ]
+    },
+    {
+      "id": "recipe_req_done",
+      "context": "配方/小人升级的材料进度（已满足）；写法与 Catalyst.json 一致",
+      "raw": "§a✔ %1$s/%2$s §8(%3$sx) §f%4$s",
+      "text": "✔ %1$s/%2$s (%3$sx) %4$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "14,431",
+          "desc": "已有数量"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "80",
+          "desc": "所需数量"
+        },
+        {
+          "token": "%3$s",
+          "type": "number",
+          "example": "180",
+          "desc": "可制作倍数"
+        },
+        {
+          "token": "%4$s",
+          "type": "category_name",
+          "example": "Mithril",
+          "desc": "材料名，词表有译名时翻译"
+        }
+      ],
+      "translate": true,
+      "zh": "✔ %1$s/%2$s (%3$sx) %4$s",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "✔ %1$s/%2$s ",
+          "zh": "✔ %1$s/%2$s "
+        },
+        {
+          "color": "§8",
+          "text": "(%3$sx) ",
+          "zh": "(%3$sx) "
+        },
+        {
+          "color": "§f",
+          "text": "%4$s",
+          "zh": "%4$s"
+        }
+      ]
+    }
+  ]
+}

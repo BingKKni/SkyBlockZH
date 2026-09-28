@@ -1,0 +1,245 @@
+{
+  "source": "../SkyZH_Logs/ (两台计算机，2026-09-27 12:12:17 编译后实测); https://hypixelskyblock.minecraft.wiki/w/Kuudra",
+  "fetched_at": "2026-09-28",
+  "verified_ingame": true,
+  "lines": [
+    {
+      "id": "kuudra_perk_right_preview",
+      "context": "Kuudra 天赋菜单",
+      "raw": "§bRight Click to preview!",
+      "text": "Right Click to preview!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "右键预览!"
+    },
+    {
+      "id": "kuudra_perk_left_unlock",
+      "context": "Kuudra 天赋菜单",
+      "raw": "§eLeft Click to unlock!",
+      "text": "Left Click to unlock!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "左键解锁!"
+    },
+    {
+      "id": "kuudra_perk_tokens",
+      "context": "Kuudra 天赋菜单中的代币余额",
+      "raw": "§5%s Tokens",
+      "text": "%s Tokens",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "2,625",
+          "desc": "代币数"
+        }
+      ],
+      "translate": true,
+      "zh": "%s 代币"
+    },
+    {
+      "id": "kuudra_upgrades_you",
+      "context": "Kuudra 天赋菜单：自己的升级",
+      "raw": "§b%1$s§f's§a Upgrades§8 (YOU)",
+      "text": "%1$s's Upgrades (YOU)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "player_display",
+          "example": "[MVP+] inkkni",
+          "desc": "带 Rank 的玩家名"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 的升级 (你)",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§f",
+          "text": "'s",
+          "zh": " 的"
+        },
+        {
+          "color": "§a",
+          "text": " Upgrades",
+          "zh": "升级"
+        },
+        {
+          "color": "§8",
+          "text": " (YOU)",
+          "zh": " (你)"
+        }
+      ]
+    },
+    {
+      "id": "kuudra_upgrades_other",
+      "context": "Kuudra 天赋菜单：队友的升级",
+      "raw": "§b%1$s§f's§a Upgrades",
+      "text": "%1$s's Upgrades",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "player_display",
+          "example": "[MVP+] JohnHypixel_",
+          "desc": "带 Rank 的玩家名"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 的升级",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§f",
+          "text": "'s",
+          "zh": " 的"
+        },
+        {
+          "color": "§a",
+          "text": " Upgrades",
+          "zh": "升级"
+        }
+      ]
+    },
+    {
+      "id": "kuudra_tier_collecting",
+      "context": "Kuudra 天赋当前等级",
+      "raw": "§7Current Tier: §e+%s% collecting speed",
+      "text": "Current Tier: +%s% collecting speed",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "10",
+          "desc": "加成"
+        }
+      ],
+      "translate": true,
+      "zh": "当前等级: 打捞速度 +%s%",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Current Tier: ",
+          "zh": "当前等级: "
+        },
+        {
+          "color": "§e",
+          "text": "+%s% collecting speed",
+          "zh": "打捞速度 +%s%"
+        }
+      ]
+    },
+    {
+      "id": "kuudra_tier_building",
+      "context": "Kuudra 天赋当前等级",
+      "raw": "§7Current Tier: §e+%s% building speed",
+      "text": "Current Tier: +%s% building speed",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "10",
+          "desc": "加成"
+        }
+      ],
+      "translate": true,
+      "zh": "当前等级: 建造速度 +%s%",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Current Tier: ",
+          "zh": "当前等级: "
+        },
+        {
+          "color": "§e",
+          "text": "+%s% building speed",
+          "zh": "建造速度 +%s%"
+        }
+      ]
+    },
+    {
+      "id": "kuudra_tier_chunk",
+      "context": "Kuudra 天赋当前等级",
+      "raw": "§7Current Tier: §c+%1$s% damage, +%2$ss to submerge",
+      "text": "Current Tier: +%1$s% damage, +%2$ss to submerge",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "10",
+          "desc": "伤害加成"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "0.1",
+          "desc": "秒"
+        }
+      ],
+      "translate": true,
+      "zh": "当前等级: 伤害 +%1$s%，下潜倒计时 +%2$s 秒",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Current Tier: ",
+          "zh": "当前等级: "
+        },
+        {
+          "color": "§c",
+          "text": "+%1$s% damage, +%2$ss to submerge",
+          "zh": "伤害 +%1$s%，下潜倒计时 +%2$s 秒"
+        }
+      ]
+    },
+    {
+      "id": "kuudra_tier_stomach",
+      "context": "Kuudra 天赋当前等级；伤害为系数不是增量",
+      "raw": "§7Current Tier: §a+%1$s% speed, %2$sx damage",
+      "text": "Current Tier: +%1$s% speed, %2$sx damage",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "20",
+          "desc": "速度加成"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "1.1",
+          "desc": "伤害系数"
+        }
+      ],
+      "translate": true,
+      "zh": "当前等级: 挖掘速度 +%1$s%，%2$s 倍伤害",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Current Tier: ",
+          "zh": "当前等级: "
+        },
+        {
+          "color": "§a",
+          "text": "+%1$s% speed, %2$sx damage",
+          "zh": "挖掘速度 +%1$s%，%2$s 倍伤害"
+        }
+      ]
+    },
+    {
+      "id": "kuudra_reroll_shard",
+      "context": "Kuudra 付费箱子的重抽按钮",
+      "raw": "§aReroll Shard",
+      "text": "Reroll Shard",
+      "placeholders": [],
+      "translate": true,
+      "zh": "重抽碎片"
+    }
+  ]
+}

@@ -1,0 +1,883 @@
+{
+  "source": "../SkyZH_Logs/ (两台计算机，2026-09-27 12:12:17 编译后实测); https://hypixelskyblock.minecraft.wiki/w/Bazaar; https://hypixelskyblock.minecraft.wiki/w/Auction_House; https://hypixelskyblock.minecraft.wiki/w/Budget_Hopper; https://hypixelskyblock.minecraft.wiki/w/Bottle_of_Jyrre",
+  "fetched_at": "2026-09-28",
+  "verified_ingame": true,
+  "entries": [
+    {
+      "id": "everburning_bonus",
+      "context": "永燃之焰（小人燃料）",
+      "raw": "§6Everburning Bonus§7: §a%s% §7extra speed on §7Combat minions.",
+      "text": "Everburning Bonus: %s% extra speed on Combat minions.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "5",
+          "desc": "速度加成"
+        }
+      ],
+      "translate": true,
+      "zh": "永燃加成: 战斗小人的速度额外提高 %s%。",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Everburning Bonus",
+          "zh": "永燃加成",
+          "order": 0
+        },
+        {
+          "color": "§7",
+          "text": ": ",
+          "zh": ": ",
+          "order": 1
+        },
+        {
+          "color": "§a",
+          "text": "%s% ",
+          "zh": "%s%。",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "extra speed on Combat minions.",
+          "zh": "战斗小人的速度额外提高 ",
+          "order": 2
+        }
+      ],
+      "samples": [
+        [
+          "§6Everburning Bonus§7: §a5% §7extra speed on",
+          "§7Combat minions."
+        ]
+      ]
+    },
+    {
+      "id": "auction_players_find_yours",
+      "context": "合作拍卖行说明",
+      "raw": "§7Players can find your auctions using §7the §6Auctions Browser §7or typing §a/ah %s§7!",
+      "text": "Players can find your auctions using the Auctions Browser or typing /ah %s!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "player_name",
+          "example": "inkkni",
+          "desc": "玩家名"
+        }
+      ],
+      "translate": true,
+      "zh": "其他玩家可以通过拍卖浏览器或输入 /ah %s 找到你的拍卖!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Players can find your auctions using the ",
+          "zh": "其他玩家可以通过"
+        },
+        {
+          "color": "§6",
+          "text": "Auctions Browser ",
+          "zh": "拍卖浏览器"
+        },
+        {
+          "color": "§7",
+          "text": "or typing ",
+          "zh": "或输入 "
+        },
+        {
+          "color": "§a",
+          "text": "/ah %s",
+          "zh": "/ah %s"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": " 找到你的拍卖!"
+        }
+      ],
+      "samples": [
+        [
+          "§7Players can find your auctions using",
+          "§7the §6Auctions Browser §7or typing §a/ah",
+          "§ainkkni§7!"
+        ]
+      ]
+    },
+    {
+      "id": "auction_top_bid_pending",
+      "context": "合作拍卖行",
+      "raw": "§7You have the §atop bid §7on a pending §7auction.",
+      "text": "You have the top bid on a pending auction.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "你在一场待结算的拍卖中出价最高。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You have the ",
+          "zh": "。",
+          "order": 2
+        },
+        {
+          "color": "§a",
+          "text": "top bid ",
+          "zh": "出价最高",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "on a pending auction.",
+          "zh": "你在一场待结算的拍卖中",
+          "order": 0
+        }
+      ],
+      "samples": [
+        [
+          "§7You have the §atop bid §7on a pending",
+          "§7auction."
+        ]
+      ]
+    },
+    {
+      "id": "instance_dont_feel_like",
+      "context": "取消副本",
+      "raw": "§7Don't feel like playing this instance §7anymore?",
+      "text": "Don't feel like playing this instance anymore?",
+      "placeholders": [],
+      "translate": true,
+      "zh": "不想再玩这个副本了?",
+      "samples": [
+        [
+          "§7Don't feel like playing this instance",
+          "§7anymore?"
+        ]
+      ]
+    },
+    {
+      "id": "instance_opening_mineshaft",
+      "context": "创建极冰矿井副本",
+      "raw": "§7Opening Glacite Mineshafts for your §7party!",
+      "text": "Opening Glacite Mineshafts for your party!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "正在为你的队伍开启极冰矿井!",
+      "samples": [
+        [
+          "§7Opening Glacite Mineshafts for your",
+          "§7party!"
+        ]
+      ]
+    },
+    {
+      "id": "bazaar_confirm_average_price",
+      "context": "集市确认界面",
+      "raw": "§fOver the last 7 days, players paid §fan average of §6%s Coins §ffor §fthis item.",
+      "text": "Over the last 7 days, players paid an average of %s Coins for this item.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "60,464.8",
+          "desc": "均价"
+        }
+      ],
+      "translate": true,
+      "zh": "过去 7 天内，玩家为此物品平均支付了 %s 硬币。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Over the last 7 days, players paid an average of ",
+          "zh": "过去 7 天内，玩家为此物品平均支付了 "
+        },
+        {
+          "color": "§6",
+          "text": "%s Coins ",
+          "zh": "%s 硬币"
+        },
+        {
+          "color": "§f",
+          "text": "for this item.",
+          "zh": "。"
+        }
+      ],
+      "samples": [
+        [
+          "§fOver the last 7 days, players paid",
+          "§fan average of §660,464.8 Coins §ffor",
+          "§fthis item."
+        ]
+      ]
+    },
+    {
+      "id": "hotm_unlock_more_slots",
+      "context": "山峦之心槽位",
+      "raw": "§cUnlock more HOTM Slots from §dElizabeth §cat the §bCommunity Center§c!",
+      "text": "Unlock more HOTM Slots from Elizabeth at the Community Center!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "前往社区中心找 Elizabeth 解锁更多山峦之心槽位!",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "Unlock more HOTM Slots from ",
+          "zh": "找 ",
+          "order": 2
+        },
+        {
+          "color": "§d",
+          "text": "Elizabeth ",
+          "zh": "Elizabeth ",
+          "order": 3
+        },
+        {
+          "color": "§c",
+          "text": "at the ",
+          "zh": "前往",
+          "order": 0
+        },
+        {
+          "color": "§b",
+          "text": "Community Center",
+          "zh": "社区中心",
+          "order": 1
+        },
+        {
+          "color": "§c",
+          "text": "!",
+          "zh": "解锁更多山峦之心槽位!",
+          "order": 4
+        }
+      ],
+      "samples": [
+        [
+          "§cUnlock more HOTM Slots from",
+          "§dElizabeth §cat the §bCommunity Center§c!"
+        ]
+      ]
+    },
+    {
+      "id": "trades_unlock_hint",
+      "context": "交易菜单说明",
+      "raw": "§7Progress through your item §7collections and explore the world to §7unlock new trades!",
+      "text": "Progress through your item collections and explore the world to unlock new trades!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "推进物品收藏品进度、四处探索世界，即可解锁新的交易!",
+      "samples": [
+        [
+          "§7Progress through your item",
+          "§7collections and explore the world to",
+          "§7unlock new trades!"
+        ]
+      ]
+    },
+    {
+      "id": "bazaar_rare_minerals",
+      "context": "集市挖矿分类说明",
+      "raw": "§7Rare minerals found from mining that §7enhance your items.",
+      "text": "Rare minerals found from mining that enhance your items.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "挖矿时发现的稀有矿物，可用于强化你的物品。",
+      "samples": [
+        [
+          "§7Rare minerals found from mining that",
+          "§7enhance your items."
+        ]
+      ]
+    },
+    {
+      "id": "drill_anvil_hotm_level",
+      "context": "钻头配件效果",
+      "raw": "§7Adds §a+%s Level §7to all of your §7unlocked §5Heart of the Mountain §7perks.",
+      "text": "Adds +%s Level to all of your unlocked Heart of the Mountain perks.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "1",
+          "desc": "等级"
+        }
+      ],
+      "translate": true,
+      "zh": "使你所有已解锁的山峦之心天赋等级 +%s。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Adds ",
+          "zh": "使你",
+          "order": 0
+        },
+        {
+          "color": "§a",
+          "text": "+%s Level ",
+          "zh": "+%s。",
+          "order": 4
+        },
+        {
+          "color": "§7",
+          "text": "to all of your unlocked ",
+          "zh": "所有已解锁的",
+          "order": 1
+        },
+        {
+          "color": "§5",
+          "text": "Heart of the Mountain ",
+          "zh": "山峦之心",
+          "order": 2
+        },
+        {
+          "color": "§7",
+          "text": "perks.",
+          "zh": "天赋等级 ",
+          "order": 3
+        }
+      ],
+      "samples": [
+        [
+          "§7Adds §a+1 Level §7to all of your",
+          "§7unlocked §5Heart of the Mountain §7perks."
+        ]
+      ]
+    },
+    {
+      "id": "drill_anvil_refuel",
+      "context": "钻头铁砧",
+      "raw": "§7Refuels your Drill with the given §2Drill §2Fuel§7.",
+      "text": "Refuels your Drill with the given Drill Fuel.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "用放入的钻头燃料为钻头加油。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Refuels your Drill with the given ",
+          "zh": "用放入的"
+        },
+        {
+          "color": "§2",
+          "text": "Drill Fuel",
+          "zh": "钻头燃料"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "为钻头加油。"
+        }
+      ],
+      "samples": [
+        [
+          "§7Refuels your Drill with the given §2Drill",
+          "§2Fuel§7."
+        ]
+      ]
+    },
+    {
+      "id": "leveling_killing_tasks",
+      "context": "空岛等级获取途径分类",
+      "raw": "§7All XP Tasks that require you to do §7some killing!",
+      "text": "All XP Tasks that require you to do some killing!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "收录所有需要击杀怪物的经验任务!",
+      "samples": [
+        [
+          "§7All XP Tasks that require you to do",
+          "§7some killing!"
+        ]
+      ]
+    },
+    {
+      "id": "leveling_skill_tasks",
+      "context": "空岛等级获取途径分类",
+      "raw": "§7All XP Tasks that are related to a §7player-specific skill!",
+      "text": "All XP Tasks that are related to a player-specific skill!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "收录所有与玩家技能相关的经验任务!",
+      "samples": [
+        [
+          "§7All XP Tasks that are related to a",
+          "§7player-specific skill!"
+        ]
+      ]
+    },
+    {
+      "id": "leveling_consuming_tasks",
+      "context": "空岛等级获取途径分类",
+      "raw": "§7All XP Tasks that are related to §7consuming items!",
+      "text": "All XP Tasks that are related to consuming items!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "收录所有与消耗物品相关的经验任务!",
+      "samples": [
+        [
+          "§7All XP Tasks that are related to",
+          "§7consuming items!"
+        ]
+      ]
+    },
+    {
+      "id": "bestiary_ghast_flavor",
+      "context": "恶魂图鉴描述",
+      "raw": "§7Their screams can be heard from §7miles away.",
+      "text": "Their screams can be heard from miles away.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "它们的尖啸声在数英里外都听得见。",
+      "samples": [
+        [
+          "§7Their screams can be heard from",
+          "§7miles away."
+        ]
+      ]
+    },
+    {
+      "id": "bestiary_family_leaderboard",
+      "context": "生物图鉴排行榜条件",
+      "raw": "§7To rank on the §a%1$s Family §7leaderboard, you must have at least §c%2$s kills§7!",
+      "text": "To rank on the %1$s Family leaderboard, you must have at least %2$s kills!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "mob_name",
+          "example": "Ghast",
+          "desc": "怪物类别名，词表有译名时翻译"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "1",
+          "desc": "击杀数"
+        }
+      ],
+      "translate": true,
+      "zh": "至少需要 %2$s 次击杀，才能登上%1$s类别排行榜!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "To rank on the ",
+          "zh": "，才能登上",
+          "order": 2
+        },
+        {
+          "color": "§a",
+          "text": "%1$s Family ",
+          "zh": "%1$s类别",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "leaderboard, you must have at least ",
+          "zh": "至少需要 ",
+          "order": 0
+        },
+        {
+          "color": "§c",
+          "text": "%2$s kills",
+          "zh": "%2$s 次击杀",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "排行榜!",
+          "order": 4
+        }
+      ],
+      "samples": [
+        [
+          "§7To rank on the §aGhast Family",
+          "§7leaderboard, you must have at least",
+          "§c1 kill§7!"
+        ]
+      ]
+    },
+    {
+      "id": "match_sticks_effect",
+      "context": "Match-Sticks 效果",
+      "raw": "§7Consume to light yourself on fire §7for §a%1$s §7seconds granting you §c+%2$s❁ §cStrength§7.",
+      "text": "Consume to light yourself on fire for %1$s seconds granting you +%2$s❁ Strength.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "10",
+          "desc": "秒"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "10",
+          "desc": "力量"
+        }
+      ],
+      "translate": true,
+      "zh": "消耗后点燃自身，持续 %1$s 秒，期间获得 +%2$s❁ 力量。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Consume to light yourself on fire for ",
+          "zh": "消耗后点燃自身，持续 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "seconds granting you ",
+          "zh": "秒，期间获得 "
+        },
+        {
+          "color": "§c",
+          "text": "+%2$s❁ Strength",
+          "zh": "+%2$s❁ 力量"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "samples": [
+        [
+          "§7Consume to light yourself on fire",
+          "§7for §a10 §7seconds granting you §c+10",
+          "§cStrength§7."
+        ]
+      ]
+    },
+    {
+      "id": "match_sticks_flavor",
+      "context": "Match-Sticks 描述；Matchos 是专名",
+      "raw": "§8§oThe head of Matchos is a combination §8§oof Sulphur and a crystalline §8§osubstance. With even the slightest §8§ofrictions they will light up.",
+      "text": "The head of Matchos is a combination of Sulphur and a crystalline substance. With even the slightest frictions they will light up.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "Matchos 的头部由硫磺和一种晶体物质构成，哪怕只有一丁点摩擦，也会燃起火来。",
+      "samples": [
+        [
+          "§8§oThe head of Matchos is a combination",
+          "§8§oof Sulphur and a crystalline",
+          "§8§osubstance. With even the slightest",
+          "§8§ofrictions they will light up."
+        ]
+      ]
+    },
+    {
+      "id": "meteor_chunk_flavor",
+      "context": "陨石碎块描述",
+      "raw": "§8§oA very strange find once found §8§oinside the carcass of a Ghast. It §8§oseems like they enjoy a snack that §8§ois out of this world from time to time.",
+      "text": "A very strange find once found inside the carcass of a Ghast. It seems like they enjoy a snack that is out of this world from time to time.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "曾在恶魂残骸里找到的怪东西。看来它们时不时也爱来点天外来的零嘴。",
+      "samples": [
+        [
+          "§8§oA very strange find once found",
+          "§8§oinside the carcass of a Ghast. It",
+          "§8§oseems like they enjoy a snack that",
+          "§8§ois out of this world from time to time."
+        ]
+      ]
+    },
+    {
+      "id": "magma_necklace_cream_bonus",
+      "context": "征服者岩浆项链效果",
+      "raw": "§7Gain §a%s% §7more §cMagma Cream §7when §7killing Magma Cubes.",
+      "text": "Gain %s% more Magma Cream when killing Magma Cubes.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "20",
+          "desc": "加成"
+        }
+      ],
+      "translate": true,
+      "zh": "击杀岩浆怪时，岩浆膏的获取量提高 %s%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "击杀岩浆怪时，",
+          "order": 0
+        },
+        {
+          "color": "§a",
+          "text": "%s% ",
+          "zh": "%s%",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "more ",
+          "zh": "的获取量提高 ",
+          "order": 2
+        },
+        {
+          "color": "§c",
+          "text": "Magma Cream ",
+          "zh": "岩浆膏",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "when killing Magma Cubes.",
+          "zh": "。",
+          "order": 4
+        }
+      ],
+      "samples": [
+        [
+          "§7Gain §a20% §7more §cMagma Cream §7when",
+          "§7killing Magma Cubes."
+        ]
+      ]
+    },
+    {
+      "id": "mesa_biome_stick",
+      "context": "恶地生物群系棒；Mesa 用原版恶地",
+      "raw": "§7Allows you to change the biome at §7the §atargeted block §7on your private §7island to §bMesa§7.",
+      "text": "Allows you to change the biome at the targeted block on your private island to Mesa.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "可将私人岛屿上目标方块处的生物群系更改为恶地。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Allows you to change the biome at the ",
+          "zh": "处的生物群系更改为",
+          "order": 2
+        },
+        {
+          "color": "§a",
+          "text": "targeted block ",
+          "zh": "目标方块",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "on your private island to ",
+          "zh": "可将私人岛屿上",
+          "order": 0
+        },
+        {
+          "color": "§b",
+          "text": "Mesa",
+          "zh": "恶地",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。",
+          "order": 4
+        }
+      ],
+      "samples": [
+        [
+          "§7Allows you to change the biome at",
+          "§7the §atargeted block §7on your private",
+          "§7island to §bMesa§7."
+        ]
+      ]
+    },
+    {
+      "id": "budget_hopper_desc",
+      "context": "经济型漏斗",
+      "raw": "§7This item can be placed inside any §7minion. Automatically sells generated §7items when the minion has no space. §7Items are sold for §a%s% §7of their §7selling price.",
+      "text": "This item can be placed inside any minion. Automatically sells generated items when the minion has no space. Items are sold for %s% of their selling price.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "50",
+          "desc": "售价比例"
+        }
+      ],
+      "translate": true,
+      "zh": "可放入任意小人。小人存储空间已满时，自动按出售价格的 %s% 卖出产出的物品。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "This item can be placed inside any minion. Automatically sells generated items when the minion has no space. Items are sold for ",
+          "zh": "可放入任意小人。小人存储空间已满时，自动按出售价格的 "
+        },
+        {
+          "color": "§a",
+          "text": "%s% ",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": "of their selling price.",
+          "zh": " 卖出产出的物品。"
+        }
+      ],
+      "samples": [
+        [
+          "§7This item can be placed inside any",
+          "§7minion. Automatically sells generated",
+          "§7items when the minion has no space.",
+          "§7Items are sold for §a50% §7of their",
+          "§7selling price."
+        ]
+      ]
+    },
+    {
+      "id": "candy_bag_desc",
+      "context": "不给糖就捣蛋袋",
+      "raw": "§7Picking up Candy will place it directly §7into this bag! Your Candy inventory §7is shared across your profile - §7opening any Trick or Treat Bag will §7display your Candy inventory.",
+      "text": "Picking up Candy will place it directly into this bag! Your Candy inventory is shared across your profile - opening any Trick or Treat Bag will display your Candy inventory.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "拾取的糖果会直接放入此袋! 糖果库存在整个存档内共享，打开任意一个不给糖就捣蛋袋都会显示你的糖果库存。",
+      "samples": [
+        [
+          "§7Picking up Candy will place it directly",
+          "§7into this bag! Your Candy inventory",
+          "§7is shared across your profile -",
+          "§7opening any Trick or Treat Bag will",
+          "§7display your Candy inventory."
+        ]
+      ]
+    },
+    {
+      "id": "jyrre_consume_boost",
+      "context": "Jyrre 瓶",
+      "raw": "§7Consume to boost your §b✎ §bIntelligence §7for §a%s§7.",
+      "text": "Consume to boost your ✎ Intelligence for %s.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "duration",
+          "example": "60m",
+          "desc": "持续时间"
+        }
+      ],
+      "translate": true,
+      "zh": "饮用后提升你的 ✎ 法力，持续 %s。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Consume to boost your ",
+          "zh": "饮用后提升你的 "
+        },
+        {
+          "color": "§b",
+          "text": "✎ Intelligence ",
+          "zh": "✎ 法力"
+        },
+        {
+          "color": "§7",
+          "text": "for ",
+          "zh": "，持续 "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "samples": [
+        [
+          "§7Consume to boost your §b✎",
+          "§bIntelligence §7for §a60m§7."
+        ]
+      ]
+    },
+    {
+      "id": "jyrre_evolve",
+      "context": "Jyrre 瓶",
+      "raw": "§7Keep this item in your inventory to §7increase the bonus up to §b+%s✎ §bIntelligence§7, at which point the item §c§oevolves§7!",
+      "text": "Keep this item in your inventory to increase the bonus up to +%s✎ Intelligence, at which point the item evolves!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "300",
+          "desc": "法力上限"
+        }
+      ],
+      "translate": true,
+      "zh": "将此物品放在背包中，加成会逐渐提升，最高可达 +%s✎ 法力，届时物品将会进化!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Keep this item in your inventory to increase the bonus up to ",
+          "zh": "将此物品放在背包中，加成会逐渐提升，最高可达 "
+        },
+        {
+          "color": "§b",
+          "text": "+%s✎ Intelligence",
+          "zh": "+%s✎ 法力"
+        },
+        {
+          "color": "§7",
+          "text": ", at which point the item ",
+          "zh": "，届时物品将会"
+        },
+        {
+          "color": "§c§o",
+          "text": "evolves",
+          "zh": "进化"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!"
+        }
+      ],
+      "samples": [
+        [
+          "§7Keep this item in your inventory to",
+          "§7increase the bonus up to §b+300✎",
+          "§bIntelligence§7, at which point the item",
+          "§c§oevolves§7!"
+        ]
+      ]
+    },
+    {
+      "id": "lost_jyrre_desc",
+      "context": "遗失的 Jyrre 瓶",
+      "raw": "§7Provides a boost to your §b✎ §bIntelligence§7! The longer this item §7stays in your inventory, the more §7intelligent you will be after drinking §7it. Must be kept in your inventory at §7all times!",
+      "text": "Provides a boost to your ✎ Intelligence! The longer this item stays in your inventory, the more intelligent you will be after drinking it. Must be kept in your inventory at all times!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "提升你的 ✎ 法力! 此物品在背包中放得越久，喝下后获得的法力加成就越高。必须一直放在背包里!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Provides a boost to your ",
+          "zh": "提升你的 "
+        },
+        {
+          "color": "§b",
+          "text": "✎ Intelligence",
+          "zh": "✎ 法力"
+        },
+        {
+          "color": "§7",
+          "text": "! The longer this item stays in your inventory, the more intelligent you will be after drinking it. Must be kept in your inventory at all times!",
+          "zh": "! 此物品在背包中放得越久，喝下后获得的法力加成就越高。必须一直放在背包里!"
+        }
+      ],
+      "samples": [
+        [
+          "§7Provides a boost to your §b✎",
+          "§bIntelligence§7! The longer this item",
+          "§7stays in your inventory, the more",
+          "§7intelligent you will be after drinking",
+          "§7it. Must be kept in your inventory at",
+          "§7all times!"
+        ]
+      ]
+    }
+  ]
+}

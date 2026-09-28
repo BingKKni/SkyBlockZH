@@ -1,0 +1,852 @@
+{
+  "source": "../SkyZH_Logs/ (两台计算机，2026-09-27 12:12:17 编译后实测); https://hypixelskyblock.minecraft.wiki/w/Bazaar; https://hypixelskyblock.minecraft.wiki/w/Auction_House; https://hypixelskyblock.minecraft.wiki/w/Heart_of_the_Mountain",
+  "fetched_at": "2026-09-28",
+  "verified_ingame": true,
+  "lines": [
+    {
+      "id": "crafting_items_into_sacks",
+      "context": "快速合成到收纳袋；写复数，引擎兼容单数",
+      "raw": "§aCrafting §2%s §aitems into your sacks!",
+      "text": "Crafting %s items into your sacks!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "1",
+          "desc": "数量"
+        }
+      ],
+      "translate": true,
+      "zh": "正在将 %s 个物品合成到你的收纳袋中!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Crafting ",
+          "zh": "正在将 "
+        },
+        {
+          "color": "§2",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§a",
+          "text": "items into your sacks!",
+          "zh": " 个物品合成到你的收纳袋中!"
+        }
+      ]
+    },
+    {
+      "id": "recipe_cannot_supercraft",
+      "context": "配方界面",
+      "raw": "§cCannot be Supercrafted!",
+      "text": "Cannot be Supercrafted!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "无法超级合成!"
+    },
+    {
+      "id": "recipe_not_unlocked",
+      "context": "配方界面",
+      "raw": "§cRecipe not unlocked!",
+      "text": "Recipe not unlocked!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "配方未解锁!"
+    },
+    {
+      "id": "minion_highest_tier",
+      "context": "小人升级按钮",
+      "raw": "§aHighest tier has been reached!",
+      "text": "Highest tier has been reached!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "已达到最高等级!"
+    },
+    {
+      "id": "minion_apply_infusion_button",
+      "context": "小人界面按钮",
+      "raw": "§aApply Mithril Infusion",
+      "text": "Apply Mithril Infusion",
+      "placeholders": [],
+      "translate": true,
+      "zh": "使用秘银灌注"
+    },
+    {
+      "id": "click_to_apply",
+      "context": "通用按钮提示",
+      "raw": "§eClick to apply!",
+      "text": "Click to apply!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "点击使用!"
+    },
+    {
+      "id": "click_to_view_trades",
+      "context": "收藏品奖励中的交易解锁",
+      "raw": "§eClick to view trades!",
+      "text": "Click to view trades!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "点击查看交易!"
+    },
+    {
+      "id": "biome_stick_selected_radius",
+      "context": "生物群系棒",
+      "raw": "§7Selected Radius: §b%s",
+      "text": "Selected Radius: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "3",
+          "desc": "半径"
+        }
+      ],
+      "translate": true,
+      "zh": "选定半径: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Selected Radius: ",
+          "zh": "选定半径: "
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "free_will_loyalty_chance",
+      "context": "Free Will 小人升级",
+      "raw": "§7Loyalty Chance:",
+      "text": "Loyalty Chance:",
+      "placeholders": [],
+      "translate": true,
+      "zh": "忠诚几率:"
+    },
+    {
+      "id": "trades_used_to_craft_pets",
+      "context": "超级附魔蛋等宠物材料",
+      "raw": "§7Used to craft more advanced pets.",
+      "text": "Used to craft more advanced pets.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "用于合成更高级的宠物。"
+    },
+    {
+      "id": "trades_bone_meal",
+      "context": "交易菜单中的骨粉",
+      "raw": "§7Instantly grows crops and saplings.",
+      "text": "Instantly grows crops and saplings.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "使作物和树苗立即长成。"
+    },
+    {
+      "id": "bazaar_confirm_matched",
+      "context": "集市确认界面",
+      "raw": "§7Matched Amount: §a%s§7x",
+      "text": "Matched Amount: %sx",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "256",
+          "desc": "数量"
+        }
+      ],
+      "translate": true,
+      "zh": "已匹配数量: %s 个",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Matched Amount: ",
+          "zh": "已匹配数量: "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": "x",
+          "zh": " 个"
+        }
+      ]
+    },
+    {
+      "id": "bazaar_confirm_paying_ratio",
+      "context": "集市确认界面的高价警告",
+      "raw": "§cYou are paying §6x%s §cthis value.",
+      "text": "You are paying x%s this value.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "6.28",
+          "desc": "倍数"
+        }
+      ],
+      "translate": true,
+      "zh": "你支付的价格是该均价的 %s 倍。",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "You are paying ",
+          "zh": "你支付的价格是该均价的 "
+        },
+        {
+          "color": "§6",
+          "text": "x%s ",
+          "zh": "%s 倍"
+        },
+        {
+          "color": "§c",
+          "text": "this value.",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "bazaar_confirm_can_buy_in",
+      "context": "集市确认按钮倒计时",
+      "raw": "§cCan buy in %ss",
+      "text": "Can buy in %ss",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "5",
+          "desc": "秒"
+        }
+      ],
+      "translate": true,
+      "zh": "%s 秒后可购买"
+    },
+    {
+      "id": "click_to_confirm_plain",
+      "context": "确认按钮，无感叹号的写法",
+      "raw": "§eClick to confirm",
+      "text": "Click to confirm",
+      "placeholders": [],
+      "translate": true,
+      "zh": "点击确认"
+    },
+    {
+      "id": "input_amount_value",
+      "context": "数量输入界面",
+      "raw": "§7Your input: §c%s",
+      "text": "Your input: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "-1",
+          "desc": "输入值"
+        }
+      ],
+      "translate": true,
+      "zh": "你的输入: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Your input: ",
+          "zh": "你的输入: "
+        },
+        {
+          "color": "§c",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "input_invalid_amount",
+      "context": "数量输入界面",
+      "raw": "§cError! Invalid amount!",
+      "text": "Error! Invalid amount!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "错误! 数量无效!"
+    },
+    {
+      "id": "input_click_fixup",
+      "context": "数量输入界面",
+      "raw": "§eClick to fixup!",
+      "text": "Click to fixup!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "点击修正!"
+    },
+    {
+      "id": "input_your_price",
+      "context": "价格输入界面",
+      "raw": "§7Your price: §6%s coins",
+      "text": "Your price: %s coins",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "5,555.0",
+          "desc": "价格"
+        }
+      ],
+      "translate": true,
+      "zh": "你的出价: %s 硬币",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Your price: ",
+          "zh": "你的出价: "
+        },
+        {
+          "color": "§6",
+          "text": "%s coins",
+          "zh": "%s 硬币"
+        }
+      ]
+    },
+    {
+      "id": "input_cannot_afford",
+      "context": "价格输入界面",
+      "raw": "§cCannot afford price!",
+      "text": "Cannot afford price!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "硬币不足，无法支付此价格!"
+    },
+    {
+      "id": "instance_click_create",
+      "context": "极冰矿井队伍副本就绪",
+      "raw": "§eClick to create instance!",
+      "text": "Click to create instance!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "点击创建副本!"
+    },
+    {
+      "id": "instance_click_cancel_queue",
+      "context": "副本排队",
+      "raw": "§eClick to cancel queue!",
+      "text": "Click to cancel queue!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "点击取消排队!"
+    },
+    {
+      "id": "instance_nevermind",
+      "context": "取消副本的按钮名",
+      "raw": "§cNevermind!",
+      "text": "Nevermind!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "算了!"
+    },
+    {
+      "id": "auction_bin_paid_minimum",
+      "context": "一口价拍卖已购买",
+      "raw": "§7You paid the minimum price of §6%s coins§7.",
+      "text": "You paid the minimum price of %s coins.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "80,000",
+          "desc": "价格"
+        }
+      ],
+      "translate": true,
+      "zh": "你支付了最低价格 %s 硬币。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You paid the minimum price of ",
+          "zh": "你支付了最低价格 "
+        },
+        {
+          "color": "§6",
+          "text": "%s coins",
+          "zh": "%s 硬币"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "auction_may_collect",
+      "context": "一口价拍卖已购买",
+      "raw": "§7You may collect the item.",
+      "text": "You may collect the item.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "你可以领取该物品了。"
+    },
+    {
+      "id": "auction_click_pick_up",
+      "context": "一口价拍卖已购买",
+      "raw": "§eClick to pick up item!",
+      "text": "Click to pick up item!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "点击领取物品!"
+    },
+    {
+      "id": "auction_back_to_search",
+      "context": "拍卖物品页的返回按钮",
+      "raw": "§7To Auctions: \"%s\"",
+      "text": "To Auctions: \"%s\"",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "search_query",
+          "example": "backpack",
+          "desc": "搜索词"
+        }
+      ],
+      "translate": true,
+      "zh": "返回拍卖搜索: \"%s\""
+    },
+    {
+      "id": "auction_items_to_pickup",
+      "context": "合作拍卖行",
+      "raw": "§b* You have items/coins to pickup!",
+      "text": "* You have items/coins to pickup!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "* 你有待领取的物品/硬币!"
+    },
+    {
+      "id": "confirm_purchase_name",
+      "context": "确认购买按钮名，与同名标题一致",
+      "raw": "§aConfirm Purchase",
+      "text": "Confirm Purchase",
+      "placeholders": [],
+      "translate": true,
+      "zh": "确认购买"
+    },
+    {
+      "id": "confirm_purchasing_item",
+      "context": "确认购买",
+      "raw": "§7Purchasing: §a%s",
+      "text": "Purchasing: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "item_name",
+          "example": "Small Backpack",
+          "desc": "物品名保留英文"
+        }
+      ],
+      "translate": true,
+      "zh": "购买: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Purchasing: ",
+          "zh": "购买: "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "confirm_buying_item_header",
+      "context": "确认购买",
+      "raw": "§e§l§nBUYING ITEM:",
+      "text": "BUYING ITEM:",
+      "placeholders": [],
+      "translate": true,
+      "zh": "购买物品:"
+    },
+    {
+      "id": "hotm_slot_left_select",
+      "context": "山峦之心槽位",
+      "raw": "§eLeft-click to select!",
+      "text": "Left-click to select!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "左键选择!"
+    },
+    {
+      "id": "hotm_slot_right_rename",
+      "context": "山峦之心槽位",
+      "raw": "§eRight-click to rename!",
+      "text": "Right-click to rename!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "右键重命名!"
+    },
+    {
+      "id": "hotm_slot_name",
+      "context": "山峦之心槽位默认名；数字不是等级",
+      "raw": "§aHeart of the Mountain %s",
+      "text": "Heart of the Mountain %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "3",
+          "desc": "槽位序号"
+        }
+      ],
+      "translate": true,
+      "zh": "山峦之心 %s"
+    },
+    {
+      "id": "sack_total_items",
+      "context": "收纳袋",
+      "raw": "§7Total items: §e%s",
+      "text": "Total items: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "3,627",
+          "desc": "总数"
+        }
+      ],
+      "translate": true,
+      "zh": "物品总数: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Total items: ",
+          "zh": "物品总数: "
+        },
+        {
+          "color": "§e",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "sack_items_count",
+      "context": "收纳袋",
+      "raw": "§7Items: §e%s",
+      "text": "Items: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "32",
+          "desc": "数量"
+        }
+      ],
+      "translate": true,
+      "zh": "物品: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Items: ",
+          "zh": "物品: "
+        },
+        {
+          "color": "§e",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "drill_anvil_combine",
+      "context": "钻头铁砧",
+      "raw": "§aClick the §cBUTTON BELOW§a to combine.",
+      "text": "Click the BUTTON BELOW to combine.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "点击下方按钮进行合并。",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Click the ",
+          "zh": "点击"
+        },
+        {
+          "color": "§c",
+          "text": "BUTTON BELOW",
+          "zh": "下方按钮"
+        },
+        {
+          "color": "§a",
+          "text": " to combine.",
+          "zh": "进行合并。"
+        }
+      ]
+    },
+    {
+      "id": "drill_anvil_click_refuel",
+      "context": "钻头铁砧",
+      "raw": "§eClick to refuel!",
+      "text": "Click to refuel!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "点击补充燃料!"
+    },
+    {
+      "id": "bestiary_overall_progress_shown",
+      "context": "生物图鉴总进度显示开关；通用数值模板无法匹配 SHOWN",
+      "raw": "§7Overall Progress: §aSHOWN",
+      "text": "Overall Progress: SHOWN",
+      "placeholders": [],
+      "translate": true,
+      "zh": "总进度: 已显示",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Overall Progress: ",
+          "zh": "总进度: "
+        },
+        {
+          "color": "§a",
+          "text": "SHOWN",
+          "zh": "已显示"
+        }
+      ]
+    },
+    {
+      "id": "leveling_per_objective",
+      "context": "空岛等级获取途径",
+      "raw": "§7Per Objective Completed: §b+%s XP",
+      "text": "Per Objective Completed: +%s XP",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "3",
+          "desc": "空岛经验"
+        }
+      ],
+      "translate": true,
+      "zh": "每完成一个目标: +%s 经验",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Per Objective Completed: ",
+          "zh": "每完成一个目标: "
+        },
+        {
+          "color": "§b",
+          "text": "+%s XP",
+          "zh": "+%s 经验"
+        }
+      ]
+    },
+    {
+      "id": "leveling_caps_at",
+      "context": "空岛等级获取途径",
+      "raw": "§8§o(Caps at %s!).",
+      "text": "(Caps at %s!).",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "5",
+          "desc": "上限"
+        }
+      ],
+      "translate": true,
+      "zh": "(最多计 %s 次!)。"
+    },
+    {
+      "id": "leveling_spooky_festival",
+      "context": "空岛等级获取途径列表；选中时带 ▶",
+      "raw": "§eSpooky Festival",
+      "text": "Spooky Festival",
+      "placeholders": [],
+      "translate": true,
+      "zh": "惊魂节"
+    },
+    {
+      "id": "leveling_trophy_fish",
+      "context": "空岛等级获取途径列表；选中时带 ▶",
+      "raw": "§eTrophy Fish",
+      "text": "Trophy Fish",
+      "placeholders": [],
+      "translate": true,
+      "zh": "奖杯鱼"
+    },
+    {
+      "id": "corpse_rng_xp",
+      "context": "冰封尸体 RNG 计量表",
+      "raw": "§7Frozen Corpse XP: §9%1$s§5/§9%2$s",
+      "text": "Frozen Corpse XP: %1$s/%2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "258,050",
+          "desc": "当前"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "60,000",
+          "desc": "目标"
+        }
+      ],
+      "translate": true,
+      "zh": "冰封尸体经验: %1$s/%2$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Frozen Corpse XP: ",
+          "zh": "冰封尸体经验: "
+        },
+        {
+          "color": "§9",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§5",
+          "text": "/",
+          "zh": "/"
+        },
+        {
+          "color": "§9",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ]
+    },
+    {
+      "id": "bestiary_back_to",
+      "context": "生物图鉴返回按钮",
+      "raw": "§7To Bestiary ➜ %s",
+      "text": "To Bestiary ➜ %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "location_name",
+          "example": "Crimson Isle",
+          "desc": "区域"
+        }
+      ],
+      "translate": true,
+      "zh": "返回生物图鉴 ➜ %s"
+    },
+    {
+      "id": "bestiary_combat_exp",
+      "context": "生物图鉴怪物详情",
+      "raw": "§7Combat Exp: §3%s",
+      "text": "Combat Exp: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "400",
+          "desc": "经验"
+        }
+      ],
+      "translate": true,
+      "zh": "战斗经验: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Combat Exp: ",
+          "zh": "战斗经验: "
+        },
+        {
+          "color": "§3",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "jyrre_intelligence_bonus",
+      "context": "Jyrre 瓶",
+      "raw": "§7Intelligence Bonus: §b%s",
+      "text": "Intelligence Bonus: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "0",
+          "desc": "加成"
+        }
+      ],
+      "translate": true,
+      "zh": "法力加成: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Intelligence Bonus: ",
+          "zh": "法力加成: "
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "jyrre_duration_minutes",
+      "context": "Jyrre 瓶",
+      "raw": "§7Duration: §b%s Minutes",
+      "text": "Duration: %s Minutes",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "10",
+          "desc": "分钟"
+        }
+      ],
+      "translate": true,
+      "zh": "持续时间: %s 分钟",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Duration: ",
+          "zh": "持续时间: "
+        },
+        {
+          "color": "§b",
+          "text": "%s Minutes",
+          "zh": "%s 分钟"
+        }
+      ]
+    },
+    {
+      "id": "jyrre_current_bonus",
+      "context": "Jyrre 瓶",
+      "raw": "§7Current Bonus: §b+%s✎ Intelligence",
+      "text": "Current Bonus: +%s✎ Intelligence",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "0",
+          "desc": "加成"
+        }
+      ],
+      "translate": true,
+      "zh": "当前加成: +%s✎ 法力",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Current Bonus: ",
+          "zh": "当前加成: "
+        },
+        {
+          "color": "§b",
+          "text": "+%s✎ Intelligence",
+          "zh": "+%s✎ 法力"
+        }
+      ]
+    }
+  ]
+}

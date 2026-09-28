@@ -287,10 +287,13 @@ public final class LoreHarness {
 		Map<String, JsonObject> definitions = placeholders(r);
 		StringBuilder regex = new StringBuilder();
 		List<String> tokens = new ArrayList<>();
+		// Same plural fold as the engine: a plural template answers the singular sample too.
+		boolean anyPlaceholder = TOKEN.matcher(template).results().anyMatch(m -> !m.group().equals("%%"));
+		java.util.function.Function<String, String> literal = anyPlaceholder ? TranslationEntry::eitherNumber : Pattern::quote;
 		Matcher token = TOKEN.matcher(template);
 		int end = 0;
 		while (token.find()) {
-			regex.append(Pattern.quote(template.substring(end, token.start())));
+			regex.append(literal.apply(template.substring(end, token.start())));
 			if (token.group().equals("%%")) regex.append('%');
 			else {
 				JsonObject p = definitions.get(token.group());
@@ -303,7 +306,7 @@ public final class LoreHarness {
 			}
 			end = token.end();
 		}
-		regex.append(Pattern.quote(template.substring(end)));
+		regex.append(literal.apply(template.substring(end)));
 		Matcher match = Pattern.compile(regex.toString()).matcher(plain);
 		if (!match.matches()) throw new IllegalArgumentException("source does not align with text: " + original);
 		Map<String, String> replacements = new LinkedHashMap<>();

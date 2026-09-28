@@ -1,0 +1,357 @@
+{
+  "source": "../SkyZH_Logs/ (两台计算机，2026-09-27 12:12:17 编译后实测); https://hypixelskyblock.minecraft.wiki/w/Accessory_Bag; https://hypixelskyblock.minecraft.wiki/w/Collections",
+  "fetched_at": "2026-09-28",
+  "verified_ingame": true,
+  "lines": [
+    {
+      "id": "back_to_minion_tier",
+      "context": "配方界面返回按钮；比「%s Minion %s」字面更长，防止 To 被吞进名字",
+      "raw": "§7To %1$s Minion %2$s",
+      "text": "To %1$s Minion %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "category_name",
+          "example": "Mithril",
+          "desc": "小人种类，词表有译名时翻译"
+        },
+        {
+          "token": "%2$s",
+          "type": "tier",
+          "example": "V",
+          "desc": "小人等级"
+        }
+      ],
+      "gloss": "实测曾被 crafted_minion_name_tiered 吞成「To Mithril 小人 V」。",
+      "translate": true,
+      "zh": "返回%1$s小人 %2$s"
+    },
+    {
+      "id": "back_to_enchanted_mithril",
+      "context": "配方界面返回按钮；防止委托模板「%s Mithril」误吞",
+      "raw": "§7To Enchanted Mithril",
+      "text": "To Enchanted Mithril",
+      "placeholders": [],
+      "translate": true,
+      "zh": "返回附魔秘银"
+    },
+    {
+      "id": "back_to_refined_mithril",
+      "context": "配方界面返回按钮；防止委托模板「%s Mithril」误吞",
+      "raw": "§7To Refined Mithril",
+      "text": "To Refined Mithril",
+      "placeholders": [],
+      "translate": true,
+      "zh": "返回精炼秘银"
+    },
+    {
+      "id": "back_to_minion_upgrades",
+      "context": "集市返回按钮；防止「%s Upgrades」误吞",
+      "raw": "§7To Minion Upgrades",
+      "text": "To Minion Upgrades",
+      "placeholders": [],
+      "translate": true,
+      "zh": "返回小人升级"
+    },
+    {
+      "id": "back_to_frozen_corpse_milestones",
+      "context": "RNG 计量表返回按钮",
+      "raw": "§7To Frozen Corpse Milestones",
+      "text": "To Frozen Corpse Milestones",
+      "placeholders": [],
+      "translate": true,
+      "zh": "返回冰封尸体里程碑"
+    },
+    {
+      "id": "frozen_corpses_rng_meter_name",
+      "context": "冰封尸体里程碑中的计量表入口；防止「%s RNG Meter」只翻半个名字",
+      "raw": "§aFrozen Corpses RNG Meter",
+      "text": "Frozen Corpses RNG Meter",
+      "placeholders": [],
+      "translate": true,
+      "zh": "冰封尸体 RNG 计量表"
+    },
+    {
+      "id": "trick_or_treat_bag_name",
+      "context": "糖果袋物品名；防止「%s Bag」只翻半个名字",
+      "raw": "§aTrick or Treat Bag",
+      "text": "Trick or Treat Bag",
+      "placeholders": [],
+      "translate": true,
+      "zh": "不给糖就捣蛋袋"
+    },
+    {
+      "id": "requires_collection_tier_period",
+      "context": "背包/配方的收藏品解锁条件；与 Menu_Common 同译",
+      "raw": "§cRequires §a%1$s Collection %2$s§c.",
+      "text": "Requires %1$s Collection %2$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "category_name",
+          "example": "Timite",
+          "desc": "收藏品名"
+        },
+        {
+          "token": "%2$s",
+          "type": "tier",
+          "example": "II",
+          "desc": "等级"
+        }
+      ],
+      "translate": true,
+      "zh": "需要%1$s收藏品 %2$s。",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "Requires ",
+          "zh": "需要"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s Collection %2$s",
+          "zh": "%1$s收藏品 %2$s"
+        },
+        {
+          "color": "§c",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "requires_collection_tier_heart",
+      "context": "物品使用条件；比「❣ Requires %s.」更具体",
+      "raw": "§4❣ §cRequires §a%1$s Collection %2$s§c.",
+      "text": "❣ Requires %1$s Collection %2$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "category_name",
+          "example": "Ghast Tear",
+          "desc": "收藏品名"
+        },
+        {
+          "token": "%2$s",
+          "type": "tier",
+          "example": "IV",
+          "desc": "等级"
+        }
+      ],
+      "translate": true,
+      "zh": "❣ 需要%1$s收藏品 %2$s。",
+      "segments": [
+        {
+          "color": "§4",
+          "text": "❣ ",
+          "zh": "❣ "
+        },
+        {
+          "color": "§c",
+          "text": "Requires ",
+          "zh": "需要"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s Collection %2$s",
+          "zh": "%1$s收藏品 %2$s"
+        },
+        {
+          "color": "§c",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "stat_fishing_speed_bonus",
+      "context": "饰品属性行",
+      "raw": "§7Fishing Speed: §b%1$s §d(%2$s)",
+      "text": "Fishing Speed: %1$s (%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "+2.5",
+          "desc": "属性值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "+2.5",
+          "desc": "充能加成"
+        }
+      ],
+      "translate": true,
+      "zh": "钓鱼速度: %1$s (%2$s)",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Fishing Speed: ",
+          "zh": "钓鱼速度: "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§d",
+          "text": "(%2$s)",
+          "zh": "(%2$s)"
+        }
+      ]
+    },
+    {
+      "id": "stat_foraging_fortune_bonus",
+      "context": "饰品属性行",
+      "raw": "§7Foraging Fortune: §6%1$s §d(%2$s)",
+      "text": "Foraging Fortune: %1$s (%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "+10",
+          "desc": "属性值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "+10",
+          "desc": "充能加成"
+        }
+      ],
+      "translate": true,
+      "zh": "伐木时运: %1$s (%2$s)",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Foraging Fortune: ",
+          "zh": "伐木时运: "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§d",
+          "text": "(%2$s)",
+          "zh": "(%2$s)"
+        }
+      ]
+    },
+    {
+      "id": "stat_runecrafting_wisdom",
+      "context": "饰品属性行",
+      "raw": "§7Runecrafting Wisdom: §3%s",
+      "text": "Runecrafting Wisdom: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "+3",
+          "desc": "属性值"
+        }
+      ],
+      "translate": true,
+      "zh": "符文制作智慧: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Runecrafting Wisdom: ",
+          "zh": "符文制作智慧: "
+        },
+        {
+          "color": "§3",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "accessory_current_bonus_health",
+      "context": "饰品当前加成",
+      "raw": "§7Current Bonus: §c+%s❤ Health",
+      "text": "Current Bonus: +%s❤ Health",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "4",
+          "desc": "生命值"
+        }
+      ],
+      "translate": true,
+      "zh": "当前加成: +%s❤ 生命值",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Current Bonus: ",
+          "zh": "当前加成: "
+        },
+        {
+          "color": "§c",
+          "text": "+%s❤ Health",
+          "zh": "+%s❤ 生命值"
+        }
+      ]
+    },
+    {
+      "id": "accessory_bonus_runecrafting",
+      "context": "符文饰品当前加成",
+      "raw": "§7Bonus: §3+%s☯ Runecrafting Wisdom",
+      "text": "Bonus: +%s☯ Runecrafting Wisdom",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "3",
+          "desc": "智慧"
+        }
+      ],
+      "translate": true,
+      "zh": "加成: +%s☯ 符文制作智慧",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Bonus: ",
+          "zh": "加成: "
+        },
+        {
+          "color": "§3",
+          "text": "+%s☯ Runecrafting Wisdom",
+          "zh": "+%s☯ 符文制作智慧"
+        }
+      ]
+    },
+    {
+      "id": "accessory_internalized_soulflow",
+      "context": "魂流饰品；魂流沿用魂流引擎",
+      "raw": "§7Internalized: §3%s⸎ Soulflow",
+      "text": "Internalized: %s⸎ Soulflow",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "0",
+          "desc": "魂流"
+        }
+      ],
+      "translate": true,
+      "zh": "已内化: %s⸎ 魂流",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Internalized: ",
+          "zh": "已内化: "
+        },
+        {
+          "color": "§3",
+          "text": "%s⸎ Soulflow",
+          "zh": "%s⸎ 魂流"
+        }
+      ]
+    }
+  ]
+}

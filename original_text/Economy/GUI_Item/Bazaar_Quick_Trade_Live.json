@@ -1,0 +1,158 @@
+{
+  "source": "../SkyZH_Logs/ (两台计算机，2026-09-27 12:12:17 编译后实测); https://hypixelskyblock.minecraft.wiki/w/Bazaar",
+  "fetched_at": "2026-09-28",
+  "verified_ingame": true,
+  "lines": [
+    {
+      "id": "bazaar_quick_buy_each",
+      "context": "集市分类页的快捷买入行；BUY/SELL 与 Bazaar_Controls_Live 同译",
+      "raw": "§a§lBUY §a%1$s§7x §f%2$s §7for §6%3$s §7each",
+      "text": "BUY %1$sx %2$s for %3$s each",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "71,280",
+          "desc": "数量"
+        },
+        {
+          "token": "%2$s",
+          "type": "category_name",
+          "example": "Mithril",
+          "desc": "商品名，词表有译名时翻译"
+        },
+        {
+          "token": "%3$s",
+          "type": "number",
+          "example": "5.5",
+          "desc": "单价"
+        }
+      ],
+      "translate": true,
+      "zh": "购买 %1$s 个%2$s，单价 %3$s 硬币",
+      "segments": [
+        {
+          "color": "§a§l",
+          "text": "BUY ",
+          "zh": "购买 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "x ",
+          "zh": " 个"
+        },
+        {
+          "color": "§f",
+          "text": "%2$s ",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": "for ",
+          "zh": "，单价 "
+        },
+        {
+          "color": "§6",
+          "text": "%3$s ",
+          "zh": "%3$s "
+        },
+        {
+          "color": "§7",
+          "text": "each",
+          "zh": "硬币"
+        }
+      ]
+    },
+    {
+      "id": "bazaar_quick_sell_each",
+      "context": "集市分类页的快捷卖出行",
+      "raw": "§6§lSELL §a%1$s§7x §9%2$s §7for §6%3$s §7each",
+      "text": "SELL %1$sx %2$s for %3$s each",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "4",
+          "desc": "数量"
+        },
+        {
+          "token": "%2$s",
+          "type": "category_name",
+          "example": "Hard Stone",
+          "desc": "商品名，词表有译名时翻译"
+        },
+        {
+          "token": "%3$s",
+          "type": "number",
+          "example": "0.1",
+          "desc": "单价"
+        }
+      ],
+      "translate": true,
+      "zh": "出售 %1$s 个%2$s，单价 %3$s 硬币",
+      "segments": [
+        {
+          "color": "§6§l",
+          "text": "SELL ",
+          "zh": "出售 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "x ",
+          "zh": " 个"
+        },
+        {
+          "color": "§9",
+          "text": "%2$s ",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": "for ",
+          "zh": "，单价 "
+        },
+        {
+          "color": "§6",
+          "text": "%3$s ",
+          "zh": "%3$s "
+        },
+        {
+          "color": "§7",
+          "text": "each",
+          "zh": "硬币"
+        }
+      ]
+    },
+    {
+      "id": "bazaar_bulk_instasell_ignored",
+      "context": "忽略立即出售开关；与 Allowed 同一格",
+      "raw": "§7Bulk Instasell: §cIgnored!",
+      "text": "Bulk Instasell: Ignored!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "批量立即出售: 已忽略!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Bulk Instasell: ",
+          "zh": "批量立即出售: "
+        },
+        {
+          "color": "§c",
+          "text": "Ignored!",
+          "zh": "已忽略!"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,503 @@
+{
+  "source": "../SkyZH_Logs/ (两台计算机，2026-09-27 12:12:17 编译后实测); https://hypixelskyblock.minecraft.wiki/w/Potions",
+  "fetched_at": "2026-09-28",
+  "verified_ingame": true,
+  "source_note": "整句跨行；未进采集的尾行已在 gloss 说明来源。",
+  "entries": [
+    {
+      "id": "effect_adrenaline_desc",
+      "context": "肾上腺素效果",
+      "raw": "§7Grants §a+%1$s §7of absorption and §a+%2$s §f✦ Speed§7.",
+      "text": "Grants +%1$s of absorption and +%2$s ✦ Speed.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "300",
+          "desc": "伤害吸收值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "40",
+          "desc": "速度"
+        }
+      ],
+      "gloss": "尾行 ✦ Speed. 已被其他记录应答而未进采集，格式参照同菜单 Rabbit 的实测尾行。",
+      "translate": true,
+      "zh": "获得 +%1$s 伤害吸收值与 +%2$s ✦ 速度。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "获得 "
+        },
+        {
+          "color": "§a",
+          "text": "+%1$s ",
+          "zh": "+%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "of absorption and ",
+          "zh": "伤害吸收值与 "
+        },
+        {
+          "color": "§a",
+          "text": "+%2$s ",
+          "zh": "+%2$s "
+        },
+        {
+          "color": "§f",
+          "text": "✦ Speed",
+          "zh": "✦ 速度"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants §a+300 §7of absorption and §a+40",
+          "§f Speed§7."
+        ]
+      ]
+    },
+    {
+      "id": "effect_agility_desc",
+      "context": "敏捷效果",
+      "raw": "§7Grants §a+%1$s §f✦ Speed §7and increases §7the chance for mob attacks to miss §7by §a%2$s%§7.",
+      "text": "Grants +%1$s ✦ Speed and increases the chance for mob attacks to miss by %2$s%.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "40",
+          "desc": "速度"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "40",
+          "desc": "落空几率"
+        }
+      ],
+      "translate": true,
+      "zh": "获得 +%1$s ✦ 速度，并使怪物攻击落空的几率提高 %2$s%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "获得 "
+        },
+        {
+          "color": "§a",
+          "text": "+%1$s ",
+          "zh": "+%1$s "
+        },
+        {
+          "color": "§f",
+          "text": "✦ Speed ",
+          "zh": "✦ 速度"
+        },
+        {
+          "color": "§7",
+          "text": "and increases the chance for mob attacks to miss by ",
+          "zh": "，并使怪物攻击落空的几率提高 "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s%",
+          "zh": "%2$s%"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants §a+40 §f Speed §7and increases",
+          "§7the chance for mob attacks to miss",
+          "§7by §a40%§7."
+        ]
+      ]
+    },
+    {
+      "id": "effect_crit_mf_desc",
+      "context": "效果菜单中同时提供暴击与魔法寻宝的效果",
+      "raw": "§7Grants §9+%1$s☣ Crit Chance§7, §9+%2$s☠ Crit §9Damage §7and §b+%3$s✯ Magic Find§7.",
+      "text": "Grants +%1$s☣ Crit Chance, +%2$s☠ Crit Damage and +%3$s✯ Magic Find.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "25",
+          "desc": "暴击率"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "40",
+          "desc": "暴击伤害"
+        },
+        {
+          "token": "%3$s",
+          "type": "number",
+          "example": "10",
+          "desc": "魔法寻宝"
+        }
+      ],
+      "translate": true,
+      "zh": "获得 +%1$s☣ 暴击率、+%2$s☠ 暴击伤害与 +%3$s✯ 魔法寻宝。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "获得 "
+        },
+        {
+          "color": "§9",
+          "text": "+%1$s☣ Crit Chance",
+          "zh": "+%1$s☣ 暴击率"
+        },
+        {
+          "color": "§7",
+          "text": ", ",
+          "zh": "、"
+        },
+        {
+          "color": "§9",
+          "text": "+%2$s☠ Crit Damage ",
+          "zh": "+%2$s☠ 暴击伤害"
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "与 "
+        },
+        {
+          "color": "§b",
+          "text": "+%3$s✯ Magic Find",
+          "zh": "+%3$s✯ 魔法寻宝"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants §9+25 Crit Chance§7, §9+40 Crit",
+          "§9Damage §7and §b+10 Magic Find§7."
+        ]
+      ]
+    },
+    {
+      "id": "effect_dodge_desc",
+      "context": "闪避效果",
+      "raw": "§7Mob attacks have a §a%s% §7chance to §7miss.",
+      "text": "Mob attacks have a %s% chance to miss.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "40",
+          "desc": "落空几率"
+        }
+      ],
+      "translate": true,
+      "zh": "怪物攻击有 %s% 的几率落空。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Mob attacks have a ",
+          "zh": "怪物攻击有 "
+        },
+        {
+          "color": "§a",
+          "text": "%s% ",
+          "zh": "%s% "
+        },
+        {
+          "color": "§7",
+          "text": "chance to miss.",
+          "zh": "的几率落空。"
+        }
+      ],
+      "samples": [
+        [
+          "§7Mob attacks have a §a40% §7chance to",
+          "§7miss."
+        ]
+      ]
+    },
+    {
+      "id": "effect_experience_desc",
+      "context": "经验类效果",
+      "raw": "§7Gain §a+%1$s% §7experience orbs and §3+%2$s☯ Combat Wisdom§7.",
+      "text": "Gain +%1$s% experience orbs and +%2$s☯ Combat Wisdom.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "40",
+          "desc": "额外经验球"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "10",
+          "desc": "战斗智慧"
+        }
+      ],
+      "translate": true,
+      "zh": "经验球获取量 +%1$s%，并获得 +%2$s☯ 战斗智慧。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "经验球获取量 "
+        },
+        {
+          "color": "§a",
+          "text": "+%1$s% ",
+          "zh": "+%1$s%"
+        },
+        {
+          "color": "§7",
+          "text": "experience orbs and ",
+          "zh": "，并获得 "
+        },
+        {
+          "color": "§3",
+          "text": "+%2$s☯ Combat Wisdom",
+          "zh": "+%2$s☯ 战斗智慧"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "samples": [
+        [
+          "§7Gain §a+40% §7experience orbs and",
+          "§3+10☯ Combat Wisdom§7."
+        ]
+      ]
+    },
+    {
+      "id": "effect_fire_resistance_desc",
+      "context": "抗火效果；2022 年起只减免 10% 火焰与熔岩伤害",
+      "raw": "§7Receive §a%s% §7reduced damage from §7fire and lava.",
+      "text": "Receive %s% reduced damage from fire and lava.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "10",
+          "desc": "减伤"
+        }
+      ],
+      "gloss": "尾行 fire and lava. 与 Enchantments.json 的续行同文，因此没有进采集。",
+      "translate": true,
+      "zh": "受到的火焰与熔岩伤害降低 %s%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Receive ",
+          "zh": "受到的火焰与熔岩伤害降低 "
+        },
+        {
+          "color": "§a",
+          "text": "%s% ",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": "reduced damage from fire and lava.",
+          "zh": "。"
+        }
+      ],
+      "samples": [
+        [
+          "§7Receive §a10% §7reduced damage from",
+          "§7fire and lava."
+        ]
+      ]
+    },
+    {
+      "id": "effect_jump_desc",
+      "context": "跳跃提升效果",
+      "raw": "§7Increases your jump height to §a%s §7blocks.",
+      "text": "Increases your jump height to %s blocks.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "4.1",
+          "desc": "格数"
+        }
+      ],
+      "gloss": "尾行 blocks. 已有同文续行记录，因此没有进采集。",
+      "translate": true,
+      "zh": "跳跃高度提升至 %s 格。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increases your jump height to ",
+          "zh": "跳跃高度提升至 "
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s "
+        },
+        {
+          "color": "§7",
+          "text": "blocks.",
+          "zh": "格。"
+        }
+      ],
+      "samples": [
+        [
+          "§7Increases your jump height to §a4.1",
+          "§7blocks."
+        ]
+      ]
+    },
+    {
+      "id": "effect_magic_find_desc",
+      "context": "魔法寻宝药水效果",
+      "raw": "§7Gain §a+%s% §7chance to find rare items §7from monsters and bosses.",
+      "text": "Gain +%s% chance to find rare items from monsters and bosses.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "75",
+          "desc": "几率"
+        }
+      ],
+      "translate": true,
+      "zh": "使你从怪物和首领身上找到稀有物品的几率提高 %s%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "使你从怪物和首领身上找到稀有物品的几率提高 "
+        },
+        {
+          "color": "§a",
+          "text": "+%s% ",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": "chance to find rare items from monsters and bosses.",
+          "zh": "。"
+        }
+      ],
+      "samples": [
+        [
+          "§7Gain §a+75% §7chance to find rare items",
+          "§7from monsters and bosses."
+        ]
+      ]
+    },
+    {
+      "id": "effect_pet_luck_desc",
+      "context": "宠物幸运效果",
+      "raw": "§7Gain §a+%s% §7chance to find pets and §7craft higher tier pets.",
+      "text": "Gain +%s% chance to find pets and craft higher tier pets.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "20",
+          "desc": "几率"
+        }
+      ],
+      "translate": true,
+      "zh": "找到宠物及合成更高级宠物的几率提高 %s%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "找到宠物及合成更高级宠物的几率提高 "
+        },
+        {
+          "color": "§a",
+          "text": "+%s% ",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": "chance to find pets and craft higher tier pets.",
+          "zh": "。"
+        }
+      ],
+      "samples": [
+        [
+          "§7Gain §a+20% §7chance to find pets and",
+          "§7craft higher tier pets."
+        ]
+      ]
+    },
+    {
+      "id": "effect_rabbit_desc",
+      "context": "兔子效果",
+      "raw": "§7Grants Jump Boost %1$s and §a+%2$s §f✦ §fSpeed§7.",
+      "text": "Grants Jump Boost %1$s and +%2$s ✦ Speed.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "tier",
+          "example": "III",
+          "desc": "跳跃提升等级"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "60",
+          "desc": "速度"
+        }
+      ],
+      "translate": true,
+      "zh": "获得跳跃提升 %1$s 与 +%2$s ✦ 速度。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants Jump Boost %1$s and ",
+          "zh": "获得跳跃提升 %1$s 与 "
+        },
+        {
+          "color": "§a",
+          "text": "+%2$s ",
+          "zh": "+%2$s "
+        },
+        {
+          "color": "§f",
+          "text": "✦ Speed",
+          "zh": "✦ 速度"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants Jump Boost III and §a+60 §f",
+          "§fSpeed§7."
+        ]
+      ]
+    }
+  ]
+}

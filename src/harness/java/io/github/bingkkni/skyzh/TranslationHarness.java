@@ -123,6 +123,24 @@ public final class TranslationHarness {
 		// ---- colour reconstruction, the known-issue-3 cases ----
 		check("Lore 两段色 + 占位符", "§7Mining Speed: §6+450", Surface.ITEM, "§7挖掘速度: §6+450");
 		check("收藏品金锭术语", "§eGold Ingot VII", Surface.ITEM, "§e金锭 VII");
+		check("收藏品熔岩桶交易不误吞其他名称", "§fLava Bucket §7Trade", Surface.ITEM,
+			"§f熔岩桶§7兑换");
+		check("收藏品奶桶交易", "§fMilk Bucket §7Trade", Surface.ITEM, "§f奶桶§7兑换");
+		checkNoMatch("其他 Trade 名称不被泛模板误翻", "§aAccept Trade", Surface.ITEM);
+		check("背包槽位标题译为整名", "Small Backpack (Slot #4)", Surface.GUI_TITLE,
+			"小型背包(4 号槽)");
+		check("小人升级菜单子项复用已有名词", "Minion Upgrades ➜ Free Will", Surface.GUI_TITLE,
+			"小人升级 ➜ 自由意志");
+		check("小人缺材料人数进度按两个数字捕获", "§cYou don't have enough items to craft that tier! "
+			+ "You need §65 §cmore. §7(3/8)", Surface.CHAT,
+			"§c材料不足,无法制作该等级! 还缺 §65 §c个。§7(3/8)");
+		check("小人缺材料数量变化仍匹配", "§cYou don't have enough items to craft that tier! "
+			+ "You need §6256 §cmore. §7(0/256)", Surface.CHAT,
+			"§c材料不足,无法制作该等级! 还缺 §6256 §c个。§7(0/256)");
+		check("自由意志实测尾行截断版", "§a50% §7at Minion Tier I, §a+4% §7per minion",
+			Surface.LORE, "§7I 级小人的留任概率为 §a50%§7,之后每升 1 级,概率再 §a+4%");
+		check("自由意志截断版动态数值", "§a64% §7at Minion Tier I, §a+5% §7per minion",
+			Surface.LORE, "§7I 级小人的留任概率为 §a64%§7,之后每升 1 级,概率再 §a+5%");
 		check("收藏品铁锭术语", "§eIron Ingot I", Surface.ITEM, "§e铁锭 I");
 		check("小人升级缺少附魔煤炭", "§cYou need §68 §cmore Enchanted Coal.", Surface.ITEM,
 			"§c你还需要 §68 §c个附魔煤炭。");
@@ -179,7 +197,8 @@ public final class TranslationHarness {
 			"§d传奇 巨人之剑 §6✪✪✪✪✪");
 		checkTooltipName("拍卖列表中带数量的重铸名保留星级与数量",
 			"§dFabled Giant's Sword §6✪✪✪✪✪ §8x1", "§d传奇 巨人之剑 §6✪✪✪✪✪ §8x1");
-		checkTooltipName("以重铸词开头的目录物品名不拆成重铸前缀", "§5Hyper Catalyst", "§5Hyper Catalyst");
+		// Hyper is a reforge word, but Hyper Catalyst is a whole catalog name with its own record.
+		checkTooltipName("以重铸词开头的目录物品名不拆成重铸前缀", "§5Hyper Catalyst", "§5超级催化剂");
 		checkTooltipName("目录物品名带星级也不拆成重铸前缀", "§9Heavy Helmet §6✪✪", "§9Heavy Helmet §6✪✪");
 		checkTooltipName("重铸物品名不再追加原文", "§6Fleet §dTitanium Drill DR-X655",
 			"§6迅捷 §d钛钻头 DR-X655");
@@ -3142,7 +3161,8 @@ public final class TranslationHarness {
 				&& "英勇 Bonzo 的法杖".equals(Translator.index().terms().translate("guide_item_name", "Heroic Bonzo's Staff"))
 				&& "巨人之剑 ✪✪✪".equals(Translator.index().terms().translate("guide_item_name", "Giant's Sword ✪✪✪"))
 				&& Translator.index().terms().translate("guide_item_name", "Unverified Item") == null
-				&& Translator.index().terms().translate("guide_item_name", "Hyper Catalyst") == null
+				&& "超级催化剂".equals(Translator.index().terms().translate("guide_item_name", "Hyper Catalyst"))
+				&& Translator.index().terms().translate("guide_item_name", "Heavy Helmet") == null
 				&& Translator.index().terms().translate("item_name", "Zombie Hat") == null,
 			"精确收录名、重铸前缀与星级可继承,未收录名及普通 item_name 不猜译");
 

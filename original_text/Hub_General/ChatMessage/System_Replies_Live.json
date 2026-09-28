@@ -1,0 +1,351 @@
+{
+  "source": "../SkyZH_Logs/ (两台计算机，2026-09-27 12:12:17 编译后实测); https://hypixelskyblock.minecraft.wiki/w/Bestiary",
+  "fetched_at": "2026-09-28",
+  "verified_ingame": true,
+  "source_note": "通用系统回复多为服务器样板，Wiki 无原文；Bestiary 页面核对横幅格式。",
+  "lines": [
+    {
+      "id": "chat_received_coins",
+      "context": "领取硬币（如拍卖收入）",
+      "raw": "§aYou received §6%s coins§a!",
+      "text": "You received %s coins!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "71,372",
+          "desc": "硬币"
+        }
+      ],
+      "translate": true,
+      "zh": "你获得了 %s 硬币!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "You received ",
+          "zh": "你获得了 "
+        },
+        {
+          "color": "§6",
+          "text": "%s coins",
+          "zh": "%s 硬币"
+        },
+        {
+          "color": "§a",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "chat_slot_minion_skins_only",
+      "context": "小人界面",
+      "raw": "§cYou can only put Minion Skins in this slot!",
+      "text": "You can only put Minion Skins in this slot!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "这个槽位只能放入小人皮肤!"
+    },
+    {
+      "id": "chat_slot_minion_upgrades_only",
+      "context": "小人界面",
+      "raw": "§cYou can only place minion upgrades in this slot!",
+      "text": "You can only place minion upgrades in this slot!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "这个槽位只能放入小人升级!"
+    },
+    {
+      "id": "chat_slot_fuel_only",
+      "context": "小人界面",
+      "raw": "§cYou can only put fuel items in this slot!",
+      "text": "You can only put fuel items in this slot!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "这个槽位只能放入燃料!"
+    },
+    {
+      "id": "chat_no_permission_error",
+      "context": "无权限执行命令",
+      "raw": "§cI'm sorry, but you do not have permission to perform this command. Please contact the server administrators if you believe that this is an error.",
+      "text": "I'm sorry, but you do not have permission to perform this command. Please contact the server administrators if you believe that this is an error.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "抱歉，你没有权限执行此命令。如果你认为这是个错误，请联系服务器管理员。"
+    },
+    {
+      "id": "chat_no_permission_in_error",
+      "context": "无权限执行命令；服务器另一种措辞",
+      "raw": "§cI'm sorry, but you do not have permission to perform this command. Please contact the server administrators if you believe that this is in error.",
+      "text": "I'm sorry, but you do not have permission to perform this command. Please contact the server administrators if you believe that this is in error.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "抱歉，你没有权限执行此命令。如果你认为这是个错误，请联系服务器管理员。"
+    },
+    {
+      "id": "chat_command_needs_rank",
+      "context": "命令需要付费 Rank；Rank 按 GLOSSARY 保留英文",
+      "raw": "§cYou do not have permission to use this command! You need §fYOUTUBE§c rank or §6MVP§c++.",
+      "text": "You do not have permission to use this command! You need YOUTUBE rank or MVP++.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "你没有权限使用此命令! 需要 YOUTUBE Rank 或 MVP++。",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "You do not have permission to use this command! You need ",
+          "zh": "你没有权限使用此命令! 需要 "
+        },
+        {
+          "color": "§f",
+          "text": "YOUTUBE",
+          "zh": "YOUTUBE"
+        },
+        {
+          "color": "§c",
+          "text": " rank or ",
+          "zh": " Rank 或 "
+        },
+        {
+          "color": "§6",
+          "text": "MVP",
+          "zh": "MVP"
+        },
+        {
+          "color": "§c",
+          "text": "++.",
+          "zh": "++。"
+        }
+      ]
+    },
+    {
+      "id": "chat_success",
+      "context": "通用成功提示",
+      "raw": "§aSuccess!",
+      "text": "Success!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "成功!"
+    },
+    {
+      "id": "chat_queued_for",
+      "context": "副本排队",
+      "raw": "§b%1$s§f §equeued for §a%2$s§e!",
+      "text": "%1$s queued for %2$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "player_display",
+          "example": "[MVP+] inkkni",
+          "desc": "玩家"
+        },
+        {
+          "token": "%2$s",
+          "type": "location_name",
+          "example": "Glacite Mineshafts",
+          "desc": "副本名"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 已排队进入%2$s!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§f",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§e",
+          "text": "queued for ",
+          "zh": "已排队进入"
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§e",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "chat_left_party",
+      "context": "组队",
+      "raw": "§b%s §ehas left the party.",
+      "text": "%s has left the party.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "player_display",
+          "example": "[MVP+] JohnHypixel_",
+          "desc": "玩家"
+        }
+      ],
+      "translate": true,
+      "zh": "%s 离开了队伍。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "%s ",
+          "zh": "%s "
+        },
+        {
+          "color": "§e",
+          "text": "has left the party.",
+          "zh": "离开了队伍。"
+        }
+      ]
+    },
+    {
+      "id": "chat_fell_to_death",
+      "context": "玩家死亡",
+      "raw": "§c ☠ §7%s fell to their death.",
+      "text": " ☠ %s fell to their death.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "player_name",
+          "example": "itsgarrettg",
+          "desc": "玩家"
+        }
+      ],
+      "translate": true,
+      "zh": " ☠ %s 摔死了。",
+      "segments": [
+        {
+          "color": "§c",
+          "text": " ☠ ",
+          "zh": " ☠ "
+        },
+        {
+          "color": "§7",
+          "text": "%s fell to their death.",
+          "zh": "%s 摔死了。"
+        }
+      ]
+    },
+    {
+      "id": "chat_bestiary_family_unlocked",
+      "context": "首次解锁生物图鉴类别；Slug 等精确记录优先",
+      "raw": "§3§lBESTIARY FAMILY UNLOCKED §b%s",
+      "text": "BESTIARY FAMILY UNLOCKED %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "mob_name",
+          "example": "Ghast",
+          "desc": "怪物类别名"
+        }
+      ],
+      "translate": true,
+      "zh": "生物图鉴类别已解锁 %s",
+      "segments": [
+        {
+          "color": "§3§l",
+          "text": "BESTIARY FAMILY UNLOCKED ",
+          "zh": "生物图鉴类别已解锁 "
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "chat_bestiary_ghast_tier",
+      "context": "恶魂图鉴等级横幅",
+      "raw": "§b§lGhast §b%s",
+      "text": "Ghast %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "tier",
+          "example": "I",
+          "desc": "图鉴等级"
+        }
+      ],
+      "translate": true,
+      "zh": "恶魂 %s",
+      "segments": [
+        {
+          "color": "§b§l",
+          "text": "Ghast ",
+          "zh": "恶魂 "
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ],
+      "layout": "center_chat_if_padded"
+    },
+    {
+      "id": "chat_bestiary_chicken_tier",
+      "context": "鸡图鉴等级横幅",
+      "raw": "§b§lChicken §b%s",
+      "text": "Chicken %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "tier",
+          "example": "I",
+          "desc": "图鉴等级"
+        }
+      ],
+      "translate": true,
+      "zh": "鸡 %s",
+      "segments": [
+        {
+          "color": "§b§l",
+          "text": "Chicken ",
+          "zh": "鸡 "
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ],
+      "layout": "center_chat_if_padded"
+    },
+    {
+      "id": "chat_bestiary_blazing_golem_tier",
+      "context": "烈焰傀儡图鉴等级横幅；沿用词表",
+      "raw": "§b§lBlazing Golem §b%s",
+      "text": "Blazing Golem %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "tier",
+          "example": "I",
+          "desc": "图鉴等级"
+        }
+      ],
+      "translate": true,
+      "zh": "烈焰傀儡 %s",
+      "segments": [
+        {
+          "color": "§b§l",
+          "text": "Blazing Golem ",
+          "zh": "烈焰傀儡 "
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ],
+      "layout": "center_chat_if_padded"
+    }
+  ]
+}

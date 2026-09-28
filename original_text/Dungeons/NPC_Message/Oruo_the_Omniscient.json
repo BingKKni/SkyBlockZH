@@ -13,7 +13,8 @@
       "placeholders": [],
       "gloss": "Oruo 是人名保留英文；the Omniscient 是头衔，作「全知者」。「I have learned all there is to know」直译成「我学会了一切可知之事」是书面腔，中文说「该知道的我都知道」更像一个自负的老家伙在说话。",
       "translate": true,
-      "zh": "我是全知者 Oruo。我活过许多世，该知道的我都知道。"
+      "zh": "我是全知者 Oruo。我活过许多世，该知道的我都知道。",
+      "segments": [{"color":"§f","text":"I am ","zh":"我是"},{"color":"§4","text":"Oruo the Omniscient","zh":"全知者 Oruo"},{"color":"§f","text":". I have lived many lives. I have learned all there is to know.","zh":"。我活过许多世，该知道的我都知道。"}]
     },
     {
       "id": "oruo_intro_though_i_sit_stationary",
@@ -22,7 +23,8 @@
       "placeholders": [],
       "gloss": "this prison that is The Catacombs 是同位语，中文写成「地牢这座牢笼」。",
       "translate": true,
-      "zh": "尽管我被困在地牢这座牢笼里动弹不得，我的学识却没有边界。"
+      "zh": "尽管我被困在地牢这座牢笼里动弹不得，我的学识却没有边界。",
+      "segments": [{"color":"§f","text":"Though I sit stationary in this prison that is ","zh":"尽管我被困在"},{"color":"§c","text":"The Catacombs","zh":"地牢"},{"color":"§f","text":", my knowledge knows no bounds.","zh":"这座牢笼里动弹不得，我的学识却没有边界。"}]
     },
     {
       "id": "oruo_intro_prove_your_knowledge",
@@ -62,7 +64,8 @@
       ],
       "gloss": "",
       "translate": true,
-      "zh": "%1$s 答对了第 %2$s 题!"
+      "zh": "%1$s 答对了第 %2$s 题!",
+      "segments": [{"color":"§b","text":"%1$s ","zh":"%1$s "},{"color":"§a","text":"answered ","zh":"答对了"},{"color":"§6","text":"Question #%2$s ","zh":"第 %2$s 题"},{"color":"§a","text":"correctly!","zh":"!"}]
     },
     {
       "id": "oruo_thinks_the_answer_is",
@@ -136,7 +139,8 @@
       "placeholders": [],
       "gloss": "Bottle of Jyrre 是物品自造专名，保持英文（集市与拍卖行按英文名搜索）；Training Weights 是可翻的道具名，作「训练负重」，与 Dungeons/ChatMessage/Dungeon_Run.json 一致。",
       "translate": true,
-      "zh": "作为敬意，我把你们身上的训练负重全部加满，还给 Bottle of Jyrre 添了时间!"
+      "zh": "作为敬意，我把你们身上的训练负重全部加满，还给 Bottle of Jyrre 添了时间!",
+      "segments": [{"color":"§f","text":"As a token of my respect, I have maxed out all of your ","zh":"作为敬意，我把你们身上的"},{"color":"§a","text":"Training Weights ","zh":"训练负重"},{"color":"§f","text":"and added time to your ","zh":"全部加满，还给 "},{"color":"§c","text":"Bottle of Jyrre","zh":"Bottle of Jyrre"},{"color":"§f","text":"!","zh":" 添了时间!"}]
     },
     {
       "id": "oruo_question_header",
@@ -266,7 +270,8 @@
       "gloss": "数量加名词的选项不能靠词表，要单写一条：中文量词「个」是凭空补出来的。　行首那个空格不写进 text：服务器发的是「四格居中空白 + §6 + 空格 + 圈字母」，LineShape 会把前导空白整段剥掉再查表，剩下的正好从圈字母开头。",
       "translate": true,
       "layout": "center_chat_banner",
-      "zh": "ⓐ %s 个仙女之魂"
+      "zh": "ⓐ %s 个仙女之魂",
+      "segments": [{"color":"§6","text":"ⓐ ","zh":"ⓐ "},{"color":"§a","text":"%s Fairy Souls","zh":"%s 个仙女之魂"}]
     },
     {
       "id": "oruo_option_fairy_souls_b",
@@ -284,7 +289,8 @@
       "gloss": "　行首那个空格不写进 text：服务器发的是「四格居中空白 + §6 + 空格 + 圈字母」，LineShape 会把前导空白整段剥掉再查表，剩下的正好从圈字母开头。",
       "translate": true,
       "layout": "center_chat_banner",
-      "zh": "ⓑ %s 个仙女之魂"
+      "zh": "ⓑ %s 个仙女之魂",
+      "segments": [{"color":"§6","text":"ⓑ ","zh":"ⓑ "},{"color":"§a","text":"%s Fairy Souls","zh":"%s 个仙女之魂"}]
     },
     {
       "id": "oruo_option_fairy_souls_c",
@@ -302,7 +308,8 @@
       "gloss": "　行首那个空格不写进 text：服务器发的是「四格居中空白 + §6 + 空格 + 圈字母」，LineShape 会把前导空白整段剥掉再查表，剩下的正好从圈字母开头。",
       "translate": true,
       "layout": "center_chat_banner",
-      "zh": "ⓒ %s 个仙女之魂"
+      "zh": "ⓒ %s 个仙女之魂",
+      "segments": [{"color":"§6","text":"ⓒ ","zh":"ⓒ "},{"color":"§a","text":"%s Fairy Souls","zh":"%s 个仙女之魂"}]
     }
   ]
 }

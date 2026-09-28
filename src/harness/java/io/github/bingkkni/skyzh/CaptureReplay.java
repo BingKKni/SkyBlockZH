@@ -27,7 +27,8 @@ import net.minecraft.network.chat.Style;
 
 /**
  * Replays concrete captured lines through the font-free render paths. Capture files are deduplicated
- * records, not ordered tooltips: continuation paragraphs and pixel layout need separate fixtures.
+ * records, not ordered tooltips: an adjacent concrete lore run can be replayed as one tooltip, but
+ * deduplicated/missing lines and pixel layout still need separate fixtures.
  *
  * <pre>
  *   ./gradlew replayCapture
@@ -37,6 +38,12 @@ import net.minecraft.network.chat.Style;
  * <p>Inferred templates replay only their bounded concrete raw_samples, when present. Older captures
  * without those samples are reported separately, never counted as misses: their independently
  * observed value lists cannot reconstruct which values arrived together.
+ *
+ * <p>Concrete lore lines that sit next to each other in an ITEM file are replayed as one run through
+ * {@link LoreTranslation#plan}, as a tooltip would be, so whole-sentence GUI_Lore records are reached.
+ * Deduplication can still drop a shared tail or the item-name separator from the file, and a
+ * templated line breaks a run; those cases may stay misses or appear adjacent despite being separate
+ * tooltips. Only {@code incomplete} evidence preserves the original ordered tooltip.
  *
  * <p>The {@code incomplete} and {@code value} piles carry the ordered lines of one observation, so those
  * are replayed as the tooltip was: the same plan and the same checks the capture ran, printed as
@@ -81,11 +88,26 @@ public final class CaptureReplay {
 			}
 
 			List<String> report = new ArrayList<>();
+			// Consecutive concrete lore lines of an ITEM file, replayed together once the run ends so the
+			// whole-sentence GUI_Lore records get the same chance they get in a tooltip.
+			List<String> lore = new ArrayList<>();
 
 			for (JsonElement element : json.getAsJsonArray("lines")) {
 				JsonObject line = element.getAsJsonObject();
 				JsonObject evidence = line.has("_capture") && line.getAsJsonObject("_capture").has("diagnostic")
 					? line.getAsJsonObject("_capture").getAsJsonObject("diagnostic") : null;
+				String loreRaw = surface == Surface.ITEM && evidence == null ? rawOf(line) : "";
+				JsonObject loreMeta = line.has("_capture") ? line.getAsJsonObject("_capture") : null;
+
+				if (!loreRaw.isEmpty() && !isTemplate(loreRaw) && !(loreMeta != null && loreMeta.has("where")
+					&& loreMeta.get("where").getAsString().endsWith("物品名"))) {
+					lore.add(loreRaw);
+					continue;
+				}
+
+				int[] counts = replayLore(lore, report);
+				total += counts[0];
+				changed += counts[1];
 
 				if (evidence != null) {
 					if (!evidence.has("original_lines") || evidence.get("code").getAsString().startsWith("layout")
@@ -154,6 +176,10 @@ public final class CaptureReplay {
 				}
 			}
 
+			int[] counts = replayLore(lore, report);
+			total += counts[0];
+			changed += counts[1];
+
 			if (!report.isEmpty()) {
 				System.out.println("== " + file);
 				report.forEach(System.out::println);
@@ -162,7 +188,43 @@ public final class CaptureReplay {
 
 		System.out.println("\n具体原文: 渲染有变化 " + changed + " / " + total + "；未回放模板 " + templates
 			+ "；诊断证据已消除 " + cleared + " / " + diagnosed);
-		System.out.println("变化数不等于翻译覆盖率；不重建跨行顺序、字体、悬浮/点击事件或像素排版。");
+		System.out.println("变化数不等于翻译覆盖率；仅连续具体 Lore 行与诊断证据可重建跨行顺序，"
+			+ "不重建去重后丢失的行、字体、悬浮/点击事件或像素排版。");
+	}
+
+	/**
+	 * Draws a run of lore lines through the tooltip plan and empties it. A sentence folded across lines
+	 * is printed once with its line count; returns {lines, lines drawn differently}.
+	 */
+	private static int[] replayLore(List<String> raws, List<String> report) {
+		if (raws.isEmpty()) {
+			return new int[] { 0, 0 };
+		}
+
+		List<Component> lines = new ArrayList<>();
+
+		for (String raw : raws) {
+			lines.add(decode(raw));
+		}
+
+		int changed = 0;
+
+		for (LoreTranslation.Unit unit : LoreTranslation.plan(lines)) {
+			int size = unit.source().size();
+			String first = raws.get(unit.start());
+			String span = size > 1 ? "[整句 " + size + " 行] " : "";
+
+			if (unit.translated() || changed(unit.source().get(0), unit.rendered())) {
+				changed += size;
+				report.add("  ✓ " + span + first + "\n      -> " + encoded(unit.rendered()));
+			} else {
+				report.add("  ✗ " + first);
+			}
+		}
+
+		int total = raws.size();
+		raws.clear();
+		return new int[] { total, changed };
 	}
 
 	/** Old captures retain their explicit unknown status; never reconstruct guessed value tuples. */
