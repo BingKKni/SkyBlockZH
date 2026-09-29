@@ -114,7 +114,7 @@
     {
       "id": "fi_magic_find_gain",
       "context": "物品属性加成行",
-      "raw": "§b+%1$s✯ Magic Find",
+      "raw": "§b+%1$s✯ §fMagic Find",
       "text": "+%1$s✯ Magic Find",
       "placeholders": [
         {
@@ -126,7 +126,11 @@
       ],
       "gloss": "",
       "translate": true,
-      "zh": "+%1$s✯ 魔法寻宝"
+      "zh": "+%1$s✯ 魔法寻宝",
+      "segments": [
+        {"color":"§b","text":"+%1$s✯ ","zh":"+%1$s✯ "},
+        {"color":"§f","text":"Magic Find","zh":"魔法寻宝"}
+      ]
     },
     {
       "id": "fi_fishing_speed_gain",

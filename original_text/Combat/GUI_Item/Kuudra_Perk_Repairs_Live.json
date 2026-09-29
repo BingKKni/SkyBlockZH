@@ -1,0 +1,12 @@
+{
+  "source": "../SkyZH_Logs/skyzh-capture/untranslated/Combat/GUI_Item/Perk_Menu.json; https://hypixelskyblock.minecraft.wiki/w/Kuudra#Perk_Shop",
+  "fetched_at": "2026-09-29",
+  "verified_ingame": true,
+  "gui_context": "Kuudra 战斗中的天赋商店；Wiki 核对四条路线及 Bonus Damage / Sweeping Edge 天赋，具体当前阶级和提示以实机为准。",
+  "lines": [
+    {"id":"kuudra_not_enough_tokens","context":"战斗中购买天赋时代币不够","raw":"§cNot enough tokens!","text":"Not enough tokens!","placeholders":[],"gloss":"Kuudra 的战斗内代币，不是山心代币。","translate":true,"zh":"代币不足!"},
+    {"id":"kuudra_bonus_damage_tier","context":"额外伤害天赋当前阶级","raw":"§7Current Tier: §c%s% bonus damage","text":"Current Tier: %s% bonus damage","placeholders":[{"token":"%s","type":"number","desc":"当前阶级效果数值","example":"40"}],"gloss":"效果数值会从 0% 起变化，不将阶级样本写死。","translate":true,"zh":"当前等级: %s% 额外伤害","segments":[{"color":"§7","text":"Current Tier: ","zh":"当前等级: "},{"color":"§c","text":"%s% bonus damage","zh":"%s% 额外伤害"}]},
+    {"id":"kuudra_regular_damage_tier","context":"常规伤害天赋当前阶级","raw":"§7Current Tier: §c%s% regular damage","text":"Current Tier: %s% regular damage","placeholders":[{"token":"%s","type":"number","desc":"当前阶级数值","example":"0"}],"gloss":"与 bonus damage 不同，不能合并译法。","translate":true,"zh":"当前等级: %s% 常规伤害","segments":[{"color":"§7","text":"Current Tier: ","zh":"当前等级: "},{"color":"§c","text":"%s% regular damage","zh":"%s% 常规伤害"}]},
+    {"id":"kuudra_empty_player_slot","context":"战斗商店的队友槽位为空","raw":"§cNo %s Player","text":"No %s Player","placeholders":[{"token":"%s","type":"ordinal","desc":"第几名队友，如 4th","example":"4th"}],"gloss":"使用 ordinal 类型自动去掉 st/nd/rd/th，不能固定翻译成第四名。","translate":true,"zh":"第 %s 位暂无玩家"}
+  ]
+}
