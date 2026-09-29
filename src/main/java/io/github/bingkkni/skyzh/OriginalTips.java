@@ -9,6 +9,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.ClickEvent;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.HoverEvent;
 
 /** Original-key hints observe incoming server chat, never chat history or tooltip rendering. */
 public final class OriginalTips {
@@ -47,11 +48,16 @@ public final class OriginalTips {
 	}
 
 	static Component chatHint(String key) {
-		return Component.literal("§b[SkyZH] §e提示: 按 " + key
-			+ " 键切换原文，再按恢复。可先切换再打开聊天栏，也方便在集市或拍卖行里搜索物品! ")
+		return Component.empty()
+			.append(Component.literal("[SkyZH] ").withStyle(ChatFormatting.AQUA))
+			.append(Component.literal("提示: 按 " + key
+				+ " 键切换原文，再按恢复。可先切换再打开聊天栏，也方便在集市或拍卖行里搜索物品! ")
+				.withStyle(ChatFormatting.YELLOW))
 			.append(Component.literal("[禁用提示]").withStyle(style -> style
 				.withColor(ChatFormatting.RED)
-				.withClickEvent(new ClickEvent.RunCommand("/skyzh switch tip off"))));
+				.withClickEvent(new ClickEvent.RunCommand("/skyzh switch tip off"))
+				.withHoverEvent(new HoverEvent.ShowText(Component.literal("点击永久禁用这个提示!")
+					.withStyle(ChatFormatting.YELLOW)))));
 	}
 
 	private static boolean intervalReady(long now) {

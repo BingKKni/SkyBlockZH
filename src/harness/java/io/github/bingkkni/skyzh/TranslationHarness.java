@@ -2096,7 +2096,7 @@ public final class TranslationHarness {
 	 * folded the way {@link io.github.bingkkni.skyzh.text.Translator} folds them before looking a
 	 * line up, since a record collected under one icon spelling is filed under the other.
 	 */
-	private static String fillPlaceholders(String template, JsonObject source) {
+	static String fillPlaceholders(String template, JsonObject source) {
 		Matcher tokens = Pattern.compile("%(?:(\\d+)\\$)?[sd]").matcher(template);
 		StringBuilder filled = new StringBuilder();
 		int position = 0;
@@ -2258,7 +2258,7 @@ public final class TranslationHarness {
 		return groups;
 	}
 
-	private static List<JsonObject> recordsOf(JsonObject file) {
+	static List<JsonObject> recordsOf(JsonObject file) {
 		List<JsonObject> records = new ArrayList<>();
 
 		for (Map.Entry<String, JsonElement> member : file.entrySet()) {

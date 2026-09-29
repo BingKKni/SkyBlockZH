@@ -163,6 +163,12 @@ harnessTask('checkTranslations', 'io.github.bingkkni.skyzh.TranslationHarness',
 	inputs.dir rootProject.file('original_text')
 }
 
+harnessTask('checkChatInteractions', 'io.github.bingkkni.skyzh.ChatInteractionHarness',
+	'Checks chat-button corpus boundaries, live click/hover styles and colours.') {
+	args rootProject.file('original_text').absolutePath
+	inputs.dir rootProject.file('original_text')
+}
+
 harnessTask('checkLore', 'io.github.bingkkni.skyzh.LoreHarness',
 	'Checks complete lore sentences, colour, reflow, boundaries and independent NEU fixtures.') {
 	args rootProject.file('original_text').absolutePath,
@@ -303,7 +309,7 @@ tasks.register('checkMixinTargets', Exec) {
 }
 
 tasks.named('check') {
-	dependsOn 'checkTranslations', 'checkLore', 'checkCapture', 'checkDiagnostics', 'checkCommands', 'checkClientSettings', 'checkMinifiedCorpus',
+	dependsOn 'checkTranslations', 'checkChatInteractions', 'checkLore', 'checkCapture', 'checkDiagnostics', 'checkCommands', 'checkClientSettings', 'checkMinifiedCorpus',
 		'checkMixinTargets'
 }
 

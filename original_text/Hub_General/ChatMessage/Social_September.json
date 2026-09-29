@@ -92,18 +92,11 @@
       "raw": "§aYou are now friends with §b%s",
       "text": "You are now friends with %s",
       "translate": true,
-      "zh": "你已与 %s 成为好友",
+      "zh": "你与 %s 已成为好友",
       "segments": [
-        {
-          "color": "§a",
-          "text": "You are now friends with ",
-          "zh": "你已与 "
-        },
-        {
-          "color": "§b",
-          "text": "%s",
-          "zh": "%s 成为好友"
-        }
+        {"color": "§a", "text": "You ", "zh": "你与 ", "order": 0},
+        {"color": "§a", "text": "are now friends with ", "zh": " 已成为好友", "order": 2},
+        {"color": "§b", "text": "%s", "zh": "%s", "order": 1}
       ],
       "placeholders": [
         {
@@ -151,33 +144,27 @@
       "raw": "§a§l[ACCEPT]§8 - §c§l[DENY]§8 - §7§l[BLOCK]",
       "text": "[ACCEPT] - [DENY] - [BLOCK]",
       "translate": true,
-      "zh": "[接受] -  - [拒绝][屏蔽]",
+      "zh": "[接受] - [拒绝] - [屏蔽]",
       "segments": [
-        {
-          "color": "§a§l",
-          "text": "[ACCEPT]",
-          "zh": "[接受]"
-        },
+        {"color": "§a§l", "text": "[", "zh": "["},
+        {"color": "§a§l", "text": "ACCEPT", "zh": "接受"},
+        {"color": "§a§l", "text": "]", "zh": "]"},
         {
           "color": "§8",
           "text": " - ",
           "zh": " - "
         },
-        {
-          "color": "§c§l",
-          "text": "[DENY]",
-          "zh": "[拒绝]"
-        },
+        {"color": "§c§l", "text": "[", "zh": "["},
+        {"color": "§c§l", "text": "DENY", "zh": "拒绝"},
+        {"color": "§c§l", "text": "]", "zh": "]"},
         {
           "color": "§8",
           "text": " - ",
           "zh": " - "
         },
-        {
-          "color": "§7§l",
-          "text": "[BLOCK]",
-          "zh": "[屏蔽]"
-        }
+        {"color": "§7§l", "text": "[", "zh": "["},
+        {"color": "§7§l", "text": "BLOCK", "zh": "屏蔽"},
+        {"color": "§7§l", "text": "]", "zh": "]"}
       ]
     },
     {

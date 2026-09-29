@@ -76,17 +76,42 @@ public final class CommandHarness {
 		check("满五分钟可再次提示", OriginalTips.claimInterval(300_000_000_100L), true);
 		check("提示绑定当前键名", OriginalTips.loreHint("R", false).getString(), "§b[SkyZH] §6按下 R 键显示原文");
 		check("原文模式提示恢复翻译", OriginalTips.loreHint("鼠标按键 4", true).getString(), "§b[SkyZH] §6按下 鼠标按键 4 键显示翻译");
-		var disable = OriginalTips.chatHint("R").getSiblings().getFirst();
+		var disable = OriginalTips.chatHint("R").getSiblings().getLast();
 		check("禁用提示点击指令", disable.getStyle().getClickEvent(),
 			new net.minecraft.network.chat.ClickEvent.RunCommand("/skyzh switch tip off"));
 		check("只有禁用部分可点击", OriginalTips.chatHint("R").getStyle().getClickEvent(), null);
 		check("禁用按钮为红色", disable.getStyle().getColor().getValue(), 0xFF5555);
+		checkHintScope();
 		checkClickedCommand();
 		System.out.println();
 		System.out.printf("通过 %d / 失败 %d%n", passed, failed);
 
 		if (failed > 0) {
 			System.exit(1);
+		}
+	}
+
+	private static void checkHintScope() {
+		for (String key : List.of("X", "R", "鼠标按键 4")) {
+			var hint = OriginalTips.chatHint(key);
+			for (var component : List.of(hint, io.github.bingkkni.skyzh.text.Translator.translateChatBlock(
+				hint, 320, c -> io.github.bingkkni.skyzh.text.StyledText.of(c).length() * 6))) {
+				var text = io.github.bingkkni.skyzh.text.StyledText.of(component);
+				int button = text.plain().indexOf("[禁用提示]");
+				boolean valid = button >= 0 && text.plain().endsWith("[禁用提示]");
+				for (int i = 0; i < text.length(); i++) {
+					var style = text.styleAt(i);
+					if (i < button) {
+						valid &= style.getClickEvent() == null && style.getHoverEvent() == null;
+					} else {
+						valid &= new net.minecraft.network.chat.ClickEvent.RunCommand("/skyzh switch tip off").equals(style.getClickEvent());
+						valid &= style.getColor() != null && style.getColor().getValue() == 0xFF5555;
+						valid &= style.getHoverEvent() instanceof net.minecraft.network.chat.HoverEvent.ShowText hover
+							&& "§e点击永久禁用这个提示!".equals(TranslationHarness.legacy(hover.value()));
+					}
+				}
+				check("提示整句仅红色按钮有点击和黄色悬浮说明 " + key, valid, true);
+			}
 		}
 	}
 
