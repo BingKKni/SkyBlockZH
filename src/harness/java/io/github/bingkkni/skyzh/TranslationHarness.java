@@ -1160,6 +1160,7 @@ public final class TranslationHarness {
 		checkPostBuildCapture(root);
 		checkCaptureFixes();
 		checkOriginalTipsAndScreenshots();
+		checkOriginalTooltipPresentation();
 		checkSeptemberBoundaries();
 
 		System.out.println();
@@ -2374,6 +2375,38 @@ public final class TranslationHarness {
 		report(name, expected.equals(legacy(actual)), "期望 [" + expected + "] 实际 [" + legacy(actual) + "]");
 	}
 
+	private static void checkOriginalTooltipPresentation() throws Exception {
+		var present = TooltipTranslator.class.getDeclaredMethod("present", net.minecraft.client.gui.Font.class,
+			List.class, boolean.class, String.class, boolean.class);
+		present.setAccessible(true);
+		List<Component> source = List.of(Component.literal("§6Tusk Fossil"), Component.literal("§7Some English lore"));
+		HoldOriginal.setActive(true);
+		try {
+			@SuppressWarnings("unchecked")
+			List<Component> shown = (List<Component>) present.invoke(null, null, source, false, "R", true);
+			report("原文模式不漏掉恢复翻译提示", shown.size() == 3
+				&& shown.getLast().getString().equals("§b[SkyZH] §6按下 R 键显示翻译"), shown.toString());
+			report("原文Tooltip不翻译也不修改原始组件", shown.getFirst() == source.getFirst()
+				&& shown.get(1) == source.get(1) && source.size() == 2, source.toString());
+			report("原文Tooltip重复渲染复用缓存", present.invoke(null, null, source, false, "R", true) == shown, "same key");
+			@SuppressWarnings("unchecked")
+			List<Component> rebound = (List<Component>) present.invoke(null, null, source, false, "Mouse 4", true);
+			report("原文Tooltip改键不复用过期提示", rebound.getLast().getString().contains("Mouse 4"), rebound.toString());
+			for (boolean terminal : List.of(false, true)) {
+				@SuppressWarnings("unchecked")
+				List<Component> hidden = (List<Component>) present.invoke(null, null, source, terminal, terminal ? "X" : null, true);
+				report("解绑或关闭提示、终端不显示原文提示 " + terminal, hidden.size() == source.size(), hidden.toString());
+			}
+			for (String name : List.of("Back", "Unknown New Item")) {
+				List<Component> input = List.of(Component.literal(name));
+				List<?> shownUnknown = (List<?>) present.invoke(null, null, input, false, "X", true);
+				report("原文模式菜单和未知物品不造提示 " + name, shownUnknown.size() == 1, shownUnknown.toString());
+			}
+		} finally {
+			HoldOriginal.setActive(false);
+		}
+	}
+
 	private static void checkOriginalTipsAndScreenshots() {
 		for (String name : List.of("Back", "Enabled", "Apprentice Necromancer", "Recently Created",
 			"Rewards", "Hoppity's Hunt", "Ender Chest (1/5)", "Page 2", "Copper", "Bingo",
@@ -2697,7 +2730,7 @@ public final class TranslationHarness {
 
 	/** Fixed UI capture regression: ordered lore, term isolation, and clues that must survive translation. */
 	private static void checkFixedMenus(Path corpusRoot) throws Exception {
-		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json")) {
+		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "release-0.6-cases.json")) {
 		Path path = corpusRoot.toAbsolutePath().getParent().resolve("src/harness/resources/" + file);
 		JsonObject fixture = JsonParser.parseString(Files.readString(path, StandardCharsets.UTF_8)).getAsJsonObject();
 		for (JsonElement value : fixture.getAsJsonArray("cases")) {

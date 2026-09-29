@@ -3,6 +3,7 @@ package io.github.bingkkni.skyzh.capture;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import io.github.bingkkni.skyzh.text.Surface;
+import io.github.bingkkni.skyzh.text.Translator;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
@@ -19,8 +20,16 @@ public final class PreservedText {
 	);
 	private static final Pattern BOSS_COUNTER = Pattern.compile("^(.+?) [0-9]{1,3}/[0-9]{1,3}$");
 	private static final Pattern LEVELED_NAME = Pattern.compile("^\\[Lv[0-9]{1,4}] (.+)$");
+	private static final Pattern DATE_SERVER = Pattern.compile("[0-9]{2}/[0-9]{2}/[0-9]{2} (?:m|mini|mega)[A-Za-z0-9]{1,8}");
+	private static final Pattern ELECTION_BAR = Pattern.compile("\\|{1,40} ([A-Za-z][A-Za-z ]{0,31})");
+	private static final Pattern ELECTION_ROW = Pattern.compile("([A-Za-z][A-Za-z ]{0,31}): \\|{1,40} \\([0-9.]+%\\)");
+	private static final Pattern BESTIARY_COUNTER = Pattern.compile("(.{1,48}?) (?:[IVXLCDM]{1,8}|[0-9]{1,3}): [0-9,]+/[0-9,]+");
+	private static final Pattern TROPHY_ROW = Pattern.compile("[●○]{4} (.+)");
+	private static final Pattern TROPHY_TASK = Pattern.compile("[✔✖] (.+) x[0-9][0-9,]*");
+	private static final Pattern PARTY_MEMBER = Pattern.compile("[A-Za-z0-9_]{1,16} \\([0-9]{1,3}\\)");
 	private record Rules(Set<String> enchantments, Set<String> scoreboardLines,
-		Set<String> bossCounters, Set<String> leveledItemNames, Set<String> profileNames) {}
+		Set<String> bossCounters, Set<String> leveledItemNames, Set<String> profileNames,
+		Set<String> trophyFishNames) {}
 	private static final Rules RULES = load();
 
 	private PreservedText() {}
@@ -29,7 +38,26 @@ public final class PreservedText {
 	public static boolean ignored(Surface surface, String plain) {
 		String text = plain.trim();
 		if (surface == Surface.SCOREBOARD) {
-			return RULES.scoreboardLines().contains(text);
+			Matcher vote = ELECTION_BAR.matcher(text);
+			return RULES.scoreboardLines().contains(text) || DATE_SERVER.matcher(text).matches()
+				|| vote.matches() && knownCandidate(vote.group(1));
+		}
+		if (surface == Surface.TABLIST) {
+			Matcher vote = ELECTION_ROW.matcher(text);
+			if (vote.matches() && knownCandidate(vote.group(1))) return true;
+			Matcher counter = BESTIARY_COUNTER.matcher(text);
+			if (counter.matches() && counter.group(1).equals(
+				Translator.index().terms().translate("raw", counter.group(1)))) return true;
+			Matcher trophy = TROPHY_ROW.matcher(text), task = TROPHY_TASK.matcher(text);
+			return trophy.matches() && RULES.trophyFishNames().contains(trophy.group(1))
+				|| task.matches() && RULES.trophyFishNames().contains(task.group(1));
+		}
+		if (surface == Surface.GUI_TITLE) {
+			int arrow = text.indexOf(" ➜ ");
+			if (arrow < 0) return false;
+			String enchantment = text.substring(0, arrow), truncated = text.substring(arrow + 3);
+			return RULES.enchantments().contains(enchantment) && !truncated.isBlank()
+				&& enchantment.startsWith(truncated);
 		}
 		if (surface == Surface.BOSS_BAR) {
 			Matcher counter = BOSS_COUNTER.matcher(text);
@@ -47,6 +75,15 @@ public final class PreservedText {
 		}
 		Matcher level = LEVEL.matcher(text);
 		return level.matches() && RULES.enchantments().contains(level.group(1));
+	}
+
+	private static boolean knownCandidate(String name) {
+		return Translator.index().isNpcName(name) || Translator.index().isNpcName("Mayor " + name);
+	}
+
+	/** Party Finder's player/level list is not an item description, and is scoped to that menu. */
+	public static boolean partyFinderLine(String menu, String plain) {
+		return "Party Finder".equals(menu) && PARTY_MEMBER.matcher(plain.trim()).matches();
 	}
 
 	/** Fruit Bowl lists profile identities, not ingredients. Do not suppress fruit text elsewhere. */
@@ -74,11 +111,12 @@ public final class PreservedText {
 			}
 			JsonObject json = JsonParser.parseReader(new InputStreamReader(stream, StandardCharsets.UTF_8)).getAsJsonObject();
 			return new Rules(strings(json, "enchantments"), strings(json, "scoreboard_lines"),
-				strings(json, "bossbar_counters"), strings(json, "leveled_item_names"), strings(json, "profile_names"));
+				strings(json, "bossbar_counters"), strings(json, "leveled_item_names"), strings(json, "profile_names"),
+				strings(json, "trophy_fish_names"));
 		} catch (Exception error) {
 			// Fail open for capture: missing policy must never hide potentially untranslated content.
 			LoggerFactory.getLogger("SkyZH").warn("无法读取保留原文采集名单，继续报告未翻译文本", error);
-			return new Rules(Set.of(), Set.of(), Set.of(), Set.of(), Set.of());
+			return new Rules(Set.of(), Set.of(), Set.of(), Set.of(), Set.of(), Set.of());
 		}
 	}
 

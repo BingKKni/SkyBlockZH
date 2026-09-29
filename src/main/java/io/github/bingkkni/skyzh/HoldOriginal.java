@@ -5,6 +5,11 @@ import io.github.bingkkni.skyzh.platform.ClientGui;
 import java.util.Arrays;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.sounds.SimpleSoundInstance;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.network.chat.Component;
+import net.minecraft.util.RandomSource;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.components.events.ContainerEventHandler;
 import net.minecraft.client.gui.components.events.GuiEventListener;
@@ -59,19 +64,42 @@ public final class HoldOriginal {
 		boolean available = HypixelServer.isSkyBlock() && SkyZHConfig.get().enabled && bound;
 		boolean down = bound && configuredKey().getType() == InputConstants.Type.MOUSE
 			&& GLFW.glfwGetMouseButton(minecraft.getWindow().handle(), configuredKey().getValue()) == GLFW.GLFW_PRESS;
-		updateMouse(available, minecraft.isWindowActive() && !typing(minecraft), down);
+		if (updateMouse(available, minecraft.isWindowActive() && !typing(minecraft), down)) {
+			feedback(minecraft);
+		}
 	}
 
-	/** Pure edge/state handling, also exercised without a GLFW window. */
-	static void updateMouse(boolean available, boolean acceptsPress, boolean down) {
+	/** Returns true only for an accepted user toggle, never for an automatic reset. */
+	static boolean updateMouse(boolean available, boolean acceptsPress, boolean down) {
 		if (!available) active = false;
-		if (available && acceptsPress && down && !mouseDown) active = !active;
+		boolean toggled = available && acceptsPress && down && !mouseDown;
+		if (toggled) active = !active;
 		// Track rejected presses too: leaving an input box while holding a button is not a new tap.
 		mouseDown = down;
+		return toggled;
 	}
 
-	static void press(boolean available, boolean acceptsPress, int action) {
-		if (available && acceptsPress && action == GLFW.GLFW_PRESS) active = !active;
+	static boolean press(boolean available, boolean acceptsPress, int action) {
+		boolean toggled = available && acceptsPress && action == GLFW.GLFW_PRESS;
+		if (toggled) active = !active;
+		return toggled;
+	}
+
+	static Component toggleMessage(boolean original) {
+		return Component.literal(original ? "§b[SkyZH] §c已关闭翻译!" : "§b[SkyZH] §a已开启翻译!");
+	}
+
+	static SimpleSoundInstance toggleSound(double x, double y, double z) {
+		return new SimpleSoundInstance(SoundEvents.UI_BUTTON_CLICK.value(), SoundSource.BLOCKS,
+			100.0F, 2.0F, RandomSource.create(), x, y, z);
+	}
+
+	/** Local feedback only: no command, packet, saved config change, or sound on teardown. */
+	private static void feedback(Minecraft minecraft) {
+		if (minecraft.player == null) return;
+		minecraft.getSoundManager().play(toggleSound(
+			minecraft.player.getX(), minecraft.player.getY(), minecraft.player.getZ()));
+		ClientGui.chat(minecraft, toggleMessage(active));
 	}
 
 	private static boolean typing(Minecraft minecraft) {
@@ -95,8 +123,10 @@ public final class HoldOriginal {
 		Minecraft minecraft = Minecraft.getInstance();
 		if (binding != null && !binding.isUnbound() && minecraft != null
 			&& window == minecraft.getWindow().handle() && binding.matches(event)) {
-			press(HypixelServer.isSkyBlock() && SkyZHConfig.get().enabled,
-				minecraft.isWindowActive() && !typing(minecraft), action);
+			if (press(HypixelServer.isSkyBlock() && SkyZHConfig.get().enabled,
+				minecraft.isWindowActive() && !typing(minecraft), action)) {
+				feedback(minecraft);
+			}
 		}
 	}
 

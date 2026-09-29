@@ -90,6 +90,19 @@ public final class ClientSettingsHarness {
 		check("发布版本高于同号预发布", UpdateChecker.isNewer("0.5", "0.5-beta.1"), true);
 		check("带 v 前缀的发布标签可识别", UpdateChecker.isNewer("v0.6", "0.5+mc26.1"), true);
 		check("无效发布标签不提示", UpdateChecker.isNewer("latest", "0.5"), false);
+		for (String target : List.of("26.1", "26.2")) {
+			check("0.5 可发现正式 0.6 - " + target, UpdateChecker.isNewer("0.6", "0.5+mc" + target), true);
+			check("0.6 不提示同版本 - " + target, UpdateChecker.isNewer("v0.6", "0.6+mc" + target), false);
+			check("0.6 不提示旧发布 - " + target, UpdateChecker.isNewer("0.5", "0.6+mc" + target), false);
+		}
+		var uri = java.net.URI.create("https://github.com/BingKKni/SkyBlockZH/releases/tag/0.6");
+		UpdateChecker.announce("0.5+mc26.2", "0.6", uri);
+		check("主界面不丢弃待显示更新", UpdateChecker.takeNotice(true, false), null);
+		check("进入世界后交付原版本信息", UpdateChecker.takeNotice(true, true), new UpdateChecker.Notice("0.5+mc26.2", "0.6", uri));
+		check("断线重进不重复提示", UpdateChecker.takeNotice(true, true), null);
+		UpdateChecker.announce("0.5", "0.6", uri);
+		check("关闭设置撤销待发更新", UpdateChecker.takeNotice(false, true), null);
+		check("重新开启不补发已取消提示", UpdateChecker.takeNotice(true, true), null);
 	}
 
 	private static void keys() {
@@ -133,7 +146,7 @@ public final class ClientSettingsHarness {
 		KeyMapping.releaseAll();
 	}
 
-	private static void originalToggle() {
+	private static void originalToggle() throws Exception {
 		int generation = SkyZHConfig.generation();
 		HoldOriginal.setActive(false);
 		HoldOriginal.press(true, true, GLFW.GLFW_PRESS);
@@ -160,8 +173,26 @@ public final class ClientSettingsHarness {
 		HoldOriginal.setActive(true);
 		HoldOriginal.updateMouse(false, true, false);
 		check("离开空岛、关闭总开关或解绑清除临时原文状态", HoldOriginal.active(), false);
-		HoldOriginal.press(false, true, GLFW.GLFW_PRESS);
+		check("非空岛不触发声音消息", HoldOriginal.press(false, true, GLFW.GLFW_PRESS), false);
 		check("非空岛不响应", HoldOriginal.active(), false);
+		check("重复按键不触发声音消息", HoldOriginal.press(true, true, GLFW.GLFW_REPEAT), false);
+		check("输入框不触发声音消息", HoldOriginal.press(true, false, GLFW.GLFW_PRESS), false);
+		check("实际切换才触发一次声音消息", HoldOriginal.press(true, true, GLFW.GLFW_PRESS), true);
+		check("自动恢复不播放提示", HoldOriginal.updateMouse(false, true, false), false);
+		check("关闭提示全文", HoldOriginal.toggleMessage(true).getString(), "§b[SkyZH] §c已关闭翻译!");
+		check("开启提示全文", HoldOriginal.toggleMessage(false).getString(), "§b[SkyZH] §a已开启翻译!");
+		net.minecraft.SharedConstants.tryDetectVersion();
+		net.minecraft.server.Bootstrap.bootStrap();
+		var sound = HoldOriginal.toggleSound(1, 2, 3);
+		check("按键音效 ID", sound.getIdentifier().toString(), "minecraft:ui.button.click");
+		check("按键音效分类为方块", sound.getSource(), net.minecraft.sounds.SoundSource.BLOCKS);
+		// getVolume/getPitch also multiply resolved audio-asset samples, absent in this headless test.
+		var volume = net.minecraft.client.resources.sounds.AbstractSoundInstance.class.getDeclaredField("volume");
+		var pitch = net.minecraft.client.resources.sounds.AbstractSoundInstance.class.getDeclaredField("pitch");
+		volume.setAccessible(true);
+		pitch.setAccessible(true);
+		check("按键音量参数", volume.getFloat(sound), 100.0F);
+		check("按键音高参数", pitch.getFloat(sound), 2.0F);
 	}
 
 	private static void chatCache() {

@@ -35,6 +35,9 @@ public final class UpdateChecker {
 		.followRedirects(HttpClient.Redirect.NORMAL)
 		.build();
 	private static final AtomicBoolean STARTED = new AtomicBoolean();
+	private static Notice pending;
+
+	static record Notice(String installed, String latest, URI uri) {}
 
 	private UpdateChecker() {
 	}
@@ -103,29 +106,31 @@ public final class UpdateChecker {
 		return PROJECT_URI;
 	}
 
-	private static void announce(String installedVersion, String latestVersion, URI releaseUri) {
-		Minecraft minecraft = Minecraft.getInstance();
+	static synchronized void announce(String installedVersion, String latestVersion, URI releaseUri) {
+		// Startup usually finishes on the title screen. Chat is cleared on joining a world, so
+		// writing there would lose a successfully detected update before the player can read it.
+		pending = new Notice(installedVersion, latestVersion, releaseUri);
+	}
 
-		if (minecraft == null) {
-			return;
-		}
+	static synchronized Notice takeNotice(boolean enabled, boolean ready) {
+		if (!enabled) pending = null;
+		if (!ready) return null;
+		Notice notice = pending;
+		pending = null;
+		return notice;
+	}
 
-		minecraft.execute(() -> {
-			SkyZHConfig config = SkyZHConfig.get();
-			if (!config.enabled || !config.updateCheck) {
-				return;
-			}
-
-			Component github = Component.literal("[Github]").withStyle(style -> style
-				.withColor(ChatFormatting.AQUA)
-				.withUnderlined(true)
-				.withClickEvent(new ClickEvent.OpenUrl(releaseUri))
-			);
-			Component message = Component.literal(
-				"§b[SkyZH] §e发现新版本 " + latestVersion + "（当前 " + displayVersion(installedVersion) + "） "
-			).append(github);
-			ClientGui.chat(minecraft, message);
-		});
+	/** Delivers once on the client thread, after the first world's chat has been initialized. */
+	public static void tick(Minecraft minecraft) {
+		SkyZHConfig config = SkyZHConfig.get();
+		Notice notice = takeNotice(config.enabled && config.updateCheck,
+			minecraft.player != null && minecraft.level != null && minecraft.gui != null);
+		if (notice == null) return;
+		Component github = Component.literal("[Github]").withStyle(style -> style
+			.withColor(ChatFormatting.AQUA).withUnderlined(true)
+			.withClickEvent(new ClickEvent.OpenUrl(notice.uri())));
+		ClientGui.chat(minecraft, Component.literal("§b[SkyZH] §e发现新版本 " + notice.latest()
+			+ "（当前 " + displayVersion(notice.installed()) + "） ").append(github));
 	}
 
 	/** Uses Fabric's version parser so 0.5 and 0.5.0 compare as equal and prereleases sort correctly. */

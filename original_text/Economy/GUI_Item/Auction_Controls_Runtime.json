@@ -406,24 +406,14 @@
     },
     {
       "id": "auction_live_selling",
-      "context": "拍卖确认页所售物品与数量",
+      "context": "拍卖与集市确认页所售物品与数量",
       "raw": "§7Selling: %1$sx §f%2$s",
       "text": "Selling: %1$sx %2$s",
       "placeholders": [
-        {
-          "token": "%1$s",
-          "type": "number",
-          "example": "62",
-          "desc": "物品数量"
-        },
-        {
-          "token": "%2$s",
-          "type": "category_name",
-          "example": "Golden Carrot",
-          "desc": "物品完整名称；普通材料走既有词表"
-        }
+        {"token":"%1$s","type":"number","example":"62","desc":"物品数量"},
+        {"token":"%2$s","type":"loot_item_name","example":"Golden Carrot","desc":"目录中的商品复用现有译名，专属附魔名称保留原文"}
       ],
-      "gloss": "",
+      "gloss": "物品引用不是分类名；专属附魔与未知物品不查泛化词表，避免误报中英混杂。",
       "translate": true,
       "zh": "出售物品: %1$sx %2$s",
       "segments": [

@@ -74,7 +74,8 @@ public final class CommandHarness {
 		check("首次提示立即允许", OriginalTips.claimInterval(100L), true);
 		check("五分钟内不重复提示", OriginalTips.claimInterval(300_000_000_099L), false);
 		check("满五分钟可再次提示", OriginalTips.claimInterval(300_000_000_100L), true);
-		check("提示绑定当前键名", OriginalTips.loreHint("R").getString(), "§b[SkyZH] §6按 R 键切换原文，再按恢复");
+		check("提示绑定当前键名", OriginalTips.loreHint("R", false).getString(), "§b[SkyZH] §6按下 R 键显示原文");
+		check("原文模式提示恢复翻译", OriginalTips.loreHint("鼠标按键 4", true).getString(), "§b[SkyZH] §6按下 鼠标按键 4 键显示翻译");
 		var disable = OriginalTips.chatHint("R").getSiblings().getFirst();
 		check("禁用提示点击指令", disable.getStyle().getClickEvent(),
 			new net.minecraft.network.chat.ClickEvent.RunCommand("/skyzh switch tip off"));

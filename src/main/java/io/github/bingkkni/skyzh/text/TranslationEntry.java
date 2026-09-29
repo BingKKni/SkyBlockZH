@@ -894,7 +894,9 @@ public final class TranslationEntry {
 
 			// A value the table already answers for came out Chinese; one it does not is sitting on
 			// screen in English next to Chinese, which is exactly what the table exists to remove.
-			if (isWords(value) && terms.translate(arg.getValue(), value) == null) {
+			boolean preservedEnchantment = "enchantment_name".equals(arg.getValue())
+				&& io.github.bingkkni.skyzh.capture.PreservedText.enchantmentNames().contains(value);
+			if (isWords(value) && !preservedEnchantment && terms.translate(arg.getValue(), value) == null) {
 				values.add(value);
 			}
 		}

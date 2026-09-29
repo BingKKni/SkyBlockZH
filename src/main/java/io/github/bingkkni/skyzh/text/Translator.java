@@ -29,6 +29,7 @@ import org.slf4j.LoggerFactory;
 public final class Translator {
 	private static final Logger LOGGER = LoggerFactory.getLogger("SkyZH");
 	private static final Set<String> REPORTED_COLOUR_LOSS = ConcurrentHashMap.newKeySet();
+	private static final java.util.regex.Pattern DISPLAY_RANK = java.util.regex.Pattern.compile("#[0-9]{1,6} ");
 
 	private static volatile TranslationIndex index = new TranslationIndex();
 
@@ -199,6 +200,12 @@ public final class Translator {
 			);
 		}
 
+		if (surface == Surface.HOLOGRAM) {
+			Component item = hologramItem(source);
+			if (item != null) return new Result(item.copy(), null, null, null);
+		}
+		Component ranks = reputationRanks(source, surface);
+		if (ranks != null) return new Result(ranks.copy(), null, null, null);
 		return new Result(skyBlockNameAlone(source, styled, config), null, null, null);
 	}
 
@@ -217,6 +224,40 @@ public final class Translator {
 	private static TranslationEntry borrowed(Surface surface, String plain) {
 		return surface == Surface.HOLOGRAM && ItemNames.canonical(plain) != null
 			? index.lookupExact(Surface.ITEM, plain.trim()) : null;
+	}
+
+	/** Auction displays add a rank and reforge to a catalog-confirmed item, never an NPC name. */
+	public static Component hologramItem(Component source) {
+		StyledText styled = StyledText.of(source);
+		String plain = styled.canonical();
+		int from = wordsStart(plain), to = wordsEnd(plain, from);
+		var rank = DISPLAY_RANK.matcher(plain);
+		rank.region(from, to);
+		if (rank.lookingAt()) from = rank.end();
+		if (from >= to || ItemNames.canonical(plain.substring(from, to)) == null) return null;
+		StyledText name = styled.sub(from, to);
+		Result translated = TooltipTranslator.translateItemNameAvailable(name.slice(0, name.length()));
+		if (!translated.matched()
+			&& !index.preserved(Surface.ITEM, TooltipTranslator.itemNameCore(name).canonical())) return null;
+		return around(styled, from, to, translated.padded());
+	}
+
+	/** Two independently styled faction rank labels; their wide gap is server-owned layout. */
+	public static Component reputationRanks(Component source, Surface surface) {
+		if (surface != Surface.CHAT && surface != Surface.TABLIST) return null;
+		StyledText styled = StyledText.of(source);
+		List<LineShape.Range> parts = LineShape.widgets(styled.canonical());
+		if (parts.size() != 2) return null;
+		MutableComponent result = Component.empty();
+		int cursor = 0;
+		for (LineShape.Range part : parts) {
+			String zh = index.terms().typed("reputation_rank").get(styled.canonical().substring(part.start(), part.end()));
+			if (zh == null) return null;
+			result.append(styled.slice(cursor, part.start()));
+			result.append(Component.literal(zh).setStyle(styled.styleAt(part.start())));
+			cursor = part.end();
+		}
+		return result.append(styled.slice(cursor, styled.length()));
 	}
 
 	/**
@@ -501,7 +542,8 @@ public final class Translator {
 		Component label = termedLabel(styled.slice(0, colon), config);
 		Component value = valued(styled.slice(colon, styled.length()), surface, config);
 		boolean any = label != null || value != null;
-		boolean labelCovered = label != null || !hasEnglishWord(plain.substring(0, colon));
+		boolean labelCovered = label != null || !hasEnglishWord(plain.substring(0, colon))
+			|| index.isNpcName(plain.substring(0, colon).trim());
 		boolean valueCovered = value != null || !hasEnglishWord(plain.substring(colon));
 
 		return any && labelCovered && valueCovered;

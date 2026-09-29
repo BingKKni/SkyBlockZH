@@ -42,8 +42,8 @@ public final class OriginalTips {
 		return false;
 	}
 
-	public static Component loreHint(String key) {
-		return Component.literal("§b[SkyZH] §6按 " + key + " 键切换原文，再按恢复");
+	public static Component loreHint(String key, boolean original) {
+		return Component.literal("§b[SkyZH] §6按下 " + key + " 键显示" + (original ? "翻译" : "原文"));
 	}
 
 	static Component chatHint(String key) {

@@ -198,6 +198,9 @@ public final class Classifier {
 		Translator.Located located = Translator.locate(styled, surface.surface());
 
 		if (!located.matched()) {
+			var component = styled.slice(0, styled.length());
+			if (Translator.reputationRanks(component, surface.surface()) != null) return null;
+			if (surface.surface() == Surface.HOLOGRAM && Translator.hologramItem(component) != null) return null;
 			// Portal destinations borrow the already translated location vocabulary at render time.
 			// They have no Hologram record and must not be filed as untranslated each session.
 			if (surface.surface() == Surface.HOLOGRAM

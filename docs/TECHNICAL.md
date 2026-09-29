@@ -33,8 +33,9 @@ which run *before* this mod's hooks, so SkyHanni and SkyBlocker keep seeing exac
 sent. That is the design goal, not a side effect: a translation mod that broke SkyHanni would be a
 worse deal for most SkyBlock players than reading English.
 
-Every runtime translation entry checks `HypixelServer.canTranslate()` before caches, term-table
-fallbacks, wrapping or centring. The address is deliberately not checked: accelerators commonly expose
+Runtime translation entries check `HypixelServer.canTranslate()` before translated caches, term-table
+fallbacks, wrapping or centring. Original-mode tooltips still enforce the server/master boundary and
+check item-name coverage solely for the restore-translation hint, without translating or reflowing lore. The address is deliberately not checked: accelerators commonly expose
 an IP or local relay instead of `hypixel.net`. Two independent pieces of live server state are required
 instead — Hypixel identifying itself on this exact connection (its official inbound `hypixel:hello`
 payload, or the standard `minecraft:brand` payload naming `Hypixel BungeeCord`, the same signal
@@ -152,6 +153,9 @@ and key ID remain for saved-binding compatibility. Keyboard/scancode events igno
 mouse bindings use physical rising edges. Text entry, key rebinding and an unfocused window reject new
 presses without clearing the selected mode. Toggle before opening chat to read old messages. Leaving
 SkyBlock, disabling the mod or unbinding clears this session-only state without saving or changing capture.
+Accepted user toggles play `ui.button.click` in the BLOCKS category (volume parameter 100, pitch 2) and
+announce the new display state; automatic resets are silent. Eligible item tooltips show the currently
+bound key and offer originals or translations according to the selected mode, retaining the hint colours.
 
 Before drawing, chat observes the effective translation policy, including the master switch. Only
 wrapped display lines are rebuilt; `allMessages` stays original and the scroll offset is retained within
@@ -289,7 +293,10 @@ server instead of read off a sidebar drawn for a human. The library is compiled 
 bundled; without that mod the integration does not load and the other two readings carry on.
 
 With capture **off** — every ordinary player — nothing is subscribed and no packet is sent to Hypixel.
-This is independent of `updateCheck`: when both it and the master switch are on, startup makes one GitHub Releases metadata request. It does not involve Hypixel, upload game data or download a mod file. That half
+This is independent of `updateCheck`: when both it and the master switch are on, startup makes one GitHub Releases metadata request.
+The `/releases/latest` tag is compared with Fabric metadata, ignoring the `+mc26.x` build suffix.
+Publishing a non-draft, non-prerelease GitHub Release is required; pushing code or a tag alone is not enough.
+A detected update is announced once after joining a world, so startup chat clearing cannot discard it. It does not involve Hypixel, upload game data or download a mod file. That half
 of the mod remains what it says on the tin: a client running SkyZH is, as far as Hypixel and as far
 as every other mod is concerned, a client running in English.
 
@@ -443,7 +450,7 @@ arithmetic; resource-pack rendering and mod combinations still need an in-game c
 
 ### Known names above entities
 
-Capture reads server-observed stands within 32 blocks, using spatial bins to retain at most 12 neighbouring rows per observation. These are explicitly spatial neighbours, not confirmed paragraphs. Each record retains at most three position/area scenes; late neighbour metadata can enrich an existing scene, while ticking counters do not consume extra slots. Observation signatures include visible styles so colour-only changes are diagnosed again. Exact `translate: false` decisions and NPC names survive corpus minification. Museum labels may borrow exact ITEM records only after the offline item catalog confirms the name, never menu labels or old lore fragments.
+Capture reads server-observed stands within 32 blocks, using spatial bins to retain at most 12 neighbouring rows per observation. These are explicitly spatial neighbours, not confirmed paragraphs. Each record retains at most three position/area scenes; late neighbour metadata can enrich an existing scene, while ticking counters do not consume extra slots. Observation signatures include visible styles so colour-only changes are diagnosed again. Exact `translate: false` decisions and NPC names survive corpus minification. Museum labels may borrow ITEM names only after the offline item catalog confirms the complete name, never menu labels or old lore fragments. Ranked auction displays also reuse the item-name path for reforges and stars, preserving the live styles of every surrounding decoration.
 
 Green NPC role labels may use explicit hologram records; colour alone is not a translation policy.
 For non-player living entities and invisible armour stands, a separate bounded health-bar path replaces

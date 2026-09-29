@@ -65,6 +65,7 @@ public final class CaptureHarness {
 		preservedText(corpus);
 		decoratedItemNames();
 		holograms();
+		release06();
 		hologramScenes();
 		names();
 		layout();
@@ -473,6 +474,64 @@ public final class CaptureHarness {
 			CaptureStore.clear(root);
 			delete(root);
 		}
+	}
+
+	private static void release06() {
+		check("截图1绿色Guide可译", NameTag.eligible(Component.literal("§aGuide")), true);
+		check("截图2独立Hub Revamp可译", NameTag.eligible(Component.literal("§aHub Revamp")), true);
+		check("截图3Hub Island不当NPC人名", NameTag.eligible(Component.literal("§aHub Island")), true);
+		check("Hub Island沿用大厅且保留绿色", TranslationHarness.legacy(NameTag.location(Component.literal("§aHub Island"))), "§a大厅");
+		checkNothing("新补绿色浮空行不再采集", CaptureSurface.HOLOGRAM, "§aGuide");
+		checkNothing("大厅项目不再采集", CaptureSurface.HOLOGRAM, "§aHub Revamp");
+		checkNothing("大厅目的地不再采集", CaptureSurface.HOLOGRAM, "§aHub Island");
+		checkNothing("Rhys仍是保留人名", CaptureSurface.HOLOGRAM, "§fRhys");
+		for (String icons : List.of("\uE07B\uE071", "\uE07B \uE071")) {
+			for (String hp : List.of("2M/2M", "765,432/2M")) {
+				String raw = "§8[§7Lv75§8] §e" + icons + " §cBarbarian §a" + hp + "§c\uE010";
+				check("截图4双生物图标血条与变值", TranslationHarness.legacy(NameTag.mobName(Component.literal(raw))),
+					raw.replace("Barbarian", "野蛮人"));
+				checkNothing("动态怪物血量不反复采集", CaptureSurface.HOLOGRAM, raw);
+			}
+		}
+		checkNothing("浮空排行物品保留专名不重复采集", CaptureSurface.HOLOGRAM, "§e#2 §dHeroic Hyperion §6✪✪✪");
+		checkVerdict("未知浮空排行物品仍上报", CaptureSurface.HOLOGRAM, "§e#2 Unverified Blade", Classifier.Bucket.UNTRANSLATED);
+		for (String input : List.of("Enchanted Book (Hardened Vitality I)", "Enchanted Book (Strong Vitality V)",
+			"Enchanted Book (Rejuvenate II)", "Enchanted Book (Infinite Quiver VI)", "Enchanted Book (No Pain No Gain I)")) {
+			checkNothing("已确认保留附魔不报混杂 " + input, CaptureSurface.GUI_ITEM, input);
+		}
+		checkVerdict("未知附魔不被名单吞掉", CaptureSurface.GUI_ITEM,
+			"Enchanted Book (Unverified Enchantment II)", Classifier.Bucket.MIXED);
+		checkNothing("附魔卖单按物品引用保留", CaptureSurface.GUI_ITEM, "Selling: 1x Hardened Vitality I");
+		checkNothing("触手肉卖单不再混杂", CaptureSurface.GUI_ITEM, "Selling: 7x Tentacle Meat");
+		checkNothing("实测救援NPC颜色诊断消除", CaptureSurface.NPC_MESSAGE,
+			"Perfect! Go see our §eUndercover Agent §rat the §5Cathedral §rarea in §5Mage §rterritory to get started.");
+		for (String input : List.of("09/29/26 m24BQ", "10/01/27 mini123AB", "||||||||||||||| Foxy", "|||||||| Cole")) {
+			checkNothing("日期编号和已知候选人进度不采集 " + input, CaptureSurface.SCOREBOARD, input);
+		}
+		checkVerdict("未知侧边栏状态不被日期规则吞掉", CaptureSurface.SCOREBOARD,
+			"09/29/26 Unverified Event", Classifier.Bucket.UNTRANSLATED);
+		for (String input : List.of("Foxy: |||||||||| (7%)", "Aranya: §aAvailable", "Blight 11: 600/1,200", "Kuudra II: 6/100",
+			"§8●§7●§6○§b○ §fBlobfish", "○○○○ Steaming-Hot Flounder", "●○○○ Sulphur Skitter", "●●●● Obfuscated-1", "✖ Golden Fish x1")) {
+			checkNothing("Tab保留原名的结构不重复采集 " + input, CaptureSurface.TABLIST, input);
+		}
+		checkVerdict("未知NPC状态仍采集", CaptureSurface.TABLIST, "Aranya: Unverified Status", Classifier.Bucket.UNTRANSLATED);
+		checkVerdict("未知鱼种仍采集", CaptureSurface.TABLIST, "●●○○ Unverified Fish", Classifier.Bucket.UNTRANSLATED);
+		checkVerdict("已知鱼名外的句子仍采集", CaptureSurface.TABLIST, "Blobfish are escaping!", Classifier.Bucket.UNTRANSLATED);
+		for (String input : List.of("Hardened Vitality ➜ Hardened Vi", "Strong Vitality ➜ Strong Vitali", "Vesuvius", "An")) {
+			checkNothing("NPC及附魔截断标题保留 " + input, CaptureSurface.GUI_TITLE, input);
+		}
+		checkVerdict("附魔标题右侧不是原名前缀仍采集", CaptureSurface.GUI_TITLE,
+			"Strong Vitality ➜ Unverified", Classifier.Bucket.UNTRANSLATED);
+		check("组队列表玩家行只在该菜单排除", io.github.bingkkni.skyzh.capture.PreservedText.partyFinderLine("Party Finder", " Player_2 (60)"), true);
+		check("其他菜单同形行不排除", io.github.bingkkni.skyzh.capture.PreservedText.partyFinderLine("Bestiary", " Player_2 (60)"), false);
+		check("玩家名单规则不吞任务句", io.github.bingkkni.skyzh.capture.PreservedText.partyFinderLine("Party Finder", "Player_2 has joined (60)"), false);
+		check("阵营刻度复用全部相邻等级", TranslationHarness.legacy(Translator.translateRow(
+			Component.literal(" §7Neutral      §aFriendly"), Surface.TABLIST)), " §7中立      §a友好");
+		checkNothing("阵营刻度不重复采集", CaptureSurface.TABLIST, " §7Friendly      Trusted");
+		checkNothing("聊天声望刻度不重复采集", CaptureSurface.CHAT_MESSAGE, "          §dFriendly                                         Trusted");
+		check("未知双列不猜译", Translator.reputationRanks(Component.literal("Friendly      Unverified"), Surface.TABLIST), null);
+		checkVerdict("缺失Auto Revive尾句仍报告", CaptureSurface.GUI_ITEM,
+			"§7Auto revives you on death with §a50%", Classifier.Bucket.UNTRANSLATED);
 	}
 
 	/** Hologram capture follows the same boundary as hologram rendering. */

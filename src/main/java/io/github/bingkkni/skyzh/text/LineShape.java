@@ -129,6 +129,11 @@ public final class LineShape {
 		}
 
 		if (surface == Surface.CHAT) {
+			// Explicit reward-name records can reuse their item spelling for any dungeon star count.
+			var stars = ITEM_STARS.matcher(plain.substring(start, end));
+			if (stars.find() && ItemNames.canonical(plain.substring(start, start + stars.start())) != null) {
+				add(ranges, start, start + stars.start());
+			}
 			Speaker speaker = speaker(plain, start, end);
 
 			if (speaker != null) {

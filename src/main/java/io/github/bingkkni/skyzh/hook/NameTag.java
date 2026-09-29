@@ -65,7 +65,7 @@ public final class NameTag {
 	);
 	private static final TextColor NPC_NAME_COLOUR = TextColor.fromLegacyFormat(ChatFormatting.GREEN);
 	private static final Pattern MOB_BAR = Pattern.compile(
-		"^(?:﴾\\s*)?(?:\\[Lv[0-9]+\\]\\s*)?[\\p{Co}\\p{S}]*\\s*([A-Za-z][A-Za-z '\\-]+?)\\s+(?:[0-9][0-9,.]*[kKmMbBtT]?(?:/[0-9][0-9,.]*[kKmMbBtT]?)?|\\?+)❤(?:\\s*﴿)?\\s*$"
+		"^(?:﴾\\s*)?(?:\\[Lv[0-9]+\\]\\s*)?(?:[\\p{Co}\\p{S}]\\s*){0,8}([A-Za-z][A-Za-z '\\-]+?)\\s+(?:[0-9][0-9,.]*[kKmMbBtT]?(?:/[0-9][0-9,.]*[kKmMbBtT]?)?|\\?+)❤(?:\\s*﴿)?\\s*$"
 	);
 	private static final Pattern PET_TAG = Pattern.compile("^(?:#[0-9]+ )?\\[Lv(?:l )?[0-9]+\\] .+");
 	private static final Pattern RANKED_PLAYER = Pattern.compile(

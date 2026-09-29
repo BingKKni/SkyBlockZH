@@ -69,7 +69,15 @@ public final class TooltipTranslator {
 	 * looser line shape.
 	 */
 	public static Translator.Result translateItemName(Component source) {
-		Translator.Result whole = Translator.translate(source, Surface.ITEM);
+		if (!SkyZHConfig.get().enabled || HoldOriginal.active()) {
+			return new Translator.Result(source.copy(), null, null, null);
+		}
+		return translateItemNameAvailable(source);
+	}
+
+	/** Coverage for hints/capture is independent of the currently selected display language. */
+	public static Translator.Result translateItemNameAvailable(Component source) {
+		Translator.Result whole = Translator.translateAvailable(source, Surface.ITEM);
 
 		if (whole.matched()) {
 			return whole;
@@ -85,7 +93,7 @@ public final class TooltipTranslator {
 		int prefixLength = parts.prefixLength();
 
 		if (!parts.decorated() || itemStart >= starStart) return whole;
-		Translator.Result remainder = Translator.translate(styled.slice(itemStart, starStart), Surface.ITEM);
+		Translator.Result remainder = Translator.translateAvailable(styled.slice(itemStart, starStart), Surface.ITEM);
 		boolean preserved = Translator.index().preserved(Surface.ITEM, plain.substring(itemStart, starStart));
 		if ((!remainder.matched() && !preserved) || remainder.head() != null || remainder.tail() != null) return whole;
 
@@ -97,7 +105,7 @@ public final class TooltipTranslator {
 		}
 		result.append(remainder.padded());
 		if (starStart < plain.length()) result.append(styled.slice(starStart, plain.length()));
-		return new Translator.Result(result, null, null, remainder.entry());
+		return new Translator.Result(result, null, null, remainder.entry(), remainder.matchedCore(), remainder.match());
 	}
 
 	/** Capture checks the same undecorated name that the renderer translates, only on first lines. */
@@ -194,7 +202,7 @@ public final class TooltipTranslator {
 	public static List<Component> translate(Font font, List<Component> lines) {
 		SkyZHConfig config = SkyZHConfig.get();
 
-		if (!HypixelServer.canTranslate() || !config.enabled || HoldOriginal.active() || lines.isEmpty()) {
+		if (!HypixelServer.isSkyBlock() || !config.enabled || lines.isEmpty()) {
 			return lines;
 		}
 
@@ -202,8 +210,15 @@ public final class TooltipTranslator {
 		Screen screen = minecraft == null ? null : ClientGui.screen(minecraft);
 		boolean terminalNames = screen instanceof AbstractContainerScreen<?> && requiresOriginalName(screen.getTitle());
 		String hintKey = config.originalTips && screen != null ? HoldOriginal.keyName() : null;
-		// A tooltip can be identical in a shop and in a terminal; the display policy is part of its key.
-		StringBuilder key = new StringBuilder().append(hintKey).append(':').append(terminalNames).append('\n');
+		return present(font, lines, terminalNames, hintKey, HoldOriginal.active());
+	}
+
+	/** Layout after the runtime boundary; kept separate for original-mode regression checks. */
+	private static List<Component> present(Font font, List<Component> lines, boolean terminalNames,
+		String hintKey, boolean original) {
+		// Neither language may reuse the other's text or hint; toggling retains both cached layouts.
+		StringBuilder key = new StringBuilder().append(hintKey).append(':').append(terminalNames)
+			.append(':').append(original).append('\n');
 
 		for (Component line : lines) {
 			StyledText styled = StyledText.of(line);
@@ -237,31 +252,37 @@ public final class TooltipTranslator {
 		// are now one line where the game had two and would otherwise stretch the box.
 		int width = MIN_WRAP_WIDTH;
 
-		for (Component line : lines) {
-			width = Math.max(width, font.width(line));
+		if (!original) {
+			for (Component line : lines) {
+				width = Math.max(width, font.width(line));
+			}
 		}
 
 		List<Component> result = new ArrayList<>(lines.size());
 		Component itemName = lines.getFirst();
-		Translator.Result translatedName = translateItemName(itemName);
+		Translator.Result translatedName = translateItemNameAvailable(itemName);
 		boolean hint = hintKey != null && !terminalNames && OriginalTips.eligibleName(itemName, translatedName);
 
-		if (terminalNames) {
-			result.add(itemName);
+		if (original) {
+			result.addAll(lines);
 		} else {
-			result.addAll(TextLayout.wrap(font, translatedName.padded(), width));
-		}
-
-		for (LoreTranslation.Unit unit : LoreTranslation.plan(lines.subList(1, lines.size()))) {
-			if (unit.translated()) {
-				result.addAll(TextLayout.wrap(font, unit.rendered(), width));
+			if (terminalNames) {
+				result.add(itemName);
 			} else {
-				result.add(unit.rendered());
+				result.addAll(TextLayout.wrap(font, translatedName.padded(), width));
+			}
+
+			for (LoreTranslation.Unit unit : LoreTranslation.plan(lines.subList(1, lines.size()))) {
+				if (unit.translated()) {
+					result.addAll(TextLayout.wrap(font, unit.rendered(), width));
+				} else {
+					result.add(unit.rendered());
+				}
 			}
 		}
 
 		if (hint) {
-			result.add(OriginalTips.loreHint(hintKey));
+			result.add(OriginalTips.loreHint(hintKey, original));
 		}
 		List<Component> immutable = List.copyOf(result);
 

@@ -2,6 +2,7 @@ package io.github.bingkkni.skyzh.mixin;
 
 import io.github.bingkkni.skyzh.HoldOriginal;
 import io.github.bingkkni.skyzh.HypixelServer;
+import io.github.bingkkni.skyzh.UpdateChecker;
 import io.github.bingkkni.skyzh.capture.ScreenWatcher;
 import io.github.bingkkni.skyzh.gui.SkyZHWelcomeScreen;
 import net.minecraft.client.Minecraft;
@@ -27,6 +28,7 @@ public abstract class MinecraftCaptureMixin {
 	private void skyzh$captureTick(CallbackInfo info) {
 		Minecraft minecraft = (Minecraft) (Object) this;
 		HypixelServer.tick(minecraft);
+		UpdateChecker.tick(minecraft);
 		SkyZHWelcomeScreen.tick(minecraft);
 		HoldOriginal.poll(minecraft);
 		ScreenWatcher.tick();
