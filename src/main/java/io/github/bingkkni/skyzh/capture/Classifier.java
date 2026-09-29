@@ -198,6 +198,10 @@ public final class Classifier {
 		Translator.Located located = Translator.locate(styled, surface.surface());
 
 		if (!located.matched()) {
+			// Portal destinations borrow the already translated location vocabulary at render time.
+			// They have no Hologram record and must not be filed as untranslated each session.
+			if (surface.surface() == Surface.HOLOGRAM
+				&& NameTag.locationName(styled.canonical().trim()) != null) return null;
 			if (PreservedText.ignored(surface.surface(), styled.canonical())
 				|| Translator.index().preserved(surface.surface(), styled.canonical())
 				|| surface.surface() == Surface.HOLOGRAM && ItemNames.canonical(styled.canonical()) != null

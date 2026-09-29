@@ -58,6 +58,7 @@ public final class LineShape {
 	 */
 	private static final int LONGEST_SPEAKER = 48;
 	private static final Pattern ITEM_COUNT = Pattern.compile(" x[0-9][0-9,]*$");
+	private static final Pattern ITEM_STARS = Pattern.compile(" [✪★☆➊➋➌➍➎]+$");
 
 	private LineShape() {
 	}
@@ -96,6 +97,18 @@ public final class LineShape {
 					if (candidate.start() < count.start()
 						&& ItemNames.canonical(plain.substring(candidate.start(), count.start())) != null) {
 						add(ranges, candidate.start(), count.start());
+					}
+				}
+			}
+			// Loot menus also show a catalog item with its dungeon/master stars as a lore line.
+			// Strip only this closed decoration, and only after the base name is in the offline catalog;
+			// unknown weapons and stars elsewhere in a sentence must stay untouched.
+			var stars = ITEM_STARS.matcher(plain.substring(0, end));
+			if (stars.find()) {
+				for (Range candidate : List.copyOf(ranges)) {
+					if (candidate.start() < stars.start()
+						&& ItemNames.canonical(plain.substring(candidate.start(), stars.start())) != null) {
+						add(ranges, candidate.start(), stars.start());
 					}
 				}
 			}

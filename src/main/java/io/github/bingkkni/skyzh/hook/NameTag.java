@@ -1,6 +1,7 @@
 package io.github.bingkkni.skyzh.hook;
 
 import io.github.bingkkni.skyzh.HypixelServer;
+import io.github.bingkkni.skyzh.capture.Areas;
 import io.github.bingkkni.skyzh.text.Glyphs;
 import io.github.bingkkni.skyzh.text.StyledText;
 import io.github.bingkkni.skyzh.text.Surface;
@@ -113,7 +114,7 @@ public final class NameTag {
 			&& !LEADERBOARD.matcher(plain).matches() && !RANKED_PLAYER.matcher(plain).matches()
 			&& (plain.length() > 16 || !PLAYER_LIKE.matcher(plain).matches())
 			&& (!(npcName(styled, plain) || Translator.index().isNpcName(plain))
-				|| Translator.locate(styled, Surface.HOLOGRAM).matched());
+				|| Translator.locate(styled, Surface.HOLOGRAM).matched() || locationName(plain) != null);
 	}
 
 	/**
@@ -142,6 +143,26 @@ public final class NameTag {
 		}
 
 		return true;
+	}
+
+	/**
+	 * A portal destination is an entire known area, not an NPC name. Reuse the same location term
+	 * the sidebar uses, but only for areas in the area registry (or explicitly typed as locations).
+	 * An arbitrary word in the global term table must never rename a player's or NPC's nameplate.
+	 */
+	public static String locationName(String plain) {
+		if (Translator.index().isNpcName(plain)) return null;
+		var terms = Translator.index().terms();
+		if (!terms.typed("location_name").containsKey(plain) && !Areas.get().knows(plain)) return null;
+		String zh = terms.translate("location_name", plain);
+		return zh == null || zh.equals(plain) ? null : zh;
+	}
+
+	/** Preserve the destination's live style; leave unknown text as the original component. */
+	public static Component location(Component source) {
+		StyledText styled = StyledText.of(source);
+		String zh = locationName(Glyphs.canonical(styled.plain()).trim());
+		return zh == null ? source : Component.literal(zh).setStyle(styled.styleAt(0));
 	}
 
 	/** Only a closed mob-name term can change; level, health and their live styles stay intact. */
@@ -174,7 +195,11 @@ public final class NameTag {
 		if (mob != nameTag) {
 			return mob;
 		}
-		return hologramNameTag && eligible(nameTag)
-			? Translator.translateLine(nameTag, Surface.HOLOGRAM) : nameTag;
+		if (!hologramNameTag || !eligible(nameTag)) return nameTag;
+		if (Translator.locate(nameTag, Surface.HOLOGRAM).matched()) {
+			return Translator.translateLine(nameTag, Surface.HOLOGRAM);
+		}
+		Component location = location(nameTag);
+		return location == nameTag ? Translator.translateLine(nameTag, Surface.HOLOGRAM) : location;
 	}
 }

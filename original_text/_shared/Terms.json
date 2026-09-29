@@ -193,7 +193,27 @@
     {"en":"Killed Superior Dragon","zh":"击杀卓越巨龙","types":["raw"]},
     {"en":"Killed Old Dragon","zh":"击杀苍老巨龙","types":["raw"]},
     {"en":"Killed Protector Dragon","zh":"击杀守护巨龙","types":["raw"]},
-    {"en":"HOTF Progression","zh":"森林之心进度","types":["raw"]},
+    {"en":"HOTF Progression","zh":"树心进度","types":["raw"],"note":"HOTF 是森林之心的简称树心，区别于 HOTM 山心。"},
+    {"en":"Spider Mound","zh":"蜘蛛山丘","types":["location_name","raw"],"note":"沿用 Combat/NPC_Message/Haymitch.json 的既有地名；实测动作栏地点捕获值。"},
+    {"en":"among the path through carrots","zh":"胡萝卜田间的小径上","types":["raw"],"note":"Hoppity 彩蛋的完整位置线索，只在整值匹配时使用。"},
+    {"en":"outside the Trapper's Den","zh":"猎人小屋外","types":["raw"],"note":"沿用 Trapper's Den → 猎人小屋；只用于完整线索。"},
+    {"en":"behind the flower pot","zh":"花盆后面","types":["raw"],"note":"Hoppity 彩蛋完整位置线索。"},
+    {"en":"next to the Farmhouse","zh":"农舍旁边","types":["raw"],"note":"沿用 Farmhouse → 农舍；Hoppity 彩蛋完整线索。"},
+    {"en":"Snail","zh":"蜗牛","types":["mob_name"],"note":"收藏品奖励的蜗牛宠物配方；普通生物名与原版译名一致。"},
+    {"en":"Cod","zh":"鳕鱼","types":["mob_name"],"note":"月光沼泽章节奖励碎片的原版生物名。"},
+    {"en":"Verdant","zh":"翠绿鱼","types":["mob_name"],"note":"月光沼泽水中的绿色热带鱼小动物，采集到的章节任务与社区 Wiki Verdant 页核对。"},
+    {"en":"Azure","zh":"湛蓝鱼","types":["mob_name"],"note":"月光沼泽水中的较稀有蓝色热带鱼小动物；与 Azure Bluet（蓝花美耳草）区分。"},
+    {"en":"Onyx Gemstone Block","zh":"Onyx 宝石方块","types":["category_name"],"note":"沿用 Peridot Gemstone Block 的写法，Onyx 为宝石种类专名，保留英文。"},
+    {"en":"Helix","zh":"螺旋树","types":["category_name"],"note":"森林之心的 Helix Fortune、每日原木统计中的树种，沿用「螺旋树赠礼」。不影响其他 Helix 专名。"},
+    {"en":"Damage Boost","zh":"伤害强化","types":["category_name"],"note":"森林之心的斧技能名称，含 Axe Ability: 动态值。"},
+    {"en":"Strength Boost","zh":"力量强化","types":["category_name"],"note":"森林之心斧技能名称。"},
+    {"en":"Speed Boost","zh":"速度强化","types":["category_name"],"note":"森林之心斧技能名称。"},
+    {"en":"Axe Toss","zh":"飞斧投掷","types":["category_name"],"note":"沿用森林之心同名天赋格的译名。"},
+    {"en":"Maniac Slicer","zh":"狂乱切割","types":["category_name"],"note":"沿用森林之心同名天赋格的译名。"},
+    {"en":"Forest Whispers","zh":"森林低语","types":["category_name"],"note":"森林之心低语类别，避免地名 Forest 与时间混淆。"},
+    {"en":"Desert Whispers","zh":"沙漠低语","types":["category_name"],"note":"森林之心低语类别。"},
+    {"en":"Hymn to the Joy","zh":"欢乐颂","types":["category_name"],"note":"沿用 Foraging/GUI_Item/Captured_Menus.json 中的曲目译名。"},
+    {"en":"Through the Campfire","zh":"穿越篝火","types":["category_name"],"note":"Melody 竖琴曲名；不同于篝火试炼 Trial of Fire。"},
     {"en":"Rush","zh":"冲撞","types":["category_name"],"note":"社区 Wiki Ender_Dragon 招式；限定技能捕获位。"},
     {"en":"Fireball","zh":"火球","types":["category_name"]},
     {"en":"Lightning Strike","zh":"雷击","types":["category_name"]},
@@ -787,17 +807,18 @@
     },
     {
       "en": "HOTM",
-      "zh": "山峦之心",
+      "zh": "山心",
       "types": [
         "category_name"
       ]
     },
     {
       "en": "HOTF",
-      "zh": "森林之心",
+      "zh": "树心",
       "types": [
         "category_name"
-      ]
+      ],
+      "note": "用户确定森林之心的简称为树心；仅缩写 HOTF 用此简称，完整名称仍作森林之心。"
     },
     {
       "en": "Starlyn Contest",

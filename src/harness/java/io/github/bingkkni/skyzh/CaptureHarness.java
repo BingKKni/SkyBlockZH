@@ -488,6 +488,15 @@ public final class CaptureHarness {
 			NameTag.eligible(Component.literal("§aJotraeline Greatforge")), false);
 		check("单词 NPC 绿色专名同样排除", NameTag.eligible(Component.literal("§aBubu")), false);
 		check("绿色但加粗的状态不是 NPC 专名", NameTag.eligible(Component.literal("§a§lREADY")), true);
+		check("绿色传送目的地不是 NPC 人名", NameTag.eligible(Component.literal("§aDungeon Hub")), true);
+		check("已知地点复用词表且保留浮空字颜色", TranslationHarness.legacy(
+			NameTag.location(Component.literal("§aDungeon Hub"))), "§a地牢大厅");
+		check("实测蜘蛛山丘沿用已有地名", TranslationHarness.legacy(
+			NameTag.location(Component.literal("§bSpider Mound"))), "§b蜘蛛山丘");
+		Component unknownPlace = Component.literal("§aUnrecorded Destination");
+		check("未知目的地不做逐词猜译", NameTag.location(unknownPlace) == unknownPlace, true);
+		Component nonLocation = Component.literal("§aSupport");
+		check("非地名的术语不误当目的地", NameTag.location(nonLocation) == nonLocation, true);
 		check("怪物动态血条不属于可翻译浮空字",
 			NameTag.eligible(Component.literal("§cGlacite Walker §a1.2M§c❤")), false);
 		check("私用区心形的怪物血条同样排除",
@@ -498,6 +507,10 @@ public final class CaptureHarness {
 			NameTag.eligible(Component.literal("Requires 100❤ Health")), true);
 
 		checkNothing("已有的浮空字不重复采集", CaptureSurface.HOLOGRAM, "§e§lCLICK");
+		checkNothing("目的地借用词表不重复采集", CaptureSurface.HOLOGRAM, "§aDungeon Hub");
+		checkNothing("未译 NPC 专名不重复采集", CaptureSurface.HOLOGRAM, "§6Ike");
+		check("篝火职务浮空字可翻译", TranslationHarness.legacy(
+			Translator.translateLine(Component.literal("§aCampfire Initiate"), Surface.HOLOGRAM)), "§a篝火学徒");
 		checkNothing("NPC 专名在分类兜底处也不会伪报", CaptureSurface.HOLOGRAM,
 			"§aJotraeline Greatforge");
 		checkVerdict("未知职务浮空字会进入未翻译采集", CaptureSurface.HOLOGRAM,

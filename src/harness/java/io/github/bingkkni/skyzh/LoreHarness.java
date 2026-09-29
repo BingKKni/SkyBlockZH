@@ -127,6 +127,20 @@ public final class LoreHarness {
 		}
 		check("整句记录不与带尾行的旧首行同文 " + overlapping, overlapping.isEmpty());
 		// New records never enter ITEM: ability names must not start translating equipment names.
+		List<LoreTranslation.Unit> forestReset = LoreTranslation.plan(List.of(
+			Component.literal("§c§lYou can not go back after"),
+			Component.literal("§c§lresetting your Heart of the"),
+			Component.literal("§c§lForest!")));
+		check("森林之心警告整句覆盖 Forest!", forestReset.size() == 1
+			&& forestReset.getFirst().rendered().getString().contains("森林之心")
+			&& !forestReset.getFirst().rendered().getString().contains("山峦之心")
+			&& !forestReset.getFirst().rendered().getString().contains("Forest"));
+		List<LoreTranslation.Unit> mountainReset = LoreTranslation.plan(List.of(
+			Component.literal("You can not go back after"),
+			Component.literal("resetting your Heart of the"),
+			Component.literal("Mountain!")));
+		check("原山峦之心警告仍独立命中", mountainReset.size() == 1
+			&& mountainReset.getFirst().rendered().getString().contains("山峦之心"));
 		check("新 Lore 记录不参与物品名", index.entries(Surface.ITEM).stream()
 			.noneMatch(e -> e.sourceFile().contains("/GUI_Lore/")));
 		for (String name : List.of("Hyperion", "Terminator", "Hollow Wand", "Salvation", "Legendary Treasure"))
