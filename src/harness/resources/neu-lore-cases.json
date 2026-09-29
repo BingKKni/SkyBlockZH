@@ -1058,9 +1058,44 @@
     ]
   },
   {
+    "name": "dungeons-gate / bonzo-030-bio",
+    "source": "d032326:original_text/Dungeons/GUI_Item/Catacombs_Gate.json#gate_bonzo_bio_1",
+    "notes": "0.3.0 楼层菜单的两行断行；§8 取自同句 NEU 头颅 Lore 样本。",
+    "lines": ["§8Involved in the dark arts due to his parents'", "§8insistence. Originally worked as a Circus clown."],
+    "units": [{"start":0,"consumed":2,"expected":"§8在父母的坚持下涉足黑魔法，原本是一名马戏团小丑。"}]
+  },
+  {
+    "name": "dungeons-gate / scarf-030-bio",
+    "source": "d032326:original_text/Dungeons/GUI_Item/Catacombs_Gate.json#gate_scarf_bio_1",
+    "notes": "旧楼层菜单两行断行。",
+    "lines": ["§8First of his class. His teacher said he will do", "§8\"great things\"."],
+    "units": [{"start":0,"consumed":2,"expected":"§8班级第一名。他的老师说他将来会“大有作为”。"}]
+  },
+  {
+    "name": "dungeons-gate / thorn-030-bio",
+    "source": "d032326:original_text/Dungeons/GUI_Item/Catacombs_Gate.json#gate_thorn_bio_1",
+    "notes": "旧楼层菜单两行断行，保留完整语义和深灰色。",
+    "lines": ["§8Powerful Necromancer that specializes in", "§8animals. Calls himself a vegetarian, go figure."],
+    "units": [{"start":0,"consumed":2,"expected":"§8专攻动物的强大亡灵法师。他自称素食主义者，真让人摸不着头脑。"}]
+  },
+  {
+    "name": "dungeons-gate / livid-030-bio",
+    "source": "d032326:original_text/Dungeons/GUI_Item/Catacombs_Gate.json#gate_livid_bio_1",
+    "notes": "旧楼层菜单三行断行。",
+    "lines": ["§8Strongly believes he will become the Lord one", "§8day. Subject of mockeries, even from his", "§8disciples."],
+    "units": [{"start":0,"consumed":3,"expected":"§8他坚信自己有朝一日会成为领主，却成了笑柄，连他的弟子都嘲笑他。"}]
+  },
+  {
+    "name": "dungeons-gate / sadan-030-bio",
+    "source": "d032326:original_text/Dungeons/GUI_Item/Catacombs_Gate.json#gate_sadan_bio_1",
+    "notes": "旧楼层菜单三行断行。",
+    "lines": ["§8Necromancy was always strong in his family.", "§8Says he once beat a Wither in a duel. Likes to", "§8brag."],
+    "units": [{"start":0,"consumed":3,"expected":"§8他的家族一直精通亡灵之术。他声称自己在决斗中击败过一只凋零，而且很爱吹嘘。"}]
+  },
+  {
     "name": "combat-equipment / professor-literal-period",
-    "source": "lane handwritten proposal; synthetic numbers identified in notes",
-    "notes": "NEU 有序原色来源；期望人工按语义与源色拟定，不由引擎输出生成。",
+    "source": "d032326:original_text/Dungeons/GUI_Item/Catacombs_Gate.json#gate_professor_bio_1",
+    "notes": "NEU 四行原色样本（8 到 5），优先由完整字面句匹配 0.3.0 楼层简介。",
     "lines": [
       "§8Despite his great technique, he failed",
       "§8the Masters exam three times. Works",
@@ -1071,9 +1106,16 @@
       {
         "start": 0,
         "consumed": 4,
-        "expected": "§8尽管技艺精湛，却三次落榜大师考试。工作时间为 8 至 5，十分关心自己的学生。"
+        "expected": "§8尽管技术出众，他却三次没通过大师考试。每天朝八晚五，很关心自己的学生。"
       }
     ]
+  },
+  {
+    "name": "combat-equipment / professor-dynamic-hours",
+    "source": "synthetic alternative hours for NEU template neu_4c16a6964dcb",
+    "notes": "非 8 到 5 的合成数值，确保旧 GUI 特例不吞掉其他工作时间。",
+    "lines": ["§8Despite his great technique, he failed", "§8the Masters exam three times. Works", "§8from 9 to 6. Cares about his", "§8students."],
+    "units": [{"start":0,"consumed":4,"expected":"§8尽管技术出众，他却三次没通过大师考试。每天从 9 点工作到 6 点，很关心自己的学生。"}]
   },
   {
     "name": "combat-equipment / dragonfuse-damage-glyph-indent",

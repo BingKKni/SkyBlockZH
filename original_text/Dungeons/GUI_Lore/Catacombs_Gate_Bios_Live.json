@@ -1,0 +1,22 @@
+{
+  "source": "SkyZH runtime capture (Dungeon Hub, 2026-09-01); original_text/Dungeons/GUI_Item/Catacombs_Gate.json#gate_professor_bio_1; original_text/Combat/GUI_Lore/NEU_Equipment.json#neu_4c16a6964dcb",
+  "fetched_at": "2026-09-29",
+  "verified_ingame": true,
+  "gui_context": "地牢第 III 层旧楼层选择菜单里的 The Professor 简介。旧 GUI_Item 首行原译含固定 8 到 5；完整 GUI_Lore 优先命中同句，所以该实测原文也需要完整的旧译。其他工作时间仍由 NEU 里的数值模板处理。",
+  "lines": [
+    {
+      "id": "catacombs_gate_professor_original_bio",
+      "context": "The Professor 楼层简介中实测 8 点到 5 点的工作时间；仅此确切原文复用 0.3.0 既有译文",
+      "raw": "§8Despite his great technique, he failed the Masters exam three times. Works from 8 to 5. Cares about his students.",
+      "text": "Despite his great technique, he failed the Masters exam three times. Works from 8 to 5. Cares about his students.",
+      "placeholders": [],
+      "gloss": "8 至 5 是已核实的旧简介原文，不是通过样本推测的一般工作时间；若数值变化，NEU 的 %1$s/%2$s 模板仍接管，不能替未来的小时数写死旧译。",
+      "translate": true,
+      "zh": "尽管技术出众，他却三次没通过大师考试。每天朝八晚五，很关心自己的学生。",
+      "samples": [
+        ["§8Despite his great technique, he failed the", "§8Masters exam three times. Works from 8 to 5.", "§8Cares about his students."],
+        ["§8Despite his great technique, he failed", "§8the Masters exam three times. Works", "§8from 8 to 5. Cares about his", "§8students."]
+      ]
+    }
+  ]
+}
