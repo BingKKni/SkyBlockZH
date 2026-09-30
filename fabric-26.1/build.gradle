@@ -12,7 +12,7 @@
 // which recompiles this tree against that Minecraft and re-runs `checkMixinTargets` against it.
 
 plugins {
-	// Version comes from settings.gradle's pluginManagement, so both targets are on the same Loom.
+	// Version comes from settings.gradle's pluginManagement, so all targets are on the same Loom.
 	id 'net.fabricmc.fabric-loom'
 }
 
@@ -20,7 +20,7 @@ ext {
 	mcVersion = rootProject.mc26_1_version
 	mcRange = rootProject.mc26_1_range
 	modMenuVersion = rootProject.modmenu_26_1_version
-	versionSourceDir = 'mc26_1'
+	versionSourceDirs = ['mc26_1', 'glfw']
 	artifactTag = '26.1'
 }
 

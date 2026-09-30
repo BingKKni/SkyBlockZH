@@ -7,7 +7,7 @@
 
 [中文技术文档](TECHNICAL_zh-CN.md) · [English](TECHNICAL.md)
 
-A Chinese translation layer for Hypixel SkyBlock. Minecraft 26.1.x and 26.2 / Fabric, client only —
+A Chinese translation layer for Hypixel SkyBlock. Minecraft 26.1.x, 26.2 and 26.3 / Fabric, client only —
 one jar per Minecraft, from one source tree. See [Building](#building).
 
 SkyBlock has no official Chinese, so Chinese-speaking players either work through the English or
@@ -165,7 +165,7 @@ Vanilla rescaling, history clearing and component mutations invalidate cached la
 view or messages received during bypass still need work; this is not a measured low-end FPS guarantee.
 
 ```bash
-./gradlew checkClientSettings  # both targets: config migration, vanilla mappings, server boundary
+./gradlew checkClientSettings  # all targets: config migration, vanilla mappings, server boundary
 ```
 
 In-game checks still needed: rebind/unbind and verify persistence after a restart; toggle twice while
@@ -445,7 +445,7 @@ All six buckets use the existing capture switch, notifications, asynchronous wri
 deduplication and clear lifecycle. `_capture.diagnostic.original_lines`, `rendered_lines` and `records`
 keep a concrete observation; combining unrelated `observed` values is not a valid reconstruction.
 `./gradlew checkDiagnostics` checks the screenshot cases, 73 independent colour samples, deliberately
-broken records, persistence and clearing on both targets. Deterministic font metrics test the pixel
+broken records, persistence and clearing on all targets. Deterministic font metrics test the pixel
 arithmetic; resource-pack rendering and mod combinations still need an in-game check.
 
 ### Known names above entities
@@ -504,7 +504,7 @@ flattened colours under `GUI_Lore`, and lines it does not cover are still captur
 here touches the `ItemStack`, no online translation is introduced, and nothing downloads NEU at build
 or run time.
 
-- `checkLore` runs on both targets: the recorded multi-line samples, the same sentences re-wrapped at
+- `checkLore` runs on all targets: the recorded multi-line samples, the same sentences re-wrapped at
   other points, hand-written expectations, the line and length limits, item names left alone, and the
   capture diagnostics.
 - `auditNeuLore -PneuItems=<items directory>` is a development tool only and writes
@@ -516,28 +516,32 @@ or run time.
 ## Building
 
 ```bash
-./gradlew dist     # both jars into build/dist, after running every check on both
+./gradlew dist     # all three jars into build/dist, after running every check on every target
 ./gradlew build    # the same jars, into each target's own build/libs
 ```
 
 Requires JDK 25. Minecraft 26.x ships unobfuscated, so there is no mapping layer, mods are ordinary
 dependencies, and Loom has no `remapJar` step — `jar` produces the installable file.
 
-### Two Minecraft versions, one source tree
+### Three Minecraft versions, one source tree
 
 | | jar | Minecraft it declares | Mod Menu compiled against |
 |---|---|---|---|
 | `fabric-26.1/` | `SkyBlockZH-<version>-Beta-Fabric-26.1.jar` | `>=26.1 <26.2` | 18.0.0 |
 | `fabric-26.2/` | `SkyBlockZH-<version>-Beta-Fabric-26.2.jar` | `>=26.2 <26.3` | 20.0.1 |
+| `fabric-26.3/` | `SkyBlockZH-<version>-Beta-Fabric-26.3.jar` | `>=26.3 <26.4` | 21.0.0 |
 
-Both targets compile `src/main/` — the engine, the corpus loader, the capture, thirteen of the sixteen
-mixins — and add one small tree of their own, `src/mc26_1/` or `src/mc26_2/`. Everything about a
-target other than its version numbers lives in `gradle/target.gradle`, so the two cannot drift in how
-they package the corpus or which Java release they compile for.
+Every target compiles `src/main/` and selects platform sources through `versionSourceDirs`.
+26.1 uses `src/mc26_1/`; 26.2 and 26.3 share the GUI and Mixin code in `src/mc26_2/`.
+26.1/26.2 read mouse state through `src/glfw/`, while 26.3 uses the SDL adapter in `src/mc26_3/`.
+`ClientInput` isolates native input; the toggle policy stays shared. SDL uses one-based mouse button
+IDs and a bit mask, and physical keyboard scancodes; version-specific harnesses check these differences.
+`gradle/target.gradle` defines packaging and verification for every target. Corpus tools such as
+`probe` and `auditLog` are registered only on the newest target.
 
-Only three things differ between the two Minecrafts, and each one is a file in the version tree:
+The three GUI differences are:
 
-| What moved | 26.1.x | 26.2 |
+| What moved | 26.1.x | 26.2 / 26.3 |
 |---|---|---|
 | The class that draws the HUD | `Gui` | `Hud`, split out of `Gui` |
 | `SubmitNodeCollector#submitNameTag` | takes a trailing `double` | does not |
@@ -548,7 +552,7 @@ The last row is `platform/ClientGui`, one copy per target with the same signatur
 what they do when they fire is shared code in `hook/`, written once.
 
 One jar covers all of 26.1, 26.1.1 and 26.1.2: every class this mod touches is byte-identical across
-the three. Both ranges are closed at the top on purpose. Installing a jar on the Minecraft it was not
+the three. All ranges are closed at the top on purpose. Installing a jar on the Minecraft it was not
 built for would not crash — it would leave the HUD, the sidebar and every hologram silently English,
 because every injector here is `require = 0` — so the range is what stops Fabric from loading it at
 all.
@@ -556,7 +560,7 @@ all.
 ### Checking that the injectors still apply
 
 ```bash
-./gradlew checkMixinTargets     # part of `check`, run for both targets
+./gradlew checkMixinTargets     # part of `check`, run for every target
 ```
 
 This is the check `require = 0` makes necessary. It reads the annotations back out of the *compiled*

@@ -53,14 +53,15 @@ SkyBlock 玩法非常庞大，且每一次的游戏更新都可能会更改游�
 
 ## 支持哪些 Minecraft 版本？
 
-目前我们只支持 Fabric 模组加载器，支持 Minecraft 26.1.x 和 26.2 两个版本。
+目前我们只支持 Fabric 模组加载器，支持 Minecraft 26.1.x、26.2 和 26.3。
 
 | 你的 Minecraft | 下载 |
 | :---: | :---: |
 | 26.1、26.1.1、26.1.2 | `SkyBlockZH-<版本>-Beta-Fabric-26.1.jar` |
 | 26.2 | `SkyBlockZH-<版本>-Beta-Fabric-26.2.jar` |
+| 26.3 | `SkyBlockZH-<版本>-Beta-Fabric-26.3.jar` |
 
-文件名末尾的 `Beta-Fabric-26.1` / `Beta-Fabric-26.2` 表示 Fabric 加载器及对应的 Minecraft 版本。
+文件名末尾的 `Beta-Fabric-26.1` / `Beta-Fabric-26.2` / `Beta-Fabric-26.3` 表示 Fabric 加载器及对应的 Minecraft 版本。
 
 ## 许可证
 

@@ -6,10 +6,8 @@ plugins {
 // The root project compiles nothing and carries no Minecraft.
 //
 // Everything here is about the corpus in original_text/, which is the same bytes whichever Minecraft
-// the mod is being built for. The two things that do differ per version — which Minecraft to compile
-// against and which three classes to compile — live in fabric-26.1/ and fabric-26.2/, both of which
-// share this project's src/main and add one small source tree of their own. See gradle/target.gradle
-// for what a target does, and settings.gradle for why there are two of them and not four.
+// the mod is built for. Each fabric-26.x project selects its Minecraft and platform source trees;
+// the engine stays in src/main. See gradle/target.gradle for the shared build and checks.
 
 version = project.version
 group = project.group
@@ -25,7 +23,7 @@ group = project.group
 // `id` in a log message still names a record in the file a translator opened), while a player
 // downloads roughly a third of the bytes. See MinifyCorpus below for the field-by-field reasoning,
 // and `./gradlew corpusSize` for what it saves.
-// Built once here and packaged by both targets, rather than minified twice: the trimming depends on
+// Built once here and packaged by every target: the trimming depends on
 // what the engine reads, and the engine is the shared source tree.
 def minifiedCorpus = layout.buildDirectory.dir('minified-corpus')
 
@@ -434,14 +432,13 @@ tasks.register('checkTermRecords', Exec) {
 
 // `check` here is the corpus-level check. Running it from the root also runs each target's own
 // `check` — Gradle matches the task name across every project — which is what puts the translation,
-// capture and command harnesses on both Minecraft versions rather than only the newest.
+// capture and command harnesses on every supported Minecraft version rather than only the newest.
 tasks.named('check') {
 	dependsOn 'checkTermRecords'
 }
 
-// Every jar the build can produce, in one directory, named for the Minecraft it is for. Two files:
-// installing the wrong one is the one mistake a multi-version mod invites, and `+mc26.1` in the file
-// name is the cheapest possible guard against it.
+// Every jar the build can produce, in one directory, named for the Minecraft it is for.
+// The `Beta-Fabric-26.x` suffix identifies which target a player should install.
 //
 // The jars arrive through a configuration rather than by reaching into each target for its `jar` task:
 // a task in another project has not been registered yet while this one is being configured, and
@@ -461,11 +458,11 @@ dependencies {
 
 tasks.register('dist', Sync) {
 	group = 'build'
-	description = 'Collects each target jar into build/dist, after checking both.'
+	description = 'Collects each target jar into build/dist, after checking every target.'
 
 	// Sync removes files left by an older version. A plain Copy would leave two apparently valid jars
 	// in the advertised distribution directory after a version bump, inviting somebody to install the
-	// stale one. This directory is owned by this task, so keep it exactly equal to the current pair.
+	// stale one. This directory is owned by this task, so keep it equal to the current target jars.
 
 	// Resolving the configuration builds each jar but not each target's `check`, and a jar somebody is
 	// about to install is the last one that should skip its Mixin target resolution. Named by path so

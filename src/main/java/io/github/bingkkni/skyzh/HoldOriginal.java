@@ -2,6 +2,7 @@ package io.github.bingkkni.skyzh;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import io.github.bingkkni.skyzh.platform.ClientGui;
+import io.github.bingkkni.skyzh.platform.ClientInput;
 import java.util.Arrays;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
@@ -20,7 +21,6 @@ import net.minecraft.client.gui.screens.inventory.BookEditScreen;
 import net.minecraft.client.gui.screens.options.controls.KeyBindsScreen;
 import net.minecraft.client.input.KeyEvent;
 import net.minecraft.resources.Identifier;
-import org.lwjgl.glfw.GLFW;
 
 /**
  * Session-only original-text toggle. The class and vanilla mapping ID retain their old names so
@@ -62,16 +62,21 @@ public final class HoldOriginal {
 	public static void poll(Minecraft minecraft) {
 		boolean bound = binding != null && !binding.isUnbound();
 		boolean available = HypixelServer.isSkyBlock() && SkyZHConfig.get().enabled && bound;
-		boolean down = bound && configuredKey().getType() == InputConstants.Type.MOUSE
-			&& GLFW.glfwGetMouseButton(minecraft.getWindow().handle(), configuredKey().getValue()) == GLFW.GLFW_PRESS;
+		Boolean down = bound && configuredKey().getType() == InputConstants.Type.MOUSE
+			? ClientInput.mouseDown(minecraft, configuredKey().getValue()) : Boolean.FALSE;
 		if (updateMouse(available, minecraft.isWindowActive() && !typing(minecraft), down)) {
 			feedback(minecraft);
 		}
 	}
 
-	/** Returns true only for an accepted user toggle, never for an automatic reset. */
-	static boolean updateMouse(boolean available, boolean acceptsPress, boolean down) {
+	/** Returns true only for an accepted user toggle; null means physical state is unknown. */
+	static boolean updateMouse(boolean available, boolean acceptsPress, Boolean down) {
 		if (!available) active = false;
+		if (down == null) {
+			// Focus loss is not a release. Require an observed release before accepting another press.
+			mouseDown = true;
+			return false;
+		}
 		boolean toggled = available && acceptsPress && down && !mouseDown;
 		if (toggled) active = !active;
 		// Track rejected presses too: leaving an input box while holding a button is not a new tap.
@@ -80,7 +85,7 @@ public final class HoldOriginal {
 	}
 
 	static boolean press(boolean available, boolean acceptsPress, int action) {
-		boolean toggled = available && acceptsPress && action == GLFW.GLFW_PRESS;
+		boolean toggled = available && acceptsPress && action == InputConstants.PRESS;
 		if (toggled) active = !active;
 		return toggled;
 	}
@@ -118,7 +123,7 @@ public final class HoldOriginal {
 		return false;
 	}
 
-	/** Never consumes input; GLFW repeat/release must not toggle, including scan-code bindings. */
+	/** Never consumes input; repeat/release must not toggle, including scan-code bindings. */
 	public static void keyEvent(long window, int action, KeyEvent event) {
 		Minecraft minecraft = Minecraft.getInstance();
 		if (binding != null && !binding.isUnbound() && minecraft != null

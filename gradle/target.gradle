@@ -1,10 +1,8 @@
 // One Minecraft target: everything a fabric-26.x project is, apart from which numbers it uses.
 //
-// Applied by fabric-26.1/build.gradle and fabric-26.2/build.gradle, each of which sets `ext.mcVersion`,
-// `ext.mcRange`, `ext.modMenuVersion`, `ext.versionSourceDir` and `ext.artifactTag` first and adds
-// nothing else. Keeping the whole of it here rather than in the two files is the point: a target that
-// could drift from its sibling in how it packages the corpus, or in which Java release it compiles
-// for, would be a second jar nobody had actually checked.
+// Each fabric-26.x/build.gradle sets the version numbers, `ext.versionSourceDirs` and artifact tag.
+// Targets can reuse an API tree while selecting a different input backend. Packaging, Java release
+// and checks stay here so every distributed jar follows the same build rules.
 
 // Loom itself is applied by the target's own build.gradle: a `plugins {}` block is the only thing that
 // resolves a version out of settings.gradle's pluginManagement, and it is not allowed in a script
@@ -13,7 +11,7 @@
 def mcVersion = project.ext.mcVersion
 def mcRange = project.ext.mcRange
 def modMenuVersion = project.ext.modMenuVersion
-def versionSourceDir = project.ext.versionSourceDir
+def versionSourceDirs = project.ext.versionSourceDirs
 def artifactTag = project.ext.artifactTag
 
 base {
@@ -42,16 +40,15 @@ repositories {
 	}
 }
 
-// The shared tree plus this target's own. Three classes and one Mixin config are all that is in the
-// second one — see the package note in src/mc26_1/java/.../platform/ClientGui.java for what makes a
-// class belong there rather than in src/main.
+// Shared engine and hooks, plus only the platform code selected for this target.
 sourceSets {
 	main {
-		java.srcDirs = [rootProject.file('src/main/java'), rootProject.file("src/${versionSourceDir}/java")]
-		resources.srcDirs = [
-			rootProject.file('src/main/resources'),
-			rootProject.file("src/${versionSourceDir}/resources"),
-		]
+		java.srcDirs = [rootProject.file('src/main/java')] + versionSourceDirs.collect {
+			rootProject.file("src/${it}/java")
+		}
+		resources.srcDirs = [rootProject.file('src/main/resources')] + versionSourceDirs.collect {
+			rootProject.file("src/${it}/resources")
+		}
 	}
 }
 
@@ -105,11 +102,13 @@ processResources {
 // make the `test` task claim it has tests. It compiles against the mod and runs as a plain main().
 //
 // It lives in every target, not just the newest, and runs there: the engine is shared source compiled
-// against two different Minecrafts, and "the corpus still matches on 26.1" is a claim worth having
+// against different Minecraft versions, and "the corpus still matches on 26.1" is a claim worth having
 // checked rather than reasoned about.
 sourceSets {
 	harness {
-		java.srcDirs = [rootProject.file('src/harness/java')]
+		java.srcDirs = [rootProject.file('src/harness/java')] + versionSourceDirs.collect {
+			rootProject.file("src/${it}/harness")
+		}
 		compileClasspath += sourceSets.main.compileClasspath + sourceSets.main.output
 		runtimeClasspath += sourceSets.main.runtimeClasspath + sourceSets.main.output
 	}
@@ -218,9 +217,9 @@ harnessTask('checkMinifiedCorpus', 'io.github.bingkkni.skyzh.MinifiedCorpusCheck
 //
 // Not an arbitrary choice: each of them prints a report about the *corpus* — what a log contains that
 // no record covers, what a captured line draws as, what one hand-written line draws as. None of that
-// is a question about a Minecraft version, and `./gradlew probe` matching two projects would print the
-// same report twice and read as though the two disagreed about something. The checks above are the
-// opposite case and deliberately do run in both: "the corpus still matches on 26.1" is exactly a
+// is a question about a Minecraft version, and `./gradlew probe` matching several projects would print the
+// same report repeatedly and read as though they disagreed about something. The checks above are the
+// opposite case and deliberately run on every target: "the corpus still matches on 26.1" is exactly a
 // question about a Minecraft version.
 if (project.ext.has('primary') && project.ext.primary) {
 	// Same engine, pointed at a client log instead of at the corpus: it prints the chat lines a real

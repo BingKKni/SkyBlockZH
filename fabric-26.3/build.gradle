@@ -1,0 +1,17 @@
+// Minecraft 26.3 reuses the 26.2 GUI hooks but replaces GLFW input with SDL.
+plugins {
+	id 'net.fabricmc.fabric-loom'
+}
+
+ext {
+	mcVersion = rootProject.mc26_3_version
+	mcRange = rootProject.mc26_3_range
+	modMenuVersion = rootProject.modmenu_26_3_version
+	versionSourceDirs = ['mc26_2', 'mc26_3']
+	artifactTag = '26.3'
+
+	// Corpus tools run once, on the newest target; verification runs on every target.
+	primary = true
+}
+
+apply from: rootProject.file('gradle/target.gradle')

@@ -5,7 +5,7 @@
 // in src/mc26_2/.
 
 plugins {
-	// Version comes from settings.gradle's pluginManagement, so both targets are on the same Loom.
+	// Version comes from settings.gradle's pluginManagement, so all targets are on the same Loom.
 	id 'net.fabricmc.fabric-loom'
 }
 
@@ -13,13 +13,8 @@ ext {
 	mcVersion = rootProject.mc26_2_version
 	mcRange = rootProject.mc26_2_range
 	modMenuVersion = rootProject.modmenu_26_2_version
-	versionSourceDir = 'mc26_2'
+	versionSourceDirs = ['mc26_2', 'glfw']
 	artifactTag = '26.2'
-
-	// The newest Minecraft, so this is the target that carries the corpus working tools — `auditLog`,
-	// `replayCapture`, `probe` — which report on the corpus rather than on a version and should run
-	// once rather than once per target. See gradle/target.gradle.
-	primary = true
 }
 
 apply from: rootProject.file('gradle/target.gradle')

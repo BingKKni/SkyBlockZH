@@ -6,7 +6,7 @@
 
 [中文](TECHNICAL_zh-CN.md) · [English technical documentation](TECHNICAL.md)
 
-Hypixel SkyBlock 中文翻译 Mod。Minecraft 26.1.x 与 26.2 / Fabric，仅客户端——一套源码，
+Hypixel SkyBlock 中文翻译 Mod。Minecraft 26.1.x、26.2 与 26.3 / Fabric，仅客户端——一套源码，
 每个 Minecraft 一个 jar，见[构建](#构建)。
 
 SkyBlock 没有官方中文，中文玩家要么花时间啃英文，要么截图分享给朋友时对方看一眼就划走。这个 Mod
@@ -137,7 +137,7 @@ Mod Menu 是软依赖。没装也能用，改 `config/skyzh.json` 即可，文�
 这不是低配置实机帧率保证；原先松开热键时重新翻译整份聊天和清空 Tooltip 缓存的重复开销已移除。
 
 ```bash
-./gradlew checkClientSettings  # 两个目标均检查配置兼容、原版键位、非 Hypixel 边界
+./gradlew checkClientSettings  # 所有目标均检查配置兼容、原版键位、非 Hypixel 边界
 ```
 
 需要游戏内实测的部分：在按键绑定界面改键、解绑、重启确认保留；打开物品菜单按两次比较原文、切换后打开聊天查看历史；
@@ -388,7 +388,7 @@ skyzh-capture/
 新增分类沿用采集总开关、提示开关、异步写盘、区域暂存、去重和清空机制。`_capture.diagnostic` 下的
 `original_lines`、`rendered_lines` 与 `records` 是同一次观测的具体证据，不是拼接 `observed` 得到的样本。
 
-`./gradlew checkDiagnostics` 在两个目标上回放截图对应的原文、73 条独立采集颜色样本及故意损坏的记录，
+`./gradlew checkDiagnostics` 在所有目标上回放截图对应的原文、73 条独立采集颜色样本及故意损坏的记录，
 验证检测、落盘、合并与清理。像素算术使用可控字宽，游戏中的字体资源和其他 Mod 组合仍需实机确认。
 
 ### 头顶通名与专名
@@ -435,7 +435,7 @@ Hologram 的明确职务语料可翻译绿色 NPC 名牌，不按颜色一刀切
 `TextCapture.item` 使用相同的整句判定，已命中的句子在 `GUI_Lore` 分类检查 mixed/colour，
 未知句子仍按原始行采集。不会修改 ItemStack，也不引入在线翻译或运行时 NEU 下载。
 
-- `checkLore`：两目标都执行，校验原始样本、改变英文断行后的匹配/颜色、独立手写期望、
+- `checkLore`：所有目标都执行，校验原始样本、改变英文断行后的匹配/颜色、独立手写期望、
   不跨空行/长度边界、保留物品名及采集诊断。
 - `auditNeuLore -PneuItems=<items目录>`：仅开发工具，输出 `build/neu-lore-audit.json`。
   统计逐行匹配与整件全部含词行匹配，分别报告，不能拿属性行命中冒充整件完成。
@@ -445,28 +445,30 @@ Hologram 的明确职务语料可翻译绿色 NPC 名牌，不按颜色一刀切
 ## 构建
 
 ```bash
-./gradlew dist     # 两个 jar 都产出到 build/dist，产出前两个版本的检查都会跑一遍
-./gradlew build    # 同样两个 jar，各自留在自己的 build/libs 里
+./gradlew dist     # 三个 jar 都产出到 build/dist，产出前所有目标的检查都会跑一遍
+./gradlew build    # 同样三个 jar，各自留在自己的 build/libs 里
 ```
 
 需要 JDK 25。Minecraft 26.x 不再混淆，因此没有映射层，Mod 之间是普通依赖关系，
 Loom 也不再有 `remapJar` 这一步——`jar` 出来的就是能装的那个文件。
 
-### 两个 Minecraft 版本，一套源码
+### 三个 Minecraft 版本，一套源码
 
 | | jar | 声明的 Minecraft | 编译时用的 Mod Menu |
 |---|---|---|---|
 | `fabric-26.1/` | `SkyBlockZH-<版本>-Beta-Fabric-26.1.jar` | `>=26.1 <26.2` | 18.0.0 |
 | `fabric-26.2/` | `SkyBlockZH-<版本>-Beta-Fabric-26.2.jar` | `>=26.2 <26.3` | 20.0.1 |
+| `fabric-26.3/` | `SkyBlockZH-<版本>-Beta-Fabric-26.3.jar` | `>=26.3 <26.4` | 21.0.0 |
 
-两个目标都编译 `src/main/`——引擎、语料加载、采集，以及十六个 Mixin 里的十三个——
-再各自加上一小棵自己的树：`src/mc26_1/` 或 `src/mc26_2/`。除了版本号本身，
-一个目标的其他部分全部写在 `gradle/target.gradle` 里，所以两边不可能在"语料怎么打包"
-或"编译到哪个 Java 版本"上悄悄走岔。
+所有目标都编译 `src/main/`，并通过 `versionSourceDirs` 选择平台源码。26.1 使用 `src/mc26_1/`，
+26.2 和 26.3 共用 `src/mc26_2/` 的 GUI 与 Mixin；26.1/26.2 使用 `src/glfw/` 读取鼠标状态，
+26.3 使用 `src/mc26_3/` 的 SDL 适配。`ClientInput` 隔离底层输入接口，热键开关逻辑仍共用。
+SDL 鼠标编号从 1 开始且使用位掩码，键盘使用物理扫描码；版本专用自检会验证这些差异。
+所有目标的打包与检查都由 `gradle/target.gradle` 定义；`probe`、`auditLog` 等语料工具仅在最新目标注册。
 
-两个 Minecraft 之间只有三处不同，每一处都是版本树里的一个文件：
+GUI 的三处版本差异如下：
 
-| 动了什么 | 26.1.x | 26.2 |
+| 动了什么 | 26.1.x | 26.2 / 26.3 |
 |---|---|---|
 | 画 HUD 的类 | `Gui` | 从 `Gui` 里拆出来的 `Hud` |
 | `SubmitNodeCollector#submitNameTag` | 末尾多一个 `double` | 没有 |
@@ -477,7 +479,7 @@ Loom 也不再有 `remapJar` 这一步——`jar` 出来的就是能装的那个
 它们被触发之后做什么，是 `hook/` 里的共享代码，只写一遍。
 
 一个 jar 覆盖 26.1、26.1.1、26.1.2 全部三个版本：这个 Mod 碰到的每一个类，
-在三个版本里的字节码完全一致。两个版本范围的上界都是故意封死的。
+在三个版本里的字节码完全一致。所有版本范围的上界都是故意封死的。
 把 jar 装到不是为它编译的那个 Minecraft 上并不会崩——因为这里每个注入点都是 `require = 0`，
 结果会是 HUD、侧边栏和所有头顶浮空字**悄无声息地全是英文**——
 所以那个上界的作用，是让 Fabric 根本不去加载它。
@@ -485,7 +487,7 @@ Loom 也不再有 `remapJar` 这一步——`jar` 出来的就是能装的那个
 ### 怎么确认注入点还在
 
 ```bash
-./gradlew checkMixinTargets     # 是 `check` 的一部分，两个目标都会跑
+./gradlew checkMixinTargets     # 是 `check` 的一部分，所有目标都会跑
 ```
 
 这是 `require = 0` 让人不得不做的检查。它把**编译产物**里的注解读回来——真正的 `@Mixin` 值、

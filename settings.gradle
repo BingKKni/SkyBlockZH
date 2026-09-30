@@ -8,7 +8,7 @@ pluginManagement {
 		gradlePluginPortal()
 	}
 
-	// Declared once here so the two target projects can ask for the plugin by name alone. They must
+	// Declared once here so all target projects can ask for the plugin by name alone. They must
 	// be on the same Loom, since they share a source tree and a corpus and differ only in which
 	// Minecraft they compile against.
 	plugins {
@@ -28,3 +28,5 @@ rootProject.name = 'skyzh'
 // so. `checkMixinTargets` is what keeps that claim honest — see gradle/target.gradle.
 include 'fabric-26.1'
 include 'fabric-26.2'
+// 26.3 keeps the 26.2 GUI hooks but moves native input from GLFW to SDL.
+include 'fabric-26.3'

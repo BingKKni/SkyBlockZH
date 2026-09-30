@@ -11,7 +11,7 @@ import io.github.bingkkni.skyzh.text.ChatDisplayCache;
 import net.minecraft.client.multiplayer.chat.GuiMessage;
 import net.minecraft.network.chat.Style;
 import net.minecraft.util.FormattedCharSequence;
-import org.lwjgl.glfw.GLFW;
+import io.github.bingkkni.skyzh.platform.InputHarness;
 import io.github.bingkkni.skyzh.text.TooltipTranslator;
 import java.util.List;
 import net.minecraft.client.KeyMapping;
@@ -90,7 +90,7 @@ public final class ClientSettingsHarness {
 		check("发布版本高于同号预发布", UpdateChecker.isNewer("0.5", "0.5-beta.1"), true);
 		check("带 v 前缀的发布标签可识别", UpdateChecker.isNewer("v0.6", "0.5+mc26.1"), true);
 		check("无效发布标签不提示", UpdateChecker.isNewer("latest", "0.5"), false);
-		for (String target : List.of("26.1", "26.2")) {
+		for (String target : List.of("26.1", "26.2", "26.3")) {
 			check("0.5 可发现正式 0.6 - " + target, UpdateChecker.isNewer("0.6", "0.5+mc" + target), true);
 			check("0.6 不提示同版本 - " + target, UpdateChecker.isNewer("v0.6", "0.6+mc" + target), false);
 			check("0.6 不提示旧发布 - " + target, UpdateChecker.isNewer("0.5", "0.6+mc" + target), false);
@@ -118,17 +118,17 @@ public final class ClientSettingsHarness {
 		check("键位有可本地化名称", binding.getName(), "key.skyzh.holdOriginal");
 		check("键位有独立分类", binding.getCategory().id().toString(), "skyzh:main");
 
-		binding.setKey(InputConstants.Type.KEYSYM.getOrCreate(InputConstants.KEY_R));
+		binding.setKey(InputConstants.getKey("key.keyboard.r"));
 		KeyMapping.resetMapping();
 		check("原版改键后保存新键", binding.saveString(), "key.keyboard.r");
 		check("改键后 X 不再匹配", binding.matches(new KeyEvent(InputConstants.KEY_X, 0, 0)), false);
 		check("改键后 R 匹配", binding.matches(new KeyEvent(InputConstants.KEY_R, 0, 0)), true);
 		check("原版 options 字符串可读回", InputConstants.getKey(binding.saveString()).getValue(), InputConstants.KEY_R);
 
-		binding.setKey(InputConstants.Type.MOUSE.getOrCreate(3));
+		binding.setKey(InputConstants.getKey("key.mouse.4"));
 		check("可以绑定鼠标侧键", binding.saveString(), "key.mouse.4");
-		binding.setKey(InputConstants.Type.SCANCODE.getOrCreate(123));
-		check("可以绑定无符号键的扫描码", binding.matches(new KeyEvent(-1, 123, 0)), true);
+		check("鼠标侧键使用当前版本编号", InputConstants.getKey(binding.saveString()).getValue(), InputConstants.MOUSE_BUTTON_4);
+		InputHarness.check(binding);
 
 		binding.setKey(InputConstants.UNKNOWN);
 		KeyMapping.resetMapping();
@@ -140,7 +140,7 @@ public final class ClientSettingsHarness {
 		binding.setKey(binding.getDefaultKey());
 		KeyMapping.resetMapping();
 		check("原版重置恢复 X", binding.isDefault(), true);
-		KeyMapping.set(InputConstants.Type.KEYSYM.getOrCreate(InputConstants.KEY_X), true);
+		KeyMapping.set(InputConstants.getKey("key.keyboard.x"), true);
 		check("键位在原版事件表内", binding.isDown(), true);
 		check("同键的其他映射不被覆盖", existing.isDown(), true);
 		KeyMapping.releaseAll();
@@ -149,15 +149,15 @@ public final class ClientSettingsHarness {
 	private static void originalToggle() throws Exception {
 		int generation = SkyZHConfig.generation();
 		HoldOriginal.setActive(false);
-		HoldOriginal.press(true, true, GLFW.GLFW_PRESS);
+		HoldOriginal.press(true, true, InputConstants.PRESS);
 		check("按一次切换原文", HoldOriginal.active(), true);
-		HoldOriginal.press(true, true, GLFW.GLFW_REPEAT);
-		HoldOriginal.press(true, true, GLFW.GLFW_RELEASE);
+		HoldOriginal.press(true, true, InputConstants.REPEAT);
+		HoldOriginal.press(true, true, InputConstants.RELEASE);
 		check("长按重复及松开不改变模式", HoldOriginal.active(), true);
 		HoldOriginal.updateMouse(true, false, false);
-		HoldOriginal.press(true, false, GLFW.GLFW_PRESS);
+		HoldOriginal.press(true, false, InputConstants.PRESS);
 		check("打开聊天输入或失焦保留原文且输入不触发", HoldOriginal.active(), true);
-		HoldOriginal.press(true, true, GLFW.GLFW_PRESS);
+		HoldOriginal.press(true, true, InputConstants.PRESS);
 		check("再按恢复译文", HoldOriginal.active(), false);
 		check("切换不清空译文缓存", SkyZHConfig.generation(), generation);
 		HoldOriginal.updateMouse(true, true, true);
@@ -170,14 +170,30 @@ public final class ClientSettingsHarness {
 		HoldOriginal.updateMouse(true, false, true);
 		HoldOriginal.updateMouse(true, true, true);
 		check("在输入框按下鼠标后离开不误触", HoldOriginal.active(), false);
+
+		check("失焦时鼠标状态未知不触发", HoldOriginal.updateMouse(true, false, null), false);
+		check("焦点恢复时仍按住不制造新按下", HoldOriginal.updateMouse(true, true, true), false);
+		check("继续按住仍不触发", HoldOriginal.updateMouse(true, true, true), false);
+		check("焦点切换保留显示模式", HoldOriginal.active(), false);
+		check("焦点恢复后实际松开不切换", HoldOriginal.updateMouse(true, true, false), false);
+		check("实际松开后再次按下正常切换", HoldOriginal.updateMouse(true, true, true), true);
+		check("恢复后能正常显示原文", HoldOriginal.active(), true);
+		check("仅鼠标焦点丢失也不视作松开", HoldOriginal.updateMouse(true, true, null), false);
+		check("鼠标回到窗口时持续按住不切换", HoldOriginal.updateMouse(true, true, true), false);
+		check("鼠标焦点切换保留原文", HoldOriginal.active(), true);
+		check("未知鼠标状态不妨碍离开空岛清除模式", HoldOriginal.updateMouse(false, false, null), false);
+		check("失焦时总开关边界仍生效", HoldOriginal.active(), false);
+		check("恢复后已松开可重新观察按下", HoldOriginal.updateMouse(true, true, false), false);
+		check("恢复后新按下仍能切换", HoldOriginal.updateMouse(true, true, true), true);
+
 		HoldOriginal.setActive(true);
 		HoldOriginal.updateMouse(false, true, false);
 		check("离开空岛、关闭总开关或解绑清除临时原文状态", HoldOriginal.active(), false);
-		check("非空岛不触发声音消息", HoldOriginal.press(false, true, GLFW.GLFW_PRESS), false);
+		check("非空岛不触发声音消息", HoldOriginal.press(false, true, InputConstants.PRESS), false);
 		check("非空岛不响应", HoldOriginal.active(), false);
-		check("重复按键不触发声音消息", HoldOriginal.press(true, true, GLFW.GLFW_REPEAT), false);
-		check("输入框不触发声音消息", HoldOriginal.press(true, false, GLFW.GLFW_PRESS), false);
-		check("实际切换才触发一次声音消息", HoldOriginal.press(true, true, GLFW.GLFW_PRESS), true);
+		check("重复按键不触发声音消息", HoldOriginal.press(true, true, InputConstants.REPEAT), false);
+		check("输入框不触发声音消息", HoldOriginal.press(true, false, InputConstants.PRESS), false);
+		check("实际切换才触发一次声音消息", HoldOriginal.press(true, true, InputConstants.PRESS), true);
 		check("自动恢复不播放提示", HoldOriginal.updateMouse(false, true, false), false);
 		check("关闭提示全文", HoldOriginal.toggleMessage(true).getString(), "§b[SkyZH] §c已关闭翻译!");
 		check("开启提示全文", HoldOriginal.toggleMessage(false).getString(), "§b[SkyZH] §a已开启翻译!");
