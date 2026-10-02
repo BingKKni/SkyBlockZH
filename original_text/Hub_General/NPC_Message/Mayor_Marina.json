@@ -1,14 +1,14 @@
 {
   "npc": "Mayor Marina",
   "location": "Hub",
-  "source": "runtime capture (SkyZH) 2026-08-23 + https://hypixelskyblock.minecraft.wiki/w/Mayor_Marina",
-  "fetched_at": "2026-08-24",
-  "verified_ingame": true,
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Marina",
+  "fetched_at": "2026-10-02",
+  "verified_ingame": false,
   "messages": [
     {
       "id": "i_love_diving_and_fishing_the_world_is",
       "context": "Mayor Marina 运行时实测台词",
-      "raw": "I love diving and fishing. The world is much simpler when you live on the beach.",
+      "raw": "§fI love diving and fishing. The world is much simpler when you live on the beach.",
       "text": "I love diving and fishing. The world is much simpler when you live on the beach.",
       "placeholders": [],
       "gloss": "",
@@ -18,7 +18,7 @@
     {
       "id": "if_you_dont_like_the_sea_dont_vote",
       "context": "Mayor Marina 运行时实测台词",
-      "raw": "If you don't like the sea, don't vote for me.",
+      "raw": "§fIf you don't like the sea, don't vote for me.",
       "text": "If you don't like the sea, don't vote for me.",
       "placeholders": [],
       "gloss": "",
@@ -28,7 +28,7 @@
     {
       "id": "i_come_from_an_atoll_the_sea_goes",
       "context": "Mayor Marina 运行时实测台词",
-      "raw": "I come from an atoll, the sea goes very deep there.",
+      "raw": "§fI come from an atoll, the sea goes very deep there.",
       "text": "I come from an atoll, the sea goes very deep there.",
       "placeholders": [],
       "gloss": "",
@@ -38,12 +38,48 @@
     {
       "id": "be_water_my_friend",
       "context": "Mayor Marina 运行时实测台词",
-      "raw": "Be water my friend.",
+      "raw": "§fBe water my friend.",
       "text": "Be water my friend.",
       "placeholders": [],
       "gloss": "",
       "translate": true,
       "zh": "如水一般吧,我的朋友。"
+    },
+    {
+      "id": "marina_garden_pair_big_fish",
+      "context": "Mayor Marina 到访花园时，询问有没有食物搭配今天钓到的大鱼",
+      "raw": "§fCaught a big fish today, you got anything to pair it with?",
+      "text": "Caught a big fish today, you got anything to pair it with?",
+      "placeholders": [],
+      "gloss": "big fish 是普通叙述中的大鱼，不是指定物品名；anything 未给出所需物品整名，不擅自补出具体材料或数量。",
+      "translate": true,
+      "zh": "今天钓了条大鱼,你这儿有什么能搭着吃的吗?"
+    },
+    {
+      "id": "marina_garden_offer_accepted",
+      "context": "玩家交付 Mayor Marina 的花园访客委托后",
+      "raw": "§fPerfect, just what I needed!",
+      "text": "Perfect, just what I needed!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "正好,这就是我需要的!"
+    },
+    {
+      "id": "marina_garden_offer_denied",
+      "context": "玩家拒绝 Mayor Marina 的花园访客委托后",
+      "raw": "§fNo worries, the sea provides.",
+      "text": "No worries, the sea provides.",
+      "placeholders": [],
+      "gloss": "the sea provides 表现她依赖大海、随遇而安的态度，不是承诺游戏机制会补发物品。",
+      "translate": true,
+      "zh": "没关系,大海总有馈赠。"
     }
-  ]
+  ],
+  "aliases": [
+    "Marina"
+  ],
+  "wiki_last_edited": "This page was last edited on 21 September 2026, at 09:59.",
+  "source_note": "既有四条对白的原来源为 runtime capture (SkyZH) 2026-08-23 + https://hypixelskyblock.minecraft.wiki/w/Mayor_Marina，原 fetched_at 为 2026-08-24，原 verified_ingame 为 true；本次保留其稳定 ID、实测原文和既有译文。本次七条 raw 的 §f 均由所提供的普通社区 Wiki 页面 DOM 颜色证据还原，不是服务器原始字节；本次整份候选不宣称已实测。NPC 名称颜色会随选举变化，名称前缀由运行时保留，不写入对白。",
+  "note": "身份: 热爱潜水和钓鱼的市长候选人，也会作为花园访客到访。\n关系: 与玩家聊海边生活、直率拉票，到访花园时询问有没有食物能搭配鱼。\n说话方式: 简短随和，偶尔带一句如水般的感悟。\n性格与词汇: 洒脱、亲近大海，反复提到海、海滩、鱼和水。\n禁用风格: 不写官样演说，不硬塞网络梗，不编造具体所需物品或奖励。"
 }

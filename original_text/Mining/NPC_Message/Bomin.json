@@ -1,25 +1,25 @@
 {
   "npc": "Bomin",
   "location": "矮人酒馆",
-  "note": "在酒馆里唱歌的矮人,整段台词是一首关于去废弃采石场钓 Grubber 的船歌,翻译要保持押韵和唱段的节奏,♪ 符号原样保留。",
+  "note": "身份: 矮人矿山矮人酒馆里的歌者,用一首船歌指引玩家去废弃采石场钓掘虫。\n关系: 初次见面就唱给玩家听,以歌代替任务说明。\n说话风格: 朴素、豪爽,保留唱段节奏和重复副歌。\n性格与词汇: 兴致高昂,常唱“哟嗬”;原文 yer、ye 是口语语气,不写成伪文言。\n禁用风格: 不硬塞网络梗,不补钓鱼机制;人名 Bomin 和 ♪ 符号保留原样。",
   "source": "https://hypixelskyblock.minecraft.wiki/w/Bomin",
-  "fetched_at": "2026-08-19",
+  "fetched_at": "2026-10-02",
   "verified_ingame": false,
   "messages": [
     {
       "id": "bomin_when_the_calling_of_riches",
-      "context": "",
+      "context": "Bomin 初次交互时唱船歌,开场描绘财富的召唤。",
       "raw": "§d♪§f When the calling of riches gets louder §d♪",
       "text": "♪ When the calling of riches gets louder ♪",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "本次普通 Wiki 呈现页的 DOM 颜色还原样本,并非服务器实测字节;保留既有歌词译文与稳定 ID。",
       "translate": true,
-      "zh": "",
+      "zh": "♪ 当财富的呼唤越来越响 ♪",
       "segments": [
         {
           "color": "§d",
           "text": "♪",
-          "zh": ""
+          "zh": "♪"
         },
         {
           "color": "§f",
@@ -29,24 +29,24 @@
         {
           "color": "§d",
           "text": "♪",
-          "zh": ""
+          "zh": "♪"
         }
       ]
     },
     {
       "id": "bomin_and_ye_hunger_for_mithril",
-      "context": "",
+      "context": "Bomin 初次交互的船歌,唱到秘银粉末。",
       "raw": "§d♪§f And ye hunger for §2Mithril Powder §d♪",
       "text": "♪ And ye hunger for Mithril Powder ♪",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "Mithril Powder 沿用秘银粉末,是挖矿资源而非本句要求交付的物品;参照 Mining/NPC_Message/Guard_Gornum.json 的既有颜色分段与全库粉末译名。ye 是口语的 you,不译成古雅称谓。",
       "translate": true,
-      "zh": "",
+      "zh": "♪ 你又馋起了秘银粉末 ♪",
       "segments": [
         {
           "color": "§d",
           "text": "♪",
-          "zh": ""
+          "zh": "♪"
         },
         {
           "color": "§f",
@@ -61,61 +61,71 @@
         {
           "color": "§d",
           "text": "♪",
-          "zh": ""
+          "zh": "♪"
         }
       ]
     },
     {
       "id": "bomin_go_talk_to_the_station",
-      "context": "",
+      "context": "Bomin 初次交互的船歌,指引玩家找站长交谈。",
       "raw": "§d♪§f Go talk to the §5Station Master §d♪",
       "text": "♪ Go talk to the Station Master ♪",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "Station Master 是职务称呼,沿用 GLOSSARY.md 的站长。颜色已按重新采集的明确 Minecraft 格式类 §5 校正；旧最近色映射不作为当前颜色依据，仍未实测。将原白色片段拆成 Go 与 talk to the 两段并完整使用 order,保留既有“找站长聊一聊”的语义,让“聊一聊”保持白色;末尾紫色片段只承载 ♪,不再丢音符或给正文染紫。",
       "translate": true,
-      "zh": "",
+      "zh": "♪ 那就去找站长聊一聊 ♪",
       "segments": [
         {
           "color": "§d",
           "text": "♪",
-          "zh": ""
+          "zh": "♪",
+          "order": 0
         },
         {
           "color": "§f",
-          "text": " Go talk to the ",
-          "zh": " 那就去找"
+          "text": " Go ",
+          "zh": " 那就去找",
+          "order": 1
+        },
+        {
+          "color": "§f",
+          "text": "talk to the ",
+          "zh": "聊一聊 ",
+          "order": 3
         },
         {
           "color": "§5",
           "text": "Station Master ",
-          "zh": "站长"
+          "zh": "站长",
+          "order": 2
         },
         {
           "color": "§d",
           "text": "♪",
-          "zh": "聊一聊 "
+          "zh": "♪",
+          "order": 4
         }
       ]
     },
     {
       "id": "bomin_take_yer_rod_to_the",
-      "context": "",
+      "context": "Bomin 初次交互的船歌,让玩家带上鱼竿去采石场抛竿。",
       "raw": "§d♪§f Take yer rod to the §2Quarry §f'n cast her §d♪",
       "text": "♪ Take yer rod to the Quarry 'n cast her ♪",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "rod 是钓鱼竿泛称,不指定某件专属装备或交付门槛;沿用本地 GUI_Item 整名 Hub_General/GUI_Item/Fishing_Merchant.json#fishing_rod 的钓鱼竿。Quarry 在本首歌中简称采石场,后续副歌明确全名 Abandoned Quarry;不另造地点。her 指鱼竿,不是另一位角色。",
       "translate": true,
-      "zh": "",
+      "zh": "♪ 扛上钓鱼竿去采石场下钩 ♪",
       "segments": [
         {
           "color": "§d",
           "text": "♪",
-          "zh": ""
+          "zh": "♪"
         },
         {
           "color": "§f",
           "text": " Take yer rod to the ",
-          "zh": " 扛上鱼竿去"
+          "zh": " 扛上钓鱼竿去"
         },
         {
           "color": "§2",
@@ -130,19 +140,19 @@
         {
           "color": "§d",
           "text": "♪",
-          "zh": ""
+          "zh": "♪"
         }
       ]
     },
     {
       "id": "bomin_fish_up_grubbers_by_the",
-      "context": "",
+      "context": "Bomin 初次交互的船歌,唱到钓起掘虫。",
       "raw": "§d♪§f Fish up §aGrubbers §fby the ten §d♪",
       "text": "♪ Fish up Grubbers by the ten ♪",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "Grubber 沿用 _shared/Terms.json 的掘虫。ten 是原歌词的固定数量,保留 10,不模板化;不把 by the ten 解释成一竿同时钓起十只的机制。修正旧译“十条”的量词为“10 只”,将白色数量自然前置,原 by the ten 段用 omit 明确合入前面的白色片段。",
       "translate": true,
-      "zh": "",
+      "zh": "♪ 钓上 10 只掘虫 ♪",
       "segments": [
         {
           "color": "§d",
@@ -152,12 +162,12 @@
         {
           "color": "§f",
           "text": " Fish up ",
-          "zh": " 一口气钓上十条 "
+          "zh": " 钓上 10 只"
         },
         {
           "color": "§a",
           "text": "Grubbers ",
-          "zh": "掘虫"
+          "zh": "掘虫 "
         },
         {
           "color": "§f",
@@ -174,18 +184,18 @@
     },
     {
       "id": "bomin_and_kill_em_again_and",
-      "context": "",
+      "context": "Bomin 初次交互的船歌,唱到反复击杀钓起的掘虫。",
       "raw": "§d♪§f And kill 'em again and again §d♪",
       "text": "♪ And kill 'em again and again ♪",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "'em 指前一句的掘虫;保留既有豪爽唱词,不补掉落、经验或击杀次数。",
       "translate": true,
-      "zh": "",
+      "zh": "♪ 再一遍又一遍把它们宰掉 ♪",
       "segments": [
         {
           "color": "§d",
           "text": "♪",
-          "zh": ""
+          "zh": "♪"
         },
         {
           "color": "§f",
@@ -195,24 +205,24 @@
         {
           "color": "§d",
           "text": "♪",
-          "zh": ""
+          "zh": "♪"
         }
       ]
     },
     {
       "id": "bomin_yo_ho_yo_ho",
-      "context": "",
+      "context": "Bomin 初次交互的船歌副歌;页面两次出现,共用本条。",
       "raw": "§d♪§f Yo ho, yo ho §d♪",
       "text": "♪ Yo ho, yo ho ♪",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "Yo ho 是船歌衬词,沿用既有哟嗬,不当作人名或钓鱼技能。",
       "translate": true,
-      "zh": "",
+      "zh": "♪ 哟嗬,哟嗬 ♪",
       "segments": [
         {
           "color": "§d",
           "text": "♪",
-          "zh": ""
+          "zh": "♪"
         },
         {
           "color": "§f",
@@ -222,24 +232,24 @@
         {
           "color": "§d",
           "text": "♪",
-          "zh": ""
+          "zh": "♪"
         }
       ]
     },
     {
       "id": "bomin_to_the_abandoned_quarry_you",
-      "context": "",
+      "context": "Bomin 初次交互的船歌副歌,指向废弃采石场;包括停顿后的最后一行,页面三次出现共用本条。",
       "raw": "§d♪§f To the §2Abandoned Quarry §fyou go! §d♪",
       "text": "♪ To the Abandoned Quarry you go! ♪",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "Abandoned Quarry 沿用 _shared/Terms.json 的废弃采石场。保留既有副歌译文,移除地名与叹号之间的多余空格,并完整保留两端紫色 ♪。",
       "translate": true,
-      "zh": "",
+      "zh": "♪ 你要去的正是废弃采石场! ♪",
       "segments": [
         {
           "color": "§d",
           "text": "♪",
-          "zh": ""
+          "zh": "♪"
         },
         {
           "color": "§f",
@@ -249,7 +259,7 @@
         {
           "color": "§2",
           "text": "Abandoned Quarry ",
-          "zh": "废弃采石场 "
+          "zh": "废弃采石场"
         },
         {
           "color": "§f",
@@ -259,24 +269,24 @@
         {
           "color": "§d",
           "text": "♪",
-          "zh": ""
+          "zh": "♪"
         }
       ]
     },
     {
       "id": "bomin_yo_ho_yo_hoooooooooo",
-      "context": "",
+      "context": "Bomin 初次交互的船歌,在最后停顿之前拉长副歌尾音。",
       "raw": "§d♪§f Yo ho, yo hoooooooooo §d♪",
       "text": "♪ Yo ho, yo hoooooooooo ♪",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "hoooooooooo 是唱歌拖长尾音,不是 Wiki 破损文本;保留原文长度及既有中文拉长唱法。",
       "translate": true,
-      "zh": "",
+      "zh": "♪ 哟嗬,哟——嗬———— ♪",
       "segments": [
         {
           "color": "§d",
           "text": "♪",
-          "zh": ""
+          "zh": "♪"
         },
         {
           "color": "§f",
@@ -286,19 +296,17 @@
         {
           "color": "§d",
           "text": "♪",
-          "zh": ""
+          "zh": "♪"
         }
       ]
     },
     {
       "id": "bomin_line",
-      "context": "",
+      "ref": "Dungeons/NPC_Message/Adventurer_Saul.json#adventurer_saul_message_message",
+      "context": "真实说话者 Bomin;初次交互的船歌尾声先停顿,再唱最后一句副歌。这是带 NPC 前缀的真实省略号对白,不是装饰或空行。",
       "raw": "§f...",
-      "text": "...",
-      "placeholders": [],
-      "gloss": "",
-      "translate": true,
-      "zh": "……"
+      "gloss": "保留原有稳定 ID 和白色 Wiki raw 样本;同 CHAT 面已有完全同文且同译“……”的记录,以 ref 复用,不新增通用省略号译文。引用记录为 flat 翻译,运行时仍继承 Bomin 实际组件颜色。"
     }
-  ]
+  ],
+  "wiki_last_edited": "This page was last edited on 23 July 2026, at 22:31."
 }

@@ -1,0 +1,520 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Nemo",
+  "fetched_at": "2026-10-02",
+  "verified_ingame": false,
+  "npc": "Nemo",
+  "aliases": [],
+  "wiki_last_edited": "This page was last edited on 11 August 2026, at 19:36.",
+  "note": "身份: 暗水湖的潜水装备商人，会救起在深水溺水的玩家。\n关系: 初见时耐心提醒，反复救援后带着善意调侃。\n说话方式: 朴实，熟悉潜水风险，话语被吸气、呼气打断。\n性格与词汇: 热心谨慎，拿湖的拥抱、吞人和英雄披风打趣；动作统一写成 *吸气*、*呼气*。\n禁用风格: 不硬塞网络梗、不摆英雄架子，不把比喻译成负重机制或真实物品要求。",
+  "entries": [
+    {
+      "id": "nemo_explored_lake_depths",
+      "context": "与 Nemo 交谈：询问玩家是否探索过湖的深处。",
+      "text": "Have you explored... *inhales*... the depths of the lake yet?",
+      "raw": "§fHave you explored... §f§o*inhales*§f... the depths of the lake yet?",
+      "placeholders": [],
+      "gloss": "保留话语中吸气的节拍及斜体动作格式。",
+      "translate": true,
+      "zh": "你去探索过……*吸气*……湖的深处吗?",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Have you explored... ",
+          "zh": "你去探索过……"
+        },
+        {
+          "color": "§f§o",
+          "text": "*inhales*",
+          "zh": "*吸气*"
+        },
+        {
+          "color": "§f",
+          "text": "... the depths of the lake yet?",
+          "zh": "……湖的深处吗?"
+        }
+      ]
+    },
+    {
+      "id": "nemo_deeper_water_greater_pressure",
+      "context": "与 Nemo 交谈：提醒玩家水压随潜入深度增加。",
+      "text": "The deeper you venture... *exhales*... the greater the pressure becomes.",
+      "raw": "§fThe deeper you venture... §f§o*exhales*§f... the greater the pressure becomes.",
+      "placeholders": [],
+      "gloss": "pressure 指水下压力，不是抗压属性本身。",
+      "translate": true,
+      "zh": "潜得越深……*呼气*……水压就越大。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "The deeper you venture... ",
+          "zh": "潜得越深……"
+        },
+        {
+          "color": "§f§o",
+          "text": "*exhales*",
+          "zh": "*呼气*"
+        },
+        {
+          "color": "§f",
+          "text": "... the greater the pressure becomes.",
+          "zh": "……水压就越大。"
+        }
+      ]
+    },
+    {
+      "id": "nemo_equip_respiration_and_pressure_resistance",
+      "context": "与 Nemo 交谈：提醒玩家准备有足够水下呼吸、抗压属性的装备。",
+      "text": "It's essential... *inhales*... to equip yourself with ample... *exhales*... %1$s Respiration and %2$s Pressure Resistance.",
+      "raw": "§fIt's essential... §f§o*inhales*§f... to equip yourself with ample... §f§o*exhales*§f... §3%1$s Respiration §fand §9%2$s Pressure Resistance§f.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "水下呼吸的单个属性图标，原样保留 Unicode 或服务器私用区字形",
+          "type": "icon",
+          "example": "⚶"
+        },
+        {
+          "token": "%2$s",
+          "desc": "抗压的单个属性图标，原样保留 Unicode 或服务器私用区字形",
+          "type": "icon",
+          "example": "❍"
+        }],
+      "gloss": "Respiration、Pressure Resistance 在此是属性名，不是指定物品或附魔要求。沿用 _shared/Terms.json 的 category_name 词条及 _shared/Stats_Equipment_Live.json#stat_live_d4573c451a6fde、#stat_live_2367729aad0fd3：水下呼吸、抗压。图标和颜色按本次 Wiki DOM 样本保留，尚未实测服务器字节。 两个属性图标使用现有 icon 类型的有界单字形占位符，直接保留服务器码点与样式；无需猜测私用区映射，也不枚举每种字形。",
+      "translate": true,
+      "zh": "一定要……*吸气*……穿上能提供足够……*呼气*……%1$s 水下呼吸和%2$s 抗压的装备。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "It's essential... ",
+          "zh": "一定要……"
+        },
+        {
+          "color": "§f§o",
+          "text": "*inhales*",
+          "zh": "*吸气*"
+        },
+        {
+          "color": "§f",
+          "text": "... to equip yourself with ample... ",
+          "zh": "……穿上能提供足够……"
+        },
+        {
+          "color": "§f§o",
+          "text": "*exhales*",
+          "zh": "*呼气*"
+        },
+        {
+          "color": "§f",
+          "text": "... ",
+          "zh": "……"
+        },
+        {
+          "color": "§3",
+          "text": "%1$s Respiration ",
+          "zh": "%1$s 水下呼吸"
+        },
+        {
+          "color": "§f",
+          "text": "and ",
+          "zh": "和"
+        },
+        {
+          "color": "§9",
+          "text": "%2$s Pressure Resistance",
+          "zh": "%2$s 抗压"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "的装备。"
+        }
+      ]
+    },
+    {
+      "id": "nemo_lower_chambers_need_protection",
+      "context": "与 Nemo 交谈：说明缺少上述属性便无法进入下层洞室。",
+      "text": "Without these... *inhales*... accessing the lower chambers will be *exhales*... impossible.",
+      "raw": "§fWithout these... §f§o*inhales*§f... accessing the lower chambers will be §f§o*exhales*§f... impossible.",
+      "placeholders": [],
+      "gloss": "these 承接水下呼吸、抗压；lower chambers 是更深处的洞室，不补具体属性门槛。",
+      "translate": true,
+      "zh": "没这两样……*吸气*……想进下层洞室……*呼气*……根本不可能。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Without these... ",
+          "zh": "没这两样……"
+        },
+        {
+          "color": "§f§o",
+          "text": "*inhales*",
+          "zh": "*吸气*"
+        },
+        {
+          "color": "§f",
+          "text": "... accessing the lower chambers will be ",
+          "zh": "……想进下层洞室……"
+        },
+        {
+          "color": "§f§o",
+          "text": "*exhales*",
+          "zh": "*呼气*"
+        },
+        {
+          "color": "§f",
+          "text": "... impossible.",
+          "zh": "……根本不可能。"
+        }
+      ]
+    },
+    {
+      "id": "nemo_rescue_awake_in_time",
+      "context": "玩家在暗水湖深处溺水后获救：Nemo 确认玩家醒来。",
+      "text": "Ah, you're awake... *inhales*... I pulled you from the depths just in time.",
+      "raw": "§fAh, you're awake... §f§o*inhales*§f... I pulled you from the depths just in time.",
+      "placeholders": [],
+      "gloss": "救援者是 Nemo；不把玩家获救改成自行游回岸边。",
+      "translate": true,
+      "zh": "啊，你醒了……*吸气*……还好我及时把你从深水里捞了上来。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Ah, you're awake... ",
+          "zh": "啊，你醒了……"
+        },
+        {
+          "color": "§f§o",
+          "text": "*inhales*",
+          "zh": "*吸气*"
+        },
+        {
+          "color": "§f",
+          "text": "... I pulled you from the depths just in time.",
+          "zh": "……还好我及时把你从深水里捞了上来。"
+        }
+      ]
+    },
+    {
+      "id": "nemo_rescue_pressure_unforgiving",
+      "context": "玩家在暗水湖深处溺水后获救：Nemo 提醒深水压力危险。",
+      "text": "The pressure down there is... *exhales*... unforgiving.",
+      "raw": "§fThe pressure down there is... §f§o*exhales*§f... unforgiving.",
+      "placeholders": [],
+      "gloss": "unforgiving 以口语警告表达，不补伤害数值或具体惩罚。",
+      "translate": true,
+      "zh": "底下那水压啊……*呼气*……可不会跟你客气。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "The pressure down there is... ",
+          "zh": "底下那水压啊……"
+        },
+        {
+          "color": "§f§o",
+          "text": "*exhales*",
+          "zh": "*呼气*"
+        },
+        {
+          "color": "§f",
+          "text": "... unforgiving.",
+          "zh": "……可不会跟你客气。"
+        }
+      ]
+    },
+    {
+      "id": "nemo_rescue_visit_shop_for_diving_gear",
+      "context": "玩家在暗水湖深处溺水后获救：Nemo 建议去自己的店买潜水装备。",
+      "text": "Visit my shop for %1$s Respiration ...*inhales*... and %2$s Pressure Resistance gear.",
+      "raw": "§fVisit my shop for §3%1$s Respiration §f...§f§o*inhales*§f... and §9%2$s Pressure Resistance §fgear.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "水下呼吸的单个属性图标，原样保留 Unicode 或服务器私用区字形",
+          "type": "icon",
+          "example": "⚶"
+        },
+        {
+          "token": "%2$s",
+          "desc": "抗压的单个属性图标，原样保留 Unicode 或服务器私用区字形",
+          "type": "icon",
+          "example": "❍"
+        }],
+      "gloss": "仅泛指带相应属性的装备，原句没有具体商品名。属性译名沿用 _shared/Terms.json 及 _shared/Stats_Equipment_Live.json#stat_live_d4573c451a6fde、#stat_live_2367729aad0fd3：水下呼吸、抗压。不从页面介绍增补所售商品。 两个属性图标使用现有 icon 类型的有界单字形占位符，直接保留服务器码点与样式；无需猜测私用区映射，也不枚举每种字形。",
+      "translate": true,
+      "zh": "来我店里买些带%1$s 水下呼吸……*吸气*……和%2$s 抗压的装备吧。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Visit my shop for ",
+          "zh": "来我店里买些带"
+        },
+        {
+          "color": "§3",
+          "text": "%1$s Respiration ",
+          "zh": "%1$s 水下呼吸"
+        },
+        {
+          "color": "§f",
+          "text": "...",
+          "zh": "……"
+        },
+        {
+          "color": "§f§o",
+          "text": "*inhales*",
+          "zh": "*吸气*"
+        },
+        {
+          "color": "§f",
+          "text": "... and ",
+          "zh": "……和"
+        },
+        {
+          "color": "§9",
+          "text": "%2$s Pressure Resistance ",
+          "zh": "%2$s 抗压"
+        },
+        {
+          "color": "§f",
+          "text": "gear.",
+          "zh": "的装备吧。"
+        }
+      ]
+    },
+    {
+      "id": "nemo_rescue_gear_essential_for_survival",
+      "context": "玩家在暗水湖深处溺水后获救：Nemo 强调上述装备的重要性。",
+      "text": "It’s essential for... *exhales*... surviving down there.",
+      "raw": "§fIt’s essential for... §f§o*exhales*§f... surviving down there.",
+      "placeholders": [],
+      "gloss": "It 承接前句装备，不额外承诺装备能保证玩家不死。保留证据中的弯引号。",
+      "translate": true,
+      "zh": "想在底下活下来……*呼气*……可少不了这些。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "It’s essential for... ",
+          "zh": "想在底下活下来……"
+        },
+        {
+          "color": "§f§o",
+          "text": "*exhales*",
+          "zh": "*呼气*"
+        },
+        {
+          "color": "§f",
+          "text": "... surviving down there.",
+          "zh": "……可少不了这些。"
+        }
+      ]
+    },
+    {
+      "id": "nemo_rescue_lake_embrace_too_strong",
+      "context": "暗水湖深处溺水获救的另一组对白：调侃玩家再次被湖困住；不推定具体触发次数。",
+      "text": "And we meet again!... *inhales*... Seems the loch embrace is too strong?",
+      "raw": "§fAnd we meet again!... §f§o*inhales*§f... Seems the loch embrace is too strong?",
+      "placeholders": [],
+      "gloss": "loch embrace 是把溺水说成湖的拥抱，一次性善意调侃；不是技能或状态名。",
+      "translate": true,
+      "zh": "又见面了! ……*吸气*……看来这湖抱你抱得太紧了?",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "And we meet again!... ",
+          "zh": "又见面了! ……"
+        },
+        {
+          "color": "§f§o",
+          "text": "*inhales*",
+          "zh": "*吸气*"
+        },
+        {
+          "color": "§f",
+          "text": "... Seems the loch embrace is too strong?",
+          "zh": "……看来这湖抱你抱得太紧了?"
+        }
+      ]
+    },
+    {
+      "id": "nemo_rescue_proper_gear_lightens_burden",
+      "context": "承接湖的拥抱这组溺水救援对白：建议下次准备合适的装备。",
+      "text": "Perhaps lighten the load with some proper gear next time... *exhales*... just a thought.",
+      "raw": "§fPerhaps lighten the load with some proper gear next time... §f§o*exhales*§f... just a thought.",
+      "placeholders": [],
+      "gloss": "lighten the load 在此是合适装备让潜水没那么吃力的比喻；不是清理背包或降低负重的机制要求。保留 Perhaps 的建议语气。",
+      "translate": true,
+      "zh": "下次穿身合适的装备，也许能轻松点……*呼气*……就这么一说。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Perhaps lighten the load with some proper gear next time... ",
+          "zh": "下次穿身合适的装备，也许能轻松点……"
+        },
+        {
+          "color": "§f§o",
+          "text": "*exhales*",
+          "zh": "*呼气*"
+        },
+        {
+          "color": "§f",
+          "text": "... just a thought.",
+          "zh": "……就这么一说。"
+        }
+      ]
+    },
+    {
+      "id": "nemo_rescue_testing_the_waters_literally",
+      "context": "暗水湖深处溺水获救的另一组对白：拿玩家试水打趣；不推定具体触发次数。",
+      "text": "You're really testing the waters, aren't you... *inhales*... Literally.",
+      "raw": "§fYou're really testing the waters, aren't you... §f§o*inhales*§f... Literally.",
+      "placeholders": [],
+      "gloss": "testing the waters 同时指试探尝试和真的下水，一次性双关。以试水承接中文双义，末句把笑点落在不是比喻上；不改成任务指令。",
+      "translate": true,
+      "zh": "你这可真是在试水啊……*吸气*……我可没打比方。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "You're really testing the waters, aren't you... ",
+          "zh": "你这可真是在试水啊……"
+        },
+        {
+          "color": "§f§o",
+          "text": "*inhales*",
+          "zh": "*吸气*"
+        },
+        {
+          "color": "§f",
+          "text": "... Literally.",
+          "zh": "……我可没打比方。"
+        }
+      ]
+    },
+    {
+      "id": "nemo_rescue_more_stats_avoid_being_swallowed",
+      "context": "承接试水这组溺水救援对白：建议提高水下呼吸与抗压属性。",
+      "text": "A bit more Respiration and... *exhales*... Pressure Resistance might stop the loch from swallowing you whole.",
+      "raw": "§fA bit more §3Respiration §fand... §f§o*exhales*§f... §9Pressure Resistance §fmight stop the loch from swallowing you whole.",
+      "placeholders": [],
+      "gloss": "属性译名沿用 _shared/Terms.json 及 _shared/Stats_Equipment_Live.json#stat_live_d4573c451a6fde、#stat_live_2367729aad0fd3：水下呼吸、抗压。might 是可能，不保证安全；swallowing you whole 是湖吞人的比喻，不新增生物或机制。",
+      "translate": true,
+      "zh": "再多点水下呼吸和……*呼气*……抗压，也许这湖就不会把你一口吞了。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "A bit more ",
+          "zh": "再多点"
+        },
+        {
+          "color": "§3",
+          "text": "Respiration ",
+          "zh": "水下呼吸"
+        },
+        {
+          "color": "§f",
+          "text": "and... ",
+          "zh": "和……"
+        },
+        {
+          "color": "§f§o",
+          "text": "*exhales*",
+          "zh": "*呼气*"
+        },
+        {
+          "color": "§f",
+          "text": "... ",
+          "zh": "……"
+        },
+        {
+          "color": "§9",
+          "text": "Pressure Resistance ",
+          "zh": "抗压"
+        },
+        {
+          "color": "§f",
+          "text": "might stop the loch from swallowing you whole.",
+          "zh": "，也许这湖就不会把你一口吞了。"
+        }
+      ]
+    },
+    {
+      "id": "nemo_rescue_just_saying",
+      "context": "试水这组溺水救援对白的结尾：Nemo 轻描淡写地收住建议。",
+      "text": "Just... *inhales*... saying.",
+      "raw": "§fJust... §f§o*inhales*§f... saying.",
+      "placeholders": [],
+      "gloss": "按页面独立对白行记录，不用 continuation 或 chat_join_next 并入前句。",
+      "translate": true,
+      "zh": "我就……*吸气*……这么一说。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Just... ",
+          "zh": "我就……"
+        },
+        {
+          "color": "§f§o",
+          "text": "*inhales*",
+          "zh": "*吸气*"
+        },
+        {
+          "color": "§f",
+          "text": "... saying.",
+          "zh": "……这么一说。"
+        }
+      ]
+    },
+    {
+      "id": "nemo_rescue_might_need_hero_cape",
+      "context": "暗水湖深处溺水获救的另一组对白：调侃频繁救援让自己像英雄；不推定具体触发次数。",
+      "text": "You again... *inhales*... I’m no hero, but I might need a cape at this rate.",
+      "raw": "§fYou again... §f§o*inhales*§f... I’m no hero, but I might need a cape at this rate.",
+      "placeholders": [],
+      "gloss": "cape 是英雄披风的笑话，不是要求玩家提供的物品。might 的夸张猜测保留为怕是；保留原文弯引号。",
+      "translate": true,
+      "zh": "又是你……*吸气*……我又不是什么英雄，可照这么下去，怕是得备件披风了。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "You again... ",
+          "zh": "又是你……"
+        },
+        {
+          "color": "§f§o",
+          "text": "*inhales*",
+          "zh": "*吸气*"
+        },
+        {
+          "color": "§f",
+          "text": "... I’m no hero, but I might need a cape at this rate.",
+          "zh": "……我又不是什么英雄，可照这么下去，怕是得备件披风了。"
+        }
+      ]
+    },
+    {
+      "id": "nemo_rescue_retire_rescue_hat",
+      "context": "英雄披风这组溺水救援对白的结尾：建议玩家改善装备，让自己不必再救援。",
+      "text": "Maybe equip yourself a bit better, and I can retire my rescue hat... *exhales*... just a suggestion.",
+      "raw": "§fMaybe equip yourself a bit better, and I can retire my rescue hat... §f§o*exhales*§f... just a suggestion.",
+      "placeholders": [],
+      "gloss": "rescue hat 退休是少做救援的拟人笑话，不是正式物品名、领取奖励或任务要求。建议语气与前面的善意调侃一致。",
+      "translate": true,
+      "zh": "要不穿身好点的装备，我这顶救生帽也就能退休了……*呼气*……只是个建议。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Maybe equip yourself a bit better, and I can retire my rescue hat... ",
+          "zh": "要不穿身好点的装备，我这顶救生帽也就能退休了……"
+        },
+        {
+          "color": "§f§o",
+          "text": "*exhales*",
+          "zh": "*呼气*"
+        },
+        {
+          "color": "§f",
+          "text": "... just a suggestion.",
+          "zh": "……只是个建议。"
+        }
+      ]
+    }
+  ]
+}

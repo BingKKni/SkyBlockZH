@@ -1,0 +1,344 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Einary",
+  "fetched_at": "2026-10-02",
+  "verified_ingame": false,
+  "npc": "Einary",
+  "aliases": [],
+  "wiki_last_edited": "This page was last edited on 20 September 2026, at 20:59.",
+  "source_note": "原文与颜色来自父代理通过 Playwright 读取的普通社区 Wiki 呈现页。raw 是按 DOM computed 样式还原的 Wiki 样本，不是服务器原始字节；未实机核验。",
+  "note": "身份: Jerry 的工坊里 Einary 的商行商人，以北极星兑换商品。\n关系: 初见时热情招呼玩家；玩家找回 Einary's Red Hoodie 后，愿意交换 Abiphone 联系方式。\n说话方式: 自然、热情的口语，失落时直说自己的心情。\n性格与词汇: 珍惜失物，也珍惜帮忙的人；常谈欢迎、送礼、联系方式与友谊。\n禁用风格: 不写成公事公办的商店说明，不用伪文言，不强塞网络梗，不补写失物的获取机制。",
+  "entries": [
+    {
+      "id": "einary_welcome",
+      "context": "Einary：首次交谈，热情欢迎玩家。",
+      "text": "Welcome, welcome, welcome!",
+      "raw": "§fWelcome, welcome, welcome!",
+      "placeholders": [],
+      "gloss": "三次 welcome 是商人的热情招呼，保留重复的节拍。",
+      "translate": true,
+      "zh": "欢迎，欢迎，欢迎!"
+    },
+    {
+      "id": "einary_today_offers",
+      "context": "Einary：首次交谈，邀请玩家看看商品。",
+      "text": "Come, see what I have on offer for you today.",
+      "raw": "§fCome, see what I have on offer for you today.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "来，看看我今天有什么好货。"
+    },
+    {
+      "id": "einary_special_currency",
+      "context": "Einary：首次交谈，介绍用特别货币兑换的商品。",
+      "text": "Special items for a special currency just for you!",
+      "raw": "§fSpecial items for a special currency just for you!",
+      "placeholders": [],
+      "gloss": "for a special currency 指以特别货币兑换商品，不是赠送商品与货币。",
+      "translate": true,
+      "zh": "专为你准备的特别商品，用特别的货币就能换到!"
+    },
+    {
+      "id": "einary_north_star_gifts",
+      "context": "Einary：首次交谈，说明送礼可以获得北极星货币。",
+      "text": "You can get this North Star currency by giving gifts to others!",
+      "raw": "§fYou can get this North Star currency by giving gifts to others!",
+      "placeholders": [],
+      "gloss": "North Star 沿用 Events/ScoreBoard/Jerrys_Workshop.json#sb_north_stars 的货币译名“北极星”；这里说的是给别人送礼，不是收礼。gifts 是泛指礼物，原文未指定礼物种类或数量。",
+      "translate": true,
+      "zh": "给别人送礼，就能拿到北极星这种货币!"
+    },
+    {
+      "id": "einary_abiphone_contact_question",
+      "context": "Einary：请求加入 Abiphone 联系人时，回应玩家。",
+      "text": "✆ Ah, my Abiphone contact?",
+      "raw": "§b✆ §fAh, my Abiphone contact?",
+      "placeholders": [],
+      "gloss": "Abiphone 是品牌专名，保留英文。",
+      "translate": true,
+      "zh": "✆ 啊，想要我的 Abiphone 联系方式?",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Ah, my Abiphone contact?",
+          "zh": "啊，想要我的 Abiphone 联系方式?"
+        }
+      ]
+    },
+    {
+      "id": "einary_abiphone_missing_hoodie",
+      "context": "Einary：请求加入 Abiphone 联系人时，解释弄丢失物后不想交朋友。所需物品在 Wiki 条件中写作 Einary's Red Hoodie。",
+      "text": "✆ You know, I haven't really felt like making friends since I lost my red hoodie.",
+      "raw": "§b✆ §fYou know, I haven't really felt like making friends since I lost my §cred hoodie§f.",
+      "placeholders": [],
+      "gloss": "用户拍板：所需物品 Einary's Red Hoodie 无本地 GUI_Item 整名或适用模板译名，也未查到已定名泛称，保留原文。已核对本轮 item-translations.json、original_text/*/GUI_Item 各玩法目录及 _shared/Terms.json；src/main/resources/assets/skyzh/item-names.json 仅确认物品目录收录，不能作为译名。对白只写 red hoodie，故保留这一完整原文短语，不凭 Wiki 条件把整名补进正文。",
+      "translate": true,
+      "zh": "✆ 说真的，自从弄丢了那件 red hoodie，我就一直没心思交朋友。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "You know, I haven't really felt like making friends since I lost my ",
+          "zh": "说真的，自从弄丢了那件 "
+        },
+        {
+          "color": "§c",
+          "text": "red hoodie",
+          "zh": "red hoodie"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "，我就一直没心思交朋友。"
+        }
+      ]
+    },
+    {
+      "id": "einary_abiphone_hoodie_part_of_me",
+      "context": "Einary：请求加入 Abiphone 联系人时，说明失物对自己很重要。",
+      "text": "✆ That thing was like a part of me!",
+      "raw": "§b✆ §fThat thing was like a part of me!",
+      "placeholders": [],
+      "gloss": "That thing 指上一句的 red hoodie；这是依恋失物的比喻，不是物品效果说明。",
+      "translate": true,
+      "zh": "✆ 它简直就是我的一部分啊!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "That thing was like a part of me!",
+          "zh": "它简直就是我的一部分啊!"
+        }
+      ]
+    },
+    {
+      "id": "einary_abiphone_socializing_without_hoodie",
+      "context": "Einary：请求加入 Abiphone 联系人时，表示找回失物前很难放下这件事。",
+      "text": "✆ Until I find it, socializing just won't feel the same.",
+      "raw": "§b✆ §fUntil I find it, socializing just won't feel the same.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 在找回它之前，跟人来往总觉得少了点什么。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Until I find it, socializing just won't feel the same.",
+          "zh": "在找回它之前，跟人来往总觉得少了点什么。"
+        }
+      ]
+    },
+    {
+      "id": "einary_give_item_option",
+      "ref": "Dungeons/ChatMessage/Dungeon_Hub_Tasks_and_NPC_Options.json#npc_option_give_item",
+      "context": "Einary 的 Abiphone 联系人流程中的 [GIVE ITEM] 玩家选项；复用同 CHAT 面已分开左括号、正文、右括号的通用按钮，不虚构点击命令。"
+    },
+    {
+      "id": "einary_abiphone_declines_without_hoodie",
+      "context": "Einary：未携带 Einary's Red Hoodie 就选择 [GIVE ITEM]，暂不提供联系方式。",
+      "text": "✆ I'm sorry, I just don't feel like giving my contact this time...",
+      "raw": "§b✆ §fI'm sorry, I just don't feel like giving my contact this time...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 抱歉，我现在实在没心思给人留联系方式...",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "I'm sorry, I just don't feel like giving my contact this time...",
+          "zh": "抱歉，我现在实在没心思给人留联系方式..."
+        }
+      ]
+    },
+    {
+      "id": "einary_abiphone_hoodie_found",
+      "context": "Einary：携带 Einary's Red Hoodie 选择 [GIVE ITEM]，发现玩家找回了失物。",
+      "text": "✆ You found it!",
+      "raw": "§b✆ §fYou found it!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 你找到它了!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "You found it!",
+          "zh": "你找到它了!"
+        }
+      ]
+    },
+    {
+      "id": "einary_abiphone_my_red_hoodie",
+      "context": "Einary：携带 Einary's Red Hoodie 选择 [GIVE ITEM]，认出自己的失物。",
+      "text": "✆ My red hoodie!",
+      "raw": "§b✆ §fMy §cred hoodie§f!",
+      "placeholders": [],
+      "gloss": "用户拍板：所需物品 Einary's Red Hoodie 无本地 GUI_Item 整名或适用模板译名，也未查到已定名泛称，保留原文；核对依据同 einary_abiphone_missing_hoodie。对白只写 red hoodie，保留完整原文短语，不自行创造红色连帽衫等物品译名。",
+      "translate": true,
+      "zh": "✆ 我的 red hoodie!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "My ",
+          "zh": "我的 "
+        },
+        {
+          "color": "§c",
+          "text": "red hoodie",
+          "zh": "red hoodie"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "einary_abiphone_hoodie_means_world",
+      "context": "Einary：携带 Einary's Red Hoodie 选择 [GIVE ITEM] 后，惊喜并表达失物对自己的意义；Wiki 的 speaker 前缀有字面 §f 污染，正文无污染。",
+      "text": "✆ I can't believe it! This means the world to me!",
+      "raw": "§b✆ §fI can't believe it! This means the world to me!",
+      "placeholders": [],
+      "gloss": "means the world to me 是表达珍视的口语，不译成真的世界；不把 Wiki speaker 中误显示的 §f 写入台词或别名。",
+      "translate": true,
+      "zh": "✆ 真不敢相信! 这对我来说太重要了!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "I can't believe it! This means the world to me!",
+          "zh": "真不敢相信! 这对我来说太重要了!"
+        }
+      ]
+    },
+    {
+      "id": "einary_abiphone_life_brighter",
+      "context": "Einary：携带 Einary's Red Hoodie 选择 [GIVE ITEM] 后，失物找回，心情恢复。",
+      "text": "✆ Suddenly, life's looking brighter.",
+      "raw": "§b✆ §fSuddenly, life's looking brighter.",
+      "placeholders": [],
+      "gloss": "brighter 指心情与生活的转好，不是获得亮度或其他属性加成。",
+      "translate": true,
+      "zh": "✆ 日子一下子又有盼头了。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Suddenly, life's looking brighter.",
+          "zh": "日子一下子又有盼头了。"
+        }
+      ]
+    },
+    {
+      "id": "einary_abiphone_swap_contacts",
+      "context": "Einary：携带 Einary's Red Hoodie 选择 [GIVE ITEM] 后，愿意交换联系方式并期待成为朋友；Wiki 的 speaker 前缀有字面 §f 污染，正文无污染。",
+      "text": "✆ Hey, let's swap contacts! I think this is the beginning of a great friendship.",
+      "raw": "§b✆ §fHey, let's swap contacts! I think this is the beginning of a great friendship.",
+      "placeholders": [],
+      "gloss": "交换的是 Abiphone 联系方式；不把 Wiki speaker 中误显示的 §f 写入台词或别名。",
+      "translate": true,
+      "zh": "✆ 来，交换一下联系方式吧! 我觉得咱们会成为好朋友的。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Hey, let's swap contacts! I think this is the beginning of a great friendship.",
+          "zh": "来，交换一下联系方式吧! 我觉得咱们会成为好朋友的。"
+        }
+      ]
+    },
+    {
+      "id": "einary_hoodie_return_thanks",
+      "context": "Einary：取得 Abiphone 联系人后再次交谈，称呼玩家并感谢归还失物。Wiki 的 [player] 是玩家名参数，不是按钮。",
+      "text": "Thanks for reuniting me with my hoodie, %s!",
+      "raw": "§fThanks for reuniting me with my hoodie, §7%s§f!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前玩家名，Wiki 写作 [player]，保留服务器原名",
+          "type": "player_name",
+          "example": "Alex"
+        }
+      ],
+      "gloss": "用户拍板：所需物品 Einary's Red Hoodie 无本地 GUI_Item 整名或适用模板译名，也未查到已定名泛称，保留原文；核对依据同 einary_abiphone_missing_hoodie。这里原文只写 hoodie，保留该称呼而不补出整名。使用完整 order 将玩家称呼移至句首，保留玩家名灰色、其余文字白色。",
+      "translate": true,
+      "zh": "%s，谢谢你帮我找回了 hoodie!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Thanks for reuniting me with my hoodie, ",
+          "zh": "，谢谢你帮我找回了 hoodie",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "%s",
+          "zh": "%s",
+          "order": 0
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!",
+          "order": 2
+        }
+      ]
+    },
+    {
+      "id": "einary_forever_grateful",
+      "context": "Einary：取得 Abiphone 联系人后再次交谈，继续表达感谢。",
+      "text": "I shall be forever grateful!",
+      "raw": "§fI shall be forever grateful!",
+      "placeholders": [],
+      "gloss": "用真诚的口语表达长久感激，不因为 shall 或 forever 改成伪文言。",
+      "translate": true,
+      "zh": "我会一直感激你的!"
+    }
+  ]
+}

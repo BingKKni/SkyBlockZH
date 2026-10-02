@@ -1,14 +1,14 @@
 {
   "npc": "Carnival Leader",
   "location": "Hub",
-  "source": "runtime capture (SkyZH) 2026-08-23 + https://hypixelskyblock.minecraft.wiki/w/Carnival_Leader",
-  "fetched_at": "2026-08-24",
-  "verified_ingame": true,
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Carnival_Leader",
+  "fetched_at": "2026-10-02",
+  "verified_ingame": false,
   "messages": [
     {
       "id": "nice_to_see_you_here_again_inkkni",
       "context": "Carnival Leader 运行时实测台词",
-      "raw": "Nice to see you here again, §binkkni§f!",
+      "raw": "Nice to see you here again, §b%s§f!",
       "text": "Nice to see you here again, %s!",
       "placeholders": [
         {
@@ -18,7 +18,7 @@
           "example": "inkkni"
         }
       ],
-      "gloss": "",
+      "gloss": "玩家名使用 player_name 模板;raw 仅将既有实测样本的 inkkni 参数化,颜色边界不变,原始实测字节保存在 ingame_raw_samples。Wiki 2026-08-11 的玩家名为 §7,2026-08-23 实测为 §b,优先保留实测。",
       "translate": true,
       "zh": "很高兴又见到你,%s!",
       "segments": [
@@ -37,6 +37,9 @@
           "text": "!",
           "zh": "!"
         }
+      ],
+      "ingame_raw_samples": [
+        "Nice to see you here again, §binkkni§f!"
       ]
     },
     {
@@ -45,7 +48,7 @@
       "raw": "It's a new §bday§f, which means you get more §aCarnival Tickets§f!",
       "text": "It's a new day, which means you get more Carnival Tickets!",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "Carnival Ticket(s) 沿用已有 GUI_Item 整名 Hub_General/GUI_Item/Carnival_Ticket.json#carnival_ticket_name → 嘉年华门票;另有数量模板 Farming/GUI_Item/Grand_Feast.json#feast_ticket。",
       "translate": true,
       "zh": "新的一天到了,这意味着你能领到更多嘉年华门票!",
       "segments": [
@@ -116,7 +119,7 @@
     {
       "id": "welcome_to_the_carnival_inkkni",
       "context": "Carnival Leader 运行时实测台词",
-      "raw": "Welcome to §eThe Carnival§f, §binkkni§f!",
+      "raw": "Welcome to §eThe Carnival§f, §b%s§f!",
       "text": "Welcome to The Carnival, %s!",
       "placeholders": [
         {
@@ -126,7 +129,7 @@
           "example": "inkkni"
         }
       ],
-      "gloss": "",
+      "gloss": "玩家名使用 player_name 模板;raw 仅将既有实测样本的 inkkni 参数化,颜色边界不变,原始实测字节保存在 ingame_raw_samples。Wiki 2026-08-11 的玩家名为 §7,2026-08-23 实测为 §b,优先保留实测。",
       "translate": true,
       "zh": "欢迎来到嘉年华,%s!",
       "segments": [
@@ -155,6 +158,9 @@
           "text": "!",
           "zh": "!"
         }
+      ],
+      "ingame_raw_samples": [
+        "Welcome to §eThe Carnival§f, §binkkni§f!"
       ]
     },
     {
@@ -163,7 +169,7 @@
       "raw": "You've already claimed your §aCarnival Tickets §ffor §btoday§f, but I'm happy to answer any questions you might have.",
       "text": "You've already claimed your Carnival Tickets for today, but I'm happy to answer any questions you might have.",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "Carnival Ticket(s) 沿用已有 GUI_Item 整名 Hub_General/GUI_Item/Carnival_Ticket.json#carnival_ticket_name → 嘉年华门票;另有数量模板 Farming/GUI_Item/Grand_Feast.json#feast_ticket。",
       "translate": true,
       "zh": "今天你已经领过嘉年华门票了,不过我很乐意回答你的任何问题。",
       "segments": [
@@ -215,9 +221,9 @@
       "raw": "Currently, §eThe Carnival §foffers §a3 §fdifferent games!",
       "text": "Currently, The Carnival offers 3 different games!",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "3 种是本页固定游戏数量,不模板化;仅补数字前空格,保留原有实测分段。",
       "translate": true,
-      "zh": "目前嘉年华设有3 种不同的游戏!",
+      "zh": "目前嘉年华设有 3 种不同的游戏!",
       "segments": [
         {
           "color": "",
@@ -232,7 +238,7 @@
         {
           "color": "§f",
           "text": "offers ",
-          "zh": "设有"
+          "zh": "设有 "
         },
         {
           "color": "§a",
@@ -464,9 +470,9 @@
       "raw": "Each §bday§f, I'll give you §825x §aCarnival Tickets§f.",
       "text": "Each day, I'll give you 25x Carnival Tickets.",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "Carnival Ticket(s) 沿用已有 GUI_Item 整名 Hub_General/GUI_Item/Carnival_Ticket.json#carnival_ticket_name → 嘉年华门票;另有数量模板 Farming/GUI_Item/Grand_Feast.json#feast_ticket。 每日 25 张是固定发放数量,不动态化;day 指现实日。",
       "translate": true,
-      "zh": "每天,我都会给你25 张嘉年华门票。",
+      "zh": "每天,我都会给你 25 张嘉年华门票。",
       "segments": [
         {
           "color": "",
@@ -481,7 +487,7 @@
         {
           "color": "§f",
           "text": ", I'll give you ",
-          "zh": ",我都会给你"
+          "zh": ",我都会给你 "
         },
         {
           "color": "§8",
@@ -506,7 +512,7 @@
       "raw": "You'll also gain §aCarnival Tickets §ffor participating in different §aEvents§f!",
       "text": "You'll also gain Carnival Tickets for participating in different Events!",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "Carnival Ticket(s) 沿用已有 GUI_Item 整名 Hub_General/GUI_Item/Carnival_Ticket.json#carnival_ticket_name → 嘉年华门票;另有数量模板 Farming/GUI_Item/Grand_Feast.json#feast_ticket。",
       "translate": true,
       "zh": "你还能获得嘉年华门票,方法是参加各种活动!",
       "segments": [
@@ -570,34 +576,39 @@
       "raw": "You'll be awarded §e1 Token §ffor every §a100 points §fyou earn.",
       "text": "You'll be awarded 1 Token for every 100 points you earn.",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "每 100 分奖励 1 枚代币是固定比率,不模板化。Token 为嘉年华货币的已定名泛称,沿用本文件历史实测译文“代币”,不是新造物品整名;去掉旧译“即可领取”可能暗示的额外领取步骤。实测英文分段和颜色未改。",
       "translate": true,
-      "zh": "你会获得1 枚代币的奖励,每累计100 分即可领取。",
+      "zh": "每得 100 分,就能获得 1 枚代币。",
       "segments": [
         {
           "color": "",
           "text": "You'll be awarded ",
-          "zh": "你会获得"
+          "zh": ",就能获得 ",
+          "order": 2
         },
         {
           "color": "§e",
           "text": "1 Token ",
-          "zh": "1 枚代币"
+          "zh": "1 枚代币",
+          "order": 3
         },
         {
           "color": "§f",
           "text": "for every ",
-          "zh": "的奖励,每累计"
+          "zh": "每得 ",
+          "order": 0
         },
         {
           "color": "§a",
           "text": "100 points ",
-          "zh": "100 分"
+          "zh": "100 分",
+          "order": 1
         },
         {
           "color": "§f",
           "text": "you earn.",
-          "zh": "即可领取。"
+          "zh": "。",
+          "order": 4
         }
       ]
     },
@@ -634,66 +645,377 @@
       "raw": "You can exchange your §eTokens §ffor §dpermanent buffs §fin different §aEvents §fthroughout §bSkyBlock§f, as well as some §efun masks §fto play around with.",
       "text": "You can exchange your Tokens for permanent buffs in different Events throughout SkyBlock, as well as some fun masks to play around with.",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "Tokens 为嘉年华货币,沿用既有泛称“代币”,不是所需物品GUI整名。throughout SkyBlock 修饰活动分布,不是增益在整个世界所有场合生效;修正旧译“覆盖整个SkyBlock”的作用范围暗示,并保留每个实测源色界。SkyBlock 留英文交给名称配置渲染。",
       "translate": true,
-      "zh": "你可以用代币兑换永久增益,这些增益会在各种活动中生效,覆盖整个SkyBlock;还能换些趣味面具玩玩。",
+      "zh": "你可以用代币兑换 SkyBlock 各种活动中生效的永久增益,也能换些趣味面具来玩。",
       "segments": [
         {
           "color": "",
           "text": "You can exchange your ",
-          "zh": "你可以用"
+          "zh": "你可以用",
+          "order": 0
         },
         {
           "color": "§e",
           "text": "Tokens ",
-          "zh": "代币"
+          "zh": "代币",
+          "order": 1
         },
         {
           "color": "§f",
           "text": "for ",
-          "zh": "兑换"
+          "zh": "兑换",
+          "order": 2
         },
         {
           "color": "§d",
           "text": "permanent buffs ",
-          "zh": "永久增益"
+          "zh": "永久增益",
+          "order": 7
         },
         {
           "color": "§f",
           "text": "in different ",
-          "zh": ",这些增益会在"
+          "zh": "各种",
+          "order": 4
         },
         {
           "color": "§a",
           "text": "Events ",
-          "zh": "各种活动"
+          "zh": "活动",
+          "order": 5
         },
         {
           "color": "§f",
           "text": "throughout ",
-          "zh": "中生效,覆盖整个"
+          "zh": "中生效的",
+          "order": 6
         },
         {
           "color": "§b",
           "text": "SkyBlock",
-          "zh": "SkyBlock"
+          "zh": " SkyBlock ",
+          "order": 3
         },
         {
           "color": "§f",
           "text": ", as well as some ",
-          "zh": ";还能换些"
+          "zh": ",也能换些",
+          "order": 8
         },
         {
           "color": "§e",
           "text": "fun masks ",
-          "zh": "趣味面具"
+          "zh": "趣味面具",
+          "order": 9
         },
         {
           "color": "§f",
           "text": "to play around with.",
-          "zh": "玩玩。"
+          "zh": "来玩。",
+          "order": 10
+        }
+      ]
+    },
+    {
+      "id": "carnival_activities_and_prizes",
+      "context": "Carnival Leader 对白;First Interaction / None;普通社区Wiki呈现页DOM颜色,未实测。",
+      "raw": "§fHere, you'll be able to partake in §afun activities§f, earn §eCarnival Tokens§f, and purchase §dcool prizes§f!",
+      "text": "Here, you'll be able to partake in fun activities, earn Carnival Tokens, and purchase cool prizes!",
+      "placeholders": [],
+      "gloss": "Carnival Tokens 是嘉年华货币,沿用既有 Carnival→嘉年华和本文件 Token→代币的泛称,不是要求玩家交付的物品;没有据此新增或假定 GUI_Item 整名。",
+      "translate": true,
+      "zh": "在这儿,你能参加有趣的活动,赚取嘉年华代币,还能买到超棒的奖品!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Here, you'll be able to partake in ",
+          "zh": "在这儿,你能参加"
+        },
+        {
+          "color": "§a",
+          "text": "fun activities",
+          "zh": "有趣的活动"
+        },
+        {
+          "color": "§f",
+          "text": ", earn ",
+          "zh": ",赚取"
+        },
+        {
+          "color": "§e",
+          "text": "Carnival Tokens",
+          "zh": "嘉年华代币"
+        },
+        {
+          "color": "§f",
+          "text": ", and purchase ",
+          "zh": ",还能买到"
+        },
+        {
+          "color": "§d",
+          "text": "cool prizes",
+          "zh": "超棒的奖品"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "carnival_daily_tickets_intro",
+      "context": "Carnival Leader 对白;First Interaction / None;普通社区Wiki呈现页DOM颜色,未实测。",
+      "raw": "§fEach §bday§f, I'll give you §825x §aCarnival Tickets§f, which will let you play the §agames§f.",
+      "text": "Each day, I'll give you 25x Carnival Tickets, which will let you play the games.",
+      "placeholders": [],
+      "gloss": "Carnival Ticket(s) 沿用 Hub_General/GUI_Item/Carnival_Ticket.json#carnival_ticket_name → 嘉年华门票;另有数量模板 Farming/GUI_Item/Grand_Feast.json#feast_ticket。每天固定发放 25 张,day 指现实日,不动态化或误说成空岛日。",
+      "translate": true,
+      "zh": "每天我都会给你 25 张嘉年华门票,拿着门票就能玩游戏。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Each ",
+          "zh": "每"
+        },
+        {
+          "color": "§b",
+          "text": "day",
+          "zh": "天"
+        },
+        {
+          "color": "§f",
+          "text": ", I'll give you ",
+          "zh": "我都会给你 "
+        },
+        {
+          "color": "§8",
+          "text": "25x ",
+          "zh": "25 张"
+        },
+        {
+          "color": "§a",
+          "text": "Carnival Tickets",
+          "zh": "嘉年华门票"
+        },
+        {
+          "color": "§f",
+          "text": ", which will let you play the ",
+          "zh": ",拿着门票就能玩"
+        },
+        {
+          "color": "§a",
+          "text": "games",
+          "zh": "游戏"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "carnival_starter_tickets",
+      "context": "Carnival Leader 对白;First Interaction / None;普通社区Wiki呈现页DOM颜色,未实测。",
+      "raw": "§fHere, I'll give you some to start things off.",
+      "text": "Here, I'll give you some to start things off.",
+      "placeholders": [],
+      "gloss": "some 指上文嘉年华门票;沿用 Hub_General/GUI_Item/Carnival_Ticket.json#carnival_ticket_name。",
+      "translate": true,
+      "zh": "来,先给你一些门票,玩起来吧。"
+    },
+    {
+      "id": "carnival_ready_to_play",
+      "context": "Carnival Leader 对白;First Interaction / After Claiming  Carnival Tickets;普通社区Wiki呈现页DOM颜色,未实测。",
+      "raw": "§fAlright, you should be good to go!",
+      "text": "Alright, you should be good to go!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "好啦,这下可以去玩了!"
+    },
+    {
+      "id": "carnival_questions_welcome",
+      "context": "Carnival Leader 对白;First Interaction / After Claiming  Carnival Tickets;普通社区Wiki呈现页DOM颜色,未实测。",
+      "raw": "§fIf you have any questions, come find me.",
+      "text": "If you have any questions, come find me.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "有问题就来找我。"
+    },
+    {
+      "id": "carnival_select_option",
+      "context": "系统选择提示;Subsequent Interactions / Interacting After Claimed  Carnival Tickets;普通社区Wiki呈现页DOM颜色,未实测。",
+      "gloss": "无尾空格的独立提示。旧同面 Hub_General/ChatMessage/Mayor_Election.json#election_select_option 有尾空格且整句黄色,不能直接引用命中;本条保留 computed 的白色冒号,五次复用,待父层跨候选统一。",
+      "ref": "_shared/NPC_Common.json#fishing_common_0b6e5e7ade0f"
+    },
+    {
+      "id": "carnival_option_done",
+      "context": "玩家回复按钮;Subsequent Interactions / Interacting After Claimed  Carnival Tickets;普通社区Wiki呈现页DOM颜色,未实测。",
+      "raw": "§e§l➜ §a[I should be good, thanks.]",
+      "text": "➜ [I should be good, thanks.]",
+      "placeholders": [],
+      "gloss": "玩家可点击回复,不是 Carnival Leader 的台词;箭头、左括号、正文、右括号独立分段,不猜点击命令。",
+      "translate": true,
+      "zh": "➜ [我没问题了,谢谢。]",
+      "segments": [
+        {
+          "color": "§e§l",
+          "text": "➜ ",
+          "zh": "➜ "
+        },
+        {
+          "color": "§a",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§a",
+          "text": "I should be good, thanks.",
+          "zh": "我没问题了,谢谢。"
+        },
+        {
+          "color": "§a",
+          "text": "]",
+          "zh": "]"
+        }
+      ]
+    },
+    {
+      "id": "carnival_option_games",
+      "context": "玩家回复按钮;Subsequent Interactions / Interacting After Claimed  Carnival Tickets;普通社区Wiki呈现页DOM颜色,未实测。",
+      "raw": "§e§l➜ §b[What sorts of games can I play?]",
+      "text": "➜ [What sorts of games can I play?]",
+      "placeholders": [],
+      "gloss": "玩家可点击回复;沿用原文颜色和按钮边界,不猜点击命令。",
+      "translate": true,
+      "zh": "➜ [有哪些游戏可以玩?]",
+      "segments": [
+        {
+          "color": "§e§l",
+          "text": "➜ ",
+          "zh": "➜ "
+        },
+        {
+          "color": "§b",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§b",
+          "text": "What sorts of games can I play?",
+          "zh": "有哪些游戏可以玩?"
+        },
+        {
+          "color": "§b",
+          "text": "]",
+          "zh": "]"
+        }
+      ]
+    },
+    {
+      "id": "carnival_option_more_tickets",
+      "context": "玩家回复按钮;Subsequent Interactions / Interacting After Claimed  Carnival Tickets;普通社区Wiki呈现页DOM颜色,未实测。",
+      "raw": "§e§l➜ §6[How can I get more Carnival Tickets?]",
+      "text": "➜ [How can I get more Carnival Tickets?]",
+      "placeholders": [],
+      "gloss": "Carnival Ticket(s) 沿用 Hub_General/GUI_Item/Carnival_Ticket.json#carnival_ticket_name → 嘉年华门票;另有数量模板 Farming/GUI_Item/Grand_Feast.json#feast_ticket。玩家可点击回复,不猜点击命令。",
+      "translate": true,
+      "zh": "➜ [怎么获得更多嘉年华门票?]",
+      "segments": [
+        {
+          "color": "§e§l",
+          "text": "➜ ",
+          "zh": "➜ "
+        },
+        {
+          "color": "§6",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§6",
+          "text": "How can I get more Carnival Tickets?",
+          "zh": "怎么获得更多嘉年华门票?"
+        },
+        {
+          "color": "§6",
+          "text": "]",
+          "zh": "]"
+        }
+      ]
+    },
+    {
+      "id": "carnival_option_earn_tokens",
+      "context": "玩家回复按钮;Subsequent Interactions / Interacting After Claimed  Carnival Tickets;普通社区Wiki呈现页DOM颜色,未实测。",
+      "raw": "§e§l➜ §d[How do I earn Carnival Tokens?]",
+      "text": "➜ [How do I earn Carnival Tokens?]",
+      "placeholders": [],
+      "gloss": "玩家可点击回复。Carnival Tokens 为嘉年华货币,沿用本文件代币的已定名泛称,不假定已有 GUI_Item 整名。",
+      "translate": true,
+      "zh": "➜ [怎么赚取嘉年华代币?]",
+      "segments": [
+        {
+          "color": "§e§l",
+          "text": "➜ ",
+          "zh": "➜ "
+        },
+        {
+          "color": "§d",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§d",
+          "text": "How do I earn Carnival Tokens?",
+          "zh": "怎么赚取嘉年华代币?"
+        },
+        {
+          "color": "§d",
+          "text": "]",
+          "zh": "]"
+        }
+      ]
+    },
+    {
+      "id": "carnival_option_redeem_tokens",
+      "context": "玩家回复按钮;Subsequent Interactions / Interacting After Claimed  Carnival Tickets;普通社区Wiki呈现页DOM颜色,未实测。",
+      "raw": "§e§l➜ §5[Where can I turn my Carnival Tokens in?]",
+      "text": "➜ [Where can I turn my Carnival Tokens in?]",
+      "placeholders": [],
+      "gloss": "玩家可点击回复。Carnival Tokens 为嘉年华货币,沿用本文件代币的已定名泛称,不假定已有 GUI_Item 整名。颜色已按重新采集的明确 Minecraft 格式类 §5 校正；旧最近色映射不作为当前颜色依据，仍未实测。",
+      "translate": true,
+      "zh": "➜ [到哪里兑换嘉年华代币?]",
+      "segments": [
+        {
+          "color": "§e§l",
+          "text": "➜ ",
+          "zh": "➜ "
+        },
+        {
+          "color": "§5",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§5",
+          "text": "Where can I turn my Carnival Tokens in?",
+          "zh": "到哪里兑换嘉年华代币?"
+        },
+        {
+          "color": "§5",
+          "text": "]",
+          "zh": "]"
         }
       ]
     }
-  ]
+  ],
+  "wiki_last_edited": "This page was last edited on 11 August 2026, at 20:15.",
+  "historical_source": "runtime capture (SkyZH) 2026-08-23 + https://hypixelskyblock.minecraft.wiki/w/Carnival_Leader",
+  "historical_fetched_at": "2026-08-24",
+  "historical_verified_ingame": true,
+  "note": "身份: 嘉年华负责人,负责发门票和介绍小游戏;本页明确介绍山间池塘旁的钓鱼大赛,属于钓鱼玩法辅助引导。关系: 热情接待初访和回头的玩家。口吻: 亲切、利落的活动主持人,耐心回答问题。性格与用词: 乐观好客,反复使用嘉年华玩个痛快™的活动口号。禁用风格: 不写成官僚说明书,不强塞网络梗,不把小游戏说成技能升级。新增颜色来自普通Wiki呈现页DOM computed样式,不是服务器字节;保留原有2026-08-23实测色界。"
 }

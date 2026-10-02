@@ -1,0 +1,481 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Teddy",
+  "fetched_at": "2026-10-02",
+  "verified_ingame": false,
+  "npc": "Teddy",
+  "aliases": [],
+  "wiki_last_edited": "This page was last edited on 24 July 2026, at 01:20.",
+  "source_note": "原文与颜色来自父代理通过 Playwright 读取的社区 Wiki 普通呈现页。raw 为 DOM computed 样式还原的颜色样本，不是服务器原始字节；正文前残留的结构性空格按聊天匹配规范剥离，完整 DOM 样本保存在候选 report。",
+  "note": "身份: 月光沼泽北部边境的老猎人，教授各种生物的捕捉方法\n关系: 把玩家当后辈，炫耀资历，也会提供实用指导\n说话方式: 口语、倚老卖老，故意卖关子\n性格与词汇: 自称传奇、想当年、小家伙；不同台词中的 152、165、178 岁均按原文保留\n禁用风格: 不改成钓鱼技能教学，不新增捕捉步骤、门槛或奖励，不塞网络梗。按主要狩猎场景归入 Foraging/NPC_Message，渔网及套索均为狩猎工具。",
+  "entries": [
+    {
+      "id": "teddy_legendary_hunter_introduction",
+      "context": "Teddy 首次交谈；自称传奇猎人",
+      "text": "I am Teddy, the legendary hunter. Yes, yes, I know what you're thinking... no need to bow.",
+      "raw": "§fI am Teddy, the §f§olegendary §fhunter. Yes, yes, I know what you're thinking... no need to bow.",
+      "placeholders": [],
+      "gloss": "legendary 的斜体来自已读取 DOM 样式，中文仅对应‘传奇’，不把整个猎人称谓或整句改成斜体。Teddy 为人名，保留原文。",
+      "translate": true,
+      "zh": "我就是 Teddy，传奇猎人。对，对，我知道你在想什么……不用行礼。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "I am Teddy, the ",
+          "zh": "我就是 Teddy，"
+        },
+        {
+          "color": "§f§o",
+          "text": "legendary ",
+          "zh": "传奇"
+        },
+        {
+          "color": "§f",
+          "text": "hunter. Yes, yes, I know what you're thinking... no need to bow.",
+          "zh": "猎人。对，对，我知道你在想什么……不用行礼。"
+        }
+      ]
+    },
+    {
+      "id": "teddy_lived_one_hundred_fifty_two_years",
+      "context": "Teddy 首次交谈；夸耀阅历，却对漏掉的猎物含糊带过",
+      "text": "I've walked this earth for 152 years, seen every creature, caught every beast... except... anyways.",
+      "raw": "§fI've walked this earth for 152 years, seen every creature, caught every beast... except... anyways.",
+      "placeholders": [],
+      "gloss": "152 年是该句固定人物台词；与后文 165、178 岁不同，不统一、不推测随时间变化。",
+      "translate": true,
+      "zh": "我在这世上活了 152 年，什么生灵没见过，什么野兽没抓过……除了……算了，不说了。"
+    },
+    {
+      "id": "teddy_teaches_all_island_creatures",
+      "context": "Teddy 首次交谈；表示能教玩家捕捉岛上的各种生物",
+      "text": "I can teach you how to catch anything that walks, swims, or slithers on this island...",
+      "raw": "§fI can teach you how to catch anything that walks, swims, or slithers on this island...",
+      "placeholders": [],
+      "gloss": "此处 catch 属于狩猎捕捉，既有陆生也有水生目标，不泛化成钓鱼。",
+      "translate": true,
+      "zh": "这岛上走的、游的、爬的，我都能教你怎么抓……"
+    },
+    {
+      "id": "teddy_choice_wow_thanks",
+      "context": "首次交谈时的玩家选择；speaker 为空，不是 Teddy 说出的台词",
+      "text": "Select an option: [Wow, thanks!]",
+      "raw": "§eSelect an option: §a[Wow, thanks!]",
+      "placeholders": [],
+      "gloss": "已搜索基线同 CHAT 面，未找到这一完整选择行。仅收录有证据的独有选项，不新增通用选择模板；提示、左括号、正文、右括号独立分段，点击/悬浮事件交给服务器实时组件。",
+      "translate": true,
+      "zh": "请选择: [哇，谢谢!]",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Select an option: ",
+          "zh": "请选择: "
+        },
+        {
+          "color": "§a",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§a",
+          "text": "Wow, thanks!",
+          "zh": "哇，谢谢!"
+        },
+        {
+          "color": "§a",
+          "text": "]",
+          "zh": "]"
+        }
+      ]
+    },
+    {
+      "id": "teddy_teaching_has_a_price",
+      "context": "Teddy 在玩家选择 [Wow, thanks!] 后补充教学要收费",
+      "text": "...For a price, of course. Nothing in life is free, kiddo.",
+      "raw": "§f...For a price, of course. Nothing in life is free, kiddo.",
+      "placeholders": [],
+      "gloss": "不补出原文未给出的价格或货币数额。kiddo 保留老猎人对后辈的口吻。",
+      "translate": true,
+      "zh": "……当然，得付钱。小家伙，天下可没有免费的午餐。"
+    },
+    {
+      "id": "teddy_frogs_are_that_difficult",
+      "context": "Teddy 教学捕捉 Mossybits；对玩家连青蛙都难抓表示不解",
+      "text": "Struggling with Frogs? Really?",
+      "raw": "§fStruggling with Frogs? Really?",
+      "placeholders": [],
+      "gloss": "Frogs 为通用动物名，沿用 _shared/Terms.json 的 Frog → 青蛙，不当作锦标蛙钓鱼。",
+      "translate": true,
+      "zh": "抓青蛙都费劲? 真的假的?"
+    },
+    {
+      "id": "teddy_frogs_caught_blindfolded",
+      "context": "Teddy 教学捕捉 Mossybits；夸耀从前猎人的本事",
+      "text": "Back in my day, hunters would catch 'em blindfolded.",
+      "raw": "§fBack in my day, hunters would catch 'em blindfolded.",
+      "placeholders": [],
+      "gloss": "这是自夸的旧事，不新增蒙眼玩法或奖励。",
+      "translate": true,
+      "zh": "想当年，猎人们蒙着眼睛都能抓。"
+    },
+    {
+      "id": "teddy_mossybits_lake_direction",
+      "context": "Teddy 教学捕捉 Mossybits；指引玩家到湖边寻找",
+      "text": "Hunters these days... no patience. Go to the lake and look for Mossybits.",
+      "raw": "§fHunters these days... no patience. Go to the lake and look for Mossybits.",
+      "placeholders": [],
+      "gloss": "Mossybits 为生物自造名，基线无既定译名，保留原文；lake 为普通湖泊描述，不擅自补成特定地名。",
+      "translate": true,
+      "zh": "现在的猎人啊……一点耐心都没有。去湖边找 Mossybits 吧。"
+    },
+    {
+      "id": "teddy_mossybits_poke_until_tired",
+      "context": "Teddy 教学捕捉 Mossybits；戳动使其跳跃，最终疲劳",
+      "text": "Just poke at 'em, and they'll jump like they've seen a ghost. Eventually, they'll tire out.",
+      "raw": "§fJust poke at 'em, and they'll jump like they've seen a ghost. Eventually, they'll tire out.",
+      "placeholders": [],
+      "gloss": "保留戳动、跳跃、最终疲劳的因果；不新增次数、持续时间或特定工具。",
+      "translate": true,
+      "zh": "戳它们一下，它们就跟见了鬼似的乱跳。跳着跳着，总会累的。"
+    },
+    {
+      "id": "teddy_mossybits_easy_peasy",
+      "context": "Teddy 教学捕捉 Mossybits；轻描淡写地收尾",
+      "text": "Easy peasy.",
+      "raw": "§fEasy peasy.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "小菜一碟。"
+    },
+    {
+      "id": "teddy_mudworms_watch_ground_closely",
+      "context": "Teddy 教学捕捉 Mudworms；提醒仔细观察地面",
+      "text": "Mudworms? You've gotta watch the ground closely... and I mean closely.",
+      "raw": "§fMudworms? You've gotta watch the ground closely... and I mean closely.",
+      "placeholders": [],
+      "gloss": "Mudworm 由普通词 mud 与 worm 构成，结合本页在泥土中寻找的语境译为泥虫；不是所需物品名。",
+      "translate": true,
+      "zh": "泥虫? 你得盯紧地面……可得盯仔细了。"
+    },
+    {
+      "id": "teddy_mudworm_faint_glow",
+      "context": "Teddy 教学捕捉 Mudworms；泥土微光可能是宝藏，也可能是泥虫",
+      "text": "Ever seen a faint glow in the dirt? Could be treasure... or a Mudworm.",
+      "raw": "§fEver seen a faint glow in the dirt? Could be treasure... or a Mudworm.",
+      "placeholders": [],
+      "gloss": "Mudworm 沿用本文件的泥虫；could be 保留不确定性。",
+      "translate": true,
+      "zh": "见过泥土里那点微光吗? 可能是宝藏……也可能是条泥虫。"
+    },
+    {
+      "id": "teddy_mudworms_dig_either_way",
+      "context": "Teddy 教学捕捉 Mudworms；无论微光对应什么都要挖掘",
+      "text": "Either way, you're digging!",
+      "raw": "§fEither way, you're digging!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "不管是什么，挖就是了!"
+    },
+    {
+      "id": "teddy_axolotl_secret",
+      "context": "Teddy 教学捕捉 Coralots；引出美西螈的弱点",
+      "text": "Ah, the Axolotl, tricky little devils. But here's a secret...",
+      "raw": "§fAh, the Axolotl, tricky little devils. But here's a secret...",
+      "placeholders": [],
+      "gloss": "Axolotl 为原版生物美西螈，不自行为该教学条件中的 Coralots 创造中文专名。",
+      "translate": true,
+      "zh": "啊，美西螈，狡猾的小家伙。不过，我有个秘诀……"
+    },
+    {
+      "id": "teddy_axolotl_stand_still",
+      "context": "Teddy 教学捕捉 Coralots；在只能察觉动静的美西螈旁保持静止",
+      "text": "Their eyesight is rubbish, they only detect movements. So if you stand still long enough near them, you're golden.",
+      "raw": "§fTheir eyesight is rubbish, they only detect movements. So if you stand still long enough near them, you're golden.",
+      "placeholders": [],
+      "gloss": "near them、stand still、long enough 均保留；you're golden 为顺利成功的口语，不是变成金色或获得黄金。",
+      "translate": true,
+      "zh": "它们眼神差得很，只能察觉动静。你在它们身边站着不动，多等一会儿，就稳了。"
+    },
+    {
+      "id": "teddy_shulkers_sneaky_shadows",
+      "context": "Teddy 教学捕捉 Hideonleafs；描述潜影贝的隐蔽性",
+      "text": "Shulkers are sneaky. They're like shadows that play tricks on you.",
+      "raw": "§fShulkers are sneaky. They're like shadows that play tricks on you.",
+      "placeholders": [],
+      "gloss": "Shulker 沿用原版译名潜影贝，与 Dungeons/GUI_Item/Attribute_Shards.json#attribute_family_shulker 所用物种名一致。",
+      "translate": true,
+      "zh": "潜影贝鬼鬼祟祟的，跟会捉弄人的影子似的。"
+    },
+    {
+      "id": "teddy_hideonleafs_on_island",
+      "context": "Teddy 教学捕捉 Hideonleafs；说明岛上有这种生物",
+      "text": "There are Hideonleafs on the island.",
+      "raw": "§fThere are Hideonleafs on the island.",
+      "placeholders": [],
+      "gloss": "Hideonleafs 为生物自造名，基线无既定译名，保留原文。",
+      "translate": true,
+      "zh": "岛上有 Hideonleafs。"
+    },
+    {
+      "id": "teddy_hideonleafs_angry_when_stepped_on",
+      "context": "Teddy 教学捕捉 Hideonleafs；误踩会激怒它们",
+      "text": "Step on them by mistake, and, well, they can get quite angry.",
+      "raw": "§fStep on them by mistake, and, well, they can get quite angry.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "要是不小心踩着它们，嗯……它们可是会发火的。"
+    },
+    {
+      "id": "teddy_hideonleafs_return_projectiles",
+      "context": "Teddy 教学捕捉 Hideonleafs；在它们攻击时把弹射物打回去",
+      "text": "When they attack, smack their projectiles right back at 'em. That'll teach 'em.",
+      "raw": "§fWhen they attack, smack their projectiles right back at 'em. That'll teach 'em.",
+      "placeholders": [],
+      "gloss": "只表达把攻击弹射物打回原目标，不添加伤害数值或其他攻击方式。",
+      "translate": true,
+      "zh": "它们一攻击，你就把弹射物打回去。让它们长长记性。"
+    },
+    {
+      "id": "teddy_lumisquids_awkward_hiding_places",
+      "context": "Teddy 教学捕捉 Lumisquids；寻找藏得刁钻的目标也是乐趣",
+      "text": "Lumisquids hide in awkward places… but that's half the fun, right?",
+      "raw": "§fLumisquids hide in awkward places… but that's half the fun, right?",
+      "placeholders": [],
+      "gloss": "Lumisquids 为生物自造名，基线无既定译名，保留原文。half the fun 是口语比喻，不是 50% 的属性加成。",
+      "translate": true,
+      "zh": "Lumisquids 躲的地方可刁钻了……不过，这也是一大乐趣嘛，对吧?"
+    },
+    {
+      "id": "teddy_lumisquids_net_until_shrunk",
+      "context": "Teddy 教学捕捉 Lumisquids；持续使用渔网直至目标缩小",
+      "text": "Use your net on them until they shrink down.",
+      "raw": "§fUse your net on them until they shrink down.",
+      "placeholders": [],
+      "gloss": "net 为本流程 Fishing Net 的泛称，沿用 Foraging/GUI_Item/Hunting_Toolkit.json#toolkit_fishing_net 的渔网。DOM 前缀剥离后残留一个结构性空格，按 LineShape.CHAT 的 skipSpaces 规范去除，原始样本见候选 report。",
+      "translate": true,
+      "zh": "一直用渔网网它们，直到它们缩小为止。"
+    },
+    {
+      "id": "teddy_lumisquids_vanish_nearby",
+      "context": "Teddy 教学捕捉 Lumisquids；目标会消失但不会跑远",
+      "text": "They'll poof away like magic, but they never go too far.",
+      "raw": "§fThey'll poof away like magic, but they never go too far.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "它们会像变魔术一样，噗地消失。不过，跑不远的。"
+    },
+    {
+      "id": "teddy_dolphins_escape_to_holes",
+      "context": "Teddy 教学捕捉 Joydives；动作不够快，海豚会逃回海豚洞",
+      "text": "Dolphins... smart and slippery. They'll flee to their dolphin holes if you're not quick enough.",
+      "raw": "§fDolphins... smart and slippery. They'll flee to their dolphin holes if you're not quick enough.",
+      "placeholders": [],
+      "gloss": "Dolphin 沿用 _shared/Terms.json 的海豚；dolphin holes 为本句指引的海豚洞，不擅自改成其他有名称的地点。",
+      "translate": true,
+      "zh": "海豚啊……聪明又滑溜。你动作不够快，它们就会逃回海豚洞里。"
+    },
+    {
+      "id": "teddy_dolphins_chase_with_net",
+      "context": "Teddy 教学捕捉 Joydives；准备渔网，赶快持续追赶",
+      "text": "Get that net ready, and don't stop until you catch up to them. But hurry, they won't wait around for a chat.",
+      "raw": "§fGet that net ready, and don't stop until you catch up to them. But hurry, they won't wait around for a chat.",
+      "placeholders": [],
+      "gloss": "net 泛称沿用 Foraging/GUI_Item/Hunting_Toolkit.json#toolkit_fishing_net 的渔网；catch up 是追上，不是已成功捕捉。",
+      "translate": true,
+      "zh": "备好渔网，一路追上去，追到为止。可得快点，它们可不会等着跟你闲聊。"
+    },
+    {
+      "id": "teddy_cod_most_boring_fish",
+      "context": "Teddy 教学捕捉鳕鱼；嫌鳕鱼无聊",
+      "text": "Cod? Oh, please. The most boring of fish, hands down.",
+      "raw": "§fCod? Oh, please. The most boring of fish, hands down.",
+      "placeholders": [],
+      "gloss": "Cod 沿用原版及 Hub_General/GUI_Item/Remaining_September.json#round_tail_cod 的鳕鱼。此处为水下生物网捕，不是钓鱼。",
+      "translate": true,
+      "zh": "鳕鱼? 得了吧。要说最无聊的鱼，非它莫属。"
+    },
+    {
+      "id": "teddy_cod_spin_with_fishing_net",
+      "context": "Teddy 教学捕捉鳕鱼；用渔网使其旋转",
+      "text": "Spin 'em with a fishing net; they'll twirl like a clumsy dancer.",
+      "raw": "§fSpin 'em with a fishing net; they'll twirl like a clumsy dancer.",
+      "placeholders": [],
+      "gloss": "fishing net 泛称沿用 Foraging/GUI_Item/Hunting_Toolkit.json#toolkit_fishing_net 的渔网；该工具用于狩猎，不译作钓鱼技能。",
+      "translate": true,
+      "zh": "用渔网让它们转起来，转得跟个笨手笨脚的舞者似的。"
+    },
+    {
+      "id": "teddy_cod_too_much_spinning",
+      "context": "Teddy 教学捕捉鳕鱼；对旋转过度的结果卖关子",
+      "text": "Spin 'em too much, though, and... well, you'll see.",
+      "raw": "§fSpin 'em too much, though, and... well, you'll see.",
+      "placeholders": [],
+      "gloss": "原文故意不说旋转过度的结果，不能补出死亡、掉落或其他机制。",
+      "translate": true,
+      "zh": "不过，转得太多的话……嗯，你自己就知道了。"
+    },
+    {
+      "id": "teddy_pandas_real_game",
+      "context": "Teddy 教学捕捉 Bambuleafs 和 Mochibears；认为熊猫才算像样的猎物",
+      "text": "Pandas? Oh, now we're talking real game!",
+      "raw": "§fPandas? Oh, now we're talking real game!",
+      "placeholders": [],
+      "gloss": "game 在猎人语境中是猎物，不是电子游戏；Panda 用原版译名熊猫。",
+      "translate": true,
+      "zh": "熊猫? 哦，这才是真正的猎物!"
+    },
+    {
+      "id": "teddy_pandas_old_hunter_tricks",
+      "context": "Teddy 教学捕捉 Bambuleafs 和 Mochibears；表示自己知道寻找诀窍",
+      "text": "They're tough to find, but this old hunter knows a trick or two.",
+      "raw": "§fThey're tough to find, but this old hunter knows a trick or two.",
+      "placeholders": [],
+      "gloss": "a trick or two 为有些本事的习语，不是固定两项任务。",
+      "translate": true,
+      "zh": "它们是不好找，不过我这老猎人还是有两手的。"
+    },
+    {
+      "id": "teddy_pandas_feed_bamboo",
+      "context": "Teddy 教学捕捉 Bambuleafs 和 Mochibears；喂食 bamboo 可能使熊猫暂时亲近玩家",
+      "text": "Feed 'em bamboo, and they might just love you for a second.",
+      "raw": "§fFeed 'em bamboo, and they might just love you for a second.",
+      "placeholders": [],
+      "gloss": "用户拍板：所需物品无本地译名，保留原文 bamboo。已检查 item-translations.json 和基线 GUI_Item 整名/模板；_shared/Terms.json 的 Bamboo → 竹屋只用于谷仓/温室皮肤，不能借作喂食材料的译名。might 保留可能性，for a second 为短暂亲近的口语，不新增精确 1 秒机制。",
+      "translate": true,
+      "zh": "喂它们点 bamboo，说不定它们还能喜欢你那么一小会儿。"
+    },
+    {
+      "id": "teddy_pandas_finding_them_teaser",
+      "context": "Teddy 教学捕捉 Bambuleafs 和 Mochibears；转回如何寻找的问题",
+      "text": "But finding them?",
+      "raw": "§fBut finding them?",
+      "placeholders": [],
+      "gloss": "独立的 NPC 消息，不与下一条做聊天 continuation 或 chat_join_next。",
+      "translate": true,
+      "zh": "可要找到它们嘛?"
+    },
+    {
+      "id": "teddy_pandas_one_hundred_sixty_five_year_secret",
+      "context": "Teddy 教学捕捉 Bambuleafs 和 Mochibears；自称 165 岁，却不肯透露秘密",
+      "text": "That's a secret only a 165-year-old like me can tell you. I won't though.",
+      "raw": "§fThat's a secret only a 165-year-old like me can tell you. I won't though.",
+      "placeholders": [],
+      "gloss": "165 岁按该句固定台词保留，不因首次交谈说过 152 年就修正；不替他补出寻找地点。",
+      "translate": true,
+      "zh": "这种秘密，也就我这样 165 岁的老猎人能告诉你。不过，我偏不说。"
+    },
+    {
+      "id": "teddy_salmon_fast_as_lightning",
+      "context": "Teddy 教学捕捉鲑鱼；形容它们行动快而滑溜",
+      "text": "Salmon? Fast as lightning, those slippery devils.",
+      "raw": "§fSalmon? Fast as lightning, those slippery devils.",
+      "placeholders": [],
+      "gloss": "Salmon 沿用原版及 Hub_General/GUI_Item/Remaining_September.json#round_tail_salmon 的鲑鱼。",
+      "translate": true,
+      "zh": "鲑鱼? 滑溜的小家伙，快得跟闪电似的。"
+    },
+    {
+      "id": "teddy_salmon_hit_with_net_to_slow",
+      "context": "Teddy 教学捕捉鲑鱼；用渔网击打以减速，并提醒别走神",
+      "text": "Hit 'em with the net to slow them down. Just don't blink, or you'll be left with water in your boots.",
+      "raw": "§fHit 'em with the net to slow them down. Just don't blink, or you'll be left with water in your boots.",
+      "placeholders": [],
+      "gloss": "net 泛称沿用 Foraging/GUI_Item/Hunting_Toolkit.json#toolkit_fishing_net 的渔网；保留击打以减速，不改为钓鱼速度属性。",
+      "translate": true,
+      "zh": "用渔网打它们，让它们慢下来。可别眨眼，不然鱼跑了，靴子里倒全是水。"
+    },
+    {
+      "id": "teddy_invisibug_can_see_it",
+      "context": "Teddy 教学捕捉 Invisibugs；吹嘘自己能看见几乎隐形的生物",
+      "text": "Ah, the Invisibug, nearly impossible to see... but not to me, of course.",
+      "raw": "§fAh, the Invisibug, nearly impossible to see... but not to me, of course.",
+      "placeholders": [],
+      "gloss": "Invisibug 为生物自造名，基线无既定译名，保留原文。",
+      "translate": true,
+      "zh": "啊，Invisibug，几乎看不见……当然，我可看得见。"
+    },
+    {
+      "id": "teddy_invisibugs_aim_lasso_at_glow",
+      "context": "Teddy 教学捕捉 Invisibugs；找亮光，投掷套索",
+      "text": "Look for the glow, throw a lasso, and hope your aim's as sharp as mine.",
+      "raw": "§fLook for the glow, throw a lasso, and hope your aim's as sharp as mine.",
+      "placeholders": [],
+      "gloss": "lasso 泛称沿用 Foraging/GUI_Item/Hunting_Toolkit.json#toolkit_lasso 的套索；不自行指定劣质套索、缠绕者套索等具体物品。",
+      "translate": true,
+      "zh": "找准那点亮光，扔出套索，但愿你的准头能跟我一样好。"
+    },
+    {
+      "id": "teddy_shellwise_ancient_ones",
+      "context": "Teddy 教学捕捉 Shellwises；称它们古老",
+      "text": "Shellwise, the ancient ones.",
+      "raw": "§fShellwise, the ancient ones.",
+      "placeholders": [],
+      "gloss": "Shellwise 为生物自造名，基线无既定译名，保留原文；不补出未提供的物种或年代。",
+      "translate": true,
+      "zh": "Shellwise，那群老家伙。"
+    },
+    {
+      "id": "teddy_shellwise_only_one_hundred_seventy_eight",
+      "context": "Teddy 教学捕捉 Shellwises；拿自己 178 岁的年纪调侃玩家",
+      "text": "Well, ancient compared to you, not me, I'm only 178, after all.",
+      "raw": "§fWell, ancient compared to you, not me, I'm only 178, after all.",
+      "placeholders": [],
+      "gloss": "178 按该句固定台词保留；only 是故意卖老的反话，保留‘才’的戏谑，不统一成其他两句的年龄。",
+      "translate": true,
+      "zh": "当然，是跟你比才算老。跟我可比不了，我毕竟才 178 岁嘛。"
+    },
+    {
+      "id": "teddy_shellwise_throw_net_until_give_up",
+      "context": "Teddy 教学捕捉 Shellwises；反复投网直至它们放弃抵抗",
+      "text": "No real tricks here. Just chuck your net until they give up.",
+      "raw": "§fNo real tricks here. Just chuck your net until they give up.",
+      "placeholders": [],
+      "gloss": "net 泛称沿用 Foraging/GUI_Item/Hunting_Toolkit.json#toolkit_fishing_net 的渔网；不新增固定投掷次数或额外工具。",
+      "translate": true,
+      "zh": "这可没什么诀窍。一直往它们身上扔渔网，扔到它们放弃为止。"
+    },
+    {
+      "id": "teddy_shellwise_not_pretty_but_works",
+      "context": "Teddy 教学捕捉 Shellwises；认为方法不好看但管用",
+      "text": "It's not pretty, but it works.",
+      "raw": "§fIt's not pretty, but it works.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "不好看归不好看，管用就行。"
+    },
+    {
+      "id": "teddy_pufferfish_kelpwoven_tunnels",
+      "context": "Teddy 教学捕捉 Spikes；指引到 Kelpwoven Tunnels 寻找河豚",
+      "text": "Pufferfish... Have you tried looking in the Kelpwoven Tunnels?",
+      "raw": "§fPufferfish... Have you tried looking in the Kelpwoven Tunnels?",
+      "placeholders": [],
+      "gloss": "Pufferfish 沿用 Hub_General/GUI_Item/Collection_Tiers_Live.json#collection_pufferfish_name 的河豚。Kelpwoven Tunnels 为地名，基线无既定译名，本候选按 kelp 与 woven 的普通含义译海带交织隧道，供父代理跨候选统一。",
+      "translate": true,
+      "zh": "河豚啊……你去海带交织隧道找过吗?"
+    },
+    {
+      "id": "teddy_spikes_seen_a_few",
+      "context": "Teddy 教学捕捉 Spikes；说明自己见过几只并给出生物名称",
+      "text": "I've seen a few, Spikes they are called.",
+      "raw": "§fI've seen a few, Spikes they are called.",
+      "placeholders": [],
+      "gloss": "Spikes 是本句中河豚类狩猎生物的名称，由普通词构成；基线无既定译名，按通名规则译尖刺，供父代理跨候选统一。不是所需物品，也不是 NPC 人名。",
+      "translate": true,
+      "zh": "我见过几只，它们叫尖刺。"
+    },
+    {
+      "id": "teddy_spikes_need_long_range_fishing_net",
+      "context": "Teddy 教学捕捉 Spikes；需要能捕捉远处目标的特殊渔网，并与目标保持距离",
+      "text": "You'll need a special Fishing Net with a long range and stand at a distance from them.",
+      "raw": "§fYou'll need a special Fishing Net with a long range and stand at a distance from them.",
+      "placeholders": [],
+      "gloss": "Fishing Net 严格沿用 Foraging/GUI_Item/Hunting_Toolkit.json#toolkit_fishing_net 的渔网；Wiki 只说明特殊、作用距离远，未给具体物品整名，不推测成中型渔网或其他规格。渔网属于狩猎工具，不写成钓鱼技能。",
+      "translate": true,
+      "zh": "你得备一张能捕捉远处目标的特殊渔网，还得跟它们保持距离。"
+    }
+  ]
+}

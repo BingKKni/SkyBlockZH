@@ -1,9 +1,9 @@
 {
   "npc": "Fishing Merchant",
-  "location": "Hub",
-  "source": "runtime capture (SkyZH) 2026-08-23 + https://hypixelskyblock.minecraft.wiki/w/Fishing_Merchant",
-  "fetched_at": "2026-08-24",
-  "verified_ingame": true,
+  "location": "Fishing Outpost",
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Fishing_Merchant",
+  "fetched_at": "2026-10-02",
+  "verified_ingame": false,
   "messages": [
     {
       "id": "welcome_feel_free_to_browse_my_fishing_wares",
@@ -14,6 +14,28 @@
       "gloss": "",
       "translate": true,
       "zh": "欢迎! 随便看看我的钓鱼用品吧!"
+    },
+    {
+      "id": "fishing_merchant_equip_held_item",
+      "context": "购买任意一件垂钓者装备后,称赞玩家的选择并说明手持右键装备的方法",
+      "raw": "§fGood choice! You can equip that beauty by right-clicking it while it's in your hand.",
+      "text": "Good choice! You can equip that beauty by right-clicking it while it's in your hand.",
+      "placeholders": [],
+      "gloss": "that beauty 指刚购买的装备,不是新的物品名。条件中的 Angler Equipment 沿用本地垂钓者装备称呼,见 Hub_General/GUI_Item/Fishing_Merchant.json#angler_necklace、#angler_cloak、#angler_bracelet、#angler_belt;正文不自行补出具体物品名。",
+      "translate": true,
+      "zh": "好眼光! 把这件宝贝拿在手上,点右键就能装备了。"
+    },
+    {
+      "id": "fishing_merchant_equipment_menu_command",
+      "context": "购买任意一件垂钓者装备后,补充通过命令打开装备菜单的方法;独立消息不合并",
+      "raw": "§fOr, you can type /equipment to access your equipment menu.",
+      "text": "Or, you can type /equipment to access your equipment menu.",
+      "placeholders": [],
+      "gloss": "/equipment 是供玩家输入的原命令,保持不变;页面证据未显示点击或悬浮事件,不虚构交互。equipment 沿用本地装备译名,不混同护甲。",
+      "translate": true,
+      "zh": "也可以输入 /equipment,打开装备菜单。"
     }
-  ]
+  ],
+  "wiki_last_edited": "This page was last edited on 11 August 2026, at 19:16.",
+  "note": "身份: 钓鱼前哨的钓鱼用品商人。\n与玩家的关系: 热情接待来店选购的顾客,并指导装备使用。\n说话风格: 简短、朴素的商人口吻。\n性格与词汇: 热情实用,常用欢迎、好眼光、宝贝。\n禁用风格: 不装腔、不硬塞网络梗,不补充原文未说明的装备规则。\n来源说明: 首句保留已有 2026-08-23 运行时实测记录的 ID、原文与译文;新增两句的 raw 为本次 Wiki 页面 DOM 颜色还原样本,不是服务器原始字节。"
 }

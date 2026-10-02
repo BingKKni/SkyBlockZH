@@ -1,0 +1,525 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Researcher_Ribery",
+  "fetched_at": "2026-10-02",
+  "verified_ingame": false,
+  "npc": "Researcher Ribery",
+  "aliases": [
+    "Ribery"
+  ],
+  "note": "身份: 莲花环礁的研究员,负责接收锦标蛙捐赠、记录收集进度并发放奖励。\n关系: 邀请初来乍到的玩家协助研究。\n说话方式: 热情、直白,讲解时条理清楚,对玩家的敷衍回应也兴致勃勃。\n性格与词汇: 专注研究,乐于鼓励;常提研究、锦标蛙、品质、莲花与额外奖励。\n禁用风格: 不写官样研究报告,不硬塞网络梗,不虚构物品作用或奖励机制;人名 Ribery 保留英文。",
+  "wiki_last_edited": "This page was last edited on 11 August 2026, at 20:35.",
+  "source_note": "本次 Playwright 采集的是社区 Wiki 普通呈现页面的逐句对白和 DOM 颜色。raw 为 Wiki DOM 颜色还原样本,不是服务器原始字节;正文已剥除 NPC 前缀。选项只记录可见文字与颜色,点击、悬浮和插入事件由引擎读取实时服务器组件。",
+  "entries": [
+    {
+      "id": "ribery_welcome_to_lotus_atoll",
+      "context": "首次互动: 欢迎玩家来到莲花环礁",
+      "text": "Welcome to the Lotus Atoll!",
+      "raw": "§fWelcome to the §3Lotus Atoll§f!",
+      "placeholders": [],
+      "gloss": "Lotus Atoll 沿用 _shared/Terms.json 的地名译名: 莲花环礁。",
+      "translate": true,
+      "zh": "欢迎来到莲花环礁!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Welcome to the ",
+          "zh": "欢迎来到"
+        },
+        {
+          "color": "§3",
+          "text": "Lotus Atoll",
+          "zh": "莲花环礁"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "ribery_documenting_frog_species",
+      "context": "首次互动: 介绍研究员正在记录当地的蛙类",
+      "text": "Us Researchers are currently hard at work documenting the various species of Frog found here.",
+      "raw": "§fUs §2Researchers §fare currently hard at work documenting the various species of §2Frog §ffound here.",
+      "placeholders": [],
+      "gloss": "Researchers 是职业通称,译研究员;这里的 Frog 泛指当地蛙类,沿用 _shared/Terms.json 的 Frog → 青蛙,不是新增某个具体所需物品名。",
+      "translate": true,
+      "zh": "我们这些研究员正忙着记录这里各种青蛙的资料。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Us ",
+          "zh": "我们这些"
+        },
+        {
+          "color": "§2",
+          "text": "Researchers ",
+          "zh": "研究员"
+        },
+        {
+          "color": "§f",
+          "text": "are currently hard at work documenting the various species of ",
+          "zh": "正忙着记录这里各种"
+        },
+        {
+          "color": "§2",
+          "text": "Frog ",
+          "zh": "青蛙"
+        },
+        {
+          "color": "§f",
+          "text": "found here.",
+          "zh": "的资料。"
+        }
+      ]
+    },
+    {
+      "id": "ribery_ask_for_research_help",
+      "context": "首次互动: 邀请玩家帮忙研究",
+      "text": "Want to give us a hand?",
+      "raw": "§fWant to give us a hand?",
+      "placeholders": [],
+      "gloss": "give us a hand 指帮忙,不是交付物品。",
+      "translate": true,
+      "zh": "愿意来帮个忙吗?"
+    },
+    {
+      "id": "ribery_option_no_choice",
+      "context": "首次互动: 玩家选择带点无奈的答复",
+      "text": "Select an option: [I suppose I don't have a choice in the matter.]",
+      "raw": "§eSelect an option: §a[I suppose I don't have a choice in the matter.]",
+      "placeholders": [],
+      "gloss": "选项是玩家的答复,不是 Ribery 的台词。提示、左括号、按钮正文和右括号独立分段;不推测点击指令。",
+      "translate": true,
+      "zh": "选择一个选项: [看来我也没得选啊。]",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Select an option: ",
+          "zh": "选择一个选项: "
+        },
+        {
+          "color": "§a",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§a",
+          "text": "I suppose I don't have a choice in the matter.",
+          "zh": "看来我也没得选啊。"
+        },
+        {
+          "color": "§a",
+          "text": "]",
+          "zh": "]"
+        }
+      ]
+    },
+    {
+      "id": "ribery_praise_player_attitude",
+      "context": "选择无奈答复后: Ribery 仍兴致勃勃地称赞玩家",
+      "text": "Awesome attitude!",
+      "raw": "§fAwesome attitude!",
+      "placeholders": [],
+      "gloss": "保留热情称赞与玩家无奈答复之间的轻微反差,不改成讽刺训斥。",
+      "translate": true,
+      "zh": "这态度真不错!"
+    },
+    {
+      "id": "ribery_twelve_trophy_frog_species",
+      "context": "同意帮忙后: 介绍莲花环礁能钓到的锦标蛙种数",
+      "text": "There are 12 species of Trophy Frogs that can be fished around the Lotus Atoll.",
+      "raw": "§fThere are §212 species §fof §2Trophy Frogs §fthat can be fished around the §3Lotus Atoll§f.",
+      "placeholders": [],
+      "gloss": "所需渔获的类别名 Trophy Frog 沿用 Hub_General/GUI_Item/SkyBlock_Guide_Progression.json#guide_header_trophy_frog → 锦标蛙;具体蛙名与品质模板已检查 Fishing/GUI_Item/Trophy_Frogs_and_Rod_Stats.json。这里没有提出某个具体蛙种的新物品名。Lotus Atoll 沿用 _shared/Terms.json → 莲花环礁。12 是固定种数,不是动态捕获数量。",
+      "translate": true,
+      "zh": "在莲花环礁一带,能钓到 12 种锦标蛙。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "There are ",
+          "zh": "一带,能钓到 ",
+          "order": 2
+        },
+        {
+          "color": "§2",
+          "text": "12 species ",
+          "zh": "12 种",
+          "order": 3
+        },
+        {
+          "color": "§f",
+          "text": "of ",
+          "zh": "",
+          "omit": true,
+          "order": 4
+        },
+        {
+          "color": "§2",
+          "text": "Trophy Frogs ",
+          "zh": "锦标蛙",
+          "order": 5
+        },
+        {
+          "color": "§f",
+          "text": "that can be fished around the ",
+          "zh": "在",
+          "order": 0
+        },
+        {
+          "color": "§3",
+          "text": "Lotus Atoll",
+          "zh": "莲花环礁",
+          "order": 1
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "。",
+          "order": 6
+        }
+      ]
+    },
+    {
+      "id": "ribery_four_trophy_frog_qualities",
+      "context": "同意帮忙后: 介绍每种锦标蛙的四档品质",
+      "text": "Each species comes in four rarities - BRONZE, SILVER, GOLD, and DIAMOND.",
+      "raw": "§fEach species comes in four rarities - §8§lBRONZE§f, §7§lSILVER§f, §6§lGOLD§f, and §b§lDIAMOND§f.",
+      "placeholders": [],
+      "gloss": "四档是锦标蛙品质,不是普通物品稀有度或农业竞赛奖牌。沿用 _shared/Terms.json 的 trophy_quality 译名与 Fishing/GUI_Item/Trophy_Frogs_and_Rod_Stats.json 的品质模板: 铜品质、银品质、金品质、钻石品质。",
+      "translate": true,
+      "zh": "每种蛙都有四档品质: 铜品质、银品质、金品质和钻石品质。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Each species comes in four rarities - ",
+          "zh": "每种蛙都有四档品质: "
+        },
+        {
+          "color": "§8§l",
+          "text": "BRONZE",
+          "zh": "铜品质"
+        },
+        {
+          "color": "§f",
+          "text": ", ",
+          "zh": "、"
+        },
+        {
+          "color": "§7§l",
+          "text": "SILVER",
+          "zh": "银品质"
+        },
+        {
+          "color": "§f",
+          "text": ", ",
+          "zh": "、"
+        },
+        {
+          "color": "§6§l",
+          "text": "GOLD",
+          "zh": "金品质"
+        },
+        {
+          "color": "§f",
+          "text": ", and ",
+          "zh": "和"
+        },
+        {
+          "color": "§b§l",
+          "text": "DIAMOND",
+          "zh": "钻石品质"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "ribery_forty_eight_unique_frogs",
+      "context": "同意帮忙后: 说明蛙种与品质组合共有 48 种",
+      "text": "That means there are 48 unique Trophy Frogs to find!",
+      "raw": "§fThat means there are §248 §funique §2Trophy Frogs §fto find!",
+      "placeholders": [],
+      "gloss": "Trophy Frog 类别名沿用 Hub_General/GUI_Item/SkyBlock_Guide_Progression.json#guide_header_trophy_frog → 锦标蛙。48 指前文 12 个蛙种 × 4 档品质的固定组合数,不是 48 个生物学蛙种或动态进度。",
+      "translate": true,
+      "zh": "这么一算,就有 48 种不同的锦标蛙等着你去钓!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "That means there are ",
+          "zh": "这么一算,就有 "
+        },
+        {
+          "color": "§2",
+          "text": "48 ",
+          "zh": "48 种"
+        },
+        {
+          "color": "§f",
+          "text": "unique ",
+          "zh": "不同的"
+        },
+        {
+          "color": "§2",
+          "text": "Trophy Frogs ",
+          "zh": "锦标蛙"
+        },
+        {
+          "color": "§f",
+          "text": "to find!",
+          "zh": "等着你去钓!"
+        }
+      ]
+    },
+    {
+      "id": "ribery_catch_one_of_every_frog",
+      "context": "同意帮忙后: 要求每一种锦标蛙都钓到一只",
+      "text": "We'll need you to catch one of every frog in order to complete our research!",
+      "raw": "§fWe'll need you to catch §aone of every frog §fin order to complete our research!",
+      "placeholders": [],
+      "gloss": "所需渔获 frog 承接前文的 48 种蛙种与品质组合,不是只钓 12 个蛙种中的任意品质。类别名沿用 Hub_General/GUI_Item/SkyBlock_Guide_Progression.json#guide_header_trophy_frog → 锦标蛙;具体名称和品质模板已检查 Fishing/GUI_Item/Trophy_Frogs_and_Rod_Stats.json,不新增物品译名。",
+      "translate": true,
+      "zh": "要完成研究,就得请你钓来每种锦标蛙各一只!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "We'll need you to catch ",
+          "zh": "要完成研究,就得请你钓来"
+        },
+        {
+          "color": "§a",
+          "text": "one of every frog ",
+          "zh": "每种锦标蛙各一只"
+        },
+        {
+          "color": "§f",
+          "text": "in order to complete our research!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "ribery_option_ask_about_reward",
+      "context": "介绍研究需求后: 玩家询问自己能获得什么",
+      "text": "Select an option: [What's in it for me?]",
+      "raw": "§eSelect an option: §a[What's in it for me?]",
+      "placeholders": [],
+      "gloss": "选项是玩家的答复。提示、左括号、按钮正文和右括号独立分段;不推测点击指令。",
+      "translate": true,
+      "zh": "选择一个选项: [那我能拿到什么好处?]",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Select an option: ",
+          "zh": "选择一个选项: "
+        },
+        {
+          "color": "§a",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§a",
+          "text": "What's in it for me?",
+          "zh": "那我能拿到什么好处?"
+        },
+        {
+          "color": "§a",
+          "text": "]",
+          "zh": "]"
+        }
+      ]
+    },
+    {
+      "id": "ribery_donate_frogs_for_lotus",
+      "context": "选择询问奖励后: 说明把钓到的蛙带来可获得莲花",
+      "text": "If you bring any Frogs you catch to me, I'll reward you with some Lotus!",
+      "raw": "§fIf you bring any §2Frogs §fyou catch to me, I'll reward you with some §aLotus§f!",
+      "placeholders": [],
+      "gloss": "所需渔获 Frogs 是 Trophy Frogs 的简称,类别译名沿用 Hub_General/GUI_Item/SkyBlock_Guide_Progression.json#guide_header_trophy_frog → 锦标蛙;具体物品名模板已检查 Fishing/GUI_Item/Trophy_Frogs_and_Rod_Stats.json。奖励材料 Lotus 沿用已有整名 Hub_General/GUI_Item/Collection_Tiers_Live.json#collection_lotus_name → 莲花;不是重新命名材料,也不补写兑换数量。",
+      "translate": true,
+      "zh": "把你钓到的锦标蛙带来给我,我就奖励你一些莲花!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "If you bring any ",
+          "zh": "把你钓到的"
+        },
+        {
+          "color": "§2",
+          "text": "Frogs ",
+          "zh": "锦标蛙"
+        },
+        {
+          "color": "§f",
+          "text": "you catch to me, I'll reward you with some ",
+          "zh": "带来给我,我就奖励你一些"
+        },
+        {
+          "color": "§a",
+          "text": "Lotus",
+          "zh": "莲花"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "ribery_lotus_collection_unlocks",
+      "context": "选择询问奖励后: 说明莲花收藏品进度会解锁实用物品",
+      "text": "Progress through your Lotus Collection to unlock new useful items!",
+      "raw": "§fProgress through your §aLotus Collection §fto unlock new useful items!",
+      "placeholders": [],
+      "gloss": "Lotus 沿用已有 GUI_Item 整名 Hub_General/GUI_Item/Collection_Tiers_Live.json#collection_lotus_name → 莲花;Lotus Collection 沿用 Fishing/GUI_Lore/Captured_Menus.json#capture_2986f9491e22 的莲花收藏品,Collection 是收藏品系统,不是研究员的私人藏品。",
+      "translate": true,
+      "zh": "提升莲花收藏品进度,就能解锁新的实用物品!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Progress through your ",
+          "zh": "提升"
+        },
+        {
+          "color": "§a",
+          "text": "Lotus Collection ",
+          "zh": "莲花收藏品"
+        },
+        {
+          "color": "§f",
+          "text": "to unlock new useful items!",
+          "zh": "进度,就能解锁新的实用物品!"
+        }
+      ]
+    },
+    {
+      "id": "ribery_option_keep_listening",
+      "context": "介绍莲花收藏品奖励后: 玩家表示愿意继续听",
+      "text": "Select an option: [Okay, I'm listening...]",
+      "raw": "§eSelect an option: §a[Okay, I'm listening...]",
+      "placeholders": [],
+      "gloss": "选项是玩家的答复。提示、左括号、按钮正文和右括号独立分段;不推测点击指令。",
+      "translate": true,
+      "zh": "选择一个选项: [好吧,我听着……]",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Select an option: ",
+          "zh": "选择一个选项: "
+        },
+        {
+          "color": "§a",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§a",
+          "text": "Okay, I'm listening...",
+          "zh": "好吧,我听着……"
+        },
+        {
+          "color": "§a",
+          "text": "]",
+          "zh": "]"
+        }
+      ]
+    },
+    {
+      "id": "ribery_more_rewards_to_explain",
+      "context": "选择继续听后: 热情地补充还有其他奖励",
+      "text": "And that's not all!",
+      "raw": "§fAnd that's not all!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "还不止这些呢!"
+    },
+    {
+      "id": "ribery_quality_completion_bonus",
+      "context": "选择继续听后: 钓齐某一品质档位的所有蛙还有额外奖励",
+      "text": "Each time you catch all of the Frogs at a certain tier, I'll give you a little something extra!",
+      "raw": "§fEach time you catch all of the §2Frogs §fat a certain tier, I'll give you a little something extra!",
+      "placeholders": [],
+      "gloss": "所需渔获 Frogs 承接 Trophy Frogs,类别名沿用 Hub_General/GUI_Item/SkyBlock_Guide_Progression.json#guide_header_trophy_frog → 锦标蛙;具体物品名与品质模板已检查 Fishing/GUI_Item/Trophy_Frogs_and_Rod_Stats.json。tier 指铜、银、金、钻石四档品质,不是钓鱼技能等级。只说明钓齐该档全部蛙的额外奖励,不添加奖励内容、数值或可重复领取机制。",
+      "translate": true,
+      "zh": "每钓齐一个品质档位的所有锦标蛙,我还会额外送你点东西!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Each time you catch all of the ",
+          "zh": "每钓齐一个品质档位的所有"
+        },
+        {
+          "color": "§2",
+          "text": "Frogs ",
+          "zh": "锦标蛙"
+        },
+        {
+          "color": "§f",
+          "text": "at a certain tier, I'll give you a little something extra!",
+          "zh": ",我还会额外送你点东西!"
+        }
+      ]
+    },
+    {
+      "id": "ribery_start_with_bronze_quality",
+      "context": "选择继续听后: 建议玩家先完成铜品质",
+      "text": "Now, go start with the BRONZE tier!",
+      "raw": "§fNow, go start with the §8§lBRONZE §ftier!",
+      "placeholders": [],
+      "gloss": "铜品质沿用 _shared/Terms.json 的 trophy_quality 取值及 Fishing/GUI_Item/Trophy_Frogs_and_Rod_Stats.json 的品质模板;BRONZE 的铜保留灰色高亮,tier 对应的品质仍用正文白色。",
+      "translate": true,
+      "zh": "现在,先从铜品质开始吧!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Now, go start with the ",
+          "zh": "现在,先从"
+        },
+        {
+          "color": "§8§l",
+          "text": "BRONZE ",
+          "zh": "铜"
+        },
+        {
+          "color": "§f",
+          "text": "tier!",
+          "zh": "品质开始吧!"
+        }
+      ]
+    },
+    {
+      "id": "ribery_return_for_donations_and_progress",
+      "context": "首次介绍结束: 随时回来捐赠蛙并查看进度",
+      "text": "Come talk to me any time to donate Frogs and to view your current progress!",
+      "raw": "§fCome talk to me any time to donate §2Frogs §fand to view your current progress!",
+      "placeholders": [],
+      "gloss": "所需捐赠渔获 Frogs 承接 Trophy Frogs,类别名沿用 Hub_General/GUI_Item/SkyBlock_Guide_Progression.json#guide_header_trophy_frog → 锦标蛙;具体名称与品质模板已检查 Fishing/GUI_Item/Trophy_Frogs_and_Rod_Stats.json。donate 译捐赠,不是出售;不添加对话之外的捐赠操作或条件。",
+      "translate": true,
+      "zh": "想捐赠锦标蛙,或是看看现在的进度,随时来找我就行!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Come talk to me any time to donate ",
+          "zh": "想捐赠"
+        },
+        {
+          "color": "§2",
+          "text": "Frogs ",
+          "zh": "锦标蛙"
+        },
+        {
+          "color": "§f",
+          "text": "and to view your current progress!",
+          "zh": ",或是看看现在的进度,随时来找我就行!"
+        }
+      ]
+    }
+  ]
+}

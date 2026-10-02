@@ -1,0 +1,366 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Hina",
+  "fetched_at": "2026-10-02",
+  "verified_ingame": false,
+  "npc": "Hina",
+  "wiki_last_edited": "This page was last edited on 8 September 2026, at 16:33.",
+  "note": "身份: Galatea 的森林之心与章节引导者，章节同时包含钓鱼任务。\n关系: 热情接待玩家、安排任务，完成全部章节后肯定玩家的成长。\n说话方式: 开场轻快亲切，教学直白，收尾温暖而自豪。\n性格与词汇: 森林之心、树心经验、森林低语、任务奖励；以生灵与树木呼应玩家的成长。\n禁用风格: 不硬塞网络梗，不把伐木横扫或狩猎说成钓鱼技能，不补出原文未说明的经验获取步骤。",
+  "source_note": "原文与颜色来自本次 Playwright 读取的社区 Wiki 普通呈现页，不是服务器原始字节。以 dialogues.segments.color 的 DOM computed 颜色为准；dialogueSection 的格式差异另记 report。按父代理裁决，完整保留首次交互中的森林之心解锁系统通知，明确标注非 Hina 发言。",
+  "entries": [
+    {
+      "id": "hina_greeting_hola",
+      "context": "Hina：首次交互，轻快招呼玩家",
+      "text": "Hola!",
+      "raw": "§fHola!",
+      "placeholders": [],
+      "gloss": "Hola 是西班牙语招呼；用亲切口吻，不据此添加人物背景。",
+      "translate": true,
+      "zh": "你好呀!"
+    },
+    {
+      "id": "hina_welcome_to_galatea",
+      "context": "Hina：首次交互，欢迎玩家来到 Galatea",
+      "text": "Welcome to Galatea!",
+      "raw": "§fWelcome to §2Galatea§f!",
+      "placeholders": [],
+      "gloss": "Galatea 沿用 _shared/Terms.json 中同名 location_name/category_name 词条的既有原名保留决定，不另造译名。",
+      "translate": true,
+      "zh": "欢迎来到 Galatea!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Welcome to ",
+          "zh": "欢迎来到 "
+        },
+        {
+          "color": "§2",
+          "text": "Galatea",
+          "zh": "Galatea"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "hina_receive_heart_of_the_forest",
+      "context": "Hina：首次交互，为玩家提供森林之心",
+      "text": "I'm here to give you your own Heart of the Forest.",
+      "raw": "§fI'm here to give you your own §aHeart of the Forest§f.",
+      "placeholders": [],
+      "gloss": "Heart of the Forest 为天赋与技能系统，不是要求玩家上交的物品；沿用 _shared/Terms.json 的森林之心及 Foraging/GUI_Title/Heart_of_the_Forest.json#hotf_title。",
+      "translate": true,
+      "zh": "我来给你一颗属于你自己的森林之心。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "I'm here to give you your own ",
+          "zh": "我来给你一颗属于你自己的"
+        },
+        {
+          "color": "§a",
+          "text": "Heart of the Forest",
+          "zh": "森林之心"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "hina_everyone_has_forest_heart",
+      "context": "Hina：首次交互，承接森林之心介绍",
+      "text": "Everyone has one around here!",
+      "raw": "§fEveryone has one around here!",
+      "placeholders": [],
+      "gloss": "one 指上一句的森林之心，不是钓鱼工具。",
+      "translate": true,
+      "zh": "这儿人人都有一颗!"
+    },
+    {
+      "id": "hina_forest_heart_menu_location",
+      "context": "Hina：首次交互，说明在 Galatea 时如何找到森林之心",
+      "text": "The Heart of the Forest can be found in your SkyBlock Menu while on Galatea.",
+      "raw": "§fThe §aHeart of the Forest §fcan be found in your §aSkyBlock Menu §fwhile on §2Galatea§f.",
+      "placeholders": [],
+      "gloss": "森林之心沿用 _shared/Terms.json；Galatea 沿用既有原名。SkyBlock 保留在译文中，由 _shared/SkyBlock_Name.json 的现有开关替换；不把在 Galatea 的条件删掉。segments 按英文原序保存，order 将地点条件前置。",
+      "translate": true,
+      "zh": "在 Galatea 时，打开 SkyBlock 菜单就能找到森林之心。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "The ",
+          "zh": " 时，打开 ",
+          "order": 2
+        },
+        {
+          "color": "§a",
+          "text": "Heart of the Forest ",
+          "zh": "森林之心",
+          "order": 5
+        },
+        {
+          "color": "§f",
+          "text": "can be found in your ",
+          "zh": "就能找到",
+          "order": 4
+        },
+        {
+          "color": "§a",
+          "text": "SkyBlock Menu ",
+          "zh": "SkyBlock 菜单",
+          "order": 3
+        },
+        {
+          "color": "§f",
+          "text": "while on ",
+          "zh": "在 ",
+          "order": 0
+        },
+        {
+          "color": "§2",
+          "text": "Galatea",
+          "zh": "Galatea",
+          "order": 1
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "。",
+          "order": 6
+        }
+      ]
+    },
+    {
+      "id": "hina_unlock_and_level_perks",
+      "context": "Hina：首次交互，介绍森林之心的天赋与技能",
+      "text": "You can unlock and level up various perks and abilities there.",
+      "raw": "§fYou can unlock and level up various perks and abilities there.",
+      "placeholders": [],
+      "gloss": "perks/abilities 沿用森林之心已有天赋/技能用语；there 指森林之心界面。",
+      "translate": true,
+      "zh": "你可以在里面解锁、升级各种天赋和技能。"
+    },
+    {
+      "id": "hina_agatha_grants_hotf_exp",
+      "context": "Hina：首次交互，引导玩家与湖边的 Agatha 交谈以获取树心经验",
+      "text": "You can talk to Agatha near the lake to gain HOTF Exp.",
+      "raw": "§fYou can talk to §bAgatha §fnear the lake to gain §aHOTF Exp§f.",
+      "placeholders": [],
+      "gloss": "HOTF Exp 沿用 Foraging/GUI_Lore/Heart_of_the_Forest.json#hotf_progress 与 Foraging/GUI_Item/Moonglade_Chapters_Runtime.json#moonglade_chapter_hotf_exp 的树心经验。Agatha 是人名，保留英文；原文未逐句解释竞赛步骤，不擅自补充。",
+      "translate": true,
+      "zh": "你可以找湖边的 Agatha 聊聊，获取树心经验。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "You can talk to ",
+          "zh": "你可以找湖边的 "
+        },
+        {
+          "color": "§b",
+          "text": "Agatha ",
+          "zh": "Agatha"
+        },
+        {
+          "color": "§f",
+          "text": "near the lake to gain ",
+          "zh": " 聊聊，获取"
+        },
+        {
+          "color": "§a",
+          "text": "HOTF Exp",
+          "zh": "树心经验"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "hina_forest_whispers_from_trees",
+      "context": "Hina：首次交互，说明升级天赋需要森林低语，砍树可以获取",
+      "text": "To level up your perks you will need Forest Whispers. These are obtained by cutting trees!",
+      "raw": "§fTo level up your perks you will need §3Forest Whispers§f. These are obtained by cutting trees!",
+      "placeholders": [],
+      "gloss": "Forest Whispers 为天赋升级资源，不是 NPC 交付物品；沿用 Foraging/GUI_Item/Heart_of_the_Forest_Perks.json#hotf_whispers 与 _shared/Terms.json 的森林低语。此句明确说砍树，不得误写为钓鱼或狩猎获取。",
+      "translate": true,
+      "zh": "升级天赋需要森林低语。砍树就能获得!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "To level up your perks you will need ",
+          "zh": "升级天赋需要"
+        },
+        {
+          "color": "§3",
+          "text": "Forest Whispers",
+          "zh": "森林低语"
+        },
+        {
+          "color": "§f",
+          "text": ". These are obtained by cutting trees!",
+          "zh": "。砍树就能获得!"
+        }
+      ]
+    },
+    {
+      "id": "hina_hotf_unlock_notice",
+      "context": "森林之心解锁系统通知（非 Hina 发言）；位于首次交互流程中的带按钮通知",
+      "text": "HEART OF THE FOREST has been unlocked! Open your SkyBlock Menu to find it. [CLICK HERE TO OPEN]",
+      "raw": "§a§lHEART OF THE FOREST §fhas been unlocked! Open your §aSkyBlock Menu §fto find it. §e§l[CLICK HERE TO OPEN]",
+      "placeholders": [],
+      "gloss": "按父代理裁决完整保留该流程通知，真实 speaker 为 null，不改写成 Hina 台词。森林之心沿用既有术语。按钮左括号、正文、右括号及前置间隔分别分段，不猜点击命令；已用 Playwright 复核 format-l 通过文字阴影模拟粗体；名称与按钮均保留 §l，不以 font-weight 400 误判为常规字重。",
+      "translate": true,
+      "zh": "森林之心已解锁! 打开 SkyBlock 菜单就能找到它。 [点击此处打开]",
+      "segments": [
+        {
+          "color": "§a§l",
+          "text": "HEART OF THE FOREST ",
+          "zh": "森林之心"
+        },
+        {
+          "color": "§f",
+          "text": "has been unlocked! Open your ",
+          "zh": "已解锁! 打开 "
+        },
+        {
+          "color": "§a",
+          "text": "SkyBlock Menu ",
+          "zh": "SkyBlock 菜单"
+        },
+        {
+          "color": "§f",
+          "text": "to find it.",
+          "zh": "就能找到它。"
+        },
+        {
+          "color": "§f",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§e§l",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§e§l",
+          "text": "CLICK HERE TO OPEN",
+          "zh": "点击此处打开"
+        },
+        {
+          "color": "§e§l",
+          "text": "]",
+          "zh": "]"
+        }
+      ]
+    },
+    {
+      "id": "hina_island_tasks",
+      "context": "Hina：首次交互，介绍自己的岛屿章节任务",
+      "text": "I also have tasks for you to do while on this island.",
+      "raw": "§fI also have tasks for you to do while on this island.",
+      "placeholders": [],
+      "gloss": "章节任务同时涉及钓鱼、伐木与狩猎；此句未限定任务种类，不擅自写成只做钓鱼任务。",
+      "translate": true,
+      "zh": "在这座岛上，我还准备了些任务等你来做。"
+    },
+    {
+      "id": "hina_task_rewards",
+      "context": "Hina：首次交互，说明每个任务都会给予丰厚奖励",
+      "text": "For each task I will reward you handsomely!",
+      "raw": "§fFor each task I will reward you handsomely!",
+      "placeholders": [],
+      "gloss": "handsomely 指奖励丰厚，不是外貌；原文没有说明奖励的具体种类或数值。",
+      "translate": true,
+      "zh": "每完成一个任务，我都会给你一份丰厚的奖励!"
+    },
+    {
+      "id": "hina_chapters_shape_galatea",
+      "context": "Hina：完成 Hina 的全部章节后，回顾玩家的成长与岛屿经历",
+      "text": "You've done what few even try. Each creature you met each tree you felled, it all shaped you. And now, you shape Galatea.",
+      "raw": "§fYou've done what few even try. Each creature you met each tree you felled, it all shaped you. And now, you shape §2Galatea§7.",
+      "placeholders": [],
+      "gloss": "保留生灵、树木与玩家影响岛屿的回顾意象，不把所有成长经历都改说成钓鱼。原文 met each tree 之间没有逗号，text 不擅自修补；中文按自然语序断句。Galatea 沿用 _shared/Terms.json 的既有原名；最后句点按 DOM 为灰色。",
+      "translate": true,
+      "zh": "你做到了少有人尝试的事。遇见的每个生灵、砍倒的每棵树，都造就了今天的你。如今，轮到你来改变 Galatea 了。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "You've done what few even try. Each creature you met each tree you felled, it all shaped you. And now, you shape ",
+          "zh": "你做到了少有人尝试的事。遇见的每个生灵、砍倒的每棵树，都造就了今天的你。如今，轮到你来改变 "
+        },
+        {
+          "color": "§2",
+          "text": "Galatea",
+          "zh": "Galatea"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": " 了。"
+        }
+      ]
+    },
+    {
+      "id": "hina_chapters_proud_of_mastery",
+      "context": "Hina：完成全部章节后，称赞玩家的横扫与狩猎本领",
+      "text": "Look at you. Sweeping like a storm, hunting like a whisper. I couldn't be prouder.",
+      "raw": "§fLook at you. Sweeping like a storm, hunting like a whisper. I couldn't be prouder.",
+      "placeholders": [],
+      "gloss": "Sweeping 呼应伐木的 Sweep，沿用 Foraging/GUI_Item/Heart_of_the_Forest_Perks.json#hotf_increase_sweep 的横扫；hunting 为狩猎，不是钓鱼。风暴与低语是原句的收尾比喻，不扩写成机制加成。",
+      "translate": true,
+      "zh": "瞧瞧你，横扫时如风暴席卷，狩猎时又悄无声息。我真是为你骄傲极了。"
+    },
+    {
+      "id": "hina_chapters_every_path_mastered",
+      "context": "Hina：完成全部章节后，肯定玩家已掌握自己熟悉的所有门道",
+      "text": "You've mastered every path I know.",
+      "raw": "§fYou've mastered every path I know.",
+      "placeholders": [],
+      "gloss": "path 在这里是经历章节成长后的门道，不是要求走完每条实体道路。",
+      "translate": true,
+      "zh": "我知道的这些门道，你已经全都掌握了。"
+    },
+    {
+      "id": "hina_chapters_congratulations",
+      "context": "Hina：完成全部章节后，称呼玩家并祝贺",
+      "text": "Congratulations %s.",
+      "raw": "§fCongratulations §b%s§f.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "收到祝贺的玩家名，保留原名；Wiki 的 Player 是示例",
+          "type": "player_name",
+          "example": "Player"
+        }
+      ],
+      "gloss": "将 Wiki 的 Player 模板化，不生成固定玩家名条目。句点按 dialogues.segments 的 computed 白色保存；dialogueSection.raw 的末尾未恢复 §f 差异见 report，不冒称实测。",
+      "translate": true,
+      "zh": "恭喜你，%s。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Congratulations ",
+          "zh": "恭喜你，"
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    }
+  ]
+}

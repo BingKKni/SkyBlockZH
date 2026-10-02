@@ -1,0 +1,109 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Researcher_Jessica",
+  "fetched_at": "2026-10-02",
+  "verified_ingame": false,
+  "npc": "Researcher Jessica",
+  "aliases": [
+    "Jessica"
+  ],
+  "note": "身份: 莲花环礁 Tewtil Tunnel 的研究员,提示 Tewtil 的进食与体型变化。\n关系: 向路过玩家分享刚发生的见闻。\n说话方式: 知识型但口语自然,先惊讶再解释。\n性格与词汇: 带点调侃,提到 Tewtil、锦标蛙、变大。\n禁用风格: 不写学术说明腔,不硬塞梗,不补奖励或交付流程。",
+  "wiki_last_edited": "This page was last edited on 11 August 2026, at 19:45.",
+  "entries": [
+    {
+      "id": "researcher_jessica_greeting",
+      "ref": "Mining/NPC_Message/Tal_Ker.json#tal_ker_first_001",
+      "context": "无特殊条件;开场招呼 Hey!,复用同 CHAT 面既有译文“嘿!”。"
+    },
+    {
+      "id": "researcher_jessica_tewtil_snatched_trophy_frog",
+      "context": "无特殊条件;告诉玩家刚有一只 Tewtil 从自己手中抢走锦标蛙。",
+      "text": "A Tewtil just snatched a Trophy Frog right out of my hands!",
+      "raw": "§fA §aTewtil §fjust snatched a §2Trophy Frog §fright out of my hands!",
+      "placeholders": [],
+      "gloss": "Tewtil 是自造生物名,保留原文。Trophy Frog 沿用本地 GUI_Item 整名记录 Hub_General/GUI_Item/SkyBlock_Guide_Progression.json#guide_header_trophy_frog（锦标蛙）。此处只描述抢夺,没有要求玩家交付物品。raw 是本次 Wiki DOM 颜色还原样本,非服务器原始字节。",
+      "translate": true,
+      "zh": "刚才有只 Tewtil 直接从我手里抢走了一只锦标蛙!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "A ",
+          "zh": "刚才有只 "
+        },
+        {
+          "color": "§a",
+          "text": "Tewtil ",
+          "zh": "Tewtil "
+        },
+        {
+          "color": "§f",
+          "text": "just snatched a ",
+          "zh": "直接从我手里抢走了一只"
+        },
+        {
+          "color": "§2",
+          "text": "Trophy Frog ",
+          "zh": "锦标蛙"
+        },
+        {
+          "color": "§f",
+          "text": "right out of my hands!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "researcher_jessica_tewtils_grow_when_eating_frogs",
+      "context": "无特殊条件;调侃抢蛙的 Tewtil,接着说明它们吃锦标蛙后容易变大。",
+      "text": "Unlucky for him! These Tewtils have a tendency to get bigger when eating Trophy Frogs...",
+      "raw": "§fUnlucky for him! These §aTewtils §fhave a tendency to get §6bigger §fwhen eating §2Trophy Frogs§f...",
+      "placeholders": [],
+      "gloss": "Tewtils 是 Tewtil 的复数,中文保留生物专名 Tewtil。Trophy Frogs 是 Trophy Frog 的复数,沿用本地 GUI_Item 整名记录 Hub_General/GUI_Item/SkyBlock_Guide_Progression.json#guide_header_trophy_frog（锦标蛙）。have a tendency 表示倾向,不译成必定。him 指刚抢走蛙的 Tewtil,不补充惩罚或获取碎片机制。raw 是本次 Wiki DOM 颜色还原样本,非服务器原始字节。",
+      "translate": true,
+      "zh": "这下它可倒霉了! 这些 Tewtil 吃了锦标蛙,往往会变大……",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Unlucky for him! These ",
+          "zh": "这下它可倒霉了! 这些 ",
+          "order": 0
+        },
+        {
+          "color": "§a",
+          "text": "Tewtils ",
+          "zh": "Tewtil ",
+          "order": 1
+        },
+        {
+          "color": "§f",
+          "text": "have a tendency to get ",
+          "zh": ",往往会",
+          "order": 4
+        },
+        {
+          "color": "§6",
+          "text": "bigger ",
+          "zh": "变大",
+          "order": 5
+        },
+        {
+          "color": "§f",
+          "text": "when eating ",
+          "zh": "吃了",
+          "order": 2
+        },
+        {
+          "color": "§2",
+          "text": "Trophy Frogs",
+          "zh": "锦标蛙",
+          "order": 3
+        },
+        {
+          "color": "§f",
+          "text": "...",
+          "zh": "……",
+          "order": 6
+        }
+      ]
+    }
+  ]
+}

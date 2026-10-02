@@ -1,36 +1,115 @@
 {
   "npc": "Sherry",
-  "source": "https://hypixelskyblock.minecraft.wiki/w/Garden_Visitors; 交叉核对 https://hypixel-skyblock.fandom.com/wiki/The_Garden/Visitors",
-  "fetched_at": "2026-09-12",
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Sherry",
+  "fetched_at": "2026-10-02",
   "verified_ingame": false,
-  "source_note": "2026-09-12 以新版社区 Wiki 的 NPC Dialogue 表为主，Fandom 历史档案作交叉核验；待游戏内实测，未记录 raw/颜色。",
+  "source_note": "历史采集说明：2026-09-12 以新版社区 Wiki 的 NPC Dialogue 表为主，Fandom 历史档案作交叉核验；当时待游戏内实测，未记录 raw/颜色。历史来源为 https://hypixelskyblock.minecraft.wiki/w/Garden_Visitors；交叉核对 https://hypixel-skyblock.fandom.com/wiki/The_Garden/Visitors。本次依据普通社区 Wiki 呈现页的 Playwright DOM 证据补齐首次交互与对白颜色；raw 是 DOM 样本的颜色码还原，不代表服务器原始字节。颜色已按重新采集的明确 Minecraft 格式类核实；Frosty the Snow Blaster 保存 §5，旧最近色映射差异已修正，尚未实机核验。",
   "messages": [
     {
       "id": "visitor_sherry_request_1",
       "context": "作为花园访客提出委托",
       "text": "My helmet is constantly breaking. Could you provide me with some Pumpkins to help with maintenance?",
       "placeholders": [],
-      "gloss": "花园访客委托结果台词；社区 Wiki 逐字记录，待游戏内实测。",
+      "gloss": "花园访客委托结果台词；社区 Wiki 逐字记录，待游戏内实测。保留既有稳定 ID 和译文，本次仅补 DOM 白色样本与物品译名依据。所需 Pumpkins 为 Pumpkin 的复数，沿用 GUI_Item 整名 Hub_General/GUI_Item/Farming_Collections.json#farm_9 → 南瓜。",
       "translate": true,
-      "zh": "我的头盔老是坏。你能给我些南瓜用于维护吗?"
+      "zh": "我的头盔老是坏。你能给我些南瓜用于维护吗?",
+      "raw": "§fMy helmet is constantly breaking. Could you provide me with some Pumpkins to help with maintenance?"
     },
     {
       "id": "visitor_sherry_complete_1",
       "context": "完成花园访客委托",
       "text": "Thank you, I'll never run out of Pumpkins!",
       "placeholders": [],
-      "gloss": "花园访客委托结果台词；社区 Wiki 逐字记录，待游戏内实测。",
+      "gloss": "花园访客委托结果台词；社区 Wiki 逐字记录，待游戏内实测。保留既有稳定 ID 和译文，本次仅补 DOM 白色样本与物品译名依据。Pumpkins 沿用 Hub_General/GUI_Item/Farming_Collections.json#farm_9 → 南瓜。",
       "translate": true,
-      "zh": "谢谢,我再也不会缺南瓜了!"
+      "zh": "谢谢,我再也不会缺南瓜了!",
+      "raw": "§fThank you, I'll never run out of Pumpkins!"
     },
     {
       "id": "visitor_sherry_deny_1",
       "context": "拒绝花园访客委托",
       "text": "I'll look elsewhere for more Pumpkins.",
       "placeholders": [],
-      "gloss": "花园访客委托结果台词；社区 Wiki 逐字记录，待游戏内实测。",
+      "gloss": "花园访客委托结果台词；社区 Wiki 逐字记录，待游戏内实测。保留既有稳定 ID 和译文，本次仅补 DOM 白色样本与物品译名依据。Pumpkins 沿用 Hub_General/GUI_Item/Farming_Collections.json#farm_9 → 南瓜。",
       "translate": true,
-      "zh": "我会去别处找更多南瓜。"
+      "zh": "我会去别处找更多南瓜。",
+      "raw": "§fI'll look elsewhere for more Pumpkins."
+    },
+    {
+      "id": "sherry_holiday_doorbuster_deals",
+      "context": "Sherry 首次交互：招揽玩家选购节日特惠商品",
+      "text": "For the holidays, we're offering exclusive doorbuster deals for the whole family to enjoy!",
+      "raw": "§fFor the holidays, we're offering exclusive doorbuster deals for the whole family to enjoy!",
+      "placeholders": [],
+      "gloss": "doorbuster deals 是吸引顾客的超值促销，不额外添加限时、限量或购买门槛。",
+      "translate": true,
+      "zh": "过节啦! 我们推出了独家超值优惠,全家都能来享受!"
+    },
+    {
+      "id": "sherry_festive_sinker_gifts",
+      "context": "Sherry 首次交互：介绍适合钓礼物的新款 Festive Sinker；明确的钓鱼关联",
+      "text": "Check out our new Festive Sinker, which is great for fishing up Gifts!",
+      "raw": "§fCheck out our new §9Festive Sinker§f, which is great for fishing up §aGifts§f!",
+      "placeholders": [],
+      "gloss": "Festive Sinker 沿用现有物品名模板 Fishing/GUI_Item/Rod_Parts.json#rod_sinker_kind（%1$s Sinker → %1$s坠子），结合 _shared/Terms.json 的 Festive/category_name → 节庆，得到节庆坠子。Gifts 为礼物类泛称，沿用 Fishing/GUI_Item/Rod_Parts.json#rod_sinker_gifts_1 的既定译名礼物；不添加概率或节日期间限制。",
+      "translate": true,
+      "zh": "来看看我们新出的节庆坠子吧,用它来钓礼物特别合适!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Check out our new ",
+          "zh": "来看看我们新出的"
+        },
+        {
+          "color": "§9",
+          "text": "Festive Sinker",
+          "zh": "节庆坠子"
+        },
+        {
+          "color": "§f",
+          "text": ", which is great for fishing up ",
+          "zh": "吧,用它来钓"
+        },
+        {
+          "color": "§a",
+          "text": "Gifts",
+          "zh": "礼物"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "特别合适!"
+        }
+      ]
+    },
+    {
+      "id": "sherry_snow_blaster_upgrade",
+      "context": "Sherry 首次交互：介绍 Frosty the Snow Blaster 是射程更远的雪炮升级版",
+      "text": "We are also offering Frosty the Snow Blaster, an upgraded Snow Cannon that shoots much farther!",
+      "raw": "§fWe are also offering §5Frosty the Snow Blaster§f, an upgraded Snow Cannon that shoots much farther!",
+      "placeholders": [],
+      "gloss": "Frosty the Snow Blaster 沿用物品整名 Hub_General/GUI_Item/SkyBlock_Guide_Item_Names.json#guide_item_frosty_the_snow_blaster → Frosty 雪爆枪。Snow Cannon 为雪炮泛称，沿用同文件 #guide_item_frosty_the_snow_cannon 的 Frosty 雪炮中的既定品类译名。颜色已按重新采集的明确 Minecraft 格式类 §5 校正；旧最近色映射不作为当前颜色依据，仍未实测。按本轮裁决采用 dialogues.segments[].color，未据此推断实测；Wiki 最后编辑为 2026-08-11 19:50。",
+      "translate": true,
+      "zh": "我们还卖 Frosty 雪爆枪,是雪炮的升级版,射得远多了!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "We are also offering ",
+          "zh": "我们还卖 "
+        },
+        {
+          "color": "§5",
+          "text": "Frosty the Snow Blaster",
+          "zh": "Frosty 雪爆枪"
+        },
+        {
+          "color": "§f",
+          "text": ", an upgraded Snow Cannon that shoots much farther!",
+          "zh": ",是雪炮的升级版,射得远多了!"
+        }
+      ]
     }
-  ]
+  ],
+  "wiki_last_edited": "This page was last edited on 11 August 2026, at 19:50.",
+  "note": "身份: Jerry 工坊 Sherry 的展厅外的寒冬主题商人，也会作为花园访客提出委托。\n关系: 向玩家热情介绍商品，来访时礼貌求助。\n说话水平: 直白、轻快的商人口吻。\n核心性格与词汇: 热情招揽；节日、特惠、钓礼物、头盔维修。\n禁用风格: 不添加促销期限或钓鱼概率，不硬塞网络梗，不翻译 Sherry 与 Frosty 专名。"
 }

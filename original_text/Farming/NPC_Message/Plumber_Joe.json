@@ -1,8 +1,8 @@
 {
   "npc": "Plumber Joe",
   "source": "https://hypixelskyblock.minecraft.wiki/w/Plumber_Joe",
-  "verified_ingame": true,
-  "note": "水管工，自己惹出了水患；来花园求助；说话干脆；带点尴尬的职业笑话；不增添原文没有的灾难后果。",
+  "verified_ingame": false,
+  "note": "身份：村庄的水管工兼商人，也会到花园求助。\n关系：把玩家当顾客，遇到自己惹出的水患时也会请玩家帮忙。\n说话风格：朴素干脆，招呼和承诺带着职业自信。\n性格与词汇：平时说水患、包在我身上、营业时间；求助时有些尴尬，被拒绝后自己想办法。\n禁用风格：不硬塞网络梗、方言或亲昵称呼，不增添原文没有的灾难后果和服务机制。",
   "messages": [
     {
       "id": "visitor_plumber_joe_1",
@@ -10,9 +10,9 @@
       "raw": "§fI once dumped a magical water bucket into the toilet. It won't stop overflowing. Anyway, you got something for me?",
       "text": "I once dumped a magical water bucket into the toilet. It won't stop overflowing. Anyway, you got something for me?",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "magical water bucket 是对白中以小写提及的 Magical Water Bucket；整名沿用 Hub_General/GUI_Item/Community_Projects.json#magical_water_bucket 的本地译文“魔法水桶”，不是自创新物品名。这里回顾往马桶倒水的事故，并未逐字列出访客所需物品。",
       "translate": true,
-      "zh": "我之前往马桶里倒了一桶魔法水,结果它到现在还在往外冒水。先不说这个了,我要的东西有了吗?"
+      "zh": "我之前用魔法水桶往马桶里倒过水,结果它到现在还在往外冒水。先不说这个了,我要的东西有了吗?"
     },
     {
       "id": "visitor_plumber_joe_2",
@@ -31,8 +31,124 @@
       "placeholders": [],
       "gloss": "花园访客委托结果台词；社区 Wiki 逐字记录，待游戏内实测。",
       "translate": true,
-      "zh": "看来我只能自己试着修了。"
+      "zh": "看来我只能自己试着修了。",
+      "raw": "§fI guess I'll just try to fix it myself."
+    },
+    {
+      "id": "plumber_joe_greeting",
+      "context": "村庄中与 Plumber Joe 交谈时的日常招呼",
+      "raw": "§fWater troubles? No problem!",
+      "text": "Water troubles? No problem!",
+      "placeholders": [],
+      "gloss": "water troubles 沿用既有花园对白的“水患”；这里是水管工的自信招呼，不添加购买或任务要求。",
+      "translate": true,
+      "zh": "碰上水患了? 没问题!"
+    },
+    {
+      "id": "plumber_joe_abiphone_contact",
+      "context": "将 Plumber Joe 加入 Abiphone 联系人时，同意提供联系方式",
+      "raw": "§b✆ §fMy abiphone? You got it!",
+      "text": "✆ My abiphone? You got it!",
+      "placeholders": [],
+      "gloss": "Abiphone 为自造品牌名，保留英文。这里同意交换联系方式，不表示赠送一部 Abiphone。✆ 为电话标识，沿用页面青色；正文为白色。",
+      "translate": true,
+      "zh": "✆ 我的 Abiphone 联系方式? 没问题!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "My abiphone? You got it!",
+          "zh": "我的 Abiphone 联系方式? 没问题!"
+        }
+      ]
+    },
+    {
+      "id": "plumber_joe_abiphone_discount",
+      "context": "加入 Abiphone 联系人后，介绍营业时间内来电的优惠",
+      "raw": "§b✆ §fCall me during business hours and I'll help with your water troubles at a discount!",
+      "text": "✆ Call me during business hours and I'll help with your water troubles at a discount!",
+      "placeholders": [],
+      "gloss": "保留营业时间内来电、帮助解决水患和折扣三项信息；不补写折扣比例或实际购买流程。",
+      "translate": true,
+      "zh": "✆ 营业时间给我打电话,我就能帮你解决水患,还给你打折!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Call me during business hours and I'll help with your water troubles at a discount!",
+          "zh": "营业时间给我打电话,我就能帮你解决水患,还给你打折!"
+        }
+      ]
+    },
+    {
+      "id": "plumber_joe_abiphone_daytime",
+      "context": "白天通过 Abiphone 呼叫 Plumber Joe 时的回应",
+      "raw": "§fWater troubles? You know I'm on it!",
+      "text": "Water troubles? You know I'm on it!",
+      "placeholders": [],
+      "gloss": "I'm on it 是承诺接手水的问题，不表示已经完成修理。",
+      "translate": true,
+      "zh": "碰上水患了? 包在我身上!"
+    },
+    {
+      "id": "plumber_joe_abiphone_no_answer",
+      "ref": "Combat/NPC_Message/Pablo.json#ci_no_answer_2739ed48",
+      "context": "夜间通过 Abiphone 呼叫 Plumber Joe 时的红色通用通知“✆ No answer.”；不是带 NPC 前缀的对白"
+    },
+    {
+      "id": "plumber_joe_abiphone_business_hours",
+      "context": "夜间通过 Abiphone 呼叫时，提醒玩家只在营业时间打电话",
+      "raw": "§b✆ §fPlease only call me during business hours.",
+      "text": "✆ Please only call me during business hours.",
+      "placeholders": [],
+      "gloss": "单条独立对白；不与相邻电话留言合并。条件依据完整 dialogueSection 的 Calling / Night-time，不采用逐行 condition 中误抓的对白正文。",
+      "translate": true,
+      "zh": "✆ 麻烦只在营业时间给我打电话。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Please only call me during business hours.",
+          "zh": "麻烦只在营业时间给我打电话。"
+        }
+      ]
+    },
+    {
+      "id": "plumber_joe_abiphone_emergency",
+      "context": "夜间通过 Abiphone 呼叫时，说明真有急事可以当面来找他",
+      "raw": "§b✆ §fIf there's really an emergency, come and see me!",
+      "text": "✆ If there's really an emergency, come and see me!",
+      "placeholders": [],
+      "gloss": "单条独立对白；保留真有急事才当面来找的条件，不推断传送或点击事件。条件依据完整 dialogueSection 的 Calling / Night-time。",
+      "translate": true,
+      "zh": "✆ 真有急事的话,就过来找我!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "If there's really an emergency, come and see me!",
+          "zh": "真有急事的话,就过来找我!"
+        }
+      ]
     }
   ],
-  "source_note": "拒绝台词于 2026-09-12 以新版社区 Wiki Dialogue 表补齐，并由 Fandom 历史档案交叉核对；现有其他台词保留游戏内实测状态。"
+  "source_note": "拒绝台词于 2026-09-12 以新版社区 Wiki Dialogue 表补齐，并由 Fandom 历史档案交叉核对；现有其他台词保留游戏内实测状态。本次于 2026-10-02 以社区 Wiki 普通呈现页面补齐日常与 Abiphone 对白及颜色；整文件 verified_ingame=false 不抹去前述历史实测来源。新增或补充的 raw 为 DOM 颜色还原样本，并非服务器原始字节。",
+  "fetched_at": "2026-10-02",
+  "wiki_last_edited": "This page was last edited on 14 September 2026, at 22:58."
 }

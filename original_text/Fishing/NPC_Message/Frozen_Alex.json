@@ -1,0 +1,373 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Frozen_Alex",
+  "fetched_at": "2026-10-02",
+  "verified_ingame": false,
+  "npc": "Frozen Alex",
+  "aliases": [],
+  "wiki_last_edited": "This page was last edited on 3 September 2026, at 01:26.",
+  "source_note": "原文及颜色来自本次 Playwright 采集的社区 Wiki 普通呈现页面。raw 为 DOM 颜色还原样本，不代表服务器原始字节。电话行剥除页面残留的 [NPC] 标签，保留正文中的 ✆ 及其颜色；服务器前缀仍待实测核对。",
+  "note": "身份: Jerry 池塘的冰霜精华商店 NPC，曾与 Steve 一起掉进池塘。\n关系: 向初见的玩家分冰，请玩家帮忙取暖，并以 Abiphone 联系方式作为回报。\n说话方式: 朴素口语，冻得说话断断续续，抱怨与放松交替。\n性格与词汇: 怕冷、略带幽默；反复用“嘶……”表现打寒颤，保留取暖后又冷起来的停顿与笑点。\n禁用风格: 不硬塞网络梗，不加亲昵称谓，不把玩笑里的额外物品说成玩家必须完成的新任务；Frozen Alex、Steve 与 Abiphone 保留原文。",
+  "entries": [
+    {
+      "id": "frozen_alex_stuck_since_falling_with_steve",
+      "context": "首次见面：说起自己与 Steve 一起落水后一直困在池塘下面。",
+      "raw": "§fBrrrrr, I've been stuck down here ever since I fell into the pond with Steve.",
+      "text": "Brrrrr, I've been stuck down here ever since I fell into the pond with Steve.",
+      "placeholders": [],
+      "gloss": "Brrrrr 是打寒颤的声音，不是寒冷值机制提示；Steve 是人名，保留英文，不补写其身份或关系。",
+      "translate": true,
+      "zh": "嘶——自从和 Steve 一起掉进池塘，我就一直困在这下面。"
+    },
+    {
+      "id": "frozen_alex_share_some_ice",
+      "context": "首次见面：提出分一些冰给玩家。",
+      "raw": "§fHere, let me share some of my ice with you.",
+      "text": "Here, let me share some of my ice with you.",
+      "placeholders": [],
+      "gloss": "ice 沿用 Mining/GUI_Item/Handy_Block_Guide.json#hbg_block_ice 的“冰”；原句没有说 Ice Essence，不擅自改成“冰霜精华”。",
+      "translate": true,
+      "zh": "来，我分点冰给你。"
+    },
+    {
+      "id": "frozen_alex_phone_freezing_here",
+      "context": "首次请求 Abiphone 联系方式：冻得直抱怨。",
+      "raw": "§b✆§f Hmphhh, it's absolutely freezing round here!",
+      "text": "✆ Hmphhh, it's absolutely freezing round here!",
+      "placeholders": [],
+      "gloss": "✆ 是页面保留的电话标记；Hmphhh 在此表现寒冷中的呻吟，不译成鄙夷的冷哼。",
+      "translate": true,
+      "zh": "✆ 嘶——这儿也太冷了!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": "✆"
+        },
+        {
+          "color": "§f",
+          "text": " Hmphhh, it's absolutely freezing round here!",
+          "zh": " 嘶——这儿也太冷了!"
+        }
+      ]
+    },
+    {
+      "id": "frozen_alex_phone_numb_limbs",
+      "context": "首次请求 Abiphone 联系方式：腿、脚趾和手已经冻得没知觉。",
+      "raw": "§b✆§f I can't feel my legs, toes, or hands!",
+      "text": "✆ I can't feel my legs, toes, or hands!",
+      "placeholders": [],
+      "gloss": "保留腿、脚趾、手三个对象；不是失去肢体。",
+      "translate": true,
+      "zh": "✆ 我的腿、脚趾、手……全冻得没知觉了!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": "✆"
+        },
+        {
+          "color": "§f",
+          "text": " I can't feel my legs, toes, or hands!",
+          "zh": " 我的腿、脚趾、手……全冻得没知觉了!"
+        }
+      ]
+    },
+    {
+      "id": "frozen_alex_phone_ask_for_warmth",
+      "context": "首次请求 Abiphone 联系方式：请玩家找点东西帮忙取暖。",
+      "raw": "§b✆§f Hey, could you get me something to heat me up a bit?",
+      "text": "✆ Hey, could you get me something to heat me up a bit?",
+      "placeholders": [],
+      "gloss": "heat me up 是普通取暖描述，不是 Heat 属性或炎热值机制。",
+      "translate": true,
+      "zh": "✆ 哎，能帮我找点东西暖暖身子吗?",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": "✆"
+        },
+        {
+          "color": "§f",
+          "text": " Hey, could you get me something to heat me up a bit?",
+          "zh": " 哎，能帮我找点东西暖暖身子吗?"
+        }
+      ]
+    },
+    {
+      "id": "frozen_alex_phone_offer_contact_in_return",
+      "context": "首次请求 Abiphone 联系方式：承诺以联系方式回报玩家。",
+      "raw": "§b✆§f I'll give you my ...brr... §3Abiphone Contact§f in return.",
+      "text": "✆ I'll give you my ...brr... Abiphone Contact in return.",
+      "placeholders": [],
+      "gloss": "Abiphone 保留品牌名；Contact 在此是自己的联系方式，沿用 Mining/NPC_Message/Gemma.json#gemma_you_want_my_abiphone_contact 的“Abiphone 联系方式”，不是另一个联系人。",
+      "translate": true,
+      "zh": "✆ 作为回报，我会把我的……嘶……Abiphone 联系方式给你。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": "✆"
+        },
+        {
+          "color": "§f",
+          "text": " I'll give you my ...brr... ",
+          "zh": " 作为回报，我会把我的……嘶……"
+        },
+        {
+          "color": "§3",
+          "text": "Abiphone Contact",
+          "zh": "Abiphone 联系方式"
+        },
+        {
+          "color": "§f",
+          "text": " in return.",
+          "zh": "给你。"
+        }
+      ]
+    },
+    {
+      "id": "frozen_alex_option_ask_what_is_needed",
+      "context": "玩家同意帮忙取暖的选择回复；提示、空格、左右括号与选项正文分别分段。",
+      "raw": "§eSelect an option: §a[Sure, what do you need?]",
+      "text": "Select an option: [Sure, what do you need?]",
+      "placeholders": [],
+      "gloss": "玩家的回复，不是 Frozen Alex 的发言；不填写或猜测点击命令，交互样式由实际服务器组件保留。",
+      "translate": true,
+      "zh": "请选择: [好啊，你需要什么?]",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Select an option:",
+          "zh": "请选择:"
+        },
+        {
+          "color": "§e",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§a",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§a",
+          "text": "Sure, what do you need?",
+          "zh": "好啊，你需要什么?"
+        },
+        {
+          "color": "§a",
+          "text": "]",
+          "zh": "]"
+        }
+      ]
+    },
+    {
+      "id": "frozen_alex_phone_request_enchanted_lava_bucket",
+      "context": "玩家选择愿意帮忙后：请求一个 Enchanted Lava Bucket。",
+      "raw": "§b✆§f Bring me an §5Enchanted Lava Bucket§f, please.",
+      "text": "✆ Bring me an Enchanted Lava Bucket, please.",
+      "placeholders": [],
+      "gloss": "所需物品沿用已有 GUI_Item 整名模板 Hub_General/GUI_Item/Craft_Item.json#enchanted_material：Enchanted %s → 附魔%s，%s 的类型为 category_name；Lava Bucket 在 _shared/Terms.json 中对应“熔岩桶”，亦与 Hub_General/GUI_Item/Vanilla_Fixed_Stock.json#menu_8ebb650a13 一致，故完整物品名为“附魔熔岩桶”。物品已收录于 src/main/resources/assets/skyzh/item-names.json。本句所需数量为固定的一个，不模板化。",
+      "translate": true,
+      "zh": "✆ 麻烦带一个附魔熔岩桶给我吧。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": "✆"
+        },
+        {
+          "color": "§f",
+          "text": " Bring me an ",
+          "zh": " 麻烦带一个"
+        },
+        {
+          "color": "§5",
+          "text": "Enchanted Lava Bucket",
+          "zh": "附魔熔岩桶"
+        },
+        {
+          "color": "§f",
+          "text": ", please.",
+          "zh": "给我吧。"
+        }
+      ]
+    },
+    {
+      "id": "frozen_alex_phone_pour_bucket_to_warm_up",
+      "context": "请求物品后：打算把桶里的东西倒在自己身上驱寒。",
+      "raw": "§b✆§f If I dunk it over myself it should get rid of all the cold.",
+      "text": "✆ If I dunk it over myself it should get rid of all the cold.",
+      "placeholders": [],
+      "gloss": "should 表示角色的预期，不改成必定生效的机制说明；cold 是普通寒冷感受，不是 Cold 数值。",
+      "translate": true,
+      "zh": "✆ 我要是把它往身上一倒，应该就不会再冷了。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": "✆"
+        },
+        {
+          "color": "§f",
+          "text": " If I dunk it over myself it should get rid of all the cold.",
+          "zh": " 我要是把它往身上一倒，应该就不会再冷了。"
+        }
+      ]
+    },
+    {
+      "id": "frozen_alex_phone_shiver_while_waiting",
+      "context": "请求物品后：打寒颤，等待玩家交付。",
+      "raw": "§b✆§f Brr...",
+      "text": "✆ Brr...",
+      "placeholders": [],
+      "gloss": "Brr 是打寒颤的声音；沿用此角色“嘶……”的口头反应。",
+      "translate": true,
+      "zh": "✆ 嘶……",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": "✆"
+        },
+        {
+          "color": "§f",
+          "text": " Brr...",
+          "zh": " 嘶……"
+        }
+      ]
+    },
+    {
+      "id": "frozen_alex_option_give_item",
+      "ref": "Dungeons/ChatMessage/Dungeon_Hub_Tasks_and_NPC_Options.json#npc_option_give_item",
+      "context": "交出所需物品的 [GIVE ITEM] 按钮；复用已细分左右括号与正文的通用记录，实时保留本页样本的 §2 颜色和服务器交互。"
+    },
+    {
+      "id": "frozen_alex_phone_relief_after_bucket",
+      "context": "交付 Enchanted Lava Bucket 后：短暂暖和起来。",
+      "raw": "§b✆§f Whew, that's the stuff.",
+      "text": "✆ Whew, that's the stuff.",
+      "placeholders": [],
+      "gloss": "that's the stuff 是舒服、满意的口语反应，不是在辨认物品。",
+      "translate": true,
+      "zh": "✆ 呼——这下舒服了。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": "✆"
+        },
+        {
+          "color": "§f",
+          "text": " Whew, that's the stuff.",
+          "zh": " 呼——这下舒服了。"
+        }
+      ]
+    },
+    {
+      "id": "frozen_alex_phone_pause_before_cold_returns",
+      "ref": "Mining/NPC_Message/Dalir.json#dalir_line",
+      "context": "交付物品后短暂停顿的 ✆ ...；复用既有电话省略号记录，显示为 ✆ ……，保留青色电话标记和白色省略号。"
+    },
+    {
+      "id": "frozen_alex_phone_cold_again",
+      "context": "交付物品后：停顿片刻，又冷起来。",
+      "raw": "§b✆§f Now I'm cold again.",
+      "text": "✆ Now I'm cold again.",
+      "placeholders": [],
+      "gloss": "承接短暂取暖和省略号，保留寒冷重新出现的笑点。",
+      "translate": true,
+      "zh": "✆ 现在又冷起来了。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": "✆"
+        },
+        {
+          "color": "§f",
+          "text": " Now I'm cold again.",
+          "zh": " 现在又冷起来了。"
+        }
+      ]
+    },
+    {
+      "id": "frozen_alex_phone_need_dozen_more_to_thaw",
+      "context": "交付物品后：说再来一打左右的同类物品，应该就能彻底解冻；下一句会把这件事留给后来者。",
+      "raw": "§b✆§f You know, another dozen or so §5Enchanted Lava Buckets§f should be enough to thaw me out completely.",
+      "text": "✆ You know, another dozen or so Enchanted Lava Buckets should be enough to thaw me out completely.",
+      "placeholders": [],
+      "gloss": "所提物品沿用已有 GUI_Item 整名模板 Hub_General/GUI_Item/Craft_Item.json#enchanted_material 与 _shared/Terms.json 中 Lava Bucket → 熔岩桶，完整译名“附魔熔岩桶”；亦见 Hub_General/GUI_Item/Vanilla_Fixed_Stock.json#menu_8ebb650a13。Enchanted Lava Buckets 是同一物品的复数，不另造译名。another dozen or so 是固定对白中的约 12 个，并非动态计数；这是角色的取暖打算，不是要求当前玩家再交付 12 个物品。should 保留为“应该”。",
+      "translate": true,
+      "zh": "✆ 其实啊，再来 12 个左右的附魔熔岩桶，应该就够让我彻底解冻了。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": "✆"
+        },
+        {
+          "color": "§f",
+          "text": " You know, another dozen or so ",
+          "zh": " 其实啊，再来 12 个左右的"
+        },
+        {
+          "color": "§5",
+          "text": "Enchanted Lava Buckets",
+          "zh": "附魔熔岩桶"
+        },
+        {
+          "color": "§f",
+          "text": " should be enough to thaw me out completely.",
+          "zh": "，应该就够让我彻底解冻了。"
+        }
+      ]
+    },
+    {
+      "id": "frozen_alex_phone_leave_job_for_next_person",
+      "context": "交付物品后：让玩家放心，额外取暖物品会交给下一个索要联系方式的人去找。",
+      "raw": "§b✆§f Don't worry though - I'll give that job to whoever asks for my contact next.",
+      "text": "✆ Don't worry though - I'll give that job to whoever asks for my contact next.",
+      "placeholders": [],
+      "gloss": "that job 指上一句提到的额外物品；明确是留给下一位，不增加当前玩家任务。contact 仍指自己的联系方式。",
+      "translate": true,
+      "zh": "✆ 放心，这活儿我会交给下一个来要我联系方式的人。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": "✆"
+        },
+        {
+          "color": "§f",
+          "text": " Don't worry though - I'll give that job to whoever asks for my contact next.",
+          "zh": " 放心，这活儿我会交给下一个来要我联系方式的人。"
+        }
+      ]
+    },
+    {
+      "id": "frozen_alex_phone_give_contact_while_shivering",
+      "context": "交付物品后最后一句：仍打着寒颤，将联系方式给玩家。",
+      "raw": "§b✆§f Here's my ...brr... contact...",
+      "text": "✆ Here's my ...brr... contact...",
+      "placeholders": [],
+      "gloss": "仍沿用“嘶……”表现打寒颤；contact 是联系方式，保留句尾冻得断续的停顿。",
+      "translate": true,
+      "zh": "✆ 这是我的……嘶……联系方式……",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": "✆"
+        },
+        {
+          "color": "§f",
+          "text": " Here's my ...brr... contact...",
+          "zh": " 这是我的……嘶……联系方式……"
+        }
+      ]
+    }
+  ]
+}

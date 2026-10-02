@@ -1,7 +1,7 @@
 {
   "source": "https://hypixelskyblock.minecraft.wiki/w/Melancholic_Viking",
-  "verified_ingame": true,
-  "note": "思念大海的维京人；失落、怀旧，不写成文言。 专名保留英文；不硬塞网络梗。颜色采用服务器原始样本。",
+  "verified_ingame": false,
+  "note": "身份：云杉林附近维京长屋里的老维京人，思念大海，找回海上的记忆后向玩家出售货物。关系：起初向陌生玩家求助，随后逐渐振奋并真诚道谢。说话层次：朴素口语，怀念旧日战友与海上生活。性格与词汇：失落、怀旧；反复提到海水、浪花、香味和鱼儿扑腾，恢复精神后感叹增多。禁用：不写文言、宣言或任务说明书，不硬塞网络梗，不替对白补解谜步骤。原有四条实测记录及其原始颜色边界完整保留；新增条目只依据本次普通 Wiki 页面证据。",
   "lines": [
     {
       "id": "capture_c81399a0077a",
@@ -85,6 +85,541 @@
           "zh": "的记忆吧!"
         }
       ]
+    },
+    {
+      "id": "viking_infinite_water_delight",
+      "context": "Viking：用魔法水桶熄灭壁炉里的火后，振奋的反应",
+      "text": "YES!",
+      "raw": "§aYES!",
+      "placeholders": [],
+      "gloss": "触发物品 Magical Water Bucket 沿用 Hub_General/GUI_Item/Community_Projects.json#magical_water_bucket：魔法水桶。本句是兴奋的肯定，不是玩家选择按钮。",
+      "translate": true,
+      "zh": "对，就是这样!"
+    },
+    {
+      "id": "viking_infinite_water_poured",
+      "context": "Viking：用魔法水桶灭火后，承接下一条海水与浪花的回忆；保留独立聊天消息",
+      "text": "Now that you poured an infinite amount of water,",
+      "raw": "§fNow that you poured an infinite amount of water,",
+      "placeholders": [],
+      "gloss": "Magical Water Bucket 沿用 Hub_General/GUI_Item/Community_Projects.json#magical_water_bucket：魔法水桶。不据连续语义添加聊天合并标记。",
+      "translate": true,
+      "zh": "你这一倒，水可真是源源不断啊，"
+    },
+    {
+      "id": "viking_remember_saltwater_waves",
+      "context": "Viking：用魔法水桶灭火后，回忆海水的气味和浪花",
+      "text": "I can remember the smell of salt water and the beauty of the waves.",
+      "raw": "§fI can remember the smell of salt water and the beauty of the waves.",
+      "placeholders": [],
+      "gloss": "smell 是气味，不是尝到咸味。Magical Water Bucket 的现有译名为魔法水桶，见 Hub_General/GUI_Item/Community_Projects.json#magical_water_bucket。",
+      "translate": true,
+      "zh": "我又记起了海水的咸腥气，还有那些美丽的浪花。"
+    },
+    {
+      "id": "viking_long_for_warband_supper",
+      "context": "Viking：用魔法水桶灭火后，希望记起与昔日战友共进晚餐的香味",
+      "text": "If only I could recall the smell of a tasty supper with my old warband.",
+      "raw": "§fIf only I could recall the smell of a §etasty supper§f with my old warband.",
+      "placeholders": [],
+      "gloss": "warband 是过去一起征战的伙伴，不补阵营名或新的物品名。",
+      "translate": true,
+      "zh": "要是还能想起跟老战友一起吃美味的晚餐时的香味，就好了。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "If only I could recall the smell of a ",
+          "zh": "要是还能想起跟老战友一起吃"
+        },
+        {
+          "color": "§e",
+          "text": "tasty supper",
+          "zh": "美味的晚餐"
+        },
+        {
+          "color": "§f",
+          "text": " with my old warband.",
+          "zh": "时的香味，就好了。"
+        }
+      ]
+    },
+    {
+      "id": "viking_water_bucket_fireplace_feedback",
+      "context": "系统消息，speaker 为 null：使用普通水桶尝试熄灭维京长屋的壁炉；不是 Viking 发言",
+      "text": "You pour water from the bucket, but it's apparently never enough to extinguish the fireplace.",
+      "raw": "§7You pour water from the bucket, but it's apparently never enough to extinguish the fireplace.",
+      "placeholders": [],
+      "gloss": "Water Bucket 沿用 Hub_General/GUI_Item/Vanilla_Fixed_Stock.json#menu_53f3b23ecf：水桶。系统反馈与 NPC 对白同属 CHAT 面，保留在既有任务文件，不改说话者。",
+      "translate": true,
+      "zh": "你把桶里的水倒了出来，可这点水似乎总也浇不灭壁炉里的火。"
+    },
+    {
+      "id": "viking_water_not_enough",
+      "context": "Viking：用普通水桶尝试灭火后",
+      "text": "That's just... not enough water.",
+      "raw": "§fThat's just... not enough water.",
+      "placeholders": [],
+      "gloss": "Water Bucket 沿用 Hub_General/GUI_Item/Vanilla_Fixed_Stock.json#menu_53f3b23ecf：水桶。",
+      "translate": true,
+      "zh": "这水……还是不够啊。"
+    },
+    {
+      "id": "viking_hold_infinite_water",
+      "context": "Viking：玩家手持魔法水桶",
+      "text": "There's as much water here as an ocean.",
+      "raw": "§fThere's as much water here as an ocean.",
+      "placeholders": [],
+      "gloss": "Magical Water Bucket 沿用 Hub_General/GUI_Item/Community_Projects.json#magical_water_bucket：魔法水桶。",
+      "translate": true,
+      "zh": "这里的水简直跟大海一样多。"
+    },
+    {
+      "id": "viking_suggest_pour_water",
+      "context": "Viking：玩家手持魔法水桶，提示找地方倒水",
+      "text": "If only you could pour it somewhere!",
+      "raw": "§fIf only you could pour it somewhere!",
+      "placeholders": [],
+      "gloss": "Magical Water Bucket 沿用 Hub_General/GUI_Item/Community_Projects.json#magical_water_bucket：魔法水桶。不把 somewhere 补写成未经本句明说的位置。",
+      "translate": true,
+      "zh": "要是能找个地方把它倒出来就好了!"
+    },
+    {
+      "id": "viking_want_feast_smell",
+      "context": "Viking：烹饪生鳕鱼前，希望闻到大餐的香味",
+      "text": "I would like to smell a good feast!",
+      "raw": "§fI would like to §esmell §fa good feast!",
+      "placeholders": [],
+      "gloss": "Raw Cod 沿用 Hub_General/GUI_Item/Fishing_Merchant.json#raw_cod：生鳕鱼。黄色强调 smell，保留在闻闻上，不把整段大餐染黄。",
+      "translate": true,
+      "zh": "我真想闻闻丰盛大餐的香味!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "I would like to ",
+          "zh": "我真想"
+        },
+        {
+          "color": "§e",
+          "text": "smell ",
+          "zh": "闻闻"
+        },
+        {
+          "color": "§f",
+          "text": "a good feast!",
+          "zh": "丰盛大餐的香味!"
+        }
+      ]
+    },
+    {
+      "id": "viking_prefer_lively_fish",
+      "context": "Viking：玩家手持任意生鳕鱼",
+      "text": "I prefer when the fishes are lively and go splish-splash in the water!",
+      "raw": "§fI prefer when the fishes are lively and go splish-splash in the water!",
+      "placeholders": [],
+      "gloss": "Raw Cod 沿用 Hub_General/GUI_Item/Fishing_Merchant.json#raw_cod：生鳕鱼。fishes 是泛指活鱼，不把所需物品名补进对白。",
+      "translate": true,
+      "zh": "我还是更喜欢活蹦乱跳、在水里扑腾的鱼!"
+    },
+    {
+      "id": "viking_bite_cooked_cod",
+      "context": "Viking：玩家手持任意 Cooked Cod，尝了一口",
+      "text": "*takes a bite*",
+      "raw": "§f*takes a bite*",
+      "placeholders": [],
+      "gloss": "用户拍板：触发物品 Cooked Cod 未检出本地 GUI_Item 整名或适用名称模板译文，保留完整英文；Terms 的 category_name 熟鳕鱼不当作 GUI 整名证据。本句仅为实际动作台词，不补物品名。",
+      "translate": true,
+      "zh": "*咬了一口*"
+    },
+    {
+      "id": "viking_cooked_cod_tastes_good",
+      "context": "Viking：玩家手持任意 Cooked Cod，边嚼边说",
+      "text": "It definitely... *chomp* tastes good...",
+      "raw": "§fIt definitely... *chomp* tastes good...",
+      "placeholders": [],
+      "gloss": "用户拍板：触发物品 Cooked Cod 无本地 GUI_Item 整名或适用名称模板译文，保留原文；不据旧 NPC 对白或分类词表新增物品整名。",
+      "translate": true,
+      "zh": "味道确实……*嚼嚼* 挺不错……"
+    },
+    {
+      "id": "viking_cooked_cod_smell_not_right",
+      "context": "Viking：玩家手持任意 Cooked Cod，味道好但气味不符记忆",
+      "text": "But the smell isn't quite right!",
+      "raw": "§fBut the smell isn't quite right!",
+      "placeholders": [],
+      "gloss": "用户拍板：触发物品 Cooked Cod 无本地 GUI_Item 整名或适用名称模板译文，保留原文。本句区分味道与气味，不误译为不好吃。",
+      "translate": true,
+      "zh": "可这香味还是不太对!"
+    },
+    {
+      "id": "viking_cooking_cod_contented_hum",
+      "context": "Viking：正在烹饪生鳕鱼，发出满足的哼声",
+      "text": "MMMMMMmmmMMMMH...",
+      "raw": "§aMMMMMMmmmMMMMH...",
+      "placeholders": [],
+      "gloss": "满足的声音，不是物品名。Raw Cod 沿用 Hub_General/GUI_Item/Fishing_Merchant.json#raw_cod：生鳕鱼。",
+      "translate": true,
+      "zh": "嗯嗯嗯嗯嗯……"
+    },
+    {
+      "id": "viking_cooking_cod_smells_nice",
+      "context": "Viking：正在烹饪生鳕鱼",
+      "text": "Smells so nice!",
+      "raw": "§fSmells so nice!",
+      "placeholders": [],
+      "gloss": "Raw Cod 沿用 Hub_General/GUI_Item/Fishing_Merchant.json#raw_cod：生鳕鱼。",
+      "translate": true,
+      "zh": "真香啊!"
+    },
+    {
+      "id": "viking_ask_sea_memory",
+      "context": "Viking：烹饪生鳕鱼后，引出鱼儿扑腾的回忆",
+      "text": "You know what I really remember from the sea?",
+      "raw": "§fYou know what I really remember from the sea?",
+      "placeholders": [],
+      "gloss": "Raw Cod 沿用 Hub_General/GUI_Item/Fishing_Merchant.json#raw_cod：生鳕鱼。保持单条独立发言，不跨消息合并。",
+      "translate": true,
+      "zh": "你知道我对大海最难忘的是什么吗?"
+    },
+    {
+      "id": "viking_fish_splash_memory",
+      "context": "Viking：烹饪生鳕鱼后，回忆鱼儿在水里扑腾",
+      "text": "Fishes splish-splashing around!",
+      "raw": "§bFishes§f splish-splashing around!",
+      "placeholders": [],
+      "gloss": "Fishes 是普通鱼类泛称，不是物品整名。",
+      "translate": true,
+      "zh": "鱼儿四处扑腾、溅起水花!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "Fishes",
+          "zh": "鱼儿"
+        },
+        {
+          "color": "§f",
+          "text": " splish-splashing around!",
+          "zh": "四处扑腾、溅起水花!"
+        }
+      ]
+    },
+    {
+      "id": "viking_first_splashes_remind_sea",
+      "context": "Viking：玩家开始溅起水花，唤起大海的记忆",
+      "text": "YES! This totally reminds me of the sea!",
+      "raw": "§aYES!§f This totally reminds me of the sea!",
+      "placeholders": [],
+      "gloss": "YES! 为 NPC 的兴奋感叹，不是玩家按钮。",
+      "translate": true,
+      "zh": "对，就是这样! 这下真让我想起大海了!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "YES!",
+          "zh": "对，就是这样!"
+        },
+        {
+          "color": "§f",
+          "text": " This totally reminds me of the sea!",
+          "zh": " 这下真让我想起大海了!"
+        }
+      ]
+    },
+    {
+      "id": "viking_more_fish_back_then",
+      "context": "Viking：玩家开始溅起水花，表示过去海里的鱼还更多",
+      "text": "Although... there were more fishes back then.",
+      "raw": "§fAlthough... there were §amore §ffishes back then.",
+      "placeholders": [],
+      "gloss": "绿色强调 more，不把鱼类泛称染绿。两段白色内容按自然中文重新分配，分段仍按英文原序。",
+      "translate": true,
+      "zh": "不过……当年的鱼可多得多啊。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Although... there were ",
+          "zh": "不过……当年的鱼可"
+        },
+        {
+          "color": "§a",
+          "text": "more ",
+          "zh": "多得多"
+        },
+        {
+          "color": "§f",
+          "text": "fishes back then.",
+          "zh": "啊。"
+        }
+      ]
+    },
+    {
+      "id": "viking_request_more_splashes",
+      "context": "Viking：玩家继续溅起水花，再请求几条鱼与更多水花",
+      "text": "EXCELLENT! Just a few more fishes and splashes please!",
+      "raw": "§aEXCELLENT!§f Just a few more fishes and splashes please!",
+      "placeholders": [],
+      "gloss": "a few more 没有给出固定数量，不凭空补阈值。",
+      "translate": true,
+      "zh": "太棒了! 再多来几条鱼，多溅点水花吧!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "EXCELLENT!",
+          "zh": "太棒了!"
+        },
+        {
+          "color": "§f",
+          "text": " Just a few more fishes and splashes please!",
+          "zh": " 再多来几条鱼，多溅点水花吧!"
+        }
+      ]
+    },
+    {
+      "id": "viking_splashes_feel_like_drakkar",
+      "context": "Viking：水花足够，感觉像回到了自己的 Drakkar 上",
+      "text": "WOW! This feels just like on my Drakkar!",
+      "raw": "§a§lWOW!§f This §bfeels§f just like on my Drakkar!",
+      "placeholders": [],
+      "gloss": "Drakkar 是本句的船只称呼；本地无既定译名，页面未进一步区分具体船名与船型，谨慎保留英文，不编物品译名。颜色严格采用 dialogues.segments 的 computed 样式；dialogueSection 的格式提示另见报告。",
+      "translate": true,
+      "zh": "哇! 这感觉，简直就像回到了我的 Drakkar 上!",
+      "segments": [
+        {
+          "color": "§a§l",
+          "text": "WOW!",
+          "zh": "哇!"
+        },
+        {
+          "color": "§f",
+          "text": " This ",
+          "zh": " 这"
+        },
+        {
+          "color": "§b",
+          "text": "feels",
+          "zh": "感觉"
+        },
+        {
+          "color": "§f",
+          "text": " just like on my Drakkar!",
+          "zh": "，简直就像回到了我的 Drakkar 上!"
+        }
+      ]
+    },
+    {
+      "id": "viking_suddenly_feel_great",
+      "context": "Viking：水花足够，恢复精神",
+      "text": "I suddenly feel so great!",
+      "raw": "§fI suddenly feel so great!",
+      "placeholders": [],
+      "gloss": "描述自身心情与感受，不补属性增益。",
+      "translate": true,
+      "zh": "整个人一下子都舒坦了!"
+    },
+    {
+      "id": "viking_thanks_for_joy",
+      "context": "Viking：水花足够，感谢玩家让自己重新快乐起来",
+      "text": "Thanks for bringing joy to an old viking!",
+      "raw": "§fThanks for bringing §ejoy§f to an old viking!",
+      "placeholders": [],
+      "gloss": "an old viking 指说话者自己，不改变人物关系。",
+      "translate": true,
+      "zh": "谢谢你，让我这个老维京人又找回了快乐!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Thanks for bringing ",
+          "zh": "谢谢你，让我这个老维京人又找回了"
+        },
+        {
+          "color": "§e",
+          "text": "joy",
+          "zh": "快乐"
+        },
+        {
+          "color": "§f",
+          "text": " to an old viking!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "viking_invite_view_wares",
+      "context": "Viking：找回海上记忆后，邀请玩家查看货物",
+      "text": "Take a look at my wares!",
+      "raw": "§fTake a look at my wares!",
+      "placeholders": [],
+      "gloss": "页面白色正文独立成句；其后灰色 (Interact with the NPC) 是 Wiki 操作注释，经父代理裁决不作台词。未猜测点击事件或服务器命令。",
+      "translate": true,
+      "zh": "来看看我的货吧!"
+    },
+    {
+      "id": "viking_splashes_without_ambiance",
+      "context": "Viking：尚未烹饪生鳕鱼或尚未灭火时就溅起水花，缺少合适的氛围",
+      "text": "Wow! Nice move! There just isn't the ambiance to fully appreciate it.",
+      "raw": "§eWow! Nice move! §fThere just isn't the ambiance to fully appreciate it.",
+      "placeholders": [],
+      "gloss": "Raw Cod 沿用 Hub_General/GUI_Item/Fishing_Merchant.json#raw_cod：生鳕鱼。不将缺少氛围补写成某个额外任务条件。",
+      "translate": true,
+      "zh": "哇! 好身手! 可惜这儿还差点气氛，没法好好感受啊。",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Wow! Nice move! ",
+          "zh": "哇! 好身手! "
+        },
+        {
+          "color": "§f",
+          "text": "There just isn't the ambiance to fully appreciate it.",
+          "zh": "可惜这儿还差点气氛，没法好好感受啊。"
+        }
+      ]
+    },
+    {
+      "id": "viking_complain_fire_noise",
+      "context": "Viking：熄灭壁炉的火之前，抱怨烧火的噪声",
+      "text": "If only there wasn't this infernal fire noise!",
+      "raw": "§eIf only there wasn't this infernal fire noise!",
+      "placeholders": [],
+      "gloss": "infernal 是抱怨烦人，不是另一种地狱火机制。",
+      "translate": true,
+      "zh": "要是没这烦人的烧火声就好了!"
+    },
+    {
+      "id": "viking_trophy_fish_looks_exotic",
+      "context": "Viking：烹饪任意奖杯鱼，惊讶于其外观",
+      "text": "Ooh! That looks exotic!",
+      "raw": "§d§lOoh! §fThat looks exotic!",
+      "placeholders": [],
+      "gloss": "Trophy Fish 沿用 Hub_General/GUI_Item/Menu_Controls_Live.json#leveling_trophy_fish 及 _shared/Terms.json 的既定泛称：奖杯鱼。颜色按 dialogues.segments；dialogueSection 的粗体提示另见报告。",
+      "translate": true,
+      "zh": "哦! 看着可真稀奇!",
+      "segments": [
+        {
+          "color": "§d§l",
+          "text": "Ooh! ",
+          "zh": "哦! "
+        },
+        {
+          "color": "§f",
+          "text": "That looks exotic!",
+          "zh": "看着可真稀奇!"
+        }
+      ]
+    },
+    {
+      "id": "viking_accept_wrong_fish",
+      "context": "Viking：烹饪任意奖杯鱼，虽非所求仍收下",
+      "text": "It wasn't quite what I was looking for, but I'll take it thanks!",
+      "raw": "§fIt wasn't quite what I was looking for, but I'll take it thanks!",
+      "placeholders": [],
+      "gloss": "Trophy Fish 沿用现有泛称奖杯鱼，见 Hub_General/GUI_Item/Menu_Controls_Live.json#leveling_trophy_fish；收下不代表满足原任务，不增补成功或奖励说明。",
+      "translate": true,
+      "zh": "虽然不是我想要的，不过我还是收下了，多谢!"
+    },
+    {
+      "id": "viking_request_liquid_water",
+      "context": "Viking：玩家手持冰或浮冰，想要没有冻住的水",
+      "text": "Don't you have some liquid water?",
+      "raw": "§fDon't you have some liquid water?",
+      "placeholders": [],
+      "gloss": "Ice 沿用 Mining/GUI_Item/Handy_Block_Guide.json#hbg_block_ice：冰；Packed Ice 沿用 Hub_General/GUI_Item/Vanilla_Fixed_Stock.json#menu_f9875baba9：浮冰。译文表达液态水，不引入新物品名。",
+      "translate": true,
+      "zh": "你就没有没冻住的水吗?"
+    },
+    {
+      "id": "viking_pufferfish_hat_ouch",
+      "ref": "Combat/NPC_Message/_Crimson_Isle_Shared.json#ci_ouch_2f282e1a",
+      "context": "Viking：玩家手持河豚帽；复用既有 CHAT 面 Ouch!，保持原发言者为 Viking",
+      "gloss": "Pufferfish Hat 沿用 Hub_General/GUI_Item/SkyBlock_Guide_Item_Names.json#guide_item_pufferfish_hat：河豚帽。页面正文单色白色，无额外颜色边界。"
+    },
+    {
+      "id": "viking_ask_fish_hat_ability",
+      "context": "Viking：玩家手持鱼帽，问帽子有什么特殊功能",
+      "text": "Awesome hat! Does it do anything special?",
+      "raw": "§fAwesome hat! Does it do anything special?",
+      "placeholders": [],
+      "gloss": "Fish Hat 沿用 Hub_General/GUI_Item/SkyBlock_Guide_Item_Names.json#guide_item_fish_hat：鱼帽。不直接替玩家说明技能或按键。",
+      "translate": true,
+      "zh": "这帽子真不错! 它有什么特别的功能吗?"
+    },
+    {
+      "id": "viking_keep_tears_secret",
+      "context": "Viking：玩家手持 Viking's Tear，请求别告诉他的家人他会哭",
+      "text": "Please don't tell my family that I cry sometimes!",
+      "raw": "§fPlease don't tell my family that I cry sometimes!",
+      "placeholders": [],
+      "gloss": "用户拍板：触发物品 Viking's Tear 无本地 GUI_Item 整名或适用名称模板译文，保留完整英文；不根据 NPC 台词自造物品名。",
+      "translate": true,
+      "zh": "千万别告诉我家里人，我有时候也会掉眼泪啊!"
+    },
+    {
+      "id": "viking_decline_fishing_now",
+      "context": "Viking：玩家手持任意钓鱼竿，目前无心钓鱼",
+      "text": "It's a nice thought, but I don't feel like fishing right now.",
+      "raw": "§fIt's a nice thought, but I don't feel like fishing right now.",
+      "placeholders": [],
+      "gloss": "Fishing Rod 沿用 Hub_General/GUI_Item/Fishing_Merchant.json#fishing_rod：钓鱼竿；fishing 是钓鱼玩法。",
+      "translate": true,
+      "zh": "你的好意我心领了，不过我现在没心思钓鱼。"
+    },
+    {
+      "id": "viking_sniff_potion",
+      "context": "Viking：玩家手持任意药水，嗅了嗅",
+      "text": "* sniffs *",
+      "raw": "§f* sniffs *",
+      "placeholders": [],
+      "gloss": "Potion 沿用 _shared/Terms.json 的既定 category_name 泛称：药水。不枚举各种药水名称。",
+      "translate": true,
+      "zh": "*嗅了嗅*"
+    },
+    {
+      "id": "viking_potion_smells_weird",
+      "context": "Viking：玩家手持任意药水，觉得气味奇怪",
+      "text": "Smells weird.",
+      "raw": "§fSmells weird.",
+      "placeholders": [],
+      "gloss": "Potion 沿用 _shared/Terms.json 的既定泛称：药水。",
+      "translate": true,
+      "zh": "这味道怪怪的。"
+    },
+    {
+      "id": "viking_boat_surprise",
+      "ref": "Combat/NPC_Message/Rollim.json#ci_wow_bb4aa6a3",
+      "context": "Viking：玩家手持任意船，惊呼；复用既有 CHAT 面 Wow!，不改说话者",
+      "gloss": "Wiki 正文单色白色，未出现额外格式边界。此处只是惊呼，不是操作按钮。"
+    },
+    {
+      "id": "viking_recognize_boat",
+      "context": "Viking：玩家手持任意船，认出是一艘船",
+      "text": "A boat!",
+      "raw": "§fA boat!",
+      "placeholders": [],
+      "gloss": "boat 在正文中为小写普通船类泛称，条件是 Holding any Boat，不能补成只适用于橡木船。GUI_Item 整名 Boat 的既有译文是橡木船，见 Hub_General/GUI_Item/Vanilla_Fixed_Stock.json#menu_ef58de4ff0；本句不创造或更改该整名。",
+      "translate": true,
+      "zh": "一艘船!"
+    },
+    {
+      "id": "viking_throw_boats_at_enemies",
+      "context": "Viking：玩家手持任意船，带着维京人的粗放口吻说让玩家朝讨厌的人扔船",
+      "text": "Throw them at people you hate!",
+      "raw": "§fThrow them at people you hate!",
+      "placeholders": [],
+      "gloss": "保留原文的玩笑，不补战斗机制、伤害数值或真的交互命令；them 承接船。",
+      "translate": true,
+      "zh": "把它们朝你讨厌的人扔过去吧!"
     }
+  ],
+  "npc": "Melancholic Viking",
+  "aliases": [
+    "Viking"
+  ],
+  "fetched_at": "2026-10-02",
+  "wiki_last_edited": "This page was last edited on 19 September 2026, at 04:16.",
+  "source_note": "本次证据为 Playwright 读取普通社区 Wiki 呈现页所得的 42 条 DOM 源行。新增 raw 是 dialogues 中 computed 颜色样式还原的 Wiki 样本，不是服务器原始字节，也未实测验证。原有四条记录的 text、raw、segments、占位符、译文和稳定 ID 均保留；其原始实测日期未载明，首次进入仓库的提交日期为 2026-09-21。source_line 27 的灰色 (Interact with the NPC) 为 Wiki 操作注释，不录作台词。",
+  "historical_ingame_record_ids": [
+    "capture_c81399a0077a",
+    "capture_f92d9fec6671",
+    "capture_07a5339c9433",
+    "capture_5e3aff01119e"
   ]
 }

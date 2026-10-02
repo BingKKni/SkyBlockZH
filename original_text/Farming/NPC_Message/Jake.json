@@ -1,0 +1,1729 @@
+{
+  "npc": "Jake",
+  "aliases": [],
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Jake",
+  "fetched_at": "2026-10-02",
+  "verified_ingame": false,
+  "wiki_last_edited": "This page was last edited on 25 September 2026, at 02:56.",
+  "source_note": "原文与颜色来自父代理 Playwright 读取的社区 Wiki 普通呈现页。raw 是由 DOM computed 样式还原的 Wiki 样本，不是服务器实测字节；颜色和格式以 dialogues[].segments[].color 为准。全部 145 个 DOM 源行均逐行审计，空白、舞台说明及破损样本不写入正文。",
+  "note": "身份: 蘑菇沙漠的动物研究者、商店经营者，地下实验室的作物分析仪研发者；绿洲钓获生物和湖中皇帝可触发专属对白。\n关系: 起初请玩家帮忙带动物；面对 Beth 质疑先掩饰，之后逐渐信任玩家与 Beth。\n说话方式: 热情朴素，谈研究时认真；受惊时大声辩解，不把大写直接译成中二宣言。\n性格与词汇: 动物、毛绒玩具、研究、样本；防备、谨慎又执着。页面内 Beth 的真实发言只在 context 标明，绝不冒充 Jake。\n禁用风格: 不补实验机制，不改人物关系，不硬塞网络梗，不将品牌或人名汉化。",
+  "todo": [
+    "source_line 42 含破损的 &&<capitalized player name>，整行暂不建立匹配；需要可靠呈现页或游戏内完整样本，不猜修原文或颜色。"
+  ],
+  "messages": [
+    {
+      "id": "jake_intro_island_years",
+      "context": "真实 speaker: Jake；Jake 的屋子，首次交谈",
+      "text": "Hi I'm Jake. I've been living on this island for 25 years.",
+      "raw": "§fHi I'm Jake. I've been living on this island for 25 years.",
+      "placeholders": [],
+      "gloss": "25 年是角色背景中的固定时长，不是实时年份。",
+      "translate": true,
+      "zh": "你好，我是 Jake。我在这座岛上已经住了 25 年。"
+    },
+    {
+      "id": "jake_intro_studied_animals",
+      "context": "真实 speaker: Jake；Jake 的屋子，首次交谈",
+      "text": "I used to study animals from all over the land!",
+      "raw": "§fI used to study animals from all over the land!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "以前我研究过各地的动物!"
+    },
+    {
+      "id": "jake_intro_injury",
+      "context": "真实 speaker: Jake；Jake 的屋子，首次交谈",
+      "text": "Unfortunately, I suffered an injury which restricts me from leaving my house.",
+      "raw": "§fUnfortunately, I suffered an injury which restricts me from leaving my house.",
+      "placeholders": [],
+      "gloss": "角色此时声称受伤无法出门；不替后续剧情纠正这句说辞。",
+      "translate": true,
+      "zh": "可惜后来受了伤，现在没法出门了。"
+    },
+    {
+      "id": "jake_intro_loved_research",
+      "context": "真实 speaker: Jake；Jake 的屋子，首次交谈",
+      "text": "I really enjoyed studying animals.",
+      "raw": "§fI really enjoyed studying animals.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "我是真的很喜欢研究动物。"
+    },
+    {
+      "id": "jake_request_animal",
+      "context": "真实 speaker: Jake；首次交谈或没有带动物时",
+      "text": "Could you bring me an animal? You can find them all over the island!",
+      "raw": "§fCould you bring me an animal? You can find them all over the island!",
+      "placeholders": [],
+      "gloss": "请求带来活体动物，不是索要同名物品。",
+      "translate": true,
+      "zh": "能帮我带只动物来吗? 岛上到处都能找到!"
+    },
+    {
+      "id": "jake_animal_already_brought",
+      "context": "真实 speaker: Jake；另一名玩家已经带来动物",
+      "text": "Someone already brought me an animal!",
+      "raw": "§fSomeone already brought me an animal!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "已经有人给我带来动物了!"
+    },
+    {
+      "id": "jake_generous_store",
+      "context": "真实 speaker: Jake；其他玩家带来动物，或商店开放时再次带来相同动物",
+      "text": "I'm feeling generous, I'll show you my store.",
+      "raw": "§fI'm feeling generous, I'll show you my store.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "今天心情好，带你看看我的商店吧。"
+    },
+    {
+      "id": "jake_duplicate_animal_store",
+      "context": "真实 speaker: Jake；商店开放时再次带来相同动物",
+      "text": "Someone already brought me this animal recently, but since you put in all the effort I'll open my store for you.",
+      "raw": "§fSomeone already brought me this animal recently, but since you put in all the effort I'll open my store for you.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "最近已经有人带过这种动物了。不过你也费了这么大劲，我就为你打开商店吧。"
+    },
+    {
+      "id": "jake_cow_surprise",
+      "context": "真实 speaker: Jake；带来牛",
+      "text": "Wow a cow!",
+      "raw": "§fWow a cow!",
+      "placeholders": [],
+      "gloss": "活体动物。",
+      "translate": true,
+      "zh": "哇，是头牛!"
+    },
+    {
+      "id": "jake_cow_crossed_void",
+      "context": "真实 speaker: Jake；带来牛",
+      "text": "How did you get this over the void? Incredible!",
+      "raw": "§fHow did you get this over the void? Incredible!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你是怎么把它带过虚空的? 太厉害了!"
+    },
+    {
+      "id": "jake_gratitude_sell_item",
+      "context": "真实 speaker: Jake；带来牛、哞菇、鸡、猪、绿洲兔子或绿洲绵羊",
+      "text": "To show you my gratitude, I have a special item to sell you!",
+      "raw": "§fTo show you my gratitude, I have a special item to sell you!",
+      "placeholders": [],
+      "gloss": "出售特别物品，不是免费赠送；原文未给出整名，不补物品名称。",
+      "translate": true,
+      "zh": "为了感谢你，我有件特别的东西可以卖给你!"
+    },
+    {
+      "id": "jake_mooshroom_gorge",
+      "context": "真实 speaker: Jake；带来哞菇",
+      "text": "Wow a mushroom Cow! How did you get it out of the Gorge?",
+      "raw": "§fWow a mushroom Cow! How did you get it out of the Gorge?",
+      "placeholders": [],
+      "gloss": "mushroom Cow 指原版 Mooshroom，沿用哞菇；Gorge 指 Mushroom Gorge，沿用 _shared/Terms.json 的蘑菇峡谷。",
+      "translate": true,
+      "zh": "哇，是只哞菇! 你是怎么把它从蘑菇峡谷带出来的?"
+    },
+    {
+      "id": "jake_chicken_surprise",
+      "context": "真实 speaker: Jake；带来鸡",
+      "text": "Wow a chicken!",
+      "raw": "§fWow a chicken!",
+      "placeholders": [],
+      "gloss": "活体动物。",
+      "translate": true,
+      "zh": "哇，是只鸡!"
+    },
+    {
+      "id": "jake_chicken_flew",
+      "context": "真实 speaker: Jake；带来鸡",
+      "text": "Did it fly over here?",
+      "raw": "§fDid it fly over here?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "它是飞过来的吗?"
+    },
+    {
+      "id": "jake_pig_surprise",
+      "context": "真实 speaker: Jake；带来猪",
+      "text": "Wow a pig!",
+      "raw": "§fWow a pig!",
+      "placeholders": [],
+      "gloss": "活体动物。",
+      "translate": true,
+      "zh": "哇，是头猪!"
+    },
+    {
+      "id": "jake_pig_crossed_void",
+      "context": "真实 speaker: Jake；带来猪",
+      "text": "How did you get this over the void? You must be really strong.",
+      "raw": "§fHow did you get this over the void? You must be really strong.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你是怎么把它带过虚空的? 你力气一定很大。"
+    },
+    {
+      "id": "jake_rabbit_thanks",
+      "context": "真实 speaker: Jake；带来兔子",
+      "text": "Thank you for bringing me this rabbit!",
+      "raw": "§fThank you for bringing me this rabbit!",
+      "placeholders": [],
+      "gloss": "活体动物。",
+      "translate": true,
+      "zh": "谢谢你给我带来这只兔子!"
+    },
+    {
+      "id": "jake_gratitude_special_sale",
+      "context": "真实 speaker: Jake；带来兔子、绵羊或以死灵术带来湖中皇帝",
+      "text": "To show my gratitude, I have a special item to sell you!",
+      "raw": "§fTo show my gratitude, I have a special item to sell you!",
+      "placeholders": [],
+      "gloss": "与 To show you my gratitude 的逐字原文不同，保留此历史措辞；出售不是赠送。",
+      "translate": true,
+      "zh": "为了表示感谢，我有件特别的东西可以卖给你!"
+    },
+    {
+      "id": "jake_sheep_thanks",
+      "context": "真实 speaker: Jake；带来绵羊",
+      "text": "Thank you for bringing me this sheep!",
+      "raw": "§fThank you for bringing me this sheep!",
+      "placeholders": [],
+      "gloss": "活体动物。",
+      "translate": true,
+      "zh": "谢谢你给我带来这只绵羊!"
+    },
+    {
+      "id": "jake_oasis_rabbit_fished",
+      "context": "真实 speaker: Jake；带来从绿洲钓到的绿洲兔子",
+      "text": "This rabbit looks a little funny, did you fish it out of the Oasis?",
+      "raw": "§fThis rabbit looks a little funny, did you fish it out of the Oasis?",
+      "placeholders": [],
+      "gloss": "Oasis 沿用 _shared/Terms.json 的绿洲；此触发明确关联钓鱼。",
+      "translate": true,
+      "zh": "这只兔子看起来有点奇怪，是你从绿洲钓上来的吗?"
+    },
+    {
+      "id": "jake_oasis_sheep_fished",
+      "context": "真实 speaker: Jake；带来从绿洲钓到的绿洲绵羊",
+      "text": "This sheep looks a little funny, did you fish it out of the Oasis?",
+      "raw": "§fThis sheep looks a little funny, did you fish it out of the Oasis?",
+      "placeholders": [],
+      "gloss": "Oasis 沿用 _shared/Terms.json 的绿洲；此触发明确关联钓鱼。",
+      "translate": true,
+      "zh": "这只绵羊看起来有点奇怪，是你从绿洲钓上来的吗?"
+    },
+    {
+      "id": "jake_emperor_surprise",
+      "context": "真实 speaker: Jake；以死灵术带来 The Loch Emperor",
+      "text": "WOW!",
+      "raw": "§fWOW!",
+      "placeholders": [],
+      "gloss": "这是完整的惊叹对白，不是纯装饰。",
+      "translate": true,
+      "zh": "哇!"
+    },
+    {
+      "id": "jake_skeleton_emperor_legend",
+      "context": "真实 speaker: Jake；以死灵术带来 The Loch Emperor",
+      "text": "The legendary Skeleton Emperor!",
+      "raw": "§fThe legendary Skeleton Emperor!",
+      "placeholders": [],
+      "gloss": "页面条件称 The Loch Emperor（本地词表湖中皇帝），实际对白仍称 Skeleton Emperor；保留逐字旧称并按普通怪物名译为骷髅皇帝，不替原文改名。",
+      "translate": true,
+      "zh": "传说中的骷髅皇帝!"
+    },
+    {
+      "id": "jake_emperor_lifelong_search",
+      "context": "真实 speaker: Jake；以死灵术带来 The Loch Emperor",
+      "text": "I searched all my life to find this creature but was never able to find it!",
+      "raw": "§fI searched all my life to find this creature but was never able to find it!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "我找了它一辈子，却一直没能找到!"
+    },
+    {
+      "id": "jake_beth_lab_strange",
+      "context": "真实 speaker: Beth；Beth 首次发现地下实验室；未命中现有 Beth CHAT 记录",
+      "text": "This is so strange... ",
+      "raw": "§fThis is so strange... ",
+      "placeholders": [],
+      "gloss": "保留源文尾部空格；译文不人为填充。",
+      "translate": true,
+      "zh": "这里太奇怪了……"
+    },
+    {
+      "id": "jake_beth_lab_speechless",
+      "context": "真实 speaker: Beth；Beth 首次发现地下实验室；未命中现有 Beth CHAT 记录",
+      "text": "I can't believe this has been down here for all this time... I am speechless.",
+      "raw": "§fI can't believe this has been down here for all this time... I am speechless.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "不敢相信，这里居然一直藏着这些东西……我都不知道该说什么了。"
+    },
+    {
+      "id": "jake_beth_lab_animals_experiments",
+      "context": "真实 speaker: Beth；Beth 首次发现地下实验室，误认为 Jake 虐待动物；未命中现有 Beth CHAT 记录",
+      "text": "WHAT? There are animals inside of here?!?! Jake is doing horrible experiments with these animals that he catches...",
+      "raw": "§fWHAT? There are §banimals §finside of here?!?! §cJake §fis doing §chorrible experiments §fwith these §banimals §fthat he catches...",
+      "placeholders": [],
+      "gloss": "人物此时的判断，不将指控改写成已确认的机制事实。",
+      "translate": true,
+      "zh": "什么? 这里面竟然有动物?!?! Jake 居然在做可怕的实验，用的就是这些动物，都是他抓来的……",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "WHAT? There are ",
+          "zh": "什么? 这里面竟然有"
+        },
+        {
+          "color": "§b",
+          "text": "animals ",
+          "zh": "动物"
+        },
+        {
+          "color": "§f",
+          "text": "inside of here?!?! ",
+          "zh": "?!?! "
+        },
+        {
+          "color": "§c",
+          "text": "Jake ",
+          "zh": "Jake "
+        },
+        {
+          "color": "§f",
+          "text": "is doing ",
+          "zh": "居然在做"
+        },
+        {
+          "color": "§c",
+          "text": "horrible experiments ",
+          "zh": "可怕的实验"
+        },
+        {
+          "color": "§f",
+          "text": "with these ",
+          "zh": "，用的就是这些"
+        },
+        {
+          "color": "§b",
+          "text": "animals ",
+          "zh": "动物"
+        },
+        {
+          "color": "§f",
+          "text": "that he catches...",
+          "zh": "，都是他抓来的……"
+        }
+      ]
+    },
+    {
+      "id": "jake_beth_lab_psychopath",
+      "context": "真实 speaker: Beth；Beth 首次发现地下实验室，愤怒指控；未命中现有 Beth CHAT 记录",
+      "text": "He has gone completely mad! He's a psychopath!",
+      "raw": "§fHe has gone completely mad! He's a psychopath!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "他彻底疯了! 简直是个变态!"
+    },
+    {
+      "id": "jake_beth_lab_tools",
+      "context": "真实 speaker: Beth；Beth 首次发现地下实验室；未命中现有 Beth CHAT 记录",
+      "text": "And look at all of these tools he has laying around here... a SAW?... a HAMMER? ",
+      "raw": "§fAnd look at all of these tools he has laying around here... a SAW?... a HAMMER? ",
+      "placeholders": [],
+      "gloss": "saw、hammer 是场景中的普通工具，不是索要的特定物品整名；保留源文尾部空格。",
+      "translate": true,
+      "zh": "再看看这里到处摆着的工具……锯子?……锤子?"
+    },
+    {
+      "id": "jake_beth_lab_animals_question",
+      "context": "真实 speaker: Beth；Beth 首次发现地下实验室；未命中现有 Beth CHAT 记录",
+      "text": "What is this psycho doing with these animals???",
+      "raw": "§fWhat is this psycho doing with these §banimals§f???",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这疯子究竟在对这些动物做什么???",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "What is this psycho doing with these ",
+          "zh": "这疯子究竟在对这些"
+        },
+        {
+          "color": "§b",
+          "text": "animals",
+          "zh": "动物"
+        },
+        {
+          "color": "§f",
+          "text": "???",
+          "zh": "做什么???"
+        }
+      ]
+    },
+    {
+      "id": "jake_beth_lab_explanation_demand",
+      "context": "真实 speaker: Beth；Beth 首次发现地下实验室；未命中现有 Beth CHAT 记录",
+      "text": "Jake has a lot of explaining to do!",
+      "raw": "§cJake §fhas a lot of explaining to do!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Jake 必须给我们一个解释!",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "Jake ",
+          "zh": "Jake "
+        },
+        {
+          "color": "§f",
+          "text": "has a lot of explaining to do!",
+          "zh": "必须给我们一个解释!"
+        }
+      ]
+    },
+    {
+      "id": "jake_lab_not_what_it_looks_like",
+      "context": "真实 speaker: Jake；Beth 首次发现地下实验室，Jake 慌张辩解",
+      "text": "IT'S NOT WHAT IT LOOKS LIKE!",
+      "raw": "§fIT'S NOT WHAT IT LOOKS LIKE!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "不是你们想的那样!"
+    },
+    {
+      "id": "jake_beth_lab_accusation",
+      "context": "真实 speaker: Beth；Beth 首次发现地下实验室，厉声指控；未命中现有 Beth CHAT 记录",
+      "text": "WE KNOW WHAT YOU ARE DOING IN HERE, YOU PSYCHO! YOU WILL PAY FOR WHAT YOU ARE DOING TO THESE ANIMALS!",
+      "raw": "§fWE KNOW WHAT YOU ARE DOING IN HERE, YOU PSYCHO! YOU WILL PAY FOR WHAT YOU ARE DOING TO THESE §bANIMALS§f!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "我们知道你在这里干什么，疯子! 你这样对待这些动物，一定会付出代价!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "WE KNOW WHAT YOU ARE DOING IN HERE, YOU PSYCHO! YOU WILL PAY FOR WHAT YOU ARE DOING TO THESE ",
+          "zh": "我们知道你在这里干什么，疯子! 你这样对待这些"
+        },
+        {
+          "color": "§b",
+          "text": "ANIMALS",
+          "zh": "动物"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "，一定会付出代价!"
+        }
+      ]
+    },
+    {
+      "id": "jake_lab_can_explain",
+      "context": "真实 speaker: Jake；Beth 首次发现地下实验室，Jake 慌张辩解",
+      "text": "ANIMALS? I CAN EXPLAIN, I SWEAR!",
+      "raw": "§bANIMALS§f? I CAN EXPLAIN, I SWEAR!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "动物? 我能解释，我发誓!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "ANIMALS",
+          "zh": "动物"
+        },
+        {
+          "color": "§f",
+          "text": "? I CAN EXPLAIN, I SWEAR!",
+          "zh": "? 我能解释，我发誓!"
+        }
+      ]
+    },
+    {
+      "id": "jake_beth_lab_go_on_explain",
+      "context": "真实 speaker: Beth；Beth 首次发现地下实验室；未命中现有 Beth CHAT 记录",
+      "text": "WELL GO ON THEN, EXPLAIN YOURSELF!",
+      "raw": "§fWELL GO ON THEN, EXPLAIN YOURSELF!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "那你倒是说啊，解释清楚!"
+    },
+    {
+      "id": "jake_lab_workshop_defense",
+      "context": "真实 speaker: Jake；Beth 首次发现地下实验室，称这里是工作间",
+      "text": "I don't know what you guys think I am doing here, but this is just my workshop!",
+      "raw": "§fI don't know what you guys think I am doing here, but this is just my §2workshop§f!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "不知道你们以为我在这里干什么，但这不过是我的工作间!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "I don't know what you guys think I am doing here, but this is just my ",
+          "zh": "不知道你们以为我在这里干什么，但这不过是我的"
+        },
+        {
+          "color": "§2",
+          "text": "workshop",
+          "zh": "工作间"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "jake_lab_animal_toys",
+      "context": "真实 speaker: Jake；Beth 首次发现地下实验室，解释用途",
+      "text": "I am just making toys for animals...",
+      "raw": "§fI am just making §btoys §ffor §banimals§f...",
+      "placeholders": [],
+      "gloss": "toys 为普通玩具泛称，不擅自补 Plushie 物品整名。",
+      "translate": true,
+      "zh": "我只是在给动物做玩具……",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "I am just making ",
+          "zh": "我只是在给",
+          "order": 0
+        },
+        {
+          "color": "§b",
+          "text": "toys ",
+          "zh": "玩具",
+          "order": 3
+        },
+        {
+          "color": "§f",
+          "text": "for ",
+          "zh": "做",
+          "order": 2
+        },
+        {
+          "color": "§b",
+          "text": "animals",
+          "zh": "动物",
+          "order": 1
+        },
+        {
+          "color": "§f",
+          "text": "...",
+          "zh": "……",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "jake_beth_lab_naive",
+      "context": "真实 speaker: Beth；Beth 首次发现地下实验室，质疑辩解；未命中现有 Beth CHAT 记录",
+      "text": "Oh really? Do you really think we are that naive?",
+      "raw": "§fOh really? Do you really think we are that naive?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "是吗? 你真觉得我们有那么好骗?"
+    },
+    {
+      "id": "jake_beth_lab_tank_challenge",
+      "context": "真实 speaker: Beth；Beth 首次发现地下实验室，质疑水槽；未命中现有 Beth CHAT 记录",
+      "text": "We know that you are experimenting with animals down here, how do you explain this tank?",
+      "raw": "§fWe know that you are experimenting with §banimals §fdown here, how do you explain this tank?",
+      "placeholders": [],
+      "gloss": "tank 指实验室容器，不是坦克。",
+      "translate": true,
+      "zh": "我们知道你在这下面拿动物做实验，那这个水槽你怎么解释?",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "We know that you are experimenting with ",
+          "zh": "我们知道你在这下面拿"
+        },
+        {
+          "color": "§b",
+          "text": "animals ",
+          "zh": "动物"
+        },
+        {
+          "color": "§f",
+          "text": "down here, how do you explain this tank?",
+          "zh": "做实验，那这个水槽你怎么解释?"
+        }
+      ]
+    },
+    {
+      "id": "jake_lab_plushies_jelly",
+      "context": "真实 speaker: Jake；Beth 首次发现地下实验室，解释水槽",
+      "text": "Those are my plushies! I preserve them in Jelly so they stay fresh!",
+      "raw": "§fThose are my §bplushies§f! I preserve them in Jelly so they stay fresh!",
+      "placeholders": [],
+      "gloss": "plushies 和 Jelly 是对白泛称，并非所需物品整名；不由此建立 GUI_Item 译名。",
+      "translate": true,
+      "zh": "那些是我的毛绒玩具! 我把它们泡在果冻里，这样就能保鲜!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Those are my ",
+          "zh": "那些是我的"
+        },
+        {
+          "color": "§b",
+          "text": "plushies",
+          "zh": "毛绒玩具"
+        },
+        {
+          "color": "§f",
+          "text": "! I preserve them in Jelly so they stay fresh!",
+          "zh": "! 我把它们泡在果冻里，这样就能保鲜!"
+        }
+      ]
+    },
+    {
+      "id": "jake_lab_no_animals_harmed",
+      "context": "真实 speaker: Jake；Beth 首次发现地下实验室，解释制作过程",
+      "text": "They look super realistic, but no animal was harmed when making them!",
+      "raw": "§fThey look super realistic, but no §banimal §fwas harmed when making them!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "它们看起来是特别逼真，可制作时没有任何动物受伤!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "They look super realistic, but no ",
+          "zh": "它们看起来是特别逼真，可制作时没有任何"
+        },
+        {
+          "color": "§b",
+          "text": "animal ",
+          "zh": "动物"
+        },
+        {
+          "color": "§f",
+          "text": "was harmed when making them!",
+          "zh": "受伤!"
+        }
+      ]
+    },
+    {
+      "id": "jake_lab_plushie_gift",
+      "context": "真实 speaker: Jake；Beth 首次发现地下实验室，拿出毛绒玩具证明",
+      "text": "I can prove it! Here, take this. This is one of the plushies I made, you can have it!",
+      "raw": "§fI can prove it! Here, take this. This is one of the §bplushies §fI made, you can have it!",
+      "placeholders": [],
+      "gloss": "原文没有物品整名，只保留 plushies 的泛称。",
+      "translate": true,
+      "zh": "我可以证明! 来，拿着，这是我做的一个毛绒玩具，送给你了!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "I can prove it! Here, take this. This is one of the ",
+          "zh": "我可以证明! 来，拿着，这是我做的一个"
+        },
+        {
+          "color": "§b",
+          "text": "plushies ",
+          "zh": "毛绒玩具"
+        },
+        {
+          "color": "§f",
+          "text": "I made, you can have it!",
+          "zh": "，送给你了!"
+        }
+      ]
+    },
+    {
+      "id": "jake_lab_harmless_assurance",
+      "context": "真实 speaker: Jake；Beth 首次发现地下实验室",
+      "text": "So really, I am not harming them at all!",
+      "raw": "§fSo really, I am not harming them at all!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "所以，我真的一点也没伤害它们!"
+    },
+    {
+      "id": "jake_beth_lab_apology",
+      "context": "真实 speaker: Beth；Beth 首次发现地下实验室，接受解释并道歉；未命中现有 Beth CHAT 记录",
+      "text": "Everything makes sense now...I'm sorry I yelled at you Jake. I'm so sorry.",
+      "raw": "§fEverything makes sense now...I'm sorry I yelled at you Jake. I'm so sorry.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "现在都说得通了……对不起，Jake，我不该冲你吼。真的对不起。"
+    },
+    {
+      "id": "jake_lab_lie_apology",
+      "context": "真实 speaker: Jake；Beth 首次发现地下实验室，回应道歉",
+      "text": "It's alright now. I was wrong to lie about it and I should have told you sooner.",
+      "raw": "§fIt's alright now. I was wrong to lie about it and I should have told you sooner.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "没事了。撒谎是我不对，我早该告诉你的。"
+    },
+    {
+      "id": "jake_beth_lab_player_thanks",
+      "context": "真实 speaker: Beth；Beth 首次发现地下实验室，感谢玩家；未命中现有 Beth CHAT 记录",
+      "text": "%s, thank you so much for telling me what you saw here. I'll be forever grateful.",
+      "raw": "§7%s§f, thank you so much for telling me what you saw here. I'll be forever grateful.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "Wiki <player> 表示的玩家名，保留原名",
+          "type": "player_name",
+          "example": "inkkni"
+        }
+      ],
+      "gloss": "<player> 是明确的玩家变量说明，不是实际 HTML 标签或可点击选择按钮。",
+      "translate": true,
+      "zh": "%s，谢谢你把这里的见闻告诉我。我会一直感激你的。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§f",
+          "text": ", thank you so much for telling me what you saw here. I'll be forever grateful.",
+          "zh": "，谢谢你把这里的见闻告诉我。我会一直感激你的。"
+        }
+      ]
+    },
+    {
+      "id": "jake_beth_lab_farewell",
+      "context": "真实 speaker: Beth；Beth 首次发现地下实验室后告别；未命中现有 Beth CHAT 记录",
+      "text": "I have to go now, I hope to see you guys soon.",
+      "raw": "§fI have to go now, I hope to see you guys soon.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "我得走了，希望很快能再见到你们。"
+    },
+    {
+      "id": "jake_lab_close_call",
+      "context": "真实 speaker: Jake；Beth 离开地下实验室后",
+      "text": "That was a close one, thank you %s for having my back. Anyway, I need to go back to my business.",
+      "raw": "§fThat was a close one, thank you §7%s §ffor having my back. Anyway, I need to go back to my business.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "Wiki <player> 表示的玩家名，保留原名",
+          "type": "player_name",
+          "example": "inkkni"
+        }
+      ],
+      "gloss": "玩家名变量不汉化；保留 Wiki 的灰色玩家名边界。",
+      "translate": true,
+      "zh": "好险，多亏了 %s 替我解围。好了，我该回去忙自己的事了。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "That was a close one, thank you ",
+          "zh": "好险，多亏了 "
+        },
+        {
+          "color": "§7",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§f",
+          "text": "for having my back. Anyway, I need to go back to my business.",
+          "zh": " 替我解围。好了，我该回去忙自己的事了。"
+        }
+      ]
+    },
+    {
+      "id": "jake_beth_secret_lab_hidden_area",
+      "context": "真实 speaker: Beth；Beth 再次进入地下实验室的隐秘区域；未命中现有 Beth CHAT 记录",
+      "text": "I... I had no idea this was here. What could Jake be hiding in this secret part of the lab?",
+      "raw": "§fI... I had no idea this was here. What could Jake be hiding in this secret part of the lab?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "我……我完全不知道这里还有这些。Jake 在实验室的这个秘密区域藏了什么?"
+    },
+    {
+      "id": "jake_beth_secret_lab_light_switch",
+      "context": "真实 speaker: Beth；Beth 再次进入地下实验室；未命中现有 Beth CHAT 记录",
+      "text": "It's very dark in here, where's the light-switch in this place?",
+      "raw": "§fIt's very dark in here, where's the light-switch in this place?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这里好黑，灯的开关在哪儿?"
+    },
+    {
+      "id": "jake_beth_secret_lab_shock",
+      "context": "真实 speaker: Beth；Beth 再次进入地下实验室，看到隐藏设施；未命中现有 Beth CHAT 记录",
+      "text": "Oh... my... what is all of this?",
+      "raw": "§fOh... my... what is all of this?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "天……啊……这些都是什么?"
+    },
+    {
+      "id": "jake_beth_secret_lab_beyond_plushies",
+      "context": "真实 speaker: Beth；Beth 再次进入地下实验室；未命中现有 Beth CHAT 记录",
+      "text": "This is... this isn't just about plushies anymore. Jake's been working on something much bigger.",
+      "raw": "§fThis is... this isn't just about plushies anymore. Jake's been working on something much bigger.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这……已经不只是毛绒玩具的事了。Jake 一直在研究更大的项目。"
+    },
+    {
+      "id": "jake_beth_secret_lab_hybridization_mutation",
+      "context": "真实 speaker: Beth；Beth 再次进入地下实验室；未命中现有 Beth CHAT 记录",
+      "text": "Hybridization? Mutation? What is this madness? He's experimenting on something...",
+      "raw": "§fHybridization? §cMutation§f? What is this madness? He's experimenting on something...",
+      "placeholders": [],
+      "gloss": "mutation 沿用农业玩法的变异，不混同重铸或附魔。",
+      "translate": true,
+      "zh": "杂交? 变异? 这也太疯狂了吧? 他在做什么实验……",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Hybridization? ",
+          "zh": "杂交? "
+        },
+        {
+          "color": "§c",
+          "text": "Mutation",
+          "zh": "变异"
+        },
+        {
+          "color": "§f",
+          "text": "? What is this madness? He's experimenting on something...",
+          "zh": "? 这也太疯狂了吧? 他在做什么实验……"
+        }
+      ]
+    },
+    {
+      "id": "jake_beth_secret_lab_resilient_livestock",
+      "context": "真实 speaker: Beth；Beth 再次进入地下实验室，阅读研究内容；未命中现有 Beth CHAT 记录",
+      "text": "Resilient livestock... enhanced growth rates... Jake, what have you done?",
+      "raw": "§fResilient livestock... enhanced growth rates... Jake, what have you done?",
+      "placeholders": [],
+      "gloss": "这些是研究方向，原文不含属性数值，不补增益机制。",
+      "translate": true,
+      "zh": "适应力强的牲畜……更快的生长速度……Jake，你都做了些什么?"
+    },
+    {
+      "id": "jake_beth_secret_lab_mutated_crops",
+      "context": "真实 speaker: Beth；Beth 再次进入地下实验室，发现变异作物；未命中现有 Beth CHAT 记录",
+      "text": "These aren't normal crops. These are mutated... just like the ones we've been finding in the Garden. But why hide all of this down here?",
+      "raw": "§fThese aren't normal §acrops§f. These are §cmutated§f... just like the ones we've been finding in the Garden. But why hide all of this down here?",
+      "placeholders": [],
+      "gloss": "Garden 沿用花园。",
+      "translate": true,
+      "zh": "这些不是普通的作物，它们都发生了变异……跟我们在花园里发现的一样。可是，为什么要把这些都藏在这里?",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "These aren't normal ",
+          "zh": "这些不是普通的"
+        },
+        {
+          "color": "§a",
+          "text": "crops",
+          "zh": "作物"
+        },
+        {
+          "color": "§f",
+          "text": ". These are ",
+          "zh": "，它们都发生了"
+        },
+        {
+          "color": "§c",
+          "text": "mutated",
+          "zh": "变异"
+        },
+        {
+          "color": "§f",
+          "text": "... just like the ones we've been finding in the Garden. But why hide all of this down here?",
+          "zh": "……跟我们在花园里发现的一样。可是，为什么要把这些都藏在这里?"
+        }
+      ]
+    },
+    {
+      "id": "jake_secret_lab_stay_out",
+      "context": "真实 speaker: Jake；Beth 再次进入地下实验室，Jake 出现",
+      "text": "Beth... I told you to stay out of this.",
+      "raw": "§fBeth... I told you to stay out of this.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Beth……我说过，别插手这件事。"
+    },
+    {
+      "id": "jake_beth_secret_lab_explain_again",
+      "context": "真实 speaker: Beth；Beth 再次进入地下实验室，质问 Jake；未命中现有 Beth CHAT 记录",
+      "text": "Jake! You have a lot of explaining to do, once again... What is all of this? What are you doing down here?",
+      "raw": "§fJake! You have a lot of explaining to do, once again... What is all of this? What are you doing down here?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Jake! 你又得好好解释一下了……这些到底是什么? 你在这里干什么?"
+    },
+    {
+      "id": "jake_beth_secret_lab_no_more_lies",
+      "context": "真实 speaker: Beth；Beth 再次进入地下实验室；未命中现有 Beth CHAT 记录",
+      "text": "Please tell me the truth this time Jake, I can't take all these lies anymore!",
+      "raw": "§fPlease tell me the truth this time Jake, I can't take all these lies anymore!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Jake，这次请告诉我实话，我再也受不了这些谎话了!"
+    },
+    {
+      "id": "jake_secret_lab_farming_research",
+      "context": "真实 speaker: Jake；Beth 再次进入地下实验室，解释研究方向",
+      "text": "It's... it's not what it looks like. This lab... it's for research. To improve farming techniques, to help both crops and animals adapt to new environments.",
+      "raw": "§fIt's... it's not what it looks like. This lab... it's for research. To improve farming techniques, to help both §acrops §fand §eanimals §fadapt to new environments.",
+      "placeholders": [],
+      "gloss": "这是农业技术研究，不译成钓鱼技能。",
+      "translate": true,
+      "zh": "不……不是你想的那样。这间实验室……是用来做研究的。我想改进农业技术，帮助作物和动物适应新的环境。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "It's... it's not what it looks like. This lab... it's for research. To improve farming techniques, to help both ",
+          "zh": "不……不是你想的那样。这间实验室……是用来做研究的。我想改进农业技术，帮助"
+        },
+        {
+          "color": "§a",
+          "text": "crops ",
+          "zh": "作物"
+        },
+        {
+          "color": "§f",
+          "text": "and ",
+          "zh": "和"
+        },
+        {
+          "color": "§e",
+          "text": "animals ",
+          "zh": "动物"
+        },
+        {
+          "color": "§f",
+          "text": "adapt to new environments.",
+          "zh": "适应新的环境。"
+        }
+      ]
+    },
+    {
+      "id": "jake_beth_secret_lab_playing_with_life",
+      "context": "真实 speaker: Beth；Beth 再次进入地下实验室，质疑研究伦理；未命中现有 Beth CHAT 记录",
+      "text": "Research? This doesn't look like research, Jake! This looks like you are playing with life itself. Those tanks, those animals, what are you actually doing to them?",
+      "raw": "§bResearch§f? This doesn't look like research, Jake! This looks like you are playing with life itself. Those tanks, those animals, what are you actually doing to them?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "研究? 这可不像研究，Jake! 你简直是在拿生命当儿戏。那些水槽、那些动物，你到底对它们做了什么?",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "Research",
+          "zh": "研究"
+        },
+        {
+          "color": "§f",
+          "text": "? This doesn't look like research, Jake! This looks like you are playing with life itself. Those tanks, those animals, what are you actually doing to them?",
+          "zh": "? 这可不像研究，Jake! 你简直是在拿生命当儿戏。那些水槽、那些动物，你到底对它们做了什么?"
+        }
+      ]
+    },
+    {
+      "id": "jake_secret_lab_evolving_farming",
+      "context": "真实 speaker: Jake；Beth 再次进入地下实验室，解释研究动机",
+      "text": "You don't understand, Beth! Farming as we know is evolving. If we don't adapt, we'll be left behind. The world's demands are growing, and so are the challenges.",
+      "raw": "§fYou don't understand, Beth! Farming as we know is evolving. If we don't adapt, we'll be left behind. The world's demands are growing, and so are the challenges.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你不明白，Beth! 我们熟悉的农业正在改变。不跟着适应，我们就会被甩在后面。大家的需求在增长，难题也越来越多。"
+    },
+    {
+      "id": "jake_beth_secret_lab_risks_ethics",
+      "context": "真实 speaker: Beth；Beth 再次进入地下实验室；未命中现有 Beth CHAT 记录",
+      "text": "That doesn't give you the right to hide this from everyone. What about the risks? The ethics?",
+      "raw": "§fThat doesn't give you the right to hide this from everyone. What about the risks? The ethics?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "那也不代表你有权瞒着所有人。风险呢? 伦理呢?"
+    },
+    {
+      "id": "jake_beth_secret_lab_unnatural",
+      "context": "真实 speaker: Beth；Beth 再次进入地下实验室；未命中现有 Beth CHAT 记录",
+      "text": "You're creating something entirely unnatural.",
+      "raw": "§fYou're creating something entirely unnatural.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你在创造完全违背自然的东西。"
+    },
+    {
+      "id": "jake_secret_lab_experiments_change_everything",
+      "context": "真实 speaker: Jake；Beth 再次进入地下实验室，叹气后解释",
+      "text": "sigh I know it seems... wrong. But these experiments could change everything.",
+      "raw": "§f§osigh §fI know it seems... wrong. But these experiments could change everything.",
+      "placeholders": [],
+      "gloss": "sigh 位于带 Jake NPC 前缀的对白正文内，DOM 单独斜体；与无 speaker 的场景说明 source_line 77 不同，保留其叹气表达和斜体边界。could 是可能性，不补必定收益。",
+      "translate": true,
+      "zh": "唉……我知道，这看起来……不太对。但这些实验也许能改变一切。",
+      "segments": [
+        {
+          "color": "§f§o",
+          "text": "sigh ",
+          "zh": "唉……"
+        },
+        {
+          "color": "§f",
+          "text": "I know it seems... wrong. But these experiments could change everything.",
+          "zh": "我知道，这看起来……不太对。但这些实验也许能改变一切。"
+        }
+      ]
+    },
+    {
+      "id": "jake_secret_lab_survival_vision",
+      "context": "真实 speaker: Jake；Beth 再次进入地下实验室，设想研究成果",
+      "text": "Imagine crops that can survive the harshest conditions, or animals that never get sick.",
+      "raw": "§fImagine crops that can survive the harshest conditions, or animals that never get sick.",
+      "placeholders": [],
+      "gloss": "设想而非已经完成的游戏效果。",
+      "translate": true,
+      "zh": "想想看，能在最恶劣的环境下存活的作物，或是永远不会生病的动物。"
+    },
+    {
+      "id": "jake_secret_lab_thriving",
+      "context": "真实 speaker: Jake；Beth 再次进入地下实验室",
+      "text": "It's not just about survival, it's about thriving.",
+      "raw": "§fIt's not just about survival, it's about thriving.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "不只是活下来，还要长得更好。"
+    },
+    {
+      "id": "jake_beth_secret_lab_other_secrets",
+      "context": "真实 speaker: Beth；Beth 再次进入地下实验室；未命中现有 Beth CHAT 记录",
+      "text": "And what about the things you are not telling me? What else are you hiding down here, Jake?",
+      "raw": "§fAnd what about the things you are not telling me? What else are you hiding down here, Jake?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "那你没告诉我的事呢? Jake，你在这里还藏了什么?"
+    },
+    {
+      "id": "jake_secret_lab_better_not_know",
+      "context": "真实 speaker: Jake；Beth 再次进入地下实验室，仍有所保留",
+      "text": "There are some things you're better off not knowing. Not yet at least.",
+      "raw": "§fThere are some things you're better off not knowing. Not yet at least.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "有些事，你不知道反而更好。至少现在还不该知道。"
+    },
+    {
+      "id": "jake_beth_secret_lab_find_truth",
+      "context": "真实 speaker: Beth；Beth 再次进入地下实验室，坚持调查；未命中现有 Beth CHAT 记录",
+      "text": "No, Jake. I've come this far, and I won't stop now. If you won't tell me the truth, I'll find it myself.",
+      "raw": "§fNo, Jake. I've come this far, and I won't stop now. If you won't tell me the truth, I'll find it myself.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "不行，Jake。我已经查到这里了，不会就这么停下。你不肯说实话，我就自己找。"
+    },
+    {
+      "id": "jake_secret_lab_protecting_work",
+      "context": "真实 speaker: Jake；Beth 再次进入地下实验室，辩解保密原因",
+      "text": "Beth, you don't understand, some things aren't ready to be uncovered. It's not about keeping secrets, it's about protecting what I've been working towards.",
+      "raw": "§fBeth, you don't understand, some things aren't ready to be uncovered. It's not about keeping secrets, it's about protecting what I've been working towards.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Beth，你不明白，有些东西还没到公开的时候。我不是想守着秘密，我只是想保护自己一直为之努力的成果。"
+    },
+    {
+      "id": "jake_beth_secret_lab_use_for_good",
+      "context": "真实 speaker: Beth；Beth 再次进入地下实验室，劝说公开研究；未命中现有 Beth CHAT 记录",
+      "text": "Protecting what? Your pride? Your experiments? This isn't just about you, Jake. We have a responsibility to use this lab for good, not to bury it under layers of secrecy.",
+      "raw": "§fProtecting what? Your pride? Your experiments? This isn't just about you, Jake. We have a responsibility to use this lab for good, not to bury it under layers of secrecy.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "保护什么? 你的面子? 你的实验? Jake，这不只是你一个人的事。我们有责任让这间实验室造福大家，而不是把它埋在层层秘密之下。"
+    },
+    {
+      "id": "jake_beth_secret_lab_whats_this",
+      "context": "真实 speaker: Beth；Beth 再次进入地下实验室，发现作物分析仪；未命中现有 Beth CHAT 记录",
+      "text": "What's this?",
+      "raw": "§fWhat's this?",
+      "placeholders": [],
+      "gloss": "基线同 CHAT 面未找到同文；后续跨波次去重交给父代理。",
+      "translate": true,
+      "zh": "这是什么?"
+    },
+    {
+      "id": "jake_secret_lab_crop_analyzer_name",
+      "context": "真实 speaker: Jake；Beth 再次进入地下实验室，介绍设备",
+      "text": "That... is the Crop Analyzer.",
+      "raw": "§fThat... is the §aCrop Analyzer§f.",
+      "placeholders": [],
+      "gloss": "Crop Analyzer 沿用 Farming/GUI_Item/SkyMart.json#skymart_requires_crop_analyzer 的作物分析仪；是装置，不是索要的物品。",
+      "translate": true,
+      "zh": "那是……作物分析仪。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "That... is the ",
+          "zh": "那是……"
+        },
+        {
+          "color": "§a",
+          "text": "Crop Analyzer",
+          "zh": "作物分析仪"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "jake_beth_secret_lab_analyzer_question",
+      "context": "真实 speaker: Beth；Beth 再次进入地下实验室，询问设备用途；未命中现有 Beth CHAT 记录",
+      "text": "The Crop Analyzer? What does it do?",
+      "raw": "§fThe §aCrop Analyzer§f? What does it do?",
+      "placeholders": [],
+      "gloss": "作物分析仪沿用 Farming/GUI_Item/SkyMart.json#skymart_requires_crop_analyzer。",
+      "translate": true,
+      "zh": "作物分析仪? 它有什么用?",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "The ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§a",
+          "text": "Crop Analyzer",
+          "zh": "作物分析仪"
+        },
+        {
+          "color": "§f",
+          "text": "? What does it do?",
+          "zh": "? 它有什么用?"
+        }
+      ]
+    },
+    {
+      "id": "jake_secret_lab_analyzer_purpose",
+      "context": "真实 speaker: Jake；Beth 再次进入地下实验室，介绍作物分析仪用途",
+      "text": "It's a tool I've been developing. It analyzes mutations in crops, helps identify traits that can improve yield, resistance or even flavor.",
+      "raw": "§fIt's a tool I've been developing. It analyzes §cmutations §fin crops, helps identify traits that can improve §6yield§f, §9resistance §for even §dflavor§f.",
+      "placeholders": [],
+      "gloss": "yield、resistance、flavor 是研究特征，不补属性数值或已生效增益。",
+      "translate": true,
+      "zh": "这是我一直在研发的工具。它能分析作物的变异，找出能提高产量、抗性，甚至改善风味的特征。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "It's a tool I've been developing. It analyzes ",
+          "zh": "这是我一直在研发的工具。它能分析作物的"
+        },
+        {
+          "color": "§c",
+          "text": "mutations ",
+          "zh": "变异"
+        },
+        {
+          "color": "§f",
+          "text": "in crops, helps identify traits that can improve ",
+          "zh": "，找出能提高"
+        },
+        {
+          "color": "§6",
+          "text": "yield",
+          "zh": "产量"
+        },
+        {
+          "color": "§f",
+          "text": ", ",
+          "zh": "、"
+        },
+        {
+          "color": "§9",
+          "text": "resistance ",
+          "zh": "抗性"
+        },
+        {
+          "color": "§f",
+          "text": "or even ",
+          "zh": "，甚至改善"
+        },
+        {
+          "color": "§d",
+          "text": "flavor",
+          "zh": "风味"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "的特征。"
+        }
+      ]
+    },
+    {
+      "id": "jake_secret_lab_precision_data",
+      "context": "真实 speaker: Jake；Beth 再次进入地下实验室，强调研发尚未完成",
+      "text": "But it's not finished. It's delicate work, Beth. Work that requires precision, and data.",
+      "raw": "§fBut it's not finished. It's delicate work, Beth. Work that requires precision, and data.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "但它还没完成。Beth，这项研究很精细，必须精确，还得有数据。"
+    },
+    {
+      "id": "jake_beth_secret_lab_no_isolation",
+      "context": "真实 speaker: Beth；Beth 再次进入地下实验室，劝 Jake 不要独自研究；未命中现有 Beth CHAT 记录",
+      "text": "Work that shouldn't be done in isolation. Jake, this could change everything for farmers everywhere. Why are you hiding something so revolutionary?",
+      "raw": "§fWork that shouldn't be done in isolation. Jake, this could change everything for farmers everywhere. Why are you hiding something so revolutionary?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "也不是该独自埋头做的研究。Jake，这可能改变各地农民的生活。这么突破性的成果，你为什么要藏起来?"
+    },
+    {
+      "id": "jake_secret_lab_mistake_consequences",
+      "context": "真实 speaker: Jake；Beth 再次进入地下实验室，解释风险",
+      "text": "Because it's not perfect yet. A mistake could have disastrous consequences. I didn't want to involve anyone until I was sure it was ready.",
+      "raw": "§fBecause it's not perfect yet. A mistake could have disastrous consequences. I didn't want to involve anyone until I was sure it was ready.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "因为它还不够完善。一个失误就可能酿成灾难。在确定准备好之前，我不想把任何人牵扯进来。"
+    },
+    {
+      "id": "jake_beth_secret_lab_offer_help",
+      "context": "真实 speaker: Beth；Beth 再次进入地下实验室，邀请玩家一起帮助 Jake；未命中现有 Beth CHAT 记录",
+      "text": "Jake, you've done incredible work here. But you don't have to do it alone anymore. Let me and %s help you.",
+      "raw": "§fJake, you've done incredible work here. But you don't have to do it alone anymore. Let me and §7%s §fhelp you.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "Wiki <player> 表示的玩家名，保留原名",
+          "type": "player_name",
+          "example": "inkkni"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "Jake，你的研究真的很了不起。但现在不用再一个人做了。让我和 %s 来帮你吧。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Jake, you've done incredible work here. But you don't have to do it alone anymore. Let me and ",
+          "zh": "Jake，你的研究真的很了不起。但现在不用再一个人做了。让我和 "
+        },
+        {
+          "color": "§7",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§f",
+          "text": "help you.",
+          "zh": " 来帮你吧。"
+        }
+      ]
+    },
+    {
+      "id": "jake_beth_secret_lab_responsible_use",
+      "context": "真实 speaker: Beth；Beth 再次进入地下实验室；未命中现有 Beth CHAT 记录",
+      "text": "Together, we can finish this and make sure it's used responsibly.",
+      "raw": "§fTogether, we can finish this and make sure it's used responsibly.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "我们一起把它完成，也一起确保它得到负责任的使用。"
+    },
+    {
+      "id": "jake_secret_lab_accepts_teamwork",
+      "context": "真实 speaker: Jake；Beth 再次进入地下实验室，接受合作",
+      "text": "Alright. You're right, Beth. I've been trying to carry this burden alone for too long. If we're going to make this work, we'll do it together.",
+      "raw": "§fAlright. You're right, Beth. I've been trying to carry this burden alone for too long. If we're going to make this work, we'll do it together.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "好吧。Beth，你说得对。我一个人扛了太久。既然要把这件事做成，那我们就一起做。"
+    },
+    {
+      "id": "jake_secret_lab_player_access",
+      "context": "真实 speaker: Jake；Beth 再次进入地下实验室，授予玩家作物分析仪使用权限",
+      "text": "And you, %s, you've been instrumental in getting us to this point. You should have access to the Crop Analyzer. You've earned my trust.",
+      "raw": "§fAnd you, §7%s§f, you've been instrumental in getting us to this point. You should have access to the §aCrop Analyzer§f. You've earned my trust.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "Wiki <player> 表示的玩家名，保留原名",
+          "type": "player_name",
+          "example": "inkkni"
+        }
+      ],
+      "gloss": "作物分析仪沿用 Farming/GUI_Item/SkyMart.json#skymart_requires_crop_analyzer；授予使用权限，不补奖励物品。",
+      "translate": true,
+      "zh": "还有你，%s，能走到这一步，你帮了很大的忙。你也该能使用作物分析仪了。你已经赢得了我的信任。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "And you, ",
+          "zh": "还有你，"
+        },
+        {
+          "color": "§7",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§f",
+          "text": ", you've been instrumental in getting us to this point. You should have access to the ",
+          "zh": "，能走到这一步，你帮了很大的忙。你也该能使用"
+        },
+        {
+          "color": "§a",
+          "text": "Crop Analyzer",
+          "zh": "作物分析仪"
+        },
+        {
+          "color": "§f",
+          "text": ". You've earned my trust.",
+          "zh": "了。你已经赢得了我的信任。"
+        }
+      ]
+    },
+    {
+      "id": "jake_analyzer_analyze_any_mutations",
+      "context": "真实 speaker: Jake；地下实验室，完成解锁后普通交谈",
+      "text": "Feel free to analyze any mutations you find!",
+      "raw": "§fFeel free to analyze any mutations you find!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "找到什么变异作物，都可以拿来分析!"
+    },
+    {
+      "id": "jake_analyzer_wait_instruction",
+      "context": "真实 speaker: Jake；首次操作作物分析仪",
+      "text": "Hold your horses! You don't even know how this machine works yet, you might break something if you don't pay attention!",
+      "raw": "§fHold your horses! You don't even know how this machine works yet, you might break something if you don't pay attention!",
+      "placeholders": [],
+      "gloss": "Hold your horses 是让玩家别着急，不是有关马的任务。",
+      "translate": true,
+      "zh": "先别急! 你还不知道这台机器怎么用，稍不留神就可能弄坏东西!"
+    },
+    {
+      "id": "jake_analyzer_introduce_machine",
+      "context": "真实 speaker: Jake；首次操作作物分析仪",
+      "text": "Allow me to introduce you to this machine first.",
+      "raw": "§fAllow me to introduce you to this machine first.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "让我先给你介绍一下这台机器。"
+    },
+    {
+      "id": "jake_analyzer_research_samples",
+      "context": "真实 speaker: Jake；首次操作作物分析仪",
+      "text": "To help with my research, I need to collect various data samples of special mutated crops.",
+      "raw": "§fTo help with my research, I need to collect various data samples of special mutated crops.",
+      "placeholders": [],
+      "gloss": "特殊变异作物为泛称，未给出具体物品名。",
+      "translate": true,
+      "zh": "为了推进研究，我需要收集各种特殊变异作物的数据样本。"
+    },
+    {
+      "id": "jake_analyzer_intriguing_dna",
+      "context": "真实 speaker: Jake；首次操作作物分析仪",
+      "text": "Their DNA is quite intriguing, making them a perfect basis for my research!",
+      "raw": "§fTheir DNA is quite intriguing, making them a perfect basis for my research!",
+      "placeholders": [],
+      "gloss": "DNA 沿用通行缩写，不补虚构属性。",
+      "translate": true,
+      "zh": "它们的 DNA 很有意思，正适合作为我的研究基础!"
+    },
+    {
+      "id": "jake_analyzer_request_dustgrain",
+      "context": "真实 speaker: Jake；首次操作作物分析仪，要求温室中的 Dustgrain 样本",
+      "text": "To get started, acquire a Dustgrain first in your Greenhouse and then come back to me.",
+      "raw": "§fTo get started, acquire a §aDustgrain §ffirst in your Greenhouse and then come back to me.",
+      "placeholders": [],
+      "gloss": "用户拍板：所需物品无本地中文译名，保留完整英文 Dustgrain；Farming/GUI_Item/Garden_Runtime.json#garden_live_mutation_dustgrain 已明确 translate:false。Greenhouse 沿用温室。",
+      "translate": true,
+      "zh": "先从你的温室里弄一份 Dustgrain，再回来找我，我们就能开始了。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "To get started, acquire a ",
+          "zh": "先从你的温室里弄一份 "
+        },
+        {
+          "color": "§a",
+          "text": "Dustgrain ",
+          "zh": "Dustgrain"
+        },
+        {
+          "color": "§f",
+          "text": "first in your Greenhouse and then come back to me.",
+          "zh": "，再回来找我，我们就能开始了。"
+        }
+      ]
+    },
+    {
+      "id": "jake_analyzer_place_sample",
+      "context": "真实 speaker: Jake；展示 Dustgrain 后",
+      "text": "Splendid! Now that we have our sample, place it inside the machine to analyze the mutation.",
+      "raw": "§fSplendid! Now that we have our sample, place it inside the machine to analyze the mutation.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "太好了! 样本有了，把它放进机器，分析一下这份变异作物吧。"
+    },
+    {
+      "id": "jake_analyzer_sample_sequenced",
+      "context": "真实 speaker: Jake；分析 Dustgrain 后",
+      "text": "Good job! We have successfully sequenced the mutation, adding another sample to my collection!",
+      "raw": "§fGood job! We have successfully sequenced the mutation, adding another sample to my collection!",
+      "placeholders": [],
+      "gloss": "sequenced 指完成测序；collection 此处是研究样本集，不是资源收藏品系统。",
+      "translate": true,
+      "zh": "干得好! 这份变异作物的测序成功了，我的样本库又添了一份样本!"
+    },
+    {
+      "id": "jake_analyzer_uncategorized_mutations",
+      "context": "真实 speaker: Jake；分析 Dustgrain 后",
+      "text": "If you find anymore mutations, I have not yet categorized, please feel free to analyze them here!",
+      "raw": "§fIf you find anymore mutations, I have not yet categorized, please feel free to analyze them here!",
+      "placeholders": [],
+      "gloss": "保留 Wiki 原文 anymore 和逗号，不纠正英文。",
+      "translate": true,
+      "zh": "如果找到我还没分类的变异作物，尽管拿到这里分析!"
+    },
+    {
+      "id": "jake_analyzer_help_farmers",
+      "context": "真实 speaker: Jake；分析 Dustgrain 后",
+      "text": "Analyzing these mutations will help us understand how we can improve existing crops which will help farmers everywhere!",
+      "raw": "§fAnalyzing these mutations will help us understand how we can improve existing crops which will help farmers everywhere!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "分析这些变异作物，能让我们知道如何改良现有作物，帮助各地的农民!"
+    },
+    {
+      "id": "jake_abiphone_want_contact",
+      "context": "真实 speaker: Jake；索要 Abiphone 联系方式",
+      "text": "✆ You want my contact?",
+      "raw": "§b✆ §fYou want my contact?",
+      "placeholders": [],
+      "gloss": "保留电话图标，不移除其独立颜色。",
+      "translate": true,
+      "zh": "✆ 想要我的联系方式?",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "You want my contact?",
+          "zh": "想要我的联系方式?"
+        }
+      ]
+    },
+    {
+      "id": "jake_abiphone_rarely_shares",
+      "context": "真实 speaker: Jake；索要 Abiphone 联系方式",
+      "text": "✆ I don't give it out often.",
+      "raw": "§b✆ §fI don't give it out often.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 我可不常给人。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "I don't give it out often.",
+          "zh": "我可不常给人。"
+        }
+      ]
+    },
+    {
+      "id": "jake_abiphone_shovel_warranty",
+      "context": "真实 speaker: Jake；索要 Abiphone 联系方式，抱怨骚扰电话",
+      "text": "✆ I'm still getting calls from that one guy asking if I want to \"extend my shovel warranty\".",
+      "raw": "§b✆ §fI'm still getting calls from that one guy asking if I want to \"extend my shovel warranty\".",
+      "placeholders": [],
+      "gloss": "一次性延保推销电话笑话；shovel 是普通铲子泛称，并非所需物品名。",
+      "translate": true,
+      "zh": "✆ 到现在还有个家伙不停打来，问我要不要给铲子续保。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "I'm still getting calls from that one guy asking if I want to \"extend my shovel warranty\".",
+          "zh": "到现在还有个家伙不停打来，问我要不要给铲子续保。"
+        }
+      ]
+    },
+    {
+      "id": "jake_abiphone_research_trust",
+      "context": "真实 speaker: Jake；索要 Abiphone 联系方式",
+      "text": "✆ But if you help me with my research, I can trust you with it.",
+      "raw": "§b✆ §fBut if you help me with my research, I can trust you with it.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 不过，要是你帮我做研究，我就放心把联系方式给你。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "But if you help me with my research, I can trust you with it.",
+          "zh": "不过，要是你帮我做研究，我就放心把联系方式给你。"
+        }
+      ]
+    },
+    {
+      "id": "jake_abiphone_request_chocoberry",
+      "context": "真实 speaker: Jake；索要 Abiphone 联系方式，要求一个 Chocoberry",
+      "text": "✆ Bring me a Chocoberry. One sample shall be enough.",
+      "raw": "§b✆ §fBring me a §aChocoberry§f. One sample shall be enough.",
+      "placeholders": [],
+      "gloss": "用户拍板：所需物品无本地中文译名，保留完整英文 Chocoberry；Farming/GUI_Item/Garden_Runtime.json#garden_live_mutation_chocoberry 已明确 translate:false。一个样本是固定门槛，不模板化。",
+      "translate": true,
+      "zh": "✆ 给我带一个 Chocoberry。一份样本就够了。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Bring me a ",
+          "zh": "给我带一个 "
+        },
+        {
+          "color": "§a",
+          "text": "Chocoberry",
+          "zh": "Chocoberry"
+        },
+        {
+          "color": "§f",
+          "text": ". One sample shall be enough.",
+          "zh": "。一份样本就够了。"
+        }
+      ]
+    },
+    {
+      "id": "jake_abiphone_give_item_option",
+      "ref": "Dungeons/ChatMessage/Dungeon_Hub_Tasks_and_NPC_Options.json#npc_option_give_item",
+      "context": "无 NPC speaker 的真实选择按钮；Abiphone 联系方式流程，交出 Chocoberry；复用同 CHAT 面现有括号细分记录"
+    },
+    {
+      "id": "jake_abiphone_research_unfinished",
+      "context": "真实 speaker: Jake；选择交出物品但没有 Chocoberry",
+      "text": "✆ I cannot add you yet, I still have to finish my research.",
+      "raw": "§b✆ §fI cannot add you yet, I still have to finish my research.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 现在还不能加你，我的研究还没做完。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "I cannot add you yet, I still have to finish my research.",
+          "zh": "现在还不能加你，我的研究还没做完。"
+        }
+      ]
+    },
+    {
+      "id": "jake_abiphone_chocoberry_first",
+      "context": "真实 speaker: Jake；选择交出物品但没有 Chocoberry",
+      "text": "✆ Bring me a Chocoberry first, and I'll give you my contact!",
+      "raw": "§b✆ §fBring me a §aChocoberry §ffirst, and I'll give you my contact!",
+      "placeholders": [],
+      "gloss": "用户拍板：所需物品无本地中文译名，保留完整英文 Chocoberry；Farming/GUI_Item/Garden_Runtime.json#garden_live_mutation_chocoberry 已明确 translate:false。",
+      "translate": true,
+      "zh": "✆ 先带一个 Chocoberry 给我，我就把联系方式给你!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Bring me a ",
+          "zh": "先带一个 "
+        },
+        {
+          "color": "§a",
+          "text": "Chocoberry ",
+          "zh": "Chocoberry"
+        },
+        {
+          "color": "§f",
+          "text": "first, and I'll give you my contact!",
+          "zh": " 给我，我就把联系方式给你!"
+        }
+      ]
+    },
+    {
+      "id": "jake_abiphone_chocoberry_condition",
+      "context": "真实 speaker: Jake；交出 Chocoberry 后",
+      "text": "✆ This Chocoberry looks great, perfect condition even!",
+      "raw": "§b✆ §fThis §aChocoberry §flooks great, perfect condition even!",
+      "placeholders": [],
+      "gloss": "用户拍板：所需物品无本地中文译名，保留完整英文 Chocoberry；Farming/GUI_Item/Garden_Runtime.json#garden_live_mutation_chocoberry 已明确 translate:false。",
+      "translate": true,
+      "zh": "✆ 这个 Chocoberry 真不错，状态简直完美!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "This ",
+          "zh": "这个 "
+        },
+        {
+          "color": "§a",
+          "text": "Chocoberry ",
+          "zh": "Chocoberry"
+        },
+        {
+          "color": "§f",
+          "text": "looks great, perfect condition even!",
+          "zh": " 真不错，状态简直完美!"
+        }
+      ]
+    },
+    {
+      "id": "jake_abiphone_sample_sufficient",
+      "context": "真实 speaker: Jake；交出 Chocoberry 后",
+      "text": "✆ This gives me everything I need.",
+      "raw": "§b✆ §fThis gives me everything I need.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 这样我需要的就都齐了。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "This gives me everything I need.",
+          "zh": "这样我需要的就都齐了。"
+        }
+      ]
+    },
+    {
+      "id": "jake_abiphone_add_contact",
+      "context": "真实 speaker: Jake；交出 Chocoberry 后，加入联系人",
+      "text": "✆ You've earned my contact. I'll add you now.",
+      "raw": "§b✆ §fYou've earned my contact. I'll add you now.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "✆ 现在可以把联系方式给你了。我这就加你。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "You've earned my contact. I'll add you now.",
+          "zh": "现在可以把联系方式给你了。我这就加你。"
+        }
+      ]
+    },
+    {
+      "id": "jake_abiphone_no_calls_after_eight",
+      "context": "真实 speaker: Jake；交出 Chocoberry 后，提醒联系时间",
+      "text": "✆ But don't call me after 8pm, please.",
+      "raw": "§b✆ §fBut don't call me after 8pm, please.",
+      "placeholders": [],
+      "gloss": "晚上 8 点为固定联系偏好，不是动态倒计时。",
+      "translate": true,
+      "zh": "✆ 不过，晚上 8 点以后就别给我打电话了，拜托。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "But don't call me after 8pm, please.",
+          "zh": "不过，晚上 8 点以后就别给我打电话了，拜托。"
+        }
+      ]
+    }
+  ]
+}

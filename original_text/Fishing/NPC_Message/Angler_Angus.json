@@ -1,0 +1,251 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Angler_Angus",
+  "fetched_at": "2026-10-02",
+  "verified_ingame": false,
+  "npc": "Angler Angus",
+  "aliases": [],
+  "note": "身份: 农场钓鱼前哨外围的钓鱼者,向玩家介绍鱼饵。\n关系: 初次见面就热心讲解,还送些备用鱼饵。\n说话方式: 朴素随和的口语,像钓友聊窍门。\n性格与词汇: 乐于助人;记得、来、抛竿、鱼饵。\n禁用风格: 不硬塞网络梗、方言或额外机制;人名 Angler Angus 保留原文。",
+  "wiki_last_edited": "This page was last edited on 11 August 2026, at 20:12.",
+  "source_note": "原文与颜色来自本次 Playwright 采集的社区 Wiki 普通呈现页面。raw 是页面 DOM 颜色还原样本,不是服务器原始字节;尚未实机核对。",
+  "entries": [
+    {
+      "id": "angler_angus_remember_to_use_bait",
+      "context": "首次互动;提醒玩家钓鱼时使用鱼饵。",
+      "text": "Whenever you fish, make sure you're using some type of Bait.",
+      "raw": "§fWhenever you fish, make sure you're using some type of §6Bait§f.",
+      "placeholders": [],
+      "gloss": "Bait 沿用 _shared/Terms.json 的鱼饵,不同于 Chum(碎鱼饵)。",
+      "translate": true,
+      "zh": "钓鱼的时候,记得用上鱼饵。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Whenever you fish, make sure you're using some type of ",
+          "zh": "钓鱼的时候,记得用上"
+        },
+        {
+          "color": "§6",
+          "text": "Bait",
+          "zh": "鱼饵"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "angler_angus_bait_storage_and_bag_unlock",
+      "context": "首次互动;介绍鱼饵存放位置和钓鱼袋解锁门槛。",
+      "text": "You can store Bait in your inventory or Fishing Bag, which is unlocked at Raw Cod Collection III.",
+      "raw": "§fYou can store §6Bait§f in your inventory or §9Fishing Bag§f, which is unlocked at §aRaw Cod Collection III§f.",
+      "placeholders": [],
+      "gloss": "Fishing Bag 沿用 Hub_General/GUI_Title/Common_Menus.json#gui_title_fishing_bag 的钓鱼袋;Raw Cod 沿用 Hub_General/GUI_Item/Fishing_Merchant.json#raw_cod 的生鳕鱼。Collection 沿用收藏品;III 是固定解锁门槛,不是动态数值。",
+      "translate": true,
+      "zh": "你可以把鱼饵放在背包或钓鱼袋里,钓鱼袋要到生鳕鱼收藏品 III 才能解锁。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "You can store ",
+          "zh": "你可以把"
+        },
+        {
+          "color": "§6",
+          "text": "Bait",
+          "zh": "鱼饵"
+        },
+        {
+          "color": "§f",
+          "text": " in your inventory or ",
+          "zh": "放在背包或"
+        },
+        {
+          "color": "§9",
+          "text": "Fishing Bag",
+          "zh": "钓鱼袋"
+        },
+        {
+          "color": "§f",
+          "text": ", which is unlocked at ",
+          "zh": "里,钓鱼袋要到"
+        },
+        {
+          "color": "§a",
+          "text": "Raw Cod Collection III",
+          "zh": "生鳕鱼收藏品 III"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": " 才能解锁。"
+        }
+      ]
+    },
+    {
+      "id": "angler_angus_bait_consumed_on_cast",
+      "context": "首次互动;介绍抛竿时自动消耗鱼饵。",
+      "text": "Bait is automatically consumed whenever you cast your rod, so it's easy to use!",
+      "raw": "§6Bait§f is automatically consumed whenever you cast your rod, so it's easy to use!",
+      "placeholders": [],
+      "gloss": "自动消耗的时点是抛竿,不能改成钓到鱼或收竿时。",
+      "translate": true,
+      "zh": "鱼饵会在你抛竿时自动消耗,用起来可方便了!",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Bait",
+          "zh": "鱼饵"
+        },
+        {
+          "color": "§f",
+          "text": " is automatically consumed whenever you cast your rod, so it's easy to use!",
+          "zh": "会在你抛竿时自动消耗,用起来可方便了!"
+        }
+      ]
+    },
+    {
+      "id": "angler_angus_easy_fish_bait_recipe",
+      "context": "首次互动;分享自己常用的鱼类鱼饵合成材料。",
+      "text": "I craft Fish Bait all the time because it's so easy to do - just a couple of Raw Cod and a Raw Salmon!",
+      "raw": "§fI craft Fish Bait all the time because it's so easy to do - just a couple of Raw Cod and a Raw Salmon!",
+      "placeholders": [],
+      "gloss": "Fish Bait 复用 Fishing/GUI_Item/Bait_Guide.json#bait_kind 的整名模板 %1$s Bait,其中 Fish 按 _shared/Terms.json 的 category_name 译为鱼类,得到鱼类鱼饵。Raw Cod 沿用 Hub_General/GUI_Item/Fishing_Merchant.json#raw_cod 的生鳕鱼;Raw Salmon 沿用 Hub_General/GUI_Item/Collection_Tiers_Live.json#collection_raw_salmon_name 的生鲑鱼。a couple of 与 a 分别保留为两条与一条固定材料数量,不补合成产量。",
+      "translate": true,
+      "zh": "我经常合成鱼类鱼饵,做起来可简单了——两条生鳕鱼加一条生鲑鱼就行!"
+    },
+    {
+      "id": "angler_angus_give_spare_fish_bait",
+      "context": "首次互动;把备用的鱼类鱼饵送给玩家。",
+      "text": "Here, I've got some spare Fish Bait for ya!",
+      "raw": "§fHere, I've got some spare Fish Bait for ya!",
+      "placeholders": [],
+      "gloss": "Fish Bait 复用 Fishing/GUI_Item/Bait_Guide.json#bait_kind 的整名模板 %1$s Bait,其中 Fish 按 _shared/Terms.json 的 category_name 译为鱼类,得到鱼类鱼饵。原文未给赠送数量,不补数值。",
+      "translate": true,
+      "zh": "来,我这儿有些多余的鱼类鱼饵,给你!"
+    },
+    {
+      "id": "angler_angus_fish_bait_speed_boost",
+      "context": "领取鱼类鱼饵后;评价这种鱼饵的钓鱼速度加成。",
+      "text": "Fish Bait seems to give a really effective ☂ Fishing Speed boost!",
+      "raw": "§fFish Bait seems to give a really effective §b☂ Fishing Speed §fboost!",
+      "placeholders": [],
+      "gloss": "Fish Bait 复用 Fishing/GUI_Item/Bait_Guide.json#bait_kind 的整名模板 %1$s Bait,其中 Fish 按 _shared/Terms.json 的 category_name 译为鱼类,得到鱼类鱼饵。Fishing Speed 沿用 _shared/Terms.json 的钓鱼速度,保留 ☂ 图标和原文的 seems 语气,不补加成数值。",
+      "translate": true,
+      "zh": "鱼类鱼饵对 ☂ 钓鱼速度的提升好像还挺明显!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Fish Bait seems to give a really effective ",
+          "zh": "鱼类鱼饵对 "
+        },
+        {
+          "color": "§b",
+          "text": "☂ Fishing Speed ",
+          "zh": "☂ 钓鱼速度"
+        },
+        {
+          "color": "§f",
+          "text": "boost!",
+          "zh": "的提升好像还挺明显!"
+        }
+      ]
+    },
+    {
+      "id": "angler_angus_keep_baits_on_hand",
+      "context": "领取鱼类鱼饵后;提醒各种鱼饵用途不同,应随身携带。",
+      "text": "All Baits serve some specialized purpose, so be sure to keep some on you at all times!",
+      "raw": "§fAll §6Baits §fserve some specialized purpose, so be sure to keep some on you at all times!",
+      "placeholders": [],
+      "gloss": "Baits 沿用 _shared/Terms.json 的鱼饵;原文只建议随身带一些,不增加必须携带所有种类的要求。",
+      "translate": true,
+      "zh": "各种鱼饵都有各自的用途,记得随身带上一些!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "All ",
+          "zh": "各种"
+        },
+        {
+          "color": "§6",
+          "text": "Baits ",
+          "zh": "鱼饵"
+        },
+        {
+          "color": "§f",
+          "text": "serve some specialized purpose, so be sure to keep some on you at all times!",
+          "zh": "都有各自的用途,记得随身带上一些!"
+        }
+      ]
+    },
+    {
+      "id": "angler_angus_consult_bait_guide",
+      "context": "领取鱼类鱼饵后;介绍可以随时查看的鱼饵指南。",
+      "text": "If you have any questions about Bait, you can view my Bait Guide at any time!",
+      "raw": "§fIf you have any questions about §6Bait§f, you can view my §6Bait Guide §fat any time!",
+      "placeholders": [],
+      "gloss": "Bait Guide 沿用 Fishing/GUI_Item/Bait_Guide.json#bait_guide_item 的鱼饵指南。",
+      "translate": true,
+      "zh": "要是对鱼饵有什么不明白的,随时可以翻翻我的鱼饵指南!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "If you have any questions about ",
+          "zh": "要是对"
+        },
+        {
+          "color": "§6",
+          "text": "Bait",
+          "zh": "鱼饵"
+        },
+        {
+          "color": "§f",
+          "text": ", you can view my ",
+          "zh": "有什么不明白的,随时可以翻翻我的"
+        },
+        {
+          "color": "§6",
+          "text": "Bait Guide ",
+          "zh": "鱼饵指南"
+        },
+        {
+          "color": "§f",
+          "text": "at any time!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "angler_angus_bait_command_shortcut",
+      "context": "领取鱼类鱼饵后;介绍 /bait 快捷指令,不用专程来见他。",
+      "text": "You can also use /bait as a shortcut if you aren't feeling like paying me a visit!",
+      "raw": "§fYou can also use §a/bait §fas a shortcut if you aren't feeling like paying me a visit!",
+      "placeholders": [],
+      "gloss": "/bait 是原文明确提到的指令,保留原样。这里只保留对白及颜色分段,不写点击命令或假定它可点击。",
+      "translate": true,
+      "zh": "不想特地跑来找我的话,也可以用 /bait 这个快捷指令!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "You can also use ",
+          "zh": "不想特地跑来找我的话,也可以用 "
+        },
+        {
+          "color": "§a",
+          "text": "/bait",
+          "zh": "/bait"
+        },
+        {
+          "color": "§a",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§f",
+          "text": "as a shortcut if you aren't feeling like paying me a visit!",
+          "zh": "这个快捷指令!"
+        }
+      ]
+    }
+  ]
+}

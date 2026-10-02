@@ -1,9 +1,9 @@
 {
   "npc": "Enid",
   "location": "村庄 / 钓鱼前哨",
-  "source": "runtime capture (SkyZH) 2026-08-23 + 2026-08-24 + https://hypixelskyblock.minecraft.wiki/w/Enid",
-  "fetched_at": "2026-08-24",
-  "verified_ingame": true,
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Fisherwoman_Enid",
+  "fetched_at": "2026-10-02",
+  "verified_ingame": false,
   "messages": [
     {
       "id": "enid_gavin_uses_scg",
@@ -11,7 +11,7 @@
       "raw": "§fI know that §bGavin §fuses §d/scg §finstead of looking in his §aFishing Skill §fmenu.",
       "text": "I know that Gavin uses /scg instead of looking in his Fishing Skill menu.",
       "placeholders": [],
-      "gloss": "Gavin 是 NPC 人名,/scg 是服务器指令,均保留原样。",
+      "gloss": "Gavin 是 NPC 人名,/scg 是服务器指令,均保留原样。保留既有实测 raw: Fishing Skill 同为绿色。本次 Wiki DOM 仅将 Fishing 标为绿色,Skill menu 为白色;原文一致,不新造同文重复记录,不从指令提及推断点击事件。",
       "translate": true,
       "zh": "我知道 Gavin 不查看自己的钓鱼技能菜单,而是使用 /scg。",
       "segments": [
@@ -123,9 +123,9 @@
       "raw": "§fI've heard stories of §cFrog Man§f, but I've never quite worked out if he's a frog or a man.",
       "text": "I've heard stories of Frog Man, but I've never quite worked out if he's a frog or a man.",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "Frog Man 是海洋生物通名,不是需保留英文的 NPC 人名。沿用 _shared/Terms.json 中 en:Frog Man、types:mob_name 的既定译名‘蛙人’,保留青蛙还是人的笑点。",
       "translate": true,
-      "zh": "我听说过Frog Man的故事,但一直没弄明白他究竟是青蛙还是人。",
+      "zh": "我听说过蛙人的故事,但一直没弄明白他究竟是青蛙还是人。",
       "segments": [
         {
           "color": "§f",
@@ -135,7 +135,7 @@
         {
           "color": "§c",
           "text": "Frog Man",
-          "zh": "Frog Man"
+          "zh": "蛙人"
         },
         {
           "color": "§f",
@@ -207,7 +207,7 @@
       "raw": "§fTake my spare Fishing Rod and stand near the water.",
       "text": "Take my spare Fishing Rod and stand near the water.",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "Fishing Rod 沿用本地完整物品名 Hub_General/GUI_Item/Fishing_Merchant.json#fishing_rod → 钓鱼竿。这里是领取备用鱼竿,不是要求玩家交付材料。",
       "translate": true,
       "zh": "拿上我备用的钓鱼竿,站到水边。"
     },
@@ -227,7 +227,7 @@
       "raw": "To fish, cast your rod §finto the water and wait for a fish to §abite§f!",
       "text": "To fish, cast your rod into the water and wait for a fish to bite!",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "保留既有实测 raw 的无颜色码开头及随后 §f 的边界。本次 Wiki DOM 将整段开头显示为 §f;英文对白和咬钩的绿色高亮相同,不以 Wiki 覆盖历史实测格式。",
       "translate": true,
       "zh": "钓鱼时,把鱼竿抛入水中,然后等待鱼儿咬钩!",
       "segments": [
@@ -283,24 +283,24 @@
     {
       "id": "this_part_of_the_hub_is_a_popular",
       "context": "Enid 新手流程实测台词（第 8 条）",
-      "raw": "§fThis part of the %1$s is a popular area for fishing because of the §bFishing Outpost§f!",
-      "text": "This part of the %1$s is a popular area for fishing because of the Fishing Outpost!",
+      "raw": "§fThis part of the %s is a popular area for fishing because of the §bFishing Outpost§f!",
+      "text": "This part of the %s is a popular area for fishing because of the Fishing Outpost!",
       "placeholders": [
         {
-          "token": "%1$s",
+          "token": "%s",
           "desc": "中心岛名称（服务器曾发送 Hub / hub 两种大小写）",
           "type": "raw",
           "example": "Hub"
         }
       ],
-      "gloss": "",
+      "gloss": "保留既有模板兼容 Hub / hub 两种历史拼写,单个占位符统一写作 %s。Hub 及 hub 均复用 _shared/Terms.json 的 Hub → 大厅（词表不区分大小写）；Fishing Outpost 沿用该词表地名‘钓鱼前哨’。popular 表示常有人来钓鱼,不是适宜度加成。",
       "translate": true,
-      "zh": "%1$s 的这一带很适合钓鱼,因为这里有钓鱼前哨!",
+      "zh": "不少人爱来%s这一带钓鱼,因为这里有钓鱼前哨!",
       "segments": [
         {
           "color": "§f",
-          "text": "This part of the %1$s is a popular area for fishing because of the ",
-          "zh": "%1$s 的这一带很适合钓鱼,因为这里有"
+          "text": "This part of the %s is a popular area for fishing because of the ",
+          "zh": "不少人爱来%s这一带钓鱼,因为这里有"
         },
         {
           "color": "§b",
@@ -347,14 +347,14 @@
       "raw": "§9Fisherman Gerald §fwill be happy to help you on your §aFishing §fjourney. Just tell him his wife sent you!",
       "text": "Fisherman Gerald will be happy to help you on your Fishing journey. Just tell him his wife sent you!",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "Fisherman 为职务,沿用‘渔夫’;Gerald 为人名,保留英文。his wife 指说话人 Enid,不更改夫妻关系。分段译文补上 Gerald 与后续汉字之间的空格。",
       "translate": true,
       "zh": "渔夫 Gerald 很乐意在你的钓鱼之旅中帮助你。告诉他是他妻子让你去的就好!",
       "segments": [
         {
           "color": "§9",
           "text": "Fisherman Gerald ",
-          "zh": "渔夫 Gerald"
+          "zh": "渔夫 Gerald "
         },
         {
           "color": "§f",
@@ -406,14 +406,14 @@
       "raw": "§fAnd tell §9Gerald §fI won't be home for dinner tonight! I'm tired of him making §f§osalmon§f.",
       "text": "And tell Gerald I won't be home for dinner tonight! I'm tired of him making salmon.",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "salmon 指丈夫做的鲑鱼,不是要求交付的材料;沿用本地完整名称 Hub_General/GUI_Item/Remaining_September.json#round_tail_salmon → 鲑鱼,不误换成 Raw Salmon 的‘生鲑鱼’。Gerald 人名与前面的汉字留空格,保留鲑鱼的斜体格式。",
       "translate": true,
       "zh": "还有,告诉 Gerald 我今晚不回家吃饭了! 我受够他做的鲑鱼了。",
       "segments": [
         {
           "color": "§f",
           "text": "And tell ",
-          "zh": "还有,告诉"
+          "zh": "还有,告诉 "
         },
         {
           "color": "§9",
@@ -423,7 +423,7 @@
         {
           "color": "§f",
           "text": "I won't be home for dinner tonight! I'm tired of him making ",
-          "zh": ",我今晚不回家吃饭了! 我受够他做的"
+          "zh": " 我今晚不回家吃饭了! 我受够他做的"
         },
         {
           "color": "§f§o",
@@ -469,9 +469,10 @@
       "text": "My favorite kind is Dark Bait because I prefer fishing at night.",
       "placeholders": [],
       "translate": true,
-      "zh": "我最喜欢暗黑鱼饵,毕竟我更爱夜钓。",
+      "zh": "我最喜欢黑暗鱼饵,毕竟我更爱夜钓。",
       "context": "本轮实测补充",
-      "gloss": "社区 Wiki 普通页面核对；原文以本轮实测为准。"
+      "gloss": "保留既有实测原文,本次补填 Wiki DOM 的单色 raw。Dark Bait 已由 Fishing/GUI_Item/Bait_Guide.json#bait_kind 的 %1$s Bait 模板覆盖;占位符类型 bait_kind 经目录确认后复用 _shared/Terms.json 的 category_name:Dark → 黑暗,因此完整现有译名是‘黑暗鱼饵’,修正旧句的‘暗黑鱼饵’。不是要求交付鱼饵。",
+      "raw": "§fMy favorite kind is Dark Bait because I prefer fishing at night."
     },
     {
       "id": "enid_angler_angus_bait",
@@ -480,7 +481,7 @@
       "translate": true,
       "zh": "垂钓者 Angus 比我更懂鱼饵。你要是想多学点,他应该就在这条河沿岸钓鱼。",
       "context": "本轮实测补充",
-      "gloss": "社区 Wiki 普通页面核对；原文以本轮实测为准。",
+      "gloss": "社区 Wiki 普通页面核对；原文以既有实测为准,本次补填与既有 segments 一致的 Wiki DOM raw。Angler 是职务‘垂钓者’,不是同名附魔;Angus 是人名,保留英文。",
       "segments": [
         {
           "color": "§d",
@@ -502,7 +503,89 @@
           "text": "than I do. I think he's fishing somewhere along this river if you're interested in learning more.",
           "zh": "。你要是想多学点,他应该就在这条河沿岸钓鱼。"
         }
+      ],
+      "raw": "§dAngler Angus §fknows a lot more about §6Bait §fthan I do. I think he's fishing somewhere along this river if you're interested in learning more."
+    },
+    {
+      "id": "enid_fishing_yes_option",
+      "ref": "Farming/ChatMessage/Trapper_September.json#live_select_an_option_yes_928235",
+      "context": "首次互动,玩家回答是否来钓鱼;复用同 CHAT 渲染面的‘Select an option: [Yes!]’,引用目标已独立拆分提示、左括号、选项正文及右括号。"
+    },
+    {
+      "id": "enid_claim_fishing_rod_reminder",
+      "context": "尚未领取 Enid 赠送的 Fishing Rod 时提醒玩家",
+      "raw": "§fDon't forget your §aFishing Rod§f!",
+      "text": "Don't forget your Fishing Rod!",
+      "placeholders": [],
+      "gloss": "Fishing Rod 沿用本地完整物品名 Hub_General/GUI_Item/Fishing_Merchant.json#fishing_rod → 钓鱼竿。Wiki 条件为尚未领取鱼竿,因此译为提醒领取,不误导为交付任务。",
+      "translate": true,
+      "zh": "别忘了领你的钓鱼竿!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Don't forget your ",
+          "zh": "别忘了领你的"
+        },
+        {
+          "color": "§a",
+          "text": "Fishing Rod",
+          "zh": "钓鱼竿"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
       ]
+    },
+    {
+      "id": "enid_recommend_backwater_bayou",
+      "context": "已与渔夫 Gerald 对话后,推荐死水沼泽",
+      "raw": "§fIf you like fishin', you'll love the §2Backwater Bayou§f!",
+      "text": "If you like fishin', you'll love the Backwater Bayou!",
+      "placeholders": [],
+      "gloss": "Backwater Bayou 沿用 _shared/Terms.json 的地名‘死水沼泽’;fishin' 是 fishing 的口语写法,不另造玩法名。",
+      "translate": true,
+      "zh": "要是喜欢钓鱼,你一定会喜欢死水沼泽!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "If you like fishin', you'll love the ",
+          "zh": "要是喜欢钓鱼,你一定会喜欢"
+        },
+        {
+          "color": "§2",
+          "text": "Backwater Bayou",
+          "zh": "死水沼泽"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "enid_visit_bayou_soon",
+      "context": "已与渔夫 Gerald 对话后,建议尽早去死水沼泽看看",
+      "raw": "§fYou should go there sometime soon!",
+      "text": "You should go there sometime soon!",
+      "placeholders": [],
+      "gloss": "there 指上一句的死水沼泽;soon 为日常建议,不是倒计时或任务期限。",
+      "translate": true,
+      "zh": "最近抽空去看看吧!"
     }
-  ]
+  ],
+  "aliases": [
+    "Fisherwoman Enid"
+  ],
+  "wiki_last_edited": "This page was last edited on 24 August 2026, at 06:07.",
+  "note": "身份: 村庄的钓鱼入门引导者,也是 Gerald 的妻子。\n关系: 热情照顾初学者,教玩家钓鱼并引荐丈夫。\n说话风格: 亲切、朴素,喜欢夸奖玩家,也会聊些家常。\n性格与词汇: 爱夜钓,会调侃丈夫总做鲑鱼;常用‘太好了’‘别忘了’。\n禁用风格: 官腔、中二宣言、硬塞网络梗、无依据的亲属称呼及额外钓鱼机制。",
+  "historical_provenance": {
+    "source": "runtime capture (SkyZH) 2026-08-23 + 2026-08-24 + https://hypixelskyblock.minecraft.wiki/w/Enid",
+    "fetched_at": "2026-08-24",
+    "verified_ingame": true,
+    "note": "保留基线 d995de7 中既有 21 条记录的稳定 ID、实测原文及历史变体。本次 verified_ingame:false 仅表示这次 Wiki 补全未做新的实机核对。"
+  },
+  "raw_note": "新增或补填的 raw 来自本次普通社区 Wiki 页面 DOM 颜色还原,不是服务器原始字节。既有实测 raw 优先保留;Wiki 对 /scg 台词中的 Skill 着色及抛竿提示的开头格式存在差异,详见相应 gloss。"
 }

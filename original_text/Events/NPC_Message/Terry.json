@@ -1,15 +1,15 @@
 {
   "npc": "Terry",
   "location": "Terry's Shack (Jerry's Workshop)",
-  "source": "https://hypixelskyblock.minecraft.wiki/w/Terry (2026-09-03 更新); 交叉核对 https://hypixel-skyblock.fandom.com/wiki/Terry",
-  "fetched_at": "2026-09-10",
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Terry",
+  "fetched_at": "2026-10-02",
   "verified_ingame": false,
-  "note": "Terry,Jerry 工坊冰湖边小屋里卖鱼竿重铸石的渔夫,水手腔(Ahoy)。花园访客台词在 Farming/NPC_Message/Terry.json。",
-  "source_note": "两家 Wiki 首次对话一致;Abiphone 台词只有 minecraft.wiki 有。均未实测,不写 raw/segments。",
+  "note": "身份: Jerry 的工坊冰湖边小屋里出售钓鱼重铸石的渔夫。关系: 热情接待玩家,提供重铸服务,也会到访花园。说话风格: 朴素爽快的水手口吻。性格与词汇: 开口常说 Ahoy,沿用‘嘿哟’;喜欢冰钓,对嚼冰的味道有些天真执拗。禁用风格: 不写官腔、伪文言,不硬塞网络梗或新增人物关系。花园访客对白复用 Farming/NPC_Message/Terry.json,不搬迁既有分类。",
+  "source_note": "历史首次对话曾与 Fandom 交叉核对一致,Abiphone 台词只有 minecraft.wiki 收录。本次使用父代理通过 Playwright 采集的社区 Wiki 普通呈现页面,补齐 DOM 颜色和选项覆盖;raw 是 Wiki 颜色还原样本,不是服务器原始字节,未冒称游戏内实测。花园对白与已有同 NPC 记录逐字一致,选项复用已有 CHAT 记录;其颜色与交互由实时服务器组件保留。",
   "messages": [
     {
       "id": "terry_welcome_pond",
-      "context": "首次对话",
+      "context": "首次对话: 欢迎玩家来到 Jerry 池塘",
       "text": "Ahoy, %s! Welcome to the Jerry Pond!",
       "placeholders": [
         {
@@ -19,49 +19,115 @@
           "example": "inkkni"
         }
       ],
-      "gloss": "",
+      "gloss": "Jerry Pond 沿用 _shared/Terms.json 的既有地名‘Jerry 池塘’;Jerry 是人名,保留英文。",
       "translate": true,
-      "zh": "嘿哟,%s! 欢迎来到 Jerry 池塘!"
+      "zh": "嘿哟,%s! 欢迎来到 Jerry 池塘!",
+      "raw": "§fAhoy, §b%s§f! Welcome to the Jerry Pond!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Ahoy, ",
+          "zh": "嘿哟,"
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§f",
+          "text": "! Welcome to the Jerry Pond!",
+          "zh": "! 欢迎来到 Jerry 池塘!"
+        }
+      ]
     },
     {
       "id": "terry_pond_creatures",
-      "context": "",
+      "context": "首次对话: 介绍池塘里的独特生物和宝物",
       "text": "You may have noticed that this pond is full of unique creatures and treasures!",
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "你大概也发现了,这片池塘里全是稀奇的生物和宝贝!"
+      "zh": "你大概也发现了,这片池塘里全是稀奇的生物和宝贝!",
+      "raw": "§fYou may have noticed that this pond is full of unique creatures and treasures!"
     },
     {
       "id": "terry_looking_for_hunks",
-      "context": "",
+      "context": "首次对话: 说明自己收集的两种冰钓材料",
       "text": "I'm looking for Ice Hunks and Blue Ice Hunks!",
       "placeholders": [],
-      "gloss": "Hunk of Ice / Hunk of Blue Ice 是物品名,由通用词组成,译「冰块 / 蓝冰块」。",
+      "gloss": "对白里的 Ice Hunks / Blue Ice Hunks 指 Hunk of Ice / Hunk of Blue Ice。沿用本地 GUI_Item 整名译文: Fishing/GUI_Item/Collected_Names_September.json#name_hunk_of_ice → 冰块碎片;同文件 #name_hunk_of_blue_ice → 蓝冰碎片。不沿用旧对白误写的‘冰块 / 蓝冰块’。",
       "translate": true,
-      "zh": "我在收冰块和蓝冰块!"
+      "zh": "我在收冰块碎片和蓝冰碎片!",
+      "raw": "§fI'm looking for §bIce Hunks§f and §bBlue Ice Hunks§f!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "I'm looking for ",
+          "zh": "我在收"
+        },
+        {
+          "color": "§b",
+          "text": "Ice Hunks",
+          "zh": "冰块碎片"
+        },
+        {
+          "color": "§f",
+          "text": " and ",
+          "zh": "和"
+        },
+        {
+          "color": "§b",
+          "text": "Blue Ice Hunks",
+          "zh": "蓝冰碎片"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
     },
     {
       "id": "terry_ice_fishing",
-      "context": "",
+      "context": "首次对话: 指导玩家砸开池塘冰面后冰钓",
       "text": "You can find these by ice fishing in the pond - break the ice and cast your rod!",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "ice fishing 沿用既有对白‘冰钓’;rod 为鱼竿,修正旧‘甩杆’为‘甩竿’。",
       "translate": true,
-      "zh": "在池塘里冰钓就能钓到——砸开冰面,甩杆!"
+      "zh": "在池塘里冰钓就能钓到——砸开冰面,甩竿!",
+      "raw": "§fYou can find these by §bice fishing§f in the pond - break the ice and cast your rod!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "You can find these by ",
+          "zh": "在池塘里"
+        },
+        {
+          "color": "§b",
+          "text": "ice fishing",
+          "zh": "冰钓"
+        },
+        {
+          "color": "§f",
+          "text": " in the pond - break the ice and cast your rod!",
+          "zh": "就能钓到——砸开冰面,甩竿!"
+        }
+      ]
     },
     {
       "id": "terry_reforge_rod",
-      "context": "",
+      "context": "首次对话: 带回足够的冰钓材料可获得 Terry 专属重铸词条",
       "text": "Bring enough hunks back to me and I will reforge your fishing rod with modifiers exclusive to me -  Terry!",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "modifiers 是重铸词条,不只是在夸个人手法;不补材料数量、效果或重铸流程。",
       "translate": true,
-      "zh": "攒够了拿来给我,我就用只有我 Terry 才会的手法给你重铸鱼竿!"
+      "zh": "攒够了拿来给我,我就用只有我 Terry 才有的词条给你重铸鱼竿!",
+      "raw": "§fBring enough hunks back to me and I will reforge your fishing rod with modifiers exclusive to me -  Terry!"
     },
     {
       "id": "terry_phone_ahoy",
-      "context": "Abiphone 加联系人",
+      "context": "Abiphone 加联系人: 向玩家打招呼",
       "text": "✆ Ahoy, %s!",
       "placeholders": [
         {
@@ -73,89 +139,294 @@
       ],
       "gloss": "",
       "translate": true,
-      "zh": "✆ 嘿哟,%s!"
+      "zh": "✆ 嘿哟,%s!",
+      "raw": "§b✆ §fAhoy, §b%s§f!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Ahoy, ",
+          "zh": "嘿哟,"
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
     },
     {
       "id": "terry_phone_goods",
-      "context": "",
+      "context": "Abiphone 加联系人: 表明要先带来所需物品",
       "text": "✆ If you want my Abiphone Contact, you're gonna have to bring me the goods.",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "Abiphone 为品牌,保留英文;Contact 沿用已有‘联系方式’。",
       "translate": true,
-      "zh": "✆ 想要我的 Abiphone 联系方式,得先把货带来。"
+      "zh": "✆ 想要我的 Abiphone 联系方式,得先把货带来。",
+      "raw": "§b✆ §fIf you want my §3Abiphone Contact§f, you're gonna have to bring me the goods.",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "If you want my ",
+          "zh": "想要我的 "
+        },
+        {
+          "color": "§3",
+          "text": "Abiphone Contact",
+          "zh": "Abiphone 联系方式"
+        },
+        {
+          "color": "§f",
+          "text": ", you're gonna have to bring me the goods.",
+          "zh": ",得先把货带来。"
+        }
+      ]
     },
     {
       "id": "terry_phone_hunks_wont_cut",
-      "context": "",
+      "context": "Abiphone 加联系人: 两种冰钓碎片不能满足此次联系方式请求",
       "text": "✆ Ice Hunks and Blue Ice Hunks won't cut it anymore, unfortunately.",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "Ice Hunks / Blue Ice Hunks 指 Hunk of Ice / Hunk of Blue Ice,沿用 Fishing/GUI_Item/Collected_Names_September.json#name_hunk_of_ice 的‘冰块碎片’及 #name_hunk_of_blue_ice 的‘蓝冰碎片’。unfortunately 单独分段并前移,维持既有中文语序;两种材料颜色分别为 §a 与 §9,不沿用首次对白的 §b。",
       "translate": true,
-      "zh": "✆ 可惜,冰块和蓝冰块已经不够看了。"
+      "zh": "✆ 可惜,冰块碎片和蓝冰碎片已经不够看了。",
+      "raw": "§b✆ §aIce Hunks §fand §9Blue Ice Hunks §fwon't cut it anymore, unfortunately.",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ ",
+          "order": 0
+        },
+        {
+          "color": "§a",
+          "text": "Ice Hunks ",
+          "zh": "冰块碎片",
+          "order": 2
+        },
+        {
+          "color": "§f",
+          "text": "and ",
+          "zh": "和",
+          "order": 3
+        },
+        {
+          "color": "§9",
+          "text": "Blue Ice Hunks ",
+          "zh": "蓝冰碎片",
+          "order": 4
+        },
+        {
+          "color": "§f",
+          "text": "won't cut it anymore, ",
+          "zh": "已经不够看了。",
+          "order": 5
+        },
+        {
+          "color": "§f",
+          "text": "unfortunately.",
+          "zh": "可惜,",
+          "order": 1
+        }
+      ]
     },
     {
       "id": "terry_phone_winter_orb",
-      "context": "",
+      "context": "Abiphone 加联系人: 请求一个 Winter Water Orb",
       "text": "✆ If you want me in your phone, bring me a Winter Water Orb!",
       "placeholders": [],
-      "gloss": "Winter Water Orb → 寒冬水球:Winter 沿用「寒冬」(寒冬岛物品),Water Orb 是通用词。",
+      "gloss": "Winter Water Orb 沿用本地物品整名 _shared/Crimson_Loot_And_Fishing_Names.json#water_orb_winter → 寒冬水之球。_shared 由 Surface.fromDirectory 编译到 ITEM 面,为已有实际物品名译文,虽临时 GUI_Item 索引未列出,并非本轮新造译名。纠正旧对白‘寒冬水球’。",
       "translate": true,
-      "zh": "✆ 想把我存进手机,就给我带一个寒冬水球来!"
+      "zh": "✆ 想把我存进手机,就给我带一个寒冬水之球来!",
+      "raw": "§b✆ §fIf you want me in your phone, bring me a §6Winter Water Orb§f!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "If you want me in your phone, bring me a ",
+          "zh": "想把我存进手机,就给我带一个"
+        },
+        {
+          "color": "§6",
+          "text": "Winter Water Orb",
+          "zh": "寒冬水之球"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "来!"
+        }
+      ]
     },
     {
       "id": "terry_phone_thanks_orb",
-      "context": "满足条件",
+      "context": "满足 Abiphone 联系人请求: 感谢玩家交付水之球",
       "text": "✆ Thanks for the orb!",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "orb 回指 Winter Water Orb,使用已有 _shared/Crimson_Loot_And_Fishing_Names.json#water_orb_winter 的‘寒冬水之球’的简称‘水之球’,不另造物品整名。",
       "translate": true,
-      "zh": "✆ 多谢你的水球!"
+      "zh": "✆ 多谢你的水之球!",
+      "raw": "§b✆ §fThanks for the orb!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Thanks for the orb!",
+          "zh": "多谢你的水之球!"
+        }
+      ]
     },
     {
       "id": "terry_phone_endless",
-      "context": "",
+      "context": "满足 Abiphone 联系人请求: 为得到水之球而兴奋",
       "text": "✆ Now that I have this, the possibilities are endless!",
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "✆ 有了这个,可能性就无穷无尽了!"
+      "zh": "✆ 有了这个,可能性就无穷无尽了!",
+      "raw": "§b✆ §fNow that I have this, the possibilities are endless!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Now that I have this, the possibilities are endless!",
+          "zh": "有了这个,可能性就无穷无尽了!"
+        }
+      ]
     },
     {
       "id": "terry_phone_take_contact",
-      "context": "",
+      "context": "满足 Abiphone 联系人请求: 交给玩家联系方式",
       "text": "✆ Here, take my contact.",
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "✆ 来,我的联系方式。"
+      "zh": "✆ 来,我的联系方式。",
+      "raw": "§b✆ §fHere, take my contact.",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Here, take my contact.",
+          "zh": "来,我的联系方式。"
+        }
+      ]
     },
     {
       "id": "terry_phone_call_away",
-      "context": "",
+      "context": "满足 Abiphone 联系人请求: 提醒玩家以后可以致电",
       "text": "✆ I'm just a call away if you ever need me!",
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "✆ 有需要随时打给我,一个电话的事!"
+      "zh": "✆ 有需要随时打给我,一个电话的事!",
+      "raw": "§b✆ §fI'm just a call away if you ever need me!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "I'm just a call away if you ever need me!",
+          "zh": "有需要随时打给我,一个电话的事!"
+        }
+      ]
     },
     {
       "id": "terry_phone_not_asked",
-      "context": "给错物品",
+      "context": "未满足 Abiphone 联系人请求: 给错物品",
       "text": "✆ That's not what I asked for!",
       "placeholders": [],
       "gloss": "",
       "translate": true,
       "zh": "✆ 我要的不是这个!",
-      "segments": [{"color":"§b","text":"✆ ","zh":"✆ "},{"color":"§f","text":"That's not what I asked for!","zh":"我要的不是这个!"}]
+      "segments": [{"color":"§b","text":"✆ ","zh":"✆ "},{"color":"§f","text":"That's not what I asked for!","zh":"我要的不是这个!"}],
+      "raw": "§b✆ §fThat's not what I asked for!"
     },
     {
       "id": "terry_phone_bring_orb",
-      "context": "",
+      "context": "未满足 Abiphone 联系人请求: 再次提醒带来一个 Winter Water Orb",
       "text": "✆ Bring me a Winter Water Orb!",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "Winter Water Orb 沿用已有 ITEM 面物品整名 _shared/Crimson_Loot_And_Fishing_Names.json#water_orb_winter → 寒冬水之球,纠正旧‘寒冬水球’,不新增物品名译文。",
       "translate": true,
-      "zh": "✆ 给我带个寒冬水球来!"
+      "zh": "✆ 给我带个寒冬水之球来!",
+      "raw": "§b✆ §fBring me a §6Winter Water Orb§f!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Bring me a ",
+          "zh": "给我带个"
+        },
+        {
+          "color": "§6",
+          "text": "Winter Water Orb",
+          "zh": "寒冬水之球"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "来!"
+        }
+      ]
+    },
+    {
+      "id": "terry_garden_request",
+      "ref": "Farming/NPC_Message/Terry.json#terry_garden_request",
+      "context": "花园访客开场: 将冰淇淋误当成直接嚼冰;复用既有实测对白及玩家名颜色"
+    },
+    {
+      "id": "terry_garden_completing",
+      "ref": "Farming/NPC_Message/Terry.json#terry_garden_completing",
+      "context": "完成花园访客委托后的回复;复用既有实测对白"
+    },
+    {
+      "id": "terry_garden_denying",
+      "ref": "Farming/NPC_Message/Terry.json#terry_garden_denying",
+      "context": "拒绝花园访客委托后的回复;复用既有对白"
+    },
+    {
+      "id": "terry_phone_give_item",
+      "ref": "Dungeons/ChatMessage/Dungeon_Hub_Tasks_and_NPC_Options.json#npc_option_give_item",
+      "context": "Abiphone 加联系人: [GIVE ITEM] 选项;复用已有 CHAT 按钮,其左括号、正文、右括号已独立分段。Wiki 呈现为 §a,真实颜色、点击、hover 和 insertion 由服务器组件保留,不猜命令。"
     }
-  ]
+  ],
+  "wiki_last_edited": "This page was last edited on 3 September 2026, at 01:32."
 }

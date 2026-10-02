@@ -1,36 +1,152 @@
 {
   "npc": "Hendrik",
-  "source": "https://hypixelskyblock.minecraft.wiki/w/Garden_Visitors; 交叉核对 https://hypixel-skyblock.fandom.com/wiki/The_Garden/Visitors",
-  "fetched_at": "2026-09-12",
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Hendrik",
+  "fetched_at": "2026-10-02",
   "verified_ingame": false,
-  "source_note": "2026-09-12 以新版社区 Wiki 的 NPC Dialogue 表为主，Fandom 历史档案作交叉核验；待游戏内实测，未记录 raw/颜色。",
+  "source_note": "本轮由父代理使用 Playwright 读取社区 Wiki 普通呈现页面；对白与颜色取自逐条 mcdialogue-line 的 DOM，raw 是 Wiki 颜色重建样本，不是服务器原始字节。既有三条花园访客对白于 2026-09-12 依据 https://hypixelskyblock.minecraft.wiki/w/Garden_Visitors 并交叉核对 https://hypixel-skyblock.fandom.com/wiki/The_Garden/Visitors，本轮保留其稳定 ID。Wiki 在两条闲聊中用 [NPC] 代称人物，候选将该位置写为 npc_name 模板，不补具体姓名。全部仍待游戏内实测。",
   "messages": [
     {
       "id": "visitor_hendrik_request_1",
-      "context": "作为花园访客提出委托",
+      "context": "作为花园访客提出委托，想在 Jerry 池塘尝试新鱼饵",
       "text": "I'm looking to try out a new bait for fishing in the Jerry Pond, can you help me out?",
       "placeholders": [],
-      "gloss": "花园访客委托结果台词；社区 Wiki 逐字记录，待游戏内实测。",
+      "gloss": "Jerry Pond 沿用 _shared/Terms.json 的 Jerry 池塘，Jerry 人名保留英文。new bait 是鱼饵泛称，本句未点名具体物品或所需材料，不推测委托物品。鱼饵类别沿用 GLOSSARY.md 的 Chum / Bait 规则；本地 Hub_General/GUI_Item/Fishing_Merchant.json#fishing_bait 亦使用鱼饵。Wiki 颜色来自 DOM，待实测。",
       "translate": true,
-      "zh": "我想试试在 Jerry Pond 钓鱼的新鱼饵,你能帮我吗?"
+      "zh": "我想在 Jerry 池塘试试新鱼饵,你能帮我吗?",
+      "raw": "§fI'm looking to try out a new bait for fishing in the §dJerry Pond§f, can you help me out?",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "I'm looking to try out a new bait for fishing in the ",
+          "zh": "我想在 "
+        },
+        {
+          "color": "§d",
+          "text": "Jerry Pond",
+          "zh": "Jerry 池塘"
+        },
+        {
+          "color": "§f",
+          "text": ", can you help me out?",
+          "zh": "试试新鱼饵,你能帮我吗?"
+        }
+      ]
     },
     {
       "id": "visitor_hendrik_complete_1",
       "context": "完成花园访客委托",
       "text": "This'll work, I'll let you know if I catch anything!",
       "placeholders": [],
-      "gloss": "花园访客委托结果台词；社区 Wiki 逐字记录，待游戏内实测。",
+      "gloss": "保留既有译文与稳定 ID；补入本轮 Wiki DOM 的单色样本，尚未实测。",
       "translate": true,
-      "zh": "这些能用,钓到东西我会告诉你!"
+      "zh": "这些能用,钓到东西我会告诉你!",
+      "raw": "§fThis'll work, I'll let you know if I catch anything!"
     },
     {
       "id": "visitor_hendrik_deny_1",
       "context": "拒绝花园访客委托",
       "text": "Don't come asking me for help anytime soon...",
       "placeholders": [],
-      "gloss": "花园访客委托结果台词；社区 Wiki 逐字记录，待游戏内实测。",
+      "gloss": "保留既有译文与稳定 ID；补入本轮 Wiki DOM 的单色样本，尚未实测。",
       "translate": true,
-      "zh": "近期别来找我帮忙……"
+      "zh": "近期别来找我帮忙……",
+      "raw": "§fDon't come asking me for help anytime soon..."
+    },
+    {
+      "id": "hendrik_fishing_as_fast_as_above",
+      "context": "温泉随机闲聊，觉得此处钓鱼和上面一样快",
+      "text": "Y'know when I'm fishing here it always feels just as fast as up top.",
+      "raw": "§fY'know when I'm fishing here it always feels just as fast as up top.",
+      "placeholders": [],
+      "gloss": "feels 表示他的体感，不写成引擎规则或额外钓鱼速度加成；up top 只译上面，不推测具体地名。",
+      "translate": true,
+      "zh": "你知道吗,我在这儿钓鱼,总觉得跟上面一样快。"
+    },
+    {
+      "id": "hendrik_slow_underground_fishing",
+      "context": "温泉随机闲聊，对此处地下钓鱼体验感到满意",
+      "text": "I'm used to fishing underground being so slow! This is great!",
+      "raw": "§fI'm used to fishing underground being so slow! This is great!",
+      "placeholders": [],
+      "gloss": "先抱怨已习惯地下钓鱼慢，再夸现在的体验；不加入具体速度数值或机制。",
+      "translate": true,
+      "zh": "以前在地下钓鱼都慢得很,我早习惯了! 这儿可真不错!"
+    },
+    {
+      "id": "hendrik_warmth_without_ice_cave",
+      "context": "温泉随机闲聊，庆幸不用待在冰洞里",
+      "text": "Oh man it's so much warmer down here! I don't miss that awful ice cave at all.",
+      "raw": "§fOh man it's so much warmer down here! I don't miss that awful ice cave at all.",
+      "placeholders": [],
+      "gloss": "ice cave 在本句是普通描述，不擅自替换成特定区域名。保留更暖和及完全不怀念冰洞的态度。",
+      "translate": true,
+      "zh": "哎呀,这下面暖和多了! 那个讨厌的冰洞,我可一点也不想念。"
+    },
+    {
+      "id": "hendrik_tough_heat_resistant_fish",
+      "context": "温泉随机闲聊，谈到此处鱼的耐热特性",
+      "text": "All these fish down here are really tough, they are very heat resistant.",
+      "raw": "§fAll these fish down here are really tough, they are very heat resistant.",
+      "placeholders": [],
+      "gloss": "heat resistant 描述鱼很耐热，不是玩家的 Heat Resistance 属性，不补免疫炎热等机制。fish 未点名具体物品。",
+      "translate": true,
+      "zh": "这下面的鱼可真够顽强的,特别耐热。"
+    },
+    {
+      "id": "hendrik_relief_not_seeing_npc",
+      "context": "温泉随机闲聊，庆幸不用再见到某位 NPC",
+      "text": "Thank goodness I don't have to see %s anymore...",
+      "raw": "§fThank goodness I don't have to see %s anymore...",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "Wiki 以 [NPC] 代称的人物；具体 NPC 姓名未给出，保留服务器原名和实时样式",
+          "type": "npc_name",
+          "example": ""
+        }
+      ],
+      "gloss": "页面原句为 Thank goodness I don't have to see [NPC] anymore...；[NPC] 是 Wiki 的人物代称，不是聊天按钮或正文 NPC 前缀。只模板化该人物位置，不虚构姓名或人物关系；具体值及游戏内颜色仍待实测。",
+      "translate": true,
+      "zh": "谢天谢地,总算不用再见到%s了……"
+    },
+    {
+      "id": "hendrik_missing_npc",
+      "context": "温泉随机闲聊，想念某位 NPC",
+      "text": "I miss %s...",
+      "raw": "§fI miss %s...",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "Wiki 以 [NPC] 代称的人物；具体 NPC 姓名未给出，保留服务器原名和实时样式",
+          "type": "npc_name",
+          "example": ""
+        }
+      ],
+      "gloss": "页面原句为 I miss [NPC]...；[NPC] 是 Wiki 的人物代称，不是聊天按钮或正文 NPC 前缀。只模板化该人物位置，不推定其与上一条的所指相同；具体值及游戏内颜色仍待实测。",
+      "translate": true,
+      "zh": "我想%s了……"
+    },
+    {
+      "id": "hendrik_concern_for_his_boys",
+      "context": "温泉随机闲聊，提到自己挂心的几个伙计；下一条独立消息希望他们升职",
+      "text": "I do feel a bit bad for my boys but I'm sure they are fine now.",
+      "raw": "§fI do feel a bit bad for my boys but I'm sure they are fine now.",
+      "placeholders": [],
+      "gloss": "my boys 结合下一句 promotion 使用几个伙计的口语称呼；证据没有具体身份，不写成儿子，也不指定上下级关系。两条对白保持独立，不使用 continuation 或 chat_join_next。",
+      "translate": true,
+      "zh": "我倒是有点心疼那几个伙计,不过他们现在肯定都挺好的。"
+    },
+    {
+      "id": "hendrik_hopes_for_their_promotion",
+      "context": "承接挂念几个伙计的随机闲聊，希望他们最后升职；单独消息",
+      "text": "I hope they get a promotion in the end.",
+      "raw": "§fI hope they get a promotion in the end.",
+      "placeholders": [],
+      "gloss": "保留希望而非必定升职的语气；不把 promotion 误译为属性升级，也不指定职位或雇主。",
+      "translate": true,
+      "zh": "希望他们最后都能升职吧。"
     }
-  ]
+  ],
+  "wiki_last_edited": "This page was last edited on 24 July 2026, at 00:13.",
+  "note": "身份：寒冬岛温泉里的钓客，也会到花园求助。\n关系：向玩家借力尝试新鱼饵；被拒绝时会不高兴。\n说话风格：朴素随意，像边钓鱼边闲聊，不用正式说明书口吻。\n性格与词汇：喜欢温暖、嫌弃冰洞，留意钓鱼快慢；会挂念熟人和那几个伙计。\n禁用风格：不硬塞网络梗、不爆粗；不编造亲属或上下级关系，也不补 Wiki 未给出的 NPC 姓名。"
 }

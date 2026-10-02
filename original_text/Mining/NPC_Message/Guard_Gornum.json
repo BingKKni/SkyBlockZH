@@ -1,14 +1,14 @@
 {
   "npc": "Guard Gornum",
   "location": "废弃采石场",
-  "note": "身份：废弃采石场卫兵。关系：先警惕来客，再给玩家钓鱼建议。说话朴素随意，略带不耐烦但愿意帮忙；不使用文言或硬塞网络梗。地点、钓鱼门槛和秘银掘虫掉落信息不可改写。",
+  "note": "身份：废弃采石场卫兵。关系：先警惕来客，再给玩家钓鱼建议。说话朴素随意，略带不耐烦但愿意帮忙；常用站住、算了、钓上来等直白措辞，不使用文言、官僚腔或硬塞网络梗。地点、钓鱼门槛和秘银掘虫掉落信息不可改写。本次 raw 是普通社区 Wiki DOM 颜色样本；历史实测变体沿用原分段，不把本轮 Wiki 采集冒称实测。",
   "source": "https://hypixelskyblock.minecraft.wiki/w/Guard_Gornum",
-  "fetched_at": "2026-08-19",
+  "fetched_at": "2026-10-02",
   "verified_ingame": false,
   "messages": [
     {
       "id": "guard_gornum_halt",
-      "context": "",
+      "context": "Guard Gornum 首次遇见玩家，先喝令站住。",
       "raw": "§fHalt!",
       "text": "Halt!",
       "placeholders": [],
@@ -18,7 +18,7 @@
     },
     {
       "id": "guard_gornum_how_d_you_get_in",
-      "context": "",
+      "context": "Guard Gornum 首次交谈，惊讶玩家进入了入口已封闭的废弃采石场。",
       "raw": "§fHow'd you get in here? The entrance is sealed off...",
       "text": "How'd you get in here? The entrance is sealed off...",
       "placeholders": [],
@@ -28,7 +28,7 @@
     },
     {
       "id": "guard_gornum_eh_whatever",
-      "context": "",
+      "context": "Guard Gornum 首次交谈，放弃追问玩家如何进来。",
       "raw": "§fEh, whatever.",
       "text": "Eh, whatever.",
       "placeholders": [],
@@ -38,7 +38,7 @@
     },
     {
       "id": "guard_gornum_if_you_got_in_here",
-      "context": "",
+      "context": "Guard Gornum 首次交谈，认为既然玩家能进来，应该心里有数。",
       "raw": "§fIf you got in here, you probably know what you're doing.",
       "text": "If you got in here, you probably know what you're doing.",
       "placeholders": [],
@@ -48,13 +48,13 @@
     },
     {
       "id": "guard_gornum_if_you_don_t_know",
-      "context": "",
+      "context": "Guard Gornum 首次交谈或闲聊，介绍废弃采石场是秘银掘虫的唯一钓获地点。",
       "raw": "§fIf you don't know already, this is the only place where you can fish up §2Mithril Grubbers§f.",
       "text": "If you don't know already, this is the only place where you can fish up Mithril Grubbers.",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "Mithril Grubbers 是海洋生物，不是所需物品；沿用 _shared/Terms.json 中 Mithril Grubber → 秘银掘虫。唯一钓获地点不可改写。",
       "translate": true,
-      "zh": "",
+      "zh": "要是你还不知道的话:这里是唯一能钓上秘银掘虫的地方。",
       "segments": [
         {
           "color": "§f",
@@ -75,13 +75,13 @@
     },
     {
       "id": "guard_gornum_when_you_kill_em_they",
-      "context": "",
+      "context": "Guard Gornum 首次交谈或闲聊，说明击杀秘银掘虫会掉落大量秘银粉末。",
       "raw": "§fWhen you kill 'em, they'll drop lotsa §2Mithril Powder§f.",
       "text": "When you kill 'em, they'll drop lotsa Mithril Powder.",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "Mithril Powder 是既定资源名秘银粉末，沿用 _shared/Item_Lore.json#item_powder_line_mithril。2026-10-02 读取的 Wiki（最后编辑 2026-07-24）仍没有粉末图标；历史实测 guard_gornum_powder_icon_live 多了 ᠅，保留两种写法及原实测分段。实测记录于 2026-09-28 的提交 9594054 已入库，确切采集日期未在该记录中注明。",
       "translate": true,
-      "zh": "",
+      "zh": "把它们宰了,会掉一大堆秘银粉末。",
       "segments": [
         {
           "color": "§f",
@@ -102,13 +102,13 @@
     },
     {
       "id": "guard_gornum_just_make_sure_you_re",
-      "context": "",
-      "raw": "§fJust make sure you're §3Fishing Level 6 §for you won't be able to catch 'em.",
+      "context": "Guard Gornum 首次交谈或闲聊，提醒玩家钓获秘银掘虫需要钓鱼等级 6。",
+      "raw": "§fJust make sure you're §3Fishing Level 6§f or you won't be able to catch 'em.",
       "text": "Just make sure you're Fishing Level 6 or you won't be able to catch 'em.",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "6 是固定钓鱼等级门槛，不模板化。Wiki 首次交谈与闲聊只有等级后空格的颜色边界不同，复用本条，不新增同文记录。2026-10-02 读取的 Wiki（最后编辑 2026-07-24）写 won't be able to catch；历史实测 guard_gornum_fishing_requirement_live 写 wont be able catch，保留两种写法及原实测分段。实测记录于 2026-09-28 的提交 9594054 已入库，确切采集日期未在该记录中注明。",
       "translate": true,
-      "zh": "",
+      "zh": "不过你得先到钓鱼等级 6,不然根本钓不上来。",
       "segments": [
         {
           "color": "§f",
@@ -129,5 +129,6 @@
     },
     {"id":"guard_gornum_powder_icon_live","context":"实测台词带秘银粉末图标","raw":"§fWhen you kill 'em, they'll drop lotsa §2᠅ Mithril Powder§f.","text":"When you kill 'em, they'll drop lotsa ᠅ Mithril Powder.","placeholders":[],"gloss":"保留无图标 Wiki 写法；实测多了资源图标。","translate":true,"zh":"把它们宰了,会掉一大堆᠅ 秘银粉末。","segments":[{"color":"§f","text":"When you kill 'em, they'll drop lotsa ","zh":"把它们宰了,会掉一大堆"},{"color":"§2","text":"᠅ Mithril Powder","zh":"᠅ 秘银粉末"},{"color":"§f","text":".","zh":"。"}]},
     {"id":"guard_gornum_fishing_requirement_live","context":"实测台词省略 wont 的撇号及 catch 前的 to","raw":"§fJust make sure you're §3Fishing Level 6§f or you wont be able catch 'em.","text":"Just make sure you're Fishing Level 6 or you wont be able catch 'em.","placeholders":[],"gloss":"Wiki 最后编辑于 2026-07-24；按实测增加拼写变体，不删除旧句。","translate":true,"zh":"不过你得先到钓鱼等级 6,不然根本钓不上来。","segments":[{"color":"§f","text":"Just make sure you're ","zh":"不过你得先到"},{"color":"§3","text":"Fishing Level 6","zh":"钓鱼等级 6"},{"color":"§f","text":" or you wont be able catch 'em.","zh":",不然根本钓不上来。"}]}
-  ]
+  ],
+  "wiki_last_edited": "This page was last edited on 24 July 2026, at 00:09."
 }

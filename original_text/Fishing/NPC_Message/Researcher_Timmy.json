@@ -1,0 +1,135 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Researcher_Timmy",
+  "fetched_at": "2026-10-02",
+  "verified_ingame": false,
+  "npc": "Researcher Timmy",
+  "wiki_last_edited": "This page was last edited on 24 July 2026, at 00:55.",
+  "note": "身份: 莲花环礁的研究员,告知玩家何时开始或停止下雨。\n关系: 与玩家随和搭话,分享天气与湿地蛙的观察。\n说话方式: 简短直白的日常口语,带鲜明的个人喜好。\n性格与词汇: 喜欢下雨、讨厌太阳;雨将停时惋惜,雨将来时庆幸。\n禁用风格: 不写成气象公报,不硬塞网络梗,不补充捕获概率或任务条件。人名 Timmy 保留原文。颜色和 raw 为本次 Playwright 呈现页面的 DOM 还原样本,并非服务器原始字节;倒计时按 Wiki 的 # minute[s] 示意规范为数字占位符及复数 minutes。",
+  "messages": [
+    {
+      "id": "researcher_timmy_rain_brings_wetlands_frogs",
+      "context": "下雨或未下雨时的共同开场;说明环礁常下雨,因此能见到很多湿地蛙。",
+      "text": "The frequent rain throughout the Atoll means we see a lot of Wetlands Frogs!",
+      "raw": "§fThe frequent §brain §fthroughout the Atoll means we see a lot of §aWetlands Frogs§f!",
+      "placeholders": [],
+      "gloss": "Atoll 是此处 Lotus Atoll 的简称,沿用 _shared/Terms.json 的 Lotus Atoll→莲花环礁,正文简称环礁。Wetlands Frogs 沿用本地 GUI_Item 模板 Fishing/GUI_Item/Trophy_Frogs_and_Rod_Stats.json#trophy_frog_wetlands_frog(%1$s Wetlands Frog→%1$s湿地蛙),与 _shared/Terms.json 的 Wetlands Frog→湿地蛙一致;此句是观察说明,不是请求交付物品。两种天气条件的同文对白共用此记录。",
+      "translate": true,
+      "zh": "环礁经常下雨,所以我们能见到好多湿地蛙!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "The frequent ",
+          "zh": "环礁经常"
+        },
+        {
+          "color": "§b",
+          "text": "rain ",
+          "zh": "下雨"
+        },
+        {
+          "color": "§f",
+          "text": "throughout the Atoll means we see a lot of ",
+          "zh": ",所以我们能见到好多"
+        },
+        {
+          "color": "§a",
+          "text": "Wetlands Frogs",
+          "zh": "湿地蛙"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "researcher_timmy_loves_rain",
+      "context": "正在下雨时;兴奋地表达对雨天的喜爱。",
+      "text": "I love the rain!",
+      "raw": "§fI love the rain!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "我就喜欢下雨!"
+    },
+    {
+      "id": "researcher_timmy_rain_stops_in_minutes",
+      "context": "正在下雨时;惋惜地告知大约多久后雨会停止。",
+      "text": "Sadly it'll stop raining in about %s minutes from now.",
+      "raw": "§fSadly it'll stop raining in about §a%s minutes §ffrom now.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "距离雨停的大约分钟数;随当前天气倒计时变化。",
+          "type": "number",
+          "example": "5"
+        }
+      ],
+      "gloss": "Wiki 用 # minute[s] 表示动态分钟数及单复数,并非可点击按钮。规范为 %s minutes,由 TranslationEntry.eitherNumber 兼容 minute/minutes;数值与分钟单位保持绿色。保留 about 的大约语义,不写死倒计时。",
+      "translate": true,
+      "zh": "可惜,再过大约 %s 分钟,雨就要停了。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Sadly it'll stop raining in about ",
+          "zh": "可惜,再过大约 "
+        },
+        {
+          "color": "§a",
+          "text": "%s minutes ",
+          "zh": "%s 分钟"
+        },
+        {
+          "color": "§f",
+          "text": "from now.",
+          "zh": ",雨就要停了。"
+        }
+      ]
+    },
+    {
+      "id": "researcher_timmy_hates_sun",
+      "context": "没有下雨时;直白地表达对太阳的反感。",
+      "text": "I hate the sun!",
+      "raw": "§fI hate the sun!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "我讨厌太阳!"
+    },
+    {
+      "id": "researcher_timmy_rain_starts_in_minutes",
+      "context": "没有下雨时;庆幸地告知大约多久后会开始下雨。",
+      "text": "Luckily it'll start raining in about %s minutes from now.",
+      "raw": "§fLuckily it'll start raining in about §a%s minutes §ffrom now.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "距离开始下雨的大约分钟数;随当前天气倒计时变化。",
+          "type": "number",
+          "example": "5"
+        }
+      ],
+      "gloss": "Wiki 用 # minute[s] 表示动态分钟数及单复数,并非可点击按钮。规范为 %s minutes,由 TranslationEntry.eitherNumber 兼容 minute/minutes;数值与分钟单位保持绿色。保留 about 的大约语义,不写死倒计时。",
+      "translate": true,
+      "zh": "还好,再过大约 %s 分钟,就要下雨了。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Luckily it'll start raining in about ",
+          "zh": "还好,再过大约 "
+        },
+        {
+          "color": "§a",
+          "text": "%s minutes ",
+          "zh": "%s 分钟"
+        },
+        {
+          "color": "§f",
+          "text": "from now.",
+          "zh": ",就要下雨了。"
+        }
+      ]
+    }
+  ]
+}

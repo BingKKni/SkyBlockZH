@@ -1,0 +1,656 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Researcher_Gilbert",
+  "fetched_at": "2026-10-02",
+  "verified_ingame": false,
+  "npc": "Researcher Gilbert",
+  "aliases": [
+    "Gilbert"
+  ],
+  "wiki_last_edited": "This page was last edited on 6 September 2026, at 10:42.",
+  "stale_warning": "本次普通页面的 Dialogue 节明确提示其内容已过时、需要重写。最后编辑于 2026-09-06；以下仅覆盖本次页面呈现的对白及颜色，尚未经服务器实测核对。",
+  "raw_source_note": "raw 为 2026-10-02 Playwright 普通页面 DOM 颜色还原的 Wiki 正文样本，不是服务器原始字节；横幅匹配正文剥除前导结构填充，完整呈现样本保存为 wiki_raw_sample。实时颜色和交互仍由引擎从服务器组件读取。",
+  "note": "身份: 死水沼泽的青蛙研究员，今天刚退休；加入船员后可解锁莲花环礁。\n关系: 初识玩家，礼貌请求同行，并请玩家带来故地的纪念品。\n说话方式: 有学者气质但不端着，习惯试探着开口，偶尔纠正自己的说法。\n性格与词汇: 温和、念旧，对退休后的出海生活满怀期待；纪念品、冒险、海风与海浪。\n禁用风格: 不塞网络梗、不写官腔、不凭腰带扣补出传送机制；姓名 Gilbert 保留英文，Researcher 职务沿用研究员。",
+  "entries": [
+    {
+      "id": "researcher_gilbert_unlock_ship_crew_first",
+      "context": "尚未解锁船员队伍时，提醒玩家先完成前置条件",
+      "text": "Come back and talk to me once you have unlocked the Ship Crew!",
+      "raw": "§fCome back and talk to me once you have unlocked the §6Ship Crew§f!",
+      "placeholders": [],
+      "gloss": "Ship Crew 沿用已有船员队伍译名；此处指解锁船员系统，并非已经招募完全部船员。",
+      "translate": true,
+      "zh": "解锁船员队伍后,再回来找我聊聊吧!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Come back and talk to me once you have unlocked the ",
+          "zh": "解锁"
+        },
+        {
+          "color": "§6",
+          "text": "Ship Crew",
+          "zh": "船员队伍"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "后,再回来找我聊聊吧!"
+        }
+      ]
+    },
+    {
+      "id": "researcher_gilbert_fishing_threshold_and_captain",
+      "context": "尚未解锁船员队伍时，说明钓鱼等级门槛和船上的交谈对象",
+      "text": "Reach Fishing Level X and talk to Captain Baha on your Ship!",
+      "raw": "§fReach §aFishing Level X §fand talk to §6Captain Baha §fon your §6Ship§f!",
+      "placeholders": [],
+      "gloss": "X 是钓鱼 10 级的固定前置门槛，保留罗马数字，不模板化。Captain Baha 沿用船长 Baha；玩家要去船上找他，不是把他请到船上。",
+      "translate": true,
+      "zh": "先达到钓鱼 X 级,再去你的船上找船长 Baha 聊聊吧!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Reach ",
+          "zh": "先达到",
+          "order": 0
+        },
+        {
+          "color": "§a",
+          "text": "Fishing Level X ",
+          "zh": "钓鱼 X 级",
+          "order": 1
+        },
+        {
+          "color": "§f",
+          "text": "and talk to ",
+          "zh": ",再去你的",
+          "order": 2
+        },
+        {
+          "color": "§6",
+          "text": "Captain Baha ",
+          "zh": "船长 Baha",
+          "order": 5
+        },
+        {
+          "color": "§f",
+          "text": "on your ",
+          "zh": "上找",
+          "order": 4
+        },
+        {
+          "color": "§6",
+          "text": "Ship",
+          "zh": "船",
+          "order": 3
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": " 聊聊吧!",
+          "order": 6
+        }
+      ]
+    },
+    {
+      "id": "researcher_gilbert_first_greeting",
+      "ref": "Combat/NPC_Message/_Crimson_Isle_Shared.json#ci_hello_69342c5c",
+      "context": "首次交谈：Hello!；复用已有 CHAT 面同文记录"
+    },
+    {
+      "id": "researcher_gilbert_frog_researcher",
+      "context": "首次交谈，自我介绍青蛙研究方向",
+      "text": "I'm a researcher who focuses upon the study of Frogs!",
+      "raw": "§fI'm a researcher who focuses upon the study of §2Frogs§f!",
+      "placeholders": [],
+      "gloss": "Frogs 是青蛙，沿用 _shared/Terms.json 的 Frog 译名；绿色高亮跟随青蛙。",
+      "translate": true,
+      "zh": "我是个专门研究青蛙的研究员!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "I'm a researcher who focuses upon the study of ",
+          "zh": "我是个专门研究"
+        },
+        {
+          "color": "§2",
+          "text": "Frogs",
+          "zh": "青蛙"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "的研究员!"
+        }
+      ]
+    },
+    {
+      "id": "researcher_gilbert_former_researcher",
+      "context": "首次交谈，纠正自我介绍，承接刚刚退休的事实",
+      "text": "Well, I was a researcher, I suppose.",
+      "raw": "§fWell, I §f§owas §fa researcher, I suppose.",
+      "placeholders": [],
+      "gloss": "was 的斜体表达过去的身份，保留在中文的以前上；不是否认自己从事过研究。",
+      "translate": true,
+      "zh": "嗯,应该说……我以前是个研究员。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Well, I ",
+          "zh": "嗯,应该说……我"
+        },
+        {
+          "color": "§f§o",
+          "text": "was ",
+          "zh": "以前"
+        },
+        {
+          "color": "§f",
+          "text": "a researcher, I suppose.",
+          "zh": "是个研究员。"
+        }
+      ]
+    },
+    {
+      "id": "researcher_gilbert_first_retirement_day",
+      "context": "首次交谈，宣布今天是退休的第一天",
+      "text": "Today marks the first day of my retirement!",
+      "raw": "§fToday marks the first day of my retirement!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "今天可是我退休的第一天!"
+    },
+    {
+      "id": "researcher_gilbert_option_congratulations",
+      "context": "首次交谈后，玩家祝贺他退休的可点击选项",
+      "text": "Select an option: [Congratulations!]",
+      "raw": "§eSelect an option: §a[Congratulations!]",
+      "placeholders": [],
+      "gloss": "提示、左括号、选项正文、右括号分别分段；不写入猜测的点击或悬浮事件。",
+      "translate": true,
+      "zh": "请选择: [恭喜你!]",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Select an option: ",
+          "zh": "请选择: "
+        },
+        {
+          "color": "§a",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§a",
+          "text": "Congratulations!",
+          "zh": "恭喜你!"
+        },
+        {
+          "color": "§a",
+          "text": "]",
+          "zh": "]"
+        }
+      ]
+    },
+    {
+      "id": "researcher_gilbert_thanks_for_congratulations",
+      "context": "玩家选择祝贺后，向玩家道谢",
+      "text": "Thank you!",
+      "raw": "§fThank you!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "谢谢你!"
+    },
+    {
+      "id": "researcher_gilbert_asks_about_parked_ship",
+      "context": "玩家祝贺后，询问岛边停泊的船是否属于玩家",
+      "text": "Say, is that your Ship parked by the side of the island?",
+      "raw": "§fSay, is that your §6Ship §fparked by the side of the island?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "对了,停在岛边的那艘船,是你的吗?",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Say, is that your ",
+          "zh": "对了,停在岛边的那艘"
+        },
+        {
+          "color": "§6",
+          "text": "Ship ",
+          "zh": "船"
+        },
+        {
+          "color": "§f",
+          "text": "parked by the side of the island?",
+          "zh": ",是你的吗?"
+        }
+      ]
+    },
+    {
+      "id": "researcher_gilbert_option_confirm_ship",
+      "context": "玩家确认岛边的船属于自己",
+      "text": "Select an option: [It is indeed!]",
+      "raw": "§eSelect an option: §a[It is indeed!]",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "请选择: [没错!]",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Select an option: ",
+          "zh": "请选择: "
+        },
+        {
+          "color": "§a",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§a",
+          "text": "It is indeed!",
+          "zh": "没错!"
+        },
+        {
+          "color": "§a",
+          "text": "]",
+          "zh": "]"
+        }
+      ]
+    },
+    {
+      "id": "researcher_gilbert_asks_to_join_adventures",
+      "context": "玩家确认船只归属后，礼貌请求随玩家一起冒险",
+      "text": "Hmm, might I be so bold as to ask if I could join you on your adventures?",
+      "raw": "§fHmm, might I be so bold as to ask if I could join you on your adventures?",
+      "placeholders": [],
+      "gloss": "保留试探、礼貌的态度，不把初识关系改成朋友或上下级。",
+      "translate": true,
+      "zh": "嗯……冒昧问一句,能带上我一起去冒险吗?"
+    },
+    {
+      "id": "researcher_gilbert_retirement_free_time",
+      "context": "请求同行时，解释退休后已没什么事要忙",
+      "text": "I don't have a lot going on now, with retirement and all.",
+      "raw": "§fI don't have a lot going on now, with retirement and all.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "毕竟都退休了,我现在也没什么事要忙。"
+    },
+    {
+      "id": "researcher_gilbert_option_accept_companion",
+      "context": "玩家同意让 Gilbert 一起冒险",
+      "text": "Select an option: [Sure!]",
+      "raw": "§eSelect an option: §a[Sure!]",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "请选择: [当然可以!]",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Select an option: ",
+          "zh": "请选择: "
+        },
+        {
+          "color": "§a",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§a",
+          "text": "Sure!",
+          "zh": "当然可以!"
+        },
+        {
+          "color": "§a",
+          "text": "]",
+          "zh": "]"
+        }
+      ]
+    },
+    {
+      "id": "researcher_gilbert_delighted_to_join",
+      "context": "玩家同意同行后，欣喜地回应",
+      "text": "Amazing.",
+      "raw": "§fAmazing.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "太好了。"
+    },
+    {
+      "id": "researcher_gilbert_wants_travel_souvenir",
+      "context": "同意同行后，想带上纪念品以记住故地",
+      "text": "Say, I would like a souvenir to take on my travels, though, to remember this place by.",
+      "raw": "§fSay, I would like a souvenir to take on my travels, though, to remember this place by.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "对了,我还想带个纪念品上路,留作对这地方的念想。"
+    },
+    {
+      "id": "researcher_gilbert_requests_fished_belt_buckle",
+      "context": "提出所需纪念品，请玩家钓起一个腰带扣",
+      "text": "If it's not too much trouble, might you be able to fish me up a Busted Belt Buckle?",
+      "raw": "§fIf it's not too much trouble, might you be able to fish me up a §9Busted Belt Buckle§f?",
+      "placeholders": [],
+      "gloss": "所需物品 Busted Belt Buckle 沿用本地整名译文破损的腰带扣：original_text/Fishing/GUI_Item/Collected_Names_September.json#name_busted_belt_buckle。保留钓起这一获取方式，不把此句改成购买。",
+      "translate": true,
+      "zh": "要是不麻烦的话,能帮我钓个破损的腰带扣吗?",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "If it's not too much trouble, might you be able to fish me up a ",
+          "zh": "要是不麻烦的话,能帮我钓个"
+        },
+        {
+          "color": "§9",
+          "text": "Busted Belt Buckle",
+          "zh": "破损的腰带扣"
+        },
+        {
+          "color": "§f",
+          "text": "?",
+          "zh": "吗?"
+        }
+      ]
+    },
+    {
+      "id": "researcher_gilbert_his_own_dumping_ground",
+      "context": "请求纪念品时，流露出对这座满是垃圾的岛的留恋",
+      "text": "As much of a dumping ground as this place is, it really feels like MY dumping ground, you know..?",
+      "raw": "§fAs much of a dumping ground as this place is, it really feels like MY dumping ground, you know..?",
+      "placeholders": [],
+      "gloss": "MY 的大写强调归属感，用我自己的保留笑点与念旧情绪；原文没有额外粗体或颜色。",
+      "translate": true,
+      "zh": "这儿就算是个垃圾场,那也是我自己的垃圾场啊……你懂吧?"
+    },
+    {
+      "id": "researcher_gilbert_option_give_souvenir",
+      "ref": "Dungeons/ChatMessage/Dungeon_Hub_Tasks_and_NPC_Options.json#npc_option_give_item",
+      "context": "首次请求纪念品、未交付再次返回时均显示的 [GIVE ITEM]；复用已把括号和正文分别拆开的 CHAT 记录"
+    },
+    {
+      "id": "researcher_gilbert_asks_if_souvenir_ready",
+      "context": "没有交付物品就离开后，再次返回交谈",
+      "text": "Do you have that souvenir for me?",
+      "raw": "§fDo you have that souvenir for me?",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "我的纪念品带来了吗?"
+    },
+    {
+      "id": "researcher_gilbert_buckle_for_possible_return",
+      "context": "未交付后再次返回，重申所需纪念品并提及以后可能需要回来",
+      "text": "I'm just looking for a Busted Belt Buckle in case I ever need to return here!",
+      "raw": "§fI'm just looking for a §9Busted Belt Buckle §fin case I ever need to return here!",
+      "placeholders": [],
+      "gloss": "所需物品沿用 original_text/Fishing/GUI_Item/Collected_Names_September.json#name_busted_belt_buckle 的破损的腰带扣。原文只提以后可能需要回来，不补传送、定位或消耗机制。",
+      "translate": true,
+      "zh": "我就想要个破损的腰带扣,说不定哪天还得回这儿呢!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "I'm just looking for a ",
+          "zh": "我就想要个"
+        },
+        {
+          "color": "§9",
+          "text": "Busted Belt Buckle ",
+          "zh": "破损的腰带扣"
+        },
+        {
+          "color": "§f",
+          "text": "in case I ever need to return here!",
+          "zh": ",说不定哪天还得回这儿呢!"
+        }
+      ]
+    },
+    {
+      "id": "researcher_gilbert_missing_souvenir_regret",
+      "context": "未持有所需物品却选择交付时，提醒尚未拿到纪念品",
+      "text": "It appears you don't have my souvenir yet! It would be such a shame to leave without it...",
+      "raw": "§fIt appears you don't have my souvenir yet! It would be such a shame to leave without it...",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "看来你还没拿到我的纪念品! 就这么走了,可真有点遗憾……"
+    },
+    {
+      "id": "researcher_gilbert_requests_buckle_from_joel",
+      "context": "没有腰带扣却选择交付时，提示向 Junker Joel 获取物品",
+      "text": "Please could you get me a Busted Belt Buckle from Junker Joel?",
+      "raw": "§fPlease could you get me a §9Busted Belt Buckle §ffrom §2Junker Joel§f?",
+      "placeholders": [],
+      "gloss": "所需物品沿用 original_text/Fishing/GUI_Item/Collected_Names_September.json#name_busted_belt_buckle 的破损的腰带扣。Junker Joel 沿用废品商 Joel。本句保留页面的 from Junker Joel 获取提示，与前文 fish me up 并存，不擅自统一成另一种获取方式。",
+      "translate": true,
+      "zh": "能麻烦你去废品商 Joel 那儿帮我弄个破损的腰带扣吗?",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Please could you get me a ",
+          "zh": "能麻烦你去",
+          "order": 0
+        },
+        {
+          "color": "§9",
+          "text": "Busted Belt Buckle ",
+          "zh": "破损的腰带扣",
+          "order": 3
+        },
+        {
+          "color": "§f",
+          "text": "from ",
+          "zh": " 那儿帮我弄个",
+          "order": 2
+        },
+        {
+          "color": "§2",
+          "text": "Junker Joel",
+          "zh": "废品商 Joel",
+          "order": 1
+        },
+        {
+          "color": "§f",
+          "text": "?",
+          "zh": "吗?",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "researcher_gilbert_thanks_for_souvenir",
+      "context": "持有腰带扣并选择交付时，感谢玩家",
+      "text": "Amazing, thank you so much!",
+      "raw": "§fAmazing, thank you so much!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "太好了,真是太感谢你了!"
+    },
+    {
+      "id": "researcher_gilbert_introduces_himself_to_crew",
+      "context": "收到纪念品后，准备去向其他船员自我介绍",
+      "text": "I'll go introduce myself to the rest of the crew!",
+      "raw": "§fI'll go introduce myself to the rest of the crew!",
+      "placeholders": [],
+      "gloss": "向其他船员作初次自我介绍，不补熟人关系。",
+      "translate": true,
+      "zh": "我去跟其他船员做个自我介绍!"
+    },
+    {
+      "id": "researcher_gilbert_anchors_away",
+      "context": "交付成功后，以起航口号结束对话",
+      "text": "Anchors away!",
+      "raw": "§fAnchors away!",
+      "placeholders": [],
+      "gloss": "页面原文为 Anchors away!，不擅自改写成 Anchors aweigh!。",
+      "translate": true,
+      "zh": "起锚出发!"
+    },
+    {
+      "id": "researcher_gilbert_new_island_unlocked",
+      "context": "交付成功后的系统解锁横幅标题，不是 Gilbert 的发言；现有 CHAT 面无同文记录",
+      "text": "NEW ISLAND UNLOCKED!",
+      "raw": "§bNEW ISLAND UNLOCKED!",
+      "wiki_raw_sample": "§f §bNEW ISLAND UNLOCKED!",
+      "placeholders": [],
+      "gloss": "仅剥离 Wiki 横幅前导结构填充，完整样本保存在 wiki_raw_sample；正文单色不需 segments。引擎 LineShape 会保留服务器实际前导填充，layout 从实时原文判断，不由 Wiki 单个前导空格推断居中。",
+      "translate": true,
+      "layout": "chat_source_alignment",
+      "zh": "新岛屿已解锁!"
+    },
+    {
+      "id": "researcher_gilbert_lotus_atoll_unlocked",
+      "context": "交付成功后的系统解锁横幅：岛名莲花环礁；不是 NPC 发言",
+      "text": "Lotus Atoll",
+      "raw": "§3Lotus Atoll",
+      "wiki_raw_sample": "§f §3Lotus Atoll",
+      "placeholders": [],
+      "gloss": "Lotus Atoll 沿用 _shared/Terms.json 的莲花环礁。独立地点标签不能写成无自身词的纯占位符模板；现有 CHAT 面没有该整行。仅剥离前导结构填充，完整样本保存于 wiki_raw_sample，实际对齐由引擎处理。",
+      "translate": true,
+      "layout": "chat_source_alignment",
+      "zh": "莲花环礁"
+    },
+    {
+      "id": "researcher_gilbert_island_travel_hint",
+      "context": "交付成功后的系统解锁横幅：提示使用船舶导航器前往新解锁岛屿",
+      "text": "Open the Ship Navigator to travel to the %s!",
+      "raw": "§7Open the §6Ship Navigator §7to travel to the §3%s§7!",
+      "wiki_raw_sample": "§f  §7Open the §6Ship Navigator §7to travel to the §3Lotus Atoll§7!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "新解锁岛屿的名称",
+          "type": "location_name",
+          "example": "Lotus Atoll"
+        }
+      ],
+      "gloss": "岛名使用有类型模板，不逐岛枚举相同导航提示；本次 Wiki 样本为 Lotus Atoll，词表译莲花环礁。Ship Navigator 沿用已有船舶导航器。仅从匹配正文剥离前导结构填充，完整样本保存在 wiki_raw_sample，对齐从实时原文判断。",
+      "translate": true,
+      "layout": "chat_source_alignment",
+      "zh": "打开船舶导航器,前往%s吧!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Open the ",
+          "zh": "打开"
+        },
+        {
+          "color": "§6",
+          "text": "Ship Navigator ",
+          "zh": "船舶导航器"
+        },
+        {
+          "color": "§7",
+          "text": "to travel to the ",
+          "zh": ",前往"
+        },
+        {
+          "color": "§3",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "吧!"
+        }
+      ]
+    },
+    {
+      "id": "researcher_gilbert_will_join_ship_shortly",
+      "context": "交付后、前往船上之前，表示稍后会登船会合",
+      "text": "I'll come and join you on the Ship shortly!",
+      "raw": "§fI'll come and join you on the §6Ship §fshortly!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "我很快就来船上和你会合!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "I'll come and join you on the ",
+          "zh": "我很快就来"
+        },
+        {
+          "color": "§6",
+          "text": "Ship ",
+          "zh": "船"
+        },
+        {
+          "color": "§f",
+          "text": "shortly!",
+          "zh": "上和你会合!"
+        }
+      ]
+    },
+    {
+      "id": "researcher_gilbert_ship_wind_in_hair",
+      "context": "船上的随机闲聊：享受海风吹过头发的感觉",
+      "text": "I love the feel of the wind in my hair!",
+      "raw": "§fI love the feel of the wind in my hair!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "风吹过头发的感觉真舒服!"
+    },
+    {
+      "id": "researcher_gilbert_ship_fishing_rod_reminder",
+      "context": "船上的随机闲聊：提醒玩家带上鱼竿；证据表此行未重复条件格，沿用 On the Ship",
+      "text": "I hope you brought your fishing rod!",
+      "raw": "§fI hope you brought your fishing rod!",
+      "placeholders": [],
+      "gloss": "fishing rod 为泛指鱼竿，不是提出一个新的具名物品交付请求。",
+      "translate": true,
+      "zh": "你带鱼竿了吧?"
+    },
+    {
+      "id": "researcher_gilbert_ship_salty_air",
+      "context": "船上的随机闲聊：喜欢海风中的咸味",
+      "text": "I love the taste of the salt in the air!",
+      "raw": "§fI love the taste of the salt in the air!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "空气里这股咸咸的味道,真让人喜欢!"
+    },
+    {
+      "id": "researcher_gilbert_ship_hopes_for_big_catch",
+      "context": "船上的随机闲聊：期待钓到大东西",
+      "text": "I hope we catch something big!",
+      "raw": "§fI hope we catch something big!",
+      "placeholders": [],
+      "gloss": "只表达期待，不保证渔获大小。",
+      "translate": true,
+      "zh": "希望咱们能钓到个大家伙!"
+    },
+    {
+      "id": "researcher_gilbert_ship_eager_to_fish",
+      "context": "船上的随机闲聊：迫不及待想钓鱼",
+      "text": "I can't wait to catch some fish!",
+      "raw": "§fI can't wait to catch some fish!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "我都等不及要钓鱼了!"
+    },
+    {
+      "id": "researcher_gilbert_ship_wave_sounds",
+      "context": "船上的随机闲聊：喜欢听海浪声",
+      "text": "I love the sound of the waves!",
+      "raw": "§fI love the sound of the waves!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "我可喜欢听海浪声了!"
+    }
+  ]
+}

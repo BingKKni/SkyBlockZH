@@ -3,8 +3,8 @@
     "runtime capture (SkyZH), logs/skyzh-capture",
     "https://hypixelskyblock.minecraft.wiki/w/St._Jerry"
   ],
-  "fetched_at": "2026-09-22",
-  "verified_ingame": true,
+  "fetched_at": "2026-10-02",
+  "verified_ingame": false,
   "lines": [
     {
       "id": "jerry_season_greeting",
@@ -96,8 +96,550 @@
       "gloss": "",
       "translate": true,
       "zh": "把礼物找齐,再回来找我吧!"
+    },
+    {
+      "id": "jerry_find_village_gifts",
+      "context": "St. Jerry: 已找到 0–5 份白色礼物,提醒玩家继续在村里寻找",
+      "text": "Find all of the Gifts around the village and come back to me!",
+      "raw": "§fFind all of the Gifts around the village and come back to me!",
+      "placeholders": [],
+      "gloss": "Gifts 泛称沿用本文件既有 jerry_gifts 的礼物;0–5 为条件说明,不写入对白。",
+      "translate": true,
+      "zh": "把村子里的礼物都找齐,再回来找我吧!"
+    },
+    {
+      "id": "jerry_more_gifts_in_village",
+      "context": "St. Jerry: 已找到 6–10 份白色礼物,鼓励继续收集",
+      "text": "I see you've found some Gifts, but there are still many more in the village. Find the rest and come back for a reward!",
+      "raw": "§fI see you've found some Gifts, but there are still many more in the village. Find the rest and come back for a reward!",
+      "placeholders": [],
+      "gloss": "Gifts 泛称沿用本文件既有礼物。",
+      "translate": true,
+      "zh": "看来你已经找到一些礼物了,不过村子里还藏着不少呢。把剩下的找齐,再来领奖吧!"
+    },
+    {
+      "id": "jerry_gifts_getting_there",
+      "context": "St. Jerry: 已找到 11–15 份白色礼物,向玩家鼓劲",
+      "text": "You're getting there, %s! Find the rest of the Gifts and come back for a reward!",
+      "raw": "§fYou're getting there, §7%s§f! Find the rest of the Gifts and come back for a reward!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "player_name",
+          "example": "inkkni",
+          "desc": "玩家名称;Wiki 的 [player] 为参数标记,不是聊天按钮"
+        }
+      ],
+      "gloss": "玩家名称保留英文,沿用 DOM 灰色 §7;Gifts 泛称沿用礼物。",
+      "translate": true,
+      "zh": "越来越接近了,%s! 把剩下的礼物找齐,再来领奖吧!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "You're getting there, ",
+          "zh": "越来越接近了,"
+        },
+        {
+          "color": "§7",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§f",
+          "text": "! Find the rest of the Gifts and come back for a reward!",
+          "zh": "! 把剩下的礼物找齐,再来领奖吧!"
+        }
+      ]
+    },
+    {
+      "id": "jerry_gifts_remaining",
+      "context": "St. Jerry: 已找到 16–18 份白色礼物,提示还需找到的动态数量",
+      "text": "You're so close! Find %s more Gifts and come back to me!",
+      "raw": "§fYou're so close! Find §a%s §fmore Gifts and come back to me!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "3",
+          "desc": "还需找到的礼物数量;Wiki 以 # 表示动态值,不枚举各数量"
+        }
+      ],
+      "gloss": "Gifts 泛称沿用礼物;保留数值绿色,份礼物及后续文字恢复白色。",
+      "translate": true,
+      "zh": "就差一点啦! 再找 %s 份礼物,就回来找我吧!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "You're so close! Find ",
+          "zh": "就差一点啦! 再找 "
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§f",
+          "text": "more Gifts and come back to me!",
+          "zh": " 份礼物,就回来找我吧!"
+        }
+      ]
+    },
+    {
+      "id": "jerry_last_gift",
+      "context": "St. Jerry: 已找到 19 份白色礼物,只差最后一份",
+      "text": "You're so close! Find the last Gift and come back for a reward!",
+      "raw": "§fYou're so close! Find the last Gift and come back for a reward!",
+      "placeholders": [],
+      "gloss": "最后一份为固定任务阶段,不模板化。Gift 泛称沿用礼物。",
+      "translate": true,
+      "zh": "就差一点啦! 找到最后一份礼物,再来领奖吧!"
+    },
+    {
+      "id": "jerry_all_gifts_found",
+      "context": "St. Jerry: 找齐固定任务要求的 20 份白色礼物",
+      "text": "You found all of the Gifts!",
+      "raw": "§fYou found all of the Gifts!",
+      "placeholders": [],
+      "gloss": "20 为固定任务总量,本句并未显示数值;Gifts 泛称沿用礼物。",
+      "translate": true,
+      "zh": "礼物全都让你找齐啦!"
+    },
+    {
+      "id": "jerry_green_gift_reward",
+      "context": "St. Jerry: 找齐 20 份白色礼物后赠送 Green Gift",
+      "text": "Take this Green Gift! You'll hopefully find something nicer than what was in those White Gifts!",
+      "raw": "§fTake this §aGreen Gift§f! You'll hopefully find something nicer than what was in those White Gifts!",
+      "placeholders": [],
+      "gloss": "用户拍板：Green Gift 无本地 GUI_Item 整名或模板译名,保留完整英文,不自行创造译名。White Gifts 沿用 White Gift → 白色礼物,依据 Events/GUI_Item/Collected_Names_September.json#name_white_gift。hopefully 表示祝愿,不是保证奖励质量更好。",
+      "translate": true,
+      "zh": "拿好这份 Green Gift! 希望你能开出比那些白色礼物更好的东西!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Take this ",
+          "zh": "拿好这份 "
+        },
+        {
+          "color": "§a",
+          "text": "Green Gift",
+          "zh": "Green Gift"
+        },
+        {
+          "color": "§f",
+          "text": "! You'll hopefully find something nicer than what was in those White Gifts!",
+          "zh": "! 希望你能开出比那些白色礼物更好的东西!"
+        }
+      ]
+    },
+    {
+      "id": "jerry_share_other_gifts",
+      "context": "St. Jerry: 领取收集奖励后提醒把其他礼物送给别人",
+      "text": "If you haven't already, be sure to give your other Gifts away to others. Giving Gifts benefits both you and the receiver!",
+      "raw": "§fIf you haven't already, be sure to give your other Gifts away to others. Giving Gifts benefits both you and the receiver!",
+      "placeholders": [],
+      "gloss": "Gifts 泛称沿用礼物;赠礼让赠送者与接收者双方受益,不补具体掉落机制。",
+      "translate": true,
+      "zh": "要是还没送出去,记得把其他礼物分给大家。送礼物时,你和收礼的人都能有收获!"
+    },
+    {
+      "id": "jerry_abiphone_contact_welcome",
+      "context": "St. Jerry: 用 Abiphone 请求添加联系人",
+      "text": "✆ Of course I can add you as a contact!",
+      "raw": "§b✆§f Of course I can add you as a contact!",
+      "placeholders": [],
+      "gloss": "✆ 为电话对白图标,保留青色;不是按钮。",
+      "translate": true,
+      "zh": "✆ 当然可以把你加进联系人啦!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": "✆"
+        },
+        {
+          "color": "§f",
+          "text": " Of course I can add you as a contact!",
+          "zh": " 当然可以把你加进联系人啦!"
+        }
+      ]
+    },
+    {
+      "id": "jerry_abiphone_contact_count",
+      "context": "St. Jerry: 介绍自己的 Abiphone 联系人数量",
+      "text": "✆ I have %s contacts on my Abiphone.",
+      "raw": "§b✆§f I have §c%s contacts §fon my Abiphone.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "100",
+          "desc": "Wiki 的 # 联系人数量参数;不据样本枚举或写死"
+        }
+      ],
+      "gloss": "Abiphone 是既定保留英文的品牌名,见 GLOSSARY.md 物品名规则;联系人数量及 contacts 全部保留红色高亮。",
+      "translate": true,
+      "zh": "✆ 我有 %s 位联系人,都在我的 Abiphone 里。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": "✆"
+        },
+        {
+          "color": "§f",
+          "text": " I have ",
+          "zh": " 我有 "
+        },
+        {
+          "color": "§c",
+          "text": "%s contacts ",
+          "zh": "%s 位联系人"
+        },
+        {
+          "color": "§f",
+          "text": "on my Abiphone.",
+          "zh": ",都在我的 Abiphone 里。"
+        }
+      ]
+    },
+    {
+      "id": "jerry_abiphone_really_big",
+      "context": "St. Jerry: 得意地介绍自己的大号 Abiphone",
+      "text": "✆ It's a really big Abiphone!",
+      "raw": "§b✆§f It's a really big Abiphone!",
+      "placeholders": [],
+      "gloss": "Abiphone 品牌名沿用 GLOSSARY.md 的英文保留规则。",
+      "translate": true,
+      "zh": "✆ 我的 Abiphone 可大了!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": "✆"
+        },
+        {
+          "color": "§f",
+          "text": " It's a really big Abiphone!",
+          "zh": " 我的 Abiphone 可大了!"
+        }
+      ]
+    },
+    {
+      "id": "jerry_abiphone_repeat_instruction",
+      "context": "St. Jerry: 添加联系人前要求逐字复述下一句英文短语",
+      "text": "✆ If you want my contact, all you have to do is repeat this phrase exactly...",
+      "raw": "§b✆§f If you want my contact, all you have to do is repeat this phrase exactly...",
+      "placeholders": [],
+      "gloss": "exactly 要求复述原句,下一条英文任务口令有意保留原文;不虚构聊天按钮或点击命令。",
+      "translate": true,
+      "zh": "✆ 想加我的联系方式,只要把下面这句话原样复述一遍……",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": "✆"
+        },
+        {
+          "color": "§f",
+          "text": " If you want my contact, all you have to do is repeat this phrase exactly...",
+          "zh": " 想加我的联系方式,只要把下面这句话原样复述一遍……"
+        }
+      ]
+    },
+    {
+      "id": "jerry_abiphone_exact_phrase",
+      "context": "St. Jerry: 添加联系人所需逐字复述的英文任务口令",
+      "text": "✆ \"I love the warmth of the Holidays despite the snow\"",
+      "raw": "§b✆§f \"§bI love the warmth of the Holidays despite the snow\"",
+      "placeholders": [],
+      "gloss": "逐字复述任务口令,有意保留完整英文原句,避免引导玩家输入中文而无法匹配任务;不是 NPC 人名参数、玩家选项或 Wiki 注释。translate:false 精确记录用于抑制重复采集,不制造 text==zh 的假翻译。",
+      "translate": false,
+      "zh": "",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": ""
+        },
+        {
+          "color": "§f",
+          "text": " \"",
+          "zh": ""
+        },
+        {
+          "color": "§b",
+          "text": "I love the warmth of the Holidays despite the snow\"",
+          "zh": ""
+        }
+      ]
+    },
+    {
+      "id": "jerry_abiphone_phrase_praise",
+      "context": "St. Jerry: 玩家正确复述短语后高兴地赞许",
+      "text": "✆ That's grandiose!",
+      "raw": "§b✆§f That's grandiose!",
+      "placeholders": [],
+      "gloss": "grandiose 在这里是热情赞许,不译成宏伟的或夸张自大的。",
+      "translate": true,
+      "zh": "✆ 太棒啦!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": "✆"
+        },
+        {
+          "color": "§f",
+          "text": " That's grandiose!",
+          "zh": " 太棒啦!"
+        }
+      ]
+    },
+    {
+      "id": "jerry_abiphone_really_like_you",
+      "context": "St. Jerry: 玩家正确复述短语后表达亲切",
+      "text": "✆ I really like you!",
+      "raw": "§b✆§f I really like you!",
+      "placeholders": [],
+      "gloss": "日常友善的喜欢,不改成人物恋爱关系。",
+      "translate": true,
+      "zh": "✆ 我真喜欢你!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": "✆"
+        },
+        {
+          "color": "§f",
+          "text": " I really like you!",
+          "zh": " 我真喜欢你!"
+        }
+      ]
+    },
+    {
+      "id": "jerry_abiphone_yearly_white_gift",
+      "context": "St. Jerry: 添加联系人后说明每个游戏年打电话可获白色礼物",
+      "text": "✆ Call me every year and I'll hand you a White Gift!",
+      "raw": "§b✆§f Call me every year and I'll hand you a White Gift!",
+      "placeholders": [],
+      "gloss": "White Gift → 白色礼物,沿用 Events/GUI_Item/Collected_Names_September.json#name_white_gift。year 为游戏内年度,不是现实公历年;单份礼物为该任务的固定承诺。",
+      "translate": true,
+      "zh": "✆ 每年给我打个电话,我就送你一份白色礼物!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": "✆"
+        },
+        {
+          "color": "§f",
+          "text": " Call me every year and I'll hand you a White Gift!",
+          "zh": " 每年给我打个电话,我就送你一份白色礼物!"
+        }
+      ]
+    },
+    {
+      "id": "jerry_abiphone_gift_sent",
+      "context": "St. Jerry: 本游戏年首次来电,礼物已发到玩家背包",
+      "text": "✆ I sent a gift to your inventory! With love, St. Jerry.",
+      "raw": "§b✆§f I sent a gift to your inventory! With love, St. Jerry.",
+      "placeholders": [],
+      "gloss": "gift 泛称沿用礼物;With love 是温暖的祝福与落款,St. Jerry 人名保留英文。",
+      "translate": true,
+      "zh": "✆ 礼物已经送进你的背包啦! 送上满满的祝福,St. Jerry。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": "✆"
+        },
+        {
+          "color": "§f",
+          "text": " I sent a gift to your inventory! With love, St. Jerry.",
+          "zh": " 礼物已经送进你的背包啦! 送上满满的祝福,St. Jerry。"
+        }
+      ]
+    },
+    {
+      "id": "jerry_abiphone_season_wishes",
+      "context": "St. Jerry: 本年度已领取礼物后的电话祝福;前一条 Wiki 台词破损,未重建",
+      "text": "✆ But hey, merry season of the Jerry to you anyway!",
+      "raw": "§b✆§f But hey, merry season of the Jerry to you anyway!",
+      "placeholders": [],
+      "gloss": "season of the Jerry 在本句仍指 Jerry 季,沿用 _shared/Terms.json 的 Season of Jerry → Jerry 季,不自造另一活动译名。",
+      "translate": true,
+      "zh": "✆ 不过嘛,还是祝你 Jerry 季快乐!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": "✆"
+        },
+        {
+          "color": "§f",
+          "text": " But hey, merry season of the Jerry to you anyway!",
+          "zh": " 不过嘛,还是祝你 Jerry 季快乐!"
+        }
+      ]
+    },
+    {
+      "id": "jerry_abiphone_call_next_year",
+      "context": "St. Jerry: 本年度礼物已领,提醒下个游戏年再来电",
+      "text": "✆ Call me again next year!",
+      "raw": "§b✆§f Call me again next year!",
+      "placeholders": [],
+      "gloss": "next year 为下个游戏年,不是动态倒计时,不造时间模板。",
+      "translate": true,
+      "zh": "✆ 明年再给我打电话吧!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆",
+          "zh": "✆"
+        },
+        {
+          "color": "§f",
+          "text": " Call me again next year!",
+          "zh": " 明年再给我打电话吧!"
+        }
+      ]
+    },
+    {
+      "id": "jerry_garden_request",
+      "ref": "Farming/NPC_Message/St_Jerry.json#visitor_st_jerry_request_1",
+      "context": "St. Jerry: 花园访客提出原材料委托;本次 DOM 同文单色 §f,复用已有 CHAT 记录,不搬迁花园分类"
+    },
+    {
+      "id": "jerry_garden_complete",
+      "ref": "Farming/NPC_Message/St_Jerry.json#visitor_st_jerry_complete_1",
+      "context": "St. Jerry: 完成花园访客委托;本次 DOM 同文单色 §f,复用已有 CHAT 记录"
+    },
+    {
+      "id": "jerry_garden_deny",
+      "ref": "Farming/NPC_Message/St_Jerry.json#visitor_st_jerry_deny_1",
+      "context": "St. Jerry: 拒绝花园访客委托;本次 DOM 同文单色 §f,复用已有 CHAT 记录"
+    },
+    {
+      "id": "jerry_workshop_bank_hint",
+      "context": "St. Jerry: 已领取收集奖励后,介绍村中央的银行",
+      "text": "Did you know you can access your Bank from Jerry's Workshop? Check out the Bank in the center of the village!",
+      "raw": "§fDid you know you can access your Bank from Jerry's Workshop? Check out the Bank in the center of the village!",
+      "placeholders": [],
+      "gloss": "Jerry's Workshop → Jerry 的工坊,沿用 _shared/Terms.json;Bank 为银行功能,不是同名专属附魔。",
+      "translate": true,
+      "zh": "你知道吗? 在 Jerry 的工坊也能使用银行。去村子中央的银行看看吧!"
+    },
+    {
+      "id": "jerry_gift_click_player_hint",
+      "context": "St. Jerry: 已领取收集奖励后,介绍手持礼物点击其他玩家的赠礼操作",
+      "text": "Click someone with a Gift to give both you and them a Gift!",
+      "raw": "§fClick someone with a Gift to give both you and them a Gift!",
+      "placeholders": [],
+      "gloss": "with a Gift 修饰玩家执行点击时所持物品,不是要求找手持礼物的人;原文没有指明鼠标左键或右键,译文不自行补充。Gift 泛称沿用礼物。",
+      "translate": true,
+      "zh": "拿着礼物点击别人,你和对方就都能收到礼物啦!"
+    },
+    {
+      "id": "jerry_return_next_skyblock_year",
+      "context": "St. Jerry: 已领取收集奖励后,邀请下个游戏年再次收集",
+      "text": "Come back next SkyBlock year to find more Gifts!",
+      "raw": "§fCome back next SkyBlock year to find more Gifts!",
+      "placeholders": [],
+      "gloss": "SkyBlock 按 GLOSSARY.md 保留配置控制的英文标记,不直接硬写空岛生存;Gifts 泛称沿用礼物。",
+      "translate": true,
+      "zh": "下个 SkyBlock 年再来找更多礼物吧!"
+    },
+    {
+      "id": "jerry_ice_fishing_relax",
+      "context": "St. Jerry: 已领取收集奖励后,介绍冬季冰钓;属于钓鱼章节辅助关系",
+      "text": "Ice fishing is a great way to relax during the winter!",
+      "raw": "§bIce fishing§f is a great way to relax during the winter!",
+      "placeholders": [],
+      "gloss": "ice fishing 沿用 Events/NPC_Message/Terry.json 既有对白中的冰钓,不混同狩猎渔网技能。winter 为普通冬季叙述,不是空岛历月份名。",
+      "translate": true,
+      "zh": "冰钓可是冬天放松的好法子!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "Ice fishing",
+          "zh": "冰钓"
+        },
+        {
+          "color": "§f",
+          "text": " is a great way to relax during the winter!",
+          "zh": "可是冬天放松的好法子!"
+        }
+      ]
+    },
+    {
+      "id": "jerry_pond_icy_creatures",
+      "context": "St. Jerry: 接冰钓介绍,说明 Jerry 池塘深处的冰雪生物",
+      "text": "There are all sorts of icy creatures within the depths of Jerry Pond!",
+      "raw": "§fThere are all sorts of icy creatures within the depths of §bJerry Pond§f!",
+      "placeholders": [],
+      "gloss": "Jerry Pond → Jerry 池塘,沿用 _shared/Terms.json。英文把地名放在句末,中文将青色地名移至句首;segments 保持英文顺序,order 使用完整排列。",
+      "translate": true,
+      "zh": "Jerry 池塘深处藏着各种冰雪生物!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "There are all sorts of icy creatures within the depths of ",
+          "zh": "深处藏着各种冰雪生物",
+          "order": 1
+        },
+        {
+          "color": "§b",
+          "text": "Jerry Pond",
+          "zh": "Jerry 池塘",
+          "order": 0
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!",
+          "order": 2
+        }
+      ]
+    },
+    {
+      "id": "jerry_trade_or_share_gifts",
+      "context": "St. Jerry: 已领取收集奖励后,介绍交易礼物或向岛上玩家赠礼",
+      "text": "You can trade Gifts directly with others or randomly gift players on the island!",
+      "raw": "§fYou can trade Gifts directly with others or randomly gift players on the island!",
+      "placeholders": [],
+      "gloss": "Gifts 泛称沿用礼物;trade 和 gift 为两种操作,不合并为同一种机制。",
+      "translate": true,
+      "zh": "你可以直接和别人交易礼物,也可以在岛上随意找人送礼物!"
+    },
+    {
+      "id": "jerry_gifting_benefits_both",
+      "context": "St. Jerry: 赠礼说明的最后一句,双方都能获益",
+      "text": "Gifting others benefits both you and the other person!",
+      "raw": "§fGifting others benefits both you and the other person!",
+      "placeholders": [],
+      "gloss": "不补双方具体掉落或经验数值。",
+      "translate": true,
+      "zh": "把礼物送给别人,你和对方都能有收获!"
     }
   ],
   "npc": "St. Jerry",
-  "note": "Jerry 季礼物活动的引导者；热情亲切地邀请玩家寻找礼物，不使用命令式官腔，不改变收集任务条件。"
+  "note": "身份: Jerry 的工坊中主持 Jerry 季礼物收集的热心引导者,也会到访玩家花园。关系: 亲切接待玩家,鼓励分享礼物,电话里也会送上祝福。说话风格: 温暖、轻快的日常口语。性格与词汇: 乐于分享,常说礼物、欢乐、祝福;对自己的大号 Abiphone 有些孩子气的得意。禁用风格: 不写官腔、伪文言或硬塞网络梗,不把节日任务改写成钓鱼任务。已有花园对白通过 ref 引用,分类不搬迁。",
+  "source_note": "新增对白及颜色来自父代理于 2026-10-02 通过 Playwright 读取的普通社区 Wiki 呈现页及 DOM computed 样式,raw 仅为 Wiki 样本,不代表服务器原始字节。前四条保留基线 2026-09-22 实测记录及分段,不以 Wiki 色码覆盖历史实测。",
+  "wiki_last_edited": "This page was last edited on 3 September 2026, at 01:32.",
+  "historical_evidence": {
+    "fetched_at": "2026-09-22",
+    "verified_ingame": true,
+    "record_ids": [
+      "jerry_season_greeting",
+      "jerry_gifts",
+      "jerry_year_gifts",
+      "jerry_find_gifts"
+    ],
+    "note": "上述记录逐字段保留基线实测原样。Wiki 对 greeting 的首段使用 §f 而实测未显式指定颜色,句内复原颜色使用 §f 而实测使用 §r;gifts 的绿色范围在 Wiki 中为 Gifts,实测为 Gifts 后附一个空格;另外两条 Wiki 增加了行首 §f。原文文字一致,仅样本色码与空格颜色边界不同。"
+  },
+  "todo": [
+    "Abiphone 当年已领取白色礼物后的首句在 Wiki DOM source_line 21–23 中混入 [sic] 与破损 abbr/sup 标签并被拆碎;不能据此重建完整服务器台词。等待完整实测或有效呈现页证据。"
+  ]
 }

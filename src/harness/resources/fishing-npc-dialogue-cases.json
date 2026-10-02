@@ -1,0 +1,31 @@
+{
+  "note": "普通社区 Wiki 呈现页的独立对白/颜色回归。玩家名、倒计时、重量、奖励名称与 Nemo 的 PUA 图标变体均为明确的离线合成输入，不是服务器实测；PUA 样例仅验证原码保留，不代表已确认的属性映射。粗体按 Wiki format-l 的文字阴影效果核实，不能仅看 font-weight。",
+  "cases": [
+    {"name":"Angus鱼饵高亮后恢复白色","surface":"NPC_Message","source":["§fWhenever you fish, make sure you're using some type of §6Bait§f."],"expected":"§f钓鱼的时候,记得用上§6鱼饵§f。"},
+    {"name":"Angus合成材料沿用现有物品名","surface":"NPC_Message","source":["§fI craft Fish Bait all the time because it's so easy to do - just a couple of Raw Cod and a Raw Salmon!"],"expected":"§f我经常合成鱼类鱼饵,做起来可简单了——两条生鳕鱼加一条生鲑鱼就行!"},
+    {"name":"Gilbert所需腰带扣复用物品译名","surface":"NPC_Message","source":["§fIf it's not too much trouble, might you be able to fish me up a §9Busted Belt Buckle§f?"],"expected":"§f要是不麻烦的话,能帮我钓个§9破损的腰带扣§f吗?"},
+    {"name":"Lily双选项保留两种颜色","surface":"NPC_Message","source":["§eSelect an option: §a[I promise.] §c[Depends what we're dealing with here...]"],"expected":"§e选择一个选项: §a[我保证。] §c[那得看咱们面对的是什么……]"},
+    {"name":"Lily未知物品保留英文并重排颜色","surface":"NPC_Message","source":["§fYou can only see §dWormholes §fwhile wearing a pair of §aFroggles§f!"],"expected":"§f只有戴上 §aFroggles§f，才能看见§d虫洞§f!"},
+    {"name":"Lily箭头选项保留缩进","surface":"NPC_Message","source":["§f §e ➜ §b[Where do I get Froggles?] "],"expected":"§f §e ➜ §b[Froggles 从哪儿弄?] "},
+    {"name":"Timmy停雨单数分钟","surface":"NPC_Message","source":["§fSadly it'll stop raining in about §a1 minute §ffrom now."],"expected":"§f可惜,再过大约 §a1 分钟§f,雨就要停了。"},
+    {"name":"Timmy停雨复数分钟不写死","surface":"NPC_Message","source":["§fSadly it'll stop raining in about §a7 minutes §ffrom now."],"expected":"§f可惜,再过大约 §a7 分钟§f,雨就要停了。"},
+    {"name":"Timmy下雨倒计时","surface":"NPC_Message","source":["§fLuckily it'll start raining in about §a7 minutes §ffrom now."],"expected":"§f还好,再过大约 §a7 分钟§f,就要下雨了。"},
+    {"name":"嘉年华提示冒号为独立白色","surface":"NPC_Message","source":["§eSelect an option§f:"],"expected":"§e请选择§f:"},
+    {"name":"同提示全黄变体不强行刷白冒号","surface":"NPC_Message","source":["§eSelect an option:"],"expected":"§e请选择:"},
+    {"name":"NPC前缀与鱼类家族高亮不串色","surface":"NPC_Message","source":["§e[NPC] §2Coral§f: Have you ever heard tales of the §aFish Family§f?"],"expected":"§e[NPC] §2Coral§f: 你听说过§a鱼类家族§f的故事吗?"},
+    {"name":"未知奖励仅验证短名称形状","surface":"NPC_Message","source":["§fAs a token of my appreciation, I've given you §7Reward Item!"],"expected":"§f为表谢意,我给了你 §7Reward Item!"},
+    {"name":"Odexar鱼重101磅保持数值","surface":"NPC_Message","source":["§fWait, that §aLoudmouth Bass §fof yours is 101 lbs..."],"expected":"§f等等,你那条 §aLoudmouth Bass §f重 101 磅……"},
+    {"name":"Odexar小数鱼重不定向翻译","surface":"NPC_Message","source":["§fWait, that §aLoudmouth Bass §fof yours is 234.5 lbs..."],"expected":"§f等等,你那条 §aLoudmouth Bass §f重 234.5 磅……"},
+    {"name":"维京人年月同时可变并保留青色","surface":"NPC_Message","source":["§fI last saw the sea §b16 years, 10 months §fago."],"expected":"§f我上次见到大海，已经是§b16 年 10 个月§f前了。"},
+    {"name":"维京人更换两组数值","surface":"NPC_Message","source":["§fI last saw the sea §b21 years, 5 months §fago."],"expected":"§f我上次见到大海，已经是§b21 年 5 个月§f前了。"},
+    {"name":"森林之心名称和按钮粗体来自format-l","surface":"NPC_Message","source":["§a§lHEART OF THE FOREST §fhas been unlocked! Open your §aSkyBlock Menu §fto find it. §e§l[CLICK HERE TO OPEN]"],"expected":"§a§l森林之心§f已解锁! 打开§a空岛菜单§f就能找到它。 §e§l[点击此处打开]"},
+    {"name":"Brynmor同色中途粗体不可压平","surface":"NPC_Message","source":["§b✆ §fBy the time I caught up with him, he had already gone and §f§lDROPPED IT §finto the quarry's lake!"],"expected":"§b✆ §f等我追上他时,他已经§f§l把它丢进§f采石场的湖里了!"},
+    {"name":"圣Jerry任务口令必须保持英文","surface":"NPC_Message","source":["§b✆§f \"§bI love the warmth of the Holidays despite the snow\""],"expected":"§b✆§f \"§bI love the warmth of the Holidays despite the snow\""},
+    {"name":"Helia玩家段保存重采白色","surface":"NPC_Message","source":["§fGreat job, Example! I look forward to seeing where your journey takes you next!"],"expected":"§f干得漂亮，Example! 真期待看看，你接下来的旅程会通向哪里!"},
+    {"name":"FrozenAlex熔岩桶紫色","surface":"NPC_Message","source":["§b✆§f Bring me an §5Enchanted Lava Bucket§f, please."],"expected":"§b✆§f 麻烦带一个§5附魔熔岩桶§f给我吧。"},
+    {"name":"FrozenAlex后续熔岩桶数量与紫色","surface":"NPC_Message","source":["§b✆§f You know, another dozen or so §5Enchanted Lava Buckets§f should be enough to thaw me out completely."],"expected":"§b✆§f 其实啊，再来 12 个左右的§5附魔熔岩桶§f，应该就够让我彻底解冻了。"},
+    {"name":"Nemo潜水通用图标与呼吸斜体","surface":"NPC_Message","source":["§fVisit my shop for §3⚶ Respiration §f...§f§o*inhales*§f... and §9❍ Pressure Resistance §fgear."],"expected":"§f来我店里买些带§3⚶ 水下呼吸§f……§f§o*吸气*§f……和§9❍ 抗压§f的装备吧。"},
+    {"name":"Nemo潜水私用区字形不猜全局映射","surface":"NPC_Message","source":["§fVisit my shop for §3 Respiration §f...§f§o*inhales*§f... and §9 Pressure Resistance §fgear."],"expected":"§f来我店里买些带§3 水下呼吸§f……§f§o*吸气*§f……和§9 抗压§f的装备吧。"},
+    {"name":"Nemo其他合法单字形亦保留原码","surface":"NPC_Message","source":["§fVisit my shop for §3 Respiration §f...§f§o*inhales*§f... and §9 Pressure Resistance §fgear."],"expected":"§f来我店里买些带§3 水下呼吸§f……§f§o*吸气*§f……和§9 抗压§f的装备吧。"}
+  ]
+}

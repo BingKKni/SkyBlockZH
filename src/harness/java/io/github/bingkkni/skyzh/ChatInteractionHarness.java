@@ -87,6 +87,7 @@ public final class ChatInteractionHarness {
 		}
 		negativeControls();
 		blockAndQuiz();
+		commandMentions();
 		colours();
 		System.out.printf("扫描 CHAT 可用记录 %d 条，按钮记录 %d 条，已匹配颜色样本 %d 条；通过 %d / 失败 %d%n",
 			chatRecords, buttons, colourSamples, passed, failed);
@@ -224,6 +225,37 @@ public final class ChatInteractionHarness {
 		} finally {
 			HoldOriginal.setActive(false);
 			SkyZHConfig.get().enabled = enabled;
+		}
+	}
+
+	/** Synthetic events prove preservation if the server makes a command mention interactive. */
+	private static void commandMentions() {
+		Map<String, String> mentions = Map.of(
+			"/bait", "You can also use /bait as a shortcut if you aren't feeling like paying me a visit!",
+			"/scg", "Don't tell mum this, but I just use /scg to open it."
+		);
+		for (var mention : mentions.entrySet()) {
+			String command = mention.getKey(), text = mention.getValue();
+			int start = text.indexOf(command), end = start + command.length();
+			Style action = Style.EMPTY.withColor(ChatFormatting.GREEN)
+				.withClickEvent(new ClickEvent.RunCommand("/skyzh-test-shortcut"))
+				.withHoverEvent(new HoverEvent.ShowText(Component.literal("synthetic shortcut")))
+				.withInsertion("synthetic-shortcut");
+			Component input = Component.empty()
+				.append(Component.literal(text.substring(0, start)).withStyle(ChatFormatting.WHITE))
+				.append(Component.empty().setStyle(action).append(command))
+				.append(Component.literal(text.substring(end)).withStyle(ChatFormatting.WHITE));
+			StyledText before = StyledText.of(input);
+			StyledText drawn = StyledText.of(Translator.translateChatBlock(input, 120, c -> StyledText.of(c).length() * 6));
+			int translated = drawn.plain().indexOf(command);
+			boolean valid = translated >= 0 && !drawn.plain().equals(text);
+			for (int i = 0; i < drawn.length(); i++) {
+				Style style = drawn.styleAt(i);
+				valid &= i >= translated && i < translated + command.length() ? action.equals(style)
+					: style.getClickEvent() == null && style.getHoverEvent() == null && style.getInsertion() == null;
+			}
+			require(command + " 无括号指令提及保留事件且不扩散到空格和正文", valid);
+			require(command + " 不修改原始组件", before.equals(StyledText.of(input)));
 		}
 	}
 

@@ -1,0 +1,284 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Jaeger",
+  "fetched_at": "2026-10-02",
+  "verified_ingame": false,
+  "wiki_last_edited": "This page was last edited on 11 August 2026, at 19:27.",
+  "source_note": "原文、条件与颜色取自本次 Playwright 采集的社区 Wiki 普通呈现页面。raw 是按页面 DOM 颜色还原的样本，不是服务器实测原始字节；玩家名位置由页面的 <player> 规范为 player_name 占位符。",
+  "npc": "Jaeger",
+  "aliases": [],
+  "note": "身份: Galatea 湖边教授渔网使用方法的猎人。\n关系: 把初来乍到的玩家当作可能的新学徒，热心指导，并引导其回去找 David Hunterborough。\n说话方式: 随和直接，教学时简明，说起捕猎成果就夸张地吹捧。\n性格与词汇: 爱捕小鱼，把一次捕猎说成史诗大捷；觉得小鱼可爱，却怕湖底生物。常用捕鱼、猎人、战绩等措辞。\n禁用风格: 不写伪文言，不增加血腥细节，不硬塞网络梗，不增添操作或任务机制。",
+  "messages": [
+    {
+      "id": "jaeger_unlock_forest_heart",
+      "context": "尚未解锁森林之心时，提醒玩家找岛前面的 Hina。",
+      "text": "%s! Have you talked to Hina at the front of the island to get your hands on a Heart of the Forest?",
+      "raw": "§7%s§f! Have you talked to §bHina §fat the front of the island to get your hands on a §aHeart of the Forest§f?",
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "被 Jaeger 招呼的玩家名，保留原文。",
+          "type": "player_name",
+          "example": "inkkni"
+        }
+      ],
+      "gloss": "Heart of the Forest 沿用 Hub_General/GUI_Item/Your_Skills.json#skills_heart_of_the_forest 与 _shared/Terms.json 的森林之心；此处是解锁引导，不是要求交付心脏物品。Hina 是 NPC 人名，保留英文。",
+      "translate": true,
+      "zh": "%s! 你找岛前面的 Hina 聊过天，拿到森林之心了吗?",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§f",
+          "text": "! Have you talked to ",
+          "zh": "! 你找岛前面的 "
+        },
+        {
+          "color": "§b",
+          "text": "Hina ",
+          "zh": "Hina"
+        },
+        {
+          "color": "§f",
+          "text": "at the front of the island to get your hands on a ",
+          "zh": " 聊过天，拿到"
+        },
+        {
+          "color": "§a",
+          "text": "Heart of the Forest",
+          "zh": "森林之心"
+        },
+        {
+          "color": "§f",
+          "text": "?",
+          "zh": "了吗?"
+        }
+      ]
+    },
+    {
+      "id": "jaeger_new_apprentice",
+      "context": "首次交谈，询问玩家是否是 David Hunterborough 的新学徒。",
+      "text": "Hey, are you David Hunterborough's new apprentice?",
+      "raw": "§fHey, are you §bDavid Hunterborough§f's new apprentice?",
+      "placeholders": [],
+      "gloss": "David Hunterborough 为 NPC 人名；new apprentice 指他新收的学徒，不改成人际关系之外的头衔。",
+      "translate": true,
+      "zh": "嘿，你是 David Hunterborough 新收的学徒吗?",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Hey, are you ",
+          "zh": "嘿，你是 "
+        },
+        {
+          "color": "§b",
+          "text": "David Hunterborough",
+          "zh": "David Hunterborough"
+        },
+        {
+          "color": "§f",
+          "text": "'s new apprentice?",
+          "zh": " 新收的学徒吗?"
+        }
+      ]
+    },
+    {
+      "id": "jaeger_try_hunting_fish",
+      "context": "首次交谈，邀请玩家试着捕鱼。",
+      "text": "I've been hunting fish all day long, why don't you give it a try?",
+      "raw": "§fI've been hunting fish all day long, why don't you give it a try?",
+      "placeholders": [],
+      "gloss": "此处是使用渔网捕鱼，不把 hunting 改成持鱼竿垂钓。",
+      "translate": true,
+      "zh": "我都捕了一整天鱼了，你也来试试?"
+    },
+    {
+      "id": "jaeger_take_fishing_net",
+      "context": "首次交谈，先让玩家拿上渔网。",
+      "text": "But first grab this fishing net.",
+      "raw": "§fBut first grab this §9fishing net§f.",
+      "placeholders": [],
+      "gloss": "fishing net 沿用本地通用工具整名 Foraging/GUI_Item/Hunting_Toolkit.json#toolkit_fishing_net：渔网。条件表所指工具是 Basic Fishing Net，本地 _shared/Captured_Item_Names.json#captured_name_5c0a0f13fab1 已译基础渔网；对白未说 Basic，不补进正文。蓝色按本次对白 DOM 保留，不套用物品名的绿色。",
+      "translate": true,
+      "zh": "不过，先拿上这张渔网。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "But first grab this ",
+          "zh": "不过，先拿上这张"
+        },
+        {
+          "color": "§9",
+          "text": "fishing net",
+          "zh": "渔网"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "jaeger_first_time_using_net",
+      "context": "接受基础渔网后，询问玩家是否第一次用渔网。",
+      "text": "I'm guessing you have never used a fishing net before?",
+      "raw": "§fI'm guessing you have never used a fishing net before?",
+      "placeholders": [],
+      "gloss": "fishing net 沿用 Foraging/GUI_Item/Hunting_Toolkit.json#toolkit_fishing_net 的渔网；不在对白中添加原文没有的 Basic 前缀。",
+      "translate": true,
+      "zh": "我猜你以前没用过渔网吧?"
+    },
+    {
+      "id": "jaeger_throw_net_at_fish",
+      "context": "接受基础渔网后，说明朝水中看见的鱼扔网即可。",
+      "text": "All you have to do is throw it at fish you see in the water.",
+      "raw": "§fAll you have to do is throw it at fish you see in the water.",
+      "placeholders": [],
+      "gloss": "it 指刚领取的渔网；不擅自补鼠标按键、距离或成功率。",
+      "translate": true,
+      "zh": "只要看见水里有鱼，把网朝它扔过去就行。"
+    },
+    {
+      "id": "jaeger_try_fish_here",
+      "context": "接受基础渔网后，让玩家拿这里的鱼练习。",
+      "text": "Try it on this fish right here.",
+      "raw": "§fTry it on this fish right here.",
+      "placeholders": [],
+      "gloss": "right here 是这里，与使用前提醒中的 right there 区分。",
+      "translate": true,
+      "zh": "就拿这边这条鱼试试吧。"
+    },
+    {
+      "id": "jaeger_throw_net_at_any_fish",
+      "context": "尚未使用基础渔网时，再次提醒任意水中可见的鱼都能作为目标。",
+      "text": "All you have to do is throw it at any fish you see in the water!",
+      "raw": "§fAll you have to do is throw it at any fish you see in the water!",
+      "placeholders": [],
+      "gloss": "any fish 是任意水中看见的鱼；it 指渔网。",
+      "translate": true,
+      "zh": "水里的鱼随便挑一条，把网朝它扔过去就行!"
+    },
+    {
+      "id": "jaeger_try_fish_there",
+      "context": "尚未使用基础渔网时，指着那里的鱼让玩家练习。",
+      "text": "Try it on this fish right there.",
+      "raw": "§fTry it on this fish right there.",
+      "placeholders": [],
+      "gloss": "right there 是那里，不并入 right here 的另一条原文。",
+      "translate": true,
+      "zh": "就拿那边那条鱼试试吧。"
+    },
+    {
+      "id": "jaeger_well_done",
+      "context": "使用基础渔网后，夸奖玩家。",
+      "text": "Well done!",
+      "raw": "§fWell done!",
+      "placeholders": [],
+      "gloss": "已检查基线 d995de7 的 NPC_Message、ChatMessage 与 _shared，无同文记录可复用。",
+      "translate": true,
+      "zh": "干得漂亮!"
+    },
+    {
+      "id": "jaeger_end_fish_peaceful_life",
+      "context": "使用基础渔网后，夸张地描述这条鱼的结局。",
+      "text": "You've successfully ended the peaceful existence of a fish!",
+      "raw": "§fYou've successfully ended the peaceful existence of a fish!",
+      "placeholders": [],
+      "gloss": "保留把捕鱼说得煞有介事的黑色幽默；不增加解剖、流血等细节。",
+      "translate": true,
+      "zh": "你成功给一条鱼安稳的一生画上了句号!"
+    },
+    {
+      "id": "jaeger_hunters_live_for_this",
+      "context": "使用基础渔网后，兴奋地表示这就是猎人追求的事。",
+      "text": "That's what all hunters live for!",
+      "raw": "§fThat's what all hunters live for!",
+      "placeholders": [],
+      "gloss": "live for 是把这件事当成追求，不是生存所需的资源机制。",
+      "translate": true,
+      "zh": "猎人活着不就图这个嘛!"
+    },
+    {
+      "id": "jaeger_david_will_be_delighted",
+      "context": "使用基础渔网后，认为 David Hunterborough 会很高兴。",
+      "text": "David Hunterborough's going to be over the moon about this.",
+      "raw": "§bDavid Hunterborough§f's going to be over the moon about this.",
+      "placeholders": [],
+      "gloss": "over the moon 是欣喜若狂的习语，不指前往月球。David Hunterborough 保留英文。",
+      "translate": true,
+      "zh": "David Hunterborough 知道了，肯定得乐开花。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "David Hunterborough",
+          "zh": "David Hunterborough"
+        },
+        {
+          "color": "§f",
+          "text": "'s going to be over the moon about this.",
+          "zh": " 知道了，肯定得乐开花。"
+        }
+      ]
+    },
+    {
+      "id": "jaeger_report_epic_conquest",
+      "context": "使用基础渔网后，让玩家接下来把捕猎经过告诉 David Hunterborough。",
+      "text": "Make sure to share every gripping detail of your epic conquest with him next.",
+      "raw": "§fMake sure to share every gripping detail of your epic conquest with him next.",
+      "placeholders": [],
+      "gloss": "him 指上一句的 David Hunterborough；epic conquest 是故意把小小一次捕鱼吹成辉煌战绩，不另创任务名。",
+      "translate": true,
+      "zh": "接下来，记得把你这场史诗级大捷的每个精彩细节都讲给他听。"
+    },
+    {
+      "id": "jaeger_talk_to_david_next",
+      "context": "尚未找 David Hunterborough 交谈时，提醒下一步去找他。",
+      "text": "You should go talk to David Hunterborough next.",
+      "raw": "§fYou should go talk to §bDavid Hunterborough §fnext.",
+      "placeholders": [],
+      "gloss": "David Hunterborough 为 NPC 人名；原文与 Kysha 的 You might want to talk to David Hunterborough next. 不同，不混作同文引用。",
+      "translate": true,
+      "zh": "接下来，去找 David Hunterborough 聊聊吧。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "You should go talk to ",
+          "zh": "接下来，去找 "
+        },
+        {
+          "color": "§b",
+          "text": "David Hunterborough ",
+          "zh": "David Hunterborough"
+        },
+        {
+          "color": "§f",
+          "text": "next.",
+          "zh": " 聊聊吧。"
+        }
+      ]
+    },
+    {
+      "id": "jaeger_hunts_cute_fish",
+      "context": "找 David Hunterborough 交谈后，说明自己喜欢捕小鱼的理由。",
+      "text": "Those tiny fish are super cute, that's mostly why I hunt them.",
+      "raw": "§fThose tiny fish are super cute, that's mostly why I hunt them.",
+      "placeholders": [],
+      "gloss": "主要因为小鱼可爱才捕猎它们，保留原文这份反差；不是因为它们可爱就放生。",
+      "translate": true,
+      "zh": "那些小鱼实在太可爱了，我捕它们主要就是因为这个。"
+    },
+    {
+      "id": "jaeger_deep_loch_creatures_scary",
+      "context": "找 David Hunterborough 交谈后，坦言湖深处的生物很吓人。",
+      "text": "The creatures deep down this loch are quite scary.",
+      "raw": "§fThe creatures deep down this loch are quite scary.",
+      "placeholders": [],
+      "gloss": "loch 是湖；本句只泛指湖深处的生物，不补专名或怪物机制。",
+      "translate": true,
+      "zh": "这湖深处的生物可吓人了。"
+    }
+  ]
+}

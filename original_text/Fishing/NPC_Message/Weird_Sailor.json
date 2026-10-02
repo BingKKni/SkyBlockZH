@@ -1,0 +1,137 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Weird_Sailor",
+  "fetched_at": "2026-10-02",
+  "verified_ingame": false,
+  "npc": "Weird Sailor",
+  "aliases": [],
+  "wiki_last_edited": "This page was last edited on 28 August 2026, at 15:14.",
+  "note": "身份: 出现在 Kuudra 的巢穴的神秘水手，提供 Wet Napkin 隐藏钓鱼流程的装备与鱼饵线索。\n关系: 随意搭话的陌生人，愿意透露一点秘密。\n说话方式: 简短随性，英文全小写并使用缩写；中文采用轻松的短句，不刻意制造错别字。\n性格与词汇: 古怪、话题跳跃，依次提到优雅穿着、熔岩憋气、大鱼、赶火车和马戏团，保留停顿与告别表情。\n禁用风格: 不额外添加海盗腔、网络梗或任务机制；NPC 名保留英文，单色对白保持页面正文的白色。",
+  "color_evidence": "本次普通社区 Wiki 呈现页的 DOM computed 样式；raw 是 Wiki 颜色还原样本，不是服务器实测原始字节。",
+  "entries": [
+    {
+      "id": "weird_sailor_greeting",
+      "context": "Weird Sailor：无额外条件，开场招呼。",
+      "text": "hi",
+      "raw": "§fhi",
+      "placeholders": [],
+      "gloss": "简短随意的招呼，不擅自增加热情的称谓。",
+      "translate": true,
+      "zh": "嗨"
+    },
+    {
+      "id": "weird_sailor_elegant_fashion",
+      "context": "Weird Sailor：穿着 Elegant Tuxedo 时，评价玩家的穿着。原条件为 None / Wearing an Elegant Tuxedo。",
+      "text": "you have elegant taste in fashion",
+      "raw": "§fyou have elegant taste in fashion",
+      "placeholders": [],
+      "gloss": "elegant 是穿着评价，也呼应触发装备；保留优雅线索。用户拍板：Elegant Tuxedo 无本地 GUI_Item 整名或适用模板译文，完整保留原名；本句正文没有直接说出装备名，不把装备名称补进对白。",
+      "translate": true,
+      "zh": "你这身打扮,挺优雅嘛"
+    },
+    {
+      "id": "weird_sailor_secret_offer",
+      "context": "Weird Sailor：无额外条件，卖个关子，随后说出熔岩憋气的秘密。",
+      "text": "u want to know a secret?",
+      "raw": "§fu want to know a secret?",
+      "placeholders": [],
+      "gloss": "u 是随意口语缩写，不按拼写错误处理，也不是玩家名。",
+      "translate": true,
+      "zh": "想听个秘密吗?"
+    },
+    {
+      "id": "weird_sailor_pause",
+      "ref": "Dungeons/NPC_Message/Adventurer_Saul.json#adventurer_saul_message_message",
+      "context": "Weird Sailor：无额外条件；讲秘密、大鱼传说和转去赶火车的话题前各有一次独立停顿。同一 CHAT 面已有 §f...，三处复用，不视为 Wiki 装饰或空行。"
+    },
+    {
+      "id": "weird_sailor_lava_breath",
+      "context": "Weird Sailor：无额外条件，说出自己能在熔岩里憋气的秘密。",
+      "text": "i can hold my breath under lava for 15 seconds!",
+      "raw": "§fi can hold my breath under lava for 15 seconds!",
+      "placeholders": [],
+      "gloss": "15 秒是这句固定台词的数值，不是采集时的动态倒计时；不增加效果或安全性承诺。lava 沿用既有熔岩译法。",
+      "translate": true,
+      "zh": "我能在熔岩里憋气 15 秒!"
+    },
+    {
+      "id": "weird_sailor_shared_breath_talent",
+      "context": "Weird Sailor：戴着带水下呼吸 I 附魔的头盔时，接上熔岩憋气的话题。原条件为 None / Wearing a Helmet with Respiration I。",
+      "text": "seems like u can too!",
+      "raw": "§fseems like u can too!",
+      "placeholders": [],
+      "gloss": "Respiration 为原版附魔，条件说明沿用 _shared/Terms.json 的水下呼吸；正文仅说玩家似乎也能做到，不额外补入物品名或附魔效果。",
+      "translate": true,
+      "zh": "看来你也行!"
+    },
+    {
+      "id": "weird_sailor_big_fish_legend",
+      "context": "Weird Sailor：无额外条件，停顿后提到这片水域的大鱼传说。",
+      "text": "i heard a legend there was a big fish in these waters",
+      "raw": "§fi heard a legend there was a big fish in these waters",
+      "placeholders": [],
+      "gloss": "这是角色转述的传说，不补出鱼的身份、位置或必定能钓到的结论。",
+      "translate": true,
+      "zh": "我听过个传说,说这片水里有条大鱼"
+    },
+    {
+      "id": "weird_sailor_fish_it_up",
+      "context": "Weird Sailor：无额外条件，接上大鱼传说，暗示玩家尝试钓上来。",
+      "text": "mayb u could fish it up?",
+      "raw": "§fmayb u could fish it up?",
+      "placeholders": [],
+      "gloss": "mayb 表示可能，保留试探语气，不译成必定成功。",
+      "translate": true,
+      "zh": "说不定你能把它钓上来?"
+    },
+    {
+      "id": "weird_sailor_use_held_bait",
+      "context": "Weird Sailor：手持 Ice Bait 时，提示使用手头的鱼饵。原条件为 None / Holding Ice Bait。",
+      "text": "try using dat bait u hav",
+      "raw": "§ftry using dat bait u hav",
+      "placeholders": [],
+      "gloss": "bait 沿用 GLOSSARY.md 的鱼饵，不是碎鱼饵。Ice Bait 的适用物品名模板为 Fishing/GUI_Item/Bait_Guide.json#bait_kind；Ice Bait 在 src/main/resources/assets/skyzh/item-names.json 的 names 中，Ice 由 _shared/Terms.json 译为冰，因此已有模板渲染为冰鱼饵。正文只泛指手头的鱼饵，不额外说出冰鱼饵。",
+      "translate": true,
+      "zh": "试试用你手头的鱼饵"
+    },
+    {
+      "id": "weird_sailor_catch_train",
+      "context": "Weird Sailor：无额外条件，停顿后突然转到自己要赶火车的话题。",
+      "text": "anyway... i have a train to catch",
+      "raw": "§fanyway... i have a train to catch",
+      "placeholders": [],
+      "gloss": "have a train to catch 是要赶火车，不是捕捉火车；保留原话题跳转。",
+      "translate": true,
+      "zh": "先不说了... 我得赶火车"
+    },
+    {
+      "id": "weird_sailor_circus_destination",
+      "context": "Weird Sailor：无额外条件，说明赶火车是为了去马戏团。",
+      "text": "im goin 2 da circus",
+      "raw": "§fim goin 2 da circus",
+      "placeholders": [],
+      "gloss": "2 是 to 的口语替写，不是任务数量，不建数字占位符；circus 为马戏团，呼应下一句面具触发对白。",
+      "translate": true,
+      "zh": "我要去马戏团"
+    },
+    {
+      "id": "weird_sailor_circus_invitation",
+      "context": "Weird Sailor：戴着 Bonzo 的面具时，邀请玩家一起去马戏团。原条件为 None / Wearing a Bonzo's Mask。",
+      "text": "u can join me if u like",
+      "raw": "§fu can join me if u like",
+      "placeholders": [],
+      "gloss": "Bonzo's Mask 的既有 ITEM 整名译文为 Bonzo 的面具，见 _shared/Experimentation_Items_Live.json#live_bonzos_mask；_shared 文件由 Surface.ITEM 加载，虽不在所给 GUI_Item 索引的精确整名结果中，仍是有效本地物品译名。正文没有直接说出面具名，不将装备补进邀请。",
+      "translate": true,
+      "zh": "想来的话,可以跟我一起"
+    },
+    {
+      "id": "weird_sailor_farewell",
+      "context": "Weird Sailor：无额外条件，最后的告别；保留原表情。",
+      "text": "bai (⌐■_■)/",
+      "raw": "§fbai (⌐■_■)/",
+      "placeholders": [],
+      "gloss": "bai 是 bye 的随意写法；表情 (⌐■_■)/ 原样保留，属于真实对白，不是 HTML 标签或 Wiki 装饰。",
+      "translate": true,
+      "zh": "拜拜 (⌐■_■)/"
+    }
+  ]
+}

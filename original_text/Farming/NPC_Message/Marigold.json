@@ -1,36 +1,769 @@
 {
   "npc": "Marigold",
-  "source": "https://hypixelskyblock.minecraft.wiki/w/Garden_Visitors; 交叉核对 https://hypixel-skyblock.fandom.com/wiki/The_Garden/Visitors",
-  "fetched_at": "2026-09-12",
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Marigold",
+  "fetched_at": "2026-10-02",
   "verified_ingame": false,
-  "source_note": "2026-09-12 以新版社区 Wiki 的 NPC Dialogue 表为主，Fandom 历史档案作交叉核验；待游戏内实测，未记录 raw/颜色。",
+  "source_note": "2026-09-12 以新版社区 Wiki 的 NPC Dialogue 表为主，Fandom 历史档案作交叉核验；待游戏内实测，未记录 raw/颜色。该历史采集来源为 https://hypixelskyblock.minecraft.wiki/w/Garden_Visitors，交叉核对 https://hypixel-skyblock.fandom.com/wiki/The_Garden/Visitors。本次以 Marigold 普通呈现页的 Playwright DOM 证据补齐全部对白，raw 为 segments.color 对应的 DOM 颜色还原样本，不是服务器原始字节；旧花园对白的稳定 ID 保留。",
   "messages": [
     {
       "id": "visitor_marigold_request_1",
-      "context": "作为花园访客提出委托",
+      "context": "Marigold：作为花园访客提出委托，急着回店",
       "text": "May I quickly grab some Melon, please? I left the Gold Essence Shop unattended!",
       "placeholders": [],
-      "gloss": "花园访客委托结果台词；社区 Wiki 逐字记录，待游戏内实测。",
+      "gloss": "花园访客委托；Melon 沿用 Hub_General/GUI_Item/Fixed_Stock_Decorations.json#menu_26e65e893a 的西瓜，亦与 Farming/GUI_Item/Garden_Runtime.json#garden_live_spread_melon 一致。Gold Essence Shop 沿用 Mining/GUI_Title/Essence_And_Salvage.json#gui_title_gold_essence_shop 的黄金精华商店；修正旧译中的金精华商店。社区 Wiki DOM 证据，待游戏内实测。",
       "translate": true,
-      "zh": "能快点给我拿些西瓜吗? 我把金精华商店丢着没人看了!"
+      "zh": "能快点给我拿些西瓜吗? 我把黄金精华商店丢着没人看了!",
+      "raw": "§fMay I quickly grab some Melon, please? I left the §6Gold Essence Shop §funattended!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "May I quickly grab some Melon, please? I left the ",
+          "zh": "能快点给我拿些西瓜吗? 我把"
+        },
+        {
+          "color": "§6",
+          "text": "Gold Essence Shop ",
+          "zh": "黄金精华商店"
+        },
+        {
+          "color": "§f",
+          "text": "unattended!",
+          "zh": "丢着没人看了!"
+        }
+      ]
     },
     {
       "id": "visitor_marigold_complete_1",
-      "context": "完成花园访客委托",
+      "context": "Marigold：完成花园访客委托",
       "text": "Have you ever tried eating a Glistening Melon Slice? It's not easy, let me tell you!",
       "placeholders": [],
-      "gloss": "花园访客委托结果台词；社区 Wiki 逐字记录，待游戏内实测。",
+      "gloss": "花园访客委托结果台词；用户拍板：所提物品 Glistening Melon Slice 无本地 GUI_Item 整名或适用模板译名，保留完整原文，撤回旧对白自行采用的闪耀西瓜片。本地 Dungeons/GUI_Item/Terminal_Items_Runtime.json#terminal_item_29069a5bcd 收录的是不同拼写 Glistering Melon，不据此擅自修复 Wiki 原词或推定两者整名相同。社区 Wiki DOM 证据，待游戏内实测。",
       "translate": true,
-      "zh": "你试过吃闪耀西瓜片吗? 可没那么容易,我告诉你!"
+      "zh": "你试过吃 Glistening Melon Slice 吗? 我跟你说,可没那么容易!",
+      "raw": "§fHave you ever tried eating a Glistening Melon Slice? It's not easy, let me tell you!"
     },
     {
       "id": "visitor_marigold_deny_1",
-      "context": "拒绝花园访客委托",
+      "context": "Marigold：拒绝花园访客委托",
       "text": "I'm in too much of a rush to be angry! Bye!",
       "placeholders": [],
-      "gloss": "花园访客委托结果台词；社区 Wiki 逐字记录，待游戏内实测。",
+      "gloss": "花园访客委托结果台词；保留既有译文。社区 Wiki DOM 证据，待游戏内实测。",
       "translate": true,
-      "zh": "我赶时间,没空生气! 再见!"
+      "zh": "我赶时间,没空生气! 再见!",
+      "raw": "§fI'm in too much of a rush to be angry! Bye!"
+    },
+    {
+      "id": "marigold_introduction",
+      "context": "Marigold：首次互动，是否已击杀黄金哥布林的两种分支共用",
+      "text": "Hey! I'm Marigold! I don't recall seeing you around these parts before...",
+      "raw": "§fHey! I'm §6Marigold§f! I don't recall seeing you around these parts before...",
+      "placeholders": [],
+      "gloss": "Marigold 是人名，保留英文；NPC 前缀由引擎处理，不写入正文。",
+      "translate": true,
+      "zh": "嗨! 我是 Marigold! 以前好像没在这附近见过你...",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Hey! I'm ",
+          "zh": "嗨! 我是 "
+        },
+        {
+          "color": "§6",
+          "text": "Marigold",
+          "zh": "Marigold"
+        },
+        {
+          "color": "§f",
+          "text": "! I don't recall seeing you around these parts before...",
+          "zh": "! 以前好像没在这附近见过你..."
+        }
+      ]
+    },
+    {
+      "id": "marigold_gold_essence_shop_intro",
+      "context": "Marigold：首次互动，介绍精华商店；两个击杀状态分支共用",
+      "text": "Now normally, I run a humble little shop that allows you to upgrade some useful perks in exchange for Gold Essence!",
+      "raw": "§fNow normally, I run a humble little shop that allows you to upgrade some useful perks in exchange for §6Gold Essence§f!",
+      "placeholders": [],
+      "gloss": "Gold Essence 沿用 _shared/Terms.json 的黄金精华；这里是兑换增益的资源，不另造物品译名。",
+      "translate": true,
+      "zh": "我平时经营着一家小店,一些实用的增益都能用黄金精华来升级!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Now normally, I run a humble little shop that allows you to upgrade some useful perks in exchange for ",
+          "zh": "我平时经营着一家小店,一些实用的增益都能用"
+        },
+        {
+          "color": "§6",
+          "text": "Gold Essence",
+          "zh": "黄金精华"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "来升级!"
+        }
+      ]
+    },
+    {
+      "id": "marigold_gold_essence_stolen",
+      "context": "Marigold：首次互动，抱怨黄金哥布林偷走精华；两个击杀状态分支共用",
+      "text": "However, a pesky Golden Goblin just came by and snatched a bunch of my Gold Essence! How can I operate safely with thieves like that running around?",
+      "raw": "§fHowever, a pesky §6Golden Goblin §fjust came by and snatched a bunch of my §6Gold Essence§f! How can I operate safely with §c§othieves §flike that running around?",
+      "placeholders": [],
+      "gloss": "Golden Goblin 与 Gold Essence 沿用 _shared/Terms.json 的黄金哥布林、黄金精华；小偷保留原文红色斜体强调。",
+      "translate": true,
+      "zh": "不过,刚才有只讨厌的黄金哥布林跑来抢走了一大堆我的黄金精华! 这种小偷到处乱跑,我怎么安心做生意啊?",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "However, a pesky ",
+          "zh": "不过,刚才有只讨厌的"
+        },
+        {
+          "color": "§6",
+          "text": "Golden Goblin ",
+          "zh": "黄金哥布林"
+        },
+        {
+          "color": "§f",
+          "text": "just came by and snatched a bunch of my ",
+          "zh": "跑来抢走了一大堆我的"
+        },
+        {
+          "color": "§6",
+          "text": "Gold Essence",
+          "zh": "黄金精华"
+        },
+        {
+          "color": "§f",
+          "text": "! How can I operate safely with ",
+          "zh": "! 这种"
+        },
+        {
+          "color": "§c§o",
+          "text": "thieves ",
+          "zh": "小偷"
+        },
+        {
+          "color": "§f",
+          "text": "like that running around?",
+          "zh": "到处乱跑,我怎么安心做生意啊?"
+        }
+      ]
+    },
+    {
+      "id": "marigold_hunt_golden_goblin",
+      "context": "Marigold：首次互动，尚未击杀黄金哥布林；说明商店解锁条件和生成方式",
+      "text": "Speak to me again after killing a Golden Goblin and I'll show you my shop! I heard Golden Goblins have a small chance to spawn when mining ores or throwing Goblin Eggs in the Dwarven Mines or Crystal Hollows.",
+      "raw": "§fSpeak to me again after killing a §6Golden Goblin §fand I'll show you my shop! I heard §6Golden Goblins §fhave a small chance to spawn when §bmining ores §for throwing §bGoblin Eggs §fin the §bDwarven Mines §for §5Crystal Hollows§f.",
+      "placeholders": [],
+      "gloss": "Goblin Eggs 沿用 Hub_General/GUI_Item/Captured_Alpha_Names.json#captured_goblin_eggs 的哥布林蛋，与 Mining/GUI_Item/Goblin_Egg.json#goblin_egg_name 一致。Golden Goblin、Dwarven Mines、Crystal Hollows 沿用 _shared/Terms.json 的黄金哥布林、矮人矿山、水晶残核。颜色已按重新采集的明确 Minecraft 格式类 §5 校正；旧最近色映射不作为当前颜色依据，仍未实测。",
+      "translate": true,
+      "zh": "你先去击杀一只黄金哥布林,回来找我,我就给你看看我的店! 听说在矮人矿山或水晶残核里,挖掘矿石或投掷哥布林蛋时,都有小概率出现黄金哥布林。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Speak to me again after killing a ",
+          "zh": "你先去击杀一只",
+          "order": 0
+        },
+        {
+          "color": "§6",
+          "text": "Golden Goblin ",
+          "zh": "黄金哥布林",
+          "order": 1
+        },
+        {
+          "color": "§f",
+          "text": "and I'll show you my shop! I heard ",
+          "zh": ",回来找我,我就给你看看我的店! 听说在",
+          "order": 2
+        },
+        {
+          "color": "§6",
+          "text": "Golden Goblins ",
+          "zh": "黄金哥布林",
+          "order": 11
+        },
+        {
+          "color": "§f",
+          "text": "have a small chance to spawn when ",
+          "zh": "时,都有小概率出现",
+          "order": 10
+        },
+        {
+          "color": "§b",
+          "text": "mining ores ",
+          "zh": "挖掘矿石",
+          "order": 7
+        },
+        {
+          "color": "§f",
+          "text": "or throwing ",
+          "zh": "或投掷",
+          "order": 8
+        },
+        {
+          "color": "§b",
+          "text": "Goblin Eggs ",
+          "zh": "哥布林蛋",
+          "order": 9
+        },
+        {
+          "color": "§f",
+          "text": "in the ",
+          "zh": "里,",
+          "order": 6
+        },
+        {
+          "color": "§b",
+          "text": "Dwarven Mines ",
+          "zh": "矮人矿山",
+          "order": 3
+        },
+        {
+          "color": "§f",
+          "text": "or ",
+          "zh": "或",
+          "order": 4
+        },
+        {
+          "color": "§5",
+          "text": "Crystal Hollows",
+          "zh": "水晶残核",
+          "order": 5
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "。",
+          "order": 12
+        }
+      ]
+    },
+    {
+      "id": "marigold_already_killed_interruption",
+      "context": "Marigold：首次互动，玩家已经击杀过黄金哥布林；话说到一半改口",
+      "text": "Speak to me again after killing a-",
+      "raw": "§fSpeak to me again after killing a-",
+      "placeholders": [],
+      "gloss": "独立 NPC 消息中的故意中断，不与下一条聊天合并，也不补出未说完的怪物名。",
+      "translate": true,
+      "zh": "你先击杀一只,再来找我——"
+    },
+    {
+      "id": "marigold_bestiary_confirmation",
+      "context": "Marigold：首次互动，发现玩家的生物图鉴已记录黄金哥布林击杀",
+      "text": "wait... your Bestiary shows that you've already killed a Golden Goblin!",
+      "raw": "§fwait... your §aBestiary §fshows that you've already killed a §6Golden Goblin§f!",
+      "placeholders": [],
+      "gloss": "Bestiary 沿用 GLOSSARY.md 技能菜单条目的生物图鉴；Golden Goblin 沿用 _shared/Terms.json 的黄金哥布林。",
+      "translate": true,
+      "zh": "等一下...你的生物图鉴上写着,你已经击杀过黄金哥布林了!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "wait... your ",
+          "zh": "等一下...你的"
+        },
+        {
+          "color": "§a",
+          "text": "Bestiary ",
+          "zh": "生物图鉴"
+        },
+        {
+          "color": "§f",
+          "text": "shows that you've already killed a ",
+          "zh": "上写着,你已经击杀过"
+        },
+        {
+          "color": "§6",
+          "text": "Golden Goblin",
+          "zh": "黄金哥布林"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "了!"
+        }
+      ]
+    },
+    {
+      "id": "marigold_existing_kill_reward",
+      "context": "Marigold：首次互动前已击杀过黄金哥布林，给予固定 25 黄金精华",
+      "text": "I can't thank you enough! As a token of my gratitude, here's another 25 Gold Essence to get you started at my shop! It's not a lot, but a little goes a long way!",
+      "raw": "§fI can't thank you enough! As a token of my gratitude, here's another §625 Gold Essence §fto get you started at my shop! It's not a lot, but a little goes a long way!",
+      "placeholders": [],
+      "gloss": "25 是固定任务奖励，不模板化；Gold Essence 沿用 _shared/Terms.json 的黄金精华。保留与首次交谈后完成击杀分支不同的开头。",
+      "translate": true,
+      "zh": "太谢谢你了! 我再送你 25 黄金精华表示感谢,你可以先在我店里用上! 虽然不多,但也能派上用场!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "I can't thank you enough! As a token of my gratitude, here's another ",
+          "zh": "太谢谢你了! 我再送你 "
+        },
+        {
+          "color": "§6",
+          "text": "25 Gold Essence ",
+          "zh": "25 黄金精华"
+        },
+        {
+          "color": "§f",
+          "text": "to get you started at my shop! It's not a lot, but a little goes a long way!",
+          "zh": "表示感谢,你可以先在我店里用上! 虽然不多,但也能派上用场!"
+        }
+      ]
+    },
+    {
+      "id": "marigold_open_gold_essence_shop",
+      "context": "Marigold：两个黄金哥布林任务完成分支共用，随后展示商店",
+      "text": "Let me show you the Gold Essence Shop!",
+      "raw": "§fLet me show you the §6Gold Essence Shop§f!",
+      "placeholders": [],
+      "gloss": "Gold Essence Shop 沿用 Mining/GUI_Title/Essence_And_Salvage.json#gui_title_gold_essence_shop 的黄金精华商店。",
+      "translate": true,
+      "zh": "我带你看看黄金精华商店!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Let me show you the ",
+          "zh": "我带你看看"
+        },
+        {
+          "color": "§6",
+          "text": "Gold Essence Shop",
+          "zh": "黄金精华商店"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "marigold_kill_thanks",
+      "context": "Marigold：首次交谈后击杀黄金哥布林并回来交谈",
+      "text": "Amazing! Thanks for the help - those pesky Golden Goblins seem to appear all the time!",
+      "raw": "§aAmazing! §fThanks for the help - those pesky §6Golden Goblins §fseem to appear all the time!",
+      "placeholders": [],
+      "gloss": "Golden Goblins 沿用 _shared/Terms.json 的黄金哥布林；保留 Amazing 的绿色与怪物名的金色。",
+      "translate": true,
+      "zh": "太好了! 谢谢你帮忙——这些讨厌的黄金哥布林好像总是冒出来!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Amazing! ",
+          "zh": "太好了! "
+        },
+        {
+          "color": "§f",
+          "text": "Thanks for the help - those pesky ",
+          "zh": "谢谢你帮忙——这些讨厌的"
+        },
+        {
+          "color": "§6",
+          "text": "Golden Goblins ",
+          "zh": "黄金哥布林"
+        },
+        {
+          "color": "§f",
+          "text": "seem to appear all the time!",
+          "zh": "好像总是冒出来!"
+        }
+      ]
+    },
+    {
+      "id": "marigold_first_kill_reward",
+      "context": "Marigold：首次交谈后完成黄金哥布林击杀，给予固定 25 黄金精华",
+      "text": "As a token of my gratitude, here's another 25 Gold Essence to get you started at my shop! It's not a lot, but a little goes a long way!",
+      "raw": "§fAs a token of my gratitude, here's another §625 Gold Essence §fto get you started at my shop! It's not a lot, but a little goes a long way!",
+      "placeholders": [],
+      "gloss": "25 是固定任务奖励，不模板化；Gold Essence 沿用 _shared/Terms.json 的黄金精华。保留与首次互动前已完成击杀分支不同的开头。",
+      "translate": true,
+      "zh": "我再送你 25 黄金精华表示感谢,你可以先在我店里用上! 虽然不多,但也能派上用场!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "As a token of my gratitude, here's another ",
+          "zh": "我再送你 "
+        },
+        {
+          "color": "§6",
+          "text": "25 Gold Essence ",
+          "zh": "25 黄金精华"
+        },
+        {
+          "color": "§f",
+          "text": "to get you started at my shop! It's not a lot, but a little goes a long way!",
+          "zh": "表示感谢,你可以先在我店里用上! 虽然不多,但也能派上用场!"
+        }
+      ]
+    },
+    {
+      "id": "marigold_abiphone_contact_question",
+      "context": "Marigold：请求获得 Abiphone 联系方式",
+      "text": "✆ My Abiphone Contact?",
+      "raw": "§b✆ §fMy §3Abiphone Contact§f?",
+      "placeholders": [],
+      "gloss": "Abiphone 是品牌名，保留英文；Contact 在这里指联系方式。",
+      "translate": true,
+      "zh": "✆ 我的 Abiphone 联系方式?",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "My ",
+          "zh": "我的 "
+        },
+        {
+          "color": "§3",
+          "text": "Abiphone Contact",
+          "zh": "Abiphone 联系方式"
+        },
+        {
+          "color": "§f",
+          "text": "?",
+          "zh": "?"
+        }
+      ]
+    },
+    {
+      "id": "marigold_abiphone_agreement",
+      "context": "Marigold：答应提供 Abiphone 联系方式",
+      "text": "✆ Sure!",
+      "raw": "§b✆ §fSure!",
+      "placeholders": [],
+      "gloss": "保留电话图标与白色正文的独立分段。",
+      "translate": true,
+      "zh": "✆ 好啊!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Sure!",
+          "zh": "好啊!"
+        }
+      ]
+    },
+    {
+      "id": "marigold_abiphone_request_expectation",
+      "context": "Marigold：想起交换联系方式前应向玩家要点东西",
+      "text": "✆ I mean, I'm supposed to ask you for something, right?",
+      "raw": "§b✆ §fI mean, I'm supposed to ask you for something, right?",
+      "placeholders": [],
+      "gloss": "保留随口改口、向玩家确认的语气，不补正式交易规则。",
+      "translate": true,
+      "zh": "✆ 我是说,我是不是该找你要点东西来着?",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "I mean, I'm supposed to ask you for something, right?",
+          "zh": "我是说,我是不是该找你要点东西来着?"
+        }
+      ]
+    },
+    {
+      "id": "marigold_abiphone_midas_jewel_request",
+      "context": "Marigold：索要一颗 Midas Jewel 作为 Abiphone 联系方式交换物",
+      "text": "✆ How about a Midas Jewel?",
+      "raw": "§b✆ §fHow about a §9Midas Jewel§f?",
+      "placeholders": [],
+      "gloss": "用户拍板：所需物品 Midas Jewel 无本地 GUI_Item 整名或适用模板译名，保留完整原文，不自行译为宝石、珠宝或宝珠。",
+      "translate": true,
+      "zh": "✆ 不如来一颗 Midas Jewel?",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "How about a ",
+          "zh": "不如来一颗 "
+        },
+        {
+          "color": "§9",
+          "text": "Midas Jewel",
+          "zh": "Midas Jewel"
+        },
+        {
+          "color": "§f",
+          "text": "?",
+          "zh": "?"
+        }
+      ]
+    },
+    {
+      "id": "marigold_abiphone_catacombs_fear",
+      "context": "Marigold：解释想要 Midas Jewel，但害怕去地牢寻找",
+      "text": "✆ I've always wanted one, but you can't find them around here, and I'm too scared to venture into The Catacombs in search of one.",
+      "raw": "§b✆ §fI've always wanted one, but you can't find them around here, and I'm too scared to venture into §cThe Catacombs §fin search of one.",
+      "placeholders": [],
+      "gloss": "The Catacombs 沿用 _shared/Terms.json 的地牢；不把胆怯润色成对玩家的额外任务条件。",
+      "translate": true,
+      "zh": "✆ 我一直想要一颗,可这附近找不到,我又不敢去地牢里找。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "I've always wanted one, but you can't find them around here, and I'm too scared to venture into ",
+          "zh": "我一直想要一颗,可这附近找不到,我又不敢去"
+        },
+        {
+          "color": "§c",
+          "text": "The Catacombs ",
+          "zh": "地牢"
+        },
+        {
+          "color": "§f",
+          "text": "in search of one.",
+          "zh": "里找。"
+        }
+      ]
+    },
+    {
+      "id": "marigold_option_give_item",
+      "ref": "Dungeons/ChatMessage/Dungeon_Hub_Tasks_and_NPC_Options.json#npc_option_give_item",
+      "context": "Marigold 的 Abiphone 流程：交出物品按钮；复用同 CHAT 面已有三段括号/正文/括号记录，点击与悬浮样式取实时服务器组件"
+    },
+    {
+      "id": "marigold_abiphone_missing_midas_jewel",
+      "context": "Marigold：未携带 Midas Jewel 时尝试交出物品",
+      "text": "✆ Hmm, you don't seem to have a Midas Jewel.",
+      "raw": "§b✆ §fHmm, you don't seem to have a §9Midas Jewel§f.",
+      "placeholders": [],
+      "gloss": "用户拍板：所需物品 Midas Jewel 无本地 GUI_Item 整名或适用模板译名，保留完整原文。",
+      "translate": true,
+      "zh": "✆ 嗯,你身上好像没有 Midas Jewel。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Hmm, you don't seem to have a ",
+          "zh": "嗯,你身上好像没有 "
+        },
+        {
+          "color": "§9",
+          "text": "Midas Jewel",
+          "zh": "Midas Jewel"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "marigold_abiphone_midas_jewel_drop_hint",
+      "context": "Marigold：未携带 Midas Jewel 时，说明可能的获取来源",
+      "text": "✆ You can sometimes find one when killing King Midas in The Catacombs.",
+      "raw": "§b✆ §fYou can sometimes find one when killing §6King Midas §fin §cThe Catacombs§f.",
+      "placeholders": [],
+      "gloss": "King Midas 为地牢敌人的专名，保留完整英文；The Catacombs 沿用 _shared/Terms.json 的地牢。sometimes 仅表示有时获得，不写成必掉；中文地点提前，order 是完整排列。",
+      "translate": true,
+      "zh": "✆ 在地牢里击杀 King Midas,有时会掉落一颗。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ ",
+          "order": 0
+        },
+        {
+          "color": "§f",
+          "text": "You can sometimes find one when killing ",
+          "zh": "里击杀 ",
+          "order": 3
+        },
+        {
+          "color": "§6",
+          "text": "King Midas ",
+          "zh": "King Midas",
+          "order": 4
+        },
+        {
+          "color": "§f",
+          "text": "in ",
+          "zh": "在",
+          "order": 1
+        },
+        {
+          "color": "§c",
+          "text": "The Catacombs",
+          "zh": "地牢",
+          "order": 2
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": ",有时会掉落一颗。",
+          "order": 5
+        }
+      ]
+    },
+    {
+      "id": "marigold_abiphone_hearsay",
+      "context": "Marigold：接着补充 Midas Jewel 来源只是听说",
+      "text": "✆ ...Or so I've heard.",
+      "raw": "§b✆ §f...Or so I've heard.",
+      "placeholders": [],
+      "gloss": "独立 NPC 消息；不与上一条合并，不把传闻语气改成确定机制。",
+      "translate": true,
+      "zh": "✆ ...不过我也只是听说的。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "...Or so I've heard.",
+          "zh": "...不过我也只是听说的。"
+        }
+      ]
+    },
+    {
+      "id": "marigold_abiphone_midas_jewel_admiration",
+      "context": "Marigold：交出 Midas Jewel 后，赞叹物品",
+      "text": "✆ Wow, it's beautiful!",
+      "raw": "§b✆ §fWow, it's beautiful!",
+      "placeholders": [],
+      "gloss": "保留小店店主收到心仪物品时的欣喜语气。",
+      "translate": true,
+      "zh": "✆ 哇,真漂亮!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Wow, it's beautiful!",
+          "zh": "哇,真漂亮!"
+        }
+      ]
+    },
+    {
+      "id": "marigold_abiphone_midas_jewel_effort",
+      "context": "Marigold：交出 Midas Jewel 后，关心玩家是否费了太多工夫",
+      "text": "✆ I hope it wasn't too much of a hassle to get, I've heard stories of The Catacombs...",
+      "raw": "§b✆ §fI hope it wasn't too much of a hassle to get, I've heard stories of §cThe Catacombs§f...",
+      "placeholders": [],
+      "gloss": "The Catacombs 沿用 _shared/Terms.json 的地牢；不凭空编造听说的具体故事。",
+      "translate": true,
+      "zh": "✆ 希望你找它没费太多工夫,我听说过地牢的那些故事...",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "I hope it wasn't too much of a hassle to get, I've heard stories of ",
+          "zh": "希望你找它没费太多工夫,我听说过"
+        },
+        {
+          "color": "§c",
+          "text": "The Catacombs",
+          "zh": "地牢"
+        },
+        {
+          "color": "§f",
+          "text": "...",
+          "zh": "的那些故事..."
+        }
+      ]
+    },
+    {
+      "id": "marigold_abiphone_contact_granted",
+      "context": "Marigold：交出 Midas Jewel 后，提供联系方式并说明电话商店服务",
+      "text": "✆ Here's my contact, you can call me whenever you need to access the Gold Essence Shop.",
+      "raw": "§b✆ §fHere's my contact, you can call me whenever you need to access the §6Gold Essence Shop§f.",
+      "placeholders": [],
+      "gloss": "Gold Essence Shop 沿用 Mining/GUI_Title/Essence_And_Salvage.json#gui_title_gold_essence_shop 的黄金精华商店；不补拨号命令或点击事件。",
+      "translate": true,
+      "zh": "✆ 这是我的联系方式,要用黄金精华商店的时候,随时给我打电话。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Here's my contact, you can call me whenever you need to access the ",
+          "zh": "这是我的联系方式,要用"
+        },
+        {
+          "color": "§6",
+          "text": "Gold Essence Shop",
+          "zh": "黄金精华商店"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "的时候,随时给我打电话。"
+        }
+      ]
+    },
+    {
+      "id": "marigold_abiphone_contact_added",
+      "ref": "Hub_General/ChatMessage/Service_Alerts_Live.json#contact_added",
+      "context": "交出 Midas Jewel 后的系统通知，不是 Marigold 的台词；复用同 CHAT 面现有 npc_name 模板，动态姓名及其实时颜色由占位符保留"
+    },
+    {
+      "id": "marigold_abiphone_final_thanks",
+      "context": "Marigold：Abiphone 联系人添加完成后再次道谢；完整尾行",
+      "text": "✆ Thanks again!",
+      "raw": "§b✆ §fThanks again!",
+      "placeholders": [],
+      "gloss": "独立 NPC 消息，保留电话图标与正文颜色；不与系统通知合并。",
+      "translate": true,
+      "zh": "✆ 还是要再谢谢你!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Thanks again!",
+          "zh": "还是要再谢谢你!"
+        }
+      ]
     }
-  ]
+  ],
+  "wiki_last_edited": "This page was last edited on 14 September 2026, at 22:14.",
+  "note": "身份：皇家矿场的黄金精华商店店主，也会作为花园访客出现。\n关系：初见玩家时热情招呼，感谢玩家清除偷精华的黄金哥布林；提供商店与 Abiphone 服务。\n说话风格：平实、口语化的小店店主，着急回店，也有些怕冒险。\n性格词汇：小店、谢谢、听说、赶时间；保留临时改口和犹豫的节拍。\n禁用风格：不写中二宣言，不塞网络梗，不补任务机制或人物关系。跨玩法钓鱼关联由父代理普通 Wiki 页面核实：黄金精华商店的 Midas Lure 提高 GOLD 奖杯鱼概率，关联 https://hypixelskyblock.minecraft.wiki/w/Trophy_Fish；该服务说明不当作新对白。"
 }
