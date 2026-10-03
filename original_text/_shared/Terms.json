@@ -20,7 +20,8 @@
     "dragon_type",
     "rng_meter_source",
     "cookie_reaction",
-    "training_kind"
+    "training_kind",
+    "reputation_rank"
   ],
   "types_note": "只对这几种 placeholders[].type 生效。**故意**不含 item_name / npc_name / player_name:那三种正是需求里写死'保留英文'的位置(NPC 人名、物品自造专名),在那里翻错的代价——给别人的武器编一个中文名——远大于一个地名留着英文的代价。新增 type 前先想清楚这一点。category_name 是菜单入口名/功能分类名(Bags、Other Crystals、Recipe Book、Settings 的前半截),形状规则走 Capture.NAME 而不是 raw 的宽松短语——见下面 category_name_note。",
   "enchantment_name_note": "2026-09-08: 附魔名称仅原版 Minecraft 附魔使用官方中文。SkyBlock 专属名称保持英文,包括 Ice Cold/Compact/Scavenger/Turbo- 系列; 其效果和同名的属性、银行、地牢祝福仍翻译。Bank/Inferno 的其他用途必须限定 types,避免全局词表回退将附魔名重新汉化。",
@@ -33,13 +34,21 @@
   "reforge_note": "reforge 类型不在 applies_to_types 里:它只给 TooltipTranslator(物品名首词)和 guide_item_name 占位符的「重铸名 + 已收录物品名」拆分用,不会替换任何占位符捕到的值。",
   "skyblock_month_note": "日历标题等日期行里的空岛月份单独使用 skyblock_month:Early/(无前缀)/Late × 春夏秋冬十二个月按顺序译成「1 月」到「12 月」(用户 2026-09-10 拍板,以月份代替季节),不改变 Winter 作为海洋生物分类时的寒冬译名。",
   "terms": [
-    {"en":"Neutral","zh":"中立","types":["reputation_rank"],"note":"https://hypixelskyblock.minecraft.wiki/w/Factions#Reputation；仅成对的阵营声望刻度标签使用。"},
+    {"en": "Dungeon", "zh": "地牢", "types": ["location_name"], "note": "Abiphones 普通页面中商人的常驻地点标签，与 Dungeons 同义。"},
+    {"en": "Cannoneer", "zh": "炮手", "types": ["category_name"], "note": "Kuudra UI 炮手职业，沿用现有 GUI 名称。"},
+    {"en": "Power Stones", "zh": "能力石", "types": ["category_name"], "note": "社区 Wiki Abiphones / Factions；复用既有种类译名。"},
+    {"en": "Lava Fishing", "zh": "熔岩钓鱼", "types": ["category_name"], "note": "社区 Wiki Abiphones / Factions；复用既有种类译名。"},
+    {"en": "Safari Essence Shop", "zh": "游猎精华商店", "types": ["category_name"], "note": "社区 Wiki Abiphones / Factions；复用既有种类译名。"},
+    {"en": "Flare", "zh": "烈焰哨兵", "types": ["mob_name", "raw"], "note": "https://hypixelskyblock.minecraft.wiki/w/Magma_Boss；岩浆怪首领沿用区域发现译名，其他通名按各自社区 Wiki 怪物页核对。"},
+    {"en": "Magma Glare", "zh": "岩浆怒视怪", "types": ["mob_name", "raw"], "note": "https://hypixelskyblock.minecraft.wiki/w/Magma_Boss；岩浆怪首领沿用区域发现译名，其他通名按各自社区 Wiki 怪物页核对。"},
+    {"en": "Magma Boss", "zh": "岩浆怪首领", "types": ["mob_name", "raw"], "note": "https://hypixelskyblock.minecraft.wiki/w/Magma_Boss；岩浆怪首领沿用区域发现译名，其他通名按各自社区 Wiki 怪物页核对。"},
+    {"en":"Neutral","zh":"中立","types":["reputation_rank"],"note":"https://hypixelskyblock.minecraft.wiki/w/Factions#Reputation；用于阵营声望头衔与成对刻度标签，不用于普通 Hero 生物名。"},
     {"en":"Friendly","zh":"友好","types":["reputation_rank"]},
     {"en":"Trusted","zh":"信赖","types":["reputation_rank"]},
     {"en":"Honored","zh":"尊崇","types":["reputation_rank"]},
     {"en":"Hero","zh":"英雄","types":["reputation_rank"]},
     {"en":"Hub Island","zh":"大厅","types":["location_name"],"gloss":"用户拍板：传送目的地沿用 Hub → 大厅，不另译成岛名。https://hypixelskyblock.minecraft.wiki/w/Hub_Island"},
-    {"en":"Barbarian","zh":"野蛮人","types":["mob_name"],"note":"https://hypixelskyblock.minecraft.wiki/w/Barbarian；沿用既有阵营译名，血条图标与数值由引擎保留。"},
+    {"en": "Barbarian", "zh": "野蛮人", "types": ["mob_name", "category_name"], "note": "https://hypixelskyblock.minecraft.wiki/w/Barbarian；沿用既有阵营译名，血条图标与数值由引擎保留。"},
     {"en":"Arachne's Brood","zh":"Arachne 的子嗣","types":["mob_name"],"note":"https://hypixelskyblock.minecraft.wiki/w/Arachne%27s_Brood；保留首领专名，仅翻通名。"},
     {"en":"Arachne's Keeper","zh":"Arachne 的守护者","types":["mob_name"],"note":"https://hypixelskyblock.minecraft.wiki/w/Arachne%27s_Keeper"},
     {"en":"Ashfang Acolyte","zh":"Ashfang 侍僧","types":["mob_name"],"note":"https://hypixelskyblock.minecraft.wiki/w/Ashfang；近战可伤害的召唤物，保留首领专名。"},
@@ -11084,14 +11093,7 @@
       ],
       "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
     },
-    {
-      "en": "Magma Cube Rider",
-      "zh": "岩浆怪骑手",
-      "types": [
-        "mob_name"
-      ],
-      "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"
-    },
+    {"en": "Magma Cube Rider", "zh": "岩浆怪骑手", "types": ["mob_name", "raw", "category_name"], "note": "2026-09-13 核对社区 Wiki 普通页面；本轮实测值。"},
     {
       "en": "Mushroom Bull",
       "zh": "蘑菇公牛",
@@ -12525,16 +12527,7 @@
       ],
       "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Young_Dragon"
     },
-    {
-      "en": "Tentacle",
-      "zh": "触手",
-      "types": [
-        "mob_name",
-        "mob_family",
-        "raw"
-      ],
-      "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Tentacle"
-    },
+    {"en": "Tentacle", "zh": "触手", "types": ["mob_name", "mob_family", "raw", "category_name"], "note": "双机实测；语境核对 https://hypixelskyblock.minecraft.wiki/w/Tentacle"},
     {
       "en": "Shiny Pig",
       "zh": "闪亮猪",

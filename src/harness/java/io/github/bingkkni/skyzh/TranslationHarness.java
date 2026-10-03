@@ -2173,6 +2173,7 @@ public final class TranslationHarness {
 			case GEMSTONE_QUALITY -> "Flawless";
 			case MULTIPLIER_INCREASE -> "1.5";
 			case ORDINAL -> "27th";
+			case DURATION_WORDS -> "2 hours 3 minutes";
 			default -> "1";
 		};
 	}
@@ -2730,7 +2731,7 @@ public final class TranslationHarness {
 
 	/** Fixed UI capture regression: ordered lore, term isolation, and clues that must survive translation. */
 	private static void checkFixedMenus(Path corpusRoot) throws Exception {
-		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json")) {
+		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json")) {
 		Path path = corpusRoot.toAbsolutePath().getParent().resolve("src/harness/resources/" + file);
 		JsonObject fixture = JsonParser.parseString(Files.readString(path, StandardCharsets.UTF_8)).getAsJsonObject();
 		for (JsonElement value : fixture.getAsJsonArray("cases")) {
@@ -2754,6 +2755,26 @@ public final class TranslationHarness {
 				"期望 " + expected + "，实际 " + actual);
 		}
 		}
+		checkNoMatch("电话结构不扩展到物品", "✆ Oh, you are willing to help?", Surface.ITEM);
+		checkNoMatch("未知电话正文不制造命中", "✆ This is an unrecorded sentence.", Surface.CHAT);
+		checkNoMatch("书面时长拒绝普通短语", "Come back in some other time to pick it up!", Surface.CHAT);
+		checkNoMatch("书面时长拒绝未声明单位", "Come back in 1 decade to pick it up!", Surface.CHAT);
+		report("材料数量前缀仅剥离已知目录名", LineShape.candidates(Surface.ITEM, "✔ 1/1 Unknown Item").stream()
+			.noneMatch(r -> r.start() == 6), "未知物品不借用数量结构");
+		report("掉落概率后缀仅剥离已知目录名", LineShape.candidates(Surface.ITEM, "Unknown Item (1/20)").stream()
+			.noneMatch(r -> r.end() == "Unknown Item".length()), "不把普通句子当成掉落物");
+		for (String name : List.of("Aranya", "Kat", "Abiphone XIII Jade")) {
+			report("固定联系人或型号保留且不再采集 " + name, Translator.index().preserved(Surface.ITEM, name), "使用真实保留记录而非假翻译");
+		}
+		report("已知NPC来电标题不采集", io.github.bingkkni.skyzh.capture.PreservedText.ignored(Surface.CHAT, "✆ Elle ✆"), "保留NPC名");
+		report("可翻译职务来电标题仍采集", !io.github.bingkkni.skyzh.capture.PreservedText.ignored(Surface.CHAT, "✆ Blacksmith ✆"), "NPC注册表不等于专名保留表");
+		report("来电标题排除不跨面或吞对白", !io.github.bingkkni.skyzh.capture.PreservedText.ignored(Surface.ITEM, "✆ Elle ✆")
+			&& !io.github.bingkkni.skyzh.capture.PreservedText.ignored(Surface.CHAT, "✆ Elle is calling you."), "只允许聊天中的完整专名标题");
+		checkNoMatch("书面时长第五组拒绝", "Come back in 1 day 2 hours 3 minutes 4 seconds 5 seconds to pick it up!", Surface.CHAT);
+		check("同形魔法寻宝属性图标不丢失", "§b✯ Magic Find", Surface.ITEM, "§b✯ 魔法寻宝");
+		check("魔法寻宝私用区字形不丢失", "§b\uE01A Magic Find", Surface.ITEM, "§b\uE01A 魔法寻宝");
+		report("空或未知来电标题不误屏蔽", !io.github.bingkkni.skyzh.capture.PreservedText.ignored(Surface.CHAT, "✆ ✆")
+			&& !io.github.bingkkni.skyzh.capture.PreservedText.ignored(Surface.CHAT, "✆ UnknownCaller ✆"), "只跳过已知人名且不越界");
 		StyledText reset = StyledText.of(Translator.translateLine(Component.literal(
 			"They are both telling the truth. The reward isn't in §cRose's §rchest."), Surface.CHAT));
 		report("三怪人人名后的正文恢复默认颜色", Style.EMPTY.equals(reset.styleAt(reset.plain().indexOf("的箱子"))), "不把人名的红色延续到正文");

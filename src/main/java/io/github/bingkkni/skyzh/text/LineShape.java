@@ -58,7 +58,9 @@ public final class LineShape {
 	 */
 	private static final int LONGEST_SPEAKER = 48;
 	private static final Pattern ITEM_COUNT = Pattern.compile(" x[0-9][0-9,]*$");
+	private static final Pattern ITEM_PROGRESS = Pattern.compile("[0-9][0-9,]*/[0-9][0-9,]*(?: \\([0-9][0-9,]*x\\))? ");
 	private static final Pattern ITEM_STARS = Pattern.compile(" [✪★☆➊➋➌➍➎]+$");
+	private static final Pattern ITEM_DROP_CHANCE = Pattern.compile(" \\([0-9][0-9,.]*[kKmMbB]?/[0-9][0-9,.]*[kKmMbB]?\\)$");
 
 	private LineShape() {
 	}
@@ -89,6 +91,14 @@ public final class LineShape {
 		add(ranges, skipSpaces(plain, bullet(plain, start, end), end), end);
 
 		if (surface == Surface.ITEM) {
+			// Recipe ingredient rows: ✔ 1/1 Item or ✔ 63/8 (7x) Item. The counts and their
+			// live styles stay outside the name; only an attested complete catalog item qualifies.
+			for (Range candidate : List.copyOf(ranges)) {
+				var progress = ITEM_PROGRESS.matcher(plain).region(candidate.start(), end);
+				if (progress.lookingAt() && ItemNames.canonical(plain.substring(progress.end(), end)) != null) {
+					add(ranges, progress.end(), end);
+				}
+			}
 			// Shop costs and ingredient lists append counts to actual item names. Keep the suffix
 			// live (and styled), rather than rendering the whole decorated name through a string term.
 			var count = ITEM_COUNT.matcher(plain.substring(0, end));
@@ -109,6 +119,16 @@ public final class LineShape {
 					if (candidate.start() < stars.start()
 						&& ItemNames.canonical(plain.substring(candidate.start(), stars.start())) != null) {
 						add(ranges, candidate.start(), stars.start());
+					}
+				}
+			}
+			// Bestiary drops append their odds to a real catalog item, not to arbitrary prose.
+			var chance = ITEM_DROP_CHANCE.matcher(plain.substring(0, end));
+			if (chance.find()) {
+				for (Range candidate : List.copyOf(ranges)) {
+					if (candidate.start() < chance.start()
+						&& ItemNames.canonical(plain.substring(candidate.start(), chance.start())) != null) {
+						add(ranges, candidate.start(), chance.start());
 					}
 				}
 			}
@@ -138,6 +158,13 @@ public final class LineShape {
 
 			if (speaker != null) {
 				add(ranges, skipSpaces(plain, speaker.end(), end), end);
+			}
+			// Abiphone repeats ordinary NPC dialogue with a cyan call marker. Keep the marker
+			// and its live style outside the translated core; explicit phone records still win.
+			for (Range candidate : List.copyOf(ranges)) {
+				if (plain.startsWith("✆ ", candidate.start())) {
+					add(ranges, skipSpaces(plain, candidate.start() + 2, end), end);
+				}
 			}
 		}
 
@@ -171,7 +198,7 @@ public final class LineShape {
 	 * says the same thing either way — "Death Messages" — so stepping over the mark lets one record
 	 * answer for both states and leaves each mark in the colour that is carrying the meaning.
 	 */
-	private static final String BULLETS = "▶▸➤➜■◼○◆•⦾⁍⚑✔✖";
+	private static final String BULLETS = "▶▸➤➜■◼○◆•⦾⁍⚑✔✖✯";
 
 	/** Whether this character is one of those marks. Used by {@link Capture} to refuse it as a name. */
 	public static boolean isBullet(char c) {

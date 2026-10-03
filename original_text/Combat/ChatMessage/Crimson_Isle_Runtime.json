@@ -180,15 +180,28 @@
       "placeholders": [
         {
           "token": "%s",
-          "desc": "当前声望",
-          "type": "number",
-          "example": "0"
+          "type": "reputation_rank",
+          "example": "Neutral",
+          "desc": "当前声望头衔，兼容旧数值"
         }
       ],
       "gloss": "",
       "translate": true,
       "zh": "当前声望: %s",
-      "layout": "center_chat_banner"
+      "layout": "center_chat_banner",
+      "raw": "§f§lCurrent Reputation: §b§l%s",
+      "segments": [
+        {
+          "color": "§f§l",
+          "text": "Current Reputation: ",
+          "zh": "当前声望: "
+        },
+        {
+          "color": "§b§l",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
     },
     {
       "id": "crimson_earn_reputation",

@@ -70,12 +70,19 @@
     {
       "id": "consume_cookie_you_will_be_able_to_gain_9888",
       "context": "Consume Booster Cookie 实测",
-      "raw": "§7You will be able to gain §b9,888",
-      "text": "You will be able to gain 9,888",
-      "placeholders": [],
+      "raw": "§7You will be able to gain §b%s",
+      "text": "You will be able to gain %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "10,176",
+          "desc": "本块曲奇可获得的点券数量"
+        }
+      ],
       "gloss": "",
       "translate": true,
-      "zh": "这块曲奇可让你获取 9,888",
+      "zh": "这块曲奇可让你获取 %s",
       "segments": [
         {
           "color": "§7",
@@ -84,8 +91,8 @@
         },
         {
           "color": "§b",
-          "text": "9,888",
-          "zh": "9,888"
+          "text": "%s",
+          "zh": "%s"
         }
       ]
     },

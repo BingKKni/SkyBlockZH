@@ -272,7 +272,25 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "一朵花? 送我的? 太贴心了!"
+      "zh": "一朵花? 送我的? 太贴心了!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "A ",
+          "zh": "一朵"
+        },
+        {
+          "color": "§c",
+          "text": "flower",
+          "zh": "花"
+        },
+        {
+          "color": "§f",
+          "text": "? For me? How sweet!",
+          "zh": "? 送我的? 太贴心了!"
+        }
+      ],
+      "raw": "§fA §cflower§f? For me? How sweet!"
     },
     {
       "id": "kat_bouquet",
@@ -281,7 +299,25 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "一束花? 送我的? 太贴心了!"
+      "zh": "一束花? 送我的? 太贴心了!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "A ",
+          "zh": "一束"
+        },
+        {
+          "color": "§c",
+          "text": "bouquet",
+          "zh": "花"
+        },
+        {
+          "color": "§f",
+          "text": "? For me? How sweet!",
+          "zh": "? 送我的? 太贴心了!"
+        }
+      ],
+      "raw": "§fA §cbouquet§f? For me? How sweet!"
     },
     {
       "id": "kat_phone_friends",
@@ -290,7 +326,20 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "✆ 交个朋友? 当然可以!"
+      "zh": "✆ 交个朋友? 当然可以!",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Friends? Sure!",
+          "zh": "交个朋友? 当然可以!"
+        }
+      ],
+      "raw": "§b✆ §fFriends? Sure!"
     },
     {
       "id": "kat_phone_not_everyone",
@@ -299,7 +348,20 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "✆ 不过等等,我可不是谁都给联系方式的。"
+      "zh": "✆ 不过等等,我可不是谁都给联系方式的。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "But hold on, I don't give my contact for everyone.",
+          "zh": "不过等等,我可不是谁都给联系方式的。"
+        }
+      ],
+      "raw": "§b✆ §fBut hold on, I don't give my contact for everyone."
     },
     {
       "id": "kat_phone_shouldnt_have",
@@ -308,7 +370,25 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "✆ 哎呀,太客气啦! :3"
+      "zh": "✆ 哎呀,太客气啦! :3",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Aww, you shouldn't have! ",
+          "zh": "哎呀,太客气啦! "
+        },
+        {
+          "color": "§a",
+          "text": ":3",
+          "zh": ":3"
+        }
+      ],
+      "raw": "§b✆ §fAww, you shouldn't have! §a:3"
     },
     {
       "id": "kat_phone_hello",
@@ -317,7 +397,20 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "✆ 喂?"
+      "zh": "✆ 喂?",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Hello?",
+          "zh": "喂?"
+        }
+      ],
+      "raw": "§b✆ §fHello?"
     },
     {
       "id": "kat_phone_train_pet",
@@ -326,12 +419,94 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "✆ 要我帮你训练宠物吗?"
+      "zh": "✆ 要我帮你训练宠物吗?",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "✆ ",
+          "zh": "✆ "
+        },
+        {
+          "color": "§f",
+          "text": "Do you want me to train your pet?",
+          "zh": "要我帮你训练宠物吗?"
+        }
+      ],
+      "raw": "§b✆ §fDo you want me to train your pet?"
     },
     {
       "id": "kat_phone_nice_try",
       "ref": "Mining/NPC_Message/Queen_Mismyla.json#queen_mismyla_you_don_t_have_what",
       "context": "没带 Kat 之花就点 [GIVE ITEM]"
+    },
+    {
+      "id": "come_back_in_s_to_pick_it_up_2f13db",
+      "context": "本轮实机菜单或消息",
+      "text": "Come back in %s to pick it up!",
+      "raw": "Come back in §e%s §fto pick it up!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "duration_words",
+          "example": "1 minute",
+          "desc": "duration_words"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "%s后再来接它吧!",
+      "segments": [
+        {
+          "color": "",
+          "text": "Come back in ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§e",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§f",
+          "text": "to pick it up!",
+          "zh": "后再来接它吧!"
+        }
+      ]
+    },
+    {
+      "id": "you_can_pick_it_up_in_s_4d429b",
+      "context": "本轮实机菜单或消息",
+      "text": "You can pick it up in %s.",
+      "raw": "You can pick it up in §e%s§f.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "duration_words",
+          "example": "1 hour 20 minutes",
+          "desc": "duration_words"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "再过 %s就能接它了。",
+      "segments": [
+        {
+          "color": "",
+          "text": "You can pick it up in ",
+          "zh": "再过 "
+        },
+        {
+          "color": "§e",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "就能接它了。"
+        }
+      ]
     }
   ]
 }

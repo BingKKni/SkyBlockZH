@@ -127,6 +127,10 @@ public enum Capture {
 	/** Readable countdown units in event widgets; other compact clocks retain their layout. */
 	DURATION_SPACED(DURATION.regex.replace("[0-9][0-9,.]*", "-?[0-9][0-9,.]*")),
 
+	/** Written-out server durations, e.g. Kat's "1 minute" or an auction's "2 Days". */
+	DURATION_WORDS("(?i:[0-9][0-9,]* (?:days?|hours?|minutes?|seconds?)"
+		+ "(?: [0-9][0-9,]* (?:days?|hours?|minutes?|seconds?)){0,3})", false),
+
 	/**
 	 * Anything the corpus has not pinned down — {@code type: raw}, or no {@code placeholders} entry
 	 * at all. Still bounded: whatever the value is, it is a value and not a sentence.
@@ -171,6 +175,7 @@ public enum Capture {
 			case "day_of_month" -> DAY_OF_MONTH;
 			case "time", "duration" -> DURATION;
 			case "duration_spaced" -> DURATION_SPACED;
+			case "duration_words" -> DURATION_WORDS;
 			// category_name is the name of a menu section or a feature — "Bags", "Other Crystals",
 			// "Recipe Book". Shaped like a name, and it has to be said so: templates that hold one are
 			// a single word plus a placeholder ("Your %s", "%s Settings", "%s Pet"), which under the
@@ -183,7 +188,7 @@ public enum Capture {
 			case "training_kind" -> TRAINING_KIND;
 			case "npc_name", "profile_name", "location_name", "mob_name", "rarity", "category_name",
 				"enchantment_name", "enchantment_crop", "mob_family", "accessory_power", "skyblock_month", "dragon_type",
-				"rng_meter_source", "difficulty" -> NAME;
+				"rng_meter_source", "difficulty", "reputation_rank" -> NAME;
 			case "player_name", "player_or_self" -> PLAYER;
 			case "player_display" -> PLAYER_DISPLAY;
 			case "rank" -> RANK;
@@ -218,7 +223,7 @@ public enum Capture {
 		return switch (this) {
 			// The regex is the whole of the rule for these: a numeral is a numeral, and a player's
 			// name is whatever sixteen word characters somebody chose.
-			case NUMBER, YEAR, DAY_OF_MONTH, PLAYER, PLAYER_DISPLAY, RANK, TIER, TIER_RANGE, ICON, ITEM_PART, TRAINING_KIND, TROPHY_QUALITY, GEMSTONE_KIND, GEMSTONE_QUALITY, ORDINAL, DURATION, DURATION_SPACED, SEARCH_QUERY -> true;
+			case NUMBER, YEAR, DAY_OF_MONTH, PLAYER, PLAYER_DISPLAY, RANK, TIER, TIER_RANGE, ICON, ITEM_PART, TRAINING_KIND, TROPHY_QUALITY, GEMSTONE_KIND, GEMSTONE_QUALITY, ORDINAL, DURATION, DURATION_SPACED, DURATION_WORDS, SEARCH_QUERY -> true;
 			case MULTIPLIER_INCREASE -> new BigDecimal(value).compareTo(BigDecimal.ONE) >= 0;
 			case NAME -> isName(value);
 			case ITEM_NAME -> isItemName(value);
@@ -252,6 +257,21 @@ public enum Capture {
 
 		if (this == ORDINAL && value.length() >= 3) {
 			return value.substring(0, value.length() - 2);
+		}
+
+		if (this == DURATION_WORDS) {
+			Matcher unit = WRITTEN_DURATION_UNIT.matcher(value);
+			StringBuilder translated = new StringBuilder();
+			while (unit.find()) {
+				if (!translated.isEmpty()) translated.append(' ');
+				translated.append(unit.group(1)).append(' ').append(switch (unit.group(2).toLowerCase(Locale.ROOT)) {
+					case "day", "days" -> "天";
+					case "hour", "hours" -> "小时";
+					case "minute", "minutes" -> "分钟";
+					default -> "秒";
+				});
+			}
+			return translated.toString();
 		}
 
 		if (this != DURATION && this != DURATION_SPACED) {
@@ -305,6 +325,9 @@ public enum Capture {
 	 * and anything that is not a unit — a bare number, a word — is left exactly as it arrived.
 	 */
 	private static final Pattern DURATION_UNIT = Pattern.compile("(-?[0-9][0-9,.]*)([yYdDhHmMsS])(\\+?)");
+	private static final Pattern WRITTEN_DURATION_UNIT = Pattern.compile(
+		"([0-9][0-9,]*) (days?|hours?|minutes?|seconds?)", Pattern.CASE_INSENSITIVE
+	);
 
 	/**
 	 * Whether this reads as a name: at most five words, none of them sentence punctuation, and with

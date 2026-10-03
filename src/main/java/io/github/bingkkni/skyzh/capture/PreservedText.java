@@ -37,6 +37,14 @@ public final class PreservedText {
 	/** Exact surface/whole-line boundaries; never suppress a sentence containing one of these words. */
 	public static boolean ignored(Surface surface, String plain) {
 		String text = plain.trim();
+		if (surface == Surface.CHAT && text.length() > 4 && text.startsWith("✆ ") && text.endsWith(" ✆")) {
+			// Known personal names can stay English. A registered NPC can also be a translatable
+			// profession, so an explicit contact/nameplate translation must keep capture enabled.
+			String name = text.substring(2, text.length() - 2).trim();
+			var index = Translator.index();
+			return index.isNpcName(name) && index.lookupExact(Surface.ITEM, name) == null
+				&& index.lookupExact(Surface.HOLOGRAM, name) == null;
+		}
 		if (surface == Surface.SCOREBOARD) {
 			Matcher vote = ELECTION_BAR.matcher(text);
 			return RULES.scoreboardLines().contains(text) || DATE_SERVER.matcher(text).matches()

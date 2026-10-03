@@ -15,6 +15,98 @@
     {"id":"marina_luck_sea","context":"Marina 部长天赋名称","raw":"§6✯ §bLuck of the Sea 2.0","text":"✯ Luck of the Sea 2.0","placeholders":[],"gloss":"沿用 Mayor_Perks_Runtime.json 的既定译名。","translate":true,"zh":"✯ 海之眷顾 2.0","segments":[{"color":"§6","text":"✯ ","zh":"✯ "},{"color":"§b","text":"Luck of the Sea 2.0","zh":"海之眷顾 2.0"}]},
     {"id":"foxy_chivalrous_carnival","context":"Foxy 部长天赋名称","raw":"§6✯ §eChivalrous Carnival","text":"✯ Chivalrous Carnival","placeholders":[],"gloss":"沿用 Mayor_Perks_Runtime.json 既有译名；近期游戏内实际效果改为额外惊魂节。","translate":true,"zh":"✯ 侠义嘉年华","segments":[{"color":"§6","text":"✯ ","zh":"✯ "},{"color":"§e","text":"Chivalrous Carnival","zh":"侠义嘉年华"}]},
     {"id":"cole_mining_xp_buff","context":"Cole 部长天赋名称","raw":"§6✯ §dMining XP Buff","text":"✯ Mining XP Buff","placeholders":[],"translate":true,"zh":"✯ 挖矿经验增益","segments":[{"color":"§6","text":"✯ ","zh":"✯ "},{"color":"§d","text":"Mining XP Buff","zh":"挖矿经验增益"}]},
-    {"id":"election_special_mayor","context":"特殊市长尚未揭晓","raw":"§dUpcoming Special Mayor...","text":"Upcoming Special Mayor...","placeholders":[],"translate":true,"zh":"即将公布的特殊市长……"}
+    {"id":"election_special_mayor","context":"特殊市长尚未揭晓","raw":"§dUpcoming Special Mayor...","text":"Upcoming Special Mayor...","placeholders":[],"translate":true,"zh":"即将公布的特殊市长……"},
+    {
+      "id": "election_name_mayor_double_trouble",
+      "ref": "Hub_General/GUI_Lore/Mayor_Perks_Runtime.json#mayor_double_trouble",
+      "context": "选举特权标题，复用已有 Lore 译名；行首星标由结构保留。"
+    },
+    {
+      "id": "election_name_mayor_volume_trading",
+      "ref": "Hub_General/GUI_Lore/Mayor_Perks_Runtime.json#mayor_volume_trading",
+      "context": "选举特权标题，复用已有 Lore 译名；行首星标由结构保留。"
+    },
+    {
+      "id": "election_name_mayor_extra_event",
+      "ref": "Hub_General/GUI_Lore/Mayor_Perks_Runtime.json#mayor_extra_event",
+      "context": "选举特权标题，复用已有 Lore 译名；行首星标由结构保留。"
+    },
+    {
+      "id": "election_name_mayor_pathfinder",
+      "ref": "Hub_General/GUI_Lore/Mayor_Perks_Runtime.json#mayor_pathfinder",
+      "context": "选举特权标题，复用已有 Lore 译名；行首星标由结构保留。"
+    },
+    {
+      "id": "votes_1_s_2_s_f45dd0",
+      "context": "本轮实机菜单或消息",
+      "text": "Votes: %1$s (%2$s%)",
+      "raw": "§7Votes: §c%1$s §7(§c%2$s%§7)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "560.8k",
+          "desc": "number"
+        },
+        {
+          "token": "%2$s",
+          "type": "percentage",
+          "example": "53.3",
+          "desc": "percentage"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "票数: %1$s (%2$s%)",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Votes: ",
+          "zh": "票数: "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "(",
+          "zh": "("
+        },
+        {
+          "color": "§c",
+          "text": "%2$s%",
+          "zh": "%2$s%"
+        },
+        {
+          "color": "§7",
+          "text": ")",
+          "zh": ")"
+        }
+      ]
+    },
+    {
+      "id": "time_until_now_d19ec0",
+      "context": "本轮实机菜单或消息",
+      "text": "Time until: NOW!",
+      "raw": "§7Time until: §aNOW!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "开始时间: 就是现在!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Time until: ",
+          "zh": "开始时间: "
+        },
+        {
+          "color": "§a",
+          "text": "NOW!",
+          "zh": "就是现在!"
+        }
+      ]
+    }
   ]
 }

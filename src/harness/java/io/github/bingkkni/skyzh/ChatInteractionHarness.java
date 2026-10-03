@@ -88,6 +88,8 @@ public final class ChatInteractionHarness {
 		negativeControls();
 		blockAndQuiz();
 		commandMentions();
+		followPrompt();
+		phoneWrapper();
 		colours();
 		System.out.printf("扫描 CHAT 可用记录 %d 条，按钮记录 %d 条，已匹配颜色样本 %d 条；通过 %d / 失败 %d%n",
 			chatRecords, buttons, colourSamples, passed, failed);
@@ -257,6 +259,49 @@ public final class ChatInteractionHarness {
 			require(command + " 无括号指令提及保留事件且不扩散到空格和正文", valid);
 			require(command + " 不修改原始组件", before.equals(StyledText.of(input)));
 		}
+	}
+
+	private static void followPrompt() {
+		Style follow = Style.EMPTY.withColor(ChatFormatting.YELLOW).withBold(true)
+			.withClickEvent(new ClickEvent.RunCommand("/skyzh-test-follow"))
+			.withHoverEvent(new HoverEvent.ShowText(Component.literal("synthetic follow")))
+			.withInsertion("follow-only");
+		Component input = Component.empty()
+			.append(Component.literal("» ").withStyle(ChatFormatting.BLUE, ChatFormatting.BOLD))
+			.append(Component.literal("Steve ").withStyle(ChatFormatting.GREEN))
+			.append(Component.literal("is traveling to ").withStyle(ChatFormatting.YELLOW))
+			.append(Component.literal("Dungeon Hub ").withStyle(ChatFormatting.GREEN))
+			.append(Component.empty().setStyle(follow).append("FOLLOW"));
+		StyledText before = StyledText.of(input);
+		StyledText after = StyledText.of(Translator.translateChatBlock(input, 320, c -> StyledText.of(c).length() * 6));
+		int start = after.plain().indexOf("跟随");
+		boolean ok = start >= 0;
+		for (int i = 0; i < after.length(); i++) {
+			Style style = after.styleAt(i);
+			ok &= i >= start && i < start + 2 ? follow.equals(style)
+				: style.getClickEvent() == null && style.getHoverEvent() == null && style.getInsertion() == null;
+		}
+		require("无括号FOLLOW仅跟随正文可点击", ok);
+		require("FOLLOW不改服务器组件", before.equals(StyledText.of(input)));
+	}
+
+	private static void phoneWrapper() {
+		Style phone = Style.EMPTY.withColor(ChatFormatting.AQUA)
+			.withHoverEvent(new HoverEvent.ShowText(Component.literal("synthetic call marker")));
+		Style body = Style.EMPTY.withColor(ChatFormatting.WHITE)
+			.withClickEvent(new ClickEvent.RunCommand("/skyzh-test-dialogue"));
+		Component input = Component.empty().append(Component.literal("[NPC] Dean: "))
+			.append(Component.empty().setStyle(phone).append("✆ "))
+			.append(Component.empty().setStyle(body).append("Oh, you are willing to help?"));
+		StyledText before = StyledText.of(input);
+		StyledText after = StyledText.of(Translator.translateChatBlock(input, 320, c -> StyledText.of(c).length() * 6));
+		int marker = after.plain().indexOf("✆ ");
+		boolean ok = marker >= 0 && !before.plain().equals(after.plain());
+		for (int i = marker; ok && i < after.length(); i++) {
+			ok &= (i < marker + 2 ? phone : body).equals(after.styleAt(i));
+		}
+		require("复用面对面对白时电话标记与正文事件不互串", ok);
+		require("电话包装不改原始组件", before.equals(StyledText.of(input)));
 	}
 
 	private static void colours() {
