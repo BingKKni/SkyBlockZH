@@ -232,7 +232,8 @@ public final class TermTable {
 	 * only the second is a gap somebody could close.
 	 */
 	public boolean applies(String type) {
-		return this.types.contains(type == null ? "" : type.toLowerCase(Locale.ROOT));
+		return this.types.contains("shard_kind".equalsIgnoreCase(type) ? "mob_name"
+			: type == null ? "" : type.toLowerCase(Locale.ROOT));
 	}
 
 	/**
@@ -251,6 +252,9 @@ public final class TermTable {
 		}
 		if ("guide_item_name".equalsIgnoreCase(type)) {
 			return itemName(value);
+		}
+		if ("shard_kind".equalsIgnoreCase(type)) {
+			return ItemNames.isBaseName(value + " Shard") ? translate("mob_name", value) : null;
 		}
 		if ("item_part".equalsIgnoreCase(type) || "bait_kind".equalsIgnoreCase(type)) {
 			return translate("category_name", value);

@@ -712,6 +712,15 @@ public final class CaptureHarness {
 
 	/** The second pile: a record answered and the line still came out half English. */
 	private static void mixed() {
+		for (String name : List.of("Phanpyre", "Phanflare", "Titanoboa", "Pangolin")) {
+			StyledText shard = styled("§a" + name + " Shard");
+			Translator.Located found = Translator.locate(shard, Surface.ITEM);
+			check("已决定译名的碎片真实模板没有混杂 " + name,
+				found.matched() && !found.entry().mixed(found.core(), found.match(), Translator.index().terms()).any(), true);
+			checkNothing("已决定译名的碎片不重复采集 " + name, CaptureSurface.GUI_ITEM, "§a" + name + " Shard");
+		}
+		checkVerdict("未知碎片仍正常采集", CaptureSurface.GUI_ITEM,
+			"§aUnverified Dragon Shard", Classifier.Bucket.UNTRANSLATED);
 		TermTable scopedTerms = TermTable.from(JsonParser.parseString("""
 			{
 			  "applies_to_types": ["location_name", "raw"],

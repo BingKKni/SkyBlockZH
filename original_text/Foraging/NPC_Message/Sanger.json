@@ -1,0 +1,905 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Sanger",
+  "fetched_at": "2026-10-04",
+  "verified_ingame": false,
+  "npc": "Sanger",
+  "wiki_last_edited": "This page was last edited on 1 September 2026, at 09:08.",
+  "note": "身份: 行踪难觅的碎片商人。\n关系: 耐心向玩家解释特殊类型的生物。\n口吻与性格: 热情、自诩老练,重复举例时略显无奈。\n术语: 沿用现有伐木、狩猎、属性与地名译法,人名保留英文。\n禁用风格: 不硬塞网络梗,不增删任务条件、人物关系和概率。",
+  "source_note": "普通呈现页逐项采集所有对话条件与隐藏分支;颜色优先采用明确格式类。已有服务器样本不覆盖,新增 Wiki 文本尚待实机核对。",
+  "messages": [
+    {
+      "id": "galatea_hello_there_my_dear_fellow_e1f97b63",
+      "context": "Sanger：First Interaction",
+      "text": "Hello there, my dear fellow!",
+      "raw": "§fHello there, my dear fellow!",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "你好啊,我亲爱的朋友!"
+    },
+    {
+      "id": "galatea_it_looks_like_you_ve_found_me_2718f4c8",
+      "context": "Sanger：First Interaction",
+      "text": "It looks like you've found me!",
+      "raw": "§fIt looks like you've found me!",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "看来你找到我了!"
+    },
+    {
+      "id": "galatea_i_m_sanger_an_elusive_man_who_sells_shards_gat_3b4ac093",
+      "context": "Sanger：First Interaction",
+      "text": "I'm Sanger - an elusive man who sells Shards gathered from %1$s Elusive mobs...",
+      "raw": "§fI'm §2Sanger §f- an elusive man who sells §9Shards §fgathered from §d%1$s Elusive §fmobs...",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "icon",
+          "desc": "原文属性/生物图标;保留服务器实时字形",
+          "example": ""
+        }
+      ],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "我是 Sanger,一个行踪难觅的人,专卖%1$s 行踪不定生物的碎片……",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "I'm ",
+          "zh": "我是 ",
+          "order": 0
+        },
+        {
+          "color": "§2",
+          "text": "Sanger ",
+          "zh": "Sanger",
+          "order": 1
+        },
+        {
+          "color": "§f",
+          "text": "- an elusive man who sells ",
+          "zh": ",一个行踪难觅的人,专卖",
+          "order": 2
+        },
+        {
+          "color": "§9",
+          "text": "Shards ",
+          "zh": "碎片",
+          "order": 5
+        },
+        {
+          "color": "§f",
+          "text": "gathered from ",
+          "zh": "生物的",
+          "order": 4
+        },
+        {
+          "color": "§d",
+          "text": "%1$s Elusive ",
+          "zh": "%1$s 行踪不定",
+          "order": 3
+        },
+        {
+          "color": "§f",
+          "text": "mobs...",
+          "zh": "……",
+          "order": 6
+        }
+      ]
+    },
+    {
+      "id": "galatea_select_an_option_what_are_elusive_shards_2342192f",
+      "context": "Sanger：First Interaction",
+      "text": "Select an option: [What are Elusive Shards?]",
+      "raw": "§eSelect an option: §a[§aWhat are Elusive Shards?§a]",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "请选择: [什么是行踪不定碎片?]",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Select an option: ",
+          "zh": "请选择: "
+        },
+        {
+          "color": "§a",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§a",
+          "text": "What are Elusive Shards?",
+          "zh": "什么是行踪不定碎片?"
+        },
+        {
+          "color": "§a",
+          "text": "]",
+          "zh": "]"
+        }
+      ]
+    },
+    {
+      "id": "galatea_good_question_f2827ea5",
+      "context": "Sanger：Selecting [What are Elusive Shards?]",
+      "text": "Good question.",
+      "raw": "§fGood question.",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "问得好。"
+    },
+    {
+      "id": "galatea_to_put_it_simply_if_you_find_a_mob_with_the_el_1ddb9b04",
+      "context": "Sanger：Selecting [What are Elusive Shards?]",
+      "text": "To put it simply, if you find a mob with the %1$s Elusive type...",
+      "raw": "§fTo put it simply, if you find a mob with the §d%1$s Elusive §ftype...",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "icon",
+          "desc": "原文属性/生物图标;保留服务器实时字形",
+          "example": ""
+        }
+      ],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "简单来说,如果你找到带有%1$s 行踪不定类型的生物……",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "To put it simply, if you find a mob with the ",
+          "zh": "简单来说,如果你找到带有"
+        },
+        {
+          "color": "§d",
+          "text": "%1$s Elusive ",
+          "zh": "%1$s 行踪不定"
+        },
+        {
+          "color": "§f",
+          "text": "type...",
+          "zh": "类型的生物……"
+        }
+      ]
+    },
+    {
+      "id": "galatea_and_you_go_ahead_and_kill_that_mob_620690f7",
+      "context": "Sanger：Selecting [What are Elusive Shards?]",
+      "text": "And you go ahead and kill that mob...",
+      "raw": "§fAnd you go ahead and kill that mob...",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "然后把它击杀……"
+    },
+    {
+      "id": "galatea_it_will_always_drop_its_shard_c2e0a275",
+      "context": "Sanger：Selecting [What are Elusive Shards?]",
+      "text": "It will ALWAYS drop its Shard!",
+      "raw": "§fIt will §cALWAYS §fdrop its §9Shard§f!",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "它就一定会掉落对应的碎片!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "It will ",
+          "zh": "它就"
+        },
+        {
+          "color": "§c",
+          "text": "ALWAYS ",
+          "zh": "一定"
+        },
+        {
+          "color": "§f",
+          "text": "drop its ",
+          "zh": "会掉落对应的"
+        },
+        {
+          "color": "§9",
+          "text": "Shard",
+          "zh": "碎片"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "galatea_no_ifs_no_buts_no_getting_unlucky_a_shard_is_g_dcbad04a",
+      "context": "Sanger：Selecting [What are Elusive Shards?]",
+      "text": "No ifs, no buts! No getting unlucky - a Shard is GUARANTEED!",
+      "raw": "§fNo ifs, no buts! No getting unlucky - a §9Shard §fis §aGUARANTEED§f!",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "没有如果,没有但是! 不用担心运气差——碎片是必掉的!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "No ifs, no buts! No getting unlucky - a ",
+          "zh": "没有如果,没有但是! 不用担心运气差——"
+        },
+        {
+          "color": "§9",
+          "text": "Shard ",
+          "zh": "碎片"
+        },
+        {
+          "color": "§f",
+          "text": "is ",
+          "zh": "是"
+        },
+        {
+          "color": "§a",
+          "text": "GUARANTEED",
+          "zh": "必掉"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "的!"
+        }
+      ]
+    },
+    {
+      "id": "galatea_simple_as_that_do_you_understand_my_dear_fello_96d18592",
+      "context": "Sanger：Selecting [What are Elusive Shards?]",
+      "text": "Simple as that! Do you understand, my dear fellow?",
+      "raw": "§fSimple as that! Do you understand, my dear fellow?",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "就这么简单! 明白了吗,朋友?"
+    },
+    {
+      "id": "galatea_select_an_option_yep_can_you_give_me_an_exampl_6f64954f",
+      "context": "Sanger：Selecting [What are Elusive Shards?]",
+      "text": "Select an option: [Yep!] [Can you give me an example?]",
+      "raw": "§eSelect an option: §a[§aYep!§a]§a §e[§eCan you give me an example?§e]",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "请选择: [明白!] [能举个例子吗?]",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Select an option: ",
+          "zh": "请选择: "
+        },
+        {
+          "color": "§a",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§a",
+          "text": "Yep!",
+          "zh": "明白!"
+        },
+        {
+          "color": "§a",
+          "text": "]",
+          "zh": "]"
+        },
+        {
+          "color": "§a",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§e",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§e",
+          "text": "Can you give me an example?",
+          "zh": "能举个例子吗?"
+        },
+        {
+          "color": "§e",
+          "text": "]",
+          "zh": "]"
+        }
+      ]
+    },
+    {
+      "id": "galatea_most_certainly_abce5c95",
+      "context": "Sanger：Selecting [Can you give me an example?]",
+      "text": "Most certainly!",
+      "raw": "§fMost certainly!",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "当然可以!"
+    },
+    {
+      "id": "galatea_special_zealots_have_the_elusive_type_be50b7d9",
+      "context": "Sanger：Selecting [Can you give me an example?]",
+      "text": "Special Zealots have the %1$s Elusive type...",
+      "raw": "§dSpecial Zealots §fhave the §d%1$s Elusive §ftype...",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "icon",
+          "desc": "原文属性/生物图标;保留服务器实时字形",
+          "example": ""
+        }
+      ],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "特殊狂热末影人就带有%1$s 行踪不定类型……",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "Special Zealots ",
+          "zh": "特殊狂热末影人"
+        },
+        {
+          "color": "§f",
+          "text": "have the ",
+          "zh": "就带有"
+        },
+        {
+          "color": "§d",
+          "text": "%1$s Elusive ",
+          "zh": "%1$s 行踪不定"
+        },
+        {
+          "color": "§f",
+          "text": "type...",
+          "zh": "类型……"
+        }
+      ]
+    },
+    {
+      "id": "galatea_that_means_whenever_you_kill_a_special_zealot__52ad44a4",
+      "context": "Sanger：Selecting [Can you give me an example?]",
+      "text": "That means, whenever you kill a Special Zealot, it will always drop a Special Zealot Shard.",
+      "raw": "§fThat means, whenever you kill a §dSpecial Zealot§f, it will always drop a §5Special Zealot Shard§f.",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "也就是说,每当你击杀一只特殊狂热末影人,它就一定会掉落一枚特殊狂热末影人碎片。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "That means, whenever you kill a ",
+          "zh": "也就是说,每当你击杀一只"
+        },
+        {
+          "color": "§d",
+          "text": "Special Zealot",
+          "zh": "特殊狂热末影人"
+        },
+        {
+          "color": "§f",
+          "text": ", it will always drop a ",
+          "zh": ",它就一定会掉落一枚"
+        },
+        {
+          "color": "§5",
+          "text": "Special Zealot Shard",
+          "zh": "特殊狂热末影人碎片"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "galatea_understood_70be5937",
+      "context": "Sanger：Selecting [Can you give me an example?]",
+      "text": "Understood?",
+      "raw": "§fUnderstood?",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "明白了吗?"
+    },
+    {
+      "id": "galatea_select_an_option_yep_can_you_give_me_another_e_0f0466f1",
+      "context": "Sanger：Selecting [Can you give me an example?]",
+      "text": "Select an option: [Yep!] [Can you give me another example]",
+      "raw": "§eSelect an option: §a[§aYep!§a]§a §6[§6Can you give me another example§6]",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "请选择: [明白!] [能再举个例子吗?]",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Select an option: ",
+          "zh": "请选择: "
+        },
+        {
+          "color": "§a",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§a",
+          "text": "Yep!",
+          "zh": "明白!"
+        },
+        {
+          "color": "§a",
+          "text": "]",
+          "zh": "]"
+        },
+        {
+          "color": "§a",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§6",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§6",
+          "text": "Can you give me another example",
+          "zh": "能再举个例子吗?"
+        },
+        {
+          "color": "§6",
+          "text": "]",
+          "zh": "]"
+        }
+      ]
+    },
+    {
+      "id": "galatea_the_titanoboa_has_the_elusive_type_50cd8762",
+      "context": "Sanger：Selecting [Can you give me another example]",
+      "text": "The Titanoboa has the %1$s Elusive type...",
+      "raw": "§fThe §dTitanoboa §fhas the §d%1$s Elusive §ftype...",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "icon",
+          "desc": "原文属性/生物图标;保留服务器实时字形",
+          "example": ""
+        }
+      ],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "泰坦蟒带有%1$s 行踪不定类型……",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "The ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§d",
+          "text": "Titanoboa ",
+          "zh": "泰坦蟒"
+        },
+        {
+          "color": "§f",
+          "text": "has the ",
+          "zh": "带有"
+        },
+        {
+          "color": "§d",
+          "text": "%1$s Elusive ",
+          "zh": "%1$s 行踪不定"
+        },
+        {
+          "color": "§f",
+          "text": "type...",
+          "zh": "类型……"
+        }
+      ]
+    },
+    {
+      "id": "galatea_that_means_whenever_you_kill_a_titanoboa_it_wi_03f89290",
+      "context": "Sanger：Selecting [Can you give me another example]",
+      "text": "That means, whenever you kill a Titanoboa, it will always drop a Titanoboa Shard.",
+      "raw": "§fThat means, whenever you kill a §dTitanoboa§f, it will always drop a §6Titanoboa Shard§f.",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "也就是说,每当你击杀一只泰坦蟒,它就一定会掉落一枚泰坦蟒碎片。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "That means, whenever you kill a ",
+          "zh": "也就是说,每当你击杀一只"
+        },
+        {
+          "color": "§d",
+          "text": "Titanoboa",
+          "zh": "泰坦蟒"
+        },
+        {
+          "color": "§f",
+          "text": ", it will always drop a ",
+          "zh": ",它就一定会掉落一枚"
+        },
+        {
+          "color": "§6",
+          "text": "Titanoboa Shard",
+          "zh": "泰坦蟒碎片"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "galatea_select_an_option_yep_can_you_give_me_one_last__42b5eb23",
+      "context": "Sanger：Selecting [Can you give me another example]",
+      "text": "Select an option: [Yep!] [Can you give me one last example?]",
+      "raw": "§eSelect an option: §a[§aYep!§a]§a §c[§cCan you give me one last example?§c]",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "请选择: [明白!] [能最后再举一个例子吗?]",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Select an option: ",
+          "zh": "请选择: "
+        },
+        {
+          "color": "§a",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§a",
+          "text": "Yep!",
+          "zh": "明白!"
+        },
+        {
+          "color": "§a",
+          "text": "]",
+          "zh": "]"
+        },
+        {
+          "color": "§a",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§c",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§c",
+          "text": "Can you give me one last example?",
+          "zh": "能最后再举一个例子吗?"
+        },
+        {
+          "color": "§c",
+          "text": "]",
+          "zh": "]"
+        }
+      ]
+    },
+    {
+      "id": "galatea_i_suppose_i_can_d6586f2b",
+      "context": "Sanger：Selecting [Can you give me one last example?]",
+      "text": "I suppose I can...",
+      "raw": "§fI suppose I can...",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "行吧,也不是不可以……"
+    },
+    {
+      "id": "galatea_the_field_mouse_has_the_elusive_type_e2fe60e1",
+      "context": "Sanger：Selecting [Can you give me one last example?]",
+      "text": "The Field Mouse has the %1$s Elusive type...",
+      "raw": "§fThe §9Field Mouse §fhas the §d%1$s Elusive §ftype...",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "icon",
+          "desc": "原文属性/生物图标;保留服务器实时字形",
+          "example": ""
+        }
+      ],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "田鼠带有%1$s 行踪不定类型……",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "The ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§9",
+          "text": "Field Mouse ",
+          "zh": "田鼠"
+        },
+        {
+          "color": "§f",
+          "text": "has the ",
+          "zh": "带有"
+        },
+        {
+          "color": "§d",
+          "text": "%1$s Elusive ",
+          "zh": "%1$s 行踪不定"
+        },
+        {
+          "color": "§f",
+          "text": "type...",
+          "zh": "类型……"
+        }
+      ]
+    },
+    {
+      "id": "galatea_that_means_whenever_you_kill_a_field_mouse_it__d2810343",
+      "context": "Sanger：Selecting [Can you give me one last example?]",
+      "text": "That means, whenever you kill a Field Mouse, it will always drop a Field Mouse Shard.",
+      "raw": "§fThat means, whenever you kill a §9Field Mouse§f, it will always drop a §aField Mouse Shard§f.",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "也就是说,每当你击杀一只田鼠,它就一定会掉落一枚田鼠碎片。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "That means, whenever you kill a ",
+          "zh": "也就是说,每当你击杀一只"
+        },
+        {
+          "color": "§9",
+          "text": "Field Mouse",
+          "zh": "田鼠"
+        },
+        {
+          "color": "§f",
+          "text": ", it will always drop a ",
+          "zh": ",它就一定会掉落一枚"
+        },
+        {
+          "color": "§a",
+          "text": "Field Mouse Shard",
+          "zh": "田鼠碎片"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "galatea_i_hope_you_re_beginning_to_understand_now_5674d3ad",
+      "context": "Sanger：Selecting [Can you give me one last example?]",
+      "text": "I hope you're beginning to understand now...",
+      "raw": "§fI hope you're beginning to understand now...",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "希望你现在开始明白了……"
+    },
+    {
+      "id": "galatea_select_an_option_yep_5ba37c2e",
+      "context": "Sanger：Selecting [Can you give me one last example?]",
+      "text": "Select an option: [Yep!]",
+      "raw": "§eSelect an option: §a[§aYep!§a]",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "请选择: [明白!]",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Select an option: ",
+          "zh": "请选择: "
+        },
+        {
+          "color": "§a",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§a",
+          "text": "Yep!",
+          "zh": "明白!"
+        },
+        {
+          "color": "§a",
+          "text": "]",
+          "zh": "]"
+        }
+      ]
+    },
+    {
+      "id": "galatea_even_the_best_hunters_around_struggle_to_find__3fd968fd",
+      "context": "Sanger：Selecting [Yep!]",
+      "text": "Even the best Hunters around struggle to find %1$s Elusive mobs...",
+      "raw": "§fEven the best §eHunters §faround struggle to find §d%1$s Elusive §fmobs...",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "icon",
+          "desc": "原文属性/生物图标;保留服务器实时字形",
+          "example": ""
+        }
+      ],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "就连最出色的猎人,也很难找到%1$s 行踪不定生物……",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Even the best ",
+          "zh": "就连最出色的"
+        },
+        {
+          "color": "§e",
+          "text": "Hunters ",
+          "zh": "猎人"
+        },
+        {
+          "color": "§f",
+          "text": "around struggle to find ",
+          "zh": ",也很难找到"
+        },
+        {
+          "color": "§d",
+          "text": "%1$s Elusive ",
+          "zh": "%1$s 行踪不定"
+        },
+        {
+          "color": "§f",
+          "text": "mobs...",
+          "zh": "生物……"
+        }
+      ]
+    },
+    {
+      "id": "galatea_however_thankfully_for_you_i_am_a_particularly_59091ec9",
+      "context": "Sanger：Selecting [Yep!]",
+      "text": "However, thankfully for you, I am a particularly celebrated Hunter who has traveled the land far and wide.",
+      "raw": "§fHowever, thankfully for you, I am a particularly celebrated §eHunter §fwho has traveled the land far and wide.",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "不过你运气不错,我可是一位远近闻名的猎人,走遍了各地。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "However, thankfully for you, I am a particularly celebrated ",
+          "zh": "不过你运气不错,我可是一位远近闻名的"
+        },
+        {
+          "color": "§e",
+          "text": "Hunter ",
+          "zh": "猎人"
+        },
+        {
+          "color": "§f",
+          "text": "who has traveled the land far and wide.",
+          "zh": ",走遍了各地。"
+        }
+      ]
+    },
+    {
+      "id": "galatea_i_have_collected_many_shards_in_my_time_gather_2a9bebbf",
+      "context": "Sanger：Selecting [Yep!]",
+      "text": "I have collected many Shards in my time, gathered from the %1$s Elusive mobs that frequented my homeland.",
+      "raw": "§fI have collected many §9Shards §fin my time, gathered from the §d%1$s Elusive §fmobs that frequented my homeland.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "icon",
+          "desc": "原文属性/生物图标;保留服务器实时字形",
+          "example": ""
+        }
+      ],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "这些年,我收集了不少碎片,都来自故乡常见的%1$s 行踪不定生物。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "I have collected many ",
+          "zh": "这些年,我收集了不少"
+        },
+        {
+          "color": "§9",
+          "text": "Shards ",
+          "zh": "碎片"
+        },
+        {
+          "color": "§f",
+          "text": "in my time, gathered from the ",
+          "zh": ",都来自故乡常见的"
+        },
+        {
+          "color": "§d",
+          "text": "%1$s Elusive ",
+          "zh": "%1$s 行踪不定"
+        },
+        {
+          "color": "§f",
+          "text": "mobs that frequented my homeland.",
+          "zh": "生物。"
+        }
+      ]
+    },
+    {
+      "id": "galatea_why_don_t_you_peruse_my_collection_perhaps_we__c621c447",
+      "context": "Sanger：Selecting [Yep!]",
+      "text": "Why don't you peruse my collection - perhaps we can strike a deal?",
+      "raw": "§fWhy don't you peruse my collection - perhaps we can strike a deal?",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "不如看看我的收藏?也许咱们能做笔交易。"
+    },
+    {
+      "id": "galatea_come_back_anytime_05fd5ca4",
+      "context": "Sanger：Closing shop interface",
+      "text": "Come back anytime!",
+      "raw": "§fCome back anytime!",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "随时欢迎你来!"
+    },
+    {
+      "id": "galatea_though_you_might_have_to_find_me_again_5d0fa57b",
+      "context": "Sanger：Closing shop interface",
+      "text": "Though, you might have to find me again.",
+      "raw": "§fThough, you might have to find me again.",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "不过,可能得重新找一找我。"
+    },
+    {
+      "id": "galatea_oh_how_brilliant_you_appear_to_have_found_me_o_fb7c2e60",
+      "context": "Sanger：After finding them again",
+      "text": "Oh, how brilliant! You appear to have found me once again!",
+      "raw": "§fOh, how brilliant! You appear to have found me once again!",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "噢,真了不起! 你似乎又找到我了!"
+    },
+    {
+      "id": "galatea_there_truly_is_no_tricking_you_is_there_3f676676",
+      "context": "Sanger：After finding them again",
+      "text": "There truly is no tricking you, is there?",
+      "raw": "§fThere truly is no tricking you, is there?",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "还真是什么都瞒不过你,是吧?"
+    },
+    {
+      "id": "galatea_sanger_seemed_to_vanish_before_your_very_eyes_e1d30efb",
+      "context": "Sanger：In shop upon a new day",
+      "text": "Sanger seemed to vanish before your very eyes!",
+      "raw": "§8§oSanger seemed to vanish before your very eyes!",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "Sanger 仿佛就在你的眼前凭空消失了!"
+    }
+  ]
+}

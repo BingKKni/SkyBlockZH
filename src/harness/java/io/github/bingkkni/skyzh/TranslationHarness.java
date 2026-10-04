@@ -2155,7 +2155,7 @@ public final class TranslationHarness {
 		// Only for the kind that has no shape of its own. A NUMBER whose example reads "1,234" is
 		// still matched by "1", and taking the example there would test the corpus's prose rather
 		// than the engine's rule.
-		if ((capture == Capture.PHRASE || capture == Capture.CATALOG_ITEM || capture == Capture.ITEM_PART || capture == Capture.BAIT_KIND)
+		if ((capture == Capture.PHRASE || capture == Capture.CATALOG_ITEM || capture == Capture.ITEM_PART || capture == Capture.BAIT_KIND || capture == Capture.SHARD_KIND)
 			&& !example.isEmpty() && capture.accepts(example)) {
 			return example;
 		}
@@ -2716,6 +2716,11 @@ public final class TranslationHarness {
 		report("长物品名例外不扩展到未知句子",
 			!Capture.of("catalog_item_name").accepts("Travel Scroll to Some Unverified Strange Island"), "未知长名称不能通用匹配");
 		report("鱼饵种类拒绝返回按钮半句", !Capture.of("bait_kind").accepts("To Fish"), "必须组成已登记的鱼饵名称");
+		report("碎片种类只接收目录中的基础名称", Capture.of("shard_kind").accepts("Phanpyre")
+			&& Capture.of("shard_kind").accepts("Crocodile"), "与 Shard 拼接后必须命中目录");
+		for (String unknown : List.of("Unverified Dragon", "To Catch", "Hasty Phanpyre", "you should catch this")) {
+			report("碎片种类拒绝未知、重铸或半句 " + unknown, !Capture.of("shard_kind").accepts(unknown), "不以名称形状制造假命中");
+		}
 		report("存档名不借用食材词表", Translator.index().terms().translate("profile_name", "Apple") == null, "角色/档案身份保持原文");
 		Component families = Translator.translateList(Component.literal("§9 Aquatic§7, §a Animal"), Surface.ITEM);
 		report("海洋生物双族群逐项保留图标和颜色", families != null
@@ -2731,7 +2736,7 @@ public final class TranslationHarness {
 
 	/** Fixed UI capture regression: ordered lore, term isolation, and clues that must survive translation. */
 	private static void checkFixedMenus(Path corpusRoot) throws Exception {
-		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json")) {
+		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json")) {
 		Path path = corpusRoot.toAbsolutePath().getParent().resolve("src/harness/resources/" + file);
 		JsonObject fixture = JsonParser.parseString(Files.readString(path, StandardCharsets.UTF_8)).getAsJsonObject();
 		for (JsonElement value : fixture.getAsJsonArray("cases")) {
@@ -2754,6 +2759,18 @@ public final class TranslationHarness {
 			report(name, expected.equals(actual) && match.lines() == test.get("consumed").getAsInt(),
 				"期望 " + expected + "，实际 " + actual);
 		}
+		}
+		boolean oldSkyBlockName = SkyZHConfig.get().translateSkyBlockName;
+		try {
+			SkyZHConfig.get().translateSkyBlockName = false;
+			check("Galatea对白关闭玩法名汉化仍有中英空格",
+				"§fHere in §2Moonglade Marsh§f, I\'ll reward your daily activities each SkyBlock day.", Surface.CHAT,
+				"§f在§2月光沼泽§f,每个 SkyBlock 日我都会按你当天的活动表现发放奖励。");
+			check("Galatea效果关闭玩法名汉化仍有中英空格",
+				"§7Every SkyBlock day, you gain a random effect while on any §2Foraging Island§7.", Surface.LORE,
+				"§7每个 SkyBlock 日,在任意§2伐木岛屿§7上获得一种随机效果。");
+		} finally {
+			SkyZHConfig.get().translateSkyBlockName = oldSkyBlockName;
 		}
 		checkNoMatch("电话结构不扩展到物品", "✆ Oh, you are willing to help?", Surface.ITEM);
 		checkNoMatch("未知电话正文不制造命中", "✆ This is an unrecorded sentence.", Surface.CHAT);

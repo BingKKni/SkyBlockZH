@@ -54,6 +54,8 @@ public enum Capture {
 	/** Explicit opt-in item references in recipes/menus; unknown names cannot become fake matches. */
 	CATALOG_ITEM(NAME.regex, false),
 	BAIT_KIND(NAME.regex, false),
+	/** Attribute shards must be real catalog base names, not any capitalized phrase plus Shard. */
+	SHARD_KIND(NAME.regex, false),
 	TRAINING_KIND("(?:Free|Light|Moderate|Expert|Ultra|Turbo!)", false),
 
 	/** Closed suffixes for translated armor, woodworking and furniture families, never enchantments. */
@@ -185,6 +187,7 @@ public enum Capture {
 			case "catalog_item_name" -> CATALOG_ITEM;
 			case "item_part" -> ITEM_PART;
 			case "bait_kind" -> BAIT_KIND;
+			case "shard_kind" -> SHARD_KIND;
 			case "training_kind" -> TRAINING_KIND;
 			case "npc_name", "profile_name", "location_name", "mob_name", "rarity", "category_name",
 				"enchantment_name", "enchantment_crop", "mob_family", "accessory_power", "skyblock_month", "dragon_type",
@@ -229,6 +232,7 @@ public enum Capture {
 			case ITEM_NAME -> isItemName(value);
 			case CATALOG_ITEM -> isItemName(value) && ItemNames.canonical(value) != null;
 			case BAIT_KIND -> isName(value) && ItemNames.isBaseName(value + " Bait");
+			case SHARD_KIND -> isName(value) && ItemNames.isBaseName(value + " Shard");
 			case PHRASE -> isValue(value);
 		};
 	}
@@ -238,7 +242,8 @@ public enum Capture {
 	 * player's 34) rather than being a count: see TranslationEntry's seam spacing.
 	 */
 	public boolean nameShaped() {
-		return this == NAME || this == ITEM_NAME || this == CATALOG_ITEM || this == PLAYER || this == PLAYER_DISPLAY || this == RANK;
+		return this == NAME || this == ITEM_NAME || this == CATALOG_ITEM || this == SHARD_KIND
+			|| this == PLAYER || this == PLAYER_DISPLAY || this == RANK;
 	}
 
 	/**

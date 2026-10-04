@@ -1,0 +1,175 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Huntress_Melissa",
+  "fetched_at": "2026-10-04",
+  "verified_ingame": false,
+  "npc": "Huntress Melissa",
+  "wiki_last_edited": "This page was last edited on 1 September 2026, at 09:07.",
+  "note": "身份: 交换多余碎片的女猎人。\n关系: 与玩家进行交易。\n口吻与性格: 活泼爽快,被拒绝时有点小脾气。\n术语: 沿用现有伐木、狩猎、属性与地名译法,人名保留英文。\n禁用风格: 不硬塞网络梗,不增删任务条件、人物关系和概率。",
+  "source_note": "普通呈现页逐项采集所有对话条件与隐藏分支;颜色优先采用明确格式类。已有服务器样本不覆盖,新增 Wiki 文本尚待实机核对。",
+  "messages": [
+    {
+      "id": "galatea_select_an_option_trade_no_thanks_e8f984b6",
+      "ref": "_shared/Galatea_NPC_Common.json#galatea_select_an_option_trade_no_thanks_e8f984b6",
+      "context": "多个 Galatea NPC 共用的对白或选项,不重复定义译文。"
+    },
+    {
+      "id": "galatea_heyyy_7c9e667e",
+      "context": "Huntress Melissa：First Interaction",
+      "text": "Heyyy!",
+      "raw": "§fHeyyy!",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "嗨——!"
+    },
+    {
+      "id": "galatea_do_you_want_this_s_i_already_maxed_that_attrib_f645934c",
+      "context": "Huntress Melissa：First Interaction",
+      "text": "Do you want this %s? I already maxed that Attribute...",
+      "raw": "§fDo you want this §7%s§f? I already maxed that Attribute...",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "catalog_item_name",
+          "desc": "Wiki 标出的动态值,以服务器实值为准",
+          "example": "Flitter Shard"
+        }
+      ],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。 Wiki 占位标记已改为有类型模板;非运行时示例值。",
+      "translate": true,
+      "zh": "想要这个 %s 吗?这个属性我已经升满了……",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Do you want this ",
+          "zh": "想要这个 "
+        },
+        {
+          "color": "§7",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§f",
+          "text": "? I already maxed that Attribute...",
+          "zh": " 吗?这个属性我已经升满了……"
+        }
+      ]
+    },
+    {
+      "id": "galatea_how_about_i_give_you_it_in_exchange_for_say_a__907d3cd1",
+      "context": "Huntress Melissa：First Interaction",
+      "text": "How about I give you it in exchange for, say, a %s?",
+      "raw": "§fHow about I give you it in exchange for, say, a §7%s?",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "catalog_item_name",
+          "desc": "Wiki 标出的动态值,以服务器实值为准",
+          "example": "Yogi Berry"
+        }
+      ],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。 Wiki 占位标记已改为有类型模板;非运行时示例值。",
+      "translate": true,
+      "zh": "要不这样,拿一个来换: %s?",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "How about I give you it in exchange for, say, a ",
+          "zh": "要不这样,拿一个来换: "
+        },
+        {
+          "color": "§7",
+          "text": "%s?",
+          "zh": "%s?"
+        }
+      ]
+    },
+    {
+      "id": "galatea_hmph_suit_yourself_08618515",
+      "context": "Huntress Melissa：Selecting [No thanks]",
+      "text": "Hmph, suit yourself.",
+      "raw": "§fHmph, suit yourself.",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "哼,随你便。"
+    },
+    {
+      "id": "galatea_err_you_don_t_have_a_s_496d882c",
+      "context": "Huntress Melissa：Selecting [Trade] without the required item",
+      "text": "Err, you don't have a %s.",
+      "raw": "§fErr, you don't have a §7%s.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "catalog_item_name",
+          "desc": "Wiki 标出的动态值,以服务器实值为准",
+          "example": "Yogi Berry"
+        }
+      ],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。 Wiki 占位标记已改为有类型模板;非运行时示例值。",
+      "translate": true,
+      "zh": "呃,你并没有 %s。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Err, you don't have a ",
+          "zh": "呃,你并没有 "
+        },
+        {
+          "color": "§7",
+          "text": "%s.",
+          "zh": "%s。"
+        }
+      ]
+    },
+    {
+      "id": "galatea_come_back_when_you_find_one_51b22255",
+      "context": "Huntress Melissa：Selecting [Trade] without the required item",
+      "text": "Come back when you find one!",
+      "raw": "§fCome back when you find one!",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "找到了再来吧!"
+    },
+    {
+      "id": "galatea_yippee_thanks_for_the_trade_92093693",
+      "context": "Huntress Melissa：Selecting [Trade] with the required item",
+      "text": "Yippee! Thanks for the trade!",
+      "raw": "§fYippee! Thanks for the trade!",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "好耶! 谢谢你跟我交换!"
+    },
+    {
+      "id": "galatea_i_ll_let_you_know_if_i_ever_find_another_shard_d57fbdb4",
+      "context": "Huntress Melissa：After trading",
+      "text": "I'll let you know if I ever find another Shard to trade!",
+      "raw": "§fI'll let you know if I ever find another §bShard§f to trade!",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
+      "translate": true,
+      "zh": "以后要是又找到能交换的碎片,我再告诉你!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "I'll let you know if I ever find another ",
+          "zh": "以后要是又找到能交换的"
+        },
+        {
+          "color": "§b",
+          "text": "Shard",
+          "zh": "碎片"
+        },
+        {
+          "color": "§f",
+          "text": " to trade!",
+          "zh": ",我再告诉你!"
+        }
+      ]
+    }
+  ]
+}
