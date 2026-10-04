@@ -83,6 +83,9 @@ public enum Capture {
 	 */
 	TIER("[IVXLCDM]{1,8}"),
 
+	/** Levels whose live and catalog forms use Roman and Arabic numerals respectively. */
+	LEVEL("(?:[0-9]{1,4}|[IVXLCDM]{1,8})", false),
+
 	/** Enchantment sources list one tier or a range, not arbitrary parenthesised prose. */
 	TIER_RANGE("[IVXLCDM]{1,8}(?:[-–][IVXLCDM]{1,8})?"),
 
@@ -103,6 +106,9 @@ public enum Capture {
 
 	/** HotM crystal kinds, not arbitrary item names followed by a discovery status. */
 	GEMSTONE_KIND("(?:Jade|Amber|Amethyst|Sapphire|Topaz|Jasper|Ruby|Opal|Aquamarine|Peridot|Onyx|Citrine)", false),
+
+	/** Placement tiers used by both farming medals and Galatea rarity contests. */
+	CONTEST_RANK("(?i:Bronze|Silver|Gold|Platinum|Diamond|Common|Uncommon|Rare|Epic|Legendary|Mythic|Divine)", false),
 
 	/** The five named gemstone qualities, bounded so a menu label cannot become an item name. */
 	GEMSTONE_QUALITY("(?:Rough|Flawed|Fine|Flawless|Perfect)", false),
@@ -196,9 +202,11 @@ public enum Capture {
 			case "player_display" -> PLAYER_DISPLAY;
 			case "rank" -> RANK;
 			case "tier" -> TIER;
+			case "level" -> LEVEL;
 			case "tier_range" -> TIER_RANGE;
 			case "icon" -> ICON;
 			case "trophy_quality" -> TROPHY_QUALITY;
+			case "contest_rank" -> CONTEST_RANK;
 			case "gemstone_kind" -> GEMSTONE_KIND;
 			case "gemstone_quality" -> GEMSTONE_QUALITY;
 			case "multiplier_increase" -> MULTIPLIER_INCREASE;
@@ -226,7 +234,8 @@ public enum Capture {
 		return switch (this) {
 			// The regex is the whole of the rule for these: a numeral is a numeral, and a player's
 			// name is whatever sixteen word characters somebody chose.
-			case NUMBER, YEAR, DAY_OF_MONTH, PLAYER, PLAYER_DISPLAY, RANK, TIER, TIER_RANGE, ICON, ITEM_PART, TRAINING_KIND, TROPHY_QUALITY, GEMSTONE_KIND, GEMSTONE_QUALITY, ORDINAL, DURATION, DURATION_SPACED, DURATION_WORDS, SEARCH_QUERY -> true;
+			case NUMBER, YEAR, DAY_OF_MONTH, PLAYER, PLAYER_DISPLAY, RANK, TIER, LEVEL, TIER_RANGE, ICON, ITEM_PART, TRAINING_KIND, TROPHY_QUALITY, GEMSTONE_KIND, GEMSTONE_QUALITY, ORDINAL, DURATION, DURATION_SPACED, DURATION_WORDS, SEARCH_QUERY -> true;
+			case CONTEST_RANK -> value.matches(this.regex);
 			case MULTIPLIER_INCREASE -> new BigDecimal(value).compareTo(BigDecimal.ONE) >= 0;
 			case NAME -> isName(value);
 			case ITEM_NAME -> isItemName(value);

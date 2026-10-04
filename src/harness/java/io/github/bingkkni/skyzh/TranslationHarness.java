@@ -2168,7 +2168,7 @@ public final class TranslationHarness {
 			case TIER -> "XII";
 			case TIER_RANGE -> "III-V";
 			case ICON -> "✎";
-			case TROPHY_QUALITY -> "SILVER";
+			case TROPHY_QUALITY, CONTEST_RANK -> "SILVER";
 			case GEMSTONE_KIND -> "Jade";
 			case GEMSTONE_QUALITY -> "Flawless";
 			case MULTIPLIER_INCREASE -> "1.5";
@@ -2736,7 +2736,7 @@ public final class TranslationHarness {
 
 	/** Fixed UI capture regression: ordered lore, term isolation, and clues that must survive translation. */
 	private static void checkFixedMenus(Path corpusRoot) throws Exception {
-		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json")) {
+		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json")) {
 		Path path = corpusRoot.toAbsolutePath().getParent().resolve("src/harness/resources/" + file);
 		JsonObject fixture = JsonParser.parseString(Files.readString(path, StandardCharsets.UTF_8)).getAsJsonObject();
 		for (JsonElement value : fixture.getAsJsonArray("cases")) {
@@ -2760,6 +2760,23 @@ public final class TranslationHarness {
 				"期望 " + expected + "，实际 " + actual);
 		}
 		}
+		checkNoMatch("竞赛档位拒绝未知词", "Unknown requires +19", Surface.SCOREBOARD);
+		checkNoMatch("竞赛档位拒绝任意短语", "Something Strange with 30", Surface.SCOREBOARD);
+		checkNoMatch("竞赛档位不扩展到普通聊天", "SILVER with 30", Surface.CHAT);
+		report("竞赛档位不污染染料与锦标品质",
+			"银牌".equals(Translator.index().terms().translate("contest_rank", "Silver"))
+				&& "淡灰色".equals(Translator.index().terms().translate("category_name", "SILVER"))
+				&& "银品质".equals(Translator.index().terms().translate("trophy_quality", "SILVER")), "各类型分别查词表");
+		for (String source : List.of("§7Selected pet: §6Scatha", "§aCatching Frogs", "§aCatching Joydives",
+			"§9§lRARE FISHING NET")) {
+			Translator.Located found = Translator.locate(StyledText.of(Component.literal(source)), Surface.ITEM);
+			report("保留专名或已有通名不再报混杂 " + source, found.matched()
+				&& !found.entry().mixed(found.core(), found.match(), Translator.index().terms()).any(), "不翻译专名也不重复采集");
+		}
+		String upgraded = "§9Cultivating V §eon your §5Gauss Carrot Shovel Mk. III §ewas upgraded to §9Cultivating VI§e!";
+		Translator.Located upgrade = Translator.locate(StyledText.of(Component.literal(upgraded)), Surface.CHAT);
+		report("专属附魔升级等级不触发混杂", upgrade.matched()
+			&& !upgrade.entry().mixed(upgrade.core(), upgrade.match(), Translator.index().terms()).any(), "附魔名与罗马等级分开捕获");
 		boolean oldSkyBlockName = SkyZHConfig.get().translateSkyBlockName;
 		try {
 			SkyZHConfig.get().translateSkyBlockName = false;

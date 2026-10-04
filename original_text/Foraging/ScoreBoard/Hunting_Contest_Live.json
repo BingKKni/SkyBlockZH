@@ -1,0 +1,105 @@
+{
+  "source": [
+    "../SkyZH_Logs/skyzh-capture",
+    "https://hypixelskyblock.minecraft.wiki/w/Galatea",
+    "https://hypixelskyblock.minecraft.wiki/w/Hunting",
+    "https://hypixelskyblock.minecraft.wiki/w/Huntraps",
+    "https://hypixelskyblock.minecraft.wiki/w/David_Hunterborough",
+    "https://hypixelskyblock.minecraft.wiki/w/Swoop",
+    "https://hypixelskyblock.minecraft.wiki/w/Teddy"
+  ],
+  "fetched_at": "2026-10-05",
+  "verified_ingame": true,
+  "note": "原文与颜色以本轮服务器采集为准；Wiki 用于补全跨行语境。数值均按动态模板处理，Wiki 独有变体单独注明。",
+  "entries": [
+    {
+      "id": "agatha_countdown",
+      "context": "本轮服务器采集；按完整语义翻译并保留实时颜色。",
+      "text": "Agatha's Contest %s",
+      "raw": "§eAgatha's Contest §a%s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "duration",
+          "example": "18m50s",
+          "desc": "有界动态值"
+        }
+      ],
+      "translate": true,
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Agatha's Contest ",
+          "zh": "Agatha 竞赛 "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ],
+      "zh": "Agatha 竞赛 %s"
+    },
+    {
+      "id": "contest_requires",
+      "context": "本轮服务器采集；按完整语义翻译并保留实时颜色。",
+      "text": "%1$s requires +%2$s",
+      "raw": "§7%1$s requires +%2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "contest_rank",
+          "example": "Common",
+          "desc": "稀有度"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "19",
+          "desc": "动态数值"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s还需 +%2$s"
+    },
+    {
+      "id": "contest_current",
+      "context": "本轮服务器采集；按完整语义翻译并保留实时颜色。",
+      "text": "%1$s with %2$s",
+      "raw": "§f§l%1$s §fwith §e%2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "contest_rank",
+          "example": "Common",
+          "desc": "稀有度"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "30",
+          "desc": "动态数值"
+        }
+      ],
+      "translate": true,
+      "segments": [
+        {
+          "color": "§f§l",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§f",
+          "text": "with ",
+          "zh": "，当前 "
+        },
+        {
+          "color": "§e",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ],
+      "zh": "%1$s，当前 %2$s"
+    }
+  ]
+}

@@ -232,7 +232,8 @@ public final class TermTable {
 	 * only the second is a gap somebody could close.
 	 */
 	public boolean applies(String type) {
-		return this.types.contains("shard_kind".equalsIgnoreCase(type) ? "mob_name"
+		return this.types.contains("contest_rank".equalsIgnoreCase(type) ? "medal"
+			: "shard_kind".equalsIgnoreCase(type) ? "mob_name"
 			: type == null ? "" : type.toLowerCase(Locale.ROOT));
 	}
 
@@ -246,6 +247,11 @@ public final class TermTable {
 	 * worth translating gets its own entry.
 	 */
 	public String translate(String type, String value) {
+		if ("contest_rank".equalsIgnoreCase(type)) {
+			if (!Capture.CONTEST_RANK.accepts(value)) return null;
+			String medal = lookup(this.foldedTyped.get("medal"), value.toLowerCase(Locale.ROOT));
+			return medal != null ? medal : translate("category_name", value);
+		}
 		// Opt-in loot announcements reuse existing names, but never menu/lore records or unknown items.
 		if ("loot_item_name".equalsIgnoreCase(type) || "catalog_item_name".equalsIgnoreCase(type)) {
 			return ItemNames.canonical(value) == null ? null : itemName(value);

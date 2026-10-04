@@ -1,0 +1,189 @@
+{
+  "source": [
+    "../SkyZH_Logs/skyzh-capture",
+    "https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip"
+  ],
+  "fetched_at": "2026-10-05",
+  "verified_ingame": true,
+  "npc": "Pesthunter Phillip",
+  "note": "身份: 花园害虫猎手，回收害虫并给予农业时运加成。\n关系: 与玩家交换害虫。\n口吻: 随和直爽，说清交易数量与时长。\n性格: 热心，但有处理能力上限。\n禁用风格: 不硬塞梗，不把暂时收满说成永久拒收。",
+  "entries": [
+    {
+      "id": "phillip_thanks",
+      "context": "本轮服务器采集；按完整语义翻译并保留实时颜色。",
+      "text": "Thanks for the %1$s Pests, %2$s!",
+      "raw": "§fThanks for the §2%1$s Pests§f, §b%2$s§f!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "icon",
+          "example": "",
+          "desc": "有界动态值"
+        },
+        {
+          "token": "%2$s",
+          "type": "player_name",
+          "example": "Alex",
+          "desc": "玩家名，原样保留"
+        }
+      ],
+      "translate": true,
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Thanks for the ",
+          "zh": "谢谢你送来的"
+        },
+        {
+          "color": "§2",
+          "text": "%1$s Pests",
+          "zh": "%1$s 害虫"
+        },
+        {
+          "color": "§f",
+          "text": ", ",
+          "zh": "，"
+        },
+        {
+          "color": "§b",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ],
+      "zh": "谢谢你送来的%1$s 害虫，%2$s!"
+    },
+    {
+      "id": "phillip_trade_buff",
+      "context": "本轮服务器采集；按完整语义翻译并保留实时颜色。",
+      "text": "In exchange for %1$s Pests, I've given you %2$s%3$s Farming Fortune for %4$s!",
+      "raw": "§fIn exchange for §2%1$s Pests§f, I've given you §6%2$s%3$s Farming Fortune §ffor §a%4$s§f!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "40",
+          "desc": "动态数值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "+200",
+          "desc": "动态数值"
+        },
+        {
+          "token": "%3$s",
+          "type": "icon",
+          "example": "",
+          "desc": "有界动态值"
+        },
+        {
+          "token": "%4$s",
+          "type": "duration_spaced",
+          "example": "30m",
+          "desc": "动态时长"
+        }
+      ],
+      "translate": true,
+      "segments": [
+        {
+          "color": "§f",
+          "text": "In exchange for ",
+          "zh": "你交来的 "
+        },
+        {
+          "color": "§2",
+          "text": "%1$s Pests",
+          "zh": "%1$s 只害虫"
+        },
+        {
+          "color": "§f",
+          "text": ", I've given you ",
+          "zh": "，换来了 "
+        },
+        {
+          "color": "§6",
+          "text": "%2$s%3$s Farming Fortune ",
+          "zh": "%2$s %3$s 农业时运"
+        },
+        {
+          "color": "§f",
+          "text": "for ",
+          "zh": "，持续 "
+        },
+        {
+          "color": "§a",
+          "text": "%4$s",
+          "zh": "%4$s"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ],
+      "zh": "你交来的 %1$s 只害虫，换来了 %2$s %3$s 农业时运，持续 %4$s!"
+    },
+    {
+      "id": "phillip_full",
+      "context": "本轮服务器采集；按完整语义翻译并保留实时颜色。",
+      "text": "You've exchanged enough Pests with me recently. You still have %1$s Pests in your Vacuum Bag!",
+      "raw": "§fYou've exchanged enough Pests with me recently. You still have §2%1$s Pests §fin your §6Vacuum Bag§f!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "43",
+          "desc": "动态数值"
+        }
+      ],
+      "translate": true,
+      "segments": [
+        {
+          "color": "§f",
+          "text": "You've exchanged enough Pests with me recently. You still have ",
+          "zh": "你最近送来的害虫已经够多了。你的",
+          "order": 0
+        },
+        {
+          "color": "§2",
+          "text": "%1$s Pests ",
+          "zh": "%1$s 只害虫",
+          "order": 3
+        },
+        {
+          "color": "§f",
+          "text": "in your ",
+          "zh": "。",
+          "order": 4
+        },
+        {
+          "color": "§6",
+          "text": "Vacuum Bag",
+          "zh": "吸尘袋",
+          "order": 1
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "里还有 ",
+          "order": 2
+        }
+      ],
+      "zh": "你最近送来的害虫已经够多了。你的吸尘袋里还有 %1$s 只害虫。"
+    },
+    {
+      "id": "phillip_later",
+      "context": "本轮服务器采集；按完整语义翻译并保留实时颜色。",
+      "text": "Come back soon when I can handle more!",
+      "raw": "§fCome back soon when I can handle more!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "过会儿再来吧，等我腾出手就能继续收了!"
+    }
+  ]
+}

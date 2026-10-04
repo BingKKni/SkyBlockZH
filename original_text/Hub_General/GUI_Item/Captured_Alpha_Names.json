@@ -1048,7 +1048,13 @@
       "id": "captured_items_donated_1_s_2_s",
       "context": "Centauri 实测菜单或消息",
       "text": "Items Donated: %1$s/%2$s",
-      "raw": "Items Donated: %1$s/%2$s",
+      "raw": "§7Items Donated: §b%1$s§9/§b%2$s",
+      "segments": [
+        {"color":"§7","text":"Items Donated: ","zh":"已捐赠物品: "},
+        {"color":"§b","text":"%1$s","zh":"%1$s"},
+        {"color":"§9","text":"/","zh":"/"},
+        {"color":"§b","text":"%2$s","zh":"%2$s"}
+      ],
       "placeholders": [
         {
           "token": "%1$s",

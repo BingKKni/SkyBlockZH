@@ -1,0 +1,125 @@
+{
+  "source": [
+    "../SkyZH_Logs/skyzh-capture",
+    "https://hypixelskyblock.minecraft.wiki/w/The_Garden",
+    "https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip",
+    "https://hypixelskyblock.minecraft.wiki/w/Cropie",
+    "https://hypixelskyblock.minecraft.wiki/w/DynaMITES_Vinyl"
+  ],
+  "fetched_at": "2026-10-05",
+  "verified_ingame": true,
+  "note": "原文与颜色以本轮服务器采集为准；Wiki 用于补全跨行语境。数值均按动态模板处理，Wiki 独有变体单独注明。",
+  "entries": [
+    {
+      "id": "farming_contest_current_tab",
+      "ref": "Foraging/ScoreBoard/Hunting_Contest_Live.json#contest_current"
+    },
+    {
+      "id": "visitor_tab_b94863cb2e",
+      "context": "本轮服务器采集；按完整语义翻译并保留实时颜色。",
+      "text": "Plumber Joe",
+      "raw": "Plumber Joe",
+      "placeholders": [],
+      "translate": true,
+      "zh": "水管工 Joe"
+    },
+    {
+      "id": "visitor_tab_131fcd7d7c",
+      "context": "本轮服务器采集；按完整语义翻译并保留实时颜色。",
+      "text": "Queen Mismyla",
+      "raw": "Queen Mismyla",
+      "placeholders": [],
+      "translate": true,
+      "zh": "Mismyla 女王"
+    },
+    {
+      "id": "pest_bonus_timer",
+      "context": "本轮服务器采集；按完整语义翻译并保留实时颜色。",
+      "text": "Bonus: %1$s%2$s %3$s",
+      "raw": "Bonus: §6%1$s%2$s §b%3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "+206",
+          "desc": "动态数值"
+        },
+        {
+          "token": "%2$s",
+          "type": "icon",
+          "example": "",
+          "desc": "有界动态值"
+        },
+        {
+          "token": "%3$s",
+          "type": "duration",
+          "example": "29m",
+          "desc": "有界动态值"
+        }
+      ],
+      "translate": true,
+      "segments": [
+        {
+          "color": "",
+          "text": "Bonus: ",
+          "zh": "加成: "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s%2$s ",
+          "zh": "%1$s%2$s "
+        },
+        {
+          "color": "§b",
+          "text": "%3$s",
+          "zh": "%3$s"
+        }
+      ],
+      "zh": "加成: %1$s%2$s %3$s"
+    },
+    {
+      "id": "contest_above_medal",
+      "context": "本轮服务器采集；按完整语义翻译并保留实时颜色。",
+      "text": "%1$s over %2$s",
+      "raw": "§7%1$s over %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "515",
+          "desc": "动态数值"
+        },
+        {
+          "token": "%2$s",
+          "type": "contest_rank",
+          "example": "Bronze",
+          "desc": "有界动态值"
+        }
+      ],
+      "translate": true,
+      "zh": "高于%2$s %1$s"
+    },
+    {
+      "id": "contest_below_medal",
+      "context": "本轮服务器采集；按完整语义翻译并保留实时颜色。",
+      "text": "%1$s below %2$s",
+      "raw": "§7%1$s below %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "158,803",
+          "desc": "动态数值"
+        },
+        {
+          "token": "%2$s",
+          "type": "contest_rank",
+          "example": "Gold",
+          "desc": "有界动态值"
+        }
+      ],
+      "translate": true,
+      "zh": "距%2$s还差 %1$s"
+    }
+  ]
+}

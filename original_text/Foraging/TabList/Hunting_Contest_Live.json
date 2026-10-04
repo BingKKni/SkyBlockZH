@@ -1,0 +1,132 @@
+{
+  "source": [
+    "../SkyZH_Logs/skyzh-capture",
+    "https://hypixelskyblock.minecraft.wiki/w/Galatea",
+    "https://hypixelskyblock.minecraft.wiki/w/Hunting",
+    "https://hypixelskyblock.minecraft.wiki/w/Huntraps",
+    "https://hypixelskyblock.minecraft.wiki/w/David_Hunterborough",
+    "https://hypixelskyblock.minecraft.wiki/w/Swoop",
+    "https://hypixelskyblock.minecraft.wiki/w/Teddy"
+  ],
+  "fetched_at": "2026-10-05",
+  "verified_ingame": true,
+  "note": "原文与颜色以本轮服务器采集为准；Wiki 用于补全跨行语境。数值均按动态模板处理，Wiki 独有变体单独注明。",
+  "entries": [
+    {
+      "id": "contest_requires_tab",
+      "ref": "Foraging/ScoreBoard/Hunting_Contest_Live.json#contest_requires"
+    },
+    {
+      "id": "contest_current_tab",
+      "ref": "Foraging/ScoreBoard/Hunting_Contest_Live.json#contest_current"
+    },
+    {
+      "id": "agatha_tab_header",
+      "context": "本轮服务器采集；按完整语义翻译并保留实时颜色。",
+      "text": "Agatha's Contest:",
+      "raw": "§e§lAgatha's Contest:",
+      "placeholders": [],
+      "translate": true,
+      "zh": "Agatha 竞赛:"
+    },
+    {
+      "id": "shard_traps_tab",
+      "context": "本轮服务器采集；按完整语义翻译并保留实时颜色。",
+      "text": "Shard Traps",
+      "raw": "§b§lShard Traps",
+      "placeholders": [],
+      "translate": true,
+      "zh": "碎片陷阱"
+    },
+    {
+      "id": "hunting_trap_status",
+      "context": "本轮服务器采集；按完整语义翻译并保留实时颜色。",
+      "text": "Trap %1$s: %2$s",
+      "raw": "§fTrap %1$s: §c%2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "1",
+          "desc": "动态数值"
+        },
+        {
+          "token": "%2$s",
+          "type": "category_name",
+          "example": "Empty",
+          "desc": "已知类别或术语"
+        }
+      ],
+      "translate": true,
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Trap %1$s: ",
+          "zh": "陷阱 %1$s: "
+        },
+        {
+          "color": "§c",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ],
+      "zh": "陷阱 %1$s: %2$s"
+    },
+    {
+      "id": "rain_timer",
+      "context": "本轮服务器采集；按完整语义翻译并保留实时颜色。",
+      "text": "Rain: %s",
+      "raw": "Rain: §e%s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "duration",
+          "example": "9s",
+          "desc": "有界动态值"
+        }
+      ],
+      "translate": true,
+      "segments": [
+        {
+          "color": "",
+          "text": "Rain: ",
+          "zh": "降雨: "
+        },
+        {
+          "color": "§e",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ],
+      "zh": "降雨: %s"
+    },
+    {
+      "id": "birch_collection_max",
+      "context": "本轮服务器采集；按完整语义翻译并保留实时颜色。",
+      "text": "Birch Log %1$s: MAX",
+      "raw": "Birch Log %1$s: §c§lMAX",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "tier",
+          "example": "IX",
+          "desc": "有界动态值"
+        }
+      ],
+      "translate": true,
+      "segments": [
+        {
+          "color": "",
+          "text": "Birch Log %1$s: ",
+          "zh": "白桦原木 %1$s: "
+        },
+        {
+          "color": "§c§l",
+          "text": "MAX",
+          "zh": "已满级"
+        }
+      ],
+      "zh": "白桦原木 %1$s: 已满级"
+    }
+  ]
+}

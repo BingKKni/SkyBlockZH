@@ -760,30 +760,42 @@
     {
       "id": "enchant_upgrade_item",
       "context": "装备附魔升级；SkyBlock 专属附魔名与物品专名保留英文",
-      "text": "%1$s on your %2$s was upgraded to %3$s!",
+      "text": "%1$s %2$s on your %3$s was upgraded to %4$s %5$s!",
       "placeholders": [
         {
           "token": "%1$s",
-          "desc": "原附魔名及等级",
           "type": "enchantment_name",
-          "example": "Toxophilite II"
+          "example": "Cultivating",
+          "desc": "附魔名与等级分开捕获；名称遵循已有原版/专属附魔规则。"
         },
         {
           "token": "%2$s",
-          "desc": "物品完整名称",
-          "type": "item_name",
-          "example": "Spiritual Juju Shortbow ✪✪✪✪✪"
+          "type": "tier",
+          "example": "V",
+          "desc": "附魔名与等级分开捕获；名称遵循已有原版/专属附魔规则。"
         },
         {
           "token": "%3$s",
-          "desc": "新附魔名及等级",
+          "type": "item_name",
+          "example": "Gauss Carrot Shovel Mk. III",
+          "desc": "附魔名与等级分开捕获；名称遵循已有原版/专属附魔规则。"
+        },
+        {
+          "token": "%4$s",
           "type": "enchantment_name",
-          "example": "Toxophilite III"
+          "example": "Cultivating",
+          "desc": "附魔名与等级分开捕获；名称遵循已有原版/专属附魔规则。"
+        },
+        {
+          "token": "%5$s",
+          "type": "tier",
+          "example": "VI",
+          "desc": "附魔名与等级分开捕获；名称遵循已有原版/专属附魔规则。"
         }
       ],
       "gloss": "",
       "translate": true,
-      "zh": "你的 %2$s 上的 %1$s 已升级为 %3$s!"
+      "zh": "你的 %3$s 上的 %1$s %2$s 已升级为 %4$s %5$s!"
     },
     {
       "id": "pet_level_up",
