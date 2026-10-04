@@ -89,6 +89,7 @@ public final class ChatInteractionHarness {
 		blockAndQuiz();
 		commandMentions();
 		followPrompt();
+		frostyPurchase();
 		phoneWrapper();
 		colours();
 		System.out.printf("扫描 CHAT 可用记录 %d 条，按钮记录 %d 条，已匹配颜色样本 %d 条；通过 %d / 失败 %d%n",
@@ -283,6 +284,30 @@ public final class ChatInteractionHarness {
 		}
 		require("无括号FOLLOW仅跟随正文可点击", ok);
 		require("FOLLOW不改服务器组件", before.equals(StyledText.of(input)));
+	}
+
+	/** Wiki colours, synthetic actions: no real purchase command is inferred or sent. */
+	private static void frostyPurchase() {
+		Style action = Style.EMPTY.withClickEvent(new ClickEvent.RunCommand("/skyzh-test-frosty"))
+			.withHoverEvent(new HoverEvent.ShowText(Component.literal("synthetic snow cannon")))
+			.withInsertion("synthetic-frosty");
+		for (int mode = 0; mode < 3; mode++) {
+			Style label = Style.EMPTY.withColor(ChatFormatting.GOLD).withBold(true);
+			if (mode == 1) label = label.withClickEvent(action.getClickEvent())
+				.withHoverEvent(action.getHoverEvent()).withInsertion(action.getInsertion());
+			Component input = Component.empty().setStyle(mode == 2 ? action : Style.EMPTY)
+				.append(Component.empty().setStyle(label).append("BUY SNOW CANNON"))
+				.append(Component.literal(" (Click)").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY).withBold(false)));
+			StyledText before = StyledText.of(input);
+			StyledText drawn = StyledText.of(Translator.translateChatBlock(input, 320, c -> StyledText.of(c).length() * 6));
+			boolean valid = drawn.plain().equals("购买雪炮 (点击)");
+			for (int i = 0; i < drawn.length(); i++) {
+				Style expected = before.styleAt(i < "购买雪炮".length() ? 0 : "BUY SNOW CANNON".length());
+				valid &= expected.equals(drawn.styleAt(i));
+			}
+			require("Frosty 无括号购买提示保留独立/继承事件、颜色和粗体 模式 " + mode, valid);
+			require("Frosty 不修改服务器购买组件 模式 " + mode, before.equals(StyledText.of(input)));
+		}
 	}
 
 	private static void phoneWrapper() {

@@ -433,8 +433,15 @@ tasks.register('checkTermRecords', Exec) {
 // `check` here is the corpus-level check. Running it from the root also runs each target's own
 // `check` — Gradle matches the task name across every project — which is what puts the translation,
 // capture and command harnesses on every supported Minecraft version rather than only the newest.
+tasks.register('checkWorkshopSources', Exec) {
+	group = 'verification'
+	description = 'Checks rendered Workshop Wiki source hashes, NPC roster and menu references.'
+	commandLine 'python', rootProject.file('gradle/check_workshop_sources.py').absolutePath
+	workingDir rootProject.projectDir
+}
+
 tasks.named('check') {
-	dependsOn 'checkTermRecords'
+	dependsOn 'checkTermRecords', 'checkWorkshopSources'
 }
 
 // Every jar the build can produce, in one directory, named for the Minecraft it is for.

@@ -569,12 +569,17 @@
     },
     {
       "id": "ophelia_flint_arrows",
-      "context": "Ophelia 商店的固定商品或功能名",
-      "text": "Flint Arrow x20",
-      "placeholders": [],
-      "gloss": "",
+      "context": "Ophelia / Gregory 商店的燧石箭数量;保留名称和数量的不同颜色",
+      "text": "Flint Arrow x%s",
+      "raw": "§fFlint Arrow §8x%s",
+      "placeholders": [{"token":"%s","type":"number","example":"20","desc":"箭矢数量"}],
+      "gloss": "Gregory 普通社区 Wiki 菜单核对;模板兼容不同购买数量。",
       "translate": true,
-      "zh": "燧石箭 x20"
+      "zh": "燧石箭 x%s",
+      "segments": [
+        {"color":"§f","text":"Flint Arrow ","zh":"燧石箭 "},
+        {"color":"§8","text":"x%s","zh":"x%s"}
+      ]
     },
     {
       "id": "ophelia_dark_goggles",
