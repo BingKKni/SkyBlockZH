@@ -2,7 +2,7 @@
   "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
   "fetched_at": "2026-09-01",
   "verified_ingame": false,
-  "source_note": "原文逐字取自 Hypixel SkyBlock 社区 Wiki 普通页面 DOM 的 Dialogue 表格；Wiki 明示的游戏内拼写或语法错误按原文保留。页面 DOM 不足以证明服务器颜色码，因此不臆测 raw/segments，待实机触发后再补颜色。",
+  "source_note": "普通社区 Wiki 呈现 DOM 核对;新增 raw 仅采用明确 format 类/inline 样式。已有实测 raw 不覆盖。历史分支与破损原文的排除见 evidence.json。",
   "npc": "Mort",
   "messages": [
     {
@@ -19,7 +19,39 @@
       ],
       "gloss": "",
       "translate": true,
-      "zh": "嘿，%s，欢迎来到地牢!"
+      "zh": "嘿，%s，欢迎来到地牢!",
+      "raw": "§fHey §7%s§f, welcome to §cThe Catacombs§f!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Hey ",
+          "zh": "嘿，"
+        },
+        {
+          "color": "§7",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§f",
+          "text": ", welcome to ",
+          "zh": "，欢迎来到"
+        },
+        {
+          "color": "§c",
+          "text": "The Catacombs",
+          "zh": "地牢"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ],
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_message_we_hope_you_have_a_long_stay",
@@ -28,7 +60,12 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "希望你能在这里待很久!"
+      "zh": "希望你能在这里待很久!",
+      "raw": "§fWe hope you have a long stay!",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_message_preferably_an_eternal_adventure",
@@ -37,7 +74,29 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "最好是来一场永恒的冒险。"
+      "zh": "最好是来一场永恒的冒险。",
+      "raw": "§fPreferably, an §7§oeternal§f adventure.",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Preferably, an ",
+          "zh": "最好是来一场"
+        },
+        {
+          "color": "§7§o",
+          "text": "eternal",
+          "zh": "永恒"
+        },
+        {
+          "color": "§f",
+          "text": " adventure.",
+          "zh": "的冒险。"
+        }
+      ],
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_message_our_forces_are_made_of_rotting_adventurers",
@@ -46,7 +105,24 @@
       "placeholders": [],
       "gloss": "同上，紧挨着的两句都用「由……组成」，读起来像说明书。",
       "translate": true,
-      "zh": "我们这支队伍全是些烂掉的冒险者。"
+      "zh": "我们这支队伍全是些烂掉的冒险者。",
+      "raw": "§4Our forces§f are made of rotting adventurers.",
+      "segments": [
+        {
+          "color": "§4",
+          "text": "Our forces",
+          "zh": "我们这支队伍"
+        },
+        {
+          "color": "§f",
+          "text": " are made of rotting adventurers.",
+          "zh": "全是些烂掉的冒险者。"
+        }
+      ],
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_message_a_party_of_5_players_is_crucial",
@@ -55,7 +131,44 @@
       "placeholders": [],
       "gloss": "「由……组成」是被动式直译，「至关重要」是公文用词。",
       "translate": true,
-      "zh": "凑齐 5 个人的队伍很关键。"
+      "zh": "凑齐5 个人的队伍很关键。",
+      "raw": "§fA §9party§f of §e5 players§f is crucial.",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "A ",
+          "zh": "凑齐",
+          "order": 0
+        },
+        {
+          "color": "§9",
+          "text": "party",
+          "zh": "队伍",
+          "order": 3
+        },
+        {
+          "color": "§f",
+          "text": " of ",
+          "zh": "很关键。",
+          "order": 4
+        },
+        {
+          "color": "§e",
+          "text": "5 players",
+          "zh": "5 个人",
+          "order": 1
+        },
+        {
+          "color": "§f",
+          "text": " is crucial.",
+          "zh": "的",
+          "order": 2
+        }
+      ],
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_message_time_to_make_friends",
@@ -64,7 +177,12 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "该去交朋友了。"
+      "zh": "该去交朋友了。",
+      "raw": "§fTime to make friends.",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_xv_wanderer",
@@ -73,7 +191,12 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "流浪者!"
+      "zh": "流浪者!",
+      "raw": "§fWanderer!",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_xv_save_your_own_skin_seek_challenge_elsewhere_first",
@@ -82,7 +205,12 @@
       "placeholders": [],
       "gloss": "「寻求挑战」是简历用语，和前半句的粗口气对不上。",
       "translate": true,
-      "zh": "先保住自己这条小命，想找刺激上别处去。"
+      "zh": "先保住自己这条小命，想找刺激上别处去。",
+      "raw": "§fSave your own skin, seek challenge elsewhere first.",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_xv_you_need_combat_level_xv_before_leading_a_dungeon",
@@ -91,7 +219,12 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "你需要达到战斗等级 XV，才能带队进入地牢。"
+      "zh": "你需要达到战斗等级 XV，才能带队进入地牢。",
+      "raw": "§7§oYou need Combat Level XV before leading a dungeon.",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_message_here_i_found_this_map_when_i_first_entered_the_dungeon",
@@ -100,7 +233,12 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "拿着，这是我第一次进入地牢时发现的地图。"
+      "zh": "拿着，这是我第一次进入地牢时发现的地图。",
+      "raw": "§fHere, I found this map when I first entered the dungeon.",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_message_you_should_find_it_useful_if_you_get_lost",
@@ -109,7 +247,12 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "如果迷路了，这张地图应该能派上用场。"
+      "zh": "如果迷路了，这张地图应该能派上用场。",
+      "raw": "§fYou should find it useful if you get lost.",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_message_good_luck",
@@ -118,7 +261,12 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "祝你好运。"
+      "zh": "祝你好运。",
+      "raw": "§fGood luck.",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_message_dont_forget_your_dungeon_orb",
@@ -154,7 +302,12 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "它能让每个职业在地牢中拥有 2 个独特技能!"
+      "zh": "它能让每个职业在地牢中拥有 2 个独特技能!",
+      "raw": "§fIt gives each class 2 unique abilities inside Dungeons!",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_message_right_click_the_orb_for_spells_and_left_click_or_drop_to_use_your_ultimate",
@@ -163,7 +316,12 @@
       "placeholders": [],
       "gloss": "同上。",
       "translate": true,
-      "zh": "右键点击光球选择法术，左键（或按丢弃键）释放终极技能!"
+      "zh": "右键点击光球选择法术，左键（或按丢弃键）释放终极技能!",
+      "raw": "§fRight click the Orb for spells, and Left click (or Drop) to use your Ultimate!",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_saul_welcome_back_are_you_here_to_enter_the_catacombs_again",
@@ -172,7 +330,29 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "欢迎回来。你是要再次进入地牢吗?"
+      "zh": "欢迎回来。你又要进地牢了?",
+      "raw": "§fWelcome back. Are you here to enter §cThe Catacombs§f again?",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Welcome back. Are you here to enter ",
+          "zh": "欢迎回来。你又要进"
+        },
+        {
+          "color": "§c",
+          "text": "The Catacombs",
+          "zh": "地牢"
+        },
+        {
+          "color": "§f",
+          "text": " again?",
+          "zh": "了?"
+        }
+      ],
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_saul_what_you_want_to_go_in_alone_i_simply_cannot_allow_that_to_happen",
@@ -181,7 +361,24 @@
       "placeholders": [],
       "gloss": "「允许……发生」把 allow that to happen 整个搬了过来。",
       "translate": true,
-      "zh": "什么? 你想一个人进去? 这种事我绝不能让它发生。"
+      "zh": "什么? 你想一个人进去? 这可绝对不行。",
+      "raw": "§f§lWHAT? §fYou want to go in alone? I simply cannot allow that to happen.",
+      "segments": [
+        {
+          "color": "§f§l",
+          "text": "WHAT? ",
+          "zh": "什么? "
+        },
+        {
+          "color": "§f",
+          "text": "You want to go in alone? I simply cannot allow that to happen.",
+          "zh": "你想一个人进去? 这可绝对不行。"
+        }
+      ],
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_mort_hmm_whats_this",
@@ -190,7 +387,12 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "嗯，这是什么?"
+      "zh": "嗯，这是什么?",
+      "raw": "§fHmm, what's this?",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_mort_i_see_you_have_a_recommendation_letter_from_saul_well_i_guess_its_ok_then_i_supp",
@@ -199,7 +401,29 @@
       "placeholders": [],
       "gloss": "Wiki 注明游戏内原文如此；I see.. 与 its 的拼写按原文保留。",
       "translate": true,
-      "zh": "原来如此……你有一封 Saul 的推荐信。好吧，我想这样应该可以。"
+      "zh": "原来如此……你有 Saul 的推荐信。好吧，那应该可以……大概吧。",
+      "raw": "§fI see.. you have a §6recommendation letter§f from Saul. Well, I guess its OK then, I suppose.",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "I see.. you have a ",
+          "zh": "原来如此……你有 Saul 的"
+        },
+        {
+          "color": "§6",
+          "text": "recommendation letter",
+          "zh": "推荐信"
+        },
+        {
+          "color": "§f",
+          "text": " from Saul. Well, I guess its OK then, I suppose.",
+          "zh": "。好吧，那应该可以……大概吧。"
+        }
+      ],
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_mort_ill_allow_you_to_enter_the_catacombs_alone_from_now_on",
@@ -208,7 +432,38 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "从现在起，我允许你独自进入地牢。"
+      "zh": "从现在起，我允许你独自进入地牢",
+      "raw": "§fI'll allow you to enter §cThe Catacombs §4alone §ffrom now on.",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "I'll allow you to enter ",
+          "zh": "从现在起，我允许你",
+          "order": 0
+        },
+        {
+          "color": "§c",
+          "text": "The Catacombs ",
+          "zh": "地牢",
+          "order": 3
+        },
+        {
+          "color": "§4",
+          "text": "alone ",
+          "zh": "独自",
+          "order": 1
+        },
+        {
+          "color": "§f",
+          "text": "from now on.",
+          "zh": "进入",
+          "order": 2
+        }
+      ],
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_mort_however_let_me_give_you_an_explicit_final_warning",
@@ -217,7 +472,29 @@
       "placeholders": [],
       "gloss": "「给……一次明确的警告」保留了英文的名词结构，中文要动词化。",
       "translate": true,
-      "zh": "不过，我得把话说明白，这是最后一次警告。"
+      "zh": "不过，我得明确给你一个最后警告。",
+      "raw": "§fHowever, let me give you an explicit §4final warning§f.",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "However, let me give you an explicit ",
+          "zh": "不过，我得明确给你一个"
+        },
+        {
+          "color": "§4",
+          "text": "final warning",
+          "zh": "最后警告"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_mort_the_dungeon_you_will_enter_will_be_exactly_the_same_difficulty_as_if_you_joined_",
@@ -226,7 +503,29 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "你独自进入的地牢，难度会与组队进入时完全相同。"
+      "zh": "你独自进入的地牢，难度和组队进入时完全一样。",
+      "raw": "§fThe Dungeon you will enter will be §c§nexactly the same difficulty§f as if you joined with a party.",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "The Dungeon you will enter will be ",
+          "zh": "你独自进入的地牢，难度和组队进入时"
+        },
+        {
+          "color": "§c§n",
+          "text": "exactly the same difficulty",
+          "zh": "完全一样"
+        },
+        {
+          "color": "§f",
+          "text": " as if you joined with a party.",
+          "zh": "。"
+        }
+      ],
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_mort_after_all_the_catacombs_wont_go_easy_on_you_just_because_youre_on_your_own",
@@ -235,7 +534,29 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "毕竟，地牢不会因为你独自一人就手下留情。"
+      "zh": "毕竟，地牢可不会因为你独自一人就手下留情。",
+      "raw": "§fAfter all, §cThe Catacombs§f won't go easy on you just because you're on your own.",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "After all, ",
+          "zh": "毕竟，"
+        },
+        {
+          "color": "§c",
+          "text": "The Catacombs",
+          "zh": "地牢"
+        },
+        {
+          "color": "§f",
+          "text": " won't go easy on you just because you're on your own.",
+          "zh": "可不会因为你独自一人就手下留情。"
+        }
+      ],
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_mort_you_have_been_warned_i_wish_you_the_best_of_luck",
@@ -244,142 +565,316 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "我已经警告过你了。祝你好运。"
+      "zh": "我已经警告过你了。祝你好运。",
+      "raw": "§fYou have been warned. I wish you the best of luck.",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_abiphone_phone_you_do_know_i_am_dead_right",
       "context": "请求 Abiphone 联系方式",
-      "text": "✆ You do know I am dead, right?",
+      "text": "You do know I am dead, right?",
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "✆ 你知道我已经死了，对吧?"
+      "zh": "你知道我已经死了，对吧?",
+      "raw": "§fYou do know I am dead, right?",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_abiphone_phone_why_do_you_want_me_on_your_abiphone",
       "context": "请求 Abiphone 联系方式",
-      "text": "✆ Why do you want me on your Abiphone?",
+      "text": "Why do you want me on your Abiphone?",
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "✆ 你为什么想把我加到 Abiphone 里?"
+      "zh": "你为什么想把我加到 Abiphone 里?",
+      "raw": "§fWhy do you want me on your Abiphone?",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_abiphone_phone_anyway_you_can_have_it_for_a_price",
       "context": "请求 Abiphone 联系方式",
-      "text": "✆ Anyway, you can have it... for a price.",
+      "text": "Anyway, you can have it... for a price.",
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "✆ 总之，你可以得到我的联系方式……但要付出代价。"
+      "zh": "总之，你可以得到我的联系方式……但要付出代价。",
+      "raw": "§fAnyway, you can have it... for a price.",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_abiphone_phone_could_you_give_me_a_saving_grace_no_particular_reason",
       "context": "请求 Abiphone 联系方式",
-      "text": "✆ Could you give me a Saving Grace? No particular reason.",
+      "text": "Could you give me a Saving Grace? No particular reason.",
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "✆ 能给我一个 Saving Grace 吗? 没什么特别的原因。"
+      "zh": "能给我一个救命恩典吗? 没什么特别的原因。",
+      "raw": "§fCould you give me a §9Saving Grace§f? No particular reason.",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Could you give me a ",
+          "zh": "能给我一个"
+        },
+        {
+          "color": "§9",
+          "text": "Saving Grace",
+          "zh": "救命恩典"
+        },
+        {
+          "color": "§f",
+          "text": "? No particular reason.",
+          "zh": "吗? 没什么特别的原因。"
+        }
+      ],
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_saving_grace_phone_you_dont_even_have_a_saving_grace",
       "context": "没有 Saving Grace",
-      "text": "✆ You don't even have a Saving Grace...",
+      "text": "You don't even have a Saving Grace...",
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "✆ 你连 Saving Grace 都没有……"
+      "zh": "你连救命恩典都没有……",
+      "raw": "§fYou don't even have a §9Saving Grace§f...",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "You don't even have a ",
+          "zh": "你连"
+        },
+        {
+          "color": "§9",
+          "text": "Saving Grace",
+          "zh": "救命恩典"
+        },
+        {
+          "color": "§f",
+          "text": "...",
+          "zh": "都没有……"
+        }
+      ],
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_saving_grace_phone_the_saving_grace_didnt_work",
       "context": "交付 Saving Grace 后",
-      "text": "✆ The Saving Grace didn't work.",
+      "text": "The Saving Grace didn't work.",
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "✆ Saving Grace 没有效果。"
+      "zh": "救命恩典没起作用。",
+      "raw": "§fThe §9Saving Grace§f didn't work.",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "The ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§9",
+          "text": "Saving Grace",
+          "zh": "救命恩典"
+        },
+        {
+          "color": "§f",
+          "text": " didn't work.",
+          "zh": "没起作用。"
+        }
+      ],
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_saving_grace_phone_i_was_a_little_too_optimistic",
       "context": "交付 Saving Grace 后",
-      "text": "✆ I was a little too optimistic.",
+      "text": "I was a little too optimistic.",
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "✆ 是我有点过于乐观了。"
+      "zh": "是我有点过于乐观了。",
+      "raw": "§fI was a little too optimistic.",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_saving_grace_phone_could_you_maybe_give_me_a_spirit_bone",
       "context": "交付 Saving Grace 后",
-      "text": "✆ Could you maybe give me a Spirit Bone?",
+      "text": "Could you maybe give me a Spirit Bone?",
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "✆ 或许你能再给我一根 Spirit Bone?"
+      "zh": "要不，再给我一根灵魂骨?",
+      "raw": "§fCould you maybe give me a §5Spirit Bone§f?",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Could you maybe give me a ",
+          "zh": "要不，再给我一根"
+        },
+        {
+          "color": "§5",
+          "text": "Spirit Bone",
+          "zh": "灵魂骨"
+        },
+        {
+          "color": "§f",
+          "text": "?",
+          "zh": "?"
+        }
+      ],
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_spirit_bone_phone_you_dont_even_have_a_spirit_bone",
       "context": "没有 Spirit Bone",
-      "text": "✆ You don't even have a Spirit Bone...",
+      "text": "You don't even have a Spirit Bone...",
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "✆ 你连 Spirit Bone 都没有……"
+      "zh": "你连灵魂骨都没有……",
+      "raw": "§fYou don't even have a §5Spirit Bone§f...",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "You don't even have a ",
+          "zh": "你连"
+        },
+        {
+          "color": "§5",
+          "text": "Spirit Bone",
+          "zh": "灵魂骨"
+        },
+        {
+          "color": "§f",
+          "text": "...",
+          "zh": "都没有……"
+        }
+      ],
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_spirit_bone_phone_thanks",
-      "context": "交付 Spirit Bone",
-      "text": "✆ Thanks.",
-      "placeholders": [],
-      "gloss": "",
-      "translate": true,
-      "zh": "✆ 谢谢。"
+      "ref": "Farming/NPC_Message/Bruuh.json#visitor_bruuh_complete_2",
+      "context": "Abiphone 对白;电话图标由运行时保留。"
     },
     {
       "id": "mort_spirit_bone_phone_ive_accepted_that_im_probably_going_to_remain_undead_for_quite_a_while",
       "context": "交付 Spirit Bone",
-      "text": "✆ I've accepted that I'm probably going to remain undead for quite a while.",
+      "text": "I've accepted that I'm probably going to remain undead for quite a while.",
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "✆ 我已经接受了自己可能还要当很久亡灵的事实。"
+      "zh": "我已经接受了自己可能还要当很久亡灵的事实。",
+      "raw": "§fI've accepted that I'm probably going to remain undead for quite a while.",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_spirit_bone_phone_so_while_im_here_i_might_as_well_try_to_make_some_friends",
       "context": "交付 Spirit Bone",
-      "text": "✆ So, while I'm here, I might as well try to make some friends.",
+      "text": "So, while I'm here, I might as well try to make some friends.",
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "✆ 既然还要留在这里，我不妨试着交些朋友。"
+      "zh": "既然还要留在这里，我不妨试着交些朋友。",
+      "raw": "§fSo, while I'm here, I might as well try to make some friends.",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_spirit_bone_phone_first_stop_is_using_this_here_spirit_bone_to_tame_myself_a_canine_companio",
       "context": "交付 Spirit Bone",
-      "text": "✆ First stop is using this here Spirit Bone to tame myself a canine companion.",
+      "text": "First stop is using this here Spirit Bone to tame myself a canine companion.",
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "✆ 第一步就是用这根 Spirit Bone，为自己驯服一位犬类伙伴。"
+      "zh": "第一步，就用这根灵魂骨给自己驯服个狗狗作伴。",
+      "raw": "§fFirst stop is using this here §5Spirit Bone§f to tame myself a canine companion.",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "First stop is using this here ",
+          "zh": "第一步，就用这根"
+        },
+        {
+          "color": "§5",
+          "text": "Spirit Bone",
+          "zh": "灵魂骨"
+        },
+        {
+          "color": "§f",
+          "text": " to tame myself a canine companion.",
+          "zh": "给自己驯服个狗狗作伴。"
+        }
+      ],
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_spirit_bone_phone_thought_we_ourselves_are_but_a_blink_in_th_face_of_eternity_our_friendship",
       "context": "交付 Spirit Bone",
-      "text": "✆ Thought we ourselves are but a blink in th face of eternity, our friendship will be everlasting.",
+      "text": "Thought we ourselves are but a blink in th face of eternity, our friendship will be everlasting.",
       "placeholders": [],
       "gloss": "Wiki 注明游戏内原文如此；Thought 与 th 的拼写按原文保留。",
       "translate": true,
-      "zh": "✆ 虽然我们自身在永恒面前不过转瞬即逝，但我们的友谊将长存。"
+      "zh": "虽然我们自身在永恒面前不过转瞬即逝，但我们的友谊将长存。",
+      "raw": "§fThought we ourselves are but a blink in th face of eternity, our friendship will be everlasting.",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_spirit_bone_phone_alright_thanks_for_your_efforts_take_my_contact",
       "context": "交付 Spirit Bone",
-      "text": "✆ Alright, thanks for your efforts, take my contact.",
+      "text": "Alright, thanks for your efforts, take my contact.",
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "✆ 好了，谢谢你的努力，收下我的联系方式吧。"
+      "zh": "好了，谢谢你的努力，收下我的联系方式吧。",
+      "raw": "§fAlright, thanks for your efforts, take my contact.",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+      "verified_ingame": false
     },
     {
       "id": "mort_orb_right_click_for_spells",
@@ -393,5 +888,12 @@
   ],
   "todo": [
     "社区 Wiki 的 Dialogue 表同时保留了旧版 Spirit Mask 分支；2026-02-24 更新已改为 Spirit Bone，本文件仅收录当前 Spirit Bone 分支。"
-  ]
+  ],
+  "note": "身份:地牢入口的不死守门人。关系:指引冒险者,希望交朋友。口吻:冷幽默中带孤独。性格:接受不死处境后想养狗作伴。禁用:把 Spirit Mask 历史分支混作现行要求、删改任务物品。",
+  "wiki_review": {
+    "fetched_at": "2026-10-04",
+    "last_edited": "This page was last edited on 2 September 2026, at 21:15.",
+    "source": "https://hypixelskyblock.minecraft.wiki/w/Mort",
+    "verified_ingame": false
+  }
 }

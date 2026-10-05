@@ -52,37 +52,88 @@
       "continuation": true,
       "zh": ""
     },
-    {"id": "bits_blank_1", "context": "点券格 Lore 的空行", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "bits_blank_1",
+      "context": "点券格 Lore 的空行",
+      "raw": "",
+      "text": "",
+      "placeholders": [],
+      "gloss": "",
+      "translate": false,
+      "zh": ""
+    },
     {
       "id": "bits_purse",
       "context": "点券格:身上现有的点券数",
       "raw": "§7Bits Purse: §b%s",
       "text": "Bits Purse: %s",
-      "placeholders": [{"token": "%s", "desc": "当前持有的点券数", "type": "number", "example": "56,058"}],
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前持有的点券数",
+          "type": "number",
+          "example": "56,058"
+        }
+      ],
       "gloss": "Purse 按 GLOSSARY.md「货币名」条目不另造「钱包」一词,直接说「余额」。",
       "translate": true,
       "zh": "点券余额: %s",
       "segments": [
-        {"color": "§7", "text": "Bits Purse: ", "zh": "点券余额: "},
-        {"color": "§b", "text": "%s", "zh": "%s"}
+        {
+          "color": "§7",
+          "text": "Bits Purse: ",
+          "zh": "点券余额: "
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        }
       ]
     },
-    {"id": "bits_blank_2", "context": "点券格 Lore 的空行", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "bits_blank_2",
+      "context": "点券格 Lore 的空行",
+      "raw": "",
+      "text": "",
+      "placeholders": [],
+      "gloss": "",
+      "translate": false,
+      "zh": ""
+    },
     {
       "id": "bits_available_fraction",
       "context": "点券格:这一轮曲奇还能产出多少点券 / 上限是多少",
       "raw": "§7Bits Available: §b%1$s/%2$s",
       "text": "Bits Available: %1$s/%2$s",
       "placeholders": [
-        {"token": "%1$s", "desc": "已经攒出、还没领的点券", "type": "number", "example": "7,828"},
-        {"token": "%2$s", "desc": "手上这些曲奇总共能产出的点券", "type": "number", "example": "217,536"}
+        {
+          "token": "%1$s",
+          "desc": "已经攒出、还没领的点券",
+          "type": "number",
+          "example": "7,828"
+        },
+        {
+          "token": "%2$s",
+          "desc": "手上这些曲奇总共能产出的点券",
+          "type": "number",
+          "example": "217,536"
+        }
       ],
       "gloss": "SkyBlock 主菜单里同名的那一行只有一个数字(GUI_Item/SkyBlock_Menu.json#skyblock_menu_bits_available),两条模板不一样、各管一种写法。Wiki 的 UI 子页把分母画成 §3,实测采集合并出来的 raw 只有 §7/§b 两段,这里按实测写;将来如果 colour/ 采集堆报这一行掉色,就把 “/%2$s” 拆成 §3 一段。",
       "translate": true,
       "zh": "可获得点券: %1$s/%2$s",
       "segments": [
-        {"color": "§7", "text": "Bits Available: ", "zh": "可获得点券: "},
-        {"color": "§b", "text": "%1$s/%2$s", "zh": "%1$s/%2$s"}
+        {
+          "color": "§7",
+          "text": "Bits Available: ",
+          "zh": "可获得点券: "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s/%2$s",
+          "zh": "%1$s/%2$s"
+        }
       ]
     },
     {
@@ -106,19 +157,43 @@
       "continuation": true,
       "zh": ""
     },
-    {"id": "bits_blank_3", "context": "点券格 Lore 的空行", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "bits_blank_3",
+      "context": "点券格 Lore 的空行",
+      "raw": "",
+      "text": "",
+      "placeholders": [],
+      "gloss": "",
+      "translate": false,
+      "zh": ""
+    },
     {
       "id": "bits_multiplier",
       "context": "点券倍率,点券格和声望等级格里各出现一次,同一条记录管两处",
       "raw": "§7Bits Multiplier: §b%s",
       "text": "Bits Multiplier: %s",
-      "placeholders": [{"token": "%s", "desc": "声望等级 + 博物馆里程碑给的点券倍率", "type": "number", "example": "2.06x"}],
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "声望等级 + 博物馆里程碑给的点券倍率",
+          "type": "number",
+          "example": "2.06x"
+        }
+      ],
       "gloss": "Wiki 的 UI 子页在这一行后面还写着 §7(§e等级名§7) 的括号尾巴,实测采集能把它和 Bits Purse / Bits Available 合并成同一个词数的模板,说明括号已经没有了,这里按实测写。",
       "translate": true,
       "zh": "点券倍率: %s",
       "segments": [
-        {"color": "§7", "text": "Bits Multiplier: ", "zh": "点券倍率: "},
-        {"color": "§b", "text": "%s", "zh": "%s"}
+        {
+          "color": "§7",
+          "text": "Bits Multiplier: ",
+          "zh": "点券倍率: "
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        }
       ]
     },
     {
@@ -126,19 +201,60 @@
       "context": "点券格:按当前倍率算,每吃一块曲奇能产出多少点券",
       "raw": "§7Per §6Cookie§7: §b+%s bits §7available",
       "text": "Per Cookie: +%s bits available",
-      "placeholders": [{"token": "%s", "desc": "单块曲奇能产出的点券数,随声望等级和博物馆里程碑变化", "type": "number", "example": "9,888"}],
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "单块曲奇能产出的点券数,随声望等级和博物馆里程碑变化",
+          "type": "number",
+          "example": "9,888"
+        }
+      ],
       "gloss": "中文把 available(可获得)提到数字前面才通顺,所以每一段都写了 order。",
       "translate": true,
       "zh": "每块曲奇: 可获得 +%s 点券",
       "segments": [
-        {"color": "§7", "text": "Per ", "zh": "每块", "order": 0},
-        {"color": "§6", "text": "Cookie", "zh": "曲奇", "order": 1},
-        {"color": "§7", "text": ": ", "zh": ": ", "order": 2},
-        {"color": "§b", "text": "+%s bits ", "zh": "+%s 点券", "order": 4},
-        {"color": "§7", "text": "available", "zh": "可获得 ", "order": 3}
+        {
+          "color": "§7",
+          "text": "Per ",
+          "zh": "每块",
+          "order": 0
+        },
+        {
+          "color": "§6",
+          "text": "Cookie",
+          "zh": "曲奇",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": ": ",
+          "zh": ": ",
+          "order": 2
+        },
+        {
+          "color": "§b",
+          "text": "+%s bits ",
+          "zh": "+%s 点券",
+          "order": 4
+        },
+        {
+          "color": "§7",
+          "text": "available",
+          "zh": "可获得 ",
+          "order": 3
+        }
       ]
     },
-    {"id": "bits_blank_4", "context": "点券格 Lore 的空行", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "bits_blank_4",
+      "context": "点券格 Lore 的空行",
+      "raw": "",
+      "text": "",
+      "placeholders": [],
+      "gloss": "",
+      "translate": false,
+      "zh": ""
+    },
     {
       "id": "bits_fame_multiplier_note_1",
       "context": "点券格结尾的深灰小字,英文拆成三行",
@@ -171,7 +287,6 @@
       "continuation": true,
       "zh": ""
     },
-
     {
       "id": "cookie_acquire_1",
       "context": "增益曲奇购买格的第一段说明,英文拆成两行",
@@ -193,7 +308,16 @@
       "continuation": true,
       "zh": ""
     },
-    {"id": "cookie_blank_1", "context": "增益曲奇格 Lore 的空行", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "cookie_blank_1",
+      "context": "增益曲奇格 Lore 的空行",
+      "raw": "",
+      "text": "",
+      "placeholders": [],
+      "gloss": "",
+      "translate": false,
+      "zh": ""
+    },
     {
       "id": "cookie_buff_heading",
       "context": "增益曲奇格里「曲奇增益」小节的标题,下面是一串 ‣ 加成条目",
@@ -210,14 +334,36 @@
       "raw": "§8‣ §7Ability to gain §bBits§7!",
       "text": "‣ Ability to gain Bits!",
       "placeholders": [],
-      "gloss": "行首 ‣ 有自己的 §8 颜色,所以照抄进记录里由整行匹配管,不走 LineShape 剥项目符号那条路。",
+      "gloss": "行首 ‣ 有自己的 §8 颜色,所以照抄进记录里由整行匹配管,不走 LineShape 剥项目符号那条路。Ability to gain 表示获得点券的资格,不额外添加概率或把 SkyBlock 错写成 SKyBlock。",
+      "wiki_review": {
+        "source": "https://hypixelskyblock.minecraft.wiki/w/Booster_Cookie/UI",
+        "fetched_at": "2026-10-04",
+        "verified_ingame": false,
+        "last_edited": "This page was last edited on 21 April 2026, at 18:53."
+      },
       "translate": true,
-      "zh": "‣ 游玩 SKyBlock 时将有机会获得点券!",
+      "zh": "‣ 可以获得点券!",
       "segments": [
-        {"color": "§8", "text": "‣ ", "zh": "‣ "},
-        {"color": "§7", "text": "Ability to gain ", "zh": "游玩 SKyBlock 时将有机会获得"},
-        {"color": "§b", "text": "Bits", "zh": "点券"},
-        {"color": "§7", "text": "!", "zh": "!"}
+        {
+          "color": "§8",
+          "text": "‣ ",
+          "zh": "‣ "
+        },
+        {
+          "color": "§7",
+          "text": "Ability to gain ",
+          "zh": "可以获得"
+        },
+        {
+          "color": "§b",
+          "text": "Bits",
+          "zh": "点券"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!"
+        }
       ]
     },
     {
@@ -230,11 +376,31 @@
       "translate": true,
       "zh": "‣ +25☯ 全部智慧属性",
       "segments": [
-        {"color": "§8", "text": "‣ ", "zh": "‣ "},
-        {"color": "§3", "text": "+25☯ ", "zh": "+25☯ "},
-        {"color": "§7", "text": "on all ", "zh": "全部"},
-        {"color": "§3", "text": "Wisdom ", "zh": "智慧"},
-        {"color": "§7", "text": "stats", "zh": "属性"}
+        {
+          "color": "§8",
+          "text": "‣ ",
+          "zh": "‣ "
+        },
+        {
+          "color": "§3",
+          "text": "+25☯ ",
+          "zh": "+25☯ "
+        },
+        {
+          "color": "§7",
+          "text": "on all ",
+          "zh": "全部"
+        },
+        {
+          "color": "§3",
+          "text": "Wisdom ",
+          "zh": "智慧"
+        },
+        {
+          "color": "§7",
+          "text": "stats",
+          "zh": "属性"
+        }
       ]
     },
     {
@@ -247,9 +413,21 @@
       "translate": true,
       "zh": "‣ +15✯ 魔法寻宝",
       "segments": [
-        {"color": "§8", "text": "‣ ", "zh": "‣ "},
-        {"color": "§b", "text": "+15✯ ", "zh": "+15✯ "},
-        {"color": "§7", "text": "Magic Find", "zh": "魔法寻宝"}
+        {
+          "color": "§8",
+          "text": "‣ ",
+          "zh": "‣ "
+        },
+        {
+          "color": "§b",
+          "text": "+15✯ ",
+          "zh": "+15✯ "
+        },
+        {
+          "color": "§7",
+          "text": "Magic Find",
+          "zh": "魔法寻宝"
+        }
       ]
     },
     {
@@ -262,10 +440,30 @@
       "translate": true,
       "zh": "‣ 死亡时不掉落硬币",
       "segments": [
-        {"color": "§8", "text": "‣ ", "zh": "‣ ", "order": 0},
-        {"color": "§7", "text": "Keep ", "zh": "不掉落", "order": 2},
-        {"color": "§6", "text": "coins ", "zh": "硬币", "order": 3},
-        {"color": "§7", "text": "on death", "zh": "死亡时", "order": 1}
+        {
+          "color": "§8",
+          "text": "‣ ",
+          "zh": "‣ ",
+          "order": 0
+        },
+        {
+          "color": "§7",
+          "text": "Keep ",
+          "zh": "不掉落",
+          "order": 2
+        },
+        {
+          "color": "§6",
+          "text": "coins ",
+          "zh": "硬币",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "on death",
+          "zh": "死亡时",
+          "order": 1
+        }
       ]
     },
     {
@@ -278,9 +476,24 @@
       "translate": true,
       "zh": "‣ 在私人岛屿和花园里飞行",
       "segments": [
-        {"color": "§8", "text": "‣ ", "zh": "‣ ", "order": 0},
-        {"color": "§e", "text": "Permafly ", "zh": "飞行", "order": 2},
-        {"color": "§7", "text": "on private islands and gardens", "zh": "在私人岛屿和花园里", "order": 1}
+        {
+          "color": "§8",
+          "text": "‣ ",
+          "zh": "‣ ",
+          "order": 0
+        },
+        {
+          "color": "§e",
+          "text": "Permafly ",
+          "zh": "飞行",
+          "order": 2
+        },
+        {
+          "color": "§7",
+          "text": "on private islands and gardens",
+          "zh": "在私人岛屿和花园里",
+          "order": 1
+        }
       ]
     },
     {
@@ -293,8 +506,16 @@
       "translate": true,
       "zh": "‣ 用对应的指令快速打开部分菜单:",
       "segments": [
-        {"color": "§8", "text": "‣ ", "zh": "‣ "},
-        {"color": "§7", "text": "Quick access to some menus using their", "zh": "用对应的指令快速打开部分菜单:"}
+        {
+          "color": "§8",
+          "text": "‣ ",
+          "zh": "‣ "
+        },
+        {
+          "color": "§7",
+          "text": "Quick access to some menus using their",
+          "zh": "用对应的指令快速打开部分菜单:"
+        }
       ]
     },
     {
@@ -348,9 +569,21 @@
       "translate": true,
       "zh": "  和 /quiver",
       "segments": [
-        {"color": "", "text": "  ", "zh": "  "},
-        {"color": "§7", "text": "and ", "zh": "和 "},
-        {"color": "§e", "text": "/quiver", "zh": "/quiver"}
+        {
+          "color": "",
+          "text": "  ",
+          "zh": "  "
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "和 "
+        },
+        {
+          "color": "§e",
+          "text": "/quiver",
+          "zh": "/quiver"
+        }
       ]
     },
     {
@@ -363,8 +596,16 @@
       "translate": true,
       "zh": "‣ 可直接在交易菜单和曲奇菜单里出售物品",
       "segments": [
-        {"color": "§8", "text": "‣ ", "zh": "‣ "},
-        {"color": "§7", "text": "Sell items directly to the trades and cookie menu", "zh": "可直接在交易菜单和曲奇菜单里出售物品"}
+        {
+          "color": "§8",
+          "text": "‣ ",
+          "zh": "‣ "
+        },
+        {
+          "color": "§7",
+          "text": "Sell items directly to the trades and cookie menu",
+          "zh": "可直接在交易菜单和曲奇菜单里出售物品"
+        }
       ]
     },
     {
@@ -377,10 +618,30 @@
       "translate": true,
       "zh": "‣ 在你的岛屿和花园里挂机时不会被踢出",
       "segments": [
-        {"color": "§8", "text": "‣ ", "zh": "‣ ", "order": 0},
-        {"color": "§7", "text": "AFK ", "zh": "挂机", "order": 2},
-        {"color": "§a", "text": "immunity ", "zh": "时不会被踢出", "order": 3},
-        {"color": "§7", "text": "on your island and garden", "zh": "在你的岛屿和花园里", "order": 1}
+        {
+          "color": "§8",
+          "text": "‣ ",
+          "zh": "‣ ",
+          "order": 0
+        },
+        {
+          "color": "§7",
+          "text": "AFK ",
+          "zh": "挂机",
+          "order": 2
+        },
+        {
+          "color": "§a",
+          "text": "immunity ",
+          "zh": "时不会被踢出",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "on your island and garden",
+          "zh": "在你的岛屿和花园里",
+          "order": 1
+        }
       ]
     },
     {
@@ -393,9 +654,21 @@
       "translate": true,
       "zh": "‣ 可单独开关药水效果",
       "segments": [
-        {"color": "§8", "text": "‣ ", "zh": "‣ "},
-        {"color": "§7", "text": "Toggle specific ", "zh": "可单独开关"},
-        {"color": "§d", "text": "potion effects", "zh": "药水效果"}
+        {
+          "color": "§8",
+          "text": "‣ ",
+          "zh": "‣ "
+        },
+        {
+          "color": "§7",
+          "text": "Toggle specific ",
+          "zh": "可单独开关"
+        },
+        {
+          "color": "§d",
+          "text": "potion effects",
+          "zh": "药水效果"
+        }
       ]
     },
     {
@@ -408,9 +681,21 @@
       "translate": true,
       "zh": "‣ 可在聊天里展示你的物品,指令 /show",
       "segments": [
-        {"color": "§8", "text": "‣ ", "zh": "‣ "},
-        {"color": "§7", "text": "Link your items in chat using ", "zh": "可在聊天里展示你的物品,指令 "},
-        {"color": "§e", "text": "/show", "zh": "/show"}
+        {
+          "color": "§8",
+          "text": "‣ ",
+          "zh": "‣ "
+        },
+        {
+          "color": "§7",
+          "text": "Link your items in chat using ",
+          "zh": "可在聊天里展示你的物品,指令 "
+        },
+        {
+          "color": "§e",
+          "text": "/show",
+          "zh": "/show"
+        }
       ]
     },
     {
@@ -423,9 +708,21 @@
       "translate": true,
       "zh": "‣ 可把临时材料储备箱内的物品一键卖给集市",
       "segments": [
-        {"color": "§8", "text": "‣ ", "zh": "‣ "},
-        {"color": "§7", "text": "Insta-sell your Material stash to the ", "zh": "可把临时材料储备箱内的物品一键卖给"},
-        {"color": "§6", "text": "Bazaar", "zh": "集市"}
+        {
+          "color": "§8",
+          "text": "‣ ",
+          "zh": "‣ "
+        },
+        {
+          "color": "§7",
+          "text": "Insta-sell your Material stash to the ",
+          "zh": "可把临时材料储备箱内的物品一键卖给"
+        },
+        {
+          "color": "§6",
+          "text": "Bazaar",
+          "zh": "集市"
+        }
       ]
     },
     {
@@ -438,11 +735,32 @@
       "translate": true,
       "zh": "‣ 巧克力工厂产量提升 0.25 倍",
       "segments": [
-        {"color": "§8", "text": "‣ ", "zh": "‣ "},
-        {"color": "§7", "text": "Increases ", "zh": "", "omit": true},
-        {"color": "§6", "text": "Chocolate Factory ", "zh": "巧克力工厂"},
-        {"color": "§7", "text": "production by ", "zh": "产量提升 "},
-        {"color": "§6", "text": "+0.25x", "zh": "0.25 倍"}
+        {
+          "color": "§8",
+          "text": "‣ ",
+          "zh": "‣ "
+        },
+        {
+          "color": "§7",
+          "text": "Increases ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§6",
+          "text": "Chocolate Factory ",
+          "zh": "巧克力工厂"
+        },
+        {
+          "color": "§7",
+          "text": "production by ",
+          "zh": "产量提升 "
+        },
+        {
+          "color": "§6",
+          "text": "+0.25x",
+          "zh": "0.25 倍"
+        }
       ]
     },
     {
@@ -455,10 +773,27 @@
       "translate": true,
       "zh": "‣ 可以直接在背包里使用 Mixins",
       "segments": [
-        {"color": "§8", "text": "‣ ", "zh": "‣ "},
-        {"color": "§7", "text": "Allows consuming ", "zh": "可以直接在背包里使用 "},
-        {"color": "§9", "text": "Mixins ", "zh": "Mixins"},
-        {"color": "§7", "text": "directly from your inventory", "zh": "", "omit": true}
+        {
+          "color": "§8",
+          "text": "‣ ",
+          "zh": "‣ "
+        },
+        {
+          "color": "§7",
+          "text": "Allows consuming ",
+          "zh": "可以直接在背包里使用 "
+        },
+        {
+          "color": "§9",
+          "text": "Mixins ",
+          "zh": "Mixins"
+        },
+        {
+          "color": "§7",
+          "text": "directly from your inventory",
+          "zh": "",
+          "omit": true
+        }
       ]
     },
     {
@@ -471,14 +806,43 @@
       "translate": true,
       "zh": "‣ 可快速呼叫 Abiphone 联系人,指令 /call",
       "segments": [
-        {"color": "§8", "text": "‣ ", "zh": "‣ "},
-        {"color": "§7", "text": "Call ", "zh": "可快速呼叫 "},
-        {"color": "§3", "text": "Abiphone Contacts ", "zh": "Abiphone 联系人"},
-        {"color": "§7", "text": "with ", "zh": ",指令 "},
-        {"color": "§b", "text": "/call", "zh": "/call"}
+        {
+          "color": "§8",
+          "text": "‣ ",
+          "zh": "‣ "
+        },
+        {
+          "color": "§7",
+          "text": "Call ",
+          "zh": "可快速呼叫 "
+        },
+        {
+          "color": "§3",
+          "text": "Abiphone Contacts ",
+          "zh": "Abiphone 联系人"
+        },
+        {
+          "color": "§7",
+          "text": "with ",
+          "zh": ",指令 "
+        },
+        {
+          "color": "§b",
+          "text": "/call",
+          "zh": "/call"
+        }
       ]
     },
-    {"id": "cookie_blank_2", "context": "增益曲奇格 Lore 的空行(下面是 Duration: 4d,由 _shared/Menu_Common.json#menu_duration 管)", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "cookie_blank_2",
+      "context": "增益曲奇格 Lore 的空行(下面是 Duration: 4d,由 _shared/Menu_Common.json#menu_duration 管)",
+      "raw": "",
+      "text": "",
+      "placeholders": [],
+      "gloss": "",
+      "translate": false,
+      "zh": ""
+    },
     {
       "id": "cookie_farm_bits_note_1",
       "context": "增益曲奇格结尾的深灰小字,英文拆成三行",
@@ -511,7 +875,16 @@
       "continuation": true,
       "zh": ""
     },
-    {"id": "cookie_blank_3", "context": "增益曲奇格 Lore 的空行", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "cookie_blank_3",
+      "context": "增益曲奇格 Lore 的空行",
+      "raw": "",
+      "text": "",
+      "placeholders": [],
+      "gloss": "",
+      "translate": false,
+      "zh": ""
+    },
     {
       "id": "cookie_cannot_afford",
       "context": "增益曲奇格:Gems 不够时的红色提示",
@@ -532,7 +905,6 @@
       "translate": true,
       "zh": "点击获取商店信息!"
     },
-
     {
       "id": "fame_rank_name",
       "context": "菜单里「声望等级」那一格的物品名",
@@ -553,8 +925,18 @@
       "translate": true,
       "zh": "为城市项目做贡献、在 Elizabeth 处消费点券和 Gems,都能获得声望。",
       "segments": [
-        {"color": "§7", "text": "Earn fame by ", "zh": ",都能获得声望。", "order": 1},
-        {"color": "§6", "text": "contributing to city", "zh": "为城市项目做贡献、在 Elizabeth 处消费点券和 Gems", "order": 0}
+        {
+          "color": "§7",
+          "text": "Earn fame by ",
+          "zh": ",都能获得声望。",
+          "order": 1
+        },
+        {
+          "color": "§6",
+          "text": "contributing to city",
+          "zh": "为城市项目做贡献、在 Elizabeth 处消费点券和 Gems",
+          "order": 0
+        }
       ]
     },
     {
@@ -579,19 +961,43 @@
       "continuation": true,
       "zh": ""
     },
-    {"id": "fame_blank_1", "context": "声望等级格 Lore 的空行", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "fame_blank_1",
+      "context": "声望等级格 Lore 的空行",
+      "raw": "",
+      "text": "",
+      "placeholders": [],
+      "gloss": "",
+      "translate": false,
+      "zh": ""
+    },
     {
       "id": "fame_your_rank",
       "context": "声望等级格:玩家当前的声望等级名",
       "raw": "§7Your rank: §e%s",
       "text": "Your rank: %s",
-      "placeholders": [{"token": "%s", "desc": "当前声望等级名(New Player / Settler / … / Ambassador / Paragon)", "type": "raw", "example": "Ambassador"}],
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "当前声望等级名(New Player / Settler / … / Ambassador / Paragon)",
+          "type": "raw",
+          "example": "Ambassador"
+        }
+      ],
       "gloss": "这里的 rank 指的是声望等级,不是 Hypixel 付费 Rank。等级名本身是占位符捕到的值,写成 type: raw 才能走 _shared/Terms.json 查中文;词表里还没有这 24 个名字,查不到就保持英文,中英之间的空格由引擎自动补。",
       "translate": true,
       "zh": "当前声望等级: %s",
       "segments": [
-        {"color": "§7", "text": "Your rank: ", "zh": "当前声望等级: "},
-        {"color": "§e", "text": "%s", "zh": "%s"}
+        {
+          "color": "§7",
+          "text": "Your rank: ",
+          "zh": "当前声望等级: "
+        },
+        {
+          "color": "§e",
+          "text": "%s",
+          "zh": "%s"
+        }
       ]
     },
     {
@@ -599,13 +1005,28 @@
       "context": "声望等级格:当前声望等级在市长选举里能投几票",
       "raw": "§7Election Votes: §a%s",
       "text": "Election Votes: %s",
-      "placeholders": [{"token": "%s", "desc": "该声望等级的选举票数", "type": "number", "example": "50"}],
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "该声望等级的选举票数",
+          "type": "number",
+          "example": "50"
+        }
+      ],
       "gloss": "指的是市长选举(Mayor Election)里这个账号一次能投多少票。",
       "translate": true,
       "zh": "选举票数: %s",
       "segments": [
-        {"color": "§7", "text": "Election Votes: ", "zh": "选举票数: "},
-        {"color": "§a", "text": "%s", "zh": "%s"}
+        {
+          "color": "§7",
+          "text": "Election Votes: ",
+          "zh": "选举票数: "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        }
       ]
     },
     {
@@ -629,37 +1050,94 @@
       "continuation": true,
       "zh": ""
     },
-    {"id": "fame_blank_2", "context": "声望等级格 Lore 的空行", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "fame_blank_2",
+      "context": "声望等级格 Lore 的空行",
+      "raw": "",
+      "text": "",
+      "placeholders": [],
+      "gloss": "",
+      "translate": false,
+      "zh": ""
+    },
     {
       "id": "fame_your_total",
       "context": "声望等级格:累计获得的声望值",
       "raw": "§7Your total: §e%s Fame",
       "text": "Your total: %s Fame",
-      "placeholders": [{"token": "%s", "desc": "累计声望值", "type": "number", "example": "13,868,050"}],
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "累计声望值",
+          "type": "number",
+          "example": "13,868,050"
+        }
+      ],
       "gloss": "这里的 Fame 是声望这个数值本身(不是等级名)。",
       "translate": true,
       "zh": "累计: %s 声望",
       "segments": [
-        {"color": "§7", "text": "Your total: ", "zh": "累计: "},
-        {"color": "§e", "text": "%s Fame", "zh": "%s 声望"}
+        {
+          "color": "§7",
+          "text": "Your total: ",
+          "zh": "累计: "
+        },
+        {
+          "color": "§e",
+          "text": "%s Fame",
+          "zh": "%s 声望"
+        }
       ]
     },
-    {"id": "fame_blank_3", "context": "声望等级格 Lore 的空行", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "fame_blank_3",
+      "context": "声望等级格 Lore 的空行",
+      "raw": "",
+      "text": "",
+      "placeholders": [],
+      "gloss": "",
+      "translate": false,
+      "zh": ""
+    },
     {
       "id": "fame_next_rank",
       "context": "声望等级格:下一级的名字,下面跟一条纯符号进度条(没有词,不写记录)",
       "raw": "§7Next rank: §b%s",
       "text": "Next rank: %s",
-      "placeholders": [{"token": "%s", "desc": "下一个声望等级名", "type": "raw", "example": "Statesperson"}],
+      "placeholders": [
+        {
+          "token": "%s",
+          "desc": "下一个声望等级名",
+          "type": "raw",
+          "example": "Statesperson"
+        }
+      ],
       "gloss": "和 fame_your_rank 同理,等级名走 _shared/Terms.json。",
       "translate": true,
       "zh": "下一等级: %s",
       "segments": [
-        {"color": "§7", "text": "Next rank: ", "zh": "下一等级: "},
-        {"color": "§b", "text": "%s", "zh": "%s"}
+        {
+          "color": "§7",
+          "text": "Next rank: ",
+          "zh": "下一等级: "
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        }
       ]
     },
-    {"id": "fame_blank_4", "context": "声望等级格 Lore 的空行(上面是进度条那一行)", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "fame_blank_4",
+      "context": "声望等级格 Lore 的空行(上面是进度条那一行)",
+      "raw": "",
+      "text": "",
+      "placeholders": [],
+      "gloss": "",
+      "translate": false,
+      "zh": ""
+    },
     {
       "id": "fame_rate_note_1",
       "context": "声望等级格结尾的深灰小字:声望的换算率,英文拆成三行",
@@ -692,7 +1170,6 @@
       "continuation": true,
       "zh": ""
     },
-
     {
       "id": "hex_name",
       "context": "曲奇增益快捷入口:海克斯那一格的物品名",
@@ -703,7 +1180,16 @@
       "translate": true,
       "zh": "海克斯"
     },
-    {"id": "hex_blank_1", "context": "海克斯格 Lore 的空行", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "hex_blank_1",
+      "context": "海克斯格 Lore 的空行",
+      "raw": "",
+      "text": "",
+      "placeholders": [],
+      "gloss": "",
+      "translate": false,
+      "zh": ""
+    },
     {
       "id": "hex_access_anywhere",
       "context": "海克斯格:在哪都能打开的说明,英文拆成两行",
@@ -714,9 +1200,24 @@
       "translate": true,
       "zh": "在 SkyBlock 的任何地方打开海克斯!",
       "segments": [
-        {"color": "§7", "text": "Access ", "zh": "打开", "order": 1},
-        {"color": "§d", "text": "The Hex ", "zh": "海克斯!", "order": 2},
-        {"color": "§7", "text": "from anywhere in", "zh": "在 SkyBlock 的任何地方", "order": 0}
+        {
+          "color": "§7",
+          "text": "Access ",
+          "zh": "打开",
+          "order": 1
+        },
+        {
+          "color": "§d",
+          "text": "The Hex ",
+          "zh": "海克斯!",
+          "order": 2
+        },
+        {
+          "color": "§7",
+          "text": "from anywhere in",
+          "zh": "在 SkyBlock 的任何地方",
+          "order": 0
+        }
       ]
     },
     {
@@ -730,7 +1231,16 @@
       "continuation": true,
       "zh": ""
     },
-    {"id": "hex_blank_2", "context": "海克斯格 Lore 的空行", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "hex_blank_2",
+      "context": "海克斯格 Lore 的空行",
+      "raw": "",
+      "text": "",
+      "placeholders": [],
+      "gloss": "",
+      "translate": false,
+      "zh": ""
+    },
     {
       "id": "hex_requires_museum_milestone",
       "context": "海克斯格底部的红色解锁条件行",
@@ -741,7 +1251,6 @@
       "translate": true,
       "zh": "需要博物馆里程碑 8"
     },
-
     {
       "id": "etable_name",
       "context": "曲奇增益快捷入口:附魔台那一格的物品名",
@@ -752,7 +1261,16 @@
       "translate": true,
       "zh": "附魔台"
     },
-    {"id": "etable_blank_1", "context": "附魔台格 Lore 的空行", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "etable_blank_1",
+      "context": "附魔台格 Lore 的空行",
+      "raw": "",
+      "text": "",
+      "placeholders": [],
+      "gloss": "",
+      "translate": false,
+      "zh": ""
+    },
     {
       "id": "etable_access_anywhere",
       "context": "附魔台格:在哪都能开的说明,英文拆成两行",
@@ -774,7 +1292,16 @@
       "continuation": true,
       "zh": ""
     },
-    {"id": "etable_blank_2", "context": "附魔台格 Lore 的空行", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "etable_blank_2",
+      "context": "附魔台格 Lore 的空行",
+      "raw": "",
+      "text": "",
+      "placeholders": [],
+      "gloss": "",
+      "translate": false,
+      "zh": ""
+    },
     {
       "id": "etable_remembers_bookshelf_power_1",
       "context": "附魔台格:便携台会沿用你见过的最高书架强度,英文拆成两行",
@@ -796,7 +1323,6 @@
       "continuation": true,
       "zh": ""
     },
-
     {
       "id": "anvil_name",
       "context": "曲奇增益快捷入口:铁砧那一格的物品名",
@@ -807,7 +1333,16 @@
       "translate": true,
       "zh": "铁砧"
     },
-    {"id": "anvil_blank_1", "context": "铁砧格 Lore 的空行", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "anvil_blank_1",
+      "context": "铁砧格 Lore 的空行",
+      "raw": "",
+      "text": "",
+      "placeholders": [],
+      "gloss": "",
+      "translate": false,
+      "zh": ""
+    },
     {
       "id": "anvil_access_anywhere",
       "context": "铁砧格:在哪都能开的说明,尾行接 access_skyblock_suffix",
@@ -818,7 +1353,6 @@
       "translate": true,
       "zh": "在 SkyBlock 的任何地方使用铁砧!"
     },
-
     {
       "id": "potions_toggle_name",
       "context": "曲奇增益快捷入口:药水效果开关那一格的物品名",
@@ -850,7 +1384,6 @@
       "continuation": true,
       "zh": ""
     },
-
     {
       "id": "auction_house_name",
       "context": "曲奇增益快捷入口:拍卖行那一格的物品名",
@@ -861,7 +1394,16 @@
       "translate": true,
       "zh": "拍卖行"
     },
-    {"id": "auction_house_blank_1", "context": "拍卖行格 Lore 的空行", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "auction_house_blank_1",
+      "context": "拍卖行格 Lore 的空行",
+      "raw": "",
+      "text": "",
+      "placeholders": [],
+      "gloss": "",
+      "translate": false,
+      "zh": ""
+    },
     {
       "id": "auction_house_access_anywhere",
       "context": "拍卖行格:在哪都能开的说明,尾行接 access_anywhere_in_skyblock_suffix",
@@ -872,7 +1414,6 @@
       "translate": true,
       "zh": "在 SkyBlock 的任何地方打开拍卖行菜单!"
     },
-
     {
       "id": "bazaar_name",
       "context": "曲奇增益快捷入口:集市那一格的物品名",
@@ -883,7 +1424,16 @@
       "translate": true,
       "zh": "集市"
     },
-    {"id": "bazaar_blank_1", "context": "集市格 Lore 的空行", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "bazaar_blank_1",
+      "context": "集市格 Lore 的空行",
+      "raw": "",
+      "text": "",
+      "placeholders": [],
+      "gloss": "",
+      "translate": false,
+      "zh": ""
+    },
     {
       "id": "bazaar_access_anywhere",
       "context": "集市格:在哪都能开的说明,尾行接 access_skyblock_suffix",
@@ -894,7 +1444,6 @@
       "translate": true,
       "zh": "在 SkyBlock 的任何地方打开集市!"
     },
-
     {
       "id": "gems_name",
       "context": "菜单右下角「SkyBlock Gems」那一格的物品名",
@@ -925,8 +1474,16 @@
       "translate": true,
       "zh": " - 增益曲奇",
       "segments": [
-        {"color": "§7", "text": " - ", "zh": " - "},
-        {"color": "§6", "text": "Booster Cookies", "zh": "增益曲奇"}
+        {
+          "color": "§7",
+          "text": " - ",
+          "zh": " - "
+        },
+        {
+          "color": "§6",
+          "text": "Booster Cookies",
+          "zh": "增益曲奇"
+        }
       ]
     },
     {
@@ -939,8 +1496,16 @@
       "translate": true,
       "zh": " - 限时特卖",
       "segments": [
-        {"color": "§7", "text": " - ", "zh": " - "},
-        {"color": "§c", "text": "Fire Sales", "zh": "限时特卖"}
+        {
+          "color": "§7",
+          "text": " - ",
+          "zh": " - "
+        },
+        {
+          "color": "§c",
+          "text": "Fire Sales",
+          "zh": "限时特卖"
+        }
       ]
     },
     {
@@ -953,8 +1518,16 @@
       "translate": true,
       "zh": " - Taylor 的装饰品",
       "segments": [
-        {"color": "§7", "text": " - ", "zh": " - "},
-        {"color": "§b", "text": "Taylor's Cosmetics", "zh": "Taylor 的装饰品"}
+        {
+          "color": "§7",
+          "text": " - ",
+          "zh": " - "
+        },
+        {
+          "color": "§b",
+          "text": "Taylor's Cosmetics",
+          "zh": "Taylor 的装饰品"
+        }
       ]
     },
     {
@@ -967,8 +1540,16 @@
       "translate": true,
       "zh": " - SkyMart 谷仓与温室外观",
       "segments": [
-        {"color": "§7", "text": " - ", "zh": " - "},
-        {"color": "§a", "text": "SkyMart Barn & Greenhouse Skins", "zh": "SkyMart 谷仓与温室外观"}
+        {
+          "color": "§7",
+          "text": " - ",
+          "zh": " - "
+        },
+        {
+          "color": "§a",
+          "text": "SkyMart Barn & Greenhouse Skins",
+          "zh": "SkyMart 谷仓与温室外观"
+        }
       ]
     },
     {
@@ -981,11 +1562,28 @@
       "translate": true,
       "zh": " - 账号与档案升级",
       "segments": [
-        {"color": "§7", "text": " - ", "zh": " - "},
-        {"color": "§d", "text": "Account & Profile Upgrades", "zh": "账号与档案升级"}
+        {
+          "color": "§7",
+          "text": " - ",
+          "zh": " - "
+        },
+        {
+          "color": "§d",
+          "text": "Account & Profile Upgrades",
+          "zh": "账号与档案升级"
+        }
       ]
     },
-    {"id": "gems_blank_1", "context": "SkyBlock Gems 格 Lore 的空行", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "gems_blank_1",
+      "context": "SkyBlock Gems 格 Lore 的空行",
+      "raw": "",
+      "text": "",
+      "placeholders": [],
+      "gloss": "",
+      "translate": false,
+      "zh": ""
+    },
     {
       "id": "gems_webstore_1",
       "context": "SkyBlock Gems 格结尾的深灰小字,英文拆成两行",
@@ -1007,7 +1605,16 @@
       "continuation": true,
       "zh": ""
     },
-    {"id": "gems_blank_2", "context": "SkyBlock Gems 格 Lore 的空行", "raw": "", "text": "", "placeholders": [], "gloss": "", "translate": false, "zh": ""},
+    {
+      "id": "gems_blank_2",
+      "context": "SkyBlock Gems 格 Lore 的空行",
+      "raw": "",
+      "text": "",
+      "placeholders": [],
+      "gloss": "",
+      "translate": false,
+      "zh": ""
+    },
     {
       "id": "gems_click_to_get_link",
       "context": "SkyBlock Gems 格最后一行的点击提示,点了会把网店链接发到聊天里",

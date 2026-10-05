@@ -58,6 +58,10 @@ public enum Capture {
 	SHARD_KIND(NAME.regex, false),
 	TRAINING_KIND("(?:Free|Light|Moderate|Expert|Ultra|Turbo!)", false),
 
+	/** Hungry Hiker's seven food clues; not a general exception for long dialogue fragments. */
+	HUNGRY_HIKER_FOOD("(?:grilled meat|red and crunchy|made of wheat|from a cow|"
+		+ "red on the inside and green on the outside|cooked potato|meat from a fowl)", false),
+
 	/** Closed suffixes for translated armor, woodworking and furniture families, never enchantments. */
 	ITEM_PART("(?:Helmet|Chestplate|Leggings|Boots|Belt|Ring|Artifact|Armor|Set|Planks|Wood Slab|Wood Stairs|Slab|Stairs|Door|Fence Gate|Fence|Sofa|Bed|Bench|Armchair|Side Table|Coffee Table|Tea Table|Dinner Table|Fireplace|Bookshelf|Dresser|Chair|Table)", false),
 
@@ -139,6 +143,9 @@ public enum Capture {
 	DURATION_WORDS("(?i:[0-9][0-9,]* (?:days?|hours?|minutes?|seconds?)"
 		+ "(?: [0-9][0-9,]* (?:days?|hours?|minutes?|seconds?)){0,3})", false),
 
+	/** A potion's numeric clock, MM:SS or HH:MM:SS; kept as a clock, not arbitrary prose. */
+	CLOCK_DURATION("[0-9]{1,4}:[0-5][0-9](?::[0-5][0-9])?", false),
+
 	/**
 	 * Anything the corpus has not pinned down — {@code type: raw}, or no {@code placeholders} entry
 	 * at all. Still bounded: whatever the value is, it is a value and not a sentence.
@@ -184,6 +191,7 @@ public enum Capture {
 			case "time", "duration" -> DURATION;
 			case "duration_spaced" -> DURATION_SPACED;
 			case "duration_words" -> DURATION_WORDS;
+			case "clock_duration" -> CLOCK_DURATION;
 			// category_name is the name of a menu section or a feature — "Bags", "Other Crystals",
 			// "Recipe Book". Shaped like a name, and it has to be said so: templates that hold one are
 			// a single word plus a placeholder ("Your %s", "%s Settings", "%s Pet"), which under the
@@ -195,6 +203,7 @@ public enum Capture {
 			case "bait_kind" -> BAIT_KIND;
 			case "shard_kind" -> SHARD_KIND;
 			case "training_kind" -> TRAINING_KIND;
+			case "hungry_hiker_food" -> HUNGRY_HIKER_FOOD;
 			case "npc_name", "profile_name", "location_name", "mob_name", "rarity", "category_name",
 				"enchantment_name", "enchantment_crop", "mob_family", "accessory_power", "skyblock_month", "dragon_type",
 				"rng_meter_source", "difficulty", "reputation_rank" -> NAME;
@@ -235,7 +244,7 @@ public enum Capture {
 			// The regex is the whole of the rule for these: a numeral is a numeral, and a player's
 			// name is whatever sixteen word characters somebody chose.
 			case NUMBER, YEAR, DAY_OF_MONTH, PLAYER, PLAYER_DISPLAY, RANK, TIER, LEVEL, TIER_RANGE, ICON, ITEM_PART, TRAINING_KIND, TROPHY_QUALITY, GEMSTONE_KIND, GEMSTONE_QUALITY, ORDINAL, DURATION, DURATION_SPACED, DURATION_WORDS, SEARCH_QUERY -> true;
-			case CONTEST_RANK -> value.matches(this.regex);
+			case CONTEST_RANK, HUNGRY_HIKER_FOOD, CLOCK_DURATION -> value.matches(this.regex);
 			case MULTIPLIER_INCREASE -> new BigDecimal(value).compareTo(BigDecimal.ONE) >= 0;
 			case NAME -> isName(value);
 			case ITEM_NAME -> isItemName(value);

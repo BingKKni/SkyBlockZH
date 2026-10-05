@@ -3,7 +3,7 @@
   "source": "https://hypixelskyblock.minecraft.wiki/w/Garden_Visitors",
   "fetched_at": "2026-09-12",
   "verified_ingame": false,
-  "source_note": "Fandom 旧档未收录或缺少对应行；以新版社区 Wiki NPC Dialogue 表为唯一逐字来源。未实测，未记录 raw/颜色。",
+  "source_note": "原有访客记录保留旧证据；本轮新增记录逐条附普通 Wiki 来源、更新时间与显式颜色。既有实机 raw 不以 Wiki 覆盖。",
   "messages": [
     {
       "id": "visitor_beth_request_1",
@@ -70,12 +70,34 @@
     },
     {
       "id": "visitor_beth_accept_3",
-      "context": "接受花园访客委托后",
+      "context": "Beth 花园委托的剧情线索；保留坐标与玩家高亮",
       "text": "The note reads: \"175 42 -470\"",
       "placeholders": [],
-      "gloss": "花园访客委托结果台词；社区 Wiki 逐字记录，待游戏内实测。",
+      "gloss": "175 42 -470 是固定任务地点，非动态采样数值。",
       "translate": true,
-      "zh": "纸条上写着:“175 42 -470”。"
+      "zh": "纸条上写着:“175 42 -470”。",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Beth",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:06.",
+      "verified_ingame": false,
+      "raw": "§fThe note reads: \"§d175 42 -470§f\"",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "The note reads: \"",
+          "zh": "纸条上写着:“"
+        },
+        {
+          "color": "§d",
+          "text": "175 42 -470",
+          "zh": "175 42 -470"
+        },
+        {
+          "color": "§f",
+          "text": "\"",
+          "zh": "”。"
+        }
+      ]
     },
     {
       "id": "visitor_beth_accept_4",
@@ -106,19 +128,41 @@
     },
     {
       "id": "visitor_beth_request_7",
-      "context": "作为花园访客提出委托",
+      "context": "Beth 花园委托的剧情线索；保留坐标与玩家高亮",
       "text": "Hey, %1$s, I've been thinking a lot about that lab we found... I think there's more to it than just the plushies.",
       "placeholders": [
         {
           "token": "%1$s",
-          "desc": "玩家名",
           "type": "player_name",
-          "example": "inkkni"
+          "example": "Alex",
+          "desc": "玩家名，保留英文"
         }
       ],
-      "gloss": "花园访客委托结果台词；社区 Wiki 逐字记录，待游戏内实测。",
+      "gloss": "玩家名来自 Wiki 变量标记；保留实时玩家样式。",
       "translate": true,
-      "zh": "嘿,%1$s,我一直在想我们找到的那间实验室……我觉得它不只是有些毛绒玩具那么简单。"
+      "zh": "嘿，%1$s，我一直在想我们找到的那间实验室……我觉得它不只是有些毛绒玩具那么简单。",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Beth",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:06.",
+      "verified_ingame": false,
+      "raw": "§fHey, §7%1$s§f, I've been thinking a lot about that lab we found... I think there's more to it than just the plushies.",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Hey, ",
+          "zh": "嘿，"
+        },
+        {
+          "color": "§7",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§f",
+          "text": ", I've been thinking a lot about that lab we found... I think there's more to it than just the plushies.",
+          "zh": "，我一直在想我们找到的那间实验室……我觉得它不只是有些毛绒玩具那么简单。"
+        }
+      ]
     },
     {
       "id": "visitor_beth_accept_6",
@@ -157,6 +201,268 @@
       "gloss": "",
       "translate": true,
       "zh": "他说他出不了门，但我明明总看见他在外面到处晃悠……"
+    },
+    {
+      "id": "beth_ponder_behavior",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Beth",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:06.",
+      "verified_ingame": false,
+      "context": "Beth：During the quest, before receiving the coordinates",
+      "raw": "§fI keep thinking about Jake's behavior...",
+      "text": "I keep thinking about Jake's behavior...",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "我一直在琢磨 Jake 的那些举动……"
+    },
+    {
+      "id": "beth_catch_something",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Beth",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:06.",
+      "verified_ingame": false,
+      "context": "Beth：During the quest, before receiving the coordinates",
+      "raw": "§fI know I'll catch him doing something!",
+      "text": "I know I'll catch him doing something!",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "我一定能逮到他在做什么!"
+    },
+    {
+      "id": "beth_note_meaning",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Beth",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:06.",
+      "verified_ingame": false,
+      "context": "Beth：During the quest's coordinate step, before breaking the block",
+      "raw": "§fDid you figure out the meaning of the note yet?",
+      "text": "Did you figure out the meaning of the note yet?",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "你弄明白纸条上的数字是什么意思了吗?"
+    },
+    {
+      "id": "beth_mushroom_cave_hint",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Beth",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:06.",
+      "verified_ingame": false,
+      "context": "Beth：During the quest's coordinate step, before breaking the block",
+      "raw": "§fMaybe you should go to the cave where I followed him. I remember there were a lot of mushrooms.",
+      "text": "Maybe you should go to the cave where I followed him. I remember there were a lot of mushrooms.",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "也许你该去我跟踪他时去过的那个洞穴看看。我记得那里有很多蘑菇。"
+    },
+    {
+      "id": "beth_misjudged_jake",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Beth",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:06.",
+      "verified_ingame": false,
+      "context": "Beth：After first discovering the lab",
+      "raw": "§fSeems that I have misjudged Jake, he might not have been as suspicious as I thought.",
+      "text": "Seems that I have misjudged Jake, he might not have been as suspicious as I thought.",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "看来是我误会 Jake 了，他可能没有我想的那么可疑。"
+    },
+    {
+      "id": "beth_cute_plushie",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Beth",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:06.",
+      "verified_ingame": false,
+      "context": "Beth：After first discovering the lab",
+      "raw": "§fThe plushie he gave me is quite cute actually!",
+      "text": "The plushie he gave me is quite cute actually!",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "他送我的毛绒玩具其实还挺可爱的!"
+    },
+    {
+      "id": "beth_truth_thanks",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Beth",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:06.",
+      "verified_ingame": false,
+      "context": "Beth：After completing the quest",
+      "raw": "§fThanks again for helping me discovering the truth about Jake.",
+      "text": "Thanks again for helping me discovering the truth about Jake.",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "谢谢你帮我查清了 Jake 的事。"
+    },
+    {
+      "id": "beth_second_lab_surprise",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Beth",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:06.",
+      "verified_ingame": false,
+      "context": "Beth：After completing the quest",
+      "raw": "§fCan't believe he had a second secret lab to hide!",
+      "text": "Can't believe he had a second secret lab to hide!",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "真没想到，他还藏着第二间秘密实验室!"
+    },
+    {
+      "id": "beth_coop_quest",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Beth",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:06.",
+      "verified_ingame": false,
+      "context": "Beth：If a Co-op member has the quest",
+      "raw": "§fHi! I have a quest for a member of your co-op! Tell them to come see me!",
+      "text": "Hi! I have a quest for a member of your co-op! Tell them to come see me!",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "嗨! 我有个任务要找你的一位合作队友! 让对方来见我吧!"
+    },
+    {
+      "id": "beth_return_chills",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Beth",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:06.",
+      "verified_ingame": false,
+      "context": "Beth：Start of the second visit",
+      "raw": "§fThis place still gives me chills... but I'm sure there's more to uncover.",
+      "text": "This place still gives me chills... but I'm sure there's more to uncover.",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "这里还是让我发毛……但我相信，还有没查清的事。"
+    },
+    {
+      "id": "beth_closer_to_truth",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Beth",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:06.",
+      "verified_ingame": false,
+      "context": "Beth：Start of the second visit",
+      "raw": "§fWe know Jake's been hiding things, and I think we're getting closer to the truth.",
+      "text": "We know Jake's been hiding things, and I think we're getting closer to the truth.",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "我们知道 Jake 一直有所隐瞒，我觉得我们离真相越来越近了。"
+    },
+    {
+      "id": "beth_unnoticed_corner",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Beth",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:06.",
+      "verified_ingame": false,
+      "context": "Beth：Start of the second visit",
+      "raw": "§fHmm, this corner... I don't think I've noticed this before.",
+      "text": "Hmm, this corner... I don't think I've noticed this before.",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "嗯，这个角落……我之前好像没注意过。"
+    },
+    {
+      "id": "beth_strange_wall",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Beth",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:06.",
+      "verified_ingame": false,
+      "context": "Beth：Start of the second visit",
+      "raw": "§fThere's something strange about this wall. It looks out of place...",
+      "text": "There's something strange about this wall. It looks out of place...",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "这面墙有点奇怪，看着跟周围格格不入……"
+    },
+    {
+      "id": "beth_hidden_passage",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Beth",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:06.",
+      "verified_ingame": false,
+      "context": "Beth：Start of the second visit",
+      "raw": "§fWhat is this? A hidden passage? I knew Jake was hiding something from me, but this... this is something different.",
+      "text": "What is this? A hidden passage? I knew Jake was hiding something from me, but this... this is something different.",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "这是什么? 暗道? 我就知道 Jake 瞒着我什么，可这……跟我想的不一样。"
+    },
+    {
+      "id": "beth_enter_passage",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Beth",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:06.",
+      "verified_ingame": false,
+      "context": "Beth：Start of the second visit",
+      "raw": "§fI don't know if we should trust this, but we've come this far... Let's see what's behind it.",
+      "text": "I don't know if we should trust this, but we've come this far... Let's see what's behind it.",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "我不知道这条路安不安全，不过都走到这儿了……进去看看吧。"
+    },
+    {
+      "id": "beth_pull_lever",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Beth",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:06.",
+      "verified_ingame": false,
+      "context": "Beth：Before pressing the lever",
+      "raw": "§fSee if you can pull down this lever, it's a bit stuck.",
+      "text": "See if you can pull down this lever, it's a bit stuck.",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "试试看能不能把这根拉杆扳下来，它有点卡住了。"
+    },
+    {
+      "id": "beth_found_lever",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Beth",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:06.",
+      "verified_ingame": false,
+      "context": "Beth：Start of the second visit",
+      "raw": "§fWait, there's a §dlever §fhere!",
+      "text": "Wait, there's a lever here!",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "等等，这里有根拉杆!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Wait, there's a ",
+          "zh": "等等，这里有根"
+        },
+        {
+          "color": "§d",
+          "text": "lever ",
+          "zh": "拉杆"
+        },
+        {
+          "color": "§f",
+          "text": "here!",
+          "zh": "!"
+        }
+      ]
     }
-  ]
+  ],
+  "note": "身份：沙漠定居点居民，追查 Jake 的秘密实验室。\n关系：与玩家合作调查；对 Jake 从怀疑、愤怒转为理解并愿意协助。\n口吻：敏锐直率，惊讶时会大声质问，发现误会也肯道歉。\n性格：好奇执着，重视动物安全和研究责任。\n禁用风格：不替玩家解谜，不把怀疑说成已证实的罪行，不破坏与 Jake 的关系转折。",
+  "wiki_review": {
+    "source": "https://hypixelskyblock.minecraft.wiki/w/Beth",
+    "fetched_at": "2026-10-04",
+    "last_edited": "This page was last edited on 24 August 2026, at 06:06.",
+    "scope": "本轮增补缺失对白；已有全局 CHAT 记录复用，不以文件名隔离语义。未完成/源破损详见 evidence.json。"
+  }
 }

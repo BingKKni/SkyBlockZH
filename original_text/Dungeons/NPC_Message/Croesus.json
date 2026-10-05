@@ -2,7 +2,7 @@
   "source": "https://hypixelskyblock.minecraft.wiki/w/Croesus",
   "fetched_at": "2026-09-01",
   "verified_ingame": false,
-  "source_note": "原文逐字取自 Hypixel SkyBlock 社区 Wiki 普通页面 DOM 的 Dialogue 表格；Wiki 明示的游戏内拼写或语法错误按原文保留。页面 DOM 不足以证明服务器颜色码，因此不臆测 raw/segments，待实机触发后再补颜色。",
+  "source_note": "普通社区 Wiki 呈现 DOM 核对;新增 raw 仅采用明确 format 类/inline 样式。已有实测 raw 不覆盖。历史分支与破损原文的排除见 evidence.json。",
   "npc": "Croesus",
   "messages": [
     {
@@ -12,7 +12,29 @@
       "placeholders": [],
       "gloss": "Wiki 注明游戏内原文如此；After completed 的语法按原文保留。",
       "translate": true,
-      "zh": "完成一次地牢挑战后，你可以从若干宝箱中选择奖励。"
+      "zh": "完成一次地牢挑战后，会有一排宝箱供你挑选。",
+      "raw": "§fAfter completed a dungeon run, you get a selection of §6treasure chests§f.",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "After completed a dungeon run, you get a selection of ",
+          "zh": "完成一次地牢挑战后，会有一排"
+        },
+        {
+          "color": "§6",
+          "text": "treasure chests",
+          "zh": "宝箱"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "供你挑选。"
+        }
+      ],
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 11 August 2026, at 19:05.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Croesus",
+      "verified_ingame": false
     },
     {
       "id": "croesus_message_if_you_dont_open_any_i_collect_and_hoard_them_for_you",
@@ -21,7 +43,29 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "如果你一个都不开，我就会替你收集并囤起来!"
+      "zh": "如果你一个都没开，我就会替你收起来!",
+      "raw": "§fIf you §cdon't open §fany, I collect and hoard them for you!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "If you ",
+          "zh": "如果你一个都"
+        },
+        {
+          "color": "§c",
+          "text": "don't open ",
+          "zh": "没开"
+        },
+        {
+          "color": "§f",
+          "text": "any, I collect and hoard them for you!",
+          "zh": "，我就会替你收起来!"
+        }
+      ],
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 11 August 2026, at 19:05.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Croesus",
+      "verified_ingame": false
     },
     {
       "id": "croesus_message_did_you_know_i_used_to_live_in_the_catacombs_before_they_moved_in_all_the_zombie",
@@ -30,16 +74,43 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "你知道吗? 在那些僵尸全搬进来之前，我曾经住在地牢里。"
+      "zh": "你知道吗? 在那些僵尸全搬进来之前，我曾经住在地牢里。",
+      "raw": "§fDid you know, I used to live in the catacombs before they moved in all the zombies?",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 11 August 2026, at 19:05.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Croesus",
+      "verified_ingame": false
     },
     {
       "id": "croesus_message_its_always_best_to_keep_a_handle_on_things",
       "context": "随机对话",
       "text": "It's always best to keep a handle on things!",
       "placeholders": [],
-      "gloss": "这是箱子把手的双关，中文保住「把手」这个词双关才在；「牢牢掌控」把玩笑说成了励志标语。",
+      "gloss": "handle 的一语双关:掌控事情,也暗指把手;不译为胁迫他人的把柄。",
       "translate": true,
-      "zh": "凡事都得有个把手才好办!"
+      "zh": "凡事最好都能把握得住!",
+      "raw": "§fIt's always best to keep a §f§ohandle §fon things!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "It's always best to keep a ",
+          "zh": "凡事最好都能"
+        },
+        {
+          "color": "§f§o",
+          "text": "handle ",
+          "zh": "把握"
+        },
+        {
+          "color": "§f",
+          "text": "on things!",
+          "zh": "得住!"
+        }
+      ],
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 11 August 2026, at 19:05.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Croesus",
+      "verified_ingame": false
     },
     {
       "id": "croesus_message_the_wither_king_now_lives_in_the_deepest_floor_of_the_catacombs_but_where_is_the",
@@ -48,7 +119,12 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "The Wither King 如今住在地牢最深层，但 Wither Prince 又在哪里呢?"
+      "zh": "The Wither King 如今住在地牢最深层，但 Wither Prince 又在哪里呢?",
+      "raw": "§fThe Wither King now lives in the deepest floor of the Catacombs, but where is the Wither Prince?",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 11 August 2026, at 19:05.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Croesus",
+      "verified_ingame": false
     },
     {
       "id": "croesus_message_i_wonder_if_theyll_ever_open_more_doors_in_here",
@@ -57,7 +133,19 @@
       "placeholders": [],
       "gloss": "Croesus 就站在一排上锁的门中间，doors 是眼前实物；译成「区域」把画面换成了抽象说法。",
       "translate": true,
-      "zh": "不知道他们以后会不会再多开几道门。"
+      "zh": "不知道他们以后会不会再多开几道门。",
+      "raw": "§fI wonder if they'll ever open more doors in here.",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 11 August 2026, at 19:05.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Croesus",
+      "verified_ingame": false
     }
-  ]
+  ],
+  "note": "身份:保管未开启奖励箱的地牢居民。关系:为玩家保管战利品。口吻:随和,偶尔双关。性格:爱收藏、爱聊地牢往事。禁用:把箱子保存期限和容量润色成保证永久保管。",
+  "wiki_review": {
+    "fetched_at": "2026-10-04",
+    "last_edited": "This page was last edited on 11 August 2026, at 19:05.",
+    "source": "https://hypixelskyblock.minecraft.wiki/w/Croesus",
+    "verified_ingame": false
+  }
 }

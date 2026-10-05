@@ -2165,6 +2165,7 @@ public final class TranslationHarness {
 			case YEAR -> "2026";
 			case DAY_OF_MONTH -> "28";
 			case TRAINING_KIND -> "Turbo!";
+			case HUNGRY_HIKER_FOOD -> "grilled meat";
 			case TIER -> "XII";
 			case TIER_RANGE -> "III-V";
 			case ICON -> "✎";
@@ -2174,6 +2175,7 @@ public final class TranslationHarness {
 			case MULTIPLIER_INCREASE -> "1.5";
 			case ORDINAL -> "27th";
 			case DURATION_WORDS -> "2 hours 3 minutes";
+			case CLOCK_DURATION -> "3:00";
 			default -> "1";
 		};
 	}
@@ -2736,7 +2738,7 @@ public final class TranslationHarness {
 
 	/** Fixed UI capture regression: ordered lore, term isolation, and clues that must survive translation. */
 	private static void checkFixedMenus(Path corpusRoot) throws Exception {
-		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "workshop-cases.json")) {
+		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "workshop-cases.json", "wiki-expansion-cases.json")) {
 		Path path = corpusRoot.toAbsolutePath().getParent().resolve("src/harness/resources/" + file);
 		JsonObject fixture = JsonParser.parseString(Files.readString(path, StandardCharsets.UTF_8)).getAsJsonObject();
 		for (JsonElement value : fixture.getAsJsonArray("cases")) {
@@ -2745,7 +2747,12 @@ public final class TranslationHarness {
 			for (JsonElement source : test.getAsJsonArray("source")) input.add(Component.literal(source.getAsString()));
 			String name = "固定菜单采集: " + text(test, "name");
 			if (test.has("surface")) {
-				check(name, input.getFirst().getString(), Surface.fromDirectory(text(test, "surface")), legacy(Component.literal(text(test, "expected"))));
+				Surface surface = Surface.fromDirectory(text(test, "surface"));
+				if (test.has("miss") && test.get("miss").getAsBoolean()) {
+					checkNoMatch(name, input.getFirst().getString(), surface);
+				} else {
+					check(name, input.getFirst().getString(), surface, legacy(Component.literal(text(test, "expected"))));
+				}
 				continue;
 			}
 			int start = test.has("start") ? test.get("start").getAsInt() : 0;
@@ -2789,8 +2796,43 @@ public final class TranslationHarness {
 		} finally {
 			SkyZHConfig.get().translateSkyBlockName = oldSkyBlockName;
 		}
+		for (String border : List.of("§a", "§d")) {
+			Component input = Component.literal(border + ">§m-------§r §6Interest Tranches"
+				+ border + " §m-------§r" + border + "<");
+			LoreMatcher.Match match = LoreMatcher.find(Translator.index(), List.of(input), 0);
+			StyledText rendered = match == null ? null : StyledText.of(match.render(Translator.index().terms()));
+			report("银行边框后的重置空格不继承删除线 " + border, rendered != null
+				&& Style.EMPTY.equals(rendered.styleAt(8)), "检查真实 Style,不能仅靠旧式色码快照判断默认颜色");
+		}
 		checkNoMatch("电话结构不扩展到物品", "✆ Oh, you are willing to help?", Surface.ITEM);
 		checkNoMatch("未知电话正文不制造命中", "✆ This is an unrecorded sentence.", Surface.CHAT);
+		for (String clue : List.of("grilled meat", "red and crunchy", "made of wheat", "from a cow",
+			"red on the inside and green on the outside", "cooked potato", "meat from a fowl")) {
+			Capture food = Capture.of("hungry_hiker_food");
+			report("饥饿徒步者谜语仅接受来源闭集 " + clue,
+				clue.matches(food.regex()) && food.accepts(clue), "谜面不等于任意长句或物品名称");
+		}
+		for (String unknown : List.of("", "Apple", "some other food", "grilled meat tomorrow",
+			"red on the inside and green on the outside and more", "grilled meat\nred and crunchy")) {
+			Capture food = Capture.of("hungry_hiker_food");
+			report("饥饿徒步者谜语拒绝未知值 " + unknown,
+				!unknown.matches(food.regex()) && !food.accepts(unknown), "不放宽 raw 的全局边界");
+		}
+		for (String clock : List.of("3:00", "20:59", "1:00:00")) {
+			Capture duration = Capture.of("clock_duration");
+			report("药水冒号时钟类型保持数字排版 " + clock,
+				clock.matches(duration.regex()) && duration.accepts(clock)
+					&& clock.equals(duration.renderValue(clock)), "不将时钟误拆为物品名或任意半句");
+			check("药水时钟颜色与变化数值 " + clock, "§aRabbit VI §f(" + clock + ")", Surface.LORE,
+				"§a兔子 VI §f(" + clock + ")");
+		}
+		for (String invalid : List.of("", "3:60", "3:99", "one minute", "3:00 tomorrow", "3:00\nnext")) {
+			Capture duration = Capture.of("clock_duration");
+			report("药水时钟拒绝非法或未知值 " + invalid,
+				!invalid.matches(duration.regex()) && !duration.accepts(invalid), "精确有界时钟不是扩宽 raw");
+		}
+		report("长谜面不扩展普通raw", !Capture.of("raw").accepts("red on the inside and green on the outside"),
+			"只有专用闭集类型允许这个九词谜面");
 		checkNoMatch("书面时长拒绝普通短语", "Come back in some other time to pick it up!", Surface.CHAT);
 		checkNoMatch("书面时长拒绝未声明单位", "Come back in 1 decade to pick it up!", Surface.CHAT);
 		report("材料数量前缀仅剥离已知目录名", LineShape.candidates(Surface.ITEM, "✔ 1/1 Unknown Item").stream()

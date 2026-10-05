@@ -18,10 +18,18 @@ public final class LoreHarness {
 		Map<String, JsonObject> files = TranslationHarness.readCorpus(Path.of(args[0]));
 		TranslationIndex index = TranslationLoader.compile(files);
 		TranslationHarness.installIndex(index);
+		Map<String, JsonObject> byReference = new HashMap<>();
+		files.forEach((path, file) -> TranslationHarness.recordsOf(file).forEach(record ->
+			byReference.put(path + "#" + record.get("id").getAsString(), record)));
 		for (var file : files.entrySet()) {
 			if (!file.getKey().contains("/GUI_Lore/")) continue;
-			for (JsonObject r : records(file.getValue())) {
-				String address = file.getKey() + "#" + r.get("id").getAsString();
+			for (JsonObject declared : records(file.getValue())) {
+				String address = file.getKey() + "#" + declared.get("id").getAsString();
+				JsonObject r = sourceRecord(declared, byReference);
+				if (r == null || !r.has("text")) {
+					check(address + " 引用必须指向带原文的记录", false);
+					continue;
+				}
 				List<Sample> samples = new ArrayList<>();
 				try {
 					samples.add(exampleSample(r));
@@ -262,6 +270,11 @@ public final class LoreHarness {
 		return value;
 	}
 
+	/** Match TranslationLoader's one-hop ref semantics instead of sampling the ref wrapper. */
+	private static JsonObject sourceRecord(JsonObject record, Map<String, JsonObject> byReference) {
+		return record.has("ref") ? byReference.get(record.get("ref").getAsString()) : record;
+	}
+
 	private static Sample exampleSample(JsonObject r) {
 		List<String> notes = new ArrayList<>();
 		Map<String, String> values = new LinkedHashMap<>();
@@ -321,8 +334,19 @@ public final class LoreHarness {
 			end = token.end();
 		}
 		regex.append(literal.apply(template.substring(end)));
-		Matcher match = Pattern.compile(regex.toString()).matcher(plain);
-		if (!match.matches()) throw new IllegalArgumentException("source does not align with text: " + original);
+		Pattern pattern = Pattern.compile(regex.toString());
+		Matcher match = null;
+		int firstContentLength = lines.isEmpty() ? 0
+			: StyledText.of(Component.literal(lines.getFirst())).canonical().trim().length();
+		for (LineShape.Range range : LineShape.candidates(Surface.LORE, plain)) {
+			if (range.start() >= firstContentLength) continue;
+			Matcher candidate = pattern.matcher(plain.substring(range.start(), range.end()));
+			if (candidate.matches()) {
+				match = candidate;
+				break;
+			}
+		}
+		if (match == null) throw new IllegalArgumentException("source does not align with text: " + original);
 		Map<String, String> replacements = new LinkedHashMap<>();
 		for (int i = 0; i < tokens.size(); i++) {
 			JsonObject p = definitions.get(tokens.get(i));
@@ -446,7 +470,56 @@ public final class LoreHarness {
 		for (int i = 0; i < input.size(); i++) if (!sameStyled(before.get(i), input.get(i))) errors.add("input mutated line=" + i);
 		return errors;
 	}
+	/** Whole-sentence prefix handling must preserve the source, not weaken sample validation. */
+	private static void checkStructuralPrefixes() {
+		JsonObject plain = JsonParser.parseString("""
+			{"id":"plain","text":"Gain Health now.","raw":"§aGain §cHealth §anow.",
+			 "zh":"提高生命值。","segments":[
+			 {"text":"Gain ","zh":"提高"},{"text":"Health ","zh":"生命值"},{"text":"now.","zh":"。"}]}
+			""").getAsJsonObject();
+		JsonObject explicit = JsonParser.parseString("""
+			{"id":"explicit","text":"■ Gain Health now.","zh":"专用标记规则。"}
+			""").getAsJsonObject();
+		JsonObject rules = new JsonObject();
+		JsonArray entries = new JsonArray();
+		entries.add(plain); rules.add("lines", entries);
+		TranslationIndex index = TranslationLoader.compile(Map.of("Test/GUI_Lore/Prefixes.json", rules));
+		List<String> raw = List.of("§8 ■ §aGain §cHealth", "§a now.§8  ");
+		List<Component> source = raw.stream().map(s -> (Component) Component.literal(s)).toList();
+		LoreMatcher.Match matched = LoreMatcher.find(index, source, 0);
+		check("Lore首行项目符号与缩进保留真实颜色", matched != null && matched.lines() == 2
+			&& sameStyled(matched.render(index.terms()), Component.literal("§8 ■ §a提高§c生命值§a。§8  ")));
+		check("Lore前缀处理不改原组件", java.util.stream.IntStream.range(0, raw.size()).allMatch(i ->
+			sameStyled(source.get(i), Component.literal(raw.get(i)))));
+		check("原始带前缀样本仍保留全部源行", sourceSample(plain, raw, "samples[0]").lines().size() == 2);
+		check("属性图标不是可剥离项目符号", LoreMatcher.find(index,
+			List.of(Component.literal("§c❤ §aGain §cHealth §anow.")), 0) == null);
+		check("不剥离第二行的独立列表标记", LoreMatcher.find(index,
+			List.of(Component.literal("Gain Health"), Component.literal("■ now.")), 0) == null);
+		check("项目符号匹配不跨空行", LoreMatcher.find(index,
+			List.of(source.getFirst(), Component.literal(""), source.getLast()), 0) == null);
+		rejectSample("带项目符号样本不吞无关后句", () -> sourceSample(plain,
+			List.of("■ Gain Health now.", "Separate sentence."), "samples[0]"));
+		entries.add(explicit);
+		TranslationIndex full = TranslationLoader.compile(Map.of("Test/GUI_Lore/Prefixes.json", rules));
+		LoreMatcher.Match direct = LoreMatcher.find(full, List.of(Component.literal("§d■ Gain Health now.")), 0);
+		check("明确包含项目符号的完整记录优先", direct != null && direct.entry().id().equals("explicit")
+			&& sameStyled(direct.render(full.terms()), Component.literal("§d专用标记规则。")));
+	}
+
 	private static void checkHarnessRegressions(TranslationIndex corpus) throws Exception {
+		checkStructuralPrefixes();
+		JsonObject shared = JsonParser.parseString("""
+			{"id":"source","text":"Shared sentence.","raw":"§7Shared sentence.","zh":"共享整句。"}
+			""").getAsJsonObject();
+		JsonObject reference = JsonParser.parseString("""
+			{"id":"use","ref":"_shared/Test.json#source"}
+			""").getAsJsonObject();
+		Map<String, JsonObject> references = Map.of("_shared/Test.json#source", shared);
+		check("引用样本使用目标原文与颜色", sourceRecord(reference, references) == shared
+			&& exampleSample(sourceRecord(reference, references)).lines().size() == 1);
+		check("无引用的整句保持原记录", sourceRecord(shared, references) == shared);
+		check("无效引用返回可报告的缺失而非空指针", sourceRecord(reference, Map.of()) == null);
 		int firstCheck = checked, firstFailure = failures.size();
 		JsonObject pet = JsonParser.parseString("""
 			{"id":"pet-test","text":"Grants %s speed.","raw":"§7Grants §a%s§7 speed.",

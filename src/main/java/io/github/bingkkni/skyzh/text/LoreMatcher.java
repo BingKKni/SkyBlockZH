@@ -52,6 +52,7 @@ public final class LoreMatcher {
 		Component head = null;
 		Match best = null;
 		int length = 0;
+		int firstContentLength = 0;
 
 		for (int i = start; i < lines.size() && i - start < MAX_LINES; i++) {
 			StyledText line = StyledText.of(lines.get(i));
@@ -77,8 +78,9 @@ public final class LoreMatcher {
 				break;
 			}
 
-			if (i == start && from > 0) {
-				head = line.slice(0, from);
+			if (i == start) {
+				firstContentLength = to - from;
+				if (from > 0) head = line.slice(0, from);
 			}
 
 			if (i > start) {
@@ -86,21 +88,26 @@ public final class LoreMatcher {
 			}
 
 			joined.append(line.slice(from, to));
-			StyledText core = StyledText.of(joined);
-			TranslationEntry entry = index.lookup(Surface.LORE, core.canonical());
-
-			if (entry == null || entry.continuation()) {
-				continue;
+			StyledText whole = StyledText.of(joined);
+			// Reuse the same closed structural prefixes as single-line translation. Only the
+			// first line may carry a peeled bullet; an exact record including it still wins.
+			for (LineShape.Range range : LineShape.candidates(Surface.LORE, whole.canonical())) {
+				if (range.start() >= firstContentLength) continue;
+				StyledText core = whole.sub(range.start(), range.end());
+				TranslationEntry entry = index.lookup(Surface.LORE, core.canonical());
+				if (entry == null || entry.continuation()) continue;
+				Matcher matcher = entry.match(core.canonical());
+				if (matcher == null) continue;
+				Component leading = head;
+				if (range.start() > 0) {
+					MutableComponent prefix = Component.empty();
+					if (head != null) prefix.append(head);
+					leading = prefix.append(whole.slice(0, range.start()));
+				}
+				Component tail = to < plain.length() ? line.slice(to, plain.length()) : null;
+				best = new Match(i - start + 1, joined.copy(), entry, core, matcher, leading, tail);
+				break;
 			}
-
-			Matcher matcher = entry.match(core.canonical());
-
-			if (matcher == null) {
-				continue;
-			}
-
-			Component tail = to < plain.length() ? line.slice(to, plain.length()) : null;
-			best = new Match(i - start + 1, joined.copy(), entry, core, matcher, head, tail);
 		}
 
 		return best;

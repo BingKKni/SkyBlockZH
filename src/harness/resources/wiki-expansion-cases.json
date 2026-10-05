@@ -1,0 +1,2306 @@
+{
+  "note": "手写期望: 全局共用选项不绑定单个 NPC 的问题语境,颜色来自输入实时样式;点击与悬浮事件由 checkChatInteractions 独立模拟验证。",
+  "cases": [
+    {
+      "name": "养蜂增益保留真实首行列表标记与颜色",
+      "source": [
+        "§8 ■ §aTrees §7lathered with §6Honeycomb",
+        "§7 attract §a Critters 20% §7faster."
+      ],
+      "consumed": 2,
+      "expected": "§8 ■ §a树木§7涂上§6蜜脾§7后吸引§a 小动物§7的速度提高 §a20%§7。"
+    },
+    {
+      "name": "养蜂第二只小动物整句保留列表标记",
+      "source": [
+        "§8 ■ §aTrees §7lathered with §6Honeycomb §7have",
+        "§7 a §a25% §7chance to attract a second §a",
+        "§a Critter§7."
+      ],
+      "consumed": 3,
+      "expected": "§8 ■ §a树木§7涂上§6蜜脾§7后有 §a25%§7 概率额外吸引第二只 §a 小动物§7。"
+    },
+    {
+      "name": "Juliette喜欢一词的剧情高亮",
+      "surface": "NPC_Message",
+      "source": [
+        "§fI §dlike §fhim just the way he is!"
+      ],
+      "expected": "§f我§d喜欢§f的就是他原本的样子!"
+    },
+    {
+      "name": "Juliette原本的样子的另一剧情高亮",
+      "surface": "NPC_Message",
+      "source": [
+        "§fI like him §djust the way he is§f!"
+      ],
+      "expected": "§f我喜欢的就是他§d原本的样子§f!"
+    },
+    {
+      "name": "跨 NPC 共用是非选项保持中性含义",
+      "surface": "ChatMessage",
+      "source": [
+        "§eSelect an option: §a[Yes] §c[No]"
+      ],
+      "expected": "§e请选择: §a[是] §c[否]"
+    },
+    {
+      "name": "是非选项括号正文与间隔独立取实时颜色",
+      "surface": "ChatMessage",
+      "source": [
+        "§eSelect an option: §f[§aYes§f] §f[§cNo§f]"
+      ],
+      "expected": "§e请选择: §f[§a是§f] §f[§c否§f]"
+    },
+    {
+      "name": "mining-1 / Stone矿井与残料高亮随语序调整",
+      "surface": "NPC_Message",
+      "source": [
+        "§fI'm always on the lookout for §9Suspicious Scrap§fs when I'm mining around in §bGlacite Mineshafts§f, which I sometimes find when in the §bGlacite Tunnels§f."
+      ],
+      "expected": "§f我在§b极冰矿井§f挖矿时,总会留意有没有§9可疑残料§f。这些矿井有时会出现在§b极冰隧道§f里。"
+    },
+    {
+      "name": "mining-1 / Stone后段动物名不覆盖尾部句号",
+      "surface": "NPC_Message",
+      "source": [
+        "§fIt was once part of a particularly interesting creature called the §aSpinosaurus§f."
+      ],
+      "expected": "§f它曾是某种非常有趣的生物的一部分,那种生物叫§a棘龙§f。"
+    },
+    {
+      "name": "mining-1 / Stone化石和交付指代分开高亮",
+      "surface": "NPC_Message",
+      "source": [
+        "§fSometimes you'll find little treasures, and sometimes you'll find an entire §6fossil§f! If you do find a fossil, §ashow it to me§f!"
+      ],
+      "expected": "§f有时能挖出小宝贝,有时则能找到一整块§6化石§f! 要是找到了化石,可要§a拿来给我看看§f!"
+    },
+    {
+      "name": "mining-1 / 斥候玩家名动态一",
+      "surface": "NPC_Message",
+      "source": [
+        "§fAre you §8MinerAlex§f?"
+      ],
+      "expected": "§f你是§8 MinerAlex§f 吗?"
+    },
+    {
+      "name": "mining-1 / 斥候玩家名动态二",
+      "surface": "NPC_Message",
+      "source": [
+        "§fAre you §8Stone_2026§f?"
+      ],
+      "expected": "§f你是§8 Stone_2026§f 吗?"
+    },
+    {
+      "name": "mining-1 / 斥候冷与篝火后段独立颜色",
+      "surface": "NPC_Message",
+      "source": [
+        "§fIf you ever get a bit too §bCold§f you can always warm yourself up over at the §6Campfire§f!"
+      ],
+      "expected": "§f要是觉得太§b冷§f,随时可以去§6篝火§f旁暖暖身子!"
+    },
+    {
+      "name": "mining-1 / 狼爷爷斜体威胁只落在可口",
+      "surface": "NPC_Message",
+      "source": [
+        "§fYou know, you're starting to look kinda §f§otasty§f..."
+      ],
+      "expected": "§f你知道吗,你看着好像越来越§f§o可口§f了……"
+    },
+    {
+      "name": "mining-1 / 红石交付两个按钮保持独立",
+      "surface": "NPC_Message",
+      "source": [
+        "§eSelect an option: §a[Give materials] §c[No thanks!]"
+      ],
+      "expected": "§e请选择: §a[交付材料] §c[不用了,谢谢!]",
+      "interaction_contract": "提示、左括号、正文、右括号、间隔分别匹配;使用实时点击/悬浮事件,禁止猜命令。"
+    },
+    {
+      "name": "mining-1 / 红石奖励职务黄色与感叹号绿色",
+      "surface": "ChatMessage",
+      "source": [
+        "§7You got an extra §aAccessory Bag§7 slot from helping the §eRedstone Miner§a!"
+      ],
+      "expected": "§7帮助§e红石矿工§7后,你获得了一个额外的§a饰品袋栏位!"
+    },
+    {
+      "name": "mining-1 / 铁匠债务数值一",
+      "surface": "NPC_Message",
+      "source": [
+        "§fI owe them §632M coins§f."
+      ],
+      "expected": "§f我欠了对方 §632M 硬币§f。"
+    },
+    {
+      "name": "mining-1 / 铁匠债务数值二",
+      "surface": "NPC_Message",
+      "source": [
+        "§fI owe them §648M coins§f."
+      ],
+      "expected": "§f我欠了对方 §648M 硬币§f。"
+    },
+    {
+      "name": "mining-1 / 铁匠付款按钮粗体保留",
+      "surface": "NPC_Message",
+      "source": [
+        "§6§l[PAY DEBT]"
+      ],
+      "expected": "§6§l[偿还债务]"
+    },
+    {
+      "name": "mining-1 / 化石指南容器标题",
+      "surface": "GUI_Title",
+      "source": [
+        "Fossil Guide"
+      ],
+      "expected": "化石指南"
+    },
+    {
+      "name": "mining-1 / 化石指南固定步骤名称",
+      "surface": "GUI_Item",
+      "source": [
+        "§aStep 6: Donate or Restore Fossil"
+      ],
+      "expected": "§a步骤 6: 捐赠或复原化石"
+    },
+    {
+      "name": "mining-1 / 矿井挖矿概率是每矿石而非每方块",
+      "source": [
+        "§7When in a §bGlacite Mineshaft§7, you have",
+        "§7a small chance to come across a",
+        "§7§9Suspicious Scrap §7whenever you mine",
+        "§7an ore."
+      ],
+      "consumed": 4,
+      "expected": "§7在§b极冰矿井§7中,每次开采矿石都有小概率发现§9可疑残料§7。"
+    },
+    {
+      "name": "mining-1 / 化石指南缺失尾行不提前消费",
+      "source": [
+        "§7When in a §bGlacite Mineshaft§7, you have",
+        "§7a small chance to come across a"
+      ],
+      "miss": true
+    },
+    {
+      "name": "mining-1 / 化石指南不跨空行拼接",
+      "source": [
+        "§7When in a §bGlacite Mineshaft§7, you have",
+        "",
+        "§7a small chance to come across a",
+        "§9Suspicious Scrap §7whenever you mine an ore."
+      ],
+      "miss": true
+    },
+    {
+      "name": "mining-1 / 化石挖掘机材料蓝色不泄漏到后半句",
+      "source": [
+        "§7Place your §6Chisel §7and a §9Suspicious",
+        "§9Scrap §7in the relevant slots to start",
+        "§7excavating!"
+      ],
+      "consumed": 3,
+      "expected": "§7将§6凿子§7和一份§9可疑残料§7放入对应槽位,即可开始挖掘!"
+    },
+    {
+      "name": "mining-1 / Wiki星号拼写变体不覆盖旧实测",
+      "source": [
+        "§7Place your §6Chisel §7and a §9Suspicious",
+        "§9Scrap §7in the relevant slots to star",
+        "§7excavating!"
+      ],
+      "consumed": 3,
+      "expected": "§7将§6凿子§7和一份§9可疑残料§7放入对应槽位,即可开始挖掘!"
+    },
+    {
+      "name": "mining-1 / 凿子Aquamarine三十概率",
+      "source": [
+        "§a30% §7chance to gain an additional",
+        "§7Chisel charge upon starting the",
+        "§6Fossil Excavator§7."
+      ],
+      "consumed": 3,
+      "expected": "§7启动§6化石挖掘机§7时,额外获得 1 次凿子挖掘次数的概率为 §a30%§7。"
+    },
+    {
+      "name": "mining-1 / 凿子Aquamarine完美品质百分之百",
+      "source": [
+        "§a100% §7chance to gain an additional",
+        "§7Chisel charge upon starting the",
+        "§6Fossil Excavator§7."
+      ],
+      "consumed": 3,
+      "expected": "§7启动§6化石挖掘机§7时,额外获得 1 次凿子挖掘次数的概率为 §a100%§7。"
+    },
+    {
+      "name": "mining-1 / 凿子Onyx生成宝藏不是高亮",
+      "source": [
+        "§a60% §7chance to spawn an additional",
+        "§7piece of treasure upon starting the",
+        "§6Fossil Excavator§7."
+      ],
+      "consumed": 3,
+      "expected": "§7启动§6化石挖掘机§7时,额外生成一件宝藏的概率为 §a60%§7。"
+    },
+    {
+      "name": "mining-1 / 凿子Citrine只高亮不额外生成",
+      "source": [
+        "§a40% §7chance to highlight a piece of",
+        "§7treasure upon starting the §6Fossil",
+        "§6Excavator§7."
+      ],
+      "consumed": 3,
+      "expected": "§7启动§6化石挖掘机§7时,高亮显示一件宝藏的概率为 §a40%§7。"
+    },
+    {
+      "name": "mining-1 / 凿子Peridot精华数量加成",
+      "source": [
+        "§7Gain §a+50% §fFossil Essence §7when using the",
+        "§6Fossil Excavator§7."
+      ],
+      "consumed": 2,
+      "expected": "§7获得的§f化石精华 §a+50%§7,仅在使用§6化石挖掘机§7时生效。"
+    },
+    {
+      "name": "mining-1 / 凿子概率句缺挖掘机名称不匹配",
+      "source": [
+        "§a30% §7chance to gain an additional",
+        "§7Chisel charge upon starting the"
+      ],
+      "miss": true
+    },
+    {
+      "name": "mining-1 / 金属探测器整句保留Divan地名颜色",
+      "source": [
+        "§7Used to find lost Dwarven",
+        "§7treasures in the §2Mines of",
+        "§2Divan§7. The Metal Detector",
+        "§7beeps louder and faster the",
+        "§7closer you are to a buried",
+        "§7treasure."
+      ],
+      "consumed": 6,
+      "expected": "§7用于寻找§2 Divan 矿场§7中失落的矮人宝藏。离埋藏的宝藏越近,金属探测器的提示音就越响、越急促。"
+    },
+    {
+      "name": "mining-1 / Lapis菜单与配方书高亮指代保持原段",
+      "surface": "NPC_Message",
+      "source": [
+        "§fCheck the §aRecipe Book §fin your §aSkyBlock Menu §fto learn how to craft it!"
+      ],
+      "expected": "§f打开§a空岛菜单§f里的§a配方书§f就能看到怎么合成!"
+    },
+    {
+      "name": "mining-1 / Fred玩家名与已译熔炼产物同时变化一",
+      "surface": "NPC_Message",
+      "source": [
+        "§fHey §7MinerAlex§f! Your Refined Mithril is ready down here at the forge!"
+      ],
+      "expected": "§f嘿, §7MinerAlex§f! 你的精炼秘银已经在熔炉这儿做好了!"
+    },
+    {
+      "name": "mining-1 / Fred玩家名与已译熔炼产物同时变化二",
+      "surface": "NPC_Message",
+      "source": [
+        "§fHey §7MinerBob§f! Your Refined Diamond is ready down here at the forge!"
+      ],
+      "expected": "§f嘿, §7MinerBob§f! 你的精炼钻石已经在熔炉这儿做好了!"
+    },
+    {
+      "name": "hub_general-1 / Dusk_phone_body_and_npc_prefix",
+      "surface": "NPC_Message",
+      "source": [
+        "§e[NPC] Dusk§f: Don't talk so loud."
+      ],
+      "expected": "§e[NPC] Dusk§f: 小声点。"
+    },
+    {
+      "name": "hub_general-1 / Alda_clickable_abiphone_question",
+      "surface": "NPC_Message",
+      "source": [
+        "§eSelect an option: §a[What's an Abiphone?]"
+      ],
+      "expected": "§e请选择: §a[Abiphone 是什么?]"
+    },
+    {
+      "name": "hub_general-1 / Elise_three_independent_click_options",
+      "surface": "NPC_Message",
+      "source": [
+        "§eSelect an option: §a[Chocolate?] [Caramel?] [Ice Cream?]"
+      ],
+      "expected": "§e请选择: §a[巧克力?] [焦糖?] [冰淇淋?]"
+    },
+    {
+      "name": "hub_general-1 / Brigette_account_safety_bold_red",
+      "surface": "NPC_Message",
+      "source": [
+        "§fThat being - §c§lAccount Safety§f."
+      ],
+      "expected": "§f那就是——§c§l账号安全§f。"
+    },
+    {
+      "name": "hub_general-1 / Brigette_correct_quiz_feedback",
+      "surface": "NPC_Message",
+      "source": [
+        "§a§lYOU GOT IT! §fYou can report the player with the /report command, followed by the player's username."
+      ],
+      "expected": "§a§l没错! §f你可以用 /report 指令举报那名玩家,在指令后面加上对方的用户名。"
+    },
+    {
+      "name": "hub_general-1 / Damia_auction_house_highlight_reordering",
+      "surface": "NPC_Message",
+      "source": [
+        "§fAlright! Well, all around us in this room are the §ebest auctions §ffrom the §6Auction House §fupstairs!"
+      ],
+      "expected": "§f好! 这屋子里四周摆的,都是楼上§6拍卖行§f的§e精选拍品§f!"
+    },
+    {
+      "name": "hub_general-1 / Amelia_four_in_row_not_tic_tac_toe",
+      "source": [
+        "§7Click another player to initiate a",
+        "§7game of Four in a Row!"
+      ],
+      "consumed": 2,
+      "expected": "§7点击另一名玩家,开始一局四子棋!"
+    },
+    {
+      "name": "hub_general-1 / Amelia_tic_tac_toe_distinct",
+      "source": [
+        "§7Click another player to initiate a",
+        "§7game of Tic Tac Toe!"
+      ],
+      "consumed": 2,
+      "expected": "§7点击另一名玩家,开始一局井字棋!"
+    },
+    {
+      "name": "hub_general-1 / Amelia_missing_game_tail_is_not_complete_lore",
+      "source": [
+        "§7Click another player to initiate a"
+      ],
+      "miss": true
+    },
+    {
+      "name": "hub_general-1 / Amelia_blank_blocks_sentence_join",
+      "source": [
+        "§7Click another player to initiate a",
+        "",
+        "§7game of Four in a Row!"
+      ],
+      "miss": true
+    },
+    {
+      "name": "hub_general-1 / Amelia_showcase_bold_yellow_click",
+      "source": [
+        "§7Show off an item in this fancy glass",
+        "§7display box! §e§lRIGHT CLICK §7to put in",
+        "§7or swap an item."
+      ],
+      "consumed": 3,
+      "expected": "§7在精美的玻璃展示柜里展示物品! §e§l右键点击§7可放入或更换物品。"
+    },
+    {
+      "name": "hub_general-1 / Bea_common_to_uncommon_branch",
+      "source": [
+        "§7Use at §bKat §7to upgrade §eBee Pets §7from",
+        "§fCommon §7to §aUncommon."
+      ],
+      "consumed": 2,
+      "expected": "§7在 §bKat §7处使用,将§e蜜蜂宠物§7从§f普通§7升级为§a罕见。"
+    },
+    {
+      "name": "hub_general-1 / Bea_epic_to_legendary_branch",
+      "source": [
+        "§7Use at §bKat §7to upgrade §eBee Pets §7from",
+        "§5Epic §7to §6Legendary."
+      ],
+      "consumed": 2,
+      "expected": "§7在 §bKat §7处使用,将§e蜜蜂宠物§7从§5史诗§7升级为§6传说。"
+    },
+    {
+      "name": "hub_general-1 / Rift_necklace_two_values_one_of_eight",
+      "source": [
+        "§7Secured: §c1/8 Timecharms"
+      ],
+      "consumed": 1,
+      "expected": "§7已收存: §c1/8 个时光符"
+    },
+    {
+      "name": "hub_general-1 / Rift_necklace_two_values_six_of_ten_synthetic",
+      "source": [
+        "§7Secured: §c6/10 Timecharms"
+      ],
+      "consumed": 1,
+      "expected": "§7已收存: §c6/10 个时光符"
+    },
+    {
+      "name": "hub_general-1 / Bartender_defense_buff_ten_percent",
+      "source": [
+        "§7Buffs the §a Defense §7value of",
+        "§7potions by §a+10%§7."
+      ],
+      "consumed": 2,
+      "expected": "§7药水的§a 防御力§7提高 §a+10%§7。"
+    },
+    {
+      "name": "hub_general-1 / Bartender_defense_buff_fifteen_percent_synthetic",
+      "source": [
+        "§7Buffs the §a Defense §7value of",
+        "§7potions by §a+15%§7."
+      ],
+      "consumed": 2,
+      "expected": "§7药水的§a 防御力§7提高 §a+15%§7。"
+    },
+    {
+      "name": "hub_general-1 / Membership_card_title",
+      "surface": "GUI_Title",
+      "source": [
+        "Membership Card"
+      ],
+      "expected": "会员卡"
+    },
+    {
+      "name": "hub_general-1 / Membership_card_wrong_option_preserved_as_written",
+      "source": [
+        "§7Write your real name, address,",
+        "§7and other personal details."
+      ],
+      "consumed": 2,
+      "expected": "§7填写你的真实姓名、地址及其他个人资料。"
+    },
+    {
+      "name": "hub_general-1 / Carpentry_table_whole_tooltip_paragraph",
+      "source": [
+        "§7Used for crafting furniture for",
+        "§7your world. View and craft all of",
+        "§7your unlocked furniture through the",
+        "§7Carpentry Table."
+      ],
+      "consumed": 4,
+      "expected": "§7用于制作你世界中的家具。在木工台上查看并制作所有已解锁的家具。"
+    },
+    {
+      "name": "farming-1 / Pamela指代Phillip与害虫各自保色",
+      "surface": "NPC_Message",
+      "source": [
+        "§fLet §6Phillip§f finish teaching you about §6Pests§f, then come chat with me!"
+      ],
+      "expected": "§f先让 §6Phillip§f 把§6害虫§f的事教完，再来找我聊聊吧!"
+    },
+    {
+      "name": "farming-1 / Pamela气味原料保绿",
+      "surface": "NPC_Message",
+      "source": [
+        "§fIts patented technology transforms §aorganic matter §finto aromas that only Pests can smell."
+      ],
+      "expected": "§f它采用的专利技术能把§a有机物§f转化成只有害虫才能闻到的气味。"
+    },
+    {
+      "name": "farming-1 / Beth固定坐标不当成可变属性",
+      "surface": "NPC_Message",
+      "source": [
+        "§fThe note reads: \"§d175 42 -470§f\""
+      ],
+      "expected": "§f纸条上写着:“§d175 42 -470§f”。"
+    },
+    {
+      "name": "farming-1 / Phillip教程按钮独立括号与正文",
+      "surface": "NPC_Message",
+      "source": [
+        "§eSelect an option: §a[What's a pest?]"
+      ],
+      "expected": "§e请选择: §a[什么是害虫?]"
+    },
+    {
+      "name": "farming-1 / Phillip第二级教程按钮",
+      "surface": "NPC_Message",
+      "source": [
+        "§eSelect an option: §a[What am I supposed to do about this?]"
+      ],
+      "expected": "§e请选择: §a[那我该怎么办?]"
+    },
+    {
+      "name": "farming-1 / Alchemist粗体展示电话按钮",
+      "surface": "NPC_Message",
+      "source": [
+        "§a§l[SHOW ABIPHONE]"
+      ],
+      "expected": "§a§l[展示 Abiphone]"
+    },
+    {
+      "name": "farming-1 / 神秘害虫捕手保留旁白斜体",
+      "surface": "NPC_Message",
+      "source": [
+        "§7§oThe figure nods at you and shambles away."
+      ],
+      "expected": "§7§o那道身影朝你点了点头，蹒跚着离开了。"
+    },
+    {
+      "name": "farming-1 / Hiker动态数量64_组合证据",
+      "surface": "NPC_Message",
+      "source": [
+        "§fCould you get me §764 §fof this food?"
+      ],
+      "expected": "§f你能给我带 §764§f 个这种食物吗?"
+    },
+    {
+      "name": "farming-1 / Hiker动态数量30_组合证据",
+      "surface": "NPC_Message",
+      "source": [
+        "§fCould you get me §730 §fof this food?"
+      ],
+      "expected": "§f你能给我带 §730§f 个这种食物吗?"
+    },
+    {
+      "name": "farming-1 / Hiker长谜语闭集_模板与谜语表组合非实测",
+      "surface": "NPC_Message",
+      "source": [
+        "§fThe food I want is §7red on the inside and green on the outside§f."
+      ],
+      "expected": "§f我想吃的是§7内红外绿的§f。"
+    },
+    {
+      "name": "farming-1 / Hiker纠正谜语闭集_模板与谜语表组合非实测",
+      "surface": "NPC_Message",
+      "source": [
+        "§fI asked for food that is a §7made of wheat§f."
+      ],
+      "expected": "§f我要的食物是§7用小麦做的§f。"
+    },
+    {
+      "name": "farming-1 / Hiker拒绝闭集以外短语",
+      "surface": "NPC_Message",
+      "source": [
+        "§fThe food I want is §7anything you like§f."
+      ],
+      "miss": true
+    },
+    {
+      "name": "farming-1 / 虫害安全区间两个数值_来源值",
+      "source": [
+        "§4 §c0-3 Pests §a§lSAFE"
+      ],
+      "consumed": 1,
+      "expected": "§4 §c0–3 只害虫 §a§l安全"
+    },
+    {
+      "name": "farming-1 / 虫害安全区间两个数值_变值",
+      "source": [
+        "§4 §c1-5 Pests §a§lSAFE"
+      ],
+      "consumed": 1,
+      "expected": "§4 §c1–5 只害虫 §a§l安全"
+    },
+    {
+      "name": "farming-1 / 喷洒材料来源跨行完整句",
+      "source": [
+        "§8Taken from your inventory or",
+        "§8Garden Sack!"
+      ],
+      "consumed": 2,
+      "expected": "§8从你的背包或花园收纳袋中取用!"
+    },
+    {
+      "name": "farming-1 / 喷洒材料来源缺少尾句不命中",
+      "source": [
+        "§8Taken from your inventory or"
+      ],
+      "miss": true
+    },
+    {
+      "name": "farming-1 / 喷洒材料来源不跨空行",
+      "source": [
+        "§8Taken from your inventory or",
+        "",
+        "§8Garden Sack!"
+      ],
+      "miss": true
+    },
+    {
+      "name": "farming-1 / 美味奶酪产量倍率和时长_原样本",
+      "source": [
+        "§7When in a minion, this increases the",
+        "§7number of resources created by §a2x",
+        "§7for §a1 hour§7!"
+      ],
+      "consumed": 3,
+      "expected": "§7放入小人后，资源产量变为原来的 §a2 倍§7，持续 §a1 小时§7!"
+    },
+    {
+      "name": "farming-1 / 美味奶酪产量倍率和时长_两处变值",
+      "source": [
+        "§7When in a minion, this increases the",
+        "§7number of resources created by §a3x",
+        "§7for §a2 hours§7!"
+      ],
+      "consumed": 3,
+      "expected": "§7放入小人后，资源产量变为原来的 §a3 倍§7，持续 §a2 小时§7!"
+    },
+    {
+      "name": "farming-1 / 书虫升级书完整跨行属性",
+      "source": [
+        "§7When applied to a vacuum, grants",
+        "§c+20 Damage§7."
+      ],
+      "consumed": 2,
+      "expected": "§7应用到吸尘器上后，获得 §c+20 伤害§7。"
+    },
+    {
+      "name": "farming-1 / 书虫升级书属性变值",
+      "source": [
+        "§7When applied to a vacuum, grants",
+        "§c+35 Damage§7."
+      ],
+      "consumed": 2,
+      "expected": "§7应用到吸尘器上后，获得 §c+35 伤害§7。"
+    },
+    {
+      "name": "farming-1 / 风车商店标题",
+      "surface": "GUI_Title",
+      "source": [
+        "Windmill Operator"
+      ],
+      "expected": "风车管理员"
+    },
+    {
+      "name": "farming-1 / 访客闲聊属于浮字而非NPC聊天",
+      "surface": "Hologram",
+      "source": [
+        "§eHey, don't push!"
+      ],
+      "expected": "§e喂，别挤!"
+    },
+    {
+      "name": "farming-1 / 访客闲聊弯引号独立兼容",
+      "surface": "Hologram",
+      "source": [
+        "§eI’m tired"
+      ],
+      "expected": "§e好累啊。"
+    },
+    {
+      "name": "farming-1 / 访客第二说话者纯空白段不承载中文",
+      "surface": "Hologram",
+      "source": [
+        "§f §eI win!"
+      ],
+      "expected": "§f §e我赢了!"
+    },
+    {
+      "name": "hub_general-2 / Jimmy名字高亮不染正文",
+      "surface": "NPC_Message",
+      "source": [
+        "§fHi, the name's §9Jimmy§f."
+      ],
+      "expected": "§f嗨,我叫 §9Jimmy§f。"
+    },
+    {
+      "name": "hub_general-2 / 安全大厅名保持青色",
+      "surface": "NPC_Message",
+      "source": [
+        "§fThe §bSecurity Hall §fis only for authorized personnel."
+      ],
+      "expected": "§b安全大厅§f只对获准进入的人开放。"
+    },
+    {
+      "name": "hub_general-2 / Susan三个点击选项各自保色",
+      "surface": "NPC_Message",
+      "source": [
+        "§eSelect an option: §a[Absolutely!] §6[Tell me more about the Safety Squad.] §c[Not right now.]"
+      ],
+      "expected": "§e请选择: §a[当然!] §6[跟我讲讲安全小队吧。] §c[现在不了。]"
+    },
+    {
+      "name": "hub_general-2 / Sam售卖按钮不吞间隔",
+      "surface": "NPC_Message",
+      "source": [
+        "§a§l[Good call!] §c§l[I'd rather keep it for myself]"
+      ],
+      "expected": "§a§l[好主意!] §c§l[我还是想留给自己]"
+    },
+    {
+      "name": "hub_general-2 / Sam带提示的单按钮",
+      "surface": "NPC_Message",
+      "source": [
+        "§eHelp her? §a§l[Fine]"
+      ],
+      "expected": "§e帮帮她? §a§l[好吧]"
+    },
+    {
+      "name": "hub_general-2 / 志愿者序数125",
+      "surface": "NPC_Message",
+      "source": [
+        "§fAwesome! You're our §c125th §fvolunteer!"
+      ],
+      "expected": "§f太棒了! 你是我们的第 §c125§f 位志愿者!"
+    },
+    {
+      "name": "hub_general-2 / 志愿者序数251",
+      "surface": "NPC_Message",
+      "source": [
+        "§fAwesome! You're our §c251st §fvolunteer!"
+      ],
+      "expected": "§f太棒了! 你是我们的第 §c251§f 位志愿者!"
+    },
+    {
+      "name": "hub_general-2 / 选举两个数值换序",
+      "surface": "ChatMessage",
+      "source": [
+        "§dPaul §enow has §d32.5% §eof votes with §d1,234 votes§e!"
+      ],
+      "expected": "§dPaul§e 当前获得 §d32.5%§e 的支持率,共 §d1,234 票§e!"
+    },
+    {
+      "name": "hub_general-2 / 选举第二组数值",
+      "surface": "ChatMessage",
+      "source": [
+        "§dMarina §enow has §d9.8% §eof votes with §d876 votes§e!"
+      ],
+      "expected": "§dMarina§e 当前获得 §d9.8%§e 的支持率,共 §d876 票§e!"
+    },
+    {
+      "name": "hub_general-2 / Lucius购买次数和拍卖名换序",
+      "surface": "NPC_Message",
+      "source": [
+        "§fYou've purchased §67 §fitems from the §5Dark Auction§f."
+      ],
+      "expected": "§f你已经在§5暗黑拍卖§f买了 §67§f 件物品。"
+    },
+    {
+      "name": "hub_general-2 / Lucius下一档不枚举",
+      "surface": "NPC_Message",
+      "source": [
+        "§fCome back when you've purchased §c15§f. I'll have something for you then."
+      ],
+      "expected": "§f买够 §c15§f 件再来吧,到时我有东西给你。"
+    },
+    {
+      "name": "hub_general-2 / Jax固定挑战拼写保留兼容",
+      "surface": "NPC_Message",
+      "source": [
+        "§fI unlocked §4Target Partice IV§f for you, good luck kiddo."
+      ],
+      "expected": "§f我给你解锁了§4靶场练习 IV§f,祝你好运,小子。"
+    },
+    {
+      "name": "hub_general-2 / 不把Scorpius人名译成称号",
+      "surface": "NPC_Message",
+      "source": [
+        "§fMy name is Scorpius, I don't come here very often."
+      ],
+      "expected": "§f我叫 Scorpius,不常来这儿。"
+    },
+    {
+      "name": "hub_general-2 / 岛屿警告跨行完整句",
+      "source": [
+        "§7§cWarning §f- inappropriate names are",
+        "§fpunishable!"
+      ],
+      "consumed": 2,
+      "expected": "§c警告§f - 不当名称会受到处罚!"
+    },
+    {
+      "name": "hub_general-2 / 岛屿警告缺尾句不匹配Lore",
+      "source": [
+        "§7§cWarning §f- inappropriate names are"
+      ],
+      "miss": true
+    },
+    {
+      "name": "hub_general-2 / 岛屿警告不能跨空行",
+      "source": [
+        "§7§cWarning §f- inappropriate names are",
+        "",
+        "§fpunishable!"
+      ],
+      "miss": true
+    },
+    {
+      "name": "hub_general-2 / 温室蓝图机制与人名高亮",
+      "source": [
+        "§7This blueprint depicts some sort of",
+        "§aGreenhouse §7structure, maybe §bSam",
+        "§7would find some use with it."
+      ],
+      "consumed": 3,
+      "expected": "§7这张蓝图描绘了某种§a温室§7结构,也许 §bSam§7 用得上它。"
+    },
+    {
+      "name": "hub_general-2 / 温室蓝图缺尾行",
+      "source": [
+        "§7This blueprint depicts some sort of",
+        "§aGreenhouse §7structure, maybe §bSam"
+      ],
+      "miss": true
+    },
+    {
+      "name": "hub_general-2 / Sam镰刀范围和方块对象",
+      "source": [
+        "§7Cleans a §93x3 §7area of grass, leaves",
+        "§7and flowers."
+      ],
+      "consumed": 2,
+      "expected": "§7清理 §93x3§7 范围内的草、树叶和花。"
+    },
+    {
+      "name": "hub_general-2 / 宠物照料整句不露尾行",
+      "source": [
+        "§7Place a pet above for Kat to take",
+        "§7care of!"
+      ],
+      "consumed": 2,
+      "expected": "§7把宠物放在上方,交给 Kat 照顾!"
+    },
+    {
+      "name": "hub_general-2 / 宠物稀有度蓝色跟随词义",
+      "source": [
+        "§7After some time, your pet §9Rarity §7will",
+        "§7be upgraded!"
+      ],
+      "consumed": 2,
+      "expected": "§7经过一段时间,你的宠物§9稀有度§7就会提升!"
+    },
+    {
+      "name": "hub_general-2 / Jax奖励物品非技能标题",
+      "surface": "GUI_Item",
+      "source": [
+        "§aArrow Swapper"
+      ],
+      "expected": "§a箭矢切换器"
+    },
+    {
+      "name": "hub_general-2 / 私人岛屿固定日落时间预设",
+      "source": [
+        "§7§7Sets your current island time to §a6:00",
+        "§aPM"
+      ],
+      "consumed": 2,
+      "expected": "§7将岛屿当前时间设为§a晚上 6:00"
+    },
+    {
+      "name": "hub_general-2 / 岛屿解锁进度两个数字",
+      "source": [
+        "§7§cClick on a Day Saver in your",
+        "§cinventory to unlock! (1/2)"
+      ],
+      "consumed": 2,
+      "expected": "§c点击背包中的日光保持器以解锁! (1/2)"
+    },
+    {
+      "name": "hub_general-2 / 岛屿解锁进度第二组数字",
+      "source": [
+        "§7§cClick on a Day Saver in your",
+        "§cinventory to unlock! (0/3)"
+      ],
+      "consumed": 2,
+      "expected": "§c点击背包中的日光保持器以解锁! (0/3)"
+    },
+    {
+      "name": "hub_general-2 / 完整生物群系句依赖提案词表",
+      "requires": "term-proposals.json",
+      "source": [
+        "§7Set the biome of your entire island",
+        "§7to §aBirch Forest§7!"
+      ],
+      "consumed": 2,
+      "expected": "§7将整座岛屿的生物群系设为§a桦木森林§7!"
+    },
+    {
+      "name": "hub_general-2 / 未知任意句子不吞进物品名",
+      "source": [
+        "§cClick on a thing you forgot to put away in your inventory to unlock!"
+      ],
+      "miss": true
+    },
+    {
+      "name": "hub_general-2 / 已有Jerry工坊实测不变",
+      "surface": "NPC_Message",
+      "source": [
+        "§cJerry's Workshop §fis under attack!"
+      ],
+      "expected": "§cJerry 的工坊§f遭到袭击了!"
+    },
+    {
+      "name": "hub_general-2 / 私人岛屿关闭农业时运提示按钮",
+      "surface": "ChatMessage",
+      "source": [
+        "§6§lSTAT ALERT! §fFarming Fortune doesn't work on your Private Island! Try farming in Public Islands or The Garden instead! §2§l[I GET IT]"
+      ],
+      "expected": "§6§l属性提醒! §f农业时运在你的私人岛屿上不会生效! 请改去公共岛屿或花园耕种! §2§l[知道了]"
+    },
+    {
+      "name": "hub_general-2 / 私人岛屿方块数量与上限分开",
+      "surface": "ChatMessage",
+      "source": [
+        "§cYou have the maximum number of this block allowed on your island. §7(250/250)"
+      ],
+      "expected": "§c你的岛屿上这种方块的数量已达上限。 §7(250/250)"
+    },
+    {
+      "name": "fishing-1 / Coral既有专名高亮保持",
+      "surface": "NPC_Message",
+      "source": [
+        "§fThey're the curious group that trails behind §dShrimp§f, you know?"
+      ],
+      "expected": "§f就是跟在 §dShrimp§f 身后的那群怪家伙,你知道吧?"
+    },
+    {
+      "name": "fishing-1 / Coral单按钮三边界",
+      "surface": "NPC_Message",
+      "source": [
+        "§eSelect an option: §a[Vaguely.]"
+      ],
+      "expected": "§e请选择: §a[有点印象。]"
+    },
+    {
+      "name": "fishing-1 / Lily双按钮事件不可互串",
+      "surface": "NPC_Message",
+      "source": [
+        "§eSelect an option: §a[I promise.] §c[Depends what we're dealing with here...]"
+      ],
+      "expected": "§e选择一个选项: §a[我保证。] §c[那得看咱们面对的是什么……]"
+    },
+    {
+      "name": "fishing-1 / 船名用户参数保留1",
+      "surface": "ChatMessage",
+      "source": [
+        "§aYour §6Ship §ais now named §6SeaQuest§a!"
+      ],
+      "expected": "§a你的§6船舶§a现已命名为 §6SeaQuest§a!"
+    },
+    {
+      "name": "fishing-1 / 船名用户参数保留2",
+      "surface": "ChatMessage",
+      "source": [
+        "§aYour §6Ship §ais now named §6Boat902§a!"
+      ],
+      "expected": "§a你的§6船舶§a现已命名为 §6Boat902§a!"
+    },
+    {
+      "name": "fishing-1 / 船名超限负例",
+      "surface": "ChatMessage",
+      "source": [
+        "§aYour §6Ship §ais now named §6ABCDEFGHIJKLMNOPQ§a!"
+      ],
+      "expected": "§aYour §6Ship §ais now named §6ABCDEFGHIJKLMNOPQ§a!"
+    },
+    {
+      "name": "fishing-1 / 船舶安装物品复用名称",
+      "surface": "ChatMessage",
+      "source": [
+        "§7You equipped your §6Ship §7with a §fRusty Ship Engine§7!"
+      ],
+      "expected": "§7你为§6船舶§7安装了§f生锈的船舶引擎§7!"
+    },
+    {
+      "name": "fishing-1 / 鱼家族分页两个动态数1",
+      "surface": "GUI_Title",
+      "source": [
+        "(1/2) Fish Family"
+      ],
+      "expected": "(1/2) 鱼类家族"
+    },
+    {
+      "name": "fishing-1 / 鱼家族分页两个动态数2",
+      "surface": "GUI_Title",
+      "source": [
+        "(3/4) Fish Family"
+      ],
+      "expected": "(3/4) 鱼类家族"
+    },
+    {
+      "name": "fishing-1 / 鱼展示进度两个值1",
+      "source": [
+        "§7Fish Shown: §e2§7/§a32"
+      ],
+      "consumed": 1,
+      "expected": "§7已展示的鱼: §e2§7/§a32"
+    },
+    {
+      "name": "fishing-1 / 鱼展示进度两个值2及完成变色",
+      "source": [
+        "§7Fish Shown: §a34§7/§a34"
+      ],
+      "consumed": 1,
+      "expected": "§7已展示的鱼: §a34§7/§a34"
+    },
+    {
+      "name": "fishing-1 / 鱼展示数量拒绝玩家名",
+      "source": [
+        "§7Fish Shown: §eAlice§7/§a32"
+      ],
+      "miss": true
+    },
+    {
+      "name": "fishing-1 / 捕蛙进度两个值",
+      "source": [
+        "§cCaught 7 / 12"
+      ],
+      "consumed": 1,
+      "expected": "§c已捕获 7 / 12"
+    },
+    {
+      "name": "fishing-1 / 青蛙铜品质后缀",
+      "surface": "GUI_Item",
+      "source": [
+        "§fCommon Frog §8§lBRONZE"
+      ],
+      "expected": "§f普通蛙 §8§l铜品质"
+    },
+    {
+      "name": "fishing-1 / 青蛙银品质后缀非淡灰色",
+      "surface": "GUI_Item",
+      "source": [
+        "§fCommon Frog §7§lSILVER"
+      ],
+      "expected": "§f普通蛙 §7§l银品质"
+    },
+    {
+      "name": "fishing-1 / 锦标蛙奖励完整两行",
+      "source": [
+        "§7Catch Silver tier or above of all",
+        "§7Trophy Frogs."
+      ],
+      "consumed": 2,
+      "expected": "§7钓到所有种类的银品质或更高品质锦标蛙。"
+    },
+    {
+      "name": "fishing-1 / Frogcoin洞穴与水换序保色",
+      "source": [
+        "§7Throw this into the §bwaters §7of the",
+        "§2Lotus Eater's Cave §7to gain",
+        "§7temporary stat bonuses while on the",
+        "§3Lotus Atoll§7!"
+      ],
+      "consumed": 4,
+      "expected": "§7投入§2食莲者洞穴§7的§b水§7中,即可在§3莲花环礁§7获得临时属性加成!"
+    },
+    {
+      "name": "fishing-1 / Frogcoin缺尾句不得吞行",
+      "source": [
+        "§7Throw this into the §bwaters §7of the"
+      ],
+      "miss": true
+    },
+    {
+      "name": "fishing-1 / Frogcoin不得跨空行",
+      "source": [
+        "§7Throw this into the §bwaters §7of the",
+        "",
+        "§2Lotus Eater's Cave §7to gain",
+        "§7temporary stat bonuses while on the",
+        "§3Lotus Atoll§7!"
+      ],
+      "miss": true
+    },
+    {
+      "name": "fishing-1 / 雨天蛙高亮条件",
+      "source": [
+        "§7Caught during §brain§7."
+      ],
+      "consumed": 1,
+      "expected": "§b下雨§7时钓到。"
+    },
+    {
+      "name": "fishing-1 / 捐蛙菜单连续四行保留奖励莲花",
+      "source": [
+        "§7Donates all the §2Trophy Frogs §7in",
+        "§7your inventory for research",
+        "§7purposes, giving you §aLotus §7as a",
+        "§7reward!"
+      ],
+      "consumed": 4,
+      "expected": "§7捐出背包中的全部§2锦标蛙§7供研究使用,并获得§a莲花§7作为奖励!"
+    },
+    {
+      "name": "fishing-1 / 独立下一句不被鱼展示说明吞掉",
+      "source": [
+        "§7Showing this Fish will Soulbind it,",
+        "§7making it unable to be sold or traded.",
+        "§7Unknown extra line."
+      ],
+      "consumed": 2,
+      "expected": "§7展示这条鱼后,它将被灵魂绑定,无法出售或交易。"
+    },
+    {
+      "name": "fishing-1 / 法师经验复用已有工坊记录",
+      "source": [
+        "§7Increases Mage class experience",
+        "§7gain by §a12%§7."
+      ],
+      "consumed": 2,
+      "expected": "§7法师职业经验获取量增加 §a12%§7。"
+    },
+    {
+      "name": "fishing-1 / 派对鱼新名称",
+      "surface": "GUI_Item",
+      "source": [
+        "§cParty the Fish"
+      ],
+      "expected": "§c派对鱼"
+    },
+    {
+      "name": "fishing-1 / Fann既定任务专名保留",
+      "surface": "GUI_Item",
+      "source": [
+        "§cBat the Fish"
+      ],
+      "expected": "§cBat the Fish"
+    },
+    {
+      "name": "fishing-1 / 雨水成本变值1",
+      "source": [
+        "§7One minute of rain: §65,000 coins"
+      ],
+      "consumed": 1,
+      "expected": "§7每分钟降雨: §65,000 硬币"
+    },
+    {
+      "name": "fishing-1 / 雨水成本变值2",
+      "source": [
+        "§7One minute of rain: §612,500 coins"
+      ],
+      "consumed": 1,
+      "expected": "§7每分钟降雨: §612,500 硬币"
+    },
+    {
+      "name": "economy-1 / Banker首次接待保持原始NPC前缀",
+      "surface": "NPC_Message",
+      "source": [
+        "§e[NPC] Banker§f: Hello there!"
+      ],
+      "expected": "§e[NPC] Banker§f: 你好!"
+    },
+    {
+      "name": "economy-1 / Banker硬币高亮不扩散到叙述",
+      "surface": "NPC_Message",
+      "source": [
+        "§fYou may want to store your §6Coins §fin a safe place while you are off adventuring."
+      ],
+      "expected": "§f外出冒险时,不妨把§6硬币§f存放在安全的地方。"
+    },
+    {
+      "name": "economy-1 / 银行跨行利率与计息本金中文换序",
+      "source": [
+        "§7You will earn §b2% §7interest every",
+        "§7season for your first §610 million",
+        "§7banked coins."
+      ],
+      "consumed": 3,
+      "expected": "§7每个季节,你存入的前 §610 百万§7硬币都能获得 §b2%§7的利息。"
+    },
+    {
+      "name": "economy-1 / 银行利率与本金第二组数值",
+      "source": [
+        "§7You will earn §b3.5% §7interest every",
+        "§7season for your first §620 million",
+        "§7banked coins."
+      ],
+      "consumed": 3,
+      "expected": "§7每个季节,你存入的前 §620 百万§7硬币都能获得 §b3.5%§7的利息。"
+    },
+    {
+      "name": "economy-1 / 银行缺少本金尾行不误吞",
+      "source": [
+        "§7You will earn §b2% §7interest every",
+        "§7season for your first §610 million"
+      ],
+      "miss": true
+    },
+    {
+      "name": "economy-1 / 银行空行隔开不能合并利息句",
+      "source": [
+        "§7You will earn §b2% §7interest every",
+        "",
+        "§7season for your first §610 million",
+        "§7banked coins."
+      ],
+      "miss": true
+    },
+    {
+      "name": "economy-1 / 旧版银行升级费用双数值双货币颜色",
+      "source": [
+        "§7Cost: §65,000,000 coins §7+ §61 §eEnch. Gold Blocks"
+      ],
+      "consumed": 1,
+      "expected": "§7花费: §65,000,000 硬币§7 + §61§e 附魔金块"
+    },
+    {
+      "name": "economy-1 / 旧版银行升级费用不同档次不定死",
+      "source": [
+        "§7Cost: §610,000,000 coins §7+ §65 §eEnch. Gold Blocks"
+      ],
+      "consumed": 1,
+      "expected": "§7花费: §610,000,000 硬币§7 + §65§e 附魔金块"
+    },
+    {
+      "name": "economy-1 / 银行分档标题保留边框删除线",
+      "source": [
+        "§d>§m-------§r §6Interest Tranches§d §m-------§r§d<"
+      ],
+      "consumed": 1,
+      "expected": "§d>§d§m-------§r §6利息分档§d §d§m-------§d<"
+    },
+    {
+      "name": "economy-1 / 拍卖最低竞价跨行高亮完整金额",
+      "source": [
+        "§7You need to bid at least §61,250",
+        "§6coins §7to hold the top bid on",
+        "§7this auction."
+      ],
+      "consumed": 3,
+      "expected": "§7你至少需要出价 §61,250 硬币§7才能成为本场拍卖的最高出价者。"
+    },
+    {
+      "name": "economy-1 / 集市出售数量和收入两次换色",
+      "source": [
+        "§7You sold §a32§7x of this item",
+        "§7for §62,500 coins§7!"
+      ],
+      "consumed": 2,
+      "expected": "§7你售出了 §a32§7 个此物品,获得 §62,500 硬币§7!"
+    },
+    {
+      "name": "economy-1 / 集市出售第二组动态数量与收入",
+      "source": [
+        "§7You sold §a640§7x of this item",
+        "§7for §650,000 coins§7!"
+      ],
+      "consumed": 2,
+      "expected": "§7你售出了 §a640§7 个此物品,获得 §650,000 硬币§7!"
+    },
+    {
+      "name": "economy-1 / 集市走势图点击提示区分左右键颜色",
+      "source": [
+        "§eLeft-Click to switch span §bRight-Click to zoom"
+      ],
+      "consumed": 1,
+      "expected": "§e左键切换时间范围 §b右键缩放"
+    },
+    {
+      "name": "economy-1 / 走势图选中七天不能染到二十四小时",
+      "surface": "GUI_Item",
+      "source": [
+        "§aBuy Price §731d §e7d §724h"
+      ],
+      "expected": "§a买入价 §731 天 §e7 天 §724 小时"
+    },
+    {
+      "name": "economy-1 / 特殊集市半打必须是六块曲奇",
+      "surface": "GUI_Item",
+      "source": [
+        "§aBuy §ehalf a dozen §acookies!"
+      ],
+      "expected": "§a购买§e六块§a曲奇!"
+    },
+    {
+      "name": "economy-1 / 曲奇确认点券位于第二行",
+      "source": [
+        "§7You will be able to gain",
+        "§7§b5,760 Bits §7from this",
+        "§7cookie."
+      ],
+      "consumed": 3,
+      "expected": "§7这块曲奇可让你获取 §b5,760 点券§7。"
+    },
+    {
+      "name": "economy-1 / 曲奇确认不同声望点券数",
+      "source": [
+        "§7You will be able to gain",
+        "§7§b9,888 Bits §7from this",
+        "§7cookie."
+      ],
+      "consumed": 3,
+      "expected": "§7这块曲奇可让你获取 §b9,888 点券§7。"
+    },
+    {
+      "name": "economy-1 / 曲奇点券资格不得额外添加概率",
+      "surface": "GUI_Item",
+      "source": [
+        "§8‣ §7Ability to gain §bBits§7!"
+      ],
+      "expected": "§8‣ §7可以获得§b点券§7!"
+    },
+    {
+      "name": "economy-1 / 海克斯知识就是力量强调仍是金色",
+      "source": [
+        "§7Knowledge is §6power§7! Apply",
+        "§7special books to your item to",
+        "§7upgrade it!"
+      ],
+      "consumed": 3,
+      "expected": "§7知识就是§6力量§7! 为物品使用特殊书籍,即可将其强化!"
+    },
+    {
+      "name": "economy-1 / 普通附魔Bank不借用银行词表",
+      "surface": "GUI_Title",
+      "source": [
+        "Ultimate Enchantments ➜ Bank"
+      ],
+      "expected": "终极附魔 ➜ Bank"
+    },
+    {
+      "name": "economy-1 / 集市木材分类不误译为木质",
+      "surface": "GUI_Title",
+      "source": [
+        "Woods & Fishes ➜ Wood"
+      ],
+      "expected": "木材与鱼类 ➜ 木材"
+    },
+    {
+      "name": "economy-1 / 既有交易请求可点击短语保色",
+      "surface": "NPC_Message",
+      "source": [
+        "§bAlex §ahas sent you a trade request. §bClick here §ato accept!"
+      ],
+      "expected": "§bAlex §a向你发起了交易请求。§b点击这里§a接受!"
+    },
+    {
+      "name": "dungeons-1 / Trinity电话标记与复活石高亮",
+      "surface": "NPC_Message",
+      "source": [
+        "§b✆ §fIt's quite simple - the brew requires §aRevive Stones§f!"
+      ],
+      "expected": "§b✆ §f其实很简单，酿药需要§a复活石§f!"
+    },
+    {
+      "name": "dungeons-1 / Saul地名与危险程度分别保色",
+      "surface": "NPC_Message",
+      "source": [
+        "§fNot the mention that §cThe Catacombs§f is §4extremenly dangerous§f to explore alone."
+      ],
+      "expected": "§f更别说独自探索§c地牢§f，可是§4极其危险§f的。"
+    },
+    {
+      "name": "dungeons-1 / Mort数字与队伍独立重排",
+      "surface": "NPC_Message",
+      "source": [
+        "§fA §9party§f of §e5 players§f is crucial."
+      ],
+      "expected": "§f凑齐§e5 个人§f的§9队伍§f很关键。"
+    },
+    {
+      "name": "dungeons-1 / Malik精华数量不染白",
+      "surface": "NPC_Message",
+      "source": [
+        "§fSurvive long enough to collect §a5,000 §dUndead Essence§f, and then bring it to me."
+      ],
+      "expected": "§f你先活到攒够 §a5,000 §d亡灵精华§f，再拿来给我。"
+    },
+    {
+      "name": "dungeons-1 / Mort交付按钮括号事件边界",
+      "surface": "NPC_Message",
+      "source": [
+        "§eSelect an option: §a§l[GIVE SAVING GRACE]"
+      ],
+      "expected": "§e请选择: §a§l[交出救命恩典]"
+    },
+    {
+      "name": "dungeons-1 / Saul追问按钮事件边界",
+      "surface": "NPC_Message",
+      "source": [
+        "§eSelect an option:§a [Yeah. Why is that?]"
+      ],
+      "expected": "§e请选择:§a [是啊，为什么?]"
+    },
+    {
+      "name": "dungeons-1 / 推荐信完整三行NPC名与地名保色",
+      "source": [
+        "§7Give this letter to §bMort§7 to gain",
+        "§7access to enter §cThe Catacombs §7on",
+        "§7your own!"
+      ],
+      "consumed": 3,
+      "expected": "§7把这封信交给 §bMort§7，即可独自进入§c地牢§7!"
+    },
+    {
+      "name": "dungeons-1 / 推荐信缺尾行不能吃半句",
+      "source": [
+        "§7Give this letter to §bMort§7 to gain",
+        "§7access to enter §cThe Catacombs §7on"
+      ],
+      "miss": true
+    },
+    {
+      "name": "dungeons-1 / 推荐信空行阻断整句",
+      "source": [
+        "§7Give this letter to §bMort§7 to gain",
+        "",
+        "§7access to enter §cThe Catacombs §7on",
+        "§7your own!"
+      ],
+      "miss": true
+    },
+    {
+      "name": "dungeons-1 / Croesus两个动态值60次72小时",
+      "source": [
+        "§7But beware, I can only hold §660 runs",
+        "§7worth of chests, and will discard",
+        "§7them after §a72 hours§7!"
+      ],
+      "consumed": 3,
+      "expected": "§7但请注意,我最多只能保存 §660 场§7挑战的宝箱,并会在 §a72 小时§7后将其丢弃!"
+    },
+    {
+      "name": "dungeons-1 / Croesus两个动态值30次24小时合成回归",
+      "source": [
+        "§7But beware, I can only hold §630 runs",
+        "§7worth of chests, and will discard",
+        "§7them after §a24 hours§7!"
+      ],
+      "consumed": 3,
+      "expected": "§7注意，我最多只能保管 §630 次挑战§7的宝箱，§a24 小时§7后就会丢弃!"
+    },
+    {
+      "name": "dungeons-1 / Trinity回血数量25",
+      "source": [
+        "§7Grants health regeneration of",
+        "§a+25 HP §7per second."
+      ],
+      "consumed": 2,
+      "expected": "§7每秒恢复 §a+25 点生命值§7。"
+    },
+    {
+      "name": "dungeons-1 / Trinity回血数量40合成回归",
+      "source": [
+        "§7Grants health regeneration of",
+        "§a+40 HP §7per second."
+      ],
+      "consumed": 2,
+      "expected": "§7每秒恢复 §a+40 点生命值§7。"
+    },
+    {
+      "name": "dungeons-1 / 竞速无技能整句",
+      "source": [
+        "§7You can't use Ender Pearls or",
+        "§7item abilities during this race,",
+        "§7but Grappling Hooks still work."
+      ],
+      "consumed": 3,
+      "expected": "§7这场竞速不能使用末影珍珠和物品技能，但仍可使用抓钩。"
+    },
+    {
+      "name": "dungeons-1 / 竞速无技能缺尾句",
+      "source": [
+        "§7You can't use Ender Pearls or",
+        "§7item abilities during this race,"
+      ],
+      "miss": true
+    },
+    {
+      "name": "dungeons-1 / Kuudra肉块罕见稀有度分支",
+      "source": [
+        "§7A chunk of Kuudra's enchanted",
+        "§7flesh, capable of upgrade your",
+        "§cKuudra Pet§7 to §aUncommon §7rarity!"
+      ],
+      "consumed": 3,
+      "expected": "§7一块附魔过的 Kuudra 血肉，可将你的 §cKuudra 宠物§7升至§a罕见§7稀有度!"
+    },
+    {
+      "name": "dungeons-1 / Kuudra肉块传说稀有度分支",
+      "source": [
+        "§7A chunk of Kuudra's enchanted",
+        "§7flesh, capable of upgrade your",
+        "§cKuudra Pet§7 to §6Legendary §7rarity!"
+      ],
+      "consumed": 3,
+      "expected": "§7一块附魔过的 Kuudra 血肉，可将你的 §cKuudra 宠物§7升至§6传说§7稀有度!"
+    },
+    {
+      "name": "dungeons-1 / 地牢巫师任务奖励高亮",
+      "surface": "NPC_Message",
+      "source": [
+        "§fGranted your team a §dBlessing of Wisdom I"
+      ],
+      "expected": "§f已为你的队伍赐予§d智慧祝福 I"
+    },
+    {
+      "name": "dungeons-1 / 收藏品子菜单等级不固定",
+      "surface": "GUI_Title",
+      "source": [
+        "Bonzo VII Rewards"
+      ],
+      "expected": "Bonzo VII 奖励"
+    },
+    {
+      "name": "dungeons-1 / 等级翻页上下限合成变值",
+      "surface": "GUI_Item",
+      "source": [
+        "§aLevels 51 - 75"
+      ],
+      "expected": "§a51 - 75 级"
+    },
+    {
+      "name": "taming-1 / Fann训练空槽两种灰色分别保留",
+      "source": [
+        "§7This slot is currently empty!",
+        "§8You can level up pets by training",
+        "§8them here."
+      ],
+      "consumed": 3,
+      "expected": "§7这个槽位目前是空的! §8你可以在这里训练宠物,提升等级。"
+    },
+    {
+      "name": "taming-1 / Hootie名字不能染整句",
+      "source": [
+        "§7Unlock this slot by feeding §6Hootie",
+        "§9Great Carrot Candy§7! (0/5)"
+      ],
+      "consumed": 2,
+      "expected": "§7喂给 §6Hootie §9高级胡萝卜糖§7即可解锁此槽位! (0/5)"
+    },
+    {
+      "name": "taming-1 / 糖果进度两个数值都可变",
+      "note": "变值测试，并非真实解锁配方",
+      "source": [
+        "§7Unlock this slot by feeding §6Hootie",
+        "§9Great Carrot Candy§7! (3/8)"
+      ],
+      "consumed": 2,
+      "expected": "§7喂给 §6Hootie §9高级胡萝卜糖§7即可解锁此槽位! (3/8)"
+    },
+    {
+      "name": "taming-1 / 驯养等级的绿色不染到免费训练说明",
+      "source": [
+        "§7Fann's Free Training session gets",
+        "§7increasingly better the higher the",
+        "§aTaming Level §7of her customers."
+      ],
+      "consumed": 3,
+      "expected": "§7顾客的§a驯养等级§7越高,Fann 的免费训练效果就越好。"
+    },
+    {
+      "name": "taming-1 / 训练位选宠物整句",
+      "source": [
+        "§7Click a pet in your inventory to the",
+        "§7left to begin training!"
+      ],
+      "consumed": 2,
+      "expected": "§7点击左侧物品栏中的宠物,开始训练!"
+    },
+    {
+      "name": "taming-1 / 不完整新句不误匹配Lore",
+      "source": [
+        "§7Fann's Free Training session gets",
+        "§7increasingly better the higher the"
+      ],
+      "miss": true,
+      "note": "检验 LORE 整句匹配器；旧 GUI_Item 兜底另测，不将其视为完整命中。"
+    },
+    {
+      "name": "taming-1 / 不跨空行拼接Hootie解锁说明",
+      "source": [
+        "§7Unlock this slot by feeding §6Hootie",
+        "",
+        "§9Great Carrot Candy§7! (0/5)"
+      ],
+      "miss": true
+    },
+    {
+      "name": "taming-1 / NoPet优先于泛类别Pet模板",
+      "surface": "GUI_Item",
+      "source": [
+        "§cNo Pet"
+      ],
+      "expected": "§c未选择宠物"
+    },
+    {
+      "name": "taming-1 / Oringo商店人名不译职务翻译",
+      "surface": "GUI_Title",
+      "source": [
+        "Oringo - Traveling Zookeeper"
+      ],
+      "expected": "Oringo - 巡回动物园管理员"
+    },
+    {
+      "name": "taming-1 / Oringo电话珍珠高亮保持蓝色",
+      "surface": "NPC_Message",
+      "source": [
+        "§fI travel a lot and I'm running quite low on §9Silent Pearl§f."
+      ],
+      "expected": "§f我常年四处跑,手头的§9无声珍珠§f快用完了。"
+    },
+    {
+      "name": "taming-1 / Oringo固定任务数量不冒充价格",
+      "surface": "NPC_Message",
+      "source": [
+        "§fIf you bring me §a64 §fof them, I'll give you my contact."
+      ],
+      "expected": "§f给我带来 §a64 §f个,我就把联系方式给你。"
+    },
+    {
+      "name": "taming-1 / Oringo活动名称绿色不染正文",
+      "surface": "NPC_Message",
+      "source": [
+        "§fThe §aTraveling Zoo §fhas arrived! Here are my offerings this year:"
+      ],
+      "expected": "§a巡回动物园§f开张啦! 这些是我今年带来的宠物:"
+    },
+    {
+      "name": "taming-1 / Fann极速训练数字与宠物种类",
+      "surface": "NPC_Message",
+      "source": [
+        "§e[#2] §fTurbo! Elephant has concluded and is now §7[Lvl 65]"
+      ],
+      "expected": "§e[#2] §f大象的极速训练结束了,现在是 §7[等级 65]"
+    },
+    {
+      "name": "taming-1 / Fann轻度训练两个数字变值",
+      "note": "合成参数回归，不是新的 Wiki 实测样本",
+      "surface": "NPC_Message",
+      "source": [
+        "§e[#3] §fLight Lion has concluded and is now §7[Lvl 28]"
+      ],
+      "expected": "§e[#3] §f狮子的轻度训练结束了,现在是 §7[等级 28]"
+    },
+    {
+      "name": "taming-1 / 未知训练类型不能当泛raw吞入",
+      "surface": "NPC_Message",
+      "source": [
+        "§e[#3] §fPlease Train This Lion has concluded and is now §7[Lvl 28]"
+      ],
+      "miss": true
+    },
+    {
+      "name": "taming-1 / 时钟训练目标与小时单位",
+      "source": [
+        "§7Advance the time of your §dPet",
+        "§dTraining §7by §a1 hour§7."
+      ],
+      "consumed": 2,
+      "expected": "§7将你的§d宠物训练§7的时间向前推进 §a1 小时§7。"
+    },
+    {
+      "name": "taming-1 / 时钟英文单位不是泛raw",
+      "note": "合成变值回归",
+      "source": [
+        "§7Advance the time of your §dPet Training §7by §a2 hours 17 minutes§7."
+      ],
+      "consumed": 1,
+      "expected": "§7将§d宠物训练§7的时间推进 §a2 小时 17 分钟§7。"
+    },
+    {
+      "name": "taming-1 / 时钟未知长句不能作为时长",
+      "source": [
+        "§7Advance the time of your §dPet Training §7by §asoon after you pay§7."
+      ],
+      "miss": true
+    },
+    {
+      "name": "taming-1 / 猴子稀有档藤蔓荡跃数值",
+      "source": [
+        "§7Gain +§a75 §f✦ Speed §7while",
+        "§7in The Park."
+      ],
+      "consumed": 2,
+      "expected": "§7身处公园时,获得 +§a75§f ✦ 速度§7。"
+    },
+    {
+      "name": "taming-1 / 猴子更高档只改变数值不改机制",
+      "source": [
+        "§7Gain +§a100 §f✦ Speed §7while",
+        "§7in The Park."
+      ],
+      "consumed": 2,
+      "expected": "§7身处公园时,获得 +§a100§f ✦ 速度§7。"
+    },
+    {
+      "name": "taming-1 / BorealOwl属性等级为罗马数字",
+      "surface": "GUI_Lore",
+      "source": [
+        "§6Owl Friend V"
+      ],
+      "expected": "§6猫头鹰之友 V"
+    },
+    {
+      "name": "taming-1 / BorealOwl宠物经验完整说明",
+      "source": [
+        "§7Your pets gain §a+2%§7 more Pet EXP",
+        "§7from Fann."
+      ],
+      "consumed": 2,
+      "expected": "§7你的宠物从 Fann 处获得的宠物经验提高 §a+2%§7。"
+    },
+    {
+      "name": "taming-1 / BatTheFish名称保留且不重复采集",
+      "surface": "GUI_Item",
+      "source": [
+        "§cBat the Fish"
+      ],
+      "expected": "§cBat the Fish"
+    },
+    {
+      "name": "taming-1 / 长颈鹿普通档生命回复不得凭空补目标",
+      "note": "Wiki COMMON 原始范围 +1.49➡50，取上端点回归；依赖主代理将 Combat 既有通用句中性化。",
+      "source": [
+        "§7Grants §c+50❣ Health Regen§7."
+      ],
+      "consumed": 1,
+      "expected": "§7提供 §c+50 ❣ 生命回复§7。"
+    },
+    {
+      "name": "taming-1 / 长颈鹿传说档生命回复不改变作用对象",
+      "note": "Wiki LEGENDARY 原始范围 +50.5➡100，取上端点回归；依赖主代理将 Combat 既有通用句中性化。",
+      "source": [
+        "§7Grants §c+100❣ Health Regen§7."
+      ],
+      "consumed": 1,
+      "expected": "§7提供 §c+100 ❣ 生命回复§7。"
+    },
+    {
+      "name": "taming-1 / 狮子被攻击后的伤害是加成不是造成150百分比",
+      "note": "Wiki范围 +1.5➡150%，取上端点回归。",
+      "source": [
+        "§7Deal §c+150%  Damage",
+        "§7against mobs that have",
+        "§7attacked you."
+      ],
+      "consumed": 3,
+      "expected": "§7对攻击过你的怪物,§c 伤害§7提高 §c+150%§7。"
+    },
+    {
+      "name": "foraging-1 / Romero 指代 Juliette 保留黄色姓名",
+      "surface": "NPC_Message",
+      "source": [
+        "§fBring the item I gave you to §eJuliette§f!"
+      ],
+      "expected": "§f把我给你的东西带给 §eJuliette§f!"
+    },
+    {
+      "name": "foraging-1 / Kelly 两个可点击选项颜色不互串",
+      "surface": "NPC_Message",
+      "source": [
+        "§eSelect an option: §a[Yeah] §c[Never heard of him]"
+      ],
+      "expected": "§e请选择： §a[是啊] §c[没听说过他]"
+    },
+    {
+      "name": "foraging-1 / Molbert 单个帮助选项保留粗体",
+      "surface": "NPC_Message",
+      "source": [
+        "§a§l[HELP MOLBERT]"
+      ],
+      "expected": "§a§l[帮助 MOLBERT]"
+    },
+    {
+      "name": "foraging-1 / Melody 音符不染白",
+      "surface": "NPC_Message",
+      "source": [
+        "§fHello! §d♪"
+      ],
+      "expected": "§f你好! §d♪"
+    },
+    {
+      "name": "foraging-1 / Gustave 玩家名动态甲",
+      "surface": "NPC_Message",
+      "source": [
+        "§fNot bad, §7SkyZH_Player§f!"
+      ],
+      "expected": "§f不错嘛，§7SkyZH_Player§f!"
+    },
+    {
+      "name": "foraging-1 / Gustave 玩家名动态乙",
+      "surface": "NPC_Message",
+      "source": [
+        "§fNot bad, §7Runner_2048§f!"
+      ],
+      "expected": "§f不错嘛，§7Runner_2048§f!"
+    },
+    {
+      "name": "foraging-1 / 两数值魅惑升级完整三行",
+      "source": [
+        "§fGrants §80.28➜§a0.32%§f chance to charm",
+        "§fthe mobs you defeat and capture",
+        "§ftheir §9Shard§f."
+      ],
+      "consumed": 3,
+      "expected": "§f击败怪物时，有 §80.28➜§a0.32%§f 的几率魅惑它们并捕获其§9碎片§f。"
+    },
+    {
+      "name": "foraging-1 / 两数值魅惑升级变值",
+      "source": [
+        "§fGrants §80.96➜§a1%§f chance to charm the",
+        "§fmobs you defeat and capture their",
+        "§9Shard§f."
+      ],
+      "consumed": 3,
+      "expected": "§f击败怪物时，有 §80.96➜§a1%§f 的几率魅惑它们并捕获其§9碎片§f。"
+    },
+    {
+      "name": "foraging-1 / 魅惑说明缺尾句不吞行",
+      "source": [
+        "§fGrants §80.28➜§a0.32%§f chance to charm"
+      ],
+      "miss": true
+    },
+    {
+      "name": "foraging-1 / 魅惑说明遇空行不拼接",
+      "source": [
+        "§fGrants §80.28➜§a0.32%§f chance to charm",
+        "",
+        "§fthe mobs you defeat and capture their §9Shard§f."
+      ],
+      "miss": true
+    },
+    {
+      "name": "foraging-1 / 任务礼物风味整句两行",
+      "source": [
+        "§8§oUneven, unkempt, disjointed, and",
+        "§8§othat's just the guy who wrapped it!"
+      ],
+      "consumed": 2,
+      "expected": "§8§o歪歪扭扭、邋里邋遢、乱七八糟——说的还只是包装它的人!"
+    },
+    {
+      "name": "foraging-1 / 任务礼物缺后半句不抢译",
+      "source": [
+        "§8§oUneven, unkempt, disjointed, and"
+      ],
+      "miss": true
+    },
+    {
+      "name": "foraging-1 / 工具包存入说明两行",
+      "source": [
+        "§7Click on a valid tool in your",
+        "§7inventory to add it to your toolkit!"
+      ],
+      "consumed": 2,
+      "expected": "§7点击背包中的有效工具，即可将其加入工具包!"
+    },
+    {
+      "name": "foraging-1 / 工具包存入说明空行反例",
+      "source": [
+        "§7Click on a valid tool in your",
+        "",
+        "§7inventory to add it to your toolkit!"
+      ],
+      "miss": true
+    },
+    {
+      "name": "foraging-1 / 狩猎陷阱槽号动态一",
+      "source": [
+        "§8Huntrap #1"
+      ],
+      "consumed": 1,
+      "expected": "§8狩猎陷阱 #1"
+    },
+    {
+      "name": "foraging-1 / 狩猎陷阱槽号动态五",
+      "source": [
+        "§8Huntrap #5"
+      ],
+      "consumed": 1,
+      "expected": "§8狩猎陷阱 #5"
+    },
+    {
+      "name": "foraging-1 / 鸣谢玫瑰任务奖励不翻玩家名",
+      "surface": "GUI_Item",
+      "source": [
+        "§cRose Bouquet"
+      ],
+      "expected": "§c玫瑰花束"
+    },
+    {
+      "name": "foraging-1 / 专名 Rubix Prism 只翻修饰语",
+      "surface": "GUI_Item",
+      "source": [
+        "§bSolved Rubix Prism"
+      ],
+      "expected": "§b已解开的 Rubix Prism"
+    },
+    {
+      "name": "foraging-1 / 带职名所有格任务奖励复用共享",
+      "surface": "GUI_Item",
+      "source": [
+        "§fKelly's T-Shirt"
+      ],
+      "expected": "§fKelly 的 T 恤"
+    },
+    {
+      "name": "Hex_武器热土豆双属性颜色",
+      "source": [
+        "§7When applied to weapons, grants",
+        "§7§c+2❁ Strength §7and §c+2❁",
+        "§cDamage§7."
+      ],
+      "expected": "§7用于武器时,获得 §c+2 ❁ 力量§7及 §c+2 ❁ 伤害§7。",
+      "consumed": 3
+    },
+    {
+      "name": "Hex_热土豆第二组动态双数值",
+      "source": [
+        "§7When applied to weapons, grants",
+        "§7§c+7❁ Strength §7and §c+9❁",
+        "§cDamage§7."
+      ],
+      "expected": "§7用于武器时,获得 §c+7 ❁ 力量§7及 §c+9 ❁ 伤害§7。",
+      "consumed": 3
+    },
+    {
+      "name": "Hex_热土豆缺尾行不吞",
+      "source": [
+        "§7When applied to weapons, grants",
+        "§7§c+2❁ Strength §7and §c+2❁"
+      ],
+      "miss": true
+    },
+    {
+      "name": "Hex_热土豆空行边界",
+      "source": [
+        "§7When applied to weapons, grants",
+        "",
+        "§7§c+2❁ Strength §7and §c+2❁",
+        "§cDamage§7."
+      ],
+      "miss": true
+    },
+    {
+      "name": "Hex_价格与已满足状态分色",
+      "source": [
+        "§660,000 Coins §a✔"
+      ],
+      "expected": "§660,000 硬币 §a✔",
+      "surface": "GUI_Lore"
+    },
+    {
+      "name": "集市_高级双价格对应红绿列",
+      "source": [
+        "§f▶ §7Wheat §c250 §8| §a300"
+      ],
+      "expected": "§f▶ §7小麦 §c250§8 | §a300",
+      "surface": "GUI_Lore"
+    },
+    {
+      "name": "集市_高级双价格第二组",
+      "source": [
+        "§a▶ §7Enchanted Wheat §c1,200 §8| §a1,800"
+      ],
+      "expected": "§a▶ §7附魔小麦 §c1,200§8 | §a1,800",
+      "surface": "GUI_Lore"
+    },
+    {
+      "name": "宝石_品质闭集粗糙",
+      "source": [
+        "§f☘ Rough Jade Gemstone"
+      ],
+      "expected": "§f☘ 粗糙翡翠",
+      "surface": "GUI_Item"
+    },
+    {
+      "name": "宝石_品质闭集完美不枚举",
+      "source": [
+        "§6☘ Perfect Jade Gemstone"
+      ],
+      "expected": "§6☘ 完美翡翠",
+      "surface": "GUI_Item"
+    },
+    {
+      "name": "宝石_未知品质拒绝",
+      "source": [
+        "§f☘ Unverified Jade Gemstone"
+      ],
+      "miss": true,
+      "surface": "GUI_Item"
+    },
+    {
+      "name": "碎片_通名复用旧译名",
+      "source": [
+        "§aAzure"
+      ],
+      "expected": "§a湛蓝鱼",
+      "surface": "GUI_Item"
+    },
+    {
+      "name": "原版附魔_数字范围模板",
+      "source": [
+        "§dBane of Arthropods 6-7"
+      ],
+      "expected": "§d节肢杀手 6-7",
+      "surface": "GUI_Item"
+    },
+    {
+      "name": "原版附魔_数字范围变动",
+      "source": [
+        "§dBane of Arthropods 8-9"
+      ],
+      "expected": "§d节肢杀手 8-9",
+      "surface": "GUI_Item"
+    },
+    {
+      "name": "Oddities_已知分类目标",
+      "source": [
+        "Oddities ➜ Pet Upgrades"
+      ],
+      "expected": "珍奇 ➜ 宠物升级",
+      "surface": "GUI_Title"
+    },
+    {
+      "name": "Oddities_目录确认普通商品",
+      "source": [
+        "Oddities ➜ Wood Singularity"
+      ],
+      "expected": "珍奇 ➜ 木材奇点",
+      "surface": "GUI_Title"
+    },
+    {
+      "name": "Oddities_明确保留专名",
+      "source": [
+        "Oddities ➜ Silex"
+      ],
+      "expected": "珍奇 ➜ Silex",
+      "surface": "GUI_Title"
+    },
+    {
+      "name": "Oddities_未知目标无假译名",
+      "source": [
+        "Oddities ➜ Unverified Item"
+      ],
+      "expected": "珍奇 ➜ Unverified Item",
+      "surface": "GUI_Title"
+    },
+    {
+      "name": "完整商品_即时购买复用ITEM",
+      "source": [
+        "Wood Singularity ➜ Instant Buy"
+      ],
+      "expected": "木材奇点 ➜ 立即购买",
+      "surface": "GUI_Title"
+    },
+    {
+      "name": "完整商品_未知目录名拒绝",
+      "source": [
+        "Unverified Item ➜ Instant Buy"
+      ],
+      "miss": true,
+      "surface": "GUI_Title"
+    },
+    {
+      "name": "截短商品_不借完整目录模板",
+      "source": [
+        "Enchanted Cactus Gree ➜ Instant Buy"
+      ],
+      "miss": true,
+      "surface": "GUI_Title"
+    },
+    {
+      "name": "玩家搜索词_不按商品汉化",
+      "source": [
+        "Bazaar ➜ \"Wood Singularity\""
+      ],
+      "expected": "集市 ➜ \"Wood Singularity\"",
+      "surface": "GUI_Title"
+    },
+    {
+      "name": "药水_剩余数字时钟",
+      "source": [
+        "§7Remaining: §f12:34"
+      ],
+      "expected": "§7剩余时间: §f12:34",
+      "surface": "GUI_Lore"
+    },
+    {
+      "name": "Hex_混淆格式不擅自移除",
+      "source": [
+        "§d§kGive your mind to The Hex!"
+      ],
+      "expected": "§d§k将心智献给海克斯!",
+      "surface": "GUI_Item"
+    },
+    {
+      "name": "巨型田鳖整名先建立",
+      "source": [
+        "§9Giant Water Bug Shard"
+      ],
+      "expected": "§9巨型田鳖碎片",
+      "surface": "GUI_Item"
+    },
+    {
+      "name": "田鳖蓝名白碎片与唯一热点",
+      "source": [
+        "§fThat there §dFishing Hotspot §fis the only place to catch §9Giant Water Bug §fshards."
+      ],
+      "expected": "§f只有那边的§d钓鱼热点§f,才能钓到§9巨型田鳖§f碎片。",
+      "surface": "NPC_Message"
+    },
+    {
+      "name": "Tewtil专名与中文品类分隔",
+      "source": [
+        "§aTewtil Shard"
+      ],
+      "expected": "§aTewtil 碎片",
+      "surface": "GUI_Item"
+    },
+    {
+      "name": "网具右键粗体边界",
+      "source": [
+        "§6Ability: Yoink §e§lRIGHT CLICK"
+      ],
+      "expected": "§6技能: 捞上来! §e§l右键",
+      "surface": "GUI_Lore"
+    },
+    {
+      "name": "巨型网具与未改稀有度粗体",
+      "source": [
+        "§6§lLEGENDARY FISHING NET"
+      ],
+      "expected": "§6§l传说渔网",
+      "surface": "GUI_Lore"
+    },
+    {
+      "name": "网具同模板另一稀有度",
+      "source": [
+        "§5§lEPIC FISHING NET"
+      ],
+      "expected": "§5§l史诗渔网",
+      "surface": "GUI_Lore"
+    },
+    {
+      "name": "Froggles奖杯数值1",
+      "source": [
+        "§5 §6+2.5♔ Trophy Chance"
+      ],
+      "expected": "§5 §6+2.5♔ 奖杯几率",
+      "surface": "GUI_Lore"
+    },
+    {
+      "name": "Froggles奖杯数值2",
+      "source": [
+        "§5 §6+7.5♔ Trophy Chance"
+      ],
+      "expected": "§5 §6+7.5♔ 奖杯几率",
+      "surface": "GUI_Lore"
+    },
+    {
+      "name": "碎片稀有度与固定ID不同颜色",
+      "source": [
+        "§a§lUNCOMMON WATER SHARD §8(ID U59)"
+      ],
+      "expected": "§a§l罕见水系碎片§8 (ID U59)",
+      "surface": "GUI_Lore"
+    },
+    {
+      "name": "碎片固定ID不是动态等级",
+      "source": [
+        "§a§lUNCOMMON WATER SHARD §8(ID U60)"
+      ],
+      "surface": "GUI_Lore",
+      "expected": "§a§l罕见水生碎片 §8(ID U60)"
+    },
+    {
+      "name": "热鱼饵两个动态值与完整折行1",
+      "source": [
+        "§7Grants §b+15 Fishing Speed§7 and §6+5",
+        "§6Trophy Chance§7."
+      ],
+      "expected": "§7获得 §b+15 钓鱼速度§7和 §6+5 奖杯几率§7。",
+      "consumed": 2
+    },
+    {
+      "name": "热鱼饵两个动态值2",
+      "source": [
+        "§7Grants §b+25 Fishing Speed§7 and §6+8",
+        "§6Trophy Chance§7."
+      ],
+      "expected": "§7获得 §b+25 钓鱼速度§7和 §6+8 奖杯几率§7。",
+      "consumed": 2
+    },
+    {
+      "name": "热鱼饵不跨空行",
+      "source": [
+        "§7Grants §b+15 Fishing Speed§7 and §6+5",
+        "",
+        "§6Trophy Chance§7."
+      ],
+      "miss": true
+    },
+    {
+      "name": "热鱼饵缺尾不得吞半句",
+      "source": [
+        "§7Grants §b+15 Fishing Speed§7 and §6+5"
+      ],
+      "miss": true,
+      "surface": "GUI_Lore"
+    },
+    {
+      "name": "引擎地点与船长换序保色",
+      "source": [
+        "§7Bring this item to §6Captain Baha §7in the",
+        "§bFisherman's Hut§7."
+      ],
+      "expected": "§7将此物品交给§b渔夫小屋§7的§6船长 Baha§7。",
+      "consumed": 2
+    },
+    {
+      "name": "破布完整三行",
+      "source": [
+        "§7A torn article of men's clothing,",
+        "§7waterlogged and mossy. Probably too",
+        "§7late to ask for a refund."
+      ],
+      "expected": "§7一件破烂的男装,浸透了水,还长满苔藓。现在想退货,大概已经晚了。",
+      "consumed": 3
+    },
+    {
+      "name": "腰带扣斜体保持",
+      "source": [
+        "§8§oSomehow still intact, but covered in",
+        "§8§omoss."
+      ],
+      "expected": "§8§o不知怎么还完好无损,只是长满了苔藓。",
+      "consumed": 2
+    },
+    {
+      "name": "修复number样本的人工值1",
+      "source": [
+        "§7Total Contributions: §a25"
+      ],
+      "expected": "§7总贡献次数: §a25",
+      "surface": "GUI_Lore"
+    },
+    {
+      "name": "修复number样本的人工值2",
+      "source": [
+        "§7Total Contributions: §a1,250"
+      ],
+      "expected": "§7总贡献次数: §a1,250",
+      "surface": "GUI_Lore"
+    },
+    {
+      "name": "number示意原文不作为执行样本",
+      "source": [
+        "§7Total Contributions: §a[number]"
+      ],
+      "miss": true,
+      "surface": "GUI_Lore"
+    },
+    {
+      "name": "修复鱼饵指南只消费本句",
+      "source": [
+        "§7View §6Baits§7, their uses, and how to",
+        "§7obtain them!",
+        "",
+        "§eUnknown next paragraph."
+      ],
+      "expected": "§7查看§6鱼饵§7的用途与获取方式!",
+      "consumed": 2
+    },
+    {
+      "name": "Lily双按钮事件边界回归",
+      "source": [
+        "§eSelect an option: §a[I promise.] §c[Depends what we're dealing with here...]"
+      ],
+      "expected": "§e选择一个选项: §a[我保证。] §c[那得看咱们面对的是什么……]",
+      "surface": "NPC_Message"
+    },
+    {
+      "name": "章节命令保持可执行字面",
+      "source": [
+        "§8/chapters bayou"
+      ],
+      "expected": "§8/chapters bayou",
+      "surface": "GUI_Lore"
+    }
+  ]
+}

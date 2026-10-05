@@ -6,7 +6,7 @@
   "fetched_at": "2026-10-05",
   "verified_ingame": true,
   "npc": "Pesthunter Phillip",
-  "note": "身份: 花园害虫猎手，回收害虫并给予农业时运加成。\n关系: 与玩家交换害虫。\n口吻: 随和直爽，说清交易数量与时长。\n性格: 热心，但有处理能力上限。\n禁用风格: 不硬塞梗，不把暂时收满说成永久拒收。",
+  "note": "身份：花园害虫猎手，教授吸尘、回收害虫并出售捕虫装备。\n关系：把玩家当新学徒；用农业时运作为回收报酬。\n口吻：随和热络、略带乡土气，但不硬套中文方言。\n性格：痴迷害虫，也会使点小算盘推销自己的陷阱。\n禁用风格：不把夸张自嘲当作真的金融承诺；保留交易数量与时长，不乱改妻子与搭档指代。",
   "entries": [
     {
       "id": "phillip_thanks",
@@ -184,6 +184,773 @@
       "placeholders": [],
       "translate": true,
       "zh": "过会儿再来吧，等我腾出手就能继续收了!"
+    },
+    {
+      "id": "phillip_howdy",
+      "ref": "Hub_General/NPC_Message/Farmer_Rigby.json#howdy_inkkni",
+      "context": "Phillip 首次招呼及 Abiphone 招呼；全局 CHAT 复用已有玩家名模板，颜色/点击样式读取实时组件。"
+    },
+    {
+      "id": "phillip_outbreak_report",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 9 September 2026, at 20:30.",
+      "verified_ingame": false,
+      "context": "Pesthunter Phillip：First Interaction",
+      "raw": "§fSorry for the intrusion, but I got a report of a §6Pest §foutbreak around here?",
+      "text": "Sorry for the intrusion, but I got a report of a Pest outbreak around here?",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "不好意思打扰了，不过我接到报告，说这附近闹了害虫?",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Sorry for the intrusion, but I got a report of a ",
+          "zh": "不好意思打扰了，不过我接到报告，说这附近闹了"
+        },
+        {
+          "color": "§6",
+          "text": "Pest ",
+          "zh": "害虫"
+        },
+        {
+          "color": "§f",
+          "text": "outbreak around here?",
+          "zh": "?"
+        }
+      ]
+    },
+    {
+      "id": "phillip_what_are_pests",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 9 September 2026, at 20:30.",
+      "verified_ingame": false,
+      "context": "Pesthunter Phillip：Selecting [What's a pest?]",
+      "raw": "§fErr...vermin? Swine? Buggers? Y'know...§6Pests§f!",
+      "text": "Err...vermin? Swine? Buggers? Y'know...Pests!",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "呃……虫子? 祸害? 讨厌的小东西? 你懂的……就是害虫!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Err...vermin? Swine? Buggers? Y'know...",
+          "zh": "呃……虫子? 祸害? 讨厌的小东西? 你懂的……就是"
+        },
+        {
+          "color": "§6",
+          "text": "Pests",
+          "zh": "害虫"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "phillip_spawn_when_farming",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 9 September 2026, at 20:30.",
+      "verified_ingame": false,
+      "context": "Pesthunter Phillip：Selecting [What's a pest?]",
+      "raw": "§fThey seem to pop up when you're §ebreaking crops §fon your §bGarden§f!",
+      "text": "They seem to pop up when you're breaking crops on your Garden!",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "你在自己的花园里收割作物时，它们好像就会冒出来!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "They seem to pop up when you're ",
+          "zh": "你在自己的",
+          "order": 0
+        },
+        {
+          "color": "§e",
+          "text": "breaking crops ",
+          "zh": "收割作物",
+          "order": 3
+        },
+        {
+          "color": "§f",
+          "text": "on your ",
+          "zh": "时，它们好像就会冒出来!",
+          "order": 4
+        },
+        {
+          "color": "§b",
+          "text": "Garden",
+          "zh": "花园",
+          "order": 1
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "里",
+          "order": 2
+        }
+      ]
+    },
+    {
+      "id": "phillip_take_vacuum",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 9 September 2026, at 20:30.",
+      "verified_ingame": false,
+      "context": "Pesthunter Phillip：Selecting [What am I supposed to do about this?]",
+      "raw": "§fOkay, feller. Take this SkyMart Vacuum!",
+      "text": "Okay, feller. Take this SkyMart Vacuum!",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "好吧，拿着这把 SkyMart 吸尘器!"
+    },
+    {
+      "id": "phillip_pest_out_there",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 9 September 2026, at 20:30.",
+      "verified_ingame": false,
+      "context": "Pesthunter Phillip：Selecting [What am I supposed to do about this?]",
+      "raw": "§fThere's a §6Pest §fout there somewhere, I'm certain of it.",
+      "text": "There's a Pest out there somewhere, I'm certain of it.",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "外面肯定有只害虫，我敢打包票。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "There's a ",
+          "zh": "外面肯定有只"
+        },
+        {
+          "color": "§6",
+          "text": "Pest ",
+          "zh": "害虫"
+        },
+        {
+          "color": "§f",
+          "text": "out there somewhere, I'm certain of it.",
+          "zh": "，我敢打包票。"
+        }
+      ]
+    },
+    {
+      "id": "phillip_vacuum_instructions",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 9 September 2026, at 20:30.",
+      "verified_ingame": false,
+      "context": "Pesthunter Phillip：Selecting [What am I supposed to do about this?]",
+      "raw": "§fWhen you find one, simply aim the §avacuum§f, hold down the button, and you can suck them buggers up real quick!",
+      "text": "When you find one, simply aim the vacuum, hold down the button, and you can suck them buggers up real quick!",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "找到它之后，只要拿吸尘器瞄准，按住按键，就能很快把这小坏蛋吸进去!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "When you find one, simply aim the ",
+          "zh": "找到它之后，只要拿"
+        },
+        {
+          "color": "§a",
+          "text": "vacuum",
+          "zh": "吸尘器"
+        },
+        {
+          "color": "§f",
+          "text": ", hold down the button, and you can suck them buggers up real quick!",
+          "zh": "瞄准，按住按键，就能很快把这小坏蛋吸进去!"
+        }
+      ]
+    },
+    {
+      "id": "phillip_return_after_catch",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 9 September 2026, at 20:30.",
+      "verified_ingame": false,
+      "context": "Pesthunter Phillip：Selecting [What am I supposed to do about this?]",
+      "raw": "§fWhen you've done that, come back and tell me all about how much fun you had!",
+      "text": "When you've done that, come back and tell me all about how much fun you had!",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "抓到以后回来跟我说说，玩得有多过瘾!"
+    },
+    {
+      "id": "phillip_catch_first",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 9 September 2026, at 20:30.",
+      "verified_ingame": false,
+      "context": "Pesthunter Phillip：Before killing first Pest",
+      "raw": "§fGo out there and §avacuum §fa Pest!",
+      "text": "Go out there and vacuum a Pest!",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "快去，用吸尘器抓只害虫来!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Go out there and ",
+          "zh": "快去，用"
+        },
+        {
+          "color": "§a",
+          "text": "vacuum ",
+          "zh": "吸尘器"
+        },
+        {
+          "color": "§f",
+          "text": "a Pest!",
+          "zh": "抓只害虫来!"
+        }
+      ]
+    },
+    {
+      "id": "phillip_hold_button",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 9 September 2026, at 20:30.",
+      "verified_ingame": false,
+      "context": "Pesthunter Phillip：Before killing first Pest",
+      "raw": "§fIt's not hard. Just aim, hold down the button, and don't stop until the bug's been squashed!",
+      "text": "It's not hard. Just aim, hold down the button, and don't stop until the bug's been squashed!",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "不难的。瞄准，按住按键，不把虫子收拾掉就别松手!"
+    },
+    {
+      "id": "phillip_first_catch",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 9 September 2026, at 20:30.",
+      "verified_ingame": false,
+      "context": "Pesthunter Phillip：After killing first Pest",
+      "raw": "§fWow! Look at that ugly thing. Bet you had a blast trying to wrangle it into your vacuum!",
+      "text": "Wow! Look at that ugly thing. Bet you had a blast trying to wrangle it into your vacuum!",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "哇! 瞧这丑东西。把它弄进吸尘器肯定很过瘾吧!"
+    },
+    {
+      "id": "phillip_fascinated",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 9 September 2026, at 20:30.",
+      "verified_ingame": false,
+      "context": "Pesthunter Phillip：Selecting [It was okay.]",
+      "raw": "§fTo each their own. I'm fascinated by these little fellers!",
+      "text": "To each their own. I'm fascinated by these little fellers!",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "各有所好嘛。我可太喜欢这些小家伙了!"
+    },
+    {
+      "id": "phillip_fortune_offer",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 9 September 2026, at 20:30.",
+      "verified_ingame": false,
+      "context": "Pesthunter Phillip：Selecting [It was okay.]",
+      "raw": "§fBring some back for me to, uh...study...and I'll reward you with §6☘ Farming Fortune for your troubles!",
+      "text": "Bring some back for me to, uh...study...and I'll reward you with ☘ Farming Fortune for your troubles!",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "带些回来让我，呃……研究研究……我会给你 ☘ 农业时运作为辛苦费!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Bring some back for me to, uh...study...and I'll reward you with ",
+          "zh": "带些回来让我，呃……研究研究……我会给你"
+        },
+        {
+          "color": "§6",
+          "text": "☘ Farming Fortune for your troubles!",
+          "zh": " ☘ 农业时运作为辛苦费!"
+        }
+      ]
+    },
+    {
+      "id": "phillip_thanks_single",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 9 September 2026, at 20:30.",
+      "verified_ingame": false,
+      "context": "Phillip：After emptying Vacuum Bag",
+      "raw": "§fThanks for the §6Pest§f, %s!",
+      "text": "Thanks for the Pest, %s!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "player_name",
+          "example": "Alex",
+          "desc": "玩家名；Wiki 用 Player 代指"
+        }
+      ],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "谢谢你送来的害虫，%s!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Thanks for the ",
+          "zh": "谢谢你送来的"
+        },
+        {
+          "color": "§6",
+          "text": "Pest",
+          "zh": "害虫"
+        },
+        {
+          "color": "§f",
+          "text": ", %s!",
+          "zh": "，%s!"
+        }
+      ]
+    },
+    {
+      "id": "phillip_exchange_more",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 9 September 2026, at 20:30.",
+      "verified_ingame": false,
+      "context": "Phillip：After emptying Vacuum Bag",
+      "raw": "§fVacuum more Pests and exchange them with me to gain even more §6☘ Farming Fortune§f!",
+      "text": "Vacuum more Pests and exchange them with me to gain even more ☘ Farming Fortune!",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "多吸些害虫来跟我交换，就能获得更多 ☘ 农业时运!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Vacuum more Pests and exchange them with me to gain even more ",
+          "zh": "多吸些害虫来跟我交换，就能获得更多"
+        },
+        {
+          "color": "§6",
+          "text": "☘ Farming Fortune",
+          "zh": " ☘ 农业时运"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "phillip_boring_days",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 9 September 2026, at 20:30.",
+      "verified_ingame": false,
+      "context": "Pesthunter Phillip：Abiphone Contact",
+      "raw": "§fYer know, standing 'ere all day with nothing to do gets pretty borin' at times.",
+      "text": "Yer know, standing 'ere all day with nothing to do gets pretty borin' at times.",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "你知道，每天站在这儿无事可做，有时还真挺无聊的。"
+    },
+    {
+      "id": "phillip_contact_request",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 9 September 2026, at 20:30.",
+      "verified_ingame": false,
+      "context": "Pesthunter Phillip：Abiphone Contact",
+      "raw": "§fIf you want my contact, how about you bring me somethin' to keep me occupied, eh?",
+      "text": "If you want my contact, how about you bring me somethin' to keep me occupied, eh?",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "想要我的联系方式? 那就带点能让我解闷的东西来，怎么样?"
+    },
+    {
+      "id": "phillip_squeaky_toy",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 9 September 2026, at 20:30.",
+      "verified_ingame": false,
+      "context": "Pesthunter Phillip：Abiphone Contact",
+      "raw": "§fA §9Squeaky Toy §fwould do the trick.",
+      "text": "A Squeaky Toy would do the trick.",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "一个吱吱玩具就不错。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "A ",
+          "zh": "一个"
+        },
+        {
+          "color": "§9",
+          "text": "Squeaky Toy ",
+          "zh": "吱吱玩具"
+        },
+        {
+          "color": "§f",
+          "text": "would do the trick.",
+          "zh": "就不错。"
+        }
+      ]
+    },
+    {
+      "id": "phillip_bring_toy_contact",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 9 September 2026, at 20:30.",
+      "verified_ingame": false,
+      "context": "Pesthunter Phillip：Abiphone Contact",
+      "raw": "§fYou hearin' me? Bring me one of those and you can have my contact.",
+      "text": "You hearin' me? Bring me one of those and you can have my contact.",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "听清楚了吧? 给我带一个来，联系方式就给你。"
+    },
+    {
+      "id": "phillip_what_is_this",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 9 September 2026, at 20:30.",
+      "verified_ingame": false,
+      "context": "Pesthunter Phillip：Clicking [GIVE ITEM] without a Squeaky Toy",
+      "raw": "§fWhat's all this about, eh?",
+      "text": "What's all this about, eh?",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "哎，你这是干什么呢?"
+    },
+    {
+      "id": "phillip_no_toy",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 9 September 2026, at 20:30.",
+      "verified_ingame": false,
+      "context": "Pesthunter Phillip：Clicking [GIVE ITEM] without a Squeaky Toy",
+      "raw": "§fQuit yer playin' and bring me a §9Squeaky Toy §for you ain't getting my contact!",
+      "text": "Quit yer playin' and bring me a Squeaky Toy or you ain't getting my contact!",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "别逗我了，带个吱吱玩具来，不然别想要我的联系方式!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Quit yer playin' and bring me a ",
+          "zh": "别逗我了，带个"
+        },
+        {
+          "color": "§9",
+          "text": "Squeaky Toy ",
+          "zh": "吱吱玩具"
+        },
+        {
+          "color": "§f",
+          "text": "or you ain't getting my contact!",
+          "zh": "来，不然别想要我的联系方式!"
+        }
+      ]
+    },
+    {
+      "id": "phillip_field_mouse_drop",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 9 September 2026, at 20:30.",
+      "verified_ingame": false,
+      "context": "Pesthunter Phillip：Clicking [GIVE ITEM] without a Squeaky Toy",
+      "raw": "§fYou can sometimes find 'em after vacuuming up a §5Field Mouse§f. You can only catch those rare little guys in §9Pest Traps§f.",
+      "text": "You can sometimes find 'em after vacuuming up a Field Mouse. You can only catch those rare little guys in Pest Traps.",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "用吸尘器抓到田鼠后，有时就能找到。那些稀罕的小家伙，只能用害虫陷阱抓到。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "You can sometimes find 'em after vacuuming up a ",
+          "zh": "用吸尘器抓到"
+        },
+        {
+          "color": "§5",
+          "text": "Field Mouse",
+          "zh": "田鼠"
+        },
+        {
+          "color": "§f",
+          "text": ". You can only catch those rare little guys in ",
+          "zh": "后，有时就能找到。那些稀罕的小家伙，只能用"
+        },
+        {
+          "color": "§9",
+          "text": "Pest Traps",
+          "zh": "害虫陷阱"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "抓到。"
+        }
+      ]
+    },
+    {
+      "id": "phillip_trap_seller",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 9 September 2026, at 20:30.",
+      "verified_ingame": false,
+      "context": "Pesthunter Phillip：Clicking [GIVE ITEM] without a Squeaky Toy",
+      "raw": "§fI heard somebody 'round here sells them. Oh - it's me!",
+      "text": "I heard somebody 'round here sells them. Oh - it's me!",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "听说这附近有人卖那东西。哦——就是我!"
+    },
+    {
+      "id": "phillip_toy_accepted",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 9 September 2026, at 20:30.",
+      "verified_ingame": false,
+      "context": "Pesthunter Phillip：Clicking [GIVE ITEM] with a Squeaky Toy",
+      "raw": "§fCheers mate, that works!",
+      "text": "Cheers mate, that works!",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "谢啦，这就行了!"
+    },
+    {
+      "id": "phillip_toy_useless",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 9 September 2026, at 20:30.",
+      "verified_ingame": false,
+      "context": "Pesthunter Phillip：Clicking [GIVE ITEM] with a Squeaky Toy",
+      "raw": "§fTo be honest with ya, though, I have no use for this toy.",
+      "text": "To be honest with ya, though, I have no use for this toy.",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "不过跟你说实话吧，这玩具我还真用不上。"
+    },
+    {
+      "id": "phillip_sell_traps",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 9 September 2026, at 20:30.",
+      "verified_ingame": false,
+      "context": "Pesthunter Phillip：Clicking [GIVE ITEM] with a Squeaky Toy",
+      "raw": "§fI just ask for it because it gets people buying a bunch of §9Pest Traps §ffrom me in order to go about getting it.",
+      "text": "I just ask for it because it gets people buying a bunch of Pest Traps from me in order to go about getting it.",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "我之所以要它，就是想让大家为了弄到它，来我这儿多买些害虫陷阱。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "I just ask for it because it gets people buying a bunch of ",
+          "zh": "我之所以要它，就是想让大家为了弄到它，来我这儿多买些"
+        },
+        {
+          "color": "§9",
+          "text": "Pest Traps ",
+          "zh": "害虫陷阱"
+        },
+        {
+          "color": "§f",
+          "text": "from me in order to go about getting it.",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "phillip_scheme_joke",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 9 September 2026, at 20:30.",
+      "verified_ingame": false,
+      "context": "Pesthunter Phillip：Clicking [GIVE ITEM] with a Squeaky Toy",
+      "raw": "§fWaddya call that, a pyramid scheme? Ponzi scheme? I don't know... I just call it bein' me.",
+      "text": "Waddya call that, a pyramid scheme? Ponzi scheme? I don't know... I just call it bein' me.",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "你管这叫什么，传销? 庞氏骗局? 我也说不准……反正我就这德性。"
+    },
+    {
+      "id": "phillip_contact_granted",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 9 September 2026, at 20:30.",
+      "verified_ingame": false,
+      "context": "Pesthunter Phillip：Clicking [GIVE ITEM] with a Squeaky Toy",
+      "raw": "§fAnyways, here's that contact you was after.",
+      "text": "Anyways, here's that contact you was after.",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "总之，你要的联系方式拿好。"
+    },
+    {
+      "id": "phillip_pesthunting_partner",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 9 September 2026, at 20:30.",
+      "verified_ingame": false,
+      "context": "Pesthunter Phillip：Clicking [GIVE ITEM] with a Squeaky Toy",
+      "raw": "§fSee ya around, my partner in pesthuntin'!",
+      "text": "See ya around, my partner in pesthuntin'!",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "回头见，我的捕虫搭档!"
+    },
+    {
+      "id": "phillip_dont_tell_wife",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 9 September 2026, at 20:30.",
+      "verified_ingame": false,
+      "context": "Pesthunter Phillip：Clicking [GIVE ITEM] with a Squeaky Toy",
+      "raw": "§fDon't tell my wife I said that.",
+      "text": "Don't tell my wife I said that.",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "translate": true,
+      "zh": "可别告诉我妻子，我刚才这么说过。"
+    },
+    {
+      "id": "phillip_option_whats_a_pest",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 9 September 2026, at 20:30.",
+      "verified_ingame": false,
+      "context": "Phillip 教程聊天选项；不写入点击命令，读取服务器实时事件",
+      "raw": "§eSelect an option: §a[What's a pest?]",
+      "text": "Select an option: [What's a pest?]",
+      "placeholders": [],
+      "translate": true,
+      "zh": "请选择: [什么是害虫?]",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Select an option: ",
+          "zh": "请选择: "
+        },
+        {
+          "color": "§a",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§a",
+          "text": "What's a pest?",
+          "zh": "什么是害虫?"
+        },
+        {
+          "color": "§a",
+          "text": "]",
+          "zh": "]"
+        }
+      ]
+    },
+    {
+      "id": "phillip_option_what_to_do",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 9 September 2026, at 20:30.",
+      "verified_ingame": false,
+      "context": "Phillip 教程聊天选项；不写入点击命令，读取服务器实时事件",
+      "raw": "§eSelect an option: §a[What am I supposed to do about this?]",
+      "text": "Select an option: [What am I supposed to do about this?]",
+      "placeholders": [],
+      "translate": true,
+      "zh": "请选择: [那我该怎么办?]",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Select an option: ",
+          "zh": "请选择: "
+        },
+        {
+          "color": "§a",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§a",
+          "text": "What am I supposed to do about this?",
+          "zh": "那我该怎么办?"
+        },
+        {
+          "color": "§a",
+          "text": "]",
+          "zh": "]"
+        }
+      ]
+    },
+    {
+      "id": "phillip_option_it_was_okay",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Pesthunter_Phillip",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 9 September 2026, at 20:30.",
+      "verified_ingame": false,
+      "context": "Phillip 教程聊天选项；不写入点击命令，读取服务器实时事件",
+      "raw": "§eSelect an option: §a[It was okay.]",
+      "text": "Select an option: [It was okay.]",
+      "placeholders": [],
+      "translate": true,
+      "zh": "请选择: [还行吧。]",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Select an option: ",
+          "zh": "请选择: "
+        },
+        {
+          "color": "§a",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§a",
+          "text": "It was okay.",
+          "zh": "还行吧。"
+        },
+        {
+          "color": "§a",
+          "text": "]",
+          "zh": "]"
+        }
+      ]
     }
+  ],
+  "aliases": [
+    "Phillip"
   ]
 }

@@ -17211,26 +17211,40 @@
         }
       ],
       "translate": true,
-      "zh": "对攻击过你的怪物造成 %s  伤害。",
+      "zh": "对攻击过你的怪物, 伤害提高 %s。",
       "source_items": [
         "LION;4"
       ],
-      "_review": "no-matching-segment:%s  Damage ",
       "segments": [
         {
           "color": "§7",
           "text": "Deal ",
-          "zh": "对攻击过你的怪物造成 "
+          "zh": "对攻击过你的怪物,",
+          "order": 0
         },
         {
           "color": "§c",
-          "text": "%s  Damage ",
-          "zh": "%s  伤害"
+          "text": "%s ",
+          "zh": "%s",
+          "order": 3
+        },
+        {
+          "color": "§c",
+          "text": " Damage ",
+          "zh": " 伤害",
+          "order": 1
         },
         {
           "color": "§7",
-          "text": "against mobs that have attacked you.",
-          "zh": "。"
+          "text": "against mobs that have attacked you",
+          "zh": "提高 ",
+          "order": 2
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。",
+          "order": 4
         }
       ],
       "samples": [
@@ -17238,7 +17252,12 @@
           "§7Deal §c+10%  Damage §7against mobs",
           "§7that have attacked you."
         ]
-      ]
+      ],
+      "fetched_at": "2026-10-04T22:50:39.416249+00:00",
+      "last_edited": "This page was last edited on 11 August 2026, at 20:29.",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Lion_Pet",
+      "verified_ingame": false,
+      "gloss": "狮子丛林之王：+百分比表示对攻击过你的目标提高伤害，不是只造成该百分比的伤害；保留原 NEU raw 与 samples。"
     },
     {
       "id": "neu_6f992ea60536",

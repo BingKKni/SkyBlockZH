@@ -1,37 +1,1570 @@
 {
   "source": "../SkyZH_Logs/skyzh-capture/untranslated/Dungeons/GUI_Item/Heart_of_the_Forest.json; https://hypixelskyblock.minecraft.wiki/w/Heart_of_the_Forest#UI",
   "verified_ingame": true,
-  "note": "森林之心天赋的整句效果。所有断行以实测合并；数值型占位符只在实测有变化时使用。与社区 Wiki 文案有差异时保留 2026-09-29 实测写法。",
+  "note": "森林之心天赋的整句效果。所有断行以实测合并；数值型占位符只在实测有变化时使用。与社区 Wiki 文案有差异时保留 2026-09-29 实测写法。 本轮仅泛化已确认随升级变化的数值，保留旧原文写法与色段；Wiki 新写法单独收入 Wiki_Forest_Menus.json。",
   "lines": [
-    {"id":"hotf_tree_whisperer_effect","context":"无花果/红树与螺旋树赠礼的两种低语","text":"Fig and Mangrove Tree Gifts give +200 Forest Whispers and Helix Tree Gifts give +200 Desert Whispers.","placeholders":[],"translate":true,"zh":"无花果树和红树赠礼额外提供 +200 森林低语；螺旋树赠礼额外提供 +200 沙漠低语。","segments":[{"color":"§a","text":"Fig ","zh":"无花果树"},{"color":"§7","text":"and ","zh":"和"},{"color":"§2","text":"Mangrove Tree Gifts ","zh":"红树赠礼"},{"color":"§7","text":"give ","zh":"额外提供"},{"color":"§a","text":"+200 ","zh":"+200 "},{"color":"§3","text":"Forest Whispers ","zh":"森林低语"},{"color":"§7","text":"and ","zh":"；"},{"color":"§6","text":"Helix Tree Gifts ","zh":"螺旋树赠礼"},{"color":"§7","text":"give ","zh":"额外提供"},{"color":"§a","text":"+200 ","zh":"+200 "},{"color":"§6","text":"Desert Whispers","zh":"沙漠低语"},{"color":"§7","text":".","zh":"。"}]},
-    {"id":"hotf_madness_effect","context":"伐木狂热提升横扫与伐木时运","text":"Increase  Sweep by %1$s and  Foraging Fortune by 50.","placeholders":[{"token":"%1$s","type":"number","desc":"横扫提升数值","example":"10"}],"translate":true,"zh":" 横扫提高 %1$s， 伐木时运提高 50。","segments":[{"color":"§7","text":"Increase ","zh":"使"},{"color":"§2","text":" Sweep ","zh":" 横扫"},{"color":"§7","text":"by ","zh":"提高"},{"color":"§a","text":"%1$s","zh":"%1$s"},{"color":"§7","text":" and ","zh":"，"},{"color":"§6","text":" Foraging Fortune ","zh":" 伐木时运"},{"color":"§7","text":"by ","zh":"提高"},{"color":"§a","text":"50","zh":"50"},{"color":"§7","text":".","zh":"。"}]},
-    {"id":"hotf_250_gifts_effect","context":"每日前 250 份赠礼的掉落与低语增益","text":"Your first 250 Tree Gifts of the day grant 1% more Loot and 20 extra Forest or Desert Whispers.","placeholders":[],"translate":true,"zh":"每天前 250 份树木赠礼的战利品提高 1%，并额外获得 20 点森林或沙漠低语。","segments":[{"color":"§7","text":"Your first ","zh":"每天前"},{"color":"§a","text":"250 ","zh":"250 "},{"color":"§7","text":"Tree Gifts of the day grant ","zh":"份树木赠礼，额外获得"},{"color":"§a","text":"1% ","zh":"1%"},{"color":"§7","text":"more ","zh":"的"},{"color":"§e","text":"Loot ","zh":"战利品"},{"color":"§7","text":"and ","zh":"，并获得"},{"color":"§a","text":"20 ","zh":"20 点"},{"color":"§7","text":"extra ","zh":"" ,"omit":true},{"color":"§3","text":"Forest ","zh":"森林"},{"color":"§7","text":"or ","zh":"或"},{"color":"§6","text":"Desert Whispers","zh":"沙漠低语"},{"color":"§7","text":".","zh":"。"}]},
-    {"id":"hotf_early_bird_effect","context":"每天砍伐前 250 棵树的伐木时运","text":"Foraging Fortune by 100 for the first 250 trees cut every day.","placeholders":[],"translate":true,"zh":"每天砍伐前 250 棵树时，伐木时运提高 100。","segments":[{"color":"§6","text":"Foraging Fortune ","zh":"伐木时运"},{"color":"§7","text":"by ","zh":"提高"},{"color":"§a","text":"100","zh":"100"},{"color":"§7","text":" for the first ","zh":"，每天仅限前"},{"color":"§a","text":"250 ","zh":"250 "},{"color":"§7","text":"trees cut every day.","zh":"棵树。"}]},
-    {"id":"hotf_pressure_resistance","context":"深水适应获得抗压属性","text":"You gain 1  Pressure Resistance.","placeholders":[],"translate":true,"zh":"获得 1  抗压。","segments":[{"color":"§7","text":"You gain ","zh":"获得"},{"color":"§a","text":"1 ","zh":"1 "},{"color":"§9","text":" Pressure Resistance","zh":" 抗压"},{"color":"§7","text":".","zh":"。"}]},
-    {"id":"hotf_hunting_fortune","context":"猎人时运天赋效果","text":"You gain 1  Hunting Fortune.","placeholders":[],"translate":true,"zh":"获得 1  狩猎时运。","segments":[{"color":"§7","text":"You gain ","zh":"获得"},{"color":"§a","text":"1 ","zh":"1 "},{"color":"§d","text":" Hunting Fortune","zh":" 狩猎时运"},{"color":"§7","text":".","zh":"。"}]},
-    {"id":"hotf_galatea_might_effect","context":"在 Galatea 的战斗属性增幅","text":"Gain +0.5% Combat Stats on Galatea.","placeholders":[],"translate":true,"zh":"在 Galatea 时，战斗属性 +0.5%。","segments":[{"color":"§7","text":"Gain ","zh":"获得"},{"color":"§a","text":"+0.5% ","zh":"+0.5% "},{"color":"§7","text":"Combat Stats on ","zh":"战斗属性，仅在"},{"color":"§2","text":"Galatea","zh":"Galatea"},{"color":"§7","text":".","zh":"生效。"}]},
-    {"id":"hotf_damage_boost_effect","context":"斧技能造成双倍伤害的时间与地点限制","text":"Your axe deals double  Damage to creatures on Galatea for 10s.","placeholders":[],"translate":true,"zh":"在 Galatea 时，你的斧头对生物造成双倍  伤害，持续 10 秒。","segments":[{"color":"§7","text":"Your axe deals double ","zh":"你的斧头造成双倍"},{"color":"§c","text":" Damage ","zh":" 伤害"},{"color":"§7","text":"to creatures on ","zh":"，仅对"},{"color":"§2","text":"Galatea ","zh":"Galatea"},{"color":"§7","text":"for ","zh":"的生物生效，持续"},{"color":"§a","text":"10s","zh":"10 秒"},{"color":"§7","text":".","zh":"。"}]},
-    {"id":"hotf_tree_gifts_loot","context":"幸运馈赠天赋增加树木赠礼掉落","text":"Tree Gifts grant 0.5% more loot.","placeholders":[],"translate":true,"zh":"树木赠礼的战利品提高 0.5%。","segments":[{"color":"§7","text":"Tree Gifts grant ","zh":"树木赠礼的战利品提高"},{"color":"§a","text":"0.5% ","zh":"0.5%"},{"color":"§7","text":"more loot.","zh":"。"}]},
-    {"id":"hotf_collector_effect","context":"浆果及岛屿资源翻倍概率","text":"Berries and Island Resources have a 2% chance to drop double resource.","placeholders":[],"translate":true,"zh":"采集浆果或岛屿资源时，有 2% 概率获得双倍资源。","segments":[{"color":"§7","text":"Berries and Island Resources have a ","zh":"采集浆果或岛屿资源时，有"},{"color":"§a","text":"2% ","zh":"2%"},{"color":"§7","text":"chance to drop double resource.","zh":"概率获得双倍资源。"}]},
-    {"id":"hotf_axe_toss_effect","context":"投斧后暂时无横扫惩罚","text":"Throwing your Axe has no  Sweep penalty for 10s.","placeholders":[],"translate":true,"zh":"投掷斧头后， 横扫不受惩罚，持续 10 秒。","segments":[{"color":"§7","text":"Throwing your Axe has no ","zh":"投掷斧头后，"},{"color":"§2","text":" Sweep ","zh":" 横扫"},{"color":"§7","text":"penalty for ","zh":"不受惩罚，持续"},{"color":"§a","text":"10s","zh":"10 秒"},{"color":"§7","text":".","zh":"。"}]},
-    {"id":"hotf_not_enough_whispers","context":"升级天赋时缺少森林低语","text":"You don't have enough Forest Whispers!","placeholders":[],"translate":true,"zh":"森林低语不足!"},
-    {"id":"hotf_torrhus_intro","context":"森林之心的 Torrhus 岛屿导航","text":"Torrhus Canyon is the second island of Galatea.","placeholders":[],"translate":true,"zh":"Torrhus 峡谷是 Galatea 的第二座岛屿。","segments":[{"color":"§6","text":"Torrhus Canyon ","zh":"Torrhus 峡谷"},{"color":"§7","text":"is the second island of ","zh":"是"},{"color":"§2","text":"Galatea","zh":"Galatea"},{"color":"§7","text":".","zh":"的第二座岛屿。"}]},
-    {"id":"hotf_torrhus_navigation","context":"Torrhus 导航卡片说明伐木、狩猎和地点","text":"Here you'll continue to hone your Foraging and Hunting skills as you partake in Miria's Contests, explore the Critter Safari, and dive deep into Torrhus Springs.","placeholders":[],"translate":true,"zh":"在此参与 Miria 竞赛、探索小动物游猎并深入 Torrhus 泉，继续磨炼伐木与狩猎技能。","segments":[{"color":"§7","text":"Here you'll continue to hone your ","zh":"在这里继续磨炼"},{"color":"§a","text":"Foraging ","zh":"伐木"},{"color":"§7","text":"and ","zh":"与"},{"color":"§a","text":"Hunting ","zh":"狩猎"},{"color":"§7","text":"skills as you partake in ","zh":"技能：参加"},{"color":"§b","text":"Miria's Contests","zh":"Miria 竞赛"},{"color":"§7","text":", explore the ","zh":"，探索"},{"color":"§2","text":"Critter Safari","zh":"小动物游猎"},{"color":"§7","text":", and dive deep into ","zh":"，深入"},{"color":"§b","text":"Torrhus Springs","zh":"Torrhus 泉"},{"color":"§7","text":".","zh":"。"}]},
-    {"id":"hotf_homing_axe_effect","context":"斧头在 Galatea 永久追踪树木","text":"Your Throwing Axes gain permanent homing abilities towards trees on Galatea.","placeholders":[],"translate":true,"zh":"在 Galatea 投掷斧头时，斧头将永久自动追踪树木。","segments":[{"color":"§7","text":"Your Throwing Axes gain permanent homing abilities towards trees on ","zh":"投掷斧头获得永久追踪树木的能力，仅在"},{"color":"§2","text":"Galatea","zh":"Galatea"},{"color":"§7","text":".","zh":"生效。"}]},
-    {"id":"hotf_forest_fisher_effect","context":"伐木岛屿的钓鱼属性","text":"Grants +5.5 Fishing Speed and +1.1 Sea Creature Chance while on Foraging Islands.","placeholders":[],"translate":true,"zh":"在伐木岛屿时， 钓鱼速度 +5.5， 海洋生物几率 +1.1。","segments":[{"color":"§7","text":"Grants ","zh":"获得"},{"color":"§b","text":"+5.5 Fishing Speed","zh":"+5.5 钓鱼速度"},{"color":"§7","text":" and ","zh":"和"},{"color":"§3","text":"+1.1 Sea Creature Chance","zh":"+1.1 海洋生物几率"},{"color":"§7","text":" while on ","zh":"，仅在"},{"color":"§2","text":"Foraging Islands","zh":"伐木岛屿"},{"color":"§7","text":".","zh":"生效。"}]},
-    {"id":"hotf_starlyn_supreme_effect","context":"Starlyn 竞赛积分增幅","text":"Gain +0.2% more points towards Starlyn Contests.","placeholders":[],"translate":true,"zh":"Starlyn 竞赛获得的积分提高 0.2%。","segments":[{"color":"§7","text":"Gain ","zh":"获得的积分提高"},{"color":"§a","text":"+0.2% ","zh":"+0.2%"},{"color":"§7","text":"more points towards ","zh":"，仅限"},{"color":"§d","text":"Starlyn Contests","zh":"Starlyn 竞赛"},{"color":"§7","text":".","zh":"。"}]},
-    {"id":"hotf_maniac_slicer_effect","context":"投斧消耗全部法力，每 100 点换 1 横扫持续 15 秒","text":"Throwing your axe consumes 100% of your total mana. You gain 1 Sweep for every 100 Mana used, for 15 seconds.","placeholders":[],"translate":true,"zh":"投斧时消耗 100% 的总法力。每消耗 100 点法力获得 1 横扫，持续 15 秒。","segments":[{"color":"§7","text":"Throwing your axe consumes ","zh":"投斧时消耗 ","order":0},{"color":"§a","text":"100% ","zh":"100% ","order":1},{"color":"§7","text":"of your total mana. You gain ","zh":"的总法力。每消耗 ","order":2},{"color":"§2","text":"1 Sweep ","zh":"获得 1 横扫","order":5},{"color":"§7","text":"for every ","zh":"","omit":true,"order":4},{"color":"§b","text":"100 Mana ","zh":"100 点法力","order":3},{"color":"§7","text":"used, for ","zh":"，持续 ","order":6},{"color":"§a","text":"15 ","zh":"15 ","order":7},{"color":"§7","text":"seconds.","zh":"秒。","order":8}]},
-    {"id":"hotf_half_full_effect","context":"同岛每名选择 Half Full 的玩家提供属性，上限五人","text":"Gain +1 Foraging Fortune and +0.4 Sweep for each player on your current island with Half Full enabled. (Capped at 5 players).","placeholders":[],"translate":true,"zh":"当前岛屿每名启用半满的玩家使你获得 +1 伐木时运与 +0.4 横扫，最多计入 5 人。","segments":[{"color":"§7","text":"Gain ","zh":"获得"},{"color":"§6","text":"+1 Foraging Fortune ","zh":"+1 伐木时运"},{"color":"§7","text":"and ","zh":"与"},{"color":"§2","text":"+0.4 Sweep ","zh":"+0.4 横扫"},{"color":"§7","text":"for each player on your current island with Half Full enabled. ","zh":"，当前岛屿每名启用半满的玩家分别提供一次。"},{"color":"§8","text":"(Capped at 5 players).","zh":"（最多计入 5 人）"}]},
-    {"id":"hotf_half_empty_effect","context":"同岛每名选择 Half Empty 的玩家提供属性，上限五人","text":"Gain +1 Foraging Fortune and +0.4 Sweep for each player on your current island with Half Empty enabled. (Capped at 5 players).","placeholders":[],"translate":true,"zh":"当前岛屿每名启用半空的玩家使你获得 +1 伐木时运与 +0.4 横扫，最多计入 5 人。","segments":[{"color":"§7","text":"Gain ","zh":"获得"},{"color":"§6","text":"+1 Foraging Fortune ","zh":"+1 伐木时运"},{"color":"§7","text":"and ","zh":"与"},{"color":"§2","text":"+0.4 Sweep ","zh":"+0.4 横扫"},{"color":"§7","text":"for each player on your current island with Half Empty enabled. ","zh":"，当前岛屿每名启用半空的玩家分别提供一次。"},{"color":"§8","text":"(Capped at 5 players).","zh":"（最多计入 5 人）"}]},
-    {"id":"hotf_forest_speed_effect","context":"按速度转化为伐木时运和横扫，上限 500 速度","text":"Gain 0.2% of your total  Speed as  Foraging Fortune and  Sweep. (Caps at 500 Speed).","placeholders":[],"translate":true,"zh":"将总  速度的 0.2% 转化为  伐木时运和  横扫（最多计入 500 速度）。","segments":[{"color":"§7","text":"Gain ","zh":"将"},{"color":"§a","text":"0.2% ","zh":"0.2%"},{"color":"§7","text":"of your total ","zh":"的总"},{"color":"§f","text":" Speed ","zh":" 速度"},{"color":"§7","text":"as ","zh":"转化为"},{"color":"§6","text":" Foraging Fortune ","zh":" 伐木时运"},{"color":"§7","text":"and ","zh":"与"},{"color":"§2","text":" Sweep","zh":" 横扫"},{"color":"§7","text":". ","zh":"。"},{"color":"§8","text":"(Caps at 500 Speed).","zh":"（最多计入 500 速度）"}]},
-    {"id":"hotf_forest_strength_effect","context":"按力量转化为伐木时运和横扫，上限 1000 力量","text":"Gain 0.1% of your total  Strength as  Foraging Fortune and  Sweep. (Caps at 1,000 Strength).","placeholders":[],"translate":true,"zh":"将总  力量的 0.1% 转化为  伐木时运和  横扫（最多计入 1,000 力量）。","segments":[{"color":"§7","text":"Gain ","zh":"将"},{"color":"§a","text":"0.1% ","zh":"0.1%"},{"color":"§7","text":"of your total ","zh":"的总"},{"color":"§c","text":" Strength ","zh":" 力量"},{"color":"§7","text":"as ","zh":"转化为"},{"color":"§6","text":" Foraging Fortune ","zh":" 伐木时运"},{"color":"§7","text":"and ","zh":"与"},{"color":"§2","text":" Sweep","zh":" 横扫"},{"color":"§7","text":". ","zh":"。"},{"color":"§8","text":"(Caps at 1,000 Strength).","zh":"（最多计入 1,000 力量）"}]},
-    {"id":"hotf_ricochet_effect","context":"飞斧概率弹射到附近树木","text":"Your Axe has a 1% chance to bounce to a nearby tree when thrown.","placeholders":[],"translate":true,"zh":"投掷斧头时，有 1% 概率弹射至附近的另一棵树。","segments":[{"color":"§7","text":"Your Axe has a ","zh":"投掷斧头时，有"},{"color":"§a","text":"1% ","zh":"1%"},{"color":"§7","text":"chance to bounce to a nearby tree when thrown.","zh":"概率弹射至附近的另一棵树。"}]},
-    {"id":"hotf_monster_hunter_effect","context":"在两座岛狩猎小动物分别获得低语","text":"Hunting a  Critter grants +25 Forest Whispers while on the Moonglade Marsh or +25 Desert Whispers if on Torrhus Canyon.","placeholders":[],"translate":true,"zh":"狩猎小动物时，在月光沼泽获得 +25 森林低语；在 Torrhus 峡谷获得 +25 沙漠低语。","segments":[{"color":"§7","text":"Hunting a ","zh":"狩猎"},{"color":"§a","text":" Critter ","zh":" 小动物"},{"color":"§7","text":"grants ","zh":"时获得"},{"color":"§a","text":"+25 ","zh":"+25 "},{"color":"§3","text":"Forest Whispers ","zh":"森林低语"},{"color":"§7","text":"while on the ","zh":"（仅限"},{"color":"§2","text":"Moonglade Marsh ","zh":"月光沼泽"},{"color":"§7","text":"or ","zh":"），或"},{"color":"§a","text":"+25 ","zh":"+25 "},{"color":"§6","text":"Desert Whispers ","zh":"沙漠低语"},{"color":"§7","text":"if on ","zh":"（仅限"},{"color":"§6","text":"Torrhus Canyon","zh":"Torrhus 峡谷"},{"color":"§7","text":".","zh":"）。"}]},
-    {"id":"hotf_essence_fortune_effect","context":"获得森林精华有概率翻倍","text":"Every time you obtain Forest Essence, there is a 0.5% chance for it to double.","placeholders":[],"translate":true,"zh":"每次获得森林精华时，有 0.5% 概率使获得量翻倍。","segments":[{"color":"§7","text":"Every time you obtain ","zh":"每次获得"},{"color":"§d","text":"Forest Essence","zh":"森林精华"},{"color":"§7","text":", there is a ","zh":"时，有"},{"color":"§a","text":"0.5%","zh":"0.5%"},{"color":"§7","text":" chance for it to double.","zh":"概率使获得量翻倍。"}]},
-    {"id":"hotf_beekeeper_daily","context":"养蜂人每天在伐木岛获得随机增益","text":"Every SkyBlock day, gain a random effect while on any Foraging Island.","placeholders":[],"translate":true,"zh":"每个 SkyBlock 日，在任意伐木岛屿获得一项随机增益。","segments":[{"color":"§7","text":"Every SkyBlock day, gain a random effect while on any ","zh":"每个 SkyBlock 日，在任意"},{"color":"§2","text":"Foraging Island","zh":"伐木岛屿"},{"color":"§7","text":".","zh":"获得一项随机增益。"}]},
-    {"id":"hotf_bee_refill","context":"养蜂人随机增益：蜂巢补充速度","text":"■ Honeyhives refill 20% faster.","placeholders":[],"translate":true,"zh":"■ 蜂巢补充速度提高 20%。","segments":[{"color":"§8","text":"■ ","zh":"■ "},{"color":"§6","text":"Honeyhives ","zh":"蜂巢"},{"color":"§7","text":"refill ","zh":"补充速度提高"},{"color":"§a","text":"20% ","zh":"20%"},{"color":"§7","text":"faster.","zh":"。"}]},
-    {"id":"hotf_bee_attract","context":"养蜂人随机增益：涂蜜脾的树吸引小动物速度","text":"■ Trees lathered with Honeycomb attract  Critters 20% faster.","placeholders":[],"translate":true,"zh":"■ 涂有蜜脾的树木吸引小动物的速度提高 20%。","segments":[{"color":"§8","text":"■ ","zh":"■ "},{"color":"§a","text":"Trees ","zh":"树木"},{"color":"§7","text":"lathered with ","zh":"涂上"},{"color":"§6","text":"Honeycomb ","zh":"蜜脾"},{"color":"§7","text":"attract ","zh":"后吸引"},{"color":"§a","text":" Critters 20% ","zh":" 小动物的速度提高 20%"},{"color":"§7","text":"faster.","zh":"。"}]},
-    {"id":"hotf_bee_double","context":"养蜂人随机增益：获得双倍蜜脾","text":"■ Gain 2x Honeycomb from Honeyhives and Trees lathered with Honeycomb.","placeholders":[],"translate":true,"zh":"■ 从蜂巢及涂有蜜脾的树木获得双倍蜜脾。","segments":[{"color":"§8","text":"■ ","zh":"■ "},{"color":"§7","text":"Gain ","zh":"获得"},{"color":"§a","text":"2x ","zh":"双倍"},{"color":"§6","text":"Honeycomb ","zh":"蜜脾"},{"color":"§7","text":"from ","zh":"，来源包括"},{"color":"§6","text":"Honeyhives ","zh":"蜂巢"},{"color":"§7","text":"and ","zh":"和"},{"color":"§a","text":"Trees ","zh":"树木"},{"color":"§7","text":"lathered with ","zh":"上涂的"},{"color":"§6","text":"Honeycomb","zh":"蜜脾"},{"color":"§7","text":".","zh":"。"}]},
-    {"id":"hotf_bee_second_critter","context":"养蜂人随机增益：吸引第二只小动物的概率","text":"■ Trees lathered with Honeycomb have a 25% chance to attract a second  Critter.","placeholders":[],"translate":true,"zh":"■ 涂有蜜脾的树木有 25% 概率额外吸引一只  小动物。","segments":[{"color":"§8","text":"■ ","zh":"■ "},{"color":"§a","text":"Trees ","zh":"树木"},{"color":"§7","text":"lathered with ","zh":"涂上"},{"color":"§6","text":"Honeycomb ","zh":"蜜脾"},{"color":"§7","text":"have a ","zh":"后有"},{"color":"§a","text":"25% ","zh":"25%"},{"color":"§7","text":"chance to attract a second ","zh":"概率额外吸引一只"},{"color":"§a","text":" Critter","zh":" 小动物"},{"color":"§7","text":".","zh":"。"}]}
+    {
+      "id": "hotf_tree_whisperer_effect",
+      "context": "无花果/红树与螺旋树赠礼的两种低语",
+      "text": "Fig and Mangrove Tree Gifts give +200 Forest Whispers and Helix Tree Gifts give +200 Desert Whispers.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "无花果树和红树赠礼额外提供 +200 森林低语；螺旋树赠礼额外提供 +200 沙漠低语。",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Fig ",
+          "zh": "无花果树"
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "和"
+        },
+        {
+          "color": "§2",
+          "text": "Mangrove Tree Gifts ",
+          "zh": "红树赠礼"
+        },
+        {
+          "color": "§7",
+          "text": "give ",
+          "zh": "额外提供"
+        },
+        {
+          "color": "§a",
+          "text": "+200 ",
+          "zh": "+200 "
+        },
+        {
+          "color": "§3",
+          "text": "Forest Whispers ",
+          "zh": "森林低语"
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "；"
+        },
+        {
+          "color": "§6",
+          "text": "Helix Tree Gifts ",
+          "zh": "螺旋树赠礼"
+        },
+        {
+          "color": "§7",
+          "text": "give ",
+          "zh": "额外提供"
+        },
+        {
+          "color": "§a",
+          "text": "+200 ",
+          "zh": "+200 "
+        },
+        {
+          "color": "§6",
+          "text": "Desert Whispers",
+          "zh": "沙漠低语"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "hotf_madness_effect",
+      "context": "伐木狂热提升横扫与伐木时运",
+      "text": "Increase  Sweep by %1$s and  Foraging Fortune by 50.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "desc": "横扫提升数值",
+          "example": "10"
+        }
+      ],
+      "translate": true,
+      "zh": " 横扫提高 %1$s， 伐木时运提高 50。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Increase ",
+          "zh": "使"
+        },
+        {
+          "color": "§2",
+          "text": " Sweep ",
+          "zh": " 横扫"
+        },
+        {
+          "color": "§7",
+          "text": "by ",
+          "zh": "提高"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " and ",
+          "zh": "，"
+        },
+        {
+          "color": "§6",
+          "text": " Foraging Fortune ",
+          "zh": " 伐木时运"
+        },
+        {
+          "color": "§7",
+          "text": "by ",
+          "zh": "提高"
+        },
+        {
+          "color": "§a",
+          "text": "50",
+          "zh": "50"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "hotf_250_gifts_effect",
+      "context": "每日前 250 份赠礼的掉落与低语增益",
+      "text": "Your first 250 Tree Gifts of the day grant %1$s more Loot and %2$s extra Forest or Desert Whispers.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "desc": "赠礼战利品增幅",
+          "example": "1%"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "desc": "额外低语数量",
+          "example": "20"
+        }
+      ],
+      "translate": true,
+      "zh": "每天前250 份树木赠礼，额外获得%1$s的战利品，并获得%2$s 点森林或沙漠低语。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Your first ",
+          "zh": "每天前"
+        },
+        {
+          "color": "§a",
+          "text": "250 ",
+          "zh": "250 "
+        },
+        {
+          "color": "§7",
+          "text": "Tree Gifts of the day grant ",
+          "zh": "份树木赠礼，额外获得"
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "more ",
+          "zh": "的"
+        },
+        {
+          "color": "§e",
+          "text": "Loot ",
+          "zh": "战利品"
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "，并获得"
+        },
+        {
+          "color": "§a",
+          "text": "%2$s ",
+          "zh": "%2$s 点"
+        },
+        {
+          "color": "§7",
+          "text": "extra ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§3",
+          "text": "Forest ",
+          "zh": "森林"
+        },
+        {
+          "color": "§7",
+          "text": "or ",
+          "zh": "或"
+        },
+        {
+          "color": "§6",
+          "text": "Desert Whispers",
+          "zh": "沙漠低语"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Template%3AHeart_of_the_Forest/UI",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 1 October 2026, at 11:09.",
+      "verified_ingame": false,
+      "gloss": "沿用旧实测原文/颜色；仅将会随天赋或斧技能等级变化的数值参数化。Wiki 的 Level 1 不是固定机制数值。",
+      "wiki_review": "普通 Wiki 对照名称、效果与 Level 1/最大等级；原始完整 tooltip 见 evidence.json 缓存。"
+    },
+    {
+      "id": "hotf_early_bird_effect",
+      "context": "每天砍伐前 250 棵树的伐木时运",
+      "text": "Foraging Fortune by 100 for the first 250 trees cut every day.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "每天砍伐前 250 棵树时，伐木时运提高 100。",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Foraging Fortune ",
+          "zh": "伐木时运"
+        },
+        {
+          "color": "§7",
+          "text": "by ",
+          "zh": "提高"
+        },
+        {
+          "color": "§a",
+          "text": "100",
+          "zh": "100"
+        },
+        {
+          "color": "§7",
+          "text": " for the first ",
+          "zh": "，每天仅限前"
+        },
+        {
+          "color": "§a",
+          "text": "250 ",
+          "zh": "250 "
+        },
+        {
+          "color": "§7",
+          "text": "trees cut every day.",
+          "zh": "棵树。"
+        }
+      ]
+    },
+    {
+      "id": "hotf_pressure_resistance",
+      "context": "深水适应获得抗压属性",
+      "text": "You gain %s  Pressure Resistance.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "desc": "抗压提升数值",
+          "example": "1"
+        }
+      ],
+      "translate": true,
+      "zh": "获得%s  抗压。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You gain ",
+          "zh": "获得"
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s "
+        },
+        {
+          "color": "§9",
+          "text": " Pressure Resistance",
+          "zh": " 抗压"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Template%3AHeart_of_the_Forest/UI",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 1 October 2026, at 11:09.",
+      "verified_ingame": false,
+      "gloss": "沿用旧实测原文/颜色；仅将会随天赋或斧技能等级变化的数值参数化。Wiki 的 Level 1 不是固定机制数值。",
+      "wiki_review": "普通 Wiki 对照名称、效果与 Level 1/最大等级；原始完整 tooltip 见 evidence.json 缓存。"
+    },
+    {
+      "id": "hotf_hunting_fortune",
+      "context": "猎人时运天赋效果",
+      "text": "You gain %s  Hunting Fortune.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "desc": "狩猎时运提升数值",
+          "example": "1"
+        }
+      ],
+      "translate": true,
+      "zh": "获得%s  狩猎时运。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You gain ",
+          "zh": "获得"
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s "
+        },
+        {
+          "color": "§d",
+          "text": " Hunting Fortune",
+          "zh": " 狩猎时运"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Template%3AHeart_of_the_Forest/UI",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 1 October 2026, at 11:09.",
+      "verified_ingame": false,
+      "gloss": "沿用旧实测原文/颜色；仅将会随天赋或斧技能等级变化的数值参数化。Wiki 的 Level 1 不是固定机制数值。",
+      "wiki_review": "普通 Wiki 对照名称、效果与 Level 1/最大等级；原始完整 tooltip 见 evidence.json 缓存。"
+    },
+    {
+      "id": "hotf_galatea_might_effect",
+      "context": "在 Galatea 的战斗属性增幅",
+      "text": "Gain +%s Combat Stats on Galatea.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "desc": "战斗属性增幅",
+          "example": "0.5%"
+        }
+      ],
+      "translate": true,
+      "zh": "获得+%s 战斗属性，仅在Galatea生效。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "获得"
+        },
+        {
+          "color": "§a",
+          "text": "+%s ",
+          "zh": "+%s "
+        },
+        {
+          "color": "§7",
+          "text": "Combat Stats on ",
+          "zh": "战斗属性，仅在"
+        },
+        {
+          "color": "§2",
+          "text": "Galatea",
+          "zh": "Galatea"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "生效。"
+        }
+      ],
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Template%3AHeart_of_the_Forest/UI",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 1 October 2026, at 11:09.",
+      "verified_ingame": false,
+      "gloss": "沿用旧实测原文/颜色；仅将会随天赋或斧技能等级变化的数值参数化。Wiki 的 Level 1 不是固定机制数值。",
+      "wiki_review": "普通 Wiki 对照名称、效果与 Level 1/最大等级；原始完整 tooltip 见 evidence.json 缓存。"
+    },
+    {
+      "id": "hotf_damage_boost_effect",
+      "context": "斧技能造成双倍伤害的时间与地点限制",
+      "text": "Your axe deals double  Damage to creatures on Galatea for %s.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "duration",
+          "desc": "技能持续时间",
+          "example": "10s"
+        }
+      ],
+      "translate": true,
+      "zh": "你的斧头造成双倍 伤害，仅对Galatea的生物生效，持续%s。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Your axe deals double ",
+          "zh": "你的斧头造成双倍"
+        },
+        {
+          "color": "§c",
+          "text": " Damage ",
+          "zh": " 伤害"
+        },
+        {
+          "color": "§7",
+          "text": "to creatures on ",
+          "zh": "，仅对"
+        },
+        {
+          "color": "§2",
+          "text": "Galatea ",
+          "zh": "Galatea"
+        },
+        {
+          "color": "§7",
+          "text": "for ",
+          "zh": "的生物生效，持续"
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Template%3AHeart_of_the_Forest/UI",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 1 October 2026, at 11:09.",
+      "verified_ingame": false,
+      "gloss": "沿用旧实测原文/颜色；仅将会随天赋或斧技能等级变化的数值参数化。Wiki 的 Level 1 不是固定机制数值。",
+      "wiki_review": "普通 Wiki 对照名称、效果与 Level 1/最大等级；原始完整 tooltip 见 evidence.json 缓存。"
+    },
+    {
+      "id": "hotf_tree_gifts_loot",
+      "context": "幸运馈赠天赋增加树木赠礼掉落",
+      "text": "Tree Gifts grant %s more loot.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "desc": "战利品增幅",
+          "example": "0.5%"
+        }
+      ],
+      "translate": true,
+      "zh": "树木赠礼的战利品提高%s。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Tree Gifts grant ",
+          "zh": "树木赠礼的战利品提高"
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": "more loot.",
+          "zh": "。"
+        }
+      ],
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Template%3AHeart_of_the_Forest/UI",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 1 October 2026, at 11:09.",
+      "verified_ingame": false,
+      "gloss": "沿用旧实测原文/颜色；仅将会随天赋或斧技能等级变化的数值参数化。Wiki 的 Level 1 不是固定机制数值。",
+      "wiki_review": "普通 Wiki 对照名称、效果与 Level 1/最大等级；原始完整 tooltip 见 evidence.json 缓存。"
+    },
+    {
+      "id": "hotf_collector_effect",
+      "context": "浆果及岛屿资源翻倍概率",
+      "text": "Berries and Island Resources have a %s chance to drop double resource.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "desc": "资源翻倍概率",
+          "example": "2%"
+        }
+      ],
+      "translate": true,
+      "zh": "采集浆果或岛屿资源时，有%s概率获得双倍资源。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Berries and Island Resources have a ",
+          "zh": "采集浆果或岛屿资源时，有"
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": "chance to drop double resource.",
+          "zh": "概率获得双倍资源。"
+        }
+      ],
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Template%3AHeart_of_the_Forest/UI",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 1 October 2026, at 11:09.",
+      "verified_ingame": false,
+      "gloss": "沿用旧实测原文/颜色；仅将会随天赋或斧技能等级变化的数值参数化。Wiki 的 Level 1 不是固定机制数值。",
+      "wiki_review": "普通 Wiki 对照名称、效果与 Level 1/最大等级；原始完整 tooltip 见 evidence.json 缓存。"
+    },
+    {
+      "id": "hotf_axe_toss_effect",
+      "context": "投斧后暂时无横扫惩罚",
+      "text": "Throwing your Axe has no  Sweep penalty for %s.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "duration",
+          "desc": "技能持续时间",
+          "example": "10s"
+        }
+      ],
+      "translate": true,
+      "zh": "投掷斧头时， 横扫不受惩罚，持续%s。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Throwing your Axe has no ",
+          "zh": "投掷斧头时，"
+        },
+        {
+          "color": "§2",
+          "text": " Sweep ",
+          "zh": " 横扫"
+        },
+        {
+          "color": "§7",
+          "text": "penalty for ",
+          "zh": "不受惩罚，持续"
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Template%3AHeart_of_the_Forest/UI",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 1 October 2026, at 11:09.",
+      "verified_ingame": false,
+      "gloss": "沿用旧实测原文/颜色；仅将会随天赋或斧技能等级变化的数值参数化。Wiki 的 Level 1 不是固定机制数值。",
+      "wiki_review": "普通 Wiki 对照名称、效果与 Level 1/最大等级；原始完整 tooltip 见 evidence.json 缓存。"
+    },
+    {
+      "id": "hotf_not_enough_whispers",
+      "context": "升级天赋时缺少森林低语",
+      "text": "You don't have enough Forest Whispers!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "森林低语不足!"
+    },
+    {
+      "id": "hotf_torrhus_intro",
+      "context": "森林之心的 Torrhus 岛屿导航",
+      "text": "Torrhus Canyon is the second island of Galatea.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "Torrhus 峡谷是 Galatea 的第二座岛屿。",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Torrhus Canyon ",
+          "zh": "Torrhus 峡谷"
+        },
+        {
+          "color": "§7",
+          "text": "is the second island of ",
+          "zh": "是"
+        },
+        {
+          "color": "§2",
+          "text": "Galatea",
+          "zh": "Galatea"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "的第二座岛屿。"
+        }
+      ]
+    },
+    {
+      "id": "hotf_torrhus_navigation",
+      "context": "Torrhus 导航卡片说明伐木、狩猎和地点",
+      "text": "Here you'll continue to hone your Foraging and Hunting skills as you partake in Miria's Contests, explore the Critter Safari, and dive deep into Torrhus Springs.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "在此参与 Miria 竞赛、探索小动物游猎并深入 Torrhus 泉，继续磨炼伐木与狩猎技能。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Here you'll continue to hone your ",
+          "zh": "在这里继续磨炼"
+        },
+        {
+          "color": "§a",
+          "text": "Foraging ",
+          "zh": "伐木"
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "与"
+        },
+        {
+          "color": "§a",
+          "text": "Hunting ",
+          "zh": "狩猎"
+        },
+        {
+          "color": "§7",
+          "text": "skills as you partake in ",
+          "zh": "技能：参加"
+        },
+        {
+          "color": "§b",
+          "text": "Miria's Contests",
+          "zh": "Miria 竞赛"
+        },
+        {
+          "color": "§7",
+          "text": ", explore the ",
+          "zh": "，探索"
+        },
+        {
+          "color": "§2",
+          "text": "Critter Safari",
+          "zh": "小动物游猎"
+        },
+        {
+          "color": "§7",
+          "text": ", and dive deep into ",
+          "zh": "，深入"
+        },
+        {
+          "color": "§b",
+          "text": "Torrhus Springs",
+          "zh": "Torrhus 泉"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "hotf_homing_axe_effect",
+      "context": "斧头在 Galatea 永久追踪树木",
+      "text": "Your Throwing Axes gain permanent homing abilities towards trees on Galatea.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "在 Galatea 投掷斧头时，斧头将永久自动追踪树木。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Your Throwing Axes gain permanent homing abilities towards trees on ",
+          "zh": "投掷斧头获得永久追踪树木的能力，仅在"
+        },
+        {
+          "color": "§2",
+          "text": "Galatea",
+          "zh": "Galatea"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "生效。"
+        }
+      ]
+    },
+    {
+      "id": "hotf_forest_fisher_effect",
+      "context": "伐木岛屿的钓鱼属性",
+      "text": "Grants +%1$s Fishing Speed and +%2$s Sea Creature Chance while on Foraging Islands.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "desc": "钓鱼速度增幅",
+          "example": "5.5"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "desc": "海洋生物几率增幅",
+          "example": "1.1"
+        }
+      ],
+      "translate": true,
+      "zh": "获得+%1$s 钓鱼速度和+%2$s 海洋生物几率，仅在伐木岛屿生效。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "获得"
+        },
+        {
+          "color": "§b",
+          "text": "+%1$s Fishing Speed",
+          "zh": "+%1$s 钓鱼速度"
+        },
+        {
+          "color": "§7",
+          "text": " and ",
+          "zh": "和"
+        },
+        {
+          "color": "§3",
+          "text": "+%2$s Sea Creature Chance",
+          "zh": "+%2$s 海洋生物几率"
+        },
+        {
+          "color": "§7",
+          "text": " while on ",
+          "zh": "，仅在"
+        },
+        {
+          "color": "§2",
+          "text": "Foraging Islands",
+          "zh": "伐木岛屿"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "生效。"
+        }
+      ],
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Template%3AHeart_of_the_Forest/UI",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 1 October 2026, at 11:09.",
+      "verified_ingame": false,
+      "gloss": "沿用旧实测原文/颜色；仅将会随天赋或斧技能等级变化的数值参数化。Wiki 的 Level 1 不是固定机制数值。",
+      "wiki_review": "普通 Wiki 对照名称、效果与 Level 1/最大等级；原始完整 tooltip 见 evidence.json 缓存。"
+    },
+    {
+      "id": "hotf_starlyn_supreme_effect",
+      "context": "Starlyn 竞赛积分增幅",
+      "text": "Gain +%s more points towards Starlyn Contests.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "desc": "竞赛积分增幅",
+          "example": "0.2%"
+        }
+      ],
+      "translate": true,
+      "zh": "获得的积分提高+%s，仅限Starlyn 竞赛。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "获得的积分提高"
+        },
+        {
+          "color": "§a",
+          "text": "+%s ",
+          "zh": "+%s"
+        },
+        {
+          "color": "§7",
+          "text": "more points towards ",
+          "zh": "，仅限"
+        },
+        {
+          "color": "§d",
+          "text": "Starlyn Contests",
+          "zh": "Starlyn 竞赛"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Template%3AHeart_of_the_Forest/UI",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 1 October 2026, at 11:09.",
+      "verified_ingame": false,
+      "gloss": "沿用旧实测原文/颜色；仅将会随天赋或斧技能等级变化的数值参数化。Wiki 的 Level 1 不是固定机制数值。",
+      "wiki_review": "普通 Wiki 对照名称、效果与 Level 1/最大等级；原始完整 tooltip 见 evidence.json 缓存。"
+    },
+    {
+      "id": "hotf_maniac_slicer_effect",
+      "context": "投斧消耗全部法力，每 100 点换 1 横扫持续 15 秒",
+      "text": "Throwing your axe consumes 100% of your total mana. You gain %1$s Sweep for every %2$s Mana used, for %3$s seconds.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "desc": "每份法力提供的横扫",
+          "example": "1"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "desc": "每份消耗法力",
+          "example": "100"
+        },
+        {
+          "token": "%3$s",
+          "type": "number",
+          "desc": "持续秒数",
+          "example": "15"
+        }
+      ],
+      "translate": true,
+      "zh": "投斧时消耗 100% 的总法力。每消耗 %2$s 点法力获得 %1$s 横扫，持续 %3$s 秒。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Throwing your axe consumes ",
+          "zh": "投斧时消耗 ",
+          "order": 0
+        },
+        {
+          "color": "§a",
+          "text": "100% ",
+          "zh": "100% ",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "of your total mana. You gain ",
+          "zh": "的总法力。每消耗 ",
+          "order": 2
+        },
+        {
+          "color": "§2",
+          "text": "%1$s Sweep ",
+          "zh": "%1$s 横扫",
+          "order": 5
+        },
+        {
+          "color": "§7",
+          "text": "for every ",
+          "zh": "获得 ",
+          "omit": false,
+          "order": 4
+        },
+        {
+          "color": "§b",
+          "text": "%2$s Mana ",
+          "zh": "%2$s 点法力",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "used, for ",
+          "zh": "，持续 ",
+          "order": 6
+        },
+        {
+          "color": "§a",
+          "text": "%3$s ",
+          "zh": "%3$s ",
+          "order": 7
+        },
+        {
+          "color": "§7",
+          "text": "seconds.",
+          "zh": "秒。",
+          "order": 8
+        }
+      ],
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Template%3AHeart_of_the_Forest/UI",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 1 October 2026, at 11:09.",
+      "verified_ingame": false,
+      "gloss": "沿用旧实测原文/颜色；仅将会随天赋或斧技能等级变化的数值参数化。Wiki 的 Level 1 不是固定机制数值。",
+      "wiki_review": "普通 Wiki 对照名称、效果与 Level 1/最大等级；原始完整 tooltip 见 evidence.json 缓存。"
+    },
+    {
+      "id": "hotf_half_full_effect",
+      "context": "同岛每名选择 Half Full 的玩家提供属性，上限五人",
+      "text": "Gain +%1$s Foraging Fortune and +%2$s Sweep for each player on your current island with Half Full enabled. (Capped at 5 players).",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "desc": "伐木时运增幅",
+          "example": "1"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "desc": "横扫增幅",
+          "example": "0.4"
+        }
+      ],
+      "translate": true,
+      "zh": "获得+%1$s 伐木时运与+%2$s 横扫，当前岛屿每名启用半满的玩家分别提供一次。（最多计入 5 人）",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "获得"
+        },
+        {
+          "color": "§6",
+          "text": "+%1$s Foraging Fortune ",
+          "zh": "+%1$s 伐木时运"
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "与"
+        },
+        {
+          "color": "§2",
+          "text": "+%2$s Sweep ",
+          "zh": "+%2$s 横扫"
+        },
+        {
+          "color": "§7",
+          "text": "for each player on your current island with Half Full enabled. ",
+          "zh": "，当前岛屿每名启用半满的玩家分别提供一次。"
+        },
+        {
+          "color": "§8",
+          "text": "(Capped at 5 players).",
+          "zh": "（最多计入 5 人）"
+        }
+      ],
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Template%3AHeart_of_the_Forest/UI",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 1 October 2026, at 11:09.",
+      "verified_ingame": false,
+      "gloss": "沿用旧实测原文/颜色；仅将会随天赋或斧技能等级变化的数值参数化。Wiki 的 Level 1 不是固定机制数值。",
+      "wiki_review": "普通 Wiki 对照名称、效果与 Level 1/最大等级；原始完整 tooltip 见 evidence.json 缓存。"
+    },
+    {
+      "id": "hotf_half_empty_effect",
+      "context": "同岛每名选择 Half Empty 的玩家提供属性，上限五人",
+      "text": "Gain +%1$s Foraging Fortune and +%2$s Sweep for each player on your current island with Half Empty enabled. (Capped at 5 players).",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "desc": "伐木时运增幅",
+          "example": "1"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "desc": "横扫增幅",
+          "example": "0.4"
+        }
+      ],
+      "translate": true,
+      "zh": "获得+%1$s 伐木时运与+%2$s 横扫，当前岛屿每名启用半空的玩家分别提供一次。（最多计入 5 人）",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "获得"
+        },
+        {
+          "color": "§6",
+          "text": "+%1$s Foraging Fortune ",
+          "zh": "+%1$s 伐木时运"
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "与"
+        },
+        {
+          "color": "§2",
+          "text": "+%2$s Sweep ",
+          "zh": "+%2$s 横扫"
+        },
+        {
+          "color": "§7",
+          "text": "for each player on your current island with Half Empty enabled. ",
+          "zh": "，当前岛屿每名启用半空的玩家分别提供一次。"
+        },
+        {
+          "color": "§8",
+          "text": "(Capped at 5 players).",
+          "zh": "（最多计入 5 人）"
+        }
+      ],
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Template%3AHeart_of_the_Forest/UI",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 1 October 2026, at 11:09.",
+      "verified_ingame": false,
+      "gloss": "沿用旧实测原文/颜色；仅将会随天赋或斧技能等级变化的数值参数化。Wiki 的 Level 1 不是固定机制数值。",
+      "wiki_review": "普通 Wiki 对照名称、效果与 Level 1/最大等级；原始完整 tooltip 见 evidence.json 缓存。"
+    },
+    {
+      "id": "hotf_forest_speed_effect",
+      "context": "按速度转化为伐木时运和横扫，上限 500 速度",
+      "text": "Gain %s of your total  Speed as  Foraging Fortune and  Sweep. (Caps at 500 Speed).",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "desc": "速度转化比例",
+          "example": "0.2%"
+        }
+      ],
+      "translate": true,
+      "zh": "将%s的总 速度转化为 伐木时运与 横扫。（最多计入 500 速度）",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "将"
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": "of your total ",
+          "zh": "的总"
+        },
+        {
+          "color": "§f",
+          "text": " Speed ",
+          "zh": " 速度"
+        },
+        {
+          "color": "§7",
+          "text": "as ",
+          "zh": "转化为"
+        },
+        {
+          "color": "§6",
+          "text": " Foraging Fortune ",
+          "zh": " 伐木时运"
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "与"
+        },
+        {
+          "color": "§2",
+          "text": " Sweep",
+          "zh": " 横扫"
+        },
+        {
+          "color": "§7",
+          "text": ". ",
+          "zh": "。"
+        },
+        {
+          "color": "§8",
+          "text": "(Caps at 500 Speed).",
+          "zh": "（最多计入 500 速度）"
+        }
+      ],
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Template%3AHeart_of_the_Forest/UI",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 1 October 2026, at 11:09.",
+      "verified_ingame": false,
+      "gloss": "沿用旧实测原文/颜色；仅将会随天赋或斧技能等级变化的数值参数化。Wiki 的 Level 1 不是固定机制数值。",
+      "wiki_review": "普通 Wiki 对照名称、效果与 Level 1/最大等级；原始完整 tooltip 见 evidence.json 缓存。"
+    },
+    {
+      "id": "hotf_forest_strength_effect",
+      "context": "按力量转化为伐木时运和横扫，上限 1000 力量",
+      "text": "Gain %s of your total  Strength as  Foraging Fortune and  Sweep. (Caps at 1,000 Strength).",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "desc": "力量转化比例",
+          "example": "0.1%"
+        }
+      ],
+      "translate": true,
+      "zh": "将%s的总 力量转化为 伐木时运与 横扫。（最多计入 1,000 力量）",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "将"
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": "of your total ",
+          "zh": "的总"
+        },
+        {
+          "color": "§c",
+          "text": " Strength ",
+          "zh": " 力量"
+        },
+        {
+          "color": "§7",
+          "text": "as ",
+          "zh": "转化为"
+        },
+        {
+          "color": "§6",
+          "text": " Foraging Fortune ",
+          "zh": " 伐木时运"
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "与"
+        },
+        {
+          "color": "§2",
+          "text": " Sweep",
+          "zh": " 横扫"
+        },
+        {
+          "color": "§7",
+          "text": ". ",
+          "zh": "。"
+        },
+        {
+          "color": "§8",
+          "text": "(Caps at 1,000 Strength).",
+          "zh": "（最多计入 1,000 力量）"
+        }
+      ],
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Template%3AHeart_of_the_Forest/UI",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 1 October 2026, at 11:09.",
+      "verified_ingame": false,
+      "gloss": "沿用旧实测原文/颜色；仅将会随天赋或斧技能等级变化的数值参数化。Wiki 的 Level 1 不是固定机制数值。",
+      "wiki_review": "普通 Wiki 对照名称、效果与 Level 1/最大等级；原始完整 tooltip 见 evidence.json 缓存。"
+    },
+    {
+      "id": "hotf_ricochet_effect",
+      "context": "飞斧概率弹射到附近树木",
+      "text": "Your Axe has a %s chance to bounce to a nearby tree when thrown.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "desc": "飞斧弹射概率",
+          "example": "1%"
+        }
+      ],
+      "translate": true,
+      "zh": "投掷斧头时，有%s概率弹射至附近的另一棵树。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Your Axe has a ",
+          "zh": "投掷斧头时，有"
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": "chance to bounce to a nearby tree when thrown.",
+          "zh": "概率弹射至附近的另一棵树。"
+        }
+      ],
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Template%3AHeart_of_the_Forest/UI",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 1 October 2026, at 11:09.",
+      "verified_ingame": false,
+      "gloss": "沿用旧实测原文/颜色；仅将会随天赋或斧技能等级变化的数值参数化。Wiki 的 Level 1 不是固定机制数值。",
+      "wiki_review": "普通 Wiki 对照名称、效果与 Level 1/最大等级；原始完整 tooltip 见 evidence.json 缓存。"
+    },
+    {
+      "id": "hotf_monster_hunter_effect",
+      "context": "在两座岛狩猎小动物分别获得低语",
+      "text": "Hunting a  Critter grants +25 Forest Whispers while on the Moonglade Marsh or +25 Desert Whispers if on Torrhus Canyon.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "狩猎小动物时，在月光沼泽获得 +25 森林低语；在 Torrhus 峡谷获得 +25 沙漠低语。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Hunting a ",
+          "zh": "狩猎"
+        },
+        {
+          "color": "§a",
+          "text": " Critter ",
+          "zh": " 小动物"
+        },
+        {
+          "color": "§7",
+          "text": "grants ",
+          "zh": "时获得"
+        },
+        {
+          "color": "§a",
+          "text": "+25 ",
+          "zh": "+25 "
+        },
+        {
+          "color": "§3",
+          "text": "Forest Whispers ",
+          "zh": "森林低语"
+        },
+        {
+          "color": "§7",
+          "text": "while on the ",
+          "zh": "（仅限"
+        },
+        {
+          "color": "§2",
+          "text": "Moonglade Marsh ",
+          "zh": "月光沼泽"
+        },
+        {
+          "color": "§7",
+          "text": "or ",
+          "zh": "），或"
+        },
+        {
+          "color": "§a",
+          "text": "+25 ",
+          "zh": "+25 "
+        },
+        {
+          "color": "§6",
+          "text": "Desert Whispers ",
+          "zh": "沙漠低语"
+        },
+        {
+          "color": "§7",
+          "text": "if on ",
+          "zh": "（仅限"
+        },
+        {
+          "color": "§6",
+          "text": "Torrhus Canyon",
+          "zh": "Torrhus 峡谷"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "）。"
+        }
+      ]
+    },
+    {
+      "id": "hotf_essence_fortune_effect",
+      "context": "获得森林精华有概率翻倍",
+      "text": "Every time you obtain Forest Essence, there is a %s chance for it to double.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "desc": "森林精华翻倍概率",
+          "example": "0.5%"
+        }
+      ],
+      "translate": true,
+      "zh": "每次获得森林精华时，有%s概率使获得量翻倍。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Every time you obtain ",
+          "zh": "每次获得"
+        },
+        {
+          "color": "§d",
+          "text": "Forest Essence",
+          "zh": "森林精华"
+        },
+        {
+          "color": "§7",
+          "text": ", there is a ",
+          "zh": "时，有"
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": " chance for it to double.",
+          "zh": "概率使获得量翻倍。"
+        }
+      ],
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Template%3AHeart_of_the_Forest/UI",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 1 October 2026, at 11:09.",
+      "verified_ingame": false,
+      "gloss": "沿用旧实测原文/颜色；仅将会随天赋或斧技能等级变化的数值参数化。Wiki 的 Level 1 不是固定机制数值。",
+      "wiki_review": "普通 Wiki 对照名称、效果与 Level 1/最大等级；原始完整 tooltip 见 evidence.json 缓存。"
+    },
+    {
+      "id": "hotf_beekeeper_daily",
+      "context": "养蜂人每天在伐木岛获得随机增益",
+      "text": "Every SkyBlock day, gain a random effect while on any Foraging Island.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "每个 SkyBlock 日，在任意伐木岛屿获得一项随机增益。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Every SkyBlock day, gain a random effect while on any ",
+          "zh": "每个 SkyBlock 日，在任意"
+        },
+        {
+          "color": "§2",
+          "text": "Foraging Island",
+          "zh": "伐木岛屿"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "获得一项随机增益。"
+        }
+      ]
+    },
+    {
+      "id": "hotf_bee_refill",
+      "context": "养蜂人随机增益：蜂巢补充速度",
+      "text": "■ Honeyhives refill 20% faster.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "■ 蜂巢补充速度提高 20%。",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "■ ",
+          "zh": "■ "
+        },
+        {
+          "color": "§6",
+          "text": "Honeyhives ",
+          "zh": "蜂巢"
+        },
+        {
+          "color": "§7",
+          "text": "refill ",
+          "zh": "补充速度提高"
+        },
+        {
+          "color": "§a",
+          "text": "20% ",
+          "zh": "20%"
+        },
+        {
+          "color": "§7",
+          "text": "faster.",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "hotf_bee_attract",
+      "context": "养蜂人随机增益：涂蜜脾的树吸引小动物速度",
+      "text": "■ Trees lathered with Honeycomb attract  Critters 20% faster.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "■ 涂有蜜脾的树木吸引小动物的速度提高 20%。",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "■ ",
+          "zh": "■ "
+        },
+        {
+          "color": "§a",
+          "text": "Trees ",
+          "zh": "树木"
+        },
+        {
+          "color": "§7",
+          "text": "lathered with ",
+          "zh": "涂上"
+        },
+        {
+          "color": "§6",
+          "text": "Honeycomb ",
+          "zh": "蜜脾"
+        },
+        {
+          "color": "§7",
+          "text": "attract ",
+          "zh": "后吸引"
+        },
+        {
+          "color": "§a",
+          "text": " Critters 20% ",
+          "zh": " 小动物的速度提高 20%"
+        },
+        {
+          "color": "§7",
+          "text": "faster.",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "hotf_bee_double",
+      "context": "养蜂人随机增益：获得双倍蜜脾",
+      "text": "■ Gain 2x Honeycomb from Honeyhives and Trees lathered with Honeycomb.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "■ 从蜂巢及涂有蜜脾的树木获得双倍蜜脾。",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "■ ",
+          "zh": "■ "
+        },
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "获得"
+        },
+        {
+          "color": "§a",
+          "text": "2x ",
+          "zh": "双倍"
+        },
+        {
+          "color": "§6",
+          "text": "Honeycomb ",
+          "zh": "蜜脾"
+        },
+        {
+          "color": "§7",
+          "text": "from ",
+          "zh": "，来源包括"
+        },
+        {
+          "color": "§6",
+          "text": "Honeyhives ",
+          "zh": "蜂巢"
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "和"
+        },
+        {
+          "color": "§a",
+          "text": "Trees ",
+          "zh": "树木"
+        },
+        {
+          "color": "§7",
+          "text": "lathered with ",
+          "zh": "上涂的"
+        },
+        {
+          "color": "§6",
+          "text": "Honeycomb",
+          "zh": "蜜脾"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "hotf_bee_second_critter",
+      "context": "养蜂人随机增益：吸引第二只小动物的概率",
+      "text": "■ Trees lathered with Honeycomb have a 25% chance to attract a second  Critter.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "■ 涂有蜜脾的树木有 25% 概率额外吸引一只  小动物。",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "■ ",
+          "zh": "■ "
+        },
+        {
+          "color": "§a",
+          "text": "Trees ",
+          "zh": "树木"
+        },
+        {
+          "color": "§7",
+          "text": "lathered with ",
+          "zh": "涂上"
+        },
+        {
+          "color": "§6",
+          "text": "Honeycomb ",
+          "zh": "蜜脾"
+        },
+        {
+          "color": "§7",
+          "text": "have a ",
+          "zh": "后有"
+        },
+        {
+          "color": "§a",
+          "text": "25% ",
+          "zh": "25%"
+        },
+        {
+          "color": "§7",
+          "text": "chance to attract a second ",
+          "zh": "概率额外吸引一只"
+        },
+        {
+          "color": "§a",
+          "text": " Critter",
+          "zh": " 小动物"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    }
   ]
 }

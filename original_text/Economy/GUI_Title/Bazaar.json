@@ -5,9 +5,51 @@
   "verified_ingame": true,
   "gui_context": "集市界面标题。",
   "titles": [
-    {"id":"bazaar_special_product","context":"集市特殊材料子页面","text":"Special ➜ %s","placeholders":[{"token":"%s","type":"catalog_item_name","example":"Kuudra Teeth","desc":"目录确认的商品完整名称"}],"translate":true,"zh":"特殊 ➜ %s"},
-    {"id":"bazaar_mob_drops_product","context":"集市生物掉落物子页面","text":"Mob Drops ➜ %s","placeholders":[{"token":"%s","type":"catalog_item_name","example":"Tentacle Meat","desc":"目录确认的商品完整名称"}],"translate":true,"zh":"生物掉落物 ➜ %s"},
-    {"id":"bazaar_red_sand_product","context":"集市红沙子分类","text":"Red Sand ➜ %s","placeholders":[{"token":"%s","type":"catalog_item_name","example":"Enchanted Red Sand","desc":"目录确认的商品完整名称"}],"translate":true,"zh":"红沙 ➜ %s"},
+    {
+      "id": "bazaar_special_product",
+      "context": "集市特殊材料子页面",
+      "text": "Special ➜ %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "catalog_item_name",
+          "example": "Kuudra Teeth",
+          "desc": "目录确认的商品完整名称"
+        }
+      ],
+      "translate": true,
+      "zh": "特殊 ➜ %s"
+    },
+    {
+      "id": "bazaar_mob_drops_product",
+      "context": "集市生物掉落物子页面",
+      "text": "Mob Drops ➜ %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "catalog_item_name",
+          "example": "Tentacle Meat",
+          "desc": "目录确认的商品完整名称"
+        }
+      ],
+      "translate": true,
+      "zh": "生物掉落物 ➜ %s"
+    },
+    {
+      "id": "bazaar_red_sand_product",
+      "context": "集市红沙子分类",
+      "text": "Red Sand ➜ %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "catalog_item_name",
+          "example": "Enchanted Red Sand",
+          "desc": "目录确认的商品完整名称"
+        }
+      ],
+      "translate": true,
+      "zh": "红沙 ➜ %s"
+    },
     {
       "id": "gui_title_bazaar_category",
       "context": "集市按分类浏览时的标题,箭头后面是分类名",
@@ -79,12 +121,12 @@
       "placeholders": [
         {
           "token": "%s",
-          "desc": "商品名。物品名保留英文,所以用词表不生效的 item_name",
-          "type": "item_name",
+          "desc": "有界菜单目标:仅目录确认的完整商品名,复用 ITEM 整名译文;截短名与搜索词不接收。",
+          "type": "catalog_item_name",
           "example": "Fossil Essence"
         }
       ],
-      "gloss": "",
+      "gloss": "完整商品标题的有界捕获,不是任意标题文字。实时颜色原样读取;未知/截短名不成为假命中。",
       "translate": true,
       "zh": "%s ➜ 立即购买"
     },
@@ -95,12 +137,12 @@
       "placeholders": [
         {
           "token": "%s",
-          "desc": "商品名,译名走 _shared/Terms.json",
-          "type": "category_name",
+          "desc": "有界菜单目标:仅目录确认的完整商品名,复用 ITEM 整名译文;截短名与搜索词不接收。",
+          "type": "catalog_item_name",
           "example": "Tusk Fossil"
         }
       ],
-      "gloss": "",
+      "gloss": "完整商品标题的有界捕获,不是任意标题文字。实时颜色原样读取;未知/截短名不成为假命中。",
       "translate": true,
       "zh": "%s ➜ 挂单出售"
     },
@@ -265,12 +307,12 @@
       "placeholders": [
         {
           "token": "%s",
-          "desc": "商品名,保留英文",
-          "type": "item_name",
+          "desc": "有界菜单目标:已有分类/生物词表或目录确认的完整商品;不吞任意句子。",
+          "type": "recipe_target",
           "example": "Booster Cookie"
         }
       ],
-      "gloss": "",
+      "gloss": "此菜单混合已展示的分类与商品,复用 recipe_target 的分类/生物/目录查询;不复制 ITEM 译名进 Terms,不另建竞争模板。",
       "translate": true,
       "zh": "珍奇 ➜ %s"
     },
@@ -281,12 +323,12 @@
       "placeholders": [
         {
           "token": "%s",
-          "desc": "商品名,保留英文",
-          "type": "item_name",
+          "desc": "有界菜单目标:仅目录确认的完整商品名,复用 ITEM 整名译文;截短名与搜索词不接收。",
+          "type": "catalog_item_name",
           "example": "Purple Candy"
         }
       ],
-      "gloss": "",
+      "gloss": "完整商品标题的有界捕获,不是任意标题文字。实时颜色原样读取;未知/截短名不成为假命中。",
       "translate": true,
       "zh": "惊魂 ➜ %s"
     },
@@ -297,12 +339,12 @@
       "placeholders": [
         {
           "token": "%s",
-          "desc": "商品名,保留英文",
-          "type": "item_name",
+          "desc": "有界菜单目标:仅目录确认的完整商品名,复用 ITEM 整名译文;截短名与搜索词不接收。",
+          "type": "catalog_item_name",
           "example": "Wheat"
         }
       ],
-      "gloss": "",
+      "gloss": "完整商品标题的有界捕获,不是任意标题文字。实时颜色原样读取;未知/截短名不成为假命中。",
       "translate": true,
       "zh": "小麦与种子 ➜ %s"
     },
@@ -313,12 +355,12 @@
       "placeholders": [
         {
           "token": "%s",
-          "desc": "商品名,保留英文",
-          "type": "item_name",
+          "desc": "有界菜单目标:仅目录确认的完整商品名,复用 ITEM 整名译文;截短名与搜索词不接收。",
+          "type": "catalog_item_name",
           "example": "Enchanted Cactus Green"
         }
       ],
-      "gloss": "",
+      "gloss": "完整商品标题的有界捕获,不是任意标题文字。实时颜色原样读取;未知/截短名不成为假命中。",
       "translate": true,
       "zh": "仙人掌 ➜ %s"
     },
@@ -329,12 +371,12 @@
       "placeholders": [
         {
           "token": "%s",
-          "desc": "商品名,保留英文",
-          "type": "item_name",
+          "desc": "有界菜单目标:仅目录确认的完整商品名,复用 ITEM 整名译文;截短名与搜索词不接收。",
+          "type": "catalog_item_name",
           "example": "Enchanted Melon"
         }
       ],
-      "gloss": "",
+      "gloss": "完整商品标题的有界捕获,不是任意标题文字。实时颜色原样读取;未知/截短名不成为假命中。",
       "translate": true,
       "zh": "西瓜 ➜ %s"
     },
@@ -345,12 +387,12 @@
       "placeholders": [
         {
           "token": "%s",
-          "desc": "商品名,保留英文",
-          "type": "item_name",
+          "desc": "有界菜单目标:仅目录确认的完整商品名,复用 ITEM 整名译文;截短名与搜索词不接收。",
+          "type": "catalog_item_name",
           "example": "Enchanted Potato"
         }
       ],
-      "gloss": "",
+      "gloss": "完整商品标题的有界捕获,不是任意标题文字。实时颜色原样读取;未知/截短名不成为假命中。",
       "translate": true,
       "zh": "马铃薯 ➜ %s"
     },
@@ -361,12 +403,12 @@
       "placeholders": [
         {
           "token": "%s",
-          "desc": "商品名,保留英文",
-          "type": "item_name",
+          "desc": "有界菜单目标:仅目录确认的完整商品名,复用 ITEM 整名译文;截短名与搜索词不接收。",
+          "type": "catalog_item_name",
           "example": "Enchanted Pumpkin"
         }
       ],
-      "gloss": "",
+      "gloss": "完整商品标题的有界捕获,不是任意标题文字。实时颜色原样读取;未知/截短名不成为假命中。",
       "translate": true,
       "zh": "南瓜 ➜ %s"
     },
@@ -377,12 +419,12 @@
       "placeholders": [
         {
           "token": "%s",
-          "desc": "商品名,保留英文",
-          "type": "item_name",
+          "desc": "有界菜单目标:仅目录确认的完整商品名,复用 ITEM 整名译文;截短名与搜索词不接收。",
+          "type": "catalog_item_name",
           "example": "Enchanted Sugar"
         }
       ],
-      "gloss": "",
+      "gloss": "完整商品标题的有界捕获,不是任意标题文字。实时颜色原样读取;未知/截短名不成为假命中。",
       "translate": true,
       "zh": "甘蔗 ➜ %s"
     },
@@ -393,12 +435,12 @@
       "placeholders": [
         {
           "token": "%s",
-          "desc": "商品名,保留英文",
-          "type": "item_name",
+          "desc": "有界菜单目标:仅目录确认的完整商品名,复用 ITEM 整名译文;截短名与搜索词不接收。",
+          "type": "catalog_item_name",
           "example": "Enchanted Carrot"
         }
       ],
-      "gloss": "",
+      "gloss": "完整商品标题的有界捕获,不是任意标题文字。实时颜色原样读取;未知/截短名不成为假命中。",
       "translate": true,
       "zh": "胡萝卜 ➜ %s"
     },
@@ -409,12 +451,12 @@
       "placeholders": [
         {
           "token": "%s",
-          "desc": "商品名,保留英文",
-          "type": "item_name",
+          "desc": "有界菜单目标:仅目录确认的完整商品名,复用 ITEM 整名译文;截短名与搜索词不接收。",
+          "type": "catalog_item_name",
           "example": "Enchanted Cocoa Beans"
         }
       ],
-      "gloss": "",
+      "gloss": "完整商品标题的有界捕获,不是任意标题文字。实时颜色原样读取;未知/截短名不成为假命中。",
       "translate": true,
       "zh": "可可豆 ➜ %s"
     },
@@ -425,12 +467,12 @@
       "placeholders": [
         {
           "token": "%s",
-          "desc": "商品名,保留英文",
-          "type": "item_name",
+          "desc": "有界菜单目标:仅目录确认的完整商品名,复用 ITEM 整名译文;截短名与搜索词不接收。",
+          "type": "catalog_item_name",
           "example": "Enchanted Red Mushroom"
         }
       ],
-      "gloss": "",
+      "gloss": "完整商品标题的有界捕获,不是任意标题文字。实时颜色原样读取;未知/截短名不成为假命中。",
       "translate": true,
       "zh": "蘑菇 ➜ %s"
     },
@@ -441,12 +483,12 @@
       "placeholders": [
         {
           "token": "%s",
-          "desc": "商品名,保留英文",
-          "type": "item_name",
+          "desc": "有界菜单目标:仅目录确认的完整商品名,复用 ITEM 整名译文;截短名与搜索词不接收。",
+          "type": "catalog_item_name",
           "example": "Enchanted Nether Wart"
         }
       ],
-      "gloss": "",
+      "gloss": "完整商品标题的有界捕获,不是任意标题文字。实时颜色原样读取;未知/截短名不成为假命中。",
       "translate": true,
       "zh": "下界疣 ➜ %s"
     }

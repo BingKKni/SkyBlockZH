@@ -81,7 +81,14 @@
   "verified_ingame": false,
   "note": "Galatea 及关联狩猎菜单的名称;属性标题只用于 Lore,不改变同名实体物品。NPC 与自造专名精确保留以防重复采集。",
   "entries": [
-    {"id":"galatea_booster_preserved","context":"强化道具类型标签","text":"Booster","translate":false,"zh":"","gloss":"沿用项目硬规则,Booster 保留英文;精确登记防止重复采集。"},
+    {
+      "id": "galatea_booster_preserved",
+      "context": "强化道具类型标签",
+      "text": "Booster",
+      "translate": false,
+      "zh": "",
+      "gloss": "沿用项目硬规则,Booster 保留英文;精确登记防止重复采集。"
+    },
     {
       "id": "galatea_660276da0362",
       "context": "Galatea NPC 菜单、资源或关联狩猎系统",
@@ -1450,8 +1457,8 @@
       "placeholders": [
         {
           "token": "%s",
-          "type": "rarity",
-          "desc": "动态值;不写死 Wiki 样例",
+          "type": "category_name",
+          "desc": "动态值;不写死 Wiki 样例 | 稀有度值经 category_name 词表解析(父任务批准的接通方案)",
           "example": "COMMON"
         }
       ],

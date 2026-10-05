@@ -340,7 +340,7 @@ public final class ChatInteractionHarness {
 		colour("好友提示正文不染成玩家名颜色", "§aYou are now friends with §b[MVP+] Example", "§a你与 §b[MVP+] Example§a 已成为好友");
 		colour("好友三个按钮及分隔符", "§a§l[ACCEPT]§8 - §c§l[DENY]§8 - §7§l[BLOCK]", "§a§l[接受]§8 - §c§l[拒绝]§8 - §7§l[屏蔽]");
 		colour("Romero 末尾按钮", "§fIf you lost the item, we can fix that! Although, you will have to cover my expenses, considering the sentimental value... §e§l[CLICK]",
-			"§f东西弄丢了也能补! 不过看在它承载的心意上,成本得由你承担……§e§l[点击]");
+			"§f东西弄丢了也能补! 不过考虑到这份心意的分量，成本得由你承担…… §e§l[点击]");
 	}
 
 	private static void colour(String name, String en, String zh) {
