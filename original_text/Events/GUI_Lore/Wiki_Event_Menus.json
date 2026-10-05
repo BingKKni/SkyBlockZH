@@ -1,0 +1,207 @@
+{
+  "source": [
+    "https://hypixelskyblock.minecraft.wiki/w/Frosty/UI",
+    "https://hypixelskyblock.minecraft.wiki/w/Calendar_and_Events/UI",
+    "https://hypixelskyblock.minecraft.wiki/w/Einary/UI",
+    "https://hypixelskyblock.minecraft.wiki/w/Banker_Barry",
+    "https://hypixelskyblock.minecraft.wiki/w/Lukas_the_Aquarist/UI"
+  ],
+  "fetched_at": "2026-10-04",
+  "verified_ingame": false,
+  "note": "events-1 普通社区 Wiki 补译；每条来源/编辑日期见记录。raw 为呈现 HTML 的明确格式码，非服务器实测。仅补已核实缺口，原有翻译继续复用。",
+  "records": [
+    {
+      "id": "events_claim",
+      "ref": "_shared/Menu_Common.json#menu_click_to_claim",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Frosty/UI",
+      "fetched_at": "2026-10-04",
+      "verified_ingame": false,
+      "last_edited": "This page was last edited on 29 August 2023, at 17:11.",
+      "context": "Frosty/UI 已有译文复用，不重写同面原文。"
+    },
+    {
+      "id": "calendar_spooky_pie_awarded",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Calendar_and_Events/UI",
+      "fetched_at": "2026-10-04",
+      "verified_ingame": false,
+      "last_edited": "This page was last edited on 10 September 2026, at 20:44.",
+      "context": "Calendar and Events/UI 普通呈现页；物品/菜单原文",
+      "raw": "§7Obtained during the §6Spooky §6Festival §7for placing within §7the Top %s in the Candy §7Contest!",
+      "text": "Obtained during the Spooky Festival for placing within the Top %s in the Candy Contest!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "10,000",
+          "desc": "可领取纪念品的排名门槛"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "在惊魂节糖果竞赛中跻身前 %s 名时获得!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Obtained during the ",
+          "zh": "在"
+        },
+        {
+          "color": "§6",
+          "text": "Spooky Festival ",
+          "zh": "惊魂节"
+        },
+        {
+          "color": "§7",
+          "text": "for placing within the Top %s in the Candy Contest!",
+          "zh": "糖果竞赛中跻身前 %s 名时获得!"
+        }
+      ],
+      "samples": [
+        [
+          "§7Obtained during the §6Spooky",
+          "§6Festival §7for placing within",
+          "§7the Top 10,000 in the Candy",
+          "§7Contest!"
+        ]
+      ]
+    },
+    {
+      "id": "calendar_coins_deposit",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Calendar_and_Events/UI",
+      "fetched_at": "2026-10-04",
+      "verified_ingame": false,
+      "last_edited": "This page was last edited on 10 September 2026, at 20:44.",
+      "context": "Calendar and Events/UI 普通呈现页；物品/菜单原文",
+      "raw": "§7These Coins will be deposited §7into your Purse!",
+      "text": "These Coins will be deposited into your Purse!",
+      "placeholders": [],
+      "gloss": "Purse 是随身硬币，不是银行账户。",
+      "translate": true,
+      "zh": "这些硬币将存入你随身携带的硬币中!",
+      "samples": [
+        [
+          "§7These Coins will be deposited",
+          "§7into your Purse!"
+        ]
+      ]
+    },
+    {
+      "id": "calendar_reward_event_label",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Calendar_and_Events/UI",
+      "fetched_at": "2026-10-04",
+      "verified_ingame": false,
+      "last_edited": "This page was last edited on 10 September 2026, at 20:44.",
+      "context": "Calendar and Events/UI 普通呈现页；物品/菜单原文",
+      "raw": "§7Event",
+      "text": "Event",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "活动",
+      "samples": [
+        [
+          "§7Event"
+        ]
+      ]
+    },
+    {
+      "id": "calendar_spooky_event_number",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Calendar_and_Events/UI",
+      "fetched_at": "2026-10-04",
+      "verified_ingame": false,
+      "last_edited": "This page was last edited on 10 September 2026, at 20:44.",
+      "context": "Calendar and Events/UI 普通呈现页；物品/菜单原文",
+      "raw": "§6%s Spooky Festival",
+      "text": "%s Spooky Festival",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "ordinal",
+          "example": "27th",
+          "desc": "活动届数；Wiki 用 [n-th] 表示"
+        }
+      ],
+      "gloss": "仅将 Wiki 的序数占位替换为有类型参数；稀有度与事件奖励段落不合并。",
+      "translate": true,
+      "zh": "第 %s 届惊魂节"
+    },
+    {
+      "id": "einary_minion_action",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Einary/UI",
+      "fetched_at": "2026-10-04",
+      "verified_ingame": false,
+      "last_edited": "This page was last edited on 14 August 2026, at 19:47.",
+      "context": "Einary/UI 普通呈现页；物品/菜单原文",
+      "raw": "§7Time Between Action: §a%s",
+      "text": "Time Between Action: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "duration",
+          "example": "5.8s",
+          "desc": "小人动作间隔"
+        }
+      ],
+      "gloss": "Wiki 菜单的 Action 单数版本，与现有 Actions 版本并存。",
+      "translate": true,
+      "zh": "动作间隔: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Time Between Action: ",
+          "zh": "动作间隔: "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "einary_looting_sentence",
+      "context": "Einary/UI 复用 Hex 同文的怪物掉落概率句,不重复定义译文。",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Einary/UI",
+      "fetched_at": "2026-10-04",
+      "verified_ingame": false,
+      "last_edited": "This page was last edited on 14 August 2026, at 19:47.",
+      "ref": "_shared/Fragments/Wiki_economy-1_Phase2.json#economy2_increases_the_chance_of_a_monster_dropping_an_item_by_s_ddfb9830"
+    },
+    {
+      "id": "events_ref_wiki_bank_limit",
+      "ref": "_shared/Fragments/Wiki_events-1_Common.json#wiki_bank_limit",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Banker_Barry",
+      "fetched_at": "2026-10-04",
+      "verified_ingame": false,
+      "last_edited": "This page was last edited on 11 August 2026, at 18:55.",
+      "context": "Banker Barry/节庆商店复用本分片新共享整句。"
+    },
+    {
+      "id": "events_ref_wiki_bank_first_compact",
+      "ref": "_shared/Fragments/Wiki_events-1_Common.json#wiki_bank_first_compact",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Banker_Barry",
+      "fetched_at": "2026-10-04",
+      "verified_ingame": false,
+      "last_edited": "This page was last edited on 11 August 2026, at 18:55.",
+      "context": "Banker Barry/节庆商店复用本分片新共享整句。"
+    },
+    {
+      "id": "events_ref_wiki_bank_max_interest",
+      "ref": "_shared/Fragments/Wiki_events-1_Common.json#wiki_bank_max_interest",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Banker_Barry",
+      "fetched_at": "2026-10-04",
+      "verified_ingame": false,
+      "last_edited": "This page was last edited on 11 August 2026, at 18:55.",
+      "context": "Banker Barry/节庆商店复用本分片新共享整句。"
+    },
+    {
+      "id": "events_ref_wiki_shared_shop_sell",
+      "ref": "_shared/Fragments/Wiki_events-1_Common.json#wiki_shared_shop_sell",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Lukas_the_Aquarist/UI",
+      "fetched_at": "2026-10-04",
+      "verified_ingame": false,
+      "last_edited": "This page was last edited on 22 April 2026, at 09:41.",
+      "context": "Banker Barry/节庆商店复用本分片新共享整句。"
+    }
+  ]
+}

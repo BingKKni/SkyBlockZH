@@ -5,37 +5,423 @@
   "source_note": "逐字原文以用户日志为准; 社区 Wiki 普通页面用于核对语境。日志未保留颜色码的消息不伪造 raw; 分段按语义边界保留运行时颜色。",
   "npc": "Lone Adventurer",
   "location": "The End",
-  "note": "身份：末地冒险者，指导玩家入门。关系：从陌生向同行、朋友转变。语言：随意口语，爱讲自己的冒险经历。性格：热心，有点爱逞强；受伤时仍掩不住兴奋。风格：保留惊叹和自嘲，不写成任务说明书。八件护甲及装备合称末影套装。",
+  "note": "身份：末地的独行冒险者，经历屠龙后决定留下帮助新人。\n关系：从互相试探、推销装备，到受玩家帮助后的朋友与向导。\n口吻：随意、热情，推销时故作便宜，受惊时夸张但真诚。\n性格与词汇：虚空之剑、末影套装、龙巢、巨龙短弓；不把八件套写成八件护甲。\n禁用风格：不硬加网络梗，不改固定任务数和装备来源；玩家名保留。",
   "wiki_last_edited": "2026-08-24",
   "messages": [
-    {"id":"lone_guide_greetings","context":"开放巨龙指南时向玩家问好","text":"Greetings %s!","raw":"Greetings §b%s§r!","placeholders":[{"token":"%s","type":"player_name","example":"inkkni","desc":"玩家名"}],"translate":true,"zh":"你好啊，%s!","segments":[{"color":"","text":"Greetings ","zh":"你好啊，"},{"color":"§b","text":"%s","zh":"%s"},{"color":"§r","text":"!","zh":"!"}]},
-    {"id":"lone_guide_next_adventure","context":"完成任务后谈起曾经的打算","text":"For the longest time I thought I would move to the Crimson Isle or visit the Catacombs after this place.","raw":"For the longest time I thought I would move to the §cCrimson Isle §ror visit the §7Catacombs §rafter this place.","translate":true,"zh":"很长一段时间里，我都想着，离开这里以后就去绯红岛，或者到地牢看看。","segments":[{"color":"","text":"For the longest time I thought I would move to the ","zh":"很长一段时间里，我都想着，离开这里以后就去"},{"color":"§c","text":"Crimson Isle ","zh":"绯红岛"},{"color":"§r","text":"or visit the ","zh":"，或者到"},{"color":"§7","text":"Catacombs ","zh":"地牢"},{"color":"§r","text":"after this place.","zh":"看看。"}]},
-    {"id":"lone_guide_like_it_here","context":"决定留在末地","text":"But the truth is, I really like it here.","raw":"But the truth is, I really like it here.","translate":true,"zh":"可说真的，我还挺喜欢这里的。"},
-    {"id":"lone_guide_help_more","context":"说明留在末地的原因","text":"What I enjoyed the most was helping you and I want to stay here to help more people.","raw":"What I enjoyed the most was helping you and I want to stay here to help more people.","translate":true,"zh":"帮上你的忙，是我最开心的事。所以我想留下来，再帮帮其他人。"},
-    {"id":"lone_guide_progress","context":"期待玩家今后的冒险","text":"You already made a ton of progress and I'm excited for the future.","raw":"You already made a ton of progress and I'm excited for the future.","translate":true,"zh":"你已经进步这么多了，真期待你接下来的冒险。"},
-    {"id":"lone_guide_vocation","context":"介绍新工作；这里是职务而非菜单标题","text":"⚑ Dragon Guide is my new vocation.","raw":"§a⚑ Dragon Guide §fis my new vocation.","translate":true,"zh":"⚑ 巨龙向导就是我的新工作。","segments":[{"color":"§a","text":"⚑ Dragon Guide ","zh":"⚑ 巨龙向导"},{"color":"§f","text":"is my new vocation.","zh":"就是我的新工作。"}]},
-    {"id":"lone_guide_ask","context":"邀请玩家查看巨龙指南","text":"Ask me anything regarding Dragons!","raw":"Ask me anything regarding Dragons!","translate":true,"zh":"有关巨龙的事，尽管问我!"},
-    {"id":"lone_full_ender_set","context":"展示完整末影套装","text":"Woah, you're wearing the full Ender Set!","raw":"Woah, you're wearing the full Ender Set!","translate":true,"zh":"哇，你已经穿齐整套末影套装了!"},
-    {"id":"lone_full_set_week","context":"惊讶于玩家收集进度","text":"That's incredible, that took me at least a week!","raw":"That's incredible, that took me at least a week!","translate":true,"zh":"真厉害! 我当初可花了至少一个星期呢!"},
-    {"id":"lone_dragon_story","context":"讲述与巨龙交战的经历","text":"You wouldn't believe what just happened, I was fighting one of those Dragons...","raw":"You wouldn't believe what just happened, I was fighting one of those §5Dragons§r...","translate":true,"zh":"你绝对想不到刚才发生了什么，我正跟一头巨龙交战……","segments":[{"color":"","text":"You wouldn't believe what just happened, I was fighting one of those ","zh":"你绝对想不到刚才发生了什么，我正跟一头"},{"color":"§5","text":"Dragons","zh":"巨龙"},{"color":"§r","text":"...","zh":"交战……"}]},
-    {"id":"lone_dragon_bam","context":"讲述受袭，保留骤然转折","text":"The fight was going smoothly and just as I was about to land the finishing blow, BAM!","raw":"The fight was going smoothly and just as I was about to land the finishing blow, §cBAM§r!","translate":true,"zh":"本来打得好好的，眼看就要给它最后一击了——砰!","segments":[{"color":"","text":"The fight was going smoothly and just as I was about to land the finishing blow, ","zh":"本来打得好好的，眼看就要给它最后一击了——"},{"color":"§c","text":"BAM","zh":"砰"},{"color":"§r","text":"!","zh":"!"}]},
-    {"id":"lone_dragon_claw","context":"受伤原因","text":"The Dragon teleported behind me and hit me with a claw attack!","raw":"The Dragon teleported behind me and hit me with a claw attack!","translate":true,"zh":"那头龙突然传送到我背后，一爪子就拍了过来!"},
-    {"id":"lone_still_shaking","context":"战斗后心有余悸","text":"That was crazy, I'm still shaking!","raw":"That was crazy, I'm still shaking!","translate":true,"zh":"太吓人了，我到现在还在发抖!"},
-    {"id":"lone_not_excited","context":"玩家敷衍回应冒险故事","text":"You don't sound very excited...","raw":"You don't sound very excited...","translate":true,"zh":"你这反应，好像没多激动啊……"},
-    {"id":"lone_lost_bow","context":"请求找回短弓","text":"Anyways, I'm hurt and I lost my bow in the chaos.","raw":"Anyways, I'm hurt and I lost my bow in the chaos.","translate":true,"zh":"总之，我受了伤，混乱中还把弓给弄丢了。"},
-    {"id":"lone_seer_has_bow","context":"推测弓被先知拿走","text":"I'm 90% sure one of those Seers in the Dragon's Nest has it.","raw":"I'm 90% sure one of those §cSeers §rin the §5Dragon's Nest §rhas it.","translate":true,"zh":"我有九成把握，弓就在龙巢里的某个先知手上。","segments":[{"color":"","text":"I'm 90% sure one of those ","zh":"我有九成把握，弓就在","order":0},{"color":"§c","text":"Seers ","zh":"先知","order":3},{"color":"§r","text":"in the ","zh":"里的某个","order":2},{"color":"§5","text":"Dragon's Nest ","zh":"龙巢","order":1},{"color":"§r","text":"has it.","zh":"手上。","order":4}]},
-    {"id":"lone_defeat_seers","context":"委托玩家击败先知","text":"Would you mind defeating some of them for me?","raw":"Would you mind defeating some of them for me?","translate":true,"zh":"能帮我去打倒一些先知吗?"},
-    {"id":"lone_shortbow_search","context":"说明要找回的物品","text":"I'm sure one of them will have my Dragon Shortbow.","raw":"I'm sure one of them will have my §5Dragon Shortbow§r.","translate":true,"zh":"我的巨龙短弓肯定在它们其中一个手上。","segments":[{"color":"","text":"I'm sure one of them will have my ","zh":"我的"},{"color":"§5","text":"Dragon Shortbow","zh":"巨龙短弓"},{"color":"§r","text":".","zh":"肯定在它们其中一个手上。"}]},
-    {"id":"lone_shortbow_found","context":"玩家交还短弓","text":"Ah you found my Dragon Shortbow!","raw":"Ah you found my §5Dragon Shortbow§r!","translate":true,"zh":"啊，你找到我的巨龙短弓了!","segments":[{"color":"","text":"Ah you found my ","zh":"啊，你找到我的"},{"color":"§5","text":"Dragon Shortbow","zh":"巨龙短弓"},{"color":"§r","text":"!","zh":"了!"}]},
-    {"id":"lone_saw_seer_take","context":"确认当时看到先知拿走弓","text":"I knew I saw one of those Seers grab it for themselves.","raw":"I knew I saw one of those Seers grab it for themselves.","translate":true,"zh":"我就说没看错，果然是哪个先知把它顺走了。"},
-    {"id":"lone_owe_one","context":"感谢归还物品","text":"Thank you so much, I owe you one.","raw":"Thank you so much, I owe you one.","translate":true,"zh":"太感谢了，算我欠你个人情。"},
-    {"id":"lone_bow_dealer","context":"介绍弓的来源","text":"I got the bow from the Pearl Dealer up there near the entrance of the island.","raw":"I got the bow from the §5Pearl Dealer §rup there near the entrance of the island.","translate":true,"zh":"这把弓是我从上面岛屿入口附近的珍珠商人那里弄来的。","segments":[{"color":"","text":"I got the bow from the ","zh":"这把弓是我从上面岛屿入口附近的"},{"color":"§5","text":"Pearl Dealer ","zh":"珍珠商人"},{"color":"§r","text":"up there near the entrance of the island.","zh":"那里弄来的。"}]},
-    {"id":"lone_dealer_friend","context":"解释特殊购买渠道","text":"He doesn't usually sell them but he's my friend.","raw":"He doesn't usually sell them but he's my friend.","translate":true,"zh":"他平时不卖这个，不过我俩是朋友。"},
-    {"id":"lone_put_good_word","context":"答应向商人提起玩家","text":"I'll let him know you helped me!","raw":"I'll let him know you helped me!","translate":true,"zh":"我会告诉他，你可是帮了我大忙!"},
-    {"id":"lone_visit_dealer_later","context":"建议稍后去商店；不擅改成免费赠送","text":"Drop by his shop a little later and I'm sure he will sell you one for cheap!","raw":"Drop by his shop a little later and I'm sure he will sell you one for cheap!","translate":true,"zh":"过会儿去他店里看看吧，他肯定会便宜卖你一把!"},
-    {"id":"lone_more_dragons","context":"准备再次挑战巨龙","text":"I'm just about to go slay some Dragons.","raw":"I'm just about to go slay some §cDragons§r.","translate":true,"zh":"我正准备再去猎杀几头巨龙。","segments":[{"color":"","text":"I'm just about to go slay some ","zh":"我正准备再去猎杀几头"},{"color":"§c","text":"Dragons","zh":"巨龙"},{"color":"§r","text":".","zh":"。"}]},
-    {"id":"lone_come_later","context":"邀请玩家稍后了解巨龙","text":"Come see me later and I'll tell you all about them!","raw":"Come see me later and I'll tell you all about them!","translate":true,"zh":"晚点来找我，我给你好好讲讲它们!"},
-
+    {
+      "id": "lone_guide_greetings",
+      "context": "开放巨龙指南时向玩家问好",
+      "text": "Greetings %s!",
+      "raw": "Greetings §b%s§r!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "player_name",
+          "example": "inkkni",
+          "desc": "玩家名"
+        }
+      ],
+      "translate": true,
+      "zh": "你好啊，%s!",
+      "segments": [
+        {
+          "color": "",
+          "text": "Greetings ",
+          "zh": "你好啊，"
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§r",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "lone_guide_next_adventure",
+      "context": "完成任务后谈起曾经的打算",
+      "text": "For the longest time I thought I would move to the Crimson Isle or visit the Catacombs after this place.",
+      "raw": "For the longest time I thought I would move to the §cCrimson Isle §ror visit the §7Catacombs §rafter this place.",
+      "translate": true,
+      "zh": "很长一段时间里，我都想着，离开这里以后就去绯红岛，或者到地牢看看。",
+      "segments": [
+        {
+          "color": "",
+          "text": "For the longest time I thought I would move to the ",
+          "zh": "很长一段时间里，我都想着，离开这里以后就去"
+        },
+        {
+          "color": "§c",
+          "text": "Crimson Isle ",
+          "zh": "绯红岛"
+        },
+        {
+          "color": "§r",
+          "text": "or visit the ",
+          "zh": "，或者到"
+        },
+        {
+          "color": "§7",
+          "text": "Catacombs ",
+          "zh": "地牢"
+        },
+        {
+          "color": "§r",
+          "text": "after this place.",
+          "zh": "看看。"
+        }
+      ]
+    },
+    {
+      "id": "lone_guide_like_it_here",
+      "context": "决定留在末地",
+      "text": "But the truth is, I really like it here.",
+      "raw": "But the truth is, I really like it here.",
+      "translate": true,
+      "zh": "可说真的，我还挺喜欢这里的。"
+    },
+    {
+      "id": "lone_guide_help_more",
+      "context": "说明留在末地的原因",
+      "text": "What I enjoyed the most was helping you and I want to stay here to help more people.",
+      "raw": "What I enjoyed the most was helping you and I want to stay here to help more people.",
+      "translate": true,
+      "zh": "帮上你的忙，是我最开心的事。所以我想留下来，再帮帮其他人。"
+    },
+    {
+      "id": "lone_guide_progress",
+      "context": "期待玩家今后的冒险",
+      "text": "You already made a ton of progress and I'm excited for the future.",
+      "raw": "You already made a ton of progress and I'm excited for the future.",
+      "translate": true,
+      "zh": "你已经进步这么多了，真期待你接下来的冒险。"
+    },
+    {
+      "id": "lone_guide_vocation",
+      "context": "介绍新工作；这里是职务而非菜单标题",
+      "text": "⚑ Dragon Guide is my new vocation.",
+      "raw": "§a⚑ Dragon Guide §fis my new vocation.",
+      "translate": true,
+      "zh": "⚑ 巨龙向导就是我的新工作。",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "⚑ Dragon Guide ",
+          "zh": "⚑ 巨龙向导"
+        },
+        {
+          "color": "§f",
+          "text": "is my new vocation.",
+          "zh": "就是我的新工作。"
+        }
+      ]
+    },
+    {
+      "id": "lone_guide_ask",
+      "context": "邀请玩家查看巨龙指南",
+      "text": "Ask me anything regarding Dragons!",
+      "raw": "Ask me anything regarding Dragons!",
+      "translate": true,
+      "zh": "有关巨龙的事，尽管问我!"
+    },
+    {
+      "id": "lone_full_ender_set",
+      "context": "展示完整末影套装",
+      "text": "Woah, you're wearing the full Ender Set!",
+      "raw": "Woah, you're wearing the full Ender Set!",
+      "translate": true,
+      "zh": "哇，你已经穿齐整套末影套装了!"
+    },
+    {
+      "id": "lone_full_set_week",
+      "context": "惊讶于玩家收集进度",
+      "text": "That's incredible, that took me at least a week!",
+      "raw": "That's incredible, that took me at least a week!",
+      "translate": true,
+      "zh": "真厉害! 我当初可花了至少一个星期呢!"
+    },
+    {
+      "id": "lone_dragon_story",
+      "context": "讲述与巨龙交战的经历",
+      "text": "You wouldn't believe what just happened, I was fighting one of those Dragons...",
+      "raw": "You wouldn't believe what just happened, I was fighting one of those §5Dragons§r...",
+      "translate": true,
+      "zh": "你绝对想不到刚才发生了什么，我正跟一头巨龙交战……",
+      "segments": [
+        {
+          "color": "",
+          "text": "You wouldn't believe what just happened, I was fighting one of those ",
+          "zh": "你绝对想不到刚才发生了什么，我正跟一头"
+        },
+        {
+          "color": "§5",
+          "text": "Dragons",
+          "zh": "巨龙"
+        },
+        {
+          "color": "§r",
+          "text": "...",
+          "zh": "交战……"
+        }
+      ]
+    },
+    {
+      "id": "lone_dragon_bam",
+      "context": "讲述受袭，保留骤然转折",
+      "text": "The fight was going smoothly and just as I was about to land the finishing blow, BAM!",
+      "raw": "The fight was going smoothly and just as I was about to land the finishing blow, §cBAM§r!",
+      "translate": true,
+      "zh": "本来打得好好的，眼看就要给它最后一击了——砰!",
+      "segments": [
+        {
+          "color": "",
+          "text": "The fight was going smoothly and just as I was about to land the finishing blow, ",
+          "zh": "本来打得好好的，眼看就要给它最后一击了——"
+        },
+        {
+          "color": "§c",
+          "text": "BAM",
+          "zh": "砰"
+        },
+        {
+          "color": "§r",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "lone_dragon_claw",
+      "context": "受伤原因",
+      "text": "The Dragon teleported behind me and hit me with a claw attack!",
+      "raw": "The Dragon teleported behind me and hit me with a claw attack!",
+      "translate": true,
+      "zh": "那头龙突然传送到我背后，一爪子就拍了过来!"
+    },
+    {
+      "id": "lone_still_shaking",
+      "context": "战斗后心有余悸",
+      "text": "That was crazy, I'm still shaking!",
+      "raw": "That was crazy, I'm still shaking!",
+      "translate": true,
+      "zh": "太吓人了，我到现在还在发抖!"
+    },
+    {
+      "id": "lone_not_excited",
+      "context": "玩家敷衍回应冒险故事",
+      "text": "You don't sound very excited...",
+      "raw": "You don't sound very excited...",
+      "translate": true,
+      "zh": "你这反应，好像没多激动啊……"
+    },
+    {
+      "id": "lone_lost_bow",
+      "context": "请求找回短弓",
+      "text": "Anyways, I'm hurt and I lost my bow in the chaos.",
+      "raw": "Anyways, I'm hurt and I lost my bow in the chaos.",
+      "translate": true,
+      "zh": "总之，我受了伤，混乱中还把弓给弄丢了。"
+    },
+    {
+      "id": "lone_seer_has_bow",
+      "context": "推测弓被先知拿走",
+      "text": "I'm 90% sure one of those Seers in the Dragon's Nest has it.",
+      "raw": "I'm 90% sure one of those §cSeers §rin the §5Dragon's Nest §rhas it.",
+      "translate": true,
+      "zh": "我有九成把握，弓就在龙巢里的某个先知手上。",
+      "segments": [
+        {
+          "color": "",
+          "text": "I'm 90% sure one of those ",
+          "zh": "我有九成把握，弓就在",
+          "order": 0
+        },
+        {
+          "color": "§c",
+          "text": "Seers ",
+          "zh": "先知",
+          "order": 3
+        },
+        {
+          "color": "§r",
+          "text": "in the ",
+          "zh": "里的某个",
+          "order": 2
+        },
+        {
+          "color": "§5",
+          "text": "Dragon's Nest ",
+          "zh": "龙巢",
+          "order": 1
+        },
+        {
+          "color": "§r",
+          "text": "has it.",
+          "zh": "手上。",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "lone_defeat_seers",
+      "context": "委托玩家击败先知",
+      "text": "Would you mind defeating some of them for me?",
+      "raw": "Would you mind defeating some of them for me?",
+      "translate": true,
+      "zh": "能帮我去打倒一些先知吗?"
+    },
+    {
+      "id": "lone_shortbow_search",
+      "context": "说明要找回的物品",
+      "text": "I'm sure one of them will have my Dragon Shortbow.",
+      "raw": "I'm sure one of them will have my §5Dragon Shortbow§r.",
+      "translate": true,
+      "zh": "我的巨龙短弓肯定在它们其中一个手上。",
+      "segments": [
+        {
+          "color": "",
+          "text": "I'm sure one of them will have my ",
+          "zh": "我的"
+        },
+        {
+          "color": "§5",
+          "text": "Dragon Shortbow",
+          "zh": "巨龙短弓"
+        },
+        {
+          "color": "§r",
+          "text": ".",
+          "zh": "肯定在它们其中一个手上。"
+        }
+      ]
+    },
+    {
+      "id": "lone_shortbow_found",
+      "context": "玩家交还短弓",
+      "text": "Ah you found my Dragon Shortbow!",
+      "raw": "Ah you found my §5Dragon Shortbow§r!",
+      "translate": true,
+      "zh": "啊，你找到我的巨龙短弓了!",
+      "segments": [
+        {
+          "color": "",
+          "text": "Ah you found my ",
+          "zh": "啊，你找到我的"
+        },
+        {
+          "color": "§5",
+          "text": "Dragon Shortbow",
+          "zh": "巨龙短弓"
+        },
+        {
+          "color": "§r",
+          "text": "!",
+          "zh": "了!"
+        }
+      ]
+    },
+    {
+      "id": "lone_saw_seer_take",
+      "context": "确认当时看到先知拿走弓",
+      "text": "I knew I saw one of those Seers grab it for themselves.",
+      "raw": "I knew I saw one of those Seers grab it for themselves.",
+      "translate": true,
+      "zh": "我就说没看错，果然是哪个先知把它顺走了。"
+    },
+    {
+      "id": "lone_owe_one",
+      "context": "感谢归还物品",
+      "text": "Thank you so much, I owe you one.",
+      "raw": "Thank you so much, I owe you one.",
+      "translate": true,
+      "zh": "太感谢了，算我欠你个人情。"
+    },
+    {
+      "id": "lone_bow_dealer",
+      "context": "介绍弓的来源",
+      "text": "I got the bow from the Pearl Dealer up there near the entrance of the island.",
+      "raw": "I got the bow from the §5Pearl Dealer §rup there near the entrance of the island.",
+      "translate": true,
+      "zh": "这把弓是我从上面岛屿入口附近的珍珠商人那里弄来的。",
+      "segments": [
+        {
+          "color": "",
+          "text": "I got the bow from the ",
+          "zh": "这把弓是我从上面岛屿入口附近的"
+        },
+        {
+          "color": "§5",
+          "text": "Pearl Dealer ",
+          "zh": "珍珠商人"
+        },
+        {
+          "color": "§r",
+          "text": "up there near the entrance of the island.",
+          "zh": "那里弄来的。"
+        }
+      ]
+    },
+    {
+      "id": "lone_dealer_friend",
+      "context": "解释特殊购买渠道",
+      "text": "He doesn't usually sell them but he's my friend.",
+      "raw": "He doesn't usually sell them but he's my friend.",
+      "translate": true,
+      "zh": "他平时不卖这个，不过我俩是朋友。"
+    },
+    {
+      "id": "lone_put_good_word",
+      "context": "答应向商人提起玩家",
+      "text": "I'll let him know you helped me!",
+      "raw": "I'll let him know you helped me!",
+      "translate": true,
+      "zh": "我会告诉他，你可是帮了我大忙!"
+    },
+    {
+      "id": "lone_visit_dealer_later",
+      "context": "建议稍后去商店；不擅改成免费赠送",
+      "text": "Drop by his shop a little later and I'm sure he will sell you one for cheap!",
+      "raw": "Drop by his shop a little later and I'm sure he will sell you one for cheap!",
+      "translate": true,
+      "zh": "过会儿去他店里看看吧，他肯定会便宜卖你一把!"
+    },
+    {
+      "id": "lone_more_dragons",
+      "context": "准备再次挑战巨龙",
+      "text": "I'm just about to go slay some Dragons.",
+      "raw": "I'm just about to go slay some §cDragons§r.",
+      "translate": true,
+      "zh": "我正准备再去猎杀几头巨龙。",
+      "segments": [
+        {
+          "color": "",
+          "text": "I'm just about to go slay some ",
+          "zh": "我正准备再去猎杀几头"
+        },
+        {
+          "color": "§c",
+          "text": "Dragons",
+          "zh": "巨龙"
+        },
+        {
+          "color": "§r",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "lone_come_later",
+      "context": "邀请玩家稍后了解巨龙",
+      "text": "Come see me later and I'll tell you all about them!",
+      "raw": "Come see me later and I'll tell you all about them!",
+      "translate": true,
+      "zh": "晚点来找我，我给你好好讲讲它们!"
+    },
     {
       "id": "lone_adventurer_exhausted",
       "context": "末地入口处首次对话",
@@ -686,6 +1072,495 @@
       "placeholders": [],
       "gloss": "社区 Wiki 普通页面核对；原文以本轮实测为准。",
       "translate": true
+    },
+    {
+      "id": "wiki_c2_strange_53c3f540",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Lone_Adventurer",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:13.",
+      "verified_ingame": false,
+      "context": "Lone Adventurer：Selecting [I am sure]",
+      "raw": "§fStrange.",
+      "text": "Strange.",
+      "placeholders": [],
+      "gloss": "普通社区 Wiki 呈现 HTML 的游戏文本；颜色来自显式格式类或 data-minetip，未实机验证。",
+      "translate": true,
+      "zh": "真奇怪。"
+    },
+    {
+      "id": "wiki_c2_if_you_change_your_mind_you_can_also_go_talk_to_rusty_i_db59f507",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Lone_Adventurer",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:13.",
+      "verified_ingame": false,
+      "context": "Lone Adventurer：Selecting [I am sure]",
+      "raw": "§fIf you change your mind you can also go talk to §eRusty §fin the Gold Mine.",
+      "text": "If you change your mind you can also go talk to Rusty in the Gold Mine.",
+      "placeholders": [],
+      "gloss": "普通社区 Wiki 呈现 HTML 的游戏文本；颜色来自显式格式类或 data-minetip，未实机验证。",
+      "translate": true,
+      "zh": "要是改主意了,也可以去金矿找 Rusty 聊聊。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "If you change your mind you can also go talk to ",
+          "zh": "要是改主意了,也可以去金矿找 "
+        },
+        {
+          "color": "§e",
+          "text": "Rusty ",
+          "zh": "Rusty "
+        },
+        {
+          "color": "§f",
+          "text": "in the Gold Mine.",
+          "zh": "聊聊。"
+        }
+      ]
+    },
+    {
+      "id": "wiki_c2_distracted_people_sometimes_lose_their_void_sword_and_h_f1e68754",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Lone_Adventurer",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:13.",
+      "verified_ingame": false,
+      "context": "Lone Adventurer：Selecting [I am sure]",
+      "raw": "§fDistracted people sometimes lose their §5Void Sword §fand he sells them back.",
+      "text": "Distracted people sometimes lose their Void Sword and he sells them back.",
+      "placeholders": [],
+      "gloss": "普通社区 Wiki 呈现 HTML 的游戏文本；颜色来自显式格式类或 data-minetip，未实机验证。",
+      "translate": true,
+      "zh": "有些粗心的人会弄丢自己的虚空之剑,他那儿能买回来。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Distracted people sometimes lose their ",
+          "zh": "有些粗心的人会弄丢自己的"
+        },
+        {
+          "color": "§5",
+          "text": "Void Sword ",
+          "zh": "虚空之剑"
+        },
+        {
+          "color": "§f",
+          "text": "and he sells them back.",
+          "zh": ",他那儿能买回来。"
+        }
+      ]
+    },
+    {
+      "id": "wiki_c2_have_you_found_the_full_ender_armor_set_yet_33809820",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Lone_Adventurer",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:13.",
+      "verified_ingame": false,
+      "context": "Lone Adventurer：At  Dragon's Nest",
+      "raw": "§fHave you found the full §5Ender Armor Set yet?",
+      "text": "Have you found the full Ender Armor Set yet?",
+      "placeholders": [],
+      "gloss": "普通社区 Wiki 呈现 HTML 的游戏文本；颜色来自显式格式类或 data-minetip，未实机验证。",
+      "translate": true,
+      "zh": "你找齐整套末影套装了吗?",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Have you found the full ",
+          "zh": "你找齐整套"
+        },
+        {
+          "color": "§5",
+          "text": "Ender Armor Set yet?",
+          "zh": "末影套装了吗?"
+        }
+      ]
+    },
+    {
+      "id": "wiki_c2_select_an_option_yes_no_757c5b71",
+      "context": "Lone Adventurer：At Dragon's Nest；复用共享的中性是/否选项。",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Lone_Adventurer",
+      "fetched_at": "2026-10-04",
+      "verified_ingame": false,
+      "last_edited": "This page was last edited on 24 August 2026, at 06:13.",
+      "ref": "_shared/Galatea_NPC_Common.json#galatea_select_an_option_yes_no_8efe049e"
+    },
+    {
+      "id": "wiki_c2_the_obsidian_defenders_drop_those_belts_rarely_at_least_840225e7",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Lone_Adventurer",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:13.",
+      "verified_ingame": false,
+      "context": "Lone Adventurer：Selecting [Belt]",
+      "raw": "§fThe §cObsidian Defenders§f drop those Belts rarely, at least that's how I got mine.",
+      "text": "The Obsidian Defenders drop those Belts rarely, at least that's how I got mine.",
+      "placeholders": [],
+      "gloss": "普通社区 Wiki 呈现 HTML 的游戏文本；颜色来自显式格式类或 data-minetip，未实机验证。",
+      "translate": true,
+      "zh": "黑曜石守卫有很小的概率掉落这些腰带,反正我这条就是这么来的。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "The ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§c",
+          "text": "Obsidian Defenders",
+          "zh": "黑曜石守卫"
+        },
+        {
+          "color": "§f",
+          "text": " drop those Belts rarely, at least that's how I got mine.",
+          "zh": "有很小的概率掉落这些腰带,反正我这条就是这么来的。"
+        }
+      ]
+    },
+    {
+      "id": "wiki_c2_select_an_option_wow_that_s_crazy_wow_that_s_crazy_35b2a59a",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Lone_Adventurer",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:13.",
+      "verified_ingame": false,
+      "context": "Lone Adventurer：Interacting After Wearing Ender Armor and Equipment",
+      "raw": "§eSelect an option: §a§l[Wow, that's crazy!] [Wow, that's crazy...]",
+      "text": "Select an option: [Wow, that's crazy!] [Wow, that's crazy...]",
+      "placeholders": [],
+      "gloss": "普通社区 Wiki 呈现 HTML 的游戏文本；颜色来自显式格式类或 data-minetip，未实机验证。",
+      "translate": true,
+      "zh": "选择一个选项: [哇,太刺激了!] [哇,可真够刺激的……]",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Select an option: ",
+          "zh": "选择一个选项: "
+        },
+        {
+          "color": "§a§l",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§a§l",
+          "text": "Wow, that's crazy!",
+          "zh": "哇,太刺激了!"
+        },
+        {
+          "color": "§a§l",
+          "text": "]",
+          "zh": "]"
+        },
+        {
+          "color": "§a§l",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§a§l",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§a§l",
+          "text": "Wow, that's crazy...",
+          "zh": "哇,可真够刺激的……"
+        },
+        {
+          "color": "§a§l",
+          "text": "]",
+          "zh": "]"
+        }
+      ]
+    },
+    {
+      "id": "wiki_c2_you_said_it_i_thought_i_was_going_to_die_b0033793",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Lone_Adventurer",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:13.",
+      "verified_ingame": false,
+      "context": "Lone Adventurer：Selecting [Wow, that's crazy!]",
+      "raw": "§fYou said it! I thought I was going to die!",
+      "text": "You said it! I thought I was going to die!",
+      "placeholders": [],
+      "gloss": "普通社区 Wiki 呈现 HTML 的游戏文本；颜色来自显式格式类或 data-minetip，未实机验证。",
+      "translate": true,
+      "zh": "可不是嘛! 我还以为这回要没命了!"
+    },
+    {
+      "id": "wiki_c2_i_want_to_see_if_you_can_kill_at_least_5_enderman_e745fe67",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Lone_Adventurer",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:13.",
+      "verified_ingame": false,
+      "context": "Lone Adventurer：Before Killing 5 Endermen",
+      "raw": "§fI want to see if you can kill at least §a5 §cEnderman§f.",
+      "text": "I want to see if you can kill at least 5 Enderman.",
+      "placeholders": [],
+      "gloss": "普通社区 Wiki 呈现 HTML 的游戏文本；颜色来自显式格式类或 data-minetip，未实机验证。",
+      "translate": true,
+      "zh": "我想看看你能不能杀掉至少 5 只末影人。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "I want to see if you can kill at least ",
+          "zh": "我想看看你能不能杀掉至少 "
+        },
+        {
+          "color": "§a",
+          "text": "5 ",
+          "zh": "5 "
+        },
+        {
+          "color": "§c",
+          "text": "Enderman",
+          "zh": "只末影人"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "wiki_c2_i_might_give_you_something_if_you_succeed_55647854",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Lone_Adventurer",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:13.",
+      "verified_ingame": false,
+      "context": "Lone Adventurer：Before Killing 5 Endermen",
+      "raw": "§fI might give you something if you succeed.",
+      "text": "I might give you something if you succeed.",
+      "placeholders": [],
+      "gloss": "普通社区 Wiki 呈现 HTML 的游戏文本；颜色来自显式格式类或 data-minetip，未实机验证。",
+      "translate": true,
+      "zh": "要是成功了,说不定我会送你点什么。"
+    },
+    {
+      "id": "wiki_c2_i_don_t_really_know_what_happened_around_here_i_m_prett_b759ea30",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Lone_Adventurer",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:13.",
+      "verified_ingame": false,
+      "context": "Lone Adventurer：Before Killing 5 Endermen",
+      "raw": "§fI don't really know what happened around here, I'm pretty terrible in history.",
+      "text": "I don't really know what happened around here, I'm pretty terrible in history.",
+      "placeholders": [],
+      "gloss": "普通社区 Wiki 呈现 HTML 的游戏文本；颜色来自显式格式类或 data-minetip，未实机验证。",
+      "translate": true,
+      "zh": "我也不太清楚这里发生过什么,我历史学得实在不怎么样。"
+    },
+    {
+      "id": "wiki_c2_someone_called_me_an_ender_noob_the_other_day_that_was__d617ca36",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Lone_Adventurer",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:13.",
+      "verified_ingame": false,
+      "context": "Lone Adventurer：Before Finding Ender Armor Before Lone Adventurer moves to the Dragon's Nest",
+      "raw": "§fSomeone called me an \"Ender noob\" the other day, that was pretty rude.",
+      "text": "Someone called me an \"Ender noob\" the other day, that was pretty rude.",
+      "placeholders": [],
+      "gloss": "普通社区 Wiki 呈现 HTML 的游戏文本；颜色来自显式格式类或 data-minetip，未实机验证。",
+      "translate": true,
+      "zh": "前几天有人管我叫“末影菜鸟”,也太没礼貌了。"
+    },
+    {
+      "id": "wiki_c2_you_should_look_for_end_stone_or_obsidian_with_purple_g_826397c3",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Lone_Adventurer",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:13.",
+      "verified_ingame": false,
+      "context": "Lone Adventurer：",
+      "raw": "§fYou should look for End Stone or Obsidian with purple glows.",
+      "text": "You should look for End Stone or Obsidian with purple glows.",
+      "placeholders": [],
+      "gloss": "普通社区 Wiki 呈现 HTML 的游戏文本；颜色来自显式格式类或 data-minetip，未实机验证。",
+      "translate": true,
+      "zh": "你可以找找那些泛着紫光的末地石和黑曜石。"
+    },
+    {
+      "id": "wiki_c2_they_contain_cool_loot_when_mined_325acd81",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Lone_Adventurer",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:13.",
+      "verified_ingame": false,
+      "context": "Lone Adventurer：",
+      "raw": "§fThey contain cool loot when mined!",
+      "text": "They contain cool loot when mined!",
+      "placeholders": [],
+      "gloss": "普通社区 Wiki 呈现 HTML 的游戏文本；颜色来自显式格式类或 data-minetip，未实机验证。",
+      "translate": true,
+      "zh": "挖开之后能找到不少好东西!"
+    },
+    {
+      "id": "wiki_c2_please_bring_me_back_my_bow_if_you_find_it_8e99313d",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Lone_Adventurer",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:13.",
+      "verified_ingame": false,
+      "context": "Lone Adventurer：Before Finding Dragon Shortbow",
+      "raw": "§fPlease bring me back my bow if you find it.",
+      "text": "Please bring me back my bow if you find it.",
+      "placeholders": [],
+      "gloss": "普通社区 Wiki 呈现 HTML 的游戏文本；颜色来自显式格式类或 data-minetip，未实机验证。",
+      "translate": true,
+      "zh": "要是找到我的弓,麻烦帮我带回来。"
+    },
+    {
+      "id": "wiki_c2_i_m_fairly_sure_one_of_those_seers_has_it_572dd359",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Lone_Adventurer",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:13.",
+      "verified_ingame": false,
+      "context": "Lone Adventurer：Before Finding Dragon Shortbow",
+      "raw": "§fI'm fairly sure one of those §cSeers §fhas it.",
+      "text": "I'm fairly sure one of those Seers has it.",
+      "placeholders": [],
+      "gloss": "普通社区 Wiki 呈现 HTML 的游戏文本；颜色来自显式格式类或 data-minetip，未实机验证。",
+      "translate": true,
+      "zh": "我挺肯定,就在某个先知手上。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "I'm fairly sure one of those ",
+          "zh": "我挺肯定,就在某个"
+        },
+        {
+          "color": "§c",
+          "text": "Seers ",
+          "zh": "先知"
+        },
+        {
+          "color": "§f",
+          "text": "has it.",
+          "zh": "手上。"
+        }
+      ]
+    },
+    {
+      "id": "wiki_c2_the_dragon_shortbow_is_a_powerful_weapon_c35236df",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Lone_Adventurer",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:13.",
+      "verified_ingame": false,
+      "context": "Lone Adventurer：Before Talking to Pearl Dealer",
+      "raw": "§fThe §5Dragon Shortbow §fis a powerful weapon.",
+      "text": "The Dragon Shortbow is a powerful weapon.",
+      "placeholders": [],
+      "gloss": "普通社区 Wiki 呈现 HTML 的游戏文本；颜色来自显式格式类或 data-minetip，未实机验证。",
+      "translate": true,
+      "zh": "巨龙短弓是一把很强的武器。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "The ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§5",
+          "text": "Dragon Shortbow ",
+          "zh": "巨龙短弓"
+        },
+        {
+          "color": "§f",
+          "text": "is a powerful weapon.",
+          "zh": "是一把很强的武器。"
+        }
+      ]
+    },
+    {
+      "id": "wiki_c2_i_m_going_to_use_it_to_kill_more_dragons_as_soon_as_i_m_14ec553b",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Lone_Adventurer",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:13.",
+      "verified_ingame": false,
+      "context": "Lone Adventurer：Before Talking to Pearl Dealer",
+      "raw": "§fI'm going to use it to kill more §cDragons §fas soon as I'm fully recovered.",
+      "text": "I'm going to use it to kill more Dragons as soon as I'm fully recovered.",
+      "placeholders": [],
+      "gloss": "普通社区 Wiki 呈现 HTML 的游戏文本；颜色来自显式格式类或 data-minetip，未实机验证。",
+      "translate": true,
+      "zh": "等我完全恢复,就要带着它去多杀几条巨龙。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "I'm going to use it to kill more ",
+          "zh": "等我完全恢复,就要带着它去多杀几条"
+        },
+        {
+          "color": "§c",
+          "text": "Dragons ",
+          "zh": "巨龙"
+        },
+        {
+          "color": "§f",
+          "text": "as soon as I'm fully recovered.",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "wiki_c2_i_d_tell_you_more_about_dragons_but_you_re_not_even_com_85e814d6",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Lone_Adventurer",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:13.",
+      "verified_ingame": false,
+      "context": "Lone Adventurer：Before Reaching Combat level 18",
+      "raw": "§fI'd tell you more about §cDragons§f but you're not even Combat level 18.",
+      "text": "I'd tell you more about Dragons but you're not even Combat level 18.",
+      "placeholders": [],
+      "gloss": "普通社区 Wiki 呈现 HTML 的游戏文本；颜色来自显式格式类或 data-minetip，未实机验证。",
+      "translate": true,
+      "zh": "我倒是想多给你讲讲巨龙,不过你的战斗等级还没到 18 级呢。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "I'd tell you more about ",
+          "zh": "我倒是想多给你讲讲"
+        },
+        {
+          "color": "§c",
+          "text": "Dragons",
+          "zh": "巨龙"
+        },
+        {
+          "color": "§f",
+          "text": " but you're not even Combat level 18.",
+          "zh": ",不过你的战斗等级还没到 18 级呢。"
+        }
+      ]
+    },
+    {
+      "id": "wiki_c2_try_your_luck_slaying_some_zealots_e01e6d78",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Lone_Adventurer",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 24 August 2026, at 06:13.",
+      "verified_ingame": false,
+      "context": "Lone Adventurer：Before Reaching Combat level 18",
+      "raw": "§fTry your luck slaying some §cZealots§f.",
+      "text": "Try your luck slaying some Zealots.",
+      "placeholders": [],
+      "gloss": "普通社区 Wiki 呈现 HTML 的游戏文本；颜色来自显式格式类或 data-minetip，未实机验证。",
+      "translate": true,
+      "zh": "去杀些狂热末影人试试身手吧。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Try your luck slaying some ",
+          "zh": "去杀些"
+        },
+        {
+          "color": "§c",
+          "text": "Zealots",
+          "zh": "狂热末影人"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "试试身手吧。"
+        }
+      ]
     }
   ]
 }
