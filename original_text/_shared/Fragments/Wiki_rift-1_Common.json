@@ -1,0 +1,165 @@
+{
+  "note": "rift-1 分片多个 NPC 重复出现的整句与共用模板；仅由各渲染面 ref 激活。供应商三句同时出现在 Alabaster、Ashera、Chester 三个页面（NPC 名颜色各异，运行时以实时颜色为准）。",
+  "entries": [
+    {
+      "id": "wiki_rift1_supplier_intro",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Alabaster",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 11 August 2026, at 18:50.",
+      "verified_ingame": false,
+      "context": "购买 Shifted's Tip 等线索时，三名情报商贩共用的开场白",
+      "raw": "§fI don't know who the §bsupplier§f is, but I know someone who does.",
+      "text": "I don't know who the supplier is, but I know someone who does.",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。三个 NPC 的正文完全一致（只有 NPC 名前缀的颜色不同，前缀由引擎剥离），故合并为一条。supplier 指剧情里的“供货商”，非物品名。",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§f",
+          "text": "I don't know who the ",
+          "zh": "我不知道"
+        },
+        {
+          "color": "§b",
+          "text": "supplier",
+          "zh": "供货商"
+        },
+        {
+          "color": "§f",
+          "text": " is, but I know someone who does.",
+          "zh": "是谁，但我知道有人认识他。"
+        }
+      ],
+      "zh": "我不知道供货商是谁，但我知道有人认识他。"
+    },
+    {
+      "id": "wiki_rift1_supplier_price",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Alabaster",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 11 August 2026, at 18:50.",
+      "verified_ingame": false,
+      "context": "三名情报商贩共用：报价 20 Motes 出售供货商的姓名",
+      "raw": "§fI can tell you their name for §d20 Motes§f.",
+      "text": "I can tell you their name for 20 Motes.",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。Motes 沿用既有 NEU 物品译名“微尘”（Farming/GUI_Lore/NEU_Equipment.json）。",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§f",
+          "text": "I can tell you their name for ",
+          "zh": "我可以告诉你他们的名字，只要 "
+        },
+        {
+          "color": "§d",
+          "text": "20 Motes",
+          "zh": "20 微尘"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "我可以告诉你他们的名字，只要 20 微尘。"
+    },
+    {
+      "id": "wiki_rift1_supplier_name",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Alabaster",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 11 August 2026, at 18:50.",
+      "verified_ingame": false,
+      "context": "三名情报商贩共用模板：买下线索后说出另一个知情人姓名",
+      "raw": "§fI heard that §9%s§f might know who the §bsupplier§f is.",
+      "text": "I heard that %s might know who the supplier is.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "npc_name",
+          "example": "Dackinoru",
+          "desc": "知情人 NPC 名（保留英文；Alabaster 给出 Dackinoru，Ashera 给出 Garlacius，Chester 给出 Lazarus）"
+        }
+      ],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。三个 NPC 的姓名高亮颜色各不相同（§9/§5/§2），引擎按实时颜色渲染，语料只保留一个模板，避免同模板多分段竞争。",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§f",
+          "text": "I heard that ",
+          "zh": "我听说 "
+        },
+        {
+          "color": "§9",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§f",
+          "text": " might know who the ",
+          "zh": " 也许知道"
+        },
+        {
+          "color": "§b",
+          "text": "supplier",
+          "zh": "供货商"
+        },
+        {
+          "color": "§f",
+          "text": " is.",
+          "zh": "是谁。"
+        }
+      ],
+      "zh": "我听说 %s 也许知道供货商是谁。"
+    },
+    {
+      "id": "wiki_rift1_option_buy_tip",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Alabaster",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 11 August 2026, at 18:50.",
+      "verified_ingame": false,
+      "context": "三名情报商贩共用：购买线索的可点击选项行",
+      "raw": "§eSelect an option: §a[Buy tip]",
+      "text": "Select an option: [Buy tip]",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。按钮只保正文与方括号分段，点击指令由服务器实时样式保留。",
+      "translate": true,
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Select an option: ",
+          "zh": "请选择: "
+        },
+        {
+          "color": "§a",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§a",
+          "text": "Buy tip",
+          "zh": "购买线索"
+        },
+        {
+          "color": "§a",
+          "text": "]",
+          "zh": "]"
+        }
+      ],
+      "zh": "请选择: [购买线索]"
+    },
+    {
+      "id": "wiki_rift1_oops",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Empty_Odonata_Bottle",
+      "fetched_at": "2026-10-04",
+      "last_edited": "This page was last edited on 6 September 2026, at 21:44.",
+      "verified_ingame": false,
+      "context": "Chef 比赛失败与空蜻蜓瓶捕捉失败共用的反馈词（两个来源颜色不同，实时颜色为准）",
+      "raw": "§7Oops!",
+      "text": "Oops!",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页逐字；未实机核验。Chef 页面作 NPC 台词（白色），Empty Odonata Bottle 页面作捕捉失败提示（灰色），文本一致，按同一渲染面合并为一条，颜色由实时文本决定。",
+      "translate": true,
+      "zh": "哎呀!"
+    }
+  ]
+}
