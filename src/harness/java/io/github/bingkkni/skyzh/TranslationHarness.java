@@ -671,6 +671,22 @@ public final class TranslationHarness {
 		check("届数只留数字", "§627th Spooky Festival", Surface.ITEM, "§6第 27 届惊魂节");
 		check("st 后缀同一条记录管", "§d1st Hoppity's Hunt", Surface.ITEM, "§d第 1 届 Hoppity 的寻兔行动");
 		check("rd 后缀也一样", "§c3rd Season of Jerry", Surface.ITEM, "§c第 3 届 Jerry 季");
+		String[] ordinalWords = {"first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth"};
+		String[] ordinalChinese = {"一", "二", "三", "四", "五", "六", "七", "八", "九", "十"};
+		for (int i = 0; i < ordinalWords.length; i++) {
+			String word = ordinalWords[i];
+			report("英文序数词有界转换 " + word,
+				Capture.of("ordinal_word").accepts(word)
+					&& Capture.ORDINAL_WORD.renderValue(word).equals(ordinalChinese[i]), word);
+		}
+		for (String invalid : List.of("", "first choice", "1st", "eleventh", "first!")) {
+			report("序数词不吞任意文本 " + invalid, !Capture.ORDINAL_WORD.accepts(invalid), invalid);
+			checkNoMatch("Ubik 拒绝未知箱序数 " + invalid, "You selected the " + invalid + " box.", Surface.CHAT);
+		}
+		check("Ubik 第一箱保留金色", "§fYou selected the §6first§f box.", Surface.CHAT,
+			"§f你选了第§6一§f个箱子。");
+		check("Ubik 第三箱及大小写", "§fYou selected the §6THIRD§f box.", Surface.CHAT,
+			"§f你选了第§6三§f个箱子。");
 		// The same event's name reached through the other road: a value a placeholder caught, which
 		// only the term table answers for. Both roads, one name.
 		check("活动名走词表那一路", "  §eSPOOKY FESTIVAL STARTED!", Surface.CHAT, "  §e「惊魂节」开始了!");
@@ -2174,6 +2190,7 @@ public final class TranslationHarness {
 			case GEMSTONE_QUALITY -> "Flawless";
 			case MULTIPLIER_INCREASE -> "1.5";
 			case ORDINAL -> "27th";
+			case ORDINAL_WORD -> "first";
 			case DURATION_WORDS -> "2 hours 3 minutes";
 			case CLOCK_DURATION -> "3:00";
 			default -> "1";

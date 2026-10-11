@@ -23,8 +23,6 @@ import re
 import sys
 import json
 
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
-
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CORPUS = os.path.join(ROOT, "original_text")
 TERMS = os.path.join(CORPUS, "_shared", "Terms.json")
@@ -55,14 +53,14 @@ def records_of(relative):
     if not os.path.exists(path):
         return None
 
-    doc = json.load(io.open(path, encoding="utf-8"))
+    with io.open(path, encoding="utf-8") as source:
+        doc = json.load(source)
     found = {}
 
-    for key in doc:
-        if not isinstance(doc[key], list) or not doc[key]:
-            continue
-
-        for record in doc[key]:
+    for value in doc.values():
+        # Match TranslationLoader.records: immediate arrays and standalone record objects.
+        candidates = value if isinstance(value, list) else [value]
+        for record in candidates:
             if isinstance(record, dict) and "id" in record:
                 found.setdefault(record["id"], record)
 
@@ -70,7 +68,8 @@ def records_of(relative):
 
 
 def main():
-    terms = json.load(io.open(TERMS, encoding="utf-8"))["terms"]
+    with io.open(TERMS, encoding="utf-8") as source:
+        terms = json.load(source)["terms"]
     cache = {}
     checked = 0
     filled = 0
@@ -96,6 +95,26 @@ def main():
                     "词条 %s 指向 %s#%s，但那条记录不存在" % (term["en"], relative, record_id)
                 )
                 continue
+
+            if "ref" in record:
+                # The runtime borrows the target record, not the ref wrapper's empty fields.
+                reference = record["ref"]
+                if not isinstance(reference, str) or "#" not in reference:
+                    problems.append("词条 %s 指向的记录含无效 ref: %r" % (term["en"], reference))
+                    continue
+                target_file, target_id = reference.rsplit("#", 1)
+                if target_file not in cache:
+                    cache[target_file] = records_of(target_file)
+                targets = cache[target_file]
+                target = None if targets is None else targets.get(target_id)
+                if target is None:
+                    problems.append("词条 %s 的共享引用 %s 不存在" % (term["en"], reference))
+                    continue
+                if "ref" in target:
+                    # TranslationLoader follows only one hop; do not bless unsupported chains.
+                    problems.append("词条 %s 的共享引用 %s 含引用链" % (term["en"], reference))
+                    continue
+                record = target
 
             if record.get("placeholders"):
                 # The term fills this template rather than duplicating it.
@@ -130,4 +149,5 @@ def main():
 
 
 if __name__ == "__main__":
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
     sys.exit(main())

@@ -933,7 +933,7 @@
       "context": "Mender Helmet 效果",
       "text": "Grants +50 Mending while in",
       "placeholders": [],
-      "gloss": "跨行整句:英文把 Dungeons 折到了第二行,中文要把它放到句首。首尾两行的 segments 一起用 order 排序(引擎从 2026-09-03 起支持跨首尾行的 order),尾行 ophelia_mending_50_2 的「地牢中」保留它在屏幕上的灰色。",
+      "gloss": "跨行整句：Dungeons 挪至句首，名称与尾句点分别读取实时颜色；旧单色与新版红色名称都兼容。",
       "translate": true,
       "zh": "在地牢中提供 +50 修补。",
       "raw": "§7Grants §a+50 Mending §7while in",
@@ -942,13 +942,13 @@
           "color": "§7",
           "text": "Grants ",
           "zh": "提供 ",
-          "order": 2
+          "order": 3
         },
         {
           "color": "§a",
           "text": "+50 Mending ",
           "zh": "+50 修补。",
-          "order": 3
+          "order": 4
         },
         {
           "color": "§7",
@@ -967,13 +967,19 @@
       "translate": true,
       "continuation": true,
       "zh": "地牢中",
-      "raw": "§7Dungeons.",
+      "raw": "§cDungeons§7.",
       "segments": [
         {
-          "color": "§7",
-          "text": "Dungeons.",
-          "zh": "地牢中",
+          "color": "§c",
+          "text": "Dungeons",
+          "zh": "地牢",
           "order": 1
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "中",
+          "order": 2
         }
       ]
     },

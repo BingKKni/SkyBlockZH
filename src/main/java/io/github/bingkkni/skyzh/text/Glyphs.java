@@ -49,6 +49,7 @@ public final class Glyphs {
 		SYMBOLS.put('\uE001', '⚔');  // Attack Speed
 		SYMBOLS.put('\uE002', '๑');  // Ability Damage
 		SYMBOLS.put('\uE003', '✎');  // Intelligence — Sapphire
+		SYMBOLS.put('\uE004', '⚡');  // Mana Regen — Rift item tooltip variants
 		SYMBOLS.put('\uE006', '❄');  // Cold Resistance
 		SYMBOLS.put('\uE007', '☠');  // Crit Damage — Onyx
 		SYMBOLS.put('\uE008', '❈');  // Defense — Amethyst
@@ -65,6 +66,7 @@ public final class Glyphs {
 		SYMBOLS.put('\uE016', '▚');  // Mining Spread
 		SYMBOLS.put('\uE01A', '✯');  // Magic Find
 		SYMBOLS.put('\uE01C', '✧');  // Pristine — Topaz
+		SYMBOLS.put('\uE020', 'ф');  // Rift Time — retains the actual server glyph on output
 		SYMBOLS.put('\uE021', 'α');  // Sea Creature Chance
 		SYMBOLS.put('\uE022', '✦');  // Speed
 		SYMBOLS.put('\uE027', '❂');  // True Defense — Opal
@@ -126,7 +128,14 @@ public final class Glyphs {
 	 * than the wrong glyph.
 	 */
 	public static String restore(String chinese, String sourcePlain) {
-		if (chinese.isEmpty() || !hasGlyphs(sourcePlain)) {
+		if (chinese.isEmpty()) {
+			return chinese;
+		}
+
+		// Older corpus snapshots may themselves use a private-use spelling. Fold the
+		// target too, so an old symbol source cannot accidentally acquire a newer glyph.
+		chinese = canonical(chinese);
+		if (!hasGlyphs(sourcePlain)) {
 			return chinese;
 		}
 

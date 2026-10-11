@@ -422,7 +422,15 @@ tasks.register('corpusSize') {
 // A name that is both a menu row and a value inside a sentence lives in two places — a record and a
 // term — and nothing else in the build notices when the two drift apart. Python rather than Java
 // because it reads the corpus as data and has no business being on the mod's classpath.
+tasks.register('checkTermRecordChecker', Exec) {
+	group = 'verification'
+	description = 'Tests direct, shared and invalid term-record references.'
+	commandLine 'python', rootProject.file('gradle/test_check_toggle_terms.py').absolutePath
+	workingDir rootProject.projectDir
+}
+
 tasks.register('checkTermRecords', Exec) {
+	dependsOn 'checkTermRecordChecker'
 	group = 'verification'
 	description = 'Checks that a term and the record it cross-references give the same translation.'
 

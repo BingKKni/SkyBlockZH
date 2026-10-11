@@ -1,0 +1,190 @@
+{
+  "source": [
+    "../SkyZH_Logs/skyzh-capture",
+    "https://hypixelskyblock.minecraft.wiki/w/Faction_Quests",
+    "https://hypixelskyblock.minecraft.wiki/w/Dojo",
+    "https://hypixelskyblock.minecraft.wiki/w/Brynmor"
+  ],
+  "fetched_at": "2026-10-11",
+  "verified_ingame": true,
+  "lines": [
+    {
+      "id": "tab_quest_magma_boss",
+      "context": "本轮采集补译；变量按实际语义约束",
+      "text": "Magma Boss",
+      "placeholders": [],
+      "gloss": "原文及颜色以玩家采集为准；社区 Wiki 核对语境。",
+      "translate": true,
+      "zh": "岩浆怪首领"
+    },
+    {
+      "id": "tab_quest_kuudra_tier",
+      "context": "本轮采集补译；变量按实际语义约束",
+      "text": "Kill Kuudra %s Tier",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "difficulty",
+          "example": "Basic",
+          "desc": "Kuudra 难度，复用 difficulty 词表"
+        }
+      ],
+      "gloss": "原文及颜色以玩家采集为准；社区 Wiki 核对语境。",
+      "translate": true,
+      "zh": "击败%s难度 Kuudra"
+    },
+    {
+      "id": "tab_quest_lavahorse",
+      "context": "本轮采集补译；变量按实际语义约束",
+      "text": "Lavahorse x%s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "1",
+          "desc": "要求数量"
+        }
+      ],
+      "gloss": "奖杯鱼自造专名沿用 Fishing/GUI_Item/Trophy_Fish_Qualities.json 保留英文；数量保持可变。",
+      "translate": true,
+      "zh": "Lavahorse ×%s",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "Lavahorse ",
+          "zh": "Lavahorse "
+        },
+        {
+          "color": "§8",
+          "text": "x%s",
+          "zh": "×%s"
+        }
+      ]
+    },
+    {
+      "id": "tab_fiesta_flask",
+      "context": "本轮采集补译；变量按实际语义约束",
+      "text": "Fiesta Flask %1$s %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "tier",
+          "example": "I",
+          "desc": "效果等级"
+        },
+        {
+          "token": "%2$s",
+          "type": "duration",
+          "example": "5m 35s",
+          "desc": "剩余持续时间"
+        }
+      ],
+      "gloss": "Fiesta Flask 状态效果来自新药剂，挖矿庆典激活时获得 +25% 挖掘时运，持续时间不写死。这里只翻译 Buff 名，不借此修改物品名。",
+      "translate": true,
+      "zh": "庆典佳酿 %1$s %2$s",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Fiesta Flask %1$s",
+          "zh": "庆典佳酿 %1$s"
+        },
+        {
+          "color": "§r",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§f",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ]
+    },
+    {
+      "id": "tab_quest_dojo_force",
+      "context": "本轮采集补译；变量按实际语义约束",
+      "text": "Force Rank %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "rank",
+          "example": "D",
+          "desc": "道场最低评级"
+        }
+      ],
+      "gloss": "原文及颜色以玩家采集为准；社区 Wiki 核对语境。",
+      "translate": true,
+      "zh": "力量试炼 %s 级"
+    },
+    {
+      "id": "tab_quest_dojo_stamina",
+      "context": "本轮采集补译；变量按实际语义约束",
+      "text": "Stamina Rank %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "rank",
+          "example": "D",
+          "desc": "道场最低评级"
+        }
+      ],
+      "gloss": "原文及颜色以玩家采集为准；社区 Wiki 核对语境。",
+      "translate": true,
+      "zh": "耐力试炼 %s 级"
+    },
+    {
+      "id": "tab_quest_dojo_mastery",
+      "ref": "Combat/TabList/Crimson_Progress_Live.json#crimson_mastery_grade",
+      "context": "复用既有精通评级模板"
+    },
+    {
+      "id": "tab_quest_dojo_discipline",
+      "context": "本轮采集补译；变量按实际语义约束",
+      "text": "Discipline Rank %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "rank",
+          "example": "D",
+          "desc": "道场最低评级"
+        }
+      ],
+      "gloss": "原文及颜色以玩家采集为准；社区 Wiki 核对语境。",
+      "translate": true,
+      "zh": "纪律试炼 %s 级"
+    },
+    {
+      "id": "tab_quest_dojo_swiftness",
+      "context": "本轮采集补译；变量按实际语义约束",
+      "text": "Swiftness Rank %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "rank",
+          "example": "D",
+          "desc": "道场最低评级"
+        }
+      ],
+      "gloss": "原文及颜色以玩家采集为准；社区 Wiki 核对语境。",
+      "translate": true,
+      "zh": "迅捷试炼 %s 级"
+    },
+    {
+      "id": "tab_quest_dojo_control",
+      "context": "本轮采集补译；变量按实际语义约束",
+      "text": "Control Rank %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "rank",
+          "example": "D",
+          "desc": "道场最低评级"
+        }
+      ],
+      "gloss": "原文及颜色以玩家采集为准；社区 Wiki 核对语境。",
+      "translate": true,
+      "zh": "掌控试炼 %s 级"
+    }
+  ],
+  "source_note": "Wiki 未列出全部每日任务的 Tab 原文池；仅补实机确认的任务格式及 Wiki 确认的道场挑战名和 Kuudra 难度。✔/✖由引擎保留，不枚举状态或数量。"
+}

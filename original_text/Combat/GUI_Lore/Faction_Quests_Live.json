@@ -62,7 +62,7 @@
       "id": "fish_up_1_sx_2_s_2076de",
       "context": "本轮实机菜单或消息",
       "text": "Fish up %1$sx %2$s.",
-      "raw": "Fish up %1$sx %2$s.",
+      "raw": "§7Fish up §8%1$sx §9%2$s§7.",
       "placeholders": [
         {
           "token": "%1$s",
@@ -77,9 +77,31 @@
           "desc": "item_name"
         }
       ],
-      "gloss": "",
+      "gloss": "实机 Fish up 的数量、鱼名及句点各有独立颜色；数量可变，奖杯鱼自造专名沿用原文。",
       "translate": true,
-      "zh": "钓起 %1$s 条%2$s。"
+      "zh": "钓起 ×%1$s %2$s。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Fish up ",
+          "zh": "钓起 "
+        },
+        {
+          "color": "§8",
+          "text": "%1$sx ",
+          "zh": "×%1$s "
+        },
+        {
+          "color": "§9",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
     },
     {
       "id": "kill_the_1_s_miniboss_2_s_times_3641b9",

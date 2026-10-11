@@ -206,14 +206,18 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "desc": "High/Low 等状态",
-          "type": "raw",
+          "desc": "Wiki 列出的火山喷发烈度，独立词表避免 Medium 等一词多义",
+          "type": "volcano_status",
           "example": "High"
         }
       ],
       "gloss": "",
       "translate": true,
-      "zh": "火山: %1$s"
+      "zh": "火山: %1$s",
+      "segments": [
+        {"color": "", "text": "Volcano: ", "zh": "火山: "},
+        {"color": "", "text": "%1$s", "zh": "%1$s"}
+      ]
     },
     {
       "id": "tab_matriarch_status",

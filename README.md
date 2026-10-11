@@ -22,12 +22,12 @@ SkyBlock 玩法非常庞大，且每一次的游戏更新都可能会更改游�
 | Fishing（钓鱼） | 992 条 | 100% | 🟡持续补充中 |
 | Foraging（伐木） | 2160 条 | 100% | 🟡持续补充中 |
 | Dungeons（地牢） | 2462 条 | 99.9% | 🟡持续补充中 |
-| Rift（裂隙） | 10 条 | 100% | 🟡持续补充中 |
+| Rift（裂隙） | 2686 条 | 100% | 🟡持续补充中 |
 | Taming（驯养） | 975 条 | 100% | 🟡持续补充中 |
 
 > 百分比仅表示已收录原文的翻译进度,不代表游戏内覆盖率。已收录数量包含明确保留英文的原文,翻译率分母不计入这些记录。尚未收录或缺少可靠语境的文本仍会显示英文。
 
-NPC、物品与菜单的来源边界见 [Galatea 采集范围](docs/GALATEA_COVERAGE.md)及 [Jerry 的工坊采集范围](docs/JERRYS_WORKSHOP_COVERAGE.md)。
+NPC、物品与菜单的来源边界见 [Galatea 采集范围](docs/GALATEA_COVERAGE.md)、[Jerry 的工坊采集范围](docs/JERRYS_WORKSHOP_COVERAGE.md)及 [裂隙采集范围](docs/RIFT_COVERAGE.md)。
 
 ## Mod 的特点是？
 

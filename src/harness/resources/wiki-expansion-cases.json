@@ -2,6 +2,294 @@
   "note": "手写期望: 全局共用选项不绑定单个 NPC 的问题语境,颜色来自输入实时样式;点击与悬浮事件由 checkChatInteractions 独立模拟验证。",
   "cases": [
     {
+      "name": "新版Heat效果沿用炎热值且保留百分比颜色",
+      "source": [
+        "§7For every §c1♨ Heat§7, you are §a0.05%",
+        "§7more likely to find §6Worms§7."
+      ],
+      "consumed": 2,
+      "expected": "§7每有 §c1♨ 炎热值§7，找到§6蠕虫§7的概率提高 §a0.05%§7。"
+    },
+    {
+      "name": "寒冷不额外添加基础速度减益",
+      "surface": "NPC_Message",
+      "source": [
+        "§fYour §6 Mining Speed§f is reduced by §c0.5%§f for every §bCold§f you have."
+      ],
+      "expected": "§f每积累 1 点§b寒冷§f，你的 §6 挖掘速度§f就会降低 §c0.5%§f。"
+    },
+    {
+      "name": "特卖Tab开始时间使用分隔单位",
+      "surface": "TabList",
+      "source": [
+        " §a3§f starting in: §e46m"
+      ],
+      "expected": " §a3§f 场特卖开始倒计时: §e46 分"
+    },
+    {
+      "name": "特卖浮空多单位倒计时使用分隔单位",
+      "surface": "Hologram",
+      "source": [
+        "§c§lFIRE SALE! §ein 0d 0h 44m 38s"
+      ],
+      "expected": "§c§l限时特卖! §e0 天 0 小时 44 分 38 秒 后开始"
+    },
+    {
+      "name": "微风开始倒计时保留图标",
+      "surface": "TabList",
+      "source": [
+        " Breeze§f: §bin 18m "
+      ],
+      "expected": " 微风§f: §b18分 后 "
+    },
+    {
+      "name": "微风进行中保留分秒",
+      "surface": "TabList",
+      "source": [
+        " Breeze§f: §bfor 5m 57s "
+      ],
+      "expected": " 微风§f: §b剩余 5分57秒 "
+    },
+    {
+      "name": "微风另一组时长",
+      "surface": "TabList",
+      "source": [
+        " Breeze§f: §bfor 1m 3s "
+      ],
+      "expected": " 微风§f: §b剩余 1分3秒 "
+    },
+    {
+      "name": "落灰倒计时保留灰色天气图标",
+      "surface": "TabList",
+      "source": [
+        " Ashfall§f: §8in 30m "
+      ],
+      "expected": " 落灰§f: §830分 后 "
+    },
+    {
+      "name": "炼狱风暴兼容天气轮换模板",
+      "surface": "TabList",
+      "source": [
+        " Hellstorm§f: §4for 12m "
+      ],
+      "expected": " 炼狱风暴§f: §4剩余 12分 "
+    },
+    {
+      "name": "爆发级火山与标签分别着色",
+      "surface": "TabList",
+      "source": [
+        " Volcano: §cEXPLOSIVE"
+      ],
+      "expected": " 火山: §c爆发"
+    },
+    {
+      "name": "灾变级火山",
+      "surface": "TabList",
+      "source": [
+        " Volcano: §4CATACLYSMIC"
+      ],
+      "expected": " 火山: §4灾变"
+    },
+    {
+      "name": "火山中烈度不借用中型或道场中等",
+      "surface": "TabList",
+      "source": [
+        " Volcano: §eMEDIUM"
+      ],
+      "expected": " 火山: §e中烈度"
+    },
+    {
+      "name": "Kuudra日常任务基础级保留未完成标记",
+      "surface": "TabList",
+      "source": [
+        " §c✖ Kill Kuudra Basic Tier"
+      ],
+      "expected": " §c✖ 击败基础难度 Kuudra"
+    },
+    {
+      "name": "Kuudra日常任务另一难度",
+      "surface": "TabList",
+      "source": [
+        " §a✔ Kill Kuudra Infernal Tier"
+      ],
+      "expected": " §a✔ 击败炼狱难度 Kuudra"
+    },
+    {
+      "name": "迅捷日常任务未完成",
+      "surface": "TabList",
+      "source": [
+        " §c✖ Swiftness Rank D"
+      ],
+      "expected": " §c✖ 迅捷试炼 D 级"
+    },
+    {
+      "name": "迅捷日常任务评级轮换",
+      "surface": "TabList",
+      "source": [
+        " §a✔ Swiftness Rank S"
+      ],
+      "expected": " §a✔ 迅捷试炼 S 级"
+    },
+    {
+      "name": "岩浆怪首领日常任务",
+      "surface": "TabList",
+      "source": [
+        " §c✖ Magma Boss"
+      ],
+      "expected": " §c✖ 岩浆怪首领"
+    },
+    {
+      "name": "庆典药剂Buff时长不写死",
+      "surface": "TabList",
+      "source": [
+        "§6Fiesta Flask I§r §f5m 59s"
+      ],
+      "expected": "§6庆典佳酿 I§r §f5分59秒"
+    },
+    {
+      "name": "庆典药剂Buff短时长",
+      "surface": "TabList",
+      "source": [
+        "§6Fiesta Flask I§r §f59s"
+      ],
+      "expected": "§6庆典佳酿 I§r §f59秒"
+    },
+    {
+      "name": "未记录天气不能用通用名模板猜译",
+      "surface": "TabList",
+      "source": [
+        "UnrecordedWeather: for 5m "
+      ],
+      "miss": true
+    },
+    {
+      "name": "阵营钓鱼数量与鱼名独立颜色",
+      "source": [
+        "§7Fish up §83x §9Lavahorse§7."
+      ],
+      "consumed": 1,
+      "expected": "§7钓起 §8×3 §9Lavahorse§7。"
+    },
+    {
+      "name": "新版凋零说明跨行顺序与数值",
+      "source": [
+        "§7Grants §c+2 Strength §7per §cCatacombs",
+        "§7skill level you have."
+      ],
+      "consumed": 2,
+      "expected": "§7每有 1 级§c地下墓穴§7技能等级，获得 §c+2 力量§7。"
+    },
+    {
+      "name": "新版灵性说明不漏地牢或句点",
+      "source": [
+        "§7Killing an enemy has a §a10% §7chance to",
+        "§7spawn a Spirit Decoy while in ",
+        "§cDungeons§7."
+      ],
+      "consumed": 3,
+      "expected": "§7在  §c地牢§7中击杀敌人时，有 §a10%§7 的概率生成灵魂诱饵。"
+    },
+    {
+      "name": "采集矿井寒冷示例采用55抗寒",
+      "surface": "NPC_Message",
+      "source": [
+        "§fSo, if you have §b70 Cold§f and §b55  Cold Resistance§f, your §6 Mining Speed §fwill be reduced by §c7.5%§f."
+      ],
+      "expected": "§f举个例子，你有 §b70 点寒冷§f和 §b55  抗寒§f时，§6 挖掘速度§f就会降低 §c7.5%§f。"
+    },
+    {
+      "name": "充值货币Gems不与矿物宝石混淆",
+      "surface": "GUI_Item",
+      "source": [
+        "§7Cost: §a650 SkyBlock Gems"
+      ],
+      "expected": "§7花费: §a650 空岛生存 Gems"
+    },
+    {
+      "name": "裂隙击杀回复兼容旧时间图标",
+      "source": [
+        "§7Regain §a+2ф §7when killing a monster."
+      ],
+      "consumed": 1,
+      "expected": "§7击杀怪物时，恢复 §a+2ф§7。"
+    },
+    {
+      "name": "裂隙击杀回复保留新时间图标和另一数值",
+      "source": [
+        "§7Regain §a+3 §7when killing a monster."
+      ],
+      "consumed": 1,
+      "expected": "§7击杀怪物时，恢复 §a+3§7。"
+    },
+    {
+      "name": "裂隙披风独立进度保留数字",
+      "source": [
+        "§7You found: §d8§5/42 Souls"
+      ],
+      "consumed": 1,
+      "expected": "§7已找到: §d8§5/42 枚谜魂"
+    },
+    {
+      "name": "裂隙生命心数不混同外界生命值",
+      "source": [
+        "§7Hearts: §c+2"
+      ],
+      "consumed": 1,
+      "expected": "§7心数: §c+2"
+    },
+    {
+      "name": "Quantum周内周末属性按中文语序且保持颜色",
+      "source": [
+        "§7Grants §4+3.6♨ Vitality §7on weekdays",
+        "§7and §3+1.8☯ §7of a random §3Wisdom §7stat",
+        "§7on weekends."
+      ],
+      "consumed": 3,
+      "expected": "§7工作日获得 §4+3.6♨ 活力§7；周末随机一种§3智慧§7属性获得 §3+1.8☯ §7加成。"
+    },
+    {
+      "name": "Reflection反伤倍率不当作提升量",
+      "source": [
+        "§7When damaged by an arrow, deal §b5x §7your",
+        "§b✎ Intelligence §7to its shooter."
+      ],
+      "consumed": 2,
+      "expected": "§7被箭矢击中时，对射手造成相当于自身 §b✎ 智力§7的 §b5 倍§7伤害。"
+    },
+    {
+      "name": "侦探扫描仪换行仍整句翻译",
+      "source": [
+        "§7Investigate a clue or",
+        "§7abnormality."
+      ],
+      "consumed": 2,
+      "expected": "§7调查线索或异常之处。"
+    },
+    {
+      "name": "Fink与Coral共用肯定回答不译成想",
+      "surface": "ChatMessage",
+      "source": [
+        "§eSelect an option: §a[Yes.]"
+      ],
+      "expected": "§e请选择: §a[是的。]"
+    },
+    {
+      "name": "终端破解倒计时不冻结为三秒",
+      "surface": "ChatMessage",
+      "source": [
+        "§7Color picking will open in 12 seconds..."
+      ],
+      "expected": "§712 秒后打开颜色选择界面……"
+    },
+    {
+      "name": "物品标题不查询Lore技能名",
+      "surface": "GUI_Item",
+      "source": [
+        "§9Detective Scanner"
+      ],
+      "expected": "§9侦探扫描仪"
+    },
+    {
       "name": "养蜂增益保留真实首行列表标记与颜色",
       "source": [
         "§8 ■ §aTrees §7lathered with §6Honeycomb",

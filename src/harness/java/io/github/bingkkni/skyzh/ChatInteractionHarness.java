@@ -90,6 +90,7 @@ public final class ChatInteractionHarness {
 		commandMentions();
 		followPrompt();
 		frostyPurchase();
+		riftTerminal();
 		phoneWrapper();
 		colours();
 		System.out.printf("扫描 CHAT 可用记录 %d 条，按钮记录 %d 条，已匹配颜色样本 %d 条；通过 %d / 失败 %d%n",
@@ -130,7 +131,9 @@ public final class ChatInteractionHarness {
 		if (text.equals("Doubt [x]")) return List.of();
 		return brackets(text).stream().filter(b -> {
 			String label = text.substring(b.start() + 1, b.end() - 1);
-			return ENGLISH.matcher(PLACEHOLDER.matcher(label).replaceAll("")).find() && !TAGS.contains(label)
+			boolean choice = ENGLISH.matcher(PLACEHOLDER.matcher(label).replaceAll("")).find()
+				|| text.startsWith("Select an option: ") && label.matches("[0-9]+");
+			return choice && !TAGS.contains(label)
 				&& !label.startsWith("Lvl ") && !label.startsWith("Lv") && !label.startsWith("#");
 		}).toList();
 	}
@@ -187,6 +190,12 @@ public final class ChatInteractionHarness {
 		JsonObject shortButtons = JsonParser.parseString("{\"id\":\"short\",\"text\":\"[Y] [N]\",\"zh\":\"[是] [否]\"}").getAsJsonObject();
 		require("单字母按钮不能绕过格式检查", buttons("[Y] [N]").size() == 2 && !formatProblems(shortButtons).isEmpty());
 		require("纯数值/名称占位符标签不是字面按钮", buttons("Level %1$s ➡ [%2$s]").isEmpty());
+		require("Ikrus纯数字回答也属于按钮", buttons("Select an option: [3] [6] [9]").size() == 3);
+		for (int mode = 0; mode < 3; mode++) {
+			Component numeric = sample("Select an option: [3] [6] [9]", mode);
+			Component translated = Translator.translateChatBlock(numeric, 120, c -> StyledText.of(c).length() * 6);
+			require("Ikrus数字问答不丢失或串用点击 模式 " + mode, interactions(numeric, translated, mode));
+		}
 		require("非梗文本的单字母 x 仍需检查", buttons("Choose: [x]").size() == 1 && buttons("Doubt [x]").isEmpty());
 		Component input = sample("[YES] [NO]", 1);
 		TranslationEntry bad = TranslationEntry.compile(new TranslationEntry.Definition("bad", "fixture",
@@ -307,6 +316,30 @@ public final class ChatInteractionHarness {
 			}
 			require("Frosty 无括号购买提示保留独立/继承事件、颜色和粗体 模式 " + mode, valid);
 			require("Frosty 不修改服务器购买组件 模式 " + mode, before.equals(StyledText.of(input)));
+		}
+	}
+
+	/** Wiki spells CLICK without brackets; its live action must not spread to the instruction. */
+	private static void riftTerminal() {
+		Style action = Style.EMPTY.withClickEvent(new ClickEvent.RunCommand("/skyzh-test-terminal"))
+			.withHoverEvent(new HoverEvent.ShowText(Component.literal("synthetic terminal help")))
+			.withInsertion("terminal-help-only");
+		for (int mode = 0; mode < 3; mode++) {
+			Style label = Style.EMPTY.withColor(ChatFormatting.GREEN).withBold(true);
+			if (mode == 1) label = label.withClickEvent(action.getClickEvent())
+				.withHoverEvent(action.getHoverEvent()).withInsertion(action.getInsertion());
+			Component input = Component.empty().setStyle(mode == 2 ? action : Style.EMPTY)
+				.append(Component.literal("Learn to hack from the very basics: ").withStyle(ChatFormatting.YELLOW))
+				.append(Component.empty().setStyle(label).append("CLICK"));
+			StyledText before = StyledText.of(input);
+			StyledText after = StyledText.of(Translator.translateChatBlock(input, 320, c -> StyledText.of(c).length() * 6));
+			String prefix = "从零学习破解技巧: ";
+			boolean valid = after.plain().equals(prefix + "点击查看");
+			for (int i = 0; i < after.length(); i++) {
+				valid &= before.styleAt(i < prefix.length() ? 0 : before.plain().indexOf("CLICK")).equals(after.styleAt(i));
+			}
+			require("裂隙终端无括号CLICK保留实时事件边界 模式 " + mode, valid);
+			require("裂隙终端不修改服务器组件 模式 " + mode, before.equals(StyledText.of(input)));
 		}
 	}
 

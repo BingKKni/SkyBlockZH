@@ -133,6 +133,9 @@ public enum Capture {
 	 */
 	ORDINAL("[0-9]{1,4}(?:st|nd|rd|th|ST|ND|RD|TH)"),
 
+	/** Written ordinals used by choices such as Ubik's boxes; never arbitrary prose. */
+	ORDINAL_WORD("(?i:first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth)", false),
+
 	/** A compact duration used in the tab list: {@code 35d+}, {@code 2h 14m}, {@code 30s}. */
 	DURATION("(?:[0-9][0-9,.]*[yYdDhHmMsS][+]?(?: ?[0-9][0-9,.]*[yYdDhHmMsS][+]?)*|[0-9][0-9,.]*[+]?)"),
 
@@ -220,6 +223,7 @@ public enum Capture {
 			case "gemstone_quality" -> GEMSTONE_QUALITY;
 			case "multiplier_increase" -> MULTIPLIER_INCREASE;
 			case "ordinal" -> ORDINAL;
+			case "ordinal_word" -> ORDINAL_WORD;
 			case "search_query" -> SEARCH_QUERY;
 			default -> PHRASE;
 		};
@@ -244,7 +248,7 @@ public enum Capture {
 			// The regex is the whole of the rule for these: a numeral is a numeral, and a player's
 			// name is whatever sixteen word characters somebody chose.
 			case NUMBER, YEAR, DAY_OF_MONTH, PLAYER, PLAYER_DISPLAY, RANK, TIER, LEVEL, TIER_RANGE, ICON, ITEM_PART, TRAINING_KIND, TROPHY_QUALITY, GEMSTONE_KIND, GEMSTONE_QUALITY, ORDINAL, DURATION, DURATION_SPACED, DURATION_WORDS, SEARCH_QUERY -> true;
-			case CONTEST_RANK, HUNGRY_HIKER_FOOD, CLOCK_DURATION -> value.matches(this.regex);
+			case CONTEST_RANK, HUNGRY_HIKER_FOOD, CLOCK_DURATION, ORDINAL_WORD -> value.matches(this.regex);
 			case MULTIPLIER_INCREASE -> new BigDecimal(value).compareTo(BigDecimal.ONE) >= 0;
 			case NAME -> isName(value);
 			case ITEM_NAME -> isItemName(value);
@@ -276,6 +280,22 @@ public enum Capture {
 	public String renderValue(String value) {
 		if (this == MULTIPLIER_INCREASE && !value.isEmpty()) {
 			return new BigDecimal(value).subtract(BigDecimal.ONE).stripTrailingZeros().toPlainString();
+		}
+
+		if (this == ORDINAL_WORD) {
+			return switch (value.toLowerCase(Locale.ROOT)) {
+				case "first" -> "一";
+				case "second" -> "二";
+				case "third" -> "三";
+				case "fourth" -> "四";
+				case "fifth" -> "五";
+				case "sixth" -> "六";
+				case "seventh" -> "七";
+				case "eighth" -> "八";
+				case "ninth" -> "九";
+				case "tenth" -> "十";
+				default -> value;
+			};
 		}
 
 		if (this == ORDINAL && value.length() >= 3) {
