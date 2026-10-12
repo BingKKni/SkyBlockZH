@@ -1,0 +1,56 @@
+{
+  "source": "本轮 ../SkyZH_Logs/skyzh-capture 服务器原始文本；实测颜色优先。",
+  "verified_ingame": true,
+  "entries": [
+    {
+      "id": "live_0a38ba402eca",
+      "text": "%sф Left",
+      "raw": "§a%sф Left",
+      "context": "本轮服务器采集文本；保留原始颜色与动态取值。",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "duration",
+          "desc": "动态值",
+          "example": "8m00s"
+        }
+      ],
+      "translate": true,
+      "zh": "剩余 %sф"
+    },
+    {
+      "id": "live_27bc97323bb0",
+      "text": "%1$sф Left +%2$ss!",
+      "raw": "§a%1$sф Left §2+%2$ss!",
+      "context": "本轮服务器采集文本；保留原始颜色与动态取值。",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "duration",
+          "desc": "动态值",
+          "example": "8m00s"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "desc": "动态值",
+          "example": "2"
+        }
+      ],
+      "translate": true,
+      "zh": "剩余 %1$sф +%2$s 秒!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "%1$sф Left ",
+          "zh": "剩余 %1$sф "
+        },
+        {
+          "color": "§2",
+          "text": "+%2$ss!",
+          "zh": "+%2$s 秒!"
+        }
+      ]
+    }
+  ]
+}

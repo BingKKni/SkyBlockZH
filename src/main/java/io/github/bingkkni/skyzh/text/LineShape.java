@@ -217,7 +217,7 @@ public final class LineShape {
 	 * says the same thing either way — "Death Messages" — so stepping over the mark lets one record
 	 * answer for both states and leaves each mark in the colour that is carrying the meaning.
 	 */
-	private static final String BULLETS = "▶▸➤➜■◼○◆•⦾⁍⚑✔✖✯";
+	private static final String BULLETS = "▶▸➤➜⇨■◼○◆•⦾⁍⚑✔✖✯";
 
 	/** Whether this character is one of those marks. Used by {@link Capture} to refuse it as a name. */
 	public static boolean isBullet(char c) {

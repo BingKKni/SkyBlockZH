@@ -60,7 +60,7 @@ public enum Capture {
 	/** Attribute shards must be real catalog base names, not any capitalized phrase plus Shard. */
 	SHARD_KIND(NAME.regex, false),
 	TRAINING_KIND("(?:Free|Light|Moderate|Expert|Ultra|Turbo!)", false),
-	EQUIPMENT_SLOT("(?:cloak|belt|necklace|gloves|bracelet|Helmet|Chestplate|Leggings|Boots)", false),
+	EQUIPMENT_SLOT("(?:cloak|belt|necklace|gloves|bracelet|Helmet|Chestplate|Leggings|Boots|Hand)", false),
 	/** Closed trophy species; Vanille and deliberately obfuscated names keep their originals. */
 	TROPHY_FISH_NAME("(?:Blobfish|Flyfish|Golden Fish|Gusher|Karate Fish|Lavahorse|Mana Ray|Moldfin|Skeleton Fish|Slugfish|Soul Fish|Steaming-Hot Flounder|Sulphur Skitter|Vanille|Volcanic Stonefish|Obfuscated-[123])", false),
 

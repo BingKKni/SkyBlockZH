@@ -2586,7 +2586,7 @@ public final class TranslationHarness {
 		check("末地竞速目标支持分钟", "Run the race in 2m", Surface.SCOREBOARD, "在 2 分内完成竞速");
 		check("Guber 对话玩家名不是采集者常量", "Not bad, OtherPlayer!", Surface.CHAT, "不错嘛，OtherPlayer!");
 		check("龙巢传送台的多词地名整值翻译", "§5✦ §dWarp To §7Bedrock Point", Surface.HOLOGRAM,
-			"§5✦ §d传送至 §7基岩台");
+			"§5✦ §d传送至§7基岩台");
 		report("感叹号后可直接闭合选项括号", !hasUnspacedBang("[真神奇!]"), "右方括号不是正文");
 		for (String quote : List.of("\"", "'", "”", "’")) {
 			report("感叹号后可直接闭引号 " + quote, !hasUnspacedBang("玩火的家伙!" + quote), "闭引号是合法标点");
@@ -2760,7 +2760,7 @@ public final class TranslationHarness {
 
 	/** Fixed UI capture regression: ordered lore, term isolation, and clues that must survive translation. */
 	private static void checkFixedMenus(Path corpusRoot) throws Exception {
-		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "workshop-cases.json", "wiki-expansion-cases.json", "bazaar-item-names-cases.json")) {
+		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "workshop-cases.json", "wiki-expansion-cases.json", "bazaar-item-names-cases.json", "rift-live-capture-cases.json")) {
 		Path path = corpusRoot.toAbsolutePath().getParent().resolve("src/harness/resources/" + file);
 		JsonObject fixture = JsonParser.parseString(Files.readString(path, StandardCharsets.UTF_8)).getAsJsonObject();
 		for (JsonElement value : fixture.getAsJsonArray("cases")) {

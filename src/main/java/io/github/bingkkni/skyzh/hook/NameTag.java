@@ -10,10 +10,7 @@ import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 import io.github.bingkkni.skyzh.HoldOriginal;
 import io.github.bingkkni.skyzh.SkyZHConfig;
-import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Style;
-import net.minecraft.network.chat.TextColor;
 
 /**
  * The floating text over an entity's head.
@@ -29,7 +26,7 @@ import net.minecraft.network.chat.TextColor;
  * score under the name as well as the name — and the score is a number no record will answer for.
  *
  * <p>Authored hologram text is restricted to invisible armour stands. Explicit role records may
- * translate green NPC labels, but unknown green proper names are left alone. Non-player living
+ * translate green NPC labels; unknown labels are captured for human review. Non-player living
  * entities have a separate, bounded health-bar path: only a whole mob name already in the term table
  * is replaced, never level or health. Capture omits dynamic bars, pet tags and race leaderboard rows
  * rather than recording each changing value as a new translation task.
@@ -59,11 +56,6 @@ public final class NameTag {
 		"(?:^|\\s)\\d[\\d,.]*[kKmMbBtT]?(?:/\\d[\\d,.]*[kKmMbBtT]?)?❤(?:\\s*[﴾﴿])?\\s*$"
 	);
 
-	/** NPC proper names use one plain green run; their yellow role/instruction line does not. */
-	private static final Pattern NPC_NAME = Pattern.compile(
-		"[\\p{L}\\d_'’.\\-]+(?:\\s+[\\p{L}\\d_'’.\\-]+){0,7}"
-	);
-	private static final TextColor NPC_NAME_COLOUR = TextColor.fromLegacyFormat(ChatFormatting.GREEN);
 	private static final Pattern MOB_BAR = Pattern.compile(
 		"^(?:﴾\\s*)?(?:\\[Lv[0-9]+\\]\\s*)?(?:[\\p{Co}\\p{S}]\\s*){0,8}([A-Za-z][A-Za-z '\\-]+?)\\s+(?:[0-9][0-9,.]*[kKmMbBtT]?(?:/[0-9][0-9,.]*[kKmMbBtT]?)?|\\?+)❤(?:\\s*﴿)?\\s*$"
 	);
@@ -71,17 +63,7 @@ public final class NameTag {
 	private static final Pattern RANKED_PLAYER = Pattern.compile(
 		"^\\[(?:VIP|MVP|YOUTUBE|ADMIN|MOD|HELPER|GM|OWNER|MOJANG|EVENTS|MCP|PIG)\\+{0,3}\\] [A-Za-z0-9_]{1,16}$"
 	);
-	private static final Pattern LEADERBOARD = Pattern.compile("^[0-9]+\\. [A-Za-z0-9_]{1,16} - [0-9:.]+$");
-	/**
-	 * One bare token that reads as a Minecraft username rather than a word: a digit or underscore in
-	 * it, a lowercase start, or a capital in the middle ({@code ZillPap}, {@code kimisfvs},
-	 * {@code LittlePecker2}). A pet leaderboard and a museum entrance both hang player names in the
-	 * air, and none of them is text anybody translates. Game words are capitalised whole
-	 * ({@code Start}, {@code HOTSPOT}) and never match.
-	 */
-	private static final Pattern PLAYER_LIKE = Pattern.compile(
-		"^(?:[a-z][A-Za-z0-9_]{0,15}|[A-Za-z0-9_]*[0-9_][A-Za-z0-9_]*|[A-Z][a-z0-9_]*[a-z][A-Z][A-Za-z0-9_]*)$"
-	);
+	private static final Pattern LEADERBOARD = Pattern.compile("^[0-9,]+\\. [A-Za-z0-9_]{1,16} - [0-9,.:]+$");
 
 	private NameTag() {
 	}
@@ -112,37 +94,8 @@ public final class NameTag {
 		return !plain.isEmpty() && !MOB_HEALTH.matcher(plain).find()
 			&& !MOB_BAR.matcher(plain).matches() && !PET_TAG.matcher(plain).matches()
 			&& !LEADERBOARD.matcher(plain).matches() && !RANKED_PLAYER.matcher(plain).matches()
-			&& (plain.length() > 16 || !PLAYER_LIKE.matcher(plain).matches())
-			&& (!(npcName(styled, plain) || Translator.index().isNpcName(plain))
+			&& (!Translator.index().isNpcName(plain)
 				|| Translator.locate(styled, Surface.HOLOGRAM).matched() || locationName(plain) != null);
-	}
-
-	/**
-	 * Green name-shaped text is conservatively treated as a proper name unless an explicit hologram
-	 * record answers. Colour does not itself prove that a role such as Lift Operator is a proper name.
-	 *
-	 * <p>The corpus's own NPC list is the other half of that rule and does not depend on colour: Hub
-	 * NPCs wear white, aqua, red and purple nameplates, and every one of them is a name the project
-	 * keeps in English. A role-type name the glossary does translate ({@code Combat Merchant},
-	 * {@code Lift Operator}) still translates, because a hologram record answers for it.
-	 */
-	private static boolean npcName(StyledText styled, String plain) {
-		if (!NPC_NAME.matcher(plain).matches()) {
-			return false;
-		}
-
-		for (int i = 0; i < styled.length(); i++) {
-			if (Character.isWhitespace(styled.plain().charAt(i))) {
-				continue;
-			}
-
-			Style style = styled.styleAt(i);
-			if (!NPC_NAME_COLOUR.equals(style.getColor()) || style.isBold() || style.isItalic()) {
-				return false;
-			}
-		}
-
-		return true;
 	}
 
 	/**

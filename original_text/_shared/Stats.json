@@ -186,14 +186,31 @@
     {
       "id": "stat_ability_damage_gain",
       "context": "饰品/附魔增益里“加多少技能伤害”的写法",
-      "raw": "§c+%s๑ Ability Damage",
+      "raw": "§8+§c%s๑ Ability Damage",
       "text": "+%s๑ Ability Damage",
       "placeholders": [
-        {"token": "%s", "desc": "加成数值", "type": "number", "example": "3"}
+        {
+          "token": "%s",
+          "desc": "加成数值",
+          "type": "number",
+          "example": "3"
+        }
       ],
       "gloss": "",
       "translate": true,
-      "zh": "+%s๑ 技能伤害"
+      "zh": "+%s๑ 技能伤害",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§c",
+          "text": "%s๑ Ability Damage",
+          "zh": "%s๑ 技能伤害"
+        }
+      ]
     }
   ]
 }

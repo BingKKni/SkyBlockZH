@@ -1333,7 +1333,8 @@
       "en": "Endermen",
       "zh": "末影人",
       "types": [
-        "minion_resource"
+        "minion_resource",
+        "mob_name"
       ]
     },
     {
@@ -6783,7 +6784,8 @@
       "en": "Completed",
       "zh": "已完成",
       "types": [
-        "raw"
+        "raw",
+        "category_name"
       ],
       "note": "同上。"
     },
@@ -7660,7 +7662,8 @@
       "en": "Scarecrow",
       "zh": "稻草人",
       "types": [
-        "mob_name"
+        "mob_name",
+        "category_name"
       ]
     },
     {
@@ -8660,7 +8663,15 @@
     {"en":"Free Will","zh":"自由意志","types":["category_name"],"note":"小人升级菜单子页；沿用 Captured_Item_Names.json 的同名物品译名。"},
     {"en":"Upgrade Fragments","zh":"升级碎片","types":["category_name"],"note":"集市分类名。"},
     {"en":"Refined Mithril","zh":"精炼秘银","types":["category_name"],"note":"配方材料，沿用 Mining/GUI_Item/Refined_Mithril.json。"},
-    {"en":"Tender Wood","zh":"嫩木","types":["category_name"],"note":"加拉蒂亚无花果树掉落的收藏品，与 Collection_Tiers_Live 一致。"},
+    {
+      "en": "Tender Wood",
+      "zh": "嫩木",
+      "types": [
+        "category_name",
+        "recipe_target"
+      ],
+      "note": "加拉蒂亚无花果树掉落的收藏品，与 Collection_Tiers_Live 一致。"
+    },
     {"en":"Silver Fang","zh":"银牙","types":["category_name"],"note":"恶魂之泪收藏品奖励武器；全由通用词组成，按物品名规则翻译。"},
     {"en":"Wool Weaver","zh":"羊毛织工","types":["raw"],"note":"大厅 NPC 职务名，沿用 Captured_Menus 的羊毛织工；Oruo 问答选项。"},
     {"en":"Builder","zh":"建筑师","types":["raw"],"note":"大厅 NPC 职务名，沿用建筑师之家；Oruo 问答选项。"},
@@ -13825,7 +13836,848 @@
     {"en":"gloves","zh":"手套","types":["equipment_slot"]},
     {"en":"bracelet","zh":"手镯","types":["equipment_slot"]}
 ,
-    {"en":"Vanille","zh":"Vanille","types":["trophy_fish_name"],"note":"含义不明确的自造鱼名明确保留；使已匹配的奖杯魚广播不被误报为缺失词表，不屏蔽正文、品质或颜色诊断。"}
+    {"en":"Vanille","zh":"Vanille","types":["trophy_fish_name"],"note":"含义不明确的自造鱼名明确保留；使已匹配的奖杯魚广播不被误报为缺失词表，不屏蔽正文、品质或颜色诊断。"},
+    {
+      "en": "Wyld Woods",
+      "zh": "异野森林",
+      "types": [
+        "location_name",
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Black Lagoon",
+      "zh": "黑色潟湖",
+      "types": [
+        "location_name",
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "West Village",
+      "zh": "西村",
+      "types": [
+        "location_name",
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Village Plaza",
+      "zh": "村庄广场",
+      "types": [
+        "location_name",
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Living Cave",
+      "zh": "活体洞穴",
+      "types": [
+        "location_name",
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Broken Cage",
+      "zh": "破损牢笼",
+      "types": [
+        "location_name",
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Enigma's Crib",
+      "zh": "Enigma 的小屋",
+      "types": [
+        "location_name",
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Shifted Tavern",
+      "zh": "错位酒馆",
+      "types": [
+        "location_name",
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Otherside",
+      "zh": "彼岸",
+      "types": [
+        "location_name",
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Rift Gallery",
+      "zh": "裂隙展馆",
+      "types": [
+        "location_name",
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Top of Tower",
+      "zh": "塔顶",
+      "types": [
+        "location_name",
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Rift Dimension",
+      "zh": "裂隙维度",
+      "types": [
+        "location_name",
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Timecharms",
+      "zh": "时光符",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Enigma Souls",
+      "zh": "谜魂",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Lifetime Motes",
+      "zh": "累计微尘",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Sun Gecko",
+      "zh": "太阳壁虎",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Rift Time Left",
+      "zh": "剩余裂隙时间",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Rift Damage",
+      "zh": "裂隙伤害",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Mana Regen",
+      "zh": "法力回复",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Good to know",
+      "zh": "小提示",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Advertisement",
+      "zh": "广告",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Golem",
+      "zh": "铁傀儡",
+      "types": [
+        "mob_name",
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Millennia-Aged Blaze",
+      "zh": "千年烈焰人",
+      "types": [
+        "mob_name",
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "hiding",
+      "zh": "隐藏",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "showing",
+      "zh": "显示",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Skill",
+      "zh": "技能",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Collection",
+      "zh": "收集",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Incomplete",
+      "zh": "未完成",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Auto-Buy",
+      "zh": "自动购买",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Unlock Timite",
+      "zh": "解锁 Timite",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Lagoon Cave",
+      "zh": "潟湖洞穴",
+      "types": [
+        "raw"
+      ]
+    },
+    {
+      "en": "Mushroom Guy",
+      "zh": "蘑菇人",
+      "types": [
+        "raw"
+      ]
+    },
+    {
+      "en": "Beanstalk",
+      "zh": "豆茎",
+      "types": [
+        "raw"
+      ]
+    },
+    {
+      "en": "Buttons",
+      "zh": "按钮",
+      "types": [
+        "raw"
+      ]
+    },
+    {
+      "en": "Farm Flower Pot",
+      "zh": "农场花盆",
+      "types": [
+        "raw"
+      ]
+    },
+    {
+      "en": "Castle Flower Pot",
+      "zh": "城堡花盆",
+      "types": [
+        "raw"
+      ]
+    },
+    {
+      "en": "Farm Balloons",
+      "zh": "农场气球",
+      "types": [
+        "raw"
+      ]
+    },
+    {
+      "en": "Castle Balloons",
+      "zh": "城堡气球",
+      "types": [
+        "raw"
+      ]
+    },
+    {
+      "en": "Rabbit in the Hat!",
+      "zh": "帽子里的兔子!",
+      "types": [
+        "raw"
+      ]
+    },
+    {
+      "en": "Behind a Living Wall",
+      "zh": "活墙后方",
+      "types": [
+        "raw"
+      ]
+    },
+    {
+      "en": "Flowery Message",
+      "zh": "花语留言",
+      "types": [
+        "raw"
+      ]
+    },
+    {
+      "en": "Full Circle",
+      "zh": "完整圆环",
+      "types": [
+        "raw"
+      ]
+    },
+    {
+      "en": "Standing there",
+      "zh": "站在那里",
+      "types": [
+        "raw"
+      ]
+    },
+    {
+      "en": "Between Towers",
+      "zh": "双塔之间",
+      "types": [
+        "raw"
+      ]
+    },
+    {
+      "en": "Castle Fleespook",
+      "zh": "城堡 Fleespook",
+      "types": [
+        "raw"
+      ]
+    },
+    {
+      "en": "Spinning Runes",
+      "zh": "旋转符文",
+      "types": [
+        "raw"
+      ]
+    },
+    {
+      "en": "BOSS",
+      "zh": "首领",
+      "types": [
+        "category_name",
+        "equipment_slot"
+      ]
+    },
+    {
+      "en": "MINIBOSS",
+      "zh": "小型首领",
+      "types": [
+        "category_name",
+        "equipment_slot"
+      ]
+    },
+    {
+      "en": "Hand",
+      "zh": "手部",
+      "types": [
+        "category_name",
+        "equipment_slot"
+      ]
+    },
+    {
+      "en": "Riftstalker Bloodfiend",
+      "zh": "裂隙追猎血魔",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Pumpkinz",
+      "zh": "南瓜派对",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Whoosh",
+      "zh": "咻",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Garlic",
+      "zh": "大蒜",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Sweets",
+      "zh": "糖果",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "FaBOOlous",
+      "zh": "鬼气十足",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Ouija",
+      "zh": "通灵板",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Porkchop",
+      "zh": "猪排",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Watcher",
+      "zh": "守望者",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Scary Jerry",
+      "zh": "恐怖 Jerry",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Undead Jerry",
+      "zh": "亡灵 Jerry",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Gothic Jerry",
+      "zh": "哥特 Jerry",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Vampire Jerry",
+      "zh": "吸血鬼 Jerry",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Spooky Game Over",
+      "zh": "惊悚游戏结束",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Comfy Web",
+      "zh": "舒适蛛网",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Haunted House",
+      "zh": "鬼屋",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Haunted Conscience",
+      "zh": "良心闹鬼",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Ugly Spooky Sweater",
+      "zh": "丑丑万圣毛衣",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Let Us In",
+      "zh": "让我们进去",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Trick Or Treat",
+      "zh": "不给糖就捣蛋",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Halloween Costumes",
+      "zh": "万圣节装扮",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Potion Brewer",
+      "zh": "药水酿造师",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Monster Under the Bed",
+      "zh": "床底怪物",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Spooky Candles",
+      "zh": "惊悚蜡烛",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Spooky Skelington",
+      "zh": "惊悚骷髅",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Witch Please",
+      "zh": "女巫驾到",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Distinguished Ghost",
+      "zh": "尊贵幽灵",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Family Photo",
+      "zh": "全家福",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Party Crasher",
+      "zh": "不速之客",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Wither Spectre Bestiary",
+      "zh": "凋灵幽魂图鉴",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Another Dimension",
+      "zh": "另一个维度",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Bonzo the Clown",
+      "zh": "小丑 Bonzo",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Full Moon",
+      "zh": "满月",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Pumpkin Farm",
+      "zh": "南瓜农场",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Pumpkin Pals",
+      "zh": "南瓜伙伴",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Murder Mystery Poster",
+      "zh": "密室杀手海报",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Dragon Trophy",
+      "zh": "巨龙奖杯",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Skull",
+      "zh": "头骨",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Killer",
+      "zh": "杀手",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Mummy",
+      "zh": "木乃伊",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Cyclops",
+      "zh": "独眼巨人",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Shy",
+      "zh": "害羞怪",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Shies",
+      "zh": "害羞怪",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Shadow",
+      "zh": "暗影怪",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Shadows",
+      "zh": "暗影怪",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Volt",
+      "zh": "伏特怪",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Volts",
+      "zh": "伏特怪",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Scribe",
+      "zh": "抄写怪",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Scribes",
+      "zh": "抄写怪",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Splatter",
+      "zh": "泼溅怪",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Splatters",
+      "zh": "泼溅怪",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Puff",
+      "zh": "鼓气怪",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Puffs",
+      "zh": "鼓气怪",
+      "types": [
+        "mob_name"
+      ]
+    },
+    {
+      "en": "Powerful Glue",
+      "zh": "强力胶",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Replacement Wood",
+      "zh": "替换木料",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Tasty Provisions",
+      "zh": "美味补给",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Living Anchor",
+      "zh": "活体船锚",
+      "types": [
+        "raw",
+        "category_name"
+      ]
+    },
+    {
+      "en": "Living Stillness",
+      "zh": "活体静域",
+      "types": [
+        "raw",
+        "location_name"
+      ]
+    }
   ],
   "todo": [
     "宝石种类名(Amber / Amethyst / Jade / Ruby / Sapphire / Topaz / Aquamarine / Citrine / Onyx / Peridot)按既定原则保持英文,**不要**往表里加。它们和汉字之间的空格由引擎自动处理。",

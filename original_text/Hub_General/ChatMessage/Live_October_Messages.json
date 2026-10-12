@@ -1,0 +1,208 @@
+{
+  "source": "本轮 ../SkyZH_Logs/skyzh-capture 服务器原始文本；实测颜色优先。",
+  "verified_ingame": true,
+  "entries": [
+    {
+      "id": "live_1e2a4d0d12c9",
+      "text": "+%s❤ Health",
+      "raw": "§8+§c%s❤ Health",
+      "context": "本轮服务器采集文本；保留原始颜色与动态取值。",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "desc": "动态值",
+          "example": "2"
+        }
+      ],
+      "translate": true,
+      "zh": "+%s❤ 生命值",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§c",
+          "text": "%s❤ Health",
+          "zh": "%s❤ 生命值"
+        }
+      ]
+    },
+    {
+      "id": "live_e72e8067a38e",
+      "text": "Escrow refunded %1$sx %2$s!",
+      "raw": "§eEscrow refunded §7%1$sx §f%2$s§e!",
+      "context": "本轮服务器采集文本；保留原始颜色与动态取值。",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "desc": "动态值",
+          "example": "2"
+        },
+        {
+          "token": "%2$s",
+          "type": "loot_item_name",
+          "desc": "动态值",
+          "example": "Lily Pad"
+        }
+      ],
+      "translate": true,
+      "zh": "托管返还了 %1$s 个 %2$s!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Escrow refunded ",
+          "zh": "托管返还了 "
+        },
+        {
+          "color": "§7",
+          "text": "%1$sx ",
+          "zh": "%1$s 个 "
+        },
+        {
+          "color": "§f",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§e",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "live_f702ffafff04",
+      "text": "%1$s was killed by %2$s %3$s.",
+      "raw": "§b%1$s§7 was killed by %2$s %3$s.",
+      "context": "本轮服务器采集文本；保留原始颜色与动态取值。",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "player_name",
+          "desc": "动态值",
+          "example": "2"
+        },
+        {
+          "token": "%2$s",
+          "type": "mob_name",
+          "desc": "动态值",
+          "example": "Enderman"
+        },
+        {
+          "token": "%3$s",
+          "type": "tier",
+          "desc": "动态值",
+          "example": "III"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s被%2$s %3$s击杀了。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " was killed by %2$s %3$s.",
+          "zh": "被%2$s %3$s击杀了。"
+        }
+      ]
+    },
+    {
+      "id": "live_97f5ac1af40c",
+      "text": "☠ %1$s was killed by %2$s %3$s.",
+      "raw": "§c☠ §b%1$s§7 was killed by %2$s %3$s.",
+      "context": "本轮服务器采集文本；保留原始颜色与动态取值。",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "player_name",
+          "desc": "动态值",
+          "example": "2"
+        },
+        {
+          "token": "%2$s",
+          "type": "mob_name",
+          "desc": "动态值",
+          "example": "Enderman"
+        },
+        {
+          "token": "%3$s",
+          "type": "tier",
+          "desc": "动态值",
+          "example": "III"
+        }
+      ],
+      "translate": true,
+      "zh": "☠ %1$s被%2$s %3$s击杀了。",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "☠ ",
+          "zh": "☠ "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " was killed by %2$s %3$s.",
+          "zh": "被%2$s %3$s击杀了。"
+        }
+      ]
+    },
+    {
+      "id": "live_a4271d5ed35e",
+      "text": "Runecrafting: +%1$s XP Bits: +%2$s",
+      "context": "本轮服务器采集文本；保留原始颜色与动态取值。",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "desc": "动态值",
+          "example": "2"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "desc": "动态值",
+          "example": "2"
+        }
+      ],
+      "translate": true,
+      "zh": "符文制作: +%1$s 经验 点券: +%2$s",
+      "source": "../SkyZH_Logs/latest.log；首领奖励横幅,实测纯文本未保留颜色。",
+      "layout": "chat_source_alignment",
+      "segments": [
+        {
+          "text": "Runecrafting: ",
+          "zh": "符文制作: "
+        },
+        {
+          "text": "+%1$s",
+          "zh": "+%1$s"
+        },
+        {
+          "text": " XP ",
+          "zh": " 经验 "
+        },
+        {
+          "text": "Bits: ",
+          "zh": "点券: "
+        },
+        {
+          "text": "+%2$s",
+          "zh": "+%2$s"
+        }
+      ]
+    }
+  ]
+}

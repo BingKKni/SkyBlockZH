@@ -9,14 +9,17 @@
     {
       "id": "rift1_sonfather_sac",
       "context": "Sonfather：首次交谈",
-      "source": "https://hypixelskyblock.minecraft.wiki/w/Argofay_Sonfather",
+      "source": [
+        "../SkyZH_Logs/skyzh-capture/untranslated/Rift/NPC_Message/Argofay_Sonfather.json",
+        "https://hypixelskyblock.minecraft.wiki/w/Argofay_Sonfather"
+      ],
       "fetched_at": "2026-10-04",
       "last_edited": "This page was last edited on 23 July 2026, at 15:52.",
-      "verified_ingame": false,
-      "raw": "§fThat sac over thee is my son.",
-      "text": "That sac over thee is my son.",
+      "verified_ingame": true,
+      "raw": "That sac over there is my son.",
+      "text": "That sac over there is my son.",
       "placeholders": [],
-      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。",
+      "gloss": "采用本轮服务器实测的 there,纠正 Wiki 的 thee 拼写；颜色采用采集原文。",
       "translate": true,
       "zh": "那边那枚茧里,是我的儿子。"
     },
@@ -157,18 +160,18 @@
       "source": "https://hypixelskyblock.minecraft.wiki/w/Argofay_Sonfather",
       "fetched_at": "2026-10-04",
       "last_edited": "This page was last edited on 23 July 2026, at 15:52.",
-      "verified_ingame": false,
+      "verified_ingame": true,
       "raw": "§fYou only have §a%s§f left, be efficient or you will be stuck like some of those sacs.",
       "text": "You only have %s left, be efficient or you will be stuck like some of those sacs.",
       "placeholders": [
         {
           "token": "%s",
-          "type": "duration",
-          "example": "2m 30s",
-          "desc": "剩余裂隙时间(Wiki 以 [#time left] 记录,运行时格式待实测)"
+          "type": "clock_duration",
+          "example": "7:04",
+          "desc": "实测剩余时间,分:秒"
         }
       ],
-      "gloss": "社区 Wiki 普通呈现页逐字与显式颜色；未实机核验。Wiki 把剩余时间写作 [#time left],按项目约定折算为 duration 占位符；运行时显示格式待实机核实。",
+      "gloss": "实测使用分:秒时钟,不能以 duration 匹配。",
       "translate": true,
       "zh": "你只剩 %s 了,抓紧时间,否则你也会像那些茧一样被困住。",
       "segments": [

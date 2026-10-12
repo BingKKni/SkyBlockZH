@@ -239,7 +239,7 @@ Minecraft 本来就会把收到的每条聊天消息写进 `logs/`，这个任�
 | 聊天（系统 / NPC） | `ClientPacketListener#handleSystemChat` HEAD | 比 Fabric 的聊天事件、比 SkyHanni / SkyBlocker 都早。Mod 自己发的消息走 `ChatComponent#addMessage`，**根本不经过这个方法** |
 | 界面标题 | `handleOpenScreen` HEAD | 服务器包里的 `title` 字段 |
 | 物品名 + Lore | `handleContainerContent` / `handleContainerSetSlot` HEAD | 读 `ItemStack` 的 `CUSTOM_NAME` / `LORE` 组件，**不是** `getTooltipLines()`——后者正是所有 Mod 往 Lore 里加东西的地方 |
-| 头顶浮空字 | `handleSetEntityData` TAIL + 每 10 tick 复查包里见过的实体 | 名字、名字可见状态、共享标志字节（含隐形位）更新时登记实体，周期读取已落地的整组文字；相关包里见过的盔甲架 ID 只在所属 `ClientLevel` 内有界保留，周期复查补回边界开启前已经落地的静态 Hologram，换世界立即清空。不会遍历其他 Mod 创建的实体。只收隐形盔甲架的可见 `CUSTOM_NAME`；玩家、普通生物、命名掉落物、可见装饰盔甲架都不进来；内容过滤排除 NPC 专名、宠物等级、竞速玩家榜与动态怪物血条；已收录的绿色职务名可翻译，未知职务/操作介绍仍会入队 |
+| 头顶浮空字 | `handleSetEntityData` TAIL + 每 10 tick 复查包里见过的实体 | 名字、名字可见状态、共享标志字节（含隐形位）更新时登记实体，周期读取已落地的整组文字；相关包里见过的盔甲架 ID 只在所属 `ClientLevel` 内有界保留，周期复查补回边界开启前已经落地的静态 Hologram，换世界立即清空。不会遍历其他 Mod 创建的实体。只收隐形盔甲架的可见 `CUSTOM_NAME`；玩家、普通生物、命名掉落物、可见装饰盔甲架都不进来；内容过滤排除已核实的 NPC 专名、宠物等级、玩家排名与动态怪物血条；不按颜色、大小写或姓名形状排除未知文字，待采集后人工判定；已收录的绿色职务名可翻译 |
 | 计分板 | 每 10 tick 读一次 `Scoreboard` 对象 | 和原版渲染读的是同一份服务器状态。附带好处：**SkyHanni 的自定义计分板把侧边栏整个接管之后，这里照样拿得到 Hypixel 的原始行** |
 | Tab 列表 | `handleTabListCustomisation`（页眉页脚）+ 每 10 tick 读一次玩家条目 | 同上 |
 | BossBar | `BossHealthOverlay#update` TAIL | 那张 map 只有服务器包写得进去 |

@@ -622,9 +622,9 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "desc": "猎手 Boss 名,按 GLOSSARY 保留英文",
-          "type": "mob_name",
-          "example": "Revenant Horror"
+          "desc": "生物或收集材料名称;复用目录与词表",
+          "type": "recipe_target",
+          "example": "Melon Slice"
         },
         {
           "token": "%2$s",
@@ -673,19 +673,31 @@
     {
       "id": "slayer_leaderboard_na",
       "context": "排行榜:某 Boss 无数据",
-      "raw": "§7%1$s: N/A",
+      "raw": "§7%1$s: §8N/A",
       "text": "%1$s: N/A",
       "placeholders": [
         {
           "token": "%1$s",
-          "desc": "猎手 Boss 名,按 GLOSSARY 保留英文",
-          "type": "mob_name",
-          "example": "Revenant Horror"
+          "desc": "生物或收集材料名称;复用目录与词表",
+          "type": "recipe_target",
+          "example": "Cocoa Beans"
         }
       ],
       "gloss": "",
       "translate": true,
-      "zh": "%1$s: 暂无"
+      "zh": "%1$s: 暂无",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "%1$s: ",
+          "zh": "%1$s: "
+        },
+        {
+          "color": "§8",
+          "text": "N/A",
+          "zh": "暂无"
+        }
+      ]
     },
     {
       "id": "slayer_recipes",

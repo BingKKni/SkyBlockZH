@@ -605,9 +605,12 @@ public final class CaptureHarness {
 		checkNothing("NPC 人名浮空字不生成翻译任务", CaptureSurface.HOLOGRAM, "§cMalik");
 		check("有浮空字记录的职务名照常翻译", TranslationHarness.legacy(
 			Translator.translateLine(Component.literal("§aLift Operator"), Surface.HOLOGRAM)), "§a升降梯管理员");
-		check("玩家名形状的单词排除: 小写开头", NameTag.eligible(Component.literal("§binkkni")), false);
-		check("玩家名形状的单词排除: 含数字", NameTag.eligible(Component.literal("§7LittlePecker2")), false);
-		check("玩家名形状的单词排除: 中间大写", NameTag.eligible(Component.literal("§7ZillPap")), false);
+		check("未知单词不猜测为玩家名: 小写开头", NameTag.eligible(Component.literal("§binkkni")), true);
+		check("未知单词不猜测为玩家名: 含数字", NameTag.eligible(Component.literal("§7LittlePecker2")), true);
+		check("未知单词不猜测为玩家名: 中间大写", NameTag.eligible(Component.literal("§7ZillPap")), true);
+		check("绿色未知卫兵职务进入采集", NameTag.eligible(Component.literal("§aUncatalogued Guard")), true);
+		check("绿色未知单独姓名留待人工判断", NameTag.eligible(Component.literal("§aUncataloguedName")), true);
+		check("带千分位的道场玩家排名不采集", NameTag.eligible(Component.literal("§e106,026. §binkkni§7 - §e760")), false);
 		check("大写整词不是玩家名", NameTag.eligible(Component.literal("§e§lHOTSPOT")), true);
 		check("首字母大写的普通词不是玩家名", NameTag.eligible(Component.literal("§aStart")), true);
 
