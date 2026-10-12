@@ -2,11 +2,11 @@
   "source": "runtime capture (SkyZH) 2026-08-26 至 2026-08-27 实测 Bazaar 会话",
   "fetched_at": "2026-08-27",
   "verified_ingame": true,
-  "gui_context": "Bazaar 的分类浏览器、购买订单、出售报价、订单管理、成交历史和一键出售菜单。商品名由服务器实时填入，均保留英文。",
+  "gui_context": "Bazaar 的分类浏览器、购买订单、出售报价、订单管理、成交历史和一键出售菜单。商品名由服务器实时填入，显示时复用已有物品译名。",
   "source_note": [
     "① 2026-08-29 这一批记录来自实测采集 Mining/GUI_Item/Bazaar_Oddities.json(178 条)。采集目录在 Mining/ 下只是因为当时人在矿区,集市不属于任何单一玩法,记录按玩法归到 Economy/,和 Hub_General/ScoreBoard/Common_Sidebar.json 里 New Year Event 那两行的处理同理。",
     "② 分类结构已查证 hypixelskyblock.minecraft.wiki/w/Bazaar(2026-08-29):集市分 Farming、Mining、Combat、Woods & Fishes、Oddities 五个大类;点大类看到该类下的商品类型或商品分组,再点一次看到该类型下的各种具体商品;槽位有限,所以一部分商品被塞进同一个伞形类目里。",
-    "③ 商品浏览器里 “▶ 商品名” 那批行(实测约 90 条,如 ▶ Frozen Scute、▶ Hyper Catalyst、▶ Moby-Duck: Collector's Edition)一律不写记录:▶ 后面是商品专名,按项目规则保留英文,没有记录时这些行原样渲染,正是想要的结果。也特意没有写 “▶ %1$s” 这种通吃记录——那会让这批行在采集里被判成「已匹配」而从未翻译清单里消失,等于把证据擦掉(见 memory 的 skyzh-false-match-erases-evidence)。只有代表「一组商品」而不是某一件商品的组名才写记录。"
+    "③ 商品浏览器的 ▶ 商品名行复用已有 ITEM 名称及引擎的列表标记剥离，不逐商品枚举记录，也不写通吃的 ▶ %s 模板；无译文或明确保留专名的商品保持原文。用户要求：商品显示名与消息、订单 Lore 中的既有译名一致；搜索输入仍为原文。"
   ],
   "excluded": [
     "▶ Spooky、▶ Winter、▶ Feast、▶ Mythological、▶ Jerry Boxes、▶ Hoppity's Hunt、▶ Diaz:这几行是活动/系列名当商品分组用,_shared/Terms.json 里已有的是完整活动名(Spooky Festival=惊魂节、Harvest Feast=丰收盛宴、Winter Island=寒冬岛),集市这里是掐头去尾的简称,对不上哪一个;查证清楚是哪个活动之前不写记录。",
@@ -217,12 +217,12 @@
         },
         {
           "token": "%2$s",
-          "desc": "商品专名，保留英文",
-          "type": "item_name",
+          "desc": "商品完整名称；目录确认后复用已有物品译名，未知或保留专名仍显示原文",
+          "type": "loot_item_name",
           "example": "Umber Key"
         }
       ],
-      "gloss": "商品专名不翻译。",
+      "gloss": "商品显示名复用既有 ITEM 译名；尚无译名或明确保留的专名保持原文。",
       "translate": true,
       "zh": "订单: %1$s个%2$s",
       "segments": [
@@ -1167,8 +1167,8 @@
         },
         {
           "token": "%3$s",
-          "desc": "商品专名，保留英文",
-          "type": "item_name",
+          "desc": "商品完整名称；目录确认后复用已有物品译名，未知或保留专名仍显示原文",
+          "type": "loot_item_name",
           "example": "Helix Fossil"
         }
       ],
@@ -1229,8 +1229,8 @@
         },
         {
           "token": "%3$s",
-          "desc": "商品专名，保留英文",
-          "type": "item_name",
+          "desc": "商品完整名称；目录确认后复用已有物品译名，未知或保留专名仍显示原文",
+          "type": "loot_item_name",
           "example": "Mithril"
         }
       ],
@@ -1336,8 +1336,8 @@
         },
         {
           "token": "%3$s",
-          "desc": "商品专名，保留英文",
-          "type": "item_name",
+          "desc": "商品完整名称；目录确认后复用已有物品译名，未知或保留专名仍显示原文",
+          "type": "loot_item_name",
           "example": "Flowstate I"
         }
       ],
@@ -1403,8 +1403,8 @@
         },
         {
           "token": "%3$s",
-          "desc": "商品专名，保留英文",
-          "type": "item_name",
+          "desc": "商品完整名称；目录确认后复用已有物品译名，未知或保留专名仍显示原文",
+          "type": "loot_item_name",
           "example": "Suspicious Scrap"
         }
       ],
@@ -1470,8 +1470,8 @@
         },
         {
           "token": "%3$s",
-          "desc": "商品专名，保留英文",
-          "type": "item_name",
+          "desc": "商品完整名称；目录确认后复用已有物品译名，未知或保留专名仍显示原文",
+          "type": "loot_item_name",
           "example": "Paleontologist I"
         }
       ],
@@ -1531,8 +1531,8 @@
         },
         {
           "token": "%2$s",
-          "desc": "商品专名，保留英文",
-          "type": "item_name",
+          "desc": "商品完整名称；目录确认后复用已有物品译名，未知或保留专名仍显示原文",
+          "type": "loot_item_name",
           "example": "Blue Goblin Egg"
         }
       ],
@@ -1773,8 +1773,8 @@
         },
         {
           "token": "%2$s",
-          "desc": "商品专名，保留英文",
-          "type": "item_name",
+          "desc": "商品完整名称；目录确认后复用已有物品译名，未知或保留专名仍显示原文",
+          "type": "loot_item_name",
           "example": "Titanium"
         },
         {
@@ -1990,8 +1990,8 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "desc": "商品名,保留英文",
-          "type": "item_name",
+          "desc": "商品完整名称；目录确认后复用已有物品译名，未知或保留专名仍显示原文",
+          "type": "loot_item_name",
           "example": "Wither Essence"
         }
       ],

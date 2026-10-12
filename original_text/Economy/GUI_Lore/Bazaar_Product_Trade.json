@@ -1,0 +1,30 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Bazaar/UI/Farming",
+  "fetched_at": "2026-10-12",
+  "last_edited": "This page was last edited on 13 May 2026, at 19:12.",
+  "verified_ingame": false,
+  "lines": [
+    {
+      "id": "bazaar_selling_quantity_item",
+      "context": "集市 Sell Offer 确认格子的出售数量和商品名称",
+      "text": "Selling: %1$sx %2$s",
+      "raw": "§7Selling: §a%1$s§7x §f%2$s",
+      "placeholders": [
+        {"token": "%1$s", "type": "number", "example": "64", "desc": "出售数量"},
+        {"token": "%2$s", "type": "loot_item_name", "example": "Mithril", "desc": "商品完整名称；目录确认后复用已有物品译名，未知或保留专名仍显示原文"}
+      ],
+      "translate": true,
+      "zh": "出售: %1$s 个%2$s",
+      "segments": [
+        {"color": "§7", "text": "Selling: ", "zh": "出售: "},
+        {"color": "§a", "text": "%1$s", "zh": "%1$s"},
+        {"color": "§7", "text": "x ", "zh": " 个"},
+        {"color": "§f", "text": "%2$s", "zh": "%2$s"}
+      ],
+      "gloss": "用户要求：集市显示商品名称复用既有译名；原文、搜索输入及成交物品数据不改变。只匹配包含商品整名的完整出售行，不与仅有数量的 Selling: %sx 互相吞行。",
+      "source_samples": ["§7Selling: §a#§7x §f<Item>"],
+      "samples": [["§7Selling: §a64§7x §fMithril"], ["§7Selling: §a128§7x §fHard Stone"]],
+      "sample_note": "普通 Wiki tooltip 以 # 与 <Item> 表示变量；samples 是根据源颜色实例化的离线回放，不是实机观测。"
+    }
+  ]
+}

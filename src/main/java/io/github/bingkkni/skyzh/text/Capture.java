@@ -111,6 +111,9 @@ public enum Capture {
 	/** HotM crystal kinds, not arbitrary item names followed by a discovery status. */
 	GEMSTONE_KIND("(?:Jade|Amber|Amethyst|Sapphire|Topaz|Jasper|Ruby|Opal|Aquamarine|Peridot|Onyx|Citrine)", false),
 
+	/** The five locations used by Dwarven ore commissions; BUY/SELL are never locations. */
+	COMMISSION_AREA("(?:Cliffside Veins|Lava Springs|Rampart's Quarry|Royal Mines|Upper Mines)", false),
+
 	/** Placement tiers used by both farming medals and Galatea rarity contests. */
 	CONTEST_RANK("(?i:Bronze|Silver|Gold|Platinum|Diamond|Common|Uncommon|Rare|Epic|Legendary|Mythic|Divine)", false),
 
@@ -220,6 +223,7 @@ public enum Capture {
 			case "trophy_quality" -> TROPHY_QUALITY;
 			case "contest_rank" -> CONTEST_RANK;
 			case "gemstone_kind" -> GEMSTONE_KIND;
+			case "commission_area" -> COMMISSION_AREA;
 			case "gemstone_quality" -> GEMSTONE_QUALITY;
 			case "multiplier_increase" -> MULTIPLIER_INCREASE;
 			case "ordinal" -> ORDINAL;
@@ -248,7 +252,7 @@ public enum Capture {
 			// The regex is the whole of the rule for these: a numeral is a numeral, and a player's
 			// name is whatever sixteen word characters somebody chose.
 			case NUMBER, YEAR, DAY_OF_MONTH, PLAYER, PLAYER_DISPLAY, RANK, TIER, LEVEL, TIER_RANGE, ICON, ITEM_PART, TRAINING_KIND, TROPHY_QUALITY, GEMSTONE_KIND, GEMSTONE_QUALITY, ORDINAL, DURATION, DURATION_SPACED, DURATION_WORDS, SEARCH_QUERY -> true;
-			case CONTEST_RANK, HUNGRY_HIKER_FOOD, CLOCK_DURATION, ORDINAL_WORD -> value.matches(this.regex);
+			case CONTEST_RANK, HUNGRY_HIKER_FOOD, CLOCK_DURATION, ORDINAL_WORD, COMMISSION_AREA -> value.matches(this.regex);
 			case MULTIPLIER_INCREASE -> new BigDecimal(value).compareTo(BigDecimal.ONE) >= 0;
 			case NAME -> isName(value);
 			case ITEM_NAME -> isItemName(value);
@@ -265,7 +269,7 @@ public enum Capture {
 	 */
 	public boolean nameShaped() {
 		return this == NAME || this == ITEM_NAME || this == CATALOG_ITEM || this == SHARD_KIND
-			|| this == PLAYER || this == PLAYER_DISPLAY || this == RANK;
+			|| this == COMMISSION_AREA || this == PLAYER || this == PLAYER_DISPLAY || this == RANK;
 	}
 
 	/**

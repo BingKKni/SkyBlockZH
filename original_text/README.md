@@ -347,10 +347,10 @@ capacity with part" + "installed." 硬拆成两行),**必须在数据里合并�
 | `type` | 语义类型,建议用固定词汇:`number` `item_name` `guide_item_name` `player_name` `npc_name` `percentage` `coins` `location_name` `time` `rarity` `raw` |
 | `example` | 示例值(字符串) |
 
-`type: item_name` 表示保留服务器给出的原始物品名,翻译代码不会擅自汉化它。SkyBlock Guide 的完整任务句可以用专用的 `type: guide_item_name`:它复用语料库中该物品的精确 `GUI_Item` 译名(支持已收录的重铸前缀和地牢星级),没有匹配的物品记录就保留英文;不要在聊天、商店或普通物品 Lore 中使用。明确需要复用已有物品译名的战利品/领取聊天可用 `loot_item_name`，额外要求名称命中离线物品目录；未知名称保持英文，不改变普通 `item_name` 的行为。
+`type: item_name` 表示保留服务器给出的原始物品名,翻译代码不会擅自汉化它。SkyBlock Guide 的完整任务句可以用专用的 `type: guide_item_name`:它复用语料库中该物品的精确 `GUI_Item` 译名(支持已收录的重铸前缀和地牢星级),没有匹配的物品记录就保留英文;不要在聊天、商店或普通物品 Lore 中使用。明确需要复用已有物品译名的战利品/领取聊天，以及集市买卖消息、订单与商品 Lore，可用 `loot_item_name`，额外要求名称命中离线物品目录；未知名称保持英文，不改变普通 `item_name` 的行为。
 
 `catalog_item_name` 用于明确的材料/物品引用：整个值必须命中离线目录，才允许模板匹配并复用物品译名。
-配方和章节菜单既可能填类别，也可能填生物或物品时，使用 `recipe_target`：依次查类别词表、生物词表及目录确认的物品记录；未知值保持原文。
+配方、章节和集市分类菜单既可能填类别，也可能填生物或物品时，使用 `recipe_target`：依次查类别词表、生物词表及目录确认的物品记录；未知值保持原文。
 不要把这两种类型用于玩家、NPC、档案名称或任意半句；档案身份使用不查词表的 `profile_name`。
 
 ### 模板必须有自己的词(引擎会拒绝纯占位符模板)
@@ -454,6 +454,7 @@ Hypixel 让名词跟着数量走:`Bits: 53,998` 但 `Bit: 1`,`+3,598 items` 但 
 | `npc_name` / `location_name` / `mob_name` / `rarity` / `category_name` | 名字:最多 5 个词,两端必须是大写字母或数字开头,不含句末标点 |
 | `player_name` | 最多 16 个字母数字下划线 |
 | `player_or_self` | 同玩家名形状；仅用于巨龙自称广播。`You` 与随后动作同为洋红色、且无名字点击/悬浮事件时译为“你”；独立着色的同名玩家及缺少样式证据的文本保留英文 |
+| `commission_area` | 矮人矿山秘银/钛委托的五个地区闭集：Cliffside Veins、Lava Springs、Rampart's Quarry、Royal Mines、Upper Mines；译名复用 `location_name`，拒绝 BUY/SELL 或商品前缀 |
 | `gemstone_kind` | 山心水晶状态使用的 12 种宝石名白名单，如 Jade、Jasper；拒绝未知物品名 |
 | `tier` | 罗马数字(`XII`、`V`),附魔等级 / 小人等级 / 增益等级都是这个形状 |
 | `ordinal_word` | `first` 到 `tenth` 的英文序数词（不区分大小写），显示为“一”到“十”；用于箱子选择等有界序数，拒绝普通短语 |

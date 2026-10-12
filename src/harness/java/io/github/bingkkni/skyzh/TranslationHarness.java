@@ -2187,6 +2187,7 @@ public final class TranslationHarness {
 			case ICON -> "✎";
 			case TROPHY_QUALITY, CONTEST_RANK -> "SILVER";
 			case GEMSTONE_KIND -> "Jade";
+			case COMMISSION_AREA -> "Royal Mines";
 			case GEMSTONE_QUALITY -> "Flawless";
 			case MULTIPLIER_INCREASE -> "1.5";
 			case ORDINAL -> "27th";
@@ -2480,8 +2481,10 @@ public final class TranslationHarness {
 		Component fossil = Component.literal("§6Tusk Fossil");
 		report("已翻译真实物品加 Lore 提示", OriginalTips.eligibleName(fossil, TooltipTranslator.translateItemName(fossil)), "Tusk Fossil");
 		String bazaar = "§6[Bazaar] §eYour §aBuy Order §efor §a8§7x §5Bonzo Shard §ewas filled!";
-		check("集市数量不出现 x 原文括号", bazaar, Surface.CHAT, "§6[集市] §e你挂的 §a8§7 个§5 Bonzo Shard§e 买单已成交!");
-		report("数量 x 不冒充物品 X 触发提示", !OriginalTips.containsTranslatedItem(Component.literal(bazaar)), bazaar);
+		check("集市数量和商品名复用已有译文", bazaar, Surface.CHAT, "§6[集市] §e你挂的 §a8§7 个§5 Bonzo 碎片§e买单已成交!");
+		report("集市已翻译的真实商品触发原文提示", OriginalTips.containsTranslatedItem(Component.literal(bazaar)), bazaar);
+		String unknownBazaar = "§6[Bazaar] §eYour §aBuy Order §efor §a8§7x §5Unknown New Product §ewas filled!";
+		report("未知集市商品的数量 x 不冒充物品 X", !OriginalTips.containsTranslatedItem(Component.literal(unknownBazaar)), unknownBazaar);
 		report("纯属性或系统消息不提示", !OriginalTips.containsTranslatedItem(Component.literal("You gained +2 Sweep")), "Sweep");
 		for (String line : List.of("  §f                                §8CXVII➡§eCXVIII", "                                CXVII ➡ CXVIII")) {
 			Translator.Result result = Translator.translate(Component.literal(line), Surface.CHAT);
@@ -2755,7 +2758,7 @@ public final class TranslationHarness {
 
 	/** Fixed UI capture regression: ordered lore, term isolation, and clues that must survive translation. */
 	private static void checkFixedMenus(Path corpusRoot) throws Exception {
-		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "workshop-cases.json", "wiki-expansion-cases.json")) {
+		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "workshop-cases.json", "wiki-expansion-cases.json", "bazaar-item-names-cases.json")) {
 		Path path = corpusRoot.toAbsolutePath().getParent().resolve("src/harness/resources/" + file);
 		JsonObject fixture = JsonParser.parseString(Files.readString(path, StandardCharsets.UTF_8)).getAsJsonObject();
 		for (JsonElement value : fixture.getAsJsonArray("cases")) {

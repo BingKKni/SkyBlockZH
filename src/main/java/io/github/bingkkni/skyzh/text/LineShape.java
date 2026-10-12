@@ -61,6 +61,7 @@ public final class LineShape {
 	private static final Pattern ITEM_PROGRESS = Pattern.compile("[0-9][0-9,]*/[0-9][0-9,]*(?: \\([0-9][0-9,]*x\\))? ");
 	private static final Pattern ITEM_STARS = Pattern.compile(" [✪★☆➊➋➌➍➎]+$");
 	private static final Pattern ITEM_DROP_CHANCE = Pattern.compile(" \\([0-9][0-9,.]*[kKmMbB]?/[0-9][0-9,.]*[kKmMbB]?\\)$");
+	private static final Pattern ITEM_MARKET_PRICES = Pattern.compile(" [0-9][0-9,.]*[kKmMbB]? \\| [0-9][0-9,.]*[kKmMbB]?$");
 
 	private LineShape() {
 	}
@@ -132,6 +133,18 @@ public final class LineShape {
 					}
 				}
 			}
+			// Bazaar advanced browsing appends buy/sell prices to a complete catalog item.
+			// Keep the two prices, separator and live styles outside the translated name.
+			var marketPrices = ITEM_MARKET_PRICES.matcher(plain.substring(0, end));
+			if (marketPrices.find()) {
+				for (Range candidate : List.copyOf(ranges)) {
+					if (candidate.start() < marketPrices.start()
+						&& ItemNames.canonical(plain.substring(candidate.start(), marketPrices.start())) != null) {
+						add(ranges, candidate.start(), marketPrices.start());
+					}
+				}
+			}
+
 			// Guide lists use an ASCII dash; a negative number such as -25 is not a bullet.
 			if (plain.startsWith("- ", start)) {
 				add(ranges, skipSpaces(plain, start + 2, end), end);

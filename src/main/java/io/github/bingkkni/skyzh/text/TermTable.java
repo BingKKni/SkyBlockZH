@@ -234,6 +234,7 @@ public final class TermTable {
 	public boolean applies(String type) {
 		return this.types.contains("contest_rank".equalsIgnoreCase(type) ? "medal"
 			: "shard_kind".equalsIgnoreCase(type) ? "mob_name"
+			: "commission_area".equalsIgnoreCase(type) ? "location_name"
 			: type == null ? "" : type.toLowerCase(Locale.ROOT));
 	}
 
@@ -247,6 +248,9 @@ public final class TermTable {
 	 * worth translating gets its own entry.
 	 */
 	public String translate(String type, String value) {
+		if ("commission_area".equalsIgnoreCase(type)) {
+			return Capture.of(type).accepts(value) ? translate("location_name", value) : null;
+		}
 		if ("contest_rank".equalsIgnoreCase(type)) {
 			if (!Capture.CONTEST_RANK.accepts(value)) return null;
 			String medal = lookup(this.foldedTyped.get("medal"), value.toLowerCase(Locale.ROOT));

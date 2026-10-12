@@ -57,12 +57,12 @@
       "placeholders": [
         {
           "token": "%s",
-          "desc": "集市分类名,译名走 _shared/Terms.json",
-          "type": "category_name",
+          "desc": "分类或商品名称；分类沿用词表，目录确认的商品复用已有物品译名",
+          "type": "recipe_target",
           "example": "Oddities"
         }
       ],
-      "gloss": "分类名不写死在模板里:集市分类有十来个,写死就成了 README 第 4 节禁止的值枚举。",
+      "gloss": "同一标题既可显示分类也可显示商品，复用现有分类/目录物品双用途类型；不逐分类或商品枚举。带引号的搜索标题有独立规则，查询内容保持原文。",
       "translate": true,
       "zh": "集市 ➜ %s"
     },
@@ -73,8 +73,8 @@
       "placeholders": [
         {
           "token": "%s",
-          "desc": "精华种类名,译名走 _shared/Terms.json",
-          "type": "category_name",
+          "desc": "精华分类或商品整名；目录确认的商品复用已有物品译名",
+          "type": "recipe_target",
           "example": "Fossil Essence"
         }
       ],
@@ -89,8 +89,8 @@
       "placeholders": [
         {
           "token": "%s",
-          "desc": "化石种类名,译名走 _shared/Terms.json",
-          "type": "category_name",
+          "desc": "化石分类或商品整名；目录确认的商品复用已有物品译名",
+          "type": "recipe_target",
           "example": "Tusk Fossil"
         }
       ],
@@ -105,12 +105,12 @@
       "placeholders": [
         {
           "token": "%s",
-          "desc": "商品名。物品名保留英文,所以用词表不生效的 item_name;服务器还会把标题截到 31 个字符",
-          "type": "item_name",
+          "desc": "商品名称；完整名称复用既有物品译名，服务器截短或尚无译名时保持原文",
+          "type": "loot_item_name",
           "example": "Suspicious Scrap"
         }
       ],
-      "gloss": "实测里服务器把标题截到了 31 个字符(“Glacite Tunnels ➜ Suspicious Sc”),截断后的半个词查不到词表,占位符原样保留英文即可,不要为截断另写一条。",
+      "gloss": "服务器可能将标题截到 31 个字符（如 Glacite Tunnels ➜ Suspicious Sc）；完整商品名复用已有译文，截短片段保持原文，不猜测补全或逐截断枚举。",
       "translate": true,
       "zh": "极冰隧道 ➜ %s"
     },
@@ -275,8 +275,8 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "desc": "商品名,保留英文",
-          "type": "item_name",
+          "desc": "商品完整名称；目录确认后复用已有物品译名，未知或保留专名仍显示原文",
+          "type": "loot_item_name",
           "example": "Enchanted Cactus Green"
         }
       ],
