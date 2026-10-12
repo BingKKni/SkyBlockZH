@@ -7965,5 +7965,144 @@
     ],
     "expected": "§7使用此物品,即可解锁§a花园§7的§6极冰宫殿温室皮肤§7!",
     "consumed": 3
+  },
+  {
+    "name": "截图法力与生命回复必须是两个独立属性",
+    "lines": [
+      "§7Intelligence: §b+46 §9(+25) §8(+282.85)",
+      "§7Health Regen: §c+5 §8(+5.2)"
+    ],
+    "units": [
+      {
+        "start": 0,
+        "consumed": 1,
+        "expected": "§7法力: §b+46 §9(+25) §8(+282.85)",
+        "complete": true,
+        "translated": true
+      },
+      {
+        "start": 1,
+        "consumed": 1,
+        "expected": "§7生命回复: §c+5 §8(+5.2)",
+        "complete": false,
+        "translated": true
+      }
+    ]
+  },
+  {
+    "name": "法力数值改变与未知属性尾行不吞并",
+    "lines": [
+      "§7Intelligence: §b-12 §9(+7)",
+      "§7Unverified Stat: §c+9"
+    ],
+    "units": [
+      {
+        "start": 0,
+        "consumed": 1,
+        "expected": "§7法力: §b-12 §9(+7)",
+        "complete": true,
+        "translated": true
+      },
+      {
+        "start": 1,
+        "consumed": 1,
+        "expected": "§7Unverified Stat: §c+9",
+        "complete": false,
+        "translated": false
+      }
+    ]
+  },
+  {
+    "name": "切换阵营截图四行完整合句",
+    "lines": [
+      "§7You can switch back to a faction that",
+      "§7you've left here, as long as you",
+      "§7have been part of the faction",
+      "§7before."
+    ],
+    "consumed": 4,
+    "expected": "§7只要曾加入过某个阵营，即可在此重新加入。"
+  },
+  {
+    "name": "切换阵营缺尾行不吞未知说明",
+    "lines": [
+      "§7You can switch back to a faction that",
+      "§7you've left here, as long as you",
+      "§7have been part of the faction",
+      "§7Unknown tail."
+    ],
+    "miss": true
+  },
+  {
+    "name": "对害虫倍率数值与两个图标保留",
+    "lines": [
+      "§7This item deals §cx2 Damage §7towards",
+      "§2 Pests§7."
+    ],
+    "consumed": 2,
+    "expected": "§7此物品对§2 害虫§7造成 §c2 倍 伤害§7。"
+  },
+  {
+    "name": "暴击额外伤害语序与数值原色",
+    "lines": [
+      "§9 Crits §7have a chance to deal up to",
+      "§c+15% §7more §c Damage§7."
+    ],
+    "consumed": 2,
+    "expected": "§9 暴击§7时，有概率使§c 伤害§7最多提高 §c15%§7。"
+  },
+  {
+    "name": "Fann付费训练经验等级完整且可变化",
+    "lines": [
+      "§8Will earn a total of 750,000 EXP",
+      "§8granting 5 levels."
+    ],
+    "consumed": 2,
+    "expected": "§8预计共获得 750,000 点经验，提升 5 级。"
+  },
+  {
+    "name": "Fann训练退款为剩余费用的一半",
+    "lines": [
+      "§8You may end this session whenever,",
+      "§8however, you will only be refunded",
+      "§8for half of the remaining time."
+    ],
+    "consumed": 3,
+    "expected": "§8你可以随时结束训练，但仅退还剩余训练时间对应费用的一半。"
+  },
+  {
+    "name": "装备套装小写cloak复用部位名",
+    "lines": [
+      "§7Unequip this set and place a cloak",
+      "§7here to add it to this set."
+    ],
+    "consumed": 2,
+    "expected": "§7卸下此套装，再将披风放入此槽位，即可将其加入套装。"
+  },
+  {
+    "name": "燃烧效果动态百分比合句",
+    "lines": [
+      "§7Increases the duration of fire",
+      "§7damage that you inflict on enemies by",
+      "§a15%§7."
+    ],
+    "consumed": 3,
+    "expected": "§7对敌人造成的燃烧伤害持续时间延长 §a15%§7。"
+  },
+  {
+    "name": "抗火颜色重排不让中文染成数值绿色",
+    "lines": [
+      "§7Receive §a10% §7reduced damage from§c fire §7and §clava§7."
+    ],
+    "consumed": 1,
+    "expected": "§7受到的§c火焰§7与§c熔岩§7伤害降低 §a10%§7。"
+  },
+  {
+    "name": "跳跃格数文字同为绿句号灰",
+    "lines": [
+      "§7Increases your jump height to §a4.1 blocks§7."
+    ],
+    "consumed": 1,
+    "expected": "§7跳跃高度提升至 §a4.1 格§7。"
   }
 ]

@@ -1,0 +1,34 @@
+{
+  "source": ["../SkyZH_Logs/latest.log", "https://hypixelskyblock.minecraft.wiki/w/Salesman"],
+  "verified_ingame": true,
+  "source_note": "实测日志文本；日志不保留颜色，不伪造 raw 或颜色码。按语义边界分段，渲染时读取服务器各段实时样式。社区 Wiki 的 Salesman 万圣节分支核实身份，并非惊魂节排行榜奖励。",
+  "messages": [
+    {
+      "id": "halloween_unclaimed_rewards",
+      "context": "进入空岛后提醒领取万圣节季节礼包",
+      "text": "You haven't claimed your Spooky Rewards yet!",
+      "zh": "你还未领取万圣节奖励!",
+      "translate": true,
+      "segments": [
+        {"text": "You haven't claimed your ", "zh": "你还未领取"},
+        {"text": "Spooky Rewards", "zh": "万圣节奖励"},
+        {"text": " yet!", "zh": "!"}
+      ]
+    },
+    {
+      "id": "halloween_visit_spooky_man",
+      "context": "万圣节礼包领取地点提示",
+      "text": "Talk to the Spooky Man in the Hub!",
+      "zh": "请前往大厅，与惊悚商人交谈!",
+      "gloss": "Spooky Man 复用 Hub_General/Hologram/Capture_Update.json 的惊悚商人；Hub 指空岛大厅。",
+      "translate": true,
+      "segments": [
+        {"text": "Talk to the ", "zh": "请前往", "order": 0},
+        {"text": "Spooky Man", "zh": "惊悚商人", "order": 3},
+        {"text": " in the ", "zh": "，与", "order": 2},
+        {"text": "Hub", "zh": "大厅", "order": 1},
+        {"text": "!", "zh": "交谈!", "order": 4}
+      ]
+    }
+  ]
+}

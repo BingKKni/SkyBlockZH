@@ -1150,7 +1150,7 @@ public final class TranslationHarness {
 		check("宾果格子副标题的月份", "§8September 2026", Surface.ITEM, "§82026 年 9 月");
 		check("奖杯鱼名称与品质相邻时不串位",
 			"§6 §6§lTROPHY FISH! §fYou caught a §9Volcanic Stonefish §7§lSILVER§f!", Surface.CHAT,
-			"§6 §6§l奖杯鱼! §f你钓到了 §9Volcanic Stonefish §7§l银品质§f!");
+			"§6 §6§l奖杯鱼! §f你钓到了 §9火山石鱼 §7§l银品质§f!");
 		check("奖杯鱼 an 冠词变体",
 			"§6 §6§lTROPHY FISH! §fYou caught an §fObfuscated-1 §7§lSILVER§f!", Surface.CHAT,
 			"§6 §6§l奖杯鱼! §f你钓到了 Obfuscated-1 §7§l银品质§f!");
@@ -2181,6 +2181,8 @@ public final class TranslationHarness {
 			case YEAR -> "2026";
 			case DAY_OF_MONTH -> "28";
 			case TRAINING_KIND -> "Turbo!";
+			case TROPHY_FISH_NAME -> "Blobfish";
+			case EQUIPMENT_SLOT -> "Helmet";
 			case HUNGRY_HIKER_FOOD -> "grilled meat";
 			case TIER -> "XII";
 			case TIER_RANGE -> "III-V";

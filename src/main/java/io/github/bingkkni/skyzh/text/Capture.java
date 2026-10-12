@@ -38,6 +38,9 @@ public enum Capture {
 	/** A quantity: {@code 1,234}, {@code +75}, {@code 20%}, {@code 3k}. */
 	NUMBER("[+\\-]?[0-9][0-9,.]*[a-zA-Z%]{0,2}"),
 
+	/** Equipment stat value plus numeric bonus brackets; never a neighbouring stat label. */
+	STAT_VALUE("[+\\-]?[0-9][0-9,.]*%?(?: \\([+\\-]?[0-9][0-9,.]*%?\\)){0,8}", false),
+
 	/** Calendar components; unlike NUMBER, a year cannot also swallow an ordinal day like 4th. */
 	YEAR("[12][0-9]{3}", false),
 	DAY_OF_MONTH("(?:0?[1-9]|[12][0-9]|3[01])", false),
@@ -57,6 +60,9 @@ public enum Capture {
 	/** Attribute shards must be real catalog base names, not any capitalized phrase plus Shard. */
 	SHARD_KIND(NAME.regex, false),
 	TRAINING_KIND("(?:Free|Light|Moderate|Expert|Ultra|Turbo!)", false),
+	EQUIPMENT_SLOT("(?:cloak|belt|necklace|gloves|bracelet|Helmet|Chestplate|Leggings|Boots)", false),
+	/** Closed trophy species; Vanille and deliberately obfuscated names keep their originals. */
+	TROPHY_FISH_NAME("(?:Blobfish|Flyfish|Golden Fish|Gusher|Karate Fish|Lavahorse|Mana Ray|Moldfin|Skeleton Fish|Slugfish|Soul Fish|Steaming-Hot Flounder|Sulphur Skitter|Vanille|Volcanic Stonefish|Obfuscated-[123])", false),
 
 	/** Hungry Hiker's seven food clues; not a general exception for long dialogue fragments. */
 	HUNGRY_HIKER_FOOD("(?:grilled meat|red and crunchy|made of wheat|from a cow|"
@@ -192,6 +198,7 @@ public enum Capture {
 	public static Capture of(String type) {
 		return switch (type == null ? "" : type.toLowerCase(Locale.ROOT)) {
 			case "number", "percentage", "coins" -> NUMBER;
+			case "stat_value" -> STAT_VALUE;
 			case "year" -> YEAR;
 			case "day_of_month" -> DAY_OF_MONTH;
 			case "time", "duration" -> DURATION;
@@ -209,6 +216,9 @@ public enum Capture {
 			case "bait_kind" -> BAIT_KIND;
 			case "shard_kind" -> SHARD_KIND;
 			case "training_kind" -> TRAINING_KIND;
+			case "trophy_fish_name" -> TROPHY_FISH_NAME;
+			case "equipment_slot" -> EQUIPMENT_SLOT;
+			case "hunter_quality" -> TROPHY_QUALITY;
 			case "hungry_hiker_food" -> HUNGRY_HIKER_FOOD;
 			case "npc_name", "profile_name", "location_name", "mob_name", "rarity", "category_name",
 				"enchantment_name", "enchantment_crop", "mob_family", "accessory_power", "skyblock_month", "dragon_type",
@@ -251,8 +261,8 @@ public enum Capture {
 		return switch (this) {
 			// The regex is the whole of the rule for these: a numeral is a numeral, and a player's
 			// name is whatever sixteen word characters somebody chose.
-			case NUMBER, YEAR, DAY_OF_MONTH, PLAYER, PLAYER_DISPLAY, RANK, TIER, LEVEL, TIER_RANGE, ICON, ITEM_PART, TRAINING_KIND, TROPHY_QUALITY, GEMSTONE_KIND, GEMSTONE_QUALITY, ORDINAL, DURATION, DURATION_SPACED, DURATION_WORDS, SEARCH_QUERY -> true;
-			case CONTEST_RANK, HUNGRY_HIKER_FOOD, CLOCK_DURATION, ORDINAL_WORD, COMMISSION_AREA -> value.matches(this.regex);
+			case NUMBER, STAT_VALUE, YEAR, DAY_OF_MONTH, PLAYER, PLAYER_DISPLAY, RANK, TIER, LEVEL, TIER_RANGE, ICON, ITEM_PART, TRAINING_KIND, TROPHY_QUALITY, GEMSTONE_KIND, GEMSTONE_QUALITY, ORDINAL, DURATION, DURATION_SPACED, DURATION_WORDS, SEARCH_QUERY -> true;
+			case EQUIPMENT_SLOT, TROPHY_FISH_NAME, CONTEST_RANK, HUNGRY_HIKER_FOOD, CLOCK_DURATION, ORDINAL_WORD, COMMISSION_AREA -> value.matches(this.regex);
 			case MULTIPLIER_INCREASE -> new BigDecimal(value).compareTo(BigDecimal.ONE) >= 0;
 			case NAME -> isName(value);
 			case ITEM_NAME -> isItemName(value);

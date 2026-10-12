@@ -1,0 +1,51 @@
+{
+  "source": [
+    "../SkyZH_Logs/skyzh-capture",
+    "https://hypixelskyblock.minecraft.wiki/w/Odger",
+    "https://hypixelskyblock.minecraft.wiki/w/Fann",
+    "https://hypixelskyblock.minecraft.wiki/w/Potions"
+  ],
+  "verified_ingame": true,
+  "lines": [
+    {
+      "id": "oct_slayer_boss",
+      "context": "Slayer 首领浮空标题",
+      "text": "SLAYER BOSS",
+      "raw": "§4§lSLAYER BOSS",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "Slayer 首领"
+    },
+    {
+      "id": "hologram_catalog_drop_count",
+      "context": "服务器掉落展示，只有离线目录确认的物品名可命中",
+      "text": "%1$s x%2$s",
+      "raw": "§f%1$s §8x%2$s",
+      "zh": "%1$s ×%2$s",
+      "translate": true,
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "catalog_item_name",
+          "example": "Glowstone Dust"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "10"
+        }
+      ],
+      "segments": [
+        {
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "text": "x%2$s",
+          "zh": "×%2$s"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,179 @@
+{
+  "source": [
+    "../SkyZH_Logs/skyzh-capture",
+    "https://hypixelskyblock.minecraft.wiki/w/Odger",
+    "https://hypixelskyblock.minecraft.wiki/w/Fann",
+    "https://hypixelskyblock.minecraft.wiki/w/Potions"
+  ],
+  "verified_ingame": true,
+  "lines": [
+    {
+      "id": "oct_miniboss_quest_complete",
+      "context": "绯红岛小型首领任务完成",
+      "text": "You completed your Miniboss quest! Visit the Town Board to claim the rewards.",
+      "raw": "§aYou completed your Miniboss quest! Visit the Town Board to claim the rewards.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你完成了小型首领任务! 前往城镇公告板领取奖励。"
+    },
+    {
+      "id": "oct_mage_reputation",
+      "context": "法师声望奖励",
+      "text": "+%s Mage Reputation",
+      "raw": "§a+%s Mage Reputation",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "20",
+          "desc": "动态数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s 法师声望"
+    },
+    {
+      "id": "oct_not_a_pet",
+      "context": "宠物操作错误提示",
+      "text": "This is not a pet!",
+      "raw": "§cThis is not a pet!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这不是宠物!"
+    },
+    {
+      "id": "oct_trophy_none",
+      "context": "奖杯鱼切制错误",
+      "text": "You don't have any Trophy Fish in your inventory!",
+      "raw": "§cYou don't have any Trophy Fish in your inventory!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你的背包中没有奖杯鱼!"
+    },
+    {
+      "id": "oct_candy_eaten",
+      "context": "糖果喂食结果",
+      "text": "Yum! Your pet ate %1$s for %2$s Exp (%3$s/%4$s)!",
+      "raw": "§aYum! Your pet ate §6%1$s §afor %2$s Exp (%3$s/%4$s)!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "loot_item_name",
+          "example": "Ultimate Carrot Candy",
+          "desc": "糖果物品"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "20",
+          "desc": "动态数值"
+        },
+        {
+          "token": "%3$s",
+          "type": "number",
+          "example": "20",
+          "desc": "动态数值"
+        },
+        {
+          "token": "%4$s",
+          "type": "number",
+          "example": "20",
+          "desc": "动态数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "真好吃! 你的宠物吃下了%1$s，获得 %2$s 点经验（%3$s/%4$s）!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Yum! Your pet ate ",
+          "zh": "真好吃! 你的宠物吃下了"
+        },
+        {
+          "color": "§6",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§a",
+          "text": "for %2$s Exp (%3$s/%4$s)!",
+          "zh": "，获得 %2$s 点经验（%3$s/%4$s）!"
+        }
+      ]
+    },
+    {
+      "id": "oct_enchantment_removed",
+      "context": "移除附魔",
+      "text": "You removed %1$s from your %2$s!",
+      "raw": "§cYou removed %1$s from your §a%2$s§c!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "enchantment_name",
+          "example": "Lure",
+          "desc": "附魔名"
+        },
+        {
+          "token": "%2$s",
+          "type": "loot_item_name",
+          "example": "Lucky Starter Lava Rod",
+          "desc": "钓竿"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "已移除附魔 %1$s，原物品: %2$s。",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "You removed %1$s from your ",
+          "zh": "已移除附魔 %1$s，原物品: "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§c",
+          "text": "!",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "oct_crit_chance_reward",
+      "context": "属性奖励",
+      "text": "+%s%☣ Crit Chance",
+      "raw": "§8+§9%s%☣ Crit Chance",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "20",
+          "desc": "动态数值"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "+%s%☣ 暴击率",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§9",
+          "text": "%s%☣ Crit Chance",
+          "zh": "%s%☣ 暴击率"
+        }
+      ]
+    }
+  ]
+}

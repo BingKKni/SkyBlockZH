@@ -512,11 +512,17 @@ public final class CaptureHarness {
 			"09/29/26 Unverified Event", Classifier.Bucket.UNTRANSLATED);
 		for (String input : List.of("Foxy: |||||||||| (7%)", "Aranya: §aAvailable", "Blight 11: 600/1,200", "Kuudra II: 6/100",
 			"§8●§7●§6○§b○ §fBlobfish", "○○○○ Steaming-Hot Flounder", "●○○○ Sulphur Skitter", "●●●● Obfuscated-1", "✖ Golden Fish x1")) {
-			checkNothing("Tab保留原名的结构不重复采集 " + input, CaptureSurface.TABLIST, input);
+			checkNothing("Tab已翻译鱼名或明确保留专名的结构不重复采集 " + input, CaptureSurface.TABLIST, input);
 		}
 		checkVerdict("未知NPC状态仍采集", CaptureSurface.TABLIST, "Aranya: Unverified Status", Classifier.Bucket.UNTRANSLATED);
 		checkVerdict("未知鱼种仍采集", CaptureSurface.TABLIST, "●●○○ Unverified Fish", Classifier.Bucket.UNTRANSLATED);
 		checkVerdict("已知鱼名外的句子仍采集", CaptureSurface.TABLIST, "Blobfish are escaping!", Classifier.Bucket.UNTRANSLATED);
+		checkNothing("Vanille 广播明确保留专名不报混杂", CaptureSurface.CHAT_MESSAGE,
+			"§6 §6§lTROPHY FISH! §fYou caught §9Vanille §8§lBRONZE§f!");
+		checkNothing("Vanille 新发现不重复采集", CaptureSurface.CHAT_MESSAGE,
+			"§a§lNEW DISCOVERY: §9Vanille §7§lSILVER");
+		checkVerdict("未知奖杯鱼广播仍采集", CaptureSurface.CHAT_MESSAGE,
+			"§6 §6§lTROPHY FISH! §fYou caught Unverified Fish §8§lBRONZE§f!", Classifier.Bucket.UNTRANSLATED);
 		for (String input : List.of("Hardened Vitality ➜ Hardened Vi", "Strong Vitality ➜ Strong Vitali", "Vesuvius", "An")) {
 			checkNothing("NPC及附魔截断标题保留 " + input, CaptureSurface.GUI_TITLE, input);
 		}

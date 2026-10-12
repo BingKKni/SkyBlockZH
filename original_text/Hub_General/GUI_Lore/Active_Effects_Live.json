@@ -295,7 +295,7 @@
     {
       "id": "effect_fire_resistance_desc",
       "context": "抗火效果；2022 年起只减免 10% 火焰与熔岩伤害",
-      "raw": "§7Receive §a%s% §7reduced damage from §7fire and lava.",
+      "raw": "§7Receive §a%s% §7reduced damage from§c fire §7and §clava§7.",
       "text": "Receive %s% reduced damage from fire and lava.",
       "placeholders": [
         {
@@ -305,24 +305,51 @@
           "desc": "减伤"
         }
       ],
-      "gloss": "尾行 fire and lava. 与 Enchantments.json 的续行同文，因此没有进采集。",
+      "gloss": "采集颜色为准；Wiki 抗火效果旧纯灰写法仍由同一文字模板兼容。",
       "translate": true,
       "zh": "受到的火焰与熔岩伤害降低 %s%。",
       "segments": [
         {
           "color": "§7",
           "text": "Receive ",
-          "zh": "受到的火焰与熔岩伤害降低 "
+          "zh": "受到的",
+          "order": 0
         },
         {
           "color": "§a",
           "text": "%s% ",
-          "zh": "%s%"
+          "zh": "%s%",
+          "order": 5
         },
         {
           "color": "§7",
-          "text": "reduced damage from fire and lava.",
-          "zh": "。"
+          "text": "reduced damage from",
+          "zh": "伤害降低 ",
+          "order": 4
+        },
+        {
+          "color": "§c",
+          "text": " fire ",
+          "zh": "火焰",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "与",
+          "order": 2
+        },
+        {
+          "color": "§c",
+          "text": "lava",
+          "zh": "熔岩",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。",
+          "order": 6
         }
       ],
       "samples": [
@@ -335,7 +362,7 @@
     {
       "id": "effect_jump_desc",
       "context": "跳跃提升效果",
-      "raw": "§7Increases your jump height to §a%s §7blocks.",
+      "raw": "§7Increases your jump height to §a%s blocks§7.",
       "text": "Increases your jump height to %s blocks.",
       "placeholders": [
         {
@@ -345,7 +372,7 @@
           "desc": "格数"
         }
       ],
-      "gloss": "尾行 blocks. 已有同文续行记录，因此没有进采集。",
+      "gloss": "本轮实测数字与 blocks 同为绿色，句号灰色。",
       "translate": true,
       "zh": "跳跃高度提升至 %s 格。",
       "segments": [
@@ -356,13 +383,13 @@
         },
         {
           "color": "§a",
-          "text": "%s ",
-          "zh": "%s "
+          "text": "%s blocks",
+          "zh": "%s 格"
         },
         {
           "color": "§7",
-          "text": "blocks.",
-          "zh": "格。"
+          "text": ".",
+          "zh": "。"
         }
       ],
       "samples": [
