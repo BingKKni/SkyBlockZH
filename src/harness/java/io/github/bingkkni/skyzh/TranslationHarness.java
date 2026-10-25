@@ -2760,7 +2760,7 @@ public final class TranslationHarness {
 
 	/** Fixed UI capture regression: ordered lore, term isolation, and clues that must survive translation. */
 	private static void checkFixedMenus(Path corpusRoot) throws Exception {
-		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "workshop-cases.json", "wiki-expansion-cases.json", "bazaar-item-names-cases.json", "rift-live-capture-cases.json")) {
+		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "workshop-cases.json", "wiki-expansion-cases.json", "bazaar-item-names-cases.json", "rift-live-capture-cases.json", "garden-weather-feast-cases.json")) {
 		Path path = corpusRoot.toAbsolutePath().getParent().resolve("src/harness/resources/" + file);
 		JsonObject fixture = JsonParser.parseString(Files.readString(path, StandardCharsets.UTF_8)).getAsJsonObject();
 		for (JsonElement value : fixture.getAsJsonArray("cases")) {
@@ -2789,6 +2789,8 @@ public final class TranslationHarness {
 				"期望 " + expected + "，实际 " + actual);
 		}
 		}
+		report("Ghost of Goon 已登记为NPC专名以抑制名牌重复采集",
+			Translator.index().isNpcName("Ghost of Goon"), "花园幽灵分支别名");
 		checkNoMatch("竞赛档位拒绝未知词", "Unknown requires +19", Surface.SCOREBOARD);
 		checkNoMatch("竞赛档位拒绝任意短语", "Something Strange with 30", Surface.SCOREBOARD);
 		checkNoMatch("竞赛档位不扩展到普通聊天", "SILVER with 30", Surface.CHAT);

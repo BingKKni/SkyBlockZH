@@ -1,0 +1,652 @@
+{
+  "source": [
+    "https://hypixelskyblock.minecraft.wiki/w/Aggourdian",
+    "https://hypixelskyblock.minecraft.wiki/w/Cane_Knot",
+    "https://hypixelskyblock.minecraft.wiki/w/Carrot_Zest",
+    "https://hypixelskyblock.minecraft.wiki/w/Commemorative_Mason_Jar",
+    "https://hypixelskyblock.minecraft.wiki/w/Cornucopia",
+    "https://hypixelskyblock.minecraft.wiki/w/Crystalized_Moonlight",
+    "https://hypixelskyblock.minecraft.wiki/w/Feast_Baker_Scott/UI",
+    "https://hypixelskyblock.minecraft.wiki/w/Feastfungus",
+    "https://hypixelskyblock.minecraft.wiki/w/Floral_Gelatin",
+    "https://hypixelskyblock.minecraft.wiki/w/Gifted_Bread_Bowl",
+    "https://hypixelskyblock.minecraft.wiki/w/Melon_Juice"
+  ],
+  "verified_ingame": false,
+  "fetched_at": "2026-10-23",
+  "source_note": [
+    "新增对白与菜单来自社区 Wiki 普通呈现页及已有彩色缓存；仅补当前分支。旧实机样本保留原文及颜色，新增内容未实机核对；数值、玩家名、联系人及作物不固定为样本。"
+  ],
+  "lines": [
+    {
+      "id": "gwf_standard_heirloom_name",
+      "text": "Freshly Baked Heirloom",
+      "raw": "§6Freshly Baked Heirloom",
+      "zh": "鲜烤传家宝",
+      "source": "https://github.com/NotEnoughUpdates/NotEnoughUpdates-REPO/blob/b2df3547e7777cc80874395e6932ab11fdaf308d/items/FRESHLY_BAKED_HEIRLOOM.json",
+      "context": "NEU 物品目录标准拼写；与已收录 Wiki 拼写变体并存",
+      "placeholders": [],
+      "translate": true,
+      "verified_ingame": false,
+      "gloss": "复用 Wiki 变体的同一译名；不假定 NEU 或 Wiki 任一方必然代表最新服务器，不删除已有变体。"
+    },
+    {
+      "id": "gwf_standard_focaccia_name",
+      "text": "Finn's Focaccia",
+      "raw": "§aFinn's Focaccia",
+      "zh": "Finn 的佛卡夏面包",
+      "source": "https://github.com/NotEnoughUpdates/NotEnoughUpdates-REPO/blob/b2df3547e7777cc80874395e6932ab11fdaf308d/items/FINNS_FOCACCIA.json",
+      "context": "NEU 物品目录标准拼写；与已收录 Wiki 拼写变体并存",
+      "placeholders": [],
+      "translate": true,
+      "verified_ingame": false,
+      "gloss": "复用 Wiki 变体的同一译名；不假定 NEU 或 Wiki 任一方必然代表最新服务器，不删除已有变体。"
+    },
+    {
+      "id": "gwf_catalog_dashed_item_count",
+      "context": "盛宴及其他物品列表中的目录物品与数量；不改变普通 item_name 的英文保留规则",
+      "text": "- %1$s x%2$s",
+      "raw": "§8- §a%1$s §ex%2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "catalog_item_name",
+          "example": "Deepfries",
+          "desc": "必须命中离线物品目录，复用物品译名"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "3",
+          "desc": "数量"
+        }
+      ],
+      "translate": true,
+      "zh": "- %1$s x%2$s",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§e",
+          "text": "x%2$s",
+          "zh": "x%2$s"
+        }
+      ],
+      "gloss": "明确的物品数量列表才启用目录物品译名；x 是数量符号。未知名称不由本模板匹配，所有颜色与数字沿用输入。",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Feast_Chef_Ted/UI",
+      "verified_ingame": false
+    },
+    {
+      "id": "gwf_finish_bae22e27f51d",
+      "context": "胡萝卜色唱片套装收录进度",
+      "text": "Vinyls: %1$s/%2$s",
+      "raw": "§7Vinyls: §a%1$s§8/%2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "0"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "5"
+        }
+      ],
+      "translate": true,
+      "zh": "已收录唱片: %1$s/%2$s",
+      "gloss": "普通社区 Wiki 的完整逻辑句及颜色；数值按语义模板匹配，未实机逐字核对。",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Carrot_Zest",
+      "verified_ingame": false,
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Vinyls: ",
+          "zh": "已收录唱片: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§8",
+          "text": "/",
+          "zh": "/"
+        },
+        {
+          "color": "§8",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ],
+      "wiki_last_edited": "This page was last edited on 11 August 2026, at 19:02.",
+      "samples": [
+        [
+          "§7Vinyls: §a0§8/5"
+        ]
+      ]
+    },
+    {
+      "id": "gwf_finish_906835d334ce",
+      "context": "宴会材料与直接产物名称",
+      "text": "Jukebox",
+      "raw": "§fJukebox",
+      "placeholders": [],
+      "translate": true,
+      "zh": "唱片机",
+      "gloss": "普通社区 Wiki 的完整逻辑句及颜色；数值按语义模板匹配，未实机逐字核对。",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Botroot",
+      "verified_ingame": false,
+      "wiki_last_edited": "This page was last edited on 11 August 2026, at 19:00."
+    },
+    {
+      "id": "gwf_finish_70cb1f1faa7b",
+      "context": "宴会材料与直接产物名称",
+      "text": "Speed Relic",
+      "raw": "§5Speed Relic",
+      "placeholders": [],
+      "translate": true,
+      "zh": "速度遗物",
+      "gloss": "普通社区 Wiki 的完整逻辑句及颜色；数值按语义模板匹配，未实机逐字核对。",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Cane_Knot",
+      "verified_ingame": false,
+      "wiki_last_edited": "This page was last edited on 11 August 2026, at 19:02."
+    },
+    {
+      "id": "gwf_finish_31018ff8be08",
+      "context": "宴会材料与直接产物名称",
+      "text": "Spooky Sack",
+      "raw": "§5Spooky Sack",
+      "placeholders": [],
+      "translate": true,
+      "zh": "惊悚收纳袋",
+      "gloss": "普通社区 Wiki 的完整逻辑句及颜色；数值按语义模板匹配，未实机逐字核对。",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Carnival_Ticket",
+      "verified_ingame": false,
+      "wiki_last_edited": "This page was last edited on 24 September 2026, at 16:03."
+    },
+    {
+      "id": "gwf_finish_06ac58854082",
+      "context": "宴会材料与直接产物名称",
+      "text": "Events Sack",
+      "raw": "§5Events Sack",
+      "placeholders": [],
+      "translate": true,
+      "zh": "活动收纳袋",
+      "gloss": "普通社区 Wiki 的完整逻辑句及颜色；数值按语义模板匹配，未实机逐字核对。",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Carnival_Ticket",
+      "verified_ingame": false,
+      "wiki_last_edited": "This page was last edited on 24 September 2026, at 16:03."
+    },
+    {
+      "id": "gwf_finish_01580a285e1a",
+      "context": "宴会材料与直接产物名称",
+      "text": "Carrot-Colored Vinyl Set",
+      "raw": "§9Carrot-Colored Vinyl Set",
+      "placeholders": [],
+      "translate": true,
+      "zh": "胡萝卜色唱片套装",
+      "gloss": "普通社区 Wiki 的完整逻辑句及颜色；数值按语义模板匹配，未实机逐字核对。",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Carrot_Zest",
+      "verified_ingame": false,
+      "wiki_last_edited": "This page was last edited on 11 August 2026, at 19:02."
+    },
+    {
+      "id": "gwf_finish_7f02cffc3983",
+      "context": "宴会材料与直接产物名称",
+      "text": "Hashbrown",
+      "raw": "§5Hashbrown",
+      "placeholders": [],
+      "translate": true,
+      "zh": "薯饼",
+      "gloss": "普通社区 Wiki 的完整逻辑句及颜色；数值按语义模板匹配，未实机逐字核对。",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Deepfries",
+      "verified_ingame": false,
+      "wiki_last_edited": "This page was last edited on 27 September 2026, at 13:41."
+    },
+    {
+      "id": "gwf_finish_74466eb65324",
+      "context": "宴会材料与直接产物名称",
+      "text": "\"Fragranced\" Brown Mushroom \"Paste\"",
+      "raw": "§9\"Fragranced\" Brown Mushroom \"Paste\"",
+      "placeholders": [],
+      "translate": true,
+      "zh": "“芳香”棕色蘑菇“酱”",
+      "gloss": "普通社区 Wiki 的完整逻辑句及颜色；数值按语义模板匹配，未实机逐字核对。",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Feastfungus",
+      "verified_ingame": false,
+      "wiki_last_edited": "This page was last edited on 6 September 2026, at 10:46."
+    },
+    {
+      "id": "gwf_finish_44b19450c8d8",
+      "context": "宴会材料与直接产物名称",
+      "text": "Overclocker 3000",
+      "raw": "§6Overclocker 3000",
+      "placeholders": [],
+      "translate": true,
+      "zh": "超频器 3000",
+      "gloss": "普通社区 Wiki 的完整逻辑句及颜色；数值按语义模板匹配，未实机逐字核对。",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Rare_Crop",
+      "verified_ingame": false,
+      "wiki_last_edited": "This page was last edited on 4 September 2026, at 13:19."
+    },
+    {
+      "id": "gwf_finish_058aca17fc0f",
+      "context": "宴会材料与直接产物名称",
+      "text": "Ray of Helios",
+      "raw": "§6Ray of Helios",
+      "placeholders": [],
+      "translate": true,
+      "zh": "Helios 之光",
+      "gloss": "普通社区 Wiki 的完整逻辑句及颜色；数值按语义模板匹配，未实机逐字核对。",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Rare_Crop",
+      "verified_ingame": false,
+      "wiki_last_edited": "This page was last edited on 4 September 2026, at 13:19."
+    },
+    {
+      "id": "gwf_preserve_2a583cbce262",
+      "text": "Aggourdian",
+      "raw": "§aAggourdian",
+      "translate": false,
+      "zh": "",
+      "gloss": "宴会材料或产物的自造专名/品牌；按项目既有保留规则登记原词，说明正文照常翻译。",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Aggourdian",
+      "wiki_last_edited": "This page was last edited on 11 August 2026, at 18:50."
+    },
+    {
+      "id": "gwf_preserve_e449170716cf",
+      "text": "Botroot",
+      "raw": "§aBotroot",
+      "translate": false,
+      "zh": "",
+      "gloss": "宴会材料或产物的自造专名/品牌；按项目既有保留规则登记原词，说明正文照常翻译。",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Botroot",
+      "wiki_last_edited": "This page was last edited on 11 August 2026, at 19:00."
+    },
+    {
+      "id": "gwf_preserve_7baf233e57c6",
+      "text": "Turbo Gourd",
+      "raw": "§6Turbo Gourd",
+      "translate": false,
+      "zh": "",
+      "gloss": "宴会材料或产物的自造专名/品牌；按项目既有保留规则登记原词，说明正文照常翻译。",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Aggourdian",
+      "wiki_last_edited": "This page was last edited on 11 August 2026, at 18:50."
+    },
+    {
+      "id": "gwf_preserve_3da726ef7d6c",
+      "text": "Buzzybee's Fantabulous Disco Destination",
+      "raw": "§aBuzzybee's Fantabulous Disco Destination",
+      "translate": false,
+      "zh": "",
+      "gloss": "宴会材料或产物的自造专名/品牌；按项目既有保留规则登记原词，说明正文照常翻译。",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Botroot",
+      "wiki_last_edited": "This page was last edited on 11 August 2026, at 19:00."
+    },
+    {
+      "id": "gwf_preserve_70bda138d1be",
+      "text": "Super Jacob Entertainment System",
+      "raw": "§5Super Jacob Entertainment System",
+      "translate": false,
+      "zh": "",
+      "gloss": "宴会材料或产物的自造专名/品牌；按项目既有保留规则登记原词，说明正文照常翻译。",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Botroot",
+      "wiki_last_edited": "This page was last edited on 11 August 2026, at 19:00."
+    },
+    {
+      "id": "gwf_core_0851ea00ffe4",
+      "context": "宴会烘焙坊动态价格与奖励数量",
+      "text": "%1$s Kernels",
+      "raw": "§e%1$s Kernels",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "25"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 谷粒",
+      "gloss": "社区 Wiki 普通呈现页；沿用既定词汇，数值和名称按语义模板匹配，未实机逐字验证。",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Feast_Baker_Scott/UI"
+    },
+    {
+      "id": "gwf_core_5a18b36e94c4",
+      "context": "不太发霉的面包当前耕作智慧加成",
+      "text": "Current Bonus: +%1$s☯ Farming Wisdom",
+      "raw": "§7Current Bonus: §3+%1$s☯ Farming Wisdom",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "12"
+        }
+      ],
+      "translate": true,
+      "zh": "当前加成: +%1$s☯ 耕作智慧",
+      "gloss": "社区 Wiki 普通呈现页；沿用既定词汇，数值和名称按语义模板匹配，未实机逐字验证。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Current Bonus: ",
+          "zh": "当前加成: "
+        },
+        {
+          "color": "§3",
+          "text": "+%1$s☯ Farming Wisdom",
+          "zh": "+%1$s☯ 耕作智慧"
+        }
+      ],
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Not_Very_Moldy_Bread"
+    },
+    {
+      "id": "gwf_e9dc3eab0bf3",
+      "context": "Feast Baker Scott/UI：名称",
+      "text": "Kernels",
+      "raw": "§aKernels",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页的带色文本；未实机逐字验证。",
+      "translate": true,
+      "zh": "谷粒",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Feast_Baker_Scott/UI",
+      "wiki_last_edited": "This page was last edited on 30 April 2026, at 10:21."
+    },
+    {
+      "id": "gwf_00bf949c692d",
+      "context": "Feast Baker Scott/UI：名称",
+      "text": "Freshly Baked Talisman",
+      "raw": "§fFreshly Baked Talisman",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页的带色文本；未实机逐字验证。",
+      "translate": true,
+      "zh": "鲜烤护符",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Feast_Baker_Scott/UI",
+      "wiki_last_edited": "This page was last edited on 30 April 2026, at 10:21."
+    },
+    {
+      "id": "gwf_ac6373568847",
+      "context": "Feast Baker Scott/UI：名称",
+      "text": "Freshly Baked Ring",
+      "raw": "§aFreshly Baked Ring",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页的带色文本；未实机逐字验证。",
+      "translate": true,
+      "zh": "鲜烤戒指",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Feast_Baker_Scott/UI",
+      "wiki_last_edited": "This page was last edited on 30 April 2026, at 10:21."
+    },
+    {
+      "id": "gwf_a27363564e8d",
+      "context": "Feast Baker Scott/UI：名称",
+      "text": "Freshly Baked Artifact",
+      "raw": "§9Freshly Baked Artifact",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页的带色文本；未实机逐字验证。",
+      "translate": true,
+      "zh": "鲜烤神器",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Feast_Baker_Scott/UI",
+      "wiki_last_edited": "This page was last edited on 30 April 2026, at 10:21."
+    },
+    {
+      "id": "gwf_a5206a21ab62",
+      "context": "Feast Baker Scott/UI：名称",
+      "text": "Freshly Baked Relic",
+      "raw": "§5Freshly Baked Relic",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页的带色文本；未实机逐字验证。",
+      "translate": true,
+      "zh": "鲜烤遗物",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Feast_Baker_Scott/UI",
+      "wiki_last_edited": "This page was last edited on 30 April 2026, at 10:21."
+    },
+    {
+      "id": "gwf_ae39c898cfa2",
+      "context": "Feast Baker Scott/UI：名称",
+      "text": "Freshly Baked Heirlooom",
+      "raw": "§6Freshly Baked Heirlooom",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页的带色文本；未实机逐字验证。",
+      "translate": true,
+      "zh": "鲜烤传家宝",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Feast_Baker_Scott/UI",
+      "wiki_last_edited": "This page was last edited on 30 April 2026, at 10:21."
+    },
+    {
+      "id": "gwf_96cb49f55124",
+      "context": "Feast Baker Scott/UI：名称",
+      "text": "Finn's Foccacia",
+      "raw": "§aFinn's Foccacia",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页的带色文本；未实机逐字验证。",
+      "translate": true,
+      "zh": "Finn 的佛卡夏面包",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Feast_Baker_Scott/UI",
+      "wiki_last_edited": "This page was last edited on 30 April 2026, at 10:21."
+    },
+    {
+      "id": "gwf_e3de0255acb4",
+      "context": "Feast Baker Scott/UI：名称",
+      "text": "Ted's Contact Baked In Bread",
+      "raw": "§5Ted's Contact Baked In Bread",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页的带色文本；未实机逐字验证。",
+      "translate": true,
+      "zh": "Ted 的联络面包",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Feast_Baker_Scott/UI",
+      "wiki_last_edited": "This page was last edited on 30 April 2026, at 10:21."
+    },
+    {
+      "id": "gwf_b5095a9c64e8",
+      "context": "Feast Baker Scott/UI：名称",
+      "text": "Scott's Contact Baked In Bread",
+      "raw": "§5Scott's Contact Baked In Bread",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页的带色文本；未实机逐字验证。",
+      "translate": true,
+      "zh": "Scott 的联络面包",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Feast_Baker_Scott/UI",
+      "wiki_last_edited": "This page was last edited on 30 April 2026, at 10:21."
+    },
+    {
+      "id": "gwf_a64b045a9c49",
+      "context": "Feast Baker Scott/UI：名称",
+      "text": "Bread Bowl",
+      "raw": "§cBread Bowl",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页的带色文本；未实机逐字验证。",
+      "translate": true,
+      "zh": "面包碗",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Feast_Baker_Scott/UI",
+      "wiki_last_edited": "This page was last edited on 30 April 2026, at 10:21."
+    },
+    {
+      "id": "gwf_eb9c10b4e79d",
+      "context": "Aggourdian：名称",
+      "text": "Designer Coffee Beans",
+      "raw": "§aDesigner Coffee Beans",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页的带色文本；未实机逐字验证。",
+      "translate": true,
+      "zh": "名品咖啡豆",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Aggourdian",
+      "wiki_last_edited": "This page was last edited on 11 August 2026, at 18:50."
+    },
+    {
+      "id": "gwf_e1b0f4f9b0a5",
+      "context": "Aggourdian：名称",
+      "text": "Overpriced Drink",
+      "raw": "§5Overpriced Drink",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页的带色文本；未实机逐字验证。",
+      "translate": true,
+      "zh": "天价饮品",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Aggourdian",
+      "wiki_last_edited": "This page was last edited on 11 August 2026, at 18:50."
+    },
+    {
+      "id": "gwf_30fb95c35ffa",
+      "context": "Cane Knot：名称",
+      "text": "Cane Knot",
+      "raw": "§aCane Knot",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页的带色文本；未实机逐字验证。",
+      "translate": true,
+      "zh": "甘蔗节",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Cane_Knot",
+      "wiki_last_edited": "This page was last edited on 11 August 2026, at 19:02."
+    },
+    {
+      "id": "gwf_2bf0abff2b98",
+      "context": "Carrot Zest：名称",
+      "text": "Carrot Zest",
+      "raw": "§aCarrot Zest",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页的带色文本；未实机逐字验证。",
+      "translate": true,
+      "zh": "胡萝卜皮屑",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Carrot_Zest",
+      "wiki_last_edited": "This page was last edited on 11 August 2026, at 19:02."
+    },
+    {
+      "id": "gwf_015b18233e65",
+      "context": "Commemorative Mason Jar：名称",
+      "text": "Commemorative Mason Jar",
+      "raw": "§cCommemorative Mason Jar",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页的带色文本；未实机逐字验证。",
+      "translate": true,
+      "zh": "纪念梅森罐",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Commemorative_Mason_Jar",
+      "wiki_last_edited": "This page was last edited on 14 October 2026, at 15:28."
+    },
+    {
+      "id": "gwf_f45f958245f6",
+      "context": "Cornucopia：名称",
+      "text": "Cornucopia",
+      "raw": "§aCornucopia",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页的带色文本；未实机逐字验证。",
+      "translate": true,
+      "zh": "丰饶之角",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Cornucopia",
+      "wiki_last_edited": "This page was last edited on 11 August 2026, at 19:05."
+    },
+    {
+      "id": "gwf_738a97326404",
+      "context": "Cornucopia：名称",
+      "text": "Not Very Moldy Bread",
+      "raw": "§9Not Very Moldy Bread",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页的带色文本；未实机逐字验证。",
+      "translate": true,
+      "zh": "不太发霉的面包",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Cornucopia",
+      "wiki_last_edited": "This page was last edited on 11 August 2026, at 19:05."
+    },
+    {
+      "id": "gwf_2b83ab25d521",
+      "context": "Cornucopia：名称",
+      "text": "Cornucopia Crystal",
+      "raw": "§5Cornucopia Crystal",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页的带色文本；未实机逐字验证。",
+      "translate": true,
+      "zh": "丰饶之角水晶",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Cornucopia",
+      "wiki_last_edited": "This page was last edited on 11 August 2026, at 19:05."
+    },
+    {
+      "id": "gwf_c4b4b85c6c4a",
+      "context": "Cornucopia：名称",
+      "text": "Deepfries",
+      "raw": "§aDeepfries",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页的带色文本；未实机逐字验证。",
+      "translate": true,
+      "zh": "深炸薯条",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Cornucopia",
+      "wiki_last_edited": "This page was last edited on 11 August 2026, at 19:05."
+    },
+    {
+      "id": "gwf_3ba3370e0ea0",
+      "context": "Cornucopia：名称",
+      "text": "Feastfungus",
+      "raw": "§aFeastfungus",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页的带色文本；未实机逐字验证。",
+      "translate": true,
+      "zh": "盛宴菇",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Cornucopia",
+      "wiki_last_edited": "This page was last edited on 11 August 2026, at 19:05."
+    },
+    {
+      "id": "gwf_82402feddd28",
+      "context": "Crystalized Moonlight：名称",
+      "text": "Crystalized Moonlight",
+      "raw": "§aCrystalized Moonlight",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页的带色文本；未实机逐字验证。",
+      "translate": true,
+      "zh": "月光结晶",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Crystalized_Moonlight",
+      "wiki_last_edited": "This page was last edited on 1 October 2026, at 13:41."
+    },
+    {
+      "id": "gwf_9968dc593d75",
+      "context": "Feastfungus：名称",
+      "text": "Fungal Tip Jar",
+      "raw": "§9Fungal Tip Jar",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页的带色文本；未实机逐字验证。",
+      "translate": true,
+      "zh": "蘑菇小费罐",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Feastfungus",
+      "wiki_last_edited": "This page was last edited on 6 September 2026, at 10:46."
+    },
+    {
+      "id": "gwf_d5e93350ebe8",
+      "context": "Floral Gelatin：名称",
+      "text": "Floral Gelatin",
+      "raw": "§aFloral Gelatin",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页的带色文本；未实机逐字验证。",
+      "translate": true,
+      "zh": "花香凝胶",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Floral_Gelatin",
+      "wiki_last_edited": "This page was last edited on 21 September 2026, at 16:57."
+    },
+    {
+      "id": "gwf_177bfb5aee2d",
+      "context": "Gifted Bread Bowl：名称",
+      "text": "Gifted Bread Bowl",
+      "raw": "§cGifted Bread Bowl",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页的带色文本；未实机逐字验证。",
+      "translate": true,
+      "zh": "获赠的面包碗",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Gifted_Bread_Bowl",
+      "wiki_last_edited": "This page was last edited on 10 September 2026, at 16:43."
+    },
+    {
+      "id": "gwf_6a52804bfb09",
+      "context": "Melon Juice：名称",
+      "text": "Melon Juice Mixin",
+      "raw": "§9Melon Juice Mixin",
+      "placeholders": [],
+      "gloss": "社区 Wiki 普通呈现页的带色文本；未实机逐字验证。",
+      "translate": true,
+      "zh": "西瓜汁混合剂",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Melon_Juice",
+      "wiki_last_edited": "This page was last edited on 11 August 2026, at 20:30."
+    }
+  ]
+}

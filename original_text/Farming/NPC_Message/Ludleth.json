@@ -21,14 +21,45 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "desc": "玩家名",
           "type": "player_name",
-          "example": "inkkni"
+          "example": "TestPlayer",
+          "desc": "随服务器变化的player_name"
         }
       ],
-      "gloss": "花园访客委托结果台词；社区 Wiki 逐字记录，待游戏内实测。",
+      "gloss": "花园访客委托结果台词；社区 Wiki 逐字记录，待游戏内实测。 本次按社区 Wiki 普通呈现页补齐颜色和斜体分段；颜色仍读取服务器实时样式。",
       "translate": true,
-      "zh": "很高兴我们达成一致,%1$s。来大厅见我,到时再谈生意。"
+      "zh": "很高兴我们达成一致,%1$s。来大厅见我,到时再谈生意。",
+      "raw": "§fI'm glad we are in agreement, §7%1$s§f. Meet me in the §aHub§f, we'll discuss our business then.",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "I'm glad we are in agreement, ",
+          "zh": "很高兴我们达成一致,"
+        },
+        {
+          "color": "§7",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§f",
+          "text": ". Meet me in the ",
+          "zh": "。来"
+        },
+        {
+          "color": "§a",
+          "text": "Hub",
+          "zh": "大厅"
+        },
+        {
+          "color": "§f",
+          "text": ", we'll discuss our business then.",
+          "zh": "见我,到时再谈生意。"
+        }
+      ],
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Ludleth",
+      "wiki_last_edited": "This page was last edited on 11 August 2026, at 20:29.",
+      "verified_ingame": false
     },
     {
       "id": "visitor_ludleth_deny_1",

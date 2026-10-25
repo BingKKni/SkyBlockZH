@@ -1,0 +1,81 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Garden_Visitors",
+  "fetched_at": "2026-10-25",
+  "verified_ingame": false,
+  "note": "仅补两个动态闲聊模板；其余排队闲聊复用 Visitors_Runtime.json，不向聊天面投放。",
+  "lines": [
+    {
+      "id": "garden_wait_clock",
+      "context": "花园访客排队问答：回答当前空岛时间",
+      "text": " It’s %1$s right now",
+      "raw": "§f §eIt’s §7%1$s §eright now",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "raw",
+          "example": "8:15am",
+          "desc": "Wiki 仅标注 <#>，保留服务器实际的有界时间串，不把日内时钟当倒计时"
+        }
+      ],
+      "gloss": "社区 Wiki 彩色闲聊表；同表已由原有实测记录确认属于浮空字。具体时钟排版待实机核对，不猜测时间单位或 AM/PM 的位置。",
+      "translate": true,
+      "zh": " 现在是 %1$s。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§e",
+          "text": "It’s ",
+          "zh": "现在是 "
+        },
+        {
+          "color": "§7",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§e",
+          "text": "right now",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "garden_wait_mayor_gossip",
+      "context": "花园访客排队问答：议论市长",
+      "text": "Have you heard what %1$s said?",
+      "raw": "§eHave you heard what §7%1$s §esaid?",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "npc_name",
+          "example": "Cole",
+          "desc": "当前谈论的市长名，保留英文"
+        }
+      ],
+      "gloss": "社区 Wiki 普通呈现页 <Mayor> 模板；仅用于访客浮空字，不翻译真人聊天或 NPC 人名。",
+      "translate": true,
+      "zh": "你听说 %1$s 讲的那些话了吗?",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Have you heard what ",
+          "zh": "你听说 "
+        },
+        {
+          "color": "§7",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§e",
+          "text": "said?",
+          "zh": "讲的那些话了吗?"
+        }
+      ]
+    }
+  ]
+}

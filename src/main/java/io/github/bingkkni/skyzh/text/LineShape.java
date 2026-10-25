@@ -92,6 +92,13 @@ public final class LineShape {
 		add(ranges, skipSpaces(plain, bullet(plain, start, end), end), end);
 
 		if (surface == Surface.ITEM) {
+			// Peel list dashes before composing catalog-guarded counts/odds. Otherwise
+			// "- Seasoning (1/2,250)" can lose either decoration, but never both.
+			// A negative number such as -25 still is not a list marker.
+			if (plain.startsWith("- ", start)) {
+				add(ranges, skipSpaces(plain, start + 2, end), end);
+			}
+
 			// Recipe ingredient rows: ✔ 1/1 Item or ✔ 63/8 (7x) Item. The counts and their
 			// live styles stay outside the name; only an attested complete catalog item qualifies.
 			for (Range candidate : List.copyOf(ranges)) {
@@ -145,10 +152,6 @@ public final class LineShape {
 				}
 			}
 
-			// Guide lists use an ASCII dash; a negative number such as -25 is not a bullet.
-			if (plain.startsWith("- ", start)) {
-				add(ranges, skipSpaces(plain, start + 2, end), end);
-			}
 
 			// Enchantment menus append their applied/conflicting state to the name. Keep the
 			// marker as a styled tail rather than copying every name/level for both states.
