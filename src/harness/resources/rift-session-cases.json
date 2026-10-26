@@ -1,0 +1,162 @@
+{
+  "note": "本轮日志与截图回归；变化数值用于验证模板。完整Lore按有序行测试。",
+  "cases": [
+    {
+      "name": "训练完成保留宠物名与颜色",
+      "surface": "TabList",
+      "source": [
+        "§f1: §7[Lvl 66] §5Slug §aREADY"
+      ],
+      "expected": "§f1: §7[66 级] §5Slug §a训练完毕"
+    },
+    {
+      "name": "日历进行中活动复用既有译名",
+      "surface": "GUI_Item",
+      "source": [
+        "§5The Great Spook 7d"
+      ],
+      "expected": "§5大惊吓 7 天"
+    },
+    {
+      "name": "日历活动时长可变",
+      "surface": "GUI_Item",
+      "source": [
+        "§5The Great Spook 1d 2h"
+      ],
+      "expected": "§5大惊吓 1 天 2 小时"
+    },
+    {
+      "name": "商店购买提示复用异野剑译名",
+      "surface": "ChatMessage",
+      "source": [
+        "§aYou bought §fWyld Sword§a!"
+      ],
+      "expected": "§a你买下了§f异野之剑§a!"
+    },
+    {
+      "name": "猫咪探测器仍对应发现碎片前状态",
+      "surface": "GUI_Item",
+      "source": [
+        "§9Cat Detector"
+      ],
+      "expected": "§9猫咪探测器"
+    },
+    {
+      "name": "亡猫探测器对应发现第一块碎片后状态",
+      "surface": "GUI_Item",
+      "source": [
+        "§9Dead Cat Detector"
+      ],
+      "expected": "§9亡猫探测器"
+    },
+    {
+      "name": "谜魂任务值与专名分型",
+      "surface": "GUI_Item",
+      "source": [
+        "§a✔ Enigma: Tough Bark"
+      ],
+      "expected": "§a✔ 谜魂: 坚韧树皮"
+    },
+    {
+      "name": "谜魂Roy人名保留",
+      "surface": "GUI_Item",
+      "source": [
+        "§eEnigma: Roy"
+      ],
+      "expected": "§e谜魂: Roy"
+    },
+    {
+      "name": "水蛭技能扣时反馈数值与颜色",
+      "surface": "ChatMessage",
+      "source": [
+        "§cLeech Supreme §eremoved §a12.5s §efrom you using §dSlime Pound§e!"
+      ],
+      "expected": "§c至尊水蛭 §e使你的裂隙时间减少 §a12.5秒§e，使用的技能为§d黏液重击§e!"
+    },
+    {
+      "name": "低语技能允许原文小写词",
+      "surface": "ChatMessage",
+      "source": [
+        "§2Shy §eremoved §a60s §efrom you using §dDon't look at me§e!"
+      ],
+      "expected": "§2害羞怪 §e使你的裂隙时间减少 §a60秒§e，使用的技能为§d别看我§e!"
+    },
+    {
+      "name": "毫秒竞速时钟与检查点",
+      "surface": "ActionBar",
+      "source": [
+        "§3§lRIFT RACING §e00:38.870 §3§l10/10"
+      ],
+      "expected": "§3§l裂隙竞速 §e00:38.870 §3§l10/10"
+    },
+    {
+      "name": "玻璃耐久图标保留",
+      "surface": "Misc",
+      "source": [
+        "Glass: §c❤❤❤"
+      ],
+      "expected": "玻璃: §c❤❤❤"
+    },
+    {
+      "name": "幼虫钩剩余次数完整消费",
+      "source": [
+        "§7You may harvest §67/8 larvas §7with this",
+        "§7hook."
+      ],
+      "consumed": 2,
+      "expected": "§7这把钩子还能采集 §67/8 只幼虫§7。"
+    },
+    {
+      "name": "时光符交付对象等级可变",
+      "source": [
+        "§7Bring this back to §dElise XXV§7, she'll",
+        "§7know what to do with it!"
+      ],
+      "consumed": 2,
+      "expected": "§7把它带回给§d Elise XXV§7，她知道该怎么处理!"
+    },
+    {
+      "name": "谜魂升级数量与尾行分别命中",
+      "source": [
+        "§7For finding §58 Souls§7, add:"
+      ],
+      "consumed": 1,
+      "expected": "§7找到 §58 枚谜魂§7后，获得以下加成:"
+    },
+    {
+      "name": "指南跨行地点独立颜色",
+      "source": [
+        "§7Find Porhtal's eye in the §3Lagoon Hut§7."
+      ],
+      "consumed": 1,
+      "expected": "§7在§3潟湖小屋§7找到 Porhtal 的眼睛。"
+    },
+    {
+      "name": "谜魂树皮说明完整消费",
+      "source": [
+        "§7Bark bark bark. Find the glowing",
+        "§7bark on the bark bark bark."
+      ],
+      "consumed": 2,
+      "expected": "§7汪汪汪，找到树上那块发光的树皮，汪汪汪。"
+    },
+    {
+      "name": "谜魂Roy提示保持地点高亮",
+      "source": [
+        "§7Purchase an Enigma Soul from Roy in",
+        "§7one of the upstair rooms of the",
+        "§3Lagoon Hut§7."
+      ],
+      "consumed": 3,
+      "expected": "§7在§3潟湖小屋§7楼上的一个房间里，向 Roy 购买一枚谜魂。"
+    },
+    {
+      "name": "博物馆数字变化不会写死",
+      "surface": "GUI_Item",
+      "source": [
+        "§7Wood collections: §e123,456 §a§lMAXED!"
+      ],
+      "expected": "§7木材收藏品数量: §e123,456 §a§l已满级!"
+    }
+  ]
+}

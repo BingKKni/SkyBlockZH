@@ -350,6 +350,28 @@ public final class TranslationHarness {
 		checkWidgets("单条动作栏消息不受切分影响", "§cPICK IT UP!", "§c捡起来!");
 		// A record that spells the whole padded line out still wins over the shape.
 		checkWidgets("整行有记录时不切开", "   §cPICK IT UP!   ", "   §c捡起来!   ");
+		for (String[] time : List.of(new String[] {"9m00s", "9分00秒"},
+			new String[] {"8m16s", "8分16秒"}, new String[] {"56s", "56秒"})) {
+			checkWidgets("裂隙倒计时与法力互不吞并 " + time[0],
+				"§a" + time[0] + " Left     §b100/100✎ Mana",
+				"§a剩余 " + time[1] + "     §b100/100✎ 法力");
+		}
+		checkWidgets("裂隙扣时与法力保留分段颜色", "§a4m09s Left §2-60s!     §b75/100✎ Mana",
+			"§a剩余 4分09秒 §2-60 秒!     §b75/100✎ 法力");
+		checkWidgets("裂隙实测大额扣时支持不同数值", "§a5m07s Left §2-240s!     §b100/100✎ Mana",
+			"§a剩余 5分07秒 §2-240 秒!     §b100/100✎ 法力");
+		checkNoMatch("法力规则拒绝吞入其他动作栏部件", "9m00s Left     100/100✎ Mana", Surface.ACTION_BAR);
+		checkNoMatch("谜魂任务名拒绝吞入普通句子", "Enigma: Find it in the tower", Surface.ITEM);
+		checkNoMatch("裂隙战斗技能拒绝普通句子",
+			"Shy removed 60s from you using Find it in the tower!", Surface.CHAT);
+		for (String ability : List.of("Lazer", "Don't look at me", "Slime Pound")) {
+			report("已核实裂隙技能名可匹配 " + ability,
+				ability.matches(Capture.RIFT_ABILITY.regex()) && Capture.RIFT_ABILITY.accepts(ability), "不扩大普通名称边界");
+		}
+		for (String invalid : List.of("", "3:99.123", "00:01.1234", "00:38.870 next")) {
+			report("竞速时钟拒绝非法取值 " + invalid,
+				!invalid.matches(Capture.RACE_TIME.regex()) && !Capture.RACE_TIME.accepts(invalid), "有界分秒毫秒");
+		}
 
 		// ---- exact live event strings whose decoration or value shape changes the match ----
 		check("新年庆典横幅保留完整装饰",
@@ -2181,6 +2203,7 @@ public final class TranslationHarness {
 			case YEAR -> "2026";
 			case DAY_OF_MONTH -> "28";
 			case TRAINING_KIND -> "Turbo!";
+			case RIFT_ABILITY -> "Lazer";
 			case TROPHY_FISH_NAME -> "Blobfish";
 			case EQUIPMENT_SLOT -> "Helmet";
 			case HUNGRY_HIKER_FOOD -> "grilled meat";
@@ -2196,6 +2219,9 @@ public final class TranslationHarness {
 			case ORDINAL_WORD -> "first";
 			case DURATION_WORDS -> "2 hours 3 minutes";
 			case CLOCK_DURATION -> "3:00";
+			case RACE_TIME -> "00:38.870";
+			case PROGRESS -> "7/8";
+			case HEALTH_ICONS -> "❤❤❤";
 			default -> "1";
 		};
 	}
@@ -2760,7 +2786,7 @@ public final class TranslationHarness {
 
 	/** Fixed UI capture regression: ordered lore, term isolation, and clues that must survive translation. */
 	private static void checkFixedMenus(Path corpusRoot) throws Exception {
-		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "workshop-cases.json", "wiki-expansion-cases.json", "bazaar-item-names-cases.json", "rift-live-capture-cases.json", "garden-weather-feast-cases.json")) {
+		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "workshop-cases.json", "wiki-expansion-cases.json", "bazaar-item-names-cases.json", "rift-live-capture-cases.json", "rift-session-cases.json", "garden-weather-feast-cases.json")) {
 		Path path = corpusRoot.toAbsolutePath().getParent().resolve("src/harness/resources/" + file);
 		JsonObject fixture = JsonParser.parseString(Files.readString(path, StandardCharsets.UTF_8)).getAsJsonObject();
 		for (JsonElement value : fixture.getAsJsonArray("cases")) {

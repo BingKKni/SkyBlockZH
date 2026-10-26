@@ -60,6 +60,8 @@ public enum Capture {
 	/** Attribute shards must be real catalog base names, not any capitalized phrase plus Shard. */
 	SHARD_KIND(NAME.regex, false),
 	TRAINING_KIND("(?:Free|Light|Moderate|Expert|Ultra|Turbo!)", false),
+	/** Attested Rift attacks include a lowercase instruction, which is not an arbitrary NAME. */
+	RIFT_ABILITY("(?:Don't look at me|Bark|Devour|Lazer|Eye Beam|Slime Pound|Wicked Bombs|Leech Swarm|Mortiferous Lazer|Shadow Bump)", false),
 	EQUIPMENT_SLOT("(?:cloak|belt|necklace|gloves|bracelet|Helmet|Chestplate|Leggings|Boots|Hand)", false),
 	/** Closed trophy species; Vanille and deliberately obfuscated names keep their originals. */
 	TROPHY_FISH_NAME("(?:Blobfish|Flyfish|Golden Fish|Gusher|Karate Fish|Lavahorse|Mana Ray|Moldfin|Skeleton Fish|Slugfish|Soul Fish|Steaming-Hot Flounder|Sulphur Skitter|Vanille|Volcanic Stonefish|Obfuscated-[123])", false),
@@ -158,6 +160,14 @@ public enum Capture {
 	/** A potion's numeric clock, MM:SS or HH:MM:SS; kept as a clock, not arbitrary prose. */
 	CLOCK_DURATION("[0-9]{1,4}:[0-5][0-9](?::[0-5][0-9])?", false),
 
+	/** Race clocks include milliseconds, unlike potion/countdown clocks. */
+	RACE_TIME("[0-9]{1,4}:[0-5][0-9](?:\\.[0-9]{1,3})?", false),
+	/** A server progress fraction; never an arbitrary sentence fragment. */
+	PROGRESS("[0-9][0-9,]*/[0-9][0-9,]*", false),
+	HUD_NUMBER("[0-9][0-9,.]*(?:/[0-9][0-9,.]*)?", false),
+	/** Glass integrity in Mirrorverse subtitle notices. */
+	HEALTH_ICONS("❤{1,16}", false),
+
 	/**
 	 * Anything the corpus has not pinned down — {@code type: raw}, or no {@code placeholders} entry
 	 * at all. Still bounded: whatever the value is, it is a value and not a sentence.
@@ -205,6 +215,10 @@ public enum Capture {
 			case "duration_spaced" -> DURATION_SPACED;
 			case "duration_words" -> DURATION_WORDS;
 			case "clock_duration" -> CLOCK_DURATION;
+			case "race_time" -> RACE_TIME;
+			case "progress" -> PROGRESS;
+			case "hud_number" -> HUD_NUMBER;
+			case "health_icons" -> HEALTH_ICONS;
 			// category_name is the name of a menu section or a feature — "Bags", "Other Crystals",
 			// "Recipe Book". Shaped like a name, and it has to be said so: templates that hold one are
 			// a single word plus a placeholder ("Your %s", "%s Settings", "%s Pet"), which under the
@@ -216,13 +230,14 @@ public enum Capture {
 			case "bait_kind" -> BAIT_KIND;
 			case "shard_kind" -> SHARD_KIND;
 			case "training_kind" -> TRAINING_KIND;
+			case "rift_ability" -> RIFT_ABILITY;
 			case "trophy_fish_name" -> TROPHY_FISH_NAME;
 			case "equipment_slot" -> EQUIPMENT_SLOT;
 			case "hunter_quality" -> TROPHY_QUALITY;
 			case "hungry_hiker_food" -> HUNGRY_HIKER_FOOD;
 			case "npc_name", "profile_name", "location_name", "mob_name", "rarity", "category_name",
 				"enchantment_name", "enchantment_crop", "mob_family", "accessory_power", "skyblock_month", "dragon_type",
-				"rng_meter_source", "difficulty", "reputation_rank" -> NAME;
+				"rng_meter_source", "difficulty", "reputation_rank", "rift_clue" -> NAME;
 			case "player_name", "player_or_self" -> PLAYER;
 			case "player_display" -> PLAYER_DISPLAY;
 			case "rank" -> RANK;
@@ -262,7 +277,7 @@ public enum Capture {
 			// The regex is the whole of the rule for these: a numeral is a numeral, and a player's
 			// name is whatever sixteen word characters somebody chose.
 			case NUMBER, STAT_VALUE, YEAR, DAY_OF_MONTH, PLAYER, PLAYER_DISPLAY, RANK, TIER, LEVEL, TIER_RANGE, ICON, ITEM_PART, TRAINING_KIND, TROPHY_QUALITY, GEMSTONE_KIND, GEMSTONE_QUALITY, ORDINAL, DURATION, DURATION_SPACED, DURATION_WORDS, SEARCH_QUERY -> true;
-			case EQUIPMENT_SLOT, TROPHY_FISH_NAME, CONTEST_RANK, HUNGRY_HIKER_FOOD, CLOCK_DURATION, ORDINAL_WORD, COMMISSION_AREA -> value.matches(this.regex);
+			case EQUIPMENT_SLOT, TROPHY_FISH_NAME, CONTEST_RANK, RIFT_ABILITY, HUNGRY_HIKER_FOOD, CLOCK_DURATION, RACE_TIME, PROGRESS, HUD_NUMBER, HEALTH_ICONS, ORDINAL_WORD, COMMISSION_AREA -> value.matches(this.regex);
 			case MULTIPLIER_INCREASE -> new BigDecimal(value).compareTo(BigDecimal.ONE) >= 0;
 			case NAME -> isName(value);
 			case ITEM_NAME -> isItemName(value);

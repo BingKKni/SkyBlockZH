@@ -375,7 +375,9 @@ public final class Translator {
 	public static Component translateWidgets(Component source, Surface surface) {
 		Result whole = translate(source, surface);
 
-		if (whole.matched()) {
+		if (whole.matched()
+			&& (whole.head() == null || whole.head().getString().isBlank())
+			&& (whole.tail() == null || whole.tail().getString().isBlank())) {
 			return whole.padded();
 		}
 
