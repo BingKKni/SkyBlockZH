@@ -178,6 +178,15 @@ public final class Classifier {
 	private Classifier() {
 	}
 
+	/** A known continuation is uncovered when the ordered tooltip plan did not consume it. */
+	public static Verdict orphanContinuation(StyledText styled) {
+		String plain = styled.plain().trim();
+		if (!hasEnglishWord(plain) || hasHan(plain)
+			|| PreservedText.ignored(Surface.ITEM, styled.canonical())
+			|| Translator.index().preserved(Surface.ITEM, styled.canonical())) return null;
+		return new Verdict(Bucket.UNTRANSLATED, List.of(), List.of(), null, "", "");
+	}
+
 	/** The verdict on one line, or {@code null} when there is nothing here worth keeping. */
 	public static Verdict of(CaptureSurface surface, StyledText styled) {
 		String plain = styled.plain().trim();

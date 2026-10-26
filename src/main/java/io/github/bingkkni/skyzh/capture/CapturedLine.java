@@ -1,6 +1,7 @@
 package io.github.bingkkni.skyzh.capture;
 
 import com.google.gson.JsonObject;
+import io.github.bingkkni.skyzh.text.Capture;
 import io.github.bingkkni.skyzh.text.StyledText;
 import io.github.bingkkni.skyzh.text.TranslationEntry;
 import java.util.ArrayList;
@@ -51,6 +52,12 @@ public final class CapturedLine {
 	private final Set<String> rawSamples = new LinkedHashSet<>();
 	private final List<JsonObject> holograms = new ArrayList<>();
 	private static final int MAX_HOLOGRAM_SCENES = 3;
+	private static final int MAX_LORE_CONTEXTS = 3;
+	private final List<LoreSnapshot.Target> loreContexts = new ArrayList<>();
+	private boolean loreContextsLimited;
+	private static final java.util.regex.Pattern LORE_VALUE = java.util.regex.Pattern.compile(
+		"(?:" + Capture.NUMBER.regex() + "|" + Capture.DURATION.regex() + "|" + Capture.PROGRESS.regex()
+			+ "|" + Capture.RACE_TIME.regex() + "|" + Capture.CLOCK_DURATION.regex() + ")");
 	private final String note;
 	private final Classifier.Verdict verdict;
 	private final long firstSeen;
@@ -103,6 +110,15 @@ public final class CapturedLine {
 
 		if (differing.size() > MAX_SLOTS) {
 			return false;
+		}
+		// A common opening is not proof that two item descriptions share a variable. Only
+		// numerical/time changes may be generalised in lore; chats retain their existing policy.
+		if ((this.surface == CaptureSurface.GUI_ITEM || this.surface == CaptureSurface.GUI_LORE)
+			&& this.note.endsWith(" Lore")) {
+			for (int slot : differing) {
+				if (!LORE_VALUE.matcher(this.split.words().get(slot)).matches()
+					|| !LORE_VALUE.matcher(candidate.words().get(slot)).matches()) return false;
+			}
 		}
 
 		List<Set<String>> tentative = withValues(differing, candidate);
@@ -207,6 +223,24 @@ public final class CapturedLine {
 
 	public List<JsonObject> holograms() {
 		return holograms.stream().map(JsonObject::deepCopy).toList();
+	}
+
+	/** Concrete full tooltips, separate from independently accumulated placeholder observations. */
+	public void lore(LoreSnapshot.Target context) {
+		if (loreContexts.stream().anyMatch(existing -> existing.key().equals(context.key()))) return;
+		if (loreContexts.size() < MAX_LORE_CONTEXTS) {
+			loreContexts.add(context);
+		} else {
+			loreContextsLimited = true;
+		}
+	}
+
+	public List<LoreSnapshot.Target> loreContexts() {
+		return List.copyOf(loreContexts);
+	}
+
+	public boolean loreContextsLimited() {
+		return loreContextsLimited;
 	}
 
 	public List<String> rawSamples() {

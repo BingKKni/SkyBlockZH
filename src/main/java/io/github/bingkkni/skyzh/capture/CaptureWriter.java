@@ -186,6 +186,16 @@ public final class CaptureWriter {
 			capture.add("style_runs", LegacyText.styleRuns(rendered.encoded().runs()));
 		}
 
+		if (!line.loreContexts().isEmpty()) {
+			JsonArray contexts = new JsonArray();
+			line.loreContexts().forEach(context -> contexts.add(context.json()));
+			capture.add("lore_contexts", contexts);
+			capture.addProperty("lore_contexts_limited", line.loreContextsLimited());
+			capture.addProperty("lore_context_note", "同次服务器物品数据中的完整有序 Lore，包含空行和已覆盖行；"
+				+ "target_line 从 1 开始，0 表示物品名。最多保留三个具体上下文；"
+				+ "达到上限或快照截断时会显式标注，不能用 observed 数组拼造段落。");
+		}
+
 		if (!line.holograms().isEmpty()) {
 			JsonArray scenes = new JsonArray();
 			line.holograms().forEach(scenes::add);

@@ -59,7 +59,7 @@ public final class CaptureStore {
 	private static final int MAX_LINES_PER_FILE = 800;
 
 	/** Capture work has an explicit stage; a repeat carries no redundant text snapshot. */
-	public sealed interface Observation permits Line, Diagnosed, Repeated {}
+	public sealed interface Observation permits Line, Lore, Diagnosed, Repeated {}
 
 	public record Line(StyledText text, boolean checkValues, HologramSnapshot hologram) implements Observation {
 		public Line {
@@ -72,6 +72,15 @@ public final class CaptureStore {
 
 		public Line(StyledText text) {
 			this(text, true, null);
+		}
+	}
+
+	/** A server lore observation retains its item and ordered paragraph even when lines are shared. */
+	public record Lore(StyledText text, LoreSnapshot.Target context, Classifier.Verdict diagnostic,
+		boolean orphanContinuation) implements Observation {
+		public Lore {
+			Objects.requireNonNull(text);
+			Objects.requireNonNull(context);
 		}
 	}
 
@@ -231,6 +240,20 @@ public final class CaptureStore {
 
 		switch (sighting.observation()) {
 			case Line line -> classify(sighting, line);
+			case Lore lore -> {
+				if (lore.diagnostic() != null) {
+					record(sighting, lore.text(), lore.diagnostic());
+				} else if (lore.orphanContinuation()) {
+					Classifier.Verdict verdict = Classifier.orphanContinuation(lore.text());
+					if (verdict != null) record(sighting, lore.text(), verdict);
+				} else {
+					StyledText inspected = lore.context().start() < 0
+						? io.github.bingkkni.skyzh.text.TooltipTranslator.itemNameCore(lore.text()) : lore.text();
+					for (Classifier.Verdict verdict : Classifier.all(sighting.surface(), inspected, lore.context().start() < 0)) {
+						record(sighting, lore.text(), verdict);
+					}
+				}
+			}
 			case Diagnosed diagnosed -> record(sighting, diagnosed.text(), diagnosed.verdict());
 			case Repeated ignored -> repeat(sighting);
 		}
@@ -339,6 +362,8 @@ public final class CaptureStore {
 	private static void rememberContext(CapturedLine line, Sighting sighting) {
 		if (sighting.observation() instanceof Line observation && observation.hologram() != null) {
 			line.hologram(observation.hologram(), sighting.when(), sighting.area());
+		} else if (sighting.observation() instanceof Lore lore) {
+			line.lore(lore.context());
 		}
 	}
 

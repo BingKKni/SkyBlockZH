@@ -178,34 +178,49 @@ public final class TextCapture {
 			custom = stack.get(DataComponents.ITEM_NAME);
 		}
 
-		if (custom != null) {
-			offer(CaptureSurface.GUI_ITEM, custom, name, where + " 物品名", 0);
-		}
-
 		ItemLore lore = stack.get(DataComponents.LORE);
 
 		if (lore == null) {
+			if (custom != null) offer(CaptureSurface.GUI_ITEM, custom, name, where + " 物品名", 0);
 			return;
 		}
 
 		List<Component> lines = lore.lines();
+		LoreSnapshot snapshot = LoreSnapshot.of(menu, containerId, slot, custom, lines);
+		if (custom != null) {
+			offerLore(new LoreObservation(CaptureSurface.GUI_ITEM, List.of(custom), null, -1, 0, false),
+				snapshot, name, where + " 物品名");
+		}
 		String originalName = custom == null ? "" : plainOf(custom);
 
 		for (LoreObservation observation : inspectLore(lines)) {
 			if (observation.diagnostic() == null && observation.source().size() == 1
 				&& (PreservedText.fruitProfileLine(originalName, plainOf(observation.source().getFirst()))
 					|| PreservedText.partyFinderLine(menu, plainOf(observation.source().getFirst())))) continue;
-			if (observation.diagnostic() != null) {
-				diagnose(observation.surface(), observation.source(), name,
-					where + " / " + (custom == null ? "" : plainOf(custom)) + " Lore", observation.diagnostic());
-			} else {
-				offer(observation.surface(), observation.source().getFirst(), name, where + " Lore", 0, Integer.MAX_VALUE, false);
-			}
+			offerLore(observation, snapshot, name,
+				observation.diagnostic() == null ? where + " Lore" : where + " / " + originalName + " Lore");
 		}
 	}
 
 	/** The production lore capture path, exposed without client state for packet-content regression tests. */
-	public record LoreObservation(CaptureSurface surface, List<Component> source, Classifier.Verdict diagnostic) {}
+	public record LoreObservation(CaptureSurface surface, List<Component> source, Classifier.Verdict diagnostic,
+		int start, int lineCount, boolean orphanContinuation) {}
+
+	private static void offerLore(LoreObservation observation, LoreSnapshot snapshot, String name, String where) {
+		var joined = Component.empty();
+		for (Component line : observation.source()) {
+			if (!joined.getString().isEmpty()) joined.append("\n");
+			joined.append(line);
+		}
+		LoreSnapshot.Target context = new LoreSnapshot.Target(snapshot, observation.start(), observation.lineCount());
+		String gameplay = placed();
+		String kind = observation.diagnostic() == null ? "line" : observation.diagnostic().identity();
+		String key = key(observation.surface(), name, where, kind + KEY_SEPARATOR + context.key(), gameplay);
+		CaptureStore.Observation work = SEEN.putIfAbsent(key, Boolean.TRUE) == null
+			? new CaptureStore.Lore(StyledText.of(joined), context, observation.diagnostic(), observation.orphanContinuation())
+			: CaptureStore.Repeated.INSTANCE;
+		queue(observation.surface(), key, work, name, where, gameplay);
+	}
 
 	public static synchronized List<LoreObservation> inspectLore(List<Component> lines) {
 		TranslationIndex index = Translator.index();
@@ -230,18 +245,26 @@ public final class TextCapture {
 		List<LoreTranslation.Unit> plan = LoreTranslation.plan(snapshot);
 
 		for (TranslationDiagnostics.Finding finding : TranslationDiagnostics.lore(plan)) {
-			observations.add(new LoreObservation(CaptureSurface.GUI_LORE, finding.source(), finding.verdict()));
+			int start = 0;
+			while (start < snapshot.size() && snapshot.get(start) != finding.source().getFirst()) start++;
+			observations.add(new LoreObservation(CaptureSurface.GUI_LORE, finding.source(), finding.verdict(),
+				start, finding.source().size(), false));
 		}
 
 		for (LoreTranslation.Unit unit : plan) {
 			if (unit.complete()) {
 				StyledText source = unit.matches().getFirst().source();
 				observations.add(new LoreObservation(
-					CaptureSurface.GUI_LORE, List.of(source.slice(0, source.length())), null
+					CaptureSurface.GUI_LORE, List.of(source.slice(0, source.length())), null,
+					unit.start(), unit.source().size(), false
 				));
 			} else {
-				for (Component line : unit.source()) {
-					observations.add(new LoreObservation(CaptureSurface.GUI_ITEM, List.of(line), null));
+				for (int offset = 0; offset < unit.source().size(); offset++) {
+					Component line = unit.source().get(offset);
+					Translator.Located found = Translator.locate(line, io.github.bingkkni.skyzh.text.Surface.ITEM);
+					boolean orphan = !unit.translated() && found.matched() && found.entry().continuation();
+					observations.add(new LoreObservation(CaptureSurface.GUI_ITEM, List.of(line), null,
+						unit.start() + offset, 1, orphan));
 				}
 			}
 		}

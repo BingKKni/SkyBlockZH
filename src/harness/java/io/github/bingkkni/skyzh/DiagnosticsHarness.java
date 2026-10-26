@@ -435,6 +435,7 @@ public final class DiagnosticsHarness {
 	}
 
 	private static void captureLore(String gameplay, String menu, List<Component> lines) {
+		var snapshot = io.github.bingkkni.skyzh.capture.LoreSnapshot.of(menu, 1, 5, Component.literal("Item"), lines);
 		for (var observation : TextCapture.inspectLore(lines)) {
 			var source = Component.empty();
 			for (int i = 0; i < observation.source().size(); i++) {
@@ -445,9 +446,9 @@ public final class DiagnosticsHarness {
 				source.append(observation.source().get(i));
 			}
 			String note = menu + (observation.diagnostic() == null ? " Lore" : " / Item Lore");
-			CaptureStore.Observation content = observation.diagnostic() == null
-				? new CaptureStore.Line(StyledText.of(source), false)
-				: new CaptureStore.Diagnosed(StyledText.of(source), observation.diagnostic());
+			CaptureStore.Observation content = new CaptureStore.Lore(StyledText.of(source),
+				new io.github.bingkkni.skyzh.capture.LoreSnapshot.Target(snapshot, observation.start(), observation.lineCount()),
+				observation.diagnostic(), observation.orphanContinuation());
 			CaptureStore.accept(new CaptureStore.Sighting(
 				observation.surface(), gameplay + menu + note + source.getString(), content,
 				gameplay, "Dwarven Mines", menu, note, 1

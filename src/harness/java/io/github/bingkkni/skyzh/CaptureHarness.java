@@ -13,6 +13,8 @@ import io.github.bingkkni.skyzh.capture.ChatShape;
 import io.github.bingkkni.skyzh.capture.Classifier;
 import io.github.bingkkni.skyzh.capture.LegacyText;
 import io.github.bingkkni.skyzh.capture.HologramSnapshot;
+import io.github.bingkkni.skyzh.capture.LoreSnapshot;
+import io.github.bingkkni.skyzh.capture.TextCapture;
 import io.github.bingkkni.skyzh.capture.Unplaced;
 import io.github.bingkkni.skyzh.hook.NameTag;
 import io.github.bingkkni.skyzh.text.LineShape;
@@ -77,6 +79,8 @@ public final class CaptureHarness {
 		unplaced();
 		widgets();
 		shared();
+		loreIntegrity();
+		loreSnapshots();
 		finishPendingWrites();
 
 		System.out.println();
@@ -1361,6 +1365,108 @@ public final class CaptureHarness {
 
 		CaptureStore.clear(root);
 		delete(root);
+	}
+
+	/** Real Rift fragments must stay recoverable even when a tail is known elsewhere. */
+	private static void loreIntegrity() {
+		for (String tail : List.of("§bGlacite Tunnels§7.", "§7players.")) {
+			List<Component> source = List.of(Component.literal("§7A completely unknown lore opening"), Component.literal(tail));
+			var observations = io.github.bingkkni.skyzh.capture.TextCapture.inspectLore(source);
+			check("孤立续行在Lore计划中保留英文 " + tail,
+				io.github.bingkkni.skyzh.text.LoreTranslation.plan(source).getLast().translated(), false);
+			check("孤立续行采集不再当作已有覆盖 " + tail,
+				observations.stream().anyMatch(o -> StyledText.of(o.source().getFirst()).plain().equals(styled(tail).plain())
+					&& o.orphanContinuation()), true);
+		}
+		CapturedLine description = new CapturedLine(CaptureSurface.GUI_ITEM,
+			styled("There is an Enigma Soul hiding in"), "Rift Guide Lore",
+			new Classifier.Verdict(Classifier.Bucket.UNTRANSLATED, List.of(), List.of(), null, "", ""), "Rift", 1);
+		check("不同谜魂描述不因句式相似归并",
+			description.merge(styled("There is an Enigma Soul hidden deep"), "Rift Guide Lore", "Rift", 2), false);
+		CapturedLine stats = new CapturedLine(CaptureSurface.GUI_ITEM, styled("Unknown count: 10/25"), "Rift Guide Lore",
+			new Classifier.Verdict(Classifier.Bucket.UNTRANSLATED, List.of(), List.of(), null, "", ""), "Rift", 1);
+		check("Lore真实数值变化仍归并", stats.merge(styled("Unknown count: 11/25"), "Rift Guide Lore", "Rift", 2), true);
+	}
+
+	/** Persist real ordered packets, not a Cartesian product of captured fragments. */
+	private static void loreSnapshots() throws Exception {
+		Path root = Files.createTempDirectory("skyzh-lore-contexts");
+		CaptureStore.clear(root);
+		CaptureStore.root(root);
+		try {
+			List<Component> source = List.of(Component.literal("§7Mined from the cold depths of the"),
+				Component.literal("§bGlacite Tunnels§7."), Component.empty(), Component.literal("§eClick to view!"));
+			LoreSnapshot snapshot = LoreSnapshot.of("View Stash", 7, 12, Component.literal("§fRough Aquamarine Gemstone"), source);
+			for (var observation : TextCapture.inspectLore(source)) {
+				CaptureStore.accept(new CaptureStore.Sighting(observation.surface(), "lore-" + observation.start(),
+					new CaptureStore.Lore(StyledText.of(observation.source().getFirst()),
+						new LoreSnapshot.Target(snapshot, observation.start(), observation.lineCount()),
+						observation.diagnostic(), observation.orphanContinuation()),
+					"Mining", "Glacite Tunnels", "View_Stash", "View Stash Lore", 1));
+			}
+			CaptureStore.flush();
+			Path file = root.resolve("untranslated/Mining/GUI_Item/View_Stash.json");
+			JsonObject tail = find(file, "glacite_tunnels");
+			JsonObject context = tail.getAsJsonArray("lore_contexts").get(0).getAsJsonObject();
+			check("孤立续行真正落盘", context.get("target_line").getAsInt(), 2);
+			check("空行和已覆盖邻行不单独采集", JsonParser.parseString(Files.readString(file))
+				.getAsJsonObject().getAsJsonArray("lines").size(), 2);
+			check("完整快照保留空行与已译邻行", context.getAsJsonArray("original_lines").size(), 4);
+			check("完整快照空行位置不丢", context.getAsJsonArray("original_lines").get(2).getAsString(), "");
+			check("完整快照保留实际颜色", context.getAsJsonArray("original_lines").get(1).getAsString(), "§bGlacite Tunnels§7.");
+			check("快照带物品名", context.get("item_name").getAsString(), "§fRough Aquamarine Gemstone");
+			check("快照带服务器槽位", context.get("slot").getAsInt(), 12);
+			check("常规Lore没有被标为截断", context.get("truncated").getAsBoolean(), false);
+			check("同内容重新开菜单不占快照名额", snapshot.signature().equals(LoreSnapshot.of(
+				"View Stash", 99, 20, Component.literal("§fRough Aquamarine Gemstone"), source).signature()), true);
+
+			String unknown = "§7An unknown contextual sentence";
+			for (int i = 0; i < 5; i++) {
+				String menu = "Context" + i;
+				List<Component> packet = List.of(Component.literal(unknown), Component.literal("§bOnly this item's tail " + i));
+				var scene = LoreSnapshot.of(menu, i, i, Component.literal("Item " + i), packet);
+				CaptureStore.accept(new CaptureStore.Sighting(CaptureSurface.GUI_ITEM, "context-" + i,
+					new CaptureStore.Lore(styled(unknown), new LoreSnapshot.Target(scene, 0, 1), null, false),
+					"Rift", "Rift", menu, menu + " Lore", i + 10));
+			}
+			CaptureStore.flush();
+			JsonObject shared = find(root.resolve("untranslated/Rift/GUI_Item/Context0.json"), "an_unknown_contextual_sentence");
+			check("跨菜单去重仍保存多个完整上下文", shared.getAsJsonArray("lore_contexts").size(), 3);
+			check("跨菜单保留对应的真实后文", shared.getAsJsonArray("lore_contexts").get(1).getAsJsonObject()
+				.getAsJsonArray("original_lines").get(1).getAsString(), "§bOnly this item's tail 1");
+			check("上下文数量达到上限明确标注", shared.get("lore_contexts_limited").getAsBoolean(), true);
+			check("上下文不制造额外重复记录", Files.exists(root.resolve("untranslated/Rift/GUI_Item/Context1.json")), false);
+
+			Component mutable = Component.literal("§7Before mutation");
+			var frozen = LoreSnapshot.of("Frozen", 1, 1, mutable, List.of(mutable, Component.empty()));
+			((net.minecraft.network.chat.MutableComponent) mutable).append(" changed");
+			check("快照不引用可变服务器组件", frozen.lines().getFirst().plain(), "Before mutation");
+			check("物品名也不可被外部修改", frozen.itemName().plain(), "Before mutation");
+			Component rgb = Component.literal("Custom RGB").withStyle(style -> style.withColor(0x123456));
+			var colored = LoreSnapshot.of("RGB", 1, 1, rgb, List.of(rgb));
+			JsonObject rgbContext = new LoreSnapshot.Target(colored, 0, 1).json();
+			check("特殊颜色原样写入", rgbContext.getAsJsonArray("original_lines").get(0).getAsString(), "§#123456Custom RGB");
+			check("特殊样式另有完整分段证据", rgbContext.has("line_styles") && rgbContext.has("item_name_styles"), true);
+			check("样式变化参与去重标识", colored.signature().equals(LoreSnapshot.of("RGB", 1, 1,
+				rgb, List.of(Component.literal("Custom RGB").withStyle(style -> style.withColor(0x654321)))).signature()), false);
+			List<Component> oversized = java.util.Collections.nCopies(257, Component.literal("§7Line"));
+			var bounded = LoreSnapshot.of("Bounded", 1, 1, null, oversized);
+			check("异常超长Lore保留原始行数", bounded.originalLineCount(), 257);
+			check("异常超长Lore有界", bounded.lines().size(), 256);
+			check("异常超长Lore显式标注截断", bounded.truncated(), true);
+			var longLine = LoreSnapshot.of("Long line", 1, 1, null,
+				List.of(Component.literal("X".repeat(65_537))));
+			check("单行超长也显式标注截断", longLine.truncated(), true);
+			check("单行快照字符数有界", longLine.lines().getFirst().length(), 65_536);
+			check("数字符号孤立续行不产生无意义采集", Classifier.orphanContinuation(styled("123 / 456")) == null, true);
+			check("中文孤立续行不采集", Classifier.orphanContinuation(styled("中文 players")) == null, true);
+			check("明确保留的专名不被孤立续行路径重采", Classifier.orphanContinuation(styled("Crux Ring")) == null, true);
+			CaptureStore.clear(root);
+			check("清空采集会删除含快照的文件", Files.exists(file), false);
+		} finally {
+			CaptureStore.clear(root);
+			delete(root);
+		}
 	}
 
 	/** A finish barrier writes sightings that are still waiting in the worker queue. */
