@@ -8104,5 +8104,182 @@
     ],
     "consumed": 1,
     "expected": "§7跳跃高度提升至 §a4.1 格§7。"
+  },
+  {
+    "name": "截图魂流战斗消耗支持动态数值与时间",
+    "lines": [
+      "§7Costs §32⸎ Soulflow §7per 10s in combat:"
+    ],
+    "consumed": 1,
+    "expected": "§7战斗中消耗 §32⸎ 魂流§7，每 10 秒一次:"
+  },
+  {
+    "name": "截图魂流增益忽略结构项目符号但保留其颜色",
+    "lines": [
+      "§3⁍ §7Gain §c+25 Ferocity"
+    ],
+    "consumed": 1,
+    "expected": "§3⁍ §7获得 §c+25 凶暴"
+  },
+  {
+    "name": "截图青蛙紧凑时长与动态属性",
+    "lines": [
+      "§7Grants §640 Foraging Fortune §7for §a15s §7every time you jump."
+    ],
+    "consumed": 1,
+    "expected": "§7每次跳跃时获得 §640 伐木时运§7，持续 §a15秒§7。"
+  },
+  {
+    "name": "截图青蛙额外跳跃提升独立完整句",
+    "lines": [
+      "§7Gain §bJump Boost III §7while on §2Foraging Islands§7."
+    ],
+    "consumed": 1,
+    "expected": "§7获得§b跳跃提升 III§7，在§2伐木岛屿§7生效。"
+  },
+  {
+    "name": "截图鱼缸翻倍绿字跟随中文移到句尾",
+    "lines": [
+      "§aDoubles §7the odds of fishing a rare",
+      "§7Shard."
+    ],
+    "consumed": 2,
+    "expected": "§7钓获稀有碎片的几率§a翻倍。"
+  },
+  {
+    "name": "截图箭毒倍率不误译成增加110百分比",
+    "lines": [
+      "§7Arrows apply a §5ᛤ poison §7that",
+      "§7increases all incoming damage by",
+      "§c1.2x §7for §a30s§7."
+    ],
+    "consumed": 3,
+    "expected": "§7箭矢施加§5ᛤ 毒素§7，使目标受到的所有伤害变为原来的 §c1.2 倍§7，持续 §a30秒§7。"
+  },
+  {
+    "name": "截图法力瓦解器三行合句参数化",
+    "lines": [
+      "§7Applies §9ᛃ §7on wands or deployables,",
+      "§7reducing their mana cost by §b2%§7. Can",
+      "§7be applied up to §a8 §7times."
+    ],
+    "consumed": 3,
+    "expected": "§7为魔杖或部署物施加 §9ᛃ §7，使其法力消耗降低 §b2%§7。最多可施加 §a8 §7次。"
+  },
+  {
+    "name": "截图炼狱绯红层数增益不丢颜色和数值",
+    "lines": [
+      "§7Each stack grants §e+0.2 Swing Range§7,",
+      "§c+3 Ferocity§7 and §c+15% Damage§7."
+    ],
+    "consumed": 2,
+    "expected": "§7每层提供 §e+0.2 挥击范围§7、§c+3 凶暴§7和 §c+15% 伤害§7。"
+  },
+  {
+    "name": "截图弩炮速度提高不换成耗时降低",
+    "lines": [
+      "§7You build the ballista §a20% §7faster."
+    ],
+    "consumed": 1,
+    "expected": "§7建造弩炮的速度提高 §a20%§7。"
+  },
+  {
+    "name": "截图Midas不误用农具半句",
+    "lines": [
+      "§7Applies the §9Gilded §7reforge when",
+      "§7combined with §6Midas Staff§7, §6 Midas",
+      "§6Staff§7, §6Midas' Sword§7, and §6 Midas'",
+      "§6Sword§7."
+    ],
+    "consumed": 4,
+    "expected_plain": "施加镀金重铸，可与 Midas Staff、 Midas Staff、Midas' Sword 及  Midas' Sword 合并。"
+  },
+  {
+    "name": "SkyMart重铸半句不能提前臆测农具",
+    "lines": [
+      "§7Applies the §9Gilded §7reforge when"
+    ],
+    "miss": true
+  },
+  {
+    "name": "精炼Jyrre消耗限制共用句不再写书本",
+    "lines": [
+      "§7You may consume §a5 §7of these before",
+      "§7they lose their magical energy."
+    ],
+    "consumed": 2,
+    "expected": "§7最多可消耗 §a5 个§7，之后便会失去魔力。"
+  },
+  {
+    "name": "服务器物品年龄用完整上下文回放而非去重碎片",
+    "lines": [
+      "§7This item is §e39 Minutes§7 old. It was",
+      "§7obtained on §f10/27/26§7 at §f03:38 AM",
+      "§fEST§7."
+    ],
+    "consumed": 3,
+    "expected": "§7此物品已有 §e39 分钟§7，获得日期为 §f10/27/26§7，时间为 §f03:38 AM EST§7。"
+  },
+  {
+    "name": "截图Erudite地洞名和数量分别保留颜色",
+    "lines": [
+      "§eGriffin Burrow §7chains always consist",
+      "§7of §a3 §7additional burrows."
+    ],
+    "consumed": 2,
+    "expected": "§e狮鹫地洞链§7固定额外包含 §a3 §7个地洞。"
+  },
+  {
+    "name": "Renowned两个加成对象都必须输出",
+    "lines": [
+      "§7Grants §b+1%  Magic Find §7and §c+1% §7to",
+      "§7ALL §cCombat Stats§7."
+    ],
+    "consumed": 2,
+    "expected": "§7获得 §b+1%  魔法寻宝§7，并获得 §c+1% 全部战斗属性§7。"
+  },
+  {
+    "name": "Renowned第二组数值仍保留全部战斗属性",
+    "lines": [
+      "§7Grants §b+2%  Magic Find §7and §c+3% §7to ALL §cCombat Stats§7."
+    ],
+    "consumed": 1,
+    "expected": "§7获得 §b+2%  魔法寻宝§7，并获得 §c+3% 全部战斗属性§7。"
+  },
+  {
+    "name": "完整重铸说明复用既有词表 Bustling a farming tool",
+    "lines": [
+      "§7Applies the §9Bustling §7reforge when",
+      "§7combined with a farming tool."
+    ],
+    "consumed": 2,
+    "expected": "§7与农具合并后,施加§9熙攘§7重铸。"
+  },
+  {
+    "name": "完整重铸说明复用既有词表 Bustling armor",
+    "lines": [
+      "§7Applies the §9Bustling §7reforge when",
+      "§7combined with armor."
+    ],
+    "consumed": 2,
+    "expected": "§7与护甲合并后,施加§9熙攘§7重铸。"
+  },
+  {
+    "name": "完整重铸说明复用既有词表 Mossy armor",
+    "lines": [
+      "§7Applies the §9Mossy §7reforge when",
+      "§7combined with armor."
+    ],
+    "consumed": 2,
+    "expected": "§7与护甲合并后,施加§9苔藓§7重铸。"
+  },
+  {
+    "name": "完整重铸说明复用既有词表 Bountiful a farming tool",
+    "lines": [
+      "§7Applies the §9Bountiful §7reforge when",
+      "§7combined with a farming tool."
+    ],
+    "consumed": 2,
+    "expected": "§7与农具合并后,施加§9丰盛§7重铸。"
   }
 ]

@@ -1,0 +1,1178 @@
+{
+  "source": [
+    "../SkyZH_Logs/skyzh-capture; ../SkyZH_Logs/*.png",
+    "https://hypixelskyblock.minecraft.wiki/w/Gloomlock_Grimoire",
+    "https://hypixelskyblock.minecraft.wiki/w/SOS_Flare",
+    "https://hypixelskyblock.minecraft.wiki/w/Mana_Disintegrator",
+    "https://hypixelskyblock.minecraft.wiki/w/Crown_of_Avarice",
+    "https://hypixelskyblock.minecraft.wiki/w/Bloodshot_The_Primordial",
+    "https://hypixelskyblock.minecraft.wiki/w/Blazetekk_Ham_Radio"
+  ],
+  "verified_ingame": true,
+  "entries": [
+    {
+      "id": "grimoire_convert",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§7Convert §3%1$s⸎ Soulflow §7to gain up to §3%2$s Overflow§7.",
+      "text": "Convert %1$s⸎ Soulflow to gain up to %2$s Overflow.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "15",
+          "desc": "动态取值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "600",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "消耗 %1$s⸎ 魂流，最多获得 %2$s 溢出法力。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Convert ",
+          "zh": "消耗 "
+        },
+        {
+          "color": "§3",
+          "text": "%1$s⸎ Soulflow ",
+          "zh": "%1$s⸎ 魂流"
+        },
+        {
+          "color": "§7",
+          "text": "to gain up to ",
+          "zh": "，最多获得 "
+        },
+        {
+          "color": "§3",
+          "text": "%2$s Overflow",
+          "zh": "%2$s 溢出法力"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "samples": [
+        [
+          "§7Convert §315⸎ Soulflow §7to gain up to §3600",
+          "§3Overflow§7."
+        ]
+      ],
+      "gloss": "原始折行样本: GLOOMLOCK_GRIMOIRE；其余数值变体仅用于合成回归。"
+    },
+    {
+      "id": "grimoire_heal",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§7Heal for §c%s❤§7.",
+      "text": "Heal for %s❤.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "1,000",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "恢复 %s❤ 生命值。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Heal for ",
+          "zh": "恢复 "
+        },
+        {
+          "color": "§c",
+          "text": "%s❤",
+          "zh": "%s❤ 生命值"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "flare_deploy_live",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§7Shoot the flare up in the sky for §a%1$s §7buffing up to §b%2$s §7players within §a%3$s §7blocks.",
+      "text": "Shoot the flare up in the sky for %1$s buffing up to %2$s players within %3$s blocks.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "duration",
+          "example": "3m",
+          "desc": "动态取值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "8",
+          "desc": "动态取值"
+        },
+        {
+          "token": "%3$s",
+          "type": "number",
+          "example": "40",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "向空中发射信号弹，持续 %1$s，为 %2$s 名以内、位于 %3$s 格范围内的玩家提供增益。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Shoot the flare up in the sky for ",
+          "zh": "向空中发射信号弹，持续 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "buffing up to ",
+          "zh": "，为 "
+        },
+        {
+          "color": "§b",
+          "text": "%2$s ",
+          "zh": "%2$s "
+        },
+        {
+          "color": "§7",
+          "text": "players within ",
+          "zh": "名以内、位于 "
+        },
+        {
+          "color": "§a",
+          "text": "%3$s ",
+          "zh": "%3$s "
+        },
+        {
+          "color": "§7",
+          "text": "blocks.",
+          "zh": "格范围内的玩家提供增益。"
+        }
+      ],
+      "samples": [
+        [
+          "§7Shoot the flare up in the sky for §a3m",
+          "§7buffing up to §b8 §7players within §a40",
+          "§7blocks."
+        ]
+      ],
+      "gloss": "原始折行样本: ALERT_FLARE；其余数值变体仅用于合成回归。"
+    },
+    {
+      "id": "flare_heal_island",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§7Heal §c%s❤ §7per second while on the §cCrimson Isle §7and §cKuudra§7.",
+      "text": "Heal %s❤ per second while on the Crimson Isle and Kuudra.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "50",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "每秒恢复 %s❤ 生命值，在绯红岛或 Kuudra 战斗中生效。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Heal ",
+          "zh": "每秒恢复 "
+        },
+        {
+          "color": "§c",
+          "text": "%s❤ ",
+          "zh": "%s❤ "
+        },
+        {
+          "color": "§7",
+          "text": "per second while on the ",
+          "zh": "生命值，在"
+        },
+        {
+          "color": "§c",
+          "text": "Crimson Isle ",
+          "zh": "绯红岛"
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "或 "
+        },
+        {
+          "color": "§c",
+          "text": "Kuudra",
+          "zh": "Kuudra"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": " 战斗中生效。"
+        }
+      ]
+    },
+    {
+      "id": "flare_vitality",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§7Gain §4+%s Vitality.",
+      "text": "Gain +%s Vitality.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "25",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "获得 +%s 活力。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "获得 "
+        },
+        {
+          "color": "§4",
+          "text": "+%s Vitality.",
+          "zh": "+%s 活力。"
+        }
+      ]
+    },
+    {
+      "id": "flare_ferocity",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§7Gain §c+%s Ferocity§7.",
+      "text": "Gain +%s Ferocity.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "10",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "获得 +%s 凶暴。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "获得 "
+        },
+        {
+          "color": "§c",
+          "text": "+%s Ferocity",
+          "zh": "+%s 凶暴"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "flare_attack_speed",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§7Gain §e+%s Attack Speed§7.",
+      "text": "Gain +%s Attack Speed.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "5",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "获得 +%s 攻击速度。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "获得 "
+        },
+        {
+          "color": "§e",
+          "text": "+%s Attack Speed",
+          "zh": "+%s 攻击速度"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "radio_two_players",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§7If exactly two players within §a%s §7blocks are on the same channel, both gain:",
+      "text": "If exactly two players within %s blocks are on the same channel, both gain:",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "110",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "同一频道在 %s 格内恰好有两名玩家时，双方均获得:",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "If exactly two players within ",
+          "zh": "同一频道在 "
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s "
+        },
+        {
+          "color": "§7",
+          "text": "blocks are on the same channel, both gain:",
+          "zh": "格内恰好有两名玩家时，双方均获得:"
+        }
+      ],
+      "samples": [
+        [
+          "§7If exactly two players within §a110 §7blocks are",
+          "§7on the same channel, both gain:"
+        ]
+      ],
+      "gloss": "原始折行样本: BLAZETEKK_HAM_RADIO；其余数值变体仅用于合成回归。"
+    },
+    {
+      "id": "radio_alone",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§8Earn half stats while alone!",
+      "text": "Earn half stats while alone!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "独处时获得一半属性加成!",
+      "samples": [
+        [
+          "§8Earn half stats while alone!"
+        ]
+      ],
+      "gloss": "原始折行样本: BLAZETEKK_HAM_RADIO；其余数值变体仅用于合成回归。"
+    },
+    {
+      "id": "radio_switch",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§7Switches to the next radio channel.",
+      "text": "Switches to the next radio channel.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "切换到下一个广播频道。",
+      "samples": [
+        [
+          "§7Switches to the next radio channel."
+        ]
+      ],
+      "gloss": "原始折行样本: BLAZETEKK_HAM_RADIO；其余数值变体仅用于合成回归。"
+    },
+    {
+      "id": "disintegrator_apply",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§7Applies §9ᛃ §7on wands or deployables, reducing their mana cost by §b%1$s%§7. Can be applied up to §a%2$s §7times.",
+      "text": "Applies ᛃ on wands or deployables, reducing their mana cost by %1$s%. Can be applied up to %2$s times.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "1",
+          "desc": "动态取值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "10",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "为魔杖或部署物施加 ᛃ ，使其法力消耗降低 %1$s%。最多可施加 %2$s 次。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Applies ",
+          "zh": "为魔杖或部署物施加 "
+        },
+        {
+          "color": "§9",
+          "text": "ᛃ ",
+          "zh": "ᛃ "
+        },
+        {
+          "color": "§7",
+          "text": "on wands or deployables, reducing their mana cost by ",
+          "zh": "，使其法力消耗降低 "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s%",
+          "zh": "%1$s%"
+        },
+        {
+          "color": "§7",
+          "text": ". Can be applied up to ",
+          "zh": "。最多可施加 "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s ",
+          "zh": "%2$s "
+        },
+        {
+          "color": "§7",
+          "text": "times.",
+          "zh": "次。"
+        }
+      ],
+      "samples": [
+        [
+          "§7Applies §9ᛃ §7on wands or deployables,",
+          "§7reducing their mana cost by §b1%§7. Can",
+          "§7be applied up to §a10 §7times."
+        ]
+      ],
+      "gloss": "原始折行样本: MANA_DISINTEGRATOR；其余数值变体仅用于合成回归。"
+    },
+    {
+      "id": "crimson_stack_live",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§7Each stack grants §e+%1$s Swing Range§7, §c+%2$s Ferocity§7 and §c+%3$s% Damage§7.",
+      "text": "Each stack grants +%1$s Swing Range, +%2$s Ferocity and +%3$s% Damage.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "0.1",
+          "desc": "动态取值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "2",
+          "desc": "动态取值"
+        },
+        {
+          "token": "%3$s",
+          "type": "number",
+          "example": "10",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "每层提供 +%1$s 挥击范围、+%2$s 凶暴和 +%3$s% 伤害。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Each stack grants ",
+          "zh": "每层提供 "
+        },
+        {
+          "color": "§e",
+          "text": "+%1$s Swing Range",
+          "zh": "+%1$s 挥击范围"
+        },
+        {
+          "color": "§7",
+          "text": ", ",
+          "zh": "、"
+        },
+        {
+          "color": "§c",
+          "text": "+%2$s Ferocity",
+          "zh": "+%2$s 凶暴"
+        },
+        {
+          "color": "§7",
+          "text": " and ",
+          "zh": "和 "
+        },
+        {
+          "color": "§c",
+          "text": "+%3$s% Damage",
+          "zh": "+%3$s% 伤害"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "samples": [
+        [
+          "§7Each stack grants §e+0.1 Swing Range§7,",
+          "§c+2 Ferocity§7 and §c+10% Damage§7."
+        ]
+      ],
+      "gloss": "原始折行样本: INFERNAL_CRIMSON_BOOTS；其余数值变体仅用于合成回归。"
+    },
+    {
+      "id": "renowned_bonus_live",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§7Grants §b+%1$s%  Magic Find §7and §c+%2$s% §7to ALL §cCombat Stats§7.",
+      "text": "Grants +%1$s%  Magic Find and +%2$s% to ALL Combat Stats.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "1",
+          "desc": "动态取值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "1",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "获得 +%1$s%  魔法寻宝，并获得 +%2$s% 全部战斗属性。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "获得 "
+        },
+        {
+          "color": "§b",
+          "text": "+%1$s%  Magic Find ",
+          "zh": "+%1$s%  魔法寻宝"
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "，并获得 "
+        },
+        {
+          "color": "§c",
+          "text": "+%2$s% ",
+          "zh": "+%2$s% "
+        },
+        {
+          "color": "§7",
+          "text": "to ALL ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§c",
+          "text": "Combat Stats",
+          "zh": "全部战斗属性"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants §b+1%  Magic Find §7and §c+1% §7to",
+          "§7ALL §cCombat Stats§7."
+        ]
+      ],
+      "gloss": "原始折行样本: live:§dRenowned Infernal Crimson Boots；其余数值变体仅用于合成回归。"
+    },
+    {
+      "id": "cocoon_bosses",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§7When killing a §cSlayer Boss§7 or §cSlayer Miniboss§7, have a §a%s%§7 chance to cocoon them!",
+      "text": "When killing a Slayer Boss or Slayer Miniboss, have a %s% chance to cocoon them!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "10",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "击杀猎魔首领或猎魔小首领时，有 %s% 概率使其结茧!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "When killing a ",
+          "zh": "击杀"
+        },
+        {
+          "color": "§c",
+          "text": "Slayer Boss",
+          "zh": "猎魔首领"
+        },
+        {
+          "color": "§7",
+          "text": " or ",
+          "zh": "或"
+        },
+        {
+          "color": "§c",
+          "text": "Slayer Miniboss",
+          "zh": "猎魔小首领"
+        },
+        {
+          "color": "§7",
+          "text": ", have a ",
+          "zh": "时，有 "
+        },
+        {
+          "color": "§a",
+          "text": "%s%",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": " chance to cocoon them!",
+          "zh": " 概率使其结茧!"
+        }
+      ],
+      "samples": [
+        [
+          "§7When killing a §cSlayer Boss§7 or §cSlayer Miniboss§7,",
+          "§7have a §a10%§7 chance to cocoon them!"
+        ]
+      ],
+      "gloss": "原始折行样本: THE_PRIMORDIAL；其余数值变体仅用于合成回归。"
+    },
+    {
+      "id": "cocoon_hatch",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§7Cocooned enemies will quickly hatch, and can be killed again.",
+      "text": "Cocooned enemies will quickly hatch, and can be killed again.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "结茧的敌人会很快破茧而出，可再次击杀。",
+      "samples": [
+        [
+          "§7Cocooned enemies will quickly hatch,",
+          "§7and can be killed again."
+        ]
+      ],
+      "gloss": "原始折行样本: SHRIVELED_CORNEA；其余数值变体仅用于合成回归。"
+    },
+    {
+      "id": "bloodshot_flavor",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§8§oAn eye torn from the Primordial Brood sits dead center, patiently observing. Are you truly the one in control here?",
+      "text": "An eye torn from the Primordial Brood sits dead center, patiently observing. Are you truly the one in control here?",
+      "placeholders": [],
+      "translate": true,
+      "zh": "取自原初巢群的眼球嵌于正中，静静凝视着。掌控这一切的，真的是你吗?",
+      "samples": [
+        [
+          "§8§oAn eye torn from the Primordial Brood sits dead",
+          "§8§ocenter, patiently observing. Are you truly the",
+          "§8§oone in control here?"
+        ]
+      ],
+      "gloss": "原始折行样本: THE_PRIMORDIAL；其余数值变体仅用于合成回归。"
+    },
+    {
+      "id": "cocoon_kill",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§7When killing an enemy, you have a §a%s%§7 chance to cocoon them!",
+      "text": "When killing an enemy, you have a %s% chance to cocoon them!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "2.5",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "击杀敌人时，有 %s% 概率使其结茧!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "When killing an enemy, you have a ",
+          "zh": "击杀敌人时，有 "
+        },
+        {
+          "color": "§a",
+          "text": "%s%",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": " chance to cocoon them!",
+          "zh": " 概率使其结茧!"
+        }
+      ],
+      "samples": [
+        [
+          "§7When killing an enemy, you have a",
+          "§a2.5%§7 chance to cocoon them!"
+        ]
+      ],
+      "gloss": "原始折行样本: SHRIVELED_CORNEA；其余数值变体仅用于合成回归。"
+    },
+    {
+      "id": "cocoon_exceptions",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§8(Cannot trigger in Dungeons, Kuudra, or on Bosses).",
+      "text": "(Cannot trigger in Dungeons, Kuudra, or on Bosses).",
+      "placeholders": [],
+      "translate": true,
+      "zh": "(在地牢、Kuudra 战斗中或对首领无法触发)。",
+      "samples": [
+        [
+          "§8(Cannot trigger in Dungeons, Kuudra,",
+          "§8or on Bosses)."
+        ]
+      ],
+      "gloss": "原始折行样本: SHRIVELED_CORNEA；其余数值变体仅用于合成回归。"
+    },
+    {
+      "id": "helmet_skin_swap",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§7Swaps this helmet's skin through §a%s §7royal skins!",
+      "text": "Swaps this helmet's skin through %s royal skins!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "21",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "在 %s 款皇家皮肤之间切换此头盔的外观!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Swaps this helmet's skin through ",
+          "zh": "在 "
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s "
+        },
+        {
+          "color": "§7",
+          "text": "royal skins!",
+          "zh": "款皇家皮肤之间切换此头盔的外观!"
+        }
+      ],
+      "samples": [
+        [
+          "§7Swaps this helmet's skin through §a21",
+          "§7royal skins!"
+        ]
+      ],
+      "gloss": "原始折行样本: live:§dRenowned Crown of Avarice §4✦；其余数值变体仅用于合成回归。"
+    },
+    {
+      "id": "mythological_damage",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§2 Mythological §7mobs deal §c%sx §7damage.",
+      "text": " Mythological mobs deal %sx damage.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "1.5",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": " 神话生物造成 %s 倍伤害。",
+      "segments": [
+        {
+          "color": "§2",
+          "text": " Mythological ",
+          "zh": " 神话"
+        },
+        {
+          "color": "§7",
+          "text": "mobs deal ",
+          "zh": "生物造成 "
+        },
+        {
+          "color": "§c",
+          "text": "%sx ",
+          "zh": "%s 倍"
+        },
+        {
+          "color": "§7",
+          "text": "damage.",
+          "zh": "伤害。"
+        }
+      ],
+      "samples": [
+        [
+          "§2 Mythological §7mobs deal §c1.5x",
+          "§7damage."
+        ]
+      ],
+      "gloss": "原始折行样本: CROWN_OF_AVARICE；其余数值变体仅用于合成回归。"
+    },
+    {
+      "id": "mythological_coins",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§7You gain §a%sx §6Coins §7from §eGriffin Burrows §7and §2 Mythological §7mobs, but they are consumed by this helmet.",
+      "text": "You gain %sx Coins from Griffin Burrows and  Mythological mobs, but they are consumed by this helmet.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "5",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "从狮鹫地洞和 神话生物获得 %s 倍硬币，但这些硬币会被头盔吞噬。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You gain ",
+          "zh": "生物获得 ",
+          "order": 4
+        },
+        {
+          "color": "§a",
+          "text": "%sx ",
+          "zh": "%s 倍",
+          "order": 5
+        },
+        {
+          "color": "§6",
+          "text": "Coins ",
+          "zh": "硬币",
+          "order": 6
+        },
+        {
+          "color": "§7",
+          "text": "from ",
+          "zh": "从",
+          "order": 0
+        },
+        {
+          "color": "§e",
+          "text": "Griffin Burrows ",
+          "zh": "狮鹫地洞",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "和",
+          "order": 2
+        },
+        {
+          "color": "§2",
+          "text": " Mythological ",
+          "zh": " 神话",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "mobs, but they are consumed by this helmet.",
+          "zh": "，但这些硬币会被头盔吞噬。",
+          "order": 7
+        }
+      ],
+      "samples": [
+        [
+          "§7You gain §a5x §6Coins §7from §eGriffin",
+          "§eBurrows §7and §2 Mythological §7mobs,",
+          "§7but they are consumed by this helmet."
+        ]
+      ],
+      "gloss": "原始折行样本: CROWN_OF_AVARICE；其余数值变体仅用于合成回归。"
+    },
+    {
+      "id": "mythological_digit",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§7Grants §b+%1$s Magic Find §7against §2 Mythological §7mobs and deal §c+%2$sx Damage §7for each digit of §6Coins §7consumed.",
+      "text": "Grants +%1$s Magic Find against  Mythological mobs and deal +%2$sx Damage for each digit of Coins consumed.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "2.5",
+          "desc": "动态取值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "0.015",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "获得 +%1$s 魔法寻宝，对 神话生物生效，并获得 +%2$s 倍 伤害，以上加成按已吞噬硬币的位数逐位累加。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "获得 "
+        },
+        {
+          "color": "§b",
+          "text": "+%1$s Magic Find ",
+          "zh": "+%1$s 魔法寻宝"
+        },
+        {
+          "color": "§7",
+          "text": "against ",
+          "zh": "，对"
+        },
+        {
+          "color": "§2",
+          "text": " Mythological ",
+          "zh": " 神话"
+        },
+        {
+          "color": "§7",
+          "text": "mobs and deal ",
+          "zh": "生物生效，并获得 "
+        },
+        {
+          "color": "§c",
+          "text": "+%2$sx Damage ",
+          "zh": "+%2$s 倍 伤害"
+        },
+        {
+          "color": "§7",
+          "text": "for each digit of ",
+          "zh": "，以上加成按已吞噬"
+        },
+        {
+          "color": "§6",
+          "text": "Coins ",
+          "zh": "硬币"
+        },
+        {
+          "color": "§7",
+          "text": "consumed.",
+          "zh": "的位数逐位累加。"
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants §b+2.5 Magic Find §7against §2",
+          "§2Mythological §7mobs and deal §c+0.015x",
+          "§cDamage §7for each digit of §6Coins",
+          "§7consumed."
+        ]
+      ],
+      "gloss": "原始折行样本: CROWN_OF_AVARICE；其余数值变体仅用于合成回归。"
+    },
+    {
+      "id": "avarice_perk_threshold",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§8(Perk changes at %s Coins consumed)",
+      "text": "(Perk changes at %s Coins consumed)",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "1B",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "(吞噬 %s 硬币后效果改变)",
+      "samples": [
+        [
+          "§8(Perk changes at 1B Coins consumed)"
+        ]
+      ],
+      "gloss": "原始折行样本: CROWN_OF_AVARICE；其余数值变体仅用于合成回归。"
+    },
+    {
+      "id": "captured_ability_overindulgence",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§6Ability: Overindulgence",
+      "text": "Ability: Overindulgence",
+      "placeholders": [],
+      "translate": true,
+      "zh": "技能: 贪得无厌",
+      "samples": [
+        [
+          "§6Ability: Overindulgence "
+        ]
+      ],
+      "gloss": "原始折行样本: CROWN_OF_AVARICE；其余数值变体仅用于合成回归。"
+    },
+    {
+      "id": "captured_ability_colorswapper",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§6Ability: Color Swapper  §e§lLEFT CLICK",
+      "text": "Ability: Color Swapper  LEFT CLICK",
+      "placeholders": [],
+      "translate": true,
+      "zh": "技能: 换色  左键",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Ability: Color Swapper  ",
+          "zh": "技能: 换色  "
+        },
+        {
+          "color": "§e§l",
+          "text": "LEFT CLICK",
+          "zh": "左键"
+        }
+      ],
+      "samples": [
+        [
+          "§6Ability: Color Swapper  §e§lLEFT CLICK"
+        ]
+      ],
+      "gloss": "原始折行样本: live:§dRenowned Crown of Avarice §4✦；其余数值变体仅用于合成回归。"
+    },
+    {
+      "id": "captured_ability_forcedmetamorphosis",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§6Ability: Forced Metamorphosis",
+      "text": "Ability: Forced Metamorphosis",
+      "placeholders": [],
+      "translate": true,
+      "zh": "技能: 强制蜕变",
+      "samples": [
+        [
+          "§6Ability: Forced Metamorphosis "
+        ]
+      ],
+      "gloss": "原始折行样本: THE_PRIMORDIAL；其余数值变体仅用于合成回归。"
+    },
+    {
+      "id": "captured_ability_telecommunications",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§6Ability: Telecommunications",
+      "text": "Ability: Telecommunications",
+      "placeholders": [],
+      "translate": true,
+      "zh": "技能: 无线通讯",
+      "samples": [
+        [
+          "§6Ability: Telecommunications "
+        ]
+      ],
+      "gloss": "原始折行样本: BLAZETEKK_HAM_RADIO；其余数值变体仅用于合成回归。"
+    },
+    {
+      "id": "captured_ability_tuning4dummies",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§6Ability: Tuning 4 Dummies  §e§lCLICK",
+      "text": "Ability: Tuning 4 Dummies  CLICK",
+      "placeholders": [],
+      "translate": true,
+      "zh": "技能: 傻瓜调频  点击",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Ability: Tuning 4 Dummies  ",
+          "zh": "技能: 傻瓜调频  "
+        },
+        {
+          "color": "§e§l",
+          "text": "CLICK",
+          "zh": "点击"
+        }
+      ],
+      "samples": [
+        [
+          "§6Ability: Tuning 4 Dummies  §e§lCLICK"
+        ]
+      ],
+      "gloss": "原始折行样本: BLAZETEKK_HAM_RADIO；其余数值变体仅用于合成回归。"
+    },
+    {
+      "id": "captured_ability_lifetap",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§6Ability: Life Tap  §e§lLEFT CLICK",
+      "text": "Ability: Life Tap  LEFT CLICK",
+      "placeholders": [],
+      "translate": true,
+      "zh": "技能: 生命分流  左键",
+      "segments": [
+        {
+          "color": "§6",
+          "text": "Ability: Life Tap  ",
+          "zh": "技能: 生命分流  "
+        },
+        {
+          "color": "§e§l",
+          "text": "LEFT CLICK",
+          "zh": "左键"
+        }
+      ],
+      "samples": [
+        [
+          "§6Ability: Life Tap  §e§lLEFT CLICK"
+        ]
+      ],
+      "gloss": "原始折行样本: GLOOMLOCK_GRIMOIRE；其余数值变体仅用于合成回归。"
+    },
+    {
+      "id": "slayer_weapon_damage",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§8ℏ §7Deal §c+%s% damage §7against Slayer Bosses with Slayer weapons.",
+      "text": "ℏ Deal +%s% damage against Slayer Bosses with Slayer weapons.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "25",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "ℏ 使用猎魔武器攻击猎魔首领时，造成 +%s% 伤害。",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "ℏ ",
+          "zh": "ℏ "
+        },
+        {
+          "color": "§7",
+          "text": "Deal ",
+          "zh": "使用猎魔武器攻击猎魔首领时，造成 "
+        },
+        {
+          "color": "§c",
+          "text": "+%s% damage ",
+          "zh": "+%s% 伤害"
+        },
+        {
+          "color": "§7",
+          "text": "against Slayer Bosses with Slayer weapons.",
+          "zh": "。"
+        }
+      ],
+      "samples": [
+        [
+          "§8ℏ §7Deal §c+25% damage §7against Slayer Bosses",
+          "§7with Slayer weapons."
+        ]
+      ],
+      "gloss": "原始折行样本: live:§dRenowned Infernal Crimson Leggings；其余数值变体仅用于合成回归。"
+    }
+  ]
+}

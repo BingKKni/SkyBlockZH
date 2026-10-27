@@ -31,7 +31,8 @@ import net.minecraft.network.chat.MutableComponent;
  */
 public final class TooltipTranslator {
 	private static final int CACHE_SIZE = 64;
-	private static final Pattern DUNGEON_STARS = Pattern.compile("( [✪★☆➊➋➌➍➎]+)$");
+	// ✦ marks an upgraded item, and is kept with the original style like dungeon stars.
+	private static final Pattern DUNGEON_STARS = Pattern.compile("( [✪★☆➊➋➌➍➎✦]+)$");
 	private static final Pattern STACK_COUNT = Pattern.compile(" x[0-9][0-9,]*$");
 	private static final Pattern ICON_TOKEN = Pattern.compile(Capture.of("icon").regex());
 	// Reforge prefixes and their Chinese live in _shared/Terms.json under type "reforge". Only names

@@ -1,0 +1,332 @@
+{
+  "source": [
+    "../SkyZH_Logs/skyzh-capture; ../SkyZH_Logs/*.png",
+    "https://hypixelskyblock.minecraft.wiki/w/Twilight_Arrow_Poison",
+    "https://hypixelskyblock.minecraft.wiki/w/Blood_God_Sigil",
+    "https://hypixelskyblock.minecraft.wiki/w/Kuudra%27s_Heart"
+  ],
+  "verified_ingame": true,
+  "entries": [
+    {
+      "id": "poison_consumed",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§8Consumed on arrow shot",
+      "text": "Consumed on arrow shot",
+      "placeholders": [],
+      "translate": true,
+      "zh": "射出箭矢时消耗",
+      "samples": [
+        [
+          "§8Consumed on arrow shot"
+        ]
+      ],
+      "gloss": "原始折行样本: TOXIC_ARROW_POISON；其余数值变体仅用于合成回归。"
+    },
+    {
+      "id": "twilight_poison",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§7Arrows apply a §5ᛤ poison §7that increases all incoming damage by §c%1$sx §7for §a%2$s§7.",
+      "text": "Arrows apply a ᛤ poison that increases all incoming damage by %1$sx for %2$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "1.1",
+          "desc": "动态取值"
+        },
+        {
+          "token": "%2$s",
+          "type": "duration",
+          "example": "20s",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "箭矢施加ᛤ 毒素，使目标受到的所有伤害变为原来的 %1$s 倍，持续 %2$s。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Arrows apply a ",
+          "zh": "箭矢施加"
+        },
+        {
+          "color": "§5",
+          "text": "ᛤ poison ",
+          "zh": "ᛤ 毒素"
+        },
+        {
+          "color": "§7",
+          "text": "that increases all incoming damage by ",
+          "zh": "，使目标受到的所有伤害变为原来的 "
+        },
+        {
+          "color": "§c",
+          "text": "%1$sx ",
+          "zh": "%1$s 倍"
+        },
+        {
+          "color": "§7",
+          "text": "for ",
+          "zh": "，持续 "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "samples": [
+        [
+          "§7Arrows apply a §5ᛤ poison §7that",
+          "§7increases all incoming damage by",
+          "§c1.1x §7for §a20s§7."
+        ]
+      ],
+      "gloss": "原始折行样本: TWILIGHT_ARROW_POISON；其余数值变体仅用于合成回归。"
+    },
+    {
+      "id": "poison_rarity",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§a§l%s ARROW POISON",
+      "text": "%s ARROW POISON",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "rarity",
+          "example": "UNCOMMON",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "%s箭毒",
+      "samples": [
+        [
+          "§a§lUNCOMMON ARROW POISON"
+        ]
+      ],
+      "gloss": "原始折行样本: TOXIC_ARROW_POISON；其余数值变体仅用于合成回归。"
+    },
+    {
+      "id": "blood_god_counter",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§7Tracks a counter for each mob killed while worn.",
+      "text": "Tracks a counter for each mob killed while worn.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "佩戴时，每击杀一只生物，计数 +1。",
+      "samples": [
+        [
+          "§7Tracks a counter for each mob",
+          "§7killed while worn."
+        ]
+      ],
+      "gloss": "原始折行样本: BLOOD_GOD_CREST；其余数值变体仅用于合成回归。"
+    },
+    {
+      "id": "blood_god_strength",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§7Gain §c+%1$s Strength §7for each digit on the counter. §8(Max %2$s)",
+      "text": "Gain +%1$s Strength for each digit on the counter. (Max %2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "25",
+          "desc": "动态取值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "7",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "计数每增加一位，获得 +%1$s 力量。 (最多计入 %2$s 位)",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "计数每增加一位，获得 "
+        },
+        {
+          "color": "§c",
+          "text": "+%1$s Strength ",
+          "zh": "+%1$s 力量"
+        },
+        {
+          "color": "§7",
+          "text": "for each digit on the counter. ",
+          "zh": "。"
+        },
+        {
+          "color": "§8",
+          "text": "(Max %2$s)",
+          "zh": " (最多计入 %2$s 位)"
+        }
+      ]
+    },
+    {
+      "id": "blood_god_strength_icon",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§7Gain §c+%1$s Strength §7for each digit on the counter. §8(Max %2$s)",
+      "text": "Gain +%1$s Strength for each digit on the counter. (Max %2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "2",
+          "desc": "动态取值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "7",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "计数每增加一位，获得 +%1$s 力量。 (最多计入 %2$s 位)",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "计数每增加一位，获得 "
+        },
+        {
+          "color": "§c",
+          "text": "+%1$s Strength ",
+          "zh": "+%1$s 力量"
+        },
+        {
+          "color": "§7",
+          "text": "for each digit on the counter. ",
+          "zh": "。"
+        },
+        {
+          "color": "§8",
+          "text": "(Max %2$s)",
+          "zh": " (最多计入 %2$s 位)"
+        }
+      ],
+      "samples": [
+        [
+          "§7Gain §c+1 Strength §7for each digit",
+          "§7on the counter. §8(Max 7)"
+        ]
+      ],
+      "gloss": "原始折行样本: BLOOD_GOD_CREST；其余数值变体仅用于合成回归。"
+    },
+    {
+      "id": "blood_god_bonus",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§7Bonus: §c+%s Strength",
+      "text": "Bonus: +%s Strength",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "125",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "加成: +%s 力量",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Bonus: ",
+          "zh": "加成: "
+        },
+        {
+          "color": "§c",
+          "text": "+%s Strength",
+          "zh": "+%s 力量"
+        }
+      ]
+    },
+    {
+      "id": "kuudra_crates",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§7You pick up crates §a%s% §7faster.",
+      "text": "You pick up crates %s% faster.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "30",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "搬运补给箱的速度提高 %s%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You pick up crates ",
+          "zh": "搬运补给箱的速度提高 "
+        },
+        {
+          "color": "§a",
+          "text": "%s% ",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": "faster.",
+          "zh": "。"
+        }
+      ],
+      "samples": [
+        [
+          "§7You pick up crates §a30% §7faster."
+        ]
+      ],
+      "gloss": "原始折行样本: KUUDRAS_HEART；其余数值变体仅用于合成回归。"
+    },
+    {
+      "id": "kuudra_ballista",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§7You build the ballista §a%s% §7faster.",
+      "text": "You build the ballista %s% faster.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "15",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "建造弩炮的速度提高 %s%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You build the ballista ",
+          "zh": "建造弩炮的速度提高 "
+        },
+        {
+          "color": "§a",
+          "text": "%s% ",
+          "zh": "%s%"
+        },
+        {
+          "color": "§7",
+          "text": "faster.",
+          "zh": "。"
+        }
+      ],
+      "samples": [
+        [
+          "§7You build the ballista §a15% §7faster."
+        ]
+      ],
+      "gloss": "原始折行样本: KUUDRAS_HEART；其余数值变体仅用于合成回归。"
+    }
+  ]
+}

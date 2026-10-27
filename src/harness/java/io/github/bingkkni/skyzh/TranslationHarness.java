@@ -189,6 +189,19 @@ public final class TranslationHarness {
 		check("物品名整名翻译", "§9Mithril Drill SX-R226", Surface.ITEM, "§9秘银钻头 SX-R226");
 		checkTooltipName("重铸前缀保留样式并翻译整名", "§6Fleet §dTitanium Drill DR-X655",
 			"§6迅捷 §d钛钻头 DR-X655");
+		checkTooltipName("升级标记不阻止已知物品名翻译", "§dRenowned Crown of Avarice §4✦",
+			"§d著名 贪婪之冠 §4✦");
+		checkTooltipName("未知升级物品不因装饰剥离而误翻", "§dRenowned Unknown Crown §4✦",
+			"§dRenowned Unknown Crown §4✦");
+		checkTooltipName("升级物品保留独立数量样式", "§dRenowned Crown of Avarice §4✦ §8x2",
+			"§d著名 贪婪之冠 §4✦ §8x2");
+		checkTooltipName("截图面具袋优先精确整名而非 Bag 模板", "§fCarnival Mask Bag", "§f嘉年华面具袋");
+		check("采集符文名复用类别词表", "§6◆ Flowery Carpet Rune III", Surface.ITEM,
+			"§6◆ 繁花地毯符文 III");
+		check("装备提示复用目录中已翻译物品名", "§aYou equipped a §9Disinfestor Gloves§a!", Surface.CHAT,
+			"§a你装备了§9除虫师手套§a!");
+		check("装备提示不猜测未知物品译名", "§aYou equipped a §9Unknown Gloves§a!", Surface.CHAT,
+			"§a你装备了§9 Unknown Gloves§a!");
 		checkTooltipName("无前置图标的地牢星级物品名", "§6Giant's Sword §6✪✪✪✪✪",
 			"§6巨人之剑 ✪✪✪✪✪");
 		checkTooltipName("带图标的重铸物品名保留图标及星级", "§5 Strengthened Bone Necklace §6✪✪✪✪✪",

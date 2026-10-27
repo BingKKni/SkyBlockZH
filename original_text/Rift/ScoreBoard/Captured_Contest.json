@@ -1,0 +1,80 @@
+{
+  "source": [
+    "../SkyZH_Logs/skyzh-capture; ../SkyZH_Logs/*.png",
+    "https://hypixelskyblock.minecraft.wiki/w/Rift_Dimension"
+  ],
+  "verified_ingame": true,
+  "entries": [
+    {
+      "id": "contest_sidebar",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§cHot Dog Contest",
+      "text": "Hot Dog Contest",
+      "placeholders": [],
+      "translate": true,
+      "zh": "热狗大赛"
+    },
+    {
+      "id": "contest_eaten",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§fEaten: §a%1$s/%2$s",
+      "text": "Eaten: %1$s/%2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "0",
+          "desc": "动态取值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "50",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "已吃下: %1$s/%2$s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Eaten: ",
+          "zh": "已吃下: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s/%2$s",
+          "zh": "%1$s/%2$s"
+        }
+      ]
+    },
+    {
+      "id": "contest_clock",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§fTime Left: §a%s",
+      "text": "Time Left: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "duration",
+          "example": "01m00s",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "剩余时间: %s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Time Left: ",
+          "zh": "剩余时间: "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,260 @@
+{
+  "source": [
+    "../SkyZH_Logs/skyzh-capture; ../SkyZH_Logs/*.png",
+    "https://hypixelskyblock.minecraft.wiki/w/Rift_Dimension"
+  ],
+  "verified_ingame": true,
+  "entries": [
+    {
+      "id": "island_guests",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§eYou have §a%s guests §eon your island!",
+      "text": "You have %s guests on your island!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "2",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "你的岛上有 %s 位访客!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "You have ",
+          "zh": "你的岛上有 "
+        },
+        {
+          "color": "§a",
+          "text": "%s guests ",
+          "zh": "%s 位访客"
+        },
+        {
+          "color": "§e",
+          "text": "on your island!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "island_rank_first",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§cYou must create a rank first.",
+      "text": "You must create a rank first.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "请先创建岛屿身份组。"
+    },
+    {
+      "id": "party_join",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§b%s §ejoined the party.",
+      "text": "%s joined the party.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "player_display",
+          "example": "[MVP++] Cute_Leaf_ovo",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "%s 加入了队伍。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "%s ",
+          "zh": "%s "
+        },
+        {
+          "color": "§e",
+          "text": "joined the party.",
+          "zh": "加入了队伍。"
+        }
+      ]
+    },
+    {
+      "id": "party_rejoin",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§b%s §ehas rejoined.",
+      "text": "%s has rejoined.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "player_display",
+          "example": "[MVP++] Cute_Leaf_ovo",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "%s 重新加入了队伍。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "%s ",
+          "zh": "%s "
+        },
+        {
+          "color": "§e",
+          "text": "has rejoined.",
+          "zh": "重新加入了队伍。"
+        }
+      ]
+    },
+    {
+      "id": "party_disconnect",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§b%1$s §ehas disconnected, they have §c%2$s §eminutes to rejoin before they are removed from the party.",
+      "text": "%1$s has disconnected, they have %2$s minutes to rejoin before they are removed from the party.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "player_display",
+          "example": "[MVP++] Cute_Leaf_ovo",
+          "desc": "动态取值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "5",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 已断线，需在 %2$s 分钟内重连，否则将被移出队伍。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§e",
+          "text": "has disconnected, they have ",
+          "zh": "已断线，需在 "
+        },
+        {
+          "color": "§c",
+          "text": "%2$s ",
+          "zh": "%2$s "
+        },
+        {
+          "color": "§e",
+          "text": "minutes to rejoin before they are removed from the party.",
+          "zh": "分钟内重连，否则将被移出队伍。"
+        }
+      ]
+    },
+    {
+      "id": "party_invite",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§b%1$s §einvited §b%2$s §eto the party! They have §c%3$s §eseconds to accept.",
+      "text": "%1$s invited %2$s to the party! They have %3$s seconds to accept.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "player_display",
+          "example": "[MVP+] inkkni",
+          "desc": "动态取值"
+        },
+        {
+          "token": "%2$s",
+          "type": "player_display",
+          "example": "[MVP++] Cute_Leaf_ovo",
+          "desc": "动态取值"
+        },
+        {
+          "token": "%3$s",
+          "type": "number",
+          "example": "60",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 邀请了 %2$s 加入队伍! 对方有 %3$s 秒的时间接受邀请。",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§e",
+          "text": "invited ",
+          "zh": "邀请了 "
+        },
+        {
+          "color": "§b",
+          "text": "%2$s ",
+          "zh": "%2$s "
+        },
+        {
+          "color": "§e",
+          "text": "to the party! They have ",
+          "zh": "加入队伍! 对方有 "
+        },
+        {
+          "color": "§c",
+          "text": "%3$s ",
+          "zh": "%3$s "
+        },
+        {
+          "color": "§e",
+          "text": "seconds to accept.",
+          "zh": "秒的时间接受邀请。"
+        }
+      ]
+    },
+    {
+      "id": "chat_item_held",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§b%1$s§7 is holding §8[§5%2$s§8]",
+      "text": "%1$s is holding [%2$s]",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "player_display",
+          "example": "[474] [MVP++] Cute_Leaf_ovo",
+          "desc": "动态取值"
+        },
+        {
+          "token": "%2$s",
+          "type": "item_name",
+          "example": "Gloomlock Grimoire",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 正手持 [%2$s]",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " is holding ",
+          "zh": " 正手持 "
+        },
+        {
+          "color": "§8",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§5",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§8",
+          "text": "]",
+          "zh": "]"
+        }
+      ]
+    }
+  ]
+}
