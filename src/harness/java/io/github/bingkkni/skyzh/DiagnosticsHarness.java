@@ -252,7 +252,8 @@ public final class DiagnosticsHarness {
 		check("同一报告归并的 Epic 分解说明保留稀有度色", colourSafe("§7Insert all salvageable §5Epic§7 items dropped from mobs in your inventory that have not been modified or upgraded.", Surface.LORE));
 		check("同一报告归并的胡萝卜原料计数保留名称色", colourSafe("§71x §fCarrot", Surface.ITEM));
 		check("不把同词异义的守卫/银行译名用于饰品/附魔", corpus.terms().translate("enchantment_name", "Bank") == null
-			&& corpus.terms().translate("accessory_power", "Healthy") == null);
+			&& "治愈".equals(corpus.terms().translate("mob_name", "Healthy"))
+			&& "健康".equals(corpus.terms().translate("accessory_power", "Healthy")));
 	}
 
 	private static boolean colourSafe(String input, Surface surface) {

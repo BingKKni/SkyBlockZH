@@ -6,20 +6,9 @@
   "lines": [
     {
       "id": "pet_category",
+      "ref": "_shared/Menu_Capture_Round.json#live_c6994ffa54cd",
       "context": "宠物所属类别状态",
-      "raw": "§8%1$s Pet",
-      "text": "%1$s Pet",
-      "placeholders": [
-        {
-          "token": "%1$s",
-          "desc": "宠物类别名，保持服务器原文",
-          "type": "category_name",
-          "example": "Mining"
-        }
-      ],
-      "gloss": "类别名本身不在这条记录里翻译:它是占位符捕到的值,译名走 _shared/Terms.json,查不到就保持英文。**译文里不要手写空格**——中英之间那个空格由引擎在接缝处按两边的字符自动补(见 text/TranslationEntry.Seam):值还是英文时渲染成「Fishing 宠物」,词表里有译名时渲染成「钓鱼宠物」。手写空格的话后一种会变成「钓鱼 宠物」,两个汉字中间夹一个空格,而中文里没有这种写法。",
-      "translate": true,
-      "zh": "%1$s宠物"
+      "gloss": "类别名本身不在这条记录里翻译:它是占位符捕到的值,译名走 _shared/Terms.json,查不到就保持英文。**译文里不要手写空格**——中英之间那个空格由引擎在接缝处按两边的字符自动补(见 text/TranslationEntry.Seam):值还是英文时渲染成「Fishing 宠物」,词表里有译名时渲染成「钓鱼宠物」。手写空格的话后一种会变成「钓鱼 宠物」,两个汉字中间夹一个空格,而中文里没有这种写法。"
     },
     {
       "id": "progress_to_level",
@@ -148,8 +137,8 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "desc": "宠物道具名,保留英文",
-          "type": "item_name",
+          "desc": "目录确认的宠物道具，复用已有物品译名。",
+          "type": "catalog_item_name",
           "example": "Dwarf Turtle Shelmet"
         }
       ],

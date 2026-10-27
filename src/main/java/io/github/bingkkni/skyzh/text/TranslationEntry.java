@@ -640,6 +640,11 @@ public final class TranslationEntry {
 		int end = match.end(group);
 		String value = source.plain().substring(start, end);
 		String type = this.argTypes.get(group);
+		if ("loadout_item_name".equals(type) && ItemNames.isLoadoutReference(value)) {
+			Component item = TooltipTranslator.translateItemNameAvailable(source.slice(start, end)).padded();
+			seam.append(item, StyledText.of(item).plain(), style, true, true);
+			return;
+		}
 		String translated = terms.translate(type, value);
 		String written = translated != null ? translated : Capture.of(type).renderValue(value);
 		if ("player_or_self".equals(type) && "You".equals(value) && selfReference(source, start, end)) {

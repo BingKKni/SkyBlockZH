@@ -6066,87 +6066,8 @@
     },
     {
       "id": "neu_da61b0a30ef3",
-      "context": "物品 Lore 整句；ATTRIBUTE_SHARD_LATHERING_GREED;1",
-      "raw": "§7Gain §a%s §7more §6Honeycomb §7from hunting mobs spawned from §aTrees §7lathered with §6Honeycomb§7.",
-      "text": "Gain %s more Honeycomb from hunting mobs spawned from Trees lathered with Honeycomb.",
-      "placeholders": [
-        {
-          "token": "%s",
-          "type": "number",
-          "desc": "服务器显示的数值",
-          "example": "+10%"
-        }
-      ],
-      "translate": true,
-      "zh": "为树木涂抹蜜脾后，狩猎其生成的生物时，额外获得 %s 蜜脾。",
-      "source_items": [
-        "ATTRIBUTE_SHARD_LATHERING_GREED;1"
-      ],
-      "_review": "no-matching-segment:from hunting mobs spawned from ",
-      "segments": [
-        {
-          "color": "§7",
-          "text": "Gain ",
-          "zh": "为",
-          "order": 0
-        },
-        {
-          "color": "§a",
-          "text": "%s ",
-          "zh": "%s ",
-          "order": 5
-        },
-        {
-          "color": "§7",
-          "text": "more ",
-          "zh": "",
-          "order": 7,
-          "omit": true
-        },
-        {
-          "color": "§6",
-          "text": "Honeycomb ",
-          "zh": "蜜脾",
-          "order": 6
-        },
-        {
-          "color": "§7",
-          "text": "from hunting mobs spawned from ",
-          "zh": "后，狩猎其生成的生物时，额外获得 ",
-          "order": 4
-        },
-        {
-          "color": "§a",
-          "text": "Trees ",
-          "zh": "树木",
-          "order": 1
-        },
-        {
-          "color": "§7",
-          "text": "lathered with ",
-          "zh": "涂抹",
-          "order": 2
-        },
-        {
-          "color": "§6",
-          "text": "Honeycomb",
-          "zh": "蜜脾",
-          "order": 3
-        },
-        {
-          "color": "§7",
-          "text": ".",
-          "zh": "。",
-          "order": 8
-        }
-      ],
-      "samples": [
-        [
-          "§7Gain §a+10% §7more §6Honeycomb §7from",
-          "§7hunting mobs spawned from §aTrees",
-          "§7lathered with §6Honeycomb§7."
-        ]
-      ]
+      "ref": "Foraging/GUI_Lore/Attribute_Menu_Round.json#live_11a4ff65ba7b",
+      "context": "物品 Lore 整句；ATTRIBUTE_SHARD_LATHERING_GREED;1"
     },
     {
       "id": "neu_61c81f4f7195",
@@ -6167,44 +6088,8 @@
     },
     {
       "id": "neu_9053600640f8",
-      "context": "物品 Lore 整句；ATTRIBUTE_SHARD_SACK_SIZE;1",
-      "raw": "§7Your sacks can hold §a%s §7more items.",
-      "text": "Your sacks can hold %s more items.",
-      "placeholders": [
-        {
-          "token": "%s",
-          "type": "number",
-          "desc": "服务器显示的数值",
-          "example": "+1%"
-        }
-      ],
-      "translate": true,
-      "zh": "收纳袋的物品容量提高 %s。",
-      "source_items": [
-        "ATTRIBUTE_SHARD_SACK_SIZE;1"
-      ],
-      "segments": [
-        {
-          "color": "§7",
-          "text": "Your sacks can hold ",
-          "zh": "收纳袋的物品容量提高 "
-        },
-        {
-          "color": "§a",
-          "text": "%s ",
-          "zh": "%s"
-        },
-        {
-          "color": "§7",
-          "text": "more items.",
-          "zh": "。"
-        }
-      ],
-      "samples": [
-        [
-          "§7Your sacks can hold §a+1% §7more items."
-        ]
-      ]
+      "ref": "Foraging/GUI_Lore/Attribute_Menu_Round.json#live_f435b3d48def",
+      "context": "物品 Lore 整句；ATTRIBUTE_SHARD_SACK_SIZE;1"
     },
     {
       "id": "neu_7dcb28126bee",
@@ -22652,7 +22537,7 @@
         }
       ],
       "translate": true,
-      "zh": "来自怪物和矿石的所有经验获取量提高 %s。",
+      "zh": "击杀怪物或挖掘矿石时，获得的经验提高 %s。",
       "source_items": [
         "SHIMMERING_LIGHT_HOOD",
         "SHIMMERING_LIGHT_SLIPPERS",
@@ -22662,17 +22547,17 @@
       "segments": [
         {
           "text": "Increases all ",
-          "zh": "来自怪物和矿石的所有",
+          "zh": "击杀怪物或挖掘矿石时，",
           "color": "§7"
         },
         {
           "text": "Experience Orbs ",
-          "zh": "经验",
+          "zh": "获得的经验",
           "color": "§a"
         },
         {
           "text": "gained from monsters and ores by ",
-          "zh": "获取量提高 ",
+          "zh": "提高 ",
           "color": "§7"
         },
         {
@@ -22692,7 +22577,8 @@
           "§7gained from monsters and ores by",
           "§a200%§7."
         ]
-      ]
+      ],
+      "gloss": "经验球在此指怪物和矿石提供的经验；按实际获取来源组织语序，不译成从经验球获取的经验。"
     },
     {
       "id": "neu_0eb17fb14dab_wiki",

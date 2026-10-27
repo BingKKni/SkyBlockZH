@@ -17,7 +17,8 @@ import org.slf4j.LoggerFactory;
 /** Offline NEU item identities, separate from translated menu labels and gameplay terms. */
 public final class ItemNames {
 	private static final Pattern PET = Pattern.compile("^\\[Lvl \\d{1,3}] (.+)$");
-	private static final Pattern STARS = Pattern.compile(" [✪★☆➊➋➌➍➎]+$");
+	private static final Pattern STARS = Pattern.compile(" [✪★☆➊➋➌➍➎✦]+$");
+	private static final Pattern LEADING_ICON = Pattern.compile("^" + Capture.ICON.regex() + " ");
 	private static final ItemNames INSTANCE = load();
 
 	private final Map<String, String> names;
@@ -36,7 +37,7 @@ public final class ItemNames {
 		if (data.has(key)) {
 			for (JsonElement entry : data.getAsJsonArray(key)) {
 				String name = entry.getAsString();
-				result.put(name.toLowerCase(Locale.ROOT), name);
+				result.put(Glyphs.canonical(name).toLowerCase(Locale.ROOT), name);
 			}
 		}
 		return Map.copyOf(result);
@@ -58,7 +59,7 @@ public final class ItemNames {
 	/** Only complete names and known item decorations qualify; unknown text fails closed. */
 	public static String canonical(String value) {
 		String display = value.trim();
-		String name = STARS.matcher(display).replaceFirst("");
+		String name = Glyphs.canonical(STARS.matcher(display).replaceFirst(""));
 		String exact = INSTANCE.names.get(name.toLowerCase(Locale.ROOT));
 		if (exact != null) {
 			return display;
@@ -76,12 +77,25 @@ public final class ItemNames {
 		return null;
 	}
 
+	/** A decorated item still needs a complete catalog identity after its leading server icons. */
+	public static boolean isLoadoutReference(String value) {
+		if (!value.equals(value.trim())) return false;
+		if (canonical(value) != null) return true;
+		String bare = value;
+		for (int count = 0; count < 3; count++) {
+			Matcher icon = LEADING_ICON.matcher(bare);
+			if (!icon.find()) break;
+			bare = bare.substring(icon.end());
+		}
+		return canonical(bare) != null;
+	}
+
 	/**
 	 * Whether this is a base catalog name as written, dungeon stars aside, with no reforge in front.
 	 * "Hyper Catalyst" and "Heavy Helmet" start with a reforge word and are still items of their own.
 	 */
 	public static boolean isBaseName(String value) {
-		String name = STARS.matcher(value.trim()).replaceFirst("");
+		String name = Glyphs.canonical(STARS.matcher(value.trim()).replaceFirst(""));
 		return INSTANCE.names.containsKey(name.toLowerCase(Locale.ROOT));
 	}
 }

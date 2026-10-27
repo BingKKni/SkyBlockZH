@@ -67,6 +67,49 @@ public final class TranslationHarness {
 
 		System.out.println();
 		installIndex(index);
+		check("社交五级解锁岛屿NPC并保留商品高亮", "§fAbility to purchase §dIsland NPCs §ffrom Amelia", Surface.CHAT,
+			"§f可向 Amelia 购买§d岛屿 NPC");
+		check("社交奖励同句也覆盖技能菜单", "§fAbility to purchase §dIsland NPCs §ffrom Amelia", Surface.ITEM,
+			"§f可向 Amelia 购买§d岛屿 NPC");
+		checkTooltipName("烈焰护甲部件不会被图鉴等级模板替代", "Blaze Helmet", "烈焰头盔");
+		checkTooltipName("僵尸护甲部件仍使用物品部位", "Zombie Chestplate", "僵尸胸甲");
+		checkTooltipName("僵尸领主护甲部件仍使用物品部位", "Zombie Lord Helmet", "僵尸领主头盔");
+		checkTooltipName("鲑鱼护甲部件仍使用物品部位", "Salmon Boots", "鲑鱼靴子");
+		check("同名烈焰人图鉴等级仍可翻译", "Blaze XII", Surface.ITEM, "烈焰人 XII");
+		check("同名鲑鱼图鉴等级仍可翻译", "Salmon XII", Surface.ITEM, "鲑鱼 XII");
+		for (String[] established : List.of(
+			new String[] {"Arcane Fortune", "奥术寻宝"}, new String[] {"Critter Fortune", "小动物寻宝"},
+			new String[] {"Cubic Fortune", "方块寻宝"}, new String[] {"Elusive Fortune", "行踪不定寻宝"},
+			new String[] {"Flying Fortune", "飞行寻宝"}, new String[] {"Frozen Fortune", "冰冻寻宝"},
+			new String[] {"Subterranean Fortune", "地底寻宝"}, new String[] {"Woodland Fortune", "林地寻宝"})) {
+			check("既有 Galatea 技能名不被新增词批量改写 " + established[0], established[0] + " I",
+				Surface.ITEM, established[1] + " I");
+		}
+		check("重量数值和磅单位均保持绿色", "§7Current weight: §a12 lb", Surface.ITEM, "§7当前重量: §a12 磅");
+		check("倍率标签的数值和单位均保持绿色", "§7Speed multiplier: §a20x", Surface.ITEM, "§7速度倍率: §a20 倍");
+		check("每日抽奖保留新日及天赋名高亮", "§bNew day! §eYour §2Lottery §ebuff changed!", Surface.CHAT,
+			"§b新的一天! §e你的§2抽奖§e加成已改变!");
+		check("暗黑拍卖会通知沿用术语且保留活动颜色",
+			"§fThe next §5Dark Auction §fwill be taking place very soon. Same time, same place as usual.", Surface.CHAT,
+			"§f下一场§5暗黑拍卖会§f马上就要开始了。老时间，老地方。");
+		check("时间膨胀先写生效区域，区域和减速数值保持绿色",
+			"§a§lTIME DILATION! §eGoes down §a2x §eslower while in the §aColosseum§e!", Surface.CHAT,
+			"§a§l时间膨胀! §e在§a竞技场§e内，时间流逝的速度降低§a一半§e!");
+		check("预设引用染色装备时保留标记、重铸和星级各段颜色",
+			"§7Helmet: §4✿ §dAncient Mineral Helmet §6✪✪", Surface.ITEM,
+			"§7头盔: §4✿ §d远古 矿物头盔 §6✪✪");
+		Component familyList = Probe.draw(Component.literal("§7Mob Types: §9 Aquatic§7, §2 Animal"), Surface.ITEM);
+		report("生物图鉴按类别分别翻译，不被动物菜单模板吞掉",
+			legacy(familyList).equals(legacy(Component.literal("§7生物类型: §9 水生§7, §2 动物"))), legacy(familyList));
+		check("小写开头的gorF专名可用于图鉴加成", "§6gorF Bonuses", Surface.ITEM, "§6gorF 加成");
+		check("图鉴掉落数量和百分比均保留原色", "§8 ■ §fPoisonous Potato §8x2 (§a2%§8)", Surface.ITEM,
+			"§8 ■ §f毒马铃薯 §8x2 (§a2%§8)");
+		check("挖掘奖励实心圆项目符号复用已有标签", "§8 ● §6Coins", Surface.ITEM, "§8 ● §6硬币");
+		checkNoMatch("未知名字不因掉落百分比而被识别为真实物品", "Unverified Special Helmet x2 (2%)", Surface.ITEM);
+		report("分类名不接受单个图标", !Capture.of("category_name").accepts(""), "图标不能被当作动物类别或名称");
+		report("属性名不会吞掉条件从句", !Capture.of("stat_name").accepts("Overbloom on Pests"), "on Pests 是效果条件");
+		report("预设引用拒绝未确认的装备名", !Capture.of("loadout_item_name").accepts("Unverified Special Helmet"),
+			"只有真实目录物品可以使用预设引用翻译");
 		checkGuideItemNameCatalog(files, index);
 		report("审计承认精确保留的聊天行", LogAudit.covered(" +Drain IV"), "translate:false 的聊天行不应再次报告");
 		report("审计不豁免未知聊天行", !LogAudit.covered(" +Unverified IV"), "保留规则必须是精确行");
@@ -2215,12 +2258,15 @@ public final class TranslationHarness {
 		// Only for the kind that has no shape of its own. A NUMBER whose example reads "1,234" is
 		// still matched by "1", and taking the example there would test the corpus's prose rather
 		// than the engine's rule.
-		if ((capture == Capture.PHRASE || capture == Capture.CATALOG_ITEM || capture == Capture.ITEM_PART || capture == Capture.BAIT_KIND || capture == Capture.SHARD_KIND)
+		if ((capture == Capture.PHRASE || capture == Capture.CATALOG_ITEM || capture == Capture.LOADOUT_ITEM
+			|| capture == Capture.ATTRIBUTE_VALUE || capture == Capture.ITEM_PART || capture == Capture.BAIT_KIND || capture == Capture.SHARD_KIND)
 			&& !example.isEmpty() && capture.accepts(example)) {
 			return example;
 		}
 
 		return switch (capture) {
+			case MOB_FAMILY -> "Aquatic";
+			case STAT_NAME -> "Health";
 			case PLAYER, PLAYER_DISPLAY -> "PlayerName";
 			case YEAR -> "2026";
 			case DAY_OF_MONTH -> "28";
@@ -3251,8 +3297,8 @@ public final class TranslationHarness {
 			"§e点击切换至属性菜单!");
 		check("批量吸收动作使用精确记录", "§eClick to mass Syphon!", Surface.ITEM, "§e点击批量吸收!");
 		checkNoMatch("未知 Click to 动作不再由宽模板吞掉", "§eClick to unverified action!", Surface.ITEM);
-		check("Overflow Mana 技能标题使用精确记录", "§6Ability: Overflow Mana ", Surface.ITEM,
-			"§6技能: Overflow Mana ");
+		check("Overflow Mana 完整实测后翻译技能名并保留尾空格", "§6Ability: Overflow Mana ", Surface.ITEM,
+			"§6技能: 溢出法力 ");
 		checkNoMatch("未知技能标题不再由宽模板吞掉", "§6Ability: Unverified Effect ", Surface.ITEM);
 		// A raw "Level %s" used to swallow the Combat Merchant's wrapped lore line as an HOTM level.
 		check("山心天赋单个等级", "§7Level §a5", Surface.ITEM, "§7等级 §a5");

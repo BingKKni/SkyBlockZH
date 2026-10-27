@@ -3763,7 +3763,7 @@
       {
         "start": 1,
         "consumed": 3,
-        "expected": "§7来自怪物和矿石的所有§a经验§7获取量提高 §a200%§7。"
+        "expected": "§7击杀怪物或挖掘矿石时，§a获得的经验§7提高 §a200%§7。"
       }
     ]
   },
@@ -8353,5 +8353,96 @@
       "§9Experience I"
     ],
     "miss": true
+  },
+  {
+    "name": "本轮雪貂经验球按拾取触发，保留数值与高亮",
+    "lines": ["§7Gain §a+10% §7experience from §bXP Orbs§7."],
+    "consumed": 1,
+    "expected": "§7拾取§b经验球§7时，获得的经验§a+10%§7。"
+  },
+  {
+    "name": "本轮雪貂经验球加成不写死采集值",
+    "lines": ["§7Gain §a+25% §7experience from §bXP Orbs§7."],
+    "consumed": 1,
+    "expected": "§7拾取§b经验球§7时，获得的经验§a+25%§7。"
+  },
+  {
+    "name": "本轮属性预览保留被划去的原值、箭头和增幅值",
+    "lines": ["§7Grants §8§m2§8§l§m→§8§m+4§8 2.06§8§l→§c+4.12  Health§7."],
+    "consumed": 1,
+    "expected_plain": "获得 2→+4 2.06→+4.12  生命值。",
+    "colour_fragments": ["§8§m2§8§l§m→§8§m+4", "§c+4.12", "§c生命值"]
+  },
+  {
+    "name": "本轮属性整句跨行匹配抗热",
+    "lines": ["§7Grants §83§8§l→§b+4  Heat", "§bResistance§7."],
+    "consumed": 2,
+    "expected_plain": "获得 3→+4  抗热。",
+    "colour_fragments": ["§b+4", "§b抗热"]
+  },
+  {
+    "name": "本轮魔法八号球的采矿智慧使用属性译名",
+    "lines": ["§3+1☯ Mining Wisdom"],
+    "units": [{"start": 0, "consumed": 1, "expected_plain": "+1☯ 挖掘智慧"}]
+  },
+  {
+    "name": "本轮时运两句跨过同一英文行，保留材料和基础时运颜色",
+    "lines": ["§7Wheat Fortune is the chance to gain", "§7multiple drops from §aWheat§7. This", "§7chance is added on top of your §6", "§6Farming Fortune§7."],
+    "consumed": 4,
+    "expected_plain": "小麦时运提高采集小麦时获得多倍掉落的概率；该概率与  农业时运提供的概率相加。",
+    "colour_fragments": ["§a小麦§7时获得", "§6 农业时运"]
+  },
+  {
+    "name": "本轮染料属性保留四段彩虹色",
+    "lines": ["§7Increases your chance of finding", "§cD§6y§ee§as§7 by §80%§8§l→§a+0.1%§7."],
+    "consumed": 2,
+    "expected_plain": "各色染料的掉落概率提高 0%→+0.1%。",
+    "colour_fragments": ["§c各§6色§e染§a料", "§a+0.1%"]
+  },
+  {
+    "name": "社交购买奖励完整匹配跨行Amelia，不重复尾句",
+    "lines": ["§fAbility to purchase §dIsland NPCs", "§ffrom Amelia"],
+    "consumed": 2,
+    "expected": "§f可向 Amelia 购买§d岛屿 NPC"
+  },
+  {
+    "name": "黄金鱼冷却预览转换两侧时长且保留单位颜色",
+    "lines": ["§7The cooldown of Golden Fish is", "§7reduced by §830s§8§l→§a+1m 0s§7."],
+    "consumed": 2,
+    "expected_plain": "黄金鱼的冷却时间缩短 30 秒→+1 分 0 秒。",
+    "colour_fragments": ["§830 秒", "§8§l→", "§a+1 分 0 秒"]
+  },
+  {
+    "name": "神秘分心升级预览不把秒单位刷成灰色正文",
+    "lines": ["§7Pacifies enemies for §80s§8§l→§a+1s", "§7after mining §fOpal Gemstones §7in the", "§cSmoldering Tomb§7."],
+    "consumed": 3,
+    "expected_plain": "在阴燃墓穴挖掘 Opal 宝石后，使敌人平静 0 秒→+1 秒。",
+    "colour_fragments": ["§a+1 秒", "§c阴燃墓穴", "§fOpal 宝石"]
+  },
+  {
+    "name": "宠物评分说明保留独特种类和稀有度颜色",
+    "lines": ["§dPet Score §7is calculated based on", "§7how many §aunique §7pets you have and", "§7their §6rarity§7."],
+    "consumed": 3,
+    "expected_plain": "宠物评分根据你拥有的不同宠物种类及其稀有度计算。",
+    "colour_fragments": ["§d宠物评分", "§a不同", "§6稀有度"]
+  },
+  {
+    "name": "青铜锦标蛙袋保留品质的粗体",
+    "lines": ["§7Holds §8§lBRONZE §2Trophy Frogs §7found", "§7on the §3Lotus Atoll§7!"],
+    "consumed": 2,
+    "expected_plain": "存放在莲花环礁发现的青铜锦标蛙!",
+    "colour_fragments": ["§8§l青铜", "§2锦标蛙", "§3莲花环礁"]
+  },
+  {
+    "name": "图鉴合并双句不保留英文句间空格",
+    "lines": ["§7It's on fire. But more than usual."],
+    "consumed": 1,
+    "expected": "§7它着火了。而且烧得比平时更旺。"
+  },
+  {
+    "name": "图鉴跨行双句和专名接缝保留中文排版",
+    "lines": ["§7Always up to no good. When they get", "§7together with Pucks, even more", "§7trouble is caused."],
+    "consumed": 3,
+    "expected": "§7总在惹是生非。和 Puck 凑在一起时，惹出的麻烦只会更多。"
   }
 ]

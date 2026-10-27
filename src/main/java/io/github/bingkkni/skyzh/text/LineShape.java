@@ -60,7 +60,9 @@ public final class LineShape {
 	private static final Pattern ITEM_COUNT = Pattern.compile(" x[0-9][0-9,]*$");
 	private static final Pattern ITEM_PROGRESS = Pattern.compile("[0-9][0-9,]*/[0-9][0-9,]*(?: \\([0-9][0-9,]*x\\))? ");
 	private static final Pattern ITEM_STARS = Pattern.compile(" [✪★☆➊➋➌➍➎]+$");
-	private static final Pattern ITEM_DROP_CHANCE = Pattern.compile(" \\([0-9][0-9,.]*[kKmMbB]?/[0-9][0-9,.]*[kKmMbB]?\\)$");
+	private static final Pattern ITEM_DROP_CHANCE = Pattern.compile(
+		" \\((?:[0-9][0-9,.]*[kKmMbB]?/[0-9][0-9,.]*[kKmMbB]?|[0-9][0-9,.]*%)\\)$"
+	);
 	private static final Pattern ITEM_MARKET_PRICES = Pattern.compile(" [0-9][0-9,.]*[kKmMbB]? \\| [0-9][0-9,.]*[kKmMbB]?$");
 
 	private LineShape() {
@@ -134,9 +136,12 @@ public final class LineShape {
 			var chance = ITEM_DROP_CHANCE.matcher(plain.substring(0, end));
 			if (chance.find()) {
 				for (Range candidate : List.copyOf(ranges)) {
-					if (candidate.start() < chance.start()
-						&& ItemNames.canonical(plain.substring(candidate.start(), chance.start())) != null) {
-						add(ranges, candidate.start(), chance.start());
+					if (candidate.start() >= chance.start()) continue;
+					int nameEnd = chance.start();
+					var quantity = ITEM_COUNT.matcher(plain.substring(candidate.start(), nameEnd));
+					if (quantity.find()) nameEnd = candidate.start() + quantity.start();
+					if (ItemNames.canonical(plain.substring(candidate.start(), nameEnd)) != null) {
+						add(ranges, candidate.start(), nameEnd);
 					}
 				}
 			}
@@ -220,7 +225,7 @@ public final class LineShape {
 	 * says the same thing either way — "Death Messages" — so stepping over the mark lets one record
 	 * answer for both states and leaves each mark in the colour that is carrying the meaning.
 	 */
-	private static final String BULLETS = "▶▸➤➜⇨■◼○◆•⦾⁍⚑✔✖✯";
+	private static final String BULLETS = "▶▸➤➜⇨■◼○◆•●⦾⁍⚑✔✖✯";
 
 	/** Whether this character is one of those marks. Used by {@link Capture} to refuse it as a name. */
 	public static boolean isBullet(char c) {

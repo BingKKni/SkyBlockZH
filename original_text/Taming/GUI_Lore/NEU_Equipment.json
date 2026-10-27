@@ -10683,7 +10683,7 @@
         }
       ],
       "translate": true,
-      "zh": "破坏末地石时获得更多经验球，且有 %s 几率额外掉落一个方块",
+      "zh": "破坏末地石时，获得更多经验，且有 %s 的概率额外掉落一个方块。",
       "source_items": [
         "ENDERMITE;0",
         "ENDERMITE;1",
@@ -10697,7 +10697,7 @@
         {
           "color": "§7",
           "text": "Gain more exp orbs for breaking end stone and gain a +",
-          "zh": "破坏末地石时获得更多经验球，且有 "
+          "zh": "破坏末地石时，获得更多经验，且有 "
         },
         {
           "color": "§a",
@@ -10707,7 +10707,7 @@
         {
           "color": "§7",
           "text": "chance to get an extra block dropped",
-          "zh": "几率额外掉落一个方块"
+          "zh": "的概率额外掉落一个方块。"
         }
       ],
       "samples": [
@@ -10716,7 +10716,8 @@
           "§7stone and gain a +§a10% §7chance to get",
           "§7an extra block dropped"
         ]
-      ]
+      ],
+      "gloss": "描述破坏末地石时获得的经验加成，不把经验量写成经验球数量，也不改为拾取触发。"
     },
     {
       "id": "neu_9629d07bcf5f",
@@ -28594,7 +28595,8 @@
         }
       ],
       "translate": true,
-      "zh": "从经验球获得的经验 %s。",
+      "gloss": "用户拍板：描述经验球拾取加成时，先写拾取经验球时，再写获得的经验加成；不直译为从经验球获取的经验。数值含服务器原有的正号与百分号。",
+      "zh": "拾取经验球时，获得的经验%s。",
       "source_items": [
         "RIFT_FERRET;3"
       ],
@@ -28602,7 +28604,7 @@
         {
           "color": "§7",
           "text": "Gain ",
-          "zh": "从",
+          "zh": "拾取",
           "order": 0
         },
         {
@@ -28614,7 +28616,7 @@
         {
           "color": "§7",
           "text": "experience from ",
-          "zh": "获得的经验 ",
+          "zh": "时，获得的经验",
           "order": 2
         },
         {
@@ -33477,78 +33479,8 @@
     },
     {
       "id": "neu_346c6d880726",
-      "context": "物品 Lore 整句；WITCH;0",
-      "raw": "§7Increases your chance of dropping §6Ingredients§7 during the §5Year of the Witch§7 by §a%s§7.",
-      "text": "Increases your chance of dropping Ingredients during the Year of the Witch by %s.",
-      "placeholders": [
-        {
-          "token": "%s",
-          "type": "number",
-          "desc": "服务器显示的数值",
-          "example": "10%"
-        }
-      ],
-      "translate": true,
-      "zh": "女巫年期间，材料的掉落概率提高 %s。",
-      "source_items": [
-        "WITCH;0",
-        "WITCH;1",
-        "WITCH;2",
-        "WITCH;3",
-        "WITCH;4"
-      ],
-      "_review": "no-matching-segment:Year of the Witch",
-      "segments": [
-        {
-          "color": "§7",
-          "text": "Increases your chance of dropping ",
-          "zh": "的掉落概率",
-          "order": 3
-        },
-        {
-          "color": "§6",
-          "text": "Ingredients",
-          "zh": "材料",
-          "order": 2
-        },
-        {
-          "color": "§7",
-          "text": " during the ",
-          "zh": "期间，",
-          "order": 1
-        },
-        {
-          "color": "§5",
-          "text": "Year of the Witch",
-          "zh": "女巫年",
-          "order": 0
-        },
-        {
-          "color": "§7",
-          "text": " by ",
-          "zh": "提高 ",
-          "order": 4
-        },
-        {
-          "color": "§a",
-          "text": "%s",
-          "zh": "%s",
-          "order": 5
-        },
-        {
-          "color": "§7",
-          "text": ".",
-          "zh": "。",
-          "order": 6
-        }
-      ],
-      "samples": [
-        [
-          "§7Increases your chance of dropping",
-          "§6Ingredients§7 during the §5Year of the",
-          "§5Witch§7 by §a10%§7."
-        ]
-      ]
+      "ref": "Foraging/GUI_Lore/Attribute_Menu_Round.json#live_002bb3b9cd46",
+      "context": "物品 Lore 整句；WITCH;0"
     },
     {
       "id": "neu_1e52d02db4cc",

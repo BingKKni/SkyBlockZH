@@ -41,6 +41,10 @@ public enum Capture {
 	/** Equipment stat value plus numeric bonus brackets; never a neighbouring stat label. */
 	STAT_VALUE("[+\\-]?[0-9][0-9,.]*%?(?: \\([+\\-]?[0-9][0-9,.]*%?\\)){0,8}", false),
 
+	/** Attribute previews show old→new and unbuffed/buffed numbers, with live styles on each value. */
+	ATTRIBUTE_VALUE("[+\\-]?[0-9][0-9,.]*(?:%|[kKMBx])?(?:→[+\\-]?[0-9][0-9,.]*(?:%|[kKMBx])?)?"
+		+ "(?: [+\\-]?[0-9][0-9,.]*(?:%|[kKMBx])?(?:→[+\\-]?[0-9][0-9,.]*(?:%|[kKMBx])?)?){0,3}", false),
+
 	/** Calendar components; unlike NUMBER, a year cannot also swallow an ordinal day like 4th. */
 	YEAR("[12][0-9]{3}", false),
 	DAY_OF_MONTH("(?:0?[1-9]|[12][0-9]|3[01])", false),
@@ -51,11 +55,19 @@ public enum Capture {
 	 */
 	NAME("[^\\n]{1,48}?"),
 
+	/** One family label, never a comma-separated list of several icons and family names. */
+	MOB_FAMILY("[A-Z][A-Za-z]{1,31}", false),
+
+	/** Attribute names such as Mining Speed; a following lowercase clause is never part of a stat. */
+	STAT_NAME("[A-Z][A-Za-z]+(?: [A-Z][A-Za-z]+){0,3}", false),
+
 	/** Item names also contain model abbreviations and initials, e.g. Mk. III and L.A.S.R.'s Eye. */
 	ITEM_NAME(NAME.regex),
 
 	/** Explicit opt-in item references in recipes/menus; unknown names cannot become fake matches. */
 	CATALOG_ITEM(NAME.regex, false),
+	/** A real loadout equipment name, including its attested dye/upgrade marks and dungeon stars. */
+	LOADOUT_ITEM("[^\\n]{1,112}?", false),
 	BAIT_KIND(NAME.regex, false),
 	/** Attribute shards must be real catalog base names, not any capitalized phrase plus Shard. */
 	SHARD_KIND(NAME.regex, false),
@@ -71,7 +83,7 @@ public enum Capture {
 		+ "red on the inside and green on the outside|cooked potato|meat from a fowl)", false),
 
 	/** Closed suffixes for translated armor, woodworking and furniture families, never enchantments. */
-	ITEM_PART("(?:Helmet|Chestplate|Leggings|Boots|Belt|Ring|Artifact|Armor|Set|Planks|Wood Slab|Wood Stairs|Slab|Stairs|Door|Fence Gate|Fence|Sofa|Bed|Bench|Armchair|Side Table|Coffee Table|Tea Table|Dinner Table|Fireplace|Bookshelf|Dresser|Chair|Table)", false),
+	ITEM_PART("(?:Helmet|Chestplate|Leggings|Boots|Cloak|Gloves|Bracelet|Necklace|Belt|Ring|Artifact|Armor|Set|Planks|Wood Slab|Wood Stairs|Slab|Stairs|Door|Fence Gate|Fence|Sofa|Bed|Bench|Armchair|Side Table|Coffee Table|Tea Table|Dinner Table|Fireplace|Bookshelf|Dresser|Chair|Table)", false),
 
 	/** A player's name, which Minecraft limits to sixteen word characters. */
 	PLAYER("[A-Za-z0-9_]{1,16}"),
@@ -209,6 +221,7 @@ public enum Capture {
 		return switch (type == null ? "" : type.toLowerCase(Locale.ROOT)) {
 			case "number", "percentage", "coins" -> NUMBER;
 			case "stat_value" -> STAT_VALUE;
+			case "attribute_value" -> ATTRIBUTE_VALUE;
 			case "year" -> YEAR;
 			case "day_of_month" -> DAY_OF_MONTH;
 			case "time", "duration" -> DURATION;
@@ -226,6 +239,7 @@ public enum Capture {
 			// the rest of the sentence in its place.
 			case "item_name", "guide_item_name", "loot_item_name", "recipe_target" -> ITEM_NAME;
 			case "catalog_item_name" -> CATALOG_ITEM;
+			case "loadout_item_name" -> LOADOUT_ITEM;
 			case "item_part" -> ITEM_PART;
 			case "bait_kind" -> BAIT_KIND;
 			case "shard_kind" -> SHARD_KIND;
@@ -235,8 +249,10 @@ public enum Capture {
 			case "equipment_slot" -> EQUIPMENT_SLOT;
 			case "hunter_quality" -> TROPHY_QUALITY;
 			case "hungry_hiker_food" -> HUNGRY_HIKER_FOOD;
+			case "mob_family" -> MOB_FAMILY;
+			case "stat_name" -> STAT_NAME;
 			case "npc_name", "profile_name", "location_name", "mob_name", "rarity", "category_name",
-				"enchantment_name", "enchantment_crop", "mob_family", "accessory_power", "skyblock_month", "dragon_type",
+				"enchantment_name", "enchantment_crop", "accessory_power", "skyblock_month", "dragon_type",
 				"rng_meter_source", "difficulty", "reputation_rank", "rift_clue", "dye_name" -> NAME;
 			case "player_name", "player_or_self" -> PLAYER;
 			case "player_display" -> PLAYER_DISPLAY;
@@ -276,12 +292,14 @@ public enum Capture {
 		return switch (this) {
 			// The regex is the whole of the rule for these: a numeral is a numeral, and a player's
 			// name is whatever sixteen word characters somebody chose.
-			case NUMBER, STAT_VALUE, YEAR, DAY_OF_MONTH, PLAYER, PLAYER_DISPLAY, RANK, TIER, LEVEL, TIER_RANGE, ICON, ITEM_PART, TRAINING_KIND, TROPHY_QUALITY, GEMSTONE_KIND, GEMSTONE_QUALITY, ORDINAL, DURATION, DURATION_SPACED, DURATION_WORDS, SEARCH_QUERY -> true;
+			case NUMBER, STAT_VALUE, ATTRIBUTE_VALUE, YEAR, DAY_OF_MONTH, PLAYER, PLAYER_DISPLAY, RANK, TIER, LEVEL, TIER_RANGE, ICON, ITEM_PART, TRAINING_KIND, TROPHY_QUALITY, GEMSTONE_KIND, GEMSTONE_QUALITY, ORDINAL, DURATION, DURATION_SPACED, DURATION_WORDS, SEARCH_QUERY -> true;
 			case EQUIPMENT_SLOT, TROPHY_FISH_NAME, CONTEST_RANK, RIFT_ABILITY, HUNGRY_HIKER_FOOD, CLOCK_DURATION, RACE_TIME, PROGRESS, HUD_NUMBER, HEALTH_ICONS, ORDINAL_WORD, COMMISSION_AREA -> value.matches(this.regex);
 			case MULTIPLIER_INCREASE -> new BigDecimal(value).compareTo(BigDecimal.ONE) >= 0;
 			case NAME -> isName(value);
+			case MOB_FAMILY, STAT_NAME -> value.matches(this.regex);
 			case ITEM_NAME -> isItemName(value);
 			case CATALOG_ITEM -> isItemName(value) && ItemNames.canonical(value) != null;
+			case LOADOUT_ITEM -> ItemNames.isLoadoutReference(value);
 			case BAIT_KIND -> isName(value) && ItemNames.isBaseName(value + " Bait");
 			case SHARD_KIND -> isName(value) && ItemNames.isBaseName(value + " Shard");
 			case PHRASE -> isValue(value);
@@ -293,7 +311,7 @@ public enum Capture {
 	 * player's 34) rather than being a count: see TranslationEntry's seam spacing.
 	 */
 	public boolean nameShaped() {
-		return this == NAME || this == ITEM_NAME || this == CATALOG_ITEM || this == SHARD_KIND
+		return this == NAME || this == MOB_FAMILY || this == STAT_NAME || this == ITEM_NAME || this == CATALOG_ITEM || this == LOADOUT_ITEM || this == SHARD_KIND
 			|| this == COMMISSION_AREA || this == PLAYER || this == PLAYER_DISPLAY || this == RANK;
 	}
 
@@ -412,7 +430,7 @@ public enum Capture {
 	private static boolean isItemName(String value) {
 		// Long attested names (e.g. Travel Scroll to the Glowing Mushroom Cave) are safe even
 		// when they exceed six words. Never extend that exception to unknown prose or padding.
-		if (!value.startsWith(" ") && !value.endsWith(" ") && ItemNames.canonical(value) != null) return true;
+		if (!value.startsWith(" ") && !value.endsWith(" ") && ItemNames.isLoadoutReference(value)) return true;
 		// Relax only attested item-name syntax, never generic categories, locations or raw prose.
 		String normalised = value.replaceAll("\\bMk\\.(?= [IVXLCDM]+(?: |$))", "Mk")
 			.replace(" - ", " of "); // Model separator in Worn Huntaxe - Genesis; never allowed at an edge.
@@ -430,6 +448,8 @@ public enum Capture {
 	}
 
 	private static boolean isName(String value, int maxWords) {
+		// This attested reversed frog name deliberately begins in lowercase.
+		if ("gorF".equals(value)) return true;
 		if (value.startsWith(" ") || value.endsWith(" ")) {
 			return false;
 		}
@@ -519,7 +539,8 @@ public enum Capture {
 	private static boolean startsName(String word) {
 		char first = word.charAt(0);
 
-		if (LineShape.isBullet(first)) {
+		if (LineShape.isBullet(first) || word.codePointCount(0, word.length()) == 1
+			&& !Character.isLetterOrDigit(first)) {
 			return false;
 		}
 
