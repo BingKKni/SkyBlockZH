@@ -69,6 +69,8 @@ NPC、物品与菜单的来源边界见 [Galatea 采集范围](docs/GALATEA_COVE
 
 本项目采用 [GNU 通用公共许可证第 3 版（GPL-3.0-only）](LICENSE) 授权。完整许可证条款见 [LICENSE](LICENSE)。
 
+如需在本项目现有许可证之外获得其他授权（例如将特定代码或提交按 MIT 许可证使用），请通过邮箱 [xbudingqwq@gmail.com](mailto:xbudingqwq@gmail.com) 联系我，说明所需内容及用途。额外授权以明确回复为准，且仅限于本人有权授权的内容。遵守现有许可证的使用、修改和分发无须另行申请。
+
 ## 技术文档
 
 想了解翻译引擎是怎么实现的（渲染面、Mixin、语料格式、换行与居中的像素测量），见 [docs/TECHNICAL_zh-CN.md](docs/TECHNICAL_zh-CN.md)（中文） / [docs/TECHNICAL.md](docs/TECHNICAL.md)（English）。
