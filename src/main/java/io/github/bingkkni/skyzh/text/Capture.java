@@ -177,8 +177,8 @@ public enum Capture {
 	/** A server progress fraction; never an arbitrary sentence fragment. */
 	PROGRESS("[0-9][0-9,]*/[0-9][0-9,]*", false),
 	HUD_NUMBER("[0-9][0-9,.]*(?:/[0-9][0-9,.]*)?", false),
-	/** Glass integrity in Mirrorverse subtitle notices. */
-	HEALTH_ICONS("❤{1,16}", false),
+	/** Mirrorverse glass hearts and Great Spook fear skull health; never arbitrary suffix text. */
+	HEALTH_ICONS("(?:❤{1,16}|☠{1,5})", false),
 
 	/**
 	 * Anything the corpus has not pinned down — {@code type: raw}, or no {@code placeholders} entry

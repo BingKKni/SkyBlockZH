@@ -2657,7 +2657,7 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "type": "number",
+          "type": "attribute_value",
           "example": "+2%",
           "desc": "服务器实时数值；保留升级箭头、删除线原值与增幅后数值的原始样式"
         }
@@ -3731,7 +3731,7 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "type": "number",
+          "type": "attribute_value",
           "example": "+20%",
           "desc": "服务器实时数值；保留升级箭头、删除线原值与增幅后数值的原始样式"
         }
@@ -5592,7 +5592,7 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "type": "number",
+          "type": "attribute_value",
           "example": "+10",
           "desc": "服务器实时数值；保留升级箭头、删除线原值与增幅后数值的原始样式"
         }
@@ -5617,7 +5617,7 @@
         {
           "color": "§2",
           "text": "%1$s",
-          "zh": "%1$s ",
+          "zh": "%1$s",
           "order": 1
         },
         {
@@ -5630,7 +5630,7 @@
         {
           "color": "§2",
           "text": "",
-          "zh": " ",
+          "zh": "  ",
           "order": 2
         },
         {
@@ -6061,7 +6061,7 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "type": "number",
+          "type": "attribute_value",
           "example": "+100%",
           "desc": "服务器实时数值；保留升级箭头、删除线原值与增幅后数值的原始样式"
         }
@@ -6525,19 +6525,19 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "type": "number",
+          "type": "attribute_value",
           "example": "+100%",
           "desc": "服务器实时数值；保留升级箭头、删除线原值与增幅后数值的原始样式"
         }
       ],
       "gloss": "属性名称与附魔名称按语境区分；升级预览数值使用有界模板，保留删除线及增幅数值。",
       "translate": true,
-      "zh": "浆果和Sea Lumies有 %1$s 的概率掉落双倍。",
+      "zh": "浆果和 Sea Lumies 有 %1$s 的概率掉落双倍。",
       "segments": [
         {
           "color": "§7",
           "text": "Grants",
-          "zh": "浆果和Sea Lumies有 ",
+          "zh": "浆果和 Sea Lumies 有 ",
           "order": 0
         },
         {
@@ -10118,7 +10118,7 @@
     {
       "id": "live_c639d8fca9b6",
       "context": "属性菜单完整效果；Mana Steal X / (3/12) Attribute Menu",
-      "raw": "§r§8Cooldown: 0.5s",
+      "raw": "§8Cooldown: §a%1$ss",
       "text": "Cooldown: %1$ss",
       "placeholders": [
         {
@@ -10130,7 +10130,19 @@
       ],
       "gloss": "属性名称与附魔名称按语境区分；升级预览数值使用有界模板，保留删除线及增幅数值。",
       "translate": true,
-      "zh": "冷却时间: %1$s 秒"
+      "zh": "冷却时间: %1$s 秒",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "Cooldown: ",
+          "zh": "冷却时间: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$ss",
+          "zh": "%1$s 秒"
+        }
+      ]
     },
     {
       "id": "live_3a27c814a6e2",
@@ -22816,7 +22828,7 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "type": "number",
+          "type": "attribute_value",
           "example": "+100%",
           "desc": "服务器实时数值；保留升级箭头、删除线原值与增幅后数值的原始样式"
         },
@@ -23105,7 +23117,7 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "type": "number",
+          "type": "attribute_value",
           "example": "+10%",
           "desc": "服务器实时数值；保留升级箭头、删除线原值与增幅后数值的原始样式"
         }
@@ -23590,7 +23602,7 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "type": "number",
+          "type": "attribute_value",
           "example": "+30%",
           "desc": "服务器实时数值；保留升级箭头、删除线原值与增幅后数值的原始样式"
         }
@@ -24080,7 +24092,7 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "type": "number",
+          "type": "attribute_value",
           "example": "+50",
           "desc": "服务器实时数值；保留升级箭头、删除线原值与增幅后数值的原始样式"
         }
@@ -25350,8 +25362,8 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "type": "number",
-          "example": "+5%",
+          "type": "attribute_value",
+          "example": "1.5%→+2%",
           "desc": "服务器实时数值；保留升级箭头、删除线原值与增幅后数值的原始样式"
         }
       ],

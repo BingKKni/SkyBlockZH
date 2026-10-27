@@ -2854,7 +2854,7 @@ public final class TranslationHarness {
 
 	/** Fixed UI capture regression: ordered lore, term isolation, and clues that must survive translation. */
 	private static void checkFixedMenus(Path corpusRoot) throws Exception {
-		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "workshop-cases.json", "wiki-expansion-cases.json", "bazaar-item-names-cases.json", "rift-live-capture-cases.json", "rift-session-cases.json", "garden-weather-feast-cases.json")) {
+		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "october-live-round-cases.json", "workshop-cases.json", "wiki-expansion-cases.json", "bazaar-item-names-cases.json", "rift-live-capture-cases.json", "rift-session-cases.json", "garden-weather-feast-cases.json")) {
 		Path path = corpusRoot.toAbsolutePath().getParent().resolve("src/harness/resources/" + file);
 		JsonObject fixture = JsonParser.parseString(Files.readString(path, StandardCharsets.UTF_8)).getAsJsonObject();
 		for (JsonElement value : fixture.getAsJsonArray("cases")) {
@@ -3503,8 +3503,8 @@ public final class TranslationHarness {
 		}
 		check("熔炉槽位单数", "§8+§a1 Forge Slot", Surface.ITEM, "§8+§a1 个熔炉槽位");
 		check("熔炉槽位复数", "§8+§a2 Forge Slots", Surface.ITEM, "§8+§a2 个熔炉槽位");
-		checkJoined("代币不足的红色不被名词吞掉", List.of(
-			"§cYou don't have enough §5Token of the", "§5Mountain!"), "§5山心代币§c不足!");
+		check("山心完整代币提示的红色不被名词吞掉",
+			"§cYou don't have enough §5Token of the Mountain!", Surface.LORE, "§5山心代币§c不足!");
 		check("Front Loaded 固定三倍按增量表述", " §8■ §d3x Gemstone Powder", Surface.ITEM,
 			" §8■ §d宝石粉末获取量提升 2 倍");
 		check("Daily Grind 低等级奖励", "§2Dwarven Mines§7: §a+1,500 §2Mithril Powder", Surface.ITEM,

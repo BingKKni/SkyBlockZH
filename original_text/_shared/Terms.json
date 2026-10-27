@@ -13256,24 +13256,8 @@
       ],
       "note": "实验台 RNG 计量表的专有几率档位，保留英文。"
     },
-    {
-      "en": "Bonzo",
-      "zh": "Bonzo",
-      "types": [
-        "category_name",
-        "raw"
-      ],
-      "note": "Boss 收藏品的 Boss 人名，保留英文。"
-    },
-    {
-      "en": "Scarf",
-      "zh": "Scarf",
-      "types": [
-        "category_name",
-        "raw"
-      ],
-      "note": "Boss 收藏品的 Boss 人名，保留英文。"
-    },
+    {"en": "Bonzo", "zh": "Bonzo", "types": ["category_name", "raw", "mob_name"], "note": "Boss 收藏品的 Boss 人名，保留英文。"},
+    {"en": "Scarf", "zh": "Scarf", "types": ["category_name", "raw", "mob_name"], "note": "Boss 收藏品的 Boss 人名，保留英文。"},
     {
       "en": "The Professor",
       "zh": "The Professor",
@@ -15608,12 +15592,27 @@
     {"en": "Blocks", "zh": "方块", "types": ["category_name"], "note": "属性说明中的目标材料或树种。"},
     {"en": "Dwarven Metals", "zh": "矮人金属", "types": ["category_name"], "note": "属性说明中的目标材料或树种。"},
     {"en": "Jellyfish", "zh": "水母", "types": ["mob_name"], "note": "本轮宠物名称，普通物种名。"},
-    {"en": "Island NPC", "zh": "岛屿 NPC", "types": ["category_name"], "note": "Amelia 商品的单数写法；复用既有 Island NPCs 译名。"}
-  ],
-  "todo": [
-    "宝石种类名(Amber / Amethyst / Jade / Ruby / Sapphire / Topaz / Aquamarine / Citrine / Onyx / Peridot)按既定原则保持英文,**不要**往表里加。它们和汉字之间的空格由引擎自动处理。",
-    "自造怪物名(Thyst / Yog / Zog / Boss Corleone)按 GLOSSARY.md 保留英文,**不要**往表里加;通用词组成的怪物名已经收进来了。",
-    "设置类别名 API(“API Settings”)**故意**不加词条:这个缩写在中文技术语境里就是原样念原样写,没有通行中文译名,硬译成「接口设置」反而不如原文好认。查不到的值保持英文,引擎会在接缝处自动补空格(见 spacing_note),渲染出来是「API 设置」,已经是想要的样子。"
+    {"en": "Island NPC", "zh": "岛屿 NPC", "types": ["category_name"], "note": "Amelia 商品的单数写法；复用既有 Island NPCs 译名。"},
+    {"en": "Kelpwoven Tunnels", "zh": "海带交织隧道", "types": ["location_name"], "source": "https://hypixelskyblock.minecraft.wiki/w/Kelpwoven_Tunnels", "note": "本轮服务器采集；普通名称沿用词库，自造专名保留。"},
+    {"en": "Wyrmgrove Tomb", "zh": "龙林古墓", "types": ["location_name"], "source": "https://hypixelskyblock.minecraft.wiki/w/Wyrmgrove_Tomb", "note": "本轮服务器采集；普通名称沿用词库，自造专名保留。"},
+    {"en": "Tomb Floodway", "zh": "古墓泄洪道", "types": ["location_name"], "source": "https://hypixelskyblock.minecraft.wiki/w/Tomb_Floodway", "note": "本轮服务器采集；普通名称沿用词库，自造专名保留。"},
+    {"en": "Ancient Ruins", "zh": "远古遗迹", "types": ["location_name"], "source": "https://hypixelskyblock.minecraft.wiki/w/Ancient_Ruins", "note": "本轮服务器采集；普通名称沿用词库，自造专名保留。"},
+    {"en": "Red House", "zh": "红屋", "types": ["location_name"], "source": "https://hypixelskyblock.minecraft.wiki/w/Red_House", "note": "本轮服务器采集；普通名称沿用词库，自造专名保留。"},
+    {"en": "Tree Gift Milestones", "zh": "树木赠礼里程碑", "types": ["category_name", "raw"], "source": "../SkyZH_Logs/skyzh-capture", "note": "本轮服务器采集；普通名称沿用词库，自造专名保留。"},
+    {"en": "Luck of the Forest", "zh": "森林馈赠", "types": ["category_name"], "source": "https://hypixelskyblock.minecraft.wiki/w/Heart_of_the_Forest", "note": "本轮服务器采集；普通名称沿用词库，自造专名保留。"},
+    {"en": "Collector", "zh": "采集达人", "types": ["category_name"], "source": "https://hypixelskyblock.minecraft.wiki/w/Heart_of_the_Forest", "note": "本轮服务器采集；普通名称沿用词库，自造专名保留。"},
+    {"en": "Not loaded", "zh": "未加载", "types": ["category_name", "raw"], "source": "../SkyZH_Logs/skyzh-capture", "note": "本轮服务器采集；普通名称沿用词库，自造专名保留。"},
+    {"en": "Foraging XP Boost", "zh": "伐木经验加成", "types": ["category_name"], "source": "../SkyZH_Logs/skyzh-capture", "note": "本轮服务器采集；普通名称沿用词库，自造专名保留。"},
+    {"en": "Combat XP Boost", "zh": "战斗经验加成", "types": ["category_name"], "source": "../SkyZH_Logs/skyzh-capture", "note": "本轮服务器采集；普通名称沿用词库，自造专名保留。"},
+    {"en": "Haymaker", "zh": "横扫重击", "types": ["category_name"], "source": "https://hypixelskyblock.minecraft.wiki/w/Poltergeist_Pitchfork", "note": "本轮服务器采集；普通名称沿用词库，自造专名保留。"},
+    {"en": "Chillblade", "zh": "寒刃骷髅", "types": ["mob_name"], "source": "https://hypixelskyblock.minecraft.wiki/w/Chillblade", "note": "本轮服务器采集；普通名称沿用词库，自造专名保留。"},
+    {"en": "Chillshot", "zh": "寒弓骷髅", "types": ["mob_name"], "source": "https://hypixelskyblock.minecraft.wiki/w/Chillshot", "note": "本轮服务器采集；普通名称沿用词库，自造专名保留。"},
+    {"en": "Primal Fear", "zh": "原初恐惧", "types": ["mob_name"], "source": "https://hypixelskyblock.minecraft.wiki/w/Primal_Fear", "note": "本轮服务器采集；普通名称沿用词库，自造专名保留。"},
+    {"en": "Public Speaking Demon", "zh": "公众演讲恶魔", "types": ["mob_name"], "source": "https://hypixelskyblock.minecraft.wiki/w/Public_Speaking_Demon", "note": "本轮服务器采集；普通名称沿用词库，自造专名保留。"},
+    {"en": "Deadline", "zh": "截止期限", "types": ["mob_name"], "source": "https://hypixelskyblock.minecraft.wiki/w/Deadline", "note": "本轮服务器采集；普通名称沿用词库，自造专名保留。"},
+    {"en": "Vegan Crawler", "zh": "素食爬行者", "types": ["mob_name"], "source": "https://hypixelskyblock.minecraft.wiki/w/Vegan_Crawler", "note": "本轮服务器采集；普通名称沿用词库，自造专名保留。"},
+    {"en": "Majestic", "zh": "威仪", "types": ["reforge"], "source": "https://hypixelskyblock.minecraft.wiki/w/Reforging/Equipment", "note": "游猎腰带实测前缀；沿用 Galatea_Menus 的 Majestic Bonus 译名。"},
+    {"en": "Moonglade", "zh": "月光", "types": ["reforge"], "source": "https://hypixelskyblock.minecraft.wiki/w/Reforging/Axe", "note": "伐木斧实测重铸前缀；Moonglade Marsh 的同源词。"}
   ],
   "medal_note": "2026-09-10: Jacob 农业竞赛的奖牌 / 名次档位(Bronze / Silver / Gold / Platinum / Diamond)单独用 medal 类型。原因:SILVER 作 category_name 已经是地牢终端的「淡灰色」,Gold / Diamond 作全局词是材料「黄金 / 钻石」,同一个字符串两种意思不能共用一张表。词表匹配不分大小写,所以一条 Bronze 同时管聊天里的 BRONZE、Tab 里的 Bronze 和奖励清单里的 bronze。Capture.of 不认识的类型按 raw 形状捕获,所以不需要改代码。",
   "garden_note": "2026-09-10 花园玩法专有词:Copper → 铜(花园货币,沿用 Tab 的「铜: N」)、Compost → 堆肥、Sowdust → 播尘、Chip → 芯片、Plot → 地皮、Visitor → 访客、Greenhouse → 温室、Barn(花园里的建筑)→ 谷仓;地名 The Barn 仍是「牲畜棚」。见 GLOSSARY.md「花园玩法专有词」。",

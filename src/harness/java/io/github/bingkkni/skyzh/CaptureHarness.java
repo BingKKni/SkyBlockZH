@@ -396,6 +396,29 @@ public final class CaptureHarness {
 
 	/** Preserving English affects capture only, and never hides an unknown list member or sentence. */
 	private static void preservedText(Path corpus) throws Exception {
+		for (String tier : List.of("I", "VI", "X")) {
+			checkNothing("保留的狩猎图鉴物品标题不重复采集 " + tier,
+				CaptureSurface.GUI_ITEM, "§aPhanflare " + tier);
+			checkNothing("保留的狩猎图鉴聊天标题不重复采集 " + tier,
+				CaptureSurface.CHAT_MESSAGE, "  §b§lBirries §b" + tier);
+		}
+		checkNothing("保留的狩猎生物整名不制造假翻译", CaptureSurface.GUI_ITEM, "§5Littlefoot");
+		for (String text : List.of("UnknownCritter I", "Phanflare escaped", "Phanflare I is here", "Phanflare I 123", "Birries VI 1.5k", "Cod I")) {
+			check("保留图鉴闭集不隐藏未知名称或句子 " + text,
+				io.github.bingkkni.skyzh.capture.PreservedText.ignored(Surface.ITEM, text), false);
+		}
+		check("保留图鉴规则不扩展到计分板",
+			io.github.bingkkni.skyzh.capture.PreservedText.ignored(Surface.SCOREBOARD, "Birries I"), false);
+		for (String icons : List.of("ꕮ", "⎋/⸙/ꕮ", "४/⎋/⸙/☯/ꕮ")) {
+			checkNothing("Booster标签按规则保留且不重复采集 " + icons,
+				CaptureSurface.GUI_ITEM, "§7Boosters: §a" + icons);
+		}
+		check("Booster图标保留不吞效果句",
+			io.github.bingkkni.skyzh.capture.PreservedText.ignored(Surface.ITEM, "Boosters: grants more Sweep"), false);
+		check("Booster图标保留不隐藏未知图标",
+			io.github.bingkkni.skyzh.capture.PreservedText.ignored(Surface.ITEM, "Boosters: ꕮ/?"), false);
+		check("Booster图标保留不扩展到聊天",
+			io.github.bingkkni.skyzh.capture.PreservedText.ignored(Surface.CHAT, "Boosters: ꕮ"), false);
 		check("水果碗存档名列表不重复采集",
 			io.github.bingkkni.skyzh.capture.PreservedText.fruitProfileLine("Fruit Bowl", "Apple, Banana, Blueberry,"), true);
 		check("水果碗最后一个存档名也保留",

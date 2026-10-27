@@ -18,6 +18,8 @@ public final class PreservedText {
 	private static final Pattern LEVEL = Pattern.compile(
 		"^(.+?) ([IVXLCDM]{1,8})(?: ([0-9][0-9,]*(?:\\.[0-9]+)?[kKmMbB]?))?$"
 	);
+	private static final Pattern MOB_TIER = Pattern.compile("^(.+?) ([IVXLCDM]{1,8})$");
+	private static final Pattern BOOSTER_ICONS = Pattern.compile("Boosters: [४⎋⸙☯ꕮ](?:/[४⎋⸙☯ꕮ]){0,4}");
 	private static final Pattern BOSS_COUNTER = Pattern.compile("^(.+?) [0-9]{1,3}/[0-9]{1,3}$");
 	private static final Pattern LEVELED_NAME = Pattern.compile("^\\[Lv[0-9]{1,4}] (.+)$");
 	private static final Pattern DATE_SERVER = Pattern.compile("[0-9]{2}/[0-9]{2}/[0-9]{2} (?:m|mini|mega)[A-Za-z0-9]{1,8}");
@@ -37,6 +39,13 @@ public final class PreservedText {
 	/** Exact surface/whole-line boundaries; never suppress a sentence containing one of these words. */
 	public static boolean ignored(Surface surface, String plain) {
 		String text = plain.trim();
+		if (surface == Surface.ITEM || surface == Surface.CHAT) {
+			// Bestiary headers can be just a preserved species and a Roman tier. Reuse the
+			// typed name decision instead of authoring text == zh records for every tier.
+			Matcher level = MOB_TIER.matcher(text);
+			String name = level.matches() ? level.group(1) : text;
+			if (name.equals(Translator.index().terms().translate("mob_name", name))) return true;
+		}
 		if (surface == Surface.CHAT && text.length() > 4 && text.startsWith("✆ ") && text.endsWith(" ✆")) {
 			// Known personal names can stay English. A registered NPC can also be a translatable
 			// profession, so an explicit contact/nameplate translation must keep capture enabled.
@@ -74,6 +83,7 @@ public final class PreservedText {
 		if (surface != Surface.ITEM) {
 			return false;
 		}
+		if (BOOSTER_ICONS.matcher(text).matches()) return true;
 		for (var range : io.github.bingkkni.skyzh.text.LineShape.candidates(Surface.ITEM, text)) {
 			Matcher name = LEVELED_NAME.matcher(text.substring(range.start(), range.end()));
 			if (name.matches() && RULES.leveledItemNames().contains(name.group(1))) return true;
