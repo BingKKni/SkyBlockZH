@@ -196,6 +196,15 @@ public final class TranslationHarness {
 		checkTooltipName("升级物品保留独立数量样式", "§dRenowned Crown of Avarice §4✦ §8x2",
 			"§d著名 贪婪之冠 §4✦ §8x2");
 		checkTooltipName("截图面具袋优先精确整名而非 Bag 模板", "§fCarnival Mask Bag", "§f嘉年华面具袋");
+		checkTooltipName("染色图标重铸星级复用护甲家族名称", "§5✿ §dFestive Magma Lord Boots §6✪✪✪✪✪",
+			"§5✿ §d节庆 岩浆领主靴子 §6✪✪✪✪✪");
+		checkTooltipName("Midas物品图标与大师星保留", "§d Gilded Midas\' Sword §6✪✪✪✪✪§c➎",
+			"§d 镀金 Midas 之剑 §6✪✪✪✪✪§c➎");
+		check("染色名称不借用材料Bone译名", "§f✿ Bone Dyed", Surface.ITEM, "§f✿ 骨白染色");
+		check("染色动态名称来自专用词表", "§6✿ Mango Dyed", Surface.ITEM, "§6✿ 芒果黄染色");
+		check("染料专名保留英文搜索名", "§5✿ Byzantium Dyed", Surface.ITEM, "§5✿ Byzantium 染色");
+		check("技能伤害动态加成括号与颜色保留", "§7Ability Damage: §c+10% §9(+10%) §8(+15.4%)", Surface.ITEM,
+			"§7技能伤害: §c+10% §9(+10%) §8(+15.4%)");
 		check("采集符文名复用类别词表", "§6◆ Flowery Carpet Rune III", Surface.ITEM,
 			"§6◆ 繁花地毯符文 III");
 		check("装备提示复用目录中已翻译物品名", "§aYou equipped a §9Disinfestor Gloves§a!", Surface.CHAT,

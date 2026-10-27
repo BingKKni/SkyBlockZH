@@ -1,0 +1,184 @@
+{
+  "source": [
+    "../SkyZH_Logs/skyzh-capture",
+    "https://hypixelskyblock.minecraft.wiki/w/Frog_Pet",
+    "https://hypixelskyblock.minecraft.wiki/w/Precursor_Drone_Pet"
+  ],
+  "verified_ingame": true,
+  "entries": [
+    {
+      "id": "frog_hop_and_jump",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§7Grants §6%1$s Foraging Fortune §7for §a%2$s §7every time you jump. Gain §bJump Boost %3$s §7while on §2Foraging Islands§7.",
+      "text": "Grants %1$s Foraging Fortune for %2$s every time you jump. Gain Jump Boost %3$s while on Foraging Islands.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "80",
+          "desc": "动态取值"
+        },
+        {
+          "token": "%2$s",
+          "type": "duration",
+          "example": "20s",
+          "desc": "动态取值"
+        },
+        {
+          "token": "%3$s",
+          "type": "tier",
+          "example": "IV",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "每次跳跃时获得 %1$s 伐木时运，持续 %2$s。在伐木岛屿时获得跳跃提升 %3$s。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "每次跳跃时获得 ",
+          "order": 0
+        },
+        {
+          "color": "§6",
+          "text": "%1$s Foraging Fortune ",
+          "zh": "%1$s 伐木时运",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "for ",
+          "zh": "，持续 ",
+          "order": 2
+        },
+        {
+          "color": "§a",
+          "text": "%2$s ",
+          "zh": "%2$s",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "every time you jump. Gain ",
+          "zh": "。在",
+          "order": 4
+        },
+        {
+          "color": "§b",
+          "text": "Jump Boost %3$s ",
+          "zh": "跳跃提升 %3$s",
+          "order": 7
+        },
+        {
+          "color": "§7",
+          "text": "while on ",
+          "zh": "时获得",
+          "order": 6
+        },
+        {
+          "color": "§2",
+          "text": "Foraging Islands",
+          "zh": "伐木岛屿",
+          "order": 5
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。",
+          "order": 8
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants §680 Foraging Fortune §7for",
+          "§a20s §7every time you jump. Gain §bJump",
+          "§bBoost IV §7while on §2Foraging Islands§7."
+        ],
+        [
+          "§7Grants §644.56 Foraging Fortune §7for",
+          "§a20s §7every time you jump. Gain §bJump",
+          "§bBoost IV §7while on §2Foraging Islands§7."
+        ]
+      ]
+    },
+    {
+      "id": "drone_perks_lowercase",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§8Precursor Drones may possess up to %s perks at a time, this one included.",
+      "text": "Precursor Drones may possess up to %s perks at a time, this one included.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "3",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "先驱无人机同时最多拥有 %s 个天赋，包含此天赋。"
+    },
+    {
+      "id": "drone_collection_single_chance",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§7When §6Mining§7, each collection progress grants a §a%s% §7chance to drop a random enchanted mining item.",
+      "text": "When Mining, each collection progress grants a %s% chance to drop a random enchanted mining item.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "0.005",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "挖矿时，每增加一次收藏品进度，有 %s% 的概率掉落一件随机附魔采矿物品。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "When ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§6",
+          "text": "Mining",
+          "zh": "挖矿"
+        },
+        {
+          "color": "§7",
+          "text": ", each collection progress grants a ",
+          "zh": "时，每增加一次收藏品进度，有 "
+        },
+        {
+          "color": "§a",
+          "text": "%s% ",
+          "zh": "%s% "
+        },
+        {
+          "color": "§7",
+          "text": "chance to drop a random enchanted mining item.",
+          "zh": "的概率掉落一件随机附魔采矿物品。"
+        }
+      ]
+    },
+    {
+      "id": "frog_skin_type",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§8Foraging Pet, Biome Skin",
+      "text": "Foraging Pet, Biome Skin",
+      "placeholders": [],
+      "translate": true,
+      "zh": "伐木宠物，生物群系皮肤"
+    },
+    {
+      "id": "frog_mask_stick_around",
+      "context": "实测服务器原文；社区 Wiki 普通页面核对玩法，颜色以实测为准。",
+      "raw": "§6Ability: Stick Around",
+      "text": "Ability: Stick Around",
+      "placeholders": [],
+      "translate": true,
+      "zh": "技能: 常驻此地"
+    }
+  ]
+}

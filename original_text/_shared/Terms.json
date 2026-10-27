@@ -28,7 +28,8 @@
     "equipment_slot",
     "hunter_quality",
     "rift_clue",
-    "rift_ability"
+    "rift_ability",
+    "dye_name"
   ],
   "types_note": "只对这几种 placeholders[].type 生效。**故意**不含 item_name / npc_name / player_name:那三种正是需求里写死'保留英文'的位置(NPC 人名、物品自造专名),在那里翻错的代价——给别人的武器编一个中文名——远大于一个地名留着英文的代价。新增 type 前先想清楚这一点。category_name 是菜单入口名/功能分类名(Bags、Other Crystals、Recipe Book、Settings 的前半截),形状规则走 Capture.NAME 而不是 raw 的宽松短语——见下面 category_name_note。",
   "enchantment_name_note": "2026-09-08: 附魔名称仅原版 Minecraft 附魔使用官方中文。SkyBlock 专属名称保持英文,包括 Ice Cold/Compact/Scavenger/Turbo- 系列; 其效果和同名的属性、银行、地牢祝福仍翻译。Bank/Inferno 的其他用途必须限定 types,避免全局词表回退将附魔名重新汉化。",
@@ -481,7 +482,15 @@
     {"en":"Garden Upgrades","zh":"花园升级","types":["category_name"]},
     {"en":"Greenhouse Upgrades","zh":"温室升级","types":["category_name"]},
     {"en":"Mangrove Fortune","zh":"红树时运","types":["category_name","raw"]},
-    {"en":"Magma Cube Absorber","zh":"岩浆怪吸收者","types":["category_name"],"note":"装备效果名；实测 Neko0427 的装备资料。"},
+    {
+      "en": "Magma Cube Absorber",
+      "zh": "岩浆怪吸收者",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "装备效果名；实测 Neko0427 的装备资料。"
+    },
     {"en":"Ghast Blaster","zh":"恶魂爆破者","types":["category_name"]},
     {"en":"The Peak","zh":"巅峰","types":["location_name"],"note":"龙巢传送台；社区 Wiki Dragon's Nest 与实测。"},
     {"en":"Bedrock Point","zh":"基岩台","types":["location_name"],"note":"龙巢传送台；社区 Wiki Dragon's Nest 与实测。"},
@@ -7297,7 +7306,8 @@
       "en": "Lava",
       "zh": "熔岩",
       "types": [
-        "raw"
+        "raw",
+        "category_name"
       ],
       "note": "海洋生物指南 Liquid: Lava。"
     },
@@ -10581,7 +10591,8 @@
       "en": "Frog",
       "zh": "青蛙",
       "types": [
-        "category_name"
+        "category_name",
+        "mob_name"
       ],
       "note": "谷仓 / 温室皮肤名前缀(「%1$s Barn Skin」「%1$s Greenhouse Skin」的取值),社区 Wiki Barn_Skins / Greenhouse_Skins 页。"
     },
@@ -14878,6 +14889,134 @@
       "types": ["category_name"],
       "note": "实测符文名；社区 Wiki Runes 表记录为绿色闪光与彩色粒子组成的地毯轨迹，复用现有符文名称模板。",
       "source": "https://hypixelskyblock.minecraft.wiki/w/Runes"
+    },
+    {
+      "en": "Dark Purple",
+      "zh": "深紫",
+      "types": [
+        "dye_name"
+      ],
+      "note": "仅用于实测 ✿ … Dyed 染色标签，不与材料或其他颜色语境混用；社区 Wiki Dyes 色表核对。"
+    },
+    {
+      "en": "Mango",
+      "zh": "芒果黄",
+      "types": [
+        "dye_name"
+      ],
+      "note": "仅用于实测 ✿ … Dyed 染色标签，不与材料或其他颜色语境混用；社区 Wiki Dyes 色表核对。"
+    },
+    {
+      "en": "Pure Black",
+      "zh": "纯黑",
+      "types": [
+        "dye_name"
+      ],
+      "note": "仅用于实测 ✿ … Dyed 染色标签，不与材料或其他颜色语境混用；社区 Wiki Dyes 色表核对。"
+    },
+    {
+      "en": "Black Ice",
+      "zh": "玄冰",
+      "types": [
+        "dye_name"
+      ],
+      "note": "仅用于实测 ✿ … Dyed 染色标签，不与材料或其他颜色语境混用；社区 Wiki Dyes 色表核对。"
+    },
+    {
+      "en": "Snowflake",
+      "zh": "雪花",
+      "types": [
+        "dye_name"
+      ],
+      "note": "仅用于实测 ✿ … Dyed 染色标签，不与材料或其他颜色语境混用；社区 Wiki Dyes 色表核对。"
+    },
+    {
+      "en": "Bone",
+      "zh": "骨白",
+      "types": [
+        "dye_name"
+      ],
+      "note": "仅用于实测 ✿ … Dyed 染色标签，不与材料或其他颜色语境混用；社区 Wiki Dyes 色表核对。"
+    },
+    {
+      "en": "Pastel Sky",
+      "zh": "柔彩天空",
+      "types": [
+        "dye_name"
+      ],
+      "note": "仅用于实测 ✿ … Dyed 染色标签，不与材料或其他颜色语境混用；社区 Wiki Dyes 色表核对。"
+    },
+    {
+      "en": "Red Tulip",
+      "zh": "红色郁金香",
+      "types": [
+        "dye_name"
+      ],
+      "note": "仅用于实测 ✿ … Dyed 染色标签，不与材料或其他颜色语境混用；社区 Wiki Dyes 色表核对。"
+    },
+    {
+      "en": "Marine",
+      "zh": "深海",
+      "types": [
+        "dye_name"
+      ],
+      "note": "仅用于实测 ✿ … Dyed 染色标签，不与材料或其他颜色语境混用；社区 Wiki Dyes 色表核对。"
+    },
+    {
+      "en": "Spooky",
+      "zh": "幽魅",
+      "types": [
+        "dye_name"
+      ],
+      "note": "仅用于实测 ✿ … Dyed 染色标签，不与材料或其他颜色语境混用；社区 Wiki Dyes 色表核对。"
+    },
+    {
+      "en": "Byzantium",
+      "zh": "Byzantium",
+      "types": [
+        "dye_name"
+      ],
+      "note": "仅用于实测 ✿ … Dyed 染色标签，不与材料或其他颜色语境混用；社区 Wiki Dyes 色表核对。"
+    },
+    {
+      "en": "Midnight",
+      "zh": "午夜紫",
+      "types": [
+        "dye_name"
+      ],
+      "note": "仅用于实测 ✿ … Dyed 染色标签，不与材料或其他颜色语境混用；社区 Wiki Dyes 色表核对。"
+    },
+    {
+      "en": "Precursor Drone",
+      "zh": "先驱无人机",
+      "types": [
+        "mob_name"
+      ],
+      "note": "本轮服务器采集；复用已有名称模板，社区 Wiki 普通呈现页核对。"
+    },
+    {
+      "en": "Music",
+      "zh": "音乐",
+      "types": [
+        "category_name"
+      ],
+      "note": "本轮服务器采集；复用已有名称模板，社区 Wiki 普通呈现页核对。"
+    },
+    {
+      "en": "Spirit",
+      "zh": "灵魂",
+      "types": [
+        "category_name"
+      ],
+      "note": "本轮服务器采集；复用已有名称模板，社区 Wiki 普通呈现页核对。"
+    },
+    {
+      "en": "Soultwist",
+      "zh": "灵魂扭曲",
+      "types": [
+        "category_name"
+      ],
+      "note": "本轮服务器采集；复用已有名称模板，社区 Wiki 普通呈现页核对。"
     }
   ],
   "todo": [

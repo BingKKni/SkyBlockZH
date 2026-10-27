@@ -237,7 +237,7 @@ public enum Capture {
 			case "hungry_hiker_food" -> HUNGRY_HIKER_FOOD;
 			case "npc_name", "profile_name", "location_name", "mob_name", "rarity", "category_name",
 				"enchantment_name", "enchantment_crop", "mob_family", "accessory_power", "skyblock_month", "dragon_type",
-				"rng_meter_source", "difficulty", "reputation_rank", "rift_clue" -> NAME;
+				"rng_meter_source", "difficulty", "reputation_rank", "rift_clue", "dye_name" -> NAME;
 			case "player_name", "player_or_self" -> PLAYER;
 			case "player_display" -> PLAYER_DISPLAY;
 			case "rank" -> RANK;

@@ -8281,5 +8281,77 @@
     ],
     "consumed": 2,
     "expected": "§7与农具合并后,施加§9丰盛§7重铸。"
+  },
+  {
+    "name": "拍卖青蛙同一源行含两个完整句子",
+    "lines": [
+      "§7Grants §680 Foraging Fortune §7for",
+      "§a20s §7every time you jump. Gain §bJump",
+      "§bBoost IV §7while on §2Foraging Islands§7."
+    ],
+    "consumed": 3,
+    "expected": "§7每次跳跃时获得 §680 伐木时运§7，持续 §a20秒§7。在§2伐木岛屿§7时获得§b跳跃提升 IV§7。"
+  },
+  {
+    "name": "拍卖青蛙技能动态小数与不同时间",
+    "lines": [
+      "§7Grants §644.56 Foraging Fortune §7for",
+      "§a15s §7every time you jump. Gain §bJump",
+      "§bBoost III §7while on §2Foraging Islands§7."
+    ],
+    "consumed": 3,
+    "expected": "§7每次跳跃时获得 §644.56 伐木时运§7，持续 §a15秒§7。在§2伐木岛屿§7时获得§b跳跃提升 III§7。"
+  },
+  {
+    "name": "无人机小写perks保留动态天赋上限",
+    "lines": [
+      "§8Precursor Drones may possess up",
+      "§8to 4 perks at a time, this one included."
+    ],
+    "consumed": 2,
+    "expected": "§8先驱无人机同时最多拥有 4 个天赋，包含此天赋。"
+  },
+  {
+    "name": "无人机收藏品随机掉落单一概率",
+    "lines": [
+      "§7When §6Mining§7, each collection",
+      "§7progress grants a §a0.015% §7chance to",
+      "§7drop a random enchanted mining item."
+    ],
+    "consumed": 3,
+    "expected": "§6挖矿§7时，每增加一次收藏品进度，有 §a0.015% §7的概率掉落一件随机附魔采矿物品。"
+  },
+  {
+    "name": "岩浆领主魔法寻宝按对象在前重排颜色",
+    "lines": [
+      "§7Grants §b+30 Magic Find §7on §c",
+      "§cMagmatic§7 mobs."
+    ],
+    "consumed": 2,
+    "expected": "§7对§c 岩浆§7生物，获得 §b+30 魔法寻宝§7。"
+  },
+  {
+    "name": "海洋生物防御对象在前颜色不串",
+    "lines": [
+      "§7Grants §a+50 Defense §7towards §3Sea",
+      "§3Creatures§7."
+    ],
+    "consumed": 2,
+    "expected": "§7对§3海洋生物§7，获得 §a+50 防御力§7。"
+  },
+  {
+    "name": "旧属性列表删除线与等级保留",
+    "lines": [
+      "§7§mFishing Speed II§7, §7§mTrophy Hunter IV"
+    ],
+    "consumed": 1,
+    "expected": "§7§m钓鱼速度 II§7, §7§m战利品猎手 IV"
+  },
+  {
+    "name": "独立Experience附魔不能借旧属性列表翻译",
+    "lines": [
+      "§9Experience I"
+    ],
+    "miss": true
   }
 ]
