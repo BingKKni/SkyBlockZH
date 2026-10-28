@@ -258,18 +258,18 @@
     },
     {
       "id": "s_died_38402b",
-      "context": "本轮实机菜单或消息",
+      "context": "玩家死亡广播或本人死亡；最新实测在裂隙竞技场离场后出现 You died。",
       "text": "☠ %s died.",
       "raw": "§c☠ §b%s§7 died.",
       "placeholders": [
         {
           "token": "%s",
-          "type": "player_name",
+          "type": "player_or_self",
           "example": "BingKKni",
-          "desc": "player_name"
+          "desc": "玩家名或本人；仅有实时样式证据的灰色 You 译为你"
         }
       ],
-      "gloss": "",
+      "gloss": "复用死亡自称判断；You 与后续正文同为灰色且姓名各字符均无点击/悬浮事件时译为你，其他玩家名仍保留。原文由用户 latest.log 的 23:25:52 消息确认；日志不含颜色，不将其当作颜色证据。",
       "translate": true,
       "zh": "☠ %s死了。",
       "segments": [

@@ -664,27 +664,41 @@ public final class TranslationHarness {
 				+ (i / 2 == 3 ? "" : "§6§l" + name.substring(i / 2 + 1)) + "§a 访客";
 			check("访客标题扫光帧 " + i, source, Surface.SCOREBOARD, expected);
 		}
-		check("自己坠入虚空不遗留英文或空格", "§c☠ §7You fell into the void.",
-			Surface.CHAT, "§c☠ §7你掉入了虚空。");
-		check("名为 You 的玩家仍保留姓名", "§c☠ §bYou§7 fell into the void.",
-			Surface.CHAT, "§c☠ §bYou§7 掉入了虚空。");
-		for (int split : List.of(0, 1)) {
-			Style gray = Style.EMPTY.withColor(ChatFormatting.GRAY);
-			ClickEvent click = new ClickEvent.RunCommand("/test-you-name");
-			HoverEvent hover = new HoverEvent.ShowText(Component.literal("player profile"));
-			Component source = Component.empty().append(Component.literal("☠ ").withStyle(ChatFormatting.RED))
-				.append(Component.literal("You".substring(0, split)).setStyle(gray))
-				.append(Component.literal("You".substring(split)).setStyle(gray.withClickEvent(click).withHoverEvent(hover)))
-				.append(Component.literal(" fell into the void.").setStyle(gray));
-			StyledText drawn = StyledText.of(Translator.translateLine(source, Surface.CHAT));
-			boolean intact = drawn.plain().equals("☠ You 掉入了虚空。");
-			for (int i = 0; i < drawn.length(); i++) {
-				boolean linked = i >= 2 + split && i < 5;
-				intact &= java.util.Objects.equals(drawn.styleAt(i).getClickEvent(), linked ? click : null)
-					&& java.util.Objects.equals(drawn.styleAt(i).getHoverEvent(), linked ? hover : null);
+		for (String ending : List.of(" fell into the void.", " died.")) {
+			String action = ending.equals(" died.") ? "死了。" : "掉入了虚空。";
+			check("灰色死亡自称不遗留英文或空格 " + ending, "§c☠ §7You" + ending,
+				Surface.CHAT, "§c☠ §7你" + action);
+			check("死亡广播同名玩家保留姓名 " + ending, "§c☠ §bYou§7" + ending,
+				Surface.CHAT, "§c☠ §bYou§7 " + action);
+			check("死亡广播不借用巨龙洋红自称规则 " + ending, "§c☠ §dYou" + ending,
+				Surface.CHAT, "§c☠ §dYou " + action);
+			check("无样式证据的死亡日志保留姓名 " + ending, "☠ You" + ending,
+				Surface.CHAT, "☠ You " + action);
+			check("其他灰色玩家死亡不变成自称 " + ending, "§c☠ §7Jeff_Hogleberg" + ending,
+				Surface.CHAT, "§c☠ §7Jeff_Hogleberg " + action);
+			for (int split : List.of(0, 1)) {
+				Style gray = Style.EMPTY.withColor(ChatFormatting.GRAY);
+				ClickEvent click = new ClickEvent.RunCommand("/test-you-name");
+				HoverEvent hover = new HoverEvent.ShowText(Component.literal("player profile"));
+				Component source = Component.empty().append(Component.literal("☠ ").withStyle(ChatFormatting.RED))
+					.append(Component.literal("You".substring(0, split)).setStyle(gray))
+					.append(Component.literal("You".substring(split)).setStyle(gray.withClickEvent(click).withHoverEvent(hover)))
+					.append(Component.literal(ending).setStyle(gray));
+				StyledText drawn = StyledText.of(Translator.translateLine(source, Surface.CHAT));
+				boolean intact = drawn.plain().equals("☠ You " + action);
+				for (int i = 0; i < drawn.length(); i++) {
+					boolean linked = i >= 2 + split && i < 5;
+					intact &= java.util.Objects.equals(drawn.styleAt(i).getClickEvent(), linked ? click : null)
+						&& java.util.Objects.equals(drawn.styleAt(i).getHoverEvent(), linked ? hover : null);
+				}
+				report("灰色 You 姓名事件完整保留 " + ending + " 分段 " + split,
+					intact, legacy(drawn.slice(0, drawn.length())));
 			}
-			report("灰色 You 姓名事件完整保留，分段 " + split, intact, legacy(drawn.slice(0, drawn.length())));
 		}
+		check("未启用自称的玩家模板不受死亡前缀影响", "§c☠ §7You reconnected.",
+			Surface.CHAT, "§c☠ §7You 重新连接了。");
+		check("用户日志中的死亡提示保留前置空格", "  §c☠ §7You died.",
+			Surface.CHAT, "  §c☠ §7你死了。");
 		boolean visitorNameSetting = SkyZHConfig.get().translateSkyBlockName;
 		try {
 			SkyZHConfig.get().translateSkyBlockName = false;

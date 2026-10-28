@@ -679,14 +679,17 @@ public final class TranslationEntry {
 	/**
 	 * Dragon announcements write self-reference in the same magenta run as the action. A separately
 	 * styled/clickable player called You remains a name. Unstyled logs provide no such evidence.
-	 * Grey self-death text uses the same evidence for the exact void sentence.
+	 * Opted-in death templates use the same evidence in grey after the skull prefix.
 	 * This is opt-in via player_or_self; ordinary player_name captures never change.
 	 */
 	private static boolean selfReference(StyledText source, int start, int end) {
 		Style name = source.styleAt(start);
-		boolean voidMessage = source.canonical().equals("☠ You fell into the void.")
+		String plain = source.canonical();
+		boolean deathMessage = start == 2 && plain.startsWith("☠ ")
 			&& name.getColor() != null && name.getColor().getValue() == 0xAAAAAA;
-		if (name.getColor() == null || (!voidMessage && name.getColor().getValue() != 0xFF55FF)
+		boolean dragonMessage = start == 2 && plain.startsWith("☬ ")
+			&& name.getColor() != null && name.getColor().getValue() == 0xFF55FF;
+		if ((!deathMessage && !dragonMessage)
 			|| name.getHoverEvent() != null || name.getClickEvent() != null) {
 			return false;
 		}
