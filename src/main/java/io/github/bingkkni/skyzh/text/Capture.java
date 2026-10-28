@@ -186,6 +186,8 @@ public enum Capture {
 	HEALTH_ICONS("(?:❤{1,16}|☠{1,5})", false),
 	/** Literal bar cells; their live colour runs are copied intact. */
 	PROGRESS_BAR("[|]{1,40}", false),
+	/** Six Stillgore Château effigy icons; live colours encode the active states. */
+	EFFIGY_STATES("⧯{6}", false),
 
 	/**
 	 * Anything the corpus has not pinned down — {@code type: raw}, or no {@code placeholders} entry
@@ -243,6 +245,7 @@ public enum Capture {
 			case "hud_number" -> HUD_NUMBER;
 			case "health_icons" -> HEALTH_ICONS;
 			case "progress_bar" -> PROGRESS_BAR;
+			case "effigy_states" -> EFFIGY_STATES;
 			// category_name is the name of a menu section or a feature — "Bags", "Other Crystals",
 			// "Recipe Book". Shaped like a name, and it has to be said so: templates that hold one are
 			// a single word plus a placeholder ("Your %s", "%s Settings", "%s Pet"), which under the
@@ -304,7 +307,7 @@ public enum Capture {
 			// The regex is the whole of the rule for these: a numeral is a numeral, and a player's
 			// name is whatever sixteen word characters somebody chose.
 			case NUMBER, STAT_VALUE, ATTRIBUTE_VALUE, YEAR, DAY_OF_MONTH, PLAYER, PLAYER_DISPLAY, RANK, TIER, LEVEL, TIER_RANGE, ICON, ITEM_PART, TRAINING_KIND, TROPHY_QUALITY, GEMSTONE_KIND, GEMSTONE_QUALITY, ORDINAL, DURATION, DURATION_SPACED, DURATION_WORDS, SEARCH_QUERY -> true;
-			case RIFT_TIME, EQUIPMENT_SLOT, TROPHY_FISH_NAME, CONTEST_RANK, RIFT_ABILITY, RIFT_BOSS_STAGE, EXCLAMATIONS, HUNGRY_HIKER_FOOD, CLOCK_DURATION, RACE_TIME, PROGRESS, HUD_NUMBER, HEALTH_ICONS, PROGRESS_BAR, ORDINAL_WORD, COMMISSION_AREA -> value.matches(this.regex);
+			case RIFT_TIME, EQUIPMENT_SLOT, TROPHY_FISH_NAME, CONTEST_RANK, RIFT_ABILITY, RIFT_BOSS_STAGE, EXCLAMATIONS, HUNGRY_HIKER_FOOD, CLOCK_DURATION, RACE_TIME, PROGRESS, HUD_NUMBER, HEALTH_ICONS, PROGRESS_BAR, EFFIGY_STATES, ORDINAL_WORD, COMMISSION_AREA -> value.matches(this.regex);
 			case MULTIPLIER_INCREASE -> new BigDecimal(value).compareTo(BigDecimal.ONE) >= 0;
 			case NAME -> isName(value);
 			case MOB_FAMILY, STAT_NAME -> value.matches(this.regex);

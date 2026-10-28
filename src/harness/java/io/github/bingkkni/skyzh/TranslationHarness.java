@@ -2366,6 +2366,7 @@ public final class TranslationHarness {
 			case PROGRESS -> "7/8";
 			case HEALTH_ICONS -> "❤❤❤";
 			case PROGRESS_BAR -> "||||||||||";
+			case EFFIGY_STATES -> "⧯⧯⧯⧯⧯⧯";
 			default -> "1";
 		};
 	}
@@ -2930,7 +2931,7 @@ public final class TranslationHarness {
 
 	/** Fixed UI capture regression: ordered lore, term isolation, and clues that must survive translation. */
 	private static void checkFixedMenus(Path corpusRoot) throws Exception {
-		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "october-live-round-cases.json", "workshop-cases.json", "wiki-expansion-cases.json", "bazaar-item-names-cases.json", "rift-live-capture-cases.json", "rift-session-cases.json", "garden-weather-feast-cases.json", "village-living-cave-cases.json", "rift-post-build-cases.json")) {
+		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "october-live-round-cases.json", "workshop-cases.json", "wiki-expansion-cases.json", "bazaar-item-names-cases.json", "rift-live-capture-cases.json", "rift-session-cases.json", "garden-weather-feast-cases.json", "village-living-cave-cases.json", "rift-post-build-cases.json", "castle-capture-cases.json")) {
 		Path path = corpusRoot.toAbsolutePath().getParent().resolve("src/harness/resources/" + file);
 		JsonObject fixture = JsonParser.parseString(Files.readString(path, StandardCharsets.UTF_8)).getAsJsonObject();
 		for (JsonElement value : fixture.getAsJsonArray("cases")) {

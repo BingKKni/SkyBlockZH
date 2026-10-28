@@ -169,6 +169,12 @@ public final class Classifier {
 		"^(?:\\[[^\\]]{1,24}\\] ?)*[A-Za-z0-9_]{1,16}(?: ?[^\\x00-\\x7F\\s]{1,4})*$"
 	);
 
+	// Profile-menu heads carry a server rank and player identity. Never apply the broad
+	// PLAYER_ENTRY pattern to ITEM: ordinary menu labels such as Healer must stay eligible.
+	private static final Pattern RANKED_PLAYER_ITEM = Pattern.compile(
+		"^\\[(?:VIP|MVP|YOUTUBE|ADMIN|MOD|HELPER|GM|OWNER|MOJANG|EVENTS|MCP|PIG)\\+{0,3}\\] [A-Za-z0-9_]{1,16}$"
+	);
+
 	/** Below this many letters a skeleton matches by coincidence rather than by being the same sentence. */
 	private static final int SHORTEST_SKELETON = 5;
 
@@ -201,6 +207,10 @@ public final class Classifier {
 
 		if ((surface.surface() == Surface.CHAT || surface.surface() == Surface.TABLIST)
 			&& PLAYER_ENTRY.matcher(plain).matches()) {
+			return null;
+		}
+
+		if (surface.surface() == Surface.ITEM && RANKED_PLAYER_ITEM.matcher(plain).matches()) {
 			return null;
 		}
 

@@ -1,0 +1,147 @@
+{
+  "source": [
+    "runtime capture (SkyZH)",
+    "https://hypixelskyblock.minecraft.wiki/w/Phaser/UI",
+    "https://hypixelskyblock.minecraft.wiki/w/Riftstalker_Bloodfiend"
+  ],
+  "fetched_at": "2026-10-29",
+  "verified_ingame": true,
+  "lines": [
+    {
+      "id": "castle_purchase_skip",
+      "context": "Phaser 捷径购买按钮的实测措辞；Wiki 旧版为 Click to purchase skip!",
+      "raw": "§eClick to get purchase skip!",
+      "text": "Click to get purchase skip!",
+      "placeholders": [],
+      "gloss": "Phaser/UI 最后更新于 2024-10-04，采用本轮实测措辞；旧 Wiki 版本已有译文，不删除。",
+      "translate": true,
+      "zh": "点击购买捷径!"
+    },
+    {
+      "id": "castle_skip_unlocked",
+      "context": "Phaser 捷径解锁后两行完整说明",
+      "raw": "§7You unlocked this skip by doing some intense parkour.",
+      "text": "You unlocked this skip by doing some intense parkour.",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "你已完成高难度跑酷，解锁了这条捷径。",
+      "samples": [
+        [
+          "§7You unlocked this skip by doing some",
+          "§7intense parkour."
+        ]
+      ]
+    },
+    {
+      "id": "castle_start_cost",
+      "context": "吸血鬼猎手开启费用；实测 Motes 首字母大写，沿用同菜单微尘译名",
+      "raw": "§7Cost to start: §d%1$s Motes",
+      "text": "Cost to start: %1$s Motes",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "随首领阶数变化的微尘费用",
+          "type": "number",
+          "example": "2,000"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "开启费用: %1$s 微尘",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Cost to start: ",
+          "zh": "开启费用: "
+        },
+        {
+          "color": "§d",
+          "text": "%1$s Motes",
+          "zh": "%1$s 微尘"
+        }
+      ]
+    },
+    {
+      "id": "castle_slay_unlock",
+      "context": "猎手首领下一阶解锁条件",
+      "raw": "§cSlay Tier %1$s to unlock!",
+      "text": "Slay Tier %1$s to unlock!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "前置首领阶数",
+          "type": "tier",
+          "example": "II"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "击败第 %1$s 阶首领后解锁!"
+    },
+    {
+      "id": "castle_tier_amount",
+      "context": "猎手掉落页固定掉落数量，区别于现有数量范围模板",
+      "raw": "§7Tier %1$s amount: §a%2$s",
+      "text": "Tier %1$s amount: %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "首领阶数",
+          "type": "tier",
+          "example": "I"
+        },
+        {
+          "token": "%2$s",
+          "desc": "掉落数量",
+          "type": "number",
+          "example": "1"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "第 %1$s 阶掉落数量: %2$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Tier %1$s amount: ",
+          "zh": "第 %1$s 阶掉落数量: "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ]
+    },
+    {
+      "id": "castle_minimum_tier",
+      "context": "猎手掉落最低阶数；不能被通用 Boss 名称模板误认",
+      "raw": "§7Minimum: §aTier %1$s",
+      "text": "Minimum: Tier %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "desc": "最低首领阶数",
+          "type": "tier",
+          "example": "I"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "最低要求: 第 %1$s 阶",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Minimum: ",
+          "zh": "最低要求: "
+        },
+        {
+          "color": "§a",
+          "text": "Tier %1$s",
+          "zh": "第 %1$s 阶"
+        }
+      ]
+    }
+  ]
+}

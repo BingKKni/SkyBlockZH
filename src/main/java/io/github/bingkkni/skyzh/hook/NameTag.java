@@ -55,11 +55,11 @@ public final class NameTag {
 
 	/** A dynamic mob bar, not authored text: {@code Glacite Walker 1.2M❤}. */
 	private static final Pattern MOB_HEALTH = Pattern.compile(
-		"(?:^|\\s)\\d[\\d,.]*[kKmMbBtT]?(?:/\\d[\\d,.]*[kKmMbBtT]?)?❤(?:\\s*[﴾﴿])?\\s*$"
+		"(?:^|\\s)\\d[\\d,.]*[kKmMbBtT]?(?:/\\d[\\d,.]*[kKmMbBtT]?)?❤(?:\\s*[﴾﴿҉])?\\s*$"
 	);
 
 	private static final Pattern MOB_BAR = Pattern.compile(
-		"^(?:﴾\\s*)?(?:\\[Lv[0-9]+\\]\\s*)?(?:[\\p{Co}\\p{S}]\\s*){0,8}([A-Za-z][A-Za-z '\\-]+?)\\s+(?:[0-9][0-9,.]*[kKmMbBtT]?(?:/[0-9][0-9,.]*[kKmMbBtT]?)?|\\?+)❤(?:\\s*﴿)?\\s*$"
+		"^(?:﴾\\s*)?(?:\\[Lv[0-9]+\\]\\s*)?(?:[\\p{Co}\\p{S}]\\s*){0,8}([A-Za-z][A-Za-z '\\-]+?)\\s+(?:[0-9][0-9,.]*[kKmMbBtT]?(?:/[0-9][0-9,.]*[kKmMbBtT]?)?|\\?+)❤(?:\\s*[﴿҉])?\\s*$"
 	);
 	// Only the complete Rift timer score line, never a player identity or an arbitrary sentence.
 	private static final Pattern RIFT_TIMER = Pattern.compile(

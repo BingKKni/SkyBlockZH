@@ -595,6 +595,24 @@ public final class CaptureHarness {
 			NameTag.eligible(Component.literal("§cGlacite Walker §a1.2M§c\uE010")), false);
 		check("带两侧装饰的 Boss 血条同样排除",
 			NameTag.eligible(Component.literal("§e﴾ §cBladesoul §a50M/50M§c❤ §e﴿")), false);
+		for (String[] mob : List.of(new String[] {"Thrall", "血仆", "10", "190"},
+			new String[] {"Fledgling", "新生吸血鬼", "40", "210"})) {
+			String raw = "§c" + mob[0] + "§r §e§l" + mob[2] + "§f§l/§a§l" + mob[3] + "§c§l❤ §4§l҉";
+			check("裂隙血条末尾符号不妨碍通名翻译 " + mob[0],
+				TranslationHarness.legacy(NameTag.mobName(Component.literal(raw))),
+				TranslationHarness.legacy(Component.literal(raw.replace(mob[0], mob[1]))));
+			checkNothing("裂隙动态血条不重复采集 " + mob[0], CaptureSurface.HOLOGRAM, raw);
+		}
+		checkNothing("玩家档案物品上的Rank姓名不采集", CaptureSurface.GUI_ITEM,
+			"§b[MVP§d++§b] Cute_Leaf_ovo");
+		checkVerdict("Rank后仍有描述时继续采集", CaptureSurface.GUI_ITEM,
+			"§b[MVP++] Cute_Leaf_ovo profile details", Classifier.Bucket.UNTRANSLATED);
+		checkVerdict("未确认的菜单职业不能按玩家身份过滤", CaptureSurface.GUI_ITEM,
+			"UnrecordedRole", Classifier.Bucket.UNTRANSLATED);
+		for (String source : List.of("§7Sven Packmaster: §4Tier IV", "§7Tarantula Broodfather: §4Tier IV",
+			"§aSven Packmaster II", "§8Riftstalker Bloodfiend", "§6Vampire Slayer LVL 4")) {
+			checkNothing("猎手专名与完整奖励标题不误报 " + source, CaptureSurface.GUI_ITEM, source);
+		}
 		check("含生命值说明的完整文案不能被血条规则误杀",
 			NameTag.eligible(Component.literal("Requires 100❤ Health")), true);
 

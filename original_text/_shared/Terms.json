@@ -42,6 +42,32 @@
   "reforge_note": "reforge 类型不在 applies_to_types 里:它只给 TooltipTranslator(物品名首词)和 guide_item_name 占位符的「重铸名 + 已收录物品名」拆分用,不会替换任何占位符捕到的值。",
   "skyblock_month_note": "日历标题等日期行里的空岛月份单独使用 skyblock_month:Early/(无前缀)/Late × 春夏秋冬十二个月按顺序译成「1 月」到「12 月」(用户 2026-09-10 拍板,以月份代替季节),不改变 Winter 作为海洋生物分类时的寒冬译名。",
   "terms": [
+    {
+      "en": "Sven",
+      "zh": "Sven",
+      "types": ["mob_name"],
+      "note": "Sven Packmaster 在 RNG 说明跨行首段中的专名，不翻译且不重复报混杂。"
+    },
+    {
+      "en": "Oubliette",
+      "zh": "幽闭地牢",
+      "types": ["location_name"],
+      "note": "裂隙失去全部心后被关押的监牢；击败守卫后可离开。",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Oubliette"
+    },
+    {
+      "en": "The Prince",
+      "zh": "王子",
+      "types": ["mob_name"],
+      "note": "Porhtal 的眼睛，复用 Rift/GUI_Item/Rift_Completion_midquests.json 中已有译名。",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Porhtal"
+    },
+    {
+      "en": "Vampire Slayer",
+      "zh": "吸血鬼猎手",
+      "types": ["category_name"],
+      "note": "猎手等级奖励标题，沿用现有猎手分支译名。"
+    },
     {"en":"Montezuma","zh":"Montezuma","types":["mob_name"],"note":"沿用裂隙猫咪专名，仅宠物/生物名整值保留，避免重复报告混杂。"},
     {"en":"Photon Pathway","zh":"光子小径","types":["location_name"],"note":"本轮编译后实测；Bacte 技能参考社区 Wiki；Transmission Tu 为服务器截断专名，保留原样。"},
     {"en":"Living Metal Heart Rift","zh":"活体金属之心","types":["category_name"],"note":"本轮编译后实测；Bacte 技能参考社区 Wiki；Transmission Tu 为服务器截断专名，保留原样。"},
@@ -13392,7 +13418,8 @@
       "en": "Tarantula Broodfather",
       "zh": "Tarantula Broodfather",
       "types": [
-        "rng_meter_source"
+        "rng_meter_source",
+        "mob_name"
       ],
       "note": "猎手 RNG 计量表来源名，Boss 专名保留英文。"
     },
@@ -13400,7 +13427,8 @@
       "en": "Sven Packmaster",
       "zh": "Sven Packmaster",
       "types": [
-        "rng_meter_source"
+        "rng_meter_source",
+        "mob_name"
       ],
       "note": "猎手 RNG 计量表来源名，Boss 专名保留英文。"
     },
