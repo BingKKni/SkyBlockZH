@@ -613,6 +613,11 @@ public final class CaptureHarness {
 			checkNothing("特殊 Rank 玩家名不采集 " + rank, CaptureSurface.HOLOGRAM, "§c[" + rank + "] ExamplePlayer");
 		}
 		for (String[] timer : List.of(
+			new String[] {"1494", "24分54秒"}, new String[] {"3367", "56分07秒"},
+			new String[] {"480", "8分钟"}, new String[] {"3600", "1小时"},
+			new String[] {"5526", "1小时32分06秒"}, new String[] {"5400", "1小时30分"},
+			new String[] {"3606", "1小时0分06秒"}, new String[] {"0", "0秒"},
+			new String[] {"59", "59秒"}, new String[] {"60", "1分钟"},
 			new String[] {"56m 7s", "56分07秒"}, new String[] {"8m", "8分钟"},
 			new String[] {"7m 59s", "7分59秒"}, new String[] {"1h", "1小时"},
 			new String[] {"1h 0m 0s", "1小时"}, new String[] {"1h 32m 6s", "1小时32分06秒"},
@@ -620,7 +625,14 @@ public final class CaptureHarness {
 			check("头顶裂隙计时 " + timer[0], TranslationHarness.legacy(NameTag.riftTimer(
 				Component.literal("§f" + timer[0] + " §a\uE020"))), "§f" + timer[1] + "§a \uE020");
 		}
-		for (String unchanged : List.of("ExamplePlayer", "56m 7s", "[148] pablooohh", "Time 56m 7s ф")) {
+		check("原始秒数也支持紧邻时间图标", TranslationHarness.legacy(NameTag.riftTimer(
+			Component.literal("§f1494§a\uE020"))), "§f24分54秒§a \uE020");
+		check("普通duration中的裸数字不被当作裂隙秒数",
+			io.github.bingkkni.skyzh.text.Capture.DURATION.renderValue("1494"), "1494");
+		check("头顶秒数翻译不会触发数值缺失诊断",
+			Classifier.all(CaptureSurface.HOLOGRAM, StyledText.of(Component.literal("§f1494 §a\uE020"))).isEmpty(), true);
+		for (String unchanged : List.of("ExamplePlayer", "56m 7s", "[148] pablooohh", "Time 56m 7s ф",
+			"1494", "1494 ❤", "-1 ф", "1.5 ф", "1494 ф unexpected", "1234567890 ф")) {
 			Component original = Component.literal(unchanged);
 			check("头顶时间匹配不扩大到身份或未知标签 " + unchanged, NameTag.riftTimer(original) == original, true);
 		}

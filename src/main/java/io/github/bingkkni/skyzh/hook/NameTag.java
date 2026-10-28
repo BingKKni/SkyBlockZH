@@ -2,6 +2,7 @@ package io.github.bingkkni.skyzh.hook;
 
 import io.github.bingkkni.skyzh.HypixelServer;
 import io.github.bingkkni.skyzh.capture.Areas;
+import io.github.bingkkni.skyzh.text.Capture;
 import io.github.bingkkni.skyzh.text.Glyphs;
 import io.github.bingkkni.skyzh.text.StyledText;
 import io.github.bingkkni.skyzh.text.Surface;
@@ -23,7 +24,8 @@ import net.minecraft.network.chat.Component;
  * built during extraction and is a field other things may read; the argument passed to
  * {@code submitNameTag} is the last thing that happens to the text before it becomes glyphs, so
  * changing it there changes pixels and nothing else. Both calls in the method go through it — the
- * score under the name as well as the name — and the score is a number no record will answer for.
+ * score under the name as well as the name. Rift scores carry whole seconds plus the time icon;
+ * normal numeric health scores and player identities must stay unchanged.
  *
  * <p>Authored hologram text is restricted to invisible armour stands. Explicit role records may
  * translate green NPC labels; unknown labels are captured for human review. Non-player living
@@ -61,7 +63,7 @@ public final class NameTag {
 	);
 	// Only the complete Rift timer score line, never a player identity or an arbitrary sentence.
 	private static final Pattern RIFT_TIMER = Pattern.compile(
-		"^[0-9]+[hms](?: ?[0-9]+[hms])* ?ф$"
+		"^" + Capture.RIFT_TIME.regex() + " ?ф$"
 	);
 	private static final Pattern PET_TAG = Pattern.compile("^(?:#[0-9]+ )?\\[Lv(?:l )?[0-9]+\\] .+");
 	private static final Pattern RANKED_PLAYER = Pattern.compile(

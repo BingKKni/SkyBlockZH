@@ -164,6 +164,9 @@ public enum Capture {
 	/** A compact duration used in the tab list: {@code 35d+}, {@code 2h 14m}, {@code 30s}. */
 	DURATION("(?:[0-9][0-9,.]*[yYdDhHmMsS][+]?(?: ?[0-9][0-9,.]*[yYdDhHmMsS][+]?)*|[0-9][0-9,.]*[+]?)"),
 
+	/** Server below-name Rift scores use whole seconds; formatted h/m/s variants remain supported. */
+	RIFT_TIME("(?:[0-9]{1,9}|[0-9]+[hms](?: ?[0-9]+[hms])*)", false),
+
 	/** Legacy event countdown type; shares the global compact Chinese layout, also accepts negatives. */
 	DURATION_SPACED(DURATION.regex.replace("[0-9][0-9,.]*", "-?[0-9][0-9,.]*")),
 
@@ -230,6 +233,7 @@ public enum Capture {
 			case "day_of_month" -> DAY_OF_MONTH;
 			case "rift_boss_stage" -> RIFT_BOSS_STAGE;
 			case "exclamations" -> EXCLAMATIONS;
+			case "rift_time" -> RIFT_TIME;
 			case "time", "duration" -> DURATION;
 			case "duration_spaced" -> DURATION_SPACED;
 			case "duration_words" -> DURATION_WORDS;
@@ -300,7 +304,7 @@ public enum Capture {
 			// The regex is the whole of the rule for these: a numeral is a numeral, and a player's
 			// name is whatever sixteen word characters somebody chose.
 			case NUMBER, STAT_VALUE, ATTRIBUTE_VALUE, YEAR, DAY_OF_MONTH, PLAYER, PLAYER_DISPLAY, RANK, TIER, LEVEL, TIER_RANGE, ICON, ITEM_PART, TRAINING_KIND, TROPHY_QUALITY, GEMSTONE_KIND, GEMSTONE_QUALITY, ORDINAL, DURATION, DURATION_SPACED, DURATION_WORDS, SEARCH_QUERY -> true;
-			case EQUIPMENT_SLOT, TROPHY_FISH_NAME, CONTEST_RANK, RIFT_ABILITY, RIFT_BOSS_STAGE, EXCLAMATIONS, HUNGRY_HIKER_FOOD, CLOCK_DURATION, RACE_TIME, PROGRESS, HUD_NUMBER, HEALTH_ICONS, PROGRESS_BAR, ORDINAL_WORD, COMMISSION_AREA -> value.matches(this.regex);
+			case RIFT_TIME, EQUIPMENT_SLOT, TROPHY_FISH_NAME, CONTEST_RANK, RIFT_ABILITY, RIFT_BOSS_STAGE, EXCLAMATIONS, HUNGRY_HIKER_FOOD, CLOCK_DURATION, RACE_TIME, PROGRESS, HUD_NUMBER, HEALTH_ICONS, PROGRESS_BAR, ORDINAL_WORD, COMMISSION_AREA -> value.matches(this.regex);
 			case MULTIPLIER_INCREASE -> new BigDecimal(value).compareTo(BigDecimal.ONE) >= 0;
 			case NAME -> isName(value);
 			case MOB_FAMILY, STAT_NAME -> value.matches(this.regex);
@@ -332,6 +336,18 @@ public enum Capture {
 	 * copied across exactly as they arrived, which is the whole point of their being placeholders.
 	 */
 	public String renderValue(String value) {
+		if (this == RIFT_TIME) {
+			if (!value.matches("[0-9]{1,9}")) return DURATION.renderValue(value);
+			long total = Long.parseLong(value);
+			long hours = total / 3600;
+			long minutes = total / 60 % 60;
+			long seconds = total % 60;
+			String compact = hours > 0 ? hours + "h " + minutes + "m " + seconds + "s"
+				: minutes > 0 ? minutes + "m" + (seconds > 0 ? " " + seconds + "s" : "")
+				: seconds + "s";
+			return DURATION.renderValue(compact);
+		}
+
 		if (this == MULTIPLIER_INCREASE && !value.isEmpty()) {
 			return new BigDecimal(value).subtract(BigDecimal.ONE).stripTrailingZeros().toPlainString();
 		}
@@ -406,6 +422,12 @@ public enum Capture {
 
 	/** Render duration units from their individual source spans, not the first colour of the value. */
 	public net.minecraft.network.chat.MutableComponent renderDuration(StyledText source, int start, int end) {
+		if (this == RIFT_TIME) {
+			String value = source.plain().substring(start, end);
+			return value.matches("[0-9]{1,9}")
+				? net.minecraft.network.chat.Component.literal(renderValue(value)).setStyle(source.styleAt(start))
+				: DURATION.renderDuration(source, start, end);
+		}
 		if (this != DURATION && this != DURATION_SPACED && this != DURATION_WORDS) return null;
 		String value = source.plain().substring(start, end);
 		String written = renderValue(value);
