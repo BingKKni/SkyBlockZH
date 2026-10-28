@@ -1,0 +1,675 @@
+{
+  "source": [
+    "../SkyZH_Logs/skyzh-capture (records after 2026-10-28 23:42:17)",
+    "https://hypixelskyblock.minecraft.wiki/w/Bacte"
+  ],
+  "verified_ingame": true,
+  "last_edited": "This page was last edited on 8 September 2026, at 14:24.",
+  "gloss": "Wiki 的技能与战斗阶段作语境核对；颜色和措辞以本轮服务器实测为准。结算的 Congratulations 与 Motes 奖励继续复用既有语料。",
+  "entries": [
+    {
+      "id": "bacte_warning",
+      "context": "编译后本轮服务器实测；动态值不写死，颜色以实测为准。",
+      "raw": "§a⚠ §cGet back in the arena or you will DIE%1$s §a⚠",
+      "text": "⚠ Get back in the arena or you will DIE%1$s ⚠",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "exclamations",
+          "example": "!!!!",
+          "desc": "动态值；按限定类型匹配"
+        }
+      ],
+      "translate": true,
+      "zh": "⚠ 快回竞技场，否则你会死%1$s ⚠",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "⚠ ",
+          "zh": "⚠ "
+        },
+        {
+          "color": "§c",
+          "text": "Get back in the arena or you will DIE%1$s ",
+          "zh": "快回竞技场，否则你会死%1$s "
+        },
+        {
+          "color": "§a",
+          "text": "⚠",
+          "zh": "⚠"
+        }
+      ]
+    },
+    {
+      "id": "bacte_vulnerable",
+      "context": "编译后本轮服务器实测；动态值不写死，颜色以实测为准。",
+      "raw": "§a%1$s §eis §cvulnerable§e!! Strike it while it's §asmol§e!",
+      "text": "%1$s is vulnerable!! Strike it while it's smol!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "rift_boss_stage",
+          "example": "B",
+          "desc": "动态值；按限定类型匹配"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 露出破绽了!! 趁它缩小，快攻击!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§e",
+          "text": "is ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§c",
+          "text": "vulnerable",
+          "zh": "露出破绽"
+        },
+        {
+          "color": "§e",
+          "text": "!! Strike it while it's ",
+          "zh": "了!! 趁它"
+        },
+        {
+          "color": "§a",
+          "text": "smol",
+          "zh": "缩小"
+        },
+        {
+          "color": "§e",
+          "text": "!",
+          "zh": "，快攻击!"
+        }
+      ]
+    },
+    {
+      "id": "bacte_growing",
+      "context": "编译后本轮服务器实测；动态值不写死，颜色以实测为准。",
+      "raw": "§a%1$s §eis growing into §a%2$s§e!",
+      "text": "%1$s is growing into %2$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "rift_boss_stage",
+          "example": "B",
+          "desc": "动态值；按限定类型匹配"
+        },
+        {
+          "token": "%2$s",
+          "type": "rift_boss_stage",
+          "example": "Ba",
+          "desc": "动态值；按限定类型匹配"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 正在长大，变成 %2$s!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§e",
+          "text": "is growing into ",
+          "zh": "正在长大，变成 "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§e",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "bacte_cast",
+      "context": "编译后本轮服务器实测；动态值不写死，颜色以实测为准。",
+      "raw": "§a%1$s §eis casting §6%2$s§e!",
+      "text": "%1$s is casting %2$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "rift_boss_stage",
+          "example": "Bac",
+          "desc": "动态值；按限定类型匹配"
+        },
+        {
+          "token": "%2$s",
+          "type": "rift_ability",
+          "example": "Spikes Pandemoglob",
+          "desc": "动态值；按限定类型匹配"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 正在施放%2$s!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§e",
+          "text": "is casting ",
+          "zh": "正在施放"
+        },
+        {
+          "color": "§6",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§e",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "bacte_cast_also",
+      "context": "编译后本轮服务器实测；动态值不写死，颜色以实测为准。",
+      "raw": "§a%1$s §eis also casting §6%2$s§e!",
+      "text": "%1$s is also casting %2$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "rift_boss_stage",
+          "example": "Bac",
+          "desc": "动态值；按限定类型匹配"
+        },
+        {
+          "token": "%2$s",
+          "type": "rift_ability",
+          "example": "Spikes Pandemoglob",
+          "desc": "动态值；按限定类型匹配"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 还在施放%2$s!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§e",
+          "text": "is also casting ",
+          "zh": "还在施放"
+        },
+        {
+          "color": "§6",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§e",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "bacte_tentacles",
+      "context": "编译后本轮服务器实测；动态值不写死，颜色以实测为准。",
+      "raw": "§a%1$s §eis rooting §a%2$s tentacles §einto the ground!",
+      "text": "%1$s is rooting %2$s tentacles into the ground!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "rift_boss_stage",
+          "example": "Ba",
+          "desc": "动态值；按限定类型匹配"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "2",
+          "desc": "动态值；按限定类型匹配"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 将 %2$s 根触手扎入地面!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§e",
+          "text": "is rooting ",
+          "zh": "将 "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s tentacles ",
+          "zh": "%2$s 根触手"
+        },
+        {
+          "color": "§e",
+          "text": "into the ground!",
+          "zh": "扎入地面!"
+        }
+      ]
+    },
+    {
+      "id": "bacte_damage",
+      "context": "编译后本轮服务器实测；动态值不写死，颜色以实测为准。",
+      "raw": "§cSlime §eremoved §a%1$sф §efrom you using §d%2$s§e!",
+      "text": "Slime removed %1$sф from you using %2$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "duration",
+          "example": "20s",
+          "desc": "动态值；按限定类型匹配"
+        },
+        {
+          "token": "%2$s",
+          "type": "rift_ability",
+          "example": "Spike",
+          "desc": "动态值；按限定类型匹配"
+        }
+      ],
+      "translate": true,
+      "zh": "史莱姆使用%2$s，使你的裂隙时间减少 %1$s ф!",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "Slime ",
+          "zh": "史莱姆",
+          "order": 0
+        },
+        {
+          "color": "§e",
+          "text": "removed ",
+          "zh": "使用",
+          "order": 1
+        },
+        {
+          "color": "§a",
+          "text": "%1$sф ",
+          "zh": "%1$s ф",
+          "order": 4
+        },
+        {
+          "color": "§e",
+          "text": "from you using ",
+          "zh": "，使你的裂隙时间减少 ",
+          "order": 3
+        },
+        {
+          "color": "§d",
+          "text": "%2$s",
+          "zh": "%2$s",
+          "order": 2
+        },
+        {
+          "color": "§e",
+          "text": "!",
+          "zh": "!",
+          "order": 5
+        }
+      ]
+    },
+    {
+      "id": "bacte_blob_spawn",
+      "context": "编译后本轮服务器实测；动态值不写死，颜色以实测为准。",
+      "raw": "§eA §aBlobbercyst §espawned from the remains of the tentacle!",
+      "text": "A Blobbercyst spawned from the remains of the tentacle!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "触手的残骸中冒出了一只 Blobbercyst!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "A ",
+          "zh": "触手的残骸中冒出了一只 "
+        },
+        {
+          "color": "§a",
+          "text": "Blobbercyst ",
+          "zh": "Blobbercyst"
+        },
+        {
+          "color": "§e",
+          "text": "spawned from the remains of the tentacle!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "bacte_destroy",
+      "context": "编译后本轮服务器实测；动态值不写死，颜色以实测为准。",
+      "raw": "§aTentacle §edestroyed by §b%1$s§e!",
+      "text": "Tentacle destroyed by %1$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "player_display",
+          "example": "[MVP+] AcuteVampire",
+          "desc": "动态值；按限定类型匹配"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 摧毁了触手!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Tentacle ",
+          "zh": "触手",
+          "order": 2
+        },
+        {
+          "color": "§e",
+          "text": "destroyed by ",
+          "zh": "摧毁了",
+          "order": 1
+        },
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s ",
+          "order": 0
+        },
+        {
+          "color": "§e",
+          "text": "!",
+          "zh": "!",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "id": "bacte_kill_blob",
+      "context": "编译后本轮服务器实测；动态值不写死，颜色以实测为准。",
+      "raw": "§aBlobbercyst §ekilled by §b%1$s§e!",
+      "text": "Blobbercyst killed by %1$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "player_display",
+          "example": "[MVP+] AcuteVampire",
+          "desc": "动态值；按限定类型匹配"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 击杀了 Blobbercyst!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Blobbercyst ",
+          "zh": "Blobbercyst",
+          "order": 2
+        },
+        {
+          "color": "§e",
+          "text": "killed by ",
+          "zh": "击杀了 ",
+          "order": 1
+        },
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s ",
+          "order": 0
+        },
+        {
+          "color": "§e",
+          "text": "!",
+          "zh": "!",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "id": "bacte_copter_summon",
+      "context": "编译后本轮服务器实测；动态值不写死，颜色以实测为准。",
+      "raw": "§a%1$s §ehas summoned a §6Slimecopter§e!",
+      "text": "%1$s has summoned a Slimecopter!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "rift_boss_stage",
+          "example": "Bact",
+          "desc": "动态值；按限定类型匹配"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 召唤了史莱姆旋翼!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§e",
+          "text": "has summoned a ",
+          "zh": "召唤了"
+        },
+        {
+          "color": "§6",
+          "text": "Slimecopter",
+          "zh": "史莱姆旋翼"
+        },
+        {
+          "color": "§e",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "bacte_copter_reverse",
+      "context": "编译后本轮服务器实测；动态值不写死，颜色以实测为准。",
+      "raw": "§eThe §6Slimecopter §ereverses!",
+      "text": "The Slimecopter reverses!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "史莱姆旋翼开始反转!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "The ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§6",
+          "text": "Slimecopter ",
+          "zh": "史莱姆旋翼"
+        },
+        {
+          "color": "§e",
+          "text": "reverses!",
+          "zh": "开始反转!"
+        }
+      ]
+    },
+    {
+      "id": "bacte_copter_faster",
+      "context": "编译后本轮服务器实测；动态值不写死，颜色以实测为准。",
+      "raw": "§eThe §6Slimecopter §eflips and cranks it up!",
+      "text": "The Slimecopter flips and cranks it up!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "史莱姆旋翼翻转并加速了!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "The ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§6",
+          "text": "Slimecopter ",
+          "zh": "史莱姆旋翼"
+        },
+        {
+          "color": "§e",
+          "text": "flips and cranks it up!",
+          "zh": "翻转并加速了!"
+        }
+      ]
+    },
+    {
+      "id": "bacte_copter_more",
+      "context": "编译后本轮服务器实测；动态值不写死，颜色以实测为准。",
+      "raw": "§eThe §6Slimecopter §eflips and cranks it up more!",
+      "text": "The Slimecopter flips and cranks it up more!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "史莱姆旋翼再次翻转，转得更快了!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "The ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§6",
+          "text": "Slimecopter ",
+          "zh": "史莱姆旋翼"
+        },
+        {
+          "color": "§e",
+          "text": "flips and cranks it up more!",
+          "zh": "再次翻转，转得更快了!"
+        }
+      ]
+    },
+    {
+      "id": "bacte_copter_terminal",
+      "context": "编译后本轮服务器实测；动态值不写死，颜色以实测为准。",
+      "raw": "§eThe §6Slimecopter §eflips and reaches terminal velocity!",
+      "text": "The Slimecopter flips and reaches terminal velocity!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "史莱姆旋翼翻转并达到极限转速!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "The ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§6",
+          "text": "Slimecopter ",
+          "zh": "史莱姆旋翼"
+        },
+        {
+          "color": "§e",
+          "text": "flips and reaches terminal velocity!",
+          "zh": "翻转并达到极限转速!"
+        }
+      ]
+    },
+    {
+      "id": "bacte_copter_tired",
+      "context": "编译后本轮服务器实测；动态值不写死，颜色以实测为准。",
+      "raw": "§eThe §6Slimecopter §eis tired...",
+      "text": "The Slimecopter is tired...",
+      "placeholders": [],
+      "translate": true,
+      "zh": "史莱姆旋翼转累了……",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "The ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§6",
+          "text": "Slimecopter ",
+          "zh": "史莱姆旋翼"
+        },
+        {
+          "color": "§e",
+          "text": "is tired...",
+          "zh": "转累了……"
+        }
+      ]
+    },
+    {
+      "id": "bacte_copter_kidding",
+      "context": "编译后本轮服务器实测；动态值不写死，颜色以实测为准。",
+      "raw": "§eThe §6Slimecopter §ewas just kidding!",
+      "text": "The Slimecopter was just kidding!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "史莱姆旋翼刚才只是装累!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "The ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§6",
+          "text": "Slimecopter ",
+          "zh": "史莱姆旋翼"
+        },
+        {
+          "color": "§e",
+          "text": "was just kidding!",
+          "zh": "刚才只是装累!"
+        }
+      ]
+    },
+    {
+      "id": "bacte_blaster_empty",
+      "context": "编译后本轮服务器实测；动态值不写死，颜色以实测为准。",
+      "raw": "§cYour blaster ran out of juice!",
+      "text": "Your blaster ran out of juice!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "你的爆破器没能量了!"
+    },
+    {
+      "id": "bacte_down",
+      "context": "编译后本轮服务器实测；动态值不写死，颜色以实测为准。",
+      "raw": "§6BACTE DOWN!",
+      "text": "BACTE DOWN!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "Bacte 已被击败!",
+      "layout": "center_chat_banner"
+    },
+    {
+      "id": "bacte_fragments",
+      "context": "编译后本轮服务器实测；动态值不写死，颜色以实测为准。",
+      "raw": "§9+%1$sx Bacte Fragment",
+      "text": "+%1$sx Bacte Fragment",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "8",
+          "desc": "动态值；按限定类型匹配"
+        }
+      ],
+      "translate": true,
+      "zh": "+%1$sx Bacte 碎片",
+      "layout": "chat_source_alignment"
+    }
+  ]
+}

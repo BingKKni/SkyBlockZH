@@ -1,0 +1,77 @@
+{
+  "source": [
+    "../SkyZH_Logs/skyzh-capture; records after 2026-10-28 23:42:17",
+    "https://hypixelskyblock.minecraft.wiki/w/Barrier_Street",
+    "https://hypixelskyblock.minecraft.wiki/w/Shen%27s_Auction"
+  ],
+  "verified_ingame": true,
+  "gloss": "实测覆盖拍卖入口、出价物品说明、领取拍品与退款说明。Wiki 仅核对玩法语境，当前页面不含 GUI 子菜单；不编造未采集的菜单。配方查询为用户输入，保留原词。",
+  "entries": [
+    {
+      "id": "auction_top_finish",
+      "text": "Only the top %s bidders win the item at the end of the auction.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "15",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "拍卖结束时，只有出价前 %s 名的玩家能获得拍品。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Only the top ",
+          "zh": "拍卖结束时，只有出价前 "
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": "bidders win the item at the end of the auction.",
+          "zh": " 名的玩家能获得拍品。"
+        }
+      ]
+    },
+    {
+      "id": "auction_claim_info",
+      "text": "You currently have no auctions to claim. Once you have won a Shen Auction, you can claim your item here.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "你目前没有可领取的拍品。在 Shen 拍卖中竞拍成功后，即可在此领取拍品。"
+    },
+    {
+      "id": "auction_refund_info",
+      "text": "If you place a bid and do not win an auction, you can claim your currency here.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "若你出价后未能竞拍成功，可在此领回竞拍所用的货币。"
+    },
+    {
+      "id": "recipe_no_match",
+      "text": "Could not find any SkyBlock recipes matching the query '%s'.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "search_query",
+          "example": "transmission",
+          "desc": "动态取值"
+        }
+      ],
+      "translate": true,
+      "zh": "未找到符合“%s”的 SkyBlock 配方。"
+    },
+    {
+      "id": "recent_sell_average",
+      "text": "Determined by averaging recent sell prices.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "按近期成交均价计算。"
+    }
+  ]
+}

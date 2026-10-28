@@ -1,0 +1,370 @@
+{
+  "source": "../SkyZH_Logs/skyzh-capture; after 2026-10-28 23:42:17",
+  "verified_ingame": true,
+  "entries": [
+    {
+      "id": "recipe_usage",
+      "context": "编译后本轮服务器实测；动态值不写死，颜色以实测为准。",
+      "raw": "§cMissing arguments! Usage: /recipe <query>",
+      "text": "Missing arguments! Usage: /recipe <query>",
+      "placeholders": [],
+      "translate": true,
+      "zh": "缺少参数! 用法: /recipe <搜索词>"
+    },
+    {
+      "id": "warp_interval",
+      "context": "编译后本轮服务器实测；动态值不写死，颜色以实测为准。",
+      "raw": "§cPlease wait %1$s seconds between SkyBlock warps!",
+      "text": "Please wait %1$s seconds between SkyBlock warps!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "5",
+          "desc": "动态值；按限定类型匹配"
+        }
+      ],
+      "translate": true,
+      "zh": "两次 SkyBlock 传送之间需间隔 %1$s 秒!"
+    },
+    {
+      "id": "rift_send_failed",
+      "context": "编译后本轮服务器实测；动态值不写死，颜色以实测为准。",
+      "raw": "§cFailed to send you to the rift, sorry!",
+      "text": "Failed to send you to the rift, sorry!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "抱歉，未能将你送往裂隙!"
+    },
+    {
+      "id": "trade_sent",
+      "context": "编译后本轮服务器实测；动态值不写死，颜色以实测为准。",
+      "raw": "§aYou have sent a trade request to §6%1$s§a.",
+      "text": "You have sent a trade request to %1$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "player_name",
+          "example": "Cute_Leaf_ovo",
+          "desc": "动态值；按限定类型匹配"
+        }
+      ],
+      "translate": true,
+      "zh": "你已向 %1$s 发送交易请求。",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "You have sent a trade request to ",
+          "zh": "你已向 "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§a",
+          "text": ".",
+          "zh": " 发送交易请求。"
+        }
+      ]
+    },
+    {
+      "id": "trade_pending",
+      "context": "编译后本轮服务器实测；动态值不写死，颜色以实测为准。",
+      "raw": "§cWoah there! You already have an outgoing /trade request!",
+      "text": "Woah there! You already have an outgoing /trade request!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "先等等! 你已经发出过交易请求了!"
+    },
+    {
+      "id": "party_transfer",
+      "context": "编译后本轮服务器实测；动态值不写死，颜色以实测为准。",
+      "raw": "§eThe party was transferred to §b%1$s §eby §b%2$s",
+      "text": "The party was transferred to %1$s by %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "player_display",
+          "example": "[MVP++] Cute_Leaf_ovo",
+          "desc": "动态值；按限定类型匹配"
+        },
+        {
+          "token": "%2$s",
+          "type": "player_display",
+          "example": "[MVP+] inkkni",
+          "desc": "动态值；按限定类型匹配"
+        }
+      ],
+      "translate": true,
+      "zh": "%2$s 已将队长转交给 %1$s",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "The party was transferred to ",
+          "zh": "已将队长转交给 ",
+          "order": 1
+        },
+        {
+          "color": "§b",
+          "text": "%1$s ",
+          "zh": "%1$s",
+          "order": 2
+        },
+        {
+          "color": "§e",
+          "text": "by ",
+          "zh": "",
+          "order": 3,
+          "omit": true
+        },
+        {
+          "color": "§b",
+          "text": "%2$s",
+          "zh": "%2$s ",
+          "order": 0
+        }
+      ]
+    },
+    {
+      "id": "party_mods",
+      "context": "编译后本轮服务器实测；动态值不写死，颜色以实测为准。",
+      "raw": "§eParty Moderators: §b%1$s§a ● ",
+      "text": "Party Moderators: %1$s ● ",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "player_display",
+          "example": "[MVP+] inkkni",
+          "desc": "动态值；按限定类型匹配"
+        }
+      ],
+      "translate": true,
+      "zh": "队伍管理员: %1$s ● ",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Party Moderators: ",
+          "zh": "队伍管理员: "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§a",
+          "text": " ● ",
+          "zh": " ● "
+        }
+      ]
+    },
+    {
+      "id": "book_upgrade",
+      "context": "编译后本轮服务器实测；动态值不写死，颜色以实测为准。",
+      "raw": "§aCongratulations! Your §9Book of Progression§a has been upgraded to §5%1$s§a!",
+      "text": "Congratulations! Your Book of Progression has been upgraded to %1$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "category_name",
+          "example": "Epic",
+          "desc": "动态值；按限定类型匹配"
+        }
+      ],
+      "translate": true,
+      "zh": "恭喜! 你的进阶之书已升级为%1$s品质!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Congratulations! Your ",
+          "zh": "恭喜! 你的"
+        },
+        {
+          "color": "§9",
+          "text": "Book of Progression",
+          "zh": "进阶之书"
+        },
+        {
+          "color": "§a",
+          "text": " has been upgraded to ",
+          "zh": "已升级为"
+        },
+        {
+          "color": "§5",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§a",
+          "text": "!",
+          "zh": "品质!"
+        }
+      ]
+    },
+    {
+      "id": "snakes_head",
+      "context": "编译后本轮服务器实测；动态值不写死，颜色以实测为准。",
+      "raw": "§1SNAKES! §9That's the head of the snake!",
+      "text": "SNAKES! That's the head of the snake!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "贪吃蛇! 那是蛇头!",
+      "segments": [
+        {
+          "color": "§1",
+          "text": "SNAKES! ",
+          "zh": "贪吃蛇! "
+        },
+        {
+          "color": "§9",
+          "text": "That's the head of the snake!",
+          "zh": "那是蛇头!"
+        }
+      ]
+    },
+    {
+      "id": "snakes_tail",
+      "context": "编译后本轮服务器实测；动态值不写死，颜色以实测为准。",
+      "raw": "§1SNAKES! §9Start with the tail of the snake!",
+      "text": "SNAKES! Start with the tail of the snake!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "贪吃蛇! 要从蛇尾开始!",
+      "segments": [
+        {
+          "color": "§1",
+          "text": "SNAKES! ",
+          "zh": "贪吃蛇! "
+        },
+        {
+          "color": "§9",
+          "text": "Start with the tail of the snake!",
+          "zh": "要从蛇尾开始!"
+        }
+      ]
+    },
+    {
+      "id": "book_upgrade_reward",
+      "context": "编译后本轮服务器实测；动态值不写死，颜色以实测为准。",
+      "raw": "§8+§5Book of Progression Upgrade",
+      "text": "+Book of Progression Upgrade",
+      "placeholders": [],
+      "translate": true,
+      "zh": "+进阶之书升级",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§5",
+          "text": "Book of Progression Upgrade",
+          "zh": "进阶之书升级"
+        }
+      ],
+      "layout": "chat_source_alignment"
+    },
+    {
+      "id": "holding_item_count",
+      "text": "%1$s is holding [%2$s x%3$s]",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "player_display",
+          "example": "[119] ⸙ [MVP+] Boyoge"
+        },
+        {
+          "token": "%2$s",
+          "type": "item_name",
+          "example": "Bloodbadge"
+        },
+        {
+          "token": "%3$s",
+          "type": "number",
+          "example": "12"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 正手持 [%2$s x%3$s]",
+      "segments": [
+        {
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "text": " is holding ",
+          "zh": " 正手持 "
+        },
+        {
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "text": " x%3$s",
+          "zh": " x%3$s"
+        },
+        {
+          "text": "]",
+          "zh": "]"
+        }
+      ]
+    },
+    {
+      "id": "report_block_buttons",
+      "text": "[Report Player]  [Block Player]",
+      "raw": "§c[Report Player] §r §e[Block Player]",
+      "placeholders": [],
+      "translate": true,
+      "zh": "[举报玩家]  [屏蔽玩家]",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§c",
+          "text": "Report Player",
+          "zh": "举报玩家"
+        },
+        {
+          "color": "§c",
+          "text": "]",
+          "zh": "]"
+        },
+        {
+          "color": "§c",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§r",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§e",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§e",
+          "text": "Block Player",
+          "zh": "屏蔽玩家"
+        },
+        {
+          "color": "§e",
+          "text": "]",
+          "zh": "]"
+        }
+      ]
+    }
+  ]
+}

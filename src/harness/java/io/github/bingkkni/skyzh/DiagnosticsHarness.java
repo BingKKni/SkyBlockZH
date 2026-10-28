@@ -103,14 +103,14 @@ public final class DiagnosticsHarness {
 			var campfire = components("§7Each campfire can only be", "§7interacted with once, and you can",
 				"§7only place one campfire every §a" + n, "§aminutes§7.");
 			var plan = LoreTranslation.plan(campfire);
-			check("营火跨行数值 " + n, plan.size() == 1 && plain(plan).equals("每堆营火只能互动一次,而且每 " + n + " 分钟才能放置一堆。"));
-			check("营火数值及单位保留绿色", encoded(plan).contains("§a" + n + " 分钟§7才能放置一堆。"));
+			check("营火跨行数值 " + n, plan.size() == 1 && plain(plan).equals("每堆营火只能互动一次,而且每 " + n + "分钟才能放置一堆。"));
+			check("营火数值及单位保留绿色", encoded(plan).contains("§a" + n + "分钟§7才能放置一堆。"));
 			check("修复营火不再诊断缺数值", TranslationDiagnostics.lore(plan).isEmpty());
 			for (String in : List.of("", " in")) {
 				var next = LoreTranslation.plan(components("§7The next event will be announced" + in,
 					"§7about §a" + n + " §7minutes!"));
-				check("动态倒计时 " + n + in, next.size() == 1 && plain(next).equals("下一场活动将在大约 " + n + " 分钟后公布!"));
-				check("倒计时数值保持绿色", encoded(next).contains("§a" + n + " §7分钟后公布!"));
+				check("动态倒计时 " + n + in, next.size() == 1 && plain(next).equals("下一场活动将在大约 " + n + "分钟后公布!"));
+				check("倒计时数值保持绿色", encoded(next).contains("§a" + n + "§7分钟后公布!"));
 			}
 		}
 		var cultivating = LoreTranslation.plan(components("§7Gain §3+1☯ Farming Wisdom §7and §6+2☘", "§6Farming Fortune§7."));

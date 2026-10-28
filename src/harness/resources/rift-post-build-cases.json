@@ -1,0 +1,179 @@
+{
+  "note": "本轮编译后实测；按用户明确的统一时间格式独立写出期望，覆盖变值、跨行、颜色。",
+  "cases": [
+    {
+      "name": "Bacte阶段动态",
+      "surface": "ChatMessage",
+      "source": [
+        "§aBacte §eis growing into §aBacte§e!"
+      ],
+      "expected": "§aBacte §e正在长大，变成 §aBacte§e!"
+    },
+    {
+      "name": "Bacte施法技能复用",
+      "surface": "ChatMessage",
+      "source": [
+        "§aBac §eis also casting §6Spikes Pandemoglob§e!"
+      ],
+      "expected": "§aBac §e还在施放§6黏液尖刺爆发§e!"
+    },
+    {
+      "name": "Bacte扣时动态保留换序颜色",
+      "surface": "ChatMessage",
+      "source": [
+        "§cSlime §eremoved §a9s §efrom you using §dSlice§e!"
+      ],
+      "expected": "§c史莱姆§e使用§d切割§e，使你的裂隙时间减少 §a9秒 §e!"
+    },
+    {
+      "name": "警告感叹号不是固定四个",
+      "surface": "ChatMessage",
+      "source": [
+        "§a⚠ §cGet back in the arena or you will DIE!!!!!!!!!!!! §a⚠"
+      ],
+      "expected": "§a⚠ §c快回竞技场，否则你会死!!!!!!!!!!!! §a⚠"
+    },
+    {
+      "name": "击杀触手保留玩家Rank内部颜色",
+      "surface": "ChatMessage",
+      "source": [
+        "§aTentacle §edestroyed by §b[MVP§c+§b] NewPlayer§e!"
+      ],
+      "expected": "§b[MVP§c+§b] NewPlayer §e摧毁了§a触手§e!"
+    },
+    {
+      "name": "进阶之书稀有度动态",
+      "surface": "ChatMessage",
+      "source": [
+        "§aCongratulations! Your §9Book of Progression§a has been upgraded to §6Legendary§a!"
+      ],
+      "expected": "§a恭喜! 你的§9进阶之书§a已升级为§6传说§a品质!"
+    },
+    {
+      "name": "拍卖剩余时间跨单位",
+      "surface": "GUI_Item",
+      "source": [
+        "§7Auction ends in: §a1h 32m 6s"
+      ],
+      "expected": "§7拍卖剩余时间: §a1小时32分06秒"
+    },
+    {
+      "name": "拍卖二行完整说明",
+      "source": [
+        "§7Only the top §a25 §7bidders win the item",
+        "§7at the end of the auction."
+      ],
+      "expected": "§7拍卖结束时，只有出价前 §a25§7 名的玩家能获得拍品。",
+      "consumed": 2
+    },
+    {
+      "name": "拍品领取完整三行",
+      "source": [
+        "§7You currently have no auctions to",
+        "§7claim. Once you have won a Shen",
+        "§7Auction, you can claim your item here."
+      ],
+      "expected": "§7你目前没有可领取的拍品。在 Shen 拍卖中竞拍成功后，即可在此领取拍品。",
+      "consumed": 3
+    },
+    {
+      "name": "退款完整三行",
+      "source": [
+        "§7If you place a bid and do not win an",
+        "§7auction, you can claim your",
+        "§7currency here."
+      ],
+      "expected": "§7若你出价后未能竞拍成功，可在此领回竞拍所用的货币。",
+      "consumed": 3
+    },
+    {
+      "name": "配方查询不固定英文",
+      "source": [
+        "§7Could not find any SkyBlock recipes",
+        "§7matching the query 'my_custom-query'."
+      ],
+      "expected": "§7未找到符合“my_custom-query”的 SkyBlock 配方。",
+      "consumed": 2
+    },
+    {
+      "name": "配方标题保留搜索词",
+      "surface": "GUI_Title",
+      "source": [
+        "\"blood\" Recipes"
+      ],
+      "expected": "“blood”的配方"
+    },
+    {
+      "name": "传送调谐器分类截断保留",
+      "surface": "GUI_Title",
+      "source": [
+        "Item Upgrades ➜ Transmission Tu"
+      ],
+      "expected": "物品升级 ➜ 传送调谐器"
+    },
+    {
+      "name": "指南满级勾号颜色独立",
+      "surface": "GUI_Item",
+      "source": [
+        "§a ✔ §fMax out your Suit"
+      ],
+      "expected": "§a ✔ §f将套装升至满级"
+    },
+    {
+      "name": "光子小径动作栏复用地名",
+      "surface": "ActionBar",
+      "source": [
+        "§7 §bPhoton Pathway"
+      ],
+      "expected": "§7 §b光子小径"
+    },
+    {
+      "name": "活体金属锚收藏条件",
+      "surface": "GUI_Item",
+      "source": [
+        "§4❣ §cRequires §aLiving Metal Heart Rift Collection II§c."
+      ],
+      "expected": "§4❣ §c需要§a活体金属之心收藏品 II§c。"
+    },
+    {
+      "name": "动作栏用户示例",
+      "surface": "ActionBar",
+      "source": [
+        "§a41m40s Left"
+      ],
+      "expected": "§a剩余 41分40秒 "
+    },
+    {
+      "name": "组合时间各段实时颜色",
+      "surface": "GUI_Item",
+      "source": [
+        "§7Duration: §a1h §b2m §c6s"
+      ],
+      "expected": "§7持续时间: §a1小时§b2分§c06秒"
+    },
+    {
+      "name": "单独分钟",
+      "surface": "GUI_Item",
+      "source": [
+        "§7Duration: §a8m"
+      ],
+      "expected": "§7持续时间: §a8分钟"
+    },
+    {
+      "name": "整小时显式零",
+      "surface": "GUI_Item",
+      "source": [
+        "§7Duration: §a1h 0m 0s"
+      ],
+      "expected": "§7持续时间: §a1小时"
+    },
+    {
+      "name": "书面时长同规则",
+      "surface": "NPC_Message",
+      "source": [
+        "Come back in §e1 hour 32 minutes 6 seconds §fto pick it up!"
+      ],
+      "expected": "§e1小时32分06秒§f后再来接它吧!"
+    }
+  ]
+}

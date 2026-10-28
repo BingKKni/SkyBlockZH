@@ -59,6 +59,10 @@ public final class NameTag {
 	private static final Pattern MOB_BAR = Pattern.compile(
 		"^(?:﴾\\s*)?(?:\\[Lv[0-9]+\\]\\s*)?(?:[\\p{Co}\\p{S}]\\s*){0,8}([A-Za-z][A-Za-z '\\-]+?)\\s+(?:[0-9][0-9,.]*[kKmMbBtT]?(?:/[0-9][0-9,.]*[kKmMbBtT]?)?|\\?+)❤(?:\\s*﴿)?\\s*$"
 	);
+	// Only the complete Rift timer score line, never a player identity or an arbitrary sentence.
+	private static final Pattern RIFT_TIMER = Pattern.compile(
+		"^[0-9]+[hms](?: ?[0-9]+[hms])* ?ф$"
+	);
 	private static final Pattern PET_TAG = Pattern.compile("^(?:#[0-9]+ )?\\[Lv(?:l )?[0-9]+\\] .+");
 	private static final Pattern RANKED_PLAYER = Pattern.compile(
 		"^\\[(?:VIP|MVP|YOUTUBE|ADMIN|MOD|HELPER|GM|OWNER|MOJANG|EVENTS|MCP|PIG)\\+{0,3}\\] [A-Za-z0-9_]{1,16}$"
@@ -134,16 +138,25 @@ public final class NameTag {
 			.append(styled.slice(bar.end(1), styled.length()));
 	}
 
+	/** Shared by below-name scores and invisible timer stands; identity text cannot match. */
+	public static Component riftTimer(Component source) {
+		if (!RIFT_TIMER.matcher(StyledText.of(source).canonical()).matches()) return source;
+		return Translator.translateAvailable(source, Surface.HOLOGRAM).padded();
+	}
+
 	public static Component translate(Component nameTag, boolean hologramNameTag) {
 		return translate(nameTag, hologramNameTag, false);
 	}
 
 	/** Players and named items never enter the living-mob branch. */
 	public static Component translate(Component nameTag, boolean hologramNameTag, boolean livingMob) {
-		if ((!hologramNameTag && !livingMob) || !HypixelServer.canTranslate()
+		if (!HypixelServer.canTranslate()
 			|| !SkyZHConfig.get().enabled || HoldOriginal.active()) {
 			return nameTag;
 		}
+		Component timer = riftTimer(nameTag);
+		if (timer != nameTag) return timer;
+		if (!hologramNameTag && !livingMob) return nameTag;
 		Component mob = mobName(nameTag);
 		if (mob != nameTag) {
 			return mob;

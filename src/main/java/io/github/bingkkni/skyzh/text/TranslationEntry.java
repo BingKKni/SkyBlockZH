@@ -623,7 +623,11 @@ public final class TranslationEntry {
 			seam.append(frag, written, style, inner.startsWithName, inner.endsWithName);
 		}
 
-		return result;
+		// Search queries are opaque; separate duration captures are distinct readings/options.
+		boolean opaque = matches.stream().anyMatch(m -> m.entry().argTypes.containsValue("search_query"));
+		long durations = matches.stream().flatMap(m -> m.entry().captures.values().stream())
+			.filter(c -> c == Capture.DURATION || c == Capture.DURATION_SPACED || c == Capture.DURATION_WORDS).count();
+		return opaque || durations > 1 ? result : DurationText.normalize(result);
 	}
 
 	/**
@@ -664,7 +668,8 @@ public final class TranslationEntry {
 		// own far more often than not, and translating the word is no reason to repaint it.
 		Style valueStyle = start < source.length() ? source.styleAt(start) : style;
 
-		MutableComponent rendered = Component.literal(written).setStyle(valueStyle);
+		MutableComponent duration = translated == null ? Capture.of(type).renderDuration(source, start, end) : null;
+		MutableComponent rendered = duration != null ? duration : Component.literal(written).setStyle(valueStyle);
 		if (translatedItem != null && ("raw".equals(type) || "item_name".equals(type) || "loot_item_name".equals(type)
 			|| "catalog_item_name".equals(type) || "recipe_target".equals(type))
 			&& ItemNames.canonical(value) != null) {
@@ -1030,6 +1035,7 @@ public final class TranslationEntry {
 			}
 
 			String value = match.group(group);
+			if (Capture.omittedHourZero(match.group(), match.start(group), match.end(group))) continue;
 
 			if (terms.translate(this.argTypes.get(group), value) == null) {
 				values.add(capture.getValue().renderValue(value));

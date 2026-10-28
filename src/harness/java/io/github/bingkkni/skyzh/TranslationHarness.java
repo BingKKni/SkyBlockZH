@@ -111,6 +111,25 @@ public final class TranslationHarness {
 		report("属性名不会吞掉条件从句", !Capture.of("stat_name").accepts("Overbloom on Pests"), "on Pests 是效果条件");
 		report("预设引用拒绝未确认的装备名", !Capture.of("loadout_item_name").accepts("Unverified Special Helmet"),
 			"只有真实目录物品可以使用预设引用翻译");
+		check("整小时固定单位旧模板同样省零", "Status: ACTIVE 1h0m0s", Surface.ITEM, "状态: 生效中 1小时");
+		check("搜索词中的中文时间原样保留", "Filtered: 1 秒", Surface.ITEM, "搜索内容: 1 秒");
+		check("配方搜索中的中文时间原样保留", "\"1 秒\" Recipes", Surface.GUI_TITLE, "“1 秒”的配方");
+		check("本轮退款入口实际原文", "No Bids to Claim", Surface.ITEM, "暂无可领取的退款");
+		check("黏糊怪头顶复用指南译名", "The Gooey", Surface.HOLOGRAM, "黏糊怪");
+		var clockDiagnostics = io.github.bingkkni.skyzh.capture.Classifier.all(
+			io.github.bingkkni.skyzh.capture.CaptureSurface.GUI_ITEM,
+			StyledText.of(Component.literal("Status: ACTIVE 1h0m0s")));
+		report("省略整小时零分秒不报数值缺失", clockDiagnostics.isEmpty(), clockDiagnostics.toString());
+		boolean keepSkyBlock = SkyZHConfig.get().translateSkyBlockName;
+		try {
+			SkyZHConfig.get().translateSkyBlockName = false;
+			check("本轮传送消息服从玩法名开关", "Please wait 5 seconds between SkyBlock warps!",
+				Surface.CHAT, "两次 SkyBlock 传送之间需间隔 5秒!");
+			check("本轮配方说明服从玩法名开关", "Could not find any SkyBlock recipes matching the query 'sample'.",
+				Surface.LORE, "未找到符合“sample”的 SkyBlock 配方。");
+		} finally {
+			SkyZHConfig.get().translateSkyBlockName = keepSkyBlock;
+		}
 		checkGuideItemNameCatalog(files, index);
 		report("审计承认精确保留的聊天行", LogAudit.covered(" +Drain IV"), "translate:false 的聊天行不应再次报告");
 		report("审计不豁免未知聊天行", !LogAudit.covered(" +Unverified IV"), "保留规则必须是精确行");
@@ -420,12 +439,12 @@ public final class TranslationHarness {
 			new String[] {"8m16s", "8分16秒"}, new String[] {"56s", "56秒"})) {
 			checkWidgets("裂隙倒计时与法力互不吞并 " + time[0],
 				"§a" + time[0] + " Left     §b100/100✎ Mana",
-				"§a剩余 " + time[1] + "     §b100/100✎ 法力");
+				"§a剩余 " + time[1] + "      §b100/100✎ 法力");
 		}
 		checkWidgets("裂隙扣时与法力保留分段颜色", "§a4m09s Left §2-60s!     §b75/100✎ Mana",
-			"§a剩余 4分09秒 §2-60 秒!     §b75/100✎ 法力");
+			"§a剩余 4分09秒  §2-60秒!     §b75/100✎ 法力");
 		checkWidgets("裂隙实测大额扣时支持不同数值", "§a5m07s Left §2-240s!     §b100/100✎ Mana",
-			"§a剩余 5分07秒 §2-240 秒!     §b100/100✎ 法力");
+			"§a剩余 5分07秒  §2-240秒!     §b100/100✎ 法力");
 		checkNoMatch("法力规则拒绝吞入其他动作栏部件", "9m00s Left     100/100✎ Mana", Surface.ACTION_BAR);
 		checkNoMatch("谜魂任务名拒绝吞入普通句子", "Enigma: Find it in the tower", Surface.ITEM);
 		checkNoMatch("裂隙战斗技能拒绝普通句子",
@@ -450,9 +469,9 @@ public final class TranslationHarness {
 			"§b§k§lA§r §e§lCLICK HERE §eto get your §c§lSPECIAL §enew year cake!", Surface.CHAT,
 			"§b§l§kA §e§l点击这里§e领取你的§c§l特殊§e新年蛋糕!");
 		check("新年庆典倒计时单数 day", "§aThe §dNew Year's Celebration §aevent is starting in §b1 §aday!",
-			Surface.CHAT, "§d新年庆典§a活动将在 §b1§a 天后开始!");
+			Surface.CHAT, "§d新年庆典§a活动将在 §b1§a天后开始!");
 		check("新年庆典倒计时复数 days", "§aThe §dNew Year's Celebration §aevent is starting in §b2§a days!",
-			Surface.CHAT, "§d新年庆典§a活动将在 §b2§a 天后开始!");
+			Surface.CHAT, "§d新年庆典§a活动将在 §b2§a天后开始!");
 		check("雪炮装填完成显示鼠标右键", "§e§lRIGHT-CLICK §fto §6§lFIRE", Surface.ACTION_BAR,
 			"§e§l按鼠标右键§6§l开炮");
 		check("雪炮装填中显示倒计时", "§e§l2.2s §fto §6§lFIRE", Surface.ACTION_BAR,
@@ -501,7 +520,7 @@ public final class TranslationHarness {
 		check("单数写法也认得", "§fBits: §b1", Surface.SCOREBOARD, "§f点券: §b1");
 		check("Bit: 1 也认得", "§fBit: §b1", Surface.SCOREBOARD, "§f点券: §b1");
 		check("收纳袋只收进一件时", "§6[Sacks] §a+1§e item§e.§8 (Last 1s.)", Surface.CHAT,
-			"§6[收纳袋] §a+1§e 件物品。§8(最近 1 秒)");
+			"§6[收纳袋] §a+1§e 件物品。§8(最近 1秒)");
 		check("抽奖只投一张票时", "§eYou registered §a1 ticket §ein the raffle event!", Surface.CHAT,
 			"§e你在抽奖箱活动里投了 §a1 张票券§e!");
 		// And the loosening must not reach across a word: "Bi" is not "Bit" with the s taken off.
@@ -515,7 +534,7 @@ public final class TranslationHarness {
 		check("Tab Gems 保留英文", "Gems:", Surface.TABLIST, "Gems:");
 		check("聊天里的收纳袋合并提示",
 			"§6[Sacks] §a+3,598§e items§e.§8 (Last 30s.)", Surface.CHAT,
-			"§6[收纳袋] §a+3,598§e 件物品。§8(最近 30 秒)");
+			"§6[收纳袋] §a+3,598§e 件物品。§8(最近 30秒)");
 		// The version number has a full stop in it, which is exactly what a `raw` placeholder refuses.
 		// SkyBlock itself is swapped by translateSkyBlockName after the record has done its part.
 		check("版本公告里的版本号", "§eLatest update: §bSkyBlock v0.27 §e§lCLICK", Surface.CHAT,
@@ -846,13 +865,13 @@ public final class TranslationHarness {
 
 		// ---- Hub final audit: strict dynamic values and current-capture shapes ----
 		check("时光塔刚启用的时分秒", "§7Status: §a§lACTIVE §f1h00m00s", Surface.ITEM,
-			"§7状态: §a§l生效中 §f1小时 00分 00秒");
+			"§7状态: §a§l生效中 §f1小时");
 		check("时光塔不足一小时的分秒", "§7Status: §a§lACTIVE §f59m58s", Surface.ITEM,
-			"§7状态: §a§l生效中 §f59分 58秒");
+			"§7状态: §a§l生效中 §f59分58秒");
 		check("时光塔下次充能单位", "§7Next Charge: §a7h59m57s", Surface.ITEM,
-			"§7下次充能: §a7小时 59分 57秒");
+			"§7下次充能: §a7小时59分57秒");
 		check("时光塔说明的一小时", "§6Chocolate Factory §7by §6+1.1x §7for §a1h§7.", Surface.ITEM,
-			"§6巧克力工厂§7产量提高 §61.1 倍§7，持续 §a1 小时§7。");
+			"§6巧克力工厂§7产量提高 §61.1 倍§7，持续 §a1小时§7。");
 		check("每秒产量按中文语序", "§618,017.74 §8per second", Surface.ITEM,
 			"§8每秒 §618,017.74");
 		check("员工每秒产出不重复", "§7produce §6+220 Chocolate §7per second!", Surface.ITEM,
@@ -865,7 +884,7 @@ public final class TranslationHarness {
 		check("当前嘉年华及届数", "§7Active Event: §e19th Carnival", Surface.ITEM,
 			"§7进行中的活动: §e第19届嘉年华");
 		check("当前活动结束倒计时", "§7Ends in: §e1d 16h 22m 14s", Surface.ITEM,
-			"§7距结束: §e1天 16小时 22分 14秒");
+			"§7距结束: §e1天16小时22分14秒");
 		check("下一活动固定为 Jerry 季", "§7Next Event: §c477th Season of Jerry", Surface.ITEM,
 			"§7下一活动: §c第477届 Jerry 季");
 		checkNoMatch("活动名加时间的过宽模板已删除", "19th Something Nobody Named 1d", Surface.ITEM);
@@ -894,10 +913,10 @@ public final class TranslationHarness {
 		check("Alpha 超长曲奇时长保留年份", "§7Duration: §a292471151y 334d 0h 4m 18s", Surface.ITEM,
 			"§7持续时间: §a292471151年334天0小时4分18秒");
 		check("年份与紧凑时钟兼容", "§7Duration: §a1y 2d", Surface.ITEM, "§7持续时间: §a1年2天");
-		checkRow("Alpha 跨年活动倒计时", " Ends In: §a2y 3d", " 距结束: §a2 年 3 天");
-		checkRow("截图利息分钟和金额", " Interest: §e23 Minutes§6 (392k)", " 利息: §e23 分钟§6 (392k)");
-		checkRow("利息分钟单数", " Interest: §e1 Minute§6 (18k)", " 利息: §e1 分钟§6 (18k)");
-		checkRow("利息分钟不带金额", " Interest: §e12 Minutes", " 利息: §e12 分钟");
+		checkRow("Alpha 跨年活动倒计时", " Ends In: §a2y 3d", " 距结束: §a2年3天");
+		checkRow("截图利息分钟和金额", " Interest: §e23 Minutes§6 (392k)", " 利息: §e23分钟§6 (392k)");
+		checkRow("利息分钟单数", " Interest: §e1 Minute§6 (18k)", " 利息: §e1分钟§6 (18k)");
+		checkRow("利息分钟不带金额", " Interest: §e12 Minutes", " 利息: §e12分钟");
 		check("本人摧毁水晶", "§5☬ §dYou destroyed an §5Ender Crystal§d!", Surface.CHAT,
 			"§5☬ §d你摧毁了一枚§5末影水晶§d!");
 		check("本人放眼", "§5☬ §dYou placed a Summoning Eye! §7(1/8)", Surface.CHAT,
@@ -942,31 +961,31 @@ public final class TranslationHarness {
 			List.of("§7Gain §6+55 Mining Speed§7 when mining", "§7Gemstones."),
 			"§7挖掘宝石时,§6挖掘速度 +55§7。");
 		checkRow("Tab 宠物训练剩余时间", " 1: §7[Lvl 99] §5Ghoul §b22d", " 1: §7[99 级] §5食尸鬼 §b22天");
-		check("Tab 小时复数", "§f9 Hours", Surface.TABLIST, "§f9 小时");
-		check("Tab 不足一小时", "§fLess than an hour", Surface.TABLIST, "§f不足 1 小时");
-		check("Tab 活动小时倒计时不加后", "Starts In: §e3h", Surface.TABLIST, "距开始: §e3 小时");
-		checkRow("小写开始标签整点小时", " Starts in: §e20h", " 距开始: §e20 小时");
-		checkRow("结束时间换单位与跨日", " Ends In: §a1d 2h 3m 4s", " 距结束: §a1 天 2 小时 3 分 4 秒");
-		checkRow("小写结束标签保留前导零", " Ends in: §e01m05s", " 距结束: §e01 分 05 秒");
-		checkRow("开始倒计时上限", " Starts In: §e35d+", " 距开始: §e35 天以上");
+		check("Tab 小时复数", "§f9 Hours", Surface.TABLIST, "§f9小时");
+		check("Tab 不足一小时", "§fLess than an hour", Surface.TABLIST, "§f不足 1小时");
+		check("Tab 活动小时倒计时不加后", "Starts In: §e3h", Surface.TABLIST, "距开始: §e3小时");
+		checkRow("小写开始标签整点小时", " Starts in: §e20h", " 距开始: §e20小时");
+		checkRow("结束时间换单位与跨日", " Ends In: §a1d 2h 3m 4s", " 距结束: §a1天2小时3分04秒");
+		checkRow("小写结束标签保留前导零", " Ends in: §e01m05s", " 距结束: §e01分05秒");
+		checkRow("开始倒计时上限", " Starts In: §e35d+", " 距开始: §e35天以上");
 		check("日历年份不是固定515", "SkyBlock Year 515", Surface.GUI_TITLE, "空岛第 515 年");
 		check("日历次年继续翻译", "SkyBlock Year 516", Surface.GUI_TITLE, "空岛第 516 年");
 		check("日历下划线年份", "Skyblock_Year_516", Surface.GUI_TITLE, "空岛第 516 年");
-		check("Tab 活动分钟倒计时不加后", "Starts In: §e26m", Surface.TABLIST, "距开始: §e26 分钟");
-		check("宾果活动倒计时不加后", "§7Event Starts: §a43h", Surface.ITEM, "§7距活动开始: §a43 小时");
-		check("Tab 只剩一小时", "§f1 Hour", Surface.TABLIST, "§f1 小时");
+		check("Tab 活动分钟倒计时不加后", "Starts In: §e26m", Surface.TABLIST, "距开始: §e26分钟");
+		check("宾果活动倒计时不加后", "§7Event Starts: §a43h", Surface.ITEM, "§7距活动开始: §a43小时");
+		check("Tab 只剩一小时", "§f1 Hour", Surface.TABLIST, "§f1小时");
 		// The bank widget's interest row. The label record answered and the value went back English for
 		// several sessions running: the value half was only ever asked of the term table, never of the
 		// records, so "%1$s Hours" sat in the footer file and was never tried. Four server writings.
-		checkRow("Tab 银行利息整点小时", " §eInterest: §b47 Hours", " §e利息: §b47 小时");
-		checkRow("Tab 银行利息只剩一小时", " §eInterest: §b1 Hour", " §e利息: §b1 小时");
+		checkRow("Tab 银行利息整点小时", " §eInterest: §b47 Hours", " §e利息: §b47小时");
+		checkRow("Tab 银行利息只剩一小时", " §eInterest: §b1 Hour", " §e利息: §b1小时");
 		checkRow("Tab 银行利息紧凑写法", " §eInterest: §b1h 32m", " §e利息: §b1小时32分");
-		checkRow("Tab 银行利息只剩分秒", " §eInterest: §b12m 5s", " §e利息: §b12分5秒");
-		checkRow("Tab 银行利息不足一小时的整句", " §eInterest: §bLess than an hour", " §e利息: §b不足 1 小时");
+		checkRow("Tab 银行利息只剩分秒", " §eInterest: §b12m 5s", " §e利息: §b12分05秒");
+		checkRow("Tab 银行利息不足一小时的整句", " §eInterest: §bLess than an hour", " §e利息: §b不足 1小时");
 		// What the server actually sends (2026-09-02 capture): the interest *amount* follows the hours in
 		// gold, so the value half is "6 Hours (46.5k)" and no bare-duration record can answer for it.
-		checkRow("Tab 银行利息带结息金额(实测原样)", " Interest: §e6 Hours§6 (46.5k)", " 利息: §e6 小时§6 (46.5k)");
-		checkRow("Tab 银行利息带金额只剩一小时", " Interest: §e1 Hour§6 (46.5k)", " 利息: §e1 小时§6 (46.5k)");
+		checkRow("Tab 银行利息带结息金额(实测原样)", " Interest: §e6 Hours§6 (46.5k)", " 利息: §e6小时§6 (46.5k)");
+		checkRow("Tab 银行利息带金额只剩一小时", " Interest: §e1 Hour§6 (46.5k)", " 利息: §e1小时§6 (46.5k)");
 		checkRow("Tab 银行利息带金额紧凑写法", " Interest: §e1h 32m§6 (46.5k)", " 利息: §e1小时32分§6 (46.5k)");
 		// Same session: the level row's value had an English word in it, and two rows whose values are
 		// identifiers (a profile's fruit name, a server id) must stay English without being reported.
@@ -1006,7 +1025,7 @@ public final class TranslationHarness {
 		check("搜索设置当前选择排序", "§aCurrently Selected: §bRecently Created", Surface.ITEM, "§a当前选择: §b最近创建");
 		check("Croesus 已开宝箱档位", "§7Opened Chest: §bEmerald", Surface.ITEM, "§7已开宝箱: §b绿宝石");
 		check("Croesus 宝箱过期倒计时", "§8Chests expire in 2d 23h!", Surface.ITEM, "§8宝箱将在2天23小时后过期!");
-		check("Croesus 完成于几小时前", "§7Completed: §b20 hours ago", Surface.ITEM, "§7完成于: §b20 小时前");
+		check("Croesus 完成于几小时前", "§7Completed: §b20 hours ago", Surface.ITEM, "§7完成于: §b20小时前");
 		check("Bonzo 点名要气球", "§f[BOSS] Bonzo§f: Do you want a balloon inkkni?", Surface.CHAT,
 			"§f[BOSS] Bonzo: 你想要气球吗，inkkni?");
 		check("组队查找器有人加入", "§dParty Finder §f> §bNinji1111 §ejoined the dungeon group! (§bArcher Level 8§e)",
@@ -1034,11 +1053,11 @@ public final class TranslationHarness {
 		checkJoined("治疗师祈愿按条件到效果重排三行",
 			List.of("§a20% §7of their maximum health. The", "§7cooldown is reduced by §b10 §7seconds",
 				"§7for every player below §a25% §7health."),
-			"§a20%§7；每有一名玩家的生命值低于 §a25%§7，该技能冷却时间缩短 §b10 §7秒。");
+			"§a20%§7；每有一名玩家的生命值低于 §a25%§7，该技能冷却时间缩短 §b10§7秒。");
 		check("农业竞赛分秒完整翻译", "§a §e○ §fPotato §a3m19s", Surface.SCOREBOARD,
 			"§a §e○ §f马铃薯 §a3分19秒");
 		check("Tab 曲奇增益小节", "Cookie Buff", Surface.TABLIST, "曲奇增益");
-		check("Tab 魔法寻宝剩余小时", "§eMagic Find V §f7 Hours", Surface.TABLIST, "§e魔法寻宝 V §f7 小时");
+		check("Tab 魔法寻宝剩余小时", "§eMagic Find V §f7 Hours", Surface.TABLIST, "§e魔法寻宝 V §f7小时");
 		// The unit letter must not be written into a template: the server picks the unit by how much
 		// time is left, so a record saying "%sh" is English for every player who looks at it on a day
 		// when the answer is in days.
@@ -1050,9 +1069,9 @@ public final class TranslationHarness {
 		// Same sentence, three server writings of the remaining time. Only the "hours" one had a
 		// record, so the tab footer was English for the whole last hour of every potion.
 		check("神药剩余小时", "§7You have a §cGod Potion §7active! §d2 hours", Surface.TABLIST,
-			"§c神药§7生效中! 剩余 §d2 小时");
+			"§c神药§7生效中! 剩余 §d2小时");
 		check("神药剩余分钟", "§7You have a §cGod Potion §7active! §d32 minutes", Surface.TABLIST,
-			"§c神药§7生效中! 剩余 §d32 分钟");
+			"§c神药§7生效中! 剩余 §d32分钟");
 		check("神药最后几分钟的紧凑倒计时", "§7You have a §cGod Potion §7active! §d5m 59s",
 			Surface.TABLIST, "§c神药§7生效中! 剩余 §d5分59秒");
 		// [SECURITY] Sloth wears a tag the shape of a player's line, so the speaker used to be read as
@@ -1083,7 +1102,7 @@ public final class TranslationHarness {
 		check("返回设置同理", "§7To Settings", Surface.ITEM, "§7返回设置");
 		check("银行结息倒计时整段换算", "§7Interest in: §b1h 57m", Surface.ITEM, "§7距结息: §b1小时57分");
 		check("银行结息只剩分秒", "§7Until interest: §b4m 48s", Surface.ITEM, "§7距结息: §b4分48秒");
-		check("银行结息整点小时", "§7Until interest: §b10 Hours", Surface.ITEM, "§7距结息: §b10 小时");
+		check("银行结息整点小时", "§7Until interest: §b10 Hours", Surface.ITEM, "§7距结息: §b10小时");
 		// Enchantment names, and the line that lists several of them. Vanilla enchantments use the
 		// official Chinese; the September 8 request leaves all SkyBlock-only names in English.
 		check("原版附魔名", "§9Efficiency X", Surface.ITEM, "§9效率 X");
@@ -1268,16 +1287,16 @@ public final class TranslationHarness {
 		// Sixteen account/profile upgrades share four line shapes. Spelling a name into each shape is
 		// what left the menu Chinese for whichever upgrade the capturing player happened to be running.
 		check("升级状态行的升级名走词表", "§7Profile: §aGuests Limit I §7(§e47 Hours§7)", Surface.ITEM,
-			"§7存档: §a访客上限 I §7(§e47 小时§7)");
+			"§7存档: §a访客上限 I §7(§e47小时§7)");
 		check("同一行换一个升级名照样翻", "§7Account: §dHeart of the Mountain I §7(§e5 Days§7)",
-			Surface.ITEM, "§7账号: §d山峦之心 I §7(§e5 天§7)");
+			Surface.ITEM, "§7账号: §d山峦之心 I §7(§e5天§7)");
 		check("账号升级不可与合作成员叠加", "§7Does NOT impact co-op partners.", Surface.ITEM,
 			"§7不可与合作成员叠加。");
 		check("升级历史的时间走 time 占位符", "§82m ago §binkkni §eclaimed §aMinion Slots V", Surface.ITEM,
-			"§82分前 §binkkni §e领取了§a小人槽位 V");
+			"§82分钟前 §binkkni §e领取了§a小人槽位 V");
 		check("刚发生的升级历史写 now", "§8now §binkkni §estarted §aGuests Limit I", Surface.ITEM,
 			"§8刚刚 §binkkni §e开始升级§a访客上限 I");
-		check("Tab 页脚的升级行", "§eGuests Limit I §f47 Hours", Surface.TABLIST, "§e访客上限 I §f47 小时");
+		check("Tab 页脚的升级行", "§eGuests Limit I §f47 Hours", Surface.TABLIST, "§e访客上限 I §f47小时");
 		check("开始升级的聊天广播", "§eYou started the §aGuests Limit I §eupgrade!", Surface.CHAT,
 			"§e你开始了§a访客上限 I§e 升级!");
 		// Written singular, the template only ever matched the tier that happened to give one slot.
@@ -2326,6 +2345,8 @@ public final class TranslationHarness {
 			case DAY_OF_MONTH -> "28";
 			case TRAINING_KIND -> "Turbo!";
 			case RIFT_ABILITY -> "Lazer";
+			case RIFT_BOSS_STAGE -> "Bac";
+			case EXCLAMATIONS -> "!!!";
 			case TROPHY_FISH_NAME -> "Blobfish";
 			case EQUIPMENT_SLOT -> "Helmet";
 			case HUNGRY_HIKER_FOOD -> "grilled meat";
@@ -2730,9 +2751,9 @@ public final class TranslationHarness {
 			"§7最高伤害: §a983,344§7 (前 §621.12%§7)");
 		check("巨龙指南无数据保留红色", "§7Highest Rank: §cN/A", Surface.ITEM, "§7最高排名: §c暂无");
 		check("巨龙指南序数去掉英文后缀", "§7Highest Rank: §a2nd", Surface.ITEM, "§7最高排名: §a第 2 名");
-		check("巨龙指南时长支持分钟", "§7Fastest Kill: §a1m 02s", Surface.ITEM, "§7最快击杀: §a1 分 02 秒");
-		check("末地竞速目标支持秒数", "Run the race in 48s", Surface.SCOREBOARD, "在 48 秒内完成竞速");
-		check("末地竞速目标支持分钟", "Run the race in 2m", Surface.SCOREBOARD, "在 2 分内完成竞速");
+		check("巨龙指南时长支持分钟", "§7Fastest Kill: §a1m 02s", Surface.ITEM, "§7最快击杀: §a1分02秒");
+		check("末地竞速目标支持秒数", "Run the race in 48s", Surface.SCOREBOARD, "在 48秒内完成竞速");
+		check("末地竞速目标支持分钟", "Run the race in 2m", Surface.SCOREBOARD, "在 2分钟内完成竞速");
 		check("Guber 对话玩家名不是采集者常量", "Not bad, OtherPlayer!", Surface.CHAT, "不错嘛，OtherPlayer!");
 		check("龙巢传送台的多词地名整值翻译", "§5✦ §dWarp To §7Bedrock Point", Surface.HOLOGRAM,
 			"§5✦ §d传送至§7基岩台");
@@ -2909,7 +2930,7 @@ public final class TranslationHarness {
 
 	/** Fixed UI capture regression: ordered lore, term isolation, and clues that must survive translation. */
 	private static void checkFixedMenus(Path corpusRoot) throws Exception {
-		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "october-live-round-cases.json", "workshop-cases.json", "wiki-expansion-cases.json", "bazaar-item-names-cases.json", "rift-live-capture-cases.json", "rift-session-cases.json", "garden-weather-feast-cases.json", "village-living-cave-cases.json")) {
+		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "october-live-round-cases.json", "workshop-cases.json", "wiki-expansion-cases.json", "bazaar-item-names-cases.json", "rift-live-capture-cases.json", "rift-session-cases.json", "garden-weather-feast-cases.json", "village-living-cave-cases.json", "rift-post-build-cases.json")) {
 		Path path = corpusRoot.toAbsolutePath().getParent().resolve("src/harness/resources/" + file);
 		JsonObject fixture = JsonParser.parseString(Files.readString(path, StandardCharsets.UTF_8)).getAsJsonObject();
 		for (JsonElement value : fixture.getAsJsonArray("cases")) {
@@ -3323,8 +3344,8 @@ public final class TranslationHarness {
 			"§9ꨃ §a迅捷鱼线");
 		checkJoined("抓钩说明不残留第二行", List.of("§7Travel around in style using this", "§7Grappling Hook."),
 			"§7用这把抓钩潇洒地穿梭四方。");
-		check("抓钩冷却兼容服务器错误单数", "§82 Second Cooldown", Surface.ITEM, "§8冷却时间: 2 秒");
-		check("抓钩冷却兼容复数", "§83 Seconds Cooldown", Surface.ITEM, "§8冷却时间: 3 秒");
+		check("抓钩冷却兼容服务器错误单数", "§82 Second Cooldown", Surface.ITEM, "§8冷却时间: 2秒");
+		check("抓钩冷却兼容复数", "§83 Seconds Cooldown", Surface.ITEM, "§8冷却时间: 3秒");
 		checkJoined("收藏品未发现说明不重复奖励尾句", List.of("§7Find this item to add it to your",
 			"§7collection and unlock collection", "§7progress and rewards!"),
 			"§7找到此物品即可将它加入收藏品,并解锁其进度与奖励!");
@@ -3477,7 +3498,7 @@ public final class TranslationHarness {
 			"§7这些装饰品由§a Taylor§7 亲手制作,始终在她的常驻系列中出售。");
 		check("Taylor 礼包现实季节不是空岛历", "§7Current bundle: §eSummer Bundle", Surface.ITEM,
 			"§7当前礼包: §e夏季礼包");
-		check("Taylor 剩余天数兼容单数", "§7Ends in: §61 Day", Surface.ITEM, "§7距结束: §61 天");
+		check("Taylor 剩余天数兼容单数", "§7Ends in: §61 Day", Surface.ITEM, "§7距结束: §61天");
 	}
 
 	/** Capture examples that used to pass static coverage while rendering wrongly or not at all. */
@@ -3584,7 +3605,7 @@ public final class TranslationHarness {
 			checkJoined("Kat 照顾天数变体 " + days, List.of(
 				"§7Kat will take care of your §fRock §7for §9" + days,
 				"§9" + (days == 1 ? "day" : "days") + "§7 then its §9rarity§7 will be upgraded!"),
-				"§7Kat 会照顾你的§f石头宠物 §9" + days + " 天§7,之后它的§9稀有度§7会提升!");
+				"§7Kat 会照顾你的§f石头宠物 §9" + days + "天§7,之后它的§9稀有度§7会提升!");
 		}
 	}
 

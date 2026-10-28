@@ -612,6 +612,22 @@ public final class CaptureHarness {
 		for (String rank : List.of("YOUTUBE", "ADMIN", "HELPER", "MOD", "GM", "MVP++")) {
 			checkNothing("特殊 Rank 玩家名不采集 " + rank, CaptureSurface.HOLOGRAM, "§c[" + rank + "] ExamplePlayer");
 		}
+		for (String[] timer : List.of(
+			new String[] {"56m 7s", "56分07秒"}, new String[] {"8m", "8分钟"},
+			new String[] {"7m 59s", "7分59秒"}, new String[] {"1h", "1小时"},
+			new String[] {"1h 0m 0s", "1小时"}, new String[] {"1h 32m 6s", "1小时32分06秒"},
+			new String[] {"1h 30m", "1小时30分"}, new String[] {"1h 0m 6s", "1小时0分06秒"})) {
+			check("头顶裂隙计时 " + timer[0], TranslationHarness.legacy(NameTag.riftTimer(
+				Component.literal("§f" + timer[0] + " §a\uE020"))), "§f" + timer[1] + "§a \uE020");
+		}
+		for (String unchanged : List.of("ExamplePlayer", "56m 7s", "[148] pablooohh", "Time 56m 7s ф")) {
+			Component original = Component.literal(unchanged);
+			check("头顶时间匹配不扩大到身份或未知标签 " + unchanged, NameTag.riftTimer(original) == original, true);
+		}
+		for (String preserved : List.of("Elise LXXI", "Suri", "Limbo")) {
+			checkNothing("本轮保留专名不重复采集 " + preserved, CaptureSurface.HOLOGRAM, preserved);
+		}
+		checkNothing("猫咪专名不报告混杂", CaptureSurface.GUI_ITEM, "§7[Lvl 100] §5Montezuma");
 		check("已收录的绿色职务不按专名排除", NameTag.eligible(Component.literal("§aLift Operator")), true);
 		check("怪物通名复用词表", NameTag.mobName(Component.literal("§8[Lv100] §cGlacite Mutt §a12,345§c❤")).getString(),
 			"[Lv100] 极冰野狗 12,345❤");

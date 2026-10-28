@@ -73,7 +73,9 @@ public enum Capture {
 	SHARD_KIND(NAME.regex, false),
 	TRAINING_KIND("(?:Free|Light|Moderate|Expert|Ultra|Turbo!)", false),
 	/** Attested Rift attacks include a lowercase instruction, which is not an arbitrary NAME. */
-	RIFT_ABILITY("(?:Don't look at me|Bark|Devour|Lazer|Eye Beam|Slime Pound|Wicked Bombs|Leech Swarm|Mortiferous Lazer|Shadow Bump|Strikeburst|Beam|Bolt|Ice Boom)", false),
+	RIFT_ABILITY("(?:Don't look at me|Bark|Devour|Lazer|Eye Beam|Slime Pound|Wicked Bombs|Leech Swarm|Mortiferous Lazer|Shadow Bump|Strikeburst|Beam|Bolt|Ice Boom|Spike|Slice|Spikes Pandemoglob|Malign Sliceline|Slimecopter)", false),
+	RIFT_BOSS_STAGE("(?:B|Ba|Bac|Bact|Bacte)", false),
+	EXCLAMATIONS("!{1,12}", false),
 	EQUIPMENT_SLOT("(?:cloak|belt|necklace|gloves|bracelet|Helmet|Chestplate|Leggings|Boots|Hand)", false),
 	/** Closed trophy species; Vanille and deliberately obfuscated names keep their originals. */
 	TROPHY_FISH_NAME("(?:Blobfish|Flyfish|Golden Fish|Gusher|Karate Fish|Lavahorse|Mana Ray|Moldfin|Skeleton Fish|Slugfish|Soul Fish|Steaming-Hot Flounder|Sulphur Skitter|Vanille|Volcanic Stonefish|Obfuscated-[123])", false),
@@ -162,7 +164,7 @@ public enum Capture {
 	/** A compact duration used in the tab list: {@code 35d+}, {@code 2h 14m}, {@code 30s}. */
 	DURATION("(?:[0-9][0-9,.]*[yYdDhHmMsS][+]?(?: ?[0-9][0-9,.]*[yYdDhHmMsS][+]?)*|[0-9][0-9,.]*[+]?)"),
 
-	/** Readable countdown units in event widgets; other compact clocks retain their layout. */
+	/** Legacy event countdown type; shares the global compact Chinese layout, also accepts negatives. */
 	DURATION_SPACED(DURATION.regex.replace("[0-9][0-9,.]*", "-?[0-9][0-9,.]*")),
 
 	/** Written-out server durations, e.g. Kat's "1 minute" or an auction's "2 Days". */
@@ -226,6 +228,8 @@ public enum Capture {
 			case "attribute_value" -> ATTRIBUTE_VALUE;
 			case "year" -> YEAR;
 			case "day_of_month" -> DAY_OF_MONTH;
+			case "rift_boss_stage" -> RIFT_BOSS_STAGE;
+			case "exclamations" -> EXCLAMATIONS;
 			case "time", "duration" -> DURATION;
 			case "duration_spaced" -> DURATION_SPACED;
 			case "duration_words" -> DURATION_WORDS;
@@ -296,7 +300,7 @@ public enum Capture {
 			// The regex is the whole of the rule for these: a numeral is a numeral, and a player's
 			// name is whatever sixteen word characters somebody chose.
 			case NUMBER, STAT_VALUE, ATTRIBUTE_VALUE, YEAR, DAY_OF_MONTH, PLAYER, PLAYER_DISPLAY, RANK, TIER, LEVEL, TIER_RANGE, ICON, ITEM_PART, TRAINING_KIND, TROPHY_QUALITY, GEMSTONE_KIND, GEMSTONE_QUALITY, ORDINAL, DURATION, DURATION_SPACED, DURATION_WORDS, SEARCH_QUERY -> true;
-			case EQUIPMENT_SLOT, TROPHY_FISH_NAME, CONTEST_RANK, RIFT_ABILITY, HUNGRY_HIKER_FOOD, CLOCK_DURATION, RACE_TIME, PROGRESS, HUD_NUMBER, HEALTH_ICONS, PROGRESS_BAR, ORDINAL_WORD, COMMISSION_AREA -> value.matches(this.regex);
+			case EQUIPMENT_SLOT, TROPHY_FISH_NAME, CONTEST_RANK, RIFT_ABILITY, RIFT_BOSS_STAGE, EXCLAMATIONS, HUNGRY_HIKER_FOOD, CLOCK_DURATION, RACE_TIME, PROGRESS, HUD_NUMBER, HEALTH_ICONS, PROGRESS_BAR, ORDINAL_WORD, COMMISSION_AREA -> value.matches(this.regex);
 			case MULTIPLIER_INCREASE -> new BigDecimal(value).compareTo(BigDecimal.ONE) >= 0;
 			case NAME -> isName(value);
 			case MOB_FAMILY, STAT_NAME -> value.matches(this.regex);
@@ -352,64 +356,77 @@ public enum Capture {
 			return value.substring(0, value.length() - 2);
 		}
 
-		if (this == DURATION_WORDS) {
-			Matcher unit = WRITTEN_DURATION_UNIT.matcher(value);
-			StringBuilder translated = new StringBuilder();
-			while (unit.find()) {
-				if (!translated.isEmpty()) translated.append(' ');
-				translated.append(unit.group(1)).append(' ').append(switch (unit.group(2).toLowerCase(Locale.ROOT)) {
-					case "day", "days" -> "天";
-					case "hour", "hours" -> "小时";
-					case "minute", "minutes" -> "分钟";
-					default -> "秒";
-				});
-			}
-			return translated.toString();
-		}
-
-		if (this != DURATION && this != DURATION_SPACED) {
+		if (this != DURATION && this != DURATION_SPACED && this != DURATION_WORDS) {
 			return value;
 		}
 
-		Matcher unit = DURATION_UNIT.matcher(value);
-		StringBuilder translated = new StringBuilder(value.length() + 4);
+		Matcher matcher = (this == DURATION_WORDS ? WRITTEN_DURATION_UNIT : DURATION_UNIT).matcher(value);
+		java.util.List<String[]> units = new java.util.ArrayList<>();
 		int cursor = 0;
-
-		while (unit.find()) {
-			String between = value.substring(cursor, unit.start());
-
-			// English separates its units with a space — "2h 14m" — because "2h14m" would run two
-			// Latin tokens together. Chinese units are characters and 2小时 14分 reads as two separate
-			// readings of the clock rather than one duration, so the gap between two translated units
-			// closes up. Anything else between them is not a gap and is kept: a value that is not a
-			// duration at all comes back exactly as it arrived.
-			//
-			// The number and its unit are run together for the same reason, which is the one place
-			// this mod departs from "a space between a digit and a Chinese word": 02小时24分56秒 is a
-			// clock reading, and spacing it out makes four readings of one. checkTranslations pins
-			// both halves of that down — see 多段时长中间不留空格.
-			if (!(cursor > 0 && !between.isEmpty() && between.isBlank())) {
-				translated.append(between);
-			}
-
-			if (this == DURATION_SPACED && cursor > 0) {
-				translated.append(' ');
-			}
-			translated.append(unit.group(1))
-				.append(this == DURATION_SPACED ? " " : "")
-				.append(switch (Character.toLowerCase(unit.group(2).charAt(0))) {
-					case 'y' -> "年";
-					case 'd' -> "天";
-					case 'h' -> "小时";
-					case 'm' -> "分";
-					default -> "秒";
-				})
-				.append(unit.group(3).isEmpty() ? "" : "以上");
-
-			cursor = unit.end();
+		while (matcher.find()) {
+			if (!value.substring(cursor, matcher.start()).isBlank()) return value;
+			units.add(new String[] {matcher.group(1), matcher.group(2).substring(0, 1).toLowerCase(Locale.ROOT),
+				this == DURATION_WORDS ? "" : matcher.group(3)});
+			cursor = matcher.end();
 		}
+		if (units.isEmpty() || !value.substring(cursor).isBlank()) return value;
+		// Hour clocks omit trailing zeros; keep explicit minute/second clocks (8m00s) and intermediate zeros.
+		while (units.size() > 1 && units.stream().anyMatch(unit -> "h".equals(unit[1]))
+			&& units.getLast()[0].matches("0+") && units.getLast()[2].isEmpty()) {
+			units.removeLast();
+		}
+		StringBuilder translated = new StringBuilder();
+		for (int i = 0; i < units.size(); i++) {
+			String[] unit = units.get(i);
+			String number = unit[0];
+			if ("s".equals(unit[1]) && i > 0 && number.matches("[0-9]")) number = "0" + number;
+			translated.append(number).append(switch (unit[1]) {
+				case "y" -> "年";
+				case "d" -> "天";
+				case "h" -> "小时";
+				case "m" -> units.size() == 1 ? "分钟" : "分";
+				default -> "秒";
+			}).append(unit[2].isEmpty() ? "" : "以上");
+		}
+		return translated.toString();
+	}
 
-		return translated.append(value, cursor, value.length()).toString();
+	/** A numeric legacy capture may be one zero unit legitimately suppressed by the hour formatter. */
+	public static boolean omittedHourZero(String text, int start, int end) {
+		if (!text.substring(start, end).matches("0+")) return false;
+		Matcher hour = HOUR_CLOCK.matcher(text);
+		while (hour.find()) {
+			if (start > hour.start() && end < hour.end()
+				&& text.substring(end, hour.end()).matches("[ms](?: ?0+[ms])*")) return true;
+		}
+		return false;
+	}
+
+	private static final Pattern HOUR_CLOCK = Pattern.compile("[0-9]+h(?: ?[0-9]+m)?(?: ?[0-9]+s)?");
+
+	/** Render duration units from their individual source spans, not the first colour of the value. */
+	public net.minecraft.network.chat.MutableComponent renderDuration(StyledText source, int start, int end) {
+		if (this != DURATION && this != DURATION_SPACED && this != DURATION_WORDS) return null;
+		String value = source.plain().substring(start, end);
+		String written = renderValue(value);
+		if (written.equals(value)) return null;
+		Matcher original = (this == DURATION_WORDS ? WRITTEN_DURATION_UNIT : DURATION_UNIT).matcher(value);
+		Matcher chinese = Pattern.compile("(-?[0-9][0-9,.]*)(年|天|小时|分钟|分|秒)(以上)?").matcher(written);
+		var result = net.minecraft.network.chat.Component.empty();
+		while (chinese.find() && original.find()) {
+			int number = start + original.start(1);
+			if (!chinese.group(1).equals(original.group(1))) {
+				result.append(net.minecraft.network.chat.Component.literal("0").setStyle(source.styleAt(number)));
+			}
+			result.append(source.slice(number, start + original.end(1)));
+			result.append(net.minecraft.network.chat.Component.literal(chinese.group(2))
+				.setStyle(source.styleAt(start + original.start(2))));
+			if (chinese.group(3) != null) {
+				result.append(net.minecraft.network.chat.Component.literal("以上")
+					.setStyle(source.styleAt(start + original.start(3))));
+			}
+		}
+		return result;
 	}
 
 	/**
