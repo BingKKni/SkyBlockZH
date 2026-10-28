@@ -121,13 +121,15 @@ public final class SkyBlockName {
 			char before = charAt(plain, spaceBefore ? at - 2 : at - 1);
 			char after = charAt(plain, spaceAfter ? end + 1 : end);
 
-			boolean compound = isChinese(after) && this.stoplist.indexOf(after) < 0;
+			// The visitor banner is a title plus a status, not the compound “空岛访客”.
+			boolean visitorBanner = plain.equalsIgnoreCase("SKYBLOCK 访客");
+			boolean compound = !visitorBanner && isChinese(after) && this.stoplist.indexOf(after) < 0;
 			String replacement = compound ? this.abbreviated : this.full;
 
 			// Both forms are Chinese, so a neighbouring Chinese character means the space between
 			// them has become a space between two Chinese characters.
 			int from = spaceBefore && isChinese(before) ? at - 1 : at;
-			int to = spaceAfter && isChinese(after) ? end + 1 : end;
+			int to = !visitorBanner && spaceAfter && isChinese(after) ? end + 1 : end;
 
 			result.append(styled.slice(cursor, Math.max(cursor, from)));
 			appendStyled(result, styled, at, end, replacement);

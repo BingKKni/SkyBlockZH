@@ -73,7 +73,7 @@ public enum Capture {
 	SHARD_KIND(NAME.regex, false),
 	TRAINING_KIND("(?:Free|Light|Moderate|Expert|Ultra|Turbo!)", false),
 	/** Attested Rift attacks include a lowercase instruction, which is not an arbitrary NAME. */
-	RIFT_ABILITY("(?:Don't look at me|Bark|Devour|Lazer|Eye Beam|Slime Pound|Wicked Bombs|Leech Swarm|Mortiferous Lazer|Shadow Bump)", false),
+	RIFT_ABILITY("(?:Don't look at me|Bark|Devour|Lazer|Eye Beam|Slime Pound|Wicked Bombs|Leech Swarm|Mortiferous Lazer|Shadow Bump|Strikeburst|Beam|Bolt|Ice Boom)", false),
 	EQUIPMENT_SLOT("(?:cloak|belt|necklace|gloves|bracelet|Helmet|Chestplate|Leggings|Boots|Hand)", false),
 	/** Closed trophy species; Vanille and deliberately obfuscated names keep their originals. */
 	TROPHY_FISH_NAME("(?:Blobfish|Flyfish|Golden Fish|Gusher|Karate Fish|Lavahorse|Mana Ray|Moldfin|Skeleton Fish|Slugfish|Soul Fish|Steaming-Hot Flounder|Sulphur Skitter|Vanille|Volcanic Stonefish|Obfuscated-[123])", false),
@@ -179,6 +179,8 @@ public enum Capture {
 	HUD_NUMBER("[0-9][0-9,.]*(?:/[0-9][0-9,.]*)?", false),
 	/** Mirrorverse glass hearts and Great Spook fear skull health; never arbitrary suffix text. */
 	HEALTH_ICONS("(?:❤{1,16}|☠{1,5})", false),
+	/** Literal bar cells; their live colour runs are copied intact. */
+	PROGRESS_BAR("[|]{1,40}", false),
 
 	/**
 	 * Anything the corpus has not pinned down — {@code type: raw}, or no {@code placeholders} entry
@@ -232,6 +234,7 @@ public enum Capture {
 			case "progress" -> PROGRESS;
 			case "hud_number" -> HUD_NUMBER;
 			case "health_icons" -> HEALTH_ICONS;
+			case "progress_bar" -> PROGRESS_BAR;
 			// category_name is the name of a menu section or a feature — "Bags", "Other Crystals",
 			// "Recipe Book". Shaped like a name, and it has to be said so: templates that hold one are
 			// a single word plus a placeholder ("Your %s", "%s Settings", "%s Pet"), which under the
@@ -293,7 +296,7 @@ public enum Capture {
 			// The regex is the whole of the rule for these: a numeral is a numeral, and a player's
 			// name is whatever sixteen word characters somebody chose.
 			case NUMBER, STAT_VALUE, ATTRIBUTE_VALUE, YEAR, DAY_OF_MONTH, PLAYER, PLAYER_DISPLAY, RANK, TIER, LEVEL, TIER_RANGE, ICON, ITEM_PART, TRAINING_KIND, TROPHY_QUALITY, GEMSTONE_KIND, GEMSTONE_QUALITY, ORDINAL, DURATION, DURATION_SPACED, DURATION_WORDS, SEARCH_QUERY -> true;
-			case EQUIPMENT_SLOT, TROPHY_FISH_NAME, CONTEST_RANK, RIFT_ABILITY, HUNGRY_HIKER_FOOD, CLOCK_DURATION, RACE_TIME, PROGRESS, HUD_NUMBER, HEALTH_ICONS, ORDINAL_WORD, COMMISSION_AREA -> value.matches(this.regex);
+			case EQUIPMENT_SLOT, TROPHY_FISH_NAME, CONTEST_RANK, RIFT_ABILITY, HUNGRY_HIKER_FOOD, CLOCK_DURATION, RACE_TIME, PROGRESS, HUD_NUMBER, HEALTH_ICONS, PROGRESS_BAR, ORDINAL_WORD, COMMISSION_AREA -> value.matches(this.regex);
 			case MULTIPLIER_INCREASE -> new BigDecimal(value).compareTo(BigDecimal.ONE) >= 0;
 			case NAME -> isName(value);
 			case MOB_FAMILY, STAT_NAME -> value.matches(this.regex);

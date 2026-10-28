@@ -35,6 +35,7 @@ import java.util.stream.Stream;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.ClickEvent;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.HoverEvent;
 import net.minecraft.network.chat.Style;
 
 /**
@@ -653,6 +654,45 @@ public final class TranslationHarness {
 		check("高光扫到第 5 个字母", "§6§lSKYB§e§lL§6§lOCK", Surface.SCOREBOARD, "§6§l空岛§e§l生§6§l存");
 		check("高光扫到末字母", "§6§lSKYBLOC§e§lK", Surface.SCOREBOARD, "§6§l空岛生§e§l存");
 		check("整词同色时不产生多余分段", "§6§lSKYBLOCK", Surface.SCOREBOARD, "§6§l空岛生存");
+		for (int i = 0; i < 8; i++) {
+			String word = "SKYBLOCK";
+			String source = "§6§l" + word.substring(0, i) + "§e§l" + word.charAt(i)
+				+ "§6§l" + word.substring(i + 1) + "§a GUEST";
+			String name = "空岛生存";
+			String expected = (i < 2 ? "" : "§6§l" + name.substring(0, i / 2))
+				+ "§e§l" + name.charAt(i / 2)
+				+ (i / 2 == 3 ? "" : "§6§l" + name.substring(i / 2 + 1)) + "§a 访客";
+			check("访客标题扫光帧 " + i, source, Surface.SCOREBOARD, expected);
+		}
+		check("自己坠入虚空不遗留英文或空格", "§c☠ §7You fell into the void.",
+			Surface.CHAT, "§c☠ §7你掉入了虚空。");
+		check("名为 You 的玩家仍保留姓名", "§c☠ §bYou§7 fell into the void.",
+			Surface.CHAT, "§c☠ §bYou§7 掉入了虚空。");
+		for (int split : List.of(0, 1)) {
+			Style gray = Style.EMPTY.withColor(ChatFormatting.GRAY);
+			ClickEvent click = new ClickEvent.RunCommand("/test-you-name");
+			HoverEvent hover = new HoverEvent.ShowText(Component.literal("player profile"));
+			Component source = Component.empty().append(Component.literal("☠ ").withStyle(ChatFormatting.RED))
+				.append(Component.literal("You".substring(0, split)).setStyle(gray))
+				.append(Component.literal("You".substring(split)).setStyle(gray.withClickEvent(click).withHoverEvent(hover)))
+				.append(Component.literal(" fell into the void.").setStyle(gray));
+			StyledText drawn = StyledText.of(Translator.translateLine(source, Surface.CHAT));
+			boolean intact = drawn.plain().equals("☠ You 掉入了虚空。");
+			for (int i = 0; i < drawn.length(); i++) {
+				boolean linked = i >= 2 + split && i < 5;
+				intact &= java.util.Objects.equals(drawn.styleAt(i).getClickEvent(), linked ? click : null)
+					&& java.util.Objects.equals(drawn.styleAt(i).getHoverEvent(), linked ? hover : null);
+			}
+			report("灰色 You 姓名事件完整保留，分段 " + split, intact, legacy(drawn.slice(0, drawn.length())));
+		}
+		boolean visitorNameSetting = SkyZHConfig.get().translateSkyBlockName;
+		try {
+			SkyZHConfig.get().translateSkyBlockName = false;
+			check("关闭玩法名汉化仍翻译固定访客状态", "§6§lSKYB§e§lL§6§lOCK§a GUEST",
+				Surface.SCOREBOARD, "§6§lSKYB§e§lL§6§lOCK§a 访客");
+		} finally {
+			SkyZHConfig.get().translateSkyBlockName = visitorNameSetting;
+		}
 
 		// ---- container titles: the padding is stripped for matching and reported for re-centring ----
 		check("界面标题", "Select Process", Surface.GUI_TITLE, "选择工序");
@@ -2290,6 +2330,7 @@ public final class TranslationHarness {
 			case RACE_TIME -> "00:38.870";
 			case PROGRESS -> "7/8";
 			case HEALTH_ICONS -> "❤❤❤";
+			case PROGRESS_BAR -> "||||||||||";
 			default -> "1";
 		};
 	}
@@ -2854,7 +2895,7 @@ public final class TranslationHarness {
 
 	/** Fixed UI capture regression: ordered lore, term isolation, and clues that must survive translation. */
 	private static void checkFixedMenus(Path corpusRoot) throws Exception {
-		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "october-live-round-cases.json", "workshop-cases.json", "wiki-expansion-cases.json", "bazaar-item-names-cases.json", "rift-live-capture-cases.json", "rift-session-cases.json", "garden-weather-feast-cases.json")) {
+		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "october-live-round-cases.json", "workshop-cases.json", "wiki-expansion-cases.json", "bazaar-item-names-cases.json", "rift-live-capture-cases.json", "rift-session-cases.json", "garden-weather-feast-cases.json", "village-living-cave-cases.json")) {
 		Path path = corpusRoot.toAbsolutePath().getParent().resolve("src/harness/resources/" + file);
 		JsonObject fixture = JsonParser.parseString(Files.readString(path, StandardCharsets.UTF_8)).getAsJsonObject();
 		for (JsonElement value : fixture.getAsJsonArray("cases")) {

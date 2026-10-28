@@ -926,8 +926,8 @@
     {
       "id": "capture_3367930ee1ba",
       "context": "本轮实测；完整语义、动态数值及实时样式。",
-      "raw": "§7This item is §e%1$s§7 old. It was obtained on §f%2$s/%3$s/%4$s§7 at §f%5$s EST§7.",
-      "text": "This item is %1$s old. It was obtained on %2$s/%3$s/%4$s at %5$s EST.",
+      "raw": "§7This item is §e%1$s§7 old. It was obtained on §f%2$s/%3$s/%4$s§7 at §f%5$s %6$s EST§7.",
+      "text": "This item is %1$s old. It was obtained on %2$s/%3$s/%4$s at %5$s %6$s EST.",
       "placeholders": [
         {
           "token": "%1$s",
@@ -955,13 +955,19 @@
         },
         {
           "token": "%5$s",
-          "type": "raw",
-          "example": "11:03 AM",
+          "type": "clock_duration",
+          "example": "11:03",
           "desc": "服务器动态取值；不固定本轮样例"
+        },
+        {
+          "token": "%6$s",
+          "type": "category_name",
+          "example": "AM",
+          "desc": "获得时刻的上午/下午标记"
         }
       ],
       "translate": true,
-      "zh": "此物品已有 %1$s，获得日期为 %2$s/%3$s/%4$s，时间为 %5$s EST。",
+      "zh": "此物品已有 %1$s，获得日期为 %2$s/%3$s/%4$s，时间为 %6$s %5$s（北美东部标准时间）。",
       "segments": [
         {
           "color": "§7",
@@ -990,8 +996,8 @@
         },
         {
           "color": "§f",
-          "text": "%5$s EST",
-          "zh": "%5$s EST"
+          "text": "%5$s %6$s EST",
+          "zh": "%6$s %5$s（北美东部标准时间）"
         },
         {
           "color": "§7",

@@ -1336,18 +1336,24 @@
     {
       "id": "capture_f9aa90a70232",
       "context": "本轮服务器采集；裂隙任务、菜单与操作提示。",
-      "raw": "§9Living Metal ܉§b||||||||||§9܈ §8%s%",
-      "text": "Living Metal ܉||||||||||܈ %s%",
+      "raw": "§9Living Metal ܉§b%1$s§9܈ §8%2$s%",
+      "text": "Living Metal ܉%1$s܈ %2$s%",
       "placeholders": [
         {
-          "token": "%s",
+          "token": "%1$s",
+          "type": "progress_bar",
+          "desc": "实时进度条，保留每一格颜色",
+          "example": "||||||||||"
+        },
+        {
+          "token": "%2$s",
           "type": "number",
-          "desc": "运行时动态值",
-          "example": "2"
+          "desc": "当前活化百分比",
+          "example": "14"
         }
       ],
       "translate": true,
-      "zh": "活体金属 ܉||||||||||܈ %s%",
+      "zh": "活体金属 ܉%1$s܈ %2$s%",
       "segments": [
         {
           "color": "§9",
@@ -1356,8 +1362,8 @@
         },
         {
           "color": "§b",
-          "text": "||||||||||",
-          "zh": "||||||||||"
+          "text": "%1$s",
+          "zh": "%1$s"
         },
         {
           "color": "§9",
@@ -1366,8 +1372,8 @@
         },
         {
           "color": "§8",
-          "text": "%s%",
-          "zh": "%s%"
+          "text": "%2$s%",
+          "zh": "%2$s%"
         }
       ]
     },

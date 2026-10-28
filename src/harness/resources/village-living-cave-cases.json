@@ -1,0 +1,30 @@
+{
+  "note": "本轮裂隙实测回归，独立期望核对动态数值、颜色、完整跨行与乱序选项。",
+  "cases": [
+    {"name":"套装活化三行保留灰色尾句且不消费完成时间","source":["§7Keep §9juicing up §7your armor pieces","§7until you have the §6Living Metal Suit","§7bonus on all of them.","§8Completed at 12:34"],"consumed":3,"expected":"§7继续§9活化§7各件护甲，直到全部获得§6活体金属套装§7加成。"},
+    {"name":"Montezuma史诗升级复用稀有度词表","surface":"ChatMessage","source":["§eYour §9Montezuma §epet upgraded to §5§lEPIC§e!"],"expected":"§e你的宠物 §9Montezuma §e品质提升至§5§l史诗§e！"},
+    {"name":"Montezuma传说升级不固定样例","surface":"ChatMessage","source":["§eYour §9Montezuma §epet upgraded to §6§lLEGENDARY§e!"],"expected":"§e你的宠物 §9Montezuma §e品质提升至§6§l传说§e！"},
+    {"name":"自动购买注能开启复用通用模板","surface":"ChatMessage","source":["§aAuto-Buy Infusion is now enabled!"],"expected":"§a自动购买注能已开启!"},
+    {"name":"自动购买注能关闭复用通用模板","surface":"ChatMessage","source":["§cAuto-Buy Infusion is now disabled!"],"expected":"§c自动购买注能已关闭!"},
+    {"name":"裂隙选项第一槽", "surface":"ChatMessage", "source":["§e  §b① §a[Something smart.] "], "expected":"§e  §b① §a[说点聪明话。] "},
+    {"name":"裂隙选项第三槽", "surface":"ChatMessage", "source":["§e  §b③ §a[Something smart.] "], "expected":"§e  §b③ §a[说点聪明话。] "},
+    {"name":"裂隙选项小数年份", "surface":"ChatMessage", "source":["§e  §b① §a[In 12.5 years.] "], "expected":"§e  §b① §a[在 12.5 年后。] "},
+    {"name":"未知带圈编号文本保持原样", "surface":"ChatMessage", "source":["① Something smart."], "miss":true},
+    {"name":"Frozille爆破技能", "surface":"ChatMessage", "source":["§bFrozille §eremoved §a180s §efrom you using §dIce Boom§e!"], "expected":"§bFrozille §e使你的裂隙时间减少 §a180秒§e，使用的技能为§d寒冰爆破§e!"},
+    {"name":"伏特怪扣时可变", "surface":"ChatMessage", "source":["§eVolt removed §a60s §efrom you using §dStrikeburst§e!"], "expected":"§e伏特怪 使你的裂隙时间减少 §a60秒§e，使用的技能为§d雷霆爆发§e!"},
+    {"name":"进度条保留蓝灰格", "surface":"GUI_Item", "source":["§9Living Metal ܉§b||§7||||||||§9܈ §814%"], "expected":"§9活体金属 ܉§b||§7||||||||§9܈ §814%"},
+    {"name":"进度条变色及数值变化", "surface":"GUI_Item", "source":["§9Living Metal ܉§b|||||§7|||||§9܈ §855%"], "expected":"§9活体金属 ܉§b|||||§7|||||§9܈ §855%"},
+    {"name":"Boosters按既定规则保留英文和图标颜色", "surface":"GUI_Item", "source":["§7Boosters: §a४§8/§a⎋§8/§a⸙§8/§a☯§8/§aꕮ"], "expected":"§7Boosters: §a४§8/§a⎋§8/§a⸙§8/§a☯§8/§aꕮ"},
+    {"name":"强化图标拒绝英语半句", "surface":"GUI_Item", "source":["Boosters: unknown words"], "miss":true},
+    {"name":"你的岛屿动作栏引号", "surface":"ActionBar", "source":["§7 §a\"Your\" Island"], "expected":"§7 §a“你的”岛屿"},
+    {"name":"你的岛屿计分板引号", "surface":"ScoreBoard", "source":["§a §5 §a\"Your\" Island"], "expected":"§a §5 §a“你的”岛屿"},
+    {"name":"护甲活化进度两个值", "surface":"ChatMessage", "source":["§eYour §5Orange Chestplate §egained §9+14% juice§e! Upgrades in §986%§e!"], "expected":"§e你的§5橙色胸甲§e活化进度增加 §914%§e！距离升级还需 §986%§e！"},
+    {"name":"护甲活化进度变化", "surface":"ChatMessage", "source":["§eYour §5Used Detransfigured Face §egained §9+11% juice§e! Upgrades in §977%§e!"], "expected":"§e你的§5用过的褪形脸皮§e活化进度增加 §911%§e！距离升级还需 §977%§e！"},
+    {"name":"抗议者进度变化", "surface":"ScoreBoard", "source":["§fProtestors handled: §b3/7"], "expected":"§f已安抚抗议者: §b3/7"},
+    {"name":"护甲防御升级完整两行", "source":["§7Your §a Defense §7is increased by","§80.2%§8§l→§a+0.4%§7."], "consumed":2, "expected":"§a 防御力§7提高 §80.2%§8§l→§a+0.4%§7。"},
+    {"name":"护甲防御不完整不消费", "source":["§7Your §a Defense §7is increased by"], "miss":true},
+    {"name":"谜魂线索不残留英文尾行", "source":["§7There is an Enigma Soul hidden deep","§7inside the §6Half-Eaten Cave§7."], "consumed":2, "expected":"§7在§6半蚀洞穴§7深处藏着一枚谜魂。"},
+    {"name":"获得日期不写死采集值", "source":["§7This item is §e2h 5m§7 old. It was","§7obtained on §f11/02/26§7 at §f12:34 PM","§fEST§7."], "consumed":3, "expected":"§7此物品已有 §e2 小时 5 分§7，获得日期为 §f11/02/26§7，时间为 §f下午 12:34（北美东部标准时间）§7。"},
+    {"name":"浇水球茎数量及颜色换序", "surface":"Hologram", "source":["§ePlease §bwater §athe 4 §ebulbs!"], "expected":"§e请为 §a4 个§e球茎§b浇水"}
+  ]
+}

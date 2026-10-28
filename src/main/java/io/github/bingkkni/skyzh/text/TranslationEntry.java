@@ -600,7 +600,10 @@ public final class TranslationEntry {
 				if (piece instanceof Literal literal) {
 					String text = Glyphs.restore(literal.text(), source.plain());
 
-					inner.append(Component.literal(text).setStyle(style), text, style);
+					// The gameplay name is substituted later; keep its animated live styles.
+					Component literalSource = preservesName(text, source, start, end)
+						? source.slice(start, end) : Component.literal(text).setStyle(style);
+					inner.append(literalSource, text, style);
 				} else if (piece instanceof Arg arg) {
 					int group = entry.argumentGroup(arg);
 
@@ -676,11 +679,14 @@ public final class TranslationEntry {
 	/**
 	 * Dragon announcements write self-reference in the same magenta run as the action. A separately
 	 * styled/clickable player called You remains a name. Unstyled logs provide no such evidence.
+	 * Grey self-death text uses the same evidence for the exact void sentence.
 	 * This is opt-in via player_or_self; ordinary player_name captures never change.
 	 */
 	private static boolean selfReference(StyledText source, int start, int end) {
 		Style name = source.styleAt(start);
-		if (name.getColor() == null || name.getColor().getValue() != 0xFF55FF
+		boolean voidMessage = source.canonical().equals("☠ You fell into the void.")
+			&& name.getColor() != null && name.getColor().getValue() == 0xAAAAAA;
+		if (name.getColor() == null || (!voidMessage && name.getColor().getValue() != 0xFF55FF)
 			|| name.getHoverEvent() != null || name.getClickEvent() != null) {
 			return false;
 		}
@@ -688,7 +694,8 @@ public final class TranslationEntry {
 		while (next < source.length() && source.plain().charAt(next) == ' ') next++;
 		if (next == source.length() || !sameLook(name, source.styleAt(next))) return false;
 		for (int i = start + 1; i < end; i++) {
-			if (!sameLook(name, source.styleAt(i))) return false;
+			Style letter = source.styleAt(i);
+			if (!sameLook(name, letter) || letter.getHoverEvent() != null || letter.getClickEvent() != null) return false;
 		}
 		return true;
 	}
@@ -1046,6 +1053,8 @@ public final class TranslationEntry {
 
 			int start = match.start(fragment.group());
 			int end = match.end(fragment.group());
+			if (fragment.pieces().size() == 1 && fragment.pieces().getFirst() instanceof Literal literal
+				&& preservesName(literal.text(), source, start, end)) continue;
 			Style words = null;
 
 			for (int i = start; i < end; i++) {
@@ -1064,6 +1073,11 @@ public final class TranslationEntry {
 		}
 
 		return false;
+	}
+
+	private static boolean preservesName(String text, StyledText source, int start, int end) {
+		return start >= 0 && text.equalsIgnoreCase("SKYBLOCK")
+			&& text.equals(source.plain().substring(start, end));
 	}
 
 	/**

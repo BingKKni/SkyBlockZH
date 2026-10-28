@@ -170,6 +170,13 @@ public final class LineShape {
 		}
 
 		if (surface == Surface.CHAT) {
+			// Rift choices shuffle between numbered slots. The number is server-owned;
+			// only peel it for a complete bracketed option, never for ordinary chat.
+			if (end - start > 4 && "①②③④⑤⑥⑦⑧⑨⑩".indexOf(plain.charAt(start)) >= 0
+				&& plain.charAt(start + 1) == ' ' && plain.charAt(start + 2) == '['
+				&& plain.charAt(end - 1) == ']') {
+				add(ranges, start + 2, end);
+			}
 			// Explicit reward-name records can reuse their item spelling for any dungeon star count.
 			var stars = ITEM_STARS.matcher(plain.substring(start, end));
 			if (stars.find() && ItemNames.canonical(plain.substring(start, start + stars.start())) != null) {
