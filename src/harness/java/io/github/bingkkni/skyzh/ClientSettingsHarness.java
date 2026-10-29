@@ -181,20 +181,32 @@ public final class ClientSettingsHarness {
 		check("仅鼠标焦点丢失也不视作松开", HoldOriginal.updateMouse(true, true, null), false);
 		check("鼠标回到窗口时持续按住不切换", HoldOriginal.updateMouse(true, true, true), false);
 		check("鼠标焦点切换保留原文", HoldOriginal.active(), true);
-		check("未知鼠标状态不妨碍离开空岛清除模式", HoldOriginal.updateMouse(false, false, null), false);
-		check("失焦时总开关边界仍生效", HoldOriginal.active(), false);
+		check("切服期间未知鼠标状态不触发", HoldOriginal.updateMouse(false, false, null), false);
+		check("切服期间保留主动关闭翻译状态", HoldOriginal.active(), true);
+		HoldOriginal.updatePolicy(false, true);
+		check("失焦时关闭总开关仍清除临时模式", HoldOriginal.active(), false);
 		check("恢复后已松开可重新观察按下", HoldOriginal.updateMouse(true, true, false), false);
 		check("恢复后新按下仍能切换", HoldOriginal.updateMouse(true, true, true), true);
 
 		HoldOriginal.setActive(true);
 		HoldOriginal.updateMouse(false, true, false);
-		check("离开空岛、关闭总开关或解绑清除临时原文状态", HoldOriginal.active(), false);
+		check("世界切换或离开空岛不恢复翻译", HoldOriginal.active(), true);
+		HoldOriginal.updatePolicy(true, true);
+		HoldOriginal.updateMouse(true, true, false);
+		check("进入新世界后仍保留原文", HoldOriginal.active(), true);
+		check("新世界主动按键才能恢复翻译", HoldOriginal.press(true, true, InputConstants.PRESS), true);
+		check("主动恢复后显示译文", HoldOriginal.active(), false);
+		HoldOriginal.setActive(true);
+		HoldOriginal.updatePolicy(true, false);
+		check("解绑清除临时原文状态", HoldOriginal.active(), false);
 		check("非空岛不触发声音消息", HoldOriginal.press(false, true, InputConstants.PRESS), false);
 		check("非空岛不响应", HoldOriginal.active(), false);
 		check("重复按键不触发声音消息", HoldOriginal.press(true, true, InputConstants.REPEAT), false);
 		check("输入框不触发声音消息", HoldOriginal.press(true, false, InputConstants.PRESS), false);
 		check("实际切换才触发一次声音消息", HoldOriginal.press(true, true, InputConstants.PRESS), true);
-		check("自动恢复不播放提示", HoldOriginal.updateMouse(false, true, false), false);
+		check("切服保留模式不播放提示", HoldOriginal.updateMouse(false, true, false), false);
+		HoldOriginal.setActive(false);
+		check("热键测试结束恢复默认显示模式", HoldOriginal.active(), false);
 		check("关闭提示全文", HoldOriginal.toggleMessage(true).getString(), "§b[SkyZH] §c已关闭翻译!");
 		check("开启提示全文", HoldOriginal.toggleMessage(false).getString(), "§b[SkyZH] §a已开启翻译!");
 		net.minecraft.SharedConstants.tryDetectVersion();
@@ -254,6 +266,8 @@ public final class ClientSettingsHarness {
 	}
 
 	private static void servers() throws Exception {
+		HoldOriginal.setActive(false);
+		SkyZHConfig.get().enabled = true;
 		check("只认 Hypixel 官方 hello", HypixelServer.isHypixelHello("hypixel:hello"), true);
 		for (String identifier : List.of("", "minecraft:brand", "hyevent:location", "other:hello", "hypixel:ping")) {
 			check("其他载荷不能冒充 Hypixel " + identifier, HypixelServer.isHypixelHello(identifier), false);

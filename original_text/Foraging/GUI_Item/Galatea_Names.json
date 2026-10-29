@@ -87,7 +87,9 @@
       "text": "Booster",
       "translate": false,
       "zh": "",
-      "gloss": "沿用项目硬规则,Booster 保留英文;精确登记防止重复采集。"
+      "gloss": "沿用项目硬规则,Booster 保留英文;精确登记防止重复采集。",
+      "raw": "Booster",
+      "placeholders": []
     },
     {
       "id": "galatea_660276da0362",
@@ -1410,12 +1412,30 @@
         {
           "token": "%s",
           "type": "number",
-          "desc": "动态值;不写死 Wiki 样例",
+          "desc": "实测动态取值",
           "example": "1"
         }
       ],
       "translate": true,
-      "zh": "+%s 伐木等级上限"
+      "zh": "+%s 伐木等级上限",
+      "raw": "§8+§a%s Foraging §7Level Cap",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+"
+        },
+        {
+          "color": "§a",
+          "text": "%s Foraging ",
+          "zh": "%s 伐木"
+        },
+        {
+          "color": "§7",
+          "text": "Level Cap",
+          "zh": "等级上限"
+        }
+      ]
     },
     {
       "id": "galatea_970e3f32aaa4",

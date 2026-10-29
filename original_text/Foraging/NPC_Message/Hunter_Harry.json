@@ -70,28 +70,39 @@
       "id": "galatea_i_ll_give_you_it_in_exchange_for_a_s_78934647",
       "context": "Hunter Harry：First Interaction",
       "text": "I'll give you it in exchange for a %s!",
-      "raw": "§fI'll give you it in exchange for a §7%s!",
+      "raw": "§fI'll give you it in exchange for §ra §7%s§f!",
       "placeholders": [
         {
           "token": "%s",
           "type": "catalog_item_name",
-          "desc": "Wiki 标出的动态值,以服务器实值为准",
+          "desc": "实测动态取值",
           "example": "Yogi Berry"
         }
       ],
       "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。 Wiki 占位标记已改为有类型模板;非运行时示例值。",
       "translate": true,
-      "zh": "拿一个来换就行: %s!",
+      "zh": "拿一份%s来，我就给你!",
       "segments": [
         {
           "color": "§f",
-          "text": "I'll give you it in exchange for a ",
-          "zh": "拿一个来换就行: "
+          "text": "I'll give you it in exchange for ",
+          "zh": "拿一份"
+        },
+        {
+          "color": "§r",
+          "text": "a ",
+          "zh": "",
+          "omit": true
         },
         {
           "color": "§7",
-          "text": "%s!",
-          "zh": "%s!"
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "来，我就给你!"
         }
       ]
     },
@@ -171,6 +182,15 @@
       "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。",
       "translate": true,
       "zh": "太好了,谢啦!"
+    },
+    {
+      "id": "dual_cc9e143b5632",
+      "text": "Thanks for the trade!",
+      "raw": "Thanks for the trade!",
+      "context": "双机本轮实测；颜色依照服务器原文。",
+      "placeholders": [],
+      "translate": true,
+      "zh": "谢啦，合作愉快!"
     }
   ]
 }

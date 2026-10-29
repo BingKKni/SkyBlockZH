@@ -1,0 +1,115 @@
+{
+  "source": [
+    "../SkyZH_Logs/1/skyzh-capture",
+    "../SkyZH_Logs/2/skyzh-capture.7z"
+  ],
+  "wiki_context": [
+    "https://hypixelskyblock.minecraft.wiki/w/Critter_Safari",
+    "https://hypixelskyblock.minecraft.wiki/w/Agatha",
+    "https://hypixelskyblock.minecraft.wiki/w/Fairylosopher"
+  ],
+  "verified_ingame": true,
+  "note": "原文与颜色以双机服务器采集为准；Wiki 只核对语境。动态模板由实测样本泛化，仍需游戏内验收。",
+  "entries": [
+    {
+      "id": "dual_4b2cb1cfc36b",
+      "text": "You have a God Potion active! %s days",
+      "raw": "§7You have a §cGod Potion §7active! §d%s days",
+      "context": "双机本轮实测；颜色依照服务器原文。",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "desc": "实测动态取值",
+          "example": "4"
+        }
+      ],
+      "translate": true,
+      "zh": "神药生效中! 剩余 %s 天",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You have a ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§c",
+          "text": "God Potion ",
+          "zh": "神药"
+        },
+        {
+          "color": "§7",
+          "text": "active! ",
+          "zh": "生效中! 剩余 "
+        },
+        {
+          "color": "§d",
+          "text": "%s days",
+          "zh": "%s 天"
+        }
+      ]
+    },
+    {
+      "id": "dual_a75768915d9e",
+      "text": "%1$s months, %2$s days",
+      "raw": "§f%1$s months, %2$s days",
+      "context": "双机本轮实测；颜色依照服务器原文。",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "desc": "实测动态取值",
+          "example": "1"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "desc": "实测动态取值",
+          "example": "13"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 个月 %2$s 天"
+    },
+    {
+      "id": "dual_07212ed87898",
+      "text": "Celestial Mason Jar %1$s %2$s",
+      "raw": "§dCelestial Mason Jar %1$s§r §f%2$s",
+      "context": "双机本轮实测；颜色依照服务器原文。",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "tier",
+          "desc": "实测动态取值",
+          "example": "I"
+        },
+        {
+          "token": "%2$s",
+          "type": "duration",
+          "desc": "实测动态取值",
+          "example": "4d"
+        }
+      ],
+      "translate": true,
+      "zh": "天界玻璃罐 %1$s %2$s",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "Celestial Mason Jar %1$s",
+          "zh": "天界玻璃罐 %1$s"
+        },
+        {
+          "color": "§r",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§f",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ]
+    }
+  ]
+}

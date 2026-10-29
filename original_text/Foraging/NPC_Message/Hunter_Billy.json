@@ -55,23 +55,29 @@
       "id": "galatea_i_ll_trade_it_to_you_in_exchange_for_a_s_d1f242c0",
       "context": "Hunter Billy：First Interaction",
       "text": "I'll trade it to you in exchange for a %s.",
-      "raw": "§fI'll trade it to you in exchange for a §7%s§f.",
+      "raw": "§fI'll trade it to you in exchange for §ra §7%s§f.",
       "placeholders": [
         {
           "token": "%s",
           "type": "catalog_item_name",
-          "desc": "Wiki 标出的动态值,以服务器实值为准",
-          "example": "Yogi Berry"
+          "desc": "实测动态取值",
+          "example": "Soothing Incense"
         }
       ],
       "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。 Wiki 占位标记已改为有类型模板;非运行时示例值。",
       "translate": true,
-      "zh": "拿一个 %s 来,我就跟你换。",
+      "zh": "拿一份%s来，我就跟你换。",
       "segments": [
         {
           "color": "§f",
-          "text": "I'll trade it to you in exchange for a ",
-          "zh": "拿一个 "
+          "text": "I'll trade it to you in exchange for ",
+          "zh": "拿一份"
+        },
+        {
+          "color": "§r",
+          "text": "a ",
+          "zh": "",
+          "omit": true
         },
         {
           "color": "§7",
@@ -81,7 +87,7 @@
         {
           "color": "§f",
           "text": ".",
-          "zh": " 来,我就跟你换。"
+          "zh": "来，我就跟你换。"
         }
       ]
     },

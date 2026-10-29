@@ -443,7 +443,14 @@
     {"en":"Enchanting Wisdom","zh":"附魔智慧","types":["category_name"]},
     {"en":"Fig Fortune","zh":"无花果时运","types":["category_name"]},
     {"en":"Hunting Fortune","zh":"狩猎时运","types":["category_name"]},
-    {"en":"Hunting Wisdom","zh":"狩猎智慧","types":["category_name"]},
+    {
+      "en": "Hunting Wisdom",
+      "zh": "狩猎智慧",
+      "types": [
+        "category_name",
+        "raw"
+      ]
+    },
     {"en":"Mending","zh":"修补","types":["category_name"],"note":"属性名；同名原版附魔由 enchantment_name 另行限定。"},
     {"en":"Mining Fortune","zh":"挖掘时运","types":["category_name"]},
     {"en":"Mining Speed","zh":"挖掘速度","types":["category_name"]},
@@ -1829,14 +1836,16 @@
       "en": "Pressure Resistance",
       "zh": "抗压",
       "types": [
-        "category_name"
+        "category_name",
+        "raw"
       ]
     },
     {
       "en": "Respiration",
       "zh": "水下呼吸",
       "types": [
-        "category_name"
+        "category_name",
+        "raw"
       ]
     },
     {
@@ -14199,7 +14208,8 @@
       "zh": "太阳壁虎",
       "types": [
         "raw",
-        "category_name"
+        "category_name",
+        "rift_clue"
       ]
     },
     {
@@ -14437,7 +14447,8 @@
       "en": "Spinning Runes",
       "zh": "旋转符文",
       "types": [
-        "raw"
+        "raw",
+        "rift_clue"
       ]
     },
     {
@@ -15366,7 +15377,15 @@
     {"en": "Pet Wisdom", "zh": "宠物智慧", "types": ["category_name"], "note": "本轮属性菜单；属性名与同名附魔按语境区分。"},
     {"en": "Starborn", "zh": "星裔", "types": ["category_name"], "note": "本轮属性菜单；属性名与同名附魔按语境区分。"},
     {"en": "Veteran", "zh": "老兵", "types": ["category_name"], "note": "本轮属性菜单；属性名与同名附魔按语境区分。"},
-    {"en": "Tracking", "zh": "追踪", "types": ["category_name"], "note": "本轮属性菜单；属性名与同名附魔按语境区分。"},
+    {
+      "en": "Tracking",
+      "zh": "追踪",
+      "types": [
+        "category_name",
+        "raw"
+      ],
+      "note": "本轮属性菜单；属性名与同名附魔按语境区分。"
+    },
     {"en": "Queenly Echo", "zh": "女王回响", "types": ["category_name"], "note": "本轮属性菜单；属性名与同名附魔按语境区分。"},
     {"en": "Unlimited Power", "zh": "无尽力量", "types": ["category_name"], "note": "本轮属性菜单；属性名与同名附魔按语境区分。"},
     {"en": "Treasure Fisher", "zh": "宝藏钓手", "types": ["category_name"], "note": "本轮属性菜单；属性名与同名附魔按语境区分。"},
@@ -15703,7 +15722,15 @@
     {"en": "Glacial Wisp", "zh": "冰川鬼火", "types": ["mob_name"], "note": "本轮图鉴、宠物或装备完整说明；普通词复用译名，自造专名保留英文。"},
     {"en": "Glacite Golem", "zh": "极冰石魔", "types": ["mob_name"], "note": "本轮宠物名称复用已有 raw 词条的极冰石魔，不另造译名。"},
     {"en": "Zombies", "zh": "僵尸", "types": ["mob_name"], "note": "本轮图鉴、宠物或装备完整说明；普通词复用译名，自造专名保留英文。"},
-    {"en": "Safari", "zh": "小动物游猎", "types": ["location_name"], "note": "自动宠物的岛屿选择列表。"},
+    {
+      "en": "Safari",
+      "zh": "小动物游猎",
+      "types": [
+        "location_name",
+        "raw"
+      ],
+      "note": "自动宠物岛屿列表及 Tab 所在区域；不改变精华分类名。系统按 raw 整值处理 Tab 区域。"
+    },
     {"en": "Critter Safari", "zh": "小动物游猎", "types": ["location_name"], "note": "生物图鉴返回区域。"},
     {"en": "No", "zh": "否", "types": ["compactor_toggle"], "note": "属性启用状态也使用此既有开关类型。"},
     {"en": "Lucky", "zh": "幸运", "types": ["dye_name"], "note": "本轮染色名称，普通词翻译；Cyclamen 等专用色名仍保留原文。"},
@@ -15752,7 +15779,120 @@
     {"en": "Deadline", "zh": "截止期限", "types": ["mob_name"], "source": "https://hypixelskyblock.minecraft.wiki/w/Deadline", "note": "本轮服务器采集；普通名称沿用词库，自造专名保留。"},
     {"en": "Vegan Crawler", "zh": "素食爬行者", "types": ["mob_name"], "source": "https://hypixelskyblock.minecraft.wiki/w/Vegan_Crawler", "note": "本轮服务器采集；普通名称沿用词库，自造专名保留。"},
     {"en": "Majestic", "zh": "威仪", "types": ["reforge", "category_name"], "source": "https://hypixelskyblock.minecraft.wiki/w/Reforging/Equipment", "note": "游猎腰带实测前缀；沿用 Galatea_Menus 的 Majestic Bonus 译名。"},
-    {"en": "Moonglade", "zh": "月光", "types": ["reforge", "category_name"], "source": "https://hypixelskyblock.minecraft.wiki/w/Reforging/Axe", "note": "伐木斧实测重铸前缀；Moonglade Marsh 的同源词。"}
+    {"en": "Moonglade", "zh": "月光", "types": ["reforge", "category_name"], "source": "https://hypixelskyblock.minecraft.wiki/w/Reforging/Axe", "note": "伐木斧实测重铸前缀；Moonglade Marsh 的同源词。"},
+  {
+    "en": "Murkwater Outpost",
+    "zh": "浊水前哨",
+    "types": [
+      "location_name"
+    ],
+    "note": "双机实测；社区 Wiki 核对语境，复用既有译名。"
+  },
+  {
+    "en": "Driptoad Delve",
+    "zh": "滴蟾洞窟",
+    "types": [
+      "location_name"
+    ],
+    "note": "双机实测；社区 Wiki 核对语境，复用既有译名。"
+  },
+  {
+    "en": "Fairylosophy Tower",
+    "zh": "仙哲塔",
+    "types": [
+      "location_name"
+    ],
+    "note": "双机实测；社区 Wiki 核对语境，复用既有译名。"
+  },
+  {
+    "en": "Not Here",
+    "zh": "不在此处",
+    "types": [
+      "location_name"
+    ],
+    "note": "双机实测；社区 Wiki 核对语境，复用既有译名。"
+  },
+  {
+    "en": "Critter Safari Entrance",
+    "zh": "小动物游猎入口",
+    "types": [
+      "location_name"
+    ],
+    "note": "双机实测；社区 Wiki 核对语境，复用既有译名。"
+  },
+  {
+    "en": "Banking API",
+    "zh": "银行 API",
+    "types": [
+      "category_name",
+      "raw"
+    ],
+    "note": "双机实测；社区 Wiki 核对语境，复用既有译名。"
+  },
+  {
+    "en": "Deliveries",
+    "zh": "投递",
+    "types": [
+      "category_name"
+    ],
+    "note": "双机实测；社区 Wiki 核对语境，复用既有译名。"
+  },
+  {
+    "en": "Capture",
+    "zh": "捕捉",
+    "types": [
+      "category_name"
+    ],
+    "note": "双机实测；社区 Wiki 核对语境，复用既有译名。"
+  },
+  {
+    "en": "Certain Capture",
+    "zh": "必定捕捉",
+    "types": [
+      "category_name"
+    ],
+    "note": "双机实测；社区 Wiki 核对语境，复用既有译名。"
+  },
+  {
+    "en": "Lime",
+    "zh": "黄绿色",
+    "types": [
+      "category_name"
+    ],
+    "note": "双机实测；社区 Wiki 核对语境，复用既有译名。"
+  },
+  {
+    "en": "Orange",
+    "zh": "橙色",
+    "types": [
+      "category_name"
+    ],
+    "note": "双机实测；社区 Wiki 核对语境，复用既有译名。"
+  },
+  {
+    "en": "Purple",
+    "zh": "紫色",
+    "types": [
+      "category_name"
+    ],
+    "note": "双机实测；社区 Wiki 核对语境，复用既有译名。"
+  },
+  {
+    "en": "Salts",
+    "zh": "盐",
+    "types": [
+      "raw"
+    ],
+    "note": "双机实测；社区 Wiki 核对语境，复用既有译名。"
+  },
+  {
+    "en": "Century Cakes",
+    "zh": "世纪蛋糕",
+    "types": [
+      "raw"
+    ],
+    "note": "双机实测；社区 Wiki 核对语境，复用既有译名。"
+  }
   ],
   "medal_note": "2026-09-10: Jacob 农业竞赛的奖牌 / 名次档位(Bronze / Silver / Gold / Platinum / Diamond)单独用 medal 类型。原因:SILVER 作 category_name 已经是地牢终端的「淡灰色」,Gold / Diamond 作全局词是材料「黄金 / 钻石」,同一个字符串两种意思不能共用一张表。词表匹配不分大小写,所以一条 Bronze 同时管聊天里的 BRONZE、Tab 里的 Bronze 和奖励清单里的 bronze。Capture.of 不认识的类型按 raw 形状捕获,所以不需要改代码。",
   "garden_note": "2026-09-10 花园玩法专有词:Copper → 铜(花园货币,沿用 Tab 的「铜: N」)、Compost → 堆肥、Sowdust → 播尘、Chip → 芯片、Plot → 地皮、Visitor → 访客、Greenhouse → 温室、Barn(花园里的建筑)→ 谷仓;地名 The Barn 仍是「牲畜棚」。见 GLOSSARY.md「花园玩法专有词」。",

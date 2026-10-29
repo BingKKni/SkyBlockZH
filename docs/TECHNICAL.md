@@ -151,8 +151,8 @@ The original-text toggle is a vanilla `KeyMapping`, appended idempotently by `Op
 switches to originals on one press and restores translation on the next; the old `HoldOriginal` class
 and key ID remain for saved-binding compatibility. Keyboard/scancode events ignore repeats/releases;
 mouse bindings use physical rising edges. Text entry, key rebinding and an unfocused window reject new
-presses without clearing the selected mode. Toggle before opening chat to read old messages. Leaving
-SkyBlock, disabling the mod or unbinding clears this session-only state without saving or changing capture.
+presses without clearing the selected mode. Toggle before opening chat to read old messages. World changes, temporary scoreboard gaps and leaving
+SkyBlock preserve the selected mode; only disabling the mod or unbinding clears this session-only state, without saving or changing capture.
 Accepted user toggles play `ui.button.click` in the BLOCKS category (volume parameter 100, pitch 2) and
 announce the new display state; automatic resets are silent. Eligible item tooltips show the currently
 bound key and offer originals or translations according to the selected mode, retaining the hint colours.

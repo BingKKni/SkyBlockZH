@@ -61,6 +61,7 @@ public final class HoldOriginal {
 	/** Keyboard events catch even short taps; mouse bindings use physical rising edges in GUIs. */
 	public static void poll(Minecraft minecraft) {
 		boolean bound = binding != null && !binding.isUnbound();
+		updatePolicy(SkyZHConfig.get().enabled, bound);
 		boolean available = HypixelServer.isSkyBlock() && SkyZHConfig.get().enabled && bound;
 		Boolean down = bound && configuredKey().getType() == InputConstants.Type.MOUSE
 			? ClientInput.mouseDown(minecraft, configuredKey().getValue()) : Boolean.FALSE;
@@ -69,9 +70,13 @@ public final class HoldOriginal {
 		}
 	}
 
+	/** World/scoreboard gaps must not undo the user's choice; only explicit settings clear it. */
+	static void updatePolicy(boolean enabled, boolean bound) {
+		if (!enabled || !bound) active = false;
+	}
+
 	/** Returns true only for an accepted user toggle; null means physical state is unknown. */
 	static boolean updateMouse(boolean available, boolean acceptsPress, Boolean down) {
-		if (!available) active = false;
 		if (down == null) {
 			// Focus loss is not a release. Require an observed release before accepting another press.
 			mouseDown = true;
