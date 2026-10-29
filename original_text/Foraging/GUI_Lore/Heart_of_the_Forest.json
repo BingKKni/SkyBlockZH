@@ -386,10 +386,55 @@
     {
       "id": "hotf_two_for_one_desc",
       "context": "Two-for-one 天赋的竞赛奖励",
-      "text": "Grants a +0.25% chance to receive an extra Safari Ticket from Miria’s Contest rewards.",
-      "placeholders": [],
+      "text": "Grants a +%s% chance to receive an extra Safari Ticket from Miria’s Contest rewards.",
+      "placeholders": [{"token":"%s","type":"number","example":"0.25","desc":"随天赋等级变化的额外狩猎票概率"}],
       "translate": true,
-      "zh": "领取 Miria 竞赛奖励时，额外获得一张狩猎票的概率 +0.25%。"
+      "zh": "领取 Miria 竞赛奖励时，额外获得一张狩猎票的概率 +%s%。",
+      "raw": "§7Grants a §a+%s% §7chance to receive an extra §2Safari Ticket §7from §bMiria’s Contest §7rewards.",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants a ",
+          "zh": "领取 ",
+          "order": 0
+        },
+        {
+          "color": "§a",
+          "text": "+%s% ",
+          "zh": "+%s%",
+          "order": 5
+        },
+        {
+          "color": "§7",
+          "text": "chance to receive an extra ",
+          "zh": "奖励时，额外获得一张",
+          "order": 2
+        },
+        {
+          "color": "§2",
+          "text": "Safari Ticket ",
+          "zh": "狩猎票",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "from ",
+          "zh": "的概率 ",
+          "order": 4
+        },
+        {
+          "color": "§b",
+          "text": "Miria’s Contest ",
+          "zh": "Miria 竞赛",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "rewards.",
+          "zh": "。",
+          "order": 6
+        }
+      ]
     },
     {
       "id": "hotf_more_slots",

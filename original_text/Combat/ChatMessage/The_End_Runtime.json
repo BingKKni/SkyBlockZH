@@ -614,20 +614,20 @@
     {
       "id": "charming_tier_xvi",
       "context": "狩猎技能等级提示；功能性技能名翻译",
-      "text": "Charming XVI",
-      "placeholders": [],
+      "text": "Charming %s",
+      "placeholders": [{"token":"%s","type":"tier","example":"XVIII"}],
       "gloss": "",
       "translate": true,
-      "zh": "魅惑 XVI"
+      "zh": "魅惑 %s"
     },
     {
       "id": "charming_stat_upgrade",
       "context": "魅惑技能升级属性说明",
-      "text": "Grants +0.6➜0.64 ❣ Charm Chance.",
-      "placeholders": [],
+      "text": "Grants +%1$s➜%2$s ❣ Charm Chance.",
+      "placeholders": [{"token":"%1$s","type":"number","example":"0.68"},{"token":"%2$s","type":"number","example":"0.72"}],
       "gloss": "",
       "translate": true,
-      "zh": "提供 +0.6➜0.64 ❣ 魅惑概率。",
+      "zh": "提供 +%1$s➜%2$s ❣ 魅惑概率。",
       "segments": [
         {
           "color": "§f",
@@ -641,13 +641,13 @@
         },
         {
           "color": "§8",
-          "text": "0.6➜",
-          "zh": "0.6➜"
+          "text": "%1$s➜",
+          "zh": "%1$s➜"
         },
         {
           "color": "§a",
-          "text": "0.64",
-          "zh": "0.64"
+          "text": "%2$s",
+          "zh": "%2$s"
         },
         {
           "color": "§f",
