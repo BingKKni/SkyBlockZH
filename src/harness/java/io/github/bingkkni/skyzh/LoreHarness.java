@@ -380,9 +380,9 @@ public final class LoreHarness {
 				&& sameStyled(input.get(i), plan.get(i).rendered())));
 		String whole = String.join(" ", input.stream().map(c -> StyledText.of(c).canonical().trim()).toList());
 		boolean exact = !TOKEN.matcher(record.get("text").getAsString()).find();
-		check(title + " 仅精确原文有采集例外", index.preserved(Surface.LORE, whole) == exact);
-		if (exact) check(title + " 不重复采集保留英文",
-			Classifier.of(CaptureSurface.GUI_LORE, StyledText.of(Component.literal(whole))) == null);
+		check(title + " 仅精确原文登记保留决定", index.preserved(Surface.LORE, whole) == exact);
+		if (exact && Pattern.compile("[A-Za-z]{2,}").matcher(whole).find()) check(title + " 保留决定不屏蔽采集证据",
+			Classifier.of(CaptureSurface.GUI_LORE, StyledText.of(Component.literal(whole))) != null);
 	}
 
 	/** Compare per-character styles too: legacy serialization alone cannot distinguish a reset. */

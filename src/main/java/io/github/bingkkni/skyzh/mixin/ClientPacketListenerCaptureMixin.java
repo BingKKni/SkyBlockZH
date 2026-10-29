@@ -113,8 +113,8 @@ public abstract class ClientPacketListenerCaptureMixin {
 	 * <p>The metadata-index gate avoids revisiting every armour stand when an unrelated pose changes.
 	 * It includes the shared-flags byte (which carries invisibility), the optional custom name and the
 	 * separate name-visible boolean; Hypixel may send those in separate packets and any of them can be
-	 * the value that completes a hologram. {@link TextCapture#hologram} then applies the entity/type and
-	 * content exclusions shared with rendering.
+	 * the value that completes a name tag. {@link TextCapture#hologram} records server-owned ids;
+	 * capture includes unknown mob names independently of rendering's proper-name rules.
 	 */
 	@Inject(method = "handleSetEntityData", at = @At("TAIL"), require = 0)
 	private void skyzh$captureHologram(ClientboundSetEntityDataPacket packet, CallbackInfo info) {

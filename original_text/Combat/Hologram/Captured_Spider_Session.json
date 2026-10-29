@@ -1,0 +1,63 @@
+{
+  "source": [
+    "runtime capture: ../SkyZH_Logs/skyzh-capture; screenshots 1-7",
+    "https://hypixelskyblock.minecraft.wiki/w/Arachne",
+    "https://hypixelskyblock.minecraft.wiki/w/Tarantula_Armor",
+    "https://hypixelskyblock.minecraft.wiki/w/Slayer",
+    "https://hypixelskyblock.minecraft.wiki/w/Soul_Esoward",
+    "https://hypixelskyblock.minecraft.wiki/w/Skeleton_Hat",
+    "https://hypixelskyblock.minecraft.wiki/w/Spider_Hat"
+  ],
+  "verified_ingame": true,
+  "note": "实测文本优先；Wiki 普通页面核对语境。动态值使用模板，完整 Lore 适配服务器折行。",
+  "entries": [
+    {
+      "id": "arachne_trapped_hologram",
+      "ref": "Combat/NPC_Message/Arachne.json#arachne_trapped",
+      "context": "同一句首领对白的头顶浮空文字，复用聊天译文并保留实时粗体。"
+    },
+    {
+      "id": "arachne_resist_hologram",
+      "ref": "Combat/NPC_Message/Arachne.json#arachne_resist",
+      "context": "同一句首领对白的头顶浮空文字，复用聊天译文并保留实时粗体。"
+    },
+    {
+      "id": "arachne_humiliation_hologram",
+      "ref": "Combat/NPC_Message/Arachne.json#arachne_humiliation",
+      "context": "同一句首领对白的头顶浮空文字，复用聊天译文并保留实时粗体。"
+    },
+    {
+      "id": "arachne_sacrifice_hologram",
+      "ref": "Combat/NPC_Message/Arachne.json#arachne_sacrifice",
+      "context": "同一句首领对白的头顶浮空文字，复用聊天译文并保留实时粗体。"
+    },
+    {
+      "id": "radiant_timer",
+      "context": "本轮实测服务器原文；数值与颜色以采集快照为准。",
+      "raw": "§aRadiant §e%1$s",
+      "text": "Radiant %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "duration",
+          "example": "55s",
+          "desc": "持续时间"
+        }
+      ],
+      "translate": true,
+      "zh": "光辉能量球 %1$s",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Radiant ",
+          "zh": "光辉能量球 "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ]
+    }
+  ]
+}

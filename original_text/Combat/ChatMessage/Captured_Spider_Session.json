@@ -1,0 +1,538 @@
+{
+  "source": [
+    "runtime capture: ../SkyZH_Logs/skyzh-capture; screenshots 1-7",
+    "https://hypixelskyblock.minecraft.wiki/w/Arachne",
+    "https://hypixelskyblock.minecraft.wiki/w/Tarantula_Armor",
+    "https://hypixelskyblock.minecraft.wiki/w/Slayer",
+    "https://hypixelskyblock.minecraft.wiki/w/Soul_Esoward",
+    "https://hypixelskyblock.minecraft.wiki/w/Skeleton_Hat",
+    "https://hypixelskyblock.minecraft.wiki/w/Spider_Hat"
+  ],
+  "verified_ingame": true,
+  "note": "实测文本优先；Wiki 普通页面核对语境。动态值使用模板，完整 Lore 适配服务器折行。",
+  "entries": [
+    {
+      "id": "all_relics_found",
+      "context": "本轮实测服务器原文；数值与颜色以采集快照为准。",
+      "raw": "§cYou've already found all the relics!",
+      "text": "You've already found all the relics!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "你已经找齐所有遗物了!",
+      "layout": "chat_source_alignment"
+    },
+    {
+      "id": "rewards_available",
+      "context": "本轮实测服务器原文；数值与颜色以采集快照为准。",
+      "raw": "§a§lREWARDS AVAILABLE",
+      "text": "REWARDS AVAILABLE",
+      "placeholders": [],
+      "translate": true,
+      "zh": "有奖励可领取",
+      "layout": "chat_source_alignment"
+    },
+    {
+      "id": "click_collect",
+      "context": "本轮实测服务器原文；数值与颜色以采集快照为准。",
+      "raw": "§6§lCLICK TO COLLECT",
+      "text": "CLICK TO COLLECT",
+      "placeholders": [],
+      "translate": true,
+      "zh": "点击领取",
+      "layout": "chat_source_alignment"
+    },
+    {
+      "id": "slayer_rewards_claimed",
+      "context": "本轮实测服务器原文；数值与颜色以采集快照为准。",
+      "raw": "§6§lSLAYER REWARDS CLAIMED!",
+      "text": "SLAYER REWARDS CLAIMED!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "猎手奖励已领取!",
+      "layout": "chat_source_alignment"
+    },
+    {
+      "id": "arachne_down",
+      "context": "本轮实测服务器原文；数值与颜色以采集快照为准。",
+      "raw": "§6§lARACHNE DOWN!",
+      "text": "ARACHNE DOWN!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "Arachne 已被击败!",
+      "layout": "chat_source_alignment"
+    },
+    {
+      "id": "spider_tamer_task",
+      "context": "本轮实测服务器原文；数值与颜色以采集快照为准。",
+      "raw": "§fTalk to the Spider Tamer",
+      "text": "Talk to the Spider Tamer",
+      "placeholders": [],
+      "translate": true,
+      "zh": "与驯蛛师交谈",
+      "layout": "chat_source_alignment"
+    },
+    {
+      "id": "slayer_maddox_tavern",
+      "context": "本轮实测服务器原文；数值与颜色以采集快照为准。",
+      "raw": "§eVisit Maddox in the Hub's tavern to complete Slayer quests!",
+      "text": "Visit Maddox in the Hub's tavern to complete Slayer quests!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "前往大厅酒馆找 Maddox，完成猎手任务!",
+      "layout": "chat_source_alignment"
+    },
+    {
+      "id": "slayer_teleport_disabled",
+      "context": "本轮实测服务器原文；数值与颜色以采集快照为准。",
+      "raw": "§cThe Tarantula Broodfather disabled your teleport ability!",
+      "text": "The Tarantula Broodfather disabled your teleport ability!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "Tarantula Broodfather 封锁了你的传送能力!",
+      "layout": "chat_source_alignment"
+    },
+    {
+      "id": "slayer_spawning",
+      "context": "本轮实测服务器原文；数值与颜色以采集快照为准。",
+      "raw": "§cThe boss is already spawning!",
+      "text": "The boss is already spawning!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "首领已经在生成了!",
+      "layout": "chat_source_alignment"
+    },
+    {
+      "id": "slayer_reward_level_low",
+      "context": "本轮实测服务器原文；数值与颜色以采集快照为准。",
+      "raw": "§cYou are too low level to claim this reward!",
+      "text": "You are too low level to claim this reward!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "你的等级不足，无法领取这份奖励!",
+      "layout": "chat_source_alignment"
+    },
+    {
+      "id": "slayer_level_up",
+      "context": "本轮实测服务器原文；数值与颜色以采集快照为准。",
+      "raw": "§a§lLVL UP! §5➜ §e%1$s Slayer LVL %2$s!",
+      "text": "LVL UP! ➜ %1$s Slayer LVL %2$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "mob_name",
+          "example": "Spider",
+          "desc": "猎手类别"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "5",
+          "desc": "新等级"
+        }
+      ],
+      "translate": true,
+      "zh": "升级! ➜ %1$s猎手等级 %2$s!",
+      "segments": [
+        {
+          "color": "§a§l",
+          "text": "LVL UP! ",
+          "zh": "升级! "
+        },
+        {
+          "color": "§5",
+          "text": "➜ ",
+          "zh": "➜ "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s Slayer LVL %2$s!",
+          "zh": "%1$s猎手等级 %2$s!"
+        }
+      ],
+      "layout": "chat_source_alignment"
+    },
+    {
+      "id": "slayer_level_claim",
+      "context": "本轮实测服务器原文；数值与颜色以采集快照为准。",
+      "raw": "§5§l» §7%1$s Slayer LVL %2$s",
+      "text": "» %1$s Slayer LVL %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "mob_name",
+          "example": "Wolf",
+          "desc": "猎手类别"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "6",
+          "desc": "领取奖励的等级"
+        }
+      ],
+      "translate": true,
+      "zh": "» %1$s猎手等级 %2$s",
+      "segments": [
+        {
+          "color": "§5§l",
+          "text": "» ",
+          "zh": "» "
+        },
+        {
+          "color": "§7",
+          "text": "%1$s Slayer LVL %2$s",
+          "zh": "%1$s猎手等级 %2$s"
+        }
+      ],
+      "layout": "chat_source_alignment"
+    },
+    {
+      "id": "crit_damage_reward",
+      "context": "本轮实测服务器原文；数值与颜色以采集快照为准。",
+      "raw": "§9+%1$s☠ Crit Damage",
+      "text": "+%1$s☠ Crit Damage",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "2",
+          "desc": "属性增加值"
+        }
+      ],
+      "translate": true,
+      "zh": "暴击伤害: +%1$s☠",
+      "layout": "chat_source_alignment"
+    },
+    {
+      "id": "tarantula_minion_reward",
+      "context": "本轮实测服务器原文；数值与颜色以采集快照为准。",
+      "raw": "§9Tarantula Minion %1$s",
+      "text": "Tarantula Minion %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "tier",
+          "example": "I",
+          "desc": "小人等级"
+        }
+      ],
+      "translate": true,
+      "zh": "狼蛛小人 %1$s",
+      "layout": "chat_source_alignment"
+    },
+    {
+      "id": "quiver_slots_reward",
+      "context": "本轮实测服务器原文；数值与颜色以采集快照为准。",
+      "raw": "§8+§7%1$s §aQuiver §7Slots",
+      "text": "+%1$s Quiver Slots",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "9",
+          "desc": "新增格数"
+        }
+      ],
+      "translate": true,
+      "zh": "箭袋+%1$s 格",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "+",
+          "zh": "+",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "%1$s ",
+          "zh": "%1$s",
+          "order": 2
+        },
+        {
+          "color": "§a",
+          "text": "Quiver ",
+          "zh": "箭袋",
+          "order": 0
+        },
+        {
+          "color": "§7",
+          "text": "Slots",
+          "zh": " 格",
+          "order": 3
+        }
+      ],
+      "layout": "chat_source_alignment"
+    },
+    {
+      "id": "bestiary_arachne_brood_first",
+      "context": "本轮实测服务器原文；数值与颜色以采集快照为准。",
+      "raw": "§b§lArachne's Brood §b%1$s",
+      "text": "Arachne's Brood %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "tier",
+          "example": "I",
+          "desc": "图鉴等级"
+        }
+      ],
+      "translate": true,
+      "zh": "Arachne 的子嗣 %1$s",
+      "segments": [
+        {
+          "color": "§b§l",
+          "text": "Arachne's Brood ",
+          "zh": "Arachne 的子嗣 "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ],
+      "layout": "chat_source_alignment"
+    },
+    {
+      "id": "arachne_venom_shot",
+      "context": "本轮实测服务器原文；数值与颜色以采集快照为准。",
+      "raw": "§d%1$s used §2Venom Shot §don you hitting you for §c%2$s damage §dand infecting you with venom.",
+      "text": "%1$s used Venom Shot on you hitting you for %2$s damage and infecting you with venom.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "mob_name",
+          "example": "Arachne's Brood",
+          "desc": "施放者"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "78.7",
+          "desc": "伤害值"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s使用了毒液喷射，对你造成 %2$s 点伤害，并使你中毒。",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "%1$s used ",
+          "zh": "%1$s使用了"
+        },
+        {
+          "color": "§2",
+          "text": "Venom Shot ",
+          "zh": "毒液喷射"
+        },
+        {
+          "color": "§d",
+          "text": "on you hitting you for ",
+          "zh": "，对你造成 "
+        },
+        {
+          "color": "§c",
+          "text": "%2$s damage ",
+          "zh": "%2$s 点伤害"
+        },
+        {
+          "color": "§d",
+          "text": "and infecting you with venom.",
+          "zh": "，并使你中毒。"
+        }
+      ]
+    },
+    {
+      "id": "slayer_damage_requirement",
+      "context": "本轮实测服务器原文；数值与颜色以采集快照为准。",
+      "raw": "§cYou need to kill %1$s %2$s to damage this!",
+      "text": "You need to kill %1$s %2$s to damage this!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "mob_name",
+          "example": "Tarantula Broodfather",
+          "desc": "所需击败的首领"
+        },
+        {
+          "token": "%2$s",
+          "type": "tier",
+          "example": "V",
+          "desc": "首领阶级"
+        }
+      ],
+      "translate": true,
+      "zh": "击败 %1$s %2$s 后，才能对其造成伤害!"
+    },
+    {
+      "id": "fall_assisted_death",
+      "context": "本轮实测服务器原文；数值与颜色以采集快照为准。",
+      "raw": "§c☠ §7%1$s fell to their death with help from %2$s.",
+      "text": "☠ %1$s fell to their death with help from %2$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "player_name",
+          "example": "Shiixen",
+          "desc": "玩家名"
+        },
+        {
+          "token": "%2$s",
+          "type": "mob_name",
+          "example": "Voracious Spider",
+          "desc": "生物名"
+        }
+      ],
+      "translate": true,
+      "zh": "☠ %1$s被%2$s逼落高处，摔死了。",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "☠ ",
+          "zh": "☠ "
+        },
+        {
+          "color": "§7",
+          "text": "%1$s fell to their death with help from %2$s.",
+          "zh": "%1$s被%2$s逼落高处，摔死了。"
+        }
+      ]
+    },
+    {
+      "id": "hunting_level_requirement",
+      "context": "本轮实测服务器原文；数值与颜色以采集快照为准。",
+      "raw": "§cYou need §aHunting Skill %1$s §cto use it!",
+      "text": "You need Hunting Skill %1$s to use it!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "20",
+          "desc": "狩猎等级"
+        }
+      ],
+      "translate": true,
+      "zh": "需要达到狩猎等级 %1$s 才能使用!",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "You need ",
+          "zh": "需要达到"
+        },
+        {
+          "color": "§a",
+          "text": "Hunting Skill %1$s ",
+          "zh": "狩猎等级 %1$s"
+        },
+        {
+          "color": "§c",
+          "text": "to use it!",
+          "zh": " 才能使用!"
+        }
+      ]
+    },
+    {
+      "id": "crazy_drop",
+      "context": "本轮实测服务器原文；数值与颜色以采集快照为准。",
+      "raw": "§d§lCRAZY RARE DROP! §7(§9%1$s§7) §b(+%2$s% ✯ Magic Find)",
+      "text": "CRAZY RARE DROP! (%1$s) (+%2$s% ✯ Magic Find)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "loot_item_name",
+          "example": "Red Claw Egg",
+          "desc": "掉落物品或附魔名"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "113",
+          "desc": "魔法寻宝百分比"
+        }
+      ],
+      "translate": true,
+      "zh": "超稀有掉落! (%1$s) (+%2$s% ✯ 魔法寻宝)",
+      "segments": [
+        {
+          "color": "§d§l",
+          "text": "CRAZY RARE DROP! ",
+          "zh": "超稀有掉落! "
+        },
+        {
+          "color": "§7",
+          "text": "(",
+          "zh": "("
+        },
+        {
+          "color": "§9",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": ") ",
+          "zh": ") "
+        },
+        {
+          "color": "§b",
+          "text": "(+%2$s% ✯ Magic Find)",
+          "zh": "(+%2$s% ✯ 魔法寻宝)"
+        }
+      ]
+    },
+    {
+      "id": "crazy_enchantment_drop",
+      "context": "本轮实测服务器原文；数值与颜色以采集快照为准。",
+      "raw": "§d§lCRAZY RARE DROP! §7(§9%1$s %2$s§7) §b(+%3$s% ✯ Magic Find)",
+      "text": "CRAZY RARE DROP! (%1$s %2$s) (+%3$s% ✯ Magic Find)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "enchantment_name",
+          "example": "Bane of Arthropods",
+          "desc": "掉落物品或附魔名"
+        },
+        {
+          "token": "%2$s",
+          "type": "tier",
+          "example": "VI",
+          "desc": "附魔等级"
+        },
+        {
+          "token": "%3$s",
+          "type": "number",
+          "example": "113",
+          "desc": "魔法寻宝百分比"
+        }
+      ],
+      "translate": true,
+      "zh": "超稀有掉落! (%1$s %2$s) (+%3$s% ✯ 魔法寻宝)",
+      "segments": [
+        {
+          "color": "§d§l",
+          "text": "CRAZY RARE DROP! ",
+          "zh": "超稀有掉落! "
+        },
+        {
+          "color": "§7",
+          "text": "(",
+          "zh": "("
+        },
+        {
+          "color": "§9",
+          "text": "%1$s %2$s",
+          "zh": "%1$s %2$s"
+        },
+        {
+          "color": "§7",
+          "text": ") ",
+          "zh": ") "
+        },
+        {
+          "color": "§b",
+          "text": "(+%3$s% ✯ Magic Find)",
+          "zh": "(+%3$s% ✯ 魔法寻宝)"
+        }
+      ]
+    }
+  ]
+}

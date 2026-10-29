@@ -1,0 +1,138 @@
+{
+  "source": [
+    "runtime capture: ../SkyZH_Logs/skyzh-capture; screenshots 1-7",
+    "https://hypixelskyblock.minecraft.wiki/w/Jerry",
+    "https://hypixelskyblock.minecraft.wiki/w/Sam",
+    "https://hypixelskyblock.minecraft.wiki/w/Private_Island/Management_UI"
+  ],
+  "verified_ingame": true,
+  "note": "实测文本优先；Wiki 普通页面核对语境。动态值使用模板，完整 Lore 适配服务器折行。",
+  "entries": [
+    {
+      "id": "friends_middle_page",
+      "context": "本轮实测服务器原文；数值与颜色以采集快照为准。",
+      "raw": "§e§l<<§9 §6Friends (Page %1$s of %2$s) §e§l>>",
+      "text": "<< Friends (Page %1$s of %2$s) >>",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "2",
+          "desc": "页码"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "4",
+          "desc": "总页数"
+        }
+      ],
+      "translate": true,
+      "zh": "<< 好友（第 %1$s/%2$s 页） >>",
+      "segments": [
+        {
+          "color": "§e§l",
+          "text": "<<",
+          "zh": "<<"
+        },
+        {
+          "color": "§9",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§6",
+          "text": "Friends (Page %1$s of %2$s) ",
+          "zh": "好友（第 %1$s/%2$s 页） "
+        },
+        {
+          "color": "§e§l",
+          "text": ">>",
+          "zh": ">>"
+        }
+      ],
+      "layout": "chat_source_alignment"
+    },
+    {
+      "id": "move_npc_egg_pointer",
+      "context": "本轮实测服务器原文；数值与颜色以采集快照为准。",
+      "raw": "§aUse the egg I gave you to click and point to where you want me to go!",
+      "text": "Use the egg I gave you to click and point to where you want me to go!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "拿着我给你的蛋，点击你想让我搬去的位置就行!"
+    },
+    {
+      "id": "move_npc_egg_placed",
+      "context": "本轮实测服务器原文；数值与颜色以采集快照为准。",
+      "raw": "§aI have given you an egg, place this where you would like me to move to!",
+      "text": "I have given you an egg, place this where you would like me to move to!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "我给了你一颗蛋，把它放在你想让我搬去的位置吧!"
+    },
+    {
+      "id": "guest_ability_disabled",
+      "context": "本轮实测服务器原文；数值与颜色以采集快照为准。",
+      "raw": "§cThis ability is disabled while guesting!",
+      "text": "This ability is disabled while guesting!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "拜访他人岛屿时，无法使用此技能!"
+    },
+    {
+      "id": "hunting_cake_buff",
+      "context": "本轮实测服务器原文；数值与颜色以采集快照为准。",
+      "raw": "§d§lYum! §eYou gain §d+%1$s Hunting Fortune §efor §a%2$s §ehours!",
+      "text": "Yum! You gain +%1$s Hunting Fortune for %2$s hours!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "1",
+          "desc": "狩猎时运"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "48",
+          "desc": "持续小时数"
+        }
+      ],
+      "translate": true,
+      "zh": "真好吃! 获得 +%1$s 狩猎时运，持续 %2$s 小时!",
+      "segments": [
+        {
+          "color": "§d§l",
+          "text": "Yum! ",
+          "zh": "真好吃! "
+        },
+        {
+          "color": "§e",
+          "text": "You gain ",
+          "zh": "获得 "
+        },
+        {
+          "color": "§d",
+          "text": "+%1$s Hunting Fortune ",
+          "zh": "+%1$s 狩猎时运"
+        },
+        {
+          "color": "§e",
+          "text": "for ",
+          "zh": "，持续 "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s ",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§e",
+          "text": "hours!",
+          "zh": " 小时!"
+        }
+      ]
+    }
+  ]
+}

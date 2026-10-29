@@ -232,7 +232,7 @@ public final class TermTable {
 	 * only the second is a gap somebody could close.
 	 */
 	public boolean applies(String type) {
-		return this.types.contains("stat_name".equalsIgnoreCase(type) ? "category_name"
+		return this.types.contains("stat_name".equalsIgnoreCase(type) || "rarity".equalsIgnoreCase(type) ? "category_name"
 			: "contest_rank".equalsIgnoreCase(type) ? "medal"
 			: "shard_kind".equalsIgnoreCase(type) ? "mob_name"
 			: "commission_area".equalsIgnoreCase(type) ? "location_name"
@@ -267,6 +267,7 @@ public final class TermTable {
 		if ("guide_item_name".equalsIgnoreCase(type)) {
 			return itemName(value);
 		}
+		if ("rarity".equalsIgnoreCase(type)) return translate("category_name", value);
 		if ("shard_kind".equalsIgnoreCase(type)) {
 			return ItemNames.isBaseName(value + " Shard") ? translate("mob_name", value) : null;
 		}

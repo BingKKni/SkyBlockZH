@@ -81,6 +81,7 @@ public final class CaptureHarness {
 		shared();
 		loreIntegrity();
 		loreSnapshots();
+		packetItemSnapshots();
 		finishPendingWrites();
 
 		System.out.println();
@@ -284,16 +285,20 @@ public final class CaptureHarness {
 
 	// ---- which pile, and why ----
 
+	private static void checkUntranslated(String title, CaptureSurface surface, String raw) {
+		checkVerdict(title, surface, raw, Classifier.Bucket.UNTRANSLATED);
+	}
+
 	private static void verdicts() {
 		checkVerdict("没有记录应答 → 未翻译", CaptureSurface.SCOREBOARD, "§7Some Line Nobody Wrote Down",
 			Classifier.Bucket.UNTRANSLATED);
 		checkNothing("已经译好的行不采集", CaptureSurface.GUI_ITEM, "§8This item can be reforged!");
 		checkNothing("实验台 RNG 来源值已完整处理", CaptureSurface.GUI_ITEM,
 			"§dExperimentation Table RNG Meter");
-		checkNothing("实验台自造奖励名不重复采集", CaptureSurface.GUI_ITEM, "§cExperiment the Fish");
-		checkNothing("Boss 收藏品人名加等级不重复采集", CaptureSurface.GUI_ITEM, "§eBonzo I");
-		checkNothing("非原版 Drain 奖励变体不重复采集", CaptureSurface.GUI_ITEM, "§8 + §fDrain IV");
-		checkNothing("无测试版标记的侧边栏标题不重复采集", CaptureSurface.SCOREBOARD, "§e§lSKYBLOCK");
+		checkUntranslated("实验台保留专名仍可采集", CaptureSurface.GUI_ITEM, "§cExperiment the Fish");
+		checkUntranslated("Boss 收藏品专名仍可采集", CaptureSurface.GUI_ITEM, "§eBonzo I");
+		checkUntranslated("非原版 Drain 奖励保留复查证据", CaptureSurface.GUI_ITEM, "§8 + §fDrain IV");
+		checkUntranslated("未命中语料的侧边栏标题仍可采集", CaptureSurface.SCOREBOARD, "§e§lSKYBLOCK");
 		checkNothing("市长候选人进度条只保留人名与数值", CaptureSurface.TABLIST,
 			" §aDiana: ||§f|||||||| (17%)");
 		checkVerdict("句子状 RNG 计量表来源仍应采集", CaptureSurface.GUI_ITEM,
@@ -394,29 +399,26 @@ public final class CaptureHarness {
 		mixed();
 	}
 
-	/** Preserving English affects capture only, and never hides an unknown list member or sentence. */
+	/** Preserved English remains reviewable; translated fragments and player identities keep their rules. */
 	private static void preservedText(Path corpus) throws Exception {
 		for (String tier : List.of("I", "VI", "X")) {
-			checkNothing("保留的狩猎图鉴物品标题不重复采集 " + tier,
+			checkUntranslated("保留的图鉴物品标题仍可采集 " + tier,
 				CaptureSurface.GUI_ITEM, "§aPhanflare " + tier);
-			checkNothing("保留的狩猎图鉴聊天标题不重复采集 " + tier,
+			checkUntranslated("保留的图鉴聊天标题仍可采集 " + tier,
 				CaptureSurface.CHAT_MESSAGE, "  §b§lBirries §b" + tier);
 		}
-		checkNothing("保留的狩猎生物整名不制造假翻译", CaptureSurface.GUI_ITEM, "§5Littlefoot");
-		for (String text : List.of("UnknownCritter I", "Phanflare escaped", "Phanflare I is here", "Phanflare I 123", "Birries VI 1.5k", "Cod I")) {
-			check("保留图鉴闭集不隐藏未知名称或句子 " + text,
-				io.github.bingkkni.skyzh.capture.PreservedText.ignored(Surface.ITEM, text), false);
+		checkUntranslated("保留的狩猎生物仍可采集且不制造假翻译", CaptureSurface.GUI_ITEM, "§5Littlefoot");
+		for (String text : List.of("UnknownCritter I", "Phanflare escaped", "Phanflare I is here", "Phanflare I 123", "Birries VI 1.5k")) {
+			checkUntranslated("未知名称或语句不按专名屏蔽 " + text, CaptureSurface.GUI_ITEM, text);
 		}
-		check("保留图鉴规则不扩展到计分板",
-			io.github.bingkkni.skyzh.capture.PreservedText.ignored(Surface.SCOREBOARD, "Birries I"), false);
+		checkUntranslated("保留图鉴名在计分板同样采集", CaptureSurface.SCOREBOARD, "Birries I");
 		for (String source : List.of("§aRevenant Horror I", "§4Tarantula Broodfather IV", "§4Sven Packmaster IV",
 			"§5Voidgloom Seraph II", "§cInferno Demonlord III", "§dRiftstalker Bloodfiend V")) {
-			checkNothing("侧边栏猎手专名加阶数不重复采集 " + source, CaptureSurface.SCOREBOARD, source);
+			checkUntranslated("侧边栏猎手专名加阶数仍可采集 " + source, CaptureSurface.SCOREBOARD, source);
 		}
 		for (String source : List.of("Unknown Slayer IV", "Sven Packmaster IV is here", "Sven Packmaster",
 			"Tarantula Broodfather IV: Slain")) {
-			check("侧边栏猎手保留规则不吞未知名称、裸名或任务句 " + source,
-				io.github.bingkkni.skyzh.capture.PreservedText.ignored(Surface.SCOREBOARD, source), false);
+			checkUntranslated("侧边栏未知名称和任务句仍采集 " + source, CaptureSurface.SCOREBOARD, source);
 		}
 		for (String source : List.of("§aVIP Rewards Bundle", "§bMVP Rewards Bundle")) {
 			checkNothing("付费Rank奖励包不重复报告混杂 " + source, CaptureSurface.GUI_ITEM, source);
@@ -435,15 +437,12 @@ public final class CaptureHarness {
 			"§4Broodmother§7: §eUnrecorded", Classifier.Bucket.MIXED);
 		check("蜘蛛状态类型不污染普通raw取值", Translator.index().terms().translate("raw", "Soon") == null, true);
 		for (String icons : List.of("ꕮ", "⎋/⸙/ꕮ", "४/⎋/⸙/☯/ꕮ")) {
-			checkNothing("Booster标签按规则保留且不重复采集 " + icons,
+			checkUntranslated("Booster标签保留英文且仍可采集 " + icons,
 				CaptureSurface.GUI_ITEM, "§7Boosters: §a" + icons);
 		}
-		check("Booster图标保留不吞效果句",
-			io.github.bingkkni.skyzh.capture.PreservedText.ignored(Surface.ITEM, "Boosters: grants more Sweep"), false);
-		check("Booster图标保留不隐藏未知图标",
-			io.github.bingkkni.skyzh.capture.PreservedText.ignored(Surface.ITEM, "Boosters: ꕮ/?"), false);
-		check("Booster图标保留不扩展到聊天",
-			io.github.bingkkni.skyzh.capture.PreservedText.ignored(Surface.CHAT, "Boosters: ꕮ"), false);
+		checkUntranslated("Booster效果句不隐藏", CaptureSurface.GUI_ITEM, "Boosters: grants more Sweep");
+		checkUntranslated("Booster未知图标不隐藏", CaptureSurface.GUI_ITEM, "Boosters: ꕮ/?");
+		checkUntranslated("Booster聊天内容不隐藏", CaptureSurface.CHAT_MESSAGE, "Boosters: ꕮ");
 		check("水果碗存档名列表不重复采集",
 			io.github.bingkkni.skyzh.capture.PreservedText.fruitProfileLine("Fruit Bowl", "Apple, Banana, Blueberry,"), true);
 		check("水果碗最后一个存档名也保留",
@@ -454,8 +453,8 @@ public final class CaptureHarness {
 			io.github.bingkkni.skyzh.capture.PreservedText.fruitProfileLine("Fruit Bowl", "Apple, NewFruit"), false);
 		check("不把其他物品的水果材料当存档名",
 			io.github.bingkkni.skyzh.capture.PreservedText.fruitProfileLine("Fruit Basket", "Apple, Banana"), false);
-		check("新收录专名不重复采集", NameTag.eligible(Component.literal("§bGavin")), false);
-		check("新收录小人专名不重复采集", NameTag.eligible(Component.literal("§6Hootie")), false);
+		check("已收录专名保持原文渲染", NameTag.eligible(Component.literal("§bGavin")), false);
+		check("已收录小人专名保持原文渲染", NameTag.eligible(Component.literal("§6Hootie")), false);
 		check("职务加人名仍可翻译", NameTag.eligible(Component.literal("§6Captain Baha")), true);
 		var expected = new java.util.HashSet<String>();
 		var files = TranslationHarness.readCorpus(corpus);
@@ -471,17 +470,17 @@ public final class CaptureHarness {
 			"Cacti", "Cane", "Warts", "Sunflower", "Moonflower", "Rose")) expected.add("Turbo-" + crop);
 		check("采集保留名单与明确保留英文的附魔语料一致",
 			io.github.bingkkni.skyzh.capture.PreservedText.enchantmentNames().equals(expected), true);
-		checkNothing("计分板网址不重复采集", CaptureSurface.SCOREBOARD, " §ewww.hypixel.net ");
+		checkUntranslated("计分板网址不再按名单屏蔽", CaptureSurface.SCOREBOARD, " §ewww.hypixel.net ");
 		checkVerdict("不屏蔽包含网址的句子", CaptureSurface.SCOREBOARD,
 			"Visit www.hypixel.net for help", Classifier.Bucket.UNTRANSLATED);
 		checkVerdict("网址排除不扩展到聊天", CaptureSurface.CHAT_MESSAGE,
 			"www.hypixel.net", Classifier.Bucket.UNTRANSLATED);
-		checkNothing("非原版附魔单行不重复采集", CaptureSurface.GUI_ITEM, "§9Growth V");
-		checkNothing("非原版附魔裸名不重复采集", CaptureSurface.GUI_ITEM, "§9Growth");
-		checkNothing("附魔计数动态变化仍被识别", CaptureSurface.GUI_ITEM, "§9Cultivating V §8176,473");
-		checkNothing("增产附魔精确家族", CaptureSurface.GUI_ITEM, "§9Turbo-Carrot V");
-		checkNothing("非原版附魔组合不重复采集", CaptureSurface.GUI_ITEM, "§d§lDuplex V, §9Chance IV, Cubism V");
-		checkNothing("原版和非原版附魔混合列表正常覆盖", CaptureSurface.GUI_ITEM, "§9Power V, Snipe III, Punch II");
+		checkUntranslated("非原版附魔整行可供复查", CaptureSurface.GUI_ITEM, "§9Growth V");
+		checkUntranslated("非原版附魔裸名可供复查", CaptureSurface.GUI_ITEM, "§9Growth");
+		checkUntranslated("附魔计数变化不妨碍采集", CaptureSurface.GUI_ITEM, "§9Cultivating V §8176,473");
+		checkUntranslated("增产附魔可供复查", CaptureSurface.GUI_ITEM, "§9Turbo-Carrot V");
+		checkUntranslated("非原版附魔组合可供复查", CaptureSurface.GUI_ITEM, "§d§lDuplex V, §9Chance IV, Cubism V");
+		checkUntranslated("附魔列表保留尚未翻译的部分", CaptureSurface.GUI_ITEM, "§9Power V, Snipe III, Punch II");
 		checkVerdict("列表中的未知附魔仍报告", CaptureSurface.GUI_ITEM,
 			"§9Power V, Unverified Enchantment III", Classifier.Bucket.UNTRANSLATED);
 		checkVerdict("附魔效果句不被名称名单吞掉", CaptureSurface.GUI_ITEM,
@@ -494,7 +493,7 @@ public final class CaptureHarness {
 			Translator.translateLine(Component.literal("§9Growth §d§lV"), Surface.ITEM)), "§9Growth §d§lV");
 		checkVerdict("未装饰的 NPC 同名物品仍进入采集", CaptureSurface.GUI_ITEM,
 			"§fBubu", Classifier.Bucket.UNTRANSLATED);
-		checkNothing("指南勾叉中的 NPC 专名不重复采集", CaptureSurface.GUI_ITEM, "§c✖ §fBubu");
+		checkUntranslated("指南中的 NPC 专名可供复查", CaptureSurface.GUI_ITEM, "§c✖ §fBubu");
 	}
 
 	/** A first-line capture must strip the same item decorations as the tooltip renderer. */
@@ -536,7 +535,7 @@ public final class CaptureHarness {
 		checkNothing("新补绿色浮空行不再采集", CaptureSurface.HOLOGRAM, "§aGuide");
 		checkNothing("大厅项目不再采集", CaptureSurface.HOLOGRAM, "§aHub Revamp");
 		checkNothing("大厅目的地不再采集", CaptureSurface.HOLOGRAM, "§aHub Island");
-		checkNothing("Rhys仍是保留人名", CaptureSurface.HOLOGRAM, "§fRhys");
+		checkUntranslated("Rhys原名仍可供复查", CaptureSurface.HOLOGRAM, "§fRhys");
 		for (String icons : List.of("\uE07B\uE071", "\uE07B \uE071")) {
 			for (String hp : List.of("2M/2M", "765,432/2M")) {
 				String raw = "§8[§7Lv75§8] §e" + icons + " §cBarbarian §a" + hp + "§c\uE010";
@@ -558,12 +557,14 @@ public final class CaptureHarness {
 		checkNothing("实测救援NPC颜色诊断消除", CaptureSurface.NPC_MESSAGE,
 			"Perfect! Go see our §eUndercover Agent §rat the §5Cathedral §rarea in §5Mage §rterritory to get started.");
 		for (String input : List.of("09/29/26 m24BQ", "10/01/27 mini123AB", "||||||||||||||| Foxy", "|||||||| Cole")) {
-			checkNothing("日期编号和已知候选人进度不采集 " + input, CaptureSurface.SCOREBOARD, input);
+			checkUntranslated("日期编号和候选人不再按名单屏蔽 " + input, CaptureSurface.SCOREBOARD, input);
 		}
 		checkVerdict("未知侧边栏状态不被日期规则吞掉", CaptureSurface.SCOREBOARD,
 			"09/29/26 Unverified Event", Classifier.Bucket.UNTRANSLATED);
-		for (String input : List.of("Foxy: |||||||||| (7%)", "Aranya: §aAvailable", "Blight 11: 600/1,200", "Kuudra II: 6/100",
-			"§8●§7●§6○§b○ §fBlobfish", "○○○○ Steaming-Hot Flounder", "●○○○ Sulphur Skitter", "●●●● Obfuscated-1", "✖ Golden Fish x1")) {
+		for (String input : List.of("Foxy: |||||||||| (7%)", "Blight 11: 600/1,200", "Kuudra II: 6/100", "●●●● Obfuscated-1")) {
+			checkUntranslated("Tab保留专名仍可复查 " + input, CaptureSurface.TABLIST, input);
+		}
+		for (String input : List.of("Aranya: §aAvailable", "§8●§7●§6○§b○ §fBlobfish", "○○○○ Steaming-Hot Flounder", "●○○○ Sulphur Skitter", "✖ Golden Fish x1")) {
 			checkNothing("Tab已翻译鱼名或明确保留专名的结构不重复采集 " + input, CaptureSurface.TABLIST, input);
 		}
 		checkVerdict("未知NPC状态仍采集", CaptureSurface.TABLIST, "Aranya: Unverified Status", Classifier.Bucket.UNTRANSLATED);
@@ -576,7 +577,7 @@ public final class CaptureHarness {
 		checkVerdict("未知奖杯鱼广播仍采集", CaptureSurface.CHAT_MESSAGE,
 			"§6 §6§lTROPHY FISH! §fYou caught Unverified Fish §8§lBRONZE§f!", Classifier.Bucket.UNTRANSLATED);
 		for (String input : List.of("Hardened Vitality ➜ Hardened Vi", "Strong Vitality ➜ Strong Vitali", "Vesuvius", "An")) {
-			checkNothing("NPC及附魔截断标题保留 " + input, CaptureSurface.GUI_TITLE, input);
+			checkUntranslated("NPC及附魔截断标题可供复查 " + input, CaptureSurface.GUI_TITLE, input);
 		}
 		checkVerdict("附魔标题右侧不是原名前缀仍采集", CaptureSurface.GUI_TITLE,
 			"Strong Vitality ➜ Unverified", Classifier.Bucket.UNTRANSLATED);
@@ -592,7 +593,7 @@ public final class CaptureHarness {
 			"§7Auto revives you on death with §a50%", Classifier.Bucket.UNTRANSLATED);
 	}
 
-	/** Hologram capture follows the same boundary as hologram rendering. */
+	/** Capture deliberately accepts more names than rendering is permitted to translate. */
 	private static void holograms() {
 		check("实体共享标志字节会重新检查 Hologram", NameTag.metadataAffectsHologram(0), true);
 		check("自定义名字元数据会重新检查 Hologram", NameTag.metadataAffectsHologram(2), true);
@@ -601,7 +602,7 @@ public final class CaptureHarness {
 		check("普通操作提示属于可翻译浮空字", NameTag.eligible(styled("§e§lCLICK").slice(0, 5)), true);
 		check("NPC 头顶职务介绍属于可翻译浮空字",
 			NameTag.eligible(Component.literal("§e§lDRILL MECHANIC")), true);
-		check("NPC 绿色专名不翻译也不采集",
+		check("NPC 绿色专名不由通用名牌路径翻译",
 			NameTag.eligible(Component.literal("§aJotraeline Greatforge")), false);
 		check("单词 NPC 绿色专名同样排除", NameTag.eligible(Component.literal("§aBubu")), false);
 		check("绿色但加粗的状态不是 NPC 专名", NameTag.eligible(Component.literal("§a§lREADY")), true);
@@ -634,8 +635,10 @@ public final class CaptureHarness {
 			"§b[MVP++] Cute_Leaf_ovo profile details", Classifier.Bucket.UNTRANSLATED);
 		checkVerdict("未确认的菜单职业不能按玩家身份过滤", CaptureSurface.GUI_ITEM,
 			"UnrecordedRole", Classifier.Bucket.UNTRANSLATED);
-		for (String source : List.of("§7Sven Packmaster: §4Tier IV", "§7Tarantula Broodfather: §4Tier IV",
-			"§aSven Packmaster II", "§8Riftstalker Bloodfiend", "§6Vampire Slayer LVL 4")) {
+		for (String source : List.of("§aSven Packmaster II", "§8Riftstalker Bloodfiend")) {
+			checkUntranslated("首领专名整行仍可复查 " + source, CaptureSurface.GUI_ITEM, source);
+		}
+		for (String source : List.of("§7Sven Packmaster: §4Tier IV", "§7Tarantula Broodfather: §4Tier IV", "§6Vampire Slayer LVL 4")) {
 			checkNothing("猎手专名与完整奖励标题不误报 " + source, CaptureSurface.GUI_ITEM, source);
 		}
 		check("含生命值说明的完整文案不能被血条规则误杀",
@@ -643,17 +646,17 @@ public final class CaptureHarness {
 
 		checkNothing("已有的浮空字不重复采集", CaptureSurface.HOLOGRAM, "§e§lCLICK");
 		checkNothing("目的地借用词表不重复采集", CaptureSurface.HOLOGRAM, "§aDungeon Hub");
-		checkNothing("未译 NPC 专名不重复采集", CaptureSurface.HOLOGRAM, "§6Ike");
+		checkUntranslated("未译 NPC 专名可供复查", CaptureSurface.HOLOGRAM, "§6Ike");
 		check("篝火职务浮空字可翻译", TranslationHarness.legacy(
 			Translator.translateLine(Component.literal("§aCampfire Initiate"), Surface.HOLOGRAM)), "§a篝火学徒");
-		checkNothing("NPC 专名在分类兜底处也不会伪报", CaptureSurface.HOLOGRAM,
+		checkUntranslated("NPC 名单不屏蔽采集分类", CaptureSurface.HOLOGRAM,
 			"§aJotraeline Greatforge");
 		checkVerdict("未知职务浮空字会进入未翻译采集", CaptureSurface.HOLOGRAM,
 			"§e§lUNRECORDED MECHANIC", Classifier.Bucket.UNTRANSLATED);
-		checkNothing("宠物等级浮空字不生成翻译任务", CaptureSurface.HOLOGRAM, "§8[§7Lv93§8] §dEnderman");
-		checkNothing("竞速玩家榜不生成翻译任务", CaptureSurface.HOLOGRAM, "1. ExamplePlayer - 00:01.872");
+		checkUntranslated("宠物名字保留复查证据", CaptureSurface.HOLOGRAM, "§8[§7Lv93§8] §dEnderman");
+		checkUntranslated("竞速玩家榜保留原始证据", CaptureSurface.HOLOGRAM, "1. ExamplePlayer - 00:01.872");
 		for (String rank : List.of("YOUTUBE", "ADMIN", "HELPER", "MOD", "GM", "MVP++")) {
-			checkNothing("特殊 Rank 玩家名不采集 " + rank, CaptureSurface.HOLOGRAM, "§c[" + rank + "] ExamplePlayer");
+			checkUntranslated("服务器浮空排行身份保留证据 " + rank, CaptureSurface.HOLOGRAM, "§c[" + rank + "] ExamplePlayer");
 		}
 		for (String[] timer : List.of(
 			new String[] {"1494", "24分54秒"}, new String[] {"3367", "56分07秒"},
@@ -680,7 +683,7 @@ public final class CaptureHarness {
 			check("头顶时间匹配不扩大到身份或未知标签 " + unchanged, NameTag.riftTimer(original) == original, true);
 		}
 		for (String preserved : List.of("Elise LXXI", "Suri", "Limbo")) {
-			checkNothing("本轮保留专名不重复采集 " + preserved, CaptureSurface.HOLOGRAM, preserved);
+			checkUntranslated("保留专名仍可供复查 " + preserved, CaptureSurface.HOLOGRAM, preserved);
 		}
 		checkNothing("猫咪专名不报告混杂", CaptureSurface.GUI_ITEM, "§7[Lvl 100] §5Montezuma");
 		check("已收录的绿色职务不按专名排除", NameTag.eligible(Component.literal("§aLift Operator")), true);
@@ -693,6 +696,20 @@ public final class CaptureHarness {
 		check("通名替换不染色等级血量及私用区图标", TranslationHarness.legacy(NameTag.mobName(
 			Component.literal("§8[Lv100] §cGlacite Mutt §a12,345§c\uE010"))),
 			"§8[Lv100] §c极冰野狗 §a12,345§c\uE010");
+		for (String name : List.of("Unverified Creature", "Yog", "New Spider")) {
+			for (String hp : List.of("100", "25/100", "1.2M/2M")) {
+				checkUntranslated("未翻译血条保留采集证据 " + name + " " + hp,
+					CaptureSurface.HOLOGRAM, "§8[Lv4] §c" + name + " §a" + hp + "§c\uE010");
+			}
+		}
+		for (String[] mob : List.of(new String[]{"Splitter Spider", "分裂蜘蛛"},
+			new String[]{"Jockey Skeleton", "骷髅骑手"}, new String[]{"Primordial Bat", "原初蝙蝠"},
+			new String[]{"Primordial Hatchling", "原初幼蛛"}, new String[]{"Weaver Spider", "织网蜘蛛"})) {
+			String raw = "§8[Lv87] §4\uE074 §c" + mob[0] + " §a250k§f/§2250k§c\uE010";
+			check("本轮实体通名及各段实时颜色 " + mob[0], TranslationHarness.legacy(NameTag.mobName(Component.literal(raw))),
+				raw.replace(mob[0], mob[1]));
+			checkNothing("已翻译实体血条不误报 " + mob[0], CaptureSurface.HOLOGRAM, raw);
+		}
 		Component unknown = Component.literal("§cUnverified Creature §a100§c❤");
 		check("未知生物不进行逐词猜译", NameTag.mobName(unknown) == unknown, true);
 		check("无血量宠物名字不走怪物通名路径", NameTag.mobName(Component.literal("[Lv100] Glacite Mutt")).getString(),
@@ -700,7 +717,7 @@ public final class CaptureHarness {
 		// The corpus's NPC list, not colour, is what makes a nameplate a nameplate.
 		check("语料里的 NPC 人名不分颜色一律排除", NameTag.eligible(Component.literal("§bMort")), false);
 		check("白色 NPC 人名同样排除", NameTag.eligible(Component.literal("Rosetta")), false);
-		checkNothing("NPC 人名浮空字不生成翻译任务", CaptureSurface.HOLOGRAM, "§cMalik");
+		checkUntranslated("NPC 人名浮空字保留证据", CaptureSurface.HOLOGRAM, "§cMalik");
 		check("有浮空字记录的职务名照常翻译", TranslationHarness.legacy(
 			Translator.translateLine(Component.literal("§aLift Operator"), Surface.HOLOGRAM)), "§a升降梯管理员");
 		check("未知单词不猜测为玩家名: 小写开头", NameTag.eligible(Component.literal("§binkkni")), true);
@@ -708,7 +725,7 @@ public final class CaptureHarness {
 		check("未知单词不猜测为玩家名: 中间大写", NameTag.eligible(Component.literal("§7ZillPap")), true);
 		check("绿色未知卫兵职务进入采集", NameTag.eligible(Component.literal("§aUncatalogued Guard")), true);
 		check("绿色未知单独姓名留待人工判断", NameTag.eligible(Component.literal("§aUncataloguedName")), true);
-		check("带千分位的道场玩家排名不采集", NameTag.eligible(Component.literal("§e106,026. §binkkni§7 - §e760")), false);
+		check("道场玩家排名不由通用名牌路径翻译", NameTag.eligible(Component.literal("§e106,026. §binkkni§7 - §e760")), false);
 		check("大写整词不是玩家名", NameTag.eligible(Component.literal("§e§lHOTSPOT")), true);
 		check("首字母大写的普通词不是玩家名", NameTag.eligible(Component.literal("§aStart")), true);
 
@@ -721,8 +738,8 @@ public final class CaptureHarness {
 		checkVerdict("没有记录的浮空字仍然采集", CaptureSurface.HOLOGRAM,
 			"§9Unrecorded Display Label", Classifier.Bucket.UNTRANSLATED);
 
-		// translate: false is a decision, and capture stops asking about it — on that surface only.
-		checkNothing("translate:false 的整行不再采集", CaptureSurface.BOSS_BAR, "§c§lThe Watcher");
+		// translate:false controls rendering; it no longer removes review evidence.
+		checkUntranslated("translate:false 仍可采集复查", CaptureSurface.BOSS_BAR, "§c§lThe Watcher");
 		checkVerdict("translate:false 只作用于本渲染面", CaptureSurface.CHAT_MESSAGE,
 			"§c§lThe Watcher", Classifier.Bucket.UNTRANSLATED);
 		check("BossBar 保留原文数已加载", Translator.index().preservedCount(Surface.BOSS_BAR) > 0, true);
@@ -1462,6 +1479,66 @@ public final class CaptureHarness {
 	}
 
 	/** Real Rift fragments must stay recoverable even when a tail is known elsewhere. */
+	/** Worker expansion must preserve packet evidence even if the game mutates the original text. */
+	private static void packetItemSnapshots() throws Exception {
+		Path root = Files.createTempDirectory("skyzh-worker-item");
+		CaptureStore.clear(root);
+		CaptureStore.root(root);
+		try {
+			var name = Component.literal("§5Tarantula Chestplate");
+			var unknown = Component.literal("§7Worker snapshot line");
+			List<Component> source = List.of(unknown, Component.empty(), Component.literal("§7Can damage §cendermen."));
+			LoreSnapshot snapshot = LoreSnapshot.of("Bazaar", 17, 23, name, source);
+			var item = new CaptureStore.Item(snapshot, true);
+			unknown.append(" changed later");
+			name.append(" changed later");
+			for (int i = 1; i <= 2; i++) {
+				CaptureStore.accept(new CaptureStore.Sighting(CaptureSurface.GUI_ITEM, "item-packet", item,
+					"Economy", "Bazaar Alley", "Bazaar", "Bazaar", i));
+			}
+			CaptureStore.flush();
+			Path file = root.resolve("untranslated/Economy/GUI_Item/Bazaar.json");
+			JsonObject captured = find(file, "worker_snapshot_line");
+			check("后台处理仍记录重复观测次数", captured.get("count").getAsInt(), 2);
+			check("后台处理保留到包时区域", captured.getAsJsonArray("seen_in").get(0).getAsString(), "Bazaar Alley");
+			JsonObject context = captured.getAsJsonArray("lore_contexts").get(0).getAsJsonObject();
+			check("入队快照不受原组件后续变化影响", context.get("item_name").getAsString(), "§5Tarantula Chestplate");
+			check("后台仍保留完整有序Lore及空行", context.getAsJsonArray("original_lines").size(), 3);
+			check("后台使用原始Lore内容", context.getAsJsonArray("original_lines").get(0).getAsString(), "§7Worker snapshot line");
+			check("后台使用原始菜单槽位", context.get("slot").getAsInt(), 23);
+			check("后台处理没有丢失颜色诊断", Files.exists(root.resolve("colour/Economy/GUI_Lore/Bazaar.json")), true);
+			CaptureStore.clear(root);
+			CaptureStore.accept(new CaptureStore.Sighting(CaptureSurface.GUI_ITEM, "item-packet", item,
+				"Economy", "Bazaar Alley", "Bazaar", "Bazaar", 3));
+			CaptureStore.flush();
+			check("清空后相同物品可以重新采集", find(file, "worker_snapshot_line").get("count").getAsInt(), 1);
+			List<Component> oversized = new java.util.ArrayList<>(java.util.Collections.nCopies(256, Component.empty()));
+			oversized.add(Component.literal("§7First tail outside context"));
+			LoreSnapshot first = LoreSnapshot.of("Oversized", 18, 1, null, oversized);
+			oversized.set(256, Component.literal("§cSecond tail outside context"));
+			LoreSnapshot second = LoreSnapshot.of("Oversized", 18, 1, null, oversized);
+			check("去重签名包含导出上限之后的原文", !first.signature().equals(second.signature()), true);
+			for (LoreSnapshot scene : List.of(first, second)) {
+				CaptureStore.accept(new CaptureStore.Sighting(CaptureSurface.GUI_ITEM, scene.signature(),
+					new CaptureStore.Item(scene, false), "Combat", "Spider's Den", "Oversized", "Oversized", 4));
+			}
+			List<Component> longPacket = List.of(Component.literal("0".repeat(65_536)), Component.empty(),
+				Component.literal("§eTail after character budget"));
+			LoreSnapshot longScene = LoreSnapshot.of("LongPacket", 19, 1, null, longPacket);
+			CaptureStore.accept(new CaptureStore.Sighting(CaptureSurface.GUI_ITEM, longScene.signature(),
+				new CaptureStore.Item(longScene, false), "Combat", "Spider's Den", "LongPacket", "LongPacket", 5));
+			CaptureStore.flush();
+			Path tails = root.resolve("untranslated/Combat/GUI_Item/Oversized.json");
+			check("第257行的首份原文仍被采集", find(tails, "first_tail_outside_context") != null, true);
+			check("第257行后续变化仍被采集", find(tails, "second_tail_outside_context") != null, true);
+			check("字符上限之后的原文仍被采集", find(root.resolve("untranslated/Combat/GUI_Item/LongPacket.json"),
+				"tail_after_character_budget") != null, true);
+		} finally {
+			CaptureStore.clear(root);
+			delete(root);
+		}
+	}
+
 	private static void loreIntegrity() {
 		for (String tail : List.of("§bGlacite Tunnels§7.", "§7players.")) {
 			List<Component> source = List.of(Component.literal("§7A completely unknown lore opening"), Component.literal(tail));
@@ -1546,15 +1623,28 @@ public final class CaptureHarness {
 			List<Component> oversized = java.util.Collections.nCopies(257, Component.literal("§7Line"));
 			var bounded = LoreSnapshot.of("Bounded", 1, 1, null, oversized);
 			check("异常超长Lore保留原始行数", bounded.originalLineCount(), 257);
-			check("异常超长Lore有界", bounded.lines().size(), 256);
+			check("超长Lore仍完整保留供后台分析", bounded.lines().size(), 257);
+			check("导出上下文行数仍有界", new LoreSnapshot.Target(bounded, 256, 1).json()
+				.getAsJsonArray("original_lines").size(), 256);
 			check("异常超长Lore显式标注截断", bounded.truncated(), true);
 			var longLine = LoreSnapshot.of("Long line", 1, 1, null,
 				List.of(Component.literal("X".repeat(65_537))));
 			check("单行超长也显式标注截断", longLine.truncated(), true);
-			check("单行快照字符数有界", longLine.lines().getFirst().length(), 65_536);
+			check("超长单行仍完整保留供后台分析", longLine.lines().getFirst().length(), 65_537);
+			check("导出上下文字符数仍有界", new LoreSnapshot.Target(longLine, 0, 1).json()
+				.getAsJsonArray("original_lines").get(0).getAsString().length(), 65_536);
+			var longName = LoreSnapshot.of("Long name", 1, 1, Component.literal("N".repeat(1025)), List.of());
+			check("超长名称仍完整保留供后台分析", longName.itemName().length(), 1025);
+			check("导出物品名长度仍有界", new LoreSnapshot.Target(longName, -1, 0).json()
+				.get("item_name").getAsString().length(), 1024);
+			var exactLimit = LoreSnapshot.of("Exact limit", 1, 1, null,
+				List.of(Component.literal("X".repeat(65_536)), Component.empty()));
+			check("恰好达到字符上限仍保留尾部空行", new LoreSnapshot.Target(exactLimit, 0, 1).json()
+				.getAsJsonArray("original_lines").size(), 2);
+			check("恰好达到上限不伪报截断", exactLimit.truncated(), false);
 			check("数字符号孤立续行不产生无意义采集", Classifier.orphanContinuation(styled("123 / 456")) == null, true);
 			check("中文孤立续行不采集", Classifier.orphanContinuation(styled("中文 players")) == null, true);
-			check("明确保留的专名不被孤立续行路径重采", Classifier.orphanContinuation(styled("Crux Ring")) == null, true);
+			check("保留专名也可作为孤立续行证据", Classifier.orphanContinuation(styled("Crux Ring")) != null, true);
 			CaptureStore.clear(root);
 			check("清空采集会删除含快照的文件", Files.exists(file), false);
 		} finally {

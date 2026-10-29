@@ -435,6 +435,7 @@ public final class Translator {
 		StyledText styled = StyledText.of(source);
 		List<LineShape.Range> items = LineShape.enchantments(styled.canonical());
 		if (items.isEmpty() && surface == Surface.ITEM) items = LineShape.mobFamilies(styled.canonical());
+		if (items.isEmpty() && surface == Surface.ITEM) items = LineShape.islandTags(styled.canonical());
 
 		if (items.isEmpty()) {
 			return null;

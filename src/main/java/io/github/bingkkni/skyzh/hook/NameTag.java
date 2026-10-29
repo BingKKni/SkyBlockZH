@@ -30,8 +30,8 @@ import net.minecraft.network.chat.Component;
  * <p>Authored hologram text is restricted to invisible armour stands. Explicit role records may
  * translate green NPC labels; unknown labels are captured for human review. Non-player living
  * entities have a separate, bounded health-bar path: only a whole mob name already in the term table
- * is replaced, never level or health. Capture omits dynamic bars, pet tags and race leaderboard rows
- * rather than recording each changing value as a new translation task.
+ * is replaced, never level or health. Capture uses a wider boundary so unknown bars and
+ * preserved names remain evidence for human review; it does not use this render eligibility gate.
  *
  * <p>Should the entity-note hook stop applying, the flag stays false and name tags stay untouched.
  * That fail-closed behaviour is intentional: translating a player's name or an unknown proper name
@@ -86,7 +86,7 @@ public final class NameTag {
 	}
 
 	/**
-	 * Whether this visible armour-stand name is authored hologram text worth translating or capturing.
+	 * Whether this visible armour-stand name may use authored hologram translations.
 	 * The icon spelling is canonicalised so the server's private-use health glyph is treated exactly
 	 * like the ordinary heart used by corpus and tests.
 	 */
@@ -94,7 +94,7 @@ public final class NameTag {
 		return nameTag != null && eligible(StyledText.of(nameTag));
 	}
 
-	/** The component-free form used by capture's final classification gate. */
+	/** Component-free rendering eligibility; deliberately not a capture filter. */
 	public static boolean eligible(StyledText styled) {
 		String plain = Glyphs.canonical(styled.plain()).trim();
 		return !plain.isEmpty() && !MOB_HEALTH.matcher(plain).find()

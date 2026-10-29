@@ -49,6 +49,7 @@ public final class DiagnosticsHarness {
 		capturePolicies();
 		liveLore();
 		chat();
+		spiderSession();
 		joinedChat();
 		existingTerms();
 		brokenRecords();
@@ -162,6 +163,27 @@ public final class DiagnosticsHarness {
 		Component right = Component.literal("                                                                      Rewards");
 		var aligned = ChatLayout.plan(right, Translator.translateAvailable(right, Surface.CHAT), 320, DiagnosticsHarness::width);
 		check("右对齐保留右边缘", Math.abs(width(aligned.text()) - 320) <= 4);
+	}
+
+	private static void spiderSession() {
+		Component compact = Component.literal("§6§lBESTIARY §r§b§lWeaver Spider §8X ➡§b XI");
+		Component shown = ChatTranslation.plan(compact, 320, DiagnosticsHarness::width).text();
+		check("SkyHanni精简图鉴不被强制居中或重写", StyledText.of(compact).equals(StyledText.of(shown)));
+		Component body = Component.literal("§b§lWeaver Spider §8X ➡§b XI");
+		String padding = " ".repeat(Math.max(0, (320 - width(body)) / 8));
+		Component original = Component.literal(padding).append(body);
+		Component banner = ChatTranslation.plan(original, 320, DiagnosticsHarness::width).text();
+		check("服务器图鉴横幅仍翻译并保持居中", StyledText.of(banner).plain().stripLeading().equals("织网蜘蛛 X ➡ XI")
+			&& StyledText.of(banner).plain().startsWith(" "));
+		for (String source : List.of("§fThemed§7, §fPixel Art§7, §fModern", "§fRace§7, §fMuseum§7, §fRoleplay")) {
+			Component list = Translator.translateListAvailable(Component.literal(source), Surface.ITEM);
+			check("岛屿标签整列复用已有译名 " + source, list != null && !StyledText.of(list).plain().matches(".*[A-Za-z].*"));
+			check("岛屿标签分隔符保持灰色 " + source, list != null && TranslationHarness.legacy(list).contains("§7, §f"));
+		}
+		check("玩家自定义逗号文本不当成固定标签", Translator.translateListAvailable(
+			Component.literal("Modern, My Custom Island"), Surface.ITEM) == null);
+		check("重排属性数值不产生丢失诊断", TranslationDiagnostics.lore(LoreTranslation.plan(components(
+			"§c+71.93 Health", "§9+32.48% Crit Chance", "§b+30 Intelligence"))).isEmpty());
 	}
 
 	private static void joinedChat() throws Exception {

@@ -2,7 +2,6 @@ package io.github.bingkkni.skyzh.capture;
 
 import io.github.bingkkni.skyzh.SkyZHConfig;
 import io.github.bingkkni.skyzh.compat.HypixelApi;
-import io.github.bingkkni.skyzh.hook.NameTag;
 import io.github.bingkkni.skyzh.text.ChatTranslation;
 import io.github.bingkkni.skyzh.text.LineShape;
 import io.github.bingkkni.skyzh.text.LoreTranslation;
@@ -26,7 +25,9 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.decoration.ArmorStand;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemLore;
 import org.slf4j.Logger;
@@ -185,42 +186,17 @@ public final class TextCapture {
 			return;
 		}
 
-		List<Component> lines = lore.lines();
-		LoreSnapshot snapshot = LoreSnapshot.of(menu, containerId, slot, custom, lines);
-		if (custom != null) {
-			offerLore(new LoreObservation(CaptureSurface.GUI_ITEM, List.of(custom), null, -1, 0, false),
-				snapshot, name, where + " 物品名");
-		}
-		String originalName = custom == null ? "" : plainOf(custom);
-
-		for (LoreObservation observation : inspectLore(lines)) {
-			if (observation.diagnostic() == null && observation.source().size() == 1
-				&& (PreservedText.fruitProfileLine(originalName, plainOf(observation.source().getFirst()))
-					|| PreservedText.partyFinderLine(menu, plainOf(observation.source().getFirst())))) continue;
-			offerLore(observation, snapshot, name,
-				observation.diagnostic() == null ? where + " Lore" : where + " / " + originalName + " Lore");
-		}
+		// Freeze packet-owned text here; matching and diagnostics belong to the capture worker.
+		// A full Bazaar packet must not run every slot's complete lore plan on the render thread.
+		LoreSnapshot snapshot = LoreSnapshot.of(menu, containerId, slot, custom, lore.lines());
+		String gameplay = placed();
+		String key = key(CaptureSurface.GUI_ITEM, name, where, snapshot.signature(), gameplay);
+		queue(CaptureSurface.GUI_ITEM, key, new CaptureStore.Item(snapshot, custom != null), name, where, gameplay);
 	}
 
 	/** The production lore capture path, exposed without client state for packet-content regression tests. */
 	public record LoreObservation(CaptureSurface surface, List<Component> source, Classifier.Verdict diagnostic,
 		int start, int lineCount, boolean orphanContinuation) {}
-
-	private static void offerLore(LoreObservation observation, LoreSnapshot snapshot, String name, String where) {
-		var joined = Component.empty();
-		for (Component line : observation.source()) {
-			if (!joined.getString().isEmpty()) joined.append("\n");
-			joined.append(line);
-		}
-		LoreSnapshot.Target context = new LoreSnapshot.Target(snapshot, observation.start(), observation.lineCount());
-		String gameplay = placed();
-		String kind = observation.diagnostic() == null ? "line" : observation.diagnostic().identity();
-		String key = key(observation.surface(), name, where, kind + KEY_SEPARATOR + context.key(), gameplay);
-		CaptureStore.Observation work = SEEN.putIfAbsent(key, Boolean.TRUE) == null
-			? new CaptureStore.Lore(StyledText.of(joined), context, observation.diagnostic(), observation.orphanContinuation())
-			: CaptureStore.Repeated.INSTANCE;
-		queue(observation.surface(), key, work, name, where, gameplay);
-	}
 
 	public static synchronized List<LoreObservation> inspectLore(List<Component> lines) {
 		TranslationIndex index = Translator.index();
@@ -359,9 +335,9 @@ public final class TextCapture {
 	/**
 	 * One server-owned hologram after an entity-metadata packet has been applied.
 	 *
-	 * <p>Only visible custom names on invisible armour stands belong to the Hologram surface. That
-	 * structural filter keeps players, ordinary mobs, named items and decorative stands out;
-	 * {@link NameTag#eligible} additionally rejects NPC proper names and dynamic mob-health layers.
+	 * <p>Invisible armour stands and non-player living entities may carry server-authored text.
+	 * Capture deliberately does not share rendering's proper-name or health-bar exclusions:
+	 * an unknown or deliberately preserved English name is still useful review evidence.
 	 */
 	public static void hologram(Entity entity) {
 		// Only remembered here. Hypixel sends a hologram's name, visibility and position in separate
@@ -395,10 +371,10 @@ public final class TextCapture {
 		List<HologramSnapshot.Row> rows = new ArrayList<>();
 		for (Iterator<Integer> ids = HOLOGRAM_ENTITIES.iterator(); ids.hasNext();) {
 			Entity entity = level.getEntity(ids.next());
-			if (!(entity instanceof ArmorStand)) {
+			if (!(entity instanceof LivingEntity) || entity instanceof Player) {
 				ids.remove();
-			} else if (entity.isInvisible()
-				&& entity.isCustomNameVisible() && entity.getCustomName() != null
+			} else if ((!(entity instanceof ArmorStand) || entity.isInvisible() && entity.isCustomNameVisible())
+				&& entity.getCustomName() != null
 				&& entity.distanceToSqr(player) <= HologramSnapshot.CAPTURE_DISTANCE * HologramSnapshot.CAPTURE_DISTANCE) {
 				rows.add(new HologramSnapshot.Row(entity.getId(), entity.getX(), entity.getY(), entity.getZ(),
 					StyledText.of(entity.getCustomName())));
@@ -406,9 +382,7 @@ public final class TextCapture {
 		}
 		HologramSnapshot.Index spatial = new HologramSnapshot.Index(rows);
 		for (HologramSnapshot.Row row : rows) {
-			if (NameTag.eligible(row.text())) {
-				offerHologram(spatial.around(row));
-			}
+			offerHologram(spatial.around(row));
 		}
 	}
 
@@ -417,7 +391,7 @@ public final class TextCapture {
 
 		// Retain only bounded packet-observed IDs even while capture is off. Do not read text,
 		// classify, queue or write until ready(); static names may never receive another packet.
-		if (!client.isSameThread() || !(entity instanceof ArmorStand)) {
+		if (!client.isSameThread() || !(entity instanceof LivingEntity) || entity instanceof Player) {
 			return;
 		}
 

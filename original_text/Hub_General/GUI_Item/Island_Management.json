@@ -204,11 +204,11 @@
         {
           "token": "%1$s",
           "desc": "岛主，连称号一起保留原样",
-          "type": "raw",
+          "type": "player_display",
           "example": "[MVP+] inkkni"
         }
       ],
-      "gloss": "采集把玩家名连称号写进了字面量（“[MVP+] inkkni's Island”），因为那一轮只有一个人。定 raw 而不是 player_name：称号带方括号和加号，player_name 只认 Minecraft 的十六种字名字符，吃不下——同 Economy/GUI_Item/Bazaar.json#bazaar_history_for_coins_by。所有格的 's 由引擎按 text/Possessive 处理，译文里不写。",
+      "gloss": "使用已有 player_display 身份类型，保留玩家名、Rank 与实时样式，不把岛主当缺失术语。",
       "translate": true,
       "zh": "%1$s 的岛屿"
     },

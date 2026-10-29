@@ -2,6 +2,8 @@ package io.github.bingkkni.skyzh.text;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
 /**
@@ -370,6 +372,18 @@ public final class LineShape {
 
 	/** Explicit icon/name lists from mob guides; ordinary comma-separated sentences never qualify. */
 	public static List<Range> mobFamilies(String plain) {
+		return commaList(plain, part -> MOB_FAMILY.matcher(part).matches());
+	}
+
+	private static final Set<String> ISLAND_TAGS = Set.of("Portal Hub", "Museum", "Parkour", "Themed",
+		"Pixel Art", "Medieval", "Replica", "Ancient", "Modern", "Futuristic", "Statue", "Chat Room", "Race", "Roleplay");
+
+	/** The server's fixed island tags; player-written island names and prose never qualify. */
+	public static List<Range> islandTags(String plain) {
+		return commaList(plain, ISLAND_TAGS::contains);
+	}
+
+	private static List<Range> commaList(String plain, Predicate<String> accepts) {
 		List<Range> ranges = new ArrayList<>();
 		int start = 0;
 		while (start < plain.length()) {
@@ -377,7 +391,7 @@ public final class LineShape {
 			int end = comma < 0 ? plain.length() : comma;
 			int from = skipSpaces(plain, start, end);
 			int to = trimSpaces(plain, from, end);
-			if (!MOB_FAMILY.matcher(plain.substring(from, to)).matches()) return List.of();
+			if (!accepts.test(plain.substring(from, to))) return List.of();
 			ranges.add(new Range(from, to));
 			if (comma < 0) break;
 			start = comma + 2;

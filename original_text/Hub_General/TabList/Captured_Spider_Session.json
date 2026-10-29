@@ -1,0 +1,70 @@
+{
+  "source": "runtime capture: ../SkyZH_Logs/skyzh-capture/untranslated/Combat/TabList/Tab_List.json",
+  "verified_ingame": true,
+  "entries": [
+    {
+      "id": "wispfall_remaining",
+      "text": "Wispfall: for %1$s %2$s",
+      "raw": "Wispfall§f: §7for %1$s %2$s",
+      "placeholders": [
+        {"token":"%1$s","type":"duration","example":"1m 2s","desc":"天气剩余时间"},
+        {"token":"%2$s","type":"icon","example":"","desc":"天气图标"}
+      ],
+      "translate": true,
+      "zh": "灵火飘落: 剩余 %1$s %2$s",
+      "segments": [
+        {"text":"Wispfall","zh":"灵火飘落"},
+        {"color":"§f","text":": ","zh":": "},
+        {"color":"§7","text":"for %1$s %2$s","zh":"剩余 %1$s %2$s"}
+      ]
+    },
+    {
+      "id": "rain_remaining",
+      "text": "Rain: for %1$s %2$s",
+      "raw": "Rain§f: §bfor %1$s %2$s",
+      "placeholders": [
+        {"token":"%1$s","type":"duration","example":"20s","desc":"天气剩余时间"},
+        {"token":"%2$s","type":"icon","example":"","desc":"天气图标"}
+      ],
+      "translate": true,
+      "zh": "降雨: 剩余 %1$s %2$s",
+      "segments": [
+        {"text":"Rain","zh":"降雨"},
+        {"color":"§f","text":": ","zh":": "},
+        {"color":"§b","text":"for %1$s %2$s","zh":"剩余 %1$s %2$s"}
+      ]
+    },
+    {
+      "id": "thunderstorm_upcoming",
+      "text": "Thunderstorm: in %1$s %2$s",
+      "raw": "Thunderstorm§f: §ein %1$s %2$s",
+      "placeholders": [
+        {"token":"%1$s","type":"duration","example":"40m","desc":"距天气开始的时间"},
+        {"token":"%2$s","type":"icon","example":"","desc":"天气图标"}
+      ],
+      "translate": true,
+      "zh": "雷暴: 距开始 %1$s %2$s",
+      "segments": [
+        {"text":"Thunderstorm","zh":"雷暴"},
+        {"color":"§f","text":": ","zh":": "},
+        {"color":"§e","text":"in %1$s %2$s","zh":"距开始 %1$s %2$s"}
+      ]
+    },
+    {
+      "id": "poison_timer",
+      "raw": "§2Poison %1$s§r §f%2$s",
+      "text": "Poison %1$s %2$s",
+      "placeholders": [
+        {"token":"%1$s","type":"tier","example":"I","desc":"效果等级"},
+        {"token":"%2$s","type":"duration","example":"6s","desc":"剩余时间"}
+      ],
+      "translate": true,
+      "zh": "中毒 %1$s %2$s",
+      "segments": [
+        {"color":"§2","text":"Poison %1$s","zh":"中毒 %1$s"},
+        {"color":"§r","text":" ","zh":" "},
+        {"color":"§f","text":"%2$s","zh":"%2$s"}
+      ]
+    }
+  ]
+}

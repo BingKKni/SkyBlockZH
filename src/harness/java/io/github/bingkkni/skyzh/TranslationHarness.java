@@ -2338,6 +2338,7 @@ public final class TranslationHarness {
 		}
 
 		return switch (capture) {
+			case RARITY -> "MYTHIC";
 			case MOB_FAMILY -> "Aquatic";
 			case STAT_NAME -> "Health";
 			case PLAYER, PLAYER_DISPLAY -> "PlayerName";
@@ -2931,7 +2932,7 @@ public final class TranslationHarness {
 
 	/** Fixed UI capture regression: ordered lore, term isolation, and clues that must survive translation. */
 	private static void checkFixedMenus(Path corpusRoot) throws Exception {
-		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "october-live-round-cases.json", "workshop-cases.json", "wiki-expansion-cases.json", "bazaar-item-names-cases.json", "rift-live-capture-cases.json", "rift-session-cases.json", "garden-weather-feast-cases.json", "village-living-cave-cases.json", "rift-post-build-cases.json", "castle-capture-cases.json", "slayer-rng-capture-cases.json")) {
+		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "october-live-round-cases.json", "workshop-cases.json", "wiki-expansion-cases.json", "bazaar-item-names-cases.json", "rift-live-capture-cases.json", "rift-session-cases.json", "garden-weather-feast-cases.json", "village-living-cave-cases.json", "rift-post-build-cases.json", "castle-capture-cases.json", "slayer-rng-capture-cases.json", "spider-session-cases.json")) {
 		Path path = corpusRoot.toAbsolutePath().getParent().resolve("src/harness/resources/" + file);
 		JsonObject fixture = JsonParser.parseString(Files.readString(path, StandardCharsets.UTF_8)).getAsJsonObject();
 		for (JsonElement value : fixture.getAsJsonArray("cases")) {
@@ -3037,15 +3038,15 @@ public final class TranslationHarness {
 		for (String name : List.of("Aranya", "Kat", "Abiphone XIII Jade")) {
 			report("固定联系人或型号保留且不再采集 " + name, Translator.index().preserved(Surface.ITEM, name), "使用真实保留记录而非假翻译");
 		}
-		report("已知NPC来电标题不采集", io.github.bingkkni.skyzh.capture.PreservedText.ignored(Surface.CHAT, "✆ Elle ✆"), "保留NPC名");
-		report("可翻译职务来电标题仍采集", !io.github.bingkkni.skyzh.capture.PreservedText.ignored(Surface.CHAT, "✆ Blacksmith ✆"), "NPC注册表不等于专名保留表");
-		report("来电标题排除不跨面或吞对白", !io.github.bingkkni.skyzh.capture.PreservedText.ignored(Surface.ITEM, "✆ Elle ✆")
-			&& !io.github.bingkkni.skyzh.capture.PreservedText.ignored(Surface.CHAT, "✆ Elle is calling you."), "只允许聊天中的完整专名标题");
+		for (String caller : List.of("✆ Elle ✆", "✆ Blacksmith ✆", "✆ UnknownCaller ✆")) {
+			report("来电名字保留采集证据 " + caller,
+				io.github.bingkkni.skyzh.capture.Classifier.of(io.github.bingkkni.skyzh.capture.CaptureSurface.CHAT_MESSAGE,
+					StyledText.of(Component.literal(caller))) != null, "NPC 名单不再屏蔽未命中语料的文字");
+		}
 		checkNoMatch("书面时长第五组拒绝", "Come back in 1 day 2 hours 3 minutes 4 seconds 5 seconds to pick it up!", Surface.CHAT);
 		check("同形魔法寻宝属性图标不丢失", "§b✯ Magic Find", Surface.ITEM, "§b✯ 魔法寻宝");
 		check("魔法寻宝私用区字形不丢失", "§b\uE01A Magic Find", Surface.ITEM, "§b\uE01A 魔法寻宝");
-		report("空或未知来电标题不误屏蔽", !io.github.bingkkni.skyzh.capture.PreservedText.ignored(Surface.CHAT, "✆ ✆")
-			&& !io.github.bingkkni.skyzh.capture.PreservedText.ignored(Surface.CHAT, "✆ UnknownCaller ✆"), "只跳过已知人名且不越界");
+
 		StyledText reset = StyledText.of(Translator.translateLine(Component.literal(
 			"They are both telling the truth. The reward isn't in §cRose's §rchest."), Surface.CHAT));
 		report("三怪人人名后的正文恢复默认颜色", Style.EMPTY.equals(reset.styleAt(reset.plain().indexOf("的箱子"))), "不把人名的红色延续到正文");

@@ -267,7 +267,7 @@ Every capture point is now a *packet handler*, or a read of state only a packet 
 | Chat (system and NPC) | `ClientPacketListener#handleSystemChat` HEAD | Earlier than Fabric's chat events and than SkyHanni or SkyBlocker. A mod's own message goes in through `ChatComponent#addMessage` and **never passes this method** |
 | Container title | `handleOpenScreen` HEAD | The `title` field of the server's packet |
 | Item name and lore | `handleContainerContent` / `handleContainerSetSlot` HEAD | Reads the stack's `CUSTOM_NAME` and `LORE` components, **not** `getTooltipLines()` — that list is where every mod adds its own lines |
-| World hologram | `handleSetEntityData` TAIL plus a 10-tick recheck of packet-observed entities | Registers custom-name, name-visible or shared-flags (invisibility bit) metadata, then reads settled text stacks on the periodic scan. Relevant armour-stand ids are bounded and tied to the exact `ClientLevel`, then periodically revisited to recover static holograms whose metadata preceded the active boundary; a world change clears them, and client-created Mod entities are never scanned. Only visible custom names on invisible armour stands enter; content filtering removes verified NPC proper names, pet-level tags, leaderboard players and dynamic mob-health bars. Unknown labels are not excluded by colour, casing or name shape: capture them for human review. Explicitly translated green role names are allowed |
+| World name tags | `handleSetEntityData` TAIL plus a 10-tick recheck of packet-observed entities | Bounded entity ids are tied to their `ClientLevel` and cleared on world changes. Reads visible names on invisible armour stands and custom names on non-player living entities, without scanning client-created Mod entities. NPC names, pet names and unknown dynamic health bars remain capture evidence; only actually translated mob names count as covered |
 | Sidebar | The `Scoreboard` object, every 10 ticks | The same server state vanilla renders from. A useful side effect: **it keeps working when SkyHanni's Custom Scoreboard has replaced the sidebar's rendering entirely** |
 | Tab list | `handleTabListCustomisation` for header and footer, player entries every 10 ticks | As above |
 | Boss bar | `BossHealthOverlay#update` TAIL | That map is written by the packet handler and by nothing else |
@@ -427,8 +427,11 @@ measured with the line, without retaining their old internal padding. Policy, pi
 before/after text are saved in `layout`. Ambiguous layouts retain their current policy. This does
 not inspect screenshots or infer the intended layout of another mod's custom interface.
 
-`LoreTranslation` supplies one ordered plan to both tooltips and packet capture. `incomplete` keeps
-source and output lines for suspected English tails without deleting them. Only readable characters
+`LoreTranslation` supplies one ordered plan to both tooltips and packet capture. Container handlers
+freeze item names, ordered lore, menu, slot and area on the client thread; complete matching and
+diagnostics run on the existing capture worker, avoiding synchronous analysis of a full Bazaar page.
+The worker retains counts, context and clear generations without reading a later ItemStack.
+`incomplete` keeps source and output lines for suspected English tails without deleting them. Only readable characters
 are judged (`§k` decoration is ignored): a tail opening on a lowercase word is a continuation; one
 opening on a capital is reported only when the head reads as prose (lowercase words, no colon, no
 closing punctuation) and the tail does not open with a list mark — the English after a heading such
@@ -450,13 +453,14 @@ arithmetic; resource-pack rendering and mod combinations still need an in-game c
 
 ### Known names above entities
 
-Capture reads server-observed stands within 32 blocks, using spatial bins to retain at most 12 neighbouring rows per observation. These are explicitly spatial neighbours, not confirmed paragraphs. Each record retains at most three position/area scenes; late neighbour metadata can enrich an existing scene, while ticking counters do not consume extra slots. Observation signatures include visible styles so colour-only changes are diagnosed again. Exact `translate: false` decisions and NPC names survive corpus minification. Museum labels may borrow ITEM names only after the offline item catalog confirms the complete name, never menu labels or old lore fragments. Ranked auction displays also reuse the item-name path for reforges and stars, preserving the live styles of every surrounding decoration.
+Capture reads packet-observed name tags within 32 blocks, retaining at most 12 neighbouring rows per observation. These are spatial neighbours, not confirmed paragraphs. Each record retains at most three position/area scenes; late metadata can enrich an existing scene. Observation signatures include visible styles so colour-only changes are diagnosed again. Exact `translate: false` decisions and NPC names still inform rendering, but no longer suppress capture. Museum labels borrow only catalog-confirmed ITEM names; auction ranks, reforges and stars keep their live styles.
 
 Green NPC role labels may use explicit hologram records; colour alone is not a translation policy.
 For non-player living entities and invisible armour stands, a separate bounded health-bar path replaces
 only whole names present in the `mob_name` term table. Level, glyphs, health and live styles remain
 unchanged; proper names, players and dropped items are not translated by a generic name lookup.
-Dynamic health bars are still excluded from static capture. All render bypasses and server gates apply.
+Untranslated dynamic health bars are captured and their changing values use the existing template
+merger. All render bypasses and server gates apply.
 
 ### Checking it
 

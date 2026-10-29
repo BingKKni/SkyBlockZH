@@ -29,7 +29,7 @@ public final class ChatInteractionHarness {
 	private static final Pattern ENGLISH = Pattern.compile("[A-Za-z]");
 	private static final Pattern PLACEHOLDER = Pattern.compile("%(?:\\d+\\$)?[sd]");
 	// These are message/speaker tags, not choices. Unknown bracketed words are checked by default.
-	private static final Set<String> TAGS = Set.of("NPC", "BOSS", "GUARD", "SECURITY", "CROWD",
+	private static final Set<String> TAGS = Set.of("NPC", "BOSS", "GUARD", "SECURITY", "CROWD", "FEAR",
 		"STATUE", "SKULL", "PET", "YOU", "Bazaar", "Sacks", "Harp", "SkyBlock", "WATCHDOG ANNOUNCEMENT", "Important",
 		"Berserk", "Mage", "Healer", "Archer", "Tank");
 	private record Button(int start, int end, int ordinal) {}
@@ -91,6 +91,7 @@ public final class ChatInteractionHarness {
 		followPrompt();
 		frostyPurchase();
 		riftTerminal();
+		fearContract();
 		phoneWrapper();
 		colours();
 		System.out.printf("扫描 CHAT 可用记录 %d 条，按钮记录 %d 条，已匹配颜色样本 %d 条；通过 %d / 失败 %d%n",
@@ -341,6 +342,25 @@ public final class ChatInteractionHarness {
 			require("裂隙终端无括号CLICK保留实时事件边界 模式 " + mode, valid);
 			require("裂隙终端不修改服务器组件 模式 " + mode, before.equals(StyledText.of(input)));
 		}
+	}
+
+	private static void fearContract() {
+		Style action = Style.EMPTY.withColor(ChatFormatting.YELLOW).withBold(true)
+			.withClickEvent(new ClickEvent.RunCommand("/skyzh-test-contract"))
+			.withHoverEvent(new HoverEvent.ShowText(Component.literal("synthetic contract")));
+		Component input = Component.empty()
+			.append(Component.literal("Click ").withStyle(ChatFormatting.GREEN))
+			.append(Component.literal("HERE").setStyle(action))
+			.append(Component.literal(" to sign the Debt Bond.").withStyle(ChatFormatting.GREEN));
+		StyledText before = StyledText.of(input);
+		StyledText after = StyledText.of(Translator.translateChatBlock(input, 320, c -> StyledText.of(c).length() * 6));
+		boolean valid = after.plain().equals("点击这里签署债务契约。");
+		for (int i = 0; i < after.length(); i++) {
+			valid &= i >= 2 && i < 4 ? action.equals(after.styleAt(i))
+				: Style.EMPTY.withColor(ChatFormatting.GREEN).equals(after.styleAt(i));
+		}
+		require("恐惧契约只有HERE对应的这里保持交互", valid);
+		require("签署提示不改变原始服务器组件", before.equals(StyledText.of(input)));
 	}
 
 	private static void phoneWrapper() {

@@ -28,7 +28,8 @@ public final class TranslationIndex {
 
 	/**
 	 * Text a record deliberately keeps in English ({@code translate: false}), by surface. Never drawn
-	 * from, only asked: capture uses it to stop reporting a line the corpus has already decided about.
+	 * from, only asked: decorated item rendering can retain an explicitly preserved base name.
+	 * Capture does not use these decisions to suppress raw evidence.
 	 */
 	private final Map<Surface, Set<String>> preserved = new EnumMap<>(Surface.class);
 

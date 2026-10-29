@@ -220,7 +220,7 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "type": "category_name",
+          "type": "rarity",
           "example": "MYTHIC",
           "desc": "稀有度"
         },
@@ -339,7 +339,7 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "type": "category_name",
+          "type": "rarity",
           "example": "MYTHIC",
           "desc": "稀有度"
         },
@@ -350,7 +350,7 @@
           "desc": "装备类别"
         }
       ],
-      "gloss": "2026-09-18 实测。带 DUNGEON 的行仍由 combat_rarity_dungeon_magic 应答(字面更长,优先)。稀有度是两个词时(VERY SPECIAL)会切错,实测到再补。",
+      "gloss": "稀有度使用闭集类型，避免将玩家自定义岛名 a Liminal Space a 误当装备稀有度；VERY SPECIAL 也作为完整稀有度捕获。带 DUNGEON 的专用模板仍优先。",
       "translate": true,
       "segments": [
         {

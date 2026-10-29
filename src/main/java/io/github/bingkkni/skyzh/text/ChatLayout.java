@@ -62,6 +62,12 @@ public final class ChatLayout {
 			return new Plan(padded, null);
 		}
 
+		// A broad template can match an English name that its vocabulary does not translate.
+		// With no visible text change, keep the exact original styles and padding as well.
+		if (StyledText.plainOf(source.getString()).equals(StyledText.plainOf(padded.getString()))) {
+			return new Plan(source, null);
+		}
+
 		StyledText en = StyledText.of(source);
 		int from = leading(en.plain());
 		int speaker = LineShape.speakerTagEnd(en.plain());

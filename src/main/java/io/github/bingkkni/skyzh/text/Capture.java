@@ -55,6 +55,9 @@ public enum Capture {
 	 */
 	NAME("[^\\n]{1,48}?"),
 
+	/** Actual rarity labels, including the two-word label; never a custom island title. */
+	RARITY("(?i:COMMON|UNCOMMON|RARE|EPIC|LEGENDARY|MYTHIC|DIVINE|SUPREME|SPECIAL|VERY SPECIAL|ULTIMATE|ADMIN)", false),
+
 	/** One family label, never a comma-separated list of several icons and family names. */
 	MOB_FAMILY("[A-Z][A-Za-z]{1,31}", false),
 
@@ -265,7 +268,8 @@ public enum Capture {
 			case "hungry_hiker_food" -> HUNGRY_HIKER_FOOD;
 			case "mob_family" -> MOB_FAMILY;
 			case "stat_name" -> STAT_NAME;
-			case "npc_name", "profile_name", "location_name", "mob_name", "rarity", "category_name",
+			case "rarity" -> RARITY;
+			case "npc_name", "profile_name", "location_name", "mob_name", "category_name",
 				"enchantment_name", "enchantment_crop", "accessory_power", "broodmother_status", "skyblock_month", "dragon_type",
 				"rng_meter_source", "difficulty", "reputation_rank", "rift_clue", "dye_name" -> NAME;
 			case "player_name", "player_or_self" -> PLAYER;
@@ -310,7 +314,7 @@ public enum Capture {
 			case RIFT_TIME, EQUIPMENT_SLOT, TROPHY_FISH_NAME, CONTEST_RANK, RIFT_ABILITY, RIFT_BOSS_STAGE, EXCLAMATIONS, HUNGRY_HIKER_FOOD, CLOCK_DURATION, RACE_TIME, PROGRESS, HUD_NUMBER, HEALTH_ICONS, PROGRESS_BAR, EFFIGY_STATES, ORDINAL_WORD, COMMISSION_AREA -> value.matches(this.regex);
 			case MULTIPLIER_INCREASE -> new BigDecimal(value).compareTo(BigDecimal.ONE) >= 0;
 			case NAME -> isName(value);
-			case MOB_FAMILY, STAT_NAME -> value.matches(this.regex);
+			case MOB_FAMILY, STAT_NAME, RARITY -> value.matches(this.regex);
 			case ITEM_NAME -> isItemName(value);
 			case CATALOG_ITEM -> isItemName(value) && ItemNames.canonical(value) != null;
 			case LOADOUT_ITEM -> ItemNames.isLoadoutReference(value);
@@ -325,7 +329,7 @@ public enum Capture {
 	 * player's 34) rather than being a count: see TranslationEntry's seam spacing.
 	 */
 	public boolean nameShaped() {
-		return this == NAME || this == MOB_FAMILY || this == STAT_NAME || this == ITEM_NAME || this == CATALOG_ITEM || this == LOADOUT_ITEM || this == SHARD_KIND
+		return this == NAME || this == RARITY || this == MOB_FAMILY || this == STAT_NAME || this == ITEM_NAME || this == CATALOG_ITEM || this == LOADOUT_ITEM || this == SHARD_KIND
 			|| this == COMMISSION_AREA || this == PLAYER || this == PLAYER_DISPLAY || this == RANK;
 	}
 

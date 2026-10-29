@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.EnumMap;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +21,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
+import net.minecraft.network.chat.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -59,7 +62,12 @@ public final class CaptureStore {
 	private static final int MAX_LINES_PER_FILE = 800;
 
 	/** Capture work has an explicit stage; a repeat carries no redundant text snapshot. */
-	public sealed interface Observation permits Line, Lore, Diagnosed, Repeated {}
+	public sealed interface Observation permits Line, Item, Lore, Diagnosed, Repeated {}
+
+	/** A frozen packet item, never an ItemStack or a mutable component from the game thread. */
+	public record Item(LoreSnapshot snapshot, boolean hasName) implements Observation {
+		public Item { Objects.requireNonNull(snapshot); }
+	}
 
 	public record Line(StyledText text, boolean checkValues, HologramSnapshot hologram) implements Observation {
 		public Line {
@@ -137,6 +145,9 @@ public final class CaptureStore {
 	 * the one kind of contamination nobody would spot afterwards.
 	 */
 	private static final Map<SharedKey, CapturedLine> SHARED = new HashMap<>();
+	// Session repetition is still counted; this only avoids re-diagnosing an identical snapshot.
+	private static final Set<String> LORE_SEEN = new HashSet<>();
+	private static final int MAX_LORE_SEEN = 200_000;
 
 	private static Path root;
 	private static Thread worker;
@@ -240,6 +251,7 @@ public final class CaptureStore {
 
 		switch (sighting.observation()) {
 			case Line line -> classify(sighting, line);
+			case Item item -> inspectItem(sighting, item, sightingEpoch);
 			case Lore lore -> {
 				if (lore.diagnostic() != null) {
 					record(sighting, lore.text(), lore.diagnostic());
@@ -256,6 +268,41 @@ public final class CaptureStore {
 			}
 			case Diagnosed diagnosed -> record(sighting, diagnosed.text(), diagnosed.verdict());
 			case Repeated ignored -> repeat(sighting);
+		}
+	}
+
+	/** Expands an item on the worker, retaining the packet's original menu, area and time. */
+	private static void inspectItem(Sighting parent, Item item, long sightingEpoch) {
+		LoreSnapshot snapshot = item.snapshot();
+		List<Component> lines = snapshot.lines().stream()
+			.<Component>map(text -> text.slice(0, text.length())).toList();
+		String originalName = snapshot.itemName().plain();
+		List<TextCapture.LoreObservation> observations = new ArrayList<>();
+		if (item.hasName()) {
+			observations.add(new TextCapture.LoreObservation(CaptureSurface.GUI_ITEM,
+				List.of(snapshot.itemName().slice(0, snapshot.itemName().length())), null, -1, 0, false));
+		}
+		observations.addAll(TextCapture.inspectLore(lines));
+		for (TextCapture.LoreObservation observation : observations) {
+			if (observation.start() >= 0 && observation.diagnostic() == null && observation.source().size() == 1
+				&& (PreservedText.fruitProfileLine(originalName, StyledText.plainOf(observation.source().getFirst().getString()))
+					|| PreservedText.partyFinderLine(snapshot.menu(), StyledText.plainOf(observation.source().getFirst().getString())))) continue;
+			var joined = Component.empty();
+			for (int i = 0; i < observation.source().size(); i++) {
+				if (i > 0) joined.append("\n");
+				joined.append(observation.source().get(i));
+			}
+			LoreSnapshot.Target context = new LoreSnapshot.Target(snapshot, observation.start(), observation.lineCount());
+			String kind = observation.diagnostic() == null ? "line" : observation.diagnostic().identity();
+			String key = parent.key() + '\u0000' + observation.surface() + ':' + kind + ':' + context.key();
+			if (LORE_SEEN.size() >= MAX_LORE_SEEN) LORE_SEEN.clear();
+			Observation work = LORE_SEEN.add(key)
+				? new Lore(StyledText.of(joined), context, observation.diagnostic(), observation.orphanContinuation())
+				: Repeated.INSTANCE;
+			String note = parent.note() + (observation.start() < 0 ? " 物品名"
+				: observation.diagnostic() == null ? " Lore" : " / " + originalName + " Lore");
+			accept(new Sighting(observation.surface(), key, work, parent.gameplay(), parent.area(),
+				parent.name(), note, parent.when()), sightingEpoch);
 		}
 	}
 
@@ -495,6 +542,7 @@ public final class CaptureStore {
 		BY_KEY.clear();
 		DIRTY.clear();
 		SHARED.clear();
+		LORE_SEEN.clear();
 		dropped = 0;
 		kept = 0;
 

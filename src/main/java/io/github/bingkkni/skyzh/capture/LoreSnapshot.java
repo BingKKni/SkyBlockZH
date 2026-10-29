@@ -11,7 +11,7 @@ import java.util.HexFormat;
 import java.util.List;
 import net.minecraft.network.chat.Component;
 
-/** Immutable server item context, shared by all problematic lines from the same packet. */
+/** Immutable packet text for worker analysis; only the exported context is size-limited. */
 public record LoreSnapshot(
 	String menu, int containerId, int slot, StyledText itemName, List<StyledText> lines,
 	int originalLineCount, boolean truncated, String signature
@@ -24,23 +24,15 @@ public record LoreSnapshot(
 	}
 
 	public static LoreSnapshot of(String menu, int containerId, int slot, Component name, List<Component> source) {
-		List<StyledText> lines = new ArrayList<>();
-		int remaining = MAX_CHARACTERS;
-		boolean truncated = source.size() > MAX_LINES;
+		List<StyledText> lines = new ArrayList<>(source.size());
+		long characters = 0;
 		for (Component component : source) {
-			if (lines.size() >= MAX_LINES || remaining <= 0) break;
 			StyledText line = StyledText.of(component);
-			int keep = Math.min(remaining, line.length());
-			truncated |= keep < line.length();
-			lines.add(line.sub(0, keep));
-			remaining -= keep;
+			lines.add(line);
+			characters += line.length();
 		}
-		truncated |= lines.size() < source.size();
 		StyledText itemName = StyledText.of(name == null ? Component.empty() : name);
-		if (itemName.length() > 1024) {
-			itemName = itemName.sub(0, 1024);
-			truncated = true;
-		}
+		boolean truncated = lines.size() > MAX_LINES || characters > MAX_CHARACTERS || itemName.length() > 1024;
 		String signature = signature(menu, itemName, lines, source.size(), truncated);
 		return new LoreSnapshot(menu, containerId, slot, itemName, lines, source.size(), truncated, signature);
 	}
@@ -56,15 +48,22 @@ public record LoreSnapshot(
 			json.addProperty("menu", snapshot.menu());
 			json.addProperty("container_id", snapshot.containerId());
 			json.addProperty("slot", snapshot.slot());
-			json.addProperty("item_name", LegacyText.encode(snapshot.itemName()).raw());
+			StyledText boundedName = snapshot.itemName().sub(0, Math.min(1024, snapshot.itemName().length()));
+			LegacyText.Encoded name = LegacyText.encode(boundedName);
+			json.addProperty("item_name", name.raw());
 			json.addProperty("target_line", start + 1);
 			json.addProperty("target_line_count", count);
 			json.addProperty("original_line_count", snapshot.originalLineCount());
 			json.addProperty("truncated", snapshot.truncated());
 			JsonArray raw = new JsonArray();
 			JsonArray styles = new JsonArray();
-			for (int i = 0; i < snapshot.lines().size(); i++) {
-				LegacyText.Encoded encoded = LegacyText.encode(snapshot.lines().get(i));
+			int remaining = MAX_CHARACTERS;
+			for (int i = 0; i < Math.min(MAX_LINES, snapshot.lines().size()); i++) {
+				StyledText line = snapshot.lines().get(i);
+				if (remaining == 0 && line.length() > 0) break;
+				int keep = Math.min(remaining, line.length());
+				LegacyText.Encoded encoded = LegacyText.encode(line.sub(0, keep));
+				remaining -= keep;
 				raw.add(encoded.raw());
 				if (encoded.lossy()) {
 					JsonObject styled = new JsonObject();
@@ -75,7 +74,6 @@ public record LoreSnapshot(
 			}
 			json.add("original_lines", raw);
 			if (!styles.isEmpty()) json.add("line_styles", styles);
-			LegacyText.Encoded name = LegacyText.encode(snapshot.itemName());
 			if (name.lossy()) json.add("item_name_styles", LegacyText.styleRuns(name.runs()));
 			return json;
 		}

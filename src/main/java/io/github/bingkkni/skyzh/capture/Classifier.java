@@ -4,7 +4,6 @@ import com.google.gson.JsonObject;
 import io.github.bingkkni.skyzh.hook.NameTag;
 import io.github.bingkkni.skyzh.text.StyledText;
 import io.github.bingkkni.skyzh.text.LineShape;
-import io.github.bingkkni.skyzh.text.ItemNames;
 import io.github.bingkkni.skyzh.text.Surface;
 import io.github.bingkkni.skyzh.text.TranslationEntry;
 import io.github.bingkkni.skyzh.text.TranslationIndex;
@@ -187,9 +186,7 @@ public final class Classifier {
 	/** A known continuation is uncovered when the ordered tooltip plan did not consume it. */
 	public static Verdict orphanContinuation(StyledText styled) {
 		String plain = styled.plain().trim();
-		if (!hasEnglishWord(plain) || hasHan(plain)
-			|| PreservedText.ignored(Surface.ITEM, styled.canonical())
-			|| Translator.index().preserved(Surface.ITEM, styled.canonical())) return null;
+		if (!hasEnglishWord(plain) || hasHan(plain)) return null;
 		return new Verdict(Bucket.UNTRANSLATED, List.of(), List.of(), null, "", "");
 	}
 
@@ -198,10 +195,6 @@ public final class Classifier {
 		String plain = styled.plain().trim();
 
 		if (!hasEnglishWord(plain) || hasHan(plain)) {
-			return null;
-		}
-
-		if (surface.surface() == Surface.HOLOGRAM && !NameTag.eligible(styled)) {
 			return null;
 		}
 
@@ -219,32 +212,21 @@ public final class Classifier {
 		if (!located.matched()) {
 			var component = styled.slice(0, styled.length());
 			if (Translator.reputationRanks(component, surface.surface()) != null) return null;
-			if (surface.surface() == Surface.HOLOGRAM && Translator.hologramItem(component) != null) return null;
+			if (surface.surface() == Surface.HOLOGRAM) {
+				// Only actual rendered translations count as coverage. A preserved proper name or
+				// an unknown health bar must remain available for the operator to inspect again.
+				if (NameTag.mobName(component) != component) return null;
+				var item = Translator.hologramItem(component);
+				if (item != null && !StyledText.of(item).equals(styled)) return null;
+			}
 			// Portal destinations borrow the already translated location vocabulary at render time.
 			// They have no Hologram record and must not be filed as untranslated each session.
 			if (surface.surface() == Surface.HOLOGRAM
 				&& NameTag.locationName(styled.canonical().trim()) != null) return null;
-			if (PreservedText.ignored(surface.surface(), styled.canonical())
-				|| Translator.index().preserved(surface.surface(), styled.canonical())
-				|| surface.surface() == Surface.HOLOGRAM && ItemNames.canonical(styled.canonical()) != null
-					&& Translator.index().preserved(Surface.ITEM, styled.canonical())) {
-				// The corpus already decided this line stays English (translate: false); reporting it
-				// again every session is noise, not a gap.
-				return null;
-			}
 			if (surface.surface() == Surface.ITEM) {
-				// A guide check mark does not turn an approved proper name into a missing translation.
-				// Bare NPC names may also be item names; only a stripped decoration identifies a guide entry.
-				String itemLine = styled.canonical();
-				for (LineShape.Range range : LineShape.candidates(Surface.ITEM, itemLine)) {
-					String core = itemLine.substring(range.start(), range.end());
-					boolean decorated = range.start() != 0 || range.end() != itemLine.length();
-					if (Translator.index().preserved(Surface.ITEM, core)
-						|| decorated && Translator.index().isNpcName(core)) return null;
-				}
 				List<LineShape.Range> parts = LineShape.enchantments(styled.canonical());
-				// A mixed vanilla/custom enchantment list is covered only if every piece is either
-				// deliberately preserved or independently passes the ordinary diagnostics.
+				if (parts.isEmpty()) parts = LineShape.islandTags(styled.canonical());
+				// A list is covered only if every piece independently passes diagnostics.
 				if (!parts.isEmpty() && parts.stream().allMatch(part ->
 					of(surface, styled.sub(part.start(), part.end())) == null)) {
 					return null;

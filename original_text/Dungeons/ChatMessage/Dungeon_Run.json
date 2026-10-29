@@ -2423,8 +2423,8 @@
       "placeholders": [
         {
           "token": "%1$s",
-          "desc": "掉落的物品名",
-          "type": "item_name",
+          "desc": "掉落的物品名，复用已收录且由目录确认的物品译名",
+          "type": "loot_item_name",
           "example": "Zombie Commander Helmet"
         },
         {
@@ -3472,9 +3472,9 @@
           "example": "XII"
         }
       ],
-      "gloss": "怪物名的中文在 _shared/Terms.json 里。",
+      "gloss": "怪物名的中文在 _shared/Terms.json 里。按原文填充判断对齐，未填充的精简消息不得强制居中。",
       "translate": true,
-      "layout": "center_chat_banner",
+      "layout": "chat_source_alignment",
       "zh": "",
       "segments": [
         {

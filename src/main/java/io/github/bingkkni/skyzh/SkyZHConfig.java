@@ -60,8 +60,8 @@ public final class SkyZHConfig {
 	/** Whether the one-time setup screen has already been shown after entering Hypixel. */
 	public boolean welcomeShown = false;
 
-	/** Whether "SkyBlock" itself becomes 空岛生存. */
-	public boolean translateSkyBlockName = true;
+	/** Whether "SkyBlock" becomes 空岛生存; also read by the capture worker. */
+	public volatile boolean translateSkyBlockName = true;
 
 	/** Whether chat and item tooltips explain the original-text toggle. */
 	public boolean originalTips = true;
