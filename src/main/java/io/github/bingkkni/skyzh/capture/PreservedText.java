@@ -31,7 +31,7 @@ public final class PreservedText {
 	private static final Pattern PARTY_MEMBER = Pattern.compile("[A-Za-z0-9_]{1,16} \\([0-9]{1,3}\\)");
 	private record Rules(Set<String> enchantments, Set<String> scoreboardLines,
 		Set<String> bossCounters, Set<String> leveledItemNames, Set<String> profileNames,
-		Set<String> trophyFishNames) {}
+		Set<String> trophyFishNames, Set<String> scoreboardTierNames) {}
 	private static final Rules RULES = load();
 
 	private PreservedText() {}
@@ -56,7 +56,9 @@ public final class PreservedText {
 		}
 		if (surface == Surface.SCOREBOARD) {
 			Matcher vote = ELECTION_BAR.matcher(text);
+			Matcher tier = MOB_TIER.matcher(text);
 			return RULES.scoreboardLines().contains(text) || DATE_SERVER.matcher(text).matches()
+				|| tier.matches() && RULES.scoreboardTierNames().contains(tier.group(1))
 				|| vote.matches() && knownCandidate(vote.group(1));
 		}
 		if (surface == Surface.TABLIST) {
@@ -130,11 +132,11 @@ public final class PreservedText {
 			JsonObject json = JsonParser.parseReader(new InputStreamReader(stream, StandardCharsets.UTF_8)).getAsJsonObject();
 			return new Rules(strings(json, "enchantments"), strings(json, "scoreboard_lines"),
 				strings(json, "bossbar_counters"), strings(json, "leveled_item_names"), strings(json, "profile_names"),
-				strings(json, "trophy_fish_names"));
+				strings(json, "trophy_fish_names"), strings(json, "scoreboard_tier_names"));
 		} catch (Exception error) {
 			// Fail open for capture: missing policy must never hide potentially untranslated content.
 			LoggerFactory.getLogger("SkyZH").warn("无法读取保留原文采集名单，继续报告未翻译文本", error);
-			return new Rules(Set.of(), Set.of(), Set.of(), Set.of(), Set.of(), Set.of());
+			return new Rules(Set.of(), Set.of(), Set.of(), Set.of(), Set.of(), Set.of(), Set.of());
 		}
 	}
 

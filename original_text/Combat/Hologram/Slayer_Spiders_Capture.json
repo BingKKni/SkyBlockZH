@@ -1,0 +1,38 @@
+{
+  "source": "runtime capture: ../SkyZH_Logs/skyzh-capture; https://hypixelskyblock.minecraft.wiki/w/Darkness_Shade",
+  "verified_ingame": true,
+  "note": "玩家名、阶段时钟、骷髅血量均采用现有有界类型；颜色取自实测。",
+  "entries": [
+    {"id":"slayer_miniboss_label","context":"猎手精英头顶标识","raw":"§4§lSLAYER MINIBOSS","text":"SLAYER MINIBOSS","translate":true,"zh":"猎手精英"},
+    {
+      "id":"slayer_owner","context":"召唤者的首领标识",
+      "raw":"§b%1$s's §4§lSLAYER BOSS","text":"%1$s's SLAYER BOSS",
+      "placeholders":[{"token":"%1$s","type":"player_name","example":"inkkni","desc":"召唤首领的玩家用户名"}],
+      "translate":true,"zh":"%1$s 的猎手首领",
+      "segments":[{"color":"§b","text":"%1$s's ","zh":"%1$s 的"},{"color":"§4§l","text":"SLAYER BOSS","zh":"猎手首领"}]
+    },
+    {"id":"bestiary_label","context":"生物图鉴浮空标识","raw":"§3Bestiary","text":"Bestiary","translate":true,"zh":"生物图鉴"},
+    {
+      "id":"sven_calling","context":"Sven 呼唤幼狼的阶段及倒计时",
+      "raw":"§bCalling the pups! §c%1$s","text":"Calling the pups! %1$s",
+      "placeholders":[{"token":"%1$s","type":"clock_duration","example":"03:55","desc":"实时阶段时钟"}],
+      "translate":true,"zh":"呼唤幼狼! %1$s",
+      "segments":[{"color":"§b","text":"Calling the pups! ","zh":"呼唤幼狼! "},{"color":"§c","text":"%1$s","zh":"%1$s"}]
+    },
+    {
+      "id":"sven_protected","context":"Sven 受保护阶段及倒计时",
+      "raw":"§aProtected §c%1$s","text":"Protected %1$s",
+      "placeholders":[{"token":"%1$s","type":"clock_duration","example":"03:52","desc":"实时阶段时钟"}],
+      "translate":true,"zh":"受保护 %1$s",
+      "segments":[{"color":"§a","text":"Protected ","zh":"受保护 "},{"color":"§c","text":"%1$s","zh":"%1$s"}]
+    },
+    {"id":"shade_skulls_0","context":"暗影幽魂最后一击前不显示骷髅的名字行","raw":"§4Darkness Shade ","text":"Darkness Shade ","translate":true,"zh":"暗影幽魂 "},
+    {
+      "id":"shade_health","context":"暗影幽魂的动态骷髅血量；不按颗数枚举",
+      "raw":"§4Darkness Shade §c%1$s","text":"Darkness Shade %1$s",
+      "placeholders":[{"token":"%1$s","type":"health_icons","example":"☠☠☠☠","desc":"服务器显示的剩余骷髅图标；原有图标与颜色不变"}],
+      "translate":true,"zh":"暗影幽魂 %1$s",
+      "segments":[{"color":"§4","text":"Darkness Shade ","zh":"暗影幽魂 "},{"color":"§c","text":"%1$s","zh":"%1$s"}]
+    }
+  ]
+}

@@ -1,0 +1,173 @@
+{
+  "source": "runtime capture: ../SkyZH_Logs/skyzh-capture; https://hypixelskyblock.minecraft.wiki/w/Template:RNG_Meter/UI/Pity; https://hypixelskyblock.minecraft.wiki/w/Pity_and_RNG_Meters",
+  "verified_ingame": true,
+  "source_note": "原文及颜色优先采用实测完整 Tooltip。Wiki 保底子页最后编辑于 2026-10-07，主页面最后编辑于 2026-10-28。整句不依赖英文断行位置。",
+  "entries": [
+    {"id":"rng_locked","context":"未解锁的猎手计量表","raw":"§cYou do not have this RNG meter unlocked yet!","text":"You do not have this RNG meter unlocked yet!","translate":true,"zh":"你尚未解锁此 RNG 计量表!"},
+    {
+      "id":"rng_unlock_vampire","context":"吸血鬼猎手计量表解锁条件",
+      "raw":"§7Kill a §aTier III §dRiftstalker Bloodfiend §7or higher to unlock this RNG meter.",
+      "text":"Kill a Tier III Riftstalker Bloodfiend or higher to unlock this RNG meter.","translate":true,
+      "zh":"击败 III 阶 Riftstalker Bloodfiend 或更高阶的该首领，即可解锁此 RNG 计量表。",
+      "segments":[{"color":"§7","text":"Kill a ","zh":"击败 "},{"color":"§a","text":"Tier III ","zh":"III 阶 "},{"color":"§d","text":"Riftstalker Bloodfiend ","zh":"Riftstalker Bloodfiend "},{"color":"§7","text":"or higher to unlock this RNG meter.","zh":"或更高阶的该首领，即可解锁此 RNG 计量表。"}]
+    },
+    {
+      "id":"rng_superpairs_guarantee","context":"超级配对计量表的保底奖励",
+      "raw":"§7Your selected §dRNG Drop §7will be guaranteed to appear in your next §dSuperpairs§7 once your RNG Meter is full!",
+      "text":"Your selected RNG Drop will be guaranteed to appear in your next Superpairs once your RNG Meter is full!","translate":true,
+      "zh":"当计量表累积满后，你选择的 RNG 掉落物必定出现在下一次超级配对中!",
+      "segments":[{"color":"§7","text":"Your selected ","zh":"当计量表累积满后，你选择的 "},{"color":"§d","text":"RNG Drop ","zh":"RNG 掉落物"},{"color":"§7","text":"will be guaranteed to appear in your next ","zh":"必定出现在下一次"},{"color":"§d","text":"Superpairs","zh":"超级配对"},{"color":"§7","text":" once your RNG Meter is full!","zh":"中!"}]
+    },
+    {
+      "id":"rng_slayer_fill","context":"猎手 RNG 总览的经验来源",
+      "raw":"§7Your §dSlayer RNG Meters §7fill with §dSlayer XP §7every time you defeat a §aTier III Boss §7or higher!",
+      "text":"Your Slayer RNG Meters fill with Slayer XP every time you defeat a Tier III Boss or higher!","translate":true,
+      "zh":"每次击败 III 阶首领或更高阶首领时，你的猎手 RNG 计量表会累积猎手经验。",
+      "segments":[{"color":"§7","text":"Your ","zh":"，你的","order":3},{"color":"§d","text":"Slayer RNG Meters ","zh":"猎手 RNG 计量表","order":4},{"color":"§7","text":"fill with ","zh":"会累积","order":5},{"color":"§d","text":"Slayer XP ","zh":"猎手经验","order":6},{"color":"§7","text":"every time you defeat a ","zh":"每次击败 ","order":0},{"color":"§a","text":"Tier III Boss ","zh":"III 阶首领","order":1},{"color":"§7","text":"or higher","zh":"或更高阶首领时","order":2},{"color":"§7","text":"!","zh":"。","order":7}],
+      "samples":[["§7Your §dSlayer RNG Meters §7fill with","§dSlayer XP §7every time you defeat a","§aTier III Boss §7or higher!"]]
+    },
+    {
+      "id":"pity_explanation","context":"保底追踪入口的机制说明",
+      "raw":"§7Throughout SkyBlock, you are §aguaranteed §7to trigger events or drops upon completing the same activity a certain number of times - this is called §dpity§7.",
+      "text":"Throughout SkyBlock, you are guaranteed to trigger events or drops upon completing the same activity a certain number of times - this is called pity.","translate":true,
+      "zh":"在 SkyBlock 中，重复进行同一活动达到一定次数后，必定触发特定事件或获得特定掉落物；这就是保底进度。",
+      "segments":[{"color":"§7","text":"Throughout SkyBlock, you are ","zh":"在 SkyBlock 中，重复进行同一活动达到一定次数后，"},{"color":"§a","text":"guaranteed ","zh":"必定"},{"color":"§7","text":"to trigger events or drops upon completing the same activity a certain number of times - this is called ","zh":"触发特定事件或获得特定掉落物；这就是"},{"color":"§d","text":"pity","zh":"保底进度"},{"color":"§7","text":".","zh":"。"}]
+    },
+    {"id":"pity_view_all","context":"保底追踪入口的操作说明","raw":"§7Open this menu to view your progress towards triggering all events affected by pity!","text":"Open this menu to view your progress towards triggering all events affected by pity!","translate":true,"zh":"打开此菜单，查看所有保底事件的进度!"},
+    {
+      "id":"pity_trophy_fish","context":"每一种奖杯鱼的黄金与钻石保底说明",
+      "raw":"§7Catch this §6Trophy Fish §7a certain number of times to guarantee your next catch will be §6§lGOLD §7or §b§lDIAMOND §7tier!",
+      "text":"Catch this Trophy Fish a certain number of times to guarantee your next catch will be GOLD or DIAMOND tier!","translate":true,
+      "zh":"钓到这种奖杯鱼达到一定次数后，下一次必定钓到黄金或钻石品阶的个体!",
+      "segments":[{"color":"§7","text":"Catch this ","zh":"钓到这种"},{"color":"§6","text":"Trophy Fish ","zh":"奖杯鱼"},{"color":"§7","text":"a certain number of times to guarantee your next catch will be ","zh":"达到一定次数后，下一次必定钓到"},{"color":"§6§l","text":"GOLD ","zh":"黄金"},{"color":"§7","text":"or ","zh":"或"},{"color":"§b§l","text":"DIAMOND ","zh":"钻石"},{"color":"§7","text":"tier!","zh":"品阶的个体!"}]
+    },
+    {
+      "id":"pity_trophy_frog","context":"每一种锦标蛙的黄金与钻石保底说明",
+      "raw":"§7Catch this §2Trophy Frog §7a certain number of times to guarantee your next catch will be §6§lGOLD §7or §b§lDIAMOND §7tier!",
+      "text":"Catch this Trophy Frog a certain number of times to guarantee your next catch will be GOLD or DIAMOND tier!","translate":true,
+      "zh":"钓到这种锦标蛙达到一定次数后，下一次必定钓到黄金或钻石品阶的个体!",
+      "segments":[{"color":"§7","text":"Catch this ","zh":"钓到这种"},{"color":"§2","text":"Trophy Frog ","zh":"锦标蛙"},{"color":"§7","text":"a certain number of times to guarantee your next catch will be ","zh":"达到一定次数后，下一次必定钓到"},{"color":"§6§l","text":"GOLD ","zh":"黄金"},{"color":"§7","text":"or ","zh":"或"},{"color":"§b§l","text":"DIAMOND ","zh":"钻石"},{"color":"§7","text":"tier!","zh":"品阶的个体!"}]
+    },
+    {
+      "id":"pity_fish_reset","context":"奖杯鱼、锦标蛙的各品阶进度独立重置",
+      "raw":"§8Catching a Gold or Diamond %1$s will set its respective pity counter back to 0.",
+      "text":"Catching a Gold or Diamond %1$s will set its respective pity counter back to 0.",
+      "placeholders":[{"token":"%1$s","type":"category_name","example":"Slugfish","desc":"奖杯鱼或锦标蛙完整种类名；复用既有类型词表"}],
+      "translate":true,"zh":"钓到黄金或钻石品阶的%1$s后，对应品阶的保底进度重置为 0。"
+    },
+    {
+      "id":"pity_vanquisher","context":"绯红岛征服者保底",
+      "raw":"§7Killing §a%1$s§7 mobs in the Crimson Isle will guarantee that your next mob kill will spawn a §8Vanquisher§7!",
+      "text":"Killing %1$s mobs in the Crimson Isle will guarantee that your next mob kill will spawn a Vanquisher!",
+      "placeholders":[{"token":"%1$s","type":"number","example":"750","desc":"保底所需击杀数"}],"translate":true,
+      "zh":"在绯红岛击杀 %1$s 只怪物后，下一次击杀必定召出征服者!",
+      "segments":[{"color":"§7","text":"Killing ","zh":"在绯红岛击杀 "},{"color":"§a","text":"%1$s","zh":"%1$s"},{"color":"§7","text":" mobs in the Crimson Isle will guarantee that your next mob kill will spawn a ","zh":" 只怪物后，下一次击杀必定召出"},{"color":"§8","text":"Vanquisher","zh":"征服者"},{"color":"§7","text":"!","zh":"!"}]
+    },
+    {"id":"pity_vanquisher_reset","context":"召出征服者后的重置说明","raw":"§8Spawning a Vanquisher will set your pity back to 0.","text":"Spawning a Vanquisher will set your pity back to 0.","translate":true,"zh":"召出征服者后，保底进度重置为 0。"},
+    {
+      "id":"pity_zealot","context":"末地特殊狂热末影人保底",
+      "raw":"§7Killing §a%1$s §dZealots§7 in The End will guarantee that your next mob kill will spawn a §dSpecial Zealot§7!",
+      "text":"Killing %1$s Zealots in The End will guarantee that your next mob kill will spawn a Special Zealot!",
+      "placeholders":[{"token":"%1$s","type":"number","example":"400","desc":"保底所需击杀数"}],"translate":true,
+      "zh":"在末地击杀 %1$s 只狂热末影人后，下一次击杀怪物必定召出特殊狂热末影人!",
+      "segments":[{"color":"§7","text":"Killing ","zh":"在末地击杀 "},{"color":"§a","text":"%1$s ","zh":"%1$s "},{"color":"§d","text":"Zealots","zh":"只狂热末影人"},{"color":"§7","text":" in The End will guarantee that your next mob kill will spawn a ","zh":"后，下一次击杀怪物必定召出"},{"color":"§d","text":"Special Zealot","zh":"特殊狂热末影人"},{"color":"§7","text":"!","zh":"!"}]
+    },
+    {"id":"pity_zealot_reset","context":"召出特殊狂热末影人后的重置说明","raw":"§8Spawning a Special Zealot will set your pity back to 0.","text":"Spawning a Special Zealot will set your pity back to 0.","translate":true,"zh":"召出特殊狂热末影人后，保底进度重置为 0。"},
+    {
+      "id":"pity_garden_activities","context":"花园五种活动独立累计和重置保底",
+      "raw":"§7Various activities in §aThe Garden §7gradually increase your chance to drop an §6Overclocker 3000§7. When one drops, only the pity for that specific activity resets to 0%.",
+      "text":"Various activities in The Garden gradually increase your chance to drop an Overclocker 3000. When one drops, only the pity for that specific activity resets to 0%.","translate":true,
+      "zh":"参与花园的各类活动，会逐步提高 Overclocker 3000 的掉落几率。获得此物品后，仅重置对应活动的保底进度至 0%。",
+      "gloss":"Overclocker 3000 沿用已有名称保留决定。五种活动分别累计，只重置产生本次掉落的活动进度。",
+      "segments":[{"color":"§7","text":"Various activities in ","zh":"参与"},{"color":"§a","text":"The Garden ","zh":"花园"},{"color":"§7","text":"gradually increase your chance to drop an ","zh":"的各类活动，会逐步提高 "},{"color":"§6","text":"Overclocker 3000","zh":"Overclocker 3000"},{"color":"§7","text":". When one drops, only the pity for that specific activity resets to 0%.","zh":" 的掉落几率。获得此物品后，仅重置对应活动的保底进度至 0%。"}]
+    },
+    {
+      "id":"pity_rabbit_mythic","context":"神话巧克力兔保底",
+      "raw":"§7Open §a%1$s §7Chocolate Eggs during §dHoppity's Hunt §7to guarantee your next egg will contain a §d§lMYTHIC §7Rabbit you haven't found yet!",
+      "text":"Open %1$s Chocolate Eggs during Hoppity's Hunt to guarantee your next egg will contain a MYTHIC Rabbit you haven't found yet!",
+      "placeholders":[{"token":"%1$s","type":"number","example":"250","desc":"触发新神话兔保底的开蛋次数"}],"translate":true,
+      "zh":"在 Hoppity 的寻兔行动期间开启 %1$s 个巧克力蛋后，下一颗蛋必定开出尚未收集过的神话巧克力兔!",
+      "segments":[{"color":"§7","text":"Open ","zh":"期间开启 ","order":2},{"color":"§a","text":"%1$s ","zh":"%1$s ","order":3},{"color":"§7","text":"Chocolate Eggs during ","zh":"个巧克力蛋后，下一颗蛋必定开出尚未收集过的","order":4},{"color":"§d","text":"Hoppity's Hunt ","zh":"Hoppity 的寻兔行动","order":1},{"color":"§7","text":"to guarantee your next egg will contain a ","zh":"在 ","order":0},{"color":"§d§l","text":"MYTHIC ","zh":"神话","order":5},{"color":"§7","text":"Rabbit you haven't found yet!","zh":"巧克力兔!","order":6}],
+      "samples":[["§7Open §a250 §7Chocolate Eggs during","§dHoppity's Hunt §7to guarantee your","§7next egg will contain a §d§lMYTHIC","§7Rabbit you haven't found yet!"]]
+    },
+    {"id":"pity_rabbit_reset_mythic","context":"神话兔保底按次数扣除而非清零","raw":"§8Finding a new Mythic Rabbit will subtract %1$s from your pity counter.","text":"Finding a new Mythic Rabbit will subtract %1$s from your pity counter.","placeholders":[{"token":"%1$s","type":"number","example":"250","desc":"扣除的保底次数"}],"translate":true,"zh":"收集到新的神话巧克力兔后，保底进度扣除 %1$s。"},
+    {
+      "id":"pity_rabbit_divine","context":"神圣巧克力兔保底",
+      "raw":"§7Open §a%1$s §7Chocolate Eggs during §dHoppity's Hunt §7to guarantee your next egg will contain a §b§lDIVINE §7Rabbit you haven't found yet!",
+      "text":"Open %1$s Chocolate Eggs during Hoppity's Hunt to guarantee your next egg will contain a DIVINE Rabbit you haven't found yet!",
+      "placeholders":[{"token":"%1$s","type":"number","example":"1,250","desc":"触发新神圣兔保底的开蛋次数"}],"translate":true,
+      "zh":"在 Hoppity 的寻兔行动期间开启 %1$s 个巧克力蛋后，下一颗蛋必定开出尚未收集过的神圣巧克力兔!",
+      "segments":[{"color":"§7","text":"Open ","zh":"期间开启 ","order":2},{"color":"§a","text":"%1$s ","zh":"%1$s ","order":3},{"color":"§7","text":"Chocolate Eggs during ","zh":"个巧克力蛋后，下一颗蛋必定开出尚未收集过的","order":4},{"color":"§d","text":"Hoppity's Hunt ","zh":"Hoppity 的寻兔行动","order":1},{"color":"§7","text":"to guarantee your next egg will contain a ","zh":"在 ","order":0},{"color":"§b§l","text":"DIVINE ","zh":"神圣","order":5},{"color":"§7","text":"Rabbit you haven't found yet!","zh":"巧克力兔!","order":6}],
+      "samples":[["§7Open §a1,250 §7Chocolate Eggs during","§dHoppity's Hunt §7to guarantee your","§7next egg will contain a §b§lDIVINE","§7Rabbit you haven't found yet!"]]
+    },
+    {"id":"pity_rabbit_reset_divine","context":"神圣兔保底按次数扣除而非清零","raw":"§8Finding a new Divine Rabbit will subtract %1$s from your pity counter.","text":"Finding a new Divine Rabbit will subtract %1$s from your pity counter.","placeholders":[{"token":"%1$s","type":"number","example":"1,250","desc":"扣除的保底次数"}],"translate":true,"zh":"收集到新的神圣巧克力兔后，保底进度扣除 %1$s。"},
+    {
+      "id":"pity_rabbit_all_divine","context":"收齐神圣兔后的替代保底奖励",
+      "raw":"§8Once you have found every Divine Rabbit, this guarantees §cChocobit Rabbits §8instead.",
+      "text":"Once you have found every Divine Rabbit, this guarantees Chocobit Rabbits instead.","translate":true,"zh":"收集全部神圣巧克力兔后，保底奖励改为 Chocobit 兔。",
+      "segments":[{"color":"§8","text":"Once you have found every Divine Rabbit, this guarantees ","zh":"收集全部神圣巧克力兔后，保底奖励改为 "},{"color":"§c","text":"Chocobit Rabbits ","zh":"Chocobit 兔"},{"color":"§8","text":"instead.","zh":"。"}]
+    },
+    {
+      "id":"pity_pig_potato","context":"闪光猪的马铃薯护符保底",
+      "raw":"§7Completing §a%1$s §6§lShiny Pigs §7during the §dYear of the Pig §7will guarantee that your next one will drop a §fPotato Talisman§7!",
+      "text":"Completing %1$s Shiny Pigs during the Year of the Pig will guarantee that your next one will drop a Potato Talisman!",
+      "placeholders":[{"token":"%1$s","type":"number","example":"2,000","desc":"闪光猪挑战次数"}],"translate":true,
+      "zh":"在猪年庆典期间完成 %1$s 次闪光猪挑战后，下一次必定掉落马铃薯护符!",
+      "segments":[{"color":"§7","text":"Completing ","zh":"期间完成 ","order":2},{"color":"§a","text":"%1$s ","zh":"%1$s ","order":3},{"color":"§6§l","text":"Shiny Pigs ","zh":"次闪光猪挑战","order":4},{"color":"§7","text":"during the ","zh":"在","order":0},{"color":"§d","text":"Year of the Pig ","zh":"猪年庆典","order":1},{"color":"§7","text":"will guarantee that your next one will drop a ","zh":"后，下一次必定掉落","order":5},{"color":"§f","text":"Potato Talisman","zh":"马铃薯护符","order":6},{"color":"§7","text":"!","zh":"!","order":7}]
+    },
+    {
+      "id":"pity_pig_blood","context":"闪光猪的血神徽记保底",
+      "raw":"§7Completing §a%1$s §6§lShiny Pigs §7during the §dYear of the Pig §7will guarantee that your next one will drop a §fBlood God Crest§7!",
+      "text":"Completing %1$s Shiny Pigs during the Year of the Pig will guarantee that your next one will drop a Blood God Crest!",
+      "placeholders":[{"token":"%1$s","type":"number","example":"1,000","desc":"闪光猪挑战次数"}],"translate":true,
+      "zh":"在猪年庆典期间完成 %1$s 次闪光猪挑战后，下一次必定掉落血神徽记!",
+      "segments":[{"color":"§7","text":"Completing ","zh":"期间完成 ","order":2},{"color":"§a","text":"%1$s ","zh":"%1$s ","order":3},{"color":"§6§l","text":"Shiny Pigs ","zh":"次闪光猪挑战","order":4},{"color":"§7","text":"during the ","zh":"在","order":0},{"color":"§d","text":"Year of the Pig ","zh":"猪年庆典","order":1},{"color":"§7","text":"will guarantee that your next one will drop a ","zh":"后，下一次必定掉落","order":5},{"color":"§f","text":"Blood God Crest","zh":"血神徽记","order":6},{"color":"§7","text":"!","zh":"!","order":7}]
+    },
+    {"id":"pity_pig_double","context":"闪光猪双物品掉落对保底的贡献","raw":"§7Dropping 2 items from a Shiny Pig will count double towards pity.","text":"Dropping 2 items from a Shiny Pig will count double towards pity.","translate":true,"zh":"闪光猪一次掉落 2 件物品时，保底进度按两次计算。"},
+    {
+      "id":"pity_treasure_moonglade","context":"月光沼泽钓宝藏的鱼类保底",
+      "raw":"§7Fishing up §6Treasure §a%1$s §7times on the §2Moonglade Marsh §7will guarantee that your next treasure catch will be a §cSwamp the Fish§7!",
+      "text":"Fishing up Treasure %1$s times on the Moonglade Marsh will guarantee that your next treasure catch will be a Swamp the Fish!",
+      "placeholders":[{"token":"%1$s","type":"number","example":"2,500","desc":"钓到宝藏的次数"}],"translate":true,
+      "zh":"在月光沼泽钓到宝藏 %1$s 次后，下一次钓到的宝藏必定为 Swamp the Fish!",
+      "segments":[{"color":"§7","text":"Fishing up ","zh":"钓到","order":2},{"color":"§6","text":"Treasure ","zh":"宝藏 ","order":3},{"color":"§a","text":"%1$s ","zh":"%1$s ","order":4},{"color":"§7","text":"times on the ","zh":"在","order":0},{"color":"§2","text":"Moonglade Marsh ","zh":"月光沼泽","order":1},{"color":"§7","text":"will guarantee that your next treasure catch will be a ","zh":"次后，下一次钓到的宝藏必定为 ","order":5},{"color":"§c","text":"Swamp the Fish","zh":"Swamp the Fish","order":6},{"color":"§7","text":"!","zh":"!","order":7}]
+    },
+    {"id":"pity_treasure_reset_moonglade","context":"沼泽玩梗鱼保底重置","raw":"§8Catching a Swamp the Fish will set your pity back to 0.","text":"Catching a Swamp the Fish will set your pity back to 0.","translate":true,"zh":"钓到 Swamp the Fish 后，保底进度重置为 0。"},
+    {
+      "id":"pity_treasure_torrhus","context":"Torrhus 峡谷钓宝藏的鱼类保底",
+      "raw":"§7Fishing up §6Treasure §a%1$s §7times on the §6Torrhus Canyon §7will guarantee that your next treasure catch will be a §cFish the Fish§7!",
+      "text":"Fishing up Treasure %1$s times on the Torrhus Canyon will guarantee that your next treasure catch will be a Fish the Fish!",
+      "placeholders":[{"token":"%1$s","type":"number","example":"2,500","desc":"钓到宝藏的次数"}],"translate":true,
+      "zh":"在 Torrhus 峡谷钓到宝藏 %1$s 次后，下一次钓到的宝藏必定为 Fish the Fish!",
+      "segments":[{"color":"§7","text":"Fishing up ","zh":"钓到","order":2},{"color":"§6","text":"Treasure ","zh":"宝藏 ","order":3},{"color":"§a","text":"%1$s ","zh":"%1$s ","order":4},{"color":"§7","text":"times on the ","zh":"在 ","order":0},{"color":"§6","text":"Torrhus Canyon ","zh":"Torrhus 峡谷","order":1},{"color":"§7","text":"will guarantee that your next treasure catch will be a ","zh":"次后，下一次钓到的宝藏必定为 ","order":5},{"color":"§c","text":"Fish the Fish","zh":"Fish the Fish","order":6},{"color":"§7","text":"!","zh":"!","order":7}]
+    },
+    {"id":"pity_treasure_reset_torrhus","context":"峡谷玩梗鱼保底重置","raw":"§8Catching a Fish the Fish will set your pity back to 0.","text":"Catching a Fish the Fish will set your pity back to 0.","translate":true,"zh":"钓到 Fish the Fish 后，保底进度重置为 0。"},
+    {
+      "id":"pity_mob_fish","context":"月光沼泽击杀怪物的鱼类保底",
+      "raw":"§7Killing §a%1$s §7mobs on the §2Moonglade Marsh §7will guarantee that your next kill will drop a §cMob the Fish§7!",
+      "text":"Killing %1$s mobs on the Moonglade Marsh will guarantee that your next kill will drop a Mob the Fish!",
+      "placeholders":[{"token":"%1$s","type":"number","example":"2,500","desc":"怪物击杀数"}],"translate":true,
+      "zh":"在月光沼泽击杀 %1$s 只怪物后，下一次击杀必定掉落 Mob the Fish!",
+      "segments":[{"color":"§7","text":"Killing ","zh":"击杀 ","order":2},{"color":"§a","text":"%1$s ","zh":"%1$s ","order":3},{"color":"§7","text":"mobs on the ","zh":"在","order":0},{"color":"§2","text":"Moonglade Marsh ","zh":"月光沼泽","order":1},{"color":"§7","text":"will guarantee that your next kill will drop a ","zh":"只怪物后，下一次击杀必定掉落 ","order":4},{"color":"§c","text":"Mob the Fish","zh":"Mob the Fish","order":5},{"color":"§7","text":"!","zh":"!","order":6}]
+    },
+    {
+      "id":"pity_tree_fish","context":"月光沼泽树木礼物的鱼类保底；实测无定冠词",
+      "raw":"§7Opening §a%1$s §2Tree Gifts §7on §2Moonglade Marsh §7will guarantee that your next tree gift will contain a §cTree the Fish§7!",
+      "text":"Opening %1$s Tree Gifts on Moonglade Marsh will guarantee that your next tree gift will contain a Tree the Fish!",
+      "placeholders":[{"token":"%1$s","type":"number","example":"1,000","desc":"树木礼物开启数量"}],"translate":true,
+      "zh":"在月光沼泽开启 %1$s 份树木礼物后，下一份树木礼物必定包含 Tree the Fish!",
+      "segments":[{"color":"§7","text":"Opening ","zh":"开启 ","order":2},{"color":"§a","text":"%1$s ","zh":"%1$s ","order":3},{"color":"§2","text":"Tree Gifts ","zh":"份树木礼物","order":4},{"color":"§7","text":"on ","zh":"在","order":0},{"color":"§2","text":"Moonglade Marsh ","zh":"月光沼泽","order":1},{"color":"§7","text":"will guarantee that your next tree gift will contain a ","zh":"后，下一份树木礼物必定包含 ","order":5},{"color":"§c","text":"Tree the Fish","zh":"Tree the Fish","order":6},{"color":"§7","text":"!","zh":"!","order":7}],
+      "samples":[["§7Opening §a1,000 §2Tree Gifts §7on","§2Moonglade Marsh §7will guarantee that","§7your next tree gift will contain a","§cTree the Fish§7!"]]
+    },
+    {
+      "id":"pity_tree_fish_wiki","context":"月光沼泽树木礼物的鱼类保底；Wiki 含定冠词的兼容写法",
+      "raw":"§7Opening §a%1$s §2Tree Gifts §7on the §2Moonglade Marsh §7will guarantee that your next tree gift will contain a §cTree the Fish§7!",
+      "text":"Opening %1$s Tree Gifts on the Moonglade Marsh will guarantee that your next tree gift will contain a Tree the Fish!",
+      "placeholders":[{"token":"%1$s","type":"number","example":"1,000","desc":"树木礼物开启数量"}],"translate":true,
+      "zh":"在月光沼泽开启 %1$s 份树木礼物后，下一份树木礼物必定包含 Tree the Fish!",
+      "segments":[{"color":"§7","text":"Opening ","zh":"开启 ","order":2},{"color":"§a","text":"%1$s ","zh":"%1$s ","order":3},{"color":"§2","text":"Tree Gifts ","zh":"份树木礼物","order":4},{"color":"§7","text":"on the ","zh":"在","order":0},{"color":"§2","text":"Moonglade Marsh ","zh":"月光沼泽","order":1},{"color":"§7","text":"will guarantee that your next tree gift will contain a ","zh":"后，下一份树木礼物必定包含 ","order":5},{"color":"§c","text":"Tree the Fish","zh":"Tree the Fish","order":6},{"color":"§7","text":"!","zh":"!","order":7}]
+    },
+    {"id":"pity_reset_mob","context":"击杀怪物的玩梗鱼保底重置","raw":"§8Dropping a Mob the Fish will set your pity back to 0.","text":"Dropping a Mob the Fish will set your pity back to 0.","translate":true,"zh":"获得 Mob the Fish 后，保底进度重置为 0。"},
+    {"id":"pity_reset_tree","context":"树木礼物的玩梗鱼保底重置","raw":"§8Dropping a Tree the Fish will set your pity back to 0.","text":"Dropping a Tree the Fish will set your pity back to 0.","translate":true,"zh":"获得 Tree the Fish 后，保底进度重置为 0。"}
+  ]
+}

@@ -1,0 +1,177 @@
+{
+  "source": "https://hypixelskyblock.minecraft.wiki/w/Pity_and_RNG_Meters; https://hypixelskyblock.minecraft.wiki/w/Template:RNG_Meter/UI/Pity",
+  "verified_ingame": false,
+  "note": "本轮 GUI 扩充；来自社区 Wiki 渲染后的 RNG 及保底各子菜单，含颜色。Wiki 与实测原文差异保留实测或兼容两者。",
+  "entries": [
+    {
+      "id": "corpse_rng_gain",
+      "context": "实测采集补译；Hub_General / RNG_Menu_Expansion",
+      "raw": "§7Your §bFrozen Corpses RNG Meter §7fills with varying amounts of §9XP §7every time you loot a §bFrozen Corpse §7while in the §bGlacite Mineshafts§7!",
+      "text": "Your Frozen Corpses RNG Meter fills with varying amounts of XP every time you loot a Frozen Corpse while in the Glacite Mineshafts!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "在极冰矿井搜刮冰封尸体后，你的冰封尸体 RNG 计量表会累积不同数量的经验!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Your ",
+          "zh": "在",
+          "order": 0
+        },
+        {
+          "color": "§b",
+          "text": "Frozen Corpses RNG Meter ",
+          "zh": "冰封尸体 RNG 计量表",
+          "order": 5
+        },
+        {
+          "color": "§7",
+          "text": "fills with varying amounts of ",
+          "zh": "会累积不同数量的",
+          "order": 6
+        },
+        {
+          "color": "§9",
+          "text": "XP ",
+          "zh": "经验",
+          "order": 7
+        },
+        {
+          "color": "§7",
+          "text": "every time you loot a ",
+          "zh": "搜刮",
+          "order": 2
+        },
+        {
+          "color": "§b",
+          "text": "Frozen Corpse ",
+          "zh": "冰封尸体",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "while in the ",
+          "zh": "后，你的",
+          "order": 4
+        },
+        {
+          "color": "§b",
+          "text": "Glacite Mineshafts",
+          "zh": "极冰矿井",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!",
+          "order": 8
+        }
+      ]
+    },
+    {
+      "id": "pity_spaceman",
+      "context": "实测采集补译；Hub_General / RNG_Menu_Expansion",
+      "raw": "§7Having §a%1$s §7NPCs visit your §aGarden §7will guarantee that your next visitor will be the §cSpaceman§7!",
+      "text": "Having %1$s NPCs visit your Garden will guarantee that your next visitor will be the Spaceman!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "3,000",
+          "desc": "触发保底的访客数量"
+        }
+      ],
+      "translate": true,
+      "zh": "累计有 %1$s 名 NPC 到访你的花园后，下一位访客必定为Spaceman!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Having ",
+          "zh": "累计有 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "NPCs visit your ",
+          "zh": "名 NPC 到访你的"
+        },
+        {
+          "color": "§a",
+          "text": "Garden ",
+          "zh": "花园"
+        },
+        {
+          "color": "§7",
+          "text": "will guarantee that your next visitor will be the ",
+          "zh": "后，下一位访客必定为"
+        },
+        {
+          "color": "§c",
+          "text": "Spaceman",
+          "zh": "Spaceman"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "pity_spaceman_reset",
+      "context": "实测采集补译；Hub_General / RNG_Menu_Expansion",
+      "raw": "§8Having the Spaceman visit will set your pity back to 0.",
+      "text": "Having the Spaceman visit will set your pity back to 0.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "Spaceman 到访后，保底进度重置为 0。"
+    },
+    {
+      "id": "mineshaft_pity_threshold",
+      "context": "实测采集补译；Hub_General / RNG_Menu_Expansion",
+      "raw": "§7If you haven’t spawned a Mineshaft by the time you reach §a%1$s §7value, it is guaranteed to spawn.",
+      "text": "If you haven’t spawned a Mineshaft by the time you reach %1$s value, it is guaranteed to spawn.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "2,000",
+          "desc": "生成矿井的保底进度阈值"
+        }
+      ],
+      "translate": true,
+      "zh": "若保底进度达到 %1$s 时仍未出现矿井，下次必定出现。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "If you haven’t spawned a Mineshaft by the time you reach ",
+          "zh": "若保底进度达到 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "value, it is guaranteed to spawn.",
+          "zh": "时仍未出现矿井，下次必定出现。"
+        }
+      ]
+    },
+    {
+      "id": "rng_none_wiki_typo",
+      "context": "实测采集补译；Hub_General / RNG_Menu_Expansion",
+      "raw": "§cYou don't have an RNG drop selected. Choose one to star progressing towards it!",
+      "text": "You don't have an RNG drop selected. Choose one to star progressing towards it!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "你还没有选择 RNG 掉落物。选择一个以开始累积进度!",
+      "gloss": "Wiki 将 start 误写为 star；保留页面写法作为兼容，实测正确写法沿用已有记录。"
+    }
+  ]
+}

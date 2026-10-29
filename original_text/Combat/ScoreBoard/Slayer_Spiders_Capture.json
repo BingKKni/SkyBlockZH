@@ -1,0 +1,36 @@
+{
+  "source": "runtime capture: ../SkyZH_Logs/skyzh-capture",
+  "verified_ingame": true,
+  "entries": [
+    {"id":"slayer_quest","context":"侧边栏猎手任务标题","text":"Slayer Quest","raw":"§fSlayer Quest","translate":true,"zh":"猎手任务"},
+    {"id":"slayer_fight","context":"猎手首领出现后的任务目标","text":"Slay the boss!","raw":"§eSlay the boss!","translate":true,"zh":"击败首领!"},
+    {"id":"slayer_slain","context":"猎手首领击败后的状态","text":"Boss slain!","raw":"§aBoss slain!","translate":true,"zh":"首领已击败!"},
+    {
+      "id":"slayer_combat_progress",
+      "context":"召出首领所需的战斗经验；两边数值及斜杠颜色独立保留",
+      "raw":"§7(§e%1$s§7/§c%2$s§7) Combat XP",
+      "text":"(%1$s/%2$s) Combat XP",
+      "placeholders":[{"token":"%1$s","type":"number","example":"390","desc":"当前经验"},{"token":"%2$s","type":"number","example":"3k","desc":"召唤所需经验"}],
+      "translate":true,"zh":"(%1$s/%2$s) 战斗经验",
+      "segments":[{"color":"§7","text":"(","zh":"("},{"color":"§e","text":"%1$s","zh":"%1$s"},{"color":"§7","text":"/","zh":"/"},{"color":"§c","text":"%2$s","zh":"%2$s"},{"color":"§7","text":") Combat XP","zh":") 战斗经验"}]
+    },
+    {
+      "id":"slayer_kills",
+      "context":"首领召唤进度中的击杀次数",
+      "raw":"§e%1$s§7/§c%2$s §7Kills",
+      "text":"%1$s/%2$s Kills",
+      "placeholders":[{"token":"%1$s","type":"number","example":"12","desc":"当前击杀数"},{"token":"%2$s","type":"number","example":"157","desc":"目标击杀数"}],
+      "translate":true,"zh":"%1$s/%2$s 次击杀",
+      "segments":[{"color":"§e","text":"%1$s","zh":"%1$s"},{"color":"§7","text":"/","zh":"/"},{"color":"§c","text":"%2$s ","zh":"%2$s "},{"color":"§7","text":"Kills","zh":"次击杀"}]
+    },
+    {
+      "id":"broodmother_status",
+      "context":"育母蜘蛛的休眠或刷新倒计时",
+      "raw":"§4Broodmother§7: §e%1$s",
+      "text":"Broodmother: %1$s",
+      "placeholders":[{"token":"%1$s","type":"broodmother_status","example":"Dormant","desc":"首领状态；已收录休眠状态词表"}],
+      "translate":true,"zh":"育母蜘蛛: %1$s",
+      "segments":[{"color":"§4","text":"Broodmother","zh":"育母蜘蛛"},{"color":"§7","text":": ","zh":": "},{"color":"§e","text":"%1$s","zh":"%1$s"}]
+    }
+  ]
+}

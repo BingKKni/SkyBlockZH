@@ -2931,7 +2931,7 @@ public final class TranslationHarness {
 
 	/** Fixed UI capture regression: ordered lore, term isolation, and clues that must survive translation. */
 	private static void checkFixedMenus(Path corpusRoot) throws Exception {
-		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "october-live-round-cases.json", "workshop-cases.json", "wiki-expansion-cases.json", "bazaar-item-names-cases.json", "rift-live-capture-cases.json", "rift-session-cases.json", "garden-weather-feast-cases.json", "village-living-cave-cases.json", "rift-post-build-cases.json", "castle-capture-cases.json")) {
+		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "october-live-round-cases.json", "workshop-cases.json", "wiki-expansion-cases.json", "bazaar-item-names-cases.json", "rift-live-capture-cases.json", "rift-session-cases.json", "garden-weather-feast-cases.json", "village-living-cave-cases.json", "rift-post-build-cases.json", "castle-capture-cases.json", "slayer-rng-capture-cases.json")) {
 		Path path = corpusRoot.toAbsolutePath().getParent().resolve("src/harness/resources/" + file);
 		JsonObject fixture = JsonParser.parseString(Files.readString(path, StandardCharsets.UTF_8)).getAsJsonObject();
 		for (JsonElement value : fixture.getAsJsonArray("cases")) {
@@ -3383,7 +3383,7 @@ public final class TranslationHarness {
 		checkNoMatch("等级模板不吞掉怪物等级的整句", "§7Level §a1 §7monsters will no longer", Surface.ITEM);
 		// "%s Sword" used to answer every custom sword name as "<name> 剑".
 		check("亡灵剑是精确记录", "§fUndead Sword", Surface.ITEM, "§f亡灵剑");
-		checkNoMatch("自造剑名不再被剑类模板截断", "§5Wither Cloak Sword", Surface.ITEM);
+		check("已收录剑名整名匹配，不截断自造前缀", "§5Wither Cloak Sword", Surface.ITEM, "§5凋灵披风剑");
 		check("已收录重铸剑名按完整名称翻译", "§5Heroic Wither Cloak Sword", Surface.ITEM, "§5英勇 凋灵披风剑");
 		checkNoMatch("未知重铸剑名不被宽泛模板截断", "§5Heroic Unverified Example Sword", Surface.ITEM);
 		checkNoMatch("同名谷仓与牲畜棚入口不全局误译", "§aThe Barn", Surface.ITEM);

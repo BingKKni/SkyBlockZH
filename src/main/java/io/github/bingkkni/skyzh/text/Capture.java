@@ -266,7 +266,7 @@ public enum Capture {
 			case "mob_family" -> MOB_FAMILY;
 			case "stat_name" -> STAT_NAME;
 			case "npc_name", "profile_name", "location_name", "mob_name", "rarity", "category_name",
-				"enchantment_name", "enchantment_crop", "accessory_power", "skyblock_month", "dragon_type",
+				"enchantment_name", "enchantment_crop", "accessory_power", "broodmother_status", "skyblock_month", "dragon_type",
 				"rng_meter_source", "difficulty", "reputation_rank", "rift_clue", "dye_name" -> NAME;
 			case "player_name", "player_or_self" -> PLAYER;
 			case "player_display" -> PLAYER_DISPLAY;

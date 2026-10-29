@@ -1,0 +1,775 @@
+{
+  "source": "runtime capture: ../SkyZH_Logs/skyzh-capture",
+  "verified_ingame": true,
+  "note": "原文与颜色来自本轮实测；沿用现有专名及术语约定。",
+  "entries": [
+    {
+      "id": "slayer_banner_7b1b475a",
+      "context": "实测采集补译；Combat / Slayer_Spiders_Capture",
+      "raw": "§5§lSLAYER QUEST STARTED!",
+      "text": "SLAYER QUEST STARTED!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "猎手任务开始!",
+      "layout": "chat_source_alignment"
+    },
+    {
+      "id": "slayer_banner_db7a8424",
+      "context": "实测采集补译；Combat / Slayer_Spiders_Capture",
+      "raw": "§6§lNICE! SLAYER BOSS SLAIN!",
+      "text": "NICE! SLAYER BOSS SLAIN!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "漂亮! 猎手首领已击败!",
+      "layout": "chat_source_alignment"
+    },
+    {
+      "id": "slayer_banner_f5a9b295",
+      "context": "实测采集补译；Combat / Slayer_Spiders_Capture",
+      "raw": "§a§lSLAYER QUEST COMPLETE!",
+      "text": "SLAYER QUEST COMPLETE!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "猎手任务完成!",
+      "layout": "chat_source_alignment"
+    },
+    {
+      "id": "slayer_miniboss",
+      "context": "实测采集补译；Combat / Slayer_Spiders_Capture",
+      "raw": "§4§lSLAYER MINIBOSS! §7The §c%1$s §7spawned!",
+      "text": "SLAYER MINIBOSS! The %1$s spawned!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "mob_name",
+          "example": "Tarantula Beast",
+          "desc": "完整猎手精英名称"
+        }
+      ],
+      "translate": true,
+      "zh": "猎手精英! 首领 %1$s出现了!",
+      "segments": [
+        {
+          "color": "§4§l",
+          "text": "SLAYER MINIBOSS! ",
+          "zh": "猎手精英! "
+        },
+        {
+          "color": "§7",
+          "text": "The ",
+          "zh": "首领 "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "spawned!",
+          "zh": "出现了!"
+        }
+      ]
+    },
+    {
+      "id": "slayer_boss_spawn",
+      "context": "实测采集补译；Combat / Slayer_Spiders_Capture",
+      "raw": "§4§lSLAYER BOSS! §7The §c%1$s %2$s §7spawned!",
+      "text": "SLAYER BOSS! The %1$s %2$s spawned!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "mob_name",
+          "example": "Sven Packmaster",
+          "desc": "完整猎手首领名称"
+        },
+        {
+          "token": "%2$s",
+          "type": "tier",
+          "example": "IV",
+          "desc": "阶数"
+        }
+      ],
+      "translate": true,
+      "zh": "猎手首领! 首领 %1$s %2$s出现了!",
+      "segments": [
+        {
+          "color": "§4§l",
+          "text": "SLAYER BOSS! ",
+          "zh": "猎手首领! "
+        },
+        {
+          "color": "§7",
+          "text": "The ",
+          "zh": "首领 "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s %2$s ",
+          "zh": "%1$s %2$s"
+        },
+        {
+          "color": "§7",
+          "text": "spawned!",
+          "zh": "出现了!"
+        }
+      ]
+    },
+    {
+      "id": "slayer_heal",
+      "context": "实测采集补译；Combat / Slayer_Spiders_Capture",
+      "raw": "§eYour Slayer Kill gave you §c%1$s HP §ehealing for §a%2$s §eseconds!",
+      "text": "Your Slayer Kill gave you %1$s HP healing for %2$s seconds!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "160",
+          "desc": "恢复生命值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "8",
+          "desc": "持续秒数"
+        }
+      ],
+      "translate": true,
+      "zh": "击败猎手首领后，恢复 %1$s 点生命值，持续 %2$s 秒!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Your Slayer Kill gave you ",
+          "zh": "击败猎手首领后，恢复 "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s HP ",
+          "zh": "%1$s 点生命值"
+        },
+        {
+          "color": "§e",
+          "text": "healing for ",
+          "zh": "，持续 "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s ",
+          "zh": "%2$s "
+        },
+        {
+          "color": "§e",
+          "text": "seconds!",
+          "zh": "秒!"
+        }
+      ]
+    },
+    {
+      "id": "slayer_claim",
+      "context": "实测采集补译；Combat / Slayer_Spiders_Capture",
+      "raw": "§7Talk to Maddox to claim your %1$s Slayer XP!",
+      "text": "Talk to Maddox to claim your %1$s Slayer XP!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "mob_name",
+          "example": "Wolf",
+          "desc": "猎手怪物类别"
+        }
+      ],
+      "translate": true,
+      "zh": "与 Maddox 交谈，领取%1$s猎手经验!"
+    },
+    {
+      "id": "slayer_next_level",
+      "context": "实测采集补译；Combat / Slayer_Spiders_Capture",
+      "raw": "§e%1$s Slayer LVL %2$s §5- §7Next LVL in §d%3$s XP§7!",
+      "text": "%1$s Slayer LVL %2$s - Next LVL in %3$s XP!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "mob_name",
+          "example": "Spider",
+          "desc": "猎手怪物类别"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "4",
+          "desc": "当前等级"
+        },
+        {
+          "token": "%3$s",
+          "type": "number",
+          "example": "3,370",
+          "desc": "距下一级经验"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s猎手等级 %2$s - 距下一级还需 %3$s 经验!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "%1$s Slayer LVL %2$s ",
+          "zh": "%1$s猎手等级 %2$s "
+        },
+        {
+          "color": "§5",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§7",
+          "text": "Next LVL in ",
+          "zh": "距下一级还需 "
+        },
+        {
+          "color": "§d",
+          "text": "%3$s XP",
+          "zh": "%3$s 经验"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "slayer_stored_xp",
+      "context": "实测采集补译；Combat / Slayer_Spiders_Capture",
+      "raw": "§dRNG Meter §f- §d%1$s Stored XP",
+      "text": "RNG Meter - %1$s Stored XP",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "100",
+          "desc": "实时数值"
+        }
+      ],
+      "translate": true,
+      "zh": "RNG 计量表 - 已累积 %1$s 经验",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "RNG Meter ",
+          "zh": "RNG 计量表 "
+        },
+        {
+          "color": "§f",
+          "text": "- ",
+          "zh": "- "
+        },
+        {
+          "color": "§d",
+          "text": "%1$s Stored XP",
+          "zh": "已累积 %1$s 经验"
+        }
+      ]
+    },
+    {
+      "id": "slayer_spawn_progress",
+      "context": "实测采集补译；Combat / Slayer_Spiders_Capture",
+      "raw": "§7Slay §c%1$s Combat XP §7worth of %2$s.",
+      "text": "Slay %1$s Combat XP worth of %2$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "3,000",
+          "desc": "所需战斗经验"
+        },
+        {
+          "token": "%2$s",
+          "type": "mob_name",
+          "example": "Spiders",
+          "desc": "怪物类别"
+        }
+      ],
+      "translate": true,
+      "zh": "击杀怪物，获取 %1$s 战斗经验（目标：%2$s）。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Slay ",
+          "zh": "击杀怪物，获取 "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s Combat XP ",
+          "zh": "%1$s 战斗经验"
+        },
+        {
+          "color": "§7",
+          "text": "worth of %2$s.",
+          "zh": "（目标：%2$s）。"
+        }
+      ]
+    },
+    {
+      "id": "broodfather_hatchlings",
+      "context": "实测采集补译；Combat / Slayer_Spiders_Capture",
+      "raw": "§cYou need to kill the Broodfather's hatchlings before it can be damaged again!",
+      "text": "You need to kill the Broodfather's hatchlings before it can be damaged again!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "先击杀 Broodfather 的幼蛛，才能再次对其造成伤害!"
+    },
+    {
+      "id": "broodfather_webs",
+      "context": "实测采集补译；Combat / Slayer_Spiders_Capture",
+      "raw": "§cYou can only break these webs using the §aRecluse Fang§c, §9Tarantula Fang§c, §6Sting§c, or §5Scorpion Foil§c!",
+      "text": "You can only break these webs using the Recluse Fang, Tarantula Fang, Sting, or Scorpion Foil!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "仅可使用隐士蛛牙、狼蛛之牙、Sting 或 Scorpion Foil 清除这些蛛网!",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "You can only break these webs using the ",
+          "zh": "仅可使用"
+        },
+        {
+          "color": "§a",
+          "text": "Recluse Fang",
+          "zh": "隐士蛛牙"
+        },
+        {
+          "color": "§c",
+          "text": ", ",
+          "zh": "、"
+        },
+        {
+          "color": "§9",
+          "text": "Tarantula Fang",
+          "zh": "狼蛛之牙"
+        },
+        {
+          "color": "§c",
+          "text": ", ",
+          "zh": "、"
+        },
+        {
+          "color": "§6",
+          "text": "Sting",
+          "zh": "Sting"
+        },
+        {
+          "color": "§c",
+          "text": ", or ",
+          "zh": " 或 "
+        },
+        {
+          "color": "§5",
+          "text": "Scorpion Foil",
+          "zh": "Scorpion Foil"
+        },
+        {
+          "color": "§c",
+          "text": "!",
+          "zh": "清除这些蛛网!"
+        }
+      ]
+    },
+    {
+      "id": "rng_select_chat",
+      "context": "实测采集补译；Combat / Slayer_Spiders_Capture",
+      "raw": "§aYou set your §d%1$s RNG Meter §ato drop §c%2$s§a!",
+      "text": "You set your %1$s RNG Meter to drop %2$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "rng_meter_source",
+          "example": "Tarantula Broodfather",
+          "desc": "RNG 计量表来源"
+        },
+        {
+          "token": "%2$s",
+          "type": "loot_item_name",
+          "example": "Brick Red Dye",
+          "desc": "目标物品名，复用目录确认的既有译名"
+        }
+      ],
+      "translate": true,
+      "zh": "已将你的 %1$s RNG 计量表的目标掉落物设为%2$s!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "You set your ",
+          "zh": "已将你的 "
+        },
+        {
+          "color": "§d",
+          "text": "%1$s RNG Meter ",
+          "zh": "%1$s RNG 计量表"
+        },
+        {
+          "color": "§a",
+          "text": "to drop ",
+          "zh": "的目标掉落物设为"
+        },
+        {
+          "color": "§c",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§a",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "fear_31bfd5c2",
+      "context": "实测采集补译；Combat / Slayer_Spiders_Capture",
+      "raw": "§4[FEAR] Darkness Shade§f: The darkness consumes all.",
+      "text": "[FEAR] Darkness Shade: The darkness consumes all.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "[恐惧] 暗影幽魂: 黑暗吞噬一切。",
+      "segments": [
+        {"color":"§4","text":"[","zh":"["},
+        {"color":"§4","text":"FEAR","zh":"恐惧"},
+        {"color":"§4","text":"]","zh":"]"},
+        {"color":"§4","text":" Darkness Shade","zh":" 暗影幽魂"},
+        {
+          "color": "§f",
+          "text": ": The darkness consumes all.",
+          "zh": ": 黑暗吞噬一切。"
+        }
+      ]
+    },
+    {
+      "id": "fear_613a64a9",
+      "context": "实测采集补译；Combat / Slayer_Spiders_Capture",
+      "raw": "§4[FEAR] Darkness Shade§f: Embrace the night.",
+      "text": "[FEAR] Darkness Shade: Embrace the night.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "[恐惧] 暗影幽魂: 拥抱黑夜吧。",
+      "segments": [
+        {"color":"§4","text":"[","zh":"["},
+        {"color":"§4","text":"FEAR","zh":"恐惧"},
+        {"color":"§4","text":"]","zh":"]"},
+        {"color":"§4","text":" Darkness Shade","zh":" 暗影幽魂"},
+        {
+          "color": "§f",
+          "text": ": Embrace the night.",
+          "zh": ": 拥抱黑夜吧。"
+        }
+      ]
+    },
+    {
+      "id": "fear_3e49100a",
+      "context": "实测采集补译；Combat / Slayer_Spiders_Capture",
+      "raw": "§4[FEAR] Darkness Shade§f: Lost in the void?",
+      "text": "[FEAR] Darkness Shade: Lost in the void?",
+      "placeholders": [],
+      "translate": true,
+      "zh": "[恐惧] 暗影幽魂: 迷失在虚空中了吗?",
+      "segments": [
+        {"color":"§4","text":"[","zh":"["},
+        {"color":"§4","text":"FEAR","zh":"恐惧"},
+        {"color":"§4","text":"]","zh":"]"},
+        {"color":"§4","text":" Darkness Shade","zh":" 暗影幽魂"},
+        {
+          "color": "§f",
+          "text": ": Lost in the void?",
+          "zh": ": 迷失在虚空中了吗?"
+        }
+      ]
+    },
+    {
+      "id": "vegan_chicken",
+      "context": "实测采集补译；Combat / Slayer_Spiders_Capture",
+      "raw": "§eThe §aVegan Crawler §eturned you into a §bChicken§e!",
+      "text": "The Vegan Crawler turned you into a Chicken!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "素食爬行者把你变成了鸡!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "The ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§a",
+          "text": "Vegan Crawler ",
+          "zh": "素食爬行者"
+        },
+        {
+          "color": "§e",
+          "text": "turned you into a ",
+          "zh": "把你变成了"
+        },
+        {
+          "color": "§b",
+          "text": "Chicken",
+          "zh": "鸡"
+        },
+        {
+          "color": "§e",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "arachne_call",
+      "context": "实测采集补译；Combat / Slayer_Spiders_Capture",
+      "raw": "§4☄ §a%1$s §eplaced an §9Arachne's Calling§e! (§a%2$s§e/§a%3$s§e)",
+      "text": "☄ %1$s placed an Arachne's Calling! (%2$s/%3$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "player_name",
+          "example": "VexRNG",
+          "desc": "实际放置者用户名"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "1",
+          "desc": "当前放置数量"
+        },
+        {
+          "token": "%3$s",
+          "type": "number",
+          "example": "4",
+          "desc": "召唤所需数量"
+        }
+      ],
+      "translate": true,
+      "zh": "☄ %1$s 放置了Arachne 的呼唤! (%2$s/%3$s)",
+      "segments": [
+        {
+          "color": "§4",
+          "text": "☄ ",
+          "zh": "☄ "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§e",
+          "text": "placed an ",
+          "zh": "放置了"
+        },
+        {
+          "color": "§9",
+          "text": "Arachne's Calling",
+          "zh": "Arachne 的呼唤"
+        },
+        {
+          "color": "§e",
+          "text": "! (",
+          "zh": "! ("
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§e",
+          "text": "/",
+          "zh": "/"
+        },
+        {
+          "color": "§a",
+          "text": "%3$s",
+          "zh": "%3$s"
+        },
+        {
+          "color": "§e",
+          "text": ")",
+          "zh": ")"
+        }
+      ]
+    },
+    {
+      "id": "arachne_call_final",
+      "context": "实测采集补译；Combat / Slayer_Spiders_Capture",
+      "raw": "§4☄ §a%1$s §eplaced an §9Arachne's Calling§e! Something is awakening! (§a%2$s§e/§a%3$s§e)",
+      "text": "☄ %1$s placed an Arachne's Calling! Something is awakening! (%2$s/%3$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "player_name",
+          "example": "VexRNG",
+          "desc": "实际放置者用户名"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "1",
+          "desc": "当前放置数量"
+        },
+        {
+          "token": "%3$s",
+          "type": "number",
+          "example": "4",
+          "desc": "召唤所需数量"
+        }
+      ],
+      "translate": true,
+      "zh": "☄ %1$s 放置了Arachne 的呼唤! 有什么正在苏醒! (%2$s/%3$s)",
+      "segments": [
+        {
+          "color": "§4",
+          "text": "☄ ",
+          "zh": "☄ "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§e",
+          "text": "placed an ",
+          "zh": "放置了"
+        },
+        {
+          "color": "§9",
+          "text": "Arachne's Calling",
+          "zh": "Arachne 的呼唤"
+        },
+        {
+          "color": "§e",
+          "text": "! Something is awakening! (",
+          "zh": "! 有什么正在苏醒! ("
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§e",
+          "text": "/",
+          "zh": "/"
+        },
+        {
+          "color": "§a",
+          "text": "%3$s",
+          "zh": "%3$s"
+        },
+        {
+          "color": "§e",
+          "text": ")",
+          "zh": ")"
+        }
+      ]
+    },
+    {
+      "id": "summon_arachne",
+      "context": "实测采集补译；Combat / Slayer_Spiders_Capture",
+      "raw": "§fSummon Arachne",
+      "text": "Summon Arachne",
+      "placeholders": [],
+      "translate": true,
+      "zh": "召唤 Arachne"
+    },
+    {
+      "id": "learn_mob_types",
+      "context": "实测采集补译；Combat / Slayer_Spiders_Capture",
+      "raw": "§fLearn about §cMob Types §ffrom §6Michael§f!",
+      "text": "Learn about Mob Types from Michael!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "向 Michael 了解生物类型!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Learn about ",
+          "zh": "向 ",
+          "order": 0
+        },
+        {
+          "color": "§c",
+          "text": "Mob Types ",
+          "zh": "生物类型",
+          "order": 3
+        },
+        {
+          "color": "§f",
+          "text": "from ",
+          "zh": " 了解",
+          "order": 2
+        },
+        {
+          "color": "§6",
+          "text": "Michael",
+          "zh": "Michael",
+          "order": 1
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "collect_mob_types",
+      "context": "实测采集补译；Combat / Slayer_Spiders_Capture",
+      "raw": "§fCollect §cMob Types §ffor §6Ike§f to earn §6Rewards§f!",
+      "text": "Collect Mob Types for Ike to earn Rewards!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "为 Ike 收集生物类型，赢取奖励!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Collect ",
+          "zh": "为 ",
+          "order": 0
+        },
+        {
+          "color": "§c",
+          "text": "Mob Types ",
+          "zh": "生物类型",
+          "order": 3
+        },
+        {
+          "color": "§f",
+          "text": "for ",
+          "zh": " 收集",
+          "order": 2
+        },
+        {
+          "color": "§6",
+          "text": "Ike",
+          "zh": "Ike",
+          "order": 1
+        },
+        {
+          "color": "§f",
+          "text": " to earn ",
+          "zh": "，赢取",
+          "order": 4
+        },
+        {
+          "color": "§6",
+          "text": "Rewards",
+          "zh": "奖励",
+          "order": 5
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!",
+          "order": 6
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "source": "runtime capture: ../SkyZH_Logs/skyzh-capture",
+  "verified_ingame": true,
+  "note": "原文与颜色来自本轮实测完整 Tooltip；跨行说明按完整句匹配。",
+  "entries": [
+    {
+      "id": "slayer_safer",
+      "context": "实测采集补译；Combat / Slayer_Spiders_Capture",
+      "raw": "§7SkyBlock is now a little safer thanks to you!",
+      "text": "SkyBlock is now a little safer thanks to you!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "多亏了你，SkyBlock 又安全了一些!"
+    },
+    {
+      "id": "codex_scaling",
+      "context": "实测采集补译；Combat / Slayer_Spiders_Capture",
+      "raw": "§7The rarity and stats of this accessory increases every §a%1$s §3Bestiary Milestones§7!",
+      "text": "The rarity and stats of this accessory increases every %1$s Bestiary Milestones!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "100",
+          "desc": "实时数值"
+        }
+      ],
+      "translate": true,
+      "zh": "此饰品的稀有度与属性每达到 %1$s 个生物图鉴里程碑时提升!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "The rarity and stats of this accessory increases every ",
+          "zh": "此饰品的稀有度与属性每达到 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§3",
+          "text": "Bestiary Milestones",
+          "zh": "个生物图鉴里程碑"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "时提升!"
+        }
+      ]
+    },
+    {
+      "id": "tarantula_catalyst_obtain",
+      "context": "实测采集补译；Combat / Slayer_Spiders_Capture",
+      "raw": "§7Drops rarely from Tarantula Broodfather when you are at least Spider Slayer LVL %1$s.",
+      "text": "Drops rarely from Tarantula Broodfather when you are at least Spider Slayer LVL %1$s.",
+      "placeholders": [
+        {"token": "%1$s", "type": "number", "example": "2", "desc": "最低蜘蛛猎手等级"}
+      ],
+      "translate": true,
+      "zh": "达到蜘蛛猎手等级 %1$s 后，击败 Tarantula Broodfather 时有小概率掉落。",
+      "samples": [["§7Drops rarely from Tarantula", "§7Broodfather when you are at least", "§7Spider Slayer LVL 2."]]
+    },
+    {
+      "id": "promising_efficiency",
+      "context": "实测采集补译；Combat / Slayer_Spiders_Capture",
+      "raw": "§7Gains §9Efficiency %1$s §7after breaking §a%2$s blocks§7!",
+      "text": "Gains Efficiency %1$s after breaking %2$s blocks!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "tier",
+          "example": "II",
+          "desc": "原版效率附魔等级"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "25",
+          "desc": "方块数量"
+        }
+      ],
+      "translate": true,
+      "zh": "破坏 %2$s 个方块后，获得效率 %1$s!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gains ",
+          "zh": "后，获得",
+          "order": 2
+        },
+        {
+          "color": "§9",
+          "text": "Efficiency %1$s ",
+          "zh": "效率 %1$s",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "after breaking ",
+          "zh": "破坏 ",
+          "order": 0
+        },
+        {
+          "color": "§a",
+          "text": "%2$s blocks",
+          "zh": "%2$s 个方块",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "double_flint",
+      "context": "实测采集补译；Combat / Slayer_Spiders_Capture",
+      "raw": "§7Grants a §a%1$s% §7chance to double flint drops.",
+      "text": "Grants a %1$s% chance to double flint drops.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "100",
+          "desc": "实时数值"
+        }
+      ],
+      "translate": true,
+      "zh": "燧石掉落量有 %1$s% 几率翻倍。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants a ",
+          "zh": "燧石掉落量有 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s% ",
+          "zh": "%1$s% "
+        },
+        {
+          "color": "§7",
+          "text": "chance to double flint drops.",
+          "zh": "几率翻倍。"
+        }
+      ]
+    }
+  ]
+}

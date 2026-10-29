@@ -1,0 +1,702 @@
+{
+  "source": [
+    "runtime capture: ../SkyZH_Logs/skyzh-capture",
+    "https://hypixelskyblock.minecraft.wiki/w/Pity_and_RNG_Meters",
+    "https://hypixelskyblock.minecraft.wiki/w/Template:RNG_Meter/UI/Pity"
+  ],
+  "verified_ingame": true,
+  "note": "原文与颜色优先采用本轮实测；跨行说明按完整句匹配。Wiki Pity 子页最后编辑于 2026-10-07，主页面最后编辑于 2026-10-28。",
+  "entries": [
+    {
+      "id": "slayer_rng_meters",
+      "context": "实测采集补译；Hub_General / RNG_Pity_Capture",
+      "raw": "§dSlayer RNG Meters",
+      "text": "Slayer RNG Meters",
+      "placeholders": [],
+      "translate": true,
+      "zh": "猎手 RNG 计量表"
+    },
+    {
+      "id": "pity_tracker",
+      "context": "实测采集补译；Hub_General / RNG_Pity_Capture",
+      "raw": "§aPity Tracker",
+      "text": "Pity Tracker",
+      "placeholders": [],
+      "translate": true,
+      "zh": "保底进度追踪"
+    },
+    {
+      "id": "the_end_pity",
+      "context": "实测采集补译；Hub_General / RNG_Pity_Capture",
+      "raw": "§dThe End Pity",
+      "text": "The End Pity",
+      "placeholders": [],
+      "translate": true,
+      "zh": "末地保底进度"
+    },
+    {
+      "id": "events_pity",
+      "context": "实测采集补译；Hub_General / RNG_Pity_Capture",
+      "raw": "§6Events Pity",
+      "text": "Events Pity",
+      "placeholders": [],
+      "translate": true,
+      "zh": "活动保底进度"
+    },
+    {
+      "id": "rng_no_drop",
+      "context": "实测采集补译；Hub_General / RNG_Pity_Capture",
+      "raw": "§cYou don't have a drop selected!",
+      "text": "You don't have a drop selected!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "你还没有选择掉落物!"
+    },
+    {
+      "id": "rng_slayer_xp",
+      "context": "实测采集补译；Hub_General / RNG_Pity_Capture",
+      "raw": "§7Slayer XP: §d%1$s§5/§d%2$s",
+      "text": "Slayer XP: %1$s/%2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "1,100",
+          "desc": "当前经验"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "75,000,000",
+          "desc": "保底所需经验"
+        }
+      ],
+      "translate": true,
+      "zh": "猎手经验: %1$s/%2$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Slayer XP: ",
+          "zh": "猎手经验: "
+        },
+        {
+          "color": "§d",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§5",
+          "text": "/",
+          "zh": "/"
+        },
+        {
+          "color": "§d",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ]
+    },
+    {
+      "id": "rng_nucleus_xp",
+      "context": "实测采集补译；Hub_General / RNG_Pity_Capture",
+      "raw": "§7Nucleus XP: §d%1$s§5/§d%2$s",
+      "text": "Nucleus XP: %1$s/%2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "8,100",
+          "desc": "当前经验"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "4,000",
+          "desc": "保底所需经验"
+        }
+      ],
+      "translate": true,
+      "zh": "核心经验: %1$s/%2$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Nucleus XP: ",
+          "zh": "核心经验: "
+        },
+        {
+          "color": "§d",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§5",
+          "text": "/",
+          "zh": "/"
+        },
+        {
+          "color": "§d",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ]
+    },
+    {
+      "id": "rng_dungeon_score",
+      "context": "实测采集补译；Hub_General / RNG_Pity_Capture",
+      "raw": "§7Stored Dungeon Score: §d%1$s",
+      "text": "Stored Dungeon Score: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "100",
+          "desc": "实时数值"
+        }
+      ],
+      "translate": true,
+      "zh": "已累积地牢评分: %1$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Stored Dungeon Score: ",
+          "zh": "已累积地牢评分: "
+        },
+        {
+          "color": "§d",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ]
+    },
+    {
+      "id": "requires_spider_slayer",
+      "context": "实测采集补译；Hub_General / RNG_Pity_Capture",
+      "raw": "§7Requires §5Spider Slayer %1$s§7!",
+      "text": "Requires Spider Slayer %1$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "100",
+          "desc": "实时数值"
+        }
+      ],
+      "translate": true,
+      "zh": "需要蜘蛛猎手等级 %1$s!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Requires ",
+          "zh": "需要"
+        },
+        {
+          "color": "§5",
+          "text": "Spider Slayer %1$s",
+          "zh": "蜘蛛猎手等级 %1$s"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "requires_wolf_slayer",
+      "context": "实测采集补译；Hub_General / RNG_Pity_Capture",
+      "raw": "§7Requires §5Wolf Slayer %1$s§7!",
+      "text": "Requires Wolf Slayer %1$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "100",
+          "desc": "实时数值"
+        }
+      ],
+      "translate": true,
+      "zh": "需要狼猎手等级 %1$s!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Requires ",
+          "zh": "需要"
+        },
+        {
+          "color": "§5",
+          "text": "Wolf Slayer %1$s",
+          "zh": "狼猎手等级 %1$s"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "requires_blaze_slayer",
+      "context": "实测采集补译；Hub_General / RNG_Pity_Capture",
+      "raw": "§7Requires §5Blaze Slayer %1$s§7!",
+      "text": "Requires Blaze Slayer %1$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "100",
+          "desc": "实时数值"
+        }
+      ],
+      "translate": true,
+      "zh": "需要烈焰人猎手等级 %1$s!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Requires ",
+          "zh": "需要"
+        },
+        {
+          "color": "§5",
+          "text": "Blaze Slayer %1$s",
+          "zh": "烈焰人猎手等级 %1$s"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "requires_enderman_slayer",
+      "context": "实测采集补译；Hub_General / RNG_Pity_Capture",
+      "raw": "§7Requires §5Enderman Slayer %1$s§7!",
+      "text": "Requires Enderman Slayer %1$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "100",
+          "desc": "实时数值"
+        }
+      ],
+      "translate": true,
+      "zh": "需要末影人猎手等级 %1$s!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Requires ",
+          "zh": "需要"
+        },
+        {
+          "color": "§5",
+          "text": "Enderman Slayer %1$s",
+          "zh": "末影人猎手等级 %1$s"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "requires_zombie_slayer",
+      "context": "实测采集补译；Hub_General / RNG_Pity_Capture",
+      "raw": "§7Requires §5Zombie Slayer %1$s§7!",
+      "text": "Requires Zombie Slayer %1$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "100",
+          "desc": "实时数值"
+        }
+      ],
+      "translate": true,
+      "zh": "需要僵尸猎手等级 %1$s!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Requires ",
+          "zh": "需要"
+        },
+        {
+          "color": "§5",
+          "text": "Zombie Slayer %1$s",
+          "zh": "僵尸猎手等级 %1$s"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "requires_vampire_slayer",
+      "context": "实测采集补译；Hub_General / RNG_Pity_Capture",
+      "raw": "§7Requires §5Vampire Slayer %1$s§7!",
+      "text": "Requires Vampire Slayer %1$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "100",
+          "desc": "实时数值"
+        }
+      ],
+      "translate": true,
+      "zh": "需要吸血鬼猎手等级 %1$s!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Requires ",
+          "zh": "需要"
+        },
+        {
+          "color": "§5",
+          "text": "Vampire Slayer %1$s",
+          "zh": "吸血鬼猎手等级 %1$s"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "pity_progress_gold",
+      "context": "实测采集补译；Hub_General / RNG_Pity_Capture",
+      "raw": "§7Progress to §6§lGOLD§7: §e%1$s§7/§a%2$s",
+      "text": "Progress to GOLD: %1$s/%2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "4",
+          "desc": "当前次数"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "100",
+          "desc": "保底次数"
+        }
+      ],
+      "translate": true,
+      "zh": "距黄金保底: %1$s/%2$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Progress to ",
+          "zh": "距"
+        },
+        {
+          "color": "§6§l",
+          "text": "GOLD",
+          "zh": "黄金"
+        },
+        {
+          "color": "§7",
+          "text": ": ",
+          "zh": "保底: "
+        },
+        {"color":"§e","text":"%1$s","zh":"%1$s"},
+        {"color":"§7","text":"/","zh":"/"},
+        {"color":"§a","text":"%2$s","zh":"%2$s"}
+      ]
+    },
+    {
+      "id": "pity_progress_diamond",
+      "context": "实测采集补译；Hub_General / RNG_Pity_Capture",
+      "raw": "§7Progress to §b§lDIAMOND§7: §e%1$s§7/§a%2$s",
+      "text": "Progress to DIAMOND: %1$s/%2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "4",
+          "desc": "当前次数"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "100",
+          "desc": "保底次数"
+        }
+      ],
+      "translate": true,
+      "zh": "距钻石保底: %1$s/%2$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Progress to ",
+          "zh": "距"
+        },
+        {
+          "color": "§b§l",
+          "text": "DIAMOND",
+          "zh": "钻石"
+        },
+        {
+          "color": "§7",
+          "text": ": ",
+          "zh": "保底: "
+        },
+        {"color":"§e","text":"%1$s","zh":"%1$s"},
+        {"color":"§7","text":"/","zh":"/"},
+        {"color":"§a","text":"%2$s","zh":"%2$s"}
+      ]
+    },
+    {
+      "id": "pity_garden_visitors",
+      "context": "实测采集补译；Hub_General / RNG_Pity_Capture",
+      "raw": "§7Progress from Visitors: §e%1$s%§7/§a%2$s%",
+      "text": "Progress from Visitors: %1$s%/%2$s%",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "1.56",
+          "desc": "当前百分比"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "100",
+          "desc": "满进度百分比"
+        }
+      ],
+      "translate": true,
+      "zh": "访客保底进度: %1$s%/%2$s%",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Progress from Visitors: ",
+          "zh": "访客保底进度: "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s%",
+          "zh": "%1$s%"
+        },
+        {
+          "color": "§7",
+          "text": "/",
+          "zh": "/"
+        },
+        {
+          "color": "§a",
+          "text": "%2$s%",
+          "zh": "%2$s%"
+        }
+      ]
+    },
+    {
+      "id": "pity_garden_jacob_s_contests",
+      "context": "实测采集补译；Hub_General / RNG_Pity_Capture",
+      "raw": "§7Progress from Jacob's Contests: §e%1$s%§7/§a%2$s%",
+      "text": "Progress from Jacob's Contests: %1$s%/%2$s%",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "1.56",
+          "desc": "当前百分比"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "100",
+          "desc": "满进度百分比"
+        }
+      ],
+      "translate": true,
+      "zh": "Jacob 农业竞赛保底进度: %1$s%/%2$s%",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Progress from Jacob's Contests: ",
+          "zh": "Jacob 农业竞赛保底进度: "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s%",
+          "zh": "%1$s%"
+        },
+        {
+          "color": "§7",
+          "text": "/",
+          "zh": "/"
+        },
+        {
+          "color": "§a",
+          "text": "%2$s%",
+          "zh": "%2$s%"
+        }
+      ]
+    },
+    {
+      "id": "pity_garden_crops",
+      "context": "实测采集补译；Hub_General / RNG_Pity_Capture",
+      "raw": "§7Progress from Crops: §e%1$s%§7/§a%2$s%",
+      "text": "Progress from Crops: %1$s%/%2$s%",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "1.56",
+          "desc": "当前百分比"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "100",
+          "desc": "满进度百分比"
+        }
+      ],
+      "translate": true,
+      "zh": "作物保底进度: %1$s%/%2$s%",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Progress from Crops: ",
+          "zh": "作物保底进度: "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s%",
+          "zh": "%1$s%"
+        },
+        {
+          "color": "§7",
+          "text": "/",
+          "zh": "/"
+        },
+        {
+          "color": "§a",
+          "text": "%2$s%",
+          "zh": "%2$s%"
+        }
+      ]
+    },
+    {
+      "id": "pity_garden_greenhouse",
+      "context": "实测采集补译；Hub_General / RNG_Pity_Capture",
+      "raw": "§7Progress from Greenhouse: §e%1$s%§7/§a%2$s%",
+      "text": "Progress from Greenhouse: %1$s%/%2$s%",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "1.56",
+          "desc": "当前百分比"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "100",
+          "desc": "满进度百分比"
+        }
+      ],
+      "translate": true,
+      "zh": "温室保底进度: %1$s%/%2$s%",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Progress from Greenhouse: ",
+          "zh": "温室保底进度: "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s%",
+          "zh": "%1$s%"
+        },
+        {
+          "color": "§7",
+          "text": "/",
+          "zh": "/"
+        },
+        {
+          "color": "§a",
+          "text": "%2$s%",
+          "zh": "%2$s%"
+        }
+      ]
+    },
+    {
+      "id": "pity_garden_pests",
+      "context": "实测采集补译；Hub_General / RNG_Pity_Capture",
+      "raw": "§7Progress from Pests: §e%1$s%§7/§a%2$s%",
+      "text": "Progress from Pests: %1$s%/%2$s%",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "1.56",
+          "desc": "当前百分比"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "100",
+          "desc": "满进度百分比"
+        }
+      ],
+      "translate": true,
+      "zh": "害虫保底进度: %1$s%/%2$s%",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Progress from Pests: ",
+          "zh": "害虫保底进度: "
+        },
+        {
+          "color": "§e",
+          "text": "%1$s%",
+          "zh": "%1$s%"
+        },
+        {
+          "color": "§7",
+          "text": "/",
+          "zh": "/"
+        },
+        {
+          "color": "§a",
+          "text": "%2$s%",
+          "zh": "%2$s%"
+        }
+      ]
+    },
+    {
+      "id": "pity_rabbit_name",
+      "context": "实测采集补译；Hub_General / RNG_Pity_Capture",
+      "raw": "§d§l%1$s §aChocolate Rabbits",
+      "text": "%1$s Chocolate Rabbits",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "category_name",
+          "example": "MYTHIC",
+          "desc": "巧克力兔稀有度"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s巧克力兔",
+      "segments": [
+        {
+          "color": "§d§l",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§a",
+          "text": "Chocolate Rabbits",
+          "zh": "巧克力兔"
+        }
+      ]
+    }
+  ]
+}

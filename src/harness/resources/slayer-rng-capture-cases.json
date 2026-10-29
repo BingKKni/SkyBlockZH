@@ -1,0 +1,25 @@
+{
+  "source_note":"本轮实测回归：独立断言译文、颜色与跨行消费，覆盖复查发现的漏译和颜色问题。",
+  "cases":[
+    {"name":"神话巧克力兔名使用稀有度词表并保留粗体","surface":"GUI_Item","source":["§d§lMYTHIC §aChocolate Rabbits"],"expected":"§d§l神话§a巧克力兔"},
+    {"name":"神圣巧克力兔名从实时青色取色","surface":"GUI_Item","source":["§b§lDIVINE §aChocolate Rabbits"],"expected":"§b§l神圣§a巧克力兔"},
+    {"name":"育母蜘蛛侧边栏休眠","surface":"ScoreBoard","source":["§4Broodmother§7: §eDormant"],"expected":"§4育母蜘蛛§7: §e休眠"},
+    {"name":"育母蜘蛛侧边栏即将苏醒","surface":"ScoreBoard","source":["§4Broodmother§7: §6Soon"],"expected":"§4育母蜘蛛§7: §6即将苏醒"},
+    {"name":"育母蜘蛛侧边栏苏醒中","surface":"ScoreBoard","source":["§4Broodmother§7: §cAwakening"],"expected":"§4育母蜘蛛§7: §c苏醒中"},
+    {"name":"育母蜘蛛侧边栏即将现身","surface":"ScoreBoard","source":["§4Broodmother§7: §4Imminent"],"expected":"§4育母蜘蛛§7: §4即将现身"},
+    {"name":"育母蜘蛛Tab休眠","surface":"TabList","source":["Broodmother: §eDormant"],"expected":"育母蜘蛛: §e休眠"},
+    {"name":"育母蜘蛛Tab即将苏醒","surface":"TabList","source":["Broodmother: §6Soon"],"expected":"育母蜘蛛: §6即将苏醒"},
+    {"name":"育母蜘蛛Tab苏醒中","surface":"TabList","source":["Broodmother: §cAwakening"],"expected":"育母蜘蛛: §c苏醒中"},
+    {"name":"育母蜘蛛Tab即将现身","surface":"TabList","source":["Broodmother: §4Imminent"],"expected":"育母蜘蛛: §4即将现身"},
+    {"name":"猎手RNG跨行语序与灰色句号","source":["§7Your §dSlayer RNG Meters §7fill with","§dSlayer XP §7every time you defeat a","§aTier III Boss §7or higher!"],"expected":"§7每次击败 §aIII 阶首领§7或更高阶首领时，你的§d猎手 RNG 计量表§7会累积§d猎手经验§7。","consumed":3},
+    {"name":"Sven追随者完整名不遗留英文称谓","surface":"ChatMessage","source":["§4§lSLAYER MINIBOSS! §7The Sven Follower spawned!"],"expected":"§4§l猎手精英! §7首领 Sven 追随者出现了!"},
+    {"name":"Sven头狼完整名不遗留英文称谓","surface":"ChatMessage","source":["§4§lSLAYER MINIBOSS! §7The Sven Alpha spawned!"],"expected":"§4§l猎手精英! §7首领 Sven 头狼出现了!"},
+    {"name":"织网蜘蛛死亡提示复用已有模板","surface":"ChatMessage","source":["§c☠ §7Montambanc was killed by Weaver Spider."],"expected":"§c☠ §7Montambanc 被织网蜘蛛杀死了。"},
+    {"name":"暗影幽魂一颗骷髅","surface":"Hologram","source":["§4Darkness Shade §c☠"],"expected":"§4暗影幽魂 §c☠"},
+    {"name":"暗影幽魂四颗骷髅复用同一模板","surface":"Hologram","source":["§4Darkness Shade §c☠☠☠☠"],"expected":"§4暗影幽魂 §c☠☠☠☠"},
+    {"name":"猎手经验进度独立保留斜杠颜色","surface":"GUI_Item","source":["§7Slayer XP: §d1,100§5/§d75,000,000"],"expected":"§7猎手经验: §d1,100§5/§d75,000,000"},
+    {"name":"不同目标经验复用同一进度模板","surface":"GUI_Item","source":["§7Slayer XP: §d1,100§5/§d3,277"],"expected":"§7猎手经验: §d1,100§5/§d3,277"},
+    {"name":"VIP奖励包保留付费Rank名","surface":"GUI_Item","source":["§aVIP Rewards Bundle"],"expected":"§aVIP 奖励包"},
+    {"name":"MVP奖励包保留付费Rank名","surface":"GUI_Item","source":["§bMVP Rewards Bundle"],"expected":"§bMVP 奖励包"}
+  ]
+}

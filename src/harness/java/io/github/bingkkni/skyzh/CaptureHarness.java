@@ -409,6 +409,31 @@ public final class CaptureHarness {
 		}
 		check("保留图鉴规则不扩展到计分板",
 			io.github.bingkkni.skyzh.capture.PreservedText.ignored(Surface.SCOREBOARD, "Birries I"), false);
+		for (String source : List.of("§aRevenant Horror I", "§4Tarantula Broodfather IV", "§4Sven Packmaster IV",
+			"§5Voidgloom Seraph II", "§cInferno Demonlord III", "§dRiftstalker Bloodfiend V")) {
+			checkNothing("侧边栏猎手专名加阶数不重复采集 " + source, CaptureSurface.SCOREBOARD, source);
+		}
+		for (String source : List.of("Unknown Slayer IV", "Sven Packmaster IV is here", "Sven Packmaster",
+			"Tarantula Broodfather IV: Slain")) {
+			check("侧边栏猎手保留规则不吞未知名称、裸名或任务句 " + source,
+				io.github.bingkkni.skyzh.capture.PreservedText.ignored(Surface.SCOREBOARD, source), false);
+		}
+		for (String source : List.of("§aVIP Rewards Bundle", "§bMVP Rewards Bundle")) {
+			checkNothing("付费Rank奖励包不重复报告混杂 " + source, CaptureSurface.GUI_ITEM, source);
+		}
+		for (String name : List.of("Sven Follower", "Sven Alpha")) {
+			checkNothing("已译猎手精英不重复报告混杂 " + name, CaptureSurface.CHAT_MESSAGE,
+				"§4§lSLAYER MINIBOSS! §7The " + name + " spawned!");
+		}
+		checkVerdict("未知猎手精英仍报告", CaptureSurface.CHAT_MESSAGE,
+			"§4§lSLAYER MINIBOSS! §7The Unrecorded Beast spawned!", Classifier.Bucket.MIXED);
+		for (String status : List.of("Dormant", "Soon", "Awakening", "Imminent")) {
+			checkNothing("育母蜘蛛四种实测状态不再采集 " + status, CaptureSurface.SCOREBOARD,
+				"§4Broodmother§7: §e" + status);
+		}
+		checkVerdict("育母蜘蛛未知状态仍报告", CaptureSurface.SCOREBOARD,
+			"§4Broodmother§7: §eUnrecorded", Classifier.Bucket.MIXED);
+		check("蜘蛛状态类型不污染普通raw取值", Translator.index().terms().translate("raw", "Soon") == null, true);
 		for (String icons : List.of("ꕮ", "⎋/⸙/ꕮ", "४/⎋/⸙/☯/ꕮ")) {
 			checkNothing("Booster标签按规则保留且不重复采集 " + icons,
 				CaptureSurface.GUI_ITEM, "§7Boosters: §a" + icons);

@@ -1,0 +1,39 @@
+{
+  "source": "runtime capture: ../SkyZH_Logs/skyzh-capture",
+  "verified_ingame": true,
+  "entries": [
+    {
+      "id": "rain_countdown",
+      "context": "实测采集补译；Combat / Spider_Weather_Capture",
+      "raw": "§fRain§f: §bin %1$s ",
+      "text": "Rain: in %1$s ",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "duration",
+          "example": "26m",
+          "desc": "距离降雨的时间，单位随服务器变化"
+        }
+      ],
+      "translate": true,
+      "zh": "降雨: %1$s 后 ",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Rain",
+          "zh": "降雨"
+        },
+        {
+          "color": "§f",
+          "text": ": ",
+          "zh": ": "
+        },
+        {
+          "color": "§b",
+          "text": "in %1$s ",
+          "zh": "%1$s 后 "
+        }
+      ]
+    }
+  ]
+}
