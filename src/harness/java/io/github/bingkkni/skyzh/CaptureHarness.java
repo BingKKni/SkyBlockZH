@@ -710,6 +710,17 @@ public final class CaptureHarness {
 				raw.replace(mob[0], mob[1]));
 			checkNothing("已翻译实体血条不误报 " + mob[0], CaptureSurface.HOLOGRAM, raw);
 		}
+		for (String[] mob : List.of(new String[]{"Flint Skeleton", "燧石骷髅"},
+			new String[]{"Primordial Jockey", "原初骑手"}, new String[]{"Fireslinger", "火焰投手"},
+			new String[]{"Executive Wendy", "干部 Wendy"}, new String[]{"Kalhuiki Tribe Member", "Kalhuiki 部族成员"},
+			new String[]{"Voidling Radical", "Voidling 激进者"})) {
+			for (String hp : List.of("200§f/§a200", "18,000§f/§a18,000", "1B")) {
+				String raw = "§8[§7Lv3§8] §e\uE07B§6\uE083 §c" + mob[0] + "§r §a" + hp + "§c❤";
+				check("新增怪物通名保留双图标、等级及动态血量 " + mob[0] + hp,
+					TranslationHarness.legacy(NameTag.mobName(Component.literal(raw))),
+					TranslationHarness.legacy(Component.literal(raw.replace(mob[0], mob[1]))));
+			}
+		}
 		Component unknown = Component.literal("§cUnverified Creature §a100§c❤");
 		check("未知生物不进行逐词猜译", NameTag.mobName(unknown) == unknown, true);
 		check("无血量宠物名字不走怪物通名路径", NameTag.mobName(Component.literal("[Lv100] Glacite Mutt")).getString(),

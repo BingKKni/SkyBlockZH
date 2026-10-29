@@ -93,6 +93,7 @@ public final class ChatInteractionHarness {
 		riftTerminal();
 		fearContract();
 		phoneWrapper();
+		attributeRewards();
 		colours();
 		System.out.printf("扫描 CHAT 可用记录 %d 条，按钮记录 %d 条，已匹配颜色样本 %d 条；通过 %d / 失败 %d%n",
 			chatRecords, buttons, colourSamples, passed, failed);
@@ -380,6 +381,52 @@ public final class ChatInteractionHarness {
 		}
 		require("复用面对面对白时电话标记与正文事件不互串", ok);
 		require("电话包装不改原始组件", before.equals(StyledText.of(input)));
+	}
+
+	/** Oct 29 style_runs: unbracketed attribute names and tiers share one action, padding has none. */
+	private static void attributeRewards() {
+		String[][] cases = {
+			{"Forest Strength", "林中之力", "I", "", "Grants 0→+5 Strength while on Foraging Islands."},
+			{"Forest Trap", "森林陷阱", "I", "", "Forest Trap"},
+			{"Essence of Arthropods", "节肢精华", "I", "", "Essence of Arthropods"},
+			{"Moonglade Mastery", "月光林地精通", "I", "", "Moonglade Mastery"},
+			{"Arthropod Resistance", "节肢抵抗", "I", "", "Arthropod Resistance"},
+			{"Cheapstake", "精打细算", "III", "II➜", "Gain 2%→+3% more Coins from fishing treasures."},
+			{"Forest Fishing", "森林垂钓", "III", "I➜", "Grants 3→+9 Fishing Speed while on Foraging Islands."}
+		};
+		for (String[] row : cases) {
+			String command = "/attributemenu " + row[0].toLowerCase(java.util.Locale.ROOT).replace(' ', '_');
+			Style action = Style.EMPTY.withClickEvent(new ClickEvent.RunCommand(command))
+				.withHoverEvent(new HoverEvent.ShowText(Component.literal(row[4])));
+			Style nameStyle = action.withColor(ChatFormatting.GOLD);
+			Style oldStyle = action.withColor(ChatFormatting.DARK_GRAY);
+			Style tierStyle = action.withColor(ChatFormatting.DARK_AQUA);
+			MutableComponent input = Component.empty().append(Component.literal("  "))
+				.append(Component.literal(row[0] + " ").setStyle(nameStyle));
+			if (!row[3].isEmpty()) input.append(Component.literal(row[3]).setStyle(oldStyle));
+			input.append(Component.literal(row[2]).setStyle(tierStyle));
+			StyledText before = StyledText.of(input);
+			for (boolean block : new boolean[] {false, true}) {
+				Component output = block
+					? Translator.translateChatBlock(input, 320, c -> StyledText.of(c).length() * 6)
+					: Translator.translateAvailable(input, Surface.CHAT).padded();
+				StyledText after = StyledText.of(output);
+				String label = "属性奖励 " + row[0] + (block ? " 聊天块" : " 单行");
+				String expected = "  " + row[1] + " " + row[3] + row[2];
+				require(label + " 完整译名与动态等级", after.plain().equals(expected));
+				if (!after.plain().equals(expected)) continue;
+				boolean styles = true;
+				int nameEnd = 2 + row[1].length() + 1;
+				int oldEnd = nameEnd + row[3].length();
+				for (int i = 0; i < after.length(); i++) {
+					Style expectedStyle = i < 2 ? Style.EMPTY
+						: i < nameEnd ? nameStyle : i < oldEnd ? oldStyle : tierStyle;
+					styles &= after.styleAt(i).equals(expectedStyle);
+				}
+				require(label + " 名称/旧等级/新等级保留颜色和点击悬浮，缩进不串事件", styles);
+				require(label + " 不改服务器原始组件", before.equals(StyledText.of(input)));
+			}
+		}
 	}
 
 	private static void colours() {
