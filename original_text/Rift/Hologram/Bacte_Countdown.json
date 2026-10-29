@@ -1,0 +1,39 @@
+{
+  "source": "用户实测截图 dd444f350eacdf50545d332e18410a6d.png 与反斜杠格式反馈；https://hypixelskyblock.minecraft.wiki/w/Bacte",
+  "verified_ingame": true,
+  "entries": [
+    {
+      "id": "bacte_countdown_forward_slashes",
+      "context": "裂隙 Bacte 战斗中的浮空倒计时，正斜杠格式",
+      "text": "// %ss //",
+      "placeholders": [
+        { "token": "%s", "type": "number", "example": "4.2", "desc": "剩余秒数，支持整数和小数" }
+      ],
+      "segments": [
+        { "text": "// ", "zh": "// " },
+        { "text": "%s", "zh": "%s" },
+        { "text": "s", "zh": "秒" },
+        { "text": " //", "zh": " //" }
+      ],
+      "translate": true,
+      "zh": "// %s秒 //",
+      "gloss": "截图中两侧斜杠为绿色，中间秒数为红色粗体；颜色会随倒计时变化，各段沿用实时样式，秒继承原文 s 的样式。用户指定秒数与秒之间不加空格。"
+    },
+    {
+      "id": "bacte_countdown_backslashes",
+      "context": "同一倒计时的反斜杠格式，按用户反馈保留双反斜杠",
+      "text": "\\\\ %ss \\\\",
+      "placeholders": [
+        { "token": "%s", "type": "number", "example": "3.5", "desc": "剩余秒数，支持整数和小数" }
+      ],
+      "segments": [
+        { "text": "\\\\ ", "zh": "\\\\ " },
+        { "text": "%s", "zh": "%s" },
+        { "text": "s", "zh": "秒" },
+        { "text": " \\\\", "zh": " \\\\" }
+      ],
+      "translate": true,
+      "zh": "\\\\ %s秒 \\\\"
+    }
+  ]
+}
