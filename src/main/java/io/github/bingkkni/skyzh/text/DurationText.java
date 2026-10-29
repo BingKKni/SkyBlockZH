@@ -32,7 +32,18 @@ public final class DurationText {
 			if (count == 1 && groups.group(2).equals("年")
 				&& (styled.plain().substring(0, groups.start()).matches("(?s).*第 *")
 					|| styled.plain().substring(groups.end()).matches("(?s)^ *(?:[0-9]+ *月|[春夏秋冬]季).*"))) continue;
-			result.append(styled.slice(cursor, groups.start()));
+			int prefixEnd = groups.start();
+			while (prefixEnd > cursor && styled.plain().charAt(prefixEnd - 1) == ' ') prefixEnd--;
+			boolean remaining = styled.plain().substring(cursor, prefixEnd).endsWith("剩余");
+			int suffixStart = groups.end();
+			while (suffixStart < styled.length() && styled.plain().charAt(suffixStart) == ' ') suffixStart++;
+			// Ordinary sentence punctuation is compact; HUD icons and following words keep spacing.
+			boolean punctuation = suffixStart < styled.length()
+				&& ",.!?;:，。！？；：、…()[]{}（）【】《》「」『』“”‘’\"'".indexOf(styled.plain().charAt(suffixStart)) >= 0;
+			if (!remaining || !(punctuation || styled.plain().substring(groups.end()).isBlank())) {
+				prefixEnd = groups.start();
+			}
+			result.append(styled.slice(cursor, prefixEnd));
 			var spans = new java.util.ArrayList<int[]>();
 			boolean hours = false;
 			while (parts.find()) {
@@ -60,7 +71,7 @@ public final class DurationText {
 				result.append(styled.slice(unitStart, unitEnd));
 				index++;
 			}
-			cursor = groups.end();
+			cursor = remaining && punctuation ? suffixStart : groups.end();
 		}
 		return result.append(styled.slice(cursor, styled.length()));
 	}

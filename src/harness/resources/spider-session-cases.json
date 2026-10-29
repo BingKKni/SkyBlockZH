@@ -1,6 +1,10 @@
 {
   "source_note": "本轮采集与截图的独立回归，覆盖颜色、动态数值、完整句消费和误匹配边界。",
   "cases": [
+    {"name":"独立剩余时间紧凑显示","surface":"Hologram","source":["§a5m 9s Left"],"expected":"§a剩余5分09秒"},
+    {"name":"独立剩余时间变值保留颜色","surface":"Hologram","source":["§e12m 34s Left"],"expected":"§e剩余12分34秒"},
+    {"name":"速算答对前缀","surface":"ChatMessage","source":["§d§lQUICK MATHS! §einkkni §7answered correctly in §a3s§e!"],"expected":"§d§l速算! §einkkni§7 答对了，用时 §a3秒§e!"},
+    {"name":"速算答错前缀","surface":"ChatMessage","source":["§d§lQUICK MATHS! §cWrong answer, try again!"],"expected":"§d§l速算! §c答错了，再试一次!"},
     {"name":"稀有掉落复用物品名","surface":"ChatMessage","source":["§6§lRARE DROP! §aEnchanted Spider Eye §b(+125  Magic Find)"],"expected":"§6§l稀有掉落! §a附魔蜘蛛眼 §b（+125  魔法寻宝）"},
     {"name":"猎手掉落原版附魔","surface":"ChatMessage","source":["§d§lCRAZY RARE DROP! §7(§9Bane of Arthropods VI§7) §b(+113%  Magic Find)"],"expected":"§d§l超稀有掉落! §7(§9节肢杀手 VI§7) §b(+113%  魔法寻宝)"},
     {"name":"等级缩写不误当罗马数字","surface":"GUI_Title","source":["Spider Slayer LVL Rewards"],"expected":"蜘蛛猎手等级奖励"},
@@ -19,7 +23,7 @@
     {"name":"狼蛛力量暴伤换序保留颜色及上限","source":["§7Grants §9+1 Crit Damage §7per §c10","§cStrength§7. §8(Max 1,000 Strength)"],"expected":"§7每有 §c10 力量§7，获得 §9+1 暴击伤害§8（最多计入 1,000 力量）","consumed":2},
     {"name":"狼蛛小人配方两行完整消费","source":["§7Place this minion and it will start","§7generating and squashing Tarantulas!"],"expected":"§7放置这个小人后，它会生成并消灭狼蛛!","consumed":2},
     {"name":"天气同时支持分秒","surface":"TabList","source":[" Wispfall§f: §7for 1m 2s "],"expected":" 灵火飘落§f: §7剩余 1分02秒 "},
-    {"name":"答题算式原样保留","surface":"ChatMessage","source":["§d§lQUICK MATHS! §7Solve: §e(3+2)x(6+8)"],"expected":"§d§l快速心算! §7请计算: §e(3+2)x(6+8)"},
+    {"name":"答题算式原样保留","surface":"ChatMessage","source":["§d§lQUICK MATHS! §7Solve: §e(3+2)x(6+8)"],"expected":"§d§l速算! §7请计算: §e(3+2)x(6+8)"},
     {"name":"骷髅图标数量不写死","surface":"Hologram","source":["§4Math Teacher §c☠☠☠"],"expected":"§4数学老师 §c☠☠☠"}
   ]
 }

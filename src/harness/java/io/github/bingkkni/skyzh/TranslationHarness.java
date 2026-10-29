@@ -1068,12 +1068,26 @@ public final class TranslationHarness {
 			"§7距结息: §b02小时24分56秒");
 		// Same sentence, three server writings of the remaining time. Only the "hours" one had a
 		// record, so the tab footer was English for the whole last hour of every potion.
+		for (String[] example : new String[][] {
+			{"剩余 8秒!", "剩余8秒!"},
+			{"剩余 8秒 , 然后继续", "剩余8秒, 然后继续"},
+			{"剩余 12秒 ，然后继续", "剩余12秒，然后继续"},
+			{"剩余 8秒（随后继续）", "剩余8秒（随后继续）"},
+			{"剩余 8秒 \"随后继续\"", "剩余8秒\"随后继续\""},
+			{"剩余 8秒 ф", "剩余 8秒 ф"},
+			{"剩余 8秒 ", "剩余 8秒 "},
+			{"剩余 8秒 后结束", "剩余 8秒 后结束"}
+		}) {
+			String actual = io.github.bingkkni.skyzh.text.DurationText.normalize(Component.literal(example[0])).getString();
+			report("剩余时长标点与图标间隔: " + example[0], actual.equals(example[1]), "实际 [" + actual + "]");
+		}
+		check("道场剩余时间感叹号紧凑显示", "§aYou have 8s remaining!", Surface.CHAT, "§a剩余8秒!");
 		check("神药剩余小时", "§7You have a §cGod Potion §7active! §d2 hours", Surface.TABLIST,
-			"§c神药§7生效中! 剩余 §d2小时");
+			"§c神药§7生效中! 剩余§d2小时");
 		check("神药剩余分钟", "§7You have a §cGod Potion §7active! §d32 minutes", Surface.TABLIST,
-			"§c神药§7生效中! 剩余 §d32分钟");
+			"§c神药§7生效中! 剩余§d32分钟");
 		check("神药最后几分钟的紧凑倒计时", "§7You have a §cGod Potion §7active! §d5m 59s",
-			Surface.TABLIST, "§c神药§7生效中! 剩余 §d5分59秒");
+			Surface.TABLIST, "§c神药§7生效中! 剩余§d5分59秒");
 		// [SECURITY] Sloth wears a tag the shape of a player's line, so the speaker used to be read as
 		// dialogue and the sentence never looked up. The tag has to be peeled the same way [NPC] is.
 		check("Sloth 的安全提示剥掉 [SECURITY] 前缀", "§c[SECURITY] Sloth§f: Downloading suspicious mods"
