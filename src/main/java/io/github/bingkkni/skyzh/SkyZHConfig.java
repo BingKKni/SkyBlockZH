@@ -204,7 +204,7 @@ public final class SkyZHConfig {
 		help.addProperty("helpImproveTranslation", "在游戏内发现文本未翻译或翻译格式错误时，是否上传到开发者服务器报告（暂不可用）。");
 		help.addProperty("welcomeShown", "是否已经显示首次设置引导。改为 false 后，下次进入 Hypixel 时会再次显示。");
 		help.addProperty("translateSkyBlockName", "是否翻译 SkyBlock 玩法名。翻译后的文本为「空岛生存」。");
-		help.addProperty("displayPriority", "显示优先级：default 保持兼容；high 在最终显示前补译服务器文本；force 优先显示服务器原文的译文并绕过受保护显示通道中的修改。无法接管完全独立的自绘渲染器。");
+		help.addProperty("displayPriority", "显示优先级：default 保持兼容；high 在最终显示前补译服务器文本；force 使用服务器原文聊天视图与最后层计分板，被辅助 Mod 过滤的服务器消息可能重新显示。不修改其他 Mod，无法接管完全独立的聊天渲染器。");
 		help.addProperty("originalTips", "在看到服务器发出的消息中包含物品时，提示按热键切换原文，再按恢复译文。关闭后将不再提示。");
 		help.addProperty("captureUntranslated", "【给翻译者用，普通玩家请保持关闭】把游戏里还没翻译、以及翻译了但仍中英混杂的文本写到硬盘上，供补全语料用。只采集服务器发来的原文，不会采集其他 Mod 的文本，也不会改变游戏里显示的任何内容。打开它时，如果装了 hypixel-mod-api，会向服务器订阅一次位置事件（用来判断采到的文本属于哪个玩法）——这是本 Mod 唯一一处会向 Hypixel 发包的地方，关掉就不发。");
 		help.addProperty("captureNotifications", "采集到未翻译、颜色、中英混杂、排版、跨行或数值问题时，是否在聊天栏里输出报告");

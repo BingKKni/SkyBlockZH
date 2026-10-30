@@ -239,6 +239,20 @@ public final class ClientSettingsHarness {
 		check("原文期间无关设置不重排", cache.needsRefresh(false, false, corpus), false);
 		check("恢复翻译刷新历史", cache.needsRefresh(true, false, corpus), true);
 		check("玩法名选项改变刷新历史", cache.needsRefresh(true, true, corpus), true);
+		for (DisplayPriority returned : List.of(DisplayPriority.DEFAULT, DisplayPriority.HIGH)) {
+			for (boolean translated : List.of(false, true)) {
+				ChatDisplayCache ordinary = new ChatDisplayCache();
+				ordinary.needsRefresh(translated, true, corpus);
+				ordinary.invalidatePolicy(); // Force owns display while the ordinary queue keeps receiving messages.
+				GuiMessage duringForce = new GuiMessage(2, Component.literal("new server line"), null, null, null);
+				ordinary.get(duringForce, font, 320, !translated, true, corpus,
+					() -> List.of(FormattedCharSequence.forward("opposite language", Style.EMPTY)));
+				check("强制期间切换语言并收新消息后退档刷新 " + returned + translated,
+					ordinary.needsRefresh(translated, true, corpus), true);
+				check("退档只重建一次 " + returned + translated,
+					ordinary.needsRefresh(translated, true, corpus), false);
+			}
+		}
 		int[] splits = {0};
 		java.util.function.Supplier<List<FormattedCharSequence>> split = () -> {
 			splits[0]++;

@@ -62,6 +62,12 @@ public final class ClientGui {
 		gui.hud.getChat().rescaleChat();
 	}
 
+	public static int guiTicks(Minecraft minecraft) { return minecraft.gui.hud.getGuiTicks(); }
+
+	public static boolean hudVisible(Minecraft minecraft) {
+		return !minecraft.gui.hud.isHidden() && minecraft.gui.overlay() == null;
+	}
+
 	/** Shows a screen, or closes the current one when handed {@code null}. */
 	public static void setScreen(Minecraft minecraft, Screen screen) {
 		minecraft.gui.setScreen(screen);

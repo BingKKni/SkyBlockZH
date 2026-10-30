@@ -44,7 +44,7 @@ import sys
 # Annotations that name a target method and may name a call site inside it.
 INJECTORS = (
     "Inject", "Redirect", "ModifyArg", "ModifyArgs", "ModifyVariable",
-    "ModifyConstant", "ModifyReturnValue", "WrapOperation", "WrapWithCondition",
+    "ModifyConstant", "ModifyReturnValue", "WrapOperation", "WrapWithCondition", "WrapMethod",
 )
 
 
@@ -169,7 +169,8 @@ def annotation_type_refs(block, pool):
     result = []
     for number in re.findall(r"#(\d+)", block):
         value = pool_value(pool, number, "Utf8")
-        if value and value.startswith("Lorg/spongepowered/asm/mixin/"):
+        if value and (value.startswith("Lorg/spongepowered/asm/mixin/")
+                      or value.startswith("Lcom/llamalad7/mixinextras/injector/")):
             result.append(value)
     return result
 
@@ -254,8 +255,8 @@ def parse_members(text):
             shadows.append((member, "(" in head))
             continue
 
-        kind = next((k for k in INJECTORS
-                     if "Lorg/spongepowered/asm/mixin/injection/%s;" % k in annotation_types), None)
+        kind = next((k for k in INJECTORS if any(
+            annotation.endswith("/" + k + ";") for annotation in annotation_types)), None)
         if kind is None:
             continue
 

@@ -13,6 +13,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class ForceSidebarMixin {
 	@Inject(method = "displayScoreboardSidebar", at = @At("HEAD"), cancellable = true, require = 0)
 	private void skyzh$forceSidebar(GuiGraphicsExtractor graphics, Objective objective, CallbackInfo info) {
-		if (ForceSidebar.render(graphics, objective)) info.cancel();
+		if (ForceSidebar.ownsDisplay()) info.cancel();
 	}
 }

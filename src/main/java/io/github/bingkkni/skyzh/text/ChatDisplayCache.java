@@ -20,6 +20,7 @@ public final class ChatDisplayCache {
 	private boolean displayedTranslation;
 	private boolean displayedName;
 	private Object displayedCorpus;
+	private boolean policyInvalidated;
 
 	private static final class Lines {
 		StyledText source;
@@ -27,10 +28,14 @@ public final class ChatDisplayCache {
 		List<FormattedCharSequence> translated;
 	}
 
+	/** Another display view temporarily owned the queue; refresh once when returning to this one. */
+	public void invalidatePolicy() { this.policyInvalidated = true; }
+
 	/** Effective render policy, not config-save generation: a hint/capture switch needs no rewrap. */
 	public boolean needsRefresh(boolean translated, boolean name, Object index) {
-		boolean changed = this.displayedTranslation != translated
+		boolean changed = this.policyInvalidated || this.displayedTranslation != translated
 			|| translated && (this.displayedName != name || this.displayedCorpus != index);
+		this.policyInvalidated = false;
 		this.displayedTranslation = translated;
 		this.displayedName = name;
 		this.displayedCorpus = index;

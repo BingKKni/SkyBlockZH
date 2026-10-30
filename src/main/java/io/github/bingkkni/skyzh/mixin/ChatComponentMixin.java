@@ -46,6 +46,10 @@ public abstract class ChatComponentMixin {
 	// in an open settings screen, the session toggle, and server changes, without clearing history.
 	@Inject(method = "extractRenderState", at = @At("HEAD"), require = 0)
 	private void skyzh$refreshPolicy(CallbackInfo info) {
+		if (io.github.bingkkni.skyzh.hook.ForceChat.ownsDisplay()) {
+			this.skyzh$displayCache.invalidatePolicy();
+			return;
+		}
 		if (!this.skyzh$displayCache.needsRefresh(HypixelServer.canTranslate(),
 			SkyZHConfig.get().translateSkyBlockName, Translator.index())) return;
 		int scroll = this.chatScrollbarPos;

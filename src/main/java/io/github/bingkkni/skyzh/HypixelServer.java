@@ -49,6 +49,8 @@ public final class HypixelServer {
 
 	private static int unverifiedSidebarTicks;
 	private static boolean warnedUnverifiedSidebar;
+	private static String reportedPolicy;
+	private static int policyLogCooldown;
 
 	private HypixelServer() {
 	}
@@ -165,8 +167,25 @@ public final class HypixelServer {
 		// Until the corpus read at launch lands, every line would be judged against an empty index and
 		// capture would file it as missing; the gate opens with the index.
 		skyBlock = connected && receivedHello && sidebar && !Translator.loading();
+		reportPolicy(connected, sidebar);
 
 		// Chat observes the effective render policy before drawing; no eager full-history rebuild.
+	}
+
+	/** Log transitions, never chat text, addresses, or player identifiers. At most once per five seconds. */
+	private static void reportPolicy(boolean connected, boolean sidebar) {
+		String reason = !connected ? "未连接" : !receivedHello ? "缺少 Hypixel 身份证据"
+			: !sidebar ? "未显示 SBScoreboard" : Translator.loading() ? "语料加载中"
+			: !SkyZHConfig.get().enabled ? "总开关关闭" : HoldOriginal.active() ? "原文模式" : "翻译已启用";
+		String policy = reason + " / " + SkyZHConfig.get().displayPriority;
+		if (policyLogCooldown > 0) policyLogCooldown--;
+		if (policy.equals(reportedPolicy) || policyLogCooldown > 0) return;
+		if (receivedHello || sidebar || reportedPolicy != null) {
+			LOGGER.info("SkyZH 显示状态: {}（连接={}, Hypixel={}, SBScoreboard={}, 语料加载中={}）",
+				policy, connected, receivedHello, sidebar, Translator.loading());
+			reportedPolicy = policy;
+			policyLogCooldown = 100;
+		}
 	}
 
 	/**

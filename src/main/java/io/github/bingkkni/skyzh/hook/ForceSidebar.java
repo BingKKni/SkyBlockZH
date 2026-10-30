@@ -1,6 +1,9 @@
 package io.github.bingkkni.skyzh.hook;
 
 import io.github.bingkkni.skyzh.HypixelServer;
+import io.github.bingkkni.skyzh.platform.ClientGui;
+import net.minecraft.client.gui.screens.ChatScreen;
+import net.minecraft.world.scores.DisplaySlot;
 import java.util.Comparator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
@@ -14,8 +17,21 @@ public final class ForceSidebar {
 	private ForceSidebar() {}
 	private record Row(Component name, Component score, int scoreWidth) {}
 
-	public static boolean render(GuiGraphicsExtractor graphics, Objective objective) {
-		if (!PriorityText.force() || !HypixelServer.isSkyBlockObjective(objective)) return false;
+	public static boolean ownsDisplay() {
+		Minecraft mc = Minecraft.getInstance();
+		return ForceChat.ownsDisplay() && mc.level != null && ClientGui.hudVisible(mc)
+			&& (ClientGui.screen(mc) == null || ClientGui.screen(mc) instanceof ChatScreen);
+	}
+
+	public static void renderFinal(GuiGraphicsExtractor graphics) {
+		if (!ownsDisplay()) return;
+		Objective objective = Minecraft.getInstance().level.getScoreboard().getDisplayObjective(DisplaySlot.SIDEBAR);
+		if (!HypixelServer.isSkyBlockObjective(objective)) return;
+		graphics.nextStratum();
+		render(graphics, objective);
+	}
+
+	private static void render(GuiGraphicsExtractor graphics, Objective objective) {
 		Minecraft minecraft = Minecraft.getInstance();
 		var font = minecraft.font;
 		var board = objective.getScoreboard();
@@ -37,8 +53,8 @@ public final class ForceSidebar {
 		int top = bottom - rows.size() * 9;
 		int left = graphics.guiWidth() - width - 3;
 		int right = graphics.guiWidth() - 1;
-		graphics.fill(left - 2, top - 10, right, top - 1, minecraft.options.getBackgroundColor(0.4F));
-		graphics.fill(left - 2, top - 1, right, bottom, minecraft.options.getBackgroundColor(0.3F));
+		// An opaque final panel keeps independently drawn HUD text from bleeding through.
+		graphics.fill(left - 2, top - 10, right, bottom, 0xFF181818);
 		graphics.text(font, PriorityText.protect(title), left + width / 2 - titleWidth / 2, top - 9, -1, false);
 		for (int i = 0; i < rows.size(); i++) {
 			Row row = rows.get(i);
@@ -46,6 +62,5 @@ public final class ForceSidebar {
 			graphics.text(font, PriorityText.protect(row.name()), left, y, -1, false);
 			graphics.text(font, PriorityText.protect(row.score()), right - row.scoreWidth(), y, -1, false);
 		}
-		return true;
 	}
 }

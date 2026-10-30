@@ -185,18 +185,31 @@ it does not change the existing item-name translation rules.
 - `high`: translate tooltips later and retry known server text when creating the final GUI text state,
   with corresponding width measurement. Sources are server messages and live scoreboard/Tab state;
   arbitrary mod text is not matched against every corpus surface.
-- `force`: take ownership of protected text and font preparation calls before their ordinary modifiers run, rebuild item
-  tooltips from original names and lore, and render the server sidebar independently. Additional mod
-  tooltip lines and images can disappear. SkyHanni Custom Scoreboard is temporarily disabled to avoid
-  overlapping sidebars; selecting another priority restores it.
+- `force`: take ownership of protected text/font calls and rebuild item tooltips from original names and lore;
+  additional mod tooltip lines/images can disappear. Submit the server sidebar in a final stratum after
+  `GameRenderer.extract`, with an opaque background. This does not depend on the original sidebar method
+  being called and does not modify another mod's classes or settings. Custom sidebars elsewhere may remain.
 
-All modes respect the server boundary, master switch and original-text key. Source records are bounded
-and cleared on world/server changes or when enhanced priority is disabled. Original-text mode retains
+While enabled in verified SkyBlock, a display history retains at most 100 messages and 128 Ki characters.
+Server system messages are snapshotted at packet dispatch; client notices and signed player messages are
+also retained without translation. Force temporarily borrows this view only during vanilla chat drawing,
+click hit testing and scrolling, restoring the original display queue and scroll state even on exceptions.
+It never writes `allMessages` or replays chat events. Upstream translations, counters and asynchronous
+line replacement cannot change this source; filtered server messages may reappear. Vanilla wrapping,
+hover/click actions and fading remain in use, with a separate scroll anchor. The original-text key changes
+only the view's language. World/server changes, leaving SkyBlock, disabling the mod and clearing chat
+clear this history; font reloads invalidate layouts only.
+
+All modes respect the server boundary, master switch and original-text key. `PriorityText` source records
+are bounded and cleared on world/server changes or when enhanced priority is disabled. The independent
+chat history continues bounded collection in Default/High so switching to Force retains recent messages.
+Original-text mode retains
 sources, so restoring translations does not require another server packet. Configuration changes clear
-translated-output protection records. Force is not a global Fabric rendering lock: independent
-renderers, upstream data removal and overlays outside the protected entry points can still interfere.
-`checkDisplayPriority` checks provenance, colour policy, Unicode, bounds and isolation; final visuals
-with other mods still require in-game checks.
+translated-output protection records. Force is not a global Fabric rendering lock: completely replaced
+chat renderers, removal before packet dispatch and later layers can still interfere. Rate-limited policy
+transition logs report identity/sidebar/loading/master/original gates without chat or player data.
+`checkDisplayPriority` checks provenance, colour, Unicode, chat snapshots, scroll anchors, bounds and
+isolation; final visuals with other mods still require in-game checks.
 
 ### Where "SkyBlock" is swapped, and where it is not
 

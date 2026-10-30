@@ -84,8 +84,87 @@ public final class PriorityHarness {
 			check("超长未知文本不进入匹配", PriorityText.component(Component.literal("x".repeat(8193)).getVisualOrderText()) == null);
 			check("默认档不修改最终文本", PriorityText.resolve(server.getVisualOrderText()) == null);
 		} finally { sources.clear(); packets.clear(); }
+		checkForceChatHistory();
 		checkWidthReentry();
 		System.out.println("显示优先级检查通过 " + checked + " 项");
+	}
+
+	@SuppressWarnings("unchecked")
+	private static void checkForceChatHistory() throws Exception {
+		Class<?> history = io.github.bingkkni.skyzh.hook.ForceChat.class;
+		var remember = history.getDeclaredMethod("rememberServer", Component.class, int.class);
+		remember.setAccessible(true);
+		var messagesField = history.getDeclaredField("MESSAGES");
+		messagesField.setAccessible(true);
+		var messages = (java.util.List<net.minecraft.client.multiplayer.chat.GuiMessage>) messagesField.get(null);
+		var anchor = history.getDeclaredMethod("anchoredScroll", java.util.List.class, java.util.List.class, int.class);
+		anchor.setAccessible(true);
+		try {
+			Component boss = Component.literal("§c[BOSS] The Watcher§r§f: You have proven yourself. You may pass.");
+			var live = boss.copy();
+			remember.invoke(null, live, 10);
+			live.append(" (2)");
+			Component saved = messages.getFirst().content();
+			check("聊天原文快照不受上游计数追加影响", !saved.getString().contains("(2)"));
+			check("地牢Boss原文快照仍可命中", io.github.bingkkni.skyzh.text.Translator.translateLine(saved, Surface.CHAT)
+				.getString().contains("你们已经证明了自己"));
+			remember.invoke(null, boss, 11);
+			check("重复服务器消息保留两次而非按字符串去重", messages.size() == 2 && messages.get(0) != messages.get(1));
+			var older = messages.get(1);
+			var newer = messages.get(0);
+			var text = Component.literal("line").getVisualOrderText();
+			var a = new net.minecraft.client.multiplayer.chat.GuiMessage.Line(older, text, true);
+			var b = new net.minecraft.client.multiplayer.chat.GuiMessage.Line(newer, text, true);
+			check("同文新消息不会抢走滚动锚点", anchor.invoke(null, java.util.List.of(a, a), java.util.List.of(b, a, a), 1).equals(2));
+			check("缩窄后锚点在原消息范围内", anchor.invoke(null, java.util.List.of(a, a), java.util.List.of(b, a), 1).equals(1));
+			var styled = Component.literal("Continue").withStyle(style -> style.withColor(0xFFAA00)
+				.withClickEvent(new net.minecraft.network.chat.ClickEvent.SuggestCommand("/test"))
+				.withInsertion("insert"));
+			remember.invoke(null, styled, 12);
+			check("聊天快照保留点击和插入样式", StyledText.of(messages.getFirst().content()).equals(StyledText.of(styled)));
+			io.github.bingkkni.skyzh.hook.ForceChat.invalidateLayout();
+			check("字体重载不清原文", messages.size() == 3);
+			var append = history.getDeclaredMethod("append", net.minecraft.client.multiplayer.chat.GuiMessage.class);
+			append.setAccessible(true);
+			{
+				io.github.bingkkni.skyzh.hook.ForceChat.clear();
+				var signature = new net.minecraft.network.chat.MessageSignature(new byte[256]);
+				var player = new net.minecraft.client.multiplayer.chat.GuiMessage(10, styled, signature,
+					net.minecraft.client.multiplayer.chat.GuiMessageSource.PLAYER, null);
+				append.invoke(null, player);
+				// A deletion request alone no longer mutates the view. Vanilla creates the marker only when due.
+				check("等待原版实际删除时保留签名原文",
+					messages.getFirst().signature().equals(signature) && StyledText.of(messages.getFirst().content()).equals(StyledText.of(styled)));
+				var vanillaMarker = net.minecraft.client.gui.components.ChatComponent.class.getDeclaredMethod(
+					"createDeletedMarker", net.minecraft.client.multiplayer.chat.GuiMessage.class);
+				vanillaMarker.setAccessible(true);
+				var marker = (net.minecraft.client.multiplayer.chat.GuiMessage) vanillaMarker.invoke(null, player);
+				io.github.bingkkni.skyzh.hook.ForceChat.deleted(signature, marker);
+				check("原版实际删除同步占位而非移除", messages.size() == 1 && messages.getFirst().content().equals(marker.content()));
+				check("删除提示不当作服务器语料",
+					messages.getFirst().source() == net.minecraft.client.multiplayer.chat.GuiMessageSource.SYSTEM_CLIENT);
+			}
+			for (int i = 0; i < 120; i++) remember.invoke(null, Component.literal("message " + i), i);
+			check("聊天历史条数有界", messages.size() == 100);
+			io.github.bingkkni.skyzh.hook.ForceChat.clear();
+			for (int i = 0; i < 100; i++) remember.invoke(null, Component.literal("x".repeat(8192)), i);
+			check("聊天历史总字符数有界", messages.size() == 16);
+			check("超长聊天包不进入显示缓存", remember.invoke(null, Component.literal("x".repeat(8193)), 100).equals(false));
+			check("拒绝超长包不清已有显示", messages.size() == 16);
+			io.github.bingkkni.skyzh.hook.ForceChat.clear();
+			for (int i = 0; i < 15; i++) remember.invoke(null, Component.literal("x".repeat(8192)), i);
+			remember.invoke(null, Component.literal("x".repeat(8191)), 16);
+			var shortSignature = new net.minecraft.network.chat.MessageSignature(new byte[256]);
+			append.invoke(null, new net.minecraft.client.multiplayer.chat.GuiMessage(17, Component.literal("x"), shortSignature,
+				net.minecraft.client.multiplayer.chat.GuiMessageSource.PLAYER, null));
+			check("删除前恰好达到字符预算", messages.stream().mapToInt(message -> message.content().getString().length()).sum() == 131072);
+			io.github.bingkkni.skyzh.hook.ForceChat.deleted(shortSignature,
+				new net.minecraft.client.multiplayer.chat.GuiMessage(17, Component.literal("deleted message"), null,
+					net.minecraft.client.multiplayer.chat.GuiMessageSource.SYSTEM_CLIENT, null));
+			check("较长删除标记仍遵守字符预算", messages.stream().mapToInt(message -> message.content().getString().length()).sum() <= 131072);
+			check("容量裁剪保留最新删除提示", messages.getFirst().content().getString().equals("deleted message"));
+		} finally { io.github.bingkkni.skyzh.hook.ForceChat.clear(); }
+		check("清空聊天同时清独立历史与滚动", messages.isEmpty() && io.github.bingkkni.skyzh.hook.ForceChat.scroll() == 0);
 	}
 
 	private static void checkWidthReentry() throws Exception {
