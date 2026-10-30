@@ -31,6 +31,7 @@ public abstract class PriorityFontMixin {
 
 	private void skyzh$width(FormattedCharSequence source, CallbackInfoReturnable<Integer> info) {
 		FormattedCharSequence translated = PriorityText.resolve(source);
-		if (translated != null && translated != source) info.setReturnValue(((Font) (Object) this).width(translated));
+		if (translated != null && translated != source)
+			info.setReturnValue(PriorityText.measureWidth(() -> ((Font) (Object) this).width(translated)));
 	}
 }

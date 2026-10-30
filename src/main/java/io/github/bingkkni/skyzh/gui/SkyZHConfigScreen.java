@@ -68,10 +68,12 @@ public class SkyZHConfigScreen extends Screen {
 			.create(0, 0, SMALL_WIDTH, HEIGHT, Component.translatable("skyzh.option.displayPriority"), (button, value) -> {
 				this.config.displayPriority = value;
 				SkyZHConfig.bumpGeneration();
+				button.setMessage(priorityLabel(value));
 			});
+		priority.setMessage(priorityLabel(this.config.displayPriority));
 		this.dependentToggles.add(new DependentToggle(priority, "displayPriority"));
 		grid.addChild(priority, 3, 0);
-		CycleButton<Boolean> itemNames = toggle("translateItemNames", SMALL_WIDTH, false, value -> {});
+		CycleButton<Boolean> itemNames = toggle("translateItemNames", SMALL_WIDTH, true, value -> {});
 		itemNames.active = false;
 		grid.addChild(itemNames, 3, 1);
 		grid.addChild(new StringWidget(WIDE_WIDTH, 20,
@@ -132,6 +134,11 @@ public class SkyZHConfigScreen extends Screen {
 				this.config.enabled ? "skyzh.option." + dependent.key() + ".tooltip" : "skyzh.option.requiresEnabled"
 			)));
 		}
+	}
+
+	private static Component priorityLabel(DisplayPriority value) {
+		return Component.translatable("skyzh.option.displayPriority").append(": ")
+			.append(Component.translatable("skyzh.priority." + value.key()));
 	}
 
 	private static Component toggleLabel(Component name, boolean value) {

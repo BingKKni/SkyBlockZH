@@ -122,11 +122,16 @@ public final class PriorityText {
 
 	/** Null means this is not a known, translatable server line. No all-surfaces corpus guessing. */
 	public static FormattedCharSequence resolve(FormattedCharSequence input) {
-		if (!active() || resolving) return null;
+		if (resolving || !active()) return null;
+		return resolveActive(input, force());
+	}
+
+	private static FormattedCharSequence resolveActive(FormattedCharSequence input, boolean forced) {
+		if (resolving) return null;
 		if (input instanceof ProtectedText) return input;
 		resolving = true;
 		try {
-			return resolveKnown(input, force());
+			return resolveKnown(input, forced);
 		} finally {
 			resolving = false;
 		}
@@ -183,9 +188,14 @@ public final class PriorityText {
 
 	/** Engine layout must measure original English as English, even when a custom HUD uses late translation. */
 	public static int originalWidth(net.minecraft.client.gui.Font font, Component text) {
+		return measureWidth(() -> font.width(text));
+	}
+
+	/** Keep the guard through Font.width: other mods may wrap and erase ProtectedText's type. */
+	public static int measureWidth(java.util.function.IntSupplier measurement) {
 		boolean previous = resolving;
 		resolving = true;
-		try { return font.width(text); }
+		try { return measurement.getAsInt(); }
 		finally { resolving = previous; }
 	}
 

@@ -178,7 +178,7 @@ clearing, then disconnect/rejoin within that launch to verify the files remain.
 ### Display priority
 
 Settings are grouped under General and Developer headings. Display priority cycles through Default,
-High and Force without a restart. The adjacent item-name button is a disabled, off placeholder;
+High and Force without a restart. The adjacent item-name button is a disabled, on placeholder;
 it does not change the existing item-name translation rules.
 
 - `default`: keep the existing hooks and ordering.

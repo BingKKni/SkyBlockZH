@@ -84,7 +84,68 @@ public final class PriorityHarness {
 			check("超长未知文本不进入匹配", PriorityText.component(Component.literal("x".repeat(8193)).getVisualOrderText()) == null);
 			check("默认档不修改最终文本", PriorityText.resolve(server.getVisualOrderText()) == null);
 		} finally { sources.clear(); packets.clear(); }
+		checkWidthReentry();
 		System.out.println("显示优先级检查通过 " + checked + " 项");
+	}
+
+	private static void checkWidthReentry() throws Exception {
+		var guard = PriorityText.class.getDeclaredField("resolving");
+		guard.setAccessible(true);
+		FormattedCharSequence protectedText = new PriorityText.ProtectedText(Component.literal("空岛生存").getVisualOrderText());
+		// Model a third-party modifier wrapping the sequence before Font's injected HEAD runs.
+		FormattedCharSequence wrapped = sink -> protectedText.accept(sink);
+		var outputsField = PriorityText.class.getDeclaredField("OUTPUT");
+		outputsField.setAccessible(true);
+		@SuppressWarnings("unchecked")
+		Map<String, Boolean> outputs = (Map<String, Boolean>) outputsField.get(null);
+		outputs.put("空岛生存", true);
+		check("已激活强制档确实会重新包装译文", resolveActive(wrapped, true) != null);
+		for (DisplayPriority priority : new DisplayPriority[] {DisplayPriority.HIGH, DisplayPriority.FORCE}) {
+			SkyZHConfig.get().displayPriority = priority;
+			try {
+				int width = PriorityText.measureWidth(() -> {
+					check("测量期间保护已启用 " + priority, widthGuardActive());
+					check("包装丢失标记后不重入翻译 " + priority, resolveActive(wrapped, true) == null);
+					int nested = PriorityText.measureWidth(() -> 24);
+					check("嵌套测量保留外层保护 " + priority, widthGuardActive());
+					check("嵌套测量后仍阻止重入 " + priority, resolveActive(wrapped, true) == null);
+					return nested;
+				});
+				check("保留实际字宽 " + priority, width == 24);
+				check("测量完成恢复保护状态 " + priority, !guard.getBoolean(null));
+				RuntimeException failure = new RuntimeException("measurement failure");
+				try {
+					PriorityText.measureWidth(() -> { throw failure; });
+					throw new AssertionError("measurement must throw");
+				} catch (RuntimeException actual) {
+					check("保留测量异常", actual == failure);
+				}
+				check("异常后恢复保护状态 " + priority, !guard.getBoolean(null));
+			} finally {
+				SkyZHConfig.get().displayPriority = DisplayPriority.DEFAULT;
+			}
+		}
+		outputs.clear();
+	}
+
+	private static FormattedCharSequence resolveActive(FormattedCharSequence input, boolean forced) {
+		try {
+			var method = PriorityText.class.getDeclaredMethod("resolveActive", FormattedCharSequence.class, boolean.class);
+			method.setAccessible(true);
+			return (FormattedCharSequence) method.invoke(null, input, forced);
+		} catch (ReflectiveOperationException error) {
+			throw new AssertionError(error);
+		}
+	}
+
+	private static boolean widthGuardActive() {
+		try {
+			var field = PriorityText.class.getDeclaredField("resolving");
+			field.setAccessible(true);
+			return field.getBoolean(null);
+		} catch (ReflectiveOperationException error) {
+			throw new AssertionError(error);
+		}
 	}
 
 	private static Component result(Component input, boolean force) throws Exception {
