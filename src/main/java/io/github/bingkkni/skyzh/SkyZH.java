@@ -1,8 +1,10 @@
 package io.github.bingkkni.skyzh;
 
+import io.github.bingkkni.skyzh.capture.Areas;
 import io.github.bingkkni.skyzh.capture.TextCapture;
 import io.github.bingkkni.skyzh.compat.HypixelApi;
 import java.io.IOException;
+import io.github.bingkkni.skyzh.text.ItemNames;
 import io.github.bingkkni.skyzh.text.Surface;
 import io.github.bingkkni.skyzh.text.TranslationIndex;
 import io.github.bingkkni.skyzh.text.Translator;
@@ -13,10 +15,11 @@ import org.slf4j.LoggerFactory;
 /**
  * SkyZH — a Chinese translation layer for Hypixel SkyBlock.
  *
- * <p>The mod does one thing on startup: read the corpus. Everything after that happens in render
- * hooks, one per surface, each of which translates the text on its way to the screen and leaves the
- * object it came from alone. No game state is written — a client running this mod is, as far as
- * Hypixel and as far as every other mod is concerned, a client running in English.
+ * <p>The mod does one thing on startup: read the corpus, on a thread of its own. Everything after
+ * that happens in render hooks, one per surface, each of which translates the text on its way to
+ * the screen and leaves the object it came from alone. No game state is written — a client running
+ * this mod is, as far as Hypixel and as far as every other mod is concerned, a client running in
+ * English.
  *
  * <p>One thing does read packets, and only when a switch that is off by default is turned on: the
  * capture in {@code capture/}, which writes the text no record answers for to disk so the corpus can
@@ -49,17 +52,22 @@ public final class SkyZH implements ClientModInitializer {
 			}
 		}
 
-		Translator.reload();
+		// Read off the client thread so launching does not wait for it; see Translator#reloadInBackground.
+		Translator.reloadInBackground(() -> {
+			// Catalogs that the first tooltip and hologram would otherwise read on the render thread.
+			ItemNames.preload();
+			Areas.get();
 
-		TranslationIndex index = Translator.index();
-		LOGGER.info(
-			"SkyZH 就绪：聊天 {} 条 / 界面标题 {} 条 / 物品 {} 条 / 动作栏 {} 条 / BossBar {} 条 / 计分板 {} 条 / "
-				+ "Tab 列表 {} 条 / 头顶浮空字 {} 条 / 其他 {} 条。翻译总开关：{}。",
-			index.size(Surface.CHAT), index.size(Surface.GUI_TITLE), index.size(Surface.ITEM),
-			index.size(Surface.ACTION_BAR), index.size(Surface.BOSS_BAR), index.size(Surface.SCOREBOARD),
-			index.size(Surface.TABLIST), index.size(Surface.HOLOGRAM), index.size(Surface.MISC),
-			config.enabled ? "开" : "关"
-		);
+			TranslationIndex index = Translator.index();
+			LOGGER.info(
+				"SkyZH 就绪：聊天 {} 条 / 界面标题 {} 条 / 物品 {} 条 / 动作栏 {} 条 / BossBar {} 条 / 计分板 {} 条 / "
+					+ "Tab 列表 {} 条 / 头顶浮空字 {} 条 / 其他 {} 条。翻译总开关：{}。",
+				index.size(Surface.CHAT), index.size(Surface.GUI_TITLE), index.size(Surface.ITEM),
+				index.size(Surface.ACTION_BAR), index.size(Surface.BOSS_BAR), index.size(Surface.SCOREBOARD),
+				index.size(Surface.TABLIST), index.size(Surface.HOLOGRAM), index.size(Surface.MISC),
+				config.enabled ? "开" : "关"
+			);
+		});
 
 		if (config.captureUntranslated) {
 			// Subscribed here rather than when the first line is captured, because the subscription has

@@ -189,9 +189,10 @@ public final class PriorityText {
 		finally { resolving = previous; }
 	}
 
-	public static Component remember(Component text) {
+	/** {@code plain} is the text's stripped plain spelling, which the display cache keeps beside it. */
+	public static Component remember(Component text, String plain) {
 		if (force()) {
-			OUTPUT.put(StyledText.of(text).plain().strip(), true);
+			OUTPUT.put(plain, true);
 			if (OUTPUT.size() > LIMIT) OUTPUT.remove(OUTPUT.keySet().iterator().next());
 		}
 		return text;

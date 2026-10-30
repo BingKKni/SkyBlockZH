@@ -1,8 +1,5 @@
 package io.github.bingkkni.skyzh.text;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * The stat icons, which SkyBlock draws twice: once as a Unicode symbol and once as a glyph of its
  * own.
@@ -31,7 +28,8 @@ import java.util.Map;
  */
 public final class Glyphs {
 	/**
-	 * Private-use codepoint to the symbol it replaced.
+	 * Private-use codepoint to the symbol it replaced, indexed from {@link #FIRST}; zero where none is
+	 * known. An array rather than a map: every character of every line passes through it.
 	 *
 	 * <p>Taken from SkyHanni's stat table, which is maintained against the live game, and checked
 	 * against the icons seen in a real client log. Gemstone icons are not listed separately: a
@@ -43,43 +41,56 @@ public final class Glyphs {
 	 * same character the game sends — so an unmapped icon costs nothing; a wrongly mapped one would
 	 * quietly merge two different lines.
 	 */
-	private static final Map<Character, Character> SYMBOLS = new HashMap<>();
+	private static final char[] SYMBOLS = new char[0x80];
+
+	/** The first codepoint {@link #SYMBOLS} covers; every identified icon lies within its window. */
+	private static final char FIRST = '\uE000';
 
 	static {
-		SYMBOLS.put('\uE001', '⚔');  // Attack Speed
-		SYMBOLS.put('\uE002', '๑');  // Ability Damage
-		SYMBOLS.put('\uE003', '✎');  // Intelligence — Sapphire
-		SYMBOLS.put('\uE004', '⚡');  // Mana Regen — Rift item tooltip variants
-		SYMBOLS.put('\uE006', '❄');  // Cold Resistance
-		SYMBOLS.put('\uE007', '☠');  // Crit Damage — Onyx
-		SYMBOLS.put('\uE008', '❈');  // Defense — Amethyst
-		SYMBOLS.put('\uE00B', '⫽');  // Ferocity
-		SYMBOLS.put('\uE00C', '☂');  // Fishing Speed — Aquamarine
-		SYMBOLS.put('\uE00D', '❁');  // Strength — Jasper
-		SYMBOLS.put('\uE00F', '▚');  // Gemstone Spread
-		SYMBOLS.put('\uE010', '❤');  // Health — Ruby
-		SYMBOLS.put('\uE011', '❣');  // Health Regeneration
-		SYMBOLS.put('\uE012', '♨');  // Heat Resistance
-		SYMBOLS.put('\uE013', '♣');  // Pet Luck
-		SYMBOLS.put('\uE014', '☄');  // Mending
-		SYMBOLS.put('\uE015', '⸕');  // Mining Speed — Amber
-		SYMBOLS.put('\uE016', '▚');  // Mining Spread
-		SYMBOLS.put('\uE01A', '✯');  // Magic Find
-		SYMBOLS.put('\uE01C', '✧');  // Pristine — Topaz
-		SYMBOLS.put('\uE020', 'ф');  // Rift Time — retains the actual server glyph on output
-		SYMBOLS.put('\uE021', 'α');  // Sea Creature Chance
-		SYMBOLS.put('\uE022', '✦');  // Speed
-		SYMBOLS.put('\uE027', '❂');  // True Defense — Opal
-		SYMBOLS.put('\uE028', '♨');  // Vitality
-		SYMBOLS.put('\uE02C', '☣');  // Crit Chance
-		SYMBOLS.put('\uE051', '☘');  // Farming Fortune — Peridot
-		SYMBOLS.put('\uE053', '☘');  // Mining Fortune — Jade
-		SYMBOLS.put('\uE054', '☘');  // Foraging Fortune — Citrine
-		SYMBOLS.put('\uE05B', '☘');  // Hunting Fortune
-		SYMBOLS.put('\uE067', '⏣');  // The area mark in front of a zone name
+		map('\uE001', '⚔');  // Attack Speed
+		map('\uE002', '๑');  // Ability Damage
+		map('\uE003', '✎');  // Intelligence — Sapphire
+		map('\uE004', '⚡');  // Mana Regen — Rift item tooltip variants
+		map('\uE006', '❄');  // Cold Resistance
+		map('\uE007', '☠');  // Crit Damage — Onyx
+		map('\uE008', '❈');  // Defense — Amethyst
+		map('\uE00B', '⫽');  // Ferocity
+		map('\uE00C', '☂');  // Fishing Speed — Aquamarine
+		map('\uE00D', '❁');  // Strength — Jasper
+		map('\uE00F', '▚');  // Gemstone Spread
+		map('\uE010', '❤');  // Health — Ruby
+		map('\uE011', '❣');  // Health Regeneration
+		map('\uE012', '♨');  // Heat Resistance
+		map('\uE013', '♣');  // Pet Luck
+		map('\uE014', '☄');  // Mending
+		map('\uE015', '⸕');  // Mining Speed — Amber
+		map('\uE016', '▚');  // Mining Spread
+		map('\uE01A', '✯');  // Magic Find
+		map('\uE01C', '✧');  // Pristine — Topaz
+		map('\uE020', 'ф');  // Rift Time — retains the actual server glyph on output
+		map('\uE021', 'α');  // Sea Creature Chance
+		map('\uE022', '✦');  // Speed
+		map('\uE027', '❂');  // True Defense — Opal
+		map('\uE028', '♨');  // Vitality
+		map('\uE02C', '☣');  // Crit Chance
+		map('\uE051', '☘');  // Farming Fortune — Peridot
+		map('\uE053', '☘');  // Mining Fortune — Jade
+		map('\uE054', '☘');  // Foraging Fortune — Citrine
+		map('\uE05B', '☘');  // Hunting Fortune
+		map('\uE067', '⏣');  // The area mark in front of a zone name
 	}
 
 	private Glyphs() {
+	}
+
+	private static void map(char glyph, char symbol) {
+		SYMBOLS[glyph - FIRST] = symbol;
+	}
+
+	/** The symbol a private-use icon stands for, or zero for every other character. */
+	private static char symbol(char c) {
+		int index = c - FIRST;
+		return index >= 0 && index < SYMBOLS.length ? SYMBOLS[index] : 0;
 	}
 
 	/**
@@ -92,9 +103,9 @@ public final class Glyphs {
 		char[] canonical = null;
 
 		for (int i = 0; i < text.length(); i++) {
-			Character symbol = SYMBOLS.get(text.charAt(i));
+			char symbol = symbol(text.charAt(i));
 
-			if (symbol == null) {
+			if (symbol == 0) {
 				continue;
 			}
 
@@ -111,7 +122,7 @@ public final class Glyphs {
 	/** Whether any character of this text is drawn from the server's icon font. */
 	public static boolean hasGlyphs(String text) {
 		for (int i = 0; i < text.length(); i++) {
-			if (SYMBOLS.containsKey(text.charAt(i))) {
+			if (symbol(text.charAt(i)) != 0) {
 				return true;
 			}
 		}
@@ -125,7 +136,7 @@ public final class Glyphs {
 	 *
 	 * <p>Only characters this very line used are put back — an icon the translator typed that the
 	 * server did not send stays as typed, since a symbol nobody can read as a glyph is still better
-	 * than the wrong glyph.
+	 * than the wrong glyph. Where the line drew one symbol with two glyphs, the first one wins.
 	 */
 	public static String restore(String chinese, String sourcePlain) {
 		if (chinese.isEmpty()) {
@@ -135,17 +146,37 @@ public final class Glyphs {
 		// Older corpus snapshots may themselves use a private-use spelling. Fold the
 		// target too, so an old symbol source cannot accidentally acquire a newer glyph.
 		chinese = canonical(chinese);
-		if (!hasGlyphs(sourcePlain)) {
+
+		// The glyphs this line drew, the first for each symbol, gathered in one pass over the line
+		// rather than one pass per character of the Chinese.
+		char[] glyphs = null;
+		int count = 0;
+
+		for (int i = 0; i < sourcePlain.length(); i++) {
+			char glyph = sourcePlain.charAt(i);
+			char symbol = symbol(glyph);
+
+			if (symbol == 0 || drawn(glyphs, count, symbol) != 0) {
+				continue;
+			}
+
+			if (glyphs == null) {
+				glyphs = new char[SYMBOLS.length];
+			}
+
+			glyphs[count++] = glyph;
+		}
+
+		if (count == 0) {
 			return chinese;
 		}
 
 		char[] restored = null;
 
 		for (int i = 0; i < chinese.length(); i++) {
-			char wanted = chinese.charAt(i);
-			char actual = glyphFor(wanted, sourcePlain);
+			char actual = drawn(glyphs, count, chinese.charAt(i));
 
-			if (actual == wanted) {
+			if (actual == 0) {
 				continue;
 			}
 
@@ -169,26 +200,31 @@ public final class Glyphs {
 	 * the one that allows it to be empty, which swallowed the icon into the stat name.
 	 */
 	public static String symbolClass() {
+		java.util.TreeSet<Character> sorted = new java.util.TreeSet<>();
+
+		for (char symbol : SYMBOLS) {
+			if (symbol != 0) {
+				sorted.add(symbol);
+			}
+		}
+
 		StringBuilder symbols = new StringBuilder();
 
-		for (char symbol : new java.util.TreeSet<>(SYMBOLS.values())) {
+		for (char symbol : sorted) {
 			symbols.append(symbol);
 		}
 
 		return symbols.toString();
 	}
 
-	/** The character this line used for a given symbol, or the symbol itself if it used none. */
-	private static char glyphFor(char symbol, String sourcePlain) {
-		for (int i = 0; i < sourcePlain.length(); i++) {
-			char candidate = sourcePlain.charAt(i);
-			Character mapped = SYMBOLS.get(candidate);
-
-			if (mapped != null && mapped == symbol) {
-				return candidate;
+	/** The gathered glyph standing for this symbol, or zero if the line drew it with none. */
+	private static char drawn(char[] glyphs, int count, char symbol) {
+		for (int i = 0; i < count; i++) {
+			if (symbol(glyphs[i]) == symbol) {
+				return glyphs[i];
 			}
 		}
 
-		return symbol;
+		return 0;
 	}
 }

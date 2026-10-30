@@ -32,6 +32,7 @@ public final class Translator {
 	private static final java.util.regex.Pattern DISPLAY_RANK = java.util.regex.Pattern.compile("#[0-9]{1,6} ");
 
 	private static volatile TranslationIndex index = new TranslationIndex();
+	private static volatile boolean loading;
 
 	private Translator() {
 	}
@@ -111,6 +112,40 @@ public final class Translator {
 	public static void reload() {
 		index = TranslationLoader.load();
 		REPORTED_COLOUR_LOSS.clear();
+	}
+
+	/**
+	 * {@link #reload} and then {@code then}, on a thread of their own; returns at once.
+	 *
+	 * <p>Reading and compiling the corpus takes over a second on a freshly started JVM, all of it in
+	 * front of the title screen when done during client init. Nothing needs the index that early, and
+	 * until it lands {@link #index()} is the empty one every surface already copes with. The SkyBlock
+	 * gate stays shut while {@link #loading()}, so no line is drawn or captured against a corpus that
+	 * is still being read.
+	 */
+	public static void reloadInBackground(Runnable then) {
+		loading = true;
+		try {
+			Thread.ofPlatform().name("SkyZH-corpus").daemon().start(() -> {
+				try {
+					reload();
+					then.run();
+				} catch (RuntimeException | Error e) {
+					LOGGER.error("SkyZH 翻译语料加载或目录预读失败。", e);
+					if (e instanceof Error error) throw error;
+				} finally {
+					loading = false;
+				}
+			});
+		} catch (RuntimeException | Error e) {
+			loading = false;
+			throw e;
+		}
+	}
+
+	/** Whether {@link #reloadInBackground} has not finished yet. */
+	public static boolean loading() {
+		return loading;
 	}
 
 	public static TranslationIndex index() {

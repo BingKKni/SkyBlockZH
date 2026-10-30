@@ -28,6 +28,7 @@ public final class TranslationDiagnostics {
 	private static final Pattern HEAD_END = Pattern.compile("(?s).*[.!?:]$");
 	private static final Pattern SENTENCE_END = Pattern.compile("(?s).*[.!?]$");
 	private static final Pattern WORD_END = Pattern.compile("[A-Za-z]+[.!?]");
+	private static final Pattern SPACES = Pattern.compile(" +");
 
 	private TranslationDiagnostics() {
 	}
@@ -229,7 +230,7 @@ public final class TranslationDiagnostics {
 		}
 
 		return WORD_END.matcher(tail).matches()
-			|| head.split(" +").length >= 3 && LOWER_WORD.matcher(tail).find()
+			|| SPACES.split(head).length >= 3 && LOWER_WORD.matcher(tail).find()
 				&& LineShape.enchantments(tail).isEmpty();
 	}
 
@@ -239,7 +240,7 @@ public final class TranslationDiagnostics {
 			return true;
 		}
 
-		for (String word : head.split(" +")) {
+		for (String word : SPACES.split(head)) {
 			if (!word.isEmpty() && Character.isLowerCase(word.charAt(0))) {
 				return false;
 			}

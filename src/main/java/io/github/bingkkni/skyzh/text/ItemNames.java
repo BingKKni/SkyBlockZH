@@ -69,12 +69,18 @@ public final class ItemNames {
 			return display;
 		}
 		for (String reforge : INSTANCE.reforges) {
-			if (name.startsWith(reforge + " ")
+			// startsWith(reforge + " "), without building that string for each of the reforges.
+			if (name.length() > reforge.length() && name.charAt(reforge.length()) == ' ' && name.startsWith(reforge)
 				&& INSTANCE.names.containsKey(name.substring(reforge.length() + 1).toLowerCase(Locale.ROOT))) {
 				return display;
 			}
 		}
 		return null;
+	}
+
+	/** Reads the catalog now, on the calling thread, rather than on the first tooltip the client draws. */
+	public static void preload() {
+		// Class initialisation has read INSTANCE by the time this runs; there is nothing else to do.
 	}
 
 	/** A decorated item still needs a complete catalog identity after its leading server icons. */

@@ -1,9 +1,7 @@
 package io.github.bingkkni.skyzh.text;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.IdentityHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -11,6 +9,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.HoverEvent;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.TextColor;
 import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.network.chat.Style;
 
@@ -33,8 +32,9 @@ public final class StyledText {
 
 	public static StyledText of(Component component) {
 		Builder builder = new Builder();
+		HoverSnapshots hovers = new HoverSnapshots();
 		component.visit((style, string) -> {
-			Style base = snapshotStyle(style);
+			Style base = hovers.snapshot(style);
 			Style current = base;
 			int start = 0;
 			for (int i = 0; i < string.length(); i++) {
@@ -56,23 +56,54 @@ public final class StyledText {
 	}
 
 	/** Style is immutable, but hover components and translatable arguments may still be mutable. */
-	private static Style snapshotStyle(Style style) {
-		if (!(style.getHoverEvent() instanceof HoverEvent.ShowText)
-			&& !(style.getHoverEvent() instanceof HoverEvent.ShowEntity)) return style;
+	static Style snapshotStyle(Style style) {
 		return snapshotStyle(style, new IdentityHashMap<>());
 	}
 
 	private static Style snapshotStyle(Style style, Map<Component, Boolean> active) {
-		return switch (style.getHoverEvent()) {
-			case HoverEvent.ShowText text -> style.withHoverEvent(null)
-				.withHoverEvent(new HoverEvent.ShowText(copyComponent(text.value(), active)));
+		HoverEvent hover = style.getHoverEvent();
+		return mutable(hover) ? withHover(style, snapshotHover(hover, active)) : style;
+	}
+
+	private static boolean mutable(HoverEvent hover) {
+		return hover instanceof HoverEvent.ShowText || hover instanceof HoverEvent.ShowEntity;
+	}
+
+	/** A snapshot equals the live event, so setting it directly would keep the original instead. */
+	private static Style withHover(Style style, HoverEvent hover) {
+		return style.withHoverEvent(null).withHoverEvent(hover);
+	}
+
+	private static HoverEvent snapshotHover(HoverEvent hover, Map<Component, Boolean> active) {
+		return switch (hover) {
+			case HoverEvent.ShowText text -> new HoverEvent.ShowText(copyComponent(text.value(), active));
 			case HoverEvent.ShowEntity entity -> {
 				var info = entity.entity();
-				yield style.withHoverEvent(null).withHoverEvent(new HoverEvent.ShowEntity(new HoverEvent.EntityTooltipInfo(
-					info.type, info.uuid, info.name.map(name -> copyComponent(name, active)))));
+				yield new HoverEvent.ShowEntity(new HoverEvent.EntityTooltipInfo(
+					info.type, info.uuid, info.name.map(name -> copyComponent(name, active))));
 			}
-			case null, default -> style;
+			default -> hover;
 		};
+	}
+
+	/**
+	 * One flatten's hover copies. Children inherit their parent's hover event, so every run of a
+	 * name tag carries the same one. Consecutive runs inheriting that event share one copied hover
+	 * component, which remains owned by the immutable snapshot.
+	 */
+	private static final class HoverSnapshots {
+		private HoverEvent source;
+		private HoverEvent copy;
+
+		Style snapshot(Style style) {
+			HoverEvent hover = style.getHoverEvent();
+			if (!mutable(hover)) return style;
+			if (hover != this.source) {
+				this.source = hover;
+				this.copy = snapshotHover(hover, new IdentityHashMap<>());
+			}
+			return withHover(style, this.copy);
+		}
 	}
 
 	/** A cache-owned tree retaining original component structure, events and translation arguments. */
@@ -113,18 +144,23 @@ public final class StyledText {
 	/** Incremental joins avoid building and re-flattening a Component tree for every lore prefix. */
 	static final class Builder {
 		private final StringBuilder plain = new StringBuilder();
-		private final List<Style> styles = new ArrayList<>();
-		private final List<Integer> ends = new ArrayList<>();
+		private Style[] styles = new Style[4];
+		private int[] ends = new int[4];
+		private int runs;
 
 		void append(String text, int from, int to, Style style) {
 			if (from == to) return;
 			this.plain.append(text, from, to);
-			if (!this.styles.isEmpty() && Objects.equals(this.styles.getLast(), style)) {
-				this.ends.set(this.ends.size() - 1, this.plain.length());
-			} else {
-				this.styles.add(style);
-				this.ends.add(this.plain.length());
+			if (this.runs > 0 && Objects.equals(this.styles[this.runs - 1], style)) {
+				this.ends[this.runs - 1] = this.plain.length();
+				return;
 			}
+			if (this.runs == this.styles.length) {
+				this.styles = Arrays.copyOf(this.styles, this.runs * 2);
+				this.ends = Arrays.copyOf(this.ends, this.runs * 2);
+			}
+			this.styles[this.runs] = style;
+			this.ends[this.runs++] = this.plain.length();
 		}
 
 		void append(StyledText text, int from, int to) {
@@ -137,9 +173,8 @@ public final class StyledText {
 		}
 
 		StyledText build() {
-			int[] boundaries = new int[this.ends.size()];
-			for (int i = 0; i < boundaries.length; i++) boundaries[i] = this.ends.get(i);
-			return new StyledText(this.plain.toString(), this.styles.toArray(Style[]::new), boundaries, 0);
+			return new StyledText(this.plain.toString(), Arrays.copyOf(this.styles, this.runs),
+				Arrays.copyOf(this.ends, this.runs), 0);
 		}
 	}
 
@@ -163,12 +198,27 @@ public final class StyledText {
 			for (int cursor = 0; cursor < length();) {
 				int run = runAt(cursor);
 				cursor = Math.min(length(), this.ends[run] - this.offset);
-				value = 31 * (31 * value + cursor) + this.styles[run].hashCode();
+				value = 31 * (31 * value + cursor) + styleHash(this.styles[run]);
 			}
 			this.hash = value;
 			this.hashed = true;
 		}
 		return this.hash;
+	}
+
+	/**
+	 * What tells two styles apart, without {@code Style.hashCode()}: that boxes every field into a new
+	 * array and deep-hashes the hover event, and a name tag's hover event is rebuilt every frame.
+	 * Events are left to {@link #equals}; equal styles still always hash alike.
+	 */
+	static int styleHash(Style style) {
+		TextColor color = style.getColor();
+		Integer shadow = style.getShadowColor();
+		String insertion = style.getInsertion();
+		int flags = (style.isBold() ? 1 : 0) | (style.isItalic() ? 2 : 0) | (style.isUnderlined() ? 4 : 0)
+			| (style.isStrikethrough() ? 8 : 0) | (style.isObfuscated() ? 16 : 0);
+		int hash = 31 * (color == null ? -1 : color.getValue()) + (shadow == null ? 0 : shadow);
+		return 31 * (31 * hash + flags) + (insertion == null ? 0 : insertion.hashCode());
 	}
 
 	public String plain() {

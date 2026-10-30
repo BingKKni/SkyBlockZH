@@ -6,9 +6,11 @@ import io.github.bingkkni.skyzh.OriginalTips;
 import io.github.bingkkni.skyzh.SkyZHConfig;
 import io.github.bingkkni.skyzh.platform.ClientGui;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.regex.Pattern;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -35,6 +37,7 @@ public final class TooltipTranslator {
 	private static final Pattern DUNGEON_STARS = Pattern.compile("( [✪★☆➊➋➌➍➎✦]+)$");
 	private static final Pattern STACK_COUNT = Pattern.compile(" x[0-9][0-9,]*$");
 	private static final Pattern ICON_TOKEN = Pattern.compile(Capture.of("icon").regex());
+	private static final Pattern TERMINAL_TITLE = Pattern.compile("What starts with: '[A-Z]'\\?");
 	// Reforge prefixes and their Chinese live in _shared/Terms.json under type "reforge". Only names
 	// written there count; a broader first-word heuristic would turn an ordinary item's first word
 	// into a reforge prefix.
@@ -58,6 +61,29 @@ public final class TooltipTranslator {
 			return size() > CACHE_SIZE;
 		}
 	};
+
+	/**
+	 * The tooltips presented last, most recent first, matched line by line by {@link TextShape}.
+	 *
+	 * <p>Vanilla rebuilds a hovered item's lines every frame from the same strings and styles, so from
+	 * the second frame on the finished list is found without flattening a line to build the key above.
+	 * A few are kept for screens that draw two tooltips a frame.
+	 */
+	private record Recent(TextShape[] lines, String hintKey, boolean terminalNames, boolean original,
+		boolean skyBlockName, Font font, TranslationIndex index, List<Component> presented) {
+		boolean matches(List<Component> lines, String hintKey, boolean terminalNames, boolean original,
+			boolean skyBlockName, Font font, TranslationIndex index) {
+			if (this.lines.length != lines.size() || this.terminalNames != terminalNames || this.original != original
+				|| this.skyBlockName != skyBlockName || this.font != font || this.index != index
+				|| !Objects.equals(this.hintKey, hintKey)) return false;
+			for (int i = 0; i < this.lines.length; i++) {
+				if (!this.lines[i].matches(lines.get(i))) return false;
+			}
+			return true;
+		}
+	}
+
+	private static final Recent[] RECENT = new Recent[4];
 
 	private static int cachedGeneration = -1;
 
@@ -200,7 +226,7 @@ public final class TooltipTranslator {
 
 	/** The terminal tests English initials; hiding the original names would hide the question's data. */
 	public static boolean requiresOriginalName(Component title) {
-		return title != null && StyledText.of(title).plain().trim().matches("What starts with: '[A-Z]'\\?");
+		return title != null && TERMINAL_TITLE.matcher(StyledText.of(title).plain().trim()).matches();
 	}
 
 	public static List<Component> translate(Font font, List<Component> lines) {
@@ -222,19 +248,32 @@ public final class TooltipTranslator {
 		String hintKey, boolean original) {
 		// Original lore needs no snapshot, matching or layout work; only an optional name hint does.
 		if (original && (hintKey == null || terminalNames)) return lines;
-		// Complete style equality prevents hash collisions and colour-only updates from reusing pixels.
-		CacheKey cacheKey = new CacheKey(lines.stream().map(StyledText::of).toList(), hintKey,
-			terminalNames, original, SkyZHConfig.get().translateSkyBlockName, font, Translator.index());
+		boolean skyBlockName = SkyZHConfig.get().translateSkyBlockName;
+		TranslationIndex index = Translator.index();
 
 		synchronized (CACHE) {
 			if (cachedGeneration != SkyZHConfig.generation()) {
 				CACHE.clear();
+				Arrays.fill(RECENT, null);
 				cachedGeneration = SkyZHConfig.generation();
 			}
 
+			List<Component> recent = recent(lines, hintKey, terminalNames, original, skyBlockName, font, index);
+
+			if (recent != null) {
+				return recent;
+			}
+		}
+
+		// Complete style equality prevents hash collisions and colour-only updates from reusing pixels.
+		CacheKey cacheKey = new CacheKey(lines.stream().map(StyledText::of).toList(), hintKey,
+			terminalNames, original, skyBlockName, font, index);
+
+		synchronized (CACHE) {
 			List<Component> cached = CACHE.get(cacheKey);
 
 			if (cached != null) {
+				recent(lines, hintKey, terminalNames, original, skyBlockName, font, index, cached);
 				return cached;
 			}
 		}
@@ -273,8 +312,42 @@ public final class TooltipTranslator {
 
 		synchronized (CACHE) {
 			CACHE.put(cacheKey, immutable);
+			recent(lines, hintKey, terminalNames, original, skyBlockName, font, index, immutable);
 		}
 
 		return immutable;
+	}
+
+	private static List<Component> recent(List<Component> lines, String hintKey, boolean terminalNames,
+		boolean original, boolean skyBlockName, Font font, TranslationIndex index) {
+		for (int i = 0; i < RECENT.length && RECENT[i] != null; i++) {
+			Recent recent = RECENT[i];
+
+			if (recent.matches(lines, hintKey, terminalNames, original, skyBlockName, font, index)) {
+				System.arraycopy(RECENT, 0, RECENT, 1, i);
+				RECENT[0] = recent;
+				return recent.presented();
+			}
+		}
+
+		return null;
+	}
+
+	/** Remembers a presented list unless a line is not literal text, which only the key can match. */
+	private static void recent(List<Component> lines, String hintKey, boolean terminalNames, boolean original,
+		boolean skyBlockName, Font font, TranslationIndex index, List<Component> presented) {
+		TextShape[] shapes = new TextShape[lines.size()];
+
+		for (int i = 0; i < shapes.length; i++) {
+			Component line = lines.get(i);
+			shapes[i] = TextShape.of(line, TextShape.hash(line));
+
+			if (shapes[i] == null) {
+				return;
+			}
+		}
+
+		System.arraycopy(RECENT, 0, RECENT, 1, RECENT.length - 1);
+		RECENT[0] = new Recent(shapes, hintKey, terminalNames, original, skyBlockName, font, index, presented);
 	}
 }

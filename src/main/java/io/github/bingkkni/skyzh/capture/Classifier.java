@@ -176,6 +176,7 @@ public final class Classifier {
 
 	/** Below this many letters a skeleton matches by coincidence rather than by being the same sentence. */
 	private static final int SHORTEST_SKELETON = 5;
+	private static final Pattern NOT_ID_CHARACTER = Pattern.compile("[^a-z0-9]");
 
 	private static TranslationIndex indexed;
 	private static Map<Surface, Map<String, TranslationEntry>> skeletons = Map.of();
@@ -481,7 +482,7 @@ public final class Classifier {
 		List<String> words = new ArrayList<>();
 
 		for (String word : Tokens.of(text).words()) {
-			String lower = word.toLowerCase(Locale.ROOT).replaceAll("[^a-z0-9]", "");
+			String lower = NOT_ID_CHARACTER.matcher(word.toLowerCase(Locale.ROOT)).replaceAll("");
 
 			if (!lower.isEmpty()) {
 				words.add(lower);

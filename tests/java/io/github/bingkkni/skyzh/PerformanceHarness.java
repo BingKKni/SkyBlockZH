@@ -34,9 +34,7 @@ public final class PerformanceHarness {
 		for (Surface surface : Surface.values()) {
 			List<TranslationEntry> patterns = patterns(index).get(surface);
 			for (TranslationEntry entry : index.entries(surface)) {
-				JsonObject source = references.get(entry.sourceFile() + "#" + entry.id());
-				if (source.has("ref")) source = references.get(source.get("ref").getAsString());
-				String sample = TranslationHarness.fillPlaceholders(entry.template(), source);
+				String sample = sample(entry, references);
 				compare(index, patterns, surface, sample);
 				compare(index, patterns, surface, sample.replaceAll("([A-Za-z]{2,})[sS]\\b", "$1"));
 				if (entry.template().contains("%")) {
@@ -49,8 +47,19 @@ public final class PerformanceHarness {
 		checkSharedCompilation();
 		checkStyles();
 		checkCache(index);
+		checkCacheReload(index);
+		checkDisplayShapes(index, references);
+		checkShapes();
+		checkTooltipRecent();
+		checkGlyphs();
 		checkCapture();
 		System.out.println("Performance equivalence checks=" + comparisons + ", failures=0");
+	}
+
+	private static String sample(TranslationEntry entry, Map<String, JsonObject> references) {
+		JsonObject source = references.get(entry.sourceFile() + "#" + entry.id());
+		if (source.has("ref")) source = references.get(source.get("ref").getAsString());
+		return TranslationHarness.fillPlaceholders(entry.template(), source);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -145,6 +154,180 @@ public final class PerformanceHarness {
 			&& StyledText.of(recursiveText).styleAt(6).getColor().getValue() == 0x123456,
 			"truncated hover edge retains all visible text and sibling colour");
 		check(StyledText.of(split).equals(StyledText.of(Component.literal("abcd"))), "component seams are not style seams");
+		var shared = Component.literal("shared hover");
+		Component inheriting = Component.empty().append("a").append(Component.literal("b").withStyle(style -> style.withColor(0x111111)))
+			.withStyle(style -> style.withHoverEvent(new net.minecraft.network.chat.HoverEvent.ShowText(shared)));
+		StyledText inherited = StyledText.of(inheriting);
+		shared.append(" changed");
+		check(inherited.styleAt(0).getColor() == null && inherited.styleAt(1).getColor().getValue() == 0x111111
+			&& hoverText(inherited.styleAt(0)).equals("shared hover") && hoverText(inherited.styleAt(1)).equals("shared hover")
+			&& !inherited.equals(StyledText.of(inheriting)), "every run snapshots the hover event it inherited");
+	}
+
+	private static String hoverText(Style style) {
+		return ((net.minecraft.network.chat.HoverEvent.ShowText) style.getHoverEvent()).value().getString();
+	}
+
+	/** Every display result must equal the uncached translation, and a rebuilt equal frame must reuse it. */
+	private static void checkDisplayShapes(TranslationIndex index, Map<String, JsonObject> references) {
+		check(SkyZHConfig.get().enabled && !HoldOriginal.active(), "display equivalence requires translation enabled");
+		for (Surface surface : List.of(Surface.SCOREBOARD, Surface.TABLIST, Surface.ACTION_BAR, Surface.BOSS_BAR,
+			Surface.MISC, Surface.HOLOGRAM, Surface.GUI_TITLE)) {
+			for (TranslationEntry entry : index.entries(surface)) {
+				String sample = sample(entry, references);
+				int half = sample.length() / 2;
+				displayed(surface, () -> Component.literal(sample));
+				// Split across separately styled children, the way a sidebar row's prefix and suffix arrive.
+				// An insertion keeps the halves distinct runs without a colour change warning about the record.
+				displayed(surface, () -> Component.empty().append(sample.substring(0, half))
+					.append(Component.literal(sample.substring(half)).withStyle(style -> style.withInsertion("harness"))));
+			}
+		}
+	}
+
+	private static void displayed(Surface surface, java.util.function.Supplier<Component> frame) {
+		Component reference = io.github.bingkkni.skyzh.text.Translator.translateAvailable(frame.get(), surface).padded();
+		Component source = frame.get();
+		Component first = io.github.bingkkni.skyzh.text.Translator.translateLine(source, surface);
+		Component again = frame.get();
+		Component second = io.github.bingkkni.skyzh.text.Translator.translateLine(again, surface);
+		boolean unchanged = StyledText.of(reference).equals(StyledText.of(source));
+		check(StyledText.of(first).equals(StyledText.of(reference)), "display equals uncached translation: " + source.getString());
+		check(unchanged ? first == source && second == again : second == first,
+			"a rebuilt equal frame reuses its display result: " + source.getString());
+	}
+
+	/** Recorded shapes may only answer for a tree that would flatten to the same key. */
+	private static void checkShapes() throws Exception {
+		int[] calls = {0};
+		java.util.function.Function<StyledText, Component> render = text -> {
+			calls[0]++;
+			return Component.literal("形状 ").append(text.slice(0, text.length()));
+		};
+		var hover = Component.literal("hover");
+		var name = Component.literal("Zombie").withStyle(style -> style.withColor(0x55FF55));
+		// Vanilla's name tag: a new top node and hover event each frame, over the same children.
+		java.util.function.Supplier<Component> frame = () -> Component.empty().append(Component.literal("[Lv1] ")).append(name)
+			.withStyle(style -> style.withHoverEvent(new net.minecraft.network.chat.HoverEvent.ShowText(hover)).withInsertion("id"));
+		Component first = DisplayTextCache.get(frame.get(), Surface.HOLOGRAM, DisplayTextCache.Mode.MOB, render);
+		for (int i = 0; i < 3; i++) {
+			check(DisplayTextCache.get(frame.get(), Surface.HOLOGRAM, DisplayTextCache.Mode.MOB, render) == first
+				&& calls[0] == 1, "rebuilt frames reuse the recorded result");
+		}
+		hover.append(" edited");
+		Component edited = DisplayTextCache.get(frame.get(), Surface.HOLOGRAM, DisplayTextCache.Mode.MOB, render);
+		check(calls[0] == 2 && hoverText(StyledText.of(edited).styleAt(3)).equals("hover edited"),
+			"a hover edited in place is not served from the old shape");
+		name.withStyle(style -> style.withColor(0xFF5555));
+		Component recoloured = DisplayTextCache.get(frame.get(), Surface.HOLOGRAM, DisplayTextCache.Mode.MOB, render);
+		check(calls[0] == 3 && StyledText.of(recoloured).styleAt(9).getColor().getValue() == 0xFF5555,
+			"a child restyled in place is not served from the old shape");
+		name.append("!");
+		Component extended = DisplayTextCache.get(frame.get(), Surface.HOLOGRAM, DisplayTextCache.Mode.MOB, render);
+		check(calls[0] == 4 && extended.getString().endsWith("Zombie!"), "a child given a sibling is not served from the old shape");
+		DisplayTextCache.get(frame.get(), Surface.HOLOGRAM, DisplayTextCache.Mode.TIMER, render);
+		DisplayTextCache.get(frame.get(), Surface.SCOREBOARD, DisplayTextCache.Mode.MOB, render);
+		check(calls[0] == 6, "surface and mode stay part of a recorded shape");
+		Component translatable = Component.translatable("skyzh.harness.unknown.key");
+		Component keyed = DisplayTextCache.get(translatable, Surface.SCOREBOARD, DisplayTextCache.Mode.LINE, render);
+		check(DisplayTextCache.get(Component.translatable("skyzh.harness.unknown.key"), Surface.SCOREBOARD,
+			DisplayTextCache.Mode.LINE, render) == keyed && calls[0] == 7, "non-literal trees still use the flattened key");
+		var hash = Class.forName("io.github.bingkkni.skyzh.text.TextShape").getDeclaredMethod("hash", Component.class);
+		hash.setAccessible(true);
+		var deep = Component.literal("deep");
+		for (int i = 0; i < 70; i++) deep.append(Component.literal(" " + i));
+		check((long) hash.invoke(null, deep) == -1 && (long) hash.invoke(null, translatable) == -1
+			&& (long) hash.invoke(null, Component.empty().append("x")) == (long) hash.invoke(null, Component.empty().append("x")),
+			"shape hash eligibility and stability");
+		Component deepFirst = DisplayTextCache.get(deep, Surface.SCOREBOARD, DisplayTextCache.Mode.LINE, render);
+		check(DisplayTextCache.get(deep.copy(), Surface.SCOREBOARD, DisplayTextCache.Mode.LINE, render) == deepFirst
+			&& calls[0] == 8, "oversized trees still use the flattened key");
+		// Overflow clears the recorded shapes; answers must stay those of the flattened key.
+		for (int i = 0; i < 1_500; i++) {
+			Component row = Component.literal("Row " + i);
+			Component shown = DisplayTextCache.get(row, Surface.SCOREBOARD, DisplayTextCache.Mode.ROW, render);
+			check(shown.getString().equals("形状 Row " + i)
+				&& DisplayTextCache.get(Component.literal("Row " + i), Surface.SCOREBOARD, DisplayTextCache.Mode.ROW, render) == shown,
+				"shape table overflow keeps answers correct");
+		}
+	}
+
+	/** A remembered tooltip must never answer for lines that changed in place. */
+	@SuppressWarnings("unchecked")
+	private static void checkTooltipRecent() throws Exception {
+		var present = io.github.bingkkni.skyzh.text.TooltipTranslator.class.getDeclaredMethod("present",
+			net.minecraft.client.gui.Font.class, List.class, boolean.class, String.class, boolean.class);
+		present.setAccessible(true);
+		java.util.function.IntFunction<List<Component>> tooltip = item -> List.of(
+			Component.literal("§6Harness Item " + item), Component.literal("§7Line one"),
+			Component.empty().append(Component.literal("§7Line two")).withStyle(style -> style.withItalic(true)));
+		List<Component> first = (List<Component>) present.invoke(null, null, tooltip.apply(1), false, "X", true);
+		check(present.invoke(null, null, tooltip.apply(1), false, "X", true) == first, "rebuilt tooltip lines reuse the list");
+		List<Component> other = (List<Component>) present.invoke(null, null, tooltip.apply(2), false, "X", true);
+		check(other != first && present.invoke(null, null, tooltip.apply(1), false, "X", true) == first
+			&& present.invoke(null, null, tooltip.apply(2), false, "X", true) == other, "alternating tooltips both stay recognised");
+		check(present.invoke(null, null, tooltip.apply(1), false, "Y", true) != first, "hint key stays part of the match");
+		List<Component> edited = tooltip.apply(1);
+		((net.minecraft.network.chat.MutableComponent) edited.get(1)).append(" edited");
+		List<Component> reread = (List<Component>) present.invoke(null, null, edited, false, "X", true);
+		check(reread != first && StyledText.of(reread.get(1)).plain().equals("Line one edited"),
+			"a line edited in place is re-presented");
+		List<Component> keyed = List.of(Component.literal("§6Harness Item 3"), Component.translatable("skyzh.harness.lore"));
+		List<Component> translated = (List<Component>) present.invoke(null, null, keyed, false, "X", true);
+		check(present.invoke(null, null, List.of(Component.literal("§6Harness Item 3"),
+			Component.translatable("skyzh.harness.lore")), false, "X", true) == translated
+			&& translated.get(1).getString().equals("skyzh.harness.lore"), "non-literal tooltip lines use the flattened key");
+	}
+
+	/** The array table and one-pass restore against the previous map lookups and per-character scans. */
+	private static void checkGlyphs() {
+		Map<Character, Character> symbols = new HashMap<>();
+		for (char c = (char) 0xE000; c < 0xE100; c++) {
+			char folded = io.github.bingkkni.skyzh.text.Glyphs.canonical(String.valueOf(c)).charAt(0);
+			if (folded != c) symbols.put(c, folded);
+		}
+		check(symbols.size() == 31 && symbols.get((char) 0xE010) == '❤' && symbols.get((char) 0xE067) == '⏣',
+			"glyph table keeps every mapping");
+		StringBuilder expectedClass = new StringBuilder();
+		for (char symbol : new java.util.TreeSet<>(symbols.values())) expectedClass.append(symbol);
+		check(io.github.bingkkni.skyzh.text.Glyphs.symbolClass().equals(expectedClass.toString()), "symbol class unchanged");
+		// Mapped glyphs, two sharing ☘, an unmapped private-use character, their symbols and ordinary text.
+		char[] alphabet = {(char) 0xE010, (char) 0xE051, (char) 0xE053, (char) 0xE067, (char) 0xE005,
+			'❤', '☘', '⏣', '✦', 'a', 'b', ' ', '中', '文', '%'};
+		java.util.Random random = new java.util.Random(42);
+		for (int round = 0; round < 20_000; round++) {
+			String chinese = randomText(random, alphabet), source = randomText(random, alphabet);
+			check(io.github.bingkkni.skyzh.text.Glyphs.restore(chinese, source).equals(restoreBefore(symbols, chinese, source))
+				&& io.github.bingkkni.skyzh.text.Glyphs.canonical(source).equals(canonicalBefore(symbols, source))
+				&& io.github.bingkkni.skyzh.text.Glyphs.hasGlyphs(source) == source.chars().anyMatch(c -> symbols.containsKey((char) c)),
+				"glyph folding equals the previous implementation: " + chinese + " / " + source);
+		}
+	}
+
+	private static String randomText(java.util.Random random, char[] alphabet) {
+		char[] text = new char[random.nextInt(12)];
+		for (int i = 0; i < text.length; i++) text[i] = alphabet[random.nextInt(alphabet.length)];
+		return new String(text);
+	}
+
+	private static String canonicalBefore(Map<Character, Character> symbols, String text) {
+		char[] folded = text.toCharArray();
+		for (int i = 0; i < folded.length; i++) folded[i] = symbols.getOrDefault(folded[i], folded[i]);
+		return new String(folded);
+	}
+
+	private static String restoreBefore(Map<Character, Character> symbols, String chinese, String source) {
+		char[] restored = canonicalBefore(symbols, chinese).toCharArray();
+		for (int i = 0; i < restored.length; i++) {
+			for (char candidate : source.toCharArray()) {
+				Character mapped = symbols.get(candidate);
+				if (mapped != null && mapped == restored[i]) {
+					restored[i] = candidate;
+					break;
+				}
+			}
+		}
+		return new String(restored);
 	}
 
 	private static void checkCache(TranslationIndex index) {
@@ -175,6 +358,31 @@ public final class PerformanceHarness {
 		LoreSnapshot reopened = LoreSnapshot.of("Menu", 3, 4, a.copy(), List.of(source.copy()));
 		check(snapshot.lines().getFirst() == reopened.lines().getFirst() && reopened.slot() == 4
 			&& reopened.containerId() == 3 && snapshot.signature().equals(reopened.signature()), "packet snapshot reuse retains new position");
+	}
+
+	/** Publish a new corpus during flattening, between the cache's two lookup sections. */
+	private static void checkCacheReload(TranslationIndex index) throws Exception {
+		TranslationIndex replacement = new TranslationIndex();
+		int[] calls = {0};
+		java.util.function.Function<StyledText, Component> render = text -> {
+			calls[0]++;
+			return Component.literal(io.github.bingkkni.skyzh.text.Translator.index() == index ? "加载前" : "加载后");
+		};
+		DisplayTextCache.get(Component.literal("Cache reload"), Surface.SCOREBOARD, DisplayTextCache.Mode.LINE, render);
+		// Different literal seams miss the shape table, but flatten to the already cached key.
+		Component split = Component.empty().append("Cache ").append("reload");
+		Component source = (Component) java.lang.reflect.Proxy.newProxyInstance(Component.class.getClassLoader(),
+			new Class<?>[] {Component.class}, (proxy, method, arguments) -> {
+				Object result = method.invoke(split, arguments);
+				if (method.getName().equals("visit")) TranslationHarness.installIndex(replacement);
+				return result;
+			});
+		try {
+			Component result = DisplayTextCache.get(source, Surface.SCOREBOARD, DisplayTextCache.Mode.LINE, render);
+			check(calls[0] == 2 && result.getString().equals("加载后"), "corpus changes during flattening reject old cached results");
+		} finally {
+			TranslationHarness.installIndex(index);
+		}
 	}
 
 	private static void checkCapture() throws Exception {

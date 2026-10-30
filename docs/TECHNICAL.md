@@ -256,9 +256,13 @@ regex/capture validation and stable specificity ordering. Equivalent definitions
 structures while each occurrence keeps its own id and file. Candidates are never restricted by island.
 `StyledText` stores complete style runs with immutable range views. A lore plan reuses flattened lines
 and per-start searches while preserving longest matches, blank boundaries and the 12-line/2048-character limits.
+Literal name tags, sidebar rows, tab rows and tooltips, which vanilla rebuilds every frame, are matched
+against their recorded node-by-node text, styles and child counts without flattening again; any in-place
+change misses and falls back to the full key. The corpus loads on a background thread, and the SkyBlock
+gate stays shut until it lands.
 
 `./gradlew checkPerformance` compares indexed matching with the previous exhaustive scan and checks
-style equality, cache collisions and capture eviction recovery. `./gradlew benchmarkPerformance` reports
+style equality, cache collisions, shape hits and capture eviction recovery. `./gradlew benchmarkPerformance` reports
 offline CPU/allocation costs, not client FPS. Java checks, platform fixtures, JSON samples and Python
 checks live under `tests/` and are excluded from distributed jars.
 

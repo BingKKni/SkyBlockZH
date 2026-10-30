@@ -19,6 +19,7 @@ import org.joml.Matrix3x2f;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -29,6 +30,12 @@ public abstract class ForceGraphicsMixin {
 	@Shadow @Final private GuiRenderState guiRenderState;
 	@Shadow @Final private GuiGraphicsExtractor.ScissorStack scissorStack;
 	@Shadow private Runnable deferredTooltip;
+	/**
+	 * The translator's cached list for the last tooltip, and whether it differed from its source.
+	 * Static: vanilla builds a new extractor every frame, and only the render thread draws tooltips.
+	 */
+	@Unique private static List<Component> skyzh$presented;
+	@Unique private static boolean skyzh$untouched;
 
 	@Inject(method = "text(Lnet/minecraft/client/gui/Font;Lnet/minecraft/util/FormattedCharSequence;IIIZ)V",
 		at = @At("HEAD"), cancellable = true, require = 0)
@@ -73,8 +80,13 @@ public abstract class ForceGraphicsMixin {
 		source.add(name);
 		source.addAll(lore.lines());
 		List<Component> lines = TooltipTranslator.translate(font, source);
-		if (source.stream().map(io.github.bingkkni.skyzh.text.StyledText::of).toList()
-			.equals(lines.stream().map(io.github.bingkkni.skyzh.text.StyledText::of).toList())) return;
+		// The same cached list again means lines that flatten to the same text: the answer is unchanged.
+		if (lines != skyzh$presented) {
+			skyzh$presented = lines;
+			skyzh$untouched = source.stream().map(io.github.bingkkni.skyzh.text.StyledText::of).toList()
+				.equals(lines.stream().map(io.github.bingkkni.skyzh.text.StyledText::of).toList());
+		}
+		if (skyzh$untouched) return;
 		List<ClientTooltipComponent> translated = lines.stream()
 			.map(PriorityText::protect).map(ClientTooltipComponent::create).toList();
 		var graphics = (GuiGraphicsExtractor) (Object) this;

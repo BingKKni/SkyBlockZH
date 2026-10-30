@@ -397,14 +397,14 @@ public enum Capture {
 		if (units.isEmpty() || !value.substring(cursor).isBlank()) return value;
 		// Hour clocks omit trailing zeros; keep explicit minute/second clocks (8m00s) and intermediate zeros.
 		while (units.size() > 1 && units.stream().anyMatch(unit -> "h".equals(unit[1]))
-			&& units.getLast()[0].matches("0+") && units.getLast()[2].isEmpty()) {
+			&& ZEROS.matcher(units.getLast()[0]).matches() && units.getLast()[2].isEmpty()) {
 			units.removeLast();
 		}
 		StringBuilder translated = new StringBuilder();
 		for (int i = 0; i < units.size(); i++) {
 			String[] unit = units.get(i);
 			String number = unit[0];
-			if ("s".equals(unit[1]) && i > 0 && number.matches("[0-9]")) number = "0" + number;
+			if ("s".equals(unit[1]) && i > 0 && ONE_DIGIT.matcher(number).matches()) number = "0" + number;
 			translated.append(number).append(switch (unit[1]) {
 				case "y" -> "年";
 				case "d" -> "天";
@@ -418,16 +418,19 @@ public enum Capture {
 
 	/** A numeric legacy capture may be one zero unit legitimately suppressed by the hour formatter. */
 	public static boolean omittedHourZero(String text, int start, int end) {
-		if (!text.substring(start, end).matches("0+")) return false;
+		if (!ZEROS.matcher(text.substring(start, end)).matches()) return false;
 		Matcher hour = HOUR_CLOCK.matcher(text);
 		while (hour.find()) {
 			if (start > hour.start() && end < hour.end()
-				&& text.substring(end, hour.end()).matches("[ms](?: ?0+[ms])*")) return true;
+				&& ZERO_UNITS.matcher(text.substring(end, hour.end())).matches()) return true;
 		}
 		return false;
 	}
 
 	private static final Pattern HOUR_CLOCK = Pattern.compile("[0-9]+h(?: ?[0-9]+m)?(?: ?[0-9]+s)?");
+	private static final Pattern ZERO_UNITS = Pattern.compile("[ms](?: ?0+[ms])*");
+	private static final Pattern ZEROS = Pattern.compile("0+");
+	private static final Pattern ONE_DIGIT = Pattern.compile("[0-9]");
 
 	/** Render duration units from their individual source spans, not the first colour of the value. */
 	public net.minecraft.network.chat.MutableComponent renderDuration(StyledText source, int start, int end) {
@@ -471,6 +474,8 @@ public enum Capture {
 	private static final Pattern WRITTEN_DURATION_UNIT = Pattern.compile(
 		"([0-9][0-9,]*) (days?|hours?|minutes?|seconds?)", Pattern.CASE_INSENSITIVE
 	);
+	private static final Pattern MARK_ABBREVIATION = Pattern.compile("\\bMk\\.(?= [IVXLCDM]+(?: |$))");
+	private static final Pattern INITIALISM = Pattern.compile("(?:[A-Z]\\.){2,}(?:'s)?");
 
 	/**
 	 * Whether this reads as a name: at most five words, none of them sentence punctuation, and with
@@ -485,11 +490,11 @@ public enum Capture {
 		// when they exceed six words. Never extend that exception to unknown prose or padding.
 		if (!value.startsWith(" ") && !value.endsWith(" ") && ItemNames.isLoadoutReference(value)) return true;
 		// Relax only attested item-name syntax, never generic categories, locations or raw prose.
-		String normalised = value.replaceAll("\\bMk\\.(?= [IVXLCDM]+(?: |$))", "Mk")
+		String normalised = MARK_ABBREVIATION.matcher(value).replaceAll("Mk")
 			.replace(" - ", " of "); // Model separator in Worn Huntaxe - Genesis; never allowed at an edge.
 		String[] words = normalised.split(" ", -1);
 		for (int i = 0; i < words.length; i++) {
-			if (words[i].matches("(?:[A-Z]\\.){2,}(?:'s)?")) {
+			if (INITIALISM.matcher(words[i]).matches()) {
 				words[i] = words[i].replace(".", "");
 			}
 		}

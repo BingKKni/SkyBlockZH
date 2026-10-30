@@ -10,6 +10,10 @@ public final class DurationText {
 	private static final String UNIT = "(-?[0-9][0-9,.]*) *(年|个月|天|小时|分钟|分|秒)";
 	private static final Pattern GROUP = Pattern.compile(UNIT + "(?: *" + UNIT + ")*");
 	private static final Pattern PART = Pattern.compile(UNIT);
+	private static final Pattern ORDINAL_BEFORE = Pattern.compile("(?s).*第 *");
+	private static final Pattern DATE_AFTER = Pattern.compile("(?s)^ *(?:[0-9]+ *月|[春夏秋冬]季).*");
+	private static final Pattern ZEROS = Pattern.compile("0+");
+	private static final Pattern ONE_DIGIT = Pattern.compile("[0-9]");
 
 	private DurationText() {}
 
@@ -30,8 +34,8 @@ public final class DurationText {
 			// An isolated 分 can mean points, not minutes. Duration captures already disambiguate it.
 			if (count == 1 && groups.group(2).equals("分")) continue;
 			if (count == 1 && groups.group(2).equals("年")
-				&& (styled.plain().substring(0, groups.start()).matches("(?s).*第 *")
-					|| styled.plain().substring(groups.end()).matches("(?s)^ *(?:[0-9]+ *月|[春夏秋冬]季).*"))) continue;
+				&& (ORDINAL_BEFORE.matcher(styled.plain().substring(0, groups.start())).matches()
+					|| DATE_AFTER.matcher(styled.plain().substring(groups.end())).matches())) continue;
 			int prefixEnd = groups.start();
 			while (prefixEnd > cursor && styled.plain().charAt(prefixEnd - 1) == ' ') prefixEnd--;
 			boolean remaining = styled.plain().substring(cursor, prefixEnd).endsWith("剩余");
@@ -54,14 +58,14 @@ public final class DurationText {
 				int[] last = spans.getLast();
 				String unit = groups.group().substring(last[2], last[3]);
 				if ((!unit.equals("分") && !unit.equals("分钟") && !unit.equals("秒"))
-					|| !groups.group().substring(last[0], last[1]).matches("0+")) break;
+					|| !ZEROS.matcher(groups.group().substring(last[0], last[1])).matches()) break;
 				spans.removeLast();
 			}
 			parts.reset();
 			int index = 0;
 			while (index < spans.size() && parts.find()) {
 				int start = groups.start() + parts.start(1);
-				if (index > 0 && parts.group(2).equals("秒") && parts.group(1).matches("[0-9]")) {
+				if (index > 0 && parts.group(2).equals("秒") && ONE_DIGIT.matcher(parts.group(1)).matches()) {
 					result.append(Component.literal("0").setStyle(styled.styleAt(start)));
 				}
 				result.append(styled.slice(start, groups.start() + parts.end(1)));

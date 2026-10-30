@@ -1,5 +1,6 @@
 package io.github.bingkkni.skyzh;
 
+import io.github.bingkkni.skyzh.text.Translator;
 import java.util.Locale;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -161,7 +162,9 @@ public final class HypixelServer {
 			unverifiedSidebarTicks = 0;
 		}
 
-		skyBlock = connected && receivedHello && sidebar;
+		// Until the corpus read at launch lands, every line would be judged against an empty index and
+		// capture would file it as missing; the gate opens with the index.
+		skyBlock = connected && receivedHello && sidebar && !Translator.loading();
 
 		// Chat observes the effective render policy before drawing; no eager full-history rebuild.
 	}

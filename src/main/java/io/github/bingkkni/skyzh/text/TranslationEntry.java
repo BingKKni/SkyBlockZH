@@ -91,6 +91,7 @@ public final class TranslationEntry {
 	private record Arg(int index) implements Piece {}
 
 	private static final Pattern PLACEHOLDER = Pattern.compile("%(?:(\\d+)\\$)?[sd]|%%");
+	private static final Pattern LEADING_COUNT = Pattern.compile("^[0-9][0-9,.]*(?:[kKmMbB])?\\s+");
 
 	private final String id;
 	private final String sourceFile;
@@ -784,7 +785,7 @@ public final class TranslationEntry {
 			return key;
 		}
 
-		String stripped = english.replaceFirst("^[0-9][0-9,.]*(?:[kKmMbB])?\\s+", "");
+		String stripped = LEADING_COUNT.matcher(english).replaceFirst("");
 
 		return stripped.equals(english) ? null : ItemNames.canonical(stripped);
 	}

@@ -66,6 +66,7 @@ public final class LineShape {
 		" \\((?:[0-9][0-9,.]*[kKmMbB]?/[0-9][0-9,.]*[kKmMbB]?|[0-9][0-9,.]*%)\\)$"
 	);
 	private static final Pattern ITEM_MARKET_PRICES = Pattern.compile(" [0-9][0-9,.]*[kKmMbB]? \\| [0-9][0-9,.]*[kKmMbB]?$");
+	private static final Pattern QUALITY_MARKERS = Pattern.compile("[●○]{4}");
 
 	private LineShape() {
 	}
@@ -200,7 +201,7 @@ public final class LineShape {
 
 		if (surface == Surface.TABLIST) {
 			// Four live quality markers belong to the row, not to the trophy species name.
-			if (end - start > 5 && plain.substring(start, start + 4).matches("[●○]{4}")
+			if (end - start > 5 && QUALITY_MARKERS.matcher(plain).region(start, start + 4).matches()
 				&& plain.charAt(start + 4) == ' '
 				&& Capture.TROPHY_FISH_NAME.accepts(plain.substring(start + 5, end))) {
 				add(ranges, start + 5, end);
