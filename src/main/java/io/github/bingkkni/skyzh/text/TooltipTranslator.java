@@ -246,7 +246,7 @@ public final class TooltipTranslator {
 		int width = MIN_WRAP_WIDTH;
 
 		if (!original) {
-			for (Component line : lines) width = Math.max(width, font.width(line));
+			for (Component line : lines) width = Math.max(width, io.github.bingkkni.skyzh.hook.PriorityText.originalWidth(font, line));
 		}
 
 		List<Component> result = new ArrayList<>(lines.size());

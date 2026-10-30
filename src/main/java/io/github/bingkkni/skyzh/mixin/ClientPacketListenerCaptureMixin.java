@@ -1,5 +1,7 @@
 package io.github.bingkkni.skyzh.mixin;
 
+import io.github.bingkkni.skyzh.hook.PriorityText;
+import io.github.bingkkni.skyzh.text.Surface;
 import io.github.bingkkni.skyzh.OriginalTips;
 import io.github.bingkkni.skyzh.capture.CaptureContext;
 import io.github.bingkkni.skyzh.capture.TextCapture;
@@ -52,6 +54,7 @@ public abstract class ClientPacketListenerCaptureMixin {
 	 */
 	@Inject(method = "handleSystemChat", at = @At("HEAD"), require = 0)
 	private void skyzh$captureSystemChat(ClientboundSystemChatPacket packet, CallbackInfo info) {
+		PriorityText.observe(packet.content(), packet.overlay() ? Surface.ACTION_BAR : Surface.CHAT);
 		if (packet.overlay()) {
 			TextCapture.actionBar(packet.content());
 		} else {
@@ -72,6 +75,7 @@ public abstract class ClientPacketListenerCaptureMixin {
 	 */
 	@Inject(method = "handleOpenScreen", at = @At("HEAD"), require = 0)
 	private void skyzh$captureOpenScreen(ClientboundOpenScreenPacket packet, CallbackInfo info) {
+		PriorityText.observe(packet.getTitle(), Surface.GUI_TITLE);
 		if (!TextCapture.ready()) {
 			return;
 		}
@@ -132,16 +136,19 @@ public abstract class ClientPacketListenerCaptureMixin {
 
 	@Inject(method = "setActionBarText", at = @At("HEAD"), require = 0)
 	private void skyzh$captureActionBar(ClientboundSetActionBarTextPacket packet, CallbackInfo info) {
+		PriorityText.observe(packet.text(), Surface.ACTION_BAR);
 		TextCapture.actionBar(packet.text());
 	}
 
 	@Inject(method = "setTitleText", at = @At("HEAD"), require = 0)
 	private void skyzh$captureTitle(ClientboundSetTitleTextPacket packet, CallbackInfo info) {
+		PriorityText.observe(packet.text(), Surface.MISC);
 		TextCapture.misc(packet.text(), "Title");
 	}
 
 	@Inject(method = "setSubtitleText", at = @At("HEAD"), require = 0)
 	private void skyzh$captureSubtitle(ClientboundSetSubtitleTextPacket packet, CallbackInfo info) {
+		PriorityText.observe(packet.text(), Surface.MISC);
 		TextCapture.misc(packet.text(), "Subtitle");
 	}
 
@@ -151,6 +158,8 @@ public abstract class ClientPacketListenerCaptureMixin {
 	 */
 	@Inject(method = "handleTabListCustomisation", at = @At("HEAD"), require = 0)
 	private void skyzh$captureTabListEdges(ClientboundTabListPacket packet, CallbackInfo info) {
+		PriorityText.observe(packet.header(), Surface.TABLIST);
+		PriorityText.observe(packet.footer(), Surface.TABLIST);
 		TextCapture.tabList(packet.header(), "页眉");
 		TextCapture.tabList(packet.footer(), "页脚");
 	}

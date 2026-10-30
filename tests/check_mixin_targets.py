@@ -114,7 +114,7 @@ class Disassembly:
         last = before.split()[-1]
         # A constructor prints as the fully qualified class name; a generic method may carry a type
         # parameter list before its name.
-        return last.rsplit(".", 1)[-1]
+        return "<init>" if "." in last else last
 
     def has_method(self, name, descriptor=None):
         overloads = self.methods.get(name)
@@ -358,6 +358,9 @@ def main(argv):
         for internal_name in target_names:
             disassembly = target_class(internal_name)
             if disassembly is None:
+                if "Lorg/spongepowered/asm/mixin/Pseudo;" in text:
+                    print("  [可选未安装] %s -> %s" % (simple, internal_name))
+                    continue
                 problems.append("%s: 目标类不存在 -> %s" % (simple, internal_name))
                 continue
             targets[internal_name] = disassembly

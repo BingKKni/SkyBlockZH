@@ -42,6 +42,13 @@ public final class ClientSettingsHarness {
 
 	private static void config() {
 		SkyZHConfig defaults = SkyZHConfig.fromJson(new JsonObject());
+		check("显示优先级默认兼容", defaults.displayPriority, DisplayPriority.DEFAULT);
+		for (DisplayPriority priority : DisplayPriority.values()) {
+			defaults.displayPriority = priority;
+			check("显示优先级可保存再读取 " + priority, SkyZHConfig.fromJson(defaults.toJson()).displayPriority, priority);
+		}
+		check("未知显示优先级回退默认", SkyZHConfig.fromJson(JsonParser.parseString(
+			"{\"displayPriority\":\"unexpected\"}").getAsJsonObject()).displayPriority, DisplayPriority.DEFAULT);
 		check("更新检查默认开", defaults.updateCheck, true);
 		check("帮助改进翻译默认开", defaults.helpImproveTranslation, true);
 		check("首次引导默认未显示", defaults.welcomeShown, false);
@@ -288,6 +295,12 @@ public final class ClientSettingsHarness {
 
 		check("主界面没有 Hypixel 身份", HypixelServer.isHypixel(), false);
 		check("主界面不在 SkyBlock", HypixelServer.isSkyBlock(), false);
+		for (DisplayPriority priority : DisplayPriority.values()) {
+			SkyZHConfig.get().displayPriority = priority;
+			check("未验证连接不启用优先级 " + priority, io.github.bingkkni.skyzh.hook.PriorityText.active(), false);
+			check("未验证连接不启用强制 " + priority, io.github.bingkkni.skyzh.hook.PriorityText.force(), false);
+		}
+		SkyZHConfig.get().displayPriority = DisplayPriority.DEFAULT;
 		check("没有连接时禁止翻译", HypixelServer.canTranslate(), false);
 
 		Component title = Component.literal("      Select Process");

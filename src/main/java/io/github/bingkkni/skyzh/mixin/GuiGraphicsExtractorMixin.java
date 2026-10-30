@@ -28,6 +28,7 @@ public abstract class GuiGraphicsExtractorMixin {
 		require = 0
 	)
 	private List<Component> skyzh$translateTooltip(List<Component> lines) {
+		if (io.github.bingkkni.skyzh.SkyZHConfig.get().displayPriority != io.github.bingkkni.skyzh.DisplayPriority.DEFAULT) return lines;
 		return TooltipTranslator.translate(Minecraft.getInstance().font, lines);
 	}
 }

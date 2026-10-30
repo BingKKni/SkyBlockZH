@@ -14,6 +14,10 @@ def modMenuVersion = project.ext.modMenuVersion
 def versionSourceDirs = project.ext.versionSourceDirs
 def artifactTag = project.ext.artifactTag
 
+loom {
+	accessWidenerPath = rootProject.file('src/main/resources/skyzh.accesswidener')
+}
+
 base {
 	archivesName = rootProject.archives_base_name
 }
@@ -202,6 +206,11 @@ harnessTask('checkDiagnostics', 'io.github.bingkkni.skyzh.DiagnosticsHarness',
 harnessTask('checkCommands', 'io.github.bingkkni.skyzh.CommandHarness',
 	'Checks SkyZH client-command parsing and exact help text.')
 
+harnessTask('checkDisplayPriority', 'io.github.bingkkni.skyzh.PriorityHarness',
+	'Checks late translation provenance, force styles, bounds and isolation.') {
+	args rootProject.file('original_text').absolutePath
+}
+
 harnessTask('checkClientSettings', 'io.github.bingkkni.skyzh.ClientSettingsHarness',
 	'Checks config migration, vanilla key mappings and the Hypixel-only runtime boundary.')
 
@@ -319,7 +328,7 @@ tasks.register('checkMixinTargets', Exec) {
 
 tasks.named('check') {
 	dependsOn 'checkPerformance', 'checkTranslations', 'checkChatInteractions', 'checkLore', 'checkCapture', 'checkDiagnostics', 'checkCommands', 'checkClientSettings', 'checkMinifiedCorpus',
-		'checkMixinTargets'
+		'checkMixinTargets', 'checkDisplayPriority'
 }
 
 tasks.withType(JavaCompile).configureEach {

@@ -32,5 +32,6 @@ public abstract class MinecraftCaptureMixin {
 		SkyZHWelcomeScreen.tick(minecraft);
 		HoldOriginal.poll(minecraft);
 		ScreenWatcher.tick();
+		io.github.bingkkni.skyzh.hook.PriorityText.tick();
 	}
 }

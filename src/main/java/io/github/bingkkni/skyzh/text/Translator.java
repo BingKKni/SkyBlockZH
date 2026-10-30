@@ -320,7 +320,7 @@ public final class Translator {
 	 * single message and every member of a newline-separated message.
 	 */
 	public static Component translateChatLine(Component source, Font font, int width) {
-		return translateChatLine(source, width, font::width);
+		return translateChatLine(source, width, text -> io.github.bingkkni.skyzh.hook.PriorityText.originalWidth(font, text));
 	}
 
 	/** The measurement-injected form used by chat-block regression tests. */
@@ -342,7 +342,7 @@ public final class Translator {
 	 * lines have matched. Separate {@code GuiMessage}s therefore never influence each other.
 	 */
 	public static Component translateChatBlock(Component source, Font font, int width) {
-		return translateChatBlock(source, width, font::width);
+		return translateChatBlock(source, width, text -> io.github.bingkkni.skyzh.hook.PriorityText.originalWidth(font, text));
 	}
 
 	/** The measurement-injected form used by chat-block regression tests. */

@@ -1,5 +1,6 @@
 package io.github.bingkkni.skyzh.gui;
 
+import io.github.bingkkni.skyzh.DisplayPriority;
 import io.github.bingkkni.skyzh.SkyZHConfig;
 import io.github.bingkkni.skyzh.capture.CaptureAnnouncer;
 import io.github.bingkkni.skyzh.capture.TextCapture;
@@ -8,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.gui.components.AbstractWidget;
+import net.minecraft.client.gui.components.StringWidget;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.CycleButton;
 import net.minecraft.client.gui.components.Tooltip;
@@ -20,9 +23,9 @@ import net.minecraft.util.ARGB;
 /** The complete settings screen reached through Mod Menu. */
 public class SkyZHConfigScreen extends Screen {
 	private static final int SMALL_WIDTH = 150;
-	private static final int WIDE_WIDTH = 308;
+	private static final int WIDE_WIDTH = 306;
 	private static final int HEIGHT = 20;
-	private static final int SPACING = 8;
+	private static final int SPACING = 6;
 
 	private final Screen parent;
 	private final SkyZHConfig config = SkyZHConfig.get();
@@ -39,44 +42,61 @@ public class SkyZHConfigScreen extends Screen {
 		this.dependentToggles.clear();
 		GridLayout grid = new GridLayout().spacing(SPACING);
 
+		grid.addChild(new StringWidget(WIDE_WIDTH, 12,
+			Component.translatable("skyzh.options.general"), this.font), 0, 0, 1, 2);
 		grid.addChild(toggle("enabled", SMALL_WIDTH, this.config.enabled, value -> {
 			this.config.enabled = value;
 			updateDependentButtons();
-		}), 0, 0);
+		}), 1, 0);
 		grid.addChild(
 			dependentToggle("updateCheck", SMALL_WIDTH, this.config.updateCheck, value -> this.config.updateCheck = value),
-			0, 1
+			1, 1
 		);
 		grid.addChild(
 			dependentToggle("translateSkyBlockName", SMALL_WIDTH, this.config.translateSkyBlockName,
 				value -> this.config.translateSkyBlockName = value),
-			1, 0
+			2, 0
 		);
 		grid.addChild(
 			dependentToggle("originalTips", SMALL_WIDTH, this.config.originalTips, value -> this.config.originalTips = value),
-			1, 1
+			2, 1
 		);
+		CycleButton<DisplayPriority> priority = CycleButton.<DisplayPriority>builder(
+			value -> Component.translatable("skyzh.priority." + value.key()), this.config.displayPriority)
+			.withValues(DisplayPriority.values())
+			.withTooltip(value -> Tooltip.create(Component.translatable("skyzh.option.displayPriority.tooltip")))
+			.create(0, 0, SMALL_WIDTH, HEIGHT, Component.translatable("skyzh.option.displayPriority"), (button, value) -> {
+				this.config.displayPriority = value;
+				SkyZHConfig.bumpGeneration();
+			});
+		this.dependentToggles.add(new DependentToggle(priority, "displayPriority"));
+		grid.addChild(priority, 3, 0);
+		CycleButton<Boolean> itemNames = toggle("translateItemNames", SMALL_WIDTH, false, value -> {});
+		itemNames.active = false;
+		grid.addChild(itemNames, 3, 1);
+		grid.addChild(new StringWidget(WIDE_WIDTH, 20,
+			Component.translatable("skyzh.options.developer"), this.font), 4, 0, 1, 2);
 		// Capture writes files rather than changing rendered text, so it retains a full row of its own.
 		grid.addChild(
 			dependentToggle("captureUntranslated", WIDE_WIDTH, this.config.captureUntranslated,
 				value -> this.config.captureUntranslated = value),
-			2, 0, 1, 2
+			5, 0, 1, 2
 		);
 		grid.addChild(
 			dependentToggle("captureNotifications", SMALL_WIDTH, this.config.captureNotifications, value -> {
 				this.config.captureNotifications = value;
 				CaptureAnnouncer.clear();
 			}),
-			3, 0
+			6, 0
 		);
 		grid.addChild(
 			dependentToggle("autoClearCapture", SMALL_WIDTH, this.config.autoClearCapture,
 				value -> this.config.autoClearCapture = value),
-			3, 1
+			6, 1
 		);
 
 		grid.arrangeElements();
-		FrameLayout.centerInRectangle(grid, 0, 0, this.width, this.height);
+		FrameLayout.centerInRectangle(grid, 0, 34, this.width, Math.max(168, this.height - 74));
 		grid.visitWidgets(this::addRenderableWidget);
 		updateDependentButtons();
 
@@ -134,6 +154,6 @@ public class SkyZHConfigScreen extends Screen {
 		ClientGui.setScreen(this.minecraft, this.parent);
 	}
 
-	private record DependentToggle(CycleButton<Boolean> button, String key) {
+	private record DependentToggle(AbstractWidget button, String key) {
 	}
 }

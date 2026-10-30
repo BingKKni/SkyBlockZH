@@ -42,7 +42,7 @@ public final class DisplayTextCache {
 				skyBlockName = currentName;
 			}
 			Value value = CACHE.get(key);
-			if (value != null) return value.unchanged() ? source : value.rendered();
+			if (value != null) return value.unchanged() ? source : io.github.bingkkni.skyzh.hook.PriorityText.remember(value.rendered());
 		}
 		Component rendered = render.apply(styled);
 		StyledText output = StyledText.of(rendered);
@@ -54,6 +54,6 @@ public final class DisplayTextCache {
 				CACHE.put(key, value);
 			}
 		}
-		return unchanged ? source : value.rendered();
+		return unchanged ? source : io.github.bingkkni.skyzh.hook.PriorityText.remember(value.rendered());
 	}
 }

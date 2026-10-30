@@ -15,7 +15,10 @@ watch friends bounce off a screenshot they can't read. This mod replaces the tex
 someone who has never played is willing to keep reading, and a new player doesn't have to learn
 vocabulary before learning the game.
 
-## It does not break other mods
+## Compatibility at the default priority
+
+The default `displayPriority` preserves the behavior below. The opt-in `high` and `force` modes
+prioritize translations; Force bypasses some utility-mod display changes while still preserving server data.
 
 Translation happens **at the moment text is drawn**, and nothing else changes:
 
@@ -171,6 +174,29 @@ view or messages received during bypass still need work; this is not a measured 
 In-game checks still needed: rebind/unbind and verify persistence after a restart; toggle twice while
 hovering item lore, and open chat after toggling to inspect history; check the left/right settings layout; restart to the main menu to verify startup
 clearing, then disconnect/rejoin within that launch to verify the files remain.
+
+### Display priority
+
+Settings are grouped under General and Developer headings. Display priority cycles through Default,
+High and Force without a restart. The adjacent item-name button is a disabled, off placeholder;
+it does not change the existing item-name translation rules.
+
+- `default`: keep the existing hooks and ordering.
+- `high`: translate tooltips later and retry known server text when creating the final GUI text state,
+  with corresponding width measurement. Sources are server messages and live scoreboard/Tab state;
+  arbitrary mod text is not matched against every corpus surface.
+- `force`: take ownership of protected text and font preparation calls before their ordinary modifiers run, rebuild item
+  tooltips from original names and lore, and render the server sidebar independently. Additional mod
+  tooltip lines and images can disappear. SkyHanni Custom Scoreboard is temporarily disabled to avoid
+  overlapping sidebars; selecting another priority restores it.
+
+All modes respect the server boundary, master switch and original-text key. Source records are bounded
+and cleared on world/server changes or when enhanced priority is disabled. Original-text mode retains
+sources, so restoring translations does not require another server packet. Configuration changes clear
+translated-output protection records. Force is not a global Fabric rendering lock: independent
+renderers, upstream data removal and overlays outside the protected entry points can still interfere.
+`checkDisplayPriority` checks provenance, colour policy, Unicode, bounds and isolation; final visuals
+with other mods still require in-game checks.
 
 ### Where "SkyBlock" is swapped, and where it is not
 
