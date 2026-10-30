@@ -88,6 +88,21 @@ public final class CapturedLine {
 		}
 	}
 
+	/** Rebuilds an evicted alias from fixed words and already-established numeric/time slots. */
+	boolean covers(StyledText text) {
+		Tokens.Split candidate = Tokens.of(text.plain());
+		if (!sameShape(candidate)) return false;
+		for (int i = 0; i < candidate.size(); i++) {
+			String word = candidate.words().get(i);
+			if (word.equals(this.split.words().get(i))) continue;
+			if (!this.slots.contains(i)) return false;
+			if (!this.observed.get(i).contains(word)
+				&& !(this.observed.get(i).size() >= MAX_OBSERVED && LORE_VALUE.matcher(word).matches()
+					&& this.observed.get(i).stream().allMatch(value -> LORE_VALUE.matcher(value).matches()))) return false;
+		}
+		return true;
+	}
+
 	/**
 	 * Folds another sighting in, or refuses it.
 	 *

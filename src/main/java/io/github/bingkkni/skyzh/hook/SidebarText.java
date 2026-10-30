@@ -24,9 +24,8 @@ import net.minecraft.world.scores.Team;
  *
  * <p>The sidebar is also the one surface in the game that genuinely animates. Hypixel re-sends the
  * objective's display name every tick with the highlight one letter further along, which is the
- * shimmer over SKYBLOCK. That survives because nothing on this path caches a rendered line — the
- * lookup cache remembers only <em>which record</em> matches a piece of text, and the text is what
- * stays the same from tick to tick while the colours move. Re-colouring happens fresh every frame.
+ * shimmer over SKYBLOCK. Display-cache keys include every live style run, so a colour-only update
+ * produces fresh output while an unchanged row can reuse its translation.
  *
  * <p><b>Why this is not in the mixin.</b> The sidebar lives on {@code Gui} up to 26.1.2 and on
  * {@code Hud} from 26.2 on, so the attachment is written once per target while this — the part with
@@ -50,6 +49,6 @@ public final class SidebarText {
 	 */
 	public static MutableComponent row(Team team, Component name) {
 		MutableComponent source = PlayerTeam.formatNameForTeam(team, name);
-		return HypixelServer.canTranslate() ? Translator.translate(source, Surface.SCOREBOARD).padded() : source;
+		return HypixelServer.canTranslate() ? Translator.translateLine(source, Surface.SCOREBOARD).copy() : source;
 	}
 }

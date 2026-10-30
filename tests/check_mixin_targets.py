@@ -29,7 +29,7 @@ For each mixin class named in the config:
 
 USAGE
 -----
-    python gradle/check_mixin_targets.py <mixin-config.json> <classes-dir> <classpath-file>
+    python tests/check_mixin_targets.py <mixin-config.json> <classes-dir> <classpath-file>
 
 `classpath-file` holds the compile classpath, one entry per line, as written by the Gradle task in
 gradle/target.gradle. Passing the classpath the mod was actually compiled against — rather than a jar

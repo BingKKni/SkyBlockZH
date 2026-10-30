@@ -111,9 +111,9 @@ The sidebar is the one surface in the game that genuinely animates: Hypixel re-s
 display name every tick, the plain text always `SKYBLOCK` and only the per-character colours moving —
 a highlight travelling across the letters. Two things keep it:
 
-- **Rendered lines are never cached.** Only *which record matches a piece of text* is cached, and
-  that text is what stays the same tick to tick, so the cache is right and the colouring is redone
-  every frame.
+- **Display results are cached by complete text and live styles.** Colour, font, interaction styles
+  and line boundaries must all agree. A colour-only update produces fresh output, preserving the
+  shimmer. Caches are bounded and invalidated by configuration/resource changes.
 - **Colour is spread per character.** Eight letters become four characters; taking one colour for all
   of them would turn a travelling highlight into the whole word blinking. Each character takes its
   colour from the letters it stands in for, preferring one that differs from the word's prevailing
@@ -220,10 +220,21 @@ matched a record and stayed English, and every captured line was filed under a p
 ## The corpus
 
 Translations live in `original_text/`, split by gameplay category and by the surface they are drawn
-on; the format is documented in `original_text/README.md`. The mod reads those files directly — they
-are shipped verbatim, with no intermediate build format — so a wrong line on screen leads straight
+on; the format is documented in `original_text/README.md`. Packaging strips translator-only metadata
+and preserves runtime fields — so a wrong line on screen leads straight
 back to one file and one `id`. An empty `zh` means "not translated yet" and leaves the line in
 English; it never blanks it.
+
+Dynamic templates use mandatory literal substrings to select candidates, then retain the complete
+regex/capture validation and stable specificity ordering. Equivalent definitions share compiled
+structures while each occurrence keeps its own id and file. Candidates are never restricted by island.
+`StyledText` stores complete style runs with immutable range views. A lore plan reuses flattened lines
+and per-start searches while preserving longest matches, blank boundaries and the 12-line/2048-character limits.
+
+`./gradlew checkPerformance` compares indexed matching with the previous exhaustive scan and checks
+style equality, cache collisions and capture eviction recovery. `./gradlew benchmarkPerformance` reports
+offline CPU/allocation costs, not client FPS. Java checks, platform fixtures, JSON samples and Python
+checks live under `tests/` and are excluded from distributed jars.
 
 After editing the corpus, check it without launching the game:
 
@@ -445,7 +456,11 @@ not; English Hypixel already sends wider than the box wraps in vanilla either wa
 arguments fail `checkTranslations`.
 
 All six buckets use the existing capture switch, notifications, asynchronous writer, area buffering,
-deduplication and clear lifecycle. `_capture.diagnostic.original_lines`, `rendered_lines` and `records`
+deduplication and clear lifecycle. Capture close/disconnect requests drain and persist on the worker;
+only JVM shutdown waits, with one 30-second deadline covering admission and completion. Timeout never
+falls back to synchronous disk writes. The two alias indexes are capped at 16,384 entries each;
+repeats retain original evidence so an evicted alias can be classified and recovered.
+`_capture.diagnostic.original_lines`, `rendered_lines` and `records`
 keep a concrete observation; combining unrelated `observed` values is not a valid reconstruction.
 `./gradlew checkDiagnostics` checks the screenshot cases, 73 independent colour samples, deliberately
 broken records, persistence and clearing on all targets. Deterministic font metrics test the pixel
@@ -572,7 +587,7 @@ mixins — the real `@Mixin` value, the real `method` list, the real `At.target`
 of them against the Minecraft actually on that target's compile classpath, including `@Shadow` members,
 which are not `require = 0` and crash at apply time rather than failing quietly. Compiling proves the
 mod's source agrees with itself and proves nothing at all about whether the injection points still
-exist. See `gradle/check_mixin_targets.py`.
+exist. See `tests/check_mixin_targets.py`.
 
 To check the shipped classes against a Minecraft the build is not currently pointed at — which is how
 `>=26.1 <26.2` was established rather than assumed:

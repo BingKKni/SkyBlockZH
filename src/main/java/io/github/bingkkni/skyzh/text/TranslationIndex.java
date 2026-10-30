@@ -13,11 +13,9 @@ import java.util.Set;
  * Every compiled record, bucketed by the surface it is allowed to answer for, plus the lookup that
  * finds the one matching a given line.
  *
- * <p>Two tiers, because most SkyBlock text is fixed strings and only some of it has values in it.
- * Lines with no placeholder go into a hash map and cost one lookup. Lines with placeholders have to
- * be tried in turn, so the outcome — hit <em>or</em> miss — is remembered against the exact text
- * that was searched for. Chat repeats itself and a tooltip re-renders every frame, so the second
- * time any line is seen it costs a map lookup either way.
+ * Exact strings use a hash lookup. Dynamic templates are selected by mandatory literal substrings,
+ * then validated in specificity order. Only immutable record identities enter the bounded cache;
+ * each query owns its Matcher so render and capture threads cannot share mutable regex state.
  */
 public final class TranslationIndex {
 	private static final int CACHE_SIZE = 2048;
@@ -25,6 +23,10 @@ public final class TranslationIndex {
 	private final Map<Surface, Map<String, TranslationEntry>> exact = new EnumMap<>(Surface.class);
 	private final Map<Surface, List<TranslationEntry>> patterns = new EnumMap<>(Surface.class);
 	private final Map<Surface, Map<String, TranslationEntry>> cache = new EnumMap<>(Surface.class);
+	private final Map<Surface, TemplateCandidates> candidates = new java.util.concurrent.ConcurrentHashMap<>();
+
+	/** A query-local matcher; never stored in the shared lookup cache. */
+	public record Match(TranslationEntry entry, java.util.regex.Matcher matcher) {}
 
 	/**
 	 * Text a record deliberately keeps in English ({@code translate: false}), by surface. Never drawn
@@ -121,6 +123,19 @@ public final class TranslationIndex {
 		} else {
 			this.patterns.get(surface).add(entry);
 		}
+		this.candidates.remove(surface);
+		synchronized (this.cache.get(surface)) {
+			this.cache.get(surface).clear();
+		}
+	}
+
+	/** Build once after loading; subsequent lookups only read immutable candidate structures. */
+	public void prepare() {
+		for (Surface surface : Surface.values()) candidates(surface);
+	}
+
+	private TemplateCandidates candidates(Surface surface) {
+		return this.candidates.computeIfAbsent(surface, key -> new TemplateCandidates(this.patterns.get(key)));
 	}
 
 	/**
@@ -135,31 +150,41 @@ public final class TranslationIndex {
 	 */
 	public TranslationEntry lookup(Surface surface, String plain) {
 		Map<String, TranslationEntry> cached = this.cache.get(surface);
-
 		synchronized (cached) {
-			if (cached.containsKey(plain)) {
-				// A null value is a remembered miss — worth caching, since most text on screen in a
-				// 928-record corpus is text nobody has translated yet.
-				return cached.get(plain);
-			}
+			if (cached.containsKey(plain)) return cached.get(plain);
 		}
-
-		TranslationEntry found = this.exact.get(surface).get(plain);
-
-		if (found == null) {
-			for (TranslationEntry entry : this.patterns.get(surface)) {
-				if ((found == null || entry.specificity() > found.specificity())
-					&& entry.match(plain) != null) {
-					found = entry;
-				}
-			}
-		}
-
+		TranslationEntry exactEntry = this.exact.get(surface).get(plain);
+		Match found = exactEntry == null ? candidates(surface).match(plain) : null;
+		TranslationEntry entry = exactEntry != null ? exactEntry : found == null ? null : found.entry();
 		synchronized (cached) {
-			cached.put(plain, found);
+			cached.put(plain, entry);
 		}
+		return entry;
+	}
 
+	/** Retains the successful cold-query Matcher instead of immediately running the same regex again. */
+	public Match match(Surface surface, String plain) {
+		Map<String, TranslationEntry> cached = this.cache.get(surface);
+		TranslationEntry entry;
+		boolean remembered;
+		synchronized (cached) {
+			remembered = cached.containsKey(plain);
+			entry = cached.get(plain);
+		}
+		if (remembered) return matched(entry, plain);
+		entry = this.exact.get(surface).get(plain);
+		Match found = entry != null ? matched(entry, plain) : candidates(surface).match(plain);
+		synchronized (cached) {
+			// Exact lookup precedence is preserved even for a malformed/excluded exact record.
+			cached.put(plain, entry != null ? entry : found == null ? null : found.entry());
+		}
 		return found;
+	}
+
+	private static Match matched(TranslationEntry entry, String plain) {
+		if (entry == null) return null;
+		var matcher = entry.match(plain);
+		return matcher == null ? null : new Match(entry, matcher);
 	}
 
 	/**

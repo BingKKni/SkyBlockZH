@@ -45,7 +45,11 @@ replay_*.log
 # Probe input for `./gradlew probe`, written by hand to redraw one line at a time.
 probe.txt
 
-# local translation/research helpers; build-time checks live under gradle/ instead
+# Python check caches
+__pycache__/
+*.pyc
+
+# local translation/research helpers; maintained checks live under tests/
 /tools/
 .claude/RESUME.md
 

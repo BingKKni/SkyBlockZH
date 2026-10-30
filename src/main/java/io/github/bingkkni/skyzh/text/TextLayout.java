@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.client.gui.Font;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.FormattedCharSequence;
 
 /**
  * Pixel arithmetic — the answer to known issues 1 and 2, both of which come down to the same thing:
@@ -74,7 +75,7 @@ public final class TextLayout {
 				// By code point, so a character outside the basic plane is measured as the one glyph
 				// it is and never cut in half — half a surrogate pair renders as a replacement box.
 				int codePoint = plain.codePointAt(cursor);
-				int charWidth = font.width(styled.slice(cursor, cursor + Character.charCount(codePoint)));
+				int charWidth = font.width(FormattedCharSequence.codepoint(codePoint, styled.styleAt(cursor)));
 
 				if (width + charWidth > limit && cursor > lineStart) {
 					break;

@@ -8,7 +8,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HexFormat;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import net.minecraft.network.chat.Component;
 
 /** Immutable packet text for worker analysis; only the exported context is size-limited. */
@@ -18,6 +20,13 @@ public record LoreSnapshot(
 ) {
 	private static final int MAX_LINES = 256;
 	private static final int MAX_CHARACTERS = 65_536;
+	private record Content(String menu, StyledText name, List<StyledText> lines, boolean truncated) {}
+	private static final Map<Content, LoreSnapshot> CACHE = new LinkedHashMap<>(128, 0.75f, true) {
+		@Override
+		protected boolean removeEldestEntry(Map.Entry<Content, LoreSnapshot> eldest) {
+			return size() > 128;
+		}
+	};
 
 	public LoreSnapshot {
 		lines = List.copyOf(lines);
@@ -33,8 +42,20 @@ public record LoreSnapshot(
 		}
 		StyledText itemName = StyledText.of(name == null ? Component.empty() : name);
 		boolean truncated = lines.size() > MAX_LINES || characters > MAX_CHARACTERS || itemName.length() > 1024;
+		Content key = new Content(menu, itemName, List.copyOf(lines), truncated);
+		synchronized (CACHE) {
+			LoreSnapshot cached = CACHE.get(key);
+			if (cached != null) {
+				return new LoreSnapshot(menu, containerId, slot, cached.itemName(), cached.lines(),
+					cached.originalLineCount(), cached.truncated(), cached.signature());
+			}
+		}
 		String signature = signature(menu, itemName, lines, source.size(), truncated);
-		return new LoreSnapshot(menu, containerId, slot, itemName, lines, source.size(), truncated, signature);
+		LoreSnapshot snapshot = new LoreSnapshot(menu, containerId, slot, itemName, lines, source.size(), truncated, signature);
+		synchronized (CACHE) {
+			CACHE.put(key, snapshot);
+		}
+		return snapshot;
 	}
 
 	/** A record points back to its exact position; blank and already-covered neighbours remain here. */
@@ -96,16 +117,17 @@ public record LoreSnapshot(
 
 	private static void styled(MessageDigest digest, StyledText text) {
 		update(digest, text.plain());
-		for (int i = 0; i < text.length(); i++) {
-			if (i == 0 || !text.styleAt(i).equals(text.styleAt(i - 1))) {
-				update(digest, i + ":" + text.styleAt(i));
-			}
+		for (int i = 0; i < text.length(); i = text.styleEnd(i)) {
+			update(digest, i + ":" + text.styleAt(i));
 		}
 	}
 
 	private static void update(MessageDigest digest, String text) {
 		byte[] bytes = text.getBytes(StandardCharsets.UTF_8);
-		digest.update(java.nio.ByteBuffer.allocate(4).putInt(bytes.length).array());
+		digest.update((byte) (bytes.length >>> 24));
+		digest.update((byte) (bytes.length >>> 16));
+		digest.update((byte) (bytes.length >>> 8));
+		digest.update((byte) bytes.length);
 		digest.update(bytes);
 	}
 }

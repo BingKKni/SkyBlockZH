@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.EnumMap;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +17,7 @@ import java.util.Objects;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 import net.minecraft.network.chat.Component;
@@ -34,10 +33,8 @@ import org.slf4j.LoggerFactory;
  * mod they will uninstall, and rightly. So the game thread does the least it can: it decides whether
  * this text has been seen before, and if not, flattens it once and drops it on a queue.
  *
- * <p>The queue is bounded and ordinary capture drops rather than blocks when it fills. There is no
- * version of this feature where stalling the render thread to keep a capture is the right trade. The
- * only item allowed to wait for queue room is an explicit finish barrier, used after capture has been
- * switched off or the connection is ending so already-queued work is not lost.
+ * queue is bounded and ordinary capture drops rather than blocks when it fills. Closing capture or
+ * disconnecting requests a background flush; only JVM shutdown waits, within one deadline.
  */
 public final class CaptureStore {
 	private static final Logger LOGGER = LoggerFactory.getLogger("SkyZH");
@@ -62,7 +59,7 @@ public final class CaptureStore {
 	private static final int MAX_LINES_PER_FILE = 800;
 
 	/** Capture work has an explicit stage; a repeat carries no redundant text snapshot. */
-	public sealed interface Observation permits Line, Item, Lore, Diagnosed, Repeated {}
+	public sealed interface Observation permits Line, Item, Lore, Diagnosed, Repeated, Repeat {}
 
 	/** A frozen packet item, never an ItemStack or a mutable component from the game thread. */
 	public record Item(LoreSnapshot snapshot, boolean hasName) implements Observation {
@@ -101,6 +98,16 @@ public final class CaptureStore {
 
 	public enum Repeated implements Observation { INSTANCE }
 
+	/** Full evidence survives alias eviction or a dropped first observation. */
+	public record Repeat(Observation fallback) implements Observation {
+		public Repeat {
+			Objects.requireNonNull(fallback);
+			if (fallback instanceof Repeat || fallback instanceof Repeated) {
+				throw new IllegalArgumentException("A repeat requires original evidence");
+			}
+		}
+	}
+
 	/** The observation and the place/time at which it arrived; area stays fixed through a warp. */
 	public record Sighting(
 		CaptureSurface surface, String key, Observation observation, String gameplay, String area,
@@ -111,7 +118,6 @@ public final class CaptureStore {
 		}
 	}
 
-	private record RecordKey(String sighting, Classifier.Bucket bucket) {}
 	private record SharedKey(String verdict, CaptureSurface surface, String gameplay, String text) {}
 
 	/** A normal sighting or a FIFO barrier asking the worker to persist everything before it. */
@@ -128,7 +134,8 @@ public final class CaptureStore {
 	private static final BlockingQueue<Work> QUEUE = new ArrayBlockingQueue<>(QUEUE_DEPTH);
 
 	private static final Map<CaptureWriter.Meta, List<CapturedLine>> FILES = new LinkedHashMap<>();
-	private static final Map<RecordKey, CapturedLine> BY_KEY = new HashMap<>();
+	private static final int MAX_ALIASES = 16_384;
+	private static final Map<String, List<CapturedLine>> BY_KEY = boundedMap();
 	private static final Map<CaptureWriter.Meta, Boolean> DIRTY = new HashMap<>();
 
 	/**
@@ -144,13 +151,21 @@ public final class CaptureStore {
 	 * <p>Keyed by gameplay as well as by text, because filing a Foraging line into a Mining folder is
 	 * the one kind of contamination nobody would spot afterwards.
 	 */
-	private static final Map<SharedKey, CapturedLine> SHARED = new HashMap<>();
-	// Session repetition is still counted; this only avoids re-diagnosing an identical snapshot.
-	private static final Set<String> LORE_SEEN = new HashSet<>();
-	private static final int MAX_LORE_SEEN = 200_000;
+	private static final Map<SharedKey, CapturedLine> SHARED = boundedMap();
+
+	private static <K, V> Map<K, V> boundedMap() {
+		return new LinkedHashMap<>(256, 0.75f, true) {
+			@Override
+			protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
+				return size() > MAX_ALIASES;
+			}
+		};
+	}
 
 	private static Path root;
-	private static Thread worker;
+	private static volatile Thread worker;
+	private static final AtomicBoolean flushRequested = new AtomicBoolean();
+	private static final AtomicBoolean reportRequested = new AtomicBoolean();
 	private static volatile long epoch;
 	private static boolean warnedFull;
 	private static int dropped;
@@ -208,9 +223,14 @@ public final class CaptureStore {
 				} else if (work instanceof FlushRequest request) {
 					try {
 						flush();
+						reportIfRequested();
 					} finally {
 						request.done().countDown();
 					}
+				}
+				if (QUEUE.isEmpty() && flushRequested.getAndSet(false)) {
+					flush();
+					reportIfRequested();
 				}
 
 				// Files first, then the message that links to them.
@@ -268,6 +288,15 @@ public final class CaptureStore {
 			}
 			case Diagnosed diagnosed -> record(sighting, diagnosed.text(), diagnosed.verdict());
 			case Repeated ignored -> repeat(sighting);
+			case Repeat repeated -> {
+				if (!repeat(sighting)) {
+					accept(new Sighting(sighting.surface(), sighting.key(), repeated.fallback(), sighting.gameplay(),
+						sighting.area(), sighting.name(), sighting.note(), sighting.when()), sightingEpoch);
+				}
+			}
+		}
+		if (!(sighting.observation() instanceof Item) && !(sighting.observation() instanceof Repeated)) {
+			BY_KEY.computeIfAbsent(sighting.key(), ignored -> new ArrayList<>());
 		}
 	}
 
@@ -295,10 +324,8 @@ public final class CaptureStore {
 			LoreSnapshot.Target context = new LoreSnapshot.Target(snapshot, observation.start(), observation.lineCount());
 			String kind = observation.diagnostic() == null ? "line" : observation.diagnostic().identity();
 			String key = parent.key() + '\u0000' + observation.surface() + ':' + kind + ':' + context.key();
-			if (LORE_SEEN.size() >= MAX_LORE_SEEN) LORE_SEEN.clear();
-			Observation work = LORE_SEEN.add(key)
-				? new Lore(StyledText.of(joined), context, observation.diagnostic(), observation.orphanContinuation())
-				: Repeated.INSTANCE;
+			Observation work = new Repeat(new Lore(StyledText.of(joined), context,
+				observation.diagnostic(), observation.orphanContinuation()));
 			String note = parent.note() + (observation.start() < 0 ? " 物品名"
 				: observation.diagnostic() == null ? " Lore" : " / " + originalName + " Lore");
 			accept(new Sighting(observation.surface(), key, work, parent.gameplay(), parent.area(),
@@ -314,31 +341,50 @@ public final class CaptureStore {
 		}
 	}
 
-	private static void repeat(Sighting sighting) {
-		for (Classifier.Bucket bucket : Classifier.Bucket.values()) {
-			CapturedLine known = BY_KEY.get(new RecordKey(sighting.key(), bucket));
-
-			if (known != null) {
-				known.again(sighting.when(), sighting.area(), "");
-				DIRTY.put(known.meta(), true);
-			}
+	private static boolean repeat(Sighting sighting) {
+		List<CapturedLine> known = BY_KEY.get(sighting.key());
+		if (known == null) return false;
+		for (CapturedLine line : known) {
+			line.again(sighting.when(), sighting.area(), "");
+			DIRTY.put(line.meta(), true);
 		}
+		return true;
+	}
+
+	private static void remember(String key, CapturedLine line) {
+		List<CapturedLine> records = BY_KEY.computeIfAbsent(key, ignored -> new ArrayList<>());
+		if (!records.contains(line)) records.add(line);
 	}
 
 	/** Records an already classified snapshot. Called only while accept holds the store monitor. */
 	private static void record(Sighting sighting, StyledText text, Classifier.Verdict verdict) {
-		RecordKey key = new RecordKey(sighting.key(), verdict.bucket());
+		String key = sighting.key();
 		// ITEM and LORE can answer the same English with different entries/diagnostics.
 		SharedKey shared = shareable(sighting)
 			? new SharedKey(verdict.identity(), sighting.surface(), sighting.gameplay(), text.plain()) : null;
 
 		if (shared != null) {
 			CapturedLine already = SHARED.get(shared);
+			if (already == null) {
+				// The alias map is an accelerator. Eviction must not create a second menu copy.
+				for (var file : FILES.entrySet()) {
+					if (file.getKey().surface() != sighting.surface()
+						|| !Objects.equals(file.getKey().gameplay(), sighting.gameplay())) continue;
+					for (CapturedLine line : file.getValue()) {
+						if (line.verdict().sameKind(verdict) && line.covers(text)) {
+							already = line;
+							break;
+						}
+					}
+					if (already != null) break;
+				}
+			}
 
 			if (already != null) {
 				already.again(sighting.when(), sighting.area(), sighting.note());
 				rememberContext(already, sighting);
-				BY_KEY.put(key, already);
+				remember(key, already);
+				SHARED.put(shared, already);
 				DIRTY.put(already.meta(), true);
 
 				return;
@@ -358,7 +404,7 @@ public final class CaptureStore {
 		for (CapturedLine line : lines) {
 			if (line.verdict().sameKind(verdict)
 				&& line.merge(text, sighting.note(), sighting.area(), sighting.when())) {
-				BY_KEY.put(key, line);
+				remember(key, line);
 				rememberContext(line, sighting);
 
 				if (shared != null) {
@@ -382,7 +428,7 @@ public final class CaptureStore {
 		line.id(uniqueId(lines, Classifier.id(text.plain())));
 		line.meta(meta);
 		lines.add(line);
-		BY_KEY.put(key, line);
+		remember(key, line);
 		DIRTY.put(meta, true);
 		kept++;
 
@@ -441,42 +487,43 @@ public final class CaptureStore {
 		return false;
 	}
 
-	/**
-	 * Waits until the worker has processed everything already queued, then writes it.
-	 *
-	 * <p>A plain {@link #flush} only sees records the worker has accepted. Turning capture off,
-	 * disconnecting, or shutting the JVM down can happen while sightings are still in the queue; a FIFO
-	 * barrier makes those sightings reach the store before the write without making the render thread do
-	 * their classification work itself.
-	 */
+	/** Non-blocking close/disconnect path; the worker drains queued observations before reporting. */
+	public static void finishAsync(boolean report) {
+		if (report) reportRequested.set(true);
+		flushRequested.set(true);
+	}
+
+	private static void reportIfRequested() {
+		if (reportRequested.getAndSet(false)) LOGGER.info("SkyZH 采集本次会话结果：{}", summary());
+	}
+
+	/** Shutdown/offline barrier. Queue admission and completion share the same timeout. */
 	public static void finishPending() {
-		Thread captureWorker;
-
-		synchronized (CaptureStore.class) {
-			captureWorker = worker;
-		}
-
-		if (captureWorker == null || !captureWorker.isAlive()
-			|| Thread.currentThread() == captureWorker) {
+		long deadline = System.nanoTime() + TimeUnit.MILLISECONDS.toNanos(FINISH_TIMEOUT_MS);
+		Thread captureWorker = worker;
+		if (Thread.currentThread() == captureWorker) {
 			flush();
 			return;
 		}
-
 		FlushRequest request = new FlushRequest(new CountDownLatch(1));
 		boolean finished = false;
-
 		try {
-			// Unlike ordinary capture, this may wait for room. It runs only at an explicit finish point,
-			// where losing the full queue would be worse than briefly waiting for its worker.
-			QUEUE.put(request);
-			finished = request.done().await(FINISH_TIMEOUT_MS, TimeUnit.MILLISECONDS);
+			boolean admitted;
+			if (captureWorker == null || !captureWorker.isAlive()) {
+				Thread.ofPlatform().daemon().name("SkyZH-capture-final-write").start(() -> {
+					try { flush(); } finally { request.done().countDown(); }
+				});
+				admitted = true;
+			} else {
+				admitted = QUEUE.offer(request, Math.max(0, deadline - System.nanoTime()), TimeUnit.NANOSECONDS);
+			}
+			finished = admitted && request.done().await(Math.max(0, deadline - System.nanoTime()), TimeUnit.NANOSECONDS);
 		} catch (InterruptedException e) {
 			Thread.currentThread().interrupt();
 		}
-
 		if (!finished) {
-			LOGGER.warn("SkyZH 等待采集队列落盘超时；已写入目前处理完成的记录，队尾仍可能有文本未保存。");
-			flush();
+			finishAsync(false);
+			LOGGER.warn("SkyZH 等待采集落盘超时，后台仍将继续处理；退出时队尾可能尚未保存。");
 		}
 	}
 
@@ -542,7 +589,7 @@ public final class CaptureStore {
 		BY_KEY.clear();
 		DIRTY.clear();
 		SHARED.clear();
-		LORE_SEEN.clear();
+
 		dropped = 0;
 		kept = 0;
 

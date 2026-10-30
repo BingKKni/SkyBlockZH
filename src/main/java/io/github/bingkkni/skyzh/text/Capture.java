@@ -214,6 +214,7 @@ public enum Capture {
 
 	private final String regex;
 	private final boolean allowsEmpty;
+	private final Pattern validation;
 
 	Capture(String regex) {
 		this(regex, true);
@@ -222,6 +223,7 @@ public enum Capture {
 	Capture(String regex, boolean allowsEmpty) {
 		this.regex = regex;
 		this.allowsEmpty = allowsEmpty;
+		this.validation = Pattern.compile(regex);
 	}
 
 	/**
@@ -311,10 +313,10 @@ public enum Capture {
 			// The regex is the whole of the rule for these: a numeral is a numeral, and a player's
 			// name is whatever sixteen word characters somebody chose.
 			case NUMBER, STAT_VALUE, ATTRIBUTE_VALUE, YEAR, DAY_OF_MONTH, PLAYER, PLAYER_DISPLAY, RANK, TIER, LEVEL, TIER_RANGE, ICON, ITEM_PART, TRAINING_KIND, TROPHY_QUALITY, GEMSTONE_KIND, GEMSTONE_QUALITY, ORDINAL, DURATION, DURATION_SPACED, DURATION_WORDS, SEARCH_QUERY -> true;
-			case RIFT_TIME, EQUIPMENT_SLOT, TROPHY_FISH_NAME, CONTEST_RANK, RIFT_ABILITY, RIFT_BOSS_STAGE, EXCLAMATIONS, HUNGRY_HIKER_FOOD, CLOCK_DURATION, RACE_TIME, PROGRESS, HUD_NUMBER, HEALTH_ICONS, PROGRESS_BAR, EFFIGY_STATES, ORDINAL_WORD, COMMISSION_AREA -> value.matches(this.regex);
+			case RIFT_TIME, EQUIPMENT_SLOT, TROPHY_FISH_NAME, CONTEST_RANK, RIFT_ABILITY, RIFT_BOSS_STAGE, EXCLAMATIONS, HUNGRY_HIKER_FOOD, CLOCK_DURATION, RACE_TIME, PROGRESS, HUD_NUMBER, HEALTH_ICONS, PROGRESS_BAR, EFFIGY_STATES, ORDINAL_WORD, COMMISSION_AREA -> this.validation.matcher(value).matches();
 			case MULTIPLIER_INCREASE -> new BigDecimal(value).compareTo(BigDecimal.ONE) >= 0;
 			case NAME -> isName(value);
-			case MOB_FAMILY, STAT_NAME, RARITY -> value.matches(this.regex);
+			case MOB_FAMILY, STAT_NAME, RARITY -> this.validation.matcher(value).matches();
 			case ITEM_NAME -> isItemName(value);
 			case CATALOG_ITEM -> isItemName(value) && ItemNames.canonical(value) != null;
 			case LOADOUT_ITEM -> ItemNames.isLoadoutReference(value);
@@ -344,7 +346,7 @@ public enum Capture {
 	 */
 	public String renderValue(String value) {
 		if (this == RIFT_TIME) {
-			if (!value.matches("[0-9]{1,9}")) return DURATION.renderValue(value);
+			if (!WHOLE_SECONDS.matcher(value).matches()) return DURATION.renderValue(value);
 			long total = Long.parseLong(value);
 			long hours = total / 3600;
 			long minutes = total / 60 % 60;
@@ -431,7 +433,7 @@ public enum Capture {
 	public net.minecraft.network.chat.MutableComponent renderDuration(StyledText source, int start, int end) {
 		if (this == RIFT_TIME) {
 			String value = source.plain().substring(start, end);
-			return value.matches("[0-9]{1,9}")
+			return WHOLE_SECONDS.matcher(value).matches()
 				? net.minecraft.network.chat.Component.literal(renderValue(value)).setStyle(source.styleAt(start))
 				: DURATION.renderDuration(source, start, end);
 		}
@@ -440,7 +442,7 @@ public enum Capture {
 		String written = renderValue(value);
 		if (written.equals(value)) return null;
 		Matcher original = (this == DURATION_WORDS ? WRITTEN_DURATION_UNIT : DURATION_UNIT).matcher(value);
-		Matcher chinese = Pattern.compile("(-?[0-9][0-9,.]*)(年|天|小时|分钟|分|秒)(以上)?").matcher(written);
+		Matcher chinese = CHINESE_DURATION.matcher(written);
 		var result = net.minecraft.network.chat.Component.empty();
 		while (chinese.find() && original.find()) {
 			int number = start + original.start(1);
@@ -463,6 +465,8 @@ public enum Capture {
 	 * mean "at least this long". Applied one unit at a time so {@code 1d 16h 21m 14s} comes out whole
 	 * and anything that is not a unit — a bare number, a word — is left exactly as it arrived.
 	 */
+	private static final Pattern WHOLE_SECONDS = Pattern.compile("[0-9]{1,9}");
+	private static final Pattern CHINESE_DURATION = Pattern.compile("(-?[0-9][0-9,.]*)(年|天|小时|分钟|分|秒)(以上)?");
 	private static final Pattern DURATION_UNIT = Pattern.compile("(-?[0-9][0-9,.]*)([yYdDhHmMsS])(\\+?)");
 	private static final Pattern WRITTEN_DURATION_UNIT = Pattern.compile(
 		"([0-9][0-9,]*) (days?|hours?|minutes?|seconds?)", Pattern.CASE_INSENSITIVE

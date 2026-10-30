@@ -2548,6 +2548,11 @@ public final class TranslationHarness {
 		} else {
 			for (JsonElement element : file.getAsJsonArray("lines")) {
 				JsonObject record = element.getAsJsonObject();
+				if (record.has("ref")) {
+					String[] ref = record.get("ref").getAsString().split("#", 2);
+					record = recordsOf(files.get(ref[0])).stream()
+						.filter(candidate -> text(candidate, "id").equals(ref[1])).findFirst().orElseThrow();
+				}
 
 				if (record.has("translate") && !record.get("translate").getAsBoolean()) {
 					continue;
@@ -2595,8 +2600,8 @@ public final class TranslationHarness {
 			List<Component> shown = (List<Component>) present.invoke(null, null, source, false, "R", true);
 			report("原文模式不漏掉恢复翻译提示", shown.size() == 3
 				&& shown.getLast().getString().equals("§b[SkyZH] §6按下 R 键显示翻译"), shown.toString());
-			report("原文Tooltip不翻译也不修改原始组件", shown.getFirst() == source.getFirst()
-				&& shown.get(1) == source.get(1) && source.size() == 2, source.toString());
+			report("原文Tooltip不翻译也不修改原始组件", shown.getFirst().equals(source.getFirst())
+				&& shown.get(1).equals(source.get(1)) && source.size() == 2, source.toString());
 			report("原文Tooltip重复渲染复用缓存", present.invoke(null, null, source, false, "R", true) == shown, "same key");
 			@SuppressWarnings("unchecked")
 			List<Component> rebound = (List<Component>) present.invoke(null, null, source, false, "Mouse 4", true);
@@ -2947,7 +2952,7 @@ public final class TranslationHarness {
 	/** Fixed UI capture regression: ordered lore, term isolation, and clues that must survive translation. */
 	private static void checkFixedMenus(Path corpusRoot) throws Exception {
 		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "october-live-round-cases.json", "workshop-cases.json", "wiki-expansion-cases.json", "bazaar-item-names-cases.json", "rift-live-capture-cases.json", "rift-session-cases.json", "garden-weather-feast-cases.json", "village-living-cave-cases.json", "rift-post-build-cases.json", "castle-capture-cases.json", "slayer-rng-capture-cases.json", "spider-session-cases.json", "dual-live-round-cases.json", "moonglade-capture-cases.json")) {
-		Path path = corpusRoot.toAbsolutePath().getParent().resolve("src/harness/resources/" + file);
+		Path path = corpusRoot.toAbsolutePath().getParent().resolve("tests/resources/" + file);
 		JsonObject fixture = JsonParser.parseString(Files.readString(path, StandardCharsets.UTF_8)).getAsJsonObject();
 		for (JsonElement value : fixture.getAsJsonArray("cases")) {
 			JsonObject test = value.getAsJsonObject();
@@ -3106,7 +3111,7 @@ public final class TranslationHarness {
 
 	/** Independently authored, complete live paragraphs; never count per-line hits as semantic coverage. */
 	private static void checkPostBuildCapture(Path corpusRoot) throws Exception {
-		Path path = corpusRoot.toAbsolutePath().getParent().resolve("src/harness/resources/post-build-2026-09-08-cases.json");
+		Path path = corpusRoot.toAbsolutePath().getParent().resolve("tests/resources/post-build-2026-09-08-cases.json");
 		JsonObject fixture;
 		try (BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
 			fixture = JsonParser.parseReader(reader).getAsJsonObject();
@@ -3277,7 +3282,7 @@ public final class TranslationHarness {
 		check("原版Lure保留官方译名", "§9Lure V", Surface.ITEM, "§9饵钓 V");
 		check("原版Luck of the Sea保留官方译名", "§9Luck of the Sea VI", Surface.ITEM, "§9海之眷顾 VI");
 
-		Path casesPath = corpusRoot.toAbsolutePath().getParent().resolve("src/harness/resources/enchantment-guide-cases.json");
+		Path casesPath = corpusRoot.toAbsolutePath().getParent().resolve("tests/resources/enchantment-guide-cases.json");
 		JsonObject fixture;
 		try (BufferedReader reader = Files.newBufferedReader(casesPath, StandardCharsets.UTF_8)) {
 			fixture = JsonParser.parseReader(reader).getAsJsonObject();

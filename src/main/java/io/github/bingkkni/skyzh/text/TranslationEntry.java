@@ -1,7 +1,6 @@
 package io.github.bingkkni.skyzh.text;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -116,11 +115,13 @@ public final class TranslationEntry {
 	private final String template;
 	/** Exact canonical inputs this template must decline; not a global no-translation rule. */
 	private final Set<String> excludedTexts;
+	/** A literal substring every successful match contains, including singular variants. */
+	private final String anchor;
 
 	private TranslationEntry(
 		Definition definition, Pattern pattern, List<Fragment> fragments, int[] argGroups,
 		Map<Integer, Capture> captures, Map<Integer, String> argTypes, Map<Integer, Integer> shapes,
-		int specificity, String template
+		int specificity, String template, String anchor
 	) {
 		this.id = definition.id();
 		this.sourceFile = definition.sourceFile();
@@ -136,6 +137,38 @@ public final class TranslationEntry {
 		this.specificity = specificity;
 		this.template = template;
 		this.excludedTexts = definition.options().excludedTexts();
+		this.anchor = anchor;
+	}
+
+	/** Shares compiled, immutable structures while retaining this occurrence's diagnostic identity. */
+	TranslationEntry identifiedBy(String id, String sourceFile) {
+		return new TranslationEntry(this, id, sourceFile);
+	}
+
+	private TranslationEntry(TranslationEntry shared, String id, String sourceFile) {
+		this.id = id;
+		this.sourceFile = sourceFile;
+		this.pattern = shared.pattern;
+		this.fragments = shared.fragments;
+		this.argGroups = shared.argGroups;
+		this.captures = shared.captures;
+		this.argTypes = shared.argTypes;
+		this.shapes = shared.shapes;
+		this.continuation = shared.continuation;
+		this.layout = shared.layout;
+		this.chatJoinNext = shared.chatJoinNext;
+		this.specificity = shared.specificity;
+		this.template = shared.template;
+		this.excludedTexts = shared.excludedTexts;
+		this.anchor = shared.anchor;
+	}
+
+	Object compiledIdentity() {
+		return this.pattern;
+	}
+
+	String anchor() {
+		return this.anchor;
 	}
 
 	/**
@@ -213,6 +246,7 @@ public final class TranslationEntry {
 		Map<Integer, String> typeByGroup = new HashMap<>();
 		Map<Integer, Integer> shapeByGroup = new HashMap<>();
 		int group = 0;
+		String anchor = "";
 
 		for (int i = 0; i < sources.size(); i++) {
 			group++;
@@ -223,6 +257,10 @@ public final class TranslationEntry {
 			for (Piece piece : parse(sources.get(i), sourceArg)) {
 				if (piece instanceof Literal literal) {
 					regex.append(anyPlaceholder ? eitherNumber(literal.text()) : Pattern.quote(literal.text()));
+					String required = requiredLiteral(literal.text());
+					if (required.length() > anchor.length()) {
+						anchor = required;
+					}
 				} else if (piece instanceof Arg arg) {
 					group++;
 					fragmentArgs.add(group);
@@ -286,7 +324,7 @@ public final class TranslationEntry {
 		return new TranslationEntry(
 			definition, Pattern.compile(regex.toString(), Pattern.DOTALL), List.copyOf(fragments),
 			argGroups, Map.copyOf(captures), Map.copyOf(typeByGroup), Map.copyOf(shapeByGroup),
-			literals, String.join("", sources)
+			literals, String.join("", sources), anchor
 		);
 	}
 
@@ -351,6 +389,26 @@ public final class TranslationEntry {
 		}
 
 		return regex.toString();
+	}
+
+	/** Split at every optional plural s: an anchor must be present with or without that letter. */
+	private static String requiredLiteral(String literal) {
+		String best = "";
+		int from = 0;
+		int cursor = 0;
+		while (cursor < literal.length()) {
+			int start = cursor;
+			while (cursor < literal.length() && isAsciiLetter(literal.charAt(cursor))) cursor++;
+			if (cursor == start) {
+				cursor++;
+			} else if (isPlural(literal.substring(start, cursor))) {
+				if (cursor - 1 - from > best.length()) best = literal.substring(from, cursor - 1);
+				from = cursor;
+			}
+		}
+		if (literal.length() - from > best.length()) best = literal.substring(from);
+		// Bounded trie depth keeps scanning proportional to input length even for very long lore.
+		return best.substring(0, Math.min(best.length(), 24));
 	}
 
 	private static boolean isPlural(String word) {

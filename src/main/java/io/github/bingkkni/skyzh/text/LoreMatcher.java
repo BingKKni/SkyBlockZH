@@ -44,18 +44,49 @@ public final class LoreMatcher {
 
 	/** start refers to lore, not a tooltip's name. No global config: capture works with translation off. */
 	public static Match find(TranslationIndex index, List<Component> lines, int start) {
-		if (start < 0 || start >= lines.size() || index.size(Surface.LORE) == 0) {
-			return null;
+		return new Search(index, lines).find(start);
+	}
+
+	/** One plan reuses flattened lines and both successful and failed searches at each start. */
+	static final class Search {
+		private final TranslationIndex index;
+		private final List<Component> lines;
+		private final StyledText[] snapshots;
+		private final Match[] matches;
+		private final boolean[] searched;
+
+		Search(TranslationIndex index, List<Component> lines) {
+			this.index = index;
+			this.lines = lines;
+			this.snapshots = new StyledText[lines.size()];
+			this.matches = new Match[lines.size()];
+			this.searched = new boolean[lines.size()];
 		}
 
-		MutableComponent joined = Component.empty();
+		StyledText line(int at) {
+			if (this.snapshots[at] == null) this.snapshots[at] = StyledText.of(this.lines.get(at));
+			return this.snapshots[at];
+		}
+
+		Match find(int start) {
+			if (start < 0 || start >= this.lines.size() || this.index.size(Surface.LORE) == 0) return null;
+			if (!this.searched[start]) {
+				this.matches[start] = search(this, start);
+				this.searched[start] = true;
+			}
+			return this.matches[start];
+		}
+	}
+
+	private static Match search(Search search, int start) {
+		StyledText.Builder joined = new StyledText.Builder();
 		Component head = null;
 		Match best = null;
 		int length = 0;
 		int firstContentLength = 0;
 
-		for (int i = start; i < lines.size() && i - start < MAX_LINES; i++) {
-			StyledText line = StyledText.of(lines.get(i));
+		for (int i = start; i < search.lines.size() && i - start < MAX_LINES; i++) {
+			StyledText line = search.line(i);
 			String plain = line.plain();
 			int from = 0;
 			int to = plain.length();
@@ -84,20 +115,20 @@ public final class LoreMatcher {
 			}
 
 			if (i > start) {
-				joined.append(Component.literal(" ").setStyle(line.styleAt(from)));
+				joined.append(" ", 0, 1, line.styleAt(from));
 			}
 
-			joined.append(line.slice(from, to));
-			StyledText whole = StyledText.of(joined);
+			joined.append(line, from, to);
+			StyledText whole = joined.build();
 			// Reuse the same closed structural prefixes as single-line translation. Only the
 			// first line may carry a peeled bullet; an exact record including it still wins.
 			for (LineShape.Range range : LineShape.candidates(Surface.LORE, whole.canonical())) {
 				if (range.start() >= firstContentLength) continue;
 				StyledText core = whole.sub(range.start(), range.end());
-				TranslationEntry entry = index.lookup(Surface.LORE, core.canonical());
-				if (entry == null || entry.continuation()) continue;
-				Matcher matcher = entry.match(core.canonical());
-				if (matcher == null) continue;
+				TranslationIndex.Match found = search.index.match(Surface.LORE, core.canonical());
+				if (found == null || found.entry().continuation()) continue;
+				TranslationEntry entry = found.entry();
+				Matcher matcher = found.matcher();
 				Component leading = head;
 				if (range.start() > 0) {
 					MutableComponent prefix = Component.empty();
@@ -105,7 +136,7 @@ public final class LoreMatcher {
 					leading = prefix.append(whole.slice(0, range.start()));
 				}
 				Component tail = to < plain.length() ? line.slice(to, plain.length()) : null;
-				best = new Match(i - start + 1, joined.copy(), entry, core, matcher, leading, tail);
+				best = new Match(i - start + 1, whole.slice(0, whole.length()), entry, core, matcher, leading, tail);
 				break;
 			}
 		}

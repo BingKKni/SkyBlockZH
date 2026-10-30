@@ -425,7 +425,7 @@ tasks.register('corpusSize') {
 tasks.register('checkTermRecordChecker', Exec) {
 	group = 'verification'
 	description = 'Tests direct, shared and invalid term-record references.'
-	commandLine 'python', rootProject.file('gradle/test_check_toggle_terms.py').absolutePath
+	commandLine 'python', '-B', rootProject.file('tests/test_check_toggle_terms.py').absolutePath
 	workingDir rootProject.projectDir
 }
 
@@ -434,7 +434,7 @@ tasks.register('checkTermRecords', Exec) {
 	group = 'verification'
 	description = 'Checks that a term and the record it cross-references give the same translation.'
 
-	commandLine 'python', rootProject.file('gradle/check_toggle_terms.py').absolutePath
+	commandLine 'python', '-B', rootProject.file('tests/check_toggle_terms.py').absolutePath
 	workingDir rootProject.projectDir
 }
 
@@ -444,7 +444,7 @@ tasks.register('checkTermRecords', Exec) {
 tasks.register('checkWorkshopSources', Exec) {
 	group = 'verification'
 	description = 'Checks rendered Workshop Wiki source hashes, NPC roster and menu references.'
-	commandLine 'python', rootProject.file('gradle/check_workshop_sources.py').absolutePath
+	commandLine 'python', '-B', rootProject.file('tests/check_workshop_sources.py').absolutePath
 	workingDir rootProject.projectDir
 }
 

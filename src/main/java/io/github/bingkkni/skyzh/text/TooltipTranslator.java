@@ -49,9 +49,12 @@ public final class TooltipTranslator {
 	 */
 	private static final int MIN_WRAP_WIDTH = 96;
 
-	private static final Map<String, List<Component>> CACHE = new LinkedHashMap<>(64, 0.75f, true) {
+	private record CacheKey(List<StyledText> lines, String hintKey, boolean terminalNames, boolean original,
+		boolean skyBlockName, Font font, TranslationIndex index) {}
+
+	private static final Map<CacheKey, List<Component>> CACHE = new LinkedHashMap<>(64, 0.75f, true) {
 		@Override
-		protected boolean removeEldestEntry(Map.Entry<String, List<Component>> eldest) {
+		protected boolean removeEldestEntry(Map.Entry<CacheKey, List<Component>> eldest) {
 			return size() > CACHE_SIZE;
 		}
 	};
@@ -217,22 +220,11 @@ public final class TooltipTranslator {
 	/** Layout after the runtime boundary; kept separate for original-mode regression checks. */
 	private static List<Component> present(Font font, List<Component> lines, boolean terminalNames,
 		String hintKey, boolean original) {
-		// Neither language may reuse the other's text or hint; toggling retains both cached layouts.
-		StringBuilder key = new StringBuilder().append(hintKey).append(':').append(terminalNames)
-			.append(':').append(original).append('\n');
-
-		for (Component line : lines) {
-			StyledText styled = StyledText.of(line);
-			key.append(styled.plain()).append('\n');
-
-			for (int i = 0; i < styled.length(); i++) {
-				key.append(styled.styleAt(i).hashCode()).append(',');
-			}
-
-			key.append('\n');
-		}
-
-		String cacheKey = key.toString();
+		// Original lore needs no snapshot, matching or layout work; only an optional name hint does.
+		if (original && (hintKey == null || terminalNames)) return lines;
+		// Complete style equality prevents hash collisions and colour-only updates from reusing pixels.
+		CacheKey cacheKey = new CacheKey(lines.stream().map(StyledText::of).toList(), hintKey,
+			terminalNames, original, SkyZHConfig.get().translateSkyBlockName, font, Translator.index());
 
 		synchronized (CACHE) {
 			if (cachedGeneration != SkyZHConfig.generation()) {
@@ -254,9 +246,7 @@ public final class TooltipTranslator {
 		int width = MIN_WRAP_WIDTH;
 
 		if (!original) {
-			for (Component line : lines) {
-				width = Math.max(width, font.width(line));
-			}
+			for (Component line : lines) width = Math.max(width, font.width(line));
 		}
 
 		List<Component> result = new ArrayList<>(lines.size());
@@ -267,25 +257,19 @@ public final class TooltipTranslator {
 		if (original) {
 			result.addAll(lines);
 		} else {
-			if (terminalNames) {
-				result.add(itemName);
-			} else {
-				result.addAll(TextLayout.wrap(font, translatedName.padded(), width));
-			}
+			if (terminalNames) result.add(itemName);
+			else result.addAll(TextLayout.wrap(font, translatedName.padded(), width));
 
 			for (LoreTranslation.Unit unit : LoreTranslation.plan(lines.subList(1, lines.size()))) {
-				if (unit.translated()) {
-					result.addAll(TextLayout.wrap(font, unit.rendered(), width));
-				} else {
-					result.add(unit.rendered());
-				}
+				if (unit.translated()) result.addAll(TextLayout.wrap(font, unit.rendered(), width));
+				else result.add(unit.rendered());
 			}
 		}
 
 		if (hint) {
 			result.add(OriginalTips.loreHint(hintKey, original));
 		}
-		List<Component> immutable = List.copyOf(result);
+		List<Component> immutable = result.stream().map(StyledText::copyComponent).toList();
 
 		synchronized (CACHE) {
 			CACHE.put(cacheKey, immutable);

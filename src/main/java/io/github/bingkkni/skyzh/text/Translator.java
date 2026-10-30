@@ -144,7 +144,15 @@ public final class Translator {
 	}
 
 	private static Result translateAvailable(Component source, Surface surface, SkyZHConfig config) {
-		StyledText styled = StyledText.of(source);
+		return translateAvailable(source, StyledText.of(source), surface, config);
+	}
+
+	/** Reuses a caller's immutable snapshot throughout one render operation. */
+	public static Result translateAvailable(Component source, StyledText styled, Surface surface) {
+		return translateAvailable(source, styled, surface, SkyZHConfig.get());
+	}
+
+	private static Result translateAvailable(Component source, StyledText styled, Surface surface, SkyZHConfig config) {
 		// Matching runs on the canonical spelling of the line: the same characters with SkyBlock's
 		// icon font folded back onto the symbols the corpus was written with. Drawing still uses the
 		// text exactly as it arrived — see Glyphs.
@@ -155,21 +163,11 @@ public final class Translator {
 		}
 
 		for (LineShape.Range range : LineShape.candidates(surface, plain)) {
-			TranslationEntry entry = index.lookup(surface, plain.substring(range.start(), range.end()));
-
-			if (entry == null) {
-				continue;
-			}
-
+			TranslationIndex.Match found = index.match(surface, plain.substring(range.start(), range.end()));
+			if (found == null) continue;
+			TranslationEntry entry = found.entry();
 			StyledText core = styled.sub(range.start(), range.end());
-			Matcher match = entry.match(core.canonical());
-
-			if (match == null) {
-				// The index found this record by exact text, so a failure here means the pattern and
-				// the text it was registered under disagree — a malformed record, not a mismatch.
-				// Nothing to be gained from it; try whatever shape comes next.
-				continue;
-			}
+			Matcher match = found.matcher();
 
 			if (entry.losesColour(core, match) && REPORTED_COLOUR_LOSS.add(entry.id())) {
 				LOGGER.warn(
@@ -293,17 +291,9 @@ public final class Translator {
 		}
 
 		for (LineShape.Range range : LineShape.candidates(surface, plain)) {
-			TranslationEntry entry = index.lookup(surface, plain.substring(range.start(), range.end()));
-
-			if (entry == null) {
-				continue;
-			}
-
-			StyledText core = styled.sub(range.start(), range.end());
-			Matcher match = entry.match(core.canonical());
-
-			if (match != null) {
-				return new Located(entry, core, match);
+			TranslationIndex.Match found = index.match(surface, plain.substring(range.start(), range.end()));
+			if (found != null) {
+				return new Located(found.entry(), styled.sub(range.start(), range.end()), found.matcher());
 			}
 		}
 
@@ -319,7 +309,9 @@ public final class Translator {
 
 	/** Convenience for the callers that only want a component back. */
 	public static Component translateLine(Component source, Surface surface) {
-		return translate(source, surface).padded();
+		if (!SkyZHConfig.get().enabled || HoldOriginal.active()) return source;
+		return DisplayTextCache.get(source, surface, DisplayTextCache.Mode.LINE,
+			styled -> translateAvailable(source, styled, surface).padded());
 	}
 
 	/**
@@ -373,7 +365,13 @@ public final class Translator {
 	 * Chinese widgets sit in the same places the English ones did.
 	 */
 	public static Component translateWidgets(Component source, Surface surface) {
-		Result whole = translate(source, surface);
+		if (!SkyZHConfig.get().enabled || HoldOriginal.active()) return source;
+		return DisplayTextCache.get(source, surface, DisplayTextCache.Mode.WIDGETS,
+			styled -> translateWidgets(source, styled, surface));
+	}
+
+	private static Component translateWidgets(Component source, StyledText styled, Surface surface) {
+		Result whole = translateAvailable(source, styled, surface);
 
 		if (whole.matched()
 			&& (whole.head() == null || whole.head().getString().isBlank())
@@ -381,7 +379,6 @@ public final class Translator {
 			return whole.padded();
 		}
 
-		StyledText styled = StyledText.of(source);
 		List<LineShape.Range> widgets = LineShape.widgets(styled.plain());
 
 		if (widgets.size() <= 1) {
@@ -521,7 +518,8 @@ public final class Translator {
 			return source.copy();
 		}
 
-		return translateRowAvailable(source, surface, config);
+		return DisplayTextCache.get(source, surface, DisplayTextCache.Mode.ROW,
+			styled -> translateRowAvailable(source, styled, surface, config));
 	}
 
 	/**
@@ -552,8 +550,8 @@ public final class Translator {
 		return any && labelCovered && valueCovered;
 	}
 
-	private static Component translateRowAvailable(Component source, Surface surface, SkyZHConfig config) {
-		Result row = translateAvailable(source, surface, config);
+	private static Component translateRowAvailable(Component source, StyledText styled, Surface surface, SkyZHConfig config) {
+		Result row = translateAvailable(source, styled, surface, config);
 
 		if (row.matched()) {
 			Component value = row.tail() == null ? null : valued(row.tail(), surface, config);
@@ -574,7 +572,6 @@ public final class Translator {
 			return result;
 		}
 
-		StyledText styled = StyledText.of(source);
 		int colon = styled.canonical().indexOf(':');
 
 		if (colon < 0) {
@@ -770,7 +767,12 @@ public final class Translator {
 	 * they were, since it is vanilla that splits and centres them afterwards.
 	 */
 	public static Component translateBlock(Component source, Surface surface) {
-		StyledText styled = StyledText.of(source);
+		if (!SkyZHConfig.get().enabled || HoldOriginal.active()) return source;
+		return DisplayTextCache.get(source, surface, DisplayTextCache.Mode.BLOCK,
+			styled -> translateBlock(source, styled, surface));
+	}
+
+	private static Component translateBlock(Component source, StyledText styled, Surface surface) {
 		String plain = styled.plain();
 
 		if (plain.indexOf('\n') < 0) {

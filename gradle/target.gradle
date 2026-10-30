@@ -106,8 +106,8 @@ processResources {
 // checked rather than reasoned about.
 sourceSets {
 	harness {
-		java.srcDirs = [rootProject.file('src/harness/java')] + versionSourceDirs.collect {
-			rootProject.file("src/${it}/harness")
+		java.srcDirs = [rootProject.file('tests/java')] + versionSourceDirs.collect {
+			rootProject.file("tests/${it}/java")
 		}
 		compileClasspath += sourceSets.main.compileClasspath + sourceSets.main.output
 		runtimeClasspath += sourceSets.main.runtimeClasspath + sourceSets.main.output
@@ -162,6 +162,12 @@ harnessTask('checkTranslations', 'io.github.bingkkni.skyzh.TranslationHarness',
 	inputs.dir rootProject.file('original_text')
 }
 
+harnessTask('checkPerformance', 'io.github.bingkkni.skyzh.PerformanceHarness',
+	'Compares indexed matching with exhaustive scans and checks style/cache/capture lifecycles.') {
+	args rootProject.file('original_text').absolutePath
+	inputs.dir rootProject.file('original_text')
+}
+
 harnessTask('checkChatInteractions', 'io.github.bingkkni.skyzh.ChatInteractionHarness',
 	'Checks chat-button corpus boundaries, live click/hover styles and colours.') {
 	args rootProject.file('original_text').absolutePath
@@ -171,9 +177,9 @@ harnessTask('checkChatInteractions', 'io.github.bingkkni.skyzh.ChatInteractionHa
 harnessTask('checkLore', 'io.github.bingkkni.skyzh.LoreHarness',
 	'Checks complete lore sentences, colour, reflow, boundaries and independent NEU fixtures.') {
 	args rootProject.file('original_text').absolutePath,
-		rootProject.file('src/harness/resources/neu-lore-cases.json').absolutePath
+		rootProject.file('tests/resources/neu-lore-cases.json').absolutePath
 	inputs.dir rootProject.file('original_text')
-	inputs.file rootProject.file('src/harness/resources/neu-lore-cases.json')
+	inputs.file rootProject.file('tests/resources/neu-lore-cases.json')
 }
 
 // The capture in capture/ decides what is worth writing down, which two lines are the same sentence
@@ -188,9 +194,9 @@ harnessTask('checkCapture', 'io.github.bingkkni.skyzh.CaptureHarness',
 harnessTask('checkDiagnostics', 'io.github.bingkkni.skyzh.DiagnosticsHarness',
 	'Checks live alignment, continuation and numeric diagnostics with capture persistence.') {
 	args rootProject.file('original_text').absolutePath,
-		rootProject.file('src/harness/resources/runtime-diagnostic-colours.json').absolutePath
+		rootProject.file('tests/resources/runtime-diagnostic-colours.json').absolutePath
 	inputs.dir rootProject.file('original_text')
-	inputs.file rootProject.file('src/harness/resources/runtime-diagnostic-colours.json')
+	inputs.file rootProject.file('tests/resources/runtime-diagnostic-colours.json')
 }
 
 harnessTask('checkCommands', 'io.github.bingkkni.skyzh.CommandHarness',
@@ -222,6 +228,10 @@ harnessTask('checkMinifiedCorpus', 'io.github.bingkkni.skyzh.MinifiedCorpusCheck
 // opposite case and deliberately run on every target: "the corpus still matches on 26.1" is exactly a
 // question about a Minecraft version.
 if (project.ext.has('primary') && project.ext.primary) {
+	harnessTask('benchmarkPerformance', 'io.github.bingkkni.skyzh.PerformanceBenchmark',
+		'Measures offline matching and allocation costs; does not measure client FPS.') {
+		args rootProject.file('original_text').absolutePath
+	}
 	// Same engine, pointed at a client log instead of at the corpus: it prints the chat lines a real
 	// session produced that no record answers for. Collection has already happened by then — Minecraft
 	// logs what it receives — so nothing about this ships in the mod.
@@ -266,7 +276,7 @@ if (project.ext.has('primary') && project.ext.primary) {
 // build or the boot — it costs one surface its translation, silently, forever. Compiling proves the
 // mod's source agrees with itself and says nothing about whether the injection points still exist.
 // This reads the annotations back out of the compiled mixins and looks every one of them up in the
-// Minecraft that is actually on the compile classpath. See gradle/check_mixin_targets.py.
+// Minecraft that is actually on the compile classpath. See tests/check_mixin_targets.py.
 def mixinClasspathFile = layout.buildDirectory.file('mixin-check-classpath.txt')
 
 def writeMixinClasspath = tasks.register('writeMixinCheckClasspath') {
@@ -296,7 +306,7 @@ tasks.register('checkMixinTargets', Exec) {
 
 	dependsOn tasks.named('classes'), writeMixinClasspath
 
-	commandLine 'python', rootProject.file('gradle/check_mixin_targets.py').absolutePath,
+	commandLine 'python', rootProject.file('tests/check_mixin_targets.py').absolutePath,
 		rootProject.file('src/main/resources/skyzh.mixins.json').absolutePath,
 		sourceSets.main.output.classesDirs.singleFile.absolutePath,
 		mixinClasspathFile.get().asFile.absolutePath
@@ -308,7 +318,7 @@ tasks.register('checkMixinTargets', Exec) {
 }
 
 tasks.named('check') {
-	dependsOn 'checkTranslations', 'checkChatInteractions', 'checkLore', 'checkCapture', 'checkDiagnostics', 'checkCommands', 'checkClientSettings', 'checkMinifiedCorpus',
+	dependsOn 'checkPerformance', 'checkTranslations', 'checkChatInteractions', 'checkLore', 'checkCapture', 'checkDiagnostics', 'checkCommands', 'checkClientSettings', 'checkMinifiedCorpus',
 		'checkMixinTargets'
 }
 

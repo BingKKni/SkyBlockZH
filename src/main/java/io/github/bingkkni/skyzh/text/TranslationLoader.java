@@ -14,8 +14,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeSet;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
@@ -26,12 +26,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Reads the corpus in {@code assets/skyzh/original_text/} — the same files a translator edits, shipped
- * verbatim — and compiles it into a {@link TranslationIndex}.
- *
- * <p>Nothing is generated at build time on purpose. A wrong line on screen should lead back to one
- * file and one {@code id} with no intermediate format to disbelieve, and the corpus is small enough
- * (a few hundred kilobytes) that parsing it once during startup does not register.
+ * Reads the packaged JSON corpus and compiles it into a {@link TranslationIndex}. Packaging removes
+ * translator notes; runtime fields and each occurrence's file/id remain traceable to original_text.
+ * Equivalent definitions share immutable compiled structures for this load only.
  *
  * <p>The reader is deliberately incurious about the shape of a file: any top-level array whose
  * elements carry an {@code id} is a list of records, whatever it is called. The corpus already uses
@@ -143,6 +140,7 @@ public final class TranslationLoader {
 
 		int compiled = 0;
 		int skipped = 0;
+		Map<TranslationEntry.Definition, TranslationEntry> definitions = new HashMap<>();
 
 		// Sorted, so which of two records that could both answer for a line is registered first does
 		// not depend on how a HashMap felt about their file names. Ranking still decides the winner
@@ -165,7 +163,7 @@ public final class TranslationLoader {
 
 			for (JsonObject record : records(file)) {
 				JsonObject source = resolve(record, byReference);
-				TranslationEntry entry = compile(record, relative, byReference);
+				TranslationEntry entry = compile(record, relative, byReference, definitions);
 
 				if (entry == null) {
 					if (source.has("translate") && !source.get("translate").getAsBoolean()) {
@@ -194,6 +192,7 @@ public final class TranslationLoader {
 			}
 		}
 
+		index.prepare();
 		TermTable baseTerms = index.terms();
 		index.terms(baseTerms.withItemNames(itemNames(index), english -> {
 			// Name templates cover real catalog items such as Basic Cow Axe. Never apply a menu or
@@ -321,7 +320,8 @@ public final class TranslationLoader {
 		return target != null ? target : record;
 	}
 
-	private static TranslationEntry compile(JsonObject record, String relative, Map<String, JsonObject> byReference) {
+	private static TranslationEntry compile(JsonObject record, String relative, Map<String, JsonObject> byReference,
+		Map<TranslationEntry.Definition, TranslationEntry> definitions) {
 		JsonObject source = resolve(record, byReference);
 
 		if (source.has("translate") && !source.get("translate").getAsBoolean()) {
@@ -354,9 +354,14 @@ public final class TranslationLoader {
 			string(source, "layout"), excludedTexts(source), string(source, "chat_join_next")
 		);
 
-		return TranslationEntry.compile(new TranslationEntry.Definition(
-			id, relative, orderedSegments(segments, id, relative), arguments(source), options
-		));
+		TranslationEntry.Definition definition = new TranslationEntry.Definition(
+			"", "", orderedSegments(segments, id, relative), arguments(source), options
+		);
+		if (!definitions.containsKey(definition)) {
+			definitions.put(definition, TranslationEntry.compile(definition));
+		}
+		TranslationEntry shared = definitions.get(definition);
+		return shared == null ? null : shared.identifiedBy(id, relative);
 	}
 
 	private static Set<String> excludedTexts(JsonObject source) {

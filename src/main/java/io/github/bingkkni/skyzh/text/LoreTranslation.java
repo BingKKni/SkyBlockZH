@@ -22,9 +22,10 @@ public final class LoreTranslation {
 	/** Input contains lore only: an item name can never consume a continuation. */
 	public static List<Unit> plan(List<Component> lines) {
 		List<Unit> result = new ArrayList<>();
+		LoreMatcher.Search search = new LoreMatcher.Search(Translator.index(), lines);
 
 		for (int i = 0; i < lines.size();) {
-			LoreMatcher.Match sentence = LoreMatcher.find(Translator.index(), lines, i);
+			LoreMatcher.Match sentence = search.find(i);
 
 			if (sentence != null) {
 				Component rendered = Translator.skyBlockName(
@@ -68,7 +69,7 @@ public final class LoreTranslation {
 				}
 
 				// A complete LORE sentence owns its lines even if ITEM also calls its head a tail.
-				if (LoreMatcher.find(Translator.index(), lines, end) != null) {
+				if (search.find(end) != null) {
 					break;
 				}
 

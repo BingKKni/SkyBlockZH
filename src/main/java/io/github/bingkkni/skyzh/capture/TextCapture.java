@@ -17,7 +17,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Supplier;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.ChatComponent;
@@ -68,8 +68,17 @@ public final class TextCapture {
 	private static final String KEY_SEPARATOR = Character.toString(0);
 
 	/** Text already sent to the worker. Bounded, because a long session sees a lot of numbers. */
-	private static final Map<String, Boolean> SEEN = new ConcurrentHashMap<>();
-	private static final int MAX_SEEN = 200_000;
+	private static final int MAX_SEEN = 4096;
+	private static final Map<String, CaptureStore.Observation> SEEN = new LinkedHashMap<>(256, 0.75f, true) {
+		@Override
+		protected boolean removeEldestEntry(Map.Entry<String, CaptureStore.Observation> eldest) {
+			return size() > MAX_SEEN;
+		}
+	};
+
+	private static CaptureStore.Observation remembered(String key, Supplier<CaptureStore.Observation> snapshot) {
+		return new CaptureStore.Repeat(SEEN.computeIfAbsent(key, ignored -> snapshot.get()));
+	}
 
 	/** Repeated container packets reuse font-free plans and evidence, including live styles. */
 	private static final int MAX_LORE_CACHE = 128;
@@ -262,22 +271,14 @@ public final class TextCapture {
 	) {
 		String gameplay = placed();
 		String key = key(surface, name, where, verdict.bucket() + verdict.evidence().toString(), gameplay);
-		boolean first = SEEN.putIfAbsent(key, Boolean.TRUE) == null;
-		CaptureStore.Observation observation = CaptureStore.Repeated.INSTANCE;
-
-		if (first) {
+		CaptureStore.Observation observation = remembered(key, () -> {
 			var joined = Component.empty();
-
 			for (int i = 0; i < source.size(); i++) {
-				if (i > 0) {
-					joined.append("\n");
-				}
-
+				if (i > 0) joined.append("\n");
 				joined.append(source.get(i));
 			}
-
-			observation = new CaptureStore.Diagnosed(StyledText.of(joined), verdict);
-		}
+			return new CaptureStore.Diagnosed(StyledText.of(joined), verdict);
+		});
 
 		queue(surface, key, observation, name, where, gameplay);
 	}
@@ -428,9 +429,8 @@ public final class TextCapture {
 		// A nearby sign can be observed across an area boundary within the same gameplay. Keep
 		// that sighting as a Line so the worker can retain its distinct observer_area context.
 		String key = hologramKey(snapshot, gameplay, CaptureContext.area());
-		boolean first = SEEN.putIfAbsent(key, Boolean.TRUE) == null;
-		CaptureStore.Observation observation = first
-			? new CaptureStore.Line(snapshot.target().text(), true, snapshot) : CaptureStore.Repeated.INSTANCE;
+		CaptureStore.Observation observation = remembered(key,
+			() -> new CaptureStore.Line(snapshot.target().text(), true, snapshot));
 		queue(CaptureSurface.HOLOGRAM, key, observation, HOLOGRAMS, "", gameplay);
 	}
 
@@ -504,10 +504,7 @@ public final class TextCapture {
 				if (stop > start) {
 					StyledText line = styled.sub(start, stop);
 					String lineKey = key(surface, name, where, line.plain(), gameplay);
-					boolean lineFirst = SEEN.putIfAbsent(lineKey, Boolean.TRUE) == null;
-
-					CaptureStore.Observation observation = lineFirst
-						? new CaptureStore.Line(line, checkValues) : CaptureStore.Repeated.INSTANCE;
+					CaptureStore.Observation observation = remembered(lineKey, () -> new CaptureStore.Line(line, checkValues));
 					queue(surface, lineKey, observation, name, where, gameplay);
 				}
 
@@ -519,16 +516,13 @@ public final class TextCapture {
 
 		String gameplay = placed();
 		String key = key(surface, name, where, plain, gameplay);
-		boolean first = SEEN.putIfAbsent(key, Boolean.TRUE) == null;
-		CaptureStore.Observation observation = CaptureStore.Repeated.INSTANCE;
-
-		if (first) {
+		CaptureStore.Observation observation = remembered(key, () -> {
 			StyledText styled = StyledText.of(component);
 			int start = Math.min(from, styled.length());
 			int stop = Math.min(end, styled.length());
 			StyledText text = from > 0 || stop < styled.length() ? styled.sub(start, Math.max(start, stop)) : styled;
-			observation = new CaptureStore.Line(text, checkValues);
-		}
+			return new CaptureStore.Line(text, checkValues);
+		});
 
 		queue(surface, key, observation, name, where, gameplay);
 	}
@@ -544,10 +538,6 @@ public final class TextCapture {
 	private static void queue(
 		CaptureSurface surface, String key, CaptureStore.Observation observation, String name, String where, String gameplay
 	) {
-		if (SEEN.size() > MAX_SEEN) {
-			SEEN.clear();
-		}
-
 		long now = System.currentTimeMillis();
 		// The area is read now rather than when the line is finally filed: a line held through a warp
 		// belongs to the place it arrived in, not to wherever the player ended up.
@@ -643,7 +633,7 @@ public final class TextCapture {
 	 */
 	public static void flush() {
 		if (started) {
-			CaptureStore.finishPending();
+			CaptureStore.finishAsync(false);
 		}
 	}
 
@@ -684,14 +674,12 @@ public final class TextCapture {
 		}
 
 		CaptureContext.reset();
-		clearLoreCache();
 
 		if (!started) {
 			return;
 		}
 
-		CaptureStore.finishPending();
+		CaptureStore.finishAsync(true);
 		SEEN.clear();
-		LOGGER.info("SkyZH 采集本次会话结果：{}", CaptureStore.summary());
 	}
 }

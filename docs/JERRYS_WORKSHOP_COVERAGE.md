@@ -40,6 +40,6 @@
 
 - `./gradlew checkWorkshopSources`：检查来源内容哈希、18 位 NPC 清单、菜单引用，以及颜色/HTML 实体/数量斜杠的解析边界；已接入根项目 `check` 和分发构建。
 - `checkTranslations`、`checkLore`、`checkChatInteractions`：检查模板、完整句、颜色和聊天交互边界。
-- `src/harness/resources/workshop-cases.json`：独立预期验证变值、鸡赛计时、子菜单、道具升级对象、染料白名单和残缺句子不吞行。变值样例是离线回归，不冒称实机数据。
+- `tests/resources/workshop-cases.json`：独立预期验证变值、鸡赛计时、子菜单、道具升级对象、染料白名单和残缺句子不吞行。变值样例是离线回归，不冒称实机数据。
 
 离线测试不能代替 Minecraft 内的字体折行、实际服务器文案和显示效果核对。

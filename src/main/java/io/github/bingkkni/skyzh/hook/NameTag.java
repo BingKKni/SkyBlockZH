@@ -1,16 +1,16 @@
 package io.github.bingkkni.skyzh.hook;
 
+import io.github.bingkkni.skyzh.HoldOriginal;
 import io.github.bingkkni.skyzh.HypixelServer;
+import io.github.bingkkni.skyzh.SkyZHConfig;
 import io.github.bingkkni.skyzh.capture.Areas;
 import io.github.bingkkni.skyzh.text.Capture;
-import io.github.bingkkni.skyzh.text.Glyphs;
+import io.github.bingkkni.skyzh.text.DisplayTextCache;
 import io.github.bingkkni.skyzh.text.StyledText;
 import io.github.bingkkni.skyzh.text.Surface;
 import io.github.bingkkni.skyzh.text.Translator;
-import java.util.regex.Pattern;
 import java.util.regex.Matcher;
-import io.github.bingkkni.skyzh.HoldOriginal;
-import io.github.bingkkni.skyzh.SkyZHConfig;
+import java.util.regex.Pattern;
 import net.minecraft.network.chat.Component;
 
 /**
@@ -37,9 +37,8 @@ import net.minecraft.network.chat.Component;
  * That fail-closed behaviour is intentional: translating a player's name or an unknown proper name
  * by accident is worse than leaving one hologram in English.
  *
- * <p>No caching. A hub full of NPCs is a hundred or so name tags a frame, fewer than the tab list
- * already puts through this same path every frame, and a line nothing answers for costs one hash
- * lookup once {@link io.github.bingkkni.skyzh.text.TranslationIndex} has remembered the miss.
+ * <p>Unchanged text reuses bounded display results keyed by complete styles. Each cache miss shares
+ * one flattened snapshot across timer, mob, eligibility and translation checks.
  *
  * <p><b>Why this is not in the mixin.</b> The target descriptor changed in 26.2:
  * {@code submitNameTag} lost a {@code double} parameter. A {@code @ModifyArg} has to match that
@@ -96,12 +95,16 @@ public final class NameTag {
 
 	/** Component-free rendering eligibility; deliberately not a capture filter. */
 	public static boolean eligible(StyledText styled) {
-		String plain = Glyphs.canonical(styled.plain()).trim();
-		return !plain.isEmpty() && !MOB_HEALTH.matcher(plain).find()
-			&& !MOB_BAR.matcher(plain).matches() && !PET_TAG.matcher(plain).matches()
-			&& !LEADERBOARD.matcher(plain).matches() && !RANKED_PLAYER.matcher(plain).matches()
+		String plain = styled.canonical().trim();
+		return eligibleShape(plain)
 			&& (!Translator.index().isNpcName(plain)
 				|| Translator.locate(styled, Surface.HOLOGRAM).matched() || locationName(plain) != null);
+	}
+
+	private static boolean eligibleShape(String plain) {
+		return !plain.isEmpty() && !MOB_HEALTH.matcher(plain).find()
+			&& !MOB_BAR.matcher(plain).matches() && !PET_TAG.matcher(plain).matches()
+			&& !LEADERBOARD.matcher(plain).matches() && !RANKED_PLAYER.matcher(plain).matches();
 	}
 
 	/**
@@ -120,13 +123,16 @@ public final class NameTag {
 	/** Preserve the destination's live style; leave unknown text as the original component. */
 	public static Component location(Component source) {
 		StyledText styled = StyledText.of(source);
-		String zh = locationName(Glyphs.canonical(styled.plain()).trim());
+		String zh = locationName(styled.canonical().trim());
 		return zh == null ? source : Component.literal(zh).setStyle(styled.styleAt(0));
 	}
 
 	/** Only a closed mob-name term can change; level, health and their live styles stay intact. */
 	public static Component mobName(Component source) {
-		StyledText styled = StyledText.of(source);
+		return mobName(source, StyledText.of(source));
+	}
+
+	private static Component mobName(Component source, StyledText styled) {
 		Matcher bar = MOB_BAR.matcher(styled.canonical());
 		if (!bar.matches()) {
 			return source;
@@ -156,18 +162,25 @@ public final class NameTag {
 			|| !SkyZHConfig.get().enabled || HoldOriginal.active()) {
 			return nameTag;
 		}
-		Component timer = riftTimer(nameTag);
-		if (timer != nameTag) return timer;
-		if (!hologramNameTag && !livingMob) return nameTag;
-		Component mob = mobName(nameTag);
-		if (mob != nameTag) {
-			return mob;
+		DisplayTextCache.Mode mode = hologramNameTag ? DisplayTextCache.Mode.HOLOGRAM
+			: livingMob ? DisplayTextCache.Mode.MOB : DisplayTextCache.Mode.TIMER;
+		return DisplayTextCache.get(nameTag, Surface.HOLOGRAM, mode,
+			styled -> translate(nameTag, styled, hologramNameTag, livingMob));
+	}
+
+	private static Component translate(Component source, StyledText styled, boolean hologram, boolean livingMob) {
+		if (RIFT_TIMER.matcher(styled.canonical()).matches()) {
+			return Translator.translateAvailable(source, styled, Surface.HOLOGRAM).padded();
 		}
-		if (!hologramNameTag || !eligible(nameTag)) return nameTag;
-		if (Translator.locate(nameTag, Surface.HOLOGRAM).matched()) {
-			return Translator.translateLine(nameTag, Surface.HOLOGRAM);
-		}
-		Component location = location(nameTag);
-		return location == nameTag ? Translator.translateLine(nameTag, Surface.HOLOGRAM) : location;
+		if (!hologram && !livingMob) return source;
+		Component mob = mobName(source, styled);
+		if (mob != source) return mob;
+		String plain = styled.canonical().trim();
+		if (!hologram || !eligibleShape(plain)) return source;
+		Translator.Result translated = Translator.translateAvailable(source, styled, Surface.HOLOGRAM);
+		if (translated.matched()) return translated.padded();
+		if (Translator.index().isNpcName(plain)) return source;
+		String location = locationName(plain);
+		return location == null ? translated.padded() : Component.literal(location).setStyle(styled.styleAt(0));
 	}
 }
