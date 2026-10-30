@@ -1,0 +1,89 @@
+{
+  "source": [
+    "runtime capture: SkyZH_Logs/skyzh-capture",
+    "https://hypixelskyblock.minecraft.wiki/w/Spooky_Festival",
+    "https://hypixelskyblock.minecraft.wiki/w/Echolocator",
+    "https://hypixelskyblock.minecraft.wiki/w/Bat_Firework"
+  ],
+  "verified_ingame": true,
+  "notes": "以本轮服务器文字与颜色为准；社区 Wiki Spooky_Festival 最后更新 2026-10-29，活动广播仍保留含 in the Village 的旧版本，本文件补实测变体。",
+  "entries": [
+    {
+      "id": "spooky_tab_ordinal",
+      "context": "本轮服务器采集，按完整语句翻译并保留实时颜色",
+      "raw": "§6§l%s Spooky Festival",
+      "text": "%s Spooky Festival",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "ordinal",
+          "example": "525th"
+        }
+      ],
+      "translate": true,
+      "zh": "第 %s 届惊魂节"
+    },
+    {
+      "id": "spooky_candy_score",
+      "context": "本轮服务器采集，按完整语句翻译并保留实时颜色",
+      "raw": "§7Your Candy: §a%1$s Green§7, §5%2$s Purple §7(§6%3$s §7pts.)",
+      "text": "Your Candy: %1$s Green, %2$s Purple (%3$s pts.)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "0"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "0"
+        },
+        {
+          "token": "%3$s",
+          "type": "number",
+          "example": "0"
+        }
+      ],
+      "translate": true,
+      "zh": "你的糖果: %1$s 绿色，%2$s 紫色 (%3$s 分)",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Your Candy: ",
+          "zh": "你的糖果: "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s Green",
+          "zh": "%1$s 绿色"
+        },
+        {
+          "color": "§7",
+          "text": ", ",
+          "zh": "，"
+        },
+        {
+          "color": "§5",
+          "text": "%2$s Purple ",
+          "zh": "%2$s 紫色 "
+        },
+        {
+          "color": "§7",
+          "text": "(",
+          "zh": "("
+        },
+        {
+          "color": "§6",
+          "text": "%3$s ",
+          "zh": "%3$s "
+        },
+        {
+          "color": "§7",
+          "text": "pts.)",
+          "zh": "分)"
+        }
+      ]
+    }
+  ]
+}

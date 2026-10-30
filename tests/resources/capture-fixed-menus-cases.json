@@ -1,6 +1,38 @@
 {
   "cases": [
     {
+      "name": "鲨齿第五档复用传家宝而非残留英文",
+      "surface": "GUI_Item",
+      "source": [
+        "§6Shark Tooth Heirloom"
+      ],
+      "expected": "§6鲨齿传家宝"
+    },
+    {
+      "name": "饰品传家宝类别不改变Crux专名",
+      "surface": "GUI_Item",
+      "source": [
+        "§5Crux Heirloom"
+      ],
+      "expected": "§5Crux Heirloom"
+    },
+    {
+      "name": "壁炉商品展示名沿用分类译名",
+      "surface": "Hologram",
+      "source": [
+        "§fFireplace"
+      ],
+      "expected": "§f壁炉"
+    },
+    {
+      "name": "木箱商品展示保留加号",
+      "surface": "Hologram",
+      "source": [
+        "§aWood Chest+"
+      ],
+      "expected": "§a木箱+"
+    },
+    {
       "name": "饰品袋与能力名分别保留绿色",
       "surface": "ChatMessage",
       "source": [

@@ -691,6 +691,23 @@ public final class CaptureHarness {
 			"[Lv100] 极冰野狗 12,345❤");
 		check("怪物血量变化不影响名字翻译", NameTag.mobName(Component.literal("§cGlacite Mutt §e3.5M/5M§c❤")).getString(),
 			"极冰野狗 3.5M/5M❤");
+		for (String[] mob : List.of(new String[]{"Bat Piñata", "蝙蝠皮纳塔"}, new String[]{"Mega Bat", "巨型蝙蝠"})) {
+			for (String hp : List.of("5", "8/100", "40/400")) {
+				String raw = "§8[§7Lv29§8] §6\uE082§7\uE070§e\uE080 §6" + mob[0] + "§r §a" + hp + "§c❤";
+				check("惊魂节重音生物名及动态血量保色 " + mob[0] + hp,
+					TranslationHarness.legacy(NameTag.mobName(Component.literal(raw))),
+					TranslationHarness.legacy(Component.literal(raw.replace(mob[0], mob[1]))));
+				checkNothing("已译惊魂节血条不重复采集 " + mob[0] + hp, CaptureSurface.HOLOGRAM, raw);
+			}
+		}
+		for (String name : List.of("Unknown\u0027s Bat Piñata", "Unknown\u0027s Mega Bat")) {
+			Component ownedUnknown = Component.literal("§6" + name + " §a100§c❤");
+			check("未知所有格生物不按尾部猜译 " + name, NameTag.mobName(ownedUnknown) == ownedUnknown, true);
+			checkUntranslated("未知所有格生物仍可采集 " + name, CaptureSurface.HOLOGRAM, ownedUnknown.getString());
+		}
+		check("生物完整词条查询保留大小写兼容", NameTag.mobName(Component.literal("MEGA BAT 100❤")).getString(), "巨型蝙蝠 100❤");
+		Component accentedUnknown = Component.literal("§6Unknown Piñata §a100§c❤");
+		check("重音未知生物仍不猜译", NameTag.mobName(accentedUnknown) == accentedUnknown, true);
 		Component proper = Component.literal("§cYog §a100§c❤");
 		check("怪物专名保持原组件", NameTag.mobName(proper) == proper, true);
 		check("通名替换不染色等级血量及私用区图标", TranslationHarness.legacy(NameTag.mobName(

@@ -86,7 +86,52 @@ public final class PriorityHarness {
 		} finally { sources.clear(); packets.clear(); }
 		checkForceChatHistory();
 		checkWidthReentry();
+		checkSidebarCompatibility();
 		System.out.println("显示优先级检查通过 " + checked + " 项");
+	}
+
+	/** Public API stand-ins: no dependency on, injection into, or mutation of a real helper mod. */
+	public static final class ToggleProperty {
+		public Boolean value = false;
+		public Boolean get() { return value; }
+	}
+	public static final class SidebarConfig {
+		public final ToggleProperty property = new ToggleProperty();
+		public ToggleProperty getEnabled() { return property; }
+	}
+	public static final class SkyHanniSidebar {
+		public static final SkyHanniSidebar INSTANCE = new SkyHanniSidebar();
+		public final SidebarConfig config = new SidebarConfig();
+		public SidebarConfig getConfig$at_hannibal2_skyhanni_26_2() { return config; }
+	}
+	public static class Feature { public boolean enabled; }
+	public static final class NoammSidebar extends Feature {
+		public static final NoammSidebar INSTANCE = new NoammSidebar();
+	}
+
+	private static void checkSidebarCompatibility() throws Exception {
+		Class<?> compatibility = io.github.bingkkni.skyzh.hook.SidebarCompatibility.class;
+		Method skyHanni = compatibility.getDeclaredMethod("skyHanni", Class.class);
+		Method noamm = compatibility.getDeclaredMethod("noamm", Class.class);
+		Method enabled = compatibility.getDeclaredMethod("enabled", java.util.function.BooleanSupplier.class);
+		skyHanni.setAccessible(true);
+		noamm.setAccessible(true);
+		enabled.setAccessible(true);
+		var sh = (java.util.function.BooleanSupplier) skyHanni.invoke(null, SkyHanniSidebar.class);
+		var na = (java.util.function.BooleanSupplier) noamm.invoke(null, NoammSidebar.class);
+		check("辅助计分板关闭时保留强制侧边栏", !sh.getAsBoolean() && !na.getAsBoolean());
+		SkyHanniSidebar.INSTANCE.config.property.value = true;
+		check("SkyHanni 公共状态开启时让出侧边栏", sh.getAsBoolean());
+		SkyHanniSidebar.INSTANCE.config.property.value = false;
+		check("SkyHanni 运行中关闭后恢复", !sh.getAsBoolean());
+		SkyHanniSidebar.INSTANCE.config.property.value = null;
+		check("未知 SkyHanni 状态安全让出侧边栏", sh.getAsBoolean());
+		NoammSidebar.INSTANCE.enabled = true;
+		check("Noamm 公共继承字段开启时让出侧边栏", na.getAsBoolean());
+		NoammSidebar.INSTANCE.enabled = false;
+		check("Noamm 运行中关闭后恢复", !na.getAsBoolean());
+		java.util.function.BooleanSupplier broken = () -> { throw new LinkageError("changed optional API"); };
+		check("辅助 Mod 接口失效不崩溃也不叠加", (boolean) enabled.invoke(null, broken));
 	}
 
 	@SuppressWarnings("unchecked")

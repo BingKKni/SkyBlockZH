@@ -287,6 +287,13 @@ public final class TermTable {
 			return null;
 		}
 
+		String whole = translateWhole(type, value);
+		return whole != null ? whole : owned(type == null ? "" : type.toLowerCase(Locale.ROOT), value);
+	}
+
+	/** Full dictionary lookup only; entity names must never use possessive/partial-name fallback. */
+	public String translateWhole(String type, String value) {
+		if (!applies(type)) return null;
 		String normalizedType = type == null ? "" : type.toLowerCase(Locale.ROOT);
 		String exact = lookup(this.typed.get(normalizedType), value);
 
@@ -309,7 +316,7 @@ public final class TermTable {
 			folded = this.folded.get(lower);
 		}
 
-		return folded != null ? folded : owned(normalizedType, value);
+		return folded;
 	}
 
 	private static String lookup(Map<String, String> terms, String value) {

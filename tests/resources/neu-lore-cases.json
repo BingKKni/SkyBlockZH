@@ -1,5 +1,137 @@
 [
   {
+    "name": "浮漂追踪不增加击杀触发且对象高亮及时结束",
+    "lines": [
+      "§8• §d+2 Tracking §7on §3Sea Creatures§7."
+    ],
+    "consumed": 1,
+    "expected": "§8• §7对§3海洋生物§7: §d+2 追踪"
+  },
+  {
+    "name": "浮漂魔法寻宝对象与连接词分别保色",
+    "lines": [
+      "§8• §b+3 Magic Find §7on §3Sea Creatures§7."
+    ],
+    "consumed": 1,
+    "expected": "§8• §7对§3海洋生物§7: §b+3 魔法寻宝"
+  },
+  {
+    "name": "标记物品说明两次敌人高亮均保留",
+    "lines": [
+      "§7Can be thrown at §cEnemies §7to tag",
+      "§7them. Grants §b+5 Magic Find §7when a",
+      "§7tagged §cEnemy §7is killed."
+    ],
+    "consumed": 3,
+    "expected": "§7可投向§c敌人§7并施加标记。当已标记的§c敌人§7被击杀时，获得 §b+5 魔法寻宝§7。"
+  },
+  {
+    "name": "本轮Habanero智慧保留猎杀武器红色且吞掉英文尾行",
+    "lines": [
+      "§8ℏ §7Gain §3+5☯ Combat Wisdom §7with §4Slayer",
+      "§4Weapons§7."
+    ],
+    "consumed": 2,
+    "expected_plain": "ℏ 使用猎杀武器时，获得 +5☯ 战斗智慧。",
+    "colour_fragments": [
+      "§4猎杀武器",
+      "§3+5☯ 战斗智慧"
+    ]
+  },
+  {
+    "name": "本轮Habanero智慧换数值仍完整匹配",
+    "lines": [
+      "§8ℏ §7Gain §3+8☯ Combat Wisdom §7with §4Slayer",
+      "§4Weapons§7."
+    ],
+    "consumed": 2,
+    "expected_plain": "ℏ 使用猎杀武器时，获得 +8☯ 战斗智慧。",
+    "colour_fragments": [
+      "§4猎杀武器",
+      "§3+8☯ 战斗智慧"
+    ]
+  },
+  {
+    "name": "本轮Habanero条件重排保留状态与Boss颜色",
+    "lines": [
+      "§8ℏ §7Gain §b+5 Magic Find §7while killing §4Slayer",
+      "§4Bosses §7with §4Slayer Weapons §7if §aSmoldering",
+      "§aPolarization§7 is active."
+    ],
+    "consumed": 3,
+    "expected_plain": "ℏ 闷燃极化生效期间，使用猎杀武器击杀猎杀 Boss 时，获得 +5 魔法寻宝。",
+    "colour_fragments": [
+      "§a闷燃极化",
+      "§4猎杀武器",
+      "§4猎杀 Boss",
+      "§b+5 魔法寻宝"
+    ]
+  },
+  {
+    "name": "本轮鲨鱼魔法寻宝条件与属性各自保色",
+    "lines": [
+      "§7Grants §b+10 Magic Find §7on §9Sharks§7."
+    ],
+    "consumed": 1,
+    "expected_plain": "击杀鲨鱼时，获得 +10 魔法寻宝。",
+    "colour_fragments": [
+      "§9鲨鱼",
+      "§b+10 魔法寻宝"
+    ]
+  },
+  {
+    "name": "本轮分类压缩器合并袋内物品说明",
+    "lines": [
+      "§7Automatically compacts various",
+      "§2Foraging §7items that are in your",
+      "§7Sacks."
+    ],
+    "consumed": 3,
+    "expected_plain": "自动压缩收纳袋中的伐木物品。",
+    "colour_fragments": [
+      "§2伐木"
+    ]
+  },
+  {
+    "name": "本轮感恩饰品保留动态铜币数值",
+    "lines": [
+      "§bVisitors §7give §c+7% Copper."
+    ],
+    "consumed": 1,
+    "expected_plain": "访客给予的铜币增加 +7%。",
+    "colour_fragments": [
+      "§b访客",
+      "§c铜币增加 +7%。"
+    ]
+  },
+  {
+    "name": "本轮Mythos装备倍率与地名均保色",
+    "lines": [
+      "§7Grants §a3x §7this equipment's stats",
+      "§7while in §aThe Hub §7during Diana's",
+      "§2Mythological Ritual§7."
+    ],
+    "consumed": 3,
+    "expected_plain": "在 Diana 的神话仪式期间，位于大厅时，此装备的属性变为 3 倍。",
+    "colour_fragments": [
+      "§a3 倍",
+      "§a大厅",
+      "§2神话仪式"
+    ]
+  },
+  {
+    "name": "本轮温室快进不固定小时数",
+    "lines": [
+      "§7Advance your Greenhouses by §b6",
+      "§bhours§7."
+    ],
+    "consumed": 2,
+    "expected_plain": "让温室的时间推进 6小时。",
+    "colour_fragments": [
+      "§b6小时"
+    ]
+  },
+  {
     "name": "整组计划保留未知首尾行与空行",
     "source": "synthetic boundary fixture composed from the existing Can damage endermen. case; not an ingame item capture",
     "lines": [

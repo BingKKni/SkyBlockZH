@@ -20,6 +20,7 @@ public final class ForceSidebar {
 	public static boolean ownsDisplay() {
 		Minecraft mc = Minecraft.getInstance();
 		return ForceChat.ownsDisplay() && mc.level != null && ClientGui.hudVisible(mc)
+			&& !SidebarCompatibility.hasCustomSidebar()
 			&& (ClientGui.screen(mc) == null || ClientGui.screen(mc) instanceof ChatScreen);
 	}
 
@@ -53,8 +54,9 @@ public final class ForceSidebar {
 		int top = bottom - rows.size() * 9;
 		int left = graphics.guiWidth() - width - 3;
 		int right = graphics.guiWidth() - 1;
-		// An opaque final panel keeps independently drawn HUD text from bleeding through.
-		graphics.fill(left - 2, top - 10, right, bottom, 0xFF181818);
+		// Match vanilla's accessibility setting instead of forcing an opaque black panel.
+		graphics.fill(left - 2, top - 10, right, top - 1, minecraft.options.getBackgroundColor(0.4F));
+		graphics.fill(left - 2, top - 1, right, bottom, minecraft.options.getBackgroundColor(0.3F));
 		graphics.text(font, PriorityText.protect(title), left + width / 2 - titleWidth / 2, top - 9, -1, false);
 		for (int i = 0; i < rows.size(); i++) {
 			Row row = rows.get(i);

@@ -95,6 +95,7 @@ public final class ChatInteractionHarness {
 		phoneWrapper();
 		attributeRewards();
 		colours();
+		galleryPrompt();
 		System.out.printf("扫描 CHAT 可用记录 %d 条，按钮记录 %d 条，已匹配颜色样本 %d 条；通过 %d / 失败 %d%n",
 			chatRecords, buttons, colourSamples, passed, failed);
 		if (failed > 0) System.exit(1);
@@ -206,6 +207,26 @@ public final class ChatInteractionHarness {
 			bad.render(StyledText.of(input), bad.match("[YES] [NO]"), Translator.index().terms()), 1));
 		require("事件测试能抓住两个按钮串用指令", !interactions(sample("[YES] [NO]", 2),
 			Component.literal("[是] [否]").setStyle(StyledText.of(sample("[YES] [NO]", 2)).styleAt(0)), 2));
+	}
+
+	private static void galleryPrompt() {
+		Style base = Style.EMPTY.withColor(ChatFormatting.GRAY).withItalic(true);
+		ClickEvent url = new ClickEvent.OpenUrl(java.net.URI.create("https://timecharm...IF"));
+		Component input = Component.empty()
+			.append(Component.literal("This is where I'd put my ").setStyle(base))
+			.append(Component.literal("timecharm...IF").setStyle(base.withClickEvent(url)))
+			.append(Component.literal(" I HAD ONE!!!!!!!").setStyle(base));
+		StyledText before = StyledText.of(input);
+		StyledText output = StyledText.of(Translator.translateChatBlock(input, 320, c -> StyledText.of(c).length() * 6));
+		String middle = "时光符……前提是";
+		int at = output.plain().indexOf(middle);
+		boolean valid = at >= 0;
+		for (int i = 0; i < output.length(); i++) {
+			Style expected = i >= at && i < at + middle.length() ? base.withClickEvent(url) : base;
+			valid &= expected.equals(output.styleAt(i));
+		}
+		require("展馆无括号链接只保留在中段且不扩散", valid);
+		require("展馆链接翻译不改原始组件", before.equals(StyledText.of(input)));
 	}
 
 	private static void blockAndQuiz() {

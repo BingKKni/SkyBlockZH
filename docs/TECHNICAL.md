@@ -187,8 +187,11 @@ it does not change the existing item-name translation rules.
   arbitrary mod text is not matched against every corpus surface.
 - `force`: take ownership of protected text/font calls and rebuild item tooltips from original names and lore;
   additional mod tooltip lines/images can disappear. Submit the server sidebar in a final stratum after
-  `GameRenderer.extract`, with an opaque background. This does not depend on the original sidebar method
-  being called and does not modify another mod's classes or settings. Custom sidebars elsewhere may remain.
+  `GameRenderer.extract`, respecting vanilla text-background opacity. Read-only public-state probes for
+  SkyHanni and NoammAddons yield the sidebar when their custom HUD is enabled: no vanilla cancellation and
+  no extra Force panel. Existing font/GUI hooks still attempt translation of known server lines; rewritten
+  or bypassed text stays unchanged. An installed but incompatible API also yields conservatively. No helper
+  settings, data or classes are modified. Other custom-sidebar implementations are not yet guaranteed.
 
 While enabled in verified SkyBlock, a display history retains at most 100 messages and 128 Ki characters.
 Server system messages are snapshotted at packet dispatch; client notices and signed player messages are

@@ -43,6 +43,13 @@
   "reforge_note": "reforge 类型不在 applies_to_types 里:它只给 TooltipTranslator(物品名首词)和 guide_item_name 占位符的「重铸名 + 已收录物品名」拆分用,不会替换任何占位符捕到的值。",
   "skyblock_month_note": "日历标题等日期行里的空岛月份单独使用 skyblock_month:Early/(无前缀)/Late × 春夏秋冬十二个月按顺序译成「1 月」到「12 月」(用户 2026-09-10 拍板,以月份代替季节),不改变 Winter 作为海洋生物分类时的寒冬译名。",
   "terms": [
+    {"en":"Shop Confirmations","zh":"商店确认","types":["category_name","raw"],"note":"沿用 Dungeons/GUI_Item/Other.json#npc_shop_confirm；本轮开关聊天复用。"},
+    {"en":"Personal Bank","zh":"个人银行","types":["category_name","raw"],"note":"沿用 SkyBlock_Menu 的个人银行；Guy 菜单升级入口复用。"},
+    {"en":"Heirloom","zh":"传家宝","types":["category_name"],"note":"鲨齿饰品第五档，沿用 Feast_Activities 的传家宝；不影响 Crux Heirloom 专名。"},
+    {"en":"Husbandry","zh":"畜牧","types":["category_name"],"note":"新版分类个人压缩器，社区 Wiki Magic_Find/Alpha 与本轮服务器物品语境。"},
+    {"en":"Relic","zh":"遗物","types":["category_name"],"note":"鲨齿饰品系列的品类，沿用既有饰品遗物译法。"},
+    {"en":"Bat Piñata","zh":"蝙蝠皮纳塔","types":["mob_name"],"note":"社区 Wiki Bat_Piñata：惊魂节糖果容器型蝙蝠；仅替换已识别动态血条中的完整通名，不固定等级和血量。"},
+    {"en":"Mega Bat","zh":"巨型蝙蝠","types":["mob_name"],"note":"社区 Wiki Mega_Bat：惊魂节巨型蝙蝠，沿用说明中的通名。"},
     {"en":"Fear","zh":"恐惧","types":["category_name","raw"],"note":"药水属性，沿用既有属性菜单译名。"},
     {"en":"Agatha","zh":"Agatha","types":["category_name"],"note":"竞赛主持人专名保留英文，不是漏译。"},
     {"en":"Prancin' Pumpkin","zh":"跃舞南瓜","types":["category_name","raw"],"source":"https://hypixelskyblock.minecraft.wiki/w/Runes","note":"社区 Wiki 的胸甲符文，南瓜旋转特效；通用词组成的名称。"},

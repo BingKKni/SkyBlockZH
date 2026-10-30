@@ -58,7 +58,7 @@ public final class NameTag {
 	);
 
 	private static final Pattern MOB_BAR = Pattern.compile(
-		"^(?:﴾\\s*)?(?:\\[Lv[0-9]+\\]\\s*)?(?:[\\p{Co}\\p{S}]\\s*){0,8}([A-Za-z][A-Za-z '\\-]+?)\\s+(?:[0-9][0-9,.]*[kKmMbBtT]?(?:/[0-9][0-9,.]*[kKmMbBtT]?)?|\\?+)❤(?:\\s*[﴿҉])?\\s*$"
+		"^(?:﴾\\s*)?(?:\\[Lv[0-9]+\\]\\s*)?(?:[\\p{Co}\\p{S}]\\s*){0,8}([\\p{L}][\\p{L} '\\-]+?)\\s+(?:[0-9][0-9,.]*[kKmMbBtT]?(?:/[0-9][0-9,.]*[kKmMbBtT]?)?|\\?+)❤(?:\\s*[﴿҉])?\\s*$"
 	);
 	// Only the complete Rift timer score line, never a player identity or an arbitrary sentence.
 	private static final Pattern RIFT_TIMER = Pattern.compile(
@@ -137,7 +137,7 @@ public final class NameTag {
 		if (!bar.matches()) {
 			return source;
 		}
-		String zh = Translator.index().terms().translate("mob_name", bar.group(1));
+		String zh = Translator.index().terms().translateWhole("mob_name", bar.group(1));
 		if (zh == null || zh.equals(bar.group(1))) {
 			return source;
 		}
