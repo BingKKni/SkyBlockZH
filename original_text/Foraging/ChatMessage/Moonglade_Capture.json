@@ -187,9 +187,9 @@
     {
       "id": "marsh_loot_shellwise",
       "context": "本轮实测聊天；按来源缩进，动态等级、数值不写死。",
-      "text": "LOOT SHARE You received %1$s Shellwise Shards for assisting %2$s!",
+      "text": "LOOT SHARE You received %1$s %2$s Shards for assisting %3$s!",
       "translate": true,
-      "zh": "战利品共享 你协助 %2$s，获得了 %1$s 个 Shellwise 碎片!",
+      "zh": "战利品共享 你协助 %3$s，获得了 %1$s 个 %2$s 碎片!",
       "placeholders": [
         {
           "token": "%1$s",
@@ -198,6 +198,11 @@
         },
         {
           "token": "%2$s",
+          "type": "shard_kind",
+          "example": "Joydive"
+        },
+        {
+          "token": "%3$s",
           "type": "player_name",
           "example": "inkkni"
         }
@@ -222,8 +227,8 @@
           "order": 4
         },
         {
-          "text": "Shellwise ",
-          "zh": "Shellwise",
+          "text": "%2$s ",
+          "zh": "%2$s",
           "color": "§5",
           "order": 5
         },
@@ -234,8 +239,8 @@
           "order": 3
         },
         {
-          "text": "%2$s",
-          "zh": "%2$s",
+          "text": "%3$s",
+          "zh": "%3$s",
           "color": "§7",
           "order": 2
         },
@@ -246,7 +251,8 @@
           "order": 6
         }
       ],
-      "raw": "§e§lLOOT SHARE §fYou received §b%1$s §5Shellwise §fShards for assisting §7%2$s§f!"
+      "raw": "§e§lLOOT SHARE §fYou received §b%1$s §5%2$s §fShards for assisting §7%3$s§f!",
+      "gloss": "复用已登记的碎片生物名；仅目录确认的 shard_kind 可匹配，不枚举 Shellwise/Joydive。"
     },
     {
       "id": "marsh_salmon_exhausted",

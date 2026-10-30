@@ -1,0 +1,289 @@
+{
+  "note": "本轮采集回归：手写期望、动态数值、跨行、实时颜色和安全边界。",
+  "cases": [
+    {
+      "name": "Hecatomb变化数值不跨生命行",
+      "source": [
+        "§7Gain §a+1% §cCatacombs §7XP & §a+2% §3Class §7XP,",
+        "§7doubled on §b§lS+ §7runs.",
+        "§7Grants §c+8 §7per 10 §cCatacombs §7levels.",
+        "§8150 S runs to tier up!"
+      ],
+      "expected": "§7获得 §a+1% §c地下墓穴§7经验与 §a+2% §3职业§7经验；§b§lS+ §7评分通关时，上述加成翻倍。",
+      "consumed": 2
+    },
+    {
+      "name": "Hecatomb累计升级门槛不是剩余次数",
+      "surface": "GUI_Item",
+      "source": [
+        "§8100 S runs to tier up!"
+      ],
+      "expected": "§8累计完成 100 次 S 评分通关后升级!"
+    },
+    {
+      "name": "Hecatomb门槛数值变化",
+      "surface": "GUI_Item",
+      "source": [
+        "§8150 S runs to tier up!"
+      ],
+      "expected": "§8累计完成 150 次 S 评分通关后升级!"
+    },
+    {
+      "name": "Hecatomb中间生命行仍用既有模板",
+      "surface": "GUI_Item",
+      "source": [
+        "§7Grants §c+7.4 §7per 10 §cCatacombs §7levels."
+      ],
+      "expected": "§c地牢§7等级每满 10 级，提供 §c+7.4§7 生命值。"
+    },
+    {
+      "name": "特殊头盔保留实测粗体",
+      "surface": "GUI_Item",
+      "source": [
+        "§c§lSPECIAL HELMET"
+      ],
+      "expected": "§c§l特殊头盔"
+    },
+    {
+      "name": "免疫字幕保留粗体",
+      "surface": "Misc",
+      "source": [
+        "§c§lIMMUNE"
+      ],
+      "expected": "§c§l免疫"
+    },
+    {"name":"三技能由双爪领头","surface":"Hologram","source":["§c02:48 §6§lTWINCLAWS §b§l0.2s IMPEL 0.2s §3§lICHOR §b§l1.7s"],"expected":"§c02:48 §6§l双爪 §b§l0.2秒 敕令 0.2秒 §3§l脓血 §b§l1.7秒"},
+    {"name":"三技能双爪改值回归","surface":"Hologram","source":["§c01:23 §6§lTWINCLAWS §b§l1.3s IMPEL 0.4s §3§lICHOR §b§l2.6s"],"expected":"§c01:23 §6§l双爪 §b§l1.3秒 敕令 0.4秒 §3§l脓血 §b§l2.6秒"},
+    {"name":"双技能由复生领头","surface":"Hologram","source":["§c02:54 §f§lRESURRECT §b§l1.0s §8§lSPECTRAL §b§l0.7s"],"expected":"§c02:54 §f§l复生 §b§l1.0秒 §8§l幽灵形态 §b§l0.7秒"},
+    {"name":"双技能复生改值回归","surface":"Hologram","source":["§c01:26 §f§lRESURRECT §b§l2.0s §8§lSPECTRAL §b§l1.2s"],"expected":"§c01:26 §f§l复生 §b§l2.0秒 §8§l幽灵形态 §b§l1.2秒"},
+    {"name":"敕令独立槽位形状构造非实测同次样本","surface":"Hologram","source":["§c02:57 §b§lIMPEL §b§l0.2s"],"expected":"§c02:57 §b§l敕令 §b§l0.2秒"},
+    {"name":"敕令单槽改值回归","surface":"Hologram","source":["§c01:13 §b§lIMPEL §b§l0.9s"],"expected":"§c01:13 §b§l敕令 §b§l0.9秒"},
+    {"name":"同名标题复用圣冰","surface":"GUI_Title","source":["Holy Ice"],"expected":"圣冰"},
+    {"name":"同名标题复用巫师面孔","surface":"GUI_Title","source":["Warm Wizard Face"],"expected":"温暖巫师面孔"},
+    {"name":"猎手配方标题复用菜单译名","surface":"GUI_Title","source":["Slayer Recipes"],"expected":"猎手配方"},
+    {"name":"对局双方保留对手Rank与姓名","surface":"GUI_Item","source":["§fYou | §b[MVP§d++§b] Cute_Leaf_ovo"],"expected":"§f你 | §b[MVP§d++§b] Cute_Leaf_ovo"},
+    {
+      "name": "取消任务整句保留清除一词红色",
+      "source": [
+        "§cClears §7progress towards the",
+        "§7current Slayer Quest to let you pick",
+        "§7a different one."
+      ],
+      "expected": "§c清除§7当前猎手任务的进度，以便接取其他任务。",
+      "consumed": 3
+    },
+    {
+      "name": "任务失败说明合并",
+      "source": [
+        "§7You didn't succeed in killing the",
+        "§7boss on your last Slayer quest."
+      ],
+      "expected": "§7上次猎手任务中，你未能击败首领。",
+      "consumed": 2
+    },
+    {
+      "name": "失败鼓励合并",
+      "source": [
+        "§8It's no big deal! You can always",
+        "§8try again!"
+      ],
+      "expected": "§8没关系! 随时可以再试一次!",
+      "consumed": 2
+    },
+    {
+      "name": "猎手配方两行",
+      "source": [
+        "§7View all of the §aRevenant Horror",
+        "§aRecipes §7that you've unlocked!"
+      ],
+      "expected": "§7查看你已解锁的所有 §aRevenant Horror 配方§7!",
+      "consumed": 2
+    },
+    {
+      "name": "蜘蛛配方三行",
+      "source": [
+        "§7View all of the §aTarantula",
+        "§aBroodfather Recipes §7that you've",
+        "§7unlocked!"
+      ],
+      "expected": "§7查看你已解锁的所有 §aTarantula Broodfather 配方§7!",
+      "consumed": 3
+    },
+    {
+      "name": "血魔阶段与技能数不同仍准确",
+      "surface": "GUI_Lore",
+      "source": [
+        "§7Has §c4 §7abilities over §42 §7phases!"
+      ],
+      "expected": "§7共分为 §42§7 个阶段，拥有 §c4§7 种技能!"
+    },
+    {
+      "name": "血魔阶段实测",
+      "surface": "GUI_Lore",
+      "source": [
+        "§7Has §c3 §7abilities over §43 §7phases!"
+      ],
+      "expected": "§7共分为 §43§7 个阶段，拥有 §c3§7 种技能!"
+    },
+    {
+      "name": "猫粮适用宠物三行",
+      "source": [
+        "§7This pet item can be used on",
+        "§9Montezuma§7. It may have a different",
+        "§7effect outside of the §dRift§7."
+      ],
+      "expected": "§7此宠物道具可用于 §9Montezuma§7。离开§d裂隙§7后，效果可能有所不同。",
+      "consumed": 3
+    },
+    {
+      "name": "猫粮属性两行及私用区图标",
+      "source": [
+        "§7Grants §a+30 Rift Time§7 and §b+5 Mana",
+        "§bRegen§7."
+      ],
+      "expected": "§7获得 §a+30 裂隙时间§7与 §b+5 法力回复§7。",
+      "consumed": 2
+    },
+    {
+      "name": "猫粮属性变化",
+      "source": [
+        "§7Grants §a+45ф Rift Time§7 and §b+8⚡ Mana",
+        "§bRegen§7."
+      ],
+      "expected": "§7获得 §a+45ф 裂隙时间§7与 §b+8⚡ 法力回复§7。",
+      "consumed": 2
+    },
+    {
+      "name": "首领奖励卷轴与配方分色",
+      "surface": "GUI_Item",
+      "source": [
+        " §5Travel Scroll to the Void Sepulture §7Recipe"
+      ],
+      "expected": " §5虚空墓地传送卷轴§7配方"
+    },
+    {
+      "name": "Sinseeker名字内部的红色保留",
+      "surface": "GUI_Item",
+      "source": [
+        "§4Sin§5seeker Scythe"
+      ],
+      "expected": "§4Sin§5seeker 镰刀"
+    },
+    {
+      "name": "有Rank的平分邀请复用旧模板",
+      "surface": "ChatMessage",
+      "source": [
+        "§b§lSPLIT! §b[MVP§d++§b] Cute_Leaf_ovo§f §ehas challenged you to a game of §6Split or Steal§e!"
+      ],
+      "expected": "§b§l平分! §b[MVP§d++§b] Cute_Leaf_ovo§e 邀请你玩一局§6平分或独吞§e!"
+    },
+    {
+      "name": "任务分钟前动态时间",
+      "surface": "GUI_Item",
+      "source": [
+        "§7Quest from: §b2 mins ago"
+      ],
+      "expected": "§7任务开始于: §b2分钟前"
+    },
+    {
+      "name": "任务分钟前另一个数值",
+      "surface": "GUI_Item",
+      "source": [
+        "§7Quest from: §b15 mins ago"
+      ],
+      "expected": "§7任务开始于: §b15分钟前"
+    },
+    {
+      "name": "多技能倒计时",
+      "surface": "Hologram",
+      "source": [
+        "§c03:38 §5§lMANIA §b§l17.8s §6§lTWINCLAWS §b§l0.9s IMPEL 0.4s"
+      ],
+      "expected": "§c03:38 §5§l狂乱 §b§l17.8秒 §6§l双爪 §b§l0.9秒 敕令 0.4秒"
+    },
+    {
+      "name": "多技能变更顺序和时间",
+      "surface": "Hologram",
+      "source": [
+        "§c01:12 §5§lMANIA §b§l9.2s IMPEL 0.8s §3§lICHOR §b§l2.1s"
+      ],
+      "expected": "§c01:12 §5§l狂乱 §b§l9.2秒 敕令 0.8秒 §3§l脓血 §b§l2.1秒"
+    },
+    {
+      "name": "未知技能不能混入闭集",
+      "surface": "Hologram",
+      "source": [
+        "01:12 MANIA 9.2s Unknown 0.8s"
+      ],
+      "miss": true
+    },
+    {
+      "name": "不是时钟不能成为头顶技能前缀",
+      "surface": "Hologram",
+      "source": [
+        "Someone MANIA 9.2s"
+      ],
+      "miss": true
+    },
+    {
+      "name": "盾牌命中次数非血量",
+      "surface": "Hologram",
+      "source": [
+        "§8[§7Lv655§8] §5 Voidgloom Seraph IV §f§l99 Hits"
+      ],
+      "expected": "§8[§7Lv655§8] §5 Voidgloom Seraph IV §f§l99 次命中"
+    },
+    {
+      "name": "符文盾牌",
+      "surface": "Hologram",
+      "source": [
+        "§8[§7Lv655§8] §5 Voidgloom Seraph IV ᛤ §d§l57 Hits"
+      ],
+      "expected": "§8[§7Lv655§8] §5 Voidgloom Seraph IV ᛤ §d§l57 次命中"
+    },
+    {
+      "name": "骰子生命区间含持续时间",
+      "surface": "GUI_Lore",
+      "source": [
+        "§7Gain between §c-300❤ §7and §c+300❤ §7for §a24h§7."
+      ],
+      "expected": "§7生命值变动范围为 §c-300❤ §7至 §c+300❤§7，持续 §a24小时§7。"
+    },
+    {
+      "name": "骰子区间数值变化",
+      "surface": "GUI_Lore",
+      "source": [
+        "§7Gain between §c-200❤ §7and §c+400❤ §7for §a12h§7."
+      ],
+      "expected": "§7生命值变动范围为 §c-200❤ §7至 §c+400❤§7，持续 §a12小时§7。"
+    },
+    {
+      "name": "明信片速度跨行",
+      "source": [
+        "§aAll minions on your island will work §b5%",
+        "§afaster."
+      ],
+      "expected": "§a岛上所有小人的工作速度提高 §b5%§a。",
+      "consumed": 2
+    },
+    {
+      "name": "Hecatomb真实四行顺序只合并相邻经验句",
+      "source": [
+        "§7Gain §a+0.92% §cCatacombs §7XP & §a+1.84% §3Class §7XP,",
+        "§7doubled on §b§lS+ §7runs.",
+        "§7Grants §c+7.4 §7per 10 §cCatacombs §7levels.",
+        "§8100 S runs to tier up!"
+      ],
+      "expected": "§7获得 §a+0.92% §c地下墓穴§7经验与 §a+1.84% §3职业§7经验；§b§lS+ §7评分通关时，上述加成翻倍。",
+      "consumed": 2
+    },
+    {
+      "name": "皮肤选择不套用同名附魔规则",
+      "surface": "GUI_Item",
+      "source": [
+        "§7Selected: §dSunset"
+      ],
+      "expected": "§7当前外观: §d晚霞"
+    }
+  ]
+}

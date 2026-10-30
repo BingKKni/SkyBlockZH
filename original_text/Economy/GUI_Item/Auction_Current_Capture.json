@@ -1,0 +1,329 @@
+{
+  "source": [
+    "runtime capture (SkyZH)",
+    "https://hypixelskyblock.minecraft.wiki/w/Sinseeker_Scythe",
+    "https://hypixelskyblock.minecraft.wiki/w/Space_Helmet",
+    "https://hypixelskyblock.minecraft.wiki/w/Postcard",
+    "https://hypixelskyblock.minecraft.wiki/w/Clover_Helmet",
+    "https://hypixelskyblock.minecraft.wiki/w/Racing_Helmet",
+    "https://hypixelskyblock.minecraft.wiki/w/Giant_Fishing_Rod"
+  ],
+  "verified_ingame": true,
+  "note": "仅采用本轮实测文本；Wiki 用于理解机制，保留实测颜色与措辞。动态数值采用有类型占位符。",
+  "lines": [
+    {
+      "id": "auction_purchased_for",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§7Purchased for: §6%1$s Coins",
+      "text": "Purchased for: %1$s Coins",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "coins",
+          "example": "100,000,000"
+        }
+      ],
+      "translate": true,
+      "zh": "购入价格: %1$s 硬币",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Purchased for: ",
+          "zh": "购入价格: "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s Coins",
+          "zh": "%1$s 硬币"
+        }
+      ]
+    },
+    {
+      "id": "cosmetic_levels",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§8▸ §6%1$s§8 Cosmetic Levels",
+      "text": "▸ %1$s Cosmetic Levels",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "800"
+        }
+      ],
+      "translate": true,
+      "zh": "▸ %1$s 外观等级",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "▸ ",
+          "zh": "▸ "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§8",
+          "text": " Cosmetic Levels",
+          "zh": " 外观等级"
+        }
+      ]
+    },
+    {
+      "id": "other_stats_penalty",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§7All Other Stats: §c%1$s%",
+      "text": "All Other Stats: %1$s%",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "percentage",
+          "example": "-5"
+        }
+      ],
+      "translate": true,
+      "zh": "其他所有属性: %1$s%",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "All Other Stats: ",
+          "zh": "其他所有属性: "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s%",
+          "zh": "%1$s%"
+        }
+      ]
+    },
+    {
+      "id": "pressure_bonus",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§7Pressure Resistance: §9+%1$s §8(+%2$s)",
+      "text": "Pressure Resistance: +%1$s (+%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "5"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "22.45"
+        }
+      ],
+      "translate": true,
+      "zh": "抗压: +%1$s (+%2$s)",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Pressure Resistance: ",
+          "zh": "抗压: "
+        },
+        {
+          "color": "§9",
+          "text": "+%1$s ",
+          "zh": "+%1$s "
+        },
+        {
+          "color": "§8",
+          "text": "(+%2$s)",
+          "zh": "(+%2$s)"
+        }
+      ]
+    },
+    {
+      "id": "cold_bonus",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§7Cold Resistance: §b+%1$s §8(+%2$s)",
+      "text": "Cold Resistance: +%1$s (+%2$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "5"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "22.45"
+        }
+      ],
+      "translate": true,
+      "zh": "抗寒: +%1$s (+%2$s)",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Cold Resistance: ",
+          "zh": "抗寒: "
+        },
+        {
+          "color": "§b",
+          "text": "+%1$s ",
+          "zh": "+%1$s "
+        },
+        {
+          "color": "§8",
+          "text": "(+%2$s)",
+          "zh": "(+%2$s)"
+        }
+      ]
+    },
+    {
+      "id": "pest_chance_bonus",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§7Bonus Pest Chance: §2+%1$s% §8(+%2$s%)",
+      "text": "Bonus Pest Chance: +%1$s% (+%2$s%)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "6"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "26.94"
+        }
+      ],
+      "translate": true,
+      "zh": "额外害虫几率: +%1$s% (+%2$s%)",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Bonus Pest Chance: ",
+          "zh": "额外害虫几率: "
+        },
+        {
+          "color": "§2",
+          "text": "+%1$s% ",
+          "zh": "+%1$s% "
+        },
+        {
+          "color": "§8",
+          "text": "(+%2$s%)",
+          "zh": "(+%2$s%)"
+        }
+      ]
+    },
+    {
+      "id": "sinseeker_scythe_name",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§4Sin§5seeker Scythe",
+      "text": "Sinseeker Scythe",
+      "placeholders": [],
+      "translate": true,
+      "zh": "Sinseeker 镰刀",
+      "segments": [
+        {
+          "color": "§4",
+          "text": "Sin",
+          "zh": "Sin"
+        },
+        {
+          "color": "§5",
+          "text": "seeker Scythe",
+          "zh": "seeker 镰刀"
+        }
+      ]
+    },
+    {
+      "id": "space_helmet_name",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§cSpace Helmet",
+      "text": "Space Helmet",
+      "placeholders": [],
+      "translate": true,
+      "zh": "太空头盔"
+    },
+    {
+      "id": "special_helmet_rarity",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§c§lSPECIAL HELMET",
+      "text": "SPECIAL HELMET",
+      "placeholders": [],
+      "translate": true,
+      "zh": "特殊头盔"
+    },
+    {
+      "id": "postcard_name",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§6Postcard",
+      "text": "Postcard",
+      "placeholders": [],
+      "translate": true,
+      "zh": "明信片"
+    },
+    {
+      "id": "clover_helmet_name",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§dClover Helmet",
+      "text": "Clover Helmet",
+      "placeholders": [],
+      "translate": true,
+      "zh": "三叶草头盔"
+    },
+    {
+      "id": "racing_helmet_name",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§dRacing Helmet",
+      "text": "Racing Helmet",
+      "placeholders": [],
+      "translate": true,
+      "zh": "竞速头盔"
+    },
+    {
+      "id": "giant_fishing_rod_name",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§dGiant Fishing Rod",
+      "text": "Giant Fishing Rod",
+      "placeholders": [],
+      "translate": true,
+      "zh": "巨型钓鱼竿"
+    },
+    {
+      "id": "selected_cosmetic",
+      "context": "Crown of Avarice 的 Color Swapper 已选外观；不是同名附魔。",
+      "raw": "§7Selected: §d%1$s",
+      "text": "Selected: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "category_name",
+          "example": "Sunset"
+        }
+      ],
+      "translate": true,
+      "zh": "当前外观: %1$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Selected: ",
+          "zh": "当前外观: "
+        },
+        {
+          "color": "§d",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ]
+    },
+    {
+      "id": "hecatomb_upgrade_threshold",
+      "context": "Hecatomb 升级所需累计 S 评分通关次数；实测计数92时门槛仍为100，不是还需100次。",
+      "raw": "§8%1$s S runs to tier up!",
+      "text": "%1$s S runs to tier up!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "100"
+        }
+      ],
+      "translate": true,
+      "zh": "累计完成 %1$s 次 S 评分通关后升级!"
+    }
+  ]
+}

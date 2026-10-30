@@ -58,11 +58,15 @@ public final class NameTag {
 	);
 
 	private static final Pattern MOB_BAR = Pattern.compile(
-		"^(?:﴾\\s*)?(?:\\[Lv[0-9]+\\]\\s*)?(?:[\\p{Co}\\p{S}]\\s*){0,8}([\\p{L}][\\p{L} '\\-]+?)\\s+(?:[0-9][0-9,.]*[kKmMbBtT]?(?:/[0-9][0-9,.]*[kKmMbBtT]?)?|\\?+)❤(?:\\s*[﴿҉])?\\s*$"
+		"^(?:﴾\\s*)?(?:\\[Lv[0-9]+\\]\\s*)?(?:[\\p{Co}\\p{S}]\\s*){0,8}([\\p{L}][\\p{L} '\\-]+?)\\s+(?:[0-9][0-9,.]*[kKmMbBtT]?(?:/[0-9][0-9,.]*[kKmMbBtT]?)?|\\?+)❤(?:\\s*[﴿҉✯])?\\s*$"
 	);
 	// Only the complete Rift timer score line, never a player identity or an arbitrary sentence.
 	private static final Pattern RIFT_TIMER = Pattern.compile(
 		"^" + Capture.RIFT_TIME.regex() + " ?ф$"
+	);
+	/** An attested server shield counter on a mob or stand; translated by explicit corpus rows. */
+	private static final Pattern HIT_SHIELD = Pattern.compile(
+		"^\\[Lv[0-9]+\\] [\\p{Co}\\p{S}] Voidgloom Seraph [IVXLCDM]{1,8}(?: ᛤ)? [0-9]+ Hits?$"
 	);
 	private static final Pattern PET_TAG = Pattern.compile("^(?:#[0-9]+ )?\\[Lv(?:l )?[0-9]+\\] .+");
 	private static final Pattern RANKED_PLAYER = Pattern.compile(
@@ -127,7 +131,7 @@ public final class NameTag {
 		return zh == null ? source : Component.literal(zh).setStyle(styled.styleAt(0));
 	}
 
-	/** Only a closed mob-name term can change; level, health and their live styles stay intact. */
+	/** Known mob health names and explicit hit shields only; never a player or an unknown bar. */
 	public static Component mobName(Component source) {
 		return mobName(source, StyledText.of(source));
 	}
@@ -135,6 +139,10 @@ public final class NameTag {
 	private static Component mobName(Component source, StyledText styled) {
 		Matcher bar = MOB_BAR.matcher(styled.canonical());
 		if (!bar.matches()) {
+			// Both living mobs and invisible stands can carry this server counter.
+			if (HIT_SHIELD.matcher(styled.canonical()).matches()) {
+				return Translator.translateAvailable(source, styled, Surface.HOLOGRAM).padded();
+			}
 			return source;
 		}
 		String zh = Translator.index().terms().translateWhole("mob_name", bar.group(1));

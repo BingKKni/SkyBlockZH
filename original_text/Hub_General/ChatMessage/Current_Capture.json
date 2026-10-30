@@ -1,0 +1,90 @@
+{
+  "source": [
+    "runtime capture (SkyZH)"
+  ],
+  "verified_ingame": true,
+  "note": "仅采用本轮实测文本；Wiki 用于理解机制，保留实测颜色与措辞。动态数值采用有类型占位符。",
+  "lines": [
+    {
+      "id": "trade_request_expired",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§cYour /trade request to §b%1$s§f §cexpired!",
+      "text": "Your /trade request to %1$s expired!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "player_display",
+          "example": "[MVP++] Cute_Leaf_ovo"
+        }
+      ],
+      "translate": true,
+      "zh": "你向 %1$s 发出的 /trade 请求已过期!",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "Your /trade request to ",
+          "zh": "你向 "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§f",
+          "text": " ",
+          "zh": ""
+        },
+        {
+          "color": "§c",
+          "text": "expired!",
+          "zh": " 发出的 /trade 请求已过期!"
+        }
+      ]
+    },
+    {
+      "id": "cookie_command_required",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§eYou need the §dCookie Buff §eto use this command!",
+      "text": "You need the Cookie Buff to use this command!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "需拥有曲奇增益才能使用此指令!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "You need the ",
+          "zh": "需拥有"
+        },
+        {
+          "color": "§d",
+          "text": "Cookie Buff ",
+          "zh": "曲奇增益"
+        },
+        {
+          "color": "§e",
+          "text": "to use this command!",
+          "zh": "才能使用此指令!"
+        }
+      ]
+    },
+    {
+      "id": "recipe_not_unlocked",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§cYou haven't unlocked this recipe!",
+      "text": "You haven't unlocked this recipe!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "你尚未解锁此配方!"
+    },
+    {
+      "id": "rewards_already_claimed",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§aYou already claimed the rewards for this!",
+      "text": "You already claimed the rewards for this!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "你已经领取过这份奖励了!"
+    }
+  ]
+}

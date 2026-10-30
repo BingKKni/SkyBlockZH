@@ -1,0 +1,133 @@
+{
+  "source": [
+    "runtime capture (SkyZH)",
+    "https://hypixelskyblock.minecraft.wiki/w/Voidgloom_Seraph"
+  ],
+  "verified_ingame": true,
+  "note": "仅采用本轮实测文本；Wiki 用于理解机制，保留实测颜色与措辞。动态数值采用有类型占位符。",
+  "lines": [
+    {
+      "id": "dangerous_warning",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§c§lDANGEROUS!",
+      "text": "DANGEROUS!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "危险!"
+    },
+    {
+      "id": "voidgloom_hit_shield",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§8[§7Lv%1$s§8] §5%2$s Voidgloom Seraph %3$s §f§l%4$s Hits",
+      "text": "[Lv%1$s] %2$s Voidgloom Seraph %3$s %4$s Hits",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "655"
+        },
+        {
+          "token": "%2$s",
+          "type": "icon",
+          "example": ""
+        },
+        {
+          "token": "%3$s",
+          "type": "tier",
+          "example": "IV"
+        },
+        {
+          "token": "%4$s",
+          "type": "number",
+          "example": "100"
+        }
+      ],
+      "translate": true,
+      "zh": "[Lv%1$s] %2$s Voidgloom Seraph %3$s %4$s 次命中",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§7",
+          "text": "Lv%1$s",
+          "zh": "Lv%1$s"
+        },
+        {
+          "color": "§8",
+          "text": "] ",
+          "zh": "] "
+        },
+        {
+          "color": "§5",
+          "text": "%2$s Voidgloom Seraph %3$s ",
+          "zh": "%2$s Voidgloom Seraph %3$s "
+        },
+        {
+          "color": "§f§l",
+          "text": "%4$s Hits",
+          "zh": "%4$s 次命中"
+        }
+      ]
+    },
+    {
+      "id": "voidgloom_hit_shield_runic",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§8[§7Lv%1$s§8] §5%2$s Voidgloom Seraph %3$s ᛤ §f§l%4$s Hits",
+      "text": "[Lv%1$s] %2$s Voidgloom Seraph %3$s ᛤ %4$s Hits",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "655"
+        },
+        {
+          "token": "%2$s",
+          "type": "icon",
+          "example": ""
+        },
+        {
+          "token": "%3$s",
+          "type": "tier",
+          "example": "IV"
+        },
+        {
+          "token": "%4$s",
+          "type": "number",
+          "example": "84"
+        }
+      ],
+      "translate": true,
+      "zh": "[Lv%1$s] %2$s Voidgloom Seraph %3$s ᛤ %4$s 次命中",
+      "segments": [
+        {
+          "color": "§8",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§7",
+          "text": "Lv%1$s",
+          "zh": "Lv%1$s"
+        },
+        {
+          "color": "§8",
+          "text": "] ",
+          "zh": "] "
+        },
+        {
+          "color": "§5",
+          "text": "%2$s Voidgloom Seraph %3$s ᛤ ",
+          "zh": "%2$s Voidgloom Seraph %3$s ᛤ "
+        },
+        {
+          "color": "§f§l",
+          "text": "%4$s Hits",
+          "zh": "%4$s 次命中"
+        }
+      ]
+    }
+  ]
+}

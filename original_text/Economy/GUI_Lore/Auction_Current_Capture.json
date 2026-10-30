@@ -1,0 +1,433 @@
+{
+  "source": [
+    "runtime capture (SkyZH)",
+    "https://hypixelskyblock.minecraft.wiki/w/High_Class_Archfiend_Dice",
+    "https://hypixelskyblock.minecraft.wiki/w/Postcard",
+    "https://hypixelskyblock.minecraft.wiki/w/Clover_Helmet",
+    "https://hypixelskyblock.minecraft.wiki/w/Racing_Helmet",
+    "https://hypixelskyblock.minecraft.wiki/w/Space_Helmet",
+    "https://hypixelskyblock.minecraft.wiki/w/Griffin_Pet",
+    "https://hypixelskyblock.minecraft.wiki/w/Hecatomb"
+  ],
+  "verified_ingame": true,
+  "note": "仅采用本轮实测文本；Wiki 用于理解机制，保留实测颜色与措辞。动态数值采用有类型占位符。",
+  "lines": [
+    {
+      "id": "archfiend_dice_cost",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§7Costs §6%1$s §7coins to roll between 1-6.",
+      "text": "Costs %1$s coins to roll between 1-6.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "coins",
+          "example": "6.7M"
+        }
+      ],
+      "translate": true,
+      "zh": "消耗 %1$s 硬币，掷出 1–6 点。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Costs ",
+          "zh": "消耗 "
+        },
+        {
+          "color": "§6",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§7",
+          "text": "coins to roll between 1-6.",
+          "zh": "硬币，掷出 1–6 点。"
+        }
+      ]
+    },
+    {
+      "id": "archfiend_dice_health",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§7Gain between §c%1$s❤ §7and §c%2$s❤ §7for §a%3$s§7.",
+      "text": "Gain between %1$s❤ and %2$s❤ for %3$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "-300"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "+300"
+        },
+        {
+          "token": "%3$s",
+          "type": "duration",
+          "example": "24h"
+        }
+      ],
+      "translate": true,
+      "zh": "生命值变动范围为 %1$s❤ 至 %2$s❤，持续 %3$s。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain between ",
+          "zh": "生命值变动范围为 "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s❤ ",
+          "zh": "%1$s❤ "
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "至 "
+        },
+        {
+          "color": "§c",
+          "text": "%2$s❤ ",
+          "zh": "%2$s❤"
+        },
+        {
+          "color": "§7",
+          "text": "for ",
+          "zh": "，持续 "
+        },
+        {
+          "color": "§a",
+          "text": "%3$s",
+          "zh": "%3$s"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "archfiend_dice_overwrite",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§8Overwritten by new rolls!",
+      "text": "Overwritten by new rolls!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "再次掷骰将覆盖当前效果!"
+    },
+    {
+      "id": "archfiend_dice_jackpot",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§7If you roll a §c%1$s§7, earn §6%2$s §7coins but lose this dice.",
+      "text": "If you roll a %1$s, earn %2$s coins but lose this dice.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "6"
+        },
+        {
+          "token": "%2$s",
+          "type": "coins",
+          "example": "100M"
+        }
+      ],
+      "translate": true,
+      "zh": "若掷出 %1$s 点，获得 %2$s 硬币，但会失去这枚骰子。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "If you roll a ",
+          "zh": "若掷出 "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": ", earn ",
+          "zh": " 点，获得 "
+        },
+        {
+          "color": "§6",
+          "text": "%2$s ",
+          "zh": "%2$s "
+        },
+        {
+          "color": "§7",
+          "text": "coins but lose this dice.",
+          "zh": "硬币，但会失去这枚骰子。"
+        }
+      ]
+    },
+    {
+      "id": "archfiend_dice_tampered",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§8Heavy in the hand. Could someone have tampered with it?",
+      "text": "Heavy in the hand. Could someone have tampered with it?",
+      "placeholders": [],
+      "translate": true,
+      "zh": "拿在手里沉甸甸的……该不会被人动过手脚吧?"
+    },
+    {
+      "id": "postcard_inspiration",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§7When placed on your island, it will inspire your minions with the belief that they too, might one day be given the choice to leave if they work hard enough.",
+      "text": "When placed on your island, it will inspire your minions with the belief that they too, might one day be given the choice to leave if they work hard enough.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "放置在岛屿上，激励小人们相信: 只要足够努力，总有一天，他们也能获得选择离开的机会。"
+    },
+    {
+      "id": "postcard_speed",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§aAll minions on your island will work §b%1$s% §afaster.",
+      "text": "All minions on your island will work %1$s% faster.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "percentage",
+          "example": "5"
+        }
+      ],
+      "translate": true,
+      "zh": "岛上所有小人的工作速度提高 %1$s%。",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "All minions on your island will work ",
+          "zh": "岛上所有小人的工作速度提高 "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s% ",
+          "zh": "%1$s%"
+        },
+        {
+          "color": "§a",
+          "text": "faster.",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "postcard_sender",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§8§oYour %1$s Minion %2$s sent you a stunning image featuring a towering mountain on a very, very distant island.",
+      "text": "Your %1$s Minion %2$s sent you a stunning image featuring a towering mountain on a very, very distant island.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "category_name",
+          "example": "Inferno"
+        },
+        {
+          "token": "%2$s",
+          "type": "tier",
+          "example": "XI"
+        }
+      ],
+      "translate": true,
+      "zh": "你的%1$s小人 %2$s 寄来了一张绝美的照片，上面是一座遥远岛屿上的巍峨高山。"
+    },
+    {
+      "id": "luck_flavour",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§7Luck is a quantifiable metric that anyone possess in varying amounts.",
+      "text": "Luck is a quantifiable metric that anyone possess in varying amounts.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "运气可以衡量，只是每个人拥有的份量不同。"
+    },
+    {
+      "id": "luck_tradeoff_flavour",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§7Sometimes, it is necessary to give up on other skills to improve it.",
+      "text": "Sometimes, it is necessary to give up on other skills to improve it.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "有时，想让运气更好，就得在其他方面做些取舍。"
+    },
+    {
+      "id": "racing_helmet_flavour",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§8§oWhen horses are not fast enough, use a Racing Helmet instead.",
+      "text": "When horses are not fast enough, use a Racing Helmet instead.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "嫌马跑得还不够快? 换上竞速头盔试试。"
+    },
+    {
+      "id": "space_helmet_flavour",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§7§oA rare space helmet forged from shards of moon glass.",
+      "text": "A rare space helmet forged from shards of moon glass.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "由月之玻璃碎片锻造而成的稀有太空头盔。"
+    },
+    {
+      "id": "griffin_coins",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§7You gain §a%1$sx §6Coins §7from §eGriffin Burrows §7and §2%2$s Mythological §7mobs.",
+      "text": "You gain %1$sx Coins from Griffin Burrows and %2$s Mythological mobs.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "2"
+        },
+        {
+          "token": "%2$s",
+          "type": "icon",
+          "example": ""
+        }
+      ],
+      "translate": true,
+      "zh": "从狮鹫地洞与%2$s 神话生物处获得 %1$s 倍硬币",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "You gain ",
+          "zh": "从",
+          "order": 0
+        },
+        {
+          "color": "§a",
+          "text": "%1$sx ",
+          "zh": "%1$s 倍",
+          "order": 6
+        },
+        {
+          "color": "§6",
+          "text": "Coins ",
+          "zh": "硬币",
+          "order": 7
+        },
+        {
+          "color": "§7",
+          "text": "from ",
+          "zh": "获得 ",
+          "order": 5
+        },
+        {
+          "color": "§e",
+          "text": "Griffin Burrows ",
+          "zh": "狮鹫地洞",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "与",
+          "order": 2
+        },
+        {
+          "color": "§2",
+          "text": "%2$s Mythological ",
+          "zh": "%2$s 神话",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "mobs.",
+          "zh": "生物处",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "hecatomb_xp_progress",
+      "context": "Hecatomb 实测两行完整经验效果；不跨过生命属性行拼接升级门槛。",
+      "raw": "§7Gain §a%1$s% §cCatacombs §7XP & §a%2$s% §3Class §7XP, doubled on §b§lS+ §7runs.",
+      "text": "Gain %1$s% Catacombs XP & %2$s% Class XP, doubled on S+ runs.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "+0.92"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "+1.84"
+        }
+      ],
+      "translate": true,
+      "zh": "获得 %1$s% 地下墓穴经验与 %2$s% 职业经验；S+ 评分通关时，上述加成翻倍。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gain ",
+          "zh": "获得 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s% ",
+          "zh": "%1$s% "
+        },
+        {
+          "color": "§c",
+          "text": "Catacombs ",
+          "zh": "地下墓穴"
+        },
+        {
+          "color": "§7",
+          "text": "XP & ",
+          "zh": "经验与 "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s% ",
+          "zh": "%2$s% "
+        },
+        {
+          "color": "§3",
+          "text": "Class ",
+          "zh": "职业"
+        },
+        {
+          "color": "§7",
+          "text": "XP, doubled on ",
+          "zh": "经验；"
+        },
+        {
+          "color": "§b§l",
+          "text": "S+ ",
+          "zh": "S+ "
+        },
+        {
+          "color": "§7",
+          "text": "runs.",
+          "zh": "评分通关时，上述加成翻倍。"
+        }
+      ],
+      "samples": [
+        [
+          "§7Gain §a+0.92% §cCatacombs §7XP & §a+1.84% §3Class §7XP,",
+          "§7doubled on §b§lS+ §7runs."
+        ]
+      ]
+    },
+    {
+      "id": "dice_kickback_city",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§dStraight from Kickback City!",
+      "text": "Straight from Kickback City!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "来自回扣之城的好货!"
+    },
+    {
+      "id": "mining_mount_skin",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§8Mining Mount, Derpy Skin",
+      "text": "Mining Mount, Derpy Skin",
+      "placeholders": [],
+      "translate": true,
+      "zh": "挖矿坐骑，Derpy 皮肤"
+    }
+  ]
+}

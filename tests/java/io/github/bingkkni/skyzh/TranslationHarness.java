@@ -68,6 +68,36 @@ public final class TranslationHarness {
 
 		System.out.println();
 		installIndex(index);
+		for (String tier : List.of("I", "IV", "V")) {
+			String name = "Bloodfiend " + tier;
+			report("已知怪物阶数复用基础词表 " + tier,
+				("血魔 " + tier).equals(index.terms().translateWhole("mob_name", name)), name);
+			Component bar = Component.literal("§4" + name + " §a2,999§f/§a3,000§c❤ §b✯");
+			String drawn = legacy(io.github.bingkkni.skyzh.hook.NameTag.mobName(bar));
+			report("头顶阶数血条保留数值、颜色与星标 " + tier,
+				drawn.equals(legacy(Component.literal("§4血魔 " + tier + " §a2,999§f/§a3,000§c❤ §b✯"))), drawn);
+		}
+		for (String mark : List.of("", " ᛤ")) {
+			for (int hits : List.of(1, 99)) {
+				Component source = Component.literal("§8[§7Lv655§8] §5 Voidgloom Seraph IV" + mark
+					+ " §f§l" + hits + (hits == 1 ? " Hit" : " Hits"));
+				String shield = legacy(io.github.bingkkni.skyzh.hook.NameTag.mobName(source));
+				report("活体与盔甲架共用命中护盾路径 " + mark + hits,
+					shield.equals(legacy(Component.literal("§8[§7Lv655§8] §5 Voidgloom Seraph IV" + mark
+						+ " §f§l" + hits + " 次命中"))), shield);
+			}
+		}
+		report("普通宠物标签仍不进入语料翻译",
+			!io.github.bingkkni.skyzh.hook.NameTag.eligible(Component.literal("[Lv90] Rock")), "没有放宽所有等级名牌");
+		Component unknownShield = Component.literal("[Lv90]  Unknown Creature I 99 Hits");
+		report("未知怪物护盾不进入例外",
+			io.github.bingkkni.skyzh.hook.NameTag.mobName(unknownShield) == unknownShield, "闭合首领边界");
+		report("未知怪物阶数不制造译名",
+			index.terms().translateWhole("mob_name", "Unknown Creature IV") == null, "必须命中基础怪物名");
+		report("多重阶数不递归匹配",
+			index.terms().translateWhole("mob_name", "Bloodfiend I V") == null, "只允许一个阶数");
+		report("玩家名不复用怪物阶数词表",
+			index.terms().translate("player_name", "Bloodfiend") == null, "仅 mob_name 生效");
 		check("社交五级解锁岛屿NPC并保留商品高亮", "§fAbility to purchase §dIsland NPCs §ffrom Amelia", Surface.CHAT,
 			"§f可向 Amelia 购买§d岛屿 NPC");
 		check("社交奖励同句也覆盖技能菜单", "§fAbility to purchase §dIsland NPCs §ffrom Amelia", Surface.ITEM,
@@ -2951,7 +2981,7 @@ public final class TranslationHarness {
 
 	/** Fixed UI capture regression: ordered lore, term isolation, and clues that must survive translation. */
 	private static void checkFixedMenus(Path corpusRoot) throws Exception {
-		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "october-live-round-cases.json", "workshop-cases.json", "wiki-expansion-cases.json", "bazaar-item-names-cases.json", "rift-live-capture-cases.json", "rift-session-cases.json", "garden-weather-feast-cases.json", "village-living-cave-cases.json", "rift-post-build-cases.json", "castle-capture-cases.json", "slayer-rng-capture-cases.json", "spider-session-cases.json", "dual-live-round-cases.json", "moonglade-capture-cases.json")) {
+		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "october-live-round-cases.json", "workshop-cases.json", "wiki-expansion-cases.json", "bazaar-item-names-cases.json", "rift-live-capture-cases.json", "rift-session-cases.json", "garden-weather-feast-cases.json", "village-living-cave-cases.json", "rift-post-build-cases.json", "castle-capture-cases.json", "slayer-rng-capture-cases.json", "spider-session-cases.json", "dual-live-round-cases.json", "moonglade-capture-cases.json", "slayer-current-capture-cases.json")) {
 		Path path = corpusRoot.toAbsolutePath().getParent().resolve("tests/resources/" + file);
 		JsonObject fixture = JsonParser.parseString(Files.readString(path, StandardCharsets.UTF_8)).getAsJsonObject();
 		for (JsonElement value : fixture.getAsJsonArray("cases")) {

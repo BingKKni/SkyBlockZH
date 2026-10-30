@@ -1,0 +1,53 @@
+{
+  "source": [
+    "runtime capture (SkyZH)",
+    "https://hypixelskyblock.minecraft.wiki/w/Riftstalker_Bloodfiend",
+    "https://hypixelskyblock.minecraft.wiki/w/Split_or_Steal"
+  ],
+  "verified_ingame": true,
+  "note": "仅采用本轮实测文本；Wiki 用于理解机制，保留实测颜色与措辞。动态数值采用有类型占位符。",
+  "lines": [
+    {
+      "id": "mania_damage",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§eTook §c%1$s❤ §efrom §5Mania§e!",
+      "text": "Took %1$s❤ from Mania!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "translate": true,
+      "zh": "受到%1$s❤伤害，来源: 狂乱!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Took ",
+          "zh": "受到"
+        },
+        {
+          "color": "§c",
+          "text": "%1$s❤ ",
+          "zh": "%1$s❤"
+        },
+        {
+          "color": "§e",
+          "text": "from ",
+          "zh": "伤害，来源: "
+        },
+        {
+          "color": "§5",
+          "text": "Mania",
+          "zh": "狂乱"
+        },
+        {
+          "color": "§e",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    }
+  ]
+}

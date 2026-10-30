@@ -1,0 +1,99 @@
+{
+  "source": [
+    "runtime capture (SkyZH)"
+  ],
+  "verified_ingame": true,
+  "note": "仅采用本轮实测文本；Wiki 用于理解机制，保留实测颜色与措辞。动态数值采用有类型占位符。",
+  "lines": [
+    {
+      "id": "slayer_cancelling_warning",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§c§lCANCELLING THE QUEST!",
+      "text": "CANCELLING THE QUEST!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "即将取消任务!"
+    },
+    {
+      "id": "slayer_cancel_request",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§eClick to cancel the request!",
+      "text": "Click to cancel the request!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "点击取消请求!"
+    },
+    {
+      "id": "slayer_failed_status",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§cSlayer Quest Failed",
+      "text": "Slayer Quest Failed",
+      "placeholders": [],
+      "translate": true,
+      "zh": "猎手任务失败"
+    },
+    {
+      "id": "slayer_quest_age",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§7Quest from: §b%1$s mins ago",
+      "text": "Quest from: %1$s mins ago",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "5"
+        }
+      ],
+      "translate": true,
+      "zh": "任务开始于: %1$s分钟前",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Quest from: ",
+          "zh": "任务开始于: "
+        },
+        {
+          "color": "§b",
+          "text": "%1$s mins ago",
+          "zh": "%1$s分钟前"
+        }
+      ]
+    },
+    {
+      "id": "slayer_example_monsters",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§bExample monsters:",
+      "text": "Example monsters:",
+      "placeholders": [],
+      "translate": true,
+      "zh": "目标怪物示例:"
+    },
+    {
+      "id": "travel_scroll_recipe_article",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§5Travel Scroll to the %1$s §7Recipe",
+      "text": "Travel Scroll to the %1$s Recipe",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "location_name",
+          "example": "Void Sepulture"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s传送卷轴配方",
+      "segments": [
+        {
+          "color": "§5",
+          "text": "Travel Scroll to the %1$s ",
+          "zh": "%1$s传送卷轴"
+        },
+        {
+          "color": "§7",
+          "text": "Recipe",
+          "zh": "配方"
+        }
+      ]
+    }
+  ]
+}

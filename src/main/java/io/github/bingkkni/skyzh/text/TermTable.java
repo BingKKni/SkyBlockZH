@@ -36,6 +36,8 @@ public final class TermTable {
 
 	/** Dungeon stars and Master Stars on the end of an item name; not part of the name itself. */
 	private static final Pattern STARS = Pattern.compile("( [✪★☆➊➋➌➍➎]+)$");
+	/** A known mob followed by one Roman tier; never enumerate every boss level in the dictionary. */
+	private static final Pattern MOB_TIER = Pattern.compile("^(.+) ([IVXLCDM]{1,8})$");
 
 	private final Set<String> types;
 	private final Map<String, String> terms;
@@ -316,7 +318,15 @@ public final class TermTable {
 			folded = this.folded.get(lower);
 		}
 
-		return folded;
+		if (folded != null) return folded;
+		if ("mob_name".equals(normalizedType)) {
+			Matcher tier = MOB_TIER.matcher(value);
+			if (tier.matches() && !MOB_TIER.matcher(tier.group(1)).matches()) {
+				String base = translateWhole(type, tier.group(1));
+				if (base != null) return base + " " + tier.group(2);
+			}
+		}
+		return null;
 	}
 
 	private static String lookup(Map<String, String> terms, String value) {

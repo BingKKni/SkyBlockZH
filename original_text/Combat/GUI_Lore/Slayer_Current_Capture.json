@@ -1,0 +1,133 @@
+{
+  "source": [
+    "runtime capture (SkyZH)",
+    "https://hypixelskyblock.minecraft.wiki/w/Slayer"
+  ],
+  "verified_ingame": true,
+  "note": "仅采用本轮实测文本；Wiki 用于理解机制，保留实测颜色与措辞。动态数值采用有类型占位符。",
+  "lines": [
+    {
+      "id": "slayer_cancel_explanation",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§cClears §7progress towards the current Slayer Quest to let you pick a different one.",
+      "text": "Clears progress towards the current Slayer Quest to let you pick a different one.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "清除当前猎手任务的进度，以便接取其他任务。",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "Clears ",
+          "zh": "清除"
+        },
+        {
+          "color": "§7",
+          "text": "progress towards the current Slayer Quest to let you pick a different one.",
+          "zh": "当前猎手任务的进度，以便接取其他任务。"
+        }
+      ]
+    },
+    {
+      "id": "slayer_previous_failure",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§7You didn't succeed in killing the boss on your last Slayer quest.",
+      "text": "You didn't succeed in killing the boss on your last Slayer quest.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "上次猎手任务中，你未能击败首领。"
+    },
+    {
+      "id": "slayer_retry_encouragement",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§8It's no big deal! You can always try again!",
+      "text": "It's no big deal! You can always try again!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "没关系! 随时可以再试一次!"
+    },
+    {
+      "id": "slayer_unlocked_recipes",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§7View all of the §a%1$s Recipes §7that you've unlocked!",
+      "text": "View all of the %1$s Recipes that you've unlocked!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "mob_name",
+          "example": "Revenant Horror"
+        }
+      ],
+      "translate": true,
+      "zh": "查看你已解锁的所有 %1$s 配方!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "View all of the ",
+          "zh": "查看你已解锁的所有 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s Recipes ",
+          "zh": "%1$s 配方"
+        },
+        {
+          "color": "§7",
+          "text": "that you've unlocked!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "slayer_phase_count",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§7Has §c%1$s §7abilities over §4%2$s §7phases!",
+      "text": "Has %1$s abilities over %2$s phases!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "3"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "3"
+        }
+      ],
+      "translate": true,
+      "zh": "共分为 %2$s 个阶段，拥有 %1$s 种技能!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Has ",
+          "zh": "共分为 ",
+          "order": 0
+        },
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "abilities over ",
+          "zh": " 种技能!",
+          "order": 4
+        },
+        {
+          "color": "§4",
+          "text": "%2$s ",
+          "zh": "%2$s",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "phases!",
+          "zh": " 个阶段，拥有 ",
+          "order": 2
+        }
+      ]
+    }
+  ]
+}

@@ -76,7 +76,7 @@ public enum Capture {
 	SHARD_KIND(NAME.regex, false),
 	TRAINING_KIND("(?:Free|Light|Moderate|Expert|Ultra|Turbo!)", false),
 	/** Attested Rift attacks include a lowercase instruction, which is not an arbitrary NAME. */
-	RIFT_ABILITY("(?:Don't look at me|Bark|Devour|Lazer|Eye Beam|Slime Pound|Wicked Bombs|Leech Swarm|Mortiferous Lazer|Shadow Bump|Strikeburst|Beam|Bolt|Ice Boom|Spike|Slice|Spikes Pandemoglob|Malign Sliceline|Slimecopter)", false),
+	RIFT_ABILITY("(?:Don't look at me|Bark|Devour|Lazer|Eye Beam|Slime Pound|Wicked Bombs|Leech Swarm|Mortiferous Lazer|Shadow Bump|Strikeburst|Beam|Bolt|Ice Boom|Spike|Slice|Spikes Pandemoglob|Malign Sliceline|Slimecopter|MANIA|TWINCLAWS|IMPEL|SPECTRAL|ICHOR|KILLER SPRING|CLOTTING|STONEWRATH|RESURRECT)", false),
 	RIFT_BOSS_STAGE("(?:B|Ba|Bac|Bact|Bacte)", false),
 	EXCLAMATIONS("!{1,12}", false),
 	EQUIPMENT_SLOT("(?:cloak|belt|necklace|gloves|bracelet|Helmet|Chestplate|Leggings|Boots|Hand)", false),

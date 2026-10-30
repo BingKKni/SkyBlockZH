@@ -1,0 +1,140 @@
+{
+  "source": [
+    "runtime capture (SkyZH)"
+  ],
+  "verified_ingame": true,
+  "note": "仅采用本轮实测文本；Wiki 用于理解机制，保留实测颜色与措辞。动态数值采用有类型占位符。",
+  "lines": [
+    {
+      "id": "tab_slayer_label",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§e§lSlayer:",
+      "text": "Slayer:",
+      "placeholders": [],
+      "translate": true,
+      "zh": "猎手:"
+    },
+    {
+      "id": "tab_vampire_slayer_level",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§6Vampire Slayer %1$s",
+      "text": "Vampire Slayer %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "0"
+        }
+      ],
+      "translate": true,
+      "zh": "吸血鬼猎手 %1$s"
+    },
+    {
+      "id": "tab_combat_xp_progress",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§7(§e%1$s§7/§c%2$s§7) Combat XP",
+      "text": "(%1$s/%2$s) Combat XP",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "0"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "360"
+        }
+      ],
+      "translate": true,
+      "zh": "(%1$s/%2$s) 战斗经验",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "(",
+          "zh": "("
+        },
+        {
+          "color": "§e",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "/",
+          "zh": "/"
+        },
+        {
+          "color": "§c",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": ") Combat XP",
+          "zh": ") 战斗经验"
+        }
+      ]
+    },
+    {
+      "id": "tab_kill_progress",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§e%1$s§7/§c%2$s §7Kills",
+      "text": "%1$s/%2$s Kills",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "1"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "9"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s/%2$s 击杀",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "/",
+          "zh": "/"
+        },
+        {
+          "color": "§c",
+          "text": "%2$s ",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": "Kills",
+          "zh": " 击杀"
+        }
+      ]
+    },
+    {
+      "id": "tab_slayer_fight",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§eSlay the boss!",
+      "text": "Slay the boss!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "击败首领!"
+    },
+    {
+      "id": "tab_slayer_slain",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§eBoss slain!",
+      "text": "Boss slain!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "首领已击败!"
+    }
+  ]
+}

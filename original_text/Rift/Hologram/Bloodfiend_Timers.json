@@ -1,0 +1,944 @@
+{
+  "source": [
+    "runtime capture (SkyZH)",
+    "https://hypixelskyblock.minecraft.wiki/w/Riftstalker_Bloodfiend"
+  ],
+  "verified_ingame": true,
+  "note": "仅采用本轮实测文本；Wiki 用于理解机制，保留实测颜色与措辞。动态数值采用有类型占位符。",
+  "lines": [
+    {
+      "id": "vampire_timer_mania_1",
+      "context": "裂隙血魔头顶技能计时；按首个已知技能与槽位数量归并，后续技能使用 rift_ability 闭集；不枚举秒数或组合。",
+      "raw": "§c%1$s §5§lMANIA §b§l%2$ss",
+      "text": "%1$s MANIA %2$ss",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "race_time",
+          "example": "03:46"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "25.7"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 狂乱 %2$s秒",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§5§l",
+          "text": "MANIA ",
+          "zh": "狂乱 "
+        },
+        {
+          "color": "§b§l",
+          "text": "%2$ss",
+          "zh": "%2$s秒"
+        }
+      ]
+    },
+    {
+      "id": "vampire_timer_mania_2",
+      "context": "裂隙血魔头顶技能计时；按首个已知技能与槽位数量归并，后续技能使用 rift_ability 闭集；不枚举秒数或组合。",
+      "raw": "§c%1$s §5§lMANIA §b§l%2$ss §6§l%3$s §b§l%4$ss",
+      "text": "%1$s MANIA %2$ss %3$s %4$ss",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "race_time",
+          "example": "03:45"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "25.2"
+        },
+        {
+          "token": "%3$s",
+          "type": "rift_ability",
+          "example": "TWINCLAWS"
+        },
+        {
+          "token": "%4$s",
+          "type": "number",
+          "example": "1.3"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 狂乱 %2$s秒 %3$s %4$s秒",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§5§l",
+          "text": "MANIA ",
+          "zh": "狂乱 "
+        },
+        {
+          "color": "§b§l",
+          "text": "%2$ss ",
+          "zh": "%2$s秒 "
+        },
+        {
+          "color": "§6§l",
+          "text": "%3$s ",
+          "zh": "%3$s "
+        },
+        {
+          "color": "§b§l",
+          "text": "%4$ss",
+          "zh": "%4$s秒"
+        }
+      ]
+    },
+    {
+      "id": "vampire_timer_mania_3",
+      "context": "裂隙血魔头顶技能计时；按首个已知技能与槽位数量归并，后续技能使用 rift_ability 闭集；不枚举秒数或组合。",
+      "raw": "§c%1$s §5§lMANIA §b§l%2$ss §6§l%3$s §b§l%4$ss §b§l%5$s §b§l%6$ss",
+      "text": "%1$s MANIA %2$ss %3$s %4$ss %5$s %6$ss",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "race_time",
+          "example": "03:38"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "17.8"
+        },
+        {
+          "token": "%3$s",
+          "type": "rift_ability",
+          "example": "TWINCLAWS"
+        },
+        {
+          "token": "%4$s",
+          "type": "number",
+          "example": "0.9"
+        },
+        {
+          "token": "%5$s",
+          "type": "rift_ability",
+          "example": "IMPEL"
+        },
+        {
+          "token": "%6$s",
+          "type": "number",
+          "example": "0.4"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 狂乱 %2$s秒 %3$s %4$s秒 %5$s %6$s秒",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§5§l",
+          "text": "MANIA ",
+          "zh": "狂乱 "
+        },
+        {
+          "color": "§b§l",
+          "text": "%2$ss ",
+          "zh": "%2$s秒 "
+        },
+        {
+          "color": "§6§l",
+          "text": "%3$s ",
+          "zh": "%3$s "
+        },
+        {
+          "color": "§b§l",
+          "text": "%4$ss ",
+          "zh": "%4$s秒 "
+        },
+        {
+          "color": "§b§l",
+          "text": "%5$s ",
+          "zh": "%5$s "
+        },
+        {
+          "color": "§b§l",
+          "text": "%6$ss",
+          "zh": "%6$s秒"
+        }
+      ]
+    },
+    {
+      "id": "vampire_timer_spectral_2",
+      "context": "裂隙血魔头顶技能计时；按首个已知技能与槽位数量归并，后续技能使用 rift_ability 闭集；不枚举秒数或组合。",
+      "raw": "§c%1$s §8§lSPECTRAL §b§l%2$ss §3§l%3$s §b§l%4$ss",
+      "text": "%1$s SPECTRAL %2$ss %3$s %4$ss",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "race_time",
+          "example": "03:19"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "0.6"
+        },
+        {
+          "token": "%3$s",
+          "type": "rift_ability",
+          "example": "ICHOR"
+        },
+        {
+          "token": "%4$s",
+          "type": "number",
+          "example": "1.6"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 幽灵形态 %2$s秒 %3$s %4$s秒",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§8§l",
+          "text": "SPECTRAL ",
+          "zh": "幽灵形态 "
+        },
+        {
+          "color": "§b§l",
+          "text": "%2$ss ",
+          "zh": "%2$s秒 "
+        },
+        {
+          "color": "§3§l",
+          "text": "%3$s ",
+          "zh": "%3$s "
+        },
+        {
+          "color": "§b§l",
+          "text": "%4$ss",
+          "zh": "%4$s秒"
+        }
+      ]
+    },
+    {
+      "id": "vampire_timer_twinclaws_2",
+      "context": "裂隙血魔头顶技能计时；按首个已知技能与槽位数量归并，后续技能使用 rift_ability 闭集；不枚举秒数或组合。",
+      "raw": "§c%1$s §6§lTWINCLAWS §b§l%2$ss §b§l%3$s §b§l%4$ss",
+      "text": "%1$s TWINCLAWS %2$ss %3$s %4$ss",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "race_time",
+          "example": "02:58"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "0.2"
+        },
+        {
+          "token": "%3$s",
+          "type": "rift_ability",
+          "example": "IMPEL"
+        },
+        {
+          "token": "%4$s",
+          "type": "number",
+          "example": "0.2"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 双爪 %2$s秒 %3$s %4$s秒",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§6§l",
+          "text": "TWINCLAWS ",
+          "zh": "双爪 "
+        },
+        {
+          "color": "§b§l",
+          "text": "%2$ss ",
+          "zh": "%2$s秒 "
+        },
+        {
+          "color": "§b§l",
+          "text": "%3$s ",
+          "zh": "%3$s "
+        },
+        {
+          "color": "§b§l",
+          "text": "%4$ss",
+          "zh": "%4$s秒"
+        }
+      ]
+    },
+    {
+      "id": "vampire_timer_spectral_1",
+      "context": "裂隙血魔头顶技能计时；按首个已知技能与槽位数量归并，后续技能使用 rift_ability 闭集；不枚举秒数或组合。",
+      "raw": "§c%1$s §8§lSPECTRAL §b§l%2$ss",
+      "text": "%1$s SPECTRAL %2$ss",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "race_time",
+          "example": "02:27"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "0.8"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 幽灵形态 %2$s秒",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§8§l",
+          "text": "SPECTRAL ",
+          "zh": "幽灵形态 "
+        },
+        {
+          "color": "§b§l",
+          "text": "%2$ss",
+          "zh": "%2$s秒"
+        }
+      ]
+    },
+    {
+      "id": "vampire_timer_killer_spring_1",
+      "context": "裂隙血魔头顶技能计时；按首个已知技能与槽位数量归并，后续技能使用 rift_ability 闭集；不枚举秒数或组合。",
+      "raw": "§c%1$s §c§lKILLER SPRING §b§l%2$ss",
+      "text": "%1$s KILLER SPRING %2$ss",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "race_time",
+          "example": "02:19"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "11.9"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 夺命弹簧 %2$s秒",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§c§l",
+          "text": "KILLER SPRING ",
+          "zh": "夺命弹簧 "
+        },
+        {
+          "color": "§b§l",
+          "text": "%2$ss",
+          "zh": "%2$s秒"
+        }
+      ]
+    },
+    {
+      "id": "vampire_timer_killer_spring_2",
+      "context": "裂隙血魔头顶技能计时；按首个已知技能与槽位数量归并，后续技能使用 rift_ability 闭集；不枚举秒数或组合。",
+      "raw": "§c%1$s §c§lKILLER SPRING §b§l%2$ss §8§l%3$s §b§l%4$ss",
+      "text": "%1$s KILLER SPRING %2$ss %3$s %4$ss",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "race_time",
+          "example": "02:18"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "10.9"
+        },
+        {
+          "token": "%3$s",
+          "type": "rift_ability",
+          "example": "SPECTRAL"
+        },
+        {
+          "token": "%4$s",
+          "type": "number",
+          "example": "0.9"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 夺命弹簧 %2$s秒 %3$s %4$s秒",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§c§l",
+          "text": "KILLER SPRING ",
+          "zh": "夺命弹簧 "
+        },
+        {
+          "color": "§b§l",
+          "text": "%2$ss ",
+          "zh": "%2$s秒 "
+        },
+        {
+          "color": "§8§l",
+          "text": "%3$s ",
+          "zh": "%3$s "
+        },
+        {
+          "color": "§b§l",
+          "text": "%4$ss",
+          "zh": "%4$s秒"
+        }
+      ]
+    },
+    {
+      "id": "vampire_timer_twinclaws_1",
+      "context": "裂隙血魔头顶技能计时；按首个已知技能与槽位数量归并，后续技能使用 rift_ability 闭集；不枚举秒数或组合。",
+      "raw": "§c%1$s §6§lTWINCLAWS §b§l%2$ss",
+      "text": "%1$s TWINCLAWS %2$ss",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "race_time",
+          "example": "03:52"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "1.4"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 双爪 %2$s秒",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§6§l",
+          "text": "TWINCLAWS ",
+          "zh": "双爪 "
+        },
+        {
+          "color": "§b§l",
+          "text": "%2$ss",
+          "zh": "%2$s秒"
+        }
+      ]
+    },
+    {
+      "id": "vampire_timer_ichor_2",
+      "context": "裂隙血魔头顶技能计时；按首个已知技能与槽位数量归并，后续技能使用 rift_ability 闭集；不枚举秒数或组合。",
+      "raw": "§c%1$s §3§lICHOR §b§l%2$ss §8§l%3$s §b§l%4$ss",
+      "text": "%1$s ICHOR %2$ss %3$s %4$ss",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "race_time",
+          "example": "02:47"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "1.2"
+        },
+        {
+          "token": "%3$s",
+          "type": "rift_ability",
+          "example": "SPECTRAL"
+        },
+        {
+          "token": "%4$s",
+          "type": "number",
+          "example": "0.9"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 脓血 %2$s秒 %3$s %4$s秒",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§3§l",
+          "text": "ICHOR ",
+          "zh": "脓血 "
+        },
+        {
+          "color": "§b§l",
+          "text": "%2$ss ",
+          "zh": "%2$s秒 "
+        },
+        {
+          "color": "§8§l",
+          "text": "%3$s ",
+          "zh": "%3$s "
+        },
+        {
+          "color": "§b§l",
+          "text": "%4$ss",
+          "zh": "%4$s秒"
+        }
+      ]
+    },
+    {
+      "id": "vampire_timer_killer_spring_3",
+      "context": "裂隙血魔头顶技能计时；按首个已知技能与槽位数量归并，后续技能使用 rift_ability 闭集；不枚举秒数或组合。",
+      "raw": "§c%1$s §c§lKILLER SPRING §b§l%2$ss §6§l%3$s §b§l%4$ss §b§l%5$s §b§l%6$ss",
+      "text": "%1$s KILLER SPRING %2$ss %3$s %4$ss %5$s %6$ss",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "race_time",
+          "example": "01:54"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "11.0"
+        },
+        {
+          "token": "%3$s",
+          "type": "rift_ability",
+          "example": "TWINCLAWS"
+        },
+        {
+          "token": "%4$s",
+          "type": "number",
+          "example": "0.5"
+        },
+        {
+          "token": "%5$s",
+          "type": "rift_ability",
+          "example": "IMPEL"
+        },
+        {
+          "token": "%6$s",
+          "type": "number",
+          "example": "0.5"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 夺命弹簧 %2$s秒 %3$s %4$s秒 %5$s %6$s秒",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§c§l",
+          "text": "KILLER SPRING ",
+          "zh": "夺命弹簧 "
+        },
+        {
+          "color": "§b§l",
+          "text": "%2$ss ",
+          "zh": "%2$s秒 "
+        },
+        {
+          "color": "§6§l",
+          "text": "%3$s ",
+          "zh": "%3$s "
+        },
+        {
+          "color": "§b§l",
+          "text": "%4$ss ",
+          "zh": "%4$s秒 "
+        },
+        {
+          "color": "§b§l",
+          "text": "%5$s ",
+          "zh": "%5$s "
+        },
+        {
+          "color": "§b§l",
+          "text": "%6$ss",
+          "zh": "%6$s秒"
+        }
+      ]
+    },
+    {
+      "id": "vampire_timer_clotting_1",
+      "context": "裂隙血魔头顶技能计时；按首个已知技能与槽位数量归并，后续技能使用 rift_ability 闭集；不枚举秒数或组合。",
+      "raw": "§c%1$s §4§lCLOTTING §b§l%2$ss",
+      "text": "%1$s CLOTTING %2$ss",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "race_time",
+          "example": "03:17"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "1.1"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 凝血 %2$s秒",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§4§l",
+          "text": "CLOTTING ",
+          "zh": "凝血 "
+        },
+        {
+          "color": "§b§l",
+          "text": "%2$ss",
+          "zh": "%2$s秒"
+        }
+      ]
+    },
+    {
+      "id": "vampire_timer_stonewrath_1",
+      "context": "裂隙血魔头顶技能计时；按首个已知技能与槽位数量归并，后续技能使用 rift_ability 闭集；不枚举秒数或组合。",
+      "raw": "§c%1$s §3§lSTONEWRATH §b§l%2$ss",
+      "text": "%1$s STONEWRATH %2$ss",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "race_time",
+          "example": "03:08"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "1.8"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 石之怒 %2$s秒",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§3§l",
+          "text": "STONEWRATH ",
+          "zh": "石之怒 "
+        },
+        {
+          "color": "§b§l",
+          "text": "%2$ss",
+          "zh": "%2$s秒"
+        }
+      ]
+    },
+    {
+      "id": "vampire_timer_resurrect_1",
+      "context": "裂隙血魔头顶技能计时；按首个已知技能与槽位数量归并，后续技能使用 rift_ability 闭集；不枚举秒数或组合。",
+      "raw": "§c%1$s §f§lRESURRECT §b§l%2$ss",
+      "text": "%1$s RESURRECT %2$ss",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "race_time",
+          "example": "02:57"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "3.3"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 复生 %2$s秒",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§f§l",
+          "text": "RESURRECT ",
+          "zh": "复生 "
+        },
+        {
+          "color": "§b§l",
+          "text": "%2$ss",
+          "zh": "%2$s秒"
+        }
+      ]
+    },
+    {
+      "id": "vampire_timer_ichor_1",
+      "context": "裂隙血魔头顶技能计时；按首个已知技能与槽位数量归并，后续技能使用 rift_ability 闭集；不枚举秒数或组合。",
+      "raw": "§c%1$s §3§lICHOR §b§l%2$ss",
+      "text": "%1$s ICHOR %2$ss",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "race_time",
+          "example": "03:58"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "0.7"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 脓血 %2$s秒",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§3§l",
+          "text": "ICHOR ",
+          "zh": "脓血 "
+        },
+        {
+          "color": "§b§l",
+          "text": "%2$ss",
+          "zh": "%2$s秒"
+        }
+      ]
+    },
+    {
+      "id": "vampire_spring_boom",
+      "context": "本轮实测采集；颜色以服务器原文为准。",
+      "raw": "§c§lBOOM §a%1$ss",
+      "text": "BOOM %1$ss",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "4.4"
+        }
+      ],
+      "translate": true,
+      "zh": "爆炸倒计时 %1$s秒",
+      "segments": [
+        {
+          "color": "§c§l",
+          "text": "BOOM ",
+          "zh": "爆炸倒计时 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$ss",
+          "zh": "%1$s秒"
+        }
+      ]
+    },
+    {
+      "id": "vampire_timer_twinclaws_3",
+      "context": "裂隙血魔头顶技能计时；按首个已知技能与槽位数量归并，后续技能使用 rift_ability 闭集；不枚举秒数或组合。",
+      "raw": "§c%1$s §6§lTWINCLAWS §b§l%2$ss §b§l%3$s §b§l%4$ss §3§l%5$s §b§l%6$ss",
+      "text": "%1$s TWINCLAWS %2$ss %3$s %4$ss %5$s %6$ss",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "race_time",
+          "example": "02:48"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "0.2"
+        },
+        {
+          "token": "%3$s",
+          "type": "rift_ability",
+          "example": "IMPEL"
+        },
+        {
+          "token": "%4$s",
+          "type": "number",
+          "example": "0.2"
+        },
+        {
+          "token": "%5$s",
+          "type": "rift_ability",
+          "example": "ICHOR"
+        },
+        {
+          "token": "%6$s",
+          "type": "number",
+          "example": "1.7"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 双爪 %2$s秒 %3$s %4$s秒 %5$s %6$s秒",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§6§l",
+          "text": "TWINCLAWS ",
+          "zh": "双爪 "
+        },
+        {
+          "color": "§b§l",
+          "text": "%2$ss ",
+          "zh": "%2$s秒 "
+        },
+        {
+          "color": "§b§l",
+          "text": "%3$s ",
+          "zh": "%3$s "
+        },
+        {
+          "color": "§b§l",
+          "text": "%4$ss ",
+          "zh": "%4$s秒 "
+        },
+        {
+          "color": "§3§l",
+          "text": "%5$s ",
+          "zh": "%5$s "
+        },
+        {
+          "color": "§b§l",
+          "text": "%6$ss",
+          "zh": "%6$s秒"
+        }
+      ]
+    },
+    {
+      "id": "vampire_timer_resurrect_2",
+      "context": "裂隙血魔技能倒计时；由同次实测 raw_samples 确认复生可排在双技能首位。",
+      "raw": "§c%1$s §f§lRESURRECT §b§l%2$ss §8§l%3$s §b§l%4$ss",
+      "text": "%1$s RESURRECT %2$ss %3$s %4$ss",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "race_time",
+          "example": "02:54"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "1.0"
+        },
+        {
+          "token": "%3$s",
+          "type": "rift_ability",
+          "example": "SPECTRAL"
+        },
+        {
+          "token": "%4$s",
+          "type": "number",
+          "example": "0.7"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 复生 %2$s秒 %3$s %4$s秒",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§f§l",
+          "text": "RESURRECT ",
+          "zh": "复生 "
+        },
+        {
+          "color": "§b§l",
+          "text": "%2$ss ",
+          "zh": "%2$s秒 "
+        },
+        {
+          "color": "§8§l",
+          "text": "%3$s ",
+          "zh": "%3$s "
+        },
+        {
+          "color": "§b§l",
+          "text": "%4$ss",
+          "zh": "%4$s秒"
+        }
+      ]
+    },
+    {
+      "id": "vampire_timer_impel_1",
+      "context": "观测列表确认 IMPEL 可独占技能槽；不以 observed 拼造具体原始样本。颜色边界参照同技能的多技能实测，运行时读取真实样式。",
+      "raw": "§c%1$s §b§lIMPEL §b§l%2$ss",
+      "text": "%1$s IMPEL %2$ss",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "race_time",
+          "example": "02:57"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "0.2"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 敕令 %2$s秒",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§b§l",
+          "text": "IMPEL ",
+          "zh": "敕令 "
+        },
+        {
+          "color": "§b§l",
+          "text": "%2$ss",
+          "zh": "%2$s秒"
+        }
+      ],
+      "gloss": "clock/number 的 example 仅说明形状，不代表同次观测；该归并记录未保存 IMPEL 单技能完整 raw_sample。"
+    }
+  ]
+}
