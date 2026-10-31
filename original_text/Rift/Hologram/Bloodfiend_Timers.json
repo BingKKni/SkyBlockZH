@@ -7,6 +7,258 @@
   "note": "仅采用本轮实测文本；Wiki 用于理解机制，保留实测颜色与措辞。动态数值采用有类型占位符。",
   "lines": [
     {
+      "id": "vampire_timer_spectral_3",
+      "context": "裂隙血魔头顶技能计时；按首个已知技能与槽位数量归并，后续技能使用 rift_ability 闭集；不枚举秒数或组合。",
+      "raw": "§c%1$s §8§lSPECTRAL §b§l%2$ss §3§l%3$s §b§l%4$ss §6§l%5$s §b§l%6$ss",
+      "text": "%1$s SPECTRAL %2$ss %3$s %4$ss %5$s %6$ss",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "race_time",
+          "example": "02:27"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "0.8"
+        },
+        {
+          "token": "%3$s",
+          "type": "rift_ability",
+          "example": "ICHOR"
+        },
+        {
+          "token": "%4$s",
+          "type": "number",
+          "example": "1.5"
+        },
+        {
+          "token": "%5$s",
+          "type": "rift_ability",
+          "example": "TWINCLAWS"
+        },
+        {
+          "token": "%6$s",
+          "type": "number",
+          "example": "1.5"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 幽灵形态 %2$s秒 %3$s %4$s秒 %5$s %6$s秒",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§8§l",
+          "text": "SPECTRAL ",
+          "zh": "幽灵形态 "
+        },
+        {
+          "color": "§b§l",
+          "text": "%2$ss ",
+          "zh": "%2$s秒 "
+        },
+        {
+          "color": "§3§l",
+          "text": "%3$s ",
+          "zh": "%3$s "
+        },
+        {
+          "color": "§b§l",
+          "text": "%4$ss ",
+          "zh": "%4$s秒 "
+        },
+        {
+          "color": "§6§l",
+          "text": "%5$s ",
+          "zh": "%5$s "
+        },
+        {
+          "color": "§b§l",
+          "text": "%6$ss",
+          "zh": "%6$s秒"
+        }
+      ]
+    },
+    {
+      "id": "vampire_timer_mania_4",
+      "context": "裂隙血魔头顶技能计时；按首个已知技能与槽位数量归并，后续技能使用 rift_ability 闭集；不枚举秒数或组合。",
+      "raw": "§c%1$s §5§lMANIA §b§l%2$ss §6§l%3$s §b§l%4$ss §3§l%5$s §b§l%6$ss §b§l%7$s §b§l%8$ss",
+      "text": "%1$s MANIA %2$ss %3$s %4$ss %5$s %6$ss %7$s %8$ss",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "race_time",
+          "example": "03:46"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "25.7"
+        },
+        {
+          "token": "%3$s",
+          "type": "rift_ability",
+          "example": "TWINCLAWS"
+        },
+        {
+          "token": "%4$s",
+          "type": "number",
+          "example": "1.5"
+        },
+        {
+          "token": "%5$s",
+          "type": "rift_ability",
+          "example": "ICHOR"
+        },
+        {
+          "token": "%6$s",
+          "type": "number",
+          "example": "1.5"
+        },
+        {
+          "token": "%7$s",
+          "type": "rift_ability",
+          "example": "IMPEL"
+        },
+        {
+          "token": "%8$s",
+          "type": "number",
+          "example": "1.5"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 狂乱 %2$s秒 %3$s %4$s秒 %5$s %6$s秒 %7$s %8$s秒",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§5§l",
+          "text": "MANIA ",
+          "zh": "狂乱 "
+        },
+        {
+          "color": "§b§l",
+          "text": "%2$ss ",
+          "zh": "%2$s秒 "
+        },
+        {
+          "color": "§6§l",
+          "text": "%3$s ",
+          "zh": "%3$s "
+        },
+        {
+          "color": "§b§l",
+          "text": "%4$ss ",
+          "zh": "%4$s秒 "
+        },
+        {
+          "color": "§3§l",
+          "text": "%5$s ",
+          "zh": "%5$s "
+        },
+        {
+          "color": "§b§l",
+          "text": "%6$ss ",
+          "zh": "%6$s秒 "
+        },
+        {
+          "color": "§b§l",
+          "text": "%7$s ",
+          "zh": "%7$s "
+        },
+        {
+          "color": "§b§l",
+          "text": "%8$ss",
+          "zh": "%8$s秒"
+        }
+      ]
+    },
+    {
+      "id": "vampire_timer_resurrect_3",
+      "context": "裂隙血魔头顶技能计时；按首个已知技能与槽位数量归并，后续技能使用 rift_ability 闭集；不枚举秒数或组合。",
+      "raw": "§c%1$s §f§lRESURRECT §b§l%2$ss §3§l%3$s §b§l%4$ss §c§l%5$s §b§l%6$ss",
+      "text": "%1$s RESURRECT %2$ss %3$s %4$ss %5$s %6$ss",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "race_time",
+          "example": "02:57"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "3.3"
+        },
+        {
+          "token": "%3$s",
+          "type": "rift_ability",
+          "example": "ICHOR"
+        },
+        {
+          "token": "%4$s",
+          "type": "number",
+          "example": "1.5"
+        },
+        {
+          "token": "%5$s",
+          "type": "rift_ability",
+          "example": "KILLER SPRING"
+        },
+        {
+          "token": "%6$s",
+          "type": "number",
+          "example": "1.5"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 复生 %2$s秒 %3$s %4$s秒 %5$s %6$s秒",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§f§l",
+          "text": "RESURRECT ",
+          "zh": "复生 "
+        },
+        {
+          "color": "§b§l",
+          "text": "%2$ss ",
+          "zh": "%2$s秒 "
+        },
+        {
+          "color": "§3§l",
+          "text": "%3$s ",
+          "zh": "%3$s "
+        },
+        {
+          "color": "§b§l",
+          "text": "%4$ss ",
+          "zh": "%4$s秒 "
+        },
+        {
+          "color": "§c§l",
+          "text": "%5$s ",
+          "zh": "%5$s "
+        },
+        {
+          "color": "§b§l",
+          "text": "%6$ss",
+          "zh": "%6$s秒"
+        }
+      ]
+    },
+
+    {
       "id": "vampire_timer_mania_1",
       "context": "裂隙血魔头顶技能计时；按首个已知技能与槽位数量归并，后续技能使用 rift_ability 闭集；不枚举秒数或组合。",
       "raw": "§c%1$s §5§lMANIA §b§l%2$ss",

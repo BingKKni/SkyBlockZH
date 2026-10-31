@@ -1,0 +1,333 @@
+{
+  "note": "本轮采集独立期望：动态值、专名边界、跨行重排及实时颜色。",
+  "cases": [
+    {
+      "name": "免责声明缺少尾行不得消费",
+      "source": [
+        "§cWARNING: We are not responsible for",
+        "§cany damage to your monitor or"
+      ],
+      "miss": true
+    },
+    {
+      "name": "裂隙动作栏地名 Continuum",
+      "surface": "ActionBar",
+      "source": [
+        "§7 §5Continuum"
+      ],
+      "expected": "§7 §5时空连续体"
+    },
+    {
+      "name": "裂隙计分板地名 Continuum",
+      "surface": "ScoreBoard",
+      "source": [
+        "§e §5 §eContinuum"
+      ],
+      "expected": "§e §5 §e时空连续体"
+    },
+    {
+      "name": "裂隙动作栏地名 Trial Grounds",
+      "surface": "ActionBar",
+      "source": [
+        "§7 §5Trial Grounds"
+      ],
+      "expected": "§7 §5试炼场"
+    },
+    {
+      "name": "裂隙计分板地名 Trial Grounds",
+      "surface": "ScoreBoard",
+      "source": [
+        "§e §5 §eTrial Grounds"
+      ],
+      "expected": "§e §5 §e试炼场"
+    },
+    {
+      "name": "裂隙动作栏地名 Walk of Fame",
+      "surface": "ActionBar",
+      "source": [
+        "§7 §5Walk of Fame"
+      ],
+      "expected": "§7 §5星光大道"
+    },
+    {
+      "name": "裂隙计分板地名 Walk of Fame",
+      "surface": "ScoreBoard",
+      "source": [
+        "§e §5 §eWalk of Fame"
+      ],
+      "expected": "§e §5 §e星光大道"
+    },
+    {
+      "name": "裂隙动作栏地名 Time-Torn Isles",
+      "surface": "ActionBar",
+      "source": [
+        "§7 §5Time-Torn Isles"
+      ],
+      "expected": "§7 §5时裂群岛"
+    },
+    {
+      "name": "裂隙计分板地名 Time-Torn Isles",
+      "surface": "ScoreBoard",
+      "source": [
+        "§e §5 §eTime-Torn Isles"
+      ],
+      "expected": "§e §5 §e时裂群岛"
+    },
+    {
+      "name": "Eleanor穿金甲要求红色",
+      "surface": "NPC_Message",
+      "source": [
+        "From beyond the mirror, §cwear a golden armor§f."
+      ],
+      "expected": "在镜子另一侧，§c穿上一身金质护甲§f。"
+    },
+    {
+      "name": "陷阱通知动态碎片与地名",
+      "surface": "ChatMessage",
+      "source": [
+        "§6HUNT §e- Your trap on §bMoonglade Marsh §ecaught a §fPhanflare Shard§e!"
+      ],
+      "expected": "§6狩猎 §e- 你在§b月光沼泽§e的陷阱捕获了§f Phanflare 碎片§e!"
+    },
+    {
+      "name": "陷阱通知更换地名与生物",
+      "surface": "ChatMessage",
+      "source": [
+        "§6HUNT §e- Your trap on §bDeep Caverns §ecaught a §fLapis Zombie Shard§e!"
+      ],
+      "expected": "§6狩猎 §e- 你在§b深层洞穴§e的陷阱捕获了§f青金石僵尸碎片§e!"
+    },
+    {
+      "name": "陷阱领取按钮分段",
+      "surface": "ChatMessage",
+      "source": [
+        "§7[§eClick here to collect it.§7]"
+      ],
+      "expected": "§7[§e点击领取。§7]"
+    },
+    {
+      "name": "陷阱来源动态地名",
+      "surface": "GUI_Item",
+      "source": [
+        "§7Source: §2Moonglade Marsh"
+      ],
+      "expected": "§7来源: §2月光沼泽"
+    },
+    {
+      "name": "徽记字母符号保留颜色",
+      "surface": "GUI_Item",
+      "source": [
+        "§aSelected Emblem: §6ჶ"
+      ],
+      "expected": "§a已选徽记: §6ჶ"
+    },
+    {
+      "name": "普通字母不能冒充徽记",
+      "surface": "GUI_Item",
+      "source": [
+        "§aSelected Emblem: §6A"
+      ],
+      "expected": "",
+      "miss": true
+    },
+    {
+      "name": "亡猫粮复用道具翻译",
+      "surface": "GUI_Item",
+      "source": [
+        "§6Held Item: §9Dead Cat Food"
+      ],
+      "expected": "§6携带物品: §9亡猫粮"
+    },
+    {
+      "name": "委托数保持动态 670",
+      "surface": "GUI_Item",
+      "source": [
+        "§7Commissions Completed: §5670"
+      ],
+      "expected": "§7已完成委托: §5670"
+    },
+    {
+      "name": "委托数保持动态 1,234",
+      "surface": "GUI_Item",
+      "source": [
+        "§7Commissions Completed: §51,234"
+      ],
+      "expected": "§7已完成委托: §51,234"
+    },
+    {
+      "name": "超级合成次数 7",
+      "surface": "GUI_Item",
+      "source": [
+        "§aSupercraft §b(7x crafts)"
+      ],
+      "expected": "§a超级合成 §b(合成 7 次)"
+    },
+    {
+      "name": "超级合成次数 12",
+      "surface": "GUI_Item",
+      "source": [
+        "§aSupercraft §b(12x crafts)"
+      ],
+      "expected": "§a超级合成 §b(合成 12 次)"
+    },
+    {
+      "name": "血魔免责声明整句",
+      "source": [
+        "§cWARNING: We are not responsible for",
+        "§cany damage to your monitor or",
+        "§ccomputer peripherals."
+      ],
+      "expected": "§c警告: 若你的显示器或电脑外设因此损坏，我们概不负责。",
+      "consumed": 3
+    },
+    {
+      "name": "重力药水说明跨行语序与颜色",
+      "source": [
+        "§7Increases §5Gravity §7around you,",
+        "§7spawning §bPuffs §7more often."
+      ],
+      "expected": "§7增强周围的§5重力§7，使§b鼓气怪§7更频繁地生成。",
+      "consumed": 2
+    },
+    {
+      "name": "重力药水改变英文断行",
+      "source": [
+        "§7Increases §5Gravity",
+        "§7around you, spawning §bPuffs",
+        "§7more often."
+      ],
+      "expected": "§7增强周围的§5重力§7，使§b鼓气怪§7更频繁地生成。",
+      "consumed": 3
+    },
+    {
+      "name": "重力时长保持时钟",
+      "source": [
+        "§5Gravity I §f(10:00)"
+      ],
+      "expected": "§5重力 I §f(10:00)",
+      "consumed": 1
+    },
+    {
+      "name": "重力时长等级变化",
+      "source": [
+        "§5Gravity II §f(05:00)"
+      ],
+      "expected": "§5重力 II §f(05:00)",
+      "consumed": 1
+    },
+    {
+      "name": "重力附魔仍保留英文",
+      "surface": "GUI_Item",
+      "source": [
+        "§9Gravity I"
+      ],
+      "expected": "",
+      "miss": true
+    },
+    {
+      "name": "喷溅型重力药水名称",
+      "surface": "GUI_Item",
+      "source": [
+        "§fGravity I Splash Potion"
+      ],
+      "expected": "§f喷溅型重力药水 I"
+    },
+    {
+      "name": "亡灵博士新对白",
+      "surface": "NPC_Message",
+      "source": [
+        "Have fun, try not to die!"
+      ],
+      "expected": "玩得开心，可别把小命丢了!"
+    },
+    {
+      "name": "Kay新对白",
+      "surface": "NPC_Message",
+      "source": [
+        "Uh... hello!"
+      ],
+      "expected": "呃……你好!"
+    },
+    {
+      "name": "老人招呼",
+      "surface": "NPC_Message",
+      "source": [
+        "§fPsst! Over here, youngster!"
+      ],
+      "expected": "§f嘘! 这边，年轻人!"
+    },
+    {
+      "name": "好友申请动态玩家时间",
+      "surface": "ChatMessage",
+      "source": [
+        "§eYou sent a friend request to Alex! They have 3 minutes to accept it!"
+      ],
+      "expected": "§e已向 Alex 发送好友申请! 对方可在 3分钟内接受申请。"
+    },
+    {
+      "name": "队长转让保留双方Rank颜色",
+      "surface": "ChatMessage",
+      "source": [
+        "§b[MVP§2+§b] inkkni§e has promoted §b[MVP§c+§b] AcuteVampire_ §eto Party Leader"
+      ],
+      "expected": "§b[MVP§2+§b] inkkni§e 将 §b[MVP§c+§b] AcuteVampire_ §e提升为队长"
+    },
+    {
+      "name": "队伍管理员动态玩家",
+      "surface": "ChatMessage",
+      "source": [
+        "§a[VIP] Alex§e has promoted §bSteve §eto Party Moderator"
+      ],
+      "expected": "§a[VIP] Alex§e 将 §bSteve §e提升为队伍管理员"
+    },
+    {
+      "name": "首领归属不固定玩家",
+      "surface": "Hologram",
+      "source": [
+        "§aSteve' §4§lSLAYER BOSS"
+      ],
+      "expected": "§aSteve 的§4§l猎手首领"
+    },
+    {
+      "name": "幽灵三技能动态计时",
+      "surface": "Hologram",
+      "source": [
+        "§c03:24 §8§lSPECTRAL §b§l0.5s §3§lICHOR §b§l1.5s §6§lTWINCLAWS §b§l1.5s"
+      ],
+      "expected": "§c03:24 §8§l幽灵形态 §b§l0.5秒 §3§l脓血 §b§l1.5秒 §6§l双爪 §b§l1.5秒"
+    },
+    {
+      "name": "狂乱四技能动态计时",
+      "surface": "Hologram",
+      "source": [
+        "§c01:55 §5§lMANIA §b§l3.6s §6§lTWINCLAWS §b§l0.5s §3§lICHOR §b§l1.2s IMPEL 0.2s"
+      ],
+      "expected": "§c01:55 §5§l狂乱 §b§l3.6秒 §6§l双爪 §b§l0.5秒 §3§l脓血 §b§l1.2秒 敕令 0.2秒"
+    },
+    {
+      "name": "复生三技能换数值",
+      "surface": "Hologram",
+      "source": [
+        "§c01:25 §f§lRESURRECT §b§l0.7s §3§lICHOR §b§l0.2s §c§lKILLER SPRING §b§l13.7s"
+      ],
+      "expected": "§c01:25 §f§l复生 §b§l0.7秒 §3§l脓血 §b§l0.2秒 §c§l夺命弹簧 §b§l13.7秒"
+    },
+    {
+      "name": "Sangria染料Tab复用颜色专名",
+      "surface": "TabList",
+      "source": [
+        " §4Sangria Dye"
+      ],
+      "expected": " §4Sangria 染料"
+    },
+    {
+      "name": "短特卖标签复用南瓜名",
+      "surface": "TabList",
+      "source": [
+        " §6Prancin' Pump...: §73343§8/§75k"
+      ],
+      "expected": " §6跃舞南瓜…: §73343§8/§75k",
+      "row": true
+    }
+  ]
+}

@@ -122,9 +122,9 @@ public enum Capture {
 	 * One stat/family icon: any Unicode symbol, any private-use glyph, or one of the characters the
 	 * server uses as an icon that Unicode files elsewhere — the glyph table's own symbols (⸕ is
 	 * punctuation, ๑ a digit), plus the ones sent as themselves: α (Sea Creature Chance), ᠅ (Mithril
-	 * Powder), ᝐ (Dominus), Ѫ (Arcane Energy), ℏ, ථ, ꨃ, ҉.
+	 * Powder), ᝐ (Dominus), Ѫ (Arcane Energy), ℏ, ථ, ꨃ, ҉, ჶ (Riftstalker emblem).
 	 */
-	ICON("[\\p{S}\\p{Co}" + Glyphs.symbolClass() + "α᠅ᝐѪℏථꨃ҉]"),
+	ICON("[\\p{S}\\p{Co}" + Glyphs.symbolClass() + "α᠅ᝐѪℏථꨃ҉ჶ]"),
 
 	/**
 	 * A Trophy Fish quality: BRONZE, SILVER, GOLD or DIAMOND in the fish's own lore, and the same four
