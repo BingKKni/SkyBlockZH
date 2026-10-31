@@ -1,0 +1,23 @@
+{
+  "note": "双机采集回归：完整 Lore 快照、动态值、颜色及新增列表符号。",
+  "cases": [
+    {"name":"符文保留Voidgloom专名","surface":"GUI_Item","source":["§8Voidgloom Rune"],"expected":"§8Voidgloom 符文"},
+    {"name":"重组器型号与正文留空","source":["§7The item's tier has been upgraded","§7using a §6Recombobulator 3000§7."],"expected":"§7此物品已使用§6重组器 3000§7 提升稀有度。","consumed":2},
+    {"name":"双爪受伤模板复用技能词表","surface":"ChatMessage","source":["§eTook §c5❤ §efrom §6Twinclaws§e!"],"expected":"§e受到 §c5❤ §e伤害，来源: §6双爪§e!"},
+    {"name":"冰冻受伤换技能与数值","surface":"ChatMessage","source":["§eTook §c6❤ §b§l(ICED) §efrom §5Mania§e!"],"expected":"§e受到 §c6❤ §b§l(冰冻) §e伤害，来源: §5狂乱§e!"},
+    {"name":"打卡玩家样式与逗号间距","surface":"ChatMessage","source":["§5§lPUNCHCARD! §eYou punched §b[MVP§2+§b] Alex§f §eand both regained §a+25 Rift Time§e!"],"expected":"§5§l打卡! §e你击中了 §b[MVP§2+§b] Alex§e，双方均恢复 §a+25 裂隙时间§e!"},
+    {"name":"物品年龄上午日期保持动态","source":["§7This item is §e2 Years§7 old. It was","§7obtained on §f11/02/23§7 at §f03:00 AM","§fEST§7."],"expected":"§7此物品已有 §e2年§7历史，于 §f11/02/23 上午 03:00 (北美东部标准时间)§7获得。","consumed":3},
+    {"name":"物品年龄下午不同数值","source":["§7This item is §e3 Years§7 old. It was","§7obtained on §f12/14/24§7 at §f09:15 PM","§fEST§7."],"expected":"§7此物品已有 §e3年§7历史，于 §f12/14/24 下午 09:15 (北美东部标准时间)§7获得。","consumed":3},
+    {"name":"树心预设两段颜色","surface":"GUI_Item","source":["§7HOTF: §aHeart of the Forest 1"],"expected":"§7树心: §a森林之心 1"},
+    {"name":"树心预设槽位变化","surface":"GUI_Item","source":["§7HOTF: §bHeart of the Forest 3"],"expected":"§7树心: §b森林之心 3"},
+    {"name":"背包染色标记独立颜色","surface":"GUI_Item","source":["§6Jumbo Backpack §5✦"],"expected":"§6巨型背包 §5✦"},
+    {"name":"血魔列表短横符号保留","surface":"GUI_Item","source":["§8 ⁃ §bImpel"],"expected":"§8 ⁃ §b敕令"},
+    {"name":"普通负数不按列表拆分","surface":"GUI_Item","source":["§c-25"],"expected":"§c-25","unmatched":true},
+    {"name":"深色橡木小人四行完整合并","source":["§7Place this minion and it will start","§7generating and chopping dark oak","§7logs! Requires an open area to place","§7trees."],"expected":"§7放置此小人后，它会自动生成并砍伐深色橡木原木! 需要一片空地来种树。","consumed":4},
+    {"name":"双爪伤害动态颜色","source":["§7The frontal claw deals §c8❤ §7of damage."],"expected":"§7前方的巨爪造成 §c8❤ §7伤害。","consumed":1},
+    {"name":"图书配方技能分类复用词表","source":["§7View all of the §aFarming Recipes","§7that you've unlocked!"],"expected":"§7查看你已解锁的所有§a农业配方§7!","consumed":2},
+    {"name":"敕令倒计时变化","surface":"Misc","source":["§eImpel: §b§lSNEAK §a1.7s"],"expected":"§e敕令: §b§l潜行 §a1.7秒"},
+    {"name":"沉没圣物殿地名补译","surface":"Misc","source":["§cDrowned Reliquary"],"expected":"§c沉没圣物殿"},
+    {"name":"四技能倒计时沿用每段颜色","surface":"Hologram","source":["§c01:53 §c§lKILLER SPRING §b§l6.0s §5§lMANIA §b§l23.6s §3§lICHOR §b§l0.5s IMPEL 0.2s"],"expected":"§c01:53 §c§l夺命弹簧 §b§l6.0秒 §5§l狂乱 §b§l23.6秒 §3§l脓血 §b§l0.5秒 敕令 0.2秒"}
+  ]
+}
