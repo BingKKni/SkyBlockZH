@@ -41,8 +41,12 @@ public final class ForceChat {
 
 	/** Original mode changes the language of this view, not its source or ownership. */
 	public static boolean ownsDisplay() {
-		return SkyZHConfig.get().displayPriority == DisplayPriority.FORCE
-			&& SkyZHConfig.get().enabled && HypixelServer.isSkyBlock();
+		return ownsDisplay(HypixelServer.isSkyBlock());
+	}
+
+	private static boolean ownsDisplay(boolean verifiedSkyBlock) {
+		return SkyZHConfig.get().displayPriority != DisplayPriority.DEFAULT
+			&& SkyZHConfig.get().enabled && verifiedSkyBlock;
 	}
 
 	public static void tick() { collecting(); }

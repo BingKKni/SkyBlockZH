@@ -28,6 +28,7 @@ public final class PerformanceBenchmark {
 		TranslationIndex index = TranslationLoader.compile(files);
 		TranslationHarness.installIndex(index);
 		benchmarkSidebarMisses();
+		benchmarkSidebarSubmissions();
 		measure("dynamic ITEM", 2_000, i -> sink = index.lookup(Surface.ITEM, "Damage: +" + (10_000 + i)));
 		measure("unknown ITEM", 2_000, i -> sink = index.lookup(Surface.ITEM, "Unrecorded property " + i));
 		measure("unknown LORE", 2_000, i -> sink = index.lookup(Surface.LORE, "An unrecorded sentence " + i));
@@ -73,7 +74,7 @@ public final class PerformanceBenchmark {
 		});
 	}
 
-	/** Same server snapshot and draw sequences, with/without Default's conservative prefilter. */
+	/** Same server snapshot and draw sequences, with/without the conservative prefilter. */
 	private static void benchmarkSidebarMisses() throws Exception {
 		Class<?> priority = io.github.bingkkni.skyzh.hook.PriorityText.class;
 		var field = priority.getDeclaredField("HUD");
@@ -99,6 +100,20 @@ public final class PerformanceBenchmark {
 				}
 			}
 		} finally { sources.clear(); }
+	}
+
+	private static void benchmarkSidebarSubmissions() {
+		io.github.bingkkni.skyzh.hook.ForceSidebar.withFrame(false, () ->
+			measure("High GUI submission gate", 20_000, i -> sink = io.github.bingkkni.skyzh.hook.ForceSidebar.suppressCustomDraw()), () -> {});
+		io.github.bingkkni.skyzh.hook.ForceSidebar.withFrame(true, () -> {
+			measure("Force other HUD (20 nested calls)", 20_000, i -> sink = submissionDepth(20));
+			measure("Force sidebar (20 nested calls)", 20_000, i -> sink =
+				me.owdding.customscoreboard.core.CustomScoreboardRenderer.submit(() -> submissionDepth(20)));
+		}, () -> {});
+	}
+
+	private static boolean submissionDepth(int depth) {
+		return depth == 0 ? io.github.bingkkni.skyzh.hook.ForceSidebar.suppressCustomDraw() : submissionDepth(depth - 1);
 	}
 
 	private static void measure(String name, int count, IntConsumer operation) {

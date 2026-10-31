@@ -1,5 +1,6 @@
 package io.github.bingkkni.skyzh.mixin;
 
+import io.github.bingkkni.skyzh.hook.ForceSidebar;
 import io.github.bingkkni.skyzh.hook.PriorityText;
 import io.github.bingkkni.skyzh.text.TooltipTranslator;
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-/** Force owns known translated draws before ordinary text and tooltip replacement hooks execute. */
+/** High/Force protect known translations at vanilla text and tooltip entry points. */
 @Mixin(value = GuiGraphicsExtractor.class, priority = Integer.MAX_VALUE)
 public abstract class ForceGraphicsMixin {
 	@Shadow @Final private GuiRenderState guiRenderState;
@@ -40,19 +41,19 @@ public abstract class ForceGraphicsMixin {
 	@Inject(method = "text(Lnet/minecraft/client/gui/Font;Lnet/minecraft/util/FormattedCharSequence;IIIZ)V",
 		at = @At("HEAD"), cancellable = true, require = 0)
 	private void skyzh$forceText(Font font, FormattedCharSequence text, int x, int y, int color, boolean shadow, CallbackInfo info) {
-		if (PriorityText.force() && skyzh$draw(font, text, x, y, color, shadow)) info.cancel();
+		if (PriorityText.active() && skyzh$draw(font, text, x, y, color, shadow)) info.cancel();
 	}
 
 	@Inject(method = "text(Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;IIIZ)V",
 		at = @At("HEAD"), cancellable = true, require = 0)
 	private void skyzh$forceComponent(Font font, Component text, int x, int y, int color, boolean shadow, CallbackInfo info) {
-		if (PriorityText.force() && skyzh$draw(font, text.getVisualOrderText(), x, y, color, shadow)) info.cancel();
+		if (PriorityText.active() && skyzh$draw(font, text.getVisualOrderText(), x, y, color, shadow)) info.cancel();
 	}
 
 	@Inject(method = "text(Lnet/minecraft/client/gui/Font;Ljava/lang/String;IIIZ)V",
 		at = @At("HEAD"), cancellable = true, require = 0)
 	private void skyzh$forceString(Font font, String text, int x, int y, int color, boolean shadow, CallbackInfo info) {
-		if (text != null && PriorityText.force()
+		if (text != null && PriorityText.active()
 			&& skyzh$draw(font, Component.literal(text).getVisualOrderText(), x, y, color, shadow)) info.cancel();
 	}
 
@@ -67,10 +68,16 @@ public abstract class ForceGraphicsMixin {
 		return true;
 	}
 
+	@Inject(method = "setTooltipForNextFrame", at = @At("HEAD"), cancellable = true, require = 0)
+	private void skyzh$skipHiddenSidebarTooltip(CallbackInfo info) {
+		if (ForceSidebar.suppressCustomDraw()) info.cancel();
+	}
+
 	@Inject(method = "setTooltipForNextFrame(Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;II)V",
 		at = @At("HEAD"), cancellable = true, require = 0)
 	private void skyzh$forceItem(Font font, ItemStack stack, int x, int y, CallbackInfo info) {
-		if (!PriorityText.force()) return;
+		if (ForceSidebar.suppressCustomDraw()) { info.cancel(); return; }
+		if (!PriorityText.active()) return;
 		Component name = stack.get(DataComponents.CUSTOM_NAME);
 		if (name == null) name = stack.get(DataComponents.ITEM_NAME);
 		var lore = stack.get(DataComponents.LORE);

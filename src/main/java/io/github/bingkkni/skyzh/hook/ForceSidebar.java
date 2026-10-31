@@ -1,5 +1,7 @@
 package io.github.bingkkni.skyzh.hook;
 
+import io.github.bingkkni.skyzh.DisplayPriority;
+import io.github.bingkkni.skyzh.SkyZHConfig;
 import io.github.bingkkni.skyzh.HypixelServer;
 import io.github.bingkkni.skyzh.platform.ClientGui;
 import net.minecraft.client.gui.screens.ChatScreen;
@@ -12,16 +14,61 @@ import net.minecraft.network.chat.numbers.StyledFormat;
 import net.minecraft.world.scores.Objective;
 import net.minecraft.world.scores.PlayerScoreEntry;
 
-/** Server-owned sidebar in Force mode, independent of cancellable vanilla sidebar render hooks. */
+/** High yields to custom panels; Force replaces supported panels through vanilla submission hooks. */
 public final class ForceSidebar {
+	private static boolean filtering;
+	private static final StackWalker CALLERS = StackWalker.getInstance(java.util.Set.of(StackWalker.Option.DROP_METHOD_INFO));
+	private static final String[] CUSTOM_RENDERERS = {
+		"me.owdding.customscoreboard.core.CustomScoreboardRenderer",
+		"at.hannibal2.skyhanni.features.gui.customscoreboard.CustomScoreboard",
+		"com.github.noamm9.features.impl.visual.Scoreboard"
+	};
+
 	private ForceSidebar() {}
 	private record Row(Component name, Component score, int scoreWidth) {}
 
 	public static boolean ownsDisplay() {
 		Minecraft mc = Minecraft.getInstance();
-		return ForceChat.ownsDisplay() && mc.level != null && ClientGui.hudVisible(mc)
-			&& !SidebarCompatibility.hasCustomSidebar()
-			&& (ClientGui.screen(mc) == null || ClientGui.screen(mc) instanceof ChatScreen);
+		return ownsDisplay(ForceChat.ownsDisplay() && mc.level != null && ClientGui.hudVisible(mc)
+			&& (ClientGui.screen(mc) == null || ClientGui.screen(mc) instanceof ChatScreen), SidebarCompatibility::hasCustomSidebar);
+	}
+
+	private static boolean ownsDisplay(boolean eligible, java.util.function.BooleanSupplier customSidebar) {
+		DisplayPriority priority = SkyZHConfig.get().displayPriority;
+		return eligible && (priority == DisplayPriority.FORCE || priority == DisplayPriority.HIGH && !customSidebar.getAsBoolean());
+	}
+
+	/** Scope filtering to the actual frame that will receive a replacement, even on exceptions. */
+	public static void withFrame(boolean strict, Runnable extract, Runnable replacement) {
+		boolean previous = filtering;
+		filtering = strict;
+		try {
+			extract.run();
+			filtering = false;
+			replacement.run();
+		} finally { filtering = previous; }
+	}
+
+	public static boolean suppressCustomDraw() {
+		return filtering && customRendererOnStack();
+	}
+
+	/** Hidden custom widgets must not keep their click actions while the replacement is shown. */
+	public static boolean suppressCustomClick() {
+		return SkyZHConfig.get().displayPriority == DisplayPriority.FORCE && ownsDisplay() && customRendererOnStack();
+	}
+
+	private static boolean customRendererOnStack() {
+		// No third-party class loading or bytecode changes. Only the three verified renderer
+		// owners (including their nested callbacks) are classified; other HUDs remain untouched.
+		return CALLERS.walk(frames -> frames.limit(64).anyMatch(frame -> isCustomRenderer(frame.getClassName())));
+	}
+
+	static boolean isCustomRenderer(String name) {
+		for (String owner : CUSTOM_RENDERERS) {
+			if (name.startsWith(owner) && (name.length() == owner.length() || name.charAt(owner.length()) == '$')) return true;
+		}
+		return false;
 	}
 
 	public static void renderFinal(GuiGraphicsExtractor graphics) {
