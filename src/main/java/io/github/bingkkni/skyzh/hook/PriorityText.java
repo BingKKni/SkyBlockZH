@@ -4,9 +4,11 @@ import io.github.bingkkni.skyzh.DisplayPriority;
 import io.github.bingkkni.skyzh.HypixelServer;
 import io.github.bingkkni.skyzh.HoldOriginal;
 import io.github.bingkkni.skyzh.SkyZHConfig;
+import io.github.bingkkni.skyzh.text.Glyphs;
 import io.github.bingkkni.skyzh.text.StyledText;
 import io.github.bingkkni.skyzh.text.Surface;
 import io.github.bingkkni.skyzh.text.Translator;
+import java.util.BitSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import net.minecraft.client.Minecraft;
@@ -23,11 +25,21 @@ public final class PriorityText {
 	private static final Map<String, Source> PACKETS = new LinkedHashMap<>();
 	private static final Map<String, Source> HUD = new LinkedHashMap<>();
 	private static final Map<String, Boolean> OUTPUT = new LinkedHashMap<>();
+	// A fixed-size, conservative prefix filter for Default's automatic sidebar fallback.
+	// Collisions only cause an extra full lookup; they can never authorize a translation.
+	private static final BitSet HUD_PREFIXES = new BitSet(65536);
+	private static final PrefixProbe PREFIX_PROBE = new PrefixProbe();
 	private static Object level;
 	private static int generation = -1;
 	private static boolean resolving;
+	private static boolean customSidebar;
+	private static int tick;
+	private static DisplayPriority observedPriority = DisplayPriority.DEFAULT;
+	// Both supported renderers cache their rows between updates. Retain exact server spellings
+	// briefly so a newer packet does not make the still-visible previous value flicker to English.
+	private static final int SIDEBAR_RETENTION_TICKS = 20;
 
-	private record Source(Component text, Surface surface) {}
+	private record Source(Component text, Surface surface, int seen) {}
 
 	/** A display-only sequence. Never stored back in a packet, item, scoreboard or chat history. */
 	public record ProtectedText(FormattedCharSequence text) implements FormattedCharSequence {
@@ -37,8 +49,8 @@ public final class PriorityText {
 	private PriorityText() {}
 
 	public static boolean active() {
-		return SkyZHConfig.get().displayPriority != DisplayPriority.DEFAULT
-			&& effective(HypixelServer.isSkyBlock()) != DisplayPriority.DEFAULT;
+		if (SkyZHConfig.get().displayPriority == DisplayPriority.DEFAULT && !customSidebar) return false;
+		return displayEnabled(HypixelServer.isSkyBlock());
 	}
 
 	public static boolean force() {
@@ -46,45 +58,67 @@ public final class PriorityText {
 			&& effective(HypixelServer.isSkyBlock()) == DisplayPriority.FORCE;
 	}
 
+	private static boolean displayEnabled(boolean verifiedSkyBlock) {
+		return verifiedSkyBlock && SkyZHConfig.get().enabled && !HoldOriginal.active();
+	}
+
 	private static DisplayPriority effective(boolean verifiedSkyBlock) {
-		SkyZHConfig config = SkyZHConfig.get();
-		return verifiedSkyBlock && config.enabled && !HoldOriginal.active() ? config.displayPriority : DisplayPriority.DEFAULT;
+		return displayEnabled(verifiedSkyBlock) ? SkyZHConfig.get().displayPriority : DisplayPriority.DEFAULT;
 	}
 
 	private static boolean collecting(boolean verifiedSkyBlock) {
 		SkyZHConfig config = SkyZHConfig.get();
-		return verifiedSkyBlock && config.enabled && config.displayPriority != DisplayPriority.DEFAULT;
+		return verifiedSkyBlock && config.enabled && (config.displayPriority != DisplayPriority.DEFAULT || customSidebar);
 	}
 
 	public static void tick() {
 		Minecraft minecraft = Minecraft.getInstance();
-		boolean collect = SkyZHConfig.get().displayPriority != DisplayPriority.DEFAULT && collecting(HypixelServer.isSkyBlock());
-		if (level != minecraft.level || !collect) {
-			PACKETS.clear();
-			HUD.clear();
-			OUTPUT.clear();
-			level = minecraft.level;
-		}
-		if (generation != SkyZHConfig.generation()) {
-			generation = SkyZHConfig.generation();
-			OUTPUT.clear();
-		}
-		if (!collect || minecraft.level == null) return;
-		HUD.clear();
+		boolean verified = HypixelServer.isSkyBlock();
+		boolean custom = verified && SkyZHConfig.get().enabled && SidebarCompatibility.hasCustomSidebar();
+		updateSession(minecraft.level, verified, custom);
+		if (!collecting(verified) || minecraft.level == null) return;
+		advanceHud();
 		var scoreboard = minecraft.level.getScoreboard();
 		var objective = scoreboard.getDisplayObjective(DisplaySlot.SIDEBAR);
-		if (objective != null) {
+		if (HypixelServer.isSkyBlockObjective(objective)) {
 			put(HUD, objective.getDisplayName(), Surface.SCOREBOARD);
 			for (var entry : scoreboard.listPlayerScores(objective)) {
 				if (!entry.isHidden()) put(HUD,
 					PlayerTeam.formatNameForTeam(scoreboard.getPlayersTeam(entry.owner()), entry.ownerName()), Surface.SCOREBOARD);
 			}
 		}
-		if (minecraft.getConnection() != null) {
+		if (SkyZHConfig.get().displayPriority != DisplayPriority.DEFAULT && minecraft.getConnection() != null) {
 			for (var info : minecraft.getConnection().getListedOnlinePlayers()) {
 				if (info.getTabListDisplayName() != null) put(HUD, info.getTabListDisplayName(), Surface.TABLIST);
 			}
 		}
+	}
+
+	private static void updateSession(Object currentLevel, boolean verified, boolean custom) {
+		DisplayPriority priority = SkyZHConfig.get().displayPriority;
+		boolean changed = level != currentLevel || customSidebar != custom || observedPriority != priority;
+		customSidebar = custom;
+		observedPriority = priority;
+		if (changed || !collecting(verified)) {
+			PACKETS.clear();
+			HUD.clear();
+			HUD_PREFIXES.clear();
+			OUTPUT.clear();
+			tick = 0;
+			level = currentLevel;
+		}
+		if (generation != SkyZHConfig.generation()) {
+			generation = SkyZHConfig.generation();
+			OUTPUT.clear();
+		}
+	}
+
+	private static void advanceHud() {
+		tick++;
+		HUD.values().removeIf(source -> !customSidebar || source.surface() != Surface.SCOREBOARD
+			|| tick - source.seen() > SIDEBAR_RETENTION_TICKS);
+		HUD_PREFIXES.clear();
+		HUD.keySet().forEach(PriorityText::indexPrefix);
 	}
 
 	/** Packet HEAD hooks can also run on the network thread, before vanilla schedules the packet. */
@@ -95,6 +129,7 @@ public final class PriorityText {
 		if (level != minecraft.level) {
 			PACKETS.clear();
 			HUD.clear();
+			HUD_PREFIXES.clear();
 			OUTPUT.clear();
 			level = minecraft.level;
 		}
@@ -109,14 +144,53 @@ public final class PriorityText {
 			if (end < styled.length() && styled.plain().charAt(end) != '\n') continue;
 			if (end > start) {
 				Component line = styled.slice(start, end);
-				String key = line.getString().strip();
+				String key = Glyphs.canonical(line.getString().strip());
 				if (!key.isEmpty()) {
 					Source previous = map.get(key);
-					map.put(key, new Source(line, previous != null && previous.surface() != surface ? null : surface));
+					map.put(key, new Source(line, previous != null && previous.surface() != surface ? null : surface, tick));
 					if (map.size() > LIMIT) map.remove(map.keySet().iterator().next());
+					if (map == HUD) indexPrefix(key);
 				}
 			}
 			start = end + 1;
+		}
+	}
+
+	private static void indexPrefix(String key) {
+		int hash = 0;
+		for (int i = 0; i < Math.min(4, key.length()); i++) {
+			char c = key.charAt(i);
+			if (c >= 128) break;
+			hash = 31 * hash + c;
+			if (!Character.isWhitespace(c)) HUD_PREFIXES.set(hash & 0xFFFF);
+		}
+	}
+
+	/** Reused only under resolveActive's render-thread reentry guard; no miss-path allocations. */
+	private static final class PrefixProbe implements FormattedCharSink {
+		private int visited, length, hash;
+		private boolean candidate;
+
+		boolean matches(FormattedCharSequence input) {
+			visited = length = hash = 0;
+			candidate = true;
+			input.accept(this);
+			return candidate;
+		}
+
+		@Override public boolean accept(int index, net.minecraft.network.chat.Style style, int codePoint) {
+			if (++visited > 8192) { candidate = false; return false; }
+			if (length == 0 && Character.isWhitespace(codePoint)) return true;
+			// Non-ASCII prefixes need glyph normalization; leave them to the exact full lookup.
+			if (codePoint >= 128) return false;
+			hash = 31 * hash + codePoint;
+			length++;
+			// Trailing padding must not reject a short complete key such as "X".
+			if (!Character.isWhitespace(codePoint) && !HUD_PREFIXES.get(hash & 0xFFFF)) {
+				candidate = false;
+				return false;
+			}
+			return length < 4;
 		}
 	}
 
@@ -131,13 +205,15 @@ public final class PriorityText {
 		if (input instanceof ProtectedText) return input;
 		resolving = true;
 		try {
-			return resolveKnown(input, forced);
+			return resolveKnown(input, forced, SkyZHConfig.get().displayPriority == DisplayPriority.DEFAULT, customSidebar);
 		} finally {
 			resolving = false;
 		}
 	}
 
-	private static FormattedCharSequence resolveKnown(FormattedCharSequence input, boolean forced) {
+	private static FormattedCharSequence resolveKnown(FormattedCharSequence input, boolean forced,
+		boolean sidebarOnly, boolean preserveSidebarStyle) {
+		if (sidebarOnly && (HUD.isEmpty() || !PREFIX_PROBE.matches(input))) return null;
 		// Most GUI labels are not server text. Do not allocate components/styles for those misses.
 		StringBuilder plain = new StringBuilder();
 		input.accept((index, style, codePoint) -> {
@@ -146,14 +222,17 @@ public final class PriorityText {
 			return true;
 		});
 		if (plain.length() > 8192) return null;
-		String key = plain.toString().strip();
+		String key = Glyphs.canonical(plain.toString().strip());
 		if (forced && OUTPUT.containsKey(key)) return new ProtectedText(input);
 		Source source = HUD.get(key);
 		Source packet = PACKETS.get(key);
 		if (source != null && packet != null && source.surface() != packet.surface()) return null;
 		if (source == null) source = packet;
-		if (source == null || source.surface() == null) return null;
-		Component original = forced ? source.text() : component(input);
+		if (source == null || source.surface() == null || sidebarOnly && source.surface() != Surface.SCOREBOARD) return null;
+		// A custom sidebar owns its colours, icon spelling, whitespace and interactions in every
+		// priority mode. The server copy only proves provenance; it must not replace that styling.
+		Component original = forced && !(preserveSidebarStyle && source.surface() == Surface.SCOREBOARD)
+			? source.text() : component(input);
 		if (original == null) return null;
 		Component translated = switch (source.surface()) {
 			case TABLIST -> Translator.translateRow(original, Surface.TABLIST);
@@ -202,7 +281,7 @@ public final class PriorityText {
 	/** {@code plain} is the text's stripped plain spelling, which the display cache keeps beside it. */
 	public static Component remember(Component text, String plain) {
 		if (force()) {
-			OUTPUT.put(plain, true);
+			OUTPUT.put(Glyphs.canonical(plain), true);
 			if (OUTPUT.size() > LIMIT) OUTPUT.remove(OUTPUT.keySet().iterator().next());
 		}
 		return text;

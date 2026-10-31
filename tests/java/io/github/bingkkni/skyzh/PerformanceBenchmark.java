@@ -27,6 +27,7 @@ public final class PerformanceBenchmark {
 		Map<String, JsonObject> files = TranslationHarness.readCorpus(Path.of(args[0]));
 		TranslationIndex index = TranslationLoader.compile(files);
 		TranslationHarness.installIndex(index);
+		benchmarkSidebarMisses();
 		measure("dynamic ITEM", 2_000, i -> sink = index.lookup(Surface.ITEM, "Damage: +" + (10_000 + i)));
 		measure("unknown ITEM", 2_000, i -> sink = index.lookup(Surface.ITEM, "Unrecorded property " + i));
 		measure("unknown LORE", 2_000, i -> sink = index.lookup(Surface.LORE, "An unrecorded sentence " + i));
@@ -70,6 +71,34 @@ public final class PerformanceBenchmark {
 					.withHoverEvent(new HoverEvent.ShowText(name)).withInsertion(id)), Surface.HOLOGRAM);
 			}
 		});
+	}
+
+	/** Same server snapshot and draw sequences, with/without Default's conservative prefilter. */
+	private static void benchmarkSidebarMisses() throws Exception {
+		Class<?> priority = io.github.bingkkni.skyzh.hook.PriorityText.class;
+		var field = priority.getDeclaredField("HUD");
+		field.setAccessible(true);
+		Map<?, ?> sources = (Map<?, ?>) field.get(null);
+		Method put = priority.getDeclaredMethod("put", Map.class, Component.class, Surface.class);
+		put.setAccessible(true);
+		for (String line : List.of("SKYBLOCK", "Purse: 1,234", "Bits: 123", "⏣ Village"))
+			put.invoke(null, sources, Component.literal(line), Surface.SCOREBOARD);
+		Method resolve = priority.getDeclaredMethod("resolveKnown", net.minecraft.util.FormattedCharSequence.class,
+			boolean.class, boolean.class, boolean.class);
+		resolve.setAccessible(true);
+		var handle = java.lang.invoke.MethodHandles.lookup().unreflect(resolve);
+		try {
+			for (String text : List.of("Unrelated menu option", "Unrelated tooltip description ".repeat(32))) {
+				var sequence = Component.literal(text).getVisualOrderText();
+				for (boolean filtered : new boolean[] {false, true}) {
+					measure("HUD miss " + text.length() + " chars " + (filtered ? "filtered" : "full scan"), 100_000, i -> {
+						try {
+							sink = (net.minecraft.util.FormattedCharSequence) handle.invokeExact(sequence, false, filtered, true);
+						} catch (Throwable failure) { throw new AssertionError(failure); }
+					});
+				}
+			}
+		} finally { sources.clear(); }
 	}
 
 	private static void measure(String name, int count, IntConsumer operation) {

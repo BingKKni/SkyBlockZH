@@ -181,17 +181,22 @@ Settings are grouped under General and Developer headings. Display priority cycl
 High and Force without a restart. The adjacent item-name button is a disabled, on placeholder;
 it does not change the existing item-name translation rules.
 
-- `default`: keep the existing hooks and ordering.
+- `default`: keep the existing hooks and ordering. When CustomScoreboard, SkyHanni or NoammAddons has
+  its custom sidebar enabled, automatically translate observed server sidebar rows through vanilla
+  font/GUI hooks with matching widths. This automatic path does not extend to chat or Tab.
 - `high`: translate tooltips later and retry known server text when creating the final GUI text state,
   with corresponding width measurement. Sources are server messages and live scoreboard/Tab state;
   arbitrary mod text is not matched against every corpus surface.
 - `force`: take ownership of protected text/font calls and rebuild item tooltips from original names and lore;
   additional mod tooltip lines/images can disappear. Submit the server sidebar in a final stratum after
-  `GameRenderer.extract`, respecting vanilla text-background opacity. Read-only public-state probes for
-  SkyHanni and NoammAddons yield the sidebar when their custom HUD is enabled: no vanilla cancellation and
-  no extra Force panel. Existing font/GUI hooks still attempt translation of known server lines; rewritten
-  or bypassed text stays unchanged. An installed but incompatible API also yields conservatively. No helper
-  settings, data or classes are modified. Other custom-sidebar implementations are not yet guaranteed.
+  `GameRenderer.extract`, respecting vanilla text-background opacity. Mod-ID checks and read-only public
+  state probes for CustomScoreboard, SkyHanni and NoammAddons yield to an enabled custom sidebar: no vanilla
+  cancellation or extra Force panel, even while Tab/chat/F3 temporarily hides the chosen sidebar.
+  All modes translate only complete lines matched to server sources, preserving the custom renderer's live
+  colours, icons, indentation and interactions. No helper settings, data or classes are modified. Existing
+  icon normalization is shared; bounded source records survive for up to 20 ticks to cover cached display
+  updates. Added/reassembled text, rewritten values and paths bypassing vanilla remain unchanged. An
+  installed but incompatible API also yields conservatively. Other custom sidebars are not yet guaranteed.
 
 While enabled in verified SkyBlock, a display history retains at most 100 messages and 128 Ki characters.
 Server system messages are snapshotted at packet dispatch; client notices and signed player messages are
@@ -204,7 +209,8 @@ only the view's language. World/server changes, leaving SkyBlock, disabling the 
 clear this history; font reloads invalidate layouts only.
 
 All modes respect the server boundary, master switch and original-text key. `PriorityText` source records
-are bounded and cleared on world/server changes or when enhanced priority is disabled. The independent
+are bounded and cleared on world/server changes, disabling the mod, changing priority or toggling custom
+sidebar ownership. Default continues collecting only sidebar sources while automatic compatibility is active. The independent
 chat history continues bounded collection in Default/High so switching to Force retains recent messages.
 Original-text mode retains
 sources, so restoring translations does not require another server packet. Configuration changes clear

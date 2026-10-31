@@ -22,7 +22,8 @@ public final class PriorityHarness {
 		TranslationHarness.installIndex(TranslationLoader.compile(TranslationHarness.readCorpus(Path.of(args[0]))));
 		put = PriorityText.class.getDeclaredMethod("put", Map.class, Component.class, Surface.class);
 		put.setAccessible(true);
-		resolve = PriorityText.class.getDeclaredMethod("resolveKnown", FormattedCharSequence.class, boolean.class);
+		resolve = PriorityText.class.getDeclaredMethod("resolveKnown", FormattedCharSequence.class,
+			boolean.class, boolean.class, boolean.class);
 		resolve.setAccessible(true);
 		var field = PriorityText.class.getDeclaredField("HUD");
 		field.setAccessible(true);
@@ -58,7 +59,7 @@ public final class PriorityHarness {
 			check("服务器标题补译", high.getString().equals("空岛生存"));
 			var wrapped = net.minecraft.network.chat.FormattedText.of("SKYBLOCK");
 			var wrappedResult = (FormattedCharSequence) resolve.invoke(null,
-				net.minecraft.locale.Language.getInstance().getVisualOrder(wrapped), false);
+				net.minecraft.locale.Language.getInstance().getVisualOrder(wrapped), false, false, false);
 			check("通用FormattedText保持同一译文", PriorityText.component(wrappedResult).getString().equals("空岛生存"));
 			check("高档保留实时显示颜色", StyledText.of(high).styleAt(0).getColor().getValue() == 0xFF5555);
 			check("强制恢复服务器颜色", StyledText.of(force).styleAt(0).getColor().getValue() == 0xFFAA00);
@@ -87,6 +88,8 @@ public final class PriorityHarness {
 		checkForceChatHistory();
 		checkWidthReentry();
 		checkSidebarCompatibility();
+		checkCustomSidebarText();
+		checkSidebarPrefixFilter();
 		System.out.println("显示优先级检查通过 " + checked + " 项");
 	}
 
@@ -104,6 +107,11 @@ public final class PriorityHarness {
 		public final SidebarConfig config = new SidebarConfig();
 		public SidebarConfig getConfig$at_hannibal2_skyhanni_26_2() { return config; }
 	}
+	public static final class CustomScoreboardConfig {
+		public static final CustomScoreboardConfig INSTANCE = new CustomScoreboardConfig();
+		public Boolean enabled = false;
+		public Boolean getEnabled() { return enabled; }
+	}
 	public static class Feature { public boolean enabled; }
 	public static final class NoammSidebar extends Feature {
 		public static final NoammSidebar INSTANCE = new NoammSidebar();
@@ -111,15 +119,24 @@ public final class PriorityHarness {
 
 	private static void checkSidebarCompatibility() throws Exception {
 		Class<?> compatibility = io.github.bingkkni.skyzh.hook.SidebarCompatibility.class;
+		Method customScoreboard = compatibility.getDeclaredMethod("customScoreboard", Class.class);
 		Method skyHanni = compatibility.getDeclaredMethod("skyHanni", Class.class);
 		Method noamm = compatibility.getDeclaredMethod("noamm", Class.class);
 		Method enabled = compatibility.getDeclaredMethod("enabled", java.util.function.BooleanSupplier.class);
+		customScoreboard.setAccessible(true);
 		skyHanni.setAccessible(true);
 		noamm.setAccessible(true);
 		enabled.setAccessible(true);
+		var cs = (java.util.function.BooleanSupplier) customScoreboard.invoke(null, CustomScoreboardConfig.class);
 		var sh = (java.util.function.BooleanSupplier) skyHanni.invoke(null, SkyHanniSidebar.class);
 		var na = (java.util.function.BooleanSupplier) noamm.invoke(null, NoammSidebar.class);
-		check("辅助计分板关闭时保留强制侧边栏", !sh.getAsBoolean() && !na.getAsBoolean());
+		check("辅助计分板关闭时保留强制侧边栏", !cs.getAsBoolean() && !sh.getAsBoolean() && !na.getAsBoolean());
+		CustomScoreboardConfig.INSTANCE.enabled = true;
+		check("独立 CustomScoreboard 开启时让出侧边栏", cs.getAsBoolean());
+		CustomScoreboardConfig.INSTANCE.enabled = false;
+		check("CustomScoreboard 运行中关闭后恢复", !cs.getAsBoolean());
+		CustomScoreboardConfig.INSTANCE.enabled = null;
+		check("CustomScoreboard 未知状态不叠加", cs.getAsBoolean());
 		SkyHanniSidebar.INSTANCE.config.property.value = true;
 		check("SkyHanni 公共状态开启时让出侧边栏", sh.getAsBoolean());
 		SkyHanniSidebar.INSTANCE.config.property.value = false;
@@ -132,6 +149,118 @@ public final class PriorityHarness {
 		check("Noamm 运行中关闭后恢复", !na.getAsBoolean());
 		java.util.function.BooleanSupplier broken = () -> { throw new LinkageError("changed optional API"); };
 		check("辅助 Mod 接口失效不崩溃也不叠加", (boolean) enabled.invoke(null, broken));
+	}
+
+	private static void checkCustomSidebarText() throws Exception {
+		Method session = PriorityText.class.getDeclaredMethod("updateSession", Object.class, boolean.class, boolean.class);
+		Method advance = PriorityText.class.getDeclaredMethod("advanceHud");
+		Method collecting = PriorityText.class.getDeclaredMethod("collecting", boolean.class);
+		Method display = PriorityText.class.getDeclaredMethod("displayEnabled", boolean.class);
+		for (Method method : new Method[] {session, advance, collecting, display}) method.setAccessible(true);
+		Object world = new Object();
+		Component server = Component.literal("§fPurse: §61,234");
+		Component drawn = Component.literal("  Purse: ").withStyle(style -> style.withColor(0x5599EE)
+			.withClickEvent(new net.minecraft.network.chat.ClickEvent.SuggestCommand("/bank")))
+			.append(Component.literal("1,234  ").withStyle(ChatFormatting.GREEN));
+		try {
+			for (DisplayPriority priority : DisplayPriority.values()) {
+				SkyZHConfig.get().displayPriority = priority;
+				session.invoke(null, world, true, true);
+				check("自动兼容收集来源 " + priority, (boolean) collecting.invoke(null, true));
+				put.invoke(null, sources, server, Surface.SCOREBOARD);
+				Component translated = customResult(drawn, priority);
+				check("自定义面板所有档位补译 " + priority, translated.getString().equals("  硬币: 1,234  "));
+				StyledText styled = StyledText.of(translated);
+				check("包括强制档都保留自定义配色 " + priority, styled.styleAt(2).getColor().getValue() == 0x5599EE
+					&& styled.styleAt(6).getColor().getValue() == 0x55FF55);
+				check("自定义点击事件保留 " + priority, styled.styleAt(2).getClickEvent().equals(drawn.getStyle().getClickEvent()));
+				check("不修改服务器行或辅助 Mod 组件 " + priority,
+					server.getString().equals("§fPurse: §61,234") && drawn.getString().equals("  Purse: 1,234  "));
+				check("不翻译辅助 Mod 新增句子 " + priority, customResult(Component.literal("Bank: 1,234"), priority) == null);
+				check("不猜测辅助 Mod 改写数值 " + priority, customResult(Component.literal("Purse: 1.2k"), priority) == null);
+				put.invoke(null, sources, Component.literal("§7\ue067 §bDwarven M§qines"), Surface.SCOREBOARD);
+				Component location = customResult(Component.literal("§a⏣ §2Dwarven Mines"), priority);
+				check("图标规范化及隐形标记不阻止匹配 " + priority, location.getString().equals("⏣ 矮人矿山"));
+				check("保留自定义面板图标与颜色 " + priority, StyledText.of(location).styleAt(0).getColor().getValue() == 0x55FF55);
+				put.invoke(null, sources, Component.literal("Mining Speed: 450"), Surface.TABLIST);
+				if (priority == DisplayPriority.DEFAULT)
+					check("默认自动兼容不放开 Tab 或聊天翻译", customResult(Component.literal("Mining Speed: 450"), priority) == null);
+				HoldOriginal.setActive(true);
+				check("原文键即时关闭自动补译 " + priority, !(boolean) display.invoke(null, true));
+				check("原文期间继续保留来源 " + priority, (boolean) collecting.invoke(null, true));
+				HoldOriginal.setActive(false);
+			}
+			SkyZHConfig.get().displayPriority = DisplayPriority.DEFAULT;
+			session.invoke(null, world, true, true);
+			put.invoke(null, sources, server, Surface.SCOREBOARD);
+			for (int i = 0; i < 5; i++) advance.invoke(null);
+			put.invoke(null, sources, Component.literal("Purse: 1,235"), Surface.SCOREBOARD);
+			check("250毫秒缓存仍显示旧值时不闪回英文", customResult(drawn, DisplayPriority.DEFAULT) != null);
+			check("较新服务器数值同时可翻译", customResult(Component.literal("Purse: 1,235"), DisplayPriority.DEFAULT) != null);
+			for (int i = 0; i < 16; i++) advance.invoke(null);
+			check("过期服务器旧值不继续认可", customResult(drawn, DisplayPriority.DEFAULT) == null);
+			check("未过期行不被旧值逐出影响", customResult(Component.literal("Purse: 1,235"), DisplayPriority.DEFAULT) != null);
+			session.invoke(null, new Object(), true, true);
+			check("换世界清空来源", sources.isEmpty());
+			put.invoke(null, sources, server, Surface.SCOREBOARD);
+			session.invoke(null, world, false, false);
+			check("离开空岛清空来源且不继续收集", sources.isEmpty() && !(boolean) collecting.invoke(null, false));
+			session.invoke(null, world, true, true);
+			put.invoke(null, sources, server, Surface.SCOREBOARD);
+			SkyZHConfig.get().enabled = false;
+			session.invoke(null, world, true, false);
+			check("关闭总开关清空自动兼容来源", sources.isEmpty() && !(boolean) display.invoke(null, true));
+			SkyZHConfig.get().enabled = true;
+			session.invoke(null, world, true, true);
+			put.invoke(null, sources, server, Surface.SCOREBOARD);
+			session.invoke(null, world, true, false);
+			check("自定义计分板关闭后默认档停止补译", sources.isEmpty() && !(boolean) collecting.invoke(null, true));
+		} finally {
+			SkyZHConfig.get().enabled = true;
+			SkyZHConfig.get().displayPriority = DisplayPriority.DEFAULT;
+			HoldOriginal.setActive(false);
+			session.invoke(null, null, false, false);
+		}
+	}
+
+	private static void checkSidebarPrefixFilter() throws Exception {
+		Method session = PriorityText.class.getDeclaredMethod("updateSession", Object.class, boolean.class, boolean.class);
+		session.setAccessible(true);
+		var probeField = PriorityText.class.getDeclaredField("PREFIX_PROBE");
+		probeField.setAccessible(true);
+		Object probe = probeField.get(null);
+		Method matches = probe.getClass().getDeclaredMethod("matches", FormattedCharSequence.class);
+		matches.setAccessible(true);
+		try {
+			session.invoke(null, new Object(), true, true);
+			put.invoke(null, sources, Component.literal("SKYBLOCK"), Surface.SCOREBOARD);
+			int[] visited = {0};
+			FormattedCharSequence unrelated = sink -> {
+				for (int i = 0; i < 4096; i++) {
+					visited[0]++;
+					if (!sink.accept(i, net.minecraft.network.chat.Style.EMPTY, 'Z')) return false;
+				}
+				return true;
+			};
+			check("默认档未知长文本立即跳过", resolve.invoke(null, unrelated, false, true, true) == null && visited[0] <= 4);
+			for (String key : new String[] {"A", "AB", "ABC", "ABC DEF", "A😀B", "⏣ Dwarven Mines", "SKYBLOCK"}) {
+				put.invoke(null, sources, Component.literal(key), Surface.SCOREBOARD);
+				for (String input : new String[] {key, "  " + key, key + "    ", "\u2003" + key + "\u2003"})
+					check("前缀筛选不丢短行、Unicode或缩进 " + input,
+						(boolean) matches.invoke(probe, Component.literal(input).getVisualOrderText()));
+			}
+			var prefixes = PriorityText.class.getDeclaredField("HUD_PREFIXES");
+			prefixes.setAccessible(true);
+			// Even a filter with every bit set may only authorize a full lookup, never a translation.
+			((java.util.BitSet) prefixes.get(null)).set(0, 65536);
+			check("前缀碰撞不绕过服务器来源", customResult(Component.literal("CLICK"), DisplayPriority.DEFAULT) == null);
+		} finally { session.invoke(null, null, false, false); }
+	}
+
+	private static Component customResult(Component input, DisplayPriority priority) throws Exception {
+		var text = (FormattedCharSequence) resolve.invoke(null, input.getVisualOrderText(), priority == DisplayPriority.FORCE,
+			priority == DisplayPriority.DEFAULT, true);
+		return text == null ? null : PriorityText.component(text);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -223,8 +352,9 @@ public final class PriorityHarness {
 		@SuppressWarnings("unchecked")
 		Map<String, Boolean> outputs = (Map<String, Boolean>) outputsField.get(null);
 		outputs.put("空岛生存", true);
+		SkyZHConfig.get().displayPriority = DisplayPriority.FORCE;
 		check("已激活强制档确实会重新包装译文", resolveActive(wrapped, true) != null);
-		for (DisplayPriority priority : new DisplayPriority[] {DisplayPriority.HIGH, DisplayPriority.FORCE}) {
+		for (DisplayPriority priority : DisplayPriority.values()) {
 			SkyZHConfig.get().displayPriority = priority;
 			try {
 				int width = PriorityText.measureWidth(() -> {
@@ -273,7 +403,7 @@ public final class PriorityHarness {
 	}
 
 	private static Component result(Component input, boolean force) throws Exception {
-		var text = (FormattedCharSequence) resolve.invoke(null, input.getVisualOrderText(), force);
+		var text = (FormattedCharSequence) resolve.invoke(null, input.getVisualOrderText(), force, false, false);
 		return text == null ? null : PriorityText.component(text);
 	}
 

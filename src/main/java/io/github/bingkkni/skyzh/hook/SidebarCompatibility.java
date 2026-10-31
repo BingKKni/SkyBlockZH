@@ -10,12 +10,13 @@ public final class SidebarCompatibility {
 	private SidebarCompatibility() {}
 
 	private static final class Probes {
+		static final BooleanSupplier CUSTOM_SCOREBOARD = installed("customscoreboard", SidebarCompatibility::customScoreboard);
 		static final BooleanSupplier SKYHANNI = installed("skyhanni", SidebarCompatibility::skyHanni);
 		static final BooleanSupplier NOAMM = installed("noammaddons", SidebarCompatibility::noamm);
 	}
 
 	public static boolean hasCustomSidebar() {
-		return enabled(Probes.SKYHANNI) || enabled(Probes.NOAMM);
+		return enabled(Probes.CUSTOM_SCOREBOARD) || enabled(Probes.SKYHANNI) || enabled(Probes.NOAMM);
 	}
 
 	@FunctionalInterface
@@ -33,6 +34,21 @@ public final class SidebarCompatibility {
 	static boolean enabled(BooleanSupplier probe) {
 		try { return probe.getAsBoolean(); }
 		catch (RuntimeException | LinkageError failure) { return true; }
+	}
+
+	private static BooleanSupplier customScoreboard() throws ReflectiveOperationException {
+		return customScoreboard(Class.forName("me.owdding.customscoreboard.config.Config"));
+	}
+
+	private static BooleanSupplier customScoreboard(Class<?> type) throws ReflectiveOperationException {
+		Object instance = type.getField("INSTANCE").get(null);
+		Method enabled = type.getMethod("getEnabled");
+		// Read the feature toggle, not visibility: Tab/chat/F3 hiding and ScoreboardOverhaul
+		// delegation still belong to the player's chosen sidebar, not to our fallback panel.
+		return () -> {
+			try { return !Boolean.FALSE.equals(enabled.invoke(instance)); }
+			catch (ReflectiveOperationException failure) { return true; }
+		};
 	}
 
 	private static BooleanSupplier skyHanni() throws ReflectiveOperationException {
