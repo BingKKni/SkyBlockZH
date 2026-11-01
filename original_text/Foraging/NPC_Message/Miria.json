@@ -8,6 +8,24 @@
   "source_note": "普通呈现页逐项采集所有对话条件与隐藏分支;颜色优先采用明确格式类。已有服务器样本不覆盖,新增 Wiki 文本尚待实机核对。",
   "messages": [
     {
+      "id": "miria_live_claim_rewards",
+      "context": "双机实测：电话通知玩家领取竞赛奖励，点击区保留服务器实时交互。",
+      "source": "runtime capture (SkyZH), SkyZH_Logs/2",
+      "verified_ingame": true,
+      "text": "Come see me at Torrhus Canyon or CLICK HERE to claim your rewards!",
+      "raw": "Come see me at §6Torrhus Canyon §for §e§lCLICK HERE§f to claim your rewards!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "来 Torrhus 峡谷找我，或者点击这里领取奖励吧!",
+      "segments": [
+        { "text": "Come see me at ", "zh": "来 " },
+        { "color": "§6", "text": "Torrhus Canyon ", "zh": "Torrhus 峡谷" },
+        { "color": "§f", "text": "or ", "zh": "找我，或者" },
+        { "color": "§e§l", "text": "CLICK HERE", "zh": "点击这里" },
+        { "color": "§f", "text": " to claim your rewards!", "zh": "领取奖励吧!" }
+      ]
+    },
+    {
       "id": "galatea_hmm_you_want_my_abiphone_contact_edd73713",
       "ref": "_shared/Galatea_NPC_Common.json#galatea_hmm_you_want_my_abiphone_contact_edd73713",
       "context": "多个 Galatea NPC 共用的对白或选项,不重复定义译文。"
