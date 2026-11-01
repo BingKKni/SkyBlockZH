@@ -428,7 +428,7 @@
     {
       "id": "ultimate_farming_fortune_bonus",
       "context": "附魔指南/附魔台说明",
-      "raw": "§6+%s☘ Farming Fortune",
+      "raw": "§8+§6%s☘ Farming Fortune",
       "text": "+%s☘ Farming Fortune",
       "placeholders": [
         {
@@ -440,7 +440,11 @@
       ],
       "gloss": "",
       "translate": true,
-      "zh": "+%s☘ 农业时运"
+      "zh": "+%s☘ 农业时运",
+      "segments": [
+        { "color": "§8", "text": "+", "zh": "+" },
+        { "color": "§6", "text": "%s☘ Farming Fortune", "zh": "%s☘ 农业时运" }
+      ]
     },
     {
       "id": "ultimate_duplex_arrow_head",

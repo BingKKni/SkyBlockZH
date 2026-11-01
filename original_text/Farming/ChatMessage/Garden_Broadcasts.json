@@ -400,12 +400,12 @@
     {
       "id": "gb_reward_crop_upgrades",
       "context": "",
-      "raw": "    §aTier I §7Crop Upgrades",
-      "text": "    Tier I Crop Upgrades",
-      "placeholders": [],
-      "gloss": "和 Farming/GUI_Item/Garden_Levels.json 的「第 %1$s 阶作物升级」一致;聊天里只见过 Tier I,先按字面收。",
+      "raw": "    §aTier %1$s §7Crop Upgrades",
+      "text": "    Tier %1$s Crop Upgrades",
+      "placeholders": [{"token":"%1$s","type":"tier","example":"V","desc":"作物升级阶数；本轮实测 V，既有 I 一并覆盖"}],
+      "gloss": "沿用第 N 阶作物升级；保留聊天奖励清单的短缩进，不强制居中。",
       "translate": true,
-      "zh": "    第 I 阶作物升级",
+      "zh": "    第 %1$s 阶作物升级",
       "segments": [
         {
           "color": "",
@@ -414,8 +414,8 @@
         },
         {
           "color": "§a",
-          "text": "Tier I ",
-          "zh": "第 I 阶"
+          "text": "Tier %1$s ",
+          "zh": "第 %1$s 阶"
         },
         {
           "color": "§7",

@@ -400,20 +400,37 @@
     },
     {
       "id": "galatea_congrats_on_completing_tier_s_569592f3",
-      "context": "Brian：After completing a Trial of Blue Flames which resulted in a rarity upgrade",
+      "context": "Brian / Ryan 共用：完成稀有度升级门槛",
       "text": "Congrats on completing tier %s!",
-      "raw": "§aCongrats on completing tier %s!",
+      "raw": "§aCongrats on completing tier §6%s§a!",
       "placeholders": [
         {
           "token": "%s",
-          "type": "number",
-          "desc": "Wiki 标出的动态值,以服务器实值为准",
+          "type": "level",
+          "desc": "完成阶数；Brian 为阿拉伯数字，Ryan 为罗马数字",
           "example": "5"
         }
       ],
       "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。 Wiki 占位标记已改为有类型模板;非运行时示例值。",
       "translate": true,
-      "zh": "恭喜你完成第 %s 级试炼!"
+      "zh": "恭喜你通过第 %s 阶试炼!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Congrats on completing tier ",
+          "zh": "恭喜你通过第 "
+        },
+        {
+          "color": "§6",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§a",
+          "text": "!",
+          "zh": " 阶试炼!"
+        }
+      ]
     },
     {
       "id": "galatea_you_are_ready_for_the_next_badge_rarity_31b5344b",
@@ -427,20 +444,71 @@
     },
     {
       "id": "galatea_to_receive_it_we_require_s_06c63367",
-      "context": "Brian：After completing a Trial of Blue Flames which resulted in a rarity upgrade",
-      "text": "To receive it, we require %s!",
-      "raw": "§fTo receive it, we require %s!",
+      "context": "Brian / Ryan 共面；Ryan 实测材料名在前、数量在后",
+      "text": "To receive it, we require %1$s x%2$s!",
+      "raw": "To receive it, we require §f%1$s §8x%2$s§f!",
       "placeholders": [
         {
-          "token": "%s",
-          "type": "raw",
-          "desc": "Wiki 标出的动态值,以服务器实值为准",
-          "example": "64 Enchanted Fig Logs"
+          "token": "%1$s",
+          "type": "catalog_item_name",
+          "desc": "已登记的需求材料名",
+          "example": "Dark Oak Log"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "desc": "所需数量",
+          "example": "512"
         }
       ],
-      "gloss": "社区 Wiki 普通呈现页完整对白;颜色优先读取明确的 Minecraft format 类,其余按 DOM 样式还原。 Wiki 占位标记已改为有类型模板;非运行时示例值。",
+      "gloss": "Ryan 2026-11-02 实测颜色修正；材料名称与数量分开，按目录复用已有材料译名。Brian 数量在前的 Wiki 写法由相邻独立模板保留。",
       "translate": true,
-      "zh": "想拿到它,得准备%s!"
+      "zh": "想拿到它，得准备%1$s x%2$s!",
+      "segments": [
+        {
+          "color": "",
+          "text": "To receive it, we require ",
+          "zh": "想拿到它，得准备"
+        },
+        {
+          "color": "§f",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§8",
+          "text": "x%2$s",
+          "zh": "x%2$s"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "galatea_to_receive_it_we_require_s_06c63367_quantity_first",
+      "context": "Brian：After completing a Trial of Blue Flames which resulted in a rarity upgrade",
+      "text": "To receive it, we require %1$s %2$s!",
+      "raw": "§fTo receive it, we require %1$s %2$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "desc": "Brian 所需材料数量",
+          "example": "64"
+        },
+        {
+          "token": "%2$s",
+          "type": "item_name",
+          "desc": "Brian 所需材料名",
+          "example": "Enchanted Fig Logs"
+        }
+      ],
+      "gloss": "保留原 Brian 数量在前的要求；与 Ryan 名称在前的实测行共面，不使用吞入整句的 raw。",
+      "translate": true,
+      "zh": "想拿到它，得准备 %1$s 个 %2$s!"
     },
     {
       "id": "galatea_try_the_trial_of_blue_flames_trial_s_for_a_gre_22043633",

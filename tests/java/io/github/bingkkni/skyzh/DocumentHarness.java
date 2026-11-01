@@ -5,6 +5,7 @@ import io.github.bingkkni.skyzh.capture.*;
 import io.github.bingkkni.skyzh.text.*;
 import java.nio.file.*;
 import java.util.*;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.*;
 
 /** Frozen server observations plus independent layout and interaction expectations. */
@@ -60,6 +61,29 @@ public final class DocumentHarness {
 		check("悬浮说明翻译", StyledText.of(hover.value()).plain().equals("现在开始,永远不晚!"));
 		check("悬浮颜色保真", StyledText.of(hover.value()).styleAt(0).getColor().getValue() == 0xffff00);
 		check("原始按钮仍是英文", StyledText.of(page).plain().contains("LIVE IN THE MOMENT"));
+
+		// The new-player store book has an unbracketed URL button, not a command button.
+		var storeRecord = TranslationHarness.readCorpus(Path.of(args[0]))
+			.get("Hub_General/Book/Capture_Nov02.json").getAsJsonArray("lines").get(0).getAsJsonObject();
+		var storeSegments = storeRecord.getAsJsonArray("segments");
+		ClickEvent storeClick = new ClickEvent.OpenUrl(java.net.URI.create("https://store.hypixel.net/"));
+		Component storePage = Component.literal(storeSegments.get(0).getAsJsonObject().get("text").getAsString())
+			.append(Component.literal("    ").withStyle(ChatFormatting.BOLD))
+			.append(Component.literal("VISIT STORE").setStyle(Style.EMPTY.withColor(0x00aaaa).withBold(true)
+				.withClickEvent(storeClick)))
+			.append(storeSegments.get(3).getAsJsonObject().get("text").getAsString());
+		StyledText storeOutput = StyledText.of(DocumentTranslation.book(storePage, 114, DocumentHarness::measure));
+		int storeButton = storeOutput.plain().indexOf("前往商店");
+		check("商店书页按钮已翻译", storeButton >= 0);
+		check("商店按钮保留服务器网址", storeClick.equals(storeOutput.styleAt(storeButton).getClickEvent()));
+		check("商店按钮保留深青色与粗体", storeOutput.styleAt(storeButton).isBold()
+			&& storeOutput.styleAt(storeButton).getColor().getValue() == 0x00aaaa);
+		check("商店正文不继承网址", storeOutput.styleAt(0).getClickEvent() == null);
+		check("商店按钮前后不泄漏点击事件", storeOutput.styleAt(storeButton - 1).getClickEvent() == null
+			&& storeOutput.styleAt(storeButton + "前往商店".length()).getClickEvent() == null);
+		check("商店书页保留全部显式行", DocumentTranslation.lines(storePage).size()
+			== DocumentTranslation.lines(DocumentTranslation.available(storePage, Surface.BOOK)).size());
+		check("商店原始按钮不改写", StyledText.of(storePage).plain().contains("VISIT STORE"));
 
 		// Independent tiny corpus: geometry must use book width, not 320px chat width.
 		var fixtureFiles = new HashMap<String, com.google.gson.JsonObject>();

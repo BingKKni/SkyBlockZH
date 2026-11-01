@@ -2585,18 +2585,23 @@
     {
       "id": "live_5035de6ec4be",
       "context": "本轮菜单实测；动态值复用既有词表。",
+      "raw": "§3Bestiary §7Milestone %1$s",
       "text": "Bestiary Milestone %1$s",
       "placeholders": [
         {
           "token": "%1$s",
-          "type": "number",
+          "type": "level",
           "example": "112",
           "desc": "里程碑序号"
         }
       ],
       "gloss": "",
       "translate": true,
-      "zh": "生物图鉴里程碑 %1$s"
+      "zh": "生物图鉴里程碑 %1$s",
+      "segments": [
+        { "color": "§3", "text": "Bestiary ", "zh": "生物图鉴" },
+        { "color": "§7", "text": "Milestone %1$s", "zh": "里程碑 %1$s" }
+      ]
     },
     {
       "id": "live_414887c8815b",

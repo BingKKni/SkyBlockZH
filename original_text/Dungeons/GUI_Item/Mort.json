@@ -603,18 +603,48 @@
     },
     {
       "id": "mort_completed_objectives",
-      "context": "Mort GUI 物品名称或 Lore",
+      "context": "Mort GUI 物品名称或 Lore；2026-11-02 采集核实颜色，保持实时高亮。",
       "gloss": "",
-      "text": "Completed Objectives: %s/4",
+      "text": "Completed Objectives: %1$s/%2$s",
       "placeholders": [
         {
-          "token": "%s",
+          "token": "%1$s",
           "type": "number",
-          "example": "2"
+          "desc": "已完成目标数",
+          "example": "0"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "desc": "目标总数",
+          "example": "4"
         }
       ],
       "translate": true,
-      "zh": "已完成目标: %s/4"
+      "zh": "已完成目标: %1$s/%2$s",
+      "raw": "§7Completed Objectives: §c%1$s§7/§a%2$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Completed Objectives: ",
+          "zh": "已完成目标: "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "/",
+          "zh": "/"
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ]
     },
     {
       "id": "mort_next_time_to_beat",

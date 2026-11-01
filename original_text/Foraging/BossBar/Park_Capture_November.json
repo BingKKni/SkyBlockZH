@@ -1,0 +1,462 @@
+{
+  "source": [
+    "https://hypixelskyblock.minecraft.wiki/w/The_Park",
+    "https://hypixelskyblock.minecraft.wiki/w/Ryan",
+    "https://hypixelskyblock.minecraft.wiki/w/Bingo/Events/2026",
+    "https://hypixelskyblock.minecraft.wiki/w/Skills",
+    "C:/Users/22309/Desktop/MinecraftMod/SkyZH_Logs/skyzh-capture"
+  ],
+  "verified_ingame": true,
+  "note": "本次采集的实际原文和颜色优先；变量按数量、等级、方向与完整地名区分。菜单说明使用完整逻辑句，不复制采集器元数据。",
+  "lines": [
+    {
+      "id": "park_objective_collect",
+      "context": "2026-11-02 公园实测；社区 Wiki 仅作语境核实",
+      "raw": "§fObjective: §eCollect %1$s Logs  §7(§e%2$s§7/§a%3$s§7)",
+      "text": "Objective: Collect %1$s Logs  (%2$s/%3$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "category_name",
+          "desc": "原木树种，Birch/Spruce/Acacia/Jungle/Dark Oak",
+          "example": "Birch"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "desc": "当前收集数量",
+          "example": "3"
+        },
+        {
+          "token": "%3$s",
+          "type": "number",
+          "desc": "所需数量",
+          "example": "64"
+        }
+      ],
+      "translate": true,
+      "zh": "目标: 收集%1$s原木  (%2$s/%3$s)",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Objective: ",
+          "zh": "目标: "
+        },
+        {
+          "color": "§e",
+          "text": "Collect %1$s Logs  ",
+          "zh": "收集%1$s原木  "
+        },
+        {
+          "color": "§7",
+          "text": "(",
+          "zh": "("
+        },
+        {
+          "color": "§e",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": "/",
+          "zh": "/"
+        },
+        {
+          "color": "§a",
+          "text": "%3$s",
+          "zh": "%3$s"
+        },
+        {
+          "color": "§7",
+          "text": ")",
+          "zh": ")"
+        }
+      ]
+    },
+    {
+      "id": "park_objective_give",
+      "context": "2026-11-02 公园实测；社区 Wiki 仅作语境核实",
+      "raw": "§fObjective: §eGive %1$s %2$s Logs §a§l%3$s",
+      "text": "Objective: Give %1$s %2$s Logs %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "npc_name",
+          "desc": "接收原木的 NPC",
+          "example": "Charlie"
+        },
+        {
+          "token": "%2$s",
+          "type": "category_name",
+          "desc": "原木树种",
+          "example": "Birch"
+        },
+        {
+          "token": "%3$s",
+          "type": "icon",
+          "desc": "实时方向箭头",
+          "example": "⬆"
+        }
+      ],
+      "translate": true,
+      "zh": "目标: 交给 %1$s %2$s原木 %3$s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Objective: ",
+          "zh": "目标: "
+        },
+        {
+          "color": "§e",
+          "text": "Give %1$s %2$s Logs ",
+          "zh": "交给 %1$s %2$s原木 "
+        },
+        {
+          "color": "§a§l",
+          "text": "%3$s",
+          "zh": "%3$s"
+        }
+      ]
+    },
+    {
+      "id": "park_objective_travel",
+      "context": "2026-11-02 公园实测；社区 Wiki 仅作语境核实",
+      "raw": "§fObjective: §eTravel to the %1$s §e§l%2$s",
+      "text": "Objective: Travel to the %1$s %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "location_name",
+          "desc": "完整区域名，不拆成两个词",
+          "example": "Spruce Woods"
+        },
+        {
+          "token": "%2$s",
+          "type": "icon",
+          "desc": "实时方向箭头",
+          "example": "➡"
+        }
+      ],
+      "translate": true,
+      "zh": "目标: 前往%1$s %2$s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Objective: ",
+          "zh": "目标: "
+        },
+        {
+          "color": "§e",
+          "text": "Travel to the %1$s ",
+          "zh": "前往%1$s "
+        },
+        {
+          "color": "§e§l",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ]
+    },
+    {
+      "id": "park_objective_claim_trousers",
+      "context": "2026-11-02 公园实测；社区 Wiki 仅作语境核实",
+      "raw": "§fObjective: §eClaim the trousers from Charlie! §a§l%s",
+      "text": "Objective: Claim the trousers from Charlie! %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "icon",
+          "desc": "实时方向箭头",
+          "example": "⬆"
+        }
+      ],
+      "translate": true,
+      "zh": "目标: 向 Charlie 领取裤子! %s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Objective: ",
+          "zh": "目标: "
+        },
+        {
+          "color": "§e",
+          "text": "Claim the trousers from Charlie! ",
+          "zh": "向 Charlie 领取裤子! "
+        },
+        {
+          "color": "§a§l",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "park_objective_find_kelly",
+      "context": "2026-11-02 公园实测；社区 Wiki 仅作语境核实",
+      "raw": "§fObjective: §eFind Kelly §a§l%s",
+      "text": "Objective: Find Kelly %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "icon",
+          "desc": "实时方向箭头",
+          "example": "⬆"
+        }
+      ],
+      "translate": true,
+      "zh": "目标: 寻找 Kelly %s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Objective: ",
+          "zh": "目标: "
+        },
+        {
+          "color": "§e",
+          "text": "Find Kelly ",
+          "zh": "寻找 Kelly "
+        },
+        {
+          "color": "§a§l",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "park_objective_find_campfire",
+      "context": "2026-11-02 公园实测；社区 Wiki 仅作语境核实",
+      "raw": "§fObjective: §eFind the Campfire §a§l%s",
+      "text": "Objective: Find the Campfire %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "icon",
+          "desc": "实时方向箭头",
+          "example": "⬆"
+        }
+      ],
+      "translate": true,
+      "zh": "目标: 寻找篝火 %s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Objective: ",
+          "zh": "目标: "
+        },
+        {
+          "color": "§e",
+          "text": "Find the Campfire ",
+          "zh": "寻找篝火 "
+        },
+        {
+          "color": "§a§l",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "park_objective_sneak_ryan",
+      "context": "2026-11-02 公园实测；社区 Wiki 仅作语境核实",
+      "raw": "§fObjective: §eSneak up on Ryan §a§l%s",
+      "text": "Objective: Sneak up on Ryan %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "icon",
+          "desc": "实时方向箭头",
+          "example": "⬆"
+        }
+      ],
+      "translate": true,
+      "zh": "目标: 悄悄靠近 Ryan %s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Objective: ",
+          "zh": "目标: "
+        },
+        {
+          "color": "§e",
+          "text": "Sneak up on Ryan ",
+          "zh": "悄悄靠近 Ryan "
+        },
+        {
+          "color": "§a§l",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "park_objective_check_melody",
+      "context": "2026-11-02 公园实测；社区 Wiki 仅作语境核实",
+      "raw": "§fObjective: §eCheck on Melody §a§l%s",
+      "text": "Objective: Check on Melody %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "icon",
+          "desc": "实时方向箭头",
+          "example": "⬆"
+        }
+      ],
+      "translate": true,
+      "zh": "目标: 看看 Melody 是否平安 %s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Objective: ",
+          "zh": "目标: "
+        },
+        {
+          "color": "§e",
+          "text": "Check on Melody ",
+          "zh": "看看 Melody 是否平安 "
+        },
+        {
+          "color": "§a§l",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "park_objective_help_molbert",
+      "context": "2026-11-02 公园实测；社区 Wiki 仅作语境核实",
+      "raw": "§fObjective: §eHelp Molbert §a§l%s",
+      "text": "Objective: Help Molbert %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "icon",
+          "desc": "实时方向箭头",
+          "example": "⬆"
+        }
+      ],
+      "translate": true,
+      "zh": "目标: 帮助 Molbert %s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Objective: ",
+          "zh": "目标: "
+        },
+        {
+          "color": "§e",
+          "text": "Help Molbert ",
+          "zh": "帮助 Molbert "
+        },
+        {
+          "color": "§a§l",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "park_objective_trial",
+      "context": "2026-11-02 公园实测；社区 Wiki 仅作语境核实",
+      "raw": "§fObjective: §eComplete Trial of Fire %1$s §a§l%2$s",
+      "text": "Objective: Complete Trial of Fire %1$s %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "tier",
+          "desc": "试炼等级",
+          "example": "I"
+        },
+        {
+          "token": "%2$s",
+          "type": "icon",
+          "desc": "实时方向箭头",
+          "example": "⬆"
+        }
+      ],
+      "translate": true,
+      "zh": "目标: 完成烈焰试炼 %1$s %2$s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Objective: ",
+          "zh": "目标: "
+        },
+        {
+          "color": "§e",
+          "text": "Complete Trial of Fire %1$s ",
+          "zh": "完成烈焰试炼 %1$s "
+        },
+        {
+          "color": "§a§l",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ]
+    },
+    {
+      "id": "park_objective_60",
+      "context": "2026-11-02 公园实测；社区 Wiki 仅作语境核实",
+      "raw": "§fObjective: §eLeave the area",
+      "text": "Objective: Leave the area",
+      "placeholders": [],
+      "translate": true,
+      "zh": "目标: 离开这片区域",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Objective: ",
+          "zh": "目标: "
+        },
+        {
+          "color": "§e",
+          "text": "Leave the area",
+          "zh": "离开这片区域"
+        }
+      ]
+    },
+    {
+      "id": "park_objective_61",
+      "context": "2026-11-02 公园实测；社区 Wiki 仅作语境核实",
+      "raw": "§fObjective: §ePlace Mole traps",
+      "text": "Objective: Place Mole traps",
+      "placeholders": [],
+      "translate": true,
+      "zh": "目标: 放置鼹鼠陷阱",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Objective: ",
+          "zh": "目标: "
+        },
+        {
+          "color": "§e",
+          "text": "Place Mole traps",
+          "zh": "放置鼹鼠陷阱"
+        }
+      ]
+    },
+    {
+      "id": "park_objective_62",
+      "context": "2026-11-02 公园实测；社区 Wiki 仅作语境核实",
+      "raw": "§fObjective: §eLeave the area again",
+      "text": "Objective: Leave the area again",
+      "placeholders": [],
+      "translate": true,
+      "zh": "目标: 再次离开这片区域",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Objective: ",
+          "zh": "目标: "
+        },
+        {
+          "color": "§e",
+          "text": "Leave the area again",
+          "zh": "再次离开这片区域"
+        }
+      ]
+    }
+  ]
+}

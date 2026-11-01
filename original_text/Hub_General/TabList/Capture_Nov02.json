@@ -1,0 +1,58 @@
+{
+  "source": [
+    "runtime capture: SkyZH_Logs/skyzh-capture, 2026-11-02",
+    "https://hypixelskyblock.minecraft.wiki/w/Hub_Island",
+    "https://hypixelskyblock.minecraft.wiki/w/Quests",
+    "https://hypixelskyblock.minecraft.wiki/w/Museum",
+    "https://hypixelskyblock.minecraft.wiki/w/Sewer"
+  ],
+  "verified_ingame": true,
+  "source_note": "原文及颜色以 2026-11-02 实测为准;社区 Wiki 普通页面核实语境。保留实时交互样式,不在语料存储点击命令。",
+  "lines": [
+    {
+      "id": "capture_nov02_combat_0",
+      "ref": "_shared/Fragments/Starter_Capture.json#combat_skill_progress",
+      "context": "2026-11-02 实测; TabList / Tab_List"
+    },
+    {
+      "id": "capture_nov02_weakness_i_10s",
+      "context": "2026-11-02 实测; TabList / Tab_List",
+      "raw": "§7Weakness %1$s§r §f%2$s",
+      "text": "Weakness %1$s %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "tier",
+          "example": "I",
+          "desc": "药水等级"
+        },
+        {
+          "token": "%2$s",
+          "type": "duration",
+          "example": "10s",
+          "desc": "剩余时长"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "虚弱 %1$s %2$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Weakness %1$s",
+          "zh": "虚弱 %1$s"
+        },
+        {
+          "color": "§r",
+          "text": " ",
+          "zh": " "
+        },
+        {
+          "color": "§f",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ]
+    }
+  ]
+}

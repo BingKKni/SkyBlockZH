@@ -3,6 +3,15 @@
   "verified_ingame": true,
   "lines": [
     {
+      "id": "storm_chestplate_name",
+      "context": "博物馆藏品的胸甲整名",
+      "text": "Storm's Chestplate",
+      "placeholders": [],
+      "gloss": "Storm 为人物名保留；Chestplate 为通名。博物馆浮字由既有物品目录路径复用，不在记录中写死排名、重铸或星级。来源 https://hypixelskyblock.minecraft.wiki/w/Storm%27s_Armor。",
+      "translate": true,
+      "zh": "Storm 的胸甲"
+    },
+    {
       "id": "captured_name_d983d1571f03",
       "context": "Bazaar_Oddities",
       "raw": "§7Enchanted Lush Berberis",
@@ -2978,18 +2987,20 @@
     },
     {
       "id": "captured_name_621bc007f1e5",
-      "context": "Ender_Chest_4_5",
-      "raw": "§fCampfire Initiate Badge I",
-      "text": "Campfire Initiate Badge I",
-      "placeholders": [],
-      "gloss": "本轮菜单或物品名。品牌、人名保留,材料与品类沿用既有词表;不使用单名词宽模板。",
+      "context": "篝火新人徽章的多级饰品名",
+      "raw": "§fCampfire Initiate Badge %s",
+      "text": "Campfire Initiate Badge %s",
+      "placeholders": [
+        { "token": "%s", "type": "tier", "example": "III", "desc": "徽章等级" }
+      ],
+      "gloss": "复用既有篝火新人徽章译名；仅泛化罗马数字等级。来源 https://hypixelskyblock.minecraft.wiki/w/Campfire_Badge。",
       "translate": true,
-      "zh": "篝火新人徽章 I",
+      "zh": "篝火新人徽章 %s",
       "segments": [
         {
           "color": "§f",
-          "text": "Campfire Initiate Badge I",
-          "zh": "篝火新人徽章 I"
+          "text": "Campfire Initiate Badge %s",
+          "zh": "篝火新人徽章 %s"
         }
       ]
     },

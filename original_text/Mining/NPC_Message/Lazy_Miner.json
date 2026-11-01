@@ -111,23 +111,65 @@
     },
     {
       "id": "lazy_miner_the_deep_caverns_are_full",
-      "context": "",
-      "raw": "§fThe Deep Caverns are full of strange creatures and expensive treasures.",
+      "context": "；2026-11-02 采集核实颜色，保持实时高亮。",
+      "raw": "§fThe §bDeep Caverns §fare full of strange creatures and expensive treasures.",
       "text": "The Deep Caverns are full of strange creatures and expensive treasures.",
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "深层洞穴里满是奇怪的生物和值钱的宝藏。"
+      "zh": "深层洞穴里满是奇怪的生物和值钱的宝藏。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "The ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§b",
+          "text": "Deep Caverns ",
+          "zh": "深层洞穴"
+        },
+        {
+          "color": "§f",
+          "text": "are full of strange creatures and expensive treasures.",
+          "zh": "里满是奇怪的生物和值钱的宝藏。"
+        }
+      ]
     },
     {
       "id": "lazy_miner_reach_mining_level_v_to",
-      "context": "",
-      "raw": "§fReach Mining Level V to gain access!",
-      "text": "Reach Mining Level V to gain access!",
-      "placeholders": [],
+      "context": "；2026-11-02 采集核实颜色，保持实时高亮。",
+      "raw": "§fReach §aMining Level %s §fto gain access!",
+      "text": "Reach Mining Level %s to gain access!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "tier",
+          "desc": "解锁所需挖矿等级",
+          "example": "V"
+        }
+      ],
       "gloss": "",
       "translate": true,
-      "zh": "挖矿等级到 5 级就能进去了!"
+      "zh": "达到挖矿等级 %s就能进去了!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Reach ",
+          "zh": "达到"
+        },
+        {
+          "color": "§a",
+          "text": "Mining Level %s ",
+          "zh": "挖矿等级 %s"
+        },
+        {
+          "color": "§f",
+          "text": "to gain access!",
+          "zh": "就能进去了!"
+        }
+      ]
     },
     {
       "id": "lazy_miner_have_you_spelunked_the_deep",

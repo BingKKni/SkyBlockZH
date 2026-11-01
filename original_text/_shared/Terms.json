@@ -43,6 +43,38 @@
   "reforge_note": "reforge 类型不在 applies_to_types 里:它只给 TooltipTranslator(物品名首词)和 guide_item_name 占位符的「重铸名 + 已收录物品名」拆分用,不会替换任何占位符捕到的值。",
   "skyblock_month_note": "日历标题等日期行里的空岛月份单独使用 skyblock_month:Early/(无前缀)/Late × 春夏秋冬十二个月按顺序译成「1 月」到「12 月」(用户 2026-09-10 拍板,以月份代替季节),不改变 Winter 作为海洋生物分类时的寒冬译名。",
   "terms": [
+    {"en":"Enchanted Brown Mushroom","zh":"附魔棕色蘑菇","types":["category_name"],"note":"实测害虫掉落的完整物品值，复用既有材料译名。"},
+    {"en":"Enchanted Red Mushroom","zh":"附魔红色蘑菇","types":["category_name"],"note":"实测害虫掉落的完整物品值，复用既有材料译名。"},
+    {"en":"Enchanted Sugar","zh":"附魔糖","types":["category_name"],"note":"实测蚊子掉落的完整物品值。"},
+    {"en":"Poseidon","zh":"波塞冬","types":["category_name"],"source":"https://hypixelskyblock.minecraft.wiki/w/Bingo/Events/2026","note":"宾果社区目标名，不用于 NPC 人名。"},
+    {"en":"Lucky Looter","zh":"幸运寻宝者","types":["category_name"],"source":"https://hypixelskyblock.minecraft.wiki/w/Bingo/Events/2026"},
+    {"en":"Cave Commodity","zh":"洞穴珍货","types":["category_name"],"source":"https://hypixelskyblock.minecraft.wiki/w/Bingo/Events/2026"},
+    {"en":"Spruce Leaves","zh":"云杉树叶","types":["category_name"],"note":"原版材料，供兑换奖励模板整值查表。"},
+    {"en":"Acacia Leaves","zh":"金合欢树叶","types":["category_name"],"note":"原版材料，供兑换奖励模板整值查表。"},
+    {"en":"Jungle Leaves","zh":"丛林树叶","types":["category_name"],"note":"原版材料，供兑换奖励模板整值查表。"},
+    {"en":"Dark Oak Leaves","zh":"深色橡树树叶","types":["category_name"],"note":"原版材料，供兑换奖励模板整值查表。"},
+    {"en":"Vines","zh":"藤蔓","types":["category_name"],"note":"原版材料，供兑换奖励模板整值查表。"},
+    {"en":"Lumberjack","zh":"伐木工","types":["category_name"],"note":"实测 Bingo 目标名，复用已有物品面译名。"},
+    {"en":"Potion Affinity","zh":"药水亲和","types":["category_name"],"source":"https://hypixelskyblock.minecraft.wiki/w/Potion_Affinity_Talisman","note":"配方名称前缀，复用已有饰品译名。"},
+    {"en":"Maddox the Slayer","zh":"猎手 Maddox","types":["raw"],"source":"https://hypixelskyblock.minecraft.wiki/w/Maddox_the_Slayer","note":"经验来源标签，只翻译职务，保留人名。"},
+    {"en":"Skill Average","zh":"技能平均等级","types":["category_name"],"source":"https://hypixelskyblock.minecraft.wiki/w/Bingo/Events/2026"},
+    {"en":"Farm Merchant's Dwelling","zh":"农场商人住所","types":["category_name"],"source":"https://hypixelskyblock.minecraft.wiki/w/City_Projects"},
+    {"en":"Bartender's Brewery","zh":"酒保酿酒坊","types":["category_name"],"source":"https://hypixelskyblock.minecraft.wiki/w/City_Projects"},
+    {"en":"Blacksmith Workspace","zh":"铁匠工作间","types":["category_name"],"source":"https://hypixelskyblock.minecraft.wiki/w/City_Projects"},
+    {"en":"Weaponsmith Workshop","zh":"武器锻造工坊","types":["category_name"],"source":"https://hypixelskyblock.minecraft.wiki/w/City_Projects"},
+    {"en":"Repair Wizard Portal","zh":"修复巫师传送门","types":["category_name"],"source":"https://hypixelskyblock.minecraft.wiki/w/City_Projects"},
+    {"en":"Pet Care Expansion","zh":"宠物护理所扩建","types":["category_name"],"source":"https://hypixelskyblock.minecraft.wiki/w/City_Projects"},
+    {"en":"Community Center Refurbishment","zh":"社区中心翻新","types":["category_name"],"source":"https://hypixelskyblock.minecraft.wiki/w/City_Projects"},
+    {"en":"Lazy Miner","zh":"懒惰矿工","types":["category_name"],"source":"https://hypixelskyblock.minecraft.wiki/w/Lazy_Miner","note":"新手任务的职务名，沿用对白中的既定译名。"},
+    {"en":"Lapis Miner","zh":"青金石矿工","types":["category_name"],"source":"https://hypixelskyblock.minecraft.wiki/w/Lapis_Miner"},
+    {"en":"Lift Operator","zh":"升降梯管理员","types":["category_name"],"source":"https://hypixelskyblock.minecraft.wiki/w/Deep_Caverns"},
+    {"en":"Sneaky Creepers","zh":"潜行苦力怕","types":["mob_name"],"source":"https://hypixelskyblock.minecraft.wiki/w/Deep_Caverns","note":"任务中的复数整值，复用单数生物译名。"},
+    {"en":"Lapis Zombies","zh":"青金石僵尸","types":["mob_name"],"source":"https://hypixelskyblock.minecraft.wiki/w/Lapis_Quarry","note":"任务中的复数整值，复用单数生物译名。"},
+    {"en":"Nothing","zh":"完全不使用","types":["raw","category_name"],"source":"https://hypixelskyblock.minecraft.wiki/w/Dungeon_Hub_Race","note":"竞速规则的简写，与 Nothing at all 同义。"},
+    {"en":"Spirit Cave","zh":"幽魂洞窟","types":["location_name"],"source":"https://hypixelskyblock.minecraft.wiki/w/Spirit_Cave","note":"公园丛林岛下的狼类洞窟；采集原文及实时颜色为准。"},
+    {"en":"Sewer","zh":"下水道","types":["location_name"],"source":"https://hypixelskyblock.minecraft.wiki/w/Sewer","note":"大厅村庄地下区域。"},
+    {"en":"Rose's End","zh":"玫瑰尽头","types":["location_name"],"source":"https://hypixelskyblock.minecraft.wiki/w/Rose%27s_End","note":"裂隙山巅花盆跑酷区域，沿用 Rose's End Flower Pot 的既定译名。"},
+    {"en":"The Park - Spawn","zh":"公园 - 出生点","types":["raw","location_name"],"source":"https://hypixelskyblock.minecraft.wiki/w/The_Park","note":"实测探索经验来源标签，复用公园译名。"},
     {"en":"ASHEN","zh":"灰烬","types":["category_name"],"note":"实测匕首调谐形态；沿用 Ashen 的灰烬语义，与附魔隔离。"},
     {"en":"AURIC","zh":"鎏金","types":["category_name"],"note":"实测匕首调谐形态。"},
     {"en":"Crystal","zh":"水晶","types":["category_name"],"note":"实测匕首调谐形态。"},
@@ -2756,7 +2788,8 @@
       "en": "Anything",
       "zh": "不限制",
       "types": [
-        "raw"
+        "raw",
+        "category_name"
       ],
       "note": "Guildford 竞速规则：允许使用技能、末影珍珠和抓钩。"
     },
@@ -2764,7 +2797,8 @@
       "en": "No Pearls",
       "zh": "禁用末影珍珠",
       "types": [
-        "raw"
+        "raw",
+        "category_name"
       ],
       "note": "Guildford 竞速规则。"
     },
@@ -2772,7 +2806,8 @@
       "en": "No Abilities",
       "zh": "禁用技能",
       "types": [
-        "raw"
+        "raw",
+        "category_name"
       ],
       "note": "Guildford 竞速规则。"
     },
@@ -2780,7 +2815,8 @@
       "en": "Nothing at all",
       "zh": "完全不使用",
       "types": [
-        "raw"
+        "raw",
+        "category_name"
       ],
       "note": "Guildford 竞速规则：技能、末影珍珠和抓钩均不可使用。"
     },
@@ -2788,7 +2824,8 @@
       "en": "Runback",
       "zh": "需要返回起点",
       "types": [
-        "raw"
+        "raw",
+        "category_name"
       ],
       "note": "Guildford 竞速抵达终点后还需跑回起点。"
     },
@@ -2796,7 +2833,8 @@
       "en": "No Runback",
       "zh": "无需返回起点",
       "types": [
-        "raw"
+        "raw",
+        "category_name"
       ],
       "note": "Guildford 竞速抵达终点即完成。"
     },
@@ -3995,14 +4033,16 @@
       "en": "Artist's Abode",
       "zh": "艺术家居所",
       "types": [
-        "location_name"
+        "location_name",
+        "category_name"
       ]
     },
     {
       "en": "Fishing Outpost",
       "zh": "钓鱼前哨",
       "types": [
-        "location_name"
+        "location_name",
+        "category_name"
       ]
     },
     {
@@ -8558,7 +8598,8 @@
       "en": "Builder's House",
       "zh": "建筑师之家",
       "types": [
-        "location_name"
+        "location_name",
+        "category_name"
       ],
       "note": "地点名。2026-09-04 实机采集中的动态值。"
     },

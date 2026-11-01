@@ -347,11 +347,17 @@
     {
       "id": "farmhand_objective_craft",
       "context": "任务目标为制作小麦小人期间",
+      "raw": "Craft a §aWheat Minion§r!",
       "text": "Craft a Wheat Minion!",
       "placeholders": [],
-      "gloss": "",
+      "gloss": "可点击物品名独立分段，沿用服务器实时配方交互。",
       "translate": true,
-      "zh": "做一台小麦小人!"
+      "zh": "做一台小麦小人!",
+      "segments": [
+        { "color": "", "text": "Craft a ", "zh": "做一台" },
+        { "color": "§a", "text": "Wheat Minion", "zh": "小麦小人" },
+        { "color": "§r", "text": "!", "zh": "!" }
+      ]
     },
     {
       "id": "farmhand_objective_collect_crops",

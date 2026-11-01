@@ -18,26 +18,38 @@
     {
       "id": "susan_level_ten",
       "context": "Before reaching SkyBlock Level 10",
-      "raw": "§fYou look like you're still getting the hang of things. Come back when you're §aSkyBlock Level 10§f!",
-      "text": "You look like you're still getting the hang of things. Come back when you're SkyBlock Level 10!",
-      "placeholders": [],
+      "raw": "§fYou look like you're still getting the hang of things. Come back when you're §aSkyBlock Level §r%s§f!",
+      "text": "You look like you're still getting the hang of things. Come back when you're SkyBlock Level %s!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "10",
+          "desc": "要求的 SkyBlock 等级"
+        }
+      ],
       "gloss": "",
       "translate": true,
-      "zh": "看样子你还在熟悉这里。等你达到 SkyBlock 等级 10 级再来吧!",
+      "zh": "看样子你还在熟悉这里。等你的 SkyBlock 等级达到 %s 级再来吧!",
       "fetched_at": "2026-10-04T22:21:51.943906+00:00",
       "last_edited": "This page was last edited on 24 August 2026, at 05:30.",
       "source": "https://hypixelskyblock.minecraft.wiki/w/Susan",
-      "verified_ingame": false,
+      "verified_ingame": true,
       "segments": [
         {
           "color": "§f",
           "text": "You look like you're still getting the hang of things. Come back when you're ",
-          "zh": "看样子你还在熟悉这里。等你达到 "
+          "zh": "看样子你还在熟悉这里。等你的"
         },
         {
           "color": "§a",
-          "text": "SkyBlock Level 10",
-          "zh": "SkyBlock 等级 10 级"
+          "text": "SkyBlock Level ",
+          "zh": "SkyBlock 等级达到 "
+        },
+        {
+          "color": "§r",
+          "text": "%s",
+          "zh": "%s 级"
         },
         {
           "color": "§f",
