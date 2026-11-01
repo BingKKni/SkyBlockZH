@@ -1,7 +1,7 @@
 package io.github.bingkkni.skyzh;
 
 import io.github.bingkkni.skyzh.capture.TextCapture;
-import io.github.bingkkni.skyzh.gui.SkyZHWelcomeScreen;
+import io.github.bingkkni.skyzh.gui.SkyZHConfigScreen;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -25,7 +25,7 @@ public final class SkyZHCommand {
 		}
 
 		switch (parsed.sub()) {
-			case "" -> SkyZHWelcomeScreen.openFromCommand();
+			case "" -> SkyZHConfigScreen.openFromCommand();
 			case "on" -> plainPower(parsed.alias(), true, parsed.argument(), parsed.state());
 			case "off" -> plainPower(parsed.alias(), false, parsed.argument(), parsed.state());
 			case "switch" -> flip(parsed.alias(), parsed.argument(), parsed.state());

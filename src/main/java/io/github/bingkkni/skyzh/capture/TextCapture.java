@@ -2,6 +2,7 @@ package io.github.bingkkni.skyzh.capture;
 
 import io.github.bingkkni.skyzh.SkyZHConfig;
 import io.github.bingkkni.skyzh.compat.HypixelApi;
+import io.github.bingkkni.skyzh.platform.ServerSignData;
 import io.github.bingkkni.skyzh.text.ChatTranslation;
 import io.github.bingkkni.skyzh.text.LineShape;
 import io.github.bingkkni.skyzh.text.LoreTranslation;
@@ -22,7 +23,11 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.ChatComponent;
 import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtOps;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -30,6 +35,7 @@ import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemLore;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -124,6 +130,8 @@ public final class TextCapture {
 	private static final Set<Integer> HOLOGRAM_ENTITIES = new LinkedHashSet<>();
 	private static ClientLevel hologramLevel;
 
+	private static final BookCandidates BOOK_CANDIDATES = new BookCandidates();
+
 	private static boolean started;
 
 	private TextCapture() {
@@ -201,6 +209,46 @@ public final class TextCapture {
 		String gameplay = placed();
 		String key = key(CaptureSurface.GUI_ITEM, name, where, snapshot.signature(), gameplay);
 		queue(CaptureSurface.GUI_ITEM, key, new CaptureStore.Item(snapshot, custom != null), name, where, gameplay);
+	}
+
+	/** Freeze server pages even before capture/identity gates open; never read the later inventory. */
+	public static void book(ItemStack stack, int containerId, int slot) {
+		Minecraft client = Minecraft.getInstance();
+		if (!client.isSameThread() || stack.isEmpty()) return;
+		bookSession(client.getConnection(), client.level);
+		BookSnapshot snapshot = BookSnapshot.of(stack, containerId, slot);
+		if (snapshot == null) return;
+		if (ready()) submitBook(snapshot);
+		else BOOK_CANDIDATES.remember(snapshot);
+	}
+
+	/** Called every tick, even outside SkyBlock or while capture is off. */
+	public static void bookSession(Object connection, ClientLevel level) {
+		BOOK_CANDIDATES.session(connection, level);
+	}
+
+	private static void submitBook(BookSnapshot snapshot) {
+		String gameplay = placed();
+		String key = key(CaptureSurface.BOOK, "Books", "", snapshot.signature(), gameplay);
+		queue(CaptureSurface.BOOK, key, new CaptureStore.Book(snapshot), "Books", "服务器书本", gameplay);
+	}
+
+	/** Decode packet NBT itself, never the mutable SignBlockEntity or its rendered text. */
+	public static void sign(BlockPos pos, BlockEntityType<?> type, CompoundTag tag) {
+		if (!ready() || tag == null || !ServerSignData.isSign(type)) return;
+		var level = Minecraft.getInstance().level;
+		if (level == null) return;
+		var ops = level.registryAccess().createSerializationContext(NbtOps.INSTANCE);
+		for (String side : List.of("front", "back")) {
+			SignSnapshot.of(level.dimension().identifier().toString(), pos,
+				BuiltInRegistries.BLOCK_ENTITY_TYPE.getKey(type).toString(), side, tag, ops).ifPresent(snapshot -> {
+				if (snapshot.text().plain().isBlank()) return;
+				String gameplay = placed();
+				String key = key(CaptureSurface.SIGN, "Signs", "", snapshot.json().toString(), gameplay);
+				queue(CaptureSurface.SIGN, key, new CaptureStore.Repeat(new CaptureStore.Sign(snapshot)),
+					"Signs", "服务器告示牌", gameplay);
+			});
+		}
 	}
 
 	/** The production lore capture path, exposed without client state for packet-content regression tests. */
@@ -559,6 +607,9 @@ public final class TextCapture {
 	 * which on a private island can be minutes.
 	 */
 	public static void tick() {
+		if (!BOOK_CANDIDATES.isEmpty()) {
+			for (BookSnapshot snapshot : BOOK_CANDIDATES.take(ready())) submitBook(snapshot);
+		}
 		if (HELD.size() == 0) {
 			return;
 		}
@@ -652,6 +703,7 @@ public final class TextCapture {
 	 * what it has collected, not the fact that it is running.
 	 */
 	public static void clear() throws IOException {
+		BOOK_CANDIDATES.clear();
 		HELD.clear();
 		HOLOGRAM_ENTITIES.clear();
 		SEEN.clear();

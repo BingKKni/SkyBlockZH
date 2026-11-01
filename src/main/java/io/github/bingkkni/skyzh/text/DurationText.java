@@ -44,10 +44,10 @@ public final class DurationText {
 			// Ordinary sentence punctuation is compact; HUD icons and following words keep spacing.
 			boolean punctuation = suffixStart < styled.length()
 				&& ",.!?;:，。！？；：、…()[]{}（）【】《》「」『』“”‘’\"'".indexOf(styled.plain().charAt(suffixStart)) >= 0;
-			if (!remaining || !(punctuation || styled.plain().substring(groups.end()).isBlank())) {
-				prefixEnd = groups.start();
+			result.append(styled.slice(cursor, groups.start()));
+			if (remaining && prefixEnd == groups.start()) {
+				result.append(Component.literal(" ").setStyle(styled.styleAt(groups.start())));
 			}
-			result.append(styled.slice(cursor, prefixEnd));
 			var spans = new java.util.ArrayList<int[]>();
 			boolean hours = false;
 			while (parts.find()) {
@@ -72,6 +72,9 @@ public final class DurationText {
 				int unitStart = groups.start() + parts.start(2);
 				int unitEnd = groups.start() + parts.end(2);
 				if (count > 1 && parts.group(2).equals("分钟")) unitEnd--;
+				if (remaining && count == 1) {
+					result.append(Component.literal(" ").setStyle(styled.styleAt(unitStart)));
+				}
 				result.append(styled.slice(unitStart, unitEnd));
 				index++;
 			}

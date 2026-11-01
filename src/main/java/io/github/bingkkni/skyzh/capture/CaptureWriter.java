@@ -186,6 +186,13 @@ public final class CaptureWriter {
 			capture.add("style_runs", LegacyText.styleRuns(rendered.encoded().runs()));
 		}
 
+		if (!line.serverContexts().isEmpty()) {
+			JsonArray contexts = new JsonArray();
+			line.serverContexts().forEach(contexts::add);
+			capture.add(line.surface() == CaptureSurface.BOOK ? "book_contexts" : "sign_contexts", contexts);
+			capture.addProperty("server_contexts_limited", line.serverContextsLimited());
+		}
+
 		if (!line.loreContexts().isEmpty()) {
 			JsonArray contexts = new JsonArray();
 			line.loreContexts().forEach(context -> contexts.add(context.json()));

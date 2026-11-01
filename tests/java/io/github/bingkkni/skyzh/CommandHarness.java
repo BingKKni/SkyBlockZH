@@ -116,7 +116,7 @@ public final class CommandHarness {
 	}
 
 	private static void checkQueuedSettingsScreen() throws Exception {
-		Class<?> screen = io.github.bingkkni.skyzh.gui.SkyZHWelcomeScreen.class;
+		Class<?> screen = io.github.bingkkni.skyzh.gui.SkyZHConfigScreen.class;
 		var clear = screen.getDeclaredMethod("clearCommandScreenRequest");
 		var queued = screen.getDeclaredMethod("commandScreenRequested");
 		clear.setAccessible(true);

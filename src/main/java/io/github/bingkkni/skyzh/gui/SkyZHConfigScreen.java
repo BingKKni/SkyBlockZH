@@ -1,31 +1,44 @@
 package io.github.bingkkni.skyzh.gui;
 
 import io.github.bingkkni.skyzh.DisplayPriority;
+import io.github.bingkkni.skyzh.HypixelServer;
 import io.github.bingkkni.skyzh.SkyZHConfig;
 import io.github.bingkkni.skyzh.capture.CaptureAnnouncer;
 import io.github.bingkkni.skyzh.capture.TextCapture;
 import io.github.bingkkni.skyzh.platform.ClientGui;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.AbstractWidget;
-import net.minecraft.client.gui.components.StringWidget;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.CycleButton;
+import net.minecraft.client.gui.components.MultiLineTextWidget;
+import net.minecraft.client.gui.components.ScrollableLayout;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.layouts.FrameLayout;
 import net.minecraft.client.gui.layouts.GridLayout;
+import net.minecraft.client.gui.layouts.LinearLayout;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.ClickEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.ARGB;
 
-/** The complete settings screen reached through Mod Menu. */
+/** The complete settings screen shared by Mod Menu, commands and first-run guidance. */
 public class SkyZHConfigScreen extends Screen {
 	private static final int SMALL_WIDTH = 150;
-	private static final int WIDE_WIDTH = 306;
 	private static final int HEIGHT = 20;
 	private static final int SPACING = 6;
+
+	private static final URI GITHUB_URI = URI.create("https://github.com/BingKKni/SkyBlockZH");
+
+	/** Consumed on the next tick, after ChatScreen has closed itself. */
+	private static boolean commandScreenRequested;
+	private static LocalPlayer commandScreenPlayer;
 
 	private final Screen parent;
 	private final SkyZHConfig config = SkyZHConfig.get();
@@ -37,35 +50,86 @@ public class SkyZHConfigScreen extends Screen {
 		this.parent = parent;
 	}
 
+	/**
+	 * Queues the settings screen for the next client tick.
+	 *
+	 * <p>{@code ChatScreen} closes itself after {@code sendCommand} returns. Opening a screen from the
+	 * command injection therefore loses to that close in the same call stack; consuming this request
+	 * from the tick hook puts the settings screen up after the chat screen is gone.
+	 */
+	public static void openFromCommand() {
+		Minecraft minecraft = Minecraft.getInstance();
+		commandScreenPlayer = minecraft == null ? null : minecraft.player;
+		commandScreenRequested = true;
+	}
+
+	/** Runs once per client tick after the command input path has completed. */
+	public static void tick(Minecraft minecraft) {
+		if (commandScreenRequested) {
+			LocalPlayer requestedPlayer = commandScreenPlayer;
+			clearCommandScreenRequest();
+			if (requestedPlayer != null && minecraft.player == requestedPlayer && minecraft.level != null) {
+				ClientGui.setScreen(minecraft, new SkyZHConfigScreen(null));
+				return;
+			}
+		}
+
+		maybeShowFirstRun(minecraft);
+	}
+
+	/** Opens the settings screen only after an in-world Hypixel connection is verified. */
+	public static void maybeShowFirstRun(Minecraft minecraft) {
+		SkyZHConfig config = SkyZHConfig.get();
+		if (config.welcomeShown || minecraft.player == null || minecraft.level == null
+			|| !HypixelServer.isHypixel() || ClientGui.screen(minecraft) != null) {
+			return;
+		}
+
+		// Record it before opening the modal so reconnects and an Esc close do not repeat the first-run prompt.
+		config.welcomeShown = true;
+		config.save();
+		ClientGui.setScreen(minecraft, new SkyZHConfigScreen(null));
+	}
+
 	@Override
 	protected void init() {
 		this.dependentToggles.clear();
-		GridLayout grid = new GridLayout().spacing(SPACING);
+		int buttonWidth = Math.min(SMALL_WIDTH, Math.max(1, (this.width - 44 - SPACING) / 2));
+		int contentWidth = buttonWidth * 2 + SPACING;
+		LinearLayout content = LinearLayout.vertical().spacing(SPACING);
+		content.defaultCellSetting().alignHorizontallyCenter();
+		content.addChild(centeredText(Component.translatable("skyzh.welcome.title"), contentWidth));
+		MultiLineTextWidget issues = centeredText(issueText(), contentWidth);
+		issues.active = true;
+		issues.setComponentClickHandler(style -> defaultHandleClickEvent(style.getClickEvent(), this.minecraft, this));
+		content.addChild(issues);
+		content.addChild(centeredText(Component.translatable("skyzh.welcome.choose"), contentWidth));
+		GridLayout grid = content.addChild(new GridLayout().spacing(SPACING));
+		grid.defaultCellSetting().alignHorizontallyCenter();
 
-		grid.addChild(new StringWidget(WIDE_WIDTH, 12,
-			Component.translatable("skyzh.options.general"), this.font), 0, 0, 1, 2);
-		grid.addChild(toggle("enabled", SMALL_WIDTH, this.config.enabled, value -> {
+		grid.addChild(centeredText(Component.translatable("skyzh.options.general"), contentWidth), 0, 0, 1, 2);
+		grid.addChild(toggle("enabled", buttonWidth, this.config.enabled, value -> {
 			this.config.enabled = value;
 			updateDependentButtons();
 		}), 1, 0);
 		grid.addChild(
-			dependentToggle("updateCheck", SMALL_WIDTH, this.config.updateCheck, value -> this.config.updateCheck = value),
+			dependentToggle("updateCheck", buttonWidth, this.config.updateCheck, value -> this.config.updateCheck = value),
 			1, 1
 		);
 		grid.addChild(
-			dependentToggle("translateSkyBlockName", SMALL_WIDTH, this.config.translateSkyBlockName,
+			dependentToggle("translateSkyBlockName", buttonWidth, this.config.translateSkyBlockName,
 				value -> this.config.translateSkyBlockName = value),
 			2, 0
 		);
 		grid.addChild(
-			dependentToggle("originalTips", SMALL_WIDTH, this.config.originalTips, value -> this.config.originalTips = value),
+			dependentToggle("originalTips", buttonWidth, this.config.originalTips, value -> this.config.originalTips = value),
 			2, 1
 		);
 		CycleButton<DisplayPriority> priority = CycleButton.<DisplayPriority>builder(
 			value -> Component.translatable("skyzh.priority." + value.key()), this.config.displayPriority)
 			.withValues(DisplayPriority.values())
 			.withTooltip(value -> Tooltip.create(Component.translatable("skyzh.option.displayPriority.tooltip")))
-			.create(0, 0, SMALL_WIDTH, HEIGHT, Component.translatable("skyzh.option.displayPriority"), (button, value) -> {
+			.create(0, 0, buttonWidth, HEIGHT, Component.translatable("skyzh.option.displayPriority"), (button, value) -> {
 				this.config.displayPriority = value;
 				SkyZHConfig.bumpGeneration();
 				button.setMessage(priorityLabel(value));
@@ -73,40 +137,55 @@ public class SkyZHConfigScreen extends Screen {
 		priority.setMessage(priorityLabel(this.config.displayPriority));
 		this.dependentToggles.add(new DependentToggle(priority, "displayPriority"));
 		grid.addChild(priority, 3, 0);
-		CycleButton<Boolean> itemNames = toggle("translateItemNames", SMALL_WIDTH, true, value -> {});
+		CycleButton<Boolean> itemNames = toggle("translateItemNames", buttonWidth, true, value -> {});
 		itemNames.active = false;
 		grid.addChild(itemNames, 3, 1);
-		grid.addChild(new StringWidget(WIDE_WIDTH, 20,
-			Component.translatable("skyzh.options.developer"), this.font), 4, 0, 1, 2);
+		grid.addChild(centeredText(Component.translatable("skyzh.options.developer"), contentWidth), 4, 0, 1, 2);
 		// Capture writes files rather than changing rendered text, so it retains a full row of its own.
 		grid.addChild(
-			dependentToggle("captureUntranslated", WIDE_WIDTH, this.config.captureUntranslated,
+			dependentToggle("captureUntranslated", contentWidth, this.config.captureUntranslated,
 				value -> this.config.captureUntranslated = value),
 			5, 0, 1, 2
 		);
 		grid.addChild(
-			dependentToggle("captureNotifications", SMALL_WIDTH, this.config.captureNotifications, value -> {
+			dependentToggle("captureNotifications", buttonWidth, this.config.captureNotifications, value -> {
 				this.config.captureNotifications = value;
 				CaptureAnnouncer.clear();
 			}),
 			6, 0
 		);
 		grid.addChild(
-			dependentToggle("autoClearCapture", SMALL_WIDTH, this.config.autoClearCapture,
+			dependentToggle("autoClearCapture", buttonWidth, this.config.autoClearCapture,
 				value -> this.config.autoClearCapture = value),
 			6, 1
 		);
 
-		grid.arrangeElements();
-		FrameLayout.centerInRectangle(grid, 0, 34, this.width, Math.max(168, this.height - 74));
-		grid.visitWidgets(this::addRenderableWidget);
+		// Keep all settings reachable when the welcome text wraps or the window is short.
+		ScrollableLayout scroll = new ScrollableLayout(this.minecraft, content, Math.max(1, this.height - 78));
+		scroll.arrangeElements();
+		FrameLayout.centerInRectangle(scroll, 0, 38, this.width, scroll.getHeight());
+		scroll.visitWidgets(this::addRenderableWidget);
 		updateDependentButtons();
 
 		addRenderableWidget(
 			Button.builder(Component.translatable("gui.done"), button -> onClose())
-				.bounds((this.width - SMALL_WIDTH) / 2, grid.getY() + grid.getHeight() + SPACING * 2, SMALL_WIDTH, HEIGHT)
+				.bounds((this.width - buttonWidth) / 2, this.height - 28, buttonWidth, HEIGHT)
 				.build()
 		);
+	}
+
+	private MultiLineTextWidget centeredText(Component text, int width) {
+		return new MultiLineTextWidget(text, this.font).setMaxWidth(width).setCentered(true);
+	}
+
+	private Component issueText() {
+		return Component.translatable("skyzh.welcome.issue.before")
+			.append(Component.literal("[Github]").withStyle(style -> style
+				.withColor(ChatFormatting.AQUA)
+				.withUnderlined(true)
+				.withClickEvent(new ClickEvent.OpenUrl(GITHUB_URI))
+			))
+			.append(Component.translatable("skyzh.welcome.issue.after"));
 	}
 
 	private CycleButton<Boolean> dependentToggle(String key, int width, boolean initial, Consumer<Boolean> sink) {
@@ -162,5 +241,14 @@ public class SkyZHConfigScreen extends Screen {
 	}
 
 	private record DependentToggle(AbstractWidget button, String key) {
+	}
+
+	static boolean commandScreenRequested() {
+		return commandScreenRequested;
+	}
+
+	static void clearCommandScreenRequest() {
+		commandScreenRequested = false;
+		commandScreenPlayer = null;
 	}
 }

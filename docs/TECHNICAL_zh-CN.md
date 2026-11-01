@@ -115,13 +115,13 @@ Mod Menu 是软依赖。没装也能用，改 `config/skyzh.json` 即可，文�
 | `updateCheck` | 开 | 在客户端启动时向 GitHub Releases 请求一次最新版本元数据；不下载文件、不上传玩家或游戏数据。总开关关闭时不请求；可用 `/skyzh updatecheck [on/off]`（或 `/skyblockzh`）调整 |
 | `translateSkyBlockName` | 开 | 把 SkyBlock 译作「空岛生存」。复合词里自动用简称并修正空格：`你的 SkyBlock 等级` → `你的空岛等级`，`+150 SkyBlock XP` → `+150 空岛经验`；独立出现仍用全称。尚未翻译的英文句子里也生效，但**有条件**，见下面「在哪替换、在哪不替换」 |
 | `originalTips` | 开 | 「翻译提示」：GUI 中已翻译的真实物品在 Lore 末尾提示当前原文热键；服务器聊天提到符合条件的已翻译物品时提醒，间隔至少 5 分钟，可点击禁用。`ItemNames` 使用内置离线 NEU 名称目录，排除菜单、状态与未知名称。`/skyzh switch tip on/off`（或 `/skyblockzh`）控制提示，不影响原文切换键。旧 `showOriginal` 不再读取或保存，缺少新字段时默认开；普通显示不再追加括号原文 |
-| `helpImproveTranslation` | 开 | 预留的“帮助改进翻译”状态；开发者服务器报告功能暂不可用，界面中不可点击 |
+| `helpImproveTranslation` | 开 | 旧配置兼容的预留状态，当前无对应界面控件或报告功能 |
 | `captureUntranslated` | **关** | 给补语料的人用的开发者开关，会往硬盘写文件，普通游玩请保持关闭。见下面「运行时采集」 |
 | `captureNotifications` | 开 | 采集文本提示。是否在聊天栏报告新采集的未翻译、颜色、中英混杂、排版、跨行及数值问题 |
 | `autoClearCapture` | **关** | 「自动清空已采集文本」：客户端每次启动时清空上一轮采集，不依赖进服或采集总开关；断线重连不会清空 |
 
 采集两个子选项并排放在采集总开关下方，提示在左，启动清空在右。旧配置缺少新字段时采用上表默认值。
-首次安装后，客户端首次确认进入 Hypixel 时会显示一次设置引导；`welcomeShown` 是其内部状态，改为 `false` 可在下次进入 Hypixel 时重新显示。Mod Menu 首行将总开关与启动更新检查并排；总开关关闭时其余设置不可点击，悬停会说明需先打开 Mod 功能。
+首次安装后，客户端首次确认进入 Hypixel 时会显示完整设置页；`welcomeShown` 是其内部状态，改为 `false` 可在下次进入 Hypixel 时重新显示。首次引导、`/skyzh`（或 `/skyblockzh`）与 Mod Menu 共用同一页面，顶部显示欢迎语，内容较长时可滚动。总开关与启动更新检查并排；总开关关闭时其余设置不可点击，悬停会说明需先打开 Mod 功能。
 启动清空在 Fabric 客户端初始化回调中执行一次，进入主界面前已经完成；与 `/skyzh clear` 共用
 `TextCapture.clear()`，清理内存、队列和六个采集分类里的 JSON，保留其他文件，失败写日志而不阻止启动。
 
@@ -293,6 +293,27 @@ Minecraft 本来就会把收到的每条聊天消息写进 `logs/`，这个任�
 | Tab 列表 | `handleTabListCustomisation`（页眉页脚）+ 每 10 tick 读一次玩家条目 | 同上 |
 | BossBar | `BossHealthOverlay#update` TAIL | 那张 map 只有服务器包写得进去 |
 | 动作栏 / 标题副标题 | `setActionBarText` / `setTitleText` / `setSubtitleText` HEAD | 同上 |
+
+书本与告示牌目前只采集，不做翻译。新增入口在数据包自身 `handle(ClientGamePacketListener)` 的最高优先级
+HEAD，提交采集时复用 `TextCapture.ready()` 的开关与服务器门控，以及原有后台队列、地点等待、去重和清空。
+书本从容器全量/槽位、玩家背包和光标物品包的原始 `WRITABLE_BOOK_CONTENT` / `WRITTEN_BOOK_CONTENT`
+一次冻结所有页（选 `Filterable.raw`），不等打开或翻页，因而未翻到的后页也能采全；不读取书本编辑器或客户端
+背包的后续状态。客户端线程在门控前或采集关闭时也仅在内存保留候选（最多 64 份、页字符合计 1 Mi），
+待身份、空岛门控通过且采集开启后提交，所以初始包早到、后来手动打开书与笔也无需重发。此策略也会预采
+尚未打开的服务器书本。候选按原始快照去重，超限逐出最旧候选，单份超过字符上限不暂存；换连接、换世界、
+断线及清空采集时丢弃，不读取本地编辑内容补齐。告示牌仍只处理采集门控已经通过时收到的包。
+告示牌从区块初始方块实体 NBT 与方块实体更新包直接用该版本的 SignText codec 解码，限定普通/悬挂告示牌，
+不读取世界里的最终 SignBlockEntity 或渲染缓存。26.1、26.2、26.3 的 codec、实体类型常量及区块遍历差异
+由 `platform/ServerSignData` 适配；26.2 单独选择 `src/sign26_2/`，26.3 仍复用其 GUI 源码。
+
+输出分别在 `Book/Books.json` 和 `Sign/Signs.json`。书页按整页保存换行、颜色、原始空格，
+`_capture.book_contexts` 保存标题、作者、包槽位、总页数、从 1 开始的目标页码与完整目标页；空页保留在原始
+快照及页码中。告示牌按一面整体保存，`_capture.sign_contexts` 包含维度、坐标、普通/悬挂类型、正背面、
+染料、发光及原始四行（含空行和符号）。精确 RGB 等无法无损写成旧颜色码时额外输出 `style_runs`。
+每条记录最多保留三个具体上下文，达到上限时标注 `server_contexts_limited`。这两种采集面尚无翻译入口，
+不查询 MISC 语料来决定已覆盖；纯符号面也会记录，全空白页/面只作为上下文或页码保留。
+`checkCapture` 验证包组件/NBT 快照的来源隔离、后页完整性、空行、原始空格、正背面及颜色，
+以及书本候选在门控开启后提交、关闭时不落盘、连接/世界生命周期清理和缓存上限。
 
 注意这里**故意没有**按名字过滤：`[Bazaar]`、`[Sacks]` 是 Hypixel 自己的前缀，做一张「Mod 名黑名单」
 只会把真的 SkyBlock 文本误杀掉，去挡一个本来就进不来的东西。

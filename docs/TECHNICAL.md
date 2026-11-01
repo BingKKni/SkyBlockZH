@@ -138,13 +138,13 @@ Mod Menu is a soft dependency. Without it, edit `config/skyzh.json`, which docum
 | `updateCheck` | on | Once per client startup, request the newest version metadata from GitHub Releases. It neither downloads files nor uploads player or game data. It does not run while the master switch is off; `/skyzh updatecheck [on/off]` and `/skyblockzh` control it |
 | `translateSkyBlockName` | on | Render "SkyBlock" as 空岛生存. Compounds use the short form and get their spacing fixed: `你的 SkyBlock 等级` → `你的空岛等级`; standalone occurrences keep the full name. See below for where the substitution is allowed to happen |
 | `originalTips` | on | "Translation hints": append a current-key hint to translated real-item tooltips in GUIs. Incoming server chat mentioning eligible translated items may show a dismissible hint, at least five minutes apart. `ItemNames` uses the bundled offline NEU catalog, excluding menus, states and unknown names. `/skyzh switch tip on/off` (also `/skyblockzh`) controls hints, not the original-text toggle. The old `showOriginal` field is ignored and no longer saved; missing `originalTips` defaults to on. Normal rendering no longer appends bracketed originals |
-| `helpImproveTranslation` | on | Reserved state for the unavailable "Help improve translations" report feature; its screen control is intentionally disabled |
+| `helpImproveTranslation` | on | Reserved state retained for old config compatibility; no current screen control or reporting feature |
 | `captureUntranslated` | **off** | A switch for whoever is filling the corpus in. It writes files to your disk; leave it off to play. See below |
 | `captureNotifications` | on | Report newly captured untranslated text, colour errors and mixed-language text in chat. Turning reports off does not stop file writes |
 | `autoClearCapture` | **off** | Clear the previous captures once per client launch, whether or not capture is enabled or a server is joined. Reconnecting never clears files |
 
 The two capture sub-options share the row below the capture master: notifications on the left,
-startup clearing on the right. Old configs missing these keys use the defaults above. On a fresh installation, a setup screen appears once after the client has confirmed entry to Hypixel; its internal `welcomeShown` state can be reset to `false` to show it again on the next entry. Mod Menu places the master switch and startup update check side by side; with the master switch off, every remaining setting is disabled and explains why on hover. Startup clearing
+startup clearing on the right. Old configs missing these keys use the defaults above. On a fresh installation, the complete settings page appears once after the client has confirmed entry to Hypixel; its internal `welcomeShown` state can be reset to `false` to show it again on the next entry. First-run guidance, `/skyzh` (also `/skyblockzh`) and Mod Menu share this page, with welcome text above the settings and scrolling when needed. The master switch and startup update check sit side by side; with the master switch off, every remaining setting is disabled and explains why on hover. Startup clearing
 runs once in Fabric's client initializer, before the main menu, through the exact `TextCapture.clear()`
 path used by `/skyzh clear`: in-memory state, queued work and JSON files in the six capture buckets
 are cleared; unrelated files remain. Failures are logged without preventing startup.
@@ -340,6 +340,24 @@ Every capture point is now a *packet handler*, or a read of state only a packet 
 | Tab list | `handleTabListCustomisation` for header and footer, player entries every 10 ticks | As above |
 | Boss bar | `BossHealthOverlay#update` TAIL | That map is written by the packet handler and by nothing else |
 | Action bar, title, subtitle | `setActionBarText` / `setTitleText` / `setSubtitleText` HEAD | As above |
+
+Books and signs currently support capture only. Highest-priority packet `handle(ClientGamePacketListener)`
+HEAD hooks freeze raw book components from container, inventory and cursor-item packets. All pages are
+captured together, including pages never opened; no editor or later client inventory text is read.
+Up to 64 immutable book candidates and 1 Mi page characters can wait in memory before server verification
+or while capture is off. Once the SkyBlock and capture gates open, they enter the existing asynchronous
+queue. Candidates clear on connection/world changes and capture clearing; evicted books require another
+server packet. This also captures server books the player has not opened.
+
+Sign text comes directly from initial chunk and block-entity update NBT, using version-specific
+`platform/ServerSignData` adapters for normal and hanging signs. Signs require capture and server gates
+to be open when the packet arrives. Each side keeps its four ordered rows, blank lines, original spaces,
+colours, dye and glow state, together with dimension and position. No world/rendered sign text is read.
+Output uses `Book/Books.json` and `Sign/Signs.json`; `_capture.book_contexts` and `sign_contexts` retain
+up to three concrete contexts per record, with `server_contexts_limited` marking overflow. RGB and other
+styles that cannot be represented by legacy colour codes use `style_runs`. These surfaces bypass MISC
+translation coverage checks, so symbols remain capturable. `checkCapture` covers source isolation,
+complete later pages, sign sides/layout, candidate gates, lifecycle clearing and memory bounds.
 
 There is deliberately **no filter by name**. `[Bazaar]` and `[Sacks]` are Hypixel's own prefixes, and
 a blocklist of mod-shaped tags would throw away real SkyBlock text to catch something that cannot

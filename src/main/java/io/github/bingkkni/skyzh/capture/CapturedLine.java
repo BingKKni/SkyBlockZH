@@ -50,6 +50,8 @@ public final class CapturedLine {
 	private final Set<String> alsoSeen = new LinkedHashSet<>();
 	private final Set<String> seenIn = new LinkedHashSet<>();
 	private final Set<String> rawSamples = new LinkedHashSet<>();
+	private final List<JsonObject> serverContexts = new ArrayList<>();
+	private boolean serverContextsLimited;
 	private final List<JsonObject> holograms = new ArrayList<>();
 	private static final int MAX_HOLOGRAM_SCENES = 3;
 	private static final int MAX_LORE_CONTEXTS = 3;
@@ -239,6 +241,18 @@ public final class CapturedLine {
 	public List<JsonObject> holograms() {
 		return holograms.stream().map(JsonObject::deepCopy).toList();
 	}
+
+	public void serverContext(JsonObject context) {
+		if (serverContexts.contains(context)) return;
+		if (serverContexts.size() < 3) serverContexts.add(context.deepCopy());
+		else serverContextsLimited = true;
+	}
+
+	public List<JsonObject> serverContexts() {
+		return serverContexts.stream().map(JsonObject::deepCopy).toList();
+	}
+
+	public boolean serverContextsLimited() { return serverContextsLimited; }
 
 	/** Concrete full tooltips, separate from independently accumulated placeholder observations. */
 	public void lore(LoreSnapshot.Target context) {

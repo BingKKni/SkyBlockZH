@@ -1,6 +1,10 @@
 {
   "note": "Galatea 的独立预期回归。Wiki/NEU 多行原文保留；改名、变值及自定义图标样例仅为离线合成，不冒称实机证据。",
   "cases": [
+    {"name":"横扫属性去掉使字","surface":"GUI_Item","source":["§7Increase §2 Sweep §7by §a25§7."],"expected":"§2 横扫§7提高§a25§7。"},
+    {"name":"每日心愿条件在前且低语范围可变","surface":"GUI_Lore","source":["§7You gain §a400-800 §3Whispers §7from the first type of log you cut on §2Galatea §7every day."],"expected":"§7每天在 §2Galatea§7 岛屿上砍伐第一种原木时，获得 §a400-800 §3低语§7。"},
+    {"name":"每日心愿另一等级不写死数值","surface":"GUI_Lore","source":["§7You gain §a500-900 §3Whispers §7from the first type of log you cut on §2Galatea §7every day."],"expected":"§7每天在 §2Galatea§7 岛屿上砍伐第一种原木时，获得 §a500-900 §3低语§7。"},
+    {"name":"赠礼数值前后留空格且颜色独立","surface":"GUI_Lore","source":["§7Your first §a250 §7Tree Gifts of the day grant §a1% §7more §eLoot §7and §a20 §7extra §3Forest §7or §6Desert Whispers§7."],"expected":"§7每天在获得前 §a250 §7份的树木赠礼时，额外获得 §a1%§7 的§e战利品§7，并获得 §a20§7 点§3森林§7或§6沙漠低语§7。"},
     {"name":"Kysha沿用既有湖鱼译名","surface":"NPC_Message","source":["§aVerdants§f, §9Azures§f, §aShellwise§f, §9Joydives§f, I've seen them all."],"expected":"§a翠绿鱼§f、§9湛蓝鱼§f、§aShellwise§f、§9Joydive§f,我都见过。"},
     {"name":"David菜单导航连读不重复里","surface":"NPC_Message","source":["§fYou can find all your Shards in your §aHunting Box§f, inside your §aHunting Skill Menu§f!"],"expected":"§f打开§a狩猎技能菜单§f里的§a狩猎箱§f,就能找到所有碎片!"},
     {"name":"Archie精华消费处所连接","surface":"NPC_Message","source":["§fAll of the §2Safari Essence§f you gain while in the §2Critter Safari§f can be spent in my shop."],"expected":"§f你在§2小动物游猎§f中获得的§2游猎精华§f都可以拿到我的商店消费。"},

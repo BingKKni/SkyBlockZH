@@ -59,7 +59,7 @@ public final class CaptureStore {
 	private static final int MAX_LINES_PER_FILE = 800;
 
 	/** Capture work has an explicit stage; a repeat carries no redundant text snapshot. */
-	public sealed interface Observation permits Line, Item, Lore, Diagnosed, Repeated, Repeat {}
+	public sealed interface Observation permits Line, Item, Lore, Book, BookPage, Sign, Diagnosed, Repeated, Repeat {}
 
 	/** A frozen packet item, never an ItemStack or a mutable component from the game thread. */
 	public record Item(LoreSnapshot snapshot, boolean hasName) implements Observation {
@@ -88,6 +88,10 @@ public final class CaptureStore {
 			Objects.requireNonNull(context);
 		}
 	}
+
+	public record Book(BookSnapshot snapshot) implements Observation {}
+	public record BookPage(BookSnapshot snapshot, int page) implements Observation {}
+	public record Sign(SignSnapshot snapshot) implements Observation {}
 
 	public record Diagnosed(StyledText text, Classifier.Verdict verdict) implements Observation {
 		public Diagnosed {
@@ -286,6 +290,9 @@ public final class CaptureStore {
 					}
 				}
 			}
+			case Book book -> inspectBook(sighting, book.snapshot(), sightingEpoch);
+			case BookPage page -> rawDocument(sighting, page.snapshot().pages().get(page.page()));
+			case Sign sign -> rawDocument(sighting, sign.snapshot().text());
 			case Diagnosed diagnosed -> record(sighting, diagnosed.text(), diagnosed.verdict());
 			case Repeated ignored -> repeat(sighting);
 			case Repeat repeated -> {
@@ -295,7 +302,7 @@ public final class CaptureStore {
 				}
 			}
 		}
-		if (!(sighting.observation() instanceof Item) && !(sighting.observation() instanceof Repeated)) {
+		if (!(sighting.observation() instanceof Item) && !(sighting.observation() instanceof Book) && !(sighting.observation() instanceof Repeated)) {
 			BY_KEY.computeIfAbsent(sighting.key(), ignored -> new ArrayList<>());
 		}
 	}
@@ -331,6 +338,22 @@ public final class CaptureStore {
 			accept(new Sighting(observation.surface(), key, work, parent.gameplay(), parent.area(),
 				parent.name(), note, parent.when()), sightingEpoch);
 		}
+	}
+
+	/** Every page is expanded on the worker, including pages the player has not opened yet. */
+	private static void inspectBook(Sighting parent, BookSnapshot snapshot, long sightingEpoch) {
+		for (int page = 0; page < snapshot.pages().size(); page++) {
+			accept(new Sighting(CaptureSurface.BOOK, parent.key() + ':' + page,
+				new Repeat(new BookPage(snapshot, page)), parent.gameplay(), parent.area(), parent.name(),
+				parent.note(), parent.when()), sightingEpoch);
+		}
+	}
+
+	// These surfaces have no rendering translation yet. Keep symbols and whitespace too;
+	// an unrelated MISC translation must not suppress a server page or sign side.
+	private static void rawDocument(Sighting sighting, StyledText text) {
+		if (!text.plain().isBlank()) record(sighting, text,
+			new Classifier.Verdict(Classifier.Bucket.UNTRANSLATED, List.of(), List.of(), null, "", ""));
 	}
 
 	private static void classify(Sighting sighting, Line line) {
@@ -457,6 +480,10 @@ public final class CaptureStore {
 			line.hologram(observation.hologram(), sighting.when(), sighting.area());
 		} else if (sighting.observation() instanceof Lore lore) {
 			line.lore(lore.context());
+		} else if (sighting.observation() instanceof BookPage page) {
+			line.serverContext(page.snapshot().json(page.page()));
+		} else if (sighting.observation() instanceof Sign sign) {
+			line.serverContext(sign.snapshot().json());
 		}
 	}
 

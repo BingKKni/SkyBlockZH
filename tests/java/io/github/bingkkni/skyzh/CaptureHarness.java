@@ -14,6 +14,9 @@ import io.github.bingkkni.skyzh.capture.Classifier;
 import io.github.bingkkni.skyzh.capture.LegacyText;
 import io.github.bingkkni.skyzh.capture.HologramSnapshot;
 import io.github.bingkkni.skyzh.capture.LoreSnapshot;
+import io.github.bingkkni.skyzh.capture.BookSnapshot;
+import io.github.bingkkni.skyzh.capture.BookCandidates;
+import io.github.bingkkni.skyzh.capture.SignSnapshot;
 import io.github.bingkkni.skyzh.capture.TextCapture;
 import io.github.bingkkni.skyzh.capture.Unplaced;
 import io.github.bingkkni.skyzh.hook.NameTag;
@@ -82,6 +85,8 @@ public final class CaptureHarness {
 		loreIntegrity();
 		loreSnapshots();
 		packetItemSnapshots();
+		serverBooksAndSigns();
+		bookCandidates();
 		finishPendingWrites();
 
 		System.out.println();
@@ -1561,6 +1566,201 @@ public final class CaptureHarness {
 			check("第257行后续变化仍被采集", find(tails, "second_tail_outside_context") != null, true);
 			check("字符上限之后的原文仍被采集", find(root.resolve("untranslated/Combat/GUI_Item/LongPacket.json"),
 				"tail_after_character_budget") != null, true);
+		} finally {
+			CaptureStore.clear(root);
+			delete(root);
+		}
+	}
+
+	private static void serverBooksAndSigns() throws Exception {
+		net.minecraft.SharedConstants.tryDetectVersion();
+		net.minecraft.server.Bootstrap.bootStrap();
+		Path root = Files.createTempDirectory("skyzh-books-signs");
+		CaptureStore.clear(root);
+		CaptureStore.root(root);
+		try {
+			var first = Component.literal("§a  Server opening page  ");
+			var last = Component.literal("§eLast unseen page\n\n  ❤ \uE010  ");
+			var book = new net.minecraft.core.component.PatchedDataComponentMap(net.minecraft.core.component.DataComponentMap.EMPTY);
+			book.set(net.minecraft.core.component.DataComponents.WRITTEN_BOOK_CONTENT,
+				new net.minecraft.world.item.component.WrittenBookContent(
+					net.minecraft.server.network.Filterable.passThrough("Server title"), "Server author", 0,
+					List.of(new net.minecraft.server.network.Filterable<Component>(first,
+						java.util.Optional.of(Component.literal("Filtered replacement"))),
+						net.minecraft.server.network.Filterable.passThrough(Component.empty()),
+						net.minecraft.server.network.Filterable.passThrough(last)), true));
+			BookSnapshot frozen = BookSnapshot.of(book, 7, 12);
+			first.append(" CLIENT EDIT");
+			last.setStyle(net.minecraft.network.chat.Style.EMPTY.withColor(0x123456));
+			book.remove(net.minecraft.core.component.DataComponents.WRITTEN_BOOK_CONTENT);
+			check("书页来源为包组件原文而非过滤版", frozen.pages().getFirst().plain(), "  Server opening page  ");
+			check("空书页保留页码", frozen.pages().get(1).plain(), "");
+			check("书本快照不受物品组件替换影响", frozen.pages().size(), 3);
+			for (int i = 1; i <= 2; i++) {
+				CaptureStore.accept(new CaptureStore.Sighting(CaptureSurface.BOOK, "server-book",
+					new CaptureStore.Book(frozen), "Mining", "Dwarven Mines", "Books", "服务器书本", i));
+			}
+			CaptureStore.flush();
+			Path books = root.resolve("untranslated/Mining/Book/Books.json");
+			var records = JsonParser.parseString(Files.readString(books)).getAsJsonObject().getAsJsonArray("lines");
+			check("未打开末页也从包完整落盘", records.size(), 2);
+			var opening = records.get(0).getAsJsonObject();
+			check("书页保留原始边缘空格", opening.get("text").getAsString(), "  Server opening page  ");
+			var openingCapture = opening.getAsJsonObject("_capture");
+			check("书页复用重复计数", openingCapture.get("count").getAsInt(), 2);
+			var context = openingCapture.getAsJsonArray("book_contexts").get(0).getAsJsonObject();
+			check("书本上下文保存标题", context.get("title").getAsString(), "Server title");
+			check("书本上下文保存服务器槽位", context.get("slot").getAsInt(), 12);
+			check("书本上下文记录包含空白页的总页数", context.get("page_count").getAsInt(), 3);
+			check("上下文完整保留目标页颜色空格", context.getAsJsonObject("original_page").get("raw").getAsString(), "§a  Server opening page  ");
+			check("后续界面编辑没有混入快照", Files.readString(books).contains("CLIENT EDIT"), false);
+			var endContext = records.get(1).getAsJsonObject().getAsJsonObject("_capture")
+				.getAsJsonArray("book_contexts").get(0).getAsJsonObject();
+			check("翻页目标页码不受空页影响", endContext.get("target_page").getAsInt(), 3);
+			check("页内换行与符号空格完整保留", frozen.pages().get(2).plain(), "Last unseen page\n\n  ❤ \uE010  ");
+
+			var writable = new net.minecraft.core.component.PatchedDataComponentMap(net.minecraft.core.component.DataComponentMap.EMPTY);
+			writable.set(net.minecraft.core.component.DataComponents.WRITABLE_BOOK_CONTENT,
+				new net.minecraft.world.item.component.WritableBookContent(List.of(
+					new net.minecraft.server.network.Filterable<String>("  §bServer writable page  ", java.util.Optional.of("Filtered")))));
+			BookSnapshot writableSnapshot = BookSnapshot.of(writable, 0, 4);
+			writable.set(net.minecraft.core.component.DataComponents.WRITABLE_BOOK_CONTENT,
+				new net.minecraft.world.item.component.WritableBookContent(List.of(net.minecraft.server.network.Filterable.passThrough("Local editor text"))));
+			check("书与笔也冻结服务器原始页", writableSnapshot.pages().getFirst().plain(), "  Server writable page  ");
+			check("无书页物品不自造书本", BookSnapshot.of(book, 0, 0), null);
+
+			var tag = new net.minecraft.nbt.CompoundTag();
+			var front = new net.minecraft.nbt.CompoundTag();
+			var messages = new net.minecraft.nbt.ListTag();
+			List<Component> rows = List.of(Component.literal("  First row  ").withStyle(style -> style.withColor(0x123456)),
+				Component.empty(), Component.literal("  ❤ \uE010  "), Component.literal("§6Fourth row "));
+			for (Component row : rows) {
+				messages.add(net.minecraft.network.chat.ComponentSerialization.CODEC.encodeStart(net.minecraft.nbt.NbtOps.INSTANCE, row).getOrThrow());
+			}
+			front.put("messages", messages);
+			front.putString("color", "blue");
+			front.putBoolean("has_glowing_text", true);
+			tag.put("front_text", front);
+			var back = front.copy();
+			var backMessages = new net.minecraft.nbt.ListTag();
+			for (String text : List.of("§cBack side", "", "", "")) {
+				backMessages.add(net.minecraft.network.chat.ComponentSerialization.CODEC.encodeStart(net.minecraft.nbt.NbtOps.INSTANCE,
+					Component.literal(text)).getOrThrow());
+			}
+			back.put("messages", backMessages);
+			tag.put("back_text", back);
+			var position = new net.minecraft.core.BlockPos(10, 65, -8);
+			SignSnapshot sign = SignSnapshot.of("minecraft:overworld", position, "minecraft:hanging_sign", "front", tag,
+				net.minecraft.nbt.NbtOps.INSTANCE).orElseThrow();
+			SignSnapshot reverse = SignSnapshot.of("minecraft:overworld", position, "minecraft:hanging_sign", "back", tag,
+				net.minecraft.nbt.NbtOps.INSTANCE).orElseThrow();
+			messages.clear(); // Another mod/world editor may now replace the packet or block entity text.
+			for (SignSnapshot snapshot : List.of(sign, reverse)) {
+				CaptureStore.accept(new CaptureStore.Sighting(CaptureSurface.SIGN, snapshot.side(),
+					new CaptureStore.Repeat(new CaptureStore.Sign(snapshot)), "Mining", "Dwarven Mines", "Signs", "服务器告示牌", 3));
+			}
+			CaptureStore.flush();
+			Path signs = root.resolve("untranslated/Mining/Sign/Signs.json");
+			var signRecords = JsonParser.parseString(Files.readString(signs)).getAsJsonObject().getAsJsonArray("lines");
+			check("告示牌正背面分别保留", signRecords.size(), 2);
+			var signContext = signRecords.get(0).getAsJsonObject().getAsJsonObject("_capture")
+				.getAsJsonArray("sign_contexts").get(0).getAsJsonObject();
+			check("告示牌上下文保留四行", signContext.getAsJsonArray("original_lines").size(), 4);
+			check("告示牌上下文保留空行", signContext.getAsJsonArray("original_lines").get(1).getAsJsonObject().get("raw").getAsString(), "");
+			check("告示牌原始行序与边缘空格", sign.text().plain(), "  First row  \n\n  ❤ \uE010  \nFourth row ");
+			check("告示牌保留RGB精确颜色", sign.lines().getFirst().styleAt(0).getColor().getValue(), 0x123456);
+			check("RGB样式不能只依赖近似颜色码", signContext.getAsJsonArray("original_lines").get(0).getAsJsonObject().has("style_runs"), true);
+			check("告示牌基础染料保留", signContext.get("dye").getAsString(), "blue");
+			check("告示牌发光保留", signContext.get("glowing").getAsBoolean(), true);
+			check("告示牌坐标保留", signContext.get("z").getAsInt(), -8);
+			check("悬挂告示牌类型保留", signContext.get("block_entity_type").getAsString(), "minecraft:hanging_sign");
+			check("告示牌背面来源正确", reverse.text().plain(), "Back side\n\n\n");
+			SignSnapshot symbols = new SignSnapshot("minecraft:overworld", position, "minecraft:sign", "front", "black", false,
+				List.of(styled("  ❤  "), styled(""), styled("  "), styled("§b★")));
+			CaptureStore.accept(new CaptureStore.Sighting(CaptureSurface.SIGN, "symbols-only", new CaptureStore.Sign(symbols),
+				"Mining", "Dwarven Mines", "Symbols", "服务器告示牌", 4));
+			BookSnapshot symbolBook = new BookSnapshot("writable", "", "", 0, 5, List.of(styled("  ❤  ")));
+			CaptureStore.accept(new CaptureStore.Sighting(CaptureSurface.BOOK, "symbol-book", new CaptureStore.Book(symbolBook),
+				"Mining", "Dwarven Mines", "Symbols", "服务器书本", 4));
+			CaptureStore.flush();
+			check("纯符号书页也保存而非过滤", Files.exists(root.resolve("untranslated/Mining/Book/Symbols.json")), true);
+			check("纯符号告示牌面也保存而非过滤", Files.exists(root.resolve("untranslated/Mining/Sign/Symbols.json")), true);
+			check("纯符号告示牌保留空白行与顺序", symbols.text().plain(), "  ❤  \n\n  \n★");
+			var recoloured = new BookSnapshot(frozen.kind(), frozen.title(), frozen.author(), 7, 12,
+				List.of(styled("§c  Server opening page  "), frozen.pages().get(1), frozen.pages().get(2)));
+			check("书本去重指纹区分仅颜色变化", frozen.signature().equals(recoloured.signature()), false);
+			check("缺失的NBT面不读取客户端世界补造", SignSnapshot.of("minecraft:overworld", position, "minecraft:sign", "front",
+				new net.minecraft.nbt.CompoundTag(), net.minecraft.nbt.NbtOps.INSTANCE).isEmpty(), true);
+			CaptureStore.clear(root);
+			CaptureStore.accept(new CaptureStore.Sighting(CaptureSurface.BOOK, "server-book", new CaptureStore.Book(frozen),
+				"Mining", "Dwarven Mines", "Books", "服务器书本", 4));
+			CaptureStore.flush();
+			check("清空后书本相同页仍可重新采集", find(books, "server_opening_page").get("count").getAsInt(), 1);
+			check("清空同时移除告示牌采集文件", Files.exists(signs), false);
+		} finally {
+			CaptureStore.clear(root);
+			delete(root);
+		}
+	}
+
+	private static void bookCandidates() throws Exception {
+		Path root = Files.createTempDirectory("skyzh-pending-books");
+		CaptureStore.clear(root);
+		CaptureStore.root(root);
+		try {
+			BookCandidates pending = new BookCandidates();
+			Object connection = new Object(), world = new Object();
+			pending.session(connection, world);
+			var mutable = Component.literal("  Server page before identity  ");
+			BookSnapshot snapshot = new BookSnapshot("writable", "", "", 0, 3,
+				List.of(StyledText.of(mutable), styled("Later unopened page")));
+			pending.remember(snapshot);
+			mutable.append(" Local editor replacement");
+			check("身份门控未通过时书本不提交", pending.take(false).size(), 0);
+			check("采集关闭时书本候选仍保留", pending.isEmpty(), false);
+			try (var files = Files.list(root)) {
+				check("采集关闭与身份未确认均不落盘", files.count(), 0L);
+			}
+			pending.session(connection, world);
+			pending.remember(snapshot);
+			List<BookSnapshot> ready = pending.take(true);
+			check("同连接世界内重复包候选去重", ready.size(), 1);
+			check("门控打开后初始书本不需重发即可提交", ready.getFirst().pages().getFirst().plain(), "  Server page before identity  ");
+			check("提交后不在每个tick重复补采", pending.take(true).size(), 0);
+			for (BookSnapshot book : ready) {
+				CaptureStore.accept(new CaptureStore.Sighting(CaptureSurface.BOOK, book.signature(), new CaptureStore.Book(book),
+					"Mining", "Dwarven Mines", "Books", "服务器书本", 1));
+			}
+			CaptureStore.flush();
+			Path file = root.resolve("untranslated/Mining/Book/Books.json");
+			check("初始包门控打开后首面已持久化", find(file, "server_page_before_identity") != null, true);
+			check("手动打开前未翻末页已持久化", find(file, "later_unopened_page") != null, true);
+			check("候选缓存不读取后续本地编辑", Files.readString(file).contains("Local editor replacement"), false);
+			pending.remember(snapshot);
+			pending.session(new Object(), world);
+			check("换连接不沿用旧服务器书页", pending.take(true).size(), 0);
+			pending.remember(snapshot);
+			pending.session(connection, new Object());
+			check("换世界清除旧书页候选", pending.take(true).size(), 0);
+			pending.remember(snapshot);
+			pending.session(null, null);
+			check("断线清除尚未提交书页", pending.take(true).size(), 0);
+			pending.remember(snapshot);
+			check("无连接世界不保留候选", pending.isEmpty(), true);
+			pending.session(connection, world);
+			pending.remember(snapshot);
+			pending.clear();
+			check("清空操作不会在门控开启后复活候选", pending.take(true).size(), 0);
+			for (int i = 0; i < 65; i++) {
+				pending.remember(new BookSnapshot("writable", "", "", 0, i, List.of(styled("Server page " + i))));
+			}
+			var bounded = pending.take(true);
+			check("门控前书本缓存最多64份", bounded.size(), 64);
+			check("缓存满时逐出最旧候选", bounded.getFirst().slot(), 1);
+			for (int i = 0; i < 3; i++) {
+				pending.remember(new BookSnapshot("writable", "", "", 0, i, List.of(styled("a".repeat(524_288)))));
+			}
+			check("候选缓存总页字符数有界", pending.take(true).size(), 2);
 		} finally {
 			CaptureStore.clear(root);
 			delete(root);

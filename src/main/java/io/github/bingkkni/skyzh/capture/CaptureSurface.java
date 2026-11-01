@@ -33,6 +33,10 @@ public enum CaptureSurface {
 	ACTION_BAR(Surface.ACTION_BAR, "ActionBar"),
 	/** Server-owned floating text carried by a visible armour stand's custom name. */
 	HOLOGRAM(Surface.HOLOGRAM, "Hologram"),
+	/** Raw server book pages; capture only, without translation lookup. */
+	BOOK(Surface.MISC, "Book"),
+	/** Raw sign sides; capture only, without translation lookup. */
+	SIGN(Surface.MISC, "Sign"),
 	/** Title and subtitle, and anything else without a home. */
 	MISC(Surface.MISC, "Misc");
 

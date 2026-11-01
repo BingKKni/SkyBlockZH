@@ -48,6 +48,7 @@ public final class ScreenWatcher {
 		Minecraft minecraft = Minecraft.getInstance();
 		ClientLevel level = minecraft.level;
 		TextCapture.hologramLevel(level);
+		TextCapture.bookSession(minecraft.getConnection(), level);
 
 		if (level == null || !HypixelServer.isSkyBlock()) {
 			if (connected) {

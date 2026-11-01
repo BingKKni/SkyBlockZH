@@ -466,7 +466,7 @@ public final class TranslationHarness {
 		// A record that spells the whole padded line out still wins over the shape.
 		checkWidgets("整行有记录时不切开", "   §cPICK IT UP!   ", "   §c捡起来!   ");
 		for (String[] time : List.of(new String[] {"9m00s", "9分00秒"},
-			new String[] {"8m16s", "8分16秒"}, new String[] {"56s", "56秒"})) {
+			new String[] {"8m16s", "8分16秒"}, new String[] {"56s", "56 秒"})) {
 			checkWidgets("裂隙倒计时与法力互不吞并 " + time[0],
 				"§a" + time[0] + " Left     §b100/100✎ Mana",
 				"§a剩余 " + time[1] + "      §b100/100✎ 法力");
@@ -1099,25 +1099,41 @@ public final class TranslationHarness {
 		// Same sentence, three server writings of the remaining time. Only the "hours" one had a
 		// record, so the tab footer was English for the whole last hour of every potion.
 		for (String[] example : new String[][] {
-			{"剩余 8秒!", "剩余8秒!"},
-			{"剩余 8秒 , 然后继续", "剩余8秒, 然后继续"},
-			{"剩余 12秒 ，然后继续", "剩余12秒，然后继续"},
-			{"剩余 8秒（随后继续）", "剩余8秒（随后继续）"},
-			{"剩余 8秒 \"随后继续\"", "剩余8秒\"随后继续\""},
-			{"剩余 8秒 ф", "剩余 8秒 ф"},
-			{"剩余 8秒 ", "剩余 8秒 "},
-			{"剩余 8秒 后结束", "剩余 8秒 后结束"}
+			{"剩余 8秒!", "剩余 8 秒!"},
+			{"剩余 8秒 , 然后继续", "剩余 8 秒, 然后继续"},
+			{"剩余 12秒 ，然后继续", "剩余 12 秒，然后继续"},
+			{"剩余 8秒（随后继续）", "剩余 8 秒（随后继续）"},
+			{"剩余 8秒 \"随后继续\"", "剩余 8 秒\"随后继续\""},
+			{"剩余 8秒 ф", "剩余 8 秒 ф"},
+			{"剩余 8秒 ", "剩余 8 秒 "},
+			{"剩余 8秒 后结束", "剩余 8 秒 后结束"},
+			{"剩余8秒", "剩余 8 秒"},
+			{"剩余 3天13小时39分", "剩余 3天13小时39分"},
+			{"在接下来的 3天13小时39分 内抢购", "在接下来的 3天13小时39分 内抢购"}
 		}) {
 			String actual = io.github.bingkkni.skyzh.text.DurationText.normalize(Component.literal(example[0])).getString();
 			report("剩余时长标点与图标间隔: " + example[0], actual.equals(example[1]), "实际 [" + actual + "]");
 		}
-		check("道场剩余时间感叹号紧凑显示", "§aYou have 8s remaining!", Surface.CHAT, "§a剩余8秒!");
+		check("Bingo高分目标用地牢简称并保留层数与分数颜色",
+			"§7Obtain a score of §6270§7 or higher on §cFloor 1§7 of §cCatacombs§7.",
+			Surface.LORE, "§7在§c地牢第 1 层§7取得 §6270§7 分或更高的分数。");
+		check("镜像时光符中文倒写保留红色", "§cmrahcemiT esrevrorriM", Surface.ITEM, "§c符光时界世像镜");
+		check("镜像铁胸甲中文倒写保留蓝色", "§9etalptsehC norI", Surface.ITEM, "§9甲胸铁");
+		check("普通鱼竿复用原版译名", "§fFishing Rod", Surface.ITEM, "§f钓鱼竿");
+		check("普通木棍复用已有译名", "§fStick", Surface.ITEM, "§f木棍");
+		check("普通线复用已有译名", "§fString", Surface.ITEM, "§f线");
+		for (String[] sale : new String[][] {{"3d 13h 39m", "3天13小时39分"}, {"8s", "8秒"}}) {
+			check("特卖时间语序与边界空格 " + sale[0],
+				"§c♨ §a§l[WARP] §eTo §dElizabeth§e in the next §c" + sale[0] + " §eto grab yours!",
+				Surface.CHAT, "§c♨ §a§l[传送] §e在接下来的 §c" + sale[1] + "§e 内可前往 §dElizabeth§e 处抢购!");
+		}
+		check("道场剩余时间保留空格", "§aYou have 8s remaining!", Surface.CHAT, "§a剩余 8 秒!");
 		check("神药剩余小时", "§7You have a §cGod Potion §7active! §d2 hours", Surface.TABLIST,
-			"§c神药§7生效中! 剩余§d2小时");
+			"§c神药§7生效中! 剩余 §d2 小时");
 		check("神药剩余分钟", "§7You have a §cGod Potion §7active! §d32 minutes", Surface.TABLIST,
-			"§c神药§7生效中! 剩余§d32分钟");
+			"§c神药§7生效中! 剩余 §d32 分钟");
 		check("神药最后几分钟的紧凑倒计时", "§7You have a §cGod Potion §7active! §d5m 59s",
-			Surface.TABLIST, "§c神药§7生效中! 剩余§d5分59秒");
+			Surface.TABLIST, "§c神药§7生效中! 剩余 §d5分59秒");
 		// [SECURITY] Sloth wears a tag the shape of a player's line, so the speaker used to be read as
 		// dialogue and the sentence never looked up. The tag has to be peeled the same way [NPC] is.
 		check("Sloth 的安全提示剥掉 [SECURITY] 前缀", "§c[SECURITY] Sloth§f: Downloading suspicious mods"

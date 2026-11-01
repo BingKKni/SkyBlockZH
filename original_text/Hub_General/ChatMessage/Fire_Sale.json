@@ -111,66 +111,30 @@
     {
       "id": "fire_sale_warp_deadline",
       "context": "公告末行:提示在倒计时结束前传送到 Elizabeth 抢购",
-      "raw": "§c♨ §a§l[WARP] §eTo §dElizabeth§e in the next §c%1$sd %2$sh %3$sm §eto grab yours!",
-      "text": "♨ [WARP] To Elizabeth in the next %1$sd %2$sh %3$sm to grab yours!",
+      "raw": "§c♨ §a§l[WARP] §eTo §dElizabeth§e in the next §c%s §eto grab yours!",
+      "text": "♨ [WARP] To Elizabeth in the next %s to grab yours!",
       "placeholders": [
         {
-          "token": "%1$s",
-          "desc": "剩余天数",
-          "type": "number",
-          "example": "2"
-        },
-        {
-          "token": "%2$s",
-          "desc": "剩余小时数",
-          "type": "number",
-          "example": "19"
-        },
-        {
-          "token": "%3$s",
-          "desc": "剩余分钟数",
-          "type": "number",
-          "example": "29"
+          "token": "%s",
+          "desc": "特卖剩余时间，单位随倒计时变化",
+          "type": "duration",
+          "example": "3d 13h 39m"
         }
       ],
-      "gloss": "Elizabeth 是 NPC 人名,保留英文;倒计时拆成三个数字占位符,避免 raw 捕获任意句子。",
+      "gloss": "Elizabeth 是 NPC 人名，保留英文；完整时长捕获兼容天、小时、分钟与秒，不写死某种单位组合。",
       "translate": true,
-      "zh": "♨ [传送] 前往 Elizabeth,在接下来的 %1$s 天 %2$s 小时 %3$s 分钟内抢购!",
+      "zh": "♨ [传送] 在接下来的 %s 内可前往 Elizabeth 处抢购!",
       "segments": [
-        {
-          "color": "§c",
-          "text": "♨ ",
-          "zh": "♨ "
-        },
-        {"color": "§a§l", "text": "[", "zh": "["},
-        {"color": "§a§l", "text": "WARP", "zh": "传送"},
-        {"color": "§a§l", "text": "]", "zh": "]"},
-        {"color": "§a§l", "text": " ", "zh": " "},
-        {
-          "color": "§e",
-          "text": "To ",
-          "zh": "前往 "
-        },
-        {
-          "color": "§d",
-          "text": "Elizabeth",
-          "zh": "Elizabeth"
-        },
-        {
-          "color": "§e",
-          "text": " in the next ",
-          "zh": ",在接下来的 "
-        },
-        {
-          "color": "§c",
-          "text": "%1$sd %2$sh %3$sm ",
-          "zh": "%1$s 天 %2$s 小时 %3$s 分钟"
-        },
-        {
-          "color": "§e",
-          "text": "to grab yours!",
-          "zh": "内抢购!"
-        }
+        {"color": "§c", "text": "♨ ", "zh": "♨ ", "order": 0},
+        {"color": "§a§l", "text": "[", "zh": "[", "order": 1},
+        {"color": "§a§l", "text": "WARP", "zh": "传送", "order": 2},
+        {"color": "§a§l", "text": "]", "zh": "]", "order": 3},
+        {"color": "§a§l", "text": " ", "zh": " ", "order": 4},
+        {"color": "§e", "text": "To ", "zh": " 内可前往 ", "order": 7},
+        {"color": "§d", "text": "Elizabeth", "zh": "Elizabeth", "order": 8},
+        {"color": "§e", "text": " in the next ", "zh": "在接下来的 ", "order": 5},
+        {"color": "§c", "text": "%s ", "zh": "%s", "order": 6},
+        {"color": "§e", "text": "to grab yours!", "zh": " 处抢购!", "order": 9}
       ]
     },
     {

@@ -1,8 +1,8 @@
 {
   "source_note": "本轮采集与截图的独立回归，覆盖颜色、动态数值、完整句消费和误匹配边界。",
   "cases": [
-    {"name":"独立剩余时间紧凑显示","surface":"Hologram","source":["§a5m 9s Left"],"expected":"§a剩余5分09秒"},
-    {"name":"独立剩余时间变值保留颜色","surface":"Hologram","source":["§e12m 34s Left"],"expected":"§e剩余12分34秒"},
+    {"name":"独立剩余时间紧凑显示","surface":"Hologram","source":["§a5m 9s Left"],"expected":"§a剩余 5分09秒"},
+    {"name":"独立剩余时间变值保留颜色","surface":"Hologram","source":["§e12m 34s Left"],"expected":"§e剩余 12分34秒"},
     {"name":"速算答对前缀","surface":"ChatMessage","source":["§d§lQUICK MATHS! §einkkni §7answered correctly in §a3s§e!"],"expected":"§d§l速算! §einkkni§7 答对了，用时 §a3秒§e!"},
     {"name":"速算答错前缀","surface":"ChatMessage","source":["§d§lQUICK MATHS! §cWrong answer, try again!"],"expected":"§d§l速算! §c答错了，再试一次!"},
     {"name":"稀有掉落复用物品名","surface":"ChatMessage","source":["§6§lRARE DROP! §aEnchanted Spider Eye §b(+125  Magic Find)"],"expected":"§6§l稀有掉落! §a附魔蜘蛛眼 §b（+125  魔法寻宝）"},

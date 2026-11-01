@@ -4,7 +4,7 @@ import io.github.bingkkni.skyzh.HoldOriginal;
 import io.github.bingkkni.skyzh.HypixelServer;
 import io.github.bingkkni.skyzh.UpdateChecker;
 import io.github.bingkkni.skyzh.capture.ScreenWatcher;
-import io.github.bingkkni.skyzh.gui.SkyZHWelcomeScreen;
+import io.github.bingkkni.skyzh.gui.SkyZHConfigScreen;
 import net.minecraft.client.Minecraft;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -29,7 +29,7 @@ public abstract class MinecraftCaptureMixin {
 		Minecraft minecraft = (Minecraft) (Object) this;
 		HypixelServer.tick(minecraft);
 		UpdateChecker.tick(minecraft);
-		SkyZHWelcomeScreen.tick(minecraft);
+		SkyZHConfigScreen.tick(minecraft);
 		HoldOriginal.poll(minecraft);
 		ScreenWatcher.tick();
 		io.github.bingkkni.skyzh.hook.PriorityText.tick();
