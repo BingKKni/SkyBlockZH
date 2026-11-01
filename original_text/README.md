@@ -10,6 +10,7 @@ original_text/
   README.md            本文件
   GLOSSARY.md           一词多义 / 需要统一译名的术语表
   SOURCES.md            数据来源说明与可信度排序
+  _data/               与翻译一同更新的物品目录、区域分类及专名参考表
   <玩法分类>/            Mining, Farming, Foraging, Fishing, Combat,
                          Dungeons, Rift, Taming, Events, Economy, Hub_General
     NPC_Message/         按 NPC 名字建文件,如 King.json
@@ -34,6 +35,11 @@ original_text/
 玩法分类的选择依据 SkyBlock 的技能/玩法体系,而非 Wiki 的页面结构,
 一个 NPC/GUI 如果横跨多个玩法(例如集市 Bazaar 既属于 Economy 也可能被别的玩法引用),
 按其**主要出现场景**归类,并在 `source` 字段注明,不必严格互斥。
+
+`_data/item-names.json` 保留 `names` / `pets` / `reforges`，`_data/areas.json` 保留 `unknown` / `areas` / `modes`，
+`_data/preserved-text.json` 保留 `enchantments` / `profile_names`；保持各自的数据结构，不改写为普通翻译记录。
+这些表与译文统一生成内置资源及外置完整包，不能只更新其中一份分发副本。导出方式和包级兼容字段见
+[技术文档](../docs/TECHNICAL_zh-CN.md#完整翻译包与热重载)。普通记录无需逐条添加版本号；新引擎能力需同步维护包的兼容声明。
 
 ## 2. 通用字段
 
@@ -529,7 +535,7 @@ Bags / Skills / Other Crystals 这些真正的入口名照旧通过。词表对 
 
 侧边栏在博物馆里写的是 `inkkni's Museum`,在别人的私人岛上写的是 `<玩家名>'s Island`。
 主人是玩家名,每个人都不一样,**任何表都不可能列全**。引擎的做法是拆开所有格:
-词表里只写通名(`Museum → 博物馆`),渲染成「inkkni 的博物馆」;`assets/skyzh/capture/areas.json`
+词表里只写通名(`Museum → 博物馆`),渲染成「inkkni 的博物馆」;`original_text/_data/areas.json`
 同理,只写 `Museum`/`Island`(见 `text/Possessive.java`)。
 
 只有在**直接查表查不到**时才会拆,所以 `Rampart's Quarry`、`Goblin Queen's Den` 这种表里写全了的
@@ -627,7 +633,7 @@ Hologram 读取服务器登记的隐形盔甲架可见名字及非玩家活体�
 
 语料里的 `translate: false` 与 NPC 文件的 `npc` / `aliases` 只记录翻译决定，不再抑制采集。
 博物馆浮空物品名仍须由离线目录确认后借用 ITEM 名称；排行、重铸与星级保留原样，不借用菜单或 Lore 半句。
-`assets/skyzh/capture/preserved-text.json` 仅保留译文内部的附魔专名识别及档案身份数据，不再维护未译文本的屏蔽名单。
+`original_text/_data/preserved-text.json` 仅保留译文内部的附魔专名识别及档案身份数据，不再维护未译文本的屏蔽名单。
 玩家身份、纯数字、已正确翻译的文本仍按来源及实际覆盖情况处理；会话内去重与动态值归并继续保留次数和原始快照。
 
 诊断元数据中的 `original_lines` / `rendered_lines` 是同一次观测的具体样本，`records` 指向命中的记录。不要用跨时间归并的 `observed` 列表拼造“原始段落”。

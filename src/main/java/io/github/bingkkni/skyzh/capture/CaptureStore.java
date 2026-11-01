@@ -1,6 +1,8 @@
 package io.github.bingkkni.skyzh.capture;
 
 import io.github.bingkkni.skyzh.text.StyledText;
+import io.github.bingkkni.skyzh.text.TranslationIndex;
+import io.github.bingkkni.skyzh.text.Translator;
 import java.io.IOException;
 import java.nio.file.DirectoryNotEmptyException;
 import java.nio.file.Files;
@@ -128,8 +130,8 @@ public final class CaptureStore {
 	private sealed interface Work permits Queued, FlushRequest {
 	}
 
-	/** The queue carries the clear generation it entered under, so an already-polled old item stays old. */
-	private record Queued(long epoch, Sighting sighting) implements Work {
+	/** Preserve both the clear epoch and the corpus used when the main thread assigned the gameplay. */
+	private record Queued(long epoch, Sighting sighting, TranslationIndex index) implements Work {
 	}
 
 	private record FlushRequest(CountDownLatch done) implements Work {
@@ -168,6 +170,7 @@ public final class CaptureStore {
 
 	private static Path root;
 	private static volatile Thread worker;
+	private static TranslationIndex corpus;
 	private static final AtomicBoolean flushRequested = new AtomicBoolean();
 	private static final AtomicBoolean reportRequested = new AtomicBoolean();
 	private static volatile long epoch;
@@ -203,7 +206,7 @@ public final class CaptureStore {
 
 	/** Hands one line to the worker, or drops it if the queue has backed up. */
 	public static void offer(Sighting sighting) {
-		if (QUEUE.offer(new Queued(epoch, sighting))) {
+		if (QUEUE.offer(new Queued(epoch, sighting, Translator.index()))) {
 			return;
 		}
 
@@ -223,7 +226,7 @@ public final class CaptureStore {
 				Work work = QUEUE.poll(POLL_MS, TimeUnit.MILLISECONDS);
 
 				if (work instanceof Queued queued) {
-					accept(queued.sighting(), queued.epoch());
+					accept(queued);
 				} else if (work instanceof FlushRequest request) {
 					try {
 						flush();
@@ -267,10 +270,28 @@ public final class CaptureStore {
 		accept(sighting, epoch);
 	}
 
+	private static void accept(Queued queued) {
+		try (var ignored = Translator.useIndex(queued.index())) {
+			accept(queued.sighting(), queued.epoch());
+		}
+	}
+
 	/** Rejects work removed from the queue before a later clear advanced the generation. */
 	private static synchronized void accept(Sighting sighting, long sightingEpoch) {
+		try (var ignored = Translator.useIndex(Translator.index())) {
+			acceptPinned(sighting, sightingEpoch);
+		}
+	}
+
+	private static void acceptPinned(Sighting sighting, long sightingEpoch) {
 		if (sightingEpoch != epoch) {
 			return;
+		}
+		var current = Translator.index();
+		if (corpus != current) {
+			BY_KEY.clear();
+			SHARED.clear();
+			corpus = current;
 		}
 
 		switch (sighting.observation()) {

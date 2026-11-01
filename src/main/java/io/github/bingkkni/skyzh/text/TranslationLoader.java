@@ -3,10 +3,7 @@ package io.github.bingkkni.skyzh.text;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -19,8 +16,6 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
-import net.fabricmc.loader.api.FabricLoader;
-import net.fabricmc.loader.api.ModContainer;
 import net.minecraft.network.chat.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +33,7 @@ import org.slf4j.LoggerFactory;
  */
 public final class TranslationLoader {
 	private static final Logger LOGGER = LoggerFactory.getLogger("SkyZH");
-	private static final String ROOT = "assets/skyzh/original_text";
+	public static final String ROOT = "assets/skyzh/original_text";
 
 	/** {@code %2$s} in a {@code placeholders[].token}, which names the argument it describes. */
 	private static final Pattern NUMBERED_TOKEN = Pattern.compile("%(\\d+)\\$");
@@ -60,48 +55,16 @@ public final class TranslationLoader {
 	private TranslationLoader() {
 	}
 
-	public static TranslationIndex load() {
-		TranslationIndex index = new TranslationIndex();
-		ModContainer container = FabricLoader.getInstance().getModContainer("skyzh").orElse(null);
-
-		if (container == null) {
-			LOGGER.error("找不到 SkyZH 自身的 mod 容器，翻译语料无法加载，游戏文本将保持英文。");
-			return index;
-		}
-
-		Path root = container.findPath(ROOT).orElse(null);
-
-		if (root == null) {
-			LOGGER.error("jar 内缺少 {}，翻译语料无法加载，游戏文本将保持英文。", ROOT);
-			return index;
-		}
-
+	/** Strict reading is shared by built-in resources and offline bundle checks. */
+	public static Map<String, JsonObject> readDirectory(Path root) throws IOException {
 		Map<String, JsonObject> files = new HashMap<>();
-
 		try (Stream<Path> walk = Files.walk(root)) {
 			for (Path path : walk.filter(Files::isRegularFile).toList()) {
 				String relative = root.relativize(path).toString().replace('\\', '/');
-
-				if (!relative.endsWith(".json")) {
-					continue;
-				}
-
-				try (BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
-					JsonElement parsed = JsonParser.parseReader(reader);
-
-					if (parsed.isJsonObject()) {
-						files.put(relative, parsed.getAsJsonObject());
-					}
-				} catch (Exception e) {
-					LOGGER.warn("翻译文件 {} 解析失败，已跳过：{}", relative, e.toString());
-				}
+				if (relative.endsWith(".json")) files.put(relative, TranslationPack.parse(Files.readAllBytes(path), relative));
 			}
-		} catch (IOException e) {
-			LOGGER.error("遍历翻译语料目录失败，游戏文本将保持英文。", e);
-			return index;
 		}
-
-		return compile(files);
+		return files;
 	}
 
 	/**
@@ -112,7 +75,11 @@ public final class TranslationLoader {
 	 * @param files record files keyed by their path relative to {@code original_text/}
 	 */
 	public static TranslationIndex compile(Map<String, JsonObject> files) {
-		TranslationIndex index = new TranslationIndex();
+		TranslationIndex index = new TranslationIndex(CorpusData.from(files));
+		return Translator.withIndex(index, () -> compile(files, index));
+	}
+
+	private static TranslationIndex compile(Map<String, JsonObject> files, TranslationIndex index) {
 
 		JsonObject name = files.get(SKYBLOCK_NAME);
 
@@ -133,9 +100,16 @@ public final class TranslationLoader {
 		files.forEach((relative, file) -> {
 			for (JsonObject record : records(file)) {
 				if (record.has("id")) {
-					byReference.put(relative + "#" + record.get("id").getAsString(), record);
+					String address = relative + "#" + record.get("id").getAsString();
+					if (byReference.putIfAbsent(address, record) != null)
+						throw new IllegalArgumentException("重复记录 ID: " + address);
 				}
 			}
+		});
+
+		byReference.forEach((address, record) -> {
+			validateRecord(record, address);
+			resolve(record, byReference);
 		});
 
 		int compiled = 0;
@@ -194,7 +168,7 @@ public final class TranslationLoader {
 
 		index.prepare();
 		TermTable baseTerms = index.terms();
-		index.terms(baseTerms.withItemNames(itemNames(index), english -> {
+		index.terms(baseTerms.withItemNames(itemNames(index), english -> Translator.withIndex(index, () -> {
 			// Name templates cover real catalog items such as Basic Cow Axe. Never apply a menu or
 			// lore template to an unknown captured name, and render with the non-recursive base table.
 			if (ItemNames.canonical(english) == null) return null;
@@ -204,7 +178,7 @@ public final class TranslationLoader {
 			if (match == null) return null;
 			String chinese = entry.render(StyledText.of(Component.literal(english)), match, baseTerms).getString();
 			return chinese.isEmpty() || chinese.equals(english) ? null : chinese;
-		}));
+		})));
 
 		LOGGER.info("SkyZH 已加载 {} 个翻译文件，可用记录 {} 条（{} 条尚未翻译或不需要翻译，保持英文）。",
 			files.size(), compiled, skipped);
@@ -310,6 +284,42 @@ public final class TranslationLoader {
 		return !string(source, "zh").isEmpty();
 	}
 
+	private static void validateRecord(JsonObject record, String address) {
+		try {
+			for (String key : new String[] {"id", "ref", "text", "zh", "layout", "chat_join_next"}) {
+				if (record.has(key)) CorpusData.string(record.get(key), key);
+			}
+			for (String key : new String[] {"translate", "continuation"}) {
+				if (record.has(key) && (!record.get(key).isJsonPrimitive() || !record.getAsJsonPrimitive(key).isBoolean()))
+					throw new IllegalArgumentException(key + " 必须是布尔值");
+			}
+			if (record.has("segments") && !record.get("segments").isJsonNull()) {
+				Set<Integer> orders = new HashSet<>();
+				for (var value : record.getAsJsonArray("segments")) {
+					JsonObject segment = value.getAsJsonObject();
+					CorpusData.string(segment.get("text"), "segments.text");
+					if (segment.has("zh")) CorpusData.string(segment.get("zh"), "segments.zh");
+					if (segment.has("omit") && (!segment.get("omit").isJsonPrimitive() || !segment.getAsJsonPrimitive("omit").isBoolean()))
+						throw new IllegalArgumentException("omit 必须是布尔值");
+					if (segment.has("order")) {
+						var order = segment.get("order");
+						if (!order.isJsonPrimitive() || !order.getAsJsonPrimitive().isNumber()
+							|| !order.getAsString().matches("[0-9]+") || !orders.add(order.getAsInt()))
+							throw new IllegalArgumentException("order 必须是本记录内不重复的非负整数");
+					}
+				}
+			}
+			if (record.has("placeholders")) for (var value : record.getAsJsonArray("placeholders")) {
+				JsonObject argument = value.getAsJsonObject();
+				for (String key : new String[] {"token", "type", "example"})
+					if (argument.has(key)) CorpusData.string(argument.get(key), "placeholders." + key);
+			}
+			if (record.has("exclude")) CorpusData.strings(record, "exclude");
+		} catch (RuntimeException e) {
+			throw new IllegalArgumentException("记录 " + address + " 格式错误: " + e.getMessage(), e);
+		}
+	}
+
 	/** Follows a {@code ref} to the shared library; a record without one is already itself. */
 	private static JsonObject resolve(JsonObject record, Map<String, JsonObject> byReference) {
 		if (!record.has("ref")) {
@@ -317,7 +327,9 @@ public final class TranslationLoader {
 		}
 
 		JsonObject target = byReference.get(record.get("ref").getAsString());
-		return target != null ? target : record;
+		if (target == null || target.has("ref"))
+			throw new IllegalArgumentException("缺失或嵌套的翻译引用: " + record.get("ref").getAsString());
+		return target;
 	}
 
 	private static TranslationEntry compile(JsonObject record, String relative, Map<String, JsonObject> byReference,

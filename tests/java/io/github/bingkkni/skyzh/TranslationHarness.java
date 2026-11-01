@@ -2618,9 +2618,9 @@ public final class TranslationHarness {
 	}
 
 	static void installIndex(TranslationIndex index) throws Exception {
-		var field = Translator.class.getDeclaredField("index");
-		field.setAccessible(true);
-		field.set(null, index);
+		var publish = Translator.class.getDeclaredMethod("publish", TranslationIndex.class);
+		publish.setAccessible(true);
+		publish.invoke(null, index);
 	}
 
 	private static void check(String name, String input, Surface surface, String expected) {

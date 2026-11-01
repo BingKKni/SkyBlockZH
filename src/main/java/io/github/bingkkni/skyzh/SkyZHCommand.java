@@ -2,6 +2,7 @@ package io.github.bingkkni.skyzh;
 
 import io.github.bingkkni.skyzh.capture.TextCapture;
 import io.github.bingkkni.skyzh.gui.SkyZHConfigScreen;
+import io.github.bingkkni.skyzh.text.Translator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -11,7 +12,7 @@ import java.util.function.BooleanSupplier;
 public final class SkyZHCommand {
 	public static final List<String> ALIASES = List.of("skyzh", "skyblockzh");
 	public static final List<String> SWITCHES = List.of("power", "tip", "capture", "updatecheck");
-	public static final List<String> PLAIN = List.of("on", "off", "clear");
+	public static final List<String> PLAIN = List.of("on", "off", "clear", "reload");
 
 	private SkyZHCommand() {
 	}
@@ -31,6 +32,7 @@ public final class SkyZHCommand {
 			case "switch" -> flip(parsed.alias(), parsed.argument(), parsed.state());
 			case "updatecheck" -> updateCheck(parsed.alias(), parsed.argument(), parsed.state());
 			case "clear" -> clear(parsed.alias(), parsed.argument(), parsed.state());
+			case "reload" -> reload(parsed.alias(), parsed.argument(), parsed.state());
 			default -> unknown(parsed.alias(), parsed.sub());
 		}
 
@@ -71,6 +73,7 @@ public final class SkyZHCommand {
 		lines.add("§6/" + alias + "  §f打开设置");
 		lines.add("§6/" + alias + " switch power/tip/capture [on/off]  §f切换总功能/显示原文提示/采集功能为开/关");
 		lines.add("§6/" + alias + " updatecheck [on/off]  §f切换启动检查更新功能");
+		lines.add("§6/" + alias + " reload  §f重新加载翻译包");
 
 		if (captureEnabled) {
 			lines.add("§6/" + alias + " clear  §f清空捕捉到的文本");
@@ -169,6 +172,20 @@ public final class SkyZHCommand {
 		}
 
 		Feedback.send(changed(what, on));
+	}
+
+	private static void reload(String alias, String argument, String extra) {
+		if (hasUnexpectedArguments(alias, "reload", argument, extra)) return;
+		try {
+			boolean started = Translator.reloadInBackground(loaded -> {
+				if (!loaded.warning().isEmpty()) Feedback.send("§e外置翻译包未能加载，已回退到内置翻译。原因: " + loaded.warning());
+				Feedback.send("§a翻译重载完成，当前使用" + (loaded.external() ? "外置翻译包" : "内置翻译")
+					+ "，共 " + loaded.index().size() + " 条可用记录。");
+			}, error -> Feedback.send("§c翻译重载失败，已保留当前翻译。原因: " + error.getMessage()));
+			Feedback.send(started ? "§e正在重新加载翻译…" : "§e翻译正在加载中，请稍候。");
+		} catch (RuntimeException e) {
+			Feedback.send("§c无法启动翻译重载: " + e.getMessage());
+		}
 	}
 
 	private static void clear(String alias, String argument, String extra) {

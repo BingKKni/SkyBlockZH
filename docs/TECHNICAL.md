@@ -285,8 +285,37 @@ structures while each occurrence keeps its own id and file. Candidates are never
 and per-start searches while preserving longest matches, blank boundaries and the 12-line/2048-character limits.
 Literal name tags, sidebar rows, tab rows and tooltips, which vanilla rebuilds every frame, are matched
 against their recorded node-by-node text, styles and child counts without flattening again; any in-place
-change misses and falls back to the full key. The corpus loads on a background thread, and the SkyBlock
-gate stays shut until it lands.
+change misses and falls back to the full key. The initial corpus loads on a background thread, and the SkyBlock
+gate stays shut until it lands. In-game reloads keep the previous valid corpus and the gate active.
+
+### Complete bundles and live reload
+
+`original_text/_data/` owns `item-names.json`, `areas.json` and `preserved-text.json` alongside the translation records.
+These item identities, area categories and preserved-name/profile references share the jar's minifier and the bundle exporter.
+Both sources use `TranslationLoader.compile`; auxiliary tables belong to the index generation. Each queued capture stores its admission
+generation, which background processing pins until completion. Minecraft still owns the Mod's standard language resources.
+
+Run `python tools/export_translations.py` (JDK 25 and this project's Gradle environment required) to create and check
+`build/translations/translations.zip`. `--output <file>` copies it only after validation succeeds. The equivalent Gradle tasks are
+`packTranslations checkTranslationPack`. The ZIP contains `manifest.json` and `original_text/` with unchanged relative paths.
+Place it, without extracting, in the active Minecraft instance's `skyzh-translations/` directory. The Mod creates that directory
+under `FabricLoader.getGameDir()`, which may differ from the launcher's directory. Startup and `/skyzh reload` or `/skyblockzh reload`
+read the fixed `translations.zip` file, then close it so it can be replaced.
+
+A valid external bundle replaces the complete corpus. No per-line fallback revives removed built-in templates. Malformed data,
+missing tables/references, mismatched counts/digests or incompatible versions fall back to the complete built-in corpus; if both
+sources fail, the current index remains. Removing the ZIP and reloading restores built-in data. Only one reload runs at a time;
+publication occurs on the client thread, refreshing display caches and capture deduplication without clearing chat history or original mode.
+
+`gradle.properties` supplies `translation_min_version`, `translation_max_version` and `translation_api`. The manifest exports string
+`require_low_version` and nullable `require_max_version` with inclusive bounds; Fabric's semantic version comparison ignores `+mc…`.
+The API must match the engine's declaration; maintain it when corpus requirements change, not for wording-only edits. `format_version` is 1.
+`revision` is HEAD, `source_dirty` covers corpus/build-rule/version-property changes, and `build_at_utc8` is the generation time with an
+explicit `+08:00` offset. These provenance fields do not determine compatibility. `content_sha256` hashes sorted relative paths as
+UTF-8 path, NUL, exact JSON bytes, NUL, excluding the manifest itself.
+
+`checkTranslationPack` covers exported content, auxiliary tables, compatibility boundaries, failure fallback, cache refresh and concurrent
+snapshot isolation on every target. Open menus, chat scrolling, original mode and the three display priorities still need in-game verification.
 
 `./gradlew checkPerformance` compares indexed matching with the previous exhaustive scan and checks
 style equality, cache collisions, shape hits and capture eviction recovery. `./gradlew benchmarkPerformance` reports
@@ -421,7 +450,7 @@ the first carrying an "Added items:" hover — and judging that by whole-`Style`
 record whose `segments` were already correct into this pile, advising a split at a boundary with no
 colour on either side of it. So the comparison is over colour, font and the five format flags.
 
-The gameplay comes from where the player was standing, through `assets/skyzh/capture/areas.json`; an
+The gameplay comes from where the player was standing, through `original_text/_data/areas.json`; an
 area nobody has classified lands in `_Unknown_Gameplay`, which is fixed by adding a line to that file
 rather than by changing code.
 

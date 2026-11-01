@@ -21,6 +21,10 @@ public final class LoreTranslation {
 
 	/** Input contains lore only: an item name can never consume a continuation. */
 	public static List<Unit> plan(List<Component> lines) {
+		return Translator.withIndex(Translator.index(), () -> planPinned(lines));
+	}
+
+	private static List<Unit> planPinned(List<Component> lines) {
 		List<Unit> result = new ArrayList<>();
 		LoreMatcher.Search search = new LoreMatcher.Search(Translator.index(), lines);
 

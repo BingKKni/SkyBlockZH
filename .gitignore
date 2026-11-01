@@ -49,8 +49,10 @@ probe.txt
 __pycache__/
 *.pyc
 
-# local translation/research helpers; maintained checks live under tests/
-/tools/
+# local translation/research helpers; publish the reusable translation exporter
+/tools/*
+!/tools/export_translations.py
+/temp/
 .claude/RESUME.md
 
 # others

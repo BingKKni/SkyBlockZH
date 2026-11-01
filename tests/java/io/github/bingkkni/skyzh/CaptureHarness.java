@@ -59,7 +59,7 @@ public final class CaptureHarness {
 
 	public static void main(String[] args) throws Exception {
 		Path corpus = Path.of(args.length > 0 ? args[0] : "original_text");
-		Path areas = corpus.getParent().resolve("src/main/resources/assets/skyzh/capture/areas.json");
+		Path areas = corpus.resolve("_data/areas.json");
 		TranslationIndex index = TranslationLoader.compile(TranslationHarness.readCorpus(corpus));
 		TranslationHarness.installIndex(index);
 

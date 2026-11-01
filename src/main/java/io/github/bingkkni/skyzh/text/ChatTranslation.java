@@ -34,6 +34,10 @@ public final class ChatTranslation {
 
 	/** Corpus availability is independent of the translation switch and held original-text key. */
 	public static Plan plan(Component source, int width, ToIntFunction<Component> measure) {
+		return Translator.withIndex(Translator.index(), () -> planPinned(source, width, measure));
+	}
+
+	private static Plan planPinned(Component source, int width, ToIntFunction<Component> measure) {
 		List<Component> lines = lines(StyledText.of(source));
 		List<Translator.Result> translated = new ArrayList<>(lines.size());
 

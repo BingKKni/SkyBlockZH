@@ -87,6 +87,11 @@ processResources {
 	def modVersion = "${rootProject.version}+mc${artifactTag}"
 	inputs.property 'version', modVersion
 	inputs.property 'minecraftRange', mcRange
+	inputs.property 'translationApi', rootProject.translation_api
+
+	filesMatching('skyzh-translations.properties') {
+		expand('translation_api': rootProject.translation_api)
+	}
 
 	filesMatching('fabric.mod.json') {
 		// `minecraft_range` rather than a literal, so the one file that says which Minecraft this jar
@@ -201,6 +206,14 @@ harnessTask('checkDiagnostics', 'io.github.bingkkni.skyzh.DiagnosticsHarness',
 		rootProject.file('tests/resources/runtime-diagnostic-colours.json').absolutePath
 	inputs.dir rootProject.file('original_text')
 	inputs.file rootProject.file('tests/resources/runtime-diagnostic-colours.json')
+}
+
+harnessTask('checkTranslationPack', 'io.github.bingkkni.skyzh.TranslationPackHarness',
+	'Checks exported bundles, compatibility, fallback and live corpus publication.') {
+	dependsOn rootProject.tasks.named('packTranslations'), 'checkTranslations', 'checkMinifiedCorpus', 'checkChatInteractions'
+	args rootProject.file('original_text').absolutePath,
+		rootProject.layout.buildDirectory.file('translations/translations.zip').get().asFile.absolutePath,
+		rootProject.version.toString()
 }
 
 harnessTask('checkCommands', 'io.github.bingkkni.skyzh.CommandHarness',
@@ -328,7 +341,7 @@ tasks.register('checkMixinTargets', Exec) {
 
 tasks.named('check') {
 	dependsOn 'checkPerformance', 'checkTranslations', 'checkChatInteractions', 'checkLore', 'checkCapture', 'checkDiagnostics', 'checkCommands', 'checkClientSettings', 'checkMinifiedCorpus',
-		'checkMixinTargets', 'checkDisplayPriority'
+		'checkMixinTargets', 'checkDisplayPriority', 'checkTranslationPack'
 }
 
 tasks.withType(JavaCompile).configureEach {

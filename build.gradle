@@ -95,6 +95,13 @@ abstract class MinifyCorpus extends DefaultTask {
 	/** All a kept `translate: false` record needs to say: which surface (its file) and which line. */
 	private static final Set<String> PRESERVED_KEYS = ['id', 'text', 'translate'] as Set
 
+	/** Auxiliary data travels with the corpus; plain string lists are runtime data in these files. */
+	private static final Map<String, Set<String>> DATA_KEYS = [
+		'_data/item-names.json': ['names', 'pets', 'reforges'] as Set,
+		'_data/areas.json': ['unknown', 'areas', 'modes'] as Set,
+		'_data/preserved-text.json': ['enchantments', 'profile_names'] as Set,
+	]
+
 	/** Per-term keys in _shared/Terms.json; `note` is the translator's reasoning. */
 	private static final Set<String> TERM_KEYS = ['en', 'zh', 'types'] as Set
 
@@ -137,6 +144,10 @@ abstract class MinifyCorpus extends DefaultTask {
 			def trimmed = [:]
 
 			document.each { key, value ->
+				if (DATA_KEYS.containsKey(relative)) {
+					if (DATA_KEYS[relative].contains(key)) trimmed[key] = value
+					return
+				}
 				// Checked before the list branch below: `terms` is a list, but of dictionary entries
 				// with no `id`, so the record walk would skip every one of them and write the file out
 				// empty — which silently turns off every value translation in the mod.
@@ -386,6 +397,74 @@ abstract class MinifyCorpus extends DefaultTask {
 		}
 
 		return terms.collect { term -> term.subMap(TERM_KEYS.intersect(term.keySet())) }
+	}
+}
+
+// One full bundle, sharing exactly the minifier used by the distributed jars.
+tasks.register('packTranslations') {
+	group = 'build'
+	description = 'Exports original_text as build/translations/translations.zip.'
+	dependsOn 'minifyCorpus'
+
+	doLast {
+		def root = minifiedCorpus.get().asFile.toPath()
+		def documents = new TreeMap<String, byte[]>()
+		java.nio.file.Files.walk(root).withCloseable { paths ->
+			paths.filter { java.nio.file.Files.isRegularFile(it) && it.toString().endsWith('.json') }.forEach { path ->
+				documents[root.relativize(path).toString().replace('\\', '/')] = java.nio.file.Files.readAllBytes(path)
+			}
+		}
+		def digest = java.security.MessageDigest.getInstance('SHA-256')
+		documents.each { path, bytes ->
+			digest.update(path.getBytes('UTF-8'))
+			digest.update((byte) 0)
+			digest.update(bytes)
+			digest.update((byte) 0)
+		}
+		def git = { List<String> arguments ->
+			def process = new ProcessBuilder(['git'] + arguments).directory(rootProject.projectDir)
+				.redirectError(ProcessBuilder.Redirect.DISCARD).start()
+			def text = process.inputStream.getText('UTF-8').trim()
+			if (process.waitFor() != 0) throw new GradleException('无法读取 Git 来源信息，请在项目检出目录内导出。')
+			text
+		}
+		def manifest = [
+			format_version: 1,
+			translation_api: Integer.parseInt(rootProject.translation_api),
+			require_low_version: rootProject.translation_min_version.toString(),
+			require_max_version: rootProject.translation_max_version.toString().trim() ?: null,
+			revision: git(['rev-parse', 'HEAD']),
+			source_dirty: !git(['status', '--porcelain', '--', 'original_text', 'build.gradle', 'gradle.properties']).isEmpty(),
+			build_at_utc8: java.time.OffsetDateTime.now(java.time.ZoneOffset.ofHours(8)).withNano(0).toString(),
+			file_count: documents.size(),
+			content_sha256: java.util.HexFormat.of().formatHex(digest.digest()),
+		]
+		def directory = layout.buildDirectory.dir('translations').get().asFile.toPath()
+		java.nio.file.Files.createDirectories(directory)
+		def target = directory.resolve('translations.zip')
+		def temporary = directory.resolve('translations.zip.tmp')
+		try {
+			new java.util.zip.ZipOutputStream(java.nio.file.Files.newOutputStream(temporary), java.nio.charset.StandardCharsets.UTF_8).withCloseable { zip ->
+				def add = { String name, byte[] bytes ->
+					def entry = new java.util.zip.ZipEntry(name)
+					entry.setTime(0L)
+					zip.putNextEntry(entry)
+					zip.write(bytes)
+					zip.closeEntry()
+				}
+				add('manifest.json', groovy.json.JsonOutput.toJson(manifest).getBytes('UTF-8'))
+				documents.each { path, bytes -> add('original_text/' + path, bytes) }
+			}
+			try {
+				java.nio.file.Files.move(temporary, target, java.nio.file.StandardCopyOption.ATOMIC_MOVE,
+					java.nio.file.StandardCopyOption.REPLACE_EXISTING)
+			} catch (java.nio.file.AtomicMoveNotSupportedException ignored) {
+				java.nio.file.Files.move(temporary, target, java.nio.file.StandardCopyOption.REPLACE_EXISTING)
+			}
+		} finally {
+			java.nio.file.Files.deleteIfExists(temporary)
+		}
+		logger.lifecycle('翻译包: {} ({} 个文件，API {}，UTC+8 {})', target, documents.size(), manifest.translation_api, manifest.build_at_utc8)
 	}
 }
 

@@ -114,6 +114,15 @@ public final class PriorityText {
 		}
 	}
 
+	/** New corpus, same server provenance; discard only remembered translated spellings. */
+	public static void translationsChanged() {
+		generation = SkyZHConfig.generation();
+		OUTPUT.clear();
+		SOURCE_PREFIXES.clear();
+		HUD.keySet().forEach(PriorityText::indexPrefix);
+		PACKETS.keySet().forEach(PriorityText::indexPrefix);
+	}
+
 	private static void advanceHud() {
 		tick++;
 		HUD.values().removeIf(source -> !customSidebar || source.surface() != Surface.SCOREBOARD

@@ -32,7 +32,9 @@ public final class Translator {
 	private static final java.util.regex.Pattern DISPLAY_RANK = java.util.regex.Pattern.compile("#[0-9]{1,6} ");
 
 	private static volatile TranslationIndex index = new TranslationIndex();
-	private static volatile boolean loading;
+	private static volatile boolean ready;
+	private static final java.util.concurrent.atomic.AtomicBoolean RELOADING = new java.util.concurrent.atomic.AtomicBoolean();
+	private static final ThreadLocal<TranslationIndex> PINNED = new ThreadLocal<>();
 
 	private Translator() {
 	}
@@ -109,47 +111,87 @@ public final class Translator {
 		}
 	}
 
-	public static void reload() {
-		index = TranslationLoader.load();
-		REPORTED_COLOUR_LOSS.clear();
+	/** Read off-thread; publish the complete generation on the client thread. */
+	public static boolean reloadInBackground(java.util.function.Consumer<TranslationPack.Loaded> success,
+		java.util.function.Consumer<Exception> failure) {
+		return requestReload(TranslationPack::load, task -> net.minecraft.client.Minecraft.getInstance().execute(task), success, failure);
 	}
 
-	/**
-	 * {@link #reload} and then {@code then}, on a thread of their own; returns at once.
-	 *
-	 * <p>Reading and compiling the corpus takes over a second on a freshly started JVM, all of it in
-	 * front of the title screen when done during client init. Nothing needs the index that early, and
-	 * until it lands {@link #index()} is the empty one every surface already copes with. The SkyBlock
-	 * gate stays shut while {@link #loading()}, so no line is drawn or captured against a corpus that
-	 * is still being read.
-	 */
-	public static void reloadInBackground(Runnable then) {
-		loading = true;
+	/** Injected publication queue makes busy/failure/retained-index behavior testable without a client. */
+	static boolean requestReload(java.util.function.Supplier<TranslationPack.Loaded> read,
+		java.util.concurrent.Executor client, java.util.function.Consumer<TranslationPack.Loaded> success,
+		java.util.function.Consumer<Exception> failure) {
+		if (!RELOADING.compareAndSet(false, true)) return false;
 		try {
 			Thread.ofPlatform().name("SkyZH-corpus").daemon().start(() -> {
 				try {
-					reload();
-					then.run();
-				} catch (RuntimeException | Error e) {
-					LOGGER.error("SkyZH 翻译语料加载或目录预读失败。", e);
-					if (e instanceof Error error) throw error;
-				} finally {
-					loading = false;
+					TranslationPack.Loaded next = read.get();
+					client.execute(() -> {
+						try {
+							publish(next.index());
+							success.accept(next);
+						} finally {
+							RELOADING.set(false);
+						}
+					});
+				} catch (Exception e) {
+					LOGGER.error("SkyZH 翻译重载失败，保留当前语料。", e);
+					try {
+						client.execute(() -> {
+							try { failure.accept(e); }
+							finally { RELOADING.set(false); }
+						});
+					} catch (RuntimeException rejected) {
+						RELOADING.set(false);
+						LOGGER.error("SkyZH 无法提交重载结果。", rejected);
+					}
+				} catch (Error e) {
+					RELOADING.set(false);
+					throw e;
 				}
 			});
 		} catch (RuntimeException | Error e) {
-			loading = false;
+			RELOADING.set(false);
 			throw e;
+		}
+		return true;
+	}
+
+	private static void publish(TranslationIndex next) {
+		index = java.util.Objects.requireNonNull(next);
+		ready = true;
+		REPORTED_COLOUR_LOSS.clear();
+		SkyZHConfig.bumpGeneration();
+		io.github.bingkkni.skyzh.hook.PriorityText.translationsChanged();
+	}
+
+	/** Only the first load closes the SkyBlock gate. Reloading keeps the previous generation live. */
+	public static boolean loading() { return RELOADING.get() && !ready; }
+
+	public static TranslationIndex index() {
+		TranslationIndex pinned = PINNED.get();
+		return pinned == null ? index : pinned;
+	}
+
+	/** Pins a complete background capture/compile operation without blocking rendering or publication. */
+	public static Scope useIndex(TranslationIndex selected) {
+		TranslationIndex previous = PINNED.get();
+		if (previous == selected) return Scope.UNCHANGED;
+		PINNED.set(selected);
+		return new Scope(previous, true);
+	}
+
+	public record Scope(TranslationIndex previous, boolean changed) implements AutoCloseable {
+		private static final Scope UNCHANGED = new Scope(null, false);
+		@Override public void close() {
+			if (!this.changed) return;
+			if (this.previous == null) PINNED.remove();
+			else PINNED.set(this.previous);
 		}
 	}
 
-	/** Whether {@link #reloadInBackground} has not finished yet. */
-	public static boolean loading() {
-		return loading;
-	}
-
-	public static TranslationIndex index() {
-		return index;
+	public static <T> T withIndex(TranslationIndex selected, java.util.function.Supplier<T> operation) {
+		try (Scope ignored = useIndex(selected)) { return operation.get(); }
 	}
 
 	/**
@@ -188,6 +230,10 @@ public final class Translator {
 	}
 
 	private static Result translateAvailable(Component source, StyledText styled, Surface surface, SkyZHConfig config) {
+		return withIndex(index(), () -> translatePinned(source, styled, surface, config));
+	}
+
+	private static Result translatePinned(Component source, StyledText styled, Surface surface, SkyZHConfig config) {
 		// Matching runs on the canonical spelling of the line: the same characters with SkyBlock's
 		// icon font folded back onto the symbols the corpus was written with. Drawing still uses the
 		// text exactly as it arrived — see Glyphs.
@@ -198,7 +244,7 @@ public final class Translator {
 		}
 
 		for (LineShape.Range range : LineShape.candidates(surface, plain)) {
-			TranslationIndex.Match found = index.match(surface, plain.substring(range.start(), range.end()));
+			TranslationIndex.Match found = index().match(surface, plain.substring(range.start(), range.end()));
 			if (found == null) continue;
 			TranslationEntry entry = found.entry();
 			StyledText core = styled.sub(range.start(), range.end());
@@ -212,7 +258,7 @@ public final class Translator {
 				);
 			}
 
-			MutableComponent translated = entry.render(core, match, index.terms());
+			MutableComponent translated = entry.render(core, match, index().terms());
 
 			return new Result(
 				skyBlockName(translated, config),
@@ -229,7 +275,7 @@ public final class Translator {
 
 		if (match != null) {
 			return new Result(
-				skyBlockName(borrowed.render(styled, match, index.terms()), config), null, null, borrowed, styled, match
+				skyBlockName(borrowed.render(styled, match, index().terms()), config), null, null, borrowed, styled, match
 			);
 		}
 
@@ -256,7 +302,7 @@ public final class Translator {
 	 */
 	private static TranslationEntry borrowed(Surface surface, String plain) {
 		return surface == Surface.HOLOGRAM && ItemNames.canonical(plain) != null
-			? index.lookupExact(Surface.ITEM, plain.trim()) : null;
+			? index().lookupExact(Surface.ITEM, plain.trim()) : null;
 	}
 
 	/** Auction displays add a rank and reforge to a catalog-confirmed item, never an NPC name. */
@@ -271,7 +317,7 @@ public final class Translator {
 		StyledText name = styled.sub(from, to);
 		Result translated = TooltipTranslator.translateItemNameAvailable(name.slice(0, name.length()));
 		if (!translated.matched()
-			&& !index.preserved(Surface.ITEM, TooltipTranslator.itemNameCore(name).canonical())) return null;
+			&& !index().preserved(Surface.ITEM, TooltipTranslator.itemNameCore(name).canonical())) return null;
 		return around(styled, from, to, translated.padded());
 	}
 
@@ -284,7 +330,7 @@ public final class Translator {
 		MutableComponent result = Component.empty();
 		int cursor = 0;
 		for (LineShape.Range part : parts) {
-			String zh = index.terms().typed("reputation_rank").get(styled.canonical().substring(part.start(), part.end()));
+			String zh = index().terms().typed("reputation_rank").get(styled.canonical().substring(part.start(), part.end()));
 			if (zh == null) return null;
 			result.append(styled.slice(cursor, part.start()));
 			result.append(Component.literal(zh).setStyle(styled.styleAt(part.start())));
@@ -319,6 +365,10 @@ public final class Translator {
 
 	/** The same, for a caller that already flattened the line — the capture path snapshots it early. */
 	public static Located locate(StyledText styled, Surface surface) {
+		return withIndex(index(), () -> locatePinned(styled, surface));
+	}
+
+	private static Located locatePinned(StyledText styled, Surface surface) {
 		String plain = styled.canonical();
 
 		if (plain.isEmpty()) {
@@ -326,7 +376,7 @@ public final class Translator {
 		}
 
 		for (LineShape.Range range : LineShape.candidates(surface, plain)) {
-			TranslationIndex.Match found = index.match(surface, plain.substring(range.start(), range.end()));
+			TranslationIndex.Match found = index().match(surface, plain.substring(range.start(), range.end()));
 			if (found != null) {
 				return new Located(found.entry(), styled.sub(range.start(), range.end()), found.matcher());
 			}
@@ -579,7 +629,7 @@ public final class Translator {
 		Component value = valued(styled.slice(colon, styled.length()), surface, config);
 		boolean any = label != null || value != null;
 		boolean labelCovered = label != null || !hasEnglishWord(plain.substring(0, colon))
-			|| index.isNpcName(plain.substring(0, colon).trim());
+			|| index().isNpcName(plain.substring(0, colon).trim());
 		boolean valueCovered = value != null || !hasEnglishWord(plain.substring(colon));
 
 		return any && labelCovered && valueCovered;
@@ -661,7 +711,7 @@ public final class Translator {
 			words++;
 		}
 
-		String zh = words < to ? index.terms().translate(VALUE, plain.substring(words, to)) : null;
+		String zh = words < to ? index().terms().translate(VALUE, plain.substring(words, to)) : null;
 		Component replacement = zh == null ? null : Component.literal(zh).setStyle(styled.styleAt(words));
 
 		if (replacement == null && words < to) {
@@ -690,13 +740,13 @@ public final class Translator {
 		String plain = styled.canonical();
 		int from = wordsStart(plain);
 		int to = wordsEnd(plain, from);
-		String zh = from < to ? index.terms().translate(VALUE, plain.substring(from, to)) : null;
+		String zh = from < to ? index().terms().translate(VALUE, plain.substring(from, to)) : null;
 
 		// Statuses are sometimes emphatic ("Ready!") while the term table stores the reusable word.
 		// Keep the punctuation live and only retry the exact word before it; never split the word itself.
 		if (zh == null && to > from && plain.charAt(to - 1) == '!') {
 			to--;
-			zh = from < to ? index.terms().translate(VALUE, plain.substring(from, to)) : null;
+			zh = from < to ? index().terms().translate(VALUE, plain.substring(from, to)) : null;
 		}
 
 		if (zh == null) {
@@ -857,7 +907,7 @@ public final class Translator {
 			return source.copy();
 		}
 
-		MutableComponent replaced = index.skyBlockName().apply(styled);
+		MutableComponent replaced = index().skyBlockName().apply(styled);
 
 		return replaced != null ? replaced : source.copy();
 	}
@@ -868,7 +918,7 @@ public final class Translator {
 			return source;
 		}
 
-		MutableComponent replaced = index.skyBlockName().apply(StyledText.of(source));
+		MutableComponent replaced = index().skyBlockName().apply(StyledText.of(source));
 
 		return replaced != null ? replaced : source;
 	}

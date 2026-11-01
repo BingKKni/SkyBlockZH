@@ -22,6 +22,11 @@ public final class CommandHarness {
 		SkyZHCommand.Parsed updateCheck = SkyZHCommand.parse("skyzh updatecheck ON");
 		check("更新检查子命令可解析", updateCheck == null ? null : updateCheck.sub(), "updatecheck");
 		check("更新检查状态不分大小写", updateCheck == null ? null : updateCheck.argument(), "on");
+		check("翻译重载已提供补全", SkyZHCommand.PLAIN.contains("reload"), true);
+		for (String alias : SkyZHCommand.ALIASES) {
+			check(alias + " reload 可解析", SkyZHCommand.parse(alias + " reload").sub(), "reload");
+			check(alias + " reload 多余参数保留供拒绝", SkyZHCommand.parse(alias + " reload extra").argument(), "extra");
+		}
 		check("空输入不归本 Mod", SkyZHCommand.parse("   "), null);
 		check("null 输入不崩溃", SkyZHCommand.parse(null), null);
 		check("别的命令不拦截", SkyZHCommand.parse("warp hub"), null);
@@ -46,6 +51,7 @@ public final class CommandHarness {
 			"§6/skyzh  §f打开设置",
 			"§6/skyzh switch power/tip/capture [on/off]  §f切换总功能/显示原文提示/采集功能为开/关",
 			"§6/skyzh updatecheck [on/off]  §f切换启动检查更新功能",
+			"§6/skyzh reload  §f重新加载翻译包",
 			"§e======================================"
 		));
 
@@ -54,6 +60,7 @@ public final class CommandHarness {
 			"§6/skyblockzh  §f打开设置",
 			"§6/skyblockzh switch power/tip/capture [on/off]  §f切换总功能/显示原文提示/采集功能为开/关",
 			"§6/skyblockzh updatecheck [on/off]  §f切换启动检查更新功能",
+			"§6/skyblockzh reload  §f重新加载翻译包",
 			"§6/skyblockzh clear  §f清空捕捉到的文本",
 			"§e======================================"
 		));

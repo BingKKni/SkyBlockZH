@@ -41,7 +41,12 @@ public final class TranslationIndex {
 	private SkyBlockName skyBlockName = SkyBlockName.DEFAULT;
 	private TermTable terms = TermTable.EMPTY;
 
-	public TranslationIndex() {
+	private final CorpusData data;
+
+	public TranslationIndex() { this(null); }
+
+	public TranslationIndex(CorpusData data) {
+		this.data = data;
 		for (Surface surface : Surface.values()) {
 			this.exact.put(surface, new HashMap<>());
 			this.patterns.put(surface, new ArrayList<>());
@@ -54,6 +59,8 @@ public final class TranslationIndex {
 			});
 		}
 	}
+
+	public CorpusData data() { return this.data == null ? CorpusData.bundled() : this.data; }
 
 	/** The gameplay's own name, which is substituted into every surface rather than stored per line. */
 	public SkyBlockName skyBlockName() {
@@ -149,6 +156,10 @@ public final class TranslationIndex {
 	 * happened to be walked in — a translation that changes because a file was renamed.
 	 */
 	public TranslationEntry lookup(Surface surface, String plain) {
+		return Translator.withIndex(this, () -> lookupHere(surface, plain));
+	}
+
+	private TranslationEntry lookupHere(Surface surface, String plain) {
 		Map<String, TranslationEntry> cached = this.cache.get(surface);
 		synchronized (cached) {
 			if (cached.containsKey(plain)) return cached.get(plain);
@@ -164,6 +175,10 @@ public final class TranslationIndex {
 
 	/** Retains the successful cold-query Matcher instead of immediately running the same regex again. */
 	public Match match(Surface surface, String plain) {
+		return Translator.withIndex(this, () -> matchHere(surface, plain));
+	}
+
+	private Match matchHere(Surface surface, String plain) {
 		Map<String, TranslationEntry> cached = this.cache.get(surface);
 		TranslationEntry entry;
 		boolean remembered;

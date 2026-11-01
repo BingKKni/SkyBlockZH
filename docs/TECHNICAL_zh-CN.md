@@ -243,7 +243,35 @@ Mod 读取打包时删除译者说明字段后的 JSON，运行时字段保持�
 `StyledText` 保存连续样式段，子范围共享不可变样式存储；Lore 在一次规划内复用行快照和起点查询，
 继续选择最长完整匹配，保留 12 行、2048 字符和空行边界。
 原版每帧重建的头顶文字、侧边栏、Tab 行与 Tooltip 若只含字面文本，按逐节点文本、样式与子节点数命中已记录的结构，
-不再重复展平；任何原地修改都会落空并回到完整键。语料在后台线程加载，完成前 SkyBlock 判定保持关闭。
+不再重复展平；任何原地修改都会落空并回到完整键。首次语料在后台线程加载，完成前 SkyBlock 判定保持关闭；
+游戏中的重载继续使用上一份有效索引，不关闭门控。
+
+### 完整翻译包与热重载
+
+`original_text/_data/` 中的 `item-names.json`、`areas.json`、`preserved-text.json` 与翻译记录一起维护、
+精简和打包。它们分别保存物品身份目录、区域分类及专名／档案身份参考；Mod 自身的语言资源仍由 Minecraft 加载。
+内置语料和外置包都复用 `TranslationLoader.compile`。`CorpusData` 随索引发布，采集工作队列记录入队时的索引，后台处理固定该代数据。
+
+运行 `python tools/export_translations.py` 可生成并校验 `build/translations/translations.zip`，也可直接使用
+`./gradlew packTranslations checkTranslationPack`。ZIP 根目录包含 `manifest.json` 和保留相对路径的 `original_text/`；
+导出复用 `minifyCorpus`，临时文件写完后替换正式文件。脚本支持 `--output <目标文件路径>`，校验成功后才复制到目标位置。
+需要 JDK 25 和项目 Gradle 环境。玩家将 ZIP 放入当前 Minecraft 实例的 `skyzh-translations/`，无需解压；
+目录由 Mod 创建，通过 `FabricLoader.getGameDir()` 定位，开启版本隔离时不是启动器程序所在目录。
+启动或 `/skyzh reload`、`/skyblockzh reload` 时读取固定的 `translations.zip`，读取后关闭，不持续占用文件。
+
+包整体替换内置语料，不逐条混合，删除的旧模板因此不会被回退查找重新启用。JSON、必要表、引用、文件数量或摘要校验失败，
+以及格式／版本不兼容时，整包回退到内置语料；两个来源均失败则保留当前索引。移走 ZIP 后重载即可恢复内置版本。
+并发重载请求会被拒绝，新索引在客户端线程发布，刷新显示缓存与采集去重索引，保留原文模式、设置及聊天历史。
+
+兼容范围由 `gradle.properties` 的 `translation_min_version`、`translation_max_version` 决定，分别导出为字符串
+`require_low_version`、可空的 `require_max_version`，两端均包含。Fabric 语义版本比较忽略 `+mc…`；
+`translation_api` 必须等于当前引擎声明，依赖新能力的语料需维护此编号，纯措辞修改不变。包结构版本 `format_version` 当前为 1。
+`revision` 为导出时 HEAD，`source_dirty` 表示语料／构建规则／版本属性存在未提交修改；`build_at_utc8` 为带 `+08:00` 的生成时间。
+这些溯源字段不用于推断兼容性。`content_sha256` 按相对路径排序，对每个文件依次写入“UTF-8 路径、NUL、原始 JSON 字节、NUL”计算，
+不包含清单自身，单纯重新打包不会改变内容摘要。
+
+`checkTranslationPack` 验证真实导出内容、辅助数据、版本边界、失败回退、缓存更新及后台数据代际，接入所有目标的 `check` / `dist`。
+实机仍需确认打开的菜单、聊天滚动、原文模式及三个显示优先级下的重载表现。
 
 `./gradlew checkPerformance` 将索引结果与原逐条扫描算法对照，并验证样式、缓存碰撞、结构命中和采集逐出恢复。
 `./gradlew benchmarkPerformance` 输出离线耗时及分配量；不代表实机帧率。测试源码、平台适配样例、
@@ -370,7 +398,7 @@ skyzh-capture/
 按整个 `Style` 相等去判断，就会把一条 `segments` 本来就正确的记录推进这一堆，
 还建议你在一个两边颜色相同的位置再切一刀。所以比较只看颜色、字体和五个格式开关。
 
-玩法从"采集当时人在哪"推断，对照表在 `assets/skyzh/capture/areas.json`，
+玩法从"采集当时人在哪"推断，对照表在 `original_text/_data/areas.json`，
 认不出来就落进 `_Unknown_Gameplay`，补一条到那个文件即可，不用改代码。
 
 "人在哪"有三个读法，按这个顺序问：侧边栏 `⏣` 那一行 → Hypixel Mod API（装了 `hypixel-mod-api` 才有）

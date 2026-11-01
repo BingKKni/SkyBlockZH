@@ -3,7 +3,8 @@ package io.github.bingkkni.skyzh.capture;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import io.github.bingkkni.skyzh.SkyZH;
+import io.github.bingkkni.skyzh.text.CorpusData;
+import io.github.bingkkni.skyzh.text.Translator;
 import io.github.bingkkni.skyzh.text.Possessive;
 import java.io.BufferedReader;
 import java.nio.charset.StandardCharsets;
@@ -14,8 +15,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import net.fabricmc.loader.api.FabricLoader;
-import net.fabricmc.loader.api.ModContainer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,9 +39,6 @@ import org.slf4j.LoggerFactory;
  */
 public final class Areas {
 	private static final Logger LOGGER = LoggerFactory.getLogger("SkyZH");
-	private static final String RESOURCE = "assets/skyzh/capture/areas.json";
-
-	private static Areas instance;
 
 	private final Map<String, String> byArea;
 	private final Map<String, String> folded;
@@ -56,66 +52,41 @@ public final class Areas {
 		this.unknown = unknown;
 	}
 
-	public static synchronized Areas get() {
-		if (instance == null) {
-			instance = load();
-		}
-
-		return instance;
+	public static Areas get() {
+		return Translator.index().data().areas();
 	}
 
-	private static Areas load() {
-		Path path = null;
-
-		try {
-			ModContainer container = FabricLoader.getInstance().getModContainer(SkyZH.MOD_ID).orElse(null);
-			path = container == null ? null : container.findPath(RESOURCE).orElse(null);
-		} catch (Throwable ignored) {
-			// No Fabric runtime to ask, which happens when the capture is exercised outside a game.
-		}
-
-		if (path == null) {
-			LOGGER.warn("找不到 {}，采集到的文本将全部落进未知玩法目录。", RESOURCE);
-			return new Areas(Map.of(), Map.of(), "_Unknown_Gameplay");
-		}
-
-		return from(path);
-	}
-
-	/** Reads the table from a file. Public so the shipped table itself can be checked without a game. */
+	/** Offline checks use the same parser as the runtime bundle. */
 	public static Areas from(Path path) {
-		Map<String, String> byArea = new HashMap<>();
-		String unknown = "_Unknown_Gameplay";
-
 		try (BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
-			JsonObject json = JsonParser.parseReader(reader).getAsJsonObject();
-
-			if (json.has("unknown")) {
-				unknown = json.get("unknown").getAsString();
-			}
-
-			// "modes" is read into the same map as "areas" on purpose: an id and a name are two
-			// spellings of one place, and every lookup wants whichever of them it happens to hold.
-			for (String section : new String[] {"areas", "modes"}) {
-				if (!json.has(section) || !json.get(section).isJsonObject()) {
-					continue;
-				}
-
-				for (Map.Entry<String, JsonElement> area : json.getAsJsonObject(section).entrySet()) {
-					byArea.put(area.getKey(), area.getValue().getAsString());
-				}
-			}
-		} catch (Exception e) {
-			LOGGER.warn("读取 {} 失败，采集到的文本将全部落进未知玩法目录：{}", path, e.toString());
+			return from(JsonParser.parseReader(reader).getAsJsonObject());
+		} catch (java.io.IOException e) {
+			throw new IllegalArgumentException("读取区域表失败: " + path, e);
 		}
+	}
 
+	public static Areas from(JsonObject json) {
+		Map<String, String> byArea = new HashMap<>();
+		String unknown = category(json.get("unknown"));
+		for (String section : new String[] {"areas", "modes"}) {
+			if (!json.has(section) || !json.get(section).isJsonObject())
+				throw new IllegalArgumentException("区域表缺少对象: " + section);
+			for (Map.Entry<String, JsonElement> area : json.getAsJsonObject(section).entrySet()) {
+				byArea.put(area.getKey(), category(area.getValue()));
+			}
+		}
 		Map<String, String> folded = new HashMap<>();
-
 		for (Map.Entry<String, String> area : byArea.entrySet()) {
 			folded.putIfAbsent(area.getKey().toLowerCase(Locale.ROOT), area.getValue());
 		}
-
 		return new Areas(Map.copyOf(byArea), Map.copyOf(folded), unknown);
+	}
+
+	private static String category(JsonElement value) {
+		String name = CorpusData.string(value, "玩法目录");
+		if (!name.matches("[A-Za-z_][A-Za-z0-9_]*"))
+			throw new IllegalArgumentException("无效的玩法目录: " + name);
+		return name;
 	}
 
 	/**
@@ -141,7 +112,7 @@ public final class Areas {
 		if (this.reported.add(area)) {
 			LOGGER.info(
 				"SkyZH 采集：区域「{}」还没归类，这一批文本落进 {}/。"
-					+ "往 assets/skyzh/capture/areas.json 的 areas 里补一条就行，不用改代码。",
+					+ "往 original_text/_data/areas.json 的 areas 里补一条就行，不用改代码。",
 				area, this.unknown
 			);
 		}
@@ -166,7 +137,7 @@ public final class Areas {
 
 		LOGGER.info(
 			"SkyZH 采集：区域「{}」还没归类，这一批文本靠岛屿那一路落进了 {}/。"
-				+ "往 assets/skyzh/capture/areas.json 的 areas 里补一条，以后不靠岛屿也分得对。",
+				+ "往 original_text/_data/areas.json 的 areas 里补一条，以后不靠岛屿也分得对。",
 			area, gameplay
 		);
 	}
