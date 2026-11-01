@@ -1686,6 +1686,18 @@ public final class CaptureHarness {
 			check("纯符号书页也保存而非过滤", Files.exists(root.resolve("untranslated/Mining/Book/Symbols.json")), true);
 			check("纯符号告示牌面也保存而非过滤", Files.exists(root.resolve("untranslated/Mining/Sign/Symbols.json")), true);
 			check("纯符号告示牌保留空白行与顺序", symbols.text().plain(), "  ❤  \n\n  \n★");
+			for (String chinese : List.of("银行", "银行 123 ❤", "\uD840\uDC00")) {
+				BookSnapshot chineseBook = new BookSnapshot("writable", "", "", 0, 6, List.of(styled(chinese)));
+				CaptureStore.accept(new CaptureStore.Sighting(CaptureSurface.BOOK, "chinese-book-" + chinese,
+					new CaptureStore.Book(chineseBook), "Mining", "Dwarven Mines", "Chinese", "服务器书本", 4));
+				SignSnapshot chineseSign = new SignSnapshot("minecraft:overworld", position, "minecraft:sign", "front", "black", false,
+					List.of(styled(chinese), styled(""), styled("★"), styled("")));
+				CaptureStore.accept(new CaptureStore.Sighting(CaptureSurface.SIGN, "chinese-sign-" + chinese,
+					new CaptureStore.Sign(chineseSign), "Mining", "Dwarven Mines", "Chinese", "服务器告示牌", 4));
+			}
+			CaptureStore.flush();
+			check("中文书页含数字或符号也不误报", Files.exists(root.resolve("untranslated/Mining/Book/Chinese.json")), false);
+			check("中文告示牌含扩展汉字也不误报", Files.exists(root.resolve("untranslated/Mining/Sign/Chinese.json")), false);
 			var recoloured = new BookSnapshot(frozen.kind(), frozen.title(), frozen.author(), 7, 12,
 				List.of(styled("§c  Server opening page  "), frozen.pages().get(1), frozen.pages().get(2)));
 			check("书本去重指纹区分仅颜色变化", frozen.signature().equals(recoloured.signature()), false);

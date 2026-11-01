@@ -43,6 +43,10 @@ public enum Surface {
 	 * instruction lines remain on this surface. Dynamic mob bars use a separate closed term lookup.
 	 */
 	HOLOGRAM,
+	/** Read-only book pages — {@code Book/}. */
+	BOOK,
+	/** A complete four-row sign side — {@code Sign/}. */
+	SIGN,
 	/** Title/subtitle and anything else — {@code Misc/}. */
 	MISC;
 
@@ -62,6 +66,8 @@ public enum Surface {
 			case "scoreboard" -> SCOREBOARD;
 			case "tablist" -> TABLIST;
 			case "hologram" -> HOLOGRAM;
+			case "book" -> BOOK;
+			case "sign" -> SIGN;
 			case "misc" -> MISC;
 			default -> null;
 		};

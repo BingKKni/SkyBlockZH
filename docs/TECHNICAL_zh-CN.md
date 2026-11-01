@@ -322,7 +322,16 @@ Minecraft 本来就会把收到的每条聊天消息写进 `logs/`，这个任�
 | BossBar | `BossHealthOverlay#update` TAIL | 那张 map 只有服务器包写得进去 |
 | 动作栏 / 标题副标题 | `setActionBarText` / `setTitleText` / `setSubtitleText` HEAD | 同上 |
 
-书本与告示牌目前只采集，不做翻译。新增入口在数据包自身 `handle(ClientGamePacketListener)` 的最高优先级
+书本与告示牌分别使用 `Surface.BOOK` / `Surface.SIGN`，读取 `Book/` / `Sign/` 语料。书本只在
+`BookViewScreen.visitText` 读取当前页时生成显示译文，原版折行缓存同时用于绘制、悬浮与点击命中；
+总开关、原文状态或语料代际变化时刷新，不修改书本组件，也不翻译编辑器内容。完整页/面模板优先，
+未命中时按显式换行逐行查找，保留空行。书页内有几何依据的居中空格按 114px 页宽与实时字体重算，
+短缩进保持原位。告示牌在 `AbstractSignRenderer.submitSignText` 准备文字时翻译四行显示副本，
+沿用原版按译文宽度逐行居中、染料与发光绘制；普通/悬挂、正/背面及过滤文本均沿用原版选择。
+不会把译文写入 `SignText` 或其原文渲染缓存；外置模板输出不是四行时回退原文。书本按钮继承实时
+点击事件与样式，文字悬浮说明只查询 BOOK 语料。`checkDocuments` 回放采集样本并检查交互、颜色、布局和类目隔离。
+
+采集入口在数据包自身 `handle(ClientGamePacketListener)` 的最高优先级
 HEAD，提交采集时复用 `TextCapture.ready()` 的开关与服务器门控，以及原有后台队列、地点等待、去重和清空。
 书本从容器全量/槽位、玩家背包和光标物品包的原始 `WRITABLE_BOOK_CONTENT` / `WRITTEN_BOOK_CONTENT`
 一次冻结所有页（选 `Filterable.raw`），不等打开或翻页，因而未翻到的后页也能采全；不读取书本编辑器或客户端
@@ -338,8 +347,9 @@ HEAD，提交采集时复用 `TextCapture.ready()` 的开关与服务器门控�
 `_capture.book_contexts` 保存标题、作者、包槽位、总页数、从 1 开始的目标页码与完整目标页；空页保留在原始
 快照及页码中。告示牌按一面整体保存，`_capture.sign_contexts` 包含维度、坐标、普通/悬挂类型、正背面、
 染料、发光及原始四行（含空行和符号）。精确 RGB 等无法无损写成旧颜色码时额外输出 `style_runs`。
-每条记录最多保留三个具体上下文，达到上限时标注 `server_contexts_limited`。这两种采集面尚无翻译入口，
-不查询 MISC 语料来决定已覆盖；纯符号面也会记录，全空白页/面只作为上下文或页码保留。
+每条记录最多保留三个具体上下文，达到上限时标注 `server_contexts_limited`。这两种采集面按各自
+BOOK/SIGN 语料诊断已覆盖文本及颜色、混杂和数值问题，不查询 MISC；未覆盖的纯符号仍会记录，
+全空白页/面只作为上下文或页码保留。
 `checkCapture` 验证包组件/NBT 快照的来源隔离、后页完整性、空行、原始空格、正背面及颜色，
 以及书本候选在门控开启后提交、关闭时不落盘、连接/世界生命周期清理和缓存上限。
 

@@ -14,7 +14,10 @@ public final class ServerSignData {
 	private ServerSignData() {}
 	public static Codec<SignText> codec() { return SignText.CODEC; }
 	public static List<Component> lines(SignText text) {
-		return text.getMessages(false);
+		return lines(text, false);
+	}
+	public static List<Component> lines(SignText text, boolean filtered) {
+		return text.getMessages(filtered);
 	}
 	public static boolean isSign(BlockEntityType<?> type) {
 		return type == BlockEntityTypes.SIGN || type == BlockEntityTypes.HANGING_SIGN;

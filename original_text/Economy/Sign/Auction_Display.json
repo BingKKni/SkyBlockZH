@@ -1,0 +1,71 @@
+{
+  "source": "SkyZH runtime capture (Combat, Hub_General, Rift captures; physical Hub auction displays)",
+  "verified_ingame": true,
+  "lines": [
+    {
+      "id": "auction_display_side",
+      "context": "拍卖展示牌整面;金额、出价次数及剩余时长均可变",
+      "text": "%1$s coins\n%2$s bids\n%3$s\n[CLICK]",
+      "raw": "§6§l%1$s coins§r\n§2%2$s bids§r\n§3%3$s§r\n§5§l[CLICK]",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "desc": "带 k/M/B 等缩写的硬币金额",
+          "example": "107.7M"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "desc": "出价次数",
+          "example": "38"
+        },
+        {
+          "token": "%3$s",
+          "type": "duration",
+          "desc": "剩余时长;不固定天/小时/分钟/秒",
+          "example": "01h 40m 53s"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s 硬币\n%2$s 次出价\n%3$s\n[点击]",
+      "segments": [
+        {
+          "color": "§6§l",
+          "text": "%1$s coins",
+          "zh": "%1$s 硬币"
+        },
+        {
+          "color": "§r",
+          "text": "\n",
+          "zh": "\n"
+        },
+        {
+          "color": "§2",
+          "text": "%2$s bids",
+          "zh": "%2$s 次出价"
+        },
+        {
+          "color": "§r",
+          "text": "\n",
+          "zh": "\n"
+        },
+        {
+          "color": "§3",
+          "text": "%3$s",
+          "zh": "%3$s"
+        },
+        {
+          "color": "§r",
+          "text": "\n",
+          "zh": "\n"
+        },
+        {
+          "color": "§5§l",
+          "text": "[CLICK]",
+          "zh": "[点击]"
+        }
+      ]
+    }
+  ]
+}

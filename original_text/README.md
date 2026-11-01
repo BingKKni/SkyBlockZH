@@ -29,6 +29,8 @@ original_text/
     BossBar/             BossBar 文本
     ActionBar/           动作栏提示(屏幕下方短暂提示,SkyBlock 大量使用)
     ChatMessage/         系统/广播聊天消息(非 NPC 对话,如升级提示、拾取提示)
+    Book/                书本阅读页（整页模板优先，保留显式换行及交互样式，不改编辑内容）
+    Sign/                告示牌整面四行（普通/悬挂、正/背面共用，原版按译文字宽居中）
     Misc/                标题画面(title/subtitle)、其他不属于以上分类的文本
 ```
 

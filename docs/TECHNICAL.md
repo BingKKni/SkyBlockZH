@@ -370,7 +370,18 @@ Every capture point is now a *packet handler*, or a read of state only a packet 
 | Boss bar | `BossHealthOverlay#update` TAIL | That map is written by the packet handler and by nothing else |
 | Action bar, title, subtitle | `setActionBarText` / `setTitleText` / `setSubtitleText` HEAD | As above |
 
-Books and signs currently support capture only. Highest-priority packet `handle(ClientGamePacketListener)`
+Books and signs use independent `Surface.BOOK` / `Surface.SIGN` corpora in `Book/` / `Sign/`.
+`BookViewScreen.visitText` translates a display copy before vanilla wrapping, so rendering, hover and
+click hit-testing share one layout. Policy and corpus changes invalidate the page cache. Editors and
+item components stay untouched. Whole pages/sides win before explicit-line fallback; blank rows remain.
+Book padding is recomputed against the 114px page only when source geometry supports centering; short
+indents remain. `AbstractSignRenderer.submitSignText` prepares translated four-row copies and retains
+vanilla per-row centering, filtering, dye and glow for both sides and both sign types. It never writes
+translated content into `SignText` or its original render cache; malformed row counts fall back to the
+original. Book clicks inherit live actions/styles; text hovers use BOOK records only. `checkDocuments`
+replays frozen observations and checks interactions, colours, layout and surface isolation.
+
+Highest-priority packet `handle(ClientGamePacketListener)`
 HEAD hooks freeze raw book components from container, inventory and cursor-item packets. All pages are
 captured together, including pages never opened; no editor or later client inventory text is read.
 Up to 64 immutable book candidates and 1 Mi page characters can wait in memory before server verification
@@ -384,8 +395,9 @@ to be open when the packet arrives. Each side keeps its four ordered rows, blank
 colours, dye and glow state, together with dimension and position. No world/rendered sign text is read.
 Output uses `Book/Books.json` and `Sign/Signs.json`; `_capture.book_contexts` and `sign_contexts` retain
 up to three concrete contexts per record, with `server_contexts_limited` marking overflow. RGB and other
-styles that cannot be represented by legacy colour codes use `style_runs`. These surfaces bypass MISC
-translation coverage checks, so symbols remain capturable. `checkCapture` covers source isolation,
+styles that cannot be represented by legacy colour codes use `style_runs`. Capture diagnoses coverage,
+colour, mixed text and values on BOOK/SIGN rather than MISC; undecided symbols remain capturable.
+`checkCapture` covers source isolation,
 complete later pages, sign sides/layout, candidate gates, lifecycle clearing and memory bounds.
 
 There is deliberately **no filter by name**. `[Bazaar]` and `[Sacks]` are Hypixel's own prefixes, and

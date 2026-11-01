@@ -370,10 +370,23 @@ public final class CaptureStore {
 		}
 	}
 
-	// These surfaces have no rendering translation yet. Keep symbols and whitespace too;
-	// an unrelated MISC translation must not suppress a server page or sign side.
+	// Diagnose complete documents first, then explicit rows just as the display planner does.
 	private static void rawDocument(Sighting sighting, StyledText text) {
-		if (!text.plain().isBlank()) record(sighting, text,
+		if (text.plain().isBlank()) return;
+		if (Translator.locate(text, sighting.surface().surface()).matched()) {
+			for (var verdict : Classifier.all(sighting.surface(), text)) record(sighting, text, verdict);
+			return;
+		}
+		boolean missing = false;
+		for (var row : io.github.bingkkni.skyzh.text.DocumentTranslation.lines(text.slice(0, text.length()))) {
+			StyledText styled = StyledText.of(row);
+			for (var verdict : Classifier.all(sighting.surface(), styled)) {
+				if (verdict.bucket() == Classifier.Bucket.UNTRANSLATED) missing = true;
+				else record(sighting, text, verdict);
+			}
+		}
+		// Keep undecided symbols and proper names as evidence, like the original document capture.
+		if (missing || text.plain().codePoints().noneMatch(Character::isLetter)) record(sighting, text,
 			new Classifier.Verdict(Classifier.Bucket.UNTRANSLATED, List.of(), List.of(), null, "", ""));
 	}
 

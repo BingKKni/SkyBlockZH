@@ -200,6 +200,14 @@ harnessTask('checkCapture', 'io.github.bingkkni.skyzh.CaptureHarness',
 	inputs.dir rootProject.file('original_text')
 }
 
+harnessTask('checkDocuments', 'io.github.bingkkni.skyzh.DocumentHarness',
+	'Checks captured book/sign coverage, live interactions, colours and book alignment.') {
+	args rootProject.file('original_text').absolutePath,
+		rootProject.file('tests/resources/document-capture-cases.json').absolutePath
+	inputs.dir rootProject.file('original_text')
+	inputs.file rootProject.file('tests/resources/document-capture-cases.json')
+}
+
 harnessTask('checkDiagnostics', 'io.github.bingkkni.skyzh.DiagnosticsHarness',
 	'Checks live alignment, continuation and numeric diagnostics with capture persistence.') {
 	args rootProject.file('original_text').absolutePath,
@@ -340,7 +348,7 @@ tasks.register('checkMixinTargets', Exec) {
 }
 
 tasks.named('check') {
-	dependsOn 'checkPerformance', 'checkTranslations', 'checkChatInteractions', 'checkLore', 'checkCapture', 'checkDiagnostics', 'checkCommands', 'checkClientSettings', 'checkMinifiedCorpus',
+	dependsOn 'checkPerformance', 'checkTranslations', 'checkChatInteractions', 'checkLore', 'checkCapture', 'checkDocuments', 'checkDiagnostics', 'checkCommands', 'checkClientSettings', 'checkMinifiedCorpus',
 		'checkMixinTargets', 'checkDisplayPriority', 'checkTranslationPack'
 }
 
