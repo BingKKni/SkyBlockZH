@@ -32,6 +32,7 @@ public final class UpdateHarness {
 			transfers(root);
 			initialFailure();
 			translations(root);
+			passed += UpdateInteractionHarness.run(root);
 			mods(root);
 			installer(root.resolve("install"), false);
 			installer(root.resolve("changed-install"), true);
@@ -63,6 +64,8 @@ public final class UpdateHarness {
 		check("多次失败后仍可继续重试", state.due("mod", "0.8", now + 12 * UpdateState.HOUR));
 		state.finish("initialization", "0.8:4", now, UpdateState.HOUR, "failed", null);
 		check("目录初始化失败冷却跨重启保留", !new UpdateState(file).due("initialization", "0.8:4", now + 1000));
+		state.initialized("0.8:4", now + 2000);
+		check("提前恢复成功后重启不再受旧初始化冷却阻挡", new UpdateState(file).due("initialization", "0.8:4", now + 2001));
 		Files.writeString(file, "broken config");
 		check("损坏更新记录重新检查", new UpdateState(file).due("mod", "0.8", now));
 	}

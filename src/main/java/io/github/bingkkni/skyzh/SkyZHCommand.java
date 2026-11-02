@@ -2,6 +2,7 @@ package io.github.bingkkni.skyzh;
 
 import io.github.bingkkni.skyzh.capture.TextCapture;
 import io.github.bingkkni.skyzh.gui.SkyZHConfigScreen;
+import io.github.bingkkni.skyzh.text.TranslationPack;
 import io.github.bingkkni.skyzh.text.Translator;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,9 @@ public final class SkyZHCommand {
 			case "off" -> plainPower(parsed.alias(), false, parsed.argument(), parsed.state());
 			case "switch" -> flip(parsed.alias(), parsed.argument(), parsed.state());
 			case "updatecheck" -> updateCheck(parsed.alias(), parsed.argument(), parsed.state());
+			case "updateaction" -> {
+				if (parsed.state().isEmpty()) UpdateChecker.runAction(parsed.argument());
+			}
 			case "clear" -> clear(parsed.alias(), parsed.argument(), parsed.state());
 			case "reload" -> reload(parsed.alias(), parsed.argument(), parsed.state());
 			default -> unknown(parsed.alias(), parsed.sub());
@@ -175,16 +179,25 @@ public final class SkyZHCommand {
 	}
 
 	private static void reload(String alias, String argument, String extra) {
-		if (hasUnexpectedArguments(alias, "reload", argument, extra)) return;
+		if (!hasUnexpectedArguments(alias, "reload", argument, extra)) reloadTranslations(TranslationPack::load);
+	}
+
+	static String reloadFailed() { return "§c翻译重载失败。详情已写入游戏日志。"; }
+
+	/** Shared by both command aliases and the local manual-pack uninstall button. */
+	public static boolean reloadTranslations(java.util.function.Supplier<TranslationPack.Loaded> read) {
 		try {
-			boolean started = Translator.reloadInBackground(loaded -> {
+			boolean started = Translator.reloadInBackground(read, loaded -> {
 				if (!loaded.warning().isEmpty()) Feedback.send("§e有翻译包未能加载，已改用" + loaded.source().label() + "。详情已写入游戏日志。");
 				Feedback.send("§a翻译重载完成，当前使用" + loaded.source().label()
 					+ "，共 " + loaded.index().size() + " 条可用记录。");
-			}, error -> Feedback.send("§c翻译重载失败，已保留当前翻译。详情已写入游戏日志。"));
+			}, error -> Feedback.send(reloadFailed()));
 			Feedback.send(started ? "§e正在重新加载翻译…" : "§e翻译正在加载中，请稍候。");
+			return started;
 		} catch (RuntimeException e) {
+			org.slf4j.LoggerFactory.getLogger("SkyZH").warn("无法启动翻译重载", e);
 			Feedback.send("§c暂时无法重新加载翻译，请稍后再试。");
+			return false;
 		}
 	}
 

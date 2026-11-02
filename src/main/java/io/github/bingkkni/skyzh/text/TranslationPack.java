@@ -73,6 +73,23 @@ public final class TranslationPack {
 		return load(directory.resolve(FILE_NAME), loader.getGameDir().resolve(UPDATE_DIRECTORY).resolve(FILE_NAME), builtin);
 	}
 
+	/** Run only inside the existing background reload lock, after a local uninstall-button click. */
+	public static Loaded removeManualAndLoad() {
+		var loader = FabricLoader.getInstance();
+		var mod = loader.getModContainer("skyzh").orElseThrow();
+		Path game = loader.getGameDir();
+		try {
+			return removeManualAndLoad(game.resolve(DIRECTORY).resolve(FILE_NAME),
+				game.resolve(UPDATE_DIRECTORY).resolve(FILE_NAME), mod.findPath(TranslationLoader.ROOT).orElse(null));
+		} catch (IOException e) { throw new java.io.UncheckedIOException(e); }
+	}
+
+	public static Loaded removeManualAndLoad(Path manual, Path automatic, Path builtin) throws IOException {
+		if (Files.isDirectory(manual, java.nio.file.LinkOption.NOFOLLOW_LINKS)) throw new IOException("手动翻译包路径不是文件");
+		Files.deleteIfExists(manual);
+		return load(manual, automatic, builtin);
+	}
+
 	public static JsonObject builtinManifest() throws IOException {
 		try (var stream = TranslationPack.class.getResourceAsStream("/skyzh-builtin-translations.json")) {
 			if (stream == null) throw new IOException("缺少内置翻译版本信息");

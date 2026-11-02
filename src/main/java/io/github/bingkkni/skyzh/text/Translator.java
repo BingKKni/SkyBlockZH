@@ -135,6 +135,9 @@ public final class Translator {
 						try {
 							publish(next.index());
 							success.accept(next);
+						} catch (Exception e) {
+							LOGGER.error("SkyZH 无法发布翻译重载结果。", e);
+							failure.accept(e);
 						} finally {
 							RELOADING.set(false);
 						}

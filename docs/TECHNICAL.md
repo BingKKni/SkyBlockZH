@@ -345,7 +345,12 @@ Failures retain the installed file and running index. An active manual bundle re
 `config/skyzh-updates.json` persists separate outcomes and deadlines. Success, no update and failures normally wait one hour;
 API incompatibility waits seven days only for translations. Due checks run again while in SkyBlock or on the next eligible launch, without retry limits.
 Local Mod/API changes invalidate the relevant old cooldown. Directory initialization failures also persist their cooldown in the config directory.
-Chat uses short explanations; detailed errors stay in logs.
+Chat uses short explanations; detailed errors stay in logs. Retry buttons bypass deadlines while reusing the same workers, validation and busy guards.
+Initialization retries prepare directories again. An incompatible-translation Mod-download button requires both a newer Mod and newer translation data;
+missing Minecraft assets are recorded silently. The manual-pack button irreversibly deletes only `skyzh-translations/translations.zip` under the existing reload lock,
+then loads the automatic/built-in fallback. Local random tokens use a bounded registry and hidden commands intercepted for both aliases;
+only bracketed actions carry click/hover styles. Accepted retries consume their token, later failures issue a new button, and busy/rejected requests retain it;
+an uninstall token is revoked after successful removal/loading, while failures remain retryable.
 
 Mod downloads select the correct Minecraft Release asset, require GitHub SHA-256 and validate Mod ID, version and Minecraft/Loader/Java dependencies.
 The embedded JDK-only `skyzh-updater.jar` runs independently, acknowledges readiness and waits for the exact game process to exit.

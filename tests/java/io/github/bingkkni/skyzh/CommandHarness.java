@@ -46,6 +46,7 @@ public final class CommandHarness {
 		check("清空成功反馈", Feedback.line(SkyZHCommand.clearSucceeded()),
 			"§b[SkyZH] §a已清空所有捕捉到的未翻译文本!");
 
+		check("重载失败新文案", SkyZHCommand.reloadFailed(), "§c翻译重载失败。详情已写入游戏日志。");
 		check("关闭采集时的短别名菜单", SkyZHCommand.helpLines("skyzh", false), List.of(
 			"§e=============== §b[SkyZH] §e===============",
 			"§6/skyzh  §f打开设置",
@@ -177,6 +178,14 @@ public final class CommandHarness {
 			method.invoke(mixin, "skyzh off unexpected", null, invalidOff);
 			check("带多余参数的关闭命令不修改配置", config.enabled, true);
 			check("无效本地命令仍不发送服务器", invalidOff.isCancelled(), true);
+			for (String alias : SkyZHCommand.ALIASES) {
+				var forged = new org.spongepowered.asm.mixin.injection.callback.CallbackInfo("sendUnattendedCommand", true);
+				method.invoke(mixin, alias + " updateaction forged", null, forged);
+				check("更新按钮指令始终留在客户端 " + alias, forged.isCancelled(), true);
+				var extra = new org.spongepowered.asm.mixin.injection.callback.CallbackInfo("sendUnattendedCommand", true);
+				method.invoke(mixin, alias + " updateaction forged extra", null, extra);
+				check("无效按钮参数也不发送服务器 " + alias, extra.isCancelled(), true);
+			}
 			var other = new org.spongepowered.asm.mixin.injection.callback.CallbackInfo("sendUnattendedCommand", true);
 			method.invoke(mixin, "warp hub", null, other);
 			check("点击其他指令不拦截", other.isCancelled(), false);

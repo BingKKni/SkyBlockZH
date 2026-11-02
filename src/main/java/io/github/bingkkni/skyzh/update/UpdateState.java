@@ -38,6 +38,11 @@ public final class UpdateState {
 		return next <= now || next - now > WEEK;
 	}
 
+	/** Successful explicit recovery must not leave a failed-start deadline active after restart. */
+	public void initialized(String identity, long now) throws IOException {
+		finish("initialization", identity, now, 0, "ready", null);
+	}
+
 	public void finish(String lane, String identity, long now, long delay, String result, JsonObject details) throws IOException {
 		JsonObject state = new JsonObject();
 		state.addProperty("identity", identity);
