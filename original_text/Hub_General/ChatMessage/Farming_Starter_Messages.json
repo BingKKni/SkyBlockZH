@@ -516,12 +516,12 @@
     {
       "id": "farming_starter_messages_you_must_be_at_least_foraging_level_12",
       "context": "Server Messages 实测",
-      "raw": "§cYou must be at least Foraging Level 12 to join this island!",
-      "text": "You must be at least Foraging Level 12 to join this island!",
-      "placeholders": [],
-      "gloss": "",
+      "raw": "§cYou must be at least Foraging Level %s to join this island!",
+      "text": "You must be at least Foraging Level %s to join this island!",
+      "placeholders": [{"token": "%s", "type": "number", "example": "12", "desc": "进入岛屿所需伐木等级"}],
+      "gloss": "用户拍板：Foraging 技能译为伐木；等级是动态门槛。",
       "translate": true,
-      "zh": "采集等级至少达到 12 才能进入此岛屿!"
+      "zh": "伐木等级至少达到 %s 才能进入此岛屿!"
     },
     {
       "id": "farming_starter_messages_haymaker_helmet_recipe",

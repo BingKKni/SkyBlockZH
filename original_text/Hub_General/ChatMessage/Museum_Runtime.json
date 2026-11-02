@@ -41,15 +41,15 @@
       "raw": "§aYou retrieved your §c%1$s §afrom the §3Museum§a!",
       "text": "You retrieved your %1$s from the Museum!",
       "placeholders": [
-        {"token": "%1$s", "desc": "取回的物品名，保留英文", "type": "item_name", "example": "Dungeonbreaker"}
+        {"token": "%1$s", "desc": "取回的物品名；按物品名翻译开关复用已有译名", "type": "loot_item_name", "example": "Dungeonbreaker"}
       ],
-      "gloss": "物品名保留英文；只翻译固定的取回动作。",
+      "gloss": "复用已收录的真实物品译名；关闭物品名翻译时保留英文。",
       "translate": true,
-      "zh": "你从博物馆取回了 %1$s!",
+      "zh": "你从博物馆取回了%1$s!",
       "segments": [
         {"color": "§a", "text": "You retrieved your ", "zh": "你从", "order": 0},
         {"color": "§c", "text": "%1$s ", "zh": "%1$s", "order": 3},
-        {"color": "§a", "text": "from the ", "zh": "取回了 ", "order": 2},
+        {"color": "§a", "text": "from the ", "zh": "取回了", "order": 2},
         {"color": "§3", "text": "Museum", "zh": "博物馆", "order": 1},
         {"color": "§a", "text": "!", "zh": "!", "order": 4}
       ]

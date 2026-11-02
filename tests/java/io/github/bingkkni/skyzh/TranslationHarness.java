@@ -1383,7 +1383,7 @@ public final class TranslationHarness {
 			"§c你需要一把§a开采等级§c达到 §69§c 级的工具才能开采 Peridot 宝石方块! 前往 §dFragilis§c 所在的水晶残核入口了解详情!");
 		check("博物馆取回提示保留地点色",
 			"§aYou retrieved your §9Heroic Bonzo's Staff §afrom the §3Museum§a!", Surface.CHAT,
-			"§a你从§3博物馆§a取回了 §9Heroic Bonzo's Staff§a!");
+			"§a你从§3博物馆§a取回了§9英勇 Bonzo 的法杖§a!");
 		check("竖琴提示保留音符与分段文案",
 			"§d[Harp] §eTalk to Melody §d♫ §eto select a song!", Surface.CHAT,
 			"§d[竖琴] §e与 Melody 交谈 §d♫ §e以选择曲目!");
@@ -2880,13 +2880,13 @@ public final class TranslationHarness {
 				"这座神庙已经上锁,你得给我带一把钥匙来才能开门!");
 		}
 		check("商店购买按数量和价格模板匹配", "You bought Experience Bottle x64 for 1,920 Coins!", Surface.CHAT,
-			"你购买了 Experience Bottle ×64,金额为 1,920 硬币!");
+			"你购买了经验瓶 ×64,金额为 1,920 硬币!");
 		check("商店出售小数价格", "You sold Oak Slab x13 for 6.5 Coins!", Surface.CHAT,
-			"你出售了 Oak Slab ×13,金额为 6.5 硬币!");
+			"你出售了橡木台阶 ×13,金额为 6.5 硬币!");
 		check("商店回购单数 Coin", "You bought back Stone x1 for 1 Coin!", Surface.CHAT,
-			"你回购了 Stone ×1,金额为 1 硬币!");
+			"你回购了石头 ×1,金额为 1 硬币!");
 		check("商店宝石图标不丢失", "You sold \uE008 Flawed Amethyst Gemstone x3 for 720 Coins!", Surface.CHAT,
-			"你出售了\uE008 Flawed Amethyst Gemstone ×3,金额为 720 硬币!");
+			"你出售了\uE008 有瑕 Amethyst 宝石 ×3,金额为 720 硬币!");
 		check("符文出售独立处理固定图标", "You sold ◆ Zap Rune I x1 for 1 Coin!", Surface.CHAT,
 			"你出售了 ◆ Zap 符文 I ×1,金额为 1 硬币!");
 		check("合作档案类型的颜色", "§aYour profile was changed to: §ePapaya§b (Co-op)", Surface.CHAT,
@@ -3355,6 +3355,25 @@ public final class TranslationHarness {
 
 	/** The September capture JSON adds live colour boundaries and real multi-line lore, not just chat. */
 	private static void checkCaptureRound() {
+		check("船舶任务确认选项不套用理解教学的答复", "Select an option: [Yep!] ", Surface.CHAT,
+			"请选择: [是的!] ");
+		for (String coins : List.of("89.5", "10,000")) {
+			check("死亡损失措辞 " + coins, "You died and lost " + coins + " coins!", Surface.CHAT,
+				"你因死亡损失了 " + coins + " 硬币!");
+		}
+		for (String level : List.of("12", "24")) {
+			check("伐木入岛等级 " + level, "You must be at least Foraging Level " + level + " to join this island!",
+				Surface.CHAT, "伐木等级至少达到 " + level + " 才能进入此岛屿!");
+		}
+		for (String material : List.of("Obsidian", "Diamonds")) {
+			String chinese = material.equals("Obsidian") ? "黑曜石" : "钻石";
+			check("采集任务聊天 " + material, "  §fCollect " + material, Surface.CHAT, "  §f收集" + chinese);
+			check("采集任务侧栏 " + material, "§eCollect " + material, Surface.SCOREBOARD, "§e收集" + chinese);
+			check("采集任务BossBar " + material, "§fObjective: §eCollect " + material, Surface.BOSS_BAR,
+				"§f目标: §e收集" + chinese);
+		}
+		checkNoMatch("玩家自定义船名1234不作固定标题", "1234", Surface.GUI_TITLE);
+		checkNoMatch("玩家自定义船名任意内容不套用船舶标题", "My Tiny Boat 2026", Surface.GUI_TITLE);
 		check("实验台 RNG 计量表来源名", "§dExperimentation Table RNG Meter", Surface.ITEM,
 			"§d实验台 RNG 计量表");
 		check("猎手 RNG 计量表专名保留", "§dRevenant Horror RNG Meter", Surface.ITEM,

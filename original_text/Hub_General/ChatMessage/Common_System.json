@@ -218,8 +218,8 @@
       "placeholders": [
         {
           "token": "%s",
-          "desc": "物品名",
-          "type": "item_name",
+          "desc": "物品名；按物品名翻译开关复用已有译名",
+          "type": "loot_item_name",
           "example": "Hard Stone"
         }
       ],
@@ -1631,8 +1631,8 @@
         },
         {
           "token": "%2$s",
-          "desc": "售出的物品",
-          "type": "item_name",
+          "desc": "售出的物品；按物品名翻译开关复用已有译名",
+          "type": "loot_item_name",
           "example": "Golden Carrot"
         },
         {
@@ -1644,12 +1644,12 @@
       ],
       "gloss": "",
       "translate": true,
-      "zh": "你通过拍卖将 %2$s 卖给 %3$s,领取了 %1$s 硬币!",
+      "zh": "你通过拍卖将%2$s卖给 %3$s,领取了 %1$s 硬币!",
       "segments": [
         {
           "color": "§e",
           "text": "You collected ",
-          "zh": "你通过拍卖将 ",
+          "zh": "你通过拍卖将",
           "order": 0
         },
         {
@@ -1673,7 +1673,7 @@
         {
           "color": "§e",
           "text": " to ",
-          "zh": " 卖给 ",
+          "zh": "卖给 ",
           "order": 2
         },
         {
