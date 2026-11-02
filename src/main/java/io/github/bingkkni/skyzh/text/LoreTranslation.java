@@ -1,6 +1,5 @@
 package io.github.bingkkni.skyzh.text;
 
-import io.github.bingkkni.skyzh.SkyZHConfig;
 import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.network.chat.Component;
@@ -32,9 +31,7 @@ public final class LoreTranslation {
 			LoreMatcher.Match sentence = search.find(i);
 
 			if (sentence != null) {
-				Component rendered = Translator.skyBlockName(
-					sentence.render(Translator.index().terms()), SkyZHConfig.get()
-				);
+				Component rendered = sentence.renderDisplay(Translator.index().terms());
 				TranslationEntry.Matched match = new TranslationEntry.Matched(
 					sentence.entry(), sentence.core(), sentence.matcher()
 				);
@@ -87,14 +84,14 @@ public final class LoreTranslation {
 				rendered.append(head.head());
 			}
 
-			rendered.append(TranslationEntry.renderJoined(joined, Translator.index().terms()));
+			rendered.append(TranslationEntry.renderJoinedDisplay(joined, Translator.index().terms()));
 
 			if (head.tail() != null) {
 				rendered.append(head.tail());
 			}
 
 			result.add(new Unit(
-				i, List.copyOf(lines.subList(i, end)), Translator.skyBlockName(rendered, SkyZHConfig.get()),
+				i, List.copyOf(lines.subList(i, end)), rendered,
 				List.copyOf(joined), false
 			));
 			i = end;

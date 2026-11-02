@@ -1,6 +1,5 @@
 package io.github.bingkkni.skyzh.text;
 
-import io.github.bingkkni.skyzh.SkyZHConfig;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.ToIntFunction;
@@ -133,9 +132,7 @@ public final class ChatTranslation {
 	) {
 		Translator.Result first = parts.getFirst();
 		Translator.Result last = parts.getLast();
-		MutableComponent core = Translator.skyBlockName(
-			TranslationEntry.renderJoined(matches, Translator.index().terms()), SkyZHConfig.get()
-		);
+		MutableComponent core = TranslationEntry.renderJoinedDisplay(matches, Translator.index().terms());
 
 		return new Translator.Result(
 			core, first.head(), last.tail(), first.entry(), first.matchedCore(), first.match()

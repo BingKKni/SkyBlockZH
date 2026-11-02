@@ -100,7 +100,14 @@ public final class SkyBlockName {
 	 * @return the line with every occurrence replaced, or {@code null} when the word is not in it —
 	 *         which is almost every line, so the caller can skip rebuilding anything
 	 */
+	public record Range(int start, int end) {}
+
 	public MutableComponent apply(StyledText styled) {
+		return apply(styled, java.util.List.of());
+	}
+
+	/** Original item ranges are display data; the gameplay-name option cannot rename them. */
+	public MutableComponent apply(StyledText styled, java.util.List<Range> preserved) {
 		String plain = styled.plain();
 		int at = indexOf(plain, 0);
 
@@ -110,9 +117,16 @@ public final class SkyBlockName {
 
 		MutableComponent result = Component.empty();
 		int cursor = 0;
+		boolean changed = false;
 
 		while (at >= 0) {
 			int end = at + ENGLISH.length();
+			boolean protectedName = false;
+			for (Range range : preserved) {
+				if (at >= range.start() && end <= range.end()) { protectedName = true; break; }
+			}
+			if (protectedName) { at = indexOf(plain, end); continue; }
+			changed = true;
 
 			// One space on either side may belong to the Latin word rather than to the sentence, so
 			// the character that decides compounding is the one past it.
@@ -140,7 +154,7 @@ public final class SkyBlockName {
 
 		result.append(styled.slice(cursor, plain.length()));
 
-		return result;
+		return changed ? result : null;
 	}
 
 	/**
@@ -218,6 +232,8 @@ public final class SkyBlockName {
 	private static char charAt(String plain, int index) {
 		return index >= 0 && index < plain.length() ? plain.charAt(index) : '\0';
 	}
+
+	static boolean containsName(String plain) { return indexOf(plain, 0) >= 0; }
 
 	/** Case-insensitive standalone name, never part of an identifier or a slash command. */
 	private static int indexOf(String plain, int from) {

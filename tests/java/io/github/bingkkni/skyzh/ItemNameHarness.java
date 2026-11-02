@@ -28,7 +28,7 @@ public final class ItemNameHarness {
 		boolean previous = config.translateItemNames;
 		List<String> failures = new ArrayList<>();
 		try {
-			for (String name : List.of("chat", "gui", "world", "integration")) {
+			for (String name : List.of("chat", "gui", "world", "integration", "review")) {
 				Path path = resources.resolve("item-name-" + name + "-cases.json");
 				for (var element : JsonParser.parseString(Files.readString(path)).getAsJsonArray()) {
 					var row = element.getAsJsonObject();
@@ -79,6 +79,11 @@ public final class ItemNameHarness {
 			return TranslationEntry.renderJoined(matches, caseIndex.terms());
 		}
 		Component source = Component.literal(row.get("input").getAsString());
+		if (row.has("entry")) {
+			Translator.Located located = Translator.locate(source, surface);
+			check(located.matched() && located.entry().id().equals(row.get("entry").getAsString()),
+				"真实命中指定记录: " + row.get("id"));
+		}
 		if (row.has("baseline")) check(Translator.locate(StyledText.of(source), surface).matched(),
 			"整合样本必须实际命中记录: " + row.get("id"));
 		if (surface == Surface.ITEM) return TooltipTranslator.translateItemName(source).padded();
@@ -98,6 +103,55 @@ public final class ItemNameHarness {
 			object.remove("item_refs"); object.remove("item_name"); object.remove("item");
 			for (var value : object.entrySet()) removeItemMetadata(value.getValue());
 		} else if (element.isJsonArray()) for (var value : element.getAsJsonArray()) removeItemMetadata(value);
+	}
+
+	private static void checkGameplayAndCapture() {
+		var config = SkyZHConfig.get();
+		boolean previousItems = config.translateItemNames, previousGameplay = config.translateSkyBlockName;
+		try {
+			config.translateItemNames = false;
+			for (boolean gameplay : List.of(true, false)) {
+				config.translateSkyBlockName = gameplay;
+				Component dynamic = Translator.translateLine(Component.literal("SkyBlock item: SkyBlock Citizen Timecharm"), Surface.CHAT);
+				check(dynamic.getString().equals((gameplay ? "空岛物品" : "SkyBlock 物品") + ": SkyBlock Citizen Timecharm"),
+					"玩法名选项只影响物品名之外的内容: " + dynamic.getString());
+				Component fixed = Translator.translateLine(Component.literal("Welcome to SkyBlock with SkyBlock Citizen Timecharm."), Surface.CHAT);
+				check(fixed.getString().equals((gameplay ? "在空岛生存中使用 " : "在 SkyBlock 中使用 ")
+					+ "SkyBlock Citizen Timecharm。"), "固定物品范围免于玩法名后处理: " + fixed.getString());
+			}
+			config.translateSkyBlockName = true;
+			var unknownItem = TranslationEntry.compile(new TranslationEntry.Definition("unknown_item", "fixture",
+				List.of(new TranslationEntry.Segment("SkyBlock item: %s", "SkyBlock 物品: %s")),
+				Map.of(1, new TranslationEntry.Argument("item_name", "SkyBlock")), TranslationEntry.Options.DEFAULT));
+			StyledText unknownSource = StyledText.of(Component.literal("SkyBlock item: SkyBlock"));
+			check(unknownItem.renderDisplay(unknownSource, unknownItem.match(unknownSource.plain()), Translator.index().terms())
+				.getString().equals("空岛物品: SkyBlock"), "同词出现时只保护确实属于物品的范围");
+			Component source = Component.literal(" ".repeat(140) + "This is the SkyBlock Citizen Timecharm!");
+			var offPlan = io.github.bingkkni.skyzh.capture.TextCapture.inspectChat(source, 320, c -> c.getString().length());
+			var off = io.github.bingkkni.skyzh.capture.TranslationDiagnostics.chat(offPlan);
+			String offDisplay = ChatTranslation.plan(source, 320, c -> c.getString().length()).text().getString();
+			config.translateItemNames = true;
+			var onPlan = io.github.bingkkni.skyzh.capture.TextCapture.inspectChat(source, 320, c -> c.getString().length());
+			var on = io.github.bingkkni.skyzh.capture.TranslationDiagnostics.chat(onPlan);
+			check(!on.isEmpty() && on.size() == off.size(), "真实聊天采集规划产生布局诊断");
+			for (int i = 0; i < on.size(); i++) check(on.get(i).verdict().evidence().equals(off.get(i).verdict().evidence()),
+				"两态聊天采集的文本、宽度与布局证据一致");
+			check(!offDisplay.equals(ChatTranslation.plan(source, 320, c -> c.getString().length()).text().getString()),
+				"采集隔离不影响实际聊天显示开关");
+			config.translateItemNames = false;
+			var lore = LoreTranslation.plan(List.of(Component.literal("§7Keep the §cSkyBlock Citizen"),
+				Component.literal("§cTimecharm §7in your inventory.")));
+			check(lore.size() == 1 && lore.getFirst().complete()
+				&& lore.getFirst().rendered().getString().equals("将 SkyBlock Citizen Timecharm 放在背包中。"),
+				"真实跨行 Lore 规划也保护英文物品名");
+			StyledText styled = StyledText.of(lore.getFirst().rendered());
+			check(styled.styleAt(styled.plain().indexOf("SkyBlock")).getColor().getValue() == 0xFF5555,
+				"跨行 Lore 物品名保留实时红色");
+		} finally {
+			config.translateItemNames = previousItems;
+			config.translateSkyBlockName = previousGameplay;
+			SkyZHConfig.bumpGeneration();
+		}
 	}
 
 	public static void main(String[] args) throws Exception {
@@ -122,9 +176,19 @@ public final class ItemNameHarness {
 				{"id":"multi_run_item","text":"Bring %s Logs here.","zh":"带来%s原木。",
 				"placeholders":[{"token":"%s","type":"category_name","example":"Birch"}],
 				"segments":[{"text":"Bring ","zh":"带来"},{"text":"%s ","zh":"%s"},{"text":"Logs","zh":"原木"},{"text":" here.","zh":"。"}],
-				"item_refs":[{"text":"%s Logs","zh":"%s原木"}]}]}
+				"item_refs":[{"text":"%s Logs","zh":"%s原木"}]},
+				{"id":"mixed_gameplay_item","text":"SkyBlock item: %s","zh":"SkyBlock 物品: %s",
+				"placeholders":[{"token":"%s","type":"catalog_item_name","example":"SkyBlock Citizen Timecharm"}]},
+				{"id":"mixed_fixed_item","text":"Welcome to SkyBlock with SkyBlock Citizen Timecharm.",
+				"zh":"在 SkyBlock 中使用 SkyBlock 公民时光符。",
+				"item_refs":[{"text":"SkyBlock Citizen Timecharm","zh":"SkyBlock 公民时光符"}]}]}
 				""").getAsJsonObject();
 			files.put("Hub_General/ChatMessage/Item_Toggle_Fixture.json", fixture);
+			files.put("Hub_General/GUI_Lore/Item_Toggle_Fixture.json", JsonParser.parseString("""
+				{"records":[{"id":"review_lore_item","text":"Keep the SkyBlock Citizen Timecharm in your inventory.",
+				"zh":"将SkyBlock 公民时光符放在背包中。",
+				"item_refs":[{"text":"SkyBlock Citizen Timecharm","zh":"SkyBlock 公民时光符"}]}]}
+				""").getAsJsonObject());
 			index = TranslationLoader.compile(files);
 			TranslationHarness.installIndex(index);
 			Component source = Component.literal("Please bring a ").withStyle(ChatFormatting.WHITE)
@@ -182,6 +246,7 @@ public final class ItemNameHarness {
 				StyledText text = StyledText.of(Component.literal("Item: Magma Core"));
 				check(entry.render(text, entry.match(text.plain()), index.terms()).getString().equals("物品: Magma Core"), type);
 			}
+			checkGameplayAndCapture();
 			check(ItemNamePolicy.available(() -> Translator.translateLine(source, Surface.CHAT).getString())
 				.equals("请把岩浆核心带到这里。"), "覆盖检查不受显示开关影响");
 			var cache = new ChatDisplayCache();

@@ -258,10 +258,10 @@ public final class Translator {
 				);
 			}
 
-			MutableComponent translated = entry.render(core, match, index().terms());
+			MutableComponent translated = entry.renderDisplay(core, match, index().terms());
 
 			return new Result(
-				skyBlockName(translated, config),
+				translated,
 				range.start() > 0 ? styled.slice(0, range.start()) : null,
 				range.end() < plain.length() ? styled.slice(range.end(), plain.length()) : null,
 				entry,
@@ -275,7 +275,7 @@ public final class Translator {
 
 		if (match != null) {
 			return new Result(
-				skyBlockName(borrowed.render(styled, match, index().terms()), config), null, null, borrowed, styled, match
+				borrowed.renderDisplay(styled, match, index().terms()), null, null, borrowed, styled, match
 			);
 		}
 

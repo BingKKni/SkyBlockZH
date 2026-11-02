@@ -22,14 +22,18 @@ public final class LoreMatcher {
 		int lines, Component source, TranslationEntry entry, StyledText core,
 		Matcher matcher, Component head, Component tail
 	) {
-		public MutableComponent render(TermTable terms) {
+		public MutableComponent render(TermTable terms) { return render(terms, false); }
+
+		public MutableComponent renderDisplay(TermTable terms) { return render(terms, true); }
+
+		private MutableComponent render(TermTable terms, boolean display) {
 			MutableComponent result = Component.empty();
 
 			if (head != null) {
 				result.append(head);
 			}
 
-			result.append(entry.render(core, matcher, terms));
+			result.append(display ? entry.renderDisplay(core, matcher, terms) : entry.render(core, matcher, terms));
 
 			if (tail != null) {
 				result.append(tail);

@@ -159,12 +159,18 @@ public final class TextCapture {
 		if (client.font != null) {
 			int width = (int) Math.floor(ChatComponent.getWidth(client.options.chatWidth().get())
 				/ client.options.chatScale().get());
-			ChatTranslation.Plan plan = ChatTranslation.plan(message, width, client.font::width);
+			ChatTranslation.Plan plan = inspectChat(message, width, client.font::width);
 
 			for (TranslationDiagnostics.Finding finding : TranslationDiagnostics.chat(plan)) {
 				diagnose(surface, finding.source(), name, "聊天排版", finding.verdict());
 			}
 		}
+	}
+
+	/** Capture layout describes corpus coverage, independently of the player's item-name choice. */
+	public static ChatTranslation.Plan inspectChat(Component message, int width,
+		java.util.function.ToIntFunction<Component> measure) {
+		return io.github.bingkkni.skyzh.text.ItemNamePolicy.available(() -> ChatTranslation.plan(message, width, measure));
 	}
 
 	/** The title the server opened a container with. */

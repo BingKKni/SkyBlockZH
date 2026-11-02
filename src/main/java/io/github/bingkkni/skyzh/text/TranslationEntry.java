@@ -746,13 +746,18 @@ public final class TranslationEntry {
 	 * therefore what colour it takes, does not depend on that order at all.
 	 */
 	public MutableComponent render(StyledText source, Matcher match, TermTable terms) {
-		return renderJoined(List.of(new Matched(this, source, match)), terms, null);
+		return renderJoined(List.of(new Matched(this, source, match)), terms, null, false);
+	}
+
+	/** Display formatting runs while restored item ranges are still known. */
+	public MutableComponent renderDisplay(StyledText source, Matcher match, TermTable terms) {
+		return renderJoined(List.of(new Matched(this, source, match)), terms, null, true);
 	}
 
 	/** Finds translated item references without adding anything to the rendered text. */
 	public boolean hasTranslatedItemReference(StyledText source, Matcher match, TermTable terms) {
 		boolean[] found = {false};
-		renderJoined(List.of(new Matched(this, source, match)), terms, () -> found[0] = true);
+		renderJoined(List.of(new Matched(this, source, match)), terms, () -> found[0] = true, false);
 		return found[0];
 	}
 
@@ -765,10 +770,15 @@ public final class TranslationEntry {
 	 * it had on the tail line while moving to wherever Chinese needs it.
 	 */
 	public static MutableComponent renderJoined(List<Matched> matches, TermTable terms) {
-		return renderJoined(matches, terms, null);
+		return renderJoined(matches, terms, null, false);
 	}
 
-	private static MutableComponent renderJoined(List<Matched> matches, TermTable terms, Runnable translatedItem) {
+	public static MutableComponent renderJoinedDisplay(List<Matched> matches, TermTable terms) {
+		return renderJoined(matches, terms, null, true);
+	}
+
+	private static MutableComponent renderJoined(List<Matched> matches, TermTable terms, Runnable translatedItem,
+		boolean display) {
 		record Part(Matched matched, Fragment fragment) {}
 
 		if (!ItemNamePolicy.enabled() && matches.size() == 1 && matches.getFirst().entry().isItemName(matches.getFirst().source())) {
@@ -843,7 +853,7 @@ public final class TranslationEntry {
 				} else if (piece instanceof ItemRange range) {
 					if (range.first() && range.range().reference().emit()) {
 						Component original = originals.get(new RangeUse(matched, range.range()));
-						inner.append(original, original.getString(), style, true, true);
+						inner.appendItem(original, original.getString(), style);
 					}
 
 				} else if (piece instanceof Arg arg) {
@@ -862,14 +872,21 @@ public final class TranslationEntry {
 				translatedItem.run();
 			}
 
-			seam.append(frag, written, style, inner.startsWithName, inner.endsWithName);
+			seam.append(frag, written, style, inner.startsWithName, inner.endsWithName, inner.preserved);
 		}
 
 		// Search queries are opaque; separate duration captures are distinct readings/options.
 		boolean opaque = matches.stream().anyMatch(m -> m.entry().argTypes.containsValue("search_query"));
 		long durations = matches.stream().flatMap(m -> m.entry().captures.values().stream())
 			.filter(c -> c == Capture.DURATION || c == Capture.DURATION_SPACED || c == Capture.DURATION_WORDS).count();
-		return opaque || durations > 1 ? result : DurationText.normalize(result);
+		boolean normalize = !opaque && durations <= 1;
+		if (display && io.github.bingkkni.skyzh.SkyZHConfig.get().translateSkyBlockName && !seam.preserved.isEmpty()) {
+			MutableComponent replaced = Translator.index().skyBlockName().apply(StyledText.of(result), seam.preserved);
+			if (replaced != null) result = replaced;
+			return normalize ? DurationText.normalize(result) : result;
+		}
+		MutableComponent formatted = normalize ? DurationText.normalize(result) : result;
+		return display ? Translator.skyBlockName(formatted, io.github.bingkkni.skyzh.SkyZHConfig.get()) : formatted;
 	}
 
 
@@ -909,7 +926,7 @@ public final class TranslationEntry {
 		String value = source.plain().substring(start, end);
 		String type = this.argTypes.get(group);
 		if (!ItemNamePolicy.enabled() && itemArgument(group, type, value)) {
-			seam.append(source.slice(start, end), value, style, true, true);
+			seam.appendItem(source.slice(start, end), value, style);
 			return;
 		}
 		if ("loadout_item_name".equals(type) && ItemNames.isLoadoutReference(value)) {
@@ -1020,6 +1037,8 @@ public final class TranslationEntry {
 		private boolean written;
 		private boolean startsWithName;
 		private boolean endsWithName;
+		private int length;
+		private List<SkyBlockName.Range> preserved = List.of();
 
 		private Seam(MutableComponent target) {
 			this.target = target;
@@ -1031,6 +1050,21 @@ public final class TranslationEntry {
 
 		/** {@code nameStart}/{@code nameEnd}: whether the piece begins or ends inside a captured name. */
 		private void append(Component piece, String plain, Style style, boolean nameStart, boolean nameEnd) {
+			append(piece, plain, style, nameStart, nameEnd, List.of());
+		}
+
+		private void appendItem(Component piece, String plain, Style style) {
+			append(piece, plain, style, true, true);
+			if (SkyBlockName.containsName(plain)) preserve(this.length - plain.length(), this.length);
+		}
+
+		private void preserve(int start, int end) {
+			if (this.preserved.isEmpty()) this.preserved = new ArrayList<>();
+			this.preserved.add(new SkyBlockName.Range(start, end));
+		}
+
+		private void append(Component piece, String plain, Style style, boolean nameStart, boolean nameEnd,
+			List<SkyBlockName.Range> preserved) {
 			if (plain.isEmpty()) {
 				return;
 			}
@@ -1039,9 +1073,12 @@ public final class TranslationEntry {
 
 			if (needsSpace(this.previous, nameStart && isDigit(first) ? 'a' : first)) {
 				this.target.append(Component.literal(" ").setStyle(style));
+				this.length++;
 			}
 
+			for (SkyBlockName.Range range : preserved) preserve(this.length + range.start(), this.length + range.end());
 			this.target.append(piece);
+			this.length += plain.length();
 
 			if (!this.written) {
 				this.written = true;
