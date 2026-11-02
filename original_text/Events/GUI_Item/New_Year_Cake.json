@@ -6,6 +6,7 @@
   "source_note": "四处需要留底的判断。① 说明句的原文两个维基记的都不对:Fandom 的物品页写作『celebration for the 510 SkyBlock year!』,两个维基的面包师界面页都写作『celebration for the year 510 SkyBlock year!』(year 出现两次的病句)。实测采到的是第三种、也是唯一正确的一种——『celebration for the 510th SkyBlock year!』,序数 510th。以实测为准,维基两种写法都不采。② 年号在物品名里是光秃秃的数字(Year 510),在说明句里是序数(510th),两处占位符类型不同(number / ordinal),不能互相照抄;序数的英文后缀由引擎自动去掉(24th→24,见 text/Capture 的 ORDINAL),所以中文写「第 %s 年」就够了。③ 说明句横跨三行,中文按前两行分摊、第三行做 continuation,理由见下面 gloss。④ 两个社区维基都只说明领取、交易和蛋糕袋等机制,没有明确说明物品能否食用;不把资料没有说的事写成绝对结论。",
   "name": {
     "id": "new_year_cake_name",
+    "item_name": true,
     "context": "物品名,括号里是即将结束的那个空岛年的年号",
     "raw": "§cNew Year Cake (Year 510)",
     "text": "New Year Cake (Year %s)",

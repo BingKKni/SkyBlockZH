@@ -157,7 +157,7 @@
           "example": "1,500"
         },
         {
-          "token": "%2$s",
+          "token": "%2$s", "item": true,
           "desc": "材料名,译名走 _shared/Terms.json",
           "type": "raw",
           "example": "Umber"
@@ -229,6 +229,7 @@
     },
     {
       "id": "commission_obtain_suspicious_scrap",
+      "item_refs": [{"text": "Suspicious Scrap", "zh": "可疑残料"}],
       "context": "极冰隧道委托要求:获得可疑残料",
       "raw": "§7Obtain §a%s §9Suspicious Scrap§7.",
       "text": "Obtain %s Suspicious Scrap.",
