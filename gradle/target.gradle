@@ -175,6 +175,7 @@ harnessTask('checkItemNames', 'io.github.bingkkni.skyzh.ItemNameHarness',
 	'Checks item-name choices, source styles, coverage and chat-cache policy.') {
 	args rootProject.file('original_text').absolutePath
 	inputs.dir rootProject.file('original_text')
+	inputs.files rootProject.fileTree('tests/resources') { include 'item-name-*-cases.json' }
 }
 
 harnessTask('checkPerformance', 'io.github.bingkkni.skyzh.PerformanceHarness',
@@ -252,6 +253,7 @@ harnessTask('checkMinifiedCorpus', 'io.github.bingkkni.skyzh.MinifiedCorpusCheck
 	args rootProject.file('original_text').absolutePath,
 		rootProject.layout.buildDirectory.dir('minified-corpus').get().asFile.absolutePath
 	inputs.dir rootProject.file('original_text')
+	inputs.files rootProject.fileTree('tests/resources') { include 'item-name-*-cases.json' }
 }
 
 // The three working tools below are registered in one target only, the one its build.gradle marks

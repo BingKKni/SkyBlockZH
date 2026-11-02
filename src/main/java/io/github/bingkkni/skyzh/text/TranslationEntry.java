@@ -50,8 +50,17 @@ public final class TranslationEntry {
 		}
 	}
 
-	/** Explicit source/target spelling of a fixed physical item reference. */
-	public record ItemReference(String text, String zh) {}
+	/** Authored source/target ranges of an item reference, resolved only within an accepted match. */
+	public record ItemReference(String text, String zh, int sourceOccurrence, int targetOccurrence,
+		int targetSegment, List<String> sourceRecords, String sourceTemplate, boolean emit) {
+		public ItemReference(String text, String zh) { this(text, zh, -1, -1, -1, List.of(), "", true); }
+		public ItemReference { sourceRecords = List.copyOf(sourceRecords); }
+	}
+
+	private record SourceBoundary(int precedingArgument, Pattern literalPrefix) {}
+	private record SourceSpan(SourceBoundary start, SourceBoundary end) {}
+	private record ReferenceRange(ItemReference reference, List<SourceSpan> sources, int occurrence, int start, int end) {}
+	private record ItemRange(ReferenceRange range, boolean first, List<Piece> fallback) implements Piece {}
 
 	public record Options(boolean continuation, String layout, Set<String> excludedTexts, String chatJoinNext,
 		List<ItemReference> itemReferences, boolean itemName) {
@@ -106,7 +115,6 @@ public final class TranslationEntry {
 
 	private record Arg(int index) implements Piece {}
 
-	private record ItemLiteral(ItemReference reference, int occurrence) implements Piece {}
 
 	private static final Pattern PLACEHOLDER = Pattern.compile("%(?:(\\d+)\\$)?[sd]|%%");
 	private static final Pattern LEADING_COUNT = Pattern.compile("^[0-9][0-9,.]*(?:[kKmMbB])?\\s+");
@@ -276,7 +284,8 @@ public final class TranslationEntry {
 		Map<Integer, Integer> shapeByGroup = new HashMap<>();
 		int group = 0;
 		String anchor = "";
-		Map<ItemReference, Integer> referenceUses = new HashMap<>();
+		List<ReferenceRange> referenceRanges = referenceRanges(definition);
+		int targetOffset = 0;
 
 		for (int i = 0; i < sources.size(); i++) {
 			group++;
@@ -336,9 +345,13 @@ public final class TranslationEntry {
 			boolean omitted = target == null;
 			boolean translated = !omitted && !target.isEmpty();
 			boolean ordered = segment.order() != null;
+			int targetNextArg = targetArg[0];
 			List<Piece> targetPieces = translated ? parse(target, targetArg) : List.of();
+			List<Piece> disabledPieces = translated
+				? rangePieces(target, new int[] {targetNextArg}, referenceRanges, targetOffset) : List.of();
+			targetOffset += target == null ? 0 : target.length();
 			fragments.add(new Fragment(
-				itemPieces(targetPieces, definition.options().itemReferences(), referenceUses), targetPieces,
+				disabledPieces, targetPieces,
 				translated, omitted, fragmentGroup,
 				fragmentArgs.stream().mapToInt(Integer::intValue).toArray(), ordered ? segment.order() : i,
 				ordered
@@ -352,12 +365,7 @@ public final class TranslationEntry {
 		}
 
 		regex.append('$');
-		for (ItemReference reference : definition.options().itemReferences()) {
-			if (reference.text().isBlank() || reference.zh().isBlank()
-				|| sources.stream().noneMatch(s -> s.contains(reference.text())) || !referenceUses.containsKey(reference)) {
-				throw new IllegalArgumentException("无源或无译文的 item_refs: " + reference);
-			}
-		}
+
 
 		return new TranslationEntry(
 			definition, Pattern.compile(regex.toString(), Pattern.DOTALL), List.copyOf(fragments),
@@ -507,31 +515,120 @@ public final class TranslationEntry {
 		return pieces;
 	}
 
-	private static List<Piece> itemPieces(List<Piece> pieces, List<ItemReference> references,
-		Map<ItemReference, Integer> uses) {
-		if (references.isEmpty()) return pieces;
-		List<Piece> result = new ArrayList<>();
-		for (Piece piece : pieces) {
-			if (!(piece instanceof Literal literal)) { result.add(piece); continue; }
-			String text = literal.text();
-			int cursor = 0;
-			while (cursor < text.length()) {
-				ItemReference selected = null;
-				int at = text.length();
-				for (ItemReference reference : references) {
-					int found = reference.zh().isEmpty() ? -1 : text.indexOf(reference.zh(), cursor);
-					if (found >= 0 && (found < at || found == at && selected != null
-						&& reference.zh().length() > selected.zh().length())) { at = found; selected = reference; }
-				}
-				if (selected == null) { result.add(new Literal(text.substring(cursor))); break; }
-				if (at > cursor) result.add(new Literal(text.substring(cursor, at)));
-				int occurrence = uses.getOrDefault(selected, 0);
-				uses.put(selected, occurrence + 1);
-				result.add(new ItemLiteral(selected, occurrence));
-				cursor = at + selected.zh().length();
+	/** Select ranges in authored templates, before any player value or Chinese is rendered. */
+	private static List<ReferenceRange> referenceRanges(Definition definition) {
+		List<Segment> segments = definition.segments();
+		String target = segments.stream().map(s -> s.target() == null ? "" : s.target()).collect(java.util.stream.Collectors.joining());
+		String source = segments.stream().map(Segment::source).collect(java.util.stream.Collectors.joining());
+		List<ReferenceRange> candidates = new ArrayList<>();
+		for (ItemReference ref : definition.options().itemReferences()) {
+			if (ref.text().isBlank() || ref.zh().isBlank()) throw new IllegalArgumentException("空 item_refs: " + ref);
+			String sourceTemplate = ref.sourceTemplate().isEmpty() ? source : ref.sourceTemplate();
+			List<SourceSpan> patterns = new ArrayList<>();
+			int from = 0;
+			while (from <= sourceTemplate.length() - ref.text().length()) {
+				int at = sourceTemplate.indexOf(ref.text(), from);
+				if (at < 0) break;
+				from = at + ref.text().length();
+				patterns.add(new SourceSpan(sourceBoundary(sourceTemplate, at), sourceBoundary(sourceTemplate, from)));
 			}
+			if (patterns.isEmpty() || ref.sourceOccurrence() >= patterns.size())
+				throw new IllegalArgumentException("无源或越界的 item_refs: " + ref);
+			int offset = 0, occurrence = 0, found = 0;
+			for (int segmentIndex = 0; segmentIndex < segments.size(); segmentIndex++) {
+				String zh = segments.get(segmentIndex).target();
+				if (zh == null) continue;
+				// A selector may cross adjacent target colour runs, but never starts in an omitted run.
+				if (ref.targetSegment() < 0 || ref.targetSegment() == segmentIndex) {
+					for (int at = offset; at < offset + zh.length();) {
+						at = target.indexOf(ref.zh(), at);
+						if (at < 0 || at >= offset + zh.length()) break;
+						int current = occurrence++;
+						if (ref.targetOccurrence() < 0 || ref.targetOccurrence() == current) {
+							sourceBoundary(target, at);
+							sourceBoundary(target, at + ref.zh().length());
+							candidates.add(new ReferenceRange(ref, List.copyOf(patterns), current, at, at + ref.zh().length()));
+							found++;
+						}
+						at += ref.zh().length();
+					}
+				}
+				offset += zh.length();
+			}
+			if (found == 0) throw new IllegalArgumentException("无译文或越界的 item_refs: " + ref);
 		}
+		// Existing long names own their whole target before a shorter root can consume it.
+		candidates.sort(java.util.Comparator.comparingInt(ReferenceRange::start)
+			.thenComparing(java.util.Comparator.comparingInt(ReferenceRange::end).reversed()));
+		List<ReferenceRange> ranges = new ArrayList<>();
+		int end = -1;
+		for (ReferenceRange range : candidates) {
+			if (range.start() >= end) { ranges.add(range); end = range.end(); }
+			else if (range.reference().targetOccurrence() >= 0)
+				throw new IllegalArgumentException("重叠的精确 item_refs: " + range.reference());
+		}
+		return List.copyOf(ranges);
+	}
+
+	/** Locate a template boundary relative to the preceding existing argument capture. */
+	private static SourceBoundary sourceBoundary(String template, int offset) {
+		Matcher tokens = PLACEHOLDER.matcher(template);
+		int preceding = -1, literalStart = 0;
+		while (tokens.find()) {
+			if (tokens.start() < offset && offset < tokens.end())
+				throw new IllegalArgumentException("item_refs 边界不能拆开占位符: " + template);
+			if (tokens.end() > offset) break;
+			if (!tokens.group().equals("%%")) { preceding++; literalStart = tokens.end(); }
+		}
+		String literal = Glyphs.canonical(template.substring(literalStart, offset).replace("%%", "%"));
+		return new SourceBoundary(preceding, Pattern.compile(template.contains("%") ? eitherNumber(literal) : Pattern.quote(literal)));
+	}
+
+	private static int sourceOffset(SourceBoundary boundary, StyledText source, List<Integer> argumentEnds) {
+		int from = boundary.precedingArgument() < 0 ? 0 : argumentEnds.get(boundary.precedingArgument());
+		Matcher literal = boundary.literalPrefix().matcher(source.canonical());
+		literal.region(from, source.length());
+		return literal.lookingAt() ? literal.end() : -1;
+	}
+
+	private static List<Piece> rangePieces(String target, int[] nextArg, List<ReferenceRange> ranges, int offset) {
+		List<Piece> result = new ArrayList<>();
+		int cursor = 0;
+		for (ReferenceRange range : ranges) {
+			int start = Math.max(0, range.start() - offset), end = Math.min(target.length(), range.end() - offset);
+			if (start >= end) continue;
+			result.addAll(parse(target.substring(cursor, start), nextArg));
+			result.add(new ItemRange(range, range.start() >= offset, parse(target.substring(start, end), nextArg)));
+			cursor = end;
+		}
+		result.addAll(parse(target.substring(cursor), nextArg));
 		return List.copyOf(result);
+	}
+
+	private static Component originalRange(List<Matched> matches, Matched owner, ReferenceRange range) {
+		ItemReference ref = range.reference();
+		MutableComponent joined = Component.empty();
+		List<Matched> sources = new ArrayList<>();
+		if (ref.sourceRecords().isEmpty()) sources.add(owner);
+		else for (String id : ref.sourceRecords()) {
+			Matched source = matches.stream().filter(m -> m.entry().id().equals(id)
+				&& m.entry().sourceFile().equals(owner.entry().sourceFile())).findFirst().orElse(null);
+			if (source == null) return null;
+			sources.add(source);
+		}
+		List<Integer> argumentEnds = new ArrayList<>();
+		for (Matched source : sources) {
+			if (!joined.getString().isEmpty()) joined.append(Component.literal(" ").setStyle(source.source().styleAt(0)));
+			int offset = joined.getString().length();
+			for (Fragment fragment : source.entry().fragments) for (int group : fragment.argGroups())
+				argumentEnds.add(offset + source.match().end(group));
+			joined.append(source.source().slice(0, source.source().length()));
+		}
+		StyledText source = StyledText.of(joined);
+		int occurrence = ref.sourceOccurrence() < 0 ? Math.min(range.occurrence(), range.sources().size() - 1) : ref.sourceOccurrence();
+		SourceSpan span = range.sources().get(occurrence);
+		int start = sourceOffset(span.start(), source, argumentEnds), end = sourceOffset(span.end(), source, argumentEnds);
+		return start >= 0 && end > start ? source.slice(start, end) : null;
 	}
 
 	public String id() {
@@ -690,6 +787,12 @@ public final class TranslationEntry {
 			parts.sort((left, right) -> Integer.compare(left.fragment().order(), right.fragment().order()));
 		}
 
+		record RangeUse(Matched matched, ReferenceRange range) {}
+		Map<RangeUse, Component> originals = new HashMap<>();
+		if (!ItemNamePolicy.enabled()) for (Part part : parts) for (Piece piece : part.fragment().pieces()) {
+			if (piece instanceof ItemRange range && !originals.containsKey(new RangeUse(part.matched(), range.range())))
+				originals.put(new RangeUse(part.matched(), range.range()), originalRange(matches, part.matched(), range.range()));
+		}
 		MutableComponent result = Component.empty();
 		Style style = Style.EMPTY;
 		Seam seam = new Seam(result);
@@ -723,7 +826,13 @@ public final class TranslationEntry {
 			MutableComponent frag = Component.empty();
 			Seam inner = new Seam(frag);
 
+			List<Piece> pieces = new ArrayList<>();
 			for (Piece piece : ItemNamePolicy.enabled() ? fragment.originalPieces() : fragment.pieces()) {
+				if (piece instanceof ItemRange range && originals.get(new RangeUse(matched, range.range())) == null)
+					pieces.addAll(range.fallback());
+				else pieces.add(piece);
+			}
+			for (Piece piece : pieces) {
 				if (piece instanceof Literal literal) {
 					String text = Glyphs.restore(literal.text(), source.plain());
 
@@ -731,13 +840,12 @@ public final class TranslationEntry {
 					Component literalSource = preservesName(text, source, start, end)
 						? source.slice(start, end) : Component.literal(text).setStyle(style);
 					inner.append(literalSource, text, style);
-				} else if (piece instanceof ItemLiteral item) {
-					if (ItemNamePolicy.enabled()) {
-						inner.append(Component.literal(item.reference().zh()).setStyle(style), item.reference().zh(), style);
-					} else {
-						Component original = entry.originalItem(source, match, item);
+				} else if (piece instanceof ItemRange range) {
+					if (range.first() && range.range().reference().emit()) {
+						Component original = originals.get(new RangeUse(matched, range.range()));
 						inner.append(original, original.getString(), style, true, true);
 					}
+
 				} else if (piece instanceof Arg arg) {
 					int group = entry.argumentGroup(arg);
 
@@ -764,29 +872,10 @@ public final class TranslationEntry {
 		return opaque || durations > 1 ? result : DurationText.normalize(result);
 	}
 
-	/** Finds the authored literal outside captured values, retaining every live style and interaction. */
-	private Component originalItem(StyledText source, Matcher match, ItemLiteral item) {
-		String text = item.reference().text();
-		int cursor = 0, seen = 0, last = -1;
-		while (cursor <= source.length() - text.length()) {
-			int at = source.canonical().indexOf(text, cursor);
-			if (at < 0) break;
-			cursor = at + text.length();
-			boolean captured = false;
-			for (int group : this.argGroups) {
-				if (group > 0 && match.start(group) >= 0 && at < match.end(group) && cursor > match.start(group)) {
-					captured = true; break;
-				}
-			}
-			if (captured) continue;
-			last = at;
-			if (seen++ == item.occurrence()) return source.slice(at, cursor);
-		}
-		// Chinese may repeat a name the original mentions once; reuse its proven source span.
-		return last < 0 ? Component.literal(text).setStyle(source.styleAt(0)) : source.slice(last, last + text.length());
-	}
 
 	public List<ItemReference> itemReferences() { return this.itemReferences; }
+	public boolean itemName() { return this.itemName; }
+	public Set<Integer> itemArguments() { return this.itemArguments; }
 
 	public boolean isItemName(StyledText source) {
 		return this.itemName || (this.sourceFile.contains("/GUI_Item/") || this.sourceFile.startsWith("_shared/"))
@@ -1137,7 +1226,7 @@ public final class TranslationEntry {
 	/** A translated placeholder may only refer to a capture in this record, including continuations. */
 	public boolean hasUnboundArguments() {
 		for (Fragment fragment : this.fragments) {
-			for (Piece piece : fragment.pieces()) {
+			for (Piece piece : fragment.originalPieces()) {
 				if (piece instanceof Arg arg && argumentGroup(arg) == 0) {
 					return true;
 				}
@@ -1171,7 +1260,7 @@ public final class TranslationEntry {
 				continue;
 			}
 
-			for (Piece piece : fragment.pieces()) {
+			for (Piece piece : fragment.originalPieces()) {
 				if (piece instanceof Arg arg) {
 					int group = argumentGroup(arg);
 

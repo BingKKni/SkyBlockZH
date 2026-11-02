@@ -123,7 +123,10 @@ public final class MinifiedCorpusCheck {
 					|| !String.valueOf(mine.layout()).equals(String.valueOf(other.layout()))
 					|| !mine.chatJoinNext().equals(other.chatJoinNext())
 					|| mine.specificity() != other.specificity()
-					|| !mine.excludedTexts().equals(other.excludedTexts())) {
+					|| !mine.excludedTexts().equals(other.excludedTexts())
+					|| !mine.itemReferences().equals(other.itemReferences())
+					|| mine.itemName() != other.itemName()
+					|| !mine.itemArguments().equals(other.itemArguments())) {
 					report("记录 " + entry.getKey() + " 精简前后不一致", false,
 						"模板 [" + mine.template() + "] vs [" + other.template() + "]，"
 							+ "continuation " + mine.continuation() + " vs " + other.continuation() + "，"
@@ -161,6 +164,14 @@ public final class MinifiedCorpusCheck {
 				}
 			}
 		}
+
+		ItemNameHarness.baselineIndex = ItemNameHarness.baseline(authoredFiles);
+		for (TranslationIndex index : List.of(authored, shipped)) {
+			TranslationHarness.installIndex(index);
+			ItemNameHarness.caseIndex = index;
+			ItemNameHarness.runCases(Path.of(args[0]).getParent().resolve("tests/resources"));
+		}
+		System.out.println("物品名双态资源样例在原始与精简语料中均通过。");
 
 		System.out.println();
 		System.out.println("逐行比对了 " + compared + " 条固定文本");

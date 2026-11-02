@@ -9,7 +9,7 @@
     {"id": "cobble_minion_storage_upgrade", "ref": "_shared/Item_Lore.json#minion_max_storage_upgrade", "context": "存储上限变化"},
     {
       "id": "cobble_hopper_1",
-      "item_refs": [{"text": "Budget Hopper", "zh": "经济型漏斗"}],
+      "item_refs": [{"text":"Budget Hopper","zh":"经济型漏斗"},{"text":"Enchanted Hopper","zh":"附魔","source_records":["cobble_hopper_1","cobble_hopper_2"]}],
       "context": "小人自动出售漏斗说明首行；英文共四行",
       "raw": "§7Add a §aBudget Hopper§7 or §9Enchanted",
       "text": "Add a Budget Hopper or Enchanted",
@@ -37,7 +37,7 @@
       "segments": [
         {"color": "§9", "text": "Hopper ", "zh": "漏斗", "order": 4},
         {"color": "§7", "text": "here to make your minion", "zh": ",小人", "order": 5}
-      ]
+      ], "item_refs": [{"text":"Enchanted Hopper","zh":"漏斗","source_records":["cobble_hopper_1","cobble_hopper_2"],"emit":false}]
     },
     {
       "id": "cobble_hopper_3",

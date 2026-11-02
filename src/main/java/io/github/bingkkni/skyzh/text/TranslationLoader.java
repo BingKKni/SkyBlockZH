@@ -320,6 +320,10 @@ public final class TranslationLoader {
 				JsonObject reference = value.getAsJsonObject();
 				CorpusData.string(reference.get("text"), "item_refs.text");
 				CorpusData.string(reference.get("zh"), "item_refs.zh");
+				for (String key : new String[] {"source_occurrence", "target_occurrence", "target_segment"}) referenceIndex(reference, key);
+				if (reference.has("source_records")) CorpusData.strings(reference, "source_records");
+				if (reference.has("emit") && (!reference.get("emit").isJsonPrimitive() || !reference.getAsJsonPrimitive("emit").isBoolean()))
+					throw new IllegalArgumentException("item_refs.emit 必须是布尔值");
 			}
 			if (record.has("exclude")) CorpusData.strings(record, "exclude");
 		} catch (RuntimeException e) {
@@ -374,7 +378,7 @@ public final class TranslationLoader {
 			|| surface == Surface.ITEM && ItemNames.canonical(template(source)) != null;
 		TranslationEntry.Options options = new TranslationEntry.Options(
 			source.has("continuation") && source.get("continuation").getAsBoolean(),
-			string(source, "layout"), excludedTexts(source), string(source, "chat_join_next"), itemReferences(source), itemName
+			string(source, "layout"), excludedTexts(source), string(source, "chat_join_next"), itemReferences(source, relative, byReference), itemName
 		);
 
 		TranslationEntry.Definition definition = new TranslationEntry.Definition(
@@ -387,14 +391,47 @@ public final class TranslationLoader {
 		return shared == null ? null : shared.identifiedBy(id, relative);
 	}
 
-	private static List<TranslationEntry.ItemReference> itemReferences(JsonObject source) {
+	private static List<TranslationEntry.ItemReference> itemReferences(JsonObject source, String relative, Map<String, JsonObject> byReference) {
 		if (!source.has("item_refs")) return List.of();
 		List<TranslationEntry.ItemReference> references = new ArrayList<>();
 		for (JsonElement value : source.getAsJsonArray("item_refs")) {
 			JsonObject reference = value.getAsJsonObject();
-			references.add(new TranslationEntry.ItemReference(string(reference, "text"), string(reference, "zh")));
+			List<String> ids = new ArrayList<>();
+			if (reference.has("source_records")) for (var id : reference.getAsJsonArray("source_records")) ids.add(CorpusData.string(id, "item_refs.source_records"));
+			StringBuilder sourceTemplate = new StringBuilder();
+			for (String id : ids) {
+				JsonObject record = byReference.get(relative + "#" + id);
+				if (record == null) throw new IllegalArgumentException("缺失 item_refs 源记录: " + relative + "#" + id);
+				if (!sourceTemplate.isEmpty()) sourceTemplate.append(' ');
+				sourceTemplate.append(template(resolve(record, byReference)));
+			}
+			if (reference.has("emit") && !reference.get("emit").getAsBoolean()) {
+				boolean emitter = false;
+				for (String id : ids) {
+					JsonObject owner = resolve(byReference.get(relative + "#" + id), byReference);
+					if (!owner.has("item_refs")) continue;
+					for (var element : owner.getAsJsonArray("item_refs")) {
+						JsonObject candidate = element.getAsJsonObject();
+						if (string(reference, "text").equals(string(candidate, "text"))
+							&& reference.get("source_records").equals(candidate.get("source_records"))
+							&& (!candidate.has("emit") || candidate.get("emit").getAsBoolean())) emitter = true;
+					}
+				}
+				if (!emitter) throw new IllegalArgumentException("item_refs.emit:false 缺少同组输出范围: " + reference);
+			}
+			references.add(new TranslationEntry.ItemReference(string(reference, "text"), string(reference, "zh"),
+				referenceIndex(reference, "source_occurrence"), referenceIndex(reference, "target_occurrence"),
+				referenceIndex(reference, "target_segment"), ids, sourceTemplate.toString(), !reference.has("emit") || reference.get("emit").getAsBoolean()));
 		}
 		return List.copyOf(references);
+	}
+
+	private static int referenceIndex(JsonObject reference, String key) {
+		if (!reference.has(key)) return -1;
+		JsonElement value = reference.get(key);
+		if (!value.isJsonPrimitive() || !value.getAsJsonPrimitive().isNumber() || !value.getAsString().matches("[0-9]+"))
+			throw new IllegalArgumentException("item_refs." + key + " 必须是非负整数");
+		return value.getAsInt();
 	}
 
 	private static Set<String> excludedTexts(JsonObject source) {
