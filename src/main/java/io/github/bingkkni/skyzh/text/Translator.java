@@ -117,6 +117,11 @@ public final class Translator {
 		return requestReload(TranslationPack::load, task -> net.minecraft.client.Minecraft.getInstance().execute(task), success, failure);
 	}
 
+	public static boolean reloadInBackground(java.util.function.Supplier<TranslationPack.Loaded> read,
+		java.util.function.Consumer<TranslationPack.Loaded> success, java.util.function.Consumer<Exception> failure) {
+		return requestReload(read, task -> net.minecraft.client.Minecraft.getInstance().execute(task), success, failure);
+	}
+
 	/** Injected publication queue makes busy/failure/retained-index behavior testable without a client. */
 	static boolean requestReload(java.util.function.Supplier<TranslationPack.Loaded> read,
 		java.util.concurrent.Executor client, java.util.function.Consumer<TranslationPack.Loaded> success,

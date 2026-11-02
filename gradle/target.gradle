@@ -79,8 +79,19 @@ dependencies {
 	// SkyHanni / SkyBlocker in someone's modpack.
 }
 
+// A JDK-only helper runs independently after Minecraft releases the installed JAR.
+sourceSets {
+	updater { java.srcDirs = [rootProject.file('src/updater/java')] }
+}
+tasks.register('updaterJar', Jar) {
+	archiveFileName = 'skyzh-updater.jar'
+	destinationDirectory = layout.buildDirectory.dir('updater')
+	from sourceSets.updater.output
+	manifest { attributes 'Main-Class': 'io.github.bingkkni.skyzh.update.ModInstaller' }
+}
+
 processResources {
-	dependsOn rootProject.tasks.named('minifyCorpus')
+	dependsOn rootProject.tasks.named('translationMetadata'), tasks.named('updaterJar')
 
 	// Keep Fabric metadata on the normal SemVer version while using the human-facing archive name
 	// above. The filename identifies the target; the Minecraft dependency range below enforces it.
@@ -100,6 +111,11 @@ processResources {
 			escapeBackslash = true
 		}
 	}
+
+	from(rootProject.layout.buildDirectory.file('translations/manifest.json')) {
+		rename { 'skyzh-builtin-translations.json' }
+	}
+	from(tasks.named('updaterJar')) { into 'assets/skyzh' }
 
 	from(rootProject.layout.buildDirectory.dir('minified-corpus')) {
 		into 'assets/skyzh/original_text'
@@ -230,6 +246,9 @@ harnessTask('checkTranslationPack', 'io.github.bingkkni.skyzh.TranslationPackHar
 		rootProject.layout.buildDirectory.file('translations/translations.zip').get().asFile.absolutePath
 }
 
+harnessTask('checkUpdates', 'io.github.bingkkni.skyzh.UpdateHarness',
+	'Checks update cooldowns, resumed downloads, bundle installation and the independent post-exit installer.')
+
 harnessTask('checkCommands', 'io.github.bingkkni.skyzh.CommandHarness',
 	'Checks SkyZH client-command parsing and exact help text.')
 
@@ -356,13 +375,15 @@ tasks.register('checkMixinTargets', Exec) {
 
 tasks.named('check') {
 	dependsOn 'checkItemNames', 'checkPerformance', 'checkTranslations', 'checkChatInteractions', 'checkLore', 'checkCapture', 'checkDocuments', 'checkDiagnostics', 'checkCommands', 'checkClientSettings', 'checkMinifiedCorpus',
-		'checkMixinTargets', 'checkDisplayPriority', 'checkTranslationPack'
+		'checkMixinTargets', 'checkDisplayPriority', 'checkTranslationPack', 'checkUpdates'
 }
 
 tasks.withType(JavaCompile).configureEach {
 	it.options.release = 25
 	it.options.encoding = 'UTF-8'
 }
+
+tasks.named('compileUpdaterJava', JavaCompile) { options.release = 17 }
 
 java {
 	withSourcesJar()

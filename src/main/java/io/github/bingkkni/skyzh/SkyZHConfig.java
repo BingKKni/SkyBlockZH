@@ -49,10 +49,10 @@ public final class SkyZHConfig {
 	private static int generation;
 
 	/** Whether the mod translates anything at all. Off means every surface is left in English. */
-	public boolean enabled = true;
+	public volatile boolean enabled = true;
 
-	/** Whether GitHub Releases is checked once while the enabled mod starts. */
-	public boolean updateCheck = true;
+	/** Whether entering SkyBlock starts automatic Mod and translation updates. */
+	public volatile boolean updateCheck = true;
 
 	/** Whether the unavailable in-game translation feedback switch is selected for future use. */
 	public boolean helpImproveTranslation = true;
@@ -204,7 +204,7 @@ public final class SkyZHConfig {
 	JsonObject toJson() {
 		JsonObject help = new JsonObject();
 		help.addProperty("enabled", "是否启用 Mod 功能。关闭将不翻译任何文本。");
-		help.addProperty("updateCheck", "是否在启动客户端时通过 GitHub Releases 检查更新。总开关关闭时不会请求。");
+		help.addProperty("updateCheck", "是否在进入空岛生存后自动检查并下载 Mod 和翻译更新。翻译更新立即生效；Mod 更新在退出游戏后安装，下次启动生效。总开关关闭时不检查。");
 		help.addProperty("helpImproveTranslation", "在游戏内发现文本未翻译或翻译格式错误时，是否上传到开发者服务器报告（暂不可用）。");
 		help.addProperty("welcomeShown", "是否已经显示首次设置引导。改为 false 后，下次进入 Hypixel 时会再次显示。");
 		help.addProperty("translateSkyBlockName", "是否翻译 SkyBlock 玩法名。翻译后的文本为「空岛生存」。");

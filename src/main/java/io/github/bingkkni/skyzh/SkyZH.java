@@ -37,8 +37,6 @@ public final class SkyZH implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		SkyZHConfig config = SkyZHConfig.get();
-		// The request is opt-in through both settings and runs off the client thread.
-		UpdateChecker.checkAtStartup();
 
 		// Fabric invokes this once per client launch, before the main menu and independently of
 		// joining any server. Do not put this on the connection/tick path: reconnecting is not a restart.
@@ -61,7 +59,7 @@ public final class SkyZH implements ClientModInitializer {
 				index.size(Surface.TABLIST), index.size(Surface.HOLOGRAM), index.size(Surface.MISC),
 				config.enabled ? "开" : "关"
 			);
-			if (!loaded.warning().isEmpty()) LOGGER.warn("SkyZH 本次已使用内置语料: {}", loaded.warning());
+			if (!loaded.warning().isEmpty()) LOGGER.warn("SkyZH 已使用下一可用翻译来源 {}: {}", loaded.source(), loaded.warning());
 		}, error -> LOGGER.error("SkyZH 启动语料加载失败，游戏文本保持英文。", error));
 
 		if (config.captureUntranslated) {

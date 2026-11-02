@@ -66,6 +66,19 @@ public final class TranslationPackHarness {
 				Files.writeString(path, file.getValue().toString(), StandardCharsets.UTF_8);
 			}
 			Path archive = temporary.resolve("translations.zip");
+			Path automatic = temporary.resolve("automatic.zip");
+			write(automatic, newFiles, ignored -> {});
+			check("无手动包时使用自动包", TranslationPack.load(archive, automatic, builtin).source() == TranslationPack.Source.AUTOMATIC);
+			Files.writeString(archive, "broken manual");
+			var manualBroken = TranslationPack.load(archive, automatic, builtin);
+			check("手动包失败后自动包接替且保留警告", manualBroken.source() == TranslationPack.Source.AUTOMATIC && !manualBroken.warning().isEmpty());
+			write(archive, oldFiles, ignored -> {});
+			check("手动包始终覆盖自动包", TranslationPack.load(archive, automatic, builtin).source() == TranslationPack.Source.MANUAL
+				&& TranslationPack.load(archive, automatic, builtin).index().lookup(Surface.ITEM, "Removed line") != null);
+			Files.writeString(archive, "broken manual");
+			Files.writeString(automatic, "broken automatic");
+			check("两种外置包都失败后回退内置", TranslationPack.load(archive, automatic, builtin).source() == TranslationPack.Source.BUILTIN);
+			Files.delete(archive);
 			var absent = TranslationPack.load(archive, builtin);
 			check("没有外置包使用内置", !absent.external() && absent.warning().isEmpty());
 			write(archive, newFiles, ignored -> {});
@@ -283,7 +296,7 @@ public final class TranslationPackHarness {
 		check(label + "回退包含原物品目录", Translator.withIndex(loaded.index(), () -> ItemNames.canonical("Old Relic") != null));
 	}
 
-	private static Map<String, JsonObject> fixture(boolean newer) {
+	static Map<String, JsonObject> fixture(boolean newer) {
 		Map<String, JsonObject> files = new HashMap<>();
 		files.put(CorpusData.ITEMS, json("{\"names\":[\"" + (newer ? "New Relic" : "Old Relic") + "\"],\"pets\":[],\"reforges\":[]}"));
 		files.put(CorpusData.AREAS, json("{\"unknown\":\"_Unknown_Gameplay\",\"modes\":{},\"areas\":{\"Test Harbor\":\"" + (newer ? "Foraging" : "Fishing") + "\"}}"));
@@ -303,7 +316,7 @@ public final class TranslationPackHarness {
 		return result;
 	}
 
-	private static void write(Path archive, Map<String, JsonObject> files, Consumer<JsonObject> mutate) throws Exception {
+	static void write(Path archive, Map<String, JsonObject> files, Consumer<JsonObject> mutate) throws Exception {
 		writeBytes(archive, bytes(files), mutate);
 	}
 

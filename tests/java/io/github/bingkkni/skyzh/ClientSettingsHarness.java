@@ -102,14 +102,12 @@ public final class ClientSettingsHarness {
 			check("0.6 不提示同版本 - " + target, UpdateChecker.isNewer("v0.6", "0.6+mc" + target), false);
 			check("0.6 不提示旧发布 - " + target, UpdateChecker.isNewer("0.5", "0.6+mc" + target), false);
 		}
-		var uri = java.net.URI.create("https://github.com/BingKKni/SkyBlockZH/releases/tag/0.6");
-		UpdateChecker.announce("0.5+mc26.2", "0.6", uri);
-		check("主界面不丢弃待显示更新", UpdateChecker.takeNotice(true, false), null);
-		check("进入世界后交付原版本信息", UpdateChecker.takeNotice(true, true), new UpdateChecker.Notice("0.5+mc26.2", "0.6", uri));
-		check("断线重进不重复提示", UpdateChecker.takeNotice(true, true), null);
-		UpdateChecker.announce("0.5", "0.6", uri);
-		check("关闭设置撤销待发更新", UpdateChecker.takeNotice(false, true), null);
-		check("重新开启不补发已取消提示", UpdateChecker.takeNotice(true, true), null);
+		for (int mask = 0; mask < 16; mask++) {
+			boolean power = (mask & 1) != 0, updates = (mask & 2) != 0;
+			boolean skyBlock = (mask & 4) != 0, ready = (mask & 8) != 0;
+			check("仅空岛生存且两项开关开启、首次加载结束时检查 " + mask,
+				UpdateChecker.eligible(power, updates, skyBlock, ready), mask == 15);
+		}
 	}
 
 	private static void keys() {

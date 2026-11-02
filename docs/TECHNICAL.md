@@ -134,8 +134,8 @@ Mod Menu is a soft dependency. Without it, edit `config/skyzh.json`, which docum
 
 | Option | Default | Meaning |
 |---|---|---|
-| `enabled` | on | Master switch. Turning it off also prevents the startup update request |
-| `updateCheck` | on | Once per client startup, request the newest version metadata from GitHub Releases. It neither downloads files nor uploads player or game data. It does not run while the master switch is off; `/skyzh updatecheck [on/off]` and `/skyblockzh` control it |
+| `enabled` | on | Master switch. Turning it off also prevents update checks |
+| `updateCheck` | on | Check and download Mod and translation updates after entering SkyBlock. Translations apply immediately; Mod installation waits for exit. Requires the master switch; `/skyzh updatecheck [on/off]` and `/skyblockzh` control it |
 | `translateSkyBlockName` | on | Render "SkyBlock" as 空岛生存. Compounds use the short form and get their spacing fixed: `你的 SkyBlock 等级` → `你的空岛等级`; standalone occurrences keep the full name. See below for where the substitution is allowed to happen |
 | `translateItemNames` | on | Keep physical item names and explicitly marked references in English when off; surrounding text stays translated. The choice refreshes existing chat and tooltips without changing source data or capture coverage |
 | `originalTips` | on | "Translation hints": append a current-key hint to translated real-item tooltips in GUIs. Incoming server chat mentioning eligible translated items may show a dismissible hint, at least five minutes apart. `ItemNames` uses the bundled offline NEU catalog, excluding menus, states and unknown names. `/skyzh switch tip on/off` (also `/skyblockzh`) controls hints, not the original-text toggle. The old `showOriginal` field is ignored and no longer saved; missing `originalTips` defaults to on. Normal rendering no longer appends bracketed originals |
@@ -145,7 +145,7 @@ Mod Menu is a soft dependency. Without it, edit `config/skyzh.json`, which docum
 | `autoClearCapture` | **off** | Clear the previous captures once per client launch, whether or not capture is enabled or a server is joined. Reconnecting never clears files |
 
 The two capture sub-options share the row below the capture master: notifications on the left,
-startup clearing on the right. Old configs missing these keys use the defaults above. On a fresh installation, the complete settings page appears once after the client has confirmed entry to Hypixel; its internal `welcomeShown` state can be reset to `false` to show it again on the next entry. First-run guidance, `/skyzh` (also `/skyblockzh`) and Mod Menu share this page, with welcome text above the settings and scrolling when needed. The master switch and startup update check sit side by side; with the master switch off, every remaining setting is disabled and explains why on hover. Startup clearing
+startup clearing on the right. Old configs missing these keys use the defaults above. On a fresh installation, the complete settings page appears once after the client has confirmed entry to Hypixel; its internal `welcomeShown` state can be reset to `false` to show it again on the next entry. First-run guidance, `/skyzh` (also `/skyblockzh`) and Mod Menu share this page, with welcome text above the settings and scrolling when needed. The master switch and automatic updates sit side by side; with the master switch off, every remaining setting is disabled and explains why on hover. Startup clearing
 runs once in Fabric's client initializer, before the main menu, through the exact `TextCapture.clear()`
 path used by `/skyzh clear`: in-memory state, queued work and JSON files in the six capture buckets
 are cleared; unrelated files remain. Failures are logged without preventing startup.
@@ -303,10 +303,10 @@ Place it, without extracting, in the active Minecraft instance's `skyzh-translat
 under `FabricLoader.getGameDir()`, which may differ from the launcher's directory. Startup and `/skyzh reload` or `/skyblockzh reload`
 read the fixed `translations.zip` file, then close it so it can be replaced.
 
-A valid external bundle replaces the complete corpus. No per-line fallback revives removed built-in templates. Malformed data,
-missing tables/references, mismatched counts/digests or incompatible versions fall back to the complete built-in corpus; if both
-sources fail, the current index remains. Removing the ZIP and reloading restores built-in data. Only one reload runs at a time;
-publication occurs on the client thread, refreshing display caches and capture deduplication without clearing chat history or original mode.
+Loading tries the manual `skyzh-translations/translations.zip`, automatic `skyzh-updates/translations.zip`, then built-in data.
+An absent or invalid source, including compilation failure, advances to the next source; if all fail, the current index remains.
+Each bundle replaces the complete corpus without per-line fallback. Removing both external ZIPs restores built-in data on reload.
+Only one reload runs at a time; publication occurs on the client thread, refreshing caches and capture deduplication without clearing chat or original mode.
 
 `gradle.properties` supplies the single fixed `translation_api`, exported to both the Mod's resources and the bundle manifest.
 The API must exactly match the engine's declaration; neither lower nor higher values are accepted. Mod versions do not determine
@@ -319,6 +319,38 @@ UTF-8 path, NUL, exact JSON bytes, NUL, excluding the manifest itself.
 
 `checkTranslationPack` covers exported content, auxiliary tables, compatibility boundaries, failure fallback, cache refresh and concurrent
 snapshot isolation on every target. Open menus, chat scrolling, original mode and the three display priorities still need in-game verification.
+
+### GitHub automatic updates
+
+Every push starts `.github/workflows/translations.yml`; main publishes when the inputs differ from the last successfully published source.
+First publication and manual dispatch force packaging. `tools/publish_updates.py` reuses the exporter and Gradle checks, with DEFLATE level 9.
+It uploads an immutable prerelease asset identified by source and archive hash, then commits only `skyzh-updates/update.json` through Git data APIs.
+It never force-pushes; newer packaging inputs arriving during a build prevent publication of the stale manifest. Actions needs `contents: write`.
+Translation prereleases do not replace the latest formal Mod Release.
+
+Two independent background lanes become eligible only after verified SkyBlock entry and completion of initial corpus loading, even if that load failed.
+The Contents API at `api.github.com` supplies `update.json`: `update_format: 1`, bundle manifest fields, download URL, ZIP size and SHA-256.
+Exact API equality, a newer timestamp and a different content hash are required. A usable automatic bundle is the comparison baseline;
+otherwise use `skyzh-builtin-translations.json`, generated by the same metadata task as the exported ZIP. Manual bundles retain loading priority.
+
+Downloads use bounded files and Range resumption keyed by fixed URL, size and hash. Ignored ranges restart the download; mismatched ranges are rejected.
+Connections and responses time out; streaming downloads allow slow progress but close after 60 seconds without data.
+Archive integrity, matching inner metadata and full corpus compilation must pass before installing the automatic ZIP under the existing reload lock.
+Failures retain the installed file and running index. An active manual bundle remains selected after an automatic update.
+
+`config/skyzh-updates.json` persists separate outcomes and deadlines. Success, no update and failures normally wait one hour;
+API incompatibility waits seven days only for translations. Due checks run again while in SkyBlock or on the next eligible launch, without retry limits.
+Local Mod/API changes invalidate the relevant old cooldown. Directory initialization failures also persist their cooldown in the config directory.
+Chat uses short explanations; detailed errors stay in logs.
+
+Mod downloads select the correct Minecraft Release asset, require GitHub SHA-256 and validate Mod ID, version and Minecraft/Loader/Java dependencies.
+The embedded JDK-only `skyzh-updater.jar` runs independently, acknowledges readiness and waits for the exact game process to exit.
+It verifies both JARs again, backs up the installed JAR and replaces the original filename, preventing duplicate mods.
+Changes made by the user while waiting are not overwritten, including on subsequent retries; manually remove the pending installation plan after resolving such a change.
+Pending state and failures remain in `skyzh-updates/mod-install.properties` and `installer.log`.
+Development, nested and installations outside the instance's `mods/` are not automatically replaced. Launchers that kill the full process tree or immediately
+reopen the old JAR can require another retry. `checkUpdates` covers loopback transfers and real child-JVM installation;
+`checkUpdatePublisher` covers publication order without GitHub writes. Full client/launcher behavior still needs in-game verification.
 
 `./gradlew checkPerformance` compares indexed matching with the previous exhaustive scan and checks
 style equality, cache collisions, shape hits and capture eviction recovery. `./gradlew benchmarkPerformance` reports
@@ -423,12 +455,9 @@ server instead of read off a sidebar drawn for a human. The library is compiled 
 bundled; without that mod the integration does not load and the other two readings carry on.
 
 With capture **off** — every ordinary player — nothing is subscribed and no packet is sent to Hypixel.
-This is independent of `updateCheck`: when both it and the master switch are on, startup makes one GitHub Releases metadata request.
-The `/releases/latest` tag is compared with Fabric metadata, ignoring the `+mc26.x` build suffix.
-Publishing a non-draft, non-prerelease GitHub Release is required; pushing code or a tag alone is not enough.
-A detected update is announced once after joining a world, so startup chat clearing cannot discard it. It does not involve Hypixel, upload game data or download a mod file. That half
-of the mod remains what it says on the tin: a client running SkyZH is, as far as Hypixel and as far
-as every other mod is concerned, a client running in English.
+This is independent of `updateCheck`: with both switches enabled, verified SkyBlock entry permits GitHub checks and downloads for the Mod and translations.
+No player/game data is uploaded and no update traffic is sent to Hypixel. `/releases/latest` identifies formal Mod releases, ignoring `+mc26.x` metadata;
+translation pushes use separate prerelease assets and a repository manifest.
 
 [modapi]: https://github.com/HypixelDev/ModAPI
 

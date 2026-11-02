@@ -72,7 +72,7 @@ public final class SkyZHCommand {
 		lines.add("§e=============== §b" + Feedback.NAME + " §e===============");
 		lines.add("§6/" + alias + "  §f打开设置");
 		lines.add("§6/" + alias + " switch power/tip/capture [on/off]  §f切换总功能/显示原文提示/采集功能为开/关");
-		lines.add("§6/" + alias + " updatecheck [on/off]  §f切换启动检查更新功能");
+		lines.add("§6/" + alias + " updatecheck [on/off]  §f切换自动更新功能");
 		lines.add("§6/" + alias + " reload  §f重新加载翻译包");
 
 		if (captureEnabled) {
@@ -126,7 +126,7 @@ public final class SkyZHCommand {
 				value -> config.originalTips = value, switchValue(config.originalTips, state));
 			case "capture" -> change("采集未翻译文本", () -> config.captureUntranslated,
 				value -> config.captureUntranslated = value, switchValue(config.captureUntranslated, state));
-			case "updatecheck" -> change("检查更新", () -> config.updateCheck,
+			case "updatecheck" -> change("自动更新", () -> config.updateCheck,
 				value -> config.updateCheck = value, switchValue(config.updateCheck, state));
 			default -> unknown(alias, which.isEmpty() ? "switch" : "switch " + which);
 		}
@@ -178,13 +178,13 @@ public final class SkyZHCommand {
 		if (hasUnexpectedArguments(alias, "reload", argument, extra)) return;
 		try {
 			boolean started = Translator.reloadInBackground(loaded -> {
-				if (!loaded.warning().isEmpty()) Feedback.send("§e外置翻译包未能加载，已回退到内置翻译。原因: " + loaded.warning());
-				Feedback.send("§a翻译重载完成，当前使用" + (loaded.external() ? "外置翻译包" : "内置翻译")
+				if (!loaded.warning().isEmpty()) Feedback.send("§e有翻译包未能加载，已改用" + loaded.source().label() + "。详情已写入游戏日志。");
+				Feedback.send("§a翻译重载完成，当前使用" + loaded.source().label()
 					+ "，共 " + loaded.index().size() + " 条可用记录。");
-			}, error -> Feedback.send("§c翻译重载失败，已保留当前翻译。原因: " + error.getMessage()));
+			}, error -> Feedback.send("§c翻译重载失败，已保留当前翻译。详情已写入游戏日志。"));
 			Feedback.send(started ? "§e正在重新加载翻译…" : "§e翻译正在加载中，请稍候。");
 		} catch (RuntimeException e) {
-			Feedback.send("§c无法启动翻译重载: " + e.getMessage());
+			Feedback.send("§c暂时无法重新加载翻译，请稍后再试。");
 		}
 	}
 

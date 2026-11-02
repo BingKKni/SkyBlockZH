@@ -400,12 +400,11 @@ abstract class MinifyCorpus extends DefaultTask {
 	}
 }
 
-// One full bundle, sharing exactly the minifier used by the distributed jars.
-tasks.register('packTranslations') {
-	group = 'build'
-	description = 'Exports original_text as build/translations/translations.zip.'
+// Built-in metadata and ZIP use the same snapshot, including its timestamp and content digest.
+tasks.register('translationMetadata') {
 	dependsOn 'minifyCorpus'
-
+	outputs.file layout.buildDirectory.file('translations/manifest.json')
+	outputs.upToDateWhen { false }
 	doLast {
 		def root = minifiedCorpus.get().asFile.toPath()
 		def documents = new TreeMap<String, byte[]>()
@@ -432,20 +431,45 @@ tasks.register('packTranslations') {
 			format_version: 1,
 			translation_api: Integer.parseInt(rootProject.translation_api),
 			revision: git(['rev-parse', 'HEAD']),
-			source_dirty: !git(['status', '--porcelain', '--', 'original_text', 'build.gradle', 'gradle.properties']).isEmpty(),
+			source_dirty: !git(['status', '--porcelain', '--', 'original_text', 'build.gradle', 'gradle.properties',
+				'gradle/target.gradle', 'tools/export_translations.py', 'tools/publish_updates.py', '.github/workflows/translations.yml']).isEmpty(),
 			build_at_utc8: java.time.OffsetDateTime.now(java.time.ZoneOffset.ofHours(8)).withNano(0).toString(),
 			file_count: documents.size(),
 			content_sha256: java.util.HexFormat.of().formatHex(digest.digest()),
 		]
+		def target = layout.buildDirectory.file('translations/manifest.json').get().asFile
+		target.parentFile.mkdirs()
+		target.setText(groovy.json.JsonOutput.toJson(manifest), 'UTF-8')
+	}
+}
+
+// One full bundle, sharing exactly the minifier used by the distributed jars.
+tasks.register('packTranslations') {
+	group = 'build'
+	description = 'Exports original_text as build/translations/translations.zip.'
+	dependsOn 'translationMetadata'
+
+	doLast {
+		def root = minifiedCorpus.get().asFile.toPath()
+		def documents = new TreeMap<String, byte[]>()
+		java.nio.file.Files.walk(root).withCloseable { paths ->
+			paths.filter { java.nio.file.Files.isRegularFile(it) && it.toString().endsWith('.json') }.forEach { path ->
+				documents[root.relativize(path).toString().replace('\\', '/')] = java.nio.file.Files.readAllBytes(path)
+			}
+		}
+		def manifestFile = layout.buildDirectory.file('translations/manifest.json').get().asFile
+		def manifest = new groovy.json.JsonSlurper().parse(manifestFile, 'UTF-8')
 		def directory = layout.buildDirectory.dir('translations').get().asFile.toPath()
 		java.nio.file.Files.createDirectories(directory)
 		def target = directory.resolve('translations.zip')
 		def temporary = directory.resolve('translations.zip.tmp')
 		try {
 			new java.util.zip.ZipOutputStream(java.nio.file.Files.newOutputStream(temporary), java.nio.charset.StandardCharsets.UTF_8).withCloseable { zip ->
+				zip.setLevel(java.util.zip.Deflater.BEST_COMPRESSION)
 				def add = { String name, byte[] bytes ->
 					def entry = new java.util.zip.ZipEntry(name)
-					entry.setTime(0L)
+					// A DOS-representable timestamp avoids extended timestamp fields on every entry.
+					entry.setTimeLocal(java.time.LocalDateTime.of(1980, 1, 2, 0, 0))
 					zip.putNextEntry(entry)
 					zip.write(bytes)
 					zip.closeEntry()
@@ -525,8 +549,16 @@ tasks.register('checkWorkshopSources', Exec) {
 	workingDir rootProject.projectDir
 }
 
+tasks.register('checkUpdatePublisher', Exec) {
+	group = 'verification'
+	description = 'Checks translation publication ordering and failures without GitHub writes.'
+	commandLine 'python', '-B', rootProject.file('tests/test_publish_updates.py').absolutePath
+	environment 'PYTHONIOENCODING', 'utf-8'
+	workingDir rootProject.projectDir
+}
+
 tasks.named('check') {
-	dependsOn 'checkTermRecords', 'checkWorkshopSources'
+	dependsOn 'checkTermRecords', 'checkWorkshopSources', 'checkUpdatePublisher'
 }
 
 // Every jar the build can produce, in one directory, named for the Minecraft it is for.

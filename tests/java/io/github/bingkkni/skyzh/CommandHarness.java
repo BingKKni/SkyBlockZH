@@ -39,8 +39,8 @@ public final class CommandHarness {
 			"§b[SkyZH] §a显示原文提示功能已打开!");
 		check("采集开关反馈", Feedback.line(SkyZHCommand.changed("采集未翻译文本", false)),
 			"§b[SkyZH] §c采集未翻译文本功能已关闭!");
-		check("更新检查反馈", Feedback.line(SkyZHCommand.changed("检查更新", true)),
-			"§b[SkyZH] §a检查更新功能已打开!");
+		check("更新开关明确包含自动下载", Feedback.line(SkyZHCommand.changed("自动更新", true)),
+			"§b[SkyZH] §a自动更新功能已打开!");
 		check("开关失败反馈", Feedback.line(SkyZHCommand.changeFailed("翻译", "disk full")),
 			"§b[SkyZH] §c很抱歉，开关翻译功能时出现错误惹... 原因: disk full");
 		check("清空成功反馈", Feedback.line(SkyZHCommand.clearSucceeded()),
@@ -50,7 +50,7 @@ public final class CommandHarness {
 			"§e=============== §b[SkyZH] §e===============",
 			"§6/skyzh  §f打开设置",
 			"§6/skyzh switch power/tip/capture [on/off]  §f切换总功能/显示原文提示/采集功能为开/关",
-			"§6/skyzh updatecheck [on/off]  §f切换启动检查更新功能",
+			"§6/skyzh updatecheck [on/off]  §f切换自动更新功能",
 			"§6/skyzh reload  §f重新加载翻译包",
 			"§e======================================"
 		));
@@ -59,7 +59,7 @@ public final class CommandHarness {
 			"§e=============== §b[SkyZH] §e===============",
 			"§6/skyblockzh  §f打开设置",
 			"§6/skyblockzh switch power/tip/capture [on/off]  §f切换总功能/显示原文提示/采集功能为开/关",
-			"§6/skyblockzh updatecheck [on/off]  §f切换启动检查更新功能",
+			"§6/skyblockzh updatecheck [on/off]  §f切换自动更新功能",
 			"§6/skyblockzh reload  §f重新加载翻译包",
 			"§6/skyblockzh clear  §f清空捕捉到的文本",
 			"§e======================================"

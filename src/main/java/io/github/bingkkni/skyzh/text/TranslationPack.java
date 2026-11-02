@@ -29,13 +29,23 @@ import org.slf4j.LoggerFactory;
 public final class TranslationPack {
 	public static final String DIRECTORY = "skyzh-translations";
 	public static final String FILE_NAME = "translations.zip";
+	public static final String UPDATE_DIRECTORY = "skyzh-updates";
 	public static final int FORMAT = 1;
 	private static final int MAX_FILES = 20_000;
 	private static final int MAX_FILE_BYTES = 16 * 1024 * 1024;
 	private static final int MAX_TOTAL_BYTES = 64 * 1024 * 1024;
 	private static final int API = readApi();
 
-	public record Loaded(TranslationIndex index, boolean external, String revision, String warning) {}
+	public enum Source {
+		MANUAL("手动安装的翻译包"), AUTOMATIC("自动更新的翻译包"), BUILTIN("Mod 自带的翻译");
+		private final String label;
+		Source(String label) { this.label = label; }
+		public String label() { return label; }
+	}
+	public record Loaded(TranslationIndex index, Source source, JsonObject manifest, String warning) {
+		public boolean external() { return source != Source.BUILTIN; }
+		public String revision() { return manifest.has("revision") ? string(manifest, "revision") : ""; }
+	}
 	public record Content(Map<String, JsonObject> files, JsonObject manifest) {}
 
 	private TranslationPack() {}
@@ -60,29 +70,47 @@ public final class TranslationPack {
 		try { Files.createDirectories(directory); }
 		catch (IOException e) { LoggerFactory.getLogger("SkyZH").warn("无法创建翻译包目录: {}", directory, e); }
 		Path builtin = mod.findPath(TranslationLoader.ROOT).orElse(null);
-		return load(directory.resolve(FILE_NAME), builtin);
+		return load(directory.resolve(FILE_NAME), loader.getGameDir().resolve(UPDATE_DIRECTORY).resolve(FILE_NAME), builtin);
 	}
 
-	/** Also exercised offline, including fallback and the case where neither source is usable. */
-	public static Loaded load(Path external, Path builtin) {
+	public static JsonObject builtinManifest() throws IOException {
+		try (var stream = TranslationPack.class.getResourceAsStream("/skyzh-builtin-translations.json")) {
+			if (stream == null) throw new IOException("缺少内置翻译版本信息");
+			JsonObject manifest = parse(stream.readNBytes(64 * 1024), "内置翻译版本信息");
+			validateManifest(manifest);
+			return manifest;
+		}
+	}
+
+	public static Loaded compile(Path archive, Source source) throws IOException {
+		Content content = read(archive);
+		return new Loaded(TranslationLoader.compile(content.files()), source, content.manifest(), "");
+	}
+
+	/** Also exercised offline, including fallback and the case where no source is usable. */
+	public static Loaded load(Path external, Path builtin) { return load(external, null, builtin); }
+
+	public static Loaded load(Path manual, Path automatic, Path builtin) {
 		String warning = "";
-		if (!Files.notExists(external)) {
+		Path[] archives = {manual, automatic};
+		Source[] sources = {Source.MANUAL, Source.AUTOMATIC};
+		for (int i = 0; i < archives.length; i++) {
+			if (archives[i] == null || Files.notExists(archives[i])) continue;
 			try {
-				Content content = read(external);
-				TranslationIndex index = TranslationLoader.compile(content.files());
-				return new Loaded(index, true, string(content.manifest(), "revision"), "");
+				Loaded loaded = compile(archives[i], sources[i]);
+				return new Loaded(loaded.index(), loaded.source(), loaded.manifest(), warning);
 			} catch (IOException | RuntimeException e) {
-				warning = e.getMessage() == null ? e.toString() : e.getMessage();
-				LoggerFactory.getLogger("SkyZH").warn("外置翻译包不可用，回退到内置语料: {}", warning);
+				warning += (warning.isEmpty() ? "" : "；") + sources[i].label() + ": " + e.getMessage();
+				LoggerFactory.getLogger("SkyZH").warn("翻译包不可用，尝试下一个来源: {}", warning);
 			}
 		}
 		try {
 			if (builtin == null) throw new IllegalStateException("缺少内置翻译目录");
 			Map<String, JsonObject> files = TranslationLoader.readDirectory(builtin);
 			validateCorpus(files);
-			return new Loaded(TranslationLoader.compile(files), false, "", warning);
+			return new Loaded(TranslationLoader.compile(files), Source.BUILTIN, builtinManifest(), warning);
 		} catch (IOException | RuntimeException e) {
-			throw new IllegalStateException((warning.isEmpty() ? "" : "外置包: " + warning + "；") + "内置语料加载失败: " + e.getMessage(), e);
+			throw new IllegalStateException((warning.isEmpty() ? "" : warning + "；") + "内置语料加载失败: " + e.getMessage(), e);
 		}
 	}
 

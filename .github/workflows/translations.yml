@@ -1,0 +1,44 @@
+name: Publish translation updates
+
+# Every push runs the workflow; the Python publisher decides whether packaging is needed.
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: skyzh-translation-publication
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/main' && github.repository == 'BingKKni/SkyBlockZH'
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '25'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Build, verify and publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FORCE_PACKAGE: ${{ github.event_name == 'workflow_dispatch' }}
+        shell: bash
+        run: |
+          chmod +x gradlew
+          if [ "$FORCE_PACKAGE" = "true" ]; then
+            python -B tools/publish_updates.py --force
+          else
+            python -B tools/publish_updates.py
+          fi
