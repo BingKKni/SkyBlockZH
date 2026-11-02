@@ -86,6 +86,7 @@ public final class TooltipTranslator {
 	private static final Recent[] RECENT = new Recent[4];
 
 	private static int cachedGeneration = -1;
+	private static boolean cachedItemNames;
 
 	private TooltipTranslator() {
 	}
@@ -107,6 +108,10 @@ public final class TooltipTranslator {
 
 	/** Coverage for hints/capture is independent of the currently selected display language. */
 	public static Translator.Result translateItemNameAvailable(Component source) {
+		if (!ItemNamePolicy.enabled()) {
+			String name = STACK_COUNT.matcher(StyledText.of(source).canonical()).replaceFirst("");
+			if (ItemNames.isLoadoutReference(name)) return new Translator.Result(source.copy(), null, null, null);
+		}
 		Translator.Result whole = Translator.translateAvailable(source, Surface.ITEM);
 
 		if (whole.matched()) {
@@ -252,10 +257,11 @@ public final class TooltipTranslator {
 		TranslationIndex index = Translator.index();
 
 		synchronized (CACHE) {
-			if (cachedGeneration != SkyZHConfig.generation()) {
+			if (cachedGeneration != SkyZHConfig.generation() || cachedItemNames != ItemNamePolicy.enabled()) {
 				CACHE.clear();
 				Arrays.fill(RECENT, null);
 				cachedGeneration = SkyZHConfig.generation();
+				cachedItemNames = ItemNamePolicy.enabled();
 			}
 
 			List<Component> recent = recent(lines, hintKey, terminalNames, original, skyBlockName, font, index);

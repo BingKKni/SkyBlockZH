@@ -66,7 +66,7 @@ abstract class MinifyCorpus extends DefaultTask {
 
 	/** Per-record keys the runtime reads. Anything else on a record is a note to a translator. */
 	private static final Set<String> RECORD_KEYS = [
-		'id', 'ref', 'translate', 'text', 'zh', 'segments', 'placeholders', 'continuation', 'layout', 'chat_join_next', 'exclude',
+		'id', 'ref', 'translate', 'text', 'zh', 'segments', 'placeholders', 'continuation', 'layout', 'chat_join_next', 'exclude', 'item_refs', 'item_name',
 	] as Set
 
 	/** `color` is deliberately absent: it documents the boundary, the drawn colour comes off the screen. */
@@ -77,7 +77,7 @@ abstract class MinifyCorpus extends DefaultTask {
 	 * `example` bounds the placeholder to the kind of value it holds, so stripping it would ship a jar
 	 * that matches lines the source tree refuses — see text/ValueShape.java.
 	 */
-	private static final Set<String> PLACEHOLDER_KEYS = ['token', 'type', 'example'] as Set
+	private static final Set<String> PLACEHOLDER_KEYS = ['token', 'type', 'example', 'item'] as Set
 
 	/** Top-level members of the two dictionary files, which are not lists of records. */
 	private static final Set<String> DICTIONARY_KEYS = [

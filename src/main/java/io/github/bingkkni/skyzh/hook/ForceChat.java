@@ -36,6 +36,7 @@ public final class ForceChat {
 	private static Object layoutCorpus;
 	private static boolean layoutTranslated;
 	private static boolean layoutName;
+	private static boolean layoutItems;
 
 	private ForceChat() {}
 
@@ -112,9 +113,10 @@ public final class ForceChat {
 	public static List<GuiMessage.Line> lines(Font font, int width) {
 		boolean translate = HypixelServer.canTranslate();
 		boolean name = SkyZHConfig.get().translateSkyBlockName;
+		boolean items = SkyZHConfig.get().translateItemNames;
 		Object corpus = Translator.index();
 		if (!layoutDirty && layoutFont == font && layoutWidth == width && layoutCorpus == corpus
-			&& layoutTranslated == translate && layoutName == name) return new ArrayList<>(previousLines);
+			&& layoutTranslated == translate && layoutName == name && layoutItems == items) return new ArrayList<>(previousLines);
 		List<GuiMessage.Line> result = new ArrayList<>();
 		for (GuiMessage message : MESSAGES) {
 			boolean server = message.source() == GuiMessageSource.SYSTEM_SERVER;
@@ -132,7 +134,7 @@ public final class ForceChat {
 		if (scroll > 0) scroll = anchoredScroll(previousLines, result, scroll);
 		previousLines = List.copyOf(result);
 		layoutFont = font; layoutWidth = width; layoutCorpus = corpus;
-		layoutTranslated = translate; layoutName = name; layoutDirty = false;
+		layoutTranslated = translate; layoutName = name; layoutItems = items; layoutDirty = false;
 		return result;
 	}
 

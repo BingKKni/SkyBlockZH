@@ -120,6 +120,10 @@ public final class Classifier {
 
 	/** Lore groups have already checked values with their continuations in hand. */
 	public static List<Verdict> all(CaptureSurface surface, StyledText text, boolean checkValues) {
+		return io.github.bingkkni.skyzh.text.ItemNamePolicy.available(() -> allAvailable(surface, text, checkValues));
+	}
+
+	private static List<Verdict> allAvailable(CaptureSurface surface, StyledText text, boolean checkValues) {
 		List<Verdict> verdicts = new ArrayList<>();
 		Verdict ordinary = of(surface, text);
 
@@ -193,6 +197,10 @@ public final class Classifier {
 
 	/** The verdict on one line, or {@code null} when there is nothing here worth keeping. */
 	public static Verdict of(CaptureSurface surface, StyledText styled) {
+		return io.github.bingkkni.skyzh.text.ItemNamePolicy.available(() -> ofAvailable(surface, styled));
+	}
+
+	private static Verdict ofAvailable(CaptureSurface surface, StyledText styled) {
 		String plain = styled.plain().trim();
 
 		if (!hasEnglishWord(plain) || hasHan(plain)) {

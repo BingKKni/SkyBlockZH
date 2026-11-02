@@ -137,6 +137,7 @@ Mod Menu is a soft dependency. Without it, edit `config/skyzh.json`, which docum
 | `enabled` | on | Master switch. Turning it off also prevents the startup update request |
 | `updateCheck` | on | Once per client startup, request the newest version metadata from GitHub Releases. It neither downloads files nor uploads player or game data. It does not run while the master switch is off; `/skyzh updatecheck [on/off]` and `/skyblockzh` control it |
 | `translateSkyBlockName` | on | Render "SkyBlock" as 空岛生存. Compounds use the short form and get their spacing fixed: `你的 SkyBlock 等级` → `你的空岛等级`; standalone occurrences keep the full name. See below for where the substitution is allowed to happen |
+| `translateItemNames` | on | Keep physical item names and explicitly marked references in English when off; surrounding text stays translated. The choice refreshes existing chat and tooltips without changing source data or capture coverage |
 | `originalTips` | on | "Translation hints": append a current-key hint to translated real-item tooltips in GUIs. Incoming server chat mentioning eligible translated items may show a dismissible hint, at least five minutes apart. `ItemNames` uses the bundled offline NEU catalog, excluding menus, states and unknown names. `/skyzh switch tip on/off` (also `/skyblockzh`) controls hints, not the original-text toggle. The old `showOriginal` field is ignored and no longer saved; missing `originalTips` defaults to on. Normal rendering no longer appends bracketed originals |
 | `helpImproveTranslation` | on | Reserved state retained for old config compatibility; no current screen control or reporting feature |
 | `captureUntranslated` | **off** | A switch for whoever is filling the corpus in. It writes files to your disk; leave it off to play. See below |
@@ -178,8 +179,8 @@ clearing, then disconnect/rejoin within that launch to verify the files remain.
 ### Display priority
 
 Settings are grouped under General and Developer headings. Display priority cycles through Default,
-High and Force without a restart. The adjacent item-name button is a disabled, on placeholder;
-it does not change the existing item-name translation rules.
+High and Force without a restart. The adjacent item-name button controls physical item names and
+explicit references across surfaces, refreshing existing chat and tooltips when changed.
 
 - `default`: retain the original hooks and ordering, without optional sidebar detection, late source
   matching or independent display views.

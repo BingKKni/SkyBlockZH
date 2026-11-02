@@ -137,9 +137,10 @@ public class SkyZHConfigScreen extends Screen {
 		priority.setMessage(priorityLabel(this.config.displayPriority));
 		this.dependentToggles.add(new DependentToggle(priority, "displayPriority"));
 		grid.addChild(priority, 3, 0);
-		CycleButton<Boolean> itemNames = toggle("translateItemNames", buttonWidth, true, value -> {});
-		itemNames.active = false;
-		grid.addChild(itemNames, 3, 1);
+		grid.addChild(dependentToggle("translateItemNames", buttonWidth, this.config.translateItemNames, value -> {
+			this.config.translateItemNames = value;
+			SkyZHConfig.bumpGeneration();
+		}), 3, 1);
 		grid.addChild(centeredText(Component.translatable("skyzh.options.developer"), contentWidth), 4, 0, 1, 2);
 		// Capture writes files rather than changing rendered text, so it retains a full row of its own.
 		grid.addChild(

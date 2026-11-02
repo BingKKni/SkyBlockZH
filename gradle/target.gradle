@@ -171,6 +171,12 @@ harnessTask('checkTranslations', 'io.github.bingkkni.skyzh.TranslationHarness',
 	inputs.dir rootProject.file('original_text')
 }
 
+harnessTask('checkItemNames', 'io.github.bingkkni.skyzh.ItemNameHarness',
+	'Checks item-name choices, source styles, coverage and chat-cache policy.') {
+	args rootProject.file('original_text').absolutePath
+	inputs.dir rootProject.file('original_text')
+}
+
 harnessTask('checkPerformance', 'io.github.bingkkni.skyzh.PerformanceHarness',
 	'Compares indexed matching with exhaustive scans and checks style/cache/capture lifecycles.') {
 	args rootProject.file('original_text').absolutePath
@@ -348,7 +354,7 @@ tasks.register('checkMixinTargets', Exec) {
 }
 
 tasks.named('check') {
-	dependsOn 'checkPerformance', 'checkTranslations', 'checkChatInteractions', 'checkLore', 'checkCapture', 'checkDocuments', 'checkDiagnostics', 'checkCommands', 'checkClientSettings', 'checkMinifiedCorpus',
+	dependsOn 'checkItemNames', 'checkPerformance', 'checkTranslations', 'checkChatInteractions', 'checkLore', 'checkCapture', 'checkDocuments', 'checkDiagnostics', 'checkCommands', 'checkClientSettings', 'checkMinifiedCorpus',
 		'checkMixinTargets', 'checkDisplayPriority', 'checkTranslationPack'
 }
 

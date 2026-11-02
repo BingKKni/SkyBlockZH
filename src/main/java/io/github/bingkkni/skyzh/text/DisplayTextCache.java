@@ -34,6 +34,7 @@ public final class DisplayTextCache {
 	private static TranslationIndex corpus;
 	private static int generation = -1;
 	private static boolean skyBlockName;
+	private static boolean itemNames;
 
 	private DisplayTextCache() {
 	}
@@ -49,13 +50,15 @@ public final class DisplayTextCache {
 			current = Translator.index();
 			currentGeneration = SkyZHConfig.generation();
 			currentName = SkyZHConfig.get().translateSkyBlockName;
-			if (corpus != current || generation != currentGeneration || skyBlockName != currentName) {
+			if (corpus != current || generation != currentGeneration || skyBlockName != currentName
+				|| itemNames != ItemNamePolicy.enabled()) {
 				CACHE.clear();
 				Arrays.fill(SHAPES, null);
 				shaped = 0;
 				corpus = current;
 				generation = currentGeneration;
 				skyBlockName = currentName;
+				itemNames = ItemNamePolicy.enabled();
 			}
 			Value value = shape == TextShape.NONE ? null : shaped(shape, source, surface, mode);
 			if (value != null) return shown(value, source);
@@ -89,7 +92,7 @@ public final class DisplayTextCache {
 	private static boolean valid(TranslationIndex current, int currentGeneration, boolean currentName) {
 		return corpus == current && generation == currentGeneration && skyBlockName == currentName
 			&& Translator.index() == current && SkyZHConfig.generation() == currentGeneration
-			&& SkyZHConfig.get().translateSkyBlockName == currentName;
+			&& SkyZHConfig.get().translateSkyBlockName == currentName && itemNames == ItemNamePolicy.enabled();
 	}
 
 	private static Component shown(Value value, Component source) {

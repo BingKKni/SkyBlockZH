@@ -39,8 +39,10 @@ public final class TranslationEntry {
 	}
 
 	/** The declared type and optional example belong to the same placeholder number. */
-	public record Argument(String type, String example) {
-		public static final Argument UNSPECIFIED = new Argument("", "");
+	public record Argument(String type, String example, boolean item) {
+		public static final Argument UNSPECIFIED = new Argument("", "", false);
+
+		public Argument(String type, String example) { this(type, example, false); }
 
 		public Argument {
 			type = Objects.requireNonNullElse(type, "");
@@ -48,10 +50,24 @@ public final class TranslationEntry {
 		}
 	}
 
-	public record Options(boolean continuation, String layout, Set<String> excludedTexts, String chatJoinNext) {
+	/** Explicit source/target spelling of a fixed physical item reference. */
+	public record ItemReference(String text, String zh) {}
+
+	public record Options(boolean continuation, String layout, Set<String> excludedTexts, String chatJoinNext,
+		List<ItemReference> itemReferences, boolean itemName) {
 		public static final Options DEFAULT = new Options(false, "", Set.of(), "");
 
+		public Options(boolean continuation, String layout, Set<String> excludedTexts, String chatJoinNext) {
+			this(continuation, layout, excludedTexts, chatJoinNext, List.of(), false);
+		}
+
+		public Options(boolean continuation, String layout, Set<String> excludedTexts, String chatJoinNext,
+			List<ItemReference> references) {
+			this(continuation, layout, excludedTexts, chatJoinNext, references, false);
+		}
+
 		public Options {
+			itemReferences = List.copyOf(itemReferences);
 			layout = Objects.requireNonNullElse(layout, "");
 			excludedTexts = Set.copyOf(excludedTexts);
 			chatJoinNext = Objects.requireNonNullElse(chatJoinNext, "");
@@ -77,7 +93,7 @@ public final class TranslationEntry {
 	 *                  server's values rather than the record's words
 	 */
 	private record Fragment(
-		List<Piece> pieces, boolean translated, boolean omitted, int group, int[] argGroups, int order,
+		List<Piece> pieces, List<Piece> originalPieces, boolean translated, boolean omitted, int group, int[] argGroups, int order,
 		boolean explicitOrder
 	) {}
 
@@ -89,6 +105,8 @@ public final class TranslationEntry {
 	private record Literal(String text) implements Piece {}
 
 	private record Arg(int index) implements Piece {}
+
+	private record ItemLiteral(ItemReference reference, int occurrence) implements Piece {}
 
 	private static final Pattern PLACEHOLDER = Pattern.compile("%(?:(\\d+)\\$)?[sd]|%%");
 	private static final Pattern LEADING_COUNT = Pattern.compile("^[0-9][0-9,.]*(?:[kKmMbB])?\\s+");
@@ -102,6 +120,9 @@ public final class TranslationEntry {
 	private final Map<Integer, Capture> captures;
 	/** The declared {@code placeholders[].type} of each argument, for {@link TermTable}. */
 	private final Map<Integer, String> argTypes;
+	private final Set<Integer> itemArguments;
+	private final List<ItemReference> itemReferences;
+	private final boolean itemName;
 	/**
 	 * The character families of each group's declared {@code example}, so a value cannot swallow a
 	 * value of another kind. Absent for groups whose record wrote no example. @see ValueShape
@@ -131,6 +152,10 @@ public final class TranslationEntry {
 		this.argGroups = argGroups;
 		this.captures = captures;
 		this.argTypes = argTypes;
+		this.itemArguments = definition.arguments().entrySet().stream().filter(e -> e.getValue().item())
+			.map(Map.Entry::getKey).collect(java.util.stream.Collectors.toUnmodifiableSet());
+		this.itemReferences = definition.options().itemReferences();
+		this.itemName = definition.options().itemName();
 		this.shapes = shapes;
 		this.continuation = definition.options().continuation();
 		this.layout = definition.options().layout();
@@ -154,6 +179,9 @@ public final class TranslationEntry {
 		this.argGroups = shared.argGroups;
 		this.captures = shared.captures;
 		this.argTypes = shared.argTypes;
+		this.itemArguments = shared.itemArguments;
+		this.itemReferences = shared.itemReferences;
+		this.itemName = shared.itemName;
 		this.shapes = shared.shapes;
 		this.continuation = shared.continuation;
 		this.layout = shared.layout;
@@ -248,6 +276,7 @@ public final class TranslationEntry {
 		Map<Integer, Integer> shapeByGroup = new HashMap<>();
 		int group = 0;
 		String anchor = "";
+		Map<ItemReference, Integer> referenceUses = new HashMap<>();
 
 		for (int i = 0; i < sources.size(); i++) {
 			group++;
@@ -307,8 +336,10 @@ public final class TranslationEntry {
 			boolean omitted = target == null;
 			boolean translated = !omitted && !target.isEmpty();
 			boolean ordered = segment.order() != null;
+			List<Piece> targetPieces = translated ? parse(target, targetArg) : List.of();
 			fragments.add(new Fragment(
-				translated ? parse(target, targetArg) : List.of(), translated, omitted, fragmentGroup,
+				itemPieces(targetPieces, definition.options().itemReferences(), referenceUses), targetPieces,
+				translated, omitted, fragmentGroup,
 				fragmentArgs.stream().mapToInt(Integer::intValue).toArray(), ordered ? segment.order() : i,
 				ordered
 			));
@@ -321,6 +352,12 @@ public final class TranslationEntry {
 		}
 
 		regex.append('$');
+		for (ItemReference reference : definition.options().itemReferences()) {
+			if (reference.text().isBlank() || reference.zh().isBlank()
+				|| sources.stream().noneMatch(s -> s.contains(reference.text())) || !referenceUses.containsKey(reference)) {
+				throw new IllegalArgumentException("无源或无译文的 item_refs: " + reference);
+			}
+		}
 
 		return new TranslationEntry(
 			definition, Pattern.compile(regex.toString(), Pattern.DOTALL), List.copyOf(fragments),
@@ -470,6 +507,33 @@ public final class TranslationEntry {
 		return pieces;
 	}
 
+	private static List<Piece> itemPieces(List<Piece> pieces, List<ItemReference> references,
+		Map<ItemReference, Integer> uses) {
+		if (references.isEmpty()) return pieces;
+		List<Piece> result = new ArrayList<>();
+		for (Piece piece : pieces) {
+			if (!(piece instanceof Literal literal)) { result.add(piece); continue; }
+			String text = literal.text();
+			int cursor = 0;
+			while (cursor < text.length()) {
+				ItemReference selected = null;
+				int at = text.length();
+				for (ItemReference reference : references) {
+					int found = reference.zh().isEmpty() ? -1 : text.indexOf(reference.zh(), cursor);
+					if (found >= 0 && (found < at || found == at && selected != null
+						&& reference.zh().length() > selected.zh().length())) { at = found; selected = reference; }
+				}
+				if (selected == null) { result.add(new Literal(text.substring(cursor))); break; }
+				if (at > cursor) result.add(new Literal(text.substring(cursor, at)));
+				int occurrence = uses.getOrDefault(selected, 0);
+				uses.put(selected, occurrence + 1);
+				result.add(new ItemLiteral(selected, occurrence));
+				cursor = at + selected.zh().length();
+			}
+		}
+		return List.copyOf(result);
+	}
+
 	public String id() {
 		return this.id;
 	}
@@ -610,6 +674,10 @@ public final class TranslationEntry {
 	private static MutableComponent renderJoined(List<Matched> matches, TermTable terms, Runnable translatedItem) {
 		record Part(Matched matched, Fragment fragment) {}
 
+		if (!ItemNamePolicy.enabled() && matches.size() == 1 && matches.getFirst().entry().isItemName(matches.getFirst().source())) {
+			StyledText source = matches.getFirst().source();
+			return source.slice(0, source.length());
+		}
 		List<Part> parts = new ArrayList<>();
 
 		for (Matched matched : matches) {
@@ -655,7 +723,7 @@ public final class TranslationEntry {
 			MutableComponent frag = Component.empty();
 			Seam inner = new Seam(frag);
 
-			for (Piece piece : fragment.pieces()) {
+			for (Piece piece : ItemNamePolicy.enabled() ? fragment.originalPieces() : fragment.pieces()) {
 				if (piece instanceof Literal literal) {
 					String text = Glyphs.restore(literal.text(), source.plain());
 
@@ -663,6 +731,13 @@ public final class TranslationEntry {
 					Component literalSource = preservesName(text, source, start, end)
 						? source.slice(start, end) : Component.literal(text).setStyle(style);
 					inner.append(literalSource, text, style);
+				} else if (piece instanceof ItemLiteral item) {
+					if (ItemNamePolicy.enabled()) {
+						inner.append(Component.literal(item.reference().zh()).setStyle(style), item.reference().zh(), style);
+					} else {
+						Component original = entry.originalItem(source, match, item);
+						inner.append(original, original.getString(), style, true, true);
+					}
 				} else if (piece instanceof Arg arg) {
 					int group = entry.argumentGroup(arg);
 
@@ -689,6 +764,44 @@ public final class TranslationEntry {
 		return opaque || durations > 1 ? result : DurationText.normalize(result);
 	}
 
+	/** Finds the authored literal outside captured values, retaining every live style and interaction. */
+	private Component originalItem(StyledText source, Matcher match, ItemLiteral item) {
+		String text = item.reference().text();
+		int cursor = 0, seen = 0, last = -1;
+		while (cursor <= source.length() - text.length()) {
+			int at = source.canonical().indexOf(text, cursor);
+			if (at < 0) break;
+			cursor = at + text.length();
+			boolean captured = false;
+			for (int group : this.argGroups) {
+				if (group > 0 && match.start(group) >= 0 && at < match.end(group) && cursor > match.start(group)) {
+					captured = true; break;
+				}
+			}
+			if (captured) continue;
+			last = at;
+			if (seen++ == item.occurrence()) return source.slice(at, cursor);
+		}
+		// Chinese may repeat a name the original mentions once; reuse its proven source span.
+		return last < 0 ? Component.literal(text).setStyle(source.styleAt(0)) : source.slice(last, last + text.length());
+	}
+
+	public List<ItemReference> itemReferences() { return this.itemReferences; }
+
+	public boolean isItemName(StyledText source) {
+		return this.itemName || (this.sourceFile.contains("/GUI_Item/") || this.sourceFile.startsWith("_shared/"))
+			&& ItemNames.canonical(source.canonical()) != null;
+	}
+
+	private boolean itemArgument(int group, String type, String value) {
+		for (int index : this.itemArguments) if (index < this.argGroups.length && this.argGroups[index] == group) return true;
+		return switch (type == null ? "" : type.toLowerCase(Locale.ROOT)) {
+			case "item_name", "guide_item_name", "loot_item_name", "catalog_item_name", "loadout_item_name" -> true;
+			case "recipe_target" -> ItemNames.canonical(value) != null;
+			default -> false;
+		};
+	}
+
 	/**
 	 * Writes out one placeholder's value: its Chinese if the term table has some, otherwise the
 	 * server's own text with the server's own colours.
@@ -706,6 +819,10 @@ public final class TranslationEntry {
 		int end = match.end(group);
 		String value = source.plain().substring(start, end);
 		String type = this.argTypes.get(group);
+		if (!ItemNamePolicy.enabled() && itemArgument(group, type, value)) {
+			seam.append(source.slice(start, end), value, style, true, true);
+			return;
+		}
 		if ("loadout_item_name".equals(type) && ItemNames.isLoadoutReference(value)) {
 			Component item = TooltipTranslator.translateItemNameAvailable(source.slice(start, end)).padded();
 			seam.append(item, StyledText.of(item).plain(), style, true, true);

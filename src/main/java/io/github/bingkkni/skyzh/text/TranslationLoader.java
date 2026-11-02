@@ -76,7 +76,7 @@ public final class TranslationLoader {
 	 */
 	public static TranslationIndex compile(Map<String, JsonObject> files) {
 		TranslationIndex index = new TranslationIndex(CorpusData.from(files));
-		return Translator.withIndex(index, () -> compile(files, index));
+		return ItemNamePolicy.available(() -> Translator.withIndex(index, () -> compile(files, index)));
 	}
 
 	private static TranslationIndex compile(Map<String, JsonObject> files, TranslationIndex index) {
@@ -289,7 +289,7 @@ public final class TranslationLoader {
 			for (String key : new String[] {"id", "ref", "text", "zh", "layout", "chat_join_next"}) {
 				if (record.has(key)) CorpusData.string(record.get(key), key);
 			}
-			for (String key : new String[] {"translate", "continuation"}) {
+			for (String key : new String[] {"translate", "continuation", "item_name"}) {
 				if (record.has(key) && (!record.get(key).isJsonPrimitive() || !record.getAsJsonPrimitive(key).isBoolean()))
 					throw new IllegalArgumentException(key + " 必须是布尔值");
 			}
@@ -313,6 +313,13 @@ public final class TranslationLoader {
 				JsonObject argument = value.getAsJsonObject();
 				for (String key : new String[] {"token", "type", "example"})
 					if (argument.has(key)) CorpusData.string(argument.get(key), "placeholders." + key);
+				if (argument.has("item") && (!argument.get("item").isJsonPrimitive() || !argument.getAsJsonPrimitive("item").isBoolean()))
+					throw new IllegalArgumentException("placeholders.item 必须是布尔值");
+			}
+			if (record.has("item_refs")) for (var value : record.getAsJsonArray("item_refs")) {
+				JsonObject reference = value.getAsJsonObject();
+				CorpusData.string(reference.get("text"), "item_refs.text");
+				CorpusData.string(reference.get("zh"), "item_refs.zh");
 			}
 			if (record.has("exclude")) CorpusData.strings(record, "exclude");
 		} catch (RuntimeException e) {
@@ -361,9 +368,13 @@ public final class TranslationLoader {
 			segments.add(new TranslationEntry.Segment(string(source, "text"), string(source, "zh"), 0));
 		}
 
+		String[] pathParts = relative.split("/");
+		Surface surface = Surface.fromDirectory(pathParts.length >= 3 ? pathParts[pathParts.length - 2] : pathParts[0]);
+		boolean itemName = source.has("item_name") && source.get("item_name").getAsBoolean()
+			|| surface == Surface.ITEM && ItemNames.canonical(template(source)) != null;
 		TranslationEntry.Options options = new TranslationEntry.Options(
 			source.has("continuation") && source.get("continuation").getAsBoolean(),
-			string(source, "layout"), excludedTexts(source), string(source, "chat_join_next")
+			string(source, "layout"), excludedTexts(source), string(source, "chat_join_next"), itemReferences(source), itemName
 		);
 
 		TranslationEntry.Definition definition = new TranslationEntry.Definition(
@@ -374,6 +385,16 @@ public final class TranslationLoader {
 		}
 		TranslationEntry shared = definitions.get(definition);
 		return shared == null ? null : shared.identifiedBy(id, relative);
+	}
+
+	private static List<TranslationEntry.ItemReference> itemReferences(JsonObject source) {
+		if (!source.has("item_refs")) return List.of();
+		List<TranslationEntry.ItemReference> references = new ArrayList<>();
+		for (JsonElement value : source.getAsJsonArray("item_refs")) {
+			JsonObject reference = value.getAsJsonObject();
+			references.add(new TranslationEntry.ItemReference(string(reference, "text"), string(reference, "zh")));
+		}
+		return List.copyOf(references);
 	}
 
 	private static Set<String> excludedTexts(JsonObject source) {
@@ -445,7 +466,8 @@ public final class TranslationLoader {
 			int index = numbered.find() ? Integer.parseInt(numbered.group(1)) : next++;
 
 			values.putIfAbsent(index, new TranslationEntry.Argument(
-				string(placeholder, "type"), string(placeholder, "example")
+				string(placeholder, "type"), string(placeholder, "example"),
+				placeholder.has("item") && placeholder.get("item").getAsBoolean()
 			));
 		}
 

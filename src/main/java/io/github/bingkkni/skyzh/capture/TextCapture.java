@@ -275,7 +275,7 @@ public final class TextCapture {
 		// Cache-owned components cannot change if another caller later mutates the packet's text.
 		List<Component> snapshot = key.stream().<Component>map(text -> text.slice(0, text.length())).toList();
 		List<LoreObservation> observations = new ArrayList<>();
-		List<LoreTranslation.Unit> plan = LoreTranslation.plan(snapshot);
+		List<LoreTranslation.Unit> plan = io.github.bingkkni.skyzh.text.ItemNamePolicy.available(() -> LoreTranslation.plan(snapshot));
 
 		for (TranslationDiagnostics.Finding finding : TranslationDiagnostics.lore(plan)) {
 			int start = 0;

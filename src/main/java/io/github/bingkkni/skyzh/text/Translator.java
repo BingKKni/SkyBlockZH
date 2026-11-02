@@ -740,7 +740,9 @@ public final class Translator {
 		String plain = styled.canonical();
 		int from = wordsStart(plain);
 		int to = wordsEnd(plain, from);
-		String zh = from < to ? index().terms().translate(VALUE, plain.substring(from, to)) : null;
+		String value = plain.substring(from, to);
+		if (!ItemNamePolicy.enabled() && ItemNames.canonical(value) != null) return half;
+		String zh = from < to ? index().terms().translate(VALUE, value) : null;
 
 		// Statuses are sometimes emphatic ("Ready!") while the term table stores the reusable word.
 		// Keep the punctuation live and only retry the exact word before it; never split the word itself.

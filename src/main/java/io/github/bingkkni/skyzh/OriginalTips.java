@@ -27,6 +27,7 @@ public final class OriginalTips {
 	}
 
 	public static boolean containsTranslatedItem(Component message) {
+		if (!io.github.bingkkni.skyzh.text.ItemNamePolicy.enabled()) return false;
 		StyledText source = StyledText.of(message);
 		String plain = source.plain();
 		int start = 0;

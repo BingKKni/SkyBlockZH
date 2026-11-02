@@ -63,6 +63,9 @@ public final class SkyZHConfig {
 	/** Whether "SkyBlock" becomes 空岛生存; also read by the capture worker. */
 	public volatile boolean translateSkyBlockName = true;
 
+	/** Whether physical item names and references use the corpus translations. */
+	public volatile boolean translateItemNames = true;
+
 	/** Additional render protection is opt-in and can be changed without restarting. */
 	public DisplayPriority displayPriority = DisplayPriority.DEFAULT;
 
@@ -137,6 +140,7 @@ public final class SkyZHConfig {
 		config.helpImproveTranslation = bool(json, "helpImproveTranslation", true);
 		config.welcomeShown = bool(json, "welcomeShown", false);
 		config.translateSkyBlockName = bool(json, "translateSkyBlockName", true);
+		config.translateItemNames = bool(json, "translateItemNames", true);
 		config.displayPriority = DisplayPriority.parse(string(json, "displayPriority", "default"));
 		config.originalTips = bool(json, "originalTips", true);
 		config.captureUntranslated = bool(json, "captureUntranslated", false);
@@ -204,6 +208,7 @@ public final class SkyZHConfig {
 		help.addProperty("helpImproveTranslation", "在游戏内发现文本未翻译或翻译格式错误时，是否上传到开发者服务器报告（暂不可用）。");
 		help.addProperty("welcomeShown", "是否已经显示首次设置引导。改为 false 后，下次进入 Hypixel 时会再次显示。");
 		help.addProperty("translateSkyBlockName", "是否翻译 SkyBlock 玩法名。翻译后的文本为「空岛生存」。");
+		help.addProperty("translateItemNames", "是否翻译物品名称。关闭后，物品名及其在对话、系统消息、悬浮文字和菜单说明中的引用保留英文，其他内容继续翻译。");
 		help.addProperty("displayPriority", "显示优先级：default 保留原有兼容行为；high 使用服务器原文保护译文，检测并保留已启用的 CustomScoreboard、SkyHanni 或 NoammAddons 面板；force 进一步通过原版绘制入口替代这些自定义计分板，按服务器原文重新绘制。高和强制可能恢复被过滤的服务器聊天或隐藏额外物品提示。不修改第三方配置或类，未知或完全独立的渲染方式不保证接管。");
 		help.addProperty("originalTips", "在看到服务器发出的消息中包含物品时，提示按热键切换原文，再按恢复译文。关闭后将不再提示。");
 		help.addProperty("captureUntranslated", "【给翻译者用，普通玩家请保持关闭】把游戏里还没翻译、以及翻译了但仍中英混杂的文本写到硬盘上，供补全语料用。只采集服务器发来的原文，不会采集其他 Mod 的文本，也不会改变游戏里显示的任何内容。打开它时，如果装了 hypixel-mod-api，会向服务器订阅一次位置事件（用来判断采到的文本属于哪个玩法）——这是本 Mod 唯一一处会向 Hypixel 发包的地方，关掉就不发。");
@@ -218,6 +223,7 @@ public final class SkyZHConfig {
 		json.addProperty("helpImproveTranslation", this.helpImproveTranslation);
 		json.addProperty("welcomeShown", this.welcomeShown);
 		json.addProperty("translateSkyBlockName", this.translateSkyBlockName);
+		json.addProperty("translateItemNames", this.translateItemNames);
 		json.addProperty("displayPriority", this.displayPriority.key());
 		json.addProperty("originalTips", this.originalTips);
 		json.addProperty("captureUntranslated", this.captureUntranslated);
