@@ -324,9 +324,13 @@ snapshot isolation on every target. Open menus, chat scrolling, original mode an
 
 Every push starts `.github/workflows/translations.yml`; main publishes when the inputs differ from the last successfully published source.
 First publication and manual dispatch force packaging. `tools/publish_updates.py` reuses the exporter and Gradle checks, with DEFLATE level 9.
-It uploads an immutable prerelease asset identified by source and archive hash, then commits only `skyzh-updates/update.json` through Git data APIs.
-It never force-pushes; newer packaging inputs arriving during a build prevent publication of the stale manifest. Actions needs `contents: write`.
-Translation prereleases do not replace the latest formal Mod Release.
+`--prepare` stages `build/pages` with `skyzh-updates/<ZIP SHA-256>/translations.zip` and a convenience latest-download path.
+The workflow deploys a Pages artifact without storing ZIPs in Git or creating translation Releases. It carries the previous two published
+archives into each full-site deployment so active clients retain their download URLs. After deployment, `--publish` downloads and verifies
+the new archive before committing only `skyzh-updates/update.json` through Git data APIs. Its bounded `previous_archives` field supports retention.
+It never force-pushes; newer packaging inputs prevent publication of a stale manifest. Actions needs `contents: write`, `pages: write`
+and `id-token: write`; Settings → Pages must use GitHub Actions. The client permits only this project's Pages archive paths.
+The update manifest still comes from `api.github.com`, and formal Mod Release checks remain independent.
 
 Two independent background lanes become eligible only after verified SkyBlock entry and completion of initial corpus loading, even if that load failed.
 The Contents API at `api.github.com` supplies `update.json`: `update_format: 1`, bundle manifest fields, download URL, ZIP size and SHA-256.
@@ -457,7 +461,7 @@ bundled; without that mod the integration does not load and the other two readin
 With capture **off** — every ordinary player — nothing is subscribed and no packet is sent to Hypixel.
 This is independent of `updateCheck`: with both switches enabled, verified SkyBlock entry permits GitHub checks and downloads for the Mod and translations.
 No player/game data is uploaded and no update traffic is sent to Hypixel. `/releases/latest` identifies formal Mod releases, ignoring `+mc26.x` metadata;
-translation pushes use separate prerelease assets and a repository manifest.
+translation pushes deploy files to GitHub Pages and update the repository manifest.
 
 [modapi]: https://github.com/HypixelDev/ModAPI
 

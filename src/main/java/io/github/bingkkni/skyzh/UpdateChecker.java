@@ -141,7 +141,7 @@ public final class UpdateChecker {
 		}
 
 		private void checkTranslations() throws Exception {
-			// Contents API supplies the small JSON; ZIP bytes remain Release assets, outside Git history.
+			// Contents API supplies the small JSON; ZIP bytes are deployed through GitHub Pages.
 			JsonObject envelope = http.json(URI.create(API + "contents/skyzh-updates/update.json?ref=main"));
 			if (!UpdateFiles.string(envelope, "encoding").equals("base64")) throw new IOException("GitHub 清单编码不支持");
 			byte[] bytes = Base64.getDecoder().decode(UpdateFiles.string(envelope, "content").replaceAll("\\s", ""));

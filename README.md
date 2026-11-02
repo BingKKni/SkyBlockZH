@@ -73,7 +73,7 @@ NPC、物品与菜单的来源边界见 [Galatea 采集范围](docs/GALATEA_COVE
 
 Mod 新版本下载到 `skyzh-updates/`，退出游戏后由独立安装程序替换原 JAR，并将旧文件备份到该目录。看到下载成功提示后，退出并重新启动游戏即可使用新版本。若启动器阻止辅助程序运行或目录不可写，Mod 会保留当前版本并提示稍后重试。
 
-项目每次推送都会运行 Actions，翻译、API 或打包输入发生变化时自动打包；也可在 Actions 页面手动运行 `Publish translation updates` 强制发布。翻译 ZIP 使用最高等级的 DEFLATE 压缩，存放在独立的预发布 Release 附件中；仓库只保存 `skyzh-updates/update.json`。正式 Mod 更新仍通过正式 Release 发布，并提供对应 Minecraft 的 JAR 附件。
+项目每次推送都会运行 Actions，翻译、API 或打包输入发生变化时自动打包；也可在 Actions 页面手动运行 `Publish translation updates` 强制发布。翻译 ZIP 使用最高等级的 DEFLATE 压缩，通过 [GitHub Pages](https://bingkkni.github.io/SkyBlockZH/) 托管，不写入 Git 历史，也不创建翻译 Release；仓库只保存 `skyzh-updates/update.json`。部署成功且下载校验通过后才更新清单，并保留前两版文件供正在更新的客户端继续下载。正式 Mod 更新仍通过正式 Release 发布，并提供对应 Minecraft 的 JAR 附件。
 
 ## 许可证
 

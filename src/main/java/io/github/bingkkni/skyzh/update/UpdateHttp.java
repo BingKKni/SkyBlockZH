@@ -51,7 +51,9 @@ public final class UpdateHttp {
 		if (!"https".equals(uri.getScheme()) || uri.getUserInfo() != null || (uri.getPort() != -1 && uri.getPort() != 443)) return false;
 		String path = uri.getPath();
 		return ("api.github.com".equals(uri.getHost()) && path.startsWith("/repos/BingKKni/SkyBlockZH/"))
-			|| ("github.com".equals(uri.getHost()) && path.startsWith("/BingKKni/SkyBlockZH/releases/download/"));
+			|| ("github.com".equals(uri.getHost()) && path.startsWith("/BingKKni/SkyBlockZH/releases/download/"))
+			|| ("bingkkni.github.io".equals(uri.getHost()) && uri.getRawQuery() == null && uri.getRawFragment() == null
+				&& uri.getRawPath().matches("/SkyBlockZH/skyzh-updates/[0-9a-f]{64}/translations\\.zip"));
 	}
 
 	private HttpRequest.Builder request(URI uri) throws IOException {

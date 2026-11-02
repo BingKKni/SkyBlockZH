@@ -143,6 +143,16 @@ public final class UpdateHarness {
 			check("JSON 元数据可读取", http.json(base.resolve("/metadata")).get("hello").getAsString().equals("world"));
 			check("慢速元数据持续有进度时不误超时", http.json(base.resolve("/slow-metadata")).get("hello").getAsString().equals("world"));
 			check("正式下载限定项目 GitHub 地址", UpdateHttp.github(URI.create("https://github.com/BingKKni/SkyBlockZH/releases/download/a/translations.zip")));
+			check("允许项目 Pages 的固定摘要翻译包地址", UpdateHttp.github(URI.create("https://bingkkni.github.io/SkyBlockZH/skyzh-updates/" + "a".repeat(64) + "/translations.zip")));
+			for (String url : new String[] {
+				"https://bingkkni.github.io/SkyBlockZH/skyzh-updates/" + "a".repeat(64) + "/translations.zip?download=1",
+				"https://bingkkni.github.io/SkyBlockZH/skyzh-updates/" + "a".repeat(64) + "/translations.zip#fragment",
+				"https://bingkkni.github.io/SkyBlockZH/skyzh-updates/" + "a".repeat(64) + "/%74ranslations.zip",
+				"http://bingkkni.github.io/SkyBlockZH/skyzh-updates/" + "a".repeat(64) + "/translations.zip",
+				"https://bingkkni.github.io/Other/skyzh-updates/" + "a".repeat(64) + "/translations.zip",
+				"https://bingkkni.github.io/SkyBlockZH/skyzh-updates/../translations.zip",
+				"https://other.github.io/SkyBlockZH/skyzh-updates/" + "a".repeat(64) + "/translations.zip"})
+				check("拒绝非项目 Pages 更新地址 " + url, !UpdateHttp.github(URI.create(url)));
 			for (String url : new String[] {"http://github.com/BingKKni/SkyBlockZH/releases/download/a/x", "https://evil.test/x", "https://github.com/other/SkyBlockZH/releases/download/a/x", "https://user@api.github.com/repos/BingKKni/SkyBlockZH/x"})
 				check("拒绝外部更新地址 " + url, !UpdateHttp.github(URI.create(url)));
 		} finally { server.stop(0); }
@@ -209,7 +219,7 @@ public final class UpdateHarness {
 		manifest.addProperty("update_format", 1);
 		manifest.addProperty("zip_size", Files.size(candidate));
 		manifest.addProperty("zip_sha256", UpdateFiles.sha256(candidate));
-		manifest.addProperty("download_url", "https://github.com/BingKKni/SkyBlockZH/releases/download/test/translations.zip");
+		manifest.addProperty("download_url", "https://bingkkni.github.io/SkyBlockZH/skyzh-updates/" + UpdateFiles.sha256(candidate) + "/translations.zip");
 		return TranslationUpdate.offer(manifest);
 	}
 

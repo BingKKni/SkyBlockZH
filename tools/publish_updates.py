@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Publish verified translation ZIPs as GitHub Release assets, committing only a small update.json."""
+"""Stage translation files for GitHub Pages, then publish update.json after deployment is verified."""
 from __future__ import annotations
 
 import argparse
@@ -8,14 +8,19 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import re
+import shutil
 import subprocess
 import sys
+import time
 import urllib.error
-import urllib.parse
 import urllib.request
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
+PAGES = "https://bingkkni.github.io/SkyBlockZH/"
+MAX_ZIP = 64 * 1024 * 1024
+RETAIN_PREVIOUS = 2
 INPUTS = (
     "original_text", "gradle.properties", "build.gradle", "gradle/target.gradle",
     "tools/export_translations.py", "tools/publish_updates.py", ".github/workflows/translations.yml",
@@ -29,18 +34,14 @@ def git(*arguments: str) -> str:
 def changed(revision: str | None) -> bool:
     if not revision:
         return True
-    result = subprocess.run(["git", "diff", "--quiet", revision, "HEAD", "--", *INPUTS], cwd=ROOT)
-    if result.returncode not in (0, 1):
-        return True  # Unknown history: rebuild rather than silently missing a publication.
-    return result.returncode == 1
+    return subprocess.run(["git", "diff", "--quiet", revision, "HEAD", "--", *INPUTS], cwd=ROOT).returncode != 0
 
 
-def request(url: str, token: str, method: str = "GET", data: bytes | None = None,
-            content_type: str = "application/vnd.github+json"):
+def request(url: str, token: str, method: str = "GET", data: bytes | None = None):
     headers = {"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json",
                "User-Agent": "SkyZH-Translation-Publisher", "X-GitHub-Api-Version": "2022-11-28"}
     if data is not None:
-        headers["Content-Type"] = content_type
+        headers["Content-Type"] = "application/json"
     with urllib.request.urlopen(urllib.request.Request(url, data=data, headers=headers, method=method), timeout=120) as response:
         return json.load(response)
 
@@ -49,18 +50,49 @@ def encode(value) -> bytes:
     return json.dumps(value, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
 
 
-def publish(force: bool) -> None:
-    repository = os.environ.get("GITHUB_REPOSITORY", "BingKKni/SkyBlockZH")
-    if repository != "BingKKni/SkyBlockZH":
-        raise RuntimeError("只允许向正式 SkyBlockZH 仓库发布更新。")
-    token = os.environ["GITHUB_TOKEN"]
-    api = f"https://api.github.com/repos/{repository}"
-    source = git("rev-parse", "HEAD")
-    metadata_file = ROOT / "skyzh-updates/update.json"
-    previous = json.loads(metadata_file.read_text(encoding="utf-8")) if metadata_file.exists() else {}
+def archive_url(digest: str) -> str:
+    if not re.fullmatch(r"[0-9a-f]{64}", digest):
+        raise ValueError("无效的 ZIP 摘要。")
+    return f"{PAGES}skyzh-updates/{digest}/translations.zip"
+
+
+def descriptor(update: dict) -> dict:
+    size, digest = update["zip_size"], update["zip_sha256"]
+    if type(size) is not int or not 0 < size <= MAX_ZIP:
+        raise ValueError("无效的翻译包大小。")
+    url = archive_url(digest)
+    if update["download_url"] != url:
+        raise ValueError("翻译包地址不属于项目的 Pages 更新目录。")
+    return {"download_url": url, "zip_size": size, "zip_sha256": digest}
+
+
+def download(update: dict) -> bytes:
+    item = descriptor(update)
+    req = urllib.request.Request(item["download_url"], headers={"User-Agent": "SkyZH-Translation-Publisher"})
+    with urllib.request.urlopen(req, timeout=60) as response:
+        if response.status != 200:
+            raise RuntimeError(f"Pages 下载返回 HTTP {response.status}。")
+        payload = response.read(item["zip_size"] + 1)
+    if len(payload) != item["zip_size"] or hashlib.sha256(payload).hexdigest() != item["zip_sha256"]:
+        raise RuntimeError("Pages 上的翻译包大小或摘要不符。")
+    return payload
+
+
+def output(packaged: bool) -> None:
+    destination = os.environ.get("GITHUB_OUTPUT")
+    if destination:
+        with open(destination, "a", encoding="utf-8") as stream:
+            stream.write(f"packaged={'true' if packaged else 'false'}\n")
+
+
+def prepare(force: bool) -> bool:
+    previous_file = ROOT / "skyzh-updates/update.json"
+    previous = json.loads(previous_file.read_text(encoding="utf-8")) if previous_file.exists() else {}
     if not force and not changed(previous.get("revision")):
+        output(False)
         print("翻译、API 和打包逻辑没有变化，本次无需打包。")
-        return
+        return False
+    source = git("rev-parse", "HEAD")
     subprocess.run([sys.executable, "-B", str(ROOT / "tools/export_translations.py")], cwd=ROOT, check=True)
     archive = ROOT / "build/translations/translations.zip"
     with zipfile.ZipFile(archive) as bundle:
@@ -69,36 +101,71 @@ def publish(force: bool) -> None:
         raise RuntimeError("发布必须来自无未提交打包输入修改的 Git 提交。")
     payload = archive.read_bytes()
     digest = hashlib.sha256(payload).hexdigest()
-    # Include the archive hash so a manually forced rebuild of the same source remains immutable.
-    tag = f"translations-{source[:12]}-{digest[:12]}"
-    try:
-        release = request(f"{api}/releases/tags/{tag}", token)
-    except urllib.error.HTTPError as error:
-        if error.code != 404:
-            raise
-        release = request(f"{api}/releases", token, "POST", encode({
-            "tag_name": tag, "target_commitish": source, "name": f"翻译包 {manifest['build_at_utc8']}",
-            "body": "由 GitHub Actions 自动校验和发布的完整翻译包。Mod 本体请下载正式发布中的 JAR。",
-            "prerelease": True, "make_latest": "false",
-        }))
-    assets = release.get("assets", [])
-    asset = next((item for item in assets if item["name"] == "translations.zip"), None)
-    if asset is None:
-        upload = release["upload_url"].split("{", 1)[0] + "?name=translations.zip"
-        asset = request(upload, token, "POST", payload, "application/zip")
-    if asset["size"] != len(payload) or asset.get("digest") != f"sha256:{digest}":
-        raise RuntimeError("GitHub 未提供附件摘要，或已上传附件与本次构建不符，停止发布。")
-    update = dict(manifest, update_format=1, zip_size=len(payload), zip_sha256=digest,
-                  download_url=asset["browser_download_url"])
+    update = dict(manifest, update_format=1, zip_size=len(payload), zip_sha256=digest, download_url=archive_url(digest))
+    descriptor(update)
+    # A Pages deployment replaces the whole site: carry forward the last two published archives.
+    retained: list[tuple[dict, bytes]] = []
+    seen = {digest}
+    for item in [previous, *previous.get("previous_archives", [])]:
+        if not item or item.get("zip_sha256") in seen:
+            continue
+        # The first migration leaves the legacy Release alone until Pages has been verified.
+        if not str(item.get("download_url", "")).startswith(PAGES):
+            continue
+        entry = descriptor(item)
+        retained.append((entry, download(entry)))
+        seen.add(entry["zip_sha256"])
+        if len(retained) == RETAIN_PREVIOUS:
+            break
+    update["previous_archives"] = [entry for entry, _ in retained]
+    staging = ROOT / "build/pages"
+    if staging.exists():
+        shutil.rmtree(staging)
+    for entry, data in [(descriptor(update), payload), *retained]:
+        path = staging / "skyzh-updates" / entry["zip_sha256"] / "translations.zip"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(data)
+    (staging / "skyzh-updates/translations.zip").write_bytes(payload)
+    (staging / "index.html").write_text(
+        '<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>SkyZH 翻译文件</title>'
+        '<h1>SkyZH 翻译文件</h1><p><a href="skyzh-updates/translations.zip">下载最新翻译包</a></p>'
+        '<p><a href="https://github.com/BingKKni/SkyBlockZH">返回项目</a></p></html>\n', encoding="utf-8")
+    candidate = ROOT / "build/updates/update.json"
+    candidate.parent.mkdir(parents=True, exist_ok=True)
+    candidate.write_bytes(encode(update) + b"\n")
+    output(True)
+    print(f"Pages 文件已准备：{len(payload):,} 字节，保留 {len(retained)} 份旧包。")
+    return True
+
+
+def publish() -> bool:
+    repository = os.environ.get("GITHUB_REPOSITORY", "BingKKni/SkyBlockZH")
+    if repository != "BingKKni/SkyBlockZH":
+        raise RuntimeError("只允许向正式 SkyBlockZH 仓库发布更新。")
+    token = os.environ["GITHUB_TOKEN"]
+    api = f"https://api.github.com/repos/{repository}"
+    candidate = ROOT / "build/updates/update.json"
+    update = json.loads(candidate.read_text(encoding="utf-8"))
+    descriptor(update)
+    source = update["revision"]
+    if not re.fullmatch(r"[0-9a-f]{40}|[0-9a-f]{64}", source) or update.get("source_dirty") is not False:
+        raise RuntimeError("待发布清单的来源信息无效。")
+    # Deployment completion may precede CDN propagation. Do not publish an unusable URL.
+    for attempt in range(6):
+        try:
+            download(update)
+            break
+        except (OSError, RuntimeError):
+            if attempt == 5:
+                raise
+            time.sleep(5)
     content = encode(update) + b"\n"
-    # Git data API publishes only update.json and rejects non-fast-forward writes. Never force-push main.
     head = request(f"{api}/git/ref/heads/main", token)["object"]["sha"]
     if head != source:
-        # Another push may have arrived while Gradle was running. Permit unrelated edits only.
         subprocess.run(["git", "fetch", "origin", "main"], cwd=ROOT, check=True)
-        if changed_between(source, head):
-            print("构建期间翻译或打包逻辑已有新提交，跳过旧版本发布；后续 Actions 会处理新提交。")
-            return
+        if subprocess.run(["git", "diff", "--quiet", source, head, "--", *INPUTS], cwd=ROOT).returncode != 0:
+            print("构建期间打包输入已有新提交，保留原更新清单；后续 Actions 会处理新提交。")
+            return False
     blob = request(f"{api}/git/blobs", token, "POST", encode({"content": base64.b64encode(content).decode("ascii"), "encoding": "base64"}))
     tree = request(f"{api}/git/trees", token, "POST", encode({
         "base_tree": request(f"{api}/git/commits/{head}", token)["tree"]["sha"],
@@ -108,19 +175,24 @@ def publish(force: bool) -> None:
         "message": "发布自动翻译更新", "tree": tree["sha"], "parents": [head],
     }))
     request(f"{api}/git/refs/heads/main", token, "PATCH", encode({"sha": commit["sha"], "force": False}))
-    print(f"翻译包已发布：{asset['browser_download_url']}（{len(payload):,} 字节，API {manifest['translation_api']}）")
-
-
-def changed_between(before: str, after: str) -> bool:
-    return subprocess.run(["git", "diff", "--quiet", before, after, "--", *INPUTS], cwd=ROOT).returncode != 0
+    print(f"翻译更新已发布：{update['download_url']}（{update['zip_size']:,} 字节）")
+    return True
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="自动发布翻译 ZIP 和 skyzh-updates/update.json。")
-    parser.add_argument("--force", action="store_true", help="即使打包输入未变，也立即打包并发布")
+    parser = argparse.ArgumentParser(description="准备 Pages 翻译文件，部署并验证后再发布更新清单。")
+    phase = parser.add_mutually_exclusive_group(required=True)
+    phase.add_argument("--prepare", action="store_true", help="生成待部署的 Pages 文件")
+    phase.add_argument("--publish", action="store_true", help="验证已部署文件并提交更新清单")
+    parser.add_argument("--force", action="store_true", help="立即打包，仅与 --prepare 一起使用")
     args = parser.parse_args()
+    if args.force and not args.prepare:
+        parser.error("--force 只能与 --prepare 一起使用")
     try:
-        publish(args.force)
+        if args.prepare:
+            prepare(args.force)
+        else:
+            publish()
         return 0
     except (OSError, ValueError, KeyError, RuntimeError, subprocess.CalledProcessError) as error:
         print(f"发布失败：{error}", file=sys.stderr)

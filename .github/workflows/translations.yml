@@ -7,6 +7,8 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: skyzh-translation-publication
@@ -17,6 +19,9 @@ jobs:
     if: github.ref == 'refs/heads/main' && github.repository == 'BingKKni/SkyBlockZH'
     runs-on: ubuntu-latest
     timeout-minutes: 40
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -30,15 +35,31 @@ jobs:
         with:
           python-version: '3.12'
       - uses: gradle/actions/setup-gradle@v4
-      - name: Build, verify and publish
+      - uses: actions/configure-pages@v5
+      - name: Check publisher
+        run: python -B tests/test_publish_updates.py
+      - name: Prepare translation files
+        id: prepare
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           FORCE_PACKAGE: ${{ github.event_name == 'workflow_dispatch' }}
         shell: bash
         run: |
           chmod +x gradlew
           if [ "$FORCE_PACKAGE" = "true" ]; then
-            python -B tools/publish_updates.py --force
+            python -B tools/publish_updates.py --prepare --force
           else
-            python -B tools/publish_updates.py
+            python -B tools/publish_updates.py --prepare
           fi
+      - uses: actions/upload-pages-artifact@v3
+        if: steps.prepare.outputs.packaged == 'true'
+        with:
+          path: build/pages
+      - name: Deploy translation files
+        if: steps.prepare.outputs.packaged == 'true'
+        id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Verify downloads and publish update manifest
+        if: steps.prepare.outputs.packaged == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python -B tools/publish_updates.py --publish
