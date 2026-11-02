@@ -227,8 +227,7 @@ harnessTask('checkTranslationPack', 'io.github.bingkkni.skyzh.TranslationPackHar
 	'Checks exported bundles, compatibility, fallback and live corpus publication.') {
 	dependsOn rootProject.tasks.named('packTranslations'), 'checkTranslations', 'checkMinifiedCorpus', 'checkChatInteractions'
 	args rootProject.file('original_text').absolutePath,
-		rootProject.layout.buildDirectory.file('translations/translations.zip').get().asFile.absolutePath,
-		rootProject.version.toString()
+		rootProject.layout.buildDirectory.file('translations/translations.zip').get().asFile.absolutePath
 }
 
 harnessTask('checkCommands', 'io.github.bingkkni.skyzh.CommandHarness',

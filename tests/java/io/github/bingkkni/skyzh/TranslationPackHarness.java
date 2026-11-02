@@ -37,8 +37,7 @@ public final class TranslationPackHarness {
 
 	public static void main(String[] args) throws Exception {
 		Path authored = Path.of(args[0]);
-		String version = args[2];
-		TranslationPack.Content exported = TranslationPack.read(Path.of(args[1]), version);
+		TranslationPack.Content exported = TranslationPack.read(Path.of(args[1]));
 		Map<String, JsonObject> source = TranslationHarness.readCorpus(authored);
 		check("导出包含全部源文件", exported.files().keySet().equals(source.keySet()));
 		TranslationPack.validateCorpus(source);
@@ -48,6 +47,10 @@ public final class TranslationPackHarness {
 			for (var member : exported.files().get(path).entrySet())
 				check("辅助数据精简后无损 " + path + "/" + member.getKey(), member.getValue().equals(source.get(path).get(member.getKey())));
 		}
+		check("导出不再声明 Mod 版本范围", !exported.manifest().has("require_low_version")
+			&& !exported.manifest().has("require_max_version"));
+		check("导出 API 与引擎完全一致", exported.manifest().get("translation_api").getAsInt() == TranslationPack.api());
+		check("导出包结构版本独立校验", exported.manifest().get("format_version").getAsInt() == TranslationPack.FORMAT);
 		check("导出时间明确 UTC+8", exported.manifest().get("build_at_utc8").getAsString().endsWith("+08:00"));
 		check("修复河豚收藏品引用", full.lookup(Surface.ITEM, "Pufferfish VII") != null);
 		check("修复热带鱼收藏品引用", full.lookup(Surface.ITEM, "Tropical Fish III") != null);
@@ -63,69 +66,74 @@ public final class TranslationPackHarness {
 				Files.writeString(path, file.getValue().toString(), StandardCharsets.UTF_8);
 			}
 			Path archive = temporary.resolve("translations.zip");
-			var absent = TranslationPack.load(archive, builtin, version);
+			var absent = TranslationPack.load(archive, builtin);
 			check("没有外置包使用内置", !absent.external() && absent.warning().isEmpty());
 			write(archive, newFiles, ignored -> {});
-			var external = TranslationPack.load(archive, builtin, version);
+			var external = TranslationPack.load(archive, builtin);
 			check("有效外置包优先", external.external());
-			check("外置正常时无需读取内置目录", TranslationPack.load(archive, null, version).external());
+			check("外置正常时无需读取内置目录", TranslationPack.load(archive, null).external());
 			check("完整替换不会复活已删除的旧模板", external.index().lookup(Surface.ITEM, "Removed line") == null);
 			check("外置编译不会提前发布物品目录", Translator.index() != external.index());
 			checkData(external.index(), true);
 			checkData(absent.index(), false);
 
-			check("低版本整包回退", !TranslationPack.load(archive, builtin, "0.7").external());
-			write(archive, newFiles, meta -> meta.addProperty("require_max_version", version));
-			check("版本上界包含自身且忽略 MC 后缀", TranslationPack.load(archive, builtin, version + "+mc26.3").external());
-			check("高于上界回退", !TranslationPack.load(archive, builtin, "99.0").external());
+			write(archive, newFiles, meta -> {
+				meta.addProperty("require_low_version", "99.0");
+				meta.addProperty("require_max_version", "0.1");
+			});
+			check("遗留 Mod 版本字段不参与兼容判断", TranslationPack.load(archive, builtin).external());
+			write(archive, newFiles, meta -> meta.addProperty("translation_api", TranslationPack.api() - 1));
+			fallback("较低 API 也不兼容", archive, builtin);
 			write(archive, newFiles, meta -> meta.addProperty("translation_api", TranslationPack.api() + 1));
-			fallback("未知翻译协议", archive, builtin, version);
+			fallback("较高 API 不兼容", archive, builtin);
+			write(archive, newFiles, meta -> meta.remove("translation_api"));
+			fallback("缺少翻译协议", archive, builtin);
+			write(archive, newFiles, meta -> meta.addProperty("translation_api", "4"));
+			fallback("API 必须是整数而非字符串", archive, builtin);
+			write(archive, newFiles, meta -> meta.addProperty("translation_api", 4.5));
+			fallback("API 不能是小数", archive, builtin);
 			write(archive, newFiles, meta -> meta.addProperty("format_version", 99));
-			fallback("未知包格式", archive, builtin, version);
-			write(archive, newFiles, meta -> meta.addProperty("require_low_version", 0.8));
-			fallback("拒绝浮点版本号", archive, builtin, version);
-			write(archive, newFiles, meta -> meta.addProperty("require_max_version", "0.1"));
-			fallback("颠倒版本范围", archive, builtin, version);
+			fallback("未知包格式", archive, builtin);
 			write(archive, newFiles, meta -> meta.addProperty("build_at_utc8", "2026-11-01T12:00:00Z"));
-			fallback("拒绝伪 UTC+8 时间", archive, builtin, version);
+			fallback("拒绝伪 UTC+8 时间", archive, builtin);
 			write(archive, newFiles, meta -> meta.addProperty("file_count", 1));
-			fallback("文件数量不符", archive, builtin, version);
+			fallback("文件数量不符", archive, builtin);
 			write(archive, newFiles, meta -> meta.addProperty("content_sha256", "0".repeat(64)));
-			fallback("摘要不符", archive, builtin, version);
+			fallback("摘要不符", archive, builtin);
 			for (String missing : List.of(CorpusData.ITEMS, CorpusData.AREAS, CorpusData.PRESERVED, "_shared/Terms.json", "_shared/SkyBlock_Name.json")) {
 				Map<String, JsonObject> broken = new HashMap<>(newFiles);
 				broken.remove(missing);
 				write(archive, broken, ignored -> {});
-				fallback("缺少必要表 " + missing, archive, builtin, version);
+				fallback("缺少必要表 " + missing, archive, builtin);
 			}
 			Map<String, JsonObject> broken = fixture(true);
 			broken.put("Test/GUI_Item/Bad.json", json("{\"lines\":[{\"id\":\"bad\",\"ref\":\"_shared/Missing.json#missing\"}]}"));
 			write(archive, broken, ignored -> {});
-			fallback("缺失共享引用", archive, builtin, version);
+			fallback("缺失共享引用", archive, builtin);
 			broken.put("Test/GUI_Item/Bad.json", json("{\"lines\":[{\"id\":\"bad\",\"text\":\"Bad\",\"zh\":\"坏\",\"segments\":[{\"text\":\"Bad\",\"order\":-1}]}]}"));
 			write(archive, broken, ignored -> {});
-			fallback("错误分段数据", archive, builtin, version);
+			fallback("错误分段数据", archive, builtin);
 			broken = fixture(true);
 			broken.get(CorpusData.AREAS).getAsJsonObject("areas").addProperty("Test Harbor", "../../outside");
 			write(archive, broken, ignored -> {});
-			fallback("区域归类不能逃逸采集目录", archive, builtin, version);
+			fallback("区域归类不能逃逸采集目录", archive, builtin);
 			Map<String, byte[]> bytes = bytes(newFiles);
 			bytes.put("Test/GUI_Item/Bad.json", "{broken".getBytes(StandardCharsets.UTF_8));
 			writeBytes(archive, bytes, ignored -> {});
-			fallback("摘要正确但 JSON 损坏", archive, builtin, version);
+			fallback("摘要正确但 JSON 损坏", archive, builtin);
 			bytes.put("Test/GUI_Item/Bad.json", new byte[] {(byte) 0xC0, (byte) 0xAF});
 			writeBytes(archive, bytes, ignored -> {});
-			fallback("非法 UTF-8", archive, builtin, version);
+			fallback("非法 UTF-8", archive, builtin);
 			bytes = bytes(newFiles);
 			bytes.put("../outside.json", "{}".getBytes(StandardCharsets.UTF_8));
 			writeBytes(archive, bytes, ignored -> {});
-			fallback("非法归档路径", archive, builtin, version);
+			fallback("非法归档路径", archive, builtin);
 			Files.writeString(archive, "not a zip");
-			fallback("损坏 ZIP", archive, builtin, version);
-			checkPublication(absent, external, () -> TranslationPack.load(archive, temporary.resolve("missing"), version));
+			fallback("损坏 ZIP", archive, builtin);
+			checkPublication(absent, external, () -> TranslationPack.load(archive, temporary.resolve("missing")));
 			checkQueuedCapture(temporary.resolve("capture"), absent.index(), external.index());
 			write(archive, newFiles, ignored -> {});
-			TranslationPack.read(archive, version);
+			TranslationPack.read(archive);
 			Files.delete(archive);
 			check("读取结束已释放 ZIP，可直接删除替换", !Files.exists(archive));
 		} finally {
@@ -269,8 +277,8 @@ public final class TranslationPackHarness {
 		catch (InterruptedException e) { Thread.currentThread().interrupt(); throw new AssertionError(e); }
 	}
 
-	private static void fallback(String label, Path archive, Path builtin, String version) {
-		var loaded = TranslationPack.load(archive, builtin, version);
+	private static void fallback(String label, Path archive, Path builtin) {
+		var loaded = TranslationPack.load(archive, builtin);
 		check(label + "整包回退并报告原因", !loaded.external() && !loaded.warning().isEmpty());
 		check(label + "回退包含原物品目录", Translator.withIndex(loaded.index(), () -> ItemNames.canonical("Old Relic") != null));
 	}
@@ -300,7 +308,7 @@ public final class TranslationPackHarness {
 	}
 
 	private static void writeBytes(Path archive, Map<String, byte[]> files, Consumer<JsonObject> mutate) throws Exception {
-		JsonObject manifest = json("{\"format_version\":1,\"require_low_version\":\"0.8\",\"require_max_version\":null,\"build_at_utc8\":\"2026-11-01T12:00:00+08:00\"}");
+		JsonObject manifest = json("{\"format_version\":1,\"build_at_utc8\":\"2026-11-01T12:00:00+08:00\"}");
 		manifest.addProperty("translation_api", TranslationPack.api());
 		manifest.addProperty("revision", "a".repeat(40));
 		manifest.addProperty("file_count", files.size());

@@ -23,7 +23,6 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.zip.ZipFile;
 import net.fabricmc.loader.api.FabricLoader;
-import net.fabricmc.loader.api.SemanticVersion;
 import org.slf4j.LoggerFactory;
 
 /** A full, versioned corpus snapshot. ZIPs are read and closed, never extracted into the game directory. */
@@ -61,15 +60,15 @@ public final class TranslationPack {
 		try { Files.createDirectories(directory); }
 		catch (IOException e) { LoggerFactory.getLogger("SkyZH").warn("无法创建翻译包目录: {}", directory, e); }
 		Path builtin = mod.findPath(TranslationLoader.ROOT).orElse(null);
-		return load(directory.resolve(FILE_NAME), builtin, mod.getMetadata().getVersion().getFriendlyString());
+		return load(directory.resolve(FILE_NAME), builtin);
 	}
 
 	/** Also exercised offline, including fallback and the case where neither source is usable. */
-	public static Loaded load(Path external, Path builtin, String modVersion) {
+	public static Loaded load(Path external, Path builtin) {
 		String warning = "";
 		if (!Files.notExists(external)) {
 			try {
-				Content content = read(external, modVersion);
+				Content content = read(external);
 				TranslationIndex index = TranslationLoader.compile(content.files());
 				return new Loaded(index, true, string(content.manifest(), "revision"), "");
 			} catch (IOException | RuntimeException e) {
@@ -87,7 +86,7 @@ public final class TranslationPack {
 		}
 	}
 
-	public static Content read(Path archive, String modVersion) throws IOException {
+	public static Content read(Path archive) throws IOException {
 		if (Files.size(archive) > MAX_TOTAL_BYTES) throw new IOException("翻译包文件过大");
 		Map<String, byte[]> documents = new TreeMap<>();
 		JsonObject manifest = null;
@@ -112,7 +111,7 @@ public final class TranslationPack {
 			}
 		}
 		if (manifest == null) throw new IOException("缺少 manifest.json");
-		validateManifest(manifest, modVersion);
+		validateManifest(manifest);
 		if (documents.isEmpty() || documents.size() > MAX_FILES || integer(manifest, "file_count") != documents.size())
 			throw new IOException("翻译包文件数量不符");
 		if (!checksum(documents).equals(string(manifest, "content_sha256"))) throw new IOException("翻译包内容校验失败");
@@ -142,21 +141,9 @@ public final class TranslationPack {
 		} catch (java.security.NoSuchAlgorithmException e) { throw new AssertionError(e); }
 	}
 
-	public static void validateManifest(JsonObject manifest, String modVersion) {
+	public static void validateManifest(JsonObject manifest) {
 		if (integer(manifest, "format_version") != FORMAT) throw new IllegalArgumentException("不支持的翻译包格式");
 		if (integer(manifest, "translation_api") != API) throw new IllegalArgumentException("翻译协议不兼容，请使用适配当前 Mod 的翻译包");
-		try {
-			var current = SemanticVersion.parse(modVersion);
-			var low = SemanticVersion.parse(string(manifest, "require_low_version"));
-			SemanticVersion high = !manifest.has("require_max_version") || manifest.get("require_max_version").isJsonNull()
-				? null : SemanticVersion.parse(string(manifest, "require_max_version"));
-			if (high != null && high.compareTo(low) < 0) throw new IllegalArgumentException("翻译包版本范围颠倒");
-			if (current.compareTo(low) < 0 || high != null && current.compareTo(high) > 0)
-				throw new IllegalArgumentException("当前 Mod " + modVersion + " 不在翻译包要求的版本范围内（最低 "
-					+ low.getFriendlyString() + (high == null ? "" : "，最高 " + high.getFriendlyString()) + "）");
-		} catch (net.fabricmc.loader.api.VersionParsingException e) {
-			throw new IllegalArgumentException("无效的 Mod 版本范围", e);
-		}
 		if (!OffsetDateTime.parse(string(manifest, "build_at_utc8")).getOffset().equals(ZoneOffset.ofHours(8)))
 			throw new IllegalArgumentException("build_at_utc8 必须显式使用 +08:00");
 		if (!string(manifest, "revision").matches("[0-9a-f]{40}|[0-9a-f]{64}")) throw new IllegalArgumentException("无效的来源提交 ID");

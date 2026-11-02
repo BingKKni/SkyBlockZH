@@ -264,14 +264,14 @@ Mod 读取打包时删除译者说明字段后的 JSON，运行时字段保持�
 以及格式／版本不兼容时，整包回退到内置语料；两个来源均失败则保留当前索引。移走 ZIP 后重载即可恢复内置版本。
 并发重载请求会被拒绝，新索引在客户端线程发布，刷新显示缓存与采集去重索引，保留原文模式、设置及聊天历史。
 
-兼容范围由 `gradle.properties` 的 `translation_min_version`、`translation_max_version` 决定，分别导出为字符串
-`require_low_version`、可空的 `require_max_version`，两端均包含。Fabric 语义版本比较忽略 `+mc…`；
-`translation_api` 必须等于当前引擎声明，依赖新能力的语料需维护此编号，纯措辞修改不变。包结构版本 `format_version` 当前为 1。
+`gradle.properties` 仅声明一个固定的 `translation_api`，同时写入 Mod 资源和翻译包清单。包 API 必须与引擎声明完全相等，
+较低或较高的值均不接受，不再根据 Mod 版本判断兼容性。新语料要求或引擎行为破坏兼容性时自增 API，纯措辞修改或兼容的优化不变。
+`format_version` 独立声明 ZIP／清单的结构版本，当前仍为 1。API 4 移除了必填的 Mod 版本范围字段，API 3 的旧包需重新导出后供新引擎使用。
 `revision` 为导出时 HEAD，`source_dirty` 表示语料／构建规则／版本属性存在未提交修改；`build_at_utc8` 为带 `+08:00` 的生成时间。
 这些溯源字段不用于推断兼容性。`content_sha256` 按相对路径排序，对每个文件依次写入“UTF-8 路径、NUL、原始 JSON 字节、NUL”计算，
 不包含清单自身，单纯重新打包不会改变内容摘要。
 
-`checkTranslationPack` 验证真实导出内容、辅助数据、版本边界、失败回退、缓存更新及后台数据代际，接入所有目标的 `check` / `dist`。
+`checkTranslationPack` 验证真实导出内容、辅助数据、API 严格匹配与独立包格式校验、失败回退、缓存更新及后台数据代际，接入所有目标的 `check` / `dist`。
 实机仍需确认打开的菜单、聊天滚动、原文模式及三个显示优先级下的重载表现。
 
 `./gradlew checkPerformance` 将索引结果与原逐条扫描算法对照，并验证样式、缓存碰撞、结构命中和采集逐出恢复。

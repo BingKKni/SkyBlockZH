@@ -431,8 +431,6 @@ tasks.register('packTranslations') {
 		def manifest = [
 			format_version: 1,
 			translation_api: Integer.parseInt(rootProject.translation_api),
-			require_low_version: rootProject.translation_min_version.toString(),
-			require_max_version: rootProject.translation_max_version.toString().trim() ?: null,
 			revision: git(['rev-parse', 'HEAD']),
 			source_dirty: !git(['status', '--porcelain', '--', 'original_text', 'build.gradle', 'gradle.properties']).isEmpty(),
 			build_at_utc8: java.time.OffsetDateTime.now(java.time.ZoneOffset.ofHours(8)).withNano(0).toString(),

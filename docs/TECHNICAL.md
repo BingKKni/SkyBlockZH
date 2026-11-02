@@ -308,9 +308,11 @@ missing tables/references, mismatched counts/digests or incompatible versions fa
 sources fail, the current index remains. Removing the ZIP and reloading restores built-in data. Only one reload runs at a time;
 publication occurs on the client thread, refreshing display caches and capture deduplication without clearing chat history or original mode.
 
-`gradle.properties` supplies `translation_min_version`, `translation_max_version` and `translation_api`. The manifest exports string
-`require_low_version` and nullable `require_max_version` with inclusive bounds; Fabric's semantic version comparison ignores `+mc…`.
-The API must match the engine's declaration; maintain it when corpus requirements change, not for wording-only edits. `format_version` is 1.
+`gradle.properties` supplies the single fixed `translation_api`, exported to both the Mod's resources and the bundle manifest.
+The API must exactly match the engine's declaration; neither lower nor higher values are accepted. Mod versions do not determine
+bundle compatibility. Bump the API when new corpus requirements or engine behavior break compatibility, not for wording-only edits
+or compatible optimizations. `format_version` independently describes the ZIP/manifest structure and remains 1.
+API 4 removes the required Mod version range fields; API 3 bundles must be re-exported for the new engine.
 `revision` is HEAD, `source_dirty` covers corpus/build-rule/version-property changes, and `build_at_utc8` is the generation time with an
 explicit `+08:00` offset. These provenance fields do not determine compatibility. `content_sha256` hashes sorted relative paths as
 UTF-8 path, NUL, exact JSON bytes, NUL, excluding the manifest itself.
