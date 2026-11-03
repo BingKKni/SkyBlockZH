@@ -1365,7 +1365,7 @@
       "id": "round_f6b9c15e6ed8",
       "context": "本轮服务器采集；GUI_Lore",
       "text": "Gain +%1$s XP per secured Timecharm in the Rift.",
-      "raw": "§7Gain §b+%1$s XP §7per secured §aTimecharm §7in the Rift.",
+      "raw": "§7Gain §b+%1$s XP§7 per secured §cTimecharm§7 in the §dRift§7.",
       "placeholders": [
         {
           "token": "%1$s",
@@ -1378,34 +1378,46 @@
       "zh": "在裂隙中，每保管一枚时光护符，即可获得 +%1$s 经验。",
       "segments": [
         {
-          "color": "§7",
           "text": "Gain ",
-          "zh": "在裂隙中，每保管一枚",
+          "zh": "在",
+          "color": "§7",
           "order": 0
         },
         {
-          "color": "§b",
-          "text": "+%1$s XP ",
+          "text": "+%1$s XP",
           "zh": "+%1$s 经验",
-          "order": 3
+          "color": "§b",
+          "order": 5
         },
         {
+          "text": " per secured ",
+          "zh": "中，每保管一枚",
           "color": "§7",
-          "text": "per secured ",
-          "zh": "，即可获得 ",
           "order": 2
         },
         {
-          "color": "§a",
-          "text": "Timecharm ",
+          "text": "Timecharm",
           "zh": "时光护符",
+          "color": "§c",
+          "order": 3
+        },
+        {
+          "text": " in the ",
+          "zh": "，即可获得 ",
+          "color": "§7",
+          "order": 4
+        },
+        {
+          "text": "Rift",
+          "zh": "裂隙",
+          "color": "§d",
           "order": 1
         },
         {
-          "color": "§7",
-          "text": "in the Rift.",
+          "text": ".",
           "zh": "。",
-          "order": 4
+          "color": "§7",
+          "order": 6
         }
       ]
     },
@@ -1918,7 +1930,7 @@
       "id": "round_34bb3df25dc2",
       "context": "本轮服务器采集；GUI_Lore",
       "text": "Gain %1$s➜%2$s% more experience orbs from any source.",
-      "raw": "§7Gain §a%1$s➜%2$s% §7more experience orbs from any source.",
+      "raw": "§fGain §8%1$s➜§a%2$s%§f more experience orbs from any source.",
       "placeholders": [
         {
           "token": "%1$s",
@@ -1937,19 +1949,24 @@
       "zh": "从任何来源获得的经验球数量提高 %1$s➜%2$s%。",
       "segments": [
         {
-          "color": "§7",
           "text": "Gain ",
-          "zh": "从任何来源获得的经验球数量提高 "
+          "zh": "从任何来源获得的经验球数量提高 ",
+          "color": "§f"
         },
         {
-          "color": "§a",
-          "text": "%1$s➜%2$s% ",
-          "zh": "%1$s➜%2$s%"
+          "text": "%1$s➜",
+          "zh": "%1$s➜",
+          "color": "§8"
         },
         {
-          "color": "§7",
-          "text": "more experience orbs from any source.",
-          "zh": "。"
+          "text": "%2$s%",
+          "zh": "%2$s%",
+          "color": "§a"
+        },
+        {
+          "text": " more experience orbs from any source.",
+          "zh": "。",
+          "color": "§f"
         }
       ]
     },

@@ -149,8 +149,22 @@ public final class NameTag {
 		if (zh == null || zh.equals(bar.group(1))) {
 			return source;
 		}
+		Component translatedName = Component.literal(zh).setStyle(styled.styleAt(bar.start(1)));
+		String originalName = bar.group(1);
+		int split = originalName.indexOf(' ');
+		if (split > 0) {
+			// Both the complete name and its base must already be known. This only preserves the
+			// attested modifier/base colour boundary; it never guesses names from individual words.
+			String base = Translator.index().terms().translateWhole("mob_name", originalName.substring(split + 1));
+			if (base != null && !base.isEmpty() && zh.length() > base.length() && zh.endsWith(base)) {
+				translatedName = Component.empty()
+					.append(Component.literal(zh.substring(0, zh.length() - base.length()))
+						.setStyle(styled.styleAt(bar.start(1))))
+					.append(Component.literal(base).setStyle(styled.styleAt(bar.start(1) + split + 1)));
+			}
+		}
 		return Component.empty().append(styled.slice(0, bar.start(1)))
-			.append(Component.literal(zh).setStyle(styled.styleAt(bar.start(1))))
+			.append(translatedName)
 			.append(styled.slice(bar.end(1), styled.length()));
 	}
 

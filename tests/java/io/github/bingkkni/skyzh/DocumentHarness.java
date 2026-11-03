@@ -30,6 +30,9 @@ public final class DocumentHarness {
 			check("样本颜色边界完整", !located.entry().losesColour(located.core(), located.match()));
 			check("保留显式行数", DocumentTranslation.lines(source).size() == DocumentTranslation.lines(output).size());
 			check("不写原文", before.equals(StyledText.of(source)));
+			if (fixture.has("expected")) {
+				check("整面译文及标记符合独立期望", StyledText.of(output).plain().equals(fixture.get("expected").getAsString()));
+			}
 			CaptureSurface capture = surface == Surface.SIGN ? CaptureSurface.SIGN : CaptureSurface.BOOK;
 			check("采集不重复报告已完成文档", Classifier.all(capture, before).isEmpty());
 		}

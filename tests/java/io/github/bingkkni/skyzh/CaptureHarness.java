@@ -743,6 +743,14 @@ public final class CaptureHarness {
 					TranslationHarness.legacy(Component.literal(raw.replace(mob[0], mob[1]))));
 			}
 		}
+		for (String hp : List.of("21.1M", "18M/21.1M")) {
+			String raw = "§f\uE081 §6✯ §2Healthy §8§lSkeleton Master§r §a" + hp + "§c❤";
+			check("已知修饰生物保留前缀和本体颜色及粗体 " + hp,
+				TranslationHarness.legacy(NameTag.mobName(Component.literal(raw))),
+				TranslationHarness.legacy(Component.literal(raw.replace("Healthy ", "强健").replace("Skeleton Master", "骷髅大师"))));
+		}
+		Component unknownModifier = Component.literal("§2Unverified §cSkeleton Master §a100§c❤");
+		check("仅本体已知不会猜译未知修饰名", NameTag.mobName(unknownModifier) == unknownModifier, true);
 		Component unknown = Component.literal("§cUnverified Creature §a100§c❤");
 		check("未知生物不进行逐词猜译", NameTag.mobName(unknown) == unknown, true);
 		check("无血量宠物名字不走怪物通名路径", NameTag.mobName(Component.literal("[Lv100] Glacite Mutt")).getString(),

@@ -1,0 +1,52 @@
+{
+  "source": "runtime capture (SkyZH); https://hypixelskyblock.minecraft.wiki/w/Healer ; https://hypixelskyblock.minecraft.wiki/w/SkyBlock_Levels ; https://hypixelskyblock.minecraft.wiki/w/Catacombs",
+  "verified_ingame": true,
+  "source_note": "原文和颜色以本轮服务器采集为准；社区 Wiki 仅用于机制核对。复用已确定译名，专名与非原版附魔保留。",
+  "lines": [
+    {
+      "id": "live_nov03_7270a23662",
+      "context": "本轮服务器采集；地牢、等级任务或档案界面，颜色以实测为准。",
+      "text": "+%1$s SkyBlock XP (%2$s Level Up) (%3$s)",
+      "raw": "§b+%1$s SkyBlock XP §7(%2$s Level Up)§b (%3$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "10",
+          "desc": "服务器动态值；不固定为采集样例"
+        },
+        {
+          "token": "%2$s",
+          "type": "category_name",
+          "example": "Healer",
+          "desc": "服务器动态值；不固定为采集样例"
+        },
+        {
+          "token": "%3$s",
+          "type": "progress",
+          "example": "75/100",
+          "desc": "服务器动态值；不固定为采集样例"
+        }
+      ],
+      "translate": true,
+      "zh": "+%1$s SkyBlock 经验 (%2$s升级) (%3$s)",
+      "segments": [
+        {
+          "text": "+%1$s SkyBlock XP ",
+          "zh": "+%1$s SkyBlock 经验 ",
+          "color": "§b"
+        },
+        {
+          "text": "(%2$s Level Up)",
+          "zh": "(%2$s升级)",
+          "color": "§7"
+        },
+        {
+          "text": " (%3$s)",
+          "zh": " (%3$s)",
+          "color": "§b"
+        }
+      ]
+    }
+  ]
+}
