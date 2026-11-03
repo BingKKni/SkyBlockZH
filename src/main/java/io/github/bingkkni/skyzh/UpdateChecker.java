@@ -70,12 +70,12 @@ public final class UpdateChecker {
 	public static void checkNow(Action action) {
 		if (!enabled(true)) { Feedback.send("§c请先开启 Mod 功能。"); return; }
 		if (!HypixelServer.isSkyBlock()) { Feedback.send("§c请进入 Hypixel 空岛生存后再检查更新。"); return; }
-		if (Translator.loading()) { Feedback.send("§c翻译正在加载中，请稍后再检查更新。"); return; }
+		if (Translator.loading()) { Feedback.send("§e翻译正在加载中，请稍后再检查更新。"); return; }
 		Feedback.send(request(action) ? switch (action) {
 			case MOD -> "§e正在检查 Mod 更新…";
 			case TRANSLATIONS -> "§e正在检查翻译包更新…";
 			default -> "§e正在依次检查 Mod 和翻译包更新…";
-		} : "§c正在检查或安装更新，请稍后再试。");
+		} : "§e正在检查或安装更新，请稍后再试。");
 	}
 
 	private static boolean request(Action action) {
@@ -233,7 +233,7 @@ public final class UpdateChecker {
 			boolean newer = TranslationUpdate.newer(offer.manifest(), TranslationUpdate.baseline(automatic));
 			if (offer.api() != TranslationPack.api()) {
 				finish("translations", translationIdentity, UpdateState.WEEK, "incompatible", offer.manifest());
-				if (requested) { message(UpdateMessages.translationIncompatible()); return; }
+				if (requested) { message(UpdateMessages.incompatible()); return; }
 				if (newer) {
 					try {
 						String latest = UpdateFiles.string(latestRelease(), "tag_name");

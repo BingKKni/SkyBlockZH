@@ -42,8 +42,11 @@ public final class UpdateInteractionHarness {
 		check("重启安装统一文案", legacy(UpdateMessages.modDownloaded("0.9")).equals("§a已下载 SkyZH 0.9，下次重启时安装。"));
 		check("Mod 无更新反馈", legacy(UpdateMessages.current(true)).equals("§aSkyZH 已是最新版本。"));
 		check("翻译包无更新反馈", legacy(UpdateMessages.current(false)).equals("§a翻译包已是最新版本。"));
-		check("缺少对应游戏下载反馈", legacy(UpdateMessages.noModDownload()).equals("§e发现新版 SkyZH，但暂无适用于当前 Minecraft 版本的下载。"));
-		check("主动检查不兼容反馈", legacy(UpdateMessages.translationIncompatible()).equals("§e远程翻译包与当前 SkyZH 不兼容，已跳过更新。"));
+		check("缺少对应游戏下载反馈", legacy(UpdateMessages.noModDownload()).equals("§e发现新版 SkyZH，但它与此计算机上的 Minecraft 不兼容，请更新 Minecraft 版本。"));
+		check("主动检查复用自动检查的不兼容正文", legacy(UpdateMessages.incompatible()).equals("§e发现新版本翻译包，但它与此计算机上的 SkyZH 不兼容，请更新 Mod。"));
+		check("主动检查不兼容正文不附加下载按钮", UpdateMessages.incompatible().getSiblings().isEmpty()
+			&& UpdateMessages.incompatible().getStyle().getClickEvent() == null
+			&& UpdateMessages.incompatible().getStyle().getHoverEvent() == null);
 		check("不兼容文案", legacy(UpdateMessages.incompatible(COMMAND)).equals(
 			"§e发现新版本翻译包，但它与此计算机上的 SkyZH 不兼容，请更新 Mod。§a[点击这里下载]"));
 		check("翻译失败文案", legacy(UpdateMessages.translationFailed(COMMAND)).equals("§e更新翻译包时出错，将在1小时后重试。§6[立即重试]"));
