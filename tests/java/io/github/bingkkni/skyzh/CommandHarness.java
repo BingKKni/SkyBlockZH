@@ -23,7 +23,14 @@ public final class CommandHarness {
 		check("更新检查子命令可解析", updateCheck == null ? null : updateCheck.sub(), "updatecheck");
 		check("更新检查状态不分大小写", updateCheck == null ? null : updateCheck.argument(), "on");
 		check("翻译重载已提供补全", SkyZHCommand.PLAIN.contains("reload"), true);
+		check("更新检查补全包含两类更新和开关", SkyZHCommand.UPDATE_CHECK_ARGUMENTS, List.of("mod", "translate", "on", "off"));
+		check("保留原长别名并接受需求中的拼写", SkyZHCommand.ALIASES, List.of("skyzh", "skyblockzh", "skyblozkzh"));
 		for (String alias : SkyZHCommand.ALIASES) {
+			for (String argument : List.of("", "mod", "translate", "on", "off")) {
+				check(alias + " updatecheck " + argument + " 可解析",
+					SkyZHCommand.parse(alias + " updatecheck " + argument.toUpperCase(java.util.Locale.ROOT)).argument(), argument);
+			}
+			check(alias + " updatecheck 多余参数保留供拒绝", SkyZHCommand.parse(alias + " updatecheck mod extra").state(), "extra");
 			check(alias + " reload 可解析", SkyZHCommand.parse(alias + " reload").sub(), "reload");
 			check(alias + " reload 多余参数保留供拒绝", SkyZHCommand.parse(alias + " reload extra").argument(), "extra");
 		}
@@ -51,7 +58,8 @@ public final class CommandHarness {
 			"§e=============== §b[SkyZH] §e===============",
 			"§6/skyzh  §f打开设置",
 			"§6/skyzh switch power/tip/capture [on/off]  §f切换总功能/显示原文提示/采集功能为开/关",
-			"§6/skyzh updatecheck [on/off]  §f切换自动更新功能",
+			"§6/skyzh updatecheck [mod/translate]  §f检查并安装更新，默认先 Mod 后翻译包",
+			"§6/skyzh updatecheck on/off  §f开启/关闭自动更新",
 			"§6/skyzh reload  §f重新加载翻译包",
 			"§e======================================"
 		));
@@ -60,14 +68,15 @@ public final class CommandHarness {
 			"§e=============== §b[SkyZH] §e===============",
 			"§6/skyblockzh  §f打开设置",
 			"§6/skyblockzh switch power/tip/capture [on/off]  §f切换总功能/显示原文提示/采集功能为开/关",
-			"§6/skyblockzh updatecheck [on/off]  §f切换自动更新功能",
+			"§6/skyblockzh updatecheck [mod/translate]  §f检查并安装更新，默认先 Mod 后翻译包",
+			"§6/skyblockzh updatecheck on/off  §f开启/关闭自动更新",
 			"§6/skyblockzh reload  §f重新加载翻译包",
 			"§6/skyblockzh clear  §f清空捕捉到的文本",
 			"§e======================================"
 		));
 
-		check("on 不出现在帮助里", contains(SkyZHCommand.helpLines("skyzh", true), " on"), false);
-		check("off 不出现在帮助里", contains(SkyZHCommand.helpLines("skyzh", true), " off"), false);
+		check("隐藏总开关 on 不出现在帮助里", contains(SkyZHCommand.helpLines("skyzh", true), "/skyzh on"), false);
+		check("隐藏总开关 off 不出现在帮助里", contains(SkyZHCommand.helpLines("skyzh", true), "/skyzh off"), false);
 		check("关闭采集时不显示 clear", contains(SkyZHCommand.helpLines("skyzh", false), " clear"), false);
 
 		check("显式关闭提示", SkyZHCommand.parse("skyzh switch tip OFF").state(), "off");
@@ -153,6 +162,9 @@ public final class CommandHarness {
 			net.minecraft.client.gui.screens.Screen.class,
 			org.spongepowered.asm.mixin.injection.callback.CallbackInfo.class);
 		method.setAccessible(true);
+		var typed = type.getDeclaredMethod("skyzh$runOwnCommand", String.class,
+			org.spongepowered.asm.mixin.injection.callback.CallbackInfo.class);
+		typed.setAccessible(true);
 		var mixin = new io.github.bingkkni.skyzh.mixin.ClientPacketListenerCommandMixin() {};
 		SkyZHConfig config = SkyZHConfig.get();
 		boolean previous = config.originalTips;
@@ -179,6 +191,25 @@ public final class CommandHarness {
 			check("带多余参数的关闭命令不修改配置", config.enabled, true);
 			check("无效本地命令仍不发送服务器", invalidOff.isCancelled(), true);
 			for (String alias : SkyZHCommand.ALIASES) {
+				SkyZHCommand.run(alias + " updatecheck on");
+				check("显式 on 仍开启自动更新 " + alias, config.updateCheck, true);
+				SkyZHCommand.run(alias + " updatecheck off");
+				check("显式 off 仍关闭自动更新 " + alias, config.updateCheck, false);
+				for (String argument : List.of("", "mod", "translate", "mod extra", "translate extra", "invalid")) {
+					String command = (alias + " updatecheck " + argument).trim();
+					var clicked = new org.spongepowered.asm.mixin.injection.callback.CallbackInfo("sendUnattendedCommand", true);
+					method.invoke(mixin, command, null, clicked);
+					check("主动检查和无效参数均不切换自动更新 " + command, config.updateCheck, false);
+					check("点击主动检查始终留在客户端 " + command, clicked.isCancelled(), true);
+					var sent = new org.spongepowered.asm.mixin.injection.callback.CallbackInfo("sendCommand", true);
+					typed.invoke(mixin, command, sent);
+					check("输入主动检查始终留在客户端 " + command, sent.isCancelled(), true);
+				}
+				config.updateCheck = true;
+				SkyZHCommand.run(alias + " updatecheck");
+				check("省略参数不再关闭自动更新 " + alias, config.updateCheck, true);
+				SkyZHCommand.run(alias + " updatecheck off extra");
+				check("带多余参数不关闭自动更新 " + alias, config.updateCheck, true);
 				var forged = new org.spongepowered.asm.mixin.injection.callback.CallbackInfo("sendUnattendedCommand", true);
 				method.invoke(mixin, alias + " updateaction forged", null, forged);
 				check("更新按钮指令始终留在客户端 " + alias, forged.isCancelled(), true);

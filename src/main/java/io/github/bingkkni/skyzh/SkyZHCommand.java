@@ -4,16 +4,18 @@ import io.github.bingkkni.skyzh.capture.TextCapture;
 import io.github.bingkkni.skyzh.gui.SkyZHConfigScreen;
 import io.github.bingkkni.skyzh.text.TranslationPack;
 import io.github.bingkkni.skyzh.text.Translator;
+import io.github.bingkkni.skyzh.update.UpdateActions.Action;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.function.BooleanSupplier;
 
-/** The two local command aliases and their deliberately small grammar. */
+/** The local command aliases and their deliberately small grammar. */
 public final class SkyZHCommand {
-	public static final List<String> ALIASES = List.of("skyzh", "skyblockzh");
+	public static final List<String> ALIASES = List.of("skyzh", "skyblockzh", "skyblozkzh");
 	public static final List<String> SWITCHES = List.of("power", "tip", "capture", "updatecheck");
 	public static final List<String> PLAIN = List.of("on", "off", "clear", "reload");
+	public static final List<String> UPDATE_CHECK_ARGUMENTS = List.of("mod", "translate", "on", "off");
 
 	private SkyZHCommand() {
 	}
@@ -76,7 +78,8 @@ public final class SkyZHCommand {
 		lines.add("§e=============== §b" + Feedback.NAME + " §e===============");
 		lines.add("§6/" + alias + "  §f打开设置");
 		lines.add("§6/" + alias + " switch power/tip/capture [on/off]  §f切换总功能/显示原文提示/采集功能为开/关");
-		lines.add("§6/" + alias + " updatecheck [on/off]  §f切换自动更新功能");
+		lines.add("§6/" + alias + " updatecheck [mod/translate]  §f检查并安装更新，默认先 Mod 后翻译包");
+		lines.add("§6/" + alias + " updatecheck on/off  §f开启/关闭自动更新");
 		lines.add("§6/" + alias + " reload  §f重新加载翻译包");
 
 		if (captureEnabled) {
@@ -113,7 +116,13 @@ public final class SkyZHCommand {
 			return;
 		}
 
-		flip(alias, "updatecheck", state);
+		switch (state) {
+			case "" -> UpdateChecker.checkNow(Action.CHECK);
+			case "mod" -> UpdateChecker.checkNow(Action.MOD);
+			case "translate" -> UpdateChecker.checkNow(Action.TRANSLATIONS);
+			case "on", "off" -> flip(alias, "updatecheck", state);
+			default -> unknown(alias, "updatecheck " + state);
+		}
 	}
 
 	private static void flip(String alias, String which, String state) {
@@ -184,7 +193,7 @@ public final class SkyZHCommand {
 
 	static String reloadFailed() { return "§c翻译重载失败。详情已写入游戏日志。"; }
 
-	/** Shared by both command aliases and the local manual-pack uninstall button. */
+	/** Shared by all command aliases and the local manual-pack uninstall button. */
 	public static boolean reloadTranslations(java.util.function.Supplier<TranslationPack.Loaded> read) {
 		try {
 			boolean started = Translator.reloadInBackground(read, loaded -> {

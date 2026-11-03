@@ -26,6 +26,18 @@ public final class UpdateMessages {
 		return text("已下载 SkyZH " + version + "，下次重启时安装。", ChatFormatting.GREEN);
 	}
 
+	public static Component current(boolean mod) {
+		return text(mod ? "SkyZH 已是最新版本。" : "翻译包已是最新版本。", ChatFormatting.GREEN);
+	}
+
+	public static Component noModDownload() {
+		return text("发现新版 SkyZH，但暂无适用于当前 Minecraft 版本的下载。", ChatFormatting.YELLOW);
+	}
+
+	public static Component translationIncompatible() {
+		return text("远程翻译包与当前 SkyZH 不兼容，已跳过更新。", ChatFormatting.YELLOW);
+	}
+
 	public static Component incompatible(String command) {
 		return text("发现新版本翻译包，但它与此计算机上的 SkyZH 不兼容，请更新 Mod。", ChatFormatting.YELLOW)
 			.append(button("[点击这里下载]", ChatFormatting.GREEN, command, "点击这里来下载新版 SkyZH!"));

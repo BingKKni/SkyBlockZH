@@ -30,6 +30,7 @@ public final class UpdateInteractionHarness {
 		messages();
 		actions();
 		retries();
+		manualChecks();
 		uninstall(root.resolve("manual-removal"));
 		return passed;
 	}
@@ -39,6 +40,10 @@ public final class UpdateInteractionHarness {
 		check("手动包覆盖提示的文字和颜色", legacy(UpdateMessages.translationUpdated(true, COMMAND)).equals(
 			"§a翻译更新成功! §e但由于你手动安装了外置翻译包，新安装的翻译不会生效。§c[点击卸载外置翻译包]"));
 		check("重启安装统一文案", legacy(UpdateMessages.modDownloaded("0.9")).equals("§a已下载 SkyZH 0.9，下次重启时安装。"));
+		check("Mod 无更新反馈", legacy(UpdateMessages.current(true)).equals("§aSkyZH 已是最新版本。"));
+		check("翻译包无更新反馈", legacy(UpdateMessages.current(false)).equals("§a翻译包已是最新版本。"));
+		check("缺少对应游戏下载反馈", legacy(UpdateMessages.noModDownload()).equals("§e发现新版 SkyZH，但暂无适用于当前 Minecraft 版本的下载。"));
+		check("主动检查不兼容反馈", legacy(UpdateMessages.translationIncompatible()).equals("§e远程翻译包与当前 SkyZH 不兼容，已跳过更新。"));
 		check("不兼容文案", legacy(UpdateMessages.incompatible(COMMAND)).equals(
 			"§e发现新版本翻译包，但它与此计算机上的 SkyZH 不兼容，请更新 Mod。§a[点击这里下载]"));
 		check("翻译失败文案", legacy(UpdateMessages.translationFailed(COMMAND)).equals("§e更新翻译包时出错，将在1小时后重试。§6[立即重试]"));
@@ -114,6 +119,63 @@ public final class UpdateInteractionHarness {
 			UpdateChecker.launch(true, true, true, busy, () -> {}, task -> { throw new IllegalStateException("executor stopped"); });
 			throw new AssertionError("应拒绝无法启动的后台任务");
 		} catch (IllegalStateException expected) { check("后台任务启动失败也释放忙状态", !busy.get()); }
+	}
+
+	private static void manualChecks() {
+		SkyZHConfig config = SkyZHConfig.get();
+		boolean power = config.enabled, updates = config.updateCheck;
+		try {
+			for (boolean enabled : List.of(false, true)) for (boolean automatic : List.of(false, true)) {
+				config.enabled = enabled;
+				config.updateCheck = automatic;
+				check("自动检查遵守两个开关 " + enabled + automatic, UpdateChecker.enabled(false) == (enabled && automatic));
+				check("主动检查只需总开关 " + enabled + automatic, UpdateChecker.enabled(true) == enabled);
+			}
+		} finally { config.enabled = power; config.updateCheck = updates; }
+
+		for (Action action : List.of(Action.MOD, Action.TRANSLATIONS, Action.CHECK)) {
+			List<String> order = new java.util.ArrayList<>();
+			UpdateChecker.runChecks(action, () -> order.add("mod"), () -> order.add("translate"));
+			check("主动检查目标和顺序 " + action, order.equals(switch (action) {
+				case MOD -> List.of("mod");
+				case TRANSLATIONS -> List.of("translate");
+				default -> List.of("mod", "translate");
+			}));
+		}
+
+		AtomicBoolean busy = new AtomicBoolean();
+		LinkedBlockingQueue<Runnable> queue = new LinkedBlockingQueue<>();
+		List<String> order = new java.util.ArrayList<>();
+		check("组合检查只启动一个后台任务", UpdateChecker.launch(true, false, true, busy,
+			() -> UpdateChecker.runChecks(Action.CHECK, () -> {
+				check("Mod 检查独占忙状态", busy.get() && order.isEmpty());
+				order.add("mod");
+				rejectDuplicates(busy, queue, "Mod 检查和安装期间");
+			}, () -> {
+				check("翻译检查在 Mod 完成后开始且仍独占忙状态", busy.get() && order.equals(List.of("mod")));
+				order.add("translate");
+				rejectDuplicates(busy, queue, "翻译检查和安装期间");
+			}), queue::add));
+		rejectDuplicates(busy, queue, "等待后台执行期间");
+		check("拒绝重复请求后队列仍只有一个任务", queue.size() == 1);
+		queue.remove().run();
+		check("两项完成后才释放忙状态", !busy.get() && order.equals(List.of("mod", "translate")) && queue.isEmpty());
+		check("全部完成后可以再次手动检查", UpdateChecker.launch(true, false, true, busy, () -> {}, queue::add));
+		queue.remove().run();
+		check("失败任务可受理", UpdateChecker.launch(true, false, true, busy,
+			() -> { throw new IllegalStateException("check failed"); }, queue::add));
+		try {
+			queue.remove().run();
+			throw new AssertionError("应交付任务失败");
+		} catch (IllegalStateException expected) { check("任务失败也释放忙状态", !busy.get()); }
+	}
+
+	private static void rejectDuplicates(AtomicBoolean busy, LinkedBlockingQueue<Runnable> queue, String stage) {
+		for (Action repeated : List.of(Action.MOD, Action.TRANSLATIONS, Action.CHECK)) {
+			check(stage + "拒绝重复 " + repeated, !UpdateChecker.launch(true, false, true, busy,
+				() -> UpdateChecker.runChecks(repeated, () -> {}, () -> {}), queue::add));
+		}
+		check(stage + "拒绝并行自动检查", !UpdateChecker.launch(true, true, false, busy, () -> {}, queue::add));
 	}
 
 	private static void uninstall(Path directory) throws Exception {

@@ -49,18 +49,38 @@ public final class UpdateChecker {
 		return enabled && updates && skyBlock && initialLoadFinished;
 	}
 
-	private static boolean enabled() { return SkyZHConfig.get().enabled && SkyZHConfig.get().updateCheck; }
+	static boolean enabled(boolean requested) {
+		return SkyZHConfig.get().enabled && (requested || SkyZHConfig.get().updateCheck);
+	}
 
 	public static void tick(Minecraft minecraft) {
-		if (!enabled()) { MESSAGES.clear(); return; }
+		if (!SkyZHConfig.get().enabled) { MESSAGES.clear(); return; }
 		if (!eligible(true, true, HypixelServer.isSkyBlock(), !Translator.loading())
 			|| minecraft.player == null || minecraft.level == null || minecraft.gui == null) return;
 		for (Component message; (message = MESSAGES.poll()) != null;) ClientGui.chat(minecraft, UpdateMessages.chat(message));
+		if (!enabled(false)) return;
 		long now = System.currentTimeMillis();
 		if (now < nextTick) return;
 		nextTick = now + 1000;
 		if (service == null) initialize(false, Action.CHECK);
-		else service.tick(now);
+		else service.tick();
+	}
+
+	/** Explicit checks bypass the automatic-update setting and cooldown, but share its worker. */
+	public static void checkNow(Action action) {
+		if (!enabled(true)) { Feedback.send("§c请先开启 Mod 功能。"); return; }
+		if (!HypixelServer.isSkyBlock()) { Feedback.send("§c请进入 Hypixel 空岛生存后再检查更新。"); return; }
+		if (Translator.loading()) { Feedback.send("§c翻译正在加载中，请稍后再检查更新。"); return; }
+		Feedback.send(request(action) ? switch (action) {
+			case MOD -> "§e正在检查 Mod 更新…";
+			case TRANSLATIONS -> "§e正在检查翻译包更新…";
+			default -> "§e正在依次检查 Mod 和翻译包更新…";
+		} : "§c正在检查或安装更新，请稍后再试。");
+	}
+
+	private static boolean request(Action action) {
+		Service current = service;
+		return current == null ? initialize(true, action) : current.retry(action);
 	}
 
 	/** Hidden local commands contain only an issued token, never a path or a download URL. */
@@ -72,9 +92,7 @@ public final class UpdateChecker {
 				ACTIONS.complete(token);
 				return loaded;
 			});
-			if (!enabled()) return false;
-			Service current = service;
-			return current == null ? initialize(true, action) : current.retry(action);
+			return enabled(true) && request(action);
 		});
 	}
 
@@ -95,8 +113,8 @@ public final class UpdateChecker {
 						message(UpdateMessages.checkFailed(ACTIONS.issue(Action.CHECK)));
 					}
 					initializeAfter = 0;
-					service = next;
 					if (immediate) next.retry(requested);
+					service = next;
 				} catch (Exception e) {
 					LOGGER.warn("初始化自动更新失败", e);
 					message(UpdateMessages.checkFailed(ACTIONS.issue(Action.CHECK)));
@@ -117,7 +135,7 @@ public final class UpdateChecker {
 			+ ":" + TranslationPack.api();
 	}
 
-	private static void message(Component text) { if (enabled()) MESSAGES.add(text); }
+	private static void message(Component text) { if (enabled(true)) MESSAGES.add(text); }
 
 	/** Same concurrency gate for automatic deadlines and an explicit click that bypasses the deadline. */
 	static boolean launch(boolean enabled, boolean due, boolean immediate, AtomicBoolean busy, Runnable work, Executor background) {
@@ -125,6 +143,12 @@ public final class UpdateChecker {
 		try { background.execute(() -> { try { work.run(); } finally { busy.set(false); } }); }
 		catch (RuntimeException e) { busy.set(false); throw e; }
 		return true;
+	}
+
+	/** A combined request keeps the worker occupied until both checks finish, Mod first. */
+	static void runChecks(Action action, Runnable mod, Runnable translations) {
+		if (action == Action.MOD || action == Action.CHECK) mod.run();
+		if (action == Action.TRANSLATIONS || action == Action.CHECK) translations.run();
 	}
 
 	static boolean needsModNotice(boolean newMod, boolean newTranslation, int remoteApi, int localApi) {
@@ -141,7 +165,7 @@ public final class UpdateChecker {
 		private final UpdateState state;
 		private final String installed = loader.getModContainer("skyzh").orElseThrow().getMetadata().getVersion().getFriendlyString();
 		private final String translationIdentity = TranslationPack.api() + ":" + installed;
-		private final AtomicBoolean modBusy = new AtomicBoolean(), translationsBusy = new AtomicBoolean();
+		private final AtomicBoolean busy = new AtomicBoolean();
 		private volatile Process installer;
 		private volatile String unpublishedTranslation;
 
@@ -150,7 +174,7 @@ public final class UpdateChecker {
 			Files.createDirectories(directory);
 		}
 
-		void tick(long now) {
+		void tick() {
 			Process process = installer;
 			if (process != null && !process.isAlive()) {
 				installer = null;
@@ -159,42 +183,31 @@ public final class UpdateChecker {
 					message(UpdateMessages.modFailed(ACTIONS.issue(Action.MOD)));
 				});
 			}
-			startMod(false);
-			startTranslations(false);
+			start(Action.CHECK, false);
 		}
 
 		boolean retry(Action action) {
-			return switch (action) {
-				case MOD -> startMod(true);
-				case TRANSLATIONS -> startTranslations(true);
-				case CHECK -> {
-					boolean mod = startMod(true);
-					boolean translations = startTranslations(true);
-					yield mod || translations;
-				}
-				case REMOVE_MANUAL -> false;
-			};
+			return start(action, true);
 		}
 
-		private boolean startMod(boolean immediate) {
-			return start("mod", installed, modBusy, immediate, () -> checkMod(immediate));
+		private boolean start(Action action, boolean immediate) {
+			long now = System.currentTimeMillis();
+			boolean due = immediate || state.due("mod", installed, now) || state.due("translations", translationIdentity, now);
+			return launch(enabled(immediate), due, immediate, busy, () -> runChecks(action,
+				() -> check("mod", installed, immediate, () -> checkMod(immediate)),
+				() -> check("translations", translationIdentity, immediate, () -> checkTranslations(immediate))), Thread::startVirtualThread);
 		}
 
-		private boolean startTranslations(boolean immediate) {
-			return start("translations", translationIdentity, translationsBusy, immediate, this::checkTranslations);
-		}
-
-		private boolean start(String lane, String identity, AtomicBoolean busy, boolean immediate, Checked work) {
-			return launch(enabled(), immediate || state.due(lane, identity, System.currentTimeMillis()), immediate, busy, () -> {
-				try { if (enabled()) work.run(); }
-				catch (Exception e) {
-					LOGGER.warn("SkyZH {} 更新失败", lane, e);
-					JsonObject details = new JsonObject(); details.addProperty("error", e.toString());
-					finish(lane, identity, UpdateState.HOUR, "failed", details);
-					message(lane.equals("mod") ? UpdateMessages.modFailed(ACTIONS.issue(Action.MOD))
-						: UpdateMessages.translationFailed(ACTIONS.issue(Action.TRANSLATIONS)));
-				}
-			}, Thread::startVirtualThread);
+		private void check(String lane, String identity, boolean immediate, Checked work) {
+			if (!enabled(immediate) || (!immediate && !state.due(lane, identity, System.currentTimeMillis()))) return;
+			try { work.run(); }
+			catch (Exception e) {
+				LOGGER.warn("SkyZH {} 更新失败", lane, e);
+				JsonObject details = new JsonObject(); details.addProperty("error", e.toString());
+				finish(lane, identity, UpdateState.HOUR, "failed", details);
+				message(lane.equals("mod") ? UpdateMessages.modFailed(ACTIONS.issue(Action.MOD))
+					: UpdateMessages.translationFailed(ACTIONS.issue(Action.TRANSLATIONS)));
+			}
 		}
 
 		private void finish(String lane, String identity, long delay, String result, JsonObject details) {
@@ -212,7 +225,7 @@ public final class UpdateChecker {
 			return release;
 		}
 
-		private void checkTranslations() throws Exception {
+		private void checkTranslations(boolean requested) throws Exception {
 			JsonObject envelope = http.json(URI.create(API + "contents/skyzh-updates/update.json?ref=main"));
 			if (!UpdateFiles.string(envelope, "encoding").equals("base64")) throw new IOException("GitHub 清单编码不支持");
 			byte[] bytes = Base64.getDecoder().decode(UpdateFiles.string(envelope, "content").replaceAll("\\s", ""));
@@ -220,6 +233,7 @@ public final class UpdateChecker {
 			boolean newer = TranslationUpdate.newer(offer.manifest(), TranslationUpdate.baseline(automatic));
 			if (offer.api() != TranslationPack.api()) {
 				finish("translations", translationIdentity, UpdateState.WEEK, "incompatible", offer.manifest());
+				if (requested) { message(UpdateMessages.translationIncompatible()); return; }
 				if (newer) {
 					try {
 						String latest = UpdateFiles.string(latestRelease(), "tag_name");
@@ -232,13 +246,15 @@ public final class UpdateChecker {
 			TranslationPack.validateManifest(offer.manifest());
 			String content = UpdateFiles.string(offer.manifest(), "content_sha256");
 			if (!newer && !content.equals(unpublishedTranslation)) {
-				finish("translations", translationIdentity, UpdateState.HOUR, "current", offer.manifest()); return;
+				finish("translations", translationIdentity, UpdateState.HOUR, "current", offer.manifest());
+				if (requested) message(UpdateMessages.current(false));
+				return;
 			}
-			Path candidate = http.download(offer.download(), directory.resolve("translations-download.zip"), UpdateChecker::enabled);
+			Path candidate = http.download(offer.download(), directory.resolve("translations-download.zip"), () -> enabled(requested));
 			CompletableFuture<TranslationPack.Loaded> publication = new CompletableFuture<>();
 			boolean accepted = Translator.reloadInBackground(() -> {
 				try {
-					TranslationPack.Loaded next = TranslationUpdate.install(candidate, automatic, manual, offer, UpdateChecker::enabled);
+					TranslationPack.Loaded next = TranslationUpdate.install(candidate, automatic, manual, offer, () -> enabled(requested));
 					unpublishedTranslation = content;
 					return next;
 				} catch (IOException e) { throw new java.io.UncheckedIOException(e); }
@@ -272,7 +288,7 @@ public final class UpdateChecker {
 				Path candidate = directory.resolve("mod-update.jar");
 				if (Files.isRegularFile(candidate) && UpdateFiles.sha256(candidate).equals(pending.getProperty("new_sha256"))) {
 					validateMod(candidate, pendingVersion);
-					if (!enabled()) return;
+					if (!enabled(requested)) return;
 					installer = ModUpdate.arm(directory, installedJar(), pending.getProperty("new_sha256"), pendingVersion);
 					finish("mod", installed, UpdateState.HOUR, "waiting_for_exit", null);
 					message(UpdateMessages.modDownloaded(pendingVersion));
@@ -281,15 +297,21 @@ public final class UpdateChecker {
 			}
 			JsonObject release = latestRelease();
 			String latest = UpdateFiles.string(release, "tag_name");
-			if (!isNewer(latest, installed)) { finish("mod", installed, UpdateState.HOUR, "current", releaseSummary(latest)); return; }
+			if (!isNewer(latest, installed)) {
+				finish("mod", installed, UpdateState.HOUR, "current", releaseSummary(latest));
+				if (requested) message(UpdateMessages.current(true));
+				return;
+			}
 			String target = installed.contains("+mc") ? installed.substring(installed.indexOf("+mc") + 3) : "";
 			ModUpdate.Asset asset = ModUpdate.select(release, target);
 			if (asset == null) {
-				finish("mod", installed, UpdateState.HOUR, "no_matching_download", releaseSummary(latest)); return;
+				finish("mod", installed, UpdateState.HOUR, "no_matching_download", releaseSummary(latest));
+				if (requested) message(UpdateMessages.noModDownload());
+				return;
 			}
-			Path candidate = http.download(asset.download(), directory.resolve("mod-update.jar"), UpdateChecker::enabled);
+			Path candidate = http.download(asset.download(), directory.resolve("mod-update.jar"), () -> enabled(requested));
 			validateMod(candidate, latest);
-			if (!enabled()) return;
+			if (!enabled(requested)) return;
 			installer = ModUpdate.arm(directory, installedJar(), asset.download().sha256(), latest);
 			finish("mod", installed, UpdateState.HOUR, "waiting_for_exit", releaseSummary(latest));
 			message(UpdateMessages.modDownloaded(latest));

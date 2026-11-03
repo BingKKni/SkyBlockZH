@@ -67,7 +67,7 @@ NPC、物品与菜单的来源边界见 [Galatea 采集范围](docs/GALATEA_COVE
 
 ## 翻译包与自动更新
 
-自动更新默认开启，可在设置页或用 `/skyzh updatecheck off` 关闭。只有进入 Hypixel 空岛生存后才检查，主界面、大厅和其他服务器不会检查。一般每小时检查一次；网络或下载失败一小时后重试，新翻译不兼容当前 Mod 时七天后重试，重启会保留等待时间。错误提示中的按钮可立即重试，仍会校验文件并防止重复下载。手动包覆盖新翻译时，可点击提示中的卸载按钮永久删除该手动包，随后立即重载；删除范围仅限 `skyzh-translations/translations.zip`。
+自动更新默认开启，可在设置页或用 `/skyzh updatecheck on/off` 开关。`/skyzh updatecheck` 主动依次检查 Mod 和翻译包；加 `mod` 或 `translate` 仅检查对应更新，发现更新后自动下载安装。主动检查不受自动更新开关或等待时间限制，也不会修改开关；检查和安装期间重复请求会报错。`/skyblockzh`、`/skyblozkzh` 同样支持。需开启 Mod 总开关并进入 Hypixel 空岛生存后才检查，主界面、大厅和其他服务器不会检查。一般每小时检查一次；网络或下载失败一小时后重试，新翻译不兼容当前 Mod 时七天后重试，重启会保留等待时间。错误提示中的按钮可立即重试，仍会校验文件并防止重复下载。手动包覆盖新翻译时，可点击提示中的卸载按钮永久删除该手动包，随后立即重载；删除范围仅限 `skyzh-translations/translations.zip`。
 
 翻译包按以下顺序加载：游戏目录中的 `skyzh-translations/translations.zip`（手动安装）→ `skyzh-updates/translations.zip`（自动下载）→ Mod 自带翻译。前一个包无法使用时自动尝试下一个。下载的翻译包通过完整校验后才安装；手动包存在时仍优先使用手动包。
 
