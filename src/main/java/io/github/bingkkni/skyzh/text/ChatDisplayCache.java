@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 import net.minecraft.client.multiplayer.chat.GuiMessage;
+import net.minecraft.client.multiplayer.chat.GuiMessageSource;
 import net.minecraft.util.FormattedCharSequence;
 
 /** Bounded, per-chat display-only cache; the original GuiMessages are never replaced or edited. */
@@ -28,6 +29,11 @@ public final class ChatDisplayCache {
 		StyledText source;
 		List<FormattedCharSequence> original;
 		List<FormattedCharSequence> translated;
+	}
+
+	/** Both chat display paths translate server system messages, never player/client notices. */
+	public static boolean isServerMessage(GuiMessage message) {
+		return message.source() == GuiMessageSource.SYSTEM_SERVER;
 	}
 
 	/** Another display view temporarily owned the queue; refresh once when returning to this one. */

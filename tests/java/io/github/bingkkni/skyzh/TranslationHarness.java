@@ -314,7 +314,7 @@ public final class TranslationHarness {
 			"§dFabled Giant's Sword §6✪✪✪✪✪ §8x1", "§d传奇 巨人之剑 §6✪✪✪✪✪ §8x1");
 		// Hyper is a reforge word, but Hyper Catalyst is a whole catalog name with its own record.
 		checkTooltipName("以重铸词开头的目录物品名不拆成重铸前缀", "§5Hyper Catalyst", "§5超级催化剂");
-		checkTooltipName("目录物品名带星级也不拆成重铸前缀", "§9Heavy Helmet §6✪✪", "§9Heavy Helmet §6✪✪");
+		checkTooltipName("目录物品名带星级也不拆成重铸前缀", "§9Heavy Helmet §6✪✪", "§9沉重头盔 §6✪✪");
 		checkTooltipName("重铸物品名不再追加原文", "§6Fleet §dTitanium Drill DR-X655",
 			"§6迅捷 §d钛钻头 DR-X655");
 		checkTooltipName("重铸前缀不猜测未收录物品", "§6Fleet Unknown Drill", "§6Fleet Unknown Drill");
@@ -2408,7 +2408,7 @@ public final class TranslationHarness {
 			case RIFT_ABILITY -> "Lazer";
 			case RIFT_BOSS_STAGE -> "Bac";
 			case EXCLAMATIONS -> "!!!";
-			case TROPHY_FISH_NAME -> "Blobfish";
+			case TROPHY_FISH_NAME, TROPHY_CATCH_NAME -> "Blobfish";
 			case EQUIPMENT_SLOT -> "Helmet";
 			case HUNGRY_HIKER_FOOD -> "grilled meat";
 			case TIER -> "XII";
@@ -2997,7 +2997,7 @@ public final class TranslationHarness {
 
 	/** Fixed UI capture regression: ordered lore, term isolation, and clues that must survive translation. */
 	private static void checkFixedMenus(Path corpusRoot) throws Exception {
-		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "october-live-round-cases.json", "workshop-cases.json", "wiki-expansion-cases.json", "bazaar-item-names-cases.json", "rift-live-capture-cases.json", "rift-session-cases.json", "garden-weather-feast-cases.json", "village-living-cave-cases.json", "rift-post-build-cases.json", "castle-capture-cases.json", "slayer-rng-capture-cases.json", "spider-session-cases.json", "dual-live-round-cases.json", "moonglade-capture-cases.json", "slayer-current-capture-cases.json", "dual-computer-followup-cases.json", "mountaintop-live-capture-cases.json", "nov03-capture-cases.json")) {
+		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "october-live-round-cases.json", "workshop-cases.json", "wiki-expansion-cases.json", "bazaar-item-names-cases.json", "rift-live-capture-cases.json", "rift-session-cases.json", "garden-weather-feast-cases.json", "village-living-cave-cases.json", "rift-post-build-cases.json", "castle-capture-cases.json", "slayer-rng-capture-cases.json", "spider-session-cases.json", "dual-live-round-cases.json", "moonglade-capture-cases.json", "slayer-current-capture-cases.json", "dual-computer-followup-cases.json", "mountaintop-live-capture-cases.json", "nov03-capture-cases.json", "nov04-combat-cases.json", "nov04-dungeons-cases.json", "nov04-skills-cases.json", "nov04-islands-cases.json", "nov04-hub-cases.json", "nov04-integration-cases.json")) {
 		Path path = corpusRoot.toAbsolutePath().getParent().resolve("tests/resources/" + file);
 		JsonObject fixture = JsonParser.parseString(Files.readString(path, StandardCharsets.UTF_8)).getAsJsonObject();
 		for (JsonElement value : fixture.getAsJsonArray("cases")) {
@@ -3096,6 +3096,38 @@ public final class TranslationHarness {
 		}
 		report("长谜面不扩展普通raw", !Capture.of("raw").accepts("red on the inside and green on the outside"),
 			"只有专用闭集类型允许这个九词谜面");
+		for (String species : List.of("Common Frog", "Puddle Jumper", "Blobfish", "Obfuscated-3")) {
+			report("锦标渔获闭集接受已核实物种 " + species,
+				Capture.TROPHY_CATCH_NAME.accepts(species), "不枚举品质圆点的动态状态");
+		}
+		for (String unknown : List.of("Mystery Frog", "Common Frog tomorrow", "", "Treefrog")) {
+			report("锦标渔获闭集拒绝未知内容 " + unknown,
+				!Capture.TROPHY_CATCH_NAME.accepts(unknown), "不放宽普通名称或鱼名类型");
+		}
+		Component mobDialogue = Component.literal("§e[MOB] §bPuddle Jumper§f: Wow! You caught me!");
+		for (var source : net.minecraft.client.multiplayer.chat.GuiMessageSource.values()) {
+			var message = new net.minecraft.client.multiplayer.chat.GuiMessage(1, mobDialogue, null, source, null);
+			boolean server = source == net.minecraft.client.multiplayer.chat.GuiMessageSource.SYSTEM_SERVER;
+			boolean allowed = io.github.bingkkni.skyzh.text.ChatDisplayCache.isServerMessage(message);
+			Component drawn = allowed ? Translator.translateChatBlock(message.content(), 320,
+				text -> text.getString().length() * 5) : message.content();
+			report("聊天消息来源决定MOB翻译边界 " + source, allowed == server
+				&& legacy(drawn).equals(legacy(Component.literal(server
+					? "§e[MOB] §bPuddle Jumper§f: 哇! 你钩住我啦!" : mobDialogue.getString())))
+				&& message.content() == mobDialogue, "服务端可译，玩家与客户端文本及历史原样保留");
+		}
+		boolean oldItemNames = SkyZHConfig.get().translateItemNames;
+		try {
+			SkyZHConfig.get().translateItemNames = false;
+			check("物品名关闭后详情标题保留原名", "Mosquito Shortbow", Surface.GUI_TITLE, "Mosquito Shortbow");
+			check("物品名关闭后家族详情标题保留原名", "Primordial Helmet", Surface.GUI_TITLE, "Primordial Helmet");
+			check("物品名关闭后燃料菜单仅翻类别", "Fuels ➜ Hyper Catalyst", Surface.GUI_TITLE, "燃料 ➜ Hyper Catalyst");
+			check("物品名关闭后发现蛙名保留品质仍翻译",
+				"§a§lNEW DISCOVERY: §fCommon Frog §7§lBRONZE", Surface.CHAT,
+				"§a§l新发现: §fCommon Frog §7§l铜品质");
+		} finally {
+			SkyZHConfig.get().translateItemNames = oldItemNames;
+		}
 		checkNoMatch("书面时长拒绝普通短语", "Come back in some other time to pick it up!", Surface.CHAT);
 		checkNoMatch("书面时长拒绝未声明单位", "Come back in 1 decade to pick it up!", Surface.CHAT);
 		report("材料数量前缀仅剥离已知目录名", LineShape.candidates(Surface.ITEM, "✔ 1/1 Unknown Item").stream()
@@ -3649,7 +3681,7 @@ public final class TranslationHarness {
 				&& "巨人之剑 ✪✪✪".equals(Translator.index().terms().translate("guide_item_name", "Giant's Sword ✪✪✪"))
 				&& Translator.index().terms().translate("guide_item_name", "Unverified Item") == null
 				&& "超级催化剂".equals(Translator.index().terms().translate("guide_item_name", "Hyper Catalyst"))
-				&& Translator.index().terms().translate("guide_item_name", "Heavy Helmet") == null
+				&& "沉重头盔".equals(Translator.index().terms().translate("guide_item_name", "Heavy Helmet"))
 				&& Translator.index().terms().translate("item_name", "Zombie Hat") == null,
 			"精确收录名、重铸前缀与星级可继承,未收录名及普通 item_name 不猜译");
 

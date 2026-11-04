@@ -1,0 +1,41 @@
+{
+  "source": "runtime capture (SkyZH), C:/Users/22309/Desktop/MinecraftMod/SkyZH_Logs/skyzh-capture; https://hypixelskyblock.minecraft.wiki/w/Guildford/UI; https://hypixelskyblock.minecraft.wiki/w/Dungeon_Hub_Race; https://hypixelskyblock.minecraft.wiki/w/Arrows; https://hypixelskyblock.minecraft.wiki/w/Piggy_Bank",
+  "verified_ingame": true,
+  "source_note": "复用现有译名；Wiki 普通 HTML 的菜单根页与 Select Settings 子菜单均已查看。raw 优先。",
+  "lines": [
+    {
+      "id": "nov04_dungeons_race_timer",
+      "context": "地牢组服务器实测；完整句与颜色以同次 raw/Lore 上下文为准。",
+      "text": "%1$s RACE %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "location_name",
+          "example": "PRECURSOR RUINS",
+          "desc": "服务器动态值，不固定为样例"
+        },
+        {
+          "token": "%2$s",
+          "type": "race_time",
+          "example": "00:00.050",
+          "desc": "服务器动态值，不固定为样例"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s竞速 %2$s",
+      "segments": [
+        {
+          "color": "§d§l",
+          "text": "%1$s RACE ",
+          "zh": "%1$s竞速 "
+        },
+        {
+          "color": "§e",
+          "text": "%2$s",
+          "zh": "%2$s"
+        }
+      ],
+      "raw": "§d§l%1$s RACE §e%2$s"
+    }
+  ]
+}

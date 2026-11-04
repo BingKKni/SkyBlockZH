@@ -3961,18 +3961,18 @@
     {
       "id": "factory_live_slot_cooldown",
       "context": "单个员工栏位冷却",
-      "text": "Slot cooldown: 19m %1$ss",
+      "text": "Slot cooldown: %1$s",
       "placeholders": [
         {
           "token": "%1$s",
-          "desc": "剩余秒数",
-          "type": "number",
-          "example": "57"
+          "desc": "完整剩余时长，随倒计时切换单位",
+          "type": "duration_spaced",
+          "example": "18m 53s"
         }
       ],
       "gloss": "",
       "translate": true,
-      "zh": "栏位冷却: 19 分 %1$s 秒",
+      "zh": "栏位冷却: %1$s",
       "segments": [
         {
           "color": "§7",
@@ -3981,26 +3981,26 @@
         },
         {
           "color": "§a",
-          "text": "19m %1$ss",
-          "zh": "19 分 %1$s 秒"
+          "text": "%1$s",
+          "zh": "%1$s"
         }
       ]
     },
     {
       "id": "factory_live_all_slots",
       "context": "全部员工栏位冷却",
-      "text": "All slots in: 2h 19m %1$ss",
+      "text": "All slots in: %1$s",
       "placeholders": [
         {
           "token": "%1$s",
-          "desc": "剩余秒数",
-          "type": "number",
-          "example": "57"
+          "desc": "全部栏位恢复的完整时长",
+          "type": "duration_spaced",
+          "example": "2h 18m 53s"
         }
       ],
       "gloss": "",
       "translate": true,
-      "zh": "全部栏位: 2 小时 19 分 %1$s 秒",
+      "zh": "全部栏位: %1$s",
       "segments": [
         {
           "color": "§7",
@@ -4009,8 +4009,8 @@
         },
         {
           "color": "§a",
-          "text": "2h 19m %1$ss",
-          "zh": "2 小时 19 分 %1$s 秒"
+          "text": "%1$s",
+          "zh": "%1$s"
         }
       ]
     }

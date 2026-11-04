@@ -1813,7 +1813,7 @@ public final class CaptureHarness {
 		CaptureStore.clear(root);
 		CaptureStore.root(root);
 		try {
-			List<Component> source = List.of(Component.literal("§7Mined from the cold depths of the"),
+			List<Component> source = List.of(Component.literal("§7A completely unknown lore opening"),
 				Component.literal("§bGlacite Tunnels§7."), Component.empty(), Component.literal("§eClick to view!"));
 			LoreSnapshot snapshot = LoreSnapshot.of("View Stash", 7, 12, Component.literal("§fRough Aquamarine Gemstone"), source);
 			for (var observation : TextCapture.inspectLore(source)) {

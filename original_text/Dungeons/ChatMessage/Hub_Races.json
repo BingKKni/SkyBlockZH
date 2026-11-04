@@ -21,14 +21,22 @@
       "translate": true,
       "zh": "%s竞速 比赛开始! 祝你好运!",
       "segments": [
-        {"color": "§d§l", "text": "%s RACE ", "zh": "%s竞速 "},
-        {"color": "§e", "text": "Race started! Good luck!", "zh": "比赛开始! 祝你好运!"}
+        {
+          "color": "§d§l",
+          "text": "%s RACE ",
+          "zh": "%s竞速 "
+        },
+        {
+          "color": "§e",
+          "text": "Race started! Good luck!",
+          "zh": "比赛开始! 祝你好运!"
+        }
       ]
     },
     {
       "id": "race_cancel_live",
       "context": "地牢大厅竞速提示",
-      "raw": "%s RACE Race cancelled!",
+      "raw": "§d§l%s RACE §cRace cancelled!",
       "text": "%s RACE Race cancelled!",
       "placeholders": [
         {
@@ -40,12 +48,24 @@
       ],
       "gloss": "",
       "translate": true,
-      "zh": "%s竞速已取消!"
+      "zh": "%s竞速 比赛已取消!",
+      "segments": [
+        {
+          "color": "§d§l",
+          "text": "%s RACE ",
+          "zh": "%s竞速 "
+        },
+        {
+          "color": "§c",
+          "text": "Race cancelled!",
+          "zh": "比赛已取消!"
+        }
+      ]
     },
     {
       "id": "race_reset_live",
       "context": "地牢大厅竞速提示",
-      "raw": "%s RACE Timer reset to 0:00!",
+      "raw": "§d§l%s RACE §eTimer reset to §d0:00§e!",
       "text": "%s RACE Timer reset to 0:00!",
       "placeholders": [
         {
@@ -57,7 +77,29 @@
       ],
       "gloss": "",
       "translate": true,
-      "zh": "%s竞速计时器已重置为 0:00!"
+      "zh": "%s竞速计时器已重置为 0:00!",
+      "segments": [
+        {
+          "color": "§d§l",
+          "text": "%s RACE ",
+          "zh": "%s竞速"
+        },
+        {
+          "color": "§e",
+          "text": "Timer reset to ",
+          "zh": "计时器已重置为 "
+        },
+        {
+          "color": "§d",
+          "text": "0:00",
+          "zh": "0:00"
+        },
+        {
+          "color": "§e",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
     }
   ],
   "capture_update": "2026-09-08; 仅采用 2026-09-06 10:47:44 +08:00 编译之后的记录。来自另一台设备 2026-09-07 实测; 日志无颜色,不伪造颜色。"

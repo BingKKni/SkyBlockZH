@@ -13,10 +13,17 @@
       "id": "round_15054e150e03",
       "context": "本轮服务器采集；GUI_Lore",
       "text": "Your Ship will help you travel to different Fishing Islands in SkyBlock.",
-      "raw": "§7Your Ship will help you travel to different Fishing Islands in SkyBlock.",
+      "raw": "§7Your §6Ship §7will help you travel to different §bFishing Islands §7in SkyBlock.",
       "placeholders": [],
       "translate": true,
-      "zh": "你的船舶能带你前往 SkyBlock 的各个钓鱼岛屿。"
+      "zh": "你的船舶能带你前往 SkyBlock 的各个钓鱼岛屿。",
+      "segments": [
+        {"color":"§7","text":"Your ","zh":"你的"},
+        {"color":"§6","text":"Ship ","zh":"船舶"},
+        {"color":"§7","text":"will help you travel to different ","zh":"能带你前往 SkyBlock 的各个"},
+        {"color":"§b","text":"Fishing Islands ","zh":"钓鱼岛屿"},
+        {"color":"§7","text":"in SkyBlock.","zh":"。"}
+      ]
     },
     {
       "id": "round_2d636300c5f4",
@@ -142,25 +149,31 @@
       "id": "round_139e1929e6bf",
       "context": "本轮服务器采集；GUI_Lore",
       "text": "Persuade NPCs from Fishing Islands to join your Ship Crew!",
-      "raw": "§7Persuade NPCs from Fishing Islands to join your §6Ship Crew§7!",
+      "raw": "§7Persuade NPCs from §bFishing Islands§7 to join your §6Ship Crew§7!",
       "placeholders": [],
       "translate": true,
       "zh": "说服钓鱼岛屿上的 NPC 加入你的船员队伍!",
       "segments": [
         {
           "color": "§7",
-          "text": "Persuade NPCs from Fishing Islands to join your ",
-          "zh": "说服钓鱼岛屿上的 NPC 加入你的"
+          "text": "Persuade NPCs from ",
+          "zh": "说服", "order": 0
+        },
+        {
+          "color": "§b", "text": "Fishing Islands", "zh": "钓鱼岛屿", "order": 1
+        },
+        {
+          "color": "§7", "text": " to join your ", "zh": "上的 NPC 加入你的", "order": 2
         },
         {
           "color": "§6",
           "text": "Ship Crew",
-          "zh": "船员队伍"
+          "zh": "船员队伍", "order": 3
         },
         {
           "color": "§7",
           "text": "!",
-          "zh": "!"
+          "zh": "!", "order": 4
         }
       ]
     },

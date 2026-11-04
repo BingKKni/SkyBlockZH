@@ -119,7 +119,7 @@ public final class ForceChat {
 			&& layoutTranslated == translate && layoutName == name && layoutItems == items) return new ArrayList<>(previousLines);
 		List<GuiMessage.Line> result = new ArrayList<>();
 		for (GuiMessage message : MESSAGES) {
-			boolean server = message.source() == GuiMessageSource.SYSTEM_SERVER;
+			boolean server = ChatDisplayCache.isServerMessage(message);
 			List<FormattedCharSequence> lines = CACHE.get(message, font, width, translate && server,
 				SkyZHConfig.get().translateSkyBlockName, Translator.index(), () -> {
 					Component text = translate && server

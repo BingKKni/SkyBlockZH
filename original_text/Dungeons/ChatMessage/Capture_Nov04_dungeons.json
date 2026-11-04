@@ -1,0 +1,273 @@
+{
+  "source": "runtime capture (SkyZH), C:/Users/22309/Desktop/MinecraftMod/SkyZH_Logs/skyzh-capture; https://hypixelskyblock.minecraft.wiki/w/Guildford/UI; https://hypixelskyblock.minecraft.wiki/w/Dungeon_Hub_Race; https://hypixelskyblock.minecraft.wiki/w/Arrows; https://hypixelskyblock.minecraft.wiki/w/Piggy_Bank",
+  "verified_ingame": true,
+  "source_note": "复用现有译名；Wiki 普通 HTML 的菜单根页与 Select Settings 子菜单均已查看。raw 优先。",
+  "lines": [
+    {
+      "id": "nov04_dungeons_race_finish",
+      "context": "地牢组服务器实测；完整句与颜色以同次 raw/Lore 上下文为准。",
+      "text": "%1$s RACE Race finished in %2$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "location_name",
+          "example": "PRECURSOR RUINS",
+          "desc": "服务器动态值，不固定为样例"
+        },
+        {
+          "token": "%2$s",
+          "type": "race_time",
+          "example": "00:35.338",
+          "desc": "服务器动态值，不固定为样例"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s竞速 完赛用时 %2$s!",
+      "segments": [
+        {
+          "color": "§d§l",
+          "text": "%1$s RACE ",
+          "zh": "%1$s竞速 "
+        },
+        {
+          "color": "§e",
+          "text": "Race finished in %2$s!",
+          "zh": "完赛用时 %2$s!"
+        }
+      ],
+      "raw": "§d§l%1$s RACE §eRace finished in %2$s!"
+    },
+    {
+      "id": "nov04_dungeons_race_best",
+      "context": "地牢组服务器实测；完整句与颜色以同次 raw/Lore 上下文为准。",
+      "text": "%1$s RACE Race finished in %2$s! PERSONAL BEST!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "location_name",
+          "example": "PRECURSOR RUINS",
+          "desc": "服务器动态值，不固定为样例"
+        },
+        {
+          "token": "%2$s",
+          "type": "race_time",
+          "example": "00:20.745",
+          "desc": "服务器动态值，不固定为样例"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s竞速 完赛用时 %2$s! 个人最佳成绩!",
+      "segments": [
+        {
+          "color": "§d§l",
+          "text": "%1$s RACE ",
+          "zh": "%1$s竞速 "
+        },
+        {
+          "color": "§e",
+          "text": "Race finished in ",
+          "zh": "完赛用时 "
+        },
+        {
+          "color": "§d",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§e",
+          "text": "! ",
+          "zh": "! "
+        },
+        {
+          "color": "§d§l",
+          "text": "PERSONAL BEST!",
+          "zh": "个人最佳成绩!"
+        }
+      ],
+      "raw": "§d§l%1$s RACE §eRace finished in §d%2$s§e! §d§lPERSONAL BEST!"
+    },
+    {
+      "id": "nov04_dungeons_race_checkpoint",
+      "context": "地牢组服务器实测；完整句与颜色以同次 raw/Lore 上下文为准。",
+      "text": "%s RACE Reached the other end! Return to the start to complete the race!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "location_name",
+          "example": "GIANT MUSHROOM",
+          "desc": "服务器动态值，不固定为样例"
+        }
+      ],
+      "translate": true,
+      "zh": "%s竞速 已抵达终点! 返回起点即可完成比赛!",
+      "segments": [
+        {
+          "color": "§d§l",
+          "text": "%s RACE ",
+          "zh": "%s竞速 "
+        },
+        {
+          "color": "§e",
+          "text": "Reached the other end! Return to the start to complete the race!",
+          "zh": "已抵达终点! 返回起点即可完成比赛!"
+        }
+      ],
+      "raw": "§d§l%s RACE §eReached the other end! Return to the start to complete the race!"
+    },
+    {
+      "id": "nov04_dungeons_race_setting",
+      "context": "地牢组服务器实测；完整句与颜色以同次 raw/Lore 上下文为准。",
+      "text": "Selected race setting: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "category_name",
+          "example": "No Abilities",
+          "desc": "服务器动态值，不固定为样例"
+        }
+      ],
+      "translate": true,
+      "zh": "已选择竞速规则: %s",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Selected race setting: ",
+          "zh": "已选择竞速规则: "
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ],
+      "raw": "§eSelected race setting: §b%s"
+    },
+    {
+      "id": "nov04_dungeons_race_runback",
+      "context": "地牢组服务器实测；完整句与颜色以同次 raw/Lore 上下文为准。",
+      "text": "Runback set to: %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "category_name",
+          "example": "Enabled",
+          "desc": "服务器动态值，不固定为样例"
+        }
+      ],
+      "translate": true,
+      "zh": "返回起点: %s",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "Runback set to: ",
+          "zh": "返回起点: "
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ],
+      "raw": "§eRunback set to: §a%s"
+    },
+    {
+      "id": "nov04_dungeons_race_start_plate",
+      "context": "地牢组服务器实测；完整句与颜色以同次 raw/Lore 上下文为准。",
+      "text": "Step on the pressure plate to start the race!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "踏上压力板开始比赛!"
+    },
+    {
+      "id": "nov04_dungeons_race_no_abilities",
+      "context": "地牢组服务器实测；完整句与颜色以同次 raw/Lore 上下文为准。",
+      "text": "You can't use Item Abilities in this race!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "本场竞速无法使用物品技能!"
+    },
+    {
+      "id": "nov04_dungeons_race_no_pearls",
+      "context": "地牢组服务器实测；完整句与颜色以同次 raw/Lore 上下文为准。",
+      "text": "You can't use Ender Pearls in this race!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "本场竞速无法使用末影珍珠!",
+      "item_refs": [
+        {
+          "text": "Ender Pearls",
+          "zh": "末影珍珠"
+        }
+      ]
+    },
+    {
+      "id": "nov04_dungeons_race_reward",
+      "context": "地牢组服务器实测；完整句与颜色以同次 raw/Lore 上下文为准。",
+      "text": "You have been given a %s!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "loot_item_name",
+          "example": "Cat Talisman",
+          "desc": "服务器动态值，不固定为样例"
+        }
+      ],
+      "translate": true,
+      "zh": "你获得了%s!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "You have been given a ",
+          "zh": "你获得了"
+        },
+        {
+          "color": "§a",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§e",
+          "text": "!",
+          "zh": "!"
+        }
+      ],
+      "raw": "§eYou have been given a §a%s§e!"
+    },
+    {
+      "id": "nov04_dungeons_race_reward_cat",
+      "context": "Guildford 竞速奖励聊天清单；baseline log audit 给出实际完整行及颜色。缩进由原始聊天布局保留。",
+      "source": "C:/Users/22309/Desktop/MinecraftMod/SkyZH/temp/nov04-baseline-log-audit.txt",
+      "text": "Cat Talisman",
+      "raw": "§aCat Talisman",
+      "placeholders": [],
+      "translate": true,
+      "zh": "猫护符",
+      "item_name": true,
+      "gloss": "译名复用 Hub_General/GUI_Item/SkyBlock_Guide_Item_Names.json#guide_item_cat_talisman。不使用 ref 是因为当前 resolve 只继承被引用项，不能在聊天引用上覆盖 item_name:true；整行真实物品名须参与物品名开关。"
+    },
+    {
+      "id": "nov04_dungeons_race_reward_lynx",
+      "context": "Guildford 竞速奖励聊天清单；baseline log audit 给出实际完整行及颜色。缩进由原始聊天布局保留。",
+      "source": "C:/Users/22309/Desktop/MinecraftMod/SkyZH/temp/nov04-baseline-log-audit.txt",
+      "text": "Lynx Talisman",
+      "raw": "§9Lynx Talisman",
+      "placeholders": [],
+      "translate": true,
+      "zh": "猞猁护符",
+      "item_name": true,
+      "gloss": "译名复用 Hub_General/GUI_Item/SkyBlock_Guide_Item_Names.json#guide_item_lynx_talisman。不使用 ref 是因为当前 resolve 只继承被引用项，不能在聊天引用上覆盖 item_name:true；整行真实物品名须参与物品名开关。"
+    },
+    {
+      "id": "nov04_dungeons_race_reward_cheetah",
+      "context": "Guildford 竞速奖励聊天清单；baseline log audit 给出实际完整行及颜色。缩进由原始聊天布局保留。",
+      "source": "C:/Users/22309/Desktop/MinecraftMod/SkyZH/temp/nov04-baseline-log-audit.txt",
+      "text": "Cheetah Talisman",
+      "raw": "§5Cheetah Talisman",
+      "placeholders": [],
+      "translate": true,
+      "zh": "猎豹护符",
+      "item_name": true,
+      "gloss": "译名复用 Hub_General/GUI_Item/SkyBlock_Guide_Item_Names.json#guide_item_cheetah_talisman。不使用 ref 是因为当前 resolve 只继承被引用项，不能在聊天引用上覆盖 item_name:true；整行真实物品名须参与物品名开关。"
+    }
+  ]
+}

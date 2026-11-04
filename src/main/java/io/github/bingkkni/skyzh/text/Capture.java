@@ -83,6 +83,9 @@ public enum Capture {
 	/** Closed trophy species; Vanille and deliberately obfuscated names keep their originals. */
 	TROPHY_FISH_NAME("(?:Blobfish|Flyfish|Golden Fish|Gusher|Karate Fish|Lavahorse|Mana Ray|Moldfin|Skeleton Fish|Slugfish|Soul Fish|Steaming-Hot Flounder|Sulphur Skitter|Vanille|Volcanic Stonefish|Obfuscated-[123])", false),
 
+	/** Trophy Fish and Trophy Frogs share discovery banners and four-quality Tab rows. */
+	TROPHY_CATCH_NAME(TROPHY_FISH_NAME.regex + "|(?:Common Frog|Exploding Frog|Leap Frog|Wetlands Frog|Reality Hopper|Blessed Frog|Bullfrog|Sea Frog|Cave Frog|Highlands Frog|Tree Frog|Puddle Jumper)", false),
+
 	/** Hungry Hiker's seven food clues; not a general exception for long dialogue fragments. */
 	HUNGRY_HIKER_FOOD("(?:grilled meat|red and crunchy|made of wheat|from a cow|"
 		+ "red on the inside and green on the outside|cooked potato|meat from a fowl)", false),
@@ -265,6 +268,7 @@ public enum Capture {
 			case "training_kind" -> TRAINING_KIND;
 			case "rift_ability" -> RIFT_ABILITY;
 			case "trophy_fish_name" -> TROPHY_FISH_NAME;
+			case "trophy_catch_name" -> TROPHY_CATCH_NAME;
 			case "equipment_slot" -> EQUIPMENT_SLOT;
 			case "hunter_quality" -> TROPHY_QUALITY;
 			case "hungry_hiker_food" -> HUNGRY_HIKER_FOOD;
@@ -313,7 +317,7 @@ public enum Capture {
 			// The regex is the whole of the rule for these: a numeral is a numeral, and a player's
 			// name is whatever sixteen word characters somebody chose.
 			case NUMBER, STAT_VALUE, ATTRIBUTE_VALUE, YEAR, DAY_OF_MONTH, PLAYER, PLAYER_DISPLAY, RANK, TIER, LEVEL, TIER_RANGE, ICON, ITEM_PART, TRAINING_KIND, TROPHY_QUALITY, GEMSTONE_KIND, GEMSTONE_QUALITY, ORDINAL, DURATION, DURATION_SPACED, DURATION_WORDS, SEARCH_QUERY -> true;
-			case RIFT_TIME, EQUIPMENT_SLOT, TROPHY_FISH_NAME, CONTEST_RANK, RIFT_ABILITY, RIFT_BOSS_STAGE, EXCLAMATIONS, HUNGRY_HIKER_FOOD, CLOCK_DURATION, RACE_TIME, PROGRESS, HUD_NUMBER, HEALTH_ICONS, PROGRESS_BAR, EFFIGY_STATES, ORDINAL_WORD, COMMISSION_AREA -> this.validation.matcher(value).matches();
+			case RIFT_TIME, EQUIPMENT_SLOT, TROPHY_FISH_NAME, TROPHY_CATCH_NAME, CONTEST_RANK, RIFT_ABILITY, RIFT_BOSS_STAGE, EXCLAMATIONS, HUNGRY_HIKER_FOOD, CLOCK_DURATION, RACE_TIME, PROGRESS, HUD_NUMBER, HEALTH_ICONS, PROGRESS_BAR, EFFIGY_STATES, ORDINAL_WORD, COMMISSION_AREA -> this.validation.matcher(value).matches();
 			case MULTIPLIER_INCREASE -> new BigDecimal(value).compareTo(BigDecimal.ONE) >= 0;
 			case NAME -> isName(value);
 			case MOB_FAMILY, STAT_NAME, RARITY -> this.validation.matcher(value).matches();

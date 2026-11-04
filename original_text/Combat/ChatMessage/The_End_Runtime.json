@@ -447,7 +447,15 @@
       ],
       "gloss": "",
       "translate": true,
-      "zh": "额外奖励! 对方还从本次献祭中获得了 %1$s 个附魔末影珍珠!"
+      "zh": "额外奖励! 对方还从本次献祭中获得了 %1$s 个附魔末影珍珠!",
+      "raw": "§c§lBONUS LOOT! §eThey also received §8%1$sx §aEnchanted Ender Pearl §efrom their sacrifice!",
+      "segments": [
+        {"color":"§c§l","text":"BONUS LOOT! ","zh":"额外奖励! "},
+        {"color":"§e","text":"They also received ","zh":"对方还从本次献祭中获得了 "},
+        {"color":"§8","text":"%1$sx ","zh":"%1$s 个"},
+        {"color":"§a","text":"Enchanted Ender Pearl ","zh":"附魔末影珍珠"},
+        {"color":"§e","text":"from their sacrifice!","zh":"!"}
+      ]
     },
     {
       "id": "altar_not_enough_essence",
@@ -496,7 +504,12 @@
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "稀有掉落! 水晶碎片"
+      "zh": "稀有掉落! 水晶碎片",
+      "raw": "§6§lRARE DROP! §5Crystal Fragment",
+      "segments": [
+        {"color":"§6§l","text":"RARE DROP! ","zh":"稀有掉落! "},
+        {"color":"§5","text":"Crystal Fragment","zh":"水晶碎片"}
+      ]
     },
     {
       "id": "end_rare_drop_enchanted_obsidian", "item_refs": [{"text": "Enchanted Obsidian", "zh": "附魔黑曜石"}],
@@ -724,7 +737,18 @@
       ],
       "gloss": "",
       "translate": true,
-      "zh": "献祭! [%1$s] %2$s 将末影%3$s转化成了 %4$s 巨龙精华!", "item_refs": [{"text":"Ender %3$s","zh":"末影%3$s"}]
+      "zh": "献祭! [%1$s] %2$s 将末影%3$s转化成了 %4$s 巨龙精华!", "item_refs": [{"text":"Ender %3$s","zh":"末影%3$s"}],
+      "raw": "§c§lSACRIFICE! §b[%1$s] %2$s§f §eturned §5Ender %3$s §einto §d%4$s Dragon Essence§e!",
+      "segments": [
+        {"color":"§c§l","text":"SACRIFICE! ","zh":"献祭! "},
+        {"color":"§b","text":"[%1$s] %2$s","zh":"[%1$s] %2$s"},
+        {"color":"§f","text":" ","zh":"","omit":true},
+        {"color":"§e","text":"turned ","zh":"将"},
+        {"color":"§5","text":"Ender %3$s ","zh":"末影%3$s"},
+        {"color":"§e","text":"into ","zh":"转化成了 "},
+        {"color":"§d","text":"%4$s Dragon Essence","zh":"%4$s 巨龙精华"},
+        {"color":"§e","text":"!","zh":"!"}
+      ]
     },
     {
       "id": "protector_shard_reward",

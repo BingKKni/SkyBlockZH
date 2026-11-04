@@ -1,0 +1,180 @@
+{
+  "cases": [
+    {
+      "name": "Jax报价币种也保持金色",
+      "surface": "NPC_Message",
+      "source": [
+        "§fOtherwise you'll have to give me §610M coins §fto get my contact, no less."
+      ],
+      "expected": "§f不然就给我 §610M 硬币§f买联系方式,一分都不能少。"
+    },
+    {
+      "name": "Jax实测Practice拼写",
+      "surface": "NPC_Message",
+      "source": [
+        "§fI unlocked §4Target Practice IV §ffor you, good luck kiddo."
+      ],
+      "expected": "§f我给你解锁了§4靶场练习 IV§f,祝你好运,小子。"
+    },
+    {
+      "name": "射靶剩余时间",
+      "surface": "ActionBar",
+      "source": [
+        "§eTime Left: §f24s"
+      ],
+      "expected": "§e剩余时间: §f24秒"
+    },
+    {
+      "name": "射靶进度斜线异色",
+      "surface": "ActionBar",
+      "source": [
+        "§eTargets: §a2§e/§a14"
+      ],
+      "expected": "§e目标: §a2§e/§a14"
+    },
+    {
+      "name": "射靶小数计时",
+      "surface": "ActionBar",
+      "source": [
+        "§eDuration: §f6.9s"
+      ],
+      "expected": "§e耗时: §f6.9秒"
+    },
+    {
+      "name": "员工单栏位不固定19分钟",
+      "surface": "GUI_Item",
+      "source": [
+        "§7Slot cooldown: §a18m 53s"
+      ],
+      "expected": "§7栏位冷却: §a18分53秒"
+    },
+    {
+      "name": "员工单栏位时长切秒",
+      "surface": "GUI_Item",
+      "source": [
+        "§7Slot cooldown: §a7s"
+      ],
+      "expected": "§7栏位冷却: §a7秒"
+    },
+    {
+      "name": "员工全部栏位不固定小时分钟",
+      "surface": "GUI_Item",
+      "source": [
+        "§7All slots in: §a1h 2m 3s"
+      ],
+      "expected": "§7全部栏位: §a1小时2分03秒"
+    },
+    {
+      "name": "Fann每日经验双变量",
+      "surface": "GUI_Item",
+      "source": [
+        "§7EXP Per Day: §b257,500 §8(+3%)"
+      ],
+      "expected": "§7每日经验: §b257,500 §8(+3%)"
+    },
+    {
+      "name": "Fann每日经验换加成",
+      "surface": "GUI_Item",
+      "source": [
+        "§7EXP Per Day: §b55,000 §8(+10%)"
+      ],
+      "expected": "§7每日经验: §b55,000 §8(+10%)"
+    },
+    {
+      "name": "Fann预计耗时四组动态值",
+      "surface": "GUI_Item",
+      "source": [
+        "§7Will take: §e16d 9h 50m 12s"
+      ],
+      "expected": "§7预计耗时: §e16天9小时50分12秒"
+    },
+    {
+      "name": "训练目标等级整句吞尾行",
+      "source": [
+        "§7Select the level this training session",
+        "§7will end at."
+      ],
+      "consumed": 2,
+      "expected": "§7选择本次训练结束时达到的等级。"
+    },
+    {
+      "name": "箭矢弹射完整句保概率颜色",
+      "source": [
+        "§7Arrows have a §e50% §7chance to",
+        "§7bounce to another target."
+      ],
+      "consumed": 2,
+      "expected": "§7箭矢有 §e50%§7 的概率弹射至另一目标。"
+    },
+    {
+      "name": "胶水箭小数持续时间",
+      "source": [
+        "§7Prevents victims from walking for",
+        "§21.5s §7when hit."
+      ],
+      "consumed": 2,
+      "expected": "§7命中后使目标无法行走，持续 §21.5秒§7。"
+    },
+    {
+      "name": "清空箭袋确认不可撤销不漏尾行",
+      "source": [
+        "§cThis is irreversible and will delete all",
+        "§citems from your quiver."
+      ],
+      "consumed": 2,
+      "expected": "§c此操作不可撤销，将删除箭袋中的所有物品。"
+    },
+    {
+      "name": "巧克力染料不遗留to",
+      "source": [
+        "§7Changes the color of an armor piece",
+        "§7to §6#7B3F00§7!"
+      ],
+      "consumed": 2,
+      "expected": "§7将一件盔甲的颜色更改为 §6#7B3F00§7!"
+    },
+    {
+      "name": "商店里程碑消费不是历史产量",
+      "source": [
+        "§7Unlock special §aChocolate Rabbits §7by",
+        "§7spending §6Chocolate §7in the §6Chocolate",
+        "§6Shop§7."
+      ],
+      "consumed": 3,
+      "expected": "§7在§6巧克力商店§7消费§6巧克力§7，解锁特殊§a巧克力兔子§7。"
+    },
+    {
+      "name": "工厂里程碑累计产出数量动态",
+      "source": [
+        "§7Reach §610M Chocolate §7all-time to",
+        "§7unlock this special §aChocolate Rabbit§7!"
+      ],
+      "consumed": 2,
+      "expected": "§7历史累计产出达到 §610M 巧克力§7，即可解锁这只特殊的§a巧克力兔子§7!"
+    },
+    {
+      "name": "普通专名Bea不造透传",
+      "surface": "GUI_Title",
+      "source": [
+        "Bea"
+      ],
+      "miss": true
+    },
+    {
+      "name": "非原版附魔Wisdom不汉化",
+      "surface": "GUI_Item",
+      "source": [
+        "§d§lWisdom V"
+      ],
+      "miss": true
+    },
+    {
+      "name": "专有品牌Abiphone不汉化",
+      "surface": "GUI_Title",
+      "source": [
+        "Abiphone XIII Jade"
+      ],
+      "miss": true
+    }
+  ]
+}

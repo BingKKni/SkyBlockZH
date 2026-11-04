@@ -1,0 +1,136 @@
+{
+  "cases": [
+    {
+      "name": "皮层改写器两行合并且专名保持原色",
+      "expected": "§7在 §bKat§7 处使用，将§e末影人宠物§7升级至§d神话§7稀有度。",
+      "consumed": 2,
+      "source": [
+        "§7Use at §bKat §7to upgrade §eEnderman",
+        "§ePets §7to §dMythic §7rarity."
+      ]
+    },
+    {
+      "name": "移除警告不翻自定义附魔名且保留紫色",
+      "expected": "§c§l警告: 此操作将移除 §d§lDuplex§c§l。",
+      "consumed": 2,
+      "source": [
+        "§c§lWARNING: This will remove",
+        "§d§lDuplex§c§l."
+      ]
+    },
+    {
+      "name": "清空箭袋确认页不残留尾行",
+      "expected": "§c此操作不可撤销，将删除箭袋中的所有物品。",
+      "consumed": 2,
+      "source": [
+        "§cThis is irreversible and will delete all",
+        "§citems from your quiver.",
+        "",
+        "§eClick to confirm!"
+      ]
+    },
+    {
+      "name": "魂流三行合并且资源保持深青",
+      "expected": "§7吸收背包中所有§3⸎ 魂流§7物品，将其转化为可供使用的内化魂流。",
+      "consumed": 3,
+      "source": [
+        "§7Takes all the §3⸎ Soulflow §7items in",
+        "§7your inventory and internalizes them",
+        "§7to be ready for use."
+      ]
+    },
+    {
+      "name": "黏液束缚从尾行取动态时长",
+      "expected": "§7命中后使目标无法行走，持续 §21.5秒§7。",
+      "consumed": 2,
+      "source": [
+        "§7Prevents victims from walking for",
+        "§21.5s §7when hit."
+      ]
+    },
+    {
+      "name": "黏液束缚变化时长",
+      "expected": "§7命中后使目标无法行走，持续 §22.5秒§7。",
+      "consumed": 2,
+      "source": [
+        "§7Prevents victims from walking for",
+        "§22.5s §7when hit."
+      ]
+    },
+    {
+      "name": "弹射目标数和伤害衰减分段",
+      "expected": "§7最多弹射至 §c4§7 个目标，每次弹射的伤害降低 §c15%§7。",
+      "consumed": 2,
+      "source": [
+        "§7Bounces up to §c4 §7targets, each",
+        "§7bounce dealing §c15% §7less damage."
+      ]
+    },
+    {
+      "name": "弹射目标变化",
+      "expected": "§7最多弹射至 §c6§7 个目标，每次弹射的伤害降低 §c20%§7。",
+      "consumed": 2,
+      "source": [
+        "§7Bounces up to §c6 §7targets, each",
+        "§7bounce dealing §c20% §7less damage."
+      ]
+    },
+    {
+      "name": "铁砧拒绝低高等级混合",
+      "expected": "§7低等级附魔书无法与高等级附魔书合并!",
+      "consumed": 2,
+      "source": [
+        "§7You can't combine lower-tier books",
+        "§7with higher-tier ones!"
+      ]
+    },
+    {
+      "name": "退款数量金额随语序移动",
+      "expected": "§7未购得的 §a1§7 件物品将退还 §6150,068 硬币",
+      "consumed": 2,
+      "source": [
+        "§7You will be refunded §6150,068 coins",
+        "§7from §a1§7x missing items."
+      ]
+    },
+    {
+      "name": "退款变化数值",
+      "expected": "§7未购得的 §a2§7 件物品将退还 §6300,000 硬币",
+      "consumed": 2,
+      "source": [
+        "§7You will be refunded §6300,000 coins",
+        "§7from §a2§7x missing items."
+      ]
+    },
+    {
+      "name": "转卖单数量不写死",
+      "expected": "§7直接为 §a12§7 件商品创建新卖单。",
+      "consumed": 2,
+      "source": [
+        "§7Directly create a new sell offer for",
+        "§a12§7x products."
+      ]
+    },
+    {
+      "name": "猎手奖励完整两行保留原缩进",
+      "expected": " §5天赋: §d在超级配对中找到 RNGesus 级附魔的概率提高 15%",
+      "consumed": 2,
+      "source": [
+        " §5Perk: §d+15% chance to find",
+        " §dRNGesus enchants in Superpairs"
+      ]
+    },
+    {
+      "name": "地牢生物描述不因逐行翻译重复",
+      "expected": "§8§o这个强大的存在施展毁灭性的法术，召来仆从听命行事，诡异的吟唱在地牢长廊中回荡。",
+      "consumed": 5,
+      "source": [
+        "§8§oThis powerful entity conjures",
+        "§8§odevastating spells and summons",
+        "§8§ominions to do his bidding, his eerie",
+        "§8§ochants echoing through the",
+        "§8§odungeon's corridors."
+      ]
+    }
+  ]
+}

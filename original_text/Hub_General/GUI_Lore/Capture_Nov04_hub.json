@@ -1,0 +1,61 @@
+{
+  "source": "runtime capture (SkyZH), 2026-11-03/04; https://hypixelskyblock.minecraft.wiki/w/Jax/UI; https://hypixelskyblock.minecraft.wiki/w/Quiver; https://hypixelskyblock.minecraft.wiki/w/Fann",
+  "verified_ingame": true,
+  "entries": [
+    {"id":"hub_projectile_absorption_heal","context":"zombie Recipes 中 Projectile Absorption 套装效果，完整三行；不是立即回复50点","text":"Heals the wearer for %1$s per second for %2$s seconds when hit by a projectile.","raw":"§7Heals the wearer for §a%1$s§7 per second for §a%2$s§7 seconds when hit by a projectile.","placeholders":[{"token":"%1$s","type":"number","example":"10","desc":"每秒回复生命值"},{"token":"%2$s","type":"number","example":"5","desc":"持续秒数"}],"segments":[{"color":"§7","text":"Heals the wearer for ","zh":"被弹射物命中时，每秒为穿戴者回复 "},{"color":"§a","text":"%1$s","zh":"%1$s"},{"color":"§7","text":" per second for ","zh":" 点生命值，持续 "},{"color":"§a","text":"%2$s","zh":"%2$s"},{"color":"§7","text":" seconds when hit by a projectile.","zh":" 秒。"}],"zh":"被弹射物命中时，每秒为穿戴者回复 %1$s 点生命值，持续 %2$s 秒。","samples":[["§7Heals the wearer for §a10§7 per second","§7for §a5§7 seconds when hit by a","§7projectile."]],"translate":true},
+    {"id":"hub_zombie_defense","context":"zombie Recipes 中僵尸护甲效果；范围与每只加成分别动态","text":"Gives +%1$s ❈ Defense for each Zombie within %2$s blocks.","raw":"§7Gives §a+%1$s ❈ Defense §7for each Zombie within §e%2$s §7blocks.","placeholders":[{"token":"%1$s","type":"number","example":"10","desc":"每只僵尸提供的防御力"},{"token":"%2$s","type":"number","example":"8","desc":"生效范围"}],"segments":[{"color":"§7","text":"Gives ","zh":"每有一只僵尸位于 ","order":0},{"color":"§a","text":"+%1$s ❈ Defense ","zh":"+%1$s ❈ 防御力","order":3},{"color":"§7","text":"for each Zombie within ","zh":" 格内，获得 ","order":2},{"color":"§e","text":"%2$s ","zh":"%2$s","order":1},{"color":"§7","text":"blocks.","zh":"。","order":4}],"zh":"每有一只僵尸位于 %2$s 格内，获得 +%1$s ❈ 防御力。","samples":[["§7Gives §a+10  Defense §7for each","§7Zombie within §e8 §7blocks."]],"translate":true},
+    {
+      "id": "hub_arrow_bouncy_title",
+      "ref": "_shared/Fragments/Capture_Nov04.json#nov04_shared_nov04_combat_passive_bouncy",
+      "context": "弹射箭被动标题；不是物品名"
+    },
+    {
+      "id": "hub_arrow_freeze_title",
+      "ref": "_shared/Fragments/Capture_Nov04.json#nov04_shared_nov04_combat_passive_freeze",
+      "context": "冰箭被动标题"
+    },
+    {
+      "id": "hub_arrow_glue_title",
+      "ref": "_shared/Fragments/Capture_Nov04.json#nov04_shared_nov04_combat_passive_glue",
+      "context": "胶水箭被动标题"
+    },
+    {
+      "id": "hub_arrow_bounce_chance",
+      "ref": "_shared/Fragments/Capture_Nov04.json#nov04_shared_nov04_combat_bounce_chance",
+      "context": "Forge Arrows / 背包弹射箭；同次 Lore 两行完整句"
+    },
+    {
+      "id": "hub_arrow_bounce_damage",
+      "ref": "_shared/Fragments/Capture_Nov04.json#nov04_shared_nov04_combat_bounce_targets",
+      "context": "Forge Arrows 弹射箭第二句；最多目标数、每次伤害递减分别保留"
+    },
+    {"id":"hub_arrow_slowness","context":"冰箭；缓慢为原版状态名","text":"Applies Slowness I for %s to targets.","raw":"§7Applies §bSlowness I §7for §a%s §7to targets.","placeholders":[{"token":"%s","type":"duration_spaced","example":"3s","desc":"缓慢持续时间"}],"segments":[{"color":"§7","text":"Applies ","zh":"使目标陷入","order":0},{"color":"§b","text":"Slowness I ","zh":"缓慢 I","order":1},{"color":"§7","text":"for ","zh":"，持续 ","order":2},{"color":"§a","text":"%s ","zh":"%s","order":3},{"color":"§7","text":"to targets.","zh":"。","order":4}],"zh":"使目标陷入缓慢 I，持续 %s。","translate":true},
+    {
+      "id": "hub_arrow_root",
+      "ref": "_shared/Fragments/Capture_Nov04.json#nov04_shared_nov04_combat_root",
+      "context": "胶水箭；命中后禁止行走，并非一般减速"
+    },
+    {
+      "id": "hub_arrow_root_cooldown",
+      "ref": "_shared/Fragments/Capture_Nov04.json#nov04_shared_nov04_combat_root_cooldown",
+      "context": "胶水箭；每个目标单独计算冷却"
+    },
+    {
+      "id": "hub_clear_quiver_warning",
+      "ref": "_shared/Fragments/Capture_Nov04.json#nov04_shared_nov04_combat_clear_warning",
+      "context": "Clear Quiver 确认子菜单警告；不可恢复"
+    },
+    {
+      "id": "hub_quiver_delete",
+      "ref": "_shared/Fragments/Capture_Nov04.json#nov04_shared_nov04_combat_quiver_delete",
+      "context": "Quiver 清空按钮说明"
+    },
+    {"id":"hub_training_end_level","context":"Training Slot 1 → Desired Level；同次有序 Lore 两行","text":"Select the level this training session will end at.","raw":"§7Select the level this training session will end at.","zh":"选择本次训练结束时达到的等级。","samples":[["§7Select the level this training session","§7will end at."]],"translate":true},
+    {"id":"hub_pet_rarity_max","context":"Pet Sitter；稀有度已到上限，并非等级上限","text":"The rarity of this pet cannot be upgraded any further!","raw":"§cThe rarity of this pet cannot be upgraded any further!","zh":"这只宠物的稀有度已无法继续提升!","samples":[["§cThe rarity of this pet cannot be","§cupgraded any further!"]],"translate":true},
+    {
+      "id": "hub_no_accessory_power",
+      "ref": "_shared/Fragments/Capture_Nov04.json#nov04_shared_skills_no_power_desc",
+      "context": "Accessory Bag Thaumaturgy 不选能力的调侃说明；完整三行"
+    }
+  ]
+}

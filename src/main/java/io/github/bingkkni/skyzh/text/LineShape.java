@@ -50,7 +50,7 @@ public final class LineShape {
 	 * crowd's lines, written as the sentence alone, and not one of them could ever match.
 	 */
 	private static final String[] SPEAKER_TAGS = {
-		"[NPC] ", "[BOSS] ", "[GUARD] ", "[SECURITY] ", "[CROWD] ", "[STATUE] ", "[SKULL] ", "[PET] "
+		"[NPC] ", "[BOSS] ", "[GUARD] ", "[SECURITY] ", "[CROWD] ", "[STATUE] ", "[SKULL] ", "[PET] ", "[MOB] "
 	};
 
 	/**
@@ -203,7 +203,7 @@ public final class LineShape {
 			// Four live quality markers belong to the row, not to the trophy species name.
 			if (end - start > 5 && QUALITY_MARKERS.matcher(plain).region(start, start + 4).matches()
 				&& plain.charAt(start + 4) == ' '
-				&& Capture.TROPHY_FISH_NAME.accepts(plain.substring(start + 5, end))) {
+				&& Capture.TROPHY_CATCH_NAME.accepts(plain.substring(start + 5, end))) {
 				add(ranges, start + 5, end);
 			}
 			// Rows read "<label>: <value>". Both forms of the label are tried because the corpus has

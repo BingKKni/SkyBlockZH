@@ -1,0 +1,238 @@
+{
+  "cases": [
+    {
+      "name": "锦标蛙四圆点保持各品质颜色",
+      "surface": "TabList",
+      "source": [
+        " §8○§7●§6○§b○ §aCommon Frog "
+      ],
+      "expected": " §8○§7●§6○§b○ §a普通蛙 "
+    },
+    {
+      "name": "锦标蛙稀有物种复用既有译名",
+      "surface": "TabList",
+      "source": [
+        " §8●§7●§6○§b○ §9Bullfrog "
+      ],
+      "expected": " §8●§7●§6○§b○ §9牛蛙 "
+    },
+    {
+      "name": "锦标蛙五圆点不能借用四品质路径",
+      "surface": "TabList",
+      "source": [
+        "●○○○○ Common Frog"
+      ],
+      "expected": "●○○○○ Common Frog"
+    },
+    {
+      "name": "未知物种不借用品质圆点",
+      "surface": "TabList",
+      "source": [
+        "○○○○ Mystery Frog"
+      ],
+      "expected": "○○○○ Mystery Frog"
+    },
+    {
+      "name": "锦标蛙新发现复用唯一广播模板",
+      "surface": "ChatMessage",
+      "source": [
+        "§a§lNEW DISCOVERY: §fCommon Frog §7§lBRONZE"
+      ],
+      "expected": "§a§l新发现: §f普通蛙 §7§l铜品质"
+    },
+    {
+      "name": "另一物种和品质不写死",
+      "surface": "ChatMessage",
+      "source": [
+        "§a§lNEW DISCOVERY: §fPuddle Jumper §7§lSILVER"
+      ],
+      "expected": "§a§l新发现: §f水坑跃者 §7§l银品质"
+    },
+    {
+      "name": "未知发现物种不能落入宽泛名称",
+      "surface": "ChatMessage",
+      "source": [
+        "NEW DISCOVERY: Mystery Frog BRONZE"
+      ],
+      "miss": true
+    },
+    {
+      "name": "详情标题复用实际物品名",
+      "surface": "GUI_Title",
+      "source": [
+        "Mosquito Shortbow"
+      ],
+      "expected": "蚊子短弓"
+    },
+    {
+      "name": "详情标题复用目录确认的装备家族",
+      "surface": "GUI_Title",
+      "source": [
+        "Primordial Helmet"
+      ],
+      "expected": "Primordial 头盔"
+    },
+    {
+      "name": "目录外装备不借用家族模板",
+      "surface": "GUI_Title",
+      "source": [
+        "Primordial Door"
+      ],
+      "miss": true
+    },
+    {
+      "name": "普通菜单词不借用物品Lore",
+      "surface": "GUI_Title",
+      "source": [
+        "This item can be reforged!"
+      ],
+      "miss": true
+    },
+    {
+      "name": "返回菜单保留地点和生物既有类型译名",
+      "surface": "GUI_Item",
+      "source": [
+        "To Moonglade Marsh ➜ Shellwise"
+      ],
+      "expected": "返回月光沼泽 ➜ Shellwise"
+    },
+    {
+      "name": "返回菜单支持类别而不假作生物",
+      "surface": "GUI_Item",
+      "source": [
+        "To Combat ➜ Reforge Stones"
+      ],
+      "expected": "返回战斗 ➜ 重铸石"
+    },
+    {
+      "name": "燃料菜单引用真实物品",
+      "surface": "GUI_Title",
+      "source": [
+        "Fuels ➜ Hyper Catalyst"
+      ],
+      "expected": "燃料 ➜ 超级催化剂"
+    },
+    {
+      "name": "配方烈焰粉不误译为矿区粉末",
+      "surface": "GUI_Lore",
+      "source": [
+        "§79x Enchanted Blaze Powder"
+      ],
+      "expected": "§79x 附魔烈焰粉"
+    },
+    {
+      "name": "三种真正矿区粉末仍匹配",
+      "surface": "GUI_Lore",
+      "source": [
+        "§d19,331 Mithril Powder"
+      ],
+      "expected": "§d19,331 秘银粉末"
+    },
+    {
+      "name": "黏土收获保留物品和灰色数量",
+      "surface": "ChatMessage",
+      "source": [
+        "§5 §5§lGOOD CATCH! §fYou caught a Clay Ball §8x32§f!"
+      ],
+      "expected": "§5 §5§l好收获! §f你钓到了黏土球 §8x32§f!"
+    },
+    {
+      "name": "领网提示保留目标地名人物与渔网颜色",
+      "surface": "ChatMessage",
+      "source": [
+        "§fLotusfish §ccan only be hunted with a §bFishing Net§c! Talk to §bDavid Hunterborough §cin the §2Moonglade Marsh §cto get one!"
+      ],
+      "expected": "§f莲花鱼§c只能用§b渔网§c狩猎! 去找 §bDavid Hunterborough§c 领取吧，他就在§2月光沼泽§c。"
+    },
+    {
+      "name": "Frail说明整句合并且百分比不变",
+      "source": [
+        "§7Sea creatures start with §a5%§7 reduced",
+        "§7health."
+      ],
+      "consumed": 2,
+      "expected": "§7海洋生物的初始生命值降低 §a5%§7。"
+    },
+    {
+      "name": "Frail变化数值不写死",
+      "source": [
+        "§7Sea creatures start with §a8%§7 reduced",
+        "§7health."
+      ],
+      "consumed": 2,
+      "expected": "§7海洋生物的初始生命值降低 §a8%§7。"
+    },
+    {
+      "name": "图鉴升级名称与等级分别保留粗体",
+      "surface": "ChatMessage",
+      "source": [
+        "§b§lLotus Guardian §7§bII"
+      ],
+      "expected": "§b§l莲花守卫 §bII"
+    },
+    {
+      "name": "MOB对白复用服务器说话人结构",
+      "surface": "ChatMessage",
+      "source": [
+        "§e[MOB] §bPuddle Jumper§f: Wow! You caught me!"
+      ],
+      "expected": "§e[MOB] §bPuddle Jumper§f: 哇! 你钩住我啦!"
+    },
+    {
+      "name": "MOB对白不扩展到物品面",
+      "surface": "GUI_Item",
+      "source": [
+        "Let's get ready for a ride!"
+      ],
+      "miss": true
+    },
+    {
+      "name": "新物品名在旧蛛网提示中保持一致",
+      "surface": "ChatMessage",
+      "source": [
+        "§cYou can only break these webs using the §aRecluse Fang§c, §9Tarantula Fang§c, §6Sting§c, or §5Scorpion Foil§c!"
+      ],
+      "expected": "§c仅可使用§a隐士蛛牙§c、§9狼蛛之牙§c、§6Sting§c 或§5蝎刺细剑§c清除这些蛛网!"
+    },
+    {
+      "name": "详情标题借用保留原始居中留白",
+      "surface": "GUI_Title",
+      "source": [
+        "    §6Mosquito Shortbow   "
+      ],
+      "expected": "    §6蚊子短弓   "
+    },
+    {
+      "name": "未知详情标题留白不制造匹配",
+      "surface": "GUI_Title",
+      "source": [
+        "    Mystery Shortbow   "
+      ],
+      "miss": true
+    },
+    {
+      "name": "巧克力风味赞叹不写成嫌弃语气",
+      "surface": "GUI_Lore",
+      "source": [
+        "§8§oMwah! C'est magnifique, no?"
+      ],
+      "expected": "§8§o嗯! 妙不可言，不是吗?"
+    },
+    {
+      "name": "未知粉末不落入材料数量模板",
+      "surface": "GUI_Lore",
+      "source": [
+        "§79x Mystery Powder"
+      ],
+      "miss": true
+    },
+    {
+      "name": "配方材料数量不是采集样例常量",
+      "surface": "GUI_Lore",
+      "source": [
+        "§718x Enchanted Blaze Powder"
+      ],
+      "expected": "§718x 附魔烈焰粉"
+    }
+  ]
+}

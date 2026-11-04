@@ -83,7 +83,7 @@ public abstract class ChatComponentMixin {
 		require = 0
 	)
 	private List<FormattedCharSequence> skyzh$translateBeforeSplit(GuiMessage message, Font font, int width) {
-		boolean translate = HypixelServer.canTranslate();
+		boolean translate = HypixelServer.canTranslate() && ChatDisplayCache.isServerMessage(message);
 		return this.skyzh$displayCache.get(message, font, width, translate,
 			SkyZHConfig.get().translateSkyBlockName, Translator.index(), () -> {
 				if (!translate) return message.splitLines(font, width);

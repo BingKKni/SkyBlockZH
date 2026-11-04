@@ -1,0 +1,240 @@
+{
+  "note": "供 TranslationHarness.checkFixedMenus 文件列表接入；父代理合并入口，本组不改 Java。含两个独立数值、尾行缺失、真实颜色与玩家徽记。",
+  "cases": [
+    {
+      "name": "竞速计时毫秒",
+      "surface": "ActionBar",
+      "source": [
+        "§d§lPRECURSOR RUINS RACE §e00:00.050"
+      ],
+      "expected": "§d§l先驱遗迹竞速 §e00:00.050"
+    },
+    {
+      "name": "竞速计时独立变值",
+      "surface": "ActionBar",
+      "source": [
+        "§d§lCRYSTAL CORE RACE §e01:12.345"
+      ],
+      "expected": "§d§l水晶核心竞速 §e01:12.345"
+    },
+    {
+      "name": "竞速完赛",
+      "surface": "ChatMessage",
+      "source": [
+        "§d§lPRECURSOR RUINS RACE §eRace finished in 00:35.338!"
+      ],
+      "expected": "§d§l先驱遗迹竞速 §e完赛用时 00:35.338!"
+    },
+    {
+      "name": "竞速个人纪录颜色",
+      "surface": "ChatMessage",
+      "source": [
+        "§d§lPRECURSOR RUINS RACE §eRace finished in §d00:20.745§e! §d§lPERSONAL BEST!"
+      ],
+      "expected": "§d§l先驱遗迹竞速 §e完赛用时 §d00:20.745§e! §d§l个人最佳成绩!"
+    },
+    {
+      "name": "竞速取消保留前后双色",
+      "surface": "ChatMessage",
+      "source": [
+        "§d§lPRECURSOR RUINS RACE §cRace cancelled!"
+      ],
+      "expected": "§d§l先驱遗迹竞速 §c比赛已取消!"
+    },
+    {
+      "name": "竞速重置保留四段",
+      "surface": "ChatMessage",
+      "source": [
+        "§d§lCRYSTAL CORE RACE §eTimer reset to §d0:00§e!"
+      ],
+      "expected": "§d§l水晶核心竞速§e计时器已重置为 §d0:00§e!"
+    },
+    {
+      "name": "竞速返回起点",
+      "surface": "ChatMessage",
+      "source": [
+        "§d§lGIANT MUSHROOM RACE §eReached the other end! Return to the start to complete the race!"
+      ],
+      "expected": "§d§l巨型蘑菇竞速 §e已抵达终点! 返回起点即可完成比赛!"
+    },
+    {
+      "name": "竞速设置复用词表",
+      "surface": "ChatMessage",
+      "source": [
+        "§eSelected race setting: §bNo Abilities"
+      ],
+      "expected": "§e已选择竞速规则: §b禁用技能"
+    },
+    {
+      "name": "竞速不限制",
+      "surface": "ChatMessage",
+      "source": [
+        "§eSelected race setting: §bAnything"
+      ],
+      "expected": "§e已选择竞速规则: §b不限制"
+    },
+    {
+      "name": "返回开关启用",
+      "surface": "ChatMessage",
+      "source": [
+        "§eRunback set to: §aEnabled"
+      ],
+      "expected": "§e返回起点: §a启用"
+    },
+    {
+      "name": "竞速末影珍珠限制",
+      "surface": "ChatMessage",
+      "source": [
+        "§cYou can't use Ender Pearls in this race!"
+      ],
+      "expected": "§c本场竞速无法使用末影珍珠!"
+    },
+    {
+      "name": "竞速猫护符奖励复用物品",
+      "surface": "ChatMessage",
+      "source": [
+        "§eYou have been given a §aCat Talisman§e!"
+      ],
+      "expected": "§e你获得了§a猫护符§e!"
+    },
+    {
+      "name": "存钱罐译名复用",
+      "surface": "GUI_Item",
+      "source": [
+        "§aBroken Piggy Bank"
+      ],
+      "expected": "§a破损的存钱罐"
+    },
+    {
+      "name": "箭矢物品名",
+      "surface": "GUI_Item",
+      "source": [
+        "§9Bouncy Arrow"
+      ],
+      "expected": "§9弹射箭"
+    },
+    {
+      "name": "返回开关 Lore",
+      "source": [
+        "§7Currently selected: §aEnabled"
+      ],
+      "expected": "§7当前选择: §a已启用",
+      "consumed": 1
+    },
+    {
+      "name": "概率与完整尾行",
+      "source": [
+        "§7Arrows have a §e50% §7chance to",
+        "§7bounce to another target."
+      ],
+      "expected": "§7箭矢有 §e50%§7 的概率弹射至另一目标。",
+      "consumed": 2
+    },
+    {
+      "name": "概率独立变值",
+      "source": [
+        "§7Arrows have a §e65% §7chance to",
+        "§7bounce to another target."
+      ],
+      "expected": "§7箭矢有 §e65%§7 的概率弹射至另一目标。",
+      "consumed": 2
+    },
+    {
+      "name": "弹射箭最大目标与逐跳减伤",
+      "source": [
+        "§7Bounces up to §c4 §7targets, each",
+        "§7bounce dealing §c15% §7less damage."
+      ],
+      "expected": "§7最多弹射至 §c4§7 个目标，每次弹射的伤害降低 §c15%§7。",
+      "consumed": 2
+    },
+    {
+      "name": "弹射箭独立数值",
+      "source": [
+        "§7Bounces up to §c6 §7targets, each",
+        "§7bounce dealing §c20% §7less damage."
+      ],
+      "expected": "§7最多弹射至 §c6§7 个目标，每次弹射的伤害降低 §c20%§7。",
+      "consumed": 2
+    },
+    {
+      "name": "概率缺尾不吞",
+      "source": [
+        "§7Arrows have a §e50% §7chance to"
+      ],
+      "miss": true
+    },
+    {
+      "name": "Tab弓箭手保留等级玩家颜色",
+      "surface": "TabList",
+      "source": [
+        "§8[§4485§8] §6Cute_Leaf_ovo §f(§dArcher XLVII§f)"
+      ],
+      "expected": "§8[§4485§8] §6Cute_Leaf_ovo §f(§d弓箭手 XLVII§f)"
+    },
+    {
+      "name": "Tab治疗师保留徽记",
+      "surface": "TabList",
+      "source": [
+        "§8[§b238§8] §binkkni §b§lᛝ §f(§dHealer XXVII§f)"
+      ],
+      "expected": "§8[§b238§8] §binkkni §b§lᛝ §f(§d治疗师 XXVII§f)"
+    },
+    {
+      "name": "Tab死亡状态",
+      "surface": "TabList",
+      "source": [
+        "§8[§4485§8] §6Cute_Leaf_ovo §f(§cDEAD§f)"
+      ],
+      "expected": "§8[§4485§8] §6Cute_Leaf_ovo §f(§c已阵亡§f)"
+    },
+    {
+      "name": "Watcher称号",
+      "surface": "GUI_Item",
+      "source": [
+        "§8Stalker"
+      ],
+      "expected": "§8潜行者"
+    },
+    {
+      "name": "Professor职务不是整名",
+      "surface": "GUI_Item",
+      "source": [
+        "§8Professor"
+      ],
+      "expected": "§8教授"
+    },
+    {
+      "name": "骷髅小兵译名复用",
+      "surface": "GUI_Item",
+      "source": [
+        "§5Skeleton Grunt Chestplate"
+      ],
+      "expected": "§5骷髅小兵胸甲"
+    },
+    {
+      "name": "日志补充奖励Cat",
+      "surface": "ChatMessage",
+      "source": [
+        "    §7§aCat Talisman"
+      ],
+      "expected": "    §a猫护符"
+    },
+    {
+      "name": "日志补充奖励Lynx",
+      "surface": "ChatMessage",
+      "source": [
+        "    §7§9Lynx Talisman"
+      ],
+      "expected": "    §9猞猁护符"
+    },
+    {
+      "name": "日志补充奖励Cheetah",
+      "surface": "ChatMessage",
+      "source": [
+        "    §7§5Cheetah Talisman"
+      ],
+      "expected": "    §5猎豹护符"
+    }
+  ]
+}

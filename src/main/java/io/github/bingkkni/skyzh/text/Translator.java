@@ -278,12 +278,16 @@ public final class Translator {
 			);
 		}
 
-		TranslationEntry borrowed = borrowed(surface, plain);
-		Matcher match = borrowed == null ? null : borrowed.match(plain);
+		int from = wordsStart(plain), to = wordsEnd(plain, from);
+		StyledText core = styled.sub(from, to);
+		TranslationEntry borrowed = borrowed(surface, core.canonical());
+		Matcher match = borrowed == null ? null : borrowed.match(core.canonical());
 
 		if (match != null) {
 			return new Result(
-				borrowed.renderDisplay(styled, match, index().terms()), null, null, borrowed, styled, match
+				borrowed.renderDisplay(core, match, index().terms()),
+				from > 0 ? styled.slice(0, from) : null,
+				to < plain.length() ? styled.slice(to, plain.length()) : null, borrowed, core, match
 			);
 		}
 
@@ -302,15 +306,16 @@ public final class Translator {
 	 * <p>The museum hangs an item's name in the air above its display case, and the Bazaar and pet
 	 * shops do the same over their stands: the text is an item name, drawn as a hologram. Writing every
 	 * item name a second time into {@code Hologram/} would be the value enumeration the corpus forbids,
-	 * so a hologram nothing of its own answers for borrows the item name — and only the exact one
+	 * so a hologram or item-detail menu title with no own record borrows the item name — only the exact one
 	 * confirmed by the offline item catalog. ITEM also contains menu labels and old lore fragments,
 	 * which are not safe to borrow just because they happen to be exact records. The
 	 * item surface's templates ({@code %s Sword}) are the ones that swallow half-sentences, and a
 	 * hologram is where a half-sentence wrongly drawn as an item name would sit in the world for good.
 	 */
 	private static TranslationEntry borrowed(Surface surface, String plain) {
-		return surface == Surface.HOLOGRAM && ItemNames.canonical(plain) != null
-			? index().lookupExact(Surface.ITEM, plain.trim()) : null;
+		if (ItemNames.canonical(plain) == null) return null;
+		return surface == Surface.GUI_TITLE ? index().lookup(Surface.ITEM, plain.trim())
+			: surface == Surface.HOLOGRAM ? index().lookupExact(Surface.ITEM, plain.trim()) : null;
 	}
 
 	/** Auction displays add a rank and reforge to a catalog-confirmed item, never an NPC name. */
@@ -390,11 +395,13 @@ public final class Translator {
 			}
 		}
 
-		TranslationEntry borrowed = borrowed(surface, plain);
-		Matcher match = borrowed == null ? null : borrowed.match(plain);
+		int from = wordsStart(plain), to = wordsEnd(plain, from);
+		StyledText core = styled.sub(from, to);
+		TranslationEntry borrowed = borrowed(surface, core.canonical());
+		Matcher match = borrowed == null ? null : borrowed.match(core.canonical());
 
 		if (match != null) {
-			return new Located(borrowed, styled, match);
+			return new Located(borrowed, core, match);
 		}
 
 		return new Located(null, styled, null);

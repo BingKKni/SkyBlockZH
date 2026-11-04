@@ -235,6 +235,7 @@ public final class TermTable {
 	 */
 	public boolean applies(String type) {
 		return this.types.contains("stat_name".equalsIgnoreCase(type) || "rarity".equalsIgnoreCase(type) ? "category_name"
+			: "trophy_catch_name".equalsIgnoreCase(type) ? "trophy_fish_name"
 			: "contest_rank".equalsIgnoreCase(type) ? "medal"
 			: "shard_kind".equalsIgnoreCase(type) ? "mob_name"
 			: "commission_area".equalsIgnoreCase(type) ? "location_name"
@@ -256,6 +257,10 @@ public final class TermTable {
 		}
 		if ("commission_area".equalsIgnoreCase(type)) {
 			return Capture.of(type).accepts(value) ? translate("location_name", value) : null;
+		}
+		if ("trophy_catch_name".equalsIgnoreCase(type)) {
+			return Capture.TROPHY_CATCH_NAME.accepts(value)
+				? translate(Capture.TROPHY_FISH_NAME.accepts(value) ? "trophy_fish_name" : "category_name", value) : null;
 		}
 		if ("contest_rank".equalsIgnoreCase(type)) {
 			if (!Capture.CONTEST_RANK.accepts(value)) return null;
@@ -282,7 +287,9 @@ public final class TermTable {
 			String category = translate("category_name", value);
 			if (category != null) return category;
 			String mob = translate("mob_name", value);
-			return mob != null ? mob : ItemNames.canonical(value) == null ? null : itemName(value);
+			if (mob != null) return mob;
+			String location = translate("location_name", value);
+			return location != null ? location : ItemNames.canonical(value) == null ? null : itemName(value);
 		}
 
 		if (!applies(type)) {

@@ -116,14 +116,15 @@
     },
     {
       "id": "trophy_fish_discovered",
-      "context": "首次发现某种奖杯鱼时的系统提示",
+      "context": "首次发现某种奖杯鱼或锦标蛙时的系统提示",
       "raw": "§a§lNEW DISCOVERY: §f%1$s §7§l%2$s",
       "text": "NEW DISCOVERY: %1$s %2$s",
       "placeholders": [
         {
           "token": "%1$s",
-          "desc": "奖杯鱼名称，普通鱼名翻译，专名及乱码保留",
-          "type": "trophy_fish_name",
+          "desc": "奖杯鱼或锦标蛙名称，复用已有物种译名，专名及乱码保留",
+          "type": "trophy_catch_name",
+          "item": true,
           "example": "Blobfish"
         },
         {

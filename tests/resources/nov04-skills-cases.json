@@ -1,0 +1,286 @@
+{
+  "cases": [
+    {
+      "name": "skills 铁路说明吞掉完整英语尾行",
+      "consumed": 2,
+      "expected": "§7前往雄伟的矮人矿山深处!",
+      "source": [
+        "§7To the depths of the mighty Dwarven",
+        "§7Mines!"
+      ]
+    },
+    {
+      "name": "skills 铁路说明不消费票价",
+      "consumed": 2,
+      "expected": "§7前往雄伟的矮人矿山深处!",
+      "source": [
+        "§7To the depths of the mighty Dwarven",
+        "§7Mines!",
+        "",
+        "§7Cost: §6594 Coins"
+      ]
+    },
+    {
+      "name": "skills 芯片重置保留全部颜色和等级",
+      "consumed": 2,
+      "expected": "§7将所有§9芯片§7等级重置为 1 级，以便重新分配§2播尘§7。",
+      "source": [
+        "§7Resets all §9Chip §7levels back to 1 so",
+        "§7you can reallocate your §2Sowdust§7."
+      ]
+    },
+    {
+      "name": "skills 芯片重置不写死等级",
+      "consumed": 2,
+      "expected": "§7将所有§9芯片§7等级重置为 2 级，以便重新分配§2播尘§7。",
+      "source": [
+        "§7Resets all §9Chip §7levels back to 2 so",
+        "§7you can reallocate your §2Sowdust§7."
+      ]
+    },
+    {
+      "name": "skills 弹射概率完整两行",
+      "consumed": 2,
+      "expected": "§7箭矢有 §e50%§7 的概率弹射至另一目标。",
+      "source": [
+        "§7Arrows have a §e50% §7chance to",
+        "§7bounce to another target."
+      ]
+    },
+    {
+      "name": "skills 弹射概率第二数值",
+      "consumed": 2,
+      "expected": "§7箭矢有 §e75%§7 的概率弹射至另一目标。",
+      "source": [
+        "§7Arrows have a §e75% §7chance to",
+        "§7bounce to another target."
+      ]
+    },
+    {
+      "name": "skills 弹射目标与递减分别保留红色",
+      "consumed": 2,
+      "expected": "§7最多弹射至 §c4§7 个目标，每次弹射的伤害降低 §c15%§7。",
+      "source": [
+        "§7Bounces up to §c4 §7targets, each",
+        "§7bounce dealing §c15% §7less damage."
+      ]
+    },
+    {
+      "name": "skills 弹射两个数值同时变化",
+      "consumed": 2,
+      "expected": "§7最多弹射至 §c6§7 个目标，每次弹射的伤害降低 §c20%§7。",
+      "source": [
+        "§7Bounces up to §c6 §7targets, each",
+        "§7bounce dealing §c20% §7less damage."
+      ]
+    },
+    {
+      "name": "skills 唱片生成概率不残留第二行",
+      "consumed": 2,
+      "expected": "§7播放时，§2苍蝇害虫§7更容易在你的§a花园§7地皮上生成!",
+      "source": [
+        "§7When playing, §2Fly Pests §7are more",
+        "§7likely to spawn on your §aGarden §7plots!"
+      ]
+    },
+    {
+      "name": "skills 螳螂害虫生成说明三行",
+      "consumed": 3,
+      "expected": "§7播放时，§2螳螂害虫§7更容易在你的§a花园§7地皮上生成!",
+      "source": [
+        "§7When playing, §2Praying Mantis Pests",
+        "§7are more likely to spawn on your",
+        "§aGarden §7plots!"
+      ]
+    },
+    {
+      "name": "skills 螳螂唱片掉落完整两行",
+      "consumed": 2,
+      "expected": "§7用吸尘器捕捉§2螳螂害虫§7时有小概率掉落!",
+      "source": [
+        "§7Dropped by §2Praying Mantis Pests",
+        "§7rarely when vacuuming!"
+      ]
+    },
+    {
+      "name": "skills 鼠辈革命唱片入藏三行",
+      "consumed": 3,
+      "expected": "§e点击背包中的§a鼠辈革命唱片§e，将其加入你的收藏!",
+      "source": [
+        "§eClick a §aRodent Revolution Vinyl §ein",
+        "§eyour inventory to add it to your",
+        "§ecollection!"
+      ]
+    },
+    {
+      "name": "skills 无能力说明不丢最后一行",
+      "consumed": 3,
+      "expected": "§7拒绝使用任何能力，毕竟能力太强了，而你从不滥用超标的东西。",
+      "source": [
+        "§7Decline to use any power, as using",
+        "§7one is too OP and you don't abuse",
+        "§7OP things."
+      ]
+    },
+    {
+      "name": "skills 水晶说明按原词义保留高亮与斜体",
+      "consumed": 3,
+      "expected": "§7据说它能注入§d宝石§7，还藏着§7§o久远年代§7的秘密。",
+      "source": [
+        "§7Some say that it can be infused with",
+        "§dgemstones§7, and holds the secrets to",
+        "§7a §7§otime long past§7."
+      ]
+    },
+    {
+      "name": "skills Onyx原料说明完整两行",
+      "consumed": 2,
+      "expected": "§7开采自§b极冰隧道§7冰冷的深处。",
+      "source": [
+        "§7Mined from the cold depths of the",
+        "§bGlacite Tunnels§7."
+      ]
+    },
+    {
+      "name": "skills 编织狮鹫羽毛三行合句",
+      "consumed": 3,
+      "expected": "§7神话生物的精美羽毛。交织的羽丝闪耀着无可比拟的优雅与威仪。",
+      "source": [
+        "§7The exquisite feather of a mythical",
+        "§7creature. Its woven strands shimmer",
+        "§7with an inimitable grace and majesty."
+      ]
+    },
+    {
+      "name": "skills 能力石收藏品等级不写死IX",
+      "consumed": 2,
+      "expected": "§f解锁自§a羊肉 VII§f 级收藏品。",
+      "source": [
+        "§fUnlocked from the §aMutton VII",
+        "§fcollection."
+      ]
+    },
+    {
+      "name": "skills 能力石收藏品第二等级",
+      "consumed": 2,
+      "expected": "§f解锁自§a羊肉 IX§f 级收藏品。",
+      "source": [
+        "§fUnlocked from the §aMutton IX",
+        "§fcollection."
+      ]
+    },
+    {
+      "name": "skills 能力石战斗等级罗马数字",
+      "consumed": 1,
+      "expected": "§7需要战斗等级: §aXXXV",
+      "source": [
+        "§7Combat level required: §aXXXV"
+      ]
+    },
+    {
+      "name": "skills 能力石极冰矿井来源完整两行",
+      "consumed": 2,
+      "expected": "§f由§b极冰矿井§f中的怪物掉落。",
+      "source": [
+        "§fDrops from mobs in §bGlacite",
+        "§bMineshafts§f."
+      ]
+    },
+    {
+      "name": "skills 不把半句冒充完整的能力石来源",
+      "miss": true,
+      "source": [
+        "§fDrops from mobs in §bGlacite"
+      ]
+    },
+    {
+      "name": "skills 不跨空行合并铁路说明",
+      "miss": true,
+      "source": [
+        "§7To the depths of the mighty Dwarven",
+        "",
+        "§7Mines!"
+      ]
+    },
+    {
+      "name": "skills 正确翻译喷洒器返回按钮且保留品牌",
+      "consumed": 1,
+      "expected": "§7返回 Sprayonator",
+      "source": [
+        "§7To Sprayonator"
+      ]
+    },
+    {
+      "name": "skills 重铸石返回按钮不误借生物名",
+      "consumed": 1,
+      "expected": "§7返回战斗 ➜ 重铸石",
+      "source": [
+        "§7To Combat ➜ Reforge Stones"
+      ]
+    },
+    {
+      "name": "skills 曲目名称绿色而害虫括号保持深灰",
+      "source": [
+        "§7Now Playing: §aRodent Revolution §8(Rat)"
+      ],
+      "surface": "GUI_Item",
+      "expected": "§7正在播放: §a鼠辈革命§8（老鼠）"
+    },
+    {
+      "name": "skills 第二曲目括号颜色不被曲名吞掉",
+      "source": [
+        "§7Now Playing: §aPretty Fly §8(Fly)"
+      ],
+      "surface": "GUI_Item",
+      "expected": "§7正在播放: §a靓蝇§8（苍蝇）"
+    },
+    {
+      "name": "skills 动态铁路距离177米",
+      "source": [
+        "§3Dwarven Village §8(§6177m§8)"
+      ],
+      "surface": "GUI_Item",
+      "expected": "§3矮人村庄§8(§6177米§8)"
+    },
+    {
+      "name": "skills 动态铁路距离第二数值",
+      "source": [
+        "§3Dwarven Village §8(§6205m§8)"
+      ],
+      "surface": "GUI_Item",
+      "expected": "§3矮人村庄§8(§6205米§8)"
+    },
+    {
+      "name": "skills 合成宝石材料数量80且复用物品名",
+      "consumed": 1,
+      "expected": "§780x 精细黄玉",
+      "source": [
+        "§780x Fine Topaz Gemstone"
+      ]
+    },
+    {
+      "name": "skills 合成宝石材料数量和品质均可变化",
+      "consumed": 1,
+      "expected": "§7160x 无瑕黄玉",
+      "source": [
+        "§7160x Flawless Topaz Gemstone"
+      ]
+    },
+    {
+      "name": "skills 花园等级罗马数字不被number类型拒绝",
+      "source": [
+        "§cRequires Garden Level XII!"
+      ],
+      "surface": "GUI_Item",
+      "expected": "§c需要花园等级 XII 级!"
+    },
+    {
+      "name": "skills 花园等级数字仍有效",
+      "source": [
+        "§cRequires Garden Level 12!"
+      ],
+      "surface": "GUI_Item",
+      "expected": "§c需要花园等级 12 级!"
+    }
+  ]
+}
