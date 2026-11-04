@@ -372,24 +372,42 @@
     {
       "id": "mining_sb_your_kills",
       "context": "玩家当前击杀数(可能是哥布林或矿井怪物计数)",
-      "text": "Your kills: %s ☠ (+%s)",
+      "text": "Your kills: %1$s ☠ (+%2$s)",
       "placeholders": [
         {
           "token": "%1$s",
-          "desc": "击杀数",
+          "desc": "运行时采集推断出的可变位置，语义待人工确认",
           "type": "number",
-          "example": "12"
+          "example": "1"
         },
         {
           "token": "%2$s",
-          "desc": "额外加成击杀数,可选出现",
+          "desc": "运行时采集推断出的可变位置，语义待人工确认",
           "type": "number",
-          "example": "2"
+          "example": "1"
         }
       ],
       "gloss": "第二个加成数值为可选项,不一定出现。",
       "translate": true,
-      "zh": "击杀数: %s ☠ (+%s)"
+      "zh": "击杀数: %1$s ☠ (+%2$s)",
+      "raw": "§fYour kills: §c%1$s ☠ §a(+%2$s)",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Your kills: ",
+          "zh": "击杀数: "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s ☠ ",
+          "zh": "%1$s ☠ "
+        },
+        {
+          "color": "§a",
+          "text": "(+%2$s)",
+          "zh": "(+%2$s)"
+        }
+      ]
     },
     {
       "id": "mining_sb_zone",

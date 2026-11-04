@@ -68,6 +68,7 @@ public final class TranslationHarness {
 
 		System.out.println();
 		installIndex(index);
+		checkNovemberCaptureFixes();
 		for (String tier : List.of("I", "IV", "V")) {
 			String name = "Bloodfiend " + tier;
 			report("已知怪物阶数复用基础词表 " + tier,
@@ -2621,6 +2622,56 @@ public final class TranslationHarness {
 		var publish = Translator.class.getDeclaredMethod("publish", TranslationIndex.class);
 		publish.setAccessible(true);
 		publish.invoke(null, index);
+	}
+
+	private static void checkNovemberCaptureFixes() {
+		for (String seconds : List.of("6.9", "8.2")) {
+			check("Jax 成绩不是固定数字 " + seconds, "[NPC] Jax: " + seconds + ", really???", Surface.CHAT,
+				"[NPC] Jax: " + seconds + ",真的假的???");
+		}
+		for (String[] sample : List.of(new String[]{"inkkni", "0", "20%", "10"},
+			new String[]{"Alex", "300", "35%", "15"})) {
+			check("伤害光球名称与增益数值 " + sample[0], "◕ You picked up a Damage Orb from " + sample[0]
+				+ " healing you for " + sample[1] + "❤ and granting you +" + sample[2] + " Damage for " + sample[3] + " seconds.",
+				Surface.CHAT, "◕ 你捡起了 " + sample[0] + " 放的伤害光球，回复了 " + sample[1]
+					+ "❤，并获得 +" + sample[2] + " 伤害，持续 " + sample[3] + "秒。");
+		}
+		checkTooltipName("力量龙护甲统一译名", "Strong Dragon Helmet", "力量龙头盔");
+		checkTooltipName("力量龙碎片统一译名", "Strong Dragon Fragment", "力量龙碎片");
+		check("力量龙首领统一译名", "Strong Dragon", Surface.BOSS_BAR, "力量龙");
+		check("Opal 名称保留英文", "Opal", Surface.ITEM, "Opal");
+		checkTooltipName("Opal 宝石只翻品质与品类", "❂ Perfect Opal Gemstone", "❂ 完美 Opal 宝石");
+		checkTooltipName("Onyx 宝石只翻品质与品类", "☠ Perfect Onyx Gemstone", "☠ 完美 Onyx 宝石");
+		for (String value : List.of("+5", "+10")) {
+			check("猫头鹰快速学习者不显示被动 " + value, "Passively grants " + value + "☯ Taming Wisdom.",
+				Surface.LORE, "获得 " + value + " ☯ 驯养智慧。");
+		}
+		for (int tier : new int[]{1, 2, 10}) {
+			Translator.Result result = Translator.translate(Component.literal("  HEART OF THE MOUNTAIN TIER " + tier), Surface.CHAT);
+			report("山心等级标题明确左对齐 " + tier, result.matched() && "left_chat".equals(result.entry().layout())
+				&& !Translator.centerChat(result), "只改该标题，不影响其他奖励横幅");
+		}
+		check("猫头鹰无句号变体同样移除被动", "Passively grants +4.55☯ Taming Wisdom", Surface.LORE,
+			"获得 +4.55 ☯ 驯养智慧");
+		for (int kings : new int[]{1, 3, 7}) {
+			check("国王拜见进度不是人数分数 " + kings, "You have met " + kings + "/7 Kings. A reward may follow.",
+				Surface.CHAT, "拜见国王进度: " + kings + "/7。或许能获得奖励。");
+		}
+		check("安全任务行动目标与颜色", "§fTalk to the §eSecurity Clerk", Surface.CHAT,
+			"§f与§e安全办事员§f交谈");
+		check("佣兵套装标题沿用既有译名", "Mercenary Armor", Surface.GUI_TITLE, "雇佣兵护甲");
+		check("工厂员工等级与职位可变", "Max Employee: [120] Assistant", Surface.ITEM, "员工等级上限: [120] 助理");
+		check("工厂员工升级后仍可翻译", "Max Employee: [180] Director", Surface.ITEM, "员工等级上限: [180] 总监");
+		for (String count : List.of("1,340,409", "2,000,000")) {
+			check("宾果排名玩家总数不会写死 " + count, "You are in the top 16.68% of " + count + " Bingo players!",
+				Surface.LORE, "你的排名位于前 16.68%（共 " + count + " 名宾果玩家）。");
+		}
+		check("矿石燕麦合并续行并保留数值", "The first 5 times you consume this, gain a permanent +2 Ore Fortune.",
+			Surface.LORE, "前 5 次食用时，每次永久获得 +2 矿石时运。");
+		checkSentence("实测燕麦两行合并并保持颜色", List.of("§7The first §a5 §7times you consume this,",
+			"§7gain a permanent §6+2 Ore Fortune§7."), "§7前 §a5§7 次食用时，每次永久获得 §6+2 矿石时运§7。");
+		checkSentence("实测宾果排名两行合并且总数保留", List.of("§8You are in the top §616.68%§8 of",
+			"§81,340,409 Bingo players!"), "§8你的排名位于前 §616.68%§8（共 1,340,409 名宾果玩家）。");
 	}
 
 	private static void check(String name, String input, Surface surface, String expected) {

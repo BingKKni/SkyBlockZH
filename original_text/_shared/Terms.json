@@ -720,7 +720,7 @@
     {"en":"Superior Dragon","zh":"卓越巨龙","types":["mob_name","raw"],"note":"社区 Wiki Ender_Dragon；沿用 dragon_type 的卓越译名。"},
     {"en":"Protector Dragon","zh":"守护巨龙","types":["mob_name","raw"]},
     {"en":"Old Dragon","zh":"苍老巨龙","types":["mob_name","raw"]},
-    {"en":"Strong Dragon","zh":"强韧巨龙","types":["mob_name","raw"]},
+    {"en":"Strong Dragon","zh":"力量龙","types":["mob_name","raw"],"gloss":"用户拍板：Strong Dragon 及其碎片、护甲统一使用力量龙。"},
     {"en":"Unstable Dragon","zh":"不稳定巨龙","types":["mob_name","raw"]},
     {"en":"Wise Dragon","zh":"智慧巨龙","types":["mob_name","raw"]},
     {"en":"Killed Superior Dragon","zh":"击杀卓越巨龙","types":["raw"]},
@@ -3807,6 +3807,9 @@
       "zh": "山心进度",
       "note": "动作栏经验提示里的经验来源,HOTM 缩写按既定译法用“山心”"
     },
+    {"en":"Assistant","zh":"助理","types":["category_name"],"note":"巧克力工厂兔子员工职位；本轮实测。"},
+    {"en":"Intern","zh":"实习生","types":["category_name"],"note":"巧克力工厂兔子员工职位；本轮实测。"},
+    {"en":"Employee","zh":"员工","types":["category_name"],"note":"巧克力工厂兔子员工职位；本轮实测。"},
     {
       "en": "Manager",
       "zh": "经理",
@@ -13430,7 +13433,8 @@
     },
     {
       "en": "Strong",
-      "zh": "强韧",
+      "zh": "力量",
+      "gloss": "用户拍板：Strong Dragon 及其碎片、护甲统一使用力量龙。",
       "types": [
         "dragon_type"
       ],
@@ -16212,7 +16216,18 @@
     {"en": "Flaming Crypt Souleater", "zh": "烈焰墓穴噬魂者", "types": ["mob_name"], "note": "本轮采集；复用既有名称，限定词表类型。"},
     {"en": "Speedy Crypt Souleater", "zh": "迅捷墓穴噬魂者", "types": ["mob_name"], "note": "本轮采集；复用既有名称，限定词表类型。"},
     {"en": "Damage", "zh": "伤害", "types": ["raw"], "note": "本轮采集；复用既有名称，限定词表类型。"},
-    {"en": "Class", "zh": "职业", "types": ["category_name"], "note": "地牢动作栏经验来源 Class Level Up；仅翻译类别值，不改玩家职业名。"}
+    {"en": "Class", "zh": "职业", "types": ["category_name"], "note": "地牢动作栏经验来源 Class Level Up；仅翻译类别值，不改玩家职业名。"},
+    {"en": "Wooden Treasure", "zh": "木箱寻宝", "types": ["category_name", "raw"], "note": "本轮实测；复用已有译名或按任务与工厂语境补充。"},
+    {"en": "Fairy Finder", "zh": "寻觅仙女", "types": ["category_name", "raw"], "note": "本轮实测；复用已有译名或按任务与工厂语境补充。"},
+    {"en": "Lily Pad Collector", "zh": "睡莲收集员", "types": ["category_name", "raw"], "note": "本轮实测；复用已有译名或按任务与工厂语境补充。"},
+    {"en": "Pair Up!", "zh": "配对成功!", "types": ["category_name", "raw"], "note": "本轮实测；复用已有译名或按任务与工厂语境补充。"},
+    {"en": "High Score!", "zh": "高分挑战!", "types": ["category_name", "raw"], "note": "本轮实测；复用已有译名或按任务与工厂语境补充。"},
+    {"en": "Experienced", "zh": "经验老道", "types": ["category_name", "raw"], "note": "本轮实测；复用已有译名或按任务与工厂语境补充。"},
+    {"en": "Security Clerk", "zh": "安全办事员", "types": ["category_name", "raw"], "note": "本轮实测；复用已有译名或按任务与工厂语境补充。"},
+    {"en": "ALWAYS ENABLED", "zh": "始终启用", "types": ["category_name", "raw"], "note": "本轮实测；复用已有译名或按任务与工厂语境补充。"},
+    {"en": "Future Footsteps", "zh": "未来足迹", "types": ["category_name", "raw"], "note": "本轮实测；复用已有译名或按任务与工厂语境补充。"},
+    {"en": "Archaeologist", "zh": "考古学家", "types": ["category_name", "raw"], "note": "本轮实测；复用已有译名或按任务与工厂语境补充。"},
+    {"en": "Murderlover", "zh": "嗜杀者", "types": ["category_name", "raw"], "note": "本轮实测；复用已有译名或按任务与工厂语境补充。"}
   ],
   "medal_note": "2026-09-10: Jacob 农业竞赛的奖牌 / 名次档位(Bronze / Silver / Gold / Platinum / Diamond)单独用 medal 类型。原因:SILVER 作 category_name 已经是地牢终端的「淡灰色」,Gold / Diamond 作全局词是材料「黄金 / 钻石」,同一个字符串两种意思不能共用一张表。词表匹配不分大小写,所以一条 Bronze 同时管聊天里的 BRONZE、Tab 里的 Bronze 和奖励清单里的 bronze。Capture.of 不认识的类型按 raw 形状捕获,所以不需要改代码。",
   "garden_note": "2026-09-10 花园玩法专有词:Copper → 铜(花园货币,沿用 Tab 的「铜: N」)、Compost → 堆肥、Sowdust → 播尘、Chip → 芯片、Plot → 地皮、Visitor → 访客、Greenhouse → 温室、Barn(花园里的建筑)→ 谷仓;地名 The Barn 仍是「牲畜棚」。见 GLOSSARY.md「花园玩法专有词」。",
