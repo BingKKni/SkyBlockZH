@@ -55,6 +55,21 @@ public final class ClientSettingsHarness {
 		check("采集提示默认开", defaults.captureNotifications, true);
 		check("启动清空默认关", defaults.autoClearCapture, false);
 		check("采集总开关仍默认关", defaults.captureUntranslated, false);
+		check("生物名默认翻译", defaults.translateMobNames, true);
+		check("更新渠道默认正式版", defaults.updateChannel, SkyZHConfig.UpdateChannel.RELEASE);
+		check("安装方式默认自动", defaults.updateInstall, SkyZHConfig.UpdateInstall.AUTO);
+		check("文本间距默认 1.12.2", defaults.legacyFont, true);
+		defaults.translateMobNames = false;
+		defaults.updateChannel = SkyZHConfig.UpdateChannel.BETA;
+		defaults.updateInstall = SkyZHConfig.UpdateInstall.NOTIFY;
+		defaults.legacyFont = false;
+		SkyZHConfig changed = SkyZHConfig.fromJson(defaults.toJson());
+		check("生物名关闭可保存再读取", changed.translateMobNames, false);
+		check("测试版渠道可保存再读取", changed.updateChannel, SkyZHConfig.UpdateChannel.BETA);
+		check("仅检查可保存再读取", changed.updateInstall, SkyZHConfig.UpdateInstall.NOTIFY);
+		check("原版全角可保存再读取", changed.legacyFont, false);
+		check("未知安装方式回退自动", SkyZHConfig.fromJson(JsonParser.parseString(
+			"{\"updateInstall\":\"later\",\"updateChannel\":\"nightly\"}").getAsJsonObject()).updateInstall, SkyZHConfig.UpdateInstall.AUTO);
 
 		SkyZHConfig old = SkyZHConfig.fromJson(JsonParser.parseString("""
 			{"enabled":false,"showOriginal":false,"captureUntranslated":true,"captureDirectory":"my-captures","captureServer":"example.org"}

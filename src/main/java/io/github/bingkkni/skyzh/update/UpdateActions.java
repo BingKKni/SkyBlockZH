@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 
 /** Only locally issued chat buttons may invoke update actions; command text never supplies file paths. */
 public final class UpdateActions {
-	public enum Action { REMOVE_MANUAL, MOD, TRANSLATIONS, CHECK }
+	public enum Action { REMOVE_MANUAL, MOD, TRANSLATIONS, CHECK, INSTALL }
 	private static final int LIMIT = 128;
 	private final Map<String, Action> issued = new LinkedHashMap<>();
 

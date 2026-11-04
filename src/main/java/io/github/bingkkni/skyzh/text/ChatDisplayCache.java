@@ -18,10 +18,10 @@ public final class ChatDisplayCache {
 	private Object corpus;
 	private int width = -1;
 	private boolean skyBlockName;
-	private boolean itemNames;
+	private int names;
 	private boolean displayedTranslation;
 	private boolean displayedName;
-	private boolean displayedItems;
+	private int displayedNames;
 	private Object displayedCorpus;
 	private boolean policyInvalidated;
 
@@ -41,27 +41,27 @@ public final class ChatDisplayCache {
 
 	/** Effective render policy, not config-save generation: a hint/capture switch needs no rewrap. */
 	public boolean needsRefresh(boolean translated, boolean name, Object index) {
-		boolean items = io.github.bingkkni.skyzh.SkyZHConfig.get().translateItemNames;
+		int names = ItemNamePolicy.state();
 		boolean changed = this.policyInvalidated || this.displayedTranslation != translated
-			|| translated && (this.displayedName != name || this.displayedItems != items || this.displayedCorpus != index);
+			|| translated && (this.displayedName != name || this.displayedNames != names || this.displayedCorpus != index);
 		this.policyInvalidated = false;
 		this.displayedTranslation = translated;
 		this.displayedName = name;
-		this.displayedItems = items;
+		this.displayedNames = names;
 		this.displayedCorpus = index;
 		return changed;
 	}
 
 	public List<FormattedCharSequence> get(GuiMessage message, Object font, int width, boolean translated,
 		boolean name, Object index, Supplier<List<FormattedCharSequence>> split) {
-		boolean items = io.github.bingkkni.skyzh.SkyZHConfig.get().translateItemNames;
-		if (this.font != font || this.width != width || this.corpus != index || this.skyBlockName != name || this.itemNames != items) {
+		int names = ItemNamePolicy.state();
+		if (this.font != font || this.width != width || this.corpus != index || this.skyBlockName != name || this.names != names) {
 			clear();
 			this.font = font;
 			this.width = width;
 			this.corpus = index;
 			this.skyBlockName = name;
-			this.itemNames = items;
+			this.names = names;
 		}
 		Lines lines = this.messages.get(message);
 		if (lines == null) {

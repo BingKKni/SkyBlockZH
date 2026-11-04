@@ -409,7 +409,7 @@ public enum Capture {
 			String[] unit = units.get(i);
 			String number = unit[0];
 			if ("s".equals(unit[1]) && i > 0 && ONE_DIGIT.matcher(number).matches()) number = "0" + number;
-			translated.append(number).append(switch (unit[1]) {
+			translated.append(number).append(units.size() == 1 ? " " : "").append(switch (unit[1]) {
 				case "y" -> "年";
 				case "d" -> "天";
 				case "h" -> "小时";
@@ -457,9 +457,9 @@ public enum Capture {
 				result.append(net.minecraft.network.chat.Component.literal("0").setStyle(source.styleAt(number)));
 			}
 			result.append(source.slice(number, start + original.end(1)));
-			result.append(net.minecraft.network.chat.Component.literal(chinese.group(2))
+			result.append(net.minecraft.network.chat.Component.literal(chinese.group(2) + chinese.group(3))
 				.setStyle(source.styleAt(start + original.start(2))));
-			if (chinese.group(3) != null) {
+			if (chinese.group(4) != null) {
 				result.append(net.minecraft.network.chat.Component.literal("以上")
 					.setStyle(source.styleAt(start + original.start(3))));
 			}
@@ -473,7 +473,7 @@ public enum Capture {
 	 * and anything that is not a unit — a bare number, a word — is left exactly as it arrived.
 	 */
 	private static final Pattern WHOLE_SECONDS = Pattern.compile("[0-9]{1,9}");
-	private static final Pattern CHINESE_DURATION = Pattern.compile("(-?[0-9][0-9,.]*)(年|天|小时|分钟|分|秒)(以上)?");
+	private static final Pattern CHINESE_DURATION = Pattern.compile("(-?[0-9][0-9,.]*)( ?)(年|天|小时|分钟|分|秒)(以上)?");
 	private static final Pattern DURATION_UNIT = Pattern.compile("(-?[0-9][0-9,.]*)([yYdDhHmMsS])(\\+?)");
 	private static final Pattern WRITTEN_DURATION_UNIT = Pattern.compile(
 		"([0-9][0-9,]*) (days?|hours?|minutes?|seconds?)", Pattern.CASE_INSENSITIVE

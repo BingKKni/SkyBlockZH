@@ -90,18 +90,36 @@ tasks.register('updaterJar', Jar) {
 	manifest { attributes 'Main-Class': 'io.github.bingkkni.skyzh.update.ModInstaller' }
 }
 
+// `-Pskyzh.channel=beta` is how Actions builds the per-commit test jars. The commit count orders those
+// builds; it lives in build metadata, so it never changes how a release compares against a version.
+def updateChannel = project.findProperty('skyzh.channel') == 'beta' ? 'beta' : 'release'
+def commitCount = '0'
+try {
+	def process = new ProcessBuilder('git', 'rev-list', '--count', 'HEAD').directory(rootProject.projectDir)
+		.redirectError(ProcessBuilder.Redirect.DISCARD).start()
+	def text = process.inputStream.getText('UTF-8').trim()
+	if (process.waitFor() == 0 && text ==~ /[0-9]+/) commitCount = text
+} catch (IOException ignored) {
+}
+
 processResources {
 	dependsOn rootProject.tasks.named('translationMetadata'), tasks.named('updaterJar')
 
 	// Keep Fabric metadata on the normal SemVer version while using the human-facing archive name
 	// above. The filename identifies the target; the Minecraft dependency range below enforces it.
-	def modVersion = "${rootProject.version}+mc${artifactTag}"
+	def modVersion = "${rootProject.version}+mc${artifactTag}" + (updateChannel == 'beta' ? ".beta.${commitCount}" : '')
 	inputs.property 'version', modVersion
+	inputs.property 'updateChannel', updateChannel
+	inputs.property 'commitCount', commitCount
 	inputs.property 'minecraftRange', mcRange
 	inputs.property 'translationApi', rootProject.translation_api
 
 	filesMatching('skyzh-translations.properties') {
 		expand('translation_api': rootProject.translation_api)
+	}
+
+	filesMatching('skyzh-build.properties') {
+		expand('channel': updateChannel, 'commits': commitCount)
 	}
 
 	filesMatching('fabric.mod.json') {

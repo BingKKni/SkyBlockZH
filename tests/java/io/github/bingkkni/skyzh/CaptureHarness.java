@@ -665,13 +665,13 @@ public final class CaptureHarness {
 		}
 		for (String[] timer : List.of(
 			new String[] {"1494", "24分54秒"}, new String[] {"3367", "56分07秒"},
-			new String[] {"480", "8分钟"}, new String[] {"3600", "1小时"},
+			new String[] {"480", "8 分钟"}, new String[] {"3600", "1 小时"},
 			new String[] {"5526", "1小时32分06秒"}, new String[] {"5400", "1小时30分"},
-			new String[] {"3606", "1小时0分06秒"}, new String[] {"0", "0秒"},
-			new String[] {"59", "59秒"}, new String[] {"60", "1分钟"},
-			new String[] {"56m 7s", "56分07秒"}, new String[] {"8m", "8分钟"},
-			new String[] {"7m 59s", "7分59秒"}, new String[] {"1h", "1小时"},
-			new String[] {"1h 0m 0s", "1小时"}, new String[] {"1h 32m 6s", "1小时32分06秒"},
+			new String[] {"3606", "1小时0分06秒"}, new String[] {"0", "0 秒"},
+			new String[] {"59", "59 秒"}, new String[] {"60", "1 分钟"},
+			new String[] {"56m 7s", "56分07秒"}, new String[] {"8m", "8 分钟"},
+			new String[] {"7m 59s", "7分59秒"}, new String[] {"1h", "1 小时"},
+			new String[] {"1h 0m 0s", "1 小时"}, new String[] {"1h 32m 6s", "1小时32分06秒"},
 			new String[] {"1h 30m", "1小时30分"}, new String[] {"1h 0m 6s", "1小时0分06秒"})) {
 			check("头顶裂隙计时 " + timer[0], TranslationHarness.legacy(NameTag.riftTimer(
 				Component.literal("§f" + timer[0] + " §a\uE020"))), "§f" + timer[1] + "§a \uE020");

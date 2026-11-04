@@ -39,10 +39,10 @@ public final class TranslationEntry {
 	}
 
 	/** The declared type and optional example belong to the same placeholder number. */
-	public record Argument(String type, String example, boolean item) {
-		public static final Argument UNSPECIFIED = new Argument("", "", false);
+	public record Argument(String type, String example, boolean item, boolean mob) {
+		public static final Argument UNSPECIFIED = new Argument("", "", false, true);
 
-		public Argument(String type, String example) { this(type, example, false); }
+		public Argument(String type, String example) { this(type, example, false, true); }
 
 		public Argument {
 			type = Objects.requireNonNullElse(type, "");
@@ -52,8 +52,8 @@ public final class TranslationEntry {
 
 	/** Authored source/target ranges of an item reference, resolved only within an accepted match. */
 	public record ItemReference(String text, String zh, int sourceOccurrence, int targetOccurrence,
-		int targetSegment, List<String> sourceRecords, String sourceTemplate, boolean emit) {
-		public ItemReference(String text, String zh) { this(text, zh, -1, -1, -1, List.of(), "", true); }
+		int targetSegment, List<String> sourceRecords, String sourceTemplate, boolean emit, boolean mob) {
+		public ItemReference(String text, String zh) { this(text, zh, -1, -1, -1, List.of(), "", true, false); }
 		public ItemReference { sourceRecords = List.copyOf(sourceRecords); }
 	}
 
@@ -129,6 +129,8 @@ public final class TranslationEntry {
 	/** The declared {@code placeholders[].type} of each argument, for {@link TermTable}. */
 	private final Map<Integer, String> argTypes;
 	private final Set<Integer> itemArguments;
+	/** {@code mob_name} placeholders that hold a pet or a rabbit, which the mob switch leaves alone. */
+	private final Set<Integer> notMobArguments;
 	private final List<ItemReference> itemReferences;
 	private final boolean itemName;
 	/**
@@ -162,6 +164,8 @@ public final class TranslationEntry {
 		this.argTypes = argTypes;
 		this.itemArguments = definition.arguments().entrySet().stream().filter(e -> e.getValue().item())
 			.map(Map.Entry::getKey).collect(java.util.stream.Collectors.toUnmodifiableSet());
+		this.notMobArguments = definition.arguments().entrySet().stream().filter(e -> !e.getValue().mob())
+			.map(Map.Entry::getKey).collect(java.util.stream.Collectors.toUnmodifiableSet());
 		this.itemReferences = definition.options().itemReferences();
 		this.itemName = definition.options().itemName();
 		this.shapes = shapes;
@@ -188,6 +192,7 @@ public final class TranslationEntry {
 		this.captures = shared.captures;
 		this.argTypes = shared.argTypes;
 		this.itemArguments = shared.itemArguments;
+		this.notMobArguments = shared.notMobArguments;
 		this.itemReferences = shared.itemReferences;
 		this.itemName = shared.itemName;
 		this.shapes = shared.shapes;
@@ -605,6 +610,11 @@ public final class TranslationEntry {
 		return List.copyOf(result);
 	}
 
+	/** Whether the player's name switches return this range to the server's English. */
+	private static boolean restored(ItemRange range) {
+		return range.range().reference().mob() ? !ItemNamePolicy.mobNames() : !ItemNamePolicy.enabled();
+	}
+
 	private static Component originalRange(List<Matched> matches, Matched owner, ReferenceRange range) {
 		ItemReference ref = range.reference();
 		MutableComponent joined = Component.empty();
@@ -799,8 +809,9 @@ public final class TranslationEntry {
 
 		record RangeUse(Matched matched, ReferenceRange range) {}
 		Map<RangeUse, Component> originals = new HashMap<>();
-		if (!ItemNamePolicy.enabled()) for (Part part : parts) for (Piece piece : part.fragment().pieces()) {
-			if (piece instanceof ItemRange range && !originals.containsKey(new RangeUse(part.matched(), range.range())))
+		boolean allNames = ItemNamePolicy.enabled() && ItemNamePolicy.mobNames();
+		if (!allNames) for (Part part : parts) for (Piece piece : part.fragment().pieces()) {
+			if (piece instanceof ItemRange range && restored(range) && !originals.containsKey(new RangeUse(part.matched(), range.range())))
 				originals.put(new RangeUse(part.matched(), range.range()), originalRange(matches, part.matched(), range.range()));
 		}
 		MutableComponent result = Component.empty();
@@ -837,7 +848,7 @@ public final class TranslationEntry {
 			Seam inner = new Seam(frag);
 
 			List<Piece> pieces = new ArrayList<>();
-			for (Piece piece : ItemNamePolicy.enabled() ? fragment.originalPieces() : fragment.pieces()) {
+			for (Piece piece : allNames ? fragment.originalPieces() : fragment.pieces()) {
 				if (piece instanceof ItemRange range && originals.get(new RangeUse(matched, range.range())) == null)
 					pieces.addAll(range.fallback());
 				else pieces.add(piece);
@@ -899,6 +910,11 @@ public final class TranslationEntry {
 			&& ItemNames.canonical(source.canonical()) != null;
 	}
 
+	private boolean notMobArgument(int group) {
+		for (int index : this.notMobArguments) if (index < this.argGroups.length && this.argGroups[index] == group) return true;
+		return false;
+	}
+
 	private boolean itemArgument(int group, String type, String value) {
 		for (int index : this.itemArguments) if (index < this.argGroups.length && this.argGroups[index] == group) return true;
 		return switch (type == null ? "" : type.toLowerCase(Locale.ROOT)) {
@@ -934,7 +950,7 @@ public final class TranslationEntry {
 			seam.append(item, StyledText.of(item).plain(), style, true, true);
 			return;
 		}
-		String translated = terms.translate(type, value);
+		String translated = notMobArgument(group) ? terms.translateName(type, value) : terms.translate(type, value);
 		String written = translated != null ? translated : Capture.of(type).renderValue(value);
 		if ("player_or_self".equals(type) && "You".equals(value) && selfReference(source, start, end)) {
 			written = "你";

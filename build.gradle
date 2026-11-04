@@ -40,7 +40,7 @@ tasks.register('minifyCorpus', MinifyCorpus) {
  *
  * Which fields those are is not a guess: TranslationLoader#compile reads `id`, `ref`, `translate`,
  * `text`, `zh`, `segments[].text/.zh/.omit/.order`, `placeholders[].token/.type/.example`,
- * `continuation`, `layout`, `chat_join_next` and `exclude`; TermTable#from reads `applies_to_types` and `terms[].en/.zh/.types`;
+ * `continuation`, `layout`, `chat_join_next`, `exclude`, `item_refs` and `mob_refs`; TermTable#from reads `applies_to_types`, `not_creatures` and `terms[].en/.zh/.types`;
  * SkyBlockName#from reads `full`, `short` and `compound_stoplist`. Everything else in a corpus file is
  * written for whoever edits it next — `context` and `gloss` (the two biggest, on nearly every record),
  * `raw` (the line with its colour codes, kept so a record can be compared against what the server
@@ -66,7 +66,7 @@ abstract class MinifyCorpus extends DefaultTask {
 
 	/** Per-record keys the runtime reads. Anything else on a record is a note to a translator. */
 	private static final Set<String> RECORD_KEYS = [
-		'id', 'ref', 'translate', 'text', 'zh', 'segments', 'placeholders', 'continuation', 'layout', 'chat_join_next', 'exclude', 'item_refs', 'item_name',
+		'id', 'ref', 'translate', 'text', 'zh', 'segments', 'placeholders', 'continuation', 'layout', 'chat_join_next', 'exclude', 'item_refs', 'mob_refs', 'item_name',
 	] as Set
 
 	/** `color` is deliberately absent: it documents the boundary, the drawn colour comes off the screen. */
@@ -77,12 +77,12 @@ abstract class MinifyCorpus extends DefaultTask {
 	 * `example` bounds the placeholder to the kind of value it holds, so stripping it would ship a jar
 	 * that matches lines the source tree refuses — see text/ValueShape.java.
 	 */
-	private static final Set<String> PLACEHOLDER_KEYS = ['token', 'type', 'example', 'item'] as Set
+	private static final Set<String> PLACEHOLDER_KEYS = ['token', 'type', 'example', 'item', 'mob'] as Set
 
 	/** Top-level members of the two dictionary files, which are not lists of records. */
 	private static final Set<String> DICTIONARY_KEYS = [
 		'full', 'short', 'compound_stoplist',      // _shared/SkyBlock_Name.json
-		'applies_to_types', 'terms',               // _shared/Terms.json
+		'applies_to_types', 'terms', 'not_creatures', // _shared/Terms.json
 	] as Set
 
 	/**

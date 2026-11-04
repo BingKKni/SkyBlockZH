@@ -65,14 +65,14 @@
     },
     {"id":"pity_vanquisher_reset","context":"召出征服者后的重置说明","raw":"§8Spawning a Vanquisher will set your pity back to 0.","text":"Spawning a Vanquisher will set your pity back to 0.","translate":true,"zh":"召出征服者后，保底进度重置为 0。"},
     {
-      "id":"pity_zealot","context":"末地特殊狂热末影人保底",
+      "id":"pity_zealot", "mob_refs": [{"text": "Zealots", "zh": "狂热末影人"}, {"text": "Special Zealot", "zh": "特殊狂热末影人"}],"context":"末地特殊狂热末影人保底",
       "raw":"§7Killing §a%1$s §dZealots§7 in The End will guarantee that your next mob kill will spawn a §dSpecial Zealot§7!",
       "text":"Killing %1$s Zealots in The End will guarantee that your next mob kill will spawn a Special Zealot!",
       "placeholders":[{"token":"%1$s","type":"number","example":"400","desc":"保底所需击杀数"}],"translate":true,
       "zh":"在末地击杀 %1$s 只狂热末影人后，下一次击杀怪物必定召出特殊狂热末影人!",
       "segments":[{"color":"§7","text":"Killing ","zh":"在末地击杀 "},{"color":"§a","text":"%1$s ","zh":"%1$s "},{"color":"§d","text":"Zealots","zh":"只狂热末影人"},{"color":"§7","text":" in The End will guarantee that your next mob kill will spawn a ","zh":"后，下一次击杀怪物必定召出"},{"color":"§d","text":"Special Zealot","zh":"特殊狂热末影人"},{"color":"§7","text":"!","zh":"!"}]
     },
-    {"id":"pity_zealot_reset","context":"召出特殊狂热末影人后的重置说明","raw":"§8Spawning a Special Zealot will set your pity back to 0.","text":"Spawning a Special Zealot will set your pity back to 0.","translate":true,"zh":"召出特殊狂热末影人后，保底进度重置为 0。"},
+    {"id":"pity_zealot_reset", "mob_refs": [{"text": "Special Zealot", "zh": "特殊狂热末影人"}],"context":"召出特殊狂热末影人后的重置说明","raw":"§8Spawning a Special Zealot will set your pity back to 0.","text":"Spawning a Special Zealot will set your pity back to 0.","translate":true,"zh":"召出特殊狂热末影人后，保底进度重置为 0。"},
     {
       "id":"pity_garden_activities","context":"花园五种活动独立累计和重置保底",
       "raw":"§7Various activities in §aThe Garden §7gradually increase your chance to drop an §6Overclocker 3000§7. When one drops, only the pity for that specific activity resets to 0%.",
@@ -108,7 +108,7 @@
       "segments":[{"color":"§8","text":"Once you have found every Divine Rabbit, this guarantees ","zh":"收集全部神圣巧克力兔后，保底奖励改为 "},{"color":"§c","text":"Chocobit Rabbits ","zh":"Chocobit 兔"},{"color":"§8","text":"instead.","zh":"。"}]
     },
     {
-      "id":"pity_pig_potato", "item_refs": [{"text": "Potato Talisman", "zh": "马铃薯护符"}],"context":"闪光猪的马铃薯护符保底",
+      "id":"pity_pig_potato", "mob_refs": [{"text": "Shiny Pigs", "zh": "闪光猪"}], "item_refs": [{"text": "Potato Talisman", "zh": "马铃薯护符"}],"context":"闪光猪的马铃薯护符保底",
       "raw":"§7Completing §a%1$s §6§lShiny Pigs §7during the §dYear of the Pig §7will guarantee that your next one will drop a §fPotato Talisman§7!",
       "text":"Completing %1$s Shiny Pigs during the Year of the Pig will guarantee that your next one will drop a Potato Talisman!",
       "placeholders":[{"token":"%1$s","type":"number","example":"2,000","desc":"闪光猪挑战次数"}],"translate":true,
@@ -116,14 +116,14 @@
       "segments":[{"color":"§7","text":"Completing ","zh":"期间完成 ","order":2},{"color":"§a","text":"%1$s ","zh":"%1$s ","order":3},{"color":"§6§l","text":"Shiny Pigs ","zh":"次闪光猪挑战","order":4},{"color":"§7","text":"during the ","zh":"在","order":0},{"color":"§d","text":"Year of the Pig ","zh":"猪年庆典","order":1},{"color":"§7","text":"will guarantee that your next one will drop a ","zh":"后，下一次必定掉落","order":5},{"color":"§f","text":"Potato Talisman","zh":"马铃薯护符","order":6},{"color":"§7","text":"!","zh":"!","order":7}]
     },
     {
-      "id":"pity_pig_blood", "item_refs": [{"text": "Blood God Crest", "zh": "血神徽记"}],"context":"闪光猪的血神徽记保底",
+      "id":"pity_pig_blood", "mob_refs": [{"text": "Shiny Pigs", "zh": "闪光猪"}], "item_refs": [{"text": "Blood God Crest", "zh": "血神徽记"}],"context":"闪光猪的血神徽记保底",
       "raw":"§7Completing §a%1$s §6§lShiny Pigs §7during the §dYear of the Pig §7will guarantee that your next one will drop a §fBlood God Crest§7!",
       "text":"Completing %1$s Shiny Pigs during the Year of the Pig will guarantee that your next one will drop a Blood God Crest!",
       "placeholders":[{"token":"%1$s","type":"number","example":"1,000","desc":"闪光猪挑战次数"}],"translate":true,
       "zh":"在猪年庆典期间完成 %1$s 次闪光猪挑战后，下一次必定掉落血神徽记!",
       "segments":[{"color":"§7","text":"Completing ","zh":"期间完成 ","order":2},{"color":"§a","text":"%1$s ","zh":"%1$s ","order":3},{"color":"§6§l","text":"Shiny Pigs ","zh":"次闪光猪挑战","order":4},{"color":"§7","text":"during the ","zh":"在","order":0},{"color":"§d","text":"Year of the Pig ","zh":"猪年庆典","order":1},{"color":"§7","text":"will guarantee that your next one will drop a ","zh":"后，下一次必定掉落","order":5},{"color":"§f","text":"Blood God Crest","zh":"血神徽记","order":6},{"color":"§7","text":"!","zh":"!","order":7}]
     },
-    {"id":"pity_pig_double","context":"闪光猪双物品掉落对保底的贡献","raw":"§7Dropping 2 items from a Shiny Pig will count double towards pity.","text":"Dropping 2 items from a Shiny Pig will count double towards pity.","translate":true,"zh":"闪光猪一次掉落 2 件物品时，保底进度按两次计算。"},
+    {"id":"pity_pig_double", "mob_refs": [{"text": "Shiny Pig", "zh": "闪光猪"}],"context":"闪光猪双物品掉落对保底的贡献","raw":"§7Dropping 2 items from a Shiny Pig will count double towards pity.","text":"Dropping 2 items from a Shiny Pig will count double towards pity.","translate":true,"zh":"闪光猪一次掉落 2 件物品时，保底进度按两次计算。"},
     {
       "id":"pity_treasure_moonglade","context":"月光沼泽钓宝藏的鱼类保底",
       "raw":"§7Fishing up §6Treasure §a%1$s §7times on the §2Moonglade Marsh §7will guarantee that your next treasure catch will be a §cSwamp the Fish§7!",

@@ -5,7 +5,12 @@ import java.util.regex.Pattern;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 
-/** Final formatting for authored Chinese time units, including units outside a duration capture. */
+/**
+ * Final formatting for authored Chinese time units, including units outside a duration capture.
+ *
+ * <p>One unit reads as a count and keeps the corpus's spacing around a number: {@code 将在 40 秒后}.
+ * Several units read as one clock and stay compact: {@code 3分19秒}.
+ */
 public final class DurationText {
 	private static final String UNIT = "(-?[0-9][0-9,.]*) *(年|个月|天|小时|分钟|分|秒)";
 	private static final Pattern GROUP = Pattern.compile(UNIT + "(?: *" + UNIT + ")*");
@@ -39,15 +44,13 @@ public final class DurationText {
 			int prefixEnd = groups.start();
 			while (prefixEnd > cursor && styled.plain().charAt(prefixEnd - 1) == ' ') prefixEnd--;
 			boolean remaining = styled.plain().substring(cursor, prefixEnd).endsWith("剩余");
+			boolean afterHan = prefixEnd == groups.start() && prefixEnd > 0 && isHan(styled.plain().charAt(prefixEnd - 1));
 			int suffixStart = groups.end();
 			while (suffixStart < styled.length() && styled.plain().charAt(suffixStart) == ' ') suffixStart++;
 			// Ordinary sentence punctuation is compact; HUD icons and following words keep spacing.
 			boolean punctuation = suffixStart < styled.length()
 				&& ",.!?;:，。！？；：、…()[]{}（）【】《》「」『』“”‘’\"'".indexOf(styled.plain().charAt(suffixStart)) >= 0;
 			result.append(styled.slice(cursor, groups.start()));
-			if (remaining && prefixEnd == groups.start()) {
-				result.append(Component.literal(" ").setStyle(styled.styleAt(groups.start())));
-			}
 			var spans = new java.util.ArrayList<int[]>();
 			boolean hours = false;
 			while (parts.find()) {
@@ -62,6 +65,10 @@ public final class DurationText {
 				spans.removeLast();
 			}
 			parts.reset();
+			boolean single = spans.size() == 1;
+			if (remaining && prefixEnd == groups.start() || single && afterHan) {
+				result.append(Component.literal(" ").setStyle(styled.styleAt(groups.start())));
+			}
 			int index = 0;
 			while (index < spans.size() && parts.find()) {
 				int start = groups.start() + parts.start(1);
@@ -72,14 +79,16 @@ public final class DurationText {
 				int unitStart = groups.start() + parts.start(2);
 				int unitEnd = groups.start() + parts.end(2);
 				if (count > 1 && parts.group(2).equals("分钟")) unitEnd--;
-				if (remaining && count == 1) {
-					result.append(Component.literal(" ").setStyle(styled.styleAt(unitStart)));
-				}
+				if (single) result.append(Component.literal(" ").setStyle(styled.styleAt(unitStart)));
 				result.append(styled.slice(unitStart, unitEnd));
 				index++;
 			}
 			cursor = remaining && punctuation ? suffixStart : groups.end();
 		}
 		return result.append(styled.slice(cursor, styled.length()));
+	}
+
+	private static boolean isHan(char c) {
+		return c >= 0x3400 && c <= 0x9FFF || c >= 0xF900 && c <= 0xFAFF;
 	}
 }

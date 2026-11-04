@@ -313,17 +313,18 @@ public final class TranslationLoader {
 				JsonObject argument = value.getAsJsonObject();
 				for (String key : new String[] {"token", "type", "example"})
 					if (argument.has(key)) CorpusData.string(argument.get(key), "placeholders." + key);
-				if (argument.has("item") && (!argument.get("item").isJsonPrimitive() || !argument.getAsJsonPrimitive("item").isBoolean()))
-					throw new IllegalArgumentException("placeholders.item 必须是布尔值");
+				for (String key : new String[] {"item", "mob"})
+					if (argument.has(key) && (!argument.get(key).isJsonPrimitive() || !argument.getAsJsonPrimitive(key).isBoolean()))
+						throw new IllegalArgumentException("placeholders." + key + " 必须是布尔值");
 			}
-			if (record.has("item_refs")) for (var value : record.getAsJsonArray("item_refs")) {
+			for (String field : new String[] {"item_refs", "mob_refs"}) if (record.has(field)) for (var value : record.getAsJsonArray(field)) {
 				JsonObject reference = value.getAsJsonObject();
-				CorpusData.string(reference.get("text"), "item_refs.text");
-				CorpusData.string(reference.get("zh"), "item_refs.zh");
+				CorpusData.string(reference.get("text"), field + ".text");
+				CorpusData.string(reference.get("zh"), field + ".zh");
 				for (String key : new String[] {"source_occurrence", "target_occurrence", "target_segment"}) referenceIndex(reference, key);
 				if (reference.has("source_records")) CorpusData.strings(reference, "source_records");
 				if (reference.has("emit") && (!reference.get("emit").isJsonPrimitive() || !reference.getAsJsonPrimitive("emit").isBoolean()))
-					throw new IllegalArgumentException("item_refs.emit 必须是布尔值");
+					throw new IllegalArgumentException(field + ".emit 必须是布尔值");
 			}
 			if (record.has("exclude")) CorpusData.strings(record, "exclude");
 		} catch (RuntimeException e) {
@@ -392,9 +393,8 @@ public final class TranslationLoader {
 	}
 
 	private static List<TranslationEntry.ItemReference> itemReferences(JsonObject source, String relative, Map<String, JsonObject> byReference) {
-		if (!source.has("item_refs")) return List.of();
 		List<TranslationEntry.ItemReference> references = new ArrayList<>();
-		for (JsonElement value : source.getAsJsonArray("item_refs")) {
+		for (String field : new String[] {"item_refs", "mob_refs"}) if (source.has(field)) for (JsonElement value : source.getAsJsonArray(field)) {
 			JsonObject reference = value.getAsJsonObject();
 			List<String> ids = new ArrayList<>();
 			if (reference.has("source_records")) for (var id : reference.getAsJsonArray("source_records")) ids.add(CorpusData.string(id, "item_refs.source_records"));
@@ -409,8 +409,8 @@ public final class TranslationLoader {
 				boolean emitter = false;
 				for (String id : ids) {
 					JsonObject owner = resolve(byReference.get(relative + "#" + id), byReference);
-					if (!owner.has("item_refs")) continue;
-					for (var element : owner.getAsJsonArray("item_refs")) {
+					if (!owner.has(field)) continue;
+					for (var element : owner.getAsJsonArray(field)) {
 						JsonObject candidate = element.getAsJsonObject();
 						if (string(reference, "text").equals(string(candidate, "text"))
 							&& reference.get("source_records").equals(candidate.get("source_records"))
@@ -421,7 +421,8 @@ public final class TranslationLoader {
 			}
 			references.add(new TranslationEntry.ItemReference(string(reference, "text"), string(reference, "zh"),
 				referenceIndex(reference, "source_occurrence"), referenceIndex(reference, "target_occurrence"),
-				referenceIndex(reference, "target_segment"), ids, sourceTemplate.toString(), !reference.has("emit") || reference.get("emit").getAsBoolean()));
+				referenceIndex(reference, "target_segment"), ids, sourceTemplate.toString(), !reference.has("emit") || reference.get("emit").getAsBoolean(),
+				field.equals("mob_refs")));
 		}
 		return List.copyOf(references);
 	}
@@ -504,7 +505,8 @@ public final class TranslationLoader {
 
 			values.putIfAbsent(index, new TranslationEntry.Argument(
 				string(placeholder, "type"), string(placeholder, "example"),
-				placeholder.has("item") && placeholder.get("item").getAsBoolean()
+				placeholder.has("item") && placeholder.get("item").getAsBoolean(),
+				!placeholder.has("mob") || placeholder.get("mob").getAsBoolean()
 			));
 		}
 

@@ -147,7 +147,7 @@ public final class UpdateChecker {
 
 	/** A combined request keeps the worker occupied until both checks finish, Mod first. */
 	static void runChecks(Action action, Runnable mod, Runnable translations) {
-		if (action == Action.MOD || action == Action.CHECK) mod.run();
+		if (action == Action.MOD || action == Action.CHECK || action == Action.INSTALL) mod.run();
 		if (action == Action.TRANSLATIONS || action == Action.CHECK) translations.run();
 	}
 
@@ -164,6 +164,7 @@ public final class UpdateChecker {
 		private final UpdateHttp http = new UpdateHttp();
 		private final UpdateState state;
 		private final String installed = loader.getModContainer("skyzh").orElseThrow().getMetadata().getVersion().getFriendlyString();
+		private final java.util.Properties build = buildInfo();
 		private final String translationIdentity = TranslationPack.api() + ":" + installed;
 		private final AtomicBoolean busy = new AtomicBoolean();
 		private volatile Process installer;
@@ -194,13 +195,14 @@ public final class UpdateChecker {
 			long now = System.currentTimeMillis();
 			boolean due = immediate || state.due("mod", installed, now) || state.due("translations", translationIdentity, now);
 			return launch(enabled(immediate), due, immediate, busy, () -> runChecks(action,
-				() -> check("mod", installed, immediate, () -> checkMod(immediate)),
+				() -> check("mod", installed, immediate, () -> checkMod(immediate, action == Action.INSTALL)),
 				() -> check("translations", translationIdentity, immediate, () -> checkTranslations(immediate))), Thread::startVirtualThread);
 		}
 
 		private void check(String lane, String identity, boolean immediate, Checked work) {
 			if (!enabled(immediate) || (!immediate && !state.due(lane, identity, System.currentTimeMillis()))) return;
 			try { work.run(); }
+			catch (NoMatchingDownload e) { if (immediate) message(UpdateMessages.noModDownload()); }
 			catch (Exception e) {
 				LOGGER.warn("SkyZH {} 更新失败", lane, e);
 				JsonObject details = new JsonObject(); details.addProperty("error", e.toString());
@@ -225,11 +227,16 @@ public final class UpdateChecker {
 			return release;
 		}
 
-		private void checkTranslations(boolean requested) throws Exception {
+		/** The published manifest: the translation bundle, and the newest per-commit test build. */
+		private JsonObject updateManifest() throws Exception {
 			JsonObject envelope = http.json(URI.create(API + "contents/skyzh-updates/update.json?ref=main"));
 			if (!UpdateFiles.string(envelope, "encoding").equals("base64")) throw new IOException("GitHub 清单编码不支持");
 			byte[] bytes = Base64.getDecoder().decode(UpdateFiles.string(envelope, "content").replaceAll("\\s", ""));
-			TranslationUpdate.Offer offer = TranslationUpdate.offer(TranslationPack.parse(bytes, "update.json"));
+			return TranslationPack.parse(bytes, "update.json");
+		}
+
+		private void checkTranslations(boolean requested) throws Exception {
+			TranslationUpdate.Offer offer = TranslationUpdate.offer(updateManifest());
 			boolean newer = TranslationUpdate.newer(offer.manifest(), TranslationUpdate.baseline(automatic));
 			if (offer.api() != TranslationPack.api()) {
 				finish("translations", translationIdentity, UpdateState.WEEK, "incompatible", offer.manifest());
@@ -238,7 +245,7 @@ public final class UpdateChecker {
 					try {
 						String latest = UpdateFiles.string(latestRelease(), "tag_name");
 						if (needsModNotice(isNewer(latest, installed), newer, offer.api(), TranslationPack.api()))
-							message(UpdateMessages.incompatible(ACTIONS.issue(Action.MOD)));
+							message(UpdateMessages.incompatible(ACTIONS.issue(Action.INSTALL)));
 					} catch (Exception e) { LOGGER.warn("暂时无法确认是否有新版 Mod，保留翻译不兼容的等待时间", e); }
 				}
 				return;
@@ -276,45 +283,111 @@ public final class UpdateChecker {
 			return jar;
 		}
 
-		private void checkMod(boolean requested) throws Exception {
+		/**
+		 * Finds the newest build on the chosen channel and, depending on the install setting, arms the
+		 * post-exit installer, keeps the download for a click, or only reports it. A click passes
+		 * {@code install} and always ends armed. Manual and notify modes repeat their reminder on every
+		 * check while the offer stands; a newer offer replaces the downloaded file.
+		 */
+		private void checkMod(boolean requested, boolean install) throws Exception {
 			var pending = ModUpdate.plan(directory);
 			String pendingVersion = pending.getProperty("version", "");
 			if (ModUpdate.installerAlive(pending)) {
 				finish("mod", installed, UpdateState.HOUR, "waiting_for_exit", null);
-				if (requested && isNewer(pendingVersion, installed)) message(UpdateMessages.modDownloaded(pendingVersion));
+				if (requested && newerBuild(pendingVersion)) message(UpdateMessages.modDownloaded(label(pendingVersion)));
 				return;
 			}
-			if (isNewer(pendingVersion, installed)) {
-				Path candidate = directory.resolve("mod-update.jar");
+			SkyZHConfig.UpdateInstall mode = SkyZHConfig.get().updateInstall;
+			boolean arm = install || mode == SkyZHConfig.UpdateInstall.AUTO;
+			Path candidate = directory.resolve("mod-update.jar");
+			if (arm && newerBuild(pendingVersion)) {
 				if (Files.isRegularFile(candidate) && UpdateFiles.sha256(candidate).equals(pending.getProperty("new_sha256"))) {
 					validateMod(candidate, pendingVersion);
 					if (!enabled(requested)) return;
 					installer = ModUpdate.arm(directory, installedJar(), pending.getProperty("new_sha256"), pendingVersion);
 					finish("mod", installed, UpdateState.HOUR, "waiting_for_exit", null);
-					message(UpdateMessages.modDownloaded(pendingVersion));
+					message(UpdateMessages.modDownloaded(label(pendingVersion)));
 					return;
 				}
 			}
-			JsonObject release = latestRelease();
-			String latest = UpdateFiles.string(release, "tag_name");
-			if (!isNewer(latest, installed)) {
-				finish("mod", installed, UpdateState.HOUR, "current", releaseSummary(latest));
+			ModUpdate.Asset asset = SkyZHConfig.get().updateChannel == SkyZHConfig.UpdateChannel.BETA ? betaAsset() : releaseAsset();
+			if (asset == null) {
 				if (requested) message(UpdateMessages.current(true));
 				return;
 			}
-			String target = installed.contains("+mc") ? installed.substring(installed.indexOf("+mc") + 3) : "";
-			ModUpdate.Asset asset = ModUpdate.select(release, target);
-			if (asset == null) {
-				finish("mod", installed, UpdateState.HOUR, "no_matching_download", releaseSummary(latest));
-				if (requested) message(UpdateMessages.noModDownload());
+			String version = asset.version();
+			if (mode == SkyZHConfig.UpdateInstall.NOTIFY && !install) {
+				finish("mod", installed, UpdateState.HOUR, "available", releaseSummary(version));
+				message(UpdateMessages.modAvailable(label(version), ACTIONS.issue(Action.INSTALL)));
 				return;
 			}
-			Path candidate = http.download(asset.download(), directory.resolve("mod-update.jar"), () -> enabled(requested));
-			validateMod(candidate, latest);
+			if (!Files.isRegularFile(candidate) || !UpdateFiles.sha256(candidate).equals(asset.download().sha256()))
+				http.download(asset.download(), candidate, () -> enabled(requested));
+			validateMod(candidate, version);
 			if (!enabled(requested)) return;
-			installer = ModUpdate.arm(directory, installedJar(), asset.download().sha256(), latest);
-			finish("mod", installed, UpdateState.HOUR, "waiting_for_exit", releaseSummary(latest));
-			message(UpdateMessages.modDownloaded(latest));
+			if (!arm) {
+				finish("mod", installed, UpdateState.HOUR, "downloaded", releaseSummary(version));
+				message(UpdateMessages.modReady(label(version), ACTIONS.issue(Action.INSTALL)));
+				return;
+			}
+			installer = ModUpdate.arm(directory, installedJar(), asset.download().sha256(), version);
+			finish("mod", installed, UpdateState.HOUR, "waiting_for_exit", releaseSummary(version));
+			message(UpdateMessages.modDownloaded(label(version)));
+		}
+
+		/** The newest formal release for this Minecraft, or {@code null} after recording why there is none. */
+		private ModUpdate.Asset releaseAsset() throws Exception {
+			JsonObject release = latestRelease();
+			String latest = UpdateFiles.string(release, "tag_name");
+			if (!newerBuild(latest)) {
+				finish("mod", installed, UpdateState.HOUR, "current", releaseSummary(latest));
+				return null;
+			}
+			ModUpdate.Asset asset = ModUpdate.select(release, target());
+			if (asset == null) {
+				finish("mod", installed, UpdateState.HOUR, "no_matching_download", releaseSummary(latest));
+				throw new NoMatchingDownload();
+			}
+			return asset;
+		}
+
+		/** The newest test build for this Minecraft, published by Actions next to the translation bundle. */
+		private ModUpdate.Asset betaAsset() throws Exception {
+			JsonObject manifest = updateManifest();
+			JsonObject beta = manifest.has("mod_beta") && manifest.get("mod_beta").isJsonObject() ? manifest.getAsJsonObject("mod_beta") : null;
+			JsonObject asset = beta != null && beta.has("assets") && beta.getAsJsonObject("assets").has(target())
+				? beta.getAsJsonObject("assets").getAsJsonObject(target()) : null;
+			String version = asset == null ? "" : UpdateFiles.string(asset, "version");
+			if (asset == null || !newerBuild(version)) {
+				finish("mod", installed, UpdateState.HOUR, "current", releaseSummary(version));
+				return null;
+			}
+			URI uri = URI.create(UpdateFiles.string(asset, "download_url"));
+			if (!UpdateHttp.github(uri)) throw new IOException("测试版下载地址不属于项目");
+			return new ModUpdate.Asset(version, new UpdateHttp.Download(uri, UpdateFiles.number(asset, "size"), UpdateFiles.string(asset, "sha256")));
+		}
+
+		private String target() {
+			java.util.regex.Matcher target = TARGET.matcher(installed);
+			return target.find() ? target.group(1) : "";
+		}
+
+		/** A beta build is newer by commit count; a release replaces a test build of the same version. */
+		private boolean newerBuild(String version) {
+			String base = BUILD_METADATA.matcher(version).replaceFirst("");
+			if (isNewer(base, installed)) return true;
+			if (isNewer(installed, base) || base.isEmpty() || !RELEASE_VERSION.matcher(normalizeVersion(base)).matches()) return false;
+			java.util.regex.Matcher beta = BETA_BUILD.matcher(version);
+			boolean installedBeta = "beta".equals(build.getProperty("channel"));
+			if (!beta.find()) return installedBeta;
+			return Long.parseLong(beta.group(1)) > Long.parseLong(build.getProperty("commits", "0"));
+		}
+
+		/** {@code 0.8+mc26.2.beta.501} is shown as {@code 0.8 测试版 #501}. */
+		private static String label(String version) {
+			java.util.regex.Matcher beta = BETA_BUILD.matcher(version);
+			String base = BUILD_METADATA.matcher(version).replaceFirst("");
+			return beta.find() ? base + " 测试版 #" + beta.group(1) : base;
 		}
 
 		private void validateMod(Path candidate, String version) throws Exception {
@@ -329,6 +402,25 @@ public final class UpdateChecker {
 	}
 
 	@FunctionalInterface private interface Checked { void run() throws Exception; }
+
+	/** Already recorded with its own cooldown; only an explicit check says so in chat. */
+	private static final class NoMatchingDownload extends Exception {
+		NoMatchingDownload() { super(null, null, false, false); }
+	}
+
+	private static final Pattern TARGET = Pattern.compile("\\+mc(26\\.[0-9]+)");
+	private static final Pattern BETA_BUILD = Pattern.compile("\\.beta\\.([0-9]{1,15})$");
+	private static final Pattern BUILD_METADATA = Pattern.compile("\\+.*$");
+
+	private static java.util.Properties buildInfo() {
+		java.util.Properties properties = new java.util.Properties();
+		try (var stream = UpdateChecker.class.getResourceAsStream("/skyzh-build.properties")) {
+			if (stream != null) properties.load(stream);
+		} catch (IOException e) {
+			LOGGER.warn("无法读取 SkyZH 构建信息", e);
+		}
+		return properties;
+	}
 
 	static boolean isNewer(String available, String installed) {
 		try {

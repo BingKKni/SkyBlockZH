@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Stage translation files for GitHub Pages, then publish update.json after deployment is verified."""
+"""Stage translation files and test Mod builds for GitHub Pages, then publish update.json after deployment is verified."""
 from __future__ import annotations
 
 import argparse
@@ -24,7 +24,11 @@ RETAIN_PREVIOUS = 2
 INPUTS = (
     "original_text", "gradle.properties", "build.gradle", "gradle/target.gradle",
     "tools/export_translations.py", "tools/publish_updates.py", ".github/workflows/translations.yml",
+    # Test Mod builds: any source or target change publishes a new one.
+    "src", "settings.gradle", "gradle/wrapper", "fabric-26.1", "fabric-26.2", "fabric-26.3",
 )
+TARGETS = ("26.1", "26.2", "26.3")
+BETA_VERSION = re.compile(r"[0-9][0-9A-Za-z.-]*\+mc26\.[0-9]+\.beta\.[0-9]+")
 
 
 def git(*arguments: str) -> str:
@@ -66,16 +70,55 @@ def descriptor(update: dict) -> dict:
     return {"download_url": url, "zip_size": size, "zip_sha256": digest}
 
 
-def download(update: dict) -> bytes:
-    item = descriptor(update)
-    req = urllib.request.Request(item["download_url"], headers={"User-Agent": "SkyZH-Translation-Publisher"})
+def fetch(url: str, size: int, digest: str) -> bytes:
+    req = urllib.request.Request(url, headers={"User-Agent": "SkyZH-Translation-Publisher"})
     with urllib.request.urlopen(req, timeout=60) as response:
         if response.status != 200:
             raise RuntimeError(f"Pages 下载返回 HTTP {response.status}。")
-        payload = response.read(item["zip_size"] + 1)
-    if len(payload) != item["zip_size"] or hashlib.sha256(payload).hexdigest() != item["zip_sha256"]:
-        raise RuntimeError("Pages 上的翻译包大小或摘要不符。")
+        payload = response.read(size + 1)
+    if len(payload) != size or hashlib.sha256(payload).hexdigest() != digest:
+        raise RuntimeError("Pages 上的文件大小或摘要不符。")
     return payload
+
+
+def download(update: dict) -> bytes:
+    item = descriptor(update)
+    return fetch(item["download_url"], item["zip_size"], item["zip_sha256"])
+
+
+def beta_url(digest: str, name: str) -> str:
+    if not re.fullmatch(r"[0-9a-f]{64}", digest) or not re.fullmatch(r"SkyBlockZH-[0-9A-Za-z.+-]+\.jar", name):
+        raise ValueError("无效的测试版文件。")
+    return f"{PAGES}skyzh-updates/mod/{digest}/{name}"
+
+
+def build_beta() -> list[Path]:
+    """Builds one test jar per Minecraft target, versioned by commit count."""
+    wrapper = ROOT / ("gradlew.bat" if os.name == "nt" else "gradlew")
+    subprocess.run([str(wrapper), "--console=plain", "-Pskyzh.channel=beta", *[f":fabric-{t}:jar" for t in TARGETS]],
+                   cwd=ROOT, check=True)
+    jars = []
+    for target in TARGETS:
+        found = sorted((ROOT / f"fabric-{target}/build/libs").glob(f"SkyBlockZH-*-Fabric-{target}.jar"))
+        if len(found) != 1:
+            raise RuntimeError(f"{target} 测试版应恰好产出一个 JAR，实际 {len(found)} 个。")
+        jars.append(found[0])
+    return jars
+
+
+def beta_assets(jars: list[Path]) -> tuple[dict, list[tuple[str, bytes]]]:
+    assets, files = {}, []
+    for target, jar in zip(TARGETS, jars):
+        payload = jar.read_bytes()
+        with zipfile.ZipFile(jar) as bundle:
+            version = json.loads(bundle.read("fabric.mod.json"))["version"]
+        if not BETA_VERSION.fullmatch(version) or f"+mc{target}." not in version:
+            raise RuntimeError(f"测试版版本号不符：{version}")
+        digest = hashlib.sha256(payload).hexdigest()
+        url = beta_url(digest, jar.name)
+        assets[target] = {"version": version, "download_url": url, "size": len(payload), "sha256": digest}
+        files.append((url[len(PAGES):], payload))
+    return assets, files
 
 
 def output(packaged: bool) -> None:
@@ -94,6 +137,7 @@ def prepare(force: bool) -> bool:
         return False
     source = git("rev-parse", "HEAD")
     subprocess.run([sys.executable, "-B", str(ROOT / "tools/export_translations.py")], cwd=ROOT, check=True)
+    assets, beta_files = beta_assets(build_beta())
     archive = ROOT / "build/translations/translations.zip"
     with zipfile.ZipFile(archive) as bundle:
         manifest = json.loads(bundle.read("manifest.json"))
@@ -118,6 +162,15 @@ def prepare(force: bool) -> bool:
         if len(retained) == RETAIN_PREVIOUS:
             break
     update["previous_archives"] = [entry for entry, _ in retained]
+    update["mod_beta"] = {"revision": source, "assets": assets}
+    # Clients may still be downloading the previous test build; keep its files for one more deployment.
+    current = {asset["sha256"] for asset in assets.values()}
+    for asset in previous.get("mod_beta", {}).get("assets", {}).values():
+        if asset.get("sha256") in current or not str(asset.get("download_url", "")).startswith(PAGES):
+            continue
+        name = asset["download_url"].rsplit("/", 1)[-1]
+        url = beta_url(asset["sha256"], name)
+        beta_files.append((url[len(PAGES):], fetch(url, asset["size"], asset["sha256"])))
     staging = ROOT / "build/pages"
     if staging.exists():
         shutil.rmtree(staging)
@@ -126,6 +179,10 @@ def prepare(force: bool) -> bool:
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(data)
     (staging / "skyzh-updates/translations.zip").write_bytes(payload)
+    for relative, data in beta_files:
+        path = staging / relative
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(data)
     (staging / "index.html").write_text(
         '<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>SkyZH 翻译文件</title>'
         '<h1>SkyZH 翻译文件</h1><p><a href="skyzh-updates/translations.zip">下载最新翻译包</a></p>'
@@ -134,7 +191,7 @@ def prepare(force: bool) -> bool:
     candidate.parent.mkdir(parents=True, exist_ok=True)
     candidate.write_bytes(encode(update) + b"\n")
     output(True)
-    print(f"Pages 文件已准备：{len(payload):,} 字节，保留 {len(retained)} 份旧包。")
+    print(f"Pages 文件已准备：{len(payload):,} 字节，保留 {len(retained)} 份旧包，测试版 {len(beta_files)} 个 JAR。")
     return True
 
 
@@ -175,7 +232,7 @@ def publish() -> bool:
         "message": "发布自动翻译更新", "tree": tree["sha"], "parents": [head],
     }))
     request(f"{api}/git/refs/heads/main", token, "PATCH", encode({"sha": commit["sha"], "force": False}))
-    print(f"翻译更新已发布：{update['download_url']}（{update['zip_size']:,} 字节）")
+    print(f"翻译与测试版更新已发布：{update['download_url']}（{update['zip_size']:,} 字节）")
     return True
 
 

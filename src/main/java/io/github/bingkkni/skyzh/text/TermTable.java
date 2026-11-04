@@ -32,7 +32,7 @@ import java.util.regex.Pattern;
  * Chinese name for somebody's weapon — is far worse than the cost of leaving a place name English.
  */
 public final class TermTable {
-	public static final TermTable EMPTY = new TermTable(Set.of(), Map.of(), Map.of(), Map.of(), Map.of(), Map.of(), Map.of());
+	public static final TermTable EMPTY = new TermTable(Set.of(), Map.of(), Map.of(), Map.of(), Map.of(), Map.of(), Map.of(), Set.of());
 
 	/** Dungeon stars and Master Stars on the end of an item name; not part of the name itself. */
 	private static final Pattern STARS = Pattern.compile("( [✪★☆➊➋➌➍➎]+)$");
@@ -54,12 +54,14 @@ public final class TermTable {
 	 * {@code loot_item_name} placeholders — see {@link #itemName}.
 	 */
 	private final Map<String, String> itemNames;
+	/** Folded {@code mob_name} entries that, outside a mob placeholder, mean a pet, class or faction. */
+	private final Set<String> notCreatures;
 	private Function<String, String> knownItemTemplate = value -> null;
 
 	private TermTable(
 		Set<String> types, Map<String, String> terms, Map<String, String> folded,
 		Map<String, Map<String, String>> typed, Map<String, Map<String, String>> foldedTyped,
-		Map<String, String> canonicalByFolded, Map<String, String> itemNames
+		Map<String, String> canonicalByFolded, Map<String, String> itemNames, Set<String> notCreatures
 	) {
 		this.types = types;
 		this.terms = terms;
@@ -68,6 +70,7 @@ public final class TermTable {
 		this.foldedTyped = foldedTyped;
 		this.canonicalByFolded = canonicalByFolded;
 		this.itemNames = itemNames;
+		this.notCreatures = notCreatures;
 	}
 
 	/**
@@ -91,7 +94,7 @@ public final class TermTable {
 
 		TermTable result = new TermTable(
 			this.types, this.terms, this.folded, this.typed, this.foldedTyped, this.canonicalByFolded,
-			Map.copyOf(folded)
+			Map.copyOf(folded), this.notCreatures
 		);
 		result.knownItemTemplate = knownItemTemplate;
 		return result;
@@ -216,9 +219,18 @@ public final class TermTable {
 			}
 		}
 
+		Set<String> notCreatures = new HashSet<>();
+
+		if (json.has("not_creatures") && json.get("not_creatures").isJsonArray()) {
+			for (JsonElement element : json.getAsJsonArray("not_creatures")) {
+				notCreatures.add(element.getAsString().toLowerCase(Locale.ROOT));
+			}
+		}
+
 		return new TermTable(
 			Set.copyOf(types), Map.copyOf(terms), Map.copyOf(folded),
-			Map.copyOf(frozenTyped), Map.copyOf(foldedTyped), Map.copyOf(canonicalByFolded), Map.of()
+			Map.copyOf(frozenTyped), Map.copyOf(foldedTyped), Map.copyOf(canonicalByFolded), Map.of(),
+			Set.copyOf(notCreatures)
 		);
 	}
 
@@ -252,20 +264,42 @@ public final class TermTable {
 	 * worth translating gets its own entry.
 	 */
 	public String translate(String type, String value) {
+		return !ItemNamePolicy.mobNames() && mobValue(type, value) ? null : translateName(type, value);
+	}
+
+	/** Only the outermost placeholder decides: a mob word inside {@code item_part} stays an item. */
+	private boolean mobValue(String type, String value) {
+		return switch (type == null ? "" : type.toLowerCase(Locale.ROOT)) {
+			case "mob_name" -> true;
+			case "raw", "category_name", "recipe_target", "rng_meter_source" -> creature(value);
+			default -> false;
+		};
+	}
+
+	private boolean creature(String value) {
+		Map<String, String> mobs = this.foldedTyped.get("mob_name");
+		if (mobs == null) return false;
+		Matcher tier = MOB_TIER.matcher(value);
+		String name = (tier.matches() ? tier.group(1) : value).toLowerCase(Locale.ROOT);
+		return mobs.containsKey(name) && !this.notCreatures.contains(name);
+	}
+
+	/** The same lookup for a value already known to be no creature, such as a pet or a rabbit. */
+	public String translateName(String type, String value) {
 		if ("stat_name".equalsIgnoreCase(type)) {
-			return Capture.of(type).accepts(value) ? translate("category_name", value) : null;
+			return Capture.of(type).accepts(value) ? translateName("category_name", value) : null;
 		}
 		if ("commission_area".equalsIgnoreCase(type)) {
-			return Capture.of(type).accepts(value) ? translate("location_name", value) : null;
+			return Capture.of(type).accepts(value) ? translateName("location_name", value) : null;
 		}
 		if ("trophy_catch_name".equalsIgnoreCase(type)) {
 			return Capture.TROPHY_CATCH_NAME.accepts(value)
-				? translate(Capture.TROPHY_FISH_NAME.accepts(value) ? "trophy_fish_name" : "category_name", value) : null;
+				? translateName(Capture.TROPHY_FISH_NAME.accepts(value) ? "trophy_fish_name" : "category_name", value) : null;
 		}
 		if ("contest_rank".equalsIgnoreCase(type)) {
 			if (!Capture.CONTEST_RANK.accepts(value)) return null;
 			String medal = lookup(this.foldedTyped.get("medal"), value.toLowerCase(Locale.ROOT));
-			return medal != null ? medal : translate("category_name", value);
+			return medal != null ? medal : translateName("category_name", value);
 		}
 		// Opt-in loot announcements reuse existing names, but never menu/lore records or unknown items.
 		if ("loot_item_name".equalsIgnoreCase(type) || "catalog_item_name".equalsIgnoreCase(type)) {
@@ -274,21 +308,21 @@ public final class TermTable {
 		if ("guide_item_name".equalsIgnoreCase(type)) {
 			return itemName(value);
 		}
-		if ("rarity".equalsIgnoreCase(type)) return translate("category_name", value);
+		if ("rarity".equalsIgnoreCase(type)) return translateName("category_name", value);
 		if ("shard_kind".equalsIgnoreCase(type)) {
-			return ItemNames.isBaseName(value + " Shard") ? translate("mob_name", value) : null;
+			return ItemNames.isBaseName(value + " Shard") ? translateName("mob_name", value) : null;
 		}
 		if ("item_part".equalsIgnoreCase(type) || "bait_kind".equalsIgnoreCase(type)) {
-			return translate("category_name", value);
+			return translateName("category_name", value);
 		}
 		// Recipe headings name either a category (Farming Recipes) or a physical item (Bait Ring
 		// Recipe). Reuse the existing decisions rather than duplicating every item in Terms.json.
 		if ("recipe_target".equalsIgnoreCase(type)) {
-			String category = translate("category_name", value);
+			String category = translateName("category_name", value);
 			if (category != null) return category;
-			String mob = translate("mob_name", value);
+			String mob = translateName("mob_name", value);
 			if (mob != null) return mob;
-			String location = translate("location_name", value);
+			String location = translateName("location_name", value);
 			return location != null ? location : ItemNames.canonical(value) == null ? null : itemName(value);
 		}
 

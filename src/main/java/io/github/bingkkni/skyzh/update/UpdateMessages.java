@@ -26,6 +26,16 @@ public final class UpdateMessages {
 		return text("已下载 SkyZH " + version + "，下次重启时安装。", ChatFormatting.GREEN);
 	}
 
+	public static Component modReady(String version, String command) {
+		return text("SkyZH " + version + " 已下载完成，", ChatFormatting.GREEN)
+			.append(button("[点击安装]", ChatFormatting.GOLD, command, "点击后将在下次重启游戏时安装新版 SkyZH!"));
+	}
+
+	public static Component modAvailable(String version, String command) {
+		return text("发现新版 SkyZH " + version + "，", ChatFormatting.YELLOW)
+			.append(button("[点击下载并安装]", ChatFormatting.GREEN, command, "点击来下载新版 SkyZH，并在下次重启游戏时安装!"));
+	}
+
 	public static Component current(boolean mod) {
 		return text(mod ? "SkyZH 已是最新版本。" : "翻译包已是最新版本。", ChatFormatting.GREEN);
 	}
@@ -43,12 +53,12 @@ public final class UpdateMessages {
 	}
 
 	public static Component translationFailed(String command) {
-		return text("更新翻译包时出错，将在1小时后重试。", ChatFormatting.YELLOW)
+		return text("更新翻译包时出错，将在 1 小时后重试。", ChatFormatting.YELLOW)
 			.append(button("[立即重试]", ChatFormatting.GOLD, command, "点击来尝试再次安装新版翻译包!"));
 	}
 
 	public static Component modFailed(String command) {
-		return text("更新 SkyZH 时出错，将在1小时后重试。", ChatFormatting.YELLOW)
+		return text("更新 SkyZH 时出错，将在 1 小时后重试。", ChatFormatting.YELLOW)
 			.append(button("[立即重试]", ChatFormatting.GOLD, command, "点击来尝试再次安装新版 SkyZH!"));
 	}
 

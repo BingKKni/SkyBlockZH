@@ -49,8 +49,8 @@ public final class UpdateInteractionHarness {
 			&& UpdateMessages.incompatible().getStyle().getHoverEvent() == null);
 		check("不兼容文案", legacy(UpdateMessages.incompatible(COMMAND)).equals(
 			"§e发现新版本翻译包，但它与此计算机上的 SkyZH 不兼容，请更新 Mod。§a[点击这里下载]"));
-		check("翻译失败文案", legacy(UpdateMessages.translationFailed(COMMAND)).equals("§e更新翻译包时出错，将在1小时后重试。§6[立即重试]"));
-		check("Mod 失败文案", legacy(UpdateMessages.modFailed(COMMAND)).equals("§e更新 SkyZH 时出错，将在1小时后重试。§6[立即重试]"));
+		check("翻译失败文案", legacy(UpdateMessages.translationFailed(COMMAND)).equals("§e更新翻译包时出错，将在 1 小时后重试。§6[立即重试]"));
+		check("Mod 失败文案", legacy(UpdateMessages.modFailed(COMMAND)).equals("§e更新 SkyZH 时出错，将在 1 小时后重试。§6[立即重试]"));
 		check("检查失败文案", legacy(UpdateMessages.checkFailed(COMMAND)).equals("§c检查更新时出错。§a[重试]"));
 		check("统一浅蓝色前缀", legacy(UpdateMessages.chat(UpdateMessages.translationUpdated(false, ""))).equals("§b[SkyZH] §a翻译更新成功!"));
 		scope(UpdateMessages.translationUpdated(true, COMMAND), 0xFF5555, "点击卸载外置翻译包，此操作不可撤销!");

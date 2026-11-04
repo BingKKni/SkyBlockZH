@@ -54,6 +54,12 @@ public final class SkyZHConfig {
 	/** Whether entering SkyBlock starts automatic Mod and translation updates. */
 	public volatile boolean updateCheck = true;
 
+	/** Which Mod builds the automatic check looks for; translations have one channel. */
+	public volatile UpdateChannel updateChannel = UpdateChannel.RELEASE;
+
+	/** What happens once a newer Mod build is found. */
+	public volatile UpdateInstall updateInstall = UpdateInstall.AUTO;
+
 	/** Whether the unavailable in-game translation feedback switch is selected for future use. */
 	public boolean helpImproveTranslation = true;
 
@@ -66,11 +72,17 @@ public final class SkyZHConfig {
 	/** Whether physical item names and references use the corpus translations. */
 	public volatile boolean translateItemNames = true;
 
+	/** Whether mob names on nameplates and their mentions in any text use the corpus translations. */
+	public volatile boolean translateMobNames = true;
+
 	/** Additional render protection is opt-in and can be changed without restarting. */
 	public DisplayPriority displayPriority = DisplayPriority.DEFAULT;
 
 	/** Whether chat and item tooltips explain the original-text toggle. */
 	public boolean originalTips = true;
+
+	/** Whether Unicode text keeps the narrow 1.12.2 glyph widths instead of vanilla full-width spacing. */
+	public boolean legacyFont = true;
 
 	/**
 	 * Whether text the corpus has no answer for is written to disk as it is seen — off by default,
@@ -137,12 +149,16 @@ public final class SkyZHConfig {
 		SkyZHConfig config = new SkyZHConfig();
 		config.enabled = bool(json, "enabled", true);
 		config.updateCheck = bool(json, "updateCheck", true);
+		config.updateChannel = UpdateChannel.parse(string(json, "updateChannel", "release"));
+		config.updateInstall = UpdateInstall.parse(string(json, "updateInstall", "auto"));
 		config.helpImproveTranslation = bool(json, "helpImproveTranslation", true);
 		config.welcomeShown = bool(json, "welcomeShown", false);
 		config.translateSkyBlockName = bool(json, "translateSkyBlockName", true);
 		config.translateItemNames = bool(json, "translateItemNames", true);
+		config.translateMobNames = bool(json, "translateMobNames", true);
 		config.displayPriority = DisplayPriority.parse(string(json, "displayPriority", "default"));
 		config.originalTips = bool(json, "originalTips", true);
+		config.legacyFont = bool(json, "legacyFont", true);
 		config.captureUntranslated = bool(json, "captureUntranslated", false);
 		config.captureNotifications = bool(json, "captureNotifications", true);
 		config.autoClearCapture = bool(json, "autoClearCapture", false);
@@ -205,12 +221,16 @@ public final class SkyZHConfig {
 		JsonObject help = new JsonObject();
 		help.addProperty("enabled", "是否启用 Mod 功能。关闭将不翻译任何文本。");
 		help.addProperty("updateCheck", "是否在进入空岛生存后自动检查并下载 Mod 和翻译更新。翻译更新立即生效；Mod 更新在退出游戏后安装，下次启动生效。总开关关闭时不检查。");
+		help.addProperty("updateChannel", "更新渠道：release 只安装正式版；beta 还会安装每次提交自动构建的测试版。翻译包只有一个渠道。");
+		help.addProperty("updateInstall", "发现新版 Mod 后：auto 自动下载并在下次重启时安装；manual 自动下载，点击聊天提示后才安装；notify 仅提示，点击后再下载并安装。");
 		help.addProperty("helpImproveTranslation", "在游戏内发现文本未翻译或翻译格式错误时，是否上传到开发者服务器报告（暂不可用）。");
 		help.addProperty("welcomeShown", "是否已经显示首次设置引导。改为 false 后，下次进入 Hypixel 时会再次显示。");
 		help.addProperty("translateSkyBlockName", "是否翻译 SkyBlock 玩法名。翻译后的文本为「空岛生存」。");
 		help.addProperty("translateItemNames", "是否翻译物品名称。关闭后，物品名及其在对话、系统消息、悬浮文字和菜单说明中的引用保留英文，其他内容继续翻译。");
+		help.addProperty("translateMobNames", "是否翻译生物名。关闭后，实体头顶名牌、悬浮文字和物品、计分板、BossBar 等文本里提及的生物名保留英文，其他内容继续翻译。");
 		help.addProperty("displayPriority", "显示优先级：default 保留原有兼容行为；high 使用服务器原文保护译文，检测并保留已启用的 CustomScoreboard、SkyHanni 或 NoammAddons 面板；force 进一步通过原版绘制入口替代这些自定义计分板，按服务器原文重新绘制。高和强制可能恢复被过滤的服务器聊天或隐藏额外物品提示。不修改第三方配置或类，未知或完全独立的渲染方式不保证接管。");
 		help.addProperty("originalTips", "在看到服务器发出的消息中包含物品时，提示按热键切换原文，再按恢复译文。关闭后将不再提示。");
+		help.addProperty("legacyFont", "文本间距：true 按 Minecraft 1.12.2 的非全角方式渲染中文（逗号、句号等较窄）；false 使用原版全角渲染。");
 		help.addProperty("captureUntranslated", "【给翻译者用，普通玩家请保持关闭】把游戏里还没翻译、以及翻译了但仍中英混杂的文本写到硬盘上，供补全语料用。只采集服务器发来的原文，不会采集其他 Mod 的文本，也不会改变游戏里显示的任何内容。打开它时，如果装了 hypixel-mod-api，会向服务器订阅一次位置事件（用来判断采到的文本属于哪个玩法）——这是本 Mod 唯一一处会向 Hypixel 发包的地方，关掉就不发。");
 		help.addProperty("captureNotifications", "采集到未翻译、颜色、中英混杂、排版、跨行或数值问题时，是否在聊天栏里输出报告");
 		help.addProperty("autoClearCapture", "每次启动游戏时，是否自动清空上一轮已采集的文本。启动时执行一次，与采集总开关和是否进入 Hypixel 无关；断线重连不清空。");
@@ -220,17 +240,49 @@ public final class SkyZHConfig {
 		json.add("_说明", help);
 		json.addProperty("enabled", this.enabled);
 		json.addProperty("updateCheck", this.updateCheck);
+		json.addProperty("updateChannel", this.updateChannel.key());
+		json.addProperty("updateInstall", this.updateInstall.key());
 		json.addProperty("helpImproveTranslation", this.helpImproveTranslation);
 		json.addProperty("welcomeShown", this.welcomeShown);
 		json.addProperty("translateSkyBlockName", this.translateSkyBlockName);
 		json.addProperty("translateItemNames", this.translateItemNames);
+		json.addProperty("translateMobNames", this.translateMobNames);
 		json.addProperty("displayPriority", this.displayPriority.key());
 		json.addProperty("originalTips", this.originalTips);
+		json.addProperty("legacyFont", this.legacyFont);
 		json.addProperty("captureUntranslated", this.captureUntranslated);
 		json.addProperty("captureNotifications", this.captureNotifications);
 		json.addProperty("autoClearCapture", this.autoClearCapture);
 		json.addProperty("captureDirectory", this.captureDirectory);
 		return json;
+	}
+
+	public enum UpdateChannel {
+		RELEASE("release"), BETA("beta");
+
+		private final String key;
+
+		UpdateChannel(String key) { this.key = key; }
+		public String key() { return this.key; }
+
+		public static UpdateChannel parse(String value) {
+			for (UpdateChannel channel : values()) if (channel.key.equalsIgnoreCase(value)) return channel;
+			return RELEASE;
+		}
+	}
+
+	public enum UpdateInstall {
+		AUTO("auto"), MANUAL("manual"), NOTIFY("notify");
+
+		private final String key;
+
+		UpdateInstall(String key) { this.key = key; }
+		public String key() { return this.key; }
+
+		public static UpdateInstall parse(String value) {
+			for (UpdateInstall install : values()) if (install.key.equalsIgnoreCase(value)) return install;
+			return AUTO;
+		}
 	}
 
 	/**

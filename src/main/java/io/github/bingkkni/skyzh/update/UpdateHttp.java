@@ -53,7 +53,8 @@ public final class UpdateHttp {
 		return ("api.github.com".equals(uri.getHost()) && path.startsWith("/repos/BingKKni/SkyBlockZH/"))
 			|| ("github.com".equals(uri.getHost()) && path.startsWith("/BingKKni/SkyBlockZH/releases/download/"))
 			|| ("bingkkni.github.io".equals(uri.getHost()) && uri.getRawQuery() == null && uri.getRawFragment() == null
-				&& uri.getRawPath().matches("/SkyBlockZH/skyzh-updates/[0-9a-f]{64}/translations\\.zip"));
+				&& (uri.getRawPath().matches("/SkyBlockZH/skyzh-updates/[0-9a-f]{64}/translations\\.zip")
+					|| uri.getRawPath().matches("/SkyBlockZH/skyzh-updates/mod/[0-9a-f]{64}/SkyBlockZH-[0-9A-Za-z.+-]+\\.jar")));
 	}
 
 	private HttpRequest.Builder request(URI uri) throws IOException {

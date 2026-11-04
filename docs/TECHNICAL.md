@@ -136,16 +136,24 @@ Mod Menu is a soft dependency. Without it, edit `config/skyzh.json`, which docum
 |---|---|---|
 | `enabled` | on | Master switch. Turning it off also prevents update checks |
 | `updateCheck` | on | Automatically check and download Mod and translation updates in SkyBlock. Translations apply immediately; Mod installation waits for exit. `/skyzh updatecheck on/off` controls automatic updates; no argument checks Mod then translations, while `mod` / `translate` checks only that target. Explicit checks bypass this setting and cooldowns, but still require the master switch and SkyBlock. All aliases share one busy guard |
+| `updateChannel` | `release` | Which Mod builds updates look for: formal Releases, or the per-commit `beta` builds from Actions. The settings page merges it with `updateCheck` into "Off / Release / Beta" |
+| `updateInstall` | `auto` | After a newer Mod is found: `auto` downloads and installs on exit; `manual` downloads and posts `[点击安装]`; `notify` only posts `[点击下载并安装]`. Both repeat on every check (about hourly), replacing the download when a newer build appears. Translations are unaffected |
 | `translateSkyBlockName` | on | Render "SkyBlock" as 空岛生存. Compounds use the short form and get their spacing fixed: `你的 SkyBlock 等级` → `你的空岛等级`; standalone occurrences keep the full name. See below for where the substitution is allowed to happen |
 | `translateItemNames` | on | Keep physical item names and explicitly marked references in English when off; surrounding text stays translated. The choice refreshes existing chat and tooltips without changing source data or capture coverage |
+| `translateMobNames` | on | Keep mob names in English when off: health-bar names, `mob_name` placeholders, `raw`/`category_name` values and tab rows found in the `mob_name` terms, and fixed references marked with `mob_refs`. Placeholders that borrow a mob name for a pet, rabbit or shard say `"mob": false`; `not_creatures` in `Terms.json` lists words that mean a class, faction or pet in other placeholders |
+| `legacyFont` | on | "Text spacing": layer the bundled 1.12.2 Unicode glyphs and widths (`skyzh_legacy_font/`, equivalent to a top resource pack) over the client resources, so commas and full stops keep their 1.12.2 widths. Off uses vanilla full-width glyphs. Changing it reloads resources when the settings page closes |
 | `originalTips` | on | "Translation hints": append a current-key hint to translated real-item tooltips in GUIs. Incoming server chat mentioning eligible translated items may show a dismissible hint, at least five minutes apart. `ItemNames` uses the bundled offline NEU catalog, excluding menus, states and unknown names. `/skyzh switch tip on/off` (also `/skyblockzh`) controls hints, not the original-text toggle. The old `showOriginal` field is ignored and no longer saved; missing `originalTips` defaults to on. Normal rendering no longer appends bracketed originals |
 | `helpImproveTranslation` | on | Reserved state retained for old config compatibility; no current screen control or reporting feature |
 | `captureUntranslated` | **off** | A switch for whoever is filling the corpus in. It writes files to your disk; leave it off to play. See below |
 | `captureNotifications` | on | Report newly captured untranslated text, colour errors and mixed-language text in chat. Turning reports off does not stop file writes |
 | `autoClearCapture` | **off** | Clear the previous captures once per client launch, whether or not capture is enabled or a server is joined. Reconnecting never clears files |
 
-The two capture sub-options share the row below the capture master: notifications on the left,
-startup clearing on the right. Old configs missing these keys use the defaults above. On a fresh installation, the complete settings page appears once after the client has confirmed entry to Hypixel; its internal `welcomeShown` state can be reset to `false` to show it again on the next entry. First-run guidance, `/skyzh` (also `/skyblockzh`) and Mod Menu share this page, with welcome text above the settings and scrolling when needed. The master switch and automatic updates sit side by side; with the master switch off, every remaining setting is disabled and explains why on hover. Startup clearing
+The settings page follows MoulConfig: a "SkyZH <version> Beta" title bar, categories on the left (General, Translation,
+Advanced), and a search field at the top right that filters by option name and description and hides empty categories. Each
+option is a card with its description beside a toggle or dropdown; "Update installation" appears only while update checks are
+on. Display priority and capture are collapsible blocks in Advanced. With the master switch off, every other option is greyed out.
+Old configs missing these keys use the defaults above. The mod does not need Fabric API: `ResourceManagerMixin` adds the mod's own
+`assets/` above vanilla on each client resource reload, and the font pack on top when `legacyFont` is on. On a fresh installation, the complete settings page appears once after the client has confirmed entry to Hypixel; its internal `welcomeShown` state can be reset to `false` to show it again on the next entry. First-run guidance, `/skyzh` (also `/skyblockzh`) and Mod Menu share this page, with the welcome text and GitHub link at the top of General. Startup clearing
 runs once in Fabric's client initializer, before the main menu, through the exact `TextCapture.clear()`
 path used by `/skyzh clear`: in-memory state, queued work and JSON files in the six capture buckets
 are cleared; unrelated files remain. Failures are logged without preventing startup.
@@ -338,6 +346,12 @@ per-target cooldowns remain independent, and a Mod-check failure does not preven
 The Contents API at `api.github.com` supplies `update.json`: `update_format: 1`, bundle manifest fields, download URL, ZIP size and SHA-256.
 Exact API equality, a newer timestamp and a different content hash are required. A usable automatic bundle is the comparison baseline;
 otherwise use `skyzh-builtin-translations.json`, generated by the same metadata task as the exported ZIP. Manual bundles retain loading priority.
+
+Beta channel: when packaging inputs (including `src/` and each `fabric-26.x/`) change, the same workflow builds all three targets
+with `-Pskyzh.channel=beta`, versioned `<version>+mc26.x.beta.<commit count>`, stages them under `skyzh-updates/mod/<SHA-256>/` and lists
+version, size and digest per target in `mod_beta.assets` of `update.json`; the previous beta set is kept for one more deployment.
+Every jar's `skyzh-build.properties` records its channel and commit count. Beta builds compare by commit count within one base version;
+switching back to the release channel lets a release of the same version replace a beta build.
 
 Downloads use bounded files and Range resumption keyed by fixed URL, size and hash. Ignored ranges restart the download; mismatched ranges are rejected.
 Connections and responses time out; streaming downloads allow slow progress but close after 60 seconds without data.
@@ -630,7 +644,7 @@ arithmetic; resource-pack rendering and mod combinations still need an in-game c
 Capture reads packet-observed name tags within 32 blocks, retaining at most 12 neighbouring rows per observation. These are spatial neighbours, not confirmed paragraphs. Each record retains at most three position/area scenes; late metadata can enrich an existing scene. Observation signatures include visible styles so colour-only changes are diagnosed again. Exact `translate: false` decisions and NPC names still inform rendering, but no longer suppress capture. Museum labels borrow only catalog-confirmed ITEM names; auction ranks, reforges and stars keep their live styles.
 
 Green NPC role labels may use explicit hologram records; colour alone is not a translation policy.
-For non-player living entities and invisible armour stands, a separate bounded health-bar path replaces
+For non-player living entities and invisible armour stands, a separate bounded health-bar path (skipped entirely when mob names are off) replaces
 only whole names present in the `mob_name` term table. Level, glyphs, health and live styles remain
 unchanged; proper names, players and dropped items are not translated by a generic name lookup.
 Untranslated dynamic health bars are captured and their changing values use the existing template

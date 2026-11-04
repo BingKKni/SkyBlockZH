@@ -86,7 +86,7 @@ public final class TooltipTranslator {
 	private static final Recent[] RECENT = new Recent[4];
 
 	private static int cachedGeneration = -1;
-	private static boolean cachedItemNames;
+	private static int cachedNames;
 
 	private TooltipTranslator() {
 	}
@@ -257,11 +257,11 @@ public final class TooltipTranslator {
 		TranslationIndex index = Translator.index();
 
 		synchronized (CACHE) {
-			if (cachedGeneration != SkyZHConfig.generation() || cachedItemNames != ItemNamePolicy.enabled()) {
+			if (cachedGeneration != SkyZHConfig.generation() || cachedNames != ItemNamePolicy.state()) {
 				CACHE.clear();
 				Arrays.fill(RECENT, null);
 				cachedGeneration = SkyZHConfig.generation();
-				cachedItemNames = ItemNamePolicy.enabled();
+				cachedNames = ItemNamePolicy.state();
 			}
 
 			List<Component> recent = recent(lines, hintKey, terminalNames, original, skyBlockName, font, index);

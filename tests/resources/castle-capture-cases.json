@@ -1,7 +1,7 @@
 {
   "note": "03:01:51 编译后的采集回归，数值独立变更，包含颜色、跨行和专名边界。",
   "cases": [
-    {"name":"王子扣时复用词表", "surface":"ChatMessage", "source":["§cThe Prince §eremoved §a12.5s §efrom you using §dEye Beam§e!"], "expected":"§c王子 §e使你的裂隙时间减少 §a12.5秒§e，使用的技能为§d眼部射线§e!"},
+    {"name":"王子扣时复用词表", "surface":"ChatMessage", "source":["§cThe Prince §eremoved §a12.5s §efrom you using §dEye Beam§e!"], "expected":"§c王子 §e使你的裂隙时间减少 §a12.5 秒§e，使用的技能为§d眼部射线§e!"},
     {"name":"监牢区域动作栏", "surface":"ActionBar", "source":["§7 §cOubliette"], "expected":"§7 §c幽闭地牢"},
     {"name":"吸血鬼奖励标题无重复", "surface":"GUI_Item", "source":["§6Vampire Slayer LVL 5"], "expected":"§6吸血鬼猎手等级 5"},
     {"name":"狼Boss专名不改译", "surface":"GUI_Item", "source":["§7Sven Packmaster: §4Tier IV"], "expected":"§7Sven Packmaster: §4第 IV 阶"},
@@ -11,8 +11,8 @@
     {"name":"下阶解锁动态条件", "source":["§cSlay Tier IV to unlock!"], "expected":"§c击败第 IV 阶首领后解锁!", "consumed":1},
     {"name":"跑酷完整两行", "source":["§7You unlocked this skip by doing some","§7intense parkour."], "expected":"§7你已完成高难度跑酷，解锁了这条捷径。", "consumed":2},
     {"name":"跑酷缺尾行不得吞字", "source":["§7You unlocked this skip by doing some"], "miss":true},
-    {"name":"雕像19分钟倒计时", "surface":"Hologram", "source":["§eRespawn §c19m59s §7(or click!)"], "expected":"§e重生倒计时 §c19分59秒 §7(或点击!)"},
-    {"name":"雕像秒倒计时", "surface":"Hologram", "source":["§eRespawn §c9s §7(or click!)"], "expected":"§e重生倒计时 §c9秒 §7(或点击!)"},
+    {"name":"雕像19 分钟倒计时", "surface":"Hologram", "source":["§eRespawn §c19m59s §7(or click!)"], "expected":"§e重生倒计时 §c19分59秒 §7(或点击!)"},
+    {"name":"雕像秒倒计时", "surface":"Hologram", "source":["§eRespawn §c9s §7(or click!)"], "expected":"§e重生倒计时 §c9 秒 §7(或点击!)"},
     {"name":"六雕像实时状态颜色", "surface":"ScoreBoard", "source":["§fEffigies: §a⧯⧯§c⧯⧯⧯⧯"], "expected":"§f雕像: §a⧯⧯§c⧯⧯⧯⧯"},
     {"name":"雕像状态不吃未知英文", "surface":"ScoreBoard", "source":["Effigies: Unknown"], "miss":true},
     {"name":"海豹年跨天倒计时", "surface":"GUI_Item", "source":["§9Year of the Seal 2d 1h 3m 6s"], "expected":"§9海豹年 2天1小时3分06秒"},

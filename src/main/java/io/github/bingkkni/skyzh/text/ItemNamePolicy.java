@@ -14,6 +14,16 @@ public final class ItemNamePolicy {
 		return override == null ? SkyZHConfig.get().translateItemNames : override;
 	}
 
+	public static boolean mobNames() {
+		Boolean override = OVERRIDE.get();
+		return override == null ? SkyZHConfig.get().translateMobNames : override;
+	}
+
+	/** Both display choices as one cache key. */
+	public static int state() {
+		return (enabled() ? 1 : 0) | (mobNames() ? 2 : 0);
+	}
+
 	/** Coverage always describes available translations, regardless of the player's display choice. */
 	public static <T> T available(Supplier<T> operation) {
 		Boolean previous = OVERRIDE.get();

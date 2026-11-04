@@ -1,6 +1,7 @@
 name: Publish translation updates
 
-# Every push runs the workflow; the Python publisher decides whether packaging is needed.
+# Every push runs the workflow; the Python publisher decides whether packaging is needed. It also
+# builds the per-commit test Mod jars that the client's beta update channel installs.
 on:
   push:
   workflow_dispatch:

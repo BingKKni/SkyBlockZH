@@ -6,6 +6,7 @@ import io.github.bingkkni.skyzh.SkyZHConfig;
 import io.github.bingkkni.skyzh.capture.Areas;
 import io.github.bingkkni.skyzh.text.Capture;
 import io.github.bingkkni.skyzh.text.DisplayTextCache;
+import io.github.bingkkni.skyzh.text.ItemNamePolicy;
 import io.github.bingkkni.skyzh.text.StyledText;
 import io.github.bingkkni.skyzh.text.Surface;
 import io.github.bingkkni.skyzh.text.Translator;
@@ -145,6 +146,7 @@ public final class NameTag {
 			}
 			return source;
 		}
+		if (!ItemNamePolicy.mobNames()) return source;
 		String zh = Translator.index().terms().translateWhole("mob_name", bar.group(1));
 		if (zh == null || zh.equals(bar.group(1))) {
 			return source;

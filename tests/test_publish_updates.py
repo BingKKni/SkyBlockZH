@@ -30,12 +30,20 @@ class PublicationTests(unittest.TestCase):
             bundle.writestr("manifest.json", json.dumps(self.manifest))
             bundle.writestr("original_text/example.json", "{}")
         self.payload = self.archive.read_bytes()
+        self.jars = []
+        for target in publisher.TARGETS:
+            jar = self.root / f"fabric-{target}/build/libs/SkyBlockZH-0.8-Beta-Fabric-{target}.jar"
+            jar.parent.mkdir(parents=True)
+            with zipfile.ZipFile(jar, "w") as bundle:
+                bundle.writestr("fabric.mod.json", json.dumps({"id": "skyzh", "version": f"0.8+mc{target}.beta.42"}))
+            self.jars.append(jar)
         self.calls = []
         self.verified = False
         self.blob = None
         for item in [patch.object(publisher, "ROOT", self.root),
                      patch.object(publisher, "git", return_value="a" * 40),
                      patch.object(publisher, "changed", return_value=True),
+                     patch.object(publisher, "build_beta", side_effect=lambda: self.jars),
                      patch.object(publisher.subprocess, "run", return_value=SimpleNamespace(returncode=0)),
                      patch.dict(publisher.os.environ, {"GITHUB_REPOSITORY": "BingKKni/SkyBlockZH", "GITHUB_TOKEN": "test",
                                                       "GITHUB_OUTPUT": str(self.root / "outputs")})]:
@@ -82,6 +90,22 @@ class PublicationTests(unittest.TestCase):
                          "The only public update manifest must be the repository copy published after verification")
         self.assertEqual((self.root / "outputs").read_text().strip(), "packaged=true")
         self.assertFalse((self.root / "skyzh-updates/update.json").exists())
+
+    def test_beta_jars_are_staged_and_listed_per_target(self):
+        update = self.stage()
+        self.assertEqual(sorted(update["mod_beta"]["assets"]), list(publisher.TARGETS))
+        for target, jar in zip(publisher.TARGETS, self.jars):
+            asset = update["mod_beta"]["assets"][target]
+            self.assertEqual(asset["version"], f"0.8+mc{target}.beta.42")
+            self.assertEqual(asset["sha256"], hashlib.sha256(jar.read_bytes()).hexdigest())
+            staged = self.root / "build/pages" / asset["download_url"][len(publisher.PAGES):]
+            self.assertEqual(staged.read_bytes(), jar.read_bytes())
+
+    def test_release_versioned_jar_is_not_published_as_beta(self):
+        with zipfile.ZipFile(self.jars[0], "w") as bundle:
+            bundle.writestr("fabric.mod.json", json.dumps({"id": "skyzh", "version": "0.8+mc26.1"}))
+        with self.assertRaises(RuntimeError):
+            publisher.prepare(True)
 
     def test_verified_deployment_precedes_git_manifest(self):
         self.stage()

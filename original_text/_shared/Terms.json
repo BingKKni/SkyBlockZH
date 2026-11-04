@@ -1,6 +1,8 @@
 {
   "purpose": "占位符捕获到的**值**的译名表。和其他文件不一样:这里的每一条不是某一行文本的译文,而是一个会被服务器塞进 %s 里的词。引擎在渲染时对这些值查表(见 text/TermTable.java),查到就换成中文,查不到就原样保留英文——所以往这张表里加词只会让更多东西变中文,不会让任何已经正确的东西变错。",
   "why": "委托板上的任务名是 '%s Mithril'(区域名 + 材料),记录本身翻好了('%s秘银'),但 %s 捕到的 'Royal Mines' 是服务器塞进来的,过去只能原样贴回去,屏幕上就成了 'Royal Mines钛'——半个名字一种语言。这类词一条能修好它出现的所有地方(委托物品、计分板、NPC 台词、Tab 行),所以做成表,而不是给每个取值各写一条记录(那正是 README 第 4 节禁止的值枚举,而且 Hypixel 新加一个区域就会漏)。",
+  "not_creatures_note": "这些词在词表里带 mob_name,但出现在 raw/category_name 占位符或 Tab 行时指宠物、职业、阵营或分类。翻译生物名关闭时只放过这些值,mob_name 占位符本身不受此表影响;占位符里的宠物、兔子用 \"mob\": false 标记。",
+  "not_creatures": ["Archer", "Armadillo", "Bank", "Barbarian", "Bat", "Bee", "Berserk", "Blue Whale", "Chaos", "Crow", "Dolphin", "Dragon", "Dragon Egg", "Elephant", "Enderman", "Frog", "Giraffe", "Golem", "Grandma Wolf", "Griffin", "Healer", "Healthy", "Hedgehog", "Horse", "Hound", "Inferno", "Laser", "Lion", "Mage", "Monkey", "Ocelot", "Orchid Mantis", "Owl", "Phoenix", "Priest", "Reindeer", "Reinforced", "Rift Ferret", "Rock", "Scarecrow", "Seal", "Silverfish", "Sloth", "Tank", "Tiger", "Undead", "Undead Skeleton", "Warrior", "Wither", "Wolf"],
   "applies_to_types": [
     "location_name",
     "mob_name",

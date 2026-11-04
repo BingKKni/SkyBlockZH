@@ -40,7 +40,7 @@ public final class DocumentHarness {
 			"§6§l12.5M coins\n§22 bids\n§301h 40m 53s\n§5§l[CLICK]"), Surface.SIGN);
 		check("独立拍卖期望", StyledText.of(auction).plain().equals("12.5M 硬币\n2 次出价\n01小时40分53秒\n[点击]"));
 		check("出价单数也匹配", StyledText.of(DocumentTranslation.available(Component.literal(
-			"1 coins\n1 bid\n4d\n[CLICK]"), Surface.SIGN)).plain().equals("1 硬币\n1 次出价\n4天\n[点击]"));
+			"1 coins\n1 bid\n4d\n[CLICK]"), Surface.SIGN)).plain().equals("1 硬币\n1 次出价\n4 天\n[点击]"));
 		check("渲染面隔离", !Translator.locate(Component.literal("LEAP OF FAITH\n\n\n"), Surface.MISC).matched());
 
 		// An actual book page with a unique click target and exact RGB hover styling.
