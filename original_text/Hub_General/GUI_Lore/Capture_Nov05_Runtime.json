@@ -30,10 +30,18 @@
     {
       "id": "nov05_lore_4",
       "context": "本轮实测的完整 Lore；不保留半句续行",
-      "text": "Purchase 1 additional charge for the Experimentation Table.",
+      "text": "Purchase %s additional charges for the Experimentation Table.",
+      "placeholders": [{"token":"%s","type":"number","example":"1"}],
       "translate": true,
-      "zh": "为实验台购买 1 次额外实验机会。",
-      "raw": "§7Purchase 1 additional charge for the Experimentation Table."
+      "zh": "为实验台购买 %s 次额外实验机会。",
+      "raw": "§7Purchase §a%s §7additional charges for the Experimentation Table.",
+      "segments": [
+        {"color":"§7","text":"Purchase ","zh":"为实验台购买 "},
+        {"color":"§a","text":"%s ","zh":"%s"},
+        {"color":"§7","text":"additional charges for the Experimentation Table.","zh":" 次额外实验机会。"}
+      ],
+      "item_refs": [{"text":"Experimentation Table","zh":"实验台"}],
+      "samples": [["§7Purchase §a1 §7additional charge for the", "§7Experimentation Table."]]
     },
     {
       "id": "nov05_lore_5",

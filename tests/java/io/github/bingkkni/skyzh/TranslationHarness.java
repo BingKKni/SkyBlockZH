@@ -423,8 +423,10 @@ public final class TranslationHarness {
 		checkRow("小人行:单词种类名", " 18x Snow XI §7[§aACTIVE§7]", " 18x 雪小人 XI §7[§a运行中§7]");
 		checkRow("小人行:两个词的种类名", " 19x Hard Stone XII §7[§aACTIVE§7]",
 			" 19x 硬石小人 XII §7[§a运行中§7]");
-		checkRow("小人行:词表里没有的种类保持英文", " 2x Enderman XII §7[§cFULL§7]",
-			" 2x Enderman 小人 XII §7[§c已满§7]");
+		checkRow("小人行:末影人沿用生物译名", " 2x Enderman XII §7[§cFULL§7]",
+			" 2x 末影人小人 XII §7[§c已满§7]");
+		checkRow("小人行:词表里没有的种类保持英文", " 2x Unknown Minion XII §7[§cFULL§7]",
+			" 2x Unknown Minion 小人 XII §7[§c已满§7]");
 
 		// A place named after its owner cannot be listed — the owner is a player name — so the table
 		// holds what kind of place it is and the engine takes the possessive apart.
@@ -3048,7 +3050,7 @@ public final class TranslationHarness {
 
 	/** Fixed UI capture regression: ordered lore, term isolation, and clues that must survive translation. */
 	private static void checkFixedMenus(Path corpusRoot) throws Exception {
-		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "october-live-round-cases.json", "workshop-cases.json", "wiki-expansion-cases.json", "bazaar-item-names-cases.json", "rift-live-capture-cases.json", "rift-session-cases.json", "garden-weather-feast-cases.json", "village-living-cave-cases.json", "rift-post-build-cases.json", "castle-capture-cases.json", "slayer-rng-capture-cases.json", "spider-session-cases.json", "dual-live-round-cases.json", "moonglade-capture-cases.json", "slayer-current-capture-cases.json", "dual-computer-followup-cases.json", "mountaintop-live-capture-cases.json", "nov03-capture-cases.json", "nov04-combat-cases.json", "nov04-dungeons-cases.json", "nov04-skills-cases.json", "nov04-islands-cases.json", "nov04-hub-cases.json", "nov04-integration-cases.json")) {
+		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "october-live-round-cases.json", "workshop-cases.json", "wiki-expansion-cases.json", "bazaar-item-names-cases.json", "rift-live-capture-cases.json", "rift-session-cases.json", "garden-weather-feast-cases.json", "village-living-cave-cases.json", "rift-post-build-cases.json", "castle-capture-cases.json", "slayer-rng-capture-cases.json", "spider-session-cases.json", "dual-live-round-cases.json", "moonglade-capture-cases.json", "slayer-current-capture-cases.json", "dual-computer-followup-cases.json", "mountaintop-live-capture-cases.json", "nov03-capture-cases.json", "nov04-combat-cases.json", "nov04-dungeons-cases.json", "nov04-skills-cases.json", "nov04-islands-cases.json", "nov04-hub-cases.json", "nov04-integration-cases.json", "runtime-followup-cases.json")) {
 		Path path = corpusRoot.toAbsolutePath().getParent().resolve("tests/resources/" + file);
 		JsonObject fixture = JsonParser.parseString(Files.readString(path, StandardCharsets.UTF_8)).getAsJsonObject();
 		for (JsonElement value : fixture.getAsJsonArray("cases")) {
@@ -3182,6 +3184,7 @@ public final class TranslationHarness {
 		boolean oldMobNames = SkyZHConfig.get().translateMobNames;
 		try {
 			for (String[] sample : new String[][] {
+				{"本轮图鉴聊天", "§b§lWeaver Spider §bI", "CHAT", "Weaver Spider", "I"},
 				{"占位符生物名", "§4§lSLAYER MINIBOSS! §7The §cTarantula Beast §7spawned!", "CHAT", "Tarantula Beast", "猎手精英!"},
 				{"句中生物名引用", "§eThe §aVegan Crawler §eturned you into a §bChicken§e!", "CHAT", "Vegan Crawler", "变成了"},
 				{"生物血条", "§c﴾ §8[§7Lv5§8] §cZombie §a100§f/§a100§c❤ §c﴿", "HOLOGRAM", "Zombie", ""},

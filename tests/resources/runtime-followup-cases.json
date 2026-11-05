@@ -1,0 +1,22 @@
+{
+  "note": "本轮实测补译回归：动态数量、整句 Lore、实时颜色、专名与物品名开关边界。",
+  "cases": [
+    {"name":"无Rank玩家名不进入生物词表","source":["§7Preview: §8[§723§8] §7♦ §fEnderman"],"expected":"§7预览: §8[§723§8] §7♦ §fEnderman","consumed":1},
+    {"name":"本轮图鉴聊天保留名称和等级的颜色","surface":"ChatMessage","source":["§b§lWeaver Spider §bI"],"expected":"§b§l织网蜘蛛 §bI"},
+    {"name":"竞速禁用珍珠高亮不染相邻选项","surface":"Hologram","source":["§7Anything §a§lNo Pearls §7No Abilities Nothing"],"expected":"§7不限制 §a§l禁用末影珍珠 §7禁用技能 完全不使用"},
+    {"name":"竞速禁用技能也能独立高亮","surface":"Hologram","source":["§7Anything No Pearls §a§lNo Abilities §7Nothing"],"expected":"§7不限制 禁用末影珍珠 §a§l禁用技能 §7完全不使用"},
+    {"name":"实验次数只高亮数量","source":["§7Purchase §a1 §7additional charge for the","§7Experimentation Table."],"expected":"§7为实验台购买 §a1§7 次额外实验机会。","consumed":2},
+    {"name":"实验次数变化不写死","source":["§7Purchase §b2 §7additional charges for the Experimentation Table."],"expected":"§7为实验台购买 §b2§7 次额外实验机会。","consumed":1},
+    {"name":"订阅条件合并两行且保留月份","source":["§cUnlocked with an active [MVP++] rank","§cand 6 total subscribed months."],"expected":"§c需要拥有有效的 [MVP++] Rank，且累计订阅 6 个月。","consumed":2},
+    {"name":"猎手徽章通关条件不留尾行","source":["§cRequires Revenant Horror V","§cCompletion."],"expected":"§c需要击败 V 阶 Revenant Horror。","consumed":2},
+    {"name":"Kuudra徽章进度跨行保留数量","source":["§cRequires 5,000 Kuudra Boss","§cCollection Progress."],"expected":"§c需要 Kuudra 首领收集进度达到 5,000。","consumed":2},
+    {"name":"药水等级与分秒时长整体匹配","surface":"TabList","source":["§6Absorption IV§r §f2m 59s"],"expected":"§6伤害吸收 IV§r §f2分59秒"},
+    {"name":"药水效果倒计时切换秒单位","surface":"TabList","source":["§cAdrenaline II§r §f5s"],"expected":"§c肾上腺素 II§r §f5 秒"},
+    {"name":"每日购买上限变化","source":["§cCan only buy 128 per day!"],"expected":"§c每天最多购买 128 个!","consumed":1},
+    {"name":"熔岩项链说明完整且属性各自着色","source":["§7Sets your §c Health Regen§7 and §a","§aMending §7to §c0§7, and you can no longer","§7receive healing!"],"expected":"§7将你的 §c 生命再生§7和 §a 修补§7设为 §c0§7，且你无法再接受治疗!","consumed":3},
+    {"name":"末地卷轴配方完整名称及配方尾缀颜色","source":["  §9Travel Scroll to the End §7Recipe"],"expected":"  §9末地传送卷轴§7配方","consumed":1},
+    {"name":"蜘蛛巢穴卷轴配方不吞后缀","source":["  §9Travel Scroll to Spider's Den §7Recipe"],"expected":"  §9蜘蛛巢穴传送卷轴§7配方","consumed":1},
+    {"name":"徽章预览不翻译玩家名和身份","source":["§7Preview: §8[§723§8] §5⌬ §b[MVP§2+§b] inkkni"],"expected":"§7预览: §8[§723§8] §5⌬ §b[MVP§2+§b] inkkni","consumed":1},
+    {"name":"原版附魔截断标题","surface":"GUI_Title","source":["Enchant Item ➜ Bane of Arthropo"],"expected":"附魔物品 ➜ 节肢杀手"}
+  ]
+}
