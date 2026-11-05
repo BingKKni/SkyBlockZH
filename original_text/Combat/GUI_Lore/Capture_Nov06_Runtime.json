@@ -1,0 +1,94 @@
+{
+  "source": "runtime capture (SkyZH), ../SkyZH_Logs/skyzh-capture; https://hypixelskyblock.minecraft.wiki/w/Chocolate_Factory; https://hypixelskyblock.minecraft.wiki/w/The_Garden; https://hypixelskyblock.minecraft.wiki/w/Drain",
+  "verified_ingame": true,
+  "note": "原文和颜色以本轮服务器采集为准；沿用既有术语和名称开关。",
+  "entries": [
+    {
+      "id": "nov06_drain",
+      "context": "本轮实测补译；Combat",
+      "text": "Regen +%s♨ Vitality every time you hit a mob.",
+      "raw": "§7Regen §4+%s♨ Vitality §7every time you hit a mob.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "2",
+          "desc": "随服务器变化的值"
+        }
+      ],
+      "translate": true,
+      "zh": "每次击中生物时，恢复 +%s♨ 活力。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Regen ",
+          "zh": "每次击中生物时，恢复 "
+        },
+        {
+          "color": "§4",
+          "text": "+%s♨ Vitality ",
+          "zh": "+%s♨ 活力"
+        },
+        {
+          "color": "§7",
+          "text": "every time you hit a mob.",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "nov06_ender_goo",
+      "context": "本轮实测补译；Combat",
+      "text": "Sticky goo scraped off an Endermite.",
+      "raw": "§8§oSticky goo scraped off an Endermite.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "从末影螨身上刮下来的黏糊糊的东西。",
+      "mob_refs": [
+        {
+          "text": "Endermite",
+          "zh": "末影螨"
+        }
+      ]
+    },
+    {
+      "id": "nov06_spiky_desc",
+      "context": "本轮实测补译；Combat",
+      "text": "While wearing, your attacks have a chance to deal %1$s damage plus %2$s% of your Strength to nearby enemies.",
+      "raw": "§7While wearing, your attacks have a chance to deal §a%1$s damage plus %2$s% §7of your Strength to nearby enemies.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "2",
+          "desc": "随服务器变化的值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "2",
+          "desc": "随服务器变化的值"
+        }
+      ],
+      "translate": true,
+      "zh": "佩戴时，攻击有概率对附近敌人造成 %1$s 点伤害加上你力量的 %2$s%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "While wearing, your attacks have a chance to deal ",
+          "zh": "佩戴时，攻击有概率对附近敌人造成 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s damage plus %2$s% ",
+          "zh": "%1$s 点伤害加上你力量的 %2$s%"
+        },
+        {
+          "color": "§7",
+          "text": "of your Strength to nearby enemies.",
+          "zh": "。"
+        }
+      ]
+    }
+  ]
+}

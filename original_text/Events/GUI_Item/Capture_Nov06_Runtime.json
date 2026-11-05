@@ -1,0 +1,139 @@
+{
+  "source": "runtime capture (SkyZH), ../SkyZH_Logs/skyzh-capture; https://hypixelskyblock.minecraft.wiki/w/Chocolate_Factory; https://hypixelskyblock.minecraft.wiki/w/The_Garden; https://hypixelskyblock.minecraft.wiki/w/Drain",
+  "verified_ingame": true,
+  "note": "原文和颜色以本轮服务器采集为准；沿用既有术语和名称开关。",
+  "entries": [
+    {
+      "id": "nov06_rabbit_rank_name",
+      "context": "本轮实测补译；Events",
+      "text": "Rabbit %1$s - [%2$s] %3$s",
+      "raw": "§fRabbit %1$s§8 - §7[%2$s] §f%3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "mob_name",
+          "example": "Bro",
+          "desc": "随服务器变化的值",
+          "mob": false
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "2",
+          "desc": "随服务器变化的值"
+        },
+        {
+          "token": "%3$s",
+          "type": "category_name",
+          "example": "Intern",
+          "desc": "随服务器变化的值"
+        }
+      ],
+      "translate": true,
+      "zh": "兔子%1$s - [%2$s] %3$s",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Rabbit %1$s",
+          "zh": "兔子%1$s"
+        },
+        {
+          "color": "§8",
+          "text": " - ",
+          "zh": " - "
+        },
+        {
+          "color": "§7",
+          "text": "[%2$s] ",
+          "zh": "[%2$s] "
+        },
+        {
+          "color": "§f",
+          "text": "%3$s",
+          "zh": "%3$s"
+        }
+      ]
+    },
+    {
+      "id": "nov06_rabbit_unemployed",
+      "context": "本轮实测补译；Events",
+      "text": "Rabbit %s - Unemployed",
+      "raw": "§cRabbit %s§8 - §cUnemployed",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "mob_name",
+          "example": "Cousin",
+          "desc": "随服务器变化的值",
+          "mob": false
+        }
+      ],
+      "translate": true,
+      "zh": "兔子%s - 待业",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "Rabbit %s",
+          "zh": "兔子%s"
+        },
+        {
+          "color": "§8",
+          "text": " - ",
+          "zh": " - "
+        },
+        {
+          "color": "§c",
+          "text": "Unemployed",
+          "zh": "待业"
+        }
+      ]
+    },
+    {
+      "id": "nov06_rabbit_name",
+      "context": "本轮实测补译；Events",
+      "text": "Rabbit Cousin",
+      "raw": "§cRabbit Cousin",
+      "placeholders": [],
+      "translate": true,
+      "zh": "兔子表亲"
+    },
+    {
+      "id": "nov06_promote_employee",
+      "context": "本轮实测补译；Events",
+      "text": "PROMOTE ➜ [%s] Employee",
+      "raw": "§a§lPROMOTE §8➜ §7[%s] §aEmployee",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "2",
+          "desc": "随服务器变化的值"
+        }
+      ],
+      "translate": true,
+      "zh": "晋升 ➜ [%s] 员工",
+      "segments": [
+        {
+          "color": "§a§l",
+          "text": "PROMOTE ",
+          "zh": "晋升 "
+        },
+        {
+          "color": "§8",
+          "text": "➜ ",
+          "zh": "➜ "
+        },
+        {
+          "color": "§7",
+          "text": "[%s] ",
+          "zh": "[%s] "
+        },
+        {
+          "color": "§a",
+          "text": "Employee",
+          "zh": "员工"
+        }
+      ]
+    }
+  ]
+}

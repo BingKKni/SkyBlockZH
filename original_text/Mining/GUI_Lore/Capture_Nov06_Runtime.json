@@ -1,0 +1,644 @@
+{
+  "source": "runtime capture (SkyZH), ../SkyZH_Logs/skyzh-capture; https://hypixelskyblock.minecraft.wiki/w/Chocolate_Factory; https://hypixelskyblock.minecraft.wiki/w/The_Garden; https://hypixelskyblock.minecraft.wiki/w/Drain",
+  "verified_ingame": true,
+  "note": "原文和颜色以本轮服务器采集为准；沿用既有术语和名称开关。",
+  "entries": [
+    {
+      "id": "nov06_event_soon",
+      "context": "本轮实测补译；Mining",
+      "text": "The next event will be announced very soon!",
+      "raw": "§7The next event will be announced §avery soon§7!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "下一场活动即将揭晓!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "The next event will be announced ",
+          "zh": "下一场活动"
+        },
+        {
+          "color": "§a",
+          "text": "very soon",
+          "zh": "即将"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "揭晓!"
+        }
+      ]
+    },
+    {
+      "id": "nov06_event_location",
+      "context": "本轮实测补译；Mining",
+      "text": "Taking place in %s.",
+      "raw": "§7Taking place in §b%s§7.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "location_name",
+          "example": "Divan's Gateway",
+          "desc": "随服务器变化的值"
+        }
+      ],
+      "translate": true,
+      "zh": "举办地点: %s。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Taking place in ",
+          "zh": "举办地点: "
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "nov06_requires_collection",
+      "context": "本轮实测补译；Mining",
+      "text": "Requires %1$s Collection %2$s",
+      "raw": "§cRequires %1$s Collection %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "catalog_item_name",
+          "example": "Glacite",
+          "desc": "随服务器变化的值"
+        },
+        {
+          "token": "%2$s",
+          "type": "tier",
+          "example": "III",
+          "desc": "随服务器变化的值"
+        }
+      ],
+      "translate": true,
+      "zh": "需要%1$s收藏等级 %2$s"
+    },
+    {
+      "id": "nov06_commission_mithril",
+      "context": "本轮实测补译；Mining",
+      "text": "Mine %s Mithril Ore.",
+      "raw": "§7Mine §a%s §7Mithril Ore.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "2",
+          "desc": "随服务器变化的值"
+        }
+      ],
+      "translate": true,
+      "zh": "开采 %s 块秘银矿石。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Mine ",
+          "zh": "开采 "
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": "Mithril Ore.",
+          "zh": " 块秘银矿石。"
+        }
+      ]
+    },
+    {
+      "id": "nov06_commission_sentry",
+      "context": "本轮实测补译；Mining",
+      "text": "Damage Star Sentries %s times.",
+      "raw": "§7Damage §5Star Sentries §a%s §7times.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "2",
+          "desc": "随服务器变化的值"
+        }
+      ],
+      "translate": true,
+      "zh": "攻击星辰哨兵 %s 次。",
+      "mob_refs": [
+        {
+          "text": "Star Sentries",
+          "zh": "星辰哨兵"
+        }
+      ],
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Damage ",
+          "zh": "攻击"
+        },
+        {
+          "color": "§5",
+          "text": "Star Sentries ",
+          "zh": "星辰哨兵 "
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": "times.",
+          "zh": " 次。"
+        }
+      ]
+    },
+    {
+      "id": "nov06_commission_powder",
+      "context": "本轮实测补译；Mining",
+      "text": "Collect %s Mithril Powder during the 2x Powder Event.",
+      "raw": "§7Collect §a%s Mithril Powder §7during the §b2x Powder §7Event.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "2",
+          "desc": "随服务器变化的值"
+        }
+      ],
+      "translate": true,
+      "zh": "在双倍粉末活动期间收集 %s 秘银粉末。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Collect ",
+          "zh": "在",
+          "order": 0
+        },
+        {
+          "color": "§a",
+          "text": "%s Mithril Powder ",
+          "zh": "%s 秘银粉末",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "during the ",
+          "zh": "活动期间收集 ",
+          "order": 2
+        },
+        {
+          "color": "§b",
+          "text": "2x Powder ",
+          "zh": "双倍粉末",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "Event.",
+          "zh": "。",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "nov06_commission_raffle",
+      "context": "本轮实测补译；Mining",
+      "text": "Deposit %s Tickets during the Raffle Event.",
+      "raw": "§7Deposit §a%s §7Tickets during the §6Raffle Event.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "2",
+          "desc": "随服务器变化的值"
+        }
+      ],
+      "translate": true,
+      "zh": "在抽奖活动期间投入 %s 张抽奖券。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Deposit ",
+          "zh": "在",
+          "order": 0
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s 张抽奖券。",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "Tickets during the ",
+          "zh": "期间投入 ",
+          "order": 2
+        },
+        {
+          "color": "§6",
+          "text": "Raffle Event.",
+          "zh": "抽奖活动",
+          "order": 1
+        }
+      ]
+    },
+    {
+      "id": "nov06_commission_golden_diamond",
+      "context": "本轮实测补译；Mining",
+      "text": "Slay %s Golden or Diamond Goblin.",
+      "raw": "§7Slay §a%s §6Golden §7or §bDiamond Goblin§7.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "2",
+          "desc": "随服务器变化的值"
+        }
+      ],
+      "translate": true,
+      "zh": "击杀 %s 只黄金哥布林或钻石哥布林。",
+      "mob_refs": [
+        {
+          "text": "Golden",
+          "zh": "黄金哥布林"
+        },
+        {
+          "text": "Diamond Goblin",
+          "zh": "钻石哥布林"
+        }
+      ],
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Slay ",
+          "zh": "击杀 "
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§6",
+          "text": "Golden ",
+          "zh": " 只黄金哥布林"
+        },
+        {
+          "color": "§7",
+          "text": "or ",
+          "zh": "或"
+        },
+        {
+          "color": "§b",
+          "text": "Diamond Goblin",
+          "zh": "钻石哥布林"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "nov06_commission_raffle_participate",
+      "context": "本轮实测补译；Mining",
+      "text": "Participate in the Raffle Event.",
+      "raw": "§7Participate in the §6Raffle §7Event.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "参与抽奖活动。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Participate in the ",
+          "zh": "参与"
+        },
+        {
+          "color": "§6",
+          "text": "Raffle ",
+          "zh": "抽奖"
+        },
+        {
+          "color": "§7",
+          "text": "Event.",
+          "zh": "活动。"
+        }
+      ]
+    },
+    {
+      "id": "nov06_hollows_pass",
+      "context": "本轮实测补译；Mining",
+      "text": "This pass grants you access to the Crystal Hollows for %s hours.",
+      "raw": "§7This pass grants you access to the §5Crystal Hollows§7 for §6%s hours§7.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "2",
+          "desc": "随服务器变化的值"
+        }
+      ],
+      "translate": true,
+      "zh": "此通行证可让你进入水晶残核，有效期为 %s 小时。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "This pass grants you access to the ",
+          "zh": "此通行证可让你进入"
+        },
+        {
+          "color": "§5",
+          "text": "Crystal Hollows",
+          "zh": "水晶残核"
+        },
+        {
+          "color": "§7",
+          "text": " for ",
+          "zh": "，有效期为 "
+        },
+        {
+          "color": "§6",
+          "text": "%s hours",
+          "zh": "%s 小时"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "nov06_hollows_fast_travel",
+      "context": "本轮实测补译；Mining",
+      "text": "As long as the pass is active, you can travel back and forth using Fast Travel in your SkyBlock Menu.",
+      "raw": "§7As long as the pass is active, you can travel back and forth using §bFast Travel §7in your §aSkyBlock Menu§7.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "通行证有效期间，可通过快速传送往返水晶残核。入口位于 SkyBlock 菜单。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "As long as the pass is active, you can travel back and forth using ",
+          "zh": "通行证有效期间，可通过"
+        },
+        {
+          "color": "§b",
+          "text": "Fast Travel ",
+          "zh": "快速传送"
+        },
+        {
+          "color": "§7",
+          "text": "in your ",
+          "zh": "往返水晶残核。入口位于 "
+        },
+        {
+          "color": "§a",
+          "text": "SkyBlock Menu",
+          "zh": "SkyBlock 菜单"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "nov06_hollows_intro",
+      "context": "本轮实测补译；Mining",
+      "text": "The Crystal Hollows is a huge random underground area that hosts many different ores, gems, biomes, and creatures.",
+      "raw": "§7The §5Crystal Hollows §7is a huge random underground area that hosts many different §6ores§7, §dgems§7, §abiomes§7, and §ccreatures§7.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "水晶残核是一片随机生成的广阔地下区域，拥有种类繁多的矿石、宝石、生物群系和生物。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "The ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§5",
+          "text": "Crystal Hollows ",
+          "zh": "水晶残核"
+        },
+        {
+          "color": "§7",
+          "text": "is a huge random underground area that hosts many different ",
+          "zh": "是一片随机生成的广阔地下区域，拥有种类繁多的"
+        },
+        {
+          "color": "§6",
+          "text": "ores",
+          "zh": "矿石"
+        },
+        {
+          "color": "§7",
+          "text": ", ",
+          "zh": "、"
+        },
+        {
+          "color": "§d",
+          "text": "gems",
+          "zh": "宝石"
+        },
+        {
+          "color": "§7",
+          "text": ", ",
+          "zh": "、"
+        },
+        {
+          "color": "§a",
+          "text": "biomes",
+          "zh": "生物群系"
+        },
+        {
+          "color": "§7",
+          "text": ", and ",
+          "zh": "和"
+        },
+        {
+          "color": "§c",
+          "text": "creatures",
+          "zh": "生物"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "nov06_hollows_gems",
+      "context": "本轮实测补译；Mining",
+      "text": "Gemstones are brightly colored shards embedded in the walls of most tunnels. You will find different types of Gemstones in different biomes except for Ruby that appears to be found everywhere.",
+      "raw": "§dGemstones §7are brightly colored shards embedded in the walls of most §8tunnels§7. You will find different types of §dGemstones §7in different §abiomes §7except for §cRuby §7that appears to be found everywhere.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "宝石是嵌在大多数隧道岩壁中的鲜艳晶体。不同的宝石分布在不同生物群系中，只有 Ruby 似乎随处可见。",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "Gemstones ",
+          "zh": "宝石"
+        },
+        {
+          "color": "§7",
+          "text": "are brightly colored shards embedded in the walls of most ",
+          "zh": "是嵌在大多数"
+        },
+        {
+          "color": "§8",
+          "text": "tunnels",
+          "zh": "隧道"
+        },
+        {
+          "color": "§7",
+          "text": ". You will find different types of ",
+          "zh": "岩壁中的鲜艳晶体。不同的"
+        },
+        {
+          "color": "§d",
+          "text": "Gemstones ",
+          "zh": "宝石"
+        },
+        {
+          "color": "§7",
+          "text": "in different ",
+          "zh": "分布在不同"
+        },
+        {
+          "color": "§a",
+          "text": "biomes ",
+          "zh": "生物群系"
+        },
+        {
+          "color": "§7",
+          "text": "except for ",
+          "zh": "中，只有 "
+        },
+        {
+          "color": "§c",
+          "text": "Ruby ",
+          "zh": "Ruby"
+        },
+        {
+          "color": "§7",
+          "text": "that appears to be found everywhere.",
+          "zh": " 似乎随处可见。"
+        }
+      ]
+    },
+    {
+      "id": "nov06_hollows_structures",
+      "context": "本轮实测补译；Mining",
+      "text": "On your adventures you will find many structures. Some abandoned, some not. Structures such as these can contain Epic loot or dangerous foes so always be on the look out.",
+      "raw": "§7On your §aadventures §7you will find many structures. Some abandoned, some not. Structures such as these can contain §5Epic loot §7or §cdangerous foes §7so always be on the look out.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "在冒险途中，你会遇到各种建筑，有些已被废弃，有些仍有住客。里面可能藏着史诗级战利品，也可能潜伏着危险敌人，务必时刻保持警惕。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "On your ",
+          "zh": "在"
+        },
+        {
+          "color": "§a",
+          "text": "adventures ",
+          "zh": "冒险"
+        },
+        {
+          "color": "§7",
+          "text": "you will find many structures. Some abandoned, some not. Structures such as these can contain ",
+          "zh": "途中，你会遇到各种建筑，有些已被废弃，有些仍有住客。里面可能藏着"
+        },
+        {
+          "color": "§5",
+          "text": "Epic loot ",
+          "zh": "史诗级战利品"
+        },
+        {
+          "color": "§7",
+          "text": "or ",
+          "zh": "，也可能潜伏着"
+        },
+        {
+          "color": "§c",
+          "text": "dangerous foes ",
+          "zh": "危险敌人"
+        },
+        {
+          "color": "§7",
+          "text": "so always be on the look out.",
+          "zh": "，务必时刻保持警惕。"
+        }
+      ]
+    },
+    {
+      "id": "nov06_fiesta_drop",
+      "context": "本轮实测补译；Mining",
+      "text": "Drops rarely from Ores and Dwarven Metals while Mayor Cole's Mining Fiesta is active.",
+      "raw": "§7Drops rarely from §6Ores §7and §2Dwarven Metals §7while §bMayor Cole's §6Mining Fiesta §7is active.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "矿石和矮人金属中有小概率掉落，仅限市长 Cole 挖矿狂欢节期间。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Drops rarely from ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§6",
+          "text": "Ores ",
+          "zh": "矿石"
+        },
+        {
+          "color": "§7",
+          "text": "and ",
+          "zh": "和"
+        },
+        {
+          "color": "§2",
+          "text": "Dwarven Metals ",
+          "zh": "矮人金属"
+        },
+        {
+          "color": "§7",
+          "text": "while ",
+          "zh": "中有小概率掉落，仅限"
+        },
+        {
+          "color": "§b",
+          "text": "Mayor Cole's ",
+          "zh": "市长 Cole "
+        },
+        {
+          "color": "§6",
+          "text": "Mining Fiesta ",
+          "zh": "挖矿狂欢节"
+        },
+        {
+          "color": "§7",
+          "text": "is active.",
+          "zh": "期间。"
+        }
+      ]
+    }
+  ]
+}

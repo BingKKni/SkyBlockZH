@@ -1,0 +1,309 @@
+{
+  "note": "本轮实测回归：整段Lore、动态数量、颜色重排、专名边界。",
+  "cases": [
+    {"name":"既有肾上腺素模板覆盖44分钟","surface":"TabList","source":["§cAdrenaline III§r §f44m"],"expected":"§c肾上腺素 III§r §f44 分钟"},
+    {"name":"既有肾上腺素模板覆盖分秒组合","surface":"TabList","source":["§cAdrenaline III§r §f5m 59s"],"expected":"§c肾上腺素 III§r §f5分59秒"},
+    {
+      "name": "花园等级完整两行不套用地牢职业说明",
+      "source": [
+        "§8Increase your Garden Level to",
+        "§8unlock new visitors, crops and more!"
+      ],
+      "expected": "§8提升花园等级，解锁新访客、新作物等更多内容!",
+      "consumed": 2
+    },
+    {
+      "name": "实习兔子完整产量",
+      "source": [
+        "§fRabbit Bro §7is an §fIntern§7. They are",
+        "§7learning the ropes and can produce",
+        "§6+2 Chocolate §7per second!"
+      ],
+      "expected": "§f兔子兄弟§7是一名§f实习生§7，还在熟悉工作，每秒可产出 §6+2 巧克力§7!",
+      "consumed": 3
+    },
+    {
+      "name": "实习兔子换称谓和产量",
+      "source": [
+        "§fRabbit Dog §7is an §fIntern§7. They are",
+        "§7learning the ropes and can produce",
+        "§6+21 Chocolate §7per second!"
+      ],
+      "expected": "§f兔子狗狗§7是一名§f实习生§7，还在熟悉工作，每秒可产出 §6+21 巧克力§7!",
+      "consumed": 3
+    },
+    {
+      "name": "员工说明语序与工厂颜色",
+      "source": [
+        "§aRabbit Bro §7is an §aEmployee §7at your",
+        "§6Chocolate Factory §7and can produce",
+        "§6+10 Chocolate §7per second!"
+      ],
+      "expected": "§a兔子兄弟§7是你§6巧克力工厂§7的一名§a员工§7，每秒可产出 §6+10 巧克力§7!",
+      "consumed": 3
+    },
+    {
+      "name": "兔奶奶多一行仍完整匹配",
+      "source": [
+        "§aRabbit Granny §7is an §aEmployee §7at",
+        "§7your §6Chocolate Factory §7and can",
+        "§7produce §6+55 Chocolate §7per second!"
+      ],
+      "expected": "§a兔子奶奶§7是你§6巧克力工厂§7的一名§a员工§7，每秒可产出 §6+55 巧克力§7!",
+      "consumed": 3
+    },
+    {
+      "name": "待业兔子整段不残留英语",
+      "source": [
+        "§cRabbit Cousin §7is currently",
+        "§7fun-employed. They are looking for",
+        "§7a job at your §6Chocolate Factory§7,",
+        "§7and are capable of producing extra",
+        "§6Chocolate§7!"
+      ],
+      "expected": "§c兔子表亲§7目前正享受待业生活，想来你的§6巧克力工厂§7找份工作，帮你多生产些§6巧克力§7!",
+      "consumed": 5
+    },
+    {
+      "name": "收藏需求极冰三级",
+      "source": [
+        "§cRequires Glacite Collection III"
+      ],
+      "expected": "§c需要极冰收藏等级 III",
+      "consumed": 1
+    },
+    {
+      "name": "收藏需求钨六级",
+      "source": [
+        "§cRequires Tungsten Collection VI"
+      ],
+      "expected": "§c需要钨收藏等级 VI",
+      "consumed": 1
+    },
+    {
+      "name": "收藏需求褐铁矿三级",
+      "source": [
+        "§cRequires Umber Collection III"
+      ],
+      "expected": "§c需要褐铁矿收藏等级 III",
+      "consumed": 1
+    },
+    {
+      "name": "秘银委托数量变化250",
+      "source": [
+        "§7Mine §a250 §7Mithril Ore."
+      ],
+      "expected": "§7开采 §a250§7 块秘银矿石。",
+      "consumed": 1
+    },
+    {
+      "name": "秘银委托数量变化350",
+      "source": [
+        "§7Mine §a350 §7Mithril Ore."
+      ],
+      "expected": "§7开采 §a350§7 块秘银矿石。",
+      "consumed": 1
+    },
+    {
+      "name": "双倍粉末委托跨行保持活动与数量颜色",
+      "source": [
+        "§7Collect §a500 Mithril Powder §7during the",
+        "§b2x Powder §7Event."
+      ],
+      "expected": "§7在§b双倍粉末§7活动期间收集 §a500 秘银粉末§7。",
+      "consumed": 2
+    },
+    {
+      "name": "抽奖委托跨行颜色与数量",
+      "source": [
+        "§7Deposit §a20 §7Tickets during the §6Raffle",
+        "§7Event."
+      ],
+      "expected": "§7在§6抽奖活动§7期间投入 §a20 张抽奖券。",
+      "consumed": 2
+    },
+    {
+      "name": "水下呼吸五倍完整跨行",
+      "source": [
+        "§7Breathe §a5x §7as long underwater when",
+        "§7wearing!"
+      ],
+      "expected": "§7穿戴时，水下呼吸时长变为原来的 §a5 倍§7!",
+      "consumed": 2
+    },
+    {
+      "name": "水下呼吸倍率动态变化",
+      "source": [
+        "§7Breathe §a3x §7as long underwater when wearing!"
+      ],
+      "expected": "§7穿戴时，水下呼吸时长变为原来的 §a3 倍§7!",
+      "consumed": 1
+    },
+    {
+      "name": "Drain描述不译附魔名称",
+      "source": [
+        "§7Regen §4+1 Vitality §7every time you hit",
+        "§7a mob."
+      ],
+      "expected": "§7每次击中生物时，恢复 §4+1 活力§7。",
+      "consumed": 2
+    },
+    {
+      "name": "经验瓶完整三行不丢物品颜色",
+      "source": [
+        "§7Simple! Just consume the §3Experience",
+        "§3Bottles §7from your inventories",
+        "§7directly."
+      ],
+      "expected": "§7很简单! 直接消耗背包中的§3经验瓶§7即可。",
+      "consumed": 3
+    },
+    {
+      "name": "壁炉整句",
+      "source": [
+        "§7This cosmetic fireplace looks great",
+        "§7in any build."
+      ],
+      "expected": "§7这座装饰壁炉能为任何建筑增色。",
+      "consumed": 2
+    },
+    {
+      "name": "箱子共享末行有上下文",
+      "source": [
+        "§7This extra large chest looks great",
+        "§7in any build."
+      ],
+      "expected": "§7这个特大号箱子能为任何建筑增色。",
+      "consumed": 2
+    },
+    {
+      "name": "通行证持续小时不写死",
+      "source": [
+        "§7This pass grants you access to the §5Crystal",
+        "§5Hollows§7 for §612 hours§7."
+      ],
+      "expected": "§7此通行证可让你进入§5水晶残核§7，有效期为 §612 小时§7。",
+      "consumed": 2
+    },
+    {
+      "name": "Rock加入宠物菜单仅名称白色",
+      "surface": "ChatMessage",
+      "source": [
+        "§aSuccessfully added §fRock §ato your pet menu!"
+      ],
+      "expected": "§a已将§f石头§a添加到宠物菜单!"
+    },
+    {
+      "name": "Rusty动态物品引用复用附魔作物名",
+      "surface": "ChatMessage",
+      "source": [
+        "Ever wondered how I find all the things that other players lost? I outsource it. Right now, someone is looking for their §aEnchanted Wheat§f. Can you find that for me?"
+      ],
+      "expected": "好奇我是怎么找回别人丢的东西的? 秘诀就是外包。现在有人丢了§a附魔小麦§f。能帮我找来吗?"
+    },
+    {
+      "name": "Andrew月份动态且末句恢复白色",
+      "surface": "ChatMessage",
+      "source": [
+        "Did you know that SkyBlock has been running for §b6300 §fin-game months already? Time flies."
+      ],
+      "expected": "你知道吗? 空岛生存里已经过去 §b6300§f 个月了。时间过得真快。"
+    },
+    {
+      "name": "燃料要求颜色重排",
+      "surface": "Hologram",
+      "source": [
+        "§22,000 Fuel §crequired"
+      ],
+      "expected": "§c需要 §22,000 燃料"
+    },
+    {
+      "name": "增益水下呼吸整名查词",
+      "surface": "ChatMessage",
+      "source": [
+        "§a§lBUFF! §fYou have gained §9Water Breathing I§f! Press TAB or type /effects to view your active effects!"
+      ],
+      "expected": "§a§l增益! §f你获得了§9水下呼吸 I§f! 按 TAB 或输入 /effects 查看当前生效的效果!"
+    },
+    {
+      "name": "兔子升职实习生沿用职位词表",
+      "surface": "ChatMessage",
+      "source": [
+        "§fRabbit Bro §7has been promoted to [3] §fIntern§7!"
+      ],
+      "expected": "§f兔子兄弟 §7升职为 [3] §f实习生§7!"
+    },
+    {
+      "name": "末影节点数量与物品独立保色",
+      "surface": "ChatMessage",
+      "source": [
+        "§5§lENDER NODE! §fYou found §85x §aEnchanted Ender Pearl§f!"
+      ],
+      "expected": "§5§l末影节点! §f你找到了 §85x §a附魔末影珍珠§f!"
+    },
+    {
+      "name": "末影节点无数量道具",
+      "surface": "ChatMessage",
+      "source": [
+        "§5§lENDER NODE! §fYou found §9Titanic Experience Bottle§f!"
+      ],
+      "expected": "§5§l末影节点! §f你找到了§9泰坦经验瓶§f!"
+    },
+    {
+      "name": "金锭收藏目标物品沿用原版译名",
+      "surface": "ChatMessage",
+      "source": [
+        "§fReach §a72,500 §fGold Ingot Collection."
+      ],
+      "expected": "§f使金锭收藏量达到 §a72,500§f。"
+    },
+    {
+      "name": "铁匠闲聊两个地点分别着色",
+      "surface": "ChatMessage",
+      "source": [
+        "§fHave you met Blacksmith from the §6Gold Mine§f? Blacksmith from the §bVillage §fintroduced me to him."
+      ],
+      "expected": "§f你见过§6金矿§f的铁匠吗? 是§b村庄§f的铁匠介绍我认识他的。"
+    },
+    {
+      "name": "Braum新拼写完整对白",
+      "surface": "ChatMessage",
+      "source": [
+        "§fClick me again to receive your first set of §5Crystal Hollows§f commissions."
+      ],
+      "expected": "§f再点我一下，就能领取第一批§5水晶残核§f委托了。"
+    },
+    {
+      "name": "储物箱家具不误译Chest",
+      "surface": "GUI_Item",
+      "source": [
+        "§fChest Storage"
+      ],
+      "expected": "§f储物箱"
+    },
+    {
+      "name": "害虫解锁引用通名",
+      "surface": "GUI_Item",
+      "source": [
+        "§6Lunar Moth Pest"
+      ],
+      "expected": "§6月光蛾害虫"
+    },
+    {
+      "name": "末影螨图鉴等级",
+      "surface": "ChatMessage",
+      "source": [
+        "§b§lEndermite §bII"
+      ],
+      "expected": "§b§l末影螨 §bII"
+    },
+    {
+      "name": "挖矿区域副标题",
+      "surface": "Misc",
+      "source": [
+        "§5Crystal Nucleus"
+      ],
+      "expected": "§5水晶核心"
+    }
+  ]
+}

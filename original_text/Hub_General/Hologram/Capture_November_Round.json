@@ -94,7 +94,7 @@
       "id": "round_29e31189282b",
       "context": "本轮服务器采集；Hologram",
       "text": "%1$s Fuel required",
-      "raw": "§c%1$s Fuel required",
+      "raw": "§2%1$s Fuel §crequired",
       "placeholders": [
         {
           "token": "%1$s",
@@ -104,7 +104,21 @@
         }
       ],
       "translate": true,
-      "zh": "需要 %1$s 燃料"
+      "zh": "需要 %1$s 燃料",
+      "segments": [
+        {
+          "color": "§2",
+          "text": "%1$s Fuel ",
+          "zh": "%1$s 燃料",
+          "order": 1
+        },
+        {
+          "color": "§c",
+          "text": "required",
+          "zh": "需要 ",
+          "order": 0
+        }
+      ]
     },
     {
       "id": "round_925acc237231",

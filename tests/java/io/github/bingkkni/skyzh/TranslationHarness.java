@@ -1240,7 +1240,7 @@ public final class TranslationHarness {
 			Surface.CHAT, "§b这个活动在整个矮人矿山都会生效!");
 		check("秘银老饕折行版本的数量与量词同色",
 			"§bVeins§f. Bring §c200§a Tasty Mithril§f to him at the §bDwarven Village§f!", Surface.CHAT,
-			"§b矿脉§f的美味秘银,带 §c200 份§f到§b矮人村庄§f交给他!");
+			"§b矿脉§f的§a美味秘银§f，带 §c200 份§f到§b矮人村庄§f交给他!");
 		check("秘银老饕完整地名版本的数量与量词同色",
 			"§fBring §c200 §aTasty Mithril §fto him at the §bDwarven Village§f!", Surface.CHAT,
 			"§f带 §c200 份§a美味秘银§f到§b矮人村庄§f交给他!");
@@ -3050,7 +3050,7 @@ public final class TranslationHarness {
 
 	/** Fixed UI capture regression: ordered lore, term isolation, and clues that must survive translation. */
 	private static void checkFixedMenus(Path corpusRoot) throws Exception {
-		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "october-live-round-cases.json", "workshop-cases.json", "wiki-expansion-cases.json", "bazaar-item-names-cases.json", "rift-live-capture-cases.json", "rift-session-cases.json", "garden-weather-feast-cases.json", "village-living-cave-cases.json", "rift-post-build-cases.json", "castle-capture-cases.json", "slayer-rng-capture-cases.json", "spider-session-cases.json", "dual-live-round-cases.json", "moonglade-capture-cases.json", "slayer-current-capture-cases.json", "dual-computer-followup-cases.json", "mountaintop-live-capture-cases.json", "nov03-capture-cases.json", "nov04-combat-cases.json", "nov04-dungeons-cases.json", "nov04-skills-cases.json", "nov04-islands-cases.json", "nov04-hub-cases.json", "nov04-integration-cases.json", "runtime-followup-cases.json")) {
+		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "october-live-round-cases.json", "workshop-cases.json", "wiki-expansion-cases.json", "bazaar-item-names-cases.json", "rift-live-capture-cases.json", "rift-session-cases.json", "garden-weather-feast-cases.json", "village-living-cave-cases.json", "rift-post-build-cases.json", "castle-capture-cases.json", "slayer-rng-capture-cases.json", "spider-session-cases.json", "dual-live-round-cases.json", "moonglade-capture-cases.json", "slayer-current-capture-cases.json", "dual-computer-followup-cases.json", "mountaintop-live-capture-cases.json", "nov03-capture-cases.json", "nov04-combat-cases.json", "nov04-dungeons-cases.json", "nov04-skills-cases.json", "nov04-islands-cases.json", "nov04-hub-cases.json", "nov04-integration-cases.json", "runtime-followup-cases.json", "nov06-capture-cases.json")) {
 		Path path = corpusRoot.toAbsolutePath().getParent().resolve("tests/resources/" + file);
 		JsonObject fixture = JsonParser.parseString(Files.readString(path, StandardCharsets.UTF_8)).getAsJsonObject();
 		for (JsonElement value : fixture.getAsJsonArray("cases")) {
@@ -3080,6 +3080,11 @@ public final class TranslationHarness {
 			report(name, expected.equals(actual) && match.lines() == test.get("consumed").getAsInt(),
 				"期望 " + expected + "，实际 " + actual);
 		}
+		}
+		for (String suffix : List.of("Bro", "Cousin", "Sis", "Dog")) {
+			report("兔子完整名称与动态称谓一致 " + suffix,
+				Translator.index().terms().translate("category_name", "Rabbit " + suffix).equals(
+					"兔子" + Translator.index().terms().translate("mob_name", suffix)), "菜单与升职提示沿用同一称谓");
 		}
 		report("Ghost of Goon 已登记为NPC专名以抑制名牌重复采集",
 			Translator.index().isNpcName("Ghost of Goon"), "花园幽灵分支别名");

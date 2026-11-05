@@ -48,7 +48,13 @@
       "layout": "center_chat_banner"
     },
     {
-      "id": "gourmand_start_2", "item_refs": [{"text": "Tasty Mithril", "zh": "美味秘银"}],
+      "id": "gourmand_start_2",
+      "item_refs": [
+        {
+          "text": "Tasty Mithril",
+          "zh": "美味秘银"
+        }
+      ],
       "context": "开始横幅正文第二行:接上一行被折断的地名后半截,说明要交多少、交到哪",
       "raw": "§b%1$s§f. Bring §c%2$s§a Tasty Mithril§f to him at the §b%3$s§f!",
       "text": "%1$s. Bring %2$s Tasty Mithril to him at the %3$s!",
@@ -74,43 +80,55 @@
       ],
       "gloss": "%1$s 是上一行(gourmand_start_1)那个被折断的地名的后半截,理由和词条来源都写在那一条的 gloss 里。类型同样从 raw 改成 location_name。",
       "translate": true,
-      "zh": "%1$s的美味秘银,带 %2$s 份到%3$s交给他!",
+      "zh": "%1$s的美味秘银，带 %2$s 份到%3$s交给他!",
       "segments": [
         {
           "color": "§b",
           "text": "%1$s",
-          "zh": "%1$s"
+          "zh": "%1$s",
+          "order": 0
         },
         {
           "color": "§f",
-          "text": ". Bring ",
-          "zh": "的美味秘银,带 "
+          "text": ". ",
+          "zh": "的",
+          "order": 1
+        },
+        {
+          "color": "§f",
+          "text": "Bring ",
+          "zh": "，带 ",
+          "order": 3
         },
         {
           "color": "§c",
           "text": "%2$s",
-          "zh": "%2$s 份"
+          "zh": "%2$s 份",
+          "order": 4
         },
         {
           "color": "§a",
           "text": " Tasty Mithril",
-          "zh": "",
-          "omit": true
+          "zh": "美味秘银",
+          "order": 2
         },
         {
           "color": "§f",
           "text": " to him at the ",
-          "zh": "到"
+          "zh": "到",
+          "order": 5
         },
         {
           "color": "§b",
           "text": "%3$s",
-          "zh": "%3$s"
+          "zh": "%3$s",
+          "order": 6
         },
         {
           "color": "§f",
           "text": "!",
-          "zh": "交给他!"
+          "zh": "交给他!",
+          "order": 7
         }
       ],
       "layout": "center_chat_banner"

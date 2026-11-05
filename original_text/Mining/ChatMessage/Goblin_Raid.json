@@ -68,36 +68,40 @@
           "example": "25"
         }
       ],
-      "gloss": "英文把“额外奖励”放在句子中间(Earn extra rewards by ...),中文放在句尾,所以前两段标 omit,奖励说明词并进最后一段。",
+      "gloss": "中文将奖励移至句末，order 保留奖励和击杀门槛各自的实时颜色。",
       "translate": true,
-      "zh": "参与并击杀至少 %2$s 只哥布林可以获得%1$s!",
+      "zh": "亲自击杀至少 %2$s 只哥布林，即可获得%1$s",
       "segments": [
         {
           "color": "§f",
           "text": "Earn ",
           "zh": "",
+          "order": 0,
           "omit": true
         },
         {
           "color": "§6",
           "text": "%1$s ",
-          "zh": "",
-          "omit": true
+          "zh": "%1$s",
+          "order": 4
         },
         {
           "color": "§f",
           "text": "by slaying at least ",
-          "zh": "参与并击杀至少 "
+          "zh": "亲自击杀至少 ",
+          "order": 1
         },
         {
           "color": "§c",
           "text": "%2$s ",
-          "zh": "%2$s"
+          "zh": "%2$s",
+          "order": 2
         },
         {
           "color": "§f",
           "text": "yourself!",
-          "zh": " 只哥布林可以获得额外奖励!"
+          "zh": " 只哥布林，即可获得",
+          "order": 3
         }
       ],
       "layout": "center_chat_banner"
