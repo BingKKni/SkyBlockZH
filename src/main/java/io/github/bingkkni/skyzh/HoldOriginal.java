@@ -1,6 +1,7 @@
 package io.github.bingkkni.skyzh;
 
 import com.mojang.blaze3d.platform.InputConstants;
+import io.github.bingkkni.skyzh.gui.SkyZHConfigScreen;
 import io.github.bingkkni.skyzh.platform.ClientGui;
 import io.github.bingkkni.skyzh.platform.ClientInput;
 import java.util.Arrays;
@@ -115,7 +116,8 @@ public final class HoldOriginal {
 	private static boolean typing(Minecraft minecraft) {
 		Screen screen = ClientGui.screen(minecraft);
 		if (screen instanceof ChatScreen || screen instanceof AbstractSignEditScreen
-			|| screen instanceof BookEditScreen || screen instanceof KeyBindsScreen) return true;
+			|| screen instanceof BookEditScreen || screen instanceof KeyBindsScreen
+			|| SkyZHConfigScreen.takesTyping(screen)) return true;
 		GuiEventListener focused = screen;
 		// Lists and mod screens may wrap the edit box in another focus container.
 		for (int depth = 0; focused != null && depth < 16; depth++) {

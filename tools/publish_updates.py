@@ -95,7 +95,7 @@ def beta_url(digest: str, name: str) -> str:
 def build_beta() -> list[Path]:
     """Builds one test jar per Minecraft target, versioned by commit count."""
     wrapper = ROOT / ("gradlew.bat" if os.name == "nt" else "gradlew")
-    subprocess.run([str(wrapper), "--console=plain", "-Pskyzh.channel=beta", *[f":fabric-{t}:jar" for t in TARGETS]],
+    subprocess.run([str(wrapper), "--console=plain", "-Pskyzh.channel=beta", *[f":fabric-{t}:shadowJar" for t in TARGETS]],
                    cwd=ROOT, check=True)
     jars = []
     for target in TARGETS:

@@ -16,6 +16,24 @@ publisher = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(publisher)
 
 
+class BetaBuildTests(unittest.TestCase):
+    def test_beta_build_uses_installable_shadow_jars(self):
+        with tempfile.TemporaryDirectory(prefix="skyzh-beta-check-") as directory:
+            root = Path(directory)
+            expected = []
+            for target in publisher.TARGETS:
+                jar = root / f"fabric-{target}/build/libs/SkyBlockZH-0.8-Beta-Fabric-{target}.jar"
+                jar.parent.mkdir(parents=True)
+                jar.touch()
+                expected.append(jar)
+            with patch.object(publisher, "ROOT", root), patch.object(publisher.subprocess, "run") as run:
+                self.assertEqual(publisher.build_beta(), expected)
+            command = run.call_args.args[0]
+            self.assertIn("-Pskyzh.channel=beta", command)
+            self.assertEqual(command[3:], [f":fabric-{target}:shadowJar" for target in publisher.TARGETS])
+            self.assertTrue(run.call_args.kwargs["check"])
+
+
 class PublicationTests(unittest.TestCase):
     def setUp(self):
         self.directory = tempfile.TemporaryDirectory(prefix="skyzh-pages-check-")

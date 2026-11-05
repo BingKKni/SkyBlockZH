@@ -12,6 +12,6 @@ import io.github.bingkkni.skyzh.gui.SkyZHConfigScreen;
 public class ModMenuIntegration implements ModMenuApi {
 	@Override
 	public ConfigScreenFactory<?> getModConfigScreenFactory() {
-		return SkyZHConfigScreen::new;
+		return SkyZHConfigScreen::create;
 	}
 }

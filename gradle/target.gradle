@@ -42,6 +42,16 @@ repositories {
 		name = 'Hypixel'
 		url = 'https://repo.hypixel.net/repository/Hypixel/'
 	}
+
+	exclusiveContent {
+		forRepository {
+			maven {
+				name = 'NotEnoughUpdates'
+				url = 'https://maven.notenoughupdates.org/releases/'
+			}
+		}
+		filter { includeGroup 'org.notenoughupdates.moulconfig' }
+	}
 }
 
 // Shared engine and hooks, plus only the platform code selected for this target.
@@ -54,6 +64,11 @@ sourceSets {
 			rootProject.file("src/${it}/resources")
 		}
 	}
+}
+
+configurations {
+	shade { transitive = false }
+	implementation.extendsFrom shade
 }
 
 dependencies {
@@ -74,9 +89,15 @@ dependencies {
 	// the sidebar reading carries on as before.
 	compileOnly "net.hypixel:mod-api:${rootProject.hypixel_mod_api_version}"
 
+	// The settings screen's MoulConfig, built for this target's Minecraft. `shade` puts it on the
+	// ordinary classpaths under its own name; shadowJar relocates it into the installable jar.
+	shade "org.notenoughupdates.moulconfig:modern-${artifactTag}:${rootProject.moulconfig_version}"
+	implementation "org.jetbrains.kotlin:kotlin-stdlib:${rootProject.kotlin_stdlib_version}"
+	include("org.jetbrains.kotlin:kotlin-stdlib:${rootProject.kotlin_stdlib_version}") { transitive = false }
+
 	// No Fabric API. Every hook this mod needs is a mixin into a vanilla render path, and the
 	// fewer runtime dependencies a SkyBlock client carries, the fewer ways it can collide with
-	// SkyHanni / SkyBlocker in someone's modpack.
+	// SkyHanni / SkyBlocker in someone's modpack. MoulConfig does not need it either.
 }
 
 // A JDK-only helper runs independently after Minecraft releases the installed JAR.
@@ -138,6 +159,27 @@ processResources {
 	from(rootProject.layout.buildDirectory.dir('minified-corpus')) {
 		into 'assets/skyzh/original_text'
 		include '**/*.json'
+	}
+
+	// Here rather than on a jar task, so the shadow jar and the plain one both carry it under this name.
+	def projectName = rootProject.name
+	inputs.property 'projectName', projectName
+	from(rootProject.file('LICENSE')) {
+		rename { "${it}_$projectName" }
+	}
+
+	// MoulConfig declares the GUI internals it widens in a fabric.mod.json of its own, which stays behind
+	// when it is relocated into this jar; ours declares them instead. Read from the artifact, because
+	// 26.3 renamed the render-pipeline types those lines name.
+	def moulconfig = configurations.shade
+	inputs.files moulconfig
+	filesMatching('skyzh.accesswidener') { details ->
+		def own = details.file.readLines('UTF-8')
+		filter { String line ->
+			if (!line.startsWith('accessWidener ')) return line
+			def widener = zipTree(moulconfig.singleFile).matching { include 'moulconfig.accesswidener' }.singleFile
+			([line] + (widener.readLines('UTF-8').drop(1) - own).findAll { !it.isBlank() }).join('\n')
+		}
 	}
 }
 
@@ -411,13 +453,31 @@ java {
 }
 
 jar {
-	def projectName = rootProject.name
-	inputs.property 'projectName', projectName
-
-	from(rootProject.file('LICENSE')) {
-		rename { "${it}_$projectName" }
-	}
+	// The jar Loom builds still names MoulConfig by its own package; shadowJar's output is the one to install.
+	archiveClassifier = 'dev'
+	destinationDirectory = layout.buildDirectory.dir('devlibs')
 }
+
+// SkyHanni bundles MoulConfig the same way: relocated under this mod's package, so its copy, Skyblocker's
+// and this one can sit in one modpack at different versions without one replacing another's classes.
+tasks.named('shadowJar') {
+	configurations = [project.configurations.shade]
+	archiveClassifier = ''
+	relocate 'io.github.notenoughupdates.moulconfig', 'io.github.bingkkni.skyzh.deps.moulconfig'
+	mergeServiceFiles()
+	addMultiReleaseAttribute = false
+
+	// Ours comes first and wins: MoulConfig's fabric.mod.json describes it as LibNinePatch, and its
+	// access widener is already merged into ours by processResources.
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+	filesMatching('META-INF/services/**') { duplicatesStrategy = DuplicatesStrategy.INCLUDE }
+	exclude 'moulconfig.accesswidener', 'assets/moulconfig/test.xml', 'META-INF/*.kotlin_module'
+	// The artifact's LICENSE belongs to its bundled LibNinePatch, not MoulConfig (LGPL-3.0-or-later).
+	filesMatching('LICENSE') { name = 'LICENSE_libninepatch' }
+}
+
+// kotlin-stdlib goes in as its own nested jar, with the mod ID fabric-language-kotlin gives it.
+loom.nestJars(tasks.named('shadowJar'), configurations.named('include'))
 
 // What the root project's `dist` collects: the finished, installable jar. Offered as a configuration
 // so the root does not have to name a Loom task that does not exist while it is being configured.
@@ -429,7 +489,7 @@ configurations {
 }
 
 artifacts {
-	// `jar`, not `remapJar`: 26.x ships unobfuscated, so Loom has no mappings to remap through and
-	// registers no such task. The jar `jar` produces is the installable one.
-	distJar tasks.named('jar')
+	// `shadowJar`, not `remapJar`: 26.x ships unobfuscated, so Loom has no mappings to remap through and
+	// registers no such task. What remains is relocating MoulConfig, and the jar that does is the one to install.
+	distJar tasks.named('shadowJar')
 }

@@ -148,9 +148,9 @@ Mod Menu is a soft dependency. Without it, edit `config/skyzh.json`, which docum
 | `captureNotifications` | on | Report newly captured untranslated text, colour errors and mixed-language text in chat. Turning reports off does not stop file writes |
 | `autoClearCapture` | **off** | Clear the previous captures once per client launch, whether or not capture is enabled or a server is joined. Reconnecting never clears files |
 
-The settings page follows MoulConfig: a "SkyZH <version> Beta" title bar, categories on the left (General, Translation,
+The settings page uses MoulConfig (also used by SkyHanni and Skyblocker's default settings): a "SkyZH <version> Beta" title bar, categories on the left (General, Translation,
 Advanced), and a search field at the top right that filters by option name and description and hides empty categories. Each
-option is a card with its description beside a toggle or dropdown; "Update installation" appears only while update checks are
+option is a card with a toggle or dropdown on the left and its description on the right. Chinese descriptions reuse `TextLayout` wrapping without shrinking the font; "Update installation" appears only while update checks are
 on. Display priority and capture are collapsible blocks in Advanced. With the master switch off, every other option is greyed out.
 Old configs missing these keys use the defaults above. The mod does not need Fabric API: `ResourceManagerMixin` adds the mod's own
 `assets/` above vanilla on each client resource reload, and the font pack on top when `legacyFont` is on. On a fresh installation, the complete settings page appears once after the client has confirmed entry to Hypixel; its internal `welcomeShown` state can be reset to `false` to show it again on the next entry. First-run guidance, `/skyzh` (also `/skyblockzh`) and Mod Menu share this page, with the welcome text and GitHub link at the top of General. Startup clearing
@@ -713,7 +713,7 @@ or run time.
 ```
 
 Requires JDK 25. Minecraft 26.x ships unobfuscated, so there is no mapping layer, mods are ordinary
-dependencies, and Loom has no `remapJar` step — `jar` produces the installable file.
+dependencies, and Loom has no `remapJar` step. `shadowJar` produces the installable file: it bundles and relocates each target's MoulConfig 4.8.0, merges its access widener and service declarations, and nests Kotlin's standard library. Players need no extra dependency mod. `jar` only produces an unrelocated development artifact under `build/devlibs/`, not a distributable.
 
 ### Three Minecraft versions, one source tree
 

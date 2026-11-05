@@ -80,6 +80,8 @@ Mod 新版本下载到 `skyzh-updates/`，退出游戏后由独立安装程序�
 
 本项目采用 [GNU 通用公共许可证第 3 版（GPL-3.0-only）](LICENSE) 授权。完整许可证条款见 [LICENSE](LICENSE)。
 
+设置界面内置 [MoulConfig](https://github.com/NotEnoughUpdates/MoulConfig/tree/v4)（LGPL-3.0-or-later）及其 LibNinePatch（MPL-2.0），各依赖保留自身许可。对应源码地址与许可文本随 JAR 一并提供；玩家无需另行安装。
+
 如需在本项目现有许可证之外获得其他单独授权，您可通过邮箱 [xbudingqwq@gmail.com](mailto:xbudingqwq@gmail.com) 联系我，说明所需内容及用途。遵守[现有许可证](LICENSE)的使用、修改和分发无须单独向我申请。
 
 ## 技术文档
