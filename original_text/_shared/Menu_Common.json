@@ -640,9 +640,13 @@
           "example": "III"
         }
       ],
-      "gloss": "实机采集见 Glacite/Tungsten；材料走既有词表，不把 Requires 当作材料名的一部分。",
+      "gloss": "熔炉实测为全红；空岛菜单实测为红色 Requires、绿色材料与等级。分段读取实时颜色，两种样式共用。",
       "translate": true,
-      "zh": "需要%1$s收藏品 %2$s"
+      "zh": "需要%1$s收藏等级 %2$s",
+      "segments": [
+        {"text":"Requires ","zh":"需要"},
+        {"text":"%1$s Collection %2$s","zh":"%1$s收藏等级 %2$s"}
+      ]
     },
     {
       "id": "menu_progress_to_tier",

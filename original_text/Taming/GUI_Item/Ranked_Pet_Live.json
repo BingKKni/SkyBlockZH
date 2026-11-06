@@ -1,0 +1,65 @@
+{
+  "source": "runtime capture: ../SkyZH_Logs/skyzh-capture; https://hypixelskyblock.minecraft.wiki/w/Golden_Dragon_Pet",
+  "verified_ingame": true,
+  "entries": [
+    {
+      "id": "capture_b0a13c021e74",
+      "context": "本轮服务器采集；原文与颜色以实测为准。",
+      "text": "[Lvl %1$s] [%2$s✦] %3$s",
+      "raw": "§7[Lvl %1$s] §8[§6%2$s§4✦§8] §6%3$s",
+      "translate": true,
+      "zh": "[%1$s 级] [%2$s✦] %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "2"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "2"
+        },
+        {
+          "token": "%3$s",
+          "type": "mob_name",
+          "example": "Golden Dragon",
+          "mob": false,
+          "item": true
+        }
+      ],
+      "segments": [
+        {
+          "color": "§7",
+          "text": "[Lvl %1$s] ",
+          "zh": "[%1$s 级] "
+        },
+        {
+          "color": "§8",
+          "text": "[",
+          "zh": "["
+        },
+        {
+          "color": "§6",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§4",
+          "text": "✦",
+          "zh": "✦"
+        },
+        {
+          "color": "§8",
+          "text": "] ",
+          "zh": "] "
+        },
+        {
+          "color": "§6",
+          "text": "%3$s",
+          "zh": "%3$s"
+        }
+      ]
+    }
+  ]
+}

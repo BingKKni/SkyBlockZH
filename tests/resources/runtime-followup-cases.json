@@ -1,6 +1,14 @@
 {
   "note": "本轮实测补译回归：动态数量、整句 Lore、实时颜色、专名与物品名开关边界。",
   "cases": [
+    {"name":"堆肥器完整多词名称保留数量颜色","surface":"GUI_Item","source":["  §a640§7x §fCocoa Beans §7worth §e256 Organic Matter"],"expected":"  §a640§7x §f可可豆§7,相当于 §e256 有机物","consumed":1},
+    {"name":"收藏要求的名称等级与标签分别保色","source":["§cRequires §aEmerald Collection VI"],"expected":"§c需要§a绿宝石收藏等级 VI","consumed":1},
+    {"name":"新档案名不会翻译成草莓材料","surface":"GUI_Item","source":["§7Profile name: §eStrawberry"],"expected":"§7档案名称: §eStrawberry","consumed":1},
+    {"name":"新档案名变为其他水果仍保留","surface":"GUI_Item","source":["§7Profile name: §eLime"],"expected":"§7档案名称: §eLime","consumed":1},
+    {"name":"新建档案说明跨行只输出一次","source":["§7You are creating a new SkyBlock","§7profile."],"expected":"§7你正在创建新的 SkyBlock 档案。","consumed":2},
+    {"name":"新害虫对白中文语序与高亮对应","surface":"NPC_Message","source":["§fThey seem to pop up when you're §ebreaking crops §fon your §aThe Garden§f!"],"expected":"§f你在§a花园§f里§e收割作物§f时，它们就可能冒出来!"},
+    {"name":"新采集农业进度不写死零","surface":"TabList","source":[" Farming: §a56%"],"expected":" 农业: §a56%"},
+    {"name":"新采集农业进度零值仍支持","surface":"TabList","source":[" Farming: §a0%"],"expected":" 农业: §a0%"},
     {"name":"无Rank玩家名不进入生物词表","source":["§7Preview: §8[§723§8] §7♦ §fEnderman"],"expected":"§7预览: §8[§723§8] §7♦ §fEnderman","consumed":1},
     {"name":"本轮图鉴聊天保留名称和等级的颜色","surface":"ChatMessage","source":["§b§lWeaver Spider §bI"],"expected":"§b§l织网蜘蛛 §bI"},
     {"name":"竞速禁用珍珠高亮不染相邻选项","surface":"Hologram","source":["§7Anything §a§lNo Pearls §7No Abilities Nothing"],"expected":"§7不限制 §a§l禁用末影珍珠 §7禁用技能 完全不使用"},

@@ -749,6 +749,24 @@ public final class CaptureHarness {
 				TranslationHarness.legacy(NameTag.mobName(Component.literal(raw))),
 				TranslationHarness.legacy(Component.literal(raw.replace("Healthy ", "强健").replace("Skeleton Master", "骷髅大师"))));
 		}
+		for (String hp : List.of("5,950§f/§a7,000", "100")) {
+			String raw = "§8[§7Lv36§8] §9§f §5§ka§5Corrupted Sea Archer§5§ka§r §a" + hp + "§c❤";
+			check("腐化血条保留乱码装饰与动态血量 " + hp,
+				TranslationHarness.legacy(NameTag.mobName(Component.literal(raw))),
+				TranslationHarness.legacy(Component.literal(raw.replace("Corrupted Sea Archer", "腐化海弓箭手"))));
+		}
+		for (String raw : List.of("§5aCorrupted Sea Archera §a100§c❤",
+			"§5§ka§5Corrupted Unknown Archer§5§ka§r §a100§c❤",
+			"§5Corrupted §kSea§r Archer §a100§c❤")) {
+			Component decoratedUnknown = Component.literal(raw);
+			check("不猜译普通字母或部分遮蔽身份 " + raw, NameTag.mobName(decoratedUnknown) == decoratedUnknown, true);
+		}
+		boolean mobNamesBefore = SkyZHConfig.get().translateMobNames;
+		SkyZHConfig.get().translateMobNames = false;
+		try {
+			Component disabled = Component.literal("§5§ka§5Corrupted Sea Archer§5§ka§r §a100§c❤");
+			check("腐化生物遵守名称开关", NameTag.mobName(disabled) == disabled, true);
+		} finally { SkyZHConfig.get().translateMobNames = mobNamesBefore; }
 		Component unknownModifier = Component.literal("§2Unverified §cSkeleton Master §a100§c❤");
 		check("仅本体已知不会猜译未知修饰名", NameTag.mobName(unknownModifier) == unknownModifier, true);
 		Component unknown = Component.literal("§cUnverified Creature §a100§c❤");

@@ -59,7 +59,7 @@ public final class NameTag {
 	);
 
 	private static final Pattern MOB_BAR = Pattern.compile(
-		"^(?:﴾\\s*)?(?:\\[Lv[0-9]+\\]\\s*)?(?:[\\p{Co}\\p{S}]\\s*){0,8}([\\p{L}][\\p{L} '\\-]+?)\\s+(?:[0-9][0-9,.]*[kKmMbBtT]?(?:/[0-9][0-9,.]*[kKmMbBtT]?)?|\\?+)❤(?:\\s*[﴿҉✯])?\\s*$"
+		"^(?:﴾\\s*)?(?:\\[Lv[0-9]+\\]\\s*)?(?:[\\p{Co}\\p{S}]\\s*){0,8}\\s*([\\p{L}][\\p{L} '\\-]+?)\\s+(?:[0-9][0-9,.]*[kKmMbBtT]?(?:/[0-9][0-9,.]*[kKmMbBtT]?)?|\\?+)❤(?:\\s*[﴿҉✯])?\\s*$"
 	);
 	// Only the complete Rift timer score line, never a player identity or an arbitrary sentence.
 	private static final Pattern RIFT_TIMER = Pattern.compile(
@@ -138,7 +138,17 @@ public final class NameTag {
 	}
 
 	private static Component mobName(Component source, StyledText styled) {
-		Matcher bar = MOB_BAR.matcher(styled.canonical());
+		String matchingText = styled.canonical();
+		// Corrupted mobs surround the visible name with §k decoration. Keep offsets and the
+		// original components intact; only those invisible-to-reading glyphs become match spacing.
+		char[] visible = null;
+		for (int i = 0; i < matchingText.length(); i++) {
+			if (styled.styleAt(i).isObfuscated()) {
+				if (visible == null) visible = matchingText.toCharArray();
+				visible[i] = ' ';
+			}
+		}
+		Matcher bar = MOB_BAR.matcher(visible == null ? matchingText : new String(visible));
 		if (!bar.matches()) {
 			// Both living mobs and invisible stands can carry this server counter.
 			if (HIT_SHIELD.matcher(styled.canonical()).matches()) {
@@ -147,6 +157,10 @@ public final class NameTag {
 			return source;
 		}
 		if (!ItemNamePolicy.mobNames()) return source;
+		// Never reconstruct a partly obscured identity from the remaining visible letters.
+		for (int i = bar.start(1); i < bar.end(1); i++) {
+			if (styled.styleAt(i).isObfuscated()) return source;
+		}
 		String zh = Translator.index().terms().translateWhole("mob_name", bar.group(1));
 		if (zh == null || zh.equals(bar.group(1))) {
 			return source;

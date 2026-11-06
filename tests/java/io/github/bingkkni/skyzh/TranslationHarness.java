@@ -3744,9 +3744,9 @@ public final class TranslationHarness {
 			"  §a勘探头盔§7配方");
 		check("快速升级是按钮不是小人种类", "§aQuick-Upgrade Minion", Surface.ITEM, "§a快速升级小人");
 		check("极冰收藏品门槛不能吞掉 Requires", "§cRequires Glacite Collection III", Surface.ITEM,
-			"§c需要极冰收藏品 III");
+			"§c需要极冰收藏等级 III");
 		check("钨收藏品门槛等级可变", "§cRequires Tungsten Collection IV", Surface.ITEM,
-			"§c需要钨收藏品 IV");
+			"§c需要钨收藏等级 IV");
 		check("收藏品进度只扩展完整金锭词条", "§7Progress to Gold Ingot VIII: §e56.5§6%", Surface.ITEM,
 			"§7金锭 VIII 档进度: §e56.5§6%");
 		check("共用进度行仍能翻译宾果目标", "§7Progress to Agricultural Revolution I: §e0§6%", Surface.ITEM,

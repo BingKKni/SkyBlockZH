@@ -471,8 +471,8 @@
         },
         {
           "token": "%2$s",
-          "desc": "作物名,译名走 _shared/Terms.json",
-          "type": "category_name",
+          "desc": "完整作物物品名，复用已有物品译名",
+          "type": "catalog_item_name",
           "example": "Seeds"
         },
         {
@@ -517,73 +517,6 @@
           "zh": "%3$s 有机物"
         }
       ]
-    },
-    {
-      "id": "composter_enchanted_item_worth",
-      "context": "",
-      "raw": "  §a%1$s§7x §a%2$s %3$s §7worth §e%4$s Organic Matter",
-      "text": "  %1$sx %2$s %3$s worth %4$s Organic Matter",
-      "placeholders": [
-        {
-          "token": "%1$s",
-          "desc": "数量",
-          "type": "number",
-          "example": "5"
-        },
-        {
-          "token": "%2$s",
-          "desc": "Enchanted / Sugar,两个词的物品名前半",
-          "type": "raw",
-          "example": "Enchanted"
-        },
-        {
-          "token": "%3$s",
-          "desc": "物品名后半",
-          "type": "raw",
-          "example": "Carrot"
-        },
-        {
-          "token": "%4$s",
-          "desc": "折算的有机物",
-          "type": "number",
-          "example": "232"
-        }
-      ],
-      "gloss": "采集器把「Enchanted Carrot」「Sugar Cane」切成两个 raw;两半各查词表(Enchanted → 附魔,Carrot → 胡萝卜)拼成「附魔胡萝卜」。",
-      "translate": true,
-      "zh": "  %1$sx %2$s%3$s,相当于 %4$s 有机物",
-      "segments": [
-        {
-          "color": "",
-          "text": "  ",
-          "zh": "  "
-        },
-        {
-          "color": "§a",
-          "text": "%1$s",
-          "zh": "%1$s"
-        },
-        {
-          "color": "§7",
-          "text": "x ",
-          "zh": "x "
-        },
-        {
-          "color": "§a",
-          "text": "%2$s %3$s ",
-          "zh": "%2$s%3$s"
-        },
-        {
-          "color": "§7",
-          "text": "worth ",
-          "zh": ",相当于 "
-        },
-        {
-          "color": "§e",
-          "text": "%4$s Organic Matter",
-          "zh": "%4$s 有机物"
-        }
-      ], "item_refs": [{"text":"%2$s %3$s","zh":"%2$s%3$s"}]
     },
     {
       "id": "composter_totalling",
