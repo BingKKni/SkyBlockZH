@@ -1,0 +1,42 @@
+{
+  "source": [
+    "runtime capture: ../SkyZH_Logs/skyzh-capture",
+    "https://hypixelskyblock.minecraft.wiki/w/Experience_Potion"
+  ],
+  "verified_ingame": true,
+  "lines": [
+    {
+      "id": "experience_potion_active",
+      "context": "本轮实测补漏；复查已有语料后新增，颜色以服务器原文为准。",
+      "raw": "§9Experience %1$s§r §f%2$s",
+      "text": "Experience %1$s %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "tier",
+          "example": "II"
+        },
+        {
+          "token": "%2$s",
+          "type": "duration",
+          "example": "59m"
+        }
+      ],
+      "translate": true,
+      "zh": "经验 %1$s %2$s",
+      "segments": [
+        {
+          "color": "§9",
+          "text": "Experience %1$s",
+          "zh": "经验 %1$s"
+        },
+        {
+          "color": "§r§f",
+          "text": " %2$s",
+          "zh": " %2$s"
+        }
+      ],
+      "gloss": "Tab 中的药水增益名称，区别于保留英文的同名附魔。"
+    }
+  ]
+}
