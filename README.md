@@ -78,9 +78,9 @@ Mod 新版本下载到 `skyzh-updates/`，退出游戏后由独立安装程序�
 
 ## 许可证
 
-本项目采用自定义的 [SkyBlockZH 项目许可证](LICENSE)。自用可以自由修改；仅新增或修改翻译库后公开发布无需单独申请授权；修改其他源代码后公开发布须先取得作者授权。完整条款见 [LICENSE](LICENSE)。
+本项目采用 [SkyBlockZH 项目许可证](LICENSE)。
 
-设置界面内置 [MoulConfig](https://github.com/NotEnoughUpdates/MoulConfig/tree/v4)（LGPL-3.0-or-later）及其 LibNinePatch（MPL-2.0），各依赖保留自身许可。对应源码地址与许可文本随 JAR 一并提供；玩家无需另行安装。
+设置界面内置 [MoulConfig](https://github.com/NotEnoughUpdates/MoulConfig/tree/v4)（LGPL-3.0-or-later）及其 LibNinePatch（MPL-2.0），各依赖保留自身许可。
 
 如需申请授权，您可通过邮箱 [xbudingqwq@gmail.com](mailto:xbudingqwq@gmail.com) 联系我，说明所需内容及用途。实际授权范围以作者明确授予的书面授权为准。
 
