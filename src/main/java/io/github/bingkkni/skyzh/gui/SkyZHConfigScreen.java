@@ -5,6 +5,7 @@ import io.github.bingkkni.skyzh.DisplayPriority;
 import io.github.bingkkni.skyzh.HypixelServer;
 import io.github.bingkkni.skyzh.SkyZH;
 import io.github.bingkkni.skyzh.SkyZHConfig;
+import io.github.bingkkni.skyzh.UpdateChecker;
 import io.github.bingkkni.skyzh.SkyZHConfig.UpdateChannel;
 import io.github.bingkkni.skyzh.SkyZHConfig.UpdateInstall;
 import io.github.bingkkni.skyzh.capture.CaptureAnnouncer;
@@ -34,6 +35,7 @@ import io.github.notenoughupdates.moulconfig.gui.editors.GuiOptionEditorAccordio
 import io.github.notenoughupdates.moulconfig.gui.editors.GuiOptionEditorBoolean;
 import io.github.notenoughupdates.moulconfig.gui.editors.GuiOptionEditorButton;
 import io.github.notenoughupdates.moulconfig.gui.editors.GuiOptionEditorDropdown;
+import io.github.notenoughupdates.moulconfig.gui.editors.GuiOptionEditorInfoText;
 import io.github.notenoughupdates.moulconfig.platform.MoulConfigPlatform;
 import io.github.notenoughupdates.moulconfig.platform.MoulConfigScreenComponent;
 import io.github.notenoughupdates.moulconfig.processor.ProcessedCategory;
@@ -121,7 +123,11 @@ public final class SkyZHConfigScreen {
 						config.captureNotifications = value;
 						CaptureAnnouncer.clear();
 					}),
-					toggle("autoClearCapture", () -> config.autoClearCapture, value -> config.autoClearCapture = value))));
+					toggle("autoClearCapture", () -> config.autoClearCapture, value -> config.autoClearCapture = value))),
+			new Category("about", layout,
+				info("version", Component.literal("SkyZH " + version())),
+				info("build", buildDescription()),
+				info("credits", Component.literal("inkkni\nCute_leaf_ovo"))));
 		return new SettingsScreen(new MoulConfigEditor<>(ProcessedCategory.collect(categories), layout), parent);
 	}
 
@@ -230,6 +236,28 @@ public final class SkyZHConfigScreen {
 			});
 	}
 
+	/** Read-only cards use the same CJK wrapping as settings, without an interactive control. */
+	private static Entry info(String key, Component description) {
+		return new Entry(key, Component.translatable("skyzh.about." + key), description,
+			Void.class, () -> null, ignored -> {},
+			entry -> new GuiOptionEditorInfoText(entry, MoulConfigPlatform.wrap(Component.empty())) {
+				@Override
+				protected GuiComponent wrapComponent(GuiComponent control) { return card(this, entry, control); }
+
+				@Override
+				public int getHeight() { return getDelegate().getHeight(); }
+			}).always();
+	}
+
+	private static Component buildDescription() {
+		var build = UpdateChecker.buildInfo();
+		String commits = build.getProperty("commits", "0");
+		if (!commits.matches("[1-9][0-9]*")) return Component.translatable("skyzh.about.build.unknown");
+		return Component.translatable("skyzh.about.build.number",
+			Component.translatable("skyzh.updateCheck." + (build.getProperty("channel", "release").equals("beta") ? "beta" : "release")),
+			commits);
+	}
+
 	/** The greeting that heads General, with the way to report a problem. */
 	private static Entry welcome() {
 		Runnable report = () -> ConfirmLinkScreen.confirmLinkNow(ClientGui.screen(Minecraft.getInstance()), ISSUES_URI);
@@ -304,6 +332,19 @@ public final class SkyZHConfigScreen {
 
 		SettingsScreen(MoulConfigEditor<?> editor, Screen parent) {
 			super(Component.literal("SkyZH"), new GuiContext(new GuiElementComponent(editor)), parent);
+		}
+
+		/** MoulConfig searches as soon as typing starts, but does not enable Minecraft's native IME. */
+		@Override
+		protected void init() {
+			super.init();
+			this.minecraft.onTextInputFocusChange(this, true);
+		}
+
+		@Override
+		public void removed() {
+			this.minecraft.onTextInputFocusChange(this, false);
+			super.removed();
 		}
 
 		@Override

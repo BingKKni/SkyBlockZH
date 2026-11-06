@@ -412,7 +412,8 @@ public final class UpdateChecker {
 	private static final Pattern BETA_BUILD = Pattern.compile("\\.beta\\.([0-9]{1,15})$");
 	private static final Pattern BUILD_METADATA = Pattern.compile("\\+.*$");
 
-	private static java.util.Properties buildInfo() {
+	/** A fresh snapshot of the installed build metadata, also shown by the About category. */
+	public static java.util.Properties buildInfo() {
 		java.util.Properties properties = new java.util.Properties();
 		try (var stream = UpdateChecker.class.getResourceAsStream("/skyzh-build.properties")) {
 			if (stream != null) properties.load(stream);

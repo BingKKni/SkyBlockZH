@@ -29,6 +29,7 @@ public final class ClientSettingsHarness {
 	public static void main(String[] args) throws Exception {
 		config();
 		welcome();
+		about();
 		updates();
 		keys();
 		originalToggle();
@@ -128,6 +129,33 @@ public final class ClientSettingsHarness {
 					text.styleAt(i).getClickEvent() == null && text.styleAt(i).getHoverEvent() == null, true);
 			}
 		}
+	}
+
+	private static void about() throws Exception {
+		var info = io.github.bingkkni.skyzh.gui.SkyZHConfigScreen.class
+			.getDeclaredMethod("info", String.class, Component.class);
+		info.setAccessible(true);
+		var entry = (io.github.notenoughupdates.moulconfig.processor.ProcessedOption) info.invoke(null,
+			"credits", Component.literal("inkkni\nCute_leaf_ovo"));
+		check("关于卡片保留鸣谢 ID 和换行", entry.getDescription().getText(), "inkkni\nCute_leaf_ovo");
+		check("关于卡片无配置值", entry.getType(), Void.class);
+		entry.set("ignored");
+		check("关于卡片不可写入配置值", entry.get(), null);
+		var editor = entry.getEditor();
+		var usable = editor.getClass().getDeclaredMethod("usable");
+		usable.setAccessible(true);
+		boolean enabled = SkyZHConfig.get().enabled;
+		try {
+			SkyZHConfig.get().enabled = false;
+			check("关闭 Mod 后仍可阅读关于", usable.invoke(editor), true);
+		} finally {
+			SkyZHConfig.get().enabled = enabled;
+		}
+		var build = UpdateChecker.buildInfo();
+		check("构建渠道已展开", List.of("release", "beta").contains(build.getProperty("channel")), true);
+		check("构建编号已展开", build.getProperty("commits", "").matches("[0-9]+"), true);
+		build.setProperty("channel", "changed");
+		check("读取构建信息不共享可变状态", UpdateChecker.buildInfo().getProperty("channel").equals("changed"), false);
 	}
 
 	private static void updates() {
