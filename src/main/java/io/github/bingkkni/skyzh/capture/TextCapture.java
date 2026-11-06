@@ -718,7 +718,7 @@ public final class TextCapture {
 		// The directory rather than the store's own root, so files left by an earlier session can be
 		// cleared in one where capture has not started and never set it.
 		int deleted = CaptureStore.clear(directory());
-		LOGGER.info("SkyZH 采集记录已清空，删除文件 {} 个。", deleted);
+		LOGGER.info("[文本采集引擎] 采集记录已清空，删除文件 {} 个。", deleted);
 	}
 
 	/** Called when the connection ends: write out what is held and forget the session. */

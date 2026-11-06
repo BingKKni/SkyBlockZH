@@ -335,11 +335,9 @@ public final class CaptureContext {
 	/** Spells out the sidebar, once a session, when it will not say where the player is. */
 	private static void dump(Scoreboard scoreboard, Objective sidebar) {
 		LOGGER.warn(
-			"SkyZH 采集：侧边栏上找不到 ⏣ 开头的所在地那一行，这段时间采到的文本只能落进未知玩法目录。"
-				+ "下面把这块侧边栏原样打出来（看不见的字符转成了 \\uXXXX），"
-				+ "对照着就能看出是这一行没发过来、还是标记换了字符："
+			"[文本采集引擎] 无法在侧边栏上找到 ⏣ 开头的所在地，本次采集到的文本将落进未知玩法目录。"
 		);
-		LOGGER.warn("  [标题] {}", LegacyText.escape(sidebar.getDisplayName().getString()));
+		LOGGER.warn("[文本采集引擎] [标题] {}", LegacyText.escape(sidebar.getDisplayName().getString()));
 
 		int row = 0;
 
@@ -351,14 +349,14 @@ public final class CaptureContext {
 			PlayerTeam team = scoreboard.getPlayersTeam(entry.owner());
 			String line = PlayerTeam.formatNameForTeam(team, entry.ownerName()).getString();
 
-			LOGGER.warn("  [第 {} 行] {}", ++row, LegacyText.escape(line));
+			LOGGER.warn("[文本采集引擎] [第 {} 行] {}", ++row, LegacyText.escape(line));
 		}
 
 		if (row == 0) {
-			LOGGER.warn("  （这块计分板一行都没有，说明侧边栏的行还没发过来，不是解析的问题。）");
+			LOGGER.warn("[文本采集引擎] （这块计分板一行都没有，说明侧边栏的行还没发过来，不是解析的问题。）");
 		}
 
-		LOGGER.warn("  Tab 列表里也没有 Area: 那一行。下面是 Tab 列表上带冒号的行，同样是原样打出来的：");
+		LOGGER.warn("[文本采集引擎] Tab 列表里也没有 Area: 那一行。下面是 Tab 列表上带冒号的行，同样是原样打出来的：");
 
 		ClientPacketListener connection = Minecraft.getInstance().getConnection();
 		int listed = 0;
@@ -369,17 +367,17 @@ public final class CaptureContext {
 				String line = name == null ? "" : plain(name.getString()).trim();
 
 				if (line.indexOf(':') > 0 && ++listed <= 20) {
-					LOGGER.warn("  [Tab] {}", LegacyText.escape(name.getString()));
+					LOGGER.warn("[文本采集引擎] [Tab] {}", LegacyText.escape(name.getString()));
 				}
 			}
 		}
 
 		if (listed == 0) {
-			LOGGER.warn("  （Tab 列表上一行带冒号的都没有。）");
+			LOGGER.warn("[文本采集引擎] （Tab 列表上一行带冒号的都没有。）");
 		}
 
 		LOGGER.warn(
-			"  Hypixel Mod API 这一路给的是 map=[{}] mode=[{}]。两个都是空,说明没装 hypixel-mod-api"
+			"[文本采集引擎] Hypixel Mod API 这一路给的是 map=[{}] mode=[{}]。两个都是空,说明没装 hypixel-mod-api"
 				+ "、或者这一局还没收到位置事件；有值却还落进未知玩法,就是 areas.json 里缺这一条。",
 			HypixelApi.map(), HypixelApi.mode()
 		);

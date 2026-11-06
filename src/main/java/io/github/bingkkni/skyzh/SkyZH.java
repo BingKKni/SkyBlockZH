@@ -44,7 +44,7 @@ public final class SkyZH implements ClientModInitializer {
 			try {
 				TextCapture.clear(); // Exactly the same memory + disk reset as /skyzh clear.
 			} catch (IOException | RuntimeException e) {
-				LOGGER.warn("SkyZH 启动时自动清空采集文本失败：{}", e.toString());
+				LOGGER.warn("[文本采集引擎] 启动时自动清空采集文本失败：{}", e.toString());
 			}
 		}
 
@@ -71,7 +71,7 @@ public final class SkyZH implements ClientModInitializer {
 			// Said out loud on every start, because it writes files and because a switch somebody
 			// turned on to answer one question is a switch they will forget is on.
 			LOGGER.info(
-				"SkyZH 未翻译文本采集：开。将把未翻译 / 中英混杂的服务器原文写入游戏目录下的 {}/。"
+				"[文本采集引擎] 未翻译文本采集：开。将把未翻译 / 中英混杂的服务器原文写入游戏目录下的 {}/。"
 					+ "这是给补语料用的开发者功能，普通游玩时请在 Mod Menu 里关掉。",
 				config.captureDirectory
 			);

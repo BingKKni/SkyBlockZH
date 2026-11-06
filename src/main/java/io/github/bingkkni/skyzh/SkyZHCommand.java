@@ -78,7 +78,7 @@ public final class SkyZHCommand {
 		lines.add("§e=============== §b" + Feedback.NAME + " §e===============");
 		lines.add("§6/" + alias + "  §f打开设置");
 		lines.add("§6/" + alias + " switch power/tip/capture [on/off]  §f切换总功能/显示原文提示/采集功能为开/关");
-		lines.add("§6/" + alias + " updatecheck [mod/translate]  §f检查并安装更新，默认先 Mod 后翻译包");
+		lines.add("§6/" + alias + " updatecheck [mod/translate] §f检查更新");
 		lines.add("§6/" + alias + " updatecheck on/off  §f开启/关闭自动更新");
 		lines.add("§6/" + alias + " reload  §f重新加载翻译包");
 

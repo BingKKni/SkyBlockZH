@@ -58,7 +58,7 @@ public final class CommandHarness {
 			"§e=============== §b[SkyZH] §e===============",
 			"§6/skyzh  §f打开设置",
 			"§6/skyzh switch power/tip/capture [on/off]  §f切换总功能/显示原文提示/采集功能为开/关",
-			"§6/skyzh updatecheck [mod/translate]  §f检查并安装更新，默认先 Mod 后翻译包",
+			"§6/skyzh updatecheck [mod/translate] §f检查更新",
 			"§6/skyzh updatecheck on/off  §f开启/关闭自动更新",
 			"§6/skyzh reload  §f重新加载翻译包",
 			"§e======================================"
@@ -68,7 +68,7 @@ public final class CommandHarness {
 			"§e=============== §b[SkyZH] §e===============",
 			"§6/skyblockzh  §f打开设置",
 			"§6/skyblockzh switch power/tip/capture [on/off]  §f切换总功能/显示原文提示/采集功能为开/关",
-			"§6/skyblockzh updatecheck [mod/translate]  §f检查并安装更新，默认先 Mod 后翻译包",
+			"§6/skyblockzh updatecheck [mod/translate] §f检查更新",
 			"§6/skyblockzh updatecheck on/off  §f开启/关闭自动更新",
 			"§6/skyblockzh reload  §f重新加载翻译包",
 			"§6/skyblockzh clear  §f清空捕捉到的文本",

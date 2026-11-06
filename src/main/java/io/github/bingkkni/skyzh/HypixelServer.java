@@ -105,7 +105,7 @@ public final class HypixelServer {
 		receivedHello = true;
 
 		if (announce) {
-			LOGGER.info("SkyZH 已通过 {} 确认当前连接属于 Hypixel；连接地址不参与判断。", evidence);
+			LOGGER.info("已确认连接到 Hypixel。");
 		}
 	}
 
@@ -155,7 +155,7 @@ public final class HypixelServer {
 			if (++unverifiedSidebarTicks == WARNING_DELAY_TICKS && !warnedUnverifiedSidebar) {
 				warnedUnverifiedSidebar = true;
 				LOGGER.warn(
-					"SkyZH 检测到 SkyBlock 侧边栏（SBScoreboard），但本次连接既没有收到 Hypixel 的 hypixel:hello，"
+					"检测到 SkyBlock 侧边栏（SBScoreboard），但本次连接没有收到 Hypixel API 的 hypixel:hello，"
 						+ "服务器品牌也不是 Hypixel。为避免在其他服务器误译，本次连接暂不启用翻译；"
 						+ "服务器地址不会用于兜底判断。"
 				);

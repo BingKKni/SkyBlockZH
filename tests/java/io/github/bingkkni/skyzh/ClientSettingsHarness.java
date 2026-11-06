@@ -28,6 +28,7 @@ public final class ClientSettingsHarness {
 
 	public static void main(String[] args) throws Exception {
 		config();
+		welcome();
 		updates();
 		keys();
 		originalToggle();
@@ -104,6 +105,29 @@ public final class ClientSettingsHarness {
 		check("文件含自动清空说明", old.toJson().getAsJsonObject("_说明").has("autoClearCapture"), true);
 		check("文件含更新检查说明", old.toJson().getAsJsonObject("_说明").has("updateCheck"), true);
 		check("文件含首次引导说明", old.toJson().getAsJsonObject("_说明").has("welcomeShown"), true);
+	}
+
+	private static void welcome() {
+		Component message = io.github.bingkkni.skyzh.gui.SkyZHConfigScreen.welcomeMessage();
+		check("首次欢迎消息完整文案及颜色", TranslationHarness.legacy(message),
+			"§b[SkyZH] §a感谢您下载 §bSkyBlockZH§a！目前 Mod 的翻译覆盖尚不完全，如有任何建议、反馈（翻译错误，排版异常，对 Mod 功能的建议等），欢迎前往 §b[Github]§b §a或添加 §e[QQ官方群]§e §a向我们提出意见！");
+		var text = io.github.bingkkni.skyzh.text.StyledText.of(message);
+		for (String[] link : List.of(
+			new String[]{"[Github]", "https://github.com/BingKKni/SkyBlockZH", "点击前往开发者的项目仓库!"},
+			new String[]{"[QQ官方群]", "https://qm.qq.com/q/WLfP9iPBam", "点击添加QQ官方群!"})) {
+			int start = text.plain().indexOf(link[0]);
+			for (int i = start; i < start + link[0].length(); i++) {
+				Style style = text.styleAt(i);
+				check("欢迎链接完整可点击 " + link[0] + i, style.getClickEvent(),
+					new net.minecraft.network.chat.ClickEvent.OpenUrl(java.net.URI.create(link[1])));
+				check("欢迎链接悬浮说明 " + link[0] + i,
+					TranslationHarness.legacy(((net.minecraft.network.chat.HoverEvent.ShowText) style.getHoverEvent()).value()), "§e" + link[2]);
+			}
+			for (int i : new int[]{start - 1, start + link[0].length()}) {
+				check("欢迎链接不污染邻接文本 " + link[0] + i,
+					text.styleAt(i).getClickEvent() == null && text.styleAt(i).getHoverEvent() == null, true);
+			}
+		}
 	}
 
 	private static void updates() {

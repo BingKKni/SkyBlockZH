@@ -111,8 +111,7 @@ public final class Areas {
 
 		if (this.reported.add(area)) {
 			LOGGER.info(
-				"SkyZH 采集：区域「{}」还没归类，这一批文本落进 {}/。"
-					+ "往 original_text/_data/areas.json 的 areas 里补一条就行，不用改代码。",
+				"[文本采集引擎] 区域 \"{}\" 尚未被归类，将落进 \"{}\"。",
 				area, this.unknown
 			);
 		}
@@ -136,8 +135,7 @@ public final class Areas {
 		}
 
 		LOGGER.info(
-			"SkyZH 采集：区域「{}」还没归类，这一批文本靠岛屿那一路落进了 {}/。"
-				+ "往 original_text/_data/areas.json 的 areas 里补一条，以后不靠岛屿也分得对。",
+			"[文本采集引擎] 区域 \"{}\" 尚未被归类，本次采集到的文本将靠岛屿那一链路落进 \"{}\"。",
 			area, gameplay
 		);
 	}

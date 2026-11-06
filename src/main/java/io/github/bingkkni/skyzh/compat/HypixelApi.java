@@ -64,14 +64,13 @@ public final class HypixelApi {
 			installed = true;
 
 			LOGGER.info(
-				"SkyZH 采集：已通过 {} 订阅 Hypixel 的位置事件，玩法分类不再只靠读侧边栏。"
-					+ "（这是采集功能唯一一处会向服务器发包的地方，关掉采集就不会发。）",
+				"[文本采集引擎] 已通过 {} 订阅 Hypixel 的位置事件。",
 				MOD_ID
 			);
 		} catch (Throwable e) {
 			// A version of the library that moved something, or a mod list that says one thing and
 			// loads another. The sidebar reading is still there and still correct, so this is a note.
-			LOGGER.info("SkyZH 采集：接 {} 没接上（{}），玩法分类照旧读侧边栏。", MOD_ID, e.toString());
+			LOGGER.info("[文本采集引擎] 接 {} 没接上（{}）。", MOD_ID, e.toString());
 		}
 	}
 

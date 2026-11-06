@@ -63,7 +63,7 @@ public final class SkyZHConfig {
 	/** Whether the unavailable in-game translation feedback switch is selected for future use. */
 	public boolean helpImproveTranslation = true;
 
-	/** Whether the one-time setup screen has already been shown after entering Hypixel. */
+	/** Whether the one-time welcome chat message has already been sent after entering Hypixel. */
 	public boolean welcomeShown = false;
 
 	/** Whether "SkyBlock" becomes 空岛生存; also read by the capture worker. */
@@ -220,11 +220,11 @@ public final class SkyZHConfig {
 	JsonObject toJson() {
 		JsonObject help = new JsonObject();
 		help.addProperty("enabled", "是否启用 Mod 功能。关闭将不翻译任何文本。");
-		help.addProperty("updateCheck", "是否在进入空岛生存后自动检查并下载 Mod 和翻译更新。翻译更新立即生效；Mod 更新在退出游戏后安装，下次启动生效。总开关关闭时不检查。");
-		help.addProperty("updateChannel", "更新渠道：release 只安装正式版；beta 还会安装每次提交自动构建的测试版。翻译包只有一个渠道。");
+		help.addProperty("updateCheck", "是否在进入空岛生存后自动检查并下载 Mod 和翻译更新。");
+		help.addProperty("updateChannel", "更新渠道：release 为正式版；beta 为测试版。");
 		help.addProperty("updateInstall", "发现新版 Mod 后：auto 自动下载并在下次重启时安装；manual 自动下载，点击聊天提示后才安装；notify 仅提示，点击后再下载并安装。");
 		help.addProperty("helpImproveTranslation", "在游戏内发现文本未翻译或翻译格式错误时，是否上传到开发者服务器报告（暂不可用）。");
-		help.addProperty("welcomeShown", "是否已经显示首次设置引导。改为 false 后，下次进入 Hypixel 时会再次显示。");
+		help.addProperty("welcomeShown", "是否已经发送首次安装欢迎消息。改为 false 后，下次进入 Hypixel 时会再次发送。");
 		help.addProperty("translateSkyBlockName", "是否翻译 SkyBlock 玩法名。翻译后的文本为「空岛生存」。");
 		help.addProperty("translateItemNames", "是否翻译物品名称。关闭后，物品名及其在对话、系统消息、悬浮文字和菜单说明中的引用保留英文，其他内容继续翻译。");
 		help.addProperty("translateMobNames", "是否翻译生物名。关闭后，实体头顶名牌、悬浮文字和物品、计分板、BossBar 等文本里提及的生物名保留英文，其他内容继续翻译。");

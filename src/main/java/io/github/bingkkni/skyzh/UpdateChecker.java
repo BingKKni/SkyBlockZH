@@ -74,7 +74,7 @@ public final class UpdateChecker {
 		Feedback.send(request(action) ? switch (action) {
 			case MOD -> "§e正在检查 Mod 更新…";
 			case TRANSLATIONS -> "§e正在检查翻译包更新…";
-			default -> "§e正在依次检查 Mod 和翻译包更新…";
+			default -> "§e正在检查 Mod 和翻译包更新…";
 		} : "§e正在检查或安装更新，请稍后再试。");
 	}
 

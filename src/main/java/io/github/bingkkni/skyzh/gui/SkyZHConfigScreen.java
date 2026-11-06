@@ -55,9 +55,11 @@ import net.minecraft.client.gui.screens.ConfirmLinkScreen;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.ClickEvent;
+import net.minecraft.network.chat.HoverEvent;
 
 /**
- * The settings screen shared by Mod Menu, commands and first-run guidance.
+ * The settings screen shared by Mod Menu and commands.
  *
  * <p>Drawn by MoulConfig, the editor SkyHanni builds its settings with and Skyblocker uses by default,
  * so it looks and handles like the screens SkyBlock players already know: categories on the left,
@@ -157,18 +159,37 @@ public final class SkyZHConfigScreen {
 		maybeShowFirstRun(minecraft);
 	}
 
-	/** Opens the settings screen only after an in-world Hypixel connection is verified. */
+	/** Sends the first-install greeting once, without opening or replacing a screen. */
 	public static void maybeShowFirstRun(Minecraft minecraft) {
 		SkyZHConfig config = SkyZHConfig.get();
 		if (config.welcomeShown || minecraft.player == null || minecraft.level == null
-			|| !HypixelServer.isHypixel() || ClientGui.screen(minecraft) != null) {
+			|| !HypixelServer.isHypixel()) {
 			return;
 		}
 
-		// Record it before opening the modal so reconnects and an Esc close do not repeat the first-run prompt.
+		ClientGui.chat(minecraft, welcomeMessage());
 		config.welcomeShown = true;
 		config.save();
-		ClientGui.setScreen(minecraft, create(null));
+	}
+
+	/** Only the two link labels carry interaction; surrounding text remains ordinary chat. */
+	public static Component welcomeMessage() {
+		return Component.literal("[SkyZH] ").withStyle(ChatFormatting.AQUA)
+			.append(Component.literal("感谢您下载 ").withStyle(ChatFormatting.GREEN))
+			.append(Component.literal("SkyBlockZH").withStyle(ChatFormatting.AQUA))
+			.append(Component.literal("！目前 Mod 的翻译覆盖尚不完全，如有任何建议、反馈（翻译错误，排版异常，对 Mod 功能的建议等），欢迎前往 ").withStyle(ChatFormatting.GREEN))
+			.append(welcomeLink("[Github]", GITHUB_URI, "点击前往开发者的项目仓库!", ChatFormatting.AQUA))
+			.append(Component.literal(" ").withStyle(ChatFormatting.AQUA))
+			.append(Component.literal("或添加 ").withStyle(ChatFormatting.GREEN))
+			.append(welcomeLink("[QQ官方群]", URI.create("https://qm.qq.com/q/WLfP9iPBam"), "点击添加QQ官方群!", ChatFormatting.YELLOW))
+			.append(Component.literal(" ").withStyle(ChatFormatting.YELLOW))
+			.append(Component.literal("向我们提出意见！").withStyle(ChatFormatting.GREEN));
+	}
+
+	private static Component welcomeLink(String label, URI uri, String hover, ChatFormatting color) {
+		return Component.literal(label).withStyle(style -> style.withColor(color)
+			.withClickEvent(new ClickEvent.OpenUrl(uri))
+			.withHoverEvent(new HoverEvent.ShowText(Component.literal(hover).withStyle(ChatFormatting.YELLOW))));
 	}
 
 	/** Whether {@code screen} is this one, where MoulConfig sends every typed character to its search field. */
@@ -251,9 +272,14 @@ public final class SkyZHConfigScreen {
 				this.descriptionWidth = context.getWidth() * 2 / 3 - 10;
 				RenderContext render = context.getRenderContext();
 				var font = render.getMinecraft().getDefaultFontRenderer();
+				List<Component> descriptionLines = lines(this.descriptionWidth);
+				int lineHeight = font.getHeight() + 1;
+				int top = entry.heading ? font.getHeight() + 13 : 5;
+				int textHeight = descriptionLines.size() * lineHeight - 1;
+				int y = top + Math.max(0, (context.getHeight() - top - 5 - textHeight) / 2);
 				render.pushMatrix();
-				render.translate(5 + context.getWidth() / 3, entry.heading ? font.getHeight() + 13 : 5);
-				for (Component line : lines(this.descriptionWidth)) {
+				render.translate(5 + context.getWidth() / 3, y);
+				for (Component line : descriptionLines) {
 					render.drawString(font, MoulConfigPlatform.wrap(line), 0, 0, 0xc0c0c0, false);
 					render.translate(0, font.getHeight() + 1);
 				}

@@ -201,7 +201,7 @@ public final class CaptureStore {
 		Runtime.getRuntime().addShutdownHook(
 			new Thread(CaptureStore::finishPending, "SkyZH-capture-flush")
 		);
-		LOGGER.info("SkyZH 未翻译文本采集已开启，输出目录：{}", root.toAbsolutePath());
+		LOGGER.info("[文本采集引擎] 未翻译文本采集已开启，输出目录：{}", root.toAbsolutePath());
 	}
 
 	/** Hands one line to the worker, or drops it if the queue has backed up. */
@@ -214,7 +214,7 @@ public final class CaptureStore {
 
 		if (!warnedFull) {
 			warnedFull = true;
-			LOGGER.warn("SkyZH 采集队列已满，本次会话有文本被丢弃（不影响游戏，只影响采集完整度）。");
+			LOGGER.warn("[文本采集引擎] 采集队列已满，本次会话有文本被丢弃（不影响游戏，只影响采集完整度）。");
 		}
 	}
 
@@ -254,7 +254,7 @@ public final class CaptureStore {
 			} catch (Exception e) {
 				// One malformed line must not take the worker down with it; the rest of the session
 				// is still worth capturing.
-				LOGGER.warn("SkyZH 采集处理一行时出错，已跳过：{}", e.toString());
+				LOGGER.warn("[文本采集引擎] 采集处理一行时出错，已跳过：{}", e.toString());
 			}
 		}
 	}
@@ -555,7 +555,7 @@ public final class CaptureStore {
 	}
 
 	private static void reportIfRequested() {
-		if (reportRequested.getAndSet(false)) LOGGER.info("SkyZH 采集本次会话结果：{}", summary());
+		if (reportRequested.getAndSet(false)) LOGGER.info("[文本采集引擎] 采集本次会话结果：{}", summary());
 	}
 
 	/** Shutdown/offline barrier. Queue admission and completion share the same timeout. */
@@ -584,7 +584,7 @@ public final class CaptureStore {
 		}
 		if (!finished) {
 			finishAsync(false);
-			LOGGER.warn("SkyZH 等待采集落盘超时，后台仍将继续处理；退出时队尾可能尚未保存。");
+			LOGGER.warn("[文本采集引擎] 等待采集落盘超时，本次保存结果可能丢失。");
 		}
 	}
 
@@ -608,7 +608,7 @@ public final class CaptureStore {
 			} catch (IOException e) {
 				// Keep it dirty. A transient lock or full disk must be retried at the next flush rather than
 				// forgotten until this same capture happens to change again.
-				LOGGER.warn("SkyZH 采集写入 {} 失败：{}", meta.path(root), e.toString());
+				LOGGER.warn("[文本采集引擎] 采集写入 {} 失败：{}", meta.path(root), e.toString());
 			}
 		}
 	}

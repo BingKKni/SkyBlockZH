@@ -127,7 +127,7 @@ Mod Menu 是软依赖。没装也能用，改 `config/skyzh.json` 即可，文�
 
 设置页使用 MoulConfig（与 SkyHanni、Skyblocker 默认设置页相同的界面库）：标题栏「SkyZH <版本> Beta」，左侧为通用／翻译／高级分类，右上角搜索框按选项名和说明过滤，空分类自动隐藏。每个选项一张卡片，开关与下拉框在左侧、说明在右侧；中文说明复用 `TextLayout` 折行，不缩小字号。「安装更新方式」仅在检查更新不为关闭时出现。高级分类中「显示优先级」与「采集」各为一个可折叠块。总开关关闭时其余选项变灰且不可操作。旧配置缺少新字段时采用上表默认值。
 Mod 不依赖 Fabric API：`ResourceManagerMixin` 在客户端资源重载时把 Mod 自身的 `assets/`（语言文件）放在原版之上，并按 `legacyFont` 叠加字体包。
-首次安装后，客户端首次确认进入 Hypixel 时会显示完整设置页；`welcomeShown` 是其内部状态，改为 `false` 可在下次进入 Hypixel 时重新显示。首次引导、`/skyzh`（或 `/skyblockzh`）与 Mod Menu 共用同一页面，欢迎语与 GitHub 链接在通用分类顶部。
+首次安装后，客户端首次确认进入 Hypixel 时会在聊天栏发送欢迎消息。`welcomeShown` 记录是否已发送，改为 `false` 可在下次进入 Hypixel 时再次发送。`/skyzh`（或 `/skyblockzh`）与 Mod Menu 共用设置页面，欢迎语与 GitHub 链接仍在通用分类顶部。
 启动清空在 Fabric 客户端初始化回调中执行一次，进入主界面前已经完成；与 `/skyzh clear` 共用
 `TextCapture.clear()`，清理内存、队列和六个采集分类里的 JSON，保留其他文件，失败写日志而不阻止启动。
 
