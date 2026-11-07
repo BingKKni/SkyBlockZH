@@ -53,8 +53,11 @@ import java.util.function.Supplier;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.gui.components.IMEPreeditOverlay;
 import net.minecraft.client.gui.screens.ConfirmLinkScreen;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.input.PreeditEvent;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.ClickEvent;
@@ -329,16 +332,45 @@ public final class SkyZHConfigScreen {
 		private final SkyZHConfig config = SkyZHConfig.get();
 		private final boolean captureInitiallyEnabled = this.config.captureUntranslated;
 		private final boolean legacyFontInitially = this.config.legacyFont;
+		private IMEPreeditOverlay preeditOverlay;
+		private int preeditX;
+		private int preeditY;
 
 		SettingsScreen(MoulConfigEditor<?> editor, Screen parent) {
 			super(Component.literal("SkyZH"), new GuiContext(new GuiElementComponent(editor)), parent);
 		}
 
-		/** MoulConfig searches as soon as typing starts, but does not enable Minecraft's native IME. */
+		/** Also runs when returning from a link confirmation; init() only runs on the first visit. */
 		@Override
-		protected void init() {
-			super.init();
+		public void added() {
+			super.added();
 			this.minecraft.onTextInputFocusChange(this, true);
+		}
+
+		/** MoulConfig receives committed characters, but has no handler for native IME composition. */
+		@Override
+		public boolean preeditUpdated(PreeditEvent event) {
+			if (event == null) {
+				this.preeditOverlay = null;
+			} else {
+				if (this.preeditOverlay == null) {
+					var context = createContext();
+					this.preeditX = Math.clamp(context.getMouseX(), 0, Math.max(0, this.width - 1));
+					this.preeditY = Math.clamp(context.getMouseY(), 0, Math.max(0, this.height - this.font.lineHeight));
+				}
+				this.preeditOverlay = new IMEPreeditOverlay(event, this.font, this.font.lineHeight + 1);
+			}
+			return true;
+		}
+
+		@Override
+		public void extractRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
+			super.extractRenderState(graphics, mouseX, mouseY, partialTick);
+			if (this.preeditOverlay != null) {
+				// Keep composition anchored while the pointer moves. Vanilla also positions the OS candidate window.
+				this.preeditOverlay.updateInputPosition(this.preeditX, this.preeditY);
+				graphics.setPreeditOverlay(this.preeditOverlay);
+			}
 		}
 
 		@Override
