@@ -1,0 +1,266 @@
+{
+  "source": [
+    "runtime capture: ../SkyZH_Logs/skyzh-capture",
+    "https://hypixelskyblock.minecraft.wiki/w/Fishing_Outpost",
+    "https://hypixelskyblock.minecraft.wiki/w/Profiles"
+  ],
+  "verified_ingame": true,
+  "lines": [
+    {
+      "id": "nov07_guide_fishing_unlock",
+      "context": "服务器本轮采集；完整语句匹配，保留实时颜色。",
+      "text": "Talk to %1$s at the Fishing Outpost in the Hub to unlock this!",
+      "raw": "§cTalk to §d%1$s §cat the §bFishing Outpost §cin the Hub to unlock this!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "npc_name",
+          "example": "Angler Angus",
+          "desc": "随服务器变化的值"
+        }
+      ],
+      "translate": true,
+      "zh": "前往大厅的钓鱼前哨站，与 %1$s 交谈以解锁此功能!",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "Talk to ",
+          "zh": "前往大厅的",
+          "order": 0
+        },
+        {
+          "color": "§d",
+          "text": "%1$s ",
+          "zh": "%1$s",
+          "order": 3
+        },
+        {
+          "color": "§c",
+          "text": "at the ",
+          "zh": " 交谈以解锁此功能!",
+          "order": 4
+        },
+        {
+          "color": "§b",
+          "text": "Fishing Outpost ",
+          "zh": "钓鱼前哨站",
+          "order": 1
+        },
+        {
+          "color": "§c",
+          "text": "in the Hub to unlock this!",
+          "zh": "，与 ",
+          "order": 2
+        }
+      ],
+      "samples": [
+        [
+          "§cTalk to §dAngler Angus §cat the §bFishing",
+          "§bOutpost §cin the Hub to unlock this!"
+        ],
+        [
+          "§cTalk to §bGavin §cat the §bFishing Outpost",
+          "§cin the Hub to unlock this!"
+        ]
+      ]
+    },
+    {
+      "id": "nov07_delete_profile_warning",
+      "context": "服务器本轮采集；完整语句匹配，保留实时颜色。",
+      "text": "THIS ACTION IS PERMANENT",
+      "raw": "§c§lTHIS ACTION IS PERMANENT",
+      "placeholders": [],
+      "translate": true,
+      "zh": "此操作无法撤销"
+    },
+    {
+      "id": "nov07_delete_profile_result",
+      "context": "服务器本轮采集；完整语句匹配，保留实时颜色。",
+      "text": "The profile will be deleted!",
+      "raw": "§fThe profile will be §cdeleted§f!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "此档案将被删除!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "The profile will be ",
+          "zh": "此档案将被"
+        },
+        {
+          "color": "§c",
+          "text": "deleted",
+          "zh": "删除"
+        },
+        {
+          "color": "§f",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "nov07_delete_profile_contents",
+      "context": "服务器本轮采集；完整语句匹配，保留实时颜色。",
+      "text": "Its island, inventory, quests, collections and everything associated will disappear.",
+      "raw": "§fIts island, inventory, quests, collections and everything associated will §cdisappear§f.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "其岛屿、背包、任务、收藏品及所有关联内容都将消失。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Its island, inventory, quests, collections and everything associated will ",
+          "zh": "其岛屿、背包、任务、收藏品及所有关联内容都将"
+        },
+        {
+          "color": "§c",
+          "text": "disappear",
+          "zh": "消失"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "samples": [
+        [
+          "§fIts island, inventory, quests,",
+          "§fcollections and everything",
+          "§fassociated will §cdisappear§f."
+        ]
+      ]
+    },
+    {
+      "id": "nov07_delete_read_warning",
+      "context": "服务器本轮采集；完整语句匹配，保留实时颜色。",
+      "text": "Make sure to read!!!",
+      "raw": "§6Make sure to read!!!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "请务必仔细阅读!!!"
+    },
+    {
+      "id": "nov07_return_previous_menu",
+      "context": "服务器本轮采集；完整语句匹配，保留实时颜色。",
+      "text": "Return to previous menu.",
+      "raw": "§7Return to previous menu.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "返回上一菜单。"
+    },
+    {
+      "id": "nov07_profile_total_coins",
+      "context": "服务器本轮采集；完整语句匹配，保留实时颜色。",
+      "text": "Total Coins: %s",
+      "raw": "§7Total Coins: §6%s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "coins",
+          "example": "12345",
+          "desc": "随服务器变化的值"
+        }
+      ],
+      "translate": true,
+      "zh": "硬币总额: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Total Coins: ",
+          "zh": "硬币总额: "
+        },
+        {
+          "color": "§6",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "nov07_profile_age_hours",
+      "context": "服务器本轮采集；完整语句匹配，保留实时颜色。",
+      "text": "Age: %s",
+      "raw": "§7Age: §9%s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "duration_words",
+          "example": "15 hours",
+          "desc": "随服务器变化的值"
+        }
+      ],
+      "translate": true,
+      "zh": "档案时长: %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Age: ",
+          "zh": "档案时长: "
+        },
+        {
+          "color": "§9",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "nov07_profile_skill_no_level",
+      "context": "服务器本轮采集；完整语句匹配，保留实时颜色。",
+      "text": "%s: No level",
+      "raw": "§7%s: §eNo level",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "category_name",
+          "example": "Farming",
+          "desc": "随服务器变化的值"
+        }
+      ],
+      "translate": true,
+      "zh": "%s: 尚无等级",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "%s: ",
+          "zh": "%s: "
+        },
+        {
+          "color": "§e",
+          "text": "No level",
+          "zh": "尚无等级"
+        }
+      ]
+    },
+    {
+      "id": "nov07_profile_fishing_zero",
+      "context": "服务器本轮采集；完整语句匹配，保留实时颜色。",
+      "text": "Fishing: Level %s",
+      "raw": "§7Fishing: §aLevel %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "0",
+          "desc": "随服务器变化的值"
+        }
+      ],
+      "translate": true,
+      "zh": "钓鱼: 等级 %s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Fishing: ",
+          "zh": "钓鱼: "
+        },
+        {
+          "color": "§a",
+          "text": "Level %s",
+          "zh": "等级 %s"
+        }
+      ]
+    }
+  ]
+}

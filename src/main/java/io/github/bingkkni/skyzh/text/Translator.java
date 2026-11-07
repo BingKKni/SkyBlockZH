@@ -326,7 +326,16 @@ public final class Translator {
 		var rank = DISPLAY_RANK.matcher(plain);
 		rank.region(from, to);
 		if (rank.lookingAt()) from = rank.end();
+		// Kuudra rewards frame a real item name with obfuscated glyphs. Preserve the frame
+		// verbatim and trim it only when both edges carry that live style; plain letters
+		// around an unknown name are never decoration. The remaining name still needs the catalog.
+		if (from < to && styled.styleAt(from).isObfuscated() && styled.styleAt(to - 1).isObfuscated()) {
+			while (from < to && (plain.charAt(from) == ' ' || styled.styleAt(from).isObfuscated())) from++;
+			while (to > from && (plain.charAt(to - 1) == ' ' || styled.styleAt(to - 1).isObfuscated())) to--;
+		}
 		if (from >= to || ItemNames.canonical(plain.substring(from, to)) == null) return null;
+		// Do not reveal an identity whose actual letters are deliberately obfuscated.
+		for (int i = from; i < to; i++) if (styled.styleAt(i).isObfuscated()) return null;
 		StyledText name = styled.sub(from, to);
 		Result translated = TooltipTranslator.translateItemNameAvailable(name.slice(0, name.length()));
 		if (!translated.matched()

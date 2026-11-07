@@ -1,0 +1,152 @@
+{
+  "source": [
+    "runtime capture: ../SkyZH_Logs/skyzh-capture",
+    "https://hypixelskyblock.minecraft.wiki/w/Profiles",
+    "https://hypixelskyblock.minecraft.wiki/w/Hexatorum",
+    "https://hypixelskyblock.minecraft.wiki/w/Private_Island"
+  ],
+  "verified_ingame": true,
+  "lines": [
+    {
+      "id": "nov07_hub_portal_remove",
+      "context": "服务器本轮采集；完整语句匹配，保留实时颜色。",
+      "text": "You need at least Level %s in any skill to remove your Hub Portal!",
+      "raw": "§cYou need at least Level %s in any skill to remove your Hub Portal!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "tier",
+          "desc": "随服务器变化的值"
+        }
+      ],
+      "translate": true,
+      "zh": "任意技能达到 %s 级后，才能移除大厅传送门!"
+    },
+    {
+      "id": "nov07_profile_deleted",
+      "context": "服务器本轮采集；完整语句匹配，保留实时颜色。",
+      "text": "Done! Your %s profile was deleted!",
+      "raw": "§aDone! Your §e%s §aprofile was deleted!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "profile_name",
+          "desc": "随服务器变化的值"
+        }
+      ],
+      "translate": true,
+      "zh": "完成! 你的 %s 档案已删除!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "Done! Your ",
+          "zh": "完成! 你的 "
+        },
+        {
+          "color": "§e",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§a",
+          "text": "profile was deleted!",
+          "zh": "档案已删除!"
+        }
+      ]
+    },
+    {
+      "id": "nov07_use_hex",
+      "context": "服务器本轮采集；完整语句匹配，保留实时颜色。",
+      "text": "Use The Hex.",
+      "raw": "§fUse §dThe Hex§f.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "使用海克斯。",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Use ",
+          "zh": "使用"
+        },
+        {
+          "color": "§d",
+          "text": "The Hex",
+          "zh": "海克斯"
+        },
+        {
+          "color": "§f",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "nov07_friend_limbo",
+      "context": "服务器本轮采集；完整语句匹配，保留实时颜色。",
+      "text": "%s is in Limbo",
+      "raw": "§b%s §eis in Limbo",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "player_name",
+          "desc": "随服务器变化的值"
+        }
+      ],
+      "translate": true,
+      "zh": "%s 正在虚空等待室",
+      "segments": [
+        {
+          "color": "§b",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§e",
+          "text": "is in Limbo",
+          "zh": "正在虚空等待室"
+        }
+      ]
+    },
+    {
+      "id": "nov07_afk_transfer",
+      "context": "服务器本轮采集；完整语句匹配，保留实时颜色。",
+      "text": "You are being transferred to the Prototype Lobby for being AFK!",
+      "raw": "§eYou are being transferred to the §aPrototype Lobby §efor being §cAFK§e!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "由于长时间未操作，你正被传送至游戏实验室大厅!",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "You are being transferred to the ",
+          "zh": "由于",
+          "order": 0
+        },
+        {
+          "color": "§a",
+          "text": "Prototype Lobby ",
+          "zh": "游戏实验室大厅",
+          "order": 3
+        },
+        {
+          "color": "§e",
+          "text": "for being ",
+          "zh": "，你正被传送至",
+          "order": 2
+        },
+        {
+          "color": "§c",
+          "text": "AFK",
+          "zh": "长时间未操作",
+          "order": 1
+        },
+        {
+          "color": "§e",
+          "text": "!",
+          "zh": "!",
+          "order": 4
+        }
+      ]
+    }
+  ]
+}

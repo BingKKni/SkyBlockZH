@@ -1,0 +1,34 @@
+{
+  "source": [
+    "runtime capture: ../SkyZH_Logs/skyzh-capture",
+    "https://hypixelskyblock.minecraft.wiki/w/Profiles",
+    "https://hypixelskyblock.minecraft.wiki/w/Spooky_Festival"
+  ],
+  "verified_ingame": true,
+  "lines": [
+    {
+      "id": "nov07_profile_name",
+      "ref": "Hub_General/GUI_Lore/Capture_Garden_And_Profile.json#profile_name_value"
+    },
+    {
+      "id": "nov07_spooky_menu_countdown",
+      "context": "服务器本轮采集；完整语句匹配，保留实时颜色。",
+      "text": "%1$s Spooky Festival %2$s",
+      "raw": "§6%1$s Spooky Festival %2$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "ordinal",
+          "desc": "随服务器变化的值"
+        },
+        {
+          "token": "%2$s",
+          "type": "duration_spaced",
+          "desc": "随服务器变化的值"
+        }
+      ],
+      "translate": true,
+      "zh": "第 %1$s 届惊魂节 %2$s"
+    }
+  ]
+}

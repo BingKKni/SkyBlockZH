@@ -1,0 +1,25 @@
+{
+  "note": "本轮完整 Lore 与动态值回放；颜色来自服务器采集，第二组数字用于验证模板。",
+  "cases": [
+    {"name":"Kuudra装饰浮空胸甲复用物品译名","surface":"Hologram","source":["§6§ka§r §6Hollow Chestplate ✪✪ §6§k a"],"expected":"§6§ka§r §6空洞胸甲 ✪✪ §6§k a"},
+    {"name":"Kuudra装饰浮空材料复用已有译名","surface":"Hologram","source":["§6§ka§r §5Kuudra Teeth §6§k a"],"expected":"§6§ka§r §5Kuudra 的牙齿 §6§k a"},
+    {"name":"钓鱼指南合并跨行地点并保留颜色","source":["§cTalk to §dAngler Angus §cat the §bFishing","§bOutpost §cin the Hub to unlock this!"],"expected":"§c前往大厅的§b钓鱼前哨站§c，与 §dAngler Angus§c 交谈以解锁此功能!","consumed":2},
+    {"name":"Gavin指南复用整句与实时人名颜色","source":["§cTalk to §bGavin §cat the §bFishing Outpost","§cin the Hub to unlock this!"],"expected":"§c前往大厅的§b钓鱼前哨站§c，与 §bGavin§c 交谈以解锁此功能!","consumed":2},
+    {"name":"删除档案三行内容不丢失","source":["§fIts island, inventory, quests,","§fcollections and everything","§fassociated will §cdisappear§f."],"expected":"§f其岛屿、背包、任务、收藏品及所有关联内容都将§c消失§f。","consumed":3},
+    {"name":"档案15小时动态时长","source":["§7Age: §915 hours"],"expected":"§7档案时长: §915 小时","consumed":1},
+    {"name":"档案1小时单数时长","source":["§7Age: §91 hour"],"expected":"§7档案时长: §91 小时","consumed":1},
+    {"name":"档案硬币零值","source":["§7Total Coins: §60"],"expected":"§7硬币总额: §60","consumed":1},
+    {"name":"档案硬币千分位","source":["§7Total Coins: §612,345"],"expected":"§7硬币总额: §612,345","consumed":1},
+    {"name":"皮肤适用头盔红色不丢失","source":["§7This skin can be applied to §cGolden Necron Head§7 and §cDiamond Necron Head§7."],"expected":"§7此皮肤可用于§c黄金 Necron 头盔§7与§c钻石 Necron 头盔§7。","consumed":1},
+    {"name":"Abiphone发现指引颜色重排","surface":"ChatMessage","source":["§7   ■ §fLearn about §3Abiphones §ffrom §6Alda§f."],"expected":"§7   ■ §f向 §6Alda§f 了解 §3Abiphone§f。"},
+    {"name":"队伍邀请保留身份颜色","surface":"ChatMessage","source":["§eYou'll be partying with: §b[MVP§6+§b] spsctank_"],"expected":"§e你将与以下玩家组队: §b[MVP§6+§b] spsctank_"},
+    {"name":"副本未开始30秒倒计时","surface":"ChatMessage","source":["§cWarning! §eThis instance will §cclose §ein §a30 §eseconds if it isn't started!"],"expected":"§c警告! §e若未开始挑战，此副本将在 §a30§e 秒后§c关闭§e!"},
+    {"name":"副本未开始10秒倒计时","surface":"ChatMessage","source":["§cWarning! §eThis instance will §cclose §ein §a10 §eseconds if it isn't started!"],"expected":"§c警告! §e若未开始挑战，此副本将在 §a10§e 秒后§c关闭§e!"},
+    {"name":"删除档案保留水果身份","surface":"ChatMessage","source":["§aDone! Your §ePineapple §aprofile was deleted!"],"expected":"§a完成! 你的 §ePineapple§a 档案已删除!"},
+    {"name":"删除档案另一个身份","surface":"ChatMessage","source":["§aDone! Your §ePeach §aprofile was deleted!"],"expected":"§a完成! 你的 §ePeach§a 档案已删除!"},
+    {"name":"倒计时标题未固定数字","surface":"GUI_Title","source":["Delete profile? (3)"],"expected":"删除档案? (3)"},
+    {"name":"女巫之年截断标签","surface":"TabList","row":true,"source":["§e§lEvent: §5Year of the Witc..."],"expected":"§e§l活动: §5女巫年…"},
+    {"name":"已有森林之心徽章条件无需重复添加","source":["§cRequires Heart of the Forest Tier 7."],"expected":"§c需要森林之心阶级达到 7。","consumed":1},
+    {"name":"已有徽章说明必须回放完整段落","source":["§7These symbols are related to","§7completing Dungeons."],"expected":"§7通关地牢即可解锁这些徽章。","consumed":2}
+  ]
+}

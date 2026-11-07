@@ -1,0 +1,141 @@
+{
+  "source": [
+    "runtime capture: ../SkyZH_Logs/skyzh-capture",
+    "https://hypixelskyblock.minecraft.wiki/w/Catacombs",
+    "https://hypixelskyblock.minecraft.wiki/w/Dungeon_Reward_Chest"
+  ],
+  "verified_ingame": true,
+  "lines": [
+    {
+      "id": "nov07_party_already",
+      "context": "服务器本轮采集；完整语句匹配，保留实时颜色。",
+      "text": "You are already in a party! Leave it to join another one.",
+      "raw": "§cYou are already in a party! Leave it to join another one.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "你已在队伍中! 请先退出当前队伍，再加入其他队伍。"
+    },
+    {
+      "id": "nov07_party_teammates",
+      "context": "服务器本轮采集；完整语句匹配，保留实时颜色。",
+      "text": "You'll be partying with: %s",
+      "raw": "§eYou'll be partying with: §b%s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "raw",
+          "example": "[MVP+] spsctank_",
+          "desc": "随服务器变化的值"
+        }
+      ],
+      "translate": true,
+      "zh": "你将与以下玩家组队: %s",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "You'll be partying with: ",
+          "zh": "你将与以下玩家组队: "
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        }
+      ]
+    },
+    {
+      "id": "nov07_chest_already_open",
+      "context": "服务器本轮采集；完整语句匹配，保留实时颜色。",
+      "text": "You've already opened this chest!",
+      "raw": "§aYou've already opened this chest!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "你已经打开过这个宝箱了!"
+    },
+    {
+      "id": "nov07_crushed_ghost",
+      "context": "服务器本轮采集；完整语句匹配，保留实时颜色。",
+      "text": "☠ %s was crushed and became a ghost.",
+      "raw": "§c☠ §b%s§7 was crushed and became a ghost.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "player_name",
+          "desc": "随服务器变化的值"
+        }
+      ],
+      "translate": true,
+      "zh": "☠ %s 被压死，变成了幽灵。",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "☠ ",
+          "zh": "☠ "
+        },
+        {
+          "color": "§b",
+          "text": "%s",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": " was crushed and became a ghost.",
+          "zh": "被压死，变成了幽灵。"
+        }
+      ]
+    },
+    {
+      "id": "nov07_instance_start_warning",
+      "context": "服务器本轮采集；完整语句匹配，保留实时颜色。",
+      "text": "Warning! This instance will close in %s seconds if it isn't started!",
+      "raw": "§cWarning! §eThis instance will §cclose §ein §a%s §eseconds if it isn't started!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "desc": "随服务器变化的值"
+        }
+      ],
+      "translate": true,
+      "zh": "警告! 若未开始挑战，此副本将在 %s 秒后关闭!",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "Warning! ",
+          "zh": "警告! ",
+          "order": 0
+        },
+        {
+          "color": "§e",
+          "text": "This instance will ",
+          "zh": "若未开始挑战，此副本将在 ",
+          "order": 1
+        },
+        {
+          "color": "§c",
+          "text": "close ",
+          "zh": "关闭",
+          "order": 4
+        },
+        {
+          "color": "§e",
+          "text": "in ",
+          "zh": " 秒后",
+          "order": 3
+        },
+        {
+          "color": "§a",
+          "text": "%s ",
+          "zh": "%s",
+          "order": 2
+        },
+        {
+          "color": "§e",
+          "text": "seconds if it isn't started!",
+          "zh": "!",
+          "order": 5
+        }
+      ]
+    }
+  ]
+}
