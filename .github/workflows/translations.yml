@@ -59,6 +59,8 @@ jobs:
         if: steps.prepare.outputs.packaged == 'true'
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          timeout: 1500000
       - name: Verify downloads and publish update manifest
         if: steps.prepare.outputs.packaged == 'true'
         env:
