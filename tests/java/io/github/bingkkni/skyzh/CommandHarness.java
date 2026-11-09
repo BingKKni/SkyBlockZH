@@ -24,7 +24,9 @@ public final class CommandHarness {
 		check("更新检查状态不分大小写", updateCheck == null ? null : updateCheck.argument(), "on");
 		check("翻译重载已提供补全", SkyZHCommand.PLAIN.contains("reload"), true);
 		check("更新检查补全包含两类更新和开关", SkyZHCommand.UPDATE_CHECK_ARGUMENTS, List.of("mod", "translate", "on", "off"));
-		check("保留原长别名并接受需求中的拼写", SkyZHCommand.ALIASES, List.of("skyzh", "skyblockzh", "skyblozkzh"));
+		check("仅保留两个正式别名", SkyZHCommand.ALIASES, List.of("skyzh", "skyblockzh"));
+		check("不注册拼写错误的长别名", SkyZHCommand.parse("skyblozkzh"), null);
+		check("不注册截断的拼写错误别名", SkyZHCommand.parse("skyblozk"), null);
 		for (String alias : SkyZHCommand.ALIASES) {
 			for (String argument : List.of("", "mod", "translate", "on", "off")) {
 				check(alias + " updatecheck " + argument + " 可解析",

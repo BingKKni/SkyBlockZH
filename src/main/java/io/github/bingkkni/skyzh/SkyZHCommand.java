@@ -12,7 +12,7 @@ import java.util.function.BooleanSupplier;
 
 /** The local command aliases and their deliberately small grammar. */
 public final class SkyZHCommand {
-	public static final List<String> ALIASES = List.of("skyzh", "skyblockzh", "skyblozkzh");
+	public static final List<String> ALIASES = List.of("skyzh", "skyblockzh");
 	public static final List<String> SWITCHES = List.of("power", "tip", "capture", "updatecheck");
 	public static final List<String> PLAIN = List.of("on", "off", "clear", "reload");
 	public static final List<String> UPDATE_CHECK_ARGUMENTS = List.of("mod", "translate", "on", "off");

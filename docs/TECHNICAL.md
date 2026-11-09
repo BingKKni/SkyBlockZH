@@ -370,8 +370,9 @@ an uninstall token is revoked after successful removal/loading, while failures r
 
 Mod downloads select the correct Minecraft Release asset, require GitHub SHA-256 and validate Mod ID, version and Minecraft/Loader/Java dependencies.
 The embedded JDK-only `skyzh-updater.jar` runs independently, acknowledges readiness and waits for the exact game process to exit.
-It verifies both JARs again, backs up the installed JAR and replaces the original filename, preventing duplicate mods.
-Changes made by the user while waiting are not overwritten, including on subsequent retries; manually remove the pending installation plan after resolving such a change.
+It verifies the downloaded JAR again, backs up the current installed JAR and replaces the original filename, preventing duplicate mods.
+Manual replacements count as manual updates: old installation records do not block later updates, and a JAR replaced while waiting
+may also be overwritten after backing up the actual file. Downloaded JAR checksum validation remains required.
 Pending state and failures remain in `skyzh-updates/mod-install.properties` and `installer.log`.
 Development, nested and installations outside the instance's `mods/` are not automatically replaced. Launchers that kill the full process tree or immediately
 reopen the old JAR can require another retry. `checkUpdates` covers loopback transfers and real child-JVM installation;

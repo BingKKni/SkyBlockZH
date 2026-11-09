@@ -35,8 +35,10 @@ public final class UpdateHarness {
 			translations(root);
 			passed += UpdateInteractionHarness.run(root);
 			mods(root);
-			installer(root.resolve("install"), false);
-			installer(root.resolve("changed-install"), true);
+			installer(root.resolve("install"), InstalledChange.NONE, false);
+			installer(root.resolve("changed-install"), InstalledChange.REPLACE, false);
+			installer(root.resolve("damaged-download"), InstalledChange.NONE, true);
+			installer(root.resolve("removed-install"), InstalledChange.REMOVE, false);
 		} finally {
 			try (var paths = Files.walk(root)) {
 				for (Path file : paths.sorted(Comparator.reverseOrder()).toList()) Files.delete(file);
@@ -287,11 +289,24 @@ public final class UpdateHarness {
 		}
 	}
 
-	private static void installer(Path directory, boolean tamper) throws Exception {
+	private enum InstalledChange { NONE, REPLACE, REMOVE }
+
+	private static void installer(Path directory, InstalledChange change, boolean corruptDownload) throws Exception {
+		boolean manualReplacement = change == InstalledChange.REPLACE;
+		boolean removed = change == InstalledChange.REMOVE;
 		Files.createDirectories(directory);
 		Path jar = directory.resolve("mods/skyzh.jar"); Files.createDirectories(jar.getParent());
 		Files.writeString(jar, "old installed mod");
 		Files.writeString(directory.resolve("mod-update.jar"), "new downloaded mod");
+		Files.writeString(directory.resolve("previous-mod.jar"), "earlier backup");
+		if (manualReplacement) {
+			var stale = new java.util.Properties();
+			stale.setProperty("installed", jar.toAbsolutePath().toString());
+			stale.setProperty("old_sha256", "0".repeat(64));
+			stale.setProperty("new_sha256", "1".repeat(64));
+			stale.setProperty("status", "installed");
+			try (var output = Files.newOutputStream(directory.resolve("mod-install.properties"))) { stale.store(output, "Previous completed installation"); }
+		}
 		Path arguments = directory.resolve("parent.args");
 		String contents = "-cp\n\"" + System.getProperty("java.class.path").replace("\\", "\\\\").replace("\"", "\\\"")
 			+ "\"\n" + InstallerParent.class.getName() + "\n\"" + directory.toString().replace("\\", "\\\\") + "\"\n";
@@ -301,24 +316,29 @@ public final class UpdateHarness {
 		long installerPid = 0;
 		try {
 			waitUntil(() -> Files.exists(directory.resolve("parent.ready")) || !parent.isAlive(), 15_000);
-			check("真实辅助进程确认已准备 " + tamper, parent.isAlive() && Files.exists(directory.resolve("parent.ready")));
+			String scenario = directory.getFileName().toString();
+			check("真实辅助进程确认已准备 " + scenario, parent.isAlive() && Files.exists(directory.resolve("parent.ready")));
 			installerPid = Long.parseLong(ModUpdate.plan(directory).getProperty("installer_pid"));
-			check("游戏退出前 JAR 完全不变 " + tamper, Files.readString(jar).equals("old installed mod"));
-			if (tamper) Files.writeString(jar, "user replaced mod");
+			check("游戏退出前 JAR 完全不变 " + scenario, Files.readString(jar).equals("old installed mod"));
+			if (manualReplacement) {
+				check("旧安装记录不再阻止手动替换后的更新", ModUpdate.plan(directory).getProperty("old_sha256").equals(UpdateFiles.sha256(jar)));
+				Files.writeString(jar, "user replaced mod");
+			}
+			if (removed) Files.delete(jar);
+			if (corruptDownload) Files.writeString(directory.resolve("mod-update.jar"), "corrupted download");
 			Files.writeString(directory.resolve("parent.exit"), "exit");
-			check("父 JVM 正常退出 " + tamper, parent.waitFor(10, TimeUnit.SECONDS) && parent.exitValue() == 0);
+			check("父 JVM 正常退出 " + scenario, parent.waitFor(10, TimeUnit.SECONDS) && parent.exitValue() == 0);
 			waitUntil(() -> {
 				try { String status = ModUpdate.plan(directory).getProperty("status"); return status.equals("installed") || status.equals("failed"); }
 				catch (Exception e) { return false; }
 			}, 10_000);
-			check(tamper ? "用户改过 JAR 时拒绝替换" : "退出后替换成功并保留原文件名",
-				Files.readString(jar).equals(tamper ? "user replaced mod" : "new downloaded mod"));
-			if (!tamper) check("原 JAR 有完整备份", Files.readString(directory.resolve("previous-mod.jar")).equals("old installed mod"));
-			else {
-				waitUntil(() -> { try { return !ModUpdate.installerAlive(ModUpdate.plan(directory)); } catch (IOException e) { return false; } }, 5000);
-				check("重试因原文件变化而拒绝覆盖", fails("后续重试不会重建基准并覆盖用户 JAR", () -> ModUpdate.arm(directory, jar,
-					UpdateFiles.sha256(directory.resolve("mod-update.jar")), "0.9")).getMessage().contains("用户已更换"));
-			}
+			check(removed ? "等待期间删除目标不复活旧备份" : corruptDownload ? "下载包被改动时保留当前 Mod" : "允许覆盖手动替换的 JAR，保留原文件名 " + scenario,
+				removed ? !Files.exists(jar) : Files.readString(jar).equals(corruptDownload ? "old installed mod" : "new downloaded mod"));
+			check("安装结果正确 " + scenario, ModUpdate.plan(directory).getProperty("status").equals(corruptDownload || removed ? "failed" : "installed"));
+			if (removed) check("缺失目标在备份阶段失败且清理 staging", ModUpdate.plan(directory).getProperty("error", "").contains("NoSuchFileException")
+				&& !Files.exists(jar.resolveSibling(jar.getFileName() + ".skyzh-new")));
+			check("备份对应实际被替换的文件 " + scenario, Files.readString(directory.resolve("previous-mod.jar"))
+				.equals(corruptDownload || removed ? "earlier backup" : manualReplacement ? "user replaced mod" : "old installed mod"));
 		} finally {
 			if (parent.isAlive()) parent.destroyForcibly().waitFor();
 			if (installerPid != 0) {

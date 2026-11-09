@@ -88,10 +88,6 @@ public final class ModUpdate {
 		Properties previous = plan(directory);
 		if (installerAlive(previous)) throw new IOException("另一更新安装进程尚未完成");
 		String currentHash = UpdateFiles.sha256(installed);
-		if (previous.containsKey("installed") && Path.of(previous.getProperty("installed")).toAbsolutePath().normalize()
-			.equals(installed.toAbsolutePath().normalize()) && previous.containsKey("old_sha256")
-			&& !currentHash.equals(previous.getProperty("old_sha256")) && !currentHash.equals(previous.getProperty("new_sha256")))
-			throw new IOException("用户已更换原 Mod，取消自动替换；手动处理后可移除 mod-install.properties 重新启用安装");
 		Path helper = directory.resolve("skyzh-updater.jar");
 		try (var input = ModUpdate.class.getResourceAsStream("/assets/skyzh/skyzh-updater.jar")) {
 			if (input == null) throw new IOException("缺少更新安装程序");

@@ -41,24 +41,27 @@ public final class ModInstaller {
 			parent.onExit().get();
 			Path installed = Path.of(plan.getProperty("installed")).toAbsolutePath().normalize();
 			Path candidate = directory.resolve("mod-update.jar");
-			String expectedOld = plan.getProperty("old_sha256"), expectedNew = plan.getProperty("new_sha256");
-			if (!installed.getFileName().toString().endsWith(".jar") || !expectedOld.matches("[0-9a-f]{64}")
+			String expectedNew = plan.getProperty("new_sha256");
+			if (!installed.getFileName().toString().endsWith(".jar")
 				|| !expectedNew.matches("[0-9a-f]{64}")) throw new IOException("Invalid installation plan");
-			if (hash(installed).equals(expectedNew)) { plan.setProperty("status", "installed"); write(planFile, plan); return; }
-			if (!hash(candidate).equals(expectedNew) || !hash(installed).equals(expectedOld))
-				throw new IOException("Installed or downloaded JAR changed; refusing to replace");
+			if (Files.isRegularFile(installed) && hash(installed).equals(expectedNew)) {
+				plan.setProperty("status", "installed"); write(planFile, plan); return;
+			}
+			if (!hash(candidate).equals(expectedNew))
+				throw new IOException("Downloaded JAR changed; refusing to install");
 			// Keep the original filename, so Fabric never discovers both versions as duplicate mods.
 			Path staging = installed.resolveSibling(installed.getFileName() + ".skyzh-new");
 			Path backup = directory.resolve("previous-mod.jar");
 			try {
 				Files.copy(candidate, staging, StandardCopyOption.REPLACE_EXISTING);
 				if (!hash(staging).equals(expectedNew)) throw new IOException("Staged JAR checksum mismatch");
-				Files.copy(installed, backup, StandardCopyOption.REPLACE_EXISTING);
 				IOException failure = null;
 				for (int attempt = 0; attempt < 120; attempt++) {
-					// If the user or a launcher changed the file, do not overwrite their choice.
-					if (!hash(installed).equals(expectedOld)) throw new IOException("Installed JAR changed during update");
-					try { move(staging, installed); failure = null; break; }
+					// A failed backup must not enter move recovery and resurrect an older backup.
+					Files.copy(installed, backup, StandardCopyOption.REPLACE_EXISTING);
+					try {
+						move(staging, installed); failure = null; break;
+					}
 					catch (IOException e) {
 						// A filesystem without atomic rename may remove the target before reporting failure.
 						if (Files.notExists(installed)) {
