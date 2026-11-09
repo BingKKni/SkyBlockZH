@@ -1,5 +1,6 @@
 package io.github.bingkkni.skyzh.mixin;
 
+import io.github.bingkkni.skyzh.platform.ClientTooltip;
 import io.github.bingkkni.skyzh.text.TooltipTranslator;
 import java.util.List;
 import net.minecraft.client.Minecraft;
@@ -21,7 +22,7 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 @Mixin(GuiGraphicsExtractor.class)
 public abstract class GuiGraphicsExtractorMixin {
 	@ModifyVariable(
-		method = "setTooltipForNextFrame(Lnet/minecraft/client/gui/Font;Ljava/util/List;Ljava/util/Optional;IILnet/minecraft/resources/Identifier;)V",
+		method = ClientTooltip.COMPONENT_METHOD,
 		at = @At("HEAD"),
 		argsOnly = true,
 		index = 2,

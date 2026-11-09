@@ -9,6 +9,8 @@ import net.minecraft.resources.Identifier;
 
 /** 26.3 adds an explicit tooltip flag; false matches vanilla item tooltips. */
 public final class ClientTooltip {
+	// Both container and ItemStack tooltips bypass the legacy overload in 26.3.
+	public static final String COMPONENT_METHOD = "setTooltipForNextFrame(Lnet/minecraft/client/gui/Font;Ljava/util/List;Ljava/util/Optional;IILnet/minecraft/resources/Identifier;Z)V";
 	private ClientTooltip() {}
 	public static void draw(GuiGraphicsExtractor graphics, Font font, List<ClientTooltipComponent> lines,
 		int x, int y, Identifier style) {

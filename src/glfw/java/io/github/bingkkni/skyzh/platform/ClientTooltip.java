@@ -9,6 +9,7 @@ import net.minecraft.resources.Identifier;
 
 /** Tooltip API shared by 26.1 and 26.2. */
 public final class ClientTooltip {
+	public static final String COMPONENT_METHOD = "setTooltipForNextFrame(Lnet/minecraft/client/gui/Font;Ljava/util/List;Ljava/util/Optional;IILnet/minecraft/resources/Identifier;)V";
 	private ClientTooltip() {}
 	public static void draw(GuiGraphicsExtractor graphics, Font font, List<ClientTooltipComponent> lines,
 		int x, int y, Identifier style) {

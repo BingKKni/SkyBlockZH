@@ -371,6 +371,31 @@ def main(argv):
 
         injectors, shadows = parse_members(text)
 
+        # An obsolete overload can still exist while vanilla bypasses it. Check the actual
+        # callers for both priority modes, not just whether their target can be resolved.
+        tooltip_member = {
+            "GuiGraphicsExtractorMixin": "skyzh$translateTooltip",
+            "PriorityTooltipMixin": "skyzh$lateTooltip",
+        }.get(simple)
+        if tooltip_member:
+            graphics = "net/minecraft/client/gui/GuiGraphicsExtractor"
+            callers = [
+                ("net/minecraft/client/gui/screens/inventory/AbstractContainerScreen", "extractTooltip", None),
+                (graphics, "setTooltipForNextFrame",
+                 "(Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;II)V"),
+            ]
+            methods = [method for injector in injectors if injector["member"] == tooltip_member
+                       for method in injector["methods"]]
+            for owner, caller, descriptor in callers:
+                disassembly = target_class(owner)
+                bodies = disassembly.bodies(caller, descriptor) if disassembly else []
+                needles = [needle for method in methods
+                           for needle in callsite_needles("L" + graphics + ";" + method)]
+                checked += 1
+                if not any(needle in body for needle in needles for body in bodies):
+                    problems.append("%s#%s: %s#%s 没有调用翻译入口（旧重载可能仍存在）"
+                                    % (simple, tooltip_member, owner, caller))
+
         for shadow, is_method in shadows:
             ok = any(
                 (disassembly.has_method(shadow) if is_method else shadow in disassembly.fields)
