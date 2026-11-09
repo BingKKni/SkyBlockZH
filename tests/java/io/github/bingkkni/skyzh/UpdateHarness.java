@@ -30,6 +30,7 @@ public final class UpdateHarness {
 		try {
 			clocks(root);
 			transfers(root);
+			passed += io.github.bingkkni.skyzh.update.ProxyHarness.run(root);
 			initialFailure();
 			translations(root);
 			passed += UpdateInteractionHarness.run(root);

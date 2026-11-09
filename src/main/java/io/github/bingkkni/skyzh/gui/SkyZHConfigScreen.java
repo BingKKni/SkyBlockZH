@@ -332,6 +332,7 @@ public final class SkyZHConfigScreen {
 		private final SkyZHConfig config = SkyZHConfig.get();
 		private final boolean captureInitiallyEnabled = this.config.captureUntranslated;
 		private final boolean legacyFontInitially = this.config.legacyFont;
+		private final io.github.bingkkni.skyzh.compat.InputMethodCompat inputMethod = new io.github.bingkkni.skyzh.compat.InputMethodCompat();
 		private IMEPreeditOverlay preeditOverlay;
 		private int preeditX;
 		private int preeditY;
@@ -345,6 +346,12 @@ public final class SkyZHConfigScreen {
 		public void added() {
 			super.added();
 			this.minecraft.onTextInputFocusChange(this, true);
+		}
+
+		@Override
+		public void tick() {
+			super.tick();
+			this.inputMethod.typing();
 		}
 
 		/** MoulConfig receives committed characters, but has no handler for native IME composition. */
@@ -375,6 +382,8 @@ public final class SkyZHConfigScreen {
 
 		@Override
 		public void removed() {
+			this.inputMethod.removed();
+			this.preeditOverlay = null;
 			this.minecraft.onTextInputFocusChange(this, false);
 			super.removed();
 		}

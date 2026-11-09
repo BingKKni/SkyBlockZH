@@ -87,6 +87,7 @@ public final class CommandHarness {
 		check("多余参数不能被忽略", SkyZHCommand.parse("skyzh switch tip off extra").state(), "off extra");
 		check("更新检查开关已提供", SkyZHCommand.SWITCHES.contains("updatecheck"), true);
 		check("旧 compare 不再提供", SkyZHCommand.SWITCHES.contains("compare"), false);
+		checkProxyCommands();
 		checkQueuedSettingsScreen();
 		check("首次提示立即允许", OriginalTips.claimInterval(100L), true);
 		check("五分钟内不重复提示", OriginalTips.claimInterval(300_000_000_099L), false);
@@ -106,6 +107,44 @@ public final class CommandHarness {
 		if (failed > 0) {
 			System.exit(1);
 		}
+	}
+
+	private static void checkProxyCommands() {
+		var config = SkyZHConfig.get();
+		var previous = config.updateProxy;
+		try {
+			check("代理不会出现在主帮助", contains(SkyZHCommand.helpLines("skyzh", true), " proxy"), false);
+			check("未配置代理状态", SkyZHCommand.proxyStatus(io.github.bingkkni.skyzh.update.UpdateProxy.NONE),
+				"§e当前尚未设置代理。设置代理地址后，SkyZH 在检查更新时将优先使用代理网络。");
+			for (String alias : SkyZHCommand.ALIASES) {
+				SkyZHCommand.run(alias + " proxy clear");
+				SkyZHCommand.run(alias + " proxy auth ACCOUNT MixedCaseAccount");
+				SkyZHCommand.run(alias + " proxy auth password SecretAbC!123");
+				check("代理账号保留大小写 " + alias, config.updateProxy.account(), "MixedCaseAccount");
+				check("代理密码保留大小写 " + alias, config.updateProxy.password(), "SecretAbC!123");
+				for (String protocol : List.of("http", "https", "socks5")) {
+					SkyZHCommand.run(alias + " proxy url " + protocol + " 127.0.0.1:8888");
+					check("代理地址正确 " + alias + protocol, config.updateProxy.url(), protocol + "://127.0.0.1:8888");
+					check("验证状态不泄漏账号密码", SkyZHCommand.proxyStatus(config.updateProxy),
+						"§a当前已设置代理地址: §e" + protocol + "://127.0.0.1:8888§a，§e包含验证§a。");
+				}
+				var valid = config.updateProxy;
+				for (String invalid : List.of("url", "url http", "url other 127.0.0.1:80", "url http 34283242", "url http http://127.0.0.1:80",
+					"url http host:0", "url http host:65536", "url http user:pass@host:80", "url http host:80/path", "url http host:80?x=1",
+					"url http host:80#fragment", "url http host:80 extra", "auth", "auth account", "auth other SECRET", "clear extra")) {
+					SkyZHCommand.run(alias + " proxy " + invalid);
+					check("错误代理参数不修改配置 " + invalid, config.updateProxy, valid);
+				}
+				SkyZHCommand.run(alias + " proxy clear");
+				check("清除地址与全部验证信息", config.updateProxy, io.github.bingkkni.skyzh.update.UpdateProxy.NONE);
+			}
+			SkyZHCommand.run("skyzh proxy url http Proxy.Example.org:8080");
+			check("域名代理可配置", config.updateProxy.url(), "http://Proxy.Example.org:8080");
+			check("无验证状态", SkyZHCommand.proxyStatus(config.updateProxy),
+				"§a当前已设置代理地址: §ehttp://Proxy.Example.org:8080§a，§e无验证§a。");
+			SkyZHCommand.run("skyzh proxy url socks5 [::1]:1080");
+			check("IPv6 代理可配置", config.updateProxy.url(), "socks5://[::1]:1080");
+		} finally { config.updateProxy = previous; }
 	}
 
 	private static void checkHintScope() {

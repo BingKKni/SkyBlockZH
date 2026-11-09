@@ -37,6 +37,7 @@ public final class SkyZHCommand {
 			case "updateaction" -> {
 				if (parsed.state().isEmpty()) UpdateChecker.runAction(parsed.argument());
 			}
+			case "proxy" -> proxy(parsed.alias(), parsed.argument(), parsed.state());
 			case "clear" -> clear(parsed.alias(), parsed.argument(), parsed.state());
 			case "reload" -> reload(parsed.alias(), parsed.argument(), parsed.state());
 			default -> unknown(parsed.alias(), parsed.sub());
@@ -64,11 +65,13 @@ public final class SkyZHCommand {
 			return null;
 		}
 
+		String state = words.length > 3 ? String.join(" ", java.util.Arrays.copyOfRange(words, 3, words.length)) : "";
+		if (words.length < 2 || !words[1].equalsIgnoreCase("proxy")) state = state.toLowerCase(Locale.ROOT);
 		return new Parsed(
 			alias,
 			words.length > 1 ? words[1].toLowerCase(Locale.ROOT) : "",
 			words.length > 2 ? words[2].toLowerCase(Locale.ROOT) : "",
-			words.length > 3 ? String.join(" ", java.util.Arrays.copyOfRange(words, 3, words.length)).toLowerCase(Locale.ROOT) : ""
+			state
 		);
 	}
 
@@ -88,6 +91,53 @@ public final class SkyZHCommand {
 
 		lines.add("§e======================================");
 		return List.copyOf(lines);
+	}
+
+	static String proxyStatus(io.github.bingkkni.skyzh.update.UpdateProxy proxy) {
+		return !proxy.configured() ? "§e当前尚未设置代理。设置代理地址后，SkyZH 在检查更新时将优先使用代理网络。"
+			: "§a当前已设置代理地址: §e" + proxy.url() + "§a，§e" + (proxy.authenticated() ? "包含验证" : "无验证") + "§a。";
+	}
+
+	private static void proxy(String alias, String action, String arguments) {
+		SkyZHConfig config = SkyZHConfig.get();
+		var previous = config.updateProxy;
+		var next = previous;
+		String message;
+		String[] values = arguments.split("\\s+", 2);
+		String key = values[0].toLowerCase(Locale.ROOT);
+		switch (action) {
+			case "" -> { Feedback.raw(proxyStatus(previous)); return; }
+			case "url" -> {
+				if (values.length != 2 || !List.of("http", "https", "socks5").contains(key)) {
+					Feedback.send("§e/" + alias + " proxy url http/https/socks5 URL 来设置一个代理。"); return;
+				}
+				try { next = previous.withUrl(io.github.bingkkni.skyzh.update.UpdateProxy.address(key, values[1])); }
+				catch (IllegalArgumentException e) {
+					Feedback.send("§c解析地址失败！请检查地址格式是否正确，地址不需要包含 HTTP/HTTPS 或 SOCKS5 开头，可包含域名。示例: /" + alias + " proxy url http 127.0.0.1:8888"); return;
+				}
+				message = "§a设置代理服务器域名成功！";
+			}
+			case "auth" -> {
+				if (values.length != 2 || !List.of("account", "password").contains(key)) {
+					Feedback.send("§e/" + alias + " proxy auth account/password VALUE 来设置代理服务器验证（没有验证就无需设置）。"); return;
+				}
+				next = key.equals("account") ? previous.withAccount(values[1]) : previous.withPassword(values[1]);
+				message = "§a设置代理服务器（" + (key.equals("account") ? "账号" : "密码") + "）验证成功！";
+			}
+			case "clear" -> {
+				if (!arguments.isEmpty()) { Feedback.send("§e/" + alias + " proxy clear"); return; }
+				next = io.github.bingkkni.skyzh.update.UpdateProxy.NONE;
+				message = "§a已清空设置信息。";
+			}
+			default -> { Feedback.send("§e/" + alias + " proxy [url/auth/clear]"); return; }
+		}
+		config.updateProxy = next;
+		try { config.saveChecked(); }
+		catch (Exception e) {
+			config.updateProxy = previous;
+			Feedback.send("§c保存代理设置失败，请检查配置目录是否可写。"); return;
+		}
+		Feedback.send(message);
 	}
 
 	private static void power(boolean on) {

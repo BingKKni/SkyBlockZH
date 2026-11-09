@@ -1,6 +1,7 @@
 package io.github.bingkkni.skyzh.update;
 
 import com.google.gson.JsonObject;
+import io.github.bingkkni.skyzh.SkyZHConfig;
 import io.github.bingkkni.skyzh.text.TranslationPack;
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,7 +29,11 @@ public final class UpdateHttp {
 	});
 	private final HttpClient client;
 	private final Predicate<URI> allowed;
+	private final Predicate<URI> redirects;
 	private final long idleMillis;
+	private final java.util.function.Supplier<UpdateProxy> proxy;
+
+	record Response(int statusCode, java.net.http.HttpHeaders headers, InputStream body) {}
 
 	public record Download(URI uri, long size, String sha256) {
 		public Download {
@@ -38,13 +43,56 @@ public final class UpdateHttp {
 	}
 
 	public UpdateHttp() {
-		this(HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(15)).followRedirects(HttpClient.Redirect.NORMAL).build(),
-			UpdateHttp::github, 60_000);
+		this(HttpClient.newBuilder().proxy(java.net.ProxySelector.of(null)).connectTimeout(Duration.ofSeconds(15))
+			.followRedirects(HttpClient.Redirect.NEVER).build(), UpdateHttp::github, 60_000,
+			() -> SkyZHConfig.get().updateProxy, UpdateHttp::githubRedirect);
 	}
 
 	/** Injected transport policy allows deterministic loopback-server tests. */
 	public UpdateHttp(HttpClient client, Predicate<URI> allowed, long idleMillis) {
-		this.client = client; this.allowed = allowed; this.idleMillis = idleMillis;
+		this(client, allowed, idleMillis, () -> UpdateProxy.NONE);
+	}
+
+	public UpdateHttp(HttpClient client, Predicate<URI> allowed, long idleMillis, java.util.function.Supplier<UpdateProxy> proxy) {
+		this(client, allowed, idleMillis, proxy, allowed);
+	}
+
+	private UpdateHttp(HttpClient client, Predicate<URI> allowed, long idleMillis,
+		java.util.function.Supplier<UpdateProxy> proxy, Predicate<URI> redirects) {
+		if (client.followRedirects() != HttpClient.Redirect.NEVER) throw new IllegalArgumentException("更新重定向需由地址策略校验");
+		this.client = client; this.allowed = allowed; this.idleMillis = idleMillis; this.proxy = proxy; this.redirects = redirects;
+	}
+
+	private Response send(HttpRequest request, UpdateProxy proxy) throws IOException, InterruptedException {
+		for (int count = 0; count <= 10; count++) {
+			if (Thread.currentThread().isInterrupted()) throw new InterruptedException();
+			Response response;
+			if (proxy.configured()) response = ProxyTransport.send(request, proxy, (int) idleMillis);
+			else {
+				var direct = client.send(request, HttpResponse.BodyHandlers.ofInputStream());
+				response = new Response(direct.statusCode(), direct.headers(), direct.body());
+			}
+			if (!java.util.List.of(301, 302, 303, 307, 308).contains(response.statusCode())) return response;
+			try (var ignored = response.body()) {
+				String location = response.headers().firstValue("Location").orElseThrow(() -> new IOException("更新重定向缺少地址"));
+				URI next;
+				try { next = request.uri().resolve(location); }
+				catch (IllegalArgumentException e) { throw new IOException("无效更新重定向", e); }
+				if (!redirects.test(next)) throw new IOException("更新重定向不属于允许的下载位置");
+				var builder = HttpRequest.newBuilder(next).timeout(Duration.ofSeconds(30));
+				request.headers().map().forEach((name, values) -> values.forEach(value -> builder.header(name, value)));
+				request = builder.GET().build();
+			}
+		}
+		throw new IOException("更新重定向次数过多");
+	}
+
+	/** GitHub release attachments redirect to these HTTPS CDN hosts, often with signed query strings. */
+	public static boolean githubRedirect(URI uri) {
+		if (!"https".equals(uri.getScheme()) || uri.getHost() == null || uri.getUserInfo() != null
+			|| uri.getRawFragment() != null || (uri.getPort() != -1 && uri.getPort() != 443)) return false;
+		return github(uri) || java.util.List.of("release-assets.githubusercontent.com", "objects.githubusercontent.com",
+			"github-releases.githubusercontent.com").contains(uri.getHost());
 	}
 
 	public static boolean github(URI uri) {
@@ -64,7 +112,16 @@ public final class UpdateHttp {
 	}
 
 	public JsonObject json(URI uri) throws IOException, InterruptedException {
-		HttpResponse<InputStream> response = client.send(request(uri).GET().build(), HttpResponse.BodyHandlers.ofInputStream());
+		UpdateProxy selected = proxy.get();
+		try { return json(uri, selected); }
+		catch (IOException e) {
+			if (!selected.configured()) throw e;
+			return json(uri, UpdateProxy.NONE);
+		}
+	}
+
+	private JsonObject json(URI uri, UpdateProxy proxy) throws IOException, InterruptedException {
+		Response response = send(request(uri).GET().build(), proxy);
 		try (InputStream input = response.body()) {
 			if (response.statusCode() != 200) throw new IOException("GitHub HTTP " + response.statusCode());
 			AtomicLong progress = new AtomicLong(System.nanoTime());
@@ -91,6 +148,15 @@ public final class UpdateHttp {
 	}
 
 	public Path download(Download download, Path target, BooleanSupplier enabled) throws IOException, InterruptedException {
+		UpdateProxy selected = proxy.get();
+		try { return download(download, target, enabled, selected); }
+		catch (IOException e) {
+			if (!selected.configured() || !enabled.getAsBoolean()) throw e;
+			return download(download, target, enabled, UpdateProxy.NONE);
+		}
+	}
+
+	private Path download(Download download, Path target, BooleanSupplier enabled, UpdateProxy proxy) throws IOException, InterruptedException {
 		Files.createDirectories(target.toAbsolutePath().getParent());
 		Path partial = target.resolveSibling(target.getFileName() + ".part");
 		Path info = partial.resolveSibling(partial.getFileName() + ".json");
@@ -108,7 +174,7 @@ public final class UpdateHttp {
 			if (!enabled.getAsBoolean()) throw new IOException("更新已关闭");
 			var builder = request(download.uri()).setHeader("Accept", "application/octet-stream");
 			if (offset > 0) builder.header("Range", "bytes=" + offset + "-");
-			HttpResponse<InputStream> response = client.send(builder.GET().build(), HttpResponse.BodyHandlers.ofInputStream());
+			Response response = send(builder.GET().build(), proxy);
 			try (InputStream input = response.body()) {
 				if (response.statusCode() == 200) offset = 0; // Range ignored: restart, never append a full response.
 				else if (response.statusCode() == 206) {

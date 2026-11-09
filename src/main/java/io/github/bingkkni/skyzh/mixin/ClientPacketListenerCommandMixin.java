@@ -73,6 +73,19 @@ public abstract class ClientPacketListenerCommandMixin {
 			for (String argument : SkyZHCommand.UPDATE_CHECK_ARGUMENTS) update.then(skyzh$node(argument));
 			root.then(update);
 
+			LiteralArgumentBuilder<ClientSuggestionProvider> proxy = skyzh$node("proxy");
+			LiteralArgumentBuilder<ClientSuggestionProvider> url = skyzh$node("url");
+			for (String protocol : java.util.List.of("http", "https", "socks5")) {
+				url.then(skyzh$node(protocol).then(com.mojang.brigadier.builder.RequiredArgumentBuilder
+					.<ClientSuggestionProvider, String>argument("address", com.mojang.brigadier.arguments.StringArgumentType.greedyString()).executes(context -> 0)));
+			}
+			LiteralArgumentBuilder<ClientSuggestionProvider> auth = skyzh$node("auth");
+			for (String field : java.util.List.of("account", "password")) {
+				auth.then(skyzh$node(field).then(com.mojang.brigadier.builder.RequiredArgumentBuilder
+					.<ClientSuggestionProvider, String>argument("value", com.mojang.brigadier.arguments.StringArgumentType.greedyString()).executes(context -> 0)));
+			}
+			root.then(proxy.then(url).then(auth).then(skyzh$node("clear")));
+
 			LiteralArgumentBuilder<ClientSuggestionProvider> flip = skyzh$node("switch");
 
 			for (String which : SkyZHCommand.SWITCHES) {

@@ -27,6 +27,7 @@ public final class ClientSettingsHarness {
 	}
 
 	public static void main(String[] args) throws Exception {
+		inputMethods();
 		config();
 		welcome();
 		about();
@@ -42,8 +43,43 @@ public final class ClientSettingsHarness {
 		}
 	}
 
+	public static final class FocusPreference {
+		public boolean value;
+		public int changes;
+		public boolean getPreferredState() { return value; }
+		public void setPreferredState(boolean value) { this.value = value; changes++; }
+	}
+
+	private static void inputMethods() throws Exception {
+		var missing = new io.github.bingkkni.skyzh.compat.InputMethodCompat();
+		missing.typing(); missing.removed();
+		for (boolean initial : List.of(false, true)) {
+			var preference = new FocusPreference(); preference.value = initial;
+			var compat = new io.github.bingkkni.skyzh.compat.InputMethodCompat();
+			for (var entry : java.util.Map.of("container", (Object) preference, "resolved", true,
+				"getPreferred", FocusPreference.class.getMethod("getPreferredState"),
+				"setPreferred", FocusPreference.class.getMethod("setPreferredState", boolean.class)).entrySet()) {
+				var field = compat.getClass().getDeclaredField(entry.getKey()); field.setAccessible(true); field.set(compat, entry.getValue());
+			}
+			compat.typing(); compat.typing();
+			check("MoulConfig 搜索期间允许输入法 " + initial, preference.value, true);
+			check("每 tick 不重复更改输入法状态 " + initial, preference.changes, initial ? 0 : 1);
+			compat.removed();
+			check("离开设置恢复此前状态 " + initial, preference.value, initial);
+			compat.typing(); compat.removed();
+			check("链接确认返回后仍能恢复状态 " + initial, preference.value, initial);
+		}
+	}
+
 	private static void config() {
 		SkyZHConfig defaults = SkyZHConfig.fromJson(new JsonObject());
+		check("旧配置不启用代理", defaults.updateProxy.configured(), false);
+		defaults.updateProxy = new io.github.bingkkni.skyzh.update.UpdateProxy("https://Proxy.example:8443", "AccountABC", "PasswordXYZ");
+		var restoredProxy = SkyZHConfig.fromJson(defaults.toJson()).updateProxy;
+		check("代理协议和域名保存读取", restoredProxy.url(), defaults.updateProxy.url());
+		check("代理账号保存读取保留大小写", restoredProxy.account(), "AccountABC");
+		check("代理密码保存读取保留大小写", restoredProxy.password(), "PasswordXYZ");
+		check("错误代理配置不会阻止启动", SkyZHConfig.fromJson(JsonParser.parseString("{\"proxyUrl\":\"bad\"}").getAsJsonObject()).updateProxy.configured(), false);
 		check("显示优先级默认兼容", defaults.displayPriority, DisplayPriority.DEFAULT);
 		for (DisplayPriority priority : DisplayPriority.values()) {
 			defaults.displayPriority = priority;

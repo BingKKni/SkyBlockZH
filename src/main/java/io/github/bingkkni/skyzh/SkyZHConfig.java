@@ -3,6 +3,7 @@ package io.github.bingkkni.skyzh;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import io.github.bingkkni.skyzh.update.UpdateProxy;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
@@ -59,6 +60,9 @@ public final class SkyZHConfig {
 
 	/** What happens once a newer Mod build is found. */
 	public volatile UpdateInstall updateInstall = UpdateInstall.AUTO;
+
+	/** Used only by update metadata and downloads; absent from the settings menu. */
+	public volatile UpdateProxy updateProxy = UpdateProxy.NONE;
 
 	/** Whether the unavailable in-game translation feedback switch is selected for future use. */
 	public boolean helpImproveTranslation = true;
@@ -151,6 +155,16 @@ public final class SkyZHConfig {
 		config.updateCheck = bool(json, "updateCheck", true);
 		config.updateChannel = UpdateChannel.parse(string(json, "updateChannel", "release"));
 		config.updateInstall = UpdateInstall.parse(string(json, "updateInstall", "auto"));
+		String proxyUrl = string(json, "proxyUrl", "");
+		try {
+			if (!proxyUrl.isEmpty()) {
+				var uri = java.net.URI.create(proxyUrl);
+				if (!"".equals(uri.getRawPath()) || uri.getRawQuery() != null || uri.getRawFragment() != null)
+					throw new IllegalArgumentException("无效代理地址");
+				proxyUrl = UpdateProxy.address(uri.getScheme(), uri.getRawAuthority());
+			}
+			config.updateProxy = new UpdateProxy(proxyUrl, string(json, "proxyAccount", ""), string(json, "proxyPassword", ""));
+		} catch (IllegalArgumentException ignored) { config.updateProxy = UpdateProxy.NONE; }
 		config.helpImproveTranslation = bool(json, "helpImproveTranslation", true);
 		config.welcomeShown = bool(json, "welcomeShown", false);
 		config.translateSkyBlockName = bool(json, "translateSkyBlockName", true);
@@ -223,6 +237,9 @@ public final class SkyZHConfig {
 		help.addProperty("updateCheck", "是否在进入空岛生存后自动检查并下载 Mod 和翻译更新。");
 		help.addProperty("updateChannel", "更新渠道：release 为正式版；beta 为测试版。");
 		help.addProperty("updateInstall", "发现新版 Mod 后：auto 自动下载并在下次重启时安装；manual 自动下载，点击聊天提示后才安装；notify 仅提示，点击后再下载并安装。");
+		help.addProperty("proxyUrl", "更新检查和下载优先使用的代理（http/https/socks5://域名或IP:端口）。失败时静默直连重试。可用 /skyzh proxy 设置。");
+		help.addProperty("proxyAccount", "代理验证账号，无验证留空。");
+		help.addProperty("proxyPassword", "代理验证密码，无验证留空。此值以明文保存在本地，请勿分享配置文件。");
 		help.addProperty("helpImproveTranslation", "在游戏内发现文本未翻译或翻译格式错误时，是否上传到开发者服务器报告（暂不可用）。");
 		help.addProperty("welcomeShown", "是否已经发送首次安装欢迎消息。改为 false 后，下次进入 Hypixel 时会再次发送。");
 		help.addProperty("translateSkyBlockName", "是否翻译 SkyBlock 玩法名。翻译后的文本为「空岛生存」。");
@@ -242,6 +259,10 @@ public final class SkyZHConfig {
 		json.addProperty("updateCheck", this.updateCheck);
 		json.addProperty("updateChannel", this.updateChannel.key());
 		json.addProperty("updateInstall", this.updateInstall.key());
+		UpdateProxy proxy = this.updateProxy;
+		json.addProperty("proxyUrl", proxy.url());
+		json.addProperty("proxyAccount", proxy.account());
+		json.addProperty("proxyPassword", proxy.password());
 		json.addProperty("helpImproveTranslation", this.helpImproveTranslation);
 		json.addProperty("welcomeShown", this.welcomeShown);
 		json.addProperty("translateSkyBlockName", this.translateSkyBlockName);
