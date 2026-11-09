@@ -503,6 +503,24 @@ public final class CaptureHarness {
 
 	/** A first-line capture must strip the same item decorations as the tooltip renderer. */
 	private static void decoratedItemNames() throws Exception {
+		boolean oldItemNames = SkyZHConfig.get().translateItemNames;
+		try {
+			for (boolean enabled : List.of(true, false)) {
+				SkyZHConfig.get().translateItemNames = enabled;
+				checkNothing("序号物品采集复用名称诊断 " + enabled, CaptureSurface.GUI_ITEM,
+					"§84. §6Enchanted Clock");
+				checkNothing("序号重铸物品不重复上报 " + enabled, CaptureSurface.GUI_ITEM,
+					"§82. §dJaded Chestplate of Divan");
+				checkUntranslated("未知序号物品保持采集资格 " + enabled, CaptureSurface.GUI_ITEM,
+					"§84. §6Unknown Future Thing");
+				checkUntranslated("混淆的序号身份保持采集资格 " + enabled, CaptureSurface.GUI_ITEM,
+					"§82. §d§kEnchanted Clock");
+				checkVerdict("序号物品仍检查基础名称颜色 " + enabled, CaptureSurface.GUI_ITEM,
+					"§82. §6Mineral §cHelmet", Classifier.Bucket.COLOUR);
+			}
+		} finally {
+			SkyZHConfig.get().translateItemNames = oldItemNames;
+		}
 		Path root = Files.createTempDirectory("skyzh-capture-item-names");
 		CaptureStore.root(root);
 		try {

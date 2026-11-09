@@ -235,6 +235,81 @@
         "    §7§5Cheetah Talisman"
       ],
       "expected": "    §5猎豹护符"
+    },
+    {
+      "name": "本轮坦克Tab保留玩家等级与四色边界",
+      "surface": "TabList",
+      "source": [
+        "§8[§4486§8] §bCute_Leaf_ovo §f(§dTank XLVI§f)"
+      ],
+      "expected": "§8[§4486§8] §bCute_Leaf_ovo §f(§d坦克 XLVI§f)"
+    },
+    {
+      "name": "坦克Tab独立等级玩家徽记",
+      "surface": "TabList",
+      "source": [
+        "§8[§b238§8] §binkkni §b§lᛝ §f(§dTank XXVII§f)"
+      ],
+      "expected": "§8[§b238§8] §binkkni §b§lᛝ §f(§d坦克 XXVII§f)"
+    },
+    {
+      "name": "坦克Tab拒绝将任意短句当作玩家",
+      "surface": "TabList",
+      "source": [
+        "Your team is ready (Tank XLVI)"
+      ],
+      "miss": true
+    },
+    {
+      "name": "地牢日志残页物品名沿用日志标题",
+      "surface": "GUI_Item",
+      "source": [
+        "§9The Study"
+      ],
+      "expected": "§9研究"
+    },
+    {
+      "name": "竞速排行榜禁用珍珠高亮独立保留",
+      "surface": "Hologram",
+      "source": [
+        "§7Anything §a§lNo Pearls §7No Abilities Nothing"
+      ],
+      "expected": "§7不限制 §a§l禁用末影珍珠 §7禁用技能 完全不使用"
+    },
+    {
+      "name": "竞速排行榜不限制高亮独立保留",
+      "surface": "Hologram",
+      "source": [
+        "§a§lAnything §7No Pearls No Abilities Nothing"
+      ],
+      "expected": "§a§l不限制 §7禁用末影珍珠 禁用技能 完全不使用"
+    },
+    {
+      "name": "徽章地牢要求按同次完整Lore回放",
+      "source": [
+        "§cRequires The Catacombs Floor VII",
+        "§cCompletion."
+      ],
+      "expected": "§c需要通关墓穴第 VII 层。",
+      "consumed": 2
+    },
+    {
+      "name": "徽章大师模式完整尾行不得遗漏",
+      "source": [
+        "§cRequires Master Mode The Catacombs",
+        "§cFloor VII Completion."
+      ],
+      "expected": "§c需要通关大师模式墓穴第 VII 层。",
+      "consumed": 2
+    },
+    {
+      "name": "徽章地牢说明不按去重采集拼接",
+      "source": [
+        "§7These symbols are related to",
+        "§7completing Dungeons."
+      ],
+      "expected": "§7通关地牢即可解锁这些徽章。",
+      "consumed": 2
     }
   ]
 }

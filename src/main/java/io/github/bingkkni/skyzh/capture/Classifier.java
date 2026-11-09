@@ -5,6 +5,7 @@ import io.github.bingkkni.skyzh.hook.NameTag;
 import io.github.bingkkni.skyzh.text.StyledText;
 import io.github.bingkkni.skyzh.text.LineShape;
 import io.github.bingkkni.skyzh.text.Surface;
+import io.github.bingkkni.skyzh.text.TooltipTranslator;
 import io.github.bingkkni.skyzh.text.TranslationEntry;
 import io.github.bingkkni.skyzh.text.TranslationIndex;
 import io.github.bingkkni.skyzh.text.Translator;
@@ -233,6 +234,11 @@ public final class Classifier {
 			if (surface.surface() == Surface.HOLOGRAM
 				&& NameTag.locationName(styled.canonical().trim()) != null) return null;
 			if (surface.surface() == Surface.ITEM) {
+				LineShape.Range numbered = Translator.numberedItemRange(styled);
+				if (numbered != null) {
+					StyledText name = styled.sub(numbered.start(), numbered.end());
+					return of(surface, TooltipTranslator.itemNameCore(name));
+				}
 				List<LineShape.Range> parts = LineShape.enchantments(styled.canonical());
 				if (parts.isEmpty()) parts = LineShape.islandTags(styled.canonical());
 				// A list is covered only if every piece independently passes diagnostics.

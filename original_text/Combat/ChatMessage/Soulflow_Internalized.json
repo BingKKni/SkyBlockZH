@@ -1,0 +1,40 @@
+{
+  "source": [
+    "https://hypixelskyblock.minecraft.wiki/w/Soulflow",
+    "runtime log: SkyZH_Logs/2026-11-08-3.log:736"
+  ],
+  "verified_ingame": false,
+  "source_note": "原句来自本轮客户端日志，两个数值均为动态值。日志未保留该行颜色，Wiki 普通页核对其为内化魂流资源，但未收录此广播；因此不猜写 raw 或 color。按短语、资源名和两个数值分别分段，读取服务器实时样式；仍需实机确认颜色边界。",
+  "lines": [
+    {
+      "id": "soulflow_internalized_total",
+      "context": "消耗魂流物品后，广播本次内化量与内化后的魂流总量。",
+      "text": "You internalized +%1$s⸎ Soulflow and have a total of %2$s⸎!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "2,088",
+          "desc": "本次内化的魂流数量"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "2,102",
+          "desc": "内化后的魂流总量"
+        }
+      ],
+      "gloss": "Soulflow 此处是玩家已内化的资源，不是物品名称，不标 item_refs。英文及数字的颜色未从日志恢复；分段只声明语义边界，不虚构颜色码。",
+      "translate": true,
+      "zh": "已内化 +%1$s⸎ 魂流，当前共有 %2$s⸎!",
+      "segments": [
+        { "text": "You internalized ", "zh": "已内化 " },
+        { "text": "+%1$s⸎ ", "zh": "+%1$s⸎ " },
+        { "text": "Soulflow", "zh": "魂流" },
+        { "text": " and have a total of ", "zh": "，当前共有 " },
+        { "text": "%2$s⸎", "zh": "%2$s⸎" },
+        { "text": "!", "zh": "!" }
+      ]
+    }
+  ]
+}

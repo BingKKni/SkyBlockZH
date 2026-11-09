@@ -175,6 +175,230 @@
         "Abiphone XIII Jade"
       ],
       "miss": true
-    }
+    },
+    {
+      "name": "本轮投递十件整句数值保留",
+      "source": [
+        "§6You have 10 deliveries available to",
+        "§6collect!"
+      ],
+      "consumed": 2,
+      "expected": "§6你有 10 件投递物品可领取!"
+    },
+    {
+      "name": "本轮投递单件不规则复数",
+      "source": [
+        "§6You have 1 delivery available to",
+        "§6collect!"
+      ],
+      "consumed": 2,
+      "expected": "§6你有 1 件投递物品可领取!"
+    },
+    {
+      "name": "本轮宾果切档冷却续行十八秒",
+      "source": [
+        "§cProfile switch on cooldown for",
+        "§c00m18s!"
+      ],
+      "consumed": 2,
+      "expected": "§c档案切换冷却中，剩余 00分18秒!"
+    },
+    {
+      "name": "本轮宾果切档冷却数值变化",
+      "source": [
+        "§cProfile switch on cooldown for",
+        "§c01m02s!"
+      ],
+      "consumed": 2,
+      "expected": "§c档案切换冷却中，剩余 01分02秒!"
+    },
+    {
+      "name": "本轮跨档转移保留水果身份和高亮",
+      "source": [
+        "§7Place an item in the above slot to",
+        "§7transfer it to your §ePapaya §7profile!"
+      ],
+      "consumed": 2,
+      "expected": "§7将物品放入上方槽位，即可转移至你的 §ePapaya§7 档案!"
+    },
+    {
+      "name": "本轮跨档转移另一水果身份",
+      "source": [
+        "§7Transfers this item to your §eCoconut",
+        "§7profile!"
+      ],
+      "consumed": 2,
+      "expected": "§7将此物品转移至你的 §eCoconut§7 档案!"
+    },
+    {
+      "name": "本轮转移不可撤销警告整句",
+      "source": [
+        "§c§lWARNING: THIS CANNOT BE",
+        "§c§lUNDONE."
+      ],
+      "consumed": 2,
+      "expected": "§c§l警告：此操作无法撤销。"
+    },
+    {
+      "name": "本轮饰品强化稀有度与调谐点颜色排序",
+      "source": [
+        "§7Grants §e+1 Tuning Point §7when applied",
+        "§7to a §6§lLEGENDARY §7or §d§lMYTHIC",
+        "§7Accessory. Can be applied once."
+      ],
+      "consumed": 3,
+      "expected": "§7应用于§6§l传说§7或§d§l神话§7饰品时，获得 §e+1 调谐点数§7。只能应用一次。"
+    },
+    {
+      "name": "本轮饰品强化变动点数",
+      "source": [
+        "§7Grants §e+2 Tuning Points §7when applied",
+        "§7to a §6§lLEGENDARY §7or §d§lMYTHIC",
+        "§7Accessory. Can be applied once."
+      ],
+      "consumed": 3,
+      "expected": "§7应用于§6§l传说§7或§d§l神话§7饰品时，获得 §e+2 调谐点数§7。只能应用一次。"
+    },
+    {
+      "name": "本轮四叶草技能彩虹染料及两种结果颜色",
+      "source": [
+        "§7While worn, §cMob Drops§7, §cD§6y§ee§as§7, and",
+        "§7items claimed from §cDungeon Chests",
+        "§7have a §a50% §7chance to be §a§lDOUBLED§7,",
+        "§7and a §a50% §7chance to be §c§lDELETED§7."
+      ],
+      "consumed": 4,
+      "expected": "§7穿戴时，§c生物掉落物§7、§c各§6色§e染§a料§7以及从§c地牢宝箱§7中领取的物品，有 §a50%§7 的概率§a§l翻倍§7，也有 §a50%§7 的概率§c§l被删除§7。"
+    },
+    {
+      "name": "本轮莲花环礁卷轴章节保持动态",
+      "source": [
+        "§7Complete §3Lotus Atoll §7Chapter IV to",
+        "§7unlock this scroll!"
+      ],
+      "consumed": 2,
+      "expected": "§7完成§3莲花环礁§7第 IV 章，即可解锁此卷轴!"
+    },
+    {
+      "name": "本轮史莱姆帽完整抗击退说明",
+      "source": [
+        "§7Grants immunity to knockback from",
+        "§7mobs."
+      ],
+      "consumed": 2,
+      "expected": "§7免疫生物造成的击退。"
+    },
+    {
+      "name": "本轮投递领取复用物品名",
+      "surface": "ChatMessage",
+      "source": [
+        "§aSuccessfully claimed your delivery of §aEnchanted Gold Ingot§a!"
+      ],
+      "expected": "§a已成功领取投递物品 附魔金锭!"
+    },
+    {
+      "name": "本轮投递领取未知物品保留",
+      "surface": "ChatMessage",
+      "source": [
+        "Successfully claimed your delivery of Unknown Fake Item!"
+      ],
+      "expected": "已成功领取投递物品 Unknown Fake Item!"
+    },
+    {
+      "name": "本轮聊天切档二十二秒",
+      "surface": "ChatMessage",
+      "source": [
+        "Profile switch on cooldown! Try again in 00m22s!"
+      ],
+      "expected": "档案切换冷却中! 请在 00分22秒 后重试!"
+    },
+    {
+      "name": "本轮聊天切档二十一秒",
+      "surface": "ChatMessage",
+      "source": [
+        "Profile switch on cooldown! Try again in 00m21s!"
+      ],
+      "expected": "档案切换冷却中! 请在 00分21秒 后重试!"
+    },
+    {
+      "name": "本轮投递提醒数字独立黄色",
+      "surface": "ChatMessage",
+      "source": [
+        "§6You have §e10 §6unclaimed deliveries!"
+      ],
+      "expected": "§6你有 §e10§6 件尚未领取的投递物品!"
+    },
+    {
+      "name": "本轮专有附魔Experience保留",
+      "surface": "GUI_Item",
+      "source": [
+        "§aExperience"
+      ],
+      "miss": true
+    },
+    {
+      "name": "本轮专有附魔Giant Killer保留",
+      "surface": "GUI_Item",
+      "source": [
+        "§9Giant Killer V"
+      ],
+      "miss": true
+    },
+    {
+      "name": "本轮告示牌四行布局hub_sign_no_auction",
+      "surface": "Sign",
+      "source": [
+        "-*-\n§c§lNo auction!§r\n\n§r-*-"
+      ],
+      "expected": "-*-\n§c§l暂无拍卖!§r\n\n-*-"
+    },
+    {
+      "name": "本轮告示牌四行布局hub_sign_enter_your_amount",
+      "surface": "Sign",
+      "source": [
+        "\n^^^^^^\nEnter your\namount!"
+      ],
+      "expected": "\n^^^^^^\n输入你的\n数量!"
+    },
+{
+  "name": "带身份前缀的博物馆复用既有模板",
+  "surface": "GUI_Item",
+  "source": [
+    "§a[VIP] N4T_'s Museum"
+  ],
+  "expected": "§a[VIP] N4T_ 的博物馆"
+},
+{
+  "name": "Sven徽章说明阶数动态",
+  "surface": "GUI_Lore",
+  "source": [
+    "§8Unlocked for Sven Packmaster IV Completion."
+  ],
+  "expected": "§8击败 IV 阶 Sven Packmaster 后解锁。"
+},
+{
+  "name": "Sven徽章经验颜色",
+  "surface": "GUI_Lore",
+  "source": [
+    "§7Sven Packmaster XP: §e5,005"
+  ],
+  "expected": "§7Sven Packmaster 经验: §e5,005"
+},
+{
+  "name": "驯养智慧无图标数值",
+  "surface": "GUI_Item",
+  "source": [
+    "§7Taming Wisdom: §3+2"
+  ],
+  "expected": "§7驯养智慧: §3+2"
+},
+{
+  "name": "农业时运保留两段额外加成颜色",
+  "surface": "GUI_Item",
+  "source": [
+    "§7Farming Fortune: §6+91 §9(+30) §d(+16)"
+  ],
+  "expected": "§7农业时运: §6+91 §9(+30) §d(+16)"
+}
   ]
 }

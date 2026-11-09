@@ -1,0 +1,640 @@
+{
+  "source": [
+    "runtime capture: C:/Users/user/Desktop/MinecraftMods/SkyZH_Logs/skyzh-capture",
+    "https://hypixelskyblock.minecraft.wiki/w/Bingo",
+    "https://hypixelskyblock.minecraft.wiki/w/Profiles",
+    "https://hypixelskyblock.minecraft.wiki/w/Accessory_Bag",
+    "https://hypixelskyblock.minecraft.wiki/w/Clover_Helmet",
+    "https://hypixelskyblock.minecraft.wiki/w/Slime_Hat",
+    "https://hypixelskyblock.minecraft.wiki/w/Lotus_Atoll",
+    "https://hypixelskyblock.minecraft.wiki/w/SkyBlock_Levels"
+  ],
+  "verified_ingame": true,
+  "source_note": "社区 Wiki 通过 Playwright 浏览核对；Clover Helmet 正文仍是正式服旧效果，Alpha 历史及同次服务器 Lore 优先。颜色取服务器实测，专有附魔名保留英文。",
+  "lines": [
+    {
+      "id": "hub_capture_bingo_rejoin",
+      "context": "本轮服务器实测；按同次有序 Lore 核对，完整句优先。",
+      "text": "Rejoins your temporary Bingo profile and teleports to your Bingo island.",
+      "raw": "§7Rejoins your temporary Bingo profile and teleports to your Bingo island.",
+      "translate": true,
+      "zh": "重新加入你的临时宾果档案，并传送至你的宾果岛屿。",
+      "samples": [
+        [
+          "§7Rejoins your temporary Bingo",
+          "§7profile and teleports to your Bingo",
+          "§7island."
+        ]
+      ]
+    },
+    {
+      "id": "hub_capture_bingo_ended",
+      "context": "本轮服务器实测；按同次有序 Lore 核对，完整句优先。",
+      "text": "This Bingo event has ended! You can rejoin your Bingo profile for a few days after the event until it is deleted forever!",
+      "raw": "§cThis Bingo event has ended! You can rejoin your Bingo profile for a few days after the event until it is deleted forever!",
+      "translate": true,
+      "zh": "本次宾果活动已结束! 活动结束后的几天内，你仍可重新加入宾果档案，之后该档案将被永久删除!",
+      "samples": [
+        [
+          "§cThis Bingo event has ended! You can",
+          "§crejoin your Bingo profile for a few",
+          "§cdays after the event until it is",
+          "§cdeleted forever!"
+        ]
+      ]
+    },
+    {
+      "id": "hub_capture_click_rejoin",
+      "context": "本轮服务器实测；按同次有序 Lore 核对，完整句优先。",
+      "text": "Click to rejoin!",
+      "raw": "§eClick to rejoin!",
+      "translate": true,
+      "zh": "点击重新加入!"
+    },
+    {
+      "id": "hub_capture_profile_switch_cooldown",
+      "context": "本轮服务器实测；按同次有序 Lore 核对，完整句优先。",
+      "text": "Profile switch on cooldown for %s!",
+      "raw": "§cProfile switch on cooldown for %s!",
+      "translate": true,
+      "zh": "档案切换冷却中，剩余 %s!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "duration_spaced",
+          "example": "00m18s"
+        }
+      ],
+      "samples": [
+        [
+          "§cProfile switch on cooldown for",
+          "§c00m18s!"
+        ]
+      ]
+    },
+    {
+      "id": "hub_capture_deliveries_available",
+      "context": "本轮服务器实测；按同次有序 Lore 核对，完整句优先。",
+      "text": "You have %s deliveries available to collect!",
+      "raw": "§6You have %s deliveries available to collect!",
+      "translate": true,
+      "zh": "你有 %s 件投递物品可领取!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "samples": [
+        [
+          "§6You have 10 deliveries available to",
+          "§6collect!"
+        ]
+      ]
+    },
+    {
+      "id": "hub_capture_transfer_place",
+      "context": "本轮服务器实测；按同次有序 Lore 核对，完整句优先。",
+      "text": "Place an item in the above slot to transfer it to your %s profile!",
+      "raw": "§7Place an item in the above slot to transfer it to your §e%s §7profile!",
+      "translate": true,
+      "zh": "将物品放入上方槽位，即可转移至你的 %s 档案!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "profile_name",
+          "example": "Papaya"
+        }
+      ],
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Place an item in the above slot to transfer it to your ",
+          "zh": "将物品放入上方槽位，即可转移至你的 "
+        },
+        {
+          "color": "§e",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": "profile!",
+          "zh": " 档案!"
+        }
+      ],
+      "samples": [
+        [
+          "§7Place an item in the above slot to",
+          "§7transfer it to your §ePapaya §7profile!"
+        ]
+      ]
+    },
+    {
+      "id": "hub_capture_transfer_confirm",
+      "context": "本轮服务器实测；按同次有序 Lore 核对，完整句优先。",
+      "text": "Transfers this item to your %s profile!",
+      "raw": "§7Transfers this item to your §e%s §7profile!",
+      "translate": true,
+      "zh": "将此物品转移至你的 %s 档案!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "profile_name",
+          "example": "Papaya"
+        }
+      ],
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Transfers this item to your ",
+          "zh": "将此物品转移至你的 "
+        },
+        {
+          "color": "§e",
+          "text": "%s ",
+          "zh": "%s"
+        },
+        {
+          "color": "§7",
+          "text": "profile!",
+          "zh": " 档案!"
+        }
+      ],
+      "samples": [
+        [
+          "§7Transfers this item to your §ePapaya",
+          "§7profile!"
+        ]
+      ]
+    },
+    {
+      "id": "hub_capture_transfer_irreversible",
+      "context": "本轮服务器实测；按同次有序 Lore 核对，完整句优先。",
+      "text": "WARNING: THIS CANNOT BE UNDONE.",
+      "raw": "§c§lWARNING: THIS CANNOT BE UNDONE.",
+      "translate": true,
+      "zh": "警告：此操作无法撤销。",
+      "samples": [
+        [
+          "§c§lWARNING: THIS CANNOT BE",
+          "§c§lUNDONE."
+        ]
+      ]
+    },
+    {
+      "id": "hub_capture_transfer_disallowed",
+      "context": "本轮服务器实测；按同次有序 Lore 核对，完整句优先。",
+      "text": "This item cannot be transferred!",
+      "raw": "§7This item cannot be transferred!",
+      "translate": true,
+      "zh": "此物品无法转移!"
+    },
+    {
+      "id": "hub_capture_redstone_miner_slots",
+      "context": "本轮服务器实测；按同次有序 Lore 核对，完整句优先。",
+      "text": "Redstone Miner: +%s Slots",
+      "raw": "§7Redstone Miner: §c+%s Slots",
+      "translate": true,
+      "zh": "红石矿工: +%s 格",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Redstone Miner: ",
+          "zh": "红石矿工: "
+        },
+        {
+          "color": "§c",
+          "text": "+%s Slots",
+          "zh": "+%s 格"
+        }
+      ]
+    },
+    {
+      "id": "hub_capture_jacobus_slots",
+      "context": "本轮服务器实测；按同次有序 Lore 核对，完整句优先。",
+      "text": "Jacobus: +%s Slots",
+      "raw": "§7Jacobus: §6+%s Slots",
+      "translate": true,
+      "zh": "Jacobus: +%s 格",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Jacobus: ",
+          "zh": "Jacobus: "
+        },
+        {
+          "color": "§6",
+          "text": "+%s Slots",
+          "zh": "+%s 格"
+        }
+      ]
+    },
+    {
+      "id": "hub_capture_buy_accessory_slots",
+      "context": "本轮服务器实测；按同次有序 Lore 核对，完整句优先。",
+      "text": "Purchasing: +%s Acc. Bag Slots",
+      "raw": "§7Purchasing: §6+%s Acc. Bag Slots",
+      "translate": true,
+      "zh": "购买: +%s 饰品袋栏位",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Purchasing: ",
+          "zh": "购买: "
+        },
+        {
+          "color": "§6",
+          "text": "+%s Acc. Bag Slots",
+          "zh": "+%s 饰品袋栏位"
+        }
+      ]
+    },
+    {
+      "id": "hub_capture_slime_hat_knockback",
+      "context": "本轮服务器实测；按同次有序 Lore 核对，完整句优先。",
+      "text": "Grants immunity to knockback from mobs.",
+      "raw": "§7Grants immunity to knockback from mobs.",
+      "translate": true,
+      "zh": "免疫生物造成的击退。",
+      "samples": [
+        [
+          "§7Grants immunity to knockback from",
+          "§7mobs."
+        ]
+      ]
+    },
+    {
+      "id": "hub_capture_lotus_spawn",
+      "context": "本轮服务器实测；按同次有序 Lore 核对，完整句优先。",
+      "text": "Spawn in the Lotus Atoll!",
+      "raw": "§7Spawn in the §3Lotus Atoll§7!",
+      "translate": true,
+      "zh": "传送至莲花环礁!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Spawn in the ",
+          "zh": "传送至"
+        },
+        {
+          "color": "§3",
+          "text": "Lotus Atoll",
+          "zh": "莲花环礁"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "hub_capture_lotus_chapter_reward",
+      "context": "本轮服务器实测；按同次有序 Lore 核对，完整句优先。",
+      "text": "Reward from Lotus Atoll Chapters!",
+      "raw": "§cReward from Lotus Atoll Chapters!",
+      "translate": true,
+      "zh": "莲花环礁章节奖励!"
+    },
+    {
+      "id": "hub_capture_lotus_scroll_unlock",
+      "context": "本轮服务器实测；按同次有序 Lore 核对，完整句优先。",
+      "text": "Complete Lotus Atoll Chapter %s to unlock this scroll!",
+      "raw": "§7Complete §3Lotus Atoll §7Chapter %s to unlock this scroll!",
+      "translate": true,
+      "zh": "完成莲花环礁第 %s 章，即可解锁此卷轴!",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "tier",
+          "example": "II"
+        }
+      ],
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Complete ",
+          "zh": "完成"
+        },
+        {
+          "color": "§3",
+          "text": "Lotus Atoll ",
+          "zh": "莲花环礁"
+        },
+        {
+          "color": "§7",
+          "text": "Chapter %s to unlock this scroll!",
+          "zh": "第 %s 章，即可解锁此卷轴!"
+        }
+      ],
+      "samples": [
+        [
+          "§7Complete §3Lotus Atoll §7Chapter II to",
+          "§7unlock this scroll!"
+        ]
+      ]
+    },
+    {
+      "id": "hub_capture_witch_countdown",
+      "context": "本轮服务器实测；按同次有序 Lore 核对，完整句优先。",
+      "text": "Year of the Witch %s",
+      "raw": "§5Year of the Witch %s",
+      "translate": true,
+      "zh": "女巫年 %s",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "duration_spaced",
+          "example": "17h 34m 11s"
+        }
+      ]
+    },
+    {
+      "id": "hub_capture_clover_ability",
+      "context": "本轮服务器实测；按同次有序 Lore 核对，完整句优先。",
+      "text": "Ability: Lucky(?) Charm",
+      "raw": "§6Ability: Lucky(?) Charm",
+      "translate": true,
+      "zh": "技能: 幸运(?)护符",
+      "gloss": "Lucky(?) Charm 是 Clover Helmet 的技能，不是附魔名称。实测无空格的 (?) 优先；Wiki 2026-11-04 正文仍为正式服旧效果，历史列出 Alpha 重做。"
+    },
+    {
+      "id": "hub_capture_clover_gamble",
+      "context": "本轮服务器实测；按同次有序 Lore 核对，完整句优先。",
+      "text": "While worn, Mob Drops, Dyes, and items claimed from Dungeon Chests have a %1$s%% chance to be DOUBLED, and a %2$s%% chance to be DELETED.",
+      "raw": "§7While worn, §cMob Drops§7, §cD§6y§ee§as§7, and items claimed from §cDungeon Chests §7have a §a%1$s%% §7chance to be §a§lDOUBLED§7, and a §a%2$s%% §7chance to be §c§lDELETED§7.",
+      "translate": true,
+      "zh": "穿戴时，生物掉落物、各色染料以及从地牢宝箱中领取的物品，有 %1$s%% 的概率翻倍，也有 %2$s%% 的概率被删除。",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "percentage",
+          "example": "50"
+        },
+        {
+          "token": "%2$s",
+          "type": "percentage",
+          "example": "50"
+        }
+      ],
+      "segments": [
+        {
+          "color": "§7",
+          "text": "While worn, ",
+          "zh": "穿戴时，"
+        },
+        {
+          "color": "§c",
+          "text": "Mob Drops",
+          "zh": "生物掉落物"
+        },
+        {
+          "color": "§7",
+          "text": ", ",
+          "zh": "、"
+        },
+        {
+          "color": "§c",
+          "text": "D",
+          "zh": "各"
+        },
+        {
+          "color": "§6",
+          "text": "y",
+          "zh": "色"
+        },
+        {
+          "color": "§e",
+          "text": "e",
+          "zh": "染"
+        },
+        {
+          "color": "§a",
+          "text": "s",
+          "zh": "料"
+        },
+        {
+          "color": "§7",
+          "text": ", and items claimed from ",
+          "zh": "以及从"
+        },
+        {
+          "color": "§c",
+          "text": "Dungeon Chests ",
+          "zh": "地牢宝箱"
+        },
+        {
+          "color": "§7",
+          "text": "have a ",
+          "zh": "中领取的物品，有 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s%% ",
+          "zh": "%1$s%%"
+        },
+        {
+          "color": "§7",
+          "text": "chance to be ",
+          "zh": " 的概率"
+        },
+        {
+          "color": "§a§l",
+          "text": "DOUBLED",
+          "zh": "翻倍"
+        },
+        {
+          "color": "§7",
+          "text": ", and a ",
+          "zh": "，也有 "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s%% ",
+          "zh": "%2$s%%"
+        },
+        {
+          "color": "§7",
+          "text": "chance to be ",
+          "zh": " 的概率"
+        },
+        {
+          "color": "§c§l",
+          "text": "DELETED",
+          "zh": "被删除"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "samples": [
+        [
+          "§7While worn, §cMob Drops§7, §cD§6y§ee§as§7, and",
+          "§7items claimed from §cDungeon Chests",
+          "§7have a §a50% §7chance to be §a§lDOUBLED§7,",
+          "§7and a §a50% §7chance to be §c§lDELETED§7."
+        ]
+      ]
+    },
+    {
+      "id": "hub_capture_clover_best_doubled_none",
+      "context": "本轮服务器实测；按同次有序 Lore 核对，完整句优先。",
+      "text": "Most valuable drop doubled: None",
+      "raw": "§7Most valuable drop doubled: §8None",
+      "translate": true,
+      "zh": "已翻倍的最贵重掉落物: 无",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Most valuable drop doubled: ",
+          "zh": "已翻倍的最贵重掉落物: "
+        },
+        {
+          "color": "§8",
+          "text": "None",
+          "zh": "无"
+        }
+      ]
+    },
+    {
+      "id": "hub_capture_clover_best_deleted_none",
+      "context": "本轮服务器实测；按同次有序 Lore 核对，完整句优先。",
+      "text": "Most valuable drop deleted: None",
+      "raw": "§7Most valuable drop deleted: §8None",
+      "translate": true,
+      "zh": "已删除的最贵重掉落物: 无",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Most valuable drop deleted: ",
+          "zh": "已删除的最贵重掉落物: "
+        },
+        {
+          "color": "§8",
+          "text": "None",
+          "zh": "无"
+        }
+      ]
+    },
+    {
+      "id": "hub_capture_clover_flavor",
+      "context": "本轮服务器实测；按同次有序 Lore 核对，完整句优先。",
+      "text": "Luck is a quantifiable metric that everyone possesses in varying amounts.",
+      "raw": "§8§oLuck is a quantifiable metric that everyone possesses in varying amounts.",
+      "translate": true,
+      "zh": "幸运是可以量化的，每个人拥有的多少各不相同。",
+      "samples": [
+        [
+          "§8§oLuck is a quantifiable metric that",
+          "§8§oeveryone possesses in varying",
+          "§8§oamounts."
+        ]
+      ]
+    },
+    {
+      "id": "hub_capture_accessory_enrichment",
+      "context": "本轮服务器实测；按同次有序 Lore 核对，完整句优先。",
+      "text": "Grants +%s Tuning Points when applied to a LEGENDARY or MYTHIC Accessory. Can be applied once.",
+      "raw": "§7Grants §e+%s Tuning Points §7when applied to a §6§lLEGENDARY §7or §d§lMYTHIC §7Accessory. Can be applied once.",
+      "translate": true,
+      "zh": "应用于传说或神话饰品时，获得 +%s 调谐点数。只能应用一次。",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "2"
+        }
+      ],
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "应用于",
+          "order": 0
+        },
+        {
+          "color": "§e",
+          "text": "+%s Tuning Points ",
+          "zh": "+%s 调谐点数",
+          "order": 5
+        },
+        {
+          "color": "§7",
+          "text": "when applied to a ",
+          "zh": "饰品时，获得 ",
+          "order": 4
+        },
+        {
+          "color": "§6§l",
+          "text": "LEGENDARY ",
+          "zh": "传说",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "or ",
+          "zh": "或",
+          "order": 2
+        },
+        {
+          "color": "§d§l",
+          "text": "MYTHIC ",
+          "zh": "神话",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "Accessory. Can be applied once.",
+          "zh": "。只能应用一次。",
+          "order": 6
+        }
+      ],
+      "samples": [
+        [
+          "§7Grants §e+1 Tuning Point §7when applied",
+          "§7to a §6§lLEGENDARY §7or §d§lMYTHIC",
+          "§7Accessory. Can be applied once."
+        ]
+      ]
+    },
+    {
+      "id": "hub_capture_single_delivery_available",
+      "context": "delivery/deliveries 是不规则复数，现有自动单复数仅处理末尾 s，因此固定单件状态单独收录。",
+      "text": "You have 1 delivery available to collect!",
+      "raw": "§6You have 1 delivery available to collect!",
+      "zh": "你有 1 件投递物品可领取!",
+      "translate": true,
+      "samples": [
+        [
+          "§6You have 1 delivery available to",
+          "§6collect!"
+        ]
+      ]
+    }
+  ]
+}

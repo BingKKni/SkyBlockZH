@@ -2,6 +2,7 @@ package io.github.bingkkni.skyzh.hook;
 
 import io.github.bingkkni.skyzh.HypixelServer;
 import io.github.bingkkni.skyzh.text.Surface;
+import io.github.bingkkni.skyzh.text.TooltipTranslator;
 import io.github.bingkkni.skyzh.text.Translator;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
@@ -49,7 +50,7 @@ public final class HudText {
 		draw(graphics, font, text, Surface.MISC, x, y, width, color);
 	}
 
-	/** The item name that appears above the hotbar on selecting a slot. */
+	/** The item name above the hotbar; shares tooltip handling for reforges, icons and stars. */
 	public static void selectedItemName(
 		GuiGraphicsExtractor graphics, Font font, Component text, int x, int y, int width, int color
 	) {
@@ -65,7 +66,9 @@ public final class HudText {
 		}
 
 		Component translated = surface == Surface.ACTION_BAR
-			? Translator.translateWidgets(text, surface) : Translator.translateLine(text, surface);
+			? Translator.translateWidgets(text, surface)
+			: surface == Surface.ITEM ? TooltipTranslator.translateItemName(text).padded()
+			: Translator.translateLine(text, surface);
 		int translatedWidth = font.width(translated);
 		// x was left-of-centre by half the old width; keep the same midpoint for the new one.
 		graphics.textWithBackdrop(font, translated, x + (width - translatedWidth) / 2, y, translatedWidth, color);

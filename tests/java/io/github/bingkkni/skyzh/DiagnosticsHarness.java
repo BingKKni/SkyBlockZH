@@ -142,10 +142,20 @@ public final class DiagnosticsHarness {
 			check("实测横幅居中 " + source.trim(), Math.abs(center(result.text()) - 160) <= 3);
 		}
 		for (String source : List.of("    +10,000 Farming Experience", "    +5,000 Farming Experience",
-			"    +12 Garden Experience", "    +10 Bits", "  REWARDS", "    §a§lREWARD", "    +10 SkyBlock XP")) {
+			"    +12 Garden Experience", "    +10 Bits", "  REWARDS", "    §a§lREWARD", "    +10 SkyBlock XP",
+			"    §6+1 Mining Fortune")) {
 			Component text = Component.literal(source);
 			var result = ChatLayout.plan(text, Translator.translateAvailable(text, Surface.CHAT), 320, DiagnosticsHarness::width);
 			check("任务奖励保留左缩进 " + source.trim(), left(result.text()) == left(text));
+		}
+		for (int value : new int[]{1, 25}) {
+			Component body = Component.literal("§8+§6" + value + " Mining Fortune");
+			String padding = " ".repeat(Math.max(0, (320 - width(body)) / 8));
+			Component banner = Component.literal(padding).append(body);
+			var result = ChatLayout.plan(banner, Translator.translateAvailable(banner, Surface.CHAT), 320, DiagnosticsHarness::width);
+			check("挖掘时运共用奖励横幅仍居中 " + value, Math.abs(center(result.text()) - 160) <= 3);
+			check("挖掘时运奖励颜色与动态数值保留 " + value,
+				TranslationHarness.legacy(result.text()).contains("§8+§6" + value + " 挖掘时运"));
 		}
 		Component source = Component.literal("                                   Rewards");
 		check("零或极小聊天缩放不会分配巨量空格", ChatLayout.plan(source,

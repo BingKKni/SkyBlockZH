@@ -30,6 +30,7 @@ public final class Translator {
 	private static final Logger LOGGER = LoggerFactory.getLogger("SkyZH");
 	private static final Set<String> REPORTED_COLOUR_LOSS = ConcurrentHashMap.newKeySet();
 	private static final java.util.regex.Pattern DISPLAY_RANK = java.util.regex.Pattern.compile("#[0-9]{1,6} ");
+	private static final java.util.regex.Pattern ITEM_LIST_NUMBER = java.util.regex.Pattern.compile("[0-9]{1,6}\\. ");
 
 	private static volatile TranslationIndex index = new TranslationIndex();
 	private static volatile boolean ready;
@@ -291,6 +292,10 @@ public final class Translator {
 			);
 		}
 
+		if (surface == Surface.ITEM) {
+			Result item = numberedItem(styled);
+			if (item != null) return item;
+		}
 		if (surface == Surface.HOLOGRAM) {
 			Component item = hologramItem(source);
 			if (item != null) return new Result(item.copy(), null, null, null);
@@ -316,6 +321,29 @@ public final class Translator {
 		if (ItemNames.canonical(plain) == null) return null;
 		return surface == Surface.GUI_TITLE ? index().lookup(Surface.ITEM, plain.trim())
 			: surface == Surface.HOLOGRAM ? index().lookupExact(Surface.ITEM, plain.trim()) : null;
+	}
+
+	/** Shared display/capture boundary for numbered, catalog-confirmed item names. */
+	public static LineShape.Range numberedItemRange(StyledText styled) {
+		String plain = styled.canonical();
+		int start = wordsStart(plain), end = wordsEnd(plain, start);
+		Matcher number = ITEM_LIST_NUMBER.matcher(plain).region(start, end);
+		if (!number.lookingAt()) return null;
+		int from = number.end();
+		if (ItemNames.canonical(plain.substring(from, end)) == null) return null;
+		for (int i = from; i < end; i++) if (styled.styleAt(i).isObfuscated()) return null;
+		return new LineShape.Range(from, end);
+	}
+
+	/** Museum lists number real items; preserve the number and reuse complete tooltip-name parsing. */
+	private static Result numberedItem(StyledText styled) {
+		LineShape.Range range = numberedItemRange(styled);
+		if (range == null) return null;
+		Result name = TooltipTranslator.translateItemNameAvailable(styled.slice(range.start(), range.end()));
+		if (!name.matched()) return null;
+		// This is a composed display, not an entry for the whole numbered line. Lore planning must
+		// keep it intact rather than re-rendering only the underlying item's undecorated match.
+		return new Result(around(styled, range.start(), range.end(), name.padded()), null, null, null);
 	}
 
 	/** Auction displays add a rank and reforge to a catalog-confirmed item, never an NPC name. */

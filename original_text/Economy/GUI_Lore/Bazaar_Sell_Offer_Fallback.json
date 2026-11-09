@@ -1,0 +1,30 @@
+{
+  "source": [
+    "https://hypixelskyblock.minecraft.wiki/w/Bazaar",
+    "runtime capture: SkyZH_Logs/skyzh-capture/untranslated/Economy/GUI_Item/At_what_price_are_you_selling.json"
+  ],
+  "verified_ingame": true,
+  "source_note": "社区 Wiki 核对卖单定价与价差的含义；字句及灰色来自同次 Sell Offer Setup 的有序 Lore。Wiki 未提供这条无买单时的回退提示，以实测为准。",
+  "lines": [
+    {
+      "id": "bazaar_sell_offer_fallback_percentage",
+      "context": "卖单设置选择价差百分比，但没有买单时的回退提示；紧接 No Buy Orders!。",
+      "raw": "§7Falling back to %s%.",
+      "text": "Falling back to %s%.",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "10",
+          "desc": "回退采用的百分比；不将本次样例数值写死"
+        }
+      ],
+      "gloss": "回退到服务器提示的百分比，不补出未知的基准价格或定价公式。",
+      "translate": true,
+      "zh": "改用 %s%。",
+      "samples": [
+        ["§7Falling back to 10%."]
+      ]
+    }
+  ]
+}
