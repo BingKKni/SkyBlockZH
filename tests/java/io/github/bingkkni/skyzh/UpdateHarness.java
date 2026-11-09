@@ -199,7 +199,7 @@ public final class UpdateHarness {
 
 	private static void publication(Path root, Path candidate, Path installed, Path manual, boolean manualActive) throws Exception {
 		if (!manualActive) Files.deleteIfExists(manual);
-		TranslationPackHarness.write(candidate, TranslationPackHarness.fixture(true), meta -> meta.addProperty("build_at_utc8", "2026-11-02T12:00:00+08:00"));
+		TranslationPackHarness.write(candidate, TranslationPackHarness.fixture(true), meta -> meta.addProperty("build_at_utc8", TranslationPackHarness.builtinTime(2)));
 		var offer = offer(candidate);
 		var previous = io.github.bingkkni.skyzh.text.Translator.index();
 		int generation = SkyZHConfig.generation();
@@ -231,9 +231,24 @@ public final class UpdateHarness {
 
 	private static void translations(Path root) throws Exception {
 		Path installed = root.resolve("automatic.zip"), candidate = root.resolve("candidate.zip"), manual = root.resolve("manual.zip");
-		TranslationPackHarness.write(installed, TranslationPackHarness.fixture(false), ignored -> {});
-		TranslationPackHarness.write(candidate, TranslationPackHarness.fixture(true), meta -> meta.addProperty("build_at_utc8", "2026-11-02T12:00:00+08:00"));
+		JsonObject builtin = TranslationPack.builtinManifest();
+		TranslationPackHarness.write(installed, TranslationPackHarness.fixture(false),
+			meta -> meta.addProperty("build_at_utc8", TranslationPackHarness.builtinTime(-2)));
+		TranslationPackHarness.write(candidate, TranslationPackHarness.fixture(true),
+			meta -> meta.addProperty("build_at_utc8", TranslationPackHarness.builtinTime(-1)));
+		check("旧自动包仍留在磁盘也以内置包作更新基准", TranslationUpdate.baseline(installed).equals(builtin)
+			&& Files.isRegularFile(installed));
+		check("远端虽比旧自动包新但比内置包旧时不下载", !TranslationUpdate.newer(offer(candidate).manifest(), TranslationUpdate.baseline(installed)));
+		TranslationPackHarness.write(installed, TranslationPackHarness.fixture(false),
+			meta -> meta.addProperty("build_at_utc8", TranslationPackHarness.builtinTime(0)));
+		check("自动包与内置包同时间时以内置包为基准", TranslationUpdate.baseline(installed).equals(builtin));
+
+		TranslationPackHarness.write(installed, TranslationPackHarness.fixture(false),
+			meta -> meta.addProperty("build_at_utc8", TranslationPackHarness.builtinTime(1)));
+		TranslationPackHarness.write(candidate, TranslationPackHarness.fixture(true),
+			meta -> meta.addProperty("build_at_utc8", TranslationPackHarness.builtinTime(2)));
 		var offer = offer(candidate);
+		check("较新自动包继续作为更新基准", TranslationUpdate.baseline(installed).equals(TranslationPack.read(installed).manifest()));
 		check("更新比对使用自动包日期和摘要", TranslationUpdate.newer(offer.manifest(), TranslationUpdate.baseline(installed)));
 		String oldHash = UpdateFiles.sha256(installed);
 		fails("关闭开关后不安装已下载包", () -> TranslationUpdate.install(candidate, installed, manual, offer, () -> false));
@@ -245,11 +260,12 @@ public final class UpdateHarness {
 		TranslationPackHarness.write(manual, TranslationPackHarness.fixture(false), ignored -> {});
 		var next = TranslationUpdate.install(candidate, installed, manual, offer, () -> true);
 		check("自动包安装后手动包仍然优先", next.source() == TranslationPack.Source.MANUAL);
-		check("安装后版本比较优先自动包", !TranslationUpdate.newer(offer.manifest(), TranslationUpdate.baseline(installed)));
+		check("安装后版本比较使用较新自动包", !TranslationUpdate.newer(offer.manifest(), TranslationUpdate.baseline(installed)));
 		check("重启仍加载已安装自动包", TranslationPack.load(root.resolve("missing-manual"), installed, null).source() == TranslationPack.Source.AUTOMATIC);
-		JsonObject repacked = offer.manifest().deepCopy(); repacked.addProperty("build_at_utc8", "2026-11-03T12:00:00+08:00");
+		JsonObject repacked = offer.manifest().deepCopy(); repacked.addProperty("build_at_utc8", TranslationPackHarness.builtinTime(3));
 		check("相同内容重新打包不重复更新", !TranslationUpdate.newer(repacked, offer.manifest()));
-		JsonObject older = offer.manifest().deepCopy(); older.addProperty("content_sha256", "e".repeat(64)); older.addProperty("build_at_utc8", "2026-10-01T12:00:00+08:00");
+		JsonObject older = offer.manifest().deepCopy(); older.addProperty("content_sha256", "e".repeat(64));
+		older.addProperty("build_at_utc8", TranslationPackHarness.builtinTime(1));
 		check("拒绝日期更旧的不同内容", !TranslationUpdate.newer(older, offer.manifest()));
 		publication(root, candidate, installed, manual, true);
 		publication(root, candidate, installed, manual, false);

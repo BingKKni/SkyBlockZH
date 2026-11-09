@@ -185,7 +185,8 @@ public final class UpdateInteractionHarness {
 		Path manual = directory.resolve("manual/translations.zip"), automatic = directory.resolve("updates/translations.zip");
 		Files.createDirectories(manual.getParent()); Files.createDirectories(automatic.getParent());
 		TranslationPackHarness.write(manual, TranslationPackHarness.fixture(false), ignored -> {});
-		TranslationPackHarness.write(automatic, TranslationPackHarness.fixture(true), ignored -> {});
+		TranslationPackHarness.write(automatic, TranslationPackHarness.fixture(true),
+			meta -> meta.addProperty("build_at_utc8", TranslationPackHarness.builtinTime(1)));
 		Path note = manual.resolveSibling("notes.txt"); Files.writeString(note, "keep me");
 		String automaticHash = UpdateFiles.sha256(automatic);
 		var selected = TranslationPack.load(manual, automatic, null);

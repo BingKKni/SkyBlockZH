@@ -99,6 +99,13 @@ public final class TranslationPack {
 		}
 	}
 
+	/** Compatible snapshots share one ordering rule for loading and update checks; ties prefer built-in data. */
+	public static boolean newer(JsonObject candidate, JsonObject installed) {
+		return !string(candidate, "content_sha256").equals(string(installed, "content_sha256"))
+			&& OffsetDateTime.parse(string(candidate, "build_at_utc8")).toInstant()
+				.isAfter(OffsetDateTime.parse(string(installed, "build_at_utc8")).toInstant());
+	}
+
 	public static Loaded compile(Path archive, Source source) throws IOException {
 		Content content = read(archive);
 		return new Loaded(TranslationLoader.compile(content.files()), source, content.manifest(), "");
@@ -109,25 +116,47 @@ public final class TranslationPack {
 
 	public static Loaded load(Path manual, Path automatic, Path builtin) {
 		String warning = "";
+		Loaded downloaded = null;
 		Path[] archives = {manual, automatic};
 		Source[] sources = {Source.MANUAL, Source.AUTOMATIC};
 		for (int i = 0; i < archives.length; i++) {
 			if (archives[i] == null || Files.notExists(archives[i])) continue;
 			try {
 				Loaded loaded = compile(archives[i], sources[i]);
-				return new Loaded(loaded.index(), loaded.source(), loaded.manifest(), warning);
+				if (loaded.source() == Source.MANUAL)
+					return new Loaded(loaded.index(), loaded.source(), loaded.manifest(), warning);
+				downloaded = loaded;
 			} catch (IOException | RuntimeException e) {
 				warning += (warning.isEmpty() ? "" : "；") + sources[i].label() + ": " + e.getMessage();
 				LoggerFactory.getLogger("SkyZH").warn("翻译包不可用，尝试下一个来源: {}", warning);
 			}
 		}
 		try {
+			JsonObject manifest = builtinManifest();
+			if (downloaded != null && newer(downloaded.manifest(), manifest))
+				return new Loaded(downloaded.index(), Source.AUTOMATIC, downloaded.manifest(), warning);
 			if (builtin == null) throw new IllegalStateException("缺少内置翻译目录");
 			Map<String, JsonObject> files = TranslationLoader.readDirectory(builtin);
 			validateCorpus(files);
-			return new Loaded(TranslationLoader.compile(files), Source.BUILTIN, builtinManifest(), warning);
+			Loaded loaded = new Loaded(TranslationLoader.compile(files), Source.BUILTIN, manifest, warning);
+			// Only discard the superseded automatic ZIP after its replacement has compiled successfully.
+			if (downloaded != null) {
+				try {
+					if (Files.deleteIfExists(automatic))
+						LoggerFactory.getLogger("SkyZH").info("已清理无需继续使用的自动翻译包: {}", automatic);
+				} catch (IOException | SecurityException e) {
+					LoggerFactory.getLogger("SkyZH").warn("无法清理旧自动翻译包，将继续使用内置翻译: {}", automatic, e);
+				}
+			}
+			return loaded;
 		} catch (IOException | RuntimeException e) {
-			throw new IllegalStateException((warning.isEmpty() ? "" : warning + "；") + "内置语料加载失败: " + e.getMessage(), e);
+			String failure = "内置语料加载失败: " + e.getMessage();
+			if (downloaded != null) {
+				LoggerFactory.getLogger("SkyZH").warn("{}，保留并使用已校验的自动翻译包", failure, e);
+				return new Loaded(downloaded.index(), Source.AUTOMATIC, downloaded.manifest(),
+					(warning.isEmpty() ? "" : warning + "；") + failure);
+			}
+			throw new IllegalStateException((warning.isEmpty() ? "" : warning + "；") + failure, e);
 		}
 	}
 

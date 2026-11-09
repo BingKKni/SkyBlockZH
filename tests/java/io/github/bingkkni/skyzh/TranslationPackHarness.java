@@ -67,14 +67,16 @@ public final class TranslationPackHarness {
 			}
 			Path archive = temporary.resolve("translations.zip");
 			Path automatic = temporary.resolve("automatic.zip");
-			write(automatic, newFiles, ignored -> {});
-			check("无手动包时使用自动包", TranslationPack.load(archive, automatic, builtin).source() == TranslationPack.Source.AUTOMATIC);
+			write(automatic, newFiles, meta -> meta.addProperty("build_at_utc8", builtinTime(1)));
+			check("无手动包时使用较新自动包且保留文件", TranslationPack.load(archive, automatic, builtin).source() == TranslationPack.Source.AUTOMATIC
+				&& Files.isRegularFile(automatic));
 			Files.writeString(archive, "broken manual");
 			var manualBroken = TranslationPack.load(archive, automatic, builtin);
 			check("手动包失败后自动包接替且保留警告", manualBroken.source() == TranslationPack.Source.AUTOMATIC && !manualBroken.warning().isEmpty());
 			write(archive, oldFiles, ignored -> {});
 			check("手动包始终覆盖自动包", TranslationPack.load(archive, automatic, builtin).source() == TranslationPack.Source.MANUAL
 				&& TranslationPack.load(archive, automatic, builtin).index().lookup(Surface.ITEM, "Removed line") != null);
+			checkAutomaticSelection(archive, automatic, builtin, oldFiles, newFiles, exported.files());
 			Files.writeString(archive, "broken manual");
 			Files.writeString(automatic, "broken automatic");
 			check("两种外置包都失败后回退内置", TranslationPack.load(archive, automatic, builtin).source() == TranslationPack.Source.BUILTIN);
@@ -155,6 +157,63 @@ public final class TranslationPackHarness {
 			}
 		}
 		System.out.println("翻译包检查通过: " + passed + " 项");
+	}
+
+	private static void checkAutomaticSelection(Path manual, Path automatic, Path builtin,
+		Map<String, JsonObject> oldFiles, Map<String, JsonObject> newFiles, Map<String, JsonObject> exported) throws Exception {
+		Files.delete(manual);
+		write(automatic, newFiles, meta -> meta.addProperty("build_at_utc8", builtinTime(-1)));
+		var loaded = TranslationPack.load(manual, automatic, builtin);
+		check("新版 Mod 内置包接替较旧自动包且使用内置译文", loaded.source() == TranslationPack.Source.BUILTIN
+			&& Translator.withIndex(loaded.index(), () -> Translator.translateAvailable(Component.literal("Reload marker"), Surface.ITEM)
+				.core().getString().equals("旧译文")));
+		check("内置包编译成功后清理过时自动包", !Files.exists(automatic));
+		check("清理后重载仍使用内置包", TranslationPack.load(manual, automatic, builtin).source() == TranslationPack.Source.BUILTIN);
+		if (System.getProperty("os.name").startsWith("Windows")) {
+			write(automatic, newFiles, meta -> meta.addProperty("build_at_utc8", builtinTime(-1)));
+			Files.setAttribute(automatic, "dos:readonly", true);
+			try {
+				loaded = TranslationPack.load(manual, automatic, builtin);
+				check("自动包只读无法删除仍成功使用内置翻译", loaded.source() == TranslationPack.Source.BUILTIN
+					&& loaded.warning().isEmpty() && Files.isRegularFile(automatic));
+				check("清理失败残留旧包不干扰更新检查", io.github.bingkkni.skyzh.update.TranslationUpdate.baseline(automatic)
+					.equals(TranslationPack.builtinManifest()));
+			} finally { Files.setAttribute(automatic, "dos:readonly", false); }
+		}
+
+		write(automatic, newFiles, meta -> meta.addProperty("build_at_utc8", builtinTime(0)));
+		check("同时间不同内容优先内置包并清理自动包", TranslationPack.load(manual, automatic, builtin).source() == TranslationPack.Source.BUILTIN
+			&& !Files.exists(automatic));
+		write(automatic, exported, meta -> meta.addProperty("build_at_utc8", builtinTime(1)));
+		check("相同内容重新打包优先内置且清理冗余自动包", TranslationPack.load(manual, automatic, builtin).source() == TranslationPack.Source.BUILTIN
+			&& !Files.exists(automatic));
+
+		write(automatic, newFiles, meta -> meta.addProperty("build_at_utc8", builtinTime(-1)));
+		loaded = TranslationPack.load(manual, automatic, builtin.resolve("missing"));
+		check("内置包无法加载时保留较旧但可用的自动包", loaded.source() == TranslationPack.Source.AUTOMATIC
+			&& !loaded.warning().isEmpty() && Files.isRegularFile(automatic));
+		Path broken = builtin.resolveSibling("broken-builtin");
+		Files.createDirectories(broken);
+		Files.writeString(broken.resolve("Bad.json"), "not json");
+		loaded = TranslationPack.load(manual, automatic, broken);
+		check("内置 JSON 损坏不删除可用自动包", loaded.source() == TranslationPack.Source.AUTOMATIC
+			&& !loaded.warning().isEmpty() && Files.isRegularFile(automatic));
+
+		write(manual, oldFiles, meta -> meta.addProperty("build_at_utc8", builtinTime(-2)));
+		byte[] manualBytes = Files.readAllBytes(manual);
+		check("手动包即使更旧也优先且不被清理", TranslationPack.load(manual, automatic, builtin).source() == TranslationPack.Source.MANUAL
+			&& java.util.Arrays.equals(manualBytes, Files.readAllBytes(manual)));
+		loaded = TranslationPack.removeManualAndLoad(manual, automatic, builtin);
+		check("主动卸载手动包后选择内置并清理旧自动包", loaded.source() == TranslationPack.Source.BUILTIN
+			&& !Files.exists(manual) && !Files.exists(automatic));
+		write(manual, oldFiles, ignored -> {});
+	}
+
+	static String builtinTime(int days) {
+		try {
+			return java.time.OffsetDateTime.parse(TranslationPack.builtinManifest().get("build_at_utc8").getAsString())
+				.plusDays(days).toString();
+		} catch (java.io.IOException e) { throw new java.io.UncheckedIOException(e); }
 	}
 
 	private static void checkData(TranslationIndex index, boolean newer) {

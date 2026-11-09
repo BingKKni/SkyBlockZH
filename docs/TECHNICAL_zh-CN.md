@@ -265,8 +265,9 @@ Mod 读取打包时删除译者说明字段后的 JSON，运行时字段保持�
 目录由 Mod 创建，通过 `FabricLoader.getGameDir()` 定位，开启版本隔离时不是启动器程序所在目录。
 启动或 `/skyzh reload`、`/skyblockzh reload` 时读取固定的 `translations.zip`，读取后关闭，不持续占用文件。
 
-加载顺序为手动包 `skyzh-translations/translations.zip`、自动包 `skyzh-updates/translations.zip`、内置语料。
-前一来源不存在或 JSON、必要表、引用、数量、摘要、API／格式检查或编译失败时，继续尝试下一来源；全部失败则保留当前索引。
+手动包 `skyzh-translations/translations.zip` 始终优先；没有可用手动包时，自动包 `skyzh-updates/translations.zip` 只有在 API 兼容、生成时间比内置包新且内容摘要不同时才优先，否则使用内置语料。
+来源不存在或 JSON、必要表、引用、数量、摘要、API／格式检查或编译失败时，尝试其他可用来源；全部失败则保留当前索引。
+内置语料编译成功后清理已被替代的自动包，删除失败只记日志；内置加载失败则保留并使用可用自动包。
 每个包整体替换语料，不逐条混合，因此不会复活已删除模板。移走全部外置 ZIP 后重载可恢复内置版本。
 并发重载请求会被拒绝，新索引在客户端线程发布，刷新显示缓存与采集去重索引，保留原文模式、设置及聊天历史。
 
@@ -286,7 +287,7 @@ Mod 读取打包时删除译者说明字段后的 JSON，运行时字段保持�
 脚本以 `--prepare` 生成 `build/pages`，ZIP 放在 `skyzh-updates/<ZIP SHA-256>/translations.zip`，另有固定最新包下载路径。Actions 使用 Pages artifact 部署整站，不将 ZIP 写入 Git 历史，也不创建翻译 Release。准备阶段带上前两份已发布归档，避免整站替换删除仍在使用的下载地址。部署后以 `--publish` 实际下载并校验新包，通过后才经 Git data API 提交仓库根目录 `skyzh-updates/update.json`；清单还记录受限数量的 `previous_archives` 供下次部署保留旧包。提交只修改清单且不强推，构建期间打包输入变动则保留旧清单。需要 `contents: write`、`pages: write`、`id-token: write` 权限；仓库 Settings → Pages 的 Source 选择 GitHub Actions。客户端仅放行本项目 Pages 下以摘要定位的翻译包地址，更新清单仍经 `api.github.com` 读取；正式 Mod 更新仍从 `/releases/latest` 获取。
 
 客户端在 `HypixelServer.isSkyBlock()` 且首次语料加载已结束时启用后台更新，不在启动初始化或单纯进入服务器时联网。自动检查、主动检查及重试按钮复用一个后台任务和忙状态；同时检查两项时按 Mod、翻译包顺序执行，各项保留独立冷却，Mod 检查失败不阻止随后检查翻译。
-翻译清单经 `api.github.com` 的 Contents API 获取，包含 `update_format: 1`、包级清单字段、`download_url`、`zip_size` 和 `zip_sha256`；API 必须完全相等，日期较新且内容摘要不同时才下载。比较基准优先采用可用自动包，否则使用内置元数据；内置资源 `skyzh-builtin-translations.json` 与 ZIP 清单由同一构建任务生成。手动包不参与自动更新的版本比较。
+翻译清单经 `api.github.com` 的 Contents API 获取，包含 `update_format: 1`、包级清单字段、`download_url`、`zip_size` 和 `zip_sha256`；API 必须完全相等，日期较新且内容摘要不同时才下载。比较基准与加载选择共用时间和摘要规则：只有比内置包新的可用自动包才作基准，否则使用内置元数据，即使旧自动包尚未删除也不会影响检查；内置资源 `skyzh-builtin-translations.json` 与 ZIP 清单由同一构建任务生成。手动包不参与自动更新的版本比较。
 
 临时下载支持 Range 续传，以固定 URL、大小和 SHA-256 标识同一文件；不支持续传时重新下载，不拼接不同响应。连接及响应有超时，流读取以 60 秒无数据为超时，允许持续有进度的慢速下载。完成后核对归档摘要和包内清单、校验语料并编译，持有现有重载锁后才替换正式自动包并切换索引；手动包仍优先。失败保留当前正式包及运行索引。
 

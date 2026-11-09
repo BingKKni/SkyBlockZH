@@ -33,19 +33,26 @@ public final class TranslationUpdate {
 	}
 
 	public static boolean newer(JsonObject candidate, JsonObject installed) {
-		return !UpdateFiles.string(candidate, "content_sha256").equals(UpdateFiles.string(installed, "content_sha256"))
-			&& OffsetDateTime.parse(UpdateFiles.string(candidate, "build_at_utc8")).toInstant()
-				.isAfter(OffsetDateTime.parse(UpdateFiles.string(installed, "build_at_utc8")).toInstant());
+		return TranslationPack.newer(candidate, installed);
 	}
 
+	/** Manual bundles never affect the update baseline, and stale automatic files need not be deleted first. */
 	public static JsonObject baseline(Path automatic) throws IOException {
+		JsonObject downloaded = null;
 		if (Files.exists(automatic)) {
-			try { return TranslationPack.compile(automatic, TranslationPack.Source.AUTOMATIC).manifest(); }
+			try { downloaded = TranslationPack.compile(automatic, TranslationPack.Source.AUTOMATIC).manifest(); }
 			catch (IOException | RuntimeException e) {
 				org.slf4j.LoggerFactory.getLogger("SkyZH").warn("自动翻译包不能作为版本比较基准，使用内置版本", e);
 			}
 		}
-		return TranslationPack.builtinManifest();
+		JsonObject builtin;
+		try { builtin = TranslationPack.builtinManifest(); }
+		catch (IOException | RuntimeException e) {
+			if (downloaded == null) throw e;
+			org.slf4j.LoggerFactory.getLogger("SkyZH").warn("内置翻译版本信息不可用，使用已校验的自动包作比较基准", e);
+			return downloaded;
+		}
+		return downloaded != null && newer(downloaded, builtin) ? downloaded : builtin;
 	}
 
 	/** Called under Translator's reload lock. No other reload can publish an older disk snapshot. */
