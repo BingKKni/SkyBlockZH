@@ -4,6 +4,7 @@
   "not_creatures_note": "这些词在词表里带 mob_name,但出现在 raw/category_name 占位符或 Tab 行时指宠物、职业、阵营或分类。翻译生物名关闭时只放过这些值,mob_name 占位符本身不受此表影响;占位符里的宠物、兔子用 \"mob\": false 标记。",
   "not_creatures": ["Archer", "Armadillo", "Bank", "Barbarian", "Bat", "Bee", "Berserk", "Blue Whale", "Chaos", "Crow", "Dolphin", "Dragon", "Dragon Egg", "Elephant", "Enderman", "Frog", "Giraffe", "Golem", "Grandma Wolf", "Griffin", "Healer", "Healthy", "Hedgehog", "Horse", "Hound", "Inferno", "Laser", "Lion", "Mage", "Monkey", "Ocelot", "Orchid Mantis", "Owl", "Phoenix", "Priest", "Reindeer", "Reinforced", "Rift Ferret", "Rock", "Scarecrow", "Seal", "Silverfish", "Sloth", "Tank", "Tiger", "Undead", "Undead Skeleton", "Warrior", "Wither", "Wolf"],
   "applies_to_types": [
+    "corpse_kind",
     "location_name",
     "mob_name",
     "category_name",
@@ -45,6 +46,12 @@
   "reforge_note": "reforge 类型不在 applies_to_types 里:它只给 TooltipTranslator(物品名首词)和 guide_item_name 占位符的「重铸名 + 已收录物品名」拆分用,不会替换任何占位符捕到的值。",
   "skyblock_month_note": "日历标题等日期行里的空岛月份单独使用 skyblock_month:Early/(无前缀)/Late × 春夏秋冬十二个月按顺序译成「1 月」到「12 月」(用户 2026-09-10 拍板,以月份代替季节),不改变 Winter 作为海洋生物分类时的寒冬译名。",
   "terms": [
+    {"en": "Underground Lab", "zh": "地下实验室", "types": ["location_name", "raw"], "note": "Beth/Jake 剧情地点，复用现有 Lore 译名。"},
+    {"en": "Lower Royal Mines", "zh": "皇家矿区下层", "types": ["location_name", "raw"], "note": "矿车目的地，复用 Dwarven_Mines_Rail_System 译名。"},
+    {"en": "Lapis", "zh": "青金石", "types": ["corpse_kind"], "note": "冰封尸体战利品类型；用户拍板 Umber 在此语境译为褐铁，其他语境不变。"},
+    {"en": "Umber", "zh": "褐铁", "types": ["corpse_kind"], "note": "冰封尸体战利品类型；用户拍板 Umber 在此语境译为褐铁，其他语境不变。"},
+    {"en": "Tungsten", "zh": "钨", "types": ["corpse_kind"], "note": "冰封尸体战利品类型；用户拍板 Umber 在此语境译为褐铁，其他语境不变。"},
+    {"en": "Vanguard", "zh": "Vanguard", "types": ["corpse_kind"], "note": "尸体类型沿用既定专名决定，Vanguard 保留英文；不借用其他语境的先锋译名。"},
     {"en":"Aquamarine Gemstone Block","zh":"Aquamarine 宝石方块","types":["category_name"],"note":"本轮挖矿实测；保留宝石种类名，只翻译方块通名。"},
     {"en":"Citrine Gemstone Block","zh":"Citrine 宝石方块","types":["category_name"],"note":"本轮挖矿实测；保留宝石种类名，只翻译方块通名。"},
     {"en":"Mooshroom Cow","zh":"哞菇","types":["category_name","mob_name"],"note":"https://hypixelskyblock.minecraft.wiki/w/Mooshroom_Cow_Pet；宠物沿用原版哞菇译名。"},

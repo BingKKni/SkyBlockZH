@@ -213,7 +213,7 @@ public enum Capture {
 	 * and the whole title stayed English. It is only ever allowed between two words, never at either
 	 * end, so a fragment beginning or ending on the ampersand is still not a name.
 	 */
-	private static final Set<String> CONNECTIVES = Set.of("of", "the", "and", "or", "in", "on", "at", "to", "for", "a", "&");
+	private static final Set<String> CONNECTIVES = Set.of("of", "the", "and", "or", "in", "on", "at", "to", "for", "with", "a", "&");
 
 	private final String regex;
 	private final boolean allowsEmpty;
@@ -534,7 +534,13 @@ public enum Capture {
 		for (int i = 0; i < words.length; i++) {
 			String word = words[i];
 
-			if (word.isEmpty() || containsSentencePunctuation(word)) {
+			// A middle initial belongs to a name; terminal punctuation still belongs to prose.
+			boolean middleInitial = i > 0 && i < words.length - 1
+				&& !words[i - 1].isEmpty() && startsName(words[i - 1])
+				&& !CONNECTIVES.contains(words[i - 1].toLowerCase(Locale.ROOT))
+				&& word.length() == 2 && word.charAt(0) >= 'A' && word.charAt(0) <= 'Z'
+				&& word.charAt(1) == '.';
+			if (word.isEmpty() || (!middleInitial && containsSentencePunctuation(word))) {
 				return false;
 			}
 

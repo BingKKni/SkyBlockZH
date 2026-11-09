@@ -51,6 +51,64 @@
         }
       ],
       "zh": "目标: 等待 Beth 再次造访你的花园"
+    },
+    {
+      "id": "beth_decode_note_objective",
+      "context": "本轮服务器采集；保留实时颜色和动态数值。",
+      "text": "Objective: Figure out the meaning of the note (%1$s %2$s %3$s)",
+      "raw": "§fObjective: §eFigure out the meaning of the note (%1$s %2$s %3$s)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "175"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "42"
+        },
+        {
+          "token": "%3$s",
+          "type": "number",
+          "example": "-470"
+        }
+      ],
+      "translate": true,
+      "zh": "目标: 解读纸条上的线索 (%1$s %2$s %3$s)",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Objective: ",
+          "zh": "目标: "
+        },
+        {
+          "color": "§e",
+          "text": "Figure out the meaning of the note (%1$s %2$s %3$s)",
+          "zh": "解读纸条上的线索 (%1$s %2$s %3$s)"
+        }
+      ]
+    },
+    {
+      "id": "beth_report_lab_objective",
+      "context": "本轮服务器采集；保留实时颜色和动态数值。",
+      "text": "Objective: Tell Beth about the secret lab when she revisits your Garden",
+      "raw": "§fObjective: §eTell Beth about the secret lab when she revisits your Garden",
+      "placeholders": [],
+      "translate": true,
+      "zh": "目标: 等 Beth 再次造访你的花园时，告诉她秘密实验室的事",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "Objective: ",
+          "zh": "目标: "
+        },
+        {
+          "color": "§e",
+          "text": "Tell Beth about the secret lab when she revisits your Garden",
+          "zh": "等 Beth 再次造访你的花园时，告诉她秘密实验室的事"
+        }
+      ]
     }
   ]
 }

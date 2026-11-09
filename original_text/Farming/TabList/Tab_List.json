@@ -5,13 +5,11 @@
   "gui_context": "花园里的 Tab 列表小节,包含堆肥器、害虫陷阱、访客和当前作物等状态。",
   "source_note": [
     "这是花园 TabList 的稳定标签和数值格式,不是某个玩家背包里的物品 Lore。数字、等级和计时器用占位符收录,避免只覆盖本次看到的数值。",
-    "Repellent、Spray 和 Sowdust 的当前中文名没有在项目中确立,不强行翻译专名;通用的 None 会由现有词表在 TabList 的值部分译成「无」。",
+    "Repellent、Spray 沿用已有译名，Sowdust 统一译为播尘；通用的 None 由现有词表在 TabList 的值部分译为无。",
     "Jacob's Contest 沿用 _shared/Terms.json 和 SkyBlock 菜单已有的「Jacob 的农业竞赛」,Compost/Composter、Pests、Copper 的语义分别以对应用户页面为准。"
   ],
   "excluded": [
-    "Sowdust: hysb.wiki/w/Sowdust 确认它是花园货币,但当前项目没有确立中文专名,因此保留英文。",
-    "Fear Mongerer: NPC 显示名,按项目人名/NPC 专名规则保留英文。",
-    "Plots: 1, 2, 4:地皮编号列表会随玩家解锁情况变化,且本次采集的每个编号带独立颜色,在确认可安全泛化的分段方案前不写固定译文。"
+    "Fear Mongerer: NPC 显示名,按项目人名/NPC 专名规则保留英文。"
   ],
   "lines": [
     {
@@ -608,7 +606,7 @@
         {
           "color": "",
           "text": "Sowdust: ",
-          "zh": "Sowdust: "
+          "zh": "播尘: "
         },
         {
           "color": "§2",
@@ -1133,14 +1131,14 @@
           "example": "1, 2, 4"
         }
       ],
-      "gloss": "值是逗号分隔的数字列表,颜色由服务器按段给,捕获值原样带颜色搬过去。",
+      "gloss": "用户拍板：Plots 统一译为地皮。值是逗号分隔的数字列表,颜色由服务器按段给,捕获值原样带颜色搬过去。",
       "translate": true,
       "zh": "地皮: %1$s",
       "segments": [
         {
           "color": "",
           "text": "Plots: ",
-          "zh": "Plots: "
+          "zh": "地皮: "
         },
         {
           "color": "§b",

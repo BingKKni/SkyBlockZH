@@ -2766,6 +2766,24 @@ public final class TranslationHarness {
 				report(type + " 仍拒绝句子和越界值", !Capture.of(type).accepts(invalid), invalid);
 			}
 		}
+		for (String valid : List.of("Madame Eleanor Q. Goldsworth III", "John A. Smith")) {
+			report("姓名中间缩写保留句点: " + valid, Capture.of("npc_name").accepts(valid), valid);
+		}
+		for (String invalid : List.of("Q. Goldsworth", "Eleanor Q.", "John AB. Smith", "John q. Smith", "Talk to A. Smith", "Talk To A. Smith", "Speak with Q. Goldsworth", "Speak With Q. Goldsworth", "Slay A. Boss Now Please Today")) {
+			report("姓名缩写不放宽句末标点或词数: " + invalid, !Capture.of("npc_name").accepts(invalid), invalid);
+		}
+		checkRow("访客中间缩写不会阻断新访客标记", " §6Madame Eleanor Q. Goldsworth III §b§lNEW!",
+			" §6Madame Eleanor Q. Goldsworth III §b§l新!");
+		checkRow("地皮编号颜色分别保留", " Plots: §b1§f, §b2§f, §b4§f, §b8",
+			" 地皮: §b1§f, §b2§f, §b4§f, §b8");
+		checkRow("播尘 Tab 分段译名", " Sowdust: §267,175", " 播尘: §267,175");
+		checkRow("盛放剩余时间按时长翻译", " Blooming§f: §dfor 5m 56s ", " 盛放§f: §d剩余 5分56秒 ");
+		check("褐铁尸体类型不借用矿物译名", "§6UMBER §bCORPSE LOOT!", Surface.CHAT, "§6褐铁§b尸体战利品!");
+		check("Vanguard 尸体类型保留英文", "§6VANGUARD §bCORPSE LOOT!", Surface.CHAT, "§6Vanguard§b 尸体战利品!");
+		check("矿物 Umber 仍为褐铁矿", "Umber", Surface.ITEM, "褐铁矿");
+		for (String gem : List.of("Ruby", "Jade", "Topaz", "Amber", "Amethyst", "Sapphire", "Jasper", "Opal", "Aquamarine", "Citrine", "Onyx", "Peridot")) {
+			check("集市宝石名保留英文: " + gem, "§b▶ §7" + gem, Surface.ITEM, "§b▶ §7" + gem);
+		}
 		report("分类名允许 Trick or Treat 里的连接词", Capture.of("category_name").accepts("Trick or Treat Enthusiast"),
 			"Trick or Treat Enthusiast");
 		report("型号例外不扩大分类名", !Capture.NAME.accepts("Gauss Carrot Shovel Mk. III"), "NAME");
