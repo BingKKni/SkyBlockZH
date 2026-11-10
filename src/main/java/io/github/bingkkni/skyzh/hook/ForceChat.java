@@ -23,8 +23,7 @@ public final class ForceChat {
 	private static final int CHARACTER_LIMIT = 131072;
 	private static final List<GuiMessage> MESSAGES = new ArrayList<>();
 	private static final ChatDisplayCache CACHE = new ChatDisplayCache();
-	private static Object level;
-	private static Object connection;
+	private static List<GuiMessage> stored;
 	private static int characters;
 	private static int packetDepth;
 	private static int scroll;
@@ -50,18 +49,17 @@ public final class ForceChat {
 			&& SkyZHConfig.get().enabled && verifiedSkyBlock;
 	}
 
-	public static void tick() { collecting(); }
+	/** A history with a hole in it is worse than an empty one, so a disabled mod keeps none. */
+	public static void tick() {
+		if (!SkyZHConfig.get().enabled && !MESSAGES.isEmpty()) clear();
+	}
 
+	/**
+	 * Hypixel rather than SkyBlock: the lines a new world sends before its sidebar exists belong to
+	 * the view as well. The history lives as long as vanilla's own, which {@code clearMessages} ends.
+	 */
 	private static boolean collecting() {
-		Minecraft mc = Minecraft.getInstance();
-		Object currentConnection = mc.getConnection() == null ? null : mc.getConnection().getConnection();
-		boolean collect = SkyZHConfig.get().enabled && HypixelServer.isSkyBlock();
-		if (level != mc.level || connection != currentConnection || !collect) {
-			clear();
-			level = mc.level;
-			connection = currentConnection;
-		}
-		return collect;
+		return SkyZHConfig.get().enabled && HypixelServer.isHypixel();
 	}
 
 	/** Called on the main thread around packet dispatch, before listener/chat events can replace it. */
@@ -166,12 +164,27 @@ public final class ForceChat {
 			MESSAGES.set(i, new GuiMessage(marker.addedTime(), marker.content(), marker.signature(),
 				GuiMessageSource.SYSTEM_CLIENT, marker.tag()));
 		}
-		characters = MESSAGES.stream().mapToInt(message -> message.content().getString().length()).sum();
+		characters = characters();
 		trim();
 		invalidateLayout();
 	}
 	public static void clear() {
 		MESSAGES.clear(); characters = 0; previousLines = List.of();
 		resetScroll(); invalidateLayout();
+	}
+
+	/** Vanilla carries chat across a world change as stored state; the view follows the same two calls. */
+	public static void store() { stored = List.copyOf(MESSAGES); }
+
+	public static void restore() {
+		if (stored == null) return;
+		clear();
+		MESSAGES.addAll(stored);
+		characters = characters();
+		stored = null;
+	}
+
+	private static int characters() {
+		return MESSAGES.stream().mapToInt(message -> message.content().getString().length()).sum();
 	}
 }

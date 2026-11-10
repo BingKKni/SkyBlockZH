@@ -215,15 +215,16 @@ to server packets and HUD state, with a conservative prefix filter before comple
 Replacement backgrounds follow vanilla text-background opacity. Unknown renderers, deferred work outside
 verified caller chains and direct GPU rendering are not guaranteed to be intercepted.
 
-While enabled in verified SkyBlock, a display history retains at most 100 messages and 128 Ki characters.
+While enabled on an identified Hypixel connection, a display history retains at most 100 messages and 128 Ki characters.
 Server system messages are snapshotted at packet dispatch; client notices and signed player messages are
 also retained without translation. High/Force temporarily borrow this view only during vanilla chat drawing,
 click hit testing and scrolling, restoring the original display queue and scroll state even on exceptions.
 It never writes `allMessages` or replays chat events. Upstream translations, counters and asynchronous
 line replacement cannot change this source; filtered server messages may reappear. Vanilla wrapping,
 hover/click actions and fading remain in use, with a separate scroll anchor. The original-text key changes
-only the view's language. World/server changes, leaving SkyBlock, disabling the mod and clearing chat
-clear this history; font reloads invalidate layouts only.
+only the view's language. The history lives as long as vanilla's own: a world change keeps it through
+vanilla's `storeState` / `restoreState`, while disconnecting, disabling the mod and clearing chat clear it;
+font reloads invalidate layouts only.
 
 All modes respect the server boundary, master switch and original-text key. `PriorityText` source records
 are bounded and cleared on world/server changes, disabling the mod, changing priority or toggling custom

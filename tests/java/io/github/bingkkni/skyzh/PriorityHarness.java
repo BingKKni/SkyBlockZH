@@ -372,6 +372,16 @@ public final class PriorityHarness {
 			check("聊天快照保留点击和插入样式", StyledText.of(messages.getFirst().content()).equals(StyledText.of(styled)));
 			io.github.bingkkni.skyzh.hook.ForceChat.invalidateLayout();
 			check("字体重载不清原文", messages.size() == 3);
+			// Vanilla's world change: store, clear, then restore over whatever arrived in between.
+			io.github.bingkkni.skyzh.hook.ForceChat.store();
+			io.github.bingkkni.skyzh.hook.ForceChat.clear();
+			remember.invoke(null, Component.literal("configuration notice"), 13);
+			io.github.bingkkni.skyzh.hook.ForceChat.restore();
+			check("换世界后随原版恢复独立历史", messages.size() == 3
+				&& messages.getFirst().content().getString().equals("Continue"));
+			io.github.bingkkni.skyzh.hook.ForceChat.clear();
+			io.github.bingkkni.skyzh.hook.ForceChat.restore();
+			check("未保存状态时不恢复已清空的历史", messages.isEmpty());
 			var append = history.getDeclaredMethod("append", net.minecraft.client.multiplayer.chat.GuiMessage.class);
 			append.setAccessible(true);
 			{

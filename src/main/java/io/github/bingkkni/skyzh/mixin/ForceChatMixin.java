@@ -76,6 +76,12 @@ public abstract class ForceChatMixin {
 	@Inject(method = "clearMessages", at = @At("TAIL"), require = 0)
 	private void skyzh$clearSource(boolean history, CallbackInfo info) { ForceChat.clear(); }
 
+	@Inject(method = "storeState", at = @At("HEAD"), require = 0)
+	private void skyzh$storeSource(CallbackInfoReturnable<ChatComponent.State> info) { ForceChat.store(); }
+
+	@Inject(method = "restoreState", at = @At("TAIL"), require = 0)
+	private void skyzh$restoreSource(ChatComponent.State state, CallbackInfo info) { ForceChat.restore(); }
+
 	@WrapMethod(method = "addMessageToDisplayQueue", require = 0)
 	private void skyzh$vanillaQueue(GuiMessage message, Operation<Void> original) {
 		skyzh$vanillaUpdate(() -> original.call(message));
