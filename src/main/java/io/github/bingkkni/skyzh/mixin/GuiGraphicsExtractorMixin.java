@@ -32,4 +32,16 @@ public abstract class GuiGraphicsExtractorMixin {
 		if (io.github.bingkkni.skyzh.SkyZHConfig.get().displayPriority != io.github.bingkkni.skyzh.DisplayPriority.DEFAULT) return lines;
 		return TooltipTranslator.translate(Minecraft.getInstance().font, lines);
 	}
+
+	/** The entry vanilla item tooltips never take; see {@link io.github.bingkkni.skyzh.compat.ItemListCompat}. */
+	@ModifyVariable(
+		method = "setComponentTooltipForNextFrame(Lnet/minecraft/client/gui/Font;Ljava/util/List;IILnet/minecraft/resources/Identifier;)V",
+		at = @At("HEAD"),
+		argsOnly = true,
+		index = 2,
+		require = 0
+	)
+	private List<Component> skyzh$translateListedTooltip(List<Component> lines) {
+		return io.github.bingkkni.skyzh.compat.ItemListCompat.tooltip(lines);
+	}
 }
