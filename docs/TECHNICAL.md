@@ -53,10 +53,13 @@ coordinates. Entering/leaving SkyBlock also rebuilds wrapped chat to remove stal
 changing the network connection clears both pieces of evidence before any new text can pass. The pure
 corpus engine and `locate` stay server-independent for offline checks and capture classification.
 
-Every hook is `require = 0`. If a Minecraft update moves a method, or another mod claims the same
-instruction first, the result is "this surface stops being translated", not "the modpack won't boot".
-The startup log prints how many records loaded per surface, which is how you tell "not translated
-yet" from "not working".
+Every hook uses `require = 0`, so a missing injection point can leave that surface untranslated
+without failing the minimum-injection check. The startup log prints how many records loaded per surface.
+
+Hooks that wrap calls use MixinExtras `@WrapOperation`, not `@Redirect`. Redirects compete for exclusive
+ownership of an instruction; losing that conflict can make a required hook fail at startup.
+`@WrapOperation` supports chaining with other hooks, including redirects. `checkMixinTargets` checks
+the configured mixins for `@Redirect`.
 
 Original-key hints observe incoming server chat without modifying or sending packets; rebuilding chat
 history cannot emit another hint. The separate, default-off [capture](#runtime-capture-which-is-off-by-default)
@@ -750,10 +753,8 @@ The last row is `platform/ClientGui`, one copy per target with the same signatur
 what they do when they fire is shared code in `hook/`, written once.
 
 One jar covers all of 26.1, 26.1.1 and 26.1.2: every class this mod touches is byte-identical across
-the three. All ranges are closed at the top on purpose. Installing a jar on the Minecraft it was not
-built for would not crash — it would leave the HUD, the sidebar and every hologram silently English,
-because every injector here is `require = 0` — so the range is what stops Fabric from loading it at
-all.
+the three. All ranges are closed at the top so Fabric only loads each jar on its supported Minecraft
+versions. `require = 0` allows missing injection points; it does not establish cross-version compatibility.
 
 ### Checking that the injectors still apply
 

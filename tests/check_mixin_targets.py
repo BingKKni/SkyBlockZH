@@ -2,11 +2,9 @@
 
 WHY THIS EXISTS
 ---------------
-Every injector in this mod is `require = 0`, on purpose: another mod redirecting the same instruction
-would otherwise make ours impossible to apply, and refusing to boot somebody's modpack over a
-translation is the wrong trade. The cost of that choice is that a target which stopped matching is
-*silent*. The build succeeds, the game starts, the log says the corpus loaded — and one surface is
-quietly English forever, because a descriptor gained a parameter or a class was split in two.
+Every injector in this mod uses `require = 0`, allowing missing injection points without failing the
+minimum-injection check. A target that stops matching can therefore leave a surface silently
+untranslated even though the source compiles and the corpus loads.
 
 Supporting a second Minecraft turns that from a risk into a near-certainty. 26.2 renamed the HUD class,
 moved the entity type constants and dropped a `double` from `submitNameTag`; each of those is exactly
@@ -25,7 +23,9 @@ For each mixin class named in the config:
     descriptor when the annotation gives one);
   * every `At.target` call site appears in the bytecode of the method it is supposed to be found in;
   * every `@Shadow` field or method exists on the target — these are not `require = 0` and a missing
-    one is a crash at apply time rather than a silent miss.
+    one is a crash at apply time rather than a silent miss;
+  * no injector is a `@Redirect`. Competing redirects can make a required hook fail at startup;
+    `@WrapOperation` supports chaining with other hooks instead.
 
 USAGE
 -----
@@ -407,6 +407,13 @@ def main(argv):
                                 % (simple, shadow))
 
         for injector in injectors:
+            checked += 1
+            if injector["kind"] == "Redirect":
+                problems.append(
+                    "%s#%s: @Redirect 独占指令，会让别的 Mod/客户端在同一处的必需重定向直接崩溃，请改用 @WrapOperation"
+                    % (simple, injector["member"])
+                )
+
             for method in injector["methods"]:
                 name = method.split("(", 1)[0]
                 descriptor = "(" + method.split("(", 1)[1] if "(" in method else None
@@ -439,7 +446,7 @@ def main(argv):
     print("  检查了 %d 处目标（%d 个 mixin 类）" % (checked, len(names)))
 
     if problems:
-        print("\n以下目标对不上，注入会静默失效：")
+        print("\n以下注入有问题（目标对不上的会静默失效）：")
         for problem in problems:
             print("  [失败] " + problem)
         print("\n失败 %d 处" % len(problems))

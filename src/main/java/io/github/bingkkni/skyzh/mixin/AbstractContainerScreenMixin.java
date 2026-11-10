@@ -1,5 +1,7 @@
 package io.github.bingkkni.skyzh.mixin;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import io.github.bingkkni.skyzh.text.ContainerTitle;
 import io.github.bingkkni.skyzh.text.TextLayout;
 import net.minecraft.client.gui.Font;
@@ -9,7 +11,6 @@ import net.minecraft.network.chat.Component;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
 
 /**
  * The title line at the top of a chest or menu.
@@ -24,7 +25,7 @@ public abstract class AbstractContainerScreenMixin {
 	@Shadow
 	protected int imageWidth;
 
-	@Redirect(
+	@WrapOperation(
 		method = "extractLabels",
 		at = @At(
 			value = "INVOKE",
@@ -34,13 +35,14 @@ public abstract class AbstractContainerScreenMixin {
 		require = 0
 	)
 	private void skyzh$translateContainerTitle(
-		GuiGraphicsExtractor graphics, Font font, Component title, int x, int y, int color, boolean shadow
+		GuiGraphicsExtractor graphics, Font font, Component title, int x, int y, int color, boolean shadow,
+		Operation<Void> original
 	) {
 		// Four pixels of breathing room each side, so a title that grew is clipped by the mod rather
 		// than by the edge of the panel.
 		ContainerTitle.Rendered rendered = ContainerTitle.of(font, title, this.imageWidth - 8);
 		int drawX = rendered.centered() ? TextLayout.centeredX(font, rendered.text(), this.imageWidth) : x;
 
-		graphics.text(font, rendered.text(), drawX, y, color, shadow);
+		original.call(graphics, font, rendered.text(), drawX, y, color, shadow);
 	}
 }

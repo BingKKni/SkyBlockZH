@@ -13,6 +13,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.numbers.StyledFormat;
 import net.minecraft.world.scores.Objective;
 import net.minecraft.world.scores.PlayerScoreEntry;
+import net.minecraft.world.scores.PlayerTeam;
 
 /** High yields to custom panels; Force replaces supported panels through vanilla submission hooks. */
 public final class ForceSidebar {
@@ -88,11 +89,11 @@ public final class ForceSidebar {
 			.sorted(Comparator.comparingInt(PlayerScoreEntry::value).reversed()
 				.thenComparing(PlayerScoreEntry::owner, String.CASE_INSENSITIVE_ORDER)).limit(15)
 			.map(entry -> {
-				Component name = SidebarText.row(board.getPlayersTeam(entry.owner()), entry.ownerName());
+				Component name = SidebarText.row(PlayerTeam.formatNameForTeam(board.getPlayersTeam(entry.owner()), entry.ownerName()));
 				Component score = entry.formatValue(format);
 				return new Row(name, score, font.width(score));
 			}).toList();
-		Component title = SidebarText.title(objective);
+		Component title = SidebarText.title(objective.getDisplayName());
 		int titleWidth = font.width(title);
 		int width = titleWidth;
 		for (Row row : rows) width = Math.max(width, font.width(row.name())

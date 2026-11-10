@@ -1,5 +1,7 @@
 package io.github.bingkkni.skyzh.mixin;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import io.github.bingkkni.skyzh.HypixelServer;
 import io.github.bingkkni.skyzh.SkyZHConfig;
 import io.github.bingkkni.skyzh.text.DocumentTranslation;
@@ -11,7 +13,6 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Both painting and hit-testing visit the same translated, vanilla-wrapped page. */
@@ -34,11 +35,11 @@ public abstract class BookViewScreenMixin extends Screen {
 		}
 	}
 
-	@Redirect(method = "visitText", at = @At(value = "INVOKE",
+	@WrapOperation(method = "visitText", at = @At(value = "INVOKE",
 		target = "Lnet/minecraft/client/gui/screens/inventory/BookViewScreen$BookAccess;getPage(I)Lnet/minecraft/network/chat/Component;"), require = 0)
-	private Component skyzh$page(BookViewScreen.BookAccess access, int page) {
-		Component original = access.getPage(page);
+	private Component skyzh$page(BookViewScreen.BookAccess access, int page, Operation<Component> original) {
+		Component source = original.call(access, page);
 		return HypixelServer.canTranslate()
-			? DocumentTranslation.book(original, 114, this.font::width) : original;
+			? DocumentTranslation.book(source, 114, this.font::width) : source;
 	}
 }

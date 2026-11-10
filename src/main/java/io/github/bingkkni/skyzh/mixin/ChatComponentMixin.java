@@ -1,5 +1,7 @@
 package io.github.bingkkni.skyzh.mixin;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import io.github.bingkkni.skyzh.HypixelServer;
 import io.github.bingkkni.skyzh.SkyZHConfig;
 import io.github.bingkkni.skyzh.text.ChatDisplayCache;
@@ -16,7 +18,6 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
@@ -68,13 +69,18 @@ public abstract class ChatComponentMixin {
 	}
 
 	/**
-	 * {@code require = 0}, here and on every other hook in this mod. Another mod redirecting the
-	 * same instruction would make this one impossible to apply, and refusing to boot somebody's
+	 * {@code require = 0}, here and on every other hook in this mod: refusing to boot somebody's
 	 * modpack over a translation is the wrong trade — the game should start and the text should stay
 	 * English. The startup log line reporting how many records loaded is how a user tells the
 	 * difference between "not translated yet" and "not working".
+	 *
+	 * <p>{@code @WrapOperation} and never {@code @Redirect}, for the other half of the same trade. A
+	 * redirect owns its instruction: whichever mod gets there second is skipped, and when that mod's
+	 * hook is required the game does not start — which is how this mod's tab-list redirect once kept
+	 * Lunar Client from booting. A wrap chains instead, around another mod's redirect included, so
+	 * {@code original.call} is the only way a hook here reaches the call it stands in front of.
 	 */
-	@Redirect(
+	@WrapOperation(
 		method = "addMessageToDisplayQueue",
 		at = @At(
 			value = "INVOKE",
@@ -82,14 +88,16 @@ public abstract class ChatComponentMixin {
 		),
 		require = 0
 	)
-	private List<FormattedCharSequence> skyzh$translateBeforeSplit(GuiMessage message, Font font, int width) {
+	private List<FormattedCharSequence> skyzh$translateBeforeSplit(
+		GuiMessage message, Font font, int width, Operation<List<FormattedCharSequence>> original
+	) {
 		boolean translate = HypixelServer.canTranslate() && ChatDisplayCache.isServerMessage(message);
 		return this.skyzh$displayCache.get(message, font, width, translate,
 			SkyZHConfig.get().translateSkyBlockName, Translator.index(), () -> {
-				if (!translate) return message.splitLines(font, width);
+				if (!translate) return original.call(message, font, width);
 				Component translated = Translator.translateChatBlock(message.content(), font, width);
 				// Only the throwaway message is translated; vanilla retains indent, tags and wrapping.
-				return skyzh$rebuild(message, translated).splitLines(font, width);
+				return original.call(skyzh$rebuild(message, translated), font, width);
 			});
 	}
 

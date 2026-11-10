@@ -1,5 +1,7 @@
 package io.github.bingkkni.skyzh.mixin;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import io.github.bingkkni.skyzh.hook.SidebarText;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.network.chat.Component;
@@ -8,19 +10,18 @@ import net.minecraft.world.scores.Objective;
 import net.minecraft.world.scores.Team;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
 
 /**
  * Where {@link SidebarText} attaches on 26.1.x: the sidebar is drawn by {@code Gui}, which 26.2 split
  * into a {@code Gui} that owns screens and a {@code Hud} that draws. The 26.2 copy of this file is
- * these same two redirects against {@code Hud}.
+ * these same two hooks against {@code Hud}.
  *
  * <p>Read {@link SidebarText} for why both hooks are on the source of the text rather than on the
  * call that draws it.
  */
 @Mixin(Gui.class)
 public abstract class HudScoreboardMixin {
-	@Redirect(
+	@WrapOperation(
 		method = "displayScoreboardSidebar",
 		at = @At(
 			value = "INVOKE",
@@ -28,8 +29,8 @@ public abstract class HudScoreboardMixin {
 		),
 		require = 0
 	)
-	private Component skyzh$translateSidebarTitle(Objective objective) {
-		return SidebarText.title(objective);
+	private Component skyzh$translateSidebarTitle(Objective objective, Operation<Component> original) {
+		return SidebarText.title(original.call(objective));
 	}
 
 	/**
@@ -40,7 +41,7 @@ public abstract class HudScoreboardMixin {
 	 * English and nothing else changes. It is {@code $1} in both 26.1.x and 26.2 — checked against the
 	 * real jars, not assumed, since nothing about a wrong guess here would show up at build time.
 	 */
-	@Redirect(
+	@WrapOperation(
 		method = "lambda$displayScoreboardSidebar$1",
 		at = @At(
 			value = "INVOKE",
@@ -48,7 +49,7 @@ public abstract class HudScoreboardMixin {
 		),
 		require = 0
 	)
-	private MutableComponent skyzh$translateSidebarLine(Team team, Component name) {
-		return SidebarText.row(team, name);
+	private MutableComponent skyzh$translateSidebarLine(Team team, Component name, Operation<MutableComponent> original) {
+		return SidebarText.row(original.call(team, name));
 	}
 }

@@ -1,5 +1,7 @@
 package io.github.bingkkni.skyzh.mixin;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import io.github.bingkkni.skyzh.HypixelServer;
 import io.github.bingkkni.skyzh.text.Surface;
 import io.github.bingkkni.skyzh.text.TextLayout;
@@ -10,7 +12,6 @@ import net.minecraft.client.gui.components.BossHealthOverlay;
 import net.minecraft.network.chat.Component;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
 
 /**
  * The bar at the top of the screen — SkyBlock's event timers live here.
@@ -22,7 +23,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
  */
 @Mixin(BossHealthOverlay.class)
 public abstract class BossHealthOverlayMixin {
-	@Redirect(
+	@WrapOperation(
 		method = "extractRenderState",
 		at = @At(
 			value = "INVOKE",
@@ -31,14 +32,14 @@ public abstract class BossHealthOverlayMixin {
 		require = 0
 	)
 	private void skyzh$translateBossBarName(
-		GuiGraphicsExtractor graphics, Font font, Component name, int x, int y, int color
+		GuiGraphicsExtractor graphics, Font font, Component name, int x, int y, int color, Operation<Void> original
 	) {
 		if (!HypixelServer.canTranslate()) {
-			graphics.text(font, name, x, y, color);
+			original.call(graphics, font, name, x, y, color);
 			return;
 		}
 
 		Component translated = Translator.translateLine(name, Surface.BOSS_BAR);
-		graphics.text(font, translated, TextLayout.centeredX(font, translated, graphics.guiWidth()), y, color);
+		original.call(graphics, font, translated, TextLayout.centeredX(font, translated, graphics.guiWidth()), y, color);
 	}
 }

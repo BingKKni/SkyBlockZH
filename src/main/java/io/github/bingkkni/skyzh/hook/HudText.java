@@ -1,5 +1,6 @@
 package io.github.bingkkni.skyzh.hook;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import io.github.bingkkni.skyzh.HypixelServer;
 import io.github.bingkkni.skyzh.text.Surface;
 import io.github.bingkkni.skyzh.text.TooltipTranslator;
@@ -38,30 +39,34 @@ public final class HudText {
 	 * record.
 	 */
 	public static void actionBar(
-		GuiGraphicsExtractor graphics, Font font, Component text, int x, int y, int width, int color
+		GuiGraphicsExtractor graphics, Font font, Component text, int x, int y, int width, int color,
+		Operation<Void> original
 	) {
-		draw(graphics, font, text, Surface.ACTION_BAR, x, y, width, color);
+		draw(graphics, font, text, Surface.ACTION_BAR, x, y, width, color, original);
 	}
 
 	/** The big centred title and the subtitle under it — both calls in vanilla's title method. */
 	public static void title(
-		GuiGraphicsExtractor graphics, Font font, Component text, int x, int y, int width, int color
+		GuiGraphicsExtractor graphics, Font font, Component text, int x, int y, int width, int color,
+		Operation<Void> original
 	) {
-		draw(graphics, font, text, Surface.MISC, x, y, width, color);
+		draw(graphics, font, text, Surface.MISC, x, y, width, color, original);
 	}
 
 	/** The item name above the hotbar; shares tooltip handling for reforges, icons and stars. */
 	public static void selectedItemName(
-		GuiGraphicsExtractor graphics, Font font, Component text, int x, int y, int width, int color
+		GuiGraphicsExtractor graphics, Font font, Component text, int x, int y, int width, int color,
+		Operation<Void> original
 	) {
-		draw(graphics, font, text, Surface.ITEM, x, y, width, color);
+		draw(graphics, font, text, Surface.ITEM, x, y, width, color, original);
 	}
 
 	private static void draw(
-		GuiGraphicsExtractor graphics, Font font, Component text, Surface surface, int x, int y, int width, int color
+		GuiGraphicsExtractor graphics, Font font, Component text, Surface surface, int x, int y, int width, int color,
+		Operation<Void> original
 	) {
 		if (!HypixelServer.canTranslate()) {
-			graphics.textWithBackdrop(font, text, x, y, width, color);
+			original.call(graphics, font, text, x, y, width, color);
 			return;
 		}
 
@@ -71,6 +76,6 @@ public final class HudText {
 			: Translator.translateLine(text, surface);
 		int translatedWidth = font.width(translated);
 		// x was left-of-centre by half the old width; keep the same midpoint for the new one.
-		graphics.textWithBackdrop(font, translated, x + (width - translatedWidth) / 2, y, translatedWidth, color);
+		original.call(graphics, font, translated, x + (width - translatedWidth) / 2, y, translatedWidth, color);
 	}
 }

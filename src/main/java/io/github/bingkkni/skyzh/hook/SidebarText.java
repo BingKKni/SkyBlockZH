@@ -5,9 +5,6 @@ import io.github.bingkkni.skyzh.text.Surface;
 import io.github.bingkkni.skyzh.text.Translator;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.world.scores.Objective;
-import net.minecraft.world.scores.PlayerTeam;
-import net.minecraft.world.scores.Team;
 
 /**
  * The sidebar — the scoreboard down the right of the screen.
@@ -36,8 +33,7 @@ public final class SidebarText {
 	}
 
 	/** The heading, which on Hypixel is the animated SKYBLOCK banner. */
-	public static Component title(Objective objective) {
-		Component source = objective.getDisplayName();
+	public static Component title(Component source) {
 		return HypixelServer.canTranslate() ? Translator.translateLine(source, Surface.SCOREBOARD) : source;
 	}
 
@@ -47,8 +43,7 @@ public final class SidebarText {
 	 * <p>Hypixel splits a line across those two halves arbitrarily, so the formatted name is the first
 	 * point at which a whole line exists to be matched against.
 	 */
-	public static MutableComponent row(Team team, Component name) {
-		MutableComponent source = PlayerTeam.formatNameForTeam(team, name);
+	public static MutableComponent row(MutableComponent source) {
 		return HypixelServer.canTranslate() ? Translator.translateLine(source, Surface.SCOREBOARD).copy() : source;
 	}
 }

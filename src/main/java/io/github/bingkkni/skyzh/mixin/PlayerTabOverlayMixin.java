@@ -1,5 +1,7 @@
 package io.github.bingkkni.skyzh.mixin;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import io.github.bingkkni.skyzh.HypixelServer;
 import io.github.bingkkni.skyzh.text.Surface;
 import io.github.bingkkni.skyzh.text.Translator;
@@ -12,7 +14,6 @@ import net.minecraft.network.chat.FormattedText;
 import net.minecraft.util.FormattedCharSequence;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
 
 /**
  * The player list behind the Tab key.
@@ -36,11 +37,11 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(PlayerTabOverlay.class)
 public abstract class PlayerTabOverlayMixin {
 	/**
-	 * One row. The redirected call is the only place a row's text is produced: its result is measured
+	 * One row. The wrapped call is the only place a row's text is produced: its result is measured
 	 * for the column width and then stored on the entry that gets drawn, so a single hook keeps the
 	 * two in step.
 	 */
-	@Redirect(
+	@WrapOperation(
 		method = "extractRenderState",
 		at = @At(
 			value = "INVOKE",
@@ -48,8 +49,8 @@ public abstract class PlayerTabOverlayMixin {
 		),
 		require = 0
 	)
-	private Component skyzh$translateRow(PlayerTabOverlay overlay, PlayerInfo info) {
-		Component source = overlay.getNameForDisplay(info);
+	private Component skyzh$translateRow(PlayerTabOverlay overlay, PlayerInfo info, Operation<Component> original) {
+		Component source = original.call(overlay, info);
 		return HypixelServer.canTranslate() ? Translator.translateRow(source, Surface.TABLIST) : source;
 	}
 
@@ -58,7 +59,7 @@ public abstract class PlayerTabOverlayMixin {
 	 * newlines in it and are split here before being centred. Translating in front of the split lets
 	 * vanilla re-break and re-centre the Chinese itself.
 	 */
-	@Redirect(
+	@WrapOperation(
 		method = "extractRenderState",
 		at = @At(
 			value = "INVOKE",
@@ -66,11 +67,13 @@ public abstract class PlayerTabOverlayMixin {
 		),
 		require = 0
 	)
-	private List<FormattedCharSequence> skyzh$translateHeaderAndFooter(Font font, FormattedText text, int width) {
+	private List<FormattedCharSequence> skyzh$translateHeaderAndFooter(
+		Font font, FormattedText text, int width, Operation<List<FormattedCharSequence>> original
+	) {
 		if (HypixelServer.canTranslate() && text instanceof Component component) {
-			return font.split(Translator.translateBlock(component, Surface.TABLIST), width);
+			return original.call(font, Translator.translateBlock(component, Surface.TABLIST), width);
 		}
 
-		return font.split(text, width);
+		return original.call(font, text, width);
 	}
 }
