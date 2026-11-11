@@ -639,45 +639,65 @@
       "id": "charming_stat_upgrade",
       "context": "魅惑技能升级属性说明",
       "text": "Grants +%1$s➜%2$s ❣ Charm Chance.",
-      "placeholders": [{"token":"%1$s","type":"number","example":"0.68"},{"token":"%2$s","type":"number","example":"0.72"}],
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "0.68"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "0.72"
+        }
+      ],
       "gloss": "",
       "translate": true,
-      "zh": "提供 +%1$s➜%2$s ❣ 魅惑概率。",
+      "zh": "❣ 魅惑概率 +%1$s➜%2$s。",
       "segments": [
         {
           "color": "§f",
           "text": "Grants ",
-          "zh": "提供 "
+          "zh": "",
+          "omit": true,
+          "order": 0
         },
         {
           "color": "§a",
           "text": "+",
-          "zh": "+"
+          "zh": "+",
+          "order": 2
         },
         {
           "color": "§8",
           "text": "%1$s➜",
-          "zh": "%1$s➜"
+          "zh": "%1$s➜",
+          "order": 3
         },
         {
           "color": "§a",
           "text": "%2$s",
-          "zh": "%2$s"
+          "zh": "%2$s",
+          "order": 4
         },
         {
           "color": "§f",
           "text": " ",
-          "zh": " "
+          "zh": "",
+          "omit": true,
+          "order": 5
         },
         {
           "color": "§b",
           "text": "❣ Charm Chance",
-          "zh": "❣ 魅惑概率"
+          "zh": "❣ 魅惑概率 ",
+          "order": 1
         },
         {
           "color": "§f",
           "text": ".",
-          "zh": "。"
+          "zh": "。",
+          "order": 6
         }
       ]
     },

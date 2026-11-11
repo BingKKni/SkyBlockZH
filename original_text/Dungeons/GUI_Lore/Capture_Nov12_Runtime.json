@@ -1,0 +1,43 @@
+{
+  "source": "../SkyZH_Logs；沿用 Ophelia 已有实测多行样本",
+  "verified_ingame": true,
+  "lines": [
+    {
+      "id": "mending_dungeons_full",
+      "context": "修补头盔；整句优先于旧逐行规则，不修改其他菜单共用的 Dungeons 尾行。",
+      "text": "Grants +50 Mending while in Dungeons.",
+      "raw": "§7Grants §a+50 Mending §7while in Dungeons§7.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "身处地牢时，☄ 修补 +50。",
+      "segments": [
+        {"text":"Grants ","zh":"时，","color":"§7","order":2},
+        {"text":"+50 Mending ","zh":"☄ 修补 +50","color":"§a","order":3},
+        {"text":"while in ","zh":"身处","color":"§7","order":0},
+        {"text":"Dungeons","zh":"地牢","color":"§7","order":1},
+        {"text":".","zh":"。","color":"§7","order":4}
+      ],
+      "samples": [["§7Grants §a+50 Mending §7while in","§7Dungeons."]]
+    },
+    {
+      "id": "mending_vitality_dungeons_full",
+      "context": "修补与活力共享一个增幅；数值及符号仍读取原始绿色片段。",
+      "text": "Grants +%s Mending and  Vitality while in Dungeons.",
+      "raw": "§7Grants §a+%s Mending §7and §4 Vitality §7while in Dungeons.",
+      "placeholders": [{"token":"%s","type":"number","example":"65","desc":"两项属性共享的增幅"}],
+      "translate": true,
+      "zh": "身处地牢时，☄ 修补与 ♨ 活力均 +%s。",
+      "segments": [
+        {"text":"Grants ","zh":"时，","color":"§7","order":2},
+        {"text":"+%s","zh":"+%s","color":"§a","order":6},
+        {"text":" Mending ","zh":"☄ 修补","color":"§a","order":3},
+        {"text":"and ","zh":"与 ","color":"§7","order":4},
+        {"text":" Vitality ","zh":"♨ 活力均 ","color":"§4","order":5},
+        {"text":"while in ","zh":"身处","color":"§7","order":0},
+        {"text":"Dungeons","zh":"地牢","color":"§7","order":1},
+        {"text":".","zh":"。","color":"§7","order":7}
+      ],
+      "samples": [["§7Grants §a+65 Mending §7and §4 Vitality","§7while in Dungeons."]]
+    }
+  ]
+}

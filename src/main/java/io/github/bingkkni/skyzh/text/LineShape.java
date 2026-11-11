@@ -59,7 +59,7 @@ public final class LineShape {
 	 * and has a colon two sentences later from being cut in the middle of its own text.
 	 */
 	private static final int LONGEST_SPEAKER = 48;
-	private static final Pattern ITEM_COUNT = Pattern.compile(" x[0-9][0-9,]*$");
+	private static final Pattern ITEM_COUNT = Pattern.compile("(?: x| - )[0-9][0-9,]*$");
 	private static final Pattern ITEM_PROGRESS = Pattern.compile("[0-9][0-9,]*/[0-9][0-9,]*(?: \\([0-9][0-9,]*x\\))? ");
 	private static final Pattern ITEM_STARS = Pattern.compile(" [✪★☆➊➋➌➍➎]+$");
 	private static final Pattern ITEM_DROP_CHANCE = Pattern.compile(
@@ -112,7 +112,7 @@ public final class LineShape {
 					add(ranges, progress.end(), end);
 				}
 			}
-			// Shop costs and ingredient lists append counts to actual item names. Keep the suffix
+			// Shop costs, ingredient counts and Drill Fuel yields decorate actual item names. Keep the suffix
 			// live (and styled), rather than rendering the whole decorated name through a string term.
 			var count = ITEM_COUNT.matcher(plain.substring(0, end));
 			if (count.find()) {

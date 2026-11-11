@@ -9279,37 +9279,43 @@
         }
       ],
       "translate": true,
-      "zh": "获得+%1$s 挖掘扩散，生效条件:市长 Cole 的挖矿狂欢天赋处于激活状态。",
+      "zh": "当市长 Cole 的挖掘狂欢天赋生效时，▚ 挖掘扩散 +%1$s。",
       "segments": [
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "获得"
+          "zh": "。",
+          "order": 5
         },
         {
           "color": "§e",
           "text": "+%1$s Mining Spread ",
-          "zh": "+%1$s 挖掘扩散"
+          "zh": "▚ 挖掘扩散 +%1$s",
+          "order": 4
         },
         {
           "color": "§7",
           "text": "while ",
-          "zh": "，生效条件:"
+          "zh": "当",
+          "order": 0
         },
         {
           "color": "§b",
           "text": "Mayor Cole's ",
-          "zh": "市长 Cole 的"
+          "zh": "市长 Cole 的",
+          "order": 1
         },
         {
           "color": "§6",
           "text": "Mining Fiesta ",
-          "zh": "挖矿狂欢"
+          "zh": "挖掘狂欢",
+          "order": 2
         },
         {
           "color": "§7",
           "text": "perk is active.",
-          "zh": "天赋处于激活状态。"
+          "zh": "天赋生效时，",
+          "order": 3
         }
       ],
       "samples": [
@@ -9318,7 +9324,8 @@
           "§bMayor Cole's §6Mining Fiesta §7perk is",
           "§7active."
         ]
-      ]
+      ],
+      "gloss": "用户拍板：条件置于句首，Mining Fiesta 天赋在此句作挖掘狂欢；图标保留服务器字形，属性名后置加成数值。"
     },
     {
       "id": "oct29_gui_a_use_rare_and_powerful_ores_to_upgrade_this_beacon_to_unlock_addit_d2b138a",
@@ -9526,32 +9533,37 @@
         }
       ],
       "translate": true,
-      "zh": "获得+%1$s 农业时运，适用目标: 害虫。",
+      "zh": "清除 害虫时， 农业时运 +%1$s。",
       "segments": [
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "获得"
+          "zh": "。",
+          "order": 4
         },
         {
           "color": "§6",
           "text": "+%1$s Farming Fortune ",
-          "zh": "+%1$s 农业时运"
+          "zh": " 农业时运 +%1$s",
+          "order": 3
         },
         {
           "color": "§7",
           "text": "towards ",
-          "zh": "，适用目标:"
+          "zh": "清除",
+          "order": 0
         },
         {
           "color": "§2",
           "text": " Pests",
-          "zh": " 害虫"
+          "zh": " 害虫",
+          "order": 1
         },
         {
           "color": "§7",
           "text": ".",
-          "zh": "。"
+          "zh": "时，",
+          "order": 2
         }
       ],
       "samples": [
@@ -9575,32 +9587,37 @@
         }
       ],
       "translate": true,
-      "zh": "获得+%1$s 防御力，生效地点: 挖矿岛屿。",
+      "zh": "身处 挖矿岛屿时， 防御力 +%1$s。",
       "segments": [
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "获得"
+          "zh": "。",
+          "order": 4
         },
         {
           "color": "§a",
           "text": "+%1$s Defense ",
-          "zh": "+%1$s 防御力"
+          "zh": " 防御力 +%1$s",
+          "order": 3
         },
         {
           "color": "§7",
           "text": "while on  ",
-          "zh": "，生效地点: "
+          "zh": "身处 ",
+          "order": 0
         },
         {
           "color": "§6",
           "text": "Mining Islands",
-          "zh": "挖矿岛屿"
+          "zh": "挖矿岛屿",
+          "order": 1
         },
         {
           "color": "§7",
           "text": ".",
-          "zh": "。"
+          "zh": "时，",
+          "order": 2
         }
       ],
       "samples": [
@@ -9673,32 +9690,37 @@
         }
       ],
       "translate": true,
-      "zh": "获得+%1$s 挖掘扩散，适用目标:方块。",
+      "zh": "挖掘方块时， 挖掘扩散 +%1$s。",
       "segments": [
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "获得"
+          "zh": "。",
+          "order": 4
         },
         {
           "color": "§e",
           "text": "+%1$s Mining Spread ",
-          "zh": "+%1$s 挖掘扩散"
+          "zh": " 挖掘扩散 +%1$s",
+          "order": 3
         },
         {
           "color": "§7",
           "text": "towards ",
-          "zh": "，适用目标:"
+          "zh": "挖掘",
+          "order": 0
         },
         {
           "color": "§9",
           "text": "Blocks",
-          "zh": "方块"
+          "zh": "方块",
+          "order": 1
         },
         {
           "color": "§7",
           "text": ".",
-          "zh": "。"
+          "zh": "时，",
+          "order": 2
         }
       ],
       "samples": [
@@ -9722,17 +9744,18 @@
         }
       ],
       "translate": true,
-      "zh": "获得+%1$s%  防御力。",
+      "zh": " 防御力 +%1$s%。",
       "segments": [
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "获得"
+          "zh": "",
+          "omit": true
         },
         {
           "color": "§a",
           "text": "+%1$s%  Defense",
-          "zh": "+%1$s%  防御力"
+          "zh": " 防御力 +%1$s%"
         },
         {
           "color": "§7",
@@ -9761,42 +9784,50 @@
         }
       ],
       "translate": true,
-      "zh": "获得+%1$s 速度，持续 %2$s 秒，触发条件:使用传送技能。",
+      "zh": "使用传送技能后，✦ 速度 +%1$s，持续 %2$s 秒。",
       "segments": [
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "获得"
+          "zh": "",
+          "order": 0,
+          "omit": true
         },
         {
           "color": "§f",
           "text": "+%1$s Speed ",
-          "zh": "+%1$s 速度"
+          "zh": "✦ 速度 +%1$s",
+          "order": 4
         },
         {
           "color": "§7",
           "text": "for ",
-          "zh": "，持续 "
+          "zh": "，持续 ",
+          "order": 5
         },
         {
           "color": "§a",
           "text": "%2$ss ",
-          "zh": "%2$s 秒"
+          "zh": "%2$s 秒。",
+          "order": 6
         },
         {
           "color": "§7",
           "text": "after using a ",
-          "zh": "，触发条件:使用"
+          "zh": "使用",
+          "order": 1
         },
         {
           "color": "§6",
           "text": "Transmission ",
-          "zh": "传送"
+          "zh": "传送",
+          "order": 2
         },
         {
           "color": "§7",
           "text": "ability.",
-          "zh": "技能。"
+          "zh": "技能后，",
+          "order": 3
         }
       ],
       "samples": [
@@ -9954,32 +9985,37 @@
         }
       ],
       "translate": true,
-      "zh": "获得+%1$s 狩猎时运，适用目标:水系碎片。",
+      "zh": "捕获水系碎片时， 狩猎时运 +%1$s。",
       "segments": [
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "获得"
+          "zh": "。",
+          "order": 4
         },
         {
           "color": "§d",
           "text": "+%1$s Hunting Fortune ",
-          "zh": "+%1$s 狩猎时运"
+          "zh": " 狩猎时运 +%1$s",
+          "order": 3
         },
         {
           "color": "§7",
           "text": "towards ",
-          "zh": "，适用目标:"
+          "zh": "捕获",
+          "order": 0
         },
         {
           "color": "§9",
           "text": "Water Shards",
-          "zh": "水系碎片"
+          "zh": "水系碎片",
+          "order": 1
         },
         {
           "color": "§7",
           "text": ".",
-          "zh": "。"
+          "zh": "时，",
+          "order": 2
         }
       ],
       "samples": [
@@ -10003,7 +10039,7 @@
         }
       ],
       "translate": true,
-      "zh": "你全身护甲上的荆棘附魔每有 1 级，额外获得 +%1$s  过度绽放。",
+      "zh": "你全身护甲上的荆棘附魔每有 1 级， 过度绽放 +%1$s。",
       "segments": [
         {
           "color": "§7",
@@ -10014,13 +10050,13 @@
         {
           "color": "§e",
           "text": "+%1$s Overbloom ",
-          "zh": "+%1$s  过度绽放",
+          "zh": " 过度绽放 +%1$s",
           "order": 3
         },
         {
           "color": "§7",
           "text": "per tier of ",
-          "zh": "附魔每有 1 级，额外获得 ",
+          "zh": "附魔每有 1 级，",
           "order": 2
         },
         {
@@ -10120,32 +10156,37 @@
         }
       ],
       "translate": true,
-      "zh": "获得+%1$s 挖掘时运，每拥有 %2$s❄ 寒冷即可叠加一次。",
+      "zh": "每有 %2$s❄ 寒冷，☘ 挖掘时运 +%1$s。",
       "segments": [
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "获得"
+          "zh": "。",
+          "order": 4
         },
         {
           "color": "§6",
           "text": "+%1$s Mining Fortune ",
-          "zh": "+%1$s 挖掘时运"
+          "zh": "☘ 挖掘时运 +%1$s",
+          "order": 3
         },
         {
           "color": "§7",
           "text": "for every ",
-          "zh": "，每拥有 "
+          "zh": "每有 ",
+          "order": 0
         },
         {
           "color": "§b",
           "text": "%2$s❄ Cold ",
-          "zh": "%2$s❄ 寒冷"
+          "zh": "%2$s❄ 寒冷",
+          "order": 1
         },
         {
           "color": "§7",
           "text": "you have.",
-          "zh": "即可叠加一次。"
+          "zh": "，",
+          "order": 2
         }
       ],
       "samples": [
@@ -10503,32 +10544,37 @@
         }
       ],
       "translate": true,
-      "zh": "获得+%1$s 宝藏概率，生效地点: 死水沼泽。",
+      "zh": "身处 死水沼泽时， 宝藏几率 +%1$s。",
       "segments": [
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "获得"
+          "zh": "。",
+          "order": 4
         },
         {
           "color": "§6",
           "text": "+%1$s Treasure Chance ",
-          "zh": "+%1$s 宝藏概率"
+          "zh": " 宝藏几率 +%1$s",
+          "order": 3
         },
         {
           "color": "§7",
           "text": "while in the  ",
-          "zh": "，生效地点: "
+          "zh": "身处 ",
+          "order": 0
         },
         {
           "color": "§2",
           "text": "Backwater Bayou",
-          "zh": "死水沼泽"
+          "zh": "死水沼泽",
+          "order": 1
         },
         {
           "color": "§7",
           "text": ".",
-          "zh": "。"
+          "zh": "时，",
+          "order": 2
         }
       ],
       "samples": [
@@ -10672,42 +10718,49 @@
         }
       ],
       "translate": true,
-      "zh": "获得+%1$s 挖掘时运，适用目标:秘银和钛。",
+      "zh": "挖掘秘银和钛时， 挖掘时运 +%1$s。",
       "segments": [
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "获得"
+          "zh": "。",
+          "order": 6
         },
         {
           "color": "§6",
           "text": "+%1$s Mining Fortune ",
-          "zh": "+%1$s 挖掘时运"
+          "zh": " 挖掘时运 +%1$s",
+          "order": 5
         },
         {
           "color": "§7",
           "text": "towards ",
-          "zh": "，适用目标:"
+          "zh": "挖掘",
+          "order": 0
         },
         {
           "color": "§a",
           "text": "Mithril ",
-          "zh": "秘银"
+          "zh": "秘银",
+          "order": 1
         },
         {
           "color": "§7",
           "text": "and ",
-          "zh": "和"
+          "zh": "和",
+          "order": 2
         },
         {
           "color": "§a",
           "text": "Titanium",
-          "zh": "钛"
+          "zh": "钛",
+          "order": 3
         },
         {
           "color": "§7",
           "text": ".",
-          "zh": "。"
+          "zh": "时，",
+          "order": 4
         }
       ],
       "samples": [
@@ -10835,32 +10888,37 @@
         }
       ],
       "translate": true,
-      "zh": "获得+%1$s 治疗力，生效地点: 地牢。",
+      "zh": "身处 地牢时， 修补 +%1$s。",
       "segments": [
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "获得"
+          "zh": "。",
+          "order": 4
         },
         {
           "color": "§a",
           "text": "+%1$s Mending ",
-          "zh": "+%1$s 治疗力"
+          "zh": " 修补 +%1$s",
+          "order": 3
         },
         {
           "color": "§7",
           "text": "while in  ",
-          "zh": "，生效地点: "
+          "zh": "身处 ",
+          "order": 0
         },
         {
           "color": "§c",
           "text": "Dungeons",
-          "zh": "地牢"
+          "zh": "地牢",
+          "order": 1
         },
         {
           "color": "§7",
           "text": ".",
-          "zh": "。"
+          "zh": "时，",
+          "order": 2
         }
       ],
       "samples": [
@@ -11656,42 +11714,56 @@
         }
       ],
       "translate": true,
-      "zh": "获得%1$s→+%2$s  力量，生效地点:伐木岛屿。",
+      "zh": "身处伐木岛屿时， 力量 %1$s→+%2$s。",
       "segments": [
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "获得"
+          "zh": "",
+          "omit": true,
+          "order": 3
         },
         {
           "color": "§8",
           "text": "%1$s",
-          "zh": "%1$s"
+          "zh": "%1$s",
+          "order": 5
         },
         {
           "color": "§8§l",
           "text": "→",
-          "zh": "→"
+          "zh": "→",
+          "order": 6
         },
         {
           "color": "§c",
-          "text": "+%2$s  Strength",
-          "zh": "+%2$s  力量"
+          "text": "+%2$s ",
+          "zh": "+%2$s。",
+          "order": 7
+        },
+        {
+          "color": "§c",
+          "text": " Strength",
+          "zh": " 力量 ",
+          "order": 4
         },
         {
           "color": "§7",
           "text": " while on ",
-          "zh": "，生效地点:"
+          "zh": "身处",
+          "order": 0
         },
         {
           "color": "§2",
           "text": "Foraging Islands",
-          "zh": "伐木岛屿"
+          "zh": "伐木岛屿",
+          "order": 1
         },
         {
           "color": "§7",
           "text": ".",
-          "zh": "。"
+          "zh": "时，",
+          "order": 2
         }
       ],
       "samples": [
@@ -11921,22 +11993,25 @@
         }
       ],
       "translate": true,
-      "zh": "获得+%1$s  魔法寻宝，适用目标: 构造体类怪物。",
+      "zh": "面对  构造体生物时， 魔法寻宝 +%1$s。",
       "segments": [
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "获得"
+          "zh": "。",
+          "order": 2
         },
         {
           "color": "§b",
           "text": "+%1$s  Magic Find ",
-          "zh": "+%1$s  魔法寻宝"
+          "zh": " 魔法寻宝 +%1$s",
+          "order": 1
         },
         {
           "color": "§7",
           "text": "against  Construct mobs.",
-          "zh": "，适用目标: 构造体类怪物。"
+          "zh": "面对  构造体生物时，",
+          "order": 0
         }
       ],
       "samples": [

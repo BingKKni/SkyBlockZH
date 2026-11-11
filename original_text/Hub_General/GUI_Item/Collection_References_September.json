@@ -608,32 +608,44 @@
       "raw": "§7Grants §8%1$s§8§l→§4+%2$s %3$s Vitality§7.",
       "text": "Grants %1$s→+%2$s %3$s Vitality.",
       "translate": true,
-      "zh": "获得 %1$s→+%2$s %3$s 活力。",
+      "zh": "%3$s 活力 %1$s→+%2$s。",
       "segments": [
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "获得 "
+          "zh": "",
+          "omit": true,
+          "order": 0
         },
         {
           "color": "§8",
           "text": "%1$s",
-          "zh": "%1$s"
+          "zh": "%1$s",
+          "order": 2
         },
         {
           "color": "§8§l",
           "text": "→",
-          "zh": "→"
+          "zh": "→",
+          "order": 3
         },
         {
           "color": "§4",
-          "text": "+%2$s %3$s Vitality",
-          "zh": "+%2$s %3$s 活力"
+          "text": "+%2$s ",
+          "zh": "+%2$s",
+          "order": 4
+        },
+        {
+          "color": "§4",
+          "text": "%3$s Vitality",
+          "zh": "%3$s 活力 ",
+          "order": 1
         },
         {
           "color": "§7",
           "text": ".",
-          "zh": "。"
+          "zh": "。",
+          "order": 5
         }
       ],
       "placeholders": [

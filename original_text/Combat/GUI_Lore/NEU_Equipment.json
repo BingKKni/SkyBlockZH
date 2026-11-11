@@ -309,7 +309,7 @@
         }
       ],
       "translate": true,
-      "zh": "每有 1 级地牢等级，获得 %1$s  伤害和 %2$s ❈ 防御力。",
+      "zh": "每有 1 级地牢等级， 伤害 %1$s 和 ❈ 防御力 %2$s。",
       "gloss": "用户确认：per Catacombs level 表示按已有地牢等级逐级计算属性，并非升级时才发放奖励。",
       "source_items": [
         "ASTRAEA"
@@ -323,7 +323,7 @@
         },
         {
           "text": "%1$s  Damage ",
-          "zh": "%1$s  伤害",
+          "zh": " 伤害 %1$s ",
           "color": "§c",
           "order": 3
         },
@@ -335,13 +335,13 @@
         },
         {
           "text": "%2$s ❈ Defense ",
-          "zh": "%2$s ❈ 防御力",
+          "zh": "❈ 防御力 %2$s",
           "color": "§a",
           "order": 5
         },
         {
           "text": "per ",
-          "zh": "等级，获得 ",
+          "zh": "等级，",
           "color": "§7",
           "order": 2
         },
@@ -1951,7 +1951,12 @@
     },
     {
       "id": "neu_553d0d0080d2",
-      "mob_refs": [{"text": "Mythological mobs", "zh": "神话生物"}],
+      "mob_refs": [
+        {
+          "text": "Mythological mobs",
+          "zh": "神话生物"
+        }
+      ],
       "context": "物品 Lore 整句；DAEDALUS_AXE, STARRED_DAEDALUS_AXE",
       "raw": "§7Grants §c%1$s%  Damage §7and §b%2$s✯ Magic Find §7on §2 Mythological §7mobs per §3Bestiary §7tier you have across all of them.",
       "text": "Grants %1$s%  Damage and %2$s✯ Magic Find on  Mythological mobs per Bestiary tier you have across all of them.",
@@ -1968,7 +1973,7 @@
         }
       ],
       "translate": true,
-      "zh": "每有 1 级 神话生物的生物图鉴总等级，在对这类生物作战时获得 %1$s%  伤害和 %2$s ✯ 魔法寻宝。",
+      "zh": "每有 1 级 神话生物的生物图鉴总等级，在对这类生物作战时， 伤害 %1$s% 和 ✯ 魔法寻宝 %2$s。",
       "source_items": [
         "DAEDALUS_AXE",
         "STARRED_DAEDALUS_AXE"
@@ -1982,7 +1987,7 @@
         },
         {
           "text": "%1$s%  Damage ",
-          "zh": "%1$s%  伤害",
+          "zh": " 伤害 %1$s% ",
           "color": "§c",
           "order": 5
         },
@@ -1994,7 +1999,7 @@
         },
         {
           "text": "%2$s✯ Magic Find ",
-          "zh": "%2$s ✯ 魔法寻宝",
+          "zh": "✯ 魔法寻宝 %2$s",
           "color": "§b",
           "order": 7
         },
@@ -2024,7 +2029,7 @@
         },
         {
           "text": "tier you have across all of them.",
-          "zh": "总等级，在对这类生物作战时获得 ",
+          "zh": "总等级，在对这类生物作战时，",
           "color": "§7",
           "order": 4
         }
@@ -4442,7 +4447,7 @@
         }
       ],
       "translate": true,
-      "zh": "每有 1 级地牢等级，获得 %1$s  伤害和 %2$s ✎ 法力。",
+      "zh": "每有 1 级地牢等级， 伤害 %1$s 和 ✎ 法力 %2$s。",
       "source_items": [
         "HYPERION"
       ],
@@ -4455,7 +4460,7 @@
         },
         {
           "text": "%1$s  Damage ",
-          "zh": "%1$s  伤害",
+          "zh": " 伤害 %1$s ",
           "order": 3,
           "color": "§c"
         },
@@ -4467,19 +4472,19 @@
         },
         {
           "text": "%2$s ",
-          "zh": "%2$s ",
-          "order": 5,
+          "zh": "%2$s",
+          "order": 6,
           "color": "§a"
         },
         {
           "text": "✎ Intelligence ",
-          "zh": "✎ 法力",
-          "order": 6,
+          "zh": "✎ 法力 ",
+          "order": 5,
           "color": "§b"
         },
         {
           "text": "per ",
-          "zh": "等级，获得 ",
+          "zh": "等级，",
           "order": 2,
           "color": "§7"
         },
@@ -6094,19 +6099,20 @@
         }
       ],
       "translate": true,
-      "zh": "获得 %1$s ✦ 速度，持续 %2$s 秒。",
+      "zh": "✦ 速度 %1$s，持续 %2$s 秒。",
       "source_items": [
         "ROGUE_SWORD"
       ],
       "segments": [
         {
           "text": "Grants ",
-          "zh": "获得 ",
-          "color": "§7"
+          "zh": "",
+          "color": "§7",
+          "omit": true
         },
         {
           "text": "%1$s✦ Speed ",
-          "zh": "%1$s ✦ 速度",
+          "zh": "✦ 速度 %1$s",
           "color": "§f"
         },
         {
@@ -6415,7 +6421,7 @@
         }
       ],
       "translate": true,
-      "zh": "每有 1 级地牢等级，获得 %1$s  伤害和 %2$s ☠ 暴击伤害。",
+      "zh": "每有 1 级地牢等级， 伤害 %1$s 和 ☠ 暴击伤害 %2$s。",
       "source_items": [
         "SCYLLA"
       ],
@@ -6428,7 +6434,7 @@
         },
         {
           "text": "%1$s  Damage ",
-          "zh": "%1$s  伤害",
+          "zh": " 伤害 %1$s ",
           "order": 3,
           "color": "§c"
         },
@@ -6440,19 +6446,19 @@
         },
         {
           "text": "%2$s ",
-          "zh": "%2$s ",
-          "order": 5,
+          "zh": "%2$s",
+          "order": 6,
           "color": "§a"
         },
         {
           "text": "☠ Crit Damage ",
-          "zh": "☠ 暴击伤害",
-          "order": 6,
+          "zh": "☠ 暴击伤害 ",
+          "order": 5,
           "color": "§9"
         },
         {
           "text": "per ",
-          "zh": "等级，获得 ",
+          "zh": "等级，",
           "order": 2,
           "color": "§7"
         },
@@ -7838,7 +7844,7 @@
         }
       ],
       "translate": true,
-      "zh": "每有 1 级地牢等级，获得 %1$s  伤害和 %2$s ❁ 力量。",
+      "zh": "每有 1 级地牢等级， 伤害 %1$s 和 ❁ 力量 %2$s。",
       "source_items": [
         "VALKYRIE"
       ],
@@ -7851,7 +7857,7 @@
         },
         {
           "text": "%1$s  Damage ",
-          "zh": "%1$s  伤害",
+          "zh": " 伤害 %1$s ",
           "color": "§c",
           "order": 3
         },
@@ -7863,19 +7869,19 @@
         },
         {
           "text": "%2$s ",
-          "zh": "%2$s ",
+          "zh": "%2$s",
           "color": "§a",
-          "order": 5
-        },
-        {
-          "text": "❁ Strength ",
-          "zh": "❁ 力量",
-          "color": "§c",
           "order": 6
         },
         {
+          "text": "❁ Strength ",
+          "zh": "❁ 力量 ",
+          "color": "§c",
+          "order": 5
+        },
+        {
           "text": "per ",
-          "zh": "等级，获得 ",
+          "zh": "等级，",
           "color": "§7",
           "order": 2
         },
@@ -11678,7 +11684,7 @@
         }
       ],
       "translate": true,
-      "zh": "获得 %1$s 奖杯几率。",
+      "zh": " 奖杯几率 %1$s。",
       "source_items": [
         "BRONZE_HUNTER_BOOTS",
         "BRONZE_HUNTER_CHESTPLATE",
@@ -11701,12 +11707,13 @@
       "segments": [
         {
           "text": "Grants ",
-          "zh": "获得 ",
-          "color": "§7"
+          "zh": "",
+          "color": "§7",
+          "omit": true
         },
         {
           "text": "%1$s Trophy Chance",
-          "zh": "%1$s 奖杯几率",
+          "zh": " 奖杯几率 %1$s",
           "color": "§6"
         },
         {
@@ -11737,7 +11744,7 @@
         }
       ],
       "translate": true,
-      "zh": "护甲上每有 1 颗 ✪ 升级星，获得 %1$s ☂ 钓鱼速度。",
+      "zh": "护甲上每有 1 颗 ✪ 升级星，☂ 钓鱼速度 %1$s。",
       "source_items": [
         "BRONZE_HUNTER_BOOTS",
         "BRONZE_HUNTER_CHESTPLATE",
@@ -11765,13 +11772,13 @@
         },
         {
           "text": "%1$s☂ Fishing Speed",
-          "zh": "%1$s ☂ 钓鱼速度",
+          "zh": "☂ 钓鱼速度 %1$s",
           "color": "§b",
           "order": 3
         },
         {
           "text": " per ",
-          "zh": "，获得 ",
+          "zh": "，",
           "color": "§7",
           "order": 2
         },
@@ -12362,7 +12369,7 @@
         }
       ],
       "translate": true,
-      "zh": "在水下时，获得 %1$s 宝藏几率。",
+      "zh": "在水下时， 宝藏几率 %1$s。",
       "source_items": [
         "ABYSSAL_BOOTS",
         "ABYSSAL_CHESTPLATE",
@@ -12376,13 +12383,13 @@
       "segments": [
         {
           "text": "Grants ",
-          "zh": "时，获得 ",
+          "zh": "时，",
           "color": "§7",
           "order": 2
         },
         {
           "text": "%1$s Treasure Chance ",
-          "zh": "%1$s 宝藏几率",
+          "zh": " 宝藏几率 %1$s",
           "color": "§6",
           "order": 3
         },
@@ -12849,7 +12856,7 @@
         }
       ],
       "translate": true,
-      "zh": "开采矿石和方块时，获得 %1$s ▚ 挖掘扩散。",
+      "zh": "开采矿石和方块时，▚ 挖掘扩散 %1$s。",
       "source_items": [
         "GLOSSY_MINERAL_BOOTS",
         "GLOSSY_MINERAL_CHESTPLATE",
@@ -12869,13 +12876,13 @@
         },
         {
           "text": "%1$s▚ Mining Spread ",
-          "zh": "%1$s ▚ 挖掘扩散",
+          "zh": "▚ 挖掘扩散 %1$s",
           "color": "§e",
           "order": 5
         },
         {
           "text": "on ",
-          "zh": "时，获得 ",
+          "zh": "时，",
           "color": "§7",
           "order": 4
         },
@@ -12929,7 +12936,7 @@
         }
       ],
       "translate": true,
-      "zh": "每拥有 %2$s 点防御力，获得 %1$s 行走速度。",
+      "zh": "每拥有 %2$s 点防御力，行走速度 %1$s。",
       "source_items": [
         "HEAVY_BOOTS",
         "HEAVY_CHESTPLATE",
@@ -12949,7 +12956,7 @@
         },
         {
           "text": "%1$s walk speed ",
-          "zh": "%1$s 行走速度",
+          "zh": "行走速度 %1$s",
           "color": "§f",
           "order": 3
         },
@@ -12967,7 +12974,7 @@
         },
         {
           "text": "defense that you have.",
-          "zh": " 点防御力，获得 ",
+          "zh": " 点防御力，",
           "color": "§7",
           "order": 2
         }
@@ -13185,7 +13192,7 @@
         }
       ],
       "translate": true,
-      "zh": "在地牢中，每击杀 1 只怪物，获得 %1$s ❁ 力量。",
+      "zh": "在地牢中，每击杀 1 只怪物，❁ 力量 %1$s。",
       "source_items": [
         "SHADOW_ASSASSIN_BOOTS",
         "SHADOW_ASSASSIN_CHESTPLATE",
@@ -13205,13 +13212,13 @@
         },
         {
           "text": "%1$s❁ Strength ",
-          "zh": "%1$s ❁ 力量",
+          "zh": "❁ 力量 %1$s",
           "order": 3,
           "color": "§c"
         },
         {
           "text": "for every mob you kill in ",
-          "zh": "中，每击杀 1 只怪物，获得 ",
+          "zh": "中，每击杀 1 只怪物，",
           "order": 2,
           "color": "§7"
         },
@@ -14821,7 +14828,7 @@
         }
       ],
       "translate": true,
-      "zh": "针对 神话生物，获得 %1$s ✯ 魔法寻宝。",
+      "zh": "针对 神话生物，✯ 魔法寻宝 %1$s。",
       "source_items": [
         "GOLDEN_FLEECE",
         "MYTHOS_BOOTS",
@@ -14840,13 +14847,13 @@
         },
         {
           "text": "%1$s✯ Magic Find ",
-          "zh": "%1$s ✯ 魔法寻宝",
+          "zh": "✯ 魔法寻宝 %1$s",
           "color": "§b",
           "order": 3
         },
         {
           "text": "on ",
-          "zh": "生物，获得 ",
+          "zh": "生物，",
           "color": "§7",
           "order": 2
         },
@@ -15053,7 +15060,7 @@
         }
       ],
       "translate": true,
-      "zh": "自身及周围 %2$s 格内的所有玩家获得 %1$s ❣ 生命回复。",
+      "zh": "自身及周围 %2$s 格内的所有玩家，❣ 生命回复 %1$s。",
       "source_items": [
         "HOLY_DRAGON_BOOTS",
         "HOLY_DRAGON_CHESTPLATE",
@@ -15069,13 +15076,13 @@
         },
         {
           "text": "%1$s❣ Health Regen ",
-          "zh": "%1$s ❣ 生命回复",
+          "zh": "❣ 生命回复 %1$s",
           "color": "§c",
           "order": 3
         },
         {
           "text": "to you and all players within ",
-          "zh": " 格内的所有玩家获得 ",
+          "zh": " 格内的所有玩家，",
           "color": "§7",
           "order": 2
         },
@@ -15356,7 +15363,7 @@
         }
       ],
       "translate": true,
-      "zh": "周围 %3$s 格内的所有玩家获得 %1$s ✯ 魔法寻宝和 %2$s ❈ 防御力，最多叠加 %4$s 层。",
+      "zh": "周围 %3$s 格内的所有玩家，✯ 魔法寻宝 %1$s 和 ❈ 防御力 %2$s，最多叠加 %4$s 层。",
       "source_items": [
         "NUTCRACKER_BOOTS",
         "NUTCRACKER_CHESTPLATE",
@@ -15372,7 +15379,7 @@
         },
         {
           "text": "%1$s✯ Magic Find ",
-          "zh": "%1$s ✯ 魔法寻宝",
+          "zh": "✯ 魔法寻宝 %1$s ",
           "color": "§b",
           "order": 3
         },
@@ -15384,13 +15391,13 @@
         },
         {
           "text": "%2$s❈ Defense ",
-          "zh": "%2$s ❈ 防御力",
+          "zh": "❈ 防御力 %2$s",
           "color": "§a",
           "order": 5
         },
         {
           "text": "to everyone within ",
-          "zh": " 格内的所有玩家获得 ",
+          "zh": " 格内的所有玩家，",
           "color": "§7",
           "order": 2
         },
@@ -15798,7 +15805,7 @@
         }
       ],
       "translate": true,
-      "zh": "在绯红岛时，获得 %1$s ❤ 生命值、%2$s ❁ 力量和 %3$s ☠ 暴击伤害。",
+      "zh": "在绯红岛时，❤ 生命值 %1$s、❁ 力量 %2$s 和 ☠ 暴击伤害 %3$s。",
       "source_items": [
         "RAMPART_BOOTS",
         "RAMPART_CHESTPLATE",
@@ -15814,7 +15821,7 @@
         },
         {
           "text": "%1$s❤ Health",
-          "zh": "%1$s ❤ 生命值",
+          "zh": "❤ 生命值 %1$s",
           "order": 3,
           "color": "§c"
         },
@@ -15826,7 +15833,7 @@
         },
         {
           "text": "%2$s❁ Strength",
-          "zh": "%2$s ❁ 力量",
+          "zh": "❁ 力量 %2$s ",
           "order": 5,
           "color": "§c"
         },
@@ -15838,13 +15845,13 @@
         },
         {
           "text": "%3$s☠ Crit Damage ",
-          "zh": "%3$s ☠ 暴击伤害",
+          "zh": "☠ 暴击伤害 %3$s",
           "order": 7,
           "color": "§9"
         },
         {
           "text": "while on the ",
-          "zh": "时，获得 ",
+          "zh": "时，",
           "order": 2,
           "color": "§7"
         },
@@ -16303,7 +16310,7 @@
         }
       ],
       "translate": true,
-      "zh": "每击杀 %3$s 只 Skeletor，获得 %1$s ❁ 力量和 %2$s ☠ 暴击伤害。",
+      "zh": "每击杀 %3$s 只 Skeletor，❁ 力量 %1$s 和 ☠ 暴击伤害 %2$s。",
       "source_items": [
         "SKELETOR_BOOTS",
         "SKELETOR_CHESTPLATE",
@@ -16319,7 +16326,7 @@
         },
         {
           "text": "%1$s❁ Strength ",
-          "zh": "%1$s ❁ 力量",
+          "zh": "❁ 力量 %1$s ",
           "order": 3,
           "color": "§c"
         },
@@ -16331,13 +16338,13 @@
         },
         {
           "text": "%2$s☠ Crit Damage ",
-          "zh": "%2$s ☠ 暴击伤害",
+          "zh": "☠ 暴击伤害 %2$s",
           "order": 5,
           "color": "§9"
         },
         {
           "text": "for every ",
-          "zh": " 只 Skeletor，获得 ",
+          "zh": " 只 Skeletor，",
           "order": 2,
           "color": "§7"
         },
@@ -16776,7 +16783,7 @@
         }
       ],
       "translate": true,
-      "zh": "获得 %1$s ⚔ 攻击速度上限。",
+      "zh": "⚔ 攻击速度上限 %1$s。",
       "source_items": [
         "THERMODYNAMIC_BOOTS",
         "THERMODYNAMIC_CHESTPLATE",
@@ -16786,12 +16793,13 @@
       "segments": [
         {
           "text": "Grants ",
-          "zh": "获得 ",
-          "color": "§7"
+          "zh": "",
+          "color": "§7",
+          "omit": true
         },
         {
           "text": "%1$s⚔ Attack Speed Cap",
-          "zh": "%1$s ⚔ 攻击速度上限",
+          "zh": "⚔ 攻击速度上限 %1$s",
           "color": "§e"
         },
         {
@@ -21950,19 +21958,19 @@
         }
       ],
       "translate": true,
-      "zh": "中毒期间，获得 %s ❁ 力量。",
+      "zh": "中毒期间，❁ 力量 %s。",
       "source_items": [
         "ARACK"
       ],
       "segments": [
         {
           "text": "Grants ",
-          "zh": "中毒期间，获得 ",
+          "zh": "中毒期间，",
           "color": "§7"
         },
         {
           "text": "%s❁ Strength ",
-          "zh": "%s ❁ 力量",
+          "zh": "❁ 力量 %s",
           "color": "§c"
         },
         {
@@ -24666,7 +24674,12 @@
     },
     {
       "id": "neu_546312be1433",
-      "mob_refs": [{"text": "Mythological mobs", "zh": "神话生物"}],
+      "mob_refs": [
+        {
+          "text": "Mythological mobs",
+          "zh": "神话生物"
+        }
+      ],
       "context": "物品 Lore 整句；DAEDALUS_AXE",
       "raw": "§7Grants §c%1$s  Damage §7and §b%2$s✯ §bMagic Find §7on §2 Mythological §7mobs §7per §3Bestiary §7tier you have across §7all of them.",
       "text": "Grants %1$s  Damage and %2$s✯ Magic Find on  Mythological mobs per Bestiary tier you have across all of them.",
@@ -24683,7 +24696,7 @@
         }
       ],
       "translate": true,
-      "zh": "每有 1 级 神话生物的生物图鉴总等级，在对这类生物作战时获得 %1$s  伤害和 %2$s ✯ 魔法寻宝。",
+      "zh": "每有 1 级 神话生物的生物图鉴总等级，在对这类生物作战时， 伤害 %1$s 和 ✯ 魔法寻宝 %2$s。",
       "source_items": [
         "DAEDALUS_AXE",
         "STARRED_DAEDALUS_AXE"
@@ -24693,32 +24706,26 @@
           "text": "Grants ",
           "zh": "",
           "color": "§7",
-          "order": 11,
+          "order": 9,
           "omit": true
         },
         {
           "text": "%1$s  Damage ",
-          "zh": "%1$s  伤害",
+          "zh": " 伤害 %1$s ",
           "color": "§c",
-          "order": 6
+          "order": 5
         },
         {
           "text": "and ",
           "zh": "和 ",
           "color": "§7",
+          "order": 6
+        },
+        {
+          "text": "%2$s✯ Magic Find ",
+          "zh": "✯ 魔法寻宝 %2$s",
+          "color": "§b",
           "order": 7
-        },
-        {
-          "text": "%2$s✯ ",
-          "zh": "%2$s ✯ ",
-          "color": "§b",
-          "order": 8
-        },
-        {
-          "text": "Magic Find ",
-          "zh": "魔法寻宝",
-          "color": "§b",
-          "order": 9
         },
         {
           "text": "on ",
@@ -24733,34 +24740,28 @@
           "order": 1
         },
         {
-          "text": "mobs ",
-          "zh": "生物",
+          "text": "mobs per ",
+          "zh": "生物的",
           "color": "§7",
           "order": 2
-        },
-        {
-          "text": "per ",
-          "zh": "的",
-          "color": "§7",
-          "order": 3
         },
         {
           "text": "Bestiary ",
           "zh": "生物图鉴",
           "color": "§3",
-          "order": 4
+          "order": 3
         },
         {
           "text": "tier you have across ",
-          "zh": "总等级，在对这类生物作战时获得 ",
+          "zh": "总等级，在对这类生物作战时，",
           "color": "§7",
-          "order": 5
+          "order": 4
         },
         {
           "text": "all of them.",
           "zh": "。",
           "color": "§7",
-          "order": 10
+          "order": 8
         }
       ],
       "samples": [
@@ -31709,7 +31710,7 @@
         }
       ],
       "translate": true,
-      "zh": "获得 %s ❤ 生命值和 ❁ 力量，仅在大师模式地牢中生效。",
+      "zh": "身处大师模式地牢时，❤ 生命值和❁ 力量均 %s。",
       "source_items": [
         "MASTER_SKULL_TIER_1",
         "MASTER_SKULL_TIER_2",
@@ -31722,48 +31723,57 @@
       "segments": [
         {
           "text": "Grants ",
-          "zh": "获得 ",
-          "color": "§7"
+          "zh": "。",
+          "color": "§7",
+          "order": 8
         },
         {
           "text": "%s ",
-          "zh": "%s ",
-          "color": "§a"
+          "zh": "%s",
+          "color": "§a",
+          "order": 7
         },
         {
           "text": "❤ Health",
           "zh": "❤ 生命值",
-          "color": "§c"
+          "color": "§c",
+          "order": 3
         },
         {
           "text": " and ",
-          "zh": "和 ",
-          "color": "§7"
+          "zh": "和",
+          "color": "§7",
+          "order": 4
         },
         {
           "text": "❁ ",
           "zh": "❁ ",
-          "color": "§c"
+          "color": "§c",
+          "order": 5
         },
         {
           "text": "Strength",
-          "zh": "力量",
-          "color": "§c"
+          "zh": "力量均 ",
+          "color": "§c",
+          "order": 6
         },
         {
           "text": " while in ",
-          "zh": "，仅在",
-          "color": "§7"
+          "zh": "身处",
+          "color": "§7",
+          "order": 0
         },
         {
           "text": "Master Mode ",
           "zh": "大师模式",
-          "color": "§c"
+          "color": "§c",
+          "order": 1
         },
         {
           "text": "Dungeons.",
-          "zh": "地牢中生效。",
-          "color": "§7"
+          "zh": "地牢时，",
+          "color": "§7",
+          "order": 2
         }
       ],
       "samples": [
@@ -31844,7 +31854,7 @@
         }
       ],
       "translate": true,
-      "zh": "获得 %s ☄ 修补和 ♨ 活力，仅在地牢中生效。",
+      "zh": "身处地牢时，☄ 修补和♨ 活力均 %s。",
       "source_items": [
         "MENDER_CROWN",
         "MENDER_FEDORA"
@@ -31852,27 +31862,27 @@
       "segments": [
         {
           "text": "Grants ",
-          "zh": "获得 ",
+          "zh": "身处地牢时，",
           "color": "§7"
         },
         {
           "text": "%s☄ Mending ",
-          "zh": "%s ☄ 修补",
+          "zh": "☄ 修补",
           "color": "§a"
         },
         {
           "text": "and ",
-          "zh": "和 ",
+          "zh": "和",
           "color": "§7"
         },
         {
           "text": " Vitality ",
-          "zh": "♨ 活力",
+          "zh": "♨ 活力均 %s",
           "color": "§4"
         },
         {
           "text": "while in Dungeons.",
-          "zh": "，仅在地牢中生效。",
+          "zh": "。",
           "color": "§7"
         }
       ],
@@ -31896,29 +31906,25 @@
         }
       ],
       "translate": true,
-      "zh": "获得 %s ☄ 修补，仅在地牢中生效。",
+      "zh": "☄ 修补 %s，仅在地牢中生效。",
       "source_items": [
         "MENDER_HELMET"
       ],
       "segments": [
         {
           "text": "Grants ",
-          "zh": "获得 ",
-          "color": "§7"
+          "zh": "",
+          "color": "§7",
+          "omit": true
         },
         {
           "text": "%s☄ Mending ",
-          "zh": "%s ☄ 修补",
+          "zh": "☄ 修补 %s",
           "color": "§a"
         },
         {
-          "text": "while in ",
-          "zh": "，仅在",
-          "color": "§7"
-        },
-        {
-          "text": "Dungeons.",
-          "zh": "地牢中生效。",
+          "text": "while in Dungeons.",
+          "zh": "，仅在地牢中生效。",
           "color": "§7"
         }
       ],
@@ -39611,7 +39617,7 @@
         }
       ],
       "translate": true,
-      "zh": "每有 1 级地牢等级，获得 %s ❁ 力量。",
+      "zh": "每有 1 级地牢等级，❁ 力量 %s。",
       "source_items": [
         "WITHER_BLOOD"
       ],
@@ -39624,19 +39630,19 @@
         },
         {
           "text": "%s ",
-          "zh": "%s ",
+          "zh": "%s",
           "color": "§a",
-          "order": 3
-        },
-        {
-          "text": "❁ Strength ",
-          "zh": "❁ 力量",
-          "color": "§c",
           "order": 4
         },
         {
+          "text": "❁ Strength ",
+          "zh": "❁ 力量 ",
+          "color": "§c",
+          "order": 3
+        },
+        {
           "text": "per ",
-          "zh": "等级，获得 ",
+          "zh": "等级，",
           "color": "§7",
           "order": 2
         },
@@ -42316,7 +42322,7 @@
         }
       ],
       "translate": true,
-      "zh": "提供 %s ❣ 生命回复。",
+      "zh": "❣ 生命回复 %s。",
       "source_items": [
         "LESSER_ORB_OF_HEALING"
       ],
@@ -42324,12 +42330,13 @@
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "提供 "
+          "zh": "",
+          "omit": true
         },
         {
           "color": "§c",
           "text": "%s❣ Health Regen",
-          "zh": "%s ❣ 生命回复"
+          "zh": "❣ 生命回复 %s"
         },
         {
           "color": "§7",

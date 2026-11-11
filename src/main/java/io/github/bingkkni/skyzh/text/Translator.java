@@ -31,6 +31,8 @@ public final class Translator {
 	private static final Set<String> REPORTED_COLOUR_LOSS = ConcurrentHashMap.newKeySet();
 	private static final java.util.regex.Pattern DISPLAY_RANK = java.util.regex.Pattern.compile("#[0-9]{1,6} ");
 	private static final java.util.regex.Pattern ITEM_LIST_NUMBER = java.util.regex.Pattern.compile("[0-9]{1,6}\\. ");
+	private static final java.util.regex.Pattern TAB_DURATION = java.util.regex.Pattern.compile(
+		"(?=.*[yYdDhHmMsS])" + Capture.of("duration_spaced").regex());
 
 	private static volatile TranslationIndex index = new TranslationIndex();
 	private static volatile boolean ready;
@@ -838,7 +840,15 @@ public final class Translator {
 
 		Result value = translateAvailable(styled.slice(from, to), surface, config);
 
-		return value.matched() ? around(styled, from, to, value.padded()) : null;
+		if (value.matched()) return around(styled, from, to, value.padded());
+
+		// Forge rows reuse existing item labels; their compact timers are values, not new labels.
+		Capture duration = Capture.of("duration_spaced");
+		String raw = plain.substring(from, to);
+		if (surface == Surface.TABLIST && TAB_DURATION.matcher(raw).matches()) {
+			return around(styled, from, to, duration.renderDuration(styled, from, to));
+		}
+		return null;
 	}
 
 	private static boolean hasEnglishWord(String plain) {

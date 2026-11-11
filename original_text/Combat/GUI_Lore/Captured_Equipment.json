@@ -548,43 +548,51 @@
         }
       ],
       "translate": true,
-      "zh": "获得 +%1$s%  魔法寻宝，并获得 +%2$s% 全部战斗属性。",
+      "zh": " 魔法寻宝 +%1$s%，全部战斗属性 +%2$s%。",
       "segments": [
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "获得 "
+          "zh": "",
+          "omit": true,
+          "order": 0
         },
         {
           "color": "§b",
           "text": "+%1$s%  Magic Find ",
-          "zh": "+%1$s%  魔法寻宝"
+          "zh": " 魔法寻宝 +%1$s%",
+          "order": 1
         },
         {
           "color": "§7",
           "text": "and ",
-          "zh": "，并获得 "
+          "zh": "，",
+          "order": 2
         },
         {
           "color": "§c",
           "text": "+%2$s% ",
-          "zh": "+%2$s% "
+          "zh": "+%2$s%",
+          "order": 4
         },
         {
           "color": "§7",
           "text": "to ALL ",
           "zh": "",
-          "omit": true
+          "omit": true,
+          "order": 5
         },
         {
           "color": "§c",
           "text": "Combat Stats",
-          "zh": "全部战斗属性"
+          "zh": "全部战斗属性 ",
+          "order": 3
         },
         {
           "color": "§7",
           "text": ".",
-          "zh": "。"
+          "zh": "。",
+          "order": 6
         }
       ],
       "samples": [

@@ -1074,6 +1074,12 @@ public final class TranslationHarness {
 		checkJoined("跨行 order:修补+活力的 while in Dungeons 挪到句首",
 			List.of("§7Grants §a+65\ue014 Mending §7and §4\ue028 Vitality", "§7while in Dungeons."),
 			"§7在地牢中提供 §a+65\ue014 修补§7与 §4\ue028 活力。");
+		checkJoined("熔炉纯净跨行不重复地点条件",
+			List.of("§7Grants §5+3\ue01c Pristine §7while in the", "§cMagma Fields§7."),
+			"§7身处§c岩浆原野§7时，§5\ue01c 纯净 +3§7。");
+		checkJoined("熔炉纯净另一组数值保留尾句颜色",
+			List.of("§7Grants §5+1.5\ue01c Pristine §7while in the", "§cMagma Fields§7."),
+			"§7身处§c岩浆原野§7时，§5\ue01c 纯净 +1.5§7。");
 		checkJoined("跨行不排序:坦克光环两行各带自己的占位符",
 			List.of("§7While in Dungeons, players within §e10", "§7blocks of you take §c5% §7less damage."),
 			"§7在地牢中，你周围 §e10§7格内的玩家受到的伤害降低 §c5%§7。");
@@ -1218,7 +1224,7 @@ public final class TranslationHarness {
 		check("钻头配件名", "§aBlue Cheese Goblin Omelette Part", Surface.ITEM,
 			"§a蓝纹奶酪哥布林煎蛋卷配件");
 		check("动态挖掘速度加成", "§7Grants §6+300%  Mining Speed §7for", Surface.ITEM,
-			"§7提供 §6+300%  挖掘速度§7，持续");
+			"§6 挖掘速度 +300%§7，持续");
 		check("纯净属性行", "§7Pristine: §5+3", Surface.ITEM, "§7纯净: §5+3");
 		check("抗热属性行", "§7Heat Resistance: §c+10", Surface.ITEM, "§7抗热: §c+10");
 		check("按最大法力值计的消耗", "§8Mana Cost: §b50% of max", Surface.ITEM,
@@ -3068,7 +3074,7 @@ public final class TranslationHarness {
 
 	/** Fixed UI capture regression: ordered lore, term isolation, and clues that must survive translation. */
 	private static void checkFixedMenus(Path corpusRoot) throws Exception {
-		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "october-live-round-cases.json", "workshop-cases.json", "wiki-expansion-cases.json", "bazaar-item-names-cases.json", "rift-live-capture-cases.json", "rift-session-cases.json", "garden-weather-feast-cases.json", "village-living-cave-cases.json", "rift-post-build-cases.json", "castle-capture-cases.json", "slayer-rng-capture-cases.json", "spider-session-cases.json", "dual-live-round-cases.json", "moonglade-capture-cases.json", "slayer-current-capture-cases.json", "dual-computer-followup-cases.json", "mountaintop-live-capture-cases.json", "nov03-capture-cases.json", "nov04-combat-cases.json", "nov04-dungeons-cases.json", "nov04-skills-cases.json", "nov04-islands-cases.json", "nov04-hub-cases.json", "nov04-integration-cases.json", "runtime-followup-cases.json", "nov06-capture-cases.json", "nov07-capture-cases.json", "nov11-capture-cases.json")) {
+		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "october-live-round-cases.json", "workshop-cases.json", "wiki-expansion-cases.json", "bazaar-item-names-cases.json", "rift-live-capture-cases.json", "rift-session-cases.json", "garden-weather-feast-cases.json", "village-living-cave-cases.json", "rift-post-build-cases.json", "castle-capture-cases.json", "slayer-rng-capture-cases.json", "spider-session-cases.json", "dual-live-round-cases.json", "moonglade-capture-cases.json", "slayer-current-capture-cases.json", "dual-computer-followup-cases.json", "mountaintop-live-capture-cases.json", "nov03-capture-cases.json", "nov04-combat-cases.json", "nov04-dungeons-cases.json", "nov04-skills-cases.json", "nov04-islands-cases.json", "nov04-hub-cases.json", "nov04-integration-cases.json", "runtime-followup-cases.json", "nov06-capture-cases.json", "nov07-capture-cases.json", "nov11-capture-cases.json", "nov12-capture-cases.json")) {
 		Path path = corpusRoot.toAbsolutePath().getParent().resolve("tests/resources/" + file);
 		JsonObject fixture = JsonParser.parseString(Files.readString(path, StandardCharsets.UTF_8)).getAsJsonObject();
 		for (JsonElement value : fixture.getAsJsonArray("cases")) {
@@ -3411,13 +3417,13 @@ public final class TranslationHarness {
 		report("减号数值不当成列表项", LineShape.candidates(Surface.ITEM, "-25 Unknown").stream()
 			.allMatch(range -> range.start() == 0), "只有带空格的列表短横线可以剥离");
 		check("数字紧邻图标仍能正确捕获", "§7Grants §b+25\uE003 Intelligence§7.", Surface.ITEM,
-			"§7提供 §b+25\uE003 法力§7。");
+			"§b\uE003 法力 +25§7。");
 		check("农业时运保留实际字形而不是挖掘字形", "§7Grants §6+35\uE051 Moonflower Fortune§7.", Surface.ITEM,
-			"§7提供 §6+35\uE051 月光花时运§7。");
+			"§6\uE051 月光花时运 +35§7。");
 		check("Timber统一为整树砍伐", "§7Grants §4+1\uE02E Timber§7.", Surface.ITEM,
-			"§7提供 §4+1\uE02E 整树砍伐§7。");
+			"§4\uE02E 整树砍伐 +1§7。");
 		check("海洋生物几率alpha图标", "§7Grants §3+6\uE021 Sea Creature Chance§7.", Surface.ITEM,
-			"§7提供 §3+6\uE021 海洋生物几率§7。");
+			"§3\uE021 海洋生物几率 +6§7。");
 		report("图标类型不吞数字和单词", !Pattern.matches(Capture.ICON.regex(), "25")
 			&& !Pattern.matches(Capture.ICON.regex(), "Health") && Pattern.matches(Capture.ICON.regex(), "α")
 			&& Pattern.matches(Capture.ICON.regex(), "\uE028"), "图标占位符必须由正则限定,不能等到捕获后再发现吞错数值");
@@ -3428,7 +3434,7 @@ public final class TranslationHarness {
 			&& Pattern.matches(Capture.ICON.regex(), "⫽") && !Pattern.matches(Capture.ICON.regex(), "a"),
 			"Glyphs 把私用区图标折成 ⸕/๑ 这类非 Symbol 字符,匹配在折算后的文本上进行");
 		check("技能伤害图标不被空图标模板吞进属性名", "§7Grants §a+5 §e Ability Damage§7.", Surface.ITEM,
-			"§7提供 §a+5 §e 技能伤害§7。");
+			"§e 技能伤害 §a+5§7。");
 		report("倍率转增量使用精确小数", "0.1".equals(Capture.MULTIPLIER_INCREASE.renderValue("1.1"))
 			&& "0.5".equals(Capture.MULTIPLIER_INCREASE.renderValue("1.50"))
 			&& "2".equals(Capture.MULTIPLIER_INCREASE.renderValue("3")), "遵守提升N-1倍,不产生浮点尾数");

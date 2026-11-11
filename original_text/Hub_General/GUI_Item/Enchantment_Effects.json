@@ -36,25 +36,30 @@
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "提供 "
+          "zh": "",
+          "omit": true,
+          "order": 0
         },
         {
           "color": "§a",
           "text": "%1$s",
-          "zh": "%1$s"
+          "zh": "%1$s",
+          "order": 2
         },
         {
           "color": "§b",
           "text": "%2$s %3$s",
-          "zh": "%2$s %3$s"
+          "zh": "%2$s %3$s ",
+          "order": 1
         },
         {
           "color": "§7",
           "text": ".",
-          "zh": "。"
+          "zh": "。",
+          "order": 3
         }
       ],
-      "zh": "提供 %1$s%2$s %3$s。"
+      "zh": "%2$s %3$s %1$s。"
     },
     {
       "id": "guide_grant_stat_spaced",
@@ -87,25 +92,30 @@
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "提供 "
+          "zh": "",
+          "omit": true,
+          "order": 0
         },
         {
           "color": "§a",
           "text": "%1$s ",
-          "zh": "%1$s "
+          "zh": "%1$s",
+          "order": 2
         },
         {
           "color": "§b",
           "text": "%2$s %3$s",
-          "zh": "%2$s %3$s"
+          "zh": "%2$s %3$s ",
+          "order": 1
         },
         {
           "color": "§7",
           "text": ".",
-          "zh": "。"
+          "zh": "。",
+          "order": 3
         }
       ],
-      "zh": "提供 %1$s %2$s %3$s。"
+      "zh": "%2$s %3$s %1$s。"
     },
     {
       "id": "guide_absorb_head",
@@ -126,12 +136,13 @@
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "提供 "
+          "zh": "",
+          "omit": true
         },
         {
           "color": "§3",
           "text": "+%s☯ Foraging Wisdom ",
-          "zh": "+%s☯ 伐木智慧"
+          "zh": "☯ 伐木智慧 +%s "
         },
         {
           "color": "§7",
@@ -139,7 +150,7 @@
           "zh": "和 "
         }
       ],
-      "zh": "提供 +%s☯ 伐木智慧和 "
+      "zh": "☯ 伐木智慧 +%s 和 "
     },
     {
       "id": "guide_absorb_tail",
@@ -161,7 +172,7 @@
         {
           "color": "§6",
           "text": "+%s☘ Foraging Fortune",
-          "zh": "+%s☘ 伐木时运"
+          "zh": "☘ 伐木时运 +%s"
         },
         {
           "color": "§7",
@@ -169,7 +180,7 @@
           "zh": "。"
         }
       ],
-      "zh": "+%s☘ 伐木时运。"
+      "zh": "☘ 伐木时运 +%s。"
     },
     {
       "id": "guide_mob_damage_icon_head",
@@ -708,7 +719,7 @@
           "order": 5
         }
       ],
-      "zh": ""
+      "zh": "用吸尘器清除 害虫时,提供 %s☘ 农业时运。"
     },
     {
       "id": "guide_bug_blender_tail",
@@ -818,7 +829,7 @@
           "order": 6
         }
       ],
-      "zh": ""
+      "zh": "饰品之力每有一位数,就提供 +%1$s❤ 生命值和 +%2$s❂ 真实防御。"
     },
     {
       "id": "guide_cayenne_mid",
@@ -849,7 +860,7 @@
           "order": 0
         }
       ],
-      "zh": ""
+      "zh": "饰品每有一位数,就提供 防御"
     },
     {
       "id": "guide_cayenne_tail",
@@ -874,7 +885,7 @@
           "order": 8
         }
       ],
-      "zh": ""
+      "zh": "之力。"
     },
     {
       "id": "guide_champion_head",
@@ -1409,12 +1420,13 @@
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "提供 "
+          "zh": "",
+          "omit": true
         },
         {
           "color": "§6",
           "text": "%s☘ Farming Fortune ",
-          "zh": "%s☘ 农业时运"
+          "zh": "☘ 农业时运 %s"
         },
         {
           "color": "§7",
@@ -1422,7 +1434,7 @@
           "zh": ",此加成乘以该作物的"
         }
       ],
-      "zh": "提供 %s☘ 农业时运,此加成乘以该作物的"
+      "zh": "☘ 农业时运 %s,此加成乘以该作物的"
     },
     {
       "id": "guide_dedication_mid",
@@ -1667,7 +1679,7 @@
           "order": 2
         }
       ],
-      "zh": ""
+      "zh": ","
     },
     {
       "id": "guide_giant_damage_head",
@@ -1770,7 +1782,7 @@
           "order": 2
         }
       ],
-      "zh": ""
+      "zh": ","
     },
     {
       "id": "guide_titan_damage_head",
@@ -1855,15 +1867,16 @@
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "提供 "
+          "zh": "",
+          "omit": true
         },
         {
           "color": "§3",
           "text": "+%sα Sea Creature Chance",
-          "zh": "+%sα 海洋生物几率"
+          "zh": "α 海洋生物几率 +%s"
         }
       ],
-      "zh": "提供 +%sα 海洋生物几率"
+      "zh": "α 海洋生物几率 +%s"
     },
     {
       "id": "guide_expertise_mid",
@@ -1890,7 +1903,7 @@
         {
           "color": "§3",
           "text": "+%s☯ Fishing Wisdom ",
-          "zh": "+%s☯ 钓鱼智慧"
+          "zh": "☯ 钓鱼智慧 +%s"
         },
         {
           "color": "§7",
@@ -1898,7 +1911,7 @@
           "zh": "。"
         }
       ],
-      "zh": ",击杀海洋生物时还提供 +%s☯ 钓鱼智慧。"
+      "zh": ",击杀海洋生物时还提供 ☯ 钓鱼智慧 +%s。"
     },
     {
       "id": "guide_expertise_tail",
@@ -2253,30 +2266,36 @@
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "提供 "
+          "zh": "",
+          "omit": true,
+          "order": 0
         },
         {
           "color": "§a",
           "text": "+%s ",
-          "zh": "+%s "
+          "zh": "+%s",
+          "order": 2
         },
         {
           "color": "§5",
           "text": "Fear ",
-          "zh": "恐惧"
+          "zh": "恐惧 ",
+          "order": 1
         },
         {
           "color": "§7",
           "text": "on ",
-          "zh": "（仅限"
+          "zh": "（仅限",
+          "order": 3
         },
         {
           "color": "§5",
           "text": "Great Spook",
-          "zh": "大惊魂"
+          "zh": "大惊魂",
+          "order": 4
         }
       ],
-      "zh": "提供 +%s 恐惧（仅限大惊魂"
+      "zh": "恐惧 +%s（仅限大惊魂护甲）。"
     },
     {
       "id": "guide_great_spook_tail",
@@ -2291,12 +2310,14 @@
         {
           "color": "§5",
           "text": "Armor",
-          "zh": "护甲"
+          "zh": "护甲",
+          "order": 5
         },
         {
           "color": "§7",
           "text": ".",
-          "zh": "）。"
+          "zh": "）。",
+          "order": 6
         }
       ],
       "zh": "护甲）。"
@@ -2320,12 +2341,13 @@
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "提供 "
+          "zh": "",
+          "omit": true
         },
         {
           "color": "§6",
           "text": "%s☘ Farming Fortune ",
-          "zh": "%s☘ 农业时运"
+          "zh": "☘ 农业时运 %s"
         },
         {
           "color": "§7",
@@ -2333,7 +2355,7 @@
           "zh": "（每接待一位不同的访客）。"
         }
       ],
-      "zh": "提供 %s☘ 农业时运（每接待一位不同的访客）。"
+      "zh": "☘ 农业时运 %s（每接待一位不同的访客）。"
     },
     {
       "id": "guide_green_thumb_tail",
@@ -2473,7 +2495,7 @@
           "order": 10
         }
       ],
-      "zh": ""
+      "zh": " 防御力,持续 %1$s。（防御力上限: %2$s❈）"
     },
     {
       "id": "guide_strong_vitality_head",
@@ -2534,7 +2556,7 @@
           "order": 10
         }
       ],
-      "zh": ""
+      "zh": " 力量,持续 %1$s。（上限 %2$s❁"
     },
     {
       "id": "guide_strong_vitality_tail",
@@ -2553,7 +2575,7 @@
           "order": 11
         }
       ],
-      "zh": ""
+      "zh": " 力量）。"
     },
     {
       "id": "guide_vivacious_vitality_head",
@@ -2614,7 +2636,7 @@
           "order": 10
         }
       ],
-      "zh": ""
+      "zh": " 攻击速度,持续 %1$s。（上限 %2$s⚔"
     },
     {
       "id": "guide_vivacious_vitality_tail",
@@ -2633,7 +2655,7 @@
           "order": 11
         }
       ],
-      "zh": ""
+      "zh": " 攻击速度）。"
     },
     {
       "id": "guide_harvesting_head",
@@ -2654,25 +2676,30 @@
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "提供 "
+          "zh": "",
+          "omit": true,
+          "order": 0
         },
         {
           "color": "§a",
           "text": "+%s ",
-          "zh": "+%s "
+          "zh": "+%s",
+          "order": 2
         },
         {
           "color": "§6",
           "text": "☘ Farming Fortune",
-          "zh": "☘ 农业时运"
+          "zh": "☘ 农业时运 ",
+          "order": 1
         },
         {
           "color": "§7",
           "text": ", which",
-          "zh": ",提高额外获得作物掉落的概率。"
+          "zh": ",提高额外获得作物掉落的概率。",
+          "order": 3
         }
       ],
-      "zh": "提供 +%s ☘ 农业时运,提高额外获得作物掉落的概率。"
+      "zh": "☘ 农业时运 +%s,提高额外获得作物掉落的概率。"
     },
     {
       "id": "guide_harvesting_tail_a",
@@ -2964,12 +2991,13 @@
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "提供 "
+          "zh": "",
+          "omit": true
         },
         {
           "color": "§6",
           "text": "+%s☘ Gemstone Fortune ",
-          "zh": "+%s☘ 宝石时运"
+          "zh": "☘ 宝石时运 +%s "
         },
         {
           "color": "§7",
@@ -2977,7 +3005,7 @@
           "zh": "和 "
         }
       ],
-      "zh": "提供 +%s☘ 宝石时运和 "
+      "zh": "☘ 宝石时运 +%s 和 "
     },
     {
       "id": "guide_lapidary_mid",
@@ -2999,7 +3027,7 @@
         {
           "color": "§6",
           "text": "+%s⸕ Mining Speed ",
-          "zh": "+%s⸕ 挖掘速度"
+          "zh": "⸕ 挖掘速度 +%s"
         },
         {
           "color": "§7",
@@ -3007,7 +3035,7 @@
           "zh": "（开采"
         }
       ],
-      "zh": "+%s⸕ 挖掘速度（开采"
+      "zh": "⸕ 挖掘速度 +%s（开采"
     },
     {
       "id": "guide_lapidary_tail",
@@ -3234,12 +3262,13 @@
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "提供 "
+          "zh": "",
+          "omit": true
         },
         {
           "color": "§6",
           "text": "+%s Treasure Chance",
-          "zh": "+%s 宝藏几率"
+          "zh": " 宝藏几率 +%s"
         },
         {
           "color": "§7",
@@ -3247,7 +3276,7 @@
           "zh": ",提高钓到宝藏的概率。"
         }
       ],
-      "zh": "提供 +%s 宝藏几率,提高钓到宝藏的概率。"
+      "zh": " 宝藏几率 +%s,提高钓到宝藏的概率。"
     },
     {
       "id": "guide_luck_sea_mid",
@@ -3665,12 +3694,13 @@
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "提供 "
+          "zh": "",
+          "omit": true
         },
         {
           "color": "§6",
           "text": "+%s☘ Farming Fortune ",
-          "zh": "+%s☘ 农业时运"
+          "zh": "☘ 农业时运 +%s "
         },
         {
           "color": "§7",
@@ -3678,7 +3708,7 @@
           "zh": "和 "
         }
       ],
-      "zh": "提供 +%s☘ 农业时运和 "
+      "zh": "☘ 农业时运 +%s 和 "
     },
     {
       "id": "guide_pesterminator_bonus",
@@ -3700,7 +3730,7 @@
         {
           "color": "§2",
           "text": "+%s Bonus Pest Chance",
-          "zh": "+%s 额外害虫几率"
+          "zh": " 额外害虫几率 +%s"
         },
         {
           "color": "§7",
@@ -3708,7 +3738,7 @@
           "zh": ",提高"
         }
       ],
-      "zh": "+%s 额外害虫几率,提高"
+      "zh": " 额外害虫几率 +%s,提高"
     },
     {
       "id": "guide_pesterminator_spawn",
@@ -3829,12 +3859,13 @@
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "提供 "
+          "zh": "",
+          "omit": true
         },
         {
           "color": "§5",
           "text": "+%s ✧ Pristine",
-          "zh": "+%s ✧ 纯净"
+          "zh": "✧ 纯净 +%s"
         },
         {
           "color": "§7",
@@ -3842,7 +3873,7 @@
           "zh": ",提高掉落"
         }
       ],
-      "zh": "提供 +%s ✧ 纯净,提高掉落"
+      "zh": "✧ 纯净 +%s,提高掉落"
     },
     {
       "id": "guide_prismatic_mid",
@@ -3903,20 +3934,20 @@
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "工作日提供 "
+          "zh": "工作日，"
         },
         {
           "color": "§4",
           "text": "+%s♨ Vitality ",
-          "zh": "+%s♨ 活力"
+          "zh": "♨ 活力 +%s"
         },
         {
           "color": "§7",
           "text": "on weekdays and",
-          "zh": "；周末提供 "
+          "zh": "；周末，"
         }
       ],
-      "zh": "工作日提供 +%s♨ 活力；周末提供 "
+      "zh": "工作日，♨ 活力 +%s；周末，"
     },
     {
       "id": "guide_quantum_mid",
@@ -4217,12 +4248,13 @@
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "提供 "
+          "zh": "",
+          "omit": true
         },
         {
           "color": "§3",
           "text": "+%s Respiration",
-          "zh": "+%s 水下呼吸"
+          "zh": " 水下呼吸 +%s"
         },
         {
           "color": "§7",
@@ -4230,7 +4262,7 @@
           "zh": ",延长你能在水下停留的时间。"
         }
       ],
-      "zh": "提供 +%s 水下呼吸,延长你能在水下停留的时间。"
+      "zh": " 水下呼吸 +%s,延长你能在水下停留的时间。"
     },
     {
       "id": "guide_respiration_mid",
@@ -4261,12 +4293,13 @@
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "提供 "
+          "zh": "",
+          "omit": true
         },
         {
           "color": "§c",
           "text": "+%s❣ Health Regen ",
-          "zh": "+%s❣ 生命回复"
+          "zh": "❣ 生命回复 +%s"
         },
         {
           "color": "§7",
@@ -4274,7 +4307,7 @@
           "zh": "（脱离战斗时）。"
         }
       ],
-      "zh": "提供 +%s❣ 生命回复（脱离战斗时）。"
+      "zh": "❣ 生命回复 +%s（脱离战斗时）。"
     },
     {
       "id": "guide_respite_tail",
@@ -4391,12 +4424,13 @@
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "提供 "
+          "zh": "",
+          "omit": true
         },
         {
           "color": "§b",
           "text": "%1$s✎ Intelligence",
-          "zh": "%1$s✎ 法力"
+          "zh": "✎ 法力 %1$s "
         },
         {
           "color": "§7",
@@ -4409,7 +4443,7 @@
           "zh": "+%2$s❂"
         }
       ],
-      "zh": "提供 %1$s✎ 法力和 +%2$s❂"
+      "zh": "✎ 法力 %1$s 和 +%2$s❂"
     },
     {
       "id": "guide_small_brain_tail",

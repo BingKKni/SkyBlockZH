@@ -1,0 +1,114 @@
+{
+  "source": [
+    "../SkyZH_Logs/skyzh-capture",
+    "https://hypixelskyblock.minecraft.wiki/w/Chocolate_Rabbits",
+    "https://hypixelskyblock.minecraft.wiki/w/Chocolate_Factory",
+    "https://hypixelskyblock.minecraft.wiki/w/Jotraeline_Greatforge",
+    "https://hypixelskyblock.minecraft.wiki/w/Mixins",
+    "https://hypixelskyblock.minecraft.wiki/w/Carnival"
+  ],
+  "verified_ingame": true,
+  "note": "原文与颜色来自本轮服务器采集；社区 Wiki 普通呈现页仅核对机制与名词。专名、附魔名和第三方 Mod 文本不在本轮新增范围。",
+  "lines": [
+    {
+      "id": "capture_d54294aa1b38",
+      "context": "本轮实测菜单、聊天或浮空文字；数值与名称按语义类型动态捕获。",
+      "text": "Until interest: %s Minutes",
+      "raw": "§7Until interest: §b%s Minutes",
+      "placeholders": [
+        {
+          "token": "%s",
+          "type": "number",
+          "example": "38",
+          "desc": "运行时取值"
+        }
+      ],
+      "translate": true,
+      "zh": "距下次结息: %s 分钟",
+      "segments": [
+        {
+          "text": "Until interest: ",
+          "color": "§7",
+          "zh": "距下次结息: "
+        },
+        {
+          "text": "%s Minutes",
+          "color": "§b",
+          "zh": "%s 分钟"
+        }
+      ]
+    },
+    {
+      "id": "capture_4dca0d763847",
+      "context": "本轮实测菜单、聊天或浮空文字；数值与名称按语义类型动态捕获。",
+      "text": "%1$s ago Cancelled Buy Order of %2$sx %3$s",
+      "raw": "§8%1$s ago §7Cancelled §cBuy Order §7of §a%2$s§7x %3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "duration",
+          "example": "2m",
+          "desc": "运行时取值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "4",
+          "desc": "运行时取值"
+        },
+        {
+          "token": "%3$s",
+          "type": "loot_item_name",
+          "example": "Braided Griffin Feather",
+          "desc": "运行时取值"
+        }
+      ],
+      "translate": true,
+      "zh": "%1$s前取消了 %2$s 个%3$s的购买订单",
+      "segments": [
+        {
+          "text": "%1$s ago ",
+          "color": "§8",
+          "zh": "%1$s前",
+          "order": 0
+        },
+        {
+          "text": "Cancelled ",
+          "color": "§7",
+          "zh": "取消了 ",
+          "order": 1
+        },
+        {
+          "text": "Buy Order ",
+          "color": "§c",
+          "zh": "购买订单",
+          "order": 6
+        },
+        {
+          "text": "of ",
+          "color": "§7",
+          "zh": "的",
+          "order": 5
+        },
+        {
+          "text": "%2$s",
+          "color": "§a",
+          "zh": "%2$s",
+          "order": 2
+        },
+        {
+          "text": "x ",
+          "color": "§7",
+          "zh": " 个",
+          "order": 3
+        },
+        {
+          "text": "%3$s",
+          "color": "",
+          "zh": "%3$s",
+          "order": 4
+        }
+      ]
+    }
+  ]
+}

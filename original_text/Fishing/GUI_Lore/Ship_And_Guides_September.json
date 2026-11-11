@@ -3,8 +3,80 @@
   "fetched_at": "2026-09-29",
   "verified_ingame": false,
   "entries": [
-    {"id":"golden_pearl_treasure_chance","context":"Golden Pearls 子菜单：沼泽之珠奖励属性；兼容 Wiki 图标与服务器私用区字形","raw":"§7Grants §6+%1$s%2$s Treasure Chance§7.","text":"Grants +%1$s%2$s Treasure Chance.","placeholders":[{"token":"%1$s","type":"number","example":"1"},{"token":"%2$s","type":"icon","example":"⛃"}],"segments":[{"color":"§7","text":"Grants ","zh":"获得 "},{"color":"§6","text":"+%1$s%2$s Treasure Chance","zh":"+%1$s%2$s 宝藏几率"},{"color":"§7","text":".","zh":"。"}],"zh":"获得 +%1$s%2$s 宝藏几率。"},
-    {"id":"golden_pearl_trophy_chance","context":"Golden Pearls 子菜单：莲花之珠奖励属性；保留原文无百分号的属性数值","raw":"§7Grants §6+%1$s%2$s Trophy Chance§7.","text":"Grants +%1$s%2$s Trophy Chance.","placeholders":[{"token":"%1$s","type":"number","example":"2.5"},{"token":"%2$s","type":"icon","example":"♔"}],"segments":[{"color":"§7","text":"Grants ","zh":"获得 "},{"color":"§6","text":"+%1$s%2$s Trophy Chance","zh":"+%1$s%2$s 奖杯几率"},{"color":"§7","text":".","zh":"。"}],"zh":"获得 +%1$s%2$s 奖杯几率。"},
+    {
+      "id": "golden_pearl_treasure_chance",
+      "context": "Golden Pearls 子菜单：沼泽之珠奖励属性；兼容 Wiki 图标与服务器私用区字形",
+      "raw": "§7Grants §6+%1$s%2$s Treasure Chance§7.",
+      "text": "Grants +%1$s%2$s Treasure Chance.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "1"
+        },
+        {
+          "token": "%2$s",
+          "type": "icon",
+          "example": "⛃"
+        }
+      ],
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§6",
+          "text": "+%1$s%2$s Treasure Chance",
+          "zh": "%2$s 宝藏几率 +%1$s"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "%2$s 宝藏几率 +%1$s。"
+    },
+    {
+      "id": "golden_pearl_trophy_chance",
+      "context": "Golden Pearls 子菜单：莲花之珠奖励属性；保留原文无百分号的属性数值",
+      "raw": "§7Grants §6+%1$s%2$s Trophy Chance§7.",
+      "text": "Grants +%1$s%2$s Trophy Chance.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "2.5"
+        },
+        {
+          "token": "%2$s",
+          "type": "icon",
+          "example": "♔"
+        }
+      ],
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§6",
+          "text": "+%1$s%2$s Trophy Chance",
+          "zh": "%2$s 奖杯几率 +%1$s"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ],
+      "zh": "%2$s 奖杯几率 +%1$s。"
+    },
     {
       "id": "ship_your_ship_will_help_you_travel_to_different_fishing_islands_in_sk",
       "context": "NPC 菜单及子菜单；社区 Wiki 可见 GUI tooltip",
@@ -635,18 +707,18 @@
       "raw": "§7Grants §6+%s⛃ Treasure Chance §7while in the §2Backwater Bayou §7but replaces all §6Treasure §7catches with §2Junk§7!",
       "text": "Grants +%s⛃ Treasure Chance while in the Backwater Bayou but replaces all Treasure catches with Junk!",
       "translate": true,
-      "zh": "在死水沼泽期间,获得 +%s⛃ 宝藏几率,但钓起的所有宝藏均会被替换为垃圾!",
+      "zh": "在死水沼泽期间,⛃ 宝藏几率 +%s,但钓起的所有宝藏均会被替换为垃圾!",
       "segments": [
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "期间,获得 ",
+          "zh": "期间,",
           "order": 2
         },
         {
           "color": "§6",
           "text": "+%s⛃ Treasure Chance ",
-          "zh": "+%s⛃ 宝藏几率",
+          "zh": "⛃ 宝藏几率 +%s",
           "order": 3
         },
         {
@@ -706,17 +778,18 @@
       "raw": "§7Grants §6+%s Treasure Chance§7, which increases the chance of fishing treasure.",
       "text": "Grants +%s Treasure Chance, which increases the chance of fishing treasure.",
       "translate": true,
-      "zh": "获得 +%s 宝藏几率,提高钓起宝藏的概率。",
+      "zh": " 宝藏几率 +%s,提高钓起宝藏的概率。",
       "segments": [
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "获得 "
+          "zh": "",
+          "omit": true
         },
         {
           "color": "§6",
           "text": "+%s Treasure Chance",
-          "zh": "+%s 宝藏几率"
+          "zh": " 宝藏几率 +%s"
         },
         {
           "color": "§7",
@@ -981,17 +1054,18 @@
       "raw": "§7Grants §c+%1$s❁ Damage §7and §c+%2$s⫽ Ferocity§7.",
       "text": "Grants +%1$s❁ Damage and +%2$s⫽ Ferocity.",
       "translate": true,
-      "zh": "获得 +%1$s❁ 伤害和 +%2$s⫽ 凶暴。",
+      "zh": "❁ 伤害 +%1$s 和 ⫽ 凶暴 +%2$s。",
       "segments": [
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "获得 "
+          "zh": "",
+          "omit": true
         },
         {
           "color": "§c",
           "text": "+%1$s❁ Damage ",
-          "zh": "+%1$s❁ 伤害"
+          "zh": "❁ 伤害 +%1$s "
         },
         {
           "color": "§7",
@@ -1001,7 +1075,7 @@
         {
           "color": "§c",
           "text": "+%2$s⫽ Ferocity",
-          "zh": "+%2$s⫽ 凶暴"
+          "zh": "⫽ 凶暴 +%2$s"
         },
         {
           "color": "§7",

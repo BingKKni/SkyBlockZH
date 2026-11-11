@@ -25,37 +25,44 @@
       ],
       "gloss": "尾行 ✦ Speed. 已被其他记录应答而未进采集，格式参照同菜单 Rabbit 的实测尾行。",
       "translate": true,
-      "zh": "获得 +%1$s 伤害吸收值与 +%2$s ✦ 速度。",
+      "zh": "+%1$s 伤害吸收值与 ✦ 速度 +%2$s。",
       "segments": [
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "获得 "
+          "zh": "",
+          "omit": true,
+          "order": 0
         },
         {
           "color": "§a",
           "text": "+%1$s ",
-          "zh": "+%1$s "
+          "zh": "+%1$s ",
+          "order": 1
         },
         {
           "color": "§7",
           "text": "of absorption and ",
-          "zh": "伤害吸收值与 "
+          "zh": "伤害吸收值与 ",
+          "order": 2
         },
         {
           "color": "§a",
           "text": "+%2$s ",
-          "zh": "+%2$s "
+          "zh": "+%2$s",
+          "order": 4
         },
         {
           "color": "§f",
           "text": "✦ Speed",
-          "zh": "✦ 速度"
+          "zh": "✦ 速度 ",
+          "order": 3
         },
         {
           "color": "§7",
           "text": ".",
-          "zh": "。"
+          "zh": "。",
+          "order": 5
         }
       ],
       "samples": [
@@ -85,37 +92,44 @@
         }
       ],
       "translate": true,
-      "zh": "获得 +%1$s ✦ 速度，并使怪物攻击落空的几率提高 %2$s%。",
+      "zh": "✦ 速度 +%1$s，并使怪物攻击落空的几率提高 %2$s%。",
       "segments": [
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "获得 "
+          "zh": "",
+          "omit": true,
+          "order": 0
         },
         {
           "color": "§a",
           "text": "+%1$s ",
-          "zh": "+%1$s "
+          "zh": "+%1$s",
+          "order": 2
         },
         {
           "color": "§f",
           "text": "✦ Speed ",
-          "zh": "✦ 速度"
+          "zh": "✦ 速度 ",
+          "order": 1
         },
         {
           "color": "§7",
           "text": "and increases the chance for mob attacks to miss by ",
-          "zh": "，并使怪物攻击落空的几率提高 "
+          "zh": "，并使怪物攻击落空的几率提高 ",
+          "order": 3
         },
         {
           "color": "§a",
           "text": "%2$s%",
-          "zh": "%2$s%"
+          "zh": "%2$s%",
+          "order": 4
         },
         {
           "color": "§7",
           "text": ".",
-          "zh": "。"
+          "zh": "。",
+          "order": 5
         }
       ],
       "samples": [
@@ -152,17 +166,18 @@
         }
       ],
       "translate": true,
-      "zh": "获得 +%1$s☣ 暴击率、+%2$s☠ 暴击伤害与 +%3$s✯ 魔法寻宝。",
+      "zh": "☣ 暴击率 +%1$s、☠ 暴击伤害 +%2$s 与 ✯ 魔法寻宝 +%3$s。",
       "segments": [
         {
           "color": "§7",
           "text": "Grants ",
-          "zh": "获得 "
+          "zh": "",
+          "omit": true
         },
         {
           "color": "§9",
           "text": "+%1$s☣ Crit Chance",
-          "zh": "+%1$s☣ 暴击率"
+          "zh": "☣ 暴击率 +%1$s"
         },
         {
           "color": "§7",
@@ -172,7 +187,7 @@
         {
           "color": "§9",
           "text": "+%2$s☠ Crit Damage ",
-          "zh": "+%2$s☠ 暴击伤害"
+          "zh": "☠ 暴击伤害 +%2$s "
         },
         {
           "color": "§7",
@@ -182,7 +197,7 @@
         {
           "color": "§b",
           "text": "+%3$s✯ Magic Find",
-          "zh": "+%3$s✯ 魔法寻宝"
+          "zh": "✯ 魔法寻宝 +%3$s"
         },
         {
           "color": "§7",
@@ -497,27 +512,31 @@
         }
       ],
       "translate": true,
-      "zh": "获得跳跃提升 %1$s 与 +%2$s ✦ 速度。",
+      "zh": "跳跃提升 %1$s 与 ✦ 速度 +%2$s。",
       "segments": [
         {
           "color": "§7",
           "text": "Grants Jump Boost %1$s and ",
-          "zh": "获得跳跃提升 %1$s 与 "
+          "zh": "跳跃提升 %1$s 与 ",
+          "order": 0
         },
         {
           "color": "§a",
           "text": "+%2$s ",
-          "zh": "+%2$s "
+          "zh": "+%2$s",
+          "order": 2
         },
         {
           "color": "§f",
           "text": "✦ Speed",
-          "zh": "✦ 速度"
+          "zh": "✦ 速度 ",
+          "order": 1
         },
         {
           "color": "§7",
           "text": ".",
-          "zh": "。"
+          "zh": "。",
+          "order": 3
         }
       ],
       "samples": [
