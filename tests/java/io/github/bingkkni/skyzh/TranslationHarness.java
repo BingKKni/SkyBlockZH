@@ -3068,7 +3068,7 @@ public final class TranslationHarness {
 
 	/** Fixed UI capture regression: ordered lore, term isolation, and clues that must survive translation. */
 	private static void checkFixedMenus(Path corpusRoot) throws Exception {
-		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "october-live-round-cases.json", "workshop-cases.json", "wiki-expansion-cases.json", "bazaar-item-names-cases.json", "rift-live-capture-cases.json", "rift-session-cases.json", "garden-weather-feast-cases.json", "village-living-cave-cases.json", "rift-post-build-cases.json", "castle-capture-cases.json", "slayer-rng-capture-cases.json", "spider-session-cases.json", "dual-live-round-cases.json", "moonglade-capture-cases.json", "slayer-current-capture-cases.json", "dual-computer-followup-cases.json", "mountaintop-live-capture-cases.json", "nov03-capture-cases.json", "nov04-combat-cases.json", "nov04-dungeons-cases.json", "nov04-skills-cases.json", "nov04-islands-cases.json", "nov04-hub-cases.json", "nov04-integration-cases.json", "runtime-followup-cases.json", "nov06-capture-cases.json", "nov07-capture-cases.json")) {
+		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "october-live-round-cases.json", "workshop-cases.json", "wiki-expansion-cases.json", "bazaar-item-names-cases.json", "rift-live-capture-cases.json", "rift-session-cases.json", "garden-weather-feast-cases.json", "village-living-cave-cases.json", "rift-post-build-cases.json", "castle-capture-cases.json", "slayer-rng-capture-cases.json", "spider-session-cases.json", "dual-live-round-cases.json", "moonglade-capture-cases.json", "slayer-current-capture-cases.json", "dual-computer-followup-cases.json", "mountaintop-live-capture-cases.json", "nov03-capture-cases.json", "nov04-combat-cases.json", "nov04-dungeons-cases.json", "nov04-skills-cases.json", "nov04-islands-cases.json", "nov04-hub-cases.json", "nov04-integration-cases.json", "runtime-followup-cases.json", "nov06-capture-cases.json", "nov07-capture-cases.json", "nov11-capture-cases.json")) {
 		Path path = corpusRoot.toAbsolutePath().getParent().resolve("tests/resources/" + file);
 		JsonObject fixture = JsonParser.parseString(Files.readString(path, StandardCharsets.UTF_8)).getAsJsonObject();
 		for (JsonElement value : fixture.getAsJsonArray("cases")) {
@@ -3079,7 +3079,9 @@ public final class TranslationHarness {
 			if (test.has("surface")) {
 				Surface surface = Surface.fromDirectory(text(test, "surface"));
 				if (test.has("row") && test.get("row").getAsBoolean()) {
-					checkRow(name, input.getFirst().getString(), text(test, "expected"));
+					String actual = legacy(Translator.translateRow(input.getFirst(), surface));
+					String expected = legacy(Component.literal(text(test, "expected")));
+					report(name, expected.equals(actual), "期望 [" + expected + "] 实际 [" + actual + "]");
 				} else if (test.has("miss") && test.get("miss").getAsBoolean()) {
 					checkNoMatch(name, input.getFirst().getString(), surface);
 				} else {

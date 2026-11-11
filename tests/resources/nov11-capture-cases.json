@@ -1,0 +1,31 @@
+{
+  "note": "本轮采集与五张截图回归；使用独立期望校验语序、颜色、数值、技能标点及嘉年华标签。",
+  "cases": [
+    {"name":"赠礼时刻语序与颜色","source":["§eA Time for Giving","§7Spawn §dParty Chests §7by killing mobs","§7during the §6Spooky Festival §7and","§7collect §bParty Gifts §7from §cJerry's","§cWorkshop§7."],"expected":"§e赠礼时刻§7：在§6惊魂节§7期间，击杀怪物可生成§d派对宝箱§7，还可从 §cJerry 工坊§7中获取§b派对礼物§7。","consumed":5},
+    {"name":"矿井标题不加填充","surface":"ChatMessage","source":["§b§lMINESHAFT MODIFIERS!"],"expected":"§b§l本次矿井修正!"},
+    {"name":"镐子技能使用不加引号","surface":"ChatMessage","source":["§aYou used your §6Pickobulus §aPickaxe Ability!"],"expected":"§a你使用了§6碎石飞弹§a镐子技能!"},
+    {"name":"镐子技能就绪不加引号","surface":"ChatMessage","source":["§6Mining Speed Boost §ais now available!"],"expected":"§6挖掘速度爆发§a冷却完毕,可以再次使用了!"},
+    {"name":"碎石飞弹结果不加引号","surface":"ChatMessage","source":["§7Your §aPickobulus §7destroyed §e42 §7blocks!"],"expected":"§7你的§a碎石飞弹§7摧毁了§e42§7个方块!"},
+    {"name":"Peridot奖励保留四格缩进","surface":"ChatMessage","source":["    §2Peridot Crystal"],"expected":"    §2Peridot 水晶"},
+    {"name":"嘉年华计分板代币标签","surface":"ScoreBoard","row":true,"source":["§fCarnival Tokens: §e1,117"],"expected":"§f嘉年华代币: §e1,117"},
+    {"name":"嘉年华倒计时不受代币修复影响","surface":"ScoreBoard","row":true,"source":["§eCarnival §f82:31:34"],"expected":"§e嘉年华 §f82:31:34"},
+    {"name":"嘉年华目标货币动态数值","surface":"ChatMessage","source":["   §8+§e350 Carnival Tokens"],"expected":"   §8+§e350 嘉年华代币"},
+    {"name":"嘉年华货币与门票区分","surface":"GUI_Item","source":["§e250 Carnival Tokens"],"expected":"§e250 嘉年华代币"},
+    {"name":"地雷数量独立金色","surface":"ChatMessage","source":["§c§lMINES! §fThere is §61 §fbomb hidden nearby."],"expected":"§c§l地雷! §f附近埋着 §61 §f颗炸弹。"},
+    {"name":"丰收盛宴漏译续行修复","source":["§7Grants a §a+1% §7chance to find","§2Seasonings §7during a §6Harvest Feast§7."],"expected":"§6丰收盛宴§7期间，找到§2调味料§7的概率提高 §a+1%§7。","consumed":2},
+    {"name":"丰收盛宴第二组概率","source":["§7Grants a §a+5% §7chance to find","§2Seasonings §7during a §6Harvest Feast§7."],"expected":"§6丰收盛宴§7期间，找到§2调味料§7的概率提高 §a+5%§7。","consumed":2},
+    {"name":"奥术支配者类别括号同为灰色","source":["§6Arcane Ruler §8(Combat)"],"expected":"§6奥术支配者 §8(战斗)","consumed":1},
+    {"name":"地底支配者类别括号同为灰色","source":["§6Subterranean Ruler §8(Combat)"],"expected":"§6地底支配者 §8(战斗)","consumed":1},
+    {"name":"寻兔竞技场地点不残留within","surface":"ChatMessage","source":["§d§lHOPPITY'S HUNT §dYou found a §aChocolate Dinner Egg §dwithin the Dragontail colosseum!"],"expected":"§d§lHoppity 的寻兔行动: §d你在龙尾镇竞技场找到了§a巧克力晚餐蛋§d!"},
+    {"name":"举报按钮不残留report","surface":"GUI_Item","source":["§eClick to report it!"],"expected":"§e点击举报！"},
+    {"name":"矮人熔炉卷轴沿用地名","surface":"GUI_Item","source":["§9Travel Scroll to the Dwarven Forge"],"expected":"§9矮人熔炉传送卷轴"},
+    {"name":"宝石截断标题无瑕品质","surface":"GUI_Title","source":["Peridot ➜  Flawless Peridot Ge"],"expected":"Peridot ➜  无瑕 Peridot 宝石"},
+    {"name":"宝石截断标题完美品质","surface":"GUI_Title","source":["Peridot ➜  Perfect Peridot Gem"],"expected":"Peridot ➜  完美 Peridot 宝石"},
+    {"name":"Jerry增益预览两个数值保色","source":["§7Gain §8+5%➜§a+10%§7 more §6Coins §7and §3Skill","§3EXP §7from §cGifts§7."],"expected":"§7从§c礼物§7中获得的§6金币§7和§3技能经验§7的获取量提高 §8+5%➜§a+10%§7。","consumed":2},
+    {"name":"水果结算量词不分开果名","surface":"ChatMessage","source":["§f      4x §aApple§f, 3x §aMango§f, 3x §9Pomegranate§f, 3x §9Watermelon§f, 1x"],"expected":"§f      4 个§a苹果§f， 3 个§a芒果§f， 3 个§9石榴§f， 3 个§9西瓜§f， 1 个"},
+    {"name":"水果结算后续行量词紧邻果名","surface":"ChatMessage","source":["§f                      §5Cherry§f, 2x §5Coconut§f, 1x §cBomb"],"expected":"§f                      §5樱桃§f， 2 个§5椰子§f， 1 个§c炸弹"},
+    {"name":"Gems付费货币保留英文","surface":"ChatMessage","source":["§eYou've been given §a500 SkyBlock Gems §efor having an active"],"expected":"§e你获得了 §a500 空岛生存 Gems§e，因为你本月拥有有效的"},
+    {"name":"付费Ranks保留英文","surface":"GUI_Item","source":["Hypixel Ranks"],"miss":true},
+    {"name":"售票员沿用既定职务译名","source":["§7Show this pass to the §bTicket Master§7."],"expected":"§7将此通行证出示给§b售票员§7。","consumed":1}
+  ]
+}

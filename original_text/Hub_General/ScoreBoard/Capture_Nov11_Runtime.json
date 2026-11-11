@@ -1,0 +1,28 @@
+{
+  "source": "../SkyZH_Logs/5.png",
+  "verified_ingame": true,
+  "lines": [
+    {
+      "id": "carnival_tokens_label",
+      "context": "嘉年华计分板货币标签；避免被 Carnival 活动倒计时宽模板误认",
+      "text": "Carnival Tokens:",
+      "placeholders": [],
+      "gloss": "用户拍板：统一译为嘉年华代币。截图确认标签，数值与实时颜色由计分板行结构保留。",
+      "translate": true,
+      "zh": "嘉年华代币:"
+    },
+    {
+      "id": "carnival_tokens_balance",
+      "context": "嘉年华计分板代币余额；完整行优先于 Carnival 活动宽模板",
+      "text": "Carnival Tokens: %s",
+      "placeholders": [{"token": "%s", "type": "number", "example": "1,117"}],
+      "gloss": "用户拍板：统一译为嘉年华代币。保留服务器实时标签与余额颜色。",
+      "translate": true,
+      "zh": "嘉年华代币: %s",
+      "segments": [
+        {"text": "Carnival Tokens: ", "zh": "嘉年华代币: "},
+        {"text": "%s", "zh": "%s"}
+      ]
+    }
+  ]
+}

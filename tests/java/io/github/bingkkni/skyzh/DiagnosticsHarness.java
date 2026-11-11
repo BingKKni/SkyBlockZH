@@ -143,7 +143,7 @@ public final class DiagnosticsHarness {
 		}
 		for (String source : List.of("    +10,000 Farming Experience", "    +5,000 Farming Experience",
 			"    +12 Garden Experience", "    +10 Bits", "  REWARDS", "    §a§lREWARD", "    +10 SkyBlock XP",
-			"    §6+1 Mining Fortune")) {
+			"    §6+1 Mining Fortune", "§b§lMINESHAFT MODIFIERS!", "    §2Peridot Crystal")) {
 			Component text = Component.literal(source);
 			var result = ChatLayout.plan(text, Translator.translateAvailable(text, Surface.CHAT), 320, DiagnosticsHarness::width);
 			check("任务奖励保留左缩进 " + source.trim(), left(result.text()) == left(text));
