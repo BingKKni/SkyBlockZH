@@ -87,3 +87,7 @@ Mod 新版本下载到 `skyzh-updates/`，退出游戏后由独立安装程序�
 ## 技术文档
 
 想了解翻译引擎是怎么实现的（渲染面、Mixin、语料格式、换行与居中的像素测量），见 [docs/TECHNICAL_zh-CN.md](docs/TECHNICAL_zh-CN.md)（中文） / [docs/TECHNICAL.md](docs/TECHNICAL.md)（English）。
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=BingKKni/SkyBlockZH&type=Date)](https://www.star-history.com/#BingKKni/SkyBlockZH&Date)
