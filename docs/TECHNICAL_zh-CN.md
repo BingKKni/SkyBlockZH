@@ -287,9 +287,9 @@ Mod 读取打包时删除译者说明字段后的 JSON，运行时字段保持�
 ### GitHub 自动更新
 
 `.github/workflows/translations.yml` 每次 push 触发，主分支运行 `tools/publish_updates.py`，相对上次成功发布的来源提交检查完整打包输入；首次发布和手动 `workflow_dispatch` 强制打包。复用 Python 导出与 Gradle 校验，ZIP 明确使用 DEFLATE 等级 9。
-脚本以 `--prepare` 生成 `build/pages`，由 Pages 整站部署至 `https://skyblock.xbdqaq.com/`。`skyzh-updates/update.json` 提供翻译与测试版清单，`release.json` 提供正式版清单；客户端检查与下载均使用该域名。部署保留前两版翻译包及上一组测试版、正式版 JAR，旧 Pages 地址在发布时迁移。`--publish` 校验当前下载文件后记录仓库状态清单，构建期间输入变动则不覆盖。需配置 Pages 自定义域名及 `contents: write`、`pages: write`、`id-token: write` 权限。
+脚本以 `--prepare` 生成 `build/pages`，由 Pages 整站部署至 `https://skyblock.xbdqaq.com/`。`skyzh-updates/update.json` 提供翻译与测试版清单，`release.json` 提供正式版清单；客户端检查与下载均使用该域名。部署保留前两版翻译包及上一组测试版、正式版 JAR，旧 Pages 地址在发布时迁移。`--publish` 校验当前下载文件后记录仓库清单，构建期间输入变动则不覆盖。仓库清单供旧客户端读取，翻译包和测试版地址指向 `legacy-updates` 预发布附件；新域名清单保持站点地址，原始状态另存于 `pages_state` 供后续部署保留文件。兼容附件按摘要命名，不覆盖旧链接，也不影响最新正式 Release。需配置 Pages 自定义域名及 `contents: write`、`pages: write`、`id-token: write` 权限。
 
-正式版发布：运行 `./gradlew dist`，将三个正式 JAR 上传至版本号对应的 Release 后发布。`published`、`edited`、`released` 事件自动触发同一部署队列，从最新正式 Release 校验 Mod ID、版本、渠道、大小和 SHA-256 后镜像附件；失败可手动运行工作流重试。普通推送只生成翻译包与测试版。
+正式版发布：运行 `./gradlew dist`，将三个正式 JAR 上传至版本号对应的 Release 后发布，保留 GitHub 下载入口供旧客户端自动升级。`published`、`edited`、`released` 事件自动触发同一部署队列，从最新正式 Release 校验 Mod ID、版本、渠道、大小和 SHA-256 后镜像附件；失败可手动运行工作流重试。普通推送只生成翻译包与测试版。
 
 客户端在 `HypixelServer.isSkyBlock()` 且首次语料加载已结束时启用后台更新，不在启动初始化或单纯进入服务器时联网。自动检查、主动检查及重试按钮复用一个后台任务和忙状态；同时检查两项时按 Mod、翻译包顺序执行，各项保留独立冷却，Mod 检查失败不阻止随后检查翻译。
 翻译清单从自定义域名直接读取，包含 `update_format: 1`、包级清单字段、`download_url`、`zip_size` 和 `zip_sha256`；API 必须完全相等，日期较新且内容摘要不同时才下载。比较基准与加载选择共用时间和摘要规则：只有比内置包新的可用自动包才作基准，否则使用内置元数据，即使旧自动包尚未删除也不会影响检查；内置资源 `skyzh-builtin-translations.json` 与 ZIP 清单由同一构建任务生成。手动包不参与自动更新的版本比较。

@@ -343,9 +343,12 @@ First publication and manual dispatch force packaging. `tools/publish_updates.py
 Pages deploys `build/pages` to `https://skyblock.xbdqaq.com/`, including `skyzh-updates/update.json` for translations/betas
 and `release.json` for formal builds. Clients check and download only through that domain. Each deployment retains two previous translation
 archives and the previous beta/formal JAR sets; legacy Pages descriptors are migrated. `--publish` verifies current downloads before recording
-repository state, unless packaging inputs changed during deployment. Configure the Pages custom domain and `contents: write`, `pages: write`, `id-token: write`.
+repository state, unless packaging inputs changed during deployment. The repository manifest keeps GitHub URLs for older clients using
+immutable `legacy-updates` prerelease attachments; the site's manifest keeps domain URLs. `pages_state` preserves deployment retention data.
+Compatibility attachments never replace old links or the latest formal Release. Configure the Pages custom domain and `contents: write`, `pages: write`, `id-token: write`.
 
 To publish a formal build, run `./gradlew dist`, attach all three formal JARs to a Release matching the Mod version, then publish it.
+Keep GitHub download links available so older clients can upgrade automatically.
 Release `published`, `edited` and `released` events use the same deployment queue, mirroring the latest formal Release after checking ID,
 version, channel, size and SHA-256. Failed runs can be retried by manual dispatch. Ordinary pushes generate translations and beta builds.
 

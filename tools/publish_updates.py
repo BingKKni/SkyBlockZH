@@ -179,6 +179,7 @@ def output(packaged: bool) -> None:
 def prepare(force: bool) -> bool:
     previous_file = ROOT / "skyzh-updates/update.json"
     previous = json.loads(previous_file.read_text(encoding="utf-8")) if previous_file.exists() else {}
+    previous = previous.get("pages_state", previous)
     if not force and not changed(previous.get("revision")):
         output(False)
         print("翻译、API 和打包逻辑没有变化，本次无需打包。")
@@ -264,6 +265,61 @@ def prepare(force: bool) -> bool:
     return True
 
 
+def upload_legacy(url: str, token: str, payload: bytes) -> dict:
+    headers = {"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json",
+               "Content-Type": "application/octet-stream", "User-Agent": "SkyZH-Translation-Publisher"}
+    with urllib.request.urlopen(urllib.request.Request(url, data=payload, headers=headers, method="POST"), timeout=120) as response:
+        return json.load(response)
+
+
+def legacy_manifest(update: dict, token: str) -> dict:
+    """Keep the repository API entry usable by installed clients that only allow GitHub URLs."""
+    api = "https://api.github.com/repos/BingKKni/SkyBlockZH"
+    tag = "legacy-updates"
+    try:
+        release = request(f"{api}/releases/tags/{tag}", token)
+    except urllib.error.HTTPError as error:
+        if error.code != 404:
+            raise
+        release = request(f"{api}/releases", token, "POST", encode({
+            "tag_name": tag, "target_commitish": update["revision"], "name": "旧版客户端自动更新兼容文件",
+            "body": "供尚未迁移至新更新域名的客户端自动下载。正式版本请使用正式 Release。",
+            "prerelease": True, "draft": False, "make_latest": "false",
+        }))
+    if release.get("tag_name") != tag or release.get("draft") or release.get("prerelease") is not True:
+        raise ValueError("旧版兼容附件必须存放于独立预发布版本，不能替换正式 Release。")
+    assets = {asset["name"]: asset for asset in release["assets"]}
+    result = json.loads(encode(update))
+    result["pages_state"] = update
+
+    def mirror(name: str, url: str, size: int, digest: str) -> str:
+        relative = url.removeprefix(PAGES)
+        if not url.startswith(PAGES) or not re.fullmatch(
+                r"skyzh-updates/(?:[0-9a-f]{64}/translations\.zip|mod/[0-9a-f]{64}/SkyBlockZH-[0-9A-Za-z.+-]+\.jar)", relative):
+            raise ValueError("兼容附件的来源不属于更新站点。")
+        payload = (ROOT / "build/pages" / relative).read_bytes()
+        if len(payload) != size or hashlib.sha256(payload).hexdigest() != digest:
+            raise ValueError("兼容附件与待发布摘要不符。")
+        asset = assets.get(name)
+        if asset is None:
+            endpoint = f"https://uploads.github.com/repos/BingKKni/SkyBlockZH/releases/{int(release['id'])}/assets?name={name}"
+            asset = upload_legacy(endpoint, token, payload)
+        expected = f"https://github.com/BingKKni/SkyBlockZH/releases/download/{tag}/{name}"
+        if (asset["size"] != size or asset.get("digest") != f"sha256:{digest}"
+                or asset["browser_download_url"] != expected):
+            raise ValueError("GitHub 兼容附件的地址、大小或摘要不符。")
+        fetch(expected, size, digest)
+        return expected
+
+    item = descriptor(update)
+    result["download_url"] = mirror(f"translations-{item['zip_sha256']}.zip", item["download_url"], item["zip_size"], item["zip_sha256"])
+    for target, asset in result["mod_beta"]["assets"].items():
+        original = update["mod_beta"]["assets"][target]
+        name = f"SkyBlockZH-legacy-{target}-{original['sha256']}.jar"
+        asset["download_url"] = mirror(name, original["download_url"], original["size"], original["sha256"])
+    return result
+
+
 def publish() -> bool:
     repository = os.environ.get("GITHUB_REPOSITORY", "BingKKni/SkyBlockZH")
     if repository != "BingKKni/SkyBlockZH":
@@ -289,13 +345,13 @@ def publish() -> bool:
             if attempt == 5:
                 raise
             time.sleep(5)
-    content = encode(update) + b"\n"
     head = request(f"{api}/git/ref/heads/main", token)["object"]["sha"]
     if head != source:
         subprocess.run(["git", "fetch", "origin", "main"], cwd=ROOT, check=True)
         if subprocess.run(["git", "diff", "--quiet", source, head, "--", *INPUTS], cwd=ROOT).returncode != 0:
             print("构建期间打包输入已有新提交，保留原更新清单；后续 Actions 会处理新提交。")
             return False
+    content = encode(legacy_manifest(update, token)) + b"\n"
     blob = request(f"{api}/git/blobs", token, "POST", encode({"content": base64.b64encode(content).decode("ascii"), "encoding": "base64"}))
     tree = request(f"{api}/git/trees", token, "POST", encode({
         "base_tree": request(f"{api}/git/commits/{head}", token)["tree"]["sha"],
