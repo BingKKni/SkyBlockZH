@@ -13,13 +13,26 @@ permissions:
   pages: write
   id-token: write
 
-concurrency:
-  group: skyzh-translation-publication
-  cancel-in-progress: false
-
 jobs:
+  dispatch-release:
+    if: github.repository == 'BingKKni/SkyBlockZH' && github.event_name == 'release' && !github.event.release.prerelease && !github.event.release.draft
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              ...context.repo,
+              workflow_id: 'translations.yml',
+              ref: 'main'
+            });
   publish:
-    if: github.repository == 'BingKKni/SkyBlockZH' && (github.ref == 'refs/heads/main' || github.event_name == 'release')
+    if: github.repository == 'BingKKni/SkyBlockZH' && github.ref == 'refs/heads/main' && github.event_name != 'release'
+    concurrency:
+      group: skyzh-translation-publication
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     timeout-minutes: 40
     environment:
@@ -44,7 +57,7 @@ jobs:
       - name: Prepare translation files
         id: prepare
         env:
-          FORCE_PACKAGE: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'release' }}
+          FORCE_PACKAGE: ${{ github.event_name == 'workflow_dispatch' }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: bash
         run: |

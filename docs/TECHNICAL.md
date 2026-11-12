@@ -349,8 +349,8 @@ Compatibility attachments never replace old links or the latest formal Release. 
 
 To publish a formal build, run `./gradlew dist`, attach all three formal JARs to a Release matching the Mod version, then publish it.
 Keep GitHub download links available so older clients can upgrade automatically.
-Release `published`, `edited` and `released` events use the same deployment queue, mirroring the latest formal Release after checking ID,
-version, channel, size and SHA-256. Failed runs can be retried by manual dispatch. Ordinary pushes generate translations and beta builds.
+Release `published`, `edited` and `released` events dispatch a main-branch deployment, mirroring the latest formal Release after checking ID,
+version, channel, size and SHA-256. Failed runs can be retried by manual dispatch. Pushes generate translations and beta builds, and also mirror changed formal Release attachments.
 
 Background updates become eligible only after verified SkyBlock entry and completion of initial corpus loading, even if that load failed.
 Automatic checks, explicit commands and retry buttons share one worker and busy guard. Combined checks run Mod first, then translations;

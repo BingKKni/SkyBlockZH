@@ -176,11 +176,28 @@ def output(packaged: bool) -> None:
             stream.write(f"packaged={'true' if packaged else 'false'}\n")
 
 
+def release_changed(previous: dict) -> bool:
+    """A newer queued push must still mirror a Release even when source inputs did not change."""
+    try:
+        current = request("https://api.github.com/repos/BingKKni/SkyBlockZH/releases/latest", os.environ["GITHUB_TOKEN"])
+    except urllib.error.HTTPError as error:
+        if error.code != 404:
+            raise
+        current = {"tag_name": "0", "assets": []}
+
+    def signature(release):
+        return (release.get("tag_name", "0"), sorted(
+            (asset["name"], asset["size"], asset.get("digest", "")) for asset in release.get("assets", [])
+            if re.fullmatch(r"SkyBlockZH-[0-9A-Za-z.+-]+-Fabric-26\.[123]\.jar", asset["name"])))
+
+    return signature(current) != signature(previous)
+
+
 def prepare(force: bool) -> bool:
     previous_file = ROOT / "skyzh-updates/update.json"
     previous = json.loads(previous_file.read_text(encoding="utf-8")) if previous_file.exists() else {}
     previous = previous.get("pages_state", previous)
-    if not force and not changed(previous.get("revision")):
+    if not force and not changed(previous.get("revision")) and not release_changed(previous.get("mod_release", {})):
         output(False)
         print("翻译、API 和打包逻辑没有变化，本次无需打包。")
         return False

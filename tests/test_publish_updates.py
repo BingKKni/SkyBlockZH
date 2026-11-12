@@ -61,6 +61,7 @@ class PublicationTests(unittest.TestCase):
         self.blob = None
         for item in [patch.object(publisher, "ROOT", self.root),
                      patch.object(publisher, "git", return_value="a" * 40),
+                     patch.object(publisher, "release_changed", return_value=False),
                      patch.object(publisher, "changed", return_value=True),
                      patch.object(publisher, "legacy_manifest", side_effect=lambda update, token: update),
                      patch.object(publisher, "release_assets", return_value=({"tag_name": "0", "assets": []}, [])),
@@ -157,6 +158,11 @@ class PublicationTests(unittest.TestCase):
         publisher.subprocess.run.assert_not_called()
         transfer.assert_not_called()
         self.assertEqual((self.root / "outputs").read_text().strip(), "packaged=false")
+
+    def test_new_release_survives_replacement_by_a_push_without_source_changes(self):
+        with patch.object(publisher, "changed", return_value=False), patch.object(publisher, "release_changed", return_value=True):
+            self.assertTrue(publisher.prepare(False))
+        publisher.subprocess.run.assert_called_once()
 
     def test_force_dispatch_builds_even_without_input_changes(self):
         with patch.object(publisher, "changed", return_value=False):
@@ -380,6 +386,17 @@ class ReleaseMirrorTests(unittest.TestCase):
                            "browser_download_url": url})
             payloads[url] = payload
         return {"tag_name": "0.8", "assets": assets}, payloads
+
+    def test_release_change_detection_covers_version_and_replaced_attachments(self):
+        release, _ = self.release()
+        with patch.dict(publisher.os.environ, {"GITHUB_TOKEN": "test"}), patch.object(publisher, "request", return_value=release):
+            self.assertFalse(publisher.release_changed(release))
+            previous = json.loads(json.dumps(release))
+            previous["tag_name"] = "0.7"
+            self.assertTrue(publisher.release_changed(previous))
+            previous = json.loads(json.dumps(release))
+            previous["assets"][0]["digest"] = "sha256:" + "0" * 64
+            self.assertTrue(publisher.release_changed(previous))
 
     def test_release_is_mirrored_with_verified_digests(self):
         release, payloads = self.release()
