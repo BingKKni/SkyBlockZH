@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Base64;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.Executor;
@@ -32,7 +31,7 @@ import org.slf4j.LoggerFactory;
 /** Automatic and user-requested updates share workers, validation, installation and busy guards. */
 public final class UpdateChecker {
 	private static final Logger LOGGER = LoggerFactory.getLogger("SkyZH");
-	private static final String API = "https://api.github.com/repos/BingKKni/SkyBlockZH/";
+	private static final String UPDATES = "https://skyblock.xbdqaq.com/skyzh-updates/";
 	private static final Pattern RELEASE_VERSION = Pattern.compile(
 		"\\d+(?:\\.\\d+)*(?:-[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*)?(?:\\+[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*)?");
 	private static final ConcurrentLinkedQueue<Component> MESSAGES = new ConcurrentLinkedQueue<>();
@@ -221,7 +220,7 @@ public final class UpdateChecker {
 		}
 
 		private JsonObject latestRelease() throws Exception {
-			JsonObject release = http.json(URI.create(API + "releases/latest"));
+			JsonObject release = http.json(URI.create(UPDATES + "release.json"));
 			UpdateFiles.string(release, "tag_name");
 			if (release.has("prerelease") && release.get("prerelease").getAsBoolean()) throw new IOException("Mod 更新入口返回预发布");
 			return release;
@@ -229,10 +228,7 @@ public final class UpdateChecker {
 
 		/** The published manifest: the translation bundle, and the newest per-commit test build. */
 		private JsonObject updateManifest() throws Exception {
-			JsonObject envelope = http.json(URI.create(API + "contents/skyzh-updates/update.json?ref=main"));
-			if (!UpdateFiles.string(envelope, "encoding").equals("base64")) throw new IOException("GitHub 清单编码不支持");
-			byte[] bytes = Base64.getDecoder().decode(UpdateFiles.string(envelope, "content").replaceAll("\\s", ""));
-			return TranslationPack.parse(bytes, "update.json");
+			return http.json(URI.create(UPDATES + "update.json"));
 		}
 
 		private void checkTranslations(boolean requested) throws Exception {

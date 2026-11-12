@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Stage translation files and test Mod builds for GitHub Pages, then publish update.json after deployment is verified."""
+"""Stage translations and Mod builds on the update domain, then verify deployment and record its manifest."""
 from __future__ import annotations
 
 import argparse
 import base64
 import hashlib
+import io
 import json
 import os
 from pathlib import Path
@@ -18,7 +19,8 @@ import urllib.request
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-PAGES = "https://bingkkni.github.io/SkyBlockZH/"
+PAGES = "https://skyblock.xbdqaq.com/"
+LEGACY_PAGES = "https://bingkkni.github.io/SkyBlockZH/"
 MAX_ZIP = 64 * 1024 * 1024
 RETAIN_PREVIOUS = 2
 INPUTS = (
@@ -65,7 +67,7 @@ def descriptor(update: dict) -> dict:
     if type(size) is not int or not 0 < size <= MAX_ZIP:
         raise ValueError("无效的翻译包大小。")
     url = archive_url(digest)
-    if update["download_url"] != url:
+    if update["download_url"] not in (url, url.replace(PAGES, LEGACY_PAGES, 1)):
         raise ValueError("翻译包地址不属于项目的 Pages 更新目录。")
     return {"download_url": url, "zip_size": size, "zip_sha256": digest}
 
@@ -83,7 +85,7 @@ def fetch(url: str, size: int, digest: str) -> bytes:
 
 def download(update: dict) -> bytes:
     item = descriptor(update)
-    return fetch(item["download_url"], item["zip_size"], item["zip_sha256"])
+    return fetch(update["download_url"], item["zip_size"], item["zip_sha256"])
 
 
 def beta_url(digest: str, name: str) -> str:
@@ -121,6 +123,52 @@ def beta_assets(jars: list[Path]) -> tuple[dict, list[tuple[str, bytes]]]:
     return assets, files
 
 
+def release_assets() -> tuple[dict, list[tuple[str, bytes]]]:
+    """Mirror the latest published release; GitHub is contacted only by the publisher."""
+    api = "https://api.github.com/repos/BingKKni/SkyBlockZH/releases/latest"
+    try:
+        release = request(api, os.environ["GITHUB_TOKEN"])
+    except urllib.error.HTTPError as error:
+        if error.code != 404:
+            raise
+        return {"tag_name": "0", "prerelease": False, "assets": []}, []
+    version = release["tag_name"]
+    if release.get("draft") or release.get("prerelease") or not re.fullmatch(r"[vV]?[0-9]+(?:\.[0-9]+)*", version):
+        raise ValueError("正式 Release 版本号或发布状态无效。")
+    assets, files, targets = [], [], set()
+    for asset in release["assets"]:
+        name = asset["name"]
+        match = re.fullmatch(r"SkyBlockZH-[0-9A-Za-z.+-]+-Fabric-(26\.[123])\.jar", name)
+        if not match:
+            continue
+        target = match[1]
+        if target in targets:
+            raise ValueError("正式 Release 含重复的 Minecraft 目标。")
+        targets.add(target)
+        size = asset["size"]
+        digest = asset.get("digest", "").removeprefix("sha256:")
+        origin = asset["browser_download_url"]
+        if (type(size) is not int or not 0 < size <= 128 * 1024 * 1024
+                or not asset.get("digest", "").startswith("sha256:")
+                or not re.fullmatch(r"[0-9a-f]{64}", digest)
+                or not origin.startswith("https://github.com/BingKKni/SkyBlockZH/releases/download/")
+                or origin.rsplit("/", 1)[-1] != name):
+            raise ValueError("正式 Release 附件地址、大小或 SHA-256 无效。")
+        payload = fetch(origin, size, digest)
+        with zipfile.ZipFile(io.BytesIO(payload)) as bundle:
+            metadata = json.loads(bundle.read("fabric.mod.json"))
+            actual = metadata["version"]
+            if (metadata["id"] != "skyzh" or actual != f"{version.lstrip('vV')}+mc{target}"
+                    or not re.search(rb"(?m)^channel=release\r?$", bundle.read("skyzh-build.properties"))):
+                raise ValueError("正式 Release 附件的 Mod 身份、版本或渠道不符。")
+        url = beta_url(digest, name)
+        assets.append({"name": name, "size": size, "digest": f"sha256:{digest}", "browser_download_url": url})
+        files.append((url[len(PAGES):], payload))
+    if targets != set(TARGETS):
+        raise ValueError("正式 Release 必须包含全部三个 Minecraft 目标的 JAR。")
+    return {"tag_name": version, "prerelease": False, "assets": assets}, files
+
+
 def output(packaged: bool) -> None:
     destination = os.environ.get("GITHUB_OUTPUT")
     if destination:
@@ -138,6 +186,7 @@ def prepare(force: bool) -> bool:
     source = git("rev-parse", "HEAD")
     subprocess.run([sys.executable, "-B", str(ROOT / "tools/export_translations.py")], cwd=ROOT, check=True)
     assets, beta_files = beta_assets(build_beta())
+    release, release_files = release_assets()
     archive = ROOT / "build/translations/translations.zip"
     with zipfile.ZipFile(archive) as bundle:
         manifest = json.loads(bundle.read("manifest.json"))
@@ -154,23 +203,40 @@ def prepare(force: bool) -> bool:
         if not item or item.get("zip_sha256") in seen:
             continue
         # The first migration leaves the legacy Release alone until Pages has been verified.
-        if not str(item.get("download_url", "")).startswith(PAGES):
+        if not str(item.get("download_url", "")).startswith((PAGES, LEGACY_PAGES)):
             continue
         entry = descriptor(item)
-        retained.append((entry, download(entry)))
+        retained.append((entry, download(item)))
         seen.add(entry["zip_sha256"])
         if len(retained) == RETAIN_PREVIOUS:
             break
     update["previous_archives"] = [entry for entry, _ in retained]
     update["mod_beta"] = {"revision": source, "assets": assets}
+    update["mod_release"] = release
     # Clients may still be downloading the previous test build; keep its files for one more deployment.
     current = {asset["sha256"] for asset in assets.values()}
     for asset in previous.get("mod_beta", {}).get("assets", {}).values():
-        if asset.get("sha256") in current or not str(asset.get("download_url", "")).startswith(PAGES):
+        if asset.get("sha256") in current or not str(asset.get("download_url", "")).startswith((PAGES, LEGACY_PAGES)):
             continue
         name = asset["download_url"].rsplit("/", 1)[-1]
         url = beta_url(asset["sha256"], name)
-        beta_files.append((url[len(PAGES):], fetch(url, asset["size"], asset["sha256"])))
+        if asset["download_url"] not in (url, url.replace(PAGES, LEGACY_PAGES, 1)):
+            raise ValueError("旧测试版地址不属于项目更新目录。")
+        beta_files.append((url[len(PAGES):], fetch(asset["download_url"], asset["size"], asset["sha256"])))
+    # Retain the last formal release while clients finish downloads from an older manifest.
+    current_release = {asset["digest"] for asset in release["assets"]}
+    retained_release = []
+    for asset in [*previous.get("mod_release", {}).get("assets", []), *previous.get("previous_release_assets", [])]:
+        if asset["digest"] in current_release or any(old["name"].rsplit("-Fabric-", 1)[-1] == asset["name"].rsplit("-Fabric-", 1)[-1]
+                                                     for old in retained_release):
+            continue
+        digest = asset["digest"].removeprefix("sha256:")
+        url = beta_url(digest, asset["name"])
+        if asset["browser_download_url"] != url:
+            raise ValueError("旧正式版地址不属于更新站点。")
+        release_files.append((url[len(PAGES):], fetch(url, asset["size"], digest)))
+        retained_release.append(asset)
+    update["previous_release_assets"] = retained_release
     staging = ROOT / "build/pages"
     if staging.exists():
         shutil.rmtree(staging)
@@ -179,10 +245,12 @@ def prepare(force: bool) -> bool:
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(data)
     (staging / "skyzh-updates/translations.zip").write_bytes(payload)
-    for relative, data in beta_files:
+    for relative, data in [*beta_files, *release_files]:
         path = staging / relative
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(data)
+    (staging / "skyzh-updates/update.json").write_bytes(encode(update) + b"\n")
+    (staging / "skyzh-updates/release.json").write_bytes(encode(release) + b"\n")
     (staging / "CNAME").write_text("skyblock.xbdqaq.com\n", encoding="utf-8")
     (staging / "index.html").write_text(
         '<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>SkyZH 翻译文件</title>'
@@ -212,6 +280,10 @@ def publish() -> bool:
     for attempt in range(6):
         try:
             download(update)
+            for asset in update["mod_beta"]["assets"].values():
+                fetch(asset["download_url"], asset["size"], asset["sha256"])
+            for asset in update["mod_release"]["assets"]:
+                fetch(asset["browser_download_url"], asset["size"], asset["digest"].removeprefix("sha256:"))
             break
         except (OSError, RuntimeError):
             if attempt == 5:

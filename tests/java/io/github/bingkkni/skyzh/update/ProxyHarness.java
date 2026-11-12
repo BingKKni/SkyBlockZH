@@ -135,7 +135,7 @@ public final class ProxyHarness {
 				check("HTTPS 代理证书主机名不匹配会直连回退", http.json(base.resolve("/metadata")).has("route")
 					&& directRequests.get() == before + 1 && proxy.connections.get() == 1);
 			}
-			check("GitHub 签名 CDN 跳转受支持", UpdateHttp.githubRedirect(URI.create("https://release-assets.githubusercontent.com/a?signature=x")));
+			check("更新跳转限定站点", UpdateHttp.githubRedirect(URI.create("https://skyblock.xbdqaq.com/skyzh-updates/update.json")));
 			for (String invalid : java.util.List.of("https://example.org/a", "https://release-assets.githubusercontent.com:8443/a",
 				"http://release-assets.githubusercontent.com/a", "https://user@release-assets.githubusercontent.com/a",
 				"https://release-assets.githubusercontent.com.evil.test/a"))
@@ -171,7 +171,7 @@ public final class ProxyHarness {
 			try (Proxy proxy = new Proxy("http", false, tls, 1)) {
 				UpdateHttp http = http(new UpdateProxy("http://localhost:" + proxy.port(), "", ""));
 				try { http.json(base.resolve("/missing")); throw new AssertionError("expected failure"); }
-				catch (IOException e) { check("两条线路失败沿用正常 HTTP 错误", e.getMessage().equals("GitHub HTTP 404")); }
+				catch (IOException e) { check("两条线路失败沿用正常 HTTP 错误", e.getMessage().equals("更新站点 HTTP 404")); }
 				try { http.download(new UpdateHttp.Download(base.resolve("/file"), data.length, UpdateFiles.sha256(original)), root.resolve("cancel-proxy"), () -> false); }
 				catch (IOException e) { check("取消下载不尝试代理或直连", proxy.connections.get() == 1); }
 			}

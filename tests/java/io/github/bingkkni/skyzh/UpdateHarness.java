@@ -148,17 +148,18 @@ public final class UpdateHarness {
 			fails("无数据传输超时结束下载", () -> http.download(new UpdateHttp.Download(base.resolve("/idle"), data.length, digest), target, () -> true));
 			check("JSON 元数据可读取", http.json(base.resolve("/metadata")).get("hello").getAsString().equals("world"));
 			check("慢速元数据持续有进度时不误超时", http.json(base.resolve("/slow-metadata")).get("hello").getAsString().equals("world"));
-			check("正式下载限定项目 GitHub 地址", UpdateHttp.github(URI.create("https://github.com/BingKKni/SkyBlockZH/releases/download/a/translations.zip")));
-			check("允许项目 Pages 的固定摘要翻译包地址", UpdateHttp.github(URI.create("https://bingkkni.github.io/SkyBlockZH/skyzh-updates/" + "a".repeat(64) + "/translations.zip")));
+			check("允许站点更新清单", UpdateHttp.github(URI.create("https://skyblock.xbdqaq.com/skyzh-updates/update.json")));
+			check("允许站点正式版清单", UpdateHttp.github(URI.create("https://skyblock.xbdqaq.com/skyzh-updates/release.json")));
+			check("允许固定摘要翻译包地址", UpdateHttp.github(URI.create("https://skyblock.xbdqaq.com/skyzh-updates/" + "a".repeat(64) + "/translations.zip")));
 			for (String url : new String[] {
-				"https://bingkkni.github.io/SkyBlockZH/skyzh-updates/" + "a".repeat(64) + "/translations.zip?download=1",
-				"https://bingkkni.github.io/SkyBlockZH/skyzh-updates/" + "a".repeat(64) + "/translations.zip#fragment",
-				"https://bingkkni.github.io/SkyBlockZH/skyzh-updates/" + "a".repeat(64) + "/%74ranslations.zip",
-				"http://bingkkni.github.io/SkyBlockZH/skyzh-updates/" + "a".repeat(64) + "/translations.zip",
-				"https://bingkkni.github.io/Other/skyzh-updates/" + "a".repeat(64) + "/translations.zip",
-				"https://bingkkni.github.io/SkyBlockZH/skyzh-updates/../translations.zip",
+				"https://skyblock.xbdqaq.com/skyzh-updates/" + "a".repeat(64) + "/translations.zip?download=1",
+				"https://skyblock.xbdqaq.com/skyzh-updates/" + "a".repeat(64) + "/translations.zip#fragment",
+				"https://skyblock.xbdqaq.com/skyzh-updates/" + "a".repeat(64) + "/%74ranslations.zip",
+				"http://skyblock.xbdqaq.com/skyzh-updates/update.json",
+				"https://skyblock.xbdqaq.com/Other/update.json",
+				"https://skyblock.xbdqaq.com/skyzh-updates/../translations.zip",
 				"https://other.github.io/SkyBlockZH/skyzh-updates/" + "a".repeat(64) + "/translations.zip"})
-				check("拒绝非项目 Pages 更新地址 " + url, !UpdateHttp.github(URI.create(url)));
+				check("拒绝非项目更新地址 " + url, !UpdateHttp.github(URI.create(url)));
 			for (String url : new String[] {"http://github.com/BingKKni/SkyBlockZH/releases/download/a/x", "https://evil.test/x", "https://github.com/other/SkyBlockZH/releases/download/a/x", "https://user@api.github.com/repos/BingKKni/SkyBlockZH/x"})
 				check("拒绝外部更新地址 " + url, !UpdateHttp.github(URI.create(url)));
 		} finally { server.stop(0); }
@@ -225,7 +226,7 @@ public final class UpdateHarness {
 		manifest.addProperty("update_format", 1);
 		manifest.addProperty("zip_size", Files.size(candidate));
 		manifest.addProperty("zip_sha256", UpdateFiles.sha256(candidate));
-		manifest.addProperty("download_url", "https://bingkkni.github.io/SkyBlockZH/skyzh-updates/" + UpdateFiles.sha256(candidate) + "/translations.zip");
+		manifest.addProperty("download_url", "https://skyblock.xbdqaq.com/skyzh-updates/" + UpdateFiles.sha256(candidate) + "/translations.zip");
 		return TranslationUpdate.offer(manifest);
 	}
 
@@ -283,9 +284,9 @@ public final class UpdateHarness {
 		for (String target : new String[] {"26.1", "26.2", "26.3"}) {
 			JsonObject asset = new JsonObject(); asset.addProperty("name", "SkyBlockZH-0.9-Beta-Fabric-" + target + ".jar");
 			asset.addProperty("size", 1024); asset.addProperty("digest", "sha256:" + "a".repeat(64));
-			asset.addProperty("browser_download_url", "https://github.com/BingKKni/SkyBlockZH/releases/download/0.9/" + target + ".jar"); assets.add(asset);
+			asset.addProperty("browser_download_url", "https://skyblock.xbdqaq.com/skyzh-updates/mod/" + "a".repeat(64) + "/SkyBlockZH-0.9-Fabric-" + target + ".jar"); assets.add(asset);
 		}
-		check("自动下载只选对应 Minecraft 附件", ModUpdate.select(release, "26.2").download().uri().toString().endsWith("/26.2.jar"));
+		check("自动下载只选对应 Minecraft 附件", ModUpdate.select(release, "26.2").download().uri().toString().endsWith("-Fabric-26.2.jar"));
 		assets.get(1).getAsJsonObject().remove("digest");
 		fails("缺少可信摘要不自动安装 Mod", () -> ModUpdate.select(release, "26.2"));
 		Path jar = root.resolve("test-mod.jar");

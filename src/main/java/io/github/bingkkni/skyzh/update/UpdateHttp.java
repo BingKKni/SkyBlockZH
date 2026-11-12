@@ -87,28 +87,24 @@ public final class UpdateHttp {
 		throw new IOException("更新重定向次数过多");
 	}
 
-	/** GitHub release attachments redirect to these HTTPS CDN hosts, often with signed query strings. */
+	/** All client requests and redirects stay on the project's update domain. */
 	public static boolean githubRedirect(URI uri) {
-		if (!"https".equals(uri.getScheme()) || uri.getHost() == null || uri.getUserInfo() != null
-			|| uri.getRawFragment() != null || (uri.getPort() != -1 && uri.getPort() != 443)) return false;
-		return github(uri) || java.util.List.of("release-assets.githubusercontent.com", "objects.githubusercontent.com",
-			"github-releases.githubusercontent.com").contains(uri.getHost());
+		return github(uri);
 	}
 
 	public static boolean github(URI uri) {
 		if (!"https".equals(uri.getScheme()) || uri.getUserInfo() != null || (uri.getPort() != -1 && uri.getPort() != 443)) return false;
-		String path = uri.getPath();
-		return ("api.github.com".equals(uri.getHost()) && path.startsWith("/repos/BingKKni/SkyBlockZH/"))
-			|| ("github.com".equals(uri.getHost()) && path.startsWith("/BingKKni/SkyBlockZH/releases/download/"))
-			|| ("bingkkni.github.io".equals(uri.getHost()) && uri.getRawQuery() == null && uri.getRawFragment() == null
-				&& (uri.getRawPath().matches("/SkyBlockZH/skyzh-updates/[0-9a-f]{64}/translations\\.zip")
-					|| uri.getRawPath().matches("/SkyBlockZH/skyzh-updates/mod/[0-9a-f]{64}/SkyBlockZH-[0-9A-Za-z.+-]+\\.jar")));
+		return "skyblock.xbdqaq.com".equals(uri.getHost()) && uri.getRawQuery() == null && uri.getRawFragment() == null
+			&& (uri.getRawPath().equals("/skyzh-updates/update.json")
+				|| uri.getRawPath().equals("/skyzh-updates/release.json")
+				|| uri.getRawPath().matches("/skyzh-updates/[0-9a-f]{64}/translations\\.zip")
+				|| uri.getRawPath().matches("/skyzh-updates/mod/[0-9a-f]{64}/SkyBlockZH-[0-9A-Za-z.+-]+\\.jar"));
 	}
 
 	private HttpRequest.Builder request(URI uri) throws IOException {
-		if (!allowed.test(uri)) throw new IOException("更新地址不属于项目的 GitHub 发布位置");
+		if (!allowed.test(uri)) throw new IOException("更新地址不属于项目的更新站点");
 		return HttpRequest.newBuilder(uri).header("User-Agent", "SkyZH-Updater")
-			.header("Accept", "application/vnd.github+json").timeout(Duration.ofSeconds(30));
+			.header("Accept", "application/json").timeout(Duration.ofSeconds(30));
 	}
 
 	public JsonObject json(URI uri) throws IOException, InterruptedException {
@@ -123,18 +119,18 @@ public final class UpdateHttp {
 	private JsonObject json(URI uri, UpdateProxy proxy) throws IOException, InterruptedException {
 		Response response = send(request(uri).GET().build(), proxy);
 		try (InputStream input = response.body()) {
-			if (response.statusCode() != 200) throw new IOException("GitHub HTTP " + response.statusCode());
+			if (response.statusCode() != 200) throw new IOException("更新站点 HTTP " + response.statusCode());
 			AtomicLong progress = new AtomicLong(System.nanoTime());
 			var guard = guard(input, progress);
 			try {
 				var bytes = new java.io.ByteArrayOutputStream();
 				byte[] buffer = new byte[4096];
 				for (int count; (count = input.read(buffer)) >= 0;) {
-					if (bytes.size() + count > 1024 * 1024) throw new IOException("GitHub 更新信息过大");
+					if (bytes.size() + count > 1024 * 1024) throw new IOException("更新信息过大");
 					bytes.write(buffer, 0, count);
 					progress.set(System.nanoTime());
 				}
-				return TranslationPack.parse(bytes.toByteArray(), "GitHub 更新信息");
+				return TranslationPack.parse(bytes.toByteArray(), "更新信息");
 			} finally { guard.cancel(false); }
 		}
 	}
@@ -182,7 +178,7 @@ public final class UpdateHttp {
 					if (!range.matches() || Long.parseLong(range.group(1)) != offset
 						|| Long.parseLong(range.group(2)) != download.size() - 1 || Long.parseLong(range.group(3)) != download.size())
 						throw new IOException("断点续传范围不符");
-				} else throw new IOException("GitHub 下载 HTTP " + response.statusCode());
+				} else throw new IOException("更新下载 HTTP " + response.statusCode());
 				long contentLength = response.headers().firstValueAsLong("Content-Length").orElse(-1);
 				if (contentLength != -1 && contentLength != download.size() - offset) throw new IOException("下载大小声明不符");
 				AtomicLong progress = new AtomicLong(System.nanoTime());

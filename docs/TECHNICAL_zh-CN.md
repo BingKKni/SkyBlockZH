@@ -287,17 +287,19 @@ Mod 读取打包时删除译者说明字段后的 JSON，运行时字段保持�
 ### GitHub 自动更新
 
 `.github/workflows/translations.yml` 每次 push 触发，主分支运行 `tools/publish_updates.py`，相对上次成功发布的来源提交检查完整打包输入；首次发布和手动 `workflow_dispatch` 强制打包。复用 Python 导出与 Gradle 校验，ZIP 明确使用 DEFLATE 等级 9。
-脚本以 `--prepare` 生成 `build/pages`，ZIP 放在 `skyzh-updates/<ZIP SHA-256>/translations.zip`，另有固定最新包下载路径。Actions 使用 Pages artifact 部署整站，不将 ZIP 写入 Git 历史，也不创建翻译 Release。准备阶段带上前两份已发布归档，避免整站替换删除仍在使用的下载地址。部署后以 `--publish` 实际下载并校验新包，通过后才经 Git data API 提交仓库根目录 `skyzh-updates/update.json`；清单还记录受限数量的 `previous_archives` 供下次部署保留旧包。提交只修改清单且不强推，构建期间打包输入变动则保留旧清单。需要 `contents: write`、`pages: write`、`id-token: write` 权限；仓库 Settings → Pages 的 Source 选择 GitHub Actions。客户端仅放行本项目 Pages 下以摘要定位的翻译包地址，更新清单仍经 `api.github.com` 读取；正式 Mod 更新仍从 `/releases/latest` 获取。
+脚本以 `--prepare` 生成 `build/pages`，由 Pages 整站部署至 `https://skyblock.xbdqaq.com/`。`skyzh-updates/update.json` 提供翻译与测试版清单，`release.json` 提供正式版清单；客户端检查与下载均使用该域名。部署保留前两版翻译包及上一组测试版、正式版 JAR，旧 Pages 地址在发布时迁移。`--publish` 校验当前下载文件后记录仓库状态清单，构建期间输入变动则不覆盖。需配置 Pages 自定义域名及 `contents: write`、`pages: write`、`id-token: write` 权限。
+
+正式版发布：运行 `./gradlew dist`，将三个正式 JAR 上传至版本号对应的 Release 后发布。`published`、`edited`、`released` 事件自动触发同一部署队列，从最新正式 Release 校验 Mod ID、版本、渠道、大小和 SHA-256 后镜像附件；失败可手动运行工作流重试。普通推送只生成翻译包与测试版。
 
 客户端在 `HypixelServer.isSkyBlock()` 且首次语料加载已结束时启用后台更新，不在启动初始化或单纯进入服务器时联网。自动检查、主动检查及重试按钮复用一个后台任务和忙状态；同时检查两项时按 Mod、翻译包顺序执行，各项保留独立冷却，Mod 检查失败不阻止随后检查翻译。
-翻译清单经 `api.github.com` 的 Contents API 获取，包含 `update_format: 1`、包级清单字段、`download_url`、`zip_size` 和 `zip_sha256`；API 必须完全相等，日期较新且内容摘要不同时才下载。比较基准与加载选择共用时间和摘要规则：只有比内置包新的可用自动包才作基准，否则使用内置元数据，即使旧自动包尚未删除也不会影响检查；内置资源 `skyzh-builtin-translations.json` 与 ZIP 清单由同一构建任务生成。手动包不参与自动更新的版本比较。
+翻译清单从自定义域名直接读取，包含 `update_format: 1`、包级清单字段、`download_url`、`zip_size` 和 `zip_sha256`；API 必须完全相等，日期较新且内容摘要不同时才下载。比较基准与加载选择共用时间和摘要规则：只有比内置包新的可用自动包才作基准，否则使用内置元数据，即使旧自动包尚未删除也不会影响检查；内置资源 `skyzh-builtin-translations.json` 与 ZIP 清单由同一构建任务生成。手动包不参与自动更新的版本比较。
 
 临时下载支持 Range 续传，以固定 URL、大小和 SHA-256 标识同一文件；不支持续传时重新下载，不拼接不同响应。连接及响应有超时，流读取以 60 秒无数据为超时，允许持续有进度的慢速下载。完成后核对归档摘要和包内清单、校验语料并编译，持有现有重载锁后才替换正式自动包并切换索引；手动包仍优先。失败保留当前正式包及运行索引。
 
 `config/skyzh-updates.json` 分别持久化 Mod 和翻译的检查时间、结果及详情。一般成功、无更新和失败均一小时后允许再检查；API 不兼容仅让翻译通道等待七天。当前游戏会话到期且仍在空岛时重试；离线则下次进入空岛时重试，不限制次数。Mod 版本／本地 API 改变会使相应旧冷却失效。更新目录准备失败的冷却也先写入配置目录。首次语料加载失败不阻止后续下载有效包恢复翻译。聊天只显示简明提示，详细错误写日志。错误提示的重试按钮跳过等待时间，复用原下载、校验与安装流程及并发锁；初始化错误可重新准备目录并检查两类更新。只有确有新 Mod、存在较新的翻译且 API 不兼容时，才显示新版 Mod 下载按钮；缺少当前 Minecraft 附件时静默记录。手动包覆盖提示带不可撤销的卸载按钮，在正常重载锁中仅删除 `skyzh-translations/translations.zip` 并按原优先级加载自动包或内置语料。按钮通过有容量上限的本地随机令牌调用隐藏命令，所有别名均在客户端拦截；只有括号按钮带点击和悬浮事件；重试请求受理后旧按钮失效，再次失败会生成新按钮，未受理时仍可点击；卸载完成后按钮失效，失败时仍可重试。
 
 测试版渠道：同一个 Actions 在打包输入（含 `src/`、各 `fabric-26.x/`）变化时以 `-Pskyzh.channel=beta` 构建三个目标的 JAR，版本为 `<版本>+mc26.x.beta.<提交数>`，放到 Pages 的 `skyzh-updates/mod/<SHA-256>/`，并在 `update.json` 的 `mod_beta.assets` 中按目标记录版本、大小与摘要；部署时保留上一组测试版文件。所有 JAR 内的 `skyzh-build.properties` 记录渠道与提交数：测试版按提交数比较（同基础版本下提交数更大才更新），切回正式版渠道时，同版本的正式版会替换测试版。
-Mod 通道从正式 Release 选择当前 Minecraft 目标的 JAR，要求 GitHub 附件 SHA-256，并检查 `fabric.mod.json` 的 Mod ID、版本及 Minecraft、Fabric Loader、Java 依赖。校验通过后保存在 `skyzh-updates/mod-update.jar`。独立的 JDK 安装程序从内嵌 `skyzh-updater.jar` 启动，确认准备完成才提示用户；等待游戏 PID 及启动时间对应的进程退出后，再校验下载文件、备份当前 JAR 并替换原文件名，避免 `mods/` 同时存在两个版本。手动替换视为手动更新，旧安装记录不阻止后续自动更新；等待退出期间手动放入的 JAR 也允许覆盖，替换前备份实际文件。下载文件仍须通过摘要校验；替换失败记录到 `mod-install.properties` 与 `installer.log`，后续允许继续尝试。开发环境、嵌套 Mod 及当前实例 `mods/` 之外的安装不自动替换。个别启动器结束整个进程树或立即重新占用 JAR 时，可能需要再次启动后重试。
+Mod 通道从站点 `release.json` 选择当前 Minecraft 目标的正式 JAR，要求镜像时验证的 SHA-256，并检查 `fabric.mod.json` 的 Mod ID、版本及 Minecraft、Fabric Loader、Java 依赖。校验通过后保存在 `skyzh-updates/mod-update.jar`。独立的 JDK 安装程序从内嵌 `skyzh-updater.jar` 启动，确认准备完成才提示用户；等待游戏 PID 及启动时间对应的进程退出后，再校验下载文件、备份当前 JAR 并替换原文件名，避免 `mods/` 同时存在两个版本。手动替换视为手动更新，旧安装记录不阻止后续自动更新；等待退出期间手动放入的 JAR 也允许覆盖，替换前备份实际文件。下载文件仍须通过摘要校验；替换失败记录到 `mod-install.properties` 与 `installer.log`，后续允许继续尝试。开发环境、嵌套 Mod 及当前实例 `mods/` 之外的安装不自动替换。个别启动器结束整个进程树或立即重新占用 JAR 时，可能需要再次启动后重试。
 
 `checkUpdates` 使用本地 HTTP 服务验证中断续传、取消、超时、校验失败、冷却持久化、安装优先级、按钮文字／样式／本地动作、立即重试与卸载重载，以及真实子 JVM 退出后的 JAR 替换；`checkUpdatePublisher` 验证 Pages 文件暂存、前两版保留、下载校验与清单发布顺序，不写 GitHub。完整客户端与启动器组合仍需实机验证。
 
@@ -399,8 +401,8 @@ BOOK/SIGN 语料诊断已覆盖文本及颜色、混杂和数值问题，不查�
 没装那个 Mod 这段代码根本不加载，另外两个读法照旧。
 
 采集**关闭**时——也就是所有普通玩家——什么都不订阅，也不向 Hypixel 发包。
-这与 `updateCheck` 独立：后者仅在总开关和自动更新开启、且已进入空岛生存时请求 GitHub，下载 Mod 与翻译包，不上传游戏数据，也不向 Hypixel 发送更新相关数据。
-正式 Mod 更新比较 `/releases/latest` 与 Fabric 版本，忽略 `+mc26.x` 构建元数据；只推代码或标签不构成正式 Mod 发布。翻译更新由 Actions 部署到 GitHub Pages 并更新仓库清单。
+这与 `updateCheck` 独立：后者仅在总开关和自动更新开启、且已进入空岛生存时请求更新站点，下载 Mod 与翻译包，不上传游戏数据，也不向 Hypixel 发送更新相关数据。
+正式 Mod 更新比较站点 `release.json` 与 Fabric 版本，忽略 `+mc26.x` 构建元数据；只推代码或标签不构成正式 Mod 发布。翻译更新由 Actions 部署到自定义域名并更新仓库状态清单。
 翻译那一半仍然是标题上写的那句话：装了 SkyZH 的客户端，在 Hypixel 和别的 Mod 眼里，
 就是一个跑英文的客户端。
 

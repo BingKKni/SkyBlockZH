@@ -5,6 +5,8 @@ name: Publish translation updates
 on:
   push:
   workflow_dispatch:
+  release:
+    types: [published, edited, released]
 
 permissions:
   contents: write
@@ -17,7 +19,7 @@ concurrency:
 
 jobs:
   publish:
-    if: github.ref == 'refs/heads/main' && github.repository == 'BingKKni/SkyBlockZH'
+    if: github.repository == 'BingKKni/SkyBlockZH' && (github.ref == 'refs/heads/main' || github.event_name == 'release')
     runs-on: ubuntu-latest
     timeout-minutes: 40
     environment:
@@ -42,7 +44,8 @@ jobs:
       - name: Prepare translation files
         id: prepare
         env:
-          FORCE_PACKAGE: ${{ github.event_name == 'workflow_dispatch' }}
+          FORCE_PACKAGE: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'release' }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: bash
         run: |
           chmod +x gradlew
