@@ -183,6 +183,7 @@ def prepare(force: bool) -> bool:
         path = staging / relative
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(data)
+    (staging / "CNAME").write_text("skyblock.xbdqaq.com\n", encoding="utf-8")
     (staging / "index.html").write_text(
         '<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>SkyZH 翻译文件</title>'
         '<h1>SkyZH 翻译文件</h1><p><a href="skyzh-updates/translations.zip">下载最新翻译包</a></p>'
