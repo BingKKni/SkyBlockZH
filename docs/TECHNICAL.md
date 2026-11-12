@@ -174,8 +174,13 @@ bound key and offer originals or translations according to the selected mode, re
 
 Before drawing, chat observes the effective translation policy, including the master switch. Only
 wrapped display lines are rebuilt; `allMessages` stays original and the scroll offset is retained within
-bounds. `ChatDisplayCache` keeps bounded original/translated wraps per message, font, width, corpus and
-SkyBlock-name setting. Toggling no longer discards translated tooltips or re-translates unchanged chat.
+bounds. `ChatDisplayCache` caches translated components by message, font, width, corpus and name settings.
+Default chat still calls the splitter chain on each layout pass so custom per-line renderers are registered;
+the independent High view continues caching wrapped lines. Better Hypixel Chat receives a scoped visual
+translation of the current message while filters, search, history and line parents keep the original.
+Grey duplicate counters from Compacting, Enhanced Chat and Stfu are preserved separately only when the
+entire body matches its packet snapshot. Snapshots live beside vanilla messages; no third-party class is injected.
+Toggling no longer discards translated tooltips or re-translates unchanged chat.
 Vanilla rescaling, history clearing and component mutations invalidate cached layouts. A cold language
 view or messages received during bypass still need work; this is not a measured low-end FPS guarantee.
 
@@ -193,8 +198,8 @@ Settings are grouped under General and Developer headings. Display priority cycl
 High and Force without a restart. The adjacent item-name button controls physical item names and
 explicit references across surfaces, refreshing existing chat and tooltips when changed.
 
-- `default`: retain the original hooks and ordering, without optional sidebar detection, late source
-  matching or independent display views.
+- `default`: use display-only translation and detected chat adapters, without optional sidebar detection,
+  late source matching or independent display views.
 - `high`: inherit the former Force text/font protection, original item-name/lore reconstruction and
   server chat display view. Read-only public-state probes for CustomScoreboard, SkyHanni and NoammAddons
   yield to an enabled custom sidebar (also when its API is incompatible), including temporary hiding.

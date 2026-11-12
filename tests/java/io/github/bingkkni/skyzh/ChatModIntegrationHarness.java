@@ -1,0 +1,72 @@
+package io.github.bingkkni.skyzh;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayDeque;
+import java.util.HashSet;
+import java.util.Set;
+import org.objectweb.asm.ClassReader;
+import org.objectweb.asm.Handle;
+import org.objectweb.asm.tree.ClassNode;
+import org.objectweb.asm.tree.InvokeDynamicInsnNode;
+import org.objectweb.asm.tree.MethodInsnNode;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.loader.impl.launch.knot.Knot;
+
+/** Optional real-loader check. Supply an isolated game directory containing the chat Mod JARs. */
+public final class ChatModIntegrationHarness {
+	public static void main(String[] args) throws Exception {
+		if (args.length < 3) throw new IllegalArgumentException("game directory, harness classes and corpus required");
+		System.setProperty("fabric.development", System.getProperty("fabric.development", "true"));
+		System.setProperty("mixin.debug.export", "true");
+		System.setProperty("mixin.debug.export.filter", "net.minecraft.client.gui.components.ChatComponent");
+		Path exported = Path.of(".mixin.out/class/net/minecraft/client/gui/components/ChatComponent.class");
+		Files.deleteIfExists(exported);
+		Knot knot = new Knot(EnvType.CLIENT);
+		ClassLoader loader = knot.init(new String[] {"--version", "26.2", "--gameDir", args[0]});
+		knot.addToClassPath(Path.of(args[1]));
+		for (String name : new String[] {"net.minecraft.client.gui.components.ChatComponent",
+			"net.minecraft.client.multiplayer.chat.GuiMessage", "net.minecraft.network.chat.MutableComponent"}) {
+			Class.forName(name, false, loader);
+			System.out.println("Mixin composition loaded: " + name);
+		}
+		try { verifyQueueWrapper(Files.readAllBytes(exported)); }
+		finally { Files.deleteIfExists(exported); }
+		Class<?> origin = loader.loadClass("io.github.bingkkni.skyzh.compat.ChatCompatibility$Origin");
+		if (!origin.isAssignableFrom(loader.loadClass("net.minecraft.client.multiplayer.chat.GuiMessage")))
+			throw new AssertionError("SkyZH mixins were not applied");
+		if (args.length < 4 || !args[3].equals("composition-only"))
+			loader.loadClass("io.github.bingkkni.skyzh.ChatCompatibilityHarness").getMethod("woven", String.class).invoke(null, args[2]);
+		System.exit(0);
+	}
+
+	/** Follow real transformed wrapper calls, including MixinExtras' invokedynamic operation handles. */
+	private static void verifyQueueWrapper(byte[] transformed) {
+		ClassNode node = new ClassNode();
+		new ClassReader(transformed).accept(node, 0);
+		ArrayDeque<String> todo = new ArrayDeque<>();
+		Set<String> visited = new HashSet<>();
+		todo.add("addMessageToDisplayQueue(Lnet/minecraft/client/multiplayer/chat/GuiMessage;)V");
+		while (!todo.isEmpty()) {
+			String key = todo.removeFirst();
+			if (!visited.add(key)) continue;
+			for (var method : node.methods) {
+				if (!(method.name + method.desc).equals(key)) continue;
+				for (var instruction : method.instructions) {
+					if (instruction instanceof MethodInsnNode call) {
+						if (call.owner.equals("io/github/bingkkni/skyzh/compat/ChatCompatibility") && call.name.equals("display")) {
+							System.out.println("Transformed chat queue reaches SkyZH visual scope");
+							return;
+						}
+						if (call.owner.equals(node.name)) todo.add(call.name + call.desc);
+					} else if (instruction instanceof InvokeDynamicInsnNode dynamic) {
+						for (Object arg : dynamic.bsmArgs)
+							if (arg instanceof Handle handle && handle.getOwner().equals(node.name))
+								todo.add(handle.getName() + handle.getDesc());
+					}
+				}
+			}
+		}
+		throw new AssertionError("Chat queue does not reach the SkyZH visual scope after Mod mixin composition");
+	}
+}

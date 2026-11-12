@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 import net.minecraft.client.multiplayer.chat.GuiMessage;
 import net.minecraft.client.multiplayer.chat.GuiMessageSource;
+import net.minecraft.network.chat.Component;
 import net.minecraft.util.FormattedCharSequence;
 
 /** Bounded, per-chat display-only cache; the original GuiMessages are never replaced or edited. */
@@ -29,6 +30,7 @@ public final class ChatDisplayCache {
 		StyledText source;
 		List<FormattedCharSequence> original;
 		List<FormattedCharSequence> translated;
+		Component text;
 	}
 
 	/** Both chat display paths translate server system messages, never player/client notices. */
@@ -52,8 +54,27 @@ public final class ChatDisplayCache {
 		return changed;
 	}
 
+	/** Cache our translation, never a custom splitter's stateful layout/renderer registration. */
+	public Component text(GuiMessage message, Object font, int width, boolean name, Object index,
+		Supplier<Component> translate) {
+		Lines lines = entry(message, font, width, name, index);
+		if (lines.text == null) lines.text = StyledText.copyComponent(translate.get());
+		// Isolate nodes and mutable hover payloads from both the supplier and downstream splitters.
+		return StyledText.copyComponent(lines.text);
+	}
+
 	public List<FormattedCharSequence> get(GuiMessage message, Object font, int width, boolean translated,
 		boolean name, Object index, Supplier<List<FormattedCharSequence>> split) {
+		Lines lines = entry(message, font, width, name, index);
+		List<FormattedCharSequence> cached = translated ? lines.translated : lines.original;
+		if (cached != null) return cached;
+		List<FormattedCharSequence> result = List.copyOf(split.get());
+		if (translated) lines.translated = result;
+		else lines.original = result;
+		return result;
+	}
+
+	private Lines entry(GuiMessage message, Object font, int width, boolean name, Object index) {
 		int names = ItemNamePolicy.state();
 		if (this.font != font || this.width != width || this.corpus != index || this.skyBlockName != name || this.names != names) {
 			clear();
@@ -77,13 +98,9 @@ public final class ChatDisplayCache {
 			lines.source = source;
 			lines.original = null;
 			lines.translated = null;
+			lines.text = null;
 		}
-		List<FormattedCharSequence> cached = translated ? lines.translated : lines.original;
-		if (cached != null) return cached;
-		List<FormattedCharSequence> result = List.copyOf(split.get());
-		if (translated) lines.translated = result;
-		else lines.original = result;
-		return result;
+		return lines;
 	}
 
 	/** Vanilla rescaling/resource reload and history clear invalidate pixels, not source history. */

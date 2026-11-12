@@ -68,7 +68,11 @@ public final class ForceChat {
 		if (!mc.isSameThread() || !collecting()) { dispatch.run(); return; }
 		if (!rememberServer(text, ClientGui.guiTicks(mc))) { dispatch.run(); return; }
 		packetDepth++;
-		try { dispatch.run(); }
+		try {
+			if (io.github.bingkkni.skyzh.compat.ChatCompatibility.hasCounters())
+				io.github.bingkkni.skyzh.compat.ChatCompatibility.server(text, dispatch);
+			else dispatch.run();
+		}
 		finally { packetDepth--; }
 	}
 

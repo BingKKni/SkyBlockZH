@@ -266,6 +266,25 @@ harnessTask('checkChatInteractions', 'io.github.bingkkni.skyzh.ChatInteractionHa
 	inputs.dir rootProject.file('original_text')
 }
 
+harnessTask('checkChatCompatibility', 'io.github.bingkkni.skyzh.ChatCompatibilityHarness',
+	'Checks custom chat display scopes, packet-backed counters and translation caches.') {
+	args rootProject.file('original_text').absolutePath
+}
+
+if (artifactTag == '26.2') {
+	harnessTask('checkChatModIntegration', 'io.github.bingkkni.skyzh.ChatModIntegrationHarness',
+		'Loads real chat Mod mixins with Knot; requires -PchatCompatGameDir pointing to an isolated instance.') {
+		doFirst {
+			if (!project.hasProperty('chatCompatGameDir')) throw new GradleException('Supply -PchatCompatGameDir=<isolated instance>')
+			args rootProject.file(project.property('chatCompatGameDir')).absolutePath,
+				sourceSets.harness.output.classesDirs.singleFile.absolutePath,
+				rootProject.file('original_text').absolutePath
+			if (project.hasProperty('chatCompatProduction')) systemProperty 'fabric.development', 'false'
+			if (project.hasProperty('chatCompatCompositionOnly')) args 'composition-only'
+		}
+	}
+}
+
 harnessTask('checkLore', 'io.github.bingkkni.skyzh.LoreHarness',
 	'Checks complete lore sentences, colour, reflow, boundaries and independent NEU fixtures.') {
 	args rootProject.file('original_text').absolutePath,
@@ -434,7 +453,7 @@ tasks.register('checkMixinTargets', Exec) {
 }
 
 tasks.named('check') {
-	dependsOn 'checkItemNames', 'checkPerformance', 'checkTranslations', 'checkChatInteractions', 'checkLore', 'checkCapture', 'checkDocuments', 'checkDiagnostics', 'checkCommands', 'checkClientSettings', 'checkMinifiedCorpus',
+	dependsOn 'checkChatCompatibility', 'checkItemNames', 'checkPerformance', 'checkTranslations', 'checkChatInteractions', 'checkLore', 'checkCapture', 'checkDocuments', 'checkDiagnostics', 'checkCommands', 'checkClientSettings', 'checkMinifiedCorpus',
 		'checkMixinTargets', 'checkDisplayPriority', 'checkTranslationPack', 'checkUpdates'
 }
 
