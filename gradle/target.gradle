@@ -146,6 +146,9 @@ processResources {
 	filesMatching('fabric.mod.json') {
 		// `minecraft_range` rather than a literal, so the one file that says which Minecraft this jar
 		// is for says it from the same place the compile classpath was chosen.
+		if (artifactTag == '26.1') {
+			filter { String line -> line.trim() == '"skyzh.compat.mixins.json",' ? null : line }
+		}
 		expand('version': modVersion, 'minecraft_range': mcRange, 'loader_range': rootProject.loader_version) {
 			escapeBackslash = true
 		}
@@ -271,7 +274,7 @@ harnessTask('checkChatCompatibility', 'io.github.bingkkni.skyzh.ChatCompatibilit
 	args rootProject.file('original_text').absolutePath
 }
 
-if (artifactTag == '26.2') {
+if (artifactTag != '26.1') {
 	harnessTask('checkChatModIntegration', 'io.github.bingkkni.skyzh.ChatModIntegrationHarness',
 		'Loads real chat Mod mixins with Knot; requires -PchatCompatGameDir pointing to an isolated instance.') {
 		doFirst {
@@ -445,6 +448,7 @@ tasks.register('checkMixinTargets', Exec) {
 		rootProject.file('src/main/resources/skyzh.mixins.json').absolutePath,
 		sourceSets.main.output.classesDirs.singleFile.absolutePath,
 		mixinClasspathFile.get().asFile.absolutePath
+	if (artifactTag != '26.1') args rootProject.file('src/mc26_2/resources/skyzh.compat.mixins.json').absolutePath
 	workingDir rootProject.projectDir
 
 	// Python decides stdout's encoding from the console codepage, which on a Chinese Windows install

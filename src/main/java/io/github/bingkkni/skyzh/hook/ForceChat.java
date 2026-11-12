@@ -26,6 +26,7 @@ public final class ForceChat {
 	private static List<GuiMessage> stored;
 	private static int characters;
 	private static int packetDepth;
+	private static boolean packetDisplayed;
 	private static int scroll;
 	private static boolean unread;
 	private static List<GuiMessage.Line> previousLines = List.of();
@@ -66,14 +67,36 @@ public final class ForceChat {
 	public static void server(Component text, Runnable dispatch) {
 		Minecraft mc = Minecraft.getInstance();
 		if (!mc.isSameThread() || !collecting()) { dispatch.run(); return; }
-		if (!rememberServer(text, ClientGui.guiTicks(mc))) { dispatch.run(); return; }
+		boolean locationReply = isLocationReply(text);
+		if (!locationReply && !rememberServer(text, ClientGui.guiTicks(mc))) { dispatch.run(); return; }
+		boolean previousDisplayed = packetDisplayed;
+		packetDisplayed = false;
 		packetDepth++;
 		try {
-			if (io.github.bingkkni.skyzh.compat.ChatCompatibility.hasCounters())
+			if (io.github.bingkkni.skyzh.compat.ChatCompatibility.needsPacketSource())
 				io.github.bingkkni.skyzh.compat.ChatCompatibility.server(text, dispatch);
 			else dispatch.run();
+			// Keep manual /locraw replies when the upstream chain actually allowed them through.
+			if (locationReply && packetDisplayed) rememberServer(text, ClientGui.guiTicks(mc));
 		}
-		finally { packetDepth--; }
+		finally { packetDepth--; packetDisplayed = previousDisplayed; }
+	}
+
+	/** Only the protocol-shaped location response is deferred; ordinary JSON chat stays visible. */
+	public static boolean isLocationReply(Component text) {
+		String plain = text.getString();
+		if (plain.length() > 8192 || !plain.startsWith("{") || !plain.endsWith("}")) return false;
+		try {
+			var value = com.google.gson.JsonParser.parseString(plain);
+			if (!value.isJsonObject()) return false;
+			var object = value.getAsJsonObject();
+			if (!object.has("server") || !object.has("gametype")) return false;
+			for (var entry : object.entrySet()) {
+				if (!java.util.Set.of("server", "gametype", "mode", "map", "lobbyname").contains(entry.getKey())
+					|| !entry.getValue().isJsonPrimitive() || !entry.getValue().getAsJsonPrimitive().isString()) return false;
+			}
+			return !object.get("server").getAsString().isEmpty() && !object.get("gametype").getAsString().isEmpty();
+		} catch (com.google.gson.JsonParseException | IllegalStateException invalid) { return false; }
 	}
 
 	private static boolean rememberServer(Component text, int tick) {
@@ -83,7 +106,10 @@ public final class ForceChat {
 	/** Preserve client notices and signed player messages, without translating their text. */
 	public static void message(GuiMessage message) {
 		if (!collecting()) return;
-		if (message.source() == GuiMessageSource.SYSTEM_SERVER && packetDepth > 0) return;
+		if (packetDepth > 0 && ChatDisplayCache.isServerMessage(message)) {
+			packetDisplayed = true;
+			return;
+		}
 		// An unassociated server-labelled message is not evidence of server provenance.
 		if (message.source() == GuiMessageSource.SYSTEM_SERVER) {
 			message = new GuiMessage(message.addedTime(), message.content(), message.signature(),

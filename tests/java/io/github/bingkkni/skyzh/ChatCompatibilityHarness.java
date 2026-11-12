@@ -25,11 +25,19 @@ public final class ChatCompatibilityHarness {
 		counters();
 		scopes();
 		cache();
+		locationReplies();
 		System.out.println("Chat compatibility: " + checks + " checks passed");
 	}
 
 	/** Executed through Knot with real third-party mixins, before Minecraft's main method. */
 	public static void woven(String corpus) throws Exception {
+		net.minecraft.SharedConstants.tryDetectVersion();
+		net.minecraft.server.Bootstrap.bootStrap();
+		if (net.fabricmc.loader.api.FabricLoader.getInstance().isModLoaded("skyhanni")) {
+			Class<?> mod = Class.forName("at.hannibal2.skyhanni.SkyHanniMod");
+			var data = mod.getField("visualWordsData");
+			data.set(null, data.getType().getConstructor().newInstance());
+		}
 		TranslationHarness.installIndex(TranslationLoader.compile(TranslationHarness.readCorpus(Path.of(corpus))));
 		Component source = Component.literal("original"), translated = Component.literal("译文");
 		ChatCompatibility.display(source, () -> translated, () -> {
@@ -46,9 +54,13 @@ public final class ChatCompatibilityHarness {
 			require((Object) message instanceof ChatCompatibility.Origin, "vanilla history has sidecar interface");
 			Component packet = ((ChatCompatibility.Origin) (Object) message).skyzh$serverOriginal();
 			require(packet != null && packet.getString().equals("original"), "woven constructor captures provenance");
-			GuiMessage local = new GuiMessage(1, source, null, GuiMessageSource.SYSTEM_CLIENT, null);
-			require(((ChatCompatibility.Origin) (Object) local).skyzh$serverOriginal() == null, "client message receives no provenance");
+			GuiMessage relayed = new GuiMessage(1, source, null, GuiMessageSource.SYSTEM_CLIENT, null);
+			require(ChatDisplayCache.isServerMessage(relayed), "exact packet re-emission remains translatable");
+			GuiMessage local = new GuiMessage(1, Component.literal("local notice"), null, GuiMessageSource.SYSTEM_CLIENT, null);
+			require(((ChatCompatibility.Origin) (Object) local).skyzh$serverOriginal() == null, "unrelated client message receives no provenance");
 		});
+		require(!ChatDisplayCache.isServerMessage(new GuiMessage(1, source, null, GuiMessageSource.SYSTEM_CLIENT, null)),
+			"delayed identical local text is not packet provenance");
 		// Use the actual BHC alignment provider from the installed JAR, with deterministic glyph widths.
 		// It recognizes a 320px server anchor even when the user's chat is only 120px wide.
 		var font = new net.minecraft.client.gui.Font(null) {
@@ -72,12 +84,100 @@ public final class ChatCompatibilityHarness {
 		var provide = providerType.getMethod("getLineRenderers", net.minecraft.client.gui.Font.class,
 			Component.class, String.class, String.class, int.class);
 		try (AutoCloseable client = chatOptions()) {
+			queue(font);
 			for (Component text : new Component[] {banner, chinese}) {
 				var result = (java.util.Optional<?>) provide.invoke(provider, font, text, text.getString(), text.getString().trim(), 120);
 				require(result.isPresent(), "BHC retains its centered renderer in narrow chat");
 			}
 		}
 		System.out.println("Real Mod composition: " + checks + " checks passed");
+	}
+
+	private static Object allocate(Class<?> type) throws Exception {
+		Class<?> unsafeType = Class.forName("sun.misc.Unsafe");
+		var singleton = unsafeType.getDeclaredField("theUnsafe"); singleton.setAccessible(true);
+		return unsafeType.getMethod("allocateInstance", Class.class).invoke(singleton.get(null), type);
+	}
+
+	private static void field(Class<?> owner, Object object, String name, Object value) throws Exception {
+		var field = owner.getDeclaredField(name); field.setAccessible(true); field.set(object, value);
+	}
+
+	private static void queue(net.minecraft.client.gui.Font font) throws Exception {
+		var mc = net.minecraft.client.Minecraft.getInstance();
+		field(net.minecraft.client.Minecraft.class, mc, "font", font);
+		var player = (net.minecraft.client.player.LocalPlayer) allocate(net.minecraft.client.player.LocalPlayer.class);
+		var listener = (net.minecraft.client.multiplayer.ClientPacketListener) allocate(net.minecraft.client.multiplayer.ClientPacketListener.class);
+		var connection = new net.minecraft.network.Connection(net.minecraft.network.protocol.PacketFlow.CLIENTBOUND);
+		var channel = new io.netty.channel.embedded.EmbeddedChannel();
+		field(net.minecraft.network.Connection.class, connection, "channel", channel);
+		field(net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl.class, listener, "connection", connection);
+		field(net.minecraft.client.player.LocalPlayer.class, player, "connection", listener);
+		mc.player = player;
+		field(HypixelServer.class, null, "sessionConnection", connection);
+		field(HypixelServer.class, null, "receivedHello", true);
+		field(HypixelServer.class, null, "skyBlock", true);
+		field(Class.forName("io.github.viciscat.bhc.BetterHypixelChatMod"), null, "onHypixel", true);
+		for (String option : new String[] {"chatScale", "chatWidth", "chatHeightFocused", "chatHeightUnfocused"})
+			field(net.minecraft.client.Options.class, mc.options, option,
+				new net.minecraft.client.OptionInstance<Double>("", net.minecraft.client.OptionInstance.noTooltip(),
+					(c, v) -> Component.empty(), net.minecraft.client.OptionInstance.UnitDouble.INSTANCE, 1.0, v -> {}));
+		field(net.minecraft.client.Minecraft.class, mc, "gui", allocate(Class.forName("net.minecraft.client.gui.Gui")));
+		field(net.minecraft.client.Minecraft.class, mc, "gameThread", Thread.currentThread());
+		Object gui = net.minecraft.client.Minecraft.class.getField("gui").get(mc);
+		field(gui.getClass(), gui, "hud", allocate(Class.forName("net.minecraft.client.gui.Hud")));
+		field(net.minecraft.client.Minecraft.class, mc, "gameDirectory", net.fabricmc.loader.api.FabricLoader.getInstance().getGameDir().toFile());
+		var chat = new net.minecraft.client.gui.components.ChatComponent(mc);
+		var add = chat.getClass().getDeclaredMethod("addMessageToDisplayQueue", GuiMessage.class); add.setAccessible(true);
+		var rows = chat.getClass().getDeclaredField("trimmedMessages"); rows.setAccessible(true);
+		Component source = Component.literal("§e[NPC] §r§bSalesman§r§f: §rThank you for supporting the server and allowing us to maintain SkyBlock!");
+		GuiMessage message = new GuiMessage(0, source, null, GuiMessageSource.SYSTEM_SERVER, null);
+		require(HypixelServer.canTranslate() && ChatCompatibility.usesVisualChat(), "real queue gates enabled");
+		add.invoke(chat, message);
+		StringBuilder output = new StringBuilder();
+		for (var line : (java.util.List<GuiMessage.Line>) rows.get(chat))
+			line.content().accept((i, style, cp) -> { output.appendCodePoint(cp); return true; });
+		require(output.codePoints().anyMatch(cp -> cp >= 0x4e00 && cp <= 0x9fff), "real BHC queue translates Salesman: " + output);
+		require(message.content() == source, "queue retains original parent");
+		filteredReplies();
+		sidebarScope();
+		channel.close();
+	}
+
+	private static void filteredReplies() throws Exception {
+		Class<?> type = io.github.bingkkni.skyzh.hook.ForceChat.class;
+		var field = type.getDeclaredField("MESSAGES"); field.setAccessible(true);
+		var messages = (java.util.List<GuiMessage>) field.get(null);
+		Component reply = Component.literal("{\"server\":\"mini1\",\"gametype\":\"SKYBLOCK\",\"mode\":\"hub\",\"map\":\"Hub\"}");
+		io.github.bingkkni.skyzh.hook.ForceChat.clear();
+		io.github.bingkkni.skyzh.hook.ForceChat.server(reply, () -> {});
+		require(messages.isEmpty(), "filtered locraw does not leak into high/force history");
+		io.github.bingkkni.skyzh.hook.ForceChat.server(reply, () ->
+			io.github.bingkkni.skyzh.hook.ForceChat.message(new GuiMessage(1, reply, null, GuiMessageSource.SYSTEM_SERVER, null)));
+		require(messages.size() == 1 && messages.getFirst().content().getString().equals(reply.getString()), "manually visible locraw retained once");
+		io.github.bingkkni.skyzh.hook.ForceChat.clear();
+	}
+
+	private static void sidebarScope() throws Exception {
+		if (!io.github.bingkkni.skyzh.hook.SidebarCompatibility.defaultAdapterInstalled()) return;
+		Class<?> type = io.github.bingkkni.skyzh.hook.PriorityText.class;
+		var hud = type.getDeclaredField("HUD"); hud.setAccessible(true);
+		var sources = (java.util.Map<?, ?>) hud.get(null);
+		var put = type.getDeclaredMethod("put", java.util.Map.class, Component.class, io.github.bingkkni.skyzh.text.Surface.class);
+		put.setAccessible(true);
+		put.invoke(null, sources, Component.literal("SKYBLOCK"), io.github.bingkkni.skyzh.text.Surface.SCOREBOARD);
+		var original = Component.literal("SKYBLOCK").withStyle(ChatFormatting.GOLD).getVisualOrderText();
+		require(io.github.bingkkni.skyzh.hook.PriorityText.resolve(original) == null, "default sidebar does not affect other HUDs");
+		io.github.bingkkni.skyzh.hook.SidebarCompatibility.display(() -> {
+			var translated = io.github.bingkkni.skyzh.hook.PriorityText.resolve(original);
+			require(translated != null, "default custom sidebar translates verified row");
+			translated.accept((i, style, cp) -> { require(style.getColor().getValue() == 0xffaa00, "custom sidebar colour retained"); return true; });
+			require(io.github.bingkkni.skyzh.hook.PriorityText.resolve(Component.literal("Custom Mod row").getVisualOrderText()) == null, "custom prose is excluded");
+		});
+		try { io.github.bingkkni.skyzh.hook.SidebarCompatibility.display(() -> { throw new IllegalStateException("fixture"); }); }
+		catch (IllegalStateException expected) { }
+		require(!io.github.bingkkni.skyzh.hook.SidebarCompatibility.inDisplay(), "sidebar scope released on failure");
+		sources.clear();
 	}
 
 	/** Minimal options for vanilla wrapping; never constructs a window, game session or connection. */
@@ -123,6 +223,14 @@ public final class ChatCompatibilityHarness {
 			require(StyledText.of(suffix).equals(StyledText.of(output.slice(boundary, output.length()))), "counter style preserved");
 			require(before.equals(StyledText.of(source)), "packet never mutated");
 			require(visible.getString().equals(source.getString() + suffix.getString()), "history never mutated");
+		}
+		for (String counter : new String[] {" (2)", " (×2)", " (2) (3)", " (×2) (3) (4)"}) {
+			for (Style style : new Style[] {Style.EMPTY.withColor(ChatFormatting.GRAY), Style.EMPTY.applyLegacyFormat(ChatFormatting.GRAY)}) {
+				Component suffix = Component.literal(counter).setStyle(style);
+				Component result = ChatCompatibility.translate(source.copy().append(suffix), source, true, translate);
+				require(result.getString().equals(translated + counter), "combined counter translated: " + counter);
+				require(StyledText.of(result).styleAt(result.getString().length() - 1).equals(style), "counter style retained");
+			}
 		}
 		Component decorated = source.copy().append(Component.literal(" (2)").withStyle(ChatFormatting.GRAY));
 		for (Component original : new Component[] {null, decorated, Component.literal("different server text")}) {
@@ -206,6 +314,17 @@ public final class ChatCompatibilityHarness {
 			"resource reload invalidates");
 		require(!ChatDisplayCache.isServerMessage(new GuiMessage(1, content, null, GuiMessageSource.SYSTEM_CLIENT, null)), "client notices excluded");
 		require(!ChatDisplayCache.isServerMessage(new GuiMessage(1, content, null, GuiMessageSource.PLAYER, null)), "player messages excluded");
+	}
+
+	private static void locationReplies() {
+		for (String json : new String[] {
+			"{\"server\":\"mini1\",\"gametype\":\"SKYBLOCK\",\"mode\":\"hub\",\"map\":\"Hub\"}",
+			"{\"server\":\"lobby1\",\"gametype\":\"MAIN\",\"lobbyname\":\"lobby4\"}"})
+			require(io.github.bingkkni.skyzh.hook.ForceChat.isLocationReply(Component.literal(json)), "location protocol recognized");
+		for (String text : new String[] {"hello", "{}", "{\"server\":\"example\"}",
+			"{\"server\":1,\"gametype\":\"SKYBLOCK\"}", "{\"server\":\"a\",\"gametype\":\"b\",\"chat\":\"hello\"}",
+			"{\"server\":\"a\",\"gametype\":}", "[Player] {\"server\":\"a\",\"gametype\":\"b\"}"})
+			require(!io.github.bingkkni.skyzh.hook.ForceChat.isLocationReply(Component.literal(text)), "ordinary JSON/chat preserved");
 	}
 
 	private static void require(boolean ok, String label) {

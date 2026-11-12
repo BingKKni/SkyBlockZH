@@ -49,7 +49,7 @@ public final class PriorityText {
 	private PriorityText() {}
 
 	public static boolean active() {
-		if (SkyZHConfig.get().displayPriority == DisplayPriority.DEFAULT) return false;
+		if (SkyZHConfig.get().displayPriority == DisplayPriority.DEFAULT && !SidebarCompatibility.inDisplay()) return false;
 		return displayEnabled(HypixelServer.isSkyBlock());
 	}
 
@@ -68,14 +68,18 @@ public final class PriorityText {
 
 	private static boolean collecting(boolean verifiedSkyBlock) {
 		SkyZHConfig config = SkyZHConfig.get();
-		return verifiedSkyBlock && config.enabled && config.displayPriority != DisplayPriority.DEFAULT;
+		return verifiedSkyBlock && config.enabled && (config.displayPriority != DisplayPriority.DEFAULT
+			|| customSidebar && SidebarCompatibility.defaultAdapterInstalled());
 	}
 
 	public static void tick() {
 		Minecraft minecraft = Minecraft.getInstance();
 		boolean verified = HypixelServer.isSkyBlock();
-		boolean custom = verified && SkyZHConfig.get().enabled
-			&& SkyZHConfig.get().displayPriority == DisplayPriority.HIGH && SidebarCompatibility.hasCustomSidebar();
+		boolean custom = verified && SkyZHConfig.get().enabled && switch (SkyZHConfig.get().displayPriority) {
+			case DEFAULT -> SidebarCompatibility.defaultAdapterEnabled();
+			case HIGH -> SidebarCompatibility.hasCustomSidebar();
+			case FORCE -> false;
+		};
 		updateSession(minecraft.level, verified, custom);
 		if (!collecting(verified) || minecraft.level == null) return;
 		advanceHud();
@@ -209,7 +213,7 @@ public final class PriorityText {
 	/** Null means this is not a known, translatable server line. No all-surfaces corpus guessing. */
 	public static FormattedCharSequence resolve(FormattedCharSequence input) {
 		if (resolving || !active()) return null;
-		return resolveActive(input, true);
+		return resolveActive(input, SkyZHConfig.get().displayPriority != DisplayPriority.DEFAULT);
 	}
 
 	private static FormattedCharSequence resolveActive(FormattedCharSequence input, boolean forced) {

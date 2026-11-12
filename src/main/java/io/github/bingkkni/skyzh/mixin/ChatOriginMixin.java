@@ -22,6 +22,8 @@ public abstract class ChatOriginMixin implements ChatCompatibility.Origin {
 		GuiMessageSource source, GuiMessageTag tag, CallbackInfo info) {
 		if (source == GuiMessageSource.SYSTEM_SERVER)
 			this.skyzh$serverOriginal = ChatCompatibility.serverOriginal();
+		else if (source == GuiMessageSource.SYSTEM_CLIENT)
+			this.skyzh$serverOriginal = ChatCompatibility.matchingServer(text);
 	}
 
 	@Override public Component skyzh$serverOriginal() { return this.skyzh$serverOriginal; }

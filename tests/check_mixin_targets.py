@@ -299,11 +299,11 @@ def callsite_needles(target):
 
 
 def main(argv):
-    if len(argv) != 3:
+    if len(argv) < 3:
         print(__doc__)
         return 2
 
-    config_path, classes_dir, classpath_file = argv
+    config_path, classes_dir, classpath_file = argv[:3]
     classpath = os.pathsep.join(
         [classes_dir] + [l.strip() for l in open(classpath_file, encoding="utf-8") if l.strip()]
     )
@@ -311,8 +311,12 @@ def main(argv):
     config = json.loads(open(config_path, encoding="utf-8").read())
     package = config["package"]
     names = []
-    for key in ("mixins", "client", "server"):
-        names += config.get(key, [])
+    for path in [config_path] + argv[3:]:
+        extra = json.loads(open(path, encoding="utf-8").read())
+        if extra["package"] != package:
+            raise ValueError("Mixin configurations must share a package")
+        for key in ("mixins", "client", "server"):
+            names += extra.get(key, [])
 
     problems = []
     checked = 0

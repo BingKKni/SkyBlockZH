@@ -35,7 +35,10 @@ public final class ChatDisplayCache {
 
 	/** Both chat display paths translate server system messages, never player/client notices. */
 	public static boolean isServerMessage(GuiMessage message) {
-		return message.source() == GuiMessageSource.SYSTEM_SERVER;
+		return message.source() == GuiMessageSource.SYSTEM_SERVER
+			|| message.source() == GuiMessageSource.SYSTEM_CLIENT
+				&& (Object) message instanceof io.github.bingkkni.skyzh.compat.ChatCompatibility.Origin origin
+				&& origin.skyzh$serverOriginal() != null;
 	}
 
 	/** Another display view temporarily owned the queue; refresh once when returning to this one. */

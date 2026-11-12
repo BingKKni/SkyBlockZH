@@ -178,8 +178,9 @@ bounds. `ChatDisplayCache` caches translated components by message, font, width,
 Default chat still calls the splitter chain on each layout pass so custom per-line renderers are registered;
 the independent High view continues caching wrapped lines. Better Hypixel Chat receives a scoped visual
 translation of the current message while filters, search, history and line parents keep the original.
-Grey duplicate counters from Compacting, Enhanced Chat and Stfu are preserved separately only when the
-entire body matches its packet snapshot. Snapshots live beside vanilla messages; no third-party class is injected.
+Grey duplicate counters from Compacting, Enhanced Chat and Stfu, including combined suffixes, are preserved
+separately only when the entire body matches its packet snapshot. Snapshots live beside vanilla messages;
+exact client-labelled re-emissions within that packet dispatch retain provenance, while unrelated local notices stay untranslated.
 Toggling no longer discards translated tooltips or re-translates unchanged chat.
 Vanilla rescaling, history clearing and component mutations invalidate cached layouts. A cold language
 view or messages received during bypass still need work; this is not a measured low-end FPS guarantee.
@@ -198,8 +199,10 @@ Settings are grouped under General and Developer headings. Display priority cycl
 High and Force without a restart. The adjacent item-name button controls physical item names and
 explicit references across surfaces, refreshing existing chat and tooltips when changed.
 
-- `default`: use display-only translation and detected chat adapters, without optional sidebar detection,
-  late source matching or independent display views.
+- `default`: use display-only translation and detected chat adapters. With CustomScoreboard on 26.2 - 26.3,
+  translate complete verified server sidebar rows only within its layout/draw scope. Preserve colours, icons,
+  actions, visibility and layout; rebuild cached widget widths once on language/resource changes, without
+  scanning draw stacks. Third-party generated or rewritten prose stays unchanged.
 - `high`: inherit the former Force text/font protection, original item-name/lore reconstruction and
   server chat display view. Read-only public-state probes for CustomScoreboard, SkyHanni and NoammAddons
   yield to an enabled custom sidebar (also when its API is incompatible), including temporary hiding.
@@ -225,7 +228,8 @@ Server system messages are snapshotted at packet dispatch; client notices and si
 also retained without translation. High/Force temporarily borrow this view only during vanilla chat drawing,
 click hit testing and scrolling, restoring the original display queue and scroll state even on exceptions.
 It never writes `allMessages` or replays chat events. Upstream translations, counters and asynchronous
-line replacement cannot change this source; filtered server messages may reappear. Vanilla wrapping,
+line replacement cannot change this source; filtered server messages may reappear. Location JSON replies
+from `/locraw` are retained only if the upstream chain actually forwards them to chat history, preserving visible manual replies. Vanilla wrapping,
 hover/click actions and fading remain in use, with a separate scroll anchor. The original-text key changes
 only the view's language. The history lives as long as vanilla's own: a world change keeps it through
 vanilla's `storeState` / `restoreState`, while disconnecting, disabling the mod and clearing chat clear it;
@@ -233,7 +237,7 @@ font reloads invalidate layouts only.
 
 All modes respect the server boundary, master switch and original-text key. `PriorityText` source records
 are bounded and cleared on world/server changes, disabling the mod, changing priority or toggling custom
-sidebar ownership in High. Default collects no enhanced sources. The independent
+sidebar ownership. Default collects bounded sidebar sources only when its adapter is installed, with no enhanced chat or Tab sources. The independent
 chat history continues bounded collection in Default so switching to High/Force retains recent messages.
 Original-text mode retains
 sources, so restoring translations does not require another server packet. Configuration changes clear

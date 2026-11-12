@@ -15,7 +15,7 @@ import net.minecraft.network.chat.Style;
 
 /** Display-only chat adapters. Packet contents, history and third-party classes remain untouched. */
 public final class ChatCompatibility {
-	private static final Pattern COUNTER = Pattern.compile(" \\((?:[2-9]|[1-9][0-9]{1,9})\\)");
+	private static final Pattern COUNTER = Pattern.compile("(?: \\((?:×)?(?:[2-9]|[1-9][0-9]{1,9})\\)){1,3}");
 	private static final ThreadLocal<Component> SERVER = new ThreadLocal<>();
 	private static final ThreadLocal<View> VIEW = new ThreadLocal<>();
 	private record View(Component source, Supplier<Component> translation) {}
@@ -27,6 +27,9 @@ public final class ChatCompatibility {
 
 	private static final class Mods {
 		static final boolean BETTER_CHAT = FabricLoader.getInstance().isModLoaded("better_hypixel_chat");
+		static final boolean RELAYS = FabricLoader.getInstance().isModLoaded("skyhanni")
+			|| FabricLoader.getInstance().isModLoaded("skyblocker")
+			|| FabricLoader.getInstance().isModLoaded("skyblock-api");
 		static final boolean COUNTERS = FabricLoader.getInstance().isModLoaded("compacting")
 			|| FabricLoader.getInstance().isModLoaded("enhanced_chat")
 			|| FabricLoader.getInstance().isModLoaded("stfu");
@@ -62,6 +65,7 @@ public final class ChatCompatibility {
 			() -> font.width(Component.empty().setStyle(BetterChat.FONT).append(component))));
 	}
 	public static boolean hasCounters() { return Mods.COUNTERS; }
+	public static boolean needsPacketSource() { return Mods.COUNTERS || Mods.RELAYS; }
 	public static Component serverOriginal() { return SERVER.get(); }
 
 	/** Called only for verified Hypixel packets on the client thread. No event is cancelled. */
@@ -91,6 +95,28 @@ public final class ChatCompatibility {
 		finally { VIEW.set(view); }
 	}
 
+	/** A client-labelled re-emission needs an exact packet body; unrelated local notices stay local. */
+	public static Component matchingServer(Component displayed) {
+		Component server = SERVER.get();
+		if (server == null) return null;
+		StyledText body = StyledText.of(server), visible = StyledText.of(displayed);
+		return body.equals(visible) || counterBoundary(body, visible) >= 0 ? server : null;
+	}
+
+	private static int counterBoundary(StyledText body, StyledText visible) {
+		int boundary = body.length();
+		if (boundary == 0 || boundary >= visible.length()
+			|| !body.equals(StyledText.of(visible.slice(0, boundary)))) return -1;
+		if (!COUNTER.matcher(visible.plain().substring(boundary)).matches()) return -1;
+		Style gray = Style.EMPTY.withColor(ChatFormatting.GRAY);
+		Style legacyGray = Style.EMPTY.applyLegacyFormat(ChatFormatting.GRAY);
+		for (int i = boundary; i < visible.length(); i++) {
+			Style style = visible.styleAt(i);
+			if (!gray.equals(style) && !legacyGray.equals(style)) return -1;
+		}
+		return boundary;
+	}
+
 	/**
 	 * Recognize an appended counter only with a byte-for-style match to the packet's entire body.
 	 * Server-authored parentheses, unknown decorations and altered prose are never stripped.
@@ -99,15 +125,8 @@ public final class ChatCompatibility {
 		UnaryOperator<Component> translate) {
 		if (!counters || server == null) return translate.apply(displayed);
 		StyledText body = StyledText.of(server), visible = StyledText.of(displayed);
-		int boundary = body.length();
-		if (boundary == 0 || boundary >= visible.length()
-			|| !body.equals(StyledText.of(visible.slice(0, boundary)))) return translate.apply(displayed);
-		String suffix = visible.plain().substring(boundary);
-		if (!COUNTER.matcher(suffix).matches()) return translate.apply(displayed);
-		Style gray = Style.EMPTY.withColor(ChatFormatting.GRAY);
-		for (int i = boundary; i < visible.length(); i++) {
-			if (!gray.equals(visible.styleAt(i))) return translate.apply(displayed);
-		}
+		int boundary = counterBoundary(body, visible);
+		if (boundary < 0) return translate.apply(displayed);
 		Component translated = translate.apply(visible.slice(0, boundary));
 		return Component.empty().append(translated).append(visible.slice(boundary, visible.length()));
 	}

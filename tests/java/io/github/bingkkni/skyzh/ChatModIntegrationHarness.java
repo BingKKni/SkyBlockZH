@@ -19,18 +19,30 @@ public final class ChatModIntegrationHarness {
 		if (args.length < 3) throw new IllegalArgumentException("game directory, harness classes and corpus required");
 		System.setProperty("fabric.development", System.getProperty("fabric.development", "true"));
 		System.setProperty("mixin.debug.export", "true");
-		System.setProperty("mixin.debug.export.filter", "net.minecraft.client.gui.components.ChatComponent");
+		System.setProperty("mixin.debug.export.filter", "**.C*");
 		Path exported = Path.of(".mixin.out/class/net/minecraft/client/gui/components/ChatComponent.class");
+		Path sidebarExport = Path.of(".mixin.out/class/me/owdding/customscoreboard/core/CustomScoreboardRenderer.class");
 		Files.deleteIfExists(exported);
+		Files.deleteIfExists(sidebarExport);
 		Knot knot = new Knot(EnvType.CLIENT);
-		ClassLoader loader = knot.init(new String[] {"--version", "26.2", "--gameDir", args[0]});
+		ClassLoader loader = knot.init(new String[] {"--gameDir", args[0]});
+		try {
+			Class.forName("me.owdding.customscoreboard.core.CustomScoreboardRenderer", false, loader);
+			byte[] transformed = Files.readAllBytes(sidebarExport);
+			verifyScope(transformed, "updateDisplay()V", "io/github/bingkkni/skyzh/hook/SidebarCompatibility");
+			verifyScope(transformed, "onRender(Ltech/thatgravyboat/skyblockapi/api/events/render/RenderHudEvent;)V",
+				"io/github/bingkkni/skyzh/hook/SidebarCompatibility");
+			Files.deleteIfExists(sidebarExport);
+		} catch (ClassNotFoundException absent) { /* Optional Mod not installed. */ }
 		knot.addToClassPath(Path.of(args[1]));
 		for (String name : new String[] {"net.minecraft.client.gui.components.ChatComponent",
 			"net.minecraft.client.multiplayer.chat.GuiMessage", "net.minecraft.network.chat.MutableComponent"}) {
 			Class.forName(name, false, loader);
 			System.out.println("Mixin composition loaded: " + name);
 		}
-		try { verifyQueueWrapper(Files.readAllBytes(exported)); }
+		try { verifyScope(Files.readAllBytes(exported),
+			"addMessageToDisplayQueue(Lnet/minecraft/client/multiplayer/chat/GuiMessage;)V",
+			"io/github/bingkkni/skyzh/compat/ChatCompatibility"); }
 		finally { Files.deleteIfExists(exported); }
 		Class<?> origin = loader.loadClass("io.github.bingkkni.skyzh.compat.ChatCompatibility$Origin");
 		if (!origin.isAssignableFrom(loader.loadClass("net.minecraft.client.multiplayer.chat.GuiMessage")))
@@ -41,12 +53,12 @@ public final class ChatModIntegrationHarness {
 	}
 
 	/** Follow real transformed wrapper calls, including MixinExtras' invokedynamic operation handles. */
-	private static void verifyQueueWrapper(byte[] transformed) {
+	private static void verifyScope(byte[] transformed, String entry, String scopeOwner) {
 		ClassNode node = new ClassNode();
 		new ClassReader(transformed).accept(node, 0);
 		ArrayDeque<String> todo = new ArrayDeque<>();
 		Set<String> visited = new HashSet<>();
-		todo.add("addMessageToDisplayQueue(Lnet/minecraft/client/multiplayer/chat/GuiMessage;)V");
+		todo.add(entry);
 		while (!todo.isEmpty()) {
 			String key = todo.removeFirst();
 			if (!visited.add(key)) continue;
@@ -54,8 +66,8 @@ public final class ChatModIntegrationHarness {
 				if (!(method.name + method.desc).equals(key)) continue;
 				for (var instruction : method.instructions) {
 					if (instruction instanceof MethodInsnNode call) {
-						if (call.owner.equals("io/github/bingkkni/skyzh/compat/ChatCompatibility") && call.name.equals("display")) {
-							System.out.println("Transformed chat queue reaches SkyZH visual scope");
+						if (call.owner.equals(scopeOwner) && call.name.equals("display")) {
+							System.out.println("Transformed " + entry + " reaches SkyZH display scope");
 							return;
 						}
 						if (call.owner.equals(node.name)) todo.add(call.name + call.desc);
@@ -67,6 +79,6 @@ public final class ChatModIntegrationHarness {
 				}
 			}
 		}
-		throw new AssertionError("Chat queue does not reach the SkyZH visual scope after Mod mixin composition");
+		throw new AssertionError(entry + " does not reach the SkyZH display scope after Mod mixin composition");
 	}
 }

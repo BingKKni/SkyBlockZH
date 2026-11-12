@@ -5,7 +5,7 @@ import java.lang.reflect.Modifier;
 import java.util.function.BooleanSupplier;
 import net.fabricmc.loader.api.FabricLoader;
 
-/** Read-only optional integrations. Never modifies another mod's settings or render implementation. */
+/** Read-only optional probes and display scopes; never writes another mod's settings. */
 public final class SidebarCompatibility {
 	private SidebarCompatibility() {}
 
@@ -13,6 +13,28 @@ public final class SidebarCompatibility {
 		static final BooleanSupplier CUSTOM_SCOREBOARD = installed("customscoreboard", SidebarCompatibility::customScoreboard);
 		static final BooleanSupplier SKYHANNI = installed("skyhanni", SidebarCompatibility::skyHanni);
 		static final BooleanSupplier NOAMM = installed("noammaddons", SidebarCompatibility::noamm);
+	}
+
+	private static final class DefaultAdapter {
+		static final boolean INSTALLED = FabricLoader.getInstance().isModLoaded("customscoreboard")
+			&& FabricLoader.getInstance().getModContainer("minecraft").map(mod -> {
+				String version = mod.getMetadata().getVersion().getFriendlyString();
+				return version.equals("26.2") || version.equals("26.3");
+			}).orElse(false);
+	}
+
+	private static int displayDepth;
+	public static boolean defaultAdapterInstalled() { return DefaultAdapter.INSTALLED; }
+	public static boolean defaultAdapterEnabled() {
+		return defaultAdapterInstalled() && enabled(Probes.CUSTOM_SCOREBOARD);
+	}
+	public static boolean inDisplay() { return displayDepth > 0; }
+
+	/** Scoped to the optional renderer's layout/draw methods, never its data/event handlers. */
+	public static void display(Runnable action) {
+		displayDepth++;
+		try { action.run(); }
+		finally { displayDepth--; }
 	}
 
 	public static boolean hasCustomSidebar() {
