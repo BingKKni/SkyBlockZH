@@ -3,6 +3,7 @@ package io.github.bingkkni.skyzh;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.mojang.blaze3d.platform.InputConstants;
+import com.mojang.serialization.Codec;
 import io.github.bingkkni.skyzh.capture.CaptureContext;
 import io.github.bingkkni.skyzh.hook.NameTag;
 import io.github.bingkkni.skyzh.hook.SidebarText;
@@ -13,12 +14,30 @@ import net.minecraft.network.chat.Style;
 import net.minecraft.util.FormattedCharSequence;
 import io.github.bingkkni.skyzh.platform.InputHarness;
 import io.github.bingkkni.skyzh.text.TooltipTranslator;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UncheckedIOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.input.KeyEvent;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
+import net.minecraft.server.packs.PackResources;
+import net.minecraft.server.packs.PackType;
+import net.minecraft.server.packs.PathPackResources;
+import net.minecraft.server.packs.metadata.MetadataSectionType;
+import net.minecraft.server.packs.resources.IoSupplier;
 
-/** Config migration, vanilla key registration and the fail-closed client boundary, without a window. */
+/** Config migration, vanilla key registration, the mod's own packs and the fail-closed client boundary, without a window. */
 public final class ClientSettingsHarness {
 	private static int passed;
 	private static int failed;
@@ -29,6 +48,7 @@ public final class ClientSettingsHarness {
 	public static void main(String[] args) throws Exception {
 		inputMethods();
 		config();
+		packs();
 		welcome();
 		about();
 		updates();
@@ -142,6 +162,89 @@ public final class ClientSettingsHarness {
 		check("文件含自动清空说明", old.toJson().getAsJsonObject("_说明").has("autoClearCapture"), true);
 		check("文件含更新检查说明", old.toJson().getAsJsonObject("_说明").has("updateCheck"), true);
 		check("文件含首次引导说明", old.toJson().getAsJsonObject("_说明").has("welcomeShown"), true);
+	}
+
+	/**
+	 * The mod's packs, read out of a jar the way Fabric Loader hands them over. The assets pack is rooted
+	 * at the jar's own root, a path with no file name, and Lunar Client's patch to vanilla's
+	 * PathPackResources reads that name on every lookup: no built-in pack may be one, and what stands in
+	 * for it has to answer exactly as vanilla does.
+	 */
+	private static void packs() throws Exception {
+		Path work = Files.createTempDirectory("skyzh-packs-harness");
+		try {
+			Path jar = work.resolve("mod.jar");
+			Path folder = work.resolve("mod");
+			try (FileSystem zip = FileSystems.newFileSystem(jar, Map.of("create", "true"))) {
+				for (String file : List.of("root.txt", "assets/stray.txt", "assets/Not Valid/a.json", "assets/skyzh/icon.png",
+					"assets/skyzh/lang/en_us.json", "assets/skyzh/lang/zh_cn.json", "assets/moulconfig/slider/a.png",
+					"skyzh_legacy_font/root.txt", "skyzh_legacy_font/assets/minecraft/font/include/unifont.json",
+					"skyzh_legacy_font/assets/minecraft/font/minecraft-1.12.2/00_01.zip")) {
+					write(zip.getPath(file));
+				}
+			}
+			write(folder.resolve("root.txt"));
+			write(folder.resolve("assets").resolve("skyzh").resolve("lang").resolve("zh_cn.json"));
+			try (FileSystem zip = FileSystems.newFileSystem(jar)) {
+				check("jar 根目录没有文件名", zip.getPath("/").getFileName(), null);
+				samePack("jar 根目录", zip.getPath("/"), Set.of("moulconfig", "skyzh"), "skyzh", "lang",
+					List.of("skyzh:lang/en_us.json", "skyzh:lang/zh_cn.json"));
+				samePack("jar 内字体目录", zip.getPath("/skyzh_legacy_font"), Set.of("minecraft"), "minecraft", "font",
+					List.of("minecraft:font/include/unifont.json", "minecraft:font/minecraft-1.12.2/00_01.zip"));
+			}
+			samePack("开发环境目录", folder, Set.of("skyzh"), "skyzh", "lang", List.of("skyzh:lang/zh_cn.json"));
+		} finally {
+			try (var paths = Files.walk(work)) {
+				for (Path path : paths.sorted(Comparator.reverseOrder()).toList()) Files.deleteIfExists(path);
+			}
+		}
+	}
+
+	/** Vanilla's own pack over the same directory is the reference; it is never handed anything it would log about. */
+	private static void samePack(String name, Path root, Set<String> namespaces, String namespace, String directory, List<String> ids)
+		throws IOException {
+		PackResources pack = ClientPacks.pack("skyzh", root);
+		PackResources vanilla = new PathPackResources(pack.location(), root);
+		PackType type = PackType.CLIENT_RESOURCES;
+		Identifier present = Identifier.parse(ids.get(0));
+		var section = new MetadataSectionType<>("filter", Codec.STRING);
+		check(name + "：不是原版路径资源包", pack instanceof PathPackResources, false);
+		check(name + "：只认合法的命名空间目录", pack.getNamespaces(type), namespaces);
+		check(name + "：递归列出目录内资源", List.copyOf(listed(pack, namespace, directory).keySet()), ids);
+		check(name + "：列出的资源及内容与原版一致", listed(pack, namespace, directory), listed(vanilla, namespace, directory));
+		check(name + "：不存在的目录列不出资源", listed(pack, namespace, "absent"), Map.of());
+		check(name + "：能按标识符读到资源", read(pack.getResource(type, present)) != null, true);
+		check(name + "：按标识符读到的内容与原版一致", read(pack.getResource(type, present)), read(vanilla.getResource(type, present)));
+		check(name + "：不存在的资源返回空", pack.getResource(type, present.withPath(directory + "/absent.json")), null);
+		check(name + "：标识符不能用 .. 绕出目录", pack.getResource(type, present.withPath(directory + "/../" + present.getPath())), null);
+		check(name + "：能读到包根目录的文件", read(pack.getRootResource("root.txt")), "root.txt");
+		check(name + "：没有 pack.mcmeta", pack.getRootResource("pack.mcmeta"), null);
+		check(name + "：包元数据与原版一致", pack.getMetadataSection(section), vanilla.getMetadataSection(section));
+	}
+
+	private static Map<String, String> listed(PackResources pack, String namespace, String directory) {
+		Map<String, String> files = new TreeMap<>();
+		pack.listResources(PackType.CLIENT_RESOURCES, namespace, directory, (id, resource) -> {
+			try {
+				files.put(id.toString(), read(resource));
+			} catch (IOException e) {
+				throw new UncheckedIOException(e);
+			}
+		});
+		return files;
+	}
+
+	private static String read(IoSupplier<InputStream> resource) throws IOException {
+		if (resource == null) return null;
+		try (InputStream in = resource.get()) {
+			return new String(in.readAllBytes(), StandardCharsets.UTF_8);
+		}
+	}
+
+	/** Each fixture file holds its own name, which is enough to tell one file's content from another's. */
+	private static void write(Path file) throws IOException {
+		if (file.getParent() != null) Files.createDirectories(file.getParent());
+		Files.writeString(file, file.getFileName().toString());
 	}
 
 	private static void welcome() {
