@@ -86,6 +86,7 @@ public final class PriorityHarness {
 			check("超长未知文本不进入匹配", PriorityText.component(Component.literal("x".repeat(8193)).getVisualOrderText()) == null);
 			check("默认档不修改最终文本", PriorityText.resolve(server.getVisualOrderText()) == null);
 		} finally { sources.clear(); packets.clear(); }
+		checkPinnedSidebarLayout();
 		checkForceChatHistory();
 		checkWidthReentry();
 		checkSidebarCompatibility();
@@ -93,6 +94,67 @@ public final class PriorityHarness {
 		checkSidebarPrefixFilter();
 		checkSidebarTakeover();
 		System.out.println("显示优先级检查通过 " + checked + " 项");
+	}
+
+	private static void checkPinnedSidebarLayout() throws Exception {
+		var prefixes = PriorityText.class.getDeclaredField("SOURCE_PREFIXES"); prefixes.setAccessible(true);
+		for (DisplayPriority priority : new DisplayPriority[] {DisplayPriority.DEFAULT, DisplayPriority.HIGH}) {
+			SkyZHConfig.get().displayPriority = priority;
+			for (String text : new String[] {"Purse: 1,234", "Purse: 12,345 (+5)", "Carnival 82:31:34"}) {
+				sources.clear();
+				Component row = Component.literal(text).withStyle(ChatFormatting.GOLD);
+				put.invoke(null, sources, row, Surface.SCOREBOARD);
+				var layout = new io.github.bingkkni.skyzh.hook.SidebarCompatibility.Layout();
+				Component[] measured = {null}, drawn = {null};
+				io.github.bingkkni.skyzh.hook.SidebarCompatibility.display(layout, () -> measured[0] = scopedResult(row));
+				layout.seal();
+				check("布局阶段命中 " + priority + text, measured[0] != null);
+				sources.clear(); // The server moved on while CustomScoreboard still owns these widgets.
+				((java.util.BitSet) prefixes.get(null)).clear();
+				io.github.bingkkni.skyzh.hook.SidebarCompatibility.display(layout, () -> drawn[0] = scopedResult(row));
+				check("来源过期后测宽和绘制仍一致 " + priority + text,
+					drawn[0] != null && StyledText.of(measured[0]).equals(StyledText.of(drawn[0])));
+				Component changed = Component.literal("Purse: 9,876").withStyle(ChatFormatting.GOLD);
+				put.invoke(null, sources, changed, Surface.SCOREBOARD);
+				io.github.bingkkni.skyzh.hook.SidebarCompatibility.display(layout, () -> drawn[0] = scopedResult(changed));
+				check("新值不能在旧布局绘制时首次获得翻译 " + priority + text, drawn[0] == null);
+				var rebuilt = new io.github.bingkkni.skyzh.hook.SidebarCompatibility.Layout();
+				io.github.bingkkni.skyzh.hook.SidebarCompatibility.display(rebuilt, () -> measured[0] = scopedResult(changed));
+				rebuilt.seal();
+				io.github.bingkkni.skyzh.hook.SidebarCompatibility.display(rebuilt, () -> drawn[0] = scopedResult(changed));
+				check("新值重建布局后重新测宽再绘制 " + priority + text,
+					measured[0] != null && drawn[0] != null && StyledText.of(measured[0]).equals(StyledText.of(drawn[0])));
+				var replacement = new io.github.bingkkni.skyzh.hook.SidebarCompatibility.Layout();
+				io.github.bingkkni.skyzh.hook.SidebarCompatibility.display(replacement, () -> drawn[0] = scopedResult(row));
+				check("新布局不继承旧来源 " + priority + text, drawn[0] == null);
+				put.invoke(null, sources, row, Surface.SCOREBOARD);
+				io.github.bingkkni.skyzh.hook.SidebarCompatibility.display(replacement, () -> drawn[0] = scopedResult(row));
+				check("布局中的未命中不在绘制时变成命中 " + priority + text, drawn[0] == null);
+			}
+			var clockLayout = new io.github.bingkkni.skyzh.hook.SidebarCompatibility.Layout();
+			io.github.bingkkni.skyzh.hook.SidebarCompatibility.display(clockLayout, () -> {
+				for (String clock : new String[] {"03:50am", "03:51am", "04:00am", "04:01am", "12:59pm"}) {
+					Component translated = scopedResult(Component.literal(clock));
+					check("逐分钟时钟 " + priority + clock, translated != null && !translated.getString().contains("am")
+						&& !translated.getString().contains("pm"));
+				}
+				check("不放行时钟旁的未知文案", scopedResult(Component.literal("03:51am custom message")) == null);
+			});
+		}
+		var bounded = new io.github.bingkkni.skyzh.hook.SidebarCompatibility.Layout();
+		for (int i = 0; i < 256; i++) check("布局决策上限内 " + i, bounded.allows("row " + i, () -> true));
+		bounded.seal();
+		check("绘制不再查询实时来源", !bounded.allows("never measured", () -> { throw new AssertionError("late source query"); }));
+		check("达到上限不逐出已有布局决策", !bounded.allows("overflow", () -> true) && bounded.allows("row 0", () -> false));
+		sources.clear();
+		SkyZHConfig.get().displayPriority = DisplayPriority.DEFAULT;
+	}
+
+	private static Component scopedResult(Component row) {
+		try {
+			var translated = (FormattedCharSequence) resolve.invoke(null, row.getVisualOrderText(), true, true, true);
+			return translated == null ? null : PriorityText.component(translated);
+		} catch (ReflectiveOperationException failure) { throw new AssertionError(failure); }
 	}
 
 	/** Public API stand-ins: no dependency on, injection into, or mutation of a real helper mod. */

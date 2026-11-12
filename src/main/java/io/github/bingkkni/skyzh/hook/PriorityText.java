@@ -83,6 +83,22 @@ public final class PriorityText {
 		updateSession(minecraft.level, verified, custom);
 		if (!collecting(verified) || minecraft.level == null) return;
 		advanceHud();
+		captureSidebar(minecraft);
+		if (SkyZHConfig.get().displayPriority != DisplayPriority.DEFAULT && minecraft.getConnection() != null) {
+			for (var info : minecraft.getConnection().getListedOnlinePlayers()) {
+				if (info.getTabListDisplayName() != null) put(HUD, info.getTabListDisplayName(), Surface.TABLIST);
+			}
+		}
+	}
+
+	/** A scoreboard event may rebuild widgets before our next tick sees its new numeric values. */
+	public static void refreshSidebar() {
+		Minecraft minecraft = Minecraft.getInstance();
+		if (HypixelServer.canTranslate() && minecraft.level != null && minecraft.level == level)
+			captureSidebar(minecraft);
+	}
+
+	private static void captureSidebar(Minecraft minecraft) {
 		var scoreboard = minecraft.level.getScoreboard();
 		var objective = scoreboard.getDisplayObjective(DisplaySlot.SIDEBAR);
 		if (HypixelServer.isSkyBlockObjective(objective)) {
@@ -90,11 +106,6 @@ public final class PriorityText {
 			for (var entry : scoreboard.listPlayerScores(objective)) {
 				if (!entry.isHidden()) put(HUD,
 					PlayerTeam.formatNameForTeam(scoreboard.getPlayersTeam(entry.owner()), entry.ownerName()), Surface.SCOREBOARD);
-			}
-		}
-		if (SkyZHConfig.get().displayPriority != DisplayPriority.DEFAULT && minecraft.getConnection() != null) {
-			for (var info : minecraft.getConnection().getListedOnlinePlayers()) {
-				if (info.getTabListDisplayName() != null) put(HUD, info.getTabListDisplayName(), Surface.TABLIST);
 			}
 		}
 	}
@@ -230,7 +241,9 @@ public final class PriorityText {
 
 	private static FormattedCharSequence resolveKnown(FormattedCharSequence input, boolean forced,
 		boolean filterCandidates, boolean preserveSidebarStyle) {
-		if (filterCandidates && !PREFIX_PROBE.matches(input)) return null;
+		boolean scopedSidebar = SidebarCompatibility.inDisplay()
+			&& SkyZHConfig.get().displayPriority != DisplayPriority.FORCE;
+		if (!scopedSidebar && filterCandidates && !PREFIX_PROBE.matches(input)) return null;
 		// Most GUI labels are not server text. Do not allocate components/styles for those misses.
 		StringBuilder plain = new StringBuilder();
 		input.accept((index, style, codePoint) -> {
@@ -240,6 +253,14 @@ public final class PriorityText {
 		});
 		if (plain.length() > 8192) return null;
 		String key = Glyphs.canonical(plain.toString().strip());
+		if (scopedSidebar) {
+			boolean allowed = SidebarCompatibility.allows(key, () -> {
+				Source row = HUD.get(key);
+				return row != null && row.surface() == Surface.SCOREBOARD
+					|| io.github.bingkkni.skyzh.text.ScoreboardClock.matches(key);
+			});
+			return allowed ? translateKnown(component(input), Surface.SCOREBOARD) : null;
+		}
 		if (forced && OUTPUT.containsKey(key)) return new ProtectedText(input);
 		Source source = HUD.get(key);
 		Source packet = PACKETS.get(key);
@@ -250,11 +271,15 @@ public final class PriorityText {
 		// Force restores server styling and replaces supported custom panels through vanilla GUI hooks.
 		Component original = forced && !(preserveSidebarStyle && source.surface() == Surface.SCOREBOARD)
 			? source.text() : component(input);
+		return translateKnown(original, source.surface());
+	}
+
+	private static FormattedCharSequence translateKnown(Component original, Surface surface) {
 		if (original == null) return null;
-		Component translated = switch (source.surface()) {
+		Component translated = switch (surface) {
 			case TABLIST -> Translator.translateRow(original, Surface.TABLIST);
 			case ACTION_BAR -> Translator.translateWidgets(original, Surface.ACTION_BAR);
-			default -> Translator.translateLine(original, source.surface());
+			default -> Translator.translateLine(original, surface);
 		};
 		if (StyledText.of(original).equals(StyledText.of(translated))) return null;
 		return new ProtectedText(translated.getVisualOrderText());

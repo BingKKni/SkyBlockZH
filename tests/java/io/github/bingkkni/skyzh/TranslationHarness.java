@@ -536,6 +536,21 @@ public final class TranslationHarness {
 		// 1: and 11: must not be confused for one another — the pattern is anchored, but this is the
 		// kind of thing that only stays true while somebody checks.
 		check("11 点不会被 1 点那条抢走", "§b §711:40pm §b☽", Surface.SCOREBOARD, "§b §7晚上 11:40 §b☽");
+		check("前导零和逐分钟时钟", "§7 03:51am §e☀", Surface.SCOREBOARD, "§7 凌晨 3:51 §e☀");
+		check("跨小时逐分钟时钟", "§7 04:01am", Surface.SCOREBOARD, "§7 凌晨 4:01");
+		for (String half : List.of("am", "pm")) for (int hour = 1; hour <= 12; hour++) for (int minute = 0; minute < 60; minute++) {
+			String time = String.format(java.util.Locale.ROOT, "%02d:%02d%s", hour, minute, half);
+			String period = half.equals("am") ? (hour == 12 || hour < 6 ? "凌晨" : "上午")
+				: (hour == 12 ? "中午" : hour < 6 ? "下午" : "晚上");
+			String expected = period + " " + hour + String.format(java.util.Locale.ROOT, ":%02d", minute);
+			String actual = Translator.translateAvailable(Component.literal(time), Surface.SCOREBOARD).padded().getString();
+			if (!actual.equals(expected)) throw new AssertionError(time + " -> " + actual + ", expected " + expected);
+			if (!Translator.locate(Component.literal(time), Surface.SCOREBOARD).matched())
+				throw new AssertionError("capture cannot locate translated clock " + time);
+		}
+		report("12 小时时钟覆盖全部 1440 分钟", true, "小时补零、分钟和时段词均正确");
+		for (String invalid : List.of("00:51am", "13:51am", "03:60am", "03:51am message", "03:51"))
+			report("拒绝非完整12小时时钟 " + invalid, !io.github.bingkkni.skyzh.text.ScoreboardClock.matches(invalid), invalid);
 		check("侧边栏硬币", "§fPurse: §67,825,468", Surface.SCOREBOARD, "§f硬币: §67,825,468");
 		// The bracket and the plus belong to the gain, not to the label. Recorded as one flat line they
 		// were painted in the label's white while the number beside them stayed the server's colour,

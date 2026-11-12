@@ -255,10 +255,18 @@ public final class Translator {
 		}
 
 		for (LineShape.Range range : LineShape.candidates(surface, plain)) {
-			TranslationIndex.Match found = index().match(surface, plain.substring(range.start(), range.end()));
+			int matchStart = range.start();
+			String candidate = plain.substring(matchStart, range.end());
+			TranslationIndex.Match found = index().match(surface, candidate);
+			// Reuse the same hour/minute records for zero-padded 12-hour clocks.
+			if (found == null && surface == Surface.SCOREBOARD && candidate.startsWith("0")
+				&& ScoreboardClock.matches(candidate)) {
+				found = index().match(surface, candidate.substring(1));
+				matchStart++;
+			}
 			if (found == null) continue;
 			TranslationEntry entry = found.entry();
-			StyledText core = styled.sub(range.start(), range.end());
+			StyledText core = styled.sub(matchStart, range.end());
 			Matcher match = found.matcher();
 
 			if (entry.losesColour(core, match) && REPORTED_COLOUR_LOSS.add(entry.id())) {
@@ -428,9 +436,16 @@ public final class Translator {
 		}
 
 		for (LineShape.Range range : LineShape.candidates(surface, plain)) {
-			TranslationIndex.Match found = index().match(surface, plain.substring(range.start(), range.end()));
+			int start = range.start();
+			String candidate = plain.substring(start, range.end());
+			TranslationIndex.Match found = index().match(surface, candidate);
+			if (found == null && surface == Surface.SCOREBOARD && candidate.startsWith("0")
+				&& ScoreboardClock.matches(candidate)) {
+				found = index().match(surface, candidate.substring(1));
+				start++;
+			}
 			if (found != null) {
-				return new Located(found.entry(), styled.sub(range.start(), range.end()), found.matcher());
+				return new Located(found.entry(), styled.sub(start, range.end()), found.matcher());
 			}
 		}
 

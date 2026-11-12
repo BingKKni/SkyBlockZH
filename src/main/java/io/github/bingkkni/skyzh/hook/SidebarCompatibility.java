@@ -23,18 +23,43 @@ public final class SidebarCompatibility {
 			}).orElse(false);
 	}
 
-	private static int displayDepth;
+	private static Layout currentLayout;
+
+	/** A layout keeps both hits and misses until its widgets are rebuilt. Never evict mid-layout. */
+	public static final class Layout {
+		private static final int LIMIT = 256;
+		private final java.util.Map<String, Boolean> decisions = new java.util.HashMap<>();
+		private boolean sealed;
+
+		/** Drawing must never authorize a spelling that did not participate in layout measurement. */
+		public void seal() { this.sealed = true; }
+
+		public boolean allows(String text, BooleanSupplier source) {
+			Boolean known = this.decisions.get(text);
+			if (known != null) return known;
+			if (this.sealed || this.decisions.size() >= LIMIT) return false;
+			boolean allowed = source.getAsBoolean();
+			this.decisions.put(text, allowed);
+			return allowed;
+		}
+	}
 	public static boolean defaultAdapterInstalled() { return DefaultAdapter.INSTALLED; }
 	public static boolean defaultAdapterEnabled() {
 		return defaultAdapterInstalled() && enabled(Probes.CUSTOM_SCOREBOARD);
 	}
-	public static boolean inDisplay() { return displayDepth > 0; }
+	public static boolean inDisplay() { return currentLayout != null; }
+	public static boolean allows(String text, BooleanSupplier source) {
+		return currentLayout != null && currentLayout.allows(text, source);
+	}
 
-	/** Scoped to the optional renderer's layout/draw methods, never its data/event handlers. */
-	public static void display(Runnable action) {
-		displayDepth++;
+	public static void display(Runnable action) { display(new Layout(), action); }
+
+	/** Layout and drawing share one decision set; nested scopes and exceptions restore the caller. */
+	public static void display(Layout layout, Runnable action) {
+		Layout previous = currentLayout;
+		currentLayout = layout;
 		try { action.run(); }
-		finally { displayDepth--; }
+		finally { currentLayout = previous; }
 	}
 
 	public static boolean hasCustomSidebar() {

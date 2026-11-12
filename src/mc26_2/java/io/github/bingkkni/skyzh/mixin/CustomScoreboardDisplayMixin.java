@@ -18,22 +18,30 @@ public abstract class CustomScoreboardDisplayMixin {
 	@Shadow public abstract void updateDisplay();
 	@Unique private boolean skyzh$translated;
 	@Unique private int skyzh$generation = -1;
+	@Unique private Object skyzh$level;
+	@Unique private SidebarCompatibility.Layout skyzh$view = new SidebarCompatibility.Layout();
 
 	@WrapMethod(method = "updateDisplay", require = 0)
 	private void skyzh$layout(Operation<Void> original) {
-		SidebarCompatibility.display(() -> original.call());
+		io.github.bingkkni.skyzh.hook.PriorityText.refreshSidebar();
+		SidebarCompatibility.Layout view = new SidebarCompatibility.Layout();
+		SidebarCompatibility.display(view, () -> original.call());
+		view.seal();
+		this.skyzh$view = view;
 	}
 
 	@WrapMethod(method = "onRender", require = 0)
 	private void skyzh$render(@Coerce Object event, Operation<Void> original) {
 		boolean translated = HypixelServer.canTranslate();
 		int generation = SkyZHConfig.generation();
-		// Widget widths are cached by CustomScoreboard. Rebuild once when language/resources change.
-		if (this.skyzh$translated != translated || this.skyzh$generation != generation) {
+		Object level = net.minecraft.client.Minecraft.getInstance().level;
+		// Widget widths and their translation decisions must be invalidated together.
+		if (this.skyzh$translated != translated || this.skyzh$generation != generation || this.skyzh$level != level) {
+			this.skyzh$level = level;
 			this.skyzh$translated = translated;
 			this.skyzh$generation = generation;
 			updateDisplay();
 		}
-		SidebarCompatibility.display(() -> original.call(event));
+		SidebarCompatibility.display(this.skyzh$view, () -> original.call(event));
 	}
 }
