@@ -1,5 +1,6 @@
 package io.github.bingkkni.skyzh.hook;
 
+import io.github.bingkkni.skyzh.compat.LunarClient;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.function.BooleanSupplier;
@@ -63,7 +64,9 @@ public final class SidebarCompatibility {
 	}
 
 	public static boolean hasCustomSidebar() {
-		return enabled(Probes.CUSTOM_SCOREBOARD) || enabled(Probes.SKYHANNI) || enabled(Probes.NOAMM);
+		// Lunar's cached HUD can draw outside GameRenderer.extract, including direct font/GPU calls.
+		// Without a public feature toggle, conservatively preserve its panel and its hiding rules.
+		return LunarClient.present() || enabled(Probes.CUSTOM_SCOREBOARD) || enabled(Probes.SKYHANNI) || enabled(Probes.NOAMM);
 	}
 
 	@FunctionalInterface

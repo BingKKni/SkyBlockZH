@@ -218,6 +218,14 @@ explicit references across surfaces, refreshing existing chat and tooltips when 
   panels skip it. Filtering unwinds on normal completion or exceptions; returning to High
   restores the custom panel. Third-party settings, data and classes are never modified.
 
+Lunar 26.2 - 26.3 name tags use a vanilla extraction scope: on verified SkyBlock only, temporarily replace
+its display-state name field while Lunar builds its RETURN-stage cache, restoring the original on completion
+or exception. Entity names and Lunar classes are untouched. Other clients skip this path after a single
+read-only font-bridge probe. Lunar's custom sidebar uses `high` or `force` to translate complete known server
+rows, preserving its colours, layout and hiding rules without adding a vanilla panel. Its cached HUD can
+bypass vanilla submission, so Force also leaves this panel in place. Default enables neither global font
+translation nor draw-stack scanning for Lunar.
+
 High/Force tooltip reconstruction may hide extra mod text or tooltip images. Provenance remains restricted
 to server packets and HUD state, with a conservative prefix filter before complete source matching.
 Replacement backgrounds follow vanilla text-background opacity. Unknown renderers, deferred work outside

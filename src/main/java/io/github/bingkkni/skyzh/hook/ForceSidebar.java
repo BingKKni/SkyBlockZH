@@ -3,6 +3,7 @@ package io.github.bingkkni.skyzh.hook;
 import io.github.bingkkni.skyzh.DisplayPriority;
 import io.github.bingkkni.skyzh.SkyZHConfig;
 import io.github.bingkkni.skyzh.HypixelServer;
+import io.github.bingkkni.skyzh.compat.LunarClient;
 import io.github.bingkkni.skyzh.platform.ClientGui;
 import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.world.scores.DisplaySlot;
@@ -35,8 +36,15 @@ public final class ForceSidebar {
 	}
 
 	private static boolean ownsDisplay(boolean eligible, java.util.function.BooleanSupplier customSidebar) {
+		return ownsDisplay(eligible, customSidebar, LunarClient.present());
+	}
+
+	private static boolean ownsDisplay(boolean eligible, java.util.function.BooleanSupplier customSidebar, boolean lunar) {
 		DisplayPriority priority = SkyZHConfig.get().displayPriority;
-		return eligible && (priority == DisplayPriority.FORCE || priority == DisplayPriority.HIGH && !customSidebar.getAsBoolean());
+		// Lunar's cached panel bypasses the vanilla submission gate, even in Force.
+		// Translate the panel in place through Font; adding a fallback here creates a second board.
+		return eligible && !lunar
+			&& (priority == DisplayPriority.FORCE || priority == DisplayPriority.HIGH && !customSidebar.getAsBoolean());
 	}
 
 	/** Scope filtering to the actual frame that will receive a replacement, even on exceptions. */

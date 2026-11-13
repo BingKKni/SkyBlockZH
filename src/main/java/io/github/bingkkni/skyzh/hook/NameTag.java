@@ -12,6 +12,7 @@ import io.github.bingkkni.skyzh.text.Surface;
 import io.github.bingkkni.skyzh.text.Translator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import net.minecraft.client.renderer.entity.state.EntityRenderState;
 import net.minecraft.network.chat.Component;
 
 /**
@@ -21,12 +22,12 @@ import net.minecraft.network.chat.Component;
  * what to do with them: a yellow {@code CLICK} over the stand, and under it what the NPC is there
  * for. That is instruction text standing in the middle of the world.
  *
- * <p>The hook is on the submission, not on the render state. {@code EntityRenderState.nameTag} is
- * built during extraction and is a field other things may read; the argument passed to
- * {@code submitNameTag} is the last thing that happens to the text before it becomes glyphs, so
- * changing it there changes pixels and nothing else. Both calls in the method go through it — the
- * score under the name as well as the name. Rift scores carry whole seconds plus the time icon;
- * normal numeric health scores and player identities must stay unchanged.
+ * <p>The normal hook is on submission. {@code EntityRenderState.nameTag} is built during extraction
+ * and may be read elsewhere; changing the argument passed to {@code submitNameTag} changes pixels
+ * without keeping a translated field. Lunar instead caches names before cancelling that submission:
+ * {@link Extraction} temporarily supplies its display text and restores the field when extraction
+ * finishes. Both normal submission calls use the same policy — score and name. Rift scores carry
+ * whole seconds plus the time icon; normal numeric health scores and player identities stay unchanged.
  *
  * <p>Authored hologram text is restricted to invisible armour stands. Explicit role records may
  * translate green NPC labels; unknown labels are captured for human review. Non-player living
@@ -76,6 +77,31 @@ public final class NameTag {
 	private static final Pattern LEADERBOARD = Pattern.compile("^[0-9,]+\\. [A-Za-z0-9_]{1,16} - [0-9,.:]+$");
 
 	private NameTag() {
+	}
+
+	/**
+	 * Display-only extraction scope for renderers that cache text before vanilla submission.
+	 * The original component survives unchanged, and closing restores the extracted English field.
+	 * A later renderer replacement is left alone; only our own displayed value is rolled back.
+	 */
+	public static final class Extraction implements AutoCloseable {
+		private final EntityRenderState state;
+		private Component original;
+		private Component displayed;
+
+		public Extraction(EntityRenderState state) { this.state = state; }
+		public boolean owns(EntityRenderState state) { return this.state == state; }
+
+		public void display(Component text) {
+			if (text == null || text == this.state.nameTag) return;
+			if (this.displayed == null) this.original = this.state.nameTag;
+			this.displayed = text;
+			this.state.nameTag = text;
+		}
+
+		@Override public void close() {
+			if (this.displayed != null && this.state.nameTag == this.displayed) this.state.nameTag = this.original;
+		}
 	}
 
 	/**

@@ -4,6 +4,7 @@ import io.github.bingkkni.skyzh.DisplayPriority;
 import io.github.bingkkni.skyzh.HypixelServer;
 import io.github.bingkkni.skyzh.HoldOriginal;
 import io.github.bingkkni.skyzh.SkyZHConfig;
+import io.github.bingkkni.skyzh.compat.LunarClient;
 import io.github.bingkkni.skyzh.text.Glyphs;
 import io.github.bingkkni.skyzh.text.StyledText;
 import io.github.bingkkni.skyzh.text.Surface;
@@ -78,7 +79,7 @@ public final class PriorityText {
 		boolean custom = verified && SkyZHConfig.get().enabled && switch (SkyZHConfig.get().displayPriority) {
 			case DEFAULT -> SidebarCompatibility.defaultAdapterEnabled();
 			case HIGH -> SidebarCompatibility.hasCustomSidebar();
-			case FORCE -> false;
+			case FORCE -> LunarClient.present();
 		};
 		updateSession(minecraft.level, verified, custom);
 		if (!collecting(verified) || minecraft.level == null) return;
@@ -233,7 +234,7 @@ public final class PriorityText {
 		resolving = true;
 		try {
 			return resolveKnown(input, forced, true,
-				SkyZHConfig.get().displayPriority == DisplayPriority.HIGH && customSidebar);
+				customSidebar && (SkyZHConfig.get().displayPriority == DisplayPriority.HIGH || LunarClient.present()));
 		} finally {
 			resolving = false;
 		}

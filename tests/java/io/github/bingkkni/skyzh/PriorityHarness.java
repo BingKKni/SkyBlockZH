@@ -86,6 +86,7 @@ public final class PriorityHarness {
 			check("超长未知文本不进入匹配", PriorityText.component(Component.literal("x".repeat(8193)).getVisualOrderText()) == null);
 			check("默认档不修改最终文本", PriorityText.resolve(server.getVisualOrderText()) == null);
 		} finally { sources.clear(); packets.clear(); }
+		checkLunarCompatibility();
 		checkPinnedSidebarLayout();
 		checkForceChatHistory();
 		checkWidthReentry();
@@ -94,6 +95,65 @@ public final class PriorityHarness {
 		checkSidebarPrefixFilter();
 		checkSidebarTakeover();
 		System.out.println("显示优先级检查通过 " + checked + " 项");
+	}
+
+	public static final class LunarFontBridge {
+		public float bridge$getStringWidth(String text) { throw new AssertionError("detection must not invoke the bridge"); }
+	}
+	public static final class WrongFontBridge {
+		public int bridge$getStringWidth(String text) { return 0; }
+	}
+
+	private static void checkLunarCompatibility() throws Exception {
+		var detector = io.github.bingkkni.skyzh.compat.LunarClient.class.getDeclaredMethod("hasFontBridge", Class.class);
+		detector.setAccessible(true);
+		check("只读识别 Lunar 原版字体桥接", (boolean) detector.invoke(null, LunarFontBridge.class));
+		check("普通客户端不启用 Lunar 适配", !(boolean) detector.invoke(null, Object.class));
+		check("同名不同签名不能误识别 Lunar", !(boolean) detector.invoke(null, WrongFontBridge.class));
+		var ownership = ForceSidebar.class.getDeclaredMethod("ownsDisplay", boolean.class,
+			java.util.function.BooleanSupplier.class, boolean.class);
+		ownership.setAccessible(true);
+		try {
+			for (DisplayPriority priority : DisplayPriority.values()) {
+				SkyZHConfig.get().displayPriority = priority;
+				check("Lunar 缓存面板不补画第二块 " + priority, !(boolean) ownership.invoke(null, true,
+					(java.util.function.BooleanSupplier) () -> { throw new AssertionError("no optional probes needed"); }, true));
+			}
+		} finally { SkyZHConfig.get().displayPriority = DisplayPriority.DEFAULT; }
+
+		var state = new net.minecraft.client.renderer.entity.state.EntityRenderState();
+		Component source = Component.literal("§eCLICK");
+		Component display = Component.literal("点击").withStyle(ChatFormatting.YELLOW);
+		state.nameTag = source;
+		try (var scope = new io.github.bingkkni.skyzh.hook.NameTag.Extraction(state)) {
+			check("显示作用域不串实体", scope.owns(state)
+				&& !scope.owns(new net.minecraft.client.renderer.entity.state.EntityRenderState()));
+			scope.display(display);
+			check("提取期间缓存读取译文", state.nameTag == display);
+			check("实体原始组件仍是英文", source.getString().equals("§eCLICK"));
+			scope.display(display.copy());
+		}
+		check("提取结束恢复同一原始组件", state.nameTag == source);
+		RuntimeException failure = new RuntimeException("name cache failed");
+		try (var scope = new io.github.bingkkni.skyzh.hook.NameTag.Extraction(state)) {
+			scope.display(display);
+			throw failure;
+		} catch (RuntimeException actual) { check("保留名称提取异常", actual == failure); }
+		check("异常也恢复原始显示状态", state.nameTag == source);
+		try (var outer = new io.github.bingkkni.skyzh.hook.NameTag.Extraction(state)) {
+			outer.display(display);
+			try (var inner = new io.github.bingkkni.skyzh.hook.NameTag.Extraction(state)) {
+				inner.display(Component.literal("nested"));
+			}
+			check("嵌套名称提取恢复外层", state.nameTag == display);
+		}
+		check("嵌套名称提取不泄漏译文", state.nameTag == source);
+		Component later = Component.literal("later renderer");
+		try (var scope = new io.github.bingkkni.skyzh.hook.NameTag.Extraction(state)) {
+			scope.display(display);
+			state.nameTag = later;
+		}
+		check("保留后续渲染器主动替换的字段", state.nameTag == later);
 	}
 
 	private static void checkPinnedSidebarLayout() throws Exception {
