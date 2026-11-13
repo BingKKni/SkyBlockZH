@@ -751,9 +751,9 @@ dependencies, and Loom has no `remapJar` step. `shadowJar` produces the installa
 
 | | jar | Minecraft it declares | Mod Menu compiled against |
 |---|---|---|---|
-| `fabric-26.1/` | `SkyBlockZH-<version>-Beta-Fabric-26.1.jar` | `>=26.1 <26.2` | 18.0.0 |
-| `fabric-26.2/` | `SkyBlockZH-<version>-Beta-Fabric-26.2.jar` | `>=26.2 <26.3` | 20.0.1 |
-| `fabric-26.3/` | `SkyBlockZH-<version>-Beta-Fabric-26.3.jar` | `>=26.3 <26.4` | 21.0.0 |
+| `fabric-26.1/` | `SkyBlockZH-<version>-Fabric-26.1.jar` | `>=26.1 <26.2` | 18.0.0 |
+| `fabric-26.2/` | `SkyBlockZH-<version>-Fabric-26.2.jar` | `>=26.2 <26.3` | 20.0.1 |
+| `fabric-26.3/` | `SkyBlockZH-<version>-Fabric-26.3.jar` | `>=26.3 <26.4` | 21.0.0 |
 
 Every target compiles `src/main/` and selects platform sources through `versionSourceDirs`.
 26.1 uses `src/mc26_1/`; 26.2 and 26.3 share the GUI and Mixin code in `src/mc26_2/`.

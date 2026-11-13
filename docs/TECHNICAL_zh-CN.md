@@ -608,9 +608,9 @@ Loom 也不再有 `remapJar` 这一步。可安装文件由 `shadowJar` 生成�
 
 | | jar | 声明的 Minecraft | 编译时用的 Mod Menu |
 |---|---|---|---|
-| `fabric-26.1/` | `SkyBlockZH-<版本>-Beta-Fabric-26.1.jar` | `>=26.1 <26.2` | 18.0.0 |
-| `fabric-26.2/` | `SkyBlockZH-<版本>-Beta-Fabric-26.2.jar` | `>=26.2 <26.3` | 20.0.1 |
-| `fabric-26.3/` | `SkyBlockZH-<版本>-Beta-Fabric-26.3.jar` | `>=26.3 <26.4` | 21.0.0 |
+| `fabric-26.1/` | `SkyBlockZH-<版本>-Fabric-26.1.jar` | `>=26.1 <26.2` | 18.0.0 |
+| `fabric-26.2/` | `SkyBlockZH-<版本>-Fabric-26.2.jar` | `>=26.2 <26.3` | 20.0.1 |
+| `fabric-26.3/` | `SkyBlockZH-<版本>-Fabric-26.3.jar` | `>=26.3 <26.4` | 21.0.0 |
 
 所有目标都编译 `src/main/`，并通过 `versionSourceDirs` 选择平台源码。26.1 使用 `src/mc26_1/`，
 26.2 和 26.3 共用 `src/mc26_2/` 的 GUI 与 Mixin；26.1/26.2 使用 `src/glfw/` 读取鼠标状态，

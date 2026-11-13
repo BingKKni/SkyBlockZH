@@ -23,7 +23,7 @@ class BetaBuildTests(unittest.TestCase):
             root = Path(directory)
             expected = []
             for target in publisher.TARGETS:
-                jar = root / f"fabric-{target}/build/libs/SkyBlockZH-0.8-Beta-Fabric-{target}.jar"
+                jar = root / f"fabric-{target}/build/libs/SkyBlockZH-0.8-Fabric-{target}.jar"
                 jar.parent.mkdir(parents=True)
                 jar.touch()
                 expected.append(jar)
@@ -51,7 +51,7 @@ class PublicationTests(unittest.TestCase):
         self.payload = self.archive.read_bytes()
         self.jars = []
         for target in publisher.TARGETS:
-            jar = self.root / f"fabric-{target}/build/libs/SkyBlockZH-0.8-Beta-Fabric-{target}.jar"
+            jar = self.root / f"fabric-{target}/build/libs/SkyBlockZH-0.8-Fabric-{target}.jar"
             jar.parent.mkdir(parents=True)
             with zipfile.ZipFile(jar, "w") as bundle:
                 bundle.writestr("fabric.mod.json", json.dumps({"id": "skyzh", "version": f"0.8+mc{target}.beta.42"}))
