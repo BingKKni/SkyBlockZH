@@ -3,6 +3,7 @@ package io.github.bingkkni.skyzh.hook;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import io.github.bingkkni.skyzh.HypixelServer;
 import io.github.bingkkni.skyzh.text.Surface;
+import io.github.bingkkni.skyzh.text.DisplayTextCache;
 import io.github.bingkkni.skyzh.text.TooltipTranslator;
 import io.github.bingkkni.skyzh.text.Translator;
 import net.minecraft.client.gui.Font;
@@ -72,7 +73,8 @@ public final class HudText {
 
 		Component translated = surface == Surface.ACTION_BAR
 			? Translator.translateWidgets(text, surface)
-			: surface == Surface.ITEM ? TooltipTranslator.translateItemName(text).padded()
+			: surface == Surface.ITEM ? DisplayTextCache.get(text, surface, DisplayTextCache.Mode.ITEM_NAME,
+				styled -> TooltipTranslator.translateItemName(text).padded())
 			: Translator.translateLine(text, surface);
 		int translatedWidth = font.width(translated);
 		// x was left-of-centre by half the old width; keep the same midpoint for the new one.

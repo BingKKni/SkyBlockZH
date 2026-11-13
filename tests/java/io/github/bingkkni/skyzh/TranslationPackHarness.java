@@ -128,6 +128,12 @@ public final class TranslationPackHarness {
 			broken.put("Test/GUI_Item/Bad.json", json("{\"lines\":[{\"id\":\"bad\",\"text\":\"Bad\",\"zh\":\"坏\",\"segments\":[{\"text\":\"Bad\",\"order\":-1}]}]}"));
 			write(archive, broken, ignored -> {});
 			fallback("错误分段数据", archive, builtin);
+			broken.put("Test/GUI_Item/Bad.json", json("""
+				{"lines":[{"id":"oversized","text":"Energy: %1500000000$s","zh":"能量: %1500000000$s",
+				"placeholders":[{"token":"%1500000000$s","type":"number"}]}]}
+				"""));
+			write(archive, broken, ignored -> {});
+			fallback("超大占位符编号不分配巨量数组", archive, builtin);
 			broken = fixture(true);
 			broken.get(CorpusData.AREAS).getAsJsonObject("areas").addProperty("Test Harbor", "../../outside");
 			write(archive, broken, ignored -> {});

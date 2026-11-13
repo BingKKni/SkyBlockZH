@@ -100,6 +100,22 @@ final class TextShape {
 		return next;
 	}
 
+	/** Unknown/dynamic contents conservatively pass, without flattening or snapshotting styles. */
+	static boolean mayMatch(Component node, TextRequirements requirement, int depth) {
+		String text = literal(node);
+		if (text == null || depth >= MAX_NODES) return true;
+		for (int i = 0; i < text.length();) {
+			int codePoint = text.codePointAt(i);
+			i += Character.charCount(codePoint);
+			if (codePoint == '§') { if (i < text.length()) i++; continue; }
+			if (requirement.accepts(Glyphs.canonicalCodePoint(codePoint))) return true;
+		}
+		List<Component> siblings = node.getSiblings();
+		for (int i = 0; i < siblings.size(); i++)
+			if (mayMatch(siblings.get(i), requirement, depth + 1)) return true;
+		return false;
+	}
+
 	/** Empty contents draw nothing, exactly like an empty literal. */
 	private static String literal(Component node) {
 		var contents = node.getContents();

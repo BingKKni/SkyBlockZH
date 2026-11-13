@@ -63,6 +63,13 @@ public final class SidebarCompatibility {
 		finally { currentLayout = previous; }
 	}
 
+	/** Read once per force extraction, never per GUI element. Unknown enabled APIs retain fallback. */
+	static int rendererScopes() {
+		return (enabled(Probes.CUSTOM_SCOREBOARD) ? ForceSidebar.CUSTOM : 0)
+			| (enabled(Probes.SKYHANNI) ? ForceSidebar.SKYHANNI : 0)
+			| (enabled(Probes.NOAMM) ? ForceSidebar.NOAMM_DRAW | ForceSidebar.NOAMM_BACKGROUND : 0);
+	}
+
 	public static boolean hasCustomSidebar() {
 		// Lunar's cached HUD can draw outside GameRenderer.extract, including direct font/GPU calls.
 		// Without a public feature toggle, conservatively preserve its panel and its hiding rules.

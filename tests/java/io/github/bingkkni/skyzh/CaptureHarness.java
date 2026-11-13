@@ -34,7 +34,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
 import net.minecraft.network.chat.Component;
 
 /**
@@ -943,7 +942,7 @@ public final class CaptureHarness {
 		));
 
 		StyledText line = styled("§7Grants §2Mithril Powder");
-		Matcher match = half.match(line.canonical());
+		var match = half.match(line.canonical());
 		check("半句未译能匹配", match != null, true);
 
 		if (match != null) {
@@ -959,12 +958,12 @@ public final class CaptureHarness {
 		));
 
 		StyledText known = styled("Royal Mines Mithril");
-		Matcher inTable = commission.match(known.canonical());
+		var inTable = commission.match(known.canonical());
 		check("词表里有的地名不算混杂",
 			inTable != null && !commission.mixed(known, inTable, Translator.index().terms()).any(), true);
 
 		StyledText unknown = styled("Nowhere Land Mithril");
-		Matcher outside = commission.match(unknown.canonical());
+		var outside = commission.match(unknown.canonical());
 		check("词表里没有的地名报成缺词条",
 			outside != null
 				&& commission.mixed(unknown, outside, Translator.index().terms()).values().contains("Nowhere Land"),

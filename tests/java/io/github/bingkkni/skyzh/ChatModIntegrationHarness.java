@@ -36,10 +36,15 @@ public final class ChatModIntegrationHarness {
 		} catch (ClassNotFoundException absent) { /* Optional Mod not installed. */ }
 		knot.addToClassPath(Path.of(args[1]));
 		for (String name : new String[] {"net.minecraft.client.gui.components.ChatComponent",
-			"net.minecraft.client.multiplayer.chat.GuiMessage", "net.minecraft.network.chat.MutableComponent"}) {
+			"net.minecraft.client.multiplayer.chat.GuiMessage", "net.minecraft.network.chat.MutableComponent",
+			"net.minecraft.world.level.block.entity.SignText", "net.minecraft.client.renderer.blockentity.AbstractSignRenderer",
+			"net.minecraft.client.Minecraft", "net.minecraft.client.gui.Font", "net.minecraft.client.gui.GuiGraphicsExtractor"}) {
 			Class.forName(name, false, loader);
 			System.out.println("Mixin composition loaded: " + name);
 		}
+		if (!loader.loadClass("io.github.bingkkni.skyzh.text.SignDisplayCache$Owner")
+			.isAssignableFrom(loader.loadClass("net.minecraft.world.level.block.entity.SignText")))
+			throw new AssertionError("SignText instance cache mixin was not applied");
 		try { verifyScope(Files.readAllBytes(exported),
 			"addMessageToDisplayQueue(Lnet/minecraft/client/multiplayer/chat/GuiMessage;)V",
 			"io/github/bingkkni/skyzh/compat/ChatCompatibility"); }

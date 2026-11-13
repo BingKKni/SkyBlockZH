@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.regex.Matcher;
+import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -107,7 +108,7 @@ public final class TranslationEntry {
 	) {}
 
 	/** One matched line whose fragments should be drawn together with another matched line. */
-	public record Matched(TranslationEntry entry, StyledText source, Matcher match) {}
+	public record Matched(TranslationEntry entry, StyledText source, MatchResult match) {}
 
 	private sealed interface Piece {}
 
@@ -121,7 +122,40 @@ public final class TranslationEntry {
 
 	private final String id;
 	private final String sourceFile;
-	private final Pattern pattern;
+	/** Shared per definition; unused templates never allocate a compiled regex graph. */
+	private static final class LazyPattern {
+		private final String expression;
+		private volatile Pattern compiled;
+
+		LazyPattern(String expression) { this.expression = expression; }
+
+		Pattern get() {
+			Pattern result = this.compiled;
+			if (result == null) synchronized (this) {
+				result = this.compiled;
+				if (result == null) this.compiled = result = Pattern.compile(this.expression, Pattern.DOTALL);
+			}
+			return result;
+		}
+	}
+
+	/** Exact records already know every fragment boundary; neither Pattern nor Matcher is needed. */
+	private record ExactMatch(String text, int[] ends) implements MatchResult {
+		@Override public int start() { return 0; }
+		@Override public int end() { return this.text.length(); }
+		@Override public String group() { return this.text; }
+		@Override public int groupCount() { return this.ends.length - 1; }
+		@Override public int start(int group) { return group == 0 ? 0 : this.ends[group - 1]; }
+		@Override public int end(int group) { return group == 0 ? end() : this.ends[group]; }
+		@Override public String group(int group) { return this.text.substring(start(group), end(group)); }
+	}
+
+	// The old fixed table supported slots 0..63; never size an array from unbounded pack input.
+	private static final int MAX_ARGUMENT = 63;
+	private static final int[] NO_GROUPS = new int[0];
+	private final LazyPattern pattern;
+	private final ExactMatch exact;
+	private final boolean requiresLetter;
 	private final List<Fragment> fragments;
 	private final int[] argGroups;
 	/** What each capture group is allowed to hold, so a value cannot swallow a sentence. */
@@ -151,13 +185,15 @@ public final class TranslationEntry {
 	private final String anchor;
 
 	private TranslationEntry(
-		Definition definition, Pattern pattern, List<Fragment> fragments, int[] argGroups,
+		Definition definition, LazyPattern pattern, ExactMatch exact, boolean requiresLetter, List<Fragment> fragments, int[] argGroups,
 		Map<Integer, Capture> captures, Map<Integer, String> argTypes, Map<Integer, Integer> shapes,
 		int specificity, String template, String anchor
 	) {
 		this.id = definition.id();
 		this.sourceFile = definition.sourceFile();
 		this.pattern = pattern;
+		this.exact = exact;
+		this.requiresLetter = requiresLetter;
 		this.fragments = fragments;
 		this.argGroups = argGroups;
 		this.captures = captures;
@@ -187,6 +223,8 @@ public final class TranslationEntry {
 		this.id = id;
 		this.sourceFile = sourceFile;
 		this.pattern = shared.pattern;
+		this.exact = shared.exact;
+		this.requiresLetter = shared.requiresLetter;
 		this.fragments = shared.fragments;
 		this.argGroups = shared.argGroups;
 		this.captures = shared.captures;
@@ -206,8 +244,10 @@ public final class TranslationEntry {
 	}
 
 	Object compiledIdentity() {
-		return this.pattern;
+		return this.fragments;
 	}
+
+	boolean requiresLetter() { return this.requiresLetter; }
 
 	String anchor() {
 		return this.anchor;
@@ -253,7 +293,10 @@ public final class TranslationEntry {
 		boolean anyTranslated = false;
 		boolean anyWordOfItsOwn = false;
 		boolean anyPlaceholder = false;
-		int literals = 0;
+		boolean requiresLetter = false;
+		int literals = 0, maxArgument = 0;
+		int[] nextSourceArgument = {1};
+		List<List<Piece>> sourcePieces = new ArrayList<>();
 
 		for (int i = 0; i < sources.size(); i++) {
 			String target = segments.get(i).target();
@@ -262,12 +305,16 @@ public final class TranslationEntry {
 				anyTranslated = true;
 			}
 
-			for (Piece piece : parse(sources.get(i), new int[] { 1 })) {
+			List<Piece> pieces = parse(sources.get(i), nextSourceArgument);
+			sourcePieces.add(pieces);
+			for (Piece piece : pieces) {
 				if (piece instanceof Literal literal) {
 					literals += literal.text().length();
 					anyWordOfItsOwn |= literal.text().chars().anyMatch(TranslationEntry::isWordOfItsOwn);
-				} else {
+					requiresLetter |= literal.text().codePoints().anyMatch(Character::isLetter);
+				} else if (piece instanceof Arg arg) {
 					anyPlaceholder = true;
+					maxArgument = Math.max(maxArgument, arg.index());
 				}
 			}
 		}
@@ -279,11 +326,12 @@ public final class TranslationEntry {
 			return null;
 		}
 
-		StringBuilder regex = new StringBuilder("^");
+		StringBuilder regex = anyPlaceholder ? new StringBuilder("^") : null;
+		StringBuilder exactText = anyPlaceholder ? null : new StringBuilder();
+		int[] exactEnds = anyPlaceholder ? null : new int[sources.size() + 1];
 		List<Fragment> fragments = new ArrayList<>();
-		int[] sourceArg = { 1 };
 		int[] targetArg = { 1 };
-		int[] argGroups = new int[64];
+		int[] argGroups = anyPlaceholder ? new int[maxArgument + 1] : NO_GROUPS;
 		Map<Integer, Capture> captures = new HashMap<>();
 		Map<Integer, String> typeByGroup = new HashMap<>();
 		Map<Integer, Integer> shapeByGroup = new HashMap<>();
@@ -296,11 +344,12 @@ public final class TranslationEntry {
 			group++;
 			int fragmentGroup = group;
 			List<Integer> fragmentArgs = new ArrayList<>();
-			regex.append('(');
+			if (regex != null) regex.append('(');
 
-			for (Piece piece : parse(sources.get(i), sourceArg)) {
+			for (Piece piece : sourcePieces.get(i)) {
 				if (piece instanceof Literal literal) {
-					regex.append(anyPlaceholder ? eitherNumber(literal.text()) : Pattern.quote(literal.text()));
+					if (regex != null) regex.append(eitherNumber(literal.text()));
+					else exactText.append(literal.text());
 					String required = requiredLiteral(literal.text());
 					if (required.length() > anchor.length()) {
 						anchor = required;
@@ -343,7 +392,8 @@ public final class TranslationEntry {
 				}
 			}
 
-			regex.append(')');
+			if (regex != null) regex.append(')');
+			else exactEnds[i + 1] = exactText.length();
 
 			Segment segment = segments.get(i);
 			String target = segment.target();
@@ -358,7 +408,7 @@ public final class TranslationEntry {
 			fragments.add(new Fragment(
 				disabledPieces, targetPieces,
 				translated, omitted, fragmentGroup,
-				fragmentArgs.stream().mapToInt(Integer::intValue).toArray(), ordered ? segment.order() : i,
+				fragmentArgs.isEmpty() ? NO_GROUPS : fragmentArgs.stream().mapToInt(Integer::intValue).toArray(), ordered ? segment.order() : i,
 				ordered
 			));
 
@@ -369,11 +419,11 @@ public final class TranslationEntry {
 			}
 		}
 
-		regex.append('$');
-
+		if (regex != null) regex.append('$');
 
 		return new TranslationEntry(
-			definition, Pattern.compile(regex.toString(), Pattern.DOTALL), List.copyOf(fragments),
+			definition, regex == null ? null : new LazyPattern(regex.toString()),
+			regex == null ? new ExactMatch(exactText.toString(), exactEnds) : null, requiresLetter, List.copyOf(fragments),
 			argGroups, Map.copyOf(captures), Map.copyOf(typeByGroup), Map.copyOf(shapeByGroup),
 			literals, String.join("", sources), anchor
 		);
@@ -507,7 +557,9 @@ public final class TranslationEntry {
 				pieces.add(new Literal("%"));
 			} else {
 				String explicit = matcher.group(1);
-				pieces.add(new Arg(explicit != null ? Integer.parseInt(explicit) : nextArg[0]++));
+				int argument = explicit != null ? Integer.parseInt(explicit) : nextArg[0]++;
+				if (argument > MAX_ARGUMENT) throw new IllegalArgumentException("占位符编号不能超过 " + MAX_ARGUMENT);
+				pieces.add(new Arg(argument));
 			}
 
 			cursor = matcher.end();
@@ -689,10 +741,6 @@ public final class TranslationEntry {
 		return this.specificity;
 	}
 
-	public Matcher matcher(String plain) {
-		return this.pattern.matcher(plain);
-	}
-
 	/**
 	 * The match for this line, or {@code null} when this record does not answer for it.
 	 *
@@ -701,14 +749,15 @@ public final class TranslationEntry {
 	 * characters but not the meaning is worse than no record at all, because it silently replaces a
 	 * sentence with the translation of something else.
 	 */
-	public Matcher match(String plain) {
-		Matcher match = this.pattern.matcher(plain);
+	public MatchResult match(String plain) {
+		if (this.exact != null) return this.exact.text().equals(plain) && accepts(this.exact) ? this.exact : null;
+		Matcher match = this.pattern.get().matcher(plain);
 
 		return match.matches() && accepts(match) ? match : null;
 	}
 
 	/** Whether every placeholder caught something of the kind it was declared to hold. */
-	public boolean accepts(Matcher match) {
+	public boolean accepts(MatchResult match) {
 		if (this.excludedTexts.contains(match.group())) {
 			return false;
 		}
@@ -755,17 +804,17 @@ public final class TranslationEntry {
 	 * order for all but a handful of records — see {@link #renderJoined}. Where each fragment matched, and
 	 * therefore what colour it takes, does not depend on that order at all.
 	 */
-	public MutableComponent render(StyledText source, Matcher match, TermTable terms) {
+	public MutableComponent render(StyledText source, MatchResult match, TermTable terms) {
 		return renderJoined(List.of(new Matched(this, source, match)), terms, null, false);
 	}
 
 	/** Display formatting runs while restored item ranges are still known. */
-	public MutableComponent renderDisplay(StyledText source, Matcher match, TermTable terms) {
+	public MutableComponent renderDisplay(StyledText source, MatchResult match, TermTable terms) {
 		return renderJoined(List.of(new Matched(this, source, match)), terms, null, true);
 	}
 
 	/** Finds translated item references without adding anything to the rendered text. */
-	public boolean hasTranslatedItemReference(StyledText source, Matcher match, TermTable terms) {
+	public boolean hasTranslatedItemReference(StyledText source, MatchResult match, TermTable terms) {
 		boolean[] found = {false};
 		renderJoined(List.of(new Matched(this, source, match)), terms, () -> found[0] = true, false);
 		return found[0];
@@ -822,7 +871,7 @@ public final class TranslationEntry {
 			Matched matched = part.matched();
 			TranslationEntry entry = matched.entry();
 			StyledText source = matched.source();
-			Matcher match = matched.match();
+			MatchResult match = matched.match();
 			Fragment fragment = part.fragment();
 			int start = match.start(fragment.group());
 			int end = match.end(fragment.group());
@@ -935,7 +984,7 @@ public final class TranslationEntry {
 	 * character, because a name is a name; {@code guide_item_name} and {@code loot_item_name} opt into
 	 * reusing an already translated corpus item name.
 	 */
-	private void append(Seam seam, StyledText source, Matcher match, int group, TermTable terms, Style style,
+	private void append(Seam seam, StyledText source, MatchResult match, int group, TermTable terms, Style style,
 		Runnable translatedItem) {
 		int start = match.start(group);
 		int end = match.end(group);
@@ -1142,7 +1191,7 @@ public final class TranslationEntry {
 	 * server switches colour on the space between two words as readily as on the word itself, so the
 	 * space in front of {@code CORPSE LOOT!} is usually still wearing the previous run's colour.
 	 */
-	private static Style wordStyle(StyledText source, Matcher match, Fragment fragment, int start, int end) {
+	private static Style wordStyle(StyledText source, MatchResult match, Fragment fragment, int start, int end) {
 		for (int i = start; i < end; i++) {
 			if (coloursWords(source, fragment, match, i)) {
 				return source.styleAt(i);
@@ -1153,7 +1202,7 @@ public final class TranslationEntry {
 	}
 
 	/** Whether this position of the source line says anything about the colour of the record's words. */
-	private static boolean coloursWords(StyledText source, Fragment fragment, Matcher match, int index) {
+	private static boolean coloursWords(StyledText source, Fragment fragment, MatchResult match, int index) {
 		if (source.plain().charAt(index) == ' ') {
 			return false;
 		}
@@ -1187,7 +1236,7 @@ public final class TranslationEntry {
 	}
 
 	/** @see Mixed */
-	public Mixed mixed(StyledText source, Matcher match, TermTable terms) {
+	public Mixed mixed(StyledText source, MatchResult match, TermTable terms) {
 		List<String> words = new ArrayList<>();
 		List<String> values = new ArrayList<>();
 		boolean anyChinese = false;
@@ -1294,7 +1343,7 @@ public final class TranslationEntry {
 	}
 
 	/** Problems in argument wiring, before comparing visible numeric values. */
-	public List<String> argumentProblems(Matcher match) {
+	public List<String> argumentProblems(MatchResult match) {
 		List<String> problems = new ArrayList<>();
 		Set<Integer> used = new HashSet<>();
 
@@ -1342,7 +1391,7 @@ public final class TranslationEntry {
 	 * conversions of {@link Capture#renderValue}, or nothing for a value the term table translates
 	 * whole — that Chinese was written by a person and answers for its own digits.
 	 */
-	public List<String> renderedValues(Matcher match, TermTable terms) {
+	public List<String> renderedValues(MatchResult match, TermTable terms) {
 		List<String> values = new ArrayList<>();
 
 		for (Map.Entry<Integer, Capture> capture : this.captures.entrySet()) {
@@ -1372,7 +1421,7 @@ public final class TranslationEntry {
 	 * <p>Placeholders are excluded for the same reason as in {@link #wordStyle}: a value in its own
 	 * colour is the normal case, is reproduced exactly, and is not a loss of anything.
 	 */
-	public boolean losesColour(StyledText source, Matcher match) {
+	public boolean losesColour(StyledText source, MatchResult match) {
 		for (Fragment fragment : this.fragments) {
 			if (!fragment.translated()) {
 				continue;

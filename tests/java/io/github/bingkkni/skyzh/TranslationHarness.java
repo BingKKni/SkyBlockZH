@@ -4107,7 +4107,7 @@ public final class TranslationHarness {
 		}
 
 		StyledText styled = StyledText.of(coloured);
-		Matcher match = entry.match(styled.plain());
+		var match = entry.match(styled.plain());
 		boolean actual = match != null && entry.losesColour(styled, match);
 
 		report(name, match != null && actual == expected,

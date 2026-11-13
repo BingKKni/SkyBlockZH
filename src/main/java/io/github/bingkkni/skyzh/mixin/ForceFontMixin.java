@@ -31,7 +31,7 @@ public abstract class ForceFontMixin {
 		at = @At("HEAD"), cancellable = true, require = 0)
 	private void skyzh$forceStringGlyphs(String text, float x, float y, int color,
 		boolean shadow, int background, CallbackInfoReturnable<Font.PreparedText> info) {
-		if (!PriorityText.active() || text == null) return;
+		if (!PriorityText.mayResolve(text)) return;
 		FormattedCharSequence translated = PriorityText.resolve(Component.literal(text).getVisualOrderText());
 		if (translated != null) info.setReturnValue(skyzh$prepare(translated, x, y, color, shadow, false, background));
 	}

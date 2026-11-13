@@ -93,6 +93,12 @@ public final class Glyphs {
 		return index >= 0 && index < SYMBOLS.length ? SYMBOLS[index] : 0;
 	}
 
+	/** Allocation-free canonical code point for conservative display prefilters. */
+	public static int canonicalCodePoint(int codePoint) {
+		char mapped = codePoint <= Character.MAX_VALUE ? symbol((char) codePoint) : 0;
+		return mapped == 0 ? codePoint : mapped;
+	}
+
 	/**
 	 * The same text with every private-use icon written as the symbol it stands for. Same length,
 	 * character for character, so positions taken in one spelling mean the same thing in the other.

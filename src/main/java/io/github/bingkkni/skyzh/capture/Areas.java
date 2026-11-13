@@ -52,6 +52,9 @@ public final class Areas {
 		this.unknown = unknown;
 	}
 
+	/** Immutable source spellings used to prepare conservative name-tag requirements. */
+	public Set<String> names() { return this.byArea.keySet(); }
+
 	public static Areas get() {
 		return Translator.index().data().areas();
 	}

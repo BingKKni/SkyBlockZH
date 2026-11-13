@@ -95,6 +95,7 @@ public final class PriorityHarness {
 		checkSidebarPacketRefresh();
 		checkSidebarPrefixFilter();
 		checkSidebarTakeover();
+		PriorityPerformanceChecks.run();
 		System.out.println("显示优先级检查通过 " + checked + " 项");
 	}
 
@@ -505,18 +506,18 @@ public final class PriorityHarness {
 			"com.github.noamm9.features.impl.visual.ScoreboardOther", "net.minecraft.client.gui.Hud"})
 			check("其他功能不被计分板拦截 " + name, !(boolean) owner.invoke(null, name));
 		check("帧外不拦截提交", !customDrawBlocked());
-		ForceSidebar.withFrame(false, () -> check("高档不丢弃自定义绘制", !customDrawBlocked()), () -> {});
-		ForceSidebar.withFrame(true, () -> {
+		PriorityPerformanceChecks.sidebarFrame(false, () -> check("高档不丢弃自定义绘制", !customDrawBlocked()), () -> {});
+		PriorityPerformanceChecks.sidebarFrame(true, () -> {
 			check("强制帧丢弃指定计分板提交", customDrawBlocked());
 			check("同帧其他HUD提交不受影响", !ForceSidebar.suppressCustomDraw());
-			ForceSidebar.withFrame(false, () -> check("嵌套非接管帧不拦截", !customDrawBlocked()), () -> {});
+			PriorityPerformanceChecks.sidebarFrame(false, () -> check("嵌套非接管帧不拦截", !customDrawBlocked()), () -> {});
 			check("嵌套返回恢复外层拦截", customDrawBlocked());
 		}, () -> check("替代面板自身绘制不被拦截", !customDrawBlocked()));
 		check("帧结束释放拦截", !customDrawBlocked());
 		boolean[] replacement = {false};
 		RuntimeException failure = new RuntimeException("draw failed");
 		try {
-			ForceSidebar.withFrame(true, () -> { throw failure; }, () -> replacement[0] = true);
+			PriorityPerformanceChecks.sidebarFrame(true, () -> { throw failure; }, () -> replacement[0] = true);
 			throw new AssertionError("expected draw failure");
 		} catch (RuntimeException actual) { check("保留原绘制异常", actual == failure); }
 		check("异常不泄漏拦截或补画残留面板", !customDrawBlocked() && !replacement[0]);

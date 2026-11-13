@@ -8,7 +8,6 @@ import io.github.bingkkni.skyzh.text.Translator;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.regex.Matcher;
 import net.minecraft.network.chat.Component;
 
 /**
@@ -55,7 +54,7 @@ public final class Probe {
 				continue;
 			}
 
-			Matcher match = located.match();
+			var match = located.match();
 			System.out.println("record  = " + located.entry().sourceFile() + "#" + located.entry().id());
 			System.out.println("loses   = " + located.entry().losesColour(located.core(), match));
 			System.out.println("render  = " + drawn.getString());

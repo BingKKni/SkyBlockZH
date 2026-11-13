@@ -331,6 +331,9 @@ harnessTask('checkUpdates', 'io.github.bingkkni.skyzh.UpdateHarness',
 harnessTask('checkCommands', 'io.github.bingkkni.skyzh.CommandHarness',
 	'Checks SkyZH client-command parsing and exact help text.')
 
+harnessTask('checkRenderMixins', 'io.github.bingkkni.skyzh.RenderMixinHarness',
+	'Checks real vanilla/optional renderer MixinExtras composition using signature-only fixtures.')
+
 harnessTask('checkDisplayPriority', 'io.github.bingkkni.skyzh.PriorityHarness',
 	'Checks late translation provenance, force styles, bounds and isolation.') {
 	args rootProject.file('original_text').absolutePath
@@ -455,7 +458,7 @@ tasks.register('checkMixinTargets', Exec) {
 
 tasks.named('check') {
 	dependsOn 'checkChatCompatibility', 'checkItemNames', 'checkPerformance', 'checkTranslations', 'checkChatInteractions', 'checkLore', 'checkCapture', 'checkDocuments', 'checkDiagnostics', 'checkCommands', 'checkClientSettings', 'checkMinifiedCorpus',
-		'checkMixinTargets', 'checkDisplayPriority', 'checkTranslationPack', 'checkUpdates'
+		'checkMixinTargets', 'checkRenderMixins', 'checkDisplayPriority', 'checkTranslationPack', 'checkUpdates'
 }
 
 tasks.withType(JavaCompile).configureEach {

@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.ToIntFunction;
 import java.util.regex.Matcher;
+import java.util.regex.MatchResult;
 import net.minecraft.client.gui.Font;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -53,7 +54,7 @@ public final class Translator {
 	 */
 	public record Result(
 		MutableComponent core, Component head, Component tail, TranslationEntry entry, StyledText matchedCore,
-		Matcher match
+		MatchResult match
 	) {
 		public Result(MutableComponent core, Component head, Component tail, TranslationEntry entry) {
 			this(core, head, tail, entry, null, null);
@@ -267,7 +268,7 @@ public final class Translator {
 			if (found == null) continue;
 			TranslationEntry entry = found.entry();
 			StyledText core = styled.sub(matchStart, range.end());
-			Matcher match = found.matcher();
+			MatchResult match = found.matcher();
 
 			if (entry.losesColour(core, match) && REPORTED_COLOUR_LOSS.add(entry.id())) {
 				LOGGER.warn(
@@ -292,7 +293,7 @@ public final class Translator {
 		int from = wordsStart(plain), to = wordsEnd(plain, from);
 		StyledText core = styled.sub(from, to);
 		TranslationEntry borrowed = borrowed(surface, core.canonical());
-		Matcher match = borrowed == null ? null : borrowed.match(core.canonical());
+		var match = borrowed == null ? null : borrowed.match(core.canonical());
 
 		if (match != null) {
 			return new Result(
@@ -413,7 +414,7 @@ public final class Translator {
 	 * @param core  the piece of the line the record answered for, with its live colours
 	 * @param match that record's match against {@code core}
 	 */
-	public record Located(TranslationEntry entry, StyledText core, Matcher match) {
+	public record Located(TranslationEntry entry, StyledText core, MatchResult match) {
 		public boolean matched() {
 			return this.entry != null;
 		}
@@ -452,7 +453,7 @@ public final class Translator {
 		int from = wordsStart(plain), to = wordsEnd(plain, from);
 		StyledText core = styled.sub(from, to);
 		TranslationEntry borrowed = borrowed(surface, core.canonical());
-		Matcher match = borrowed == null ? null : borrowed.match(core.canonical());
+		var match = borrowed == null ? null : borrowed.match(core.canonical());
 
 		if (match != null) {
 			return new Located(borrowed, core, match);

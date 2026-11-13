@@ -29,6 +29,10 @@ public final class PerformanceBenchmark {
 		TranslationHarness.installIndex(index);
 		benchmarkSidebarMisses();
 		benchmarkSidebarSubmissions();
+		Component damage = Component.literal("§f12,345§b✧");
+		measure("damage prefilter (no flatten/cache)", 100_000,
+			i -> sink = index.mayTranslateNameTag(damage));
+		benchmarkSigns();
 		measure("dynamic ITEM", 2_000, i -> sink = index.lookup(Surface.ITEM, "Damage: +" + (10_000 + i)));
 		measure("unknown ITEM", 2_000, i -> sink = index.lookup(Surface.ITEM, "Unrecorded property " + i));
 		measure("unknown LORE", 2_000, i -> sink = index.lookup(Surface.LORE, "An unrecorded sentence " + i));
@@ -91,6 +95,13 @@ public final class PerformanceBenchmark {
 		try {
 			for (String text : List.of("Unrelated menu option", "Unrelated tooltip description ".repeat(32))) {
 				var sequence = Component.literal(text).getVisualOrderText();
+				Method prefix = priority.getDeclaredMethod("prefixMatches", String.class);
+				prefix.setAccessible(true);
+				var raw = java.lang.invoke.MethodHandles.lookup().unreflect(prefix);
+				measure("raw String miss " + text.length() + " chars", 100_000, i -> {
+					try { sink = (boolean) raw.invokeExact(text); }
+					catch (Throwable failure) { throw new AssertionError(failure); }
+				});
 				for (boolean filtered : new boolean[] {false, true}) {
 					measure("HUD miss " + text.length() + " chars " + (filtered ? "filtered" : "full scan"), 100_000, i -> {
 						try {
@@ -105,11 +116,28 @@ public final class PerformanceBenchmark {
 	private static void benchmarkSidebarSubmissions() {
 		io.github.bingkkni.skyzh.hook.ForceSidebar.withFrame(false, () ->
 			measure("High GUI submission gate", 20_000, i -> sink = io.github.bingkkni.skyzh.hook.ForceSidebar.suppressCustomDraw()), () -> {});
-		io.github.bingkkni.skyzh.hook.ForceSidebar.withFrame(true, () -> {
-			measure("Force other HUD (20 nested calls)", 20_000, i -> sink = submissionDepth(20));
-			measure("Force sidebar (20 nested calls)", 20_000, i -> sink =
+		PriorityPerformanceChecks.sidebarFrame(true, () -> {
+			measure("Force fallback other HUD (20 calls)", 20_000, i -> sink = submissionDepth(20));
+			measure("Force fallback sidebar (20 calls)", 20_000, i -> sink =
 				me.owdding.customscoreboard.core.CustomScoreboardRenderer.submit(() -> submissionDepth(20)));
+			io.github.bingkkni.skyzh.hook.ForceSidebar.withRenderer(io.github.bingkkni.skyzh.hook.ForceSidebar.CUSTOM,
+				() -> measure("Force scoped sidebar (20 calls)", 20_000, i -> sink = submissionDepth(20)));
+			measure("Force scoped other HUD (20 calls)", 20_000, i -> sink = submissionDepth(20));
 		}, () -> {});
+	}
+
+	private static void benchmarkSigns() {
+		net.minecraft.SharedConstants.tryDetectVersion();
+		net.minecraft.server.Bootstrap.bootStrap();
+		for (String title : List.of("LEAP OF FAITH", "")) {
+			var json = com.google.gson.JsonParser.parseString("{\"messages\":[\"" + title + "\",\"\",\"\",\"\"]}");
+			var sign = io.github.bingkkni.skyzh.platform.ServerSignData.codec()
+				.parse(com.mojang.serialization.JsonOps.INSTANCE, json).getOrThrow();
+			var cache = new io.github.bingkkni.skyzh.text.SignDisplayCache();
+			Object font = new Object();
+			measure(title.isEmpty() ? "blank sign instance cache" : "translated sign instance cache", 100_000,
+				i -> sink = cache.get(sign, false, 90, font, Component::getVisualOrderText));
+		}
 	}
 
 	private static boolean submissionDepth(int depth) {

@@ -33,6 +33,7 @@ public final class PriorityText {
 	private static Object level;
 	private static int generation = -1;
 	private static boolean resolving;
+	private static boolean inFrame, frameVerified;
 	private static boolean customSidebar;
 	private static boolean sidebarDirty;
 	private static int tick;
@@ -52,12 +53,25 @@ public final class PriorityText {
 
 	public static boolean active() {
 		if (SkyZHConfig.get().displayPriority == DisplayPriority.DEFAULT && !SidebarCompatibility.inDisplay()) return false;
-		return displayEnabled(HypixelServer.isSkyBlock());
+		return displayEnabled(inFrame ? frameVerified : HypixelServer.isSkyBlock());
+	}
+
+	/** The scope covers both extraction and final font preparation, and restores nested callers. */
+	public static void withFrame(Runnable render) {
+		withFrame(HypixelServer.isSkyBlock(), render);
+	}
+
+	private static void withFrame(boolean verified, Runnable render) {
+		boolean previousFrame = inFrame, previousVerified = frameVerified;
+		inFrame = true;
+		frameVerified = verified;
+		try { render.run(); }
+		finally { inFrame = previousFrame; frameVerified = previousVerified; }
 	}
 
 	public static boolean force() {
 		return SkyZHConfig.get().displayPriority == DisplayPriority.FORCE
-			&& effective(HypixelServer.isSkyBlock()) == DisplayPriority.FORCE;
+			&& active();
 	}
 
 	private static boolean displayEnabled(boolean verifiedSkyBlock) {
@@ -205,6 +219,44 @@ public final class PriorityText {
 		}
 	}
 
+	/** Raw String gate: never build an ICU/bidi visual sequence for an ordinary prefix miss. */
+	public static boolean mayResolve(String input) {
+		if (input == null || resolving || !active()) return false;
+		if (sidebarDirty) {
+			resolving = true;
+			try { refreshPendingSidebar(PriorityText::refreshSidebar); }
+			finally { resolving = false; }
+		}
+		return SidebarCompatibility.inDisplay() && SkyZHConfig.get().displayPriority != DisplayPriority.FORCE
+			|| prefixMatches(input);
+	}
+
+	private static boolean prefixMatches(String input) {
+		int length = 0, hash = 0;
+		for (int i = 0; i < input.length() && length < 4;) {
+			int c = input.codePointAt(i);
+			i += Character.charCount(c);
+			if (c == '§') { if (i < input.length()) i++; continue; }
+			if (length == 0 && Character.isWhitespace(c)) continue;
+			if (c >= 128) return true;
+			hash = 31 * hash + c;
+			length++;
+			if (!Character.isWhitespace(c) && !SOURCE_PREFIXES.get(hash & 0xFFFF)) {
+				// A later non-ASCII run could reorder the visual prefix. Conservatively defer it.
+				for (; i < input.length(); i++) if (input.charAt(i) >= 128 && input.charAt(i) != '§') return true;
+				return false;
+			}
+		}
+		return true;
+	}
+
+	private static void refreshPendingSidebar(Runnable refresh) {
+		if (sidebarDirty) {
+			sidebarDirty = false;
+			refresh.run();
+		}
+	}
+
 	/** Reused only under resolveActive's render-thread reentry guard; no miss-path allocations. */
 	private static final class PrefixProbe implements FormattedCharSink {
 		private int visited, length, hash;
@@ -250,10 +302,7 @@ public final class PriorityText {
 		try {
 			// Packets can arrive after the tick snapshot. Refresh before even the prefix filter,
 			// so a new value or a newly added row is translated on its first width/draw call.
-			if (sidebarDirty) {
-				sidebarDirty = false;
-				refreshSidebar.run();
-			}
+			refreshPendingSidebar(refreshSidebar);
 			return resolveKnown(input, forced, true,
 				customSidebar && (SkyZHConfig.get().displayPriority == DisplayPriority.HIGH || LunarClient.present()));
 		} finally {

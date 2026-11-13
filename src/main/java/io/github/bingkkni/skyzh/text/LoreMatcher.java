@@ -1,7 +1,7 @@
 package io.github.bingkkni.skyzh.text;
 
 import java.util.List;
-import java.util.regex.Matcher;
+import java.util.regex.MatchResult;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 
@@ -20,7 +20,7 @@ public final class LoreMatcher {
 
 	public record Match(
 		int lines, Component source, TranslationEntry entry, StyledText core,
-		Matcher matcher, Component head, Component tail
+		MatchResult matcher, Component head, Component tail
 	) {
 		public MutableComponent render(TermTable terms) { return render(terms, false); }
 
@@ -132,7 +132,7 @@ public final class LoreMatcher {
 				TranslationIndex.Match found = search.index.match(Surface.LORE, core.canonical());
 				if (found == null || found.entry().continuation()) continue;
 				TranslationEntry entry = found.entry();
-				Matcher matcher = found.matcher();
+				MatchResult matcher = found.matcher();
 				Component leading = head;
 				if (range.start() > 0) {
 					MutableComponent prefix = Component.empty();

@@ -37,6 +37,7 @@ public final class TranslationLoader {
 
 	/** {@code %2$s} in a {@code placeholders[].token}, which names the argument it describes. */
 	private static final Pattern NUMBERED_TOKEN = Pattern.compile("%(\\d+)\\$");
+	private static final Pattern NON_NEGATIVE = Pattern.compile("[0-9]+");
 
 	/**
 	 * Holds the translation of "SkyBlock" itself. Not a list of records like every other file — the
@@ -96,9 +97,12 @@ public final class TranslationLoader {
 		// Every record addressable as "<path>#<id>", so a "ref" in one file can borrow a shared line
 		// out of another instead of copying it — the shared-fragment rule from original_text/README.
 		Map<String, JsonObject> byReference = new HashMap<>();
+		Map<String, List<JsonObject>> collected = new HashMap<>();
 
 		files.forEach((relative, file) -> {
-			for (JsonObject record : records(file)) {
+			List<JsonObject> records = records(file);
+			collected.put(relative, records);
+			for (JsonObject record : records) {
 				if (record.has("id")) {
 					String address = relative + "#" + record.get("id").getAsString();
 					if (byReference.putIfAbsent(address, record) != null)
@@ -135,7 +139,7 @@ public final class TranslationLoader {
 				npcNames(file, index);
 			}
 
-			for (JsonObject record : records(file)) {
+			for (JsonObject record : collected.get(relative)) {
 				JsonObject source = resolve(record, byReference);
 				TranslationEntry entry = compile(record, relative, byReference, definitions);
 
@@ -174,7 +178,7 @@ public final class TranslationLoader {
 			if (ItemNames.canonical(english) == null) return null;
 			TranslationEntry entry = index.lookup(Surface.ITEM, english);
 			if (entry == null || entry.continuation()) return null;
-			Matcher match = entry.match(english);
+			var match = entry.match(english);
 			if (match == null) return null;
 			String chinese = entry.render(StyledText.of(Component.literal(english)), match, baseTerms).getString();
 			return chinese.isEmpty() || chinese.equals(english) ? null : chinese;
@@ -203,7 +207,7 @@ public final class TranslationLoader {
 				continue;
 			}
 
-			Matcher match = entry.match(english);
+			var match = entry.match(english);
 
 			if (match == null) {
 				continue;
@@ -286,50 +290,66 @@ public final class TranslationLoader {
 
 	private static void validateRecord(JsonObject record, String address) {
 		try {
-			for (String key : new String[] {"id", "ref", "text", "zh", "layout", "chat_join_next"}) {
-				if (record.has(key)) CorpusData.string(record.get(key), key);
-			}
-			for (String key : new String[] {"translate", "continuation", "item_name"}) {
-				if (record.has(key) && (!record.get(key).isJsonPrimitive() || !record.getAsJsonPrimitive(key).isBoolean()))
-					throw new IllegalArgumentException(key + " 必须是布尔值");
-			}
-			if (record.has("segments") && !record.get("segments").isJsonNull()) {
-				Set<Integer> orders = new HashSet<>();
-				for (var value : record.getAsJsonArray("segments")) {
-					JsonObject segment = value.getAsJsonObject();
-					CorpusData.string(segment.get("text"), "segments.text");
-					if (segment.has("zh")) CorpusData.string(segment.get("zh"), "segments.zh");
-					if (segment.has("omit") && (!segment.get("omit").isJsonPrimitive() || !segment.getAsJsonPrimitive("omit").isBoolean()))
-						throw new IllegalArgumentException("omit 必须是布尔值");
-					if (segment.has("order")) {
-						var order = segment.get("order");
-						if (!order.isJsonPrimitive() || !order.getAsJsonPrimitive().isNumber()
-							|| !order.getAsString().matches("[0-9]+") || !orders.add(order.getAsInt()))
-							throw new IllegalArgumentException("order 必须是本记录内不重复的非负整数");
+			// Visit present fields once; do not repeatedly search Gson's tree for absent keys.
+			for (var field : record.entrySet()) {
+				String key = field.getKey();
+				JsonElement value = field.getValue();
+				switch (key) {
+					case "id", "ref", "text", "zh", "layout", "chat_join_next" -> CorpusData.string(value, key);
+					case "translate", "continuation", "item_name" -> validateBoolean(value, key);
+					case "segments" -> {
+						if (value.isJsonNull()) continue;
+						Set<Integer> orders = new HashSet<>();
+						for (var element : value.getAsJsonArray()) {
+							JsonObject segment = element.getAsJsonObject();
+							CorpusData.string(segment.get("text"), "segments.text");
+							for (var part : segment.entrySet()) switch (part.getKey()) {
+								case "zh" -> CorpusData.string(part.getValue(), "segments.zh");
+								case "omit" -> validateBoolean(part.getValue(), "omit");
+								case "order" -> {
+									JsonElement order = part.getValue();
+									if (!order.isJsonPrimitive() || !order.getAsJsonPrimitive().isNumber()
+										|| !NON_NEGATIVE.matcher(order.getAsString()).matches() || !orders.add(order.getAsInt()))
+										throw new IllegalArgumentException("order 必须是本记录内不重复的非负整数");
+								}
+								default -> {}
+							}
+						}
 					}
+					case "placeholders" -> {
+						for (var element : value.getAsJsonArray()) for (var part : element.getAsJsonObject().entrySet()) {
+							switch (part.getKey()) {
+								case "token", "type", "example" -> CorpusData.string(part.getValue(), "placeholders." + part.getKey());
+								case "item", "mob" -> validateBoolean(part.getValue(), "placeholders." + part.getKey());
+								default -> {}
+							}
+						}
+					}
+					case "item_refs", "mob_refs" -> {
+						for (var element : value.getAsJsonArray()) {
+							JsonObject reference = element.getAsJsonObject();
+							CorpusData.string(reference.get("text"), key + ".text");
+							CorpusData.string(reference.get("zh"), key + ".zh");
+							for (var part : reference.entrySet()) switch (part.getKey()) {
+								case "source_occurrence", "target_occurrence", "target_segment" -> referenceIndex(reference, part.getKey());
+								case "source_records" -> CorpusData.strings(reference, "source_records");
+								case "emit" -> validateBoolean(part.getValue(), key + ".emit");
+								default -> {}
+							}
+						}
+					}
+					case "exclude" -> CorpusData.strings(record, key);
+					default -> {}
 				}
 			}
-			if (record.has("placeholders")) for (var value : record.getAsJsonArray("placeholders")) {
-				JsonObject argument = value.getAsJsonObject();
-				for (String key : new String[] {"token", "type", "example"})
-					if (argument.has(key)) CorpusData.string(argument.get(key), "placeholders." + key);
-				for (String key : new String[] {"item", "mob"})
-					if (argument.has(key) && (!argument.get(key).isJsonPrimitive() || !argument.getAsJsonPrimitive(key).isBoolean()))
-						throw new IllegalArgumentException("placeholders." + key + " 必须是布尔值");
-			}
-			for (String field : new String[] {"item_refs", "mob_refs"}) if (record.has(field)) for (var value : record.getAsJsonArray(field)) {
-				JsonObject reference = value.getAsJsonObject();
-				CorpusData.string(reference.get("text"), field + ".text");
-				CorpusData.string(reference.get("zh"), field + ".zh");
-				for (String key : new String[] {"source_occurrence", "target_occurrence", "target_segment"}) referenceIndex(reference, key);
-				if (reference.has("source_records")) CorpusData.strings(reference, "source_records");
-				if (reference.has("emit") && (!reference.get("emit").isJsonPrimitive() || !reference.getAsJsonPrimitive("emit").isBoolean()))
-					throw new IllegalArgumentException(field + ".emit 必须是布尔值");
-			}
-			if (record.has("exclude")) CorpusData.strings(record, "exclude");
 		} catch (RuntimeException e) {
 			throw new IllegalArgumentException("记录 " + address + " 格式错误: " + e.getMessage(), e);
 		}
+	}
+
+	private static void validateBoolean(JsonElement value, String key) {
+		if (!value.isJsonPrimitive() || !value.getAsJsonPrimitive().isBoolean())
+			throw new IllegalArgumentException(key + " 必须是布尔值");
 	}
 
 	/** Follows a {@code ref} to the shared library; a record without one is already itself. */
@@ -428,9 +448,9 @@ public final class TranslationLoader {
 	}
 
 	private static int referenceIndex(JsonObject reference, String key) {
-		if (!reference.has(key)) return -1;
 		JsonElement value = reference.get(key);
-		if (!value.isJsonPrimitive() || !value.getAsJsonPrimitive().isNumber() || !value.getAsString().matches("[0-9]+"))
+		if (value == null) return -1;
+		if (!value.isJsonPrimitive() || !value.getAsJsonPrimitive().isNumber() || !NON_NEGATIVE.matcher(value.getAsString()).matches())
 			throw new IllegalArgumentException("item_refs." + key + " 必须是非负整数");
 		return value.getAsInt();
 	}
@@ -531,6 +551,7 @@ public final class TranslationLoader {
 	}
 
 	private static String string(JsonObject object, String key) {
-		return object.has(key) && object.get(key).isJsonPrimitive() ? object.get(key).getAsString() : "";
+		JsonElement value = object.get(key);
+		return value != null && value.isJsonPrimitive() ? value.getAsString() : "";
 	}
 }

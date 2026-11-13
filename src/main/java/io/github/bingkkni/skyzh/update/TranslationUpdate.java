@@ -40,7 +40,9 @@ public final class TranslationUpdate {
 	public static JsonObject baseline(Path automatic) throws IOException {
 		JsonObject downloaded = null;
 		if (Files.exists(automatic)) {
-			try { downloaded = TranslationPack.compile(automatic, TranslationPack.Source.AUTOMATIC).manifest(); }
+			try {
+				if (!TranslationPack.rejectedSnapshot(automatic)) downloaded = TranslationPack.readManifest(automatic);
+			}
 			catch (IOException | RuntimeException e) {
 				org.slf4j.LoggerFactory.getLogger("SkyZH").warn("自动翻译包不能作为版本比较基准，使用内置版本", e);
 			}
@@ -49,7 +51,7 @@ public final class TranslationUpdate {
 		try { builtin = TranslationPack.builtinManifest(); }
 		catch (IOException | RuntimeException e) {
 			if (downloaded == null) throw e;
-			org.slf4j.LoggerFactory.getLogger("SkyZH").warn("内置翻译版本信息不可用，使用已校验的自动包作比较基准", e);
+			org.slf4j.LoggerFactory.getLogger("SkyZH").warn("内置翻译版本信息不可用，使用自动包清单作比较基准", e);
 			return downloaded;
 		}
 		return downloaded != null && newer(downloaded, builtin) ? downloaded : builtin;

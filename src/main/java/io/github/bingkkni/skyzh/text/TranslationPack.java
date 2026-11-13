@@ -35,6 +35,11 @@ public final class TranslationPack {
 	private static final int MAX_FILE_BYTES = 16 * 1024 * 1024;
 	private static final int MAX_TOTAL_BYTES = 64 * 1024 * 1024;
 	private static final int API = readApi();
+	private record Stamp(long size, java.nio.file.attribute.FileTime modified, Object key) {}
+	private static final Map<Path, Stamp> REJECTED = java.util.Collections.synchronizedMap(
+		new java.util.LinkedHashMap<>() {
+			@Override protected boolean removeEldestEntry(Map.Entry<Path, Stamp> eldest) { return size() > 32; }
+		});
 
 	public enum Source {
 		MANUAL("手动安装的翻译包"), AUTOMATIC("自动更新的翻译包"), BUILTIN("Mod 自带的翻译");
@@ -106,9 +111,48 @@ public final class TranslationPack {
 				.isAfter(OffsetDateTime.parse(string(installed, "build_at_utc8")).toInstant());
 	}
 
+	/** Version checks read only metadata; full validation still precedes loading or installation. */
+	public static JsonObject readManifest(Path archive) throws IOException {
+		if (Files.size(archive) > MAX_TOTAL_BYTES) throw new IOException("翻译包文件过大");
+		try (ZipFile zip = new ZipFile(archive.toFile(), StandardCharsets.UTF_8)) {
+			var entry = zip.getEntry("manifest.json");
+			if (entry == null || entry.isDirectory()) throw new IOException("缺少 manifest.json");
+			byte[] bytes;
+			try (var input = zip.getInputStream(entry)) { bytes = input.readNBytes(64 * 1024 + 1); }
+			if (bytes.length > 64 * 1024) throw new IOException("翻译包清单过大");
+			JsonObject manifest = parse(bytes, "manifest.json");
+			validateManifest(manifest);
+			return manifest;
+		}
+	}
+
+	private static Stamp stamp(Path archive) throws IOException {
+		var attributes = Files.readAttributes(archive, java.nio.file.attribute.BasicFileAttributes.class);
+		return new Stamp(attributes.size(), attributes.lastModifiedTime(), attributes.fileKey());
+	}
+
+	/** Reuse actual load failures; hourly metadata checks must not recompile a known broken ZIP. */
+	public static boolean rejectedSnapshot(Path archive) throws IOException {
+		Path key = archive.toAbsolutePath().normalize();
+		Stamp rejected = REJECTED.get(key);
+		if (rejected == null) return false;
+		if (rejected.equals(stamp(archive))) return true;
+		REJECTED.remove(key, rejected);
+		return false;
+	}
+
 	public static Loaded compile(Path archive, Source source) throws IOException {
-		Content content = read(archive);
-		return new Loaded(TranslationLoader.compile(content.files()), source, content.manifest(), "");
+		Path key = archive.toAbsolutePath().normalize();
+		Stamp before = source == Source.AUTOMATIC ? stamp(archive) : null;
+		try {
+			Content content = read(archive);
+			Loaded loaded = new Loaded(TranslationLoader.compile(content.files()), source, content.manifest(), "");
+			REJECTED.remove(key);
+			return loaded;
+		} catch (IOException | RuntimeException failure) {
+			if (before != null) REJECTED.put(key, before);
+			throw failure;
+		}
 	}
 
 	/** Also exercised offline, including fallback and the case where no source is usable. */

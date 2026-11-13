@@ -233,6 +233,7 @@ public final class UpdateHarness {
 	private static void translations(Path root) throws Exception {
 		Path installed = root.resolve("automatic.zip"), candidate = root.resolve("candidate.zip"), manual = root.resolve("manual.zip");
 		JsonObject builtin = TranslationPack.builtinManifest();
+		checkManifestOnly(root, builtin);
 		TranslationPackHarness.write(installed, TranslationPackHarness.fixture(false),
 			meta -> meta.addProperty("build_at_utc8", TranslationPackHarness.builtinTime(-2)));
 		TranslationPackHarness.write(candidate, TranslationPackHarness.fixture(true),
@@ -276,6 +277,42 @@ public final class UpdateHarness {
 		check("自动包 API 不兼容时使用内置比较基准", TranslationUpdate.baseline(installed).equals(TranslationPack.builtinManifest()));
 		TranslationPackHarness.write(candidate, TranslationPackHarness.fixture(true), meta -> meta.addProperty("translation_api", TranslationPack.api() + 1));
 		fails("不兼容 API 不能进入安装", () -> TranslationUpdate.install(candidate, installed, manual, offer, () -> true));
+	}
+
+	private static void checkManifestOnly(Path root, JsonObject builtin) throws Exception {
+		Path archive = root.resolve("metadata-only.zip");
+		JsonObject metadata = builtin.deepCopy();
+		metadata.addProperty("build_at_utc8", TranslationPackHarness.builtinTime(1));
+		metadata.addProperty("content_sha256", "d".repeat(64));
+		try (var zip = new java.util.zip.ZipOutputStream(Files.newOutputStream(archive))) {
+			zip.putNextEntry(new java.util.zip.ZipEntry("manifest.json"));
+			zip.write(metadata.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8));
+			zip.closeEntry();
+			zip.putNextEntry(new java.util.zip.ZipEntry("original_text/intentionally-broken.json"));
+			zip.write("{broken corpus JSON".getBytes(java.nio.charset.StandardCharsets.UTF_8));
+			zip.closeEntry();
+		}
+		check("版本检查仅读取并验证根清单，不解析损坏的语料", TranslationPack.readManifest(archive).equals(metadata)
+			&& TranslationUpdate.baseline(archive).equals(metadata));
+		fails("实际加载仍完整校验语料", () -> TranslationPack.compile(archive, TranslationPack.Source.AUTOMATIC));
+		check("实际加载拒绝的快照不再作更新基准，允许重下同一远端版本",
+			TranslationUpdate.baseline(archive).equals(builtin)
+				&& TranslationUpdate.newer(metadata, TranslationUpdate.baseline(archive)));
+		TranslationPackHarness.write(archive, TranslationPackHarness.fixture(true),
+			meta -> meta.addProperty("build_at_utc8", TranslationPackHarness.builtinTime(1)));
+		check("替换磁盘快照后清除失败记录", !TranslationPack.rejectedSnapshot(archive)
+			&& TranslationUpdate.baseline(archive).equals(TranslationPack.readManifest(archive)));
+		TranslationPack.compile(archive, TranslationPack.Source.AUTOMATIC);
+		Files.delete(archive);
+		check("清单读取关闭ZIP文件", !Files.exists(archive));
+		try (var zip = new java.util.zip.ZipOutputStream(Files.newOutputStream(archive))) {
+			zip.putNextEntry(new java.util.zip.ZipEntry("manifest.json"));
+			zip.write((" ".repeat(64 * 1024) + metadata).getBytes(java.nio.charset.StandardCharsets.UTF_8));
+			zip.closeEntry();
+		}
+		fails("清单读取限制解压大小", () -> TranslationPack.readManifest(archive));
+		check("超长清单不作为比较基准", TranslationUpdate.baseline(archive).equals(builtin));
+		Files.delete(archive);
 	}
 
 	private static void mods(Path root) throws Exception {

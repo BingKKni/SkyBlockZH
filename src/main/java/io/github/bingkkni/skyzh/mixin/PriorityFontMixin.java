@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class PriorityFontMixin {
 	@Inject(method = "width(Ljava/lang/String;)I", at = @At("HEAD"), cancellable = true, require = 0)
 	private void skyzh$stringWidth(String source, CallbackInfoReturnable<Integer> info) {
-		if (source != null && PriorityText.active()) skyzh$width(Component.literal(source).getVisualOrderText(), info);
+		if (PriorityText.mayResolve(source)) skyzh$width(Component.literal(source).getVisualOrderText(), info);
 	}
 
 	@Inject(method = "width(Lnet/minecraft/network/chat/FormattedText;)I", at = @At("HEAD"), cancellable = true, require = 0)

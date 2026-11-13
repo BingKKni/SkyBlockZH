@@ -226,6 +226,7 @@ public final class NameTag {
 			|| !SkyZHConfig.get().enabled || HoldOriginal.active()) {
 			return nameTag;
 		}
+		if (!Translator.index().mayTranslateNameTag(nameTag)) return nameTag;
 		DisplayTextCache.Mode mode = hologramNameTag ? DisplayTextCache.Mode.HOLOGRAM
 			: livingMob ? DisplayTextCache.Mode.MOB : DisplayTextCache.Mode.TIMER;
 		return DisplayTextCache.get(nameTag, Surface.HOLOGRAM, mode,

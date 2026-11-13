@@ -17,13 +17,22 @@ public final class ItemNames {
 	private final Map<String, String> names;
 	private final Map<String, String> pets;
 	private final List<String> reforges;
+	private final boolean requiresLetter;
 
 	private ItemNames(JsonObject data) {
 		this.names = names(data, "names");
 		this.pets = names(data, "pets");
+		this.requiresLetter = this.names.keySet().stream().allMatch(ItemNames::hasLetter)
+			&& this.pets.keySet().stream().allMatch(ItemNames::hasLetter);
 		this.reforges = names(data, "reforges").values().stream()
 			.sorted((a, b) -> Integer.compare(b.length(), a.length())).toList();
 	}
+
+	static boolean hasLetter(String text) {
+		return text.codePoints().anyMatch(c -> Character.isLetter(Glyphs.canonicalCodePoint(c)));
+	}
+
+	boolean requiresLetter() { return this.requiresLetter; }
 
 	public static ItemNames from(JsonObject data) { return new ItemNames(data); }
 

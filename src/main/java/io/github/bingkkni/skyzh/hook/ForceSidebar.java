@@ -18,7 +18,9 @@ import net.minecraft.world.scores.PlayerTeam;
 
 /** High yields to custom panels; Force replaces supported panels through vanilla submission hooks. */
 public final class ForceSidebar {
+	public static final int CUSTOM = 1, SKYHANNI = 2, NOAMM_DRAW = 4, NOAMM_BACKGROUND = 8;
 	private static boolean filtering;
+	private static int rendererDepth, observedScopes, fallbackScopes;
 	private static final StackWalker CALLERS = StackWalker.getInstance(java.util.Set.of(StackWalker.Option.DROP_METHOD_INFO));
 	private static final String[] CUSTOM_RENDERERS = {
 		"me.owdding.customscoreboard.core.CustomScoreboardRenderer",
@@ -49,17 +51,38 @@ public final class ForceSidebar {
 
 	/** Scope filtering to the actual frame that will receive a replacement, even on exceptions. */
 	public static void withFrame(boolean strict, Runnable extract, Runnable replacement) {
+		withFrame(strict, strict ? SidebarCompatibility.rendererScopes() : 0, extract, replacement);
+	}
+
+	private static void withFrame(boolean strict, int possibleScopes, Runnable extract, Runnable replacement) {
 		boolean previous = filtering;
+		int previousFallback = fallbackScopes;
 		filtering = strict;
+		fallbackScopes = possibleScopes;
 		try {
 			extract.run();
 			filtering = false;
 			replacement.run();
-		} finally { filtering = previous; }
+		} finally { filtering = previous; fallbackScopes = previousFallback; }
 	}
 
 	public static boolean suppressCustomDraw() {
-		return filtering && customRendererOnStack();
+		return filtering && (rendererDepth > 0 || (fallbackScopes & ~observedScopes) != 0 && customRendererOnStack());
+	}
+
+	/** Reached only if the optional wrapper really applied; absent/new signatures keep stack fallback. */
+	public static void withRenderer(int scope, Runnable render) {
+		observedScopes |= scope;
+		rendererDepth++;
+		try { render.run(); }
+		finally { rendererDepth--; }
+	}
+
+	public static <T> T withRendererResult(int scope, java.util.function.Supplier<T> render) {
+		observedScopes |= scope;
+		rendererDepth++;
+		try { return render.get(); }
+		finally { rendererDepth--; }
 	}
 
 	/** Hidden custom widgets must not keep their click actions while the replacement is shown. */
@@ -68,8 +91,8 @@ public final class ForceSidebar {
 	}
 
 	private static boolean customRendererOnStack() {
-		// No third-party class loading or bytecode changes. Only the three verified renderer
-		// owners (including their nested callbacks) are classified; other HUDs remain untouched.
+		// Compatibility fallback for missing wrappers; click handlers also use this rare path.
+		// Only verified owners and their nested callbacks qualify, never unrelated HUDs.
 		return CALLERS.walk(frames -> frames.limit(64).anyMatch(frame -> isCustomRenderer(frame.getClassName())));
 	}
 

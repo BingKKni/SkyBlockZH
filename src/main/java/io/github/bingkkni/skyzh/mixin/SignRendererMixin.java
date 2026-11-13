@@ -3,37 +3,33 @@ package io.github.bingkkni.skyzh.mixin;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import io.github.bingkkni.skyzh.HypixelServer;
-import io.github.bingkkni.skyzh.text.DisplayTextCache;
-import io.github.bingkkni.skyzh.text.DocumentTranslation;
-import io.github.bingkkni.skyzh.text.StyledText;
-import io.github.bingkkni.skyzh.text.Surface;
-import io.github.bingkkni.skyzh.platform.ServerSignData;
-import java.util.List;
+import com.llamalad7.mixinextras.sugar.Local;
+import io.github.bingkkni.skyzh.text.SignDisplayCache;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.renderer.blockentity.state.SignRenderState;
 import java.util.function.Function;
 import net.minecraft.client.renderer.blockentity.AbstractSignRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.level.block.entity.SignText;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Final;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 
 /** Never writes translated messages into SignText or its vanilla render cache. */
 @Mixin(AbstractSignRenderer.class)
 public abstract class SignRendererMixin {
+	@Shadow @Final private Font font;
+
 	@WrapOperation(method = "submitSignText", at = @At(value = "INVOKE",
 		target = "Lnet/minecraft/world/level/block/entity/SignText;getRenderMessages(ZLjava/util/function/Function;)[Lnet/minecraft/util/FormattedCharSequence;"), require = 0)
 	private FormattedCharSequence[] skyzh$side(SignText sign, boolean filtered,
-		Function<Component, FormattedCharSequence> prepare, Operation<FormattedCharSequence[]> original) {
+		Function<Component, FormattedCharSequence> prepare, Operation<FormattedCharSequence[]> original,
+		@Local(argsOnly = true) SignRenderState state) {
 		if (!HypixelServer.canTranslate()) return original.call(sign, filtered, prepare);
-		Component source = DocumentTranslation.join(ServerSignData.lines(sign, filtered));
-		Component translated = DisplayTextCache.get(source, Surface.SIGN, DisplayTextCache.Mode.BLOCK,
-			text -> DocumentTranslation.available(text.slice(0, text.length()), Surface.SIGN));
-		if (StyledText.of(source).equals(StyledText.of(translated))) return original.call(sign, filtered, prepare);
-		List<Component> rows = DocumentTranslation.lines(translated);
-		// A malformed external template must never silently erase a fifth row.
-		if (rows.size() != 4) return original.call(sign, filtered, prepare);
-		FormattedCharSequence[] result = new FormattedCharSequence[4];
-		for (int i = 0; i < 4; i++) result[i] = prepare.apply(rows.get(i));
-		return result;
+		FormattedCharSequence[] translated = ((SignDisplayCache.Owner) sign).skyzh$displayCache()
+			.get(sign, filtered, state.maxTextLineWidth, this.font, prepare);
+		return translated == null ? original.call(sign, filtered, prepare) : translated;
 	}
 }

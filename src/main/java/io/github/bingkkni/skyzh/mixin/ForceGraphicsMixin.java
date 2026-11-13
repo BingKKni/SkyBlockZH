@@ -53,7 +53,7 @@ public abstract class ForceGraphicsMixin {
 	@Inject(method = "text(Lnet/minecraft/client/gui/Font;Ljava/lang/String;IIIZ)V",
 		at = @At("HEAD"), cancellable = true, require = 0)
 	private void skyzh$forceString(Font font, String text, int x, int y, int color, boolean shadow, CallbackInfo info) {
-		if (text != null && PriorityText.active()
+		if (PriorityText.mayResolve(text)
 			&& skyzh$draw(font, Component.literal(text).getVisualOrderText(), x, y, color, shadow)) info.cancel();
 	}
 

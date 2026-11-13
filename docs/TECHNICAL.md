@@ -210,13 +210,14 @@ explicit references across surfaces, refreshing existing chat and tooltips when 
   Bounded sidebar sources survive another 20 ticks for cached displays. Without a custom panel, draw the
   server sidebar in the final stratum.
 - `force`: include High's protection and take over the sidebar inside `GameRenderer.extract`.
-  Vanilla `GuiRenderState.findAppropriateNode` checks up to 64 caller frames for the three verified sidebar
-  renderer owners, rejecting their text, backgrounds, images and items before drawing the translated
-  server sidebar. It does not mask a screen rectangle or block other HUDs from those mods. Vanilla tooltip
-  scheduling and widget click hooks also reject operations from the replaced panel. Draw-stack scanning
-  runs only when read-only probes report an enabled panel or an unknown API state; absent or disabled
-  panels skip it. Filtering unwinds on normal completion or exceptions; returning to High
-  restores the custom panel. Third-party settings, data and classes are never modified.
+  Optional `@Pseudo` wrappers mark only the three verified renderer scopes, including Noamm's separate
+  background entry. Vanilla `GuiRenderState.findAppropriateNode` reads the scope counter, rejecting text,
+  backgrounds, images and items before drawing the translated server sidebar. It does not mask a screen
+  rectangle or block other HUDs. Tooltip scheduling shares the scope gate. Until an enabled or unknown-state
+  renderer's wrapper has actually run, submission checks fall back to at most 64 caller frames; absent or
+  disabled panels skip scanning. Widget clicks retain the low-frequency stack check. Filtering unwinds on
+  completion or exceptions; High restores the custom panel. Wrappers preserve third-party settings, data,
+  arguments and return values.
 
 Lunar 26.2 - 26.3 name tags use a vanilla extraction scope: on verified SkyBlock only, temporarily replace
 its display-state name field while Lunar builds its RETURN-stage cache, restoring the original on completion
@@ -310,12 +311,18 @@ English; it never blanks it.
 
 Dynamic templates use mandatory literal substrings to select candidates, then retain the complete
 regex/capture validation and stable specificity ordering. Equivalent definitions share compiled
-structures while each occurrence keeps its own id and file. Candidates are never restricted by island.
+structures while each occurrence keeps its own id and file. Exact records store fragment ranges without
+regexes; templates compile on their first candidate lookup and argument tables use their actual size.
+The JSON format is unchanged, and candidates are never restricted by island.
 `StyledText` stores complete style runs with immutable range views. A lore plan reuses flattened lines
 and per-start searches while preserving longest matches, blank boundaries and the 12-line/2048-character limits.
 Literal name tags, sidebar rows, tab rows and tooltips, which vanilla rebuilds every frame, are matched
 against their recorded node-by-node text, styles and child counts without flattening again; any in-place
-change misses and falls back to the full key. The initial corpus loads on a background thread, and the SkyBlock
+change misses and falls back to the full key. Per-surface display caches refresh the LRU on structural hits
+and rotate two shape generations. Corpus-derived letter/mandatory-symbol requirements reject damage
+numbers before flattening or cache admission, with dynamic components conservatively allowed. String
+font hooks filter raw prefixes before bidi ordering; server verification is reused within a render frame
+while toggles remain live. The initial corpus loads on a background thread, and the SkyBlock
 gate stays shut until it lands. In-game reloads keep the previous valid corpus and the gate active.
 
 ### Complete bundles and live reload
@@ -373,8 +380,11 @@ Background updates become eligible only after verified SkyBlock entry and comple
 Automatic checks, explicit commands and retry buttons share one worker and busy guard. Combined checks run Mod first, then translations;
 per-target cooldowns remain independent, and a Mod-check failure does not prevent the translation check.
 The custom domain directly supplies `update.json`: `update_format: 1`, bundle manifest fields, download URL, ZIP size and SHA-256.
-Exact API equality, a newer timestamp and a different content hash are required. The baseline uses the same timestamp/hash rule as loading:
-only an automatic bundle newer than the built-in snapshot becomes the baseline, even if a stale ZIP could not be deleted.
+Exact API equality, a newer timestamp and a different content hash are required. Version checks read and
+validate only the automatic ZIP's root manifest; loading and installation still validate and compile the
+whole corpus. A disk snapshot rejected during actual loading cannot become the baseline until its file
+identity changes or validation succeeds. The baseline uses the same timestamp/hash rule as loading: only a compatible automatic
+manifest newer than the built-in snapshot becomes the baseline, even if a stale ZIP could not be deleted.
 Otherwise use `skyzh-builtin-translations.json`, generated by the same metadata task as the exported ZIP. Manual bundles retain loading priority
 and do not participate in update comparisons.
 
@@ -469,8 +479,10 @@ item components stay untouched. Whole pages/sides win before explicit-line fallb
 Book padding is recomputed against the 114px page only when source geometry supports centering; short
 indents remain. `AbstractSignRenderer.submitSignText` prepares translated four-row copies and retains
 vanilla per-row centering, filtering, dye and glow for both sides and both sign types. It never writes
-translated content into `SignText` or its original render cache; malformed row counts fall back to the
-original. Book clicks inherit live actions/styles; text hovers use BOOK records only. `checkDocuments`
+translated messages into the original sign data or vanilla render cache. An instance-attached derived
+cache retains translations and no-translation decisions, invalidated by filtering, corpus, policy and
+language/font resources; prepared sequences also respect normal/hanging sign width. Malformed row counts
+fall back to the original. Book clicks inherit live actions/styles; text hovers use BOOK records only. `checkDocuments`
 replays frozen observations and checks interactions, colours, layout and surface isolation.
 
 Highest-priority packet `handle(ClientGamePacketListener)`
@@ -784,6 +796,9 @@ versions. `require = 0` allows missing injection points; it does not establish c
 ```bash
 ./gradlew checkMixinTargets     # part of `check`, run for every target
 ```
+
+`./gradlew checkRenderMixins` additionally exercises real Knot/MixinExtras weaving against vanilla and
+signature-only fixtures of the three optional sidebar renderers; it is not a full Mod-pack visual test.
 
 This is the check `require = 0` makes necessary. It reads the annotations back out of the *compiled*
 mixins — the real `@Mixin` value, the real `method` list, the real `At.target` — and resolves every one

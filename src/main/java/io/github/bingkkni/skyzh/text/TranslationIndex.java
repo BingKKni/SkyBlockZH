@@ -24,9 +24,12 @@ public final class TranslationIndex {
 	private final Map<Surface, List<TranslationEntry>> patterns = new EnumMap<>(Surface.class);
 	private final Map<Surface, Map<String, TranslationEntry>> cache = new EnumMap<>(Surface.class);
 	private final Map<Surface, TemplateCandidates> candidates = new java.util.concurrent.ConcurrentHashMap<>();
+	private final boolean[] requiresLetter = new boolean[Surface.values().length];
+	private final TextRequirements[] requirements = new TextRequirements[Surface.values().length];
+	private boolean borrowedNamesRequireLetter;
 
 	/** A query-local matcher; never stored in the shared lookup cache. */
-	public record Match(TranslationEntry entry, java.util.regex.Matcher matcher) {}
+	public record Match(TranslationEntry entry, java.util.regex.MatchResult matcher) {}
 
 	/**
 	 * Text a record deliberately keeps in English ({@code translate: false}), by surface. Never drawn
@@ -47,7 +50,9 @@ public final class TranslationIndex {
 
 	public TranslationIndex(CorpusData data) {
 		this.data = data;
+		java.util.Arrays.fill(this.requiresLetter, true);
 		for (Surface surface : Surface.values()) {
+			this.requirements[surface.ordinal()] = new TextRequirements();
 			this.exact.put(surface, new HashMap<>());
 			this.patterns.put(surface, new ArrayList<>());
 			this.preserved.put(surface, new HashSet<>());
@@ -130,6 +135,8 @@ public final class TranslationIndex {
 		} else {
 			this.patterns.get(surface).add(entry);
 		}
+		this.requiresLetter[surface.ordinal()] &= entry.requiresLetter();
+		this.requirements[surface.ordinal()].add(entry);
 		this.candidates.remove(surface);
 		synchronized (this.cache.get(surface)) {
 			this.cache.get(surface).clear();
@@ -139,6 +146,28 @@ public final class TranslationIndex {
 	/** Build once after loading; subsequent lookups only read immutable candidate structures. */
 	public void prepare() {
 		for (Surface surface : Surface.values()) candidates(surface);
+		// Name tags additionally borrow catalog items and known destinations. Mob bars already
+		// require a letter in MOB_BAR. Derive these exceptions from this same corpus generation.
+		this.borrowedNamesRequireLetter = data().items().requiresLetter()
+			&& this.terms.typed("location_name").keySet().stream().allMatch(ItemNames::hasLetter);
+		if (this.borrowedNamesRequireLetter) for (String area : data().areas().names()) {
+			if (ItemNames.hasLetter(area)) continue;
+			String translated = this.terms.translate("location_name", area);
+			if (translated != null && !translated.equals(area)) {
+				this.borrowedNamesRequireLetter = false;
+				break;
+			}
+		}
+	}
+
+	/** Necessary, not sufficient: symbol-only entries in external packs disable this requirement. */
+	public boolean requiresLetter(Surface surface) { return this.requiresLetter[surface.ordinal()]; }
+
+	/** Zero-allocation rejection before shape hashing, regexes, catalogs and both display caches. */
+	public boolean mayTranslateNameTag(net.minecraft.network.chat.Component source) {
+		TextRequirements requirement = this.requirements[Surface.HOLOGRAM.ordinal()];
+		return requirement.unrestricted() || !this.borrowedNamesRequireLetter
+			|| TextShape.mayMatch(source, requirement, 0);
 	}
 
 	private TemplateCandidates candidates(Surface surface) {

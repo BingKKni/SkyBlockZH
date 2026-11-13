@@ -35,6 +35,8 @@ public final class PerformanceHarness {
 			List<TranslationEntry> patterns = patterns(index).get(surface);
 			for (TranslationEntry entry : index.entries(surface)) {
 				String sample = sample(entry, references);
+				if (surface == Surface.HOLOGRAM && entry.match(sample) != null)
+					check(index.mayTranslateNameTag(Component.literal(sample)), "real hologram sample passes requirements: " + sample);
 				compare(index, patterns, surface, sample);
 				compare(index, patterns, surface, sample.replaceAll("([A-Za-z]{2,})[sS]\\b", "$1"));
 				if (entry.template().contains("%")) {
@@ -44,12 +46,15 @@ public final class PerformanceHarness {
 				}
 			}
 		}
+		checkCompactCompilation();
+		checkNameTagPrefilter(index);
 		checkSharedCompilation();
 		checkStyles();
 		checkCache(index);
 		checkCacheReload(index);
 		checkDisplayShapes(index, references);
 		checkShapes();
+		checkCacheChurn();
 		checkTooltipRecent();
 		checkGlyphs();
 		checkCapture();
@@ -90,6 +95,143 @@ public final class PerformanceHarness {
 					&& actual.matcher().end(group) == reference.end(group), "capture range differs: " + plain);
 			}
 		}
+	}
+
+	private static void checkCompactCompilation() throws Exception {
+		var definition = new TranslationEntry.Definition("exact", "test", List.of(
+			new TranslationEntry.Segment("Alpha ", "甲", 1),
+			new TranslationEntry.Segment("", null, 0),
+			new TranslationEntry.Segment("100%%", "百分百", 2)), Map.of(), TranslationEntry.Options.DEFAULT);
+		TranslationEntry exact = TranslationEntry.compile(definition);
+		var pattern = TranslationEntry.class.getDeclaredField("pattern");
+		var arguments = TranslationEntry.class.getDeclaredField("argGroups");
+		pattern.setAccessible(true);
+		arguments.setAccessible(true);
+		check(pattern.get(exact) == null && ((int[]) arguments.get(exact)).length == 0,
+			"exact entries allocate no Pattern and no 64-slot argument table");
+		var match = exact.match("Alpha 100%");
+		var old = java.util.regex.Pattern.compile("^(\\QAlpha \\E)()(\\Q100%\\E)$").matcher("Alpha 100%");
+		check(old.matches() && match != null && match.groupCount() == old.groupCount(), "exact match group count");
+		for (int group = 0; group <= old.groupCount(); group++)
+			check(match.start(group) == old.start(group) && match.end(group) == old.end(group)
+				&& match.group(group).equals(old.group(group)), "exact fragment ranges, including empty/escaped percent");
+		check(exact.match("Alpha 100%%") == null && exact.match("Alpha 100%!") == null, "exact comparison stays strict");
+		check(exact.render(StyledText.of(Component.literal("Alpha 100%")), match, io.github.bingkkni.skyzh.text.TermTable.EMPTY)
+			.getString().equals("甲百分百"), "exact fragments still omit/reorder correctly");
+		TranslationEntry dynamic = TranslationEntry.compile(new TranslationEntry.Definition("dynamic", "test",
+			List.of(new TranslationEntry.Segment("Energy: %3$s / %s", "能量: %3$s / %s")),
+			Map.of(1, new TranslationEntry.Argument("number", ""), 3, new TranslationEntry.Argument("number", "")),
+			TranslationEntry.Options.DEFAULT));
+		Object lazy = pattern.get(dynamic);
+		var compiled = lazy.getClass().getDeclaredField("compiled");
+		compiled.setAccessible(true);
+		check(compiled.get(lazy) == null && ((int[]) arguments.get(dynamic)).length == 4,
+			"templates defer regex compilation and size arguments by the actual highest slot");
+		var dynamicMatch = dynamic.match("Energy: 12 / 34");
+		check(dynamicMatch != null && compiled.get(lazy) != null
+			&& dynamic.render(StyledText.of(Component.literal("Energy: 12 / 34")), dynamicMatch,
+				io.github.bingkkni.skyzh.text.TermTable.EMPTY).getString().equals("能量: 12 / 34"),
+			"first candidate compiles once and preserves numbered/sequential captures");
+		Object once = compiled.get(lazy);
+		java.util.stream.IntStream.range(0, 100).parallel().forEach(i -> {
+			if (dynamic.match("Energy: " + i + " / 34") == null) throw new AssertionError("parallel matcher");
+		});
+		check(compiled.get(lazy) == once, "threads share the Pattern, never a mutable Matcher");
+		for (String token : List.of("%64$s", "%1500000000$s", "%2147483647$s")) {
+			for (boolean source : new boolean[] {true, false}) try {
+				TranslationEntry.compile(new TranslationEntry.Definition("oversized", "test",
+					List.of(new TranslationEntry.Segment(source ? "Energy: " + token : "Energy: %s", source ? "能量: %s" : token)),
+					Map.of(), TranslationEntry.Options.DEFAULT));
+				throw new AssertionError("oversized argument accepted: " + token);
+			} catch (IllegalArgumentException expected) {
+				check(expected.getMessage().contains("63"), "source/target argument bounds reject before array allocation");
+			}
+		}
+		TranslationEntry last = TranslationEntry.compile(new TranslationEntry.Definition("last-slot", "test",
+			List.of(new TranslationEntry.Segment("Energy: %63$s", "能量: %63$s")),
+			Map.of(63, new TranslationEntry.Argument("number", "")), TranslationEntry.Options.DEFAULT));
+		check(((int[]) arguments.get(last)).length == 64 && last.match("Energy: 12") != null,
+			"last previously supported argument slot still works");
+	}
+
+	private static void checkNameTagPrefilter(TranslationIndex index) {
+		check(index.mayTranslateNameTag(Component.literal(" ⓐ 123.")), "symbol-only quiz options remain candidates");
+		for (String damage : List.of("12345", "§f123§a,456§b✧", "❤ 123/456", "§q✧"))
+			check(!index.mayTranslateNameTag(Component.literal(damage)), "damage bypasses shape/cache/regex work: " + damage);
+		for (Component text : List.of(Component.literal("12ф"), Component.literal("12\uE020"),
+			Component.empty().append("123").append(Component.literal("CLICK")),
+			Component.literal("中文"), Component.literal("𝔄"), Component.translatable("harness.dynamic")))
+			check(index.mayTranslateNameTag(text), "prefilter preserves timers, glyphs, Unicode and dynamic contents");
+		TranslationIndex symbols = TranslationLoader.compile(Map.of("A/Hologram/Symbol.json",
+			com.google.gson.JsonParser.parseString("""
+				{"lines":[{"id":"symbol","text":"✧","zh":"星","translate":true}]}
+				""").getAsJsonObject()));
+		check(!symbols.requiresLetter(Surface.HOLOGRAM) && symbols.mayTranslateNameTag(Component.literal("✧")),
+			"an external symbol-only record adds its required symbol to the prefilter");
+		checkBorrowedNameRequirements();
+	}
+
+	private static void checkBorrowedNameRequirements() {
+		Map<String, JsonObject> itemFiles = TranslationPackHarness.fixture(false);
+		itemFiles.get(io.github.bingkkni.skyzh.text.CorpusData.ITEMS).getAsJsonArray("names").add("✧");
+		itemFiles.put("Test/GUI_Item/Symbol.json", com.google.gson.JsonParser.parseString("""
+			{"lines":[{"id":"symbol_item","text":"✧","zh":"星形物品","item_name":true}]}
+			""").getAsJsonObject());
+		TranslationIndex item = TranslationLoader.compile(itemFiles);
+		io.github.bingkkni.skyzh.text.Translator.withIndex(item, () -> {
+			check(item.mayTranslateNameTag(Component.literal("✧")), "symbol-only catalog identity bypasses the letter gate");
+			check(io.github.bingkkni.skyzh.text.Translator.translateAvailable(Component.literal("✧"), Surface.HOLOGRAM)
+				.padded().getString().equals("星形物品"), "borrowed symbol-only item still translates");
+			return null;
+		});
+		for (boolean typed : new boolean[] {false, true}) {
+			Map<String, JsonObject> areaFiles = TranslationPackHarness.fixture(false);
+			if (!typed) areaFiles.get(io.github.bingkkni.skyzh.text.CorpusData.AREAS).getAsJsonObject("areas")
+				.addProperty("☯", "Fishing");
+			JsonObject location = new JsonObject();
+			location.addProperty("en", "☯");
+			location.addProperty("zh", "符号港");
+			if (typed) {
+				var types = new com.google.gson.JsonArray();
+				types.add("location_name");
+				location.add("types", types);
+			}
+			areaFiles.get("_shared/Terms.json").getAsJsonArray("terms").add(location);
+			TranslationIndex area = TranslationLoader.compile(areaFiles);
+			io.github.bingkkni.skyzh.text.Translator.withIndex(area, () -> {
+				check(area.mayTranslateNameTag(Component.literal("☯")), "typed/registry symbol-only destinations pass requirements");
+				check(io.github.bingkkni.skyzh.hook.NameTag.location(Component.literal("☯")).getString().equals("符号港"),
+					"typed/registry symbol-only destinations retain their translation");
+				return null;
+			});
+		}
+	}
+
+	private static void checkCacheChurn() {
+		SkyZHConfig.bumpGeneration();
+		int[] calls = {0};
+		java.util.function.Function<StyledText, Component> render = text -> {
+			calls[0]++;
+			return Component.literal("缓存 ").append(text.slice(0, text.length()));
+		};
+		Component[] stable = new Component[150];
+		for (int i = 0; i < stable.length; i++) stable[i] = DisplayTextCache.get(Component.literal("Stable " + i),
+			Surface.HOLOGRAM, DisplayTextCache.Mode.HOLOGRAM, render);
+		for (int frame = 0; frame < 1_100; frame++) {
+			for (int i = 0; i < stable.length; i++)
+				check(DisplayTextCache.get(Component.literal("Stable " + i), Surface.HOLOGRAM,
+					DisplayTextCache.Mode.HOLOGRAM, render) == stable[i], "hot shapes survive two-generation rotation and LRU churn");
+			for (int j = 0; j < 4; j++) DisplayTextCache.get(Component.literal("Transient " + (frame * 4 + j)),
+				Surface.HOLOGRAM, DisplayTextCache.Mode.HOLOGRAM, render);
+		}
+		check(calls[0] == stable.length + 4_400, "transient names never force a stable name to translate again");
+		for (int i = 0; i < 1_500; i++) DisplayTextCache.get(Component.literal("Other " + i),
+			Surface.SCOREBOARD, DisplayTextCache.Mode.ROW, render);
+		int before = calls[0];
+		for (int i = 0; i < stable.length; i++)
+			check(DisplayTextCache.get(Component.literal("Stable " + i), Surface.HOLOGRAM,
+				DisplayTextCache.Mode.HOLOGRAM, render) == stable[i], "other surfaces cannot evict name-tag results");
+		check(calls[0] == before, "per-surface flattened and structural caches stay isolated");
 	}
 
 	private static void checkSharedCompilation() throws Exception {
@@ -242,7 +384,7 @@ public final class PerformanceHarness {
 		Component deepFirst = DisplayTextCache.get(deep, Surface.SCOREBOARD, DisplayTextCache.Mode.LINE, render);
 		check(DisplayTextCache.get(deep.copy(), Surface.SCOREBOARD, DisplayTextCache.Mode.LINE, render) == deepFirst
 			&& calls[0] == 8, "oversized trees still use the flattened key");
-		// Overflow clears the recorded shapes; answers must stay those of the flattened key.
+		// Rotating generations must preserve full-key answers through repeated overflow.
 		for (int i = 0; i < 1_500; i++) {
 			Component row = Component.literal("Row " + i);
 			Component shown = DisplayTextCache.get(row, Surface.SCOREBOARD, DisplayTextCache.Mode.ROW, render);
