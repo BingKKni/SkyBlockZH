@@ -62,6 +62,13 @@ public abstract class ClientPacketListenerCaptureMixin {
 		}
 	}
 
+	/** Mark before synchronous HUD callbacks, then again after the packet's final scoreboard state. */
+	@Inject(method = {"handleAddObjective", "handleSetScore", "handleResetScore", "handleSetDisplayObjective",
+		"handleSetPlayerTeamPacket"}, at = {@At("HEAD"), @At("RETURN")}, require = 0)
+	private void skyzh$sidebarChanged(CallbackInfo info) {
+		PriorityText.sidebarChanged();
+	}
+
 	@Inject(method = "handleSystemChat", at = @At("TAIL"), require = 0)
 	private void skyzh$originalTip(ClientboundSystemChatPacket packet, CallbackInfo info) {
 		if (!packet.overlay()) {

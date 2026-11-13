@@ -34,6 +34,7 @@ public final class PriorityText {
 	private static int generation = -1;
 	private static boolean resolving;
 	private static boolean customSidebar;
+	private static boolean sidebarDirty;
 	private static int tick;
 	private static DisplayPriority observedPriority = DisplayPriority.DEFAULT;
 	// Both supported renderers cache their rows between updates. Retain exact server spellings
@@ -92,6 +93,13 @@ public final class PriorityText {
 		}
 	}
 
+	/** Defer packet batches to their first display read; never scan every team packet separately. */
+	public static void sidebarChanged() {
+		if (!collecting(true)) return;
+		Minecraft minecraft = Minecraft.getInstance();
+		if (minecraft != null && minecraft.isSameThread() && HypixelServer.isSkyBlock()) sidebarDirty = true;
+	}
+
 	/** A scoreboard event may rebuild widgets before our next tick sees its new numeric values. */
 	public static void refreshSidebar() {
 		Minecraft minecraft = Minecraft.getInstance();
@@ -100,6 +108,7 @@ public final class PriorityText {
 	}
 
 	private static void captureSidebar(Minecraft minecraft) {
+		sidebarDirty = false;
 		var scoreboard = minecraft.level.getScoreboard();
 		var objective = scoreboard.getDisplayObjective(DisplaySlot.SIDEBAR);
 		if (HypixelServer.isSkyBlockObjective(objective)) {
@@ -122,6 +131,7 @@ public final class PriorityText {
 			SOURCE_PREFIXES.clear();
 			OUTPUT.clear();
 			tick = 0;
+			sidebarDirty = false;
 			level = currentLevel;
 		}
 		if (generation != SkyZHConfig.generation()) {
@@ -159,6 +169,7 @@ public final class PriorityText {
 			HUD.clear();
 			SOURCE_PREFIXES.clear();
 			OUTPUT.clear();
+			sidebarDirty = false;
 			level = minecraft.level;
 		}
 		put(PACKETS, source, surface);
@@ -229,10 +240,20 @@ public final class PriorityText {
 	}
 
 	private static FormattedCharSequence resolveActive(FormattedCharSequence input, boolean forced) {
+		return resolveActive(input, forced, PriorityText::refreshSidebar);
+	}
+
+	private static FormattedCharSequence resolveActive(FormattedCharSequence input, boolean forced, Runnable refreshSidebar) {
 		if (resolving) return null;
 		if (input instanceof ProtectedText) return input;
 		resolving = true;
 		try {
+			// Packets can arrive after the tick snapshot. Refresh before even the prefix filter,
+			// so a new value or a newly added row is translated on its first width/draw call.
+			if (sidebarDirty) {
+				sidebarDirty = false;
+				refreshSidebar.run();
+			}
 			return resolveKnown(input, forced, true,
 				customSidebar && (SkyZHConfig.get().displayPriority == DisplayPriority.HIGH || LunarClient.present()));
 		} finally {

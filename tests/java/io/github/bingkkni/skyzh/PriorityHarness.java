@@ -92,6 +92,7 @@ public final class PriorityHarness {
 		checkWidthReentry();
 		checkSidebarCompatibility();
 		checkCustomSidebarText();
+		checkSidebarPacketRefresh();
 		checkSidebarPrefixFilter();
 		checkSidebarTakeover();
 		System.out.println("显示优先级检查通过 " + checked + " 项");
@@ -354,6 +355,72 @@ public final class PriorityHarness {
 			SkyZHConfig.get().enabled = true;
 			SkyZHConfig.get().displayPriority = DisplayPriority.DEFAULT;
 			HoldOriginal.setActive(false);
+			session.invoke(null, null, false, false);
+		}
+	}
+
+	/** A packet lands between the tick snapshot and Lunar's first width/draw call. */
+	private static void checkSidebarPacketRefresh() throws Exception {
+		Method session = PriorityText.class.getDeclaredMethod("updateSession", Object.class, boolean.class, boolean.class);
+		Method liveResolve = PriorityText.class.getDeclaredMethod("resolveActive", FormattedCharSequence.class, boolean.class, Runnable.class);
+		var dirty = PriorityText.class.getDeclaredField("sidebarDirty");
+		for (var member : new java.lang.reflect.AccessibleObject[] {session, liveResolve, dirty}) member.setAccessible(true);
+		Object world = new Object();
+		Component old = Component.literal("Purse: 1,234");
+		Component updated = Component.literal("  Purse: ").withStyle(ChatFormatting.YELLOW)
+			.append(Component.literal("1,235  ").withStyle(ChatFormatting.GREEN));
+		Component added = Component.literal("Bits: 42").withStyle(ChatFormatting.AQUA);
+		Component[] pending = {updated};
+		int[] snapshots = {0};
+		Runnable capture = () -> {
+			snapshots[0]++;
+			try { put.invoke(null, sources, pending[0], Surface.SCOREBOARD); }
+			catch (ReflectiveOperationException failure) { throw new AssertionError(failure); }
+		};
+		java.util.function.Function<Component, Component> draw = input -> {
+			try {
+				var translated = (FormattedCharSequence) liveResolve.invoke(null, input.getVisualOrderText(), true, capture);
+				return translated == null ? null : PriorityText.component(translated);
+			} catch (ReflectiveOperationException failure) { throw new AssertionError(failure); }
+		};
+		try {
+			SkyZHConfig.get().displayPriority = DisplayPriority.HIGH;
+			session.invoke(null, world, true, true);
+			put.invoke(null, sources, old, Surface.SCOREBOARD);
+			check("复现 tick 快照不认识新值", draw.apply(updated) == null && snapshots[0] == 0);
+			dirty.setBoolean(null, true); // The packet has now changed the live board, without a new tick.
+			Component measured = draw.apply(updated);
+			check("刷新行首次测宽已有译文", measured != null && measured.getString().equals("  硬币: 1,235  "));
+			Component drawn = draw.apply(updated);
+			check("同一帧测宽与绘制内容和颜色一致", StyledText.of(measured).equals(StyledText.of(drawn)));
+			check("同批更新只读一次最新计分板", snapshots[0] == 1 && !dirty.getBoolean(null));
+			check("其他未变行继续显示译文", draw.apply(old).getString().equals("硬币: 1,234"));
+			check("新值保留原颜色", StyledText.of(drawn).styleAt(6).getColor().getValue() == 0x55FF55);
+			check("原版和 Lunar 输入保持英文", old.getString().equals("Purse: 1,234")
+				&& updated.getString().equals("  Purse: 1,235  "));
+
+			check("新增行此前未通过前缀筛选", draw.apply(added) == null);
+			pending[0] = added;
+			dirty.setBoolean(null, true);
+			check("新前缀在首次绘制前也会刷新", draw.apply(added).getString().equals("点券: 42"));
+			check("新增行测宽绘制共用一次快照", draw.apply(added) != null && snapshots[0] == 2);
+			check("保留 Lunar 仍在缓存的上一行", draw.apply(updated) != null);
+			check("不凭语料翻译无服务器来源的同类文案", draw.apply(Component.literal("Bits: 99")) == null);
+
+			dirty.setBoolean(null, true);
+			check("受保护的译文不消耗待刷新的来源", liveResolve.invoke(null,
+				new PriorityText.ProtectedText(measured.getVisualOrderText()), true, capture) != null
+				&& dirty.getBoolean(null) && snapshots[0] == 2);
+			session.invoke(null, new Object(), true, true);
+			check("换世界同时清除待刷新标记", !dirty.getBoolean(null) && sources.isEmpty());
+			session.invoke(null, world, true, true);
+			dirty.setBoolean(null, true);
+			SkyZHConfig.get().enabled = false;
+			session.invoke(null, world, true, false);
+			check("禁用翻译不留下待刷新标记", !dirty.getBoolean(null));
+		} finally {
+			SkyZHConfig.get().enabled = true;
+			SkyZHConfig.get().displayPriority = DisplayPriority.DEFAULT;
 			session.invoke(null, null, false, false);
 		}
 	}
