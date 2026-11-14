@@ -31,6 +31,7 @@ public final class UpdateInteractionHarness {
 		actions();
 		retries();
 		manualChecks();
+		outsideSkyBlock();
 		uninstall(root.resolve("manual-removal"));
 		return passed;
 	}
@@ -114,7 +115,7 @@ public final class UpdateInteractionHarness {
 		check("重复点击不会产生并发更新", !UpdateChecker.launch(true, true, true, busy, calls::incrementAndGet, queue::add));
 		queue.remove().run();
 		check("重试只执行一次并释放忙状态", calls.get() == 1 && !busy.get());
-		check("关闭更新后按钮不启动下载", !UpdateChecker.launch(false, false, true, busy, calls::incrementAndGet, queue::add));
+		check("任务未获许可时不启动下载", !UpdateChecker.launch(false, false, true, busy, calls::incrementAndGet, queue::add));
 		check("到期的自动检查复用同一入口", UpdateChecker.launch(true, true, false, busy, calls::incrementAndGet, queue::add));
 		queue.remove().run();
 		check("自动检查可正常完成", calls.get() == 2 && !busy.get());
@@ -132,7 +133,7 @@ public final class UpdateInteractionHarness {
 				config.enabled = enabled;
 				config.updateCheck = automatic;
 				check("自动检查遵守两个开关 " + enabled + automatic, UpdateChecker.enabled(false) == (enabled && automatic));
-				check("主动检查只需总开关 " + enabled + automatic, UpdateChecker.enabled(true) == enabled);
+				check("主动检查不受两个开关限制 " + enabled + automatic, UpdateChecker.enabled(true));
 			}
 		} finally { config.enabled = power; config.updateCheck = updates; }
 
@@ -171,6 +172,78 @@ public final class UpdateInteractionHarness {
 			queue.remove().run();
 			throw new AssertionError("应交付任务失败");
 		} catch (IllegalStateException expected) { check("任务失败也释放忙状态", !busy.get()); }
+	}
+
+	private static void outsideSkyBlock() throws Exception {
+		check("离线测试没有空岛环境", !HypixelServer.isSkyBlock());
+		SkyZHConfig config = SkyZHConfig.get();
+		boolean power = config.enabled, updates = config.updateCheck;
+		var actionsField = UpdateChecker.class.getDeclaredField("ACTIONS");
+		actionsField.setAccessible(true);
+		UpdateActions actions = (UpdateActions) actionsField.get(null);
+		var enqueue = UpdateChecker.class.getDeclaredMethod("message", Component.class);
+		enqueue.setAccessible(true);
+		var ready = Translator.class.getDeclaredField("ready");
+		var reloading = Translator.class.getDeclaredField("RELOADING");
+		ready.setAccessible(true);
+		reloading.setAccessible(true);
+		AtomicBoolean loading = (AtomicBoolean) reloading.get(null);
+		boolean previousReady = ready.getBoolean(null), previousLoading = loading.get();
+		try {
+			for (boolean enabled : List.of(false, true)) for (boolean automatic : List.of(false, true)) {
+				config.enabled = enabled;
+				config.updateCheck = automatic;
+				for (Action action : List.of(Action.MOD, Action.TRANSLATIONS, Action.CHECK)) {
+					List<Action> requests = new java.util.ArrayList<>();
+					List<String> feedback = new java.util.ArrayList<>();
+					UpdateChecker.checkNow(action, requested -> { requests.add(requested); return true; }, feedback::add);
+					check("非空岛及任意开关状态均可主动检查 " + action + enabled + automatic,
+						requests.equals(List.of(action)) && feedback.size() == 1 && feedback.getFirst().contains("正在检查"));
+					UpdateChecker.checkNow(action, requested -> false, feedback::add);
+					check("忙状态仍显示稍后再试 " + action, feedback.getLast().contains("请稍后再试"));
+				}
+				for (Action action : List.of(Action.MOD, Action.TRANSLATIONS, Action.CHECK, Action.INSTALL)) {
+					String button = token(actions.issue(action));
+					check("空岛外按钮忙时保留令牌 " + action, !UpdateChecker.runAction(button, requested -> false));
+					check("空岛外且关闭功能仍可点击更新按钮 " + action,
+						UpdateChecker.runAction(button, requested -> requested == action));
+					check("已受理按钮不能重放 " + action, !UpdateChecker.runAction(button, requested -> true));
+				}
+			}
+			for (int mask = 0; mask < 16; mask++) {
+				config.enabled = (mask & 1) != 0;
+				config.updateCheck = (mask & 2) != 0;
+				boolean skyBlock = (mask & 4) != 0, loaded = (mask & 8) != 0;
+				enqueue.invoke(null, UpdateMessages.current(true));
+				enqueue.invoke(null, UpdateMessages.translationUpdated(false, ""));
+				List<Component> delivered = new java.util.ArrayList<>();
+				AtomicInteger checks = new AtomicInteger();
+				UpdateChecker.tick(skyBlock, loaded, delivered::add, checks::incrementAndGet);
+				check("检查结果不受空岛、加载或开关限制 " + mask, delivered.size() == 2
+					&& legacy(delivered.getFirst()).equals("§b[SkyZH] §aSkyZH 已是最新版本。")
+					&& legacy(delivered.getLast()).equals("§b[SkyZH] §a翻译更新成功!"));
+				check("只有空岛且两个开关开启和加载结束才自动联网 " + mask, checks.get() == (mask == 15 ? 1 : 0));
+				UpdateChecker.tick(skyBlock, loaded, delivered::add, () -> {});
+				check("已显示的检查结果不重复发送 " + mask, delivered.size() == 2);
+			}
+			config.enabled = false;
+			config.updateCheck = false;
+			ready.setBoolean(null, false);
+			loading.set(true);
+			List<String> feedback = new java.util.ArrayList<>();
+			UpdateChecker.checkNow(Action.CHECK, action -> { throw new AssertionError("initial load must block updates"); }, feedback::add);
+			check("首次语料加载仍阻止手动更新", feedback.size() == 1 && feedback.getFirst().contains("翻译正在加载"));
+			String button = token(actions.issue(Action.TRANSLATIONS));
+			check("首次加载不消费更新按钮", !UpdateChecker.runAction(button, action -> true));
+			loading.set(false);
+			check("加载结束后原按钮仍可更新", UpdateChecker.runAction(button, action -> action == Action.TRANSLATIONS));
+			check("手动更新没有打开翻译和自动更新", !config.enabled && !config.updateCheck);
+		} finally {
+			config.enabled = power;
+			config.updateCheck = updates;
+			ready.setBoolean(null, previousReady);
+			loading.set(previousLoading);
+		}
 	}
 
 	private static void rejectDuplicates(AtomicBoolean busy, LinkedBlockingQueue<Runnable> queue, String stage) {

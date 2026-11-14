@@ -211,6 +211,12 @@ public final class CommandHarness {
 		boolean previous = config.originalTips;
 		boolean previousUpdateCheck = config.updateCheck;
 		boolean previousEnabled = config.enabled;
+		var ready = io.github.bingkkni.skyzh.text.Translator.class.getDeclaredField("ready");
+		var reloading = io.github.bingkkni.skyzh.text.Translator.class.getDeclaredField("RELOADING");
+		ready.setAccessible(true);
+		reloading.setAccessible(true);
+		var loading = (java.util.concurrent.atomic.AtomicBoolean) reloading.get(null);
+		boolean previousReady = ready.getBoolean(null), previousLoading = loading.get();
 		try {
 			config.originalTips = true;
 			config.updateCheck = true;
@@ -231,6 +237,10 @@ public final class CommandHarness {
 			method.invoke(mixin, "skyzh off unexpected", null, invalidOff);
 			check("带多余参数的关闭命令不修改配置", config.enabled, true);
 			check("无效本地命令仍不发送服务器", invalidOff.isCancelled(), true);
+			// Hold the initial-load barrier so routing checks never access the network or real files.
+			// UpdateInteractionHarness exercises admission with injected request/feedback callbacks.
+			ready.setBoolean(null, false);
+			loading.set(true);
 			for (String alias : SkyZHCommand.ALIASES) {
 				SkyZHCommand.run(alias + " updatecheck on");
 				check("显式 on 仍开启自动更新 " + alias, config.updateCheck, true);
@@ -265,6 +275,8 @@ public final class CommandHarness {
 			config.originalTips = previous;
 			config.updateCheck = previousUpdateCheck;
 			config.enabled = previousEnabled;
+			ready.setBoolean(null, previousReady);
+			loading.set(previousLoading);
 		}
 	}
 

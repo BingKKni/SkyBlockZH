@@ -137,8 +137,8 @@ Mod Menu is a soft dependency. Without it, edit `config/skyzh.json`, which docum
 
 | Option | Default | Meaning |
 |---|---|---|
-| `enabled` | on | Master switch. Turning it off also prevents update checks |
-| `updateCheck` | on | Automatically check and download Mod and translation updates in SkyBlock. Translations apply immediately; Mod installation waits for exit. `/skyzh updatecheck on/off` controls automatic updates; no argument checks Mod then translations, while `mod` / `translate` checks only that target. Explicit checks bypass this setting and cooldowns, but still require the master switch and SkyBlock. All aliases share one busy guard |
+| `enabled` | on | Master switch. Turning it off prevents translation and automatic update checks; explicit checks remain available |
+| `updateCheck` | on | Automatically check and download Mod and translation updates in SkyBlock. Translations apply immediately; Mod installation waits for exit. `/skyzh updatecheck on/off` controls automatic updates; no argument checks Mod then translations, while `mod` / `translate` checks only that target. Explicit checks bypass both switches, the SkyBlock requirement and cooldowns; initial corpus loading must finish first. All aliases share one busy guard |
 | `updateChannel` | `release` | Which Mod builds updates look for: formal Releases, or the per-commit `beta` builds from Actions. The settings page merges it with `updateCheck` into "Off / Release / Beta" |
 | `updateInstall` | `auto` | After a newer Mod is found: `auto` downloads and installs on exit; `manual` downloads and posts `[点击安装]`; `notify` only posts `[点击下载并安装]`. Both repeat on every check (about hourly), replacing the download when a newer build appears. Translations are unaffected |
 | `translateSkyBlockName` | on | Render "SkyBlock" as 空岛生存. Compounds use the short form and get their spacing fixed: `你的 SkyBlock 等级` → `你的空岛等级`; standalone occurrences keep the full name. See below for where the substitution is allowed to happen |
@@ -376,8 +376,9 @@ Keep GitHub download links available so older clients can upgrade automatically.
 Release `published`, `edited` and `released` events dispatch a main-branch deployment, mirroring the latest formal Release after checking ID,
 version, channel, size and SHA-256. Failed runs can be retried by manual dispatch. Pushes generate translations and beta builds, and also mirror changed formal Release attachments.
 
-Background updates become eligible only after verified SkyBlock entry and completion of initial corpus loading, even if that load failed.
-Automatic checks, explicit commands and retry buttons share one worker and busy guard. Combined checks run Mod first, then translations;
+Automatic updates require both switches, verified SkyBlock entry and completion of initial corpus loading, even if that load failed.
+Explicit commands and update buttons require neither switch nor SkyBlock. Results appear in the current world's chat;
+translation updates do not enable translation. Automatic checks, explicit commands and retry buttons share one worker and busy guard. Combined checks run Mod first, then translations;
 per-target cooldowns remain independent, and a Mod-check failure does not prevent the translation check.
 The custom domain directly supplies `update.json`: `update_format: 1`, bundle manifest fields, download URL, ZIP size and SHA-256.
 Exact API equality, a newer timestamp and a different content hash are required. Version checks read and
@@ -524,7 +525,8 @@ server instead of read off a sidebar drawn for a human. The library is compiled 
 bundled; without that mod the integration does not load and the other two readings carry on.
 
 With capture **off** — every ordinary player — nothing is subscribed and no packet is sent to Hypixel.
-This is independent of `updateCheck`: with both switches enabled, verified SkyBlock entry permits checks and downloads through the update domain.
+This is independent of update checks: automatic checks require both switches and verified SkyBlock entry;
+explicit commands and update buttons bypass those conditions. Both use the update domain for checks and downloads.
 No player/game data is uploaded and no update traffic is sent to Hypixel. The site's `release.json` identifies formal Mod releases, ignoring `+mc26.x` metadata;
 translation pushes deploy files and manifests to the same site.
 

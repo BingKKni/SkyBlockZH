@@ -49,15 +49,22 @@ public final class UpdateChecker {
 	}
 
 	static boolean enabled(boolean requested) {
-		return SkyZHConfig.get().enabled && (requested || SkyZHConfig.get().updateCheck);
+		return requested || SkyZHConfig.get().enabled && SkyZHConfig.get().updateCheck;
 	}
 
 	public static void tick(Minecraft minecraft) {
-		if (!SkyZHConfig.get().enabled) { MESSAGES.clear(); return; }
-		if (!eligible(true, true, HypixelServer.isSkyBlock(), !Translator.loading())
-			|| minecraft.player == null || minecraft.level == null || minecraft.gui == null) return;
-		for (Component message; (message = MESSAGES.poll()) != null;) ClientGui.chat(minecraft, UpdateMessages.chat(message));
-		if (!enabled(false)) return;
+		if (minecraft == null || minecraft.player == null || minecraft.level == null || minecraft.gui == null) return;
+		tick(HypixelServer.isSkyBlock(), !Translator.loading(),
+			message -> ClientGui.chat(minecraft, message), UpdateChecker::automaticTick);
+	}
+
+	/** Keep result delivery independent of the gates used only for unprompted network checks. */
+	static void tick(boolean skyBlock, boolean initialLoadFinished, java.util.function.Consumer<Component> display, Runnable automatic) {
+		for (Component message; (message = MESSAGES.poll()) != null;) display.accept(UpdateMessages.chat(message));
+		if (eligible(SkyZHConfig.get().enabled, SkyZHConfig.get().updateCheck, skyBlock, initialLoadFinished)) automatic.run();
+	}
+
+	private static void automaticTick() {
 		long now = System.currentTimeMillis();
 		if (now < nextTick) return;
 		nextTick = now + 1000;
@@ -65,12 +72,15 @@ public final class UpdateChecker {
 		else service.tick();
 	}
 
-	/** Explicit checks bypass the automatic-update setting and cooldown, but share its worker. */
+	/** Explicit checks bypass world, power, automatic settings and cooldowns, sharing the same worker. */
 	public static void checkNow(Action action) {
-		if (!enabled(true)) { Feedback.send("§c请先开启 Mod 功能。"); return; }
-		if (!HypixelServer.isSkyBlock()) { Feedback.send("§c请进入 Hypixel 空岛生存后再检查更新。"); return; }
-		if (Translator.loading()) { Feedback.send("§e翻译正在加载中，请稍后再检查更新。"); return; }
-		Feedback.send(request(action) ? switch (action) {
+		checkNow(action, UpdateChecker::request, Feedback::send);
+	}
+
+	/** Injected request/feedback keeps command admission testable without network or an installed JAR. */
+	static void checkNow(Action action, java.util.function.Predicate<Action> request, java.util.function.Consumer<String> feedback) {
+		if (Translator.loading()) { feedback.accept("§e翻译正在加载中，请稍后再检查更新。"); return; }
+		feedback.accept(request.test(action) ? switch (action) {
 			case MOD -> "§e正在检查 Mod 更新…";
 			case TRANSLATIONS -> "§e正在检查翻译包更新…";
 			default -> "§e正在检查 Mod 和翻译包更新…";
@@ -84,14 +94,18 @@ public final class UpdateChecker {
 
 	/** Hidden local commands contain only an issued token, never a path or a download URL. */
 	public static boolean runAction(String token) {
-		if (!HypixelServer.isSkyBlock() || Translator.loading()) return false;
+		return runAction(token, UpdateChecker::request);
+	}
+
+	static boolean runAction(String token, java.util.function.Predicate<Action> request) {
+		if (Translator.loading()) return false;
 		return ACTIONS.run(token, action -> {
 			if (action == Action.REMOVE_MANUAL) return SkyZHCommand.reloadTranslations(() -> {
 				TranslationPack.Loaded loaded = TranslationPack.removeManualAndLoad();
 				ACTIONS.complete(token);
 				return loaded;
 			});
-			return enabled(true) && request(action);
+			return request.test(action);
 		});
 	}
 
@@ -134,7 +148,7 @@ public final class UpdateChecker {
 			+ ":" + TranslationPack.api();
 	}
 
-	private static void message(Component text) { if (enabled(true)) MESSAGES.add(text); }
+	private static void message(Component text) { MESSAGES.add(text); }
 
 	/** Same concurrency gate for automatic deadlines and an explicit click that bypasses the deadline. */
 	static boolean launch(boolean enabled, boolean due, boolean immediate, AtomicBoolean busy, Runnable work, Executor background) {
