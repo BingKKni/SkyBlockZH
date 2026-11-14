@@ -383,7 +383,7 @@
       "context": "本轮服务器菜单实测；专名和非原版附魔保持既定策略。",
       "text": "%1$s New Year Celebration %2$s",
       "translate": true,
-      "zh": "第 %1$s 届新年庆典 %2$s",
+      "zh": "第 %1$s 届新年庆典 / 剩余 %2$s",
       "placeholders": [
         {
           "token": "%1$s",
@@ -395,7 +395,8 @@
           "type": "duration_spaced",
           "example": "57m 38s"
         }
-      ]
+      ],
+      "gloss": "用户拍板：活动名与剩余时长以斜杠分隔；1d 等显示为“剩余 1 天”，不能只写“1 天”。"
     },
     {"id":"capture_bestiary_back","context":"返回图鉴或配方分类，复用地点、生物、分类及目录物品的既有译名。","text":"To %1$s ➜ %2$s","placeholders":[{"token":"%1$s","type":"recipe_target","example":"Moonglade Marsh"},{"token":"%2$s","type":"recipe_target","example":"Shellwise"}],"translate":true,"zh":"返回%1$s ➜ %2$s"},
     {"id":"capture_syphon_double_space","context":"批量注入清单；服务器数量后确实有两个空格，碎片名须命中离线目录。","text":"- %1$sx  %2$s Shards","placeholders":[{"token":"%1$s","type":"number","example":"2"},{"token":"%2$s","type":"shard_kind","example":"Coralot"}],"translate":true,"zh":"- %1$s 个 %2$s碎片","segments":[{"text":"- %1$sx  ","zh":"- %1$s 个 ","color":"§8"},{"text":"%2$s Shards","zh":"%2$s碎片","color":"§f"}], "item_refs": [{"text":"%2$s Shards","zh":"%2$s碎片"}]},
