@@ -337,6 +337,8 @@ harnessTask('checkRenderMixins', 'io.github.bingkkni.skyzh.RenderMixinHarness',
 harnessTask('checkDisplayPriority', 'io.github.bingkkni.skyzh.PriorityHarness',
 	'Checks late translation provenance, force styles, bounds and isolation.') {
 	args rootProject.file('original_text').absolutePath
+	// Optional real Caxton carrier, without making the font Mod a build/runtime dependency.
+	if (project.hasProperty('caxtonCompatJar')) args rootProject.file(project.property('caxtonCompatJar')).absolutePath
 }
 
 harnessTask('checkClientSettings', 'io.github.bingkkni.skyzh.ClientSettingsHarness',

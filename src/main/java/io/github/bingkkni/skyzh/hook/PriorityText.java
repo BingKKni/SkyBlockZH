@@ -265,8 +265,7 @@ public final class PriorityText {
 		boolean matches(FormattedCharSequence input) {
 			visited = length = hash = 0;
 			candidate = true;
-			input.accept(this);
-			return candidate;
+			return visit(input, this) && candidate;
 		}
 
 		@Override public boolean accept(int index, net.minecraft.network.chat.Style style, int codePoint) {
@@ -317,11 +316,11 @@ public final class PriorityText {
 		if (!scopedSidebar && filterCandidates && !PREFIX_PROBE.matches(input)) return null;
 		// Most GUI labels are not server text. Do not allocate components/styles for those misses.
 		StringBuilder plain = new StringBuilder();
-		input.accept((index, style, codePoint) -> {
+		if (!visit(input, (index, style, codePoint) -> {
 			if (plain.length() > 8192) return false;
 			plain.appendCodePoint(codePoint);
 			return true;
-		});
+		})) return null;
 		if (plain.length() > 8192) return null;
 		String key = Glyphs.canonical(plain.toString().strip());
 		if (scopedSidebar) {
@@ -362,7 +361,7 @@ public final class PriorityText {
 		StringBuilder run = new StringBuilder();
 		net.minecraft.network.chat.Style[] previous = {null};
 		int[] count = {0};
-		input.accept((index, style, codePoint) -> {
+		if (!visit(input, (index, style, codePoint) -> {
 			if (++count[0] > 8192) return false;
 			if (!style.equals(previous[0]) && !run.isEmpty()) {
 				result.append(Component.literal(run.toString()).setStyle(previous[0]));
@@ -371,11 +370,23 @@ public final class PriorityText {
 			previous[0] = style;
 			run.appendCodePoint(codePoint);
 			return true;
-		});
+		})) return null;
 		// Language's fallback sequence and client bidi sequences disagree on the completion return value.
 		if (count[0] > 8192) return null;
 		if (!run.isEmpty()) result.append(Component.literal(run.toString()).setStyle(previous[0]));
 		return result;
+	}
+
+	/** False means unreadable, not early sink termination (vanilla/bidi return values differ). */
+	private static boolean visit(FormattedCharSequence input, FormattedCharSink sink) {
+		try {
+			input.accept(sink);
+			return true;
+		} catch (UnsupportedOperationException opaque) {
+			// Caxton's pre-shaped render carriers intentionally forbid traversal. Leave them intact
+			// for their owning renderer; never translate a partial read or cache a class-wide refusal.
+			return false;
+		}
 	}
 
 	/** Engine layout must measure original English as English, even when a custom HUD uses late translation. */

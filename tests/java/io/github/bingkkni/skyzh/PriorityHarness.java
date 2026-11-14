@@ -90,6 +90,7 @@ public final class PriorityHarness {
 		checkPinnedSidebarLayout();
 		checkForceChatHistory();
 		checkWidthReentry();
+		checkOpaqueSequences(args);
 		checkSidebarCompatibility();
 		checkCustomSidebarText();
 		checkSidebarPacketRefresh();
@@ -97,6 +98,76 @@ public final class PriorityHarness {
 		checkSidebarTakeover();
 		PriorityPerformanceChecks.run();
 		System.out.println("显示优先级检查通过 " + checked + " 项");
+	}
+
+	/** Caxton submits pre-shaped render payloads whose accept method deliberately throws. */
+	private static void checkOpaqueSequences(String[] args) throws Exception {
+		var frame = PriorityText.class.getDeclaredMethod("withFrame", boolean.class, Runnable.class);
+		frame.setAccessible(true);
+		var session = PriorityText.class.getDeclaredMethod("updateSession", Object.class, boolean.class, boolean.class);
+		session.setAccessible(true);
+		try {
+			for (DisplayPriority priority : new DisplayPriority[] {DisplayPriority.HIGH, DisplayPriority.FORCE}) {
+				SkyZHConfig.get().displayPriority = priority;
+				session.invoke(null, new Object(), true, false);
+				put.invoke(null, sources, Component.literal("SKYBLOCK"), Surface.SCOREBOARD);
+				frame.invoke(null, true, (Runnable) () -> {
+					try {
+						checkOpaqueSequence(sink -> { throw new UnsupportedOperationException("*cure!"); });
+						// A readable prefix followed by an opaque tail must not translate a partial line.
+						checkOpaqueSequence(sink -> {
+							Component.literal("SKYBLOCK").getVisualOrderText().accept(sink);
+							throw new UnsupportedOperationException("opaque tail");
+						});
+						int[] passes = {0};
+						check("完整读取阶段也安全回退", PriorityText.resolve(sink -> {
+							if (++passes[0] > 1) throw new UnsupportedOperationException("second traversal");
+							return Component.literal("SKYBLOCK").getVisualOrderText().accept(sink);
+						}) == null);
+						check("样式读取失败不生成部分组件", PriorityText.component(sink -> {
+							sink.accept(0, net.minecraft.network.chat.Style.EMPTY, 'S');
+							throw new UnsupportedOperationException("style traversal");
+						}) == null);
+						var translated = PriorityText.resolve(Component.literal("SKYBLOCK").getVisualOrderText());
+						check("不透明文本不残留重入锁或破坏后续翻译", translated != null
+							&& PriorityText.component(translated).getString().equals("空岛生存"));
+						// Some vanilla/bidi sequences return false after successful traversal.
+						check("不把遍历返回值当作读取失败", PriorityText.component(sink -> {
+							Component.literal("SKYBLOCK").getVisualOrderText().accept(sink);
+							return false;
+						}).getString().equals("SKYBLOCK"));
+						IllegalStateException unexpected = new IllegalStateException("unrelated renderer failure");
+						try {
+							PriorityText.resolve(sink -> { throw unexpected; });
+							throw new AssertionError("unexpected failures must propagate");
+						} catch (IllegalStateException actual) {
+							check("不吞掉其他渲染异常", actual == unexpected);
+						}
+					} catch (ReflectiveOperationException failure) { throw new AssertionError(failure); }
+				});
+			}
+			if (args.length > 1) {
+				try (var loader = new java.net.URLClassLoader(new java.net.URL[] {Path.of(args[1]).toUri().toURL()},
+					PriorityHarness.class.getClassLoader())) {
+					Class<?> carrier = loader.loadClass("xyz.flirora.caxton.render.Voepfxo$SneakyBoi");
+					var text = (FormattedCharSequence) carrier.getConstructor(
+						loader.loadClass("xyz.flirora.caxton.layout.CaxtonText"), float.class, float.class,
+						int.class, float.class, int.class).newInstance(null, 0F, 0F, -1, Float.POSITIVE_INFINITY, 0);
+					checkOpaqueSequence(text);
+					System.out.println("真实 Caxton 渲染载体检查通过: " + carrier.getName());
+				}
+			}
+		} finally {
+			SkyZHConfig.get().displayPriority = DisplayPriority.DEFAULT;
+			session.invoke(null, null, false, false);
+		}
+	}
+
+	private static void checkOpaqueSequence(FormattedCharSequence input) throws ReflectiveOperationException {
+		check("前缀预筛拒绝不透明载体", resolve.invoke(null, input, true, true, false) == null);
+		check("绕过预筛仍拒绝不透明载体", resolve.invoke(null, input, true, false, false) == null);
+		check("样式还原拒绝不透明载体", PriorityText.component(input) == null);
+		if (PriorityText.active()) check("最终渲染入口保留原载体", PriorityText.resolve(input) == null);
 	}
 
 	public static final class LunarFontBridge {
