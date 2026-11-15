@@ -32,8 +32,9 @@ public final class Translator {
 	private static final Set<String> REPORTED_COLOUR_LOSS = ConcurrentHashMap.newKeySet();
 	private static final java.util.regex.Pattern DISPLAY_RANK = java.util.regex.Pattern.compile("#[0-9]{1,6} ");
 	private static final java.util.regex.Pattern ITEM_LIST_NUMBER = java.util.regex.Pattern.compile("[0-9]{1,6}\\. ");
+	// A bare Tab value has no duration context: uppercase M denotes millions, not minutes.
 	private static final java.util.regex.Pattern TAB_DURATION = java.util.regex.Pattern.compile(
-		"(?=.*[yYdDhHmMsS])" + Capture.of("duration_spaced").regex());
+		"(?!.*M)(?=.*[yYdDhHmsS])" + Capture.of("duration_spaced").regex());
 
 	private static volatile TranslationIndex index = new TranslationIndex();
 	private static volatile boolean ready;

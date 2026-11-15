@@ -1022,6 +1022,15 @@ public final class TranslationHarness {
 		check("Tab 活动分钟倒计时不加后", "Starts In: §e26m", Surface.TABLIST, "距开始: §e26 分钟");
 		check("宾果活动倒计时不加后", "§7Event Starts: §a43h", Surface.ITEM, "§7距活动开始: §a43 小时");
 		check("Tab 只剩一小时", "§f1 Hour", Surface.TABLIST, "§f1 小时");
+		// Issue #6: generic Tab timers must distinguish minute m from monetary million M.
+		checkRow("Tab 银行百万金额保留缩写", "§fBank: §690.3M", "§f银行: §690.3M");
+		checkRow("Tab 银行另一金额及缩进保留", " Bank: §61.25M  ", " 银行: §61.25M  ");
+		checkRow("Tab 银行千金额保留缩写", "§fBank: §690.3k", "§f银行: §690.3k");
+		checkRow("Tab 银行十亿金额保留缩写", "§fBank: §61.2B", "§f银行: §61.2B");
+		checkRow("Tab 未知标签百万金额不误译", "Unknown: §690.3M", "Unknown: §690.3M");
+		checkRow("Tab 通用小写分钟仍翻译", "Unknown: §b9m", "Unknown: §b9 分钟");
+		checkRow("Tab 通用组合时长保留各单位颜色", "Unknown: §b1h §a2m", "Unknown: §b1小时§a2分");
+		checkRow("Tab 显式时长模板兼容大写分钟", "Starts In: §e26M", "距开始: §e26 分钟");
 		// The bank widget's interest row. The label record answered and the value went back English for
 		// several sessions running: the value half was only ever asked of the term table, never of the
 		// records, so "%1$s Hours" sat in the footer file and was never tried. Four server writings.
