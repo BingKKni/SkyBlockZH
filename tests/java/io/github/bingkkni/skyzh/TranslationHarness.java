@@ -1107,9 +1107,9 @@ public final class TranslationHarness {
 		checkJoined("跨行不排序:坦克光环两行各带自己的占位符",
 			List.of("§7While in Dungeons, players within §e10", "§7blocks of you take §c5% §7less damage."),
 			"§7在地牢中，你周围 §e10§7格内的玩家受到的伤害降低 §c5%§7。");
-		checkJoined("跨行 order:银行利率把「前 N 百万硬币」提到句中",
+		checkJoined("跨行 order:银行利率重排且保留金额原文",
 			List.of("§7You will earn §b2% §7interest every season", "§7for your first §610 million §7banked coins."),
-			"§7每个季节，你存入的前 §610 百万§7硬币都能获得 §b2% §7的利息。");
+			"§7每个季节，你存入的前 §610M §7硬币都能获得 §b2% §7的利息。");
 		checkJoined("跨行不排序:生命精华两行各带自己的颜色与占位符",
 			List.of("§7Increases your base §c\ue010 Health §7while", "§7in §cThe Catacombs§7 by §a+§825➜§a50§7."),
 			"§7你的基础 §c\ue010 生命值§7在§c地牢§7中提高 §a+§825➜§a50§7。");
@@ -3098,7 +3098,7 @@ public final class TranslationHarness {
 
 	/** Fixed UI capture regression: ordered lore, term isolation, and clues that must survive translation. */
 	private static void checkFixedMenus(Path corpusRoot) throws Exception {
-		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "october-live-round-cases.json", "workshop-cases.json", "wiki-expansion-cases.json", "bazaar-item-names-cases.json", "rift-live-capture-cases.json", "rift-session-cases.json", "garden-weather-feast-cases.json", "village-living-cave-cases.json", "rift-post-build-cases.json", "castle-capture-cases.json", "slayer-rng-capture-cases.json", "spider-session-cases.json", "dual-live-round-cases.json", "moonglade-capture-cases.json", "slayer-current-capture-cases.json", "dual-computer-followup-cases.json", "mountaintop-live-capture-cases.json", "nov03-capture-cases.json", "nov04-combat-cases.json", "nov04-dungeons-cases.json", "nov04-skills-cases.json", "nov04-islands-cases.json", "nov04-hub-cases.json", "nov04-integration-cases.json", "runtime-followup-cases.json", "nov06-capture-cases.json", "nov07-capture-cases.json", "nov11-capture-cases.json", "nov12-capture-cases.json", "three-computer-capture-cases.json")) {
+		for (String file : List.of("capture-fixed-menus-cases.json", "dual-computer-cases.json", "takeover-repair-cases.json", "npc-fishing-september-cases.json", "fishing-npc-dialogue-cases.json", "release-0.6-cases.json", "crimson-quest-cases.json", "galatea-cases.json", "hunting-garden-capture-cases.json", "october-live-round-cases.json", "workshop-cases.json", "wiki-expansion-cases.json", "bazaar-item-names-cases.json", "rift-live-capture-cases.json", "rift-session-cases.json", "garden-weather-feast-cases.json", "village-living-cave-cases.json", "rift-post-build-cases.json", "castle-capture-cases.json", "slayer-rng-capture-cases.json", "spider-session-cases.json", "dual-live-round-cases.json", "moonglade-capture-cases.json", "slayer-current-capture-cases.json", "dual-computer-followup-cases.json", "mountaintop-live-capture-cases.json", "nov03-capture-cases.json", "nov04-combat-cases.json", "nov04-dungeons-cases.json", "nov04-skills-cases.json", "nov04-islands-cases.json", "nov04-hub-cases.json", "nov04-integration-cases.json", "runtime-followup-cases.json", "nov06-capture-cases.json", "nov07-capture-cases.json", "nov11-capture-cases.json", "nov12-capture-cases.json", "three-computer-capture-cases.json", "nov17-capture-cases.json")) {
 		Path path = corpusRoot.toAbsolutePath().getParent().resolve("tests/resources/" + file);
 		JsonObject fixture = JsonParser.parseString(Files.readString(path, StandardCharsets.UTF_8)).getAsJsonObject();
 		for (JsonElement value : fixture.getAsJsonArray("cases")) {
@@ -3236,6 +3236,11 @@ public final class TranslationHarness {
 		} finally {
 			SkyZHConfig.get().translateItemNames = oldItemNames;
 		}
+		for (String preservedItem : List.of("Miniaturized Tubulator", "Deathripper Dagger", "Flaming Flay")) {
+			report("更新菜单不覆盖已有物品保留决定 " + preservedItem,
+				TooltipTranslator.translateItemNameAvailable(Component.literal(preservedItem)).padded().getString().equals(preservedItem),
+				"同名专名沿用原有 translate:false，不新增矛盾译名");
+		}
 		boolean oldMobNames = SkyZHConfig.get().translateMobNames;
 		try {
 			for (String[] sample : new String[][] {
@@ -3243,6 +3248,10 @@ public final class TranslationHarness {
 				{"占位符生物名", "§4§lSLAYER MINIBOSS! §7The §cTarantula Beast §7spawned!", "CHAT", "Tarantula Beast", "猎手精英!"},
 				{"句中生物名引用", "§eThe §aVegan Crawler §eturned you into a §bChicken§e!", "CHAT", "Vegan Crawler", "变成了"},
 				{"生物血条", "§c﴾ §8[§7Lv5§8] §cZombie §a100§f/§a100§c❤ §c﴿", "HOLOGRAM", "Zombie", ""},
+				{"更新饰品来源九头海蛇", "§7Dropped rarely by §6Water Hydras§7.", "LORE", "Water Hydras", "有概率由"},
+				{"更新饰品来源闪亮猪", "§7Dropped rarely from §6Shiny Pigs §7during the §dYear of the Pig§7.", "LORE", "Shiny Pigs", "掉落"},
+				{"更新饰品来源寒刃骷髅", "§7Dropped rarely by killing §cChillblades §7and §cChillshots§7 on the ⏣ §2Moonglade Marsh§7.", "LORE", "Chillblades", "时有概率掉落"},
+				{"更新饰品来源机关傀儡", "§7Grants §b+10 Magic Find §7on §9Automatons§7.", "LORE", "Automatons", "魔法寻宝"},
 			}) {
 				Component source = Component.literal(sample[1]);
 				SkyZHConfig.get().translateMobNames = true;

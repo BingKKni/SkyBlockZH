@@ -1,0 +1,26 @@
+{
+  "source": "两机实测：SkyZH_Logs/1/skyzh-capture/untranslated/Economy/GUI_Item/4_6_Accessory_Bag.json，Runebook 完整 Lore",
+  "verified_ingame": true,
+  "lines": [
+    {
+      "id": "update_runebook_counter_wisdom_and_rarity",
+      "context": "Runebook 计数器每增加一位数时的属性及稀有度加成",
+      "raw": "§7Add §3+%1$s☯ Runecrafting Wisdom §7and increase this item's rarity per digit on the counter. §8(Max: +%2$s☯)",
+      "text": "Add +%1$s☯ Runecrafting Wisdom and increase this item's rarity per digit on the counter. (Max: +%2$s☯)",
+      "placeholders": [
+        {"token": "%1$s", "type": "number", "example": "1", "desc": "计数器每增加一位数获得的符文制作智慧"},
+        {"token": "%2$s", "type": "number", "example": "4", "desc": "符文制作智慧加成上限"}
+      ],
+      "translate": true,
+      "zh": "计数器每增加一位数,此物品的稀有度提升,并增加 +%1$s☯ 符文制作智慧。(上限: +%2$s☯)",
+      "segments": [
+        {"color": "§7", "text": "Add ", "zh": ",并增加 ", "order": 1},
+        {"color": "§3", "text": "+%1$s☯ Runecrafting Wisdom ", "zh": "+%1$s☯ 符文制作智慧", "order": 2},
+        {"color": "§7", "text": "and increase this item's rarity per digit on the counter", "zh": "计数器每增加一位数,此物品的稀有度提升", "order": 0},
+        {"color": "§7", "text": ". ", "zh": "。", "order": 3},
+        {"color": "§8", "text": "(Max: +%2$s☯)", "zh": "(上限: +%2$s☯)", "order": 4}
+      ],
+      "samples": [["§7Add §3+1☯ Runecrafting Wisdom §7and", "§7increase this item's rarity per", "§7digit on the counter. §8(Max: +4☯)"]]
+    }
+  ]
+}

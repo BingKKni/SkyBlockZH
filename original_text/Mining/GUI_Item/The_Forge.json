@@ -53,14 +53,27 @@
       "raw": "§7Currently making: §6%s",
       "text": "Currently making: %s",
       "placeholders": [
-        {"token": "%s", "desc": "正在熔炼的产物名,专有物品名保留英文", "type": "item_name", "example": "Perfect Onyx Gemstone"}
+        {
+          "token": "%s",
+          "desc": "正在熔炼的产物名；开启物品名翻译时复用已有译名",
+          "type": "loot_item_name",
+          "example": "Perfect Onyx Gemstone"
+        }
       ],
-      "gloss": "产物名走 item_name,按需求保留英文——集市和拍卖行是按英文名搜的。",
+      "gloss": "用户拍板：开启物品名翻译后，熔炼状态中的物品名也复用物品本身的译文；关闭后保留服务器原名。",
       "translate": true,
       "zh": "",
       "segments": [
-        {"color": "§7", "text": "Currently making: ", "zh": "正在熔炼: "},
-        {"color": "§6", "text": "%s", "zh": "%s"}
+        {
+          "color": "§7",
+          "text": "Currently making: ",
+          "zh": "正在熔炼: "
+        },
+        {
+          "color": "§6",
+          "text": "%s",
+          "zh": "%s"
+        }
       ]
     },
     {

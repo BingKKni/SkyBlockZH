@@ -730,9 +730,9 @@
           "example": "2%"
         }
       ],
-      "gloss": "跨行整句,中文把「前 N 百万硬币」放在前面。首行只译到「前」,利率挪到尾行的 order 里;尾行 bank_season_interest_2 带自己的分段。首尾两行一起按 order 排:本行三段 order 0/3/4,尾行三段 order 1/2/5。",
+      "gloss": "用户拍板：银行及子界面的金额统一使用 k/M/B 缩写；原文 Million/million 写为 M，Billion/billion 写为 B；已有 10k、1M、10M、1B 保持不变，不换算为汉字单位。",
       "translate": true,
-      "zh": "每个季节，你存入的前 %s 百万硬币都能获得 %s 的利息。",
+      "zh": "每个季节，你存入的前 %sM 硬币都能获得 %s 的利息。",
       "segments": [
         {
           "color": "§7",
@@ -756,7 +756,7 @@
     },
     {
       "id": "bank_season_interest_2",
-      "context": "接上一行:前 N 百万硬币",
+      "context": "接上一行：计息本金以 M 缩写显示",
       "raw": "§7for your first §6%s million §7banked coins.",
       "text": "for your first %s million banked coins.",
       "placeholders": [
@@ -767,10 +767,10 @@
           "example": "10"
         }
       ],
-      "gloss": "",
+      "gloss": "用户拍板：银行及子界面的金额统一使用 k/M/B 缩写；原文 Million/million 写为 M，Billion/billion 写为 B；已有 10k、1M、10M、1B 保持不变，不换算为汉字单位。",
       "translate": true,
       "continuation": true,
-      "zh": "%s 百万硬币都能获得 ",
+      "zh": "%sM 硬币都能获得 ",
       "segments": [
         {
           "color": "§7",
@@ -782,7 +782,7 @@
         {
           "color": "§6",
           "text": "%s million ",
-          "zh": "%s 百万",
+          "zh": "%sM ",
           "order": 1
         },
         {
@@ -1487,14 +1487,14 @@
         },
         {
           "token": "%2$s",
-          "desc": "Million / Billion,译名走 _shared/Terms.json",
+          "desc": "数值单位按原文保留，不汉化、不换算",
           "type": "raw",
           "example": "Million"
         }
       ],
-      "gloss": "",
+      "gloss": "用户拍板：银行及子界面的金额统一使用 k/M/B 缩写；原文 Million/million 写为 M，Billion/billion 写为 B；已有 10k、1M、10M、1B 保持不变，不换算为汉字单位。",
       "translate": true,
-      "zh": "余额上限: %1$s %2$s",
+      "zh": "余额上限: %1$s%2$s",
       "segments": [
         {
           "color": "§7",
@@ -1504,7 +1504,7 @@
         {
           "color": "§6",
           "text": "%1$s %2$s",
-          "zh": "%1$s %2$s"
+          "zh": "%1$s%2$s"
         }
       ]
     },
@@ -1982,7 +1982,7 @@
       ],
       "gloss": "",
       "translate": true,
-      "zh": "余额上限: %1$s %2$s硬币",
+      "zh": "余额上限: %1$s%2$s 硬币",
       "segments": [
         {
           "color": "§7",
@@ -1992,7 +1992,7 @@
         {
           "color": "§6",
           "text": "%1$s %2$s Coins",
-          "zh": "%1$s %2$s硬币"
+          "zh": "%1$s%2$s 硬币"
         }
       ]
     },

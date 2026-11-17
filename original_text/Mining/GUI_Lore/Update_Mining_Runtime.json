@@ -1,0 +1,116 @@
+{
+  "source": "两台计算机运行时采集（SkyZH_Logs/1、2，2026-11-13 至 17）及用户截图；https://hypixelskyblock.minecraft.wiki/w/Reclaiming；https://hypixelskyblock.minecraft.wiki/w/Dyes；https://hypixelskyblock.minecraft.wiki/w/Compactor_(disambiguation)",
+  "verified_ingame": true,
+  "lines": [
+    {
+      "id": "update_grants_mining_fortune_while_mining_d35387",
+      "context": "两机实测：更新后菜单与物品说明",
+      "raw": "§7Grants §6+%1$s Mining Fortune §7while mining §6%2$s§7.",
+      "text": "Grants +%1$s☘ Mining Fortune while mining %2$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "desc": "随服务器变化的数值或已限定语义的名称",
+          "example": "30"
+        },
+        {
+          "token": "%2$s",
+          "type": "gemstone_kind",
+          "desc": "随服务器变化的数值或已限定语义的名称",
+          "example": "Amber"
+        }
+      ],
+      "gloss": "",
+      "translate": true,
+      "zh": "挖掘%2$s时,获得 +%1$s☘ 挖掘时运。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "时,获得 ",
+          "order": 2
+        },
+        {
+          "color": "§6",
+          "text": "+%1$s☘ Mining Fortune ",
+          "zh": "+%1$s☘ 挖掘时运",
+          "order": 3
+        },
+        {
+          "color": "§7",
+          "text": "while mining ",
+          "zh": "挖掘",
+          "order": 0
+        },
+        {
+          "color": "§6",
+          "text": "%2$s",
+          "zh": "%2$s",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。",
+          "order": 4
+        }
+      ]
+    },
+    {
+      "id": "update_mining_spread_for_fdbb7d",
+      "context": "山峦之心：蛮力镐子技能",
+      "raw": "§e▚ Mining Spread §7for §a%1$s §e+%2$s§7.",
+      "text": "▚ Mining Spread for %1$s +%2$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "duration",
+          "desc": "随服务器变化的数值或已限定语义的名称",
+          "example": "25s"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "desc": "随服务器变化的数值或已限定语义的名称",
+          "example": "200"
+        }
+      ],
+      "gloss": "用户拍板：蛮力说明复用已有挖掘扩散译名；按服务器属性、时长、数值的原始分段重排，不能写死 25 秒。",
+      "translate": true,
+      "zh": "▚ 挖掘扩散 +%2$s,持续 %1$s。",
+      "segments": [
+        {
+          "color": "§e",
+          "text": "▚ Mining Spread ",
+          "zh": "▚ 挖掘扩散 ",
+          "order": 0
+        },
+        {
+          "color": "§7",
+          "text": "for ",
+          "zh": ",持续 ",
+          "order": 2
+        },
+        {
+          "color": "§a",
+          "text": "%1$s ",
+          "zh": "%1$s",
+          "order": 3
+        },
+        {
+          "color": "§e",
+          "text": "+%2$s",
+          "zh": "+%2$s",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。",
+          "order": 4
+        }
+      ]
+    }
+  ]
+}

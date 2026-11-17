@@ -974,8 +974,7 @@ BossBar 里是全大写(`GONE WITH THE WIND`)、计分板小部件里是正常�
 
 - 出现场景: `Economy/GUI_Item/Bank.json`,升级菜单每档的格子名 `%s Account`,取值走 `_shared/Terms.json`。
 - Starter → 入门,Gold → 黄金,Deluxe → 豪华,Super Deluxe → 超级豪华,Premier → 尊享,Luxurious → 奢华,Palatial → 殿堂。
-- 银行里的 `Million` / `Billion` 作 raw 值译「百万 / 十亿」(`Balance limit: 250 Million` → 「余额上限: 250 百万」),
-  利率档位里带 M/B 后缀的金额(`10M`)照抄不动。`Personal Vault` → 个人保险箱。
+- 银行及子界面的金额使用 `k/M/B` 缩写：`10k` / `1M` / `10M` / `1B` 保持不变，原文 `Million` / `million` 紧写为 `M`，`Billion` 紧写为 `B`，不换算为汉字数量单位。`Personal Vault` → 个人保险箱。
 
 ### 末地入门任务与饰品能力 —— 2026-09-05 日志补译
 
