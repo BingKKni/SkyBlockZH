@@ -120,6 +120,8 @@ Mod Menu 是软依赖。没装也能用，改 `config/skyzh.json` 即可，文�
 | `updateInstall` | `auto` | 发现新版 Mod 后：`auto` 下载并在退出后安装；`manual` 下载后在聊天栏发 `[点击安装]`；`notify` 仅发 `[点击下载并安装]`。后两者每次检查（约一小时）都会重新提醒，有更新的版本时先替换已下载的包。翻译包不受影响 |
 | `translateSkyBlockName` | 开 | 把 SkyBlock 译作「空岛生存」。复合词里自动用简称并修正空格：`你的 SkyBlock 等级` → `你的空岛等级`，`+150 SkyBlock XP` → `+150 空岛经验`；独立出现仍用全称。尚未翻译的英文句子里也生效，但**有条件**，见下面「在哪替换、在哪不替换」 |
 | `translateItemNames` | 开 | 关闭后真实物品名及其在 NPC／系统消息、悬浮文字、菜单和 Lore 中的明确引用保留英文，其他内容继续翻译。固定引用使用 `item_refs`，动态引用复用物品占位符；不改变服务器原文或采集覆盖判断 |
+| `translateMapNames` | 开 | 保留英文地图名时，`Your Island` 和玩家的岛屿仍翻译。固定地名使用 `map_refs`，位置占位符保留服务端原值。 |
+| `translateCurrencies` | 每项开 | 按币种保存。`currency_refs` 只标出表示货币的范围；`%s Powder`、`%s Essence` 按实际种类决定，技能、材料和物品整名不按字面拆开。 |
 | `translateMobNames` | 开 | 关闭后生物名保留英文：头顶血条名、`mob_name` 占位符、`raw`／`category_name` 等占位符及 Tab 行中命中 `mob_name` 词表的值，以及语料用 `mob_refs` 标出的固定引用。宠物、兔子、碎片等借用生物名的占位符写 `"mob": false`；`Terms.json` 的 `not_creatures` 列出在非生物占位符里指职业、阵营、宠物的词。与物品名开关互不影响 |
 | `legacyFont` | 开 | 「文本间距」。开启时在客户端资源重载里叠加内置的 1.12.2 Unicode 字形与字宽（`skyzh_legacy_font/`，等同置顶的资源包），逗号、句号等按 1.12.2 实际宽度绘制；关闭为原版全角。切换后关闭设置页时重载资源 |
 | `originalTips` | 开 | 「翻译提示」：GUI 中已翻译的真实物品在 Lore 末尾提示当前原文热键；服务器聊天提到符合条件的已翻译物品时提醒，间隔至少 5 分钟，可点击禁用。`ItemNames` 使用内置离线 NEU 名称目录，排除菜单、状态与未知名称。`/skyzh switch tip on/off`（或 `/skyblockzh`）控制提示，不影响原文切换键。旧 `showOriginal` 不再读取或保存，缺少新字段时默认开；普通显示不再追加括号原文 |

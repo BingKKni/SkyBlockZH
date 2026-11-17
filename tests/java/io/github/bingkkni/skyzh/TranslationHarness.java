@@ -3241,6 +3241,39 @@ public final class TranslationHarness {
 				TooltipTranslator.translateItemNameAvailable(Component.literal(preservedItem)).padded().getString().equals(preservedItem),
 				"同名专名沿用原有 translate:false，不新增矛盾译名");
 		}
+		var nameConfig = SkyZHConfig.get();
+		try {
+			nameConfig.translate(CurrencyName.COINS, false);
+			nameConfig.translate(CurrencyName.CHOCOLATE, false);
+			check("巧克力不拆开宠物技能", "Chocolate Injections", Surface.LORE, "巧克力注射");
+			check("保留钱包标签与余额颜色", "§fPurse: §61,111", Surface.SCOREBOARD, "§fPurse: §61,111");
+			check("其他货币仍翻译", "§fBits: §b555", Surface.SCOREBOARD, "§f点券: §b555");
+			check("不拆开技能名", "Ability: Coin Conversion RIGHT CLICK", Surface.ITEM, "技能: 金钱转化 右键");
+			nameConfig.translate(CurrencyName.BITS, false);
+			check("保留单数拼写", "§fBit: §b1", Surface.SCOREBOARD, "§fBit: §b1");
+			nameConfig.translate(CurrencyName.MITHRIL, false);
+			check("粉末种类由服务器值决定", "+5 ᠅ Mithril Powder", Surface.CHAT, "+5 ᠅ Mithril Powder");
+			check("其他粉末保持中文", "+5 ᠅ Gemstone Powder", Surface.CHAT, "+5 ᠅ 宝石粉末");
+			nameConfig.translate(CurrencyName.GLACITE, false);
+			check("同句两种货币独立", "You received +1,111 Glacite Powder and +555 Fossil Essence!",
+				Surface.CHAT, "你获得了 +1,111 Glacite Powder 和 +555 化石精华!");
+			nameConfig.translateMapNames = false;
+			checkJoined("跨行地名和独立粉末还原服务端颜色", List.of(
+				"§7Obtain §2Mithril Powder §7by mining and", "§7taking part in events in the §2Dwarven", "§2Mines§7."),
+				"§7通过挖矿并参与§2 Dwarven Mines§7 中的活动来获得§2 Mithril Powder§7。");
+			check("委托只还原地点", "Royal Mines Mithril", Surface.ITEM, "Royal Mines - 秘银");
+			checkRow("Tab 复合词只还原区域", " §fRoyal Mines Titanium: §640%", " §fRoyal Mines - 钛: §640%");
+			check("岛屿例外", "⏣ Your Island", Surface.SCOREBOARD, "⏣ 你的岛屿");
+			check("裂隙岛屿标签的引号保留", " \"Your\" Island", Surface.SCOREBOARD, " “你的”岛屿");
+			check("玩家岛屿例外", "⏣ Alex's Island", Surface.SCOREBOARD, "⏣ Alex 的岛屿");
+		} finally {
+			nameConfig.translate(CurrencyName.COINS, true);
+			nameConfig.translate(CurrencyName.CHOCOLATE, true);
+			nameConfig.translate(CurrencyName.BITS, true);
+			nameConfig.translate(CurrencyName.MITHRIL, true);
+			nameConfig.translate(CurrencyName.GLACITE, true);
+			nameConfig.translateMapNames = true;
+		}
 		boolean oldMobNames = SkyZHConfig.get().translateMobNames;
 		try {
 			for (String[] sample : new String[][] {

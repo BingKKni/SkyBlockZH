@@ -56,6 +56,17 @@ public final class TermTable {
 	private final Map<String, String> itemNames;
 	/** Folded {@code mob_name} entries that, outside a mob placeholder, mean a pet, class or faction. */
 	private final Set<String> notCreatures;
+	/** A compound dictionary value (e.g. Royal Mines Titanium) has no entry fragments. */
+	private record TermRef(String target, int start, int end, String before, String after,
+		io.github.bingkkni.skyzh.CurrencyName currency) {
+		String render(String value) {
+			if (currency == null ? ItemNamePolicy.maps() : (ItemNamePolicy.disabledCurrencies() & currency.mask()) == 0) return target;
+			String original = value.substring(start, end);
+			return before + (!before.isEmpty() && Character.isIdeographic(before.codePointBefore(before.length())) ? " " : "")
+				+ original + (!after.isEmpty() && Character.isIdeographic(after.codePointAt(0)) ? " " : "") + after;
+		}
+	}
+	private Map<String, TermRef> termRefs = Map.of();
 	private Function<String, String> knownItemTemplate = value -> null;
 
 	private TermTable(
@@ -97,6 +108,7 @@ public final class TermTable {
 			Map.copyOf(folded), this.notCreatures
 		);
 		result.knownItemTemplate = knownItemTemplate;
+		result.termRefs = this.termRefs;
 		return result;
 	}
 
@@ -160,6 +172,7 @@ public final class TermTable {
 	public static TermTable from(JsonObject json) {
 		Set<String> types = new HashSet<>();
 		Map<String, String> terms = new HashMap<>();
+		Map<String, TermRef> refs = new HashMap<>();
 		Map<String, Map<String, String>> typed = new HashMap<>();
 
 		if (json.has("applies_to_types") && json.get("applies_to_types").isJsonArray()) {
@@ -175,6 +188,18 @@ public final class TermTable {
 				String zh = string(term, "zh");
 
 				if (!en.isEmpty() && !zh.isEmpty()) {
+					if (term.has("display_ref")) {
+						JsonObject ref = term.getAsJsonObject("display_ref");
+						String part = CorpusData.string(ref.get("text"), "display_ref.text");
+						String translation = CorpusData.string(ref.get("zh"), "display_ref.zh");
+						int start = en.indexOf(part), at = zh.indexOf(translation);
+						if (part.isEmpty() || translation.isEmpty() || start < 0 || at < 0)
+							throw new IllegalArgumentException("无效词条引用: " + en);
+						refs.put(en.toLowerCase(Locale.ROOT), new TermRef(zh, start, start + part.length(),
+							zh.substring(0, at), zh.substring(at + translation.length()),
+							ref.has("currency") ? java.util.Objects.requireNonNull(io.github.bingkkni.skyzh.CurrencyName.of(
+								string(ref, "currency")), "未知货币: " + ref) : null));
+					}
 					if (term.has("types") && term.get("types").isJsonArray()) {
 						for (JsonElement type : term.getAsJsonArray("types")) {
 							typed.computeIfAbsent(type.getAsString().toLowerCase(Locale.ROOT), ignored -> new HashMap<>())
@@ -227,11 +252,13 @@ public final class TermTable {
 			}
 		}
 
-		return new TermTable(
+		TermTable result = new TermTable(
 			Set.copyOf(types), Map.copyOf(terms), Map.copyOf(folded),
 			Map.copyOf(frozenTyped), Map.copyOf(foldedTyped), Map.copyOf(canonicalByFolded), Map.of(),
 			Set.copyOf(notCreatures)
 		);
+		result.termRefs = Map.copyOf(refs);
+		return result;
 	}
 
 	private static String string(JsonObject json, String key) {
@@ -264,10 +291,40 @@ public final class TermTable {
 	 * worth translating gets its own entry.
 	 */
 	public String translate(String type, String value) {
-		return !ItemNamePolicy.mobNames() && mobValue(type, value) ? null : translateName(type, value);
+		if (preserveDisplayName(type, value)) return value;
+		if (!ItemNamePolicy.mobNames() && mobValue(type, value)) return null;
+		String translated = translateName(type, value);
+		if (translated != null && (!ItemNamePolicy.maps() || ItemNamePolicy.disabledCurrencies() != 0)
+			&& ("raw".equals(type) || "category_name".equals(type) || "recipe_target".equals(type))) {
+			TermRef ref = termRefs.get(value.toLowerCase(Locale.ROOT));
+			if (ref != null && ref.target().equals(translated)) return ref.render(value);
+		}
+		return translated;
 	}
 
-	/** Only the outermost placeholder decides: a mob word inside {@code item_part} stays an item. */
+	/** Resolve the semantic role before consulting a dictionary; a player, perk or item can share a name. */
+	boolean preserveDisplayName(String type, String value) {
+		if (type == null) return false;
+		boolean generic = "raw".equals(type) || "category_name".equals(type);
+		if (generic && ItemNamePolicy.disabledCurrencies() != 0) {
+			var currency = io.github.bingkkni.skyzh.CurrencyName.of(value);
+			if (currency != null && (currency.mask() & ItemNamePolicy.disabledCurrencies()) != 0) return true;
+		}
+		if (ItemNamePolicy.maps() || ItemNamePolicy.islandException(value)) return false;
+		if ("location_name".equals(type) || "commission_area".equals(type)) return true;
+		if (!generic && !"recipe_target".equals(type)) return false;
+		if (GENERIC_NON_LOCATIONS.contains(value.toLowerCase(Locale.ROOT))) return false;
+		// Ambiguous terms in generic slots are not necessarily places (e.g. Kuudra, Bank).
+		String location = translateWhole("location_name", value);
+		return location != null && location.equals(translateWhole(type, value))
+			&& (io.github.bingkkni.skyzh.capture.Areas.get().knows(value) || typed("location_name").containsKey(value))
+			&& !creature(value);
+	}
+
+	/** Non-location meanings of ambiguous names in untyped labels. */
+	private static final Set<String> GENERIC_NON_LOCATIONS = Set.of("bank", "blacksmith", "inferno", "kuudra",
+		"dark auction", "dungeon", "catacombs", "carnival", "the carnival", "greenhouse", "island", "safari");
+
 	private boolean mobValue(String type, String value) {
 		return switch (type == null ? "" : type.toLowerCase(Locale.ROOT)) {
 			case "mob_name" -> true;

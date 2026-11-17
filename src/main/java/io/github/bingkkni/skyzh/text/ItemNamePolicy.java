@@ -19,9 +19,25 @@ public final class ItemNamePolicy {
 		return override == null ? SkyZHConfig.get().translateMobNames : override;
 	}
 
-	/** Both display choices as one cache key. */
-	public static int state() {
-		return (enabled() ? 1 : 0) | (mobNames() ? 2 : 0);
+	public static boolean maps() { return OVERRIDE.get() != null || SkyZHConfig.get().translateMapNames; }
+
+	/** Private-island labels (including the Rift's quoted spelling) stay readable in Chinese. */
+	static boolean islandException(String value) {
+		if (value.equalsIgnoreCase("Your Island") || value.equalsIgnoreCase("\"Your\" Island")) return true;
+		Possessive.Owned owned = Possessive.split(value);
+		return owned != null && owned.thing().equalsIgnoreCase("Island");
+	}
+
+	public static long disabledCurrencies() {
+		return OVERRIDE.get() != null ? 0 : SkyZHConfig.get().disabledCurrencies();
+	}
+
+	/** All name choices as one cache key, including unsaved settings and coverage mode. */
+	public static long state() {
+		if (OVERRIDE.get() != null) return 7;
+		var config = SkyZHConfig.get();
+		return (config.translateItemNames ? 1 : 0) | (config.translateMobNames ? 2 : 0)
+			| (config.translateMapNames ? 4 : 0) | (config.disabledCurrencies() << 3);
 	}
 
 	/** Coverage always describes available translations, regardless of the player's display choice. */

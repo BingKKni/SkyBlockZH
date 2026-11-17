@@ -708,6 +708,20 @@ public final class Translator {
 
 	private static Component translateRowAvailable(Component source, StyledText styled, Surface surface, SkyZHConfig config) {
 		Result row = translateAvailable(source, styled, surface, config);
+		// A bare term such as Bank normally names the banking feature. In an Area: or
+		// Location: value the server explicitly says it is a place, so keep that role.
+		int colon = styled.canonical().indexOf(':');
+		if (!ItemNamePolicy.maps() && colon >= 0 && (row.tail() != null || !row.matched())) {
+			String label = styled.canonical().substring(0, colon).trim();
+			if (label.equals("Area") || label.equals("Location") || label.equals("Dungeon")) {
+				Component tail = styled.slice(colon, styled.length());
+				if (index().terms().preserveDisplayName("location_name", styled.canonical().substring(colon + 1).trim())) {
+					if (row.matched()) return row.padded();
+					Component heading = termedLabel(styled.slice(0, colon), config);
+					return heading == null ? source : Component.empty().append(heading).append(tail);
+				}
+			}
+		}
 
 		if (row.matched()) {
 			Component value = row.tail() == null ? null : valued(row.tail(), surface, config);
@@ -727,8 +741,6 @@ public final class Translator {
 
 			return result;
 		}
-
-		int colon = styled.canonical().indexOf(':');
 
 		if (colon < 0) {
 			return row.padded();

@@ -4,6 +4,7 @@ import io.github.bingkkni.skyzh.ClientPacks;
 import io.github.bingkkni.skyzh.DisplayPriority;
 import io.github.bingkkni.skyzh.HypixelServer;
 import io.github.bingkkni.skyzh.SkyZH;
+import io.github.bingkkni.skyzh.CurrencyName;
 import io.github.bingkkni.skyzh.SkyZHConfig;
 import io.github.bingkkni.skyzh.UpdateChecker;
 import io.github.bingkkni.skyzh.SkyZHConfig.UpdateChannel;
@@ -110,7 +111,16 @@ public final class SkyZHConfigScreen {
 				toggle("translateMobNames", () -> config.translateMobNames, value -> {
 					config.translateMobNames = value;
 					SkyZHConfig.bumpGeneration();
-				})),
+				}),
+				toggle("translateMapNames", () -> config.translateMapNames, value -> {
+					config.translateMapNames = value;
+					SkyZHConfig.bumpGeneration();
+				}),
+				new Group("currencies", java.util.Arrays.stream(CurrencyName.values())
+					.map(currency -> toggle("currency." + currency.key(), () -> config.translates(currency), value -> {
+						config.translate(currency, value);
+						SkyZHConfig.bumpGeneration();
+					})).toArray(Entry[]::new))),
 			new Category("advanced", layout,
 				choice("legacyFont", List.of(true, false), value -> "skyzh.legacyFont." + (value ? "on" : "off"),
 					() -> config.legacyFont, value -> config.legacyFont = value),

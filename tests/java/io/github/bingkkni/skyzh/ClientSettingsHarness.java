@@ -117,11 +117,21 @@ public final class ClientSettingsHarness {
 		check("更新渠道默认正式版", defaults.updateChannel, SkyZHConfig.UpdateChannel.RELEASE);
 		check("安装方式默认自动", defaults.updateInstall, SkyZHConfig.UpdateInstall.AUTO);
 		check("文本间距默认 1.12.2", defaults.legacyFont, true);
+		check("旧配置默认翻译地图", defaults.translateMapNames, true);
+		defaults.translateMapNames = false;
+		for (CurrencyName currency : CurrencyName.values()) {
+			check("旧配置默认翻译 " + currency, defaults.translates(currency), true);
+			defaults.translate(currency, false);
+			var copy = SkyZHConfig.fromJson(defaults.toJson());
+			check("货币独立保存 " + currency, copy.disabledCurrencies() == currency.mask(), true);
+			defaults.translate(currency, true);
+		}
 		defaults.translateMobNames = false;
 		defaults.updateChannel = SkyZHConfig.UpdateChannel.BETA;
 		defaults.updateInstall = SkyZHConfig.UpdateInstall.NOTIFY;
 		defaults.legacyFont = false;
 		SkyZHConfig changed = SkyZHConfig.fromJson(defaults.toJson());
+		check("地图名关闭可保存再读取", changed.translateMapNames, false);
 		check("生物名关闭可保存再读取", changed.translateMobNames, false);
 		check("测试版渠道可保存再读取", changed.updateChannel, SkyZHConfig.UpdateChannel.BETA);
 		check("仅检查可保存再读取", changed.updateInstall, SkyZHConfig.UpdateInstall.NOTIFY);

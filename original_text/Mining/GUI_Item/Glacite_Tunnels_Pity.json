@@ -6,6 +6,7 @@
   "source_note": "三处需要留底的判断。① 「Gemstones: 8-10」说的是宝石矿石方块的价值,维基 Block Qualities 表写明 Ruby/Sapphire/Jade/Amber/Amethyst/Topaz 算 8,Aquamarine/Peridot/Citrine/Onyx 算 10,所以写成一个区间——它跟装备上的宝石槽没有关系。这一行原先被 _shared/Item_Lore.json#item_gemstones_slots 误答成「宝石槽: 8-10」,而且因为答出来是全中文、颜色也没丢,采集三个分类都不收它,这一行就整条从采集里消失了(见 text/ValueShape.java);ValueShape 拦住那次误答之后,这一行才第一次出现在采集里,也才看出本条记录自己把 Gemstones 写成了单数。② 原文第一句说「挖 2,000 个方块」并不准确,维基说的是 2,000 点价值、按方块品质递减,硬石算 0 点;但紧接着那句「部分方块计入的保底进度高于其他方块」就是原文自己给的补充,所以照原文直译,不替服务器改写。这一句英文横跨三行,中文语序整个反过来(地点状语在英文里落到第三行、在中文里必须提到句首),2026-08-29 从「按行分摊译文」改成 continuation 整句合并:原先逐行直译出来的「一座极冰矿井必定会在 / 挖掘 2,000 个方块后生成于 / 极冰隧道」是把英文语序照搬进中文,读着不通。③ 原文对同一个数用了三个词(pity / value / pity counter),中文统一作「保底进度」,比原文更一致。方块名沿用 Handy_Block_Guide.json 的既有译名。",
   "name": {
     "id": "glacite_pity_name",
+    "map_refs": [{"text": "Glacite Mineshafts", "zh": "极冰矿井"}],
     "context": "物品名称",
     "raw": "§bGlacite Mineshafts",
     "text": "Glacite Mineshafts",
@@ -17,6 +18,7 @@
   "lore": [
     {
       "id": "glacite_pity_a_glacite_mineshaft_is_guaranteed_to",
+      "map_refs": [{"text": "Glacite Mineshaft", "zh": "极冰矿井"}],
       "context": "机制说明第一句的第一行",
       "raw": "§7A §bGlacite Mineshaft §7is guaranteed to",
       "text": "A Glacite Mineshaft is guaranteed to",
@@ -303,6 +305,7 @@
     },
     {
       "id": "glacite_pity_spawning_a_glacite_mineshaft_will_set",
+      "map_refs": [{"text": "Glacite Mineshaft", "zh": "极冰矿井"}],
       "context": "深灰的补充说明,横跨两行",
       "raw": "§8Spawning a Glacite Mineshaft will set",
       "text": "Spawning a Glacite Mineshaft will set",

@@ -86,7 +86,7 @@ public final class TooltipTranslator {
 	private static final Recent[] RECENT = new Recent[4];
 
 	private static int cachedGeneration = -1;
-	private static int cachedNames;
+	private static long cachedNames;
 
 	private TooltipTranslator() {
 	}

@@ -41,6 +41,12 @@ public final class DocumentHarness {
 		check("独立拍卖期望", StyledText.of(auction).plain().equals("12.5M 硬币\n2 次出价\n01小时40分53秒\n[点击]"));
 		check("出价单数也匹配", StyledText.of(DocumentTranslation.available(Component.literal(
 			"1 coins\n1 bid\n4d\n[CLICK]"), Surface.SIGN)).plain().equals("1 硬币\n1 次出价\n4 天\n[点击]"));
+		SkyZHConfig.get().translate(CurrencyName.COINS, false);
+		try {
+			check("告示牌保留单数币名，其他行照常翻译", StyledText.of(DocumentTranslation.available(
+				Component.literal("1 coin\n2 bids\n4d\n[CLICK]"), Surface.SIGN)).plain()
+				.equals("1 coin\n2 次出价\n4 天\n[点击]"));
+		} finally { SkyZHConfig.get().translate(CurrencyName.COINS, true); }
 		check("渲染面隔离", !Translator.locate(Component.literal("LEAP OF FAITH\n\n\n"), Surface.MISC).matched());
 
 		// An actual book page with a unique click target and exact RGB hover styling.

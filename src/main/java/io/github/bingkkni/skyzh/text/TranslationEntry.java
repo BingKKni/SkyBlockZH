@@ -1,5 +1,7 @@
 package io.github.bingkkni.skyzh.text;
 
+import io.github.bingkkni.skyzh.CurrencyName;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -52,9 +54,11 @@ public final class TranslationEntry {
 	}
 
 	/** Authored source/target ranges of an item reference, resolved only within an accepted match. */
+	public enum ReferenceKind { ITEM, MOB, MAP, CURRENCY }
+
 	public record ItemReference(String text, String zh, int sourceOccurrence, int targetOccurrence,
-		int targetSegment, List<String> sourceRecords, String sourceTemplate, boolean emit, boolean mob) {
-		public ItemReference(String text, String zh) { this(text, zh, -1, -1, -1, List.of(), "", true, false); }
+		int targetSegment, List<String> sourceRecords, String sourceTemplate, boolean emit, ReferenceKind kind, CurrencyName currency) {
+		public ItemReference(String text, String zh) { this(text, zh, -1, -1, -1, List.of(), "", true, ReferenceKind.ITEM, null); }
 		public ItemReference { sourceRecords = List.copyOf(sourceRecords); }
 	}
 
@@ -664,7 +668,14 @@ public final class TranslationEntry {
 
 	/** Whether the player's name switches return this range to the server's English. */
 	private static boolean restored(ItemRange range) {
-		return range.range().reference().mob() ? !ItemNamePolicy.mobNames() : !ItemNamePolicy.enabled();
+		ItemReference ref = range.range().reference();
+		return switch (ref.kind()) {
+			case ITEM -> !ItemNamePolicy.enabled() || ref.currency() != null && (ref.currency().mask() & ItemNamePolicy.disabledCurrencies()) != 0;
+			case MOB -> !ItemNamePolicy.mobNames();
+			case MAP -> !ItemNamePolicy.maps() && !ItemNamePolicy.islandException(ref.text());
+			case CURRENCY -> ref.currency() == null ? ItemNamePolicy.disabledCurrencies() != 0
+				: (ItemNamePolicy.disabledCurrencies() & ref.currency().mask()) != 0;
+		};
 	}
 
 	private static Component originalRange(List<Matched> matches, Matched owner, ReferenceRange range) {
@@ -690,7 +701,13 @@ public final class TranslationEntry {
 		int occurrence = ref.sourceOccurrence() < 0 ? Math.min(range.occurrence(), range.sources().size() - 1) : ref.sourceOccurrence();
 		SourceSpan span = range.sources().get(occurrence);
 		int start = sourceOffset(span.start(), source, argumentEnds), end = sourceOffset(span.end(), source, argumentEnds);
-		return start >= 0 && end > start ? source.slice(start, end) : null;
+		if (start < 0 || end <= start) return null;
+		if (ref.kind() == ReferenceKind.CURRENCY && ref.currency() == null) {
+			// A "%s Powder"/"%s Essence" range belongs to the currency in the live capture.
+			var currency = CurrencyName.of(source.plain().substring(start, end));
+			if (currency == null || (currency.mask() & ItemNamePolicy.disabledCurrencies()) == 0) return null;
+		}
+		return source.slice(start, end);
 	}
 
 	public String id() {
@@ -858,7 +875,7 @@ public final class TranslationEntry {
 
 		record RangeUse(Matched matched, ReferenceRange range) {}
 		Map<RangeUse, Component> originals = new HashMap<>();
-		boolean allNames = ItemNamePolicy.enabled() && ItemNamePolicy.mobNames();
+		boolean allNames = ItemNamePolicy.enabled() && ItemNamePolicy.mobNames() && ItemNamePolicy.maps() && ItemNamePolicy.disabledCurrencies() == 0;
 		if (!allNames) for (Part part : parts) for (Piece piece : part.fragment().pieces()) {
 			if (piece instanceof ItemRange range && restored(range) && !originals.containsKey(new RangeUse(part.matched(), range.range())))
 				originals.put(new RangeUse(part.matched(), range.range()), originalRange(matches, part.matched(), range.range()));
@@ -990,7 +1007,7 @@ public final class TranslationEntry {
 		int end = match.end(group);
 		String value = source.plain().substring(start, end);
 		String type = this.argTypes.get(group);
-		if (!ItemNamePolicy.enabled() && itemArgument(group, type, value)) {
+		if ((!ItemNamePolicy.enabled() && itemArgument(group, type, value)) || terms.preserveDisplayName(type, value)) {
 			seam.appendItem(source.slice(start, end), value, style);
 			return;
 		}

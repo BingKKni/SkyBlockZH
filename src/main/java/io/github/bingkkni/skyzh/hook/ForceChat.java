@@ -36,7 +36,7 @@ public final class ForceChat {
 	private static Object layoutCorpus;
 	private static boolean layoutTranslated;
 	private static boolean layoutName;
-	private static int layoutNames;
+	private static long layoutNames;
 
 	private ForceChat() {}
 
@@ -141,7 +141,7 @@ public final class ForceChat {
 	public static List<GuiMessage.Line> lines(Font font, int width) {
 		boolean translate = HypixelServer.canTranslate();
 		boolean name = SkyZHConfig.get().translateSkyBlockName;
-		int names = io.github.bingkkni.skyzh.text.ItemNamePolicy.state();
+		long names = io.github.bingkkni.skyzh.text.ItemNamePolicy.state();
 		Object corpus = Translator.index();
 		if (!layoutDirty && layoutFont == font && layoutWidth == width && layoutCorpus == corpus
 			&& layoutTranslated == translate && layoutName == name && layoutNames == names) return new ArrayList<>(previousLines);

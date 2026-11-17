@@ -18,7 +18,8 @@ public final class SignDisplayCache {
 	// Render-thread epoch: offscreen signs must not keep old corpus/language generations alive.
 	private static WeakReference<TranslationIndex> corpus = new WeakReference<>(null);
 	private static WeakReference<Language> language = new WeakReference<>(null);
-	private static int generation = -1, names;
+	private static int generation = -1;
+	private static long names;
 	private static boolean skyBlockName;
 	private static long epoch;
 
@@ -32,7 +33,8 @@ public final class SignDisplayCache {
 	private static long currentEpoch() {
 		TranslationIndex current = Translator.index();
 		Language currentLanguage = Language.getInstance(); // Replaced on language/font resource reload.
-		int currentGeneration = SkyZHConfig.generation(), currentNames = ItemNamePolicy.state();
+		int currentGeneration = SkyZHConfig.generation();
+		long currentNames = ItemNamePolicy.state();
 		boolean currentName = SkyZHConfig.get().translateSkyBlockName;
 		if (corpus.get() != current || language.get() != currentLanguage || generation != currentGeneration
 			|| names != currentNames || skyBlockName != currentName) {

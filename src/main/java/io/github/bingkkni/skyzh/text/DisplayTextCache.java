@@ -21,7 +21,7 @@ public final class DisplayTextCache {
 	private static TranslationIndex corpus;
 	private static int generation = -1;
 	private static boolean skyBlockName;
-	private static int names;
+	private static long names;
 
 	private static final class Bucket {
 		final Map<Key, Value> cache = new LinkedHashMap<>(LIMIT, 0.75f, true) {

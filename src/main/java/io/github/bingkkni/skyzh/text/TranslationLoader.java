@@ -2,6 +2,7 @@ package io.github.bingkkni.skyzh.text;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import io.github.bingkkni.skyzh.CurrencyName;
 import com.google.gson.JsonObject;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -325,7 +326,7 @@ public final class TranslationLoader {
 							}
 						}
 					}
-					case "item_refs", "mob_refs" -> {
+					case "item_refs", "mob_refs", "map_refs", "currency_refs" -> {
 						for (var element : value.getAsJsonArray()) {
 							JsonObject reference = element.getAsJsonObject();
 							CorpusData.string(reference.get("text"), key + ".text");
@@ -414,7 +415,7 @@ public final class TranslationLoader {
 
 	private static List<TranslationEntry.ItemReference> itemReferences(JsonObject source, String relative, Map<String, JsonObject> byReference) {
 		List<TranslationEntry.ItemReference> references = new ArrayList<>();
-		for (String field : new String[] {"item_refs", "mob_refs"}) if (source.has(field)) for (JsonElement value : source.getAsJsonArray(field)) {
+		for (String field : new String[] {"item_refs", "mob_refs", "map_refs", "currency_refs"}) if (source.has(field)) for (JsonElement value : source.getAsJsonArray(field)) {
 			JsonObject reference = value.getAsJsonObject();
 			List<String> ids = new ArrayList<>();
 			if (reference.has("source_records")) for (var id : reference.getAsJsonArray("source_records")) ids.add(CorpusData.string(id, "item_refs.source_records"));
@@ -442,9 +443,24 @@ public final class TranslationLoader {
 			references.add(new TranslationEntry.ItemReference(string(reference, "text"), string(reference, "zh"),
 				referenceIndex(reference, "source_occurrence"), referenceIndex(reference, "target_occurrence"),
 				referenceIndex(reference, "target_segment"), ids, sourceTemplate.toString(), !reference.has("emit") || reference.get("emit").getAsBoolean(),
-				field.equals("mob_refs")));
+				switch (field) {
+					case "mob_refs" -> TranslationEntry.ReferenceKind.MOB;
+					case "map_refs" -> TranslationEntry.ReferenceKind.MAP;
+					case "currency_refs" -> TranslationEntry.ReferenceKind.CURRENCY;
+					default -> TranslationEntry.ReferenceKind.ITEM;
+				}, referenceCurrency(field, reference)));
 		}
 		return List.copyOf(references);
+	}
+
+	/** Null is meaningful only for a currency range determined from a live capture (e.g. "%2$s Powder"). */
+	private static CurrencyName referenceCurrency(String field, JsonObject reference) {
+		if (!reference.has("currency") && !field.equals("currency_refs")) return null;
+		String name = string(reference, reference.has("currency") ? "currency" : "text");
+		if (!reference.has("currency") && name.contains("%")) return null;
+		CurrencyName currency = CurrencyName.of(name);
+		if (currency == null) throw new IllegalArgumentException("未知货币: " + name);
+		return currency;
 	}
 
 	private static int referenceIndex(JsonObject reference, String key) {

@@ -19,10 +19,10 @@ public final class ChatDisplayCache {
 	private Object corpus;
 	private int width = -1;
 	private boolean skyBlockName;
-	private int names;
+	private long names;
 	private boolean displayedTranslation;
 	private boolean displayedName;
-	private int displayedNames;
+	private long displayedNames;
 	private Object displayedCorpus;
 	private boolean policyInvalidated;
 
@@ -46,7 +46,7 @@ public final class ChatDisplayCache {
 
 	/** Effective render policy, not config-save generation: a hint/capture switch needs no rewrap. */
 	public boolean needsRefresh(boolean translated, boolean name, Object index) {
-		int names = ItemNamePolicy.state();
+		long names = ItemNamePolicy.state();
 		boolean changed = this.policyInvalidated || this.displayedTranslation != translated
 			|| translated && (this.displayedName != name || this.displayedNames != names || this.displayedCorpus != index);
 		this.policyInvalidated = false;
@@ -78,7 +78,7 @@ public final class ChatDisplayCache {
 	}
 
 	private Lines entry(GuiMessage message, Object font, int width, boolean name, Object index) {
-		int names = ItemNamePolicy.state();
+		long names = ItemNamePolicy.state();
 		if (this.font != font || this.width != width || this.corpus != index || this.skyBlockName != name || this.names != names) {
 			clear();
 			this.font = font;

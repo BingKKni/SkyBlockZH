@@ -6,7 +6,7 @@
   "source_note": "2026-09-12 以新版社区 Wiki 的 NPC Dialogue 表为主，Fandom 历史档案作交叉核验；待游戏内实测，未记录 raw/颜色。该历史采集来源为 https://hypixelskyblock.minecraft.wiki/w/Garden_Visitors，交叉核对 https://hypixel-skyblock.fandom.com/wiki/The_Garden/Visitors。本次以 Marigold 普通呈现页的 Playwright DOM 证据补齐全部对白，raw 为 segments.color 对应的 DOM 颜色还原样本，不是服务器原始字节；旧花园对白的稳定 ID 保留。",
   "messages": [
     {
-      "id": "visitor_marigold_request_1", "item_refs": [{"text": "Melon", "zh": "西瓜"}],
+      "id": "visitor_marigold_request_1", "currency_refs": [{"text": "Gold Essence", "zh": "黄金精华"}], "item_refs": [{"text": "Melon", "zh": "西瓜"}],
       "context": "Marigold：作为花园访客提出委托，急着回店",
       "text": "May I quickly grab some Melon, please? I left the Gold Essence Shop unattended!",
       "placeholders": [],
@@ -81,6 +81,7 @@
     },
     {
       "id": "marigold_gold_essence_shop_intro",
+      "currency_refs": [{"text": "Gold Essence", "zh": "黄金精华"}],
       "context": "Marigold：首次互动，介绍精华商店；两个击杀状态分支共用",
       "text": "Now normally, I run a humble little shop that allows you to upgrade some useful perks in exchange for Gold Essence!",
       "raw": "§fNow normally, I run a humble little shop that allows you to upgrade some useful perks in exchange for §6Gold Essence§f!",
@@ -108,6 +109,7 @@
     },
     {
       "id": "marigold_gold_essence_stolen",
+      "currency_refs": [{"text": "Gold Essence", "zh": "黄金精华"}],
       "context": "Marigold：首次互动，抱怨黄金哥布林偷走精华；两个击杀状态分支共用",
       "text": "However, a pesky Golden Goblin just came by and snatched a bunch of my Gold Essence! How can I operate safely with thieves like that running around?",
       "raw": "§fHowever, a pesky §6Golden Goblin §fjust came by and snatched a bunch of my §6Gold Essence§f! How can I operate safely with §c§othieves §flike that running around?",
@@ -154,7 +156,7 @@
       ]
     },
     {
-      "id": "marigold_hunt_golden_goblin", "item_refs": [{"text": "Goblin Eggs", "zh": "哥布林蛋"}],
+      "id": "marigold_hunt_golden_goblin", "map_refs": [{"text": "Dwarven Mines", "zh": "矮人矿山"}, {"text": "Crystal Hollows", "zh": "水晶残核"}], "item_refs": [{"text": "Goblin Eggs", "zh": "哥布林蛋"}],
       "context": "Marigold：首次互动，尚未击杀黄金哥布林；说明商店解锁条件和生成方式",
       "text": "Speak to me again after killing a Golden Goblin and I'll show you my shop! I heard Golden Goblins have a small chance to spawn when mining ores or throwing Goblin Eggs in the Dwarven Mines or Crystal Hollows.",
       "raw": "§fSpeak to me again after killing a §6Golden Goblin §fand I'll show you my shop! I heard §6Golden Goblins §fhave a small chance to spawn when §bmining ores §for throwing §bGoblin Eggs §fin the §bDwarven Mines §for §5Crystal Hollows§f.",
@@ -292,6 +294,7 @@
     },
     {
       "id": "marigold_existing_kill_reward",
+      "currency_refs": [{"text": "Gold Essence", "zh": "黄金精华"}],
       "context": "Marigold：首次互动前已击杀过黄金哥布林，给予固定 25 黄金精华",
       "text": "I can't thank you enough! As a token of my gratitude, here's another 25 Gold Essence to get you started at my shop! It's not a lot, but a little goes a long way!",
       "raw": "§fI can't thank you enough! As a token of my gratitude, here's another §625 Gold Essence §fto get you started at my shop! It's not a lot, but a little goes a long way!",
@@ -319,6 +322,7 @@
     },
     {
       "id": "marigold_open_gold_essence_shop",
+      "currency_refs": [{"text": "Gold Essence", "zh": "黄金精华"}],
       "context": "Marigold：两个黄金哥布林任务完成分支共用，随后展示商店",
       "text": "Let me show you the Gold Essence Shop!",
       "raw": "§fLet me show you the §6Gold Essence Shop§f!",
@@ -378,6 +382,7 @@
     },
     {
       "id": "marigold_first_kill_reward",
+      "currency_refs": [{"text": "Gold Essence", "zh": "黄金精华"}],
       "context": "Marigold：首次交谈后完成黄金哥布林击杀，给予固定 25 黄金精华",
       "text": "As a token of my gratitude, here's another 25 Gold Essence to get you started at my shop! It's not a lot, but a little goes a long way!",
       "raw": "§fAs a token of my gratitude, here's another §625 Gold Essence §fto get you started at my shop! It's not a lot, but a little goes a long way!",
@@ -513,6 +518,7 @@
     },
     {
       "id": "marigold_abiphone_catacombs_fear",
+      "map_refs": [{"text": "The Catacombs", "zh": "地牢"}],
       "context": "Marigold：解释想要 Midas Jewel，但害怕去地牢寻找",
       "text": "✆ I've always wanted one, but you can't find them around here, and I'm too scared to venture into The Catacombs in search of one.",
       "raw": "§b✆ §fI've always wanted one, but you can't find them around here, and I'm too scared to venture into §cThe Catacombs §fin search of one.",
@@ -582,6 +588,7 @@
     },
     {
       "id": "marigold_abiphone_midas_jewel_drop_hint",
+      "map_refs": [{"text": "The Catacombs", "zh": "地牢"}],
       "context": "Marigold：未携带 Midas Jewel 时，说明可能的获取来源",
       "text": "✆ You can sometimes find one when killing King Midas in The Catacombs.",
       "raw": "§b✆ §fYou can sometimes find one when killing §6King Midas §fin §cThe Catacombs§f.",
@@ -674,6 +681,7 @@
     },
     {
       "id": "marigold_abiphone_midas_jewel_effort",
+      "map_refs": [{"text": "The Catacombs", "zh": "地牢"}],
       "context": "Marigold：交出 Midas Jewel 后，关心玩家是否费了太多工夫",
       "text": "✆ I hope it wasn't too much of a hassle to get, I've heard stories of The Catacombs...",
       "raw": "§b✆ §fI hope it wasn't too much of a hassle to get, I've heard stories of §cThe Catacombs§f...",
@@ -706,6 +714,7 @@
     },
     {
       "id": "marigold_abiphone_contact_granted",
+      "currency_refs": [{"text": "Gold Essence", "zh": "黄金精华"}],
       "context": "Marigold：交出 Midas Jewel 后，提供联系方式并说明电话商店服务",
       "text": "✆ Here's my contact, you can call me whenever you need to access the Gold Essence Shop.",
       "raw": "§b✆ §fHere's my contact, you can call me whenever you need to access the §6Gold Essence Shop§f.",

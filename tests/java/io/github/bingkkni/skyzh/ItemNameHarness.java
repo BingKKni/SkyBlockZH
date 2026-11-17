@@ -166,6 +166,10 @@ public final class ItemNameHarness {
 			var fixture = JsonParser.parseString("""
 				{"records":[{"id":"item_toggle_fixture","text":"Please bring a Magma Core here.",
 				"zh":"请把岩浆核心带到这里。","item_refs":[{"text":"Magma Core","zh":"岩浆核心"}]},
+				{"id":"mixed_payment","text":"Coin Conversion costs %1$s Coins and %2$s Bits in The Forge.","zh":"硬币转化在熔炉花费 %1$s 硬币和 %2$s 点券。",
+				"placeholders":[{"token":"%1$s","type":"number"},{"token":"%2$s","type":"number"}],
+				"currency_refs":[{"text":"Coins","zh":"硬币","target_occurrence":1},{"text":"Bits","zh":"点券"}],
+				"map_refs":[{"text":"The Forge","zh":"熔炉"}]},
 				{"id":"repeat_items","text":"Use Magma Core and Magma Core.","zh":"使用岩浆核心，再使用岩浆核心。",
 				"item_refs":[{"text":"Magma Core","zh":"岩浆核心"}]},
 				{"id":"same_zh_items","text":"Use Wheat and Hay Bale.","zh":"使用小麦，再使用小麦。",
@@ -191,6 +195,20 @@ public final class ItemNameHarness {
 				""").getAsJsonObject());
 			index = TranslationLoader.compile(files);
 			TranslationHarness.installIndex(index);
+			Component payment = Component.literal("Coin Conversion costs 1,111 ")
+				.append(Component.literal("Coins").withStyle(ChatFormatting.GOLD)).append(" and 555 Bits in The Forge.");
+			config.translate(CurrencyName.COINS, false);
+			config.translateMapNames = false;
+			try {
+				StyledText shown = StyledText.of(Translator.translateLine(payment, Surface.CHAT));
+				check(shown.plain().equals("硬币转化在 The Forge 花费 1,111 Coins 和 555 点券。"), shown.plain());
+				check(shown.styleAt(shown.plain().indexOf("Coins")).getColor().getValue() == 0xFFAA00, "保留原币名颜色");
+				check(ItemNamePolicy.available(() -> Translator.translateLine(payment, Surface.CHAT).getString())
+					.equals("硬币转化在熔炉花费 1,111 硬币和 555 点券。"), "覆盖不依赖地图和货币选择");
+			} finally {
+				config.translate(CurrencyName.COINS, true);
+				config.translateMapNames = true;
+			}
 			Component source = Component.literal("Please bring a ").withStyle(ChatFormatting.WHITE)
 				.append(Component.literal("Magma Core").withStyle(ChatFormatting.BLUE))
 				.append(Component.literal(" here.").withStyle(ChatFormatting.WHITE));

@@ -66,7 +66,7 @@ abstract class MinifyCorpus extends DefaultTask {
 
 	/** Per-record keys the runtime reads. Anything else on a record is a note to a translator. */
 	private static final Set<String> RECORD_KEYS = [
-		'id', 'ref', 'translate', 'text', 'zh', 'segments', 'placeholders', 'continuation', 'layout', 'chat_join_next', 'exclude', 'item_refs', 'mob_refs', 'item_name',
+		'id', 'ref', 'translate', 'text', 'zh', 'segments', 'placeholders', 'continuation', 'layout', 'chat_join_next', 'exclude', 'item_refs', 'mob_refs', 'map_refs', 'currency_refs', 'item_name',
 	] as Set
 
 	/** `color` is deliberately absent: it documents the boundary, the drawn colour comes off the screen. */
@@ -103,7 +103,7 @@ abstract class MinifyCorpus extends DefaultTask {
 	]
 
 	/** Per-term keys in _shared/Terms.json; `note` is the translator's reasoning. */
-	private static final Set<String> TERM_KEYS = ['en', 'zh', 'types'] as Set
+	private static final Set<String> TERM_KEYS = ['en', 'zh', 'types', 'display_ref'] as Set
 
 	@TaskAction
 	void minify() {

@@ -78,6 +78,14 @@ public final class SkyZHConfig {
 
 	/** Whether mob names on nameplates and their mentions in any text use the corpus translations. */
 	public volatile boolean translateMobNames = true;
+	public volatile boolean translateMapNames = true;
+	private volatile long disabledCurrencies;
+
+	public long disabledCurrencies() { return disabledCurrencies; }
+	public boolean translates(CurrencyName currency) { return (disabledCurrencies & currency.mask()) == 0; }
+	public void translate(CurrencyName currency, boolean enabled) {
+		disabledCurrencies = enabled ? disabledCurrencies & ~currency.mask() : disabledCurrencies | currency.mask();
+	}
 
 	/** Additional render protection is opt-in and can be changed without restarting. */
 	public DisplayPriority displayPriority = DisplayPriority.DEFAULT;
@@ -170,6 +178,9 @@ public final class SkyZHConfig {
 		config.translateSkyBlockName = bool(json, "translateSkyBlockName", true);
 		config.translateItemNames = bool(json, "translateItemNames", true);
 		config.translateMobNames = bool(json, "translateMobNames", true);
+		config.translateMapNames = bool(json, "translateMapNames", true);
+		if (json.get("translateCurrencies") instanceof JsonObject currencies)
+			for (CurrencyName currency : CurrencyName.values()) config.translate(currency, bool(currencies, currency.key(), true));
 		config.displayPriority = DisplayPriority.parse(string(json, "displayPriority", "default"));
 		config.originalTips = bool(json, "originalTips", true);
 		config.legacyFont = bool(json, "legacyFont", true);
@@ -244,6 +255,8 @@ public final class SkyZHConfig {
 		help.addProperty("welcomeShown", "是否已经发送首次安装欢迎消息。改为 false 后，下次进入 Hypixel 时会再次发送。");
 		help.addProperty("translateSkyBlockName", "是否翻译 SkyBlock 玩法名。翻译后的文本为「空岛生存」。");
 		help.addProperty("translateItemNames", "是否翻译物品名称。关闭后，物品名及其在对话、系统消息、悬浮文字和菜单说明中的引用保留英文，其他内容继续翻译。");
+		help.addProperty("translateMapNames", "是否翻译地图名称。你的岛屿和玩家的岛屿不受影响。");
+		help.addProperty("translateCurrencies", "每种货币可独立选择是否翻译，未设置的货币默认翻译。");
 		help.addProperty("translateMobNames", "是否翻译生物名。关闭后，实体头顶名牌、悬浮文字和物品、计分板、BossBar 等文本里提及的生物名保留英文，其他内容继续翻译。");
 		help.addProperty("displayPriority", "显示优先级：default 保留原有兼容行为；high 使用服务器原文保护译文，检测并保留已启用的 CustomScoreboard、SkyHanni 或 NoammAddons 面板；force 进一步通过原版绘制入口替代这些自定义计分板，按服务器原文重新绘制。高和强制可能恢复被过滤的服务器聊天或隐藏额外物品提示。不修改第三方配置或类，未知或完全独立的渲染方式不保证接管。");
 		help.addProperty("originalTips", "在看到服务器发出的消息中包含物品时，提示按热键切换原文，再按恢复译文。关闭后将不再提示。");
@@ -268,6 +281,10 @@ public final class SkyZHConfig {
 		json.addProperty("translateSkyBlockName", this.translateSkyBlockName);
 		json.addProperty("translateItemNames", this.translateItemNames);
 		json.addProperty("translateMobNames", this.translateMobNames);
+		json.addProperty("translateMapNames", this.translateMapNames);
+		JsonObject currencies = new JsonObject();
+		for (CurrencyName currency : CurrencyName.values()) currencies.addProperty(currency.key(), translates(currency));
+		json.add("translateCurrencies", currencies);
 		json.addProperty("displayPriority", this.displayPriority.key());
 		json.addProperty("originalTips", this.originalTips);
 		json.addProperty("legacyFont", this.legacyFont);

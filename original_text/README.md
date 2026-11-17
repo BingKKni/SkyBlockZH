@@ -361,6 +361,8 @@ capacity with part" + "installed." 硬拆成两行),**必须在数据里合并�
 配方、章节和集市分类菜单既可能填类别，也可能填生物或物品时，使用 `recipe_target`：依次查类别、生物、地点词表及目录确认的物品记录；未知值保持原文。
 不要把这两种类型用于玩家、NPC、档案名称或任意半句；档案身份使用不查词表的 `profile_name`。
 
+地图与货币开关同样只作用于实际引用：用 `map_refs` 标出地名，用 `currency_refs` 标出货币（写法见下方 `item_refs`）。例如 `{"text":"Purse","zh":"硬币","currency":"Coins"}` 用 Coins 开关控制钱包标签；`{"text":"%2$s Powder","zh":"%2$s粉末"}` 按实际粉末种类决定。不要标记技能名中的同形词、普通材料，或 Your Island 和玩家的岛屿。若同句技能名和花费都有“硬币”，用 `target_occurrence` 指定真正的花费。作为占位符值的复合词（如 Royal Mines Titanium）可在 Terms.json 用单个 `display_ref` 标出其中的地名或货币。
+
 `mob_refs` 与 `item_refs` 写法完全相同，标记句子中提到的具体生物（`[{"text":"Vegan Crawler","zh":"素食爬行者"}]`），供「翻译生物名」关闭时恢复原文；职业、阵营、宠物、生物家族和普通名词（`Mage`、`Pest`、`Cat`）不标。`mob_name` 占位符实际填的是宠物、兔子或碎片名时写 `"mob": false`。
 
 `item_refs` 标记句子中真实物品的引用，例如 `"item_refs": [{"text":"Magma Core","zh":"岩浆核心"}]`。
