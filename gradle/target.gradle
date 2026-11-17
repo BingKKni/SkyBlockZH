@@ -132,6 +132,13 @@ processResources {
 	inputs.property 'minecraftRange', mcRange
 	inputs.property 'translationApi', rootProject.translation_api
 
+	// Minecraft always loads en_us as its fallback. Use the Chinese UI there too, so
+	// players using another game language see Chinese labels rather than translation keys.
+	from(rootProject.file('src/main/resources/assets/skyzh/lang/zh_cn.json')) {
+		into 'assets/skyzh/lang'
+		rename { 'en_us.json' }
+	}
+
 	filesMatching('skyzh-translations.properties') {
 		expand('translation_api': rootProject.translation_api)
 	}
