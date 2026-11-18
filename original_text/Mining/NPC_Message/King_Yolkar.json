@@ -221,12 +221,32 @@
     {
       "id": "king_yolkar_you_must_hurry_get_to",
       "context": "",
-      "raw": "§fYou must hurry! Get to the Goblin Queen before my stench escapes you!",
+      "raw": "§fYou must hurry! Get to the §5Goblin Queen §fbefore my stench escapes you!",
       "text": "You must hurry! Get to the Goblin Queen before my stench escapes you!",
       "placeholders": [],
       "gloss": "",
       "translate": true,
-      "zh": "你得快点! 赶在我的臭味散掉之前找到哥布林女王!"
+      "zh": "你得快点! 赶在我的臭味散掉之前找到哥布林女王!",
+      "segments": [
+        {
+          "color": "§f",
+          "text": "You must hurry! Get to the ",
+          "zh": "你得快点! ",
+          "order": 0
+        },
+        {
+          "color": "§5",
+          "text": "Goblin Queen ",
+          "zh": "哥布林女王!",
+          "order": 2
+        },
+        {
+          "color": "§f",
+          "text": "before my stench escapes you!",
+          "zh": "赶在我的臭味散掉之前找到",
+          "order": 1
+        }
+      ]
     },
     {
       "id": "king_yolkar_and_stay_away_from_water",
@@ -256,12 +276,12 @@
         {
           "color": "§a",
           "text": "foul stench ",
-          "zh": "恶臭 "
+          "zh": "恶臭"
         },
         {
           "color": "§f",
           "text": "again? Bring me a ",
-          "zh": "了?随便给我带一颗"
+          "zh": "了?给我随便带一颗"
         },
         {
           "color": "§9",

@@ -1,0 +1,246 @@
+{
+  "source": "2026-11-18 至 19 日 SkyZH 运行时采集、服务器日志与截图",
+  "lines": [
+    {
+      "id": "veil_activate",
+      "context": "11 月实测文本",
+      "raw": "§dCreeper Veil §aActivated!",
+      "text": "Creeper Veil Activated!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "苦力怕帷幕已开启!",
+      "segments": [
+        {
+          "color": "§d",
+          "text": "Creeper Veil ",
+          "zh": "苦力怕帷幕"
+        },
+        {
+          "color": "§a",
+          "text": "Activated!",
+          "zh": "已开启!"
+        }
+      ]
+    },
+    {
+      "id": "veil_deactivate",
+      "context": "11 月实测文本",
+      "raw": "§cNot enough vitality! §dCreeper Veil §cDe-activated!",
+      "text": "Not enough vitality! Creeper Veil De-activated!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "活力不足! 苦力怕帷幕已关闭!",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "Not enough vitality! ",
+          "zh": "活力不足! "
+        },
+        {
+          "color": "§d",
+          "text": "Creeper Veil ",
+          "zh": "苦力怕帷幕"
+        },
+        {
+          "color": "§c",
+          "text": "De-activated!",
+          "zh": "已关闭!"
+        }
+      ]
+    },
+    {
+      "id": "yearly_purchase_limit",
+      "context": "11 月实测文本",
+      "raw": "§cYou may only buy up to %1$s of this item each SkyBlock year!",
+      "text": "You may only buy up to %1$s of this item each SkyBlock year!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "64",
+          "desc": "随游戏状态变化的数值"
+        }
+      ],
+      "translate": true,
+      "zh": "每个空岛年最多只能购买 %1$s 个该物品!"
+    },
+    {
+      "id": "craft_count_fixed",
+      "context": "11 月实测文本",
+      "raw": "§cYou may not edit the number of crafts for this recipe!",
+      "text": "You may not edit the number of crafts for this recipe!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "无法更改此配方的合成次数!"
+    },
+    {
+      "id": "craft_no_materials",
+      "context": "11 月实测文本",
+      "raw": "§cYou don't have the ingredients required to craft even one of those!",
+      "text": "You don't have the ingredients required to craft even one of those!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "材料不足,连一个也合成不了!"
+    },
+    {
+      "id": "trial_toast",
+      "context": "11 月实测文本",
+      "raw": "§6§lTRIAL OF FIRE! §cTrial cancelled: §fYou burned like a toast!",
+      "text": "TRIAL OF FIRE! Trial cancelled: You burned like a toast!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "烈焰试炼! 试炼取消: 你被烤成了焦面包!",
+      "segments": [
+        {
+          "color": "§6§l",
+          "text": "TRIAL OF FIRE! ",
+          "zh": "烈焰试炼! "
+        },
+        {
+          "color": "§c",
+          "text": "Trial cancelled: ",
+          "zh": "试炼取消: "
+        },
+        {
+          "color": "§f",
+          "text": "You burned like a toast!",
+          "zh": "你被烤成了焦面包!"
+        }
+      ]
+    },
+    {
+      "id": "god_potion_duration",
+      "raw": "§a§lSLURP! §eThe §cGod Potion §egrants you powers for §9%1$s§e!",
+      "text": "SLURP! The God Potion grants you powers for %1$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "duration",
+          "example": "15h 7m",
+          "desc": "服务器动态值"
+        }
+      ],
+      "translate": true,
+      "zh": "咕噜! 神药的效果将持续 %1$s!",
+      "segments": [
+        {
+          "color": "§a§l",
+          "text": "SLURP! ",
+          "zh": "咕噜! "
+        },
+        {
+          "color": "§e",
+          "text": "The ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§c",
+          "text": "God Potion ",
+          "zh": "神药"
+        },
+        {
+          "color": "§e",
+          "text": "grants you powers for ",
+          "zh": "的效果将持续 "
+        },
+        {
+          "color": "§9",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§e",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "drill_low_fuel",
+      "raw": "§cYour §d%1$s §chas §e%2$s% §cfuel remaining!",
+      "text": "Your %1$s has %2$s% fuel remaining!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "loot_item_name",
+          "example": "Auspicious Titanium Drill DR-X655",
+          "desc": "服务器动态值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "10",
+          "desc": "服务器动态值"
+        }
+      ],
+      "translate": true,
+      "zh": "你的%1$s的燃料仅剩 %2$s%!",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "Your ",
+          "zh": "你的"
+        },
+        {
+          "color": "§d",
+          "text": "%1$s ",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§c",
+          "text": "has ",
+          "zh": "的燃料仅剩 "
+        },
+        {
+          "color": "§e",
+          "text": "%2$s% ",
+          "zh": "%2$s%"
+        },
+        {
+          "color": "§c",
+          "text": "fuel remaining!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "rare_drop_mining",
+      "raw": "§6§lRARE DROP! §5%1$s §b(+%2$s Magic Find)",
+      "text": "RARE DROP! %1$s (+%2$s Magic Find)",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "loot_item_name",
+          "example": "Glacite Jewel",
+          "desc": "服务器动态值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "111",
+          "desc": "服务器动态值"
+        }
+      ],
+      "translate": true,
+      "zh": "稀有掉落! %1$s (+%2$s 魔法寻宝)",
+      "segments": [
+        {
+          "color": "§6§l",
+          "text": "RARE DROP! ",
+          "zh": "稀有掉落! "
+        },
+        {
+          "color": "§5",
+          "text": "%1$s ",
+          "zh": "%1$s "
+        },
+        {
+          "color": "§b",
+          "text": "(+%2$s Magic Find)",
+          "zh": "(+%2$s 魔法寻宝)"
+        }
+      ]
+    }
+  ]
+}

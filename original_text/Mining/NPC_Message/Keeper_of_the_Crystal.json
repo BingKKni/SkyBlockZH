@@ -52,14 +52,14 @@
     {
       "id": "keeper_of_talk_to_me_when_you",
       "context": "",
-      "raw": "§fTalk to me when you have found a §cScavenged %s§f.",
-      "text": "Talk to me when you have found a Scavenged %s.",
+      "raw": "§fTalk to me when you have found a §c%s§f.",
+      "text": "Talk to me when you have found a %s.",
       "placeholders": [
         {
           "token": "%s",
           "desc": "",
-          "type": "item_name",
-          "example": ""
+          "type": "catalog_item_name",
+          "example": "Scavenged Lapis Sword"
         }
       ],
       "gloss": "",
@@ -73,8 +73,8 @@
         },
         {
           "color": "§c",
-          "text": "Scavenged %s",
-          "zh": "翻找到的 %s"
+          "text": "%s",
+          "zh": "%s"
         },
         {
           "color": "§f",
@@ -86,19 +86,19 @@
     {
       "id": "keeper_return_new_item",
       "context": "玩家首次交回某个“翻找碎片”道具时的反应",
-      "text": "Excellent! You have returned the Scavenged %s to it's rightful place!",
+      "text": "Excellent! You have returned the %s to it's rightful place!",
       "placeholders": [
         {
           "token": "%s",
-          "desc": "交回的道具类型(如 Hammer/Axe/Sword),专有名词不翻译",
-          "type": "item_name",
-          "example": "Golden Hammer"
+          "desc": "完整寻回道具名,沿用物品图鉴译名",
+          "type": "catalog_item_name",
+          "example": "Scavenged Golden Hammer"
         }
       ],
       "gloss": "原文 \"it's rightful place\" 疑似游戏文本本身的拼写瑕疵(应为 its),raw 未拿到确切颜色码版本,先按 Wiki 摘录的原样拼写记录,不要在采集阶段自行改成 its。",
       "translate": true,
-      "zh": "太好了! 你把翻找到的 %s 放回了它原本的位置!",
-      "raw": "§fExcellent! You have returned the §cScavenged %s §fto it's rightful place!",
+      "zh": "太好了! 你把%s 放回了它原本的位置!",
+      "raw": "§fExcellent! You have returned the §c%s §fto it's rightful place!",
       "segments": [
         {
           "color": "§f",
@@ -107,8 +107,8 @@
         },
         {
           "color": "§c",
-          "text": "Scavenged %s",
-          "zh": "翻找到的 %s"
+          "text": "%s",
+          "zh": "%s"
         },
         {
           "color": "§f",
@@ -147,19 +147,19 @@
     {
       "id": "keeper_return_duplicate",
       "context": "玩家试图重复交回同一个已经交过的道具类型时的反应",
-      "text": "You have already restored this Dwarf's Scavenged %s!",
+      "text": "You have already restored this Dwarf's %s!",
       "placeholders": [
         {
           "token": "%s",
           "desc": "重复交回的道具类型",
-          "type": "item_name",
-          "example": "Golden Hammer"
+          "type": "catalog_item_name",
+          "example": "Scavenged Golden Hammer"
         }
       ],
       "gloss": "",
       "translate": true,
       "zh": "你已经帮这位矮人找回过 %s 了!",
-      "raw": "You have already restored this Dwarf's §cScavenged %s§r!",
+      "raw": "You have already restored this Dwarf's §c%s§r!",
       "segments": [
         {
           "color": "",
@@ -168,8 +168,8 @@
         },
         {
           "color": "§c",
-          "text": "Scavenged %s",
-          "zh": "翻找到的 %s"
+          "text": "%s",
+          "zh": "%s"
         },
         {
           "color": "§r",

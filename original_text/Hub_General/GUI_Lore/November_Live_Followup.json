@@ -1,0 +1,420 @@
+{
+  "source": "本轮 SkyZH 运行时采集及聊天日志",
+  "lines": [
+    {
+      "id": "item_this_item_can_be_reclaimed",
+      "context": "旧属性回收提示；按完整句匹配不同折行",
+      "raw": "§cThis item can be reclaimed! Use §e/reclaim §cto take back what's rightfully yours!",
+      "text": "This item can be reclaimed! Use /reclaim to take back what's rightfully yours!",
+      "placeholders": [],
+      "translate": true,
+      "zh": "该物品包含已经失效的旧属性! 使用 /reclaim 可以取回原先打上的物品",
+      "segments": [
+        {
+          "color": "§c",
+          "text": "This item can be reclaimed! Use ",
+          "zh": "该物品包含已经失效的旧属性! 使用 "
+        },
+        {
+          "color": "§e",
+          "text": "/reclaim ",
+          "zh": "/reclaim "
+        },
+        {
+          "color": "§c",
+          "text": "to take back what's rightfully yours!",
+          "zh": "可以取回原先打上的物品"
+        }
+      ]
+    },
+    {
+      "id": "new_pets_lowest_level",
+      "context": "新宠物预览两行一起消费,不额外保留排序提示或空行",
+      "raw": "§cThis is a preview of Lvl 100. New pets are lowest level!",
+      "text": "This is a preview of Lvl 100. New pets are lowest level!",
+      "placeholders": [],
+      "gloss": "",
+      "translate": true,
+      "zh": "这是 100 级时的预览。"
+    },
+    {
+      "id": "reclaim_modified",
+      "raw": "§7Claim previous upgrades that have been modified or no longer serve a purpose on this item.",
+      "text": "Claim previous upgrades that have been modified or no longer serve a purpose on this item.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "取回该物品上已被修改或不再生效的升级。"
+    },
+    {
+      "id": "timecharm_progress",
+      "raw": "§7Obtained: §c%1$s/%2$s Timecharms",
+      "text": "Obtained: %1$s/%2$s Timecharms",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "7",
+          "desc": "服务器动态值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "8",
+          "desc": "服务器动态值"
+        }
+      ],
+      "translate": true,
+      "zh": "已获得: %1$s/%2$s 枚时光符",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Obtained: ",
+          "zh": "已获得: "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s/%2$s Timecharms",
+          "zh": "%1$s/%2$s 枚时光符"
+        }
+      ]
+    },
+    {
+      "id": "timecharm_scale",
+      "raw": "§7Gains more stats and increases in rarity as you obtain more §cTimecharms§7.",
+      "text": "Gains more stats and increases in rarity as you obtain more Timecharms.",
+      "placeholders": [],
+      "translate": true,
+      "zh": "获得的时光符越多,该物品的属性和稀有度就越高。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Gains more stats and increases in rarity as you obtain more ",
+          "zh": "获得的"
+        },
+        {
+          "color": "§c",
+          "text": "Timecharms",
+          "zh": "时光符"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "越多,该物品的属性和稀有度就越高。"
+        }
+      ]
+    },
+    {
+      "id": "silex_desc",
+      "raw": "§7When applied to a pickaxe or a drill, increases its §9Efficiency §7level by §a%1$s§7!",
+      "text": "When applied to a pickaxe or a drill, increases its Efficiency level by %1$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "1",
+          "desc": "服务器动态值"
+        }
+      ],
+      "translate": true,
+      "zh": "应用于镐或钻头时,使其效率等级提升 %1$s!",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "When applied to a pickaxe or a drill, increases its ",
+          "zh": "应用于镐或钻头时,使其"
+        },
+        {
+          "color": "§9",
+          "text": "Efficiency ",
+          "zh": "效率"
+        },
+        {
+          "color": "§7",
+          "text": "level by ",
+          "zh": "等级提升 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s",
+          "zh": "%1$s"
+        },
+        {
+          "color": "§7",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "silex_limit",
+      "raw": "§8Can be applied up to Efficiency %1$s.",
+      "text": "Can be applied up to Efficiency %1$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "tier",
+          "example": "X",
+          "desc": "服务器动态值"
+        }
+      ],
+      "translate": true,
+      "zh": "最高可提升至效率 %1$s。"
+    },
+    {
+      "id": "silex_requires",
+      "raw": "§8Requires Efficiency %1$s!",
+      "text": "Requires Efficiency %1$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "tier",
+          "example": "V",
+          "desc": "服务器动态值"
+        }
+      ],
+      "translate": true,
+      "zh": "需要效率 %1$s!"
+    },
+    {
+      "id": "breaking_power_info",
+      "raw": "§7Breaking Power allows you to mine stronger blocks",
+      "text": "Breaking Power allows you to mine stronger blocks",
+      "placeholders": [],
+      "translate": true,
+      "zh": "破坏力越高,能挖掘的方块就越坚硬。"
+    },
+    {
+      "id": "ghost_powder_drop",
+      "raw": "§7Killing a §fGhost §7has a §a%1$s% §7chance to drop some §2Mithril Powder§7.",
+      "text": "Killing a Ghost has a %1$s% chance to drop some Mithril Powder.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "5",
+          "desc": "服务器动态值"
+        }
+      ],
+      "translate": true,
+      "zh": "击杀幽灵时,有 %1$s% 的概率掉落一些秘银粉末。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Killing a ",
+          "zh": "击杀"
+        },
+        {
+          "color": "§f",
+          "text": "Ghost ",
+          "zh": "幽灵"
+        },
+        {
+          "color": "§7",
+          "text": "has a ",
+          "zh": "时,有 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s% ",
+          "zh": "%1$s% "
+        },
+        {
+          "color": "§7",
+          "text": "chance to drop some ",
+          "zh": "的概率掉落一些"
+        },
+        {
+          "color": "§2",
+          "text": "Mithril Powder",
+          "zh": "秘银粉末"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "double_xp_orbs",
+      "raw": "§7Grants a §a%1$s% §7chance to get §a%2$sx XP Orbs §7from killing mobs and mining.",
+      "text": "Grants a %1$s% chance to get %2$sx XP Orbs from killing mobs and mining.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "37.5",
+          "desc": "服务器动态值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "2",
+          "desc": "服务器动态值"
+        }
+      ],
+      "translate": true,
+      "zh": "有 %1$s% 的概率获得 %2$s 倍经验球，击杀生物或挖矿时生效。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants a ",
+          "zh": "有 "
+        },
+        {
+          "color": "§a",
+          "text": "%1$s% ",
+          "zh": "%1$s% "
+        },
+        {
+          "color": "§7",
+          "text": "chance to get ",
+          "zh": "的概率获得 "
+        },
+        {
+          "color": "§a",
+          "text": "%2$sx XP Orbs ",
+          "zh": "%2$s 倍经验球"
+        },
+        {
+          "color": "§7",
+          "text": "from killing mobs and mining.",
+          "zh": "，击杀生物或挖矿时生效。"
+        }
+      ]
+    },
+    {
+      "id": "year_limit_lore",
+      "raw": "§cCan only buy %1$s per SkyBlock year!",
+      "text": "Can only buy %1$s per SkyBlock year!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "64",
+          "desc": "服务器动态值"
+        }
+      ],
+      "translate": true,
+      "zh": "每个空岛年限购 %1$s 个!"
+    },
+    {
+      "id": "mining_xp_orbs",
+      "raw": "§7Earn §a+%1$s% XP Orbs §7from mining.",
+      "text": "Earn +%1$s% XP Orbs from mining.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "100",
+          "desc": "服务器动态值"
+        }
+      ],
+      "translate": true,
+      "zh": "挖矿时获得的经验球 +%1$s%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Earn ",
+          "zh": "挖矿时获得的"
+        },
+        {
+          "color": "§a",
+          "text": "+%1$s% XP Orbs ",
+          "zh": "经验球 +%1$s%"
+        },
+        {
+          "color": "§7",
+          "text": "from mining.",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "dungeon_score_helmet",
+      "raw": "§7Dungeon Score obtained while wearing this helmet: §c%1$s",
+      "text": "Dungeon Score obtained while wearing this helmet: %1$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "47,376",
+          "desc": "服务器动态值"
+        }
+      ],
+      "translate": true,
+      "zh": "佩戴此头盔时获得的地牢评分: %1$s",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Dungeon Score obtained while wearing this helmet: ",
+          "zh": "佩戴此头盔时获得的地牢评分: "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s",
+          "zh": "%1$s"
+        }
+      ]
+    },
+    {
+      "id": "xp_orbs_all_sources",
+      "raw": "§7Earn §8%1$s➜§a+%2$s%§f §aXP Orbs §7from all sources.",
+      "text": "Earn %1$s➜+%2$s% XP Orbs from all sources.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "260",
+          "desc": "服务器动态值"
+        },
+        {
+          "token": "%2$s",
+          "type": "number",
+          "example": "265",
+          "desc": "服务器动态值"
+        }
+      ],
+      "translate": true,
+      "zh": "从所有来源获得的经验球 +%1$s%➜+%2$s%。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Earn ",
+          "zh": "从所有来源获得的",
+          "order": 0
+        },
+        {
+          "color": "§8",
+          "text": "%1$s➜",
+          "zh": "+%1$s%➜",
+          "order": 3
+        },
+        {
+          "color": "§a",
+          "text": "+%2$s%",
+          "zh": "+%2$s%",
+          "order": 4
+        },
+        {
+          "color": "§f",
+          "text": " ",
+          "zh": " ",
+          "order": 2
+        },
+        {
+          "color": "§a",
+          "text": "XP Orbs ",
+          "zh": "经验球",
+          "order": 1
+        },
+        {
+          "color": "§7",
+          "text": "from all sources.",
+          "zh": "。",
+          "order": 5
+        }
+      ]
+    }
+  ]
+}

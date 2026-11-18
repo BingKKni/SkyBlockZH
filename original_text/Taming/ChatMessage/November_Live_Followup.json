@@ -1,0 +1,95 @@
+{
+  "source": "2026-11-18 至 19 日 SkyZH 运行时采集、服务器日志与截图",
+  "lines": [
+    {
+      "id": "pet_level_summoned",
+      "context": "11 月实测文本",
+      "raw": "§aYou summoned your §7[Lvl %1$s] §6%2$s§a!",
+      "text": "You summoned your [Lvl %1$s] %2$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "100",
+          "desc": "随游戏状态变化的数值"
+        },
+        {
+          "token": "%2$s",
+          "type": "mob_name",
+          "example": "Phoenix",
+          "desc": "宠物名称",
+          "mob": false
+        }
+      ],
+      "translate": true,
+      "zh": "你召唤了宠物 [%1$s 级] %2$s!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "You summoned your ",
+          "zh": "你召唤了宠物 "
+        },
+        {
+          "color": "§7",
+          "text": "[Lvl %1$s] ",
+          "zh": "[%1$s 级] "
+        },
+        {
+          "color": "§6",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§a",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    },
+    {
+      "id": "pet_level_despawned",
+      "context": "11 月实测文本",
+      "raw": "§aYou despawned your §7[Lvl %1$s] §6%2$s§a!",
+      "text": "You despawned your [Lvl %1$s] %2$s!",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "100",
+          "desc": "随游戏状态变化的数值"
+        },
+        {
+          "token": "%2$s",
+          "type": "mob_name",
+          "example": "Phoenix",
+          "desc": "宠物名称",
+          "mob": false
+        }
+      ],
+      "translate": true,
+      "zh": "你收回了宠物 [%1$s 级] %2$s!",
+      "segments": [
+        {
+          "color": "§a",
+          "text": "You despawned your ",
+          "zh": "你收回了宠物 "
+        },
+        {
+          "color": "§7",
+          "text": "[Lvl %1$s] ",
+          "zh": "[%1$s 级] "
+        },
+        {
+          "color": "§6",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§a",
+          "text": "!",
+          "zh": "!"
+        }
+      ]
+    }
+  ]
+}

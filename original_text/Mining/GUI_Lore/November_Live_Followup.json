@@ -1,0 +1,89 @@
+{
+  "source": "SkyZH_Logs/skyzh-capture 与服务器聊天日志；山心技能另参照 NEU constants/hotmlayout.json",
+  "lines": [
+    {
+      "id": "hotm_spread_timed_grant",
+      "context": "11 月实测文本",
+      "raw": "§7Grants §e+%1$s Mining Spread§7 for §a%2$s§7.",
+      "text": "Grants +%1$s Mining Spread for %2$s.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "200",
+          "desc": "随游戏状态变化的数值"
+        },
+        {
+          "token": "%2$s",
+          "type": "duration",
+          "example": "25s",
+          "desc": "技能持续时间"
+        }
+      ],
+      "translate": true,
+      "zh": " 挖掘扩散 +%1$s,持续 %2$s。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§e",
+          "text": "+%1$s Mining Spread",
+          "zh": " 挖掘扩散 +%1$s"
+        },
+        {
+          "color": "§7",
+          "text": " for ",
+          "zh": ",持续 "
+        },
+        {
+          "color": "§a",
+          "text": "%2$s",
+          "zh": "%2$s"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    },
+    {
+      "id": "hotm_mining_fortune_grant",
+      "context": "11 月实测文本",
+      "raw": "§7Grants §6+%1$s Mining Fortune§7.",
+      "text": "Grants +%1$s Mining Fortune.",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "3",
+          "desc": "随游戏状态变化的数值"
+        }
+      ],
+      "translate": true,
+      "zh": " 挖掘时运 +%1$s。",
+      "segments": [
+        {
+          "color": "§7",
+          "text": "Grants ",
+          "zh": "",
+          "omit": true
+        },
+        {
+          "color": "§6",
+          "text": "+%1$s Mining Fortune",
+          "zh": " 挖掘时运 +%1$s"
+        },
+        {
+          "color": "§7",
+          "text": ".",
+          "zh": "。"
+        }
+      ]
+    }
+  ]
+}

@@ -1,5 +1,12 @@
 {
   "cases": [
+    {"name":"蛮力使用原始属性说明","source":["§7Grants §e+200 Mining Spread§7 for §a§a25s§7."],"expected":"§e 挖掘扩散 +200§7,持续 §a25 秒§7。","consumed":1},
+    {"name":"挖掘时运不借技能分类名","source":["§7Grants §6+3 Mining Fortune§7."],"expected":"§6 挖掘时运 +3§7。","consumed":1},
+    {"name":"新宠物提示整行消除","source":["§cThis is a preview of Lvl 100.","§cNew pets are lowest level!"],"expected":"§c这是 100 级时的预览。","consumed":2},
+    {"name":"取回提示消费三行","source":["§cThis item can be reclaimed! Use","§e/reclaim §cto take back what's","§crightfully yours!"],"expected":"§c该物品包含已经失效的旧属性! 使用 §e/reclaim §c可以取回原先打上的物品","consumed":3},
+    {"name":"召唤神话宠物","source":["§aYou summoned your §7[Lvl 100] §cPhoenix§a!"],"expected":"§a你召唤了宠物 §7[100 级] §c凤凰§a!","surface":"ChatMessage","row":false},
+    {"name":"重复交回保留物品颜色","source":["You have already restored this Dwarf's §cScavenged Diamond Axe§r!"],"expected":"你已经帮这位矮人找回过§c翻找到的钻石斧§r了!","surface":"NPC_Message","row":false},
+    {"name":"已放置保留水晶名与状态","source":[" §6Amber§f: §a✔ Placed"],"expected":" §6Amber§f: §a✔ 已放置","surface":"TabList","row":true},
     {"name": "银行余额上限使用 M 缩写", "surface": "GUI_Item", "source": ["§7Balance limit: §6500 Million"], "expected": "§7余额上限: §6500M"},
     {"name": "银行余额上限使用 B 缩写", "surface": "GUI_Item", "source": ["§7Balance limit: §61 Billion"], "expected": "§7余额上限: §61B"},
     {"name":"银行分档保留 10M","surface":"GUI_Item","source":[" §eFirst §610M §ecoins yields §b2% §einterest."],"expected":" §e前 §610M §e硬币获得 §b2% §e的利息。"},
