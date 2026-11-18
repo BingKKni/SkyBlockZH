@@ -245,7 +245,7 @@ public final class SkyZHConfig {
 	JsonObject toJson() {
 		JsonObject help = new JsonObject();
 		help.addProperty("enabled", "是否启用 Mod 功能。关闭将不翻译任何文本。");
-		help.addProperty("updateCheck", "是否在进入空岛生存后自动检查并下载 Mod 和翻译更新。");
+		help.addProperty("updateCheck", "是否在进入 Hypixel 后自动检查并下载 Mod 和翻译更新；每次启动客户端后的首次检查不受冷却限制。");
 		help.addProperty("updateChannel", "更新渠道：release 为正式版；beta 为测试版。");
 		help.addProperty("updateInstall", "发现新版 Mod 后：auto 自动下载并在下次重启时安装；manual 自动下载，点击聊天提示后才安装；notify 仅提示，点击后再下载并安装。");
 		help.addProperty("proxyUrl", "更新检查和下载优先使用的代理（http/https/socks5://域名或IP:端口）。失败时静默直连重试。可用 /skyzh proxy 设置。");

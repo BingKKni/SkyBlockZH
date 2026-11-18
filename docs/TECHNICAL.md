@@ -138,7 +138,7 @@ Mod Menu is a soft dependency. Without it, edit `config/skyzh.json`, which docum
 | Option | Default | Meaning |
 |---|---|---|
 | `enabled` | on | Master switch. Turning it off prevents translation and automatic update checks; explicit checks remain available |
-| `updateCheck` | on | Automatically check and download Mod and translation updates in SkyBlock. Translations apply immediately; Mod installation waits for exit. `/skyzh updatecheck on/off` controls automatic updates; no argument checks Mod then translations, while `mod` / `translate` checks only that target. Explicit checks bypass both switches, the SkyBlock requirement and cooldowns; initial corpus loading must finish first. All aliases share one busy guard |
+| `updateCheck` | on | Automatically check and download Mod and translation updates on Hypixel. Translations apply immediately; Mod installation waits for exit. `/skyzh updatecheck on/off` controls automatic updates; no argument checks Mod then translations, while `mod` / `translate` checks only that target. Explicit checks bypass both switches, the Hypixel requirement and cooldowns; initial corpus loading must finish first. All aliases share one busy guard |
 | `updateChannel` | `release` | Which Mod builds updates look for: formal Releases, or the per-commit `beta` builds from Actions. The settings page merges it with `updateCheck` into "Off / Release / Beta" |
 | `updateInstall` | `auto` | After a newer Mod is found: `auto` downloads and installs on exit; `manual` downloads and posts `[点击安装]`; `notify` only posts `[点击下载并安装]`. Both repeat on every check (about hourly), replacing the download when a newer build appears. Translations are unaffected |
 | `translateSkyBlockName` | on | Render "SkyBlock" as 空岛生存. Compounds use the short form and get their spacing fixed: `你的 SkyBlock 等级` → `你的空岛等级`; standalone occurrences keep the full name. See below for where the substitution is allowed to happen |
@@ -153,7 +153,7 @@ Mod Menu is a soft dependency. Without it, edit `config/skyzh.json`, which docum
 | `captureNotifications` | on | Report newly captured untranslated text, colour errors and mixed-language text in chat. Turning reports off does not stop file writes |
 | `autoClearCapture` | **off** | Clear the previous captures once per client launch, whether or not capture is enabled or a server is joined. Reconnecting never clears files |
 
-The settings page uses MoulConfig (also used by SkyHanni and Skyblocker's default settings): a "SkyZH <version> Beta" title bar, categories on the left (General, Translation,
+The settings page uses MoulConfig (also used by SkyHanni and Skyblocker's default settings): a "SkyZH <version>" title bar (with Beta only on test builds), categories on the left (General, Translation,
 Advanced), and a search field at the top right that filters by option name and description and hides empty categories. Each
 option is a card with a toggle or dropdown on the left and its description on the right. Chinese descriptions reuse `TextLayout` wrapping without shrinking the font; "Update installation" appears only while update checks are
 on. Display priority and capture are collapsible blocks in Advanced. With the master switch off, every other option is greyed out.
@@ -378,7 +378,7 @@ Keep GitHub download links available so older clients can upgrade automatically.
 Release `published`, `edited` and `released` events dispatch a main-branch deployment, mirroring the latest formal Release after checking ID,
 version, channel, size and SHA-256. Failed runs can be retried by manual dispatch. Pushes generate translations and beta builds, and also mirror changed formal Release attachments.
 
-Automatic updates require both switches, verified SkyBlock entry and completion of initial corpus loading, even if that load failed.
+Automatic updates require both switches, verified Hypixel entry and completion of initial corpus loading, even if that load failed. The first automatic check per client launch ignores previous deadlines; reconnecting does not reset them.
 Explicit commands and update buttons require neither switch nor SkyBlock. Results appear in the current world's chat;
 translation updates do not enable translation. Automatic checks, explicit commands and retry buttons share one worker and busy guard. Combined checks run Mod first, then translations;
 per-target cooldowns remain independent, and a Mod-check failure does not prevent the translation check.
@@ -403,7 +403,7 @@ Archive integrity, matching inner metadata and full corpus compilation must pass
 Failures retain the installed file and running index. An active manual bundle remains selected after an automatic update.
 
 `config/skyzh-updates.json` persists separate outcomes and deadlines. Success, no update and failures normally wait one hour;
-API incompatibility waits seven days only for translations. Due checks run again while in SkyBlock or on the next eligible launch, without retry limits.
+API incompatibility waits seven days only for translations. Due checks run again while on Hypixel or on the next eligible connection, without retry limits.
 Local Mod/API changes invalidate the relevant old cooldown. Directory initialization failures also persist their cooldown in the config directory.
 Chat uses short explanations; detailed errors stay in logs. Retry buttons bypass deadlines while reusing the same workers, validation and busy guards.
 Initialization retries prepare directories again. An incompatible-translation Mod-download button requires both a newer Mod and newer translation data;
@@ -527,7 +527,7 @@ server instead of read off a sidebar drawn for a human. The library is compiled 
 bundled; without that mod the integration does not load and the other two readings carry on.
 
 With capture **off** — every ordinary player — nothing is subscribed and no packet is sent to Hypixel.
-This is independent of update checks: automatic checks require both switches and verified SkyBlock entry;
+This is independent of update checks: automatic checks require both switches and verified Hypixel entry;
 explicit commands and update buttons bypass those conditions. Both use the update domain for checks and downloads.
 No player/game data is uploaded and no update traffic is sent to Hypixel. The site's `release.json` identifies formal Mod releases, ignoring `+mc26.x` metadata;
 translation pushes deploy files and manifests to the same site.

@@ -140,7 +140,10 @@ public final class SkyZHConfigScreen {
 			new Category("about", layout,
 				info("version", Component.literal("SkyZH " + version())),
 				info("build", buildDescription()),
-				info("credits", Component.literal("inkkni\nCute_leaf_ovo"))));
+				info("credits", Component.literal("inkkni\nCute_leaf_ovo")),
+				new Group("licenses",
+					license("MoulConfig", "LGPL-3.0-or-later", "https://github.com/NotEnoughUpdates/MoulConfig"),
+					license("LibNinePatch", "MPL-2.0", "https://github.com/Juuxel/LibNinePatch"))));
 		return new SettingsScreen(new MoulConfigEditor<>(ProcessedCategory.collect(categories), layout), parent);
 	}
 
@@ -191,7 +194,7 @@ public final class SkyZHConfigScreen {
 		config.save();
 	}
 
-	/** Only the two link labels carry interaction; surrounding text remains ordinary chat. */
+	/** Only the GitHub label carries interaction; surrounding text remains ordinary chat. */
 	public static Component welcomeMessage() {
 		return Component.literal("[SkyZH] ").withStyle(ChatFormatting.AQUA)
 			.append(Component.literal("感谢您下载 ").withStyle(ChatFormatting.GREEN))
@@ -199,9 +202,6 @@ public final class SkyZHConfigScreen {
 			.append(Component.literal("！目前 Mod 的翻译覆盖尚不完全，如有任何建议、反馈（翻译错误，排版异常，对 Mod 功能的建议等），欢迎前往 ").withStyle(ChatFormatting.GREEN))
 			.append(welcomeLink("[Github]", GITHUB_URI, "点击前往开发者的项目仓库!", ChatFormatting.AQUA))
 			.append(Component.literal(" ").withStyle(ChatFormatting.AQUA))
-			.append(Component.literal("或添加 ").withStyle(ChatFormatting.GREEN))
-			.append(welcomeLink("[QQ官方群]", URI.create("https://qm.qq.com/q/WLfP9iPBam"), "点击添加QQ官方群!", ChatFormatting.YELLOW))
-			.append(Component.literal(" ").withStyle(ChatFormatting.YELLOW))
 			.append(Component.literal("向我们提出意见！").withStyle(ChatFormatting.GREEN));
 	}
 
@@ -262,6 +262,10 @@ public final class SkyZHConfigScreen {
 			}).always();
 	}
 
+	private static String settingsTitle(String version, String buildChannel) {
+		return "SkyZH " + version + ("beta".equals(buildChannel) ? " Beta" : "");
+	}
+
 	private static Component buildDescription() {
 		var build = UpdateChecker.buildInfo();
 		String commits = build.getProperty("commits", "0");
@@ -273,8 +277,18 @@ public final class SkyZHConfigScreen {
 
 	/** The greeting that heads General, with the way to report a problem. */
 	private static Entry welcome() {
-		Runnable report = () -> ConfirmLinkScreen.confirmLinkNow(ClientGui.screen(Minecraft.getInstance()), ISSUES_URI);
-		Entry entry = new Entry("welcome", Component.translatable("skyzh.welcome.title"), Component.translatable("skyzh.welcome.description"),
+		Entry entry = link("welcome", Component.translatable("skyzh.welcome.title"), Component.translatable("skyzh.welcome.description"), ISSUES_URI);
+		entry.heading = true;
+		return entry;
+	}
+
+	private static Entry license(String project, String license, String url) {
+		return link(project, Component.literal(project), Component.literal(license), URI.create(url));
+	}
+
+	private static Entry link(String key, Component title, Component description, URI uri) {
+		Runnable report = () -> ConfirmLinkScreen.confirmLinkNow(ClientGui.screen(Minecraft.getInstance()), uri);
+		return new Entry(key, title, description,
 			Runnable.class, () -> report, ignored -> {},
 			self -> new GuiOptionEditorButton(self, -1, MoulConfigPlatform.wrap(Component.literal("GitHub")), self.getConfig()) {
 				@Override
@@ -282,15 +296,26 @@ public final class SkyZHConfigScreen {
 
 				@Override
 				public int getHeight() { return getDelegate().getHeight(); }
-			});
-		entry.heading = true;
-		return entry.always();
+			}).always();
 	}
 
 	/** Keep MoulConfig's cards and controls, but use our existing CJK-aware wrapping for descriptions. */
 	private static GuiComponent card(ComponentEditor owner, Entry entry, GuiComponent control) {
 		return owner.new EditorComponentWrapper(new CenterComponent(control)) {
 			private int descriptionWidth = 156;
+
+			@Override
+			protected void renderTitle(GuiImmediateContext context) {
+				if (entry.heading) { super.renderTitle(context); return; }
+				var render = context.getRenderContext();
+				var font = render.getMinecraft().getDefaultFontRenderer();
+				// The wrapper places its centered child in the area starting at y=15.
+				int controlTop = 15 + Math.max(0, (context.getHeight() - 15) / 2 - control.getHeight() / 2);
+				int y = entry.type == Void.class ? (context.getHeight() - 2) / 2
+					: Math.max(font.getHeight() / 2, controlTop - (font.getHeight() + 1) / 2 - 2);
+				render.drawStringCenteredScaledMaxWidth(entry.getName(), font, context.getWidth() / 6,
+					y, true, context.getWidth() / 3 - 10, 0xe0e0e0);
+			}
 
 			private List<Component> lines(int width) {
 				StyledText text = StyledText.of(entry.description);
@@ -413,10 +438,12 @@ public final class SkyZHConfigScreen {
 	/** What MoulConfig asks the config object about the screen as a whole. */
 	private static final class Layout extends Config {
 		private final List<Social> socials = List.of(new GitHub());
+		private final StructuredText title = MoulConfigPlatform.wrap(Component.literal(settingsTitle(version(),
+			UpdateChecker.buildInfo().getProperty("channel"))).withStyle(ChatFormatting.GOLD));
 
 		@Override
 		public StructuredText getTitle() {
-			return MoulConfigPlatform.wrap(Component.literal("SkyZH " + version() + " Beta").withStyle(ChatFormatting.GOLD));
+			return title;
 		}
 
 		@Override

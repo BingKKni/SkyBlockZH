@@ -41,11 +41,21 @@ public final class UpdateChecker {
 	private static volatile long initializeAfter;
 	private static volatile UpdateState clocks;
 	private static long nextTick;
+	private static final FirstAutomatic INITIALIZATION = new FirstAutomatic();
+
+	/** Client tick only. A busy worker does not consume this process's first eligible attempt. */
+	static final class FirstAutomatic {
+		private boolean pending = true;
+
+		void attempt(java.util.function.Predicate<Boolean> start) {
+			if (start.test(pending)) pending = false;
+		}
+	}
 
 	private UpdateChecker() {}
 
-	public static boolean eligible(boolean enabled, boolean updates, boolean skyBlock, boolean initialLoadFinished) {
-		return enabled && updates && skyBlock && initialLoadFinished;
+	public static boolean eligible(boolean enabled, boolean updates, boolean hypixel, boolean initialLoadFinished) {
+		return enabled && updates && hypixel && initialLoadFinished;
 	}
 
 	static boolean enabled(boolean requested) {
@@ -54,22 +64,23 @@ public final class UpdateChecker {
 
 	public static void tick(Minecraft minecraft) {
 		if (minecraft == null || minecraft.player == null || minecraft.level == null || minecraft.gui == null) return;
-		tick(HypixelServer.isSkyBlock(), !Translator.loading(),
+		tick(HypixelServer.isHypixel(), !Translator.loading(),
 			message -> ClientGui.chat(minecraft, message), UpdateChecker::automaticTick);
 	}
 
 	/** Keep result delivery independent of the gates used only for unprompted network checks. */
-	static void tick(boolean skyBlock, boolean initialLoadFinished, java.util.function.Consumer<Component> display, Runnable automatic) {
+	static void tick(boolean hypixel, boolean initialLoadFinished, java.util.function.Consumer<Component> display, Runnable automatic) {
 		for (Component message; (message = MESSAGES.poll()) != null;) display.accept(UpdateMessages.chat(message));
-		if (eligible(SkyZHConfig.get().enabled, SkyZHConfig.get().updateCheck, skyBlock, initialLoadFinished)) automatic.run();
+		if (eligible(SkyZHConfig.get().enabled, SkyZHConfig.get().updateCheck, hypixel, initialLoadFinished)) automatic.run();
 	}
 
 	private static void automaticTick() {
 		long now = System.currentTimeMillis();
 		if (now < nextTick) return;
 		nextTick = now + 1000;
-		if (service == null) initialize(false, Action.CHECK);
-		else service.tick();
+		if (service == null) {
+			INITIALIZATION.attempt(first -> initialize(false, Action.CHECK, first));
+		} else service.tick();
 	}
 
 	/** Explicit checks bypass world, power, automatic settings and cooldowns, sharing the same worker. */
@@ -89,7 +100,7 @@ public final class UpdateChecker {
 
 	private static boolean request(Action action) {
 		Service current = service;
-		return current == null ? initialize(true, action) : current.retry(action);
+		return current == null ? initialize(true, action, true) : current.retry(action);
 	}
 
 	/** Hidden local commands contain only an issued token, never a path or a download URL. */
@@ -109,16 +120,16 @@ public final class UpdateChecker {
 		});
 	}
 
-	private static boolean initialize(boolean immediate, Action requested) {
+	private static boolean initialize(boolean immediate, Action requested, boolean bypassCooldown) {
 		String identity = initializationIdentity();
 		long now = System.currentTimeMillis();
-		if ((!immediate && (now < initializeAfter || (clocks != null && !clocks.due("initialization", identity, now))))
+		if ((!bypassCooldown && (now < initializeAfter || (clocks != null && !clocks.due("initialization", identity, now))))
 			|| !STARTING.compareAndSet(false, true)) return false;
 		try {
 			Thread.startVirtualThread(() -> {
 				try {
 					if (clocks == null) clocks = new UpdateState(FabricLoader.getInstance().getConfigDir().resolve("skyzh-updates.json"));
-					if (!immediate && !clocks.due("initialization", identity, System.currentTimeMillis())) return;
+					if (!bypassCooldown && !clocks.due("initialization", identity, System.currentTimeMillis())) return;
 					Service next = new Service(clocks);
 					try { clocks.initialized(identity, System.currentTimeMillis()); }
 					catch (IOException persistence) {
@@ -181,6 +192,7 @@ public final class UpdateChecker {
 		private final String translationIdentity = TranslationPack.api() + ":" + installed;
 		private final AtomicBoolean busy = new AtomicBoolean();
 		private volatile Process installer;
+		private final FirstAutomatic automaticCheck = new FirstAutomatic();
 		private volatile String unpublishedTranslation;
 
 		Service(UpdateState state) throws IOException {
@@ -197,25 +209,25 @@ public final class UpdateChecker {
 					message(UpdateMessages.modFailed(ACTIONS.issue(Action.MOD)));
 				});
 			}
-			start(Action.CHECK, false);
+			automaticCheck.attempt(first -> start(Action.CHECK, false, first));
 		}
 
 		boolean retry(Action action) {
-			return start(action, true);
+			return start(action, true, true);
 		}
 
-		private boolean start(Action action, boolean immediate) {
+		private boolean start(Action action, boolean requested, boolean bypassCooldown) {
 			long now = System.currentTimeMillis();
-			boolean due = immediate || state.due("mod", installed, now) || state.due("translations", translationIdentity, now);
-			return launch(enabled(immediate), due, immediate, busy, () -> runChecks(action,
-				() -> check("mod", installed, immediate, () -> checkMod(immediate, action == Action.INSTALL)),
-				() -> check("translations", translationIdentity, immediate, () -> checkTranslations(immediate))), Thread::startVirtualThread);
+			boolean due = bypassCooldown || state.due("mod", installed, now) || state.due("translations", translationIdentity, now);
+			return launch(enabled(requested), due, bypassCooldown, busy, () -> runChecks(action,
+				() -> check("mod", installed, requested, bypassCooldown, () -> checkMod(requested, action == Action.INSTALL)),
+				() -> check("translations", translationIdentity, requested, bypassCooldown, () -> checkTranslations(requested))), Thread::startVirtualThread);
 		}
 
-		private void check(String lane, String identity, boolean immediate, Checked work) {
-			if (!enabled(immediate) || (!immediate && !state.due(lane, identity, System.currentTimeMillis()))) return;
+		private void check(String lane, String identity, boolean requested, boolean bypassCooldown, Checked work) {
+			if (!enabled(requested) || (!bypassCooldown && !state.due(lane, identity, System.currentTimeMillis()))) return;
 			try { work.run(); }
-			catch (NoMatchingDownload e) { if (immediate) message(UpdateMessages.noModDownload()); }
+			catch (NoMatchingDownload e) { if (requested) message(UpdateMessages.noModDownload()); }
 			catch (Exception e) {
 				LOGGER.warn("SkyZH {} 更新失败", lane, e);
 				JsonObject details = new JsonObject(); details.addProperty("error", e.toString());

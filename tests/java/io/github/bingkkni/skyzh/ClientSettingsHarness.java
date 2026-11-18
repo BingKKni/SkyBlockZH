@@ -260,11 +260,10 @@ public final class ClientSettingsHarness {
 	private static void welcome() {
 		Component message = io.github.bingkkni.skyzh.gui.SkyZHConfigScreen.welcomeMessage();
 		check("首次欢迎消息完整文案及颜色", TranslationHarness.legacy(message),
-			"§b[SkyZH] §a感谢您下载 §bSkyBlockZH§a！目前 Mod 的翻译覆盖尚不完全，如有任何建议、反馈（翻译错误，排版异常，对 Mod 功能的建议等），欢迎前往 §b[Github]§b §a或添加 §e[QQ官方群]§e §a向我们提出意见！");
+			"§b[SkyZH] §a感谢您下载 §bSkyBlockZH§a！目前 Mod 的翻译覆盖尚不完全，如有任何建议、反馈（翻译错误，排版异常，对 Mod 功能的建议等），欢迎前往 §b[Github]§b §a向我们提出意见！");
 		var text = io.github.bingkkni.skyzh.text.StyledText.of(message);
-		for (String[] link : List.of(
-			new String[]{"[Github]", "https://github.com/BingKKni/SkyBlockZH", "点击前往开发者的项目仓库!"},
-			new String[]{"[QQ官方群]", "https://qm.qq.com/q/WLfP9iPBam", "点击添加QQ官方群!"})) {
+		{
+			String[] link = {"[Github]", "https://github.com/BingKKni/SkyBlockZH", "点击前往开发者的项目仓库!"};
 			int start = text.plain().indexOf(link[0]);
 			for (int i = start; i < start + link[0].length(); i++) {
 				Style style = text.styleAt(i);
@@ -281,6 +280,10 @@ public final class ClientSettingsHarness {
 	}
 
 	private static void about() throws Exception {
+		var title = io.github.bingkkni.skyzh.gui.SkyZHConfigScreen.class.getDeclaredMethod("settingsTitle", String.class, String.class);
+		title.setAccessible(true);
+		check("正式版标题不带 Beta", title.invoke(null, "0.9", "release"), "SkyZH 0.9");
+		check("测试版标题带 Beta", title.invoke(null, "0.9", "beta"), "SkyZH 0.9 Beta");
 		var info = io.github.bingkkni.skyzh.gui.SkyZHConfigScreen.class
 			.getDeclaredMethod("info", String.class, Component.class);
 		info.setAccessible(true);
@@ -320,9 +323,9 @@ public final class ClientSettingsHarness {
 		}
 		for (int mask = 0; mask < 16; mask++) {
 			boolean power = (mask & 1) != 0, updates = (mask & 2) != 0;
-			boolean skyBlock = (mask & 4) != 0, ready = (mask & 8) != 0;
-			check("仅空岛生存且两项开关开启、首次加载结束时检查 " + mask,
-				UpdateChecker.eligible(power, updates, skyBlock, ready), mask == 15);
+			boolean hypixel = (mask & 4) != 0, ready = (mask & 8) != 0;
+			check("仅在 Hypixel 且两项开关开启、首次加载结束时检查 " + mask,
+				UpdateChecker.eligible(power, updates, hypixel, ready), mask == 15);
 		}
 	}
 

@@ -30,6 +30,7 @@ public final class UpdateInteractionHarness {
 		messages();
 		actions();
 		retries();
+		firstAutomatic();
 		manualChecks();
 		outsideSkyBlock();
 		uninstall(root.resolve("manual-removal"));
@@ -104,6 +105,18 @@ public final class UpdateInteractionHarness {
 		String expired = token(actions.issue(Action.CHECK));
 		for (int i = 0; i < 128; i++) actions.issue(Action.CHECK);
 		check("按钮令牌记录有容量上限", !actions.run(expired, action -> true));
+	}
+
+	private static void firstAutomatic() {
+		for (int launch = 0; launch < 2; launch++) {
+			var session = new UpdateChecker.FirstAutomatic();
+			List<Boolean> bypasses = new java.util.ArrayList<>();
+			for (boolean admitted : List.of(false, true, false, true)) {
+				session.attempt(first -> { bypasses.add(first); return admitted; });
+			}
+			check("客户端启动后仅首次被受理的自动检查跳过冷却 " + launch,
+				bypasses.equals(List.of(true, true, false, false)));
+		}
 	}
 
 	private static void retries() {
@@ -213,17 +226,17 @@ public final class UpdateInteractionHarness {
 			for (int mask = 0; mask < 16; mask++) {
 				config.enabled = (mask & 1) != 0;
 				config.updateCheck = (mask & 2) != 0;
-				boolean skyBlock = (mask & 4) != 0, loaded = (mask & 8) != 0;
+				boolean hypixel = (mask & 4) != 0, loaded = (mask & 8) != 0;
 				enqueue.invoke(null, UpdateMessages.current(true));
 				enqueue.invoke(null, UpdateMessages.translationUpdated(false, ""));
 				List<Component> delivered = new java.util.ArrayList<>();
 				AtomicInteger checks = new AtomicInteger();
-				UpdateChecker.tick(skyBlock, loaded, delivered::add, checks::incrementAndGet);
+				UpdateChecker.tick(hypixel, loaded, delivered::add, checks::incrementAndGet);
 				check("检查结果不受空岛、加载或开关限制 " + mask, delivered.size() == 2
 					&& legacy(delivered.getFirst()).equals("§b[SkyZH] §aSkyZH 已是最新版本。")
 					&& legacy(delivered.getLast()).equals("§b[SkyZH] §a翻译更新成功!"));
-				check("只有空岛且两个开关开启和加载结束才自动联网 " + mask, checks.get() == (mask == 15 ? 1 : 0));
-				UpdateChecker.tick(skyBlock, loaded, delivered::add, () -> {});
+				check("只有已确认 Hypixel、两个开关开启且加载结束才自动联网 " + mask, checks.get() == (mask == 15 ? 1 : 0));
+				UpdateChecker.tick(hypixel, loaded, delivered::add, () -> {});
 				check("已显示的检查结果不重复发送 " + mask, delivered.size() == 2);
 			}
 			config.enabled = false;
