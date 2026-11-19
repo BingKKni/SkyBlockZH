@@ -105,10 +105,15 @@
       ]
     },
     {
-      "id": "angler_angus_easy_fish_bait_recipe", "item_refs": [{"text": "Raw Cod", "zh": "生鳕鱼"}, {"text": "Raw Salmon", "zh": "生鲑鱼"}],
+      "id": "angler_angus_easy_fish_bait_recipe", "item_refs": [{"text": "Fish Bait", "zh": "鱼类鱼饵"}, {"text": "Raw Cod", "zh": "生鳕鱼"}, {"text": "Raw Salmon", "zh": "生鲑鱼"}],
       "context": "首次互动;分享自己常用的鱼类鱼饵合成材料。",
       "text": "I craft Fish Bait all the time because it's so easy to do - just a couple of Raw Cod and a Raw Salmon!",
-      "raw": "§fI craft Fish Bait all the time because it's so easy to do - just a couple of Raw Cod and a Raw Salmon!",
+      "raw": "§fI craft §aFish Bait §fall the time because it's so easy to do - just a couple of Raw Cod and a Raw Salmon!",
+      "segments": [
+        {"color":"§f", "text":"I craft ", "zh":"我经常合成"},
+        {"color":"§a", "text":"Fish Bait ", "zh":"鱼类鱼饵"},
+        {"color":"§f", "text":"all the time because it's so easy to do - just a couple of Raw Cod and a Raw Salmon!", "zh":",做起来可简单了——两条生鳕鱼加一条生鲑鱼就行!"}
+      ],
       "placeholders": [],
       "gloss": "Fish Bait 复用 Fishing/GUI_Item/Bait_Guide.json#bait_kind 的整名模板 %1$s Bait,其中 Fish 按 _shared/Terms.json 的 category_name 译为鱼类,得到鱼类鱼饵。Raw Cod 沿用 Hub_General/GUI_Item/Fishing_Merchant.json#raw_cod 的生鳕鱼;Raw Salmon 沿用 Hub_General/GUI_Item/Collection_Tiers_Live.json#collection_raw_salmon_name 的生鲑鱼。a couple of 与 a 分别保留为两条与一条固定材料数量,不补合成产量。",
       "translate": true,
@@ -118,7 +123,12 @@
       "id": "angler_angus_give_spare_fish_bait", "item_refs": [{"text": "Fish Bait", "zh": "鱼类鱼饵"}],
       "context": "首次互动;把备用的鱼类鱼饵送给玩家。",
       "text": "Here, I've got some spare Fish Bait for ya!",
-      "raw": "§fHere, I've got some spare Fish Bait for ya!",
+      "raw": "§fHere, I've got some spare §aFish Bait §ffor ya!",
+      "segments": [
+        {"color":"§f", "text":"Here, I've got some spare ", "zh":"来,我这儿有些多余的"},
+        {"color":"§a", "text":"Fish Bait ", "zh":"鱼类鱼饵"},
+        {"color":"§f", "text":"for ya!", "zh":",给你!"}
+      ],
       "placeholders": [],
       "gloss": "Fish Bait 复用 Fishing/GUI_Item/Bait_Guide.json#bait_kind 的整名模板 %1$s Bait,其中 Fish 按 _shared/Terms.json 的 category_name 译为鱼类,得到鱼类鱼饵。原文未给赠送数量,不补数值。",
       "translate": true,
@@ -128,16 +138,21 @@
       "id": "angler_angus_fish_bait_speed_boost", "item_refs": [{"text": "Fish Bait", "zh": "鱼类鱼饵"}],
       "context": "领取鱼类鱼饵后;评价这种鱼饵的钓鱼速度加成。",
       "text": "Fish Bait seems to give a really effective ☂ Fishing Speed boost!",
-      "raw": "§fFish Bait seems to give a really effective §b☂ Fishing Speed §fboost!",
+      "raw": "§aFish Bait §fseems to give a really effective §b☂ Fishing Speed §fboost!",
       "placeholders": [],
       "gloss": "Fish Bait 复用 Fishing/GUI_Item/Bait_Guide.json#bait_kind 的整名模板 %1$s Bait,其中 Fish 按 _shared/Terms.json 的 category_name 译为鱼类,得到鱼类鱼饵。Fishing Speed 沿用 _shared/Terms.json 的钓鱼速度,保留 ☂ 图标和原文的 seems 语气,不补加成数值。",
       "translate": true,
       "zh": "鱼类鱼饵对 ☂ 钓鱼速度的提升好像还挺明显!",
       "segments": [
         {
+          "color": "§a",
+          "text": "Fish Bait ",
+          "zh": "鱼类鱼饵"
+        },
+        {
           "color": "§f",
-          "text": "Fish Bait seems to give a really effective ",
-          "zh": "鱼类鱼饵对 "
+          "text": "seems to give a really effective ",
+          "zh": "对 "
         },
         {
           "color": "§b",

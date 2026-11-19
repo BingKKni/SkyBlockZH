@@ -28,7 +28,12 @@
     {
       "id": "fishing_merchant_equipment_menu_command",
       "context": "购买任意一件垂钓者装备后,补充通过命令打开装备菜单的方法;独立消息不合并",
-      "raw": "§fOr, you can type /equipment to access your equipment menu.",
+      "raw": "Or, you can type §6/equipment §fto access your equipment menu.",
+      "segments": [
+        {"color":"", "text":"Or, you can type ", "zh":"也可以输入 "},
+        {"color":"§6", "text":"/equipment ", "zh":"/equipment"},
+        {"color":"§f", "text":"to access your equipment menu.", "zh":",打开装备菜单。"}
+      ],
       "text": "Or, you can type /equipment to access your equipment menu.",
       "placeholders": [],
       "gloss": "/equipment 是供玩家输入的原命令,保持不变;页面证据未显示点击或悬浮事件,不虚构交互。equipment 沿用本地装备译名,不混同护甲。",
