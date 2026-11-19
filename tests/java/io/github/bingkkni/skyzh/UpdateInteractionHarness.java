@@ -42,6 +42,7 @@ public final class UpdateInteractionHarness {
 		check("手动包覆盖提示的文字和颜色", legacy(UpdateMessages.translationUpdated(true, COMMAND)).equals(
 			"§a翻译更新成功! §e但由于你手动安装了外置翻译包，新安装的翻译不会生效。§c[点击卸载外置翻译包]"));
 		check("重启安装统一文案", legacy(UpdateMessages.modDownloaded("0.9")).equals("§a已下载 SkyZH 0.9，下次重启时安装。"));
+		check("上次安装失败后的重新安排文案", legacy(UpdateMessages.modRescheduled("0.9")).equals("§e上次安装 SkyZH 0.9 未成功，已重新安排，下次重启时安装。"));
 		check("Mod 无更新反馈", legacy(UpdateMessages.current(true)).equals("§aSkyZH 已是最新版本。"));
 		check("翻译包无更新反馈", legacy(UpdateMessages.current(false)).equals("§a翻译包已是最新版本。"));
 		check("缺少对应游戏下载反馈", legacy(UpdateMessages.noModDownload()).equals("§e发现新版 SkyZH，但它与此计算机上的 Minecraft 不兼容，请更新 Minecraft 版本。"));

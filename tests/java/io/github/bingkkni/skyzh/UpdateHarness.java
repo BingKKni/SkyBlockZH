@@ -39,6 +39,10 @@ public final class UpdateHarness {
 			installer(root.resolve("changed-install"), InstalledChange.REPLACE, false);
 			installer(root.resolve("damaged-download"), InstalledChange.NONE, true);
 			installer(root.resolve("removed-install"), InstalledChange.REMOVE, false);
+			// Only Windows refuses to rename over a file that is open; elsewhere there is no wait to observe.
+			if (System.getProperty("os.name").startsWith("Windows")) installer(root.resolve("held-install"), InstalledChange.HOLD, false);
+			else System.out.println("  - 跳过 JAR 被占用时的等待（仅 Windows 会锁定已打开的文件）");
+			exitGuard(root);
 		} finally {
 			try (var paths = Files.walk(root)) {
 				for (Path file : paths.sorted(Comparator.reverseOrder()).toList()) Files.delete(file);
@@ -334,6 +338,11 @@ public final class UpdateHarness {
 		fails("拒绝错误发布版本", () -> ModUpdate.validate(jar, "1.0", "26.2", "0.19.3"));
 		modJar(jar, "other", "0.9+mc26.2", ">=26.2 <26.3");
 		fails("拒绝非 SkyZH Mod", () -> ModUpdate.validate(jar, "0.9", "26.2", "0.19.3"));
+		String build = "0.9+mc26.2.beta.225";
+		check("只在重新安排同一版本的未完成安装时提示上次未成功", UpdateChecker.retriesFailure("failed", build, build)
+			&& UpdateChecker.retriesFailure("blocked", build, build) && UpdateChecker.retriesFailure("waiting", build, build)
+			&& !UpdateChecker.retriesFailure("installed", build, build)
+			&& !UpdateChecker.retriesFailure("failed", "0.9+mc26.2.beta.224", build) && !UpdateChecker.retriesFailure(null, null, build));
 	}
 
 	private static void modJar(Path jar, String id, String version, String minecraft) throws Exception {
@@ -343,11 +352,22 @@ public final class UpdateHarness {
 		}
 	}
 
-	private enum InstalledChange { NONE, REPLACE, REMOVE }
+	private enum InstalledChange { NONE, REPLACE, REMOVE, HOLD }
+
+	/** A child JVM on this harness's own classpath, passed by argument file because it is long. */
+	private static Process childJvm(Path directory, String name, Class<?> main, String argument) throws Exception {
+		Path arguments = directory.resolve(name + ".args");
+		String contents = "-cp\n\"" + System.getProperty("java.class.path").replace("\\", "\\\\").replace("\"", "\\\"")
+			+ "\"\n" + main.getName() + "\n\"" + argument.replace("\\", "\\\\") + "\"\n";
+		Files.writeString(arguments, contents);
+		return new ProcessBuilder(Path.of(System.getProperty("java.home"), "bin", "java").toString(), "@" + arguments)
+			.redirectErrorStream(true).redirectOutput(directory.resolve(name + ".log").toFile()).start();
+	}
 
 	private static void installer(Path directory, InstalledChange change, boolean corruptDownload) throws Exception {
 		boolean manualReplacement = change == InstalledChange.REPLACE;
 		boolean removed = change == InstalledChange.REMOVE;
+		boolean held = change == InstalledChange.HOLD;
 		Files.createDirectories(directory);
 		Path jar = directory.resolve("mods/skyzh.jar"); Files.createDirectories(jar.getParent());
 		Files.writeString(jar, "old installed mod");
@@ -361,13 +381,10 @@ public final class UpdateHarness {
 			stale.setProperty("status", "installed");
 			try (var output = Files.newOutputStream(directory.resolve("mod-install.properties"))) { stale.store(output, "Previous completed installation"); }
 		}
-		Path arguments = directory.resolve("parent.args");
-		String contents = "-cp\n\"" + System.getProperty("java.class.path").replace("\\", "\\\\").replace("\"", "\\\"")
-			+ "\"\n" + InstallerParent.class.getName() + "\n\"" + directory.toString().replace("\\", "\\\\") + "\"\n";
-		Files.writeString(arguments, contents);
-		Process parent = new ProcessBuilder(Path.of(System.getProperty("java.home"), "bin", "java").toString(), "@" + arguments)
-			.redirectErrorStream(true).redirectOutput(directory.resolve("parent.log").toFile()).start();
+		Process parent = childJvm(directory, "parent", InstallerParent.class, directory.toString());
 		long installerPid = 0;
+		// What a second game does to the JAR it loaded: legacy file access shares reading, not replacing.
+		java.io.RandomAccessFile holder = null;
 		try {
 			waitUntil(() -> Files.exists(directory.resolve("parent.ready")) || !parent.isAlive(), 15_000);
 			String scenario = directory.getFileName().toString();
@@ -380,8 +397,20 @@ public final class UpdateHarness {
 			}
 			if (removed) Files.delete(jar);
 			if (corruptDownload) Files.writeString(directory.resolve("mod-update.jar"), "corrupted download");
+			if (held) holder = new java.io.RandomAccessFile(jar.toFile(), "r");
 			Files.writeString(directory.resolve("parent.exit"), "exit");
 			check("父 JVM 正常退出 " + scenario, parent.waitFor(10, TimeUnit.SECONDS) && parent.exitValue() == 0);
+			if (held) {
+				waitUntil(() -> {
+					try { return "blocked".equals(ModUpdate.plan(directory).getProperty("status")); }
+					catch (Exception e) { return false; }
+				}, 10_000);
+				// Longer than one retry, so a single attempt followed by failure cannot pass.
+				Thread.sleep(1_200);
+				check("JAR 被占用时安装程序持续等待而不放弃", "blocked".equals(ModUpdate.plan(directory).getProperty("status"))
+					&& Files.readString(jar).equals("old installed mod") && ProcessHandle.of(installerPid).map(ProcessHandle::isAlive).orElse(false));
+				holder.close();
+			}
 			waitUntil(() -> {
 				try { String status = ModUpdate.plan(directory).getProperty("status"); return status.equals("installed") || status.equals("failed"); }
 				catch (Exception e) { return false; }
@@ -393,7 +422,12 @@ public final class UpdateHarness {
 				&& !Files.exists(jar.resolveSibling(jar.getFileName() + ".skyzh-new")));
 			check("备份对应实际被替换的文件 " + scenario, Files.readString(directory.resolve("previous-mod.jar"))
 				.equals(corruptDownload || removed ? "earlier backup" : manualReplacement ? "user replaced mod" : "old installed mod"));
+			if (held) check("释放后完成安装并清除占用记录", ModUpdate.plan(directory).getProperty("error") == null);
+			// Written before the installer's own cleanup runs, so give that a moment on every outcome.
+			waitUntil(() -> !Files.exists(directory.resolve("installer.ready")), 5_000);
+			check("安装程序结束时清理就绪标记 " + scenario, true);
 		} finally {
+			if (holder != null) holder.close();
 			if (parent.isAlive()) parent.destroyForcibly().waitFor();
 			if (installerPid != 0) {
 				var process = ProcessHandle.of(installerPid).orElse(null);
@@ -409,6 +443,33 @@ public final class UpdateHarness {
 			Files.writeString(directory.resolve("parent.ready"), "ready");
 			waitUntil(() -> Files.exists(directory.resolve("parent.exit")), 25_000);
 			System.exit(0);
+		}
+	}
+
+	private static void exitGuard(Path root) throws Exception {
+		Path directory = Files.createDirectories(root.resolve("exit-guard"));
+		check("正常关闭后残留线程不再拖住进程", lingeringGame(directory, "stopped") == 0);
+		check("游戏未正常停止时不代为退出", lingeringGame(directory, "running") == LingeringGame.LEFT_ALONE);
+	}
+
+	private static int lingeringGame(Path directory, String mode) throws Exception {
+		Process game = childJvm(directory, mode, LingeringGame.class, mode);
+		try { return game.waitFor(20, TimeUnit.SECONDS) ? game.exitValue() : -1; }
+		finally { if (game.isAlive()) game.destroyForcibly().waitFor(); }
+	}
+
+	/** A game whose main thread returns while a forgotten non-daemon thread keeps the JVM alive. */
+	public static final class LingeringGame {
+		static final int LEFT_ALONE = 7;
+
+		public static void main(String[] args) {
+			boolean stopped = args[0].equals("stopped");
+			new Thread(() -> {
+				// Stopped: far beyond the harness's patience, so only the guard can end this JVM in time.
+				try { Thread.sleep(stopped ? 60_000 : 1_500); } catch (InterruptedException ignored) {}
+				Runtime.getRuntime().halt(LEFT_ALONE);
+			}, "forgotten-executor").start();
+			ExitGuard.watch(Thread.currentThread(), () -> stopped, java.time.Duration.ofMillis(200), System::exit);
 		}
 	}
 

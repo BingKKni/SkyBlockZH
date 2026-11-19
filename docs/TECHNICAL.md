@@ -418,8 +418,14 @@ It verifies the downloaded JAR again, backs up the current installed JAR and rep
 Manual replacements count as manual updates: old installation records do not block later updates, and a JAR replaced while waiting
 may also be overwritten after backing up the actual file. Downloaded JAR checksum validation remains required.
 Pending state and failures remain in `skyzh-updates/mod-install.properties` and `installer.log`.
-Development, nested and installations outside the instance's `mods/` are not automatically replaced. Launchers that kill the full process tree or immediately
-reopen the old JAR can require another retry. `checkUpdates` covers loopback transfers and real child-JVM installation;
+Development, nested and installations outside the instance's `mods/` are not automatically replaced. Windows refuses to replace a JAR a running game has loaded:
+when the next instance starts before the previous one finished exiting, the installer records `blocked` and retries every half second (up to 12 hours; other systems and a read-only or unwritable JAR do not get this wait), installing once
+that instance exits. When the previous installation never completed (it failed, or the installer was ended while waiting), the message that arms the same build again says so. Launchers that kill the full process tree end the
+installer too and require another launch.
+`ExitGuard` is the exit fallback: five seconds after a normally stopped game's main thread has ended, a JVM still held by non-daemon threads other mods left behind
+is ended with status 0 (shutdown hooks still run) after logging those threads, instead of Minecraft 26.2 onwards killing itself with a crash report at fifteen seconds.
+It does nothing when the process exits by itself or the game ended abnormally; 26.1 exits by itself while closing, so it never acts there. `checkUpdates` covers loopback transfers, real child-JVM installation,
+waiting on a held JAR (Windows only) and the exit fallback;
 `checkUpdatePublisher` covers publication order without GitHub writes. Full client/launcher behavior still needs in-game verification.
 
 `./gradlew checkPerformance` compares indexed matching with the previous exhaustive scan and checks

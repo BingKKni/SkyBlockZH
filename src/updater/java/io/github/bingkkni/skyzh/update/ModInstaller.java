@@ -9,13 +9,24 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.nio.file.StandardOpenOption;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.file.attribute.FileTime;
 import java.security.MessageDigest;
+import java.time.Duration;
 import java.time.Instant;
 import java.util.HexFormat;
 import java.util.Properties;
 
 /** Standalone JDK-only process. It never opens the running Mod JAR for writing. */
 public final class ModInstaller {
+	/**
+	 * How long a JAR that cannot be replaced is waited for. On Windows it outlasts a play session on
+	 * purpose: the usual holder is a second game started before the first one finished exiting. No
+	 * other system locks an open file, so a failure there is not one that waiting out a game cures.
+	 */
+	private static final Duration PATIENCE = System.getProperty("os.name", "").startsWith("Windows")
+		? Duration.ofHours(12) : Duration.ofMinutes(1);
+
 	private ModInstaller() {}
 
 	public static void main(String[] args) throws Exception {
@@ -23,6 +34,7 @@ public final class ModInstaller {
 		Path planFile = Path.of(args[0]).toAbsolutePath().normalize();
 		Path directory = planFile.getParent();
 		boolean ownsReady = false;
+		boolean failed = false;
 		try (FileChannel channel = FileChannel.open(directory.resolve("installer.lock"), StandardOpenOption.CREATE, StandardOpenOption.WRITE);
 			var lock = channel.tryLock()) {
 			if (lock == null) return;
@@ -55,28 +67,13 @@ public final class ModInstaller {
 			try {
 				Files.copy(candidate, staging, StandardCopyOption.REPLACE_EXISTING);
 				if (!hash(staging).equals(expectedNew)) throw new IOException("Staged JAR checksum mismatch");
-				IOException failure = null;
-				for (int attempt = 0; attempt < 120; attempt++) {
-					// A failed backup must not enter move recovery and resurrect an older backup.
-					Files.copy(installed, backup, StandardCopyOption.REPLACE_EXISTING);
-					try {
-						move(staging, installed); failure = null; break;
-					}
-					catch (IOException e) {
-						// A filesystem without atomic rename may remove the target before reporting failure.
-						if (Files.notExists(installed)) {
-							Files.copy(backup, installed, StandardCopyOption.REPLACE_EXISTING);
-							throw new IOException("Replacement failed; restored backup", e);
-						}
-						failure = e; Thread.sleep(500);
-					}
-				}
-				if (failure != null) throw failure;
+				replace(planFile, plan, staging, installed, backup);
 				if (!hash(installed).equals(expectedNew)) {
 					Files.copy(backup, installed, StandardCopyOption.REPLACE_EXISTING);
 					throw new IOException("Installed JAR verification failed; restored backup");
 				}
 				plan.setProperty("status", "installed");
+				plan.remove("error");
 				write(planFile, plan);
 			} finally { Files.deleteIfExists(staging); }
 		} catch (Exception e) {
@@ -85,8 +82,57 @@ public final class ModInstaller {
 			plan.setProperty("error", e.toString());
 			write(planFile, plan);
 			e.printStackTrace();
-			System.exit(1);
+			failed = true;
 		} finally { if (ownsReady) Files.deleteIfExists(directory.resolve("installer.ready")); }
+		// Outside the try: exiting inside it would skip the cleanup above and leave a stale ready file.
+		if (failed) System.exit(1);
+	}
+
+	/**
+	 * Renames the staged JAR over the installed one, waiting for as long as the file is in use.
+	 *
+	 * <p>Windows refuses to replace a JAR that any running game has loaded. A second instance started
+	 * before the first finished exiting therefore holds it for its whole session, and giving up after
+	 * a fixed number of attempts left the old version in place with nothing to retry it. The state
+	 * file says {@code blocked} meanwhile, and the next game to exit releases the file.
+	 */
+	private static void replace(Path planFile, Properties plan, Path staging, Path installed, Path backup) throws Exception {
+		long started = System.nanoTime();
+		long backedUpSize = -1;
+		FileTime backedUpTime = null;
+		for (int attempt = 0;; attempt++) {
+			// A failed backup must not enter move recovery and resurrect an older backup. Copied again
+			// only when the file changed: a long wait must not rewrite the same megabytes every poll.
+			BasicFileAttributes current = Files.readAttributes(installed, BasicFileAttributes.class);
+			if (current.size() != backedUpSize || !current.lastModifiedTime().equals(backedUpTime)) {
+				Files.copy(installed, backup, StandardCopyOption.REPLACE_EXISTING);
+				backedUpSize = current.size();
+				backedUpTime = current.lastModifiedTime();
+			}
+			try {
+				move(staging, installed);
+				return;
+			} catch (IOException e) {
+				// A filesystem without atomic rename may remove the target before reporting failure.
+				if (Files.notExists(installed)) {
+					Files.copy(backup, installed, StandardCopyOption.REPLACE_EXISTING);
+					throw new IOException("Replacement failed; restored backup", e);
+				}
+				// Read-only or denied by permissions: no game exiting will change that.
+				if (Files.notExists(staging) || !Files.isWritable(installed)
+					|| System.nanoTime() - started >= PATIENCE.toNanos()) throw e;
+				if (attempt == 0) {
+					System.out.println(Instant.now() + " Installed JAR is in use; waiting for it to be released: " + e);
+					plan.setProperty("status", "blocked");
+					plan.setProperty("error", e.toString());
+					// Informational; failing to record the wait is no reason to abandon it.
+					try { write(planFile, plan); } catch (IOException ignored) {}
+				}
+				// Kept short for the whole wait: between one game exiting and the player starting the
+				// next, the file can be free for only a few seconds.
+				Thread.sleep(500);
+			}
+		}
 	}
 
 	private static Properties read(Path file) throws IOException {

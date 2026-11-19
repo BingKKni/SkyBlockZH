@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 /**
  * SkyZH — a Chinese translation layer for Hypixel SkyBlock.
  *
- * <p>The mod does one thing on startup: read the corpus, on a thread of its own. Everything after
+ * <p>The mod does one piece of work on startup: read the corpus, on a thread of its own. Everything after
  * that happens in render hooks, one per surface, each of which translates the text on its way to
  * the screen and leaves the object it came from alone. No game state is written — a client running
  * this mod is, as far as Hypixel and as far as every other mod is concerned, a client running in
@@ -37,6 +37,9 @@ public final class SkyZH implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		SkyZHConfig config = SkyZHConfig.get();
+
+		// Here because this is the game thread; see ExitGuard for why its end is what gets watched.
+		ExitGuard.install();
 
 		// Fabric invokes this once per client launch, before the main menu and independently of
 		// joining any server. Do not put this on the connection/tick path: reconnecting is not a restart.

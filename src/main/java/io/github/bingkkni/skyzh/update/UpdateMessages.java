@@ -26,6 +26,11 @@ public final class UpdateMessages {
 		return text("已下载 SkyZH " + version + "，下次重启时安装。", ChatFormatting.GREEN);
 	}
 
+	/** The same promise as {@link #modDownloaded}, said once after the previous attempt at it failed. */
+	public static Component modRescheduled(String version) {
+		return text("上次安装 SkyZH " + version + " 未成功，已重新安排，下次重启时安装。", ChatFormatting.YELLOW);
+	}
+
 	public static Component modReady(String version, String command) {
 		return text("SkyZH " + version + " 已下载完成，", ChatFormatting.GREEN)
 			.append(button("[点击安装]", ChatFormatting.GOLD, command, "点击后将在下次重启游戏时安装新版 SkyZH!"));

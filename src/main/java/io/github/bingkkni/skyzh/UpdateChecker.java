@@ -175,6 +175,14 @@ public final class UpdateChecker {
 		if (action == Action.TRANSLATIONS || action == Action.CHECK) translations.run();
 	}
 
+	/**
+	 * Arming a build whose plan already exists and never reached {@code installed}: the installer gave
+	 * up or was killed while waiting. Worth saying, or the same promise simply repeats.
+	 */
+	static boolean retriesFailure(String previousStatus, String previousVersion, String version) {
+		return previousStatus != null && !previousStatus.equals("installed") && version.equals(previousVersion);
+	}
+
 	static boolean needsModNotice(boolean newMod, boolean newTranslation, int remoteApi, int localApi) {
 		return newMod && newTranslation && remoteApi != localApi;
 	}
@@ -328,7 +336,7 @@ public final class UpdateChecker {
 					if (!enabled(requested)) return;
 					installer = ModUpdate.arm(directory, installedJar(), pending.getProperty("new_sha256"), pendingVersion);
 					finish("mod", installed, UpdateState.HOUR, "waiting_for_exit", null);
-					message(UpdateMessages.modDownloaded(label(pendingVersion)));
+					message(armed(pending, pendingVersion));
 					return;
 				}
 			}
@@ -354,7 +362,13 @@ public final class UpdateChecker {
 			}
 			installer = ModUpdate.arm(directory, installedJar(), asset.download().sha256(), version);
 			finish("mod", installed, UpdateState.HOUR, "waiting_for_exit", releaseSummary(version));
-			message(UpdateMessages.modDownloaded(label(version)));
+			message(armed(pending, version));
+		}
+
+		/** {@code previous} is the plan as read before arming replaced it. */
+		private static Component armed(java.util.Properties previous, String version) {
+			return retriesFailure(previous.getProperty("status"), previous.getProperty("version"), version)
+				? UpdateMessages.modRescheduled(label(version)) : UpdateMessages.modDownloaded(label(version));
 		}
 
 		/** The newest formal release for this Minecraft, or {@code null} after recording why there is none. */
