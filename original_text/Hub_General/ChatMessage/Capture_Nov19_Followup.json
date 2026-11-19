@@ -1,0 +1,110 @@
+{
+  "source": "runtime capture (SkyZH)",
+  "fetched_at": "2026-11-19",
+  "verified_ingame": true,
+  "entries": [
+    {
+      "id": "dye_discovery_player", "context": "稀有染料掉落广播",
+      "text": "WOW! %1$s found a %2$s!", "raw": "§d§lWOW! §b%1$s§f §6found a §b%2$s§6!",
+      "placeholders": [
+        {"token":"%1$s","type":"player_display","example":"[MVP+] ImWink","desc":"玩家显示名"},
+        {"token":"%2$s","type":"item_name","example":"Celeste Dye","desc":"染料物品名"}
+      ],
+      "translate": true, "zh": "哇！%1$s 找到了%2$s！",
+      "segments": [
+        {"color":"§d§l","text":"WOW! ","zh":"哇！"},
+        {"color":"§b","text":"%1$s","zh":"%1$s"},
+        {"color":"§f","text":" ","zh":" "},
+        {"color":"§6","text":"found a ","zh":"找到了"},
+        {"color":"§b","text":"%2$s","zh":"%2$s"},
+        {"color":"§6","text":"!","zh":"！"}
+      ]
+    },
+    {
+      "id": "dye_discovery_odds", "context": "染料广播的掉率与魔法寻宝加成",
+      "text": "An unbelievable 1/%1$s (%2$s%) chance! (+%3$s Magic Find)",
+      "raw": "§7An unbelievable §a1§8/§a%1$s §8(%2$s%) §7chance! §b(+%3$s Magic Find)",
+      "placeholders": [
+        {"token":"%1$s","type":"number","example":"100k","desc":"掉率分母"},
+        {"token":"%2$s","type":"number","example":"0.001","desc":"百分比"},
+        {"token":"%3$s","type":"number","example":"105","desc":"魔法寻宝加成"}
+      ],
+      "translate": true, "zh": "难以置信，掉率只有 1/%1$s（%2$s%）！（+%3$s 魔法寻宝）",
+      "segments": [
+        {"color":"§7","text":"An unbelievable ","zh":"难以置信，掉率只有 "},
+        {"color":"§a","text":"1","zh":"1"},
+        {"color":"§8","text":"/","zh":"/"},
+        {"color":"§a","text":"%1$s ","zh":"%1$s"},
+        {"color":"§8","text":"(%2$s%) ","zh":"（%2$s%）"},
+        {"color":"§7","text":"chance! ","zh":"！"},
+        {"color":"§b","text":"(+%3$s Magic Find)","zh":"（+%3$s 魔法寻宝）"}
+      ]
+    },
+    {
+      "id": "invalid_inventory_corrected",
+      "context": "服务器修复异常物品",
+      "raw": "§cYou had %1$s invalid items in your Inventory, they have been corrected.",
+      "text": "You had %1$s invalid items in your Inventory, they have been corrected.",
+      "translate": true,
+      "zh": "已修正你背包中的 %1$s 件异常物品。",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "number",
+          "example": "3",
+          "desc": "服务器显示的数值"
+        }
+      ]
+    },
+    {
+      "id": "lobby_currently_full",
+      "context": "大厅满员提示",
+      "raw": "§cThat lobby is currently full! Try again later.",
+      "text": "That lobby is currently full! Try again later.",
+      "translate": true,
+      "zh": "这个大厅已经满了！请稍后再试。"
+    },
+    {
+      "id": "dye_visit_vincent",
+      "map_refs": [{"text":"Artist's Abode","zh":"艺术家居所"}],
+      "context": "染料掉落广播的指引",
+      "raw": "§eTalk to Vincent in the Artist's Abode to learn more about this dye!",
+      "text": "Talk to Vincent in the Artist's Abode to learn more about this dye!",
+      "translate": true,
+      "zh": "想了解这种染料，就去艺术家居所找 Vincent 聊聊吧！"
+    },
+    {
+      "id": "potion_recipe_reward",
+      "context": "收藏升级解锁药水配方",
+      "raw": "    §c%1$s Potion §7Recipe",
+      "text": "    %1$s Potion Recipe",
+      "translate": true,
+      "zh": "    %1$s药水配方",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "category_name",
+          "example": "Adrenaline",
+          "desc": "药水效果"
+        }
+      ],
+      "segments": [
+        {
+          "color": "",
+          "text": "    ",
+          "zh": "    "
+        },
+        {
+          "color": "§c",
+          "text": "%1$s Potion ",
+          "zh": "%1$s药水"
+        },
+        {
+          "color": "§7",
+          "text": "Recipe",
+          "zh": "配方"
+        }
+      ]
+    }
+  ]
+}
