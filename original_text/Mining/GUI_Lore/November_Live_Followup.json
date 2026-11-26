@@ -2,6 +2,27 @@
   "source": "SkyZH_Logs/skyzh-capture 与服务器聊天日志；山心技能另参照 NEU constants/hotmlayout.json",
   "lines": [
     {
+      "id": "hotm_mole_hard_stone_spread",
+      "gloss": "用户拍板：鼹鼠仅在挖掘硬石时生效；物品名关闭时显示 Hard Stone，不可借用重铸加成的普通方块说明。",
+      "context": "山心技能鼹鼠；与重铸的普通方块加成分开匹配",
+      "text": "Grants +%s Mining Spread when mining Hard Stone.",
+      "raw": "§7Grants §e+%s Mining Spread§7 when mining Hard Stone.",
+      "placeholders": [{"token":"%s","type":"number","example":"95.73","desc":"当前或下一级的挖掘扩散加成"}],
+      "item_refs": [{"text":"Hard Stone","zh":"硬石"}],
+      "translate": true,
+      "zh": "挖掘硬石时额外获得 +%s 挖掘扩散。",
+      "segments": [
+        {"text":"Grants ","zh":"","omit":true,"order":0},
+        {"text":"+%s Mining Spread","zh":"+%s 挖掘扩散","order":2},
+        {"text":" when mining Hard Stone","zh":"挖掘硬石时额外获得 ","order":1},
+        {"text":".","zh":"。","order":3}
+      ],
+      "samples": [
+        ["§7Grants §e+95.73 Mining Spread§7 when","§7mining Hard Stone."],
+        ["§7Grants §e+97.49 Mining Spread §7when","§7mining Hard Stone."]
+      ]
+    },
+    {
       "id": "hotm_spread_timed_grant",
       "context": "11 月实测文本",
       "raw": "§7Grants §e+%1$s Mining Spread§7 for §a%2$s§7.",

@@ -1,0 +1,105 @@
+{
+  "source": "runtime capture (SkyZH)",
+  "verified_ingame": true,
+  "entries": [
+    {
+      "id": "widget_preview_icon_stat",
+      "text": "⬛ %1$s: %2$s%3$s",
+      "raw": "§8⬛§f %1$s: §e%2$s%3$s",
+      "placeholders": [
+        {
+          "token": "%1$s",
+          "type": "stat_name",
+          "example": "Mining Spread",
+          "desc": "预览的属性名"
+        },
+        {
+          "token": "%2$s",
+          "type": "icon",
+          "example": "",
+          "desc": "服务器属性图标"
+        },
+        {
+          "token": "%3$s",
+          "type": "number",
+          "example": "300",
+          "desc": "当前属性值"
+        }
+      ],
+      "translate": true,
+      "zh": "⬛ %1$s: %2$s%3$s",
+      "segments": [
+        {
+          "text": "⬛",
+          "zh": "⬛"
+        },
+        {
+          "text": " %1$s: ",
+          "zh": " %1$s: "
+        },
+        {
+          "text": "%2$s%3$s",
+          "zh": "%2$s%3$s"
+        }
+      ],
+      "samples": [
+        [
+          "§8⬛§f Mining Spread: §e300"
+        ],
+        [
+          "§8⬛§f Gemstone Spread: §e14"
+        ],
+        [
+          "§8⬛§f Pristine: §512"
+        ],
+        [
+          "§8⬛§f Cold Resistance: §b86"
+        ],
+        [
+          "§8⬛§f Mining Fortune: §61622"
+        ]
+      ]
+    },
+    {
+      "id": "widget_deselect_stats",
+      "text": "Deselects all Shown Stats options for Mineshaft.",
+      "raw": "§7Deselects all §8Shown Stats §7options for Mineshaft.",
+      "map_refs": [
+        {
+          "text": "Mineshaft",
+          "zh": "矿井"
+        }
+      ],
+      "translate": true,
+      "zh": "取消选中矿井中的所有已显示属性。",
+      "segments": [
+        {
+          "text": "Deselects all ",
+          "zh": "取消选中",
+          "order": 0
+        },
+        {
+          "text": "Shown Stats ",
+          "zh": "已显示属性",
+          "order": 2
+        },
+        {
+          "text": "options for Mineshaft",
+          "zh": "矿井中的所有",
+          "order": 1
+        },
+        {
+          "text": ".",
+          "zh": "。",
+          "order": 3
+        }
+      ],
+      "samples": [
+        [
+          "§7Deselects all §8Shown Stats §7options",
+          "§7for Mineshaft."
+        ]
+      ]
+    }
+  ]
+}

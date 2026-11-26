@@ -9,6 +9,24 @@
     {"id":"bazaar_sale_warning_timeout","context":"选择继续后五分钟内不再显示低价警告","text":"If you choose to proceed with this action, this warning will not show for the next 5 minutes.","placeholders":[],"gloss":"仅抑制警告五分钟，不会取消出售。","translate":true,"zh":"若继续操作,此警告在接下来的 5 分钟内不会再次显示。","samples":[["§7If you choose to proceed with this","§7action, this warning will not show for","§7the next 5 minutes."]]},
     {"id":"commission_maniacs_mineshaft", "map_refs": [{"text": "Glacite Mineshafts", "zh": "极冰矿井"}],"context":"冰河矿井中击杀狂人的委托说明","text":"Slay %s Maniacs in the Glacite Mineshafts.","placeholders":[{"token":"%s","type":"number","desc":"击杀目标数量","example":"10"}],"gloss":"Glacite Mineshafts 是极冰矿井实例。","translate":true,"zh":"在极冰矿井击杀 %s 只狂人。","segments":[{"color":"§7","text":"Slay ","zh":"在","order":0},{"color":"§a","text":"%s ","zh":"%s ","order":3},{"color":"§c","text":"Maniacs","zh":"只狂人","order":4},{"color":"§7","text":" in the ","zh":"击杀 ","order":2},{"color":"§b","text":"Glacite Mineshafts","zh":"极冰矿井","order":1},{"color":"§7","text":".","zh":"。","order":5}],"samples":[["§7Slay §a10 §cManiacs§7 in the §bGlacite","§bMineshafts§7."]]},
     {"id":"commission_boss_corleone", "map_refs": [{"text": "Mithril Deposits", "zh": "秘银矿床"}],"context":"秘银矿床中击杀 Boss Corleone 的委托","text":"Slay %s Boss Corleone in the Mithril Deposits.","placeholders":[{"token":"%s","type":"number","desc":"击杀目标数量","example":"1"}],"gloss":"Boss Corleone 连 Boss 一起是专名，不翻译。","translate":true,"zh":"在秘银矿床击杀 %s 个 Boss Corleone。","segments":[{"color":"§7","text":"Slay ","zh":"在","order":0},{"color":"§a","text":"%s ","zh":"%s ","order":3},{"color":"§c","text":"Boss Corleone","zh":"个 Boss Corleone","order":4},{"color":"§7","text":" in the ","zh":"击杀 ","order":2},{"color":"§2","text":"Mithril Deposits","zh":"秘银矿床","order":1},{"color":"§7","text":".","zh":"。","order":5}],"samples":[["§7Slay §a1 §cBoss Corleone§7 in the §2Mithril","§2Deposits§7."]]},
+    {
+      "id": "commission_treasure_hoarder_puncher",
+      "context": "矮人矿山委托：藏宝贼拳击手",
+      "source": "https://hypixelskyblock.minecraft.wiki/w/Commissions",
+      "text": "Damage Treasure Hoarders %s times.",
+      "raw": "§7Damage §cTreasure Hoarders §a%s §7times.",
+      "placeholders": [{"token":"%s","type":"number","example":"10","desc":"要求命中的次数"}],
+      "mob_refs": [{"text":"Treasure Hoarders","zh":"藏宝贼"}],
+      "translate": true,
+      "zh": "攻击藏宝贼 %s 次。",
+      "segments": [
+        {"color":"§7","text":"Damage ","zh":"攻击"},
+        {"color":"§c","text":"Treasure Hoarders ","zh":"藏宝贼 "},
+        {"color":"§a","text":"%s ","zh":"%s"},
+        {"color":"§7","text":"times.","zh":" 次。"}
+      ],
+      "samples": [["§7Damage §cTreasure Hoarders §a10 §7times."]]
+    },
     {"id":"commission_goblins_holdout", "map_refs": [{"text": "Goblin Holdout", "zh": "哥布林据点"}],"context":"哥布林据点中的击杀委托","text":"Slay %s Goblins in the Goblin Holdout.","placeholders":[{"token":"%s","type":"number","desc":"击杀数","example":"13"}],"gloss":"","translate":true,"zh":"在哥布林据点击杀 %s 只哥布林。","segments":[{"color":"§7","text":"Slay ","zh":"在","order":0},{"color":"§a","text":"%s ","zh":"%s ","order":3},{"color":"§c","text":"Goblins","zh":"只哥布林","order":4},{"color":"§7","text":" in the ","zh":"击杀 ","order":2},{"color":"§6","text":"Goblin Holdout","zh":"哥布林据点","order":1},{"color":"§7","text":".","zh":"。","order":5}],"samples":[["§7Slay §a13 §cGoblins§7 in the §6Goblin Holdout§7."]]},
     {"id":"commission_sludges_jungle", "map_refs": [{"text": "Jungle", "zh": "丛林"}],"context":"丛林中的软泥怪击杀委托","text":"Slay %s Sludges in the Jungle.","placeholders":[{"token":"%s","type":"number","desc":"击杀数","example":"25"}],"gloss":"","translate":true,"zh":"在丛林击杀 %s 只软泥怪。","segments":[{"color":"§7","text":"Slay ","zh":"在","order":0},{"color":"§a","text":"%s ","zh":"%s ","order":3},{"color":"§c","text":"Sludges","zh":"只软泥怪","order":4},{"color":"§7","text":" in the ","zh":"击杀 ","order":2},{"color":"§2","text":"Jungle","zh":"丛林","order":1},{"color":"§7","text":".","zh":"。","order":5}],"samples":[["§7Slay §a25 §cSludges§7 in the §2Jungle§7."]]},
     {"id":"commission_goblin_raid_slayer","context":"哥布林突袭活动期间的击杀委托","text":"Slay %s Goblins during the Goblin Raid Event.","placeholders":[{"token":"%s","type":"number","desc":"击杀数","example":"20"}],"gloss":"Raid 名称沿用既定哥布林突袭。","translate":true,"zh":"在哥布林突袭活动期间击杀 %s 只哥布林。","segments":[{"color":"§7","text":"Slay ","zh":"在","order":0},{"color":"§a","text":"%s ","zh":"%s ","order":3},{"color":"§c","text":"Goblins ","zh":"只哥布林","order":4},{"color":"§7","text":"during the ","zh":"活动期间击杀 ","order":2},{"color":"§c","text":"Goblin Raid ","zh":"哥布林突袭","order":1},{"color":"§7","text":"Event.","zh":"。","order":5}],"samples":[["§7Slay §a20 §cGoblins §7during the §cGoblin","§cRaid §7Event."]]},

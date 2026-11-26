@@ -261,6 +261,7 @@ public final class TranslationHarness {
 			"我正在照顾你的§f石头!");
 		checkHandoffIntegration();
 		checkFixedMenus(root);
+		checkNovemberDualCapture();
 		check("Lore 复合挖掘速度值", "§7Mining Speed: §6+3,135 §9[+500] [+50] §d(+75) (+100)", Surface.ITEM,
 			"§7挖掘速度: §6+3,135 §9[+500] [+50] §d(+75) (+100)");
 		check("Lore 复合挖掘时运值", "§7Mining Fortune: §6+340 §9[+5] (+20) §d(+50)", Surface.ITEM,
@@ -3094,6 +3095,81 @@ public final class TranslationHarness {
 			labeled == null ? "没有识别列表" : legacy(labeled));
 		report("普通逗号句不按族群拆分", LineShape.mobFamilies("Aquatic creatures, Animal food").isEmpty(), "每项必须带独立图标");
 		check("屏幕真实物品名仍能译", "§5Sponge Boots", Surface.ITEM, "§5海绵靴子");
+	}
+
+	private static void checkNovemberDualCapture() {
+		String ubik = "§e[NPC] Ubik Von Neumann: §fThe §910% §fof participants who will have a number closest to §chalf §fof the §6average §fwill obtain the reward.";
+		String reward = "§e[NPC] Ubik Von Neumann: §f所选数字最接近§6平均值§f的§c一半§f的前 §910%§f 参与者，将获得奖励。";
+		check("Ubik 实机带句尾空格的台词", ubik + " ", Surface.CHAT, reward + " ");
+		check("Ubik 不带句尾空格的台词", ubik, Surface.CHAT, reward);
+		check("染料广播保留等级和玩家名", "§d§lWOW! §6[MVP§c++§6] Arsech found a §bCeleste Dye§6!", Surface.CHAT,
+			"§d§l哇！§6[MVP§c++§6] Arsech 找到了§b天青染料§6！");
+		check("猪猪商店浮空字", "§d§lYEAR OF THE PIG SHOP", Surface.HOLOGRAM, "§d§l猪猪商店");
+
+		List<String> buffs = List.of(
+			" §a+65 Rift Time", " §b+5 Intelligence", " §b+5 Mana Regen",
+			"§7    §6+25 Farming Fortune", "§7    §3+1☯ Farming Wisdom",
+			"§7    §6+25 Foraging Fortune", "§7    §3+1☯ Foraging Wisdom",
+			"§7    §6+25 Mining Fortune", "§7    §3+1☯ Mining Wisdom",
+			"§7    §b+25 Fishing Speed", "§7    §3+1☯ Fishing Wisdom",
+			"§7    §c+25 Strength", "§7    §3+1☯ Combat Wisdom");
+		List<String> expectedBuffs = List.of(
+			"裂隙时间: +65", "法力: +5", "法力回复: +5",
+			"农业时运: +25", "农业智慧: +1☯",
+			"伐木时运: +25", "伐木智慧: +1☯",
+			"挖掘时运: +25", "挖掘智慧: +1☯",
+			"钓鱼速度: +25", "钓鱼智慧: +1☯",
+			"力量: +25", "战斗智慧: +1☯");
+		for (int i = 0; i < buffs.size(); i++) {
+			var unit = io.github.bingkkni.skyzh.text.LoreTranslation.plan(List.of(Component.literal(buffs.get(i)))).getFirst();
+			String actual = StyledText.of(unit.rendered()).plain().strip();
+			report("饰品加成统一格式 " + buffs.get(i), expectedBuffs.get(i).equals(actual),
+				"期望 [" + expectedBuffs.get(i) + "] 实际 [" + actual + "]");
+		}
+
+		List<String> magicBall = List.of("§7Every §aSkyBlock Season§7, the §5Magic 8",
+			"§5Ball §7will grant one of the following", "§7bonuses:");
+		List<String> mole = List.of("§7Grants §e+95.73 Mining Spread§7 when", "§7mining Hard Stone.");
+		List<String> upgradedMole = List.of("§7Grants §e+97.49 Mining Spread §7when", "§7mining Hard Stone.");
+		List<String> commission = List.of("§7Damage §cTreasure Hoarders §a10 §7times.");
+		List<String> blowgun = List.of("§7Shoot an arrow. Doesn't deal damage. Except", "§7to chickens and Puffs.");
+		checkSentence("鼹鼠仅适用于硬石", mole, "§7挖掘硬石时额外获得 §e+95.73 挖掘扩散§7。");
+		checkSentence("鼹鼠升级预览保留新数值", upgradedMole, "§7挖掘硬石时额外获得 §e+97.49 挖掘扩散§7。");
+		checkSentence("藏宝贼委托保留目标与次数颜色", commission, "§7攻击§c藏宝贼 §a10§7 次。");
+		checkSentence("吹箭筒使用鼓气怪译名", blowgun, "§7射出一支箭，仅对鸡和鼓气怪造成伤害。");
+		String bid = "§7Minimum bid: §d1,272,000 Motes";
+		check("裂隙竞拍货币统一", bid, Surface.ITEM, "§7最低出价: §d1,272,000 微尘");
+		var config = SkyZHConfig.get();
+		boolean itemNames = config.translateItemNames;
+		boolean mobNames = config.translateMobNames;
+		boolean motes = config.translates(CurrencyName.MOTES);
+		boolean skyBlockName = config.translateSkyBlockName;
+
+		try {
+			config.translateSkyBlockName = true;
+			config.translateItemNames = false;
+			checkSentence("魔法八号球物品名关闭", magicBall, "§7每个 §aSkyBlock 季节§7，§5Magic 8 Ball§7 提供以下增益之一:");
+			checkSentence("硬石物品名关闭", mole, "§7挖掘 Hard Stone 时额外获得 §e+95.73 挖掘扩散§7。");
+			checkSentence("物品名设置不影响鼓气怪", blowgun, "§7射出一支箭，仅对鸡和鼓气怪造成伤害。");
+
+			config.translateMobNames = false;
+			checkSentence("藏宝贼委托生物名关闭", commission, "§7攻击§c Treasure Hoarders §a10§7 次。");
+			checkSentence("鼓气怪生物名关闭", blowgun, "§7射出一支箭，仅对鸡和 Puffs 造成伤害。");
+			config.translate(CurrencyName.MOTES, false);
+			check("微尘货币名关闭", bid, Surface.ITEM, "§7最低出价: §d1,272,000 Motes");
+		} finally {
+			config.translateItemNames = itemNames;
+			config.translateMobNames = mobNames;
+			config.translate(CurrencyName.MOTES, motes);
+			config.translateSkyBlockName = skyBlockName;
+		}
+
+		checkSentence("矿井档案设置不借用矮人矿山的旧说明", List.of("§7You are currently only editing the",
+			"§7Profile Widget settings for Mineshaft.", "§7Click this button to apply these",
+			"§7settings to all other modes except", "§7the Rift."),
+			"§7你当前只在编辑矿井的档案小部件。点击可将设置应用到裂隙以外的所有其他模式。");
+		checkSentence("矿井属性说明保留动态属性", List.of("§7Shows your Mining Spread if the",
+			"§7widget is enabled when in the", "§7Mineshaft."), "§7若此小部件在矿井中启用，则显示你的挖掘扩散。");
 	}
 
 	/** Fixed UI capture regression: ordered lore, term isolation, and clues that must survive translation. */
